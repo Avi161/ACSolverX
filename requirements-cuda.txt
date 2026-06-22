@@ -1,0 +1,8 @@
+# NVIDIA CUDA 12 JAX stack (jax 0.6.0, to match the ROCm version).
+# `jax[cuda12]` pulls in the matching jaxlib + CUDA plugin and nvidia-* wheels.
+#
+#   pip install -r requirements-cuda.txt
+
+-r requirements.txt
+
+jax[cuda12]==0.6.0

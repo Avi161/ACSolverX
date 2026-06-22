@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+# Ignore all checkpoints except the provided pretrained 610model.
+ppo_checkpoints/*
+!ppo_checkpoints/610model/
+!ppo_checkpoints/610model/**
+wandb/
+*.out
+beam_paths.csv
+# AC1M is shipped compressed (data/AC1M.txt.gz); don't track the decompressed copy.
+data/AC1M.txt
+# The paper draft is kept locally for context only; this is the public-facing code repo.
+main.tex
