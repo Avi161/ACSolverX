@@ -110,17 +110,30 @@ def main():
         "best_paths": jnp.zeros((train_num_states, train_num_steps), dtype=jnp.int32),
     }
 
-    # Stage 2: load params + solve_data with the right shapes.
+    # Stage 2: load params (required) and solve_data (best-effort). solve_data
+    # only feeds the informational train_solved/train_path_length columns; the
+    # search itself never uses it. The released 610model checkpoint's solve_data
+    # is sized to its (uncommitted) training set, so it can shape-mismatch the
+    # dummy_solve_data built from --training_dataset's line count. Restore it
+    # best-effort and fall back to "unknown" rather than crashing the search.
     restored = mngr.restore(
         step_to_load,
-        args=ocp.args.Composite(
-            params=ocp.args.StandardRestore(dummy_params),
-            solve_data=ocp.args.StandardRestore(dummy_solve_data),
-        ),
+        args=ocp.args.Composite(params=ocp.args.StandardRestore(dummy_params)),
     )
     params = restored.params
-    train_solved = np.asarray(restored.solve_data["solved_idx"])
-    train_path_lengths = np.asarray(restored.solve_data["path_lengths"])
+    try:
+        sd = mngr.restore(
+            step_to_load,
+            args=ocp.args.Composite(
+                solve_data=ocp.args.StandardRestore(dummy_solve_data)),
+        )
+        train_solved = np.asarray(sd.solve_data["solved_idx"])
+        train_path_lengths = np.asarray(sd.solve_data["path_lengths"])
+    except Exception as e:
+        print(f"[warn] solve_data restore skipped ({type(e).__name__}); "
+              f"train_solved/train_path_length reported as unknown")
+        train_solved = np.zeros(0, dtype=bool)
+        train_path_lengths = np.zeros(0, dtype=np.int32)
 
     # If --dataset is a filtered subset produced by make_unsolved_dataset.py,
     # a sidecar `_orig_indices.txt` maps new beam indices -> original training
