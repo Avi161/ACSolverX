@@ -15,11 +15,12 @@ common format (greedy is not stored as actions).
 Sources:
   greedy CSV (`all_presentations_len_8_to_19_GS_solved_copy2.csv`): already a state
       trajectory; Path Length = -1 means greedy did not solve it.
-  beam JSONL (`pilot_results.jsonl`): stored as PACKED ACTION ints. Converting a
-      beam-won path to states REQUIRES the JAX env (we replay it), so this step
-      runs in Colab. Only beam-WON paths (the shorter ones) are replayed. The
-      replay doubles as replay-validation: it asserts each path trivializes in
-      exactly beam_path_length steps, catching any spurious solve.
+  beam JSONL (`pilot_results.jsonl`): stored as PACKED ACTION ints. We expand a
+      beam-won path to states with `scripts/s_move_np.py` -- a pure-numpy port of
+      the env S-move, so NO jax/Colab is needed (runs in the py3.9 venv). Only
+      beam-WON paths (the shorter ones) are replayed. The replay doubles as
+      replay-validation: it asserts each path trivializes in exactly
+      beam_path_length steps, catching any spurious solve.
 
 Selection: among the sources that solved a presentation, take the minimum path
 length; tie -> greedy (already states, no replay). Unsolved-by-both rows keep
@@ -29,10 +30,9 @@ Outputs (in data/):
   merged_best_paths.jsonl        one record per presentation, WITH the state path
   merged_best_paths_index.csv    slim scan table (lengths/sources, NO path)
 
-Run from the repo root IN COLAB (needs jax + envs for beam replay):
-    python scripts/build_merged_paths.py
-Smoke-test the beam replay on a handful first:
-    python scripts/build_merged_paths.py --limit 50
+Stdlib + numpy only (no jax). Run from the repo root with the venv python:
+    ../.venv/bin/python scripts/build_merged_paths.py --limit 50   # smoke test
+    ../.venv/bin/python scripts/build_merged_paths.py              # full
 """
 
 import argparse
@@ -41,10 +41,9 @@ import json
 import os
 import sys
 
-_HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, _HERE)                   # scripts/  -> `import canon`
-sys.path.insert(0, os.path.dirname(_HERE))  # repo root -> `import envs` (beam replay)
-import canon  # noqa: E402  (scripts/canon.py)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # scripts/
+import canon       # noqa: E402  (scripts/canon.py)
+import s_move_np   # noqa: E402  (scripts/s_move_np.py -- pure-numpy beam replay)
 
 CSV = "data/all_presentations_len_8_to_19_GS_solved_copy2.csv"
 JSONL = "data/pilot_results.jsonl"
@@ -72,55 +71,12 @@ def load_beam(jsonl_path):
     return out
 
 
-def make_beam_expander(dataset, max_length):
-    """Build an ACS env once and return expand(idx, packed_path) -> state path.
-
-    Mirrors envs.utils.replay_packed_path but records the full state trajectory.
-    Asserts the path reaches the trivial presentation, so it also replay-validates
-    the beam solve. Imports jax/envs lazily so the greedy-only path needs no JAX.
-    """
-    import numpy as np
-    import jax
-    import jax.numpy as jnp
-    from envs.ac_s import ACS
-    from envs.utils import decode_path
-
-    env = ACS(n_gen=2, max_length=max_length, max_steps_in_episode=200,
-              is_reward_sparse=False, initial_states_file=dataset)
-    params = env.default_params
-    key = jax.random.PRNGKey(0)
-
-    def expand(idx, packed_path, expect_len):
-        _, state = env.reset_env(key, params, idx=jnp.int32(int(idx)),
-                                 sample=jnp.bool_(False))
-        states = [canon.env_state_to_strs(np.asarray(state.x), max_length)]
-        terminated, n = False, 0
-        for move in decode_path(packed_path, max_length=max_length):
-            _, state, _, _, info = env.step_env(
-                key, state, jnp.asarray(move, dtype=jnp.int32), params)
-            states.append(canon.env_state_to_strs(np.asarray(state.x), max_length))
-            n += 1
-            terminated = bool(info["terminated"])
-            if terminated:
-                break
-        if not (terminated and n == expect_len):
-            raise AssertionError(
-                f"idx {idx}: beam replay terminated={terminated} steps={n} "
-                f"!= beam_path_length={expect_len} (spurious solve?)")
-        flat = [s for pair in states for s in pair]   # [r1_0,r2_0,r1_1,r2_1,...]
-        return flat
-
-    return expand
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default=CSV)
     ap.add_argument("--jsonl", default=JSONL)
     ap.add_argument("--out_jsonl", default=OUT_JSONL)
     ap.add_argument("--out_index", default=OUT_INDEX)
-    ap.add_argument("--dataset", default="greedy_all",
-                    help="env initial_states_file the beam was run on (idx -> state)")
     ap.add_argument("--max_length", type=int, default=24)
     ap.add_argument("--limit", type=int, default=None,
                     help="expand only the first N beam-won paths (smoke test)")
@@ -181,26 +137,19 @@ def main():
             if best_src == "beam":
                 beam_todo.append((idx, idx, list(brec.get("packed_path") or []), b_len))
 
-    # ---- expand beam-won paths to states (needs the JAX env) ----
+    # ---- expand beam-won paths to states (pure numpy, no jax) ----
     if beam_todo:
         todo = beam_todo[:args.limit] if args.limit else beam_todo
-        print(f"expanding {len(todo)} beam-won paths to states via env replay "
-              f"(dataset={args.dataset})...")
-        try:
-            expand = make_beam_expander(args.dataset, L)
-        except ImportError as e:
-            raise SystemExit(
-                f"beam->state expansion needs the JAX env ({e}). Run this in Colab "
-                "(jax + envs available), from the repo root. greedy/unsolved rows "
-                "are format-ready; only the 7,290 beam-won paths need replay.")
+        print(f"expanding {len(todo)} beam-won paths to states "
+              f"(pure-numpy S-move replay)...")
         for rec_i, idx, packed, blen in todo:
-            records[rec_i]["best_path"] = expand(idx, packed, blen)
-            # state[0] must match the recorded initial presentation
-            r1, r2 = records[rec_i]["best_path"][0], records[rec_i]["best_path"][1]
-            if (r1, r2) != (records[rec_i]["r1"], records[rec_i]["r2"]):
+            r1, r2 = records[rec_i]["r1"], records[rec_i]["r2"]
+            flat, terminated, nsteps = s_move_np.replay_to_states(r1, r2, packed, L)
+            if not (terminated and nsteps == blen):
                 raise AssertionError(
-                    f"idx {idx}: replay initial ({r1},{r2}) != record "
-                    f"({records[rec_i]['r1']},{records[rec_i]['r2']})")
+                    f"idx {idx}: replay terminated={terminated} steps={nsteps} "
+                    f"!= beam_path_length={blen} (s_move_np port bug or spurious solve)")
+            records[rec_i]["best_path"] = flat
         if args.limit:
             print(f"--limit {args.limit}: smoke test only, NOT writing partial output")
             print(f"OK: {len(todo)} beam paths replayed -> states, all trivialize")
