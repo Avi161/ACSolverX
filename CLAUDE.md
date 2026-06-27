@@ -10,6 +10,55 @@ the math background, dataset semantics, and CLI flag reference — read it for a
 of those. This file captures the cross-file architecture and invariants that the
 README does not.
 
+## Commit discipline (ALWAYS — for traceability)
+
+**After implementing any plan, `git add` the work and `git commit` it.** Never leave
+completed, verified work uncommitted — every plan/phase must land as a focused commit so
+the git history *is* the trace of what was built and why. This is non-negotiable; do not
+wait to be reminded.
+
+- **One logical change per commit.** Prefer per-plan / per-phase commits over a single
+  mega-commit — separate, scoped commits are what make the history traceable. Don't bury
+  a phase's deliverables inside an unrelated bulk commit.
+- **Commit only after verification is green** (tests pass, determinism checked, originals
+  confirmed untouched). Never commit known-broken work.
+- **Write extremely detailed commit messages.** Summary line + body covering: *what*
+  changed and *why*, the files added/modified, the key results/numbers, *how it was
+  verified*, and any superseded decisions or scope notes. Assume the reader has only the
+  commit message, not the conversation that produced it — the body is the durable record.
+- **Branch, don't commit to the default branch.** If on `main`, branch first; topic work
+  lands on a feature branch (e.g. `test/eda`). Commit locally; **push only when asked.**
+
+## Literature (`literature/`, local-only context — currently *untracked*, not gitignored)
+
+The two source papers live here — read them for the math/RL background, not just
+the README:
+
+- `literature/AC_Paper_for_ICML2026-2.pdf` — **"The Two-Hump Problem"** (ICML
+  2026), *this repo's own paper*. Authoritative for: the two-hump difficulty
+  distribution, the S-move/substitution action space, the Dual-Ring Transformer,
+  the AC-19/AC-1M datasets, and the **canonical form (Definition E.1)** — a
+  presentation is canonical when each relator is the lex-min over all cyclic
+  rotations of `r` and `r⁻¹`, and the pair is ordered `r₁ ≤_lex r₂`. **Note:** for
+  state-keying/dedup the project pins the lab's *implemented* canonicalizer
+  `canonical_pair_nj` (`greedy_search.ipynb`), not E.1's appendix statement — same
+  equivalence classes (rotation + inverse + swap), but pair ordered
+  **length-then-lex** under alphabet order `y⁻¹ < y < x⁻¹ < x`. The greedy CSV
+  (`data/all_presentations_len_8_to_19_GS_solved_copy2.csv`) is NOT stored in this
+  form — its relators are only *reduced* and pairs *shortest-first* (no
+  rotation/inverse min) — yet its stored states are empirically **1:1 with true
+  `canonical_pair_nj` classes** (verified in `experiments/eda.ipynb` P2-11), so
+  joining other sources still requires canonicalizing via `canonical_pair_nj`. The
+  env's per-move Booth rotation is **not** a canonical form (one relator only, no
+  inverse-min, numeric int8 order) — route env state through `canonical_pair_nj`.
+  See `experiments/CLAUDE_ROUGH_PLAN.md` §2.
+- `literature/Math_ML_paper.pdf` — **"What Makes Math Problems Hard for RL"**
+  (Shehper et al., arXiv 2408.15332), the *prior/companion* paper. PPO baseline
+  (solves 431/1190), a decoder-only transformer that classifies GS-solvability
+  (F1≈0.94), and topological/neighborhood hardness features (XGBoost F1≈0.96).
+  Neither paper builds a continuous distance-until-trivialization regressor —
+  that gap is the subject of `experiments/CLAUDE_ROUGH_PLAN.md`.
+
 ## Commands
 
 Always run Python entry points **from the repository root** — `data/` and
@@ -151,6 +200,23 @@ trained on `AC19_extended` and solves 610 of the first 634 presentations.
   paper draft is local-only; this is the public code repo).
 - JAX is pinned to **0.6.0**; `jax_default_matmul_precision` is set to `float32`
   at import in the JAX modules — keep it.
+- **Resumable data/results loops → always JSONL.** Any training loop or long
+  data/results-collection run (especially GPU/Colab runs that can be preempted)
+  must append **one record per finished unit** to a `.jsonl` file with
+  `f.flush(); os.fsync(f.fileno())` per write, and on startup read that file back
+  to a `done` set and skip already-finished work. If the GPU/kernel dies, you
+  resume from the last good line instead of restarting from scratch. This is the
+  pattern in `experiments/beam_harvest_pilot.ipynb` (`## 9. Resume + JSONL
+  persistence`). Never hold collected results only in memory. Write to a durable
+  path (Drive/project tree), never `/tmp`.
+- **Notebook cell references (collaborator preference):** when authoring notebooks,
+  number every cell's markdown header sequentially (`## 1.`, `## 2.`, …; use a suffix
+  like `## 9b.` when inserting between cells — do not renumber). **When pointing the user
+  to a cell in chat, refer to it by its full visible header — `` `## 2. Mount Google Drive` ``
+  — NEVER by a bare "Cell N".** The notebook shows section headers, not positional indices,
+  and the two diverge (section `## 6` is the 15th cell), so "Cell 6" gets read as section
+  `## 6` and sends the user to the wrong place. [TRAP] this exact collision confused the user
+  on 2026-06-25. See `[[notebook-cell-naming]]`.
 
 ## Lessons Learned
 
@@ -158,4 +224,64 @@ trained on `AC19_extended` and solves 610 of the first 634 presentations.
 > non-obvious pattern. Format: `### [YYYY-MM-DD] Topic` → what happened → rule.
 > Tag `[WORKS]` / `[TRAP]`; never delete entries, mark stale ones `[SUPERSEDED]`.
 
-(none yet)
+### [2026-06-25] Batched-beam wave size: peak is one fused alloc, not a smooth per-pres sum [TRAP]
+`experiments/beam_harvest_pilot.ipynb` batches `W` presentations through one `network.apply`.
+The GPU peak is dominated by a **single fused actor-head activation** (`x_joint`-derived,
+`~[W*B,24,24,2D]`), so it does NOT grow as a smooth `fixed + W*per_pres` line. Measured on an
+80 GB A100 at B=16384: **W=6 peaks ~59.2 GB and runs; W=7 OOMs** (`RESOURCE_EXHAUSTED:
+allocate 67,645,748,608 bytes` = a single ~67.6 GB block — XLA can't get it contiguous on top
+of live buffers + CUDA/cuDNN reserve, even though `memory_stats` shows only ~3 GB used at the
+moment of the failed alloc, because `XLA_PYTHON_CLIENT_PREALLOCATE=false` allocates on demand).
+Rule: **W=6 is the proven ceiling at B=16384 on 80 GB**; don't trust a linear per-presentation
+extrapolation to push higher. After an OOM, Runtime→Restart (the pool is left dirty). The cap
+lives in the `## 4. Pilot configuration` cell (`WAVE_SIZE`) and the `## 9b` auto-sizer
+(`TARGET_FRAC=0.75`). `T_CAP` (horizon cap) is independent of this and does not change the peak.
+
+### [2026-06-24] Beam env must use max_steps = the search horizon, not the training horizon [TRAP]
+`beam/beam_search.py:68` builds its env with `max_steps_in_episode=args.max_steps`
+(the beam horizon T, e.g. 150) — **not** the PPO training `NUM_STEPS` (96). Reason:
+`beam_step` kills beams on `dones` (`new_alive = parent_alive & (~dones) & ...`,
+`beam_search.py:218`), and `dones` includes truncation (`time >= max_steps_in_episode`).
+If you build the beam env with `max_steps=96` but search to T=150, **every beam dies at
+step 96** and no path longer than 96 is ever found. Rule: any standalone beam/harvest code
+must construct `ACS(..., max_steps_in_episode=BEAM_MAX_STEPS)`, distinct from the §2
+training `env` (HORIZON=96). The path-validation env should likewise be sized to the path
+width (`replay_packed_path`/`check_paths` size it to `best_paths.shape[1]`).
+
+### [2026-06-24] Batched beam = jax.vmap of beam_search.py's beam_step over a wave [WORKS]
+To harvest many presentations at once, `jax.vmap(beam_step, in_axes=(0,...,None))` over a
+wave axis `W = wave_size * attempts`; per-element temperature schedule `(W,T)` lets attempt
+0 run deterministic (temp 0) and the rest Gumbel-explored in the SAME wave. `network.apply`
+/ `params` / the env are closed over (not mapped); the inner `jax.vmap(env.step_env)` nests
+fine. Two spots in `beam_step` use unbatched-constant ops that are cleaner to rewrite for
+the outer vmap: build `is_first` via a batched-slice concat
+(`concatenate([sorted_hashes[:1], sorted_hashes[:-1]])` then `.at[0].set(True)`) and use
+`jnp.zeros_like(alive)` (not `jnp.zeros(B)`) as the scatter target for `keep`. Per-presentation
+early-stop can't `break` inside vmap — pull `terminated.any(axis=1)` / `alive.any(axis=1)`
+to host each step and record solve/dead, breaking the wave when all elements are done.
+Implemented inline in `experiments/harvest_AC19.ipynb` §5. **Correctness guard:** an
+equivalence cell asserts batched temp-0 solve length == serial `beam_search.py` temp-0, and
+every harvested path is replayed via `envs.utils.replay_packed_path` before it is written.
+(Engine is [unverified] on H100 until the §5 smoke test passes on Colab.)
+
+### [2026-06-25] PPO+Beam harvest pipeline — Phase 1 done (data prep), beam pending [WORKS]
+Plan: `experiments/PPO_BEAM_HARVEST_PLAN.md` — run 610model + paper-config beam
+(B=16,384, T=150, α=0, 5 seeds, Gumbel) over **all 17,635** greedy-CSV presentations to
+get shorter paths + new solves, then min-aggregate d-o-t labels per canonical state.
+Phase 1 (no GPU) is built and verified:
+- `scripts/canon.py` — the lab canonicalizer (`canonical_pair_nj` etc.) ported VERBATIM
+  from `greedy_search.ipynb` cell 2, **numba-optional** (passthrough `njit` shim when
+  numba absent, e.g. the repo's py3.9 `../.venv`). Adds env-int8 bridges
+  (`env_state_to_strs`, `strs_to_presentation_literal`, `canon_key`). This is the reusable
+  `canon()` module the `CLAUDE_ROUGH_PLAN.md` roadmap needs.
+- `scripts/csv_to_initial_states.py` → `data/greedy_all.txt` (env literals, all 17,635 rows:
+  12,681 greedy-solved + 4,954 greedy-unsolved) + `data/greedy_all_index.csv`
+  (`line_idx,r1,r2,greedy_solved,greedy_path_length`). Line *i* ↔ index row *i* (verified).
+- `scripts/validate_canon.py` (gate G2) reproduces eda P2-11/P0-3 exactly: 202,565 on-path
+  states → **25,209 stored == 25,209 canonical (1:1), 0 d-o-t disagreement**.
+Run gates with `../.venv/bin/python` (has numpy/pandas, NO jax/numba). The env loader is
+idempotent on 24-padded 48-int literals, so `beam_search.py --dataset greedy_all` loads them
+unchanged. [TRAP] beam over 17,635×5 seeds at B=16,384 is ≫ the paper's beam budget (paper
+ran B=16,384 on ~1,190 only) — use the **width ladder** (cheap B=1,024 pass first, then full
+B on the unsolved remainder) and pilot ~200 first. Beam Gumbel **temperature is unspecified
+in the paper**; default explore seeds to `--temperature 1.0 --temp_end 0.0`.
