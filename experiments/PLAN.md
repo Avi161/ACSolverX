@@ -8,30 +8,32 @@ can take length-increasing detours.
 
 ## Steps
 
-1. **Harvest**. Greedy-solved pass → JSONL of `(idx, packed_path,
+*Tracker: `[x]` done · `[ ]` pending. Granular data-crafting status lives in `eda+data_collection/data_crafting/4.0.DETAILED_STEPS_DATA_CRAFTING.md` (Phase 0–1 done). Step 1: beam pilot done, full harvest pending. Step 4: v1 splits done, v2 frozen `counterexample_eval` pending (4.0 Phase 7).*
+
+1. [ ] **Harvest**. Greedy-solved pass → JSONL of `(idx, packed_path,
   beam_path_length, …)`, every path replay-validated before write.
-2. **Label.** Replay each path; state after move *m* on a length-*N* path gets
+2. [x] **Label.** Replay each path; state after move *m* on a length-*N* path gets
   d-o-t = N−m. Labels are **upper bounds**, never ground truth.
-3. **Aggregate to min per canonical class.** Key every on-path state with
+3. [x] **Aggregate to min per canonical class.** Key every on-path state with
   `canon.canon_key` (`canonical_pair_nj`), keep `min` d-o-t over the class. This
    table is the archive. New shorter paths just lower the min — self-correcting.
-4. **Split by AC-equivalence class**, not by row (a whole class in one fold) +
+4. [ ] **Split by AC-equivalence class**, not by row (a whole class in one fold) +
   frozen hard hold-out never mined for labels. Cap/weight per source so greedy
    volume doesn't swamp the PPO/beam detour states.
-5. **Train.** Baselines (length-only, XGBoost on scalar features) → DRT-trunk
+5. [ ] **Train.** Baselines (length-only, XGBoost on scalar features) → DRT-trunk
   regressor (reuse `RelativeDualRingActorCritic`, optionally warm-start from the
    PPO critic) + heads: d-o-t (Huber on `log1p`), censored loss for unsolved,
    solvable-within-budget aux, uncertainty for OOD abstention.
-6. **Evaluate on ranking, not just MAE.** Spearman + pairwise sibling-ordering;
+6. [ ] **Evaluate on ranking, not just MAE.** Spearman + pairwise sibling-ordering;
   downstream: does f-ranking beat GS-Sub at matched node budget? Calibrate per
    difficulty band.
-7. **f-guided search.** Combine, don't replace: `score = policy logp + (−f) bonus
+7. [ ] **f-guided search.** Combine, don't replace: `score = policy logp + (−f) bonus
   - novelty`, OOD abstention → fall back to policy/length where unconfident.
-8. **DAgger refinement loop.** f-guided search → new/shorter paths → update min
+8. [ ] **DAgger refinement loop.** f-guided search → new/shorter paths → update min
   table → retrain. Promotion gate: no regression on the frozen baseline solves.
-9. **Censored unsolved.** Record `d-o-t > B` with full search context (algo,
+9. [ ] **Censored unsolved.** Record `d-o-t > B` with full search context (algo,
   budget, horizon, beam width) — no constant fill-in (Caltech's trap).
-10. **Benchmark + write-up** vs GS-Sub (640), beam (mean path 12.39), and the 261
+10. [ ] **Benchmark + write-up** vs GS-Sub (640), beam (mean path 12.39), and the 261
   unsolved hard classes; report new solves separately from path-shortening.
 
 **Immediate next:** explore-seed pass (Gumbel seeds 1–4) over the 4,954

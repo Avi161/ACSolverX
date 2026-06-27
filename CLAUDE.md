@@ -29,6 +29,20 @@ wait to be reminded.
 - **Branch, don't commit to the default branch.** If on `main`, branch first; topic work
   lands on a feature branch (e.g. `test/eda`). Commit locally; **push only when asked.**
 
+## Plan TODO checkboxes (ALWAYS — for traceable plans)
+
+Track every plan/spec's steps as checkboxes so progress is visible and auditable:
+
+- Each **discrete, executable step** is a `- [ ]` item. Checkboxes go on steps ONLY — never on
+  decision tables, rationale, or prose; don't force them onto non-actionable text.
+- When a step is executed **and verified**, flip it to `- [x]`.
+- When adding checkboxes to an **existing** plan, mark already-finished steps `- [x]` **honestly**
+  — never default everything to `- [ ]` (that hides completed work and is the opposite of the point).
+- If a step turns out wrong or could be phrased better, **DISCUSS the change with `advisor()` first**,
+  then apply it and mark the item `- [x][-]` (done AND changed) with an inline note stating **exactly
+  what it changed from → to**, so the collaborator can see and understand it. Never silently rewrite a
+  step — the `[-]` + from→to note is the audit trail.
+
 ## Literature (`literature/`, local-only context — currently *untracked*, not gitignored)
 
 The two source papers live here — read them for the math/RL background, not just
