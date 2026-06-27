@@ -1,0 +1,294 @@
+{
+  "archive": "data/dot_archive.jsonl",
+  "band_counts": {
+    "easy": 18503,
+    "hard_solved": 3569,
+    "hard_unsolved": 4954,
+    "valley": 15424
+  },
+  "band_frac_labelled": {
+    "easy": 0.49346596970343504,
+    "hard_solved": 0.09518348623853211,
+    "valley": 0.41135054405803284
+  },
+  "band_frac_total": {
+    "easy": 0.4358775029446407,
+    "hard_solved": 0.084075382803298,
+    "hard_unsolved": 0.1167020023557126,
+    "valley": 0.36334511189634866
+  },
+  "censored_len_dist": {
+    "12": 1,
+    "13": 7,
+    "14": 20,
+    "15": 266,
+    "16": 659,
+    "17": 4001
+  },
+  "length_hardness": [
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 1,
+      "solved_median_dot": 0.0,
+      "total_len": 2
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 4,
+      "solved_median_dot": 1.0,
+      "total_len": 3
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 4,
+      "solved_median_dot": 2.0,
+      "total_len": 4
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 8,
+      "solved_median_dot": 2.5,
+      "total_len": 5
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 11,
+      "solved_median_dot": 2.0,
+      "total_len": 6
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 50,
+      "solved_median_dot": 3.0,
+      "total_len": 7
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 55,
+      "solved_median_dot": 3.0,
+      "total_len": 8
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 162,
+      "solved_median_dot": 3.0,
+      "total_len": 9
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 130,
+      "solved_median_dot": 3.0,
+      "total_len": 10
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 353,
+      "solved_median_dot": 4.0,
+      "total_len": 11
+    },
+    {
+      "censored_frac": 0.003676470588235294,
+      "n_censored": 1,
+      "n_solved": 271,
+      "solved_median_dot": 5.0,
+      "total_len": 12
+    },
+    {
+      "censored_frac": 0.007891770011273957,
+      "n_censored": 7,
+      "n_solved": 880,
+      "solved_median_dot": 6.0,
+      "total_len": 13
+    },
+    {
+      "censored_frac": 0.020161290322580645,
+      "n_censored": 20,
+      "n_solved": 972,
+      "solved_median_dot": 7.0,
+      "total_len": 14
+    },
+    {
+      "censored_frac": 0.07935560859188544,
+      "n_censored": 266,
+      "n_solved": 3086,
+      "solved_median_dot": 8.0,
+      "total_len": 15
+    },
+    {
+      "censored_frac": 0.1459579180509413,
+      "n_censored": 659,
+      "n_solved": 3856,
+      "solved_median_dot": 8.0,
+      "total_len": 16
+    },
+    {
+      "censored_frac": 0.30929189857761286,
+      "n_censored": 4001,
+      "n_solved": 8935,
+      "solved_median_dot": 9.0,
+      "total_len": 17
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 1889,
+      "solved_median_dot": 12.0,
+      "total_len": 18
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 2901,
+      "solved_median_dot": 13.0,
+      "total_len": 19
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 1863,
+      "solved_median_dot": 14.0,
+      "total_len": 20
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 2853,
+      "solved_median_dot": 16.0,
+      "total_len": 21
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 1433,
+      "solved_median_dot": 21.0,
+      "total_len": 22
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 2310,
+      "solved_median_dot": 21.0,
+      "total_len": 23
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 1047,
+      "solved_median_dot": 22.0,
+      "total_len": 24
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 1759,
+      "solved_median_dot": 21.0,
+      "total_len": 25
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 717,
+      "solved_median_dot": 20.0,
+      "total_len": 26
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 947,
+      "solved_median_dot": 23.0,
+      "total_len": 27
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 302,
+      "solved_median_dot": 21.0,
+      "total_len": 28
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 339,
+      "solved_median_dot": 19.0,
+      "total_len": 29
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 110,
+      "solved_median_dot": 16.5,
+      "total_len": 30
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 118,
+      "solved_median_dot": 14.0,
+      "total_len": 31
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 39,
+      "solved_median_dot": 14.0,
+      "total_len": 32
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 42,
+      "solved_median_dot": 15.0,
+      "total_len": 33
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 18,
+      "solved_median_dot": 19.5,
+      "total_len": 34
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 12,
+      "solved_median_dot": 9.0,
+      "total_len": 35
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 8,
+      "solved_median_dot": 9.5,
+      "total_len": 36
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 7,
+      "solved_median_dot": 13.0,
+      "total_len": 37
+    },
+    {
+      "censored_frac": 0.0,
+      "n_censored": 0,
+      "n_solved": 4,
+      "solved_median_dot": 14.0,
+      "total_len": 39
+    }
+  ],
+  "n_censored": 4954,
+  "n_censored_le13": 8,
+  "n_labelled": 37496,
+  "n_total": 42450,
+  "schema_version": 1
+}

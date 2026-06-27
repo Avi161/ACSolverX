@@ -1,0 +1,14 @@
+{
+  "B_hard": 150,
+  "B_soft": 48,
+  "archive": "data/dot_archive.jsonl",
+  "max": 349.0,
+  "method": "linear",
+  "min": 0.0,
+  "n_labelled": 37496,
+  "p50": 11.0,
+  "p75": 20.0,
+  "p90": 48.0,
+  "p95": 81.0,
+  "p99": 150.0
+}
