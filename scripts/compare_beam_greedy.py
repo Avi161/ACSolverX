@@ -32,7 +32,7 @@ import statistics
 from collections import Counter
 
 DEFAULT_JSONL = "/content/drive/MyDrive/beam_harvest_greedy_solved/pilot_results.jsonl"
-DEFAULT_INDEX = "data/greedy_all_index.csv"
+DEFAULT_INDEX = "data/derived/paths/greedy_all_index.csv"
 
 
 # ---------------------------------------------------------------- loaders ----

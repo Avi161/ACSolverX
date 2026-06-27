@@ -48,8 +48,10 @@ def main():
     if not os.path.exists(args.csv):
         raise SystemExit(f"CSV not found: {args.csv} (run from repo root?)")
 
+    # .txt stays at data/ root (the env loads it by stem: data/<stem>.txt); the index is
+    # a derived artifact and lives under data/derived/paths/.
     txt_path = os.path.join("data", f"{args.out_stem}.txt")
-    idx_path = os.path.join("data", f"{args.out_stem}_index.csv")
+    idx_path = os.path.join("data", "derived", "paths", f"{args.out_stem}_index.csv")
 
     rows = []  # (line_idx, r1, r2, greedy_solved, greedy_path_length)
     literals = []
@@ -81,6 +83,7 @@ def main():
         for literal in literals:
             f.write(repr(literal) + "\n")
 
+    os.makedirs(os.path.dirname(idx_path) or ".", exist_ok=True)
     with open(idx_path, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["line_idx", "r1", "r2", "greedy_solved", "greedy_path_length"])

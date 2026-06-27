@@ -1,7 +1,7 @@
 {
   "B_hard": 150,
   "B_soft": 48,
-  "archive": "data/dot_archive.jsonl",
+  "archive": "data/derived/labels/dot_archive.jsonl",
   "max": 349.0,
   "method": "linear",
   "min": 0.0,

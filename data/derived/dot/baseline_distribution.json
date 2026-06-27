@@ -1,5 +1,5 @@
 {
-  "archive": "data/dot_archive.jsonl",
+  "archive": "data/derived/labels/dot_archive.jsonl",
   "band_counts": {
     "easy": 18503,
     "hard_solved": 3569,

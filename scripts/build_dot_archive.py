@@ -36,8 +36,8 @@ from collections import Counter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # scripts/
 import canon  # noqa: E402
 
-MERGED = "data/merged_best_paths.jsonl"
-OUT = "data/dot_archive.jsonl"
+MERGED = "data/derived/paths/merged_best_paths.jsonl"
+OUT = "data/derived/labels/dot_archive.jsonl"
 
 
 def main():
@@ -102,6 +102,7 @@ def main():
     # write archive: solved labels first, then censored unsolved-initials not
     # already present as solvable
     n_censored = 0
+    os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w") as f:
         for key, s in solved.items():
             c1, c2 = canon_strs[key]

@@ -24,8 +24,8 @@ import os
 
 import numpy as np
 
-ARCHIVE = "data/dot_archive.jsonl"
-SPLIT_NPZ = "data/dot_splits.npz"
+ARCHIVE = "data/derived/labels/dot_archive.jsonl"
+SPLIT_NPZ = "data/derived/labels/dot_splits.npz"
 
 
 def load_archive(path=ARCHIVE):

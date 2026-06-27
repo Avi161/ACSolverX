@@ -40,13 +40,15 @@ B_HARD_EXPECTED = 150      # round(p99) of solved d-o-t
 B_TOL = 2                  # tolerance for the Phase 0 assertion
 
 # ---- paths (relative to repo root; run entry points from there) ----
-ARCHIVE = "data/dot_archive.jsonl"                                  # mirrors dot_dataset.ARCHIVE
-MERGED_PATHS = "data/merged_best_paths.jsonl"
-GREEDY_CSV = "data/all_presentations_len_8_to_19_GS_solved_copy2.csv"
-PERCENTILES_JSON = "data/percentiles.json"
-BASELINE_JSON = "data/baseline_distribution.json"
-ANCHORS_JSONL = "data/anchors.jsonl"          # Phase 1: named anchor rows
-TRAP_SET_JSON = "data/ak_trap_set.json"       # Phase 1: search-time known-basin keys
+# Raw/env-loaded datasets live at data/ root (the env hardcodes data/<stem>.txt); all
+# pipeline-generated files live under data/derived/. See data/README.md.
+ARCHIVE = "data/derived/labels/dot_archive.jsonl"                   # mirrors dot_dataset.ARCHIVE
+MERGED_PATHS = "data/derived/paths/merged_best_paths.jsonl"
+GREEDY_CSV = "data/all_presentations_len_8_to_19_GS_solved_copy2.csv"   # raw source (root)
+PERCENTILES_JSON = "data/derived/dot/percentiles.json"
+BASELINE_JSON = "data/derived/dot/baseline_distribution.json"
+ANCHORS_JSONL = "data/derived/dot/anchors.jsonl"          # Phase 1: named anchor rows
+TRAP_SET_JSON = "data/derived/dot/ak_trap_set.json"       # Phase 1: search-time known-basin keys
 
 
 def band_of(dot):

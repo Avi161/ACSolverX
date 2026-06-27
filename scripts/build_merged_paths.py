@@ -46,9 +46,9 @@ import canon       # noqa: E402  (scripts/canon.py)
 import s_move_np   # noqa: E402  (scripts/s_move_np.py -- pure-numpy beam replay)
 
 CSV = "data/all_presentations_len_8_to_19_GS_solved_copy2.csv"
-JSONL = "data/pilot_results.jsonl"
-OUT_JSONL = "data/merged_best_paths.jsonl"
-OUT_INDEX = "data/merged_best_paths_index.csv"
+JSONL = "data/derived/paths/pilot_results.jsonl"
+OUT_JSONL = "data/derived/paths/merged_best_paths.jsonl"
+OUT_INDEX = "data/derived/paths/merged_best_paths_index.csv"
 
 csv.field_size_limit(10 ** 7)  # greedy paths can be hundreds of tokens wide
 
@@ -156,6 +156,7 @@ def main():
             return
 
     # ---- write ----
+    os.makedirs(os.path.dirname(args.out_jsonl) or ".", exist_ok=True)
     with open(args.out_jsonl, "w") as f:
         for rec in records:
             f.write(json.dumps(rec) + "\n")
