@@ -136,12 +136,12 @@ same archive.
 
 - During search, flag a state as a trap when: (a) revisit hashes spike (cycle), (b) length plateaus, or (c) **f is a local min** — `min over neighbors f(neighbor) ≥ f(current)`. These criteria fire for **any** basin, known or not — they are the open-world detector.
 - **Two buckets per trap: known vs novel.** Canonicalize each flagged state, then split:
-  - **known** → in `data/ak_trap_set.json` → counted as an AK(n) basin (closed-world, below).
+  - **known** → in `data/derived/dot/ak_trap_set.json` → counted as an AK(n) basin (closed-world, below).
   - **novel** → NOT in the set → a **newly-discovered local minimum**. This is the open-world case the search exists to surface, and the scientifically interesting output.
 - **Novel-basin registry (resumable JSONL, per CLAUDE.md durability rule):** append each novel trap to `experiments/dot_runs/<ts>/discovered_minima.jsonl` — `{canon_key, r1, r2, total_len, source_problem, search_algo, depth_at_hit, min_f_seen, n_runs_hit, escaped:bool}`, **aggregated by `canon_key`** so we count *how many distinct runs / problems* fall into each basin (recurring = a real attractor, one-off = noise). `flush()+fsync` per write; resume by reading it back.
 - **Cluster, promote, feed back (the loop):** periodically cluster novel basins (by AC-neighborhood / canonical similarity), cross-reference against the paper's **261 unsolved MS equivalence classes**, and **promote** the frequently-hit ones: (1) add their canon keys to `ak_trap_set.json` (the set is *living*, not fixed), (2) inject them as **new censored hard anchors** in the next data build (DAgger-for-hardness, §7), (3) flag any short/recurring novel basin as a **candidate new counterexample** for mathematical follow-up.
-- **Concrete AK(n) trap-set (the known-bucket lookup):** load `data/ak_trap_set.json` (built by
-`scripts/build_anchors.py`, see `experiments/eda+data_collection/DATA_DISTRIBUTION_PLAN.md §3d`) =
+- **Concrete AK(n) trap-set (the known-bucket lookup):** load `data/derived/dot/ak_trap_set.json` (built by
+`scripts/build/build_anchors.py`, see `experiments/eda+data_collection/data_crafting/3.DATA_DISTRIBUTION_PLAN.md §3d`) =
 `{canon_key(AK(n)) : n=3..8} ∪ {Length-14 ×2} ∪ {8 in-data cousins} ∪ {ak3_auto images}`.
 For every expanded state, canonicalize via `canon.canon_key` and do **one membership test** —
 "did the search fall back into an AK(n) basin?" is then exact, not heuristic. Single shared
