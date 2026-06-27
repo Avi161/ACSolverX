@@ -1,4 +1,4 @@
-# PLAN 
+# PLAN
 
 *Concise step list. Rationale and corrections are in the detailed plan below.*
 
@@ -169,7 +169,7 @@ per-`AK(n)` histogram — the number that says how often `f` re-finds the basin 
 
 ## 11. Phased roadmap
 
-1. Lift the lab's `**canonical_pair_nj*`* (+ numba helpers) into an importable `canon()` module and write the env-int8→char converter; verify `1190MS ↔ greedy CSV ↔ env` all produce the same canonical key on a sample (round-trip) (§2). Everything downstream keys on this.
+1. Lift the lab's `**canonical_pair_nj`** (+ numba helpers) into an importable `canon()` module and write the env-int8→char converter; verify `1190MS ↔ greedy CSV ↔ env` all produce the same canonical key on a sample (round-trip) (§2). Everything downstream keys on this.
 2. Build the min-d-o-t table from CSV + `610model` paths (replay-validated); EDA on label distribution & length-vs-d-o-t scatter (confirm short ≠ easy).
 3. Train baselines + DRT regressor; report split metrics (§6).
 4. f-guided search on 1190; measure vs **GS-Sub at matched node budget** (§0b). Bar to be worth it: match GS-Sub's 640 at *lower* budget, or crack any of the 261 hard classes.
