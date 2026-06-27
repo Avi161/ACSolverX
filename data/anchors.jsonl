@@ -1,0 +1,8 @@
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YXYxyx", "r2": "YYYYxxx", "sources": [], "tier": "named", "total_len": 13}
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YXYxyx", "r2": "YYYYYxxxx", "sources": [], "tier": "named", "total_len": 15}
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YXYxyx", "r2": "YYYYYYxxxxx", "sources": [], "tier": "named", "total_len": 17}
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YXYxyx", "r2": "YYYYYYYxxxxxx", "sources": [], "tier": "named", "total_len": 19}
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YXYxyx", "r2": "YYYYYYYYxxxxxxx", "sources": [], "tier": "named", "total_len": 21}
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YXYxyx", "r2": "YYYYYYYYYxxxxxxxx", "sources": [], "tier": "named", "total_len": 23}
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YYYXyyx", "r2": "YXXYxxx", "sources": [], "tier": "named", "total_len": 14}
+{"bound_B": 150, "censored": true, "group": "named", "loss_type": "hinge", "min_dot": null, "n_obs": 0, "r1": "YYYXyyx", "r2": "YXXXyxx", "sources": [], "tier": "named", "total_len": 14}

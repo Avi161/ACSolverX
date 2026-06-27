@@ -1,0 +1,45 @@
+{
+  "groups": {
+    "named": {
+      "AK(3)": "YXYxyx|YYYYxxx",
+      "AK(4)": "YXYxyx|YYYYYxxxx",
+      "AK(5)": "YXYxyx|YYYYYYxxxxx",
+      "AK(6)": "YXYxyx|YYYYYYYxxxxxx",
+      "AK(7)": "YXYxyx|YYYYYYYYxxxxxxx",
+      "AK(8)": "YXYxyx|YYYYYYYYYxxxxxxxx",
+      "Length 14 #1": "YYYXyyx|YXXYxxx",
+      "Length 14 #2": "YYYXyyx|YXXXyxx"
+    },
+    "short_hard": [
+      "YXXYx|YYYXyxyX",
+      "YXXYx|YYYYXyX",
+      "YXXYx|YYYYYXXX",
+      "YXYXyX|YYXXXXX",
+      "YXYxyx|YXXYxxx",
+      "YXYxyx|YXyXYxx",
+      "YXYxyx|YYYxxxx",
+      "YYxxyX|YYXyxxx"
+    ]
+  },
+  "keys": [
+    "YXXYx|YYYXyxyX",
+    "YXXYx|YYYYXyX",
+    "YXXYx|YYYYYXXX",
+    "YXYXyX|YYXXXXX",
+    "YXYxyx|YXXYxxx",
+    "YXYxyx|YXyXYxx",
+    "YXYxyx|YYYYYYYYYxxxxxxxx",
+    "YXYxyx|YYYYYYYYxxxxxxx",
+    "YXYxyx|YYYYYYYxxxxxx",
+    "YXYxyx|YYYYYYxxxxx",
+    "YXYxyx|YYYYYxxxx",
+    "YXYxyx|YYYYxxx",
+    "YXYxyx|YYYxxxx",
+    "YYYXyyx|YXXXyxx",
+    "YYYXyyx|YXXYxxx",
+    "YYxxyX|YYXyxxx"
+  ],
+  "n_keys": 16,
+  "source": "build_anchors.py Phase 1",
+  "version": 1
+}
