@@ -78,7 +78,7 @@ python ppo_ac_s.py                                            # no --ckpt_path =
 python beam/beam_search.py --ckpt_path 610model --beam_width 1024 --start 0 --end 634
 
 # Validate that stored solving paths actually trivialize (the repo's "test")
-python scripts/check_checkpoint_paths.py --ckpt_path 610model --max_paths 10
+python scripts/analysis/check_checkpoint_paths.py --ckpt_path 610model --max_paths 10
 
 # Greedy-search baseline (GS-Sub): open and run greedy_search.ipynb (numpy+numba only, no JAX/GPU)
 
@@ -87,7 +87,7 @@ gunzip -k data/AC1M.txt.gz
 ```
 
 There is **no unit-test suite, linter, or formatter** configured. Correctness of
-a trained model is verified empirically by `scripts/check_checkpoint_paths.py`,
+a trained model is verified empirically by `scripts/analysis/check_checkpoint_paths.py`,
 which replays each saved path move-by-move in a fresh env and asserts it reaches
 the trivial presentation in the stored number of steps. Run it after any change
 to the env, the S-move implementation, or the action packing.
@@ -182,7 +182,7 @@ shapes depend on the *training* run, not the eval target:
 - `best_paths` width = training **`NUM_STEPS`**, read back from the saved
   `config`.
 
-`beam/beam_search.py` and `scripts/check_checkpoint_paths.py` both do a two-stage
+`beam/beam_search.py` and `scripts/analysis/check_checkpoint_paths.py` both do a two-stage
 restore: load `config` first to get `NUM_STEPS`, size the dummies, then load
 `params` + `solve_data`. Pass `--training_dataset` (beam) / `--dataset`
 (validator) to match the run; a wrong size makes the restore fail or misalign
@@ -269,15 +269,15 @@ Plan: `experiments/PPO_BEAM_HARVEST_PLAN.md` — run 610model + paper-config bea
 (B=16,384, T=150, α=0, 5 seeds, Gumbel) over **all 17,635** greedy-CSV presentations to
 get shorter paths + new solves, then min-aggregate d-o-t labels per canonical state.
 Phase 1 (no GPU) is built and verified:
-- `scripts/canon.py` — the lab canonicalizer (`canonical_pair_nj` etc.) ported VERBATIM
+- `scripts/lib/canon.py` — the lab canonicalizer (`canonical_pair_nj` etc.) ported VERBATIM
   from `greedy_search.ipynb` cell 2, **numba-optional** (passthrough `njit` shim when
   numba absent, e.g. the repo's py3.9 `../.venv`). Adds env-int8 bridges
   (`env_state_to_strs`, `strs_to_presentation_literal`, `canon_key`). This is the reusable
   `canon()` module the `CLAUDE_ROUGH_PLAN.md` roadmap needs.
-- `scripts/csv_to_initial_states.py` → `data/greedy_all.txt` (env literals, all 17,635 rows:
-  12,681 greedy-solved + 4,954 greedy-unsolved) + `data/greedy_all_index.csv`
+- `scripts/build/csv_to_initial_states.py` → `data/greedy_all.txt` (env literals, all 17,635 rows:
+  12,681 greedy-solved + 4,954 greedy-unsolved) + `data/derived/paths/greedy_all_index.csv`
   (`line_idx,r1,r2,greedy_solved,greedy_path_length`). Line *i* ↔ index row *i* (verified).
-- `scripts/validate_canon.py` (gate G2) reproduces eda P2-11/P0-3 exactly: 202,565 on-path
+- `scripts/tests/validate_canon.py` (gate G2) reproduces eda P2-11/P0-3 exactly: 202,565 on-path
   states → **25,209 stored == 25,209 canonical (1:1), 0 d-o-t disagreement**.
 Run gates with `../.venv/bin/python` (has numpy/pandas, NO jax/numba). The env loader is
 idempotent on 24-padded 48-int literals, so `beam_search.py --dataset greedy_all` loads them

@@ -20,8 +20,8 @@ import csv
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import canon  # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+from scripts.lib import canon  # noqa: E402
 
 CSV = "data/all_presentations_len_8_to_19_GS_solved_copy2.csv"
 

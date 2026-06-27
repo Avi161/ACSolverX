@@ -15,11 +15,11 @@ import sys
 import json
 import shutil
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import canon              # noqa: E402
-import dot_config as cfg  # noqa: E402
-import dot_dataset        # noqa: E402
-import build_anchors as ba  # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+from scripts.lib import canon              # noqa: E402
+from scripts.lib import dot_config as cfg  # noqa: E402
+from scripts.lib import dot_dataset        # noqa: E402
+from scripts.build import build_anchors as ba  # noqa: E402
 
 EXPECTED_NAMED = {
     "AK(3)": "YXYxyx|YYYYxxx",

@@ -33,8 +33,8 @@ import os
 import sys
 from collections import Counter
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # scripts/
-import canon  # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+from scripts.lib import canon  # noqa: E402
 
 MERGED = "data/derived/paths/merged_best_paths.jsonl"
 OUT = "data/derived/labels/dot_archive.jsonl"

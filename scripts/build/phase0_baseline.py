@@ -19,9 +19,9 @@ from collections import Counter
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import dot_config as cfg  # noqa: E402
-import dot_dataset        # noqa: E402  (reuse load_archive; do not re-parse the archive)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+from scripts.lib import dot_config as cfg  # noqa: E402
+from scripts.lib import dot_dataset        # noqa: E402  (reuse load_archive; do not re-parse the archive)
 
 
 def check_inputs():
@@ -38,7 +38,7 @@ def check_inputs():
         elif os.path.getsize(path) == 0:
             problems.append(f"empty input: {path}")
     try:
-        import canon  # noqa: E402
+        from scripts.lib import canon  # noqa: E402
         key = canon.canon_key("xyxYXY", "xxxYYYY")
         ok = (isinstance(key, tuple) and len(key) == 2
               and isinstance(key[0], str) and isinstance(key[1], int))

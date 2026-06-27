@@ -41,9 +41,9 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # scripts/
-import canon       # noqa: E402  (scripts/canon.py)
-import s_move_np   # noqa: E402  (scripts/s_move_np.py -- pure-numpy beam replay)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+from scripts.lib import canon       # noqa: E402
+from scripts.lib import s_move_np   # noqa: E402  (pure-numpy beam replay)
 
 CSV = "data/all_presentations_len_8_to_19_GS_solved_copy2.csv"
 JSONL = "data/derived/paths/pilot_results.jsonl"

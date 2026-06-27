@@ -107,8 +107,11 @@ greedy_search.ipynb  greedy search with substitutions (GS-Sub); standalone (nump
 beam/
   beam_search.py     beam search that loads a trained checkpoint
 scripts/
-  check_checkpoint_paths.py  validate stored paths in a checkpoint's solve_data
-data/                initial-state datasets (one Python-literal presentation per line)
+  lib/       shared modules (canon, s_move_np, dot_config, dot_dataset)
+  build/     data-pipeline builders (csv_to_initial_states, build_*, phase0_baseline)
+  tests/     gate-style validation (test_phase0/1, validate_canon)
+  analysis/  check_checkpoint_paths (validate stored paths), compare_beam_greedy
+data/                datasets (raw at root; pipeline outputs under data/derived/; see data/README.md)
 ```
 
 ## Datasets (`data/`)
@@ -228,7 +231,7 @@ beam search or the path validator:
 
 ```bash
 python beam/beam_search.py --ckpt_path 610model --beam_width 1024
-python scripts/check_checkpoint_paths.py --ckpt_path 610model --max_paths 10
+python scripts/analysis/check_checkpoint_paths.py --ckpt_path 610model --max_paths 10
 ```
 
 ## License

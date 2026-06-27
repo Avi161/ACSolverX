@@ -14,9 +14,9 @@ import sys
 os.environ['XLA_PYTHON_CLIENT_PREALLOCATE'] = 'false'
 os.environ["XLA_FLAGS"] = "--xla_gpu_autotune_level=0"
 
-# Allow `python scripts/check_checkpoint_paths.py` from the repo root: put the
-# repo root (parent of scripts/) on sys.path so `envs` imports.
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Allow `python scripts/analysis/check_checkpoint_paths.py` from the repo root: put the
+# repo root (two levels above scripts/analysis/) on sys.path so `envs` imports.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import argparse
 import jax.numpy as jnp

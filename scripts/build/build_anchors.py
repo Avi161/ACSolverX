@@ -23,10 +23,10 @@ import os
 import sys
 import json
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import canon          # noqa: E402
-import dot_config as cfg  # noqa: E402
-import dot_dataset    # noqa: E402  (reuse load_archive)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+from scripts.lib import canon          # noqa: E402
+from scripts.lib import dot_config as cfg  # noqa: E402
+from scripts.lib import dot_dataset    # noqa: E402  (reuse load_archive)
 
 # Length-14 counterexamples from greedy_search.ipynb's `counterexamples` dict (named for their
 # 14-letter size; unrelated to AK(3)). AK(n) is synthesized from the formula below.
