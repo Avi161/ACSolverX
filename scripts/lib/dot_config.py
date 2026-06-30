@@ -49,6 +49,7 @@ PERCENTILES_JSON = "data/derived/dot/percentiles.json"
 BASELINE_JSON = "data/derived/dot/baseline_distribution.json"
 ANCHORS_JSONL = "data/derived/dot/anchors.jsonl"          # Phase 1: named anchor rows
 TRAP_SET_JSON = "data/derived/dot/ak_trap_set.json"       # Phase 1: search-time known-basin keys
+ARCHIVE_V2 = "data/derived/labels/dot_archive_v2.jsonl"   # Phase 6: emitted v2 training archive
 
 
 def band_of(dot):
