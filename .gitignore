@@ -14,3 +14,4 @@ data/AC1M.txt
 # The paper draft is kept locally for context only; this is the public-facing code repo.
 main.tex
 literature
+tmp
