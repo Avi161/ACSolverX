@@ -50,6 +50,7 @@ BASELINE_JSON = "data/derived/dot/baseline_distribution.json"
 ANCHORS_JSONL = "data/derived/dot/anchors.jsonl"          # Phase 1: named anchor rows
 TRAP_SET_JSON = "data/derived/dot/ak_trap_set.json"       # Phase 1: search-time known-basin keys
 ARCHIVE_V2 = "data/derived/labels/dot_archive_v2.jsonl"   # Phase 6: emitted v2 training archive
+SPLIT_NPZ_V2 = "data/derived/labels/dot_splits_v2.npz"    # Phase 7: emitted v2 frozen splits
 
 
 def band_of(dot):
