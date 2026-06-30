@@ -1,0 +1,711 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "archive_v2": "data/derived/labels/dot_archive_v2.jsonl",
+    "splits": "data/derived/labels/dot_splits_v2.npz",
+    "baseline": "data/derived/dot/baseline_distribution.json",
+    "percentiles": "data/derived/dot/percentiles.json",
+    "trap_set": "data/derived/dot/ak_trap_set.json"
+  },
+  "n_rows": 38384,
+  "n_labelled": 33422,
+  "n_censored_generic": 4954,
+  "n_named": 8,
+  "bands": {
+    "target_shares": {
+      "easy": 0.25,
+      "valley": 0.35,
+      "hard_solved": 0.15,
+      "hard_unsolved": 0.25
+    },
+    "band_mass_archive": {
+      "easy": 0.2559,
+      "valley": 0.3583,
+      "hard_solved": 0.1285,
+      "hard_unsolved": 0.2573
+    },
+    "band_mass_train_HEADLINE": {
+      "easy": 0.2673,
+      "valley": 0.3772,
+      "hard_solved": 0.0868,
+      "hard_unsolved": 0.2687
+    },
+    "tolerance": 0.03,
+    "note": "HEADLINE = train cut (what actually trains); archive cut reproduces Phase-5. hard_solved is doubly-depleted in train (hard_test frozen + x0.5 tail discount)."
+  },
+  "mean_weight": 1.0,
+  "dot_histogram_labelled": {
+    "edges": [
+      0,
+      6,
+      11,
+      21,
+      31,
+      51,
+      76,
+      101,
+      151,
+      400
+    ],
+    "raw": [
+      4951,
+      9478,
+      9910,
+      3071,
+      2443,
+      1432,
+      971,
+      792,
+      374
+    ],
+    "weighted": [
+      3370.95,
+      6453.21,
+      8836.91,
+      2738.46,
+      2178.46,
+      2365.07,
+      1603.69,
+      654.03,
+      308.85
+    ]
+  },
+  "length_hardness_v2": [
+    {
+      "total_len": 2,
+      "n_solved": 1,
+      "n_hard": 0,
+      "solved_median_dot": 0.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 3,
+      "n_solved": 4,
+      "n_hard": 0,
+      "solved_median_dot": 1.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 4,
+      "n_solved": 4,
+      "n_hard": 0,
+      "solved_median_dot": 2.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 5,
+      "n_solved": 8,
+      "n_hard": 0,
+      "solved_median_dot": 2.5,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 6,
+      "n_solved": 11,
+      "n_hard": 0,
+      "solved_median_dot": 2.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 7,
+      "n_solved": 49,
+      "n_hard": 0,
+      "solved_median_dot": 3.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 8,
+      "n_solved": 51,
+      "n_hard": 0,
+      "solved_median_dot": 3.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 9,
+      "n_solved": 120,
+      "n_hard": 0,
+      "solved_median_dot": 3.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 10,
+      "n_solved": 95,
+      "n_hard": 0,
+      "solved_median_dot": 3.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 11,
+      "n_solved": 234,
+      "n_hard": 0,
+      "solved_median_dot": 4.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 12,
+      "n_solved": 197,
+      "n_hard": 1,
+      "solved_median_dot": 5.0,
+      "hard_frac": 0.005050505050505051
+    },
+    {
+      "total_len": 13,
+      "n_solved": 675,
+      "n_hard": 8,
+      "solved_median_dot": 6.0,
+      "hard_frac": 0.01171303074670571
+    },
+    {
+      "total_len": 14,
+      "n_solved": 756,
+      "n_hard": 22,
+      "solved_median_dot": 7.0,
+      "hard_frac": 0.028277634961439587
+    },
+    {
+      "total_len": 15,
+      "n_solved": 2735,
+      "n_hard": 267,
+      "solved_median_dot": 8.0,
+      "hard_frac": 0.08894070619586943
+    },
+    {
+      "total_len": 16,
+      "n_solved": 3548,
+      "n_hard": 659,
+      "solved_median_dot": 8.0,
+      "hard_frac": 0.15664368908961254
+    },
+    {
+      "total_len": 17,
+      "n_solved": 8603,
+      "n_hard": 4002,
+      "solved_median_dot": 9.0,
+      "hard_frac": 0.31749305831019436
+    },
+    {
+      "total_len": 18,
+      "n_solved": 1404,
+      "n_hard": 0,
+      "solved_median_dot": 15.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 19,
+      "n_solved": 2467,
+      "n_hard": 1,
+      "solved_median_dot": 15.0,
+      "hard_frac": 0.0004051863857374392
+    },
+    {
+      "total_len": 20,
+      "n_solved": 1485,
+      "n_hard": 0,
+      "solved_median_dot": 17.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 21,
+      "n_solved": 2571,
+      "n_hard": 1,
+      "solved_median_dot": 18.0,
+      "hard_frac": 0.00038880248833592535
+    },
+    {
+      "total_len": 22,
+      "n_solved": 1272,
+      "n_hard": 0,
+      "solved_median_dot": 25.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 23,
+      "n_solved": 2120,
+      "n_hard": 1,
+      "solved_median_dot": 23.0,
+      "hard_frac": 0.0004714757190004715
+    },
+    {
+      "total_len": 24,
+      "n_solved": 968,
+      "n_hard": 0,
+      "solved_median_dot": 24.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 25,
+      "n_solved": 1626,
+      "n_hard": 0,
+      "solved_median_dot": 24.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 26,
+      "n_solved": 653,
+      "n_hard": 0,
+      "solved_median_dot": 24.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 27,
+      "n_solved": 868,
+      "n_hard": 0,
+      "solved_median_dot": 26.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 28,
+      "n_solved": 277,
+      "n_hard": 0,
+      "solved_median_dot": 22.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 29,
+      "n_solved": 309,
+      "n_hard": 0,
+      "solved_median_dot": 22.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 30,
+      "n_solved": 100,
+      "n_hard": 0,
+      "solved_median_dot": 18.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 31,
+      "n_solved": 107,
+      "n_hard": 0,
+      "solved_median_dot": 15.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 32,
+      "n_solved": 35,
+      "n_hard": 0,
+      "solved_median_dot": 14.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 33,
+      "n_solved": 32,
+      "n_hard": 0,
+      "solved_median_dot": 16.5,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 34,
+      "n_solved": 17,
+      "n_hard": 0,
+      "solved_median_dot": 21.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 35,
+      "n_solved": 5,
+      "n_hard": 0,
+      "solved_median_dot": 15.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 36,
+      "n_solved": 5,
+      "n_hard": 0,
+      "solved_median_dot": 12.0,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 37,
+      "n_solved": 6,
+      "n_hard": 0,
+      "solved_median_dot": 28.5,
+      "hard_frac": 0.0
+    },
+    {
+      "total_len": 39,
+      "n_solved": 4,
+      "n_hard": 0,
+      "solved_median_dot": 14.0,
+      "hard_frac": 0.0
+    }
+  ],
+  "hard_length_spread": {
+    "baseline_censored": {
+      "12": 1,
+      "13": 7,
+      "14": 20,
+      "15": 266,
+      "16": 659,
+      "17": 4001
+    },
+    "v2_censored_plus_named": {
+      "12": 1,
+      "13": 8,
+      "14": 22,
+      "15": 267,
+      "16": 659,
+      "17": 4002,
+      "19": 1,
+      "21": 1,
+      "23": 1
+    },
+    "note": "anchors add hard mass at len 19/21/23 absent from baseline (small)."
+  },
+  "source_mix_by_band": {
+    "easy": {
+      "beam+greedy": 985,
+      "beam": 8154,
+      "greedy": 5290
+    },
+    "valley": {
+      "beam": 14311,
+      "beam+greedy": 202,
+      "greedy": 911
+    },
+    "hard_solved": {
+      "beam": 2635,
+      "beam+greedy": 48,
+      "greedy": 886
+    },
+    "hard_unsolved": {
+      "censored (no source recorded)": 4954,
+      "anchor": 8
+    }
+  },
+  "fold_counts": {
+    "train": {
+      "n": 29365,
+      "labelled": 25406,
+      "censored": 3959,
+      "band_mass": {
+        "easy": 0.267300276247646,
+        "valley": 0.3771985317917286,
+        "hard_solved": 0.08679894557784708,
+        "hard_unsolved": 0.2687022463828102
+      }
+    },
+    "val": {
+      "n": 3670,
+      "labelled": 3157,
+      "censored": 513,
+      "band_mass": {
+        "easy": 0.2789256695955506,
+        "valley": 0.3657944583558781,
+        "hard_solved": 0.07658722202456374,
+        "hard_unsolved": 0.2786926500240219
+      }
+    },
+    "test": {
+      "n": 3670,
+      "labelled": 3188,
+      "censored": 482,
+      "band_mass": {
+        "easy": 0.27087566697470417,
+        "valley": 0.3800147145613016,
+        "hard_solved": 0.08673128195783492,
+        "hard_unsolved": 0.2623783365061729
+      }
+    },
+    "hard_test": {
+      "n": 1671,
+      "labelled": 1671,
+      "censored": 0,
+      "band_mass": {
+        "easy": 0.0,
+        "valley": 0.0,
+        "hard_solved": 1.0,
+        "hard_unsolved": 0.0
+      }
+    },
+    "counterexample_eval": {
+      "n": 8,
+      "labelled": 0,
+      "censored": 8,
+      "band_mass": {
+        "easy": 0.0,
+        "valley": 0.0,
+        "hard_solved": 0.0,
+        "hard_unsolved": 1.0
+      }
+    }
+  },
+  "eval_reframed": {
+    "per_instance": [
+      {
+        "label": "AK(3)",
+        "key": "YXYxyx|YYYYxxx",
+        "total_len": 13,
+        "group": "named",
+        "in_dist_solved_median_dot": 6.0,
+        "length_baseline_separation": 0.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "length_matched_to_v1_baseline(len<=14)",
+        "dominant_confound_under_v1": "r1_cousin_leakage"
+      },
+      {
+        "label": "Length 14 #1",
+        "key": "YYYXyyx|YXXYxxx",
+        "total_len": 14,
+        "group": "named",
+        "in_dist_solved_median_dot": 7.0,
+        "length_baseline_separation": 1.0,
+        "r1_cousins_in_train": 32,
+        "v1_stratum": "length_matched_to_v1_baseline(len<=14)",
+        "dominant_confound_under_v1": "length_matched(residual: structure)"
+      },
+      {
+        "label": "Length 14 #2",
+        "key": "YYYXyyx|YXXXyxx",
+        "total_len": 14,
+        "group": "named",
+        "in_dist_solved_median_dot": 7.0,
+        "length_baseline_separation": 1.0,
+        "r1_cousins_in_train": 32,
+        "v1_stratum": "length_matched_to_v1_baseline(len<=14)",
+        "dominant_confound_under_v1": "length_matched(residual: structure)"
+      },
+      {
+        "label": "AK(4)",
+        "key": "YXYxyx|YYYYYxxxx",
+        "total_len": 15,
+        "group": "named",
+        "in_dist_solved_median_dot": 8.0,
+        "length_baseline_separation": 2.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(5)",
+        "key": "YXYxyx|YYYYYYxxxxx",
+        "total_len": 17,
+        "group": "named",
+        "in_dist_solved_median_dot": 9.0,
+        "length_baseline_separation": 3.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(6)",
+        "key": "YXYxyx|YYYYYYYxxxxxx",
+        "total_len": 19,
+        "group": "named",
+        "in_dist_solved_median_dot": 15.0,
+        "length_baseline_separation": 9.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(7)",
+        "key": "YXYxyx|YYYYYYYYxxxxxxx",
+        "total_len": 21,
+        "group": "named",
+        "in_dist_solved_median_dot": 18.0,
+        "length_baseline_separation": 12.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(8)",
+        "key": "YXYxyx|YYYYYYYYYxxxxxxxx",
+        "total_len": 23,
+        "group": "named",
+        "in_dist_solved_median_dot": 23.0,
+        "length_baseline_separation": 17.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      }
+    ],
+    "v1_length_matched_len<=14": [
+      {
+        "label": "AK(3)",
+        "key": "YXYxyx|YYYYxxx",
+        "total_len": 13,
+        "group": "named",
+        "in_dist_solved_median_dot": 6.0,
+        "length_baseline_separation": 0.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "length_matched_to_v1_baseline(len<=14)",
+        "dominant_confound_under_v1": "r1_cousin_leakage"
+      },
+      {
+        "label": "Length 14 #1",
+        "key": "YYYXyyx|YXXYxxx",
+        "total_len": 14,
+        "group": "named",
+        "in_dist_solved_median_dot": 7.0,
+        "length_baseline_separation": 1.0,
+        "r1_cousins_in_train": 32,
+        "v1_stratum": "length_matched_to_v1_baseline(len<=14)",
+        "dominant_confound_under_v1": "length_matched(residual: structure)"
+      },
+      {
+        "label": "Length 14 #2",
+        "key": "YYYXyyx|YXXXyxx",
+        "total_len": 14,
+        "group": "named",
+        "in_dist_solved_median_dot": 7.0,
+        "length_baseline_separation": 1.0,
+        "r1_cousins_in_train": 32,
+        "v1_stratum": "length_matched_to_v1_baseline(len<=14)",
+        "dominant_confound_under_v1": "length_matched(residual: structure)"
+      }
+    ],
+    "needs_per_length_baseline_len>=15": [
+      {
+        "label": "AK(4)",
+        "key": "YXYxyx|YYYYYxxxx",
+        "total_len": 15,
+        "group": "named",
+        "in_dist_solved_median_dot": 8.0,
+        "length_baseline_separation": 2.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(5)",
+        "key": "YXYxyx|YYYYYYxxxxx",
+        "total_len": 17,
+        "group": "named",
+        "in_dist_solved_median_dot": 9.0,
+        "length_baseline_separation": 3.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(6)",
+        "key": "YXYxyx|YYYYYYYxxxxxx",
+        "total_len": 19,
+        "group": "named",
+        "in_dist_solved_median_dot": 15.0,
+        "length_baseline_separation": 9.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(7)",
+        "key": "YXYxyx|YYYYYYYYxxxxxxx",
+        "total_len": 21,
+        "group": "named",
+        "in_dist_solved_median_dot": 18.0,
+        "length_baseline_separation": 12.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      },
+      {
+        "label": "AK(8)",
+        "key": "YXYxyx|YYYYYYYYYxxxxxxxx",
+        "total_len": 23,
+        "group": "named",
+        "in_dist_solved_median_dot": 23.0,
+        "length_baseline_separation": 17.0,
+        "r1_cousins_in_train": 116,
+        "v1_stratum": "needs_per_length_baseline(len>=15)",
+        "dominant_confound_under_v1": "length_baseline_separation"
+      }
+    ],
+    "contrast_populations": {
+      "note": "hardness claim is P(anchor@L) >> P(solved@SAME L); reported as gap/AUC/Spearman at MODEL time. NO ground-truth d-o-t on anchors -> NO MAE; a constant-output model passes it. v1's single len-13-14 baseline length-matches only n=3 anchors; the model plan must use PER-LENGTH-matched baselines (per_length_solved below) to make all 8 usable and to subtract the monotone solved_median_dot(L) length confound.",
+      "baseline_median_dot_len13_14": 6.0,
+      "counterexample_eval": {
+        "n": 8,
+        "len_range": [
+          13,
+          23
+        ],
+        "max_length_baseline_separation": 17.0
+      },
+      "short_easy_len13_14": {
+        "n": 1431,
+        "median_dot": 6.0
+      },
+      "per_length_solved_baseline": {
+        "13": 675,
+        "14": 756,
+        "15": 2735,
+        "17": 8603,
+        "19": 2467,
+        "21": 2571,
+        "23": 2120
+      },
+      "hard_test": {
+        "n": 1671,
+        "median_dot": 112.0
+      }
+    },
+    "ak3_vs_lookalike": {
+      "ak3_key": "YXYxyx|YYYYxxx",
+      "ak3_fold": [
+        "counterexample_eval"
+      ],
+      "lookalike_key": "YXyxYx|YYYYxxx",
+      "lookalike_fold": [
+        "train"
+      ],
+      "n": 1,
+      "note": "n=1 illustrative probe (differ only in r1). AK(3) is LENGTH-MATCHED to the baseline, so length buys it ~0 separation -> its dominant confound is r1-cousin leakage: AK(3) can be passed by matching r1='YXYxyx', seen labelled-hard in its train cousins (Havas-Ramsay len<=13 => plausibly the same AC-problem); a pass shows r1-substring leverage, NOT clean de-novo recognition. (Long anchors AK(6/7/8) flip: their dominant confound is length.)"
+    }
+  },
+  "diversity_drop": {
+    "n_dropped": 4074,
+    "drop_n_paths_hist": {
+      "1": 2792,
+      "2": 566,
+      "3": 247,
+      "4": 169,
+      "5": 300
+    },
+    "single_path_frac": 0.685,
+    "note": "anti-diverse: drops skew to rare single-path classes; reweighting (info-preserving) would suffice. Do NOT claim 'decorrelation worked' off this alone."
+  },
+  "near_neighbour_proxy": {
+    "mean": 367.62443899228055,
+    "max": 1525
+  },
+  "hinge_bounds": {
+    "B_soft": 48,
+    "B_hard": 150,
+    "short_hard_named_loss_mass_share": 0.0021,
+    "note": "HEURISTIC floors, NOT lower bounds. B_hard=150 for AK(n) rests on solved p99, no group-theory backing, can err BOTH directions. flat B_soft=48 understates len-17 unsolved (B_soft(L) deferred). 16 short_hard+named rows ~0.21% loss mass -> the x3 is near-inert (real fix = automorphic data)."
+  },
+  "caveats": [
+    "counterexample_eval is all-hard, no ground-truth d-o-t -> NO MAE; report as separation/ranking.",
+    "DOMINANT confound for AK(3): r1-cousin leakage -- AK(3) is length-matched to the baseline so length buys ~0 separation; it is passable by matching r1='YXYxyx', seen labelled-hard in its train cousins -> NOT clean de-novo recognition (per-anchor, not a global ordering).",
+    "Length confound (mechanism): solved_median_dot(L) -- what a length regression head predicts -- RISES monotonically with length, so anchors longer than the len-13-14 baseline gain SPURIOUS separation that grows with length (AK(8)@23 the most, not the least). Fix = per-length-matched baselines P(AK(n)@L) >> P(solved@L); only then are AK(4)-AK(8) usable structural probes.",
+    "HEADLINE band loss-mass is the TRAIN cut; archive cut is the Phase-5 reproduction.",
+    "weight balances per-band WEIGHT mass, not loss/gradient mass (hinge vs regression scales differ).",
+    "Phase-3 drop is anti-diverse (single-path-skewed); reweighting alone would suffice.",
+    "hard_test membership is upper-bound-contaminated + heteroscedastic -> lead with Spearman, not MAE.",
+    "bound_B is a heuristic floor, never a lower bound; B_hard=150 rests on solved p99 (no group-theory backing) and can err BOTH ways. ALL 8 named anchors -- the 6 AK(n) AND the 2 Length-14 (which fall OUTSIDE the Havas-Ramsay len<=13 dichotomy) -- are believed-hard / POTENTIAL counterexamples, never proven non-trivializable.",
+    "band-boundary mis-binning of loose (50,100] labels (tail x0.5 only fires >100); model-side fix.",
+    "d-o-t treated as a class invariant under rotation/inverse/swap, length-capped action (Phase-3.1 evidence).",
+    "statistical-power limit: the conjecture-relevant eval is n=8, zero PROVEN-hard, one dominant family; hard_test (powered) measures regression on the SOLVABLE tail, not open-case recognition -- 'we built a structure-not-length dataset' must NOT read as 'we showed structure-not-length'."
+  ],
+  "assertions": {
+    "AK3_in_counterexample_eval_only": true,
+    "AK3_tier_named": true,
+    "AK3_not_in_train": true,
+    "8_cousins_present_and_in_train": true,
+    "lookalike_in_train": true,
+    "lookalike_absent_from_trapset": true,
+    "no_key_in_two_folds": true,
+    "mean_weight_~1": true,
+    "archive_band_mass_within_tol": true,
+    "eval_v1_length_matched_n3": true,
+    "eval_needs_per_length_n5": true,
+    "eval_length_separation_monotone": true,
+    "eval_AK8_most_length_gameable": true,
+    "rederived_band_mass_matches_committed": true,
+    "env_to_canonkey_roundtrip_AK3": true
+  }
+}
