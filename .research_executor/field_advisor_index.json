@@ -1,0 +1,9 @@
+{
+  "andrews-curtis-rl": {
+    "created_utc": "2026-06-27T02:05:40Z",
+    "field_detected": "Andrews-Curtis trivialization via deep reinforcement learning (combinatorial group theory + deep RL)",
+    "exemplars": "Andrews-Curtis, Akbulut-Kirby, Bridson, Lishak, Myasnikov/Shpilrain, Shehper et al., ICML-2026 Two-Hump authors, Schulman/PPO",
+    "paper_count": 15,
+    "file_size_bytes": 25810
+  }
+}
