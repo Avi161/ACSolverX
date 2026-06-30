@@ -43,6 +43,33 @@ Track every plan/spec's steps as checkboxes so progress is visible and auditable
   what it changed from → to**, so the collaborator can see and understand it. Never silently rewrite a
   step — the `[-]` + from→to note is the audit trail.
 
+## Dual-reviewer workflow (ALWAYS — plan + post-implementation)
+
+Every non-trivial task gets **two complementary reviewers** at **two checkpoints**.
+`advisor()` catches code-level / methodology traps in-conversation; the **Field Advisor**
+(`.claude/agents/field-advisor.md`, opus, grounded in the two `literature/` PDFs + the
+`.research_executor/` cache) brings deep, paper-grounded **domain** judgment.
+
+**Checkpoint 1 — in plan mode, before writing any code.** Whenever Claude enters/produces a
+plan, review that plan with **BOTH** `advisor()` **and** the Field Advisor (warm-pre →
+`tmp/field_advisor_pre.md`) before exiting plan mode / starting implementation. Do not begin
+coding until both have weighed in.
+
+**Checkpoint 2 — after the code is implemented (and verified green).** Review the produced
+artifacts again with **`advisor()` first, then the Field Advisor** (post →
+`tmp/field_advisor_post.md`). Address what they surface before declaring the task done.
+
+Rules:
+- **Both reviewers, both checkpoints — not one or the other.** They are complementary.
+- On **active disagreement** between the two, surface both verdicts **verbatim** and let the
+  user weight; do not silently pick a side.
+- **How to invoke the Field Advisor:** interactive session → Agent tool with
+  `subagent_type: "field-advisor"`; background/remote session (fixed registry) → spawn
+  `general-purpose`/`claude` with `model: opus` and a prompt telling it to read
+  `.claude/agents/field-advisor.md` as its full contract. Pass the goal verbatim + the mode
+  (warm-pre / post). See `.research_executor/FIELD_ADVISOR_CHARTER.md`.
+- Skip both only for genuinely trivial / mechanical edits (typo, rename, one-line config).
+
 ## Literature (`literature/`, local-only context — currently *untracked*, not gitignored)
 
 The two source papers live here — read them for the math/RL background, not just
