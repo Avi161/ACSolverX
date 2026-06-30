@@ -333,3 +333,15 @@ unchanged. [TRAP] beam over 17,635×5 seeds at B=16,384 is ≫ the paper's beam 
 ran B=16,384 on ~1,190 only) — use the **width ladder** (cheap B=1,024 pass first, then full
 B on the unsolved remainder) and pilot ~200 first. Beam Gumbel **temperature is unspecified
 in the paper**; default explore seeds to `--temperature 1.0 --temp_end 0.0`.
+
+### [2026-06-30] Field-Advisor return summary can SUPERSEDE its written artifact mid-review [TRAP]
+During Phase 7–9 post-review the Field Advisor's *written* `tmp/field_advisor_post.md` had an
+intermediate §2.A that I read at 12:27 and started implementing (classified AK(6/7/8) as "clean /
+length-adversarial" via `hard_frac`). Its **final return message** then disclosed it had **self-corrected
+mid-review** (advisor caught it): the right signal is `solved_median_dot(L)` (what a length regression
+head predicts), which rises monotonically — so AK(6/7/8)@19/21/23 are the **MOST** length-gameable, the
+opposite of the draft. I had to revert a whole eval block. Rule: when a subagent's completion
+`<result>` says it revised/corrected its own output, **re-Read the durable artifact and act on the
+final version**, never on an earlier in-progress read. Also [TRAP] `require_post_review.sh` reads
+`$CLAUDE_PROJECT_DIR/tmp/field_advisor_post.md` = the **main checkout**, not the worktree — a field-advisor
+spawned from a worktree writes the worktree `tmp/`; copy it to the main-checkout `tmp/` to clear the gate.
