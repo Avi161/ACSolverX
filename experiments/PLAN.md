@@ -6,9 +6,59 @@
 presentation), used as a search heuristic in place of relator length so the search  
 can take length-increasing detours. 
 
+
+
+> [!IMPORTANT] Label-quality risk — greedy paths are non-minimal (residual to Steps 2–3)
+
+> The greedy solver `greedy_search.ipynb` `ACRelatorSolver.solve`) is **best-first by
+
+> total length** with **first-discoverer-wins parent pointers and no relaxation**, so its
+
+> reconstructed paths (and `greedy_path_length`) are valid but **not shortest**. Measured on
+
+> the 12,670 presentations solved by both greedy and beam: greedy path is **longer than beam
+
+> 57.5%** of the time (mean **+4.0** moves, max **+78**); equal 30.9%; shorter 11.6%.
+
+> True minimal AC distance is intractable for hard cases anyway — the goal is the *tightest
+
+> achievable* upper bound, **not** "the shortest."
+
+>
+
+> **Already handled:** Steps 2–3 `min`-aggregate d-o-t across greedy+beam per canonical class,
+
+> so wherever beam also solves, beam's shorter label wins. Only **11** presentations are
+
+> greedy-solved-but-not-beam-solved (no rescue). *Initial-state* labels are essentially fine.
+
+>
+
+> **Residual (not yet handled):** greedy's non-minimal **detour intermediate states** keep an
+
+> inflated `N−m` label — beam's shorter path traverses *different* canonical states, so `min`
+
+> never reaches the greedy-only ones (~57.5% of greedy paths carry ~4 extra inflated states).
+
+>
+
+> **Next action — measure before fixing** (operationalizes "if already shortest, ignore"):
+
+> count greedy-only intermediate canonical classes and their inflation vs the nearest beam
+
+> label. If material, the cheap tightening is a **backward-BFS-from-trivial over the explored
+
+> `visited` graph** (label every explored state by graph-distance, not single-path position) —
+
+> **not** switching the search to BFS (explores far more, may miss hard solves within
+
+> `max_nodes`; naive relaxation is incoherent on a length-priority queue). Do **not** implement
+
+> until the measurement says it matters.
+
 ## Steps
 
-*Tracker: `[x]` done · `[ ]` pending. Granular data-crafting status lives in `eda+data_collection/data_crafting/4.0.DETAILED_STEPS_DATA_CRAFTING.md` (Phase 0–1 done). Step 1: beam pilot done, full harvest pending. Step 4: v1 splits done, v2 frozen `counterexample_eval` pending (4.0 Phase 7).*
+*Tracker:* `[x]` *done ·* `[ ]` *pending. Granular data-crafting status lives in* `eda+data_collection/data_crafting/4.0.DETAILED_STEPS_DATA_CRAFTING.md` *(Phase 0–1 done). Step 1: beam pilot done, full harvest pending. Step 4: v1 splits done, v2 frozen* `counterexample_eval` *pending (4.0 Phase 7).*
 
 1. [ ] **Harvest**. Greedy-solved pass → JSONL of `(idx, packed_path,
   beam_path_length, …)`, every path replay-validated before write.
@@ -32,7 +82,11 @@ can take length-increasing detours.
 8. [ ] **DAgger refinement loop.** f-guided search → new/shorter paths → update min
   table → retrain. Promotion gate: no regression on the frozen baseline solves.
 9. [ ] **Censored unsolved.** Record `d-o-t > B` with full search context (algo,
-  budget, horizon, beam width) — no constant fill-in (Caltech's trap).
+  budget, horizon, beam width) — no constant fill-in (Caltech's trap). The floor `B`
+   for **generic** budget-censored rows is **length-conditioned** — `B_soft(total_len)`,
+   larger for longer relators (longer ⇒ harder on average); the named/proven-hard anchors
+   (AK(n)) keep a constant high floor and stay length-independent so the model can't learn
+   "long ⇒ hard" and under-rate short-but-hard AK(3). Detail: `eda+data_collection/data_crafting/3.DATA_DISTRIBUTION_PLAN.md` §4a.
 10. [ ] **Benchmark + write-up** vs GS-Sub (640), beam (mean path 12.39), and the 261
   unsolved hard classes; report new solves separately from path-shortening.
 
@@ -41,6 +95,8 @@ greedy-unsolved — the highest-value new-solve targets — then min-merge into 
 same archive.
 
 ---
+
+
 
 # PLAN — Detailed version (reference)
 
@@ -51,6 +107,8 @@ same archive.
 - Train a model `f(state) → d-o-t` = predicted number of S-moves to reach the trivial presentation.
 - Use it to **rank candidate moves by predicted d-o-t, not relator length**, so search can take length-increasing detours (escape AK(3)-type traps).
 - This is novel: the two papers learn a *policy/value* (PPO) and a *binary solvability* classifier — nobody has built a standalone supervised d-o-t regressor.
+
+
 
 ## 0b. Baselines & targets (two-hump paper, our S-move regime)
 
@@ -63,6 +121,8 @@ same archive.
 - **Old paper (elementary AC moves — different regime, context only):** GS-AC 533, PPO-AC-ResNet 457.
 - **Targets for this work, in order:** (1) match GS-Sub's 640 at *lower* node budget; (2) beat beam's 12.39 mean path length on the 610; (3) the real prize — **crack any of the 261 hard classes**.
 - **634 vs 640 (resolved — not a bug):** the first **634** rows of `AC19_extended.txt` are byte-identical MS presentations (verified: clean prefix, none scattered later), and the code pins exactly those. **634 = GS-Sub solvable @100K nodes; 640 = GS-Sub @1M nodes** — same "easy hump," two budgets. So our pinned benchmark = the 634 @100K set. (Minor logging bug: `ppo_ac_s.py:265` uses `solved_ids <= 634`, which includes index 634 = the first *non*-MS row; should be `< 634`.)
+
+
 
 ## 1. Critical assessment of the plan
 
@@ -82,11 +142,13 @@ same archive.
 - **[#6] Label-source imbalance.** Greedy contributes ~17k rows × many intermediate states and will numerically swamp the rarer PPO/beam detour states — the exact examples that teach beneficial length increase. Cap/weight per source so the signal isn't drowned (§6).
 - **[#7] Canonical-convention drift.** `1190MS.txt` (raw int8) and the env's per-move Booth rotation do *not* match the lab's full canonicalizer (`canonical_pair_nj`) — different alphabet order, and the env only normalizes one relator. Mixing them silently misaligns labels; route everything through `canon()` (§2).
 
+
+
 ## 2. Your open questions — decisions
 
 - **Train on AC-19/AC-1M or just MS?** → Phase it. **Phase 1:** the len-8–19 GS CSV (17,636 rows) + the `610model` checkpoint's PPO `best_paths` — small, fast, and the PPO paths supply the length-increasing examples the CSV lacks. **Phase 2:** add an AC-19 subset. **Skip AC-1M initially** — too large and its "distance" = construction scramble length, a very loose upper bound that would inject noise. Your overfitting worry is real but the cure isn't *less* data — it's including **non-greedy** paths so the model sees beneficial length increases.
-- **Canonical representative — which one?** → **Pinned to the lab's production canonicalizer, `canonical_pair_nj*`* (`greedy_search.ipynb`). This is the convention the two-hump GS code keys on and it's the most efficient (numba + string dict keys). Single source of truth for the archive key; do not invent another. **Correction (verified in `experiments/eda.ipynb`, P2-11):** the greedy CSV is **NOT** stored in `canonical_pair_nj` form — its relators are free+cyclically *reduced* and the pair is ordered *shortest-first*, but relators are **not** rotation/inverse-minimized. Empirically the CSV's stored strings are nonetheless **1:1 with true `canonical_pair_nj` classes** (25,209 stored == 25,209 canonical, zero d-o-t disagreement), so within the CSV the stored string works as a key — **but joining other sources (env / PPO / 1190MS) still requires canonicalizing via `canonical_pair_nj` first** (it is *not* zero-conversion). The convention:
-  - Each relator is free+cyclically reduced (`reduce_relator_nj`), then set to the **lex-min over all cyclic rotations of `r` and of `r⁻¹`** (`canonical_relator_nj`), under alphabet order `**y⁻¹ < y < x⁻¹ < x**`.
+- **Canonical representative — which one?** → **Pinned to the lab's production canonicalizer,* `canonical_pair_nj`* (`greedy_search.ipynb`). This is the convention the two-hump GS code keys on and it's the most efficient (numba + string dict keys). Single source of truth for the archive key; do not invent another. **Correction (verified in** `experiments/eda.ipynb`**, P2-11):** the greedy CSV is **NOT** stored in `canonical_pair_nj` form — its relators are free+cyclically *reduced* and the pair is ordered *shortest-first*, but relators are **not** rotation/inverse-minimized. Empirically the CSV's stored strings are nonetheless **1:1 with true** `canonical_pair_nj` **classes** (25,209 stored == 25,209 canonical, zero d-o-t disagreement), so within the CSV the stored string works as a key — **but joining other sources (env / PPO / 1190MS) still requires canonicalizing via** `canonical_pair_nj` **first** (it is *not* zero-conversion). The convention:
+  - Each relator is free+cyclically reduced (`reduce_relator_nj`), then set to the **lex-min over all cyclic rotations of** `r` **and of** `r⁻¹` (`canonical_relator_nj`), under alphabet order `**y⁻¹ < y < x⁻¹ < x`**.
   - The pair is ordered **length-then-lex** (shorter relator first; lex tie-break). The pair tie-break does **not** affect d-o-t (the label is min-path-length over the class, independent of which representative string is chosen).
   - **Relation to paper E.1:** same equivalence classes (rotation + inverse + swap); E.1's appendix statement differs only in using *pure* lex pair-order. We use the implemented `canonical_pair_nj` — consistent with the lab's data, not contradicting the paper's math. **Reconciliation is now resolved: adopt length-then-lex, do not re-derive pure-lex.**
   - **Not folded in:** generator automorphisms (x↔y, x↔X) — there's a `TODO` for it in the code. Leaving them out is *safer* (a finer key never wrongly merges states); note our class count may exceed the paper's "261" if that figure used automorphisms.
@@ -95,6 +157,8 @@ same archive.
 - **First action item (before any data is built):** lift `canonical_pair_nj` + its numba helpers into a small importable module exposing `canon(pres) → (str,str)`; write the int8→char converter (`{1:x, 2:y, -1:X, -2:Y, 0:pad}`); then verify the mapping `1190MS.txt ↔ greedy CSV ↔ env state` produces the **same canonical key** on a sample (round-trip). Canonicalizing *between* moves rewrites action coordinates, so **store paths as actions in the env's own convention** for replay — canonicalize only for the archive key, not the replay tape (avoids the convention-drift trap, §1.#7).
 - **Label for unsolved presentations (e.g. AK(3))?** → **Do not assign a constant** (Caltech's `200`/`5×maxlen` was a trap — it told the model AK(3) is exactly as hard as a mild case). Treat unsolved as **right-censored**: label = "d-o-t > B" where B = effective budget reached. Censoring is **algorithm-conditional**, so store the full context (algorithm, budget/nodes, horizon, beam width, action set, best length reached) — "unsolved" means unsolved *under that config*, not far/nontrivial. Use a censored loss (penalty only if prediction < B). This is exactly your intuition — AK(3) is *free* to be predicted orders of magnitude higher, no fixed number needed. Pair with a small **binary "solvable-within-budget" head** as an auxiliary task.
 - **Have d-o-t data already, or must we generate it?** → Both available now: CSV greedy paths + checkpoint PPO paths. Start immediately; generate more via the refinement loop (§6). No need to run PPO from scratch first.
+
+
 
 ## 3. Data & labels (single verified archive)
 
@@ -105,10 +169,14 @@ same archive.
 - **Outlier guard** (your "absurdly high path" worry): a path far longer than the state's current best is just not the min, so it's auto-ignored; additionally winsorize/log-transform (`log1p`) the target to tame the heavy tail.
 - **Unsolved:** censored lower bound + full search context, not a point label (§2).
 
+
+
 ## 4. Featurization
 
 - Primary input: the int8 length-48 presentation, fed to a DRT-style encoder.
 - Auxiliary scalar features worth concatenating (cheap, the companion paper shows they carry signal): relator lengths, exponent sums, and — if affordable — small-radius **neighborhood size** / **persistent-homology barcode** (F1≈0.96 for solvability in that paper). Optional, gate on cost.
+
+
 
 ## 5. Model & baselines (the train-test comparison you want)
 
@@ -118,6 +186,28 @@ same archive.
 - **Auxiliary heads** (cheap, share the trunk): solvable-within-budget probability, **predicted max-intermediate-length needed** (how big a hump to expect), and an **uncertainty/confidence** estimate (deep-ensemble or MC-dropout) used for OOD abstention in search (§1.#2c).
 - Compare all on the same split (§6) by both regression error **and** ranking metrics.
 
+
+
+### 5a. Architecture bake-off — candidates to DISCUSS (status: OPEN, not yet decided)
+
+*Added 2026-06-28. Park here to revisit once Avi has read up on these architectures — study first, then decide together. No checkboxes on purpose: this is a discussion menu, not committed executable steps.*
+
+Run a **controlled bake-off** and keep whichever architecture best recognizes the *hard hump* — not the one with the lowest average error. Two ground rules so the comparison is fair:
+
+1. **Vary only the architecture.** Identical archive, frozen splits (§6), labels, loss, and compute budget for every model — otherwise a data difference masquerades as an architecture win.
+2. **Decide on the hard cases.** Winner = best on the frozen `counterexample_eval` (AK(n) set) + **Spearman per difficulty band** (§6), *not* overall MAE — the easy cases dominate the average, which is exactly how a model can look great yet stay blind to AK(3).
+
+Candidates, easy → exotic:
+
+- **PPO critic, zero-shot** — free floor. The `610model` critic already estimates cost-to-go; evaluate it as-is before training anything (it's also the DRT warm-start, §5).
+- **XGBoost on scalar + barcode features** (§4) — the companion paper hit F1≈0.96 on hardness this way; cheap, a genuinely different inductive bias, strong ceiling-check.
+- **Sequence CNN** — Avi's `AC-Solver-Caltech/value_search/value_network.py:SequenceValueNet` (1D-CNN, `log1p`+MSE; in that repo V-guided solved 415 vs length-greedy 380). **Upgrades for our cyclic relators:** *circular* convolution (relators are cyclic words — zero-padding makes a rotation look like a different input) and **attention pooling** in place of global mean-pool (`x.mean(dim=2)` blurs the precise configuration that separates AK(3) from its solved look-alike). The sequence CNN is distinct from the 14-feature MLP §1.#5 warns against.
+- **DRT** — the structured prior (two rings + cyclic relative positions + cross-attention), warm-started from the critic. Current §5 main model.
+- **Vanilla Transformer encoder** — the control: does the *dual-ring* structure actually earn its keep vs. a generic transformer on the flat token sequence?
+- **GNN on a graph view** (Whitehead / word graph) — the wildcard: AC hardness is topological, and the companion paper's strongest signal came from neighborhood/topological features, so a graph net could learn them end-to-end.
+
+Working hypothesis: DRT or the GNN wins *specifically on the hard cases*. Avi's CNN result makes that an empirical test, not an assumption.
+
 ## 6. Training, split & evaluation
 
 - **Split by AC-equivalence class** (canonical key), not by row — all states of one path/class in one fold. Prevents the leakage that flatters MAE.
@@ -125,6 +215,8 @@ same archive.
 - **Source weighting:** cap/balance examples per source (§1.#6) so greedy's volume doesn't drown PPO/beam detour states.
 - **Losses:** Huber on `log1p(d-o-t)` for solved; censored loss for unsolved; optional pairwise ranking term on sibling states.
 - **Metrics:** MAE (original scale) + **Spearman** + **pairwise sibling-ordering accuracy** (the one that predicts search quality) + a downstream test: *does ranking moves by f solve more of the 1190 than **GS-Sub at matched node budget** (§0b)?* Report **calibration per difficulty band**, not just average MAE — the average is dominated by easy cases and hides whether the model is useful on the hard hump.
+
+
 
 ## 7. Iterative refinement on the 1190 MS
 
@@ -134,13 +226,15 @@ same archive.
 - **Recalibration:** a shorter path to an already-solved state simply lowers its min label; retrain picks it up automatically.
 - **Promotion gate:** only promote a retrained model if it improves new solves or shortens verified paths **without losing baseline solves** on the frozen set. Preserve failed attempts as censored data, never as fake-distance negatives.
 
+
+
 ## 8. Local-minima detection — known AK(n) **and** novel-basin discovery
 
 - During search, flag a state as a trap when: (a) revisit hashes spike (cycle), (b) length plateaus, or (c) **f is a local min** — `min over neighbors f(neighbor) ≥ f(current)`. These criteria fire for **any** basin, known or not — they are the open-world detector.
 - **Two buckets per trap: known vs novel.** Canonicalize each flagged state, then split:
   - **known** → in `data/derived/dot/ak_trap_set.json` → counted as an AK(n) basin (closed-world, below).
   - **novel** → NOT in the set → a **newly-discovered local minimum**. This is the open-world case the search exists to surface, and the scientifically interesting output.
-- **Novel-basin registry (resumable JSONL, per CLAUDE.md durability rule):** append each novel trap to `experiments/dot_runs/<ts>/discovered_minima.jsonl` — `{canon_key, r1, r2, total_len, source_problem, search_algo, depth_at_hit, min_f_seen, n_runs_hit, escaped:bool}`, **aggregated by `canon_key`** so we count *how many distinct runs / problems* fall into each basin (recurring = a real attractor, one-off = noise). `flush()+fsync` per write; resume by reading it back.
+- **Novel-basin registry (resumable JSONL, per CLAUDE.md durability rule):** append each novel trap to `experiments/dot_runs/<ts>/discovered_minima.jsonl` — `{canon_key, r1, r2, total_len, source_problem, search_algo, depth_at_hit, min_f_seen, n_runs_hit, escaped:bool}`, **aggregated by** `canon_key` so we count *how many distinct runs / problems* fall into each basin (recurring = a real attractor, one-off = noise). `flush()+fsync` per write; resume by reading it back.
 - **Cluster, promote, feed back (the loop):** periodically cluster novel basins (by AC-neighborhood / canonical similarity), cross-reference against the paper's **261 unsolved MS equivalence classes**, and **promote** the frequently-hit ones: (1) add their canon keys to `ak_trap_set.json` (the set is *living*, not fixed), (2) inject them as **new censored hard anchors** in the next data build (DAgger-for-hardness, §7), (3) flag any short/recurring novel basin as a **candidate new counterexample** for mathematical follow-up.
 - **Concrete AK(n) trap-set (the known-bucket lookup):** load `data/derived/dot/ak_trap_set.json` (built by
 `scripts/build/build_anchors.py`, see `experiments/eda+data_collection/data_crafting/3.DATA_DISTRIBUTION_PLAN.md §3d`) =
@@ -154,11 +248,15 @@ metric = trap-rate** (% of f-guided runs that end in / pass through an AK(n) bas
 per-`AK(n)` histogram — the number that says how often `f` re-finds the basin vs escapes it.
 - Deliverable: **(known)** the AK(n) trap-rate per algorithm (greedy / PPO / beam / f-guided), showing whether the d-o-t heuristic reduces AK(n) trapping; **(novel)** a growing catalog of newly-discovered basins ranked by how many runs hit them — the candidate new hard-equivalence-classes / counterexamples this project surfaces, and the feedstock for the next anchor build.
 
+
+
 ## 9. f-guided search & d-o-t-guided PPO (benchmark vs old reward)
 
 - **Search heuristic (do this first):** don't *replace* the policy — **combine**. Beam/greedy score = `policy log-prob + calibrated value bonus (−f) + novelty term`; still permit length-increasing moves; keep existing dedup/no-op handling. Apply OOD abstention (§1.#2c): trust f only where confident.
 - **PPO:** keep the **terminal reward unchanged**; add f via **potential-based shaping** (Ng et al. 1999) `r' = r + γΦ(s') − Φ(s)`, `Φ(s) = −f(s)`, **clipped**, plus an OOD/uncertainty penalty. Keeps the optimal policy and avoids new wrong fixed points — strictly safer than swapping `count_nonzero` for d-o-t. Preserve entropy so PPO can still escape the value model's blind spots.
 - Benchmark against **both** the current length-based-reward PPO **and** GS-Sub / the released beam (610, mean path 12.39), on the 640 benchmark set (§0b; reconcile the 634/640 code discrepancy first): solve count + mean path length.
+
+
 
 ## 10. Results, layout & website
 
@@ -166,6 +264,8 @@ per-`AK(n)` histogram — the number that says how often `f` re-finds the basin 
 - **Result-row schema:** presentation key, original dataset+index, canonical key, solver+config, solved flag, observed path length, max intermediate length, budget/horizon, replay checksum/status.
 - Per algorithm (greedy / PPO / beam / f-guided): solve count, **new solves beyond each baseline**, path-length distribution, d-o-t calibration plots (predicted vs best-known), two-hump histograms. **Report path-shortening separately from new solves.**
 - Update the AC-solver-style site to visualize d-o-t-ranked move sequences alongside the old length-ranked ones; side-by-side greedy vs PPO.
+
+
 
 ## 11. Phased roadmap
 
