@@ -70,6 +70,13 @@ Rules:
   (warm-pre / post). See `.research_executor/FIELD_ADVISOR_CHARTER.md`.
 - Skip both only for genuinely trivial / mechanical edits (typo, rename, one-line config).
 
+**Enforced by hooks** (`.claude/settings.json` → `.claude/hooks/`): `require_pre_review.sh`
+blocks `ExitPlanMode` unless a fresh `tmp/field_advisor_pre.md` exists; `require_post_review.sh`
+(Stop hook) blocks finishing once when uncommitted non-scratch changes exist without a fresh
+`tmp/field_advisor_post.md`. Hooks load at session start. They gate the Field Advisor file
+artifacts only — `advisor()` leaves no artifact, so running it stays your responsibility (the
+pre-hook prints a reminder). Freshness window: `FIELD_ADVISOR_PRE_MAX_AGE_MIN` (default 120).
+
 ## Literature (`literature/`, local-only context — currently *untracked*, not gitignored)
 
 The two source papers live here — read them for the math/RL background, not just
