@@ -141,3 +141,43 @@ See README.md's "Datasets" section for full details (canonical form, AC19 vs
 AC19_extended vs AC1M provenance). Key point when writing code against these files:
 `ACS(initial_states_file=...)` takes the bare stem — no `data/` prefix, no `.txt`
 suffix — and the file is one Python-literal flat list per line.
+
+## Result persistence & resumability (append-only JSONL)
+
+Any script that produces per-item results over a long sweep (per-presentation greedy/beam
+runs, dataset labeling, evaluation over MS(1190) / AC-19 / AC-1M) **must be crash-safe and
+resumable** — these will run on cloud servers where jobs get pre-empted or die, and we cannot
+afford to lose or recompute finished work.
+
+- **Write JSONL, not JSON, for per-item result streams:** one complete JSON object per line,
+  one line per item (e.g. per presentation `idx`). Prefer `.jsonl` over `.json` whenever the
+  output is a stream of records.
+- **Append-only, flush per line:** open in append mode; after each record write
+  `json.dumps(obj) + "\n"`, then `f.flush()` (and `os.fsync(f.fileno())` for cloud/NFS). A
+  crash then loses at most the single in-flight item.
+- **Resume from the last object:** on startup, read the existing `.jsonl`, collect completed
+  ids, skip them, and continue; ignore a trailing truncated/corrupt line (recompute that one
+  id). Re-running a finished sweep is a no-op; a killed sweep continues where it stopped.
+- **One stream per method/arm, merged at report time.** Never rewrite a whole file to update
+  one field — that isn't crash-safe. Cheap, fully-derived artifacts (index-only labels) may
+  stay `.json`. Keep the tiny shared helpers (`jsonl_done_ids`, `jsonl_append`) in one module
+  and reuse them across every sweep.
+
+## PLAN conventions (authoring & feedback)
+
+Writing an implementation plan, or reviewing one, follows the convention in
+**`.claude/conventions/plan-conventions.md`**. In short: write a `PLAN.md` before coding
+(advisor before and after, base-case before any full sweep, a `[ ]`/`[X]`/`[X][-]` TODO
+checklist, claims grounded in the repo); and when asked for feedback, write a severity-ordered
+critical review (WHAT → WHY → HOW) to a sibling `<PLAN_STEM>_FEEDBACK.md`. Open that file before
+authoring a plan or giving feedback.
+
+## Lessons Learned
+
+### [2026-07-01] Subagent model — use Sonnet 5 for research/exploration [WORKS]
+When launching Explore / general-purpose subagents for read-and-report codebase
+exploration, pass `model: sonnet` (Sonnet 5) rather than inheriting the Opus session
+default. Read-and-report exploration does not need Opus, and Sonnet is cheaper/faster
+for it. Rule: for any Explore/search subagent, set the `model` override to `sonnet`
+unless the task genuinely requires Opus-level reasoning (e.g. adversarial verification,
+hard design synthesis).
