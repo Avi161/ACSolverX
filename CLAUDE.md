@@ -172,7 +172,73 @@ checklist, claims grounded in the repo); and when asked for feedback, write a se
 critical review (WHAT → WHY → HOW) to a sibling `<PLAN_STEM>_FEEDBACK.md`. Open that file before
 authoring a plan or giving feedback.
 
+## Testing conventions (independent verification — make the code strong)
+
+For any non-trivial algorithm — anything where a silent bug **corrupts** rather than degrades
+results, and everything we present as a finding — follow **`.claude/conventions/testing-conventions.md`**.
+In short: get your own suite green, then **launch a separate adversarial subagent to author an
+INDEPENDENT suite in a separate test file**, black-box (spec + public API only, forbidden from reading
+the implementation internals or your tests) so it builds its own oracle and can catch shared blind
+spots. **Never leak a load-bearing design choice** to that agent (it will confirm, not check it) —
+oracle such choices from an *independent source* (a second reference impl, the paper, the production
+env) and triangulate ≥2 ways. Tag each check by how independent it is; state when the executable gold
+gate is deferred. Open that file before writing tests for, or claiming correctness of, such code.
+
 ## Lessons Learned
+
+### [2026-07-02] Independent test subagents: give the contract, never the mechanism [WORKS][TRAP]
+Building Phase 2 `greedy_nrel.py` I launched an "independent" subagent to write tests — but the
+prompt **stated my n=3 move-set scheme** ("unordered pairs, lower-index leader, dual-slot emit").
+advisor() caught it: the agent will now **confirm that scheme, not check it** — I leaked the one thing
+I needed independence on, so its "all pass" certifies primitives + plumbing, NOT the design choice.
+[TRAP] Handing a load-bearing design/algorithm decision to the independent verifier turns adversarial
+verification into rubber-stamping. Rule: give the independent agent the **contract** (public API +
+invariants) and the **problem/math**, never the **mechanism**; forbid it from reading the impl
+internals or my test file; have it derive its oracle from an independent source. For a load-bearing
+choice, oracle it from a *different* source and **triangulate ≥2 ways**. Codified in
+`.claude/conventions/testing-conventions.md` (linked from "Testing conventions" above) — consult it by
+default for any non-trivial algorithm. Corollary [WORKS]: for the AC substitution move I triangulated
+across THREE agreeing implementations — notebook `get_neighbors_nj` (executable), env
+`envs/ac_moves.py::s_move` (read statically; `neighbour = rot(r0)·rot(r1^±)` into slot `i`), and mine
+— which is far stronger than any one self-check.
+
+### [2026-07-02] verify_path that shares get_neighbors can't catch move-gen bugs; env s_move is the gold gate [WORKS]
+The verification ladder for the greedy solvers: `solved` (reached trivial, could be a false positive)
+→ `verify_path` (independent replay) → JAX env `check_paths`/`s_move` (gold). Critically, `verify_path`
+**recomputes neighbors with the same `get_neighbors` the solver uses**, so it catches search/parent-
+pointer bugs but is **blind to a move-generation bug** (its own docstring says so). Only the real env
+`envs/ac_moves.py::s_move` catches move-gen — and that env's shipped `s_move` is **hardcoded to splice
+`r0·r1`** (`rotate_relator_k(0,…)`/`(1,…)`), so it structurally cannot do the `(r_i, z)` n=3 moves;
+plus JAX isn't installed on the greedy/CPU boxes. So the n=3 move set has **no executable gold check
+until Phase 4** generalizes `s_move`. Rule: never let "unit tests pass + n=3 sanity solves" read as
+"n=3 moves gold-verified" — n=2 move-gen is verified (differential oracle + env source triangulation);
+n=3 is a faithful-by-construction generalization of the env convention, gold check deferred. Say this
+explicitly in any n=3 coverage headline.
+
+### [2026-07-02] Notebook `reduce_relator_nj` reads past the array on full cancellation [TRAP]
+`baseline_n2/greedy_ac.py::reduce_relator_nj` (lifted verbatim from `greedy_search.ipynb`) reads
+`rel[add_index+1]` at the index-0 wrap branch; when a word **fully cancels to empty** this is out of
+bounds and (numba, no bounds check) fabricates a **garbage length-1 relator** — e.g. splicing `yxXY`
+yields a phantom `Y` "neighbour". The n-relator port's `greedy_nrel.reduce_relator` is stack-based and
+returns empty correctly. [TRAP] When differential-testing against the notebook, reduce raw notebook
+splices with the **correct** reducer and **drop full-cancellation results on both sides** before
+comparing — else the phantom neighbours cause false mismatches. On real balanced MS presentations full
+cancellation doesn't arise, so the solved-set differential oracle is unaffected (verified: 0 mismatches
+incl. hard idx 600 @ 9505 nodes). Do not "fix" the notebook file — keep it verbatim; the port is where
+correctness lives.
+
+### [2026-07-02] Persist solved paths for n≥3, not just a verified flag [WORKS]
+The n=2 greedy Phase 0.5 streams (`experiments/stable_ac/one_generator/baseline_n2/`) store only
+`path_len`/`path_verified` — the actual move sequence is computed, checked by in-process
+`verify_path`, then **discarded**. Accepted for the n=2 reproduction (we only need the solved-count
++ length distribution), but it means no solve can be re-audited, replayed, fed to the JAX
+`envs/utils.py::check_paths` gold gate, or shown to anyone after the run. Rule: for **n≥3** — and any
+run whose solves we present as findings (esp. the `z=w` class-solves on the 261 reps) — the solver
+MUST persist the retraced path to disk: a sidecar `results/paths_<arm>_<tier>.jsonl` keyed by `idx`
+holding the move+state sequence (see PLAN.md Phase 2 "Persist the path" + Phase 3). Every reported
+solve must point at a stored, re-runnable path. A `path_verified:true` boolean is proof to *this run*;
+a stored path is proof anyone can re-run — those are not the same thing, and a headline "trivialized
+class `<name>`" claim needs the latter.
 
 ### [2026-07-01] Subagent model — use Sonnet 5 for research/exploration [WORKS]
 When launching Explore / general-purpose subagents for read-and-report codebase

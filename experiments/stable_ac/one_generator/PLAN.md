@@ -34,20 +34,20 @@ Encoding convention used throughout the new code = **the env's signed-int conven
 (`x→1, y→2, z→3, x⁻¹→-1, y⁻¹→-2, z⁻¹→-3, 0=pad`). This unifies the greedy code with
 `data/*.txt` and lets us load MS(1190) directly and (later) cross-check against the JAX env.
 
-**Result persistence (crash-safe, resumable — a project convention; see `CLAUDE.md`).** Every
+**Result persistence (crash-safe, resumable — a project convention; see** `CLAUDE.md`**).** Every
 per-presentation sweep here (Phase 0.5 baseline, each Phase 3 `z=w` arm) writes an
-**append-only `.jsonl`** — one JSON object per presentation, flushed per line — and **resumes
+**append-only** `.jsonl` — one JSON object per presentation, flushed per line — and **resumes
 from the last object**: on restart it reads the stream, skips already-done `idx`, and continues.
 A pre-empted or crashed cloud job then never loses finished work or recomputes it. Tiny helpers
 `jsonl_done_ids(path)` / `jsonl_append(path, obj)` live in `jsonl_io.py`, reused by every sweep.
 Only fully index-derived artifacts (the `paper_reference` labels) stay `.json`.
 
-**One stream per `(arm, node-budget)` — the resume key must be unambiguous.** Because we run a
+**One stream per** `(arm, node-budget)` **— the resume key must be unambiguous.** Because we run a
 budget escalation (a cheap first pass, then a larger budget on the still-unsolved), a stream keyed
 on `idx` **alone** cannot tell "unsolved at 100k" from "solved at 1M" — on resume the escalation
 pass would either no-op or write duplicate `idx` lines that the merge then has to disambiguate.
 So each sweep writes a **separate file per budget tier**: `…_100k.jsonl` and `…_1m.jsonl`, and the
-larger-budget pass enumerates **only the `idx` left unsolved by the smaller** (which also avoids
+larger-budget pass enumerates **only the** `idx` **left unsolved by the smaller** (which also avoids
 re-solving the easy cases). The merge at report time keeps "which budget solved it" for free.
 Exact budget numbers are set by the Phase 2.5 empirical calibration, not guessed.
 
@@ -72,14 +72,14 @@ one that won't fit a session is sharded by `idx` (Phase 2.5).
 Goal: per-presentation labels over all 1190, captured **before** any stabilization so
 stabilization deltas are measurable — split by persistence need:
 
-- **`results/labels_1190.json`** — the cheap, fully index-derived skeleton (one object per
-  presentation: `idx, presentation, r1_len, r2_len, ms_n, ms_w, paper_reference`). Rebuildable
-  in one pass, so plain JSON is fine.
-- **`results/greedy_reprogate_{100k,1m}.jsonl`** — the n=2 **reproduction/port gate** (Phase 0.5),
-  run under the notebook's **sum-cap** to reproduce the paper's 634/640 and the idx-640 boundary.
-- **`results/greedy_baseline_{100k,1m}.jsonl`** — the n=2 **cross-arm baseline** (Phase 0.5), run
-  under the **per-relator cap** — the *same* cap the n=3 `z=w` arms use, so Phase 3 baseline-vs-arm
-  deltas aren't a cap artifact. Both are append-only, resumable, one line per `idx` per budget tier.
+- `results/labels_1190.json` — the cheap, fully index-derived skeleton (one object per
+presentation: `idx, presentation, r1_len, r2_len, ms_n, ms_w, paper_reference`). Rebuildable
+in one pass, so plain JSON is fine.
+- `results/greedy_reprogate_{100k,1m}.jsonl` — the n=2 **reproduction/port gate** (Phase 0.5),
+run under the notebook's **sum-cap** to reproduce the paper's 634/640 and the idx-640 boundary.
+- `results/greedy_baseline_{100k,1m}.jsonl` — the n=2 **cross-arm baseline** (Phase 0.5), run
+under the **per-relator cap** — the *same* cap the n=3 `z=w` arms use, so Phase 3 baseline-vs-arm
+deltas aren't a cap artifact. Both are append-only, resumable, one line per `idx` per budget tier.
 
 Methods stay in **separate fields/streams** (their coverage differs); the paper's *claim* and
 our *measurement* are kept apart so any discrepancy is visible, not baked in.
@@ -89,17 +89,17 @@ our *measurement* are kept apart so any discrepancy is visible, not baked in.
 paper Table 1 + text:
 
 - **GS-Sub greedy** — numba, *not* the DRT policy (the RL/DRT max is 610, so "greedy DRT" =
-  GS-Sub) — solves **634 @ 100K nodes** and **640 @ 1M / 10M nodes**. `1190 − 640 = 550`
-  unsolved (matches the paper's "550 remaining unsolved").
+GS-Sub) — solves **634 @ 100K nodes** and **640 @ 1M / 10M nodes**. `1190 − 640 = 550`
+unsolved (matches the paper's "550 remaining unsolved").
 - `1190MS.txt` is ordered **solved-first**: idx `0–639` = the paper's greedy-trivializable
-  ("AC-trivial") set, idx `640–1189` = the 550 unsolved. (Paper: *"the first 640 environments
-  are reserved for the 640 MS presentations… we never solved any presentation outside the
-  initial 640."*)
+("AC-trivial") set, idx `640–1189` = the 550 unsolved. (Paper: *"the first 640 environments
+are reserved for the 640 MS presentations… we never solved any presentation outside the
+initial 640."*)
 - `AC19_extended.txt` (156,762 lines — the RL **training** set, *not* the benchmark) leads
-  with **634** lines byte-identical to `1190MS[0:634]` (verified: exact shared prefix = 634,
-  diverges at line 635). These are the *100K-node* greedy solves used as RL training seeds;
-  the 6 extra (idx 634–639) trivialize only at ≥1M nodes, which is why they are not in the
-  shared prefix.
+with **634** lines byte-identical to `1190MS[0:634]` (verified: exact shared prefix = 634,
+diverges at line 635). These are the *100K-node* greedy solves used as RL training seeds;
+the 6 extra (idx 634–639) trivialize only at ≥1M nodes, which is why they are not in the
+shared prefix.
 - The pretrained **610model** solves **610** of the 640; never outside the 640.
 
 **Merged view** (assembled at report time from `labels_1190.json` + the `.jsonl` streams) —
@@ -125,17 +125,17 @@ each presentation looks like:
 Label sources:
 
 1. **Paper reference (all 1190, no compute).** Fill `paper_reference` purely from index
-   (`solved = idx<640`, `in_ac19_extended_prefix = idx<634`) using the cross-verified ordering
+  (`solved = idx<640`, `in_ac19_extended_prefix = idx<634`) using the cross-verified ordering
    above. This is the "solved/unsolved in the paper" label the task asks for. Nothing
    downstream may treat it as ground truth without the empirical `greedy` field alongside it.
 2. **RL (pretrained), first 634 — gated on JAX.** Read `610model`'s
-   `solve_data.solved_idx`/`path_lengths` (its first 634 entries index `1190MS[0:634]`); fill
+  `solve_data.solved_idx`/`path_lengths` (its first 634 entries index `1190MS[0:634]`); fill
    `rl_610model`. Reuse the exact Orbax two-stage restore in
    `scripts/check_checkpoint_paths.py` / `beam/beam_search.py:90-123`. **This env has no JAX** —
    `categorize.py` skips this gracefully (leaves `rl_610model: null`); run it later where the
    training stack lives.
 3. **Beam (pretrained), all 1190 — optional, gated on JAX.** Run existing
-   `python beam/beam_search.py --ckpt_path 610model --dataset 1190MS --start 0 --end 1190 --training_dataset AC19_extended --out_csv results/beam_1190.csv`;
+  `python beam/beam_search.py --ckpt_path 610model --dataset 1190MS --start 0 --end 1190 --training_dataset AC19_extended --out_csv results/beam_1190.csv`;
    merge `solved`/`path_len` into `beam_610model`. Label idx ≥ 640 as clearly
    out-of-distribution. No code change — shipped pipeline.
 
@@ -153,15 +153,15 @@ verifies** the mentor's claim + benchmark ordering (rather than only inferring t
 paper). numpy 2.0.2 + numba 0.60.0 are present here (JAX is not), so this phase runs now.
 
 `categorize.py --greedy` runs `greedy_nrel.py` (Phase 2, `n_gen=2`) over every line of
-`data/1190MS.txt`. **It does two `n=2` sweeps under two different length caps** — cheap, since
+`data/1190MS.txt`. **It does two** `n=2` **sweeps under two different length caps** — cheap, since
 `n=2` is the fast case — because one run can't serve both purposes:
 
-1. **Reproduction/port gate → `results/greedy_reprogate_{100k,1m}.jsonl`, notebook `sum-cap`.**
-   GS-Sub *is* this notebook, which caps on the **sum** of relator lengths, so we reproduce the
+1. **Reproduction/port gate →** `results/greedy_reprogate_{100k,1m}.jsonl`**, notebook** `sum-cap`**.**
+  GS-Sub *is* this notebook, which caps on the **sum** of relator lengths, so we reproduce the
    paper apples-to-apples under the sum-cap: a deviation from 634/640 then means "port bug," not
    "cap-semantics difference."
-2. **Cross-arm baseline → `results/greedy_baseline_{100k,1m}.jsonl`, `per-relator` cap.** The
-   baseline that Phase 3 compares the `z=w` arms against, run under the **same per-relator cap the
+2. **Cross-arm baseline →** `results/greedy_baseline_{100k,1m}.jsonl`**,** `per-relator` **cap.** The
+  baseline that Phase 3 compares the `z=w` arms against, run under the **same per-relator cap the
    n=3 arms use** (Phase 2/3) — so a baseline-vs-arm coverage delta reflects stabilization, not a
    cap that carves a different `(r1,r2)` region for `n=2` vs `n=3`.
 
@@ -174,24 +174,23 @@ Both are append-only and resumable (skip any `idx` already in *that* stream); ea
 
 Budget escalation for **each** stream (numbers fixed by the Phase 2.5 calibration, not guessed;
 nominally `max_nodes ∈ {100k, 1M}`): run the small budget over all 1190 → `…_100k.jsonl`, then the
-large budget **only over the `idx` still unsolved** → `…_1m.jsonl` (the 6 idx-634–639 cases are
+large budget **only over the** `idx` **still unsolved** → `…_1m.jsonl` (the 6 idx-634–639 cases are
 expected to appear at 1M). The `cap` field records which rule was in force. The validation gate
-below reads the **`reprogate`** streams (paper comparison); Phase 3 reads the **`baseline`** streams.
+below reads the `reprogate` streams (paper comparison); Phase 3 reads the `baseline` streams.
 
 **Validation gate (directional — this is the real signal):**
 
-- **HARD-with-triage:** a greedy *solve at `idx ≥ 640`* is **quarantined, not auto-fatal**.
-  **Replay the returned path** (free+cyclic-reduce each step; assert it ends all-relators-length-1
-  — the Phase 3 re-verification machinery). **Replay passes → this is a headline result, not a
-  footnote.** The paper reports *never* solving any presentation outside the initial 640, so a
-  single reproducible solve at `idx ≥ 640` is a genuinely new, powerful finding — surface it
-  immediately (flag the `idx`, save its path, don't bury it in the stream). `paper_reference.solved
-  = idx<640` is the paper's *claim*; our replay-verified measurement is allowed to beat it.
-  **Replay fails → it's a solver bug: stop and fix.** Only an *irreproducible* solve invalidates
-  the ordering assumption.
+- **HARD-with-triage:** a greedy *solve at* `idx ≥ 640` is **quarantined, not auto-fatal**.
+**Replay the returned path** (free+cyclic-reduce each step; assert it ends all-relators-length-1
+— the Phase 3 re-verification machinery). **Replay passes → this is a headline result, not a
+footnote.** The paper reports *never* solving any presentation outside the initial 640, so a
+single reproducible solve at `idx ≥ 640` is a genuinely new, powerful finding — surface it
+immediately (flag the `idx`, save its path, don't bury it in the stream). `paper_reference.solved = idx<640` is the paper's *claim*; our replay-verified measurement is allowed to beat it.
+**Replay fails → it's a solver bug: stop and fix.** Only an *irreproducible* solve invalidates
+the ordering assumption.
 - **SOFT:** solved count ≈ **634 @100K** and ≈ **640 @1M**, essentially all within idx < 640. Our
-  numba GS-Sub may differ from the paper's by a few (tie-break/budget details) — **log deviations,
-  don't assert exact equality.**
+numba GS-Sub may differ from the paper's by a few (tie-break/budget details) — **log deviations,
+don't assert exact equality.**
 
 Passing this gate simultaneously (a) confirms the mentor's claim, (b) confirms the
 benchmark's solved-first ordering, and (c) validates `greedy_nrel.py` at `n=2` before it is
@@ -211,10 +210,10 @@ z-relator = `[k] ++ inverse(z_word)` (`k` = new generator id, e.g. `z=3`), free+
 reduced, then padded to `max_length`; re-flatten to `new_n_gen*max_length`. `z_word` is a list
 of ints over x/y (`±1,±2`). Examples: `z = r1` → z-relator `[3] ++ inverse(r1)` (length
 `1+|r1|`); `z = x` → `[3,-1]` (length 2). So `[r1|r2]` (len 48) → `[r1|r2|z·w⁻¹]` (len 72).
-- **Preset baseline words `w ∈ {x, y, r1, r2}`**: `x/y` are constant, `r1/r2` read per-line from
+- **Preset baseline words** `w ∈ {x, y, r1, r2}`: `x/y` are constant, `r1/r2` read per-line from
 the presentation. Across MS(1190) `max|r1|=17, max|r2|=15`, and across the 261 reps
 `max|r1|=11, max|r2|=17` ⇒ every z-relator (`1+|w|`) is ≤ 18 ≤ `L=24` on **both** datasets, so
-**`L=24` holds for all baseline words — no bump needed.**
+`L=24` **holds for all baseline words — no bump needed.**
 - `write_stabilized_dataset(in_stem, z_spec, out_stem, ...)` — read `data/<in_stem>.txt`,
 stabilize each line with `z_spec`, write `data/<out_stem>.txt` (same
 one-Python-literal-list-per-line format). Produces **one file per word** for each benchmark:
@@ -225,7 +224,7 @@ greedy (list-of-relators) and env (flat) formats interoperate — **n-relator-ge
 `//2`), mirroring the intent of `envs/utils.py::change_max_relator_length_of_presentation`.
 
 Validation: every stabilized line has `new_n_gen*max_length` entries; the r1/r2 prefixes are
-unchanged; the z-relator **decodes back to `z = z_word`** (drop the leading `z`, invert ⇒
+unchanged; the z-relator **decodes back to** `z = z_word` (drop the leading `z`, invert ⇒
 `z_word` up to cyclic reduction); round-trip `flat_to_relators`↔`relators_to_flat` is identity.
 
 ---
@@ -241,9 +240,9 @@ reduction (`reduce_relator_nj`), inversion (`inverse_relator_nj`), canonicalizat
 (`canonical_relator_nj`).
 
 > **⚠ PORTING TRAP (silent-correctness — fix first, test explicitly).** The notebook's
-> rotation is `np.roll(r, 2*i)`: it rolls by **`2*i`** because each letter is a `(bool, bool)`
+> rotation is `np.roll(r, 2*i)`: it rolls by `2*i` because each letter is a `(bool, bool)`
 > *pair*, so one logical letter is two array slots. The int port stores **one slot per letter**,
-> so it must roll by **`i`**, not `2*i`. Miss this and *every* rotation — hence every
+> so it must roll by `i`, not `2*i`. Miss this and *every* rotation — hence every
 > substitution neighbor and every canonicalization — is silently wrong while superficial tests
 > still pass (the search just explores garbage). This is the one feedback item that corrupts
 > results rather than degrading them gracefully. Pre-flight check 0 (below) asserts a known
@@ -257,20 +256,32 @@ trivial int ops (`a==-b`, `a==b`, `abs`/sign order).
 - **State:** `tuple` of `n` relators (was 2-tuple). `state_to_key`, `_key_to_state`,
 `canonical_pair_nj` → `canonical_tuple` (canonicalize each relator, then sort the tuple
 by (len, lex)).
-- `get_neighbors` (the substitution move, n-relator): for **every ordered pair (a, b),
-a≠b**, each candidate `c ∈ {r_b, r_b⁻¹}`, and each cyclic rotation of `r_a` and `c`, if the
-boundary letters cancel, form `neighbour = concat(rot(r_a), rot(c))` and emit the state with
-relator `a` replaced. (The 2-relator notebook version is the `n=2` special case.) **With a
-content-bearing `z` (relator `z·w⁻¹`), `(r_i, z)` pairs cancel normally** — the z-relator
-carries `w`'s x/y letters — so substitution acts on `z` directly. **No seeding moves are
-needed** (they were only a workaround for trivial `z`, which we no longer use).
+- `get_neighbors` (the substitution move, n-relator): for **every UNORDERED pair {a, b}
+(a<b, leader = a)**, each candidate `c ∈ {r_b, r_b⁻¹}`, and each cyclic rotation of `r_a` and `c`,
+if the boundary letters cancel, form `neighbour = reduce(concat(rot(r_a), rot(c)))` and emit it
+into **BOTH slot a (`r_a → neighbour`) and slot b (`r_b → neighbour`)** — the `r_a`-leading splice
+goes into whichever relator is being modified. This is **not** the leader-only "ordered pair, replace
+a" reading (that gives a *different* set and fails the n=2 oracle). It is the exact generalization of
+BOTH references, which agree at n=2: the notebook `get_neighbors_nj` (leader r1, both slots) AND the
+gymnax env `envs/ac_moves.py::s_move` (`neighbour = rot(r0)·rot(r1^±)` substituted into slot `i` for
+`i∈{0,1}`, `r` = invert-r1). So the port's move logic is faithful-by-construction to the env's `s_move`
+convention (lower-index leader, dual-slot emit, all pairs), triangulated across three independent
+implementations. **With a content-bearing** `z` **(relator** `z·w⁻¹`**),** `(r_i, z)` **pairs cancel
+normally** — the z-relator carries `w`'s x/y letters — so substitution acts on `z` directly. **No
+seeding moves are needed** (they were only a workaround for trivial `z`, which we no longer use).
+  - ⚠ **The env's shipped `s_move` is hardcoded to splice `r0·r1`** (`rotate_relator_k(0,…)`,
+  `rotate_relator_k(1,…)`), so it structurally cannot do the `(r_i, z)` n=3 moves — confirming from
+  the actual code that the **executable** JAX gold check of the n=3 move set needs Phase 4's
+  generalized `s_move` (and JAX is not installed on the greedy boxes anyway). Until then the n=3 move
+  logic is verified only by source-reading against the env convention + the n=2 differential oracle;
+  the n=3 scheme itself has **no executable independent oracle** — state this in any n=3 coverage claim.
   - **Cheap hot-loop optimization (do this in the port):** the notebook materializes an
   `np.roll` copy + concat + reduce for *every* rotation pair before testing cancellation. Instead
   **read the two boundary letters directly** (two indexed lookups per rotation pair — the last of
   `rot(r_a)` and the first of `rot(c)`) and only build `concat+reduce` for pairs that actually
   cancel. Cancellation is sparse, so this is an order-of-magnitude constant-factor win — and it
-  matters: `n=3` has **6 ordered relator pairs vs `n=2`'s 2**, so per-node neighbor work is the
-  dominant cost of the whole sweep (see Phase 2.5).
+  matters: `n=3` has **3 unordered relator pairs vs** `n=2`**'s 1** (each emitting into 2 slots), so
+  per-node neighbor work is the dominant cost of the whole sweep (see Phase 2.5).
 - **Visited-block (mentor's null-revert guard):** `NRelatorSolver(..., blocked_states=None)`
 pre-seeds the closed/visited set with canonical state-keys that are never enqueued/expanded.
 For a `z=w` run we pass the **single** null-revert state `canon(r1, r2, [z])` — the original
@@ -295,66 +306,101 @@ only, off on the 1M runs alongside `track_seen`).
 available but isn't required: `z=w` is content-bearing, so there's no length-increasing seed to
 protect.)
 - **Retrace & independent verification (step-by-step path, re-derived from scratch).** Two pieces:
-  - **`retrace(key)`** — walk the `visited` parent-dict from a state back to the initial state and
-    return the ordered path of states, **annotating each transition with the move that produced it**
-    (which relator was substituted, the two rotation indices), so the route is human-readable
-    step-by-step — not just a list of states. Works for any state; the point of interest is the
-    solved (all-length-1) state and any `idx ≥ 640` solve.
-  - **`verify_path(path)`** — replay the retraced path **independently of the search bookkeeping**:
-    for each consecutive pair recompute `get_neighbors(state[k])` from scratch and assert
-    `state[k+1]` is among them (canonical), each relator free+cyclically reduced, and the final state
-    trivial. This doesn't trust `visited`/`heapq`, so it catches search bugs, and it is the
-    ground-truth gate for **every reported solve** (the Phase 0.5 / Phase 3 replay check *is* this).
-    Each solve's JSONL line carries `path_verified` (bool); a `False` is never counted as a solve.
+  - `retrace(key)` — walk the `visited` parent-dict from a state back to the initial state and
+  return the ordered path of states, **annotating each transition with the move that produced it**
+  (which relator was substituted, the two rotation indices), so the route is human-readable
+  step-by-step — not just a list of states. Works for any state; the point of interest is the
+  solved (all-length-1) state and any `idx ≥ 640` solve.
+  - `verify_path(path)` — replay the retraced path **independently of the search bookkeeping**:
+  for each consecutive pair recompute `get_neighbors(state[k])` from scratch and assert
+  `state[k+1]` is among them (canonical), each relator free+cyclically reduced, and the final state
+  trivial. This doesn't trust `visited`/`heapq`, so it catches search bugs, and it is the
+  ground-truth gate for **every reported solve** (the Phase 0.5 / Phase 3 replay check *is* this).
+  Each solve's JSONL line carries `path_verified` (bool); a `False` is never counted as a solve.
+  - **Persist the path — store it, don't just check-and-discard (n≥3 REQUIREMENT).** For `n≥3`
+  every solve **writes its retraced path to disk**, not just the run-time `path_verified` boolean:
+  a sidecar `results/paths_<arm>_<tier>.jsonl` keyed by `idx` — each line
+  `{idx, name?, moves:[(rel_i, ra_rot, c_rot, c_is_inverse), …], states:[flat relator-tuples], path_len}`. This makes every solve **re-verifiable, replayable, and demonstrable to others
+  offline**, and later feedable to the JAX `check_paths` gold gate — a boolean flag is proof to
+  *this run*, a stored path is proof anyone can re-run. The main JSONL line keeps the scalar
+  `path_verified`/`path_len`; the sidecar carries the route. (The `n=2` Phase 0.5 streams
+  deliberately do **not** do this — we consciously accepted length-only there since we only need
+  the solved-count + length distribution; from `n=3` on the path is a first-class, persisted
+  artifact, because those `z=w` class-solves are findings we present, not just counts.)
   - **Gold-standard cross-check (real env).** `envs/utils.py::check_paths` replays a path in the
-    actual gymnax env — available **now for `n=2` baseline solves** (the shipped 2-gen env, as in
-    `scripts/check_checkpoint_paths.py`). For `n=3` `z=w` solves it needs Phase 4's generalized
-    `s_move`, so until then `n=3` solves rely on the in-module `verify_path`.
-- **Length cap = *per-relator*, not sum (removes an `n=2`-vs-`n=3` confound).** Cap each relator
+  actual gymnax env — available **now for** `n=2` **baseline solves** (the shipped 2-gen env, as in
+  `scripts/check_checkpoint_paths.py`). For `n=3` `z=w` solves it needs Phase 4's generalized
+  `s_move`, so until then `n=3` solves rely on the in-module `verify_path`.
+- **Length cap = *per-relator*, not sum (removes an** `n=2`**-vs-**`n=3` **confound).** Cap each relator
 individually at `max_len` (mirrors the env's `L=24` semantics), the **same value for every relator
 in every arm**. A shared *sum*-cap would let the z-relator (up to 18 letters for `z=r1`) eat the
 headroom for `r1,r2`, so the `n=3` arm would search a strictly *smaller* `(r1,r2)` subspace than
 the `n=2` baseline and any "coverage regression" would be a cap artifact, not a stabilization
 effect. A per-relator cap makes the `(r1,r2)` subspace identical across baseline and arms by
 construction. State the rule once in the `greedy_nrel.py` docstring; record the cap per JSONL line.
-*(The `n=2` reproduction gate in Phase 0.5 deliberately uses the notebook's native sum-cap instead
+*(The* `n=2` *reproduction gate in Phase 0.5 deliberately uses the notebook's native sum-cap instead
 — that's port-validation, not cross-arm comparison; see Phase 0.5.)*
 - **Scale/memory notes (implementation, tagged so they don't balloon the spec).** Confirmed against
 `ACRelatorSolver.solve`: `visited` stores **every generated neighbor** (not just expanded nodes) —
 `self.visited[key_new] = key` runs inside the neighbor loop — as a Python **string-tuple** key. At
 the 1M-node, `n=3` regime that set is the memory bottleneck (~10⁷ states ⇒ ~2.5–3.5 GB just for
 `visited`; 10⁸ ⇒ tens of GB). Two levers:
-  - Key `visited` on compact **`bytes`** (int8 relators joined by a separator) instead of
-    character-string tuples — ~4× smaller and hashes faster.
-  - **`new_seen` is gated behind a `track_seen` flag, not deleted.** It's a second hash container
-    (it shares the key objects with `visited`, so it doesn't double the strings, but it still costs
-    the set's per-entry overhead — hundreds of MB at 10⁷) whose *only* use is the post-hoc "minimal
-    element" diagnostic. So make it optional: `NRelatorSolver(..., track_seen=False)` skips it on the
-    memory-critical **1M** runs; enable `track_seen=True` on the cheaper **100k** runs (and the
-    calibration probes) when the minimal-element diagnostic is wanted. Default `False`.
+  - Key `visited` on compact `bytes` (int8 relators joined by a separator) instead of
+  character-string tuples — ~4× smaller and hashes faster.
+  - `new_seen` **is gated behind a** `track_seen` **flag, not deleted.** It's a second hash container
+  (it shares the key objects with `visited`, so it doesn't double the strings, but it still costs
+  the set's per-entry overhead — hundreds of MB at 10⁷) whose *only* use is the post-hoc "minimal
+  element" diagnostic. So make it optional: `NRelatorSolver(..., track_seen=False)` skips it on the
+  memory-critical **1M** runs; enable `track_seen=True` on the cheaper **100k** runs (and the
+  calibration probes) when the minimal-element diagnostic is wanted. Default `False`.
   - Log **peak RSS** per JSONL line so the 1M runs are observable and a box OOMs visibly, not
-    mysteriously.
+  mysteriously.
 
-Pre-flight (advisor's + our own CLAUDE.md rule) **before any 1190 sweep**:
 
-0. **Rotation is correct (the porting trap):** assert `rotate(r, i)` on a hand-built relator
-  produces the exact expected array for a few `i` — this is the guard against the `np.roll(2*i)`
-  vs `np.roll(i)` bug above. Nothing else is trustworthy until this passes.
-1. `n=2` on a known-solvable MS presentation (e.g. `MS(3,'YXyxy')` region) → solves,
-  matching the notebook.
-2. Stabilize that same presentation with `z=x` → `n=3` solve must **still succeed** (a solvable
-  presentation stays solvable — `z` can be ignored or destabilized). Assert the returned path
-  replays to all-relators-length-1.
-3. **z fires when content-bearing / empty when trivial:** confirm `get_neighbors` emits
-  neighbors for `(r1, z)` with `z=w`, and **nothing** for `(r1, z)` with a trivial `z` (the
-  empirical confirmation of the caveat).
-4. **Block holds — including the 2-step revert.** With the null-revert state pre-seeded, confirm
-  the search never expands `canon(r1, r2, z=1)` and cannot settle there. Assert **specifically the
-  2-step revert path** `(r1, r2, z·r1⁻¹) → ([z], r2, z·r1⁻¹) → ([z], r2, r1⁻¹)` is caught: because
-  `canonical_relator_nj` is inversion-invariant and the tuple is sorted, that final state
-  canonicalizes to *exactly* the blocked key — so a single blocked state stops both the direct
-  1-step unwind and this 2-step one. (This robustness is a feature; the pre-flight must prove it,
-  not assume it.)
+
+Pre-flight (advisor-sharpened + our CLAUDE.md rule) **before any 1190 sweep**. Worded to
+*discriminate* — a check that passes on a broken port is worthless:
+
+1. **Rotation is correct (the porting trap):** assert `rotate(r, i)` on a hand-built relator
+  produces the exact expected array for a few `i` — the guard against `np.roll(2*i)` vs `i`.
+  Fast pinpoint; nothing else is trustworthy until it passes.
+2. **Differential oracle vs `greedy_ac` at n=2 (THE gate).** Run `greedy_nrel(n_gen=2)` and the
+  known-good `greedy_ac` on the **same ~50 presentations, including hard non-trivial solves**
+  (idx ~100–600 that take thousands of nodes — *not* idx 0–4, which solve in 2–3 nodes and pass
+  even with a rotation bug), same per-relator cap and budget. Assert **identical solved set** and
+  **every `greedy_nrel` solve replays via `verify_path`**. Do **not** assert equal node counts or
+  path lengths — a different int `is_less_than` ordering changes the canonical rep and heap
+  tie-breaks, so those legitimately differ; only the solved *set* is representation-independent
+  (tolerate a single flip on a case sitting exactly at the budget boundary; investigate any other
+  disagreement). This one test catches the rotation trap, the `get_neighbors` generalization, and
+  canonicalization together — the real gate, stronger than "matches the notebook."
+3. Stabilize a solvable presentation with `z=x` → `n=3` solve must **still succeed** (z can be
+  ignored/destabilized); assert the path replays to all-relators-length-1.
+4. **z-pair neighbors are correct, not just non-empty (no independent oracle here).** The
+  `(r_i, z)` move is the one piece the n=2 differential never exercises and the JAX gold check
+  (Phase 4) can't yet cover, so a *wrong-but-consistent* move gives false solves `verify_path`
+  can't catch (it shares `get_neighbors` with the solver). Hand-work one tiny `(r1, z=w)` example
+  and assert the **specific expected neighbor set** (exact states), plus **empty** neighbors for a
+  trivial `z`.
+5. **Block FIRES (not just "doesn't settle").** "Search never expands the blocked state" passes
+  trivially if the block is a no-op that matches nothing (e.g. blocked key canonicalized
+  differently from neighbor keys). On a case constructed to attempt the revert, assert
+  **`revert_hits > 0`** — the only thing distinguishing a working block from one that silently
+  matches nothing — and that the search still never settles on `canon(r1, r2, z=1)`, incl. the
+  2-step revert path `(r1, r2, z·r1⁻¹) → ([z], r2, z·r1⁻¹) → ([z], r2, r1⁻¹)` (inversion-invariant
+  `canonical_relator_nj` + sorted tuple ⇒ it canonicalizes to the same single blocked key).
+
+**Persist-loop closure (verify the *serialized* form, not just the in-memory object).**
+`verify_path`'s input representation and the sidecar's stored representation must be the **same**
+thing, and a sampled `deserialize → replay` must pass — otherwise `path_verified:true` certifies
+an in-memory path while the on-disk artifact could be lossy. State plainly: the n=3 sidecar
+enables **re-audit + demonstration now**, but **not** the JAX gold check (needs env-action
+packing, Phase 4) — it is not gold-checkable yet.
+
+**Implementation (numba granularity — saves a detour):** keep `@njit` at **single-relator**
+granularity (rotate/reduce/inverse/canonical each take one int array, as the notebook does) and
+run the n-relator pairing loop in **plain Python**. numba falls to object mode (or fights you) on
+ragged, variable-length tuples-of-arrays, so don't pass "state = tuple of n relators" into njit.
 
 ---
 
@@ -373,28 +419,27 @@ to shard/multiprocess it within a box. `calibrate.py` turns the probe into that 
 **What to measure — throughput on the *hard* cases, not "time to solve."** Runtime is dominated by
 the ~550 **unsolved** presentations: each runs to the **full node budget** (that's what "unsolved"
 means), so the reusable quantity is **nodes/sec**, measured on a *budget-exhausting* case, on the
-**`n=3` code path** (not the notebook's `n=2` number). Concretely:
+`n=3` **code path** (not the notebook's `n=2` number). Concretely:
 
 1. **Warm up numba first** — one throwaway solve so JIT-compile time doesn't land inside the first
-   measurement (it's visible as the notebook's inflated first cell). Keep dtypes fixed (int8) so
+  measurement (it's visible as the notebook's inflated first cell). Keep dtypes fixed (int8) so
    there are no silent recompiles mid-probe.
 2. **Hard sample (~5, drives the estimate):** 5 of the 261 unsolved-class reps
-   (`data/ms_unsolved_reps/ms_reps_unsolved.txt` — the actual hard targets), stabilized (`z=r1`, the representative
+  (`data/ms_unsolved_reps/ms_reps_unsolved.txt` — the actual hard targets), stabilized (`z=r1`, the representative
    content-bearing arm), each run to the **candidate max budget**.
-   Record wall-time and `nodes/sec`. Runtime floor ≈ `median nodes/sec` → `budget × #unsolved ÷
-   nodes/sec` per arm.
+   Record wall-time and `nodes/sec`. Runtime floor ≈ `median nodes/sec` → `budget × #unsolved ÷  nodes/sec` per arm.
 3. **Easy sample (~5, minor addend):** 5 *solved* presentations sampled across the difficulty range
-   (early/low-idx and near-640) → the cheap solved-case time. Small next to (2), but confirms the
+  (early/low-idx and near-640) → the cheap solved-case time. Small next to (2), but confirms the
    easy tail is negligible.
 4. **Output** → `results/calibration.jsonl` (one line per probe: `idx, arm, n_gen, budget_nodes,
-   nodes_explored, solved, wall_time_s, nodes_per_sec, peak_rss_mb`) + a short printed summary:
+  nodes_explored, solved, wall_time_s, nodes_per_sec, peak_rss_mb`) + a short printed summary:
    projected per-arm hours at each candidate budget, and the total across all arms/tiers.
 
 **Then choose** the `{small, large}` budget tiers (the `100k / 1M` nominal, adjusted to what the
 probe says is affordable) and the parallelism layout across the Colab fleet: **one arm per box**;
-**`multiprocessing` across presentations within a box** (the high-RAM Colab CPUs are multi-core, and
+`multiprocessing` **across presentations within a box** (the high-RAM Colab CPUs are multi-core, and
 the per-idx JSONL streams are shard-safe) to use its cores; and if a single (arm, tier) still won't
-finish inside one Colab session, **shard its `idx` range across boxes** (each shard its own resumable
+finish inside one Colab session, **shard its** `idx` **range across boxes** (each shard its own resumable
 stream, merged on Drive). Record the worker count. The chosen budgets feed Phase 0.5 and Phase 3.
 
 ---
@@ -403,80 +448,86 @@ stream, merged on Drive). Record the worker count. The chosen budgets feed Phase
 
 ## Phase 3 — Experiment, W&B, plots
 
-`run_experiment.py` runs the **2-gen baseline plus one arm per `z=w` word** over MS(1190).
-**Each `(arm, budget-tier)` writes its own append-only, resumable `.jsonl`** —
+`run_experiment.py` runs the **2-gen baseline plus one arm per** `z=w` **word** over MS(1190).
+**Each** `(arm, budget-tier)` **writes its own append-only, resumable** `.jsonl` —
 `results/greedy_baseline_{100k,1m}.jsonl` (reused from Phase 0.5) and
 `results/greedy_z_<w>_{100k,1m}.jsonl` per word — one line per presentation, skipping any `idx`
 already recorded (a pre-empted cloud run resumes cleanly), and the large-budget tier enumerating
 only the `idx` the small tier left unsolved. `viz.py` / the report step merges the streams by
 `idx`, preferring the tier that solved it.
 
-**Coverage target — the 261 unsolved-class representatives (`data/ms_unsolved_reps/ms_reps_unsolved.txt`), run first.**
+**Coverage target — the 261 unsolved-class representatives (**`data/ms_unsolved_reps/ms_reps_unsolved.txt`**), run first.**
 The 550 unsolved MS(1190) presentations fall into **261 AC-equivalence classes**; the mentor supplied
 one **minimal-form representative per class** (`data/ms_unsolved_reps/ms_reps_unsolved.csv`: `r1, r2, name`, e.g.
 `13_1 = AK(3)`). Verified this session: those 261 names are an **exact bijection** with the non-`trivial`
 class labels in `data/ms_unsolved_reps/ms_solved_grid.csv` (against 640 `trivial` cells), so solving the 261 reps solves
-all 550 unsolved. The coverage question — *can a `z=w` stabilization crack a presentation classical AC
+all 550 unsolved. The coverage question — *can a* `z=w` *stabilization crack a presentation classical AC
 can't?* — is therefore answered on these **261**, not the raw 550: deduplicated, class-labeled, and cheap
 enough to **run first** as the headline. `data/ms_unsolved_reps/ms_reps_unsolved.txt` is the loadable form (built +
 round-trip-verified by `scripts/build_ms_reps.py`); `stabilize.py` also emits
 `data/stabilized/ms_reps_unsolved_z_<w>.txt` per word. Streams: `results/greedy_baseline_reps_{100k,1m}.jsonl` and
-`results/greedy_z_<w>_reps_{100k,1m}.jsonl` — same schema as the 1190 streams **plus a `"name"` field**
+`results/greedy_z_<w>_reps_{100k,1m}.jsonl` — same schema as the 1190 streams **plus a** `"name"` **field**
 (the class label), resumable per `(arm, budget)`.
 
 > **These reps are minimal canonical forms, *not* MS(1190) presentations** — 0/261 carry an MS-pattern
 > relator `X y^n x Y^{n+1}` — which the metrics must respect:
+>
 > - **The 2-gen baseline runs on the reps too, and may legitimately solve some.** A minimal form is
->   often easier for length-priority greedy than the bloated MS member, so a baseline rep-solve is **not**
->   an anomaly or an ordering violation (the paper's "550 unsolved" was measured on the *MS forms*). It is
->   the control, and **baseline rep-coverage is a finding in its own right** — what the canonical form
->   alone buys before any stabilization. The coverage signal is **`(z=w solved) − (baseline solved)` on
->   the identical rep form**, per class.
+> often easier for length-priority greedy than the bloated MS member, so a baseline rep-solve is **not**
+> an anomaly or an ordering violation (the paper's "550 unsolved" was measured on the *MS forms*). It is
+> the control, and **baseline rep-coverage is a finding in its own right** — what the canonical form
+> alone buys before any stabilization. The coverage signal is `(z=w solved) − (baseline solved)` **on
+> the identical rep form**, per class.
 > - **A verified rep-solve establishes that AC-equivalence class is AC-trivial** (headline: *"stably
->   trivialized canonical hard class `<name>`"*). Verify it like any solve — `verify_path` + the `n=2`
->   `check_paths` gold-standard — before claiming the class. It does **not**, by itself, beat the paper's
->   "never solved outside the 640" benchmark: that is a claim about the *MS forms*, and bridging rep → MS
->   member needs an explicit equivalence path the CSVs don't provide. Exhibiting that MS-member→rep
->   reduction is a **separate step, flagged, not assumed.**
+> trivialized canonical hard class* `<name>`*"*). Verify it like any solve — `verify_path` + the `n=2`
+> `check_paths` gold-standard — before claiming the class. It does **not**, by itself, beat the paper's
+> "never solved outside the 640" benchmark: that is a claim about the *MS forms*, and bridging rep → MS
+> member needs an explicit equivalence path the CSVs don't provide. Exhibiting that MS-member→rep
+> reduction is a **separate step, flagged, not assumed.**
 
 - **Baseline: 2-gen greedy** (`n=2`, `data/1190MS.txt`) — = the **per-relator-capped**
-  `greedy_baseline_*.jsonl` from Phase 0.5 (**not** the sum-capped `greedy_reprogate_*.jsonl`),
-  so baseline and arms share the identical per-relator cap and the delta is stabilization, not caps.
-- **`z=w` arms** (`n=3`), one per `w ∈ {x, y, r1, r2}`, each on its `data/stabilized/1190MS_z_<w>.txt`,
-  with the null-revert visited-block on → `results/greedy_z_<w>_*.jsonl`.
+`greedy_baseline_*.jsonl` from Phase 0.5 (**not** the sum-capped `greedy_reprogate_*.jsonl`),
+so baseline and arms share the identical per-relator cap and the delta is stabilization, not caps.
+- `z=w` **arms** (`n=3`), one per `w ∈ {x, y, r1, r2}`, each on its `data/stabilized/1190MS_z_<w>.txt`,
+with the null-revert visited-block on → `results/greedy_z_<w>_*.jsonl`.
 - **Two headline metrics per presentation, per arm:** **path length** (moves to trivialize)
-  and **node usage** (nodes explored). Each line also carries `solved`, `path_verified`,
-  `revert_hits`, `wall_time_s`, `max_len_along_path`, `peak_rss_mb`, and the budget tier that
-  solved it.
+and **node usage** (nodes explored). Each line also carries `solved`, `path_verified`,
+`revert_hits`, `wall_time_s`, `max_len_along_path`, `peak_rss_mb`, and the budget tier that
+solved it.
+- **Every solved presentation also writes its full path to the sidecar**
+`results/paths_<arm>_<tier>.jsonl` (Phase 2's persisted retrace, keyed by `idx`, with the class
+`name`) — so each `z=w` class-solve is **replayable and demonstrable**, not just a
+`path_verified:true` flag. A headline "stably trivialized class `<name>`" claim must point at a
+stored, re-runnable path.
 - **Path-length convention (pin one rule, cross-arm plots depend on it):** a `z=w` arm's
-  `path_len` is the **search path only**, and does **not** count the implicit `+1` stabilization
-  move (the search starts from the already-stabilized presentation). State it once; apply it to
-  every arm so baseline-vs-arm path-length deltas are comparable.
+`path_len` is the **search path only**, and does **not** count the implicit `+1` stabilization
+move (the search starts from the already-stabilized presentation). State it once; apply it to
+every arm so baseline-vs-arm path-length deltas are comparable.
 - Budget tiers from Phase 2.5 (nominal `max_nodes ∈ {100k, 1M}`); **per-relator** `max_len` cap
-  (same value every relator every arm — Phase 2), all logged so there are no silent caps.
+(same value every relator every arm — Phase 2), all logged so there are no silent caps.
 
-**Pre-registered expectation — `z∈{x,y}` will look worse, and that's an artifact, not a verdict.**
+**Pre-registered expectation —** `z∈{x,y}` **will look worse, and that's an artifact, not a verdict.**
 With z-relator `z·x⁻¹`, swapping any single `x ↔ z` in `r1/r2` is **length-neutral**. Best-first on
 total length exhausts each length level before growing, so `z∈{x,y}` arms will enumerate large
 chunks of the `~2^(#x-occurrences)` alias orbit *at the initial length* before making progress —
 inflating node usage and producing budget-exhaustion "regressions" that measure alias blowup, **not**
 stabilization being bad. **We pre-register this:** interpret `z∈{x,y}` coverage regressions as
-budget artifacts unless replay says otherwise. Corollary: **`z=r1`/`z=r2` are the arms where a real
+budget artifacts unless replay says otherwise. Corollary: `z=r1`**/**`z=r2` **are the arms where a real
 "wormhole" signal is most likely visible** (their swaps are whole-word, not length-neutral aliases).
 Optionally report a per-arm "distinct states modulo `z↦x` relabel" diagnostic to quantify the orbit.
 
 Headline comparisons:
 
 - **Coverage (headline — measured on the 261 class reps):** how many unsolved AC-classes does
-  each `z=w` arm crack that the 2-gen baseline (on the *same* rep form) does not? Signal =
-  `(z=w solved) − (baseline solved)` per class; baseline rep-coverage is itself reported (what the
-  canonical form buys pre-stabilization). Every class-solve **replay-verified** to all-length-1 and
-  logged with its `name` before it counts; any regressions (baseline solved, `z=w` not)? (On the
-  MS(1190) forms, a `z=w` solve at idx ≥ 640 is the stronger *direct* paper-benchmark claim —
-  Phase 0.5's replay-triage gate applies there.)
+each `z=w` arm crack that the 2-gen baseline (on the *same* rep form) does not? Signal =
+`(z=w solved) − (baseline solved)` per class; baseline rep-coverage is itself reported (what the
+canonical form buys pre-stabilization). Every class-solve **replay-verified** to all-length-1 and
+logged with its `name` before it counts; any regressions (baseline solved, `z=w` not)? (On the
+MS(1190) forms, a `z=w` solve at idx ≥ 640 is the stronger *direct* paper-benchmark claim —
+Phase 0.5's replay-triage gate applies there.)
 - **Efficiency:** for presentations both solve, does `z=w` cut **path length** or **node
-  usage** vs baseline? (The "wormhole" hypothesis in miniature — even a dumb `w` might shorten
-  paths.)
+usage** vs baseline? (The "wormhole" hypothesis in miniature — even a dumb `w` might shorten
+paths.)
 
 **W&B** (`--wandb`, project `stable-ac-onegen`, reusing the lazy-import + gated pattern from
 `ppo_ac_s.py:362-371`): per-arm scalars centered on the two metrics — solved count, mean/median
@@ -502,20 +553,20 @@ JSON uploaded as artifacts. Entity = user default (CLI-overridable); `--wandb_mo
 hard-wired to exactly 2 relators, in a way `n_gen` alone does not fix:
 
 - `envs/ac_moves.py::s_move` (lines 229–274) always sources relators **0 and 1**
-  (`_invert(1,…)`, `rotate_relator_k(0,…)`/`(1,…)`, `_concatenate(0,1,…)`) and writes to a
-  **binary** target (`lax.cond(i==0, slot 0, slot max_length)`). For `i=2` it silently
-  corrupts relator 1.
+(`_invert(1,…)`, `rotate_relator_k(0,…)`/`(1,…)`, `_concatenate(0,1,…)`) and writes to a
+**binary** target (`lax.cond(i==0, slot 0, slot max_length)`). For `i=2` it silently
+corrupts relator 1.
 - Action packing `(((k1-1)*L + (k2+j)*(-1)**j)*4) + (i*2+j)` bakes `i,j∈{0,1}` via the
-  literal `*4` — duplicated in `envs/utils.py:78-96`, `wrappers.py:214-216`, `ppo_ac_s.py`,
-  `beam/beam_search.py:181-188`.
+literal `*4` — duplicated in `envs/utils.py:78-96`, `wrappers.py:214-216`, `ppo_ac_s.py`,
+`beam/beam_search.py:181-188`.
 - `network.py::RelativeDualRingActorCritic` is a **structural 2-relator "dual ring"**:
-  `L_half=L//2` binary split, `vocab_size=5` (=`2·2+1`), pairwise cross-attention, and a
-  4-way `(i,j)` action head — a 3-generator input needs vocab 7 and a tri-ring redesign,
-  not a shape bump.
+`L_half=L//2` binary split, `vocab_size=5` (=`2·2+1`), pairwise cross-attention, and a
+4-way `(i,j)` action head — a 3-generator input needs vocab 7 and a tri-ring redesign,
+not a shape bump.
 - `envs/utils.py::change_max_relator_length_of_presentation` uses `len//2` (assumes 2
-  relators) on the data-loading path.
+relators) on the data-loading path.
 - The pretrained `ppo_checkpoints/610model/` has input dim 48 and 2304-action head baked
-  in → **cannot run on 3-gen without a full retrain** (it was ~1e9 timesteps).
+in → **cannot run on 3-gen without a full retrain** (it was ~1e9 timesteps).
 
 Recorded so it's turnkey later. Ordered dependencies:
 
@@ -589,12 +640,13 @@ converters (not imported; kept independent to avoid touching the shipped env in 
 
 ## Execution order
 
-0. `jsonl_io.py` — the resumable-JSONL helpers first (every sweep below depends on them).
-1. Phase 1 `stabilize.py` — write the `data/stabilized/1190MS_z_{x,y,r1,r2}.txt` datasets (+ validation).
-2. Phase 2 `greedy_nrel.py` + visited-block + **5-step pre-flight (checks 0–4)** — rotation-correct
-   first, then n=2, n=3 with `z=w`, content-vs-trivial, block-holds (incl. 2-step revert).
+1. `jsonl_io.py` — the resumable-JSONL helpers first (every sweep below depends on them).
+2. Phase 1 `stabilize.py` — write the `data/stabilized/1190MS_z_{x,y,r1,r2}.txt` datasets (+ validation).
+3. Phase 2 `greedy_nrel.py` + visited-block + **5-step pre-flight (checks 0–4)** — rotation-correct
+  first, then n=2, n=3 with `z=w`, content-vs-trivial, block-holds (incl. 2-step revert).
+
 2.5. Phase 2.5 `calibrate.py` — warm up numba, probe ~5 hard (unsolved, `n=3`) + ~5 easy cases →
-   `results/calibration.jsonl` + projected hours; **pick the `{small, large}` node budgets** and
+   `results/calibration.jsonl` + projected hours; **pick the** `{small, large}` **node budgets** and
    worker count that feed steps 4–5. (Needs the solver from step 2; must precede the full sweeps.)
 3. Phase 0 `categorize.py` — build `labels_1190.json` (index-derived `paper_reference`; no
    compute; `rl_610model`/`beam_610model` null here — no JAX).
@@ -622,24 +674,24 @@ Sources: `literature/txt/change_of_variables_stable_ac.txt`,
 
 **Mentor's decision (2026-07-02) — this plan implements it.**
 
-- **Skip trivial `z`.** A *trivial* stabilizer (`z = 1`) is a confirmed dead end for greedy
-  (see the caveat below) — so we go straight to `z = w(x,y)`.
+- **Skip trivial** `z`**.** A *trivial* stabilizer (`z = 1`) is a confirmed dead end for greedy
+(see the caveat below) — so we go straight to `z = w(x,y)`.
 - **Start with the dumbest words**, not clever ones: `w ∈ {x, y, r1, r2}` (4 words). Build the
-  *pipeline* first; searching for the *best* `w` is the next plan.
+*pipeline* first; searching for the *best* `w` is the next plan.
 - **Block the null revert.** With `z = w`, greedy is tempted to unwind `z` straight back to
-  `z = 1` (length-reducing). We prevent *that specific collapse* by pre-seeding the solver's
-  visited/closed set with the single canonical state `(r1, r2, z=1)` — the original
-  presentation with `z` thrown away. **Narrow by design:** a broad "block every `z=1` state"
-  would also forbid legitimate **destabilization** (removing `z` *after* it has done work),
-  which is the endgame we want reachable. The solved presentation also has a `z`-relator of
-  `z`, but its `r1,r2` are reduced to single letters, so it can never equal the blocked state.
+`z = 1` (length-reducing). We prevent *that specific collapse* by pre-seeding the solver's
+visited/closed set with the single canonical state `(r1, r2, z=1)` — the original
+presentation with `z` thrown away. **Narrow by design:** a broad "block every `z=1` state"
+would also forbid legitimate **destabilization** (removing `z` *after* it has done work),
+which is the endgame we want reachable. The solved presentation also has a `z`-relator of
+`z`, but its `r1,r2` are reduced to single letters, so it can never equal the blocked state.
 - **Two headline metrics, per presentation:** (1) **path length** (moves to trivialize) and
-  (2) **node usage** (nodes explored) — tracked for the 2-gen baseline and every `z=w` arm.
+(2) **node usage** (nodes explored) — tracked for the 2-gen baseline and every `z=w` arm.
 - **Why later:** Lemma 11 lets us realize a `z = w(x,y)` worth *hundreds* of AC moves in one
-  shot (Lucas's "wormhole") — but the moves to realize it aren't obvious. This plan is the
-  on-ramp: simple `w`, measured, before complex `w`.
+shot (Lucas's "wormhole") — but the moves to realize it aren't obvious. This plan is the
+on-ramp: simple `w`, measured, before complex `w`.
 
-**Why `z = r1` is non-vacuous (not the trivial z we discarded).** `z = r1` is *group*-trivial
+**Why** `z = r1` **is non-vacuous (not the trivial z we discarded).** `z = r1` is *group*-trivial
 (`r1 = 1`, so `z = 1` in the group) — but the **word-level** z-relator `z·r1⁻¹` shares all of
 r1's letters with r1/r2, so substitution can swap the whole word `r1 ↔ z`, a move the
 2-generator presentation doesn't have. `z = x` / `z = y` likewise hand the search a named
@@ -650,7 +702,7 @@ single-generator alias. The content is in the *word*, not the group.
 GS-Sub) is standalone numpy+numba (no JAX/env/checkpoint) — the fastest route to a real
 signal.
 
-**Caveat this plan is built around — why trivial `z` was dropped.** A substitution only fires
+**Caveat this plan is built around — why trivial** `z` **was dropped.** A substitution only fires
 when the boundary letters cancel (last letter of one rotation = inverse of the first of the
 other — Def 2.1). A *trivial* `z` (relator `z`, `z=1`) shares no letters with r1/r2, so
 `get_neighbors` returns **nothing** for any `(r_i, z)` pair and `⟨x,y,z | r1,r2,z⟩` searches
@@ -662,4 +714,3 @@ letters with r1/r2 so ordinary substitution swaps `w ↔ z` directly. That is ex
 plan; **no seeding moves are needed.** (Phase 2 pre-flight keeps a one-line empirical
 confirmation that `get_neighbors(r1, trivial-z)` is empty and that `get_neighbors(r1, z=w)` is
 not.)
-
