@@ -12,6 +12,9 @@ Write an implementation plan to `PLAN.md` (or `<FEATURE>_PLAN.md`) in the experi
 directory before writing code. Keep it verifiable and readable by a fresh agent with none of your
 context.
 
+- **Concrete first, rationale last.** Lead with the actionable content — deliverable layout,
+  phases, gates. Put background / justification / "why we chose this" as an appendix at the **end**
+  of the file, not the top. State decisions concretely; don't over-explain or over-sell them.
 - **Advisor before and after.** Call `advisor()` before implementing (to check the approach) and
   after finishing (to check the result). Save the file first so it persists if the call times out.
 - **Base case first.** Before any full sweep, run one small unit (one presentation/line) end-to-end

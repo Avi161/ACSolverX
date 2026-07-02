@@ -26,9 +26,7 @@ tie-break seed instead of two full extra arms.
 
 ## 2. Budget sweep × JSONL resumability: the resume key is underspecified
 
-**What.** Each arm writes one `.jsonl` keyed by `idx`, but the budget sweep is
-`max_nodes ∈ {100k, 1M}`. An idx recorded as *unsolved at 100k* will be skipped by the
-resume logic when the 1M pass runs.
+**What.** Each arm writes one `.jsonl` keyed by `idx`, but the budget sweep is `max_nodes ∈ {100k, 1M}`. An idx recorded as *unsolved at 100k* will be skipped by the resume logic when the 1M pass runs.
 
 **Why.** `jsonl_done_ids(path)` keyed on `idx` alone cannot distinguish "done at 100k"
 from "done at 1M"; either the 1M pass silently no-ops, or you duplicate idx lines and
@@ -127,12 +125,9 @@ likely to be visible — worth saying in the plan.)
 ## 8. Minor (one-liners)
 
 - **numba warm-up:** JIT compilation lands in the first presentation's `wall_time_s`
-  (visible in the notebook's 1.9 s cell). Run one throwaway solve before the sweep, and
-  keep dtypes fixed (int8 everywhere) to avoid silent recompiles.
+(visible in the notebook's 1.9 s cell). Run one throwaway solve before the sweep, and
+keep dtypes fixed (int8 everywhere) to avoid silent recompiles.
 - **Path-length convention:** define whether a `z=w` arm's `path_len` includes the
-  implicit stabilization move (+1). Either is fine; cross-arm plots must use one rule.
-- **Positive note worth keeping:** the single blocked state is more robust than it looks —
-  because `canonical_relator_nj` is inversion-invariant and the tuple is sorted, the
-  2-step revert `(r1,r2,z·r1⁻¹) → ([z],r2,z·r1⁻¹) → ([z],r2,r1⁻¹)` canonicalizes to
-  exactly the blocked key and is caught. Pre-flight check 4 should assert this specific
-  2-step variant, not just the direct 1-step revert.
+implicit stabilization move (+1). Either is fine; cross-arm plots must use one rule.
+- **Positive note worth keeping:** the single blocked state is more robust than it looks because `canonical_relator_nj` is inversion-invariant and the tuple is sorted, the 2-step revert `(r1,r2,z·r1⁻¹) → ([z],r2,z·r1⁻¹) → ([z],r2,r1⁻¹)` canonicalizes to exactly the blocked key and is caught. Pre-flight check 4 should assert this specific 2-step variant, not just the direct 1-step revert.
+
