@@ -1,0 +1,366 @@
+<!doctype html>
+<!-- AC-SolverX Path Explorer — DOM skeleton + contract.
+     Element ids here are the binding contract for js/viewer.js, js/dashboard.js,
+     js/charts.js and js/app.js. Do not rename ids without updating those modules.
+     Styling lives in css/styles.css; behavior in the js/ modules loaded at the bottom. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AC-SolverX · Path Explorer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    // Set the theme before first paint (from localStorage) to avoid a flash of dark.
+    try {
+      var t = localStorage.getItem("acx-theme");
+      document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+    } catch (e) { document.documentElement.setAttribute("data-theme", "dark"); }
+  </script>
+</head>
+<body>
+<div class="app">
+  <!-- ============================ HEADER + NAV ============================ -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark">AC<span>·X</span></div>
+      <div class="brand-text">
+        <h1>Path Explorer</h1>
+        <p>Substitution &amp; change-of-variables solution paths for stabilized AC presentations</p>
+      </div>
+    </div>
+    <nav class="tabs" id="nav-tabs" aria-label="Views">
+      <a class="tab" href="#/solutions" data-view="solutions">Solutions</a>
+      <a class="tab" href="#/analytics" data-view="analytics">Analytics</a>
+      <a class="tab" href="#/baseline" data-view="baseline">Baseline</a>
+      <a class="tab" href="#/comparison" data-view="comparison">Comparison</a>
+      <a class="tab" href="#/about" data-view="about">About</a>
+    </nav>
+  </header>
+
+  <!-- ======================= SHARED DATA-SOURCE BAR ======================= -->
+  <section class="data-bar" id="data-bar">
+    <div class="data-status" id="data-status">
+      <span class="data-dot" id="data-dot"></span>
+      <span id="data-summary">Loading data…</span>
+    </div>
+    <div class="data-actions">
+      <button class="btn btn-ghost" id="theme-toggle" type="button" aria-label="Toggle theme">☀ Light</button>
+      <button class="btn btn-ghost" id="toggle-upload" type="button">Load your own results…</button>
+    </div>
+    <!-- Upload panel (hidden by default; app.js toggles). Accepts MANY files at once:
+         paths_*.jsonl + calibration_*.jsonl from a Colab run are merged by (dataset,idx,arm,budget). -->
+    <div class="upload-panel hidden" id="upload-panel">
+      <div class="dropzone" id="dropzone">
+        <input type="file" id="file-input" multiple accept=".jsonl,.json" hidden />
+        <p><strong>Drop</strong> your <code>paths_*.jsonl</code> and <code>calibration_*.jsonl</code> here,
+          or <label for="file-input" class="link-label">choose files</label>.</p>
+        <p class="hint" id="upload-hint">Select both streams at once — they merge automatically.</p>
+      </div>
+      <details class="format-info">
+        <summary>Expected format</summary>
+        <p>Two JSONL streams (one JSON object per line), any number of files:</p>
+        <ul>
+          <li><strong>Path records</strong> (<code>paths_*.jsonl</code>): carry <code>states</code> and
+            <code>moves</code> — the full solution path.</li>
+          <li><strong>Calibration records</strong> (<code>calibration_*.jsonl</code>): carry
+            <code>solved</code>, <code>nodes_explored</code>, <code>wall_time_s</code>, … — the metrics.</li>
+        </ul>
+        <p>Both share <code>(dataset, idx, arm, budget_nodes)</code> and are merged on that key.
+          Records are auto-classified, so you can drop everything together.</p>
+      </details>
+      <div class="upload-actions">
+        <button class="btn btn-ghost" id="reset-sample" type="button">Reset to sample data</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="app-main">
+    <!-- =============================== SOLUTIONS ============================== -->
+    <section class="view" id="view-solutions" data-view="solutions">
+      <div class="stats-row" id="solutions-stats"><!-- viewer.js fills stat cards --></div>
+
+      <div class="controls" id="solutions-controls">
+        <div class="segmented" id="view-toggle" role="group" aria-label="Layout">
+          <button class="seg active" data-layout="grid" type="button">Grid (n,w)</button>
+          <button class="seg" data-layout="cards" type="button">Cards</button>
+        </div>
+        <input type="search" class="search-input" id="search-input"
+          placeholder="Search by index (e.g. 1, 12, 100)…" />
+        <div class="segmented" id="filter-buttons" role="group" aria-label="Solved filter">
+          <button class="seg active" data-filter="all" type="button">All</button>
+          <button class="seg" data-filter="solved" type="button">Solved</button>
+          <button class="seg" data-filter="unsolved" type="button">Unsolved</button>
+          <button class="seg" data-filter="unattempted" type="button">Not attempted</button>
+        </div>
+        <label class="select-wrap">Dataset
+          <select id="dataset-select"><!-- app/viewer fills options --></select>
+        </label>
+        <label class="select-wrap">Subset
+          <select id="subset-filter"><option value="all">All subsets</option></select>
+        </label>
+        <label class="select-wrap">Arm
+          <select id="arm-filter"><option value="all">All z-words</option></select>
+        </label>
+      </div>
+
+      <!-- (n,w) grid: the whole Miller–Schupp family as a spreadsheet — rows = word w, columns
+           = n. Green cells trivialized in the original run; labelled cells reduce to that unsolved
+           class. Clicking a cell opens the player. Toggle to Cards for idx search + solved filter. -->
+      <div class="nw-grid-wrap hidden" id="nw-grid"></div>
+
+      <!-- Each card = one (dataset, idx). Clicking opens the player for that presentation,
+           which then exposes an arm selector to switch z=w. -->
+      <div class="grid hidden" id="presentations-grid"></div>
+      <div class="grid-empty hidden" id="grid-empty">No presentations match your filters.</div>
+
+      <!-- ============================ PATH PLAYER =========================== -->
+      <section class="player hidden" id="player" aria-live="polite">
+        <div class="player-head">
+          <div class="player-head-left">
+            <h2 class="player-title" id="player-title">Presentation</h2>
+            <div class="player-meta" id="player-meta"></div>
+          </div>
+          <button class="close-btn" id="player-close" type="button" aria-label="Close">&times;</button>
+        </div>
+
+        <!-- Arm selector: "view this same presentation under a different change of variables". -->
+        <div class="arm-selector-wrap">
+          <span class="arm-selector-label">Change of variables&nbsp;<code>z = w</code>:</span>
+          <div class="arm-selector" id="arm-selector" role="group" aria-label="Choose z-word"></div>
+        </div>
+
+        <!-- Stabilization framing (applies to the initial state only). -->
+        <div class="stab-banner" id="stab-banner"></div>
+
+        <!-- The current step, large. viewer.js renders relators, the changed relator, move info. -->
+        <div class="player-stage" id="player-stage"></div>
+
+        <!-- Transport controls: prev / play / next + scrubber + counter. Space & arrows too.
+             Speed governs the in-step move animation (Instant = old jump-cut behavior);
+             Replay re-runs the current step's animation from its parent state. -->
+        <div class="player-controls" id="player-controls">
+          <button class="ctrl" id="player-first" type="button" aria-label="First step" title="First (Home)">⏮</button>
+          <button class="ctrl" id="player-prev" type="button" aria-label="Previous step" title="Prev (←)">◀</button>
+          <button class="ctrl ctrl-play" id="player-play" type="button" aria-label="Play" title="Play/Pause (Space)">▶</button>
+          <button class="ctrl" id="player-next" type="button" aria-label="Next step" title="Next (→)">▶▶</button>
+          <button class="ctrl" id="player-last" type="button" aria-label="Last step" title="Last (End)">⏭</button>
+          <input type="range" class="scrubber" id="player-scrubber" min="0" max="0" value="0" step="1" aria-label="Step" />
+          <span class="step-counter" id="player-stepnum">0 / 0</span>
+          <label class="select-wrap select-speed">Speed
+            <select id="player-speed" aria-label="Animation speed">
+              <option value="1.8">Slow</option>
+              <option value="1" selected>Normal</option>
+              <option value="0.5">Fast</option>
+              <option value="0">Instant</option>
+            </select>
+          </label>
+          <button class="ctrl ctrl-replay" id="player-replay" type="button" title="Replay this move (R)">↻ Replay move</button>
+        </div>
+
+        <!-- Full step list; clicking a row jumps the player there. Also the "read the whole path" view. -->
+        <ol class="timeline" id="player-timeline"></ol>
+      </section>
+    </section>
+
+    <!-- =============================== ANALYTICS ============================= -->
+    <section class="view hidden" id="view-analytics" data-view="analytics">
+      <div class="stats-row" id="analytics-stats"><!-- dashboard.js fills overview cards --></div>
+
+      <div class="controls" id="dash-controls">
+        <label class="select-wrap">Dataset
+          <select id="dash-dataset"><option value="all">All datasets</option></select>
+        </label>
+        <label class="select-wrap">Subset
+          <select id="dash-subset"><option value="all">All subsets</option></select>
+        </label>
+        <label class="select-wrap">Arm
+          <select id="dash-arm"><option value="all">All z-words</option></select>
+        </label>
+        <span class="dash-scope" id="dash-scope"></span>
+      </div>
+
+      <div class="charts">
+        <div class="chart-card">
+          <h3>Solved vs unsolved by change-of-variables <code>z=w</code></h3>
+          <div class="chart" id="chart-solve-by-arm"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Solution path length</h3>
+          <p class="chart-sub">Number of substitution supermoves to reach the trivial presentation.</p>
+          <div class="chart" id="chart-pathlen-hist"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Search cost on solved presentations</h3>
+          <p class="chart-sub">Nodes expanded before a solution was found (solved only).</p>
+          <div class="chart" id="chart-nodes-solved"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Wall-clock time per presentation</h3>
+          <p class="chart-sub">Seconds of search. Unsolved runs hit the node budget.</p>
+          <div class="chart" id="chart-time-hist"></div>
+        </div>
+        <div class="chart-card chart-card-wide">
+          <h3>Solve rate by dataset</h3>
+          <div class="chart" id="chart-solve-by-dataset"></div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <h3>Per-arm summary <span class="muted" id="dash-table-scope"></span></h3>
+        <table class="data-table" id="dash-table"></table>
+      </div>
+    </section>
+
+    <!-- =============================== BASELINE ============================= -->
+    <section class="view hidden" id="view-baseline" data-view="baseline">
+      <div class="stats-row" id="baseline-stats"><!-- baseline.js fills cards --></div>
+      <p class="dash-scope" id="baseline-note"></p>
+      <div class="charts">
+        <div class="chart-card">
+          <h3>Search cost on solved presentations</h3>
+          <p class="chart-sub">Nodes expanded before the 2-generator baseline found a solution (solved only).</p>
+          <div class="chart" id="chart-baseline-nodes"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Solution path length</h3>
+          <p class="chart-sub">Substitution supermoves to trivialize, without any change of variables.</p>
+          <div class="chart" id="chart-baseline-pathlen"></div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <h3>Browse a baseline path</h3>
+        <div class="controls">
+          <label class="select-wrap">Presentation
+            <select id="baseline-path-select"></select>
+          </label>
+        </div>
+        <div id="baseline-path-view"></div>
+      </div>
+    </section>
+
+    <!-- ============================= COMPARISON ============================= -->
+    <section class="view hidden" id="view-comparison" data-view="comparison">
+      <div class="stats-row" id="comparison-stats"><!-- comparison.js fills cards --></div>
+      <p class="dash-scope" id="comparison-note"></p>
+      <div class="charts">
+        <div class="chart-card chart-card-wide">
+          <h3>Coverage: solved vs unsolved by arm (2-gen baseline vs <code>z=w</code>)</h3>
+          <div class="chart" id="chart-cmp-coverage"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Median nodes explored (solved)</h3>
+          <p class="chart-sub">Lower = cheaper search. Baseline is the 2-generator control.</p>
+          <div class="chart" id="chart-cmp-nodes"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Median path length (solved)</h3>
+          <p class="chart-sub">Fewer supermoves to the trivial presentation.</p>
+          <div class="chart" id="chart-cmp-pathlen"></div>
+        </div>
+        <div class="chart-card chart-card-wide">
+          <h3>Per-presentation search cost: baseline vs an arm</h3>
+          <p class="chart-sub">One point per presentation both solve (log–log). Below the dashed
+            <code>y=x</code> line = the change of variables solved it with fewer nodes.</p>
+          <div class="controls">
+            <label class="select-wrap">Compare arm
+              <select id="comparison-arm"></select>
+            </label>
+          </div>
+          <div class="chart" id="chart-cmp-scatter"></div>
+          <p class="chart-sub" id="comparison-scatter-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================= ABOUT ============================== -->
+    <section class="view hidden" id="view-about" data-view="about">
+      <div class="prose">
+        <h2>What you're looking at</h2>
+        <p>Each solution path trivializes a <em>stabilized</em> balanced group presentation using
+          two ingredients specific to this project — a <strong>change of variables</strong> and a
+          <strong>substitution supermove</strong> — rather than the classical Andrews–Curtis
+          (Miller–Schupp) moves. This explorer replays those paths step by step.</p>
+
+        <h3>Change of variables <code>z = w</code></h3>
+        <p>We start from a 2-generator presentation
+          <code>⟨x, y | r₁, r₂⟩</code> and add a third generator <code>z</code> <em>defined</em> as a
+          word <code>w(x, y)</code>:</p>
+        <p class="eq"><code>⟨x, y | r₁, r₂⟩ &nbsp;⟶&nbsp; ⟨x, y, z | r₁, r₂, z·w⁻¹⟩</code></p>
+        <p>The defining word <code>w</code> can be <strong>anything</strong> — <code>r₁</code>,
+          <code>r₂</code>, <code>x</code>, <code>y</code>, or an arbitrary word like <code>xy</code>.
+          The same presentation looks and solves differently under different <code>w</code>, which is
+          why the player has a <strong>z = w selector</strong> — switch it to compare. The explorer
+          decodes the actual <code>w</code> straight from the initial state, so it always shows the
+          real change of variables, whatever word you ran.</p>
+
+        <h3>Substitution supermove</h3>
+        <p>A single step replaces one relator by the freely- and cyclically-reduced splice of a
+          cyclic rotation of one relator with a cyclic rotation of another relator (or its inverse).
+          It is a composite of classical AC moves, taken as one atomic step. In the player, each step
+          highlights the one relator that changed — <span class="chg-from">old</span> →
+          <span class="chg-to">new</span> — since exactly one relator is substituted per step.</p>
+        <p>The player also <strong>replays each move in slow motion</strong>: pick the two operand
+          relators, invert/rotate, splice them at the cancelling boundary, then cancel inverse
+          pairs one at a time until the reduced word remains. This factorization is
+          <em>reconstructed</em> from the stored states and move tuple by re-running the actual move
+          rule, and is only shown when it reproduces the stored next state exactly (verified for
+          100% of the bundled paths). Use the <strong>Speed</strong> control (or Instant to skip)
+          and <strong>↻ Replay move</strong> to watch any step again.</p>
+        <p class="note">Each relator keeps a <strong>fixed row</strong> for the whole path, so only the
+          substituted relator visibly changes on a step (the stored states are canonical and reordered,
+          but the player threads each relator's identity onto a stable row). The move animates
+          <em>in place</em>: the changed row and its partner light up, rotate, glue into one word, then
+          cancel inverse pairs one at a time. The raw move tuple <code>(slot, ra_rot, c_rot, c_inv)</code>
+          alone does not pin down the operand pair; the shown factorization is one that provably
+          reproduces the next state.</p>
+
+        <h3>Where each presentation comes from</h3>
+        <p>MS(1190) splits into two subsets, badged on every card:
+          <strong>Original 640</strong> (idx 0–639) — searched locally under all eight
+          <code>z = w</code> arms — and <strong>Hard 550</strong> (idx 640–1189) — registered so
+          totals count the full 1190, but <em>not attempted yet</em> (they need a bigger search
+          budget). When those runs happen, drop their <code>paths_*.jsonl</code> +
+          <code>calibration_*.jsonl</code> in via “Load your own results…” and they light up
+          automatically.</p>
+        <p>The <strong>(n, w) grid</strong> lays the whole Miller–Schupp family out as a spreadsheet
+          (rows = the word <code>w</code>, columns = <code>n</code>): green cells trivialized in the
+          original run, and each remaining cell reduces to one of <strong>261 unsolved-class
+          representatives</strong> (the <code>ms_reps_unsolved</code> dataset). Those 261 were searched
+          under <code>z ∈ {r₁, r₂, x, y}</code> with a 500,000-node budget and none were solved — click
+          any labelled cell to open it and compare each change of variables' search cost.</p>
+
+        <h3>Goal: the trivial presentation</h3>
+        <p>With three generators, "solved" means reducing to three length-one relators —
+          <code>⟨x, y, z | x, y, z⟩</code> (total length 3), the trivial group. This is different from
+          the 2-generator length-2 goal.</p>
+
+        <h3>Notation</h3>
+        <ul class="notation">
+          <li><code>x y z</code> — generators</li>
+          <li><code>X Y Z</code> — their inverses (<code>x⁻¹ y⁻¹ z⁻¹</code>)</li>
+          <li><code>ε</code> — the empty word</li>
+          <li>"Nodes" — presentations the best-first search expanded (the search cost), not the path itself</li>
+        </ul>
+
+        <p class="credit">Inspired by the
+          <a href="https://github.com/Avi161/miller-schupp-path-viewer" target="_blank" rel="noopener">Miller–Schupp Path Viewer</a>.
+          Part of <em>AC-SolverX</em> (“The Two-Hump Problem”).</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span id="footer-note">AC-SolverX · Path Explorer</span>
+  </footer>
+</div>
+
+<!-- Load order matters: data (spine) → charts (pure render) → views → app (router/bootstrap). -->
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/viewer.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/baseline.js"></script>
+<script src="js/comparison.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
