@@ -139,21 +139,49 @@ def rotate(rel, i):
     return np.roll(rel, i)
 
 
+def _roll(a, k):
+    """Fast right-cyclic shift by k (0<=k<len): equals np.roll(a, k) without numpy.roll's
+    per-call axis-normalization overhead (the hot loop calls this ~100x/node)."""
+    if k == 0:
+        return a
+    return np.concatenate((a[-k:], a[:-k]))
+
+
 # ===================================================================================
 # ==== state layer (plain Python: tuple of int arrays)                            ====
 # ===================================================================================
 
+def _relator_bytes(r):
+    """Encode a relator as compact bytes: letter +128 (letters are +-1..+-n_gen, never 0). The
+    +128 offset preserves letter order, so bytes-compare == lexicographic-compare-by-value."""
+    return bytes((int(x) + 128) for x in r)
+
+
+def _bskey(bs):
+    return (len(bs), bs)
+
+
 def canonical_tuple(state):
-    """Canonicalize each relator, then sort the tuple by (len, lex) — order-independent."""
+    """Canonicalize each relator, then sort by (len, lex) — order-independent. (Array form, used by
+    verify_path / retrace / tests; the solver hot path keys via ``canonical_key`` instead.)"""
     canon = [canonical_relator(np.asarray(r, dtype=INT_DTYPE)) for r in state]
-    canon.sort(key=lambda r: (len(r), tuple(int(x) for x in r)))
+    canon.sort(key=lambda r: (len(r), _relator_bytes(r)))
     return tuple(canon)
+
+
+def canonical_key(state):
+    """Canonical bytes key in a single pass: canonicalize each relator, encode (+128), sort by
+    (len, bytes), join by a 0 byte. Byte-for-byte equal to ``state_to_key(canonical_tuple(state))``
+    but skips the array round-trip and the int-tuple sort key — this is what the solver keys on."""
+    parts = [_relator_bytes(canonical_relator(np.asarray(r, dtype=INT_DTYPE))) for r in state]
+    parts.sort(key=_bskey)
+    return b"\x00".join(parts)
 
 
 def state_to_key(state):
     """Reversible compact key. state must already be canonical. Letters +128 -> bytes
     (letters are +-1..+-n_gen, never 0), relators joined by a 0 byte."""
-    return b"\x00".join(bytes((int(x) + 128) for x in r) for r in state)
+    return b"\x00".join(_relator_bytes(r) for r in state)
 
 
 def key_to_state(key):
@@ -216,7 +244,7 @@ def get_neighbors(state, n_gen):
                     for j in range(lc):
                         first = c[(-j) % lc]               # first letter of np.roll(c, j)
                         if last == -first:                 # boundary cancels
-                            neighbour = reduce_relator(np.concatenate((np.roll(ra, i), np.roll(c, j))))
+                            neighbour = reduce_relator(np.concatenate((_roll(ra, i), _roll(c, j))))
                             if len(neighbour) == 0:
                                 continue
                             sa = list(state)
@@ -251,59 +279,73 @@ class NRelatorSolver:
         self.blocked = set()
         if blocked_states:
             for st in blocked_states:
-                self.blocked.add(state_to_key(canonical_tuple(st)))
-        init = canonical_tuple(tuple(np.asarray(r, dtype=INT_DTYPE) for r in relators))
-        self.initial_key = state_to_key(init)
-        self.visited = {}          # key -> (parent_key, move)
+                self.blocked.add(canonical_key(st))
+        self.initial_key = canonical_key(tuple(np.asarray(r, dtype=INT_DTYPE) for r in relators))
+        self.visited = {}          # key -> parent_key (moves re-derived at retrace, to save memory)
         self.revert_hits = 0
         self.revert_log = []
         self.new_seen = set()
 
     def solve(self):
         pq = []
-        init_state = key_to_state(self.initial_key)
-        heapq.heappush(pq, (sum(len(r) for r in init_state), 0, self.initial_key))
-        self.visited[self.initial_key] = (None, None)
+        init_key = self.initial_key
+        heapq.heappush(pq, (sum(len(p) for p in init_key.split(b"\x00")), 0, init_key))
+        self.visited[init_key] = None
         if self.track_seen:
-            self.new_seen.add(self.initial_key)
+            self.new_seen.add(init_key)
+        visited, blocked, n_gen, max_len = self.visited, self.blocked, self.n_gen, self.max_len
         nodes = 0
         while pq and nodes < self.max_nodes:
             _, depth, key = heapq.heappop(pq)
             nodes += 1
             state = key_to_state(key)
-            if is_trivial(state):
+            if all(len(r) == 1 for r in state):
                 return self._retrace(key), nodes, self.new_seen
-            for nbr_state, move in get_neighbors(state, self.n_gen):
-                if any(len(r) >= self.max_len for r in nbr_state):   # per-relator cap
+            byte_parts = key.split(b"\x00")            # parent's per-relator canonical bytes (sorted)
+            for nbr_state, move in get_neighbors(state, n_gen):
+                ci = move[0]                            # only relator ci changed; the rest stay canonical
+                new_r = nbr_state[ci]
+                if len(new_r) >= max_len:               # per-relator cap (only ci can have grown)
                     continue
-                canon = canonical_tuple(nbr_state)
-                nkey = state_to_key(canon)
-                if nkey in self.blocked:
+                parts = list(byte_parts)                # incremental key: recompute only ci's bytes
+                parts[ci] = _relator_bytes(canonical_relator(new_r))
+                parts.sort(key=_bskey)
+                nkey = b"\x00".join(parts)
+                if nkey in blocked:
                     self.revert_hits += 1
                     if self.track_reverts:
                         self.revert_log.append((key, move))
                     continue
-                if nkey not in self.visited:
-                    self.visited[nkey] = (key, move)
+                if nkey not in visited:
+                    visited[nkey] = key
                     if self.track_seen:
                         self.new_seen.add(nkey)
-                    heapq.heappush(pq, (sum(len(r) for r in canon), depth + 1, nkey))
+                    heapq.heappush(pq, (sum(len(p) for p in parts), depth + 1, nkey))
         return None, nodes, self.new_seen
 
     def _retrace(self, key):
-        """Walk the visited parent-dict back to the initial state. Returns a path object
-        {states, moves, keys}: states[t] is the canonical state at step t; moves[t] is the
-        move that produced states[t] from states[t-1] (moves[0] is None, the root)."""
-        keys, moves = [], []
+        """Walk the visited parent-dict back to the initial state, re-deriving each transition's
+        move from get_neighbors(parent) (moves are not stored in visited, to save memory — retrace
+        runs only on solved paths, which are short). Returns {states, moves, keys}: states[t] is the
+        canonical state at step t; moves[t] is a move producing states[t] from states[t-1] (moves[0]
+        is None, the root)."""
+        keys = []
         k = key
         while k is not None:
-            parent, move = self.visited[k]
             keys.append(k)
-            moves.append(move)
-            k = parent
+            k = self.visited[k]
         keys.reverse()
-        moves.reverse()
-        return {"states": [key_to_state(k) for k in keys], "moves": moves, "keys": keys}
+        states = [key_to_state(k) for k in keys]
+        moves = [None]
+        for t in range(1, len(states)):
+            child = keys[t]
+            mv = None
+            for nbr, m in get_neighbors(states[t - 1], self.n_gen):
+                if canonical_key(nbr) == child:
+                    mv = m
+                    break
+            moves.append(mv)
+        return {"states": states, "moves": moves, "keys": keys}
 
 
 # ===================================================================================

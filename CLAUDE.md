@@ -186,6 +186,35 @@ gate is deferred. Open that file before writing tests for, or claiming correctne
 
 ## Lessons Learned
 
+### [2026-07-02] greedy_nrel n=3 hot path: incremental canonical + byte-key + manual roll (9x) [WORKS]
+Profiling a hard n=3 solve (`cProfile` on `solve_one`, 10k nodes) showed the cost was NOT the search
+but: `np.roll` (~20%, its per-call `normalize_axis_tuple` overhead), the `tuple(int(x) for x in r)`
+sort key in `canonical_tuple` (~19%, 16M `int()` calls) computed separately from `state_to_key`'s bytes
+pass, and `canonical_relator` run on ALL relators of every neighbor though only ONE changes. Fixes, all
+correctness-preserving (both test suites still green): (1) `_roll(a,k)=concatenate((a[-k:],a[:-k]))`
+replaces `np.roll` in the hot loop; (2) `canonical_key(state)` builds the key in one pass, sorting by
+`(len, bytes)` (the +128 byte encoding preserves value order, so bytes-compare == lex-by-value) — no
+int-tuple; (3) the solver keys **incrementally** — since a neighbor changes exactly relator `move[0]`
+and the popped state's relators are already canonical, recanonicalize only that one and reuse the
+parent's byte-parts (`key.split(b"\\x00")`); (4) `visited` stores only `parent_key` (not `(parent,move)`)
+and `_retrace` re-derives moves via `get_neighbors(parent)` — retrace runs only on short solved paths.
+Result: ~**9x** faster (364 -> ~3300 nodes/s) and ~**2x** less memory (~14.7 -> ~7.5 KB/node), and
+throughput is now depth-STABLE (was collapsing as visited/heap grew). Rule: profile before optimizing a
+slow search; the win was in the per-node bookkeeping, not the algorithm. The `~7.5 KB/node` memory rate
+is the sweep's binding constraint (RAM caps parallel workers before cores do at the 1M tier).
+
+### [2026-07-02] Notebook multiprocessing worker must live in an IMPORTABLE module [WORKS][TRAP]
+`calibrate.ipynb` parallelizes probes with `multiprocessing.Pool.imap_unordered`. A worker function
+defined inside a notebook cell pickles by `__main__` reference — works under fork (Colab/Linux) but
+[TRAP] fails under spawn (macOS default) and in any exec/`-c` harness with `PicklingError: Can't pickle
+... __main__`. Fix: put the worker in an importable module (`calibrate_probe.py`, `probe(task)`) and
+`from calibrate_probe import probe` — picklable under fork AND spawn, and unit-testable. Also: `Pool(...,
+maxtasksperchild=1)` gives a fresh forked child per probe so each `ru_maxrss` is that probe's own peak
+(reused workers report cumulative high-water). Parent warms numba before the Pool so forked children
+inherit compiled code. On macOS set `OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES` to test fork locally;
+Colab (Linux) needs nothing. And `spread_idx(n,k)` must guard `k<=1` (divide-by-`k-1`) — a dogfood with
+`N_EASY=1` caught it.
+
 ### [2026-07-02] Independent test subagents: give the contract, never the mechanism [WORKS][TRAP]
 Building Phase 2 `greedy_nrel.py` I launched an "independent" subagent to write tests — but the
 prompt **stated my n=3 move-set scheme** ("unordered pairs, lower-index leader, dual-slot emit").
