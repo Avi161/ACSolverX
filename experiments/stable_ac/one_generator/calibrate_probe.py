@@ -21,11 +21,17 @@ def probe(task):
     kind, dataset, idx, arm, budget, flat, n_gen, max_len, use_block = task
     sflat = stab.stabilize_flat(flat, arm)                    # n=2 -> n=3 (z=w)
     blocked = [gn.null_revert_state(sflat, n_gen)] if use_block else None
-    res, _ = gn.solve_one(sflat, n_gen=n_gen, max_len=max_len, max_nodes=budget, blocked_states=blocked)
+    res, path = gn.solve_one(sflat, n_gen=n_gen, max_len=max_len, max_nodes=budget, blocked_states=blocked)
     nps = res["nodes_explored"] / res["wall_time_s"] if res["wall_time_s"] > 0 else 0
-    return {"kind": kind, "dataset": dataset, "idx": idx, "arm": arm, "n_gen": n_gen,
-            "budget_nodes": budget, "nodes_explored": res["nodes_explored"], "solved": res["solved"],
-            "path_verified": res["path_verified"], "path_len": res["path_len"],
-            "revert_hits": res["revert_hits"], "wall_time_s": res["wall_time_s"],
-            "nodes_per_sec": round(nps), "peak_rss_mb": round(peak_rss_mb(), 1),
-            "exhausted_budget": (not res["solved"])}
+    rec = {"kind": kind, "dataset": dataset, "idx": idx, "arm": arm, "n_gen": n_gen,
+           "budget_nodes": budget, "nodes_explored": res["nodes_explored"], "solved": res["solved"],
+           "path_verified": res["path_verified"], "path_len": res["path_len"],
+           "revert_hits": res["revert_hits"], "wall_time_s": res["wall_time_s"],
+           "nodes_per_sec": round(nps), "peak_rss_mb": round(peak_rss_mb(), 1),
+           "exhausted_budget": (not res["solved"])}
+    if res["solved"] and path is not None:                    # persist the exact move+state path (n>=3 rule)
+        prec = gn.serialize_path(path, idx, name=f"{dataset}:idx{idx}:z={arm}")
+        prec.update({"kind": kind, "dataset": dataset, "arm": arm, "n_gen": n_gen,
+                     "budget_nodes": budget, "path_verified": res["path_verified"]})
+        rec["path_record"] = prec                              # main process writes this to paths.jsonl
+    return rec
