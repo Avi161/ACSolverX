@@ -259,7 +259,7 @@ by (len, lex)).
 - `get_neighbors` (the substitution move, n-relator): for **every UNORDERED pair {a, b}
 (a<b, leader = a)**, each candidate `c ∈ {r_b, r_b⁻¹}`, and each cyclic rotation of `r_a` and `c`,
 if the boundary letters cancel, form `neighbour = reduce(concat(rot(r_a), rot(c)))` and emit it
-into **BOTH slot a (`r_a → neighbour`) and slot b (`r_b → neighbour`)** — the `r_a`-leading splice
+into **BOTH slot a (**`r_a → neighbour`**) and slot b (**`r_b → neighbour`**)** — the `r_a`-leading splice
 goes into whichever relator is being modified. This is **not** the leader-only "ordered pair, replace
 a" reading (that gives a *different* set and fails the n=2 oracle). It is the exact generalization of
 BOTH references, which agree at n=2: the notebook `get_neighbors_nj` (leader r1, both slots) AND the
@@ -269,7 +269,7 @@ convention (lower-index leader, dual-slot emit, all pairs), triangulated across 
 implementations. **With a content-bearing** `z` **(relator** `z·w⁻¹`**),** `(r_i, z)` **pairs cancel
 normally** — the z-relator carries `w`'s x/y letters — so substitution acts on `z` directly. **No
 seeding moves are needed** (they were only a workaround for trivial `z`, which we no longer use).
-  - ⚠ **The env's shipped `s_move` is hardcoded to splice `r0·r1`** (`rotate_relator_k(0,…)`,
+  - ⚠ **The env's shipped** `s_move` **is hardcoded to splice** `r0·r1` (`rotate_relator_k(0,…)`,
   `rotate_relator_k(1,…)`), so it structurally cannot do the `(r_i, z)` n=3 moves — confirming from
   the actual code that the **executable** JAX gold check of the n=3 move set needs Phase 4's
   generalized `s_move` (and JAX is not installed on the greedy boxes anyway). Until then the n=3 move
@@ -364,11 +364,11 @@ Pre-flight (advisor-sharpened + our CLAUDE.md rule) **before any 1190 sweep**. W
 1. **Rotation is correct (the porting trap):** assert `rotate(r, i)` on a hand-built relator
   produces the exact expected array for a few `i` — the guard against `np.roll(2*i)` vs `i`.
   Fast pinpoint; nothing else is trustworthy until it passes.
-2. **Differential oracle vs `greedy_ac` at n=2 (THE gate).** Run `greedy_nrel(n_gen=2)` and the
+2. **Differential oracle vs** `greedy_ac` **at n=2 (THE gate).** Run `greedy_nrel(n_gen=2)` and the
   known-good `greedy_ac` on the **same ~50 presentations, including hard non-trivial solves**
   (idx ~100–600 that take thousands of nodes — *not* idx 0–4, which solve in 2–3 nodes and pass
   even with a rotation bug), same per-relator cap and budget. Assert **identical solved set** and
-  **every `greedy_nrel` solve replays via `verify_path`**. Do **not** assert equal node counts or
+  **every** `greedy_nrel` **solve replays via** `verify_path`. Do **not** assert equal node counts or
   path lengths — a different int `is_less_than` ordering changes the canonical rep and heap
   tie-breaks, so those legitimately differ; only the solved *set* is representation-independent
   (tolerate a single flip on a case sitting exactly at the budget boundary; investigate any other
@@ -385,7 +385,7 @@ Pre-flight (advisor-sharpened + our CLAUDE.md rule) **before any 1190 sweep**. W
 5. **Block FIRES (not just "doesn't settle").** "Search never expands the blocked state" passes
   trivially if the block is a no-op that matches nothing (e.g. blocked key canonicalized
   differently from neighbor keys). On a case constructed to attempt the revert, assert
-  **`revert_hits > 0`** — the only thing distinguishing a working block from one that silently
+  `revert_hits > 0` — the only thing distinguishing a working block from one that silently
   matches nothing — and that the search still never settles on `canon(r1, r2, z=1)`, incl. the
   2-step revert path `(r1, r2, z·r1⁻¹) → ([z], r2, z·r1⁻¹) → ([z], r2, r1⁻¹)` (inversion-invariant
   `canonical_relator_nj` + sorted tuple ⇒ it canonicalizes to the same single blocked key).
