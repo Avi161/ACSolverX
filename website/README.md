@@ -10,9 +10,13 @@ straight off disk via a local static server.
 
 Highlights:
 
-- **Slow-motion move player** — every substitution supermove replays in human-paced
-  phases: pick operands → invert/rotate → splice → cancel inverse pairs one at a time →
-  settle canonically. Speed control (Slow/Normal/Fast/Instant), **↻ Replay move** (`R`),
+- **Slow-motion move player (rings + tiles)** — every substitution supermove replays in
+  human-paced phases (Roles → Invert → Rotate → Splice → Cancel → Settle, tracked by phase
+  chips). Each operand row carries a **ring inset** drawing the relator as the cyclic word
+  it is: rotation moves the *cut marker*, never the letters, while the row's tiles slide
+  with wrap-around; splicing flies the partner's tiles across with a persistent **seam**
+  marking the join; inverse pairs then zip shut at the seam (cyclic cancellations draw a
+  wrap-around arc). Speed control (Slow/Normal/Fast/Instant), **↻ Replay move** (`R`),
   Space/arrow keys. The shown factorization is *reconstructed* by re-running the move
   rule and only displayed when it reproduces the stored next state exactly (100% of
   bundled paths verified).

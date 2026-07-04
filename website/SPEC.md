@@ -204,3 +204,56 @@ chips; the player animates each step in phases (roles → invert → rotate → 
 one-pair-at-a-time cancellation → cyclic trim → canonical settle), driven entirely by
 `change.recon`. Next during an animation lands it instantly; prev/scrub/jump are instant;
 autoplay chains animations with one shared cancellation token.
+
+## Amendment (2026-07-04) — move-animation v2 (rings + tiles), baseline isolation, theming
+
+**Move animation v2 (viewer.js).** The in-place animation is now the "rings + tiles hybrid":
+- Scaffold per step: `.stage-summary` → the **move-equation card** (`anatomyNode`, shown from the
+  START; operands wrapped in `.anatomy-opnd.opnd-a/.opnd-b` chips tinted like their rows) →
+  `.phase-chips` (Roles · [Invert] · Rotate · Splice · Cancel · Settle; `setPhase()` drives
+  `.chip-active`/`.chip-done`) → the presentation rows → `.anim-narration`.
+- Operand rows carry a `.ring-inset` (72px SVG, `ringSvgNode`): the relator drawn as a cyclic word,
+  letters fixed on the circle, a `.ring-cut` marker in the gap before letter 0. `setRingCut` rotates
+  the CUT counterclockwise by `k·360/n` to mirror `rollWord(w,k)`; letters never move. Idle rows get
+  `.ring-inset.ring-spacer` (space reserved); rings fade (`.ring-out`) at Splice. Hidden <560px.
+- Rotation is a **doubled-strip carousel** (`slideRotate`): `.rot-viewport` (n slots) over a
+  `.rot-strip` of 2n tiles translating from `-n·slot` to `-(n−k)·slot` — tiles slide right by k with
+  wrap-around. `k≡0` → a short "already aligned" beat (`DUR.rotateSkip`).
+- Inversion (`flipInvert`, only when `recon.cInv`): tiles mirror around the row center
+  (`(n−1−2q)·slot`) with two half-turn `rotateX` flips; letters swap to their inverses edge-on.
+- Splice (`spliceFlip`): FLIP merge — every tile of `recon.splice` flies from its source tile's rect
+  (partner tiles cross rows); a persistent `.splice-seam` sits between the halves and survives the
+  whole Cancel phase (`.seam-done` dims it at the end). Row B keeps its tiles, gets `.consumed` + a
+  `.copied-note`. Boundary pair keeps `.will-cancel` until actually plucked.
+- Cancel: pluck loop as before, plus `showCyclicArc` for `"cyclic"` events — a dashed `.cyclic-arc`
+  SVG over the row from last-tile center to first-tile center (+ "cyclic ↻" label); row gains
+  `.cyclic-active` head-room. (Replaces the dead `.tile-row.cyclic-mode` cue.)
+- Per-step tile sizing: `computeTileSize(splice.length)` sets `--tile-size` on the step box so the
+  widest word fits one line (`.anim-inplace .tile` reads it); rows nowrap during animation and
+  scroll horizontally <700px with the seam auto-centered.
+- Static `#player-legend` (in `#player`, after `#stab-banner`): letter colors, inverse styling,
+  role A/B, seam swatch. `.tile-mini` renders the mini tiles.
+- Token model unchanged: helpers never create tokens, re-check `token.cancelled` before mutating,
+  no teardown on cancel (the canceller re-renders). Instant speed still skips to `commitStep`.
+
+**Baseline isolation (viewer.js).** `HIDDEN_ARMS = {"baseline"}` — the 2-generator control never
+appears in the z=w views (arm filter, card chips, player arm selector); `buildSteps` on it would
+decode generator y as the stabilizer. It remains fully served by the Baseline tab. The Solutions
+stat sub-line reads "N × k runs (z-words + baseline)" when the count includes it.
+
+**Solutions view.** Lands on **Cards** (`filters.layout = "cards"`); the layout toggle reserves its
+space with `.invisible` until `reps_grid.json` arrives (no flash). New static blocks:
+`#solutions-intro` (orientation + About link) and `#filters-legend` (pill/badge legend). Cards and
+(n,w) cells are keyboard-activatable (Enter/Space; cells get `tabindex/role/aria-label`). Dataset
+selects show display names (`DATASET_LABELS`); option values stay raw ids.
+
+**Design tokens.** Type scale `--text-2xs … --text-3xl` (every `font-size` in styles.css uses one);
+`--muted` passes WCAG AA on cards in both themes; consolidated `:focus-visible` ring; new arm tokens
+`--arm-xY`, `--arm-yx`, `--arm-Xy`, `--arm-baseline` in both theme blocks.
+
+**Charts.** `ACXCharts.cssVar(name, fallback)` is exported; dashboard.js/baseline.js/comparison.js
+read data-series colors from CSS custom properties at draw time (dark hexes as fallbacks), so the
+light theme recolors fills. `stackedBar` rotates category labels −30° when there are >7 categories.
+
+**app.js.** `setStatus(text, colorVar, titleText)` — short human status in the header, long
+manifest label as tooltip. Uploads report skipped `classifyRecord === "unknown"` counts.

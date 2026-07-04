@@ -85,9 +85,10 @@
     if (dom.note) {
       var budgets = Array.from(new Set(items.map(function (i) { return i.budget; }))).sort(function (a, b) { return a - b; });
       dom.note.textContent = items.length
-        ? ("2-generator GS-Sub baseline over the 640 solved MS(1190) · budget " +
-           budgets.map(function (b) { return b >= 1000 ? (b / 1000) + "k" : b; }).join("/") +
-           " nodes · the classical control for the z=w arms.")
+        ? ("GS-Sub = greedy best-first search over substitution supermoves, on the plain 2-generator " +
+           "presentation (no z = w stabilization) — the control the z = w arms are compared against. " +
+           "Over the 640 solved MS(1190) · budget " +
+           budgets.map(function (b) { return b >= 1000 ? (b / 1000) + "k" : b; }).join("/") + " nodes.")
         : "No baseline records loaded. Run run_greedy_sweep.py (arm baseline) and rebuild the bundle.";
     }
 

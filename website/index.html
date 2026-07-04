@@ -342,20 +342,26 @@
           It is a composite of classical AC moves, taken as one atomic step. In the player, each step
           highlights the one relator that changed — <span class="chg-from">old</span> →
           <span class="chg-to">new</span> — since exactly one relator is substituted per step.</p>
-        <p>The player also <strong>replays each move in slow motion</strong>: pick the two operand
-          relators, invert/rotate, splice them at the cancelling boundary, then cancel inverse
-          pairs one at a time until the reduced word remains. This factorization is
-          <em>reconstructed</em> from the stored states and move tuple by re-running the actual move
-          rule, and is only shown when it reproduces the stored next state exactly (verified for
-          100% of the bundled paths). Use the <strong>Speed</strong> control (or Instant to skip)
-          and <strong>↻ Replay move</strong> to watch any step again.</p>
+        <p>The player also <strong>replays each move in slow motion</strong>, phase by phase
+          (<em>Roles → Invert → Rotate → Splice → Cancel → Settle</em>, tracked by the chips above the
+          presentation). Relators are <em>cyclic</em> words, so each operand row carries a small
+          <strong>ring</strong> drawing the relator as the circle it really is: rotating a relator
+          never changes the word — it only moves the <strong>cut marker</strong> that decides where
+          the ring is cut open to write the row, and the tiles slide with wrap-around to match. If the
+          move uses the partner's inverse, its tiles mirror and case-flip in place. The two rotated
+          words then glue — partner tiles fly across into the changed row, with a
+          <strong>seam</strong> marking where the halves met — and inverse pairs cancel one at a time,
+          zipping shut at the seam (a dashed arc appears when the cancellation wraps around the cyclic
+          word's two ends). This factorization is <em>reconstructed</em> from the stored states and
+          move tuple by re-running the actual move rule, and is only shown when it reproduces the
+          stored next state exactly (verified for 100% of the bundled paths). Use the
+          <strong>Speed</strong> control (or Instant to skip) and <strong>↻ Replay move</strong> to
+          watch any step again.</p>
         <p class="note">Each relator keeps a <strong>fixed row</strong> for the whole path, so only the
           substituted relator visibly changes on a step (the stored states are canonical and reordered,
-          but the player threads each relator's identity onto a stable row). The move animates
-          <em>in place</em>: the changed row and its partner light up, rotate, glue into one word, then
-          cancel inverse pairs one at a time. The raw move tuple <code>(slot, ra_rot, c_rot, c_inv)</code>
-          alone does not pin down the operand pair; the shown factorization is one that provably
-          reproduces the next state.</p>
+          but the player threads each relator's identity onto a stable row). The raw move tuple
+          <code>(slot, ra_rot, c_rot, c_inv)</code> alone does not pin down the operand pair; the shown
+          factorization is one that provably reproduces the next state.</p>
 
         <h3>Where each presentation comes from</h3>
         <p>MS(1190) splits into two subsets, badged on every card:
@@ -376,6 +382,17 @@
         <p>With three generators, "solved" means reducing to three length-one relators —
           <code>⟨x, y, z | x, y, z⟩</code> (total length 3), the trivial group. This is different from
           the 2-generator length-2 goal.</p>
+
+        <h3>The Baseline and Comparison tabs</h3>
+        <p><strong>Baseline</strong> shows <strong>GS-Sub</strong>: the same greedy best-first search
+          over substitution supermoves, run on the plain 2-generator presentation with <em>no</em>
+          <code>z = w</code> stabilization. It is the control every <code>z = w</code> arm is measured
+          against. <strong>Comparison</strong> puts them head-to-head on the 640 solved MS(1190):
+          coverage, nodes explored, and path length — per arm, and per presentation on the
+          presentations both solve (points below the <code>y = x</code> line mean the change of
+          variables did better). On this easy set the baseline currently wins across the board;
+          the open question is whether stabilization pays off on presentations the 2-generator
+          search <em>cannot</em> solve.</p>
 
         <h3>Notation</h3>
         <ul class="notation">
