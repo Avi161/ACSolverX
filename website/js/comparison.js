@@ -47,6 +47,10 @@
       chartPathlen: q("chart-cmp-pathlen"),
       chartScatter: q("chart-cmp-scatter"),
       scatterNote: q("comparison-scatter-note"),
+      chartScatterPath: q("chart-cmp-scatter-path"),
+      scatterPathNote: q("comparison-scatter-path-note"),
+      table: q("cmp-table"),
+      tableNote: q("cmp-table-note"),
     };
   }
 
@@ -59,6 +63,31 @@
   }
   function nodesOf(it) { return it && it.calib && it.calib.nodes_explored != null ? it.calib.nodes_explored : null; }
   function pathOf(it) { return it && it.path && it.path.path_len != null ? it.path.path_len : (it && it.calib && it.calib.path_len != null ? it.calib.path_len : null); }
+
+  // baseline-vs-arm join over presentations BOTH solve (via byIdx). Nodes-to-solve and path length
+  // are budget-independent for solved cases, so this is the fair per-presentation comparison.
+  function paired(arm) {
+    var r = { n: 0, nodePts: [], pathPts: [], nodeCheaper: 0, pathShorter: 0,
+              baseNodes: [], armNodes: [], basePath: [], armPath: [], nodeRatios: [], pathRatios: [] };
+    var byIdx = lastDataset && lastDataset.byIdx;
+    if (!byIdx) return r;
+    byIdx.forEach(function (entry) {
+      if (entry.dataset !== DATASET || !entry.arms) return;
+      var base = entry.arms.get("baseline"), a = entry.arms.get(arm);
+      if (!base || !a || !base.solved || !a.solved) return;
+      var bn = nodesOf(base), an = nodesOf(a), bp = pathOf(base), ap = pathOf(a);
+      if (bn == null || an == null || bp == null || ap == null) return;
+      r.n++;
+      r.nodePts.push({ x: bn, y: an, title: "idx " + entry.idx + ": baseline " + bn + " vs " + arm + " " + an });
+      r.pathPts.push({ x: bp, y: ap, title: "idx " + entry.idx + ": baseline " + bp + " vs " + arm + " " + ap });
+      r.baseNodes.push(bn); r.armNodes.push(an); r.basePath.push(bp); r.armPath.push(ap);
+      if (an < bn) r.nodeCheaper++;
+      if (ap < bp) r.pathShorter++;
+      if (bn > 0) r.nodeRatios.push(an / bn);
+      if (bp > 0) r.pathRatios.push(ap / bp);
+    });
+    return r;
+  }
 
   // arm -> array of items in DATASET
   function armMap() {
@@ -83,7 +112,7 @@
     if (dom.note) {
       var hasBaseline = arms.indexOf("baseline") !== -1;
       dom.note.textContent = hasBaseline
-        ? "On the 640 solved MS(1190). Node/path comparison is over presentations BOTH arms solve. Baseline & r₁/r₂ are the 500k run; x/y/g are the 12k pass — nodes-to-solve is budget-independent for solved cases."
+        ? "On the 640 solved MS(1190), all trivializable by the 2-gen baseline. Node/path comparison is over presentations BOTH arms solve. Baseline and r₁/r₂/x/y are the matched 500k run; g is the earlier 12k pass — nodes-to-solve and path length are budget-independent for solved cases."
         : "No baseline loaded yet — showing z=w arms only. Run the baseline sweep + rebuild the bundle to enable the baseline comparison.";
     }
 
@@ -124,7 +153,7 @@
       yLabel: "median path length (solved)",
     });
 
-    // ---- per-idx scatter: baseline nodes vs selected arm nodes ----
+    // ---- per-idx head-to-head: baseline vs selected arm (nodes + path scatters) ----
     if (dom.armSelect) {
       var opts = arms.filter(function (a) { return a !== "baseline"; });
       var cur = dom.armSelect.value;
@@ -133,29 +162,54 @@
       else if (opts.length) dom.armSelect.value = opts.indexOf("r1") !== -1 ? "r1" : opts[0];
     }
     var selArm = dom.armSelect ? dom.armSelect.value : "r1";
-    var byIdx = lastDataset.byIdx;
-    var points = [], cheaper = 0, ratios = [];
-    if (byIdx) {
-      byIdx.forEach(function (entry) {
-        if (entry.dataset !== DATASET || !entry.arms) return;
-        var base = entry.arms.get("baseline"), arm = entry.arms.get(selArm);
-        if (!base || !arm || !base.solved || !arm.solved) return;
-        var bn = nodesOf(base), an = nodesOf(arm);
-        if (bn == null || an == null) return;
-        points.push({ x: bn, y: an, title: "idx " + entry.idx + ": baseline " + bn + " vs " + selArm + " " + an });
-        if (an < bn) cheaper++;
-        if (bn > 0) ratios.push(an / bn);
-      });
-    }
-    ACXCharts.scatter(dom.chartScatter, points, {
+    var pr = paired(selArm);
+    var points = pr.nodePts, cheaper = pr.nodeCheaper;   // reused by the summary cards below
+
+    ACXCharts.scatter(dom.chartScatter, pr.nodePts, {
       xLabel: "baseline nodes explored", yLabel: (armLabel(selArm) + " nodes explored"),
       color: ARM_COLORS[selArm] || "#5b9dff", log: true, diagonal: true,
     });
     if (dom.scatterNote) {
-      dom.scatterNote.textContent = points.length
-        ? (points.length + " presentations both solve · " + cheaper + " cheaper under " + armLabel(selArm) +
-           " (below the diagonal) · median node ratio " + (median(ratios) != null ? median(ratios).toFixed(2) + "×" : "—"))
+      dom.scatterNote.textContent = pr.n
+        ? (cheaper + " of " + pr.n + " cheaper under " + armLabel(selArm) + " (below the line) · median ratio " +
+           (median(pr.nodeRatios) != null ? median(pr.nodeRatios).toFixed(2) + "×" : "—") + " (>1 = z=w explores more)")
         : "No presentations solved by both baseline and " + armLabel(selArm) + " yet.";
+    }
+
+    ACXCharts.scatter(dom.chartScatterPath, pr.pathPts, {
+      xLabel: "baseline path length", yLabel: (armLabel(selArm) + " path length"),
+      color: ARM_COLORS[selArm] || "#5b9dff", log: true, diagonal: true,
+    });
+    if (dom.scatterPathNote) {
+      dom.scatterPathNote.textContent = pr.n
+        ? (pr.pathShorter + " of " + pr.n + " shorter under " + armLabel(selArm) + " (below the line) · median ratio " +
+           (median(pr.pathRatios) != null ? median(pr.pathRatios).toFixed(2) + "×" : "—") + " (>1 = z=w path is longer)")
+        : "No presentations solved by both baseline and " + armLabel(selArm) + " yet.";
+    }
+
+    // ---- head-to-head table: every z=w arm vs baseline on its both-solve set ----
+    if (dom.table) {
+      var nonBase = arms.filter(function (a) { return a !== "baseline"; });
+      var rows = nonBase.map(function (a) {
+        var p = paired(a);
+        function pct(k) { return p.n ? Math.round(100 * k / p.n) + "%" : "—"; }
+        function mr(rs) { return rs.length ? median(rs).toFixed(2) + "×" : "—"; }
+        function m(xs) { return median(xs) == null ? "—" : median(xs); }
+        return "<tr><td>" + armLabel(a) + "</td><td>" + p.n +
+          "</td><td>" + m(p.baseNodes) + "</td><td>" + m(p.armNodes) +
+          "</td><td>" + pct(p.nodeCheaper) + "</td><td>" + mr(p.nodeRatios) +
+          "</td><td>" + m(p.basePath) + "</td><td>" + m(p.armPath) +
+          "</td><td>" + pct(p.pathShorter) + "</td><td>" + mr(p.pathRatios) + "</td></tr>";
+      }).join("");
+      dom.table.innerHTML =
+        "<thead><tr><th>arm (z=w)</th><th>both solve</th>" +
+        "<th>base nodes</th><th>arm nodes</th><th>arm fewer</th><th>node ratio</th>" +
+        "<th>base path</th><th>arm path</th><th>arm shorter</th><th>path ratio</th></tr></thead>" +
+        "<tbody>" + (rows || "<tr><td colspan='10' class='muted'>No both-solve pairs — is the baseline loaded?</td></tr>") + "</tbody>";
+    }
+    if (dom.tableNote) {
+      dom.tableNote.textContent = "Medians over presentations both the baseline and that arm solve. "
+        + "“arm fewer / shorter” = share where z=w strictly beats the 2-gen baseline; ratio = median(arm ÷ baseline), >1 means z=w is worse.";
     }
 
     // ---- summary cards ----

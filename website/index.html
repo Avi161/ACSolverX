@@ -258,16 +258,32 @@
           <div class="chart" id="chart-cmp-pathlen"></div>
         </div>
         <div class="chart-card chart-card-wide">
-          <h3>Per-presentation search cost: baseline vs an arm</h3>
-          <p class="chart-sub">One point per presentation both solve (log–log). Below the dashed
-            <code>y=x</code> line = the change of variables solved it with fewer nodes.</p>
+          <h3>Per-presentation head-to-head: baseline vs an arm</h3>
+          <p class="chart-sub">One point per presentation <em>both</em> solve (log–log). A point below the
+            dashed <code>y=x</code> line = the change of variables solved it with <em>fewer</em> nodes /
+            a <em>shorter</em> path. On or above = no better than the 2-gen baseline.</p>
           <div class="controls">
             <label class="select-wrap">Compare arm
               <select id="comparison-arm"></select>
             </label>
           </div>
-          <div class="chart" id="chart-cmp-scatter"></div>
-          <p class="chart-sub" id="comparison-scatter-note"></p>
+          <div class="cmp-scatter-pair">
+            <div>
+              <h4 class="cmp-scatter-title">Nodes explored to solve</h4>
+              <div class="chart" id="chart-cmp-scatter"></div>
+              <p class="chart-sub" id="comparison-scatter-note"></p>
+            </div>
+            <div>
+              <h4 class="cmp-scatter-title">Path length (supermoves)</h4>
+              <div class="chart" id="chart-cmp-scatter-path"></div>
+              <p class="chart-sub" id="comparison-scatter-path-note"></p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card chart-card-wide">
+          <h3>Does <code>z=w</code> help? Head-to-head on presentations both solve</h3>
+          <p class="chart-sub" id="cmp-table-note"></p>
+          <div class="table-wrap"><table class="data-table" id="cmp-table"></table></div>
         </div>
       </div>
     </section>

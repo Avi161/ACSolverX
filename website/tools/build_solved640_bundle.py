@@ -8,10 +8,10 @@ Emits / updates in website/sample-data/:
   calibration_baseline.jsonl / paths_baseline.jsonl
       the 2-generator GS-Sub BASELINE over the 640 solved MS(1190) (arm "baseline", n_gen 2).
       Source: results/solved640/ if present (matched 500k budget), else results/baseline_greedy/ (1M).
-  calibration_ms640.jsonl / paths_ms640.jsonl  (r1,r2 rows only)
-      if results/solved640/ has the r1/r2 @500k run, REPLACE the stale 12k r1/r2 rows in the ms640
-      bundle with it (leaving x,y,g at 12k untouched) — one budget per arm, so the viewer's byIdx
-      arm map has no r1/r2 budget collision. Skipped (12k r1/r2 kept) until that run lands.
+  calibration_ms640.jsonl / paths_ms640.jsonl  (r1,r2,x,y rows)
+      REPLACE the ms640 bundle's r1/r2/x/y rows with the complete 500k run from the organized results
+      tree (results/stable_ac/3_generators_w_choices/ms640/), leaving g at 12k untouched — one budget
+      per arm, so the viewer's byIdx arm map has no per-arm budget collision.
   manifest.json : append the two baseline files; refresh label.
 
 Run from anywhere:  python website/tools/build_solved640_bundle.py
@@ -23,9 +23,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 OUT = os.path.join(ROOT, "website", "sample-data")
 R_640 = os.path.join(ROOT, "results", "solved640")
 R_BASE = os.path.join(ROOT, "results", "baseline_greedy")
+R_ORG = os.path.join(ROOT, "results", "stable_ac", "3_generators_w_choices", "ms640")
 
 MS_SPLIT = 640
-Z_ARMS = ["r1", "r2"]   # the arms this run replaces in ms640 (x,y,g stay at 12k)
+Z_ARMS = ["r1", "r2", "x", "y"]   # all four relator arms, now complete @500k from the organized results
+
+
+def org_src(kind, arm):
+    """Source path in the organized 3-gen results tree (runs/ = calibration, paths/ = paths)."""
+    sub = "runs" if kind == "calibration" else "paths"
+    return os.path.join(R_ORG, sub, f"{kind}_{arm}.jsonl")
 
 
 def read_jsonl(path):
@@ -86,23 +93,15 @@ def build_baseline():
 
 
 def replace_arms_in_ms640(kind):
-    """kind: 'calibration' or 'paths'. Replace r1/r2 rows in the ms640 bundle with the solved640
-    @500k run, if present; leave x,y,g untouched. No-op if the run hasn't landed."""
-    n_new = 0
-    for arm in Z_ARMS:
-        src = os.path.join(R_640, "solved" if kind == "calibration" else "paths",
-                           f"{kind}_{arm}.jsonl")
-        if os.path.exists(src):
-            n_new += 1
-    if n_new == 0:
-        return None  # solved640 r1/r2 not available yet
+    """kind: 'calibration' or 'paths'. Replace the r1/r2/x/y rows in the ms640 bundle with the
+    complete 500k run from the organized results tree; leave g untouched. No-op if none present."""
+    if not any(os.path.exists(org_src(kind, arm)) for arm in Z_ARMS):
+        return None  # organized 500k arms not available yet
     bundle = os.path.join(OUT, f"{kind}_ms640.jsonl")
     kept = [r for r in read_jsonl(bundle) if r.get("arm") not in Z_ARMS]
     added = 0
     for arm in Z_ARMS:
-        src = os.path.join(R_640, "solved" if kind == "calibration" else "paths",
-                           f"{kind}_{arm}.jsonl")
-        for r in read_jsonl(src):
+        for r in read_jsonl(org_src(kind, arm)):
             if r.get("dataset") == "1190MS" and r.get("idx", 0) < MS_SPLIT:
                 kept.append(clean(r))
                 added += 1
@@ -129,9 +128,9 @@ def main():
     for kind in ("calibration", "paths"):
         added = replace_arms_in_ms640(kind)
         if added is None:
-            print(f"  ms640 {kind}: r1/r2 @500k not present yet — kept 12k rows")
+            print(f"  ms640 {kind}: organized r1/r2/x/y not present — kept existing rows")
         else:
-            print(f"  ms640 {kind}: replaced r1/r2 with {added} @500k rows")
+            print(f"  ms640 {kind}: replaced r1/r2/x/y with {added} @500k rows")
     update_manifest()
     print("OK — manifest updated")
 
