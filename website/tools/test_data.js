@@ -40,7 +40,7 @@ eq(presReps, 261, "261 rep presentations");
 console.log("[2] groupStats cell counts");
 const g = (sel) => D.groupStats(ds, sel);
 eq(g({ dataset: "1190MS", arm: "all", subset: "all" }).total, 10710, "1190MS all/all total");   // 1190 × 9 arms
-eq(g({ dataset: "1190MS", arm: "all", subset: "all" }).notAttempted, 5056, "1190MS all/all notAttempted");   // 10710 − attempted(640×7 + r1 595 + r2 579)
+eq(g({ dataset: "1190MS", arm: "all", subset: "all" }).notAttempted, 4950, "1190MS all/all notAttempted");   // 10710 − attempted(640×9)
 eq(g({ dataset: "1190MS", arm: "r1", subset: "all" }).total, 1190, "1190MS r1 total == presentations");
 eq(g({ dataset: "1190MS", arm: "all", subset: "original" }).total, 5760, "1190MS original all total");   // 640 × 9 arms
 const hard = g({ dataset: "1190MS", arm: "all", subset: "hard" });

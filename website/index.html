@@ -132,6 +132,16 @@
         <!-- Stabilization framing (applies to the initial state only). -->
         <div class="stab-banner" id="stab-banner"></div>
 
+        <!-- Legend: the color/role vocabulary the stage + animation use. Static. -->
+        <div class="player-legend" id="player-legend">
+          <span class="lg-item"><span class="tile-mini tile-x">x</span><span
+              class="tile-mini tile-y">y</span><span class="tile-mini tile-z">z</span> generators</span>
+          <span class="lg-item"><span class="tile-mini tile-x inv">X</span> uppercase italic = inverse</span>
+          <span class="lg-item"><span class="lg-swatch lg-a"></span> row A — gets replaced</span>
+          <span class="lg-item"><span class="lg-swatch lg-b"></span> row B — partner, only read</span>
+          <span class="lg-item"><span class="lg-seam"></span> splice seam (where the halves met)</span>
+        </div>
+
         <!-- The current step, large. viewer.js renders relators, the changed relator, move info. -->
         <div class="player-stage" id="player-stage"></div>
 

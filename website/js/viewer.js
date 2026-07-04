@@ -27,10 +27,14 @@
 
   // Base durations (ms) at Normal speed; the speed select multiplies these.
   const DUR = {
-    context: 1100, invert: 850, rotate: 850, splice: 1050,
-    pluckMark: 340, pluckGap: 240, pluckPause: 260,
-    cyclic: 780, result: 950, betweenSteps: 550,
+    context: 900, invert: 950, rotate: 1100, rotateSkip: 350, splice: 1100,
+    pluckMark: 320, pluckGap: 220, pluckPause: 240,
+    cyclic: 900, result: 900, betweenSteps: 550,
   };
+  const GAP = 4;                                  // px gap between tiles (matches .slot-tiles/.rot-strip CSS)
+  const RING_W = 84;                              // ring inset width + gap, reserved per row
+  const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";  // decisive start, soft landing
+  const SVG_NS = "http://www.w3.org/2000/svg";
 
   // ---- module state ---------------------------------------------------------
   let dom = null;
@@ -782,18 +786,31 @@
     return "rot" + s;
   }
 
-  /** The one-line "what this move did": new = reduce( rotᵢ(A) · rotⱼ(B±) ). */
+  /** The one-line "what this move did": new = reduce( rotᵢ(A) · rotⱼ(B±) ).
+   *  Operands are wrapped in chips tinted like their rows (A = the replaced row, B = partner),
+   *  so the equation and the animation share one visual vocabulary. */
   function anatomyNode(recon) {
+    const emittedIsLeader = recon.emittedSlot === recon.leaderSlot;
+    const leaderCls = emittedIsLeader ? "opnd-a" : "opnd-b";
+    const partnerCls = emittedIsLeader ? "opnd-b" : "opnd-a";
     const line = h("div", { class: "move-anatomy" });
     line.appendChild(h("span", { class: "anatomy-label" }, "this move: "));
     line.appendChild(tokensNode(recon.canonical));
-    line.appendChild(h("span", { class: "anatomy-op" }, " = reduce( " + rotLabel(recon.iRot) + "("));
-    line.appendChild(tokensNode(recon.ra));
-    line.appendChild(h("span", { class: "anatomy-op" }, ") · " + rotLabel(recon.jRot) + "("));
-    line.appendChild(tokensNode(recon.cBase));
-    line.appendChild(h("span", { class: "anatomy-op" }, recon.cInv ? ")⁻¹ )" : ") )"));
+    line.appendChild(h("span", { class: "anatomy-op" }, " = reduce( "));
+    line.appendChild(h("span", { class: "anatomy-opnd " + leaderCls }, [
+      h("span", { class: "anatomy-op" }, rotLabel(recon.iRot) + "("),
+      tokensNode(recon.ra),
+      h("span", { class: "anatomy-op" }, ")"),
+    ]));
+    line.appendChild(h("span", { class: "anatomy-op" }, " · "));
+    line.appendChild(h("span", { class: "anatomy-opnd " + partnerCls }, [
+      h("span", { class: "anatomy-op" }, rotLabel(recon.jRot) + "("),
+      tokensNode(recon.cBase),
+      h("span", { class: "anatomy-op" }, recon.cInv ? ")⁻¹" : ")"),
+    ]));
+    line.appendChild(h("span", { class: "anatomy-op" }, " )"));
     line.appendChild(h("span", { class: "anatomy-note" },
-      recon.emittedSlot === recon.leaderSlot ? " — result replaces the first operand" : " — result replaces the second operand"));
+      " — the result replaces the A-tinted operand's row"));
     return line;
   }
 
@@ -875,19 +892,239 @@
     updateTimelineActive(i);
   }
 
-  // ---- the move animation (in place, in the stable rows) --------------------------
-  // The substitution supermove replays INSIDE the presentation, in the fixed rows: the
-  // changed row (A) and its partner row (B) light up, rotate, glue into one word in row A,
-  // then cancel inverse pairs one at a time until the new relator remains. Every other row
-  // stays put. Frames come from step.change.recon (verified) + step.change.slots (the stable
-  // -row map). Missing either → instant commit. The token cancels between/within phases;
-  // whoever cancelled owns the next render, so the stage is never left stale.
+  // ---- the move animation v2 (rings + tiles hybrid, in the stable rows) -----------
+  // The substitution supermove replays INSIDE the presentation, in the fixed rows. The two
+  // operand rows carry a RING INSET — the relator drawn as the cyclic word it really is —
+  // and the phases make each sub-operation visible:
+  //   Roles   → the two rows light up (A gets replaced, B is only read)
+  //   Invert  → (if used) the partner's tiles mirror + case-flip in place
+  //   Rotate  → tiles slide with wrap-around; on the ring, the CUT marker rotates while the
+  //             letters stay put (rotation = choosing where to cut the ring open)
+  //   Splice  → partner tiles fly into row A; a persistent seam marks where the halves met
+  //   Cancel  → inverse pairs pluck one at a time, zipping shut at the seam; cyclic
+  //             cancellations draw a wrap-around arc between the word's two ends
+  //   Settle  → the reduced word glows and lands as the new relator
+  // Frames come from step.change.recon (verified) + step.change.slots (the stable-row map).
+  // Missing either → instant commit. The token cancels between/within phases; whoever
+  // cancelled owns the next render, so the stage is never left stale.
 
   /** letter tiles wrapped in a span that lives inside a stable relator row. */
   function rowTiles(word) {
     const wrap = h("span", { class: "slot-tiles" });
     const tiles = word.map(function (v) { const t = tileNode(v); wrap.appendChild(t); return t; });
     return { wrap: wrap, tiles: tiles };
+  }
+
+  /** Replace a row's tiles with `word` (optionally tagged with a from-a/from-b role class). */
+  function setTiles(entry, word, roleCls) {
+    clear(entry.wrap);
+    entry.tiles = word.map(function (v) {
+      const t = tileNode(v);
+      if (roleCls) t.classList.add(roleCls);
+      entry.wrap.appendChild(t);
+      return t;
+    });
+  }
+
+  function genKey(v) {
+    const a = Math.abs(v);
+    return a === 1 ? "x" : a === 2 ? "y" : a === 3 ? "z" : "g";
+  }
+
+  /** Phase chips strip — the pipeline map ("where am I in this move?"). */
+  function phaseChipsNode(names) {
+    const wrap = h("div", { class: "phase-chips" });
+    for (const n of names) wrap.appendChild(h("span", { class: "chip", "data-phase": n }, n));
+    return wrap;
+  }
+  function setPhase(chipsEl, name) {
+    let seen = false;
+    for (const c of chipsEl.querySelectorAll(".chip")) {
+      const isCur = c.getAttribute("data-phase") === name;
+      if (isCur) seen = true;
+      c.classList.toggle("chip-active", isCur);
+      c.classList.toggle("chip-done", !seen && !isCur);
+    }
+  }
+
+  /** Tile size so the widest word of this step (the splice) fits on one line. */
+  function computeTileSize(maxLen) {
+    const stageW = dom.stage.clientWidth || 800;
+    const avail = Math.max(160, stageW - RING_W - 90);
+    return Math.max(12, Math.min(30, Math.floor(avail / Math.max(1, maxLen)) - GAP));
+  }
+
+  /** The relator as a RING: letters fixed on a circle, a cut marker in the gap before
+   *  letter 0. Rotation never moves the letters — it rotates the CUT (the word is cyclic;
+   *  rotating = choosing where to cut it open to write the linear row). */
+  function ringSvgNode(word) {
+    const n = word.length;
+    const svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("class", "ring-svg");
+    svg.setAttribute("aria-hidden", "true");
+    const track = document.createElementNS(SVG_NS, "circle");
+    track.setAttribute("cx", "50"); track.setAttribute("cy", "50"); track.setAttribute("r", "38");
+    track.setAttribute("class", "ring-track");
+    svg.appendChild(track);
+    const letters = document.createElementNS(SVG_NS, "g");
+    const fs = n <= 8 ? 15 : n <= 14 ? 11.5 : n <= 20 ? 9.5 : 8;
+    word.forEach(function (v, q) {
+      const ang = -Math.PI / 2 + (q * 2 * Math.PI) / Math.max(1, n);
+      const t = document.createElementNS(SVG_NS, "text");
+      t.setAttribute("x", String(50 + 38 * Math.cos(ang)));
+      t.setAttribute("y", String(50 + 38 * Math.sin(ang)));
+      t.setAttribute("font-size", String(fs));
+      t.setAttribute("class", "rtok rtok-" + genKey(v) + (v < 0 ? " rtok-inv" : ""));
+      t.textContent = D.letter(v);
+      letters.appendChild(t);
+    });
+    svg.appendChild(letters);
+    const cut = document.createElementNS(SVG_NS, "g");
+    cut.setAttribute("class", "ring-cut");
+    const a0 = -Math.PI / 2 - Math.PI / Math.max(1, n); // the gap before letter 0
+    const line = document.createElementNS(SVG_NS, "line");
+    line.setAttribute("x1", String(50 + 29 * Math.cos(a0)));
+    line.setAttribute("y1", String(50 + 29 * Math.sin(a0)));
+    line.setAttribute("x2", String(50 + 47 * Math.cos(a0)));
+    line.setAttribute("y2", String(50 + 47 * Math.sin(a0)));
+    cut.appendChild(line);
+    const dot = document.createElementNS(SVG_NS, "circle");
+    dot.setAttribute("cx", String(50 + 47 * Math.cos(a0)));
+    dot.setAttribute("cy", String(50 + 47 * Math.sin(a0)));
+    dot.setAttribute("r", "2.6");
+    cut.appendChild(dot);
+    svg.appendChild(cut);
+    return svg;
+  }
+
+  /** Rotate the ring's CUT marker to match roll(word, k): counterclockwise by k slots. */
+  function setRingCut(svg, k, n, ms) {
+    const cut = svg.querySelector(".ring-cut");
+    if (!cut || n < 1) return;
+    cut.style.transformOrigin = "50px 50px";
+    cut.style.transition = "transform " + ms + "ms " + EASE;
+    cut.style.transform = "rotate(" + (-k * 360 / n) + "deg)";
+  }
+
+  /** Sliding rotation in the row: a doubled-strip carousel. Tiles slide RIGHT by k slots,
+   *  wrapping in from the left — the linear shadow of the ring's cut moving. */
+  async function slideRotate(entry, word, k, tile, ms, token, roleCls) {
+    const n = word.length;
+    const kk = n > 0 ? ((k % n) + n) % n : 0;
+    if (kk === 0 || n < 2) return await wait(ms, token); // nothing moves — caller narrates why
+    const slotW = tile + GAP;
+    const viewport = h("span", { class: "rot-viewport" });
+    viewport.style.width = (n * slotW - GAP) + "px";
+    const strip = h("span", { class: "rot-strip" });
+    for (const v of word.concat(word)) {
+      const t = tileNode(v);
+      if (roleCls) t.classList.add(roleCls);
+      strip.appendChild(t);
+    }
+    viewport.appendChild(strip);
+    clear(entry.wrap);
+    entry.wrap.appendChild(viewport);
+    strip.style.transform = "translateX(" + (-n * slotW) + "px)";  // window shows copy 2 ≡ word
+    void strip.offsetWidth;                                        // commit start before transitioning
+    strip.style.transition = "transform " + ms + "ms " + EASE;
+    strip.style.transform = "translateX(" + (-(n - kk) * slotW) + "px)"; // window lands on roll(word,k)
+    if (!(await wait(ms + 40, token))) return false;
+    setTiles(entry, D.rollWord(word, kk), roleCls);
+    return true;
+  }
+
+  /** The partner is used INVERTED: read backwards with every letter inverted. Tiles mirror
+   *  around the row's center while flipping edge-on (the letter swaps while invisible). */
+  async function flipInvert(entry, word, tile, ms, token, roleCls) {
+    const n = word.length;
+    if (n < 1) return await wait(ms, token);
+    const slotW = tile + GAP;
+    const half = Math.max(60, ms / 2);
+    entry.tiles.forEach(function (t, q) {
+      t.style.transition = "transform " + half + "ms ease-in";
+      t.style.transform = "translateX(" + (((n - 1 - 2 * q) * slotW) / 2) + "px) rotateX(90deg)";
+    });
+    if (!(await wait(half, token))) return false;
+    entry.tiles.forEach(function (t, q) {
+      const v = -word[q]; // mirroring handles the reversal; each tile just inverts its letter
+      t.textContent = D.letter(v);
+      t.classList.toggle("inv", v < 0);
+      t.style.transition = "transform " + half + "ms ease-out";
+      t.style.transform = "translateX(" + ((n - 1 - 2 * q) * slotW) + "px) rotateX(0deg)";
+    });
+    if (!(await wait(half + 40, token))) return false;
+    setTiles(entry, D.invertWord(word), roleCls);
+    return true;
+  }
+
+  /** Glue the two rotated operands into row A with a FLIP merge: every tile of the spliced
+   *  word flies in from where its source tile sat (partner tiles cross rows). Returns the
+   *  persistent seam element marking where the halves met. */
+  function spliceFlip(rowA, rowB, recon, aIsFirstHalf, ms) {
+    const splice = recon.splice;
+    const leadLen = recon.rotA.length;
+    const leaderRow = aIsFirstHalf ? rowA : rowB;
+    const partnerRow = aIsFirstHalf ? rowB : rowA;
+    const srcRects = splice.map(function (_, k) {
+      const fromLeader = k < leadLen;
+      const src = fromLeader ? leaderRow.tiles[k] : partnerRow.tiles[k - leadLen];
+      return src ? src.getBoundingClientRect() : null;
+    });
+    clear(rowA.wrap);
+    const seam = h("span", { class: "splice-seam", title: "the two halves meet here" });
+    rowA.tiles = splice.map(function (v, k) {
+      const t = tileNode(v);
+      const fromLeader = k < leadLen;
+      t.classList.add((fromLeader === aIsFirstHalf) ? "from-a" : "from-b"); // colour by SOURCE ROW
+      if (k === leadLen) rowA.wrap.appendChild(seam);
+      rowA.wrap.appendChild(t);
+      return t;
+    });
+    rowA.wrap.classList.add("spliced");
+    rowA.tiles.forEach(function (t, k) {  // FLIP: start at the source position...
+      const src = srcRects[k];
+      if (!src) return;
+      const dst = t.getBoundingClientRect();
+      const dx = src.left - dst.left, dy = src.top - dst.top;
+      if (dx || dy) t.style.transform = "translate(" + dx + "px," + dy + "px)";
+    });
+    void rowA.wrap.offsetWidth;
+    rowA.tiles.forEach(function (t) {     // ...then fly home
+      t.style.transition = "transform " + ms + "ms " + EASE;
+      t.style.transform = "";
+    });
+    return seam;
+  }
+
+  /** The word is CYCLIC: its two ends are adjacent "around the back". A dashed arc over the
+   *  row connects last → first tile so the wrap-around cancellation reads as what it is. */
+  function showCyclicArc(wrap, firstTile, lastTile) {
+    const old = wrap.querySelector(".cyclic-arc");
+    if (old) old.remove();
+    if (!firstTile || !lastTile) return null;
+    const w = Math.max(40, wrap.scrollWidth);
+    const x1 = lastTile.offsetLeft + lastTile.offsetWidth / 2;
+    const x2 = firstTile.offsetLeft + firstTile.offsetWidth / 2;
+    const svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("class", "cyclic-arc");
+    svg.setAttribute("width", String(w));
+    svg.setAttribute("height", "26");
+    svg.setAttribute("viewBox", "0 0 " + w + " 26");
+    svg.setAttribute("aria-hidden", "true");
+    const p = document.createElementNS(SVG_NS, "path");
+    p.setAttribute("d", "M " + x1 + " 24 C " + x1 + " 4, " + x2 + " 4, " + x2 + " 24");
+    p.setAttribute("class", "cyclic-arc-path");
+    svg.appendChild(p);
+    const label = document.createElementNS(SVG_NS, "text");
+    label.setAttribute("x", String((x1 + x2) / 2));
+    label.setAttribute("y", "10");
+    label.setAttribute("text-anchor", "middle");
+    label.setAttribute("class", "cyclic-arc-label");
+    label.textContent = "cyclic ↻";
+    svg.appendChild(label);
+    wrap.appendChild(svg);
+    return svg;
   }
 
   async function animateToStep(i, token) {
@@ -917,24 +1154,31 @@
     const parentSlots = steps[i - 1].slots;            // stable rows of the parent
     const A = slots.a, B = slots.b;                    // A changes; B is the partner (stays)
     const emittedIsLeader = recon.emittedSlot === recon.leaderSlot;
-    const aRot = emittedIsLeader ? recon.rotA : recon.rotC;  // rotation shown in row A
-    const bRot = emittedIsLeader ? recon.rotC : recon.rotA;  // rotation shown in row B
     const aIsFirstHalf = emittedIsLeader;              // in `splice`, does A supply the leading half?
     const dur = function (ms) { return Math.max(60, ms * mult); };
+    const tile = computeTileSize(recon.splice.length); // widest the row ever gets = the splice
 
-    // -- scaffold: the presentation drawn in its stable rows -------------------------
+    // -- scaffold: equation card + phase chips + the presentation in its stable rows ----
     clear(dom.stage);
     const box = h("div", { class: "stage-step anim-inplace" });
+    box.style.setProperty("--tile-size", tile + "px");
     box.appendChild(h("div", { class: "stage-summary" }, "Step " + i + " — " + step.summary));
+    box.appendChild(anatomyNode(recon));               // the move equation, visible from the START
+    const phases = ["Roles"].concat(recon.cInv ? ["Invert"] : []).concat(["Rotate", "Splice", "Cancel", "Settle"]);
+    const chips = phaseChipsNode(phases);
+    box.appendChild(chips);
     const pres = h("div", { class: "presentation" });
     pres.appendChild(h("div", { class: "presentation-line presentation-open" }, "⟨" + gens.join(", ") + " |"));
     const rows = parentSlots.map(function (slot, s) {
       const rt = rowTiles(slot.word);
+      const isOp = s === A || s === B;
+      const ring = h("span", { class: "ring-inset" + (isOp ? "" : " ring-spacer") });
+      if (isOp) ring.appendChild(ringSvgNode(slot.word));
       const row = h("div", {
-        class: "relator-row anim-row" + (s === A ? " role-a" : "") + (s === B ? " role-b" : ""),
-      }, [rt.wrap]);
+        class: "relator-row anim-row" + (s === A ? " role-a" : s === B ? " role-b" : " row-idle"),
+      }, [ring, rt.wrap]);
       pres.appendChild(row);
-      return { row: row, wrap: rt.wrap, tiles: rt.tiles };
+      return { row: row, wrap: rt.wrap, tiles: rt.tiles, ring: ring };
     });
     pres.appendChild(h("div", { class: "presentation-line presentation-close" }, "⟩"));
     box.appendChild(pres);
@@ -942,71 +1186,111 @@
     box.appendChild(narr);
     dom.stage.appendChild(box);
 
-    function setTiles(entry, word, roleCls) {
-      clear(entry.wrap);
-      entry.tiles = word.map(function (v) {
-        const t = tileNode(v);
-        if (roleCls) t.classList.add(roleCls);
-        entry.wrap.appendChild(t);
-        return t;
-      });
+    const rowA = rows[A], rowB = rows[B];
+    const rowL = emittedIsLeader ? rowA : rowB;        // shows the leader:  ra  → roll(ra, iRot)
+    const rowP = emittedIsLeader ? rowB : rowA;        // shows the partner: cBase → c → roll(c, jRot)
+    const clsL = rowL === rowA ? "from-a" : "from-b";
+    const clsP = rowP === rowA ? "from-a" : "from-b";
+    rowA.tiles.forEach(function (t) { t.classList.add("from-a"); });
+    rowB.tiles.forEach(function (t) { t.classList.add("from-b"); });
+
+    function ringCutOf(rowEntry, k, n, ms) {
+      const svg = rowEntry.ring && rowEntry.ring.querySelector(".ring-svg");
+      if (svg && n > 0) setRingCut(svg, k, n, ms);
+    }
+    function swapRing(rowEntry, word) {
+      if (!rowEntry.ring || rowEntry.ring.classList.contains("ring-spacer")) return;
+      clear(rowEntry.ring);
+      rowEntry.ring.appendChild(ringSvgNode(word)); // CSS ring-in animation fades it in
     }
 
-    // Phase 1 — the two rows in play, and where the result lands.
-    narr.textContent = "Combine the two highlighted relators; the result replaces the top one.";
+    // -- Roles: which two rows are in play, and where the result lands ---------------
+    setPhase(chips, "Roles");
+    narr.textContent = "Combine the highlighted rows: A (blue edge) is replaced by the result; B (purple) is the partner — only read, it survives.";
     if (!(await wait(dur(DUR.context), token))) return;
 
-    // Phase 2 — rotate each operand (and invert the partner if the move used its inverse).
-    narr.textContent = recon.cInv
-      ? "Use the inverse of the partner (reverse it — free), then rotate so the ends meet."
-      : "Rotate both relators so their touching ends are inverses.";
-    setTiles(rows[A], aRot, "from-a");
-    setTiles(rows[B], bRot, "from-b");
-    if (!(await wait(dur(DUR.rotate), token))) return;
+    // -- Invert (only when the move uses the partner's inverse) ----------------------
+    if (recon.cInv) {
+      setPhase(chips, "Invert");
+      narr.textContent = "The move uses the partner's INVERSE: read it backwards and invert every letter (case flips).";
+      swapRing(rowP, recon.c);
+      if (!(await flipInvert(rowP, recon.cBase, tile, dur(DUR.invert), token, clsP))) return;
+    }
 
-    // Phase 3 — glue B into A: row A becomes the whole splice; row B is consumed.
-    const splice = recon.splice;
-    const leadLen = recon.rotA.length;                 // splice[0..leadLen) = leader, rest = partner
-    setTiles(rows[A], splice, null);
-    rows[A].tiles.forEach(function (t, k) {
-      const fromLeader = k < leadLen;                  // colour by SOURCE ROW
-      t.classList.add((fromLeader === aIsFirstHalf) ? "from-a" : "from-b");
-    });
-    rows[A].wrap.classList.add("spliced");
-    rows[B].row.classList.add("consumed");             // dim B — its copy moved into A
-    const bdA = rows[A].tiles[leadLen - 1], bdB = rows[A].tiles[leadLen];
+    // -- Rotate: the ring's cut turns; the row slides with wrap-around ----------------
+    setPhase(chips, "Rotate");
+    const nL = recon.ra.length, nP = recon.c.length;
+    const iEff = nL > 0 ? ((recon.iRot % nL) + nL) % nL : 0;
+    const jEff = nP > 0 ? ((recon.jRot % nP) + nP) % nP : 0;
+    const anyRot = iEff !== 0 || jEff !== 0;
+    narr.textContent = anyRot
+      ? "Relators are CYCLIC — rotating only moves the cut (watch the rings). Slide until the touching ends are inverses."
+      : "No rotation needed — the touching ends are already inverses.";
+    const rotMs = dur(anyRot ? DUR.rotate : DUR.rotateSkip);
+    ringCutOf(rowL, iEff, nL, rotMs);
+    ringCutOf(rowP, jEff, nP, rotMs);
+    const slid = await Promise.all([
+      slideRotate(rowL, recon.ra, iEff, tile, rotMs, token, clsL),
+      slideRotate(rowP, recon.c, jEff, tile, rotMs, token, clsP),
+    ]);
+    if (!slid[0] || !slid[1]) return;
+
+    // -- Splice: partner tiles fly into row A; the seam marks the join ----------------
+    setPhase(chips, "Splice");
+    narr.textContent = "Cut both rings open at their marks and glue the words — the letters at the seam are inverses.";
+    rows.forEach(function (r) { r.ring.classList.add("ring-out"); }); // stale rings would lie
+    rowB.row.classList.add("consumed");
+    rowB.row.appendChild(h("span", { class: "copied-note" }, "copied ↑"));
+    const seam = spliceFlip(rowA, rowB, recon, aIsFirstHalf, dur(DUR.splice));
+    const leadLen = recon.rotA.length;
+    const bdA = rowA.tiles[leadLen - 1], bdB = rowA.tiles[leadLen];
     if (bdA && bdB) { bdA.classList.add("will-cancel"); bdB.classList.add("will-cancel"); }
-    narr.textContent = "Glue them into one word — the touching letters are inverses and cancel.";
-    if (!(await wait(dur(DUR.splice), token))) return;
-    if (bdA && bdB) { bdA.classList.remove("will-cancel"); bdB.classList.remove("will-cancel"); }
+    if (seam && rowA.row.scrollWidth > rowA.row.clientWidth) {
+      seam.scrollIntoView({ inline: "center", block: "nearest" });
+    }
+    if (!(await wait(dur(DUR.splice) + 60, token))) return;
+    rowA.tiles.forEach(function (t) { t.style.transition = ""; }); // hand transforms back to CSS
 
-    // Phase 4 — pluck inverse pairs one at a time, in row A.
-    let tiles = rows[A].tiles.slice();
+    // -- Cancel: inverse pairs pluck one at a time, zipping shut at the seam ----------
+    setPhase(chips, "Cancel");
+    let tiles = rowA.tiles.slice();
+    let arc = null;
     for (const ev of recon.events) {
       let t1, t2;
       if (ev.type === "free") {
         t1 = tiles[ev.pos]; t2 = tiles[ev.pos + 1];
-        narr.textContent = "Cancel " + D.letter(ev.letters[0]) + "·" + D.letter(ev.letters[1]) + " …";
+        narr.textContent = "Adjacent inverses cancel: " + D.letter(ev.letters[0]) + "·" +
+          D.letter(ev.letters[1]) + " — the word zips shut at the seam.";
       } else {
-        t1 = tiles[0]; t2 = tiles[tiles.length - 1];
-        narr.textContent = "It's a cyclic word — cancel the two ends " +
-          D.letter(ev.letters[0]) + "…" + D.letter(ev.letters[1]) + " too.";
-        rows[A].wrap.classList.add("cyclic-mode");
+        t1 = tiles[tiles.length - 1]; t2 = tiles[0];
+        narr.textContent = "The word is CYCLIC — around the back, its two ends are adjacent: " +
+          D.letter(ev.letters[0]) + " and " + D.letter(ev.letters[1]) + " cancel too.";
+        rowA.row.classList.add("cyclic-active");
+        arc = showCyclicArc(rowA.wrap, tiles[0], tiles[tiles.length - 1]);
+        if (!(await wait(dur(DUR.cyclic), token))) return; // a beat to read the arc
       }
       if (!t1 || !t2) break; // defensive; recon is verified so this shouldn't happen
-      t1.classList.add("plucking"); t2.classList.add("plucking");
+      t1.classList.add("will-cancel"); t2.classList.add("will-cancel");
       if (!(await wait(dur(DUR.pluckMark), token))) return;
-      t1.classList.add("gone"); t2.classList.add("gone");
+      t1.classList.remove("will-cancel"); t2.classList.remove("will-cancel");
+      t1.classList.add("plucking"); t2.classList.add("plucking");
       if (!(await wait(dur(DUR.pluckGap), token))) return;
+      t1.classList.add("gone"); t2.classList.add("gone");
+      if (!(await wait(dur(DUR.pluckPause), token))) return;
       t1.remove(); t2.remove();
       if (ev.type === "free") tiles.splice(ev.pos, 2);
       else { tiles.pop(); tiles.shift(); }
-      if (!(await wait(dur(ev.type === "free" ? DUR.pluckPause : Math.max(0, DUR.cyclic - DUR.pluckMark - DUR.pluckGap)), token))) return;
     }
+    if (arc) arc.remove();
+    rowA.row.classList.remove("cyclic-active");
+    if (seam) seam.classList.add("seam-done");
 
-    // Phase 5 — the reduced word is the new relator; settle into the canonical child.
-    rows[A].wrap.classList.add("result-glow");
-    narr.textContent = "That reduced word is the new relator.";
+    // -- Settle: the reduced word is the new relator --------------------------------
+    setPhase(chips, "Settle");
+    rowA.wrap.classList.add("result-glow");
+    narr.textContent = recon.canonChanged
+      ? "That reduced word is the new relator (written in its canonical rotation)."
+      : "That reduced word is the new relator.";
     if (!(await wait(dur(DUR.result), token))) return;
     if (token.cancelled) return;
     if (anim.token === token) anim.token = null;
