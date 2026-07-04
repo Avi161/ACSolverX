@@ -193,9 +193,18 @@
       parts.push('<text x="' + (cx + barW / 2).toFixed(2) + '" y="' + (topY - 6).toFixed(2) +
         '" text-anchor="middle" font-size="11" fill="' + COLOR_TEXT + '">' + fmtNum(total) + '</text>');
 
-      // category label (optional per-category color, e.g. arm identity color)
-      parts.push('<text x="' + (margin.left + bandW * ci + bandW / 2).toFixed(2) + '" y="' + (margin.top + plotH + 20) +
-        '" text-anchor="middle" font-size="11" fill="' + esc(cat.color || COLOR_TICK) + '">' + esc(cat.label) + '</text>');
+      // category label (optional per-category color, e.g. arm identity color).
+      // With many categories the bands get narrow — rotate labels so they can't collide.
+      var lblX = margin.left + bandW * ci + bandW / 2;
+      var lblY = margin.top + plotH + 20;
+      if (n > 7) {
+        parts.push('<text x="' + lblX.toFixed(2) + '" y="' + lblY + '" text-anchor="end" font-size="11" fill="' +
+          esc(cat.color || COLOR_TICK) + '" transform="rotate(-30 ' + lblX.toFixed(2) + ' ' + lblY + ')">' +
+          esc(cat.label) + '</text>');
+      } else {
+        parts.push('<text x="' + lblX.toFixed(2) + '" y="' + lblY +
+          '" text-anchor="middle" font-size="11" fill="' + esc(cat.color || COLOR_TICK) + '">' + esc(cat.label) + '</text>');
+      }
     }
 
     parts.push('</svg>');
@@ -389,7 +398,9 @@
     setSvg(el, parts.join(""));
   }
 
-  var ACXCharts = { stackedBar: stackedBar, histogram: histogram, scatter: scatter };
+  // cssVar is exported so callers can theme their data-series colors the same way the
+  // chart chrome does (read the CSS custom property at draw time, fall back to a hex).
+  var ACXCharts = { stackedBar: stackedBar, histogram: histogram, scatter: scatter, cssVar: cssVar };
 
   global.ACXCharts = ACXCharts;
   if (typeof module !== "undefined" && module.exports) module.exports = ACXCharts;

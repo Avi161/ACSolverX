@@ -15,7 +15,10 @@
   var ACXData = global.ACXData;
   var ACXCharts = global.ACXCharts;
 
-  var COLOR_OK = "#35d07f", COLOR_ERR = "#ff6b6b", COLOR_ACCENT = "#5b9dff", COLOR_ACCENT2 = "#7c5cff";
+  // theme-aware data colors: CSS custom property at draw time, dark hex as fallback
+  function cssVar(name, fallback) {
+    return (ACXCharts && ACXCharts.cssVar) ? ACXCharts.cssVar(name, fallback) : fallback;
+  }
   var LET = { 0: "ε", 1: "x", "-1": "X", 2: "y", "-2": "Y", 3: "z", "-3": "Z" };
 
   var dom = null, lastDataset = null, initialized = false;
@@ -113,12 +116,12 @@
     var nmin = nodes.length ? Math.min.apply(null, nodes) : 0, nmax = nodes.length ? Math.max.apply(null, nodes) : 0;
     var nbs = nmax > nmin ? (nmax - nmin) / 24 : undefined;
     ACXCharts.histogram(dom.chartNodes, ACXData.histogram(nodes, nbs), {
-      color: COLOR_ACCENT2, xLabel: "nodes explored", yLabel: "solved presentations",
+      color: cssVar("--accent-2", "#7c5cff"), xLabel: "nodes explored", yLabel: "solved presentations",
     });
     var plens = solved.filter(function (i) { return i.path && i.path.path_len != null; })
       .map(function (i) { return i.path.path_len; });
     ACXCharts.histogram(dom.chartPathlen, ACXData.histogram(plens, 1), {
-      color: COLOR_ACCENT, xLabel: "path length (moves)", yLabel: "solved presentations",
+      color: cssVar("--accent", "#5b9dff"), xLabel: "path length (moves)", yLabel: "solved presentations",
     });
 
     // path browser (solved, with a stored path)

@@ -19,11 +19,17 @@
   var ACXCharts = global.ACXCharts;
 
   var DATASET = "1190MS";
-  var COLOR_OK = "#35d07f", COLOR_ERR = "#ff6b6b";
-  var ARM_COLORS = {
+  // theme-aware data colors: CSS custom property at draw time, dark hex as fallback
+  var ARM_FALLBACK = {
     baseline: "#9fb0c6", r1: "#5b9dff", r2: "#7c5cff", x: "#35d07f", y: "#ffb454",
     g: "#ff6b9d", xY: "#c792ea", yx: "#f78c6c", Xy: "#80cbc4",
   };
+  function cssVar(name, fallback) {
+    return (ACXCharts && ACXCharts.cssVar) ? ACXCharts.cssVar(name, fallback) : fallback;
+  }
+  function okColor() { return cssVar("--ok", "#35d07f"); }
+  function errColor() { return cssVar("--err", "#ff6b6b"); }
+  function armColor(a) { return cssVar("--arm-" + a, ARM_FALLBACK[a] || "#5b9dff"); }
   var ARM_ORDER = ["baseline", "r1", "r2", "x", "y", "g", "xY", "yx", "Xy"];
 
   function armSort(a, b) {
@@ -32,6 +38,8 @@
     return ia !== ib ? ia - ib : (a < b ? -1 : a > b ? 1 : 0);
   }
   function armLabel(a) { return a === "baseline" ? "baseline (2-gen)" : ((ACXData && ACXData.armSymbol) ? ACXData.armSymbol(a) : a); }
+  // short form for chart category axes (the long form clips when labels are rotated)
+  function armAxisLabel(a) { return a === "baseline" ? "baseline" : armLabel(a); }
 
   var dom = null, lastDataset = null, initialized = false;
 
@@ -120,16 +128,16 @@
     var covCats = arms.map(function (a) {
       var its = m[a], s = its.filter(function (i) { return i.solved; }).length;
       return {
-        label: armLabel(a), color: ARM_COLORS[a] || null,
+        label: armAxisLabel(a), color: armColor(a),
         segments: [
-          { key: "solved", value: s, color: COLOR_OK, title: "solved: " + s },
-          { key: "unsolved", value: its.length - s, color: COLOR_ERR, title: "unsolved: " + (its.length - s) },
+          { key: "solved", value: s, color: okColor(), title: "solved: " + s },
+          { key: "unsolved", value: its.length - s, color: errColor(), title: "unsolved: " + (its.length - s) },
         ],
       };
     });
     ACXCharts.stackedBar(dom.chartCoverage, {
       categories: covCats,
-      legend: [{ key: "s", color: COLOR_OK, label: "Solved" }, { key: "u", color: COLOR_ERR, label: "Unsolved" }],
+      legend: [{ key: "s", color: okColor(), label: "Solved" }, { key: "u", color: errColor(), label: "Unsolved" }],
       yLabel: "presentations",
     });
 
@@ -137,8 +145,8 @@
     ACXCharts.stackedBar(dom.chartNodes, {
       categories: arms.map(function (a) {
         var med = median(m[a].filter(function (i) { return i.solved; }).map(nodesOf));
-        return { label: armLabel(a), color: ARM_COLORS[a] || null,
-          segments: [{ key: "nodes", value: med || 0, color: ARM_COLORS[a] || "#5b9dff", title: "median nodes: " + (med == null ? "—" : med) }] };
+        return { label: armAxisLabel(a), color: armColor(a),
+          segments: [{ key: "nodes", value: med || 0, color: armColor(a), title: "median nodes: " + (med == null ? "—" : med) }] };
       }),
       yLabel: "median nodes (solved)",
     });
@@ -147,8 +155,8 @@
     ACXCharts.stackedBar(dom.chartPathlen, {
       categories: arms.map(function (a) {
         var med = median(m[a].filter(function (i) { return i.solved; }).map(pathOf));
-        return { label: armLabel(a), color: ARM_COLORS[a] || null,
-          segments: [{ key: "plen", value: med || 0, color: ARM_COLORS[a] || "#5b9dff", title: "median path length: " + (med == null ? "—" : med) }] };
+        return { label: armAxisLabel(a), color: armColor(a),
+          segments: [{ key: "plen", value: med || 0, color: armColor(a), title: "median path length: " + (med == null ? "—" : med) }] };
       }),
       yLabel: "median path length (solved)",
     });
@@ -167,7 +175,7 @@
 
     ACXCharts.scatter(dom.chartScatter, pr.nodePts, {
       xLabel: "baseline nodes explored", yLabel: (armLabel(selArm) + " nodes explored"),
-      color: ARM_COLORS[selArm] || "#5b9dff", log: true, diagonal: true,
+      color: armColor(selArm), log: true, diagonal: true,
     });
     if (dom.scatterNote) {
       dom.scatterNote.textContent = pr.n
@@ -178,7 +186,7 @@
 
     ACXCharts.scatter(dom.chartScatterPath, pr.pathPts, {
       xLabel: "baseline path length", yLabel: (armLabel(selArm) + " path length"),
-      color: ARM_COLORS[selArm] || "#5b9dff", log: true, diagonal: true,
+      color: armColor(selArm), log: true, diagonal: true,
     });
     if (dom.scatterPathNote) {
       dom.scatterPathNote.textContent = pr.n

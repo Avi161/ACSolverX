@@ -17,20 +17,28 @@
   var ACXCharts = global.ACXCharts;
 
   // ---- design tokens (see website/SPEC.md "Design system") ----------------------
-  // Hardcoded to the exact hexes in SPEC.md rather than read from CSS custom
-  // properties, so charts render identically even before/without css/styles.css.
-  var COLOR_OK = "#35d07f";      // --ok
-  var COLOR_ERR = "#ff6b6b";     // --err
-  var COLOR_ACCENT = "#5b9dff";  // --accent
-  var COLOR_ACCENT2 = "#7c5cff"; // --accent-2
-  var COLOR_GENZ = "#c792ea";    // --gen-z
-  var ARM_COLORS = {
-    r1: "#5b9dff", // --arm-r1
-    r2: "#7c5cff", // --arm-r2
-    x: "#35d07f",  // --arm-x
-    y: "#ffb454",  // --arm-y
-    g: "#ff6b9d",  // --arm-g
+  // Data-series colors read the CSS custom properties at draw time (so the light theme
+  // recolors charts, matching how chart chrome already themes); the hexes are dark-theme
+  // fallbacks so charts still render without css/styles.css.
+  var ARM_FALLBACK = {
+    r1: "#5b9dff", r2: "#7c5cff", x: "#35d07f", y: "#ffb454", g: "#ff6b9d",
+    xY: "#c792ea", yx: "#f78c6c", Xy: "#80cbc4", baseline: "#9fb0c6",
   };
+  function cssVar(name, fallback) {
+    return (ACXCharts && ACXCharts.cssVar) ? ACXCharts.cssVar(name, fallback) : fallback;
+  }
+  function themeColors() {
+    return {
+      ok: cssVar("--ok", "#35d07f"),
+      err: cssVar("--err", "#ff6b6b"),
+      accent: cssVar("--accent", "#5b9dff"),
+      accent2: cssVar("--accent-2", "#7c5cff"),
+      genz: cssVar("--gen-z", "#c792ea"),
+    };
+  }
+  function armColor(a) {
+    return cssVar("--arm-" + a, ARM_FALLBACK[a] || "#9fb0c6");
+  }
   var ARM_ORDER = ["r1", "r2", "x", "y", "g"];
 
   function armSort(a, b) {
@@ -135,6 +143,7 @@
   // ---- draw ---------------------------------------------------------------------------
   function draw() {
     if (!dom || !lastDataset) return;
+    var C = themeColors(); // resolve theme colors at draw time (light/dark both correct)
     var dataset = lastDataset;
     var dsVal = dom.dashDataset ? dom.dashDataset.value || "all" : "all";
     var armVal = dom.dashArm ? dom.dashArm.value || "all" : "all";
@@ -186,18 +195,18 @@
       var sym = (ACXData && ACXData.armSymbol) ? ACXData.armSymbol(a) : a;
       return {
         label: sym,
-        color: ARM_COLORS[a] || null,
+        color: armColor(a),
         segments: [
-          { key: "solved", value: e.solved, color: COLOR_OK, title: "solved: " + e.solved },
-          { key: "unsolved", value: e.unsolved, color: COLOR_ERR, title: "unsolved: " + e.unsolved },
+          { key: "solved", value: e.solved, color: C.ok, title: "solved: " + e.solved },
+          { key: "unsolved", value: e.unsolved, color: C.err, title: "unsolved: " + e.unsolved },
         ],
       };
     });
     ACXCharts.stackedBar(dom.chartSolveByArm, {
       categories: armCategories,
       legend: [
-        { key: "solved", color: COLOR_OK, label: "Solved" },
-        { key: "unsolved", color: COLOR_ERR, label: "Unsolved" },
+        { key: "solved", color: C.ok, label: "Solved" },
+        { key: "unsolved", color: C.err, label: "Unsolved" },
       ],
       yLabel: "presentations",
     });
@@ -207,7 +216,7 @@
       .map(function (i) { return i.path.path_len; });
     var pathLenBins = ACXData.histogram(pathLens, 1);
     ACXCharts.histogram(dom.chartPathlenHist, pathLenBins, {
-      color: COLOR_ACCENT, xLabel: "path length (moves)", yLabel: "solved presentations",
+      color: C.accent, xLabel: "path length (moves)", yLabel: "solved presentations",
     });
 
     // ---- chart 3: nodes explored histogram (solved only) -----------------------
@@ -215,7 +224,7 @@
       .map(function (i) { return i.calib.nodes_explored; });
     var nodesBins = ACXData.histogram(nodes, binSizeFor(nodes, 24));
     ACXCharts.histogram(dom.chartNodesSolved, nodesBins, {
-      color: COLOR_ACCENT2, xLabel: "nodes explored", yLabel: "solved presentations",
+      color: C.accent2, xLabel: "nodes explored", yLabel: "solved presentations",
     });
 
     // ---- chart 4: wall time histogram (solved only) -----------------------------
@@ -223,7 +232,7 @@
       .map(function (i) { return i.calib.wall_time_s; });
     var timeBins = ACXData.histogram(times, binSizeFor(times, 24));
     ACXCharts.histogram(dom.chartTimeHist, timeBins, {
-      color: COLOR_GENZ, xLabel: "wall time (s)", yLabel: "solved presentations",
+      color: C.genz, xLabel: "wall time (s)", yLabel: "solved presentations",
       xTickFormat: function (x) { return (Math.round(x * 1000) / 1000) + "s"; },
     });
 
@@ -240,16 +249,16 @@
       return {
         label: d,
         segments: [
-          { key: "solved", value: e.solved, color: COLOR_OK, title: "solved: " + e.solved },
-          { key: "unsolved", value: e.unsolved, color: COLOR_ERR, title: "unsolved: " + e.unsolved },
+          { key: "solved", value: e.solved, color: C.ok, title: "solved: " + e.solved },
+          { key: "unsolved", value: e.unsolved, color: C.err, title: "unsolved: " + e.unsolved },
         ],
       };
     });
     ACXCharts.stackedBar(dom.chartSolveByDataset, {
       categories: datasetCategories,
       legend: [
-        { key: "solved", color: COLOR_OK, label: "Solved" },
-        { key: "unsolved", color: COLOR_ERR, label: "Unsolved" },
+        { key: "solved", color: C.ok, label: "Solved" },
+        { key: "unsolved", color: C.err, label: "Unsolved" },
       ],
       yLabel: "presentations",
     });
