@@ -276,7 +276,7 @@
         "</td><td>" + fmtPct(pct(allSolved.length, items.length)) + "</td><td>" + fmtOr(tMedPath) +
         "</td><td>" + fmtOr(tMedNodes) + "</td><td>" + fmtOr(tMedTime, 3) + "</td></tr>";
       dom.dashTable.innerHTML =
-        "<thead><tr><th>Arm</th><th>N</th><th>Solved</th><th>Solved %</th>" +
+        "<thead><tr><th>z = w</th><th>N</th><th>Solved</th><th>Solved %</th>" +
         "<th>Median path len</th><th>Median nodes (solved)</th><th>Median wall time s (solved)</th></tr></thead>" +
         "<tbody>" + (rows.length ? rows.join("") : '<tr><td colspan="7">No data</td></tr>') + "</tbody>" +
         (rows.length ? "<tfoot>" + totalRow + "</tfoot>" : "");
@@ -300,7 +300,10 @@
     var dsVal = dom.dashDataset ? dom.dashDataset.value : "all";
     var subVal = dom.dashSubset ? dom.dashSubset.value : "all";
     var armVal = dom.dashArm ? dom.dashArm.value : "all";
-    populateSelect(dom.dashDataset, dataset.datasets.slice().sort(), dsVal);
+    var DATASET_LABELS = { "1190MS": "MS(1190) — full family", "ms_reps_unsolved": "Unsolved-class reps (261)" };
+    populateSelect(dom.dashDataset, dataset.datasets.slice().sort(), dsVal, function (d) {
+      return DATASET_LABELS[d] || d;
+    });
     populateSelect(dom.dashSubset, (dataset.subsets || []).slice().sort(), subVal, function (s) {
       return (ACXData && ACXData.subsetLabel) ? ACXData.subsetLabel(s) : s;
     });

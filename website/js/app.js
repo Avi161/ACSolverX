@@ -16,10 +16,13 @@
 
   // ---- data summary / status dot -------------------------------------------------
 
-  function setStatus(text, colorVar) {
+  function setStatus(text, colorVar, titleText) {
     var summaryEl = document.getElementById("data-summary");
     var dotEl = document.getElementById("data-dot");
-    if (summaryEl) summaryEl.textContent = text;
+    if (summaryEl) {
+      summaryEl.textContent = text;
+      summaryEl.title = titleText || text; // the long-form label lives in the tooltip
+    }
     if (dotEl) dotEl.style.backgroundColor = "var(" + colorVar + ")";
   }
 
@@ -88,7 +91,10 @@
             var records = [];
             for (var i = 0; i < texts.length; i++) records = records.concat(ACXData.parseJsonl(texts[i]));
             var dataset = reload(records);
-            setStatus(label + " · " + dataset.counts.withPath + " solutions", "--ok");
+            // short human status in the header; the full jargon-dense manifest label as tooltip
+            var nPres = dataset.byIdx ? dataset.byIdx.size : 0;
+            setStatus("Sample data · " + dataset.counts.withPath + " solution paths · " +
+              nPres.toLocaleString() + " presentations", "--ok", label);
           });
       })
       .catch(function (err) {
@@ -119,12 +125,18 @@
       .then(function (result) {
         var records = [];
         for (var i = 0; i < result.texts.length; i++) records = records.concat(ACXData.parseJsonl(result.texts[i]));
+        // count records buildDataset will silently drop, so a wrong-shape upload isn't a mystery
+        var unknown = 0;
+        for (var j = 0; j < records.length; j++) {
+          if (ACXData.classifyRecord(records[j]) === "unknown") unknown++;
+        }
         var dataset = reload(records);
-        setStatus("Custom · " + dataset.counts.withPath + " solutions", "--accent-2");
+        setStatus("Custom · " + dataset.counts.withPath + " solutions", unknown ? "--warn" : "--accent-2");
         if (hintEl) {
           var names = files.map(function (f) { return f.name; }).join(", ");
           hintEl.textContent = "Loaded " + files.length + " file(s) (" + names + ") — " +
-            dataset.counts.total + " records merged.";
+            dataset.counts.total + " records merged" +
+            (unknown ? " (" + unknown + " unrecognized record(s) skipped — expected path/calibration/registry JSONL)." : ".");
         }
       })
       .catch(function (err) {

@@ -77,12 +77,20 @@
   <main class="app-main">
     <!-- =============================== SOLUTIONS ============================== -->
     <section class="view" id="view-solutions" data-view="solutions">
+      <!-- 2-sentence orientation for first-time visitors; links to the full About page. -->
+      <p class="view-intro" id="solutions-intro">
+        Each card is one <strong>balanced presentation</strong> of the trivial group. Open a solved one
+        to replay, move by move, how a greedy search trivialized it — and switch the
+        <code>z&nbsp;=&nbsp;w</code> selector to watch the same presentation solved under a different
+        change of variables. <a href="#/about">How it works →</a>
+      </p>
+
       <div class="stats-row" id="solutions-stats"><!-- viewer.js fills stat cards --></div>
 
       <div class="controls" id="solutions-controls">
-        <div class="segmented" id="view-toggle" role="group" aria-label="Layout">
-          <button class="seg active" data-layout="grid" type="button">Grid (n,w)</button>
-          <button class="seg" data-layout="cards" type="button">Cards</button>
+        <div class="segmented invisible" id="view-toggle" role="group" aria-label="Layout">
+          <button class="seg active" data-layout="cards" type="button">Cards</button>
+          <button class="seg" data-layout="grid" type="button">Grid (n,w)</button>
         </div>
         <input type="search" class="search-input" id="search-input"
           placeholder="Search by index (e.g. 1, 12, 100)…" />
@@ -98,9 +106,18 @@
         <label class="select-wrap">Subset
           <select id="subset-filter"><option value="all">All subsets</option></select>
         </label>
-        <label class="select-wrap">Arm
+        <label class="select-wrap">Change of variables
           <select id="arm-filter"><option value="all">All z-words</option></select>
         </label>
+      </div>
+
+      <!-- Legend: what the pills, badges and z=w dots mean. Static. -->
+      <div class="filters-legend" id="filters-legend">
+        <span class="lg-item"><span class="pill pill-solved">Solved</span> a stored, replayable path</span>
+        <span class="lg-item"><span class="pill pill-unsolved">Unsolved</span> search hit its node budget</span>
+        <span class="lg-item"><span class="pill pill-unattempted">Not attempted</span> never searched</span>
+        <span class="lg-item"><span class="badge-subset badge-original">Original 640</span><span
+            class="badge-subset badge-hard">Hard 550</span> provenance within MS(1190)</span>
       </div>
 
       <!-- (n,w) grid: the whole Miller–Schupp family as a spreadsheet — rows = word w, columns

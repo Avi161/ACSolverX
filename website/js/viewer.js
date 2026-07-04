@@ -24,6 +24,12 @@
 
   const D = global.ACXData;
   const ARM_ORDER = ["r1", "r2", "x", "y", "g"];
+  // Arms hidden from the z=w views: baseline is the 2-generator control (own tab) — routing it
+  // through buildSteps would mis-decode generator y as the stabilizer z.
+  const HIDDEN_ARMS = new Set(["baseline"]);
+  // Human-readable dataset names for selects (option VALUES stay the raw ids — filters key on them).
+  const DATASET_LABELS = { "1190MS": "MS(1190) — full family", "ms_reps_unsolved": "Unsolved-class reps (261)" };
+  function datasetLabel(ds) { return DATASET_LABELS[ds] || ds; }
 
   // Base durations (ms) at Normal speed; the speed select multiplies these.
   const DUR = {
@@ -43,7 +49,7 @@
   let gridData = null;         // reps_grid.json: the (n,w) map of the whole MS(1190) family
   let gridFetchStarted = false;
 
-  const filters = { search: "", solved: "all", dataset: "all", subset: "all", arm: "all", layout: "grid" };
+  const filters = { search: "", solved: "all", dataset: "all", subset: "all", arm: "all", layout: "cards" };
 
   const player = {
     entry: null,
@@ -127,7 +133,9 @@
     const order = [];
     for (const a of ARM_ORDER) if (entry.arms.has(a)) order.push(a);
     const extra = [];
-    for (const a of entry.arms.keys()) if (order.indexOf(a) === -1) extra.push(a);
+    for (const a of entry.arms.keys()) {
+      if (order.indexOf(a) === -1 && !HIDDEN_ARMS.has(a)) extra.push(a);
+    }
     extra.sort();
     return order.concat(extra);
   }
@@ -229,6 +237,14 @@
       if (!card || !dom.grid.contains(card) || card.classList.contains("card-unattempted")) return;
       openPlayer(card.getAttribute("data-dataset"), card.getAttribute("data-idx"));
     });
+    // cards carry role="button" — give keyboard users the activation a real button would have
+    dom.grid.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const card = e.target.closest(".presentation-card");
+      if (!card || !dom.grid.contains(card) || card.classList.contains("card-unattempted")) return;
+      e.preventDefault();
+      openPlayer(card.getAttribute("data-dataset"), card.getAttribute("data-idx"));
+    });
 
     dom.viewToggle.addEventListener("click", function (e) {
       const btn = e.target.closest(".seg");
@@ -241,6 +257,13 @@
     dom.nwGrid.addEventListener("click", function (e) {
       const cell = e.target.closest(".nw-cell");
       if (!cell || !dom.nwGrid.contains(cell) || cell.classList.contains("nw-cell-dead")) return;
+      openPlayer(cell.getAttribute("data-dataset"), cell.getAttribute("data-idx"));
+    });
+    dom.nwGrid.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const cell = e.target.closest(".nw-cell");
+      if (!cell || !dom.nwGrid.contains(cell) || cell.classList.contains("nw-cell-dead")) return;
+      e.preventDefault();
       openPlayer(cell.getAttribute("data-dataset"), cell.getAttribute("data-idx"));
     });
   }
@@ -348,7 +371,13 @@
     const nZ = filters.dataset !== "all" ? dataset.armsByDataset[filters.dataset] : null;
     const num = function (n) { return n.toLocaleString(); };
     let totalSub = scope.join(" · ");
-    if (cellMode && nZ) totalSub = num(g.presentations) + " × " + nZ + " z-words";
+    if (cellMode && nZ) {
+      // the per-dataset arm count may include the 2-gen baseline (hidden from these views) — say so
+      const hasBase = dataset.items.some(function (it) {
+        return it.dataset === filters.dataset && HIDDEN_ARMS.has(it.arm);
+      });
+      totalSub = num(g.presentations) + " × " + nZ + (hasBase ? " runs (z-words + baseline)" : " z-words");
+    }
 
     const cards = [
       { label: cellMode ? "Presentation × z-word" : "Presentations", value: num(g.total), sub: totalSub },
@@ -389,7 +418,7 @@
     clear(dom.datasetSelect);
     dom.datasetSelect.appendChild(h("option", { value: "all" }, "All datasets"));
     for (const dsName of dataset.datasets) {
-      dom.datasetSelect.appendChild(h("option", { value: dsName }, dsName));
+      dom.datasetSelect.appendChild(h("option", { value: dsName }, datasetLabel(dsName)));
     }
     // Default to MS(1190) so the headline numbers read over the full 1190 out of the box.
     filters.dataset = dataset.datasets.indexOf("1190MS") !== -1 ? "1190MS" : "all";
@@ -400,7 +429,8 @@
     clear(dom.armFilter);
     dom.armFilter.appendChild(h("option", { value: "all" }, "All z-words"));
     for (const arm of dataset.arms) {
-      dom.armFilter.appendChild(h("option", { value: arm }, D.armSymbol(arm)));
+      if (HIDDEN_ARMS.has(arm)) continue; // baseline lives in its own tab
+      dom.armFilter.appendChild(h("option", { value: arm }, "z = " + D.armSymbol(arm)));
     }
     dom.armFilter.value = "all";
   }
@@ -494,7 +524,9 @@
   function renderGrid() {
     renderStats(); // stats always mirror the current selection
     const canGrid = gridAvailable();
-    dom.viewToggle.classList.toggle("hidden", !canGrid);
+    // .invisible (not .hidden) reserves the toggle's space, so the late reps_grid.json
+    // arrival doesn't shift the controls row (the old load-time layout flash).
+    dom.viewToggle.classList.toggle("invisible", !canGrid);
     const useGrid = canGrid && filters.layout === "grid";
     dom.nwGrid.classList.toggle("hidden", !useGrid);
     dom.grid.classList.toggle("hidden", useGrid);
@@ -580,7 +612,13 @@
             ? "MS(" + n + ", " + w + ") · trivialized · 1190MS #" + cell.ms_idx
             : "MS(" + n + ", " + w + ") → unsolved class " + cell.status + " · rep #" + cell.rep_idx + " · z ∈ {r₁, r₂, x, y}",
         }, trivial ? "" : cell.status);
-        if (clickable) { td.setAttribute("data-dataset", targetDs); td.setAttribute("data-idx", String(targetIdx)); }
+        if (clickable) {
+          td.setAttribute("data-dataset", targetDs);
+          td.setAttribute("data-idx", String(targetIdx));
+          td.setAttribute("tabindex", "0");
+          td.setAttribute("role", "button");
+          td.setAttribute("aria-label", td.getAttribute("title"));
+        }
         tr.appendChild(td);
       }
       tbody.appendChild(tr);
@@ -1383,13 +1421,13 @@
     filters.solved = "all";
     filters.subset = "all";
     filters.arm = "all";
-    filters.layout = "grid";
+    filters.layout = "cards";
     dom.search.value = "";
     for (const s of dom.filterButtons.querySelectorAll(".seg")) {
       s.classList.toggle("active", s.getAttribute("data-filter") === "all");
     }
     for (const s of dom.viewToggle.querySelectorAll(".seg")) {
-      s.classList.toggle("active", s.getAttribute("data-layout") === "grid");
+      s.classList.toggle("active", s.getAttribute("data-layout") === "cards");
     }
 
     ensureGridData();

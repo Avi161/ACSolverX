@@ -1488,6 +1488,35 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 }
 
 /* in-player legend (static, always visible) */
+/* reserves space (unlike .hidden) — used for the layout toggle before reps_grid.json lands */
+.invisible { visibility: hidden; }
+
+/* first-time-visitor orientation strip on Solutions */
+.view-intro {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  max-width: 860px;
+  margin-bottom: 16px;
+}
+.view-intro code { font-family: var(--mono); color: var(--gen-z); }
+.view-intro a { color: var(--accent); text-decoration: none; }
+.view-intro a:hover { text-decoration: underline; }
+
+/* filter/pill legend under the Solutions controls */
+.filters-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin: -6px 0 14px;
+}
+.filters-legend .lg-item { display: inline-flex; align-items: center; gap: 6px; }
+.filters-legend .pill,
+.filters-legend .badge-subset { pointer-events: none; }
+
 .player-legend {
   display: flex;
   flex-wrap: wrap;
