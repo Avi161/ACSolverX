@@ -32,10 +32,14 @@
   const datasetLabel = (ds) => D.datasetLabel(ds);
 
   // Base durations (ms) at Normal speed; the speed select multiplies these.
+  // Rotation is PER-SLOT (rotateStep + rotateStepGap per tick, whole phase capped at
+  // rotateCap) so a k-slot rotation reads as k countable steps, never one fast glide.
   const DUR = {
-    context: 900, invert: 950, rotate: 1100, rotateSkip: 350, splice: 1100,
+    context: 900, invert: 950,
+    rotateStep: 240, rotateStepGap: 90, rotateCap: 3000, rotateSkip: 350,
+    splice: 1100,
     pluckMark: 320, pluckGap: 220, pluckPause: 240,
-    cyclic: 900, result: 900, betweenSteps: 550,
+    cyclic: 900, result: 900, betweenSteps: 800, phaseGap: 450,
   };
   const GAP = 4;                                  // px gap between tiles (matches .slot-tiles/.rot-strip CSS)
   const RING_W = 84;                              // ring inset width + gap, reserved per row
@@ -1084,12 +1088,14 @@
     cut.style.transform = "rotate(" + (-k * 360 / n) + "deg)";
   }
 
-  /** Sliding rotation in the row: a doubled-strip carousel. Tiles slide RIGHT by k slots,
-   *  wrapping in from the left — the linear shadow of the ring's cut moving. */
-  async function slideRotate(entry, word, k, tile, ms, token, roleCls) {
+  /** Sliding rotation in the row: a doubled-strip carousel that ticks ONE SLOT at a time,
+   *  wrapping in from the left — k discrete slides with a breather between them, so the eye
+   *  can count the rotation instead of parsing one fast glide. advanceCut(t, ms) (optional)
+   *  is called once per tick so the ring's cut marker steps in lockstep with the tiles. */
+  async function slideRotate(entry, word, k, tile, stepMs, gapMs, token, roleCls, advanceCut) {
     const n = word.length;
     const kk = n > 0 ? ((k % n) + n) % n : 0;
-    if (kk === 0 || n < 2) return await wait(ms, token); // nothing moves — caller narrates why
+    if (kk === 0 || n < 2) return await wait(gapMs, token); // this row sits still — caller narrates why
     const slotW = tile + GAP;
     const viewport = h("span", { class: "rot-viewport" });
     viewport.style.width = (n * slotW - GAP) + "px";
@@ -1104,9 +1110,12 @@
     entry.wrap.appendChild(viewport);
     strip.style.transform = "translateX(" + (-n * slotW) + "px)";  // window shows copy 2 ≡ word
     void strip.offsetWidth;                                        // commit start before transitioning
-    strip.style.transition = "transform " + ms + "ms " + EASE;
-    strip.style.transform = "translateX(" + (-(n - kk) * slotW) + "px)"; // window lands on roll(word,k)
-    if (!(await wait(ms + 40, token))) return false;
+    for (let t = 1; t <= kk; t++) {
+      strip.style.transition = "transform " + stepMs + "ms " + EASE;
+      strip.style.transform = "translateX(" + (-(n - t) * slotW) + "px)"; // one slot right
+      if (advanceCut) advanceCut(t, stepMs);
+      if (!(await wait(stepMs + (t < kk ? gapMs : 40), token))) return false;
+    }
     setTiles(entry, D.rollWord(word, kk), roleCls);
     return true;
   }
@@ -1294,23 +1303,33 @@
       if (!(await flipInvert(rowP, recon.cBase, tile, dur(DUR.invert), token, clsP))) return;
     }
 
-    // -- Rotate: the ring's cut turns; the row slides with wrap-around ----------------
+    // -- Rotate: the ring's cut ticks one slot at a time; the row slides in lockstep -----
     setPhase(chips, "Rotate");
     const nL = recon.ra.length, nP = recon.c.length;
     const iEff = nL > 0 ? ((recon.iRot % nL) + nL) % nL : 0;
     const jEff = nP > 0 ? ((recon.jRot % nP) + nP) % nP : 0;
     const anyRot = iEff !== 0 || jEff !== 0;
     narr.textContent = anyRot
-      ? "Relators are CYCLIC — rotating only moves the cut (watch the rings). Slide until the touching ends are inverses."
+      ? "Relators are CYCLIC — rotating only moves the cut, one slot per tick (watch the rings). Slide until the touching ends are inverses."
       : "No rotation needed — the touching ends are already inverses.";
-    const rotMs = dur(anyRot ? DUR.rotate : DUR.rotateSkip);
-    ringCutOf(rowL, iEff, nL, rotMs);
-    ringCutOf(rowP, jEff, nP, rotMs);
-    const slid = await Promise.all([
-      slideRotate(rowL, recon.ra, iEff, tile, rotMs, token, clsL),
-      slideRotate(rowP, recon.c, jEff, tile, rotMs, token, clsP),
-    ]);
-    if (!slid[0] || !slid[1]) return;
+    if (anyRot) {
+      // Per-tick duration shrinks for large rotations so the whole phase stays ≤ rotateCap,
+      // but the motion always stays DISCRETE — never a single smooth glide.
+      const stepFor = function (ticks) {
+        return ticks ? Math.min(dur(DUR.rotateStep), dur(DUR.rotateCap) / ticks) : 0;
+      };
+      const gapMs = dur(DUR.rotateStepGap);
+      const slid = await Promise.all([
+        slideRotate(rowL, recon.ra, iEff, tile, stepFor(iEff), gapMs, token, clsL,
+          function (t, ms) { ringCutOf(rowL, t, nL, ms); }),
+        slideRotate(rowP, recon.c, jEff, tile, stepFor(jEff), gapMs, token, clsP,
+          function (t, ms) { ringCutOf(rowP, t, nP, ms); }),
+      ]);
+      if (!slid[0] || !slid[1]) return;
+    } else if (!(await wait(dur(DUR.rotateSkip), token))) {
+      return;
+    }
+    if (!(await wait(dur(DUR.phaseGap), token))) return; // breather: let the rotation register
 
     // -- Splice: partner tiles fly into row A; the seam marks the join ----------------
     setPhase(chips, "Splice");
@@ -1327,6 +1346,7 @@
     }
     if (!(await wait(dur(DUR.splice) + 60, token))) return;
     rowA.tiles.forEach(function (t) { t.style.transition = ""; }); // hand transforms back to CSS
+    if (!(await wait(dur(DUR.phaseGap), token))) return; // breather: see the seam before it zips
 
     // -- Cancel: inverse pairs pluck one at a time, zipping shut at the seam ----------
     setPhase(chips, "Cancel");
@@ -1449,6 +1469,14 @@
     wireControls();
     wirePlayerControls();
     wireKeyboard();
+    // The speed choice survives reloads (Replay's Instant→Normal bump is not persisted).
+    try {
+      const saved = localStorage.getItem("acx-speed");
+      if (saved && dom.speed.querySelector('option[value="' + saved + '"]')) dom.speed.value = saved;
+    } catch (e) { /* storage unavailable (private mode) — keep the markup default */ }
+    dom.speed.addEventListener("change", function () {
+      try { localStorage.setItem("acx-speed", dom.speed.value); } catch (e) { /* ignore */ }
+    });
     initialized = true;
   }
 
