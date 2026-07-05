@@ -123,6 +123,8 @@
       categories: covCats,
       legend: [{ key: "s", color: okColor(), label: "Solved" }, { key: "u", color: errColor(), label: "Unsolved" }],
       yLabel: "presentations",
+      title: "Coverage by arm on the original 640",
+      desc: "Solved vs unsolved per arm, baseline and each z-word.",
     });
 
     // ---- median nodes per arm (solved) ----
@@ -133,6 +135,8 @@
           segments: [{ key: "nodes", value: med || 0, color: armColor(a), title: "median nodes: " + (med == null ? "—" : med) }] };
       }),
       yLabel: "median nodes (solved)",
+      title: "Median nodes explored per arm",
+      desc: "Median search cost over each arm's solved presentations.",
     });
 
     // ---- median path length per arm (solved) ----
@@ -143,6 +147,8 @@
           segments: [{ key: "plen", value: med || 0, color: armColor(a), title: "median path length: " + (med == null ? "—" : med) }] };
       }),
       yLabel: "median path length (solved)",
+      title: "Median path length per arm",
+      desc: "Median supermoves to trivialize over each arm's solved presentations.",
     });
 
     // ---- per-idx head-to-head: baseline vs selected arm (nodes + path scatters) ----
@@ -160,6 +166,8 @@
     ACXCharts.scatter(dom.chartScatter, pr.nodePts, {
       xLabel: "baseline nodes explored", yLabel: (armLabel(selArm) + " nodes explored"),
       color: armColor(selArm), log: true, diagonal: true,
+      title: "Baseline vs arm nodes explored",
+      desc: "One point per presentation both solve; below the diagonal the arm was cheaper.",
     });
     if (dom.scatterNote) {
       dom.scatterNote.textContent = pr.n
@@ -171,6 +179,8 @@
     ACXCharts.scatter(dom.chartScatterPath, pr.pathPts, {
       xLabel: "baseline path length", yLabel: (armLabel(selArm) + " path length"),
       color: armColor(selArm), log: true, diagonal: true,
+      title: "Baseline vs arm path length",
+      desc: "One point per presentation both solve; below the diagonal the arm found a shorter path.",
     });
     if (dom.scatterPathNote) {
       dom.scatterPathNote.textContent = pr.n

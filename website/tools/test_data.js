@@ -119,6 +119,34 @@ eq(ds.counts.presentations, undefined, "counts.presentations removed");
 ok(typeof ds.counts.total === "number" && typeof ds.counts.withPath === "number",
    "counts keeps total + withPath");
 
+// ---- 2c. log-scale histogram bins (P5) ----
+console.log("[2c] histogram {log:true}");
+{
+  const vals = [0, 1, 3, 9, 40, 700, 480000];
+  const bins = D.histogram(vals, null, { log: true });
+  ok(bins.length > 5, "log bins span the decades (" + bins.length + " bins)");
+  let sum = 0, increasing = true;
+  for (let i = 0; i < bins.length; i++) {
+    sum += bins[i].count;
+    if (bins[i].x1 <= bins[i].x0) increasing = false;
+    if (i > 0 && bins[i].x0 !== bins[i - 1].x1) increasing = false; // contiguous
+  }
+  eq(sum, vals.length, "log bins conserve the count");
+  ok(increasing, "log bin edges strictly increase and are contiguous");
+  ok(bins[bins.length - 1].x1 > 480000, "last edge exceeds the max value");
+  // 0 folds into the first bin together with 1 (first bin is [1,2))
+  eq(bins[0].x0, 1, "first edge at the decade of the smallest positive value");
+  eq(bins[0].count, 2, "zero folds into the first bin (0 and 1)");
+  // sub-1 values get sub-1 decades (wall-time shape)
+  const tbins = D.histogram([0.0009, 0.002, 0.5, 12], null, { log: true });
+  ok(Math.abs(tbins[0].x0 - 0.0001) < 1e-12 || tbins[0].x0 <= 0.0009,
+     "sub-1 values get a sub-1 first edge (" + tbins[0].x0 + ")");
+  eq(tbins.reduce((a, b) => a + b.count, 0), 4, "time-shaped log bins conserve the count");
+  // linear path unchanged
+  const lin = D.histogram([1, 2, 3], 1);
+  eq(lin.length, 3, "linear bins unchanged by the log extension");
+}
+
 // ---- 3. stable-slot invariants over every stored path ----
 console.log("[3] stable-slot invariants (all bundled paths)");
 let paths = 0, stepChecks = 0, viol = 0;

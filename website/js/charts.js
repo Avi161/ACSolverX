@@ -74,10 +74,19 @@
     return String(r);
   }
 
-  function svgOpen(w, h) {
+  /** opts.title/desc make the chart non-silent to assistive tech (role=img + aria-label + <title>/<desc>). */
+  function svgOpen(w, h, opts) {
+    var a11y = "";
+    var inner = "";
+    if (opts && (opts.title || opts.desc)) {
+      var label = (opts.title || "") + (opts.desc ? (opts.title ? " — " : "") + opts.desc : "");
+      a11y = ' role="img" aria-label="' + esc(label) + '"';
+      if (opts.title) inner += "<title>" + esc(opts.title) + "</title>";
+      if (opts.desc) inner += "<desc>" + esc(opts.desc) + "</desc>";
+    }
     return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="100%" height="auto" ' +
       'preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" ' +
-      'font-family="' + FONT + '">';
+      'font-family="' + FONT + '"' + a11y + '>' + inner;
   }
 
   function emptyChart(w, h) {
@@ -133,7 +142,7 @@
     var barW = Math.max(8, Math.min(72, bandW * 0.55));
 
     var parts = [];
-    parts.push(svgOpen(VB_W, VB_H));
+    parts.push(svgOpen(VB_W, VB_H, { title: spec.title, desc: spec.desc }));
 
     // legend (top)
     if (legend.length) {
@@ -191,7 +200,7 @@
           // against the bright/mid-tone status fills (--ok/--err/etc) this draws on top of.
           if (segH >= 16) {
             parts.push('<text x="' + (cx + barW / 2).toFixed(2) + '" y="' + (segY + segH / 2 + 4).toFixed(2) +
-              '" text-anchor="middle" font-size="10" fill="' + COLOR_INK + '">' + fmtNum(val) + '</text>');
+              '" text-anchor="middle" font-size="11" fill="' + COLOR_INK + '">' + fmtNum(val) + '</text>');
           }
         }
         yCursor = segY;
@@ -253,7 +262,7 @@
     var barW = Math.max(1, bandW - 2); // 2px gap between adjacent bars
 
     var parts = [];
-    parts.push(svgOpen(VB_W, VB_H));
+    parts.push(svgOpen(VB_W, VB_H, { title: opts.title, desc: opts.desc }));
 
     // gridlines + y ticks
     for (var t = 0; t <= yTickCount; t++) {
@@ -296,7 +305,7 @@
           '<title>' + esc(title) + '</title></rect>');
         if (bi % valueLabelStride === 0 || bi === n - 1) {
           parts.push('<text x="' + (bx + barW / 2).toFixed(2) + '" y="' + (by - 5).toFixed(2) +
-            '" text-anchor="middle" font-size="10" fill="' + COLOR_TEXT + '">' + fmtNum(b.count) + '</text>');
+            '" text-anchor="middle" font-size="11" fill="' + COLOR_TEXT + '">' + fmtNum(b.count) + '</text>');
         }
       } else {
         // still carry a tooltip anchor for empty bins so hovering the axis is not dead
@@ -305,7 +314,7 @@
       }
       if (bi % labelStride === 0 || bi === n - 1) {
         parts.push('<text x="' + (margin.left + bandW * bi + bandW / 2).toFixed(2) + '" y="' + (margin.top + plotH + 18) +
-          '" text-anchor="middle" font-size="10" fill="' + COLOR_TICK + '">' + esc(xTickFormat(b.x0)) + '</text>');
+          '" text-anchor="middle" font-size="11" fill="' + COLOR_TICK + '">' + esc(xTickFormat(b.x0)) + '</text>');
       }
     }
 
@@ -367,7 +376,7 @@
     function px(v) { return margin.left + (tv(v) - dmin) / (dmax - dmin) * plotW; }
     function py(v) { return margin.top + plotH - (tv(v) - dmin) / (dmax - dmin) * plotH; }
 
-    var parts = [svgOpen(VB_W, VB_H)];
+    var parts = [svgOpen(VB_W, VB_H, { title: opts.title, desc: opts.desc })];
     var ticks = 5;
     for (var t = 0; t <= ticks; t++) {
       var frac = t / ticks;
@@ -378,8 +387,8 @@
       parts.push('<line x1="' + gx + '" y1="' + margin.top + '" x2="' + gx + '" y2="' + (margin.top + plotH) +
         '" stroke="' + COLOR_BORDER + '" stroke-width="1"></line>');
       var val = useLog ? Math.pow(10, dmin + frac * (dmax - dmin)) : (dmin + frac * (dmax - dmin));
-      parts.push('<text x="' + (margin.left - 8) + '" y="' + (gy + 4) + '" text-anchor="end" font-size="10" fill="' + COLOR_TICK + '">' + esc(fmtCompact(val)) + '</text>');
-      parts.push('<text x="' + gx + '" y="' + (margin.top + plotH + 16) + '" text-anchor="middle" font-size="10" fill="' + COLOR_TICK + '">' + esc(fmtCompact(val)) + '</text>');
+      parts.push('<text x="' + (margin.left - 8) + '" y="' + (gy + 4) + '" text-anchor="end" font-size="11" fill="' + COLOR_TICK + '">' + esc(fmtCompact(val)) + '</text>');
+      parts.push('<text x="' + gx + '" y="' + (margin.top + plotH + 16) + '" text-anchor="middle" font-size="11" fill="' + COLOR_TICK + '">' + esc(fmtCompact(val)) + '</text>');
     }
     // axis lines
     parts.push('<line x1="' + margin.left + '" y1="' + margin.top + '" x2="' + margin.left + '" y2="' + (margin.top + plotH) + '" stroke="' + COLOR_BORDER + '" stroke-width="1"></line>');

@@ -679,10 +679,17 @@
     for (const it of items) { const k = keyFn(it); m.set(k, (m.get(k) || 0) + 1); }
     return m;
   }
-  /** Histogram of numeric values into fixed-width bins. Returns [{x0,x1,count}]. */
-  function histogram(values, binSize) {
+  /**
+   * Histogram of numeric values. Returns [{x0,x1,count}].
+   * Default: fixed-width bins (binSize, or range/12). With opts.log: 1-2-5 log-scale
+   * bins spanning the data's decades — the right shape for the heavily right-skewed
+   * nodes-explored / wall-time distributions, where linear bins collapse ~all mass
+   * into the first bar. Values ≤ 0 fold into the first bin.
+   */
+  function histogram(values, binSize, opts) {
     const vals = values.filter((v) => v != null && !isNaN(v));
     if (vals.length === 0) return [];
+    if (opts && opts.log) return logHistogram(vals);
     const min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
     const bs = binSize || Math.max(1, Math.ceil((max - min) / 12));
     const start = Math.floor(min / bs) * bs;
@@ -694,6 +701,38 @@
       if (i < 0) i = 0; if (i >= bins.length) i = bins.length - 1;
       bins[i].count++;
     }
+    return bins;
+  }
+
+  function logHistogram(vals) {
+    const pos = vals.filter((v) => v > 0);
+    // no positive values: nothing to span decades with — one degenerate bin
+    if (!pos.length) return [{ x0: 0, x1: 1, count: vals.length }];
+    const min = Math.min.apply(null, pos), max = Math.max.apply(null, pos);
+    // 1-2-5 edges from the decade at/below min until one edge exceeds max
+    const edges = [];
+    let b = Math.pow(10, Math.floor(Math.log10(min)));
+    for (let guard = 0; guard < 40 && (edges.length === 0 || edges[edges.length - 1] <= max); guard++) {
+      for (const m of [1, 2, 5]) {
+        const e = m * b;
+        if (edges.length === 0 || e > edges[edges.length - 1]) {
+          edges.push(e);
+          if (e > max) break;
+        }
+      }
+      b *= 10;
+    }
+    if (edges.length < 2) edges.push(edges[0] * 2);
+    const bins = [];
+    for (let i = 0; i + 1 < edges.length; i++) bins.push({ x0: edges[i], x1: edges[i + 1], count: 0 });
+    for (const v of vals) {
+      let idx = 0; // ≤ first edge (incl. zeros) folds into the first bin
+      for (let i = bins.length - 1; i >= 0; i--) {
+        if (v >= bins[i].x0) { idx = i; break; }
+      }
+      bins[idx].count++;
+    }
+    while (bins.length > 1 && bins[0].count === 0) bins.shift(); // trim empty lead-in decades
     return bins;
   }
 

@@ -113,18 +113,22 @@
       }).join("");
     }
 
-    // histograms (solved only — unsolved hit the node budget)
+    // histograms (solved only — unsolved hit the node budget); nodes use log 1-2-5
+    // bins (heavily right-skewed: most solve near-instantly, a long tail doesn't)
     var nodes = solved.filter(function (i) { return i.calib && i.calib.nodes_explored != null; })
       .map(function (i) { return i.calib.nodes_explored; });
-    var nmin = nodes.length ? Math.min.apply(null, nodes) : 0, nmax = nodes.length ? Math.max.apply(null, nodes) : 0;
-    var nbs = nmax > nmin ? (nmax - nmin) / 24 : undefined;
-    ACXCharts.histogram(dom.chartNodes, ACXData.histogram(nodes, nbs), {
-      color: cssVar("--accent-2", "#7c5cff"), xLabel: "nodes explored", yLabel: "solved presentations",
+    ACXCharts.histogram(dom.chartNodes, ACXData.histogram(nodes, null, { log: true }), {
+      color: cssVar("--accent-2", "#7c5cff"), xLabel: "nodes explored (log bins)", yLabel: "solved presentations",
+      xTickFormat: function (n) { return n >= 1000 ? (Math.round(n / 100) / 10) + "k" : String(n); },
+      title: "Baseline search cost on solved presentations",
+      desc: "Nodes expanded by the 2-generator baseline, in logarithmic bins.",
     });
     var plens = solved.filter(function (i) { return i.path && i.path.path_len != null; })
       .map(function (i) { return i.path.path_len; });
     ACXCharts.histogram(dom.chartPathlen, ACXData.histogram(plens, 1), {
       color: cssVar("--accent", "#5b9dff"), xLabel: "path length (moves)", yLabel: "solved presentations",
+      title: "Baseline solution path length",
+      desc: "Substitution supermoves per solved presentation, no change of variables.",
     });
 
     // path browser (solved, with a stored path)

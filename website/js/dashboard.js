@@ -53,7 +53,6 @@
       chartPathlenHist: q("chart-pathlen-hist"),
       chartNodesSolved: q("chart-nodes-solved"),
       chartTimeHist: q("chart-time-hist"),
-      chartSolveByDataset: q("chart-solve-by-dataset"),
       dashTable: q("dash-table"),
       dashTableScope: q("dash-table-scope"),
     };
@@ -62,22 +61,14 @@
   // ---- small stats helpers ---------------------------------------------------------
   var median = ACXData.median;
   function pct(part, whole) { return whole > 0 ? (part / whole) * 100 : 0; }
-  /**
-   * ACXData.histogram's default bin width is range/12 — fine for roughly-uniform data
-   * (path length) but nodes_explored / wall_time_s are typically heavily right-skewed
-   * (most presentations solve almost instantly, a long tail takes much longer), so 12
-   * wide bins collapse ~90%+ of the mass into a single bar. Pick a finer, still-generic
-   * (no dataset-specific thresholds) bin width so the shape near the skew is visible;
-   * the bucketing itself still happens entirely inside ACXData.histogram.
-   */
-  function binSizeFor(values, targetBins) {
-    var vals = values.filter(function (v) { return v != null && !isNaN(v); });
-    if (!vals.length) return undefined;
-    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
-    var range = max - min;
-    return range > 0 ? range / (targetBins || 24) : undefined;
-  }
   function fmtPct(p) { return p.toFixed(1) + "%"; }
+  /** Compact tick label for the log-binned node histogram (1200 -> 1.2k). */
+  function fmtCompact(n) {
+    n = Math.round(n);
+    if (n >= 1e6) return (Math.round(n / 1e5) / 10) + "M";
+    if (n >= 1e3) return (Math.round(n / 100) / 10) + "k";
+    return String(n);
+  }
   function fmtOr(v, digits) {
     if (v == null || isNaN(v)) return "—";
     return typeof digits === "number" ? v.toFixed(digits) : String(v);
@@ -135,7 +126,6 @@
     var unsolved = items.filter(function (i) { return !i.solved; });
 
     var armsInScope = Array.from(new Set(items.map(function (i) { return i.arm; }))).sort(armSort);
-    var datasetsInScope = Array.from(new Set(items.map(function (i) { return i.dataset; }))).sort();
 
     var scopeText = "Loaded dataset · dataset: " + (dsVal === "all" ? "all" : dsVal) +
       (subVal === "all" ? "" : " · subset: " + (ACXData.subsetLabel ? ACXData.subsetLabel(subVal) : subVal)) +
@@ -194,6 +184,8 @@
         { key: "unsolved", color: C.err, label: "Unsolved" },
       ],
       yLabel: "presentations",
+      title: "Solved vs unsolved by change of variables",
+      desc: "One stacked bar per z-word; green solved, red unsolved runs.",
     });
 
     // ---- chart 2: path length histogram (solved items with a stored path) -----
@@ -202,50 +194,30 @@
     var pathLenBins = ACXData.histogram(pathLens, 1);
     ACXCharts.histogram(dom.chartPathlenHist, pathLenBins, {
       color: C.accent, xLabel: "path length (moves)", yLabel: "solved presentations",
+      title: "Solution path length distribution",
+      desc: "Substitution supermoves per solved presentation.",
     });
 
-    // ---- chart 3: nodes explored histogram (solved only) -----------------------
+    // ---- chart 3: nodes explored histogram (solved only, log 1-2-5 bins) --------
     var nodes = solved.filter(function (i) { return i.calib && i.calib.nodes_explored != null; })
       .map(function (i) { return i.calib.nodes_explored; });
-    var nodesBins = ACXData.histogram(nodes, binSizeFor(nodes, 24));
+    var nodesBins = ACXData.histogram(nodes, null, { log: true });
     ACXCharts.histogram(dom.chartNodesSolved, nodesBins, {
-      color: C.accent2, xLabel: "nodes explored", yLabel: "solved presentations",
+      color: C.accent2, xLabel: "nodes explored (log bins)", yLabel: "solved presentations",
+      xTickFormat: fmtCompact,
+      title: "Search cost on solved presentations",
+      desc: "Nodes expanded before a solution, in logarithmic bins.",
     });
 
-    // ---- chart 4: wall time histogram (solved only) -----------------------------
+    // ---- chart 4: wall time histogram (solved only, log 1-2-5 bins) -------------
     var times = solved.filter(function (i) { return i.calib && i.calib.wall_time_s != null; })
       .map(function (i) { return i.calib.wall_time_s; });
-    var timeBins = ACXData.histogram(times, binSizeFor(times, 24));
+    var timeBins = ACXData.histogram(times, null, { log: true });
     ACXCharts.histogram(dom.chartTimeHist, timeBins, {
-      color: C.genz, xLabel: "wall time (s)", yLabel: "solved presentations",
-      xTickFormat: function (x) { return (Math.round(x * 1000) / 1000) + "s"; },
-    });
-
-    // ---- chart 5: solved vs unsolved by dataset ---------------------------------
-    var byDataset = new Map();
-    datasetsInScope.forEach(function (d) { byDataset.set(d, { solved: 0, unsolved: 0 }); });
-    items.forEach(function (i) {
-      var e = byDataset.get(i.dataset);
-      if (!e) { e = { solved: 0, unsolved: 0 }; byDataset.set(i.dataset, e); }
-      if (i.solved) e.solved++; else e.unsolved++;
-    });
-    var datasetCategories = datasetsInScope.map(function (d) {
-      var e = byDataset.get(d);
-      return {
-        label: d,
-        segments: [
-          { key: "solved", value: e.solved, color: C.ok, title: "solved: " + e.solved },
-          { key: "unsolved", value: e.unsolved, color: C.err, title: "unsolved: " + e.unsolved },
-        ],
-      };
-    });
-    ACXCharts.stackedBar(dom.chartSolveByDataset, {
-      categories: datasetCategories,
-      legend: [
-        { key: "solved", color: C.ok, label: "Solved" },
-        { key: "unsolved", color: C.err, label: "Unsolved" },
-      ],
-      yLabel: "presentations",
+      color: C.genz, xLabel: "wall time (s, log bins)", yLabel: "solved presentations",
+      xTickFormat: function (x) { return x >= 1 ? Math.round(x) + "s" : x + "s"; },
+      title: "Wall-clock time per solved presentation",
+      desc: "Seconds of search, in logarithmic bins.",
     });
 
     // ---- per-arm table -----------------------------------------------------------

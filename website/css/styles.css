@@ -1619,6 +1619,10 @@ body.modal-open { overflow: hidden; }
 /* reserves space (unlike .hidden) — used for the layout toggle before reps_grid.json lands */
 .invisible { visibility: hidden; }
 
+/* Wide chart cards span the grid, but the fixed-viewBox SVG scales with them —
+   cap the rendered width so Comparison's full-width charts stop being gigantic. */
+.chart-card-wide .chart svg { max-width: 760px; margin-inline: auto; }
+
 /* hero — the research-story strip between the data bar and the views */
 .hero {
   width: 100%;
