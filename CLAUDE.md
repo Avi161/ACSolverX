@@ -299,3 +299,55 @@ clamps setTimeout to ~1s, so tick intervals read ~1000ms regardless of DUR value
 STRUCTURE (number/order of discrete transform targets) from instrumentation, and trust foreground
 playback for wall-clock pacing. JS edits also need cmd+shift+r (cache-busting ?v= on index.html
 does NOT bust <script src> caches).
+
+### [2026-07-05] AK(3) z=w word sweep: per-form perf differs ~6x; greedy plateaus at total-len 13 [WORKS][TRAP]
+The AK(3) "wormhole" sweep (`experiments/stable_ac/one_generator/{ak3_words,ak3_probe,run_ak3_wormhole,
+report_ak3}.py`, results under `results/stable_ac/3_generators_w_choices/ak_3_test/`) stabilizes AK(3)
+to 3 generators with a chosen `z=w(x,y)` (~95 literature-grounded words × 8 families) and runs the n=3
+greedy solver. Two AK(3) forms swept: **textbook** `<x,y|xyx=yxy,x³=y⁴>` (where the paper's words are
+provably isolatable) and **rep** `13_1` (`YXyXYx`/`YYYXXXX`, `ms_reps_unsolved` idx 0). [TRAP] Do NOT
+extrapolate compute across forms: rep-form n=3 runs ~780–1160 nodes/s and ~5 GB @500k (⇒ ~10 GB, ~21
+min @1M), but **textbook-form runs ~4600 nodes/s and only ~2–4 GB @1M (~4.5 min/word)** — a ~6x speed
+and ~2.5x memory gap for the *same* group, same solver, just different relator shape. Measure per-form;
+a 500k rep probe wildly over-estimated textbook cost. **Finding:** at 100k, **0/194 (word×form) solved**;
+the search drives total relator length down to a **plateau at 13** (trivial=3) and sticks — the AK(3)
+"second hump." At full 1M the flagship theory words (`xyx`=Fagan, `yxy`, `x³`, `y⁴`, `wk` k=0) each ran
+the FULL 1,000,000 nodes and stayed at mtl=13, unsolved — even provably-isolatable words don't let
+*ordinary greedy substitution* escape (the Lemma-11 destabilization is a supermove greedy doesn't do).
+Rule: for a memory-bounded long sweep, run 1 pool worker with `maxtasksperchild=1` (fresh forked child
+per item releases each item's peak RSS; serial in-process accumulates it and OOMs a 17 GB box); size
+workers from a per-form 1M base-case measurement, not a cross-form extrapolation. `min_total_len` was
+added to `NRelatorSolver` (additive) to rank how close each unsolved word got.
+
+### [2026-07-05] greedy_nrel canonical order DIVERGED from the paper; aligned to Y<y<X<x [TRAP][WORKS]
+The port `greedy_nrel.py` canonicalized relators with **natural signed-int order** (`Y<X<x<y`,
+3-gen `Z<Y<X<x<y<z`), but the original two-hump code `greedy_search.ipynb` uses **`Y < y < X < x`**
+(its `find_minimal_rotation`/`lex_cmp_*` docstrings say so literally; `char_to_array` + `is_less_than`
+= group by generator with higher id first, inverse before generator). [TRAP] A port can pass a
+solved-set differential oracle yet still use a *different canonical order* — because the order only
+breaks priority-queue **ties**, not the rotation+inversion equivalence, so the SOLVED SET is
+order-invariant but **node counts / which path is found** are not (borderline-budget cases can flip).
+Fixed: added `_paper_lt` (order `Z<z<Y<y<X<x`, higher |gen| first, `-g` before `+g`), routed
+`find_minimal_rotation` + `_lex_less` through it, and made `_relator_bytes`/`key_to_state` a
+reversible rank-byte encoding whose byte-order == that order (letters→1..6, 0 stays the separator).
+**Gold-verified**: `canonical_relator`/`canonical_pair` now match the notebook's `canonical_relator_nj`/
+`canonical_pair_nj` byte-for-byte (0 mismatches / 4000+3000 random 2-gen words), a brute-force
+paper-order reference for the 3-gen z-extension (0/4000), key round-trip (0/3000). Head-to-head solve
+of easy idx 0 (`z∈{x,y,r1,yxy}`, both orders) → identical solved/path_len/nodes/verified. **AK(3)
+sweep results are order-INVARIANT** (0 solved, min_total_len=13, nodes=budget under any order), so the
+running sweep (natural order, started pre-fix) needn't restart; new/resumed runs use the paper order.
+Rule: when porting the GS solver, the canonical **letter order** is load-bearing for paper-faithful
+node counts — verify it against the notebook, not just the solved set.
+
+### [2026-07-05] Website views that build innerHTML by string concat need esc() on every record-derived string [WORKS][TRAP]
+The 9-phase website overhaul shipped a verdict panel / ranking bars / hard-class table built by string
+concatenation into innerHTML (dashboard.js, comparison.js). An adversarial review pass (opus subagent
+over `git diff HEAD~10..HEAD`) caught stored XSS: uploaded-JSONL strings (`reg.name`, arm names via
+`armSymbol`, which passes unknown arms through) reached those sinks unescaped — and the Append/Replace
+upload feature exists precisely to load other people's bundles. [TRAP] viewer.js is immune because it
+builds DOM via the `h()`/textContent helper; the trap is only in views that switched to innerHTML
+concat for table/markup convenience. Fix: `ACXData.esc()` (the charts.js escaper, exported) wraps every
+record-derived interpolation. Rule: in this codebase, any new innerHTML sink gets `esc()` on anything
+that ever came from a parsed record — or better, use `h()`. Same review also caught byK[0] counting
+never-attempted presentations as "solved by none" under partial uploads (fixed: `attempted - union`),
+proving the review-after-implementation convention pays for itself even after per-phase browser gates.
