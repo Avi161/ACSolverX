@@ -23,7 +23,8 @@
   "use strict";
 
   const D = global.ACXData;
-  const ARM_ORDER = ["r1", "r2", "x", "y", "g"];
+  const ARM_ORDER = ["r1", "r2", "x", "y"];
+  const REPS_DATASET = "ms_reps_unsolved";
   // Arms hidden from the z=w views: baseline is the 2-generator control (own tab) — routing it
   // through buildSteps would mis-decode generator y as the stabilizer z.
   const HIDDEN_ARMS = new Set(["baseline"]);
@@ -231,10 +232,17 @@
       renderGrid();
     });
 
+    function activateCard(card) {
+      // A rep-covered hard card opens its class representative's player — that run is
+      // the search that covers it; the card itself has no direct runs to show.
+      const repIdx = card.getAttribute("data-rep-idx");
+      if (repIdx != null) openPlayer(REPS_DATASET, repIdx);
+      else openPlayer(card.getAttribute("data-dataset"), card.getAttribute("data-idx"));
+    }
     dom.grid.addEventListener("click", function (e) {
       const card = e.target.closest(".presentation-card");
       if (!card || !dom.grid.contains(card) || card.classList.contains("card-unattempted")) return;
-      openPlayer(card.getAttribute("data-dataset"), card.getAttribute("data-idx"));
+      activateCard(card);
     });
     // cards carry role="button" — give keyboard users the activation a real button would have
     dom.grid.addEventListener("keydown", function (e) {
@@ -242,7 +250,7 @@
       const card = e.target.closest(".presentation-card");
       if (!card || !dom.grid.contains(card) || card.classList.contains("card-unattempted")) return;
       e.preventDefault();
-      openPlayer(card.getAttribute("data-dataset"), card.getAttribute("data-idx"));
+      activateCard(card);
     });
 
     dom.viewToggle.addEventListener("click", function (e) {
@@ -353,38 +361,28 @@
     });
   }
 
-  // ---- stat cards (NON-redundant: presentations, not presentation×arm rows) -----
+  // ---- stat cards (NON-redundant: presentations, never presentation×arm rows) -----
   function renderStats() {
     clear(dom.stats);
     const g = D.groupStats(dataset, {
       dataset: filters.dataset, arm: filters.arm, subset: filters.subset,
     });
     const scope = [];
-    if (filters.dataset !== "all") scope.push(filters.dataset);
+    if (filters.dataset !== "all") scope.push(datasetLabel(filters.dataset));
     if (filters.subset !== "all") scope.push(D.subsetLabel(filters.subset));
     scope.push(filters.arm === "all" ? "all z-words" : "z = " + D.armSymbol(filters.arm));
-
-    // "cell" mode: the unit is one (presentation × z-word) attempt. Total then counts the full
-    // grid (e.g. 1190 × 8 = 9520). With a single arm, cells == presentations, so it reads 1190.
-    const cellMode = filters.arm === "all";
-    const nZ = filters.dataset !== "all" ? dataset.armsByDataset[filters.dataset] : null;
     const num = function (n) { return n.toLocaleString(); };
-    let totalSub = scope.join(" · ");
-    if (cellMode && nZ) {
-      // the per-dataset arm count may include the 2-gen baseline (hidden from these views) — say so
-      const hasBase = dataset.items.some(function (it) {
-        return it.dataset === filters.dataset && HIDDEN_ARMS.has(it.arm);
-      });
-      totalSub = num(g.presentations) + " × " + nZ + (hasBase ? " runs (z-words + baseline)" : " z-words");
-    }
 
     const cards = [
-      { label: cellMode ? "Presentation × z-word" : "Presentations", value: num(g.total), sub: totalSub },
-      { label: "Solved", value: num(g.solved), cls: "stat-ok", sub: g.attempted ? Math.round(100 * g.solved / g.attempted) + "% of searched" + (cellMode ? " cells" : "") : "" },
-      { label: "Unsolved (searched)", value: num(g.unsolved), cls: "stat-err", sub: "budget exhausted" },
-      { label: "Not attempted", value: num(g.notAttempted), cls: "stat-muted", sub: g.notAttempted ? (cellMode ? "z-word cells not yet run" : "awaiting a bigger run") : "" },
-      { label: "Avg. path length", value: g.avgPathLen == null ? "—" : g.avgPathLen.toFixed(2), sub: cellMode ? "best z-word per presentation" : "" },
-    ];
+      { label: "Presentations", value: num(g.total), sub: scope.join(" · ") },
+      { label: "Solved", value: num(g.solved), cls: "stat-ok", sub: g.attempted ? Math.round(100 * g.solved / g.attempted) + "% of searched" : "" },
+      { label: "Unsolved (searched)", value: num(g.unsolvedSearched), cls: "stat-err", sub: "budget exhausted" },
+      g.coveredViaReps > 0
+        ? { label: "Covered via reps", value: num(g.coveredViaReps), cls: "stat-warn", sub: "searched via class rep · 0 solved" }
+        : null,
+      { label: "Not attempted", value: num(g.notAttempted), cls: "stat-muted", sub: g.notAttempted ? "no direct run or rep link" : "" },
+      { label: "Avg. path length", value: g.avgPathLen == null ? "—" : g.avgPathLen.toFixed(2), sub: "best path per presentation" },
+    ].filter(Boolean);
     for (const c of cards) {
       dom.stats.appendChild(h("div", { class: "stat-card" + (c.cls ? " " + c.cls : "") }, [
         h("div", { class: "stat-value" }, c.value),
@@ -442,8 +440,15 @@
     if (filters.search) {
       const terms = filters.search.split(/[,\s]+/).filter(Boolean);
       if (terms.length) {
-        const idxStr = String(entry.idx);
-        const hit = terms.some(function (t) { return idxStr.indexOf(t) !== -1; });
+        // Match by idx, or by unsolved-class name — "13_1" finds the rep AND every hard
+        // MS(1190) presentation in that class.
+        const strs = [String(entry.idx)];
+        if (entry.reg && entry.reg.class_name) strs.push(String(entry.reg.class_name).toLowerCase());
+        if (entry.reg && entry.reg.name) strs.push(String(entry.reg.name).toLowerCase());
+        const hit = terms.some(function (t) {
+          const tl = t.toLowerCase();
+          return strs.some(function (s) { return s.indexOf(tl) !== -1; });
+        });
         if (!hit) return false;
       }
     }
@@ -452,21 +457,33 @@
     return true;
   }
 
+  /** A presentation with no direct run whose annotated class representative WAS searched. */
+  function viaRep(entry) {
+    return entry.arms.size === 0 && entry.reg && entry.reg.rep_idx != null &&
+      dataset && !!dataset.byIdx.get(REPS_DATASET + "|" + entry.reg.rep_idx);
+  }
+
   function buildCard(entry) {
     const status = entryStatus(entry, filters.arm);
     const arms = armOrderFor(entry);
     const attempted = entry.arms.size > 0;
+    const covered = viaRep(entry);
 
-    const pillText = status === "solved" ? "Solved" : status === "unsolved" ? "Unsolved" : "Not attempted";
+    const pillText = status === "solved" ? "Solved" : status === "unsolved" ? "Unsolved"
+      : covered ? "Searched via rep" : "Not attempted";
+    const pillCls = covered && status === "unattempted" ? "viarep" : status;
     const head = h("div", { class: "card-head" }, [
       h("span", { class: "card-idx" }, "#" + entry.idx),
-      h("span", { class: "pill pill-" + status }, pillText),
+      h("span", { class: "pill pill-" + pillCls }, pillText),
     ]);
 
-    // Provenance badge — the "is this one of the hard 550?" answer, on every card.
+    // Provenance badge — the "is this one of the hard 550?" answer, on every card;
+    // rep-covered cards also carry their unsolved-class name.
+    const className = entry.reg && (entry.reg.class_name || entry.reg.name);
     const badges = h("div", { class: "card-badges" }, [
       h("span", { class: "card-dataset" }, entry.dataset),
       entry.subset ? h("span", { class: "badge-subset badge-" + entry.subset }, D.subsetLabel(entry.subset)) : null,
+      className ? h("span", { class: "card-class-chip", title: "unsolved AC-class " + className }, "class " + className) : null,
     ]);
 
     let previewText = "No stored path";
@@ -493,17 +510,24 @@
           title: "z = " + D.armSymbol(a) + (it && it.solved ? " · solved" : " · unsolved"),
         }, D.armSymbol(a)));
       }
+    } else if (covered) {
+      armsNode = h("div", { class: "card-arms-hint" },
+        "Searched via class representative " + (className || "#" + entry.reg.rep_idx) +
+        " — unsolved at 500k nodes under z ∈ {r₁, r₂, x, y}. Click to open the representative.");
     } else {
       armsNode = h("div", { class: "card-arms-hint muted" },
         "Not searched yet — needs a bigger budget run.");
     }
 
+    const clickable = attempted || covered;
     const opts = {
-      class: "card presentation-card" + (attempted ? "" : " card-unattempted"),
+      class: "card presentation-card" + (clickable ? "" : " card-unattempted"),
       "data-dataset": entry.dataset,
       "data-idx": String(entry.idx),
     };
-    if (attempted) { opts.role = "button"; opts.tabindex = "0"; }
+    // A covered card opens its class REPRESENTATIVE's player (the rep is what was searched).
+    if (covered) opts["data-rep-idx"] = String(entry.reg.rep_idx);
+    if (clickable) { opts.role = "button"; opts.tabindex = "0"; }
     return h("div", opts, [head, badges, h("pre", { class: "card-preview" }, previewText), armsNode]);
   }
 
@@ -563,8 +587,14 @@
     if (filters.solved === "unattempted") return false;
     if (filters.search) {
       const terms = filters.search.split(/[,\s]+/).filter(Boolean);
-      const idxStr = cell.status === "trivial" ? String(cell.ms_idx) : String(cell.rep_idx);
-      if (terms.length && !terms.some(function (t) { return idxStr.indexOf(t) !== -1; })) return false;
+      // Non-trivial cells also match their class label ("13_1") so class search works here too.
+      const strs = cell.status === "trivial"
+        ? [String(cell.ms_idx)]
+        : [String(cell.rep_idx), String(cell.status).toLowerCase()];
+      if (terms.length && !terms.some(function (t) {
+        const tl = t.toLowerCase();
+        return strs.some(function (s) { return s.indexOf(tl) !== -1; });
+      })) return false;
     }
     return true;
   }
@@ -670,7 +700,10 @@
 
     player.entry = entry;
     buildArmSelector(entry);
-    dom.playerTitle.textContent = "#" + entry.idx + " · " + entry.dataset;
+    const repName = entry.dataset === REPS_DATASET && entry.reg && entry.reg.name;
+    dom.playerTitle.textContent = repName
+      ? "#" + entry.idx + " · class " + repName + " · representative"
+      : "#" + entry.idx + " · " + datasetLabel(entry.dataset);
     dom.player.classList.remove("hidden");
 
     const arm = defaultArmFor(entry);
@@ -702,6 +735,13 @@
       if (item.path.path_len != null) parts.push("path length " + item.path.path_len);
     }
     dom.playerMeta.appendChild(h("span", null, " " + parts.join(" · ")));
+    // A class representative stands for every hard MS(1190) presentation in its class.
+    if (entry && entry.dataset === REPS_DATASET && entry.reg && Array.isArray(entry.reg.nw_cells)) {
+      dom.playerMeta.appendChild(h("span", { class: "muted" },
+        " · represents " + entry.reg.nw_cells.length + " hard MS(1190) presentation" +
+        (entry.reg.nw_cells.length === 1 ? "" : "s") + " (one per (n, w) cell of class " +
+        (entry.reg.name || "?") + ")"));
+    }
   }
 
   function selectArm(arm) {

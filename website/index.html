@@ -93,12 +93,12 @@
           <button class="seg" data-layout="grid" type="button">Grid (n,w)</button>
         </div>
         <input type="search" class="search-input" id="search-input"
-          placeholder="Search by index (e.g. 1, 12, 100)…" />
+          placeholder="Search by index or class (e.g. 12, 100, 13_1)…" />
         <div class="segmented" id="filter-buttons" role="group" aria-label="Solved filter">
           <button class="seg active" data-filter="all" type="button">All</button>
           <button class="seg" data-filter="solved" type="button">Solved</button>
           <button class="seg" data-filter="unsolved" type="button">Unsolved</button>
-          <button class="seg" data-filter="unattempted" type="button">Not attempted</button>
+          <button class="seg" data-filter="unattempted" type="button">No direct run</button>
         </div>
         <label class="select-wrap">Dataset
           <select id="dataset-select"><!-- app/viewer fills options --></select>
@@ -115,7 +115,8 @@
       <div class="filters-legend" id="filters-legend">
         <span class="lg-item"><span class="pill pill-solved">Solved</span> a stored, replayable path</span>
         <span class="lg-item"><span class="pill pill-unsolved">Unsolved</span> search hit its node budget</span>
-        <span class="lg-item"><span class="pill pill-unattempted">Not attempted</span> never searched</span>
+        <span class="lg-item"><span class="pill pill-viarep">Searched via rep</span> covered by its unsolved-class representative (544 of the hard 550)</span>
+        <span class="lg-item"><span class="pill pill-unattempted">Not attempted</span> never searched, no rep link</span>
         <span class="lg-item"><span class="badge-subset badge-original">Original 640</span><span
             class="badge-subset badge-hard">Hard 550</span> provenance within MS(1190)</span>
       </div>

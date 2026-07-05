@@ -1213,10 +1213,28 @@ select:hover, select:focus { border-color: var(--accent); }
 .stat-card.stat-ok .stat-value { color: var(--ok); }
 .stat-card.stat-err .stat-value { color: var(--err); }
 .stat-card.stat-muted .stat-value { color: var(--muted); }
+.stat-card.stat-warn .stat-value { color: var(--warn); }
 
 .pill-unattempted {
   background: color-mix(in srgb, var(--muted) 14%, transparent);
   color: var(--muted);
+}
+/* Hard presentation with no direct run, covered by its searched class representative. */
+.pill-viarep {
+  background: color-mix(in srgb, var(--warn) 16%, transparent);
+  color: var(--warn);
+}
+.card-class-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  line-height: 1.5;
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--warn) 14%, transparent);
+  color: color-mix(in srgb, var(--warn) 82%, var(--text));
 }
 
 .card-badges {
