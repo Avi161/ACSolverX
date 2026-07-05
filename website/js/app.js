@@ -26,6 +26,31 @@
     if (dotEl) dotEl.style.backgroundColor = "var(" + colorVar + ")";
   }
 
+  // ---- hero (research-story strip) ------------------------------------------------
+  // Fills the #hero [data-stat] number slots from the loaded data — the copy never
+  // hardcodes a result. Hidden entirely when the loaded data has no MS(1190).
+  function fillHero(dataset) {
+    var hero = document.getElementById("hero");
+    if (!hero || !ACXData.groupStats) return;
+    function G(sel) { return ACXData.groupStats(dataset, sel); }
+    var msTotal = G({ dataset: "1190MS" }).total;
+    if (!msTotal) { hero.classList.add("hidden"); return; }
+    hero.classList.remove("hidden");
+    var vals = {
+      "ms-total": msTotal.toLocaleString(),
+      "base-solved": G({ dataset: "1190MS", arm: "baseline" }).solved,
+      // union of the four z-words on the original subset — baseline excluded on purpose
+      "z-solved": G({ dataset: "1190MS", subset: "original", excludeArms: ["baseline"] }).solved,
+      "hard": G({ dataset: "1190MS", subset: "hard" }).total,
+      "reps": G({ dataset: "ms_reps_unsolved" }).total,
+    };
+    var slots = hero.querySelectorAll("[data-stat]");
+    for (var i = 0; i < slots.length; i++) {
+      var k = slots[i].getAttribute("data-stat");
+      if (vals[k] != null) slots[i].textContent = String(vals[k]);
+    }
+  }
+
   // ---- dataset (re)build -----------------------------------------------------------
 
   /** Rebuild the dataset from a flat list of raw records and re-render both views. */
@@ -36,6 +61,7 @@
     if (window.ACXDashboard) ACXDashboard.render(dataset);
     if (window.ACXBaseline) ACXBaseline.render(dataset);
     if (window.ACXComparison) ACXComparison.render(dataset);
+    fillHero(dataset);
     return dataset;
   }
 

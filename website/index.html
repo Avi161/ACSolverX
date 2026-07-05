@@ -75,15 +75,36 @@
     </div>
   </section>
 
+  <!-- ===== HERO: the research story in one strip. Every number is filled from the
+       loaded data by app.js fillHero() (never hardcoded); hidden when no MS(1190). ===== -->
+  <section class="hero" id="hero">
+    <p>
+      <strong>Does a change of variables help solve Andrews–Curtis presentations?</strong>
+      A greedy search over
+      <abbr class="gloss" title="One atomic step: replace one relator by the freely- and cyclically-reduced splice of a rotation of one relator with a rotation of another (or its inverse) — a composite of classical AC moves.">substitution supermoves</abbr>
+      attacks all <span class="hero-num" data-stat="ms-total">—</span> Miller–Schupp presentations two
+      ways: plain 2-generator (<em>baseline</em>), and after a
+      <abbr class="gloss" title="Add a third generator z defined as a word w(x,y): ⟨x,y | r₁,r₂⟩ → ⟨x,y,z | r₁,r₂,z·w⁻¹⟩. Four words tried: w ∈ {r₁, r₂, x, y}.">change of variables <code>z&nbsp;=&nbsp;w</code></abbr>.
+      On the original 640 the baseline solves
+      <span class="hero-num hero-ok" data-stat="base-solved">—</span> and the four z-words together
+      solve <span class="hero-num hero-ok" data-stat="z-solved">—</span>; the hard
+      <span class="hero-num" data-stat="hard">—</span> collapse to
+      <span class="hero-num hero-warn" data-stat="reps">—</span>
+      <abbr class="gloss" title="Up to AC-equivalence the hard presentations fall into classes; one representative per class was searched under all four z-words at a 500,000-node budget.">unsolved classes</abbr>
+      — none solved yet at 500k nodes. That gap is the open question.
+    </p>
+  </section>
+
   <main class="app-main">
     <!-- =============================== SOLUTIONS ============================== -->
     <section class="view" id="view-solutions" data-view="solutions">
       <!-- 2-sentence orientation for first-time visitors; links to the full About page. -->
       <p class="view-intro" id="solutions-intro">
-        Each card is one <strong>balanced presentation</strong> of the trivial group. Open a solved one
-        to replay, move by move, how a greedy search trivialized it — and switch the
-        <code>z&nbsp;=&nbsp;w</code> selector to watch the same presentation solved under a different
-        change of variables. <a href="#/about">How it works →</a>
+        Each card is one
+        <abbr class="gloss" title="A group presentation with as many relators as generators — here ⟨x,y | r₁,r₂⟩, and ⟨x,y,z | …⟩ once stabilized — presenting the trivial group.">balanced presentation</abbr>
+        of the trivial group. Open a solved one to replay, move by move, how a greedy search
+        trivialized it — and switch the <code>z&nbsp;=&nbsp;w</code> selector to watch the same
+        presentation solved under a different change of variables. <a href="#/about">How it works →</a>
       </p>
 
       <div class="stats-row" id="solutions-stats"><!-- viewer.js fills stat cards --></div>
@@ -115,7 +136,8 @@
       <!-- Legend: what the pills, badges and z=w dots mean. Static. -->
       <div class="filters-legend" id="filters-legend">
         <span class="lg-item"><span class="pill pill-solved">Solved</span> a stored, replayable path</span>
-        <span class="lg-item"><span class="pill pill-unsolved">Unsolved</span> search hit its node budget</span>
+        <span class="lg-item"><span class="pill pill-unsolved">Unsolved</span> search hit its
+          <abbr class="gloss" title="The search stops after expanding this many presentations — 500,000 for every run bundled here.">node budget</abbr></span>
         <span class="lg-item"><span class="pill pill-viarep">Searched via rep</span> covered by its unsolved-class representative (544 of the hard 550)</span>
         <span class="lg-item"><span class="pill pill-unattempted">Not attempted</span> never searched, no rep link</span>
         <span class="lg-item"><span class="badge-subset badge-original">Original 640</span><span
@@ -202,7 +224,7 @@
         <label class="select-wrap">Subset
           <select id="dash-subset"><option value="all">All subsets</option></select>
         </label>
-        <label class="select-wrap">Arm
+        <label class="select-wrap">Change of variables
           <select id="dash-arm"><option value="all">All z-words</option></select>
         </label>
         <span class="dash-scope" id="dash-scope"></span>

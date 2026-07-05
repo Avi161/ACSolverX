@@ -1538,6 +1538,34 @@ select:hover, select:focus { border-color: var(--accent); }
 /* reserves space (unlike .hidden) — used for the layout toggle before reps_grid.json lands */
 .invisible { visibility: hidden; }
 
+/* hero — the research-story strip between the data bar and the views */
+.hero {
+  width: 100%;
+  max-width: 1280px;
+  margin: 18px auto 0;
+  padding: 0 clamp(16px, 3vw, 32px);
+}
+.hero p {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: var(--text-md);
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+.hero strong { color: var(--text); display: block; margin-bottom: 4px; font-size: var(--text-base); }
+.hero-num { font-family: var(--mono); font-weight: 700; color: var(--text); }
+.hero-num.hero-ok { color: var(--ok); }
+.hero-num.hero-warn { color: var(--warn); }
+
+/* point-of-use glossary terms — dotted underline, definition in the tooltip */
+abbr.gloss {
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
 /* first-time-visitor orientation strip on Solutions */
 .view-intro {
   font-size: var(--text-md);
