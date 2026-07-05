@@ -272,58 +272,101 @@ console.log(
 );
 
 /**
- * (presentation x z-word) cell counting, re-derived independently from the raw
- * registry + calibration records — mirrors the semantics documented in data.js's
+ * PRESENTATION-first counting with rep coverage, re-derived independently from the
+ * raw registry + calibration records — mirrors the semantics documented in data.js's
  * own JSDoc for groupStats (which we read, per the task's allowed-reading rule):
- * unit = one (presentation, arm) cell; arm="all" multiplies each in-scope
- * presentation by that DATASET's own distinct-arm count; a single arm is 1
- * cell/presentation regardless of whether that arm was ever run for it.
+ * unit = ALWAYS one presentation. Direct runs under the scope's arm(s) decide
+ * solved / unsolvedSearched; a presentation with no direct run is coveredViaReps when
+ * its unsolved-class representative was searched (a rep solve would count as solved);
+ * else notAttempted.
+ *
+ * INDEPENDENCE of the rep link: data.js reads rep_idx off the annotated
+ * registry_1190MS.jsonl rows; this oracle instead derives ms_idx -> rep_idx from
+ * reps_grid.json's non-trivial cells (a separate transcription of the paper's
+ * Table 2), so an annotation bug and a groupStats bug cannot cancel out.
  */
+const gridJsonForOracle = JSON.parse(fs.readFileSync(path.join(SAMPLE_DIR, "reps_grid.json"), "utf8"));
+const repOfMsIdx = new Map();
+for (const c of gridJsonForOracle.cells) {
+  if (c.status !== "trivial") repOfMsIdx.set(c.ms_idx, c.rep_idx);
+}
+
 function expectedGroupStats(sel) {
   const datasetsInScope = sel.dataset === "all" ? Array.from(registryByDataset.keys()) : [sel.dataset];
+  const repArms = armsByDatasetOracle.get("ms_reps_unsolved") || new Set();
   let total = 0,
     presentations = 0,
     attempted = 0,
-    solved = 0;
+    solved = 0,
+    unsolvedSearched = 0,
+    coveredViaReps = 0,
+    notAttempted = 0;
   for (const dsName of datasetsInScope) {
     const entries = (registryByDataset.get(dsName) || []).filter(
       (e) => sel.subset === "all" || e.subset === sel.subset
     );
     presentations += entries.length;
+    total += entries.length;
     const armSet = armsByDatasetOracle.get(dsName) || new Set();
+    const scopeArms = sel.arm === "all" ? Array.from(armSet) : [sel.arm];
     for (const e of entries) {
-      if (sel.arm === "all") {
-        total += armSet.size;
-        for (const a of armSet) {
-          const rec = calibIndex.get(dsName + "|" + e.idx + "|" + a);
-          if (rec) {
-            attempted++;
-            if (rec.solved) solved++;
-          }
-        }
-      } else {
-        total += 1;
-        const rec = calibIndex.get(dsName + "|" + e.idx + "|" + sel.arm);
+      let searched = false,
+        won = false;
+      for (const a of scopeArms) {
+        const rec = calibIndex.get(dsName + "|" + e.idx + "|" + a);
         if (rec) {
-          attempted++;
-          if (rec.solved) solved++;
+          searched = true;
+          if (rec.solved) won = true;
         }
       }
+      if (searched) {
+        attempted++;
+        if (won) solved++;
+        else unsolvedSearched++;
+        continue;
+      }
+      // no direct run: rep coverage applies only to 1190MS presentations with a grid rep
+      let covered = false,
+        repWon = false;
+      if (dsName === "1190MS" && repOfMsIdx.has(e.idx)) {
+        const repIdx = repOfMsIdx.get(e.idx);
+        const covering = sel.arm === "all" ? Array.from(repArms) : repArms.has(sel.arm) ? [sel.arm] : [];
+        for (const a of covering) {
+          const rec = calibIndex.get("ms_reps_unsolved|" + repIdx + "|" + a);
+          if (rec) {
+            covered = true;
+            if (rec.solved) repWon = true;
+          }
+        }
+      }
+      if (repWon) solved++;
+      else if (covered) coveredViaReps++;
+      else notAttempted++;
     }
   }
-  return { total, presentations, attempted, solved, notAttempted: total - attempted, unsolved: attempted - solved };
+  return {
+    total,
+    presentations,
+    attempted,
+    solved,
+    unsolvedSearched,
+    unsolved: unsolvedSearched,
+    coveredViaReps,
+    notAttempted,
+  };
 }
 
 const selections = [
   { dataset: "1190MS", arm: "all", subset: "all" }, // required: 1190MS all/all
   { dataset: "1190MS", arm: "r1", subset: "all" }, // required: 1190MS single-arm
+  { dataset: "1190MS", arm: "baseline", subset: "all" }, // extra: arm with NO rep coverage
   { dataset: "1190MS", arm: "all", subset: "original" }, // required: 1190MS subset=original all-arms
-  { dataset: "1190MS", arm: "all", subset: "hard" }, // extra: hard subset (never attempted)
+  { dataset: "1190MS", arm: "all", subset: "hard" }, // extra: hard subset (covered via reps)
   { dataset: "ms_reps_unsolved", arm: "all", subset: "all" }, // required: ms_reps_unsolved all/all
   { dataset: "ms_reps_unsolved", arm: "r2", subset: "all" }, // extra: reps single-arm
   { dataset: "all", arm: "all", subset: "all" }, // required: dataset="all" all/all
   { dataset: "all", arm: "r1", subset: "all" }, // extra: single arm shared by both datasets
-  { dataset: "all", arm: "g", subset: "all" }, // extra: arm that exists in ONE dataset only
+  { dataset: "all", arm: "baseline", subset: "all" }, // extra: arm that exists in ONE dataset only
   { dataset: "all", arm: "all", subset: "hard" }, // extra: subset that exists in ONE dataset only
 ];
 
@@ -335,9 +378,15 @@ for (const sel of selections) {
   checkEqual(act.presentations, exp.presentations, label + " :: presentations");
   checkEqual(act.attempted, exp.attempted, label + " :: attempted");
   checkEqual(act.solved, exp.solved, label + " :: solved");
+  checkEqual(act.unsolvedSearched, exp.unsolvedSearched, label + " :: unsolvedSearched");
+  checkEqual(act.coveredViaReps, exp.coveredViaReps, label + " :: coveredViaReps");
   checkEqual(act.notAttempted, exp.notAttempted, label + " :: notAttempted");
-  check(act.solved + act.unsolved + act.notAttempted === act.total, label + " :: solved+unsolved+notAttempted === total");
-  check(act.attempted === act.solved + act.unsolved, label + " :: attempted === solved+unsolved");
+  check(act.unsolved === act.unsolvedSearched, label + " :: unsolved aliases unsolvedSearched");
+  check(
+    act.solved + act.unsolvedSearched + act.coveredViaReps + act.notAttempted === act.total,
+    label + " :: four buckets partition total"
+  );
+  check(act.total === act.presentations, label + " :: total === presentations");
 }
 
 // ===========================================================================

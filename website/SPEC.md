@@ -257,3 +257,41 @@ light theme recolors fills. `stackedBar` rotates category labels −30° when th
 
 **app.js.** `setStatus(text, colorVar, titleText)` — short human status in the header, long
 manifest label as tooltip. Uploads report skipped `classifyRecord === "unknown"` counts.
+
+## Amendment (2026-07-04b) — 1190-first data model, rep coverage, stepped rotation
+
+**Bundle pruned to real arms.** `sample-data/` carries exactly `{baseline, r1, r2, x, y}` on
+`1190MS` (all @500k) and `{r1, r2, x, y}` on `ms_reps_unsolved` (261 rows/arm @500k, 0 solved).
+The leftover probe arms (`g` @12k in the ms640 files; `calibration_words.jsonl`/`paths_words.jsonl`
+with `xY/yx/Xy` @12k) are gone — `build_solved640_bundle.py::prune_bundle()` drops them and the
+manifest no longer lists the words files. Build order: `build_reps_bundle.py` FIRST, then
+`build_solved640_bundle.py`.
+
+**Annotated registry.** `registry_1190MS.jsonl` rows whose (n,w) cell is non-trivial in the paper's
+grid now carry `rep_idx` (0–260, into `ms_reps_unsolved`) + `class_name` (e.g. `"13_1"`) — written
+by `build_reps_bundle.py::annotate_registry_1190()`. Exactly 550 rows are annotated: 544 of the
+hard 550 plus the boundary idx 634–639 (direct runs win over the annotation in every consumer).
+The 6 grid-trivial hard idx {668, 698, 717, 955, 1046, 1132} have NO rep link.
+
+**groupStats v2 (data.js).** The counting unit is ALWAYS one presentation — the
+(presentation × z-word) cell mode is gone. Buckets partition `total` for every selection:
+`solved` / `unsolvedSearched` / `coveredViaReps` / `notAttempted`; `unsolved` remains as a
+back-compat alias of `unsolvedSearched`, `total === presentations`, and `attempted` counts
+directly-searched presentations only. A presentation with no direct run under the scope's arm(s)
+is `coveredViaReps` when its `reg.rep_idx` representative has a searched item under those arm(s)
+(a rep-level solve would roll into `solved`). Canonical numbers: 1190MS·all/all →
+1190 = 634 + 6 + 544 + 6; single arm r1 → 1190 = 619 + 21 + 544 + 6; baseline → 1190 = 634 + 6 +
+0 + 550. `buildDataset` additionally exposes `armSetsByDataset` ({dataset: Set(arm)}), and
+`DATASET_LABELS`/`datasetLabel()` moved into data.js (single source for all views).
+
+**Viewer.** Hard cards with a rep link render a `pill-viarep` ("Searched via rep") + a
+`.card-class-chip` and open their REPRESENTATIVE's player on click (`data-rep-idx`); rep players
+title as `class <name> · representative` and state how many hard presentations they stand for.
+Search matches class names (cards and (n,w) grid). The solved-filter button reads "No direct run".
+
+**Rotation v3 (viewer.js).** `slideRotate(entry, word, k, tile, stepMs, gapMs, token, roleCls,
+advanceCut)` ticks ONE SLOT per step (`DUR.rotateStep` 240 + `DUR.rotateStepGap` 90 each, whole
+phase capped at `DUR.rotateCap` 3000 by shrinking the per-tick time — motion stays discrete);
+`advanceCut(t, ms)` steps the ring's cut marker in lockstep. `DUR.rotate` is gone; `DUR.phaseGap`
+(450) breathes after Rotate and Splice; `betweenSteps` is 800. The Speed select persists as
+localStorage `acx-speed` (restored in `init()`; Replay's Instant→Normal bump is not persisted).

@@ -13,20 +13,23 @@ Highlights:
 - **Slow-motion move player (rings + tiles)** — every substitution supermove replays in
   human-paced phases (Roles → Invert → Rotate → Splice → Cancel → Settle, tracked by phase
   chips). Each operand row carries a **ring inset** drawing the relator as the cyclic word
-  it is: rotation moves the *cut marker*, never the letters, while the row's tiles slide
-  with wrap-around; splicing flies the partner's tiles across with a persistent **seam**
+  it is: rotation moves the *cut marker*, never the letters, and it now **ticks one slot at
+  a time** (with breathers between ticks and phases) so a k-slot rotation reads as k
+  countable steps; splicing flies the partner's tiles across with a persistent **seam**
   marking the join; inverse pairs then zip shut at the seam (cyclic cancellations draw a
-  wrap-around arc). Speed control (Slow/Normal/Fast/Instant), **↻ Replay move** (`R`),
-  Space/arrow keys. The shown factorization is *reconstructed* by re-running the move
-  rule and only displayed when it reproduces the stored next state exactly (100% of
+  wrap-around arc). Speed control (Slow/Normal/Fast/Instant, persisted), **↻ Replay move**
+  (`R`), Space/arrow keys. The shown factorization is *reconstructed* by re-running the
+  move rule and only displayed when it reproduces the stored next state exactly (100% of
   bundled paths verified).
-- **Provenance on every card** — MS(1190) is split into **Original 640** (idx 0–639, run
-  locally under 8 `z = w` arms) and **Hard 550** (idx 640–1189, registered via
-  `sample-data/registry_1190MS.jsonl` but not attempted yet). Cards, filters, the player
-  header and Analytics all carry the subset.
-- **Non-redundant totals** — stat cards count *presentations*, not (presentation × arm)
-  rows: with dataset 1190MS and any single arm selected, Total reads 1190 with
-  solved / unsolved-searched / not-attempted breakdown.
+- **Every section counts the full 1190** — MS(1190) splits into **Original 640** (idx
+  0–639, searched directly under the 2-gen baseline + `z ∈ {r₁, r₂, x, y}` @500k) and
+  **Hard 550** (idx 640–1189, covered via their **261 unsolved-class representatives**,
+  each searched under all four words @500k, none solved). 544 of the 550 carry a
+  "Searched via rep" pill linking to their class; searching a class name (e.g. `13_1`)
+  finds the rep and every member.
+- **Non-redundant totals** — stat cards count *presentations*, never (presentation × arm)
+  rows: dataset 1190MS reads Total 1190 under any arm, split into
+  solved / unsolved-searched / covered-via-reps / not-attempted.
 
 ## Running it
 

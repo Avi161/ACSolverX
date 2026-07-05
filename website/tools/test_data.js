@@ -28,34 +28,61 @@ const grid = JSON.parse(fs.readFileSync(path.join(SAMPLES, "reps_grid.json"), "u
 // ---- 1. dataset shape ----
 console.log("[1] dataset shape");
 ok(ds.datasets.indexOf("1190MS") !== -1 && ds.datasets.indexOf("ms_reps_unsolved") !== -1, "both datasets present");
-// 9 arms since the 2-gen baseline was added (r1,r2,x,y,g,xY,yx,Xy + baseline).
-eq(ds.armsByDataset["1190MS"], 9, "1190MS has 9 arms");
+// The pruned bundle keeps only the real arms: the four z=w words + the 2-gen baseline.
+eq(ds.armsByDataset["1190MS"], 5, "1190MS has 5 arms");
 eq(ds.armsByDataset["ms_reps_unsolved"], 4, "reps has 4 arms");
+ok(ds.armSetsByDataset && ds.armSetsByDataset["ms_reps_unsolved"] instanceof Set &&
+   ["r1", "r2", "x", "y"].every((a) => ds.armSetsByDataset["ms_reps_unsolved"].has(a)),
+   "armSetsByDataset exposes the reps arm set");
 let pres1190 = 0, presReps = 0;
 for (const e of ds.byIdx.values()) { if (e.dataset === "1190MS") pres1190++; if (e.dataset === "ms_reps_unsolved") presReps++; }
 eq(pres1190, 1190, "1190 MS presentations");
 eq(presReps, 261, "261 rep presentations");
 
-// ---- 2. groupStats cell-count targets ----
-console.log("[2] groupStats cell counts");
+// ---- 2. groupStats v2: presentation-first buckets with rep coverage ----
+console.log("[2] groupStats presentation counts");
 const g = (sel) => D.groupStats(ds, sel);
-eq(g({ dataset: "1190MS", arm: "all", subset: "all" }).total, 10710, "1190MS all/all total");   // 1190 × 9 arms
-eq(g({ dataset: "1190MS", arm: "all", subset: "all" }).notAttempted, 4950, "1190MS all/all notAttempted");   // 10710 − attempted(640×9)
-eq(g({ dataset: "1190MS", arm: "r1", subset: "all" }).total, 1190, "1190MS r1 total == presentations");
-eq(g({ dataset: "1190MS", arm: "all", subset: "original" }).total, 5760, "1190MS original all total");   // 640 × 9 arms
-const hard = g({ dataset: "1190MS", arm: "all", subset: "hard" });
-eq(hard.total, 4950, "1190MS hard all total");   // 550 × 9 arms
-eq(hard.attempted, 0, "1190MS hard has no attempts");
-eq(g({ dataset: "ms_reps_unsolved", arm: "all", subset: "all" }).total, 1044, "reps all/all total");
-eq(g({ dataset: "ms_reps_unsolved", arm: "all", subset: "all" }).solved, 0, "reps solved == 0");
-eq(g({ dataset: "ms_reps_unsolved", arm: "x", subset: "all" }).total, 261, "reps x total == presentations");
-eq(g({ dataset: "all", arm: "all", subset: "all" }).total, 11754, "ALL all/all total");   // 1190MS 10710 + reps 1044
-// invariant: solved + unsolved + notAttempted == total, for many selections
+// Oracle table (dataset · subset · arm → total/solved/unsolvedSearched/coveredViaReps/notAttempted).
+// 544 = the 550 grid-nontrivial cells minus the 6 boundary idx 634-639 (attempted directly);
+// 6 = the grid-trivial hard idx {668, 698, 717, 955, 1046, 1132} with no rep link.
+const ORACLE = [
+  ["1190MS", "all", "all", 1190, 634, 6, 544, 6],
+  ["1190MS", "baseline", "all", 1190, 634, 6, 0, 550],
+  ["1190MS", "r1", "all", 1190, 619, 21, 544, 6],
+  ["1190MS", "r2", "all", 1190, 602, 38, 544, 6],
+  ["1190MS", "x", "all", 1190, 540, 100, 544, 6],
+  ["1190MS", "y", "all", 1190, 523, 117, 544, 6],
+  ["1190MS", "all", "original", 640, 634, 6, 0, 0],
+  ["1190MS", "r1", "original", 640, 619, 21, 0, 0],
+  ["1190MS", "all", "hard", 550, 0, 0, 544, 6],
+  ["1190MS", "r1", "hard", 550, 0, 0, 544, 6],
+  ["ms_reps_unsolved", "all", "all", 261, 0, 261, 0, 0],
+  ["ms_reps_unsolved", "r1", "all", 261, 0, 261, 0, 0],
+  ["all", "all", "all", 1451, 634, 267, 544, 6],
+];
+for (const [dsName, arm, subset, total, solved, uns, rep, na] of ORACLE) {
+  const s = g({ dataset: dsName, arm: arm, subset: subset });
+  const tag = dsName + " " + subset + "/" + arm + " ";
+  eq(s.total, total, tag + "total");
+  eq(s.solved, solved, tag + "solved");
+  eq(s.unsolvedSearched, uns, tag + "unsolvedSearched");
+  eq(s.coveredViaReps, rep, tag + "coveredViaReps");
+  eq(s.notAttempted, na, tag + "notAttempted");
+}
+eq(g({ dataset: "1190MS", arm: "all", subset: "all" }).unsolved,
+   g({ dataset: "1190MS", arm: "all", subset: "all" }).unsolvedSearched, "unsolved aliases unsolvedSearched");
+// invariant: the four buckets partition total, and total == presentations, for many selections
 for (const sel of [
   { dataset: "1190MS", arm: "all", subset: "all" }, { dataset: "1190MS", arm: "r2", subset: "all" },
+  { dataset: "1190MS", arm: "baseline", subset: "all" }, { dataset: "1190MS", arm: "y", subset: "hard" },
   { dataset: "ms_reps_unsolved", arm: "all", subset: "all" }, { dataset: "all", arm: "all", subset: "all" },
-]) { const s = g(sel); eq(s.solved + s.unsolved + s.notAttempted, s.total, "partition sums to total " + JSON.stringify(sel)); }
-// single-arm cells == presentation counts (per arm)
+]) {
+  const s = g(sel);
+  eq(s.solved + s.unsolvedSearched + s.coveredViaReps + s.notAttempted, s.total,
+     "partition sums to total " + JSON.stringify(sel));
+  eq(s.total, s.presentations, "total==presentations " + JSON.stringify(sel));
+}
+// per-arm totals stay presentation counts
 for (const arm of ds.arms) {
   const s = g({ dataset: "all", arm: arm, subset: "all" });
   eq(s.total, s.presentations, "single-arm " + arm + " total==presentations");
