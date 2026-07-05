@@ -860,7 +860,8 @@
     if (filters.dataset === "ms_reps_unsolved" && cell.status === "trivial") return false;
     if (filters.subset === "original" && cell.status !== "trivial") return false;
     if (filters.subset === "reps" && cell.status === "trivial") return false;
-    if (filters.subset === "hard") return false; // the hard 550 have no (n,w) grid cell
+    // the hard presentations ARE the non-trivial cells (shown as their class rep)
+    if (filters.subset === "hard" && cell.status === "trivial") return false;
     if (filters.solved === "solved" && cell.status !== "trivial") return false;
     if (filters.solved === "unsolved" && cell.status === "trivial") return false;
     if (filters.solved === "unattempted") return false;
@@ -886,7 +887,8 @@
 
     const legend = h("div", { class: "nw-legend" }, [
       h("span", { class: "nw-swatch nw-trivial" }), h("span", { class: "nw-legend-t" }, "trivialized"),
-      h("span", { class: "nw-swatch nw-rep" }), h("span", { class: "nw-legend-t" }, "unsolved class (cell shows the rep) — click any cell to open the player"),
+      h("span", { class: "nw-swatch nw-rep" }), h("span", { class: "nw-legend-t" },
+        "unsolved class (cell shows the rep; the hard presentations live in these cells) — click any cell to open the player"),
     ]);
     dom.nwGrid.appendChild(legend);
 
@@ -1036,6 +1038,8 @@
       if (c.wall_time_s != null) parts.push(c.wall_time_s + "s");
       if (c.budget_nodes != null) parts.push("budget " + c.budget_nodes.toLocaleString());
       if (c.exhausted_budget) parts.push("budget exhausted");
+      if (c.nodes_per_sec != null) parts.push(c.nodes_per_sec.toLocaleString() + " nodes/s");
+      if (c.revert_hits != null) parts.push(c.revert_hits.toLocaleString() + " revert hits");
     } else if (item && item.path) {
       parts.push("solved");
       if (item.path.path_len != null) parts.push("path length " + item.path.path_len);

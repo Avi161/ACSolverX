@@ -277,6 +277,33 @@
         <h3>Per-arm summary <span class="muted" id="dash-table-scope"></span></h3>
         <table class="data-table" id="dash-table"></table>
       </div>
+
+      <!-- Hard set: the unsolved classes, one row per representative. Always the
+           ms_reps_unsolved dataset — independent of the filters above. Hidden when
+           no reps are loaded. dashboard.js drawHardSet() fills everything. -->
+      <div class="hard-section hidden" id="hard-section">
+        <h3 class="hard-title">Hard set — the unsolved classes</h3>
+        <p class="chart-sub">The hard MS(1190) presentations collapse into unsolved AC-classes; one
+          <em>representative</em> per class was searched under every z-word. This section is computed
+          from those runs and ignores the filters above.</p>
+        <div class="stats-row" id="hard-stats"></div>
+        <div class="charts">
+          <div class="chart-card">
+            <h3>Class size distribution</h3>
+            <p class="chart-sub">How many hard MS(1190) presentations each unsolved class stands for.</p>
+            <div class="chart" id="chart-hard-classsize"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Representative total relator length</h3>
+            <p class="chart-sub">|r₁| + |r₂| of each class representative — how big the open cases are.</p>
+            <div class="chart" id="chart-hard-relators"></div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <h3>All classes <span class="muted">(click a column header to sort · click a row to open the rep)</span></h3>
+          <table class="data-table" id="hard-class-table"></table>
+        </div>
+      </div>
     </section>
 
     <!-- =============================== BASELINE ============================= -->

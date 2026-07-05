@@ -1623,6 +1623,20 @@ body.modal-open { overflow: hidden; }
    cap the rendered width so Comparison's full-width charts stop being gigantic. */
 .chart-card-wide .chart svg { max-width: 760px; margin-inline: auto; }
 
+/* Hard-set section on Analytics: separated from the filtered charts above */
+.hard-section {
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+.hard-section .hard-title { font-size: var(--text-xl); margin-bottom: 4px; }
+.hard-section > .chart-sub { max-width: 760px; margin-bottom: 14px; }
+.hard-section .stats-row { margin-bottom: 16px; }
+#hard-class-table .th-sort { cursor: pointer; user-select: none; white-space: nowrap; }
+#hard-class-table .th-sort:hover { color: var(--accent); }
+#hard-class-table .hard-row { cursor: pointer; }
+#hard-class-table .hard-row:hover td { background: var(--bg-card); }
+
 /* Comparison verdict panel — the plain-English, data-derived answer block */
 .verdict-panel {
   background: var(--bg-elev);

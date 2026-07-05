@@ -55,6 +55,11 @@
       chartTimeHist: q("chart-time-hist"),
       dashTable: q("dash-table"),
       dashTableScope: q("dash-table-scope"),
+      hardSection: q("hard-section"),
+      hardStats: q("hard-stats"),
+      chartHardClasssize: q("chart-hard-classsize"),
+      chartHardRelators: q("chart-hard-relators"),
+      hardClassTable: q("hard-class-table"),
     };
   }
 
@@ -267,6 +272,139 @@
         "<tbody>" + (rows.length ? rows.join("") : '<tr><td colspan="8">No data</td></tr>') + "</tbody>" +
         (rows.length ? "<tfoot>" + totalRow + "</tfoot>" : "");
     }
+
+    drawHardSet();
+  }
+
+  // ---- hard set: the unsolved classes (always ms_reps_unsolved, filter-independent) --
+  var hardSort = { key: "size", dir: -1 };
+
+  function hardRows() {
+    var rows = [];
+    if (!lastDataset || !lastDataset.byIdx) return rows;
+    lastDataset.byIdx.forEach(function (entry) {
+      if (entry.dataset !== "ms_reps_unsolved" || !entry.reg) return;
+      var r = {
+        idx: entry.idx,
+        name: entry.reg.name || String(entry.idx),
+        size: Array.isArray(entry.reg.nw_cells) ? entry.reg.nw_cells.length : 0,
+        len1: entry.reg.relators && entry.reg.relators[0] ? entry.reg.relators[0].length : 0,
+        len2: entry.reg.relators && entry.reg.relators[1] ? entry.reg.relators[1].length : 0,
+        armsTotal: 0, solved: 0, exhausted: 0,
+        times: [], reverts: [], nps: [],
+      };
+      entry.arms.forEach(function (it) {
+        r.armsTotal++;
+        if (it.solved) r.solved++;
+        var c = it.calib;
+        if (!c) return;
+        if (c.exhausted_budget) r.exhausted++;
+        if (c.wall_time_s != null) r.times.push(c.wall_time_s);
+        if (c.revert_hits != null) r.reverts.push(c.revert_hits);
+        if (c.nodes_per_sec != null) r.nps.push(c.nodes_per_sec);
+      });
+      r.totalLen = r.len1 + r.len2;
+      r.medTime = median(r.times);
+      r.medRevert = median(r.reverts);
+      r.medNps = median(r.nps);
+      rows.push(r);
+    });
+    return rows;
+  }
+
+  function drawHardSet() {
+    if (!dom.hardSection) return;
+    var rows = hardRows();
+    dom.hardSection.classList.toggle("hidden", rows.length === 0);
+    if (!rows.length) return;
+
+    // ---- aggregate cards: the never-surfaced perf fields, aggregated at last ----
+    var totalMembers = 0, totalRuns = 0, totalExhausted = 0, solvedClasses = 0;
+    var allTimes = [], allReverts = [], allNps = [];
+    rows.forEach(function (r) {
+      totalMembers += r.size; totalRuns += r.armsTotal; totalExhausted += r.exhausted;
+      if (r.solved > 0) solvedClasses++;
+      Array.prototype.push.apply(allTimes, r.times);
+      Array.prototype.push.apply(allReverts, r.reverts);
+      Array.prototype.push.apply(allNps, r.nps);
+    });
+    var fmtS = function (v) { return v == null ? "—" : (Math.round(v * 10) / 10).toLocaleString(); };
+    var cards = [
+      { label: "Unsolved classes", value: String(rows.length), cls: solvedClasses ? "stat-ok" : "stat-warn", sub: solvedClasses + " solved" },
+      { label: "Hard presentations covered", value: totalMembers.toLocaleString(), sub: "members across all classes" },
+      { label: "Rep runs", value: totalRuns.toLocaleString(), cls: "stat-err", sub: totalExhausted.toLocaleString() + " hit the node budget" },
+      { label: "Median wall time (s)", value: fmtS(median(allTimes)), sub: "per exhausted 500k-node run" },
+      { label: "Median revert hits", value: fmtS(median(allReverts)), sub: "null-move reverts per run" },
+      { label: "Median nodes/sec", value: fmtS(median(allNps)), sub: "search throughput" },
+    ];
+    dom.hardStats.innerHTML = cards.map(function (c) {
+      return '<div class="stat-card' + (c.cls ? " " + c.cls : "") + '"><div class="stat-value">' + c.value +
+        '</div><div class="stat-label">' + c.label + '</div>' +
+        (c.sub ? '<div class="stat-sub">' + c.sub + '</div>' : "") + '</div>';
+    }).join("");
+
+    // ---- charts: class sizes + rep total relator length ----
+    var C = themeColors();
+    ACXCharts.histogram(dom.chartHardClasssize,
+      ACXData.histogram(rows.map(function (r) { return r.size; }), 1), {
+        color: cssVar("--warn", "#ffb454"), xLabel: "class size (hard members)", yLabel: "classes",
+        title: "Unsolved class sizes",
+        desc: "How many hard presentations each unsolved class stands for.",
+      });
+    ACXCharts.histogram(dom.chartHardRelators,
+      ACXData.histogram(rows.map(function (r) { return r.totalLen; }), 2), {
+        color: C.accent2, xLabel: "|r₁| + |r₂| of the representative", yLabel: "classes",
+        title: "Representative total relator length",
+        desc: "Combined relator length of each class representative.",
+      });
+
+    // ---- sortable class table (row click opens the rep in the player) ----
+    var sorted = rows.slice().sort(function (a, b) {
+      var av = a[hardSort.key], bv = b[hardSort.key];
+      if (av == null && bv == null) return 0;
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      if (av !== bv) return (av < bv ? -1 : 1) * hardSort.dir;
+      return a.idx - b.idx;
+    });
+    var COLS = [
+      { key: "name", label: "class" }, { key: "size", label: "members" },
+      { key: "len1", label: "|r₁|" }, { key: "len2", label: "|r₂|" },
+      { key: "solved", label: "z-words solved" }, { key: "exhausted", label: "exhausted" },
+      { key: "medTime", label: "med wall s" }, { key: "medRevert", label: "med reverts" },
+      { key: "medNps", label: "med nodes/s" },
+    ];
+    var thead = "<thead><tr>" + COLS.map(function (c) {
+      var mark = hardSort.key === c.key ? (hardSort.dir === -1 ? " ▾" : " ▴") : "";
+      return '<th class="th-sort" data-sort="' + c.key + '">' + c.label + mark + "</th>";
+    }).join("") + "</tr></thead>";
+    var tbody = "<tbody>" + sorted.map(function (r) {
+      return '<tr class="hard-row" data-rep-idx="' + r.idx + '" title="open representative #' + r.idx + '">' +
+        "<td>" + r.name + "</td><td>" + r.size + "</td><td>" + r.len1 + "</td><td>" + r.len2 +
+        "</td><td>" + r.solved + "/" + r.armsTotal + "</td><td>" + r.exhausted +
+        "</td><td>" + fmtS(r.medTime) + "</td><td>" + fmtS(r.medRevert) +
+        "</td><td>" + fmtS(r.medNps) + "</td></tr>";
+    }).join("") + "</tbody>";
+    dom.hardClassTable.innerHTML = thead + tbody;
+  }
+
+  function wireHardTable() {
+    if (!dom.hardClassTable) return;
+    dom.hardClassTable.addEventListener("click", function (e) {
+      var th = e.target.closest("th[data-sort]");
+      if (th) {
+        var key = th.getAttribute("data-sort");
+        if (hardSort.key === key) hardSort.dir = -hardSort.dir;
+        else { hardSort.key = key; hardSort.dir = key === "name" ? 1 : -1; }
+        drawHardSet();
+        return;
+      }
+      var row = e.target.closest("tr[data-rep-idx]");
+      if (row) {
+        // deep-link into the Solutions player (route() opens it once the view shows)
+        location.hash = "#/solutions?open=ms_reps_unsolved:" + row.getAttribute("data-rep-idx");
+      }
+    });
   }
 
   // ---- public API -------------------------------------------------------------------
@@ -276,6 +414,7 @@
     if (dom.dashDataset) dom.dashDataset.addEventListener("change", draw);
     if (dom.dashSubset) dom.dashSubset.addEventListener("change", draw);
     if (dom.dashArm) dom.dashArm.addEventListener("change", draw);
+    wireHardTable();
     global.addEventListener("resize", function () { onShow(); });
     initialized = true;
   }
