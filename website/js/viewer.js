@@ -361,6 +361,17 @@
       stopPlaying();
       gotoStep(Number(row.getAttribute("data-index")));
     });
+    // Enter/Space on a focused row = click. stopPropagation keeps the document-level
+    // Space-toggles-play shortcut from ALSO firing on the same keystroke.
+    dom.timeline.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const row = e.target.closest(".timeline-row");
+      if (!row || !dom.timeline.contains(row)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      stopPlaying();
+      gotoStep(Number(row.getAttribute("data-index")));
+    });
   }
 
   function wireKeyboard() {
@@ -580,10 +591,12 @@
       armsNode.appendChild(document.createTextNode(arms.length + (arms.length === 1 ? " arm: " : " arms: ")));
       for (const a of arms) {
         const it = entry.arms.get(a);
+        const won = !!(it && it.solved);
+        // glyph + color: solved/unsolved must survive color-blindness and grayscale
         armsNode.appendChild(h("span", {
-          class: "arm-chip " + (it && it.solved ? "arm-chip-ok" : "arm-chip-bad"),
-          title: "z = " + D.armSymbol(a) + (it && it.solved ? " · solved" : " · unsolved"),
-        }, D.armSymbol(a)));
+          class: "arm-chip " + (won ? "arm-chip-ok" : "arm-chip-bad"),
+          title: "z = " + D.armSymbol(a) + (won ? " · solved" : " · unsolved"),
+        }, (won ? "✓" : "✕") + D.armSymbol(a)));
       }
     } else if (covered) {
       // outcome computed from the rep's actual runs, never asserted
@@ -1142,7 +1155,13 @@
     clear(dom.timeline);
     const steps = player.solution.steps;
     for (const step of steps) {
-      const row = h("li", { class: "timeline-row" + (step.isFinal ? " final" : ""), "data-index": String(step.index) }, [
+      const row = h("li", {
+        class: "timeline-row" + (step.isFinal ? " final" : ""),
+        "data-index": String(step.index),
+        // keyboard access: rows act as buttons (Enter/Space handled in wirePlayerControls)
+        tabindex: "0", role: "button",
+        "aria-label": "Step " + step.index + ": " + step.summary + " — total length " + step.totalLen,
+      }, [
         h("span", { class: "timeline-index" }, "#" + step.index),
         h("span", { class: "timeline-summary" }, step.summary),
         h("span", { class: "timeline-len" }, "len " + step.totalLen),
@@ -1157,6 +1176,8 @@
     for (const row of rows) {
       const isCurrent = Number(row.getAttribute("data-index")) === i;
       row.classList.toggle("current", isCurrent);
+      if (isCurrent) row.setAttribute("aria-current", "step");
+      else row.removeAttribute("aria-current");
       if (isCurrent) currentRow = row;
     }
     if (currentRow) {
@@ -1237,9 +1258,12 @@
     if (step.change && step.change.recon && step.change.recon.ok) {
       box.appendChild(anatomyNode(step.change.recon));
       box.appendChild(h("div", { class: "raw-move muted" },
-        "↻ Replay move (R) shows it slowly · raw tuple: " + (step.change.moveTupleText || "—")));
+        "↻ Replay move (R) shows it slowly · the solver recorded this move as (slot, rotation of A, " +
+        "rotation of B, B-inverted): " + (step.change.moveTupleText || "—")));
     } else if (step.change && step.change.moveTupleText) {
-      box.appendChild(h("div", { class: "raw-move" }, "raw move: " + step.change.moveTupleText));
+      box.appendChild(h("div", { class: "raw-move" },
+        "the solver recorded this move as (slot, rotation of A, rotation of B, B-inverted): " +
+        step.change.moveTupleText));
     }
     if (step.change && !step.change.wellFormed) {
       box.appendChild(h("div", { class: "raw-move muted" },
@@ -1319,10 +1343,24 @@
     return a === 1 ? "x" : a === 2 ? "y" : a === 3 ? "z" : "g";
   }
 
+  /** One-clause meaning per phase — surfaces as the chip's tooltip (pedagogy at point of use). */
+  const PHASE_GLOSS = {
+    Roles: "Pick the two operand relators: row A gets replaced, row B is the partner (only read).",
+    Invert: "The move uses B's INVERSE: read it backwards and case-flip every letter.",
+    Rotate: "Slide each ring's cut marker — relators are cyclic, rotating never changes the word.",
+    Splice: "Glue the rotated words: B's tiles fly into row A, the seam marks where they met.",
+    Cancel: "Adjacent inverse pairs vanish one at a time, zipping shut at the seam.",
+    Settle: "The reduced word takes row A; the presentation settles into its canonical form.",
+  };
+
   /** Phase chips strip — the pipeline map ("where am I in this move?"). */
   function phaseChipsNode(names) {
-    const wrap = h("div", { class: "phase-chips" });
-    for (const n of names) wrap.appendChild(h("span", { class: "chip", "data-phase": n }, n));
+    const wrap = h("div", { class: "phase-chips", role: "list", "aria-label": "Move animation phases" });
+    for (const n of names) {
+      wrap.appendChild(h("span", {
+        class: "chip", "data-phase": n, role: "listitem", title: PHASE_GLOSS[n] || n,
+      }, n));
+    }
     return wrap;
   }
   function setPhase(chipsEl, name) {

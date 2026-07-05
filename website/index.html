@@ -114,7 +114,8 @@
           <button class="seg active" data-layout="cards" type="button">Cards</button>
           <button class="seg" data-layout="grid" type="button">Grid (n,w)</button>
         </div>
-        <input type="search" class="search-input" id="search-input"
+        <label class="sr-only" for="search-input">Search presentations by index or class</label>
+        <input type="search" class="search-input" id="search-input" aria-label="Search presentations by index or class"
           placeholder="Search by index or class (e.g. 12, 100, 13_1)…" />
         <div class="segmented" id="filter-buttons" role="group" aria-label="Solved filter">
           <button class="seg active" data-filter="all" type="button">All</button>
@@ -201,6 +202,23 @@
           <span class="lg-item"><span class="lg-swatch lg-a"></span> row A — gets replaced</span>
           <span class="lg-item"><span class="lg-swatch lg-b"></span> row B — partner, only read</span>
           <span class="lg-item"><span class="lg-seam"></span> splice seam (where the halves met)</span>
+        </div>
+        <!-- What each animation phase means + what the arm-button states encode. Static. -->
+        <div class="player-legend player-legend-phases">
+          <span class="lg-item"><strong class="lg-key">Phases</strong>
+            <abbr class="gloss" title="Pick the two operand relators: row A gets replaced, row B is the partner (only read).">Roles</abbr> →
+            <abbr class="gloss" title="If the move uses B's inverse: read it backwards and case-flip every letter.">Invert</abbr> →
+            <abbr class="gloss" title="Slide each ring's cut marker — relators are cyclic, rotating never changes the word, only where the ring is cut open.">Rotate</abbr> →
+            <abbr class="gloss" title="Glue the rotated words: B's tiles fly into row A, the seam marks where they met.">Splice</abbr> →
+            <abbr class="gloss" title="Adjacent inverse pairs vanish one at a time, zipping shut at the seam.">Cancel</abbr> →
+            <abbr class="gloss" title="The reduced word takes row A; the presentation settles into canonical form.">Settle</abbr>
+            (hover each)</span>
+          <span class="lg-item"><span class="lg-ring"></span>
+            <abbr class="gloss" title="Each operand row draws its relator as the circle it really is; the tick is the cut marker — where the ring is cut open to write the row.">ring + cut marker</abbr></span>
+          <span class="lg-item"><strong class="lg-key">z = w buttons</strong>
+            <span class="arm-btn-demo arm-btn-demo-solved">solid = solved</span>
+            <span class="arm-btn-demo arm-btn-demo-unsolved">dashed = searched, unsolved</span>
+            <span class="arm-btn-demo arm-btn-demo-off">struck = not attempted</span></span>
         </div>
 
         <!-- The current step, large. viewer.js renders relators, the changed relator, move info. -->
