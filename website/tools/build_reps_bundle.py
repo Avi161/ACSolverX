@@ -8,8 +8,14 @@ Emits into website/sample-data/:
   registry_reps.jsonl    261 registry rows (dataset "ms_reps_unsolved", idx 0..260)
   calibration_reps.jsonl 261 x 4 arms of the hard run (budget 500000, all unsolved)
   reps_grid.json         the (n,w) map of the whole MS(1190) family, with cell -> ms_idx / rep_idx
-Also: appends the two jsonl files to manifest.json, and strips the stale 12-idx/2-arm
+Also: annotates registry_1190MS.jsonl in place (rep_idx + class_name on every row whose
+(n,w) cell is non-trivial in the paper's grid — 550 rows, incl. the boundary idx 634-639),
+appends the two jsonl files to manifest.json, and strips the stale 12-idx/2-arm
 placeholder "ms_reps_unsolved" rows out of calibration_ms640.jsonl.
+
+BUILD ORDER: run this tool FIRST, then build_solved640_bundle.py (which prunes leftover
+arms and writes the final manifest label). A solved640-only run leaves the registry
+un-annotated and rep coverage silently reads 0 in the app.
 
 The (n,w) -> 1190MS registry idx map is a rotation+inversion-invariant signature match
 (a verified perfect bijection); ms_solved_grid.csv is authoritative for trivial/label
@@ -31,7 +37,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 DATA = os.path.join(ROOT, "data")
 REPS = os.path.join(DATA, "ms_unsolved_reps")
 STAB = os.path.join(DATA, "stabilized")
-RESULTS = os.path.join(ROOT, "results", "stable_ac", "3_generators_w_choices", "solved")
+RESULTS = os.path.join(ROOT, "results", "stable_ac", "3_generators_w_choices", "ms_reps_unsolved", "runs")
 OUT = os.path.join(ROOT, "website", "sample-data")
 
 
@@ -258,14 +264,35 @@ def strip_stale_reps_from_ms640():
     return dropped
 
 
+def annotate_registry_1190(reg1190, grid_cells):
+    """Write rep_idx + class_name onto the registry rows whose (n,w) cell is non-trivial.
+
+    The grid (paper Table 2) is authoritative: 550 rows get the annotation (544 hard +
+    the 6 boundary idx 634-639), the 6 grid-trivial hard idx get none. Idempotent —
+    stale annotations are stripped before re-applying."""
+    link = {c["ms_idx"]: (c["rep_idx"], c["status"]) for c in grid_cells if c["status"] != "trivial"}
+    rows = []
+    for r in reg1190:
+        r = dict(r)
+        r.pop("rep_idx", None)
+        r.pop("class_name", None)
+        if r["idx"] in link:
+            r["rep_idx"], r["class_name"] = link[r["idx"]]
+        rows.append(r)
+    annotated = sum(1 for r in rows if "rep_idx" in r)
+    assert annotated == 550, annotated
+    write_jsonl(os.path.join(OUT, "registry_1190MS.jsonl"), rows)
+    return annotated
+
+
 def update_manifest():
     fp = os.path.join(OUT, "manifest.json")
     m = json.load(open(fp))
     for name in ["registry_reps.jsonl", "calibration_reps.jsonl"]:
         if name not in m["files"]:
             m["files"].append(name)
-    m["label"] = ("MS(1190) original 640 + hard 550 · 261 unsolved-class reps (hard run, z ∈ {r₁,r₂,x,y}) · "
-                  "z ∈ {r₁,r₂,x,y,g=xy,xY,yx,Xy}")
+    m["label"] = ("MS(1190): original 640 (2-gen baseline + z ∈ {r₁,r₂,x,y} @500k) + "
+                  "hard 550 via 261 unsolved-class reps (0 solved @500k)")
     with open(fp, "w") as f:
         json.dump(m, f, indent=2)
         f.write("\n")
@@ -330,6 +357,7 @@ def main():
     with open(os.path.join(OUT, "reps_grid.json"), "w") as f:
         json.dump(grid_obj, f)
         f.write("\n")
+    annotated = annotate_registry_1190(reg1190, grid_cells)
     dropped = strip_stale_reps_from_ms640()
     update_manifest()
 
@@ -338,6 +366,7 @@ def main():
     print("  calibration_reps.jsonl  : %d rows (%d per arm x 4)" % (len(calibration_rows), len(calibration_rows) // 4))
     print("  reps_grid.json          : %d cells (%d trivial, %d rep-cells, 261 distinct reps)"
           % (len(grid_cells), grid_obj["n_trivial"], grid_obj["n_rep_cells"]))
+    print("  registry_1190MS.jsonl   : %d rows annotated with rep_idx/class_name" % annotated)
     print("  stale ms_reps rows stripped from calibration_ms640.jsonl: %d" % dropped)
 
 

@@ -8,11 +8,16 @@ Emits / updates in website/sample-data/:
   calibration_baseline.jsonl / paths_baseline.jsonl
       the 2-generator GS-Sub BASELINE over the 640 solved MS(1190) (arm "baseline", n_gen 2).
       Source: results/solved640/ if present (matched 500k budget), else results/baseline_greedy/ (1M).
-  calibration_ms640.jsonl / paths_ms640.jsonl  (r1,r2,x,y rows)
+  calibration_ms640.jsonl / paths_ms640.jsonl  (r1,r2,x,y rows ONLY)
       REPLACE the ms640 bundle's r1/r2/x/y rows with the complete 500k run from the organized results
-      tree (results/stable_ac/3_generators_w_choices/ms640/), leaving g at 12k untouched — one budget
-      per arm, so the viewer's byIdx arm map has no per-arm budget collision.
-  manifest.json : append the two baseline files; refresh label.
+      tree (results/stable_ac/3_generators_w_choices/ms640/), and PRUNE every other arm (the leftover
+      g@12k rows) — the four z=w words are the real results; anything else is a stale probe.
+  (deletes) calibration_words.jsonl / paths_words.jsonl
+      the xY/yx/Xy 12k probe arms — redundant; git history preserves them.
+  manifest.json : append the two baseline files, drop the words files; refresh label.
+
+BUILD ORDER: run build_reps_bundle.py FIRST (it annotates registry_1190MS.jsonl with
+rep_idx/class_name), then this tool (prunes arms, writes the final manifest label).
 
 Run from anywhere:  python website/tools/build_solved640_bundle.py
 """
@@ -94,7 +99,8 @@ def build_baseline():
 
 def replace_arms_in_ms640(kind):
     """kind: 'calibration' or 'paths'. Replace the r1/r2/x/y rows in the ms640 bundle with the
-    complete 500k run from the organized results tree; leave g untouched. No-op if none present."""
+    complete 500k run from the organized results tree. Only those four arms are kept — every
+    other arm is dropped by prune_bundle(). No-op if the organized tree is absent."""
     if not any(os.path.exists(org_src(kind, arm)) for arm in Z_ARMS):
         return None  # organized 500k arms not available yet
     bundle = os.path.join(OUT, f"{kind}_ms640.jsonl")
@@ -109,14 +115,34 @@ def replace_arms_in_ms640(kind):
     return added
 
 
+def prune_bundle():
+    """Drop the redundant probe arms from the bundle. Operates purely on sample-data (works
+    even when results/ is absent): keeps only r1/r2/x/y rows in the ms640 files and removes
+    the words files (xY/yx/Xy @12k) from disk entirely."""
+    keep = set(Z_ARMS)
+    for kind in ("calibration", "paths"):
+        fp = os.path.join(OUT, f"{kind}_ms640.jsonl")
+        rows = read_jsonl(fp)
+        kept = [r for r in rows if r.get("arm") in keep]
+        if len(kept) != len(rows):
+            write_jsonl(fp, kept)
+        print(f"  prune ms640 {kind}: {len(rows)} -> {len(kept)} rows (arms {sorted(keep)})")
+    for name in ("calibration_words.jsonl", "paths_words.jsonl"):
+        fp = os.path.join(OUT, name)
+        if os.path.exists(fp):
+            os.remove(fp)
+            print(f"  removed {name}")
+
+
 def update_manifest():
     fp = os.path.join(OUT, "manifest.json")
     m = json.load(open(fp))
     for name in ["calibration_baseline.jsonl", "paths_baseline.jsonl"]:
         if name not in m["files"]:
             m["files"].append(name)
-    m["label"] = ("MS(1190) original 640 + hard 550 · 2-gen baseline vs z ∈ {r₁,r₂,x,y,g,xY,yx,Xy} "
-                  "on the 640 solved · 261 unsolved-class reps")
+    m["files"] = [n for n in m["files"] if n not in ("calibration_words.jsonl", "paths_words.jsonl")]
+    m["label"] = ("MS(1190): original 640 (2-gen baseline + z ∈ {r₁,r₂,x,y} @500k) + "
+                  "hard 550 via 261 unsolved-class reps (0 solved @500k)")
     with open(fp, "w") as f:
         json.dump(m, f, indent=2)
         f.write("\n")
@@ -131,6 +157,7 @@ def main():
             print(f"  ms640 {kind}: organized r1/r2/x/y not present — kept existing rows")
         else:
             print(f"  ms640 {kind}: replaced r1/r2/x/y with {added} @500k rows")
+    prune_bundle()
     update_manifest()
     print("OK — manifest updated")
 

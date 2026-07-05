@@ -1,11 +1,9 @@
 {
-  "label": "MS(1190) original 640 + hard 550 \u00b7 2-gen baseline vs z \u2208 {r\u2081,r\u2082,x,y,g,xY,yx,Xy} on the 640 solved \u00b7 261 unsolved-class reps",
+  "label": "MS(1190): original 640 (2-gen baseline + z \u2208 {r\u2081,r\u2082,x,y} @500k) + hard 550 via 261 unsolved-class reps (0 solved @500k)",
   "files": [
     "registry_1190MS.jsonl",
     "calibration_ms640.jsonl",
     "paths_ms640.jsonl",
-    "calibration_words.jsonl",
-    "paths_words.jsonl",
     "registry_reps.jsonl",
     "calibration_reps.jsonl",
     "calibration_baseline.jsonl",
