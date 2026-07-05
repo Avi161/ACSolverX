@@ -207,9 +207,11 @@
     }
     for (const p of paths) { // a path with no calibration row (defensive)
       const k = mergeKey(p);
+      // A bare path is only a solve if it actually replays to the trivial presentation —
+      // a truncated/foreign upload must not be counted solved on faith.
       if (!items.has(k)) items.set(k, {
         key: k, dataset: p.dataset, idx: p.idx, arm: p.arm, budget: p.budget_nodes,
-        solved: true, calib: null, path: p,
+        solved: validatePath(p).ok, calib: null, path: p,
       });
     }
 

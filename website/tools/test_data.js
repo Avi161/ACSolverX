@@ -172,6 +172,18 @@ console.log("[2d] armSolveSets");
   eq((620 - zOnly) + baseOnly, 634, "baseline = shared + baseline-only");
 }
 
+// ---- 2e. path-only records are gated by validatePath (P9) ----
+console.log("[2e] path-only records gated by validatePath");
+{
+  const good = { dataset: "T", idx: 0, arm: "r1", budget_nodes: 1, n_gen: 3,
+    states: [[[1], [2], [3]]], moves: [], path_len: 0 };
+  const bad = { dataset: "T", idx: 1, arm: "r1", budget_nodes: 1, n_gen: 3,
+    states: [[[1], [2], [3, 3]]], moves: [], path_len: 0 }; // final state NOT trivial
+  const tds = D.buildDataset([good, bad]);
+  eq(tds.byKey.get("T|0|r1|1").solved, true, "valid path-only record counts as solved");
+  eq(tds.byKey.get("T|1|r1|1").solved, false, "invalid path-only record must NOT count as solved");
+}
+
 // ---- 3. stable-slot invariants over every stored path ----
 console.log("[3] stable-slot invariants (all bundled paths)");
 let paths = 0, stepChecks = 0, viol = 0;

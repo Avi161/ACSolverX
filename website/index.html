@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AC-SolverX · Path Explorer</title>
   <!-- ?v= busts stale browser caches on redeploy — bump it whenever css/js change -->
-  <link rel="stylesheet" href="css/styles.css?v=2" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
   <script>
     // Set the theme before first paint (from localStorage) to avoid a flash of dark.
     try {
@@ -55,7 +55,17 @@
         <input type="file" id="file-input" multiple accept=".jsonl,.json" hidden />
         <p><strong>Drop</strong> your <code>paths_*.jsonl</code> and <code>calibration_*.jsonl</code> here,
           or <label for="file-input" class="link-label">choose files</label>.</p>
-        <p class="hint" id="upload-hint">Select both streams at once — they merge automatically.</p>
+        <p class="hint" id="upload-hint">Append adds to the data already loaded; Replace starts fresh from
+          just your files.</p>
+      </div>
+      <div class="upload-mode-row">
+        <span class="upload-mode-label">On upload:</span>
+        <div class="segmented" id="upload-mode" role="group" aria-label="Upload mode">
+          <button class="seg active" data-mode="append" type="button"
+            title="Merge the new records into whatever is currently loaded">Append</button>
+          <button class="seg" data-mode="replace" type="button"
+            title="Discard the currently loaded data and load only the new files">Replace</button>
+        </div>
       </div>
       <details class="format-info">
         <summary>Expected format</summary>
@@ -519,12 +529,12 @@
 </div>
 
 <!-- Load order matters: data (spine) → charts (pure render) → views → app (router/bootstrap). -->
-<script src="js/data.js?v=2"></script>
-<script src="js/charts.js?v=2"></script>
-<script src="js/viewer.js?v=2"></script>
-<script src="js/dashboard.js?v=2"></script>
-<script src="js/baseline.js?v=2"></script>
-<script src="js/comparison.js?v=2"></script>
-<script src="js/app.js?v=2"></script>
+<script src="js/data.js?v=3"></script>
+<script src="js/charts.js?v=3"></script>
+<script src="js/viewer.js?v=3"></script>
+<script src="js/dashboard.js?v=3"></script>
+<script src="js/baseline.js?v=3"></script>
+<script src="js/comparison.js?v=3"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>

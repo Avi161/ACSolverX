@@ -14,6 +14,11 @@
   var ACX = { dataset: null, reload: reload, route: route };
   window.ACX = ACX;
 
+  // The raw records behind the current dataset — Append-mode uploads concat onto this,
+  // which is what makes the UI's merge claim actually true across separate uploads.
+  var lastRecords = [];
+  var uploadMode = "append";
+
   // ---- data summary / status dot -------------------------------------------------
 
   function setStatus(text, colorVar, titleText) {
@@ -55,7 +60,8 @@
 
   /** Rebuild the dataset from a flat list of raw records and re-render both views. */
   function reload(records) {
-    var dataset = ACXData.buildDataset(records || []);
+    lastRecords = records || [];
+    var dataset = ACXData.buildDataset(lastRecords);
     ACX.dataset = dataset;
     if (window.ACXViewer) ACXViewer.render(dataset);
     if (window.ACXDashboard) ACXDashboard.render(dataset);
@@ -190,12 +196,15 @@
         for (var j = 0; j < records.length; j++) {
           if (ACXData.classifyRecord(records[j]) === "unknown") unknown++;
         }
-        var dataset = reload(records);
+        var appended = uploadMode === "append" && lastRecords.length;
+        var merged = appended ? lastRecords.concat(records) : records;
+        var dataset = reload(merged);
         setStatus("Custom · " + dataset.counts.withPath + " solutions", unknown ? "--warn" : "--accent-2");
         if (hintEl) {
           var names = files.map(function (f) { return f.name; }).join(", ");
           hintEl.textContent = "Loaded " + files.length + " file(s) (" + names + ") — " +
-            dataset.counts.total + " records merged" +
+            records.length + " new record(s) " + (appended ? "appended to the loaded data" : "replaced the loaded data") +
+            " · " + dataset.counts.total + " records total" +
             (unknown ? " (" + unknown + " unrecognized record(s) skipped — expected path/calibration/registry JSONL)." : ".");
         }
       })
@@ -214,9 +223,19 @@
     var dropzone = document.getElementById("dropzone");
     var fileInput = document.getElementById("file-input");
     var resetBtn = document.getElementById("reset-sample");
+    var modeGroup = document.getElementById("upload-mode");
 
     if (toggleBtn && panel) {
       toggleBtn.addEventListener("click", function () { panel.classList.toggle("hidden"); });
+    }
+    if (modeGroup) {
+      modeGroup.addEventListener("click", function (e) {
+        var btn = e.target.closest(".seg");
+        if (!btn || !modeGroup.contains(btn)) return;
+        uploadMode = btn.getAttribute("data-mode") || "append";
+        var segs = modeGroup.querySelectorAll(".seg");
+        for (var i = 0; i < segs.length; i++) segs[i].classList.toggle("active", segs[i] === btn);
+      });
     }
     if (fileInput) {
       fileInput.addEventListener("change", function (e) { handleUpload(e.target.files); });
@@ -236,7 +255,7 @@
     if (resetBtn) {
       resetBtn.addEventListener("click", function () {
         var hintEl = document.getElementById("upload-hint");
-        if (hintEl) hintEl.textContent = "Select both streams at once — they merge automatically.";
+        if (hintEl) hintEl.textContent = "Append adds to the data already loaded; Replace starts fresh from just your files.";
         loadSample();
       });
     }

@@ -53,11 +53,14 @@ paths_<run>.jsonl
 calibration_<run>.jsonl
 ```
 
-Both are plain JSONL (one JSON object per line). Drop them **together** (or select
-both with the file picker) — records are auto-classified by shape and merged on
-`(dataset, idx, arm, budget_nodes)`, so a path record and its matching calibration
-record become one item regardless of file order or how many files you split them
-across. Click **"Reset to sample data"** to go back to the bundled dataset.
+Both are plain JSONL (one JSON object per line). Records are auto-classified by
+shape and merged on `(dataset, idx, arm, budget_nodes)`, so a path record and its
+matching calibration record become one item regardless of file order or how many
+files you split them across. The **Append | Replace** toggle in the upload panel
+decides what happens across *separate* uploads: **Append** (the default) adds the
+new records to whatever is currently loaded — including the bundled sample data —
+while **Replace** starts fresh from just your files. Click **"Reset to sample
+data"** to go back to the bundled dataset.
 
 ## Data model
 
