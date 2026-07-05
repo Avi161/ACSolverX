@@ -101,15 +101,18 @@
     }
     // Deep link: reopen the linked presentation once the view is shown. route() runs
     // after loadSample() resolves on boot, so the dataset entry exists by now.
-    if (name === "solutions" && query && window.ACXViewer && typeof ACXViewer.openFromHash === "function") {
+    if (name === "solutions" && window.ACXViewer) {
       var params = {};
-      query.split("&").forEach(function (kv) {
+      (query || "").split("&").forEach(function (kv) {
         var eq = kv.indexOf("=");
         if (eq !== -1) params[kv.slice(0, eq)] = decodeURIComponent(kv.slice(eq + 1));
       });
-      if (params.open && params.open.indexOf(":") !== -1) {
+      if (params.open && params.open.indexOf(":") !== -1 && typeof ACXViewer.openFromHash === "function") {
         var at = params.open.lastIndexOf(":");
         ACXViewer.openFromHash(params.open.slice(0, at), params.open.slice(at + 1), params.arm || null);
+      } else if (!params.open && typeof ACXViewer.closePlayer === "function") {
+        // Back from a deep link lands on bare #/solutions — the modal must follow the URL
+        ACXViewer.closePlayer();
       }
     }
 

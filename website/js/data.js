@@ -161,6 +161,14 @@
     return n % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
   }
 
+  /** HTML-escape for record-derived strings landing in innerHTML sinks (arm names,
+   *  registry class names — all uploadable, so never trust them). */
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
   // ---- parsing ------------------------------------------------------------------
   /** Tolerant JSONL/JSON-array parser. Skips blank/corrupt lines (e.g. a truncated tail). */
   function parseJsonl(text) {
@@ -407,28 +415,36 @@
     const wantSub = sel.subset || "all";
     const sets = {};
     for (const a of arms) sets[a] = new Set();
-    let scopeTotal = 0;
+    let scopeTotal = 0, attempted = 0;
     for (const entry of ds.byIdx.values()) {
       if (entry.dataset !== wantDs) continue;
       if (wantSub !== "all" && entry.subset !== wantSub) continue;
       scopeTotal++;
+      let ran = false;
       for (const a of arms) {
         const it = entry.arms.get(a);
+        if (it) ran = true;
         if (it && it.solved) sets[a].add(entry.idx);
       }
+      if (ran) attempted++;
     }
     const countByIdx = new Map();
     for (const a of arms) for (const v of sets[a]) countByIdx.set(v, (countByIdx.get(v) || 0) + 1);
     const union = new Set(countByIdx.keys());
     const byK = new Array(arms.length + 1).fill(0);
-    byK[0] = scopeTotal - union.size;
+    // byK[0] = attempted-but-solved-by-none; never counts presentations no arm ran on
+    // (a partial upload must not read never-attempted as "solved by none").
+    byK[0] = attempted - union.size;
     for (const k of countByIdx.values()) byK[k]++;
     const unique = {};
     for (const a of arms) {
       unique[a] = 0;
       for (const v of sets[a]) if (countByIdx.get(v) === 1) unique[a]++;
     }
-    return { arms: arms.slice(), sets: sets, union: union, unique: unique, byK: byK, scopeTotal: scopeTotal };
+    return {
+      arms: arms.slice(), sets: sets, union: union, unique: unique, byK: byK,
+      scopeTotal: scopeTotal, attempted: attempted,
+    };
   }
 
   // ---- move reconstruction --------------------------------------------------------
@@ -795,7 +811,7 @@
     decodeZWord: decodeZWord, relKey: relKey, stateTotalLen: stateTotalLen,
     isTrivialState: isTrivialState, multisetDiff: multisetDiff,
     classifyRecord: classifyRecord, mergeKey: mergeKey, armSymbol: armSymbol,
-    ARM_ORDER: ARM_ORDER, armSort: armSort, median: median,
+    ARM_ORDER: ARM_ORDER, armSort: armSort, median: median, esc: esc,
     parseJsonl: parseJsonl, buildDataset: buildDataset, buildSteps: buildSteps,
     describeMoveTuple: describeMoveTuple, validatePath: validatePath,
     countBy: countBy, histogram: histogram,

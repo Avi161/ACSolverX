@@ -56,6 +56,7 @@
   }
 
   var median = ACXData.median;
+  var esc = ACXData.esc;
   function nodesOf(it) { return it && it.calib && it.calib.nodes_explored != null ? it.calib.nodes_explored : null; }
   function pathOf(it) { return it && it.path && it.path.path_len != null ? it.path.path_len : (it && it.calib && it.calib.path_len != null ? it.calib.path_len : null); }
 
@@ -132,12 +133,12 @@
 
     function strong(v) { return "<strong>" + v + "</strong>"; }
     var rankTxt = ranked.map(function (a, i) {
-      var t = armLabel(a) + " (" + A.sets[a].size + ")";
+      var t = esc(armLabel(a)) + " (" + A.sets[a].size + ")";
       return i === 0 ? strong(t) : t;
     }).join(", ");
     var parts = [];
     parts.push("<h3>Does <code>z = w</code> help?</h3>");
-    var s1 = "On the " + strong(A.scopeTotal) + " directly-searched presentations (the original set): ";
+    var s1 = "On the " + strong(A.attempted) + " directly-searched presentations (the original set): ";
     if (baseSet) s1 += "the 2-generator baseline solves " + strong(baseSet.size) + "; ";
     s1 += "the " + zArms.length + " z-words together solve " + strong(A.union.size) +
       " (" + strong(A.byK[0]) + " solved by none of them" +
@@ -169,8 +170,8 @@
       dom.wordRanking.innerHTML = rows.map(function (r) {
         var pctW = Math.max(2, Math.round(100 * r.n / maxN));
         return '<div class="ranking-row' + r.cls + '" role="img" aria-label="' +
-          armLabel(r.arm) + " solved " + r.n + " of " + A.scopeTotal + '">' +
-          '<span class="ranking-label">' + armLabel(r.arm) + "</span>" +
+          esc(armLabel(r.arm)) + " solved " + r.n + " of " + A.attempted + '">' +
+          '<span class="ranking-label">' + esc(armLabel(r.arm)) + "</span>" +
           '<span class="ranking-track"><span class="ranking-bar" style="width:' + pctW +
           '%;background:' + armColor(r.arm) + '"></span></span>' +
           '<span class="ranking-value">' + r.n + "</span></div>";
@@ -258,7 +259,7 @@
     if (dom.armSelect) {
       var opts = arms.filter(function (a) { return a !== "baseline"; });
       var cur = dom.armSelect.value;
-      dom.armSelect.innerHTML = opts.map(function (a) { return '<option value="' + a + '">' + armLabel(a) + "</option>"; }).join("");
+      dom.armSelect.innerHTML = opts.map(function (a) { return '<option value="' + esc(a) + '">' + esc(armLabel(a)) + "</option>"; }).join("");
       if (cur && opts.indexOf(cur) !== -1) dom.armSelect.value = cur;
       else if (opts.length) dom.armSelect.value = opts.indexOf("r1") !== -1 ? "r1" : opts[0];
     }
@@ -300,7 +301,7 @@
         function pct(k) { return p.n ? Math.round(100 * k / p.n) + "%" : "—"; }
         function mr(rs) { return rs.length ? median(rs).toFixed(2) + "×" : "—"; }
         function m(xs) { return median(xs) == null ? "—" : median(xs); }
-        return "<tr><td>" + armLabel(a) + "</td><td>" + p.n +
+        return "<tr><td>" + esc(armLabel(a)) + "</td><td>" + p.n +
           "</td><td>" + m(p.baseNodes) + "</td><td>" + m(p.armNodes) +
           "</td><td>" + pct(p.nodeCheaper) + "</td><td>" + mr(p.nodeRatios) +
           "</td><td>" + m(p.basePath) + "</td><td>" + m(p.armPath) +
@@ -332,9 +333,9 @@
       var cards = [
         { label: "Baseline solved / " + (baseItems.length || origTotal || "—"), value: baseItems.length ? String(baseSolved) : "—" },
         { label: "z-words union solved / " + (zA.scopeTotal || "—"), value: zA.arms.length ? String(zA.union.size) : "—" },
-        { label: "Best single word", value: bestArm ? armLabel(bestArm) + " (" + zA.sets[bestArm].size + ")" : "—" },
-        { label: "Both-solve pairs (vs " + selArm + ")", value: String(points.length) },
-        { label: selArm + " cheaper than baseline", value: points.length ? cheaper + " (" + Math.round(100 * cheaper / points.length) + "%)" : "—" },
+        { label: "Best single word", value: bestArm ? esc(armLabel(bestArm)) + " (" + zA.sets[bestArm].size + ")" : "—" },
+        { label: "Both-solve pairs (vs " + esc(selArm) + ")", value: String(points.length) },
+        { label: esc(selArm) + " cheaper than baseline", value: points.length ? cheaper + " (" + Math.round(100 * cheaper / points.length) + "%)" : "—" },
       ];
       dom.stats.innerHTML = cards.map(function (c) {
         return '<div class="stat-card"><div class="stat-value">' + c.value +

@@ -152,6 +152,12 @@ console.log("[2d] armSolveSets");
 {
   const Z = D.armSolveSets(ds, { dataset: "1190MS", subset: "original", arms: ["r1", "r2", "x", "y"] });
   eq(Z.scopeTotal, 640, "verdict scope is the original 640");
+  eq(Z.attempted, 640, "all 640 were directly searched under the z-words");
+  // byK[0] counts attempted-but-unsolved only — a full-family scope must not read
+  // never-attempted hard presentations as "solved by none"
+  const Zfull = D.armSolveSets(ds, { dataset: "1190MS", subset: "all", arms: ["r1", "r2", "x", "y"] });
+  eq(Zfull.byK[0], 20, "byK[0] over the full family still counts only searched-and-unsolved");
+  eq(Zfull.attempted, 640, "full-family attempted = the 640 with direct z-word runs");
   eq(Z.union.size, 620, "union of the four z-words solves 620");
   eq(Z.sets.r1.size, 619, "r1 solves 619");
   eq(Z.sets.r2.size, 602, "r2 solves 602");

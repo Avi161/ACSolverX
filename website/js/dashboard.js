@@ -65,6 +65,7 @@
 
   // ---- small stats helpers ---------------------------------------------------------
   var median = ACXData.median;
+  var esc = ACXData.esc;
   function pct(part, whole) { return whole > 0 ? (part / whole) * 100 : 0; }
   function fmtPct(p) { return p.toFixed(1) + "%"; }
   /** Compact tick label for the log-binned node histogram (1200 -> 1.2k). */
@@ -251,7 +252,7 @@
         var medPathLen = median(armSolved.filter(function (i) { return i.path; }).map(function (i) { return i.path.path_len; }));
         var medNodes = median(armSolved.filter(function (i) { return i.calib; }).map(function (i) { return i.calib.nodes_explored; }));
         var medTime = median(armSolved.filter(function (i) { return i.calib; }).map(function (i) { return i.calib.wall_time_s; }));
-        var sym = (ACXData && ACXData.armSymbol) ? ACXData.armSymbol(a) : a;
+        var sym = esc((ACXData && ACXData.armSymbol) ? ACXData.armSymbol(a) : a);
         return "<tr><td>" + sym + "</td><td>" + armItems.length + "</td><td>" + armSolved.length +
           "</td><td>" + fmtPct(pct(armSolved.length, armItems.length)) + "</td><td>" + repsCell(a) +
           "</td><td>" + fmtOr(medPathLen) +
@@ -262,7 +263,7 @@
       var tMedPath = median(allSolved.filter(function (i) { return i.path; }).map(function (i) { return i.path.path_len; }));
       var tMedNodes = median(allSolved.filter(function (i) { return i.calib; }).map(function (i) { return i.calib.nodes_explored; }));
       var tMedTime = median(allSolved.filter(function (i) { return i.calib; }).map(function (i) { return i.calib.wall_time_s; }));
-      var totalRow = "<tr class=\"total-row\"><td>Total</td><td>" + items.length + "</td><td>" + allSolved.length +
+      var totalRow = "<tr class=\"total-row\"><td>Total (direct runs)</td><td>" + items.length + "</td><td>" + allSolved.length +
         "</td><td>" + fmtPct(pct(allSolved.length, items.length)) + "</td><td></td><td>" + fmtOr(tMedPath) +
         "</td><td>" + fmtOr(tMedNodes) + "</td><td>" + fmtOr(tMedTime, 3) + "</td></tr>";
       dom.dashTable.innerHTML =
@@ -380,7 +381,7 @@
     }).join("") + "</tr></thead>";
     var tbody = "<tbody>" + sorted.map(function (r) {
       return '<tr class="hard-row" data-rep-idx="' + r.idx + '" title="open representative #' + r.idx + '">' +
-        "<td>" + r.name + "</td><td>" + r.size + "</td><td>" + r.len1 + "</td><td>" + r.len2 +
+        "<td>" + esc(r.name) + "</td><td>" + r.size + "</td><td>" + r.len1 + "</td><td>" + r.len2 +
         "</td><td>" + r.solved + "/" + r.armsTotal + "</td><td>" + r.exhausted +
         "</td><td>" + fmtS(r.medTime) + "</td><td>" + fmtS(r.medRevert) +
         "</td><td>" + fmtS(r.medNps) + "</td></tr>";

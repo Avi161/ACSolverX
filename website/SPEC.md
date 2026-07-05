@@ -99,7 +99,9 @@ clickable row per step, jumps the player).
 
 **Analytics (dashboard.js):** `#analytics-stats` (overview cards), `#dash-dataset`, `#dash-arm`,
 `#dash-scope`, chart containers `#chart-solve-by-arm`, `#chart-pathlen-hist`, `#chart-nodes-solved`,
-`#chart-time-hist`, `#chart-solve-by-dataset`, `#dash-table` (table), `#dash-table-scope`.
+`#chart-time-hist`, `#dash-table` (table), `#dash-table-scope`. (`#chart-solve-by-dataset`
+removed in the 2026-07-05 amendment; the hard-set section ids are `#hard-section`,
+`#hard-stats`, `#chart-hard-classsize`, `#chart-hard-relators`, `#hard-class-table`.)
 
 ---
 
@@ -141,7 +143,7 @@ Filter `dataset` items by `#dash-dataset`/`#dash-arm` (default "all"); set `#das
 3. `#chart-nodes-solved` — `histogram` of `calib.nodes_explored` over SOLVED items only (small values),
    color `--accent-2`. (Keep solved separate from unsolved: unsolved ≈ the budget cap, mixing misleads.)
 4. `#chart-time-hist` — `histogram` of `calib.wall_time_s` over SOLVED items, color `--gen-z`.
-5. `#chart-solve-by-dataset` — `stackedBar`, one category per dataset, solved/unsolved segments.
+5. *(removed 2026-07-05)* the single-bar per-dataset chart — slot superseded by the hard-set section.
 Overview cards `#analytics-stats`: total, solved, solve-rate %, arms count, datasets count. Table
 `#dash-table`: a row per arm — arm, N, solved, solve %, median path_len, median nodes (solved), median
 wall_time_s (solved). Label everything "loaded dataset"; never present the sample solve-rate as a project
