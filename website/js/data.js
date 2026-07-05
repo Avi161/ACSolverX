@@ -210,15 +210,15 @@
     }
     for (const entry of byIdx.values()) entry.subset = subsetOfEntry(entry);
 
-    const armOrder = ["r1", "r2", "x", "y", "g", "xy", "xY", "yx", "Xy"];
+    const armOrder = ["r1", "r2", "x", "y", "g", "xY", "yx", "Xy"];
     const arms = Array.from(new Set(itemList.map((i) => i.arm)))
       .sort((a, b) => (armOrder.indexOf(a) + 1 || 99) - (armOrder.indexOf(b) + 1 || 99) || (a < b ? -1 : 1));
     const datasets = Array.from(new Set(itemList.map((i) => i.dataset).concat(registries.map((r) => r.dataset))));
     const budgets = Array.from(new Set(itemList.map((i) => i.budget))).sort((a, b) => a - b);
     const subsets = Array.from(new Set(Array.from(byIdx.values()).map((e) => e.subset).filter(Boolean)));
 
-    // How many distinct z-word arms EXIST for each dataset (the full-grid multiplier: 8 for
-    // 1190MS, 4 for ms_reps_unsolved). Used by groupStats to count (presentation × z-word) cells.
+    // Which arms EXIST for each dataset (e.g. {baseline,r1,r2,x,y} for 1190MS, {r1,r2,x,y}
+    // for ms_reps_unsolved). The sets feed rep-coverage lookups; the counts are informational.
     const armSets = {};
     for (const it of itemList) (armSets[it.dataset] || (armSets[it.dataset] = new Set())).add(it.arm);
     const armsByDataset = {};
@@ -228,7 +228,7 @@
       calibrations: calibrations, paths: paths, registries: registries,
       items: itemList, byKey: items, byIdx: byIdx,
       arms: arms, datasets: datasets, budgets: budgets, subsets: subsets,
-      armsByDataset: armsByDataset,
+      armsByDataset: armsByDataset, armSetsByDataset: armSets,
       counts: {
         total: itemList.length,
         solved: itemList.filter((i) => i.solved).length,
@@ -249,6 +249,16 @@
     reps: "Unsolved-class reps",
   };
   const MS_SPLIT = 640;
+  const REPS_DATASET = "ms_reps_unsolved";
+
+  const DATASET_LABELS = {
+    "1190MS": "MS(1190) — full family",
+    ms_reps_unsolved: "Unsolved-class reps (261)",
+  };
+
+  function datasetLabel(name) {
+    return DATASET_LABELS[name] || name;
+  }
 
   function subsetOfEntry(entry) {
     if (entry.reg && entry.reg.subset) return entry.reg.subset;
@@ -269,57 +279,75 @@
   }
 
   /**
-   * (Presentation × z-word) CELL stats for a selection. The counting unit is one attempt
-   * slot = (presentation, z-word). With arm === "all" the total is the FULL grid —
-   * presentations_in_scope × (# z-words that exist for the dataset) — so 1190MS reads
-   * 1190 × 8 = 9520, counting the never-run hard-550 cells as "Not attempted". With a
-   * SINGLE arm each presentation is one cell, so the numbers collapse back to the old
-   * presentation counts (1190MS + z=r₁ → Total 1190). solved/unsolved/notAttempted always
-   * partition `total`.
+   * PRESENTATION-first stats for a selection — the counting unit is always one presentation,
+   * never a (presentation × z-word) cell, so 1190MS reads Total 1190 under any arm scope.
+   * Buckets partition `total`:
+   *   solved           — a run in scope solved it (best path length per presentation kept);
+   *                      a rep-level solve would also land here
+   *   unsolvedSearched — directly searched under the scope's arm(s), budget exhausted
+   *   coveredViaReps   — never run directly, but its unsolved-class representative
+   *                      (reg.rep_idx → the ms_reps_unsolved dataset) WAS searched under the
+   *                      scope's arm(s) and stayed unsolved
+   *   notAttempted     — nothing searched, directly or via a representative
    *   sel = { dataset: "all"|name, arm: "all"|arm, subset: "all"|subset }
-   * `presentations` = distinct presentations in scope (for the "1190 × 8" sub-line).
-   * `avgPathLen` stays presentation-level: best solved path per presentation.
+   * `attempted` counts directly-searched presentations only. `unsolved` is a back-compat
+   * alias of `unsolvedSearched`. `avgPathLen` = mean over each solved presentation's best path.
    */
   function groupStats(ds, sel) {
     sel = sel || {};
     const wantDs = sel.dataset || "all", wantArm = sel.arm || "all", wantSub = sel.subset || "all";
-    const armsBy = ds.armsByDataset || {};
-    let total = 0, attempted = 0, solved = 0, presentations = 0;
+    let total = 0, attempted = 0, solved = 0, unsolvedSearched = 0, coveredViaReps = 0, notAttempted = 0;
     const pathLens = [];
+
+    // The rep's outcome under the arm scope: "solved" | "unsolved" | null (not covered).
+    function repOutcome(entry) {
+      const reg = entry.reg;
+      if (!reg || reg.rep_idx == null || entry.dataset === REPS_DATASET) return null;
+      const repEntry = ds.byIdx.get(REPS_DATASET + "|" + reg.rep_idx);
+      if (!repEntry) return null;
+      let anySearched = false;
+      for (const it of repEntry.arms.values()) {
+        if (wantArm !== "all" && it.arm !== wantArm) continue;
+        if (it.solved) return "solved";
+        anySearched = true;
+      }
+      return anySearched ? "unsolved" : null;
+    }
+
     for (const entry of ds.byIdx.values()) {
       if (wantDs !== "all" && entry.dataset !== wantDs) continue;
       if (wantSub !== "all" && entry.subset !== wantSub) continue;
-      presentations++;
-      if (wantArm === "all") {
-        // full grid: this presentation contributes one cell per z-word the dataset has.
-        total += armsBy[entry.dataset] || entry.arms.size || 0;
-        let best = null;
-        for (const it of entry.arms.values()) {
-          attempted++; // each arm actually run is one searched cell
-          if (it.solved) {
-            solved++;
-            const len = itemPathLen(it);
-            if (len != null && (best == null || len < best)) best = len;
-          }
+      total++;
+      let searched = false, won = false, best = null;
+      for (const it of entry.arms.values()) {
+        if (wantArm !== "all" && it.arm !== wantArm) continue;
+        searched = true;
+        if (it.solved) {
+          won = true;
+          const len = itemPathLen(it);
+          if (len != null && (best == null || len < best)) best = len;
         }
-        if (best != null) pathLens.push(best);
+      }
+      if (searched) {
+        attempted++;
+        if (won) {
+          solved++;
+          if (best != null) pathLens.push(best);
+        } else {
+          unsolvedSearched++;
+        }
       } else {
-        total += 1; // one cell for this (presentation, wantArm)
-        const it = entry.arms.get(wantArm);
-        if (it) {
-          attempted++;
-          if (it.solved) {
-            solved++;
-            const len = itemPathLen(it);
-            if (len != null) pathLens.push(len);
-          }
-        }
+        const rep = repOutcome(entry);
+        if (rep === "solved") solved++;
+        else if (rep === "unsolved") coveredViaReps++;
+        else notAttempted++;
       }
     }
     const avg = pathLens.length ? pathLens.reduce((a, b) => a + b, 0) / pathLens.length : null;
     return {
-      total: total, presentations: presentations, attempted: attempted, solved: solved,
-      unsolved: attempted - solved, notAttempted: total - attempted,
+      total: total, presentations: total, attempted: attempted, solved: solved,
+      unsolvedSearched: unsolvedSearched, unsolved: unsolvedSearched,
+      coveredViaReps: coveredViaReps, notAttempted: notAttempted,
       avgPathLen: avg, pathLens: pathLens,
     };
   }
@@ -655,6 +683,7 @@
     SUB: SUB,
     // provenance + non-redundant stats
     SUBSET_LABELS: SUBSET_LABELS, subsetLabel: subsetLabel, subsetOfEntry: subsetOfEntry,
+    DATASET_LABELS: DATASET_LABELS, datasetLabel: datasetLabel,
     itemPathLen: itemPathLen, groupStats: groupStats,
     // move reconstruction
     rollWord: rollWord, minimalRotation: minimalRotation, canonicalRelator: canonicalRelator,

@@ -28,8 +28,7 @@
   // through buildSteps would mis-decode generator y as the stabilizer z.
   const HIDDEN_ARMS = new Set(["baseline"]);
   // Human-readable dataset names for selects (option VALUES stay the raw ids — filters key on them).
-  const DATASET_LABELS = { "1190MS": "MS(1190) — full family", "ms_reps_unsolved": "Unsolved-class reps (261)" };
-  function datasetLabel(ds) { return DATASET_LABELS[ds] || ds; }
+  const datasetLabel = (ds) => D.datasetLabel(ds);
 
   // Base durations (ms) at Normal speed; the speed select multiplies these.
   const DUR = {

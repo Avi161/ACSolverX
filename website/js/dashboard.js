@@ -309,9 +309,8 @@
     var dsVal = dom.dashDataset ? dom.dashDataset.value : "all";
     var subVal = dom.dashSubset ? dom.dashSubset.value : "all";
     var armVal = dom.dashArm ? dom.dashArm.value : "all";
-    var DATASET_LABELS = { "1190MS": "MS(1190) — full family", "ms_reps_unsolved": "Unsolved-class reps (261)" };
     populateSelect(dom.dashDataset, dataset.datasets.slice().sort(), dsVal, function (d) {
-      return DATASET_LABELS[d] || d;
+      return (ACXData && ACXData.datasetLabel) ? ACXData.datasetLabel(d) : d;
     });
     populateSelect(dom.dashSubset, (dataset.subsets || []).slice().sort(), subVal, function (s) {
       return (ACXData && ACXData.subsetLabel) ? ACXData.subsetLabel(s) : s;
