@@ -39,7 +39,7 @@
   function armColor(a) {
     return cssVar("--arm-" + a, ARM_FALLBACK[a] || "#9fb0c6");
   }
-  var ARM_ORDER = ["r1", "r2", "x", "y", "g"];
+  var ARM_ORDER = ["baseline", "r1", "r2", "x", "y"];
 
   function armSort(a, b) {
     var ia = ARM_ORDER.indexOf(a), ib = ARM_ORDER.indexOf(b);
@@ -158,27 +158,25 @@
 
     var scopeText = "Loaded dataset · dataset: " + (dsVal === "all" ? "all" : dsVal) +
       (subVal === "all" ? "" : " · subset: " + (ACXData.subsetLabel ? ACXData.subsetLabel(subVal) : subVal)) +
-      " · arm: " + (armVal === "all" ? "all" : armVal) + " · N=" + items.length +
-      " — sample stats, not a project-wide result";
+      " · arm: " + (armVal === "all" ? "all" : armVal) + " · " + items.length + " direct runs" +
+      " — charts cover direct runs only (the hard 550 are covered via class reps, not run one by one)";
     if (dom.dashScope) dom.dashScope.textContent = scopeText;
-    if (dom.dashTableScope) dom.dashTableScope.textContent = "(loaded dataset · N=" + items.length + ")";
+    if (dom.dashTableScope) dom.dashTableScope.textContent = "(loaded dataset · " + items.length + " direct runs)";
 
-    // ---- overview cards --------------------------------------------------------
+    // ---- overview cards: PRESENTATION-framed (groupStats v2), never run rows -----
     if (dom.analyticsStats) {
-      // "Runs" are (presentation × arm) rows; distinct presentations counted separately
-      // so nothing here double-reads as a presentation count.
-      var distinct = new Set(items.map(function (i) { return i.dataset + "|" + i.idx; })).size;
-      var solveRate = pct(solved.length, items.length);
+      var g = ACXData.groupStats(dataset, { dataset: dsVal, arm: armVal, subset: subVal });
       var cards = [
-        { label: "Runs in scope (presentation × arm)", value: String(items.length) },
-        { label: "Solved runs", value: String(solved.length) },
-        { label: "Run solve rate", value: fmtPct(solveRate) },
-        { label: "Distinct presentations", value: String(distinct) },
-        { label: "Arms in scope", value: String(armsInScope.length) },
+        { label: "Presentations", value: g.total.toLocaleString(), sub: items.length.toLocaleString() + " direct runs in scope" },
+        { label: "Solved", value: String(g.solved), cls: "stat-ok", sub: g.attempted ? Math.round(100 * g.solved / g.attempted) + "% of searched" : "" },
+        { label: "Unsolved (searched)", value: String(g.unsolvedSearched), cls: "stat-err", sub: "budget exhausted" },
+        { label: "Covered via reps", value: String(g.coveredViaReps), cls: "stat-warn", sub: g.coveredViaReps ? "searched via class rep · 0 solved" : "" },
+        { label: "Not attempted", value: String(g.notAttempted), cls: "stat-muted" },
       ];
       dom.analyticsStats.innerHTML = cards.map(function (c) {
-        return '<div class="stat-card"><div class="stat-value">' + c.value +
-          '</div><div class="stat-label">' + c.label + '</div></div>';
+        return '<div class="stat-card' + (c.cls ? " " + c.cls : "") + '"><div class="stat-value">' + c.value +
+          '</div><div class="stat-label">' + c.label + '</div>' +
+          (c.sub ? '<div class="stat-sub">' + c.sub + '</div>' : "") + '</div>';
       }).join("");
     }
 
@@ -265,6 +263,18 @@
 
     // ---- per-arm table -----------------------------------------------------------
     if (dom.dashTable) {
+      // Hard-class reps coverage per arm, from the FULL loaded dataset (the reps live in
+      // their own dataset, so the scope filter would hide them when viewing 1190MS).
+      var repsByArm = {};
+      dataset.items.forEach(function (i) {
+        if (i.dataset !== "ms_reps_unsolved") return;
+        var e = repsByArm[i.arm] || (repsByArm[i.arm] = { n: 0, solved: 0 });
+        e.n++; if (i.solved) e.solved++;
+      });
+      function repsCell(a) {
+        var e = repsByArm[a];
+        return e ? e.solved + "/" + e.n : "—";
+      }
       var rows = armsInScope.map(function (a) {
         var armItems = items.filter(function (i) { return i.arm === a; });
         var armSolved = armItems.filter(function (i) { return i.solved; });
@@ -273,7 +283,8 @@
         var medTime = median(armSolved.filter(function (i) { return i.calib; }).map(function (i) { return i.calib.wall_time_s; }));
         var sym = (ACXData && ACXData.armSymbol) ? ACXData.armSymbol(a) : a;
         return "<tr><td>" + sym + "</td><td>" + armItems.length + "</td><td>" + armSolved.length +
-          "</td><td>" + fmtPct(pct(armSolved.length, armItems.length)) + "</td><td>" + fmtOr(medPathLen) +
+          "</td><td>" + fmtPct(pct(armSolved.length, armItems.length)) + "</td><td>" + repsCell(a) +
+          "</td><td>" + fmtOr(medPathLen) +
           "</td><td>" + fmtOr(medNodes) + "</td><td>" + fmtOr(medTime, 3) + "</td></tr>";
       });
       // TOTAL — aggregate across every arm in scope ("total together").
@@ -282,12 +293,13 @@
       var tMedNodes = median(allSolved.filter(function (i) { return i.calib; }).map(function (i) { return i.calib.nodes_explored; }));
       var tMedTime = median(allSolved.filter(function (i) { return i.calib; }).map(function (i) { return i.calib.wall_time_s; }));
       var totalRow = "<tr class=\"total-row\"><td>Total</td><td>" + items.length + "</td><td>" + allSolved.length +
-        "</td><td>" + fmtPct(pct(allSolved.length, items.length)) + "</td><td>" + fmtOr(tMedPath) +
+        "</td><td>" + fmtPct(pct(allSolved.length, items.length)) + "</td><td></td><td>" + fmtOr(tMedPath) +
         "</td><td>" + fmtOr(tMedNodes) + "</td><td>" + fmtOr(tMedTime, 3) + "</td></tr>";
       dom.dashTable.innerHTML =
-        "<thead><tr><th>z = w</th><th>N</th><th>Solved</th><th>Solved %</th>" +
+        "<thead><tr><th>z = w</th><th>Searched</th><th>Solved</th><th>Solved %</th>" +
+        "<th>Hard reps (solved/searched)</th>" +
         "<th>Median path len</th><th>Median nodes (solved)</th><th>Median wall time s (solved)</th></tr></thead>" +
-        "<tbody>" + (rows.length ? rows.join("") : '<tr><td colspan="7">No data</td></tr>') + "</tbody>" +
+        "<tbody>" + (rows.length ? rows.join("") : '<tr><td colspan="8">No data</td></tr>') + "</tbody>" +
         (rows.length ? "<tfoot>" + totalRow + "</tfoot>" : "");
     }
   }

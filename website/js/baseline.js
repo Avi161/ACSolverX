@@ -87,27 +87,35 @@
       dom.note.textContent = items.length
         ? ("GS-Sub = greedy best-first search over substitution supermoves, on the plain 2-generator " +
            "presentation (no z = w stabilization) — the control the z = w arms are compared against. " +
-           "Over the 640 solved MS(1190) · budget " +
-           budgets.map(function (b) { return b >= 1000 ? (b / 1000) + "k" : b; }).join("/") + " nodes.")
+           "Run on the ORIGINAL 640 of MS(1190) at " +
+           budgets.map(function (b) { return b >= 1000 ? (b / 1000) + "k" : b; }).join("/") +
+           " nodes (a 1M-node run solves the identical 634); the hard 550 were never searched " +
+           "under the 2-generator baseline.")
         : "No baseline records loaded. Run run_greedy_sweep.py (arm baseline) and rebuild the bundle.";
     }
 
-    // overview cards
+    // overview cards — framed over the FULL MS(1190): 1190 = attempted 640 + not attempted 550
     if (dom.stats) {
+      var dsName = lastDataset.datasets && lastDataset.datasets.indexOf("1190MS") !== -1 ? "1190MS" : "all";
+      var g = (ACXData && ACXData.groupStats)
+        ? ACXData.groupStats(lastDataset, { dataset: dsName, arm: "baseline", subset: "all" })
+        : null;
       var medNodes = median(solved.map(function (i) { return i.calib ? i.calib.nodes_explored : null; }));
       var medPath = median(solved.map(function (i) { return i.path ? i.path.path_len : (i.calib ? i.calib.path_len : null); }));
       var rate = items.length ? (100 * solved.length / items.length).toFixed(1) + "%" : "—";
       var cards = [
-        { label: "Presentations", value: String(items.length) },
-        { label: "Solved", value: String(solved.length) },
-        { label: "Exhausted budget", value: String(unsolved.length) },
-        { label: "Solve rate", value: rate },
+        { label: "Presentations", value: g ? String(g.total) : String(items.length), sub: "all of MS(1190)" },
+        { label: "Attempted", value: String(items.length), sub: "the original 640" },
+        { label: "Solved", value: String(solved.length), cls: "stat-ok", sub: rate + " of attempted" },
+        { label: "Exhausted budget", value: String(unsolved.length), cls: "stat-err" },
+        { label: "Not attempted", value: g ? String(g.notAttempted + g.coveredViaReps) : "—", cls: "stat-muted", sub: "the hard 550 — no 2-gen baseline run" },
         { label: "Median nodes (solved)", value: fmtOr(medNodes) },
         { label: "Median path length", value: fmtOr(medPath) },
       ];
       dom.stats.innerHTML = cards.map(function (c) {
-        return '<div class="stat-card"><div class="stat-value">' + c.value +
-          '</div><div class="stat-label">' + c.label + '</div></div>';
+        return '<div class="stat-card' + (c.cls ? " " + c.cls : "") + '"><div class="stat-value">' + c.value +
+          '</div><div class="stat-label">' + c.label + '</div>' +
+          (c.sub ? '<div class="stat-sub">' + c.sub + '</div>' : "") + '</div>';
       }).join("");
     }
 

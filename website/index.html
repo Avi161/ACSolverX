@@ -366,17 +366,19 @@
 
         <h3>Where each presentation comes from</h3>
         <p>MS(1190) splits into two subsets, badged on every card:
-          <strong>Original 640</strong> (idx 0–639) — searched locally under all eight
-          <code>z = w</code> arms — and <strong>Hard 550</strong> (idx 640–1189) — registered so
-          totals count the full 1190, but <em>not attempted yet</em> (they need a bigger search
-          budget). When those runs happen, drop their <code>paths_*.jsonl</code> +
-          <code>calibration_*.jsonl</code> in via “Load your own results…” and they light up
-          automatically.</p>
+          <strong>Original 640</strong> (idx 0–639) — searched directly under the 2-generator
+          baseline and all four <code>z = w</code> words at 500,000 nodes — and
+          <strong>Hard 550</strong> (idx 640–1189). The hard presentations were not searched one by
+          one: up to AC-equivalence they collapse into <strong>261 unsolved classes</strong>, and the
+          <em>representative</em> of each class was searched under <code>z ∈ {r₁, r₂, x, y}</code>
+          at 500,000 nodes (none solved). 544 of the 550 carry a
+          <span class="pill pill-viarep">Searched via rep</span> pill linking them to their class —
+          click one to open its representative. The remaining 6 have no class link in the paper's
+          table and stay <em>Not attempted</em>. Every section counts all 1190 presentations.</p>
         <p>The <strong>(n, w) grid</strong> lays the whole Miller–Schupp family out as a spreadsheet
           (rows = the word <code>w</code>, columns = <code>n</code>): green cells trivialized in the
-          original run, and each remaining cell reduces to one of <strong>261 unsolved-class
-          representatives</strong> (the <code>ms_reps_unsolved</code> dataset). Those 261 were searched
-          under <code>z ∈ {r₁, r₂, x, y}</code> with a 500,000-node budget and none were solved — click
+          original run, and each remaining cell reduces to one of the <strong>261 unsolved-class
+          representatives</strong> (the <code>ms_reps_unsolved</code> dataset) — click
           any labelled cell to open it and compare each change of variables' search cost.</p>
 
         <h3>Goal: the trivial presentation</h3>

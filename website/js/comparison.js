@@ -8,7 +8,7 @@
  * length, plus a per-idx scatter (baseline nodes vs arm nodes; a point below the y=x diagonal means
  * the arm solved that presentation with fewer nodes). Joins arms per presentation via dataset.byIdx.
  *
- * Budget note: baseline & r1/r2 are the matched 500k run; x/y/g come from the earlier 12k pass — the
+ * Budget note: baseline and all four z ∈ {r₁,r₂,x,y} arms are the same matched 500k run — the
  * per-idx nodes-explored comparison is on presentations BOTH solve, where nodes-to-solve is
  * budget-independent (both finish well under budget).
  */
@@ -30,7 +30,7 @@
   function okColor() { return cssVar("--ok", "#35d07f"); }
   function errColor() { return cssVar("--err", "#ff6b6b"); }
   function armColor(a) { return cssVar("--arm-" + a, ARM_FALLBACK[a] || "#5b9dff"); }
-  var ARM_ORDER = ["baseline", "r1", "r2", "x", "y", "g", "xY", "yx", "Xy"];
+  var ARM_ORDER = ["baseline", "r1", "r2", "x", "y"];
 
   function armSort(a, b) {
     var ia = ARM_ORDER.indexOf(a), ib = ARM_ORDER.indexOf(b);
@@ -120,7 +120,7 @@
     if (dom.note) {
       var hasBaseline = arms.indexOf("baseline") !== -1;
       dom.note.textContent = hasBaseline
-        ? "On the 640 solved MS(1190), all trivializable by the 2-gen baseline. Node/path comparison is over presentations BOTH arms solve. Baseline and r₁/r₂/x/y are the matched 500k run; g is the earlier 12k pass — nodes-to-solve and path length are budget-independent for solved cases."
+        ? "Head-to-head on the ORIGINAL 640 of MS(1190) — the only presentations both sides searched directly (the hard 550 were covered via their 261 class reps, all unsolved, so there is nothing to pair there yet). Baseline and every z ∈ {r₁, r₂, x, y} arm are the same matched 500k run; node/path comparisons are over presentations BOTH arms solve, where they are budget-independent."
         : "No baseline loaded yet — showing z=w arms only. Run the baseline sweep + rebuild the bundle to enable the baseline comparison.";
     }
 
