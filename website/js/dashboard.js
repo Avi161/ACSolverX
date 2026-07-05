@@ -52,6 +52,7 @@
   var dom = null;
   var lastDataset = null;
   var initialized = false;
+  var datasetDefaultApplied = false;
 
   function q(id) { return document.getElementById(id); }
 
@@ -324,6 +325,14 @@
     populateSelect(dom.dashDataset, dataset.datasets.slice().sort(), dsVal, function (d) {
       return (ACXData && ACXData.datasetLabel) ? ACXData.datasetLabel(d) : d;
     });
+    // First render defaults to MS(1190) (like Solutions) so the headline reads over the
+    // 1190 — "all" would double-count the hard presentations and their class reps.
+    if (!datasetDefaultApplied) {
+      datasetDefaultApplied = true;
+      if ((dsVal === "all" || !dsVal) && dataset.datasets.indexOf("1190MS") !== -1) {
+        dom.dashDataset.value = "1190MS";
+      }
+    }
     populateSelect(dom.dashSubset, (dataset.subsets || []).slice().sort(), subVal, function (s) {
       return (ACXData && ACXData.subsetLabel) ? ACXData.subsetLabel(s) : s;
     });

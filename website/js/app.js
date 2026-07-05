@@ -91,10 +91,20 @@
             var records = [];
             for (var i = 0; i < texts.length; i++) records = records.concat(ACXData.parseJsonl(texts[i]));
             var dataset = reload(records);
-            // short human status in the header; the full jargon-dense manifest label as tooltip
-            var nPres = dataset.byIdx ? dataset.byIdx.size : 0;
-            setStatus("Sample data · " + dataset.counts.withPath + " solution paths · " +
-              nPres.toLocaleString() + " presentations", "--ok", label);
+            // short human status in the header; the full jargon-dense manifest label as tooltip.
+            // Count per dataset — a single lump sum would double-read the hard presentations
+            // and the class reps that stand for them.
+            var nMs = 0, nReps = 0, nOther = 0;
+            if (dataset.byIdx) dataset.byIdx.forEach(function (e) {
+              if (e.dataset === "1190MS") nMs++;
+              else if (e.dataset === "ms_reps_unsolved") nReps++;
+              else nOther++;
+            });
+            var presTxt = nMs
+              ? nMs.toLocaleString() + " MS presentations" + (nReps ? " · " + nReps + " class reps" : "")
+              : (nReps + nOther).toLocaleString() + " presentations";
+            setStatus("Sample data · " + dataset.counts.withPath + " solution paths · " + presTxt,
+              "--ok", label);
           });
       })
       .catch(function (err) {
