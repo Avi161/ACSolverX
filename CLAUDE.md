@@ -276,3 +276,26 @@ default. Read-and-report exploration does not need Opus, and Sonnet is cheaper/f
 for it. Rule: for any Explore/search subagent, set the `model` override to `sonnet`
 unless the task genuinely requires Opus-level reasoning (e.g. adversarial verification,
 hard design synthesis).
+
+### [2026-07-04] User-facing bundles: only real results; totals count the unit the reader cares about [WORKS][TRAP]
+The website shipped leftover probe arms (g@12k, xY/yx/Xy@12k) next to the real r1/r2/x/y@500k
+results, and its stats counted (presentation × arm) cells — dataset totals read 10,710 instead of
+1190 and the user called the data "messed up with redundancies". [TRAP] A bundle that mixes probe
+runs with real results, or counts row-units instead of the domain unit (presentations), reads as
+wrong data even when technically consistent. Rule: user-facing bundles carry exactly the arms in
+the organized results/ tree; every stat counts presentations, with buckets that partition the
+total (solved / unsolvedSearched / coveredViaReps / notAttempted — see groupStats v2 oracle table
+in website/tools/test_data.js). The hard-550 ↔ 261-reps link is materialized as rep_idx/class_name
+on registry_1190MS.jsonl rows by build_reps_bundle.py::annotate_registry_1190 (grid says 544 of
+550 have a rep; 6 boundary idx 634-639 are grid-nontrivial but were run directly — direct wins).
+
+### [2026-07-04] Animation pacing: fixed-duration glides read as a blur; background tabs throttle timers [WORKS][TRAP]
+The move player's rotate phase was one 1100ms CSS glide regardless of rotation amount k — the user
+couldn't process it. Fix that worked: per-slot stepped motion (240ms tick + 90ms gap, capped 3s by
+shrinking tick time, never smoothing) with the ring cut advancing per tick. Rule: when an animation
+teaches structure (k rotations), make the motion COUNTABLE — one visible tick per unit. [TRAP] When
+verifying animation timing via MutationObserver in a Chrome tab driven remotely, an unfocused tab
+clamps setTimeout to ~1s, so tick intervals read ~1000ms regardless of DUR values — verify the
+STRUCTURE (number/order of discrete transform targets) from instrumentation, and trust foreground
+playback for wall-clock pacing. JS edits also need cmd+shift+r (cache-busting ?v= on index.html
+does NOT bust <script src> caches).
