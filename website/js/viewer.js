@@ -53,7 +53,11 @@
   let gridData = null;         // reps_grid.json: the (n,w) map of the whole MS(1190) family
   let gridFetchStarted = false;
 
-  const filters = { search: "", solved: "all", dataset: "all", subset: "all", arm: "all", layout: "cards" };
+  const filters = {
+    search: "", solved: "all", dataset: "all", subset: "all", arm: "all", layout: "cards",
+    sort: "default", group: false,
+  };
+  const CARD_BATCH = 60; // cards appended per IntersectionObserver tick (incremental render)
 
   const player = {
     entry: null,
@@ -183,6 +187,10 @@
       subsetFilter: document.getElementById("subset-filter"),
       armFilter: document.getElementById("arm-filter"),
       viewToggle: document.getElementById("view-toggle"),
+      sortSelect: document.getElementById("sort-select"),
+      groupToggle: document.getElementById("group-toggle"),
+      clearFilters: document.getElementById("clear-filters"),
+      showingCount: document.getElementById("showing-count"),
       grid: document.getElementById("presentations-grid"),
       nwGrid: document.getElementById("nw-grid"),
       gridEmpty: document.getElementById("grid-empty"),
@@ -210,10 +218,29 @@
   }
 
   function wireControls() {
+    // Debounced: every keystroke used to rebuild the full card list synchronously.
+    let searchTimer = null;
     dom.search.addEventListener("input", function () {
-      filters.search = dom.search.value.trim();
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function () {
+        filters.search = dom.search.value.trim();
+        renderGrid();
+      }, 150);
+    });
+
+    dom.sortSelect.addEventListener("change", function () {
+      filters.sort = dom.sortSelect.value;
       renderGrid();
     });
+
+    dom.groupToggle.addEventListener("change", function () {
+      filters.group = dom.groupToggle.checked;
+      renderGrid();
+    });
+
+    // Full reset — render() puts every filter, the sort, and the grouping back to
+    // their defaults and re-renders (same code path as a fresh dataset load).
+    dom.clearFilters.addEventListener("click", function () { render(dataset); });
 
     dom.filterButtons.addEventListener("click", function (e) {
       const btn = e.target.closest(".seg");
@@ -252,6 +279,13 @@
       else openPlayer(card.getAttribute("data-dataset"), card.getAttribute("data-idx"));
     }
     dom.grid.addEventListener("click", function (e) {
+      // a rollup card's "members" chevron expands in place — it must not open the player
+      const chevron = e.target.closest(".rollup-chevron");
+      if (chevron && dom.grid.contains(chevron)) {
+        e.stopPropagation();
+        toggleRollupMembers(chevron);
+        return;
+      }
       const card = e.target.closest(".presentation-card");
       if (!card || !dom.grid.contains(card) || card.classList.contains("card-unattempted")) return;
       activateCard(card);
@@ -259,6 +293,13 @@
     // cards carry role="button" — give keyboard users the activation a real button would have
     dom.grid.addEventListener("keydown", function (e) {
       if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const chevron = e.target.closest(".rollup-chevron");
+      if (chevron && dom.grid.contains(chevron)) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleRollupMembers(chevron);
+        return;
+      }
       const card = e.target.closest(".presentation-card");
       if (!card || !dom.grid.contains(card) || card.classList.contains("card-unattempted")) return;
       e.preventDefault();
@@ -561,6 +602,79 @@
     return h("div", opts, [head, badges, h("pre", { class: "card-preview" }, previewText), armsNode]);
   }
 
+  // ---- class rollup card (grouped mode: one card per unsolved class) ---------------
+  /** item = { rollup: rep_idx, members: [hard 1190MS entries] } */
+  function buildClassRollupCard(item) {
+    const repEntry = dataset.byIdx.get(REPS_DATASET + "|" + item.rollup);
+    const reg = repEntry && repEntry.reg;
+    const firstReg = item.members[0] && item.members[0].reg;
+    const name = (reg && reg.name) || (firstReg && firstReg.class_name) || ("#" + item.rollup);
+    const classSize = reg && Array.isArray(reg.nw_cells) ? reg.nw_cells.length : item.members.length;
+
+    let armsTotal = 0, armsSolved = 0;
+    if (repEntry) for (const it of repEntry.arms.values()) { armsTotal++; if (it.solved) armsSolved++; }
+
+    const head = h("div", { class: "card-head" }, [
+      h("span", { class: "card-idx" }, "class " + name),
+      h("span", { class: "pill pill-" + (armsSolved ? "solved" : "viarep") },
+        armsSolved ? "Rep solved" : "Searched via rep"),
+    ]);
+    const badges = h("div", { class: "card-badges" }, [
+      h("span", { class: "card-dataset" }, "1190MS"),
+      h("span", { class: "badge-subset badge-hard" }, D.subsetLabel("hard")),
+      h("span", { class: "card-class-chip" },
+        item.members.length + (item.members.length === classSize ? "" : " of " + classSize) + " members"),
+    ]);
+
+    let previewText = "";
+    if (reg && Array.isArray(reg.relators)) {
+      const gens = genLetters(reg.n_gen || 2);
+      previewText = "⟨" + gens.join(",") + " | " + reg.relators.map(D.wordToStr).join(", ") + "⟩";
+    }
+
+    const hint = h("div", { class: "card-arms-hint" },
+      "One unsolved class standing for " + item.members.length + " hard presentation" +
+      (item.members.length === 1 ? "" : "s") + ". Its representative was searched under z ∈ {r₁, r₂, x, y}" +
+      (armsSolved ? " — " + armsSolved + "/" + armsTotal + " solved." :
+        " — 0/" + (armsTotal || 4) + " solved at 500k nodes.") + " Click to open the representative.");
+
+    const chevron = h("button", {
+      class: "rollup-chevron", type: "button", "aria-expanded": "false",
+      title: "List the hard MS(1190) presentations in this class",
+    }, "▸ show members");
+    const membersBox = h("div", { class: "rollup-members hidden" });
+
+    const card = h("div", {
+      class: "card presentation-card rollup-card",
+      role: "button", tabindex: "0",
+      "data-rep-idx": String(item.rollup),
+      "data-dataset": "1190MS", "data-idx": String(item.members[0].idx),
+    }, [head, badges, previewText ? h("pre", { class: "card-preview" }, previewText) : null,
+      hint, chevron, membersBox]);
+    // lazy member chips: built on first expand (toggleRollupMembers reads this)
+    card._rollupMembers = item.members;
+    return card;
+  }
+
+  function toggleRollupMembers(chevron) {
+    const card = chevron.closest(".rollup-card");
+    if (!card) return;
+    const box = card.querySelector(".rollup-members");
+    if (!box) return;
+    const open = box.classList.contains("hidden");
+    if (open && !box.childNodes.length && Array.isArray(card._rollupMembers)) {
+      for (const m of card._rollupMembers) {
+        box.appendChild(h("span", {
+          class: "rollup-member-chip",
+          title: "MS(1190) #" + m.idx + " — covered by this class representative",
+        }, "#" + m.idx));
+      }
+    }
+    box.classList.toggle("hidden", !open);
+    chevron.setAttribute("aria-expanded", String(open));
+    chevron.textContent = (open ? "▾ hide members" : "▸ show members");
+  }
+
   function gridAvailable() {
     return !!gridData && !!dataset && dataset.datasets.indexOf(gridData.linked_dataset || "1190MS") !== -1;
   }
@@ -583,23 +697,148 @@
     const useGrid = canGrid && filters.layout === "grid";
     dom.nwGrid.classList.toggle("hidden", !useGrid);
     dom.grid.classList.toggle("hidden", useGrid);
-    if (useGrid) { dom.gridEmpty.classList.add("hidden"); renderNwGrid(); }
-    else renderCards();
+    if (useGrid) {
+      dom.gridEmpty.classList.add("hidden");
+      if (dom.showingCount) dom.showingCount.textContent = "";
+      renderNwGrid();
+    } else {
+      renderCards();
+    }
+  }
+
+  // ---- sorting -----------------------------------------------------------------
+  /** Best (smallest) solved path length over the arms in the current arm scope. */
+  function bestPathLen(entry) {
+    let best = null;
+    for (const it of entry.arms.values()) {
+      if (HIDDEN_ARMS.has(it.arm)) continue;
+      if (filters.arm !== "all" && it.arm !== filters.arm) continue;
+      if (!it.solved) continue;
+      const l = D.itemPathLen(it);
+      if (l != null && (best == null || l < best)) best = l;
+    }
+    return best;
+  }
+  /** Cheapest solve (nodes explored) over the arms in the current arm scope. */
+  function bestNodes(entry) {
+    let best = null;
+    for (const it of entry.arms.values()) {
+      if (HIDDEN_ARMS.has(it.arm)) continue;
+      if (filters.arm !== "all" && it.arm !== filters.arm) continue;
+      if (!it.solved || !it.calib || it.calib.nodes_explored == null) continue;
+      if (best == null || it.calib.nodes_explored < best) best = it.calib.nodes_explored;
+    }
+    return best;
+  }
+  function statusRank(entry) {
+    const s = entryStatus(entry, filters.arm);
+    if (s === "solved") return 0;
+    if (s === "unsolved") return 1;
+    return viaRep(entry) ? 2 : 3;
+  }
+  /** Sort value for a list item (entry or class rollup). Missing values sort last. */
+  function sortValue(item) {
+    if (item.rollup != null) return filters.sort === "status" ? 2 : Infinity;
+    switch (filters.sort) {
+      case "pathlen-asc":
+      case "pathlen-desc": { const v = bestPathLen(item); return v == null ? Infinity : v; }
+      case "nodes-asc": { const v = bestNodes(item); return v == null ? Infinity : v; }
+      case "status": return statusRank(item);
+      default: return 0;
+    }
+  }
+  function applySort(list) {
+    if (filters.sort === "default") return list;
+    const desc = filters.sort === "pathlen-desc";
+    return list
+      .map(function (e, i) { return { e: e, i: i, v: sortValue(e) }; })
+      .sort(function (A, B) {
+        const aMiss = !isFinite(A.v), bMiss = !isFinite(B.v);
+        if (aMiss !== bMiss) return aMiss ? 1 : -1; // no-value items always sink
+        if (A.v !== B.v) return desc ? B.v - A.v : A.v - B.v;
+        return A.i - B.i; // stable
+      })
+      .map(function (x) { return x.e; });
+  }
+
+  // ---- incremental card rendering (batched via IntersectionObserver) --------------
+  const gridState = { list: [], cursor: 0, observer: null, sentinel: null };
+
+  function appendCardBatch() {
+    const frag = document.createDocumentFragment();
+    const end = Math.min(gridState.cursor + CARD_BATCH, gridState.list.length);
+    for (let i = gridState.cursor; i < end; i++) {
+      const item = gridState.list[i];
+      frag.appendChild(item.rollup != null ? buildClassRollupCard(item) : buildCard(item));
+    }
+    gridState.cursor = end;
+    dom.grid.appendChild(frag);
+    // keep the sentinel at the tail while there is more to render
+    if (!gridState.sentinel) {
+      gridState.sentinel = h("div", { id: "grid-sentinel", "aria-hidden": "true" });
+      gridState.observer = new IntersectionObserver(function (ents) {
+        for (const en of ents) {
+          if (en.isIntersecting && gridState.cursor < gridState.list.length) appendCardBatch();
+        }
+      }, { rootMargin: "800px" });
+    }
+    if (gridState.cursor < gridState.list.length) {
+      dom.grid.appendChild(gridState.sentinel);
+      gridState.observer.observe(gridState.sentinel);
+    } else {
+      gridState.observer.unobserve(gridState.sentinel);
+      if (gridState.sentinel.parentNode) gridState.sentinel.parentNode.removeChild(gridState.sentinel);
+    }
   }
 
   function renderCards() {
     clear(dom.grid);
-    const entries = Array.from(dataset.byIdx.values());
-    entries.sort(function (a, b) {
+    const all = Array.from(dataset.byIdx.values());
+    all.sort(function (a, b) {
       return a.dataset < b.dataset ? -1 : a.dataset > b.dataset ? 1 : a.idx - b.idx;
     });
-    let shown = 0;
-    for (const entry of entries) {
+
+    // Build the display list: matching entries, with the hard rep-covered ones
+    // optionally collapsed into one rollup item per unsolved class (261 max).
+    const list = [];
+    const rollups = new Map(); // rep_idx -> rollup item
+    let matched = 0, groupedMembers = 0;
+    for (const entry of all) {
       if (!matchesFilters(entry)) continue;
-      dom.grid.appendChild(buildCard(entry));
-      shown++;
+      matched++;
+      if (filters.group && entry.dataset === "1190MS" && viaRep(entry)) {
+        let r = rollups.get(entry.reg.rep_idx);
+        if (!r) {
+          r = { rollup: entry.reg.rep_idx, members: [] };
+          rollups.set(entry.reg.rep_idx, r);
+          list.push(r); // positioned where its first member appeared
+        }
+        r.members.push(entry);
+        groupedMembers++;
+        continue;
+      }
+      list.push(entry);
     }
-    dom.gridEmpty.classList.toggle("hidden", shown !== 0);
+
+    // "of M" = the dataset/subset scope, before search/status/arm narrowing.
+    let scopeTotal = 0;
+    for (const entry of dataset.byIdx.values()) {
+      if (filters.dataset !== "all" && entry.dataset !== filters.dataset) continue;
+      if (filters.subset !== "all" && entry.subset !== filters.subset) continue;
+      scopeTotal++;
+    }
+    if (dom.showingCount) {
+      let txt = matched === scopeTotal
+        ? "Showing all " + scopeTotal.toLocaleString() + " presentations"
+        : "Showing " + matched.toLocaleString() + " of " + scopeTotal.toLocaleString() + " presentations";
+      if (groupedMembers) txt += " · " + groupedMembers + " hard grouped into " + rollups.size + " classes";
+      dom.showingCount.textContent = txt;
+    }
+
+    gridState.list = applySort(list);
+    gridState.cursor = 0;
+    appendCardBatch();
+    dom.gridEmpty.classList.toggle("hidden", list.length !== 0);
   }
 
   // ---- (n,w) grid: the whole MS(1190) family as a spreadsheet ---------------------
@@ -1551,7 +1790,11 @@
     filters.subset = "all";
     filters.arm = "all";
     filters.layout = "cards";
+    filters.sort = "default";
+    filters.group = false;
     dom.search.value = "";
+    if (dom.sortSelect) dom.sortSelect.value = "default";
+    if (dom.groupToggle) dom.groupToggle.checked = false;
     for (const s of dom.filterButtons.querySelectorAll(".seg")) {
       s.classList.toggle("active", s.getAttribute("data-filter") === "all");
     }

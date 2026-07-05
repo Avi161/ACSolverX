@@ -498,6 +498,63 @@ select:hover, select:focus { border-color: var(--accent); }
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 14px;
 }
+/* incremental-render sentinel: an invisible grid row the IntersectionObserver watches */
+#grid-sentinel { grid-column: 1 / -1; height: 1px; }
+
+/* controls-row extras: group-by-class checkbox, clear button, live result count */
+.check-wrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-end;
+  padding-bottom: 9px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.check-wrap input { accent-color: var(--accent); cursor: pointer; }
+#clear-filters { align-self: flex-end; }
+.showing-count {
+  align-self: flex-end;
+  padding-bottom: 9px;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* class rollup card (grouped mode): one card = one unsolved class */
+.rollup-card { border-left: 3px solid var(--warn); }
+.rollup-chevron {
+  align-self: flex-start;
+  margin-top: 8px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-size: var(--text-xs);
+  padding: 3px 9px;
+  cursor: pointer;
+}
+.rollup-chevron:hover { border-color: var(--accent); color: var(--text); }
+.rollup-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+  max-height: 130px;
+  overflow-y: auto;
+}
+.rollup-member-chip {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  color: var(--text-dim);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
 .grid-empty {
   padding: 48px 16px;
   text-align: center;

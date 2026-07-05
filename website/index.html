@@ -131,6 +131,20 @@
         <label class="select-wrap">Change of variables
           <select id="arm-filter"><option value="all">All z-words</option></select>
         </label>
+        <label class="select-wrap">Sort
+          <select id="sort-select">
+            <option value="default">Index</option>
+            <option value="pathlen-asc">Path length ↑</option>
+            <option value="pathlen-desc">Path length ↓</option>
+            <option value="nodes-asc">Nodes to solve ↑</option>
+            <option value="status">Status</option>
+          </select>
+        </label>
+        <label class="check-wrap" title="Collapse the hard 550 into their 261 unsolved-class groups">
+          <input type="checkbox" id="group-toggle" /> Group hard by class
+        </label>
+        <button class="btn btn-ghost btn-sm" id="clear-filters" type="button">Clear filters</button>
+        <span class="showing-count" id="showing-count" aria-live="polite"></span>
       </div>
 
       <!-- Legend: what the pills, badges and z=w dots mean. Static. -->
