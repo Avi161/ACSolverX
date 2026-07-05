@@ -20,7 +20,7 @@
   // threaded through every call site.
   var COLOR_BORDER = "#243044";   // --border   : axis lines + gridlines
   var COLOR_TICK = "#9fb0c6";     // --text-dim : tick + axis labels
-  var COLOR_MUTED = "#6b7c93";    // --muted    : "No data" note
+  var COLOR_MUTED = "#8496ad";    // --muted    : "No data" note
   var COLOR_TEXT = "#e6edf6";     // --text     : value labels, legend text
   var COLOR_INK = "#0b1220";      // fixed dark ink for labels drawn ON TOP of a bright fill (both themes)
   var FONT = "system-ui,-apple-system,'Segoe UI',Roboto,sans-serif";
@@ -36,8 +36,17 @@
   function refreshTheme() {
     COLOR_BORDER = cssVar("--border", "#243044");
     COLOR_TICK = cssVar("--text-dim", "#9fb0c6");
-    COLOR_MUTED = cssVar("--muted", "#6b7c93");
+    COLOR_MUTED = cssVar("--muted", "#8496ad");
     COLOR_TEXT = cssVar("--text", "#e6edf6");
+  }
+
+  // Canonical data-series color per arm: the themed CSS var at draw time, with a
+  // dark-theme hex fallback. Shared by dashboard/comparison so the maps can't drift.
+  var ARM_FALLBACK = {
+    baseline: "#9fb0c6", r1: "#5b9dff", r2: "#7c5cff", x: "#35d07f", y: "#ffb454",
+  };
+  function armColor(arm) {
+    return cssVar("--arm-" + arm, ARM_FALLBACK[arm] || "#9fb0c6");
   }
 
   // ---- small helpers ---------------------------------------------------------------
@@ -400,7 +409,7 @@
 
   // cssVar is exported so callers can theme their data-series colors the same way the
   // chart chrome does (read the CSS custom property at draw time, fall back to a hex).
-  var ACXCharts = { stackedBar: stackedBar, histogram: histogram, scatter: scatter, cssVar: cssVar };
+  var ACXCharts = { stackedBar: stackedBar, histogram: histogram, scatter: scatter, cssVar: cssVar, armColor: armColor };
 
   global.ACXCharts = ACXCharts;
   if (typeof module !== "undefined" && module.exports) module.exports = ACXCharts;

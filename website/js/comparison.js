@@ -19,24 +19,14 @@
   var ACXCharts = global.ACXCharts;
 
   var DATASET = "1190MS";
-  // theme-aware data colors: CSS custom property at draw time, dark hex as fallback
-  var ARM_FALLBACK = {
-    baseline: "#9fb0c6", r1: "#5b9dff", r2: "#7c5cff", x: "#35d07f", y: "#ffb454",
-    g: "#ff6b9d", xY: "#c792ea", yx: "#f78c6c", Xy: "#80cbc4",
-  };
+  // Arm order/colors and median come from the shared canonical maps (ACXData/ACXCharts).
   function cssVar(name, fallback) {
     return (ACXCharts && ACXCharts.cssVar) ? ACXCharts.cssVar(name, fallback) : fallback;
   }
   function okColor() { return cssVar("--ok", "#35d07f"); }
   function errColor() { return cssVar("--err", "#ff6b6b"); }
-  function armColor(a) { return cssVar("--arm-" + a, ARM_FALLBACK[a] || "#5b9dff"); }
-  var ARM_ORDER = ["baseline", "r1", "r2", "x", "y"];
-
-  function armSort(a, b) {
-    var ia = ARM_ORDER.indexOf(a), ib = ARM_ORDER.indexOf(b);
-    ia = ia === -1 ? 99 : ia; ib = ib === -1 ? 99 : ib;
-    return ia !== ib ? ia - ib : (a < b ? -1 : a > b ? 1 : 0);
-  }
+  function armColor(a) { return ACXCharts.armColor(a); }
+  var armSort = ACXData.armSort;
   function armLabel(a) { return a === "baseline" ? "baseline (2-gen)" : ((ACXData && ACXData.armSymbol) ? ACXData.armSymbol(a) : a); }
   // short form for chart category axes (the long form clips when labels are rotated)
   function armAxisLabel(a) { return a === "baseline" ? "baseline" : armLabel(a); }
@@ -62,13 +52,7 @@
     };
   }
 
-  function median(nums) {
-    var vals = nums.filter(function (v) { return v != null && !isNaN(v); }).slice().sort(function (a, b) { return a - b; });
-    var n = vals.length;
-    if (n === 0) return null;
-    var mid = Math.floor(n / 2);
-    return n % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
-  }
+  var median = ACXData.median;
   function nodesOf(it) { return it && it.calib && it.calib.nodes_explored != null ? it.calib.nodes_explored : null; }
   function pathOf(it) { return it && it.path && it.path.path_len != null ? it.path.path_len : (it && it.calib && it.calib.path_len != null ? it.calib.path_len : null); }
 
@@ -224,9 +208,12 @@
     if (dom.stats) {
       var baseItems = m.baseline || [];
       var baseSolved = baseItems.filter(function (i) { return i.solved; }).length;
+      // Denominator from the loaded data, never a literal: the original-subset
+      // presentation count (640 with the bundled registry).
+      var origTotal = ACXData.groupStats(lastDataset, { dataset: DATASET, subset: "original" }).total;
       var cards = [
         { label: "Arms compared", value: String(arms.length) },
-        { label: "Baseline solved / " + (baseItems.length || 640), value: baseItems.length ? String(baseSolved) : "—" },
+        { label: "Baseline solved / " + (baseItems.length || origTotal || "—"), value: baseItems.length ? String(baseSolved) : "—" },
         { label: "Both-solve pairs (vs " + selArm + ")", value: String(points.length) },
         { label: selArm + " cheaper than baseline", value: points.length ? cheaper + " (" + Math.round(100 * cheaper / points.length) + "%)" : "—" },
       ];

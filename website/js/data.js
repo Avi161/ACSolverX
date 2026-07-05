@@ -141,6 +141,26 @@
     return arm;
   }
 
+  // Canonical arm display order shared by every view (baseline first, then the four
+  // z=w words). viewer.js keeps its own baseline-less order on purpose — the player
+  // hides the baseline arm entirely.
+  const ARM_ORDER = ["baseline", "r1", "r2", "x", "y"];
+  function armSort(a, b) {
+    let ia = ARM_ORDER.indexOf(a), ib = ARM_ORDER.indexOf(b);
+    ia = ia === -1 ? 99 : ia; ib = ib === -1 ? 99 : ib;
+    if (ia !== ib) return ia - ib;
+    return a < b ? -1 : a > b ? 1 : 0;
+  }
+
+  /** Median of the finite values (nulls/NaN dropped). Shared by every view's tables. */
+  function median(nums) {
+    const vals = nums.filter((v) => v != null && !isNaN(v)).slice().sort((a, b) => a - b);
+    const n = vals.length;
+    if (n === 0) return null;
+    const mid = Math.floor(n / 2);
+    return n % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
+  }
+
   // ---- parsing ------------------------------------------------------------------
   /** Tolerant JSONL/JSON-array parser. Skips blank/corrupt lines (e.g. a truncated tail). */
   function parseJsonl(text) {
@@ -210,9 +230,7 @@
     }
     for (const entry of byIdx.values()) entry.subset = subsetOfEntry(entry);
 
-    const armOrder = ["r1", "r2", "x", "y", "g", "xY", "yx", "Xy"];
-    const arms = Array.from(new Set(itemList.map((i) => i.arm)))
-      .sort((a, b) => (armOrder.indexOf(a) + 1 || 99) - (armOrder.indexOf(b) + 1 || 99) || (a < b ? -1 : 1));
+    const arms = Array.from(new Set(itemList.map((i) => i.arm))).sort(armSort);
     const datasets = Array.from(new Set(itemList.map((i) => i.dataset).concat(registries.map((r) => r.dataset))));
     const budgets = Array.from(new Set(itemList.map((i) => i.budget))).sort((a, b) => a - b);
     const subsets = Array.from(new Set(Array.from(byIdx.values()).map((e) => e.subset).filter(Boolean)));
@@ -229,12 +247,13 @@
       items: itemList, byKey: items, byIdx: byIdx,
       arms: arms, datasets: datasets, budgets: budgets, subsets: subsets,
       armsByDataset: armsByDataset, armSetsByDataset: armSets,
+      // Deliberately minimal: `total` (record rows) and `withPath` (stored solutions) are
+      // the only item-level counts safe to headline. Anything solved/unsolved MUST go
+      // through groupStats (presentation-first) — item-level solve counts read up to 5×
+      // the presentation truth and were removed as an attractive nuisance.
       counts: {
         total: itemList.length,
-        solved: itemList.filter((i) => i.solved).length,
-        unsolved: itemList.filter((i) => !i.solved).length,
         withPath: itemList.filter((i) => i.path).length,
-        presentations: byIdx.size,
       },
     };
   }
@@ -684,6 +703,7 @@
     decodeZWord: decodeZWord, relKey: relKey, stateTotalLen: stateTotalLen,
     isTrivialState: isTrivialState, multisetDiff: multisetDiff,
     classifyRecord: classifyRecord, mergeKey: mergeKey, armSymbol: armSymbol,
+    ARM_ORDER: ARM_ORDER, armSort: armSort, median: median,
     parseJsonl: parseJsonl, buildDataset: buildDataset, buildSteps: buildSteps,
     describeMoveTuple: describeMoveTuple, validatePath: validatePath,
     countBy: countBy, histogram: histogram,

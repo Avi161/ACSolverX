@@ -99,6 +99,26 @@ for (const arm of ds.arms) {
   eq(s.total, s.presentations, "single-arm " + arm + " total==presentations");
 }
 
+// ---- 2b. shared util exports (P2: single source for every view) ----
+console.log("[2b] shared util exports");
+ok(Array.isArray(D.ARM_ORDER) && D.ARM_ORDER.length === 5, "ARM_ORDER has the 5 real arms");
+eq(D.ARM_ORDER[0], "baseline", "ARM_ORDER leads with baseline");
+eq(D.ARM_ORDER.join(","), "baseline,r1,r2,x,y", "ARM_ORDER exact");
+eq(typeof D.median, "function", "median exported");
+eq(D.median([3, 1, 2]), 2, "median odd");
+eq(D.median([4, 1, 2, 3]), 2.5, "median even");
+eq(D.median([null, NaN, 7]), 7, "median drops null/NaN");
+eq(D.median([]), null, "median of empty is null");
+eq(typeof D.armSort, "function", "armSort exported");
+eq(["y", "baseline", "r1"].sort(D.armSort).join(","), "baseline,r1,y", "armSort orders by ARM_ORDER");
+eq(ds.arms.join(","), "baseline,r1,r2,x,y", "buildDataset arms use the shared order");
+// counts is deliberately minimal — solved/unsolved item-row counts were removed
+// (attractive nuisance: they read up to 5x the presentation truth).
+eq(ds.counts.solved, undefined, "counts.solved removed");
+eq(ds.counts.presentations, undefined, "counts.presentations removed");
+ok(typeof ds.counts.total === "number" && typeof ds.counts.withPath === "number",
+   "counts keeps total + withPath");
+
 // ---- 3. stable-slot invariants over every stored path ----
 console.log("[3] stable-slot invariants (all bundled paths)");
 let paths = 0, stepChecks = 0, viol = 0;

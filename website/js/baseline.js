@@ -36,13 +36,7 @@
     };
   }
 
-  function median(nums) {
-    var vals = nums.filter(function (v) { return v != null && !isNaN(v); }).slice().sort(function (a, b) { return a - b; });
-    var n = vals.length;
-    if (n === 0) return null;
-    var mid = Math.floor(n / 2);
-    return n % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
-  }
+  var median = ACXData.median;
   function fmtOr(v) { return (v == null || isNaN(v)) ? "—" : String(v); }
   function word(rel) {
     if (!rel || !rel.length) return "ε";

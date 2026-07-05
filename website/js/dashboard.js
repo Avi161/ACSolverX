@@ -17,13 +17,8 @@
   var ACXCharts = global.ACXCharts;
 
   // ---- design tokens (see website/SPEC.md "Design system") ----------------------
-  // Data-series colors read the CSS custom properties at draw time (so the light theme
-  // recolors charts, matching how chart chrome already themes); the hexes are dark-theme
-  // fallbacks so charts still render without css/styles.css.
-  var ARM_FALLBACK = {
-    r1: "#5b9dff", r2: "#7c5cff", x: "#35d07f", y: "#ffb454", g: "#ff6b9d",
-    xY: "#c792ea", yx: "#f78c6c", Xy: "#80cbc4", baseline: "#9fb0c6",
-  };
+  // Arm order/colors and median are the shared canonical ones (ACXData / ACXCharts) —
+  // this file deliberately defines none of its own.
   function cssVar(name, fallback) {
     return (ACXCharts && ACXCharts.cssVar) ? ACXCharts.cssVar(name, fallback) : fallback;
   }
@@ -36,17 +31,8 @@
       genz: cssVar("--gen-z", "#c792ea"),
     };
   }
-  function armColor(a) {
-    return cssVar("--arm-" + a, ARM_FALLBACK[a] || "#9fb0c6");
-  }
-  var ARM_ORDER = ["baseline", "r1", "r2", "x", "y"];
-
-  function armSort(a, b) {
-    var ia = ARM_ORDER.indexOf(a), ib = ARM_ORDER.indexOf(b);
-    ia = ia === -1 ? 99 : ia; ib = ib === -1 ? 99 : ib;
-    if (ia !== ib) return ia - ib;
-    return a < b ? -1 : a > b ? 1 : 0;
-  }
+  var armColor = function (a) { return ACXCharts.armColor(a); };
+  var armSort = ACXData.armSort;
 
   // ---- state ----------------------------------------------------------------------
   var dom = null;
@@ -74,13 +60,7 @@
   }
 
   // ---- small stats helpers ---------------------------------------------------------
-  function median(nums) {
-    var vals = nums.filter(function (v) { return v != null && !isNaN(v); }).slice().sort(function (a, b) { return a - b; });
-    var n = vals.length;
-    if (n === 0) return null;
-    var mid = Math.floor(n / 2);
-    return n % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
-  }
+  var median = ACXData.median;
   function pct(part, whole) { return whole > 0 ? (part / whole) * 100 : 0; }
   /**
    * ACXData.histogram's default bin width is range/12 — fine for roughly-uniform data
@@ -166,7 +146,13 @@
 
     // ---- overview cards: PRESENTATION-framed (groupStats v2), never run rows -----
     if (dom.analyticsStats) {
-      var g = ACXData.groupStats(dataset, { dataset: dsVal, arm: armVal, subset: subVal });
+      // Same rule as the Solutions view: with the arm scope on "All z-words", a
+      // baseline-only solve must not read as solved (620, not 634, on the 640) —
+      // the baseline gets its own scope via the arm select and its own tab.
+      var g = ACXData.groupStats(dataset, {
+        dataset: dsVal, arm: armVal, subset: subVal,
+        excludeArms: armVal === "baseline" ? null : ["baseline"],
+      });
       var cards = [
         { label: "Presentations", value: g.total.toLocaleString(), sub: items.length.toLocaleString() + " direct runs in scope" },
         { label: "Solved", value: String(g.solved), cls: "stat-ok", sub: g.attempted ? Math.round(100 * g.solved / g.attempted) + "% of searched" : "" },
