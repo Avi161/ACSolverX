@@ -584,8 +584,32 @@ select:hover, select:focus { border-color: var(--accent); }
 /* ==================================================================== */
 /* Player                                                                */
 /* ==================================================================== */
+/* Modal overlay for the player: fixed above the grid, its own scroll context.
+   The backdrop dims the page; the panel keeps all its interior styling. */
+.player-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 4vh clamp(12px, 2.5vw, 24px) 6vh;
+  overscroll-behavior: contain;
+}
+.player-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 8, 15, 0.62);
+  backdrop-filter: blur(2px);
+}
+body.modal-open { overflow: hidden; }
+
 .player {
-  margin-top: 26px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 980px;
   background: var(--bg-elev);
   border: 1px solid var(--border);
   border-radius: var(--radius);

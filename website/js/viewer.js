@@ -187,6 +187,8 @@
       nwGrid: document.getElementById("nw-grid"),
       gridEmpty: document.getElementById("grid-empty"),
 
+      overlay: document.getElementById("player-overlay"),
+      backdrop: document.getElementById("player-backdrop"),
       player: document.getElementById("player"),
       playerTitle: document.getElementById("player-title"),
       playerMeta: document.getElementById("player-meta"),
@@ -287,6 +289,7 @@
 
   function wirePlayerControls() {
     dom.playerClose.addEventListener("click", closePlayer);
+    dom.backdrop.addEventListener("click", closePlayer);
 
     dom.first.addEventListener("click", function () { stopPlaying(); gotoStep(0); dom.first.blur(); });
     dom.prev.addEventListener("click", function () { stopPlaying(); gotoStep(player.stepIndex - 1); dom.prev.blur(); });
@@ -321,10 +324,24 @@
 
   function wireKeyboard() {
     document.addEventListener("keydown", function (e) {
-      if (dom.player.classList.contains("hidden")) return;
+      if (dom.overlay.classList.contains("hidden")) return;
       if (dom.viewSolutions.classList.contains("hidden")) return;
       const active = document.activeElement;
       const tag = active && active.tagName;
+
+      // Focus trap: while the modal is open, Tab cycles inside it (before the input
+      // guard below — the scrubber/speed controls are inputs and must stay trapped).
+      if (e.key === "Tab") {
+        const focusables = dom.overlay.querySelectorAll(
+          "button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])");
+        if (!focusables.length) return;
+        const first = focusables[0], last = focusables[focusables.length - 1];
+        if (!dom.overlay.contains(active)) { e.preventDefault(); first.focus(); }
+        else if (e.shiftKey && active === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && active === last) { e.preventDefault(); first.focus(); }
+        return;
+      }
+
       if (active === dom.search || tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
 
       switch (e.key) {
@@ -709,25 +726,49 @@
     return order[0] || null;
   }
 
+  // ---- deep links: #/solutions?open=<dataset>:<idx>&arm=<arm> --------------------
+  // replaceState (not location.hash=) so no hashchange fires and the router never loops.
+  function syncHashOpen() {
+    if (!player.entry) return;
+    const h = "#/solutions?open=" + encodeURIComponent(player.entry.dataset) + ":" + player.entry.idx +
+      (player.arm ? "&arm=" + encodeURIComponent(player.arm) : "");
+    try { history.replaceState(null, "", h); } catch (e) { /* sandboxed iframe etc. */ }
+  }
+  function syncHashClosed() {
+    // strip only our own ?open=… query — never clobber a navigation to another view
+    if (/^#\/?solutions\?/.test(location.hash || "")) {
+      try { history.replaceState(null, "", "#/solutions"); } catch (e) { /* ignore */ }
+    }
+  }
+
+  /** Router entry: reopen a deep-linked presentation (called by app.js after render). */
+  function openFromHash(datasetName, idxStr, arm) {
+    if (!dataset) return;
+    const entry = dataset.byIdx.get(datasetName + "|" + idxStr);
+    if (!entry || entry.arms.size === 0) return;
+    openPlayer(datasetName, idxStr);
+    if (arm && entry.arms.has(arm) && player.arm !== arm) selectArm(arm);
+  }
+
   function openPlayer(datasetName, idxStr) {
     const key = datasetName + "|" + idxStr;
     const entry = dataset.byIdx.get(key);
     if (!entry || entry.arms.size === 0) return;
 
+    player.opener = document.activeElement; // restore focus here on close
     player.entry = entry;
     buildArmSelector(entry);
     const repName = entry.dataset === REPS_DATASET && entry.reg && entry.reg.name;
     dom.playerTitle.textContent = repName
       ? "#" + entry.idx + " · class " + repName + " · representative"
       : "#" + entry.idx + " · " + datasetLabel(entry.dataset);
-    dom.player.classList.remove("hidden");
+    dom.overlay.classList.remove("hidden");
+    document.body.classList.add("modal-open");
+    dom.overlay.scrollTop = 0;
 
     const arm = defaultArmFor(entry);
     selectArm(arm);
-
-    // With a large grid the player sits far below; jump it into view on open.
-    // (Instant, not smooth: smooth scroll inside the nested scroll container is unreliable.)
-    dom.player.scrollIntoView({ block: "start" });
+    dom.playerClose.focus();
   }
 
   function renderPlayerMeta(item, arm) {
@@ -768,6 +809,7 @@
     const item = player.entry.arms.get(arm);
     highlightArmButton(arm);
     renderPlayerMeta(item, arm);
+    syncHashOpen();
 
     if (item && item.path) {
       player.solution = D.buildSteps(item.path);
@@ -1465,13 +1507,21 @@
   }
 
   function closePlayer() {
+    const wasOpen = !!player.entry;
     stopPlaying();
     cancelAnim();
-    dom.player.classList.add("hidden");
+    dom.overlay.classList.add("hidden");
+    document.body.classList.remove("modal-open");
     player.entry = null;
     player.solution = null;
     player.arm = null;
     player.stepIndex = 0;
+    if (wasOpen) {
+      syncHashClosed();
+      // hand focus back to the card/cell that opened the modal (if still rendered)
+      if (player.opener && document.contains(player.opener)) player.opener.focus();
+      player.opener = null;
+    }
   }
 
   // ---- public API ---------------------------------------------------------------
@@ -1515,5 +1565,5 @@
     closePlayer();
   }
 
-  global.ACXViewer = { init: init, render: render };
+  global.ACXViewer = { init: init, render: render, openFromHash: openFromHash, closePlayer: closePlayer };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -155,7 +155,13 @@
       <div class="grid-empty hidden" id="grid-empty">No presentations match your filters.</div>
 
       <!-- ============================ PATH PLAYER =========================== -->
-      <section class="player hidden" id="player" aria-live="polite">
+      <!-- Modal overlay: the grid stays where it was; Esc / backdrop / × close it.
+           Inner ids are the viewer.js contract and are unchanged — the overlay is
+           placement-only. Deep link: #/solutions?open=<dataset>:<idx>&arm=<arm>. -->
+      <div class="player-overlay hidden" id="player-overlay" role="dialog" aria-modal="true"
+        aria-labelledby="player-title">
+        <div class="player-backdrop" id="player-backdrop"></div>
+      <section class="player" id="player" aria-live="polite">
         <div class="player-head">
           <div class="player-head-left">
             <h2 class="player-title" id="player-title">Presentation</h2>
@@ -211,6 +217,7 @@
         <!-- Full step list; clicking a row jumps the player there. Also the "read the whole path" view. -->
         <ol class="timeline" id="player-timeline"></ol>
       </section>
+      </div><!-- /player-overlay -->
     </section>
 
     <!-- =============================== ANALYTICS ============================= -->

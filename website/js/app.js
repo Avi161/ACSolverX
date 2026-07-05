@@ -69,6 +69,10 @@
 
   function route() {
     var raw = (location.hash || "").replace(/^#\/?/, "");
+    // split off the deep-link query (#/solutions?open=1190MS:17&arm=x)
+    var query = "";
+    var qAt = raw.indexOf("?");
+    if (qAt !== -1) { query = raw.slice(qAt + 1); raw = raw.slice(0, qAt); }
     var name = VIEW_NAMES.indexOf(raw) !== -1 ? raw : "solutions";
 
     var views = document.querySelectorAll(".view[id^='view-']");
@@ -81,6 +85,26 @@
     for (var j = 0; j < tabs.length; j++) {
       var t = tabs[j];
       t.classList.toggle("active", t.getAttribute("data-view") === name);
+    }
+
+    // The player modal is Solutions-scoped: navigating to another tab closes it
+    // (also releases the body scroll lock). Its own hash-sync never clobbers the
+    // new view's hash — it only rewrites #/solutions?… hashes.
+    if (name !== "solutions" && window.ACXViewer && typeof ACXViewer.closePlayer === "function") {
+      ACXViewer.closePlayer();
+    }
+    // Deep link: reopen the linked presentation once the view is shown. route() runs
+    // after loadSample() resolves on boot, so the dataset entry exists by now.
+    if (name === "solutions" && query && window.ACXViewer && typeof ACXViewer.openFromHash === "function") {
+      var params = {};
+      query.split("&").forEach(function (kv) {
+        var eq = kv.indexOf("=");
+        if (eq !== -1) params[kv.slice(0, eq)] = decodeURIComponent(kv.slice(eq + 1));
+      });
+      if (params.open && params.open.indexOf(":") !== -1) {
+        var at = params.open.lastIndexOf(":");
+        ACXViewer.openFromHash(params.open.slice(0, at), params.open.slice(at + 1), params.arm || null);
+      }
     }
 
     if (name === "analytics" && window.ACXDashboard && typeof ACXDashboard.onShow === "function") {
