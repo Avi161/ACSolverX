@@ -304,3 +304,52 @@ drives the player: `defaultArmFor` returns `filters.arm` when the entry has it, 
 the filter while the player is open switches the shown run. (3) index.html asset URLs carry
 `?v=N` — bump on css/js change; browsers cache `<script src>` regardless of the page URL's
 query string, which previously let a stale viewer.js show pre-rework numbers.
+
+## Amendment (2026-07-05) — ten-point overhaul: narrative, modal player, grouping, verdict
+
+Nine phases (one commit each, both Node suites green after every phase):
+
+- **Hero + glossary.** `#hero` research-story strip between the data bar and the views;
+  every number filled by `app.js fillHero()` from `groupStats` (hidden without 1190MS).
+  `abbr.gloss` tooltips at first use of jargon. Analytics' "Arm" label renamed
+  "Change of variables" to match Solutions.
+- **Shared util layer.** `ACXData` exports `ARM_ORDER` (baseline-first 5), `armSort`,
+  `median`, `armSolveSets`; `ACXCharts` exports `armColor`. The view files define none of
+  their own. `counts` trimmed to `{total, withPath}` (item-level solve counts removed as an
+  attractive nuisance). Dashboard overview cards pass `excludeArms:["baseline"]` unless the
+  arm scope IS baseline — Analytics and Solutions now agree (620, not 634, for all-z-words).
+- **Modal player.** `#player` wrapped in `#player-overlay` (role=dialog, backdrop, body
+  scroll lock, focus save/restore + Tab trap). Deep links
+  `#/solutions?open=<dataset>:<idx>&arm=<arm>` via `history.replaceState`; `app.js route()`
+  parses the query and calls `ACXViewer.openFromHash`; leaving Solutions auto-closes.
+  Inner player ids and the animation/token model are untouched.
+- **Grid.** Cards render in batches of 60 (IntersectionObserver on `#grid-sentinel`).
+  Sort select (index | path length ↑↓ | nodes | status, arm-scoped, missing values sink),
+  "Group hard by class" toggle (rep-covered hard entries collapse into per-class rollup
+  cards with lazy member chips — note: 260 of 261 classes have hard members; class
+  rep_idx 33's only member is idx 638 in the original 640), Clear filters (= `render()`),
+  live "Showing N of M" count, 150ms search debounce.
+- **Charts.** `ACXData.histogram(values, binSize, {log:true})` → 1-2-5 decade bins for the
+  right-skewed nodes/wall-time histograms. Every chart svg: `role=img` + `aria-label` +
+  `<title>/<desc>` via `svgOpen` opts. Wide-card svgs capped at 760px. Single-bar
+  "solve rate by dataset" chart removed.
+- **Verdict.** Comparison's `#cmp-verdict` panel answers "does z=w help / which word wins"
+  with every number from `armSolveSets` set algebra (union 620, per-word ranking, unique
+  solves, solved-by-exactly-k chart, k=0→20). Hard-set outcome computed from the loaded
+  reps, and the structural limit (no baseline run on the hard set) stated. Hardcoded
+  "0 solved"/"none solved" strings in viewer/dashboard subs are now computed.
+- **Hard-set analytics.** Filter-independent Analytics section: aggregate cards for the
+  previously unsurfaced fields (`exhausted_budget`, `wall_time_s`, `revert_hits`,
+  `nodes_per_sec`), class-size + rep-relator-length charts, sortable 261-row class table
+  whose rows deep-link into the rep player. (n,w) grid supports Subset=Hard (the hard
+  presentations are the non-trivial cells).
+- **Pedagogy + a11y.** Second player-legend row: 6-phase glossary, ring/cut-marker
+  explanation, arm-button state demos. Phase chips carry gloss titles + list roles;
+  timeline rows are keyboard buttons (`tabindex/role/aria-label/aria-current`, Enter/Space
+  with stopPropagation); search input labeled; card arm chips carry ✓/✕ glyphs.
+- **Upload + polish.** Append | Replace toggle (`app.js` keeps `lastRecords`; Append
+  concats — the merge claim is now true across separate uploads). Path-only records:
+  `solved = validatePath(p).ok`, never hardcoded true. Light theme: hardcoded
+  `rgba(255,255,255,…)` tints replaced with `color-mix(in srgb, var(--text) N%, transparent)`.
+  Dead arms g/xY/yx/Xy fully removed (`--arm-g` renamed `--gen-g`: a generator tint).
+  Assets at `?v=3`.
