@@ -449,7 +449,11 @@
       { label: "Solved", value: num(g.solved), cls: "stat-ok", sub: g.attempted ? Math.round(100 * g.solved / g.attempted) + "% of searched" : "" },
       { label: "Unsolved (searched)", value: num(g.unsolvedSearched), cls: "stat-err", sub: "budget exhausted" },
       g.coveredViaReps > 0
-        ? { label: "Covered via reps", value: num(g.coveredViaReps), cls: "stat-warn", sub: "searched via class rep · 0 solved" }
+        ? {
+          label: "Covered via reps", value: num(g.coveredViaReps), cls: "stat-warn",
+          sub: "searched via class rep · " +
+            D.groupStats(dataset, { dataset: REPS_DATASET }).solved + " solved",
+        }
         : null,
       { label: "Not attempted", value: num(g.notAttempted), cls: "stat-muted", sub: g.notAttempted ? "no direct run or rep link" : "" },
       { label: "Avg. path length", value: g.avgPathLen == null ? "—" : g.avgPathLen.toFixed(2), sub: "best path per presentation" },
@@ -582,9 +586,15 @@
         }, D.armSymbol(a)));
       }
     } else if (covered) {
+      // outcome computed from the rep's actual runs, never asserted
+      const repEntry = dataset.byIdx.get(REPS_DATASET + "|" + entry.reg.rep_idx);
+      let repT = 0, repS = 0;
+      if (repEntry) for (const it of repEntry.arms.values()) { repT++; if (it.solved) repS++; }
       armsNode = h("div", { class: "card-arms-hint" },
-        "Searched via class representative " + (className || "#" + entry.reg.rep_idx) +
-        " — unsolved at 500k nodes under z ∈ {r₁, r₂, x, y}. Click to open the representative.");
+        "Searched via class representative " + (className || "#" + entry.reg.rep_idx) + " — " +
+        (repS ? repS + "/" + repT + " z-words solved it." :
+          "unsolved under all " + (repT || 4) + " z-words (budget exhausted).") +
+        " Click to open the representative.");
     } else {
       armsNode = h("div", { class: "card-arms-hint muted" },
         "Not searched yet — needs a bigger budget run.");

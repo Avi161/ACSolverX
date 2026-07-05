@@ -39,6 +39,9 @@
     dom = {
       stats: q("comparison-stats"),
       note: q("comparison-note"),
+      verdict: q("cmp-verdict"),
+      wordRanking: q("cmp-word-ranking"),
+      chartOverlap: q("chart-cmp-overlap"),
       armSelect: q("comparison-arm"),
       chartCoverage: q("chart-cmp-coverage"),
       chartNodes: q("chart-cmp-nodes"),
@@ -96,6 +99,104 @@
     return Object.keys(m).sort(armSort);
   }
 
+  // ---- the verdict: data-derived answers to the headline questions -----------------
+  // Every number here is set algebra over the loaded data (ACXData.armSolveSets) —
+  // nothing is hardcoded, so uploaded runs rewrite the verdict.
+  function drawVerdict(arms) {
+    if (!dom.verdict) return;
+    var zArms = arms.filter(function (a) { return a !== "baseline"; });
+    var hasBaseline = arms.indexOf("baseline") !== -1;
+    if (!zArms.length) {
+      dom.verdict.textContent = "";
+      dom.verdict.classList.add("hidden");
+      if (dom.wordRanking) dom.wordRanking.textContent = "";
+      if (dom.chartOverlap) dom.chartOverlap.textContent = "";
+      return;
+    }
+    dom.verdict.classList.remove("hidden");
+
+    var A = ACXData.armSolveSets(lastDataset, { dataset: DATASET, subset: "original", arms: zArms });
+    var B = hasBaseline
+      ? ACXData.armSolveSets(lastDataset, { dataset: DATASET, subset: "original", arms: ["baseline"] })
+      : null;
+    var baseSet = B ? B.sets.baseline : null;
+    var zOnly = 0, baseOnly = 0;
+    if (baseSet) {
+      A.union.forEach(function (v) { if (!baseSet.has(v)) zOnly++; });
+      baseSet.forEach(function (v) { if (!A.union.has(v)) baseOnly++; });
+    }
+    var ranked = zArms.slice().sort(function (a, b) { return A.sets[b].size - A.sets[a].size; });
+    var best = ranked[0];
+    // the hard set: what the reps say (computed, not asserted)
+    var reps = ACXData.groupStats(lastDataset, { dataset: "ms_reps_unsolved" });
+
+    function strong(v) { return "<strong>" + v + "</strong>"; }
+    var rankTxt = ranked.map(function (a, i) {
+      var t = armLabel(a) + " (" + A.sets[a].size + ")";
+      return i === 0 ? strong(t) : t;
+    }).join(", ");
+    var parts = [];
+    parts.push("<h3>Does <code>z = w</code> help?</h3>");
+    var s1 = "On the " + strong(A.scopeTotal) + " directly-searched presentations (the original set): ";
+    if (baseSet) s1 += "the 2-generator baseline solves " + strong(baseSet.size) + "; ";
+    s1 += "the " + zArms.length + " z-words together solve " + strong(A.union.size) +
+      " (" + strong(A.byK[0]) + " solved by none of them" +
+      (A.byK[zArms.length] != null ? ", " + strong(A.byK[zArms.length]) + " by all " + zArms.length : "") + ").";
+    parts.push("<p>" + s1 + "</p>");
+    parts.push("<p>Best single word: " + rankTxt + ".</p>");
+    if (baseSet) {
+      var verdictLine = (zOnly === 0 && baseOnly > 0)
+        ? "Every z-word solve is also a baseline solve, and " + strong(baseOnly) +
+          " baseline solves have no z-word solve — on this easy set <em>z = w does not yet beat the baseline</em>."
+        : "z = w uniquely solves " + strong(zOnly) + " the baseline cannot; the baseline uniquely solves " +
+          strong(baseOnly) + "." + (zOnly > 0 ? " <em>z = w adds coverage the baseline lacks.</em>" : "");
+      parts.push("<p>" + verdictLine + "</p>");
+    }
+    if (reps.total > 0) {
+      parts.push("<p>The hard set was searched only via its " + strong(reps.total) + " class representatives: " +
+        strong(reps.solved) + " solved, " + strong(reps.unsolvedSearched) + " budget-exhausted. " +
+        "A baseline-vs-z comparison there is structurally out of scope for this bundle — the 2-generator " +
+        "baseline was never run on the hard set. Cracking those classes is the open question.</p>");
+    }
+    dom.verdict.innerHTML = parts.join("");
+
+    // ---- per-word ranking bars (accessible HTML, not SVG) ----
+    if (dom.wordRanking) {
+      var rows = ranked.map(function (a) { return { arm: a, n: A.sets[a].size, cls: "" }; });
+      if (baseSet) rows.push({ arm: "baseline", n: baseSet.size, cls: " ranking-baseline" });
+      rows.sort(function (r, s) { return s.n - r.n; });
+      var maxN = Math.max.apply(null, rows.map(function (r) { return r.n; }).concat([1]));
+      dom.wordRanking.innerHTML = rows.map(function (r) {
+        var pctW = Math.max(2, Math.round(100 * r.n / maxN));
+        return '<div class="ranking-row' + r.cls + '" role="img" aria-label="' +
+          armLabel(r.arm) + " solved " + r.n + " of " + A.scopeTotal + '">' +
+          '<span class="ranking-label">' + armLabel(r.arm) + "</span>" +
+          '<span class="ranking-track"><span class="ranking-bar" style="width:' + pctW +
+          '%;background:' + armColor(r.arm) + '"></span></span>' +
+          '<span class="ranking-value">' + r.n + "</span></div>";
+      }).join("");
+    }
+
+    // ---- solved-by-exactly-k chart ----
+    if (dom.chartOverlap) {
+      var C = { ok: okColor(), err: errColor() };
+      ACXCharts.stackedBar(dom.chartOverlap, {
+        categories: A.byK.map(function (n, k) {
+          return {
+            label: "k = " + k,
+            segments: [{
+              key: "n", value: n, color: k === 0 ? C.err : C.ok,
+              title: n + " solved by exactly " + k + " word" + (k === 1 ? "" : "s"),
+            }],
+          };
+        }),
+        yLabel: "presentations",
+        title: "Solved by exactly k of the z-words",
+        desc: "How many of the original presentations are solved by exactly k of the four words; k=0 = solved by none.",
+      });
+    }
+  }
+
   function draw() {
     if (!dom || !lastDataset) return;
     var m = armMap();
@@ -104,9 +205,11 @@
     if (dom.note) {
       var hasBaseline = arms.indexOf("baseline") !== -1;
       dom.note.textContent = hasBaseline
-        ? "Head-to-head on the ORIGINAL 640 of MS(1190) — the only presentations both sides searched directly (the hard 550 were covered via their 261 class reps, all unsolved, so there is nothing to pair there yet). Baseline and every z ∈ {r₁, r₂, x, y} arm are the same matched 500k run; node/path comparisons are over presentations BOTH arms solve, where they are budget-independent."
+        ? "Head-to-head on the ORIGINAL 640 of MS(1190) — the only presentations both sides searched directly. Baseline and every z ∈ {r₁, r₂, x, y} arm are the same matched 500k run; node/path comparisons are over presentations BOTH arms solve, where they are budget-independent."
         : "No baseline loaded yet — showing z=w arms only. Run the baseline sweep + rebuild the bundle to enable the baseline comparison.";
     }
+
+    drawVerdict(arms);
 
     // ---- coverage: solved/unsolved per arm ----
     var covCats = arms.map(function (a) {
@@ -221,9 +324,15 @@
       // Denominator from the loaded data, never a literal: the original-subset
       // presentation count (640 with the bundled registry).
       var origTotal = ACXData.groupStats(lastDataset, { dataset: DATASET, subset: "original" }).total;
+      var zA = ACXData.armSolveSets(lastDataset, {
+        dataset: DATASET, subset: "original",
+        arms: arms.filter(function (a) { return a !== "baseline"; }),
+      });
+      var bestArm = zA.arms.slice().sort(function (a, b) { return zA.sets[b].size - zA.sets[a].size; })[0];
       var cards = [
-        { label: "Arms compared", value: String(arms.length) },
         { label: "Baseline solved / " + (baseItems.length || origTotal || "—"), value: baseItems.length ? String(baseSolved) : "—" },
+        { label: "z-words union solved / " + (zA.scopeTotal || "—"), value: zA.arms.length ? String(zA.union.size) : "—" },
+        { label: "Best single word", value: bestArm ? armLabel(bestArm) + " (" + zA.sets[bestArm].size + ")" : "—" },
         { label: "Both-solve pairs (vs " + selArm + ")", value: String(points.length) },
         { label: selArm + " cheaper than baseline", value: points.length ? cheaper + " (" + Math.round(100 * cheaper / points.length) + "%)" : "—" },
       ];

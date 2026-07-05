@@ -378,6 +378,45 @@
     };
   }
 
+  /**
+   * Per-arm solved-idx set algebra over one dataset scope — the Comparison verdict's
+   * numbers all come from here so none are ever hardcoded.
+   *   sel = { dataset (default "1190MS"), subset ("all"), arms: [required] }
+   * Returns { arms, sets: {arm -> Set(idx)}, union: Set, unique: {arm -> count solved
+   * by that arm ONLY}, byK: [count solved by exactly k of the arms, k=0..arms.length
+   * — byK[0] = in-scope presentations solved by none], scopeTotal }.
+   */
+  function armSolveSets(ds, sel) {
+    sel = sel || {};
+    const arms = sel.arms || [];
+    const wantDs = sel.dataset || "1190MS";
+    const wantSub = sel.subset || "all";
+    const sets = {};
+    for (const a of arms) sets[a] = new Set();
+    let scopeTotal = 0;
+    for (const entry of ds.byIdx.values()) {
+      if (entry.dataset !== wantDs) continue;
+      if (wantSub !== "all" && entry.subset !== wantSub) continue;
+      scopeTotal++;
+      for (const a of arms) {
+        const it = entry.arms.get(a);
+        if (it && it.solved) sets[a].add(entry.idx);
+      }
+    }
+    const countByIdx = new Map();
+    for (const a of arms) for (const v of sets[a]) countByIdx.set(v, (countByIdx.get(v) || 0) + 1);
+    const union = new Set(countByIdx.keys());
+    const byK = new Array(arms.length + 1).fill(0);
+    byK[0] = scopeTotal - union.size;
+    for (const k of countByIdx.values()) byK[k]++;
+    const unique = {};
+    for (const a of arms) {
+      unique[a] = 0;
+      for (const v of sets[a]) if (countByIdx.get(v) === 1) unique[a]++;
+    }
+    return { arms: arms.slice(), sets: sets, union: union, unique: unique, byK: byK, scopeTotal: scopeTotal };
+  }
+
   // ---- move reconstruction --------------------------------------------------------
   // Faithful JS port of the solver's move semantics (greedy_nrel.py::get_neighbors):
   // a step replaces ONE relator by reduce( roll(r_a, i) · roll(c, j) ) where {a,b} is an
@@ -750,7 +789,7 @@
     // provenance + non-redundant stats
     SUBSET_LABELS: SUBSET_LABELS, subsetLabel: subsetLabel, subsetOfEntry: subsetOfEntry,
     DATASET_LABELS: DATASET_LABELS, datasetLabel: datasetLabel,
-    itemPathLen: itemPathLen, groupStats: groupStats,
+    itemPathLen: itemPathLen, groupStats: groupStats, armSolveSets: armSolveSets,
     // move reconstruction
     rollWord: rollWord, minimalRotation: minimalRotation, canonicalRelator: canonicalRelator,
     compareRelators: compareRelators, spliceTrace: spliceTrace, reconstructMove: reconstructMove,

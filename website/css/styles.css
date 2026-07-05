@@ -1623,6 +1623,46 @@ body.modal-open { overflow: hidden; }
    cap the rendered width so Comparison's full-width charts stop being gigantic. */
 .chart-card-wide .chart svg { max-width: 760px; margin-inline: auto; }
 
+/* Comparison verdict panel — the plain-English, data-derived answer block */
+.verdict-panel {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  font-size: var(--text-md);
+  line-height: 1.65;
+  color: var(--text-dim);
+  max-width: 900px;
+}
+.verdict-panel h3 { color: var(--text); font-size: var(--text-lg); margin-bottom: 8px; }
+.verdict-panel p { margin-bottom: 6px; }
+.verdict-panel strong { color: var(--text); font-family: var(--mono); }
+.verdict-panel em { color: var(--text); }
+.verdict-panel.hidden { display: none; }
+
+/* per-word ranking: accessible HTML bars */
+.word-ranking { display: flex; flex-direction: column; gap: 8px; padding: 10px 4px; }
+.ranking-row { display: flex; align-items: center; gap: 10px; }
+.ranking-label {
+  flex: 0 0 92px;
+  text-align: right;
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.ranking-track {
+  flex: 1;
+  height: 18px;
+  background: var(--bg-card);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ranking-bar { display: block; height: 100%; border-radius: 4px; }
+.ranking-value { flex: 0 0 44px; font-family: var(--mono); font-weight: 700; color: var(--text); font-size: var(--text-sm); }
+.ranking-baseline .ranking-label { color: var(--muted); font-style: italic; }
+
 /* hero — the research-story strip between the data bar and the views */
 .hero {
   width: 100%;

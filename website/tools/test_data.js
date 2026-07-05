@@ -147,6 +147,31 @@ console.log("[2c] histogram {log:true}");
   eq(lin.length, 3, "linear bins unchanged by the log extension");
 }
 
+// ---- 2d. armSolveSets (drives the Comparison verdict) ----
+console.log("[2d] armSolveSets");
+{
+  const Z = D.armSolveSets(ds, { dataset: "1190MS", subset: "original", arms: ["r1", "r2", "x", "y"] });
+  eq(Z.scopeTotal, 640, "verdict scope is the original 640");
+  eq(Z.union.size, 620, "union of the four z-words solves 620");
+  eq(Z.sets.r1.size, 619, "r1 solves 619");
+  eq(Z.sets.r2.size, 602, "r2 solves 602");
+  eq(Z.sets.x.size, 540, "x solves 540");
+  eq(Z.sets.y.size, 523, "y solves 523");
+  eq(Z.byK[0], 20, "20 solved by none of the four words");
+  eq(Z.byK.reduce((a, b) => a + b, 0), 640, "byK partitions the scope");
+  eq(Z.byK.slice(1).reduce((a, b) => a + b, 0), Z.union.size, "byK k>=1 sums to the union");
+  let uniqueSum = 0;
+  for (const a of Z.arms) uniqueSum += Z.unique[a];
+  eq(uniqueSum, Z.byK[1], "per-arm unique counts sum to byK[1]");
+  const B = D.armSolveSets(ds, { dataset: "1190MS", subset: "original", arms: ["baseline"] });
+  eq(B.sets.baseline.size, 634, "baseline solves 634");
+  let zOnly = 0, baseOnly = 0;
+  Z.union.forEach((v) => { if (!B.sets.baseline.has(v)) zOnly++; });
+  B.sets.baseline.forEach((v) => { if (!Z.union.has(v)) baseOnly++; });
+  eq(Z.union.size - (620 - zOnly), zOnly, "set-algebra self-consistency");
+  eq((620 - zOnly) + baseOnly, 634, "baseline = shared + baseline-only");
+}
+
 // ---- 3. stable-slot invariants over every stored path ----
 console.log("[3] stable-slot invariants (all bundled paths)");
 let paths = 0, stepChecks = 0, viol = 0;

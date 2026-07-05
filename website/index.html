@@ -310,7 +310,20 @@
     <section class="view hidden" id="view-comparison" data-view="comparison">
       <div class="stats-row" id="comparison-stats"><!-- comparison.js fills cards --></div>
       <p class="dash-scope" id="comparison-note"></p>
+      <!-- The verdict: plain-English answers to "does z=w help? which word wins?" —
+           every number is computed by comparison.js drawVerdict() from the loaded data. -->
+      <div class="verdict-panel" id="cmp-verdict"></div>
       <div class="charts">
+        <div class="chart-card">
+          <h3>Per-word solve count (original 640)</h3>
+          <p class="chart-sub">Solved presentations per change of variables; baseline shown for reference.</p>
+          <div class="word-ranking" id="cmp-word-ranking"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Solved by exactly k of the four words</h3>
+          <p class="chart-sub">k&nbsp;=&nbsp;0 means none of r₁, r₂, x, y solved it (of the original 640).</p>
+          <div class="chart" id="chart-cmp-overlap"></div>
+        </div>
         <div class="chart-card chart-card-wide">
           <h3>Coverage: solved vs unsolved by arm (2-gen baseline vs <code>z=w</code>)</h3>
           <div class="chart" id="chart-cmp-coverage"></div>
@@ -411,7 +424,8 @@
           <strong>Hard 550</strong> (idx 640–1189). The hard presentations were not searched one by
           one: up to AC-equivalence they collapse into <strong>261 unsolved classes</strong>, and the
           <em>representative</em> of each class was searched under <code>z ∈ {r₁, r₂, x, y}</code>
-          at 500,000 nodes (none solved). 544 of the 550 carry a
+          at 500,000 nodes (the Comparison tab computes the outcome from the loaded data).
+          544 of the 550 carry a
           <span class="pill pill-viarep">Searched via rep</span> pill linking them to their class —
           click one to open its representative. The remaining 6 have no class link in the paper's
           table and stay <em>Not attempted</em>. Every section counts all 1190 presentations.</p>
@@ -433,9 +447,11 @@
           against. <strong>Comparison</strong> puts them head-to-head on the 640 solved MS(1190):
           coverage, nodes explored, and path length — per arm, and per presentation on the
           presentations both solve (points below the <code>y = x</code> line mean the change of
-          variables did better). On this easy set the baseline currently wins across the board;
-          the open question is whether stabilization pays off on presentations the 2-generator
-          search <em>cannot</em> solve.</p>
+          variables did better). Comparison's <em>verdict panel</em> states the current answer in
+          plain English, with every number computed from the loaded data. Note one structural
+          limit: the 2-generator baseline was never run on the hard set, so "does stabilization
+          crack presentations the baseline cannot solve?" cannot be answered from this bundle —
+          answering it on the hard classes is the open research question.</p>
 
         <h3>Notation</h3>
         <ul class="notation">

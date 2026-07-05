@@ -147,7 +147,13 @@
         { label: "Presentations", value: g.total.toLocaleString(), sub: items.length.toLocaleString() + " direct runs in scope" },
         { label: "Solved", value: String(g.solved), cls: "stat-ok", sub: g.attempted ? Math.round(100 * g.solved / g.attempted) + "% of searched" : "" },
         { label: "Unsolved (searched)", value: String(g.unsolvedSearched), cls: "stat-err", sub: "budget exhausted" },
-        { label: "Covered via reps", value: String(g.coveredViaReps), cls: "stat-warn", sub: g.coveredViaReps ? "searched via class rep · 0 solved" : "" },
+        {
+          label: "Covered via reps", value: String(g.coveredViaReps), cls: "stat-warn",
+          sub: g.coveredViaReps
+            ? "searched via class rep · " +
+              ACXData.groupStats(dataset, { dataset: "ms_reps_unsolved" }).solved + " solved"
+            : "",
+        },
         { label: "Not attempted", value: String(g.notAttempted), cls: "stat-muted" },
       ];
       dom.analyticsStats.innerHTML = cards.map(function (c) {
