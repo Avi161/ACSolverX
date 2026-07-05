@@ -295,3 +295,12 @@ phase capped at `DUR.rotateCap` 3000 by shrinking the per-tick time — motion s
 `advanceCut(t, ms)` steps the ring's cut marker in lockstep. `DUR.rotate` is gone; `DUR.phaseGap`
 (450) breathes after Rotate and Splice; `betweenSteps` is 800. The Speed select persists as
 localStorage `acx-speed` (restored in `init()`; Replay's Instant→Normal bump is not persisted).
+
+**Addendum (same day).** (1) `groupStats(ds, sel)` accepts `sel.excludeArms` (Set or array):
+those arms are dropped from the `arm="all"` union — the Solutions view passes `HIDDEN_ARMS`
+so "All z-words" counts z-word results only (620 solved of the 640, not baseline's 634);
+`entrySolved` (card pills) skips hidden arms the same way. (2) The Change-of-variables filter
+drives the player: `defaultArmFor` returns `filters.arm` when the entry has it, and changing
+the filter while the player is open switches the shown run. (3) index.html asset URLs carry
+`?v=N` — bump on css/js change; browsers cache `<script src>` regardless of the page URL's
+query string, which previously let a stale viewer.js show pre-rework numbers.

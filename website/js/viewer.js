@@ -156,7 +156,8 @@
   }
 
   function entrySolved(entry) {
-    for (const it of entry.arms.values()) if (it.solved) return true;
+    // hidden arms (the 2-gen baseline) don't count as solved in the z=w views
+    for (const it of entry.arms.values()) if (it.solved && !HIDDEN_ARMS.has(it.arm)) return true;
     return false;
   }
 
@@ -234,6 +235,11 @@
     dom.armFilter.addEventListener("change", function () {
       filters.arm = dom.armFilter.value;
       renderGrid();
+      // an open player follows the filter — picking "z = x" switches the shown run too
+      if (player.entry && filters.arm !== "all" && player.entry.arms.has(filters.arm) &&
+          player.arm !== filters.arm) {
+        selectArm(filters.arm);
+      }
     });
 
     function activateCard(card) {
@@ -368,8 +374,11 @@
   // ---- stat cards (NON-redundant: presentations, never presentation×arm rows) -----
   function renderStats() {
     clear(dom.stats);
+    // excludeArms: "All z-words" must aggregate the z-word arms ONLY — a baseline-only
+    // solve (hidden from this view) must not read as solved here (620, not 634, on the 640).
     const g = D.groupStats(dataset, {
       dataset: filters.dataset, arm: filters.arm, subset: filters.subset,
+      excludeArms: HIDDEN_ARMS,
     });
     const scope = [];
     if (filters.dataset !== "all") scope.push(datasetLabel(filters.dataset));
@@ -692,6 +701,9 @@
   }
 
   function defaultArmFor(entry) {
+    // The active Change-of-variables filter wins: opening a card while "z = x" is
+    // selected must open the z = x run, not the first solved arm in ARM_ORDER.
+    if (filters.arm !== "all" && entry.arms.has(filters.arm)) return filters.arm;
     const order = armOrderFor(entry);
     for (const a of order) { const it = entry.arms.get(a); if (it && it.path) return a; }
     return order[0] || null;

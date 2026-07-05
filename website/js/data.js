@@ -289,13 +289,20 @@
    *                      (reg.rep_idx → the ms_reps_unsolved dataset) WAS searched under the
    *                      scope's arm(s) and stayed unsolved
    *   notAttempted     — nothing searched, directly or via a representative
-   *   sel = { dataset: "all"|name, arm: "all"|arm, subset: "all"|subset }
+   *   sel = { dataset: "all"|name, arm: "all"|arm, subset: "all"|subset,
+   *           excludeArms: Set|array (optional) }
+   * `excludeArms` drops those arms from the arm="all" union — the Solutions (z = w) view
+   * passes its hidden baseline arm so "All z-words" never counts a baseline-only solve.
    * `attempted` counts directly-searched presentations only. `unsolved` is a back-compat
    * alias of `unsolvedSearched`. `avgPathLen` = mean over each solved presentation's best path.
    */
   function groupStats(ds, sel) {
     sel = sel || {};
     const wantDs = sel.dataset || "all", wantArm = sel.arm || "all", wantSub = sel.subset || "all";
+    const excluded = sel.excludeArms
+      ? (sel.excludeArms instanceof Set ? sel.excludeArms : new Set(sel.excludeArms))
+      : null;
+    const armInScope = (arm) => (wantArm === "all" ? !(excluded && excluded.has(arm)) : arm === wantArm);
     let total = 0, attempted = 0, solved = 0, unsolvedSearched = 0, coveredViaReps = 0, notAttempted = 0;
     const pathLens = [];
 
@@ -307,7 +314,7 @@
       if (!repEntry) return null;
       let anySearched = false;
       for (const it of repEntry.arms.values()) {
-        if (wantArm !== "all" && it.arm !== wantArm) continue;
+        if (!armInScope(it.arm)) continue;
         if (it.solved) return "solved";
         anySearched = true;
       }
@@ -320,7 +327,7 @@
       total++;
       let searched = false, won = false, best = null;
       for (const it of entry.arms.values()) {
-        if (wantArm !== "all" && it.arm !== wantArm) continue;
+        if (!armInScope(it.arm)) continue;
         searched = true;
         if (it.solved) {
           won = true;

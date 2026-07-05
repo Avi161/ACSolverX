@@ -71,6 +71,17 @@ for (const [dsName, arm, subset, total, solved, uns, rep, na] of ORACLE) {
 }
 eq(g({ dataset: "1190MS", arm: "all", subset: "all" }).unsolved,
    g({ dataset: "1190MS", arm: "all", subset: "all" }).unsolvedSearched, "unsolved aliases unsolvedSearched");
+// excludeArms: the Solutions view's "All z-words" must not count baseline-only solves —
+// the union over r1/r2/x/y solves 620 of the 640 (baseline alone solves 634).
+const gz = g({ dataset: "1190MS", arm: "all", subset: "all", excludeArms: new Set(["baseline"]) });
+eq(gz.total, 1190, "z-only all total");
+eq(gz.solved, 620, "z-only all solved (union of the four words)");
+eq(gz.unsolvedSearched, 20, "z-only all unsolvedSearched");
+eq(gz.coveredViaReps, 544, "z-only coveredViaReps");
+eq(gz.notAttempted, 6, "z-only notAttempted");
+eq(gz.solved + gz.unsolvedSearched + gz.coveredViaReps + gz.notAttempted, gz.total, "z-only partition sums");
+eq(g({ dataset: "1190MS", arm: "all", subset: "all", excludeArms: ["baseline"] }).solved, 620,
+   "excludeArms accepts an array too");
 // invariant: the four buckets partition total, and total == presentations, for many selections
 for (const sel of [
   { dataset: "1190MS", arm: "all", subset: "all" }, { dataset: "1190MS", arm: "r2", subset: "all" },

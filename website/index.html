@@ -8,7 +8,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AC-SolverX · Path Explorer</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- ?v= busts stale browser caches on redeploy — bump it whenever css/js change -->
+  <link rel="stylesheet" href="css/styles.css?v=2" />
   <script>
     // Set the theme before first paint (from localStorage) to avoid a flash of dark.
     try {
@@ -418,12 +419,12 @@
 </div>
 
 <!-- Load order matters: data (spine) → charts (pure render) → views → app (router/bootstrap). -->
-<script src="js/data.js"></script>
-<script src="js/charts.js"></script>
-<script src="js/viewer.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/baseline.js"></script>
-<script src="js/comparison.js"></script>
-<script src="js/app.js"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/charts.js?v=2"></script>
+<script src="js/viewer.js?v=2"></script>
+<script src="js/dashboard.js?v=2"></script>
+<script src="js/baseline.js?v=2"></script>
+<script src="js/comparison.js?v=2"></script>
+<script src="js/app.js?v=2"></script>
 </body>
 </html>
