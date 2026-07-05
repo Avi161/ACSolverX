@@ -179,9 +179,17 @@ console.log("[2e] path-only records gated by validatePath");
     states: [[[1], [2], [3]]], moves: [], path_len: 0 };
   const bad = { dataset: "T", idx: 1, arm: "r1", budget_nodes: 1, n_gen: 3,
     states: [[[1], [2], [3, 3]]], moves: [], path_len: 0 }; // final state NOT trivial
-  const tds = D.buildDataset([good, bad]);
+  // a 2-generator (baseline-style) path has no z-relator — must still count when
+  // structurally valid (trivial final state), and not when truncated
+  const good2g = { dataset: "T", idx: 2, arm: "baseline", budget_nodes: 1, n_gen: 2,
+    states: [[[1], [2]]], moves: [], path_len: 0 };
+  const bad2g = { dataset: "T", idx: 3, arm: "baseline", budget_nodes: 1, n_gen: 2,
+    states: [[[1, 2], [2]]], moves: [], path_len: 0 };
+  const tds = D.buildDataset([good, bad, good2g, bad2g]);
   eq(tds.byKey.get("T|0|r1|1").solved, true, "valid path-only record counts as solved");
   eq(tds.byKey.get("T|1|r1|1").solved, false, "invalid path-only record must NOT count as solved");
+  eq(tds.byKey.get("T|2|baseline|1").solved, true, "valid 2-gen path-only record counts as solved");
+  eq(tds.byKey.get("T|3|baseline|1").solved, false, "non-trivial 2-gen path-only record must NOT count");
 }
 
 // ---- 3. stable-slot invariants over every stored path ----

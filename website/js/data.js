@@ -179,6 +179,18 @@
     return out;
   }
 
+  /**
+   * Solvedness gate for a path record with no calibration row. Full validatePath,
+   * except a 2-generator (baseline) path has no z-relator to decode — accept when the
+   * z-word decode is the ONLY failure (final state must still be trivial and every
+   * step a clean 1-out/1-in substitution).
+   */
+  function pathLooksSolved(p) {
+    const v = validatePath(p);
+    if (v.ok) return true;
+    return v.errors.length > 0 && v.errors.every((e) => e.indexOf("z-word") !== -1);
+  }
+
   // ---- dataset assembly ---------------------------------------------------------
   /**
    * Merge any number of mixed records (from any number of uploaded files) into a queryable
@@ -211,7 +223,7 @@
       // a truncated/foreign upload must not be counted solved on faith.
       if (!items.has(k)) items.set(k, {
         key: k, dataset: p.dataset, idx: p.idx, arm: p.arm, budget: p.budget_nodes,
-        solved: validatePath(p).ok, calib: null, path: p,
+        solved: pathLooksSolved(p), calib: null, path: p,
       });
     }
 
