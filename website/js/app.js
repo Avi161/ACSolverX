@@ -8,7 +8,7 @@
 (function () {
   "use strict";
 
-  var VIEW_NAMES = ["solutions", "analytics", "baseline", "comparison", "about"];
+  var VIEW_NAMES = ["solutions", "analytics", "baseline", "comparison", "ak3", "about"];
   var SAMPLE_DIR = "sample-data/";
 
   var ACX = { dataset: null, reload: reload, route: route };
@@ -67,6 +67,7 @@
     if (window.ACXDashboard) ACXDashboard.render(dataset);
     if (window.ACXBaseline) ACXBaseline.render(dataset);
     if (window.ACXComparison) ACXComparison.render(dataset);
+    if (window.ACXak3) ACXak3.render(dataset);
     fillHero(dataset);
     return dataset;
   }
@@ -124,6 +125,9 @@
     }
     if (name === "comparison" && window.ACXComparison && typeof ACXComparison.onShow === "function") {
       ACXComparison.onShow();
+    }
+    if (name === "ak3" && window.ACXak3 && typeof ACXak3.onShow === "function") {
+      ACXak3.onShow();
     }
   }
 
@@ -304,6 +308,7 @@
     if (window.ACXDashboard) ACXDashboard.init();
     if (window.ACXBaseline) ACXBaseline.init();
     if (window.ACXComparison) ACXComparison.init();
+    if (window.ACXak3) ACXak3.init();
     wireUpload();
     wireTheme();
     window.addEventListener("hashchange", route);

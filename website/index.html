@@ -34,6 +34,7 @@
       <a class="tab" href="#/analytics" data-view="analytics">Analytics</a>
       <a class="tab" href="#/baseline" data-view="baseline">Baseline</a>
       <a class="tab" href="#/comparison" data-view="comparison">Comparison</a>
+      <a class="tab" href="#/ak3" data-view="ak3">AK(3) test</a>
       <a class="tab" href="#/about" data-view="about">About</a>
     </nav>
   </header>
@@ -424,6 +425,42 @@
       </div>
     </section>
 
+    <!-- ================================ AK(3) TEST ========================== -->
+    <section class="view hidden" id="view-ak3" data-view="ak3">
+      <p class="view-intro" id="ak3-intro"></p>
+      <div class="ak3-banner" id="ak3-banner"></div>
+
+      <div class="controls" id="ak3-controls">
+        <div class="segmented" id="ak3-form" role="group" aria-label="AK(3) form">
+          <button class="seg active" data-form="textbook" type="button">Textbook form</button>
+          <button class="seg" data-form="rep" type="button">Dataset rep 13_1</button>
+        </div>
+        <div class="segmented" id="ak3-budget" role="group" aria-label="Node budget">
+          <button class="seg active" data-budget="1000000" type="button">Full · 1M nodes</button>
+          <button class="seg" data-budget="100000" type="button">Screen · 100k</button>
+        </div>
+        <span class="dash-scope" id="ak3-scope"></span>
+      </div>
+
+      <div class="stats-row" id="ak3-stats"></div>
+
+      <div class="charts">
+        <div class="chart-card">
+          <h3>How close each word got</h3>
+          <p class="chart-sub">Smallest total relator length reached (trivial&nbsp;=&nbsp;3). A spike near 13
+            is the AK(3) “second hump” — greedy drives length down, then stalls.</p>
+          <div class="chart" id="chart-ak3-mtl"></div>
+        </div>
+      </div>
+
+      <div class="ak3-families" id="ak3-families"></div>
+
+      <div class="table-wrap">
+        <h3>Word choices <span class="muted" id="ak3-table-scope"></span></h3>
+        <table class="data-table" id="ak3-table"></table>
+      </div>
+    </section>
+
     <!-- ================================= ABOUT ============================== -->
     <section class="view hidden" id="view-about" data-view="about">
       <div class="prose">
@@ -535,6 +572,7 @@
 <script src="js/dashboard.js?v=3"></script>
 <script src="js/baseline.js?v=3"></script>
 <script src="js/comparison.js?v=3"></script>
+<script src="js/ak3.js?v=3"></script>
 <script src="js/app.js?v=3"></script>
 </body>
 </html>
