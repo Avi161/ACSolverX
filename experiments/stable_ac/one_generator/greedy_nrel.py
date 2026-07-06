@@ -313,6 +313,8 @@ class NRelatorSolver:
         self.new_seen = set()
         self.min_total_len = None  # smallest total relator length reached (progress proxy; trivial=n_gen)
         self.min_total_state = None  # canonical key of the presentation achieving min_total_len
+        self.max_rel_len = None    # longest any SINGLE relator grew to (<= max_len-1; == max_len-1 => cap bound)
+        self.max_rel_lens = None   # per-relator lengths (sorted asc; last = longest) at that peak state
 
     def solve(self):
         pq = []
@@ -320,6 +322,8 @@ class NRelatorSolver:
         init_len = sum(len(p) for p in init_key.split(b"\x00"))
         self.min_total_len = init_len
         self.min_total_state = init_key
+        self.max_rel_lens = sorted(len(p) for p in init_key.split(b"\x00"))
+        self.max_rel_len = self.max_rel_lens[-1]
         heapq.heappush(pq, (init_len, 0, init_key))
         self.visited[init_key] = None
         if self.track_seen:
@@ -356,6 +360,11 @@ class NRelatorSolver:
                         if tl < self.min_total_len:
                             self.min_total_len = tl
                             self.min_total_state = nkey
+                        if tl > self.max_rel_len:          # only parse when total could beat the longest
+                            lens = sorted(len(p) for p in nkey.split(b"\x00"))
+                            if lens[-1] > self.max_rel_len:
+                                self.max_rel_len = lens[-1]
+                                self.max_rel_lens = lens
                         heapq.heappush(pq, (tl, depth + 1, nkey))
                 continue
             byte_parts = key.split(b"\x00")            # parent's per-relator canonical bytes (sorted)
@@ -381,6 +390,11 @@ class NRelatorSolver:
                     if tl < self.min_total_len:
                         self.min_total_len = tl
                         self.min_total_state = nkey
+                    if tl > self.max_rel_len:
+                        lens = sorted(len(p) for p in parts)
+                        if lens[-1] > self.max_rel_len:
+                            self.max_rel_len = lens[-1]
+                            self.max_rel_lens = lens
                     heapq.heappush(pq, (tl, depth + 1, nkey))
         return None, nodes, self.new_seen
 
