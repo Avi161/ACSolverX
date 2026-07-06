@@ -103,7 +103,7 @@ def main():
         r = subprocess.run(
             [PY, os.path.join(HERE, "plateau_elim.py"), "--phase", "solve",
              "--budget2", "200000", "--top", "400", "--tl_cap", "16",
-             "--solve_workers", "6"],
+             "--solve_workers", "4"],
             capture_output=True, text=True)
         append({"night_id": esc_id, "rc": r.returncode,
                 "wall_s": round(time.time() - t0, 1),

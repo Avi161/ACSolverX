@@ -204,6 +204,15 @@ presentations are often solvable even when related 3-gen forms are stuck.
   each yields ~5.9M visited states and ~916k unique candidates — then global merge and
   solve of the shortest ~6k+ candidates @25k, escalation @200k queued behind it.
 
+**Night pass 2 — escalation + Lane B grid (2026-07-06 ~00:50):** Lane D escalation:
+all **143 candidates with total_len ≤ 16 re-solved @200k nodes: 0 solved, every one
+bottoming at min_total_len = 13 again**. Lane B StableSolver grid (300k hero8 from AK3
+and P25, g≤3 and g≤4, gen_penalty 1 and 2; 100k full ~95-word bank from both starts):
+**0 solved, min_total_len = 13 across all six runs** (peak RSS 2.9–5.4 GB, matching the
+24 KB/node estimate). The floor-13 barrier now stands under: plain greedy (all z=w),
+the full stable move set (stabilize ⊕ eliminate in-search), and 1,074 distinct
+eliminated 2-gen quotients at up to 200k nodes each.
+
 **Night pass 1 result (2026-07-06 ~00:30):** 20 harvests → 8,339,784 raw candidates →
 **74,489 unique-mod-symmetry** (total_len ≤ 24; AK3/P25 canonical classes dropped).
 Length histogram floor: 13×1, 14×5, 15×68, 16×69, 17×376, 18×412, 19×2062, 20×2123.
