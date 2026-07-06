@@ -32,17 +32,19 @@ LANE_B = [
     ("laneB", "AK3", 100_000, 24, 3, "full", 2),
     ("laneB", "P25", 100_000, 24, 3, "full", 2),
 ]
+# 16 GB box: greedy visited ~= 40x budget entries; 1M-node runs jetsam the process
+# group within minutes (killed the runner 3x). The 1-2M tier is Colab-only (50 GB).
 LANE_C = [
-    ("laneC", "textbook", 3, 1_000_000),
-    ("laneC", "rep", 3, 700_000),
-    ("laneC", "textbook", 4, 700_000),
-    ("laneC", "rep", 4, 500_000),
-    ("laneC", "textbook", 5, 500_000),
-    ("laneC", "rep", 5, 400_000),
+    ("laneC", "textbook", 3, 400_000),
+    ("laneC", "rep", 3, 400_000),
+    ("laneC", "textbook", 4, 300_000),
+    ("laneC", "rep", 4, 300_000),
+    ("laneC", "textbook", 5, 300_000),
+    ("laneC", "rep", 5, 250_000),
 ]
 LANE_B_BIG = [
-    ("laneB", "AK3", 500_000, 24, 3, "hero8", 2),
-    ("laneB", "P25", 500_000, 24, 3, "hero8", 2),
+    ("laneB", "AK3", 400_000, 24, 3, "hero8", 2),
+    ("laneB", "P25", 400_000, 24, 3, "hero8", 2),
 ]
 
 

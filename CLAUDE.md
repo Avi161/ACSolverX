@@ -352,6 +352,16 @@ that ever came from a parsed record — or better, use `h()`. Same review also c
 never-attempted presentations as "solved by none" under partial uploads (fixed: `attempted - union`),
 proving the review-after-implementation convention pays for itself even after per-phase browser gates.
 
+### [2026-07-06] 16 GB Mac: 1M-node greedy runs jetsam the whole background process group [TRAP]
+`night_lanes.py` was silently killed 3x, always minutes after `laneC_*@1000000` started. Cause:
+gn greedy's visited dict holds ~40x budget entries (pushed children, not expansions) — a 1M-node
+run ramps to ~40M entries / 12-16 GB within ~4 min and macOS jetsam kills the PROCESS GROUP (the
+background zsh wrapper dies too, reported as "stopped" with no OOM message anywhere; leaked-semaphore
+warnings in the log are the only trace). Rule: on the 16 GB box cap gn budgets at ~400k
+(~4 GB) and StableSolver at ~400k (24 KB/node); the 0.8-2M tier is Colab-only (50 GB). Size from
+VISITED (~40x budget), not from expanded-node counts. A killed runner + resumable JSONL made all 3
+kills lossless — the append+flush+fsync convention is what saved the night.
+
 ### [2026-07-05] Certificate tamper tests: sign-flipping a length-1 relator is NOT a tamper [TRAP][WORKS]
 Lane D's cert-chain smoke "tamper" flipped `states[mid]["relators"][0][0] *= -1` and the verifier
 (correctly) accepted it — in the degenerate end-of-chain states the relator had length 1, and
