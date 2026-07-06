@@ -5,6 +5,36 @@ Every claim is tagged with how it was verified.
 
 ---
 
+## CONCLUSION (2026-07-06 06:30 — 12-hour window closed)
+
+**AK(3) was not proven stably AC-trivial within the 12-hour campaign.** The campaign
+terminates per its charter with a rigorously-verified negative plus new structure:
+
+1. **The problem is confirmed open** (not previously solved): Shehper et al. v1's claim
+   was rescinded in v2 because MMS02's family rests on a misprinted Wirtinger
+   presentation; Lisitsa's alternative proof inherits the identical gap. All of this
+   was independently re-verified computationally here (7/7 checks).
+2. **Five independent method families all floor at total length 13** (trivial = 2):
+   greedy substitution with 388 z=w stabilizations (prior sweeps) · **1,937 solves over
+   1,006 never-before-seen Lemma-11 quotients** of the stable class (Lane D, new) ·
+   full stable-move best-first search (stabilize ⊕ eliminate in-search, ≤ 4 generators)
+   · trivial-generator stabilizations n=3/4/5 · the pretrained 610model RL policy under
+   beam search (width ≤ 2048, with and without Gumbel diversity), 0/185.
+3. **New structural theorem-shaped finding:** the accessible class funnels into exactly
+   TWO length-13 floor presentations — AK(3) and **F = ⟨x,y | y⁻²xyx⁻², y⁻³x⁻²yx⟩**
+   (the dominant attractor, 71%), with an explicit certified 21-move AC path F → AK3.
+   F is a new canonical form of AK(3) for future attacks.
+4. **Everything is certificate-grade:** the acx-cert-v1 format with TWO independently
+   authored verifiers (one adversarially, black-box from the math spec); 19/19
+   certificates pass both; any future solve auto-emits a full machine-checkable chain
+   (stabilize → substitution path → eliminate → trivialization).
+
+**Escalation path (optional, outside this window):** `nb_ak3_lanes.ipynb` — five
+resumable 50 GB Colab boxes (D1/D2/D3/B/C) at 10–40× the local budgets, including the
+never-swept form F. Any `*** SOLVED ***` there + the two verifiers = the theorem.
+
+---
+
 ## Literature status (session research, 2026-07-05)
 
 **Headline: the published "proof" that AK(3) is stably AC-trivial is gapped, and the gap
