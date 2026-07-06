@@ -225,13 +225,16 @@ The learned policy that routinely crosses MS humps cannot cross this one either 
 fourth independent method family flooring on the same barrier. Escalation @width 2048
 + Gumbel temperature 1.0→0.1 on the 30 hardest-core items: running.
 
-**Floor-state discovery (morning):** the quotients do NOT all greedy-flow back to AK3.
-Sample of 82: 21 floor at the AK3 canonical class, 61 at a single OTHER length-13
-state **F = ⟨x,y | y⁻²xyx⁻², y⁻²x⁻³yx⟩** (relators [[-2,-2,1,2,-1,-1],
-[-2,-2,-1,-1,-1,2,1]]), not signed-relabel-equivalent to AK3. The basin has (at least)
-two distinct floor presentations; `floor_census.py` is enumerating the complete floor
-set over all 1,006 short quotients — each member is a new hardest-core start form for
-future attacks (stabilization sweeps from F have never been done by anyone).
+**Floor census — COMPLETE (2026-07-06 06:00): the basin has exactly TWO floors.**
+All 1,006 short quotients greedy-flow (@25k) to exactly two length-13 canonical
+classes: **712 (71%) to F = [[-2,-2,1,2,-1,-1], [-2,-2,-2,-1,-1,2,1]]** (a state NOT
+signed-relabel-equivalent to AK3) and **294 (29%) to AK(3) itself**. No third floor.
+F's own greedy ball contains AK3, and the explicit **21-substitution-move AC path
+F → AK3 is extracted and certified** (`certs/laneF_F_to_AK3.json`, passes BOTH
+verifiers). So the AK(3) AC-class floor at total length 13 has two canonical members,
+{AK3, F}, F being the dominant attractor — **F is a brand-new equivalent presentation
+of AK(3) that no stabilization sweep has ever used as a start form**. Registered as
+Lane D form `floorF` (smoke-tested) and added to Colab box D2.
 
 **Night pass 4 — p25 surface + deep 100k pass (2026-07-06 04:45):** added the p25-form
 harvests (10 words @150k; P25 ~AC~ AK3 composes via the Appendix-F cert). Merged pool:

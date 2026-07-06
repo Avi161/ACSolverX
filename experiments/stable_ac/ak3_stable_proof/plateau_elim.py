@@ -54,6 +54,11 @@ import stabilize as _stab  # noqa: E402
 from hmoves import P25 as _P25  # noqa: E402
 aw.FORMS.setdefault("p25", _stab.relators_to_flat([list(r) for r in _P25], 2, gn.L))
 
+# F: the dominant floor state of the quotient basin (712/1006 greedy flows), certified
+# AC-equivalent to AK3 by 21 substitution moves (certs/laneF_F_to_AK3.json).
+_FLOOR_F = [[-2, -2, 1, 2, -1, -1], [-2, -2, -2, -1, -1, 2, 1]]
+aw.FORMS.setdefault("floorF", _stab.relators_to_flat(_FLOOR_F, 2, gn.L))
+
 LANE_D = os.environ.get("ACX_LANED_DIR") or os.path.join(
     ROOT, "results", "stable_ac", "ak3_stable_proof", "laneD")
 CERTS = os.environ.get("ACX_CERTS_DIR") or os.path.join(
