@@ -204,6 +204,17 @@ presentations are often solvable even when related 3-gen forms are stuck.
   each yields ~5.9M visited states and ~916k unique candidates — then global merge and
   solve of the shortest ~6k+ candidates @25k, escalation @200k queued behind it.
 
+**Night pass 1 result (2026-07-06 ~00:30):** 20 harvests → 8,339,784 raw candidates →
+**74,489 unique-mod-symmetry** (total_len ≤ 24; AK3/P25 canonical classes dropped).
+Length histogram floor: 13×1, 14×5, 15×68, 16×69, 17×376, 18×412, 19×2062, 20×2123.
+All **931 candidates with total_len ≤ 18 attempted @25k nodes: 0 solved — and every
+single one bottomed out at min_total_len = 13 exactly** (the AK(3) hump floor), whether
+the elimination removed z (423 cases: can be an unwind of the stabilization, so same AC
+class expected) or x/y (508 cases: genuinely class-moving eliminations). Interpretation:
+the stable class has one deep basin with floor 13 from every entry point sampled so far —
+the hump is a property of the class, not of the AK3 start state. Escalation @200k on the
+≤16 pool (143 candidates) runs next; Colab boxes attack the 12,000 shortest @50k.
+
 ## P6 — Independent adversarial verifier — ✅ PASSED (2026-07-05 night)
 
 An adversarial subagent authored `independent_verifier.py` + `tests/ak3sp_independent_test.py`
