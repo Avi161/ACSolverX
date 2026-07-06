@@ -1,0 +1,2176 @@
+{
+ "idx": 610,
+ "n_words": 97,
+ "by_family": {
+  "relhalf": 8,
+  "wk": 17,
+  "wstar": 5,
+  "conj": 14,
+  "comm": 5,
+  "ms": 3,
+  "brute": 45
+ },
+ "base_flat": [
+  -2,
+  -2,
+  -2,
+  -2,
+  -2,
+  -2,
+  -2,
+  -1,
+  2,
+  2,
+  2,
+  2,
+  2,
+  2,
+  1,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  -2,
+  -2,
+  -2,
+  1,
+  -2,
+  -1,
+  2,
+  1,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
+ ],
+ "r1": "YYYYYYYXyyyyyyx",
+ "r2": "YYYxYXyx",
+ "max_w_len": 15,
+ "max_z_len": 16,
+ "words": [
+  {
+   "name": "XYYYYYYxyyyyyyy",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "XYYYYYYxyyyyyyy",
+   "w_ints": [
+    -1,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "w_len": 15,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "z_len": 16
+  },
+  {
+   "name": "YYYYYYY",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "YYYYYYY",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2
+   ],
+   "w_len": 7,
+   "z_relator": [
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z_len": 8
+  },
+  {
+   "name": "yyyyyy",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "yyyyyy",
+   "w_ints": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "w_len": 6,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 7
+  },
+  {
+   "name": "Xyyyyyyx",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "Xyyyyyyx",
+   "w_ints": [
+    -1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1
+   ],
+   "w_len": 8,
+   "z_relator": [
+    3,
+    -1,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    1
+   ],
+   "z_len": 9
+  },
+  {
+   "name": "XYxyXyyy",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "XYxyXyyy",
+   "w_ints": [
+    -1,
+    -2,
+    1,
+    2,
+    -1,
+    2,
+    2,
+    2
+   ],
+   "w_len": 8,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    -2,
+    1,
+    -2,
+    -1,
+    2,
+    1
+   ],
+   "z_len": 9
+  },
+  {
+   "name": "YYY",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "YYY",
+   "w_ints": [
+    -2,
+    -2,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    2,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "YYYx",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "YYYx",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    1
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -1,
+    2,
+    2,
+    2
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "YXyx",
+   "family": "relhalf",
+   "priority": 1,
+   "w_str": "YXyx",
+   "w_ints": [
+    -2,
+    -1,
+    2,
+    1
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -1,
+    -2,
+    1,
+    2
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "yyyyyyyyXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yyyyyyyyXyxy",
+   "w_ints": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 12,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 13
+  },
+  {
+   "name": "yyyyyyyXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yyyyyyyXyxy",
+   "w_ints": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 11,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 12
+  },
+  {
+   "name": "yyyyyyXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yyyyyyXyxy",
+   "w_ints": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 10,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 11
+  },
+  {
+   "name": "yyyyyXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yyyyyXyxy",
+   "w_ints": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 9,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 10
+  },
+  {
+   "name": "yyyyXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yyyyXyxy",
+   "w_ints": [
+    2,
+    2,
+    2,
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 8,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 9
+  },
+  {
+   "name": "yyyXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yyyXyxy",
+   "w_ints": [
+    2,
+    2,
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 7,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 8
+  },
+  {
+   "name": "yyXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yyXyxy",
+   "w_ints": [
+    2,
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 6,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2,
+    -2
+   ],
+   "z_len": 7
+  },
+  {
+   "name": "yXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "yXyxy",
+   "w_ints": [
+    2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    -2
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "Xyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "Xyxy",
+   "w_ints": [
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "YXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YXyxy",
+   "w_ints": [
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "YYXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YYXyxy",
+   "w_ints": [
+    -2,
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 6,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2,
+    2
+   ],
+   "z_len": 7
+  },
+  {
+   "name": "YYYXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YYYXyxy",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 7,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2,
+    2,
+    2
+   ],
+   "z_len": 8
+  },
+  {
+   "name": "YYYYXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YYYYXyxy",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 8,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z_len": 9
+  },
+  {
+   "name": "YYYYYXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YYYYYXyxy",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 9,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z_len": 10
+  },
+  {
+   "name": "YYYYYYXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YYYYYYXyxy",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 10,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z_len": 11
+  },
+  {
+   "name": "YYYYYYYXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YYYYYYYXyxy",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 11,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z_len": 12
+  },
+  {
+   "name": "YYYYYYYYXyxy",
+   "family": "wk",
+   "priority": 2,
+   "w_str": "YYYYYYYYXyxy",
+   "w_ints": [
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -1,
+    2,
+    1,
+    2
+   ],
+   "w_len": 12,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "z_len": 13
+  },
+  {
+   "name": "YxyX",
+   "family": "wstar",
+   "priority": 3,
+   "w_str": "YxyX",
+   "w_ints": [
+    -2,
+    1,
+    2,
+    -1
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    1,
+    -2,
+    -1,
+    2
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "XyxY",
+   "family": "wstar",
+   "priority": 3,
+   "w_str": "XyxY",
+   "w_ints": [
+    -1,
+    2,
+    1,
+    -2
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    2,
+    -1,
+    -2,
+    1
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "xYXy",
+   "family": "wstar",
+   "priority": 3,
+   "w_str": "xYXy",
+   "w_ints": [
+    1,
+    -2,
+    -1,
+    2
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -2,
+    1,
+    2,
+    -1
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "yXYx",
+   "family": "wstar",
+   "priority": 3,
+   "w_str": "yXYx",
+   "w_ints": [
+    2,
+    -1,
+    -2,
+    1
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -1,
+    2,
+    1,
+    -2
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "xYxY",
+   "family": "wstar",
+   "priority": 3,
+   "w_str": "xYxY",
+   "w_ints": [
+    1,
+    -2,
+    1,
+    -2
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    2,
+    -1,
+    2,
+    -1
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "x",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "x",
+   "w_ints": [
+    1
+   ],
+   "w_len": 1,
+   "z_relator": [
+    3,
+    -1
+   ],
+   "z_len": 2
+  },
+  {
+   "name": "xyX",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "xyX",
+   "w_ints": [
+    1,
+    2,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    -2,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yxY",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "yxY",
+   "w_ints": [
+    2,
+    1,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    -1,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "y",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "y",
+   "w_ints": [
+    2
+   ],
+   "w_len": 1,
+   "z_relator": [
+    3,
+    -2
+   ],
+   "z_len": 2
+  },
+  {
+   "name": "Xyx",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "Xyx",
+   "w_ints": [
+    -1,
+    2,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    -2,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "Yxy",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "Yxy",
+   "w_ints": [
+    -2,
+    1,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xyxYX",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "xyxYX",
+   "w_ints": [
+    1,
+    2,
+    1,
+    -2,
+    -1
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    1,
+    2,
+    -1,
+    -2,
+    -1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "yxyXY",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "yxyXY",
+   "w_ints": [
+    2,
+    1,
+    2,
+    -1,
+    -2
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    2,
+    1,
+    -2,
+    -1,
+    -2
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "xYxyX",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "xYxyX",
+   "w_ints": [
+    1,
+    -2,
+    1,
+    2,
+    -1
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    1,
+    -2,
+    -1,
+    2,
+    -1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "YxyXy",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "YxyXy",
+   "w_ints": [
+    -2,
+    1,
+    2,
+    -1,
+    2
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    -2,
+    1,
+    -2,
+    -1,
+    2
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "xxyXX",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "xxyXX",
+   "w_ints": [
+    1,
+    1,
+    2,
+    -1,
+    -1
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    1,
+    1,
+    -2,
+    -1,
+    -1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "yyxYY",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "yyxYY",
+   "w_ints": [
+    2,
+    2,
+    1,
+    -2,
+    -2
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    2,
+    2,
+    -1,
+    -2,
+    -2
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "XYxyx",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "XYxyx",
+   "w_ints": [
+    -1,
+    -2,
+    1,
+    2,
+    1
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    -1,
+    -2,
+    -1,
+    2,
+    1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "XyxYx",
+   "family": "conj",
+   "priority": 4,
+   "w_str": "XyxYx",
+   "w_ints": [
+    -1,
+    2,
+    1,
+    -2,
+    1
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    -1,
+    2,
+    -1,
+    -2,
+    1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "XYxy",
+   "family": "comm",
+   "priority": 5,
+   "w_str": "XYxy",
+   "w_ints": [
+    -1,
+    -2,
+    1,
+    2
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    2,
+    1
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "xyXY",
+   "family": "comm",
+   "priority": 5,
+   "w_str": "xyXY",
+   "w_ints": [
+    1,
+    2,
+    -1,
+    -2
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    2,
+    1,
+    -2,
+    -1
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "yxYX",
+   "family": "comm",
+   "priority": 5,
+   "w_str": "yxYX",
+   "w_ints": [
+    2,
+    1,
+    -2,
+    -1
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    1,
+    2,
+    -1,
+    -2
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "XyXy",
+   "family": "comm",
+   "priority": 5,
+   "w_str": "XyXy",
+   "w_ints": [
+    -1,
+    2,
+    -1,
+    2
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -2,
+    1,
+    -2,
+    1
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "xyXYX",
+   "family": "comm",
+   "priority": 5,
+   "w_str": "xyXYX",
+   "w_ints": [
+    1,
+    2,
+    -1,
+    -2,
+    -1
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    1,
+    2,
+    1,
+    -2,
+    -1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "Xyxyy",
+   "family": "ms",
+   "priority": 7,
+   "w_str": "Xyxyy",
+   "w_ints": [
+    -1,
+    2,
+    1,
+    2,
+    2
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    -1,
+    -2,
+    1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "yxyx",
+   "family": "ms",
+   "priority": 7,
+   "w_str": "yxyx",
+   "w_ints": [
+    2,
+    1,
+    2,
+    1
+   ],
+   "w_len": 4,
+   "z_relator": [
+    3,
+    -1,
+    -2,
+    -1,
+    -2
+   ],
+   "z_len": 5
+  },
+  {
+   "name": "xyxyy",
+   "family": "ms",
+   "priority": 7,
+   "w_str": "xyxyy",
+   "w_ints": [
+    1,
+    2,
+    1,
+    2,
+    2
+   ],
+   "w_len": 5,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    -1,
+    -2,
+    -1
+   ],
+   "z_len": 6
+  },
+  {
+   "name": "X",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "X",
+   "w_ints": [
+    -1
+   ],
+   "w_len": 1,
+   "z_relator": [
+    3,
+    1
+   ],
+   "z_len": 2
+  },
+  {
+   "name": "Y",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "Y",
+   "w_ints": [
+    -2
+   ],
+   "w_len": 1,
+   "z_relator": [
+    3,
+    2
+   ],
+   "z_len": 2
+  },
+  {
+   "name": "xx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xx",
+   "w_ints": [
+    1,
+    1
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    -1,
+    -1
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "xy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xy",
+   "w_ints": [
+    1,
+    2
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    -2,
+    -1
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "xY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xY",
+   "w_ints": [
+    1,
+    -2
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    2,
+    -1
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "XX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XX",
+   "w_ints": [
+    -1,
+    -1
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    1,
+    1
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "Xy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "Xy",
+   "w_ints": [
+    -1,
+    2
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    -2,
+    1
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "XY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XY",
+   "w_ints": [
+    -1,
+    -2
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    2,
+    1
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "yx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yx",
+   "w_ints": [
+    2,
+    1
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    -1,
+    -2
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "yX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yX",
+   "w_ints": [
+    2,
+    -1
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    1,
+    -2
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "yy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yy",
+   "w_ints": [
+    2,
+    2
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    -2,
+    -2
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "Yx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "Yx",
+   "w_ints": [
+    -2,
+    1
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    -1,
+    2
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "YX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YX",
+   "w_ints": [
+    -2,
+    -1
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    1,
+    2
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "YY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YY",
+   "w_ints": [
+    -2,
+    -2
+   ],
+   "w_len": 2,
+   "z_relator": [
+    3,
+    2,
+    2
+   ],
+   "z_len": 3
+  },
+  {
+   "name": "xxx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xxx",
+   "w_ints": [
+    1,
+    1,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    -1,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xxy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xxy",
+   "w_ints": [
+    1,
+    1,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xxY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xxY",
+   "w_ints": [
+    1,
+    1,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    -1,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xyx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xyx",
+   "w_ints": [
+    1,
+    2,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    -2,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xyy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xyy",
+   "w_ints": [
+    1,
+    2,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xYx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xYx",
+   "w_ints": [
+    1,
+    -2,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    2,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xYX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xYX",
+   "w_ints": [
+    1,
+    -2,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    2,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "xYY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "xYY",
+   "w_ints": [
+    1,
+    -2,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    2,
+    -1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "XXX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XXX",
+   "w_ints": [
+    -1,
+    -1,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "XXy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XXy",
+   "w_ints": [
+    -1,
+    -1,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    1,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "XXY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XXY",
+   "w_ints": [
+    -1,
+    -1,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    1,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "XyX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XyX",
+   "w_ints": [
+    -1,
+    2,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    -2,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "Xyy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "Xyy",
+   "w_ints": [
+    -1,
+    2,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "XYx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XYx",
+   "w_ints": [
+    -1,
+    -2,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    2,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "XYX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XYX",
+   "w_ints": [
+    -1,
+    -2,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    2,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "XYY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "XYY",
+   "w_ints": [
+    -1,
+    -2,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    2,
+    1
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yxx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yxx",
+   "w_ints": [
+    2,
+    1,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    -1,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yxy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yxy",
+   "w_ints": [
+    2,
+    1,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    -1,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yXX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yXX",
+   "w_ints": [
+    2,
+    -1,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    1,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yXy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yXy",
+   "w_ints": [
+    2,
+    -1,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    1,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yXY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yXY",
+   "w_ints": [
+    2,
+    -1,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    1,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yyx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yyx",
+   "w_ints": [
+    2,
+    2,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    -2,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yyX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yyX",
+   "w_ints": [
+    2,
+    2,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    -2,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "yyy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "yyy",
+   "w_ints": [
+    2,
+    2,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    -2,
+    -2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "Yxx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "Yxx",
+   "w_ints": [
+    -2,
+    1,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    -1,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "YxY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YxY",
+   "w_ints": [
+    -2,
+    1,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    -1,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "YXX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YXX",
+   "w_ints": [
+    -2,
+    -1,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    1,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "YXy",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YXy",
+   "w_ints": [
+    -2,
+    -1,
+    2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -2,
+    1,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "YXY",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YXY",
+   "w_ints": [
+    -2,
+    -1,
+    -2
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    2,
+    1,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "YYx",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YYx",
+   "w_ints": [
+    -2,
+    -2,
+    1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    -1,
+    2,
+    2
+   ],
+   "z_len": 4
+  },
+  {
+   "name": "YYX",
+   "family": "brute",
+   "priority": 6,
+   "w_str": "YYX",
+   "w_ints": [
+    -2,
+    -2,
+    -1
+   ],
+   "w_len": 3,
+   "z_relator": [
+    3,
+    1,
+    2,
+    2
+   ],
+   "z_len": 4
+  }
+ ]
+}
