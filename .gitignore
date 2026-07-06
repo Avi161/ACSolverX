@@ -22,3 +22,8 @@ results/stable_ac/ak3_stable_proof/laneD/merged.jsonl
 results/stable_ac/ak3_stable_proof/laneD/*.log
 results/stable_ac/ak3_stable_proof/runs/*.log
 .scratch/
+
+# recanonicalization backups (recanon_paths.py writes <stream>.precanon.bak before rewriting in place)
+*.precanon.bak
+# stray local run logs from the one_generator wormhole sweeps
+experiments/stable_ac/one_generator/*.log
