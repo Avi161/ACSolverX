@@ -351,3 +351,36 @@ record-derived interpolation. Rule: in this codebase, any new innerHTML sink get
 that ever came from a parsed record — or better, use `h()`. Same review also caught byK[0] counting
 never-attempted presentations as "solved by none" under partial uploads (fixed: `attempted - union`),
 proving the review-after-implementation convention pays for itself even after per-phase browser gates.
+
+### [2026-07-05] Certificate tamper tests: sign-flipping a length-1 relator is NOT a tamper [TRAP][WORKS]
+Lane D's cert-chain smoke "tamper" flipped `states[mid]["relators"][0][0] *= -1` and the verifier
+(correctly) accepted it — in the degenerate end-of-chain states the relator had length 1, and
+inverting a whole relator is AC2, which certificate state equality quotients out (canonical
+equality = reorder + rotate + invert per relator). [TRAP] A tamper test that "passes" this way reads
+as a verifier soundness hole but isn't. Rule: semantic tampers for AC certificates must change the
+cyclic-word equivalence class — flip an INTERIOR letter of a relator of length ≥ 3 in a middle
+state. Same session, related [WORKS]: solve-phase candidate selection "all ≤ tl_cap OR top-N"
+ballooned 754 candidates past top=60 in the quick gate (caught because quick mode exercises the
+full pipeline); selection is now "shortest top-N among those ≤ tl_cap"
+(`plateau_elim.py::phase_solve`). Rule: give every long-sweep script a --quick end-to-end mode and
+RUN it before the real launch — both bugs surfaced there, not in unit tests.
+
+### [2026-07-05] Hard-solved "wormhole" word sweep: another clean negative; only relator-derived words solve [WORKS][TRAP]
+Sibling of the AK(3) sweep: `run_hard_wormhole.py` throws ~97 `z=w(x,y)` words (8 families) at two
+HARD-but-solvable MS targets (idx 625, 610 — 2-gen greedy solves them but only after 60–80k nodes /
+300–660-move paths, so there's a real baseline to beat) via `z=w` stabilization + n=3 greedy, at a
+100k-node SCREEN (1M full tier specified but **user-gated, NOT run**). Results under
+`results/stable_ac/3_generators_w_choices/hard_solved_test/`: idx 625 = 98 words / 4 solved, idx 610 =
+99 words / 2 solved — but in BOTH the only solvers are relator-derived (`control` z=r1/r2 + `relhalf` =
+a half/inverse of r1) and they **TIE** z=r1's node count (77,395 / 61,082), not beat it. **0 of ~180
+generic-family (word×target) runs solved**; every structurally-different word (incl. the theory `wk`
+AK-isolation family) plateaus at total length 16–18 (trivial 3). All 6 solve paths reload→replay to
+trivial (`gn.verify_path`). [TRAP] `verify_path(states, n_gen)` needs each relator as a **numpy int
+array** — JSON-loaded path records are plain Python lists and hit numba `Unknown attribute 'dtype'` in
+`inverse_relator`; coerce `[[np.asarray(rel, np.int64) for rel in st] for st in rec['states']]` before
+replay. **Finding = greedy substitution does NOT exploit a named `z=w`** (no clever word beats the dumb
+z=r1; none solves where dumb words fail) — same conclusion as AK(3); the useful `z=w` is Fagan's
+Lemma-11 atomic destabilization, a supermove greedy can't do. Rule: the sweep resumes by
+`(idx, word_name, budget)` — a killed run continues with `--phase screen`; `report_hard.py`'s
+`finding_section()` recomputes the negative headline from the streams so a regenerate stays honest.
+Run it with the repo `.venv` python (has numba), not system `python3`.

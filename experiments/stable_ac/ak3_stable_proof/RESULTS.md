@@ -196,6 +196,20 @@ presentations are often solvable even when related 3-gen forms are stuck.
   each yields ~5.9M visited states and ~916k unique candidates — then global merge and
   solve of the shortest ~6k+ candidates @25k, escalation @200k queued behind it.
 
+## P6 — Independent adversarial verifier — ✅ PASSED (2026-07-05 night)
+
+An adversarial subagent authored `independent_verifier.py` + `tests/ak3sp_independent_test.py`
+**black-box from the schema+math spec only** (forbidden from reading any engine module; imports
+json+sys only; built its own free/cyclic reduction, Bareiss determinant, canonicalization and
+step replay). Results: **20,947 checks passed, 0 failed; all 18 real certificates pass BOTH
+verifiers** (appendixF 53-step, laneB × 3, 14 catalog leaf certs incl. an n_gen=14 start).
+Mutation sensitivity confirmed (sign flips, corrupted targets, swapped states, mis-pointed
+eliminate → all rejected). One accepted "mutation" was hand-verified to be a genuinely valid
+alternative move, not a soundness hole. Spec ambiguities it resolved (canonicalization is
+length-preserving; eliminate recomputes from state, ignores recorded params; end_is_trivial is
+sign-insensitive) match the engine's semantics. **Every future solve-claim must pass both
+verifiers — the gate is now in place.**
+
 ## Overnight infrastructure (2026-07-05 → 06)
 
 - `night_lanes.py`: waits for Lane D, then runs Lane D escalation (@200k), Lane B grid
