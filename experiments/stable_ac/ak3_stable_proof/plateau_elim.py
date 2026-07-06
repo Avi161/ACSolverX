@@ -405,13 +405,34 @@ def phase_solve(args):
     if not cands:
         return
     gn.solve_one(aw.FORMS["textbook"], n_gen=2, max_nodes=8)  # warm numba pre-fork
+    import threading
     from multiprocessing import Pool
+    try:
+        import psutil
+        psutil.cpu_percent(interval=None)
+    except Exception:
+        pass
     n_solved = 0
     t0 = time.time()
+    done_ct = [0]
+    stop = threading.Event()
+
+    def heartbeat():                        # solve prints only every 200; keep it alive-looking
+        while not stop.wait(60):
+            k, el = done_ct[0], time.time() - t0
+            rate = k / el if el and k else 0
+            eta = (len(cands) - k) / rate if rate else 0
+            cpu, ram, rt = _util()
+            print(f"  … solving: {k}/{len(cands)} solved={n_solved} "
+                  f"({rate:.1f}/s, ETA {eta / 60:.0f}m) | "
+                  f"CPU {cpu:.0f}% RAM {ram:.0f}/{rt:.0f}GB", flush=True)
+    hb = threading.Thread(target=heartbeat, daemon=True)
+    hb.start()
     with Pool(processes=args.solve_workers, maxtasksperchild=16) as pool, \
             open(out_path, "a") as f:
         tasks = [(rec, args.budget2) for rec in cands]
         for i, res in enumerate(pool.imap_unordered(solve_candidate, tasks)):
+            done_ct[0] = i + 1
             if res["solved"]:
                 n_solved += 1
                 print(f"*** SOLVED *** cand {res['mkey'][:12]} tl={res['total_len']} "
@@ -444,6 +465,7 @@ def phase_solve(args):
             if n_solved and args.stop_on_first:
                 pool.terminate()
                 break
+    stop.set()
     print(f"solve phase done: {n_solved} solved / {len(cands)} attempted", flush=True)
 
 
