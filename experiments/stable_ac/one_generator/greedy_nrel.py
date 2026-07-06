@@ -325,6 +325,16 @@ class NRelatorSolver:
         if self.track_seen:
             self.new_seen.add(init_key)
         visited, blocked, n_gen, max_len = self.visited, self.blocked, self.n_gen, self.max_len
+        # Numba node-expansion (byte-for-byte identical to the Python path below; see the
+        # expand_fast diff gate). Fall back to Python when the diagnostic tracking that needs
+        # the per-neighbour move is on, or if numba is unavailable.
+        fast = None
+        if not self.track_reverts and not self.track_seen:
+            try:
+                import expand_fast as _ef
+                fast = _ef
+            except Exception:
+                fast = None
         nodes = 0
         while pq and nodes < self.max_nodes:
             _, depth, key = heapq.heappop(pq)
@@ -332,6 +342,22 @@ class NRelatorSolver:
             state = key_to_state(key)
             if all(len(r) == 1 for r in state):
                 return self._retrace(key), nodes, self.new_seen
+            if fast is not None:
+                nc = fast.expand_into(key, n_gen, max_len)
+                ok, ol, ot = fast._OUT_KEYS, fast._OUT_KLEN, fast._OUT_TL
+                for c in range(nc):
+                    nkey = ok[c, :ol[c]].tobytes()
+                    if nkey in blocked:
+                        self.revert_hits += 1
+                        continue
+                    if nkey not in visited:
+                        visited[nkey] = key
+                        tl = int(ot[c])
+                        if tl < self.min_total_len:
+                            self.min_total_len = tl
+                            self.min_total_state = nkey
+                        heapq.heappush(pq, (tl, depth + 1, nkey))
+                continue
             byte_parts = key.split(b"\x00")            # parent's per-relator canonical bytes (sorted)
             for nbr_state, move in get_neighbors(state, n_gen):
                 ci = move[0]                            # only relator ci changed; the rest stay canonical
