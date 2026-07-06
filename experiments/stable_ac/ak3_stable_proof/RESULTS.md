@@ -213,6 +213,15 @@ and P25, g≤3 and g≤4, gen_penalty 1 and 2; 100k full ~95-word bank from both
 the full stable move set (stabilize ⊕ eliminate in-search), and 1,074 distinct
 eliminated 2-gen quotients at up to 200k nodes each.
 
+**Night pass 3 — Lane C baselines + Lane B 400k (2026-07-06 01:21):** the mentor's dumb
+trivial-z stabilizations (⟨x,y,z,…| r1,r2,z,…⟩, both AK3 forms): **n=3 floors at 14,
+n=4 at 15, n=5 at 16** — exactly the 13-floor plus one per added trivial relator.
+Pure stabilization buys greedy nothing at 0.25–0.4M nodes. Lane B hero8 @400k from AK3
+and P25: floor 13 again. (Local budget ceiling found the hard way: 1M-node runs jetsam
+a 16 GB Mac — the 0.8–2M tier runs on the Colab boxes.) Queued for the rest of the
+night: p25-form harvest + re-merge + a deeper 100k-node solve pass over every candidate
+with total_len ≤ 18.
+
 **Night pass 1 result (2026-07-06 ~00:30):** 20 harvests → 8,339,784 raw candidates →
 **74,489 unique-mod-symmetry** (total_len ≤ 24; AK3/P25 canonical classes dropped).
 Length histogram floor: 13×1, 14×5, 15×68, 16×69, 17×376, 18×412, 19×2062, 20×2123.
