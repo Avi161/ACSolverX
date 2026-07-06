@@ -36,6 +36,24 @@ def bank_word_names():
     return [e["name"] for e in aw.build_word_bank()]
 
 
+def _total_ram_gb():
+    try:
+        return os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / 1e9
+    except (ValueError, OSError, AttributeError):
+        return 16.0
+
+
+def auto_workers(budget):
+    """Harvest is CPU-bound and each worker's peak is dominated by its visited set
+    (~40x budget entries, ~200 B each ⇒ ~1.6 GB @200k, ~4 GB @500k). Use every core the
+    box has, capped so the concurrent workers fit ~85% of RAM. The old hardcoded 4 left
+    most of a 50 GB / many-core Colab box idle (the run was using ~4 GB)."""
+    cores = os.cpu_count() or 4
+    per_worker_gb = max(0.5, budget * 8e-6)
+    ram_cap = max(1, int(0.85 * _total_ram_gb() / per_worker_gb))
+    return max(1, min(cores, ram_cap))
+
+
 def lane_d(box, out_dir, quick, workers):
     env = dict(os.environ)
     env["ACX_LANED_DIR"] = os.path.join(out_dir, "laneD")
@@ -54,11 +72,17 @@ def lane_d(box, out_dir, quick, workers):
         cfg.update(budget=4_000, budget2=2_000, top=60)
         if box == "D3":
             cfg["words"] = ",".join(bank_word_names()[:3])
+    hw = workers or auto_workers(cfg["budget"])          # harvest: RAM-bounded, memory-heavy
+    sw = workers or (os.cpu_count() or 8)                 # solve: light per candidate
+    print(f"box {box}: harvest_workers={hw} solve_workers={sw} "
+          f"(cores={os.cpu_count()}, ram={_total_ram_gb():.0f} GB, budget={cfg['budget']})",
+          flush=True)
     cmd = [sys.executable, os.path.join(HERE, "plateau_elim.py"), "--phase", "all",
            "--forms", cfg["forms"], "--budget", str(cfg["budget"]),
            "--budget2", str(cfg["budget2"]), "--top", str(cfg["top"]),
            "--tl_cap", str(cfg["tl_cap"]), "--l_cap", str(cfg["l_cap"]),
-           "--workers", str(workers or 4), "--solve_workers", str(workers or 8)]
+           "--harvest_tl_cap", str(cfg["tl_cap"]),        # solve ignores > tl_cap; don't harvest them
+           "--workers", str(hw), "--solve_workers", str(sw)]
     if cfg["words"]:
         cmd += ["--words", cfg["words"]]
     print(" ".join(cmd), flush=True)

@@ -43,6 +43,7 @@ for p in (HERE, ONEGEN):
 
 import greedy_nrel as gn  # noqa: E402
 import ak3_words as aw  # noqa: E402
+import harvest_fast as hf  # noqa: E402
 from stable_moves import LengthCapExceeded, eliminate, find_eliminable, invert_move  # noqa: E402
 from mitm import symmetry_keys  # noqa: E402
 
@@ -65,6 +66,33 @@ CERTS = os.environ.get("ACX_CERTS_DIR") or os.path.join(
     ROOT, "results", "stable_ac", "ak3_stable_proof", "certs")
 
 HERO = ["xyx", "yxy", "xxx", "yyyy", "Xyxy", "YXyxy", "x", "y"]  # + r1, r2 per form
+
+
+def _util():
+    """Best-effort (cpu_pct, ram_used_gb, ram_total_gb) for live progress lines.
+    Uses psutil if present, else /proc + loadavg (Colab is Linux). cpu_pct is the
+    system-wide average across all cores (0-100); 100 == every core saturated."""
+    try:
+        import psutil
+        vm = psutil.virtual_memory()
+        return psutil.cpu_percent(interval=None), vm.used / 1e9, vm.total / 1e9
+    except Exception:
+        cores = os.cpu_count() or 1
+        try:
+            cpu = 100.0 * os.getloadavg()[0] / cores
+        except (OSError, AttributeError):
+            cpu = float("nan")
+        used = total = float("nan")
+        try:
+            mi = {}
+            for ln in open("/proc/meminfo"):
+                k, v = ln.split(":")
+                mi[k] = int(v.split()[0])
+            total = mi["MemTotal"] / 1e6
+            used = (mi["MemTotal"] - mi["MemAvailable"]) / 1e6
+        except Exception:
+            pass
+        return cpu, used, total
 
 
 def word_ints(form, name):
@@ -91,55 +119,55 @@ def run_stabilized(form, w, budget, block_null_revert=True):
     return solver, path, nodes
 
 
+def _combo_done(lane_d, form, name, present=None):
+    """A combo is finished if its .jsonl (or .done marker) is already on disk. The .jsonl
+    is written by an atomic os.replace before the marker, so its presence alone means the
+    harvest completed (robust to a lost/unsynced .done, e.g. after a Drive round-trip).
+
+    Matching is by EXACT filename against the directory listing, NOT os.path.exists —
+    the word bank contains case-variant names (``xxx`` and ``XXX``, ``xy``/``Xy``/``XY`` …)
+    and on a case-insensitive filesystem os.path.exists would treat ``XXX`` as done because
+    ``xxx.jsonl`` exists, falsely skipping it. An exact listing never false-skips: on a
+    case-sensitive FS (Colab/Drive) both files count; on a case-insensitive one only the
+    real file counts and the other is correctly re-harvested. Pass ``present`` (a set of
+    the directory's names) to avoid re-listing per combo."""
+    if present is None:
+        try:
+            present = set(os.listdir(lane_d))
+        except FileNotFoundError:
+            return False
+    return (f"cands_{form}_{name}.jsonl" in present
+            or f"cands_{form}_{name}.done" in present)
+
+
 def harvest_one(task):
     """Worker: one (form, word_name) run -> stream unique candidates to its own file.
-    Candidates longer than harvest_tl_cap (task[4], default 26) are counted, not
-    written — bounds file size; they are unsolvable at L=24 in practice."""
+    The per-state eliminate + canonical-key loop runs in ``harvest_fast`` (numba); output
+    is byte-for-byte identical to the pure-Python path (see harvest_fast diff gate).
+    Candidates longer than harvest_tl_cap (task[4]) are dropped, not written."""
     form, name, budget, l_cap = task[:4]
     harvest_tl_cap = task[4] if len(task) > 4 else 26
     out_path = os.path.join(LANE_D, f"cands_{form}_{name}.jsonl")
     done_marker = os.path.join(LANE_D, f"cands_{form}_{name}.done")
-    if os.path.exists(done_marker):
+    if _combo_done(LANE_D, form, name):
         return {"form": form, "word": name, "skipped": True}
     w = word_ints(form, name)
     t0 = time.time()
     solver, path, nodes = run_stabilized(form, w, budget)
-    seen = {}
-    n_cap = n_elim = n_long = 0
-    for key in solver.visited:
-        state = gn.key_to_state(key)
-        rels = [[int(a) for a in r] for r in state]
-        for g, ri in find_eliminable(rels, 3):
-            n_elim += 1
-            try:
-                e_state, _, _ = eliminate(rels, 3, g, ri, l_cap=l_cap)
-            except (LengthCapExceeded, ValueError):
-                n_cap += 1
-                continue
-            if any(len(r) == 0 for r in e_state):
-                continue
-            if sum(len(r) for r in e_state) > harvest_tl_cap:
-                n_long += 1
-                continue
-            ck = gn.canonical_key(tuple(np.array(r, dtype=INT) for r in e_state))
-            if ck in seen:
-                continue
-            seen[ck] = {"cand": ck.hex(),
-                        "relators": [list(r) for r in e_state],
-                        "total_len": sum(len(r) for r in e_state),
-                        "form": form, "word": name,
-                        "src": key.hex(), "gen": g, "ri": ri}
+    seen = hf.harvest_visited(solver.visited, l_cap, harvest_tl_cap)
     tmp = out_path + ".tmp"
     with open(tmp, "w") as f:
-        for rec in seen.values():
-            f.write(json.dumps(rec) + "\n")
+        for ck, (rel0, rel1, gen, ri, src_hex) in seen.items():
+            f.write(json.dumps({"cand": ck.hex(), "relators": [rel0, rel1],
+                                "total_len": len(rel0) + len(rel1),
+                                "form": form, "word": name,
+                                "src": src_hex, "gen": gen, "ri": ri}) + "\n")
         f.flush()
         os.fsync(f.fileno())
     os.replace(tmp, out_path)
     with open(done_marker, "w") as f:
         f.write(json.dumps({"nodes": nodes, "visited": len(solver.visited),
-                            "unique_cands": len(seen), "capped": n_cap,
-                            "over_tl_cap": n_long, "eliminables": n_elim,
+                            "unique_cands": len(seen),
                             "solved_directly": path is not None,
                             "min_total_len": int(solver.min_total_len),
                             "wall_s": round(time.time() - t0, 1)}))
@@ -152,19 +180,64 @@ def phase_harvest(args):
     os.makedirs(LANE_D, exist_ok=True)
     words = args.words.split(",") if args.words else HERO + ["r1", "r2"]
     forms = args.forms.split(",")
-    tasks = [(f, n, args.budget, args.l_cap, args.harvest_tl_cap)
-             for f in forms for n in words]
-    tasks = [t for t in tasks
-             if not os.path.exists(os.path.join(LANE_D, f"cands_{t[0]}_{t[1]}.done"))]
-    print(f"harvest: {len(tasks)} runs pending", flush=True)
+    all_tasks = [(f, n, args.budget, args.l_cap, args.harvest_tl_cap)
+                 for f in forms for n in words]
+    total = len(all_tasks)
+    present = set(os.listdir(LANE_D)) if os.path.isdir(LANE_D) else set()
+    tasks = [t for t in all_tasks if not _combo_done(LANE_D, t[0], t[1], present)]
+    already = total - len(tasks)
+    n = len(tasks)
+    print(f"harvest: {n} runs pending  ({already}/{total} already done, "
+          f"{args.workers} workers, budget={args.budget})", flush=True)
     if not tasks:
         return
     gn.solve_one(aw.stabilize_with_word(aw.FORMS["textbook"], [1, 2, 1]),
                  n_gen=3, max_nodes=8)  # warm numba pre-fork
+    hf.warm()                            # warm the numba harvest hot path pre-fork
+
+    import threading
     from multiprocessing import Pool
-    with Pool(processes=args.workers, maxtasksperchild=1) as pool:
-        for res in pool.imap_unordered(harvest_one, tasks):
-            print(f"  harvested {res}", flush=True)
+    try:
+        import psutil
+        psutil.cpu_percent(interval=None)   # prime the % baseline
+    except Exception:
+        pass
+    t0 = time.time()
+    done = [0]
+    stop = threading.Event()
+
+    def heartbeat():                        # so a slow combo never looks frozen
+        while not stop.wait(90):
+            k, el = done[0], time.time() - t0
+            cpu, ram, rt = _util()
+            rate = k / el * 3600 if el > 0 and k else 0
+            print(f"  … working: {k}/{n} this run ({already + k}/{total} total) | "
+                  f"elapsed {el / 60:.1f}m | {rate:.1f}/h | "
+                  f"CPU {cpu:.0f}% RAM {ram:.0f}/{rt:.0f}GB", flush=True)
+    hb = threading.Thread(target=heartbeat, daemon=True)
+    hb.start()
+    try:
+        with Pool(processes=args.workers, maxtasksperchild=1) as pool:
+            for res in pool.imap_unordered(harvest_one, tasks):
+                done[0] += 1
+                k, el = done[0], time.time() - t0
+                rate = k / el * 3600 if el > 0 else 0
+                eta = (n - k) / (k / el) if k and el > 0 else 0
+                cpu, ram, rt = _util()
+                if res.get("skipped"):
+                    label = f"{res.get('form')}/{res.get('word')} skipped(exists)"
+                else:
+                    label = (f"{res['form']}/{res['word']}  "
+                             f"visited={res.get('visited', 0) / 1e6:.1f}M "
+                             f"cands={res.get('unique_cands', 0)} "
+                             f"wall={res.get('wall_s', 0):.0f}s"
+                             + ("  *SOLVED-DIRECT*" if res.get("solved_directly") else ""))
+                print(f"  [{k}/{n}] {label} | total {already + k}/{total} | "
+                      f"{rate:.1f}/h ETA {eta / 3600:.1f}h | "
+                      f"CPU {cpu:.0f}% RAM {ram:.0f}/{rt:.0f}GB", flush=True)
+    finally:
+        stop.set()
+    print(f"harvest phase done: {n} runs in {(time.time() - t0) / 60:.1f} min", flush=True)
 
 
 def merge_one_file(task):
@@ -361,9 +434,13 @@ def phase_solve(args):
             f.flush()
             os.fsync(f.fileno())
             if (i + 1) % 200 == 0:
-                rate = (i + 1) / (time.time() - t0)
+                el = time.time() - t0
+                rate = (i + 1) / el
+                eta = (len(cands) - (i + 1)) / rate if rate else 0
+                cpu, ram, rt = _util()
                 print(f"  [{i + 1}/{len(cands)}] solved={n_solved} "
-                      f"({rate:.1f} cands/s)", flush=True)
+                      f"({rate:.1f} cands/s, ETA {eta / 60:.1f}m) | "
+                      f"CPU {cpu:.0f}% RAM {ram:.0f}/{rt:.0f}GB", flush=True)
             if n_solved and args.stop_on_first:
                 pool.terminate()
                 break
