@@ -47,6 +47,13 @@ from stable_moves import LengthCapExceeded, eliminate, find_eliminable, invert_m
 from mitm import symmetry_keys  # noqa: E402
 
 INT = gn.INT_DTYPE
+
+# register P25 as a start form: P25 ~AC~ AK3 is certified (Appendix-F cert), so a
+# Lane D chain from P25 composes into an AK(3) claim via concat_certificates.
+import stabilize as _stab  # noqa: E402
+from hmoves import P25 as _P25  # noqa: E402
+aw.FORMS.setdefault("p25", _stab.relators_to_flat([list(r) for r in _P25], 2, gn.L))
+
 LANE_D = os.environ.get("ACX_LANED_DIR") or os.path.join(
     ROOT, "results", "stable_ac", "ak3_stable_proof", "laneD")
 CERTS = os.environ.get("ACX_CERTS_DIR") or os.path.join(

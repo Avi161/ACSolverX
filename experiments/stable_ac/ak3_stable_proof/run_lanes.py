@@ -42,7 +42,7 @@ def lane_d(box, out_dir, quick, workers):
     env["ACX_CERTS_DIR"] = os.path.join(out_dir, "certs")
     os.makedirs(env["ACX_LANED_DIR"], exist_ok=True)
     if box == "D1":
-        cfg = dict(forms="textbook", words=None, budget=500_000, budget2=50_000,
+        cfg = dict(forms="textbook,p25", words=None, budget=500_000, budget2=50_000,
                    top=12_000, tl_cap=20, l_cap=24)
     elif box == "D2":
         cfg = dict(forms="rep", words=None, budget=500_000, budget2=50_000,
