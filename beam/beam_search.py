@@ -44,6 +44,10 @@ def parse_args():
                    help="stem of the dataset the model was TRAINED on; "
                         "needed to size the saved solve_data when --dataset "
                         "differs (e.g. when running on a filtered subset)")
+    p.add_argument("--train_rows", type=int, default=None,
+                   help="override the training-dataset row count used to size "
+                        "solve_data on restore (the shipped 610model stores "
+                        "157217 rows; the current AC19_extended.txt has fewer)")
     p.add_argument("--start", type=int, default=0)
     p.add_argument("--end", type=int, default=634)
     p.add_argument("--beam_width", type=int, default=1024)
@@ -82,10 +86,14 @@ def main():
     obs_shape = env.observation_space(env_params).shape
     dummy_params = network.init(init_rng, jnp.zeros((1, *obs_shape)))
 
-    # Training dataset size = line count of its source file
-    train_src_path = os.path.join("data", f"{args.training_dataset}.txt")
-    with open(train_src_path, "r") as f:
-        train_num_states = sum(1 for _ in f)
+    # Training dataset size = line count of its source file (or explicit override
+    # when the shipped file has drifted from the training-time version)
+    if args.train_rows is not None:
+        train_num_states = args.train_rows
+    else:
+        train_src_path = os.path.join("data", f"{args.training_dataset}.txt")
+        with open(train_src_path, "r") as f:
+            train_num_states = sum(1 for _ in f)
 
     ckpt_path_abs = os.path.join(os.getcwd(), "ppo_checkpoints", args.ckpt_path)
     mngr = ocp.CheckpointManager(
