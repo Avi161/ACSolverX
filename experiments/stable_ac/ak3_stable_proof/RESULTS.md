@@ -213,6 +213,26 @@ and P25, g≤3 and g≤4, gen_penalty 1 and 2; 100k full ~95-word bank from both
 the full stable move set (stabilize ⊕ eliminate in-search), and 1,074 distinct
 eliminated 2-gen quotients at up to 200k nodes each.
 
+## Lane E — pretrained RL policy beam search (NEW, 2026-07-06 morning)
+
+Installed a CPU JAX stack (latest jax; the shipped `610model` Orbax checkpoint restores
+fine with a `--train_rows 157217` sizing override — the shipped AC19_extended.txt has
+drifted by 455 rows from the training-time version). Base case: beam width 64 solves
+MS idx 0–1 in 2.5 s. Then `data/laneD_floor.txt` (155 rows: AK3 textbook+rep, P25,
+floor-state F, all 151 quotients with total_len ≤ 16) — the trained Dual-Ring policy
+(610/634 on MS(1190)) at **beam width 512, 200 steps: 0/155 solved** (46 min CPU).
+The learned policy that routinely crosses MS humps cannot cross this one either — a
+fourth independent method family flooring on the same barrier. Escalation @width 2048
++ Gumbel temperature 1.0→0.1 on the 30 hardest-core items: running.
+
+**Floor-state discovery (morning):** the quotients do NOT all greedy-flow back to AK3.
+Sample of 82: 21 floor at the AK3 canonical class, 61 at a single OTHER length-13
+state **F = ⟨x,y | y⁻²xyx⁻², y⁻²x⁻³yx⟩** (relators [[-2,-2,1,2,-1,-1],
+[-2,-2,-1,-1,-1,2,1]]), not signed-relabel-equivalent to AK3. The basin has (at least)
+two distinct floor presentations; `floor_census.py` is enumerating the complete floor
+set over all 1,006 short quotients — each member is a new hardest-core start form for
+future attacks (stabilization sweeps from F have never been done by anyone).
+
 **Night pass 4 — p25 surface + deep 100k pass (2026-07-06 04:45):** added the p25-form
 harvests (10 words @150k; P25 ~AC~ AK3 composes via the Appendix-F cert). Merged pool:
 13.2M raw → **163,237 unique quotients** (≤24). Striking: the p25 ball's eliminations
