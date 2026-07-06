@@ -213,6 +213,21 @@ and P25, g≤3 and g≤4, gen_penalty 1 and 2; 100k full ~95-word bank from both
 the full stable move set (stabilize ⊕ eliminate in-search), and 1,074 distinct
 eliminated 2-gen quotients at up to 200k nodes each.
 
+**Night pass 4 — p25 surface + deep 100k pass (2026-07-06 04:45):** added the p25-form
+harvests (10 words @150k; P25 ~AC~ AK3 composes via the Appendix-F cert). Merged pool:
+13.2M raw → **163,237 unique quotients** (≤24). Striking: the p25 ball's eliminations
+almost completely overlap AK3's — only +75 new candidates at total_len ≤ 18 (931→1,006)
+— more evidence the stable class is one tightly-knit basin. Deep pass: all 863 ≤18
+candidates not already done at 200k re-solved @100k: **0 solved, min_total_len = 13 in
+every record**. Cumulative Lane D: **1,937 solve attempts over 1,006 unique quotients
+(25k/100k/200k) — the floor is 13 in all 1,937**. Together with the 388 wormhole runs,
+the StableSolver grid (8 configs to 400k), and trivial-z n=3/4/5: every search-based
+approach tried floors at exactly 13 (+k bookkeeping for extra trivial generators).
+**The "second hump" at total length 13 is a wall for greedy-type search across the
+entire accessible stable class — the deliverable so far is a rigorously-verified
+negative at unprecedented breadth, with the Colab tier (5 boxes, 10–40× budgets) as
+the remaining escalation.**
+
 **Night pass 3 — Lane C baselines + Lane B 400k (2026-07-06 01:21):** the mentor's dumb
 trivial-z stabilizations (⟨x,y,z,…| r1,r2,z,…⟩, both AK3 forms): **n=3 floors at 14,
 n=4 at 15, n=5 at 16** — exactly the 13-floor plus one per added trivial relator.
