@@ -1,0 +1,145 @@
+An alternative proof of AC-equivalence of the balanced trivial grup presentation 
+
+<a,b | a^{-1}b^{-1}ab^{-1}a^{-1}bab^{-2}aba^{-1}b, 
+b^{-1}a^{-1}b^{2}a^{-1}b^{-1}abab^{-2}> 
+
+to AK(3) trivial group presentation found by automated theorem proving. 
+
+AC-equivalence of these presentations was  first established in   
+
+
+@misc{shehper2024makesmathproblemshard,
+      title={What makes math problems hard for reinforcement learning: a case study}, 
+      author={Ali Shehper and Anibal M. Medina-Mardones and Bartłomiej Lewandowski and Angus Gruen and Piotr Kucharski and Sergei Gukov},
+      year={2024},
+      eprint={2408.15332},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2408.15332}, 
+}
+
+We use notation for AC-moves as in the paper above: 
+
+h1 = r2 -> r2*r1           h5 = r2 -> a^{-1}*r2*a         h9 = r2 -> a*r2*a^{-1} 
+h2 = r1 -> r1*r2^{-1}      h6 = r1 -> b^{-1}*r1*b        h10 = r1 -> b*r1*b^{-1} 
+h3 = r2 -> r2*r1^{-1}      h7 = r2 -> b^{-1}*r2*b        h11 = r2 -> b^r2*b^{-1} 
+h4 = r1 -> r1*r2           h8 = r1 -> a*r1*a^{-1}        h12 = r1 -> a^{-1}*r1*a
+
+We use A and B for a^{_1} and b^{-1}, respectively. 
+
+===========================================================================
+AC-transformations sequence extracted from the proof by Prover9 prover. 
+===========================================================================
+
+ABaBAbaBBabAb,BAbbABabaBBa  -> h10
+bABaBAbaBBabA,BAbbABabaBBa  -> h12
+AbABaBAbaBBab,BAbbABabaBBa  -> h4
+AbABaaBBa,BAbbABabaBBa      -> h8 
+bABaaBB,BAbbABabaBBa        -> h6
+ABaaB,BAbbABabaBBa          -> h11
+ABaaB,AbbABabaBBaB          -> h9
+ABaaB,bbABabaBBaBA          -> h8
+BaaBA,bbABabaBBaBA          -> h3
+BaaBA,bbABabaBBAb           -> h10
+aaBAB,bbABabaBBAb           -> h12
+aBABa,bbABabaBBAb           -> h7 
+aBABa,bABabaBBAbb           -> h7
+aBABa,ABabaBBAbbb           -> h9
+aBABa,BabaBBAbbbA           -> h11
+aBABa,abaBBAbbbAB           -> h5
+aBABa,baBBAbbbABa           -> h3
+aBABa,baBBAbbbbA            -> h12
+BABaa,baBBAbbbbA            -> h10
+ABaaB,baBBAbbbbA            -> h7
+ABaaB,aBBAbbbbAb            -> h5
+ABaaB,BBAbbbbAba            -> h1
+ABaaB,BBAbbbbaB             -> h11
+ABaaB,BAbbbbaBB             -> h11
+ABaaB,AbbbbaBBB             -> h9
+ABaaB,bbbbaBBBA             -> h8
+BaaBA,bbbbaBBBA             -> h3
+BaaBA,bbbbaBBAAb            -> h11
+BaaBA,bbbbbaBBAA            -> h5
+BaaBA,AbbbbbaBBA            -> h3
+BaaBA,AbbbbbaBAAb           -> h11 
+BaaBA,bAbbbbbaBAA           -> h5
+BaaBA,AbAbbbbbaBA           -> h3
+BaaBA,AbAbbbbbAb            -> h11
+BaaBA,bAbAbbbbbA            -> h10
+aaBAB,bAbAbbbbbA            -> h12
+aBABa,bAbAbbbbbA            -> h1
+aBABa,bAbAbbbbABa           -> h7
+aBABa,AbAbbbbABab           -> h9
+aBABa,bAbbbbABabA           -> h1
+aBABa,bAbbbbABBa            -> h7 
+aBABa,AbbbbABBab            -> h9
+aBABa,bbbbABBabA            -> h1 
+aBABa,bbbbABBBa             -> h9
+aBABa,abbbbABBB             -> h8
+aaBAB,abbbbABBB             -> h7
+aaBAB,BabbbbABB             -> h7
+aaBAB,BBabbbbAB             -> h3
+aaBAB,BBabbbbbAA            -> h12
+aBABa,BBabbbbbAA            -> h12
+BABaa,BBabbbbbAA            -> h5
+BABaa,ABBabbbbbA            -> h5
+BABaa,AABBabbbbb            -> h4
+BABBBabbbbb,AABBabbbbb      -> h10
+ABBBabbbb,AABBabbbbb        -> h9
+ABBBabbbb,ABBabbbbbA        -> h8 
+BBBabbbbA,ABBabbbbbA        -> h3
+BBBabbbbA,ABBabAbbb         -> h10
+BBabbbbAB,ABBabAbbb         -> h9
+BBabbbbAB,BBabAbbbA         -> h11
+BBabbbbAB,BabAbbbAB         -> h3
+BBabbbbAB,BabABAbb          -> h11 
+BBabbbbAB,abABAb            -> h11
+BBabbbbAB,babABA            -> h5
+BBabbbbAB,AbabAB            -> h2 
+BBabbbABa,AbabAB            -> h8 
+aBBabbbAB,AbabAB            -> h2 
+aBBabbABa,AbabAB            -> h8
+aaBBabbAB,AbabAB            -> h2
+aaBBabABa,AbabAB            -> h8
+aaaBBabAB,AbabAB            -> h2
+aaaBBBa,AbabAB              -> h12 
+aaBBBaa,AbabAB              -> h12
+aBBBaaa,AbabAB              -> h7
+aBBBaaa,BAbabA              -> h1
+aBBBaaa,BAbaBBaaa           -> h2
+aBABab,BAbaBBaaa            -> h12
+BABaba,BAbaBBaaa            -> h11
+BABaba,AbaBBaaaB            -> h10
+ABabaB,AbaBBaaaB            -> h9
+ABabaB,baBBaaaBA            -> h7
+ABabaB,aBBaaaBAb            -> h5
+ABabaB,BBaaaBAba            -> h1
+ABabaB,BBaaaaB              -> h2
+ABabAAAbb,BBaaaaB           -> h8
+BabAAAbbA,BBaaaaB           -> h10
+abAAAbbAB,BBaaaaB           -> h12
+bAAAbbABa,BBaaaaB           -> h7
+bAAAbbABa,BBBaaaa           -> h9
+bAAAbbABa,aBBBaaa           -> h6
+AAAbbABab,aBBBaaa           -> h1
+AAAbbABab,aBABab            -> h8
+AAbbABabA,aBABab            -> h4
+AAbbABBab,aBABab            -> h8
+AbbABBabA,aBABab            -> h4
+AbbABBBab,aBABab            -> h8
+bbABBBabA,aBABab            -> h4
+bbABBBBab,aBABab            -> h11
+bbABBBBab,baBABa            -> h6
+bABBBBabb,baBABa            -> h6
+ABBBBabbb,baBABa            -> h8
+BBBBabbbA,baBABa            -> h10
+BBBabbbAB,baBABa            -> h4
+BBBabbABa,baBABa            -> h8
+aBBBabbAB,baBABa            -> h4
+aBBBabABa,baBABa            -> h8
+aaBBBabAB,baBABa            -> h4
+aaBBBBa,baBABa              -> h9
+aaBBBBa,abaBAB              -> h8
+aaaBBBB,abaBAB  
+
+

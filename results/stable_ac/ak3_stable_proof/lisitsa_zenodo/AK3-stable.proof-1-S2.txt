@@ -1,0 +1,161 @@
+ABaBAbaBBabAb,BAbbABabaBBa  -> INV 
+BaBAbbABabAba,BAbbABabaBBa  -> CONJ AbXBa
+BAbbABabAbaBa,BAbbABabaBBa  -> INV 
+AbABaBAbaBBab,BAbbABabaBBa  -> MULT-L
+AbABaaBBa,BAbbABabaBBa      -> INV 
+AbbAAbaBa,BAbbABabaBBa      -> CONJ BaXAb
+bAAba,BAbbABabaBBa          -> MULT-L 
+bAAbaBAbbABabaBBa,BAbbABabaBBa -> INV 
+AbbABAbaBBabABaaB,BAbbABabaBBa  -> MULT-R
+AbbABAbaBBabABaaB,ABaaB     -> INV 
+bAAbaBAbbABabaBBa,ABaaB     -> CONJ ABaaBXbAAba 
+BAbbABabaBBabAAba,ABaaB     -> MULT-L 
+BAbbABabaBBa,ABaaB          -> CONJ BBabXBAbb
+ABabaBBaBAbb,ABaaB          -> INV 
+BBabAbbABAba,ABaaB          -> MULT-L 
+BBabAbbABaB,ABaaB           -> INV 
+bAbaBBaBAbb,ABaaB           -> CONJ ABaBxbAba
+BBaBAbbbAba,ABaaB           -> MULT-L 
+BBaBAbbbaB,ABaaB            -> CONJ bAbbXBBaB 
+AbbbaBBBaB,ABaaB            -> INV 
+bAbbbABBBa,ABaaB            -> MULT-L 
+bAbbbABBBBaaB,ABaaB         -> INV 
+bAAbbbbaBBBaB,ABaaB         -> CONJ aBXbA
+AbbbbaBBB,ABaaB             -> INV 
+bbbABBBBa,ABaaB             -> MULT-L 
+bbbABBBBBaaB,ABaaB          -> INV 
+bAAbbbbbaBBB,ABaaB          -> MULT-R
+bAAbbbbbaBBB,AbbbbaBBB      -> CONJ aBXbA
+AbbbbbaBBA,AbbbbaBBB        -> INV 
+abbABBBBBa,AbbbbaBBB        -> MULT-L 
+abbABaBBB,AbbbbaBBB         -> INV  
+bbbAbaBBA,AbbbbaBBB         -> CONJ AXa
+AbbbAbaBB,AbbbbaBBB         -> INV 
+bbABaBBBa,AbbbbaBBB         -> MULT-L 
+bbABabaBBB,AbbbbaBBB        -> CONJ baBBBXbbbAB
+baBABa,AbbbbaBBB            -> MULT-L 
+baBAbbbaBBB,AbbbbaBBB       -> INV 
+bbbABBBabAB,AbbbbaBBB       -> MULT-R 
+bbbABBBabAB,AbabAB          -> INV 
+baBAbbbaBBB,AbabAB          -> CONJ bABXbaB
+AbbbaBBaB,AbabAB            -> INV 
+bAbbABBBa,AbabAB            -> MULT-L 
+bAbbABBabAB,AbabAB          -> INV 
+baBAbbaBBaB,AbabAB          -> CONJ bABXbaB
+AbbaBBaaB,AbabAB            -> INV 
+bAAbbABBa,AbabAB            -> MULT-L 
+bAAbbABabAB,AbabAB          -> INV 
+baBAbaBBaaB,AbabAB          -> CONJ bABXbaB
+AbaBBaaaB,AbabAB            -> INV 
+bAAAbbABa,AbabAB            -> MULT-L 
+bAAAbbbAB,AbabAB            -> INV 
+baBBBaaaB,AbabAB            -> CONJ aaBXbAA
+aaaBBBa,AbabAB              -> MULT-L 
+aaaBBabAB,AbabAB            -> CONJ bABXbaB
+bABaaaBBa,AbabAB            -> MULT-L 
+bABaaaBabAB,AbabAB          -> CONJ bABXbaB
+bAABaaaBa,AbabAB            -> MULT-L 
+bAABaaaabAB,AbabAB          -> CONJ AbaaBXbAABa
+aaabAAABa,AbabAB            -> MULT-L 
+aaabAAbAB,AbabAB            -> CONJ AXa
+aabAAbABa,AbabAB            -> MULT-L 
+aabAAbbAB,AbabAB            -> CONJ AXa
+abAAbbABa,AbabAB            -> MULT-L 
+abAAbbbAB,AbabAB            -> CONJ AXa
+bAAbbbABa,AbabAB            -> MULT-L 
+bAAbbbbAB,AbabAB            -> CONJ aBXbA
+AbbbbAA,AbabAB              -> INV 
+aaBBBBa,AbabAB              -> MULT-L       
+aaBBBabAB,AbabAB            -> INV 
+baBAbbbAA,AbabAB            -> MULT-R 
+baBAbbbAA,AbbbbAA           -> CONJ bABXbaB
+AbbbAAbaB,AbbbbAA           -> INV 
+bABaaBBBa,AbbbbAA           -> MULT-L 
+bABaabAA,AbbbbAA            -> CONJ abAAXaaBA
+abAAbABa,AbbbbAA            -> MULT-L 
+abAAbAbbbAA,AbbbbAA         -> CONJ BaaBAXabAAb
+AbbbAbAAb,AbbbbAA           -> INV 
+BaaBaBBBa,AbbbbAA           -> MULT-L 
+BaaBabAA,AbbbbAA            -> CONJ AbXBa
+aBabAABa,AbbbbAA            -> MULT-L 
+aBabAAbbbAA,AbbbbAA         -> CONJ ABAbAXaBabA
+AbbbABabA,AbbbbAA           -> INV 
+aBAbaBBBa,AbbbbAA           -> MULT-L 
+aBAbabAA,AbbbbAA            -> CONJ abAAXaaBA
+abABAb,AbbbbAA              -> MULT-L 
+abABAbAbbbbAA,AbbbbAA       -> INV 
+aaBBBBaBabaBA,AbbbbAA       -> MULT-R 
+aaBBBBaBabaBA,BabaBA        -> INV 
+abABAbAbbbbAA,BabaBA        -> CONJ BabaBAXabABAb
+AbbbbAbABAb,BabaBA          -> MULT-L 
+AbbbbAA,BabaBA ??           -> CONJ BaXAb        
+bbbAAAb,BabaBA              -> MULT-L 
+bbbAAbaBA,BabaBA            -> CONJ aBAXabA
+aBAbbbAAb,BabaBA            -> MULT-L 
+aBAbbbAbaBA,BabaBA          -> CONJ aBAXabA
+aBBAbbbAb,BabaBA            -> MULT-L 
+aBBAbbbbaBA,BabaBA          -> CONJ BabbAXaBBAb     
+bbbaBBBAb,BabaBA            -> MULT-L 
+bbbaBBaBA,BabaBA            -> CONJ BXb
+bbaBBaBAb,BabaBA            -> MULT-L 
+bbaBBaaBA,BabaBA            -> CONJ BXb
+baBBaaBAb,BabaBA            -> MULT-L 
+baBBaaaBA,BabaBA            -> CONJ BXb
+aBBaaaBAb,BabaBA            -> MULT-L 
+aBBaaaaBA,BabaBA            -> CONJ bAXaB
+BaaaaBB,BabaBA              -> INV 
+bbAAAAb,BabaBA              -> MULT-L 
+bbAAAbaBA,BabaBA            -> INV 
+abABaaaBB,BabaBA            -> MULT-R 
+abABaaaBB,BaaaaBB           -> CONJ aBAXabA
+BaaaBBabA,BaaaaBB           -> INV 
+aBAbbAAAb,BaaaaBB           -> MULT-L 
+aBAbbaBB,BaaaaBB            -> CONJ baBBXbbAB
+baBBaBAb,BaaaaBB            -> MULT-L 
+baBBaBaaaBB,BaaaaBB         -> CONJ AbbABXbaBBa
+BaaaBaBBa,BaaaaBB           -> INV 
+AbbAbAAAb,BaaaaBB           -> MULT-L 
+AbbAbaBB,BaaaaBB            -> CONJ BaXAb
+bAbaBBAb,BaaaaBB            -> MULT-L 
+bAbaBBaaaBB,BaaaaBB         -> CONJ bABaBXbAbaB
+BaaaBAbaB,BaaaaBB           -> INV 
+bABabAAAb,BaaaaBB           -> MULT-L 
+bABabaBB,BaaaaBB            -> CONJ baBXbAB
+abaBAB,BaaaaBB              -> INV 
+babABA,BaaaaBB              -> MULT-L 
+babABABaaaaBB,BaaaaBB       -> INV 
+bbAAAAbabaBAB,BaaaaBB       -> MULT-R
+bbAAAAbabaBAB,abaBAB        -> INV 
+babABABaaaaBB,abaBAB        -> CONJ abaBABXbabABA
+BaaaaBabABA,abaBAB          -> MULT-L 
+BaaaaBB,abaBAB              -> CONJ bXB
+aaaaBBB,abaBAB              -> INV 
+bbbAAAA,abaBAB              -> MULT-L 
+bbbAAAbaBAB,abaBAB          -> INV 
+babABaaaBBB,abaBAB          -> CONJ BXb
+abABaaaBB,abaBAB            -> INV 
+bbAAAbaBA,abaBAB            -> MULT-L 
+bbAAAbaaBAB,abaBAB          -> INV 
+babAABaaaBB,abaBAB          -> CONJ BXb
+abAABaaaB,abaBAB            -> INV 
+bAAAbaaBA,abaBAB            -> MULT-L 
+bAAAbaaaBAB,abaBAB          -> INV 
+babAAABaaaB,abaBAB          -> CONJ BXb
+abAAABaaa,abaBAB            -> INV 
+AAAbaaaBA,abaBAB            -> MULT-L 
+AAAbaaaaBAB,abaBAB          -> INV 
+babAAAABaaa,abaBAB          -> CONJ aXA
+ababAAAABaa,abaBAB          -> INV 
+AAbaaaaBABA,abaBAB          -> MULT-L 
+AAbaaaaBBAB,abaBAB          -> INV 
+babbAAAABaa,abaBAB          -> CONJ aXA
+ababbAAAABa,abaBAB          -> INV 
+AbaaaaBBABA,abaBAB          -> MULT-L 
+AbaaaaBBBAB,abaBAB          -> INV 
+babbbAAAABa,abaBAB          -> CONJ aXA
+ababbbAAAAB,abaBAB          -> INV 
+baaaaBBBABA,abaBAB          -> MULT-L 
+baaaaBBBBAB,abaBAB          -> INV 
+babbbbAAAAB,abaBAB          -> CONJ ABXba
+bbbbAAA,abaBAB              -> INV 
+aaaBBBB,abaBAB

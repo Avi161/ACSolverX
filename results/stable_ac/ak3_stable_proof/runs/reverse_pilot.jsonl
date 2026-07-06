@@ -1,0 +1,6 @@
+{"leaf_key": "1d001d1f1d201e1f1d1f1e20", "leaf_total_len": 11, "budget": 100000, "nodes": 100000, "wall_s": 14.64, "min_total_len": 2, "hit": null}
+{"leaf_key": "1d1f001d1d1f1e201e1f1d20", "leaf_total_len": 11, "budget": 100000, "nodes": 100000, "wall_s": 15.42, "min_total_len": 2, "hit": null}
+{"leaf_key": "1d1f001d1d1f1e1f1e201d20", "leaf_total_len": 11, "budget": 100000, "nodes": 100000, "wall_s": 16.82, "min_total_len": 2, "hit": null}
+{"leaf_key": "1d1f001d1d1f1d201e1f1e20", "leaf_total_len": 11, "budget": 100000, "nodes": 100000, "wall_s": 18.45, "min_total_len": 2, "hit": null}
+{"leaf_key": "1d1d1f001d1d1f1e1e1f1d20", "leaf_total_len": 11, "budget": 100000, "nodes": 100000, "wall_s": 17.85, "min_total_len": 2, "hit": null}
+{"leaf_key": "1d1f001d1d201d1f1e1f1e20", "leaf_total_len": 11, "budget": 100000, "nodes": 100000, "wall_s": 18.8, "min_total_len": 2, "hit": null}

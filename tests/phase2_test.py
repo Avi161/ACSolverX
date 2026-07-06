@@ -30,7 +30,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
 ONEGEN = os.path.join(ROOT, "experiments", "stable_ac", "one_generator")
-BASELINE_N2 = os.path.join(ONEGEN, "baseline_n2")
+BASELINE_N2 = os.path.join(ROOT, "experiments", "stable_ac", "baseline_n2")
 for p in (ONEGEN, BASELINE_N2):
     if p not in sys.path:
         sys.path.insert(0, p)

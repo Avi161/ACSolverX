@@ -15,3 +15,10 @@ data/AC1M.txt
 main.tex
 literature
 .env
+
+# AK3 stable-proof: bulky per-run streams stay local/Drive; summaries+certs are tracked
+results/stable_ac/ak3_stable_proof/laneD/cands_*.jsonl
+results/stable_ac/ak3_stable_proof/laneD/merged.jsonl
+results/stable_ac/ak3_stable_proof/laneD/*.log
+results/stable_ac/ak3_stable_proof/runs/*.log
+.scratch/

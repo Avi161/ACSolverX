@@ -37,7 +37,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 ONEGEN = os.path.join(REPO, "experiments", "stable_ac", "one_generator")
-BASE_N2 = os.path.join(ONEGEN, "baseline_n2")
+BASE_N2 = os.path.join(REPO, "experiments", "stable_ac", "baseline_n2")
 for _p in (ONEGEN, BASE_N2):
     if _p not in sys.path:
         sys.path.insert(0, _p)

@@ -42,6 +42,24 @@ L = 24  # per-relator length cap / padding (matches the env and ppo_ac_s.py)
 
 INT_DTYPE = np.int64
 
+# Canonical letter order = the ORIGINAL two-hump paper's (greedy_search.ipynb: find_minimal_rotation
+# / lex_cmp_* docstrings state "Y < y < X < x"): group by generator with HIGHER generator-id first,
+# and within a generator the inverse before the generator. Extended to the z generator this is
+#     Z < z < Y < y < X < x   (ids: z=3 first, then y=2, then x=1; -g before +g).
+# Any consistent order gives the same equivalence classes / solved set; this specific one matches the
+# paper so node-counts / heap tie-breaks / canonical representatives reproduce the paper's search.
+NGEN_MAX = 3
+
+
+@njit(inline='always')
+def _paper_lt(a, b):
+    """True iff letter a < b in the paper's order Z<z<Y<y<X<x (see NGEN_MAX note)."""
+    aa = a if a > 0 else -a
+    bb = b if b > 0 else -b
+    if aa != bb:
+        return aa > bb          # higher |generator id| first  (z < y < x)
+    return a < b                # same generator: inverse (-g) before generator (+g)
+
 
 # ===================================================================================
 # ==== single-relator primitives (njit; one int array in, one int array out)      ====
@@ -86,7 +104,7 @@ def reduce_relator(rel):
 
 @njit
 def find_minimal_rotation(rel):
-    """Booth's algorithm — lexicographically minimal rotation (int alphabet, natural <)."""
+    """Booth's algorithm — minimal rotation under the paper's letter order (see _paper_lt)."""
     n = len(rel)
     if n == 0:
         return rel.copy()
@@ -96,11 +114,11 @@ def find_minimal_rotation(rel):
     for j in range(1, 2 * n):
         i = f[j - k - 1]
         while i != -1 and arr[j] != arr[k + i + 1]:
-            if arr[j] < arr[k + i + 1]:
+            if _paper_lt(arr[j], arr[k + i + 1]):
                 k = j - i - 1
             i = f[i]
         if i == -1 and arr[j] != arr[k]:
-            if arr[j] < arr[k]:
+            if _paper_lt(arr[j], arr[k]):
                 k = j
             f[j - k] = -1
         else:
@@ -110,10 +128,10 @@ def find_minimal_rotation(rel):
 
 @njit
 def _lex_less(a, b):
-    """True iff equal-length int array a < b lexicographically."""
+    """True iff equal-length int array a < b lexicographically under the paper's letter order."""
     for m in range(len(a)):
         if a[m] != b[m]:
-            return a[m] < b[m]
+            return _paper_lt(a[m], b[m])
     return False
 
 
@@ -151,10 +169,17 @@ def _roll(a, k):
 # ==== state layer (plain Python: tuple of int arrays)                            ====
 # ===================================================================================
 
+# Letter <-> byte, byte-order == the paper's letter order Z<z<Y<y<X<x (see _paper_lt). Letters map
+# to 1..2*NGEN_MAX (never 0, so 0 stays the relator separator); reversible for key_to_state.
+_INT_TO_RANK_BYTE = {v: (NGEN_MAX - (v if v > 0 else -v)) * 2 + (1 if v > 0 else 0) + 1
+                     for g in range(1, NGEN_MAX + 1) for v in (-g, g)}
+_RANK_BYTE_TO_INT = {b: v for v, b in _INT_TO_RANK_BYTE.items()}
+
+
 def _relator_bytes(r):
-    """Encode a relator as compact bytes: letter +128 (letters are +-1..+-n_gen, never 0). The
-    +128 offset preserves letter order, so bytes-compare == lexicographic-compare-by-value."""
-    return bytes((int(x) + 128) for x in r)
+    """Encode a relator as compact bytes whose byte-order == the paper's letter order
+    (Z<z<Y<y<X<x), so a bytes-compare == a paper-order lex-compare. Reversible (key_to_state)."""
+    return bytes(_INT_TO_RANK_BYTE[int(x)] for x in r)
 
 
 def _bskey(bs):
@@ -185,7 +210,8 @@ def state_to_key(state):
 
 
 def key_to_state(key):
-    return tuple(np.array([b - 128 for b in part], dtype=INT_DTYPE) for part in key.split(b"\x00"))
+    return tuple(np.array([_RANK_BYTE_TO_INT[b] for b in part], dtype=INT_DTYPE)
+                 for part in key.split(b"\x00"))
 
 
 def is_trivial(state):
@@ -285,11 +311,16 @@ class NRelatorSolver:
         self.revert_hits = 0
         self.revert_log = []
         self.new_seen = set()
+        self.min_total_len = None  # smallest total relator length reached (progress proxy; trivial=n_gen)
+        self.min_total_state = None  # canonical key of the presentation achieving min_total_len
 
     def solve(self):
         pq = []
         init_key = self.initial_key
-        heapq.heappush(pq, (sum(len(p) for p in init_key.split(b"\x00")), 0, init_key))
+        init_len = sum(len(p) for p in init_key.split(b"\x00"))
+        self.min_total_len = init_len
+        self.min_total_state = init_key
+        heapq.heappush(pq, (init_len, 0, init_key))
         self.visited[init_key] = None
         if self.track_seen:
             self.new_seen.add(init_key)
@@ -320,7 +351,11 @@ class NRelatorSolver:
                     visited[nkey] = key
                     if self.track_seen:
                         self.new_seen.add(nkey)
-                    heapq.heappush(pq, (sum(len(p) for p in parts), depth + 1, nkey))
+                    tl = sum(len(p) for p in parts)
+                    if tl < self.min_total_len:
+                        self.min_total_len = tl
+                        self.min_total_state = nkey
+                    heapq.heappush(pq, (tl, depth + 1, nkey))
         return None, nodes, self.new_seen
 
     def _retrace(self, key):
@@ -417,6 +452,8 @@ def solve_one(flat, n_gen, max_len=L, max_nodes=100_000, blocked_states=None,
         mlen = path_max_len(path["states"])
     else:
         pv, plen, mlen = False, None, None
+    _CH = {1: "x", -1: "X", 2: "y", -2: "Y", 3: "z", -3: "Z"}
+    mts = key_to_state(solver.min_total_state) if solver.min_total_state is not None else None
     result = {
         "solved": path is not None,
         "path_verified": bool(pv),
@@ -424,6 +461,10 @@ def solve_one(flat, n_gen, max_len=L, max_nodes=100_000, blocked_states=None,
         "path_len": plen,
         "max_len_along_path": mlen,
         "revert_hits": int(solver.revert_hits),
+        "min_total_len": int(solver.min_total_len),
+        # the actual presentation achieving min_total_len (relators as int-lists + decoded strings)
+        "min_total_state": None if mts is None else [[int(x) for x in r] for r in mts],
+        "min_total_state_str": None if mts is None else ["".join(_CH.get(int(x), "?") for x in r) for r in mts],
         "wall_time_s": round(dt, 4),
         "cap": "per_relator",
         "max_len": max_len,

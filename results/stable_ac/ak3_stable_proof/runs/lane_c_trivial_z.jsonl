@@ -1,0 +1,2 @@
+{"form": "textbook", "arm": "trivial_z_3gen", "budget": 200000, "solved": false, "nodes": 200000, "min_total_len": 14, "wall_s": 90.7}
+{"form": "rep", "arm": "trivial_z_3gen", "budget": 200000, "solved": false, "nodes": 200000, "min_total_len": 14, "wall_s": 84.9}
