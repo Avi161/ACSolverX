@@ -44,14 +44,19 @@ def _total_ram_gb():
 
 
 def auto_workers(budget):
-    """Harvest is CPU-bound and each worker's peak is dominated by its visited set
-    (~40x budget entries, ~200 B each ⇒ ~1.6 GB @200k, ~4 GB @500k). Use every core the
-    box has, capped so the concurrent workers fit ~85% of RAM. The old hardcoded 4 left
-    most of a 50 GB / many-core Colab box idle (the run was using ~4 GB)."""
+    """Pick harvest worker count. Harvest is CPU-bound, so the *speed* ceiling is the core
+    count — but each combo ends by writing a ~100-150 MB cands file to the Drive FUSE
+    mount, a multi-second stall during which its core is idle. So oversubscribe to ~2x
+    cores to keep cores busy across those writes (and to actually use the box's RAM, which
+    was sitting at ~2 GB). Bounded so concurrent workers fit ~85% of RAM: each worker's
+    peak is its visited set (~40x budget entries, ~200 B each ⇒ ~1.6 GB @200k, ~4 GB
+    @500k). On a low-core high-RAM box this is RAM-generous; on a many-core box the RAM
+    cap binds first — either way we never OOM. NOTE: on a 2-vCPU runtime the real win is
+    the numba harvest (~3.7x/combo), not parallelism; watch CPU%, not RAM."""
     cores = os.cpu_count() or 4
     per_worker_gb = max(0.5, budget * 8e-6)
     ram_cap = max(1, int(0.85 * _total_ram_gb() / per_worker_gb))
-    return max(1, min(cores, ram_cap))
+    return max(1, min(ram_cap, cores * 2))
 
 
 def lane_d(box, out_dir, quick, workers):
@@ -77,7 +82,7 @@ def lane_d(box, out_dir, quick, workers):
     print(f"box {box}: harvest_workers={hw} solve_workers={sw} "
           f"(cores={os.cpu_count()}, ram={_total_ram_gb():.0f} GB, budget={cfg['budget']})",
           flush=True)
-    cmd = [sys.executable, os.path.join(HERE, "plateau_elim.py"), "--phase", "all",
+    cmd = [sys.executable, "-u", os.path.join(HERE, "plateau_elim.py"), "--phase", "all",
            "--forms", cfg["forms"], "--budget", str(cfg["budget"]),
            "--budget2", str(cfg["budget2"]), "--top", str(cfg["top"]),
            "--tl_cap", str(cfg["tl_cap"]), "--l_cap", str(cfg["l_cap"]),
