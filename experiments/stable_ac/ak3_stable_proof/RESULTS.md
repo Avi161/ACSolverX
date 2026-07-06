@@ -222,8 +222,10 @@ MS idx 0–1 in 2.5 s. Then `data/laneD_floor.txt` (155 rows: AK3 textbook+rep, 
 floor-state F, all 151 quotients with total_len ≤ 16) — the trained Dual-Ring policy
 (610/634 on MS(1190)) at **beam width 512, 200 steps: 0/155 solved** (46 min CPU).
 The learned policy that routinely crosses MS humps cannot cross this one either — a
-fourth independent method family flooring on the same barrier. Escalation @width 2048
-+ Gumbel temperature 1.0→0.1 on the 30 hardest-core items: running.
+fourth independent method family flooring on the same barrier. Escalation @width 2048,
+300 steps, Gumbel temperature 1.0→0.1, on the 30 hardest-core items (AK3 forms, P25,
+F, shortest quotients): **0/30 solved** (41 min CPU). Lane E is a clean negative at
+local scale; wider beams belong on GPU if pursued further.
 
 **Floor census — COMPLETE (2026-07-06 06:00): the basin has exactly TWO floors.**
 All 1,006 short quotients greedy-flow (@25k) to exactly two length-13 canonical
