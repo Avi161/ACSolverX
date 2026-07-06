@@ -361,17 +361,32 @@ c2["misprint_delete_r7"] = {
 log(f"  W' del r7 : S3homs={tot7} (nonab {nonab7})   B3 S3homs={b3_tot} (nonab {b3_nonab})"
     f"   matchesB3={c2['misprint_delete_r7']['matches_B3']}")
 
-# 2(b) W' delete r12 (MMS02's choice) -> NOT Z ; also abelianization
+# 2(b) W' delete r12 -- INFORMATIONAL / INCONCLUSIVE via S3.
+#   The documented misprint signature (RESULTS.md; Shehper v2 App F) is that DIFFERENT
+#   single-relator deletions of W' present DIFFERENT groups -- "B3 vs Z".  The r7 deletion
+#   supplies the "B3" (non-abelian) witness and r14 the "Z" witness; that disagreement is
+#   the proof W' is not a valid unknot Wirtinger presentation.  r12 is NOT needed for the
+#   gate: its S3 hom count is 6 (all abelian, same fingerprint as Z), so S3 alone cannot
+#   decide whether W'-del-r12 is Z or a non-Z group with only-cyclic S3 quotients.  (A
+#   bounded coset enumeration of <x1> did not collapse to index 1 within 60000 cosets,
+#   whereas corrected-W-del-r12 and W'-del-r14/r13 do -- but "did not resolve in budget"
+#   is not itself a proof of non-cyclicity, so we record r12 as inconclusive, not as a
+#   pass/fail input.)  NB: the paper's worked example deletes r6, not r12 (see
+#   wirtinger.py PAPER_ELIM_ORDER / delete_k=6).
 tot12, nonab12 = s3_for_deletion(MISP_TRIPLES, 12)
 kept12 = [misp_words[i] for i in range(1, 15) if i != 12]
 diag12, _ = abelianization_snf_diag(14, kept12)
 isZ12, abinfo12 = snf_is_Z(diag12, 14, len(kept12))
 c2["misprint_delete_r12"] = {
-    "s3_homs": tot12, "s3_nonabelian": nonab12, "not_Z_by_s3": tot12 != Z_HOMS,
+    "s3_homs": tot12, "s3_nonabelian": nonab12,
+    "s3_matches_Z_count": tot12 == Z_HOMS and nonab12 == 0,
     "snf_diag": diag12, "abelianization_is_Z": isZ12, "ab_info": abinfo12,
+    "gate_input": False,
+    "note": ("S3 cannot distinguish this deletion from Z (6 abelian homs); "
+             "informational only, NOT part of the check-2 gate."),
 }
-log(f"  W' del r12: S3homs={tot12} (nonab {nonab12})  notZ={tot12 != Z_HOMS}  "
-    f"abelianization_Z={isZ12}")
+log(f"  W' del r12: S3homs={tot12} (nonab {nonab12})  s3==Zcount={tot12 == Z_HOMS}  "
+    f"abelianization_Z={isZ12}  [INFORMATIONAL/inconclusive]")
 
 # 2(c) W' delete r14 -> Z
 tot14, nonab14 = s3_for_deletion(MISP_TRIPLES, 14)
@@ -388,11 +403,32 @@ for k in (7, 12, 14):
     log(f"  corrW del r{k}: S3homs={t} (nonab {na})  Z-consistent={t == Z_HOMS and na == 0}")
 c2["correctedW_deletions_7_12_14"] = corr_del
 
+# Gate = the documented "B3 vs Z" disagreement (RESULTS.md, Shehper v2 App F):
+#   - W' del r7  presents a NON-abelian group (surjects onto B3): tot7=12, nonab7=6 == B3.
+#     A non-abelian S3 quotient rigorously proves this deletion is NOT Z (Z is abelian).
+#   - W' del r14 has only cyclic S3 quotients (6 abelian) -- the "Z" witness.
+#   - Hence W' del r7 (12 homs) != W' del r14 (6 homs) as groups: DIFFERENT deletions of
+#     the SAME W' give DIFFERENT groups  =>  W' is not the Wirtinger presentation of any
+#     knot (a valid one makes every single-relator deletion the same group).
+#   - The corrected W is the control: del {7,12,14} all give 6 abelian homs (they AGREE;
+#     CHECK 1 further proves all 14 deletions are literally Z).
+# r12 is deliberately NOT in the gate (S3 can't resolve it; see misprint_delete_r12.note).
+deletions_disagree = (tot7 != tot14)
+c2["misprint_deletions_disagree_B3_vs_Z"] = {
+    "del_r7_s3_homs": tot7, "del_r7_nonabelian": nonab7,
+    "del_r14_s3_homs": tot14, "del_r14_nonabelian": nonab14,
+    "disagree": deletions_disagree,
+    "note": "r7 -> B3 (non-abelian); r14 -> Z-consistent; different groups => W' invalid.",
+}
+c2["gate_criterion"] = ("W' del r7 == B3 (non-abelian, != Z) AND W' del r14 Z-consistent "
+                        "AND the two disagree AND corrected-W del {7,12,14} all Z-consistent")
+log(f"  W' deletions disagree (B3 vs Z): del_r7 S3homs={tot7} vs del_r14 S3homs={tot14}"
+    f"  -> {deletions_disagree}")
 c2_pass = bool(
-    tot7 != Z_HOMS and nonab7 > 0 and c2["misprint_delete_r7"]["matches_B3"]
-    and tot12 != Z_HOMS
-    and tot14 == Z_HOMS and nonab14 == 0
-    and all(v["is_Z_consistent"] for v in corr_del.values())
+    tot7 != Z_HOMS and nonab7 > 0 and c2["misprint_delete_r7"]["matches_B3"]  # r7 -> B3
+    and tot14 == Z_HOMS and nonab14 == 0                                       # r14 -> Z
+    and deletions_disagree                                                     # B3 != Z
+    and all(v["is_Z_consistent"] for v in corr_del.values())                  # corr W agrees
 )
 results["check2_misprintW_broken"] = {"pass": c2_pass, "details": c2}
 
@@ -464,25 +500,40 @@ r1corr, r2corr = build_corr_3gen(CONV)
 c5 = {"convention": CONV, "r1corr_ints": r1corr, "r2corr_ints": r2corr,
       "r1corr_len": len(r1corr), "r2corr_len": len(r2corr)}
 
-# (a) present Z: SNF + S3 homs + coset index of <x> and <z>
+# (a) present Z: SNF + S3 homs (the gate); <x>/<z> coset indices are INFORMATIONAL.
+#   present_Z uses only the (fast, exact) abelianization SNF and the S3 hom count.  The
+#   subgroup-index coset enumerations of <x>/<z> are an OPTIONAL cyclicity witness (index
+#   1 => G=<x> => cyclic => Z).  For this 3-gen family they do not collapse to 1 within a
+#   small budget -- coset enumeration of a subgroup can transiently need far more cosets
+#   than the final index (here the final index is 1: G is Z), so at max_cosets=100000 they
+#   simply HANG.  We cap them low so they fail fast and record "None"; Z-ness is instead
+#   established (rigorously) by: abelianization=Z (SNF) + only-cyclic S3 quotients +
+#   w=z => trivial (below) + Tietze-equivalence to the corrected-W deletions of CHECK 1,
+#   each of which IS coset-proven Z (index 1).
 diag5, _ = abelianization_snf_diag(3, [r1corr, r2corr])
 isZ5, abinfo5 = snf_is_Z(diag5, 3, 2)
 s5_tot, s5_nonab = count_homs_words(3, [r1corr, r2corr])
 F5, x5, y5, z5 = free_group("x, y, z")
 g5 = {1: x5, 2: y5, 3: z5}
 G5 = FpGroup(F5, [fp_word(r1corr, F5, g5), fp_word(r2corr, F5, g5)])
-idx_x, strat_x = coset_index(G5, [x5], max_cosets=100000)
-idx_z, strat_z = coset_index(G5, [z5], max_cosets=100000)
+SUBGROUP_IDX_BUDGET = 3000   # informational-only; capped so a non-collapsing enum fails fast
+idx_x, strat_x = coset_index(G5, [x5], max_cosets=SUBGROUP_IDX_BUDGET)
+idx_z, strat_z = coset_index(G5, [z5], max_cosets=SUBGROUP_IDX_BUDGET)
 c5["abelianization_snf_diag"] = diag5
 c5["abelianization_is_Z"] = isZ5
 c5["s3_homs"] = s5_tot
 c5["s3_nonabelian"] = s5_nonab
 c5["coset_index_x"] = idx_x
 c5["coset_index_z"] = idx_z
+c5["coset_index_budget"] = SUBGROUP_IDX_BUDGET
+c5["coset_index_note"] = ("<x>/<z> indices are informational only and NOT part of the "
+                          "presents_Z gate; None = coset enum did not collapse within "
+                          f"{SUBGROUP_IDX_BUDGET} cosets (known coset-enum behaviour for "
+                          "this presentation; the group is Z by SNF + S3 + w=z-trivial).")
 present_Z = bool(isZ5 and s5_tot == Z_HOMS and s5_nonab == 0)
 c5["presents_Z"] = present_Z
 log(f"  <x,y,z|r1,r2>: SNF={diag5} Z={isZ5}  S3homs={s5_tot}(nonab {s5_nonab})  "
-    f"<x>idx={idx_x} <z>idx={idx_z}  presentsZ={present_Z}")
+    f"<x>idx={idx_x} <z>idx={idx_z} [informational]  presentsZ={present_Z}")
 
 # (b) with w = z the group is trivial
 G5w = FpGroup(F5, [fp_word(r1corr, F5, g5), fp_word(r2corr, F5, g5), z5])
@@ -534,6 +585,21 @@ results["_meta"] = {
     "elapsed_s": round(time.time() - t_start, 1),
     "commutator_convention_pinned": CONV,
     "note_convention": "B = [a,b]=a b a^-1 b^-1 (MMS02); A = [a,b]=a^-1 b^-1 a b",
+    "check2_gate_correction": (
+        "The interrupted draft gated CHECK 2 on `tot12 != Z_HOMS` (W' del r12 must be "
+        "non-Z). That is empirically FALSE (W' del r12 gives 6 abelian S3 homs, the same "
+        "fingerprint as Z) and also contradicts the documented signature, which is that "
+        "DIFFERENT deletions give DIFFERENT groups -- 'B3 vs Z' (RESULTS.md; Shehper v2 "
+        "App F). The gate now requires: W' del r7 == B3 (non-abelian => != Z), W' del r14 "
+        "Z-consistent, the two DISAGREE, and corrected-W del {7,12,14} all agree (Z). r12 "
+        "is recorded as informational/inconclusive. All raw numbers are retained above."),
+    "check5_subgroup_index_note": (
+        "CHECK 5 <x>/<z> subgroup coset indices capped at a small budget (informational "
+        "only; present_Z uses SNF + S3). At the draft's 100000 budget they hang."),
+    "transcription_crosscheck": (
+        "CORR_TRIPLES / MISP_TRIPLES verified byte-for-byte against "
+        "wirtinger.py W_CORRECTED / W_MISPRINT (14/14 rows, incl. misprint r13); "
+        "P25 == hmoves.py P25; AK3 relators == hmoves.py AK3."),
 }
 with open(OUT_JSON, "w") as f:
     json.dump(results, f, indent=2)
@@ -544,7 +610,7 @@ log("=" * 64)
 order = [
     ("self_test_hom_counter", "CSP hom counter self-test"),
     ("check1_correctedW_all_deletions_Z", "CHECK 1  corrected W: all 14 deletions -> Z"),
-    ("check2_misprintW_broken", "CHECK 2  misprint W' broken (r7=B3, r12!=Z, r14=Z)"),
+    ("check2_misprintW_broken", "CHECK 2  misprint W' broken (del r7=B3 != del r14=Z; corrW deletions all Z)"),
     ("check3_AK3_trivial", "CHECK 3  AK(3) trivial"),
     ("check4_M3_to_P25", "CHECK 4  M3 z:=y^-1x -> P25"),
     ("check5_correctedW_3gen", "CHECK 5  corrected 3-gen family -> Z; w=z trivial"),

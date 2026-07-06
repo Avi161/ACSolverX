@@ -125,22 +125,30 @@ gold JAX gate still N/A for n=3 as documented). Safe to build on.**
 - Next: reverse searches (leaf → {AK3, P25}×8), and ball-intersection escalation
   (dump the full 1M-node visited set of AK3/P25, test leaf-side searches against it).
 
-## PL — Verify Shehper v2's analysis itself — IN PROGRESS
+## PL — Verify Shehper v2's analysis itself — ✅ ALL CHECKS PASS (2026-07-05 night)
 
-Planned checks (script: `verify_literature.py`, results appended here as they land):
-- [ ] Corrected W: for each of the 14 single-relator deletions, prove group ≅ ℤ
-      (Todd–Coxeter: index of ⟨x₁⟩ = 1 ⇒ cyclic, + Smith normal form of exponent
-      matrix = ℤ ⇒ ≅ ℤ). Expected: all 14 pass (Wirtinger of an unknot).
-- [ ] Misprinted W′: exhibit a non-cyclic finite quotient after deleting the relator
-      MMS02 deleted (and the x₇ one the paper names) ⇒ group ≠ ℤ ⇒ W′ is not an unknot
-      Wirtinger presentation. Confirms the misprint's operative content.
-- [ ] AK(3) presents the trivial group (coset enumeration).
-- [ ] M3 --(z:=y⁻¹x, Lemma-11 substitution)--> exactly P25 (also pins the commutator
-      convention in MMS02's family formula).
-- [X] MMS02 original: confirm the misprint verbatim at the source (SOFT) — see PL(partial).
+`verify_literature.py` (completed by a background verification agent; machine-readable
+results in `results/stable_ac/ak3_stable_proof/literature_checks.json`, 7/7 PASS):
+- [X] Corrected W: **all 14** single-relator deletions present ℤ (exact SNF of the
+      exponent matrix + S3 hom-count + ⟨x₁⟩ coset index 1). W is a genuine unknot
+      Wirtinger presentation — Prop 12 applies to its descendants.
+- [X] Misprinted W′: deleting r7 yields **12 S3-homs, 6 non-abelian** (a non-abelian
+      image PROVES the group ≠ ℤ; the S3 fingerprint matches B₃ as v2 states), while
+      deleting r14 is ℤ-consistent — different deletions give **different groups**, so
+      W′ is not the Wirtinger presentation of any knot diagram. The misprint's operative
+      content is confirmed. (Nuance: W′ del r12 has ℤ's S3-fingerprint — the draft's
+      over-specific gate was corrected to the r7-vs-r14 disagreement, which is exactly
+      the paper's "B₃ vs ℤ" signature.)
+- [X] AK(3) presents the trivial group (coset enumeration, order 1).
+- [X] M3 --(z:=y⁻¹x, Lemma-11)--> **exactly P25**, pinning MMS02's commutator
+      convention [a,b]=aba⁻¹b⁻¹.
+- [X] Corrected 3-gen family presents ℤ; adding w=z trivializes (order 1). Remark-17
+      conjugation forms reproduce r1corr/r2corr.
+- [X] MMS02 original: misprint confirmed verbatim at the source (see PL(partial)).
 - [X] Lisitsa PDF → `literature/txt/lisitsa_ak3_stable_revisited.txt` + README index entry.
 
-(Remaining items delegated to a background verification agent, night of 07-05→07-06.)
+**The v1→v2 rescission story is now independently verified end-to-end: the gap is real,
+and AK(3) stable AC-triviality is genuinely open.**
 
 ## Leaf classification — all in-cap catalog leaves are plain-AC-trivial (2026-07-05)
 

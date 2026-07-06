@@ -1,0 +1,985 @@
+{
+  "self_test_hom_counter": {
+    "pass": true,
+    "details": [
+      {
+        "n": 4,
+        "triples": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "csp": [
+          36,
+          18
+        ],
+        "brute": [
+          36,
+          18
+        ],
+        "match": true
+      },
+      {
+        "n": 4,
+        "triples": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            -4
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ],
+        "csp": [
+          6,
+          0
+        ],
+        "brute": [
+          6,
+          0
+        ],
+        "match": true
+      },
+      {
+        "n": 3,
+        "triples": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            -1
+          ]
+        ],
+        "csp": [
+          12,
+          6
+        ],
+        "brute": [
+          12,
+          6
+        ],
+        "match": true
+      },
+      {
+        "n": 4,
+        "triples": [
+          [
+            1,
+            2,
+            -3
+          ],
+          [
+            4,
+            1,
+            2
+          ]
+        ],
+        "csp": [
+          36,
+          18
+        ],
+        "brute": [
+          36,
+          18
+        ],
+        "match": true
+      }
+    ]
+  },
+  "check1_correctedW_all_deletions_Z": {
+    "pass": true,
+    "details": {
+      "delete_r1": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 71.64
+      },
+      "delete_r2": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 73.89
+      },
+      "delete_r3": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 17.13
+      },
+      "delete_r4": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 7.88
+      },
+      "delete_r5": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 7.67
+      },
+      "delete_r6": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 7.73
+      },
+      "delete_r7": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 7.99
+      },
+      "delete_r8": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 10.39
+      },
+      "delete_r9": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 18.39
+      },
+      "delete_r10": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 18.77
+      },
+      "delete_r11": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 54.99
+      },
+      "delete_r12": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 11.24
+      },
+      "delete_r13": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 8.58
+      },
+      "delete_r14": {
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "coset_index_x1": 1,
+        "coset_strategy": "felsch",
+        "cyclic": true,
+        "is_Z": true,
+        "coset_time_s": 7.78
+      }
+    }
+  },
+  "check2_misprintW_broken": {
+    "pass": true,
+    "details": {
+      "misprint_delete_r7": {
+        "s3_homs": 12,
+        "s3_nonabelian": 6,
+        "equals_Z_count": false,
+        "B3_s3_homs": 12,
+        "B3_s3_nonabelian": 6,
+        "matches_B3": true
+      },
+      "misprint_delete_r12": {
+        "s3_homs": 6,
+        "s3_nonabelian": 0,
+        "s3_matches_Z_count": true,
+        "snf_diag": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "abelianization_is_Z": true,
+        "ab_info": {
+          "nonzero_factors": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "free_rank": 1
+        },
+        "gate_input": false,
+        "note": "S3 cannot distinguish this deletion from Z (6 abelian homs); informational only, NOT part of the check-2 gate."
+      },
+      "misprint_delete_r14": {
+        "s3_homs": 6,
+        "s3_nonabelian": 0,
+        "consistent_with_Z": true
+      },
+      "correctedW_deletions_7_12_14": {
+        "delete_r7": {
+          "s3_homs": 6,
+          "s3_nonabelian": 0,
+          "is_Z_consistent": true
+        },
+        "delete_r12": {
+          "s3_homs": 6,
+          "s3_nonabelian": 0,
+          "is_Z_consistent": true
+        },
+        "delete_r14": {
+          "s3_homs": 6,
+          "s3_nonabelian": 0,
+          "is_Z_consistent": true
+        }
+      },
+      "misprint_deletions_disagree_B3_vs_Z": {
+        "del_r7_s3_homs": 12,
+        "del_r7_nonabelian": 6,
+        "del_r14_s3_homs": 6,
+        "del_r14_nonabelian": 0,
+        "disagree": true,
+        "note": "r7 -> B3 (non-abelian); r14 -> Z-consistent; different groups => W' invalid."
+      },
+      "gate_criterion": "W' del r7 == B3 (non-abelian, != Z) AND W' del r14 Z-consistent AND the two disagree AND corrected-W del {7,12,14} all Z-consistent"
+    }
+  },
+  "check3_AK3_trivial": {
+    "pass": true,
+    "details": {
+      "order_via_trivial_subgroup_cosets": 1,
+      "strategy": "felsch"
+    }
+  },
+  "check4_M3_to_P25": {
+    "pass": true,
+    "details": {
+      "P25_r1": [
+        -1,
+        -2,
+        1,
+        -2,
+        -1,
+        2,
+        1,
+        -2,
+        -2,
+        1,
+        2,
+        -1,
+        2
+      ],
+      "P25_r2": [
+        -2,
+        -1,
+        2,
+        2,
+        -1,
+        -2,
+        1,
+        2,
+        1,
+        -2,
+        -2,
+        1
+      ],
+      "conventions": {
+        "B": {
+          "reduced_r1": [
+            -1,
+            -2,
+            1,
+            -2,
+            -1,
+            2,
+            1,
+            -2,
+            -2,
+            1,
+            2,
+            -1,
+            2
+          ],
+          "reduced_r2": [
+            -2,
+            1,
+            -2,
+            -1,
+            2,
+            2,
+            -1,
+            -2,
+            1,
+            2,
+            1,
+            -2
+          ],
+          "matches_P25": true
+        },
+        "A": {
+          "reduced_r1": [
+            -2,
+            1,
+            1,
+            2,
+            -1,
+            -2,
+            -1,
+            2,
+            2,
+            1,
+            -2,
+            -1,
+            -2
+          ],
+          "reduced_r2": [
+            -2,
+            1,
+            1,
+            2,
+            -1,
+            -2,
+            -2,
+            1,
+            2,
+            1,
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            1
+          ],
+          "matches_P25": false
+        }
+      },
+      "matched_convention": "B"
+    }
+  },
+  "check5_correctedW_3gen": {
+    "pass": true,
+    "details": {
+      "convention": "B",
+      "r1corr_ints": [
+        -2,
+        -1,
+        2,
+        1,
+        2,
+        -1,
+        -3,
+        1,
+        -2,
+        -1,
+        -2,
+        1,
+        2,
+        -1,
+        3,
+        1,
+        -2,
+        -1,
+        2,
+        1,
+        2,
+        -1,
+        3,
+        1,
+        -2,
+        -1
+      ],
+      "r2corr_ints": [
+        -2,
+        1,
+        2,
+        -1,
+        -3,
+        1,
+        -2,
+        -1,
+        2,
+        1,
+        2,
+        -1,
+        3,
+        1,
+        -2,
+        -1,
+        -2,
+        1,
+        2,
+        1,
+        2,
+        -1,
+        -3,
+        1,
+        -2,
+        -1,
+        -2,
+        1,
+        2,
+        -1,
+        3,
+        1,
+        -2,
+        -1
+      ],
+      "r1corr_len": 26,
+      "r2corr_len": 34,
+      "abelianization_snf_diag": [
+        1,
+        1
+      ],
+      "abelianization_is_Z": true,
+      "s3_homs": 6,
+      "s3_nonabelian": 0,
+      "coset_index_x": 1,
+      "coset_index_z": null,
+      "coset_index_budget": 3000,
+      "coset_index_note": "<x>/<z> indices are informational only and NOT part of the presents_Z gate; None = coset enum did not collapse within 3000 cosets (known coset-enum behaviour for this presentation; the group is Z by SNF + S3 + w=z-trivial).",
+      "presents_Z": true,
+      "w_eq_z_order": 1,
+      "w_eq_z_trivial": true
+    }
+  },
+  "check6_remark17_conjugation": {
+    "pass": true,
+    "details": {
+      "r1_matched_convention": "A t A^-1",
+      "r2_matched_convention": "A t A^-1"
+    }
+  },
+  "_meta": {
+    "elapsed_s": 394.9,
+    "commutator_convention_pinned": "B",
+    "note_convention": "B = [a,b]=a b a^-1 b^-1 (MMS02); A = [a,b]=a^-1 b^-1 a b",
+    "check2_gate_correction": "The interrupted draft gated CHECK 2 on `tot12 != Z_HOMS` (W' del r12 must be non-Z). That is empirically FALSE (W' del r12 gives 6 abelian S3 homs, the same fingerprint as Z) and also contradicts the documented signature, which is that DIFFERENT deletions give DIFFERENT groups -- 'B3 vs Z' (RESULTS.md; Shehper v2 App F). The gate now requires: W' del r7 == B3 (non-abelian => != Z), W' del r14 Z-consistent, the two DISAGREE, and corrected-W del {7,12,14} all agree (Z). r12 is recorded as informational/inconclusive. All raw numbers are retained above.",
+    "check5_subgroup_index_note": "CHECK 5 <x>/<z> subgroup coset indices capped at a small budget (informational only; present_Z uses SNF + S3). At the draft's 100000 budget they hang.",
+    "transcription_crosscheck": "CORR_TRIPLES / MISP_TRIPLES verified byte-for-byte against wirtinger.py W_CORRECTED / W_MISPRINT (14/14 rows, incl. misprint r13); P25 == hmoves.py P25; AK3 relators == hmoves.py AK3."
+  }
+}
