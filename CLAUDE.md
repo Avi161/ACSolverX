@@ -394,3 +394,116 @@ Lemma-11 atomic destabilization, a supermove greedy can't do. Rule: the sweep re
 `(idx, word_name, budget)` — a killed run continues with `--phase screen`; `report_hard.py`'s
 `finding_section()` recomputes the negative headline from the streams so a regenerate stays honest.
 Run it with the repo `.venv` python (has numba), not system `python3`.
+
+### [2026-07-06] Keep the PLAN's box/lane PROSE in sync after a pivot, not just the checkbox column [TRAP]
+`ak3_stable_proof/PLAN.md`: the work pivoted from the planned MITM box scheme (boxes A1/A2/A3/B/C
+across 3 notebooks) to Lane D plateau-elimination (D1/D2/D3/B/C in one `nb_ak3_lanes.ipynb`). I updated
+the §4 TODO checkboxes to `[X]` and built the new boxes, but left §3 (Attack lanes — no Lane D/E) and §5
+(Colab arm sizing — still the dead A1/A2/A3 MITM boxes) describing the SUPERSEDED design, and marked P7
+plain `[X]` though it was a deviation. [TRAP] A plan can have every box checked and still lie: the
+checklist column tracked completion while the prose sections went stale, so a fresh reader sees boxes
+that don't exist and misses the lane the whole run is built on. The user caught it ("did you check the
+completed ones and our rules regarding it"). Rule: when the implementation deviates, (1) mark that phase
+`[X][-]` with **Planned:/Actual:** per `plan-conventions.md`, NOT plain `[X]`; and (2) update EVERY
+section that names the changed artifact (lanes, arm-sizing tables, box lists) — not just the TODO line.
+After any pivot, grep the plan for the old identifiers (`A1`/`A2`/`A3`, retired lane/box names) and
+reconcile each hit.
+
+### [2026-07-06] Lane D harvest: profile-first numba port (gold-gated) + all-core sizing [WORKS]
+`plateau_elim.py` harvest was ~18 min/combo on Colab and using ~4/50 GB. cProfile (`prof_harvest.py`)
+showed the greedy SEARCH was only 18% — 82% was the pure-Python pass over the whole visited set
+(~8M states @200k, ~25M `stable_moves.eliminate` calls/combo: per-letter substitute + free/cyclic
+reduce + renum, 449M `abs()` + 283M list-appends). Fix: `harvest_fast.py` reimplements the per-state
+find-eliminable→eliminate→reduce→renumber→canonical-key loop in `@njit`, REUSING the already-jitted
+`reduce_relator`/`inverse_relator`/`canonical_relator` (numba dispatchers are callable from other njit).
+Result: elim pass ~9x, full combo **3.7x** single-core. Gold gate = a differential test
+(`diff_harvest.py`/`bench_harvest.py`) asserting the numba `seen` dict is **byte-for-byte identical**
+to the pure-Python oracle (same canonical keys, relators, gen/ri/src, first-wins order) on a REAL
+visited set across textbook/rep/p25/long-word — 0 mismatches. Rule: for a perf refactor of
+correctness-critical code the OLD impl IS the oracle; a real-data differential (new==old byte-for-byte)
+is the right gold gate (not an independent oracle — that's for verifying a design choice). Also:
+`run_lanes.auto_workers()` sizes harvest workers to `min(cpu_count, 0.85*RAM/per_worker)` (~1.6 GB/worker
+@200k, ~4 GB @500k) — the hardcoded 4 left the box idle; RAM headroom converts to parallelism only up to
+core count (harvest is CPU-bound). Align `--harvest_tl_cap` to the solve `tl_cap` (20): candidates the
+solve phase ignores were being written (26-cap) then dropped — pure waste in file size + canonical_key +
+Drive sync. Test hot loops locally on a SMALL budget that fits the 16 GB Mac; elim cost is linear in
+visited (~40x budget) so it extrapolates cleanly to Colab budgets.
+
+### [2026-07-06] Resume across a Drive round-trip: match filenames by EXACT listing, not os.path.exists [TRAP][WORKS]
+Lane D resume skips a combo if its `cands_<form>_<word>.jsonl` exists (written by atomic `os.replace`
+BEFORE the `.done` marker, so `.jsonl` alone ⇒ complete — robust to a `.done` lost on a Drive/download
+round-trip; the user's download had `.jsonl` but no `.done`). [TRAP] The AK(3) word bank has case-variant
+names (`xxx` AND `XXX`, `xy`/`Xy`/`XY`/`xY`/`yx`/`yX`/`Yx`/`YX`), so on a **case-insensitive** filesystem
+(macOS default) `os.path.exists("cands_..._XXX.jsonl")` returns True because `...xxx.jsonl` exists — a
+**false skip** that would drop `XXX` from the run (and a status cell over-counts, e.g. 36/190 for 6 real
+files). Colab/Drive/Linux are case-SENSITIVE (the prior run wrote both `xxx` and `XXX` as distinct files —
+proof the mount holds case), so it happened to be correct there, but the check is now `set(os.listdir(dir))`
++ exact-string membership: on a case-sensitive FS both variants count; on a case-insensitive one only the
+real file counts and the other is correctly re-harvested — **never a false skip on any FS**. Corollary
+[TRAP]: a macOS folder download of case-variant filenames mangles them (`cands_textbook_xxx(1).jsonl` — the
+`(1)` is the OS disambiguating a case collision, NOT the real Drive name); never infer the remote filename
+set from a local case-insensitive copy. Rule: to prove resume before a long run, read the harvest's first
+line `harvest: N pending (X/total already done)` (or run the s5 status cell) — X>0 confirms prior work was
+detected; X==0 with all-pending means the OUT_DIR path is wrong, stop and fix (nothing lost).
+
+### [2026-07-06] Colab notebook output & runtime: the streaming/reload/utilization traps [TRAP][WORKS]
+Driving the AK(3) lanes from `nb_ak3_lanes.ipynb` surfaced four Colab-specific traps, each of
+which made a *working* run look broken:
+- **`subprocess.run(cmd)` does NOT stream to the cell.** A bare `subprocess.run`/`check_call`
+  sends the child's stdout to the kernel's file descriptor, which Colab does **not** render live
+  — the cell shows only what the notebook itself `print`s, then looks frozen for the whole run.
+  [WORKS] Use `subprocess.Popen(cmd, stdout=PIPE, stderr=STDOUT, text=True, bufsize=1)` and
+  `for line in proc.stdout: print(line, end="", flush=True)` — re-printing through Python's
+  stdout (the ipykernel stream) renders live. Add `python -u` + `env PYTHONUNBUFFERED=1` so the
+  child (and any nested subprocess it spawns) is unbuffered. Nested subprocess.run inherits the
+  PIPE, so its flushed prints reach the cell too.
+- **`git reset --hard` updates repo FILES, not the cells already open in the Colab tab.** After a
+  pull, the *scripts* the run imports are new, but the notebook **cells** the user executes are
+  the stale in-memory copy — so an old s4 cell (bare `subprocess.run`) keeps running even though
+  `run_lanes.py` on disk is current. Diagnose from the echoed command (e.g. missing `-u` ⇒ old
+  cell). Fix: paste the updated cell, or File→Open the pulled `.ipynb`. Rule: when a notebook
+  edit "doesn't take", suspect the open-tab-vs-disk split before anything else.
+- **CPU% is the utilization metric for CPU-bound work, not RAM.** Users watch the RAM gauge and
+  panic at "2 GB / 50 GB", but a CPU-bound search pinned at 100% CPU with 2 GB RAM is *optimal* —
+  the spare RAM can't be converted to speed. RAM ramps during harvest (each worker's visited set),
+  and is *correctly* low + sawtoothing during solve (small per-candidate trees built/released).
+  Report CPU% in progress lines; explain RAM is phase-specific. `psutil.cpu_percent()` is 0–100
+  system-wide (100 == all cores), NOT a per-core sum — don't tell the user to expect "800%".
+- **Colab high-RAM runtimes are often only 2–8 vCPUs.** Cores cap parallelism; RAM does not.
+  Auto-size workers to `min(cores*2, 0.85*RAM/per_worker_gb)` — `cores*2` oversubscribes just
+  enough to hide the multi-second Drive-FUSE writes of large output files; the RAM cap (model
+  per-worker as `baseline + visited`, e.g. `0.6 + budget*8e-6` GB) prevents the process-group OOM
+  a naive count invites at high budget. The old hardcoded 4 left an 8-core/55 GB box idle.
+- **Long-running phases need a TIME-based heartbeat, not per-N-item prints.** A phase that prints
+  every 200 items looks hung when each item takes ~15–60 s (≈8 min between lines). Add a 60–90 s
+  daemon-thread heartbeat (k/N, rate, ETA, CPU%, RAM). Also: `wc -l` on the append-only JSONL is
+  the definitive "is it progressing / stuck" check the user can run from the Colab Terminal
+  without touching the job (two readings 60 s apart ⇒ items/min ⇒ exact ETA).
+
+### [2026-07-06] Make a hot loop fast: profile → numba the per-node work → gold-gate byte-for-byte [WORKS][TRAP]
+Two ~9x/5.7x wins (Lane D harvest elim pass; the 2-gen/3-gen greedy solver) came from the SAME
+disciplined recipe — never guess where the time goes:
+1. **Profile the real hot path at a small budget that fits local RAM.** `cProfile` on one combo
+   (elim: 82% was pure-Python `eliminate`; solve: 60% was `_relator_bytes(canonical_relator())`
+   dict-comprehension + `get_neighbors`). The cost was per-node BOOKKEEPING (byte-encoding,
+   neighbour gen, key assembly), not the algorithm — as in the earlier greedy profiling lesson.
+2. **Move the whole per-node/per-state loop into `@njit`, reusing already-jitted primitives**
+   (`reduce_relator`/`inverse_relator`/`canonical_relator` are callable from other njit fns).
+   Return fully-assembled canonical byte keys (+ total length) from numba; keep only the true
+   search STATE — the heap and the `visited`/`seen` dict — in Python (numba can't hold those).
+   Preallocate per-process output buffers and iterate them from Python (no per-node list). This
+   is `harvest_fast.py` (elim) and `expand_fast.py` (`NRelatorSolver.solve`, default on, Python
+   fallback under track_reverts/track_seen or no-numba).
+3. **Gold-gate byte-for-byte — the OLD impl is the oracle for a perf refactor.** A real-data
+   differential (new == old, identical bytes) is the correct gate here, NOT an independent oracle
+   (that's for verifying a *design* choice — see the earlier testing-conventions lesson). Gate at
+   TWO levels: per-unit (numba children == Python `get_neighbors`+assembly, 4000 states each for
+   n=2 and n=3, 0 mismatches) AND end-to-end (full-solver diff: identical solved/nodes/visited/
+   min_total_len/retraced-path). Only ship after both pass. [TRAP] The neighbour EMIT ORDER and
+   the canonical key bytes must match exactly, or `visited` first-wins parents / node counts drift
+   even when the solved SET is unchanged — replicate get_neighbors' pair/rotation/dual-slot order
+   verbatim and reuse the exact rank-byte encoding.
+4. **RAM converts to speed only up to core count for CPU-bound work.** After numba, the solver is
+   still CPU-bound at `cores`; the fix that mattered was cheaper nodes (5.7x), not more RAM. Use
+   the "40 GB is spare" framing honestly: offer the depth-preserving numba fix over the band-aid
+   (lowering the per-candidate budget, which trades search depth).
