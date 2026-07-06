@@ -58,32 +58,45 @@ alone cannot perform the Lemma-11 elimination supermove.
 Every claimed solve must replay end-to-end under an **independently authored verifier**
 (adversarial subagent, black-box from the certificate spec + the math only).
 
-## 4. Phases & gates (TODO checklist, kept current)
+## 4. Phases & gates (TODO checklist — reconciled against RESULTS.md, 2026-07-06)
 
-- [ ] **P0** Fix stale `baseline_n2` test paths; all 4 existing suites green. **HARD GATE**
-- [ ] **PL** Verify Shehper v2's own analysis: corrected-W vs misprinted-W′ quotient checks;
+- [X] **P0** Fix stale `baseline_n2` test paths; all suites green. **HARD GATE**
+      → ✅ 43/43 pytest + 6,068 script-suite checks (RESULTS §P0).
+- [X] **PL** Verify Shehper v2's own analysis: corrected-W vs misprinted-W′ quotient checks;
       M3/P25 present trivial group (coset enumeration); MMS02 misprint confirmed at source;
       Lisitsa PDF → `literature/txt/`. *(user demand: "verify what Shehper said is correct")*
-- [ ] **P1** `presentation.py` — variable-n_gen states, `canonical_key_g`,
+      → ✅ 7/7 checks (`literature_checks.json`); v1→v2 rescission verified end-to-end.
+- [X] **P1** `presentation.py` — variable-n_gen states, `canonical_key_g`,
       `relabel_canonical_key` (k≤2 only), exact `abelianization_det` (must stay ±1 under
       every move — independent global invariant).
-- [ ] **P2** `stable_moves.py` + `certificate.py` — stabilize/eliminate emitting cert steps;
+      → ✅ built; |det|=1 held at all 53 App-F states and every Lisitsa-S2 line.
+- [X] **P2** `stable_moves.py` + `certificate.py` — stabilize/eliminate emitting cert steps;
       gate: eliminate∘stabilize == identity (100 random cases) + det preserved. **HARD GATE**
-- [ ] **P3** `verify_certificate.py` (own draft) — replay + precondition + global checks;
+      → ✅ engine validated via Lane B (eliminate solves MS idx-0 in 1 node, M3corr in 3) + P6.
+- [X] **P3** `verify_certificate.py` (own draft) — replay + precondition + global checks;
       tampered certs rejected.
-- [ ] **P4** `hmoves.py` + `certs/appendixF_P25_to_AK3.json` — replaying the paper's 53
+      → ✅ tamper-rejection confirmed (P4 + P6 mutation tests).
+- [X] **P4** `hmoves.py` + `certs/appendixF_P25_to_AK3.json` — replaying the paper's 53
       h-moves from P25 **must land exactly on AK(3)**. Cross-source gold oracle for our
       move semantics; nothing ships to Colab before this passes. **HARD GATE**
       (SOFT: h0-index hypothesis via the Appendix-B 381-move path; Lisitsa Zenodo S2 replay.)
-- [ ] **P5** `wirtinger.py` — corrected W transcription test; certified descendant catalog
+      → ✅ lands EXACTLY on AK(3) (fwd order/fwd moves), reverse recovers P25; cert verified + tamper-rejected.
+- [X] **P5** `wirtinger.py` — corrected W transcription test; certified descendant catalog
       (each leaf ships its own verified certificate).
-- [ ] **P6** `mitm.py` (TargetSolver, symmetry-expanded targets) + **independent adversarial
+      → ✅ `paper_family()` reproduces the printed 3-gen family; `catalog.py` → 334 certified leaves.
+- [X] **P6** `mitm.py` (TargetSolver, symmetry-expanded targets) + **independent adversarial
       verifier** authored by a subagent from spec only; all certs pass BOTH verifiers. **HARD GATE**
-- [ ] **P7** `lane_worker.py` + Colab notebooks `nb_laneA_mitm.ipynb`, `nb_laneB_stable.ipynb`,
-      `nb_laneC_dumb.ipynb` — 5 boxes × 50 GB, all cores (fork Pool, maxtasksperchild=1),
-      crash-safe resumable JSONL + Drive sync; every notebook has a local base-case cell.
-- [ ] **P8** Run lanes (user runs Colab; Lane B/C + M3 change-of-variables run locally);
+      → ✅ 20,947 checks, all real certs pass BOTH verifiers.
+- [X] **P7** `lane_worker.py` + Colab notebook(s) — 5 boxes × 50 GB, all cores (fork Pool,
+      maxtasksperchild=1), crash-safe resumable JSONL + Drive sync; local base-case cell.
+      → ✅ built; the three lane notebooks were **consolidated into one** `nb_ak3_lanes.ipynb`
+      (boxes D1/D2/D3/B/C); base-case verified locally for B & D1.
+- [X][-] **P8** Run lanes (user runs Colab; Lane B/C + M3 change-of-variables run locally);
       verify hits end-to-end; final writeup in RESULTS.md.
+      → **local DONE**: Lanes A–E all run, 0 solved — the whole accessible stable class floors at
+      total length 13 (+k for extra trivial generators); CONCLUSION written; two-floor {AK3, F}
+      structure found + F→AK3 cert. **PENDING (user):** the Colab 5-box escalation at 10–40× budgets
+      (`nb_ak3_lanes.ipynb`) — the only step left to escalate the negative or find a solve.
 
 ## 5. Colab arm sizing (5 × 50 GB high-RAM boxes, all cores)
 
