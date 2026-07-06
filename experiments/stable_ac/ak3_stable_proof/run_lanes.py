@@ -83,7 +83,8 @@ def lane_d(box, out_dir, quick, workers):
             cfg["words"] = ",".join(bank_word_names()[:3])
     hw = workers or auto_workers(cfg["budget"])          # harvest: RAM-bounded, memory-heavy
     sw = workers or (os.cpu_count() or 8)                 # solve: light per candidate
-    print(f"box {box}: harvest_workers={hw} solve_workers={sw} "
+    mw = os.cpu_count() or 8                              # merge: CPU-bound symmetry keying, small records
+    print(f"box {box}: harvest_workers={hw} solve_workers={sw} merge_workers={mw} "
           f"(cores={os.cpu_count()}, ram={_total_ram_gb():.0f} GB, budget={cfg['budget']})",
           flush=True)
     cmd = [sys.executable, "-u", os.path.join(HERE, "plateau_elim.py"), "--phase", "all",
@@ -91,7 +92,7 @@ def lane_d(box, out_dir, quick, workers):
            "--budget2", str(cfg["budget2"]), "--top", str(cfg["top"]),
            "--tl_cap", str(cfg["tl_cap"]), "--l_cap", str(cfg["l_cap"]),
            "--harvest_tl_cap", str(cfg["tl_cap"]),        # solve ignores > tl_cap; don't harvest them
-           "--workers", str(hw), "--solve_workers", str(sw)]
+           "--workers", str(hw), "--solve_workers", str(sw), "--merge_workers", str(mw)]
     if cfg["words"]:
         cmd += ["--words", cfg["words"]]
     print(" ".join(cmd), flush=True)
