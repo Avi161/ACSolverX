@@ -273,6 +273,18 @@ def phase_merge(args):
     from collections import Counter
     files = sorted(f for f in os.listdir(LANE_D)
                    if f.startswith("cands_") and f.endswith(".jsonl"))
+    out = os.path.join(LANE_D, "merged.jsonl")
+    # Resume: merge is deterministic + idempotent (atomic os.replace ⇒ merged.jsonl is
+    # never partial). If it already exists and is newer than every harvest file, re-merging
+    # just rebuilds the identical file — skip it so a mid-solve restart drops straight into
+    # solve. A newer cands_*.jsonl (fresh harvest) correctly forces a re-merge. (rm merged.jsonl to force.)
+    if not getattr(args, "force_merge", False) and os.path.exists(out) and files:
+        newest_cand = max(os.path.getmtime(os.path.join(LANE_D, fn)) for fn in files)
+        if os.path.getmtime(out) >= newest_cand:
+            n = sum(1 for _ in open(out))
+            print(f"merge: merged.jsonl up to date ({n} records, newer than all "
+                  f"{len(files)} harvest files) — skipping re-merge", flush=True)
+            return
     best = {}
     n_in = n_over = 0
     from multiprocessing import Pool
@@ -290,7 +302,6 @@ def phase_merge(args):
         print(f"merge: {n_over} raw candidates dropped as "
               f"total_len > {args.merge_tl_cap} (not deduped)", flush=True)
     ranked = sorted(best.values(), key=lambda r: (r["total_len"], r["mkey"]))
-    out = os.path.join(LANE_D, "merged.jsonl")
     with open(out + ".tmp", "w") as f:
         for rec in ranked:
             f.write(json.dumps(rec) + "\n")
@@ -481,6 +492,8 @@ def main():
     ap.add_argument("--harvest_tl_cap", type=int, default=26)
     ap.add_argument("--merge_tl_cap", type=int, default=24)
     ap.add_argument("--merge_workers", type=int, default=max(1, (os.cpu_count() or 4) // 2))
+    ap.add_argument("--force_merge", action="store_true",
+                    help="re-merge even if merged.jsonl is newer than all harvest files")
     ap.add_argument("--tl_cap", type=int, default=24)
     ap.add_argument("--top", type=int, default=6000)
     ap.add_argument("--workers", type=int, default=3)
