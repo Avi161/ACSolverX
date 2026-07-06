@@ -54,7 +54,11 @@ def auto_workers(budget):
     cap binds first — either way we never OOM. NOTE: on a 2-vCPU runtime the real win is
     the numba harvest (~3.7x/combo), not parallelism; watch CPU%, not RAM."""
     cores = os.cpu_count() or 4
-    per_worker_gb = max(0.5, budget * 8e-6)
+    # per worker ≈ 0.6 GB interpreter/numba baseline + visited (~40x budget @ ~200 B):
+    # ~2.2 GB @200k, ~4.6 GB @500k. Capping concurrent workers to 85% RAM keeps a
+    # 500k/8-core/51 GB box at ~9 workers/~41 GB — using the box without risking the
+    # process-group OOM that a naive 10 workers (~45 GB) would flirt with.
+    per_worker_gb = 0.6 + budget * 8e-6
     ram_cap = max(1, int(0.85 * _total_ram_gb() / per_worker_gb))
     return max(1, min(ram_cap, cores * 2))
 
