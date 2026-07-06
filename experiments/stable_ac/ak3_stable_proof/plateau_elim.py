@@ -162,36 +162,54 @@ def phase_harvest(args):
             print(f"  harvested {res}", flush=True)
 
 
-def phase_merge(args):
-    """Global symmetry dedup + drop AK3/P25 classes + rank by total length. Records
-    longer than --merge_tl_cap are only counted (histogram), not kept — bounds RAM."""
-    from collections import Counter
+def merge_one_file(task):
+    """Worker: symmetry-dedup one candidate file -> (local_best, n_in, n_over)."""
+    fn, merge_tl_cap = task
     from hmoves import AK3, P25
     known = set()
     for st in (AK3, P25):
         known |= symmetry_keys([list(r) for r in st])
     best = {}
-    over_cap = Counter()
+    n_in = n_over = 0
+    for line in open(os.path.join(LANE_D, fn)):
+        rec = json.loads(line)
+        n_in += 1
+        if rec["total_len"] > merge_tl_cap:
+            n_over += 1
+            continue
+        skeys = symmetry_keys(rec["relators"])
+        if skeys & known:
+            continue
+        mkey = min(skeys).hex()
+        cur = best.get(mkey)
+        if cur is None or rec["total_len"] < cur["total_len"]:
+            rec["mkey"] = mkey
+            best[mkey] = rec
+    return best, n_in, n_over
+
+
+def phase_merge(args):
+    """Global symmetry dedup + drop AK3/P25 classes + rank by total length. Records
+    longer than --merge_tl_cap are only counted, not kept — bounds RAM. Per-file
+    parallel (the symmetry keying dominates)."""
+    from collections import Counter
     files = sorted(f for f in os.listdir(LANE_D)
                    if f.startswith("cands_") and f.endswith(".jsonl"))
-    n_in = 0
-    for fn in files:
-        for line in open(os.path.join(LANE_D, fn)):
-            rec = json.loads(line)
-            n_in += 1
-            if rec["total_len"] > args.merge_tl_cap:
-                over_cap[rec["total_len"]] += 1
-                continue
-            skeys = symmetry_keys(rec["relators"])
-            if skeys & known:
-                continue
-            mkey = min(skeys).hex()
-            cur = best.get(mkey)
-            if cur is None or rec["total_len"] < cur["total_len"]:
-                rec["mkey"] = mkey
-                best[mkey] = rec
-    if over_cap:
-        print(f"merge: {sum(over_cap.values())} raw candidates dropped as "
+    best = {}
+    n_in = n_over = 0
+    from multiprocessing import Pool
+    with Pool(processes=max(1, args.merge_workers)) as pool:
+        for local, ni, no in pool.imap_unordered(
+                merge_one_file, [(fn, args.merge_tl_cap) for fn in files]):
+            n_in += ni
+            n_over += no
+            for mkey, rec in local.items():
+                cur = best.get(mkey)
+                if cur is None or rec["total_len"] < cur["total_len"]:
+                    best[mkey] = rec
+            print(f"merge: +{len(local)} (global {len(best)})", flush=True)
+    if n_over:
+        print(f"merge: {n_over} raw candidates dropped as "
               f"total_len > {args.merge_tl_cap} (not deduped)", flush=True)
     ranked = sorted(best.values(), key=lambda r: (r["total_len"], r["mkey"]))
     out = os.path.join(LANE_D, "merged.jsonl")
@@ -358,6 +376,7 @@ def main():
     ap.add_argument("--l_cap", type=int, default=22)
     ap.add_argument("--harvest_tl_cap", type=int, default=26)
     ap.add_argument("--merge_tl_cap", type=int, default=24)
+    ap.add_argument("--merge_workers", type=int, default=max(1, (os.cpu_count() or 4) // 2))
     ap.add_argument("--tl_cap", type=int, default=24)
     ap.add_argument("--top", type=int, default=6000)
     ap.add_argument("--workers", type=int, default=3)
