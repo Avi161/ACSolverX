@@ -140,7 +140,34 @@
     });
   }
 
+  function setSampleStatus(records, label, offline) {
+    var dataset = reload(records);
+    var nMs = 0, nReps = 0, nOther = 0;
+    if (dataset.byIdx) dataset.byIdx.forEach(function (e) {
+      if (e.dataset === "1190MS") nMs++;
+      else if (e.dataset === "ms_reps_unsolved") nReps++;
+      else nOther++;
+    });
+    var presTxt = nMs
+      ? nMs.toLocaleString() + " MS presentations" + (nReps ? " · " + nReps + " class reps" : "")
+      : (nReps + nOther).toLocaleString() + " presentations";
+    var prefix = offline ? "Sample data (offline)" : "Sample data";
+    setStatus(prefix + " · " + dataset.counts.withPath + " solution paths · " + presTxt,
+      "--ok", label);
+    return dataset;
+  }
+
   function loadSample() {
+    if (window.ACXLoad && ACXLoad.isFileProtocol()) {
+      return ACXLoad.loadOfflineBundle()
+        .then(function (bundle) {
+          setSampleStatus(bundle.records, (bundle.manifest && bundle.manifest.label) || "Sample data", true);
+        })
+        .catch(function (err) {
+          reload([]);
+          setStatus("Could not load sample data (" + (err && err.message ? err.message : err) + ")", "--err");
+        });
+    }
     return fetch(SAMPLE_DIR + "manifest.json")
       .then(function (resp) {
         if (!resp.ok) throw new Error("manifest.json -> HTTP " + resp.status);
@@ -153,25 +180,11 @@
           .then(function (texts) {
             var records = [];
             for (var i = 0; i < texts.length; i++) records = records.concat(ACXData.parseJsonl(texts[i]));
-            var dataset = reload(records);
-            // short human status in the header; the full jargon-dense manifest label as tooltip.
-            // Count per dataset — a single lump sum would double-read the hard presentations
-            // and the class reps that stand for them.
-            var nMs = 0, nReps = 0, nOther = 0;
-            if (dataset.byIdx) dataset.byIdx.forEach(function (e) {
-              if (e.dataset === "1190MS") nMs++;
-              else if (e.dataset === "ms_reps_unsolved") nReps++;
-              else nOther++;
-            });
-            var presTxt = nMs
-              ? nMs.toLocaleString() + " MS presentations" + (nReps ? " · " + nReps + " class reps" : "")
-              : (nReps + nOther).toLocaleString() + " presentations";
-            setStatus("Sample data · " + dataset.counts.withPath + " solution paths · " + presTxt,
-              "--ok", label);
+            setSampleStatus(records, label, false);
           });
       })
       .catch(function (err) {
-        reload([]); // keep the views (empty-state rendered) instead of a blank page
+        reload([]);
         setStatus("Could not load sample data (" + (err && err.message ? err.message : err) + ")", "--err");
       });
   }

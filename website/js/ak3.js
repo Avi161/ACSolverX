@@ -210,16 +210,26 @@
     wireSeg(dom.form, "data-form", function (v) { state.form = v; });
     wireSeg(dom.budget, "data-budget", function (v) { state.budget = v; });
     wireTable();
-    fetch(BUNDLE_URL)
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then(function (json) { data = json; draw(); })
-      .catch(function (err) {
-        if (dom.banner) {
-          dom.banner.className = "ak3-banner ak3-unsolved";
-          dom.banner.textContent = "Could not load AK(3) results (" +
-            (err && err.message ? err.message : err) + "). Run website/tools/build_ak3_bundle.py.";
-        }
-      });
+    function onAk3(json) {
+      if (!json) throw new Error("missing AK(3) bundle");
+      data = json;
+      draw();
+    }
+    function onAk3Err(err) {
+      if (dom.banner) {
+        dom.banner.className = "ak3-banner ak3-unsolved";
+        dom.banner.textContent = "Could not load AK(3) results (" +
+          (err && err.message ? err.message : err) + "). Run website/tools/build_ak3_bundle.py.";
+      }
+    }
+    if (window.ACXLoad && ACXLoad.isFileProtocol()) {
+      ACXLoad.loadOfflineBundle().then(function (b) { onAk3(b.ak3); }).catch(onAk3Err);
+    } else {
+      fetch(BUNDLE_URL)
+        .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then(onAk3)
+        .catch(onAk3Err);
+    }
   }
 
   function render() { /* self-contained: AK(3) data is fetched, not derived from the main dataset */ }

@@ -40,8 +40,10 @@ python -m http.server 8000
 
 Then open <http://localhost:8000> in a browser.
 
-The site must be served over `http://`, not opened as a `file://` URL — the sample
-data is loaded with `fetch()`, which browsers block for local files.
+The site also works opened directly as a `file://` URL **after** building the offline
+bundle (`python website/tools/build_offline_bundle.py`). For development, serving over
+`http://` is still preferred — it loads the JSONL files via `fetch()` without the
+~8 MB bundled script.
 
 ## Loading your own results
 

@@ -23,6 +23,8 @@ Run from anywhere:  python website/tools/build_solved640_bundle.py
 """
 import json
 import os
+import subprocess
+import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "website", "sample-data")
@@ -160,6 +162,12 @@ def main():
     prune_bundle()
     update_manifest()
     print("OK — manifest updated")
+    _rebuild_offline()
+
+
+def _rebuild_offline():
+    script = os.path.join(os.path.dirname(__file__), "build_offline_bundle.py")
+    subprocess.run([sys.executable, script], check=True)
 
 
 if __name__ == "__main__":

@@ -11,6 +11,8 @@ presentation x arm calibration). Re-runnable any time as the 1M tier finishes.
 import glob
 import json
 import os
+import subprocess
+import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SRC = os.path.join(ROOT, "results", "stable_ac", "3_generators_w_choices", "ak_3_test")
@@ -117,6 +119,12 @@ def main():
     for k in sorted(summary):
         s = summary[k]
         print(f"  {k:20} n={s['n']:3} solved={s['solved']} exhausted={s['exhausted']} best_mtl={s['best_mtl']}")
+    _rebuild_offline()
+
+
+def _rebuild_offline():
+    script = os.path.join(os.path.dirname(__file__), "build_offline_bundle.py")
+    subprocess.run([sys.executable, script], check=True)
 
 
 if __name__ == "__main__":

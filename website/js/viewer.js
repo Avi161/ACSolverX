@@ -705,6 +705,14 @@
   function ensureGridData() {
     if (gridFetchStarted) return;
     gridFetchStarted = true;
+    if (window.ACXLoad && ACXLoad.isFileProtocol()) {
+      var bundle = ACXLoad.getCachedOfflineBundle();
+      if (bundle && bundle.repsGrid) {
+        gridData = bundle.repsGrid;
+        if (dataset) renderGrid();
+      }
+      return;
+    }
     fetch("sample-data/reps_grid.json")
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (g) { gridData = g; if (dataset) renderGrid(); })

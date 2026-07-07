@@ -28,6 +28,8 @@ import ast
 import csv
 import json
 import os
+import subprocess
+import sys
 
 L = 24
 W2I = {"x": 1, "X": -1, "y": 2, "Y": -2}
@@ -368,6 +370,12 @@ def main():
           % (len(grid_cells), grid_obj["n_trivial"], grid_obj["n_rep_cells"]))
     print("  registry_1190MS.jsonl   : %d rows annotated with rep_idx/class_name" % annotated)
     print("  stale ms_reps rows stripped from calibration_ms640.jsonl: %d" % dropped)
+    _rebuild_offline()
+
+
+def _rebuild_offline():
+    script = os.path.join(os.path.dirname(__file__), "build_offline_bundle.py")
+    subprocess.run([sys.executable, script], check=True)
 
 
 if __name__ == "__main__":
