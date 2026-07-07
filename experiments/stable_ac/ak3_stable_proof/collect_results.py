@@ -15,6 +15,10 @@ Read-only + resumable-safe: tolerates a truncated trailing JSONL line, skips mis
 files/boxes. The HEADLINE is the campaign verdict: any `solved:true` anywhere (with its
 cert path) = the theorem; otherwise the certified negative + the length-13 floor.
 
+It also writes a consolidated ARCHIVE under <root>/archive/ — the full per-record
+datasets (every relator tested, its node budget, cap, and outcome) + a MANIFEST, so the
+result is a reusable dataset, not just a headline. --no_archive skips it; --gzip zips it.
+
 Usage:
   python collect_results.py --root /content/drive/MyDrive/ak3_stable_proof \
       --out /content/drive/MyDrive/ak3_stable_proof/COLLECTED_RESULTS.md
@@ -174,6 +178,153 @@ def collect_floor_census(root):
             if fk is not None:
                 tally[fk] += 1
     return dict(tally) if found else None
+
+
+# ---------------------------------------------------------------------------
+# Consolidated ARCHIVE — the reusable per-record dataset (not just the summary).
+# Two streams so a future attempt can look up "was this quotient already tested?"
+# and skip it instead of burning compute:
+#   campaign_candidates.jsonl  one row per DISTINCT reachable quotient (relators +
+#                              provenance), attempted or not — the quotient pool.
+#   campaign_trials.jsonl      one row per solve ATTEMPT (relators, budget, cap L,
+#                              nodes, solved, min_total_len, max_rel_lens, and the
+#                              full path on a solve) — the "we ran this" record.
+# ---------------------------------------------------------------------------
+
+CAND_FIELDS = ("mkey", "relators", "total_len", "form", "word", "gen", "ri", "src")
+TRIAL_FIELDS = ("mkey", "relators", "total_len", "budget", "L", "solved", "nodes",
+                "min_total_len", "max_rel_len", "max_rel_lens", "wall_s",
+                "form", "word", "gen", "ri", "src", "path_verified")
+
+
+def _open_out(path, gzip_out):
+    if gzip_out:
+        import gzip
+        return gzip.open(path + ".gz", "wt"), path + ".gz"
+    return open(path, "w"), path
+
+
+def emit_archive(root, archive_dir, gzip_out=False):
+    """Write consolidated candidate + trial JSONL + a MANIFEST. Returns a counts dict."""
+    os.makedirs(archive_dir, exist_ok=True)
+
+    # ---- candidates: union all merged.jsonl, dedup by mkey (keep shortest form) ----
+    cands = {}
+    for box in LANE_D_BOXES:
+        merged = os.path.join(root, box, "laneD", "merged.jsonl")
+        for rec in read_jsonl(merged):
+            mk = rec.get("mkey") or rec.get("cand")
+            if mk is None:
+                continue
+            cur = cands.get(mk)
+            if cur is None:
+                row = {k: rec.get(k) for k in CAND_FIELDS}
+                row["mkey"] = mk
+                row["source_boxes"] = [box]
+                cands[mk] = row
+            else:
+                if box not in cur["source_boxes"]:
+                    cur["source_boxes"].append(box)
+                tl = rec.get("total_len")
+                if tl is not None and (cur.get("total_len") is None
+                                       or tl < cur["total_len"]):
+                    row = {k: rec.get(k) for k in CAND_FIELDS}
+                    row["mkey"] = mk
+                    row["source_boxes"] = cur["source_boxes"]
+                    cands[mk] = row
+    cpath = os.path.join(archive_dir, "campaign_candidates.jsonl")
+    fh, cpath_w = _open_out(cpath, gzip_out)
+    with fh as f:
+        for mk in sorted(cands):
+            f.write(json.dumps(cands[mk]) + "\n")
+
+    # ---- trials: every solve attempt (Lane-D solve.jsonl + resolve_L*.jsonl) ----
+    tpath = os.path.join(archive_dir, "campaign_trials.jsonl")
+    fh, tpath_w = _open_out(tpath, gzip_out)
+    n_trials, n_solved, seen = 0, 0, set()
+
+    def _emit_trial(f, rec, source, default_L):
+        nonlocal n_trials, n_solved
+        key = (rec.get("mkey"), rec.get("budget"), rec.get("L", default_L), source)
+        if key in seen:
+            return
+        seen.add(key)
+        row = {k: rec.get(k) for k in TRIAL_FIELDS if k in rec}
+        row["source"] = source
+        row.setdefault("L", default_L)      # Lane-D solve ran at the gn.L=24 cap
+        if rec.get("solved") and "path_states" in rec:
+            row["path_states"] = rec["path_states"]
+            n_solved += 1
+        f.write(json.dumps(row) + "\n")
+        n_trials += 1
+
+    with fh as f:
+        for box in LANE_D_BOXES:
+            solve = os.path.join(root, box, "laneD", "solve.jsonl")
+            for rec in read_jsonl(solve):
+                _emit_trial(f, rec, "laneD:" + box, 24)
+        rdir = os.path.join(root, "resolve_hiL")
+        if os.path.isdir(rdir):
+            for fn in sorted(os.listdir(rdir)):
+                if fn.startswith("resolve_L") and fn.endswith(".jsonl"):
+                    for rec in read_jsonl(os.path.join(rdir, fn)):
+                        _emit_trial(f, rec, "resolve", rec.get("L"))
+
+    counts = {"candidates": len(cands), "trials": n_trials, "trials_solved": n_solved,
+              "candidates_file": cpath_w, "trials_file": tpath_w}
+    _write_manifest(archive_dir, counts, gzip_out)
+    return counts
+
+
+def _write_manifest(archive_dir, counts, gzip_out):
+    ext = ".jsonl.gz" if gzip_out else ".jsonl"
+    txt = f"""# AK(3) stable-proof campaign — data archive
+
+Consolidated, deduplicated per-record datasets from the Lane-D plateau-elimination
+campaign, so a future attempt can look up what was already tested instead of re-running
+the same searches.
+
+## Files
+
+- `campaign_candidates{ext}` — {counts['candidates']:,} rows. One per DISTINCT reachable
+  Lemma-11 quotient of the AK(3) stable class (deduped by symmetry key `mkey`; shortest
+  form kept), whether or not it was solve-attempted. This is the quotient pool itself.
+- `campaign_trials{ext}` — {counts['trials']:,} rows ({counts['trials_solved']} solved).
+  One per solve ATTEMPT, with the full outcome.
+
+## Schema — campaign_candidates{ext}
+
+| field | meaning |
+|---|---|
+| `mkey` | symmetry-canonical id (min over 2^k·k! signed relabelings x per-relator rotate/invert/reorder); the dedup key |
+| `relators` | the two relators as signed-int lists (x=1, y=2, x^-1=-1, y^-1=-2) |
+| `total_len` | sum of relator lengths (trivial = 2) |
+| `form`,`word`,`gen`,`ri`,`src` | provenance: which z=w stabilization + eliminated generator produced it |
+| `source_boxes` | which box(es) harvested it (D1/D2/D3) |
+
+## Schema — campaign_trials{ext}
+
+| field | meaning |
+|---|---|
+| `mkey`,`relators`,`total_len` | the quotient tested (as above) |
+| `source` | `laneD:D1/D2/D3` (cap L=24 greedy @ budget2) or `resolve` (high-L re-solve) |
+| `budget` | node budget (max heap pops) the search was run to |
+| `L` | per-relator length cap in effect (24 for Lane-D solve; 40+ for resolve) |
+| `solved` | reached the trivial presentation |
+| `nodes` | nodes actually expanded |
+| `min_total_len` | shortest total length reached — the plateau floor if unsolved |
+| `max_rel_lens`,`max_rel_len` | longest relator lengths at peak (resolve only) — cap-usage evidence |
+| `path_states` | full solution state sequence (present only on `solved:true`) |
+
+## Reuse
+
+A quotient `mkey` with a `solved:false` trial at `budget >= B` and `L >= C` is a known
+negative at that effort — attack it harder (bigger budget / cap / a different move set),
+don't repeat it. Any `solved:true` row carries `path_states`: a machine-checkable
+solution (verify with verify_certificate.py + independent_verifier.py).
+"""
+    with open(os.path.join(archive_dir, "MANIFEST.md"), "w") as f:
+        f.write(txt)
 
 
 def merge_counters(dicts):
@@ -346,6 +497,20 @@ def render_md(S):
             pct = 100.0 * n / total if total else 0
             w(f"- `{fk[:24]}…` — {n:,} ({pct:.0f}%)")
         w("")
+    # ---------- data archive ----------
+    if S.get("archive"):
+        a = S["archive"]
+        w("## Data archive (reusable per-record datasets)")
+        w("")
+        w(f"- `{os.path.basename(a['candidates_file'])}` — {a['candidates']:,} distinct "
+          "quotients (relators + provenance)")
+        w(f"- `{os.path.basename(a['trials_file'])}` — {a['trials']:,} solve trials "
+          f"({a['trials_solved']} solved; each row = relators + budget + cap + outcome)")
+        w("- `MANIFEST.md` — full schema + reuse notes")
+        w("")
+        w("Every relator tested and the budget/cap it ran to is preserved here, so a "
+          "future attempt can skip known negatives instead of recomputing them.")
+        w("")
     w("---")
     w("*Generated by collect_results.py — read-only aggregation of the Drive result tree.*")
     return "\n".join(L) + "\n"
@@ -397,9 +562,25 @@ def _selftest():
         r = S["resolve"]["40"]
         assert r["attempted"] == 2 and r["solved_count"] == 0
         assert max(int(k) for k in r["maxrel_hist"]) == 21
+        # archive: 4 distinct candidates, 3 Lane-D + 2 resolve = 5 trials, 0 solved
+        arch = emit_archive(d, os.path.join(d, "archive"))
+        S["archive"] = arch
+        assert arch["candidates"] == 4, arch["candidates"]
+        assert arch["trials"] == 5, arch["trials"]
+        assert arch["trials_solved"] == 0, arch["trials_solved"]
+        cand_lines = list(read_jsonl(os.path.join(d, "archive", "campaign_candidates.jsonl")))
+        assert len(cand_lines) == 4
+        shared = next(c for c in cand_lines if c["mkey"] == "shared")
+        assert sorted(shared["source_boxes"]) == ["D1", "D2"], shared["source_boxes"]
+        trial_lines = list(read_jsonl(os.path.join(d, "archive", "campaign_trials.jsonl")))
+        assert len(trial_lines) == 5
+        assert all("source" in t and "L" in t for t in trial_lines)
+        assert os.path.exists(os.path.join(d, "archive", "MANIFEST.md"))
         md = render_md(S)
         assert "certified negative" in md and "13:3" in md.replace(" ", "")
-        print("SELFTEST PASS: union dedup, floor hist, corrupt-line skip, resolve cap-gap, md render")
+        assert "Data archive" in md
+        print("SELFTEST PASS: union dedup, floor hist, corrupt-line skip, resolve "
+              "cap-gap, archive (candidates/trials/source_boxes/manifest), md render")
     finally:
         shutil.rmtree(d, ignore_errors=True)
 
@@ -410,6 +591,12 @@ def main():
     ap.add_argument("--out", help="markdown report path (default <root>/COLLECTED_RESULTS.md)")
     ap.add_argument("--json_out", help="machine-readable summary path "
                     "(default <root>/collect_summary.json)")
+    ap.add_argument("--archive_dir", help="consolidated per-record archive dir "
+                    "(default <root>/archive)")
+    ap.add_argument("--no_archive", action="store_true",
+                    help="skip the consolidated archive (summary only)")
+    ap.add_argument("--gzip", action="store_true",
+                    help="gzip the archive JSONL (smaller, commit/share-friendly)")
     ap.add_argument("--selftest", action="store_true")
     args = ap.parse_args()
     if args.selftest:
@@ -418,6 +605,9 @@ def main():
     if not args.root:
         ap.error("--root is required (or use --selftest)")
     S = build_summary(args.root)
+    if not args.no_archive:
+        adir = args.archive_dir or os.path.join(args.root, "archive")
+        S["archive"] = emit_archive(args.root, adir, args.gzip)
     out = args.out or os.path.join(args.root, "COLLECTED_RESULTS.md")
     md = render_md(S)
     with open(out, "w") as f:
@@ -434,6 +624,10 @@ def main():
         json.dump(strip(S), f, indent=2)
     print(md)
     print(f"\n[written] {out}\n[written] {jout}")
+    if S.get("archive"):
+        a = S["archive"]
+        print(f"[written] {a['candidates_file']}  ({a['candidates']:,} quotients)")
+        print(f"[written] {a['trials_file']}  ({a['trials']:,} trials)")
 
 
 if __name__ == "__main__":
