@@ -1,0 +1,247 @@
+\section{Experiments and Results}\label{sec:results}
+
+Every search below shares the greedy substitution solver, the stabilization move, and the
+certificate format described in the methods; we report negatives strictly within the
+searched budgets and emit every positive as a machine-checkable certificate
+(Appendix~\ref{app:certs}). We first re-verify the literature status of AK(3), then run
+stabilization strategies of increasing sophistication --- all failing within the searched
+budgets --- add a control that the length cap is not what stops them, and finally give a
+structural map of where the search stalls. Two scales recur and must not be conflated: a
+fully local reproduction (a $1{,}006$-candidate floor census, $1{,}937$ solve attempts) and
+the consolidated campaign archive ($180{,}645$ harvested quotients, $16{,}870$ attempts,
+$6{,}058$ distinct candidates); we keep them separate throughout.
+
+\subsection{Re-verifying the literature status of AK(3)}
+
+Table~\ref{tab:litchecks} collects seven independent computational checks of the misprint
+story, all $7/7$ passing (Smith-normal-form abelianization, Todd--Coxeter/Felsch coset
+enumeration, and $S_3$-homomorphism counting whose CSP hom-counter is validated $4/4$
+against brute force on synthetic triple-relator systems). The \emph{corrected} Wirtinger
+presentation $W$ is genuine: deleting any single relator --- all $14$ deletions --- leaves a
+presentation of $\mathbb{Z}$. The misprinted $W'$ provably is not: one single-relator
+deletion yields a $B_3$ fingerprint ($12$ homomorphisms to $S_3$, $6$ of them non-abelian),
+while a different deletion is $\mathbb{Z}$-consistent --- two deletions presenting
+\emph{non-isomorphic} groups, which no Wirtinger presentation of any diagram can do. AK(3)
+itself presents the trivial group (coset enumeration, order $1$), and the Wirtinger-derived
+$M3$ presentation reduces under Lemma 11 with $z:=y^{-1}x$ exactly to P25, pinning the
+commutator convention (convention B) of MMS02~\cite{myasnikov2002ac}. The printed $53$-move
+Appendix-F sequence~\cite{shehper2024hard} replays exactly from P25 to AK(3) ($53$ steps,
+$54$ states), reaching a peak total relator length of $25$ en route --- above the
+length-$13$ floor of \S4.8. An independently published
+trivialization~\cite{lisitsa_zenodo, lisitsa2025ak3} ($159$ transitions) validates at
+cyclic-word granularity once two data defects are handled (one corrupt transition, bridged
+by composing adjacent moves; one mislabeled conjugation direction). The consequence is
+unambiguous: the plain-AC bridge $\mathrm{AK}(3)\sim\mathrm{P}25$ is solid, while the
+claimed stable-triviality of AK(3) has no surviving support (Appendix~\ref{app:misprint}).
+
+\begin{table}[tbp]
+\centering
+\caption{Seven independent computational checks (rows 1--7) of the MMS02 misprint account,
+all passing, plus two certificate/log re-verifications (rows 8--9): the corrected
+Wirtinger presentation is genuine, the misprinted $W'$ is not, and the plain-AC bridge
+$\mathrm{P}25\sim\mathrm{AK}(3)$ survives.}
+\label{tab:litchecks}
+\small
+\setlength{\tabcolsep}{3pt}%
+\input{tables/out/table1_litchecks}
+\end{table}
+
+\subsection{Naive $z=w$ stabilization does not extend the baseline}
+
+Our reference point is the $640$ known-solvable MS(1190) presentations~\cite{miller1999ms}
+($634$ solve under the per-relator cap $L=24$ at $10^6$ nodes; the remaining $6$ only under
+the original sum cap). We stabilize each with a single defined generator $z=w$ and
+re-solve, for $w\in\{r_1,r_2,x,y\}$, at $5\times10^5$ nodes (Figure~\ref{fig:arms},
+Table~\ref{tab:arms}). Solved counts fall monotonically --- $619$ ($r_1$), $602$ ($r_2$),
+$540$ ($x$), $523$ ($y$) --- with $21/38/100/117$ attempts budget-exhausted. Crucially, every
+arm's solved set is a \emph{strict subset} of the baseline's: computed row-by-row,
+$|\text{arm}\setminus\text{baseline}|=0$ for all four, the union across arms is $620$
+(below the baseline $634$) and the intersection is $523$. Stabilization with a defined
+generator thus reproduces, but never extends, the baseline within the searched budgets.
+Median node counts stay small (baseline $11$; $r_1,r_2$ each $13$; $x,y$ each $10$), yet
+the $x$ and $y$ arms' \emph{mean} nodes inflate to $14{,}681$ and $21{,}833$: defining $z$
+by an existing generator is a length-neutral generator swap that spawns alias orbits the
+search must exhaust before it terminates. No wormhole appears where a defined $z$ rescues a
+presentation the plain $2$-generator search cannot already solve.
+
+\begin{figure}[tbp]
+\centering
+\begin{subfigure}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{arms_bar}
+  \caption{Solved counts per arm}\label{fig:arms-a}
+\end{subfigure}\hfill
+\begin{subfigure}{0.48\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{arms_subset}
+  \caption{Containment of solved sets}\label{fig:arms-b}
+\end{subfigure}
+\caption{Naive $z=w$ stabilization over the $640$ known-solvable MS(1190) presentations at
+$5\times10^5$ nodes. (a) Solved counts per arm --- baseline $634$, $r_1\,619$, $r_2\,602$,
+$x\,540$, $y\,523$ --- all below the baseline. (b) Containment: every arm's solved set is a
+strict subset of the baseline's ($|\text{arm}\setminus\text{baseline}|=0$ for all four
+arms; union $620$, intersection $523$), so stabilization reproduces but never extends the
+baseline within budget.}
+\label{fig:arms}
+\end{figure}
+
+\begin{table}[tbp]
+\centering
+\caption{Naive $z=w$ stabilization over the $640$ known-solvable MS(1190) presentations at
+$5\times10^5$ nodes. Every arm's solved set is a strict subset of the baseline's; node and
+path-length statistics are computed over solved presentations only.}
+\label{tab:arms}
+\small
+\setlength{\tabcolsep}{3pt}%
+\input{tables/out/table2_arms}
+\end{table}
+
+\subsection{A literature-grounded word bank fails on AK(3)}
+
+We throw the full $97$-word bank (Table~\ref{tab:wordbank}) at both AK(3) forms --- the
+textbook presentation and the dataset-representative form --- at $10^5$ and $10^6$ nodes:
+$388$ runs ($97\times2\times2$), $0$ solved (Figure~\ref{fig:ak3_plateau}, appendix). At
+$10^6$ nodes the minimum-total-length distribution concentrates hard on the floor: the
+representative form gives $\{13\!:\!88,\ 14\!:\!2,\ 15\!:\!7\}$ and the textbook form
+$\{13\!:\!86,\ 14\!:\!2,\ 15\!:\!9\}$, against a trivial target of total length $3$. Even
+the provably-isolatable theory words --- the $w_k$ isolation family of Theorems 6 and
+7~\cite{shehper2024hard} --- burn the full $10^6$-node budget and stall on the floor. The
+AK(3) floor is $13$ with a small $14$--$15$ tail, and no family, theory-grounded or
+brute-force, escapes it within the searched budgets.
+
+\subsection{On solvable targets, only relator-derived words solve --- and only tie the control}
+
+AK(3) returns a $0$-everywhere signal, which alone cannot separate ``no word helps'' from
+``no method could help.'' We therefore repeat the identical protocol on two MS presentations
+the $2$-generator baseline \emph{does} solve, but only after tens of thousands of nodes
+(Figure~\ref{fig:hard_ties}, appendix). On index $625$, $4$ of $98$ words solve: the two
+controls $z=r_1$ ($77{,}395$ nodes) and $z=r_2$ ($80{,}111$), plus two \texttt{relhalf}
+words derived from $r_1$ and $r_2$ that match those node counts \emph{exactly} ($77{,}395$
+and $80{,}111$) --- the same searches in disguise. On index $610$, $2$ of $99$ solve: $z=r_1$
+and its \texttt{relhalf} twin, both at $61{,}082$ nodes. Across the ${\sim}180$
+generic-family (word $\times$ target) runs, $0$ solve, and the unsolved runs floor at total
+length $16$--$25$. No literature-grounded word beats --- or even differs from --- the target's
+own relators; greedy substitution does not exploit a named change of variables.
+
+\subsection{Five lanes, zero solves out of 16,870 attempts}
+
+Five attack lanes layer stable-AC structure onto the base search (Table~\ref{tab:lanes},
+Figure~\ref{fig:campaign_floor}). The consolidated campaign archive harvests $180{,}645$
+distinct Lemma-11 quotients --- each stably AC-equivalent to AK(3) by construction of the
+harvest pipeline, verified end-to-end on the exported certificates, and none previously
+searched, since they exist only after a stabilize--substitute--eliminate chain --- and runs
+$16{,}870$ solve attempts over $6{,}058$ distinct candidates: $0$ of $16{,}870$ attempts
+solved. The campaign floor histogram is $\{13\!:\!16{,}844,\ 19\!:\!23,\ 20\!:\!3\}$. Lane
+A (meet-in-the-middle: $2$ probes at $2\times10^6$ nodes/side against $1{,}177$
+symmetry-expanded targets) records $0$ hits and was deprioritized once all $151$ in-cap
+catalog leaves proved plain-AC-trivial. Lane B ($6$ stable-move-search probes,
+$3\times10^5$--$8\times10^5$ nodes) solves none; its positive controls confirm the machinery
+is sound --- known-easy instances trivialize \emph{through} the stabilize/eliminate moves (a
+corrected-family instance in $3$ steps, two MS instances in $1$; Table~\ref{tab:certs}) ---
+so the $0/6$ on the hard probes is a search miss, not a plumbing failure. Lane C
+(trivial-$z$ stabilization) floors at total length $14$, $15$, $16$ for $n=3,4,5$ --- exactly
+one added unit of floor per contentless generator. Lane E is \S4.6. A fully local
+reproduction --- $1{,}937$ solve attempts over a $1{,}006$-candidate census --- bottoms out at
+exactly $13$ on every one. One coincidence deserves a line: the trivial target is total
+length $3$ for a $3$-generator state and $2$ for a $2$-generator state, yet both the
+$3$-generator stabilized searches and the $2$-generator quotient searches floor at the same
+total length $13$.
+
+\begin{table}[tbp]
+\centering
+\caption{Five attack lanes layering stable-AC structure on the base search: $0$ of
+$16{,}870$ Lane-D solve attempts (over $6{,}058$ distinct candidates from $180{,}645$
+harvested quotients) and $0$ of the $14$ grid probes (Lanes A--C) succeed, all flooring
+within their searched budgets.}
+\label{tab:lanes}
+\footnotesize
+\setlength{\tabcolsep}{3pt}%
+\input{tables/out/table4_lanes}
+\end{table}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{campaign_floor}
+\caption{Floor histogram across the consolidated five-lane campaign: $16{,}870$ solve
+attempts over $6{,}058$ distinct candidates (from $180{,}645$ harvested Lemma-11
+quotients), $0$ solved, with floors $\{13\!:\!16{,}844,\ 19\!:\!23,\ 20\!:\!3\}$. The
+trivial-$z$ control (Lane C) adds one unit of floor per contentless generator ($14/15/16$
+for $n=3/4/5$).}
+\label{fig:campaign_floor}
+\end{figure}
+
+\subsection{Zero-shot policy transfer fails on floor states}
+
+We probe whether a learned policy escapes where greedy stalls (Figure~\ref{fig:rl_gap},
+appendix). A pretrained $2$-generator PPO policy with beam search from prior
+work~\cite{fagan2026twohump}, run zero-shot at beam width $512$, solves $0$ of $155$ floor
+states, while the \emph{same} system solves $155/155$ of its own training-distribution
+items (mean path length $6.1$, max $16$). Escalating to beam width $2048$ with temperature
+annealing on the hardest $30$-state core still solves $0$. This is strictly an
+out-of-distribution transfer probe of a fixed policy, not a statement about reinforcement
+learning in principle: the gap between $155/155$ in-distribution and $0/155$ on the floor
+is an OOD gap, not an RL ceiling.
+
+\subsection{The cap is not the binding constraint}
+
+If the per-relator cap $L=24$ were the wall, relaxing it should convert failures into
+solves; it does not (Figure~\ref{fig:cap_hump}, Appendix~\ref{app:cap}). Raising $L$ from
+$24$ to $48$ leaves the search's visited set \emph{byte-identical} in $16$ of $16$ (form
+$\times$ hero-word) runs at $10^5$ nodes --- the search never wants a longer relator at these
+budgets. Harvesting with the caps raised ($l_{\text{cap}}=48$, total-length cap $40$)
+produces $250{,}397$ unique candidates, of which $212{,}913$ lie in the previously
+unreachable $>24$ region; a stratified sample of $1{,}800$ ($100$ per length bucket
+$25$--$40$ plus $200$ short controls) solved at maximum length $60$ yields $0$ of $1{,}800$
+attempts solved, with every single one flooring at exactly total length $13$. Within the
+tested range the cap is not the binding constraint ($L\le48$, solve cap $60$): the floor is
+a property of the region, not of the fence around it.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{cap_hump}
+\caption{The per-relator cap is not the binding constraint in the tested range. Raising $L$
+from $24$ to $48$ leaves the visited set byte-identical in $16/16$ runs at $10^5$ nodes; a
+stratified sample of $1{,}800$ candidates ($212{,}913$ of $250{,}397$ raised-cap candidates
+lie in the previously unreachable $>24$ region) solved at maximum length $60$ gives $0$
+solved, every one flooring at exactly total length $13$.}
+\label{fig:cap_hump}
+\end{figure}
+
+\subsection{The floor has exactly two canonical representatives}
+
+A floor census over the $1{,}006$ local candidates settles \emph{where} the search funnels.
+Every candidate lands on one of exactly two canonical (signed-relabel) representatives of
+the length-$13$ floor of AK(3)'s AC-class (Figure~\ref{fig:two_floors},
+Tables~\ref{tab:certs}, \ref{tab:floorcensus}): $F=\langle x,y \mid y^{-2}xyx^{-2},\
+y^{-3}x^{-2}yx\rangle$, hit $712$ times ($70.8\%$), and AK(3)'s own reduced form, hit $294$
+times ($29.2\%$). A $21$-move substitution path $F\to\mathrm{AK}(3)$ was extracted and
+certified, passing both the engine author's verifier and the independently authored one
+(Table~\ref{tab:certs}). The accessible region therefore funnels onto a \emph{single}
+AC-class floor with two canonical representatives; $F$ --- the dominant attractor, reached
+$2.4\times$ more often than AK(3) itself --- is a $2$-generator presentation AC-equivalent to
+AK(3) that, to the authors' knowledge, has not previously appeared as a search seed. The
+structural obstruction is now visible: the certified Appendix-F path peaks at total length
+$25$, i.e. $12$ above the floor, so escaping the floor requires climbing --- precisely what
+length-ordered search structurally resists.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{two_floors}
+\caption{The length-$13$ floor of AK(3)'s AC-class has exactly two canonical
+(signed-relabel) representatives, over the $1{,}006$-candidate local census: $F=\langle x,y
+\mid y^{-2}xyx^{-2},\ y^{-3}x^{-2}yx\rangle$ ($712$, $70.8\%$; reached $2.4\times$ more
+often than AK(3)) and AK(3)'s own reduced form ($294$, $29.2\%$), joined by a certified
+$21$-move substitution path $F\to\mathrm{AK}(3)$ that peaks at total length $25$, i.e. $12$
+above the floor.}
+\label{fig:two_floors}
+\end{figure}
+
+\begin{table}[tbp]
+\centering
+\caption{The length-$13$ floor of AK(3)'s AC-class has exactly two canonical
+(signed-relabel) representatives over the $1{,}006$-candidate census: $F$ (the dominant
+attractor, Class~1) and AK(3)'s own reduced form (Class~2).}
+\label{tab:floorcensus}
+\small
+\input{tables/out/table6_floorcensus}
+\end{table}

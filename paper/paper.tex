@@ -14,7 +14,7 @@
 \usepackage{url}
 \usepackage{microtype}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit}
 
 \graphicspath{{figures/out/}}
 
@@ -22,6 +22,12 @@
 \newcommand{\AK}{\mathrm{AK}}
 \newcommand{\MS}{\mathrm{MS}}
 \newcommand{\Ffloor}{F}
+
+% NeurIPS checklist answer macros (the style predefines colored versions; override
+% to the plain \textbf form used by this paper's checklist).
+\renewcommand{\answerYes}[1][]{\textbf{[Yes]} #1}
+\renewcommand{\answerNo}[1][]{\textbf{[No]} #1}
+\renewcommand{\answerNA}[1][]{\textbf{[NA]} #1}
 
 \title{The Hump, Not the Cap: A Negative-Result Audit and a Structural
   Floor for the Stable Andrews--Curtis Conjecture on $\AK(3)$}

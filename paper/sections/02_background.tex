@@ -1,0 +1,89 @@
+\section{Background and Related Work}\label{sec:background}
+
+\subsection{AC moves, substitution, and stable AC}
+
+A \emph{balanced presentation} $\langle x_1,\dots,x_n \mid r_1,\dots,r_n\rangle$ has
+equally many generators and relators, each relator a word in the $x_i^{\pm 1}$; throughout
+we write words with $x^{-1}yx$ notation and use the shorthand $X=x^{-1}$, $Y=y^{-1}$ where
+it aids readability. The elementary Andrews--Curtis moves act on the ordered tuple of
+relators: (AC1) replace some $r_i$ by $r_i^{-1}$; (AC2) replace some $r_i$ by $r_i r_j$
+with $j\neq i$; (AC3) replace some $r_i$ by $w\, r_i\, w^{-1}$ for an arbitrary word $w$.
+Two presentations related by a finite sequence of AC1--AC3 are \emph{AC-equivalent}, and a
+presentation AC-equivalent to the trivial one is \emph{AC-trivial}. Because the elementary
+moves take small steps, effective search operates on \emph{substitution supermoves} that
+package AC2 and AC3 into a single action: viewing both relators as cyclic strings, a
+substitution rotates each and splices one into the other so that at least one pair of
+letters cancels \cite{fagan2026twohump}. Substitutions enlarge the action space but shrink
+the effective state space, and they are the move set our search inherits.
+
+The \emph{stable} (or \emph{weak}) AC conjecture adds two moves \cite{shehper2024hard}:
+(AC4) introduce a fresh generator together with the trivial relator equal to it, replacing
+$\langle x_1,\dots,x_n \mid r_1,\dots,r_n\rangle$ by $\langle x_1,\dots,x_n,x_{n+1} \mid
+r_1,\dots,r_n,x_{n+1}\rangle$; and (AC5), its inverse, deleting a generator and its trivial
+relator. Presentations related by AC1--AC5 are \emph{stably AC-equivalent}, and the stable
+conjecture asserts every balanced presentation is stably AC-trivial. Stabilization is
+exactly the freedom our audit probes, and its most useful consequence here is Lemma 11 of
+\cite{shehper2024hard} (substitution-and-removal): given a trivial-group presentation
+$\langle x_1,\dots,x_n,y \mid r_1,\dots,r_n,\ y^{-1}w\rangle$ in which $w$ is a word in the
+$x_i$ \emph{only}, the $n$-generator presentation $\langle x_1,\dots,x_n \mid
+r_1',\dots,r_n'\rangle$ obtained by substituting $w$ for every occurrence of $y$ is stably
+AC-equivalent to it. The proof exhibits $w$ as a product of conjugates of the $r_i'$, but
+places no bound on how many such factors are needed, so the packaged supermove has no
+\emph{a priori} length bound (full statement in Appendix~\ref{app:glossary}).
+
+\subsection{The AK$(n)$ and Miller--Schupp families}
+
+The Akbulut--Kirby series $\mathrm{AK}(n)=\langle x,y \mid x^{n}=y^{n+1},\ xyx=yxy\rangle$
+arose from smooth $4$-manifold topology \cite{akbulut1985ac}; $\mathrm{AK}(2)$ is
+AC-trivial, while every $\mathrm{AK}(n)$ with $n>2$ is an open case, $\mathrm{AK}(3)$ being
+the shortest. The Miller--Schupp series $\mathrm{MS}(n,w)=\langle x,y \mid
+x^{-1}y^{n}x=y^{n+1},\ x=w\rangle$, parameterized by $n\ge 1$ and a word $w$ of exponent
+sum $0$ in $x$, is a second two-parameter family of balanced trivial-group presentations
+\cite{miller1999ms}, and it supplies the 1190-presentation benchmark our sweeps use. These
+families are linked: $\mathrm{AK}(n)$ is AC-equivalent to $\mathrm{MS}(n,w_1)$ with
+$w_1=y^{-1}x^{-1}yxy$ (Proposition 5 of \cite{shehper2024hard}). Two further results ground
+our word bank. The isolation family $w_k=y^{-k}x^{-1}yxy$ threads a one-parameter path of
+AC-equivalent presentations through $\mathrm{MS}(n,w_k)$ for all $k\in\mathbb{Z}$ (Theorems
+6 and 7 of \cite{shehper2024hard}), and the distinguished word $w_\star=y^{-1}xyx^{-1}$
+makes $\mathrm{MS}(n,w_\star)$ AC-trivial for every $n$ (Theorem 3). Each identifies
+structurally motivated words $w$ worth throwing at stabilized $\mathrm{AK}(3)$.
+
+\subsection{The misprint that re-opened the question}
+
+The stable-triviality argument for $\mathrm{AK}(3)$ traces back to Theorem 1.4 of
+\cite{myasnikov2002ac} (MMS02), which builds a $3$-generator family of trivial-group
+presentations by deleting one redundant relator from a Wirtinger presentation of an unknot
+diagram and adjoining a trivializing relator. As printed, the $13$th Wirtinger relator
+reads $x_{13}=x_5 x_{12} x_5^{-1}$, whereas the diagram requires $x_{13}=x_4 x_{12}
+x_4^{-1}$. The distinction is not cosmetic: in a genuine Wirtinger presentation every
+single relator is redundant, so deleting any one leaves the same knot group ($\mathbb{Z}$
+for the unknot), but in the misprinted presentation $W'$ different single-relator
+deletions give \emph{non-isomorphic} groups --- one deletion fingerprints as the
+three-strand braid group $B_3$, another as $\mathbb{Z}$ \cite{shehper2024hard}.
+Consequently the derived $3$-generator family need not present the trivial group, and the
+stable AC-triviality of the length-25 presentation P25 obtained from it --- and hence of
+$\mathrm{AK}(3)$ --- is unsupported. What survives is the \emph{plain}-AC equivalence: P25 is
+AC-equivalent to $\mathrm{AK}(3)$ regardless of the misprint. A 53-move path witnessing
+this is given in Appendix F of \cite{shehper2024hard}, and an independent Prover9
+derivation of the same equivalence is archived in \cite{lisitsa2025ak3,lisitsa_zenodo};
+our audit re-verifies both (Section~\ref{sec:results}, Appendix~\ref{app:misprint}).
+
+\subsection{Related computational work}
+
+Computational attacks on AC date to exhaustive breadth-first enumeration, which classified
+all presentations up to length 13 \cite{havas2003bfs}, and to heuristic and metaheuristic
+searches \cite{bowman2006fast,miasnikov1999genetic}, the latter trivializing
+$\mathrm{AK}(2)$ by genetic search. Automated deduction has more recently produced new
+trivializations across the Miller--Schupp series \cite{lisitsa2024newtrivializations}, and
+machine learning has entered the arena from several directions: reinforcement learning
+over the AC graph \cite{fagan2026twohump}, Lean-verified LLM-assisted search
+\cite{zhang2025aidriven}, and the closely related unknotting problem \cite{gukov2021unknot}.
+A crucial caveat frames every negative below. Balanced presentations of the trivial group
+can require trivialization sequences of superexponential length
+\cite{bridson2015complexity,lishak2017balanced}, so no bounded-budget search can
+distinguish ``no trivialization exists'' from ``the trivialization is longer than we
+looked''; our unsolved counts are therefore always reported within explicit budgets. Where
+prior work searches for trivializations, this paper audits a rescinded stable-triviality
+claim, quantifies the failure of stabilization to help within stated budgets, and
+characterizes the structural floor at which stabilized greedy search stalls --- with every
+claim carried by a machine-checkable certificate.

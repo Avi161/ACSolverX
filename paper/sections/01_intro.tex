@@ -1,0 +1,129 @@
+\section{Introduction}\label{sec:intro}
+
+The Andrews--Curtis (AC) conjecture \cite{andrews1965ac} states that every \emph{balanced}
+presentation of the trivial group --- a presentation $\langle x_1,\dots,x_n \mid
+r_1,\dots,r_n\rangle$ with as many relators as generators that presents the one-element
+group --- can be transformed into the trivial presentation $\langle x_1,\dots,x_n \mid
+x_1,\dots,x_n\rangle$ by a finite sequence of elementary moves. Sixty years after it was
+posed, it remains open, and its difficulty is not merely combinatorial folklore: a
+balanced presentation that resisted trivialization would refute the conjecture, and the
+same balanced presentations sit at the heart of low-dimensional topology, where they
+encode handle decompositions of contractible $4$-manifolds. Potential AC counterexamples
+arise directly from Akbulut--Kirby's smooth $4$-dimensional constructions
+\cite{akbulut1985ac} and from candidate counterexamples to the Property $2R$ and
+slice--ribbon conjectures \cite{gompf2010fibered}, and the conjecture is explicitly
+entangled with the smooth $4$-dimensional Poincar\'e problem \cite{freedman2010poincare}.
+Among all candidates, the Akbulut--Kirby presentation $\mathrm{AK}(3) = \langle x,y \mid
+x^{3}=y^{4},\ xyx=yxy\rangle$ is the shortest and most-studied potential counterexample,
+standing since 1985.
+
+The \emph{stable} (or \emph{weak}) AC conjecture relaxes the problem by allowing two
+further moves, stabilization by a trivial generator--relator pair (AC4) and its inverse
+(AC5); a presentation reducible to the trivial one under AC1--AC5 is \emph{stably
+AC-trivial}. The stable status of $\mathrm{AK}(3)$ has recently oscillated. The first
+version of a 2024 case study \cite{shehper2024hard} announced that $\mathrm{AK}(3)$ is
+stably AC-trivial, removing it as a stable-AC counterexample; a subsequent revision
+located a misprint in the Wirtinger construction of \cite{myasnikov2002ac} on which that
+argument depended and rescinded the claim. A parallel automated-deduction paper
+\cite{lisitsa2025ak3}, written between those two versions, builds its stable-triviality
+conclusion on the same, now-rescinded premise and has not been revised. The plain reading
+of the current literature is therefore blunt: the stable AC-triviality of $\mathrm{AK}(3)$
+is open again.
+
+Search-based and learning-based methods have crossed hard barriers in this domain before
+--- genetic algorithms trivialized $\mathrm{AK}(2)$ \cite{miasnikov1999genetic}, and a
+recent study of the AC difficulty landscape \cite{fagan2026twohump} pushed reinforcement
+learning past presentations that classical search cannot reach. This invites a concrete
+question about stabilization as an escape hatch: does adding a generator $z$ defined by a
+relator $z^{-1}w(x,y)$ --- for a cleverly chosen word $w$ in the original generators --- open
+shortcuts (informally, ``wormholes'') through the enlarged AC graph that ordinary
+2-generator search cannot find? If some $w$ trivialized $\mathrm{AK}(3)$ where the dumb
+choices $z=r_i$ do not, stabilization would be a genuine algorithmic lever rather than
+bookkeeping.
+
+This paper is a systematic audit of that hope, and it returns a rigorously verified
+negative paired with a structural map (Figure~\ref{fig:overview}). We first re-verify,
+seven independent ways, that the stable status of $\mathrm{AK}(3)$ is open while its
+plain-AC equivalence to the length-25 presentation P25 survives. We then run three
+stabilization strategies of increasing sophistication --- all of which fail within the
+searched budgets --- and a control showing that the per-relator length cap is not what stops
+them. Finally, we characterize \emph{where} stabilized greedy search stalls: a length-13
+floor whose AC-class has exactly two canonical representatives, bridged by a certified
+move sequence. Throughout, every positive claim is emitted as a machine-checkable
+certificate.
+
+\begin{figure}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  font=\small,
+  box/.style={draw, rounded corners, align=center, inner sep=5pt, fill=gray!12},
+  attack/.style={draw, rounded corners, align=center, text width=33mm,
+                 minimum height=11mm, inner sep=4pt, fill=gray!3},
+  arr/.style={-{Latex[length=2.2mm]}, thick, gray!55},
+]
+\node[box, text width=30mm] (m)
+  {\textbf{MMS02 misprint}\\$\to$ v2 rescission\\[2pt]$\mathrm{AK}(3)$ stable\\status re-opened\\(7/7 checks)};
+
+\node[attack, right=17mm of m, yshift=15mm] (a1) {naive $z{=}w$ over 640 MS};
+\node[attack, below=5mm of a1] (a2) {97-word bank on $\mathrm{AK}(3)$};
+\node[attack, below=5mm of a2] (a3) {five lanes incl.\ Lemma-11 plateau elim.:\\180{,}645 quotients};
+
+\node[draw, dashed, rounded corners, fit=(a1)(a2)(a3), inner sep=6pt,
+      label={[font=\footnotesize]above:three stabilization attacks}] (grp) {};
+
+\node[align=center, font=\footnotesize\bfseries, right=11mm of a2] (zero)
+  {0 solved\\(within budget)};
+
+\node[box, text width=24mm, right=8mm of zero] (cap)
+  {\textbf{cap control}\\$L\le48$:\\not binding};
+
+\node[box, text width=33mm, right=8mm of cap, fill=gray!22] (floor)
+  {\textbf{length-13 floor}\\two canonical reps\\$F$ (71\%) / $\mathrm{AK}(3)$ (29\%)\\certified 21-move bridge};
+
+\draw[arr] (m) -- (grp);
+\draw[arr] (a1.east) -- (zero.north west);
+\draw[arr] (a2.east) -- (zero.west);
+\draw[arr] (a3.east) -- (zero.south west);
+\draw[arr] (zero) -- (cap);
+\draw[arr] (cap) -- (floor);
+\end{tikzpicture}%
+}
+\caption{End-to-end audit pipeline: a greedy substitution solver, a stabilization move
+that defines a fresh generator $z$ by a chosen word $w(x,y)$, a $97$-word
+literature-grounded bank, and five attack lanes (meet-in-the-middle, direct stable-move
+search, trivial-$z$ control, plateau elimination, and a zero-shot RL beam probe), with
+every reported solution emitted as a machine-checkable certificate replayed by two
+independent verifiers.}
+\label{fig:overview}
+\end{figure}
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item \textbf{Re-verification of a re-opened question.} We computationally confirm, via
+    7 of 7 agreeing independent checks (Smith normal form, Todd--Coxeter coset enumeration,
+    and $S_3$-homomorphism counting among them), that $\mathrm{AK}(3)$'s stable status is
+    open, that the plain-AC link $\mathrm{AK}(3)\sim\mathrm{P}25$ survives (53-move replay,
+    plus validation of an independent Prover9 derivation), and we surface two data defects
+    in a published trivialization artifact.
+  \item \textbf{Systematic stabilization negatives at stated budgets.} Across a naive
+    $z=w$ construction over 640 Miller--Schupp presentations, a 97-word literature-grounded
+    bank on $\mathrm{AK}(3)$, and a five-lane campaign that mines 180{,}645 distinct
+    2-generator quotients, 0 of 16{,}870 solve attempts succeed within the searched
+    budgets (up to $10^{6}$ nodes per attempt, beam width $\le 2048$).
+  \item \textbf{A cap-not-binding control.} We show the $L=24$ per-relator length cap is
+    not the binding constraint in the tested range: relaxing to $L\le 48$ (and total
+    length $\le 60$) does not convert a single failure into a success.
+  \item \textbf{A two-representative structural floor.} The length-13 floor of
+    $\mathrm{AK}(3)$'s AC-class has exactly two canonical (signed-relabel) representatives
+    --- $F=\langle x,y \mid y^{-2}xyx^{-2},\ y^{-3}x^{-2}yx\rangle$, a $2$-generator
+    presentation AC-equivalent to $\mathrm{AK}(3)$ (712/1006 $=71\%$ of floor states), and
+    $\mathrm{AK}(3)$'s own reduced form (294/1006 $=29\%$) --- joined by a certified 21-move
+    AC path.
+  \item \textbf{A certificate framework and reusable archive.} We release the acx-cert-v1
+    machine-checkable certificate format with two independently authored verifiers
+    (20{,}947 checks, 0 failures) and the full candidate-quotient archive, so every claim
+    above is independently re-runnable.
+\end{itemize}
+
+Code, data, and all certificates will be released on acceptance.

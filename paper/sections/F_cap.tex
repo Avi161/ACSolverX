@@ -1,0 +1,42 @@
+\section{Cap-Control Experiment}\label{app:cap}
+
+Four arms test whether the per-relator cap $L=24$ used throughout the campaign is itself
+the reason stabilized search stalls, run in an isolated harness that never edits the shared
+solver's default cap; the lifted cap is passed only as a search-time parameter.
+
+\textbf{Arm 1 (positive-control gate).} Before any negative here is trusted, a known-trivial
+MS(1190) instance (index $0$) is stabilized with $z=x$ and re-solved by the 3-generator
+greedy search at the default cap. The run must both solve and pass path verification. It
+does, confirming the solve+stabilize+verify chain is live in the isolated harness before any
+negative result is reported.
+
+\textbf{Arm 2 (search cap raised, $L=24\to48$).} Sixteen (form $\times$ hero-word)
+configurations --- both AK(3) forms crossed with eight literature-derived hero words --- are
+searched at $10^5$ nodes under both $L=24$ and $L=48$; $0$ of $32$ runs solve. The two runs'
+full visited sets are byte-identical in $16$ of $16$ configurations: the
+greedy-by-total-length search never once wants a relator longer than $24$ at this budget, so
+raising the search cap is a provable no-op here. Floors are $13$ or $15$ depending on the
+word, never on the cap value.
+
+\textbf{Arm 3 (harvest/elimination cap raised).} Re-running the Lane-D harvest and merge
+with the elimination-side caps raised (per-relator cap $48$, total-length cap $40$) produces
+$250{,}397$ unique candidates (mod symmetry), of which $212{,}913$ have total length
+exceeding $24$ --- a region the $L=24$ pipeline could never generate at all.
+
+\textbf{Arm 4 (stratified solve of the newly reachable region).} Because Lane D's own solve
+order is shortest-first and never reaches the long tail, a separate stratified sample ---
+$100$ candidates from each length bucket $25$--$40$, plus $200$ short controls --- is solved
+directly at $\max\_len=60$, budget $8\times10^4$ nodes ($4\times10^4$ for the longest-tail
+bucket, a reduction justified by the fact that no candidate among more than $1{,}100$ prior
+solve attempts had ever dipped below floor $13$, so a smaller budget cannot mask a solve
+that would first have to descend through that same floor). Of $1{,}800$ solve attempts, $0$
+solve, and every single one floors at exactly total length $13$, uniformly across every
+length bucket from $25$ to $40$ and the short controls alike.
+
+\textbf{Scoped conclusion.} Within the tested range ($L\le48$, solve cap $60$), lifting the
+per-relator cap changes nothing: the search neither wants the extra room (Arm 2) nor
+benefits from the longer candidates it makes reachable (Arms 3--4). The obstruction is a
+property of the length landscape stabilized greedy search explores, not of the fence
+bounding how long a relator may grow; this control does not --- and cannot --- rule out a
+fundamentally different, non-greedy search succeeding somewhere in the newly reachable
+region.
