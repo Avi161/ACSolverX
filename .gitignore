@@ -27,3 +27,7 @@ results/stable_ac/ak3_stable_proof/runs/*.log
 *.precanon.bak
 # stray local run logs from the one_generator wormhole sweeps
 experiments/stable_ac/one_generator/*.log
+
+# test_cap: intermediate harvest (~2 GB cands + 94 MB merged.jsonl) is regenerable
+# via run_captest.py; REPORT.md + scripts + result streams (search_L/solve_stratified) are tracked
+experiments/test_cap/laneD/

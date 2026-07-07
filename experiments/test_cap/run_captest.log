@@ -1,0 +1,76 @@
+[gate] positive control (stabilized MS idx0, z=x): solved=True verified=True nodes=4 -> OK
+[search] 32 runs (forms=['textbook', 'rep'] words=['xyx', 'yxy', 'xxx', 'yyyy', 'Xyxy', 'YXyxy', 'x', 'y'] maxlens=[24, 48] budget=100000); 0 already done
+  [1/32] textbook/xyx L=24: solved=False floor=13 visited=3,985,579 nodes=100,000 8.2s rss=922MB
+  [2/32] textbook/xyx L=48: solved=False floor=13 visited=3,985,579 nodes=100,000 7.4s rss=966MB
+  [3/32] textbook/yxy L=24: solved=False floor=13 visited=3,985,683 nodes=100,000 7.3s rss=966MB
+  [4/32] textbook/yxy L=48: solved=False floor=13 visited=3,985,683 nodes=100,000 7.3s rss=966MB
+  [5/32] textbook/xxx L=24: solved=False floor=13 visited=3,934,280 nodes=100,000 7.7s rss=966MB
+  [6/32] textbook/xxx L=48: solved=False floor=13 visited=3,934,280 nodes=100,000 6.5s rss=966MB
+  [7/32] textbook/yyyy L=24: solved=False floor=13 visited=3,935,060 nodes=100,000 7.1s rss=966MB
+  [8/32] textbook/yyyy L=48: solved=False floor=13 visited=3,935,060 nodes=100,000 6.8s rss=978MB
+  [9/32] textbook/Xyxy L=24: solved=False floor=13 visited=3,822,848 nodes=100,000 7.9s rss=978MB
+  [10/32] textbook/Xyxy L=48: solved=False floor=13 visited=3,822,848 nodes=100,000 7.3s rss=978MB
+  [11/32] textbook/YXyxy L=24: solved=False floor=15 visited=4,010,113 nodes=100,000 6.4s rss=1016MB
+  [12/32] textbook/YXyxy L=48: solved=False floor=15 visited=4,010,113 nodes=100,000 6.3s rss=1038MB
+  [13/32] textbook/x L=24: solved=False floor=15 visited=4,013,078 nodes=100,000 6.6s rss=1038MB
+  [14/32] textbook/x L=48: solved=False floor=15 visited=4,013,078 nodes=100,000 6.7s rss=1038MB
+  [15/32] textbook/y L=24: solved=False floor=15 visited=3,977,441 nodes=100,000 6.5s rss=1038MB
+  [16/32] textbook/y L=48: solved=False floor=15 visited=3,977,441 nodes=100,000 6.7s rss=1038MB
+  [17/32] rep/xyx L=24: solved=False floor=13 visited=3,937,901 nodes=100,000 5.5s rss=1038MB
+  [18/32] rep/xyx L=48: solved=False floor=13 visited=3,937,901 nodes=100,000 5.5s rss=1038MB
+  [19/32] rep/yxy L=24: solved=False floor=13 visited=3,947,395 nodes=100,000 5.5s rss=1043MB
+  [20/32] rep/yxy L=48: solved=False floor=13 visited=3,947,395 nodes=100,000 5.7s rss=1043MB
+  [21/32] rep/xxx L=24: solved=False floor=13 visited=3,927,319 nodes=100,000 5.7s rss=1043MB
+  [22/32] rep/xxx L=48: solved=False floor=13 visited=3,927,319 nodes=100,000 5.7s rss=1043MB
+  [23/32] rep/yyyy L=24: solved=False floor=13 visited=3,936,368 nodes=100,000 7.9s rss=1043MB
+  [24/32] rep/yyyy L=48: solved=False floor=13 visited=3,936,368 nodes=100,000 6.4s rss=1043MB
+  [25/32] rep/Xyxy L=24: solved=False floor=13 visited=3,951,834 nodes=100,000 6.4s rss=1043MB
+  [26/32] rep/Xyxy L=48: solved=False floor=13 visited=3,951,834 nodes=100,000 5.8s rss=1043MB
+  [27/32] rep/YXyxy L=24: solved=False floor=13 visited=3,924,870 nodes=100,000 7.5s rss=1043MB
+  [28/32] rep/YXyxy L=48: solved=False floor=13 visited=3,924,870 nodes=100,000 5.9s rss=1043MB
+  [29/32] rep/x L=24: solved=False floor=15 visited=3,972,365 nodes=100,000 6.1s rss=1048MB
+  [30/32] rep/x L=48: solved=False floor=15 visited=3,972,365 nodes=100,000 6.0s rss=1048MB
+  [31/32] rep/y L=24: solved=False floor=15 visited=4,017,388 nodes=100,000 7.3s rss=1048MB
+  [32/32] rep/y L=48: solved=False floor=15 visited=4,017,388 nodes=100,000 9.1s rss=1048MB
+[search] done
+[harvest] l_cap=48 htl=40 mtl=40 budget=60000 workers=2
+harvest: 16 runs pending  (0/16 already done, 2 workers, budget=60000)
+  [1/16] textbook/xyx  visited=2.5M cands=340641 wall=31s | total 1/16 | 112.9/h ETA 0.1h | CPU 56% RAM 6/17GB
+  [2/16] textbook/yxy  visited=2.5M cands=340704 wall=32s | total 2/16 | 223.1/h ETA 0.1h | CPU 74% RAM 6/17GB
+  [3/16] textbook/xxx  visited=2.4M cands=581632 wall=37s | total 3/16 | 153.7/h ETA 0.1h | CPU 68% RAM 5/17GB
+  [4/16] textbook/yyyy  visited=2.3M cands=618980 wall=38s | total 4/16 | 201.8/h ETA 0.1h | CPU 61% RAM 6/17GB
+  … working: 4/16 this run (4/16 total) | elapsed 1.5m | 160.0/h | CPU 0% RAM 6/17GB
+  [5/16] textbook/YXyxy  visited=2.4M cands=108596 wall=22s | total 5/16 | 190.8/h ETA 0.1h | CPU 53% RAM 6/17GB
+  [6/16] textbook/Xyxy  visited=2.2M cands=405774 wall=26s | total 6/16 | 222.6/h ETA 0.0h | CPU 57% RAM 6/17GB
+  [7/16] textbook/x  visited=2.4M cands=109919 wall=38s | total 7/16 | 189.5/h ETA 0.0h | CPU 76% RAM 6/17GB
+  [8/16] textbook/y  visited=2.4M cands=70521 wall=38s | total 8/16 | 211.3/h ETA 0.0h | CPU 78% RAM 6/17GB
+  [9/16] rep/xyx  visited=2.3M cands=662726 wall=36s | total 9/16 | 190.7/h ETA 0.0h | CPU 60% RAM 5/17GB
+  [10/16] rep/yxy  visited=2.3M cands=661632 wall=35s | total 10/16 | 208.4/h ETA 0.0h | CPU 70% RAM 6/17GB
+  … working: 10/16 this run (10/16 total) | elapsed 3.0m | 200.0/h | CPU 68% RAM 6/17GB
+  [11/16] rep/xxx  visited=2.3M cands=672131 wall=45s | total 11/16 | 184.0/h ETA 0.0h | CPU 73% RAM 6/17GB
+  [12/16] rep/yyyy  visited=2.3M cands=663177 wall=45s | total 12/16 | 197.9/h ETA 0.0h | CPU 65% RAM 6/17GB
+  [13/16] rep/Xyxy  visited=2.3M cands=649720 wall=36s | total 13/16 | 186.0/h ETA 0.0h | CPU 65% RAM 6/17GB
+  [14/16] rep/YXyxy  visited=2.4M cands=672705 wall=34s | total 14/16 | 198.4/h ETA 0.0h | CPU 56% RAM 6/17GB
+  … working: 14/16 this run (14/16 total) | elapsed 4.5m | 186.7/h | CPU 70% RAM 6/17GB
+  [15/16] rep/x  visited=2.4M cands=109230 wall=36s | total 15/16 | 187.7/h ETA 0.0h | CPU 76% RAM 6/17GB
+  [16/16] rep/y  visited=2.4M cands=68530 wall=35s | total 16/16 | 198.9/h ETA 0.0h | CPU 66% RAM 6/17GB
+harvest phase done: 16 runs in 4.8 min
+merge: +176733 (global 176733)
+merge: +168033 (global 192883)
+merge: +35587 (global 220932)
+merge: +198199 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: +0 (global 250397)
+merge: 2103786 raw -> 250397 unique-mod-symmetry (AK3/P25 classes dropped); shortest lens: [(13, 1), (14, 5), (15, 67), (16, 66), (17, 356), (18, 360), (19, 1723), (20, 1443), (21, 6239), (22, 4421), (23, 13861), (24, 8942)]
+[harvest] merged.jsonl: 250397 unique candidates
+run_captest done. Next: solve_stratified.py (out=/Users/avigyapaudel/Documents/Obsidian Vault/surf/codebase/ACSolverX/experiments/test_cap)

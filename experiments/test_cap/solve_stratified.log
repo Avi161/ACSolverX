@@ -1,0 +1,47 @@
+[stratified] merged bucket coverage (total_len: n_candidates): {13: 1, 14: 5, 15: 67, 16: 66, 17: 356, 18: 360, 19: 1723, 20: 1443, 21: 6239, 22: 4421, 23: 13861, 24: 8942, 25: 21330, 26: 12679, 27: 23964, 28: 13970, 29: 23282, 30: 13975, 31: 18452, 32: 12628, 33: 15341, 34: 11086, 35: 11142, 36: 9154, 37: 7591, 38: 7280, 39: 5766, 40: 5273}
+[stratified] sampled 1800 candidates (k_ctrl=200 for <25, k_long=100/bucket for 25-40); budget2=80000 max_len=60
+[stratified] 1800 to solve (0 already done)
+  [100/1800] solved=0 (0.5/s ETA 58m)
+  [200/1800] solved=0 (0.5/s ETA 52m)
+  [300/1800] solved=0 (0.5/s ETA 55m)
+  [400/1800] solved=0 (0.3/s ETA 75m)
+  [500/1800] solved=0 (0.3/s ETA 75m)
+[stratified] merged bucket coverage (total_len: n_candidates): {13: 1, 14: 5, 15: 67, 16: 66, 17: 356, 18: 360, 19: 1723, 20: 1443, 21: 6239, 22: 4421, 23: 13861, 24: 8942, 25: 21330, 26: 12679, 27: 23964, 28: 13970, 29: 23282, 30: 13975, 31: 18452, 32: 12628, 33: 15341, 34: 11086, 35: 11142, 36: 9154, 37: 7591, 38: 7280, 39: 5766, 40: 5273}
+[stratified] sampled 1800 candidates (k_ctrl=200 for <25, k_long=100/bucket for 25-40); budget2=80000 max_len=60
+[stratified] 1240 to solve (560 already done)
+  [100/1240] solved=0 (0.2/s ETA 113m)
+  [200/1240] solved=0 (0.2/s ETA 99m)
+[stratified] merged bucket coverage (total_len: n_candidates): {13: 1, 14: 5, 15: 67, 16: 66, 17: 356, 18: 360, 19: 1723, 20: 1443, 21: 6239, 22: 4421, 23: 13861, 24: 8942, 25: 21330, 26: 12679, 27: 23964, 28: 13970, 29: 23282, 30: 13975, 31: 18452, 32: 12628, 33: 15341, 34: 11086, 35: 11142, 36: 9154, 37: 7591, 38: 7280, 39: 5766, 40: 5273}
+[stratified] sampled 1800 candidates (k_ctrl=200 for <25, k_long=100/bucket for 25-40); budget2=40000 max_len=60
+[stratified] 698 to solve (1102 already done)
+  [100/698] solved=0 (1.1/s ETA 9m)
+  [200/698] solved=0 (1.2/s ETA 7m)
+  [300/698] solved=0 (1.1/s ETA 6m)
+  [400/698] solved=0 (1.0/s ETA 5m)
+  [500/698] solved=0 (0.8/s ETA 4m)
+  [600/698] solved=0 (0.7/s ETA 2m)
+[stratified] done: 0 solved / 698 attempted
+
+[summary] floor(min_total_len) distribution per candidate length bucket:
+  total_len= 13: {13: 1}
+  total_len= 14: {13: 5}
+  total_len= 15: {13: 67}
+  total_len= 16: {13: 66}
+  total_len= 17: {13: 61}
+  total_len= 25: {13: 100}
+  total_len= 26: {13: 100}
+  total_len= 27: {13: 100}
+  total_len= 28: {13: 100}
+  total_len= 29: {13: 100}
+  total_len= 30: {13: 100}
+  total_len= 31: {13: 100}
+  total_len= 32: {13: 100}
+  total_len= 33: {13: 100}
+  total_len= 34: {13: 100}
+  total_len= 35: {13: 100}
+  total_len= 36: {13: 100}
+  total_len= 37: {13: 100}
+  total_len= 38: {13: 100}
+  total_len= 39: {13: 100}
+  total_len= 40: {13: 100}
+[summary] SOLVED: 0
