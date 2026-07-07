@@ -882,9 +882,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--56
 , YXX,
  []
 
+[20]
 File: figures/out//ak3_plateau.pdf Graphic file (type pdf)
 <use figures/out//ak3_plateau.pdf>
-[20]
 File: figures/out//hard_ties.pdf Graphic file (type pdf)
 <use figures/out//hard_ties.pdf>
 File: figures/out//rl_gap.pdf Graphic file (type pdf)
@@ -906,4 +906,4 @@ Underfull \vbox (badness 4416) has occurred while \output is active []
 
  [25]
 [26]) [27] (paper.aux) )
-Output written on paper.xdv (27 pages, 198796 bytes).
+Output written on paper.xdv (27 pages, 198844 bytes).

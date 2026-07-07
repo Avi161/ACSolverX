@@ -1,0 +1,161 @@
+claim_id	section	quoted_text	value	source_file	recompute_expr	recomputed_value	match
+arm_baseline_solved	4.2/T3	634 of the 640 known-solvable ... solve	634	results/baseline_greedy/solved/calibration_baseline.jsonl	count solved in baseline stream	634	YES
+arm_baseline_exhausted	3.1/T3	remaining 6 (indices 634-639)	6	results/baseline_greedy/solved/calibration_baseline.jsonl	count not solved	6	YES
+straggler_idx	3.1/4.2	the remaining 6 (indices 634-639)	634-639	results/baseline_greedy/solved/calibration_baseline.jsonl	sorted idx of unsolved baseline rows	634,635,636,637,638,639	YES
+arm_r1_solved	4.2/T3	r1 solved 619	619	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r1.jsonl	count solved	619	YES
+arm_r1_exhausted	4.2/T3	r1 exhausted 21	21	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r1.jsonl	count exhausted_budget	21	YES
+arm_r1_subset	4.2/T3	|r1\baseline|=0	0	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r1.jsonl	len(armset-bset)	0	YES
+arm_r2_solved	4.2/T3	r2 solved 602	602	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r2.jsonl	count solved	602	YES
+arm_r2_exhausted	4.2/T3	r2 exhausted 38	38	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r2.jsonl	count exhausted_budget	38	YES
+arm_r2_subset	4.2/T3	|r2\baseline|=0	0	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r2.jsonl	len(armset-bset)	0	YES
+arm_x_solved	4.2/T3	x solved 540	540	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_x.jsonl	count solved	540	YES
+arm_x_exhausted	4.2/T3	x exhausted 100	100	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_x.jsonl	count exhausted_budget	100	YES
+arm_x_subset	4.2/T3	|x\baseline|=0	0	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_x.jsonl	len(armset-bset)	0	YES
+arm_y_solved	4.2/T3	y solved 523	523	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_y.jsonl	count solved	523	YES
+arm_y_exhausted	4.2/T3	y exhausted 117	117	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_y.jsonl	count exhausted_budget	117	YES
+arm_y_subset	4.2/T3	|y\baseline|=0	0	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_y.jsonl	len(armset-bset)	0	YES
+arm_union	4.2/Fig2	union across arms is 620	620	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_*.jsonl	|r1|r2|x|y|	620	YES
+arm_inter	4.2/Fig2	intersection is 523	523	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_*.jsonl	|r1&r2&x&y|	523	YES
+stat_baseline_nodes	T3/AppC	baseline nodes min/max/mean/median (3, 77385, 1662.0, 11)	(3, 77385, 1662.0, 11)	results/baseline_greedy/solved/calibration_baseline.jsonl	min/max/mean/median nodes over solved	(3, 77385, 1662.0, 11.0)	YES
+stat_baseline_path	AppC	baseline path min/max/mean/median (2, 710, 32.6, 8)	(2, 710, 32.6, 8)	results/baseline_greedy/solved/calibration_baseline.jsonl	min/max/mean/median path_len over solved	(2, 710, 32.6, 8.0)	YES
+stat_r1_nodes	T3/AppC	r1 nodes min/max/mean/median (5, 239578, 2802.6, 13)	(5, 239578, 2802.6, 13)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r1.jsonl	min/max/mean/median nodes over solved	(5, 239578, 2802.6, 13)	YES
+stat_r1_path	AppC	r1 path min/max/mean/median (4, 714, 33.8, 12)	(4, 714, 33.8, 12)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r1.jsonl	min/max/mean/median path_len over solved	(4, 714, 33.8, 12)	YES
+stat_r2_nodes	T3/AppC	r2 nodes min/max/mean/median (4, 291479, 3637.1, 13)	(4, 291479, 3637.1, 13)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r2.jsonl	min/max/mean/median nodes over solved	(4, 291479, 3637.1, 13.0)	YES
+stat_r2_path	AppC	r2 path min/max/mean/median (3, 715, 29.9, 11)	(3, 715, 29.9, 11)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_r2.jsonl	min/max/mean/median path_len over solved	(3, 715, 29.9, 11.0)	YES
+stat_x_nodes	T3/AppC	x nodes min/max/mean/median (4, 326326, 14680.7, 10)	(4, 326326, 14680.7, 10)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_x.jsonl	min/max/mean/median nodes over solved	(4, 326326, 14680.7, 10.0)	YES
+stat_x_path	AppC	x path min/max/mean/median (3, 102, 12.1, 9)	(3, 102, 12.1, 9)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_x.jsonl	min/max/mean/median path_len over solved	(3, 102, 12.1, 9.0)	YES
+stat_y_nodes	T3/AppC	y nodes min/max/mean/median (4, 491437, 21832.7, 10)	(4, 491437, 21832.7, 10)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_y.jsonl	min/max/mean/median nodes over solved	(4, 491437, 21832.7, 10)	YES
+stat_y_path	AppC	y path min/max/mean/median (3, 102, 11.5, 9)	(3, 102, 11.5, 9)	results/stable_ac/3_generators_w_choices/ms640/runs/calibration_y.jsonl	min/max/mean/median path_len over solved	(3, 102, 11.5, 9)	YES
+base_idx625_nodes	3.4	index 625 (77385 nodes)	77385	results/baseline_greedy/solved/calibration_baseline.jsonl	baseline idx 625 nodes_explored	77385	YES
+base_idx625_path	3.4	index 625 (663 moves)	663	results/baseline_greedy/solved/calibration_baseline.jsonl	baseline idx 625 path_len	663	YES
+base_idx610_nodes	3.4	index 610 (61066 nodes)	61066	results/baseline_greedy/solved/calibration_baseline.jsonl	baseline idx 610 nodes_explored	61066	YES
+base_idx610_path	3.4	index 610 (307 moves)	307	results/baseline_greedy/solved/calibration_baseline.jsonl	baseline idx 610 path_len	307	YES
+wb_relhalf	T1	relhalf = 17	17	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	len(by_family[relhalf])	17	YES
+wb_wk	T1	wk = 17	17	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	len(by_family[wk])	17	YES
+wb_wstar	T1	wstar = 5	5	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	len(by_family[wstar])	5	YES
+wb_conj	T1	conj = 14	14	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	len(by_family[conj])	14	YES
+wb_comm	T1	comm = 6	6	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	len(by_family[comm])	6	YES
+wb_ms	T1	ms = 3	3	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	len(by_family[ms])	3	YES
+wb_brute	T1	brute = 33	33	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	len(by_family[brute])	33	YES
+wb_families_total	T1	seven families (95 words)	95	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	sum by_family	95	YES
+wb_total_97	T1	Total 97	97	results/stable_ac/3_generators_w_choices/ak_3_test/word_bank.json	95 families + 2 control	97	YES
+ak3_rep_100000_rows	4.3	rep@100000 97-row	97	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_rep_100000.jsonl	row count	97	YES
+ak3_rep_100000_solved	4.3	rep@100000 0 solved	0	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_rep_100000.jsonl	solved count	0	YES
+ak3_rep_1000000_rows	4.3	rep@1000000 97-row	97	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_rep_1000000.jsonl	row count	97	YES
+ak3_rep_1000000_solved	4.3	rep@1000000 0 solved	0	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_rep_1000000.jsonl	solved count	0	YES
+ak3_textbook_100000_rows	4.3	textbook@100000 97-row	97	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_textbook_100000.jsonl	row count	97	YES
+ak3_textbook_100000_solved	4.3	textbook@100000 0 solved	0	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_textbook_100000.jsonl	solved count	0	YES
+ak3_textbook_1000000_rows	4.3	textbook@1000000 97-row	97	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_textbook_1000000.jsonl	row count	97	YES
+ak3_textbook_1000000_solved	4.3	textbook@1000000 0 solved	0	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_textbook_1000000.jsonl	solved count	0	YES
+ak3_rep_1M_hist	4.3/J	rep@1M {13:88,14:2,15:7}	{13: 88, 14: 2, 15: 7}	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_rep_1000000.jsonl	floor histogram	{13: 88, 15: 7, 14: 2}	YES
+ak3_txt_1M_hist	4.3/J	textbook@1M {13:86,14:2,15:9}	{13: 86, 14: 2, 15: 9}	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_textbook_1000000.jsonl	floor histogram	{13: 86, 15: 9, 14: 2}	YES
+ak3_rep_100k_hist	AppC-Fig6	rep@100k {13:79,14:11,15:7}	{13: 79, 14: 11, 15: 7}	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_rep_100000.jsonl	floor histogram	{13: 79, 14: 11, 15: 7}	YES
+ak3_txt_100k_hist	AppC-Fig6	textbook@100k {13:77,14:11,15:9}	{13: 77, 14: 11, 15: 9}	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_textbook_100000.jsonl	floor histogram	{13: 77, 14: 11, 15: 9}	YES
+ak3_total_388	4.3/Fig6	388 runs (97x2x2), 0 solved	388	results/stable_ac/3_generators_w_choices/ak_3_test/runs/ak3_*_0.jsonl	4 files x 97 rows	388	YES
+hard625_solved	4.4	idx625: 4 of 98 solve	4	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	solved count	4	YES
+hard625_floorlo	Fig7	idx625 floor range low 17	17	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	min floor	17	YES
+hard625_floorhi	Fig7	idx625 floor range high 25	25	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	max floor	25	YES
+hard625_peak	Fig7	idx625 peak 19 with 41	19/41	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	mode floor + count	19/41	YES
+hard610_solved	4.4	idx610: 2 of 99 solve	2	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms610_100000.jsonl	solved count	2	YES
+hard610_floorlo	Fig7	idx610 floor range low 16	16	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms610_100000.jsonl	min floor	16	YES
+hard610_floorhi	Fig7	idx610 floor range high 23	23	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms610_100000.jsonl	max floor	23	YES
+hard610_peak	Fig7	idx610 peak 19 with 34	19/34	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms610_100000.jsonl	mode floor + count	19/34	YES
+tie625_r1	4.4/B	z=r1 (77,395 nodes)	77395	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	idx625 r1 nodes	77395	YES
+tie625_r2	4.4/B	z=r2 (80,111)	80111	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	idx625 r2 nodes	80111	YES
+tie625_relhalf_r1	4.4/B	relhalf twin ties r1 77,395	77395	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	relhalf word tying 77395 exists	True	YES
+tie625_xYXyxyy	4.4/B	xYXyxyy relhalf twin (80,111)	80111	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms625_100000.jsonl	nodes of word xYXyxyy	80111	YES
+tie610_r1	4.4/B	idx610 z=r1 61,082	61082	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms610_100000.jsonl	idx610 r1 nodes	61082	YES
+tie610_relhalf	4.4/B	relhalf twin 61,082	61082	results/stable_ac/3_generators_w_choices/hard_solved_test/runs/hard_ms610_100000.jsonl	relhalf word tying 61082 exists	True	YES
+camp_candidates	4.5	180,645 distinct 2-generator quotients	180645	results/stable_ac/ak3_stable_proof/archive/campaign_candidates.jsonl.gz	row count campaign_candidates.jsonl.gz	180645	YES
+camp_candidates_distinct	4.5	180,645 distinct quotients	180645	results/stable_ac/ak3_stable_proof/archive/campaign_candidates.jsonl.gz	distinct mkey	180645	YES
+camp_trials	4.5/T4	16,870 solve attempts	16870	results/stable_ac/ak3_stable_proof/archive/campaign_trials.jsonl.gz	row count campaign_trials	16870	YES
+camp_trials_solved	4.5/T4	0 of 16,870 attempts solved	0	results/stable_ac/ak3_stable_proof/archive/campaign_trials.jsonl.gz	solved count	0	YES
+camp_distinct_cand	4.5	6,058 distinct candidates	6058	results/stable_ac/ak3_stable_proof/archive/campaign_trials.jsonl.gz	distinct mkey in trials	6058	YES
+camp_floor_hist	4.5/Fig3/T4	campaign floor {13:16,844, 19:23, 20:3}	{13: 16844, 19: 23, 20: 3}	results/stable_ac/ak3_stable_proof/archive/campaign_trials.jsonl.gz	trial-level floor histogram	{13: 16844, 19: 23, 20: 3}	YES
+camp_facets	4.5/AppC	D1=5866, D2=5350, D3=5497, resolve=157	{'laneD:D1': 5866, 'laneD:D2': 5350, 'laneD:D3': 5497, 'resolve': 157}	results/stable_ac/ak3_stable_proof/archive/campaign_trials.jsonl.gz	trials by source	{'laneD:D1': 5866, 'laneD:D2': 5350, 'laneD:D3': 5497, 'resolve': 157}	YES
+camp_facet_sum	AppC	four facets sum to 16,870	16870	results/stable_ac/ak3_stable_proof/archive/campaign_trials.jsonl.gz	5866+5350+5497+157	16870	YES
+grid_count	4.5/T4	14 grid probes	14	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	row count campaign_grid_probes	14	YES
+laneA_count	T4	Lane A 2 probes	2	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	mitm_out rows	2	YES
+laneA_targets	T4/AppC	targets = 1,177	1177	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	mitm targets	[1177]	YES
+laneA_nodes	T4/AppC	2 @ 2,000,000 nodes/side	2000000	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	mitm nodes	[2000000]	YES
+laneA_floor	T4	Lane A floor 13	13	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	mitm min_total_len	[13]	YES
+laneB_count	T4	Lane B 6 probes	6	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	laneB rows	6	YES
+laneB_noderange	T4	6 @ 300k-800k nodes	300000-800000	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	min/max laneB nodes	300000-800000	YES
+appC_laneB_hero_nodes	AppC-grid	hero-8 probe Nodes = 300,000 (Appendix C table)	300000	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	actual hero-8 laneB node budgets	[800000]	NO
+appC_laneB_full_nodes	AppC-grid	full 95-word probe Nodes = 100,000 (Appendix C table)	100000	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	actual full-bank laneB node budgets	[300000]	NO
+laneC_count	T4	Lane C 6 probes	6	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	laneC rows	6	YES
+laneC_floors	T4/4.5/AppC	14/15/16 for n=3/4/5 (rep & textbook)	{'rep_n3': 14, 'rep_n4': 15, 'rep_n5': 16, 'textbook_n3': 14, 'textbook_n4': 15, 'textbook_n5': 16}	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	laneC floor by id	{'rep_n3': 14, 'textbook_n4': 15, 'textbook_n3': 14, 'rep_n4': 15, 'textbook_n5': 16, 'rep_n5': 16}	YES
+grid_solved	T4	0 of 14 grid probes solve	0	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	grid probes solved/hit	0	YES
+laneB_M3corr_steps	4.5/T6	corrected-family instance in 3 steps	3	results/stable_ac/ak3_stable_proof/certs	steps	3	YES
+laneB_ms0_steps	4.5/T6	two MS instances in 1	1	results/stable_ac/ak3_stable_proof/certs	steps	1	YES
+laneB_ms0stab_steps	4.5/T6	two MS instances in 1	1	results/stable_ac/ak3_stable_proof/certs	steps	1	YES
+local_census	4.5/4.8/T5	1,006-candidate floor census	1006	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	row count	1006	YES
+local_solve	4.5	1,937 solve attempts	1937	results/stable_ac/ak3_stable_proof/laneD/solve.jsonl	row count solve.jsonl	1937	YES
+local_solve_floor13	4.5	bottoms out at exactly 13 on every one	{13}	results/stable_ac/ak3_stable_proof/laneD/solve.jsonl	distinct min_total_len	[13]	YES
+local_solve_0	4.5	0 solved (local)	0	results/stable_ac/ak3_stable_proof/laneD/solve.jsonl	solved count	0	YES
+beam512_rows	4.6/T4	0 of 155 floor states	155	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	beam512 data rows	155	YES
+beam512_solved	4.6	solves 0 of 155	0	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	solved==True count	0	YES
+beam512_train	4.6/Fig8	155/155 of training-distribution	155	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	train_solved==True	155	YES
+beam512_trainmean	4.6/Fig8	mean path length 6.1	6.1	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	mean train_path_length	6.1	YES
+beam512_trainmax	4.6/Fig8	max 16	16	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	max train_path_length	16	YES
+beam512_trainrange	Fig8	range 2-16	2-16	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	min-max train_path_length	2-16	YES
+beam512_mode4	Fig8	mode length 4: 31 of 155	31	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	count train_path_length==4	31	YES
+beam2048_rows	4.6/T4	hardest 30-state core	30	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor_w2048.csv	beam2048 data rows	30	YES
+beam2048_solved	4.6	still solves 0	0	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor_w2048.csv	solved==True	0	YES
+beamE_total	4.5/RESULTS	0/155 + 0/30 (185 total)	185	results/stable_ac/ak3_stable_proof/runs/beam_laneD_floor.csv	155+30	185	YES
+cap_strat_rows	4.7/AppF	1,800 solve attempts	1800	experiments/test_cap/solve_stratified.jsonl	row count	1800	YES
+cap_strat_solved	4.7/AppF	0 of 1,800 attempts solved	0	experiments/test_cap/solve_stratified.jsonl	solved count	0	YES
+cap_strat_floor13	4.7/AppF	every one flooring at exactly total length 13	{13}	experiments/test_cap/solve_stratified.jsonl	distinct min_total_len	[13]	YES
+cap_strat_controls	AppF	plus 200 short controls	200	experiments/test_cap/solve_stratified.jsonl	rows total_len<=24	200	YES
+cap_strat_long	AppF	100 per bucket 25-40 (16 buckets = 1600)	1600	experiments/test_cap/solve_stratified.jsonl	rows total_len>=25	1600	YES
+cap_search_rows	AppF	0 of 32 runs solve	32	experiments/test_cap/search_L.jsonl	row count search_L	32	YES
+cap_search_solved	AppF	0 of 32 runs solve	0	experiments/test_cap/search_L.jsonl	solved count	0	YES
+cap_search_floors	AppF	Floors are 13 or 15	{13,15}	experiments/test_cap/search_L.jsonl	distinct min_total_len	[13, 15]	YES
+cap_search_identical	4.7/AppF	byte-identical in 16 of 16 (visited-count proxy)	16/16	experiments/test_cap/search_L.jsonl	pairs with identical visited-count AND floor across L24/L48	16/16	YES
+census_all13	4.8/T5	all 1,006 bottom out at 13	{13}	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	distinct min_total_len	[13]	YES
+census_two_classes	4.8/T5	exactly two canonical representatives	2	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	distinct floor_mkey	2	YES
+census_class1	4.8/T5	F hit 712 times	712	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	count of majority floor class	712	YES
+census_class2	4.8/T5	AK(3) reduced form hit 294	294	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	count of minority floor class	294	YES
+census_pct1_1dp	4.8/T5/G	712/1006 = 70.8%	70.8	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	round(712/1006*100,1)	70.8	YES
+census_pct2_1dp	4.8/T5/G	294/1006 = 29.2%	29.2	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	round(294/1006*100,1)	29.2	YES
+census_pct1_int	contrib/G	712/1006 = 71%	71	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	round(712/1006*100)	71	YES
+census_pct2_int	contrib/G	294/1006 = 29%	29	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	round(294/1006*100)	29	YES
+census_ratio	4.8/Fig5/G	reached 2.4x more often than AK(3)	2.4	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	round(712/294,1)	2.4	YES
+census_F_relators	T5/AppC	F = YYxyXX, YYYXXyx	YYxyXX,YYYXXyx	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	decoded majority floor_state	YYxyXX,YYYXXyx	YES
+census_AK3_relators_T5	T5	Class2 = YXYxyx, YYYxxxx (Table 5)	YXYxyx,YYYxxxx	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	decoded minority floor_state	YXYxyx,YYYxxxx	YES
+census_AK3_relators_AppC	AppC	AK(3) reduced = YXYxyx, YYYYxxx (Appendix C)	YXYxyx,YYYYxxx	results/stable_ac/ak3_stable_proof/laneD/floor_census.jsonl	decoded minority floor_state (raw)	YXYxyx,YYYxxxx	NO
+cert_appendixF_P25_to_AK3_steps	T6/AppB	appendixF_P25_to_AK3 steps 53	53	results/stable_ac/ak3_stable_proof/certs/appendixF_P25_to_AK3.json	len(steps)	53	YES
+cert_appendixF_P25_to_AK3_states	T6/AppB	appendixF_P25_to_AK3 states 54	54	results/stable_ac/ak3_stable_proof/certs/appendixF_P25_to_AK3.json	len(states)	54	YES
+cert_laneF_F_to_AK3_steps	T6/AppB	laneF_F_to_AK3 steps 21	21	results/stable_ac/ak3_stable_proof/certs/laneF_F_to_AK3.json	len(steps)	21	YES
+cert_laneF_F_to_AK3_states	T6/AppB	laneF_F_to_AK3 states 22	22	results/stable_ac/ak3_stable_proof/certs/laneF_F_to_AK3.json	len(states)	22	YES
+cert_laneB_M3corr_hero8_500_steps	T6/AppB	laneB_M3corr_hero8_500 steps 3	3	results/stable_ac/ak3_stable_proof/certs/laneB_M3corr_hero8_500.json	len(steps)	3	YES
+cert_laneB_M3corr_hero8_500_states	T6/AppB	laneB_M3corr_hero8_500 states 4	4	results/stable_ac/ak3_stable_proof/certs/laneB_M3corr_hero8_500.json	len(states)	4	YES
+cert_laneB_ms0_steps	T6/AppB	laneB_ms0 steps 1	1	results/stable_ac/ak3_stable_proof/certs/laneB_ms0.json	len(steps)	1	YES
+cert_laneB_ms0_states	T6/AppB	laneB_ms0 states 2	2	results/stable_ac/ak3_stable_proof/certs/laneB_ms0.json	len(states)	2	YES
+cert_laneB_ms0_stab_steps	T6/AppB	laneB_ms0_stab steps 1	1	results/stable_ac/ak3_stable_proof/certs/laneB_ms0_stab.json	len(steps)	1	YES
+cert_laneB_ms0_stab_states	T6/AppB	laneB_ms0_stab states 2	2	results/stable_ac/ak3_stable_proof/certs/laneB_ms0_stab.json	len(states)	2	YES
+appF_peak25	4.1/4.8/AppE	Appendix-F path peaks at total length 25	25	results/stable_ac/ak3_stable_proof/certs/appendixF_P25_to_AK3.json	max total relator length over states	25	YES
+fig5_laneF_peak25	Fig5	21-move F->AK(3) path peaks at total length 25 (Fig 5 caption)	25	results/stable_ac/ak3_stable_proof/certs/laneF_F_to_AK3.json	max total relator length over laneF states	17	NO
+appF_above_floor	4.8/AppE	25, i.e. 12 above the floor	12	results/stable_ac/ak3_stable_proof/certs/appendixF_P25_to_AK3.json	25-13	12	YES
+lit_7of7	4.1/T2/A	7 of 7 independent checks agree	7	results/stable_ac/ak3_stable_proof/literature_checks.json	count pass:true	7	YES
+lit_selftest_4of4	T2	4/4 match (hom-counter self-test)	4	results/stable_ac/ak3_stable_proof/literature_checks.json	count match:true	4	YES
+lit_14deletions	4.1/T2/AppE	all 14 deletions leave Z	14	results/stable_ac/ak3_stable_proof/literature_checks.json	count deletion entries	14	YES
+lit_14allZ	4.1/T2	14/14 present Z	True	results/stable_ac/ak3_stable_proof/literature_checks.json	all is_Z	True	YES
+lit_r7_homs	4.1/AppE	12 homomorphisms to S3	12	results/stable_ac/ak3_stable_proof/literature_checks.json	misprint del_r7 s3_homs	12	YES
+lit_r7_nonab	4.1/AppE	6 of them non-abelian	6	results/stable_ac/ak3_stable_proof/literature_checks.json	misprint del_r7 s3_nonabelian	6	YES
+lit_ak3_order1	4.1/T2	AK(3) presents the trivial group (order 1)	1	results/stable_ac/ak3_stable_proof/literature_checks.json	check3 order	1	YES
+lit_conv_B	4.1/T2	convention B matches	B	results/stable_ac/ak3_stable_proof/literature_checks.json	check4 matched_convention	B	YES
+laneA_151_leaves	3.5/4.5	all 151 in-cap catalog leaves	151	results/stable_ac/ak3_stable_proof/runs/leaf_class.jsonl	row count	151	YES
+laneA_all_trivial	3.5/4.5	proved plain-AC-trivial (all)	ac_trivial(151)	results/stable_ac/ak3_stable_proof/runs/leaf_class.jsonl	count class==ac_trivial	151	YES
+catalog_334	3.5	catalog of 334 presentations	334	results/stable_ac/ak3_stable_proof/catalog/catalog_leaves.jsonl	row count catalog_leaves	334	YES
+leaf_certs_14	AppB/T4/D	14 exported leaf certificates (count files)	14	results/stable_ac/ak3_stable_proof/catalog/certs	count catalog/certs/*.json files	14	YES
+leaf_certs_137	AppB/lim5	remaining 137 leaf classifications	137	results/stable_ac/ak3_stable_proof/runs/leaf_class.jsonl	151-14	137	YES
+budget_table4_upper	5-lim1/6/abstract	reached within ... up to 10^6 nodes per attempt	1000000	results/stable_ac/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz	max node budget among Table-4 grid probes (Lane A/C run at 2e6)	2000000	NO
+budget_laneD_max	AppD	Lane D solve budgets 2.5e4-2e5	200000	results/stable_ac/ak3_stable_proof/archive/campaign_trials.jsonl.gz	max Lane D trial budget (resolve pass runs at 3e5)	300000	NO
+doc_verifier_checks	3.6/AppB	20,947 checks with 0 failures	20947	RESULTS.md	RESULTS.md P6: '20,947 checks passed, 0 failed'	(documented in RESULTS.md)	DOC
+doc_beam_w512	4.6/E/I	beam width 512	512	RESULTS.md	RESULTS.md Lane E: 'beam width 512, 200 steps: 0/155'	(documented in RESULTS.md)	DOC
+doc_beam_w2048	4.6/E/I	beam width 2048	2048	RESULTS.md	RESULTS.md Lane E: 'Escalation @width 2048 ... 0/30'	(documented in RESULTS.md)	DOC
+doc_capA3_unique	4.7/AppF	250,397 unique candidates	250397	REPORT.md	test_cap REPORT.md Arm 3	(documented in REPORT.md)	DOC
+doc_capA3_over24	4.7/AppF	212,913 in the >24 region	212913	REPORT.md	test_cap REPORT.md Arm 3	(documented in REPORT.md)	DOC
+doc_lisitsa_159	4.1/AppE	159-transition AC path	159	RESULTS.md	RESULTS.md / Lisitsa Zenodo (literature count)	(documented in RESULTS.md)	DOC
+doc_numba_speedup	3.7/AppD	3.7-5.7x speedup	3.7-5.7	RESULTS.md	lessons/RESULTS numba differential	(documented in RESULTS.md)	DOC

@@ -45,7 +45,7 @@ Lane D's $16{,}870$ solve attempts (Table \ref{tab:lanes}) are drawn from four r
 The two canonical (signed-relabel) representatives of the length-13 floor of AK(3)'s AC-class (Table \ref{tab:floorcensus}) have relators, under the encoding $x\!\to\!1,\ X\!\to\!-1,\ y\!\to\!2,\ Y\!\to\!-2$:
 
 - $F$ — a 2-generator presentation AC-equivalent to AK(3): `YYxyXX` / `YYYXXyx`, i.e. $y^{-2}xyx^{-2}$ and $y^{-3}x^{-2}yx$ — the dominant attractor, $712/1006$ ($70.8\%$).
-- AK(3)'s own reduced form: `YXYxyx` / `YYYYxxx` — $294/1006$ ($29.2\%$).
+- AK(3)'s own reduced form: `YXYxyx` / `YYYxxxx` — $294/1006$ ($29.2\%$).
 
 Each census candidate is assigned by canonicalizing its terminal state and checking equality with one of these two representatives up to signed relabeling (\ref{app:glossary}); no third representative appears anywhere in the 1,006-candidate census.
 
@@ -57,18 +57,18 @@ Beyond Lane D's harvested-quotient attempts, the campaign ran $14$ additional gr
 |---|---|---|---|
 | A (MITM) | from AK(3), against 1,177 targets | 2,000,000 | 13 |
 | A (MITM) | from P25, against 1,177 targets | 2,000,000 | 13 |
-| B (StableSolver) | hero-8 bank, $g\le3$, gen-penalty 1 | 300,000 | 13 |
-| B (StableSolver) | hero-8 bank, $g\le3$, gen-penalty 2 | 300,000 | 13 |
-| B (StableSolver) | hero-8 bank, $g\le4$, gen-penalty 1 | 300,000 | 13 |
-| B (StableSolver) | hero-8 bank, $g\le4$, gen-penalty 2 | 300,000 | 13 |
-| B (StableSolver) | full 95-word bank, from AK(3) | 100,000 | 13 |
-| B (StableSolver) | full 95-word bank, from P25 | 100,000 | 13 |
-| C (trivial-$z$) | rep form, $n=3$ | 800,000–2,000,000 | 14 |
-| C (trivial-$z$) | rep form, $n=4$ | 800,000–2,000,000 | 15 |
-| C (trivial-$z$) | rep form, $n=5$ | 800,000–2,000,000 | 16 |
-| C (trivial-$z$) | textbook form, $n=3$ | 800,000–2,000,000 | 14 |
-| C (trivial-$z$) | textbook form, $n=4$ | 800,000–2,000,000 | 15 |
-| C (trivial-$z$) | textbook form, $n=5$ | 800,000–2,000,000 | 16 |
+| B (StableSolver) | hero-8 bank, $g\le3$, gen-penalty 2, from P25 | 800,000 | 13 |
+| B (StableSolver) | hero-8 bank, $g\le3$, gen-penalty 2, from AK(3) | 800,000 | 13 |
+| B (StableSolver) | hero-8 bank, $g\le3$, gen-penalty 1, from AK(3) | 800,000 | 13 |
+| B (StableSolver) | hero-8 bank, $g\le4$, gen-penalty 2, from AK(3) | 800,000 | 13 |
+| B (StableSolver) | full 95-word bank, $g\le3$, from AK(3) | 300,000 | 13 |
+| B (StableSolver) | full 95-word bank, $g\le3$, from P25 | 300,000 | 13 |
+| C (trivial-$z$) | rep form, $n=3$ | 1,500,000 | 14 |
+| C (trivial-$z$) | textbook form, $n=3$ | 2,000,000 | 14 |
+| C (trivial-$z$) | rep form, $n=4$ | 1,000,000 | 15 |
+| C (trivial-$z$) | textbook form, $n=4$ | 1,500,000 | 15 |
+| C (trivial-$z$) | rep form, $n=5$ | 800,000 | 16 |
+| C (trivial-$z$) | textbook form, $n=5$ | 1,000,000 | 16 |
 
 All 14 probes floor within their searched budgets; $0$ of 14 solve.
 

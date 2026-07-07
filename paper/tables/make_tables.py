@@ -743,12 +743,20 @@ def selfcheck(digest):
 # --------------------------------------------------------------------------
 # main
 # --------------------------------------------------------------------------
+# Column specs use p{} widths so the wide tables fit the NeurIPS text width
+# (paper.tex \input's these fragments verbatim; keep specs in sync with the
+# float wrappers in paper/sections/*.tex).
 TABLE_SPECS = [
-    (1, "litchecks", "lll", build_table1),
+    (1, "litchecks",
+     r"@{}p{0.17\textwidth}p{0.49\textwidth}p{0.27\textwidth}@{}", build_table1),
     (2, "arms", "lrrrrrc", build_table2),
-    (3, "wordbank", "lrll", build_table3),
-    (4, "lanes", "llrrl", build_table4),
-    (5, "certs", "llrr", build_table5),
+    (3, "wordbank",
+     r"@{}lr p{0.33\textwidth} p{0.26\textwidth}@{}", build_table3),
+    (4, "lanes",
+     r"@{}p{0.10\textwidth}p{0.35\textwidth}p{0.15\textwidth}p{0.08\textwidth}p{0.24\textwidth}@{}",
+     build_table4),
+    (5, "certs",
+     r"@{}p{0.27\textwidth}p{0.55\textwidth}rr@{}", build_table5),
     (6, "floorcensus", "lrrl", build_table6),
 ]
 
