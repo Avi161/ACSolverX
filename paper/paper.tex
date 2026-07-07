@@ -1,0 +1,65 @@
+\documentclass{article}
+
+% NeurIPS 2025 — default (anonymized review) mode.
+% Switch to \usepackage[preprint]{neurips_2025} to deanonymize.
+\usepackage{neurips_2025}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+\graphicspath{{figures/out/}}
+
+\newcommand{\pres}[2]{\langle #1 \mid #2 \rangle}
+\newcommand{\AK}{\mathrm{AK}}
+\newcommand{\MS}{\mathrm{MS}}
+\newcommand{\Ffloor}{F}
+
+\title{The Hump, Not the Cap: A Negative-Result Audit and a Structural
+  Floor for the Stable Andrews--Curtis Conjecture on $\AK(3)$}
+
+% Review mode: the style prints "Anonymous Author(s)".
+\author{%
+  Anonymous Author(s)\\
+  Affiliation\\
+  \texttt{email}\\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/02_background}
+\input{sections/03_methods}
+\input{sections/04_results}
+\input{sections/05_limitations}
+\input{sections/06_conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\newpage
+\appendix
+
+\input{sections/A_glossary}
+\input{sections/B_certificates}
+\input{sections/C_tables}
+\input{sections/D_reproducibility}
+\input{sections/E_misprint}
+\input{sections/F_cap}
+\input{sections/G_checklist}
+
+\end{document}

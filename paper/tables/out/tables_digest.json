@@ -1,0 +1,344 @@
+{
+  "table1_litchecks": {
+    "columns": [
+      "Check",
+      "Method",
+      "Result"
+    ],
+    "rows": [
+      [
+        "Self-test: hom-counter",
+        "CSP hom-counter vs. brute-force cross-check on 4 synthetic triple-relator systems (n\u22644 generators)",
+        "PASS (4/4 match)"
+      ],
+      [
+        "Check 1: corrected-W, all 14 deletions",
+        "SNF abelianization + Felsch coset enumeration on each single-relator deletion of corrected W",
+        "PASS (14/14 present Z)"
+      ],
+      [
+        "Check 2: misprinted-W is broken",
+        "S3 hom-counting gate: misprinted W' deletions {7,14} disagree (B3 vs Z) while corrected-W deletions {7,12,14} all agree (Z)",
+        "PASS (gate satisfied)"
+      ],
+      [
+        "Check 3: AK(3) is trivial",
+        "Felsch coset enumeration of the trivial subgroup (index = group order)",
+        "PASS (order 1)"
+      ],
+      [
+        "Check 4: M3 (Wirtinger) = P25",
+        "Reduced-word match of the Wirtinger-derived M3 transcription against P25 under commutator convention B",
+        "PASS (convention B matches)"
+      ],
+      [
+        "Check 5: corrected-W, 3-gen reduction",
+        "SNF + S3 hom-count + coset collapse of corrected-W's (x,y,z) 3-generator reduction",
+        "PASS (presents Z)"
+      ],
+      [
+        "Check 6: Remark 17 conjugation convention",
+        "Conjugation-convention match (g t g^-1) of r1/r2 against Remark 17",
+        "PASS (r1, r2 both match)"
+      ],
+      [
+        "Appendix-F 53-move replay [cert]",
+        "Replay of the printed AC' h-move sequence (Appendix F, arXiv:2408.15332v2), forward order/forward moves, from P25",
+        "Lands exactly on AK(3) (53 steps, 54 states; cert appendixF_P25_to_AK3.json)"
+      ],
+      [
+        "Lisitsa S2 external replay [log]",
+        "Independent replay of Zenodo 14567743's 159-transition AC path P25\u2192AK(3)",
+        "PASS \u2014 genuine bridge; 2 data defects found in the published artifact (line 91 corrupt relator, line 81 CONJ label swapped)"
+      ]
+    ],
+    "notes": [
+      "Rows 1-7 are read verbatim from results/stable_ac/ak3_stable_proof/literature_checks.json (7 entries, all pass:true). Raw JSON key names differ in spelling/case from this table's human-readable labels; see the run report for the exact key list.",
+      "Rows 8-9 are additional re-verifications NOT drawn from literature_checks.json: row 8 is sourced from the certificate results/stable_ac/ak3_stable_proof/certs/appendixF_P25_to_AK3.json (steps count read live from the cert); row 9 is sourced from the campaign log experiments/stable_ac/ak3_stable_proof/RESULTS.md, section 'PL(partial) -- Lisitsa S2 independently validated'.",
+      "Key-name check: this table's originally-expected key spellings ['check3_ak3_trivial', 'check4_M3_lemma11_P25', 'check5_corrected_family_Z'] do not appear verbatim in literature_checks.json; the actual keys (used above) are ['check3_AK3_trivial', 'check4_M3_to_P25', 'check5_correctedW_3gen']."
+    ]
+  },
+  "table2_arms": {
+    "columns": [
+      "Arm",
+      "Solved/640",
+      "Exhausted",
+      "Nodes (median)",
+      "Nodes (mean)",
+      "Path len (median)",
+      "\u2286 baseline?"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "634",
+        "6",
+        "11",
+        "1662.0",
+        "8",
+        "\u2014"
+      ],
+      [
+        "r1",
+        "619",
+        "21",
+        "13",
+        "2802.6",
+        "12",
+        "yes"
+      ],
+      [
+        "r2",
+        "602",
+        "38",
+        "13",
+        "3637.1",
+        "11",
+        "yes"
+      ],
+      [
+        "x",
+        "540",
+        "100",
+        "10",
+        "14680.7",
+        "9",
+        "yes"
+      ],
+      [
+        "y",
+        "523",
+        "117",
+        "10",
+        "21832.7",
+        "9",
+        "yes"
+      ]
+    ],
+    "notes": [
+      "\u2286 baseline? tests whether the arm's solved-idx set is a subset of the baseline's solved-idx set, computed directly from the 640-row calibration streams (not assumed).",
+      "Nodes/Path-len statistics are computed over SOLVED presentations only (budget-exhausted rows report nodes_explored == budget_nodes, which would otherwise dominate the mean)."
+    ]
+  },
+  "table3_wordbank": {
+    "columns": [
+      "Family",
+      "Count",
+      "Description",
+      "Theory grounding"
+    ],
+    "rows": [
+      [
+        "relhalf",
+        "17",
+        "Relator halves/rotations/inverses of the target's relators",
+        "Dumb baseline (no theorem)"
+      ],
+      [
+        "wk",
+        "17",
+        "y^-k x^-1 y x y isolation words",
+        "Thm 6/7 (arXiv:2408.15332)"
+      ],
+      [
+        "wstar",
+        "5",
+        "y^-1 x y x^-1, plus automorphism images",
+        "Thm 3 (arXiv:2408.15332)"
+      ],
+      [
+        "conj",
+        "14",
+        "Short conjugates g x g^-1, g y g^-1",
+        "Dumb baseline (no theorem)"
+      ],
+      [
+        "comm",
+        "6",
+        "Commutators and doubles",
+        "Dumb baseline (no theorem)"
+      ],
+      [
+        "ms",
+        "3",
+        "MS(n,w) library words",
+        "Miller-Schupp family"
+      ],
+      [
+        "brute",
+        "33",
+        "All freely-reduced words of length \u22643",
+        "Exhaustive enumeration (no theorem)"
+      ],
+      [
+        "control",
+        "2",
+        "The target's own relators r1, r2",
+        "Sanity control (z=r_i)"
+      ],
+      [
+        "Total",
+        "97",
+        "",
+        ""
+      ]
+    ],
+    "notes": [
+      "Counts for the 7 literature-grounded families (95 words total) come from word_bank.json's by_family; the 2 control words (z=r1, z=r2) are added at runtime and counted here from runs/ak3_rep_100000.jsonl's family={'control'} rows.",
+      "Verification: family counts sum to 97, matching the 97-row ak3_rep_100000.jsonl (one row per word per form) (match)."
+    ],
+    "extra": {
+      "total": 97,
+      "n_runtime_rows": 97,
+      "match": true
+    }
+  },
+  "table4_lanes": {
+    "columns": [
+      "Lane",
+      "Method",
+      "Trials/Probes",
+      "Solved",
+      "Floor reached"
+    ],
+    "rows": [
+      [
+        "A: MITM",
+        "Meet-in-the-middle ball search from AK(3)/P25 (targets = 1,177 certified stably-trivial states)",
+        "2 @ 2,000,000 nodes/side",
+        "0/2",
+        "13"
+      ],
+      [
+        "B: StableSolver",
+        "Best-first search over substitution + stabilize + eliminate moves",
+        "6 @ 300k-800k nodes",
+        "0/6",
+        "13"
+      ],
+      [
+        "C: trivial-z",
+        "n-generator (n=3,4,5) trivial-z stabilization + plain greedy substitution, rep & textbook forms",
+        "6 @ 800k-2,000,000 nodes",
+        "0/6",
+        "14-16 (rep_n3=14, rep_n4=15, rep_n5=16, textbook_n3=14, textbook_n4=15, textbook_n5=16)"
+      ],
+      [
+        "D: plateau-elim",
+        "Harvest visited stabilized states, Lemma-11 eliminate, dedupe by signed-relabel symmetry, greedy re-solve every fresh 2-gen quotient",
+        "16,870 trials / 6,058 distinct (180,645 harvested)",
+        "0/16,870",
+        "13:16,844; 19:23; 20:3"
+      ],
+      [
+        "E: RL beam",
+        "Beam search with a pretrained 2-generator PPO policy (zero-shot), widths 512 and 2048",
+        "155 + 30",
+        "0/155 + 0/30",
+        "n/a (beam search records no min-total-length floor)"
+      ]
+    ],
+    "notes": [
+      "Trials/Solved/floor counts for lanes A-D are computed directly from archive/campaign_grid_probes.jsonl.gz (A, B, C) and archive/campaign_trials.jsonl.gz (D), cross-checked against collect_summary.json's authoritative totals (trials=16870, candidates=180645, grid_probes=14); all matched.",
+      "Lane D's source-facet breakdown (trial counts): laneD:D1=5866, laneD:D2=5350, laneD:D3=5497, resolve=157.",
+      "Lane E counts are row counts of runs/beam_laneD_floor.csv (155) and runs/beam_laneD_floor_w2048.csv (30); both have solved=False on every row."
+    ],
+    "extra": {
+      "src_facets": {
+        "laneD:D1": 5866,
+        "laneD:D2": 5350,
+        "laneD:D3": 5497,
+        "resolve": 157
+      },
+      "floor_hist_D": {
+        "13": 16844,
+        "19": 23,
+        "20": 3
+      },
+      "beam1_solved": 0,
+      "beam2_solved": 0,
+      "facet_mismatch": {}
+    }
+  },
+  "table5_certs": {
+    "columns": [
+      "Certificate",
+      "Claim",
+      "Steps",
+      "States"
+    ],
+    "rows": [
+      [
+        "appendixF_P25_to_AK3",
+        "P25 is AC-equivalent to AK(3) via the 53 printed Appendix-F h-moves (arXiv:2408.15332v2).",
+        "53",
+        "54"
+      ],
+      [
+        "laneB_M3corr_hero8_500",
+        "Stable-AC trivialization of M3corr_hero8 found by StableSolver.",
+        "3",
+        "4"
+      ],
+      [
+        "laneB_ms0",
+        "Stable-AC trivialization of ms0_plain found by StableSolver.",
+        "1",
+        "2"
+      ],
+      [
+        "laneB_ms0_stab",
+        "Stable-AC trivialization of ms0_stab found by StableSolver.",
+        "1",
+        "2"
+      ],
+      [
+        "laneF_F_to_AK3",
+        "F = <x,y | YYxyXX, YYYXXyx> is plain-AC-equivalent to AK(3) (up to signed relabeling); explicit substitution path found by greedy search.",
+        "21",
+        "22"
+      ]
+    ],
+    "notes": [
+      "All 5 certificates pass both experiments/stable_ac/ak3_stable_proof/verify_certificate.py and the independently-authored independent_verifier.py (confirmed live: verify_certificate.py=True, independent_verifier.py=True)."
+    ],
+    "extra": {
+      "verify_ok": {
+        "verify_certificate.py": true,
+        "independent_verifier.py": true
+      },
+      "step_mismatch": []
+    }
+  },
+  "table6_floorcensus": {
+    "columns": [
+      "Floor class",
+      "Count",
+      "Share",
+      "Relators"
+    ],
+    "rows": [
+      [
+        "Class 1 (= laneF's F)",
+        "712",
+        "70.8%",
+        "YYxyXX, YYYXXyx"
+      ],
+      [
+        "Class 2 (= AK(3))",
+        "294",
+        "29.2%",
+        "YXYxyx, YYYxxxx"
+      ]
+    ],
+    "notes": [
+      "Floor class = the greedy search's canonical terminal state (floor_mkey, min over signed relabelings) after re-solving every merged Lane-D quotient at a 25,000-node budget; all 1,006 probes bottom out at total relator length 13 in exactly 2 distinct classes.",
+      "Relator words translate the int-array floor_state (1=x, -1=X, 2=y, -2=Y).",
+      "Identity check (mitm.symmetry_keys, live): the majority class's floor state is the laneF_F_to_AK3 cert's F start state (mod signed relabeling); the minority class's floor state is AK(3) itself (mod signed relabeling)."
+    ]
+  },
+  "_selfcheck": {
+    "pass": true,
+    "mismatches": []
+  }
+}

@@ -1,0 +1,16 @@
+\begin{tabular}{llrr}
+\toprule
+Certificate & Claim & Steps & States \\
+\midrule
+appendixF\_P25\_to\_AK3 & P25 is AC-equivalent to AK(3) via the 53 printed Appendix-F h-moves (arXiv:2408.15332v2). & 53 & 54 \\
+laneB\_M3corr\_hero8\_500 & Stable-AC trivialization of M3corr\_hero8 found by StableSolver. & 3 & 4 \\
+laneB\_ms0 & Stable-AC trivialization of ms0\_plain found by StableSolver. & 1 & 2 \\
+laneB\_ms0\_stab & Stable-AC trivialization of ms0\_stab found by StableSolver. & 1 & 2 \\
+laneF\_F\_to\_AK3 & F = \textless{}x,y | YYxyXX, YYYXXyx\textgreater{} is plain-AC-equivalent to AK(3) (up to signed relabeling); explicit substitution path found by greedy search. & 21 & 22 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize
+All 5 certificates pass both experiments/stable\_ac/ak3\_stable\_proof/verify\_certificate.py and the independently-authored independent\_verifier.py (confirmed live: verify\_certificate.py=True, independent\_verifier.py=True).\par
+}

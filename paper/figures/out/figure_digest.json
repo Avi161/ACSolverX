@@ -1,0 +1,578 @@
+{
+  "ak3_plateau": {
+    "_figure": "ak3_plateau",
+    "checks": {
+      "rep_1000000_hist": {
+        "computed": {
+          "13": 88,
+          "14": 2,
+          "15": 7
+        },
+        "expected": {
+          "13": 88,
+          "14": 2,
+          "15": 7
+        },
+        "match": true
+      },
+      "rep_1000000_nrows": {
+        "computed": 97,
+        "expected": 97,
+        "match": true
+      },
+      "rep_1000000_solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "rep_100000_hist": {
+        "computed": {
+          "13": 79,
+          "14": 11,
+          "15": 7
+        },
+        "expected": {
+          "13": 79,
+          "14": 11,
+          "15": 7
+        },
+        "match": true
+      },
+      "rep_100000_nrows": {
+        "computed": 97,
+        "expected": 97,
+        "match": true
+      },
+      "rep_100000_solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "textbook_1000000_hist": {
+        "computed": {
+          "13": 86,
+          "14": 2,
+          "15": 9
+        },
+        "expected": {
+          "13": 86,
+          "14": 2,
+          "15": 9
+        },
+        "match": true
+      },
+      "textbook_1000000_nrows": {
+        "computed": 97,
+        "expected": 97,
+        "match": true
+      },
+      "textbook_1000000_solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "textbook_100000_hist": {
+        "computed": {
+          "13": 77,
+          "14": 11,
+          "15": 9
+        },
+        "expected": {
+          "13": 77,
+          "14": 11,
+          "15": 9
+        },
+        "match": true
+      },
+      "textbook_100000_nrows": {
+        "computed": 97,
+        "expected": 97,
+        "match": true
+      },
+      "textbook_100000_solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      }
+    },
+    "hists": {
+      "rep_100000": {
+        "13": 79,
+        "14": 11,
+        "15": 7
+      },
+      "rep_1000000": {
+        "13": 88,
+        "14": 2,
+        "15": 7
+      },
+      "textbook_100000": {
+        "13": 77,
+        "14": 11,
+        "15": 9
+      },
+      "textbook_1000000": {
+        "13": 86,
+        "14": 2,
+        "15": 9
+      }
+    },
+    "solved": {
+      "rep_100000": 0,
+      "rep_1000000": 0,
+      "textbook_100000": 0,
+      "textbook_1000000": 0
+    },
+    "trivial_length": 3
+  },
+  "arms_bar": {
+    "_figure": "arms_bar",
+    "baseline": 634,
+    "checks": {
+      "baseline": {
+        "computed": 634,
+        "expected": 634,
+        "match": true
+      },
+      "n_rows_baseline": {
+        "computed": 640,
+        "expected": 640,
+        "match": true
+      },
+      "r1": {
+        "computed": 619,
+        "expected": 619,
+        "match": true
+      },
+      "r2": {
+        "computed": 602,
+        "expected": 602,
+        "match": true
+      },
+      "union": {
+        "computed": 620,
+        "expected": 620,
+        "match": true
+      },
+      "x": {
+        "computed": 540,
+        "expected": 540,
+        "match": true
+      },
+      "y": {
+        "computed": 523,
+        "expected": 523,
+        "match": true
+      }
+    },
+    "dataset_size": 640,
+    "r1": 619,
+    "r2": 602,
+    "union": 620,
+    "x": 540,
+    "y": 523
+  },
+  "arms_subset": {
+    "_figure": "arms_subset",
+    "baseline_size": 634,
+    "checks": {
+      "baseline_size": {
+        "computed": 634,
+        "expected": 634,
+        "match": true
+      },
+      "intersection_all_arms": {
+        "computed": 523,
+        "expected": 523,
+        "match": true
+      },
+      "r1_minus_baseline": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "r2_minus_baseline": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "x_minus_baseline": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "y_minus_baseline": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      }
+    },
+    "intersection_all_arms": 523,
+    "per_arm": {
+      "r1": {
+        "baseline_only_remainder": 15,
+        "in_baseline": 619,
+        "not_in_baseline": 0
+      },
+      "r2": {
+        "baseline_only_remainder": 32,
+        "in_baseline": 602,
+        "not_in_baseline": 0
+      },
+      "x": {
+        "baseline_only_remainder": 94,
+        "in_baseline": 540,
+        "not_in_baseline": 0
+      },
+      "y": {
+        "baseline_only_remainder": 111,
+        "in_baseline": 523,
+        "not_in_baseline": 0
+      }
+    }
+  },
+  "campaign_floor": {
+    "_figure": "campaign_floor",
+    "checks": {
+      "floor_hist": {
+        "computed": {
+          "13": 16844,
+          "19": 23,
+          "20": 3
+        },
+        "expected": {
+          "13": 16844,
+          "19": 23,
+          "20": 3
+        },
+        "match": true
+      },
+      "laneC_floor_by_ngen": {
+        "computed": {
+          "3": 14,
+          "4": 15,
+          "5": 16
+        },
+        "expected": {
+          "3": 14,
+          "4": 15,
+          "5": 16
+        },
+        "match": true
+      },
+      "lane_c_trivial_z_floors": {
+        "computed": [
+          14
+        ],
+        "expected": [
+          14
+        ],
+        "match": true
+      },
+      "lane_c_trivial_z_nrows": {
+        "computed": 2,
+        "expected": 2,
+        "match": true
+      },
+      "n_trials": {
+        "computed": 16870,
+        "expected": 16870,
+        "match": true
+      },
+      "solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      }
+    },
+    "floor_hist": {
+      "13": 16844,
+      "19": 23,
+      "20": 3
+    },
+    "laneC_floor_by_ngen": {
+      "3": 14,
+      "4": 15,
+      "5": 16
+    },
+    "lane_c_trivial_z_floors": [
+      14
+    ],
+    "n_trials": 16870,
+    "solved": 0
+  },
+  "cap_hump": {
+    "_figure": "cap_hump",
+    "checks": {
+      "min_total_len_max": {
+        "computed": 13,
+        "expected": 13,
+        "match": true
+      },
+      "min_total_len_min": {
+        "computed": 13,
+        "expected": 13,
+        "match": true
+      },
+      "n_rows": {
+        "computed": 1800,
+        "expected": 1800,
+        "match": true
+      },
+      "solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      }
+    },
+    "min_total_len_max": 13,
+    "min_total_len_min": 13,
+    "n_rows": 1800,
+    "solved": 0,
+    "total_len_buckets": {
+      "13": 1,
+      "14": 5,
+      "15": 67,
+      "16": 66,
+      "17": 61,
+      "25": 100,
+      "26": 100,
+      "27": 100,
+      "28": 100,
+      "29": 100,
+      "30": 100,
+      "31": 100,
+      "32": 100,
+      "33": 100,
+      "34": 100,
+      "35": 100,
+      "36": 100,
+      "37": 100,
+      "38": 100,
+      "39": 100,
+      "40": 100
+    },
+    "trivial_length": 3
+  },
+  "discrepancies": [],
+  "hard_ties": {
+    "_figure": "hard_ties",
+    "checks": {
+      "ms610_hist": {
+        "computed": {
+          "16": 2,
+          "17": 21,
+          "18": 12,
+          "19": 34,
+          "20": 10,
+          "21": 14,
+          "23": 4
+        },
+        "expected": {
+          "16": 2,
+          "17": 21,
+          "18": 12,
+          "19": 34,
+          "20": 10,
+          "21": 14,
+          "23": 4
+        },
+        "match": true
+      },
+      "ms610_solvers": {
+        "computed": {
+          "XYYYYYYxyyyyyyy": 61082,
+          "r1": 61082
+        },
+        "expected": {
+          "XYYYYYYxyyyyyyy": 61082,
+          "r1": 61082
+        },
+        "match": true
+      },
+      "ms625_hist": {
+        "computed": {
+          "17": 2,
+          "18": 16,
+          "19": 41,
+          "20": 20,
+          "21": 7,
+          "22": 6,
+          "25": 2
+        },
+        "expected": {
+          "17": 2,
+          "18": 16,
+          "19": 41,
+          "20": 20,
+          "21": 7,
+          "22": 6,
+          "25": 2
+        },
+        "match": true
+      },
+      "ms625_solvers": {
+        "computed": {
+          "XYYYYYYYxyyyyyyyy": 77395,
+          "r1": 77395,
+          "r2": 80111,
+          "xYXyxyy": 80111
+        },
+        "expected": {
+          "XYYYYYYYxyyyyyyyy": 77395,
+          "r1": 77395,
+          "r2": 80111,
+          "xYXyxyy": 80111
+        },
+        "match": true
+      }
+    },
+    "ms610": {
+      "hist": {
+        "16": 2,
+        "17": 21,
+        "18": 12,
+        "19": 34,
+        "20": 10,
+        "21": 14,
+        "23": 4
+      },
+      "n_rows": 99,
+      "n_solved": 2,
+      "solvers": {
+        "XYYYYYYxyyyyyyy": 61082,
+        "r1": 61082
+      }
+    },
+    "ms625": {
+      "hist": {
+        "17": 2,
+        "18": 16,
+        "19": 41,
+        "20": 20,
+        "21": 7,
+        "22": 6,
+        "25": 2
+      },
+      "n_rows": 98,
+      "n_solved": 4,
+      "solvers": {
+        "XYYYYYYYxyyyyyyyy": 77395,
+        "r1": 77395,
+        "r2": 80111,
+        "xYXyxyy": 80111
+      }
+    }
+  },
+  "rl_gap": {
+    "_figure": "rl_gap",
+    "checks": {
+      "eval_solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "n": {
+        "computed": 155,
+        "expected": 155,
+        "match": true
+      },
+      "tpl_max": {
+        "computed": 16,
+        "expected": 16,
+        "match": true
+      },
+      "tpl_min": {
+        "computed": 2,
+        "expected": 2,
+        "match": true
+      },
+      "train_solved": {
+        "computed": 155,
+        "expected": 155,
+        "match": true
+      },
+      "w2048_eval_solved": {
+        "computed": 0,
+        "expected": 0,
+        "match": true
+      },
+      "w2048_n": {
+        "computed": 30,
+        "expected": 30,
+        "match": true
+      }
+    },
+    "eval_solved": 0,
+    "n": 155,
+    "tpl_hist": {
+      "2": 6,
+      "3": 26,
+      "4": 31,
+      "5": 12,
+      "6": 25,
+      "7": 12,
+      "8": 12,
+      "9": 6,
+      "10": 12,
+      "11": 2,
+      "12": 6,
+      "14": 3,
+      "16": 2
+    },
+    "tpl_max": 16,
+    "tpl_mean": 6.103,
+    "tpl_min": 2,
+    "train_solved": 155,
+    "w2048_eval_solved": 0,
+    "w2048_n": 30
+  },
+  "two_floors": {
+    "AK3": {
+      "count": 294,
+      "mkey": "0305030604060003030303060606"
+    },
+    "F": {
+      "count": 712,
+      "mkey": "0303050406060003030306060405"
+    },
+    "_figure": "two_floors",
+    "cert_end_words": [
+      "YXYxyx",
+      "YYYYxxx"
+    ],
+    "cert_start_words": [
+      "YYxyXX",
+      "YYYXXyx"
+    ],
+    "cert_steps": 21,
+    "checks": {
+      "AK3_count": {
+        "computed": 294,
+        "expected": 294,
+        "match": true
+      },
+      "F_count": {
+        "computed": 712,
+        "expected": 712,
+        "match": true
+      },
+      "cert_steps": {
+        "computed": 21,
+        "expected": 21,
+        "match": true
+      },
+      "n_distinct_floors": {
+        "computed": 2,
+        "expected": 2,
+        "match": true
+      },
+      "n_rows": {
+        "computed": 1006,
+        "expected": 1006,
+        "match": true
+      }
+    },
+    "n_rows": 1006
+  }
+}

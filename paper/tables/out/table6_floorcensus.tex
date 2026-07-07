@@ -1,0 +1,15 @@
+\begin{tabular}{lrrl}
+\toprule
+Floor class & Count & Share & Relators \\
+\midrule
+Class 1 (= laneF's F) & 712 & 70.8\% & YYxyXX, YYYXXyx \\
+Class 2 (= AK(3)) & 294 & 29.2\% & YXYxyx, YYYxxxx \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize
+Floor class = the greedy search's canonical terminal state (floor\_mkey, min over signed relabelings) after re-solving every merged Lane-D quotient at a 25,000-node budget; all 1,006 probes bottom out at total relator length 13 in exactly 2 distinct classes.\par
+Relator words translate the int-array floor\_state (1=x, -1=X, 2=y, -2=Y).\par
+Identity check (mitm.symmetry\_keys, live): the majority class's floor state is the laneF\_F\_to\_AK3 cert's F start state (mod signed relabeling); the minority class's floor state is AK(3) itself (mod signed relabeling).\par
+}
