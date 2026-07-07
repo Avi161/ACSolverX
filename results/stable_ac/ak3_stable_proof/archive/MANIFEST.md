@@ -9,8 +9,11 @@ the same searches.
 - `campaign_candidates.jsonl.gz` — 180,645 rows. One per DISTINCT reachable
   Lemma-11 quotient of the AK(3) stable class (deduped by symmetry key `mkey`; shortest
   form kept), whether or not it was solve-attempted. This is the quotient pool itself.
-- `campaign_trials.jsonl.gz` — 16,841 rows (0 solved).
-  One per solve ATTEMPT, with the full outcome.
+- `campaign_trials.jsonl.gz` — 16,870 rows (0 solved).
+  One per Lane-D / high-L solve ATTEMPT, with the full outcome.
+- `campaign_grid_probes.jsonl.gz` — 14 rows. One per B/C grid
+  probe (StableSolver @800k / dumb-stabilization n=3-5 / MITM-outward @2M) — expensive
+  runs whose negatives are worth keeping so nobody re-runs them.
 
 ## Schema — campaign_candidates.jsonl.gz
 

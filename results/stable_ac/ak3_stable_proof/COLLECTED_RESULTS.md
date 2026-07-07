@@ -25,7 +25,7 @@ Re-solves the shortest candidates at a raised per-relator cap to test whether th
 
 | arm (L) | attempted | solved | max_rel_len hist | floor hist |
 |---|---|---|---|---|
-| L=40 | 128 | 0 | `21:126  24:2` | `13:128` |
+| L=40 | 157 | 0 | `21:154  24:3` | `13:157` |
 
 - L=40: peak relator length **24** → cap WAS pressed (max_rel_len up to 24) — headroom is load-bearing
 
@@ -37,7 +37,8 @@ Re-solves the shortest candidates at a raised per-relator cap to test whether th
 ## Data archive (reusable per-record datasets)
 
 - `campaign_candidates.jsonl.gz` — 180,645 distinct quotients (relators + provenance)
-- `campaign_trials.jsonl.gz` — 16,841 solve trials (0 solved; each row = relators + budget + cap + outcome)
+- `campaign_trials.jsonl.gz` — 16,870 solve trials (0 solved; each row = relators + budget + cap + outcome)
+- `campaign_grid_probes.jsonl.gz` — 14 B/C grid probes (StableSolver / dumb-stabilization / MITM, full per-probe record)
 - `MANIFEST.md` — full schema + reuse notes
 
 Every relator tested and the budget/cap it ran to is preserved here, so a future attempt can skip known negatives instead of recomputing them.

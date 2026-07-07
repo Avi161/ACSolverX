@@ -105,15 +105,15 @@
   "resolve": {
     "40": {
       "file": "resolve_L40.jsonl",
-      "attempted": 128,
+      "attempted": 157,
       "solved_count": 0,
       "solved_recs": [],
       "maxrel_hist": {
-        "21": 126,
-        "24": 2
+        "21": 154,
+        "24": 3
       },
       "floor_hist": {
-        "13": 128
+        "13": 157
       }
     }
   },
@@ -134,9 +134,11 @@
   "theorem": false,
   "archive": {
     "candidates": 180645,
-    "trials": 16841,
+    "trials": 16870,
     "trials_solved": 0,
+    "grid_probes": 14,
     "candidates_file": "/content/drive/MyDrive/ak3_stable_proof/archive/campaign_candidates.jsonl.gz",
-    "trials_file": "/content/drive/MyDrive/ak3_stable_proof/archive/campaign_trials.jsonl.gz"
+    "trials_file": "/content/drive/MyDrive/ak3_stable_proof/archive/campaign_trials.jsonl.gz",
+    "grid_file": "/content/drive/MyDrive/ak3_stable_proof/archive/campaign_grid_probes.jsonl.gz"
   }
 }
