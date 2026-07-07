@@ -1,0 +1,142 @@
+{
+  "root": "/content/drive/MyDrive/ak3_stable_proof",
+  "boxes": {
+    "D1": {
+      "kind": "laneD",
+      "combos_done": 20,
+      "merged_unique": 173083,
+      "merged_tl_hist": {
+        "13": 1,
+        "14": 5,
+        "15": 70,
+        "16": 75,
+        "17": 402,
+        "18": 463,
+        "19": 2321,
+        "20": 2529,
+        "21": 13162,
+        "22": 14158,
+        "23": 69218,
+        "24": 70679
+      },
+      "attempted": 5866,
+      "solved_count": 0,
+      "solved_recs": [],
+      "floor_hist": {
+        "13": 5864,
+        "19": 2
+      },
+      "cert_files": []
+    },
+    "D2": {
+      "kind": "laneD",
+      "combos_done": 20,
+      "merged_unique": 76307,
+      "merged_tl_hist": {
+        "13": 1,
+        "14": 5,
+        "15": 70,
+        "16": 73,
+        "17": 386,
+        "18": 442,
+        "19": 2122,
+        "20": 2251,
+        "21": 10097,
+        "22": 9546,
+        "23": 32575,
+        "24": 18739
+      },
+      "attempted": 5350,
+      "solved_count": 0,
+      "solved_recs": [],
+      "floor_hist": {
+        "13": 5348,
+        "19": 2
+      },
+      "cert_files": []
+    },
+    "D3": {
+      "kind": "laneD",
+      "combos_done": 190,
+      "merged_unique": 87939,
+      "merged_tl_hist": {
+        "13": 1,
+        "14": 5,
+        "15": 70,
+        "16": 74,
+        "17": 400,
+        "18": 446,
+        "19": 2204,
+        "20": 2297,
+        "21": 11379,
+        "22": 9444,
+        "23": 39416,
+        "24": 22203
+      },
+      "attempted": 5497,
+      "solved_count": 0,
+      "solved_recs": [],
+      "floor_hist": {
+        "13": 5475,
+        "19": 19,
+        "20": 3
+      },
+      "cert_files": []
+    }
+  },
+  "grids": {
+    "B": {
+      "kind": "grid",
+      "files": [
+        "box_B.jsonl"
+      ],
+      "probes": 6,
+      "solved_or_hit": []
+    },
+    "C": {
+      "kind": "grid",
+      "files": [
+        "box_C.jsonl"
+      ],
+      "probes": 8,
+      "solved_or_hit": []
+    }
+  },
+  "resolve": {
+    "40": {
+      "file": "resolve_L40.jsonl",
+      "attempted": 128,
+      "solved_count": 0,
+      "solved_recs": [],
+      "maxrel_hist": {
+        "21": 126,
+        "24": 2
+      },
+      "floor_hist": {
+        "13": 128
+      }
+    }
+  },
+  "census": null,
+  "union": {
+    "distinct_quotients": 180645,
+    "distinct_attempted": 6058,
+    "floor_hist": {
+      "13": 16687,
+      "19": 23,
+      "20": 3
+    },
+    "lane_d_solved": []
+  },
+  "resolve_solved": [],
+  "grid_hits": [],
+  "total_solved": 0,
+  "theorem": false,
+  "archive": {
+    "candidates": 180645,
+    "trials": 16841,
+    "trials_solved": 0,
+    "candidates_file": "/content/drive/MyDrive/ak3_stable_proof/archive/campaign_candidates.jsonl.gz",
+    "trials_file": "/content/drive/MyDrive/ak3_stable_proof/archive/campaign_trials.jsonl.gz"
+  }
+}

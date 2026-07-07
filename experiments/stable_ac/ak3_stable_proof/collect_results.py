@@ -270,8 +270,27 @@ def emit_archive(root, archive_dir, gzip_out=False):
                     for rec in read_jsonl(os.path.join(rdir, fn)):
                         _emit_trial(f, rec, "resolve", rec.get("L"))
 
+    # ---- grid probes: B/C box_*.jsonl (expensive StableSolver/MITM negatives) ----
+    gpath = os.path.join(archive_dir, "campaign_grid_probes.jsonl")
+    fh, gpath_w = _open_out(gpath, gzip_out)
+    n_grid = 0
+    with fh as f:
+        for box in GRID_BOXES:
+            bdir = os.path.join(root, box)
+            if not os.path.isdir(bdir):
+                continue
+            for fn in sorted(os.listdir(bdir)):
+                if (fn.startswith(f"box_{box}") and fn.endswith(".jsonl")
+                        and "_quick" not in fn):
+                    for rec in read_jsonl(os.path.join(bdir, fn)):
+                        row = dict(rec)
+                        row["box"] = box
+                        f.write(json.dumps(row) + "\n")
+                        n_grid += 1
+
     counts = {"candidates": len(cands), "trials": n_trials, "trials_solved": n_solved,
-              "candidates_file": cpath_w, "trials_file": tpath_w}
+              "grid_probes": n_grid, "candidates_file": cpath_w,
+              "trials_file": tpath_w, "grid_file": gpath_w}
     _write_manifest(archive_dir, counts, gzip_out)
     return counts
 
@@ -290,7 +309,10 @@ the same searches.
   Lemma-11 quotient of the AK(3) stable class (deduped by symmetry key `mkey`; shortest
   form kept), whether or not it was solve-attempted. This is the quotient pool itself.
 - `campaign_trials{ext}` — {counts['trials']:,} rows ({counts['trials_solved']} solved).
-  One per solve ATTEMPT, with the full outcome.
+  One per Lane-D / high-L solve ATTEMPT, with the full outcome.
+- `campaign_grid_probes{ext}` — {counts.get('grid_probes', 0)} rows. One per B/C grid
+  probe (StableSolver @800k / dumb-stabilization n=3-5 / MITM-outward @2M) — expensive
+  runs whose negatives are worth keeping so nobody re-runs them.
 
 ## Schema — campaign_candidates{ext}
 
@@ -506,6 +528,9 @@ def render_md(S):
           "quotients (relators + provenance)")
         w(f"- `{os.path.basename(a['trials_file'])}` — {a['trials']:,} solve trials "
           f"({a['trials_solved']} solved; each row = relators + budget + cap + outcome)")
+        if a.get("grid_file"):
+            w(f"- `{os.path.basename(a['grid_file'])}` — {a.get('grid_probes', 0)} B/C "
+              "grid probes (StableSolver / dumb-stabilization / MITM, full per-probe record)")
         w("- `MANIFEST.md` — full schema + reuse notes")
         w("")
         w("Every relator tested and the budget/cap it ran to is preserved here, so a "
@@ -550,6 +575,15 @@ def _selftest():
                                 "max_rel_lens": [12, 21], "solved": False}) + "\n")
             f.write(json.dumps({"mkey": "m2", "min_total_len": 13, "max_rel_len": 20,
                                 "max_rel_lens": [13, 20], "solved": False}) + "\n")
+        # B/C grid boxes: 2 probes total, 0 solved/hit
+        os.makedirs(os.path.join(d, "B"))
+        with open(os.path.join(d, "B", "box_B.jsonl"), "w") as f:
+            f.write(json.dumps({"night_id": "laneB_AK3_hero8_g3_p2@800000",
+                                "solved": False, "nodes": 800000, "min_total_len": 13}) + "\n")
+        os.makedirs(os.path.join(d, "C"))
+        with open(os.path.join(d, "C", "box_C.jsonl"), "w") as f:
+            f.write(json.dumps({"night_id": "laneC_textbook_n3@2000000",
+                                "solved": False, "nodes": 2000000, "min_total_len": 14}) + "\n")
 
         S = build_summary(d)
         assert S["union"]["distinct_quotients"] == 4, S["union"]["distinct_quotients"]  # m1,m2,shared,m3
@@ -568,6 +602,9 @@ def _selftest():
         assert arch["candidates"] == 4, arch["candidates"]
         assert arch["trials"] == 5, arch["trials"]
         assert arch["trials_solved"] == 0, arch["trials_solved"]
+        assert arch["grid_probes"] == 2, arch["grid_probes"]
+        grid_lines = list(read_jsonl(os.path.join(d, "archive", "campaign_grid_probes.jsonl")))
+        assert len(grid_lines) == 2 and {g["box"] for g in grid_lines} == {"B", "C"}
         cand_lines = list(read_jsonl(os.path.join(d, "archive", "campaign_candidates.jsonl")))
         assert len(cand_lines) == 4
         shared = next(c for c in cand_lines if c["mkey"] == "shared")
@@ -580,7 +617,8 @@ def _selftest():
         assert "certified negative" in md and "13:3" in md.replace(" ", "")
         assert "Data archive" in md
         print("SELFTEST PASS: union dedup, floor hist, corrupt-line skip, resolve "
-              "cap-gap, archive (candidates/trials/source_boxes/manifest), md render")
+              "cap-gap, archive (candidates/trials/grid-probes/source_boxes/manifest), "
+              "md render")
     finally:
         shutil.rmtree(d, ignore_errors=True)
 
