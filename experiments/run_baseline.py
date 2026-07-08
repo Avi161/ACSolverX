@@ -221,6 +221,12 @@ def run_dataset(cfg, node_budget):
                 "subset": str(cfg["SUBSET"]),
             },
         )
+        # Give the running solve_rate its own x-axis (pres_id) instead of the
+        # global step. On a resumed run the global step is already past the last
+        # pres_id (finish-time Table/panel logs bumped it), so logging
+        # step=pres_id would be rejected as non-monotonic ("step N < current").
+        run.define_metric("pres_id")
+        run.define_metric("solve_rate", step_metric="pres_id")
         table = wandb.Table(columns=[
             "pres_id", "r1", "r2", "node_budget", "max_relator_length_cap",
             "cyclic_reduce", "nodes_explored", "solved", "path_length",
@@ -272,7 +278,7 @@ def run_dataset(cfg, node_budget):
             n_solved += int(stats["solved"])
             processed += 1
             if run is not None:
-                run.log({"solve_rate": n_solved / max(n_seen, 1)}, step=pres_id)
+                run.log({"pres_id": pres_id, "solve_rate": n_solved / max(n_seen, 1)})
                 _add_table_row(table, row)
 
             if processed % every == 0 or processed == n_todo:
