@@ -41,8 +41,8 @@ DEFAULT_CONFIG = {
 
     # W&B
     "USE_WANDB": False,
-    "WANDB_ENTITY": None,            # your W&B username (wandb.ai/<username>); None = account default entity
-    "WANDB_PROJECT": "acsolverx-greedy",
+    "WANDB_ENTITY": "avigyapaudel045-aisc",   # writable team entity (org-managed acct; None = account default)
+    "WANDB_PROJECT": "acsolver",
     "WANDB_MODE": "online",
     "WANDB_GROUP": None,             # default set at runtime to greedy_baseline_{date}
 

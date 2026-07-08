@@ -13,7 +13,7 @@ Guidance and lessons specific to this repository. Global rules still apply; this
 ## Environment
 
 - No `python` on the local machine — use `.venv/bin/python3` (numba 0.66, numpy 2.4 installed; **wandb is NOT in the venv by default** — `pip install wandb` to test W&B locally).
-- W&B: personal entity `avigyapaudel045`, project `acsolverx-greedy`. Account *default* entity is `aisc` (a different research team) — runs must be pinned via `wandb.init(entity=...)`.
+- W&B: project `acsolver`, **entity `avigyapaudel045-aisc`** (the account is org-managed under Caltech/AISC, so runs go to a *team* entity — the bare username `avigyapaudel045` is NOT a writable run namespace). Default team = `avigyapaudel045-aisc`; other team = `justinshenk-time`. Personal user API key is fine (from User settings → API keys, e.g. `model_analysis`), not a team service-account key.
 
 ## Lessons learned
 
@@ -33,7 +33,7 @@ Set the notebook's `BRANCH` to `"master"` while the real branch was `test/stable
 `wandb.login()` shows a 1/2/3 menu that Colab's stdin mangles ("Invalid choice"). **Rule:** source the key from a Colab Secret (`google.colab.userdata.get("WANDB_API_KEY")`) or a single `getpass` that sets `os.environ["WANDB_API_KEY"]`; then `wandb.login(key=..., verify=True)` for a real server check. Print the **pinned** target (`cfg entity/project`), not `Api().default_entity` — the default (`aisc`) is not where runs land and reads as if it were.
 
 ### [2026-07-08] W&B entity must be verified to exist before pinning [TRAP]
-`wandb.init(entity="avigyapaudel045")` → `CommError: entity avigyapaudel045 not found during upsertBucket`. The value given was not the account's real entity (personal entity == W&B *username*, which differed; account default was the team `aisc`). **Rule:** don't hardcode an entity from a display name/guess. Confirm it with `wandb.Api().viewer` / the `wandb.ai/<username>` profile URL, or leave `WANDB_ENTITY=None` to use the account default. A wrong entity only fails at `wandb.init`, not at `login(verify=True)` — so verify the entity separately.
+`wandb.init(entity="avigyapaudel045")` → `CommError: entity avigyapaudel045 not found during upsertBucket`. Root cause: the account is **org-managed** (Caltech/AISC), so the bare username is NOT a writable run entity — runs must target a **team** (`avigyapaudel045-aisc`). **Rule:** for org-managed W&B accounts, use the team entity (User settings → Default team), or `WANDB_ENTITY=None` to fall back to `api.default_entity`. A wrong entity only fails at `wandb.init`, not at `login(verify=True)` — verify the entity separately (`wandb.Api().default_entity`). Also: the API key must be a personal user key (User settings → API keys), not a team service-account key, or it can't write to your entities.
 
 ### [2026-07-08] numba split that works [WORKS]
 `@njit` on the per-move math (neighbours, reduction, Booth canonicalisation, primitives); plain Python for the `heapq`/`dict` search orchestration (numba can't JIT those). Verified real: functions are `numba.core.registry.CPUDispatcher`, first call ~3s JIT then ~1e-4s (≈30000×). First ~10 presentations look slow purely from one-time JIT compile.
