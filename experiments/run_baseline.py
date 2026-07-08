@@ -6,6 +6,7 @@ just the experiment harness around it.
 """
 
 import ast
+import hashlib
 import json
 import os
 from datetime import datetime
@@ -80,14 +81,45 @@ def load_dataset(path, subset=None):
         yield pres_id, r1, r2
 
 
+def _subset_tag(subset):
+    """A short, collision-safe tag identifying WHICH presentations ran.
+
+    ``n_pres`` alone is ambiguous (e.g. SUBSET=(0,5) and SUBSET=[10,20,30,40,50]
+    both have 5), so different subsets could otherwise share a filename. This
+    encodes the actual selection: 'all' / a range / a hash of an explicit list.
+    """
+    if subset is None:
+        return "all"
+    if isinstance(subset, tuple):
+        return f"{subset[0]}-{subset[1]}"
+    # Explicit list: order-independent hash of its members.
+    key = ",".join(str(i) for i in sorted(subset))
+    return "ids" + hashlib.sha1(key.encode()).hexdigest()[:8]
+
+
+def _run_tag(cfg, node_budget, n_pres, date):
+    """Filename/run-id stem covering every knob that changes the search result.
+
+    Two runs collide (share a file, and resume-merge) ONLY if they are truly
+    the same experiment. Search-affecting knobs (cap, cyclic_reduce) and the
+    subset selection are all encoded; jsonl field toggles are intentionally
+    excluded (they change stored columns, not the computed result, and resume
+    correctly reuses those rows).
+    """
+    cyc = "cyc" if cfg["CYCLIC_REDUCE"] else "noncyc"
+    tag = _subset_tag(cfg["SUBSET"])
+    return (f"greedy_{node_budget}_{n_pres}_mrl{cfg['MAX_RELATOR_LENGTH']}"
+            f"_{cyc}_{tag}_{date}")
+
+
 def _resolve_paths(cfg, node_budget, n_pres):
     out_dir = cfg["DRIVE_OUT_DIR"] if cfg["MOUNT_DRIVE"] else cfg["LOCAL_OUT_DIR"]
     os.makedirs(out_dir, exist_ok=True)
     date = datetime.now().strftime("%m_%d_%y")
-    stem = f"greedy_{node_budget}_{n_pres}_{date}"
+    stem = _run_tag(cfg, node_budget, n_pres, date)
     out_path = os.path.join(out_dir, stem + ".jsonl")
     paths_path = os.path.join(out_dir, stem + "_paths.jsonl")
-    return out_path, paths_path, date
+    return out_path, paths_path, date, stem
 
 
 def _read_done(out_path):
@@ -147,7 +179,7 @@ def run_dataset(cfg, node_budget):
     cfg = {**DEFAULT_CONFIG, **cfg}
     presentations = list(load_dataset(cfg["DATASET"], cfg["SUBSET"]))
     n_pres = len(presentations)
-    out_path, paths_path, date = _resolve_paths(cfg, node_budget, n_pres)
+    out_path, paths_path, date, stem = _resolve_paths(cfg, node_budget, n_pres)
 
     if cfg["RESUME"]:
         done, n_seen, n_solved = _read_done(out_path)
@@ -159,7 +191,8 @@ def run_dataset(cfg, node_budget):
     if cfg["USE_WANDB"]:
         import wandb
         group = cfg["WANDB_GROUP"] or f"greedy_baseline_{date}"
-        run_id = f"greedy-{node_budget}-{n_pres}-{date}"
+        # Same collision-safe identity as the jsonl file (W&B ids allow these chars).
+        run_id = stem
         run = wandb.init(
             entity=cfg["WANDB_ENTITY"] or None, project=cfg["WANDB_PROJECT"],
             id=run_id, name=run_id, resume="allow",
