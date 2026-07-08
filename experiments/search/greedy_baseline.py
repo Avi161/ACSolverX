@@ -73,34 +73,31 @@ def reduce_relator_nj(rel, cyclic=True):
 
     When ``cyclic`` is True also cancel inverse pairs across the wrap-around
     (cyclic reduction). ``cyclic=False`` performs only linear free reduction.
-    Does not modify the input array.
+    Does not modify the input array. A word that cancels completely returns an
+    empty (length-0) relator.
+
+    Stack-based: the prototype's boundary branch did an out-of-bounds read
+    (``rel[add_index + 1]``) when the cancelling partner was the last symbol,
+    silently returning a garbage length-1 relator instead of the empty word.
     """
     n = len(rel)
+    if n == 0:
+        return rel
 
     rel_list = np.zeros_like(rel)
-    rel_list[0] = rel[0]
-
-    current_index = 0
-    add_index = 1
-
-    while add_index < n:
-        if is_inverse_nj(rel_list[current_index], rel[add_index]):
-            if current_index == 0:
-                rel_list[0] = rel[add_index + 1]
-                add_index += 2
-            else:
-                add_index += 1
-                current_index -= 1
+    length = 0                       # live symbols in rel_list (a stack)
+    for idx in range(n):
+        if length > 0 and is_inverse_nj(rel_list[length - 1], rel[idx]):
+            length -= 1              # cancel against the top of the stack
         else:
-            current_index += 1
-            rel_list[current_index] = rel[add_index]
-            add_index += 1
+            rel_list[length] = rel[idx]
+            length += 1
 
-    rel_list = rel_list[:current_index + 1]
+    rel_list = rel_list[:length]
 
-    if cyclic and is_inverse_nj(rel_list[0], rel_list[-1]):
+    if cyclic and length > 1 and is_inverse_nj(rel_list[0], rel_list[-1]):
         i = 1
-        half_len = len(rel_list) / 2
+        half_len = length / 2
         while i < half_len and is_inverse_nj(rel_list[i], rel_list[-1 - i]):
             i += 1
         rel_list = rel_list[i:-i]
@@ -273,7 +270,9 @@ def replay_move_nj(r1, r2, target, jsign, k1, k2):
 
 
 def str_to_arr(s):
-    """'xXyY' string -> (n, 2) bool array."""
+    """'xXyY' string -> (n, 2) bool array. Empty string -> well-formed (0, 2)."""
+    if len(s) == 0:
+        return np.zeros((0, 2), dtype=bool)
     return np.array([char_to_array[c] for c in s], dtype=bool)
 
 
