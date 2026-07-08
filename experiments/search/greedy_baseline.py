@@ -58,7 +58,7 @@ def is_less_than(a, b):
         return a[1] < b[1]
 
 
-@njit
+@njit(cache=True)
 def inverse_relator_nj(rel=np.array([[]])):
     """Invert a relator (reverse order, flip the inversion bit)."""
     res = rel.copy()
@@ -67,7 +67,7 @@ def inverse_relator_nj(rel=np.array([[]])):
     return res
 
 
-@njit
+@njit(cache=True)
 def reduce_relator_nj(rel, cyclic=True):
     """Free-reduce a relator (cancel adjacent inverse pairs).
 
@@ -105,7 +105,7 @@ def reduce_relator_nj(rel, cyclic=True):
     return rel_list
 
 
-@njit
+@njit(cache=True)
 def find_minimal_rotation(rel):
     """Index-min cyclic rotation of a relator via Booth's algorithm.
 
@@ -130,7 +130,7 @@ def find_minimal_rotation(rel):
     return rel[k:k + n]
 
 
-@njit
+@njit(cache=True)
 def lex_cmp_array(a, b):
     """Compare (n, 2) bool relators lexicographically; returns a >= b.
 
@@ -144,7 +144,7 @@ def lex_cmp_array(a, b):
     return True
 
 
-@njit
+@njit(cache=True)
 def lex_cmp_pair(a, b):
     """Compare two length-2 bool group elements; returns a > b."""
     if a[0] == ~b[0]:
@@ -154,7 +154,7 @@ def lex_cmp_pair(a, b):
     return False
 
 
-@njit
+@njit(cache=True)
 def canonical_relator_nj(r):
     """Canonical form of a relator: min over its rotations and its inverse's."""
     r_min = find_minimal_rotation(r)
@@ -164,7 +164,7 @@ def canonical_relator_nj(r):
     return r_min
 
 
-@njit
+@njit(cache=True)
 def canonical_pair_nj(r1, r2):
     """Canonical, order-normalised pair (rotation/inversion invariant key)."""
     cr1 = canonical_relator_nj(r1)
@@ -174,7 +174,7 @@ def canonical_pair_nj(r1, r2):
     return cr1, cr2
 
 
-@njit
+@njit(cache=True)
 def get_neighbors_nj(r1, r2):
     """All substitution neighbours of a pair (r1, r2).
 
@@ -198,7 +198,7 @@ def get_neighbors_nj(r1, r2):
     return results
 
 
-@njit
+@njit(cache=True)
 def get_neighbors_with_moves_nj(r1, r2):
     """Substitution neighbours tagged with their Definition 2.1 (i, j, k1, k2).
 
@@ -226,17 +226,23 @@ def get_neighbors_with_moves_nj(r1, r2):
         else:
             ri = r2
             rj = r1
+        len_i = len(ri)
+        if len_i == 0:
+            continue
         for idx in range(2):
             oj = rj if idx == 0 else inverse_relator_nj(rj)
             jsign = 1 if idx == 0 else -1
-            len_i = len(ri)
             len_o = len(oj)
+            if len_o == 0:
+                continue
+            # Rotations of oj are independent of k1 -> precompute once
+            # (was O(len_i*len_o) rolls, now O(len_o)).
+            rots_o = [np.roll(oj, 2 * k2) for k2 in range(len_o)]
             for k1 in range(len_i):
                 rot_i = np.roll(ri, 2 * k1)
                 for k2 in range(len_o):
-                    rot_o = np.roll(oj, 2 * k2)
-                    if len(rot_i) > 0 and len(rot_o) > 0 and \
-                            is_inverse_nj(rot_i[-1], rot_o[0]):
+                    rot_o = rots_o[k2]
+                    if is_inverse_nj(rot_i[-1], rot_o[0]):
                         piece = np.concatenate((rot_i, rot_o))
                         if target == 1:
                             results.append((piece, r2, 1, jsign, k1, k2))
@@ -245,7 +251,7 @@ def get_neighbors_with_moves_nj(r1, r2):
     return results
 
 
-@njit
+@njit(cache=True)
 def replay_move_nj(r1, r2, target, jsign, k1, k2):
     """Re-apply one Definition 2.1 (i, j, k1, k2) move to a raw pair.
 
