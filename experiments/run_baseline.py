@@ -45,6 +45,8 @@ DEFAULT_CONFIG = {
     "WANDB_PROJECT": "acsolverx-greedy",
     "WANDB_MODE": "online",
     "WANDB_GROUP": None,             # default set at runtime to greedy_baseline_{date}
+
+    "PROGRESS_EVERY": 10,            # print a status line every N processed presentations
 }
 
 
@@ -179,13 +181,22 @@ def run_dataset(cfg, node_budget):
                     if ln:
                         _add_table_row(table, json.loads(ln))
 
+    todo = [(pid, r1, r2) for (pid, r1, r2) in presentations if pid not in done]
+    n_todo = len(todo)
+    every = max(1, int(cfg["PROGRESS_EVERY"]))
+    print(f"=== budget={node_budget} | {n_pres} presentations | "
+          f"{len(done)} already done, {n_todo} to run | -> {out_path}",
+          flush=True)
+    if n_todo == 0:
+        print("    nothing to do (all done). ", flush=True)
+
     total_time = 0.0
+    t_start = time.time()
+    processed = 0
     out_f = open(out_path, "a")
     paths_f = open(paths_path, "a") if cfg["PATH_IN_SEPARATE_FILE"] else None
     try:
-        for pres_id, r1, r2 in presentations:
-            if pres_id in done:
-                continue
+        for pres_id, r1, r2 in todo:
             t0 = time.time()
             stats = greedy_search(
                 r1, r2, node_budget,
@@ -204,9 +215,21 @@ def run_dataset(cfg, node_budget):
 
             n_seen += 1
             n_solved += int(stats["solved"])
+            processed += 1
             if run is not None:
                 run.log({"solve_rate": n_solved / max(n_seen, 1)}, step=pres_id)
                 _add_table_row(table, row)
+
+            if processed % every == 0 or processed == n_todo:
+                wall = time.time() - t_start
+                rate = processed / wall if wall > 0 else 0.0
+                eta = (n_todo - processed) / rate if rate > 0 else 0.0
+                print(f"    [{node_budget}] {processed}/{n_todo} | "
+                      f"solved {n_solved}/{n_seen} ({n_solved / max(n_seen, 1):.1%}) | "
+                      f"pres {pres_id}: {'ok' if stats['solved'] else 'unsolved'} "
+                      f"nodes={stats['nodes_explored']} | "
+                      f"{wall:.0f}s elapsed, ETA {eta:.0f}s ({rate:.1f}/s)",
+                      flush=True)
     finally:
         out_f.close()
         if paths_f is not None:
