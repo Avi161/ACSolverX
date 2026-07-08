@@ -1,6 +1,6 @@
 # RESULTS — AK(3) stable AC-triviality campaign (live log)
 
-Companion to [`PLAN.md`](PLAN.md). Newest entries at the bottom of each phase section.
+Companion to [`PLAN.md`](surf/codebase/ACSolverX/experiments/stable_ac/ak3_stable_proof/PLAN.md). Newest entries at the bottom of each phase section.
 Every claim is tagged with how it was verified.
 
 ---
