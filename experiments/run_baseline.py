@@ -41,7 +41,7 @@ DEFAULT_CONFIG = {
 
     # W&B
     "USE_WANDB": False,
-    "WANDB_ENTITY": "avigyapaudel045",
+    "WANDB_ENTITY": None,            # your W&B username (wandb.ai/<username>); None = account default entity
     "WANDB_PROJECT": "acsolverx-greedy",
     "WANDB_MODE": "online",
     "WANDB_GROUP": None,             # default set at runtime to greedy_baseline_{date}
@@ -157,7 +157,7 @@ def run_dataset(cfg, node_budget):
         group = cfg["WANDB_GROUP"] or f"greedy_baseline_{date}"
         run_id = f"greedy-{node_budget}-{n_pres}-{date}"
         run = wandb.init(
-            entity=cfg["WANDB_ENTITY"], project=cfg["WANDB_PROJECT"],
+            entity=cfg["WANDB_ENTITY"] or None, project=cfg["WANDB_PROJECT"],
             id=run_id, name=run_id, resume="allow",
             group=group, job_type="greedy_baseline", mode=cfg["WANDB_MODE"],
             config={
