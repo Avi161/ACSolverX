@@ -203,50 +203,73 @@ def get_neighbors_nj(r1, r2):
 
 @njit
 def get_neighbors_with_moves_nj(r1, r2):
-    """Substitution neighbours tagged with their (target, j, k1, k2) move.
+    """Substitution neighbours tagged with their Definition 2.1 (i, j, k1, k2).
 
-    Same enumeration as ``get_neighbors_nj`` but each result carries the
-    Definition 2.1 parameters that produced it:
-      - ``target`` in {1, 2}: which relator was replaced (r1 or r2);
-      - ``jsign``  in {1, -1}: whether the other relator was inverted (r2^j);
-      - ``k1``: cyclic rotation applied to the first operand (r1);
-      - ``k2``: cyclic rotation applied to the second operand (r2^j).
-    Replaying (rot k1 · rot k2, then reduce + canonicalise) reproduces the
-    child exactly — see ``replay_move_nj`` / ``moves_to_states``.
+    Faithful to the paper: a move with target relator ``i`` replaces r_i by
+        rot_{k1}(r_i) . rot_{k2}(r_{3-i}^{j}),
+    i.e. it is the OTHER relator (r_{3-i}) that may be inverted, never the
+    target. Each result carries:
+      - ``target`` in {1, 2}: which relator is replaced (r_i);
+      - ``jsign``  in {1, -1}: sign j on the OTHER relator r_{3-i}^{j};
+      - ``k1``: cyclic rotation of the target r_i;
+      - ``k2``: cyclic rotation of the other relator r_{3-i}^{j}.
+    Only seams that cancel (last of rot_{k1}(r_i) inverts first of
+    rot_{k2}(r_{3-i}^{j})) are emitted. Replaying (concat, then reduce +
+    canonicalise) reproduces the child exactly — see ``replay_move_nj``.
+
+    Note: this enumerates the SAME canonical neighbour set as the notebook's
+    ``get_neighbors_nj`` (verified equal); only the raw word / (i,j,k1,k2)
+    labelling differs, so it matches Definition 2.1 for interpretability.
     """
     results = []
-    candidates = [r2, inverse_relator_nj(r2)]
-    for idx_c in range(2):
-        c = candidates[idx_c]
-        jsign = 1 if idx_c == 0 else -1
-        len_r1 = len(r1)
-        len_c = len(c)
-        for k1 in range(len_r1):
-            rot1 = np.roll(r1, 2 * k1)
-            for k2 in range(len_c):
-                rot2 = np.roll(c, 2 * k2)
-                if len(rot1) > 0 and len(rot2) > 0 and is_inverse_nj(rot1[-1], rot2[0]):
-                    neighbour = np.concatenate((rot1, rot2))
-                    results.append((neighbour, r2, 1, jsign, k1, k2))
-                    results.append((r1, neighbour, 2, jsign, k1, k2))
+    for target in range(1, 3):
+        if target == 1:
+            ri = r1
+            rj = r2
+        else:
+            ri = r2
+            rj = r1
+        for idx in range(2):
+            oj = rj if idx == 0 else inverse_relator_nj(rj)
+            jsign = 1 if idx == 0 else -1
+            len_i = len(ri)
+            len_o = len(oj)
+            for k1 in range(len_i):
+                rot_i = np.roll(ri, 2 * k1)
+                for k2 in range(len_o):
+                    rot_o = np.roll(oj, 2 * k2)
+                    if len(rot_i) > 0 and len(rot_o) > 0 and \
+                            is_inverse_nj(rot_i[-1], rot_o[0]):
+                        piece = np.concatenate((rot_i, rot_o))
+                        if target == 1:
+                            results.append((piece, r2, 1, jsign, k1, k2))
+                        else:
+                            results.append((r1, piece, 2, jsign, k1, k2))
     return results
 
 
 @njit
 def replay_move_nj(r1, r2, target, jsign, k1, k2):
-    """Re-apply one (target, j, k1, k2) substitution move to a raw pair.
+    """Re-apply one Definition 2.1 (i, j, k1, k2) move to a raw pair.
 
-    Returns the RAW (unreduced, non-canonical) child pair, exactly as
+    Builds r_i <- rot_{k1}(r_i) . rot_{k2}(r_{3-i}^{j}) and returns the RAW
+    (unreduced, non-canonical) child pair, exactly as
     ``get_neighbors_with_moves_nj`` constructed it. Callers apply
     ``reduce_relator_nj`` + ``canonical_pair_nj`` to land on the stored state.
     """
-    c = r2 if jsign == 1 else inverse_relator_nj(r2)
-    rot1 = np.roll(r1, 2 * k1)
-    rot2 = np.roll(c, 2 * k2)
-    neighbour = np.concatenate((rot1, rot2))
     if target == 1:
-        return neighbour, r2
-    return r1, neighbour
+        ri = r1
+        rj = r2
+    else:
+        ri = r2
+        rj = r1
+    oj = rj if jsign == 1 else inverse_relator_nj(rj)
+    rot_i = np.roll(ri, 2 * k1)
+    rot_o = np.roll(oj, 2 * k2)
+    piece = np.concatenate((rot_i, rot_o))
+    if target == 1:
+        return piece, r2
+    return r1, piece
 
 
 def str_to_arr(s):
