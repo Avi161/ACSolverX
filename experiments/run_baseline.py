@@ -24,11 +24,9 @@ DEFAULT_CONFIG = {
     "MAX_RELATOR_LENGTH": 24,        # per-relator cap
     "CYCLIC_REDUCE": True,
 
-    # jsonl field toggles
-    "use_min_relator_length": True,
-    "use_min_relator": True,
-    "use_max_relator_length": True,
-    "use_max_relator": True,
+    # jsonl field toggles (each keeps BOTH the length + the relator pair)
+    "use_min_relator": True,            # min_relator_length + min_relator
+    "use_max_relator": True,            # max_relator_length + max_relator
     "use_max_relator_expanded": True,   # longest presentation actually popped/expanded (length + relator)
     "use_time": True,
     "use_path": True,
@@ -170,13 +168,11 @@ def _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed):
         "solved": stats["solved"],
         "path_length": stats["path_length"],
     }
-    if cfg["use_min_relator_length"]:
-        row["min_relator_length"] = stats["min_relator_length"]
     if cfg["use_min_relator"]:
+        row["min_relator_length"] = stats["min_relator_length"]
         row["min_relator"] = stats["min_relator"]
-    if cfg["use_max_relator_length"]:
-        row["max_relator_length"] = stats["max_relator_length"]
     if cfg["use_max_relator"]:
+        row["max_relator_length"] = stats["max_relator_length"]
         row["max_relator"] = stats["max_relator"]
     if cfg["use_max_relator_expanded"]:
         row["max_relator_length_expanded"] = stats["max_relator_length_expanded"]
