@@ -36,7 +36,7 @@ DEFAULT_CONFIG = {
 
     # output
     "MOUNT_DRIVE": False,
-    "DRIVE_OUT_DIR": "/content/drive/acsolverx_results/greedy_baseline",
+    "DRIVE_OUT_DIR": "/content/drive/MyDrive/acsolverx_results/greedy_baseline",
     "LOCAL_OUT_DIR": "results/greedy_baseline",
 
     # W&B
