@@ -260,6 +260,7 @@ def _finish_wandb(run, table, out_path, paths_path, run_id,
 
     # Recompute headline aggregates from the full jsonl (source of truth).
     nodes_all, nodes_solved, paths_solved = [], [], []
+    scatter_pts = []  # (nodes_explored, path_length) for solved presentations
     with open(out_path) as f:
         for ln in f:
             ln = ln.strip()
@@ -271,6 +272,7 @@ def _finish_wandb(run, table, out_path, paths_path, run_id,
                 nodes_solved.append(row["nodes_explored"])
                 if row["path_length"] is not None:
                     paths_solved.append(row["path_length"])
+                    scatter_pts.append([row["nodes_explored"], row["path_length"]])
 
     def _mean(xs):
         return statistics.fmean(xs) if xs else None
@@ -288,6 +290,20 @@ def _finish_wandb(run, table, out_path, paths_path, run_id,
     run.summary["total_time_s"] = round(total_time, 2)
 
     run.log({"results": table})
+
+    # Auto-rendered graphs (the two headline metrics as distributions).
+    panels = {}
+    if nodes_all:
+        panels["nodes_explored_hist"] = wandb.Histogram(nodes_all)
+    if paths_solved:
+        panels["path_length_hist"] = wandb.Histogram(paths_solved)
+    if scatter_pts:
+        _sc = wandb.Table(data=scatter_pts, columns=["nodes_explored", "path_length"])
+        panels["nodes_vs_path"] = wandb.plot.scatter(
+            _sc, "nodes_explored", "path_length",
+            title="nodes explored vs path length (solved)")
+    if panels:
+        run.log(panels)
 
     art = wandb.Artifact(run_id, type="results")
     art.add_file(out_path)
