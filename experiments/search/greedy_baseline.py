@@ -201,6 +201,54 @@ def get_neighbors_nj(r1, r2):
     return results
 
 
+@njit
+def get_neighbors_with_moves_nj(r1, r2):
+    """Substitution neighbours tagged with their (target, j, k1, k2) move.
+
+    Same enumeration as ``get_neighbors_nj`` but each result carries the
+    Definition 2.1 parameters that produced it:
+      - ``target`` in {1, 2}: which relator was replaced (r1 or r2);
+      - ``jsign``  in {1, -1}: whether the other relator was inverted (r2^j);
+      - ``k1``: cyclic rotation applied to the first operand (r1);
+      - ``k2``: cyclic rotation applied to the second operand (r2^j).
+    Replaying (rot k1 · rot k2, then reduce + canonicalise) reproduces the
+    child exactly — see ``replay_move_nj`` / ``moves_to_states``.
+    """
+    results = []
+    candidates = [r2, inverse_relator_nj(r2)]
+    for idx_c in range(2):
+        c = candidates[idx_c]
+        jsign = 1 if idx_c == 0 else -1
+        len_r1 = len(r1)
+        len_c = len(c)
+        for k1 in range(len_r1):
+            rot1 = np.roll(r1, 2 * k1)
+            for k2 in range(len_c):
+                rot2 = np.roll(c, 2 * k2)
+                if len(rot1) > 0 and len(rot2) > 0 and is_inverse_nj(rot1[-1], rot2[0]):
+                    neighbour = np.concatenate((rot1, rot2))
+                    results.append((neighbour, r2, 1, jsign, k1, k2))
+                    results.append((r1, neighbour, 2, jsign, k1, k2))
+    return results
+
+
+@njit
+def replay_move_nj(r1, r2, target, jsign, k1, k2):
+    """Re-apply one (target, j, k1, k2) substitution move to a raw pair.
+
+    Returns the RAW (unreduced, non-canonical) child pair, exactly as
+    ``get_neighbors_with_moves_nj`` constructed it. Callers apply
+    ``reduce_relator_nj`` + ``canonical_pair_nj`` to land on the stored state.
+    """
+    c = r2 if jsign == 1 else inverse_relator_nj(r2)
+    rot1 = np.roll(r1, 2 * k1)
+    rot2 = np.roll(c, 2 * k2)
+    neighbour = np.concatenate((rot1, rot2))
+    if target == 1:
+        return neighbour, r2
+    return r1, neighbour
+
+
 def str_to_arr(s):
     """'xXyY' string -> (n, 2) bool array."""
     return np.array([char_to_array[c] for c in s], dtype=bool)
@@ -238,6 +286,7 @@ class GreedyBaselineSolver:
         self.cyclic_reduce = cyclic_reduce
 
         self.visited = dict()          # key -> parent key (for path reconstruction)
+        self.move_in = dict()          # key -> (target, jsign, k1, k2) edge that reached it
         self.new_seen = set()          # all states seen this search
         self.pq = []
 
@@ -249,10 +298,12 @@ class GreedyBaselineSolver:
         )
 
     def solve(self):
-        """Return (path, nodes_visited, new_seen).
+        """Return (path, moves, nodes_visited, new_seen).
 
         ``path`` is a list of (r1_arr, r2_arr) from the initial state to a
         trivial one, or ``None`` if no trivial state was reached within budget.
+        ``moves`` is the parallel list of (target, jsign, k1, k2) tuples, one
+        per edge (so ``len(moves) == len(path) - 1``), or ``None`` if unsolved.
         """
         init_key = state_to_key(self.initial_state)
         heapq.heappush(
@@ -260,6 +311,7 @@ class GreedyBaselineSolver:
             (len(self.initial_state[0]) + len(self.initial_state[1]), 0, init_key),
         )
         self.visited[init_key] = None
+        self.move_in[init_key] = None
         self.new_seen.add(init_key)
         nodes_visited = 0
 
@@ -276,15 +328,19 @@ class GreedyBaselineSolver:
             r1, r2 = self._key_to_state(key)
 
             if len(r1) == 1 and len(r2) == 1:
-                path = []
+                path, moves = [], []
                 state_key = key
                 while state_key is not None:
                     path.append(self._key_to_state(state_key))
+                    mv = self.move_in[state_key]
+                    if mv is not None:
+                        moves.append(mv)
                     state_key = self.visited[state_key]
                 path.reverse()
-                return path, nodes_visited, self.new_seen
+                moves.reverse()
+                return path, moves, nodes_visited, self.new_seen
 
-            for nr1, nr2 in get_neighbors_nj(r1, r2):
+            for nr1, nr2, target, jsign, k1, k2 in get_neighbors_with_moves_nj(r1, r2):
                 nr1r = reduce_relator_nj(nr1, self.cyclic_reduce)
                 nr2r = reduce_relator_nj(nr2, self.cyclic_reduce)
 
@@ -294,14 +350,51 @@ class GreedyBaselineSolver:
                     key_new = state_to_key((canon_r1, canon_r2))
                     if key_new not in self.visited:
                         self.visited[key_new] = key
+                        self.move_in[key_new] = (int(target), int(jsign),
+                                                 int(k1), int(k2))
                         self.new_seen.add(key_new)
                         priority = len(canon_r1) + len(canon_r2)
                         heapq.heappush(self.pq, (priority, depth + 1, key_new))
 
-        return None, nodes_visited, self.new_seen
+        return None, None, nodes_visited, self.new_seen
 
     def _key_to_state(self, key):
         return (str_to_arr(key[0]), str_to_arr(key[1]))
+
+
+# ---------------------------------------------------------------------------
+# Move (Definition 2.1) codec + replay
+# ---------------------------------------------------------------------------
+def move_to_str(move):
+    """(target, jsign, k1, k2) tuple -> compact 'target_jsign_k1_k2' string."""
+    return "_".join(str(int(v)) for v in move)
+
+
+def str_to_move(s):
+    """'target_jsign_k1_k2' string -> (target, jsign, k1, k2) int tuple."""
+    return tuple(int(v) for v in s.split("_"))
+
+
+def moves_to_states(r1_str, r2_str, moves, cyclic_reduce=True):
+    """Replay a move list from a start presentation into the state sequence.
+
+    Reproduces the canonical states the search visited: for each move apply the
+    raw substitution, then ``reduce_relator_nj`` + ``canonical_pair_nj`` (the
+    exact per-step normalisation used during search). Returns the list of
+    ``[r1_str, r2_str]`` states, length ``len(moves) + 1``. This is the
+    authoritative decoder — moves + start fully determine the path.
+    """
+    r1 = reduce_relator_nj(str_to_arr(r1_str), cyclic_reduce)
+    r2 = reduce_relator_nj(str_to_arr(r2_str), cyclic_reduce)
+    r1, r2 = canonical_pair_nj(r1, r2)
+    states = [[arr_to_str(r1), arr_to_str(r2)]]
+    for target, jsign, k1, k2 in moves:
+        nr1, nr2 = replay_move_nj(r1, r2, target, jsign, k1, k2)
+        nr1 = reduce_relator_nj(nr1, cyclic_reduce)
+        nr2 = reduce_relator_nj(nr2, cyclic_reduce)
+        r1, r2 = canonical_pair_nj(nr1, nr2)
+        states.append([arr_to_str(r1), arr_to_str(r2)])
+    return states
 
 
 # ---------------------------------------------------------------------------
@@ -312,9 +405,11 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
     """Run the baseline greedy on one presentation; return a stats dict.
 
     Keys: solved, nodes_explored, path_length, min_relator_length,
-    min_relator, max_relator_length, max_relator, path.
-    (``path_length`` and ``path`` are None / [] when unsolved; ``path`` is a
-    list of [r1_str, r2_str] states from initial to trivial.)
+    min_relator, max_relator_length, max_relator, path, path_moves.
+    (``path_length``/``path``/``path_moves`` are None/[] when unsolved.)
+    ``path`` is the list of [r1_str, r2_str] states; ``path_moves`` is the
+    parallel list of 'target_jsign_k1_k2' move strings (Definition 2.1) that
+    reproduces ``path`` via ``moves_to_states`` — the compact storage form.
     """
     solver = GreedyBaselineSolver(
         r1_str, r2_str,
@@ -322,7 +417,7 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
         max_relator_length=max_relator_length,
         cyclic_reduce=cyclic_reduce,
     )
-    path, nodes_visited, new_seen = solver.solve()
+    path, moves, nodes_visited, new_seen = solver.solve()
 
     # Shortest / longest presentation (by total length) seen along the search.
     min_key = min(new_seen, key=lambda k: len(k[0]) + len(k[1]))
@@ -333,9 +428,11 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
     solved = path is not None
     if solved:
         path_states = [[arr_to_str(a), arr_to_str(b)] for a, b in path]
+        path_moves = [move_to_str(m) for m in moves]
         path_length = len(path_states) - 1
     else:
         path_states = []
+        path_moves = []
         path_length = None
 
     return {
@@ -349,4 +446,5 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
         "max_relator_length_expanded": len(exp_key[0]) + len(exp_key[1]),
         "max_relator_expanded": [exp_key[0], exp_key[1]],
         "path": path_states,
+        "path_moves": path_moves,
     }

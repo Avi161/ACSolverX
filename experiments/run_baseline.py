@@ -33,6 +33,10 @@ DEFAULT_CONFIG = {
     "use_time": True,
     "use_path": True,
     "PATH_IN_SEPARATE_FILE": True,
+    # How to store a solved path: "moves" = compact Definition 2.1 tuples
+    # 'target_jsign_k1_k2' (replayable via moves_to_states, ~4 ints/step);
+    # "strings" = [r1, r2] state list; "both" = keep each under its own key.
+    "PATH_FORMAT": "moves",
 
     "RESUME": True,
 
@@ -138,6 +142,22 @@ def _read_done(out_path):
     return done, n_seen, n_solved
 
 
+def _path_payload(cfg, stats):
+    """The path fields to store for a solved presentation, per PATH_FORMAT.
+
+    "moves" (default) stores the compact Definition 2.1 tuples (replay with
+    experiments.search.greedy_baseline.moves_to_states); "strings" stores the
+    [r1, r2] state list; "both" stores each under its own key.
+    """
+    fmt = cfg.get("PATH_FORMAT", "moves")
+    payload = {}
+    if fmt in ("moves", "both"):
+        payload["path_moves"] = stats["path_moves"]
+    if fmt in ("strings", "both"):
+        payload["path"] = stats["path"]
+    return payload
+
+
 def _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed):
     row = {
         "pres_id": pres_id,
@@ -163,8 +183,8 @@ def _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed):
         row["max_relator_expanded"] = stats["max_relator_expanded"]
     if cfg["use_time"]:
         row["time_seconds"] = round(elapsed, 4)
-    if cfg["use_path"] and not cfg["PATH_IN_SEPARATE_FILE"]:
-        row["path"] = stats["path"]
+    if cfg["use_path"] and not cfg["PATH_IN_SEPARATE_FILE"] and stats["solved"]:
+        row.update(_path_payload(cfg, stats))
     return row
 
 
@@ -247,7 +267,9 @@ def run_dataset(cfg, node_budget):
             out_f.write(json.dumps(row) + "\n")
             out_f.flush()
             if cfg["PATH_IN_SEPARATE_FILE"] and cfg["use_path"] and stats["solved"]:
-                paths_f.write(json.dumps({"pres_id": pres_id, "path": stats["path"]}) + "\n")
+                path_row = {"pres_id": pres_id, "r1": r1, "r2": r2}
+                path_row.update(_path_payload(cfg, stats))
+                paths_f.write(json.dumps(path_row) + "\n")
                 paths_f.flush()
 
             n_seen += 1
