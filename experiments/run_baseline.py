@@ -28,6 +28,7 @@ DEFAULT_CONFIG = {
     "use_min_relator": True,
     "use_max_relator_length": True,
     "use_max_relator": True,
+    "use_max_relator_expanded": True,   # longest presentation actually popped/expanded (length + relator)
     "use_time": True,
     "use_path": True,
     "PATH_IN_SEPARATE_FILE": True,
@@ -125,6 +126,9 @@ def _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed):
         row["max_relator_length"] = stats["max_relator_length"]
     if cfg["use_max_relator"]:
         row["max_relator"] = stats["max_relator"]
+    if cfg["use_max_relator_expanded"]:
+        row["max_relator_length_expanded"] = stats["max_relator_length_expanded"]
+        row["max_relator_expanded"] = stats["max_relator_expanded"]
     if cfg["use_time"]:
         row["time_seconds"] = round(elapsed, 4)
     if cfg["use_path"] and not cfg["PATH_IN_SEPARATE_FILE"]:

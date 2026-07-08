@@ -263,9 +263,16 @@ class GreedyBaselineSolver:
         self.new_seen.add(init_key)
         nodes_visited = 0
 
+        # Longest presentation actually POPPED/expanded (the states we run
+        # get_neighbors_nj on), as opposed to merely discovered/enqueued.
+        self.max_expanded_key = init_key
+
         while self.pq and nodes_visited < self.max_nodes:
             _, depth, key = heapq.heappop(self.pq)
             nodes_visited += 1
+            if len(key[0]) + len(key[1]) > \
+                    len(self.max_expanded_key[0]) + len(self.max_expanded_key[1]):
+                self.max_expanded_key = key
             r1, r2 = self._key_to_state(key)
 
             if len(r1) == 1 and len(r2) == 1:
@@ -320,6 +327,8 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
     # Shortest / longest presentation (by total length) seen along the search.
     min_key = min(new_seen, key=lambda k: len(k[0]) + len(k[1]))
     max_key = max(new_seen, key=lambda k: len(k[0]) + len(k[1]))
+    # Longest presentation actually popped/expanded (states we operated on).
+    exp_key = solver.max_expanded_key
 
     solved = path is not None
     if solved:
@@ -337,5 +346,7 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
         "min_relator": [min_key[0], min_key[1]],
         "max_relator_length": len(max_key[0]) + len(max_key[1]),
         "max_relator": [max_key[0], max_key[1]],
+        "max_relator_length_expanded": len(exp_key[0]) + len(exp_key[1]),
+        "max_relator_expanded": [exp_key[0], exp_key[1]],
         "path": path_states,
     }
