@@ -66,6 +66,10 @@ DEFAULT_CONFIG = {
     # takes minutes, so PROGRESS_EVERY says nothing until it finishes). 0 = off.
     # Result-neutral, so it is deliberately absent from _run_prefix.
     "HEARTBEAT_EVERY_S": 0,
+    # Diagnose a silent heartbeat: prints a [hb-dbg] line every 5s (messages
+    # received, queue depth, presentations live) and emits the first sample on
+    # the very first 1024-node tick instead of waiting ~10s.
+    "HEARTBEAT_DEBUG": False,
 }
 
 
@@ -243,87 +247,122 @@ def _fmt_hb(sample):
             f"{rate:,.0f} nodes/s | {elapsed:.0f}s elapsed, ETA {eta:.0f}s")
 
 
-def _hb_drain(q, live, last_print, every):
-    """Consume queued samples; print one aggregate block per ``every`` seconds.
+class _HbPrinter:
+    """Drains the worker->parent heartbeat queue and prints, from the MAIN thread.
 
-    Returns the new ``last_print``. Called from the MAIN thread: a background
-    thread's stdout is not reliably attributed to the running cell in Colab,
-    and this is the one component that cannot be verified outside a notebook.
+    A background thread's stdout is not reliably attributed to the running cell
+    in Colab, so all printing happens on the thread that runs ``run_dataset``.
+
+    Messages are explicitly tagged so a silent heartbeat is diagnosable:
+      ``("start", pres_id, worker_pid)``  worker picked up a presentation
+      ``("sample", pres_id, nodes, budget, elapsed, rate)``
+      ``("done", pres_id)``               stop counting its rate into ``agg``
     """
-    import queue as _queue
 
-    while True:
-        try:
-            sample = q.get_nowait()
-        except _queue.Empty:
-            break
-        if sample[1] is None:               # worker finished this presentation
-            live.pop(sample[0], None)
-        else:
-            live[sample[0]] = (sample, time.time())
+    def __init__(self, every, debug=False):
+        self.every, self.debug = every, debug
+        self.live = {}          # pres_id -> (sample, arrival_time)
+        self.last_print = 0.0   # epoch 0 => first sample to arrive prints at once
+        self.last_dbg = 0.0
+        self.t0 = time.time()
+        self.n_msgs = 0
 
-    now = time.time()
-    if now - last_print < every:
-        return last_print
-    # Backstop for a worker that died without sending its done-sentinel:
-    # otherwise its last rate would be summed into `agg` forever.
-    for pid in [p for p, v in live.items() if now - v[1] > 2 * every]:
-        live.pop(pid)
-    if not live:
-        # Nothing to say yet (workers still starting / JIT-compiling). Do NOT
-        # advance last_print, or this empty tick costs a whole `every` period
-        # before the first block appears.
-        return last_print
-    samples = [v[0] for v in live.values()]
-    agg = sum(s[4] for s in samples)
-    print(f"    [hb] {len(samples)} solving | agg {agg:,.0f} nodes/s", flush=True)
-    for s in sorted(samples):
-        print(f"         {_fmt_hb(s)}", flush=True)
-    return now
+    def drain(self, q):
+        import queue as _queue
+
+        while True:
+            try:
+                msg = q.get_nowait()
+            except _queue.Empty:
+                break
+            self.n_msgs += 1
+            kind = msg[0]
+            if kind == "start":
+                print(f"    [hb] pres {msg[1]} started (worker pid {msg[2]})",
+                      flush=True)
+            elif kind == "done":
+                self.live.pop(msg[1], None)
+            else:
+                self.live[msg[1]] = (msg[1:], time.time())
+
+        now = time.time()
+        if self.debug and now - self.last_dbg >= 5.0:
+            self.last_dbg = now
+            try:
+                qsize = q.qsize()
+            except NotImplementedError:      # macOS has no sem_getvalue()
+                qsize = -1
+            print(f"    [hb-dbg] t={now - self.t0:5.1f}s  msgs_received={self.n_msgs}"
+                  f"  qsize={qsize}  live={len(self.live)}", flush=True)
+
+        if now - self.last_print < self.every:
+            return
+        # Backstop for a worker that died without sending its done-sentinel:
+        # otherwise its last rate would be summed into `agg` forever.
+        for pid in [p for p, v in self.live.items() if now - v[1] > 2 * self.every]:
+            self.live.pop(pid)
+        if not self.live:
+            # Nothing to say yet (workers still starting / JIT-compiling). Do NOT
+            # advance last_print, or this empty tick costs a whole `every` period
+            # before the first block appears.
+            return
+        samples = [v[0] for v in self.live.values()]
+        agg = sum(s[4] for s in samples)
+        print(f"    [hb] {len(samples)} solving | agg {agg:,.0f} nodes/s", flush=True)
+        for s in sorted(samples):
+            print(f"         {_fmt_hb(s)}", flush=True)
+        self.last_print = now
 
 
-def _iter_with_heartbeat(it, q, every):
+def _iter_with_heartbeat(it, q, every, debug=False):
     """Yield pool results, draining the heartbeat queue while they are pending."""
     import multiprocessing as mp
 
     if q is None:
         yield from it
         return
-    live, last_print = {}, 0.0   # epoch 0 => first sample to arrive prints at once
+    printer = _HbPrinter(every, debug)
     while True:
         try:
             item = it.next(timeout=0.5)
         except mp.TimeoutError:
-            last_print = _hb_drain(q, live, last_print, every)
+            printer.drain(q)
             continue
         except StopIteration:
             return
-        last_print = _hb_drain(q, live, last_print, every)
+        printer.drain(q)
         yield item
 
 
 def _solve_one(job):
     """Top-level (picklable) worker: run one presentation, return its stats."""
-    pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s = job
+    pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s, hb_dbg = job
     progress = None
     if hb_s > 0:
         if _HB_Q is not None:
-            # Pool worker: the parent prints every hb_s, so sample twice as often
-            # or its aggregate would be summed from rates up to hb_s seconds old.
-            sink, interval = _HB_Q.put_nowait, max(1.0, hb_s / 2)
+            # Announce liveness BEFORE numba JIT (which can take tens of seconds
+            # with 4 workers compiling at once): proves the worker and the queue
+            # are alive even though no sample exists yet.
+            _HB_Q.put_nowait(("start", pres_id, os.getpid()))
+            # The parent prints every hb_s, so sample twice as often or its
+            # aggregate would be summed from rates up to hb_s seconds old.
+            sink, interval = (lambda s: _HB_Q.put_nowait(("sample",) + s),
+                              max(1.0, hb_s / 2))
         else:
             # Serial: this IS the printer, so sample at exactly the asked cadence.
             sink, interval = (lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True)), hb_s
-        progress = _Heartbeat(pres_id, node_budget, interval, sink)
+        # Debug: emit on the very first 1024-node tick (its rate includes JIT).
+        progress = _Heartbeat(pres_id, node_budget, interval, sink,
+                              first_after=0.0 if hb_dbg else 10.0)
     t0 = time.time()
     try:
         stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
                               cyclic_reduce=cyc, high_speedup=high, progress=progress)
     finally:
         if progress is not None and _HB_Q is not None:
-            # Tell the monitor to stop counting this presentation's last rate
+            # Tell the printer to stop counting this presentation's last rate
             # into the aggregate; the worker moves on to the next job.
-            _HB_Q.put_nowait((pres_id, None))
+            _HB_Q.put_nowait(("done", pres_id))
     return pres_id, r1, r2, stats, time.time() - t0
 
 
@@ -440,7 +479,9 @@ def run_dataset(cfg, node_budget):
     mrl = cfg["MAX_RELATOR_LENGTH"]
     cyc = cfg["CYCLIC_REDUCE"]
     hb_s = float(cfg.get("HEARTBEAT_EVERY_S", 0) or 0)
-    jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s) for pid, a, b in todo]
+    hb_dbg = bool(cfg.get("HEARTBEAT_DEBUG", False))
+    jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s, hb_dbg)
+            for pid, a, b in todo]
     n_workers = _auto_workers(cfg) if high else 1
     if high:
         print(f"    HIGH_SPEEDUP: {n_workers} worker(s) | {_total_ram_gb():.0f} GB RAM"
@@ -479,9 +520,10 @@ def run_dataset(cfg, node_budget):
             pool = mp.Pool(n_workers, initializer=_init_worker, initargs=(hb_q,))
             if hb_q is not None:
                 print(f"    [hb] armed: {n_workers} worker(s); first sample after "
-                      f"numba JIT + ~10s", flush=True)
+                      f"numba JIT + ~{0 if hb_dbg else 10}s"
+                      f"{'  [DEBUG]' if hb_dbg else ''}", flush=True)
             results = _iter_with_heartbeat(
-                pool.imap_unordered(_solve_one, jobs), hb_q, hb_s)
+                pool.imap_unordered(_solve_one, jobs), hb_q, hb_s, hb_dbg)
         else:
             results = (_solve_one(j) for j in jobs)
 
