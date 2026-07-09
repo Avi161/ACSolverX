@@ -12,6 +12,7 @@ import os
 import time
 from datetime import datetime
 
+from experiments import wandb_tracking
 from experiments.search.greedy_baseline import greedy_search
 
 
@@ -58,12 +59,24 @@ DEFAULT_CONFIG = {
     "DRIVE_OUT_DIR": "/content/drive/MyDrive/acsolverx_results/greedy_baseline",
     "LOCAL_OUT_DIR": "results/greedy_baseline",
 
-    # W&B
+    # W&B. None of these change the search, so none of them enter _run_prefix.
     "USE_WANDB": False,
     "WANDB_ENTITY": "avigyapaudel045-aisc",   # writable team entity (org-managed acct; None = account default)
     "WANDB_PROJECT": "acsolver",
     "WANDB_MODE": "online",
-    "WANDB_GROUP": None,             # default set at runtime to greedy_baseline_{date}
+    # Default group is the SWEEP identity: {dataset}-mrl{cap}-{cyc}-{subset}.
+    # Runs inside a group differ only by node_budget, so the group view compares
+    # budgets directly. Override only to force two sweeps into one section.
+    "WANDB_GROUP": None,
+    "WANDB_JOB_TYPE": None,          # default "greedy_baseline" (the algorithm family)
+    "WANDB_RUN_NAME": None,          # default "50k · ms640_solved · mrl24 · cyc"
+    "WANDB_TAGS": None,              # extra tags on top of the derived ones
+    "WANDB_NOTES": None,
+    # Solution paths replayed at finish to draw |r1|+|r2| along the path (the
+    # two humps). 0 = off; this is the only finish-time step that costs work.
+    "WANDB_PATH_PROFILES": 8,        # how many paths get their own line
+    "WANDB_PATH_SAMPLE": 200,        # how many get replayed for the hump stats
+    "WANDB_LOG_PRES_SCALARS": True,  # per-presentation pres/* metrics
 
     "PROGRESS_EVERY": 10,            # print a status line every N processed presentations
 
@@ -462,50 +475,31 @@ def run_dataset(cfg, node_budget):
     cfg = {**DEFAULT_CONFIG, **cfg}
     presentations = list(load_dataset(cfg["DATASET"], cfg["SUBSET"]))
     n_pres = len(presentations)
-    out_path, paths_path, date, stem = _resolve_paths(cfg, node_budget, n_pres)
+    out_path, paths_path, _date, stem = _resolve_paths(cfg, node_budget, n_pres)
 
     if cfg["RESUME"]:
         done, n_seen, n_solved = _read_done(out_path)
     else:
         done, n_seen, n_solved = set(), 0, 0
 
+    todo_ids = [pid for (pid, _r1, _r2) in presentations if pid not in done]
+
     run = None
-    table = None
+    logger = None
+    run_id = stem   # same collision-safe identity as the jsonl (W&B ids allow it)
     if cfg["USE_WANDB"]:
-        import wandb
-        group = cfg["WANDB_GROUP"] or f"greedy_baseline_{date}"
-        # Same collision-safe identity as the jsonl file (W&B ids allow these chars).
-        run_id = stem
-        run = wandb.init(
-            entity=cfg["WANDB_ENTITY"] or None, project=cfg["WANDB_PROJECT"],
-            id=run_id, name=run_id, resume="allow",
-            group=group, job_type="greedy_baseline", mode=cfg["WANDB_MODE"],
-            config={
-                "node_budget": node_budget,
-                "max_relator_length": cfg["MAX_RELATOR_LENGTH"],
-                "cyclic_reduce": cfg["CYCLIC_REDUCE"],
-                "dataset": cfg["DATASET"], "n_pres": n_pres,
-                "subset": str(cfg["SUBSET"]),
-            },
-        )
-        # Give the running solve_rate its own x-axis (pres_id) instead of the
-        # global step. On a resumed run the global step is already past the last
-        # pres_id (finish-time Table/panel logs bumped it), so logging
-        # step=pres_id would be rejected as non-monotonic ("step N < current").
-        run.define_metric("pres_id")
-        run.define_metric("solve_rate", step_metric="pres_id")
-        table = wandb.Table(columns=[
-            "pres_id", "r1", "r2", "node_budget", "max_relator_length_cap",
-            "cyclic_reduce", "nodes_explored", "solved", "path_length",
-            "min_relator_length", "max_relator_length",
-        ])
-        # Rebuild the Table from any already-written rows (resume).
-        if os.path.exists(out_path):
-            with open(out_path) as f:
-                for ln in f:
-                    ln = ln.strip()
-                    if ln:
-                        _add_table_row(table, json.loads(ln))
+        run = wandb_tracking.init_run(
+            cfg, node_budget, n_pres, run_id,
+            _run_prefix(cfg, node_budget, n_pres), _subset_tag(cfg["SUBSET"]))
+        # Rebuild the Table from any already-written rows, and seed the
+        # cumulative counters so a resumed run's live curves stay continuous.
+        prior = wandb_tracking.read_jsonl(out_path)
+        logger = wandb_tracking.LiveLogger(
+            run, cfg, node_budget, n_todo=len(todo_ids), n_seen=n_seen,
+            n_solved=n_solved,
+            cum_nodes=sum(r.get("nodes_explored") or 0 for r in prior))
+        for prior_row in prior:
+            logger.add_existing_row(prior_row)
 
     todo = [(pid, r1, r2) for (pid, r1, r2) in presentations if pid not in done]
     n_todo = len(todo)
@@ -548,8 +542,8 @@ def run_dataset(cfg, node_budget):
             path_row.update(_path_payload(cfg, stats))
             paths_f.write(json.dumps(path_row) + "\n")
             paths_f.flush()
-        if run is not None:
-            _add_table_row(table, row)
+        if logger is not None:
+            logger.on_row(row)
 
     # Heavy mode drops path tracking, so a solved presentation is re-solved by
     # the normal solver AFTER the pool is torn down (it needs the full RAM).
@@ -594,8 +588,11 @@ def run_dataset(cfg, node_budget):
             n_seen += 1
             n_solved += int(stats["solved"])
             processed += 1
-            if run is not None:
-                run.log({"pres_id": pres_id, "solve_rate": n_solved / max(n_seen, 1)})
+            if logger is not None:
+                # Cumulative run/* counters advance HERE, once per worker result.
+                # A heavy-mode solved presentation is re-solved later to recover
+                # its path; accumulating again there would double-count its nodes.
+                logger.on_result(stats)
 
             if processed % every == 0 or processed == n_todo:
                 wall = time.time() - t_start
@@ -637,78 +634,9 @@ def run_dataset(cfg, node_budget):
             paths_f.close()
 
     if run is not None:
-        _finish_wandb(run, table, out_path, paths_path, run_id,
-                      n_seen, n_solved, total_time, cfg)
+        wandb_tracking.finish_run(run, logger, out_path, paths_path, run_id,
+                                  n_seen, n_solved, total_time, cfg, node_budget)
 
     print(f"[{out_path}] {n_seen} presentations, {n_solved} solved "
           f"({n_solved / max(n_seen, 1):.1%}).")
     return out_path
-
-
-def _add_table_row(table, row):
-    table.add_data(
-        row["pres_id"], row["r1"], row["r2"], row["node_budget"],
-        row.get("max_relator_length_cap"), row.get("cyclic_reduce"),
-        row["nodes_explored"], row["solved"], row["path_length"],
-        row.get("min_relator_length"), row.get("max_relator_length"),
-    )
-
-
-def _finish_wandb(run, table, out_path, paths_path, run_id,
-                  n_seen, n_solved, total_time, cfg):
-    import statistics
-    import wandb
-
-    # Recompute headline aggregates from the full jsonl (source of truth).
-    nodes_all, nodes_solved, paths_solved = [], [], []
-    scatter_pts = []  # (nodes_explored, path_length) for solved presentations
-    with open(out_path) as f:
-        for ln in f:
-            ln = ln.strip()
-            if not ln:
-                continue
-            row = json.loads(ln)
-            nodes_all.append(row["nodes_explored"])
-            if row["solved"]:
-                nodes_solved.append(row["nodes_explored"])
-                if row["path_length"] is not None:
-                    paths_solved.append(row["path_length"])
-                    scatter_pts.append([row["nodes_explored"], row["path_length"]])
-
-    def _mean(xs):
-        return statistics.fmean(xs) if xs else None
-
-    def _median(xs):
-        return statistics.median(xs) if xs else None
-
-    run.summary["n_pres"] = n_seen
-    run.summary["n_solved"] = n_solved
-    run.summary["solve_rate"] = n_solved / max(n_seen, 1)
-    run.summary["nodes_explored_mean"] = _mean(nodes_all)
-    run.summary["nodes_explored_solved_mean"] = _mean(nodes_solved)
-    run.summary["path_length_mean"] = _mean(paths_solved)
-    run.summary["path_length_median"] = _median(paths_solved)
-    run.summary["total_time_s"] = round(total_time, 2)
-
-    run.log({"results": table})
-
-    # Auto-rendered graphs (the two headline metrics as distributions).
-    panels = {}
-    if nodes_all:
-        panels["nodes_explored_hist"] = wandb.Histogram(nodes_all)
-    if paths_solved:
-        panels["path_length_hist"] = wandb.Histogram(paths_solved)
-    if scatter_pts:
-        _sc = wandb.Table(data=scatter_pts, columns=["nodes_explored", "path_length"])
-        panels["nodes_vs_path"] = wandb.plot.scatter(
-            _sc, "nodes_explored", "path_length",
-            title="nodes explored vs path length (solved)")
-    if panels:
-        run.log(panels)
-
-    art = wandb.Artifact(run_id, type="results")
-    art.add_file(out_path)
-    if cfg["PATH_IN_SEPARATE_FILE"] and os.path.exists(paths_path):
-        art.add_file(paths_path)
-    run.log_artifact(art)
-    run.finish()
