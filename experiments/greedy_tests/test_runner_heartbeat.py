@@ -213,37 +213,67 @@ def test_iter_with_heartbeat_drains_between_results(clock, capsys):
     assert "123 nodes/s" in capsys.readouterr().out
 
 
-# -- _auto_workers -----------------------------------------------------------
+# -- worker sizing -----------------------------------------------------------
+#
+# ``_auto_workers(cfg, node_budget)`` is bounded by usable cores AND by memory.
+# ``GB_PER_PRES`` defaults to "auto": the per-search footprint is estimated from
+# the node budget rather than assumed constant, because one constant is wrong at
+# both ends (9.0 GB starves a 50k run of workers and under-provisions a 1M one).
+# These tests pin the *shape* of that estimate, not its calibration constants.
 
 
 def test_auto_workers_honours_an_explicit_setting():
-    assert _auto_workers({"N_WORKERS": 7}) == 7
+    assert _auto_workers({"N_WORKERS": 7}, 1000) == 7
 
 
-def test_auto_workers_is_bounded_by_ram_then_cores(monkeypatch):
-    monkeypatch.setattr(rb.os, "cpu_count", lambda: 16)
-    monkeypatch.setattr(rb, "_total_ram_gb", lambda: 50.0)
-    # 50 * 0.8 // 9 = 4
-    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 9.0}) == 4
-    # a smaller footprint lets more workers run, capped by cores
-    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 0.5}) == 16
+def test_auto_workers_is_bounded_by_memory_then_cores(monkeypatch):
+    monkeypatch.setattr(rb, "_usable_cores", lambda: 16)
+    monkeypatch.setattr(rb, "_avail_ram_gb", lambda: 50.0)
+    # An explicit GB_PER_PRES wins over the estimate: 50 * 0.90 // 9 = 5.
+    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 9.0}, 1000) == 5
+    # A smaller footprint lets more workers run, capped by the core count.
+    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 0.5}, 1000) == 16
 
 
 def test_auto_workers_never_returns_zero(monkeypatch):
-    monkeypatch.setattr(rb.os, "cpu_count", lambda: 4)
-    monkeypatch.setattr(rb, "_total_ram_gb", lambda: 1.0)
-    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 9.0}) == 1
+    """Under-provisioning cores wastes time; under-provisioning memory OOMs.
+
+    So the floor is one worker, never zero, even when a search cannot fit.
+    """
+    monkeypatch.setattr(rb, "_usable_cores", lambda: 4)
+    monkeypatch.setattr(rb, "_avail_ram_gb", lambda: 1.0)
+    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 9.0}, 1000) == 1
 
 
-def test_auto_workers_survives_an_unknown_ram_size(monkeypatch):
-    monkeypatch.setattr(rb.os, "cpu_count", lambda: 8)
-    monkeypatch.setattr(rb, "_total_ram_gb", lambda: 0.0)
-    assert _auto_workers({"N_WORKERS": 0}) == 1
+def test_auto_workers_survives_an_unreadable_ram_size(monkeypatch):
+    monkeypatch.setattr(rb, "_usable_cores", lambda: 8)
+    monkeypatch.setattr(rb, "_avail_ram_gb", lambda: 0.0)
+    assert _auto_workers({"N_WORKERS": 0}, 1000) == 1
 
 
-def test_gb_per_pres_is_a_provisioning_knob_not_a_correctness_one(monkeypatch):
-    """Calibrated for 1M nodes at mrl=48; a small run under-provisions silently."""
-    monkeypatch.setattr(rb.os, "cpu_count", lambda: 10)
-    monkeypatch.setattr(rb, "_total_ram_gb", lambda: 16.0)
-    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 9.0}) == 1
-    assert _auto_workers({"N_WORKERS": 0, "GB_PER_PRES": 1.0}) == 10
+def test_the_auto_estimate_grows_with_the_node_budget(monkeypatch):
+    """The whole point of "auto": a 1k search must not be sized like a 1M one."""
+    cfg = {"N_WORKERS": 0, "GB_PER_PRES": "auto"}
+    small = rb._est_gb_per_pres(cfg, 1_000)
+    large = rb._est_gb_per_pres(cfg, 1_000_000)
+    assert small < large
+    assert small < 1.0, "a 1k-node search must not be provisioned in gigabytes"
+    assert large > 9.0, "the old fixed 9.0 was too LOW at its own calibration point"
+
+    monkeypatch.setattr(rb, "_usable_cores", lambda: 16)
+    monkeypatch.setattr(rb, "_avail_ram_gb", lambda: 50.0)
+    assert _auto_workers(cfg, 1_000) >= _auto_workers(cfg, 1_000_000)
+
+
+def test_an_explicit_gb_per_pres_overrides_the_estimate():
+    cfg_auto = {"GB_PER_PRES": "auto"}
+    cfg_fixed = {"GB_PER_PRES": 4.0}
+    assert rb._est_gb_per_pres(cfg_fixed, 1_000_000) == 4.0
+    assert rb._est_gb_per_pres(cfg_auto, 1_000_000) != 4.0
+
+
+@pytest.mark.parametrize("falsy", ["auto", 0, None, False])
+def test_a_falsy_gb_per_pres_falls_back_to_the_estimate(falsy):
+    """0/None/False must not divide-by-zero or be read as "0 GB per search"."""
+    est = rb._est_gb_per_pres({"GB_PER_PRES": falsy}, 10_000)
+    assert est > 0

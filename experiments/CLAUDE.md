@@ -25,6 +25,20 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 - [never lower `MAX_RELATOR_LENGTH` for speed](lessons/max-relator-length-is-inert.md)
 - [hoist k1-independent rotations](lessons/hoist-rotation-out-of-inner-loop.md) · [what to `@njit` and what not to](lessons/numba-jit-split.md)
 
+**`greedy_tests/`** — the pipeline's test suite. **Run it after ANY change to the three files above**
+(`pytest experiments/greedy_tests -q`; `--runslow` before a push). See its `README.md`.
+- Three layers, so a bug in one can't hide a bug in another: a general-`n` spec, the abelianization
+  invariant the solver never computes, and a `SolverAdapter` seam the stable-AC port plugs into.
+  [[WORKS]](lessons/greedy-test-suite-three-layers.md)
+- Budgets are capped at `MAX_BUDGET = 1_000`; never raise one to reach a deeper search.
+  [[WORKS]](lessons/test-budget-ceiling.md)
+- Two real `run_baseline.py` bugs live here as `xfail(strict=True)`, not as fixes.
+  [[TRAP]](lessons/run-baseline-two-known-bugs.md)
+- A green default tier hides whatever it skipped. [[WORKS]](lessons/slow-tier-caught-broken-path-test.md)
+  · [a vacuous guard makes a green test meaningless](lessons/cap-monotonicity-vacuous-guard.md)
+  · [`-q` twice hides the summary](lessons/pytest-qq-suppresses-summary.md)
+  · [rebase before you push](lessons/worktree-branch-drift-rebase.md)
+
 **`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN.
 - [a push does not reach a running Colab](lessons/notebook-push-does-not-reach-colab.md) · [`git pull` is not a module reload](lessons/git-pull-is-not-a-module-reload.md)
 - [`BRANCH` must match git](lessons/notebook-branch-must-match-git.md) · [don't nest the clone](lessons/colab-setup-nested-clone.md) · [Drive mount root isn't writable](lessons/colab-drive-mount-root-not-writable.md)

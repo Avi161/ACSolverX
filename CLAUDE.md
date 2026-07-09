@@ -23,6 +23,25 @@ and a bloated CLAUDE.md gets ignored.
 
 ## Tests
 
+### ⛔ MANDATORY after ANY change to the greedy pipeline
+
+**Any** edit to `experiments/search/greedy_baseline.py`, `experiments/run_baseline.py`, `experiments/greedy_baseline.ipynb`, or anything under `experiments/greedy_tests/` **must** be followed by:
+
+```bash
+.venv/bin/python3 -m pytest experiments/greedy_tests -q            # after every change (~1–2 min)
+.venv/bin/python3 -m pytest experiments/greedy_tests -q --runslow  # before any push or result claim (~2–3 min)
+```
+
+- **Do not report a change as working, and do not commit, until the default tier is green.** A green default tier says nothing about what it *skipped* — `--runslow` carries the multiprocessing path, the golden regressions, and the deep parity matrix. [[WORKS]](experiments/lessons/slow-tier-caught-broken-path-test.md)
+- **A golden failure is a RESULT CHANGE, not a stale fixture.** The search is deterministic, so a moved number means something altered it. Diagnose first; only then `python3 -m experiments.greedy_tests.tools.regen_golden`, and say why in the commit message.
+- **No test may use a node budget above `MAX_BUDGET = 1_000`** — a search at budget `B` is exactly the first `B` pops of any longer search, so a bigger budget buys slower tests, not different behaviour. [[WORKS]](experiments/lessons/test-budget-ceiling.md)
+- **Never assert `min_relator` / `max_relator` strings** — both are tie-broken over a `set`, so they follow `PYTHONHASHSEED`. Their lengths are deterministic.
+- `test_known_gaps.py` holds two real `run_baseline.py` bugs as `xfail(strict=True)`. If one XPASSes, someone fixed it — delete the marker, don't mute the test. [[TRAP]](experiments/lessons/run-baseline-two-known-bugs.md)
+
+**Adding the stable-AC solver** (extra generator + relator, change of variables): implement a `SolverAdapter` in `experiments/greedy_tests/adapters.py` and append it to `ALL_ADAPTERS`. The contract, abelianization-invariant and packed-key suites then run against it at `n_gen = 3` **with no test rewriting** — they already run there today against the pure-Python `SpecAdapter`. See `experiments/greedy_tests/README.md`.
+
+### Other suites
+
 - `.venv/bin/python3 tests/wandb_tracking_test.py` — pure, offline, no wandb server needed.
 - `.venv/bin/python3 tests/wandb_offline_integration.py <phase>` — phases: `cum_nodes identity fresh panels resume_full resume_partial heavy`.
 
@@ -58,6 +77,15 @@ and a bloated CLAUDE.md gets ignored.
 - Verify the entity exists before pinning it: a wrong entity fails only at `wandb.init`, not at `login(verify=True)`. [[TRAP]](experiments/lessons/wandb-entity-must-exist.md)
 - Colab's interactive `wandb.login()` menu is mangled by stdin; source the key from a Colab Secret or a single `getpass`, and always pass `relogin=True`. [[TRAP]](experiments/lessons/wandb-colab-login-flaky.md)
 - Promptless auth *requires* a Colab Secret; sanitize and format-validate a pasted key before hitting the server. [[TRAP]](experiments/lessons/wandb-auto-auth-colab-secret.md)
+
+### Testing
+- Test the search against a general-`n` spec **and** against an invariant it never computes (`abs(det)` of the exponent-sum matrix); never build an oracle that must reproduce `nodes_explored` — it becomes a near-copy of the implementation and would reject a correct stable-AC solver. [[WORKS]](experiments/lessons/greedy-test-suite-three-layers.md)
+- Node budgets are capped at 1,000: a search at budget `B` is the first `B` pops of any longer search, so a bigger budget buys slower tests, not different behaviour. Want a deeper anchor? Find a presentation that solves in *fewer* nodes. [[WORKS]](experiments/lessons/test-budget-ceiling.md)
+- A green default tier proves nothing about what it skipped — check the skip count, never push behind one, and when a new test fails on an already-documented bug the *test* is wrong, not the bug. [[WORKS]](experiments/lessons/slow-tier-caught-broken-path-test.md)
+- When the repo forbids touching existing code, park a known defect in `xfail(strict=True)`: it stays green, documents the bug, and fails loudly the moment someone fixes it. [[TRAP]](experiments/lessons/run-baseline-two-known-bugs.md)
+- Before building a test on a derived invariant, check its precondition actually fires on the fixtures — a guard that is always false makes a green test meaningless. [[TRAP]](experiments/lessons/cap-monotonicity-vacuous-guard.md)
+- Never put `-q`/`-v` in `pytest.ini`'s `addopts` if the documented command also passes one: pytest sums them, and `-qq` silently suppresses the pass/fail summary. [[TRAP]](experiments/lessons/pytest-qq-suppresses-summary.md)
+- `EnterWorktree` branches from `origin/main`, not the active branch; re-check `git log` on the target before pushing, and test the *seam* when a neighbouring module already has its own tests. [[TRAP]](experiments/lessons/worktree-branch-drift-rebase.md)
 
 ### Colab / notebook
 - The Drive mount root `/content/drive/` is not writable — every output path goes under `/content/drive/MyDrive/...`. [[TRAP]](experiments/lessons/colab-drive-mount-root-not-writable.md)
