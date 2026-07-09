@@ -1,13 +1,17 @@
-"""Two real defects in ``run_baseline.py``, pinned rather than fixed.
+"""Real defects in ``run_baseline.py``, pinned rather than fixed.
 
-The repo rule is "do not modify existing code", so each test below asserts the
-**desired** behaviour and is marked ``xfail(strict=True)``. Today they xfail and
-the suite is green. The moment someone fixes the underlying bug the test xpasses,
-strict mode turns that into a failure, and whoever fixed it is told to delete the
-marker. That is the intended lifecycle -- these are not permanent excuses.
+Each test below asserts the **desired** behaviour and is marked
+``xfail(strict=True)``. While the bug lives they xfail and the suite is green.
+The moment someone fixes the underlying bug the test xpasses, strict mode turns
+that into a failure, and whoever fixed it is told to delete the marker. That is
+the intended lifecycle -- these are not permanent excuses.
 
 Both defects break the same thing: resuming a run after a disconnect, which is
 the entire reason the jsonl exists.
+
+FIXED, marker removed: the ``todo[0]`` IndexError on a fully-resumed heavy run.
+The warm-up is now guarded by ``and jobs``; the test below is a plain regression
+test. One gap remains: ``_read_done``'s unguarded ``json.loads``.
 """
 
 import json
@@ -48,16 +52,14 @@ def test_read_done_tolerates_a_truncated_trailing_line(tmp_path):
     assert (seen, solved) == (2, 1)
 
 
-@pytest.mark.xfail(strict=True, raises=IndexError,
-                   reason="run_baseline.py:564 -- todo[0] is indexed before the "
-                          "empty-todo check; fix it and delete this marker")
 def test_a_fully_resumed_heavy_run_does_not_crash(tmp_path, tiny_dataset):
-    """``HIGH_SPEEDUP`` + multiple workers + nothing left to do -> ``IndexError``.
+    """``HIGH_SPEEDUP`` + multiple workers + nothing left to do must not raise.
 
-    The numba warm-up reads ``todo[0]`` unconditionally inside
-    ``if high and n_workers > 1``, before the pool is even created. Re-running a
-    finished heavy sweep to confirm it is complete therefore raises instead of
-    printing "nothing to do". No worker is ever spawned, so this is a fast test.
+    The numba warm-up used to read ``todo[0]`` unconditionally inside
+    ``if high and n_workers > 1``, before the pool was created, so re-running a
+    finished heavy sweep to confirm it is complete raised ``IndexError`` instead
+    of printing "nothing to do". The guard is now ``if high and n_workers > 1
+    and jobs``. No worker is ever spawned, so this is a fast test.
     """
     out_dir = str(tmp_path / "out")
     cfg = {**DEFAULT_CONFIG, "DATASET": tiny_dataset, "LOCAL_OUT_DIR": out_dir,

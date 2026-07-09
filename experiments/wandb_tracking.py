@@ -19,14 +19,20 @@ groups them into sections instead of one flat wall of charts.
 
 TIMING CAVEAT — read before trusting any timing panel on a HIGH_SPEEDUP run.
 ``time_seconds`` means two different things there. An *unsolved* row is timed
-inside a pool worker (inflated by contention). A *solved* row is timed by the
+inside a pool worker (inflated by contention). A *solved* row is REWRITTEN by the
 serial, full-price normal-mode recovery re-solve that runs after the pool tears
-down (``run_baseline.py``, the ``deferred`` loop) — not by the heavy solve that
-actually found it. So solved and unsolved timings come from different regimes
-and are not comparable. Rows carry ``path_recovered`` for exactly this reason:
-when any row has it, the timing panels are titled as mixed-regime and
-``summary["timing_regime"]`` reads ``mixed(heavy)``. Timing panels are clean and
-unqualified whenever HIGH_SPEEDUP is off (the whole <=50k sweep).
+down (``run_baseline.py``, the ``deferred`` loop) — so its final time is not the
+heavy solve that actually found it. Solved and unsolved timings therefore come
+from different regimes and are not comparable. Rows carry ``path_recovered`` for
+exactly this reason: when any row has it, the timing panels are titled as
+mixed-regime and ``summary["timing_regime"]`` reads ``mixed(heavy)``. Timing
+panels are clean and unqualified whenever HIGH_SPEEDUP is off (the <=50k sweep).
+
+A solved row is written the moment its search ends, carrying ``path_pending``
+until recovery replaces it. Such a row has ``solved=true`` with
+``path_length=null``; every aggregator here already filters on
+``path_length is not None``, so a pending row contributes to the solve rate but
+not to the path-length stats — which is exactly right.
 """
 
 import json
@@ -361,6 +367,23 @@ def read_jsonl(path):
     return rows
 
 
+def build_results_table(rows, cyclic_reduce=True):
+    """The results Table, built from the jsonl at finish time.
+
+    A heavy-mode row is written the moment its search ends (``path_pending``)
+    and REWRITTEN once the path is recovered, so a Table accumulated during the
+    run would keep the stale, path-less version of every solved presentation.
+    """
+    import wandb
+
+    table = wandb.Table(columns=TABLE_COLUMNS)
+    for row in rows:
+        d = derive_row(row, canonical_initial_length(
+            row.get("r1", ""), row.get("r2", ""), cyclic_reduce))
+        table.add_data(*[d.get(c) for c in TABLE_COLUMNS])
+    return table
+
+
 def compute_analytics(rows, path_rows, cfg, node_budget, n_seen, n_solved,
                       total_time, canon_len_fn=None):
     """Everything the charts need, as plain Python. No wandb, no network."""
@@ -535,7 +558,6 @@ class LiveLogger:
 
     def __init__(self, run, cfg, node_budget, n_todo, n_seen, n_solved, cum_nodes):
         import time
-        import wandb
 
         self.run = run
         self.node_budget = int(node_budget)
@@ -545,16 +567,11 @@ class LiveLogger:
         self.cum_nodes = int(cum_nodes)
         self.log_pres = bool(cfg.get("WANDB_LOG_PRES_SCALARS", True))
         self.cyclic_reduce = bool(cfg.get("CYCLIC_REDUCE", True))
-        self.table = wandb.Table(columns=TABLE_COLUMNS)
         self._t0 = time.time()
         # Throughput and ETA describe THIS session, so they must not be computed
         # from the resume-seeded totals -- those were earned in an earlier one.
         self._session_done = 0
         self._session_nodes = 0
-
-    def add_existing_row(self, row):
-        """Rebuild the Table from a row written by an earlier session."""
-        self.table.add_data(*self._table_data(row))
 
     def on_result(self, stats):
         import time
@@ -580,7 +597,6 @@ class LiveLogger:
         })
 
     def on_row(self, row):
-        self.table.add_data(*self._table_data(row))
         if not self.log_pres:
             return
         derived = self._derive(row)
@@ -599,10 +615,6 @@ class LiveLogger:
         return derive_row(row, canonical_initial_length(
             row.get("r1", ""), row.get("r2", ""), self.cyclic_reduce))
 
-    def _table_data(self, row):
-        d = self._derive(row)
-        return [d.get(c) for c in TABLE_COLUMNS]
-
 
 def finish_run(run, logger, out_path, paths_path, run_id, n_seen, n_solved,
                total_time, cfg, node_budget):
@@ -616,7 +628,7 @@ def finish_run(run, logger, out_path, paths_path, run_id, n_seen, n_solved,
                                   canon_len_fn=canonical_initial_length)
 
     run.summary.update(analytics["summary"])
-    run.log({"tables/results": logger.table})
+    run.log({"tables/results": build_results_table(rows, logger.cyclic_reduce)})
     panels = build_panels(analytics)
     if panels:
         run.log(panels)

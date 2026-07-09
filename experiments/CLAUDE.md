@@ -10,7 +10,7 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 
 **`run_baseline.py`** — resume identity and the W&B layer both live here.
 - `_run_prefix` / `_resolve_paths` are the resume key. [identity](lessons/jsonl-filename-encodes-search-identity.md) · [no dates in the key](lessons/date-in-filename-broke-resume.md)
-- The `HIGH_SPEEDUP` pool defers solved rows to a serial recovery re-solve. [why](lessons/high-speedup-boxing-and-memory.md) · [heavy ≡ normal](lessons/high-speedup-verified-locally.md) · [a worker can't print](lessons/heartbeat-worker-cannot-print.md) · [nor can a thread](lessons/no-print-from-background-thread.md) · [an unexplained hang](lessons/forked-workers-block-cause-unknown.md)
+- The `HIGH_SPEEDUP` pool defers a solved row's *path* to a serial recovery re-solve, but writes the row itself up-front as `path_pending` and rewrites it in place — never park a result in RAM. [why deferred](lessons/high-speedup-boxing-and-memory.md) · [why persisted first](lessons/heavy-mode-defers-solved-rows.md) · [heavy ≡ normal](lessons/high-speedup-verified-locally.md) · [a worker can't print](lessons/heartbeat-worker-cannot-print.md) · [nor can a thread](lessons/no-print-from-background-thread.md) · [an unexplained hang](lessons/forked-workers-block-cause-unknown.md)
 - Worker count is sized from measured memory, and a worker that OOMs is counted, not lost. [sizing + the `tracemalloc` trap + pickling an exception back](lessons/gb-per-pres-sized-from-measured-memory.md)
 - Heartbeat cadence has two separate phases. [first emission ≠ period](lessons/heartbeat-first-emission-phase-bug.md)
 
@@ -32,8 +32,12 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
   [[WORKS]](lessons/greedy-test-suite-three-layers.md)
 - Budgets are capped at `MAX_BUDGET = 1_000`; never raise one to reach a deeper search.
   [[WORKS]](lessons/test-budget-ceiling.md)
-- Two real `run_baseline.py` bugs live here as `xfail(strict=True)`, not as fixes.
+- One real `run_baseline.py` bug still lives here as `xfail(strict=True)`, not as a fix
+  (`_read_done`'s unguarded `json.loads`); the `todo[0]` one XPASSed and its marker is gone.
   [[TRAP]](lessons/run-baseline-two-known-bugs.md)
+- `test_runner_recovery.py` pins the durability of heavy-mode solved rows: the row is written
+  before the path is recovered, and a dying recovery is retried on resume without re-searching.
+  [[TRAP]](lessons/heavy-mode-defers-solved-rows.md)
 - A green default tier hides whatever it skipped. [[WORKS]](lessons/slow-tier-caught-broken-path-test.md)
   · [a vacuous guard makes a green test meaningless](lessons/cap-monotonicity-vacuous-guard.md)
   · [`-q` twice hides the summary](lessons/pytest-qq-suppresses-summary.md)

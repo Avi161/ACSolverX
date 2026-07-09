@@ -197,6 +197,61 @@ def _read_done(out_path):
     return done, n_seen, n_solved
 
 
+def _read_pending(out_path):
+    """pres_ids whose SEARCH finished and is durable, but whose path was never
+    recovered (``path_pending``).
+
+    These are already in ``_read_done``'s ``done`` set, so they are never
+    re-searched; only their comparatively cheap path recovery is retried.
+    """
+    pending = set()
+    if os.path.exists(out_path):
+        with open(out_path, "r") as f:
+            for ln in f:
+                ln = ln.strip()
+                if not ln:
+                    continue
+                row = json.loads(ln)
+                if row.get("path_pending"):
+                    pending.add(row["pres_id"])
+    return pending
+
+
+def _read_paths_done(paths_path):
+    """pres_ids already present in the *_paths.jsonl (keeps appends idempotent)."""
+    ids = set()
+    if os.path.exists(paths_path):
+        with open(paths_path, "r") as f:
+            for ln in f:
+                ln = ln.strip()
+                if ln:
+                    ids.add(json.loads(ln)["pres_id"])
+    return ids
+
+
+def _update_row(out_path, pres_id, new_row):
+    """Replace the row for ``pres_id`` in place, atomically.
+
+    The jsonl is one row per pres_id (every consumer assumes it), so a recovered
+    path fills in the existing row instead of appending a second one. Written to
+    a temp file and ``os.replace``d, so a crash leaves the previous, still-valid
+    file untouched — the row simply stays ``path_pending`` and is retried.
+    """
+    tmp = out_path + ".tmp"
+    with open(out_path, "r") as src, open(tmp, "w") as dst:
+        for ln in src:
+            s = ln.strip()
+            if not s:
+                continue
+            row = json.loads(s)
+            if row["pres_id"] == pres_id:
+                row = new_row
+            dst.write(json.dumps(row) + "\n")
+        dst.flush()
+        os.fsync(dst.fileno())
+    os.replace(tmp, out_path)
+
+
 # --- resource detection + memory budgeting (HIGH_SPEEDUP path only) --------
 # Everything below is result-neutral: it decides HOW MANY searches run at once,
 # never what any one search computes. None of it belongs in _run_prefix.
@@ -731,8 +786,9 @@ def run_dataset(cfg, node_budget):
 
     if cfg["RESUME"]:
         done, n_seen, n_solved = _read_done(out_path)
+        pending = _read_pending(out_path)
     else:
-        done, n_seen, n_solved = set(), 0, 0
+        done, pending, n_seen, n_solved = set(), set(), 0, 0
 
     todo_ids = [pid for (pid, _r1, _r2) in presentations if pid not in done]
 
@@ -743,15 +799,13 @@ def run_dataset(cfg, node_budget):
         run = wandb_tracking.init_run(
             cfg, node_budget, n_pres, run_id,
             _run_prefix(cfg, node_budget, n_pres), _subset_tag(cfg["SUBSET"]))
-        # Rebuild the Table from any already-written rows, and seed the
-        # cumulative counters so a resumed run's live curves stay continuous.
+        # Seed the cumulative counters so a resumed run's live curves stay
+        # continuous. The results Table is built from the jsonl at finish time.
         prior = wandb_tracking.read_jsonl(out_path)
         logger = wandb_tracking.LiveLogger(
             run, cfg, node_budget, n_todo=len(todo_ids), n_seen=n_seen,
             n_solved=n_solved,
             cum_nodes=sum(r.get("nodes_explored") or 0 for r in prior))
-        for prior_row in prior:
-            logger.add_existing_row(prior_row)
 
     todo = [(pid, r1, r2) for (pid, r1, r2) in presentations if pid not in done]
     n_todo = len(todo)
@@ -759,7 +813,10 @@ def run_dataset(cfg, node_budget):
     print(f"=== budget={node_budget} | {n_pres} presentations | "
           f"{len(done)} already done, {n_todo} to run | -> {out_path}",
           flush=True)
-    if n_todo == 0:
+    if pending:
+        print(f"    {len(pending)} solved row(s) still need a path: "
+              f"{sorted(pending)} (search NOT repeated)", flush=True)
+    if n_todo == 0 and not pending:
         print("    nothing to do (all done). ", flush=True)
 
     high = bool(cfg["HIGH_SPEEDUP"])
@@ -804,32 +861,48 @@ def run_dataset(cfg, node_budget):
     processed = 0
     out_f = open(out_path, "a")
     paths_f = open(paths_path, "a") if cfg["PATH_IN_SEPARATE_FILE"] else None
+    # Only on RESUME: a retried recovery must not append a second path row for a
+    # pres_id whose previous attempt already wrote one.
+    paths_done = (_read_paths_done(paths_path)
+                  if cfg["PATH_IN_SEPARATE_FILE"] and cfg["RESUME"] else set())
     pool = None
 
-    def _emit(pres_id, r1, r2, stats, elapsed, recovered=False, mem_abort=False):
+    def _write_path(pres_id, r1, r2, stats):
+        if not (cfg["PATH_IN_SEPARATE_FILE"] and cfg["use_path"]
+                and stats["solved"] and pres_id not in paths_done):
+            return
+        path_row = {"pres_id": pres_id, "r1": r1, "r2": r2}
+        path_row.update(_path_payload(cfg, stats))
+        paths_f.write(json.dumps(path_row) + "\n")
+        paths_f.flush()
+        paths_done.add(pres_id)
+
+    def _emit(pres_id, r1, r2, stats, elapsed, mem_abort=False,
+              path_pending=False):
         row = _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed)
-        if recovered:
-            row["path_recovered"] = True
         if mem_abort:
             # nodes_explored is the count reached before the guard fired, NOT the
             # full node_budget. Never read this row as "searched the whole budget".
             row["mem_abort"] = True
+        if path_pending:
+            row["path_pending"] = True
         out_f.write(json.dumps(row) + "\n")
         out_f.flush()
-        if cfg["PATH_IN_SEPARATE_FILE"] and cfg["use_path"] and stats["solved"]:
-            path_row = {"pres_id": pres_id, "r1": r1, "r2": r2}
-            path_row.update(_path_payload(cfg, stats))
-            paths_f.write(json.dumps(path_row) + "\n")
-            paths_f.flush()
+        if not path_pending:
+            _write_path(pres_id, r1, r2, stats)
         if logger is not None:
             logger.on_row(row)
 
-    # Heavy mode drops path tracking, so a solved presentation is re-solved by
-    # the normal solver AFTER the pool is torn down (it needs the full RAM).
-    deferred = []
+    # Heavy mode drops path tracking, so a solved presentation must be re-solved
+    # by the normal solver AFTER the pool is torn down (it needs the full RAM).
+    # Its search result is written IMMEDIATELY as a `path_pending` row, so a
+    # crash or disconnect during recovery can never lose the expensive search —
+    # only the path, which resume then retries without re-searching.
+    by_id = {pid: (a, b) for pid, a, b in presentations}
+    deferred = [(pid, *by_id[pid]) for pid in sorted(pending)]
     aborted = []      # hit the per-worker memory allowance; retried serially
     try:
-        if high and n_workers > 1:
+        if high and n_workers > 1 and jobs:
             import multiprocessing as mp
             # Compile the numba kernels HERE, before forking. Two reasons:
             #  - a forked child inherits the compiled code, so 4 workers no longer
@@ -868,10 +941,10 @@ def run_dataset(cfg, node_budget):
                       f"deferring to a serial retry", flush=True)
                 aborted.append((pres_id, r1, r2, exc))
                 continue
-            if high and stats["solved"]:
-                deferred.append((pres_id, r1, r2))   # row written after recovery
-            else:
-                _emit(pres_id, r1, r2, stats, elapsed)
+            solved_no_path = high and stats["solved"]
+            _emit(pres_id, r1, r2, stats, elapsed, path_pending=solved_no_path)
+            if solved_no_path:
+                deferred.append((pres_id, r1, r2))   # path filled in after teardown
 
             n_seen += 1
             n_solved += int(stats["solved"])
@@ -919,10 +992,11 @@ def run_dataset(cfg, node_budget):
                 else:
                     elapsed = time.time() - t0
                     total_time += elapsed
-                    if stats["solved"]:
+                    solved_no_path = stats["solved"]   # this retry is always heavy
+                    _emit(pres_id, r1, r2, stats, elapsed,
+                          path_pending=solved_no_path)
+                    if solved_no_path:
                         deferred.append((pres_id, r1, r2))
-                    else:
-                        _emit(pres_id, r1, r2, stats, elapsed)
                     n_seen += 1
                     n_solved += int(stats["solved"])
                     processed += 1
@@ -943,6 +1017,12 @@ def run_dataset(cfg, node_budget):
             if logger is not None:
                 logger.on_result(stats)
 
+        # Every row is already durable. _update_row rewrites the file via
+        # os.replace, which would orphan this append handle's fd.
+        out_f.close()
+        out_f = None
+
+        n_failed = 0
         for pres_id, r1, r2 in deferred:
             print(f"    recovering path for pres {pres_id} (normal solver)...", flush=True)
             t0 = time.time()
@@ -953,15 +1033,37 @@ def run_dataset(cfg, node_budget):
                 recover_hb = _Heartbeat(
                     pres_id, node_budget, hb_s,
                     lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True))
-            stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
-                                  cyclic_reduce=cyc, high_speedup=False,
-                                  progress=recover_hb)
-            _emit(pres_id, r1, r2, stats, time.time() - t0, recovered=True)
+            try:
+                stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
+                                      cyclic_reduce=cyc, high_speedup=False,
+                                      progress=recover_hb)
+            except Exception as e:
+                # The normal solver is the memory-hungry one, and it runs with no
+                # _MemGuard. Losing one path is survivable; losing the other
+                # presentations' rows is not. KeyboardInterrupt still exits.
+                n_failed += 1
+                print(f"    !! path recovery FAILED for pres {pres_id}: "
+                      f"{type(e).__name__}: {e}", flush=True)
+                print("       its search row is kept (path_pending); re-run with "
+                      "RESUME=True to retry just this path.", flush=True)
+                continue
+            # Path first: a crash between the two leaves path_pending set, and
+            # _write_path is idempotent, so the retry converges.
+            _write_path(pres_id, r1, r2, stats)
+            row = _build_row(cfg, pres_id, r1, r2, node_budget, stats,
+                             time.time() - t0)
+            row["path_recovered"] = True
+            _update_row(out_path, pres_id, row)
+
+        if n_failed:
+            print(f"    {n_failed} path(s) not recovered; all search rows intact.",
+                  flush=True)
     finally:
         if pool is not None:
             pool.terminate()
             pool.join()
-        out_f.close()
+        if out_f is not None:
+            out_f.close()
         if paths_f is not None:
             paths_f.close()
 

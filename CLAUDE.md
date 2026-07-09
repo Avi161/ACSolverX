@@ -8,6 +8,14 @@ full evidence. Read a linked file only when you need the detail behind that spec
 line here.** Never paste a full entry into this file — it is loaded in full on every session,
 and a bloated CLAUDE.md gets ignored.
 
+## Hard rules
+
+- **Never open a PR.** Work lands by merging into the active branch. A worktree merges back
+  into the branch it was created from (e.g. `test/stable-ac-moves-w4`), never `main`.
+- **Never run a production-budget search locally.** Cap local runs at **10 minutes**: ~10-20
+  presentations at ~10k nodes. Prove the pipeline is budget-agnostic instead of brute-forcing
+  one budget. [[TRAP]](experiments/lessons/local-run-budget-cap.md)
+
 ## Repo context
 
 - AC-SolverX: JAX/flax RL solver for the Andrews–Curtis conjecture (Two-Hump paper). `envs/` (`ac_s.py`, `ac_moves.py`), `network.py`, `ppo_ac_s.py` are the JAX/GPU training stack.
@@ -55,6 +63,7 @@ and a bloated CLAUDE.md gets ignored.
 - `@njit` the per-move math; leave the `heapq`/`dict` search orchestration in plain Python. [[WORKS]](experiments/lessons/numba-jit-split.md)
 
 ### HIGH_SPEEDUP / multiprocessing
+- A computed result must reach disk before anything else is attempted with it: heavy mode parked every **solved** row in a RAM-only `deferred` list until the run ended, so a crash lost exactly the successes and resume re-searched them forever. Persist, then enrich in place. [[TRAP]](experiments/lessons/heavy-mode-defers-solved-rows.md)
 - Boxing was the cost and memory was the cap; a packed `bytes` key must sort identically to `(str, str)` or the heap tie-break shifts. Memory reduction is what unlocks parallelism. [[WORKS]](experiments/lessons/high-speedup-boxing-and-memory.md)
 - Heavy ≡ normal on `solved`/`nodes_explored`, ~2.8× faster; ms640 legitimately leaves several idx unsolved, so an unsolved row there is not a bug. [[WORKS]](experiments/lessons/high-speedup-verified-locally.md)
 - Size a search's RAM from the node budget (`discovered ≈ 82.9·b^0.981` states × 214 B, both measured), never one constant: 9.0 was too high at 50k *and* too low at 1M (~14 GB). [[WORKS]](experiments/lessons/gb-per-pres-sized-from-measured-memory.md)
