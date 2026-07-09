@@ -9,6 +9,7 @@ import ast
 import hashlib
 import json
 import os
+import time
 from datetime import datetime
 
 from experiments.search.greedy_baseline import greedy_search
@@ -60,6 +61,11 @@ DEFAULT_CONFIG = {
     "WANDB_GROUP": None,             # default set at runtime to greedy_baseline_{date}
 
     "PROGRESS_EVERY": 10,            # print a status line every N processed presentations
+
+    # Live nodes/s while a single presentation is still running (a 1M-node solve
+    # takes minutes, so PROGRESS_EVERY says nothing until it finishes). 0 = off.
+    # Result-neutral, so it is deliberately absent from _run_prefix.
+    "HEARTBEAT_EVERY_S": 0,
 }
 
 
@@ -187,14 +193,98 @@ def _auto_workers(cfg):
     return max(1, min(cores, by_ram or 1))
 
 
+# --- live nodes/s heartbeat ------------------------------------------------
+# A pool worker cannot print into a notebook: ipykernel's stdout proxy relies on
+# a background pub_thread that a forked child does not inherit, so the write is
+# silently dropped. Workers therefore push samples onto an mp.Queue that a
+# thread in the PARENT drains and prints.
+_HB_Q = None
+
+
+def _init_worker(q):
+    global _HB_Q
+    _HB_Q = q
+
+
+class _Heartbeat:
+    """Rate-limited nodes/s sampler, called from inside the search loop.
+
+    The solver calls this every 1024 pops; it emits at most one sample per
+    ``every`` seconds, so the per-node cost is a modulo and a clock read.
+    """
+
+    def __init__(self, pres_id, budget, every, sink):
+        self.pres_id, self.budget, self.every, self.sink = pres_id, budget, every, sink
+        self.t0 = self.t_last = time.time()
+        self.n_last = 0
+
+    def __call__(self, nodes):
+        now = time.time()
+        dt = now - self.t_last
+        if dt < self.every:
+            return
+        rate = (nodes - self.n_last) / dt
+        self.t_last, self.n_last = now, nodes
+        self.sink((self.pres_id, nodes, self.budget, now - self.t0, rate))
+
+
+def _fmt_hb(sample):
+    pres_id, nodes, budget, elapsed, rate = sample
+    eta = (budget - nodes) / rate if rate > 0 else 0.0
+    return (f"pres {pres_id}: {nodes:,}/{budget:,} ({nodes / budget:.0%}) | "
+            f"{rate:,.0f} nodes/s | {elapsed:.0f}s elapsed, ETA {eta:.0f}s")
+
+
+def _hb_monitor(q, stop_evt, every):
+    """Parent-side drain: print one aggregate block per ``every`` seconds."""
+    import queue as _queue
+
+    live = {}          # pres_id -> (sample, arrival_time)
+    last_print = time.time()
+    while not stop_evt.is_set():
+        try:
+            sample = q.get(timeout=0.2)
+            if sample[1] is None:            # worker finished this presentation
+                live.pop(sample[0], None)
+            else:
+                live[sample[0]] = (sample, time.time())
+        except _queue.Empty:
+            pass
+        now = time.time()
+        if now - last_print < every:
+            continue
+        # Backstop for a worker that died without sending its done-sentinel:
+        # otherwise its last rate would be summed into `agg` forever.
+        live = {p: v for p, v in live.items() if now - v[1] <= 2 * every}
+        if live:
+            samples = [v[0] for v in live.values()]
+            agg = sum(s[4] for s in samples)
+            print(f"    [hb] {len(samples)} solving | agg {agg:,.0f} nodes/s",
+                  flush=True)
+            for s in sorted(samples):
+                print(f"         {_fmt_hb(s)}", flush=True)
+        last_print = now
+
+
 def _solve_one(job):
     """Top-level (picklable) worker: run one presentation, return its stats."""
-    import time as _time
-    pres_id, r1, r2, node_budget, mrl, cyc, high = job
-    t0 = _time.time()
-    stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
-                          cyclic_reduce=cyc, high_speedup=high)
-    return pres_id, r1, r2, stats, _time.time() - t0
+    pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s = job
+    progress = None
+    if hb_s > 0:
+        # In a pool worker, hand samples to the parent; serially, print directly.
+        sink = (_HB_Q.put_nowait if _HB_Q is not None
+                else (lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True)))
+        progress = _Heartbeat(pres_id, node_budget, hb_s, sink)
+    t0 = time.time()
+    try:
+        stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
+                              cyclic_reduce=cyc, high_speedup=high, progress=progress)
+    finally:
+        if progress is not None and _HB_Q is not None:
+            # Tell the monitor to stop counting this presentation's last rate
+            # into the aggregate; the worker moves on to the next job.
+            _HB_Q.put_nowait((pres_id, None))
+    return pres_id, r1, r2, stats, time.time() - t0
 
 
 def _path_payload(cfg, stats):
@@ -309,11 +399,14 @@ def run_dataset(cfg, node_budget):
     high = bool(cfg["HIGH_SPEEDUP"])
     mrl = cfg["MAX_RELATOR_LENGTH"]
     cyc = cfg["CYCLIC_REDUCE"]
-    jobs = [(pid, a, b, node_budget, mrl, cyc, high) for pid, a, b in todo]
+    hb_s = float(cfg.get("HEARTBEAT_EVERY_S", 0) or 0)
+    jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s) for pid, a, b in todo]
     n_workers = _auto_workers(cfg) if high else 1
     if high:
         print(f"    HIGH_SPEEDUP: {n_workers} worker(s) | {_total_ram_gb():.0f} GB RAM"
               f" | ~{cfg['GB_PER_PRES']} GB/presentation", flush=True)
+    if hb_s > 0:
+        print(f"    heartbeat: nodes/s every {hb_s:g}s", flush=True)
 
     total_time = 0.0
     t_start = time.time()
@@ -339,10 +432,19 @@ def run_dataset(cfg, node_budget):
     # Heavy mode drops path tracking, so a solved presentation is re-solved by
     # the normal solver AFTER the pool is torn down (it needs the full RAM).
     deferred = []
+    hb_thread = None
+    hb_stop = None
     try:
         if high and n_workers > 1:
             import multiprocessing as mp
-            pool = mp.Pool(n_workers)
+            hb_q = mp.Queue() if hb_s > 0 else None
+            pool = mp.Pool(n_workers, initializer=_init_worker, initargs=(hb_q,))
+            if hb_q is not None:
+                import threading
+                hb_stop = threading.Event()
+                hb_thread = threading.Thread(
+                    target=_hb_monitor, args=(hb_q, hb_stop, hb_s), daemon=True)
+                hb_thread.start()
             results = pool.imap_unordered(_solve_one, jobs)
         else:
             results = (_solve_one(j) for j in jobs)
@@ -364,10 +466,11 @@ def run_dataset(cfg, node_budget):
                 wall = time.time() - t_start
                 rate = processed / wall if wall > 0 else 0.0
                 eta = (n_todo - processed) / rate if rate > 0 else 0.0
+                nps = stats["nodes_explored"] / elapsed if elapsed > 0 else 0.0
                 print(f"    [{node_budget}] {processed}/{n_todo} | "
                       f"solved {n_solved}/{n_seen} ({n_solved / max(n_seen, 1):.1%}) | "
                       f"pres {pres_id}: {'ok' if stats['solved'] else 'unsolved'} "
-                      f"nodes={stats['nodes_explored']} | "
+                      f"nodes={stats['nodes_explored']} ({nps:,.0f} nodes/s) | "
                       f"{wall:.0f}s elapsed, ETA {eta:.0f}s ({rate:.1f}/s)",
                       flush=True)
 
@@ -379,10 +482,21 @@ def run_dataset(cfg, node_budget):
         for pres_id, r1, r2 in deferred:
             print(f"    recovering path for pres {pres_id} (normal solver)...", flush=True)
             t0 = time.time()
+            # Runs in the parent (the pool is torn down), so print directly —
+            # this is the slow normal-mode solve, the one worth watching.
+            recover_hb = None
+            if hb_s > 0:
+                recover_hb = _Heartbeat(
+                    pres_id, node_budget, hb_s,
+                    lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True))
             stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
-                                  cyclic_reduce=cyc, high_speedup=False)
+                                  cyclic_reduce=cyc, high_speedup=False,
+                                  progress=recover_hb)
             _emit(pres_id, r1, r2, stats, time.time() - t0, recovered=True)
     finally:
+        if hb_stop is not None:
+            hb_stop.set()
+            hb_thread.join(timeout=2)
         if pool is not None:
             pool.terminate()
             pool.join()

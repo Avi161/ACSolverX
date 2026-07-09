@@ -18,6 +18,13 @@ import numpy as np
 from numba import njit
 
 
+# How often (in popped nodes) a solver calls its ``progress`` callback. The
+# callback rate-limits itself by wall clock; this only bounds the granularity,
+# so it must be small enough that a slow search still reports promptly
+# (~0.6 s at the worst measured 1.6k nodes/s) and large enough to be free.
+_HB_CHECK_EVERY = 1024
+
+
 # ---------------------------------------------------------------------------
 # Character <-> boolean-pair encoding (verbatim from greedy_search.ipynb)
 # ---------------------------------------------------------------------------
@@ -325,13 +332,17 @@ class GreedyBaselineSolver:
             reduce_relator_nj(r2_arr, self.cyclic_reduce),
         )
 
-    def solve(self):
+    def solve(self, progress=None):
         """Return (path, moves, nodes_visited, new_seen).
 
         ``path`` is a list of (r1_arr, r2_arr) from the initial state to a
         trivial one, or ``None`` if no trivial state was reached within budget.
         ``moves`` is the parallel list of (target, jsign, k1, k2) tuples, one
         per edge (so ``len(moves) == len(path) - 1``), or ``None`` if unsolved.
+
+        ``progress``: optional read-only callback invoked with the running node
+        count every ``_HB_CHECK_EVERY`` pops. It must not touch solver state —
+        results are bit-identical whether or not it is supplied.
         """
         init_key = state_to_key(self.initial_state)
         heapq.heappush(
@@ -350,6 +361,8 @@ class GreedyBaselineSolver:
         while self.pq and nodes_visited < self.max_nodes:
             _, depth, key = heapq.heappop(self.pq)
             nodes_visited += 1
+            if progress is not None and nodes_visited % _HB_CHECK_EVERY == 0:
+                progress(nodes_visited)
             if len(key[0]) + len(key[1]) > \
                     len(self.max_expanded_key[0]) + len(self.max_expanded_key[1]):
                 self.max_expanded_key = key
@@ -600,8 +613,11 @@ class GreedyHeavySolver:
         self.pq = []
         self.n_discovered = 0
 
-    def solve(self):
-        """Return (solved, nodes_visited). Stats live on ``self``."""
+    def solve(self, progress=None):
+        """Return (solved, nodes_visited). Stats live on ``self``.
+
+        ``progress``: see ``GreedyBaselineSolver.solve`` — read-only, result-neutral.
+        """
         cap = self.max_relator_length
         init_key = pack_key(self.initial_state[0], self.initial_state[1])
         init_total = len(self.initial_state[0]) + len(self.initial_state[1])
@@ -620,6 +636,8 @@ class GreedyHeavySolver:
         while pq and nodes_visited < self.max_nodes:
             total, depth, key = heapq.heappop(pq)
             nodes_visited += 1
+            if progress is not None and nodes_visited % _HB_CHECK_EVERY == 0:
+                progress(nodes_visited)
             if total > self.max_expanded_total:
                 self.max_expanded_key, self.max_expanded_total = key, total
 
@@ -654,7 +672,7 @@ class GreedyHeavySolver:
 # Public entry for the jsonl pipeline
 # ---------------------------------------------------------------------------
 def _greedy_search_heavy(r1_str, r2_str, node_budget, max_relator_length,
-                         cyclic_reduce):
+                         cyclic_reduce, progress=None):
     """HIGH_SPEEDUP path: same stats dict, but no path/path_moves."""
     solver = GreedyHeavySolver(
         r1_str, r2_str,
@@ -662,7 +680,7 @@ def _greedy_search_heavy(r1_str, r2_str, node_budget, max_relator_length,
         max_relator_length=max_relator_length,
         cyclic_reduce=cyclic_reduce,
     )
-    solved, nodes_visited = solver.solve()
+    solved, nodes_visited = solver.solve(progress)
     min_r = unpack_key(solver.min_key)
     max_r = unpack_key(solver.max_key)
     exp_r = unpack_key(solver.max_expanded_key)
@@ -682,7 +700,7 @@ def _greedy_search_heavy(r1_str, r2_str, node_budget, max_relator_length,
 
 
 def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
-                  cyclic_reduce=True, high_speedup=False):
+                  cyclic_reduce=True, high_speedup=False, progress=None):
     """Run the baseline greedy on one presentation; return a stats dict.
 
     Keys: solved, nodes_explored, path_length, min_relator_length,
@@ -695,10 +713,12 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
     ``high_speedup=True`` uses the memory-lean solver (for 1M-node runs): the
     same ``solved``/``nodes_explored``/min/max stats, but ``path``/``path_moves``
     come back empty — recover them by re-running with ``high_speedup=False``.
+
+    ``progress``: optional callback for live nodes/s reporting; result-neutral.
     """
     if high_speedup:
         return _greedy_search_heavy(r1_str, r2_str, node_budget,
-                                    max_relator_length, cyclic_reduce)
+                                    max_relator_length, cyclic_reduce, progress)
 
     solver = GreedyBaselineSolver(
         r1_str, r2_str,
@@ -706,7 +726,7 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
         max_relator_length=max_relator_length,
         cyclic_reduce=cyclic_reduce,
     )
-    path, moves, nodes_visited, new_seen = solver.solve()
+    path, moves, nodes_visited, new_seen = solver.solve(progress)
 
     # Shortest / longest presentation (by total length) seen along the search.
     min_key = min(new_seen, key=lambda k: len(k[0]) + len(k[1]))
