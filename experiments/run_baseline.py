@@ -271,6 +271,8 @@ class _HbPrinter:
         self.last_dbg = 0.0
         self.t0 = time.time()
         self.n_msgs = 0
+        self.n_samples = 0
+        self.warned = False
 
     def drain(self, q):
         import queue as _queue
@@ -288,9 +290,19 @@ class _HbPrinter:
             elif kind == "done":
                 self.live.pop(msg[1], None)
             else:
+                self.n_samples += 1
                 self.live[msg[1]] = (msg[1:], time.time())
 
         now = time.time()
+        # Workers announced themselves but none has ever completed 1024 nodes:
+        # they are blocked inside greedy_search. Point at the stack dumps.
+        if (self.debug and not self.warned and self.n_samples == 0
+                and self.n_msgs > 0 and now - self.t0 > 50):
+            self.warned = True
+            print("    [hb-dbg] workers started but produced NO progress tick in 50s"
+                  " -- they are blocked inside greedy_search.", flush=True)
+            print("    [hb-dbg] their Python stacks were dumped; run:"
+                  "  !cat hb_stack_*.txt", flush=True)
         if self.debug and now - self.last_dbg >= 5.0:
             self.last_dbg = now
             try:
@@ -342,17 +354,38 @@ def _iter_with_heartbeat(it, q, every, debug=False):
 def _solve_one(job):
     """Top-level (picklable) worker: run one presentation, return its stats."""
     pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s, hb_dbg = job
+
+    # Watchdog: if this worker is still stuck 40s from now with no progress tick,
+    # dump its Python stack to a file. A worker's stderr is not visible in a
+    # notebook, so a file is the only way to see WHERE a hang actually lives.
+    dbg_f = None
+    if hb_dbg:
+        import faulthandler
+        dbg_f = open(os.path.abspath(f"hb_stack_{os.getpid()}.txt"), "w")
+        faulthandler.dump_traceback_later(40, repeat=True, file=dbg_f)
+
+    def _cancel_watchdog():
+        if dbg_f is not None:
+            import faulthandler
+            faulthandler.cancel_dump_traceback_later()
+
     progress = None
     if hb_s > 0:
         if _HB_Q is not None:
-            # Announce liveness BEFORE numba JIT (which can take tens of seconds
-            # with 4 workers compiling at once): proves the worker and the queue
-            # are alive even though no sample exists yet.
+            # Announce liveness BEFORE the first numba call: proves the worker and
+            # the queue are alive even though no sample exists yet.
             _HB_Q.put_nowait(("start", pres_id, os.getpid()))
+            seen_first = []
+
+            def sink(s):
+                if not seen_first:      # a tick proves the worker is running
+                    seen_first.append(True)
+                    _cancel_watchdog()
+                _HB_Q.put_nowait(("sample",) + s)
+
             # The parent prints every hb_s, so sample twice as often or its
             # aggregate would be summed from rates up to hb_s seconds old.
-            sink, interval = (lambda s: _HB_Q.put_nowait(("sample",) + s),
-                              max(1.0, hb_s / 2))
+            interval = max(1.0, hb_s / 2)
         else:
             # Serial: this IS the printer, so sample at exactly the asked cadence.
             sink, interval = (lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True)), hb_s
@@ -364,6 +397,9 @@ def _solve_one(job):
         stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
                               cyclic_reduce=cyc, high_speedup=high, progress=progress)
     finally:
+        _cancel_watchdog()
+        if dbg_f is not None:
+            dbg_f.close()
         if progress is not None and _HB_Q is not None:
             # Tell the printer to stop counting this presentation's last rate
             # into the aggregate; the worker moves on to the next job.
