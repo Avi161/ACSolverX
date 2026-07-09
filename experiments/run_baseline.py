@@ -9,6 +9,7 @@ import ast
 import hashlib
 import json
 import os
+import sys
 import time
 from datetime import datetime
 
@@ -46,8 +47,12 @@ DEFAULT_CONFIG = {
     # presentations. Solved presentations are re-solved by the normal solver
     # afterwards to recover their path (rare: heavy runs are the hard ones).
     "HIGH_SPEEDUP": False,
-    "N_WORKERS": 0,                  # 0 = auto (bounded by RAM / GB_PER_PRES)
-    "GB_PER_PRES": 9.0,              # measured: 1M nodes, mrl=48, heavy solver
+    "N_WORKERS": 0,                  # 0 = auto (bounded by usable cores AND RAM)
+    # "auto" = size each search from the node budget (~70 states/node x 220 B,
+    # both measured). A positive number pins it instead. The old fixed 9.0 was
+    # calibrated at 1M/mrl=48 yet applied at EVERY budget: a 50k run needs <1 GB
+    # but was provisioned as if it needed 9, and 1M actually needs ~15, not 9.
+    "GB_PER_PRES": "auto",
     # None = OS default (fork on Linux/Colab). A child forked from a process that
     # wandb.init() has made multi-threaded can deadlock on an inherited lock; the
     # parent-side numba warm-up should prevent that, but "forkserver" (or "spawn")
@@ -192,6 +197,39 @@ def _read_done(out_path):
     return done, n_seen, n_solved
 
 
+# --- resource detection + memory budgeting (HIGH_SPEEDUP path only) --------
+# Everything below is result-neutral: it decides HOW MANY searches run at once,
+# never what any one search computes. None of it belongs in _run_prefix.
+
+# Bytes of process memory per DISCOVERED state, for the heavy solver. Each state
+# costs a packed-bytes key + a `visited` set entry + a `(total, depth, key)` heap
+# tuple + its list slot. Measured with tracemalloc (exact, platform-independent):
+# 185 B/state live AND 185 B/state marginal, on ms_reps_unsolved. The 220 here
+# adds ~19% for allocator fragmentation and the transient during a set resize
+# (CPython allocates the new table before freeing the old); it lines up with the
+# 213 B/state previously measured from real RSS on Colab.
+_BYTES_PER_STATE = 220
+
+# DISCOVERED states per node popped. Measured on ms_reps_unsolved (heavy solver):
+#     budget   25k    50k   100k   200k   400k     1M
+#     mrl=24   67.1   64.9   69.8   50.7   42.0   29.7
+#     mrl=48   67.1   64.9   69.8   70.5   63.8      -
+# Fitting discovered = A*budget^p: mrl=48 gives p=0.997 (LINEAR, A=69.3), while
+# mrl=24 gives p=0.772 -- it bends below the line once the cap starts pruning.
+# So the uncapped mrl=48 line is an upper envelope for EVERY cap: raising the cap
+# can only add discoveries, and the two rows are identical until the cap binds.
+# One linear constant therefore covers all mrl, over-provisioning (safely) for
+# small caps at large budgets. Per-presentation spread is ~1.3x (44.4..81.9 at
+# 50k); that tail is absorbed by _RAM_SAFETY and caught by _MemGuard.
+_STATES_PER_NODE = 70
+
+# Interpreter + numba + numpy baseline, per worker process.
+_BASE_GB = 0.35
+
+# Fraction of available RAM we are willing to commit to searches.
+_RAM_SAFETY = 0.80
+
+
 def _total_ram_gb():
     try:
         return (os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES")) / 1e9
@@ -199,20 +237,160 @@ def _total_ram_gb():
         return 0.0
 
 
-def _auto_workers(cfg):
+def _avail_ram_gb():
+    """RAM we may actually use, in GB — the tightest of every limit we can see.
+
+    ``SC_PHYS_PAGES`` (what this used to read) is the machine's TOTAL RAM. It
+    ignores what the parent already holds (wandb, the mounted Drive cache, the
+    notebook kernel) and it ignores a cgroup cap, which is exactly how a
+    container like Colab limits a runtime. Both make it an over-estimate, and an
+    over-estimate here means too many workers, which means the OOM killer.
+    """
+    cands = []
+    total = _total_ram_gb()
+    if total:
+        cands.append(total)
+
+    # Linux: memory not yet spoken for (excludes the parent's own footprint).
+    try:
+        with open("/proc/meminfo") as f:
+            for ln in f:
+                if ln.startswith("MemAvailable:"):
+                    cands.append(int(ln.split()[1]) * 1024 / 1e9)
+                    break
+    except OSError:
+        pass
+
+    # Container cap (cgroup v2, then v1). Colab/Docker limit the runtime here,
+    # and /proc/meminfo happily reports the whole host underneath it.
+    for path in ("/sys/fs/cgroup/memory.max",
+                 "/sys/fs/cgroup/memory/memory.limit_in_bytes"):
+        try:
+            with open(path) as f:
+                raw = f.read().strip()
+            if raw and raw != "max":
+                lim = int(raw) / 1e9
+                if 0 < lim < 1e6:          # v1 writes a sentinel ~2^63 for "no limit"
+                    cands.append(lim)
+        except (OSError, ValueError):
+            pass
+
+    return min(cands) if cands else 0.0
+
+
+def _usable_cores():
+    """Cores we may actually run on — affinity- and quota-aware.
+
+    ``os.cpu_count()`` reports the HOST's cores, so in a container it can be
+    several times the number we are scheduled on.
+    """
+    cands = []
+    try:
+        cands.append(len(os.sched_getaffinity(0)))     # Linux: honours affinity
+    except (AttributeError, OSError):
+        pass
+    if os.cpu_count():
+        cands.append(os.cpu_count())
+
+    # cgroup v2 CPU quota, e.g. "200000 100000" -> 2 cores.
+    try:
+        with open("/sys/fs/cgroup/cpu.max") as f:
+            quota, period = f.read().split()
+        if quota != "max":
+            cands.append(max(1, int(int(quota) / int(period))))
+    except (OSError, ValueError):
+        pass
+
+    return min(cands) if cands else 1
+
+
+def _est_gb_per_pres(cfg, node_budget):
+    """Peak GB of ONE heavy search at this node budget.
+
+    An explicit positive GB_PER_PRES always wins; "auto" (or 0/None) estimates.
+    The old fixed 9.0 was calibrated at 1M/mrl=48 and applied at every budget,
+    so a 50k run — which needs well under 1 GB — was provisioned as if it needed
+    9, silently starving the pool of workers. It was also too LOW at its own
+    calibration point: 1M x 70 states x 220 B is ~15 GB, not 9.
+    """
+    gb = cfg.get("GB_PER_PRES", "auto")
+    if isinstance(gb, (int, float)) and not isinstance(gb, bool) and gb > 0:
+        return float(gb)
+    return _BASE_GB + _STATES_PER_NODE * node_budget * _BYTES_PER_STATE / 1e9
+
+
+def _auto_workers(cfg, node_budget):
     """Worker count for HIGH_SPEEDUP: bounded by cores AND by RAM.
 
-    Each concurrent search holds its own frontier (~GB_PER_PRES), so RAM is the
-    real cap — oversubscribing cores would OOM long before it helped.
+    Each concurrent search holds its own frontier, so RAM is the real cap —
+    oversubscribing cores would OOM long before it helped. Under-provisioning
+    cores merely wastes time; under-provisioning memory kills the runtime, so
+    every estimate here is biased high and the floor is 1 worker.
     """
     n = int(cfg.get("N_WORKERS", 0) or 0)
     if n > 0:
         return n
-    cores = os.cpu_count() or 1
-    ram = _total_ram_gb()
-    gb = float(cfg.get("GB_PER_PRES", 9.0)) or 9.0
-    by_ram = int((ram * 0.8) // gb) if ram else 1
-    return max(1, min(cores, by_ram or 1))
+    ram = _avail_ram_gb()
+    gb = _est_gb_per_pres(cfg, node_budget)
+    by_ram = int((ram * _RAM_SAFETY) // gb) if ram else 1
+    return max(1, min(_usable_cores(), by_ram or 1))
+
+
+def _proc_rss_bytes():
+    """This process's resident memory. 0 if it cannot be read."""
+    try:                                   # Linux: field 2 of statm is resident pages
+        with open("/proc/self/statm") as f:
+            return int(f.read().split()[1]) * os.sysconf("SC_PAGE_SIZE")
+    except (OSError, ValueError, IndexError):
+        pass
+    try:                                   # macOS: bytes (Linux would be KB)
+        import resource as _res
+        v = _res.getrusage(_res.RUSAGE_SELF).ru_maxrss
+        return v if sys.platform == "darwin" else v * 1024
+    except Exception:
+        return 0
+
+
+class _MemBudgetExceeded(Exception):
+    """A search hit its per-worker memory allowance and stopped itself.
+
+    Raised in a pool worker and pickled back to the parent, so ``args`` must be
+    exactly the constructor's arguments: unpickling replays ``cls(*args)``, and a
+    pre-formatted message there would raise TypeError inside the pool's result
+    thread — the parent would then hang rather than see the abort.
+    """
+
+    def __init__(self, pres_id, nodes, rss_gb, limit_gb):
+        super().__init__(pres_id, nodes, rss_gb, limit_gb)
+        self.pres_id, self.nodes = pres_id, nodes
+        self.rss_gb, self.limit_gb = rss_gb, limit_gb
+
+    def __str__(self):
+        return (f"pres {self.pres_id}: {self.rss_gb:.1f} GB > {self.limit_gb:.1f} GB "
+                f"after {self.nodes:,} nodes")
+
+
+class _MemGuard:
+    """Stop a search before it can OOM the machine.
+
+    The provisioning above is an estimate; this is the backstop that makes a
+    wrong estimate cost one presentation instead of the whole runtime. Raising
+    from the progress callback unwinds the plain-Python solve loop cleanly, so
+    the worker survives and the pool keeps going.
+    """
+
+    def __init__(self, pres_id, limit_gb, every=8):
+        self.pres_id, self.limit = pres_id, limit_gb * 1e9
+        self.every, self.k = every, 0
+
+    def __call__(self, nodes):
+        self.k += 1
+        if self.k % self.every:            # ~8k nodes between checks; ~2 s of work
+            return
+        rss = _proc_rss_bytes()
+        if rss and rss > self.limit:
+            raise _MemBudgetExceeded(self.pres_id, nodes, rss / 1e9,
+                                     self.limit / 1e9)
 
 
 # --- live nodes/s heartbeat ------------------------------------------------
@@ -365,8 +543,13 @@ def _iter_with_heartbeat(it, q, every, debug=False):
 
 
 def _solve_one(job):
-    """Top-level (picklable) worker: run one presentation, return its stats."""
-    pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s, hb_dbg = job
+    """Top-level (picklable) worker: run one presentation, return its stats.
+
+    On a memory abort it returns ``(pres_id, r1, r2, None, elapsed, exc)`` so the
+    parent can retry it serially with the whole machine to itself; every other
+    return has ``stats`` set and ``exc`` None.
+    """
+    pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s, hb_dbg, mem_gb = job
 
     # Watchdog: if this worker is still stuck 40s from now with no progress tick,
     # dump its Python stack to a file. A worker's stderr is not visible in a
@@ -405,10 +588,24 @@ def _solve_one(job):
         # Debug: emit on the very first 1024-node tick (its rate includes JIT).
         progress = _Heartbeat(pres_id, node_budget, interval, sink,
                               first_after=0.0 if hb_dbg else 10.0)
+
+    # The memory guard rides the same 1024-node tick as the heartbeat.
+    guard = _MemGuard(pres_id, mem_gb) if mem_gb else None
+    if guard is not None and progress is not None:
+        hb = progress
+
+        def progress(nodes, _hb=hb, _g=guard):
+            _hb(nodes)
+            _g(nodes)
+    elif guard is not None:
+        progress = guard
+
     t0 = time.time()
     try:
         stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
                               cyclic_reduce=cyc, high_speedup=high, progress=progress)
+    except _MemBudgetExceeded as e:
+        return pres_id, r1, r2, None, time.time() - t0, e
     finally:
         _cancel_watchdog()
         if dbg_f is not None:
@@ -417,7 +614,7 @@ def _solve_one(job):
             # Tell the printer to stop counting this presentation's last rate
             # into the aggregate; the worker moves on to the next job.
             _HB_Q.put_nowait(("done", pres_id))
-    return pres_id, r1, r2, stats, time.time() - t0
+    return pres_id, r1, r2, stats, time.time() - t0, None
 
 
 def _path_payload(cfg, stats):
@@ -434,6 +631,21 @@ def _path_payload(cfg, stats):
     if fmt in ("strings", "both"):
         payload["path"] = stats["path"]
     return payload
+
+
+def _abort_stats(exc):
+    """Stats for a presentation the memory guard stopped: truthful, mostly null.
+
+    ``nodes_explored`` is where it got to, not ``node_budget``; the row also
+    carries ``mem_abort: true`` so it can never be read as a completed search.
+    """
+    stats = dict.fromkeys(
+        ("path_length", "min_relator_length", "min_relator", "max_relator_length",
+         "max_relator", "max_relator_length_expanded", "max_relator_expanded",
+         "path", "path_moves"))
+    stats["nodes_explored"] = exc.nodes
+    stats["solved"] = False
+    return stats
 
 
 def _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed):
@@ -515,12 +727,33 @@ def run_dataset(cfg, node_budget):
     cyc = cfg["CYCLIC_REDUCE"]
     hb_s = float(cfg.get("HEARTBEAT_EVERY_S", 0) or 0)
     hb_dbg = bool(cfg.get("HEARTBEAT_DEBUG", False))
-    jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s, hb_dbg)
-            for pid, a, b in todo]
-    n_workers = _auto_workers(cfg) if high else 1
+    # Resource provisioning is HIGH_SPEEDUP-only: the normal path runs one search
+    # in this process, so there is nothing to divide up and nothing to guard.
+    n_workers = _auto_workers(cfg, node_budget) if high else 1
+    mem_gb = 0.0
     if high:
-        print(f"    HIGH_SPEEDUP: {n_workers} worker(s) | {_total_ram_gb():.0f} GB RAM"
-              f" | ~{cfg['GB_PER_PRES']} GB/presentation", flush=True)
+        avail = _avail_ram_gb()
+        est = _est_gb_per_pres(cfg, node_budget)
+        # Per-worker allowance. The guard only fires if a search overshoots the
+        # estimate, so a correct estimate costs nothing.
+        mem_gb = (avail * _RAM_SAFETY / n_workers) if avail else 0.0
+        src = ("pinned" if isinstance(cfg.get("GB_PER_PRES"), (int, float))
+               and not isinstance(cfg.get("GB_PER_PRES"), bool)
+               and cfg.get("GB_PER_PRES", 0) > 0 else "auto")
+        print(f"    HIGH_SPEEDUP: {n_workers} worker(s) | {avail:.0f} GB usable"
+              f" / {_total_ram_gb():.0f} GB total | {_usable_cores()} core(s)"
+              f" | ~{est:.1f} GB/presentation ({src})", flush=True)
+        if mem_gb:
+            print(f"    memory guard: {mem_gb:.1f} GB per worker; a search that "
+                  f"exceeds it stops and is retried serially", flush=True)
+        if int(cfg.get("N_WORKERS", 0) or 0) > 0 and avail and \
+                n_workers * est > avail * _RAM_SAFETY:
+            print(f"    WARNING: N_WORKERS={n_workers} pinned, but "
+                  f"{n_workers} x {est:.1f} GB = {n_workers * est:.0f} GB exceeds "
+                  f"the {avail * _RAM_SAFETY:.0f} GB budget. Set N_WORKERS=0 to "
+                  f"let it size itself.", flush=True)
+    jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s, hb_dbg, mem_gb)
+            for pid, a, b in todo]
     if hb_s > 0:
         print(f"    heartbeat: nodes/s every {hb_s:g}s", flush=True)
 
@@ -531,10 +764,14 @@ def run_dataset(cfg, node_budget):
     paths_f = open(paths_path, "a") if cfg["PATH_IN_SEPARATE_FILE"] else None
     pool = None
 
-    def _emit(pres_id, r1, r2, stats, elapsed, recovered=False):
+    def _emit(pres_id, r1, r2, stats, elapsed, recovered=False, mem_abort=False):
         row = _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed)
         if recovered:
             row["path_recovered"] = True
+        if mem_abort:
+            # nodes_explored is the count reached before the guard fired, NOT the
+            # full node_budget. Never read this row as "searched the whole budget".
+            row["mem_abort"] = True
         out_f.write(json.dumps(row) + "\n")
         out_f.flush()
         if cfg["PATH_IN_SEPARATE_FILE"] and cfg["use_path"] and stats["solved"]:
@@ -548,6 +785,7 @@ def run_dataset(cfg, node_budget):
     # Heavy mode drops path tracking, so a solved presentation is re-solved by
     # the normal solver AFTER the pool is torn down (it needs the full RAM).
     deferred = []
+    aborted = []      # hit the per-worker memory allowance; retried serially
     try:
         if high and n_workers > 1:
             import multiprocessing as mp
@@ -578,8 +816,16 @@ def run_dataset(cfg, node_budget):
         else:
             results = (_solve_one(j) for j in jobs)
 
-        for pres_id, r1, r2, stats, elapsed in results:
+        for pres_id, r1, r2, stats, elapsed, exc in results:
             total_time += elapsed
+            if exc is not None:
+                # Out of its memory allowance, not out of memory: the worker is
+                # alive and the machine never went near the OOM killer. Retry it
+                # after teardown, alone, with the whole budget.
+                print(f"    pres {pres_id}: memory guard tripped ({exc}); "
+                      f"deferring to a serial retry", flush=True)
+                aborted.append((pres_id, r1, r2, exc))
+                continue
             if high and stats["solved"]:
                 deferred.append((pres_id, r1, r2))   # row written after recovery
             else:
@@ -610,6 +856,40 @@ def run_dataset(cfg, node_budget):
             pool.close()
             pool.join()
             pool = None
+
+        # Retry memory-aborted presentations one at a time. The pool is gone, so
+        # a retry gets the whole budget instead of a 1/n_workers slice — usually
+        # enough to finish. With a single worker there was no slice to reclaim,
+        # so retrying would just re-run the same search into the same wall.
+        for pres_id, r1, r2, exc in aborted:
+            solo_gb = _avail_ram_gb() * _RAM_SAFETY
+            if n_workers > 1 and solo_gb:
+                print(f"    retrying pres {pres_id} serially ({solo_gb:.1f} GB "
+                      f"allowance)...", flush=True)
+                t0 = time.time()
+                try:
+                    stats = greedy_search(
+                        r1, r2, node_budget, max_relator_length=mrl,
+                        cyclic_reduce=cyc, high_speedup=True,
+                        progress=_MemGuard(pres_id, solo_gb))
+                except _MemBudgetExceeded as e:
+                    exc = e
+                else:
+                    elapsed = time.time() - t0
+                    total_time += elapsed
+                    if stats["solved"]:
+                        deferred.append((pres_id, r1, r2))
+                    else:
+                        _emit(pres_id, r1, r2, stats, elapsed)
+                    n_seen += 1
+                    n_solved += int(stats["solved"])
+                    continue
+            # It genuinely does not fit on this machine. Record that honestly
+            # rather than crash the run or silently drop the presentation.
+            print(f"    pres {pres_id}: ABORTED on memory ({exc}). "
+                  f"Row written with mem_abort=true.", flush=True)
+            _emit(pres_id, r1, r2, _abort_stats(exc), 0.0, mem_abort=True)
+            n_seen += 1
 
         for pres_id, r1, r2 in deferred:
             print(f"    recovering path for pres {pres_id} (normal solver)...", flush=True)
