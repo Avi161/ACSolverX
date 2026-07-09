@@ -30,7 +30,7 @@ def tiny_dataset(tmp_path):
 
 
 @pytest.mark.xfail(strict=True, raises=json.JSONDecodeError,
-                   reason="run_baseline.py:174 -- _read_done does not guard "
+                   reason="run_baseline.py:188 -- _read_done does not guard "
                           "json.loads; fix it and delete this marker")
 def test_read_done_tolerates_a_truncated_trailing_line(tmp_path):
     """A Colab disconnect mid-write leaves exactly this: a half-written last line.
@@ -49,7 +49,7 @@ def test_read_done_tolerates_a_truncated_trailing_line(tmp_path):
 
 
 @pytest.mark.xfail(strict=True, raises=IndexError,
-                   reason="run_baseline.py:570 -- todo[0] is indexed before the "
+                   reason="run_baseline.py:564 -- todo[0] is indexed before the "
                           "empty-todo check; fix it and delete this marker")
 def test_a_fully_resumed_heavy_run_does_not_crash(tmp_path, tiny_dataset):
     """``HIGH_SPEEDUP`` + multiple workers + nothing left to do -> ``IndexError``.

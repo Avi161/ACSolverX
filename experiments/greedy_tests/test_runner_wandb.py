@@ -1,13 +1,14 @@
-"""W&B wiring, exercised offline.
+"""The seam between ``run_dataset`` and ``experiments/wandb_tracking.py``.
 
-``USE_WANDB=False`` must not even import ``wandb`` -- the import is inside the
-``if``, which is what lets this suite run in an environment without it. When it
-is enabled, ``WANDB_MODE="disabled"`` gives a real ``Run`` object with no network,
-so the calls are checked for real rather than against a mock.
+Scope. `wandb_tracking`'s own behaviour -- the identity scheme, the anytime
+profile, the panels, the resume semantics -- is covered by `tests/wandb_tracking_test.py`
+and `tests/wandb_offline_integration.py`. Duplicating that here would mean two
+places to update. What is *not* covered there, and is covered here, is the wiring:
+that `run_dataset` reaches `wandb_tracking` with the right arguments, that the
+jsonl is written regardless, and above all that `USE_WANDB=False` never imports
+`wandb` at all -- which is what lets this suite run in an environment without it.
 
-The ``define_metric`` assertions matter: logging ``solve_rate`` at ``step=pres_id``
-on a resumable run is rejected as non-monotonic once the finish-time panel logs
-have pushed the global step past the last ``pres_id``.
+Everything runs under ``WANDB_MODE="disabled"``: a real ``Run`` object, no network.
 """
 
 import json
@@ -18,15 +19,14 @@ import experiments.run_baseline as rb
 from experiments.run_baseline import DEFAULT_CONFIG, run_dataset
 from experiments.greedy_tests.fixtures.presentations import MS640, load_flat_lines
 
-wandb = pytest.importorskip("wandb")
 pytestmark = pytest.mark.wandb
 
 STATS = {
-    "solved": True, "nodes_explored": 42, "path_length": 2,
+    "solved": True, "nodes_explored": 42, "path_length": 1,
     "min_relator_length": 2, "min_relator": ["Y", "X"],
     "max_relator_length": 9, "max_relator": ["YYXyx", "Yxyx"],
     "max_relator_length_expanded": 7, "max_relator_expanded": ["YYXyx", "Yx"],
-    "path": [["YYXyx", "Yx"], ["Y", "X"]], "path_moves": ["1_1_0_0", "2_-1_1_0"],
+    "path": [["YYXyx", "Yx"], ["Y", "X"]], "path_moves": ["1_1_0_0"],
 }
 
 
@@ -45,94 +45,103 @@ def cfg(tmp_path, tiny_dataset):
             "USE_WANDB": True, "WANDB_MODE": "disabled", "WANDB_ENTITY": None}
 
 
-def test_wandb_is_not_imported_when_disabled(cfg, monkeypatch):
-    """The lazy import is what lets the rest of the suite run without wandb."""
+def _rows(path):
+    with open(path) as f:
+        return [json.loads(ln) for ln in f if ln.strip()]
+
+
+def test_wandb_is_never_touched_when_disabled(cfg, monkeypatch):
+    """``USE_WANDB=False`` must not reach ``wandb_tracking`` at all.
+
+    Any call becomes an ImportError-shaped failure here, standing in for an
+    environment where wandb is not installed.
+    """
     monkeypatch.setattr(rb, "greedy_search", lambda *a, **k: dict(STATS))
-    monkeypatch.setitem(__import__("sys").modules, "wandb", None)
+
+    def explode(*a, **k):
+        raise AssertionError("wandb_tracking must not be called with USE_WANDB=False")
+
+    monkeypatch.setattr(rb.wandb_tracking, "init_run", explode)
+    monkeypatch.setattr(rb.wandb_tracking, "finish_run", explode)
+
     out = run_dataset({**cfg, "USE_WANDB": False}, 500)
-    assert len(open(out).readlines()) == 3
+    assert len(_rows(out)) == 3
 
 
 def test_a_disabled_run_still_writes_the_jsonl(cfg, monkeypatch):
+    """W&B is a mirror; the jsonl stays the source of truth."""
     monkeypatch.setattr(rb, "greedy_search", lambda *a, **k: dict(STATS))
     out = run_dataset(cfg, 500)
-    rows = [json.loads(ln) for ln in open(out) if ln.strip()]
-    assert [r["pres_id"] for r in rows] == [0, 1, 2]
+    assert [r["pres_id"] for r in _rows(out)] == [0, 1, 2]
 
 
-def test_solve_rate_is_logged_against_pres_id_and_never_as_a_step(cfg, monkeypatch):
-    """Regression for "steps must be monotonically increasing" on a resumed run."""
-    monkeypatch.setattr(rb, "greedy_search", lambda *a, **k: dict(STATS))
-    logged, metrics = [], []
-
-    real_init = wandb.init
-
-    def fake_init(**kw):
-        run = real_init(**kw)
-        run.define_metric = lambda name, **k: metrics.append((name, k))
-        run.log = lambda data, **k: logged.append((data, k))
-        return run
-
-    monkeypatch.setattr(wandb, "init", fake_init)
-    run_dataset(cfg, 500)
-
-    assert ("pres_id", {}) in metrics
-    assert ("solve_rate", {"step_metric": "pres_id"}) in metrics
-    per_row = [d for d, k in logged if "solve_rate" in d]
-    assert len(per_row) == 3
-    assert all("pres_id" in d for d in per_row)
-    assert all(k == {} for d, k in logged if "solve_rate" in d), \
-        "solve_rate must never be pinned to an explicit step="
-
-
-def test_the_run_id_is_the_jsonl_stem(cfg, monkeypatch):
+def test_init_run_receives_the_jsonl_stem_as_the_run_id(cfg, monkeypatch):
     """One identity for the file and the run, so both collide in the same class."""
+    import os
+
     monkeypatch.setattr(rb, "greedy_search", lambda *a, **k: dict(STATS))
     seen = {}
-    real_init = wandb.init
+    real = rb.wandb_tracking.init_run
 
-    def fake_init(**kw):
-        seen.update(kw)
-        return real_init(**kw)
+    def spy(cfg_, budget, n_pres, run_id, run_prefix, subset_tag):
+        seen.update(budget=budget, n_pres=n_pres, run_id=run_id,
+                    run_prefix=run_prefix, subset_tag=subset_tag)
+        return real(cfg_, budget, n_pres, run_id, run_prefix, subset_tag)
 
-    monkeypatch.setattr(wandb, "init", fake_init)
+    monkeypatch.setattr(rb.wandb_tracking, "init_run", spy)
     out = run_dataset(cfg, 500)
 
-    import os
     stem = os.path.basename(out)[: -len(".jsonl")]
-    assert seen["id"] == stem and seen["name"] == stem
-    assert seen["resume"] == "allow"
-    assert seen["config"]["node_budget"] == 500
-    assert seen["config"]["max_relator_length"] == 24
+    assert seen["run_id"] == stem
+    assert seen["budget"] == 500 and seen["n_pres"] == 3
+    assert seen["run_prefix"] == rb._run_prefix(
+        {**DEFAULT_CONFIG, **cfg}, 500, 3)
+    assert seen["subset_tag"] == "all"
 
 
-def test_the_table_is_rebuilt_from_existing_rows_on_resume(cfg, monkeypatch):
+def test_the_live_logger_is_seeded_from_the_rows_already_on_disk(cfg, monkeypatch):
+    """A resumed run's cumulative curves must continue, not restart at zero."""
     monkeypatch.setattr(rb, "greedy_search", lambda *a, **k: dict(STATS))
-    run_dataset(cfg, 500)
+    run_dataset(cfg, 500)                       # writes 3 rows, 42 nodes each
 
-    created = []
+    captured = {}
+    real = rb.wandb_tracking.LiveLogger
 
-    class RecordingTable(wandb.Table):
-        # A subclass, not a lambda: _finish_wandb builds a second Table for the
-        # scatter panel and wandb.plot.scatter type-checks it with isinstance.
-        def __init__(self, *a, **kw):
-            super().__init__(*a, **kw)
-            created.append(self)
+    class Spy(real):
+        def __init__(self, run, cfg_, node_budget, **kw):
+            captured.update(kw)
+            super().__init__(run, cfg_, node_budget, **kw)
 
-    monkeypatch.setattr(wandb, "Table", RecordingTable)
-    run_dataset(cfg, 500)          # everything already done
-    assert created, "a Table must be constructed"
-    assert len(created[0].data) == 3, "the three prior rows must be replayed into it"
+    monkeypatch.setattr(rb.wandb_tracking, "LiveLogger", Spy)
+    run_dataset(cfg, 500)                       # everything already done
+
+    assert captured["n_seen"] == 3
+    assert captured["n_solved"] == 3
+    assert captured["cum_nodes"] == 3 * 42, "cum_nodes must be seeded from the jsonl"
+    assert captured["n_todo"] == 0
 
 
-def test_add_table_row_tolerates_missing_gated_columns():
-    from experiments.run_baseline import _add_table_row
+def test_finish_run_is_called_with_the_output_paths(cfg, monkeypatch):
+    monkeypatch.setattr(rb, "greedy_search", lambda *a, **k: dict(STATS))
+    seen = {}
+    real = rb.wandb_tracking.finish_run
 
-    table = wandb.Table(columns=[
-        "pres_id", "r1", "r2", "node_budget", "max_relator_length_cap",
-        "cyclic_reduce", "nodes_explored", "solved", "path_length",
-        "min_relator_length", "max_relator_length"])
-    _add_table_row(table, {"pres_id": 0, "r1": "x", "r2": "y", "node_budget": 1,
-                           "nodes_explored": 2, "solved": True, "path_length": 1})
-    assert len(table.data) == 1
-    assert table.data[0][4] is None      # max_relator_length_cap was gated off
+    def spy(run, logger, out_path, paths_path, run_id, *a, **k):
+        seen.update(out_path=out_path, paths_path=paths_path, run_id=run_id)
+        return real(run, logger, out_path, paths_path, run_id, *a, **k)
+
+    monkeypatch.setattr(rb.wandb_tracking, "finish_run", spy)
+    out = run_dataset(cfg, 500)
+
+    assert seen["out_path"] == out
+    assert seen["paths_path"] == out[: -len(".jsonl")] + "_paths.jsonl"
+    assert seen["run_id"] in out
+
+
+def test_the_wandb_toggles_stay_out_of_the_run_identity():
+    """Changing where results are mirrored must not start a new jsonl."""
+    base = rb._run_prefix(dict(DEFAULT_CONFIG), 1000, 640)
+    for key, value in (("USE_WANDB", True), ("WANDB_PROJECT", "other"),
+                       ("WANDB_ENTITY", "someone-else"), ("WANDB_MODE", "offline"),
+                       ("WANDB_GROUP", "custom")):
+        assert rb._run_prefix({**DEFAULT_CONFIG, key: value}, 1000, 640) == base

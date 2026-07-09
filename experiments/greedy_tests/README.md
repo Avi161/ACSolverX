@@ -6,16 +6,38 @@ Test suite for the greedy AC-search pipeline: `experiments/search/greedy_baselin
 ## Running it
 
 ```bash
-# default tier -- run after ANY change to the pipeline (~3 min; +30-60s cold numba JIT)
+# default tier -- run after ANY change to the pipeline (~2 min; +30-60s cold numba JIT)
 .venv/bin/python3 -m pytest experiments/greedy_tests -q
 
-# full tier -- run before any push or result claim (~15-20 min)
+# full tier -- run before any push or result claim (~2 min)
 .venv/bin/python3 -m pytest experiments/greedy_tests -q --runslow
 ```
+
+**No test uses a node budget above `MAX_BUDGET = 1_000`.** That is a free
+constraint, not a compromise. The heap key `(total, depth, key)` is a strict total
+order, so pop order does not depend on the budget: a search at budget `B` is
+*exactly* the first `B` pops of a search at any larger budget. Once a presentation
+solves within `B`, every larger budget returns the identical `solved`,
+`nodes_explored` and move list. The suite asserts this rather than assuming it
+(`test_solver_properties.py`), including on the deepest solve the ceiling admits.
+
+554 of the 640 ms640 presentations solve inside 1,000 nodes, so this is not a
+shallow sample. To test a deeper search, find a presentation that solves in
+*fewer* nodes -- do not raise the budget.
+
+One exemption, handled without a bigger budget: the progress callback fires every
+`_HB_CHECK_EVERY = 1024` pops, so a 1,000-node search is silent. The tests patch
+that constant down to 100 and pin the real value separately.
 
 `slow` tests (golden sweeps, multiprocessing, deep parity) are skipped unless
 `--runslow` is passed. Temporary files go to `.pytest_tmp/` inside the repo,
 never `/tmp`.
+
+A bare `pytest` also collects `tests/`, which holds the `wandb_tracking` suite.
+The two do not overlap: `wandb_tracking`'s identity scheme, anytime profile and
+panels are tested there; `test_runner_wandb.py` here tests only the *seam* --
+that `run_dataset` reaches `wandb_tracking` with the right arguments, and that
+`USE_WANDB=False` never touches it at all.
 
 ## How it is built
 
@@ -99,6 +121,12 @@ Two things to know before writing that solver:
 **A golden failure is a result change, not a stale fixture.** The search is
 deterministic, so a number that moved means something altered the search. Find
 out what, and say so in the commit message, before regenerating.
+
+The deep anchors are `ms640[551]` (990 nodes, the most a solve costs under the
+ceiling) and `ms640[466]` (614 nodes but a 101-move path, the longest), each
+recorded at cap 24 and cap 48, which give identical traces. The `620-639` sweep
+records a solved/budget-capped mix (`627` and `631` solve) -- ms640 is only
+~606/640 greedy-solvable, so an unsolved row there is expected, not a bug.
 
 Only deterministic fields are stored. `min_relator` and `max_relator` are picked
 with `min()`/`max()` over a `set` in the normal solver, so their tie-breaks

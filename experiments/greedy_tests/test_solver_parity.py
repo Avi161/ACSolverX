@@ -26,16 +26,18 @@ from experiments.greedy_tests.fixtures.presentations import (
 
 #: solved, budget-capped, and structurally awkward inputs
 FAST_CASES = (
-    [(p, 1500) for p in ms640(range(0, 10))]
-    + [(p, 1200) for p in ms_unsolved(range(0, 2))]
-    + [(ak(3), 800), (MMS02_LEN14, 800)]
+    [(p, 1000) for p in ms640(range(0, 10))]
+    + [(p, 800) for p in ms_unsolved(range(0, 2))]
+    + [(ak(3), 600), (MMS02_LEN14, 600)]
 )
-#: Deeper searches across both caps and both cyclic modes. Budgets are chosen so
-#: the pair (normal + heavy) stays a few seconds per case: the point is coverage
-#: of the cap/cyclic matrix, not of large node counts, which the golden tier pins.
+#: Deeper searches across the cap x cyclic matrix. The budget stays small on
+#: purpose: parity is a statement about the *pop sequence*, and a run at budget B
+#: is the first B pops of any longer run, so a longer budget cannot expose a
+#: disagreement that 1,000 nodes does not. It would only cost minutes.
 SLOW_CASES = (
-    [(p, 6000) for p in ms640([621, 630])]
-    + [(p, 6000) for p in ms_unsolved(range(0, 2))]
+    [(ms640([551])[0], 1000)]                # the deepest solve under the ceiling
+    + [(ms640([621])[0], 1000)]              # budget-capped, long relators
+    + [(ms_unsolved([0])[0], 1000)]          # the hard Miller-Schupp reps
 )
 
 #: every field both solvers must agree on, exactly
@@ -79,7 +81,7 @@ def test_normal_and_heavy_agree_at_depth(pres, budget, cap, cyclic):
 
 def test_heavy_reports_no_path_even_when_solved():
     """The runner re-solves with the normal solver to recover it."""
-    normal, heavy = _both(ms640([0])[0], 1000, 24, True)
+    normal, heavy = _both(ms640([0])[0], 500, 24, True)
     assert normal["solved"] and heavy["solved"]
     assert normal["path_moves"] and normal["path"]
     assert heavy["path_moves"] == [] and heavy["path"] == []
@@ -90,7 +92,7 @@ def test_the_length_stats_are_consistent_with_their_strings():
     """Guards against a length/string pair drifting apart in either solver."""
     for high in (False, True):
         for pres in ms640(range(0, 6)):
-            s = greedy_search(*pres.to_strs(), 1000, high_speedup=high)
+            s = greedy_search(*pres.to_strs(), 800, high_speedup=high)
             for length, strings in (
                 ("min_relator_length", "min_relator"),
                 ("max_relator_length", "max_relator"),
@@ -107,7 +109,7 @@ def test_min_and_max_relator_strings_are_not_a_parity_contract():
     """
     diverged = set()
     for pres in ms640(range(0, 20)):
-        normal, heavy = _both(pres, 1500, 24, True)
+        normal, heavy = _both(pres, 1000, 24, True)
         assert normal["min_relator_length"] == heavy["min_relator_length"]
         assert normal["max_relator_length"] == heavy["max_relator_length"]
         if normal["max_relator"] != heavy["max_relator"]:

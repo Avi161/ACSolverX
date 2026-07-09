@@ -58,10 +58,10 @@ def _rows(path):
 def test_the_pool_path_produces_the_same_rows_as_the_serial_path(
         tmp_path, tiny_dataset, start_method):
     serial = run_dataset(_cfg(tmp_path / "a", tiny_dataset,
-                              HIGH_SPEEDUP=False), 2000)
+                              HIGH_SPEEDUP=False), 1000)
     parallel = run_dataset(_cfg(tmp_path / "b", tiny_dataset,
                                 HIGH_SPEEDUP=True, N_WORKERS=2,
-                                MP_START_METHOD=start_method), 2000)
+                                MP_START_METHOD=start_method), 1000)
 
     a = {r["pres_id"]: r for r in _rows(serial)}
     b = {r["pres_id"]: r for r in _rows(parallel)}
@@ -77,7 +77,7 @@ def test_the_pool_path_produces_the_same_rows_as_the_serial_path(
 def test_solved_rows_from_the_pool_are_recovered_and_replay_to_trivial(
         tmp_path, tiny_dataset, start_method):
     out = run_dataset(_cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True,
-                           N_WORKERS=2, MP_START_METHOD=start_method), 2000)
+                           N_WORKERS=2, MP_START_METHOD=start_method), 1000)
     rows = _rows(out)
     assert rows and all(r["solved"] for r in rows)
     assert all(r["path_recovered"] is True for r in rows)
@@ -97,7 +97,7 @@ def test_workers_never_open_the_output_files(tmp_path, tiny_dataset):
     and the file is never interleaved mid-line.
     """
     out = run_dataset(_cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True,
-                           N_WORKERS=2), 2000)
+                           N_WORKERS=2), 1000)
     with open(out) as f:
         raw = f.read()
     assert raw.endswith("\n")
@@ -116,18 +116,18 @@ def test_resume_works_across_a_pool_run(tmp_path, tiny_dataset):
     same defect wearing a different hat.
     """
     cfg = _cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True, N_WORKERS=2)
-    partial = run_dataset({**cfg, "SUBSET": (0, 2)}, 2000)
+    partial = run_dataset({**cfg, "SUBSET": (0, 2)}, 1000)
     assert len(_rows(partial)) == 2
 
     # Same budget and cap, wider subset -> a different run identity, so seed the
     # full run's file with the two rows we already have.
-    full, *_ = _resolve_paths(cfg, 2000, 4)
+    full, *_ = _resolve_paths(cfg, 1000, 4)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w") as f:
         for r in _rows(partial):
             f.write(json.dumps(r) + "\n")
 
-    out = run_dataset(cfg, 2000)
+    out = run_dataset(cfg, 1000)
     assert out == full
     rows = _rows(out)
     assert sorted(r["pres_id"] for r in rows) == [0, 1, 2, 3]
@@ -137,7 +137,7 @@ def test_resume_works_across_a_pool_run(tmp_path, tiny_dataset):
 def test_heartbeat_queue_survives_the_pool(tmp_path, tiny_dataset, capsys):
     """``HEARTBEAT_EVERY_S`` is result-neutral, but the queue must still be wired."""
     out = run_dataset(_cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True,
-                           N_WORKERS=2, HEARTBEAT_EVERY_S=1), 2000)
+                           N_WORKERS=2, HEARTBEAT_EVERY_S=1), 1000)
     printed = capsys.readouterr().out
     assert "[hb] armed: 2 worker(s)" in printed
     assert len(_rows(out)) == 4
@@ -152,7 +152,7 @@ def test_heartbeat_debug_writes_stack_dumps_into_the_cwd(tmp_path, tiny_dataset,
     """
     out = run_dataset(_cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True,
                            N_WORKERS=2, HEARTBEAT_EVERY_S=1,
-                           HEARTBEAT_DEBUG=True), 2000)
+                           HEARTBEAT_DEBUG=True), 1000)
     assert len(_rows(out)) == 4
     dumps = [p for p in os.listdir(in_tmp_cwd) if p.startswith("hb_stack_")]
     assert dumps, "HEARTBEAT_DEBUG must arm the faulthandler watchdog per worker"
@@ -164,7 +164,7 @@ def test_heartbeat_debug_writes_stack_dumps_into_the_cwd(tmp_path, tiny_dataset,
 def test_n_workers_one_takes_the_serial_path_and_still_uses_the_heavy_solver(
         tmp_path, tiny_dataset, capsys):
     out = run_dataset(_cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True,
-                           N_WORKERS=1), 2000)
+                           N_WORKERS=1), 1000)
     printed = capsys.readouterr().out
     assert "HIGH_SPEEDUP: 1 worker(s)" in printed
     assert "warming numba in the parent" not in printed, "no pool, so no pre-fork warm-up"

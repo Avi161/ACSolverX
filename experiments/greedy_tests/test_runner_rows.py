@@ -235,12 +235,12 @@ def test_subset_selects_presentations_and_names_the_file(cfg, monkeypatch):
 
 def test_run_dataset_end_to_end_with_the_real_solver(cfg):
     """No stub: the rows must actually describe solved searches."""
-    out = run_dataset({**cfg, "SUBSET": (0, 3)}, 3000)
+    out = run_dataset({**cfg, "SUBSET": (0, 3)}, 1000)
     rows = _rows(out)
     paths = {p["pres_id"]: p for p in _rows(out[: -len(".jsonl")] + "_paths.jsonl")}
     assert len(rows) == 3 and all(r["solved"] for r in rows)
     for r in rows:
-        assert 1 <= r["nodes_explored"] <= 3000
+        assert 1 <= r["nodes_explored"] <= 1000
         assert r["max_relator_length_cap"] == 24 and r["cyclic_reduce"] is True
         assert r["path_length"] == len(paths[r["pres_id"]]["path_moves"])
 
@@ -250,7 +250,7 @@ def test_recovered_rows_are_flagged_and_replay_to_a_trivial_state(cfg):
     from experiments.search.greedy_baseline import moves_to_states, str_to_move
 
     out = run_dataset({**cfg, "SUBSET": (0, 3), "HIGH_SPEEDUP": True,
-                       "N_WORKERS": 1}, 3000)
+                       "N_WORKERS": 1}, 1000)
     rows = _rows(out)
     assert all(r["solved"] for r in rows)
     assert all(r.get("path_recovered") is True for r in rows), \
