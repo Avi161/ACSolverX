@@ -210,21 +210,29 @@ class _Heartbeat:
     """Rate-limited nodes/s sampler, called from inside the search loop.
 
     The solver calls this every 1024 pops; it emits at most one sample per
-    ``every`` seconds, so the per-node cost is a modulo and a clock read.
+    ``interval`` seconds, so the per-node cost is a modulo and a clock read.
+
+    The FIRST sample is emitted after at most ``first_after`` seconds rather
+    than a full interval: with a 90 s interval, waiting a full period before
+    saying anything is indistinguishable from a hang (and the worker's clock
+    starts before numba JIT, which eats the first seconds anyway).
     """
 
-    def __init__(self, pres_id, budget, every, sink):
-        self.pres_id, self.budget, self.every, self.sink = pres_id, budget, every, sink
+    def __init__(self, pres_id, budget, interval, sink, first_after=10.0):
+        self.pres_id, self.budget, self.sink = pres_id, budget, sink
+        self.interval = interval
         self.t0 = self.t_last = time.time()
+        self.next_at = self.t0 + min(first_after, interval)
         self.n_last = 0
 
     def __call__(self, nodes):
         now = time.time()
-        dt = now - self.t_last
-        if dt < self.every:
+        if now < self.next_at:
             return
-        rate = (nodes - self.n_last) / dt
+        dt = now - self.t_last
+        rate = (nodes - self.n_last) / dt if dt > 0 else 0.0
         self.t_last, self.n_last = now, nodes
+        self.next_at = now + self.interval
         self.sink((self.pres_id, nodes, self.budget, now - self.t0, rate))
 
 
@@ -240,7 +248,7 @@ def _hb_monitor(q, stop_evt, every):
     import queue as _queue
 
     live = {}          # pres_id -> (sample, arrival_time)
-    last_print = time.time()
+    last_print = 0.0   # epoch 0 => the first sample to arrive prints immediately
     while not stop_evt.is_set():
         try:
             sample = q.get(timeout=0.2)
@@ -256,13 +264,16 @@ def _hb_monitor(q, stop_evt, every):
         # Backstop for a worker that died without sending its done-sentinel:
         # otherwise its last rate would be summed into `agg` forever.
         live = {p: v for p, v in live.items() if now - v[1] <= 2 * every}
-        if live:
-            samples = [v[0] for v in live.values()]
-            agg = sum(s[4] for s in samples)
-            print(f"    [hb] {len(samples)} solving | agg {agg:,.0f} nodes/s",
-                  flush=True)
-            for s in sorted(samples):
-                print(f"         {_fmt_hb(s)}", flush=True)
+        if not live:
+            # Nothing to say yet (workers still starting / JIT-compiling). Do NOT
+            # advance last_print, or this empty tick costs a whole `every` period
+            # before the first block appears.
+            continue
+        samples = [v[0] for v in live.values()]
+        agg = sum(s[4] for s in samples)
+        print(f"    [hb] {len(samples)} solving | agg {agg:,.0f} nodes/s", flush=True)
+        for s in sorted(samples):
+            print(f"         {_fmt_hb(s)}", flush=True)
         last_print = now
 
 
@@ -271,10 +282,14 @@ def _solve_one(job):
     pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s = job
     progress = None
     if hb_s > 0:
-        # In a pool worker, hand samples to the parent; serially, print directly.
-        sink = (_HB_Q.put_nowait if _HB_Q is not None
-                else (lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True)))
-        progress = _Heartbeat(pres_id, node_budget, hb_s, sink)
+        if _HB_Q is not None:
+            # Pool worker: the parent prints every hb_s, so sample twice as often
+            # or its aggregate would be summed from rates up to hb_s seconds old.
+            sink, interval = _HB_Q.put_nowait, max(1.0, hb_s / 2)
+        else:
+            # Serial: this IS the printer, so sample at exactly the asked cadence.
+            sink, interval = (lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True)), hb_s
+        progress = _Heartbeat(pres_id, node_budget, interval, sink)
     t0 = time.time()
     try:
         stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
