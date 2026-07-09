@@ -883,13 +883,23 @@ def run_dataset(cfg, node_budget):
                         _emit(pres_id, r1, r2, stats, elapsed)
                     n_seen += 1
                     n_solved += int(stats["solved"])
+                    processed += 1
+                    if logger is not None:
+                        # These never reached on_result in the worker loop (they
+                        # returned an exception, not stats), so count them here or
+                        # the cumulative run/* counters silently lose them.
+                        logger.on_result(stats)
                     continue
             # It genuinely does not fit on this machine. Record that honestly
             # rather than crash the run or silently drop the presentation.
             print(f"    pres {pres_id}: ABORTED on memory ({exc}). "
                   f"Row written with mem_abort=true.", flush=True)
-            _emit(pres_id, r1, r2, _abort_stats(exc), 0.0, mem_abort=True)
+            stats = _abort_stats(exc)
+            _emit(pres_id, r1, r2, stats, 0.0, mem_abort=True)
             n_seen += 1
+            processed += 1
+            if logger is not None:
+                logger.on_result(stats)
 
         for pres_id, r1, r2 in deferred:
             print(f"    recovering path for pres {pres_id} (normal solver)...", flush=True)
