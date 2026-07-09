@@ -1,0 +1,780 @@
+{
+ "entries": [
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "Yx",
+    "YYXyx"
+   ],
+   "max_relator_length": 10,
+   "max_relator_length_expanded": 7,
+   "min_relator_length": 2,
+   "nodes_explored": 3,
+   "path_length": 2,
+   "pres_id": 0,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YX",
+    "YYXyx"
+   ],
+   "max_relator_length": 10,
+   "max_relator_length_expanded": 7,
+   "min_relator_length": 2,
+   "nodes_explored": 3,
+   "path_length": 2,
+   "pres_id": 1,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYx",
+    "YYXyx"
+   ],
+   "max_relator_length": 11,
+   "max_relator_length_expanded": 8,
+   "min_relator_length": 2,
+   "nodes_explored": 4,
+   "path_length": 3,
+   "pres_id": 2,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYX",
+    "YYXyx"
+   ],
+   "max_relator_length": 11,
+   "max_relator_length_expanded": 8,
+   "min_relator_length": 2,
+   "nodes_explored": 4,
+   "path_length": 3,
+   "pres_id": 3,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYx",
+    "YYXyx"
+   ],
+   "max_relator_length": 12,
+   "max_relator_length_expanded": 9,
+   "min_relator_length": 2,
+   "nodes_explored": 5,
+   "path_length": 4,
+   "pres_id": 4,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYX",
+    "YYXyx"
+   ],
+   "max_relator_length": 12,
+   "max_relator_length_expanded": 9,
+   "min_relator_length": 2,
+   "nodes_explored": 5,
+   "path_length": 4,
+   "pres_id": 5,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyx",
+    "YXYxx"
+   ],
+   "max_relator_length": 13,
+   "max_relator_length_expanded": 10,
+   "min_relator_length": 2,
+   "nodes_explored": 7,
+   "path_length": 5,
+   "pres_id": 6,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyx",
+    "YXXyx"
+   ],
+   "max_relator_length": 13,
+   "max_relator_length_expanded": 10,
+   "min_relator_length": 2,
+   "nodes_explored": 4,
+   "path_length": 3,
+   "pres_id": 7,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYx",
+    "YYXyx"
+   ],
+   "max_relator_length": 13,
+   "max_relator_length_expanded": 10,
+   "min_relator_length": 2,
+   "nodes_explored": 6,
+   "path_length": 5,
+   "pres_id": 8,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyx",
+    "YXyxx"
+   ],
+   "max_relator_length": 13,
+   "max_relator_length_expanded": 10,
+   "min_relator_length": 2,
+   "nodes_explored": 4,
+   "path_length": 3,
+   "pres_id": 9,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyx",
+    "YXXYx"
+   ],
+   "max_relator_length": 13,
+   "max_relator_length_expanded": 10,
+   "min_relator_length": 2,
+   "nodes_explored": 7,
+   "path_length": 5,
+   "pres_id": 10,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYX",
+    "YYXyx"
+   ],
+   "max_relator_length": 13,
+   "max_relator_length_expanded": 10,
+   "min_relator_length": 2,
+   "nodes_explored": 6,
+   "path_length": 5,
+   "pres_id": 11,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyx",
+    "YYXYxx"
+   ],
+   "max_relator_length": 15,
+   "max_relator_length_expanded": 11,
+   "min_relator_length": 2,
+   "nodes_explored": 5,
+   "path_length": 4,
+   "pres_id": 12,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyx",
+    "YXYxYx"
+   ],
+   "max_relator_length": 15,
+   "max_relator_length_expanded": 11,
+   "min_relator_length": 2,
+   "nodes_explored": 7,
+   "path_length": 6,
+   "pres_id": 13,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyx",
+    "YXYxyx"
+   ],
+   "max_relator_length": 15,
+   "max_relator_length_expanded": 11,
+   "min_relator_length": 2,
+   "nodes_explored": 5,
+   "path_length": 4,
+   "pres_id": 14,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": false,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "Yx",
+    "YYXyx"
+   ],
+   "max_relator_length": 10,
+   "max_relator_length_expanded": 7,
+   "min_relator_length": 2,
+   "nodes_explored": 4,
+   "path_length": 3,
+   "pres_id": 0,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": false,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YX",
+    "YYXyx"
+   ],
+   "max_relator_length": 10,
+   "max_relator_length_expanded": 7,
+   "min_relator_length": 2,
+   "nodes_explored": 4,
+   "path_length": 3,
+   "pres_id": 1,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 2000,
+   "cap": 24,
+   "cyclic": false,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYx",
+    "YYXyx"
+   ],
+   "max_relator_length": 11,
+   "max_relator_length_expanded": 8,
+   "min_relator_length": 2,
+   "nodes_explored": 4,
+   "path_length": 3,
+   "pres_id": 2,
+   "solved": true,
+   "tier": "fast"
+  },
+  {
+   "budget": 1500,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms_unsolved_reps/ms_reps_unsolved.txt",
+   "max_relator_expanded": [
+    "YYYXXXX",
+    "YXYXXXXYXYx"
+   ],
+   "max_relator_length": 27,
+   "max_relator_length_expanded": 18,
+   "min_relator_length": 13,
+   "nodes_explored": 1500,
+   "path_length": null,
+   "pres_id": 0,
+   "solved": false,
+   "tier": "fast"
+  },
+  {
+   "budget": 1500,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms_unsolved_reps/ms_reps_unsolved.txt",
+   "max_relator_expanded": [
+    "YYxxxxyX",
+    "YXXXXyXyXyxYx"
+   ],
+   "max_relator_length": 33,
+   "max_relator_length_expanded": 21,
+   "min_relator_length": 15,
+   "nodes_explored": 1500,
+   "path_length": null,
+   "pres_id": 1,
+   "solved": false,
+   "tier": "fast"
+  },
+  {
+   "budget": 1500,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms_unsolved_reps/ms_reps_unsolved.txt",
+   "max_relator_expanded": [
+    "YYxxxxxyX",
+    "YXXXXXyXyXyxYx"
+   ],
+   "max_relator_length": 37,
+   "max_relator_length_expanded": 23,
+   "min_relator_length": 16,
+   "nodes_explored": 1500,
+   "path_length": null,
+   "pres_id": 2,
+   "solved": false,
+   "tier": "fast"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YXyxYx",
+    "YYYYYYYYYXyxyyyyyyx"
+   ],
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 25,
+   "min_relator_length": 2,
+   "nodes_explored": 14415,
+   "path_length": 489,
+   "pres_id": 620,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YXYxyX",
+    "YYYYYYYYYXyyyyyyxyX"
+   ],
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 25,
+   "min_relator_length": 2,
+   "nodes_explored": 15371,
+   "path_length": 500,
+   "pres_id": 621,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYxyXYx",
+    "YYYYYYYYXyxyXYxyyyyx"
+   ],
+   "max_relator_length": 43,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 19,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 622,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyxYX",
+    "YYYYYYYYXXyxYXyyyyyx"
+   ],
+   "max_relator_length": 43,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 18,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 623,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYxYXyx",
+    "YYYYYYYYXyxYXyxyyyyx"
+   ],
+   "max_relator_length": 43,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 18,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 624,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXYxyX",
+    "YYYYYYYYXXYxyXyyyyyx"
+   ],
+   "max_relator_length": 43,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 19,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 625,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "max_relator_length": 41,
+   "max_relator_length_expanded": 25,
+   "min_relator_length": 2,
+   "nodes_explored": 6517,
+   "path_length": 56,
+   "pres_id": 626,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYXXyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "max_relator_length": 40,
+   "max_relator_length_expanded": 25,
+   "min_relator_length": 2,
+   "nodes_explored": 477,
+   "path_length": 40,
+   "pres_id": 627,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyXyyx",
+    "YYYYYYYXYYxYxyXyyyyyyyx"
+   ],
+   "max_relator_length": 46,
+   "max_relator_length_expanded": 31,
+   "min_relator_length": 2,
+   "nodes_explored": 26774,
+   "path_length": 81,
+   "pres_id": 628,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXYXyyx",
+    "YYYYYYYXYYxyxyXyyyyyyyx"
+   ],
+   "max_relator_length": 46,
+   "max_relator_length_expanded": 31,
+   "min_relator_length": 2,
+   "nodes_explored": 12452,
+   "path_length": 79,
+   "pres_id": 629,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyyxYx",
+    "YYYYYYYXYYxyyXXyyyyyyyx"
+   ],
+   "max_relator_length": 46,
+   "max_relator_length_expanded": 31,
+   "min_relator_length": 2,
+   "nodes_explored": 12429,
+   "path_length": 79,
+   "pres_id": 630,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "max_relator_length": 40,
+   "max_relator_length_expanded": 25,
+   "min_relator_length": 2,
+   "nodes_explored": 481,
+   "path_length": 40,
+   "pres_id": 631,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYXXYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "max_relator_length": 41,
+   "max_relator_length_expanded": 25,
+   "min_relator_length": 2,
+   "nodes_explored": 6425,
+   "path_length": 56,
+   "pres_id": 632,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyyxyx",
+    "YYYYYYYXYXYYxyXyyyyyyyx"
+   ],
+   "max_relator_length": 46,
+   "max_relator_length_expanded": 31,
+   "min_relator_length": 2,
+   "nodes_explored": 26838,
+   "path_length": 83,
+   "pres_id": 633,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYXXyyyyx",
+    "YYYYXXYYXyyxxyyyx"
+   ],
+   "max_relator_length": 43,
+   "max_relator_length_expanded": 28,
+   "min_relator_length": 17,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 634,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYYXyyyyxx",
+    "YYYYXYYXXyyxyyyxx"
+   ],
+   "max_relator_length": 43,
+   "max_relator_length_expanded": 28,
+   "min_relator_length": 17,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 635,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYXYxyX",
+    "YYYYYYYYXYXYxyXyyyyyx"
+   ],
+   "max_relator_length": 44,
+   "max_relator_length_expanded": 29,
+   "min_relator_length": 19,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 636,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYXyxYX",
+    "YYYYYYYYXYXyxYXyyyyyx"
+   ],
+   "max_relator_length": 44,
+   "max_relator_length_expanded": 29,
+   "min_relator_length": 19,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 637,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYxyXYx",
+    "YYYYYYYYXYxyXYxyyyyyx"
+   ],
+   "max_relator_length": 44,
+   "max_relator_length_expanded": 29,
+   "min_relator_length": 19,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 638,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYYxYXyx",
+    "YYYYYYYYXYxYXyxyyyyyx"
+   ],
+   "max_relator_length": 44,
+   "max_relator_length_expanded": 29,
+   "min_relator_length": 19,
+   "nodes_explored": 30000,
+   "path_length": null,
+   "pres_id": 639,
+   "solved": false,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 48,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YXYxyX",
+    "YYYYYYYYYXyyyyyyxyX"
+   ],
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 25,
+   "min_relator_length": 2,
+   "nodes_explored": 15371,
+   "path_length": 500,
+   "pres_id": 621,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 30000,
+   "cap": 48,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YYXyyxYx",
+    "YYYYYYYXYYxyyXXyyyyyyyx"
+   ],
+   "max_relator_length": 52,
+   "max_relator_length_expanded": 31,
+   "min_relator_length": 2,
+   "nodes_explored": 12429,
+   "path_length": 79,
+   "pres_id": 630,
+   "solved": true,
+   "tier": "slow"
+  }
+ ],
+ "note": "Deterministic fields only; min_relator/max_relator strings are PYTHONHASHSEED-dependent and deliberately excluded.",
+ "regen": "python3 -m experiments.greedy_tests.tools.regen_golden"
+}
