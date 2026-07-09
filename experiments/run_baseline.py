@@ -203,31 +203,38 @@ def _read_done(out_path):
 
 # Bytes of process memory per DISCOVERED state, for the heavy solver. Each state
 # costs a packed-bytes key + a `visited` set entry + a `(total, depth, key)` heap
-# tuple + its list slot. Measured with tracemalloc (exact, platform-independent):
-# 185 B/state live AND 185 B/state marginal, on ms_reps_unsolved. The 220 here
-# adds ~19% for allocator fragmentation and the transient during a set resize
-# (CPython allocates the new table before freeing the old); it lines up with the
-# 213 B/state previously measured from real RSS on Colab.
+# tuple + its list slot. Measured by building exactly those structures at real key
+# lengths: 214 B/state, FLAT from 500k to 8M entries (marginal 214.1 -> 214.5), and
+# it agrees with the 213 B/state seen from real RSS on Colab. 220 leaves a little
+# for allocator fragmentation.
+# NB a shallow search reads lower (~185 B) only because its relators, hence its
+# keys, are shorter -- calibrate at the key lengths the deep search actually holds.
 _BYTES_PER_STATE = 220
 
 # DISCOVERED states per node popped. Measured on ms_reps_unsolved (heavy solver):
-#     budget   25k    50k   100k   200k   400k     1M
-#     mrl=24   67.1   64.9   69.8   50.7   42.0   29.7
-#     mrl=48   67.1   64.9   69.8   70.5   63.8      -
-# Fitting discovered = A*budget^p: mrl=48 gives p=0.997 (LINEAR, A=69.3), while
-# mrl=24 gives p=0.772 -- it bends below the line once the cap starts pruning.
-# So the uncapped mrl=48 line is an upper envelope for EVERY cap: raising the cap
-# can only add discoveries, and the two rows are identical until the cap binds.
-# One linear constant therefore covers all mrl, over-provisioning (safely) for
-# small caps at large budgets. Per-presentation spread is ~1.3x (44.4..81.9 at
-# 50k); that tail is absorbed by _RAM_SAFETY and caught by _MemGuard.
-_STATES_PER_NODE = 70
+#     budget   25k    50k   100k   200k   400k   600k     1M
+#     mrl=24   67.1   64.9   69.8   50.7   42.0      -   29.7
+#     mrl=48   67.1   64.9   69.8   70.5   63.8   61.6      -
+# Fitting discovered = A*budget^p on the mrl=48 row (six points, 25k..600k) gives
+# A=82.9, p=0.981 (<=6.7% error everywhere). mrl=24 bends far below it (p=0.772)
+# once the cap starts pruning, and the two rows are identical until the cap binds
+# -- so the uncapped mrl=48 curve is an upper envelope for EVERY cap, and one fit
+# covers all mrl. It predicts 63.7 states/node at 1M, i.e. ~14 GB per search.
+# Per-presentation spread is ~1.3x (ratio 44.4..81.9 at 50k); that tail is left to
+# _MemGuard rather than paid for by every worker.
+_DISCOVERY_A = 82.9
+_DISCOVERY_P = 0.981
 
 # Interpreter + numba + numpy baseline, per worker process.
 _BASE_GB = 0.35
 
-# Fraction of available RAM we are willing to commit to searches.
-_RAM_SAFETY = 0.80
+# Fraction of usable RAM committed to searches when sizing the pool. The guard
+# below is the real protection, so this does not need to be timid.
+_RAM_SAFETY = 0.90
+
+# Memory we refuse to let the machine drop below. Crossing this is what "about to
+# OOM" actually means -- not "a worker went over its 1/n share".
+_MEM_RESERVE_GB = 2.0
 
 
 def _total_ram_gb():
@@ -316,7 +323,8 @@ def _est_gb_per_pres(cfg, node_budget):
     gb = cfg.get("GB_PER_PRES", "auto")
     if isinstance(gb, (int, float)) and not isinstance(gb, bool) and gb > 0:
         return float(gb)
-    return _BASE_GB + _STATES_PER_NODE * node_budget * _BYTES_PER_STATE / 1e9
+    discovered = _DISCOVERY_A * node_budget ** _DISCOVERY_P
+    return _BASE_GB + discovered * _BYTES_PER_STATE / 1e9
 
 
 def _auto_workers(cfg, node_budget):
@@ -351,6 +359,24 @@ def _proc_rss_bytes():
         return 0
 
 
+def _sys_avail_bytes():
+    """RAM the whole machine still has free, right now. 0 if unreadable.
+
+    This is the only honest "about to OOM" signal: a worker legitimately larger
+    than its 1/n share is fine as long as the machine has room, and no worker is
+    fine once the machine does not. macOS exposes no MemAvailable, so there it
+    returns 0 and the guard falls back to the per-worker cap.
+    """
+    try:
+        with open("/proc/meminfo") as f:
+            for ln in f:
+                if ln.startswith("MemAvailable:"):
+                    return int(ln.split()[1]) * 1024
+    except (OSError, ValueError, IndexError):
+        pass
+    return 0
+
+
 class _MemBudgetExceeded(Exception):
     """A search hit its per-worker memory allowance and stopped itself.
 
@@ -377,10 +403,21 @@ class _MemGuard:
     wrong estimate cost one presentation instead of the whole runtime. Raising
     from the progress callback unwinds the plain-Python solve loop cleanly, so
     the worker survives and the pool keeps going.
+
+    Two conditions, both required. Exceeding ``soft_gb`` (this worker's 1/n share)
+    is NOT itself a problem: at 1M nodes a search legitimately peaks near 14 GB,
+    which is above the 1/4 share of a 51 GB runtime, and a guard that fired there
+    would abort almost every presentation and re-run it serially — a throughput
+    disaster dressed up as safety. So a worker over its share only stops once the
+    MACHINE is actually short of memory. Checking RSS first keeps the common case
+    to one cheap read; and because the largest worker crosses ``soft_gb`` first,
+    it is the one that yields, which is the one whose exit frees the most.
     """
 
-    def __init__(self, pres_id, limit_gb, every=8):
-        self.pres_id, self.limit = pres_id, limit_gb * 1e9
+    def __init__(self, pres_id, soft_gb, reserve_gb=_MEM_RESERVE_GB, every=8):
+        self.pres_id = pres_id
+        self.soft = soft_gb * 1e9
+        self.reserve = reserve_gb * 1e9
         self.every, self.k = every, 0
 
     def __call__(self, nodes):
@@ -388,9 +425,12 @@ class _MemGuard:
         if self.k % self.every:            # ~8k nodes between checks; ~2 s of work
             return
         rss = _proc_rss_bytes()
-        if rss and rss > self.limit:
-            raise _MemBudgetExceeded(self.pres_id, nodes, rss / 1e9,
-                                     self.limit / 1e9)
+        if not rss or rss <= self.soft:
+            return
+        avail = _sys_avail_bytes()
+        if avail and avail > self.reserve:
+            return                         # over its share, but the machine is fine
+        raise _MemBudgetExceeded(self.pres_id, nodes, rss / 1e9, self.soft / 1e9)
 
 
 # --- live nodes/s heartbeat ------------------------------------------------
@@ -744,14 +784,16 @@ def run_dataset(cfg, node_budget):
               f" / {_total_ram_gb():.0f} GB total | {_usable_cores()} core(s)"
               f" | ~{est:.1f} GB/presentation ({src})", flush=True)
         if mem_gb:
-            print(f"    memory guard: {mem_gb:.1f} GB per worker; a search that "
-                  f"exceeds it stops and is retried serially", flush=True)
+            print(f"    memory guard: a worker over {mem_gb:.1f} GB stops only if "
+                  f"the machine drops below {_MEM_RESERVE_GB:.0f} GB free "
+                  f"(then it is retried serially)", flush=True)
         if int(cfg.get("N_WORKERS", 0) or 0) > 0 and avail and \
-                n_workers * est > avail * _RAM_SAFETY:
-            print(f"    WARNING: N_WORKERS={n_workers} pinned, but "
-                  f"{n_workers} x {est:.1f} GB = {n_workers * est:.0f} GB exceeds "
-                  f"the {avail * _RAM_SAFETY:.0f} GB budget. Set N_WORKERS=0 to "
-                  f"let it size itself.", flush=True)
+                n_workers * est > avail:
+            print(f"    NOTE: N_WORKERS={n_workers} pinned; {n_workers} x "
+                  f"{est:.1f} GB = {n_workers * est:.0f} GB vs {avail:.0f} GB "
+                  f"usable. Auto would pick "
+                  f"{_auto_workers({**cfg, 'N_WORKERS': 0}, node_budget)}. The "
+                  f"guard will catch a genuine shortfall.", flush=True)
     jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s, hb_dbg, mem_gb)
             for pid, a, b in todo]
     if hb_s > 0:
