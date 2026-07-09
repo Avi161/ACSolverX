@@ -1,0 +1,2 @@
+# [2026-07-08] Colab SETUP cloned the repo nested (ACSolverX/ACSolverX/…) [TRAP]
+Cause: SETUP did `os.chdir(REPO_ROOT)` into the repo, then a *re-run* checked `os.path.isdir(REPO_DIR)` with a **relative** `REPO_DIR` from inside the repo → clones again one level deeper each run. **Rule:** anchor to an absolute base first (`os.chdir("/content")`) and derive `REPO_ROOT = os.path.join("/content", REPO_DIR)`; make clone/pull idempotent. For local, walk *up* to the repo root (dir holding `experiments/` + `data/`), don't assume cwd.
