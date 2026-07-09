@@ -18,7 +18,7 @@ import sys
 
 import pytest
 
-from experiments.run_baseline import DEFAULT_CONFIG, run_dataset
+from experiments.run_baseline import DEFAULT_CONFIG, _resolve_paths, run_dataset
 from experiments.search.greedy_baseline import moves_to_states, str_to_move
 from experiments.greedy_tests.fixtures.presentations import MS640, load_flat_lines
 
@@ -108,12 +108,30 @@ def test_workers_never_open_the_output_files(tmp_path, tiny_dataset):
 
 
 def test_resume_works_across_a_pool_run(tmp_path, tiny_dataset):
+    """A partially-done pool run resumes and completes only what is left.
+
+    The dataset is deliberately *not* finished first. Re-running a pool sweep
+    with nothing left to do raises ``IndexError`` on ``todo[0]`` -- a real bug,
+    pinned in ``test_known_gaps.py``. Exercising it here too would just be that
+    same defect wearing a different hat.
+    """
     cfg = _cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True, N_WORKERS=2)
+    partial = run_dataset({**cfg, "SUBSET": (0, 2)}, 2000)
+    assert len(_rows(partial)) == 2
+
+    # Same budget and cap, wider subset -> a different run identity, so seed the
+    # full run's file with the two rows we already have.
+    full, *_ = _resolve_paths(cfg, 2000, 4)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    with open(full, "w") as f:
+        for r in _rows(partial):
+            f.write(json.dumps(r) + "\n")
+
     out = run_dataset(cfg, 2000)
-    assert len(_rows(out)) == 4
-    again = run_dataset(cfg, 2000)
-    assert again == out
-    assert len(_rows(out)) == 4, "a resumed pool run must add nothing"
+    assert out == full
+    rows = _rows(out)
+    assert sorted(r["pres_id"] for r in rows) == [0, 1, 2, 3]
+    assert len(rows) == 4, "resume must add exactly the two missing presentations"
 
 
 def test_heartbeat_queue_survives_the_pool(tmp_path, tiny_dataset, capsys):
