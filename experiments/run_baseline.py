@@ -99,26 +99,41 @@ def _subset_tag(subset):
     return "ids" + hashlib.sha1(key.encode()).hexdigest()[:8]
 
 
-def _run_tag(cfg, node_budget, n_pres, date):
-    """Filename/run-id stem covering every knob that changes the search result.
+def _run_prefix(cfg, node_budget, n_pres):
+    """Date-less filename stem covering every knob that changes the search result.
 
     Two runs collide (share a file, and resume-merge) ONLY if they are truly
     the same experiment. Search-affecting knobs (cap, cyclic_reduce) and the
     subset selection are all encoded; jsonl field toggles are intentionally
     excluded (they change stored columns, not the computed result, and resume
-    correctly reuses those rows).
+    correctly reuses those rows). The DATE is deliberately NOT here — it must
+    not gate resume (see _resolve_paths).
     """
     cyc = "cyc" if cfg["CYCLIC_REDUCE"] else "noncyc"
     tag = _subset_tag(cfg["SUBSET"])
     return (f"greedy_{node_budget}_{n_pres}_mrl{cfg['MAX_RELATOR_LENGTH']}"
-            f"_{cyc}_{tag}_{date}")
+            f"_{cyc}_{tag}_")
 
 
 def _resolve_paths(cfg, node_budget, n_pres):
+    import glob
     out_dir = cfg["DRIVE_OUT_DIR"] if cfg["MOUNT_DRIVE"] else cfg["LOCAL_OUT_DIR"]
     os.makedirs(out_dir, exist_ok=True)
+    prefix = _run_prefix(cfg, node_budget, n_pres)
     date = datetime.now().strftime("%m_%d_%y")
-    stem = _run_tag(cfg, node_budget, n_pres, date)
+    stem = prefix + date
+
+    # Resume must be date-agnostic: a run continued on a later day (or after a
+    # Colab disconnect spanning midnight) has to reattach to the SAME file, not
+    # start a fresh one. The date only marks when the run first began, so match
+    # any existing file with this identity prefix and continue the furthest one.
+    if cfg.get("RESUME", True):
+        existing = [p for p in glob.glob(os.path.join(out_dir, prefix + "*.jsonl"))
+                    if not p.endswith("_paths.jsonl")]
+        if existing:
+            best = max(existing, key=lambda p: sum(1 for _ in open(p)))
+            stem = os.path.basename(best)[:-len(".jsonl")]
+
     out_path = os.path.join(out_dir, stem + ".jsonl")
     paths_path = os.path.join(out_dir, stem + "_paths.jsonl")
     return out_path, paths_path, date, stem
