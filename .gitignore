@@ -17,3 +17,8 @@ literature
 
 .env
 .DS_Store
+
+# pytest: --basetemp is project-relative (agent sandboxes deny /tmp).
+.pytest_tmp/
+.pytest_cache/
+.scratch/
