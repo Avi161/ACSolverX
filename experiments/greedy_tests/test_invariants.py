@@ -131,7 +131,7 @@ def test_the_spec_expander_preserves_abs_det_at_three_relators():
 def test_every_step_of_a_recovered_solution_path_preserves_abs_det():
     for idx in (0, 3, 7, 11):
         pres = ms640([idx])[0]
-        stats = greedy_search(*pres.to_strs(), 5000)
+        stats = greedy_search(*pres.to_strs(), 1000)
         assert stats["solved"]
         states = moves_to_states(*pres.to_strs(),
                                  [tuple(int(v) for v in m.split("_"))

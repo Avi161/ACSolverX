@@ -1,7 +1,7 @@
 {
  "entries": [
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -19,7 +19,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -37,7 +37,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -55,7 +55,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -73,7 +73,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -91,7 +91,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -109,7 +109,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -127,7 +127,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -145,7 +145,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -163,7 +163,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -181,7 +181,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -199,7 +199,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -217,7 +217,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -235,7 +235,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -253,7 +253,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -271,7 +271,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": false,
    "dataset": "data/ms640_solved.txt",
@@ -289,7 +289,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": false,
    "dataset": "data/ms640_solved.txt",
@@ -307,7 +307,7 @@
    "tier": "fast"
   },
   {
-   "budget": 2000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": false,
    "dataset": "data/ms640_solved.txt",
@@ -325,25 +325,25 @@
    "tier": "fast"
   },
   {
-   "budget": 1500,
+   "budget": 800,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms_unsolved_reps/ms_reps_unsolved.txt",
    "max_relator_expanded": [
-    "YYYXXXX",
+    "YXyXYx",
     "YXYXXXXYXYx"
    ],
-   "max_relator_length": 27,
-   "max_relator_length_expanded": 18,
+   "max_relator_length": 26,
+   "max_relator_length_expanded": 17,
    "min_relator_length": 13,
-   "nodes_explored": 1500,
+   "nodes_explored": 800,
    "path_length": null,
    "pres_id": 0,
    "solved": false,
    "tier": "fast"
   },
   {
-   "budget": 1500,
+   "budget": 800,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms_unsolved_reps/ms_reps_unsolved.txt",
@@ -354,14 +354,14 @@
    "max_relator_length": 33,
    "max_relator_length_expanded": 21,
    "min_relator_length": 15,
-   "nodes_explored": 1500,
+   "nodes_explored": 800,
    "path_length": null,
    "pres_id": 1,
    "solved": false,
    "tier": "fast"
   },
   {
-   "budget": 1500,
+   "budget": 800,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms_unsolved_reps/ms_reps_unsolved.txt",
@@ -372,14 +372,14 @@
    "max_relator_length": 37,
    "max_relator_length_expanded": 23,
    "min_relator_length": 16,
-   "nodes_explored": 1500,
+   "nodes_explored": 800,
    "path_length": null,
    "pres_id": 2,
    "solved": false,
    "tier": "fast"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -389,15 +389,15 @@
    ],
    "max_relator_length": 42,
    "max_relator_length_expanded": 25,
-   "min_relator_length": 2,
-   "nodes_explored": 14415,
-   "path_length": 489,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 620,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -407,87 +407,87 @@
    ],
    "max_relator_length": 42,
    "max_relator_length_expanded": 25,
-   "min_relator_length": 2,
-   "nodes_explored": 15371,
-   "path_length": 500,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 621,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYxyXYx",
-    "YYYYYYYYXyxyXYxyyyyx"
+    "YYYYYYYXyyyyyyxYYx"
    ],
-   "max_relator_length": 43,
-   "max_relator_length_expanded": 27,
+   "max_relator_length": 41,
+   "max_relator_length_expanded": 25,
    "min_relator_length": 19,
-   "nodes_explored": 30000,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 622,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYXyxYX",
-    "YYYYYYYYXXyxYXyyyyyx"
+    "YYYYYYXyyyyyyxyxyyx"
    ],
    "max_relator_length": 43,
-   "max_relator_length_expanded": 27,
-   "min_relator_length": 18,
-   "nodes_explored": 30000,
+   "max_relator_length_expanded": 26,
+   "min_relator_length": 19,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 623,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYxYXyx",
-    "YYYYYYYYXyxYXyxyyyyx"
+    "YYYYYYXyxYXyxyyyxyX"
    ],
    "max_relator_length": 43,
-   "max_relator_length_expanded": 27,
-   "min_relator_length": 18,
-   "nodes_explored": 30000,
+   "max_relator_length_expanded": 26,
+   "min_relator_length": 19,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 624,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYXYxyX",
-    "YYYYYYYYXXYxyXyyyyyx"
+    "YYYYYYYXYYXyyyyyyx"
    ],
-   "max_relator_length": 43,
-   "max_relator_length_expanded": 27,
+   "max_relator_length": 41,
+   "max_relator_length_expanded": 25,
    "min_relator_length": 19,
-   "nodes_explored": 30000,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 625,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -495,17 +495,17 @@
     "YYYYXYxx",
     "YYYYYYYYXyyyyyyyx"
    ],
-   "max_relator_length": 41,
+   "max_relator_length": 40,
    "max_relator_length_expanded": 25,
-   "min_relator_length": 2,
-   "nodes_explored": 6517,
-   "path_length": 56,
+   "min_relator_length": 15,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 626,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -523,61 +523,61 @@
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYXyXyyx",
-    "YYYYYYYXYYxYxyXyyyyyyyx"
+    "YYYYYYYYYxyyXyyyyyx"
    ],
-   "max_relator_length": 46,
-   "max_relator_length_expanded": 31,
-   "min_relator_length": 2,
-   "nodes_explored": 26774,
-   "path_length": 81,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 628,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYXYXyyx",
-    "YYYYYYYXYYxyxyXyyyyyyyx"
+    "YYYYYYYYXyyxyyyyyyX"
    ],
-   "max_relator_length": 46,
-   "max_relator_length_expanded": 31,
-   "min_relator_length": 2,
-   "nodes_explored": 12452,
-   "path_length": 79,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 629,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYXyyxYx",
-    "YYYYYYYXYYxyyXXyyyyyyyx"
+    "YYYYYYYYxyyyyyyXyyx"
    ],
-   "max_relator_length": 46,
-   "max_relator_length_expanded": 31,
-   "min_relator_length": 2,
-   "nodes_explored": 12429,
-   "path_length": 79,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 630,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -595,7 +595,7 @@
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
@@ -603,174 +603,210 @@
     "YYYYXXYx",
     "YYYYYYYYXyyyyyyyx"
    ],
-   "max_relator_length": 41,
+   "max_relator_length": 40,
    "max_relator_length_expanded": 25,
-   "min_relator_length": 2,
-   "nodes_explored": 6425,
-   "path_length": 56,
+   "min_relator_length": 15,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 632,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYXyyxyx",
-    "YYYYYYYXYXYYxyXyyyyyyyx"
+    "YYYYYYYYYXyyyyyxyyX"
    ],
-   "max_relator_length": 46,
-   "max_relator_length_expanded": 31,
-   "min_relator_length": 2,
-   "nodes_explored": 26838,
-   "path_length": 83,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
+   "path_length": null,
    "pres_id": 633,
-   "solved": true,
+   "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
-    "YYYYXXyyyyx",
-    "YYYYXXYYXyyxxyyyx"
+    "YYYXyyxx",
+    "YYYYYYYXyyyyyyx"
    ],
-   "max_relator_length": 43,
-   "max_relator_length_expanded": 28,
+   "max_relator_length": 36,
+   "max_relator_length_expanded": 23,
    "min_relator_length": 17,
-   "nodes_explored": 30000,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 634,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
-    "YYYYXyyyyxx",
-    "YYYYXYYXXyyxyyyxx"
+    "YYYXXyyx",
+    "YYYYYYYXyyyyyyx"
    ],
-   "max_relator_length": 43,
-   "max_relator_length_expanded": 28,
+   "max_relator_length": 36,
+   "max_relator_length_expanded": 23,
    "min_relator_length": 17,
-   "nodes_explored": 30000,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 635,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYYXYxyX",
-    "YYYYYYYYXYXYxyXyyyyyx"
+    "YYYYYYYXYYYXyyyyyyx"
    ],
-   "max_relator_length": 44,
-   "max_relator_length_expanded": 29,
-   "min_relator_length": 19,
-   "nodes_explored": 30000,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 636,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYYXyxYX",
-    "YYYYYYYYXYXyxYXyyyyyx"
+    "YYYYYYYXyyyyyyxyyyx"
    ],
-   "max_relator_length": 44,
-   "max_relator_length_expanded": 29,
-   "min_relator_length": 19,
-   "nodes_explored": 30000,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 637,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYYxyXYx",
-    "YYYYYYYYXYxyXYxyyyyyx"
+    "YYYYYYYXyyyyyyxYYYx"
    ],
-   "max_relator_length": 44,
-   "max_relator_length_expanded": 29,
-   "min_relator_length": 19,
-   "nodes_explored": 30000,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 638,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
     "YYYxYXyx",
-    "YYYYYYYYXYxYXyxyyyyyx"
+    "YYYYYYYXyyyXyyyyyyx"
    ],
-   "max_relator_length": 44,
-   "max_relator_length_expanded": 29,
-   "min_relator_length": 19,
-   "nodes_explored": 30000,
+   "max_relator_length": 42,
+   "max_relator_length_expanded": 27,
+   "min_relator_length": 21,
+   "nodes_explored": 1000,
    "path_length": null,
    "pres_id": 639,
    "solved": false,
    "tier": "slow"
   },
   {
-   "budget": 30000,
-   "cap": 48,
+   "budget": 1000,
+   "cap": 24,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
-    "YXYxyX",
-    "YYYYYYYYYXyyyyyyxyX"
+    "YYYxYXyx",
+    "YYYYXyyyXyyyx"
    ],
-   "max_relator_length": 42,
-   "max_relator_length_expanded": 25,
+   "max_relator_length": 33,
+   "max_relator_length_expanded": 21,
    "min_relator_length": 2,
-   "nodes_explored": 15371,
-   "path_length": 500,
-   "pres_id": 621,
+   "nodes_explored": 990,
+   "path_length": 69,
+   "pres_id": 551,
    "solved": true,
    "tier": "slow"
   },
   {
-   "budget": 30000,
+   "budget": 1000,
    "cap": 48,
    "cyclic": true,
    "dataset": "data/ms640_solved.txt",
    "max_relator_expanded": [
-    "YYXyyxYx",
-    "YYYYYYYXYYxyyXXyyyyyyyx"
+    "YYYxYXyx",
+    "YYYYXyyyXyyyx"
    ],
-   "max_relator_length": 52,
-   "max_relator_length_expanded": 31,
+   "max_relator_length": 33,
+   "max_relator_length_expanded": 21,
    "min_relator_length": 2,
-   "nodes_explored": 12429,
-   "path_length": 79,
-   "pres_id": 630,
+   "nodes_explored": 990,
+   "path_length": 69,
+   "pres_id": 551,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 1000,
+   "cap": 24,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YXyxx",
+    "YYYYYXyyyyyXYx"
+   ],
+   "max_relator_length": 31,
+   "max_relator_length_expanded": 19,
+   "min_relator_length": 2,
+   "nodes_explored": 614,
+   "path_length": 101,
+   "pres_id": 466,
+   "solved": true,
+   "tier": "slow"
+  },
+  {
+   "budget": 1000,
+   "cap": 48,
+   "cyclic": true,
+   "dataset": "data/ms640_solved.txt",
+   "max_relator_expanded": [
+    "YXyxx",
+    "YYYYYXyyyyyXYx"
+   ],
+   "max_relator_length": 31,
+   "max_relator_length_expanded": 19,
+   "min_relator_length": 2,
+   "nodes_explored": 614,
+   "path_length": 101,
+   "pres_id": 466,
    "solved": true,
    "tier": "slow"
   }

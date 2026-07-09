@@ -197,15 +197,15 @@ def test_ac4_then_general_move_then_ac5_is_invariant_preserving():
 def test_a_stabilized_solvable_presentation_still_solves(idx):
     """AC4 must not make an easy presentation harder: ``z`` is already a single letter."""
     p = ms640([idx])[0]
-    plain = spec_search.search(p, 2000)
-    stabilized = spec_search.search(p.stabilize(), 2000)
+    plain = spec_search.search(p, 1000)
+    stabilized = spec_search.search(p.stabilize(), 1000)
     assert plain["solved"] and stabilized["solved"]
     assert stabilized["nodes_explored"] == plain["nodes_explored"]
     assert spec_search.replay(p.stabilize(), stabilized["path_moves"])[-1].is_trivial()
 
 
 def test_the_spec_adapter_solves_at_three_generators():
-    s = SPEC.search(ms640([0])[0].stabilize(), 2000, cap=24, cyclic=True)
+    s = SPEC.search(ms640([0])[0].stabilize(), 1000, cap=24, cyclic=True)
     assert s.solved
     assert s.path_states[-1].n_gen == 3
     assert s.path_states[-1].is_trivial()

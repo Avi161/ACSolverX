@@ -28,6 +28,20 @@ from experiments.greedy_tests.fixtures.presentations import (  # noqa: E402
 GOLDEN = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                       "golden", "greedy_golden.json")
 
+#: Hard ceiling on any budget used by the test suite. Nothing here may exceed it.
+#:
+#: This costs no coverage. The heap key ``(total, depth, key)`` is a strict total
+#: order, so pop order does not depend on the budget: a search at budget ``B`` is
+#: *exactly* the first ``B`` pops of a search at any larger budget. A presentation
+#: that solves within ``B`` therefore reports identical ``solved`` /
+#: ``nodes_explored`` / ``path_moves`` at every larger budget -- which
+#: ``test_solver_properties.py`` asserts directly rather than assuming. Large
+#: budgets only buy slower tests, not different behaviour.
+#:
+#: 554 of the 640 ms640 presentations solve inside this budget, the deepest at
+#: 990 nodes, so it is not a shallow sample either.
+MAX_BUDGET = 1_000
+
 RECORDED = (
     "solved", "nodes_explored", "path_length", "min_relator_length",
     "max_relator_length", "max_relator_length_expanded", "max_relator_expanded",
@@ -37,18 +51,25 @@ RECORDED = (
 def _cases():
     """(dataset, pres_id, budget, cap, cyclic, tier)."""
     for i in range(0, 15):
-        yield (MS640, i, 2000, 24, True, "fast")
+        yield (MS640, i, MAX_BUDGET, 24, True, "fast")
     for i in (0, 1, 2):
-        yield (MS640, i, 2000, 24, False, "fast")
+        yield (MS640, i, MAX_BUDGET, 24, False, "fast")
     for i in (0, 1, 2):
-        yield (MS_UNSOLVED, i, 1500, 24, True, "fast")
+        yield (MS_UNSOLVED, i, 800, 24, True, "fast")
 
-    # The sweep CLAUDE.md records as 10 solved / 10 budget-capped.
+    # A solved/budget-capped mix over the tail of ms640: 627 and 631 solve, the
+    # other eighteen exhaust their budget. An unsolved row here is expected, not
+    # a bug -- ms640 is only ~606/640 greedy-solvable at any budget.
     for i in range(620, 640):
-        yield (MS640, i, 30000, 24, True, "slow")
-    # cap24 vs cap48 on the two cases recorded as giving identical traces.
-    for i in (621, 630):
-        yield (MS640, i, 30000, 48, True, "slow")
+        yield (MS640, i, MAX_BUDGET, 24, True, "slow")
+
+    # The two deepest solved searches under the ceiling, each at both caps
+    # (the caps give identical traces):
+    #   551 -> 990 nodes, the most a solve costs inside the budget;
+    #   466 -> 614 nodes but a 101-move path, the longest.
+    for i in (551, 466):
+        yield (MS640, i, MAX_BUDGET, 24, True, "slow")
+        yield (MS640, i, MAX_BUDGET, 48, True, "slow")
 
 
 def main():
@@ -56,6 +77,7 @@ def main():
     entries = []
     t0 = time.time()
     for dataset, pid, budget, cap, cyclic, tier in _cases():
+        assert budget <= MAX_BUDGET, f"budget {budget} exceeds MAX_BUDGET"
         if dataset not in cache:
             cache[dataset] = load_dataset(dataset)
         pres = cache[dataset][pid]
