@@ -108,7 +108,7 @@ Two things to know before writing that solver:
 | `test_stable_ac.py` | AC4/AC5, the general `j`-indexed move, `n_gen` up to 4 |
 | `test_golden.py` | committed regression baseline |
 | `test_runner_*.py` | run identity, resume, row gating, the pool, the heartbeat, W&B |
-| `test_known_gaps.py` | two real bugs, `xfail(strict=True)` |
+| `test_crash_resume.py` | a torn trailing line, and a fully-resumed heavy run |
 
 ## Golden baseline
 

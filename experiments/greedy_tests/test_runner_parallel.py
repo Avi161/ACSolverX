@@ -110,10 +110,9 @@ def test_workers_never_open_the_output_files(tmp_path, tiny_dataset):
 def test_resume_works_across_a_pool_run(tmp_path, tiny_dataset):
     """A partially-done pool run resumes and completes only what is left.
 
-    The dataset is deliberately *not* finished first. Re-running a pool sweep
-    with nothing left to do raises ``IndexError`` on ``todo[0]`` -- a real bug,
-    pinned in ``test_known_gaps.py``. Exercising it here too would just be that
-    same defect wearing a different hat.
+    The dataset is deliberately *not* finished first: that is the case this test
+    is about. The *fully*-resumed pool sweep (nothing left to do, which once
+    raised ``IndexError`` on ``todo[0]``) is covered by ``test_crash_resume.py``.
     """
     cfg = _cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True, N_WORKERS=2)
     partial = run_dataset({**cfg, "SUBSET": (0, 2)}, 1000)

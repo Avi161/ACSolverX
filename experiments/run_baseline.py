@@ -181,19 +181,70 @@ def _resolve_paths(cfg, node_budget, n_pres):
     return out_path, paths_path, date, stem
 
 
+def _repair_jsonl(path):
+    """Drop a half-written trailing line, returning the number of bytes removed.
+
+    Rows are appended as ``json.dumps(row) + "\\n"`` and flushed, so a process
+    killed mid-write (a Colab disconnect, an OOM kill, Ctrl-C) can only ever
+    damage the LAST line. Repairing it here, before anything opens the file for
+    append, is what makes the damage recoverable: left in place, the stub has no
+    newline, so the next appended row is concatenated onto it and a *truncated
+    final* line becomes a *corrupt interior* line that no later read can undo.
+
+    Truncating back to the last newline can discard one complete row whose
+    newline was lost. That is safe and deliberate: the row is simply absent from
+    ``done``, so resume re-runs that one presentation. Losing a search is
+    cheaper than guessing whether a partial line was complete.
+    """
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return 0
+    with open(path, "rb+") as f:
+        f.seek(-1, os.SEEK_END)
+        if f.read(1) == b"\n":
+            return 0                      # last row is intact
+        size = f.tell()
+        keep = size
+        while keep > 0:                   # walk back to the last completed row
+            f.seek(keep - 1)
+            if f.read(1) == b"\n":
+                break
+            keep -= 1
+        f.truncate(keep)
+    dropped = size - keep
+    print(f"    repaired {os.path.basename(path)}: dropped a {dropped}-byte "
+          f"truncated final line (a crash mid-write); that presentation will "
+          f"be re-run", flush=True)
+    return dropped
+
+
 def _read_done(out_path):
-    """(done_ids, n_seen, n_solved) reconstructed from an existing jsonl."""
+    """(done_ids, n_seen, n_solved) reconstructed from an existing jsonl.
+
+    Tolerates an unparseable FINAL line so that reading an unrepaired file (one
+    `_repair_jsonl` has not been run over) still resumes rather than crashing.
+    An unparseable line anywhere else is real corruption -- not a torn write --
+    and is raised rather than silently skipped, which would drop a presentation
+    from ``done`` and silently re-run it.
+    """
     done, n_seen, n_solved = set(), 0, 0
-    if os.path.exists(out_path):
-        with open(out_path, "r") as f:
-            for ln in f:
-                ln = ln.strip()
-                if not ln:
-                    continue
-                row = json.loads(ln)
-                done.add(row["pres_id"])
-                n_seen += 1
-                n_solved += int(bool(row.get("solved")))
+    if not os.path.exists(out_path):
+        return done, n_seen, n_solved
+    with open(out_path, "r") as f:
+        lines = [ln.strip() for ln in f]
+    for i, ln in enumerate(lines):
+        if not ln:
+            continue
+        try:
+            row = json.loads(ln)
+        except ValueError:
+            if i == len(lines) - 1:
+                print(f"    WARNING: ignoring a truncated final line in "
+                      f"{os.path.basename(out_path)}", flush=True)
+                break
+            raise
+        done.add(row["pres_id"])
+        n_seen += 1
+        n_solved += int(bool(row.get("solved")))
     return done, n_seen, n_solved
 
 
@@ -784,6 +835,12 @@ def run_dataset(cfg, node_budget):
     n_pres = len(presentations)
     out_path, paths_path, _date, stem = _resolve_paths(cfg, node_budget, n_pres)
 
+    # Before ANY reader or the append handles below touch these files. Not gated
+    # on RESUME: a non-resumed run still opens them "a" and would concatenate
+    # its first row onto a leftover stub.
+    _repair_jsonl(out_path)
+    _repair_jsonl(paths_path)
+
     if cfg["RESUME"]:
         done, n_seen, n_solved = _read_done(out_path)
         pending = _read_pending(out_path)
@@ -902,6 +959,9 @@ def run_dataset(cfg, node_budget):
     deferred = [(pid, *by_id[pid]) for pid in sorted(pending)]
     aborted = []      # hit the per-worker memory allowance; retried serially
     try:
+        # `and jobs`: a fully-resumed sweep has nothing to search. Without this
+        # the warm-up below reads todo[0] and raises IndexError, so re-running a
+        # finished heavy run just to confirm it is complete crashes.
         if high and n_workers > 1 and jobs:
             import multiprocessing as mp
             # Compile the numba kernels HERE, before forking. Two reasons:
