@@ -38,6 +38,15 @@ DEFAULT_CONFIG = {
 
     "RESUME": True,
 
+    # HIGH_SPEEDUP — for heavy (e.g. 1M-node) runs ONLY. Same solved /
+    # nodes_explored / min+max relator lengths as the normal path (verified),
+    # but ~2.6x less memory and ~2.4x faster, and it parallelises across
+    # presentations. Solved presentations are re-solved by the normal solver
+    # afterwards to recover their path (rare: heavy runs are the hard ones).
+    "HIGH_SPEEDUP": False,
+    "N_WORKERS": 0,                  # 0 = auto (bounded by RAM / GB_PER_PRES)
+    "GB_PER_PRES": 9.0,              # measured: 1M nodes, mrl=48, heavy solver
+
     # output
     "MOUNT_DRIVE": False,
     "DRIVE_OUT_DIR": "/content/drive/MyDrive/acsolverx_results/greedy_baseline",
@@ -155,6 +164,39 @@ def _read_done(out_path):
     return done, n_seen, n_solved
 
 
+def _total_ram_gb():
+    try:
+        return (os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES")) / 1e9
+    except (ValueError, OSError, AttributeError):
+        return 0.0
+
+
+def _auto_workers(cfg):
+    """Worker count for HIGH_SPEEDUP: bounded by cores AND by RAM.
+
+    Each concurrent search holds its own frontier (~GB_PER_PRES), so RAM is the
+    real cap — oversubscribing cores would OOM long before it helped.
+    """
+    n = int(cfg.get("N_WORKERS", 0) or 0)
+    if n > 0:
+        return n
+    cores = os.cpu_count() or 1
+    ram = _total_ram_gb()
+    gb = float(cfg.get("GB_PER_PRES", 9.0)) or 9.0
+    by_ram = int((ram * 0.8) // gb) if ram else 1
+    return max(1, min(cores, by_ram or 1))
+
+
+def _solve_one(job):
+    """Top-level (picklable) worker: run one presentation, return its stats."""
+    import time as _time
+    pres_id, r1, r2, node_budget, mrl, cyc, high = job
+    t0 = _time.time()
+    stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
+                          cyclic_reduce=cyc, high_speedup=high)
+    return pres_id, r1, r2, stats, _time.time() - t0
+
+
 def _path_payload(cfg, stats):
     """The path fields to store for a solved presentation, per PATH_FORMAT.
 
@@ -264,37 +306,59 @@ def run_dataset(cfg, node_budget):
     if n_todo == 0:
         print("    nothing to do (all done). ", flush=True)
 
+    high = bool(cfg["HIGH_SPEEDUP"])
+    mrl = cfg["MAX_RELATOR_LENGTH"]
+    cyc = cfg["CYCLIC_REDUCE"]
+    jobs = [(pid, a, b, node_budget, mrl, cyc, high) for pid, a, b in todo]
+    n_workers = _auto_workers(cfg) if high else 1
+    if high:
+        print(f"    HIGH_SPEEDUP: {n_workers} worker(s) | {_total_ram_gb():.0f} GB RAM"
+              f" | ~{cfg['GB_PER_PRES']} GB/presentation", flush=True)
+
     total_time = 0.0
     t_start = time.time()
     processed = 0
     out_f = open(out_path, "a")
     paths_f = open(paths_path, "a") if cfg["PATH_IN_SEPARATE_FILE"] else None
-    try:
-        for pres_id, r1, r2 in todo:
-            t0 = time.time()
-            stats = greedy_search(
-                r1, r2, node_budget,
-                max_relator_length=cfg["MAX_RELATOR_LENGTH"],
-                cyclic_reduce=cfg["CYCLIC_REDUCE"],
-            )
-            elapsed = time.time() - t0
-            total_time += elapsed
+    pool = None
 
-            row = _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed)
-            out_f.write(json.dumps(row) + "\n")
-            out_f.flush()
-            if cfg["PATH_IN_SEPARATE_FILE"] and cfg["use_path"] and stats["solved"]:
-                path_row = {"pres_id": pres_id, "r1": r1, "r2": r2}
-                path_row.update(_path_payload(cfg, stats))
-                paths_f.write(json.dumps(path_row) + "\n")
-                paths_f.flush()
+    def _emit(pres_id, r1, r2, stats, elapsed, recovered=False):
+        row = _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed)
+        if recovered:
+            row["path_recovered"] = True
+        out_f.write(json.dumps(row) + "\n")
+        out_f.flush()
+        if cfg["PATH_IN_SEPARATE_FILE"] and cfg["use_path"] and stats["solved"]:
+            path_row = {"pres_id": pres_id, "r1": r1, "r2": r2}
+            path_row.update(_path_payload(cfg, stats))
+            paths_f.write(json.dumps(path_row) + "\n")
+            paths_f.flush()
+        if run is not None:
+            _add_table_row(table, row)
+
+    # Heavy mode drops path tracking, so a solved presentation is re-solved by
+    # the normal solver AFTER the pool is torn down (it needs the full RAM).
+    deferred = []
+    try:
+        if high and n_workers > 1:
+            import multiprocessing as mp
+            pool = mp.Pool(n_workers)
+            results = pool.imap_unordered(_solve_one, jobs)
+        else:
+            results = (_solve_one(j) for j in jobs)
+
+        for pres_id, r1, r2, stats, elapsed in results:
+            total_time += elapsed
+            if high and stats["solved"]:
+                deferred.append((pres_id, r1, r2))   # row written after recovery
+            else:
+                _emit(pres_id, r1, r2, stats, elapsed)
 
             n_seen += 1
             n_solved += int(stats["solved"])
             processed += 1
             if run is not None:
                 run.log({"pres_id": pres_id, "solve_rate": n_solved / max(n_seen, 1)})
-                _add_table_row(table, row)
 
             if processed % every == 0 or processed == n_todo:
                 wall = time.time() - t_start
@@ -306,7 +370,22 @@ def run_dataset(cfg, node_budget):
                       f"nodes={stats['nodes_explored']} | "
                       f"{wall:.0f}s elapsed, ETA {eta:.0f}s ({rate:.1f}/s)",
                       flush=True)
+
+        if pool is not None:
+            pool.close()
+            pool.join()
+            pool = None
+
+        for pres_id, r1, r2 in deferred:
+            print(f"    recovering path for pres {pres_id} (normal solver)...", flush=True)
+            t0 = time.time()
+            stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
+                                  cyclic_reduce=cyc, high_speedup=False)
+            _emit(pres_id, r1, r2, stats, time.time() - t0, recovered=True)
     finally:
+        if pool is not None:
+            pool.terminate()
+            pool.join()
         out_f.close()
         if paths_f is not None:
             paths_f.close()

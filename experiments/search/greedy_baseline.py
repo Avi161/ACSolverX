@@ -425,11 +425,264 @@ def moves_to_states(r1_str, r2_str, moves, cyclic_reduce=True):
     return states
 
 
+# ===========================================================================
+# HIGH_SPEEDUP mode — for heavy (e.g. 1M-node) runs only.
+#
+# Same search, cheaper bookkeeping. Three changes, all provably result-neutral:
+#   1. `new_seen` dropped (it only fed a final min()/max() scan) -> min/max are
+#      tracked incrementally at push time.
+#   2. `visited` is a set and `move_in` is gone -> no path. A solved
+#      presentation is re-solved by the normal solver to recover its path
+#      (the search is deterministic, so the path is exact).
+#   3. State keys are packed `bytes` instead of `(str, str)`.
+#
+# (3) is only safe because the packed key SORTS IDENTICALLY to the string
+# tuple, which keeps the heap tie-break `(priority, depth, key)` -- and hence
+# `nodes_explored` / `solved` -- unchanged. The alphabet below is ordered to
+# match Python's str compare (ASCII: 'X'<'Y'<'x'<'y') and the 0x00 separator is
+# below every symbol byte, reproducing str's shorter-prefix-is-smaller rule.
+# ===========================================================================
+
+# arr row -> index 2*b0 + b1 gives Y=0, y=1, X=2, x=3; map to order-preserving
+# codes X=1 < Y=2 < x=3 < y=4 (0x00 reserved as the separator).
+_CODE_TABLE = np.array([2, 4, 1, 3], dtype=np.uint8)
+_CODE_TO_CHAR = {1: 'X', 2: 'Y', 3: 'x', 4: 'y'}
+_KEY_SEP = b'\x00'
+
+
+def pack_key(a1, a2):
+    """(r1_arr, r2_arr) -> packed bytes key. Sorts exactly like (r1_str, r2_str)."""
+    c1 = _CODE_TABLE[a1[:, 0].astype(np.uint8) * 2 + a1[:, 1]]
+    c2 = _CODE_TABLE[a2[:, 0].astype(np.uint8) * 2 + a2[:, 1]]
+    return c1.tobytes() + _KEY_SEP + c2.tobytes()
+
+
+def unpack_key(key):
+    """Packed bytes key -> (r1_str, r2_str)."""
+    b1, b2 = key.split(_KEY_SEP, 1)
+    return (''.join(_CODE_TO_CHAR[c] for c in b1),
+            ''.join(_CODE_TO_CHAR[c] for c in b2))
+
+
+def key_lengths(key):
+    """(len(r1), len(r2)) straight from the packed key — no decoding."""
+    i = key.index(0)
+    return i, len(key) - i - 1
+
+
+def _codes_to_arr(buf):
+    """order-preserving codes -> (n, 2) bool array (X=1,Y=2,x=3,y=4)."""
+    c = np.frombuffer(buf, dtype=np.uint8)
+    return np.stack(((c & 1) == 1, c >= 3), axis=1)
+
+
+def unpack_arrays(key):
+    """Packed key -> (r1_arr, r2_arr), skipping the string round-trip."""
+    i = key.index(0)
+    return _codes_to_arr(key[:i]), _codes_to_arr(key[i + 1:])
+
+
+@njit(cache=True)
+def expand_node_nj(r1, r2, max_relator_length, cyclic):
+    """Neighbours + reduce + canonicalise, entirely inside numba.
+
+    Returns ``(codes, lens, moves, count)`` where for child ``i``:
+      ``codes[i, :lens[i,0]]``            = order-preserving codes of canon r1
+      ``codes[i, 24+...]``                -- see below; r2 codes start at lens[i,0]
+      ``moves[i] = (target, jsign, k1, k2)``
+    Children are already length-pruned and canonicalised, so the caller only
+    does dict/heap work. Enumeration order is IDENTICAL to
+    ``get_neighbors_with_moves_nj`` (target -> jsign -> k1 -> k2), which the
+    heap's ``depth`` tie-break depends on.
+
+    ``codes`` is a fixed-width (n, 2*max_relator_length) uint8 buffer; the two
+    relators are stored back-to-back starting at 0 and at ``lens[i,0]``.
+    """
+    cap = max_relator_length
+    n1 = len(r1)
+    n2 = len(r2)
+    # upper bound: 2 targets x 2 signs x k1 x k2
+    ub = 4 * (n1 + 1) * (n2 + 1)
+    # np.empty (not zeros): only the [:la] / [la:la+lb] cells we write are read.
+    codes = np.empty((ub, 2 * cap), dtype=np.uint8)
+    lens = np.empty((ub, 2), dtype=np.int32)
+    moves = np.empty((ub, 4), dtype=np.int32)
+    count = 0
+
+    for target in range(1, 3):
+        if target == 1:
+            ri = r1
+            rj = r2
+        else:
+            ri = r2
+            rj = r1
+        len_i = len(ri)
+        if len_i == 0:
+            continue
+        for idx in range(2):
+            oj = rj if idx == 0 else inverse_relator_nj(rj)
+            jsign = 1 if idx == 0 else -1
+            len_o = len(oj)
+            if len_o == 0:
+                continue
+            rots_o = [np.roll(oj, 2 * k2) for k2 in range(len_o)]
+            for k1 in range(len_i):
+                rot_i = np.roll(ri, 2 * k1)
+                for k2 in range(len_o):
+                    rot_o = rots_o[k2]
+                    if not is_inverse_nj(rot_i[-1], rot_o[0]):
+                        continue
+                    piece = np.concatenate((rot_i, rot_o))
+                    if target == 1:
+                        nr1 = piece
+                        nr2 = r2
+                    else:
+                        nr1 = r1
+                        nr2 = piece
+                    a = reduce_relator_nj(nr1, cyclic)
+                    b = reduce_relator_nj(nr2, cyclic)
+                    if len(a) > cap or len(b) > cap:
+                        continue
+                    ca, cb = canonical_pair_nj(a, b)
+                    la = len(ca)
+                    lb = len(cb)
+                    for t in range(la):
+                        v = 2 * ca[t, 0] + ca[t, 1]
+                        # Y=0 -> 2, y=1 -> 4, X=2 -> 1, x=3 -> 3
+                        if v == 0:
+                            codes[count, t] = 2
+                        elif v == 1:
+                            codes[count, t] = 4
+                        elif v == 2:
+                            codes[count, t] = 1
+                        else:
+                            codes[count, t] = 3
+                    for t in range(lb):
+                        v = 2 * cb[t, 0] + cb[t, 1]
+                        if v == 0:
+                            codes[count, la + t] = 2
+                        elif v == 1:
+                            codes[count, la + t] = 4
+                        elif v == 2:
+                            codes[count, la + t] = 1
+                        else:
+                            codes[count, la + t] = 3
+                    lens[count, 0] = la
+                    lens[count, 1] = lb
+                    moves[count, 0] = target
+                    moves[count, 1] = jsign
+                    moves[count, 2] = k1
+                    moves[count, 3] = k2
+                    count += 1
+    return codes, lens, moves, count
+
+
+class GreedyHeavySolver:
+    """Memory-lean twin of ``GreedyBaselineSolver`` for very large budgets.
+
+    Pops in exactly the same order (identical heap keys), so ``nodes_explored``
+    and ``solved`` match the normal solver. Does not reconstruct paths.
+    """
+
+    def __init__(self, r1, r2, max_nodes=10000, max_relator_length=24,
+                 cyclic_reduce=True):
+        self.max_nodes = max_nodes
+        self.max_relator_length = max_relator_length
+        self.cyclic_reduce = cyclic_reduce
+
+        r1_arr = str_to_arr(r1)
+        r2_arr = str_to_arr(r2)
+        self.initial_state = canonical_pair_nj(
+            reduce_relator_nj(r1_arr, self.cyclic_reduce),
+            reduce_relator_nj(r2_arr, self.cyclic_reduce),
+        )
+        self.visited = set()
+        self.pq = []
+        self.n_discovered = 0
+
+    def solve(self):
+        """Return (solved, nodes_visited). Stats live on ``self``."""
+        cap = self.max_relator_length
+        init_key = pack_key(self.initial_state[0], self.initial_state[1])
+        init_total = len(self.initial_state[0]) + len(self.initial_state[1])
+        heapq.heappush(self.pq, (init_total, 0, init_key))
+        self.visited.add(init_key)
+        self.n_discovered = 1
+
+        # incremental replacements for the old min()/max() scan over new_seen
+        self.min_key, self.min_total = init_key, init_total
+        self.max_key, self.max_total = init_key, init_total
+        self.max_expanded_key, self.max_expanded_total = init_key, init_total
+
+        nodes_visited = 0
+        pq = self.pq
+        visited = self.visited
+        while pq and nodes_visited < self.max_nodes:
+            total, depth, key = heapq.heappop(pq)
+            nodes_visited += 1
+            if total > self.max_expanded_total:
+                self.max_expanded_key, self.max_expanded_total = key, total
+
+            l1, l2 = key_lengths(key)
+            if l1 == 1 and l2 == 1:
+                return True, nodes_visited
+
+            a1, a2 = unpack_arrays(key)
+            codes, lens, moves, count = expand_node_nj(
+                a1, a2, cap, self.cyclic_reduce)
+
+            depth1 = depth + 1
+            for i in range(count):
+                la = lens[i, 0]
+                lb = lens[i, 1]
+                row = codes[i]
+                key_new = row[:la].tobytes() + _KEY_SEP + row[la:la + lb].tobytes()
+                if key_new not in visited:
+                    visited.add(key_new)
+                    self.n_discovered += 1
+                    new_total = int(la) + int(lb)
+                    if new_total < self.min_total:
+                        self.min_key, self.min_total = key_new, new_total
+                    elif new_total > self.max_total:
+                        self.max_key, self.max_total = key_new, new_total
+                    heapq.heappush(pq, (new_total, depth1, key_new))
+
+        return False, nodes_visited
+
+
 # ---------------------------------------------------------------------------
 # Public entry for the jsonl pipeline
 # ---------------------------------------------------------------------------
+def _greedy_search_heavy(r1_str, r2_str, node_budget, max_relator_length,
+                         cyclic_reduce):
+    """HIGH_SPEEDUP path: same stats dict, but no path/path_moves."""
+    solver = GreedyHeavySolver(
+        r1_str, r2_str,
+        max_nodes=node_budget,
+        max_relator_length=max_relator_length,
+        cyclic_reduce=cyclic_reduce,
+    )
+    solved, nodes_visited = solver.solve()
+    min_r = unpack_key(solver.min_key)
+    max_r = unpack_key(solver.max_key)
+    exp_r = unpack_key(solver.max_expanded_key)
+    return {
+        "solved": solved,
+        "nodes_explored": nodes_visited,
+        "path_length": None,
+        "min_relator_length": solver.min_total,
+        "min_relator": [min_r[0], min_r[1]],
+        "max_relator_length": solver.max_total,
+        "max_relator": [max_r[0], max_r[1]],
+        "max_relator_length_expanded": solver.max_expanded_total,
+        "max_relator_expanded": [exp_r[0], exp_r[1]],
+        "path": [],
+        "path_moves": [],
+    }
+
+
 def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
-                  cyclic_reduce=True):
+                  cyclic_reduce=True, high_speedup=False):
     """Run the baseline greedy on one presentation; return a stats dict.
 
     Keys: solved, nodes_explored, path_length, min_relator_length,
@@ -438,7 +691,15 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
     ``path`` is the list of [r1_str, r2_str] states; ``path_moves`` is the
     parallel list of 'target_jsign_k1_k2' move strings (Definition 2.1) that
     reproduces ``path`` via ``moves_to_states`` — the compact storage form.
+
+    ``high_speedup=True`` uses the memory-lean solver (for 1M-node runs): the
+    same ``solved``/``nodes_explored``/min/max stats, but ``path``/``path_moves``
+    come back empty — recover them by re-running with ``high_speedup=False``.
     """
+    if high_speedup:
+        return _greedy_search_heavy(r1_str, r2_str, node_budget,
+                                    max_relator_length, cyclic_reduce)
+
     solver = GreedyBaselineSolver(
         r1_str, r2_str,
         max_nodes=node_budget,
