@@ -47,6 +47,11 @@ DEFAULT_CONFIG = {
     "HIGH_SPEEDUP": False,
     "N_WORKERS": 0,                  # 0 = auto (bounded by RAM / GB_PER_PRES)
     "GB_PER_PRES": 9.0,              # measured: 1M nodes, mrl=48, heavy solver
+    # None = OS default (fork on Linux/Colab). A child forked from a process that
+    # wandb.init() has made multi-threaded can deadlock on an inherited lock; the
+    # parent-side numba warm-up should prevent that, but "forkserver" (or "spawn")
+    # forks from a clean single-threaded process and sidesteps it entirely.
+    "MP_START_METHOD": None,
 
     # output
     "MOUNT_DRIVE": False,
@@ -516,8 +521,24 @@ def run_dataset(cfg, node_budget):
     try:
         if high and n_workers > 1:
             import multiprocessing as mp
-            hb_q = mp.Queue() if hb_s > 0 else None
-            pool = mp.Pool(n_workers, initializer=_init_worker, initargs=(hb_q,))
+            # Compile the numba kernels HERE, before forking. Two reasons:
+            #  - a forked child inherits the compiled code, so 4 workers no longer
+            #    each pay a cold compile;
+            #  - wandb.init() has already spawned threads in this process, and a
+            #    child forked from a threaded parent can deadlock inside numba's
+            #    compiler on a lock that was held at fork. Warming here means the
+            #    child never enters the compiler at all.
+            t_warm = time.time()
+            print("    warming numba in the parent (forked workers inherit it)...",
+                  flush=True)
+            _w1, _w2 = todo[0][1], todo[0][2]
+            greedy_search(_w1, _w2, 2, max_relator_length=mrl,
+                          cyclic_reduce=cyc, high_speedup=True)
+            print(f"    numba warm in {time.time() - t_warm:.1f}s", flush=True)
+
+            ctx = mp.get_context(cfg.get("MP_START_METHOD") or None)
+            hb_q = ctx.Queue() if hb_s > 0 else None
+            pool = ctx.Pool(n_workers, initializer=_init_worker, initargs=(hb_q,))
             if hb_q is not None:
                 print(f"    [hb] armed: {n_workers} worker(s); first sample after "
                       f"numba JIT + ~{0 if hb_dbg else 10}s"
