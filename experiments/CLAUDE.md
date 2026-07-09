@@ -10,7 +10,8 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 
 **`run_baseline.py`** — resume identity and the W&B layer both live here.
 - `_run_prefix` / `_resolve_paths` are the resume key. [identity](lessons/jsonl-filename-encodes-search-identity.md) · [no dates in the key](lessons/date-in-filename-broke-resume.md)
-- The `HIGH_SPEEDUP` pool defers solved rows to a serial recovery re-solve. [why](lessons/high-speedup-boxing-and-memory.md) · [a worker can't print](lessons/heartbeat-worker-cannot-print.md) · [nor can a thread](lessons/no-print-from-background-thread.md) · [an unexplained hang](lessons/forked-workers-block-cause-unknown.md)
+- The `HIGH_SPEEDUP` pool defers solved rows to a serial recovery re-solve. [why](lessons/high-speedup-boxing-and-memory.md) · [heavy ≡ normal](lessons/high-speedup-verified-locally.md) · [a worker can't print](lessons/heartbeat-worker-cannot-print.md) · [nor can a thread](lessons/no-print-from-background-thread.md) · [an unexplained hang](lessons/forked-workers-block-cause-unknown.md)
+- Worker count is sized from measured memory, and a worker that OOMs is counted, not lost. [sizing + the `tracemalloc` trap + pickling an exception back](lessons/gb-per-pres-sized-from-measured-memory.md)
 - Heartbeat cadence has two separate phases. [first emission ≠ period](lessons/heartbeat-first-emission-phase-bug.md)
 
 **`wandb_tracking.py`** — run identity, panels, live metrics.
@@ -31,7 +32,24 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 
 ## Adding a lesson
 
-Write the full entry as `lessons/<slug>.md`, then add **one line** to the index in the root
-`CLAUDE.md` and, if it is file-specific, a pointer above. Keep `[WORKS]` / `[TRAP]` tags; be
-specific (file paths, function names, exact error text); never delete an entry — mark a
-superseded one `[SUPERSEDED]` in place.
+**Never paste a full entry into a CLAUDE.md** — both are loaded into context, so an entry
+costs its tokens on every session forever, and a bloated CLAUDE.md gets ignored. Three steps:
+
+1. **The entry** → a new `lessons/<slug>.md`, `<slug>` being a short kebab-case name of the rule:
+
+   ```markdown
+   # [YYYY-MM-DD] What you learned, stated as a claim [TRAP|WORKS]
+   What happened, what the root cause turned out to be, and the evidence (measurements,
+   file paths, function names, exact error text). End with **Rule:** what to do next time.
+   ```
+
+2. **The hook** → one line in the root [`CLAUDE.md`](../CLAUDE.md) index, under the right heading.
+   State the **rule**, not the story, and link the tag to the file:
+   `- Never lower the cap to buy speed: it only shrinks the search space. [[WORKS]](experiments/lessons/max-relator-length-is-inert.md)`
+   Someone who reads only that line must avoid the trap; the file is for the evidence behind it.
+
+3. **The pointer** → if the lesson is tied to a source file, add it to that file's list above.
+
+Prefer promoting on the **second** occurrence: a one-off bug narrative is noise, a repeated
+failure is a rule. Never delete an entry — mark a superseded one `[SUPERSEDED]` in place, and
+correct any index line it makes stale.

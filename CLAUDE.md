@@ -37,7 +37,7 @@ and a bloated CLAUDE.md gets ignored.
 
 ### HIGH_SPEEDUP / multiprocessing
 - Boxing was the cost and memory was the cap; a packed `bytes` key must sort identically to `(str, str)` or the heap tie-break shifts. Memory reduction is what unlocks parallelism. [[WORKS]](experiments/lessons/high-speedup-boxing-and-memory.md)
-- Heavy ≡ normal on `solved`/`nodes_explored`, ~2.8× faster. `GB_PER_PRES` calibrated at 1M/mrl48 silently under-provisions workers at small budgets. [[WORKS]](experiments/lessons/high-speedup-verified-locally.md)
+- Heavy ≡ normal on `solved`/`nodes_explored`, ~2.8× faster; ms640 legitimately leaves several idx unsolved, so an unsolved row there is not a bug. [[WORKS]](experiments/lessons/high-speedup-verified-locally.md)
 - Size a search's RAM from the node budget (~70 discovered states/node × 220 B, both measured), never one constant: 9.0 was too high at 50k *and* too low at 1M (~15 GB), so 4 workers on a 51 GB runtime is over-subscribed. [[WORKS]](experiments/lessons/gb-per-pres-sized-from-measured-memory.md)
 - Never calibrate memory on macOS `ru_maxrss` — the memory compressor makes bytes/state *fall* as states grow. Use `tracemalloc`. [[TRAP]](experiments/lessons/gb-per-pres-sized-from-measured-memory.md)
 - An exception pickled back from a pool worker must have `args` equal to its ctor args, or unpickling raises `TypeError` inside `_handle_results`. [[TRAP]](experiments/lessons/gb-per-pres-sized-from-measured-memory.md)
