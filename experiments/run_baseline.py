@@ -243,38 +243,63 @@ def _fmt_hb(sample):
             f"{rate:,.0f} nodes/s | {elapsed:.0f}s elapsed, ETA {eta:.0f}s")
 
 
-def _hb_monitor(q, stop_evt, every):
-    """Parent-side drain: print one aggregate block per ``every`` seconds."""
+def _hb_drain(q, live, last_print, every):
+    """Consume queued samples; print one aggregate block per ``every`` seconds.
+
+    Returns the new ``last_print``. Called from the MAIN thread: a background
+    thread's stdout is not reliably attributed to the running cell in Colab,
+    and this is the one component that cannot be verified outside a notebook.
+    """
     import queue as _queue
 
-    live = {}          # pres_id -> (sample, arrival_time)
-    last_print = 0.0   # epoch 0 => the first sample to arrive prints immediately
-    while not stop_evt.is_set():
+    while True:
         try:
-            sample = q.get(timeout=0.2)
-            if sample[1] is None:            # worker finished this presentation
-                live.pop(sample[0], None)
-            else:
-                live[sample[0]] = (sample, time.time())
+            sample = q.get_nowait()
         except _queue.Empty:
-            pass
-        now = time.time()
-        if now - last_print < every:
+            break
+        if sample[1] is None:               # worker finished this presentation
+            live.pop(sample[0], None)
+        else:
+            live[sample[0]] = (sample, time.time())
+
+    now = time.time()
+    if now - last_print < every:
+        return last_print
+    # Backstop for a worker that died without sending its done-sentinel:
+    # otherwise its last rate would be summed into `agg` forever.
+    for pid in [p for p, v in live.items() if now - v[1] > 2 * every]:
+        live.pop(pid)
+    if not live:
+        # Nothing to say yet (workers still starting / JIT-compiling). Do NOT
+        # advance last_print, or this empty tick costs a whole `every` period
+        # before the first block appears.
+        return last_print
+    samples = [v[0] for v in live.values()]
+    agg = sum(s[4] for s in samples)
+    print(f"    [hb] {len(samples)} solving | agg {agg:,.0f} nodes/s", flush=True)
+    for s in sorted(samples):
+        print(f"         {_fmt_hb(s)}", flush=True)
+    return now
+
+
+def _iter_with_heartbeat(it, q, every):
+    """Yield pool results, draining the heartbeat queue while they are pending."""
+    import multiprocessing as mp
+
+    if q is None:
+        yield from it
+        return
+    live, last_print = {}, 0.0   # epoch 0 => first sample to arrive prints at once
+    while True:
+        try:
+            item = it.next(timeout=0.5)
+        except mp.TimeoutError:
+            last_print = _hb_drain(q, live, last_print, every)
             continue
-        # Backstop for a worker that died without sending its done-sentinel:
-        # otherwise its last rate would be summed into `agg` forever.
-        live = {p: v for p, v in live.items() if now - v[1] <= 2 * every}
-        if not live:
-            # Nothing to say yet (workers still starting / JIT-compiling). Do NOT
-            # advance last_print, or this empty tick costs a whole `every` period
-            # before the first block appears.
-            continue
-        samples = [v[0] for v in live.values()]
-        agg = sum(s[4] for s in samples)
-        print(f"    [hb] {len(samples)} solving | agg {agg:,.0f} nodes/s", flush=True)
-        for s in sorted(samples):
-            print(f"         {_fmt_hb(s)}", flush=True)
-        last_print = now
+        except StopIteration:
+            return
+        last_print = _hb_drain(q, live, last_print, every)
+        yield item
 
 
 def _solve_one(job):
@@ -447,20 +472,16 @@ def run_dataset(cfg, node_budget):
     # Heavy mode drops path tracking, so a solved presentation is re-solved by
     # the normal solver AFTER the pool is torn down (it needs the full RAM).
     deferred = []
-    hb_thread = None
-    hb_stop = None
     try:
         if high and n_workers > 1:
             import multiprocessing as mp
             hb_q = mp.Queue() if hb_s > 0 else None
             pool = mp.Pool(n_workers, initializer=_init_worker, initargs=(hb_q,))
             if hb_q is not None:
-                import threading
-                hb_stop = threading.Event()
-                hb_thread = threading.Thread(
-                    target=_hb_monitor, args=(hb_q, hb_stop, hb_s), daemon=True)
-                hb_thread.start()
-            results = pool.imap_unordered(_solve_one, jobs)
+                print(f"    [hb] armed: {n_workers} worker(s); first sample after "
+                      f"numba JIT + ~10s", flush=True)
+            results = _iter_with_heartbeat(
+                pool.imap_unordered(_solve_one, jobs), hb_q, hb_s)
         else:
             results = (_solve_one(j) for j in jobs)
 
@@ -509,9 +530,6 @@ def run_dataset(cfg, node_budget):
                                   progress=recover_hb)
             _emit(pres_id, r1, r2, stats, time.time() - t0, recovered=True)
     finally:
-        if hb_stop is not None:
-            hb_stop.set()
-            hb_thread.join(timeout=2)
         if pool is not None:
             pool.terminate()
             pool.join()
