@@ -39,6 +39,10 @@ EXCLUDED = [
     ("PATH_IN_SEPARATE_FILE", False),
     ("PATH_FORMAT", "strings"),
     ("HIGH_SPEEDUP", True),
+    # The three solvers pop in the same order and return the same stats, so a
+    # run started under one must resume under the other. That this line lives in
+    # EXCLUDED is itself the claim that they are result-identical.
+    ("SOLVER", "heavy"),
     ("N_WORKERS", 8),
     ("GB_PER_PRES", 1.0),
     ("HEARTBEAT_EVERY_S", 90),

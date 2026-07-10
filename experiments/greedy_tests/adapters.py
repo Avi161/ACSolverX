@@ -20,6 +20,7 @@ in a different order.
 from dataclasses import dataclass, field
 
 from experiments.search.greedy_baseline import greedy_search, str_to_move
+from experiments.search.greedy_compact import greedy_search_compact
 
 from .spec import search as spec_search
 from .spec.moves import Move, legacy_to_move
@@ -103,6 +104,22 @@ class HeavyNumbaAdapter(_NumbaAdapter):
     yields_path = False
 
 
+class CompactNumbaAdapter(_NumbaAdapter):
+    name = "compact"
+    #: same search, numpy containers instead of set/heapq of CPython objects
+    yields_path = False
+
+    def search(self, pres, budget, cap=24, cyclic=True, progress=None):
+        r1, r2 = pres.to_strs()
+        raw = greedy_search_compact(
+            r1, r2, budget,
+            max_relator_length=cap,
+            cyclic_reduce=cyclic,
+            progress=progress,
+        )
+        return self._normalise(pres, raw)
+
+
 class SpecAdapter:
     name = "spec"
     yields_path = True
@@ -131,12 +148,18 @@ class SpecAdapter:
 
 NORMAL = NormalNumbaAdapter()
 HEAVY = HeavyNumbaAdapter()
+COMPACT = CompactNumbaAdapter()
 SPEC = SpecAdapter()
 
 #: Append a stable-AC adapter here and the contract suite covers it.
-ALL_ADAPTERS = [NORMAL, HEAVY, SPEC]
+ALL_ADAPTERS = [NORMAL, HEAVY, COMPACT, SPEC]
 
-#: The two implementations of one search; only these owe exact-trace parity.
+#: The three implementations of one search; only these owe exact-trace parity.
+#: They differ only in bookkeeping (dicts of str pairs / a set of packed bytes /
+#: numpy arrays), never in which node is popped next.
+PARITY_TRIO = (NORMAL, HEAVY, COMPACT)
+
+#: Back-compat: the original pair. Prefer ``PARITY_TRIO``.
 PARITY_PAIR = (NORMAL, HEAVY)
 
 
@@ -147,8 +170,9 @@ def replay_moves(pres, moves, cyclic=True):
 
 __all__ = [
     "SearchStats", "SolverAdapterError", "Move",
-    "NormalNumbaAdapter", "HeavyNumbaAdapter", "SpecAdapter",
-    "NORMAL", "HEAVY", "SPEC", "ALL_ADAPTERS", "PARITY_PAIR", "replay_moves",
+    "NormalNumbaAdapter", "HeavyNumbaAdapter", "CompactNumbaAdapter",
+    "SpecAdapter", "NORMAL", "HEAVY", "COMPACT", "SPEC", "ALL_ADAPTERS",
+    "PARITY_TRIO", "PARITY_PAIR", "replay_moves",
 ]
 
 

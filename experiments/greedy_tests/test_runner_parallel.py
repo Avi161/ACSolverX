@@ -160,11 +160,14 @@ def test_heartbeat_debug_writes_stack_dumps_into_the_cwd(tmp_path, tiny_dataset,
             "a healthy worker cancels the watchdog before it ever fires"
 
 
-def test_n_workers_one_takes_the_serial_path_and_still_uses_the_heavy_solver(
-        tmp_path, tiny_dataset, capsys):
+@pytest.mark.parametrize("solver", ["compact", "heavy"])
+def test_n_workers_one_takes_the_serial_path_and_still_uses_a_lean_solver(
+        tmp_path, tiny_dataset, capsys, solver):
+    """No pool, but HIGH_SPEEDUP still means a path-less solver, so every solved
+    row must be recovered by the normal solver afterwards."""
     out = run_dataset(_cfg(tmp_path, tiny_dataset, HIGH_SPEEDUP=True,
-                           N_WORKERS=1), 1000)
+                           N_WORKERS=1, SOLVER=solver), 1000)
     printed = capsys.readouterr().out
-    assert "HIGH_SPEEDUP: 1 worker(s)" in printed
+    assert f"HIGH_SPEEDUP[{solver}]: 1 worker(s)" in printed
     assert "warming numba in the parent" not in printed, "no pool, so no pre-fork warm-up"
     assert all(r["path_recovered"] is True for r in _rows(out))

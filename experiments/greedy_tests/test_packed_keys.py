@@ -17,6 +17,9 @@ from experiments.search.greedy_baseline import (
     _CODE_TABLE, _CODE_TO_CHAR, _KEY_SEP, key_lengths, pack_key, str_to_arr,
     unpack_arrays, unpack_key,
 )
+from experiments.search.greedy_compact import (
+    _CHAR_TO_CODE, GreedyCompactSolver, pack_row, row_width,
+)
 from experiments.greedy_tests.fixtures.presentations import all_words
 from experiments.greedy_tests.spec import keys as spec_keys
 from experiments.greedy_tests.spec.words import str_to_word, symbol_to_char, word_to_str
@@ -99,3 +102,108 @@ def test_spec_key_supports_three_relators():
     assert spec_keys.key_lengths(key, 3) == (2, 1, 1)
     with pytest.raises(ValueError):
         spec_keys.unpack(key, 3, 2)
+
+
+# ---------------------------------------------------------------------------
+# The compact solver's nibble row. Same invariant, third encoding.
+#
+# ``GreedyCompactSolver`` drops the bytes key entirely: a state is a fixed-width,
+# zero-padded row of 4-bit codes, r1's region then r2's, each byte-aligned. The
+# heap tie-break is a memcmp over that row, so it must sort exactly like the
+# packed bytes key -- and therefore like ``(r1_str, r2_str)``.
+# ---------------------------------------------------------------------------
+
+CAPS = [4, 24, 25, 48]      # 25 is odd: its region carries a trailing pad nibble
+
+
+def _deep_corpus(cap, seed=20260709):
+    """Cap-length words, their proper prefixes, and case-differing tails.
+
+    The shallow 7225 pairs above never exercise a full-width row, a pad nibble,
+    or a difference in the final symbol -- which is exactly where a fixed-width
+    encoding breaks. ``ms_reps_unsolved`` rows 15 and 16 differ only in the case
+    of r1's last letter (``YYYXyyX`` vs ``YYYXyyx``); that specimen is included.
+    """
+    rng = np.random.default_rng(seed)
+    alphabet = "XYxy"
+    words = ["", "X", "Y", "x", "y", "YYYXyyX", "YYYXyyx"]
+    for _ in range(24):
+        w = "".join(rng.choice(list(alphabet), size=cap))
+        words += [w, w[:-1], w[:-1] + ("x" if w[-1] == "X" else "X")]
+        words += [w[: cap // 2], w[: cap // 2] + "y"]
+    return sorted({w for w in words if len(w) <= cap})
+
+
+@pytest.mark.parametrize("cap", CAPS)
+def test_the_nibble_row_is_injective(cap):
+    words = _deep_corpus(cap)
+    pairs = list(itertools.product(words[:40], repeat=2))
+    rows = {pack_row(a, b, cap): (a, b) for a, b in pairs}
+    assert len(rows) == len(pairs), "two states packed to the same row"
+
+
+@pytest.mark.parametrize("cap", CAPS)
+def test_nibble_rows_sort_exactly_like_string_tuples(cap):
+    """THE load-bearing invariant for the compact solver's heap tie-break."""
+    words = _deep_corpus(cap)
+    pairs = list(itertools.product(words[:40], repeat=2))
+    rows = {pack_row(a, b, cap): (a, b) for a, b in pairs}
+    assert [rows[k] for k in sorted(rows)] == sorted(pairs)
+
+
+@pytest.mark.parametrize("cap", CAPS)
+def test_nibble_rows_sort_exactly_like_the_packed_bytes_key(cap):
+    """Transitively: compact pops in the same order as heavy, not merely a valid one."""
+    words = _deep_corpus(cap)
+    pairs = list(itertools.product(words[:40], repeat=2))
+    by_row = sorted(pairs, key=lambda p: pack_row(p[0], p[1], cap))
+    by_key = sorted(pairs, key=lambda p: pack_key(str_to_arr(p[0]), str_to_arr(p[1])))
+    assert by_row == by_key
+
+
+def test_the_shallow_corpus_also_sorts_identically():
+    """The original 7225 pairs, now through the nibble row."""
+    pairs = list(itertools.product(WORDS_3, repeat=2))
+    rows = {pack_row(a, b, 24): (a, b) for a, b in pairs}
+    assert len(rows) == len(pairs)
+    assert [rows[k] for k in sorted(rows)] == sorted(pairs)
+
+
+def test_a_pad_nibble_sorts_below_every_symbol_code():
+    """Why shorter-prefix-is-smaller survives fixed-width zero padding."""
+    assert min(_CHAR_TO_CODE.values()) > 0
+    assert pack_row("X", "", 4) < pack_row("Xx", "", 4)        # prefix is smaller
+    assert pack_row("X", "", 4) < pack_row("Y", "", 4)         # X < Y
+    assert pack_row("Xx", "", 4) > pack_row("X", "y", 4)       # r1 dominates r2
+
+
+def test_r2_is_byte_aligned_so_a_short_r1_cannot_shift_it():
+    """The reason each region gets ``(cap+1)//2`` bytes rather than being packed
+    back-to-back: an odd-length r1 would otherwise push r2 half a byte over."""
+    for cap in CAPS:
+        w = (cap + 1) // 2
+        assert row_width(cap) == 2 * w
+        # r2 = "X" always lands in the same nibble regardless of len(r1)
+        for r1 in ("", "X", "Xy", "XyY"):
+            if len(r1) > cap:
+                continue
+            row = pack_row(r1, "X", cap)
+            assert row[w] >> 4 == _CHAR_TO_CODE["X"]
+
+
+@pytest.mark.parametrize("cap", CAPS)
+def test_the_solver_decodes_its_own_rows(cap):
+    """``relators()`` inverts the packer -- min/max stats are read back this way."""
+    words = _deep_corpus(cap)[:12]
+    for a, b in itertools.islice(itertools.product(words, repeat=2), 0, None, 3):
+        if not a or not b:
+            continue     # a search never holds an empty relator
+        s = GreedyCompactSolver(a, b, max_nodes=1, max_relator_length=cap)
+        s.arena[: s.rw] = np.frombuffer(pack_row(a, b, cap), dtype=np.uint8)
+        s.len1[0], s.len2[0] = len(a), len(b)
+        assert s.relators(0) == (a, b)
+
+
+def test_pack_row_rejects_a_relator_over_the_cap():
+    with pytest.raises(ValueError):
+        pack_row("XXXXX", "Y", 4)

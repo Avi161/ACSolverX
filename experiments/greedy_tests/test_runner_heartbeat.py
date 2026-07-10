@@ -251,18 +251,30 @@ def test_auto_workers_survives_an_unreadable_ram_size(monkeypatch):
     assert _auto_workers({"N_WORKERS": 0}, 1000) == 1
 
 
-def test_the_auto_estimate_grows_with_the_node_budget(monkeypatch):
+@pytest.mark.parametrize("solver", ["heavy", "compact"])
+def test_the_auto_estimate_grows_with_the_node_budget(monkeypatch, solver):
     """The whole point of "auto": a 1k search must not be sized like a 1M one."""
-    cfg = {"N_WORKERS": 0, "GB_PER_PRES": "auto"}
+    cfg = {"N_WORKERS": 0, "GB_PER_PRES": "auto", "SOLVER": solver}
     small = rb._est_gb_per_pres(cfg, 1_000)
     large = rb._est_gb_per_pres(cfg, 1_000_000)
     assert small < large
     assert small < 1.0, "a 1k-node search must not be provisioned in gigabytes"
-    assert large > 9.0, "the old fixed 9.0 was too LOW at its own calibration point"
 
     monkeypatch.setattr(rb, "_usable_cores", lambda: 16)
     monkeypatch.setattr(rb, "_avail_ram_gb", lambda: 50.0)
     assert _auto_workers(cfg, 1_000) >= _auto_workers(cfg, 1_000_000)
+
+
+def test_the_1m_estimate_is_solver_specific():
+    """The old fixed 9.0 was too LOW for the heavy solver at its own calibration
+    point (1M x ~64 states x 220 B ~ 14 GB). The compact solver genuinely needs
+    less than 9 -- that is not the old bug returning, it is the fix."""
+    auto = {"N_WORKERS": 0, "GB_PER_PRES": "auto"}
+    heavy = rb._est_gb_per_pres({**auto, "SOLVER": "heavy"}, 1_000_000)
+    compact = rb._est_gb_per_pres({**auto, "SOLVER": "compact"}, 1_000_000)
+    assert heavy > 9.0
+    assert 4.0 < compact < 9.0
+    assert compact < heavy
 
 
 def test_an_explicit_gb_per_pres_overrides_the_estimate():

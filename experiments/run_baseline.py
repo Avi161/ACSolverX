@@ -15,7 +15,37 @@ import time
 from datetime import datetime
 
 from experiments import wandb_tracking
-from experiments.search.greedy_baseline import greedy_search
+from experiments.search.greedy_baseline import greedy_search as _greedy_search_base
+from experiments.search.greedy_compact import greedy_search_compact
+
+
+def greedy_search(r1, r2, node_budget, max_relator_length=24, cyclic_reduce=True,
+                  high_speedup=False, progress=None, solver="compact"):
+    """The runner's single search seam: dispatch to one of three solvers.
+
+    All three pop in the same order and return the same stats; they differ only
+    in bookkeeping cost. ``solver`` selects which memory-lean implementation the
+    ``HIGH_SPEEDUP`` path uses and is ignored otherwise, because the normal
+    solver is the only one that reconstructs a path.
+
+    Everything -- the pool workers, the serial memory retry, the path-recovery
+    re-solve -- goes through this one function, so a test that monkeypatches
+    ``run_baseline.greedy_search`` still intercepts every search.
+    """
+    if high_speedup and solver == "compact":
+        return greedy_search_compact(
+            r1, r2, node_budget, max_relator_length=max_relator_length,
+            cyclic_reduce=cyclic_reduce, progress=progress)
+    return _greedy_search_base(
+        r1, r2, node_budget, max_relator_length=max_relator_length,
+        cyclic_reduce=cyclic_reduce, high_speedup=high_speedup, progress=progress)
+
+
+def _solver_mode(cfg):
+    mode = (cfg.get("SOLVER") or "compact").lower()
+    if mode not in ("compact", "heavy"):
+        raise ValueError(f"SOLVER must be 'compact' or 'heavy', got {mode!r}")
+    return mode
 
 
 # Integer encoding of data/ms640_solved.txt: 1=x, -1=X, 2=y, -2=Y, 0=pad.
@@ -48,6 +78,12 @@ DEFAULT_CONFIG = {
     # presentations. Solved presentations are re-solved by the normal solver
     # afterwards to recover their path (rare: heavy runs are the hard ones).
     "HIGH_SPEEDUP": False,
+    # Which memory-lean solver HIGH_SPEEDUP uses. Both pop in the same order and
+    # return the same stats, so this is result-neutral and stays OUT of
+    # _run_prefix. "compact" holds a state in numpy arrays (~75 B at 1M/mrl48);
+    # "heavy" holds it in a bytes key + set entry + heap tuple (~220 B). Compact
+    # is ~3x leaner and ~1.5x faster, which is what lets 4+ workers fit.
+    "SOLVER": "compact",             # "compact" | "heavy"
     "N_WORKERS": 0,                  # 0 = auto (bounded by usable cores AND RAM)
     # "auto" = size each search from the node budget (~70 states/node x 220 B,
     # both measured). A positive number pins it instead. The old fixed 9.0 was
@@ -453,6 +489,19 @@ def _update_row(out_path, pres_id, new_row):
 # keys, are shorter -- calibrate at the key lengths the deep search actually holds.
 _BYTES_PER_STATE = 220
 
+# The same quantity for the compact solver, and it is ARITHMETIC rather than a
+# measurement: a state costs one nibble-packed arena row (2*((cap+1)//2) = 48 B at
+# mrl=48) + len1 + len2 + depth + a heap slot (10 B) + its share of the open-
+# addressing table. Nothing depends on the relator lengths, so unlike the heavy
+# solver this does not rise with search depth.
+#   exact at 1M/mrl48:  63.76M x 58 B + 1.07 GB table = 4.77 GB = 74.8 B/state
+# 80 is peak-inclusive: it covers mrl=48 (74.8) with room for the transient when
+# the reservation is exceeded and the arrays double. Do NOT set it to the 58 B
+# floor -- see lessons/gb-per-pres-sized-from-measured-memory.md for what
+# under-provisioning costs. Reproduce with:
+#   python3 -m experiments.greedy_tests.tools.bytes_per_state
+_BYTES_PER_STATE_COMPACT = 80
+
 # DISCOVERED states per node popped. Measured on ms_reps_unsolved (heavy solver):
 #     budget   25k    50k   100k   200k   400k   600k     1M
 #     mrl=24   67.1   64.9   69.8   50.7   42.0      -   29.7
@@ -554,19 +603,26 @@ def _usable_cores():
 
 
 def _est_gb_per_pres(cfg, node_budget):
-    """Peak GB of ONE heavy search at this node budget.
+    """Peak GB of ONE heavy-mode search at this node budget, for this SOLVER.
 
     An explicit positive GB_PER_PRES always wins; "auto" (or 0/None) estimates.
     The old fixed 9.0 was calibrated at 1M/mrl=48 and applied at every budget,
     so a 50k run — which needs well under 1 GB — was provisioned as if it needed
     9, silently starving the pool of workers. It was also too LOW at its own
     calibration point: 1M x 70 states x 220 B is ~15 GB, not 9.
+
+    The discovered-state model is shared: the two solvers explore the same states
+    in the same order, so only the bytes each state costs differs. That is the
+    single number that decides how many workers fit, and hence the throughput of
+    a 261-presentation sweep.
     """
     gb = cfg.get("GB_PER_PRES", "auto")
     if isinstance(gb, (int, float)) and not isinstance(gb, bool) and gb > 0:
         return float(gb)
+    per_state = (_BYTES_PER_STATE_COMPACT if _solver_mode(cfg) == "compact"
+                 else _BYTES_PER_STATE)
     discovered = _DISCOVERY_A * node_budget ** _DISCOVERY_P
-    return _BASE_GB + discovered * _BYTES_PER_STATE / 1e9
+    return _BASE_GB + discovered * per_state / 1e9
 
 
 def _auto_workers(cfg, node_budget):
@@ -831,7 +887,8 @@ def _solve_one(job):
     parent can retry it serially with the whole machine to itself; every other
     return has ``stats`` set and ``exc`` None.
     """
-    pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s, hb_dbg, mem_gb = job
+    (pres_id, r1, r2, node_budget, mrl, cyc, high, hb_s, hb_dbg, mem_gb,
+     solver) = job
 
     # Watchdog: if this worker is still stuck 40s from now with no progress tick,
     # dump its Python stack to a file. A worker's stderr is not visible in a
@@ -885,7 +942,8 @@ def _solve_one(job):
     t0 = time.time()
     try:
         stats = greedy_search(r1, r2, node_budget, max_relator_length=mrl,
-                              cyclic_reduce=cyc, high_speedup=high, progress=progress)
+                              cyclic_reduce=cyc, high_speedup=high,
+                              progress=progress, solver=solver)
     except _MemBudgetExceeded as e:
         return pres_id, r1, r2, None, time.time() - t0, e
     finally:
@@ -1053,6 +1111,7 @@ def run_dataset(cfg, node_budget):
     cyc = cfg["CYCLIC_REDUCE"]
     hb_s = float(cfg.get("HEARTBEAT_EVERY_S", 0) or 0)
     hb_dbg = bool(cfg.get("HEARTBEAT_DEBUG", False))
+    solver = _solver_mode(cfg)
     # Resource provisioning is HIGH_SPEEDUP-only: the normal path runs one search
     # in this process, so there is nothing to divide up and nothing to guard.
     n_workers = _auto_workers(cfg, node_budget) if high else 1
@@ -1066,9 +1125,10 @@ def run_dataset(cfg, node_budget):
         src = ("pinned" if isinstance(cfg.get("GB_PER_PRES"), (int, float))
                and not isinstance(cfg.get("GB_PER_PRES"), bool)
                and cfg.get("GB_PER_PRES", 0) > 0 else "auto")
-        print(f"    HIGH_SPEEDUP: {n_workers} worker(s) | {avail:.0f} GB usable"
-              f" / {_total_ram_gb():.0f} GB total | {_usable_cores()} core(s)"
-              f" | ~{est:.1f} GB/presentation ({src})", flush=True)
+        print(f"    HIGH_SPEEDUP[{solver}]: {n_workers} worker(s) | "
+              f"{avail:.0f} GB usable / {_total_ram_gb():.0f} GB total | "
+              f"{_usable_cores()} core(s) | ~{est:.1f} GB/presentation ({src})",
+              flush=True)
         if mem_gb:
             print(f"    memory guard: a worker over {mem_gb:.1f} GB stops only if "
                   f"the machine drops below {_MEM_RESERVE_GB:.0f} GB free "
@@ -1080,8 +1140,8 @@ def run_dataset(cfg, node_budget):
                   f"usable. Auto would pick "
                   f"{_auto_workers({**cfg, 'N_WORKERS': 0}, node_budget)}. The "
                   f"guard will catch a genuine shortfall.", flush=True)
-    jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s, hb_dbg, mem_gb)
-            for pid, a, b in todo]
+    jobs = [(pid, a, b, node_budget, mrl, cyc, high, hb_s, hb_dbg, mem_gb,
+             solver) for pid, a, b in todo]
     if hb_s > 0:
         print(f"    heartbeat: nodes/s every {hb_s:g}s", flush=True)
 
@@ -1185,7 +1245,7 @@ def run_dataset(cfg, node_budget):
                   flush=True)
             _w1, _w2 = todo[0][1], todo[0][2]
             greedy_search(_w1, _w2, 2, max_relator_length=mrl,
-                          cyclic_reduce=cyc, high_speedup=True)
+                          cyclic_reduce=cyc, high_speedup=True, solver=solver)
             print(f"    numba warm in {time.time() - t_warm:.1f}s", flush=True)
 
             ctx = mp.get_context(cfg.get("MP_START_METHOD") or None)
@@ -1277,7 +1337,7 @@ def run_dataset(cfg, node_budget):
                 try:
                     stats = greedy_search(
                         r1, r2, node_budget, max_relator_length=mrl,
-                        cyclic_reduce=cyc, high_speedup=True,
+                        cyclic_reduce=cyc, high_speedup=True, solver=solver,
                         progress=_MemGuard(pres_id, solo_gb))
                 except _MemBudgetExceeded as e:
                     exc = e
