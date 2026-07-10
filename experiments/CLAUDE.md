@@ -13,6 +13,7 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 - `_repair_jsonl` runs before anything opens the jsonl for append, and is NOT gated on `RESUME`. Every other reader relies on it. [why a reader-side guard is not enough](lessons/run-baseline-two-known-bugs.md)
 - The `HIGH_SPEEDUP` pool defers a solved row's *path* to a serial recovery re-solve, but writes the row itself up-front as `path_pending` and rewrites it in place — never park a result in RAM. [why deferred](lessons/high-speedup-boxing-and-memory.md) · [why persisted first](lessons/heavy-mode-defers-solved-rows.md) · [heavy ≡ normal](lessons/high-speedup-verified-locally.md) · [a worker can't print](lessons/heartbeat-worker-cannot-print.md) · [nor can a thread](lessons/no-print-from-background-thread.md) · [an unexplained hang](lessons/forked-workers-block-cause-unknown.md)
 - Worker count is sized from measured memory, and a worker that OOMs is counted, not lost. [sizing + the `tracemalloc` trap + pickling an exception back](lessons/gb-per-pres-sized-from-measured-memory.md)
+- Only the parent writes the jsonl, so a missing row is a result the pool never returned. [a hole is not a write race](lessons/jsonl-hole-is-not-a-write-race.md)
 - Heartbeat cadence has two separate phases. [first emission ≠ period](lessons/heartbeat-first-emission-phase-bug.md)
 
 **`wandb_tracking.py`** — run identity, panels, live metrics.

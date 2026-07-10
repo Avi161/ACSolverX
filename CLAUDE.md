@@ -12,9 +12,12 @@ and a bloated CLAUDE.md gets ignored.
 
 - **Never open a PR.** Work lands by merging into the active branch. A worktree merges back
   into the branch it was created from (e.g. `test/stable-ac-moves-w4`), never `main`.
-- **Never run a production-budget search locally.** Cap local runs at **10 minutes**: ~10-20
-  presentations at ~10k nodes. Prove the pipeline is budget-agnostic instead of brute-forcing
-  one budget. [[TRAP]](experiments/lessons/local-run-budget-cap.md)
+- **Never run a search above a `node_budget` of 1,000 yourself — no exceptions.** Any search
+  Claude launches (local shell, test, repro, scratch script) is capped at **1,000 nodes** and
+  ~10-20 presentations. Production budgets are the user's to run, on Colab. A search at budget
+  `B` is exactly the first `B` pops of any longer search, so a bigger budget buys a slower
+  repro, never a different behaviour. Prove the pipeline is budget-agnostic instead of
+  brute-forcing one budget. [[TRAP]](experiments/lessons/local-run-budget-cap.md)
 
 ## Repo context
 
@@ -63,6 +66,7 @@ and a bloated CLAUDE.md gets ignored.
 - `@njit` the per-move math; leave the `heapq`/`dict` search orchestration in plain Python. [[WORKS]](experiments/lessons/numba-jit-split.md)
 
 ### HIGH_SPEEDUP / multiprocessing
+- A hole in the jsonl is a **lost result, never a raced write** — only the parent writes it. `mp.Pool.imap_unordered` silently drops a dead worker's task, repopulates, then hangs at the end; and `N already done` < `wc -l` means a torn final line from a hard kill. [[TRAP]](experiments/lessons/jsonl-hole-is-not-a-write-race.md)
 - A computed result must reach disk before anything else is attempted with it: heavy mode parked every **solved** row in a RAM-only `deferred` list until the run ended, so a crash lost exactly the successes and resume re-searched them forever. Persist, then enrich in place. [[TRAP]](experiments/lessons/heavy-mode-defers-solved-rows.md)
 - Boxing was the cost and memory was the cap; a packed `bytes` key must sort identically to `(str, str)` or the heap tie-break shifts. Memory reduction is what unlocks parallelism. [[WORKS]](experiments/lessons/high-speedup-boxing-and-memory.md)
 - Heavy ≡ normal on `solved`/`nodes_explored`, ~2.8× faster; ms640 legitimately leaves several idx unsolved, so an unsolved row there is not a bug. [[WORKS]](experiments/lessons/high-speedup-verified-locally.md)
