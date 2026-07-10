@@ -21,7 +21,17 @@ Rows arrive out of order (that is `imap_unordered`, and it is normal); none are 
 A second consequence: the file is **append-only**, so a Drive/FUSE sync lag can only ever
 truncate the *tail*. A hole in the middle can never be a stale read.
 
-## The two things that actually produce a hole
+Scope of that proof: it ran on **local disk**. It shows the *runner* never loses a row. If a
+hole ever survives a `tail` taken from inside the Colab VM — with the `[budget] k/n | pres P`
+completion lines present, which print *after* `_emit`'s flush — then the runner is exonerated
+and the Drive FUSE layer is the only remaining suspect. Check the file before concluding.
+
+## The two things that can produce a hole (mechanism: leading hypothesis, not established)
+
+What is *proven* below is that the write path cannot lose a row, and that each mechanism here
+would produce exactly this symptom. Which one fired in the original run was never confirmed —
+its console was gone. Do not read this as a post-mortem; read it as the two places to look.
+The recommendation (fewer workers) is robust either way, since both are memory-driven.
 
 **1. A pool worker dies and its task is silently dropped.** `mp.Pool.imap_unordered` does not
 detect worker death (unlike `concurrent.futures`, which raises `BrokenProcessPool`). The pool
