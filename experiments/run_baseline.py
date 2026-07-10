@@ -275,6 +275,33 @@ def _read_pending(out_path):
     return pending
 
 
+def _read_mem_pending(out_path):
+    """pres_ids the memory guard stopped, whose serial retry never ran.
+
+    Written the instant the guard fires, so a session that dies before the pool
+    drains still records which presentations tripped. Without this the tripped id
+    is absent from the jsonl, resume feeds it back into the *pool*, it trips
+    again on the same 1/n share, and the presentation is re-searched forever —
+    which is exactly what a 29-hour pool on a 12-hour Colab session guarantees.
+
+    Being on disk puts the id in ``done``, so resume never re-searches it in the
+    pool; it is routed to the serial retry instead, where it gets the whole
+    machine. A ``mem_abort`` row *without* this flag is terminal: the search does
+    not fit here even alone, and re-running it would only waste the budget again.
+    """
+    pending = set()
+    if os.path.exists(out_path):
+        with open(out_path, "r") as f:
+            for ln in f:
+                ln = ln.strip()
+                if not ln:
+                    continue
+                row = json.loads(ln)
+                if row.get("mem_abort_pending"):
+                    pending.add(row["pres_id"])
+    return pending
+
+
 def _report_lost_rows(out_path, done_before, todo_ids):
     """pres_ids the runner wrote but that are not on disk. Returns them, sorted.
 
@@ -384,14 +411,20 @@ def _persist(f):
 
 
 def _update_row(out_path, pres_id, new_row):
-    """Replace the row for ``pres_id`` in place, atomically.
+    """Replace the row for ``pres_id`` in place, atomically. Returns whether a
+    row was actually found and replaced.
 
     The jsonl is one row per pres_id (every consumer assumes it), so a recovered
     path fills in the existing row instead of appending a second one. Written to
     a temp file and ``os.replace``d, so a crash leaves the previous, still-valid
     file untouched — the row simply stays ``path_pending`` and is retried.
+
+    The return value is load-bearing for ``_finalize``: it replaces a placeholder
+    while holding a result that exists nowhere else, so a silent no-op here would
+    discard a multi-hour search. Callers that merely enrich a row can ignore it.
     """
     tmp = out_path + ".tmp"
+    found = False
     with open(out_path, "r") as src, open(tmp, "w") as dst:
         for ln in src:
             s = ln.strip()
@@ -399,10 +432,11 @@ def _update_row(out_path, pres_id, new_row):
                 continue
             row = json.loads(s)
             if row["pres_id"] == pres_id:
-                row = new_row
+                row, found = new_row, True
             dst.write(json.dumps(row) + "\n")
         _persist(dst)
     os.replace(tmp, out_path)
+    return found
 
 
 # --- resource detection + memory budgeting (HIGH_SPEEDUP path only) --------
@@ -981,8 +1015,9 @@ def run_dataset(cfg, node_budget):
     if cfg["RESUME"]:
         done, n_seen, n_solved = _read_done(out_path)
         pending = _read_pending(out_path)
+        mem_pending = _read_mem_pending(out_path)
     else:
-        done, pending, n_seen, n_solved = set(), set(), 0, 0
+        done, pending, mem_pending, n_seen, n_solved = set(), set(), set(), 0, 0
 
     todo_ids = [pid for (pid, _r1, _r2) in presentations if pid not in done]
 
@@ -1072,16 +1107,49 @@ def run_dataset(cfg, node_budget):
         paths_done.add(pres_id)
 
     def _emit(pres_id, r1, r2, stats, elapsed, mem_abort=False,
-              path_pending=False):
+              path_pending=False, mem_abort_pending=False, notify=True):
         row = _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed)
         if mem_abort:
             # nodes_explored is the count reached before the guard fired, NOT the
             # full node_budget. Never read this row as "searched the whole budget".
             row["mem_abort"] = True
+        if mem_abort_pending:
+            row["mem_abort_pending"] = True
         if path_pending:
             row["path_pending"] = True
         out_f.write(json.dumps(row) + "\n")
         _persist(out_f)
+        if not path_pending:
+            _write_path(pres_id, r1, r2, stats)
+        _mirror_all()
+        # A pending row is a placeholder, not a result: notify=False keeps it out
+        # of the W&B table, which _finalize then fills with the real row.
+        if logger is not None and notify:
+            logger.on_row(row)
+
+    def _finalize(pres_id, r1, r2, stats, elapsed, mem_abort=False,
+                  path_pending=False):
+        """Overwrite an existing ``mem_abort_pending`` row with its real result.
+
+        Appending would leave two rows for one pres_id, which every consumer's
+        one-row-per-id assumption forbids. Requires ``out_f`` already closed:
+        ``_update_row`` rewrites via ``os.replace`` and would orphan the fd.
+        """
+        row = _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed)
+        if mem_abort:
+            row["mem_abort"] = True
+        if path_pending:
+            row["path_pending"] = True
+        if not _update_row(out_path, pres_id, row):
+            # The placeholder should always be there — _emit wrote it, or resume
+            # read it back. If it is not, the filesystem dropped it (the failure
+            # _report_lost_rows exists for). Append rather than let _update_row's
+            # no-op silently discard a search that cost hours.
+            print(f"    !! pres {pres_id}: no row to update; appending instead.",
+                  flush=True)
+            with open(out_path, "a") as f:
+                f.write(json.dumps(row) + "\n")
+                _persist(f)
         if not path_pending:
             _write_path(pres_id, r1, r2, stats)
         _mirror_all()
@@ -1095,7 +1163,10 @@ def run_dataset(cfg, node_budget):
     # only the path, which resume then retries without re-searching.
     by_id = {pid: (a, b) for pid, a, b in presentations}
     deferred = [(pid, *by_id[pid]) for pid in sorted(pending)]
-    aborted = []      # hit the per-worker memory allowance; retried serially
+    # Guard-tripped in THIS session (exc set) or in a previous one (exc None, read
+    # back from the mem_abort_pending rows). Both are retried serially below; the
+    # resumed ones are already in `done`, so the pool never sees them again.
+    aborted = [(pid, *by_id[pid], None) for pid in sorted(mem_pending)]
     try:
         # `and jobs`: a fully-resumed sweep has nothing to search. Without this
         # the warm-up below reads todo[0] and raises IndexError, so re-running a
@@ -1135,8 +1206,17 @@ def run_dataset(cfg, node_budget):
                 # Out of its memory allowance, not out of memory: the worker is
                 # alive and the machine never went near the OOM killer. Retry it
                 # after teardown, alone, with the whole budget.
-                print(f"    pres {pres_id}: memory guard tripped ({exc}); "
-                      f"deferring to a serial retry", flush=True)
+                #
+                # Persist the trip BEFORE the retry. The retry only runs once the
+                # pool has drained every other presentation (~29 h at 1M x 261),
+                # so a session that dies first would otherwise leave no trace that
+                # this id tripped, and the next resume would feed it back into the
+                # pool to trip again. _finalize overwrites this row in place.
+                print(f"    pres {pres_id}: memory guard tripped ({exc}); row "
+                      f"persisted as mem_abort_pending, deferring to a serial retry",
+                      flush=True)
+                _emit(pres_id, r1, r2, _abort_stats(exc), elapsed,
+                      mem_abort=True, mem_abort_pending=True, notify=False)
                 aborted.append((pres_id, r1, r2, exc))
                 continue
             # `use_path`: with paths switched off there is nothing to recover, and
@@ -1174,13 +1254,23 @@ def run_dataset(cfg, node_budget):
             pool.join()
             pool = None
 
+        # Every row is already durable, including the mem_abort_pending
+        # placeholders. _update_row — which both loops below use to fill a
+        # placeholder in place — rewrites the file via os.replace, and that would
+        # orphan this append handle's fd. So close it before either runs.
+        out_f.close()
+        out_f = None
+
         # Retry memory-aborted presentations one at a time. The pool is gone, so
         # a retry gets the whole budget instead of a 1/n_workers slice — usually
-        # enough to finish. With a single worker there was no slice to reclaim,
-        # so retrying would just re-run the same search into the same wall.
+        # enough to finish. With a single worker there was no slice to reclaim, so
+        # retrying would just re-run the same search into the same wall — unless
+        # the trip happened in an EARLIER session (exc is None), which never got a
+        # serial attempt at all and is the whole reason the row was persisted.
         for pres_id, r1, r2, exc in aborted:
+            resumed = exc is None
             solo_gb = _avail_ram_gb() * _RAM_SAFETY
-            if n_workers > 1 and solo_gb:
+            if solo_gb and (resumed or n_workers > 1):
                 print(f"    retrying pres {pres_id} serially ({solo_gb:.1f} GB "
                       f"allowance)...", flush=True)
                 t0 = time.time()
@@ -1196,34 +1286,40 @@ def run_dataset(cfg, node_budget):
                     total_time += elapsed
                     # always heavy, so a solved row still needs its path recovered
                     solved_no_path = stats["solved"] and cfg["use_path"]
-                    _emit(pres_id, r1, r2, stats, elapsed,
-                          path_pending=solved_no_path)
+                    _finalize(pres_id, r1, r2, stats, elapsed,
+                              path_pending=solved_no_path)
                     if solved_no_path:
                         deferred.append((pres_id, r1, r2))
-                    n_seen += 1
                     n_solved += int(stats["solved"])
-                    processed += 1
+                    if not resumed:
+                        # A resumed placeholder was already counted by _read_done;
+                        # counting it again would push processed past n_todo.
+                        n_seen += 1
+                        processed += 1
                     if logger is not None:
                         # These never reached on_result in the worker loop (they
                         # returned an exception, not stats), so count them here or
                         # the cumulative run/* counters silently lose them.
                         logger.on_result(stats)
                     continue
+            if exc is None:
+                # No retry ran and nothing new was learned. Leave the placeholder
+                # so the next session tries again, rather than burning the id on a
+                # terminal mem_abort row we have no evidence for.
+                print(f"    pres {pres_id}: no serial retry possible here; row "
+                      f"stays mem_abort_pending for the next run.", flush=True)
+                continue
             # It genuinely does not fit on this machine. Record that honestly
             # rather than crash the run or silently drop the presentation.
             print(f"    pres {pres_id}: ABORTED on memory ({exc}). "
                   f"Row written with mem_abort=true.", flush=True)
             stats = _abort_stats(exc)
-            _emit(pres_id, r1, r2, stats, 0.0, mem_abort=True)
-            n_seen += 1
-            processed += 1
+            _finalize(pres_id, r1, r2, stats, 0.0, mem_abort=True)
+            if not resumed:
+                n_seen += 1
+                processed += 1
             if logger is not None:
                 logger.on_result(stats)
-
-        # Every row is already durable. _update_row rewrites the file via
-        # os.replace, which would orphan this append handle's fd.
-        out_f.close()
-        out_f = None
 
         n_failed = 0
         for pres_id, r1, r2 in deferred:
