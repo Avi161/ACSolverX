@@ -176,6 +176,83 @@ def test_a_new_session_retries_a_pending_row_and_fills_it_in(
     assert row["path_length"] is None or row["solved"]
 
 
+# --- the serial retry gets the whole machine: it reserves, and it reports --
+#
+# A pool worker sizes its compact arena from est_states(budget) and prints its
+# nodes/s through a worker->parent queue. The lone retry after the pool drains has
+# neither: it should instead pre-size the arena from the free RAM (so a hard
+# presentation does not repeat the grow-by-copy that tripped it) and print the
+# same [hb] line directly. Neither is reproducible at MAX_BUDGET=1000 -- a 95M-
+# state growth needs a 1M-node search -- so both are pinned at the seam: the
+# kwargs the retry hands ``greedy_search``.
+
+
+class _FakeClock:
+    """Drives ``_Heartbeat``'s clock (``rb.time``) so a tick can be forced."""
+
+    def __init__(self, t=1000.0):
+        self.t = t
+
+    def time(self):
+        return self.t
+
+    def advance(self, dt):
+        self.t += dt
+
+
+def test_the_serial_retry_reserves_from_free_ram_not_the_pool_estimate(
+        tmp_path, tiny_dataset, monkeypatch):
+    """A lone retry must reserve MORE than a pool worker's budget estimate, so a
+    presentation that already outgrew that estimate does not grow-by-copy again."""
+    cfg = _cfg(tmp_path, tiny_dataset)          # SOLVER defaults to compact
+    pid, r1, r2 = 1, *_PIDS_inv(1)
+    _seed(cfg, [_pending_row(pid, r1, r2, cfg)])
+
+    real = rb.greedy_search
+    seen = {}
+
+    def fake(r1, r2, budget, **kw):
+        if _pid_of(r1, r2) == pid and kw.get("high_speedup"):
+            seen["reserve"] = kw.get("reserve_states")
+        return real(r1, r2, budget, **kw)
+
+    monkeypatch.setattr(rb, "greedy_search", fake)
+    run_dataset(cfg, BUDGET)
+
+    assert seen.get("reserve") is not None, "the retry did not pre-size its arena"
+    assert seen["reserve"] > rb.est_states(BUDGET), \
+        "a lone retry must reserve above the 1/n pool estimate it already outgrew"
+
+
+def test_the_serial_retry_emits_a_heartbeat(
+        tmp_path, tiny_dataset, monkeypatch, capsys):
+    """A solo retry can run for minutes; without an [hb] line it looks hung. The
+    pool's worker->parent heartbeat queue is gone here, so the retry must print
+    directly."""
+    cfg = _cfg(tmp_path, tiny_dataset, HEARTBEAT_EVERY_S=90.0)
+    pid, r1, r2 = 1, *_PIDS_inv(1)
+    _seed(cfg, [_pending_row(pid, r1, r2, cfg)])
+
+    clock = _FakeClock()
+    monkeypatch.setattr(rb, "time", clock)      # the clock _Heartbeat reads
+
+    real = rb.greedy_search
+
+    def fake(r1, r2, budget, **kw):
+        prog = kw.get("progress")
+        if _pid_of(r1, r2) == pid and kw.get("high_speedup") and prog is not None:
+            clock.advance(11.0)                 # past _Heartbeat's 10s first_after
+            prog(2048)                          # a tick the retry must print
+        return real(r1, r2, budget, **kw)
+
+    monkeypatch.setattr(rb, "greedy_search", fake)
+    run_dataset(cfg, BUDGET)
+
+    out = capsys.readouterr().out
+    assert "[hb]" in out and "pres 1" in out, \
+        "the serial retry ran without a heartbeat"
+
+
 def test_a_pending_row_is_never_handed_back_to_the_worker_loop(
         tmp_path, tiny_dataset, monkeypatch):
     """It is in `done`, so `todo` excludes it; only the serial retry may run it."""

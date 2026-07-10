@@ -16,17 +16,23 @@ from datetime import datetime
 
 from experiments import wandb_tracking
 from experiments.search.greedy_baseline import greedy_search as _greedy_search_base
-from experiments.search.greedy_compact import greedy_search_compact
+from experiments.search.greedy_compact import est_states, greedy_search_compact
 
 
 def greedy_search(r1, r2, node_budget, max_relator_length=24, cyclic_reduce=True,
-                  high_speedup=False, progress=None, solver="compact"):
+                  high_speedup=False, progress=None, solver="compact",
+                  reserve_states=None):
     """The runner's single search seam: dispatch to one of three solvers.
 
     All three pop in the same order and return the same stats; they differ only
     in bookkeeping cost. ``solver`` selects which memory-lean implementation the
     ``HIGH_SPEEDUP`` path uses and is ignored otherwise, because the normal
     solver is the only one that reconstructs a path.
+
+    ``reserve_states`` pre-sizes the compact solver's arena. It is result-neutral
+    and lazily faulted (a bigger reservation costs address space, not committed
+    RAM), and it is honoured only on the compact path -- the heavy/normal solvers
+    hold no reservation, so it is ignored there.
 
     Everything -- the pool workers, the serial memory retry, the path-recovery
     re-solve -- goes through this one function, so a test that monkeypatches
@@ -35,7 +41,8 @@ def greedy_search(r1, r2, node_budget, max_relator_length=24, cyclic_reduce=True
     if high_speedup and solver == "compact":
         return greedy_search_compact(
             r1, r2, node_budget, max_relator_length=max_relator_length,
-            cyclic_reduce=cyclic_reduce, progress=progress)
+            cyclic_reduce=cyclic_reduce, progress=progress,
+            reserve_states=reserve_states)
     return _greedy_search_base(
         r1, r2, node_budget, max_relator_length=max_relator_length,
         cyclic_reduce=cyclic_reduce, high_speedup=high_speedup, progress=progress)
@@ -501,6 +508,19 @@ _BYTES_PER_STATE = 220
 # under-provisioning costs. Reproduce with:
 #   python3 -m experiments.greedy_tests.tools.bytes_per_state
 _BYTES_PER_STATE_COMPACT = 80
+
+# Serial mem-abort retry ONLY. A guard-tripped presentation retried alone has the
+# whole machine, so it should pre-size the compact arena rather than pay the
+# grow-by-copy its 1/n pool reservation (est_states * 1.5) triggers -- that copy
+# briefly holds the old and doubled arenas at once. Reserve the SMALLER of a
+# generous multiple of the budget estimate and a safe fraction of the RAM this
+# lone search may use, expressed in states. np.empty is lazily faulted, so a large
+# reservation costs address space, not committed RAM; the memory guard, not the
+# reservation, is what actually caps usage. The budget term keeps it tiny at small
+# budgets (so no test allocates a giant array); the RAM term only binds at large
+# budgets and stays well under the guard ceiling. Both are result-neutral.
+_SERIAL_RESERVE_MULT = 4       # x the budget-based estimate (observed spread ~3x)
+_SERIAL_RESERVE_FRAC = 0.5     # x the guard's per-search RAM allowance, in states
 
 # DISCOVERED states per node popped. Measured on ms_reps_unsolved (heavy solver):
 #     budget   25k    50k   100k   200k   400k   600k     1M
@@ -1333,12 +1353,36 @@ def run_dataset(cfg, node_budget):
             if solo_gb and (resumed or n_workers > 1):
                 print(f"    retrying pres {pres_id} serially ({solo_gb:.1f} GB "
                       f"allowance)...", flush=True)
+                # This lone search owns the machine, so pre-size the compact arena
+                # to skip the grow-by-copy its 1/n pool reservation would trigger
+                # (see _SERIAL_RESERVE_*), and drive the same [hb] nodes/s the pool
+                # workers do so a multi-minute retry is not a silent black box. The
+                # heartbeat prints directly here (no pool, so no worker->parent
+                # queue); the memory guard rides the same tick, exactly as in
+                # _solve_one.
+                reserve = None
+                if solver == "compact":
+                    reserve = int(min(
+                        est_states(node_budget) * _SERIAL_RESERVE_MULT,
+                        _SERIAL_RESERVE_FRAC * solo_gb * 1e9
+                        / _BYTES_PER_STATE_COMPACT))
+                retry_guard = _MemGuard(pres_id, solo_gb)
+                if hb_s > 0:
+                    _hb = _Heartbeat(
+                        pres_id, node_budget, hb_s,
+                        lambda s: print(f"    [hb] {_fmt_hb(s)}", flush=True))
+
+                    def retry_progress(nodes, _hb=_hb, _g=retry_guard):
+                        _hb(nodes)
+                        _g(nodes)
+                else:
+                    retry_progress = retry_guard
                 t0 = time.time()
                 try:
                     stats = greedy_search(
                         r1, r2, node_budget, max_relator_length=mrl,
                         cyclic_reduce=cyc, high_speedup=True, solver=solver,
-                        progress=_MemGuard(pres_id, solo_gb))
+                        progress=retry_progress, reserve_states=reserve)
                 except _MemBudgetExceeded as e:
                     exc = e
                 else:
