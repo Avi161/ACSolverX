@@ -66,7 +66,7 @@ and a bloated CLAUDE.md gets ignored.
 - `@njit` the per-move math; leave the `heapq`/`dict` search orchestration in plain Python. [[WORKS]](experiments/lessons/numba-jit-split.md)
 
 ### HIGH_SPEEDUP / multiprocessing
-- A hole in the jsonl is a **lost result, never a raced write** — only the parent writes it. `mp.Pool.imap_unordered` silently drops a dead worker's task, repopulates, then hangs at the end; and `N already done` < `wc -l` means a torn final line from a hard kill. [[TRAP]](experiments/lessons/jsonl-hole-is-not-a-write-race.md)
+- A hole in the jsonl is never a raced write — only the parent writes it. Grep `memory guard tripped` first (a deferred row lands only after the pool finishes); then suspect the filesystem: `flush()` is not durability, and the Drive FUSE mount dropped two flushed rows. `fsync`, and never write results straight to Drive. [[TRAP]](experiments/lessons/jsonl-hole-is-not-a-write-race.md)
 - A computed result must reach disk before anything else is attempted with it: heavy mode parked every **solved** row in a RAM-only `deferred` list until the run ended, so a crash lost exactly the successes and resume re-searched them forever. Persist, then enrich in place. [[TRAP]](experiments/lessons/heavy-mode-defers-solved-rows.md)
 - Boxing was the cost and memory was the cap; a packed `bytes` key must sort identically to `(str, str)` or the heap tie-break shifts. Memory reduction is what unlocks parallelism. [[WORKS]](experiments/lessons/high-speedup-boxing-and-memory.md)
 - Heavy ≡ normal on `solved`/`nodes_explored`, ~2.8× faster; ms640 legitimately leaves several idx unsolved, so an unsolved row there is not a bug. [[WORKS]](experiments/lessons/high-speedup-verified-locally.md)

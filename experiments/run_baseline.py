@@ -268,6 +268,31 @@ def _read_pending(out_path):
     return pending
 
 
+def _report_lost_rows(out_path, done_before, todo_ids):
+    """pres_ids the runner wrote but that are not on disk. Returns them, sorted.
+
+    ``_emit`` writes and fsyncs every row, so after a clean run every id that was
+    already done plus every id in ``todo`` must be present. This catches the one
+    failure the code cannot prevent: a filesystem that accepts a flushed, fsynced
+    write and drops it anyway. Colab's Google Drive FUSE mount did exactly that —
+    a 1M pooled run silently lost two presentations, and because they stayed
+    absent from ``done`` every resume re-searched them and lost them again.
+
+    A warning, never an exception: a 30-hour run must not die at the finish line
+    over rows the caller can simply re-run.
+    """
+    expected = set(done_before) | set(todo_ids)
+    on_disk, _, _ = _read_done(out_path)
+    lost = sorted(expected - on_disk)
+    if lost:
+        print(f"    !! {len(lost)} row(s) were written but are NOT on disk: {lost}",
+              flush=True)
+        print(f"       {out_path} dropped them after a successful write+fsync. "
+              f"Write to local disk and copy to the network share instead; "
+              f"RESUME=True re-runs only these.", flush=True)
+    return lost
+
+
 def _read_paths_done(paths_path):
     """pres_ids already present in the *_paths.jsonl (keeps appends idempotent)."""
     ids = set()
@@ -278,6 +303,26 @@ def _read_paths_done(paths_path):
                 if ln:
                     ids.add(json.loads(ln)["pres_id"])
     return ids
+
+
+def _persist(f):
+    """flush() hands bytes to the OS; fsync() makes the filesystem keep them.
+
+    On a network filesystem the difference is the whole bug. Colab's Google Drive
+    FUSE mount accepted flushed rows and then dropped them: a 1M-budget pooled run
+    silently lost the two presentations whose rows were written after the handle
+    had sat idle ~17 minutes, while the serial ms640 runs — appending a row every
+    couple of seconds — never lost one. Rows are minutes apart at production
+    budgets, so an fsync per row costs nothing measurable.
+
+    An fsync that the filesystem refuses is not worth aborting a 30-hour run over;
+    ``_report_lost_rows`` is the backstop that notices if data went missing.
+    """
+    f.flush()
+    try:
+        os.fsync(f.fileno())
+    except OSError:
+        pass
 
 
 def _update_row(out_path, pres_id, new_row):
@@ -298,8 +343,7 @@ def _update_row(out_path, pres_id, new_row):
             if row["pres_id"] == pres_id:
                 row = new_row
             dst.write(json.dumps(row) + "\n")
-        dst.flush()
-        os.fsync(dst.fileno())
+        _persist(dst)
     os.replace(tmp, out_path)
 
 
@@ -931,7 +975,7 @@ def run_dataset(cfg, node_budget):
         path_row = {"pres_id": pres_id, "r1": r1, "r2": r2}
         path_row.update(_path_payload(cfg, stats))
         paths_f.write(json.dumps(path_row) + "\n")
-        paths_f.flush()
+        _persist(paths_f)
         paths_done.add(pres_id)
 
     def _emit(pres_id, r1, r2, stats, elapsed, mem_abort=False,
@@ -944,7 +988,7 @@ def run_dataset(cfg, node_budget):
         if path_pending:
             row["path_pending"] = True
         out_f.write(json.dumps(row) + "\n")
-        out_f.flush()
+        _persist(out_f)
         if not path_pending:
             _write_path(pres_id, r1, r2, stats)
         if logger is not None:
@@ -1001,7 +1045,11 @@ def run_dataset(cfg, node_budget):
                       f"deferring to a serial retry", flush=True)
                 aborted.append((pres_id, r1, r2, exc))
                 continue
-            solved_no_path = high and stats["solved"]
+            # `use_path`: with paths switched off there is nothing to recover, and
+            # the recovery re-solve is the NORMAL solver at the full budget with no
+            # memory guard (~25 GB at 1M/mrl48). Deferring here would spend it to
+            # produce a path that _write_path then discards.
+            solved_no_path = high and stats["solved"] and cfg["use_path"]
             _emit(pres_id, r1, r2, stats, elapsed, path_pending=solved_no_path)
             if solved_no_path:
                 deferred.append((pres_id, r1, r2))   # path filled in after teardown
@@ -1052,7 +1100,8 @@ def run_dataset(cfg, node_budget):
                 else:
                     elapsed = time.time() - t0
                     total_time += elapsed
-                    solved_no_path = stats["solved"]   # this retry is always heavy
+                    # always heavy, so a solved row still needs its path recovered
+                    solved_no_path = stats["solved"] and cfg["use_path"]
                     _emit(pres_id, r1, r2, stats, elapsed,
                           path_pending=solved_no_path)
                     if solved_no_path:
@@ -1126,6 +1175,8 @@ def run_dataset(cfg, node_budget):
             out_f.close()
         if paths_f is not None:
             paths_f.close()
+
+    _report_lost_rows(out_path, done, todo_ids)
 
     if run is not None:
         wandb_tracking.finish_run(run, logger, out_path, paths_path, run_id,
