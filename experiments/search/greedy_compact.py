@@ -185,7 +185,14 @@ def _row_less(arena, a, b, rw):
 
 @njit(inline='always')
 def _less(arena, len1, len2, depth, a, b, rw):
-    """The heap order: (total, depth, row). A strict total order — see module doc."""
+    """The heap order: (total, depth, row). A strict total order — see module doc.
+
+    ``len1[a] + len2[a]`` adds two uint8s. numba widens that to int64 (a *numpy*
+    scalar would wrap: 200+200 = 144), so a total up to 510 is safe and the
+    1..255 cap in ``__init__`` is sound. Pinned by test_solver_compact, because
+    nothing else would notice if a numba release changed it. In practice cap=48,
+    so the total never exceeds 96.
+    """
     ta = len1[a] + len2[a]
     tb = len1[b] + len2[b]
     if ta != tb:

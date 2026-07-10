@@ -248,6 +248,27 @@ def test_a_relator_length_fits_a_uint8():
     assert row_width(255) == 256
     with pytest.raises(ValueError):
         GreedyCompactSolver("x", "y", max_nodes=10, max_relator_length=256)
+    with pytest.raises(ValueError):
+        GreedyCompactSolver("x", "y", max_nodes=10, max_relator_length=0)
+
+
+def test_numba_widens_a_uint8_sum_so_the_heap_total_cannot_wrap():
+    """`_less` computes `len1[a] + len2[a]` on two uint8s. A *numpy* scalar sum
+    wraps there (200+200 = 144) and the heap order would silently invert for any
+    cap above 127. numba widens to int64 instead -- which is the only reason the
+    1..255 bound is sound. Nothing else in the suite would notice if a numba
+    release changed this, so pin it.
+    """
+    from numba import njit
+
+    @njit
+    def _sum(a, b):
+        return a[0] + b[0]
+
+    big = np.array([200], dtype=np.uint8)
+    assert _sum(big, big) == 400, "numba wrapped a uint8 sum; cap must drop to 127"
+    with np.errstate(over="ignore"):               # the wrap is the point
+        assert np.uint8(200) + np.uint8(200) == 144    # what numpy would have done
 
 
 # --- runner wiring (the SOLVER knob) --------------------------------------
