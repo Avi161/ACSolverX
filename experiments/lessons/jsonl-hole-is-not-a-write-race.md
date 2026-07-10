@@ -69,15 +69,27 @@ cosmetic.
 
 ## What was done about it
 
+The fix is in the repo, not in a config the user has to remember every session.
+
+- **`_is_remote` / staging / mirroring.** When the resolved output path is under a network mount
+  (`_REMOTE_PREFIXES`, i.e. `/content/drive/`), rows are appended to a *local* staging file and
+  the mount receives a **whole-file copy** every `MIRROR_EVERY_S` (default 60 s) and
+  unconditionally in the `finally` block. The mount never sees an append handle again. This is
+  chosen precisely because the same mount kept every row of the serial ms640 runs and keeps a
+  whole-file replacement without complaint — it is the long-idle append it cannot hold.
+- **`_seed_stage`.** A resumed run lands on a *fresh VM*: the staging disk is empty and the
+  mirror is the only record. Seed the stage from whichever side has more rows, before `_read_done`.
 - `_persist(f)` — `flush()` **then** `os.fsync()`, tolerating `OSError` from a filesystem that
-  refuses fsync. Used by `_emit`, `_write_path` and `_update_row` (which already fsynced, and
-  whose unguarded `os.fsync` a new test caught).
+  refuses fsync. Used by `_emit`, `_write_path`, `_update_row` and `_copy_file` (`_update_row`
+  already fsynced, unguarded — a new test caught that).
 - `_report_lost_rows(out_path, done_before, todo_ids)` — after a clean run, compares the ids the
   runner believes it wrote against `_read_done`, and says so loudly. A warning, never an
   exception: a 30-hour run must not die at the finish line over rows you can simply re-run.
-- **Operationally: do not write the jsonl to a Drive mount.** `cfg["MOUNT_DRIVE"] = False` with
-  `LOCAL_OUT_DIR` on `/content`, and mirror to Drive with a `cp` loop. The output directory is
-  not part of the resume key, so resume reattaches to the same file.
+
+**The self-healing property makes this safe.** Resume is driven entirely by which `pres_id`s are
+in the jsonl. An id that is absent — because a search never ran, or because a filesystem ate its
+row — is simply searched again. Nothing else in the pipeline has to know a row was lost. The bug
+was never that a row went missing; it was that the *same* row went missing on *every* attempt.
 
 ## Two claims that were wrong along the way
 
@@ -98,8 +110,10 @@ test. That is the point of the tests.
   finishes every other one. It is not missing; it is late.
 - **Out-of-order rows are `imap_unordered` working correctly**, not corruption.
 - **`flush()` is not durability.** On any network or FUSE filesystem, `fsync` or lose data.
-- **Never trust a filesystem you have not tested to keep a fsynced write.** Write results to
-  local disk and copy them to the network share.
+- **Never append to a network mount.** Append to local disk; give the mount whole-file copies.
+  A long-idle append handle on Drive is the specific thing that loses rows.
+- **A fix the user must remember to apply is not a fix.** `MOUNT_DRIVE=True` has to be safe on
+  its own, because that is what will be set at 2 a.m. on the fourth resume.
 - **If the completion line printed, the row was written.** If it is not on disk, the filesystem
   ate it — look there, not at the runner.
 

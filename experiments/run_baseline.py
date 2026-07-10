@@ -9,6 +9,7 @@ import ast
 import hashlib
 import json
 import os
+import shutil
 import sys
 import time
 from datetime import datetime
@@ -63,6 +64,12 @@ DEFAULT_CONFIG = {
     "MOUNT_DRIVE": False,
     "DRIVE_OUT_DIR": "/content/drive/MyDrive/acsolverx_results/greedy_baseline",
     "LOCAL_OUT_DIR": "results/greedy_baseline",
+
+    # Durable output. When the output lands on a network mount (Drive), rows are
+    # appended to a local staging copy and the mount receives a whole-file copy.
+    # Result-neutral, so neither key enters _run_prefix.
+    "STAGE_DIR": None,          # None -> "<LOCAL_OUT_DIR>/_stage"
+    "MIRROR_EVERY_S": 60,       # at most one mirror per N seconds; always at the end
 
     # W&B. None of these change the search, so none of them enter _run_prefix.
     "USE_WANDB": False,
@@ -303,6 +310,57 @@ def _read_paths_done(paths_path):
                 if ln:
                     ids.add(json.loads(ln)["pres_id"])
     return ids
+
+
+# --- durable output ---------------------------------------------------------
+# Local disk is authoritative; a network mount only ever receives a whole-file
+# copy. Colab's Google Drive FUSE mount accepted flushed, appended rows from a
+# long-idle handle and silently dropped them — a 1M pooled run lost two
+# presentations that way, and because the ids never entered ``done`` every resume
+# re-searched them and lost them again. The five SERIAL ms640 files on that same
+# mount are complete, so the mount is fine with short writes and fine with
+# whole-file replacement; it is the long-idle append handle it cannot keep.
+#
+# None of this changes what a search computes, so none of it enters _run_prefix.
+
+_REMOTE_PREFIXES = ("/content/drive/",)
+
+
+def _is_remote(path):
+    """True for a path on a mount whose flushed appends may not persist."""
+    return os.path.abspath(path).startswith(_REMOTE_PREFIXES)
+
+
+def _n_lines(path):
+    """Line count, or -1 when the file does not exist (so it always loses)."""
+    if not os.path.exists(path):
+        return -1
+    with open(path, "rb") as f:
+        return sum(1 for _ in f)
+
+
+def _copy_file(src, dst):
+    """Whole-file copy, fsynced, then swapped in atomically."""
+    os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
+    tmp = dst + ".tmp"
+    with open(src, "rb") as s, open(tmp, "wb") as d:
+        shutil.copyfileobj(s, d)
+        _persist(d)
+    os.replace(tmp, dst)
+
+
+def _seed_stage(local, remote):
+    """Pull the mirror down onto local disk.
+
+    A resumed run lands on a *fresh* Colab VM: the local staging file is gone and
+    the mirror is the only record. Seed from whichever side has more rows, so a
+    mid-session re-run never discards work the mirror has not caught up with.
+    """
+    if _n_lines(remote) <= _n_lines(local):
+        return
+    _copy_file(remote, local)
+    print(f"    seeded {os.path.basename(local)} from the mirror "
+          f"({_n_lines(local)} rows)", flush=True)
 
 
 def _persist(f):
@@ -869,8 +927,10 @@ def _build_row(cfg, pres_id, r1, r2, node_budget, stats, elapsed):
 def run_dataset(cfg, node_budget):
     """Run the baseline greedy over the dataset at one node budget.
 
-    Writes one jsonl per budget (crash-safe: flush every row). Resumable via
-    the pres_id set already present in the output file.
+    Writes one jsonl per budget (crash-safe: fsync every row). Resumable via the
+    pres_id set already present in the output file. When that file lives on a
+    network mount, rows are appended to a local staging copy and the mount gets a
+    whole-file mirror — see ``_is_remote``.
     """
     import time
 
@@ -878,6 +938,39 @@ def run_dataset(cfg, node_budget):
     presentations = list(load_dataset(cfg["DATASET"], cfg["SUBSET"]))
     n_pres = len(presentations)
     out_path, paths_path, _date, stem = _resolve_paths(cfg, node_budget, n_pres)
+
+    # Redirect the append handles to local disk and keep the mount as a mirror.
+    # The mirror is what a *later session* resumes from — its VM, and therefore
+    # the staging file, is gone — so seed the stage from it before reading `done`.
+    mirror = []
+    if _is_remote(out_path):
+        stage_dir = cfg.get("STAGE_DIR") or os.path.join(cfg["LOCAL_OUT_DIR"],
+                                                         "_stage")
+        os.makedirs(stage_dir, exist_ok=True)
+        stage_out = os.path.join(stage_dir, os.path.basename(out_path))
+        stage_paths = os.path.join(stage_dir, os.path.basename(paths_path))
+        _seed_stage(stage_out, out_path)
+        _seed_stage(stage_paths, paths_path)
+        mirror = [(stage_out, out_path), (stage_paths, paths_path)]
+        print(f"    durable output: appending to {stage_dir} (local disk), "
+              f"mirroring to {os.path.dirname(out_path)} every "
+              f"{cfg['MIRROR_EVERY_S']}s", flush=True)
+        out_path, paths_path = stage_out, stage_paths
+
+    mirror_every_s = float(cfg.get("MIRROR_EVERY_S", 60) or 0)
+    last_mirror = [time.time()]
+
+    def _mirror_all(force=False):
+        """Copy the staging files onto the mount. No-op when output is local."""
+        if not mirror:
+            return
+        now = time.time()
+        if not force and now - last_mirror[0] < mirror_every_s:
+            return
+        last_mirror[0] = now
+        for local, remote in mirror:
+            if os.path.exists(local):
+                _copy_file(local, remote)
 
     # Before ANY reader or the append handles below touch these files. Not gated
     # on RESUME: a non-resumed run still opens them "a" and would concatenate
@@ -991,6 +1084,7 @@ def run_dataset(cfg, node_budget):
         _persist(out_f)
         if not path_pending:
             _write_path(pres_id, r1, r2, stats)
+        _mirror_all()
         if logger is not None:
             logger.on_row(row)
 
@@ -1163,6 +1257,7 @@ def run_dataset(cfg, node_budget):
                              time.time() - t0)
             row["path_recovered"] = True
             _update_row(out_path, pres_id, row)
+            _mirror_all()
 
         if n_failed:
             print(f"    {n_failed} path(s) not recovered; all search rows intact.",
@@ -1175,6 +1270,9 @@ def run_dataset(cfg, node_budget):
             out_f.close()
         if paths_f is not None:
             paths_f.close()
+        # Unconditional: a Ctrl-C / KeyboardInterrupt must still push the rows this
+        # session earned onto the mount, because the staging disk dies with the VM.
+        _mirror_all(force=True)
 
     _report_lost_rows(out_path, done, todo_ids)
 
@@ -1182,6 +1280,8 @@ def run_dataset(cfg, node_budget):
         wandb_tracking.finish_run(run, logger, out_path, paths_path, run_id,
                                   n_seen, n_solved, total_time, cfg, node_budget)
 
-    print(f"[{out_path}] {n_seen} presentations, {n_solved} solved "
+    # The mirror, not the staging copy, is what outlives the VM.
+    final_path = mirror[0][1] if mirror else out_path
+    print(f"[{final_path}] {n_seen} presentations, {n_solved} solved "
           f"({n_solved / max(n_seen, 1):.1%}).")
-    return out_path
+    return final_path
