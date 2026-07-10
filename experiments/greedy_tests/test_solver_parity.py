@@ -53,9 +53,11 @@ SLOW_CASES = (
     + [(ms_unsolved([0])[0], 1000)]          # the hard Miller-Schupp reps
 )
 
-#: every field all three solvers must agree on, exactly
+#: every field all three solvers must agree on, exactly. ``path_length`` is the
+#: solved node's depth, tracked identically by all three (None when unsolved).
 PARITY_FIELDS = (
-    "solved", "nodes_explored", "min_relator_length", "max_relator_length",
+    "solved", "nodes_explored", "path_length",
+    "min_relator_length", "max_relator_length",
     "max_relator_length_expanded", "max_relator_expanded",
 )
 
@@ -110,22 +112,25 @@ def test_normal_and_heavy_agree_at_depth(pres, budget, cap, cyclic):
     _assert_parity(pres, budget, cap, cyclic)
 
 
-def test_compact_reports_no_path_even_when_solved():
-    """Like heavy: the runner re-solves with the normal solver to recover it."""
+def test_compact_reports_length_but_no_path_when_solved():
+    """path_length comes for free (the solved node's depth); the path list does
+    not — the runner re-solves with the normal solver only to recover the path."""
     r1, r2 = ms640([0])[0].to_strs()
+    normal = greedy_search(r1, r2, 500, max_relator_length=24)
     compact = greedy_search_compact(r1, r2, 500, max_relator_length=24)
     assert compact["solved"]
     assert compact["path_moves"] == [] and compact["path"] == []
-    assert compact["path_length"] is None
+    assert compact["path_length"] == normal["path_length"] is not None
 
 
-def test_heavy_reports_no_path_even_when_solved():
-    """The runner re-solves with the normal solver to recover it."""
+def test_heavy_reports_length_but_no_path_when_solved():
+    """path_length comes for free; the path list does not — the runner re-solves
+    with the normal solver only to recover the path."""
     normal, heavy = _both(ms640([0])[0], 500, 24, True)
     assert normal["solved"] and heavy["solved"]
     assert normal["path_moves"] and normal["path"]
     assert heavy["path_moves"] == [] and heavy["path"] == []
-    assert heavy["path_length"] is None
+    assert heavy["path_length"] == normal["path_length"] is not None
 
 
 def test_the_length_stats_are_consistent_with_their_strings():

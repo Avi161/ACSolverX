@@ -594,7 +594,8 @@ class GreedyHeavySolver:
     """Memory-lean twin of ``GreedyBaselineSolver`` for very large budgets.
 
     Pops in exactly the same order (identical heap keys), so ``nodes_explored``
-    and ``solved`` match the normal solver. Does not reconstruct paths.
+    and ``solved`` match the normal solver. Reports ``path_length`` (the solved
+    node's depth) but does not reconstruct the path itself.
     """
 
     def __init__(self, r1, r2, max_nodes=10000, max_relator_length=24,
@@ -612,6 +613,7 @@ class GreedyHeavySolver:
         self.visited = set()
         self.pq = []
         self.n_discovered = 0
+        self.solved_depth = None       # depth of the solved node == path_length
 
     def solve(self, progress=None):
         """Return (solved, nodes_visited). Stats live on ``self``.
@@ -643,6 +645,7 @@ class GreedyHeavySolver:
 
             l1, l2 = key_lengths(key)
             if l1 == 1 and l2 == 1:
+                self.solved_depth = depth
                 return True, nodes_visited
 
             a1, a2 = unpack_arrays(key)
@@ -673,7 +676,7 @@ class GreedyHeavySolver:
 # ---------------------------------------------------------------------------
 def _greedy_search_heavy(r1_str, r2_str, node_budget, max_relator_length,
                          cyclic_reduce, progress=None):
-    """HIGH_SPEEDUP path: same stats dict, but no path/path_moves."""
+    """HIGH_SPEEDUP path: same stats dict (path_length included), no path/path_moves."""
     solver = GreedyHeavySolver(
         r1_str, r2_str,
         max_nodes=node_budget,
@@ -687,7 +690,7 @@ def _greedy_search_heavy(r1_str, r2_str, node_budget, max_relator_length,
     return {
         "solved": solved,
         "nodes_explored": nodes_visited,
-        "path_length": None,
+        "path_length": solver.solved_depth,
         "min_relator_length": solver.min_total,
         "min_relator": [min_r[0], min_r[1]],
         "max_relator_length": solver.max_total,
@@ -711,8 +714,9 @@ def greedy_search(r1_str, r2_str, node_budget, max_relator_length=24,
     reproduces ``path`` via ``moves_to_states`` — the compact storage form.
 
     ``high_speedup=True`` uses the memory-lean solver (for 1M-node runs): the
-    same ``solved``/``nodes_explored``/min/max stats, but ``path``/``path_moves``
-    come back empty — recover them by re-running with ``high_speedup=False``.
+    same ``solved``/``nodes_explored``/``path_length``/min/max stats, but
+    ``path``/``path_moves`` come back empty — recover the path (not the length,
+    which is already reported) by re-running with ``high_speedup=False``.
 
     ``progress``: optional callback for live nodes/s reporting; result-neutral.
     """

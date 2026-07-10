@@ -61,8 +61,6 @@ def _check(entry, high_speedup=False):
                           cyclic_reduce=entry["cyclic"],
                           high_speedup=high_speedup)
     for field in CHECKED:
-        if high_speedup and field == "path_length":
-            continue          # the heavy solver never reports a path
         assert stats[field] == entry[field], (
             f"{field} changed for {entry['dataset']} pres {entry['pres_id']} "
             f"(budget={entry['budget']}, cap={entry['cap']}, "

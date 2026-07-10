@@ -378,6 +378,7 @@ def _run_chunk(arena, len1, len2, depth, heap, table, st,
             exp_total = total
             exp_id = top
         if l1 == 1 and l2 == 1:
+            st[10] = np.int64(depth[top])   # solved node's depth == path_length
             status = _SOLVED
             break
 
@@ -503,7 +504,8 @@ class GreedyCompactSolver:
                     self.tcap - 1, a1, a2, self.w, self.rw)
         init_total = int(self.len1[0]) + int(self.len2[0])
 
-        st = np.zeros(10, dtype=np.int64)
+        st = np.zeros(11, dtype=np.int64)
+        st[10] = -1                    # solved node depth (path_length); -1 = unset
         st[1] = 1                      # heap_len: the initial state
         st[2] = 1                      # n_discovered
         st[3] = self.tcap - 1          # tmask
@@ -542,6 +544,7 @@ class GreedyCompactSolver:
         self.min_id, self.min_total = int(st[4]), int(st[5])
         self.max_id, self.max_total = int(st[6]), int(st[7])
         self.max_expanded_id, self.max_expanded_total = int(st[8]), int(st[9])
+        self.solved_depth = int(st[10]) if solved else None
         return solved, int(st[0])
 
     def relators(self, sid):
@@ -558,7 +561,8 @@ class GreedyCompactSolver:
 
 def greedy_search_compact(r1_str, r2_str, node_budget, max_relator_length=24,
                           cyclic_reduce=True, progress=None, reserve_states=None):
-    """Same stats dict as ``_greedy_search_heavy``: no path, identical numbers."""
+    """Same stats dict as ``_greedy_search_heavy``: path_length reported (the
+    solved node's depth), but no path/path_moves. Identical numbers otherwise."""
     solver = GreedyCompactSolver(
         r1_str, r2_str,
         max_nodes=node_budget,
@@ -573,7 +577,7 @@ def greedy_search_compact(r1_str, r2_str, node_budget, max_relator_length=24,
     return {
         "solved": solved,
         "nodes_explored": nodes_visited,
-        "path_length": None,
+        "path_length": solver.solved_depth,
         "min_relator_length": solver.min_total,
         "min_relator": [min_r[0], min_r[1]],
         "max_relator_length": solver.max_total,

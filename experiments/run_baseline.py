@@ -80,10 +80,12 @@ DEFAULT_CONFIG = {
     "RESUME": True,
 
     # HIGH_SPEEDUP — for heavy (e.g. 1M-node) runs ONLY. Same solved /
-    # nodes_explored / min+max relator lengths as the normal path (verified),
-    # but ~2.6x less memory and ~2.4x faster, and it parallelises across
-    # presentations. Solved presentations are re-solved by the normal solver
-    # afterwards to recover their path (rare: heavy runs are the hard ones).
+    # nodes_explored / path_length / min+max relator lengths as the normal path
+    # (verified), but ~2.6x less memory and ~2.4x faster, and it parallelises
+    # across presentations. path_length is reported directly by the heavy/compact
+    # solver (it is the solved node's depth), so it needs NO recovery even with
+    # use_path off. Solved presentations are re-solved by the normal solver
+    # afterwards only to recover the full path (rare: heavy runs are the hard ones).
     "HIGH_SPEEDUP": False,
     # Which memory-lean solver HIGH_SPEEDUP uses. Both pop in the same order and
     # return the same stats, so this is result-neutral and stays OUT of

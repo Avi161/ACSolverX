@@ -92,7 +92,7 @@ def test_a_solved_run_ends_on_single_letter_relators(adapter, pres, budget, _id)
     if not s.solved:
         pytest.skip("this case does not solve within budget")
     if not adapter.yields_path:
-        assert s.path_moves == () and s.path_length is None
+        assert s.path_moves == () and s.path_length is not None
         pytest.skip(f"{adapter.name} does not reconstruct paths by design")
     final = s.path_states[-1]
     assert final.all_relators_are_single_letters()

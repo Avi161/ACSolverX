@@ -86,7 +86,9 @@ def test_a_solved_row_is_written_before_its_path_is_recovered(
     assert len(rows) == 4, "a failed recovery lost search rows"
     assert all(r["solved"] for r in rows)
     assert all(r["path_pending"] is True for r in rows)
-    assert all(r["path_length"] is None for r in rows)
+    # path_length is the solved node's depth, reported by the heavy search itself,
+    # so it is present even though the (separate) path recovery failed.
+    assert all(r["path_length"] is not None for r in rows)
     assert all("path_recovered" not in r for r in rows)
     assert _paths_of(out) == [], "no path exists yet"
 
@@ -139,7 +141,7 @@ def test_one_failed_recovery_does_not_abort_the_others(
     assert len(by_id) == 4
 
     assert by_id[1].get("path_pending") is True, "the victim keeps its search row"
-    assert by_id[1]["path_length"] is None
+    assert by_id[1]["path_length"] is not None  # reported by the search, not recovery
     for pid in (0, 2, 3):
         assert by_id[pid].get("path_recovered") is True, \
             "one failure aborted the other recoveries"
