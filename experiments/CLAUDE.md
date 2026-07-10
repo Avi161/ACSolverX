@@ -13,7 +13,9 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 - `_repair_jsonl` runs before anything opens the jsonl for append, and is NOT gated on `RESUME`. Every other reader relies on it. [why a reader-side guard is not enough](lessons/run-baseline-two-known-bugs.md)
 - The `HIGH_SPEEDUP` pool defers a solved row's *path* to a serial recovery re-solve, but writes the row itself up-front as `path_pending` and rewrites it in place — never park a result in RAM. [why deferred](lessons/high-speedup-boxing-and-memory.md) · [why persisted first](lessons/heavy-mode-defers-solved-rows.md) · [heavy ≡ normal](lessons/high-speedup-verified-locally.md) · [a worker can't print](lessons/heartbeat-worker-cannot-print.md) · [nor can a thread](lessons/no-print-from-background-thread.md) · [an unexplained hang](lessons/forked-workers-block-cause-unknown.md)
 - Worker count is sized from measured memory, and a worker that OOMs is counted, not lost. [sizing + the `tracemalloc` trap + pickling an exception back](lessons/gb-per-pres-sized-from-measured-memory.md)
-- Only the parent writes the jsonl. Output on a Drive mount (`_is_remote`) is appended to a local `_stage` copy and mirrored whole-file; `_seed_stage` rebuilds the stage from the mirror on a fresh VM. Everything fsyncs via `_persist`; `_report_lost_rows` is the backstop. A guard-tripped presentation has no row until the pool finishes. [a hole is not a write race](lessons/jsonl-hole-is-not-a-write-race.md)
+- Only the parent writes the jsonl. Output on a Drive mount (`_is_remote`) is appended to a local `_stage` copy and mirrored whole-file; `_seed_stage` rebuilds the stage from the mirror on a fresh VM. Everything fsyncs via `_persist`; `_report_lost_rows` is the backstop. [a hole is not a write race](lessons/jsonl-hole-is-not-a-write-race.md)
+- A guard trip writes its row at once as `mem_abort_pending` and `_finalize` overwrites it in place after the serial retry; `mem_abort` without the flag is terminal. `out_f` must be closed before either retry loop — `_update_row` does `os.replace`. [a deferred result must reach disk](lessons/mem-abort-pending-row.md)
+- `greedy_search` here is a *dispatcher* over `SOLVER` ("compact" | "heavy"), and the single seam every search and every test monkeypatch goes through. `SOLVER` is result-neutral, so it must never enter `_run_prefix`; `_est_gb_per_pres` is solver-aware. [why the solvers agree](lessons/compact-solver-arena-heap.md)
 - Heartbeat cadence has two separate phases. [first emission ≠ period](lessons/heartbeat-first-emission-phase-bug.md)
 
 **`wandb_tracking.py`** — run identity, panels, live metrics.
@@ -26,6 +28,15 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 - [paths are Definition 2.1 moves; replay, don't diff](lessons/store-paths-as-definition-2-1-moves.md)
 - [never lower `MAX_RELATOR_LENGTH` for speed](lessons/max-relator-length-is-inert.md)
 - [hoist k1-independent rotations](lessons/hoist-rotation-out-of-inner-loop.md) · [what to `@njit` and what not to](lessons/numba-jit-split.md)
+
+**`search/greedy_compact.py`** — the same search in numpy. Imports `expand_node_nj` verbatim.
+- Keys are unique, so `(total, depth, row)` is a strict total order and the heap implementation
+  cannot change the pop sequence. The nibble row must `memcmp`-sort like `pack_key`; a naive
+  back-to-back or LSB-first packing does not. Arrays are reserved once and never copied.
+  [[WORKS]](lessons/compact-solver-arena-heap.md)
+- `_run_chunk` runs ≤ `_HB_CHECK_EVERY` pops then returns, because an `@njit` loop cannot call
+  the Python `progress` callback the memory guard rides on.
+- numba: cast **both** ternary branches to `int64`; never round-trip a `uint64` through Python.
 
 **`greedy_tests/`** — the pipeline's test suite. **Run it after ANY change to the three files above**
 (`pytest experiments/greedy_tests -q`; `--runslow` before a push). See its `README.md`.
@@ -40,6 +51,14 @@ Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
 - `test_runner_recovery.py` pins the durability of heavy-mode solved rows: the row is written
   before the path is recovered, and a dying recovery is retried on resume without re-searching.
   [[TRAP]](lessons/heavy-mode-defers-solved-rows.md)
+- `test_runner_mem_pending.py` does the same for guard-tripped rows. Both fixes are
+  mutation-checked; if a suite passes on the first run, mutate the fix and watch it fail.
+  [[TRAP]](lessons/mem-abort-pending-row.md)
+- `test_solver_compact.py` + the nibble-row half of `test_packed_keys.py` guard the compact
+  solver. The sort corpus must be full-width, prefix-heavy and last-symbol-differing — the
+  shallow 7225-pair corpus passes for a *wrong* packer. `tools/bytes_per_state.py` derives
+  `_BYTES_PER_STATE*` without ever running a search above 1,000 nodes.
+  [[WORKS]](lessons/compact-solver-arena-heap.md)
 - A green default tier hides whatever it skipped. [[WORKS]](lessons/slow-tier-caught-broken-path-test.md)
   · [a vacuous guard makes a green test meaningless](lessons/cap-monotonicity-vacuous-guard.md)
   · [`-q` twice hides the summary](lessons/pytest-qq-suppresses-summary.md)

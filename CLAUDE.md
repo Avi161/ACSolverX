@@ -59,6 +59,8 @@ and a bloated CLAUDE.md gets ignored.
 ## Lessons index
 
 ### Search correctness (numba)
+- Before rewriting a priority queue, ask whether its keys are unique: if they are, pop order follows from the comparison alone and the heap implementation is free to change. That is why `greedy_compact` (nibble arena + int32 heap + open-addressing table, ~75 B/state vs ~220) pops identically. Assert the *first-seen* min/max relator strings — they pin discovery order. Size the memory constant at peak, not floor. [[WORKS]](experiments/lessons/compact-solver-arena-heap.md)
+- In numba, a `uint8`/`int64` ternary silently unifies to `float64`, and a `uint64` returned to Python cannot be passed back into an `@njit` function. [[TRAP]](experiments/lessons/compact-solver-arena-heap.md)
 - Stack-based free reduction is the safe form; any `rel[i+1]` peek in numba needs a bounds guard, and `str_to_arr('')` must return a 2-D `(0,2)`. [[TRAP]](experiments/lessons/reduce-relator-empty-word-oob.md)
 - Store solved paths as Definition 2.1 moves `(i,j,k1,k2)`, not string pairs — the move inverts the **other** relator, so decode by replay, never by diffing states. [[WORKS]](experiments/lessons/store-paths-as-definition-2-1-moves.md)
 - Never lower `MAX_RELATOR_LENGTH` to buy speed: it strictly shrinks the search space and can only reduce the solve rate. Cut `SUBSET` or `BUDGET` instead. [[WORKS]](experiments/lessons/max-relator-length-is-inert.md)
@@ -68,6 +70,7 @@ and a bloated CLAUDE.md gets ignored.
 ### HIGH_SPEEDUP / multiprocessing
 - A hole in the jsonl is never a raced write — only the parent writes it. Grep `memory guard tripped` first (a deferred row lands only after the pool finishes); then suspect the filesystem. `flush()` is not durability: never append to a Drive mount, append to local disk and mirror whole-file. Resume self-heals, so a lost row is only fatal when it is lost *every* attempt. [[TRAP]](experiments/lessons/jsonl-hole-is-not-a-write-race.md)
 - A computed result must reach disk before anything else is attempted with it: heavy mode parked every **solved** row in a RAM-only `deferred` list until the run ended, so a crash lost exactly the successes and resume re-searched them forever. Persist, then enrich in place. [[TRAP]](experiments/lessons/heavy-mode-defers-solved-rows.md)
+- Same defect, second occurrence: a guard-tripped row waited ~29 h for its serial retry, so a dying session left no trace and the pool re-tripped it forever. Persist it at once as `mem_abort_pending`; `mem_abort` alone is terminal. An in-place update that cannot find its row must say so, not no-op. [[TRAP]](experiments/lessons/mem-abort-pending-row.md)
 - Boxing was the cost and memory was the cap; a packed `bytes` key must sort identically to `(str, str)` or the heap tie-break shifts. Memory reduction is what unlocks parallelism. [[WORKS]](experiments/lessons/high-speedup-boxing-and-memory.md)
 - Heavy ≡ normal on `solved`/`nodes_explored`, ~2.8× faster; ms640 legitimately leaves several idx unsolved, so an unsolved row there is not a bug. [[WORKS]](experiments/lessons/high-speedup-verified-locally.md)
 - Size a search's RAM from the node budget (`discovered ≈ 82.9·b^0.981` states × 214 B, both measured), never one constant: 9.0 was too high at 50k *and* too low at 1M (~14 GB). [[WORKS]](experiments/lessons/gb-per-pres-sized-from-measured-memory.md)
