@@ -86,6 +86,42 @@ Two separate near-misses, both caught only because the checks were *external* to
    in its class in every run. **A claimed solve is the biggest claim the pipeline can make, so it
    must be cross-checked against the recorded partition, never read off an index.**
 
+## A checker that has never failed is not evidence — mutate it
+
+The proof book (`PROOFS.md` / `certificates.json`, built by `make_proof_book.py`) is re-checked by
+`verify_proofs.py` from the raw CSV alone. It passed all 135 edges on the first run. That means
+nothing until it can be made to fail, so `test_equivalence.py` now tampers with the shipped
+certificates seven ways — a substitution that doesn't carry `A` to `B`, a rotated AC move, the right
+words under the wrong `pres_id`, a non-invertible `φ` (`x ↦ xx`), two classes fused with no edge to
+justify it, a `pure_ac_path` flag set on an impure path, a wrong meeting state — and requires a
+non-zero exit on each.
+
+Writing those tests **immediately found a bug in the checker**: `Checker.bad()` returned `False`
+instead of `None`, so a failed side leaked `False` into the caller, which then did `list(False)` and
+died with a `TypeError`. It exited non-zero — for entirely the wrong reason, with no diagnosis. A
+falsy sentinel that is not `None` is indistinguishable from a *value* one frame up.
+
+**Rule:** an error sink returns `None`, never a falsy value. And the mutation that matters most is
+the **over-merge** (fuse two classes, add no edge): it is exactly the failure that checking edges one
+at a time cannot see, and only the partition rebuild catches it.
+
+## One certificate shape does not fit two kinds of edge
+
+A change-of-variables merge is provable in one line — recover `ψ = φ_B⁻¹ ∘ φ_A` (Nielsen reduction
+with tracking, `autinv.py`) and assert `canon(ψ(A)) == canon(B)`. It is by far the most readable
+form, and it holds for all 93 of them.
+
+It is tempting to reuse it on the 42 AC edges. **It is false there, by construction.** The two roots
+of an `ac` edge lie in *different* `Aut` orbits — that is why an AC move was needed at all — so their
+images under any `ψ` have different canonical forms; the two sides differ by exactly the AC moves. A
+checker that asserted that equality on an `ac` edge would **reject a correct certificate**. There,
+`ψ` is checked for being an automorphism and nothing more, and the proof is the path replay.
+
+The same trap in reverse on the reporting side: on 6 of the 42 the path has an identity `φ` at every
+step, so it *is* a pure AC path — but between `A` and `ψ(B)`, not between `A` and `B`. `ψ` is never
+the identity, so **no pair of the 261 is joined by a raw AC path.** Round that off and you have
+silently upgraded ACA to `~AC`, which is the one error this project keeps having to correct.
+
 ## Validate against facts the search did not produce
 
 Four external controls, all of which the machinery passes — this is what makes a *negative* result

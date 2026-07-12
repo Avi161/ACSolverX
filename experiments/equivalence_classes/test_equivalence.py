@@ -14,6 +14,7 @@ Layered so a bug in one layer cannot hide a bug in another:
 Run:  .venv/bin/python3 -m pytest experiments/equivalence_classes -q
 """
 import csv
+import json
 import os
 import random
 import sys
@@ -233,3 +234,121 @@ def test_a_merge_implies_equal_abelian_det(reps):
         comp.setdefault(dsu.find(i), []).append(abs(abelian_det(*reps[n])))
     for v in comp.values():
         assert len(set(v)) == 1
+
+
+# ------------------------------------------------------------------ Aut(F2) inverses
+def test_invert_is_a_two_sided_inverse_of_every_phi_in_the_certificates():
+    """`make_proof_book` states a change-of-variables merge as ONE substitution
+    psi = phi_B^-1 . phi_A, which needs phi_B^-1. Pins that the Nielsen-tracking inverse is right
+    on every phi the search actually produced, both ways round."""
+    from experiments.equivalence_classes.autinv import invert
+    from experiments.equivalence_classes.words import apply_hom
+    d = json.load(open(os.path.join(ROOT, "results", "equivalence_classes",
+                                    "sweep_seam_28_250.json")))
+    for name, r in d["roots"].items():
+        phi = r["phi"]
+        psi = invert(phi)
+        for g in ("x", "y"):
+            assert apply_hom(psi[g], phi) == g, name
+            assert apply_hom(phi[g], psi) == g, name
+
+
+@pytest.mark.parametrize("bad", ["xx", "xyX", "", "y"])
+def test_invert_rejects_a_non_automorphism(bad):
+    from experiments.equivalence_classes.autinv import invert
+    with pytest.raises(ValueError):
+        invert({"x": bad, "y": "y"})
+
+
+# ------------------------------------------------------------- the verification pipeline
+CERT = os.path.join(ROOT, "results", "equivalence_classes", "certificates.json")
+VERIFY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "verify_proofs.py")
+
+
+def _verify(path):
+    import subprocess
+    return subprocess.run([sys.executable, VERIFY, path], capture_output=True, text=True, cwd=ROOT)
+
+
+def test_verify_proofs_passes_on_the_shipped_certificates():
+    if not os.path.exists(CERT):
+        pytest.skip("certificates.json not present -- run make_proof_book.py")
+    out = _verify(CERT)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert "The 261 presentations are 126 distinct problems." in out.stdout, out.stdout
+
+
+def _first(cert, kind):
+    for c in cert["classes"]:
+        for e in c["edges"]:
+            if e["kind"] == kind:
+                return c, e
+    raise AssertionError(f"no {kind} edge")
+
+
+def _tamper_subst(cert):
+    """A change-of-variables edge whose psi does not actually carry A onto B."""
+    _, e = _first(cert, "cv")
+    e["subst"] = {"x": "xy", "y": "y"}
+
+
+def _tamper_move(cert):
+    """An AC move with a different rotation -- it will not land on the recorded state."""
+    _, e = _first(cert, "ac")
+    st = (e["side_a"]["steps"] or e["side_b"]["steps"])[0]
+    st["move"][2] += 1
+
+
+def _tamper_pres_id(cert):
+    """The right words under the wrong row number."""
+    cert["classes"][0]["members"][0]["pres_id"] += 1
+
+
+def _tamper_phi(cert):
+    """A substitution that is not an automorphism of F2 (x -> xx is not invertible)."""
+    _, e = _first(cert, "cv")
+    e["side_a"]["phi0"] = {"x": "xx", "y": "y"}
+
+
+def _tamper_overmerge(cert):
+    """Two classes fused in the member lists, with no edge to justify it -- exactly the failure
+    that verifying edges one by one cannot see, and the partition rebuild must."""
+    a, b = cert["classes"][0], cert["classes"][-1]
+    a["members"] += b["members"]
+    a["size"] += b["size"]
+    cert["classes"].pop()
+    cert["summary"]["classes"] -= 1
+
+
+def _tamper_pure_flag(cert):
+    """Claim a path is pure AC when a change of variables sits inside it."""
+    for c in cert["classes"]:
+        for e in c["edges"]:
+            if e["kind"] == "ac" and not e["pure_ac_path"]:
+                e["pure_ac_path"] = True
+                return
+    raise AssertionError("no impure ac edge")
+
+
+def _tamper_meet(cert):
+    """The two sides do not actually meet where the certificate says."""
+    _, e = _first(cert, "ac")
+    e["meet"][0] = e["meet"][0] + "x"
+
+
+@pytest.mark.parametrize("mutate", [
+    _tamper_subst, _tamper_move, _tamper_pres_id, _tamper_phi,
+    _tamper_overmerge, _tamper_pure_flag, _tamper_meet,
+])
+def test_verify_proofs_catches_a_tampered_certificate(mutate, tmp_path):
+    """A checker that has never failed is not evidence of anything. Each mutation is a way a
+    certificate could be wrong; every one must be rejected with a non-zero exit."""
+    if not os.path.exists(CERT):
+        pytest.skip("certificates.json not present -- run make_proof_book.py")
+    cert = json.load(open(CERT))
+    mutate(cert)
+    p = tmp_path / "tampered.json"
+    json.dump(cert, open(p, "w"))
+    out = _verify(str(p))
+    assert out.returncode != 0, f"{mutate.__name__} was NOT caught:\n{out.stdout}"
+    assert "FAILED" in out.stdout, out.stdout

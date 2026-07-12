@@ -135,7 +135,7 @@ not a discriminator.
 
 ---
 
-## 3. AC moves modulo `Aut(F₂)`: 168 → TBD
+## 3. AC moves modulo `Aut(F₂)`: 168 → 126
 
 ### Why the obvious search fails, and what to do instead
 
@@ -261,6 +261,89 @@ an AC-invariant the search never computes.
 
 ---
 
+## 5. The proof book: every class, derived step by step
+
+`verify_certificates.py` checks the *sweep's* output in the sweep's own idiom. That is the right
+gate for the pipeline, but it is not something a person can read. So the merges are also flattened
+into one self-contained derivation per class:
+
+| file | what |
+|---|---|
+| [`results/equivalence_classes/PROOFS.md`](../equivalence_classes/PROOFS.md) | all 126 classes, human-readable: the members, and for each edge the explicit substitution or the numbered list of AC moves with every intermediate state |
+| `results/equivalence_classes/certificates.json` | the same, machine-readable and self-contained — it needs neither the sweep nor the search |
+| `experiments/equivalence_classes/verify_proofs.py` | re-proves the whole thing from `certificates.json` + the raw CSV, and **nothing else** |
+
+```bash
+.venv/bin/python3 experiments/equivalence_classes/verify_proofs.py
+# presentations re-read from the CSV : 261
+# change-of-variables edges verified : 93   (one substitution, canon(psi(A)) == canon(B))
+# AC-move edges verified             : 42   (6 of them a pure AC path)
+# partition rebuilt from verified edges alone: 126 classes == the 126 reported
+# ALL 135 EDGES VERIFY. The 261 presentations are 126 distinct problems.
+```
+
+The 135 merges form a **spanning forest** over the 262 sources, so each class's edges are already a
+tree: every member is joined to every other by a unique chain, and there is no cycle to reconcile.
+The edges split into exactly two kinds, and they prove different things.
+
+### `cv` — a change of variables, and nothing else (93 of 135)
+
+One substitution `ψ ∈ Aut(F₂)` with
+
+```
+canon(ψ(A)) == canon(B)
+```
+
+**`B` is `A` with new words substituted for the generators.** No AC move is involved; it is checkable
+by hand in one line. The sweep records two substitutions per pair (each root to a shared `Aut`-minimal
+form); the single `ψ = φ_B⁻¹ ∘ φ_A` is recovered by `autinv.py`, which inverts an automorphism of F₂
+by **Nielsen reduction with tracking** and verifies `φ(φ⁻¹(g)) == g == φ⁻¹(φ(g))` on both generators
+before returning. All 93 land exactly.
+
+### `ac` — AC moves were needed (42 of 135)
+
+Both presentations are driven by Definition 2.1 moves to a common `Aut`-class, every intermediate
+state recorded. This proves **`A` and `B` are the same problem** — and, as always, *not* that an AC
+path joins them, because a change of variables is applied between the moves.
+
+**A refinement, and the strongest AC statement in this document:** on **6 of the 42** every step's
+change of variables is the identity, so the path is Definition 2.1 moves and nothing else. Those do
+give an AC path — from `A` to `ψ(B)`, where `ψ` is the relabelling that carried the two roots to
+their `Aut`-minimal forms:
+
+| | ψ |
+|---|---|
+| `17_11 ~AC ψ(17_20)` | `x→x, y→Y` |
+| `17_37 ~AC ψ(17_40)` | `x→x, y→Y` |
+| `19_39 ~AC ψ(19_41)` | `x→x, y→Y` |
+| `19_46 ~AC ψ(19_52)` | `x→x, y→Y` |
+| `23_18 ~AC ψ(23_10)` | `x→x, y→Y` |
+| `23_23 ~AC ψ(19_43)` | `x→yyyyyyyx, y→Y` |
+
+`ψ` is never the identity, so **not one of the 261 pairs is joined by a raw AC path** — the AC path
+always lands on a relabelled partner. That is a real limit on what was found, and it is stated rather
+than rounded off.
+
+> The equality `canon(ψ(A)) == canon(B)` holds for `cv` and **only** for `cv`. On an `ac` edge the two
+> sides differ by exactly the AC moves, so that equality is false *by construction*; a checker that
+> asserted it there would reject a correct certificate. `verify_proofs.py` asserts it for `cv`, and
+> for `ac` checks only that `ψ` is an automorphism.
+
+### The checker is mutation-tested
+
+A verifier that has never failed is not evidence. `test_equivalence.py` tampers with the shipped
+certificates seven ways — a substitution that doesn't carry `A` to `B`, a rotated AC move, a
+right-words/wrong-`pres_id` swap, a non-invertible `φ` (`x ↦ xx`), two classes fused with no edge
+to justify it, a `pure_ac_path` flag set on an impure path, a wrong meeting state — and requires a
+non-zero exit on every one. The over-merge mutation is the important one: it is exactly the failure
+that checking edges one at a time **cannot** see, and only the partition rebuild catches.
+
+*(Writing those tests immediately caught a bug in the checker itself: `Checker.bad()` returned
+`False` rather than `None`, so a failed side leaked `False` into the caller and crashed on
+`list(False)` instead of reporting. It exited non-zero — for the wrong reason.)*
+
+---
+
 ## Artifacts
 
 | file | what |
@@ -270,9 +353,14 @@ an AC-invariant the search never computes.
 | `experiments/equivalence_classes/autcanon.py` | Whitehead canonical form **carrying the witnessing automorphism** |
 | `experiments/equivalence_classes/aut_search.py` | the ACA search: multi-source BFS over `Aut`-classes + union-find |
 | `experiments/equivalence_classes/aca_search.py` | the raw-AC multi-source search — kept, because it is the measurement proving the hump is too high |
-| `experiments/equivalence_classes/verify_certificates.py` | the independent proof checker |
-| `experiments/equivalence_classes/test_equivalence.py` | the test suite |
-| `results/equivalence_classes/` | class tables, merges, certificates, run logs |
+| `experiments/equivalence_classes/verify_certificates.py` | the independent proof checker, over a sweep JSON |
+| `experiments/equivalence_classes/autinv.py` | inverse of an automorphism of F₂ (Nielsen reduction with tracking) — turns a two-sided `Aut` merge into a single substitution |
+| `experiments/equivalence_classes/make_proof_book.py` | sweep JSON → `certificates.json` + `PROOFS.md` |
+| `experiments/equivalence_classes/verify_proofs.py` | **the verification pipeline**: re-proves all 126 classes from `certificates.json` + the raw CSV alone |
+| `experiments/equivalence_classes/test_equivalence.py` | the test suite (32 tests, incl. 7 tamper-detection mutations) |
+| `results/equivalence_classes/PROOFS.md` | the proof book: every class, derived step by step |
+| `results/equivalence_classes/certificates.json` | the same, self-contained and machine-checkable |
+| `results/equivalence_classes/` | class tables, merges, sweep artifacts, run logs |
 
 Nothing under `experiments/search/` was modified.
 
