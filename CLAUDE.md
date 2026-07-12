@@ -58,6 +58,9 @@ and a bloated CLAUDE.md gets ignored.
 
 ## Lessons index
 
+### Equivalence classes (the 261 unsolved reps)
+- The 261 are **not** 261 problems: 168 up to change of variables (`Aut(F₂)`, exact — a wall), and fewer still under AC moves. Before searching for AC merges, quotient by every symmetry that preserves the *question* and re-measure the hump in the quotient — raw length is the wrong ruler, and the raw AC ball is exhausted below the hump. Never key on the peak-reduced form (not confluent: 259 classes, not 168), and never let the certificate verifier share the search's canonicalisation. [[WORKS]](experiments/lessons/search-the-aut-quotient-not-raw-length.md) · [the finding](../results/greedy_baseline/EQUIVALENCE_FINDING.md)
+
 ### Search correctness (numba)
 - Before rewriting a priority queue, ask whether its keys are unique: if they are, pop order follows from the comparison alone and the heap implementation is free to change. That is why `greedy_compact` (nibble arena + int32 heap + open-addressing table, ~75 B/state vs ~220) pops identically. Assert the *first-seen* min/max relator strings — they pin discovery order. Size the memory constant at peak, not floor. [[WORKS]](experiments/lessons/compact-solver-arena-heap.md)
 - In numba, a `uint8`/`int64` ternary silently unifies to `float64`, and a `uint64` returned to Python cannot be passed back into an `@njit` function. [[TRAP]](experiments/lessons/compact-solver-arena-heap.md)
