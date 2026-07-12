@@ -1,0 +1,33 @@
+sources        : 812 (261 reps + trivial + 550 MS bridges)
+Aut-min totals : min=13 median=19 max=25
+config         : moves=seam max_total=26 budget=120/source
+
+     5000 pops    73510 states   138 components     511s  (10 pops/s)
+    10000 pops   126682 states   138 components    1041s  (10 pops/s)
+    15000 pops   188556 states   138 components    1631s  (9 pops/s)
+    20000 pops   248212 states   137 components    2209s  (9 pops/s)
+
+======================================================================
+pops 21147  states 264774  2361s
+root-level Aut merges                 : 569
+ACA merges found by search            : 106
+CLASSES over the 261 reps             : 127
+SOLVED (merged with trivial)          : 0 []
+
+multi-member classes: 112  (singletons: 15)
+    8  ['18_6', '18_7', '21_1', '21_36', '22_13', '22_14', '23_21', '23_24']
+    6  ['15_12', '15_13', '15_14', '15_15', '21_34', '21_37']
+    5  ['17_41', '17_42', '19_37', '19_38', '20_12']
+    4  ['17_1', '17_35', '20_8', '20_9']
+    4  ['19_43', '19_48', '23_22', '23_23']
+    4  ['19_40', '19_42', '19_47', '19_51']
+    4  ['18_11', '18_9', '19_46', '19_52']
+    3  ['16_10', '16_6', '16_9']
+    2  ['15_2', '15_6']
+    2  ['15_3', '15_9']
+    2  ['15_4', '15_7']
+    2  ['15_5', '15_8']
+    2  ['17_2', '17_21']
+    2  ['17_27', '17_3']
+
+wrote /Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/equiv-classes/results/equivalence_classes/sweep_seam_26_120_ms.json
