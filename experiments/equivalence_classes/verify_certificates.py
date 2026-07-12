@@ -195,6 +195,7 @@ def main():
         if got != tuple(r["aut_rep"]):
             errs.append(f"root {name}: phi lands on {got}, claims {tuple(r['aut_rep'])}")
 
+    verified_pairs = []          # only merges that PASSED may rebuild the partition below
     for m in data["merges"]:
         a, b, at = m["a"], m["b"], tuple(m["at"])
         ra = tuple(roots[a]["aut_rep"])
@@ -205,6 +206,7 @@ def main():
                 errs.append(f"{w}: roots are NOT Aut-equivalent ({ra} vs {rb})")
             else:
                 n_aut += 1
+                verified_pairs.append((a, b))
             continue
         ea = replay_path(ra, [(tuple(s[0]), s[1], tuple(s[2])) for s in m["path_a"]],
                          f"{w}.a", errs)
@@ -218,6 +220,7 @@ def main():
             errs.append(f"{w}: paths end at {ea}, certificate claims {at}")
         else:
             n_aca += 1
+            verified_pairs.append((a, b))
 
     # the abelianisation invariant the search never computes: |det| is AC-invariant, and
     # a change of variables sends the row lattice L -> L.A with |det A| = 1, so |det| is
@@ -229,6 +232,82 @@ def main():
             errs.append(f"class {cls[:4]}...: |det| not constant: {ds}")
         dets.setdefault(tuple(sorted(ds)), 0)
         dets[tuple(sorted(ds))] += 1
+
+    # ---------------------------------------------------------------------------
+    # THE NUMBER ITSELF. Verifying every merge is not the same claim as verifying the
+    # partition: a union-find that over-merged would put a rep in a class it has no verified
+    # chain to, and every individual merge in the list would still check out. So rebuild the
+    # partition from scratch, using ONLY the merges that just passed, and require it to equal
+    # the reported one exactly. If it does, the class count is precisely the transitive closure
+    # of independently verified equivalences -- and *that* is what makes "126" a result rather
+    # than a number the search happened to print.
+    reported = data.get("rep_classes")
+    if reported is None:
+        # older sweeps stored only `classes`, which also carry the scaffolding sources
+        # (TRIVIAL / MS bridges / recorded jsonl states). The 261 reps are what the count is over.
+        csv_names = set(order)
+        reported = [sorted(n for n in c if n in csv_names) for c in data["classes"]]
+        reported = [c for c in reported if c]
+    if not reported:
+        errs.append("no rep classes found -- the partition check would be vacuous")
+    else:
+        rep_names = {c for cls in reported for c in cls}
+        # The closure must run over ALL sources, not just the reps: with MS bridges seeded, a
+        # chain reads rep -> MS cell -> rep, and restricting to rep-vs-rep pairs would drop it.
+        # Take the closure over everything, then project onto the 261.
+        parent = {n: n for n in roots}
+
+        def find(a):
+            while parent[a] != a:
+                parent[a] = parent[parent[a]]
+                a = parent[a]
+            return a
+
+        for a, b in verified_pairs:
+            if a in parent and b in parent:
+                ra, rb = find(a), find(b)
+                if ra != rb:
+                    parent[rb] = ra
+        # pre-unions (jsonl states) are AC-reachable from their root by construction; their
+        # provenance was checked above, so they may join the closure -- but say so, because they
+        # are the one link here that is not replayable.
+        for p in pre:
+            a, b = p["root"], p["state"]
+            if a in parent and b in parent:
+                ra, rb = find(a), find(b)
+                if ra != rb:
+                    parent[rb] = ra
+        rebuilt = {}
+        for n in rep_names:
+            rebuilt.setdefault(find(n), []).append(n)
+        got = {frozenset(v) for v in rebuilt.values()}
+        want = {frozenset(c) for c in reported}
+        if got != want:
+            errs.append(
+                f"PARTITION MISMATCH: {len(got)} classes rebuilt from verified merges, "
+                f"{len(want)} reported; {len(want - got)} reported classes are not the "
+                f"closure of any verified chain")
+        else:
+            print(f"partition rebuilt from verified merges alone: {len(got)} classes "
+                  f"== the {len(want)} reported  [the count is proved, not just the merges]")
+
+    # A claimed SOLVE is the biggest claim this pipeline can make, so it is checked against the
+    # recorded partition rather than trusted. (It has already been wrong once: the runner read
+    # the trivial component off the LAST source index, which is only TRIVIAL when no bridge
+    # sources are appended after it, and briefly reported four presentations as solved.)
+    triv_cls = [c for c in data["classes"] if "TRIVIAL" in c]
+    if len(triv_cls) != 1:
+        errs.append(f"TRIVIAL appears in {len(triv_cls)} classes, expected exactly 1")
+    else:
+        really = sorted(n for n in triv_cls[0] if n != "TRIVIAL" and n in set(order))
+        claimed = sorted(data.get("solved", []))
+        if claimed != really:
+            errs.append(f"SOLVED claim {claimed} does not match the partition, which puts "
+                        f"{really or 'nothing'} in the trivial class")
+        elif really:
+            # a genuine solve: the presentation reached a state Aut-equivalent to (x, y), i.e.
+            # a BASIS of F2 -- and a basis pair is AC-trivial. That is a real trivialisation.
+            print(f"*** SOLVED: {really} reached the Aut-class of the trivial presentation")
 
     print(f"checked {len(roots)} roots, {n_aut} aut merges, {n_aca} aca merges"
           + (f", {n_pre} pre-unioned 1M-node states (provenance)" if n_pre else ""))

@@ -131,7 +131,10 @@ def main():
     for i in range(S):
         comps.setdefault(dsu.find(i), []).append(sources[i][0])
 
-    triv_root = dsu.find(S - 1)
+    # NOT dsu.find(S - 1): TRIVIAL is the last source only when no bridges are appended after
+    # it. With +ms / +jsonl, S-1 is a bridge, and this reported that bridge's component as
+    # "solved" -- which briefly looked like four of the 261 had been trivialised. They had not.
+    triv_root = dsu.find(idx[TRIVIAL])
     solved = [n for n in comps[triv_root]
               if n != TRIVIAL and not n.startswith("MS/") and not n.startswith("J/")]
 

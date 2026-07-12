@@ -181,7 +181,7 @@ therefore **upper bounds** on the number of distinct problems.
 
 ### Results: 168 → 126
 
-Four independent configurations were run. They **converge**, which is the main reason to believe
+Five independent configurations were run. They **converge**, which is the main reason to believe
 the number:
 
 | config | sources | pops | `aut` merges | `aca` merges | **classes** | solved |
@@ -189,9 +189,13 @@ the number:
 | `seam`, cap 26, 30/source | 262 | 3,986 | 93 | 41 | **127** | 0 |
 | `full` move set, cap 26, 60/source | 262 | 7,464 | 93 | 41 | **127** | 0 |
 | `seam`, cap 26, 120/source, **+550 MS bridges** | 812 | 21,147 | 569 | 106 | **127** | 0 |
+| `seam`, cap 26, 120/source, **+783 recorded 1M-node states** | 1,045 | 44,992 | 351 | 36 | **127** | 0 |
 | **`seam`, cap 28, 250/source** | 262 | 32,432 | 93 | **42** | **126** | 0 |
 
-**All certificates verify in every one of them.** `|det| = 1` is constant across every class.
+**All certificates verify in every one of them,** and in every one the **partition is rebuilt from
+the verified merges alone and matches the reported one** — so 126 is the exact transitive closure
+of independently checked equivalences, not merely a number the search printed. `|det| = 1` is
+constant across every class.
 
 > ## **261 presentations. 126 distinct problems. 52% of that 1M-node sweep was duplicated compute.**
 
@@ -210,12 +214,23 @@ Total relator length to run: **2,488**, against 5,204 for all 261.
 - **The 550 raw Miller–Schupp presentations do not bridge different classes.** Seeding them (812
   sources) found 106 `aca` merges — but every one of them connected an MS cell to *its own* rep.
   Not one connected two different rep classes. The unreduced presentations are not a shortcut.
+- **Neither do the 783 states the 1M-node sweep recorded.** Each `min_relator` / `max_relator` is
+  AC-reachable from its root by construction, so seeding all 783 hands the search, for free, states
+  that cost a million nodes each to find. It bought **nothing**: still 127. Those states are deep,
+  but they are deep in a direction that does not connect to anything else.
 - **More budget is not the answer.** 30 → 250 nodes per source, with the cap raised from 26 to 28,
   bought exactly **one** further merge. The search has converged: the remaining classes are far
   apart in the ACA graph, not merely out of reach.
 - **None of the 261 is AC-trivial** at this budget — and because the search recognises the 640
   known-trivial MS cells in under 20 pops (§4), that is a **real negative**, not an absence of
   evidence.
+
+  > A run did briefly report four of them (`18_9, 18_11, 19_46, 19_52`) as **solved**. It was a
+  > reporting bug, not a result: the runner read the trivial component off the *last* source index,
+  > which is `TRIVIAL` only when no bridge sources are appended after it. `TRIVIAL` is in fact
+  > alone in its class in all five runs. The verifier now cross-checks any claimed solve against
+  > the recorded partition, so this cannot recur silently. It is recorded here because a claimed
+  > trivialisation is the single biggest claim this pipeline can make, and it was wrong.
 
 ---
 
