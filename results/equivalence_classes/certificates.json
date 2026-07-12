@@ -13,6 +13,7 @@
   "cv_edges": 93,
   "ac_edges": 42,
   "ac_pure_path_edges": 6,
+  "cv_single_letter": 88,
   "singletons": 13,
   "largest_class": 8
  },

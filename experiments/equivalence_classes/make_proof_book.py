@@ -266,6 +266,13 @@ def main():
         "summary": {"presentations": sum(c["size"] for c in classes),
                     "classes": len(classes), "edges": n_cv + n_ac,
                     "cv_edges": n_cv, "ac_edges": n_ac, "ac_pure_path_edges": n_pure,
+                    # a single-letter image makes the substitution a plain case swap; a longer one
+                    # does not (the inverse letter maps to a REVERSED word), so the reader must be
+                    # told which kind they are looking at.
+                    "cv_single_letter": sum(1 for c in classes for e in c["edges"]
+                                            if e["kind"] == "cv"
+                                            and len(e["subst"]["x"]) == 1
+                                            and len(e["subst"]["y"]) == 1),
                     "singletons": sum(1 for c in classes if c["size"] == 1),
                     "largest_class": max(c["size"] for c in classes)},
         "classes": classes,
@@ -326,6 +333,31 @@ def render(cert):
         "",
         "A relator is a word in two generators. `x` and `y` are the generators; **a capital letter "
         "is an inverse** — `X` = `x⁻¹`, `Y` = `y⁻¹`. So `YYYxxyyX` means `y⁻¹y⁻¹y⁻¹xxyy x⁻¹`.",
+        "",
+        "### What a substitution means — and what happens to the capitals",
+        "",
+        "A substitution `psi: x -> …, y -> …` lists only where the **generators** go. It is a "
+        "*homomorphism*, so the capitals are not free to choose — they follow automatically. Since "
+        "`X` is just notation for `x⁻¹`:",
+        "",
+        "```",
+        "psi(X) = psi(x^-1) = psi(x)^-1 = reverse psi(x), then swap the case of every letter",
+        "```",
+        "",
+        "So **yes, `y -> Y` also means `Y -> y`** — but only because the image is a single letter, "
+        "where inverting is just a case swap. When the image is longer the inverse is a *reversed* "
+        "word, and reading it as a case swap gives the wrong answer:",
+        "",
+        "| `psi` says | so the capital must go | because |",
+        "|---|---|---|",
+        "| `y -> Y` | `Y -> y` | `(y⁻¹)⁻¹ = y` — here it *is* just a case swap |",
+        "| `x -> xY` | `X -> yX` | reverse `xY` → `Yx`, swap case → `yX` |",
+        "| `x -> xy` | `X -> YX` | reverse `xy` → `yx`, swap case → `YX` |",
+        "| `x -> yx` | `X -> XY` | reverse `yx` → `xy`, swap case → `XY` |",
+        "",
+        f"{s['cv_single_letter']} of the {s['cv_edges']} change-of-variables edges have "
+        "single-letter images, where substituting really is just swapping cases. "
+        f"**{s['cv_edges'] - s['cv_single_letter']} do not** — for those, reverse first.",
         "",
         "### The one thing that trips everyone up",
         "",

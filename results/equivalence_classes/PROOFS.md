@@ -34,6 +34,25 @@ Every class below is a tree of edges: each member is joined to the rest by a cha
 
 A relator is a word in two generators. `x` and `y` are the generators; **a capital letter is an inverse** — `X` = `x⁻¹`, `Y` = `y⁻¹`. So `YYYxxyyX` means `y⁻¹y⁻¹y⁻¹xxyy x⁻¹`.
 
+### What a substitution means — and what happens to the capitals
+
+A substitution `psi: x -> …, y -> …` lists only where the **generators** go. It is a *homomorphism*, so the capitals are not free to choose — they follow automatically. Since `X` is just notation for `x⁻¹`:
+
+```
+psi(X) = psi(x^-1) = psi(x)^-1 = reverse psi(x), then swap the case of every letter
+```
+
+So **yes, `y -> Y` also means `Y -> y`** — but only because the image is a single letter, where inverting is just a case swap. When the image is longer the inverse is a *reversed* word, and reading it as a case swap gives the wrong answer:
+
+| `psi` says | so the capital must go | because |
+|---|---|---|
+| `y -> Y` | `Y -> y` | `(y⁻¹)⁻¹ = y` — here it *is* just a case swap |
+| `x -> xY` | `X -> yX` | reverse `xY` → `Yx`, swap case → `yX` |
+| `x -> xy` | `X -> YX` | reverse `xy` → `yx`, swap case → `YX` |
+| `x -> yx` | `X -> XY` | reverse `yx` → `xy`, swap case → `XY` |
+
+88 of the 93 change-of-variables edges have single-letter images, where substituting really is just swapping cases. **5 do not** — for those, reverse first.
+
 ### The one thing that trips everyone up
 
 Every presentation below is printed in **canonical form**, and canonicalisation quietly rewrites the relators. So when you substitute `y → Y` into a relator, **the string you get is almost never the target string you see printed** — you must still invert it and rotate it. That is not a gap in the proof; it is bookkeeping. But it is invisible unless it is written down, so **every derivation below writes it down**, step by step.
