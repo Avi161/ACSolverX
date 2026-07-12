@@ -24,21 +24,62 @@ That reads `certificates.json` and the raw presentation CSV and *nothing else* �
 
 Every class below is a tree of edges: each member is joined to the rest by a chain of the edges listed under it. Two kinds, and they prove different things.
 
-### `cv` — change of variables only
+---
 
-A single substitution `psi` in `Aut(F₂)` with `canon(psi(A)) == canon(B)`. **B is A with new words substituted for the generators**, full stop — no AC move is involved. Check it by hand: substitute and compare canonical forms.
+## How to read a proof, by hand, with no computer
 
-### `ac` — AC moves were needed
+**Read this section once and every derivation below becomes checkable with a pencil.**
 
-Both presentations are driven by Definition 2.1 moves
+### The alphabet
+
+A relator is a word in two generators. `x` and `y` are the generators; **a capital letter is an inverse** — `X` = `x⁻¹`, `Y` = `y⁻¹`. So `YYYxxyyX` means `y⁻¹y⁻¹y⁻¹xxyy x⁻¹`.
+
+### The one thing that trips everyone up
+
+Every presentation below is printed in **canonical form**, and canonicalisation quietly rewrites the relators. So when you substitute `y → Y` into a relator, **the string you get is almost never the target string you see printed** — you must still invert it and rotate it. That is not a gap in the proof; it is bookkeeping. But it is invisible unless it is written down, so **every derivation below writes it down**, step by step.
+
+Canonical form does exactly three things, and each is free:
+
+| | what it does | why it changes nothing |
+|---|---|---|
+| **freely reduce** | delete any `xX`, `Xx`, `yY`, `Yy` | `x x⁻¹` is the empty word |
+| **invert** a relator | `r ↦ r⁻¹` (reverse the word, swap every letter's case) | a relator is a *relation* `r = 1`; `r⁻¹ = 1` says the same thing. It is also one of the four AC moves. |
+| **rotate** a relator | move letters from the end to the front | a rotation is a conjugate: if `r = uv` then the rotation `vu = u⁻¹(uv)u = u⁻¹ r u`. Conjugating a relator is an AC move, and it does not change the group. |
+
+(It also sorts the two relators, since which one you write first is not data.) Among all the rotations of `r` and of `r⁻¹`, canonical form keeps the alphabetically least — a fingerprint, so two presentations that differ only by this bookkeeping get the same string.
+
+So a derivation line like
 
 ```
-r_i  <-  rot_k1(r_i) . rot_k2(r_j^±1)          (the move inverts the OTHER relator)
+  r1 = YYYxxyyX
+       substitute y -> Y   ->  yyyxxYYX
+       invert             ->  xyyXXYYY
+       rotate by 3        ->  YYYxyyXX     = r1 of 19_50   [MATCH]
 ```
 
-to a common `Aut(F₂)`-class. This proves **A and B are the same problem** — A is AC-trivial ⟺ B is. It does **not** exhibit an AC path from A to B, because a change of variables is applied between the moves.
+is checked with a pencil: swap the case of every `y`; then reverse the word and swap every letter's case; then move the last 3 letters to the front. The result is the printed target. **The substitution is the only mathematical content — the invert and the rotate are notation.**
+
+### The two kinds of edge
+
+#### `cv` — change of variables only
+
+A single substitution `psi` with `canon(psi(A)) == canon(B)`. **B is A with new words substituted for the generators** — no AC move at all. Every one is derived below, relator by relator, in the form just shown.
+
+#### `ac` — AC moves were needed
+
+Both presentations are driven to a common form by **Definition 2.1 moves**:
+
+```
+r_i  <-  rot_k1(r_i) . rot_k2(r_j^±1)          (note: the move inverts the OTHER relator)
+```
+
+In words: rotate relator `i` by `k1`, rotate the *other* relator by `k2` (inverting it first if the exponent is `-1`), and **concatenate them** — the product replaces relator `i`. The other relator is untouched. Every move below shows the two rotated pieces and their product, so you can concatenate the strings yourself.
+
+This proves **A and B are the same problem** — A is AC-trivial ⟺ B is. It does **not** exhibit an AC path from A to B, because a change of variables is applied between the moves.
 
 On **6 of the 42** the change of variables at every step is the identity, so the path is Definition 2.1 moves and nothing else. Those are flagged `pure AC path` and do give an AC path — from `A` to `psi(B)`, where `psi` is the relabelling that carried the two roots to their `Aut`-minimal forms. **Not** from A to B; no edge here proves that.
+
+---
 
 ## Index
 
@@ -192,52 +233,130 @@ On **6 of the 42** the change of variables at every step is the identity, so the
 
 **179 (22_13)  ≡  180 (22_14)** — *change of variables only*
 
-Substitute `x -> X, y -> y` into `22_13`:
+Substitute `x -> X, y -> y` into **22_13** (`YXYxx`, `YYYYYYYYxyyyyyyyX`), then normalise:
 
 ```
-    (YXYxx, YYYYYYYYxyyyyyyyX)
-      ==>  (YXXYx, YYYYYYYYXyyyyyyyx)   = the canonical form of 22_14   [MATCH]
+  r1 = YXYxx
+       substitute      ->  YxYXX
+       rotate by 3     ->  YXXYx
+                           = r1 of 22_14   [MATCH]
+  r2 = YYYYYYYYxyyyyyyyX
+       substitute      ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 22_14   [MATCH]
 ```
+
+which is exactly **22_14** = (`YXXYx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 **179 (22_13)  ≡  182 (23_21)** — *change of variables only*
 
-Substitute `x -> xY, y -> y` into `22_13`:
+Substitute `x -> xY, y -> y` into **22_13** (`YXYxx`, `YYYYYYYYxyyyyyyyX`), then normalise:
 
 ```
-    (YXYxx, YYYYYYYYxyyyyyyyX)
-      ==>  (YXYxYx, YYYYYYYYxyyyyyyyX)   = the canonical form of 23_21   [MATCH]
+  r1 = YXYxx
+       substitute      ->  XYxYxY
+       rotate by 1     ->  YXYxYx
+                           = r1 of 23_21   [MATCH]
+  r2 = YYYYYYYYxyyyyyyyX
+       substitute      ->  YYYYYYYYxyyyyyyyX
+                           = r2 of 23_21   [MATCH]
 ```
+
+which is exactly **23_21** = (`YXYxYx`, `YYYYYYYYxyyyyyyyX`). No AC move was used.
 
 **4 (21_1)  ≡  186 (21_36)** — *change of variables only*
 
-Substitute `x -> Y, y -> x` into `21_1`:
+Substitute `x -> Y, y -> x` into **21_1** (`YXYxyx`, `YYYYYYYYxxxxxxx`), then normalise:
 
 ```
-    (YXYxyx, YYYYYYYYxxxxxxx)
-      ==>  (YXyXYx, YYYYYYYXXXXXXXX)   = the canonical form of 21_36   [MATCH]
+  r1 = YXYxyx
+       substitute      ->  XyXYxY
+       rotate by 1     ->  YXyXYx
+                           = r1 of 21_36   [MATCH]
+  r2 = YYYYYYYYxxxxxxx
+       substitute      ->  XXXXXXXXYYYYYYY
+       rotate by 7     ->  YYYYYYYXXXXXXXX
+                           = r2 of 21_36   [MATCH]
 ```
+
+which is exactly **21_36** = (`YXyXYx`, `YYYYYYYXXXXXXXX`). No AC move was used.
 
 **179 (22_13)  ≡  191 (23_24)** — *change of variables only*
 
-Substitute `x -> XY, y -> y` into `22_13`:
+Substitute `x -> XY, y -> y` into **22_13** (`YXYxx`, `YYYYYYYYxyyyyyyyX`), then normalise:
 
 ```
-    (YXYxx, YYYYYYYYxyyyyyyyX)
-      ==>  (YXYXYx, YYYYYYYYXyyyyyyyx)   = the canonical form of 23_24   [MATCH]
+  r1 = YXYxx
+       substitute      ->  xYXYXY
+       rotate by 5     ->  YXYXYx
+                           = r1 of 23_24   [MATCH]
+  r2 = YYYYYYYYxyyyyyyyX
+       substitute      ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 23_24   [MATCH]
 ```
+
+which is exactly **23_24** = (`YXYXYx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 **196 (18_6)  ≡  179 (22_13)** — *AC moves + change of variables*, 1 + 1 AC moves
 
 ```
   left  — 18_6
-    P                                  = (YXYXyxx, YYYYYYxyXyx)
-    x -> x, y -> Y                     = (YXXyxYx, YYYYYYXyxyX)   [to the Aut-minimal form]
-    r1 <- rot_0(r1) . rot_1(r2)        = (YYYYYYXyxyX, YYYYYYYXyXyx)   [AC move]
-    x -> yyyyyyx, y -> Y               = (YXXYx, YYYYYYYXYxyyyyyyyX)   [change of variables]
+    start: (YXYXyxx, YYYYYYxyXyx)
+    change of variables: x -> x, y -> Y
+      r1 = YXYXyxx
+           substitute      ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYYxyXyx
+           substitute      ->  yyyyyyxYXYx
+           invert          ->  XyxyXYYYYYY
+           rotate by 6     ->  YYYYYYXyxyX
+                               = r2
+    => (YXXyxYx, YYYYYYXyxyX)
+
+    AC move:  r1 <- rot_0(r1) . rot_1(r2)
+        rot_0(r1)        =  YXXyxYx
+        rot_1(r2)        =  XYYYYYYXyxy
+        concatenate      =  YXXyxYxXYYYYYYXyxy
+        cancel inverses  =  YXXyxYYYYYYYXyxy
+        reduce cyclically=  XyxYYYYYYYXy
+        rotate by 9      =  YYYYYYYXyXyx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYYYXyxyX, YYYYYYYXyXyx)
+    change of variables: x -> yyyyyyx, y -> Y
+      r1 = YYYYYYXyxyX
+           substitute      ->  yyyyyyXYxYXYYYYYY
+           reduce          ->  XYxYX
+           rotate by 2     ->  YXXYx
+                               = r1
+      r2 = YYYYYYYXyXyx
+           substitute      ->  yyyyyyyXYYYYYYYXYx
+           rotate by 10    ->  YYYYYYYXYxyyyyyyyX
+                               = r2
+    => (YXXYx, YYYYYYYXYxyyyyyyyX)
   right — 22_13
-    P                                  = (YXYxx, YYYYYYYYxyyyyyyyX)
-    x -> X, y -> y                     = (YXXYx, YYYYYYYYXyyyyyyyx)   [to the Aut-minimal form]
-    r2 <- rot_8(r2) . rot_2(r1^-1)     = (YXXYx, YYYYYYYXYxyyyyyyyX)   [AC move]
+    start: (YXYxx, YYYYYYYYxyyyyyyyX)
+    change of variables: x -> X, y -> y
+      r1 = YXYxx
+           substitute      ->  YxYXX
+           rotate by 3     ->  YXXYx
+                               = r1
+      r2 = YYYYYYYYxyyyyyyyX
+           substitute      ->  YYYYYYYYXyyyyyyyx
+                               = r2
+    => (YXXYx, YYYYYYYYXyyyyyyyx)
+
+    AC move:  r2 <- rot_8(r2) . rot_2(r1^-1)
+        rot_8(r2)        =  yyyyyyyxYYYYYYYYX
+        rot_2(r1^-1)     =  xyXyx
+        concatenate      =  yyyyyyyxYYYYYYYYXxyXyx
+        cancel inverses  =  yyyyyyyxYYYYYYYXyx
+        invert           =  XYxyyyyyyyXYYYYYYY
+        rotate by 7      =  YYYYYYYXYxyyyyyyyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYx, YYYYYYYXYxyyyyyyyX)
     both meet at (YXXYx, YYYYYYYXYxyyyyyyyX)
 ```
 
@@ -245,13 +364,57 @@ Substitute `x -> XY, y -> y` into `22_13`:
 
 ```
   left  — 18_6
-    P                                  = (YXYXyxx, YYYYYYxyXyx)
-    x -> x, y -> Y                     = (YXXyxYx, YYYYYYXyxyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YXXyxYx, YYYYYYYXyXyx)   [AC move]
-    x -> xY, y -> Y                    = (YXXyxYx, YYYYYYYXyxx)   [change of variables]
+    start: (YXYXyxx, YYYYYYxyXyx)
+    change of variables: x -> x, y -> Y
+      r1 = YXYXyxx
+           substitute      ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYYxyXyx
+           substitute      ->  yyyyyyxYXYx
+           invert          ->  XyxyXYYYYYY
+           rotate by 6     ->  YYYYYYXyxyX
+                               = r2
+    => (YXXyxYx, YYYYYYXyxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYYYYYXyxyX
+        rot_1(r1)        =  xYXXyxY
+        concatenate      =  YYYYYYXyxyXxYXXyxY
+        cancel inverses  =  YYYYYYXyXyxY
+        rotate by 1      =  YYYYYYYXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyxYx, YYYYYYYXyXyx)
+    change of variables: x -> xY, y -> Y
+      r1 = YXXyxYx
+           substitute      ->  yyXyXYxxY
+           reduce          ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYYYXyXyx
+           substitute      ->  yyyyyyyyXXYxY
+           reduce          ->  yyyyyyyXXYx
+           invert          ->  XyxxYYYYYYY
+           rotate by 7     ->  YYYYYYYXyxx
+                               = r2
+    => (YXXyxYx, YYYYYYYXyxx)
   right — 18_7
-    P                                  = (YXYXyxx, YYYYYYYXXyx)
-    x -> x, y -> Y                     = (YXXyxYx, YYYYYYYXyxx)   [to the Aut-minimal form]
+    start: (YXYXyxx, YYYYYYYXXyx)
+    change of variables: x -> x, y -> Y
+      r1 = YXYXyxx
+           substitute      ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYYYXXyx
+           substitute      ->  yyyyyyyXXYx
+           invert          ->  XyxxYYYYYYY
+           rotate by 7     ->  YYYYYYYXyxx
+                               = r2
+    => (YXXyxYx, YYYYYYYXyxx)
     both meet at (YXXyxYx, YYYYYYYXyxx)
 ```
 
@@ -259,19 +422,107 @@ Substitute `x -> XY, y -> y` into `22_13`:
 
 ```
   left  — 21_1
-    P                                  = (YXYxyx, YYYYYYYYxxxxxxx)
-    x -> x, y -> y                     = (YXYxyx, YYYYYYYYxxxxxxx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXYxyx, YYYYYYYxxxxxxYXyx)   [AC move]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXYxyx, YYYYYYxxxxxxYXXyx)   [AC move]
-    r2 <- rot_3(r2) . rot_2(r1^-1)     = (YXYxyx, YYYYYYxxxxxYXyXyx)   [AC move]
-    r2 <- rot_4(r2) . rot_2(r1^-1)     = (YXYxyx, YYYYYYxxxxYXyyXyx)   [AC move]
-    r2 <- rot_5(r2) . rot_2(r1^-1)     = (YXYxyx, YYYYYYxxxYXyyyXyx)   [AC move]
-    r2 <- rot_6(r2) . rot_2(r1^-1)     = (YXYxyx, YYYYYYxxYXyyyyXyx)   [AC move]
+    start: (YXYxyx, YYYYYYYYxxxxxxx)
+    => (YXYxyx, YYYYYYYYxxxxxxx)   [already Aut-minimal]
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYYYYYYxxxxxxx
+        rot_0(r1^-1)     =  XYXyxy
+        concatenate      =  YYYYYYYYxxxxxxxXYXyxy
+        cancel inverses  =  YYYYYYYYxxxxxxYXyxy
+        reduce cyclically=  YYYYYYYxxxxxxYXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYxyx, YYYYYYYxxxxxxYXyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYYYYYxxxxxxYXyx
+        rot_0(r1^-1)     =  XYXyxy
+        concatenate      =  YYYYYYYxxxxxxYXyxXYXyxy
+        cancel inverses  =  YYYYYYYxxxxxxYXXyxy
+        reduce cyclically=  YYYYYYxxxxxxYXXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYxyx, YYYYYYxxxxxxYXXyx)
+
+    AC move:  r2 <- rot_3(r2) . rot_2(r1^-1)
+        rot_3(r2)        =  XyxYYYYYYxxxxxxYX
+        rot_2(r1^-1)     =  xyXYXy
+        concatenate      =  XyxYYYYYYxxxxxxYXxyXYXy
+        cancel inverses  =  XyxYYYYYYxxxxxYXy
+        rotate by 14     =  YYYYYYxxxxxYXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYxyx, YYYYYYxxxxxYXyXyx)
+
+    AC move:  r2 <- rot_4(r2) . rot_2(r1^-1)
+        rot_4(r2)        =  yXyxYYYYYYxxxxxYX
+        rot_2(r1^-1)     =  xyXYXy
+        concatenate      =  yXyxYYYYYYxxxxxYXxyXYXy
+        cancel inverses  =  yXyxYYYYYYxxxxYXy
+        rotate by 13     =  YYYYYYxxxxYXyyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYxyx, YYYYYYxxxxYXyyXyx)
+
+    AC move:  r2 <- rot_5(r2) . rot_2(r1^-1)
+        rot_5(r2)        =  yyXyxYYYYYYxxxxYX
+        rot_2(r1^-1)     =  xyXYXy
+        concatenate      =  yyXyxYYYYYYxxxxYXxyXYXy
+        cancel inverses  =  yyXyxYYYYYYxxxYXy
+        rotate by 12     =  YYYYYYxxxYXyyyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYxyx, YYYYYYxxxYXyyyXyx)
+
+    AC move:  r2 <- rot_6(r2) . rot_2(r1^-1)
+        rot_6(r2)        =  yyyXyxYYYYYYxxxYX
+        rot_2(r1^-1)     =  xyXYXy
+        concatenate      =  yyyXyxYYYYYYxxxYXxyXYXy
+        cancel inverses  =  yyyXyxYYYYYYxxYXy
+        rotate by 11     =  YYYYYYxxYXyyyyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYxyx, YYYYYYxxYXyyyyXyx)
   right — 18_6
-    P                                  = (YXYXyxx, YYYYYYxyXyx)
-    x -> x, y -> Y                     = (YXXyxYx, YYYYYYXyxyX)   [to the Aut-minimal form]
-    r1 <- rot_5(r1) . rot_7(r2^-1)     = (YYYYYYXyxyX, YYYYYXyXYxyxyX)   [AC move]
-    x -> YYYYYx, y -> y                = (YXYxyx, YYYYYYxxYXyyyyXyx)   [change of variables]
+    start: (YXYXyxx, YYYYYYxyXyx)
+    change of variables: x -> x, y -> Y
+      r1 = YXYXyxx
+           substitute      ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYYxyXyx
+           substitute      ->  yyyyyyxYXYx
+           invert          ->  XyxyXYYYYYY
+           rotate by 6     ->  YYYYYYXyxyX
+                               = r2
+    => (YXXyxYx, YYYYYYXyxyX)
+
+    AC move:  r1 <- rot_5(r1) . rot_7(r2^-1)
+        rot_5(r1)        =  XyxYxYX
+        rot_7(r2^-1)     =  xyyyyyyxYXY
+        concatenate      =  XyxYxYXxyyyyyyxYXY
+        cancel inverses  =  XyxYxyyyyyxYXY
+        invert           =  yxyXYYYYYXyXYx
+        rotate by 10     =  YYYYYXyXYxyxyX
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYYYXyxyX, YYYYYXyXYxyxyX)
+    change of variables: x -> YYYYYx, y -> y
+      r1 = YYYYYYXyxyX
+           substitute      ->  YYYYYYXyxyXyyyyy
+           reduce          ->  YXyxyX
+           invert          ->  xYXYxy
+           rotate by 5     ->  YXYxyx
+                               = r1
+      r2 = YYYYYXyXYxyxyX
+           substitute      ->  YYYYYXyyyyyyXYxYYYYxyXyyyyy
+           reduce          ->  XyyyyyyXYxYYYYxyX
+           invert          ->  xYXyyyyXyxYYYYYYx
+           rotate by 7     ->  YYYYYYxxYXyyyyXyx
+                               = r2
+    => (YXYxyx, YYYYYYxxYXyyyyXyx)
     both meet at (YXYxyx, YYYYYYxxYXyyyyXyx)
 ```
 
@@ -294,46 +545,148 @@ Substitute `x -> XY, y -> y` into `22_13`:
 
 **195 (15_12)  ≡  204 (15_13)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `15_12`:
+Substitute `x -> x, y -> Y` into **15_12** (`YYXyyxx`, `YXXXyxYx`), then normalise:
 
 ```
-    (YYXyyxx, YXXXyxYx)
-      ==>  (YYXXyyx, YXYXyxxx)   = the canonical form of 15_13   [MATCH]
+  r1 = YYXyyxx
+       substitute      ->  yyXYYxx
+       invert          ->  XXyyxYY
+       rotate by 2     ->  YYXXyyx
+                           = r1 of 15_13   [MATCH]
+  r2 = YXXXyxYx
+       substitute      ->  yXXXYxyx
+       invert          ->  XYXyxxxY
+       rotate by 1     ->  YXYXyxxx
+                           = r2 of 15_13   [MATCH]
 ```
+
+which is exactly **15_13** = (`YYXXyyx`, `YXYXyxxx`). No AC move was used.
 
 **195 (15_12)  ≡  225 (15_14)** — *change of variables only*
 
-Substitute `x -> y, y -> x` into `15_12`:
+Substitute `x -> y, y -> x` into **15_12** (`YYXyyxx`, `YXXXyxYx`), then normalise:
 
 ```
-    (YYXyyxx, YXXXyxYx)
-      ==>  (YYXXyxx, YYYxyXyX)   = the canonical form of 15_14   [MATCH]
+  r1 = YYXyyxx
+       substitute      ->  XXYxxyy
+       invert          ->  YYXXyxx
+                           = r1 of 15_14   [MATCH]
+  r2 = YXXXyxYx
+       substitute      ->  XYYYxyXy
+       rotate by 7     ->  YYYxyXyX
+                           = r2 of 15_14   [MATCH]
 ```
+
+which is exactly **15_14** = (`YYXXyxx`, `YYYxyXyX`). No AC move was used.
 
 **195 (15_12)  ≡  237 (15_15)** — *change of variables only*
 
-Substitute `x -> Y, y -> x` into `15_12`:
+Substitute `x -> Y, y -> x` into **15_12** (`YYXyyxx`, `YXXXyxYx`), then normalise:
 
 ```
-    (YYXyyxx, YXXXyxYx)
-      ==>  (YYXXyxx, YYYxyxyX)   = the canonical form of 15_15   [MATCH]
+  r1 = YYXyyxx
+       substitute      ->  XXyxxYY
+       rotate by 2     ->  YYXXyxx
+                           = r1 of 15_15   [MATCH]
+  r2 = YXXXyxYx
+       substitute      ->  XyyyxYXY
+       invert          ->  yxyXYYYx
+       rotate by 4     ->  YYYxyxyX
+                           = r2 of 15_15   [MATCH]
 ```
+
+which is exactly **15_15** = (`YYXXyxx`, `YYYxyxyX`). No AC move was used.
 
 **181 (21_34)  ≡  188 (21_37)** — *AC moves + change of variables*, 2 + 2 AC moves
 
 ```
   left  — 21_34
-    P                                  = (YYXYxx, YYYYYYxYxYxYXyx)
-    x -> Yx, y -> x                    = (YXXyXYx, YYYXyxYXXXXX)   [to the Aut-minimal form]
-    r2 <- rot_3(r2) . rot_3(r1^-1)     = (YXXyXYx, YYYXyyxYXXX)   [AC move]
-    r2 <- rot_0(r2) . rot_2(r1^-1)     = (YXXyXYx, YYYXyyxYXXyXyxYx)   [AC move]
-    x -> xy, y -> y                    = (YXYXXYx, YYYXyyxYXYXXyxx)   [change of variables]
+    start: (YYXYxx, YYYYYYxYxYxYXyx)
+    change of variables: x -> Yx, y -> x
+      r1 = YYXYxx
+           substitute      ->  XXXyXYxYx
+           reduce          ->  XXyXYxY
+           rotate by 1     ->  YXXyXYx
+                               = r1
+      r2 = YYYYYYxYxYxYXyx
+           substitute      ->  XXXXXXYYYXyxYx
+           reduce          ->  XXXXXYYYXyxY
+           rotate by 7     ->  YYYXyxYXXXXX
+                               = r2
+    => (YXXyXYx, YYYXyxYXXXXX)
+
+    AC move:  r2 <- rot_3(r2) . rot_3(r1^-1)
+        rot_3(r2)        =  XXXYYYXyxYXX
+        rot_3(r1^-1)     =  xxyXyxY
+        concatenate      =  XXXYYYXyxYXXxxyXyxY
+        cancel inverses  =  XXXYYYXyyxY
+        rotate by 8      =  YYYXyyxYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYXyyxYXXX)
+
+    AC move:  r2 <- rot_0(r2) . rot_2(r1^-1)
+        rot_0(r2)        =  YYYXyyxYXXX
+        rot_2(r1^-1)     =  xyXyxYx
+        concatenate      =  YYYXyyxYXXXxyXyxYx
+        cancel inverses  =  YYYXyyxYXXyXyxYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYXyyxYXXyXyxYx)
+    change of variables: x -> xy, y -> y
+      r1 = YXXyXYx
+           substitute      ->  YYXYXXYxy
+           reduce          ->  YXYXXYx
+                               = r1
+      r2 = YYYXyyxYXXyXyxYx
+           substitute      ->  YYYYXyyxYXYXXyxxy
+           reduce          ->  YYYXyyxYXYXXyxx
+                               = r2
+    => (YXYXXYx, YYYXyyxYXYXXyxx)
   right — 21_37
-    P                                  = (YYXXYx, YYxYxyxyXYXYXYX)
-    x -> xY, y -> X                    = (YXXyXYx, YYYYxyyXXyXX)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_5(r1^-1)     = (YXXyXYx, YYYYxyyyXyX)   [AC move]
-    x -> xy, y -> y                    = (YXYXXYx, YYYYxyyyXX)   [change of variables]
-    r2 <- rot_8(r2) . rot_6(r1^-1)     = (YXYXXYx, YYYXyyxYXYXXyxx)   [AC move]
+    start: (YYXXYx, YYxYxyxyXYXYXYX)
+    change of variables: x -> xY, y -> X
+      r1 = YYXXYx
+           substitute      ->  xxyXyxY
+           invert          ->  yXYxYXX
+           rotate by 3     ->  YXXyXYx
+                               = r1
+      r2 = YYxYxyxyXYXYXYX
+           substitute      ->  xxxYxxYYXyyyyX
+           reduce          ->  xxYxxYYXyyyy
+           invert          ->  YYYYxyyXXyXX
+                               = r2
+    => (YXXyXYx, YYYYxyyXXyXX)
+
+    AC move:  r2 <- rot_1(r2) . rot_5(r1^-1)
+        rot_1(r2)        =  XYYYYxyyXXyX
+        rot_5(r1^-1)     =  xYxxyXy
+        concatenate      =  XYYYYxyyXXyXxYxxyXy
+        cancel inverses  =  XYYYYxyyyXy
+        rotate by 10     =  YYYYxyyyXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYYxyyyXyX)
+    change of variables: x -> xy, y -> y
+      r1 = YXXyXYx
+           substitute      ->  YYXYXXYxy
+           reduce          ->  YXYXXYx
+                               = r1
+      r2 = YYYYxyyyXyX
+           substitute      ->  YYYYxyyyXX
+                               = r2
+    => (YXYXXYx, YYYYxyyyXX)
+
+    AC move:  r2 <- rot_8(r2) . rot_6(r1^-1)
+        rot_8(r2)        =  YYxyyyXXYY
+        rot_6(r1^-1)     =  yxxyxyX
+        concatenate      =  YYxyyyXXYYyxxyxyX
+        cancel inverses  =  YYxyyyXXYxxyxyX
+        invert           =  xYXYXXyxxYYYXyy
+        rotate by 6      =  YYYXyyxYXYXXyxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYXyyxYXYXXyxx)
     both meet at (YXYXXYx, YYYXyyxYXYXXyxx)
 ```
 
@@ -341,19 +694,116 @@ Substitute `x -> Y, y -> x` into `15_12`:
 
 ```
   left  — 21_37
-    P                                  = (YYXXYx, YYxYxyxyXYXYXYX)
-    x -> xY, y -> X                    = (YXXyXYx, YYYYxyyXXyXX)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_5(r1^-1)     = (YXXyXYx, YYYYxyyyXyX)   [AC move]
-    x -> xy, y -> y                    = (YXYXXYx, YYYYxyyyXX)   [change of variables]
-    r2 <- rot_0(r2) . rot_5(r1^-1)     = (YXYXXYx, YYYYXyyyxYX)   [AC move]
-    x -> Yx, y -> y                    = (YXXyXYx, YYYXyyyxYX)   [change of variables]
-    r1 <- rot_3(r1) . rot_5(r2^-1)     = (YYYXyyyxYX, YYYxyXyxyyxYX)   [AC move]
-    x -> xxy, y -> X                   = (YXXXyxYx, YYxyxYXXXyX)   [change of variables]
+    start: (YYXXYx, YYxYxyxyXYXYXYX)
+    change of variables: x -> xY, y -> X
+      r1 = YYXXYx
+           substitute      ->  xxyXyxY
+           invert          ->  yXYxYXX
+           rotate by 3     ->  YXXyXYx
+                               = r1
+      r2 = YYxYxyxyXYXYXYX
+           substitute      ->  xxxYxxYYXyyyyX
+           reduce          ->  xxYxxYYXyyyy
+           invert          ->  YYYYxyyXXyXX
+                               = r2
+    => (YXXyXYx, YYYYxyyXXyXX)
+
+    AC move:  r2 <- rot_1(r2) . rot_5(r1^-1)
+        rot_1(r2)        =  XYYYYxyyXXyX
+        rot_5(r1^-1)     =  xYxxyXy
+        concatenate      =  XYYYYxyyXXyXxYxxyXy
+        cancel inverses  =  XYYYYxyyyXy
+        rotate by 10     =  YYYYxyyyXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYYxyyyXyX)
+    change of variables: x -> xy, y -> y
+      r1 = YXXyXYx
+           substitute      ->  YYXYXXYxy
+           reduce          ->  YXYXXYx
+                               = r1
+      r2 = YYYYxyyyXyX
+           substitute      ->  YYYYxyyyXX
+                               = r2
+    => (YXYXXYx, YYYYxyyyXX)
+
+    AC move:  r2 <- rot_0(r2) . rot_5(r1^-1)
+        rot_0(r2)        =  YYYYxyyyXX
+        rot_5(r1^-1)     =  xxyxyXy
+        concatenate      =  YYYYxyyyXXxxyxyXy
+        cancel inverses  =  YYYYxyyyyxyXy
+        reduce cyclically=  YYYxyyyyxyX
+        invert           =  xYXYYYYXyyy
+        rotate by 8      =  YYYYXyyyxYX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYYXyyyxYX)
+    change of variables: x -> Yx, y -> y
+      r1 = YXYXXYx
+           substitute      ->  YXXyXYx
+                               = r1
+      r2 = YYYYXyyyxYX
+           substitute      ->  YYYYXyyyxYXy
+           reduce          ->  YYYXyyyxYX
+                               = r2
+    => (YXXyXYx, YYYXyyyxYX)
+
+    AC move:  r1 <- rot_3(r1) . rot_5(r2^-1)
+        rot_3(r1)        =  XYxYXXy
+        rot_5(r2^-1)     =  YxyyyxyXYY
+        concatenate      =  XYxYXXyYxyyyxyXYY
+        cancel inverses  =  XYxYXyyyxyXYY
+        invert           =  yyxYXYYYxyXyx
+        rotate by 8      =  YYYxyXyxyyxYX
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYXyyyxYX, YYYxyXyxyyxYX)
+    change of variables: x -> xxy, y -> X
+      r1 = YYYXyyyxYX
+           substitute      ->  xxxYXXXyxYXX
+           reduce          ->  xYXXXyxY
+           rotate by 7     ->  YXXXyxYx
+                               = r1
+      r2 = YYYxyXyxyyxYX
+           substitute      ->  xxxxxyXYXyyxYXX
+           reduce          ->  xxxyXYXyyxY
+           invert          ->  yXYYxyxYXXX
+           rotate by 9     ->  YYxyxYXXXyX
+                               = r2
+    => (YXXXyxYx, YYxyxYXXXyX)
   right — 15_12
-    P                                  = (YYXyyxx, YXXXyxYx)
-    x -> y, y -> x                     = (YYXXyxx, YYYxyXyX)   [to the Aut-minimal form]
-    r1 <- rot_0(r1) . rot_3(r2)        = (YYYxyXyX, YYYxYXXyxyX)   [AC move]
-    x -> y, y -> x                     = (YXXXyxYx, YYxyxYXXXyX)   [change of variables]
+    start: (YYXyyxx, YXXXyxYx)
+    change of variables: x -> y, y -> x
+      r1 = YYXyyxx
+           substitute      ->  XXYxxyy
+           invert          ->  YYXXyxx
+                               = r1
+      r2 = YXXXyxYx
+           substitute      ->  XYYYxyXy
+           rotate by 7     ->  YYYxyXyX
+                               = r2
+    => (YYXXyxx, YYYxyXyX)
+
+    AC move:  r1 <- rot_0(r1) . rot_3(r2)
+        rot_0(r1)        =  YYXXyxx
+        rot_3(r2)        =  XyXYYYxy
+        concatenate      =  YYXXyxxXyXYYYxy
+        cancel inverses  =  YYXXyxyXYYYxy
+        reduce cyclically=  YXXyxyXYYYx
+        rotate by 4      =  YYYxYXXyxyX
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYxyXyX, YYYxYXXyxyX)
+    change of variables: x -> y, y -> x
+      r1 = YYYxyXyX
+           substitute      ->  XXXyxYxY
+           rotate by 1     ->  YXXXyxYx
+                               = r1
+      r2 = YYYxYXXyxyX
+           substitute      ->  XXXyXYYxyxY
+           rotate by 6     ->  YYxyxYXXXyX
+                               = r2
+    => (YXXXyxYx, YYxyxYXXXyX)
     both meet at (YXXXyxYx, YYxyxYXXXyX)
 ```
 
@@ -375,35 +825,116 @@ Substitute `x -> Y, y -> x` into `15_12`:
 
 **183 (19_37)  ≡  198 (17_41)** — *change of variables only*
 
-Substitute `x -> xy, y -> y` into `19_37`:
+Substitute `x -> xy, y -> y` into **19_37** (`YYXXyx`, `YXyXyXyxxYxYx`), then normalise:
 
 ```
-    (YYXXyx, YXyXyXyxxYxYx)
-      ==>  (YYXYXyx, YXYxxxyXXX)   = the canonical form of 17_41   [MATCH]
+  r1 = YYXXyx
+       substitute      ->  YYYXYXyxy
+       reduce          ->  YYXYXyx
+                           = r1 of 17_41   [MATCH]
+  r2 = YXyXyXyxxYxYx
+       substitute      ->  YYXXXyxyxxxy
+       reduce          ->  YXXXyxyxxx
+       invert          ->  XXXYXYxxxy
+       rotate by 7     ->  YXYxxxyXXX
+                           = r2 of 17_41   [MATCH]
 ```
+
+which is exactly **17_41** = (`YYXYXyx`, `YXYxxxyXXX`). No AC move was used.
 
 **183 (19_37)  ≡  203 (17_42)** — *change of variables only*
 
-Substitute `x -> xY, y -> Y` into `19_37`:
+Substitute `x -> xY, y -> Y` into **19_37** (`YYXXyx`, `YXyXyXyxxYxYx`), then normalise:
 
 ```
-    (YYXXyx, YXyXyXyxxYxYx)
-      ==>  (YYXyxYx, YXXXyXyxxx)   = the canonical form of 17_42   [MATCH]
+  r1 = YYXXyx
+       substitute      ->  yyyXyXYxY
+       reduce          ->  yyXyXYx
+       invert          ->  XyxYxYY
+       rotate by 2     ->  YYXyxYx
+                           = r1 of 17_42   [MATCH]
+  r2 = YXyXyXyxxYxYx
+       substitute      ->  yyXXXYxYxxxY
+       reduce          ->  yXXXYxYxxx
+       invert          ->  XXXyXyxxxY
+       rotate by 1     ->  YXXXyXyxxx
+                           = r2 of 17_42   [MATCH]
 ```
+
+which is exactly **17_42** = (`YYXyxYx`, `YXXXyXyxxx`). No AC move was used.
 
 **187 (19_38)  ≡  212 (20_12)** — *AC moves + change of variables*, 2 + 1 AC moves
 
 ```
   left  — 19_38
-    P                                  = (YYXyxx, YXYXYxYxxxxxx)
-    x -> x, y -> Y                     = (YYXXyx, YXYxYxYXXXXXX)   [to the Aut-minimal form]
-    r2 <- rot_9(r2) . rot_3(r1)        = (YYXXyx, YYYXYxYXXXXXX)   [AC move]
-    r2 <- rot_1(r2) . rot_4(r1^-1)     = (YYXXyx, YYYXYxYXXXyyXYX)   [AC move]
+    start: (YYXyxx, YXYXYxYxxxxxx)
+    change of variables: x -> x, y -> Y
+      r1 = YYXyxx
+           substitute      ->  yyXYxx
+           invert          ->  XXyxYY
+           rotate by 2     ->  YYXXyx
+                               = r1
+      r2 = YXYXYxYxxxxxx
+           substitute      ->  yXyXyxyxxxxxx
+           invert          ->  XXXXXXYXYxYxY
+           rotate by 7     ->  YXYxYxYXXXXXX
+                               = r2
+    => (YYXXyx, YXYxYxYXXXXXX)
+
+    AC move:  r2 <- rot_9(r2) . rot_3(r1)
+        rot_9(r2)        =  YxYXXXXXXYXYx
+        rot_3(r1)        =  XyxYYX
+        concatenate      =  YxYXXXXXXYXYxXyxYYX
+        cancel inverses  =  YxYXXXXXXYYYX
+        rotate by 4      =  YYYXYxYXXXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YYYXYxYXXXXXX)
+
+    AC move:  r2 <- rot_1(r2) . rot_4(r1^-1)
+        rot_1(r2)        =  XYYYXYxYXXXXX
+        rot_4(r1^-1)     =  xxyyXY
+        concatenate      =  XYYYXYxYXXXXXxxyyXY
+        cancel inverses  =  XYYYXYxYXXXyyXY
+        rotate by 14     =  YYYXYxYXXXyyXYX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YYYXYxYXXXyyXYX)
   right — 20_12
-    P                                  = (YYXyxyx, YYYXXyyXyxYXX)
-    x -> Y, y -> x                     = (YXXyxYx, YYxyXYXXYYxxx)   [to the Aut-minimal form]
-    r2 <- rot_10(r2) . rot_5(r1)       = (YXXyxYx, YYxxxYxYxYXyXYXX)   [AC move]
-    x -> Y, y -> XY                    = (YYXXyx, YYYXYxYXXXyyXYX)   [change of variables]
+    start: (YYXyxyx, YYYXXyyXyxYXX)
+    change of variables: x -> Y, y -> x
+      r1 = YYXyxyx
+           substitute      ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYXXyyXyxYXX
+           substitute      ->  XXXyyxxyxYXyy
+           invert          ->  YYxyXYXXYYxxx
+                               = r2
+    => (YXXyxYx, YYxyXYXXYYxxx)
+
+    AC move:  r2 <- rot_10(r2) . rot_5(r1)
+        rot_10(r2)       =  yXYXXYYxxxYYx
+        rot_5(r1)        =  XyxYxYX
+        concatenate      =  yXYXXYYxxxYYxXyxYxYX
+        cancel inverses  =  yXYXXYYxxxYxYxYX
+        rotate by 11     =  YYxxxYxYxYXyXYXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyxYx, YYxxxYxYxYXyXYXX)
+    change of variables: x -> Y, y -> XY
+      r1 = YXXyxYx
+           substitute      ->  yxyyXYxY
+           reduce          ->  xyyXYx
+           invert          ->  XyxYYX
+           rotate by 3     ->  YYXXyx
+                               = r1
+      r2 = YYxxxYxYxYXyXYXX
+           substitute      ->  yxyxYYxxxyXyxyy
+           invert          ->  YYXYxYXXXyyXYXY
+           rotate by 1     ->  YYYXYxYXXXyyXYX
+                               = r2
+    => (YYXXyx, YYYXYxYXXXyyXYX)
     both meet at (YYXXyx, YYYXYxYXXXyyXYX)
 ```
 
@@ -411,19 +942,121 @@ Substitute `x -> xY, y -> Y` into `19_37`:
 
 ```
   left  — 19_37
-    P                                  = (YYXXyx, YXyXyXyxxYxYx)
-    x -> X, y -> yX                    = (YXXyXyx, YYYXyyyxx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXyXyx, YYYxyyXXyXyX)   [AC move]
-    x -> Xy, y -> y                    = (YXXyXyx, YYYXyyxYxxx)   [change of variables]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXyXyx, YYXyyxYxxYxYxx)   [AC move]
-    x -> y, y -> Xy                    = (YYXXyx, YXYxYxyXyXYXX)   [change of variables]
+    start: (YYXXyx, YXyXyXyxxYxYx)
+    change of variables: x -> X, y -> yX
+      r1 = YYXXyx
+           substitute      ->  xYxYxxyXX
+           reduce          ->  YxYxxyX
+           invert          ->  xYXXyXy
+           rotate by 6     ->  YXXyXyx
+                               = r1
+      r2 = YXyXyXyxxYxYx
+           substitute      ->  xYxyyyXXYYX
+           reduce          ->  YxyyyXXYY
+           invert          ->  yyxxYYYXy
+           rotate by 5     ->  YYYXyyyxx
+                               = r2
+    => (YXXyXyx, YYYXyyyxx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYXyyyxx
+        rot_0(r1^-1)     =  XYxYxxy
+        concatenate      =  YYYXyyyxxXYxYxxy
+        cancel inverses  =  YYYXyyyxYxYxxy
+        reduce cyclically=  YYXyyyxYxYxx
+        invert           =  XXyXyXYYYxyy
+        rotate by 6      =  YYYxyyXXyXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXyx, YYYxyyXXyXyX)
+    change of variables: x -> Xy, y -> y
+      r1 = YXXyXyx
+           substitute      ->  YYxYxxyXy
+           reduce          ->  YxYxxyX
+           invert          ->  xYXXyXy
+           rotate by 6     ->  YXXyXyx
+                               = r1
+      r2 = YYYxyyXXyXyX
+           substitute      ->  YYYXyyxYxxx
+                               = r2
+    => (YXXyXyx, YYYXyyxYxxx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYXyyxYxxx
+        rot_0(r1^-1)     =  XYxYxxy
+        concatenate      =  YYYXyyxYxxxXYxYxxy
+        cancel inverses  =  YYYXyyxYxxYxYxxy
+        reduce cyclically=  YYXyyxYxxYxYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXyx, YYXyyxYxxYxYxx)
+    change of variables: x -> y, y -> Xy
+      r1 = YXXyXyx
+           substitute      ->  YxYYXXyy
+           reduce          ->  xYYXXy
+           rotate by 5     ->  YYXXyx
+                               = r1
+      r2 = YYXyyxYxxYxYxx
+           substitute      ->  YxYxYXyXyxyxxyy
+           reduce          ->  xYxYXyXyxyxxy
+           invert          ->  YXXYXYxYxyXyX
+           rotate by 10    ->  YXYxYxyXyXYXX
+                               = r2
+    => (YYXXyx, YXYxYxyXyXYXX)
   right — 19_38
-    P                                  = (YYXyxx, YXYXYxYxxxxxx)
-    x -> x, y -> Y                     = (YYXXyx, YXYxYxYXXXXXX)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_4(r1^-1)     = (YYXXyx, YXYxYxyXYXXXX)   [AC move]
-    x -> x, y -> Xy                    = (YXXyxYx, YYxxYxyXYXXX)   [change of variables]
-    r2 <- rot_1(r2) . rot_3(r1^-1)     = (YXXyxYx, YYxxYxyXXyXYX)   [AC move]
-    x -> x, y -> yx                    = (YYXXyx, YXYxYxyXyXYXX)   [change of variables]
+    start: (YYXyxx, YXYXYxYxxxxxx)
+    change of variables: x -> x, y -> Y
+      r1 = YYXyxx
+           substitute      ->  yyXYxx
+           invert          ->  XXyxYY
+           rotate by 2     ->  YYXXyx
+                               = r1
+      r2 = YXYXYxYxxxxxx
+           substitute      ->  yXyXyxyxxxxxx
+           invert          ->  XXXXXXYXYxYxY
+           rotate by 7     ->  YXYxYxYXXXXXX
+                               = r2
+    => (YYXXyx, YXYxYxYXXXXXX)
+
+    AC move:  r2 <- rot_4(r2) . rot_4(r1^-1)
+        rot_4(r2)        =  XXXXYXYxYxYXX
+        rot_4(r1^-1)     =  xxyyXY
+        concatenate      =  XXXXYXYxYxYXXxxyyXY
+        cancel inverses  =  XXXXYXYxYxyXY
+        rotate by 9      =  YXYxYxyXYXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YXYxYxyXYXXXX)
+    change of variables: x -> x, y -> Xy
+      r1 = YYXXyx
+           substitute      ->  YxYXXyx
+           rotate by 5     ->  YXXyxYx
+                               = r1
+      r2 = YXYxYxyXYXXXX
+           substitute      ->  YYxxYxyXYXXX
+                               = r2
+    => (YXXyxYx, YYxxYxyXYXXX)
+
+    AC move:  r2 <- rot_1(r2) . rot_3(r1^-1)
+        rot_1(r2)        =  XYYxxYxyXYXX
+        rot_3(r1^-1)     =  xxyXyXY
+        concatenate      =  XYYxxYxyXYXXxxyXyXY
+        cancel inverses  =  XYYxxYxyXXyXY
+        rotate by 12     =  YYxxYxyXXyXYX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyxYx, YYxxYxyXXyXYX)
+    change of variables: x -> x, y -> yx
+      r1 = YXXyxYx
+           substitute      ->  XYXXyxYx
+           reduce          ->  YXXyxY
+           rotate by 1     ->  YYXXyx
+                               = r1
+      r2 = YYxxYxyXXyXYX
+           substitute      ->  XYXYxYxyXyXYX
+           rotate by 12    ->  YXYxYxyXyXYXX
+                               = r2
+    => (YYXXyx, YXYxYxyXyXYXX)
     both meet at (YYXXyx, YXYxYxyXyXYXX)
 ```
 
@@ -444,24 +1077,76 @@ Substitute `x -> xY, y -> Y` into `19_37`:
 
 **123 (20_8)  ≡  124 (20_9)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `20_8`:
+Substitute `x -> x, y -> Y` into **20_8** (`YXYxx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXYxx, YYYYYYYXyyyyyyx)
-      ==>  (YXXYx, YYYYYYYXyyyyyyx)   = the canonical form of 20_9   [MATCH]
+  r1 = YXYxx
+       substitute      ->  yXyxx
+       invert          ->  XXYxY
+       rotate by 1     ->  YXXYx
+                           = r1 of 20_9   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 20_9   [MATCH]
 ```
+
+which is exactly **20_9** = (`YXXYx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 **3 (17_1)  ≡  129 (17_35)** — *AC moves + change of variables*, 1 + 0 AC moves
 
 ```
   left  — 17_1
-    P                                  = (YXYXyxx, YYYYYxyXyX)
-    x -> x, y -> Y                     = (YXXyxYx, YYYYYxyxyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YXXyxYx, YYYYYYxyXyx)   [AC move]
-    x -> xY, y -> Y                    = (YXXyxYx, YYYYYXyxyX)   [change of variables]
+    start: (YXYXyxx, YYYYYxyXyX)
+    change of variables: x -> x, y -> Y
+      r1 = YXYXyxx
+           substitute      ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYxyXyX
+           substitute      ->  yyyyyxYXYX
+           invert          ->  xyxyXYYYYY
+           rotate by 5     ->  YYYYYxyxyX
+                               = r2
+    => (YXXyxYx, YYYYYxyxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYYYYxyxyX
+        rot_1(r1)        =  xYXXyxY
+        concatenate      =  YYYYYxyxyXxYXXyxY
+        cancel inverses  =  YYYYYxyXyxY
+        rotate by 1      =  YYYYYYxyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyxYx, YYYYYYxyXyx)
+    change of variables: x -> xY, y -> Y
+      r1 = YXXyxYx
+           substitute      ->  yyXyXYxxY
+           reduce          ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYYxyXyx
+           substitute      ->  yyyyyyxYXYxY
+           reduce          ->  yyyyyxYXYx
+           invert          ->  XyxyXYYYYY
+           rotate by 5     ->  YYYYYXyxyX
+                               = r2
+    => (YXXyxYx, YYYYYXyxyX)
   right — 17_35
-    P                                  = (YYXyxyx, YXyXYxxxxx)
-    x -> Y, y -> x                     = (YXXyxYx, YYYYYXyxyX)   [to the Aut-minimal form]
+    start: (YYXyxyx, YXyXYxxxxx)
+    change of variables: x -> Y, y -> x
+      r1 = YYXyxyx
+           substitute      ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YXyXYxxxxx
+           substitute      ->  XyxyXYYYYY
+           rotate by 5     ->  YYYYYXyxyX
+                               = r2
+    => (YXXyxYx, YYYYYXyxyX)
     both meet at (YXXyxYx, YYYYYXyxyX)
 ```
 
@@ -469,15 +1154,75 @@ Substitute `x -> x, y -> Y` into `20_8`:
 
 ```
   left  — 20_8
-    P                                  = (YXYxx, YYYYYYYXyyyyyyx)
-    x -> x, y -> Y                     = (YXXYx, YYYYYYYXyyyyyyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_3(r1)        = (YXXYx, YYYYYYYXyyyyyxYX)   [AC move]
-    x -> xxxxxxy, y -> X               = (YXXXXXyxYx, YXyxxxxxxyX)   [change of variables]
+    start: (YXYxx, YYYYYYYXyyyyyyx)
+    change of variables: x -> x, y -> Y
+      r1 = YXYxx
+           substitute      ->  yXyxx
+           invert          ->  XXYxY
+           rotate by 1     ->  YXXYx
+                               = r1
+      r2 = YYYYYYYXyyyyyyx
+           substitute      ->  yyyyyyyXYYYYYYx
+           invert          ->  XyyyyyyxYYYYYYY
+           rotate by 7     ->  YYYYYYYXyyyyyyx
+                               = r2
+    => (YXXYx, YYYYYYYXyyyyyyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_3(r1)
+        rot_0(r2)        =  YYYYYYYXyyyyyyx
+        rot_3(r1)        =  XYxYX
+        concatenate      =  YYYYYYYXyyyyyyxXYxYX
+        cancel inverses  =  YYYYYYYXyyyyyxYX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYx, YYYYYYYXyyyyyxYX)
+    change of variables: x -> xxxxxxy, y -> X
+      r2 = YYYYYYYXyyyyyxYX
+           substitute      ->  xxxxxxxYXXXXXyxYXXXXXX
+           reduce          ->  xYXXXXXyxY
+           rotate by 9     ->  YXXXXXyxYx
+                               = r1
+      r1 = YXXYx
+           substitute      ->  xYXXXXXXYxy
+           invert          ->  YXyxxxxxxyX
+                               = r2
+    => (YXXXXXyxYx, YXyxxxxxxyX)
   right — 17_1
-    P                                  = (YXYXyxx, YYYYYxyXyX)
-    x -> x, y -> Y                     = (YXXyxYx, YYYYYxyxyX)   [to the Aut-minimal form]
-    r1 <- rot_0(r1) . rot_1(r2)        = (YYYYYxyxyX, YYYYYYxyXyx)   [AC move]
-    x -> y, y -> X                     = (YXXXXXyxYx, YXyxxxxxxyX)   [change of variables]
+    start: (YXYXyxx, YYYYYxyXyX)
+    change of variables: x -> x, y -> Y
+      r1 = YXYXyxx
+           substitute      ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYYYxyXyX
+           substitute      ->  yyyyyxYXYX
+           invert          ->  xyxyXYYYYY
+           rotate by 5     ->  YYYYYxyxyX
+                               = r2
+    => (YXXyxYx, YYYYYxyxyX)
+
+    AC move:  r1 <- rot_0(r1) . rot_1(r2)
+        rot_0(r1)        =  YXXyxYx
+        rot_1(r2)        =  XYYYYYxyxy
+        concatenate      =  YXXyxYxXYYYYYxyxy
+        cancel inverses  =  YXXyxYYYYYYxyxy
+        reduce cyclically=  XyxYYYYYYxy
+        rotate by 8      =  YYYYYYxyXyx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYYxyxyX, YYYYYYxyXyx)
+    change of variables: x -> y, y -> X
+      r1 = YYYYYxyxyX
+           substitute      ->  xxxxxyXyXY
+           invert          ->  yxYxYXXXXX
+           rotate by 6     ->  YXXXXXyxYx
+                               = r1
+      r2 = YYYYYYxyXyx
+           substitute      ->  xxxxxxyXYXy
+           rotate by 3     ->  YXyxxxxxxyX
+                               = r2
+    => (YXXXXXyxYx, YXyxxxxxxyX)
     both meet at (YXXXXXyxYx, YXyxxxxxxyX)
 ```
 
@@ -498,23 +1243,64 @@ Substitute `x -> x, y -> Y` into `20_8`:
 
 **231 (19_43)  ≡  238 (19_48)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_43`:
+Substitute `x -> x, y -> Y` into **19_43** (`YYXyyxxYX`, `YYYYYxyXyX`), then normalise:
 
 ```
-    (YYXyyxxYX, YYYYYxyXyX)
-      ==>  (YYxYXXyyx, YYYYYxyxyX)   = the canonical form of 19_48   [MATCH]
+  r1 = YYXyyxxYX
+       substitute      ->  yyXYYxxyX
+       invert          ->  xYXXyyxYY
+       rotate by 2     ->  YYxYXXyyx
+                           = r1 of 19_48   [MATCH]
+  r2 = YYYYYxyXyX
+       substitute      ->  yyyyyxYXYX
+       invert          ->  xyxyXYYYYY
+       rotate by 5     ->  YYYYYxyxyX
+                           = r2 of 19_48   [MATCH]
 ```
+
+which is exactly **19_48** = (`YYxYXXyyx`, `YYYYYxyxyX`). No AC move was used.
 
 **190 (23_23)  ≡  231 (19_43)** — *pure AC path*, 1 + 0 AC moves
 
 ```
   left  — 23_23
-    P                                  = (YYxYXX, YYYYYYYYXyyyyyxYX)
-    x -> xxxxxxxy, y -> X              = (YXXXXXyxYx, YXXyxxxxxxxyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YYXXyxxyx, YXXXXXyxYx)   [AC move]
+    start: (YYxYXX, YYYYYYYYXyyyyyxYX)
+    change of variables: x -> xxxxxxxy, y -> X
+      r2 = YYYYYYYYXyyyyyxYX
+           substitute      ->  xxxxxxxxYXXXXXyxYXXXXXXX
+           reduce          ->  xYXXXXXyxY
+           rotate by 9     ->  YXXXXXyxYx
+                               = r1
+      r1 = YYxYXX
+           substitute      ->  xxxxxxxxxyxYXXXXXXXYXXXXXXX
+           reduce          ->  xxyxYXXXXXXXY
+           invert          ->  yxxxxxxxyXYXX
+           rotate by 3     ->  YXXyxxxxxxxyX
+                               = r2
+    => (YXXXXXyxYx, YXXyxxxxxxxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YXXyxxxxxxxyX
+        rot_1(r1)        =  xYXXXXXyxY
+        concatenate      =  YXXyxxxxxxxyXxYXXXXXyxY
+        cancel inverses  =  YXXyxxyxY
+        rotate by 1      =  YYXXyxxyx
+                            ^ the new r1
+        r1 is untouched by the move (it becomes r2: the two relators sort into the other order)
+    => (YYXXyxxyx, YXXXXXyxYx)
   right — 19_43
-    P                                  = (YYXyyxxYX, YYYYYxyXyX)
-    x -> y, y -> x                     = (YYXXyxxyx, YXXXXXyxYx)   [to the Aut-minimal form]
+    start: (YYXyyxxYX, YYYYYxyXyX)
+    change of variables: x -> y, y -> x
+      r1 = YYXyyxxYX
+           substitute      ->  XXYxxyyXY
+           invert          ->  yxYYXXyxx
+           rotate by 7     ->  YYXXyxxyx
+                               = r1
+      r2 = YYYYYxyXyX
+           substitute      ->  XXXXXyxYxY
+           rotate by 1     ->  YXXXXXyxYx
+                               = r2
+    => (YYXXyxxyx, YXXXXXyxYx)
     both meet at (YYXXyxxyx, YXXXXXyxYx)
 ```
 
@@ -524,28 +1310,208 @@ Every step is an AC move — no change of variables inside the path. So `23_23 ~
 
 ```
   left  — 23_22
-    P                                  = (YYxxYX, YYYYYxyXyXYXyyyxx)
-    x -> X, y -> y                     = (YYXXYx, YYYYYXyxyxYxyyyXX)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_1(r1)        = (YYXXYx, YYYYYXyxyxYxyXXYX)   [AC move]
-    x -> xY, y -> X                    = (YXXyXYx, YYxYxyXXyyxYXXXX)   [change of variables]
-    r2 <- rot_2(r2) . rot_3(r1^-1)     = (YXXyXYx, YYYxxYXyXyyxxyX)   [AC move]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YXXyXYx, YYYYxxYXyXyyyX)   [AC move]
-    x -> xy, y -> y                    = (YXYXXYx, YYYYxyxYXXyyX)   [change of variables]
-    r2 <- rot_4(r2) . rot_2(r1^-1)     = (YXYXXYx, YYYYxyyxxyXyyX)   [AC move]
-    r2 <- rot_2(r2) . rot_2(r1)        = (YXYXXYx, YYYYxyyxYXXyX)   [AC move]
-    r2 <- rot_3(r2) . rot_2(r1^-1)     = (YXYXXYx, YYYYxyyyxxyXyX)   [AC move]
-    r2 <- rot_1(r2) . rot_2(r1)        = (YXYXXYx, YYYYxyyyxYXXX)   [AC move]
-    r2 <- rot_0(r2) . rot_5(r1^-1)     = (YXYXXYx, YYYXyyyxYXYxyX)   [AC move]
-    x -> Yx, y -> y                    = (YXXyXYx, YYYxyyxYXyxyX)   [change of variables]
-    r2 <- rot_0(r2) . rot_5(r1^-1)     = (YXXyXYx, YYXyyxYXXXYxyX)   [AC move]
-    r2 <- rot_7(r2) . rot_4(r1)        = (YXXyXYx, YYXyxYXXXXXYxyX)   [AC move]
+    start: (YYxxYX, YYYYYxyXyXYXyyyxx)
+    change of variables: x -> X, y -> y
+      r1 = YYxxYX
+           substitute      ->  YYXXYx
+                               = r1
+      r2 = YYYYYxyXyXYXyyyxx
+           substitute      ->  YYYYYXyxyxYxyyyXX
+                               = r2
+    => (YYXXYx, YYYYYXyxyxYxyyyXX)
+
+    AC move:  r2 <- rot_1(r2) . rot_1(r1)
+        rot_1(r2)        =  XYYYYYXyxyxYxyyyX
+        rot_1(r1)        =  xYYXXY
+        concatenate      =  XYYYYYXyxyxYxyyyXxYYXXY
+        cancel inverses  =  XYYYYYXyxyxYxyXXY
+        rotate by 16     =  YYYYYXyxyxYxyXXYX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXYx, YYYYYXyxyxYxyXXYX)
+    change of variables: x -> xY, y -> X
+      r1 = YYXXYx
+           substitute      ->  xxyXyxY
+           invert          ->  yXYxYXX
+           rotate by 3     ->  YXXyXYx
+                               = r1
+      r2 = YYYYYXyxyxYxyXXYX
+           substitute      ->  xxxxxyXYYxxYXyXyyX
+           reduce          ->  xxxxyXYYxxYXyXyy
+           invert          ->  YYxYxyXXyyxYXXXX
+                               = r2
+    => (YXXyXYx, YYxYxyXXyyxYXXXX)
+
+    AC move:  r2 <- rot_2(r2) . rot_3(r1^-1)
+        rot_2(r2)        =  XXYYxYxyXXyyxYXX
+        rot_3(r1^-1)     =  xxyXyxY
+        concatenate      =  XXYYxYxyXXyyxYXXxxyXyxY
+        cancel inverses  =  XXYYxYxyXXyyyxY
+        invert           =  yXYYYxxYXyXyyxx
+        rotate by 13     =  YYYxxYXyXyyxxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYxxYXyXyyxxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYYxxYXyXyyxxyX
+        rot_1(r1)        =  xYXXyXY
+        concatenate      =  YYYxxYXyXyyxxyXxYXXyXY
+        cancel inverses  =  YYYxxYXyXyyyXY
+        rotate by 1      =  YYYYxxYXyXyyyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYYxxYXyXyyyX)
+    change of variables: x -> xy, y -> y
+      r1 = YXXyXYx
+           substitute      ->  YYXYXXYxy
+           reduce          ->  YXYXXYx
+                               = r1
+      r2 = YYYYxxYXyXyyyX
+           substitute      ->  YYYYxyxYXXyyX
+                               = r2
+    => (YXYXXYx, YYYYxyxYXXyyX)
+
+    AC move:  r2 <- rot_4(r2) . rot_2(r1^-1)
+        rot_4(r2)        =  XyyXYYYYxyxYX
+        rot_2(r1^-1)     =  xyXyxxy
+        concatenate      =  XyyXYYYYxyxYXxyXyxxy
+        cancel inverses  =  XyyXYYYYxyyxxy
+        rotate by 10     =  YYYYxyyxxyXyyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYYxyyxxyXyyX)
+
+    AC move:  r2 <- rot_2(r2) . rot_2(r1)
+        rot_2(r2)        =  yXYYYYxyyxxyXy
+        rot_2(r1)        =  YxYXYXX
+        concatenate      =  yXYYYYxyyxxyXyYxYXYXX
+        cancel inverses  =  yXYYYYxyyxYXX
+        rotate by 11     =  YYYYxyyxYXXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYYxyyxYXXyX)
+
+    AC move:  r2 <- rot_3(r2) . rot_2(r1^-1)
+        rot_3(r2)        =  XyXYYYYxyyxYX
+        rot_2(r1^-1)     =  xyXyxxy
+        concatenate      =  XyXYYYYxyyxYXxyXyxxy
+        cancel inverses  =  XyXYYYYxyyyxxy
+        rotate by 11     =  YYYYxyyyxxyXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYYxyyyxxyXyX)
+
+    AC move:  r2 <- rot_1(r2) . rot_2(r1)
+        rot_1(r2)        =  XYYYYxyyyxxyXy
+        rot_2(r1)        =  YxYXYXX
+        concatenate      =  XYYYYxyyyxxyXyYxYXYXX
+        cancel inverses  =  XYYYYxyyyxYXX
+        rotate by 12     =  YYYYxyyyxYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYYxyyyxYXXX)
+
+    AC move:  r2 <- rot_0(r2) . rot_5(r1^-1)
+        rot_0(r2)        =  YYYYxyyyxYXXX
+        rot_5(r1^-1)     =  xxyxyXy
+        concatenate      =  YYYYxyyyxYXXXxxyxyXy
+        cancel inverses  =  YYYYxyyyxYXyxyXy
+        reduce cyclically=  YYYxyyyxYXyxyX
+        invert           =  xYXYxyXYYYXyyy
+        rotate by 7      =  YYYXyyyxYXYxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYXyyyxYXYxyX)
+    change of variables: x -> Yx, y -> y
+      r1 = YXYXXYx
+           substitute      ->  YXXyXYx
+                               = r1
+      r2 = YYYXyyyxYXYxyX
+           substitute      ->  YYYXyyyxYXYxyXy
+           reduce          ->  YYXyyyxYXYxyX
+           invert          ->  xYXyxyXYYYxyy
+           rotate by 6     ->  YYYxyyxYXyxyX
+                               = r2
+    => (YXXyXYx, YYYxyyxYXyxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_5(r1^-1)
+        rot_0(r2)        =  YYYxyyxYXyxyX
+        rot_5(r1^-1)     =  xYxxyXy
+        concatenate      =  YYYxyyxYXyxyXxYxxyXy
+        cancel inverses  =  YYYxyyxYXyxxxyXy
+        reduce cyclically=  YYxyyxYXyxxxyX
+        invert           =  xYXXXYxyXYYXyy
+        rotate by 5      =  YYXyyxYXXXYxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYXyyxYXXXYxyX)
+
+    AC move:  r2 <- rot_7(r2) . rot_4(r1)
+        rot_7(r2)        =  XXXYxyXYYXyyxY
+        rot_4(r1)        =  yXYxYXX
+        concatenate      =  XXXYxyXYYXyyxYyXYxYXX
+        cancel inverses  =  XXXYxyXYYXyxYXX
+        rotate by 8      =  YYXyxYXXXXXYxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYXyxYXXXXXYxyX)
   right — 23_23
-    P                                  = (YYxYXX, YYYYYYYYXyyyyyxYX)
-    x -> xxxxxxxy, y -> X              = (YXXXXXyxYx, YXXyxxxxxxxyX)   [to the Aut-minimal form]
-    r1 <- rot_2(r1) . rot_5(r2^-1)     = (YXXyxxxxxxxyX, YXXXyxYXXXXXXYx)   [AC move]
-    x -> X, y -> xxxxxxy               = (YXXyXYx, YYXXXXXXXYxxxyX)   [change of variables]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YXXyXYx, YYYXXXXXXXYxyX)   [AC move]
-    r2 <- rot_9(r2) . rot_3(r1^-1)     = (YXXyXYx, YYXyxYXXXXXYxyX)   [AC move]
+    start: (YYxYXX, YYYYYYYYXyyyyyxYX)
+    change of variables: x -> xxxxxxxy, y -> X
+      r2 = YYYYYYYYXyyyyyxYX
+           substitute      ->  xxxxxxxxYXXXXXyxYXXXXXXX
+           reduce          ->  xYXXXXXyxY
+           rotate by 9     ->  YXXXXXyxYx
+                               = r1
+      r1 = YYxYXX
+           substitute      ->  xxxxxxxxxyxYXXXXXXXYXXXXXXX
+           reduce          ->  xxyxYXXXXXXXY
+           invert          ->  yxxxxxxxyXYXX
+           rotate by 3     ->  YXXyxxxxxxxyX
+                               = r2
+    => (YXXXXXyxYx, YXXyxxxxxxxyX)
+
+    AC move:  r1 <- rot_2(r1) . rot_5(r2^-1)
+        rot_2(r1)        =  YxYXXXXXyx
+        rot_5(r2^-1)     =  XYxxyxYXXXXXX
+        concatenate      =  YxYXXXXXyxXYxxyxYXXXXXX
+        cancel inverses  =  YxYXXXyxYXXXXXX
+        rotate by 13     =  YXXXyxYXXXXXXYx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YXXyxxxxxxxyX, YXXXyxYXXXXXXYx)
+    change of variables: x -> X, y -> xxxxxxy
+      r1 = YXXyxxxxxxxyX
+           substitute      ->  YxxyXyx
+           invert          ->  XYxYXXy
+           rotate by 4     ->  YXXyXYx
+                               = r1
+      r2 = YXXXyxYXXXXXXYx
+           substitute      ->  YxxxyXYYXXXXXXX
+           rotate by 9     ->  YYXXXXXXXYxxxyX
+                               = r2
+    => (YXXyXYx, YYXXXXXXXYxxxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYXXXXXXXYxxxyX
+        rot_1(r1)        =  xYXXyXY
+        concatenate      =  YYXXXXXXXYxxxyXxYXXyXY
+        cancel inverses  =  YYXXXXXXXYxyXY
+        rotate by 1      =  YYYXXXXXXXYxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYXXXXXXXYxyX)
+
+    AC move:  r2 <- rot_9(r2) . rot_3(r1^-1)
+        rot_9(r2)        =  XXXXXYxyXYYYXX
+        rot_3(r1^-1)     =  xxyXyxY
+        concatenate      =  XXXXXYxyXYYYXXxxyXyxY
+        cancel inverses  =  XXXXXYxyXYYXyxY
+        rotate by 6      =  YYXyxYXXXXXYxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYXyxYXXXXXYxyX)
     both meet at (YXXyXYx, YYXyxYXXXXXYxyX)
 ```
 
@@ -566,28 +1532,120 @@ Every step is an AC move — no change of variables inside the path. So `23_23 ~
 
 **201 (19_40)  ≡  211 (19_42)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_40`:
+Substitute `x -> x, y -> Y` into **19_40** (`YYYxxYX`, `YXyxxxyXyXyX`), then normalise:
 
 ```
-    (YYYxxYX, YXyxxxyXyXyX)
-      ==>  (YYYxYXX, YXYXYXyXYxxx)   = the canonical form of 19_42   [MATCH]
+  r1 = YYYxxYX
+       substitute      ->  yyyxxyX
+       invert          ->  xYXXYYY
+       rotate by 3     ->  YYYxYXX
+                           = r1 of 19_42   [MATCH]
+  r2 = YXyxxxyXyXyX
+       substitute      ->  yXYxxxYXYXYX
+       rotate by 6     ->  YXYXYXyXYxxx
+                           = r2 of 19_42   [MATCH]
 ```
+
+which is exactly **19_42** = (`YYYxYXX`, `YXYXYXyXYxxx`). No AC move was used.
 
 **236 (19_47)  ≡  259 (19_51)** — *AC moves + change of variables*, 2 + 1 AC moves
 
 ```
   left  — 19_47
-    P                                  = (YYYYxyxyX, YYxYXXYxyx)
-    x -> y, y -> X                     = (YXXXXyxYx, YYxyXyxxyx)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_0(r1)        = (YXXXXyxYx, YYxyXyXXyxYxx)   [AC move]
-    x -> x, y -> yx                    = (YYXXXXyx, YYXyxyXyXYx)   [change of variables]
-    r2 <- rot_7(r2) . rot_7(r1)        = (YYXXXXyx, YYXXXXXyxYxyXyXYx)   [AC move]
-    x -> X, y -> yX                    = (YXXXXyXyx, YYxYxxxxxyXYXyyx)   [change of variables]
+    start: (YYYYxyxyX, YYxYXXYxyx)
+    change of variables: x -> y, y -> X
+      r1 = YYYYxyxyX
+           substitute      ->  xxxxyXyXY
+           invert          ->  yxYxYXXXX
+           rotate by 5     ->  YXXXXyxYx
+                               = r1
+      r2 = YYxYXXYxyx
+           substitute      ->  xxyxYYxyXy
+           rotate by 6     ->  YYxyXyxxyx
+                               = r2
+    => (YXXXXyxYx, YYxyXyxxyx)
+
+    AC move:  r2 <- rot_1(r2) . rot_0(r1)
+        rot_1(r2)        =  xYYxyXyxxy
+        rot_0(r1)        =  YXXXXyxYx
+        concatenate      =  xYYxyXyxxyYXXXXyxYx
+        cancel inverses  =  xYYxyXyXXyxYx
+        rotate by 12     =  YYxyXyXXyxYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXXyxYx, YYxyXyXXyxYxx)
+    change of variables: x -> x, y -> yx
+      r1 = YXXXXyxYx
+           substitute      ->  XYXXXXyxYx
+           reduce          ->  YXXXXyxY
+           rotate by 1     ->  YYXXXXyx
+                               = r1
+      r2 = YYxyXyXXyxYxx
+           substitute      ->  XYXYxyyXyxYxx
+           reduce          ->  YXYxyyXyxYx
+           invert          ->  XyXYxYYXyxy
+           rotate by 6     ->  YYXyxyXyXYx
+                               = r2
+    => (YYXXXXyx, YYXyxyXyXYx)
+
+    AC move:  r2 <- rot_7(r2) . rot_7(r1)
+        rot_7(r2)        =  xyXyXYxYYXy
+        rot_7(r1)        =  YXXXXyxY
+        concatenate      =  xyXyXYxYYXyYXXXXyxY
+        cancel inverses  =  xyXyXYxYYXXXXXyxY
+        rotate by 10     =  YYXXXXXyxYxyXyXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyx, YYXXXXXyxYxyXyXYx)
+    change of variables: x -> X, y -> yX
+      r1 = YYXXXXyx
+           substitute      ->  xYxYxxxxyXX
+           reduce          ->  YxYxxxxyX
+           invert          ->  xYXXXXyXy
+           rotate by 8     ->  YXXXXyXyx
+                               = r1
+      r2 = YYXXXXXyxYxyXyXYx
+           substitute      ->  xYxYxxxxxyXYXyyxYX
+           reduce          ->  YxYxxxxxyXYXyyxY
+           rotate by 1     ->  YYxYxxxxxyXYXyyx
+                               = r2
+    => (YXXXXyXyx, YYxYxxxxxyXYXyyx)
   right — 19_51
-    P                                  = (YYYYxyXX, YXyxxyXyXYx)
-    x -> y, y -> x                     = (YYXXXXyx, YYXyxYxyXyX)   [to the Aut-minimal form]
-    r2 <- rot_9(r2) . rot_2(r1)        = (YYXXXXyx, YYXXXXXyxYxyXyXYx)   [AC move]
-    x -> X, y -> yX                    = (YXXXXyXyx, YYxYxxxxxyXYXyyx)   [change of variables]
+    start: (YYYYxyXX, YXyxxyXyXYx)
+    change of variables: x -> y, y -> x
+      r1 = YYYYxyXX
+           substitute      ->  XXXXyxYY
+           rotate by 2     ->  YYXXXXyx
+                               = r1
+      r2 = YXyxxyXyXYx
+           substitute      ->  XYxyyxYxYXy
+           invert          ->  YxyXyXYYXyx
+           rotate by 5     ->  YYXyxYxyXyX
+                               = r2
+    => (YYXXXXyx, YYXyxYxyXyX)
+
+    AC move:  r2 <- rot_9(r2) . rot_2(r1)
+        rot_9(r2)        =  XyxYxyXyXYY
+        rot_2(r1)        =  yxYYXXXX
+        concatenate      =  XyxYxyXyXYYyxYYXXXX
+        cancel inverses  =  XyxYxyXyXYxYYXXXX
+        rotate by 6      =  YYXXXXXyxYxyXyXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyx, YYXXXXXyxYxyXyXYx)
+    change of variables: x -> X, y -> yX
+      r1 = YYXXXXyx
+           substitute      ->  xYxYxxxxyXX
+           reduce          ->  YxYxxxxyX
+           invert          ->  xYXXXXyXy
+           rotate by 8     ->  YXXXXyXyx
+                               = r1
+      r2 = YYXXXXXyxYxyXyXYx
+           substitute      ->  xYxYxxxxxyXYXyyxYX
+           reduce          ->  YxYxxxxxyXYXyyxY
+           rotate by 1     ->  YYxYxxxxxyXYXyyx
+                               = r2
+    => (YXXXXyXyx, YYxYxxxxxyXYXyyx)
     both meet at (YXXXXyXyx, YYxYxxxxxyXYXyyx)
 ```
 
@@ -595,23 +1653,163 @@ Substitute `x -> x, y -> Y` into `19_40`:
 
 ```
   left  — 19_47
-    P                                  = (YYYYxyxyX, YYxYXXYxyx)
-    x -> y, y -> X                     = (YXXXXyxYx, YYxyXyxxyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_7(r1^-1)     = (YXXXXyxYx, YXyxYXXXXXXYx)   [AC move]
-    x -> x, y -> yx                    = (YYXXXXyx, YYXyxYXXXXXXX)   [change of variables]
-    r1 <- rot_5(r1) . rot_3(r2^-1)     = (YYXyxYXXXXXXX, YXXXyxxxxxxxxyX)   [AC move]
-    x -> X, y -> xxxxxxxy              = (YXXXyXYx, YYXXXXXXXYxyX)   [change of variables]
+    start: (YYYYxyxyX, YYxYXXYxyx)
+    change of variables: x -> y, y -> X
+      r1 = YYYYxyxyX
+           substitute      ->  xxxxyXyXY
+           invert          ->  yxYxYXXXX
+           rotate by 5     ->  YXXXXyxYx
+                               = r1
+      r2 = YYxYXXYxyx
+           substitute      ->  xxyxYYxyXy
+           rotate by 6     ->  YYxyXyxxyx
+                               = r2
+    => (YXXXXyxYx, YYxyXyxxyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_7(r1^-1)
+        rot_0(r2)        =  YYxyXyxxyx
+        rot_7(r1^-1)     =  XYxxxxyXy
+        concatenate      =  YYxyXyxxyxXYxxxxyXy
+        cancel inverses  =  YYxyXyxxxxxxyXy
+        reduce cyclically=  YxyXyxxxxxxyX
+        invert           =  xYXXXXXXYxYXy
+        rotate by 3      =  YXyxYXXXXXXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXXyxYx, YXyxYXXXXXXYx)
+    change of variables: x -> x, y -> yx
+      r1 = YXXXXyxYx
+           substitute      ->  XYXXXXyxYx
+           reduce          ->  YXXXXyxY
+           rotate by 1     ->  YYXXXXyx
+                               = r1
+      r2 = YXyxYXXXXXXYx
+           substitute      ->  XYXyxYXXXXXXXYx
+           reduce          ->  YXyxYXXXXXXXY
+           rotate by 1     ->  YYXyxYXXXXXXX
+                               = r2
+    => (YYXXXXyx, YYXyxYXXXXXXX)
+
+    AC move:  r1 <- rot_5(r1) . rot_3(r2^-1)
+        rot_5(r1)        =  XXXyxYYX
+        rot_3(r2^-1)     =  xyyxxxxxxxyXY
+        concatenate      =  XXXyxYYXxyyxxxxxxxyXY
+        cancel inverses  =  XXXyxxxxxxxxyXY
+        rotate by 1      =  YXXXyxxxxxxxxyX
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYXyxYXXXXXXX, YXXXyxxxxxxxxyX)
+    change of variables: x -> X, y -> xxxxxxxy
+      r2 = YXXXyxxxxxxxxyX
+           substitute      ->  YxxxyXyx
+           invert          ->  XYxYXXXy
+           rotate by 5     ->  YXXXyXYx
+                               = r1
+      r1 = YYXyxYXXXXXXX
+           substitute      ->  YXXXXXXXYxyXY
+           rotate by 1     ->  YYXXXXXXXYxyX
+                               = r2
+    => (YXXXyXYx, YYXXXXXXXYxyX)
   right — 19_40
-    P                                  = (YYYxxYX, YXyxxxyXyXyX)
-    x -> y, y -> X                     = (YYXXXyX, YYYxyXyxyxyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YYXXXyX, YYxyXyxyxYXXX)   [AC move]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YYXXXyX, YXYxYXXXXyxxyX)   [AC move]
-    x -> x, y -> Xy                    = (YXXXyXYx, YYxxYXXXXyxyX)   [change of variables]
-    r2 <- rot_5(r2) . rot_4(r1^-1)     = (YXXXyXYx, YYxyxYXyxyX)   [AC move]
-    r2 <- rot_0(r2) . rot_6(r1^-1)     = (YXXXyXYx, YXyxYXXXXYxyX)   [AC move]
-    x -> X, y -> xxy                   = (YXXXYxxxyx, YXyXYxyXXyx)   [change of variables]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXXYxxxyx, YXyxYXXYxxxxx)   [AC move]
-    x -> X, y -> xxy                   = (YXXXyXYx, YYXXXXXXXYxyX)   [change of variables]
+    start: (YYYxxYX, YXyxxxyXyXyX)
+    change of variables: x -> y, y -> X
+      r1 = YYYxxYX
+           substitute      ->  xxxyyxY
+           invert          ->  yXYYXXX
+           rotate by 5     ->  YYXXXyX
+                               = r1
+      r2 = YXyxxxyXyXyX
+           substitute      ->  xYXyyyXYXYXY
+           invert          ->  yxyxyxYYYxyX
+           rotate by 6     ->  YYYxyXyxyxyx
+                               = r2
+    => (YYXXXyX, YYYxyXyxyxyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYYxyXyxyxyx
+        rot_1(r1)        =  XYYXXXy
+        concatenate      =  YYYxyXyxyxyxXYYXXXy
+        cancel inverses  =  YYYxyXyxyxYXXXy
+        reduce cyclically=  YYxyXyxyxYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyX, YYxyXyxyxYXXX)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYxyXyxyxYXXX
+        rot_0(r1^-1)     =  xYxxxyy
+        concatenate      =  YYxyXyxyxYXXXxYxxxyy
+        cancel inverses  =  YYxyXyxyxYXXYxxxyy
+        reduce cyclically=  xyXyxyxYXXYxxx
+        invert           =  XXXyxxyXYXYxYX
+        rotate by 6      =  YXYxYXXXXyxxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyX, YXYxYXXXXyxxyX)
+    change of variables: x -> x, y -> Xy
+      r1 = YYXXXyX
+           substitute      ->  YxYXXXyX
+           rotate by 6     ->  YXXXyXYx
+                               = r1
+      r2 = YXYxYXXXXyxxyX
+           substitute      ->  YYxxYXXXXyxyX
+                               = r2
+    => (YXXXyXYx, YYxxYXXXXyxyX)
+
+    AC move:  r2 <- rot_5(r2) . rot_4(r1^-1)
+        rot_5(r2)        =  XyxyXYYxxYXXX
+        rot_4(r1^-1)     =  xxxyXyxY
+        concatenate      =  XyxyXYYxxYXXXxxxyXyxY
+        cancel inverses  =  XyxyXYYxyxY
+        rotate by 6      =  YYxyxYXyxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyXYx, YYxyxYXyxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_6(r1^-1)
+        rot_0(r2)        =  YYxyxYXyxyX
+        rot_6(r1^-1)     =  xYxxxyXy
+        concatenate      =  YYxyxYXyxyXxYxxxyXy
+        cancel inverses  =  YYxyxYXyxxxxyXy
+        reduce cyclically=  YxyxYXyxxxxyX
+        invert           =  xYXXXXYxyXYXy
+        rotate by 3      =  YXyxYXXXXYxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyXYx, YXyxYXXXXYxyX)
+    change of variables: x -> X, y -> xxy
+      r1 = YXXXyXYx
+           substitute      ->  YxxxyxYXXX
+           rotate by 4     ->  YXXXYxxxyx
+                               = r1
+      r2 = YXyxYXXXXYxyX
+           substitute      ->  YxyXYxxYXyx
+           invert          ->  XYxyXXyxYXy
+           rotate by 3     ->  YXyXYxyXXyx
+                               = r2
+    => (YXXXYxxxyx, YXyXYxyXXyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YXyXYxyXXyx
+        rot_0(r1^-1)     =  XYXXXyxxxy
+        concatenate      =  YXyXYxyXXyxXYXXXyxxxy
+        cancel inverses  =  YXyXYxyXXXXXyxxxy
+        reduce cyclically=  yXYxyXXXXXyxx
+        invert           =  XXYxxxxxYXyxY
+        rotate by 5      =  YXyxYXXYxxxxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXYxxxyx, YXyxYXXYxxxxx)
+    change of variables: x -> X, y -> xxy
+      r1 = YXXXYxxxyx
+           substitute      ->  YxYXXXyX
+           rotate by 6     ->  YXXXyXYx
+                               = r1
+      r2 = YXyxYXXYxxxxx
+           substitute      ->  YxyXYYXXXXXXX
+           rotate by 9     ->  YYXXXXXXXYxyX
+                               = r2
+    => (YXXXyXYx, YYXXXXXXXYxyX)
     both meet at (YXXXyXYx, YYXXXXXXXYxyX)
 ```
 
@@ -632,23 +1830,61 @@ Substitute `x -> x, y -> Y` into `19_40`:
 
 **202 (18_9)  ≡  210 (18_11)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `18_9`:
+Substitute `x -> x, y -> Y` into **18_9** (`YYYxxyX`, `YXYXyXyxxYx`), then normalise:
 
 ```
-    (YYYxxyX, YXYXyXyxxYx)
-      ==>  (YYYxyXX, YXYXXyxyxYx)   = the canonical form of 18_11   [MATCH]
+  r1 = YYYxxyX
+       substitute      ->  yyyxxYX
+       invert          ->  xyXXYYY
+       rotate by 3     ->  YYYxyXX
+                           = r1 of 18_11   [MATCH]
+  r2 = YXYXyXyxxYx
+       substitute      ->  yXyXYXYxxyx
+       invert          ->  XYXXyxyxYxY
+       rotate by 1     ->  YXYXXyxyxYx
+                           = r2 of 18_11   [MATCH]
 ```
+
+which is exactly **18_11** = (`YYYxyXX`, `YXYXXyxyxYx`). No AC move was used.
 
 **235 (19_46)  ≡  260 (19_52)** — *pure AC path*, 1 + 0 AC moves
 
 ```
   left  — 19_46
-    P                                  = (YYYYxxYX, YYYxyxYxYXX)
-    x -> y, y -> X                     = (YYXXXXyX, YYxxxyXyxyx)   [to the Aut-minimal form]
-    r2 <- rot_5(r2) . rot_7(r1)        = (YYXXXXyX, YYXyXYXyxyx)   [AC move]
+    start: (YYYYxxYX, YYYxyxYxYXX)
+    change of variables: x -> y, y -> X
+      r1 = YYYYxxYX
+           substitute      ->  xxxxyyxY
+           invert          ->  yXYYXXXX
+           rotate by 6     ->  YYXXXXyX
+                               = r1
+      r2 = YYYxyxYxYXX
+           substitute      ->  xxxyXyxyxYY
+           rotate by 2     ->  YYxxxyXyxyx
+                               = r2
+    => (YYXXXXyX, YYxxxyXyxyx)
+
+    AC move:  r2 <- rot_5(r2) . rot_7(r1)
+        rot_5(r2)        =  XyxyxYYxxxy
+        rot_7(r1)        =  YXXXXyXY
+        concatenate      =  XyxyxYYxxxyYXXXXyXY
+        cancel inverses  =  XyxyxYYXyXY
+        rotate by 6      =  YYXyXYXyxyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyX, YYXyXYXyxyx)
   right — 19_52
-    P                                  = (YYYYxYXX, YXYXyxyXyxx)
-    x -> y, y -> x                     = (YYXXXXyX, YYXyXYXyxyx)   [to the Aut-minimal form]
+    start: (YYYYxYXX, YXYXyxyXyxx)
+    change of variables: x -> y, y -> x
+      r1 = YYYYxYXX
+           substitute      ->  XXXXyXYY
+           rotate by 2     ->  YYXXXXyX
+                               = r1
+      r2 = YXYXyxyXyxx
+           substitute      ->  XYXYxyxYxyy
+           invert          ->  YYXyXYXyxyx
+                               = r2
+    => (YYXXXXyX, YYXyXYXyxyx)
     both meet at (YYXXXXyX, YYXyXYXyxyx)
 ```
 
@@ -658,20 +1894,129 @@ Every step is an AC move — no change of variables inside the path. So `19_46 ~
 
 ```
   left  — 18_9
-    P                                  = (YYYxxyX, YXYXyXyxxYx)
-    x -> y, y -> X                     = (YYXXXyx, YYxyxyXyXYX)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_2(r1)        = (YYXXXyx, YYxyxyXYXXXX)   [AC move]
-    x -> x, y -> Xy                    = (YXXXyxYx, YYXyXyxxxyx)   [change of variables]
-    r2 <- rot_0(r2) . rot_6(r1^-1)     = (YXXXyxYx, YXyXyxxxxxxyX)   [AC move]
-    x -> x, y -> yx                    = (YYXXXyx, YYxyxYXXXXXXX)   [change of variables]
-    r2 <- rot_11(r2) . rot_2(r1^-1)    = (YYXXXyx, YXXXXyxxxxxxxxyX)   [AC move]
-    x -> X, y -> xxxxxxxy              = (YXXXXyXYx, YXXXyxxxxxxxyx)   [change of variables]
+    start: (YYYxxyX, YXYXyXyxxYx)
+    change of variables: x -> y, y -> X
+      r1 = YYYxxyX
+           substitute      ->  xxxyyXY
+           invert          ->  yxYYXXX
+           rotate by 5     ->  YYXXXyx
+                               = r1
+      r2 = YXYXyXyxxYx
+           substitute      ->  xYxYXYXyyxy
+           invert          ->  YXYYxyxyXyX
+           rotate by 9     ->  YYxyxyXyXYX
+                               = r2
+    => (YYXXXyx, YYxyxyXyXYX)
+
+    AC move:  r2 <- rot_1(r2) . rot_2(r1)
+        rot_1(r2)        =  XYYxyxyXyXY
+        rot_2(r1)        =  yxYYXXX
+        concatenate      =  XYYxyxyXyXYyxYYXXX
+        cancel inverses  =  XYYxyxyXYXXX
+        rotate by 11     =  YYxyxyXYXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyx, YYxyxyXYXXXX)
+    change of variables: x -> x, y -> Xy
+      r1 = YYXXXyx
+           substitute      ->  YxYXXXyx
+           rotate by 6     ->  YXXXyxYx
+                               = r1
+      r2 = YYxyxyXYXXXX
+           substitute      ->  YxYxyyXYXXX
+           invert          ->  xxxyxYYXyXy
+           rotate by 6     ->  YYXyXyxxxyx
+                               = r2
+    => (YXXXyxYx, YYXyXyxxxyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_6(r1^-1)
+        rot_0(r2)        =  YYXyXyxxxyx
+        rot_6(r1^-1)     =  XYxxxyXy
+        concatenate      =  YYXyXyxxxyxXYxxxyXy
+        cancel inverses  =  YYXyXyxxxxxxyXy
+        reduce cyclically=  YXyXyxxxxxxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxYx, YXyXyxxxxxxyX)
+    change of variables: x -> x, y -> yx
+      r1 = YXXXyxYx
+           substitute      ->  XYXXXyxYx
+           reduce          ->  YXXXyxY
+           rotate by 1     ->  YYXXXyx
+                               = r1
+      r2 = YXyXyxxxxxxyX
+           substitute      ->  XYXyyxxxxxxxy
+           invert          ->  YXXXXXXXYYxyx
+           rotate by 5     ->  YYxyxYXXXXXXX
+                               = r2
+    => (YYXXXyx, YYxyxYXXXXXXX)
+
+    AC move:  r2 <- rot_11(r2) . rot_2(r1^-1)
+        rot_11(r2)       =  xyxYXXXXXXXYY
+        rot_2(r1^-1)     =  yyXYxxx
+        concatenate      =  xyxYXXXXXXXYYyyXYxxx
+        cancel inverses  =  xyxYXXXXXXXXYxxx
+        invert           =  XXXyxxxxxxxxyXYX
+        rotate by 2      =  YXXXXyxxxxxxxxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyx, YXXXXyxxxxxxxxyX)
+    change of variables: x -> X, y -> xxxxxxxy
+      r2 = YXXXXyxxxxxxxxyX
+           substitute      ->  YxxxxyXyx
+           invert          ->  XYxYXXXXy
+           rotate by 6     ->  YXXXXyXYx
+                               = r1
+      r1 = YYXXXyx
+           substitute      ->  YXXXXXXXYxxxyX
+           invert          ->  xYXXXyxxxxxxxy
+           rotate by 13    ->  YXXXyxxxxxxxyx
+                               = r2
+    => (YXXXXyXYx, YXXXyxxxxxxxyx)
   right — 19_46
-    P                                  = (YYYYxxYX, YYYxyxYxYXX)
-    x -> y, y -> X                     = (YYXXXXyX, YYxxxyXyxyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YYXXXXyX, YXXXyxxxxyXYx)   [AC move]
-    r2 <- rot_1(r2) . rot_1(r1^-1)     = (YYXXXXyX, YXXXyxxxxxxxxyx)   [AC move]
-    x -> x, y -> Xy                    = (YXXXXyXYx, YXXXyxxxxxxxyx)   [change of variables]
+    start: (YYYYxxYX, YYYxyxYxYXX)
+    change of variables: x -> y, y -> X
+      r1 = YYYYxxYX
+           substitute      ->  xxxxyyxY
+           invert          ->  yXYYXXXX
+           rotate by 6     ->  YYXXXXyX
+                               = r1
+      r2 = YYYxyxYxYXX
+           substitute      ->  xxxyXyxyxYY
+           rotate by 2     ->  YYxxxyXyxyx
+                               = r2
+    => (YYXXXXyX, YYxxxyXyxyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYxxxyXyxyx
+        rot_1(r1)        =  XYYXXXXy
+        concatenate      =  YYxxxyXyxyxXYYXXXXy
+        cancel inverses  =  YYxxxyXyxYXXXXy
+        reduce cyclically=  YxxxyXyxYXXXX
+        invert           =  xxxxyXYxYXXXy
+        rotate by 5      =  YXXXyxxxxyXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyX, YXXXyxxxxyXYx)
+
+    AC move:  r2 <- rot_1(r2) . rot_1(r1^-1)
+        rot_1(r2)        =  xYXXXyxxxxyXY
+        rot_1(r1^-1)     =  yxYxxxxy
+        concatenate      =  xYXXXyxxxxyXYyxYxxxxy
+        cancel inverses  =  xYXXXyxxxxxxxxy
+        rotate by 14     =  YXXXyxxxxxxxxyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyX, YXXXyxxxxxxxxyx)
+    change of variables: x -> x, y -> Xy
+      r1 = YYXXXXyX
+           substitute      ->  YxYXXXXyX
+           rotate by 7     ->  YXXXXyXYx
+                               = r1
+      r2 = YXXXyxxxxxxxxyx
+           substitute      ->  YXXXyxxxxxxxyx
+                               = r2
+    => (YXXXXyXYx, YXXXyxxxxxxxyx)
     both meet at (YXXXXyXYx, YXXXyxxxxxxxyx)
 ```
 
@@ -693,13 +2038,49 @@ Every step is an AC move — no change of variables inside the path. So `19_46 ~
 
 ```
   left  — 16_6
-    P                                  = (YYxyxYX, YXyXXyxxx)
-    x -> y, y -> X                     = (YXXyXYx, YYYxyyxyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YXXyXYx, YYYYxyyXyX)   [AC move]
-    x -> xy, y -> y                    = (YXYXXYx, YYYYxyyXX)   [change of variables]
+    start: (YYxyxYX, YXyXXyxxx)
+    change of variables: x -> y, y -> X
+      r1 = YYxyxYX
+           substitute      ->  xxyXyxY
+           invert          ->  yXYxYXX
+           rotate by 3     ->  YXXyXYx
+                               = r1
+      r2 = YXyXXyxxx
+           substitute      ->  xYXYYXyyy
+           invert          ->  YYYxyyxyX
+                               = r2
+    => (YXXyXYx, YYYxyyxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYYxyyxyX
+        rot_1(r1)        =  xYXXyXY
+        concatenate      =  YYYxyyxyXxYXXyXY
+        cancel inverses  =  YYYxyyXyXY
+        rotate by 1      =  YYYYxyyXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYYxyyXyX)
+    change of variables: x -> xy, y -> y
+      r1 = YXXyXYx
+           substitute      ->  YYXYXXYxy
+           reduce          ->  YXYXXYx
+                               = r1
+      r2 = YYYYxyyXyX
+           substitute      ->  YYYYxyyXX
+                               = r2
+    => (YXYXXYx, YYYYxyyXX)
   right — 16_9
-    P                                  = (YYXyXYX, YYXXXXyxx)
-    x -> y, y -> x                     = (YXYXXYx, YYYYxyyXX)   [to the Aut-minimal form]
+    start: (YYXyXYX, YYXXXXyxx)
+    change of variables: x -> y, y -> x
+      r1 = YYXyXYX
+           substitute      ->  XXYxYXY
+           rotate by 3     ->  YXYXXYx
+                               = r1
+      r2 = YYXXXXyxx
+           substitute      ->  XXYYYYxyy
+           rotate by 7     ->  YYYYxyyXX
+                               = r2
+    => (YXYXXYx, YYYYxyyXX)
     both meet at (YXYXXYx, YYYYxyyXX)
 ```
 
@@ -707,23 +2088,154 @@ Every step is an AC move — no change of variables inside the path. So `19_46 ~
 
 ```
   left  — 16_10
-    P                                  = (YYxxyXX, YYYYXYxYx)
-    x -> X, y -> y                     = (YYXXyxx, YYYYxYXYX)   [to the Aut-minimal form]
-    r1 <- rot_0(r1) . rot_5(r2^-1)     = (YYYYxYXYX, YYYYXYxxyXYX)   [AC move]
-    x -> Xy, y -> x                    = (YYXXXXyX, YYXXXYXyXyx)   [change of variables]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YYXXXXyX, YXyXYXXXXYXXX)   [AC move]
-    x -> y, y -> YYYx                  = (YXYXXYx, YYYYxYXyyyX)   [change of variables]
-    r2 <- rot_4(r2) . rot_2(r1^-1)     = (YXYXXYx, YYYYXXyyyx)   [AC move]
-    r2 <- rot_0(r2) . rot_3(r1)        = (YXYXXYx, YYYYXXyyxYXYX)   [AC move]
-    x -> Yx, y -> y                    = (YXXyXYx, YYYXyXyyxYXX)   [change of variables]
-    r2 <- rot_2(r2) . rot_4(r1)        = (YXXyXYx, YYYXyXyxYXXXX)   [AC move]
+    start: (YYxxyXX, YYYYXYxYx)
+    change of variables: x -> X, y -> y
+      r1 = YYxxyXX
+           substitute      ->  YYXXyxx
+                               = r1
+      r2 = YYYYXYxYx
+           substitute      ->  YYYYxYXYX
+                               = r2
+    => (YYXXyxx, YYYYxYXYX)
+
+    AC move:  r1 <- rot_0(r1) . rot_5(r2^-1)
+        rot_0(r1)        =  YYXXyxx
+        rot_5(r2^-1)     =  Xyyyyxyxy
+        concatenate      =  YYXXyxxXyyyyxyxy
+        cancel inverses  =  YYXXyxyyyyxyxy
+        reduce cyclically=  YXXyxyyyyxyx
+        invert           =  XYXYYYYXYxxy
+        rotate by 9      =  YYYYXYxxyXYX
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYxYXYX, YYYYXYxxyXYX)
+    change of variables: x -> Xy, y -> x
+      r1 = YYYYxYXYX
+           substitute      ->  XXXXXyXYYx
+           reduce          ->  XXXXyXYY
+           rotate by 2     ->  YYXXXXyX
+                               = r1
+      r2 = YYYYXYxxyXYX
+           substitute      ->  XXXXYXyXyxYYx
+           reduce          ->  XXXYXyXyxYY
+           rotate by 2     ->  YYXXXYXyXyx
+                               = r2
+    => (YYXXXXyX, YYXXXYXyXyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYXXXYXyXyx
+        rot_1(r1)        =  XYYXXXXy
+        concatenate      =  YYXXXYXyXyxXYYXXXXy
+        cancel inverses  =  YYXXXYXyXYXXXXy
+        reduce cyclically=  YXXXYXyXYXXXX
+        rotate by 9      =  YXyXYXXXXYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyX, YXyXYXXXXYXXX)
+    change of variables: x -> y, y -> YYYx
+      r2 = YXyXYXXXXYXXX
+           substitute      ->  XYxYXYX
+           rotate by 4     ->  YXYXXYx
+                               = r1
+      r1 = YYXXXXyX
+           substitute      ->  XyyyXYYYYxY
+           rotate by 6     ->  YYYYxYXyyyX
+                               = r2
+    => (YXYXXYx, YYYYxYXyyyX)
+
+    AC move:  r2 <- rot_4(r2) . rot_2(r1^-1)
+        rot_4(r2)        =  yyyXYYYYxYX
+        rot_2(r1^-1)     =  xyXyxxy
+        concatenate      =  yyyXYYYYxYXxyXyxxy
+        cancel inverses  =  yyyXYYYxxy
+        invert           =  YXXyyyxYYY
+        rotate by 3      =  YYYYXXyyyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYYXXyyyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_3(r1)
+        rot_0(r2)        =  YYYYXXyyyx
+        rot_3(r1)        =  XYxYXYX
+        concatenate      =  YYYYXXyyyxXYxYXYX
+        cancel inverses  =  YYYYXXyyxYXYX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXYXXYx, YYYYXXyyxYXYX)
+    change of variables: x -> Yx, y -> y
+      r1 = YXYXXYx
+           substitute      ->  YXXyXYx
+                               = r1
+      r2 = YYYYXXyyxYXYX
+           substitute      ->  YYYYXyXyyxYXXy
+           reduce          ->  YYYXyXyyxYXX
+                               = r2
+    => (YXXyXYx, YYYXyXyyxYXX)
+
+    AC move:  r2 <- rot_2(r2) . rot_4(r1)
+        rot_2(r2)        =  XXYYYXyXyyxY
+        rot_4(r1)        =  yXYxYXX
+        concatenate      =  XXYYYXyXyyxYyXYxYXX
+        cancel inverses  =  XXYYYXyXyxYXX
+        rotate by 11     =  YYYXyXyxYXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYXyXyxYXXXX)
   right — 16_6
-    P                                  = (YYxyxYX, YXyXXyxxx)
-    x -> y, y -> X                     = (YXXyXYx, YYYxyyxyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_5(r1^-1)     = (YXXyXYx, YYXyyxYXXX)   [AC move]
-    r2 <- rot_3(r2) . rot_4(r1)        = (YXXyXYx, YYXyxYXXXXX)   [AC move]
-    r2 <- rot_5(r2) . rot_4(r1)        = (YXXyXYx, YYYXXXXXXX)   [AC move]
-    r2 <- rot_4(r2) . rot_3(r1^-1)     = (YXXyXYx, YYYXyXyxYXXXX)   [AC move]
+    start: (YYxyxYX, YXyXXyxxx)
+    change of variables: x -> y, y -> X
+      r1 = YYxyxYX
+           substitute      ->  xxyXyxY
+           invert          ->  yXYxYXX
+           rotate by 3     ->  YXXyXYx
+                               = r1
+      r2 = YXyXXyxxx
+           substitute      ->  xYXYYXyyy
+           invert          ->  YYYxyyxyX
+                               = r2
+    => (YXXyXYx, YYYxyyxyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_5(r1^-1)
+        rot_0(r2)        =  YYYxyyxyX
+        rot_5(r1^-1)     =  xYxxyXy
+        concatenate      =  YYYxyyxyXxYxxyXy
+        cancel inverses  =  YYYxyyxxxyXy
+        reduce cyclically=  YYxyyxxxyX
+        invert           =  xYXXXYYXyy
+        rotate by 5      =  YYXyyxYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYXyyxYXXX)
+
+    AC move:  r2 <- rot_3(r2) . rot_4(r1)
+        rot_3(r2)        =  XXXYYXyyxY
+        rot_4(r1)        =  yXYxYXX
+        concatenate      =  XXXYYXyyxYyXYxYXX
+        cancel inverses  =  XXXYYXyxYXX
+        rotate by 8      =  YYXyxYXXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYXyxYXXXXX)
+
+    AC move:  r2 <- rot_5(r2) . rot_4(r1)
+        rot_5(r2)        =  XXXXXYYXyxY
+        rot_4(r1)        =  yXYxYXX
+        concatenate      =  XXXXXYYXyxYyXYxYXX
+        cancel inverses  =  XXXXXYYYXX
+        rotate by 5      =  YYYXXXXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYXXXXXXX)
+
+    AC move:  r2 <- rot_4(r2) . rot_3(r1^-1)
+        rot_4(r2)        =  XXXXYYYXXX
+        rot_3(r1^-1)     =  xxyXyxY
+        concatenate      =  XXXXYYYXXXxxyXyxY
+        cancel inverses  =  XXXXYYYXyXyxY
+        rotate by 9      =  YYYXyXyxYXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXYx, YYYXyXyxYXXXX)
     both meet at (YXXyXYx, YYYXyXyxYXXXX)
 ```
 
@@ -744,23 +2256,152 @@ Every step is an AC move — no change of variables inside the path. So `19_46 ~
 
 ```
   left  — 15_2
-    P                                  = (YXXXyxx, YYYXXyyX)
-    x -> x, y -> y                     = (YXXXyxx, YYYXXyyX)   [to the Aut-minimal form]
-    r2 <- rot_3(r2) . rot_3(r1^-1)     = (YXXXyxx, YYXyxxyyx)   [AC move]
-    r2 <- rot_0(r2) . rot_6(r1^-1)     = (YXXXyxx, YYXyxxyxxxyX)   [AC move]
-    x -> X, y -> xxy                   = (YXXXyxx, YYXyxxyXYx)   [change of variables]
-    r2 <- rot_8(r2) . rot_3(r1)        = (YXXXyxx, YXXYxxxxyXXyXyx)   [AC move]
-    x -> X, y -> yX                    = (YXXXyxx, YYXYxxxxyXXXyx)   [change of variables]
+    start: (YXXXyxx, YYYXXyyX)
+    => (YXXXyxx, YYYXXyyX)   [already Aut-minimal]
+
+    AC move:  r2 <- rot_3(r2) . rot_3(r1^-1)
+        rot_3(r2)        =  yyXYYYXX
+        rot_3(r1^-1)     =  xxyXXYx
+        concatenate      =  yyXYYYXXxxyXXYx
+        cancel inverses  =  yyXYYXXYx
+        invert           =  XyxxyyxYY
+        rotate by 2      =  YYXyxxyyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXyxxyyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_6(r1^-1)
+        rot_0(r2)        =  YYXyxxyyx
+        rot_6(r1^-1)     =  XYxxxyX
+        concatenate      =  YYXyxxyyxXYxxxyX
+        cancel inverses  =  YYXyxxyxxxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXyxxyxxxyX)
+    change of variables: x -> X, y -> xxy
+      r1 = YXXXyxx
+           substitute      ->  YxxxyXX
+           invert          ->  xxYXXXy
+           rotate by 5     ->  YXXXyxx
+                               = r1
+      r2 = YYXyxxyxxxyX
+           substitute      ->  YXXYxyyXyx
+           invert          ->  XYxYYXyxxy
+           rotate by 7     ->  YYXyxxyXYx
+                               = r2
+    => (YXXXyxx, YYXyxxyXYx)
+
+    AC move:  r2 <- rot_8(r2) . rot_3(r1)
+        rot_8(r2)        =  XyxxyXYxYY
+        rot_3(r1)        =  yxxYXXX
+        concatenate      =  XyxxyXYxYYyxxYXXX
+        cancel inverses  =  XyxxyXYxYxxYXXX
+        invert           =  xxxyXXyXyxYXXYx
+        rotate by 5      =  YXXYxxxxyXXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YXXYxxxxyXXyXyx)
+    change of variables: x -> X, y -> yX
+      r1 = YXXXyxx
+           substitute      ->  xYxxxyXXX
+           reduce          ->  YxxxyXX
+           invert          ->  xxYXXXy
+           rotate by 5     ->  YXXXyxx
+                               = r1
+      r2 = YXXYxxxxyXXyXyx
+           substitute      ->  xYxxxYXXXXyxyyXX
+           reduce          ->  YxxxYXXXXyxyyX
+           invert          ->  xYYXYxxxxyXXXy
+           rotate by 13    ->  YYXYxxxxyXXXyx
+                               = r2
+    => (YXXXyxx, YYXYxxxxyXXXyx)
   right — 15_6
-    P                                  = (YXXyxxx, YYYXyXyX)
-    x -> X, y -> Y                     = (YXXXyxx, YYYXyXyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_2(r1)        = (YXXXyxx, YYXyXyxYXXX)   [AC move]
-    r2 <- rot_4(r2) . rot_6(r1^-1)     = (YXXXyxx, YYXyxxyXYXXX)   [AC move]
-    x -> X, y -> xxy                   = (YXXXyxx, YYXyxxyXyX)   [change of variables]
-    r2 <- rot_4(r2) . rot_0(r1^-1)     = (YXXXyxx, YYXXyyxYx)   [AC move]
-    r2 <- rot_4(r2) . rot_5(r1^-1)     = (YXXXyxx, YYxyXXyxYx)   [AC move]
-    x -> x, y -> yx                    = (YXXXyxx, YYXYxyXyx)   [change of variables]
-    r2 <- rot_3(r2) . rot_5(r1^-1)     = (YXXXyxx, YYXYxxxxyXXXyx)   [AC move]
+    start: (YXXyxxx, YYYXyXyX)
+    change of variables: x -> X, y -> Y
+      r1 = YXXyxxx
+           substitute      ->  yxxYXXX
+           rotate by 4     ->  YXXXyxx
+                               = r1
+      r2 = YYYXyXyX
+           substitute      ->  yyyxYxYx
+           invert          ->  XyXyXYYY
+           rotate by 3     ->  YYYXyXyX
+                               = r2
+    => (YXXXyxx, YYYXyXyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_2(r1)
+        rot_0(r2)        =  YYYXyXyX
+        rot_2(r1)        =  xxYXXXy
+        concatenate      =  YYYXyXyXxxYXXXy
+        cancel inverses  =  YYYXyXyxYXXXy
+        reduce cyclically=  YYXyXyxYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXyXyxYXXX)
+
+    AC move:  r2 <- rot_4(r2) . rot_6(r1^-1)
+        rot_4(r2)        =  YXXXYYXyXyx
+        rot_6(r1^-1)     =  XYxxxyX
+        concatenate      =  YXXXYYXyXyxXYxxxyX
+        cancel inverses  =  YXXXYYXyxxyX
+        rotate by 8      =  YYXyxxyXYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXyxxyXYXXX)
+    change of variables: x -> X, y -> xxy
+      r1 = YXXXyxx
+           substitute      ->  YxxxyXX
+           invert          ->  xxYXXXy
+           rotate by 5     ->  YXXXyxx
+                               = r1
+      r2 = YYXyxxyXYXXX
+           substitute      ->  YXXYxyyxYx
+           invert          ->  XyXYYXyxxy
+           rotate by 7     ->  YYXyxxyXyX
+                               = r2
+    => (YXXXyxx, YYXyxxyXyX)
+
+    AC move:  r2 <- rot_4(r2) . rot_0(r1^-1)
+        rot_4(r2)        =  yXyXYYXyxx
+        rot_0(r1^-1)     =  XXYxxxy
+        concatenate      =  yXyXYYXyxxXXYxxxy
+        cancel inverses  =  yXyXYYxxy
+        invert           =  YXXyyxYxY
+        rotate by 1      =  YYXXyyxYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXXyyxYx)
+
+    AC move:  r2 <- rot_4(r2) . rot_5(r1^-1)
+        rot_4(r2)        =  yxYxYYXXy
+        rot_5(r1^-1)     =  YxxxyXX
+        concatenate      =  yxYxYYXXyYxxxyXX
+        cancel inverses  =  yxYxYYxyXX
+        rotate by 6      =  YYxyXXyxYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYxyXXyxYx)
+    change of variables: x -> x, y -> yx
+      r1 = YXXXyxx
+           substitute      ->  XYXXXyxxx
+           reduce          ->  YXXXyxx
+                               = r1
+      r2 = YYxyXXyxYx
+           substitute      ->  XYXYxyXyxYx
+           reduce          ->  YXYxyXyxY
+           rotate by 1     ->  YYXYxyXyx
+                               = r2
+    => (YXXXyxx, YYXYxyXyx)
+
+    AC move:  r2 <- rot_3(r2) . rot_5(r1^-1)
+        rot_3(r2)        =  XyxYYXYxy
+        rot_5(r1^-1)     =  YxxxyXX
+        concatenate      =  XyxYYXYxyYxxxyXX
+        cancel inverses  =  XyxYYXYxxxxyXX
+        rotate by 11     =  YYXYxxxxyXXXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXYxxxxyXXXyx)
     both meet at (YXXXyxx, YYXYxxxxyXXXyx)
 ```
 
@@ -781,16 +2422,84 @@ Every step is an AC move — no change of variables inside the path. So `19_46 ~
 
 ```
   left  — 15_3
-    P                                  = (YYYXyyx, YXXYxxYx)
-    x -> Y, y -> x                     = (YXXXyxx, YYXYXyyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_2(r1)        = (YXXXyxx, YYxyxyxxxyX)   [AC move]
-    x -> x, y -> Xy                    = (YXXXyxx, YYXyXyxYXX)   [change of variables]
-    r2 <- rot_3(r2) . rot_6(r1^-1)     = (YXXXyxx, YYXyxxyXYXX)   [AC move]
-    x -> X, y -> xxy                   = (YXXXyxx, YYXyxxyyX)   [change of variables]
+    start: (YYYXyyx, YXXYxxYx)
+    change of variables: x -> Y, y -> x
+      r1 = YYYXyyx
+           substitute      ->  XXXyxxY
+           rotate by 1     ->  YXXXyxx
+                               = r1
+      r2 = YXXYxxYx
+           substitute      ->  XyyXYYXY
+           rotate by 4     ->  YYXYXyyX
+                               = r2
+    => (YXXXyxx, YYXYXyyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_2(r1)
+        rot_0(r2)        =  YYXYXyyX
+        rot_2(r1)        =  xxYXXXy
+        concatenate      =  YYXYXyyXxxYXXXy
+        cancel inverses  =  YYXYXyyxYXXXy
+        reduce cyclically=  YXYXyyxYXXX
+        invert           =  xxxyXYYxyxy
+        rotate by 6      =  YYxyxyxxxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYxyxyxxxyX)
+    change of variables: x -> x, y -> Xy
+      r1 = YXXXyxx
+           substitute      ->  YXXXyxx
+                               = r1
+      r2 = YYxyxyxxxyX
+           substitute      ->  YxYxyyxxyX
+           invert          ->  xYXXYYXyXy
+           rotate by 6     ->  YYXyXyxYXX
+                               = r2
+    => (YXXXyxx, YYXyXyxYXX)
+
+    AC move:  r2 <- rot_3(r2) . rot_6(r1^-1)
+        rot_3(r2)        =  YXXYYXyXyx
+        rot_6(r1^-1)     =  XYxxxyX
+        concatenate      =  YXXYYXyXyxXYxxxyX
+        cancel inverses  =  YXXYYXyxxyX
+        rotate by 8      =  YYXyxxyXYXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXyxxyXYXX)
+    change of variables: x -> X, y -> xxy
+      r1 = YXXXyxx
+           substitute      ->  YxxxyXX
+           invert          ->  xxYXXXy
+           rotate by 5     ->  YXXXyxx
+                               = r1
+      r2 = YYXyxxyXYXX
+           substitute      ->  YXXYxyyxY
+           invert          ->  yXYYXyxxy
+           rotate by 7     ->  YYXyxxyyX
+                               = r2
+    => (YXXXyxx, YYXyxxyyX)
   right — 15_9
-    P                                  = (YXXXyxx, YYYxxyyX)
-    x -> X, y -> y                     = (YXXXyxx, YYYXXyyx)   [to the Aut-minimal form]
-    r2 <- rot_3(r2) . rot_3(r1^-1)     = (YXXXyxx, YYXyxxyyX)   [AC move]
+    start: (YXXXyxx, YYYxxyyX)
+    change of variables: x -> X, y -> y
+      r1 = YXXXyxx
+           substitute      ->  YxxxyXX
+           invert          ->  xxYXXXy
+           rotate by 5     ->  YXXXyxx
+                               = r1
+      r2 = YYYxxyyX
+           substitute      ->  YYYXXyyx
+                               = r2
+    => (YXXXyxx, YYYXXyyx)
+
+    AC move:  r2 <- rot_3(r2) . rot_3(r1^-1)
+        rot_3(r2)        =  yyxYYYXX
+        rot_3(r1^-1)     =  xxyXXYx
+        concatenate      =  yyxYYYXXxxyXXYx
+        cancel inverses  =  yyxYYXXYx
+        invert           =  XyxxyyXYY
+        rotate by 2      =  YYXyxxyyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxx, YYXyxxyyX)
     both meet at (YXXXyxx, YYXyxxyyX)
 ```
 
@@ -809,12 +2518,21 @@ Every step is an AC move — no change of variables inside the path. So `19_46 ~
 
 **9 (15_4)  ≡  12 (15_7)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `15_4`:
+Substitute `x -> x, y -> Y` into **15_4** (`YYYXyyx`, `YXyXyxxx`), then normalise:
 
 ```
-    (YYYXyyx, YXyXyxxx)
-      ==>  (YYYXyyx, YXYxxxyX)   = the canonical form of 15_7   [MATCH]
+  r1 = YYYXyyx
+       substitute      ->  yyyXYYx
+       invert          ->  XyyxYYY
+       rotate by 3     ->  YYYXyyx
+                           = r1 of 15_7   [MATCH]
+  r2 = YXyXyxxx
+       substitute      ->  yXYXYxxx
+       rotate by 6     ->  YXYxxxyX
+                           = r2 of 15_7   [MATCH]
 ```
+
+which is exactly **15_7** = (`YYYXyyx`, `YXYxxxyX`). No AC move was used.
 
 ---
 
@@ -831,12 +2549,21 @@ Substitute `x -> x, y -> Y` into `15_4`:
 
 **10 (15_5)  ≡  13 (15_8)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `15_5`:
+Substitute `x -> x, y -> Y` into **15_5** (`YYYXyyx`, `YXyXXyxx`), then normalise:
 
 ```
-    (YYYXyyx, YXyXXyxx)
-      ==>  (YYYXyyx, YXXYxxyX)   = the canonical form of 15_8   [MATCH]
+  r1 = YYYXyyx
+       substitute      ->  yyyXYYx
+       invert          ->  XyyxYYY
+       rotate by 3     ->  YYYXyyx
+                           = r1 of 15_8   [MATCH]
+  r2 = YXyXXyxx
+       substitute      ->  yXYXXYxx
+       rotate by 6     ->  YXXYxxyX
+                           = r2 of 15_8   [MATCH]
 ```
+
+which is exactly **15_8** = (`YYYXyyx`, `YXXYxxyX`). No AC move was used.
 
 ---
 
@@ -853,12 +2580,22 @@ Substitute `x -> x, y -> Y` into `15_5`:
 
 **17 (17_2)  ≡  36 (17_21)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_2`:
+Substitute `x -> x, y -> Y` into **17_2** (`YYXXYxxx`, `YYYXYxYxx`), then normalise:
 
 ```
-    (YYXXYxxx, YYYXYxYxx)
-      ==>  (YYXXXYxx, YYYXXYXYx)   = the canonical form of 17_21   [MATCH]
+  r1 = YYXXYxxx
+       substitute      ->  yyXXyxxx
+       invert          ->  XXXYxxYY
+       rotate by 2     ->  YYXXXYxx
+                           = r1 of 17_21   [MATCH]
+  r2 = YYYXYxYxx
+       substitute      ->  yyyXyxyxx
+       invert          ->  XXYXYxYYY
+       rotate by 3     ->  YYYXXYXYx
+                           = r2 of 17_21   [MATCH]
 ```
+
+which is exactly **17_21** = (`YYXXXYxx`, `YYYXXYXYx`). No AC move was used.
 
 ---
 
@@ -875,12 +2612,22 @@ Substitute `x -> x, y -> Y` into `17_2`:
 
 **18 (17_3)  ≡  42 (17_27)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_3`:
+Substitute `x -> x, y -> Y` into **17_3** (`YXXYxxYx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXXYxxYx, YYYYXyyyx)
-      ==>  (YXYXXYxx, YYYYXyyyx)   = the canonical form of 17_27   [MATCH]
+  r1 = YXXYxxYx
+       substitute      ->  yXXyxxyx
+       invert          ->  XYXXYxxY
+       rotate by 1     ->  YXYXXYxx
+                           = r1 of 17_27   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_27   [MATCH]
 ```
+
+which is exactly **17_27** = (`YXYXXYxx`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -897,12 +2644,22 @@ Substitute `x -> x, y -> Y` into `17_3`:
 
 **19 (17_4)  ≡  44 (17_29)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_4`:
+Substitute `x -> x, y -> Y` into **17_4** (`YXXYxYxx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXXYxYxx, YYYYXyyyx)
-      ==>  (YXYxxYXX, YYYYXyyyx)   = the canonical form of 17_29   [MATCH]
+  r1 = YXXYxYxx
+       substitute      ->  yXXyxyxx
+       invert          ->  XXYXYxxY
+       rotate by 6     ->  YXYxxYXX
+                           = r1 of 17_29   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_29   [MATCH]
 ```
+
+which is exactly **17_29** = (`YXYxxYXX`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -921,17 +2678,95 @@ Substitute `x -> x, y -> Y` into `17_4`:
 
 ```
   left  — 17_17
-    P                                  = (YXXyXYxx, YYYYXyyyx)
-    x -> X, y -> y                     = (YXXYxxyx, YYYYxyyyX)   [to the Aut-minimal form]
-    r1 <- rot_0(r1) . rot_1(r2)        = (YYYYxyyyX, YYYxyyXXYxx)   [AC move]
-    x -> y, y -> x                     = (YXXXXyxxx, YYXyyXXXyxx)   [change of variables]
-    r2 <- rot_9(r2) . rot_4(r1)        = (YXXXXyxxx, YYxxxxxyXXXyXXYxxx)   [AC move]
-    x -> x, y -> yxxx                  = (YXXXXyxxx, YYXXXYxxxxxyyXX)   [change of variables]
+    start: (YXXyXYxx, YYYYXyyyx)
+    change of variables: x -> X, y -> y
+      r1 = YXXyXYxx
+           substitute      ->  YxxyxYXX
+           rotate by 3     ->  YXXYxxyx
+                               = r1
+      r2 = YYYYXyyyx
+           substitute      ->  YYYYxyyyX
+                               = r2
+    => (YXXYxxyx, YYYYxyyyX)
+
+    AC move:  r1 <- rot_0(r1) . rot_1(r2)
+        rot_0(r1)        =  YXXYxxyx
+        rot_1(r2)        =  XYYYYxyyy
+        concatenate      =  YXXYxxyxXYYYYxyyy
+        cancel inverses  =  YXXYxxYYYxyyy
+        reduce cyclically=  XXYxxYYYxyy
+        rotate by 6      =  YYYxyyXXYxx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYxyyyX, YYYxyyXXYxx)
+    change of variables: x -> y, y -> x
+      r1 = YYYYxyyyX
+           substitute      ->  XXXXyxxxY
+           rotate by 1     ->  YXXXXyxxx
+                               = r1
+      r2 = YYYxyyXXYxx
+           substitute      ->  XXXyxxYYXyy
+           rotate by 5     ->  YYXyyXXXyxx
+                               = r2
+    => (YXXXXyxxx, YYXyyXXXyxx)
+
+    AC move:  r2 <- rot_9(r2) . rot_4(r1)
+        rot_9(r2)        =  XyyXXXyxxYY
+        rot_4(r1)        =  yxxxYXXXX
+        concatenate      =  XyyXXXyxxYYyxxxYXXXX
+        cancel inverses  =  XyyXXXyxxYxxxYXXXX
+        invert           =  xxxxyXXXyXXYxxxYYx
+        rotate by 3      =  YYxxxxxyXXXyXXYxxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXXyxxx, YYxxxxxyXXXyXXYxxx)
+    change of variables: x -> x, y -> yxxx
+      r1 = YXXXXyxxx
+           substitute      ->  XXXYXXXXyxxxxxx
+           reduce          ->  YXXXXyxxx
+                               = r1
+      r2 = YYxxxxxyXXXyXXYxxx
+           substitute      ->  XXXYXXXYxxxxxyyXXYxxx
+           reduce          ->  YXXXYxxxxxyyXXY
+           rotate by 1     ->  YYXXXYxxxxxyyXX
+                               = r2
+    => (YXXXXyxxx, YYXXXYxxxxxyyXX)
   right — 17_5
-    P                                  = (YYxxyXXX, YYYYXyyyx)
-    x -> X, y -> Y                     = (YYXXXyxx, YYYYxyyyX)   [to the Aut-minimal form]
-    r1 <- rot_3(r1) . rot_0(r2^-1)     = (YYYYxyyyX, YYYYYxyyyxxyyXX)   [AC move]
-    x -> y, y -> x                     = (YXXXXyxxx, YYXXXYxxxxxyyXX)   [change of variables]
+    start: (YYxxyXXX, YYYYXyyyx)
+    change of variables: x -> X, y -> Y
+      r1 = YYxxyXXX
+           substitute      ->  yyXXYxxx
+           invert          ->  XXXyxxYY
+           rotate by 2     ->  YYXXXyxx
+                               = r1
+      r2 = YYYYXyyyx
+           substitute      ->  yyyyxYYYX
+           invert          ->  xyyyXYYYY
+           rotate by 4     ->  YYYYxyyyX
+                               = r2
+    => (YYXXXyxx, YYYYxyyyX)
+
+    AC move:  r1 <- rot_3(r1) . rot_0(r2^-1)
+        rot_3(r1)        =  yxxYYXXX
+        rot_0(r2^-1)     =  xYYYXyyyy
+        concatenate      =  yxxYYXXXxYYYXyyyy
+        cancel inverses  =  yxxYYXXYYYXyyyy
+        invert           =  YYYYxyyyxxyyXXY
+        rotate by 1      =  YYYYYxyyyxxyyXX
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYxyyyX, YYYYYxyyyxxyyXX)
+    change of variables: x -> y, y -> x
+      r1 = YYYYxyyyX
+           substitute      ->  XXXXyxxxY
+           rotate by 1     ->  YXXXXyxxx
+                               = r1
+      r2 = YYYYYxyyyxxyyXX
+           substitute      ->  XXXXXyxxxyyxxYY
+           invert          ->  yyXXYYXXXYxxxxx
+           rotate by 11    ->  YYXXXYxxxxxyyXX
+                               = r2
+    => (YXXXXyxxx, YYXXXYxxxxxyyXX)
     both meet at (YXXXXyxxx, YYXXXYxxxxxyyXX)
 ```
 
@@ -950,12 +2785,22 @@ Substitute `x -> x, y -> Y` into `17_4`:
 
 **21 (17_6)  ≡  34 (17_19)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_6`:
+Substitute `x -> x, y -> Y` into **17_6** (`YXXYxxyx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXXYxxyx, YYYYXyyyx)
-      ==>  (YXyXXYxx, YYYYXyyyx)   = the canonical form of 17_19   [MATCH]
+  r1 = YXXYxxyx
+       substitute      ->  yXXyxxYx
+       invert          ->  XyXXYxxY
+       rotate by 1     ->  YXyXXYxx
+                           = r1 of 17_19   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_19   [MATCH]
 ```
+
+which is exactly **17_19** = (`YXyXXYxx`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -972,12 +2817,21 @@ Substitute `x -> x, y -> Y` into `17_6`:
 
 **22 (17_7)  ≡  41 (17_26)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_7`:
+Substitute `x -> x, y -> Y` into **17_7** (`YXyXXyxx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXyXXyxx, YYYYXyyyx)
-      ==>  (YXXYxxyX, YYYYXyyyx)   = the canonical form of 17_26   [MATCH]
+  r1 = YXyXXyxx
+       substitute      ->  yXYXXYxx
+       rotate by 6     ->  YXXYxxyX
+                           = r1 of 17_26   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_26   [MATCH]
 ```
+
+which is exactly **17_26** = (`YXXYxxyX`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -994,12 +2848,21 @@ Substitute `x -> x, y -> Y` into `17_7`:
 
 **23 (17_8)  ≡  43 (17_28)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_8`:
+Substitute `x -> x, y -> Y` into **17_8** (`YXXyXyxx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXXyXyxx, YYYYXyyyx)
-      ==>  (YXYxxyXX, YYYYXyyyx)   = the canonical form of 17_28   [MATCH]
+  r1 = YXXyXyxx
+       substitute      ->  yXXYXYxx
+       rotate by 5     ->  YXYxxyXX
+                           = r1 of 17_28   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_28   [MATCH]
 ```
+
+which is exactly **17_28** = (`YXYxxyXX`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -1016,12 +2879,22 @@ Substitute `x -> x, y -> Y` into `17_8`:
 
 **24 (17_9)  ≡  31 (17_16)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_9`:
+Substitute `x -> x, y -> Y` into **17_9** (`YXyxxYXX`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXyxxYXX, YYYYXyyyx)
-      ==>  (YXXyxYxx, YYYYXyyyx)   = the canonical form of 17_16   [MATCH]
+  r1 = YXyxxYXX
+       substitute      ->  yXYxxyXX
+       invert          ->  xxYXXyxY
+       rotate by 6     ->  YXXyxYxx
+                           = r1 of 17_16   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_16   [MATCH]
 ```
+
+which is exactly **17_16** = (`YXXyxYxx`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -1038,12 +2911,22 @@ Substitute `x -> x, y -> Y` into `17_9`:
 
 **25 (17_10)  ≡  33 (17_18)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_10`:
+Substitute `x -> x, y -> Y` into **17_10** (`YXYXXyxx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXYXXyxx, YYYYXyyyx)
-      ==>  (YXXyxxYx, YYYYXyyyx)   = the canonical form of 17_18   [MATCH]
+  r1 = YXYXXyxx
+       substitute      ->  yXyXXYxx
+       invert          ->  XXyxxYxY
+       rotate by 1     ->  YXXyxxYx
+                           = r1 of 17_18   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_18   [MATCH]
 ```
+
+which is exactly **17_18** = (`YXXyxxYx`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -1062,14 +2945,53 @@ Substitute `x -> x, y -> Y` into `17_10`:
 
 ```
   left  — 17_11
-    P                                  = (YYXXXyxx, YXyxxyXYx)
-    x -> x, y -> y                     = (YYXXXyxx, YXyxxyXYx)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_0(r1^-1)     = (YYXXXyxx, YYYXXyXyx)   [AC move]
-    r2 <- rot_0(r2) . rot_7(r1^-1)     = (YYXXXyxx, YYYXXyxxyyX)   [AC move]
+    start: (YYXXXyxx, YXyxxyXYx)
+    => (YYXXXyxx, YXyxxyXYx)   [already Aut-minimal]
+
+    AC move:  r2 <- rot_4(r2) . rot_0(r1^-1)
+        rot_4(r2)        =  yXYxYXyxx
+        rot_0(r1^-1)     =  XXYxxxyy
+        concatenate      =  yXYxYXyxxXXYxxxyy
+        cancel inverses  =  yXYxYxxyy
+        invert           =  YYXXyXyxY
+        rotate by 1      =  YYYXXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYXXyXyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_7(r1^-1)
+        rot_0(r2)        =  YYYXXyXyx
+        rot_7(r1^-1)     =  XYxxxyyX
+        concatenate      =  YYYXXyXyxXYxxxyyX
+        cancel inverses  =  YYYXXyxxyyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYXXyxxyyX)
   right — 17_20
-    P                                  = (YYXXyxxx, YYYYXyyyx)
-    x -> x, y -> Y                     = (YYXXXyxx, YYYYXyyyx)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_3(r1^-1)     = (YYXXXyxx, YYYXXyxxyyX)   [AC move]
+    start: (YYXXyxxx, YYYYXyyyx)
+    change of variables: x -> x, y -> Y
+      r1 = YYXXyxxx
+           substitute      ->  yyXXYxxx
+           invert          ->  XXXyxxYY
+           rotate by 2     ->  YYXXXyxx
+                               = r1
+      r2 = YYYYXyyyx
+           substitute      ->  yyyyXYYYx
+           invert          ->  XyyyxYYYY
+           rotate by 4     ->  YYYYXyyyx
+                               = r2
+    => (YYXXXyxx, YYYYXyyyx)
+
+    AC move:  r2 <- rot_4(r2) . rot_3(r1^-1)
+        rot_4(r2)        =  yyyxYYYYX
+        rot_3(r1^-1)     =  xyyXXYxx
+        concatenate      =  yyyxYYYYXxyyXXYxx
+        cancel inverses  =  yyyxYYXXYxx
+        invert           =  XXyxxyyXYYY
+        rotate by 3      =  YYYXXyxxyyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYXXyxxyyX)
     both meet at (YYXXXyxx, YYYXXyxxyyX)
 ```
 
@@ -1090,12 +3012,22 @@ Every step is an AC move — no change of variables inside the path. So `17_11 ~
 
 **27 (17_12)  ≡  40 (17_25)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_12`:
+Substitute `x -> x, y -> Y` into **17_12** (`YXYXYxxx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXYXYxxx, YYYYXyyyx)
-      ==>  (YXXXYxYx, YYYYXyyyx)   = the canonical form of 17_25   [MATCH]
+  r1 = YXYXYxxx
+       substitute      ->  yXyXyxxx
+       invert          ->  XXXYxYxY
+       rotate by 1     ->  YXXXYxYx
+                           = r1 of 17_25   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_25   [MATCH]
 ```
+
+which is exactly **17_25** = (`YXXXYxYx`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -1112,12 +3044,21 @@ Substitute `x -> x, y -> Y` into `17_12`:
 
 **28 (17_13)  ≡  39 (17_24)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_13`:
+Substitute `x -> x, y -> Y` into **17_13** (`YXYxxxyX`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXYxxxyX, YYYYXyyyx)
-      ==>  (YXyXyxxx, YYYYXyyyx)   = the canonical form of 17_24   [MATCH]
+  r1 = YXYxxxyX
+       substitute      ->  yXyxxxYX
+       rotate by 2     ->  YXyXyxxx
+                           = r1 of 17_24   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_24   [MATCH]
 ```
+
+which is exactly **17_24** = (`YXyXyxxx`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -1134,12 +3075,21 @@ Substitute `x -> x, y -> Y` into `17_13`:
 
 **29 (17_14)  ≡  38 (17_23)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_14`:
+Substitute `x -> x, y -> Y` into **17_14** (`YXyXYxxx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXyXYxxx, YYYYXyyyx)
-      ==>  (YXyxxxyX, YYYYXyyyx)   = the canonical form of 17_23   [MATCH]
+  r1 = YXyXYxxx
+       substitute      ->  yXYXyxxx
+       rotate by 6     ->  YXyxxxyX
+                           = r1 of 17_23   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_23   [MATCH]
 ```
+
+which is exactly **17_23** = (`YXyxxxyX`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -1156,12 +3106,22 @@ Substitute `x -> x, y -> Y` into `17_14`:
 
 **30 (17_15)  ≡  37 (17_22)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `17_15`:
+Substitute `x -> x, y -> Y` into **17_15** (`YXXXyxYx`, `YYYYXyyyx`), then normalise:
 
 ```
-    (YXXXyxYx, YYYYXyyyx)
-      ==>  (YXYXyxxx, YYYYXyyyx)   = the canonical form of 17_22   [MATCH]
+  r1 = YXXXyxYx
+       substitute      ->  yXXXYxyx
+       invert          ->  XYXyxxxY
+       rotate by 1     ->  YXYXyxxx
+                           = r1 of 17_22   [MATCH]
+  r2 = YYYYXyyyx
+       substitute      ->  yyyyXYYYx
+       invert          ->  XyyyxYYYY
+       rotate by 4     ->  YYYYXyyyx
+                           = r2 of 17_22   [MATCH]
 ```
+
+which is exactly **17_22** = (`YXYXyxxx`, `YYYYXyyyx`). No AC move was used.
 
 ---
 
@@ -1180,15 +3140,71 @@ Substitute `x -> x, y -> Y` into `17_15`:
 
 ```
   left  — 15_11
-    P                                  = (YYYXyxx, YYYxxyyX)
-    x -> Y, y -> x                     = (YYXXXyx, YYxxyXXX)   [to the Aut-minimal form]
-    r2 <- rot_3(r2) . rot_6(r1)        = (YYXXXyx, YYXyxYXXX)   [AC move]
-    r2 <- rot_0(r2) . rot_5(r1^-1)     = (YYXXXyx, YYYXyxyX)   [AC move]
+    start: (YYYXyxx, YYYxxyyX)
+    change of variables: x -> Y, y -> x
+      r1 = YYYXyxx
+           substitute      ->  XXXyxYY
+           rotate by 2     ->  YYXXXyx
+                               = r1
+      r2 = YYYxxyyX
+           substitute      ->  XXXYYxxy
+           rotate by 5     ->  YYxxyXXX
+                               = r2
+    => (YYXXXyx, YYxxyXXX)
+
+    AC move:  r2 <- rot_3(r2) . rot_6(r1)
+        rot_3(r2)        =  XXXYYxxy
+        rot_6(r1)        =  YXXXyxY
+        concatenate      =  XXXYYxxyYXXXyxY
+        cancel inverses  =  XXXYYXyxY
+        rotate by 6      =  YYXyxYXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyx, YYXyxYXXX)
+
+    AC move:  r2 <- rot_0(r2) . rot_5(r1^-1)
+        rot_0(r2)        =  YYXyxYXXX
+        rot_5(r1^-1)     =  xxxyyXY
+        concatenate      =  YYXyxYXXXxxxyyXY
+        cancel inverses  =  YYXyxyXY
+        rotate by 1      =  YYYXyxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyx, YYYXyxyX)
   right — 15_10
-    P                                  = (YXyxxyX, YYXyyxYx)
-    x -> x, y -> Y                     = (YXyXYxx, YYXYXyyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_4(r1)        = (YXyXYxx, YXYXYXyxx)   [AC move]
-    x -> Y, y -> yx                    = (YYXXXyx, YYYXyxyX)   [change of variables]
+    start: (YXyxxyX, YYXyyxYx)
+    change of variables: x -> x, y -> Y
+      r1 = YXyxxyX
+           substitute      ->  yXYxxYX
+           rotate by 2     ->  YXyXYxx
+                               = r1
+      r2 = YYXyyxYx
+           substitute      ->  yyXYYxyx
+           invert          ->  XYXyyxYY
+           rotate by 2     ->  YYXYXyyx
+                               = r2
+    => (YXyXYxx, YYXYXyyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_4(r1)
+        rot_0(r2)        =  YYXYXyyx
+        rot_4(r1)        =  XYxxYXy
+        concatenate      =  YYXYXyyxXYxxYXy
+        cancel inverses  =  YYXYXyxxYXy
+        reduce cyclically=  YXYXyxxYX
+        rotate by 2      =  YXYXYXyxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXyXYxx, YXYXYXyxx)
+    change of variables: x -> Y, y -> yx
+      r2 = YXYXYXyxx
+           substitute      ->  XXXyxYY
+           rotate by 2     ->  YYXXXyx
+                               = r1
+      r1 = YXyXYxx
+           substitute      ->  XyxyXYYY
+           rotate by 3     ->  YYYXyxyX
+                               = r2
+    => (YYXXXyx, YYYXyxyX)
     both meet at (YYXXXyx, YYYXyxyX)
 ```
 
@@ -1207,12 +3223,22 @@ Substitute `x -> x, y -> Y` into `17_15`:
 
 **47 (18_1)  ≡  49 (18_3)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `18_1`:
+Substitute `x -> x, y -> Y` into **18_1** (`YXXYxxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXXYxxx, YYYYYXyyyyx)
-      ==>  (YXXXYxx, YYYYYXyyyyx)   = the canonical form of 18_3   [MATCH]
+  r1 = YXXYxxx
+       substitute      ->  yXXyxxx
+       invert          ->  XXXYxxY
+       rotate by 1     ->  YXXXYxx
+                           = r1 of 18_3   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 18_3   [MATCH]
 ```
+
+which is exactly **18_3** = (`YXXXYxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1229,12 +3255,22 @@ Substitute `x -> x, y -> Y` into `18_1`:
 
 **50 (19_1)  ≡  71 (19_22)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_1`:
+Substitute `x -> x, y -> Y` into **19_1** (`YYXXYxxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YYXXYxxx, YYYYYXyyyyx)
-      ==>  (YYXXXYxx, YYYYYXyyyyx)   = the canonical form of 19_22   [MATCH]
+  r1 = YYXXYxxx
+       substitute      ->  yyXXyxxx
+       invert          ->  XXXYxxYY
+       rotate by 2     ->  YYXXXYxx
+                           = r1 of 19_22   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_22   [MATCH]
 ```
+
+which is exactly **19_22** = (`YYXXXYxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1253,18 +3289,107 @@ Substitute `x -> x, y -> Y` into `19_1`:
 
 ```
   left  — 19_30
-    P                                  = (YXYXXYxx, YYYYYXyyyyx)
-    x -> X, y -> y                     = (YXXYxYxx, YYYYYxyyyyX)   [to the Aut-minimal form]
-    r1 <- rot_0(r1) . rot_1(r2)        = (YYYYYxyyyyX, YYYYYxyyyXXYxYx)   [AC move]
-    x -> yX, y -> X                    = (YXXXXXyxxxx, YYXyXyxxxYXXXX)   [change of variables]
-    r2 <- rot_5(r2) . rot_10(r1^-1)    = (YXXXXXyxxxx, YYXyxxxxyXYXXXX)   [AC move]
-    x -> X, y -> xxxxy                 = (YYXyxxxxyyX, YXXXXXyxxxx)   [change of variables]
+    start: (YXYXXYxx, YYYYYXyyyyx)
+    change of variables: x -> X, y -> y
+      r1 = YXYXXYxx
+           substitute      ->  YxYxxYXX
+           rotate by 3     ->  YXXYxYxx
+                               = r1
+      r2 = YYYYYXyyyyx
+           substitute      ->  YYYYYxyyyyX
+                               = r2
+    => (YXXYxYxx, YYYYYxyyyyX)
+
+    AC move:  r1 <- rot_0(r1) . rot_1(r2)
+        rot_0(r1)        =  YXXYxYxx
+        rot_1(r2)        =  XYYYYYxyyyy
+        concatenate      =  YXXYxYxxXYYYYYxyyyy
+        cancel inverses  =  YXXYxYxYYYYYxyyyy
+        reduce cyclically=  XXYxYxYYYYYxyyy
+        rotate by 9      =  YYYYYxyyyXXYxYx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYYxyyyyX, YYYYYxyyyXXYxYx)
+    change of variables: x -> yX, y -> X
+      r1 = YYYYYxyyyyX
+           substitute      ->  xxxxxyXXXXY
+           invert          ->  yxxxxYXXXXX
+           rotate by 6     ->  YXXXXXyxxxx
+                               = r1
+      r2 = YYYYYxyyyXXYxYx
+           substitute      ->  xxxxxyXXXYxYxyyX
+           reduce          ->  xxxxyXXXYxYxyy
+           invert          ->  YYXyXyxxxYXXXX
+                               = r2
+    => (YXXXXXyxxxx, YYXyXyxxxYXXXX)
+
+    AC move:  r2 <- rot_5(r2) . rot_10(r1^-1)
+        rot_5(r2)        =  YXXXXYYXyXyxxx
+        rot_10(r1^-1)    =  XXXYxxxxxyX
+        concatenate      =  YXXXXYYXyXyxxxXXXYxxxxxyX
+        cancel inverses  =  YXXXXYYXyxxxxyX
+        rotate by 10     =  YYXyxxxxyXYXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXXXyxxxx, YYXyxxxxyXYXXXX)
+    change of variables: x -> X, y -> xxxxy
+      r2 = YYXyxxxxyXYXXXX
+           substitute      ->  YXXXXYxyyxY
+           invert          ->  yXYYXyxxxxy
+           rotate by 9     ->  YYXyxxxxyyX
+                               = r1
+      r1 = YXXXXXyxxxx
+           substitute      ->  YxxxxxyXXXX
+           invert          ->  xxxxYXXXXXy
+           rotate by 7     ->  YXXXXXyxxxx
+                               = r2
+    => (YYXyxxxxyyX, YXXXXXyxxxx)
   right — 19_2
-    P                                  = (YXyxxxYXX, YYYYXXXyxx)
-    x -> x, y -> Y                     = (YXXXyxYxx, YYYYXXyxxx)   [to the Aut-minimal form]
-    r1 <- rot_3(r1) . rot_8(r2^-1)     = (YYYYXXyxxx, YYYYxyXXyxx)   [AC move]
-    x -> Y, y -> x                     = (YYYXXXXyyx, YYXyxxxxyyX)   [change of variables]
-    r1 <- rot_0(r1) . rot_1(r2)        = (YYXyxxxxyyX, YXXXXXyxxxx)   [AC move]
+    start: (YXyxxxYXX, YYYYXXXyxx)
+    change of variables: x -> x, y -> Y
+      r1 = YXyxxxYXX
+           substitute      ->  yXYxxxyXX
+           invert          ->  xxYXXXyxY
+           rotate by 7     ->  YXXXyxYxx
+                               = r1
+      r2 = YYYYXXXyxx
+           substitute      ->  yyyyXXXYxx
+           invert          ->  XXyxxxYYYY
+           rotate by 4     ->  YYYYXXyxxx
+                               = r2
+    => (YXXXyxYxx, YYYYXXyxxx)
+
+    AC move:  r1 <- rot_3(r1) . rot_8(r2^-1)
+        rot_3(r1)        =  YxxYXXXyx
+        rot_8(r2^-1)     =  XYxxyyyyXX
+        concatenate      =  YxxYXXXyxXYxxyyyyXX
+        cancel inverses  =  YxxYXyyyyXX
+        invert           =  xxYYYYxyXXy
+        rotate by 9      =  YYYYxyXXyxx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYXXyxxx, YYYYxyXXyxx)
+    change of variables: x -> Y, y -> x
+      r1 = YYYYXXyxxx
+           substitute      ->  XXXXyyxYYY
+           rotate by 3     ->  YYYXXXXyyx
+                               = r1
+      r2 = YYYYxyXXyxx
+           substitute      ->  XXXXYxyyxYY
+           invert          ->  yyXYYXyxxxx
+           rotate by 8     ->  YYXyxxxxyyX
+                               = r2
+    => (YYYXXXXyyx, YYXyxxxxyyX)
+
+    AC move:  r1 <- rot_0(r1) . rot_1(r2)
+        rot_0(r1)        =  YYYXXXXyyx
+        rot_1(r2)        =  XYYXyxxxxyy
+        concatenate      =  YYYXXXXyyxXYYXyxxxxyy
+        cancel inverses  =  YYYXXXXXyxxxxyy
+        reduce cyclically=  YXXXXXyxxxx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYXyxxxxyyX, YXXXXXyxxxx)
     both meet at (YYXyxxxxyyX, YXXXXXyxxxx)
 ```
 
@@ -1283,12 +3408,22 @@ Substitute `x -> x, y -> Y` into `19_1`:
 
 **52 (19_3)  ≡  81 (19_32)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_3`:
+Substitute `x -> x, y -> Y` into **19_3** (`YXXYxYxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXXYxYxx, YYYYYXyyyyx)
-      ==>  (YXYxxYXX, YYYYYXyyyyx)   = the canonical form of 19_32   [MATCH]
+  r1 = YXXYxYxx
+       substitute      ->  yXXyxyxx
+       invert          ->  XXYXYxxY
+       rotate by 6     ->  YXYxxYXX
+                           = r1 of 19_32   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_32   [MATCH]
 ```
+
+which is exactly **19_32** = (`YXYxxYXX`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1305,12 +3440,21 @@ Substitute `x -> x, y -> Y` into `19_3`:
 
 **53 (19_4)  ≡  69 (19_20)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_4`:
+Substitute `x -> x, y -> Y` into **19_4** (`YXyxxyXX`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXyxxyXX, YYYYYXyyyyx)
-      ==>  (YXXyXYxx, YYYYYXyyyyx)   = the canonical form of 19_20   [MATCH]
+  r1 = YXyxxyXX
+       substitute      ->  yXYxxYXX
+       rotate by 3     ->  YXXyXYxx
+                           = r1 of 19_20   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_20   [MATCH]
 ```
+
+which is exactly **19_20** = (`YXXyXYxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1327,12 +3471,22 @@ Substitute `x -> x, y -> Y` into `19_4`:
 
 **54 (19_5)  ≡  67 (19_18)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_5`:
+Substitute `x -> x, y -> Y` into **19_5** (`YXXYxxyx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXXYxxyx, YYYYYXyyyyx)
-      ==>  (YXyXXYxx, YYYYYXyyyyx)   = the canonical form of 19_18   [MATCH]
+  r1 = YXXYxxyx
+       substitute      ->  yXXyxxYx
+       invert          ->  XyXXYxxY
+       rotate by 1     ->  YXyXXYxx
+                           = r1 of 19_18   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_18   [MATCH]
 ```
+
+which is exactly **19_18** = (`YXyXXYxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1349,12 +3503,21 @@ Substitute `x -> x, y -> Y` into `19_5`:
 
 **55 (19_6)  ≡  78 (19_29)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_6`:
+Substitute `x -> x, y -> Y` into **19_6** (`YXyXXyxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXyXXyxx, YYYYYXyyyyx)
-      ==>  (YXXYxxyX, YYYYYXyyyyx)   = the canonical form of 19_29   [MATCH]
+  r1 = YXyXXyxx
+       substitute      ->  yXYXXYxx
+       rotate by 6     ->  YXXYxxyX
+                           = r1 of 19_29   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_29   [MATCH]
 ```
+
+which is exactly **19_29** = (`YXXYxxyX`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1371,12 +3534,21 @@ Substitute `x -> x, y -> Y` into `19_6`:
 
 **56 (19_7)  ≡  80 (19_31)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_7`:
+Substitute `x -> x, y -> Y` into **19_7** (`YXXyXyxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXXyXyxx, YYYYYXyyyyx)
-      ==>  (YXYxxyXX, YYYYYXyyyyx)   = the canonical form of 19_31   [MATCH]
+  r1 = YXXyXyxx
+       substitute      ->  yXXYXYxx
+       rotate by 5     ->  YXYxxyXX
+                           = r1 of 19_31   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_31   [MATCH]
 ```
+
+which is exactly **19_31** = (`YXYxxyXX`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1393,12 +3565,22 @@ Substitute `x -> x, y -> Y` into `19_7`:
 
 **57 (19_8)  ≡  68 (19_19)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_8`:
+Substitute `x -> x, y -> Y` into **19_8** (`YXyxxYXX`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXyxxYXX, YYYYYXyyyyx)
-      ==>  (YXXyxYxx, YYYYYXyyyyx)   = the canonical form of 19_19   [MATCH]
+  r1 = YXyxxYXX
+       substitute      ->  yXYxxyXX
+       invert          ->  xxYXXyxY
+       rotate by 6     ->  YXXyxYxx
+                           = r1 of 19_19   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_19   [MATCH]
 ```
+
+which is exactly **19_19** = (`YXXyxYxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1417,18 +3599,95 @@ Substitute `x -> x, y -> Y` into `19_8`:
 
 ```
   left  — 19_9
-    P                                  = (YXYXXyxx, YYYYYXyyyyx)
-    x -> X, y -> y                     = (YXXyXyxx, YYYYYxyyyyX)   [to the Aut-minimal form]
-    r1 <- rot_0(r1) . rot_1(r2)        = (YYYYYxyyyyX, YYYYYxyyyXXyXyx)   [AC move]
-    x -> yX, y -> X                    = (YXXXXXyxxxx, YYXyxxxxyXXXYx)   [change of variables]
-    r2 <- rot_0(r2) . rot_6(r1)        = (YXXXXXyxxxx, YYXyxxxxyxYXXXX)   [AC move]
-    x -> X, y -> xxxxy                 = (YYXyxxxxyyx, YXXXXXyxxxx)   [change of variables]
+    start: (YXYXXyxx, YYYYYXyyyyx)
+    change of variables: x -> X, y -> y
+      r1 = YXYXXyxx
+           substitute      ->  YxYxxyXX
+           invert          ->  xxYXXyXy
+           rotate by 6     ->  YXXyXyxx
+                               = r1
+      r2 = YYYYYXyyyyx
+           substitute      ->  YYYYYxyyyyX
+                               = r2
+    => (YXXyXyxx, YYYYYxyyyyX)
+
+    AC move:  r1 <- rot_0(r1) . rot_1(r2)
+        rot_0(r1)        =  YXXyXyxx
+        rot_1(r2)        =  XYYYYYxyyyy
+        concatenate      =  YXXyXyxxXYYYYYxyyyy
+        cancel inverses  =  YXXyXyxYYYYYxyyyy
+        reduce cyclically=  XXyXyxYYYYYxyyy
+        rotate by 9      =  YYYYYxyyyXXyXyx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYYxyyyyX, YYYYYxyyyXXyXyx)
+    change of variables: x -> yX, y -> X
+      r1 = YYYYYxyyyyX
+           substitute      ->  xxxxxyXXXXY
+           invert          ->  yxxxxYXXXXX
+           rotate by 6     ->  YXXXXXyxxxx
+                               = r1
+      r2 = YYYYYxyyyXXyXyx
+           substitute      ->  xxxxxyXXXYxYYXyX
+           reduce          ->  xxxxyXXXYxYYXy
+           rotate by 4     ->  YYXyxxxxyXXXYx
+                               = r2
+    => (YXXXXXyxxxx, YYXyxxxxyXXXYx)
+
+    AC move:  r2 <- rot_0(r2) . rot_6(r1)
+        rot_0(r2)        =  YYXyxxxxyXXXYx
+        rot_6(r1)        =  XyxxxxYXXXX
+        concatenate      =  YYXyxxxxyXXXYxXyxxxxYXXXX
+        cancel inverses  =  YYXyxxxxyxYXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXXXyxxxx, YYXyxxxxyxYXXXX)
+    change of variables: x -> X, y -> xxxxy
+      r2 = YYXyxxxxyxYXXXX
+           substitute      ->  YXXXXYxyyXY
+           invert          ->  yxYYXyxxxxy
+           rotate by 9     ->  YYXyxxxxyyx
+                               = r1
+      r1 = YXXXXXyxxxx
+           substitute      ->  YxxxxxyXXXX
+           invert          ->  xxxxYXXXXXy
+           rotate by 7     ->  YXXXXXyxxxx
+                               = r2
+    => (YYXyxxxxyyx, YXXXXXyxxxx)
   right — 19_17
-    P                                  = (YXXyXYxxx, YYYYXXXYxx)
-    x -> x, y -> y                     = (YXXyXYxxx, YYYYXXXYxx)   [to the Aut-minimal form]
-    r1 <- rot_1(r1) . rot_0(r2^-1)     = (YYYYXXXYxx, YYYYXXYxxyX)   [AC move]
-    x -> Y, y -> X                     = (YYYXXXXyyX, YYXyxxxxyyx)   [change of variables]
-    r1 <- rot_0(r1) . rot_1(r2)        = (YYXyxxxxyyx, YXXXXXyxxxx)   [AC move]
+    start: (YXXyXYxxx, YYYYXXXYxx)
+    => (YXXyXYxxx, YYYYXXXYxx)   [already Aut-minimal]
+
+    AC move:  r1 <- rot_1(r1) . rot_0(r2^-1)
+        rot_1(r1)        =  xYXXyXYxx
+        rot_0(r2^-1)     =  XXyxxxyyyy
+        concatenate      =  xYXXyXYxxXXyxxxyyyy
+        cancel inverses  =  xYXXyxxyyyy
+        invert           =  YYYYXXYxxyX
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYYYXXXYxx, YYYYXXYxxyX)
+    change of variables: x -> Y, y -> X
+      r1 = YYYYXXXYxx
+           substitute      ->  xxxxyyyxYY
+           invert          ->  yyXYYYXXXX
+           rotate by 7     ->  YYYXXXXyyX
+                               = r1
+      r2 = YYYYXXYxxyX
+           substitute      ->  xxxxyyxYYXy
+           rotate by 4     ->  YYXyxxxxyyx
+                               = r2
+    => (YYYXXXXyyX, YYXyxxxxyyx)
+
+    AC move:  r1 <- rot_0(r1) . rot_1(r2)
+        rot_0(r1)        =  YYYXXXXyyX
+        rot_1(r2)        =  xYYXyxxxxyy
+        concatenate      =  YYYXXXXyyXxYYXyxxxxyy
+        cancel inverses  =  YYYXXXXXyxxxxyy
+        reduce cyclically=  YXXXXXyxxxx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYXyxxxxyyx, YXXXXXyxxxx)
     both meet at (YYXyxxxxyyx, YXXXXXyxxxx)
 ```
 
@@ -1447,12 +3706,22 @@ Substitute `x -> x, y -> Y` into `19_8`:
 
 **59 (19_10)  ≡  70 (19_21)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_10`:
+Substitute `x -> x, y -> Y` into **19_10** (`YYXXXyxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YYXXXyxx, YYYYYXyyyyx)
-      ==>  (YYXXyxxx, YYYYYXyyyyx)   = the canonical form of 19_21   [MATCH]
+  r1 = YYXXXyxx
+       substitute      ->  yyXXXYxx
+       invert          ->  XXyxxxYY
+       rotate by 2     ->  YYXXyxxx
+                           = r1 of 19_21   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_21   [MATCH]
 ```
+
+which is exactly **19_21** = (`YYXXyxxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1469,12 +3738,22 @@ Substitute `x -> x, y -> Y` into `19_10`:
 
 **60 (19_11)  ≡  75 (19_26)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_11`:
+Substitute `x -> x, y -> Y` into **19_11** (`YXYXYxxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXYXYxxx, YYYYYXyyyyx)
-      ==>  (YXXXYxYx, YYYYYXyyyyx)   = the canonical form of 19_26   [MATCH]
+  r1 = YXYXYxxx
+       substitute      ->  yXyXyxxx
+       invert          ->  XXXYxYxY
+       rotate by 1     ->  YXXXYxYx
+                           = r1 of 19_26   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_26   [MATCH]
 ```
+
+which is exactly **19_26** = (`YXXXYxYx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1491,12 +3770,21 @@ Substitute `x -> x, y -> Y` into `19_11`:
 
 **61 (19_12)  ≡  74 (19_25)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_12`:
+Substitute `x -> x, y -> Y` into **19_12** (`YXYxxxyX`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXYxxxyX, YYYYYXyyyyx)
-      ==>  (YXyXyxxx, YYYYYXyyyyx)   = the canonical form of 19_25   [MATCH]
+  r1 = YXYxxxyX
+       substitute      ->  yXyxxxYX
+       rotate by 2     ->  YXyXyxxx
+                           = r1 of 19_25   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_25   [MATCH]
 ```
+
+which is exactly **19_25** = (`YXyXyxxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1513,12 +3801,21 @@ Substitute `x -> x, y -> Y` into `19_12`:
 
 **62 (19_13)  ≡  73 (19_24)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_13`:
+Substitute `x -> x, y -> Y` into **19_13** (`YXyXYxxx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXyXYxxx, YYYYYXyyyyx)
-      ==>  (YXyxxxyX, YYYYYXyyyyx)   = the canonical form of 19_24   [MATCH]
+  r1 = YXyXYxxx
+       substitute      ->  yXYXyxxx
+       rotate by 6     ->  YXyxxxyX
+                           = r1 of 19_24   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_24   [MATCH]
 ```
+
+which is exactly **19_24** = (`YXyxxxyX`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1535,12 +3832,22 @@ Substitute `x -> x, y -> Y` into `19_13`:
 
 **63 (19_14)  ≡  72 (19_23)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_14`:
+Substitute `x -> x, y -> Y` into **19_14** (`YXXXyxYx`, `YYYYYXyyyyx`), then normalise:
 
 ```
-    (YXXXyxYx, YYYYYXyyyyx)
-      ==>  (YXYXyxxx, YYYYYXyyyyx)   = the canonical form of 19_23   [MATCH]
+  r1 = YXXXyxYx
+       substitute      ->  yXXXYxyx
+       invert          ->  XYXyxxxY
+       rotate by 1     ->  YXYXyxxx
+                           = r1 of 19_23   [MATCH]
+  r2 = YYYYYXyyyyx
+       substitute      ->  yyyyyXYYYYx
+       invert          ->  XyyyyxYYYYY
+       rotate by 5     ->  YYYYYXyyyyx
+                           = r2 of 19_23   [MATCH]
 ```
+
+which is exactly **19_23** = (`YXYXyxxx`, `YYYYYXyyyyx`). No AC move was used.
 
 ---
 
@@ -1559,14 +3866,69 @@ Substitute `x -> x, y -> Y` into `19_14`:
 
 ```
   left  — 19_28
-    P                                  = (YYxxYXXX, YYYYYxYXYXX)
-    x -> X, y -> Y                     = (YYXXXYxx, YYYYYXXYXYx)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_4(r1^-1)     = (YYXXXYxx, YYYXXyxYXYx)   [AC move]
+    start: (YYxxYXXX, YYYYYxYXYXX)
+    change of variables: x -> X, y -> Y
+      r1 = YYxxYXXX
+           substitute      ->  yyXXyxxx
+           invert          ->  XXXYxxYY
+           rotate by 2     ->  YYXXXYxx
+                               = r1
+      r2 = YYYYYxYXYXX
+           substitute      ->  yyyyyXyxyxx
+           invert          ->  XXYXYxYYYYY
+           rotate by 5     ->  YYYYYXXYXYx
+                               = r2
+    => (YYXXXYxx, YYYYYXXYXYx)
+
+    AC move:  r2 <- rot_4(r2) . rot_4(r1^-1)
+        rot_4(r2)        =  YXYxYYYYYXX
+        rot_4(r1^-1)     =  xxyyXXyx
+        concatenate      =  YXYxYYYYYXXxxyyXXyx
+        cancel inverses  =  YXYxYYYXXyx
+        rotate by 7      =  YYYXXyxYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYXXyxYXYx)
   right — 19_15
-    P                                  = (YYxxxYXX, YXYxxyXyXYx)
-    x -> x, y -> Yx                    = (YXXYxYxxx, YYXyyXXyxx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXYxYxxx, YYxyXXYxYxYxx)   [AC move]
-    x -> X, y -> YX                    = (YYXXXYxx, YYYXXyxYXYx)   [change of variables]
+    start: (YYxxxYXX, YXYxxyXyXYx)
+    change of variables: x -> x, y -> Yx
+      r1 = YYxxxYXX
+           substitute      ->  XyXyxxyXX
+           invert          ->  xxYXXYxYx
+           rotate by 7     ->  YXXYxYxxx
+                               = r1
+      r2 = YXYxxyXyXYx
+           substitute      ->  XyXXyxxYYXyx
+           reduce          ->  yXXyxxYYXy
+           rotate by 4     ->  YYXyyXXyxx
+                               = r2
+    => (YXXYxYxxx, YYXyyXXyxx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYXyyXXyxx
+        rot_0(r1^-1)     =  XXXyXyxxy
+        concatenate      =  YYXyyXXyxxXXXyXyxxy
+        cancel inverses  =  YYXyyXXyXyXyxxy
+        reduce cyclically=  YXyyXXyXyXyxx
+        invert           =  XXYxYxYxxYYxy
+        rotate by 4      =  YYxyXXYxYxYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYxYxxx, YYxyXXYxYxYxx)
+    change of variables: x -> X, y -> YX
+      r1 = YXXYxYxxx
+           substitute      ->  xyxxxyyXXX
+           reduce          ->  yxxxyyXX
+           invert          ->  xxYYXXXY
+           rotate by 6     ->  YYXXXYxx
+                               = r1
+      r2 = YYxyXXYxYxYxx
+           substitute      ->  xyxyXYxxyyyXX
+           reduce          ->  yxyXYxxyyyX
+           invert          ->  xYYYXXyxYXY
+           rotate by 10    ->  YYYXXyxYXYx
+                               = r2
+    => (YYXXXYxx, YYYXXyxYXYx)
     both meet at (YYXXXYxx, YYYXXyxYXYx)
 ```
 
@@ -1587,14 +3949,64 @@ Substitute `x -> x, y -> Y` into `19_14`:
 
 ```
   left  — 19_27
-    P                                  = (YYxxyXXX, YXyxxyXyXYx)
-    x -> x, y -> Yx                    = (YXXXyXyxx, YYXyyXYxxx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXXyXyxx, YYxyXXXyXyXyx)   [AC move]
-    x -> X, y -> yX                    = (YYXXXyxx, YYYXXYxyXyx)   [change of variables]
+    start: (YYxxyXXX, YXyxxyXyXYx)
+    change of variables: x -> x, y -> Yx
+      r1 = YYxxyXXX
+           substitute      ->  XyXyxxYXX
+           rotate by 3     ->  YXXXyXyxx
+                               = r1
+      r2 = YXyxxyXyXYx
+           substitute      ->  XyXYxxxYYXyx
+           reduce          ->  yXYxxxYYXy
+           rotate by 4     ->  YYXyyXYxxx
+                               = r2
+    => (YXXXyXyxx, YYXyyXYxxx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYXyyXYxxx
+        rot_0(r1^-1)     =  XXYxYxxxy
+        concatenate      =  YYXyyXYxxxXXYxYxxxy
+        cancel inverses  =  YYXyyXYxYxYxxxy
+        reduce cyclically=  YXyyXYxYxYxxx
+        invert           =  XXXyXyXyxYYxy
+        rotate by 4      =  YYxyXXXyXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyXyxx, YYxyXXXyXyXyx)
+    change of variables: x -> X, y -> yX
+      r1 = YXXXyXyxx
+           substitute      ->  xYxxxyyXXX
+           reduce          ->  YxxxyyXX
+           invert          ->  xxYYXXXy
+           rotate by 6     ->  YYXXXyxx
+                               = r1
+      r2 = YYxyXXXyXyXyx
+           substitute      ->  xYxYXyxxyyyXX
+           reduce          ->  YxYXyxxyyyX
+           invert          ->  xYYYXXYxyXy
+           rotate by 10    ->  YYYXXYxyXyx
+                               = r2
+    => (YYXXXyxx, YYYXXYxyXyx)
   right — 19_16
-    P                                  = (YYxxxyXX, YYYYYxxyxyX)
-    x -> X, y -> y                     = (YYXXXyxx, YYYYYXXyXyx)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_4(r1^-1)     = (YYXXXyxx, YYYXXYxyXyx)   [AC move]
+    start: (YYxxxyXX, YYYYYxxyxyX)
+    change of variables: x -> X, y -> y
+      r1 = YYxxxyXX
+           substitute      ->  YYXXXyxx
+                               = r1
+      r2 = YYYYYxxyxyX
+           substitute      ->  YYYYYXXyXyx
+                               = r2
+    => (YYXXXyxx, YYYYYXXyXyx)
+
+    AC move:  r2 <- rot_4(r2) . rot_4(r1^-1)
+        rot_4(r2)        =  yXyxYYYYYXX
+        rot_4(r1^-1)     =  xxyyXXYx
+        concatenate      =  yXyxYYYYYXXxxyyXXYx
+        cancel inverses  =  yXyxYYYXXYx
+        rotate by 7      =  YYYXXYxyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYXXYxyXyx)
     both meet at (YYXXXyxx, YYYXXYxyXyx)
 ```
 
@@ -1615,14 +4027,65 @@ Substitute `x -> x, y -> Y` into `19_14`:
 
 ```
   left  — 17_33
-    P                                  = (YYYxyxyX, YXyxxyXyX)
-    x -> y, y -> X                     = (YXXXyxYx, YYxyXyxyx)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_0(r1)        = (YXXXyxYx, YYxyXyXXyxYxx)   [AC move]
-    x -> x, y -> yx                    = (YYXXXyx, YYXyxyXyXYx)   [change of variables]
+    start: (YYYxyxyX, YXyxxyXyX)
+    change of variables: x -> y, y -> X
+      r1 = YYYxyxyX
+           substitute      ->  xxxyXyXY
+           invert          ->  yxYxYXXX
+           rotate by 4     ->  YXXXyxYx
+                               = r1
+      r2 = YXyxxyXyX
+           substitute      ->  xYXyyXYXY
+           invert          ->  yxyxYYxyX
+           rotate by 5     ->  YYxyXyxyx
+                               = r2
+    => (YXXXyxYx, YYxyXyxyx)
+
+    AC move:  r2 <- rot_1(r2) . rot_0(r1)
+        rot_1(r2)        =  xYYxyXyxy
+        rot_0(r1)        =  YXXXyxYx
+        concatenate      =  xYYxyXyxyYXXXyxYx
+        cancel inverses  =  xYYxyXyXXyxYx
+        rotate by 12     =  YYxyXyXXyxYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyxYx, YYxyXyXXyxYxx)
+    change of variables: x -> x, y -> yx
+      r1 = YXXXyxYx
+           substitute      ->  XYXXXyxYx
+           reduce          ->  YXXXyxY
+           rotate by 1     ->  YYXXXyx
+                               = r1
+      r2 = YYxyXyXXyxYxx
+           substitute      ->  XYXYxyyXyxYxx
+           reduce          ->  YXYxyyXyxYx
+           invert          ->  XyXYxYYXyxy
+           rotate by 6     ->  YYXyxyXyXYx
+                               = r2
+    => (YYXXXyx, YYXyxyXyXYx)
   right — 17_30
-    P                                  = (YYYxyXX, YYxxyXyXYX)
-    x -> y, y -> x                     = (YYXXXyx, YYxxyxyXyX)   [to the Aut-minimal form]
-    r2 <- rot_6(r2) . rot_4(r1)        = (YYXXXyx, YYXyxyXyXYx)   [AC move]
+    start: (YYYxyXX, YYxxyXyXYX)
+    change of variables: x -> y, y -> x
+      r1 = YYYxyXX
+           substitute      ->  XXXyxYY
+           rotate by 2     ->  YYXXXyx
+                               = r1
+      r2 = YYxxyXyXYX
+           substitute      ->  XXyyxYxYXY
+           invert          ->  yxyXyXYYxx
+           rotate by 4     ->  YYxxyxyXyX
+                               = r2
+    => (YYXXXyx, YYxxyxyXyX)
+
+    AC move:  r2 <- rot_6(r2) . rot_4(r1)
+        rot_6(r2)        =  yxyXyXYYxx
+        rot_4(r1)        =  XXyxYYX
+        concatenate      =  yxyXyXYYxxXXyxYYX
+        cancel inverses  =  yxyXyXYxYYX
+        rotate by 3      =  YYXyxyXyXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyx, YYXyxyXyXYx)
     both meet at (YYXXXyx, YYXyxyXyXYx)
 ```
 
@@ -1643,15 +4106,72 @@ Substitute `x -> x, y -> Y` into `19_14`:
 
 ```
   left  — 17_31
-    P                                  = (YYxxyX, YYYYYXyxxyx)
-    x -> X, y -> y                     = (YYXXyx, YYYYYxyXXyX)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_5(r1^-1)     = (YYXXyx, YYYYYxyyyXX)   [AC move]
-    r2 <- rot_3(r2) . rot_0(r1)        = (YYXXyx, YYYYYXyxyXX)   [AC move]
+    start: (YYxxyX, YYYYYXyxxyx)
+    change of variables: x -> X, y -> y
+      r1 = YYxxyX
+           substitute      ->  YYXXyx
+                               = r1
+      r2 = YYYYYXyxxyx
+           substitute      ->  YYYYYxyXXyX
+                               = r2
+    => (YYXXyx, YYYYYxyXXyX)
+
+    AC move:  r2 <- rot_1(r2) . rot_5(r1^-1)
+        rot_1(r2)        =  XYYYYYxyXXy
+        rot_5(r1^-1)     =  YxxyyX
+        concatenate      =  XYYYYYxyXXyYxxyyX
+        cancel inverses  =  XYYYYYxyyyX
+        rotate by 10     =  YYYYYxyyyXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YYYYYxyyyXX)
+
+    AC move:  r2 <- rot_3(r2) . rot_0(r1)
+        rot_3(r2)        =  yXXYYYYYxyy
+        rot_0(r1)        =  YYXXyx
+        concatenate      =  yXXYYYYYxyyYYXXyx
+        cancel inverses  =  yXXYYYYYXyx
+        rotate by 8      =  YYYYYXyxyXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YYYYYXyxyXX)
   right — 17_32
-    P                                  = (YYxyXX, YYYXXyxyxYX)
-    x -> Xy, y -> x                    = (YXXyxYx, YYXyXyxxyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_5(r1^-1)     = (YXXyxYx, YXyXyxxxxyX)   [AC move]
-    x -> Y, y -> XY                    = (YYXXyx, YYYYYXyxyXX)   [change of variables]
+    start: (YYxyXX, YYYXXyxyxYX)
+    change of variables: x -> Xy, y -> x
+      r1 = YYxyXX
+           substitute      ->  XXXyxYxYx
+           reduce          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYYXXyxyxYX
+           substitute      ->  XXXYxYxyyXYx
+           reduce          ->  XXYxYxyyXY
+           invert          ->  yxYYXyXyxx
+           rotate by 8     ->  YYXyXyxxyx
+                               = r2
+    => (YXXyxYx, YYXyXyxxyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_5(r1^-1)
+        rot_0(r2)        =  YYXyXyxxyx
+        rot_5(r1^-1)     =  XYxxyXy
+        concatenate      =  YYXyXyxxyxXYxxyXy
+        cancel inverses  =  YYXyXyxxxxyXy
+        reduce cyclically=  YXyXyxxxxyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyxYx, YXyXyxxxxyX)
+    change of variables: x -> Y, y -> XY
+      r1 = YXXyxYx
+           substitute      ->  yxyyXYxY
+           reduce          ->  xyyXYx
+           invert          ->  XyxYYX
+           rotate by 3     ->  YYXXyx
+                               = r1
+      r2 = YXyXyxxxxyX
+           substitute      ->  yxyXXYYYYYX
+           rotate by 6     ->  YYYYYXyxyXX
+                               = r2
+    => (YYXXyx, YYYYYXyxyXX)
     both meet at (YYXXyx, YYYYYXyxyXX)
 ```
 
@@ -1670,12 +4190,20 @@ Substitute `x -> x, y -> Y` into `19_14`:
 
 **86 (20_1)  ≡  89 (20_3)** — *change of variables only*
 
-Substitute `x -> Y, y -> x` into `20_1`:
+Substitute `x -> Y, y -> x` into **20_1** (`YYYxyyx`, `YXXXXXyxxxxxx`), then normalise:
 
 ```
-    (YYYxyyx, YXXXXXyxxxxxx)
-      ==>  (YXXXYxx, YYYYYYXyyyyyx)   = the canonical form of 20_3   [MATCH]
+  r1 = YYYxyyx
+       substitute      ->  XXXYxxY
+       rotate by 1     ->  YXXXYxx
+                           = r1 of 20_3   [MATCH]
+  r2 = YXXXXXyxxxxxx
+       substitute      ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 20_3   [MATCH]
 ```
+
+which is exactly **20_3** = (`YXXXYxx`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1694,14 +4222,63 @@ Substitute `x -> Y, y -> x` into `20_1`:
 
 ```
   left  — 16_5
-    P                                  = (YYxxyxx, YYYxyyxyX)
-    x -> y, y -> X                     = (YYXXYYx, YXXXyxYxx)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_2(r1)        = (YYXXYYx, YYXXYxYxxYXX)   [AC move]
+    start: (YYxxyxx, YYYxyyxyX)
+    change of variables: x -> y, y -> X
+      r1 = YYxxyxx
+           substitute      ->  xxyyXyy
+           invert          ->  YYxYYXX
+           rotate by 4     ->  YYXXYYx
+                               = r1
+      r2 = YYYxyyxyX
+           substitute      ->  xxxyXXyXY
+           invert          ->  yxYxxYXXX
+           rotate by 4     ->  YXXXyxYxx
+                               = r2
+    => (YYXXYYx, YXXXyxYxx)
+
+    AC move:  r2 <- rot_4(r2) . rot_2(r1)
+        rot_4(r2)        =  xYxxYXXXy
+        rot_2(r1)        =  YxYYXXY
+        concatenate      =  xYxxYXXXyYxYYXXY
+        cancel inverses  =  xYxxYXXYYXXY
+        rotate by 5      =  YYXXYxYxxYXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXYYx, YYXXYxYxxYXX)
   right — 16_4
-    P                                  = (YYXXyXX, YYYxyyXyX)
-    x -> y, y -> x                     = (YYXXYYx, YXXXyxxYx)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_2(r1)        = (YYXXYYx, YYXXYxxYxYXX)   [AC move]
-    x -> X, y -> Y                     = (YYXXYYx, YYXXYxYxxYXX)   [change of variables]
+    start: (YYXXyXX, YYYxyyXyX)
+    change of variables: x -> y, y -> x
+      r1 = YYXXyXX
+           substitute      ->  XXYYxYY
+           rotate by 2     ->  YYXXYYx
+                               = r1
+      r2 = YYYxyyXyX
+           substitute      ->  XXXyxxYxY
+           rotate by 1     ->  YXXXyxxYx
+                               = r2
+    => (YYXXYYx, YXXXyxxYx)
+
+    AC move:  r2 <- rot_4(r2) . rot_2(r1)
+        rot_4(r2)        =  xxYxYXXXy
+        rot_2(r1)        =  YxYYXXY
+        concatenate      =  xxYxYXXXyYxYYXXY
+        cancel inverses  =  xxYxYXXYYXXY
+        rotate by 5      =  YYXXYxxYxYXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXYYx, YYXXYxxYxYXX)
+    change of variables: x -> X, y -> Y
+      r1 = YYXXYYx
+           substitute      ->  yyxxyyX
+           invert          ->  xYYXXYY
+           rotate by 6     ->  YYXXYYx
+                               = r1
+      r2 = YYXXYxxYxYXX
+           substitute      ->  yyxxyXXyXyxx
+           invert          ->  XXYxYxxYXXYY
+           rotate by 2     ->  YYXXYxYxxYXX
+                               = r2
+    => (YYXXYYx, YYXXYxYxxYXX)
     both meet at (YYXXYYx, YYXXYxYxxYXX)
 ```
 
@@ -1722,17 +4299,99 @@ Substitute `x -> Y, y -> x` into `20_1`:
 
 ```
   left  — 21_2
-    P                                  = (YYXXYxxx, YYYYYYXyyyyyx)
-    x -> x, y -> Y                     = (YYXXXYxx, YYYYYYXyyyyyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YYXXXYxx, YYYYYxyyyyXXXYx)   [AC move]
-    r2 <- rot_3(r2) . rot_2(r1)        = (YYXXXYxx, YYYYYxyyXXXYXYx)   [AC move]
-    r2 <- rot_5(r2) . rot_2(r1)        = (YYXXXYxx, YYYYYXXYXYXYx)   [AC move]
+    start: (YYXXYxxx, YYYYYYXyyyyyx)
+    change of variables: x -> x, y -> Y
+      r1 = YYXXYxxx
+           substitute      ->  yyXXyxxx
+           invert          ->  XXXYxxYY
+           rotate by 2     ->  YYXXXYxx
+                               = r1
+      r2 = YYYYYYXyyyyyx
+           substitute      ->  yyyyyyXYYYYYx
+           invert          ->  XyyyyyxYYYYYY
+           rotate by 6     ->  YYYYYYXyyyyyx
+                               = r2
+    => (YYXXXYxx, YYYYYYXyyyyyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYYYYXyyyyyx
+        rot_0(r1^-1)     =  XXyxxxyy
+        concatenate      =  YYYYYYXyyyyyxXXyxxxyy
+        cancel inverses  =  YYYYYYXyyyyyXyxxxyy
+        reduce cyclically=  YYYYXyyyyyXyxxx
+        invert           =  XXXYxYYYYYxyyyy
+        rotate by 10     =  YYYYYxyyyyXXXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYxyyyyXXXYx)
+
+    AC move:  r2 <- rot_3(r2) . rot_2(r1)
+        rot_3(r2)        =  XYxYYYYYxyyyyXX
+        rot_2(r1)        =  xxYYXXXY
+        concatenate      =  XYxYYYYYxyyyyXXxxYYXXXY
+        cancel inverses  =  XYxYYYYYxyyXXXY
+        rotate by 12     =  YYYYYxyyXXXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYxyyXXXYXYx)
+
+    AC move:  r2 <- rot_5(r2) . rot_2(r1)
+        rot_5(r2)        =  XYXYxYYYYYxyyXX
+        rot_2(r1)        =  xxYYXXXY
+        concatenate      =  XYXYxYYYYYxyyXXxxYYXXXY
+        cancel inverses  =  XYXYxYYYYYXXY
+        rotate by 8      =  YYYYYXXYXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYXXYXYXYx)
   right — 21_20
-    P                                  = (YYXXXYxx, YXYXYxYXXyxyx)
-    x -> X, y -> xY                    = (YXXYxYxxx, YYYxyyXXYxx)   [to the Aut-minimal form]
-    r2 <- rot_3(r2) . rot_2(r1)        = (YXXYxYxxx, YYYxyXXYxYxYxx)   [AC move]
-    x -> X, y -> YX                    = (YYXXXYxx, YYYXXyxYXYXYx)   [change of variables]
-    r2 <- rot_6(r2) . rot_4(r1)        = (YYXXXYxx, YYYYYXXYXYXYx)   [AC move]
+    start: (YYXXXYxx, YXYXYxYXXyxyx)
+    change of variables: x -> X, y -> xY
+      r1 = YYXXXYxx
+           substitute      ->  yXyxxyXXX
+           invert          ->  xxxYXXYxY
+           rotate by 6     ->  YXXYxYxxx
+                               = r1
+      r2 = YXYXYxYXXyxyx
+           substitute      ->  yyyXXyxxYYX
+           invert          ->  xyyXXYxxYYY
+           rotate by 3     ->  YYYxyyXXYxx
+                               = r2
+    => (YXXYxYxxx, YYYxyyXXYxx)
+
+    AC move:  r2 <- rot_3(r2) . rot_2(r1)
+        rot_3(r2)        =  YxxYYYxyyXX
+        rot_2(r1)        =  xxYXXYxYx
+        concatenate      =  YxxYYYxyyXXxxYXXYxYx
+        cancel inverses  =  YxxYYYxyXXYxYx
+        rotate by 11     =  YYYxyXXYxYxYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYxYxxx, YYYxyXXYxYxYxx)
+    change of variables: x -> X, y -> YX
+      r1 = YXXYxYxxx
+           substitute      ->  xyxxxyyXXX
+           reduce          ->  yxxxyyXX
+           invert          ->  xxYYXXXY
+           rotate by 6     ->  YYXXXYxx
+                               = r1
+      r2 = YYYxyXXYxYxYxx
+           substitute      ->  xyxyxyXYxxyyyXX
+           reduce          ->  yxyxyXYxxyyyX
+           invert          ->  xYYYXXyxYXYXY
+           rotate by 12    ->  YYYXXyxYXYXYx
+                               = r2
+    => (YYXXXYxx, YYYXXyxYXYXYx)
+
+    AC move:  r2 <- rot_6(r2) . rot_4(r1)
+        rot_6(r2)        =  YXYXYxYYYXXyx
+        rot_4(r1)        =  XYxxYYXX
+        concatenate      =  YXYXYxYYYXXyxXYxxYYXX
+        cancel inverses  =  YXYXYxYYYYYXX
+        rotate by 7      =  YYYYYXXYXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYXXYXYXYx)
     both meet at (YYXXXYxx, YYYYYXXYXYXYx)
 ```
 
@@ -1751,12 +4410,22 @@ Substitute `x -> Y, y -> x` into `20_1`:
 
 **92 (20_4)  ≡  120 (20_7)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `20_4`:
+Substitute `x -> x, y -> Y` into **20_4** (`YXyxxxYXX`, `YYYYYXXXyxx`), then normalise:
 
 ```
-    (YXyxxxYXX, YYYYYXXXyxx)
-      ==>  (YXXXyxYxx, YYYYYXXyxxx)   = the canonical form of 20_7   [MATCH]
+  r1 = YXyxxxYXX
+       substitute      ->  yXYxxxyXX
+       invert          ->  xxYXXXyxY
+       rotate by 7     ->  YXXXyxYxx
+                           = r1 of 20_7   [MATCH]
+  r2 = YYYYYXXXyxx
+       substitute      ->  yyyyyXXXYxx
+       invert          ->  XXyxxxYYYYY
+       rotate by 5     ->  YYYYYXXyxxx
+                           = r2 of 20_7   [MATCH]
 ```
+
+which is exactly **20_7** = (`YXXXyxYxx`, `YYYYYXXyxxx`). No AC move was used.
 
 ---
 
@@ -1773,12 +4442,21 @@ Substitute `x -> x, y -> Y` into `20_4`:
 
 **94 (21_4)  ≡  110 (21_18)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_4`:
+Substitute `x -> x, y -> Y` into **21_4** (`YXyxxyXX`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXyxxyXX, YYYYYYXyyyyyx)
-      ==>  (YXXyXYxx, YYYYYYXyyyyyx)   = the canonical form of 21_18   [MATCH]
+  r1 = YXyxxyXX
+       substitute      ->  yXYxxYXX
+       rotate by 3     ->  YXXyXYxx
+                           = r1 of 21_18   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_18   [MATCH]
 ```
+
+which is exactly **21_18** = (`YXXyXYxx`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1795,12 +4473,22 @@ Substitute `x -> x, y -> Y` into `21_4`:
 
 **95 (21_5)  ≡  108 (21_16)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_5`:
+Substitute `x -> x, y -> Y` into **21_5** (`YXXYxxyx`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXXYxxyx, YYYYYYXyyyyyx)
-      ==>  (YXyXXYxx, YYYYYYXyyyyyx)   = the canonical form of 21_16   [MATCH]
+  r1 = YXXYxxyx
+       substitute      ->  yXXyxxYx
+       invert          ->  XyXXYxxY
+       rotate by 1     ->  YXyXXYxx
+                           = r1 of 21_16   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_16   [MATCH]
 ```
+
+which is exactly **21_16** = (`YXyXXYxx`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1817,12 +4505,21 @@ Substitute `x -> x, y -> Y` into `21_5`:
 
 **96 (21_6)  ≡  119 (21_27)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_6`:
+Substitute `x -> x, y -> Y` into **21_6** (`YXyXXyxx`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXyXXyxx, YYYYYYXyyyyyx)
-      ==>  (YXXYxxyX, YYYYYYXyyyyyx)   = the canonical form of 21_27   [MATCH]
+  r1 = YXyXXyxx
+       substitute      ->  yXYXXYxx
+       rotate by 6     ->  YXXYxxyX
+                           = r1 of 21_27   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_27   [MATCH]
 ```
+
+which is exactly **21_27** = (`YXXYxxyX`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1839,12 +4536,22 @@ Substitute `x -> x, y -> Y` into `21_6`:
 
 **98 (21_8)  ≡  109 (21_17)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_8`:
+Substitute `x -> x, y -> Y` into **21_8** (`YXyxxYXX`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXyxxYXX, YYYYYYXyyyyyx)
-      ==>  (YXXyxYxx, YYYYYYXyyyyyx)   = the canonical form of 21_17   [MATCH]
+  r1 = YXyxxYXX
+       substitute      ->  yXYxxyXX
+       invert          ->  xxYXXyxY
+       rotate by 6     ->  YXXyxYxx
+                           = r1 of 21_17   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_17   [MATCH]
 ```
+
+which is exactly **21_17** = (`YXXyxYxx`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1861,12 +4568,21 @@ Substitute `x -> x, y -> Y` into `21_8`:
 
 **99 (20_5)  ≡  107 (20_6)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `20_5`:
+Substitute `x -> x, y -> Y` into **20_5** (`YXyxxxyXX`, `YYYYYXXYxxx`), then normalise:
 
 ```
-    (YXyxxxyXX, YYYYYXXYxxx)
-      ==>  (YXXyXYxxx, YYYYYXXXYxx)   = the canonical form of 20_6   [MATCH]
+  r1 = YXyxxxyXX
+       substitute      ->  yXYxxxYXX
+       rotate by 3     ->  YXXyXYxxx
+                           = r1 of 20_6   [MATCH]
+  r2 = YYYYYXXYxxx
+       substitute      ->  yyyyyXXyxxx
+       invert          ->  XXXYxxYYYYY
+       rotate by 5     ->  YYYYYXXXYxx
+                           = r2 of 20_6   [MATCH]
 ```
+
+which is exactly **20_6** = (`YXXyXYxxx`, `YYYYYXXXYxx`). No AC move was used.
 
 ---
 
@@ -1885,13 +4601,45 @@ Substitute `x -> x, y -> Y` into `20_5`:
 
 ```
   left  — 21_9
-    P                                  = (YYXXXyxx, YYYXXYxyXyXyx)
-    x -> x, y -> y                     = (YYXXXyxx, YYYXXYxyXyXyx)   [to the Aut-minimal form]
-    r2 <- rot_8(r2) . rot_4(r1^-1)     = (YYXXXyxx, YXyXyxxyXYxYx)   [AC move]
-    x -> X, y -> yX                    = (YXXXyXyxx, YYYxyyXXXyx)   [change of variables]
+    start: (YYXXXyxx, YYYXXYxyXyXyx)
+    => (YYXXXyxx, YYYXXYxyXyXyx)   [already Aut-minimal]
+
+    AC move:  r2 <- rot_8(r2) . rot_4(r1^-1)
+        rot_8(r2)        =  YxyXyXyxYYYXX
+        rot_4(r1^-1)     =  xxyyXXYx
+        concatenate      =  YxyXyXyxYYYXXxxyyXXYx
+        cancel inverses  =  YxyXyXyxYXXYx
+        invert           =  XyxxyXYxYxYXy
+        rotate by 3      =  YXyXyxxyXYxYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YXyXyxxyXYxYx)
+    change of variables: x -> X, y -> yX
+      r1 = YYXXXyxx
+           substitute      ->  xYxYxxxyXXX
+           reduce          ->  YxYxxxyXX
+           invert          ->  xxYXXXyXy
+           rotate by 7     ->  YXXXyXyxx
+                               = r1
+      r2 = YXyXyxxyXYxYx
+           substitute      ->  xYxyyXXXyxYYX
+           reduce          ->  YxyyXXXyxYY
+           rotate by 2     ->  YYYxyyXXXyx
+                               = r2
+    => (YXXXyXyxx, YYYxyyXXXyx)
   right — 21_19
-    P                                  = (YYXXyxxx, YXYXYxyXXyxyx)
-    x -> X, y -> xY                    = (YXXXyXyxx, YYYxyyXXXyx)   [to the Aut-minimal form]
+    start: (YYXXyxxx, YXYXYxyXXyxyx)
+    change of variables: x -> X, y -> xY
+      r1 = YYXXyxxx
+           substitute      ->  yXyxxYXXX
+           rotate by 4     ->  YXXXyXyxx
+                               = r1
+      r2 = YXYXYxyXXyxyx
+           substitute      ->  yyyXYxxxYYX
+           invert          ->  xyyXXXyxYYY
+           rotate by 3     ->  YYYxyyXXXyx
+                               = r2
+    => (YXXXyXyxx, YYYxyyXXXyx)
     both meet at (YXXXyXyxx, YYYxyyXXXyx)
 ```
 
@@ -1910,12 +4658,22 @@ Substitute `x -> x, y -> Y` into `20_5`:
 
 **101 (21_10)  ≡  116 (21_24)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_10`:
+Substitute `x -> x, y -> Y` into **21_10** (`YXYXYxxx`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXYXYxxx, YYYYYYXyyyyyx)
-      ==>  (YXXXYxYx, YYYYYYXyyyyyx)   = the canonical form of 21_24   [MATCH]
+  r1 = YXYXYxxx
+       substitute      ->  yXyXyxxx
+       invert          ->  XXXYxYxY
+       rotate by 1     ->  YXXXYxYx
+                           = r1 of 21_24   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_24   [MATCH]
 ```
+
+which is exactly **21_24** = (`YXXXYxYx`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1932,12 +4690,21 @@ Substitute `x -> x, y -> Y` into `21_10`:
 
 **102 (21_11)  ≡  115 (21_23)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_11`:
+Substitute `x -> x, y -> Y` into **21_11** (`YXYxxxyX`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXYxxxyX, YYYYYYXyyyyyx)
-      ==>  (YXyXyxxx, YYYYYYXyyyyyx)   = the canonical form of 21_23   [MATCH]
+  r1 = YXYxxxyX
+       substitute      ->  yXyxxxYX
+       rotate by 2     ->  YXyXyxxx
+                           = r1 of 21_23   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_23   [MATCH]
 ```
+
+which is exactly **21_23** = (`YXyXyxxx`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1954,12 +4721,21 @@ Substitute `x -> x, y -> Y` into `21_11`:
 
 **103 (21_12)  ≡  114 (21_22)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_12`:
+Substitute `x -> x, y -> Y` into **21_12** (`YXyXYxxx`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXyXYxxx, YYYYYYXyyyyyx)
-      ==>  (YXyxxxyX, YYYYYYXyyyyyx)   = the canonical form of 21_22   [MATCH]
+  r1 = YXyXYxxx
+       substitute      ->  yXYXyxxx
+       rotate by 6     ->  YXyxxxyX
+                           = r1 of 21_22   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_22   [MATCH]
 ```
+
+which is exactly **21_22** = (`YXyxxxyX`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1976,12 +4752,22 @@ Substitute `x -> x, y -> Y` into `21_12`:
 
 **104 (21_13)  ≡  113 (21_21)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_13`:
+Substitute `x -> x, y -> Y` into **21_13** (`YXXXyxYx`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YXXXyxYx, YYYYYYXyyyyyx)
-      ==>  (YXYXyxxx, YYYYYYXyyyyyx)   = the canonical form of 21_21   [MATCH]
+  r1 = YXXXyxYx
+       substitute      ->  yXXXYxyx
+       invert          ->  XYXyxxxY
+       rotate by 1     ->  YXYXyxxx
+                           = r1 of 21_21   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_21   [MATCH]
 ```
+
+which is exactly **21_21** = (`YXYXyxxx`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -1998,12 +4784,22 @@ Substitute `x -> x, y -> Y` into `21_13`:
 
 **105 (21_14)  ≡  118 (21_26)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_14`:
+Substitute `x -> x, y -> Y` into **21_14** (`YYxxxYXX`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YYxxxYXX, YYYYYYXyyyyyx)
-      ==>  (YYxxYXXX, YYYYYYXyyyyyx)   = the canonical form of 21_26   [MATCH]
+  r1 = YYxxxYXX
+       substitute      ->  yyxxxyXX
+       invert          ->  xxYXXXYY
+       rotate by 2     ->  YYxxYXXX
+                           = r1 of 21_26   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_26   [MATCH]
 ```
+
+which is exactly **21_26** = (`YYxxYXXX`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -2020,12 +4816,22 @@ Substitute `x -> x, y -> Y` into `21_14`:
 
 **106 (21_15)  ≡  117 (21_25)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_15`:
+Substitute `x -> x, y -> Y` into **21_15** (`YYxxxyXX`, `YYYYYYXyyyyyx`), then normalise:
 
 ```
-    (YYxxxyXX, YYYYYYXyyyyyx)
-      ==>  (YYxxyXXX, YYYYYYXyyyyyx)   = the canonical form of 21_25   [MATCH]
+  r1 = YYxxxyXX
+       substitute      ->  yyxxxYXX
+       invert          ->  xxyXXXYY
+       rotate by 2     ->  YYxxyXXX
+                           = r1 of 21_25   [MATCH]
+  r2 = YYYYYYXyyyyyx
+       substitute      ->  yyyyyyXYYYYYx
+       invert          ->  XyyyyyxYYYYYY
+       rotate by 6     ->  YYYYYYXyyyyyx
+                           = r2 of 21_25   [MATCH]
 ```
+
+which is exactly **21_25** = (`YYxxyXXX`, `YYYYYYXyyyyyx`). No AC move was used.
 
 ---
 
@@ -2044,14 +4850,53 @@ Substitute `x -> x, y -> Y` into `21_15`:
 
 ```
   left  — 17_36
-    P                                  = (YYXXyxx, YYxyxyxYXX)
-    x -> X, y -> xY                    = (YXXyXyxx, YYXyxyXyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YXXyXyxx, YYXyxyXXXyXyx)   [AC move]
-    x -> X, y -> yX                    = (YYXXyxx, YYXXYxxYXyXyx)   [change of variables]
+    start: (YYXXyxx, YYxyxyxYXX)
+    change of variables: x -> X, y -> xY
+      r1 = YYXXyxx
+           substitute      ->  yXyxxYXX
+           rotate by 3     ->  YXXyXyxx
+                               = r1
+      r2 = YYxyxyxYXX
+           substitute      ->  yXyXYYXyx
+           rotate by 5     ->  YYXyxyXyX
+                               = r2
+    => (YXXyXyxx, YYXyxyXyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYXyxyXyX
+        rot_1(r1)        =  xYXXyXyx
+        concatenate      =  YYXyxyXyXxYXXyXyx
+        cancel inverses  =  YYXyxyXXXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXyXyxx, YYXyxyXXXyXyx)
+    change of variables: x -> X, y -> yX
+      r1 = YXXyXyxx
+           substitute      ->  xYxxyyXXX
+           reduce          ->  YxxyyXX
+           invert          ->  xxYYXXy
+           rotate by 5     ->  YYXXyxx
+                               = r1
+      r2 = YYXyxyXXXyXyx
+           substitute      ->  xYxYxyXXyxxyyXX
+           reduce          ->  YxYxyXXyxxyyX
+           invert          ->  xYYXXYxxYXyXy
+           rotate by 12    ->  YYXXYxxYXyXyx
+                               = r2
+    => (YYXXyxx, YYXXYxxYXyXyx)
   right — 17_34
-    P                                  = (YYXXyxx, YYYYYXyXyx)
-    x -> x, y -> y                     = (YYXXyxx, YYYYYXyXyx)   [to the Aut-minimal form]
-    r2 <- rot_6(r2) . rot_2(r1^-1)     = (YYXXyxx, YYXXYxxYXyXyx)   [AC move]
+    start: (YYXXyxx, YYYYYXyXyx)
+    => (YYXXyxx, YYYYYXyXyx)   [already Aut-minimal]
+
+    AC move:  r2 <- rot_6(r2) . rot_2(r1^-1)
+        rot_6(r2)        =  YXyXyxYYYY
+        rot_2(r1^-1)     =  yyXXYxx
+        concatenate      =  YXyXyxYYYYyyXXYxx
+        cancel inverses  =  YXyXyxYYXXYxx
+        rotate by 7      =  YYXXYxxYXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyxx, YYXXYxxYXyXyx)
     both meet at (YYXXyxx, YYXXYxxYXyXyx)
 ```
 
@@ -2072,13 +4917,44 @@ Substitute `x -> x, y -> Y` into `21_15`:
 
 ```
   left  — 19_33
-    P                                  = (YYXXyx, YYYXYxyxyXXyX)
-    x -> x, y -> y                     = (YYXXyx, YYYXYxyxyXXyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YYXXyx, YYXYxyxyXXYXX)   [AC move]
-    x -> x, y -> Xy                    = (YXXyxYx, YYXyyXyxyxx)   [change of variables]
+    start: (YYXXyx, YYYXYxyxyXXyX)
+    => (YYXXyx, YYYXYxyxyXXyX)   [already Aut-minimal]
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYYXYxyxyXXyX
+        rot_1(r1)        =  xYYXXy
+        concatenate      =  YYYXYxyxyXXyXxYYXXy
+        cancel inverses  =  YYYXYxyxyXXYXXy
+        reduce cyclically=  YYXYxyxyXXYXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YYXYxyxyXXYXX)
+    change of variables: x -> x, y -> Xy
+      r1 = YYXXyx
+           substitute      ->  YxYXXyx
+           rotate by 5     ->  YXXyxYx
+                               = r1
+      r2 = YYXYxyxyXXYXX
+           substitute      ->  YxYYxyyXXYX
+           invert          ->  xyxxYYXyyXy
+           rotate by 7     ->  YYXyyXyxyxx
+                               = r2
+    => (YXXyxYx, YYXyyXyxyxx)
   right — 19_34
-    P                                  = (YYXyxx, YYxxYxxyXyXYx)
-    x -> x, y -> Yx                    = (YXXyxYx, YYXyyXyxyxx)   [to the Aut-minimal form]
+    start: (YYXyxx, YYxxYxxyXyXYx)
+    change of variables: x -> x, y -> Yx
+      r1 = YYXyxx
+           substitute      ->  XyXyXYxxx
+           reduce          ->  yXyXYxx
+           invert          ->  XXyxYxY
+           rotate by 1     ->  YXXyxYx
+                               = r1
+      r2 = YYxxYxxyXyXYx
+           substitute      ->  XyXyxyxxYYXyx
+           reduce          ->  yXyxyxxYYXy
+           rotate by 4     ->  YYXyyXyxyxx
+                               = r2
+    => (YXXyxYx, YYXyyXyxyxx)
     both meet at (YXXyxYx, YYXyyXyxyxx)
 ```
 
@@ -2097,12 +4973,22 @@ Substitute `x -> x, y -> Y` into `21_15`:
 
 **128 (16_7)  ≡  132 (16_8)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `16_7`:
+Substitute `x -> x, y -> Y` into **16_7** (`YYxYxyX`, `YXXXyxxYx`), then normalise:
 
 ```
-    (YYxYxyX, YXXXyxxYx)
-      ==>  (YYxyXYX, YXYXXyxxx)   = the canonical form of 16_8   [MATCH]
+  r1 = YYxYxyX
+       substitute      ->  yyxyxYX
+       invert          ->  xyXYXYY
+       rotate by 2     ->  YYxyXYX
+                           = r1 of 16_8   [MATCH]
+  r2 = YXXXyxxYx
+       substitute      ->  yXXXYxxyx
+       invert          ->  XYXXyxxxY
+       rotate by 1     ->  YXYXXyxxx
+                           = r2 of 16_8   [MATCH]
 ```
+
+which is exactly **16_8** = (`YYxyXYX`, `YXYXXyxxx`). No AC move was used.
 
 ---
 
@@ -2119,12 +5005,22 @@ Substitute `x -> x, y -> Y` into `16_7`:
 
 **134 (22_1)  ≡  140 (22_4)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `22_1`:
+Substitute `x -> x, y -> Y` into **22_1** (`YXXYxxx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXXYxxx, YYYYYYYXyyyyyyx)
-      ==>  (YXXXYxx, YYYYYYYXyyyyyyx)   = the canonical form of 22_4   [MATCH]
+  r1 = YXXYxxx
+       substitute      ->  yXXyxxx
+       invert          ->  XXXYxxY
+       rotate by 1     ->  YXXXYxx
+                           = r1 of 22_4   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 22_4   [MATCH]
 ```
+
+which is exactly **22_4** = (`YXXXYxx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2141,12 +5037,22 @@ Substitute `x -> x, y -> Y` into `22_1`:
 
 **135 (22_2)  ≡  139 (22_3)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `22_2`:
+Substitute `x -> x, y -> Y` into **22_2** (`YYYxyyX`, `YXXXXXXXyxxxxxx`), then normalise:
 
 ```
-    (YYYxyyX, YXXXXXXXyxxxxxx)
-      ==>  (YYYxyyX, YXXXXXXyxxxxxxx)   = the canonical form of 22_3   [MATCH]
+  r1 = YYYxyyX
+       substitute      ->  yyyxYYX
+       invert          ->  xyyXYYY
+       rotate by 3     ->  YYYxyyX
+                           = r1 of 22_3   [MATCH]
+  r2 = YXXXXXXXyxxxxxx
+       substitute      ->  yXXXXXXXYxxxxxx
+       invert          ->  XXXXXXyxxxxxxxY
+       rotate by 1     ->  YXXXXXXyxxxxxxx
+                           = r2 of 22_3   [MATCH]
 ```
+
+which is exactly **22_3** = (`YYYxyyX`, `YXXXXXXyxxxxxxx`). No AC move was used.
 
 ---
 
@@ -2165,12 +5071,32 @@ Substitute `x -> x, y -> Y` into `22_2`:
 
 ```
   left  — 17_37
-    P                                  = (YXyXXYxx, YYYYXyXyx)
-    x -> x, y -> Y                     = (YXXYxxyx, YYYYXyxyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXYxxyx, YYYXyXyxx)   [AC move]
+    start: (YXyXXYxx, YYYYXyXyx)
+    change of variables: x -> x, y -> Y
+      r1 = YXyXXYxx
+           substitute      ->  yXYXXyxx
+           invert          ->  XXYxxyxY
+           rotate by 1     ->  YXXYxxyx
+                               = r1
+      r2 = YYYYXyXyx
+           substitute      ->  yyyyXYXYx
+           invert          ->  XyxyxYYYY
+           rotate by 4     ->  YYYYXyxyx
+                               = r2
+    => (YXXYxxyx, YYYYXyxyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYYXyxyx
+        rot_0(r1^-1)     =  XYXXyxxy
+        concatenate      =  YYYYXyxyxXYXXyxxy
+        cancel inverses  =  YYYYXyXyxxy
+        reduce cyclically=  YYYXyXyxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYxxyx, YYYXyXyxx)
   right — 17_40
-    P                                  = (YXXYxxyx, YYYXyXyxx)
-    x -> x, y -> y                     = (YXXYxxyx, YYYXyXyxx)   [to the Aut-minimal form]
+    start: (YXXYxxyx, YYYXyXyxx)
+    => (YXXYxxyx, YYYXyXyxx)   [already Aut-minimal]
     both meet at (YXXYxxyx, YYYXyXyxx)
 ```
 
@@ -2191,12 +5117,22 @@ Every step is an AC move — no change of variables inside the path. So `17_37 ~
 
 **137 (17_38)  ≡  141 (17_39)** — *change of variables only*
 
-Substitute `x -> yx, y -> Y` into `17_38`:
+Substitute `x -> yx, y -> Y` into **17_38** (`YYYXXyx`, `YYXYxyxyXX`), then normalise:
 
 ```
-    (YYYXXyx, YYXYxyxyXX)
-      ==>  (YYYXyxyx, YXYXyXyxx)   = the canonical form of 17_39   [MATCH]
+  r1 = YYYXXyx
+       substitute      ->  yyyXYXYx
+       invert          ->  XyxyxYYY
+       rotate by 3     ->  YYYXyxyx
+                           = r1 of 17_39   [MATCH]
+  r2 = YYXYxyxyXX
+       substitute      ->  yyXyxxYXYXY
+       reduce          ->  yXyxxYXYX
+       rotate by 4     ->  YXYXyXyxx
+                           = r2 of 17_39   [MATCH]
 ```
+
+which is exactly **17_39** = (`YYYXyxyx`, `YXYXyXyxx`). No AC move was used.
 
 ---
 
@@ -2215,15 +5151,74 @@ Substitute `x -> yx, y -> Y` into `17_38`:
 
 ```
   left  — 19_36
-    P                                  = (YYXyyXYYx, YYYYYYYXXX)
-    x -> y, y -> X                     = (YXXYxxyxx, YYYxxxxxxx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXYxxyxx, YYxxxxxYXXyxx)   [AC move]
-    r1 <- rot_0(r1) . rot_0(r2^-1)     = (YYxxxxxYXXyxx, YXXXXyxxYxxxxx)   [AC move]
-    x -> x, y -> yxxxxx                = (YYXXXXyxx, YYXXyxxYXXXXX)   [change of variables]
+    start: (YYXyyXYYx, YYYYYYYXXX)
+    change of variables: x -> y, y -> X
+      r1 = YYXyyXYYx
+           substitute      ->  xxYXXYxxy
+           rotate by 7     ->  YXXYxxyxx
+                               = r1
+      r2 = YYYYYYYXXX
+           substitute      ->  xxxxxxxYYY
+           rotate by 3     ->  YYYxxxxxxx
+                               = r2
+    => (YXXYxxyxx, YYYxxxxxxx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYxxxxxxx
+        rot_0(r1^-1)     =  XXYXXyxxy
+        concatenate      =  YYYxxxxxxxXXYXXyxxy
+        cancel inverses  =  YYYxxxxxYXXyxxy
+        reduce cyclically=  YYxxxxxYXXyxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYxxyxx, YYxxxxxYXXyxx)
+
+    AC move:  r1 <- rot_0(r1) . rot_0(r2^-1)
+        rot_0(r1)        =  YXXYxxyxx
+        rot_0(r2^-1)     =  XXYxxyXXXXXyy
+        concatenate      =  YXXYxxyxxXXYxxyXXXXXyy
+        cancel inverses  =  YXXYxxxxyXXXXXyy
+        reduce cyclically=  XXYxxxxyXXXXXy
+        invert           =  YxxxxxYXXXXyxx
+        rotate by 8      =  YXXXXyxxYxxxxx
+                            ^ the new r2
+        r2 is untouched by the move (it becomes r1: the two relators sort into the other order)
+    => (YYxxxxxYXXyxx, YXXXXyxxYxxxxx)
+    change of variables: x -> x, y -> yxxxxx
+      r2 = YXXXXyxxYxxxxx
+           substitute      ->  XXXXXYXXXXyxxYxxxxx
+           reduce          ->  YXXXXyxxY
+           rotate by 1     ->  YYXXXXyxx
+                               = r1
+      r1 = YYxxxxxYXXyxx
+           substitute      ->  XXXXXYXXXXXYYXXyxxxxxxx
+           reduce          ->  YXXXXXYYXXyxx
+           rotate by 7     ->  YYXXyxxYXXXXX
+                               = r2
+    => (YYXXXXyxx, YYXXyxxYXXXXX)
   right — 19_35
-    P                                  = (YYYYXXyyx, YYYYYxyyXX)
-    x -> Y, y -> X                     = (YYXXXXyxx, YYxxyXXXXX)   [to the Aut-minimal form]
-    r2 <- rot_5(r2) . rot_8(r1)        = (YYXXXXyxx, YYXXyxxYXXXXX)   [AC move]
+    start: (YYYYXXyyx, YYYYYxyyXX)
+    change of variables: x -> Y, y -> X
+      r1 = YYYYXXyyx
+           substitute      ->  xxxxyyXXY
+           invert          ->  yxxYYXXXX
+           rotate by 6     ->  YYXXXXyxx
+                               = r1
+      r2 = YYYYYxyyXX
+           substitute      ->  xxxxxYXXyy
+           invert          ->  YYxxyXXXXX
+                               = r2
+    => (YYXXXXyxx, YYxxyXXXXX)
+
+    AC move:  r2 <- rot_5(r2) . rot_8(r1)
+        rot_5(r2)        =  XXXXXYYxxy
+        rot_8(r1)        =  YXXXXyxxY
+        concatenate      =  XXXXXYYxxyYXXXXyxxY
+        cancel inverses  =  XXXXXYYXXyxxY
+        rotate by 8      =  YYXXyxxYXXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyxx, YYXXyxxYXXXXX)
     both meet at (YYXXXXyxx, YYXXyxxYXXXXX)
 ```
 
@@ -2242,12 +5237,22 @@ Substitute `x -> yx, y -> Y` into `17_38`:
 
 **144 (23_1)  ≡  167 (23_13)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_1`:
+Substitute `x -> x, y -> Y` into **23_1** (`YYXXYxxx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YYXXYxxx, YYYYYYYXyyyyyyx)
-      ==>  (YYXXXYxx, YYYYYYYXyyyyyyx)   = the canonical form of 23_13   [MATCH]
+  r1 = YYXXYxxx
+       substitute      ->  yyXXyxxx
+       invert          ->  XXXYxxYY
+       rotate by 2     ->  YYXXXYxx
+                           = r1 of 23_13   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_13   [MATCH]
 ```
+
+which is exactly **23_13** = (`YYXXXYxx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2264,12 +5269,22 @@ Substitute `x -> x, y -> Y` into `23_1`:
 
 **145 (21_30)  ≡  175 (21_33)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_30`:
+Substitute `x -> x, y -> Y` into **21_30** (`YXyxxxYXX`, `YYYYYYXXXyxx`), then normalise:
 
 ```
-    (YXyxxxYXX, YYYYYYXXXyxx)
-      ==>  (YXXXyxYxx, YYYYYYXXyxxx)   = the canonical form of 21_33   [MATCH]
+  r1 = YXyxxxYXX
+       substitute      ->  yXYxxxyXX
+       invert          ->  xxYXXXyxY
+       rotate by 7     ->  YXXXyxYxx
+                           = r1 of 21_33   [MATCH]
+  r2 = YYYYYYXXXyxx
+       substitute      ->  yyyyyyXXXYxx
+       invert          ->  XXyxxxYYYYYY
+       rotate by 6     ->  YYYYYYXXyxxx
+                           = r2 of 21_33   [MATCH]
 ```
+
+which is exactly **21_33** = (`YXXXyxYxx`, `YYYYYYXXyxxx`). No AC move was used.
 
 ---
 
@@ -2286,12 +5301,21 @@ Substitute `x -> x, y -> Y` into `21_30`:
 
 **146 (22_5)  ≡  177 (22_12)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `22_5`:
+Substitute `x -> x, y -> Y` into **22_5** (`YXXYxxxyX`, `YYYYYYYxxxYXX`), then normalise:
 
 ```
-    (YXXYxxxyX, YYYYYYYxxxYXX)
-      ==>  (YXyXXyxxx, YYYYYYYxxYXXX)   = the canonical form of 22_12   [MATCH]
+  r1 = YXXYxxxyX
+       substitute      ->  yXXyxxxYX
+       rotate by 2     ->  YXyXXyxxx
+                           = r1 of 22_12   [MATCH]
+  r2 = YYYYYYYxxxYXX
+       substitute      ->  yyyyyyyxxxyXX
+       invert          ->  xxYXXXYYYYYYY
+       rotate by 7     ->  YYYYYYYxxYXXX
+                           = r2 of 22_12   [MATCH]
 ```
+
+which is exactly **22_12** = (`YXyXXyxxx`, `YYYYYYYxxYXXX`). No AC move was used.
 
 ---
 
@@ -2308,12 +5332,22 @@ Substitute `x -> x, y -> Y` into `22_5`:
 
 **147 (22_6)  ≡  165 (22_10)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `22_6`:
+Substitute `x -> x, y -> Y` into **22_6** (`YYYYYxxyXXX`, `YYXyxxyxYXX`), then normalise:
 
 ```
-    (YYYYYxxyXXX, YYXyxxyxYXX)
-      ==>  (YYYYYxxxyXX, YYxxYXyXXyx)   = the canonical form of 22_10   [MATCH]
+  r1 = YYYYYxxyXXX
+       substitute      ->  yyyyyxxYXXX
+       invert          ->  xxxyXXYYYYY
+       rotate by 5     ->  YYYYYxxxyXX
+                           = r1 of 22_10   [MATCH]
+  r2 = YYXyxxyxYXX
+       substitute      ->  yyXYxxYxyXX
+       invert          ->  xxYXyXXyxYY
+       rotate by 2     ->  YYxxYXyXXyx
+                           = r2 of 22_10   [MATCH]
 ```
+
+which is exactly **22_10** = (`YYYYYxxxyXX`, `YYxxYXyXXyx`). No AC move was used.
 
 ---
 
@@ -2330,12 +5364,22 @@ Substitute `x -> x, y -> Y` into `22_6`:
 
 **148 (23_2)  ≡  163 (23_11)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_2`:
+Substitute `x -> x, y -> Y` into **23_2** (`YXXYxxyx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXXYxxyx, YYYYYYYXyyyyyyx)
-      ==>  (YXyXXYxx, YYYYYYYXyyyyyyx)   = the canonical form of 23_11   [MATCH]
+  r1 = YXXYxxyx
+       substitute      ->  yXXyxxYx
+       invert          ->  XyXXYxxY
+       rotate by 1     ->  YXyXXYxx
+                           = r1 of 23_11   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_11   [MATCH]
 ```
+
+which is exactly **23_11** = (`YXyXXYxx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2352,12 +5396,21 @@ Substitute `x -> x, y -> Y` into `23_2`:
 
 **149 (23_3)  ≡  174 (23_20)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_3`:
+Substitute `x -> x, y -> Y` into **23_3** (`YXyXXyxx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXyXXyxx, YYYYYYYXyyyyyyx)
-      ==>  (YXXYxxyX, YYYYYYYXyyyyyyx)   = the canonical form of 23_20   [MATCH]
+  r1 = YXyXXyxx
+       substitute      ->  yXYXXYxx
+       rotate by 6     ->  YXXYxxyX
+                           = r1 of 23_20   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_20   [MATCH]
 ```
+
+which is exactly **23_20** = (`YXXYxxyX`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2374,12 +5427,21 @@ Substitute `x -> x, y -> Y` into `23_3`:
 
 **150 (22_7)  ≡  176 (22_11)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `22_7`:
+Substitute `x -> x, y -> Y` into **22_7** (`YXyXXYxxx`, `YYYYYYYxxxyXX`), then normalise:
 
 ```
-    (YXyXXYxxx, YYYYYYYxxxyXX)
-      ==>  (YXXyxxxyX, YYYYYYYxxyXXX)   = the canonical form of 22_11   [MATCH]
+  r1 = YXyXXYxxx
+       substitute      ->  yXYXXyxxx
+       rotate by 7     ->  YXXyxxxyX
+                           = r1 of 22_11   [MATCH]
+  r2 = YYYYYYYxxxyXX
+       substitute      ->  yyyyyyyxxxYXX
+       invert          ->  xxyXXXYYYYYYY
+       rotate by 7     ->  YYYYYYYxxyXXX
+                           = r2 of 22_11   [MATCH]
 ```
+
+which is exactly **22_11** = (`YXXyxxxyX`, `YYYYYYYxxyXXX`). No AC move was used.
 
 ---
 
@@ -2396,12 +5458,22 @@ Substitute `x -> x, y -> Y` into `22_7`:
 
 **151 (22_8)  ≡  164 (22_9)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `22_8`:
+Substitute `x -> x, y -> Y` into **22_8** (`YYYYYxxYXXX`, `YYXyxxYxyXX`), then normalise:
 
 ```
-    (YYYYYxxYXXX, YYXyxxYxyXX)
-      ==>  (YYYYYxxxYXX, YYxxyXYXXyx)   = the canonical form of 22_9   [MATCH]
+  r1 = YYYYYxxYXXX
+       substitute      ->  yyyyyxxyXXX
+       invert          ->  xxxYXXYYYYY
+       rotate by 5     ->  YYYYYxxxYXX
+                           = r1 of 22_9   [MATCH]
+  r2 = YYXyxxYxyXX
+       substitute      ->  yyXYxxyxYXX
+       invert          ->  xxyXYXXyxYY
+       rotate by 2     ->  YYxxyXYXXyx
+                           = r2 of 22_9   [MATCH]
 ```
+
+which is exactly **22_9** = (`YYYYYxxxYXX`, `YYxxyXYXXyx`). No AC move was used.
 
 ---
 
@@ -2418,12 +5490,21 @@ Substitute `x -> x, y -> Y` into `22_8`:
 
 **152 (21_31)  ≡  162 (21_32)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_31`:
+Substitute `x -> x, y -> Y` into **21_31** (`YXyxxxyXX`, `YYYYYYXXYxxx`), then normalise:
 
 ```
-    (YXyxxxyXX, YYYYYYXXYxxx)
-      ==>  (YXXyXYxxx, YYYYYYXXXYxx)   = the canonical form of 21_32   [MATCH]
+  r1 = YXyxxxyXX
+       substitute      ->  yXYxxxYXX
+       rotate by 3     ->  YXXyXYxxx
+                           = r1 of 21_32   [MATCH]
+  r2 = YYYYYYXXYxxx
+       substitute      ->  yyyyyyXXyxxx
+       invert          ->  XXXYxxYYYYYY
+       rotate by 6     ->  YYYYYYXXXYxx
+                           = r2 of 21_32   [MATCH]
 ```
+
+which is exactly **21_32** = (`YXXyXYxxx`, `YYYYYYXXXYxx`). No AC move was used.
 
 ---
 
@@ -2440,12 +5521,22 @@ Substitute `x -> x, y -> Y` into `21_31`:
 
 **153 (23_4)  ≡  166 (23_12)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_4`:
+Substitute `x -> x, y -> Y` into **23_4** (`YYXXXyxx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YYXXXyxx, YYYYYYYXyyyyyyx)
-      ==>  (YYXXyxxx, YYYYYYYXyyyyyyx)   = the canonical form of 23_12   [MATCH]
+  r1 = YYXXXyxx
+       substitute      ->  yyXXXYxx
+       invert          ->  XXyxxxYY
+       rotate by 2     ->  YYXXyxxx
+                           = r1 of 23_12   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_12   [MATCH]
 ```
+
+which is exactly **23_12** = (`YYXXyxxx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2462,12 +5553,22 @@ Substitute `x -> x, y -> Y` into `23_4`:
 
 **154 (23_5)  ≡  171 (23_17)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_5`:
+Substitute `x -> x, y -> Y` into **23_5** (`YXYXYxxx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXYXYxxx, YYYYYYYXyyyyyyx)
-      ==>  (YXXXYxYx, YYYYYYYXyyyyyyx)   = the canonical form of 23_17   [MATCH]
+  r1 = YXYXYxxx
+       substitute      ->  yXyXyxxx
+       invert          ->  XXXYxYxY
+       rotate by 1     ->  YXXXYxYx
+                           = r1 of 23_17   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_17   [MATCH]
 ```
+
+which is exactly **23_17** = (`YXXXYxYx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2484,12 +5585,21 @@ Substitute `x -> x, y -> Y` into `23_5`:
 
 **155 (23_6)  ≡  170 (23_16)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_6`:
+Substitute `x -> x, y -> Y` into **23_6** (`YXYxxxyX`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXYxxxyX, YYYYYYYXyyyyyyx)
-      ==>  (YXyXyxxx, YYYYYYYXyyyyyyx)   = the canonical form of 23_16   [MATCH]
+  r1 = YXYxxxyX
+       substitute      ->  yXyxxxYX
+       rotate by 2     ->  YXyXyxxx
+                           = r1 of 23_16   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_16   [MATCH]
 ```
+
+which is exactly **23_16** = (`YXyXyxxx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2506,12 +5616,21 @@ Substitute `x -> x, y -> Y` into `23_6`:
 
 **156 (23_7)  ≡  169 (23_15)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_7`:
+Substitute `x -> x, y -> Y` into **23_7** (`YXyXYxxx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXyXYxxx, YYYYYYYXyyyyyyx)
-      ==>  (YXyxxxyX, YYYYYYYXyyyyyyx)   = the canonical form of 23_15   [MATCH]
+  r1 = YXyXYxxx
+       substitute      ->  yXYXyxxx
+       rotate by 6     ->  YXyxxxyX
+                           = r1 of 23_15   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_15   [MATCH]
 ```
+
+which is exactly **23_15** = (`YXyxxxyX`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2528,12 +5647,22 @@ Substitute `x -> x, y -> Y` into `23_7`:
 
 **157 (23_8)  ≡  168 (23_14)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `23_8`:
+Substitute `x -> x, y -> Y` into **23_8** (`YXXXyxYx`, `YYYYYYYXyyyyyyx`), then normalise:
 
 ```
-    (YXXXyxYx, YYYYYYYXyyyyyyx)
-      ==>  (YXYXyxxx, YYYYYYYXyyyyyyx)   = the canonical form of 23_14   [MATCH]
+  r1 = YXXXyxYx
+       substitute      ->  yXXXYxyx
+       invert          ->  XYXyxxxY
+       rotate by 1     ->  YXYXyxxx
+                           = r1 of 23_14   [MATCH]
+  r2 = YYYYYYYXyyyyyyx
+       substitute      ->  yyyyyyyXYYYYYYx
+       invert          ->  XyyyyyyxYYYYYYY
+       rotate by 7     ->  YYYYYYYXyyyyyyx
+                           = r2 of 23_14   [MATCH]
 ```
+
+which is exactly **23_14** = (`YXYXyxxx`, `YYYYYYYXyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2552,14 +5681,69 @@ Substitute `x -> x, y -> Y` into `23_8`:
 
 ```
   left  — 23_19
-    P                                  = (YYxxYXXX, YYYYYxYXYXYxyXX)
-    x -> X, y -> Y                     = (YYXXXYxx, YYYYYXXyxYXYXYx)   [to the Aut-minimal form]
-    r2 <- rot_8(r2) . rot_4(r1^-1)     = (YYXXXYxx, YYYXXyxyxYXYXYx)   [AC move]
+    start: (YYxxYXXX, YYYYYxYXYXYxyXX)
+    change of variables: x -> X, y -> Y
+      r1 = YYxxYXXX
+           substitute      ->  yyXXyxxx
+           invert          ->  XXXYxxYY
+           rotate by 2     ->  YYXXXYxx
+                               = r1
+      r2 = YYYYYxYXYXYxyXX
+           substitute      ->  yyyyyXyxyxyXYxx
+           invert          ->  XXyxYXYXYxYYYYY
+           rotate by 5     ->  YYYYYXXyxYXYXYx
+                               = r2
+    => (YYXXXYxx, YYYYYXXyxYXYXYx)
+
+    AC move:  r2 <- rot_8(r2) . rot_4(r1^-1)
+        rot_8(r2)        =  yxYXYXYxYYYYYXX
+        rot_4(r1^-1)     =  xxyyXXyx
+        concatenate      =  yxYXYXYxYYYYYXXxxyyXXyx
+        cancel inverses  =  yxYXYXYxYYYXXyx
+        rotate by 7      =  YYYXXyxyxYXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYXXyxyxYXYXYx)
   right — 23_9
-    P                                  = (YYxxxYXX, YXYxxyXyXyXYxYx)
-    x -> x, y -> Yx                    = (YXXYxYxxx, YYYXyyyXXyxx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YXXYxYxxx, YYYxyyXXYxYxYxx)   [AC move]
-    x -> X, y -> YX                    = (YYXXXYxx, YYYXXyxyxYXYXYx)   [change of variables]
+    start: (YYxxxYXX, YXYxxyXyXyXYxYx)
+    change of variables: x -> x, y -> Yx
+      r1 = YYxxxYXX
+           substitute      ->  XyXyxxyXX
+           invert          ->  xxYXXYxYx
+           rotate by 7     ->  YXXYxYxxx
+                               = r1
+      r2 = YXYxxyXyXyXYxYx
+           substitute      ->  XyXXyxxYYYXyyx
+           reduce          ->  yXXyxxYYYXyy
+           rotate by 6     ->  YYYXyyyXXyxx
+                               = r2
+    => (YXXYxYxxx, YYYXyyyXXyxx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYXyyyXXyxx
+        rot_0(r1^-1)     =  XXXyXyxxy
+        concatenate      =  YYYXyyyXXyxxXXXyXyxxy
+        cancel inverses  =  YYYXyyyXXyXyXyxxy
+        reduce cyclically=  YYXyyyXXyXyXyxx
+        invert           =  XXYxYxYxxYYYxyy
+        rotate by 6      =  YYYxyyXXYxYxYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYxYxxx, YYYxyyXXYxYxYxx)
+    change of variables: x -> X, y -> YX
+      r1 = YXXYxYxxx
+           substitute      ->  xyxxxyyXXX
+           reduce          ->  yxxxyyXX
+           invert          ->  xxYYXXXY
+           rotate by 6     ->  YYXXXYxx
+                               = r1
+      r2 = YYYxyyXXYxYxYxx
+           substitute      ->  xyxyxyXYXYxxyyyXX
+           reduce          ->  yxyxyXYXYxxyyyX
+           invert          ->  xYYYXXyxyxYXYXY
+           rotate by 14    ->  YYYXXyxyxYXYXYx
+                               = r2
+    => (YYXXXYxx, YYYXXyxyxYXYXYx)
     both meet at (YYXXXYxx, YYYXXyxyxYXYXYx)
 ```
 
@@ -2580,15 +5764,68 @@ Substitute `x -> x, y -> Y` into `23_8`:
 
 ```
   left  — 23_18
-    P                                  = (YYxxyXXX, YYYYYYYXyyyyyyx)
-    x -> X, y -> Y                     = (YYXXXyxx, YYYYYYYxyyyyyyX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_1(r1)        = (YYXXXyxx, YYYYYYYxyyyyXXXyx)   [AC move]
-    r2 <- rot_3(r2) . rot_2(r1)        = (YYXXXyxx, YYYYYYYxyyXXXyXyx)   [AC move]
+    start: (YYxxyXXX, YYYYYYYXyyyyyyx)
+    change of variables: x -> X, y -> Y
+      r1 = YYxxyXXX
+           substitute      ->  yyXXYxxx
+           invert          ->  XXXyxxYY
+           rotate by 2     ->  YYXXXyxx
+                               = r1
+      r2 = YYYYYYYXyyyyyyx
+           substitute      ->  yyyyyyyxYYYYYYX
+           invert          ->  xyyyyyyXYYYYYYY
+           rotate by 7     ->  YYYYYYYxyyyyyyX
+                               = r2
+    => (YYXXXyxx, YYYYYYYxyyyyyyX)
+
+    AC move:  r2 <- rot_0(r2) . rot_1(r1)
+        rot_0(r2)        =  YYYYYYYxyyyyyyX
+        rot_1(r1)        =  xYYXXXyx
+        concatenate      =  YYYYYYYxyyyyyyXxYYXXXyx
+        cancel inverses  =  YYYYYYYxyyyyXXXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYYYYYxyyyyXXXyx)
+
+    AC move:  r2 <- rot_3(r2) . rot_2(r1)
+        rot_3(r2)        =  XyxYYYYYYYxyyyyXX
+        rot_2(r1)        =  xxYYXXXy
+        concatenate      =  XyxYYYYYYYxyyyyXXxxYYXXXy
+        cancel inverses  =  XyxYYYYYYYxyyXXXy
+        rotate by 14     =  YYYYYYYxyyXXXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYYYYYxyyXXXyXyx)
   right — 23_10
-    P                                  = (YYxxxyXX, YYYYYxxYXyxyxyX)
-    x -> X, y -> y                     = (YYXXXyxx, YYYYYXXYxyXyXyx)   [to the Aut-minimal form]
-    r2 <- rot_6(r2) . rot_4(r1)        = (YYXXXyxx, YYYYYYYXXyXyXyx)   [AC move]
-    r2 <- rot_5(r2) . rot_6(r1^-1)     = (YYXXXyxx, YYYYYYYxyyXXXyXyx)   [AC move]
+    start: (YYxxxyXX, YYYYYxxYXyxyxyX)
+    change of variables: x -> X, y -> y
+      r1 = YYxxxyXX
+           substitute      ->  YYXXXyxx
+                               = r1
+      r2 = YYYYYxxYXyxyxyX
+           substitute      ->  YYYYYXXYxyXyXyx
+                               = r2
+    => (YYXXXyxx, YYYYYXXYxyXyXyx)
+
+    AC move:  r2 <- rot_6(r2) . rot_4(r1)
+        rot_6(r2)        =  yXyXyxYYYYYXXYx
+        rot_4(r1)        =  XyxxYYXX
+        concatenate      =  yXyXyxYYYYYXXYxXyxxYYXX
+        cancel inverses  =  yXyXyxYYYYYYYXX
+        rotate by 9      =  YYYYYYYXXyXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYYYYYXXyXyXyx)
+
+    AC move:  r2 <- rot_5(r2) . rot_6(r1^-1)
+        rot_5(r2)        =  XyXyxYYYYYYYXXy
+        rot_6(r1^-1)     =  YxxxyyXX
+        concatenate      =  XyXyxYYYYYYYXXyYxxxyyXX
+        cancel inverses  =  XyXyxYYYYYYYxyyXX
+        rotate by 12     =  YYYYYYYxyyXXXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYYYYYxyyXXXyXyx)
     both meet at (YYXXXyxx, YYYYYYYxyyXXXyXyx)
 ```
 
@@ -2609,12 +5846,22 @@ Every step is an AC move — no change of variables inside the path. So `23_18 ~
 
 **160 (18_4)  ≡  178 (18_5)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `18_4`:
+Substitute `x -> x, y -> Y` into **18_4** (`YYYXXYxyX`, `YYxYXXYXX`), then normalise:
 
 ```
-    (YYYXXYxyX, YYxYXXYXX)
-      ==>  (YYYxyXYxx, YYxxYxxYX)   = the canonical form of 18_5   [MATCH]
+  r1 = YYYXXYxyX
+       substitute      ->  yyyXXyxYX
+       invert          ->  xyXYxxYYY
+       rotate by 3     ->  YYYxyXYxx
+                           = r1 of 18_5   [MATCH]
+  r2 = YYxYXXYXX
+       substitute      ->  yyxyXXyXX
+       invert          ->  xxYxxYXYY
+       rotate by 2     ->  YYxxYxxYX
+                           = r2 of 18_5   [MATCH]
 ```
+
+which is exactly **18_5** = (`YYYxyXYxx`, `YYxxYxxYX`). No AC move was used.
 
 ---
 
@@ -2633,15 +5880,73 @@ Substitute `x -> x, y -> Y` into `18_4`:
 
 ```
   left  — 21_38
-    P                                  = (YYxyXX, YYYYYYYXyXXyxyX)
-    x -> X, y -> Y                     = (YYXXyx, YYYYYYYXyxyXXyX)   [to the Aut-minimal form]
-    r2 <- rot_4(r2) . rot_5(r1)        = (YYXXyx, YYYYYYYXyXyxYXXyX)   [AC move]
-    x -> Y, y -> X                     = (YYXXyx, YYXyxYxYXXXXXXXYx)   [change of variables]
+    start: (YYxyXX, YYYYYYYXyXXyxyX)
+    change of variables: x -> X, y -> Y
+      r1 = YYxyXX
+           substitute      ->  yyXYxx
+           invert          ->  XXyxYY
+           rotate by 2     ->  YYXXyx
+                               = r1
+      r2 = YYYYYYYXyXXyxyX
+           substitute      ->  yyyyyyyxYxxYXYx
+           invert          ->  XyxyXXyXYYYYYYY
+           rotate by 7     ->  YYYYYYYXyxyXXyX
+                               = r2
+    => (YYXXyx, YYYYYYYXyxyXXyX)
+
+    AC move:  r2 <- rot_4(r2) . rot_5(r1)
+        rot_4(r2)        =  XXyXYYYYYYYXyxy
+        rot_5(r1)        =  YXXyxY
+        concatenate      =  XXyXYYYYYYYXyxyYXXyxY
+        cancel inverses  =  XXyXYYYYYYYXyXyxY
+        rotate by 13     =  YYYYYYYXyXyxYXXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YYYYYYYXyXyxYXXyX)
+    change of variables: x -> Y, y -> X
+      r1 = YYXXyx
+           substitute      ->  xxyyXY
+           invert          ->  yxYYXX
+           rotate by 4     ->  YYXXyx
+                               = r1
+      r2 = YYYYYYYXyXyxYXXyX
+           substitute      ->  xxxxxxxyXyXYxyyXy
+           invert          ->  YxYYXyxYxYXXXXXXX
+           rotate by 15    ->  YYXyxYxYXXXXXXXYx
+                               = r2
+    => (YYXXyx, YYXyxYxYXXXXXXXYx)
   right — 21_35
-    P                                  = (YYxxyX, YYYYYYYxyxyXyxx)
-    x -> X, y -> y                     = (YYXXyx, YYYYYYYXyXyxyXX)   [to the Aut-minimal form]
-    r2 <- rot_1(r2) . rot_1(r1)        = (YYXXyx, YYYYYYYXyXyxYXXyX)   [AC move]
-    x -> Y, y -> X                     = (YYXXyx, YYXyxYxYXXXXXXXYx)   [change of variables]
+    start: (YYxxyX, YYYYYYYxyxyXyxx)
+    change of variables: x -> X, y -> y
+      r1 = YYxxyX
+           substitute      ->  YYXXyx
+                               = r1
+      r2 = YYYYYYYxyxyXyxx
+           substitute      ->  YYYYYYYXyXyxyXX
+                               = r2
+    => (YYXXyx, YYYYYYYXyXyxyXX)
+
+    AC move:  r2 <- rot_1(r2) . rot_1(r1)
+        rot_1(r2)        =  XYYYYYYYXyXyxyX
+        rot_1(r1)        =  xYYXXy
+        concatenate      =  XYYYYYYYXyXyxyXxYYXXy
+        cancel inverses  =  XYYYYYYYXyXyxYXXy
+        rotate by 16     =  YYYYYYYXyXyxYXXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXyx, YYYYYYYXyXyxYXXyX)
+    change of variables: x -> Y, y -> X
+      r1 = YYXXyx
+           substitute      ->  xxyyXY
+           invert          ->  yxYYXX
+           rotate by 4     ->  YYXXyx
+                               = r1
+      r2 = YYYYYYYXyXyxYXXyX
+           substitute      ->  xxxxxxxyXyXYxyyXy
+           invert          ->  YxYYXyxYxYXXXXXXX
+           rotate by 15    ->  YYXyxYxYXXXXXXXYx
+                               = r2
+    => (YYXXyx, YYXyxYxYXXXXXXXYx)
     both meet at (YYXXyx, YYXyxYxYXXXXXXXYx)
 ```
 
@@ -2660,12 +5965,22 @@ Substitute `x -> x, y -> Y` into `18_4`:
 
 **192 (24_1)  ≡  206 (24_4)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `24_1`:
+Substitute `x -> x, y -> Y` into **24_1** (`YXXYxxx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXXYxxx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXXXYxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 24_4   [MATCH]
+  r1 = YXXYxxx
+       substitute      ->  yXXyxxx
+       invert          ->  XXXYxxY
+       rotate by 1     ->  YXXXYxx
+                           = r1 of 24_4   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 24_4   [MATCH]
 ```
+
+which is exactly **24_4** = (`YXXXYxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2682,12 +5997,20 @@ Substitute `x -> x, y -> Y` into `24_1`:
 
 **193 (24_2)  ≡  205 (24_3)** — *change of variables only*
 
-Substitute `x -> y, y -> x` into `24_2`:
+Substitute `x -> y, y -> x` into **24_2** (`YYYXyyx`, `YXXXXXXXyxxxxxxxx`), then normalise:
 
 ```
-    (YYYXyyx, YXXXXXXXyxxxxxxxx)
-      ==>  (YXXyxxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 24_3   [MATCH]
+  r1 = YYYXyyx
+       substitute      ->  XXXYxxy
+       invert          ->  YXXyxxx
+                           = r1 of 24_3   [MATCH]
+  r2 = YXXXXXXXyxxxxxxxx
+       substitute      ->  XYYYYYYYxyyyyyyyy
+       invert          ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 24_3   [MATCH]
 ```
+
+which is exactly **24_3** = (`YXXyxxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2706,12 +6029,42 @@ Substitute `x -> y, y -> x` into `24_2`:
 
 ```
   left  — 19_39
-    P                                  = (YYYXYxyx, YYXXYxxyXyx)
-    x -> Y, y -> x                     = (YXXXyXYx, YYxyxYXXyyX)   [to the Aut-minimal form]
-    r2 <- rot_3(r2) . rot_3(r1^-1)     = (YXXXyXYx, YYXyyxYYXyX)   [AC move]
+    start: (YYYXYxyx, YYXXYxxyXyx)
+    change of variables: x -> Y, y -> x
+      r1 = YYYXYxyx
+           substitute      ->  XXXyXYxY
+           rotate by 1     ->  YXXXyXYx
+                               = r1
+      r2 = YYXXYxxyXyx
+           substitute      ->  XXyyXYYxyxY
+           rotate by 6     ->  YYxyxYXXyyX
+                               = r2
+    => (YXXXyXYx, YYxyxYXXyyX)
+
+    AC move:  r2 <- rot_3(r2) . rot_3(r1^-1)
+        rot_3(r2)        =  yyXYYxyxYXX
+        rot_3(r1^-1)     =  xxyXyxYx
+        concatenate      =  yyXYYxyxYXXxxyXyxYx
+        cancel inverses  =  yyXYYxyyxYx
+        invert           =  XyXYYXyyxYY
+        rotate by 8      =  YYXyyxYYXyX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyXYx, YYXyyxYYXyX)
   right — 19_41
-    P                                  = (YYYXyXYx, YXXYxYXXyxx)
-    x -> Y, y -> X                     = (YXXXyXYx, YYXyyxYYXyX)   [to the Aut-minimal form]
+    start: (YYYXyXYx, YXXYxYXXyxx)
+    change of variables: x -> Y, y -> X
+      r1 = YYYXyXYx
+           substitute      ->  xxxyXyxY
+           invert          ->  yXYxYXXX
+           rotate by 4     ->  YXXXyXYx
+                               = r1
+      r2 = YXXYxYXXyxx
+           substitute      ->  xyyxYxyyXYY
+           invert          ->  yyxYYXyXYYX
+           rotate by 3     ->  YYXyyxYYXyX
+                               = r2
+    => (YXXXyXYx, YYXyyxYYXyX)
     both meet at (YXXXyXYx, YYXyyxYYXyX)
 ```
 
@@ -2732,12 +6085,22 @@ Every step is an AC move — no change of variables inside the path. So `19_39 ~
 
 **199 (18_8)  ≡  207 (18_10)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `18_8`:
+Substitute `x -> x, y -> Y` into **18_8** (`YYYXXyx`, `YYXYXyXyxxx`), then normalise:
 
 ```
-    (YYYXXyx, YYXYXyXyxxx)
-      ==>  (YYYXyxx, YYXXXyxyxYx)   = the canonical form of 18_10   [MATCH]
+  r1 = YYYXXyx
+       substitute      ->  yyyXXYx
+       invert          ->  XyxxYYY
+       rotate by 3     ->  YYYXyxx
+                           = r1 of 18_10   [MATCH]
+  r2 = YYXYXyXyxxx
+       substitute      ->  yyXyXYXYxxx
+       invert          ->  XXXyxyxYxYY
+       rotate by 2     ->  YYXXXyxyxYx
+                           = r2 of 18_10   [MATCH]
 ```
+
+which is exactly **18_10** = (`YYYXyxx`, `YYXXXyxyxYx`). No AC move was used.
 
 ---
 
@@ -2754,12 +6117,22 @@ Substitute `x -> x, y -> Y` into `18_8`:
 
 **200 (20_10)  ≡  209 (20_11)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `20_10`:
+Substitute `x -> x, y -> Y` into **20_10** (`YYXYYxyyx`, `YYYYYYYxxxx`), then normalise:
 
 ```
-    (YYXYYxyyx, YYYYYYYxxxx)
-      ==>  (YYXyyXYYx, YYYYYYYXXXX)   = the canonical form of 20_11   [MATCH]
+  r1 = YYXYYxyyx
+       substitute      ->  yyXyyxYYx
+       invert          ->  XyyXYYxYY
+       rotate by 2     ->  YYXyyXYYx
+                           = r1 of 20_11   [MATCH]
+  r2 = YYYYYYYxxxx
+       substitute      ->  yyyyyyyxxxx
+       invert          ->  XXXXYYYYYYY
+       rotate by 7     ->  YYYYYYYXXXX
+                           = r2 of 20_11   [MATCH]
 ```
+
+which is exactly **20_11** = (`YYXyyXYYx`, `YYYYYYYXXXX`). No AC move was used.
 
 ---
 
@@ -2778,18 +6151,109 @@ Substitute `x -> x, y -> Y` into `20_10`:
 
 ```
   left  — 25_1
-    P                                  = (YYXXYxxx, YYYYYYYYXyyyyyyyx)
-    x -> x, y -> Y                     = (YYXXXYxx, YYYYYYYYXyyyyyyyx)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YYXXXYxx, YYYYYYYxyyyyyyXXXYx)   [AC move]
-    r2 <- rot_3(r2) . rot_2(r1)        = (YYXXXYxx, YYYYYYYxyyyyXXXYXYx)   [AC move]
-    r2 <- rot_5(r2) . rot_2(r1)        = (YYXXXYxx, YYYYYYYxyyXXXYXYXYx)   [AC move]
-    r2 <- rot_7(r2) . rot_2(r1)        = (YYXXXYxx, YYYYYYYXXYXYXYXYx)   [AC move]
+    start: (YYXXYxxx, YYYYYYYYXyyyyyyyx)
+    change of variables: x -> x, y -> Y
+      r1 = YYXXYxxx
+           substitute      ->  yyXXyxxx
+           invert          ->  XXXYxxYY
+           rotate by 2     ->  YYXXXYxx
+                               = r1
+      r2 = YYYYYYYYXyyyyyyyx
+           substitute      ->  yyyyyyyyXYYYYYYYx
+           invert          ->  XyyyyyyyxYYYYYYYY
+           rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                               = r2
+    => (YYXXXYxx, YYYYYYYYXyyyyyyyx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYYYYYYYXyyyyyyyx
+        rot_0(r1^-1)     =  XXyxxxyy
+        concatenate      =  YYYYYYYYXyyyyyyyxXXyxxxyy
+        cancel inverses  =  YYYYYYYYXyyyyyyyXyxxxyy
+        reduce cyclically=  YYYYYYXyyyyyyyXyxxx
+        invert           =  XXXYxYYYYYYYxyyyyyy
+        rotate by 14     =  YYYYYYYxyyyyyyXXXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYYYxyyyyyyXXXYx)
+
+    AC move:  r2 <- rot_3(r2) . rot_2(r1)
+        rot_3(r2)        =  XYxYYYYYYYxyyyyyyXX
+        rot_2(r1)        =  xxYYXXXY
+        concatenate      =  XYxYYYYYYYxyyyyyyXXxxYYXXXY
+        cancel inverses  =  XYxYYYYYYYxyyyyXXXY
+        rotate by 16     =  YYYYYYYxyyyyXXXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYYYxyyyyXXXYXYx)
+
+    AC move:  r2 <- rot_5(r2) . rot_2(r1)
+        rot_5(r2)        =  XYXYxYYYYYYYxyyyyXX
+        rot_2(r1)        =  xxYYXXXY
+        concatenate      =  XYXYxYYYYYYYxyyyyXXxxYYXXXY
+        cancel inverses  =  XYXYxYYYYYYYxyyXXXY
+        rotate by 14     =  YYYYYYYxyyXXXYXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYYYxyyXXXYXYXYx)
+
+    AC move:  r2 <- rot_7(r2) . rot_2(r1)
+        rot_7(r2)        =  XYXYXYxYYYYYYYxyyXX
+        rot_2(r1)        =  xxYYXXXY
+        concatenate      =  XYXYXYxYYYYYYYxyyXXxxYYXXXY
+        cancel inverses  =  XYXYXYxYYYYYYYXXY
+        rotate by 10     =  YYYYYYYXXYXYXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYYYXXYXYXYXYx)
   right — 25_22
-    P                                  = (YYXXXYxx, YYYXXyxyxYXYXYXYx)
-    x -> X, y -> xY                    = (YXXYxYxxx, YYYYxyyXXYxYxYxx)   [to the Aut-minimal form]
-    r2 <- rot_7(r2) . rot_2(r1)        = (YXXYxYxxx, YYYYxyXXYxYxYxYxYxx)   [AC move]
-    x -> X, y -> YX                    = (YYXXXYxx, YYYYYXXyxYXYXYXYx)   [change of variables]
-    r2 <- rot_8(r2) . rot_4(r1)        = (YYXXXYxx, YYYYYYYXXYXYXYXYx)   [AC move]
+    start: (YYXXXYxx, YYYXXyxyxYXYXYXYx)
+    change of variables: x -> X, y -> xY
+      r1 = YYXXXYxx
+           substitute      ->  yXyxxyXXX
+           invert          ->  xxxYXXYxY
+           rotate by 6     ->  YXXYxYxxx
+                               = r1
+      r2 = YYYXXyxyxYXYXYXYx
+           substitute      ->  yXyXyxxYYXyyyyXX
+           invert          ->  xxYYYYxyyXXYxYxY
+           rotate by 14    ->  YYYYxyyXXYxYxYxx
+                               = r2
+    => (YXXYxYxxx, YYYYxyyXXYxYxYxx)
+
+    AC move:  r2 <- rot_7(r2) . rot_2(r1)
+        rot_7(r2)        =  YxYxYxxYYYYxyyXX
+        rot_2(r1)        =  xxYXXYxYx
+        concatenate      =  YxYxYxxYYYYxyyXXxxYXXYxYx
+        cancel inverses  =  YxYxYxxYYYYxyXXYxYx
+        rotate by 12     =  YYYYxyXXYxYxYxYxYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXYxYxxx, YYYYxyXXYxYxYxYxYxx)
+    change of variables: x -> X, y -> YX
+      r1 = YXXYxYxxx
+           substitute      ->  xyxxxyyXXX
+           reduce          ->  yxxxyyXX
+           invert          ->  xxYYXXXY
+           rotate by 6     ->  YYXXXYxx
+                               = r1
+      r2 = YYYYxyXXYxYxYxYxYxx
+           substitute      ->  xyxyxyxyXYxxyyyyyXX
+           reduce          ->  yxyxyxyXYxxyyyyyX
+           invert          ->  xYYYYYXXyxYXYXYXY
+           rotate by 16    ->  YYYYYXXyxYXYXYXYx
+                               = r2
+    => (YYXXXYxx, YYYYYXXyxYXYXYXYx)
+
+    AC move:  r2 <- rot_8(r2) . rot_4(r1)
+        rot_8(r2)        =  YXYXYXYxYYYYYXXyx
+        rot_4(r1)        =  XYxxYYXX
+        concatenate      =  YXYXYXYxYYYYYXXyxXYxxYYXX
+        cancel inverses  =  YXYXYXYxYYYYYYYXX
+        rotate by 9      =  YYYYYYYXXYXYXYXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXYxx, YYYYYYYXXYXYXYXYx)
     both meet at (YYXXXYxx, YYYYYYYXXYXYXYXYx)
 ```
 
@@ -2808,12 +6272,22 @@ Substitute `x -> x, y -> Y` into `20_10`:
 
 **214 (25_2)  ≡  252 (25_30)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_2`:
+Substitute `x -> x, y -> Y` into **25_2** (`YXXYxxYx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXXYxxYx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXYXXYxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_30   [MATCH]
+  r1 = YXXYxxYx
+       substitute      ->  yXXyxxyx
+       invert          ->  XYXXYxxY
+       rotate by 1     ->  YXYXXYxx
+                           = r1 of 25_30   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_30   [MATCH]
 ```
+
+which is exactly **25_30** = (`YXYXXYxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2830,12 +6304,22 @@ Substitute `x -> x, y -> Y` into `25_2`:
 
 **215 (25_3)  ≡  254 (25_32)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_3`:
+Substitute `x -> x, y -> Y` into **25_3** (`YXXYxYxx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXXYxYxx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXYxxYXX, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_32   [MATCH]
+  r1 = YXXYxYxx
+       substitute      ->  yXXyxyxx
+       invert          ->  XXYXYxxY
+       rotate by 6     ->  YXYxxYXX
+                           = r1 of 25_32   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_32   [MATCH]
 ```
+
+which is exactly **25_32** = (`YXYxxYXX`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2852,12 +6336,21 @@ Substitute `x -> x, y -> Y` into `25_3`:
 
 **216 (25_4)  ≡  242 (25_20)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_4`:
+Substitute `x -> x, y -> Y` into **25_4** (`YXyxxyXX`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXyxxyXX, YYYYYYYYXyyyyyyyx)
-      ==>  (YXXyXYxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_20   [MATCH]
+  r1 = YXyxxyXX
+       substitute      ->  yXYxxYXX
+       rotate by 3     ->  YXXyXYxx
+                           = r1 of 25_20   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_20   [MATCH]
 ```
+
+which is exactly **25_20** = (`YXXyXYxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2874,12 +6367,22 @@ Substitute `x -> x, y -> Y` into `25_4`:
 
 **217 (25_5)  ≡  240 (25_18)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_5`:
+Substitute `x -> x, y -> Y` into **25_5** (`YXXYxxyx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXXYxxyx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXyXXYxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_18   [MATCH]
+  r1 = YXXYxxyx
+       substitute      ->  yXXyxxYx
+       invert          ->  XyXXYxxY
+       rotate by 1     ->  YXyXXYxx
+                           = r1 of 25_18   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_18   [MATCH]
 ```
+
+which is exactly **25_18** = (`YXyXXYxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2896,12 +6399,21 @@ Substitute `x -> x, y -> Y` into `25_5`:
 
 **218 (25_6)  ≡  251 (25_29)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_6`:
+Substitute `x -> x, y -> Y` into **25_6** (`YXyXXyxx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXyXXyxx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXXYxxyX, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_29   [MATCH]
+  r1 = YXyXXyxx
+       substitute      ->  yXYXXYxx
+       rotate by 6     ->  YXXYxxyX
+                           = r1 of 25_29   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_29   [MATCH]
 ```
+
+which is exactly **25_29** = (`YXXYxxyX`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2918,12 +6430,21 @@ Substitute `x -> x, y -> Y` into `25_6`:
 
 **219 (25_7)  ≡  253 (25_31)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_7`:
+Substitute `x -> x, y -> Y` into **25_7** (`YXXyXyxx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXXyXyxx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXYxxyXX, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_31   [MATCH]
+  r1 = YXXyXyxx
+       substitute      ->  yXXYXYxx
+       rotate by 5     ->  YXYxxyXX
+                           = r1 of 25_31   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_31   [MATCH]
 ```
+
+which is exactly **25_31** = (`YXYxxyXX`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2940,12 +6461,22 @@ Substitute `x -> x, y -> Y` into `25_7`:
 
 **220 (25_8)  ≡  241 (25_19)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_8`:
+Substitute `x -> x, y -> Y` into **25_8** (`YXyxxYXX`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXyxxYXX, YYYYYYYYXyyyyyyyx)
-      ==>  (YXXyxYxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_19   [MATCH]
+  r1 = YXyxxYXX
+       substitute      ->  yXYxxyXX
+       invert          ->  xxYXXyxY
+       rotate by 6     ->  YXXyxYxx
+                           = r1 of 25_19   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_19   [MATCH]
 ```
+
+which is exactly **25_19** = (`YXXyxYxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2962,12 +6493,22 @@ Substitute `x -> x, y -> Y` into `25_8`:
 
 **221 (25_9)  ≡  239 (25_17)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_9`:
+Substitute `x -> x, y -> Y` into **25_9** (`YXYXXyxx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXYXXyxx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXXyxxYx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_17   [MATCH]
+  r1 = YXYXXyxx
+       substitute      ->  yXyXXYxx
+       invert          ->  XXyxxYxY
+       rotate by 1     ->  YXXyxxYx
+                           = r1 of 25_17   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_17   [MATCH]
 ```
+
+which is exactly **25_17** = (`YXXyxxYx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -2986,14 +6527,54 @@ Substitute `x -> x, y -> Y` into `25_9`:
 
 ```
   left  — 25_21
-    P                                  = (YYXXyxxx, YYYXyxyxyxyXYXYxx)
-    x -> X, y -> xY                    = (YXXXyXyxx, YYYYxyyXXXyXyXyx)   [to the Aut-minimal form]
-    r2 <- rot_7(r2) . rot_2(r1)        = (YXXXyXyxx, YYYYxyXXXyXyXyXyXyx)   [AC move]
-    x -> X, y -> yX                    = (YYXXXyxx, YYYYYXXYxyXyXyXyx)   [change of variables]
+    start: (YYXXyxxx, YYYXyxyxyxyXYXYxx)
+    change of variables: x -> X, y -> xY
+      r1 = YYXXyxxx
+           substitute      ->  yXyxxYXXX
+           rotate by 4     ->  YXXXyXyxx
+                               = r1
+      r2 = YYYXyxyxyxyXYXYxx
+           substitute      ->  yXyXyxYYYYxyyXXX
+           rotate by 10    ->  YYYYxyyXXXyXyXyx
+                               = r2
+    => (YXXXyXyxx, YYYYxyyXXXyXyXyx)
+
+    AC move:  r2 <- rot_7(r2) . rot_2(r1)
+        rot_7(r2)        =  XyXyXyxYYYYxyyXX
+        rot_2(r1)        =  xxYXXXyXy
+        concatenate      =  XyXyXyxYYYYxyyXXxxYXXXyXy
+        cancel inverses  =  XyXyXyxYYYYxyXXXyXy
+        rotate by 12     =  YYYYxyXXXyXyXyXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXyXyxx, YYYYxyXXXyXyXyXyXyx)
+    change of variables: x -> X, y -> yX
+      r1 = YXXXyXyxx
+           substitute      ->  xYxxxyyXXX
+           reduce          ->  YxxxyyXX
+           invert          ->  xxYYXXXy
+           rotate by 6     ->  YYXXXyxx
+                               = r1
+      r2 = YYYYxyXXXyXyXyXyXyx
+           substitute      ->  xYxYxYxYXyxxyyyyyXX
+           reduce          ->  YxYxYxYXyxxyyyyyX
+           invert          ->  xYYYYYXXYxyXyXyXy
+           rotate by 16    ->  YYYYYXXYxyXyXyXyx
+                               = r2
+    => (YYXXXyxx, YYYYYXXYxyXyXyXyx)
   right — 25_10
-    P                                  = (YYXXXyxx, YYYYYYYXXyXyXyXyx)
-    x -> x, y -> y                     = (YYXXXyxx, YYYYYYYXXyXyXyXyx)   [to the Aut-minimal form]
-    r2 <- rot_8(r2) . rot_4(r1^-1)     = (YYXXXyxx, YYYYYXXYxyXyXyXyx)   [AC move]
+    start: (YYXXXyxx, YYYYYYYXXyXyXyXyx)
+    => (YYXXXyxx, YYYYYYYXXyXyXyXyx)   [already Aut-minimal]
+
+    AC move:  r2 <- rot_8(r2) . rot_4(r1^-1)
+        rot_8(r2)        =  yXyXyXyxYYYYYYYXX
+        rot_4(r1^-1)     =  xxyyXXYx
+        concatenate      =  yXyXyXyxYYYYYYYXXxxyyXXYx
+        cancel inverses  =  yXyXyXyxYYYYYXXYx
+        rotate by 9      =  YYYYYXXYxyXyXyXyx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXyxx, YYYYYXXYxyXyXyXyx)
     both meet at (YYXXXyxx, YYYYYXXYxyXyXyXyx)
 ```
 
@@ -3012,12 +6593,22 @@ Substitute `x -> x, y -> Y` into `25_9`:
 
 **223 (25_11)  ≡  248 (25_26)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_11`:
+Substitute `x -> x, y -> Y` into **25_11** (`YXYXYxxx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXYXYxxx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXXXYxYx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_26   [MATCH]
+  r1 = YXYXYxxx
+       substitute      ->  yXyXyxxx
+       invert          ->  XXXYxYxY
+       rotate by 1     ->  YXXXYxYx
+                           = r1 of 25_26   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_26   [MATCH]
 ```
+
+which is exactly **25_26** = (`YXXXYxYx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -3034,12 +6625,21 @@ Substitute `x -> x, y -> Y` into `25_11`:
 
 **224 (25_12)  ≡  247 (25_25)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_12`:
+Substitute `x -> x, y -> Y` into **25_12** (`YXYxxxyX`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXYxxxyX, YYYYYYYYXyyyyyyyx)
-      ==>  (YXyXyxxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_25   [MATCH]
+  r1 = YXYxxxyX
+       substitute      ->  yXyxxxYX
+       rotate by 2     ->  YXyXyxxx
+                           = r1 of 25_25   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_25   [MATCH]
 ```
+
+which is exactly **25_25** = (`YXyXyxxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -3056,12 +6656,21 @@ Substitute `x -> x, y -> Y` into `25_12`:
 
 **226 (25_13)  ≡  246 (25_24)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_13`:
+Substitute `x -> x, y -> Y` into **25_13** (`YXyXYxxx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXyXYxxx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXyxxxyX, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_24   [MATCH]
+  r1 = YXyXYxxx
+       substitute      ->  yXYXyxxx
+       rotate by 6     ->  YXyxxxyX
+                           = r1 of 25_24   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_24   [MATCH]
 ```
+
+which is exactly **25_24** = (`YXyxxxyX`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -3078,12 +6687,22 @@ Substitute `x -> x, y -> Y` into `25_13`:
 
 **227 (25_14)  ≡  245 (25_23)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_14`:
+Substitute `x -> x, y -> Y` into **25_14** (`YXXXyxYx`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YXXXyxYx, YYYYYYYYXyyyyyyyx)
-      ==>  (YXYXyxxx, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_23   [MATCH]
+  r1 = YXXXyxYx
+       substitute      ->  yXXXYxyx
+       invert          ->  XYXyxxxY
+       rotate by 1     ->  YXYXyxxx
+                           = r1 of 25_23   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_23   [MATCH]
 ```
+
+which is exactly **25_23** = (`YXYXyxxx`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -3100,12 +6719,22 @@ Substitute `x -> x, y -> Y` into `25_14`:
 
 **228 (25_15)  ≡  250 (25_28)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_15`:
+Substitute `x -> x, y -> Y` into **25_15** (`YYxxxYXX`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YYxxxYXX, YYYYYYYYXyyyyyyyx)
-      ==>  (YYxxYXXX, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_28   [MATCH]
+  r1 = YYxxxYXX
+       substitute      ->  yyxxxyXX
+       invert          ->  xxYXXXYY
+       rotate by 2     ->  YYxxYXXX
+                           = r1 of 25_28   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_28   [MATCH]
 ```
+
+which is exactly **25_28** = (`YYxxYXXX`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -3122,12 +6751,22 @@ Substitute `x -> x, y -> Y` into `25_15`:
 
 **229 (25_16)  ≡  249 (25_27)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `25_16`:
+Substitute `x -> x, y -> Y` into **25_16** (`YYxxxyXX`, `YYYYYYYYXyyyyyyyx`), then normalise:
 
 ```
-    (YYxxxyXX, YYYYYYYYXyyyyyyyx)
-      ==>  (YYxxyXXX, YYYYYYYYXyyyyyyyx)   = the canonical form of 25_27   [MATCH]
+  r1 = YYxxxyXX
+       substitute      ->  yyxxxYXX
+       invert          ->  xxyXXXYY
+       rotate by 2     ->  YYxxyXXX
+                           = r1 of 25_27   [MATCH]
+  r2 = YYYYYYYYXyyyyyyyx
+       substitute      ->  yyyyyyyyXYYYYYYYx
+       invert          ->  XyyyyyyyxYYYYYYYY
+       rotate by 8     ->  YYYYYYYYXyyyyyyyx
+                           = r2 of 25_27   [MATCH]
 ```
+
+which is exactly **25_27** = (`YYxxyXXX`, `YYYYYYYYXyyyyyyyx`). No AC move was used.
 
 ---
 
@@ -3144,12 +6783,22 @@ Substitute `x -> x, y -> Y` into `25_16`:
 
 **230 (21_39)  ≡  256 (21_41)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `21_39`:
+Substitute `x -> x, y -> Y` into **21_39** (`YYYXXyyxx`, `YYYYYXyyXyyx`), then normalise:
 
 ```
-    (YYYXXyyxx, YYYYYXyyXyyx)
-      ==>  (YYYXXyyxx, YYYYYXyyxyyx)   = the canonical form of 21_41   [MATCH]
+  r1 = YYYXXyyxx
+       substitute      ->  yyyXXYYxx
+       invert          ->  XXyyxxYYY
+       rotate by 3     ->  YYYXXyyxx
+                           = r1 of 21_41   [MATCH]
+  r2 = YYYYYXyyXyyx
+       substitute      ->  yyyyyXYYXYYx
+       invert          ->  XyyxyyxYYYYY
+       rotate by 5     ->  YYYYYXyyxyyx
+                           = r2 of 21_41   [MATCH]
 ```
+
+which is exactly **21_41** = (`YYYXXyyxx`, `YYYYYXyyxyyx`). No AC move was used.
 
 ---
 
@@ -3166,12 +6815,22 @@ Substitute `x -> x, y -> Y` into `21_39`:
 
 **232 (19_44)  ≡  255 (19_49)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_44`:
+Substitute `x -> x, y -> Y` into **19_44** (`YYYXXyyx`, `YYYxyyXXYXX`), then normalise:
 
 ```
-    (YYYXXyyx, YYYxyyXXYXX)
-      ==>  (YYYXyyxx, YYYxxYxxyyX)   = the canonical form of 19_49   [MATCH]
+  r1 = YYYXXyyx
+       substitute      ->  yyyXXYYx
+       invert          ->  XyyxxYYY
+       rotate by 3     ->  YYYXyyxx
+                           = r1 of 19_49   [MATCH]
+  r2 = YYYxyyXXYXX
+       substitute      ->  yyyxYYXXyXX
+       invert          ->  xxYxxyyXYYY
+       rotate by 3     ->  YYYxxYxxyyX
+                           = r2 of 19_49   [MATCH]
 ```
+
+which is exactly **19_49** = (`YYYXyyxx`, `YYYxxYxxyyX`). No AC move was used.
 
 ---
 
@@ -3190,16 +6849,84 @@ Substitute `x -> x, y -> Y` into `19_44`:
 
 ```
   left  — 21_40
-    P                                  = (YYYYxyyXyX, YYXYXyXYxyx)
-    x -> y, y -> x                     = (YXXXXyxxYx, YXYxYXyxyXX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_4(r1)        = (YXXXXyxxYx, YXyxxYXXXXXYx)   [AC move]
-    x -> x, y -> yx                    = (YYXXXXyxx, YYXyxxYXXXXXX)   [change of variables]
-    r2 <- rot_6(r2) . rot_1(r1^-1)     = (YYXXXXyxx, YYxxxyXXXXXX)   [AC move]
+    start: (YYYYxyyXyX, YYXYXyXYxyx)
+    change of variables: x -> y, y -> x
+      r1 = YYYYxyyXyX
+           substitute      ->  XXXXyxxYxY
+           rotate by 1     ->  YXXXXyxxYx
+                               = r1
+      r2 = YYXYXyXYxyx
+           substitute      ->  XXYXYxYXyxy
+           rotate by 9     ->  YXYxYXyxyXX
+                               = r2
+    => (YXXXXyxxYx, YXYxYXyxyXX)
+
+    AC move:  r2 <- rot_0(r2) . rot_4(r1)
+        rot_0(r2)        =  YXYxYXyxyXX
+        rot_4(r1)        =  xxYxYXXXXy
+        concatenate      =  YXYxYXyxyXXxxYxYXXXXy
+        cancel inverses  =  YXYxYXyxxYXXXXy
+        reduce cyclically=  XYxYXyxxYXXXX
+        rotate by 10     =  YXyxxYXXXXXYx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YXXXXyxxYx, YXyxxYXXXXXYx)
+    change of variables: x -> x, y -> yx
+      r1 = YXXXXyxxYx
+           substitute      ->  XYXXXXyxxYx
+           reduce          ->  YXXXXyxxY
+           rotate by 1     ->  YYXXXXyxx
+                               = r1
+      r2 = YXyxxYXXXXXYx
+           substitute      ->  XYXyxxYXXXXXXYx
+           reduce          ->  YXyxxYXXXXXXY
+           rotate by 1     ->  YYXyxxYXXXXXX
+                               = r2
+    => (YYXXXXyxx, YYXyxxYXXXXXX)
+
+    AC move:  r2 <- rot_6(r2) . rot_1(r1^-1)
+        rot_6(r2)        =  XXXXXXYYXyxxY
+        rot_1(r1^-1)     =  yXXYxxxxy
+        concatenate      =  XXXXXXYYXyxxYyXXYxxxxy
+        cancel inverses  =  XXXXXXYYxxxy
+        rotate by 6      =  YYxxxyXXXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyxx, YYxxxyXXXXXX)
   right — 21_42
-    P                                  = (YYYYxxyyX, YYYYXYxxYYxx)
-    x -> y, y -> X                     = (YYXXXXyxx, YYXyXXXXYYXX)   [to the Aut-minimal form]
-    r2 <- rot_0(r2) . rot_4(r1^-1)     = (YYXXXXyxx, YYXyXXXXXXYxx)   [AC move]
-    r2 <- rot_0(r2) . rot_0(r1^-1)     = (YYXXXXyxx, YYxxxyXXXXXX)   [AC move]
+    start: (YYYYxxyyX, YYYYXYxxYYxx)
+    change of variables: x -> y, y -> X
+      r1 = YYYYxxyyX
+           substitute      ->  xxxxyyXXY
+           invert          ->  yxxYYXXXX
+           rotate by 6     ->  YYXXXXyxx
+                               = r1
+      r2 = YYYYXYxxYYxx
+           substitute      ->  xxxxYxyyxxyy
+           invert          ->  YYXXYYXyXXXX
+           rotate by 8     ->  YYXyXXXXYYXX
+                               = r2
+    => (YYXXXXyxx, YYXyXXXXYYXX)
+
+    AC move:  r2 <- rot_0(r2) . rot_4(r1^-1)
+        rot_0(r2)        =  YYXyXXXXYYXX
+        rot_4(r1^-1)     =  xxyyXXYxx
+        concatenate      =  YYXyXXXXYYXXxxyyXXYxx
+        cancel inverses  =  YYXyXXXXXXYxx
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyxx, YYXyXXXXXXYxx)
+
+    AC move:  r2 <- rot_0(r2) . rot_0(r1^-1)
+        rot_0(r2)        =  YYXyXXXXXXYxx
+        rot_0(r1^-1)     =  XXYxxxxyy
+        concatenate      =  YYXyXXXXXXYxxXXYxxxxyy
+        cancel inverses  =  YYXyXXXXXXYYxxxxyy
+        reduce cyclically=  yXXXXXXYYxxx
+        rotate by 5      =  YYxxxyXXXXXX
+                            ^ the new r2
+        r1 is untouched by the move
+    => (YYXXXXyxx, YYxxxyXXXXXX)
     both meet at (YYXXXXyxx, YYxxxyXXXXXX)
 ```
 
@@ -3218,12 +6945,22 @@ Substitute `x -> x, y -> Y` into `19_44`:
 
 **234 (19_45)  ≡  257 (19_50)** — *change of variables only*
 
-Substitute `x -> x, y -> Y` into `19_45`:
+Substitute `x -> x, y -> Y` into **19_45** (`YYYxxyyX`, `YYYYXyxxYxx`), then normalise:
 
 ```
-    (YYYxxyyX, YYYYXyxxYxx)
-      ==>  (YYYxyyXX, YYYYXXYXXyx)   = the canonical form of 19_50   [MATCH]
+  r1 = YYYxxyyX
+       substitute      ->  yyyxxYYX
+       invert          ->  xyyXXYYY
+       rotate by 3     ->  YYYxyyXX
+                           = r1 of 19_50   [MATCH]
+  r2 = YYYYXyxxYxx
+       substitute      ->  yyyyXYxxyxx
+       invert          ->  XXYXXyxYYYY
+       rotate by 4     ->  YYYYXXYXXyx
+                           = r2 of 19_50   [MATCH]
 ```
+
+which is exactly **19_50** = (`YYYxyyXX`, `YYYYXXYXXyx`). No AC move was used.
 
 ---
 

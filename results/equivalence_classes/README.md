@@ -8,7 +8,7 @@ this directory is the evidence behind them.
 
 | file | contents |
 |---|---|
-| **`PROOFS.md`** | **the proof book** — all 126 classes, human-readable, each edge derived step by step: either the one substitution that carries A onto B, or the numbered AC moves with every intermediate state |
+| **`PROOFS.md`** | **the proof book** — all 126 classes, derived step by step and **checkable with a pencil**: every substitution, inversion, rotation and concatenation is written out as its own line, so nothing has to be taken on faith |
 | **`certificates.json`** | the same, machine-readable and **self-contained**: it needs neither a sweep nor the search to be checked |
 | `sweep_<moves>_<max_total>_<budget>[_ms][_j].json` | one sweep: config, stats, the resulting classes, and a replayable certificate for every merge, in the search's own idiom |
 | `classes_<stem>.csv` | the deliverable: one row per distinct problem, with the `Aut`-minimal presentation to actually run |
@@ -65,6 +65,14 @@ ways and requires each to be rejected.
 exact JSON.**
 
 ## How to read a merge
+
+**The trap.** Every presentation is printed in **canonical form**, and canonicalising freely reduces
+each relator, may invert it, rotates it to its lex-least form, and may swap the two relators. So
+substituting `y → Y` into a relator does **not** hand you the target string literally — you must
+still invert and rotate. That is bookkeeping, not mathematics (inverting a relator restates `r = 1`
+as `r⁻¹ = 1`; rotating it is conjugation, `vu = u⁻¹(uv)u`; both are AC moves), but it is invisible
+unless written down. `PROOFS.md` writes it down for every step, and `verify_proofs.py` replays each
+printed step literally rather than just checking the endpoints.
 
 In `certificates.json` / `PROOFS.md` each edge is one of:
 

@@ -329,14 +329,69 @@ than rounded off.
 > asserted it there would reject a correct certificate. `verify_proofs.py` asserts it for `cv`, and
 > for `ac` checks only that `ψ` is an automorphism.
 
+### Every derivation is checkable with a pencil
+
+A proof you cannot check by hand is a receipt, not a proof. The first version of the proof book
+failed this: it printed `substitute x→x, y→Y into 19_45` and then the canonical form of `19_50` —
+and those two strings **plainly differ**, because canonicalisation had silently inverted and rotated
+both relators in between. A reader hand-checking it hits a wall immediately.
+
+So every derivation now spells the normalisation out, one mechanical operation per line:
+
+```
+  r1 = YYYxxyyX
+       substitute      ->  yyyxxYYX
+       invert          ->  xyyXXYYY
+       rotate by 3     ->  YYYxyyXX
+                           = r1 of 19_50   [MATCH]
+```
+
+Swap the case of every `y`; reverse the word and swap every letter's case; move the last 3 letters
+to the front. That is the whole proof, and it needs no computer.
+
+The three things canonical form does are each free, which is *why* they can be applied without
+weakening the claim — and `PROOFS.md` now states this up front rather than assuming it:
+
+| | why it changes nothing |
+|---|---|
+| **freely reduce** | `x x⁻¹` is the empty word |
+| **invert** a relator | a relator is a relation `r = 1`; `r⁻¹ = 1` says the same thing. It is also one of the four AC moves. |
+| **rotate** a relator | a rotation is a conjugate: if `r = uv` then `vu = u⁻¹(uv)u`. Conjugating a relator is an AC move and does not change the group. |
+| **swap** the two relators | which one you write first is not data |
+
+AC moves get the same treatment — the two rotated pieces and their concatenation are printed, so
+the reader can build the product themselves:
+
+```
+    AC move:  r2 <- rot_5(r2) . rot_7(r1)
+        rot_5(r2)        =  XyxyxYYxxxy
+        rot_7(r1)        =  YXXXXyXY
+        concatenate      =  XyxyxYYxxxyYXXXXyXY
+        cancel inverses  =  XyxyxYYXyXY
+        rotate by 6      =  YYXyXYXyxyx
+                            ^ the new r2
+        r1 is untouched by the move
+```
+
+**And the printed steps are the steps the machine checks.** `verify_proofs.py` replays each one
+literally — cyclically reduce, invert if the line says invert, rotate by exactly `k` — rather than
+merely confirming the endpoints agree. Otherwise the human would be auditing prose while the machine
+audited something else: a derivation could print `rotate by 4`, be wrong, and still pass because the
+canonical forms matched anyway. Three of the mutation tests below target exactly that.
+
 ### The checker is mutation-tested
 
 A verifier that has never failed is not evidence. `test_equivalence.py` tampers with the shipped
-certificates seven ways — a substitution that doesn't carry `A` to `B`, a rotated AC move, a
+certificates ten ways — a substitution that doesn't carry `A` to `B`, a rotated AC move, a
 right-words/wrong-`pres_id` swap, a non-invertible `φ` (`x ↦ xx`), two classes fused with no edge
-to justify it, a `pure_ac_path` flag set on an impure path, a wrong meeting state — and requires a
-non-zero exit on every one. The over-merge mutation is the important one: it is exactly the failure
-that checking edges one at a time **cannot** see, and only the partition rebuild catches.
+to justify it, a `pure_ac_path` flag set on an impure path, a wrong meeting state, and three that
+corrupt the *printed derivation* while leaving the endpoints intact (a wrong rotation count, a
+flipped inversion, a corrupted concatenation piece) — and requires a non-zero exit on every one.
+
+Two of them matter more than the rest. The **over-merge** is the failure that checking edges one at
+a time **cannot** see; only the partition rebuild catches it. The **wrong rotation count** is the
+failure that only misleads a *human*: the states still agree, so every state-level check passes, and
+only a literal replay of the printed step catches it.
 
 *(Writing those tests immediately caught a bug in the checker itself: `Checker.bad()` returned
 `False` rather than `None`, so a failed side leaked `False` into the caller and crashed on

@@ -122,6 +122,53 @@ step, so it *is* a pure AC path — but between `A` and `ψ(B)`, not between `A`
 the identity, so **no pair of the 261 is joined by a raw AC path.** Round that off and you have
 silently upgraded ACA to `~AC`, which is the one error this project keeps having to correct.
 
+## A canonical form hides the very step the reader needs to see
+
+The first proof book printed, for a change-of-variables merge:
+
+```
+Substitute x -> x, y -> Y into 19_45:
+    (YYYxxyyX, YYYYXyxxYxx)  ==>  (YYYxyyXX, YYYYXXYXXyx)   = 19_50  [MATCH]
+```
+
+The user read it and said: *"I don't see it."* They were right — **`y → Y` does not turn the left
+string into the right one.** Canonicalisation had silently inverted *and* rotated both relators in
+between. Every state in the book is a canonical form, and `canonical_pair_nj` freely reduces, may
+invert, rotates to the lex-least form, and may swap the two relators. All four are free (a relator
+is a relation, so `r = 1` ⟺ `r⁻¹ = 1`; a rotation is a conjugate, `vu = u⁻¹(uv)u`; both are AC
+moves) — but "free" is not "invisible". Printing only the endpoints made a *correct* proof look
+false.
+
+The fix is a **normalisation witness** per relator — which raw relator it came from, whether it was
+inverted, by how much it was rotated — rendered as one mechanical operation per line:
+
+```
+  r1 = YYYxxyyX
+       substitute      ->  yyyxxYYX
+       invert          ->  xyyXXYYY
+       rotate by 3     ->  YYYxyyXX      = r1 of 19_50   [MATCH]
+```
+
+**Rule:** if a value is displayed in a normal form, the derivation must show the normalisation, not
+just its result. The reader cannot re-derive a canonical form in their head, and a proof they cannot
+follow is a receipt.
+
+## Verify the steps you *print*, not just the endpoints
+
+Having added the pencil-steps, the checker still only confirmed that the canonical endpoints agreed.
+That is a different claim. A derivation could print `rotate by 4` when the truth is 3, and every
+state-level check would still pass — the endpoints match regardless of what the prose says. Only the
+*human* is misled, which is worse than a crash, because the book's whole purpose is to be read.
+
+So `verify_proofs.py` now replays each printed step literally: cyclically reduce, invert iff the line
+says invert, rotate by exactly `k`, and require the printed result. Three mutation tests corrupt the
+printed derivation while leaving the endpoints intact (wrong rotation count, flipped inversion,
+corrupted concatenation piece) and require a non-zero exit.
+
+**Rule:** whatever a human is told to check by hand is part of the claim, and must be machine-checked
+as literally as it is written. A checker that verifies a *stronger* invariant than the one displayed
+still leaves the displayed one unverified.
+
 ## Validate against facts the search did not produce
 
 Four external controls, all of which the machinery passes — this is what makes a *negative* result

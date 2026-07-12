@@ -47,7 +47,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 
 from experiments.equivalence_classes.acmoves import canon  # noqa: E402
 from experiments.equivalence_classes.autinv import compose, invert  # noqa: E402
-from experiments.equivalence_classes.words import abelian_det, apply_hom  # noqa: E402
+from experiments.equivalence_classes.words import (  # noqa: E402
+    abelian_det, apply_hom, cyc_reduce, free_reduce, inv, rot,
+)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "results", "equivalence_classes")
@@ -65,9 +67,68 @@ def move_str(move):
     return f"r{t} <- rot_{k1}(r{t}) . rot_{k2}(r{o}{'^-1' if j == -1 else ''})"
 
 
+def norm_witness(raw, target):
+    """**How** the raw pair normalises to the canonical `target` -- the step a reader cannot see.
+
+    Substituting into a relator almost never yields the target string *literally*: canonicalisation
+    then freely reduces it, may invert it, rotates it to its lex-least form, and may swap the two
+    relators. Printing only the canonical result makes the claim unverifiable by hand -- the reader
+    is left staring at two strings that plainly differ. So spell the normalisation out:
+
+        for each relator of the target: which raw relator it came from, whether it was inverted,
+        and by how much it was rotated.
+
+    Each of the three is free -- none changes the presented group or the AC-triviality:
+      * inverting:  a relator is a relation `r = 1`, and `r^-1 = 1` says the same thing;
+      * rotating:   a cyclic rotation is a conjugate -- if `r = uv` then `vu = u^-1(uv)u`;
+      * swapping:   which relator you write first is not data.
+    All three are AC moves in their own right. This is exactly what `canonical_pair_nj` quotients.
+
+    Raises if no witness exists -- which would mean the two pairs are simply not equal.
+    """
+    red = [cyc_reduce(w) for w in raw]
+    for perm in ((0, 1), (1, 0)):
+        out, ok = [], True
+        for j in (0, 1):
+            i = perm[j]
+            w, t = red[i], target[j]
+            hit = None
+            if len(w) == len(t):
+                for inverted in (False, True):
+                    u = inv(w) if inverted else w
+                    for k in range(len(u) or 1):
+                        if rot(u, k) == t:
+                            hit = (inverted, k)
+                            break
+                    if hit:
+                        break
+            if hit is None:
+                ok = False
+                break
+            out.append({"to_relator": j + 1, "from_relator": i + 1, "word": raw[i],
+                        "reduced": w, "inverted": hit[0], "rotate": hit[1], "result": t})
+        if ok:
+            return out
+    raise AssertionError(f"{raw} does not normalise to {target}")
+
+
+def move_detail(pair, move):
+    """The two rotated pieces and their product, before any canonicalisation -- so the reader can
+    concatenate the two strings themselves and see where the new relator came from."""
+    t, j, k1, k2 = move
+    r1, r2 = pair
+    ri, rj = (r1, r2) if t == 1 else (r2, r1)
+    oj = rj if j == 1 else inv(rj)
+    a, b = rot(ri, k1), rot(oj, k2)
+    prod = a + b
+    kept = r2 if t == 1 else r1
+    raw = (prod, kept) if t == 1 else (kept, prod)
+    return {"piece_i": a, "piece_j": b, "product": prod,
+            "reduced": free_reduce(prod), "kept": kept, "raw_pair": list(raw)}
+
+
 def replay(pair, move):
     t, j, k1, k2 = move
-    from experiments.equivalence_classes.words import inv, rot
     r1, r2 = pair
     ri, rj = (r1, r2) if t == 1 else (r2, r1)
     oj = rj if j == 1 else inv(rj)
@@ -80,16 +141,30 @@ def build_side(name, raw, root, path):
     start = canon(*raw)
     phi0 = root["phi"]
     rep = tuple(root["aut_rep"])
+    # the initial change of variables, with the normalisation spelled out
+    sub0 = [free_reduce(apply_hom(w, phi0)) for w in start]
+    assert canon(*sub0) == rep, f"{name}: phi0 does not land on the recorded Aut-minimal form"
+    phi0_witness = norm_witness(sub0, rep)
+
     steps, cur = [], rep
     for mv, phi, claimed in path:
         mv = tuple(mv)
+        det = move_detail(cur, mv)
         after = replay(cur, mv)
-        nxt = canon(apply_hom(after[0], phi), apply_hom(after[1], phi))
+        assert canon(*det["raw_pair"]) == after, f"{name}: move_detail disagrees with the replay"
+        sub = [free_reduce(apply_hom(w, phi)) for w in after]
+        nxt = canon(*sub)
         assert nxt == tuple(claimed), f"{name}: regenerated {nxt}, sweep recorded {claimed}"
-        steps.append({"move": list(mv), "move_desc": move_str(mv),
-                      "after_move": list(after), "phi": phi, "state": list(nxt)})
+        steps.append({
+            "move": list(mv), "move_desc": move_str(mv), "detail": det,
+            "move_witness": norm_witness(det["raw_pair"], after),
+            "after_move": list(after), "phi": phi,
+            "phi_substituted": sub,
+            "phi_witness": norm_witness(sub, nxt) if phi != ID else None,
+            "state": list(nxt)})
         cur = nxt
     return {"name": name, "start": list(start), "phi0": phi0,
+            "phi0_substituted": sub0, "phi0_witness": phi0_witness,
             "aut_rep": list(rep), "steps": steps, "end": list(cur)}
 
 
@@ -143,10 +218,14 @@ def main():
             if m["kind"] == "aut":
                 # one substitution carries A onto B outright.  psi = phi_B^-1 . phi_A
                 psi = compose(invert(roots[b]["phi"]), roots[a]["phi"])
-                got = canon(apply_hom(sa["start"][0], psi), apply_hom(sa["start"][1], psi))
+                sub = [free_reduce(apply_hom(w, psi)) for w in sa["start"]]
+                got = canon(*sub)
                 assert got == tuple(sb["start"]), f"{a}={b}: psi lands on {got}, want {sb['start']}"
                 e["kind"] = "cv"
                 e["subst"] = psi
+                e["subst_substituted"] = sub
+                # the whole point: substituting does NOT give B's strings literally. Say how it does.
+                e["subst_witness"] = norm_witness(sub, tuple(sb["start"]))
                 e["claim"] = (f"canon(psi({a})) == canon({b}) with psi: {hom_str(psi)} -- "
                               f"a change of variables, no AC move")
                 n_cv += 1
@@ -237,29 +316,83 @@ def render(cert):
         "Every class below is a tree of edges: each member is joined to the rest by a chain of "
         "the edges listed under it. Two kinds, and they prove different things.",
         "",
-        "### `cv` — change of variables only",
+        "---",
         "",
-        "A single substitution `psi` in `Aut(F₂)` with `canon(psi(A)) == canon(B)`. **B is A with "
-        "new words substituted for the generators**, full stop — no AC move is involved. Check it "
-        "by hand: substitute and compare canonical forms.",
+        "## How to read a proof, by hand, with no computer",
         "",
-        "### `ac` — AC moves were needed",
+        "**Read this section once and every derivation below becomes checkable with a pencil.**",
         "",
-        "Both presentations are driven by Definition 2.1 moves",
+        "### The alphabet",
+        "",
+        "A relator is a word in two generators. `x` and `y` are the generators; **a capital letter "
+        "is an inverse** — `X` = `x⁻¹`, `Y` = `y⁻¹`. So `YYYxxyyX` means `y⁻¹y⁻¹y⁻¹xxyy x⁻¹`.",
+        "",
+        "### The one thing that trips everyone up",
+        "",
+        "Every presentation below is printed in **canonical form**, and canonicalisation quietly "
+        "rewrites the relators. So when you substitute `y → Y` into a relator, **the string you "
+        "get is almost never the target string you see printed** — you must still invert it and "
+        "rotate it. That is not a gap in the proof; it is bookkeeping. But it is invisible unless "
+        "it is written down, so **every derivation below writes it down**, step by step.",
+        "",
+        "Canonical form does exactly three things, and each is free:",
+        "",
+        "| | what it does | why it changes nothing |",
+        "|---|---|---|",
+        "| **freely reduce** | delete any `xX`, `Xx`, `yY`, `Yy` | `x x⁻¹` is the empty word |",
+        "| **invert** a relator | `r ↦ r⁻¹` (reverse the word, swap every letter's case) | a relator is a *relation* `r = 1`; `r⁻¹ = 1` says the same thing. It is also one of the four AC moves. |",
+        "| **rotate** a relator | move letters from the end to the front | a rotation is a conjugate: if `r = uv` then the rotation `vu = u⁻¹(uv)u = u⁻¹ r u`. Conjugating a relator is an AC move, and it does not change the group. |",
+        "",
+        "(It also sorts the two relators, since which one you write first is not data.) Among all "
+        "the rotations of `r` and of `r⁻¹`, canonical form keeps the alphabetically least — a "
+        "fingerprint, so two presentations that differ only by this bookkeeping get the same "
+        "string.",
+        "",
+        "So a derivation line like",
         "",
         "```",
-        "r_i  <-  rot_k1(r_i) . rot_k2(r_j^±1)          (the move inverts the OTHER relator)",
+        "  r1 = YYYxxyyX",
+        "       substitute y -> Y   ->  yyyxxYYX",
+        "       invert             ->  xyyXXYYY",
+        "       rotate by 3        ->  YYYxyyXX     = r1 of 19_50   [MATCH]",
         "```",
         "",
-        "to a common `Aut(F₂)`-class. This proves **A and B are the same problem** — A is "
-        "AC-trivial ⟺ B is. It does **not** exhibit an AC path from A to B, because a change of "
-        "variables is applied between the moves.",
+        "is checked with a pencil: swap the case of every `y`; then reverse the word and swap every "
+        "letter's case; then move the last 3 letters to the front. The result is the printed target. "
+        "**The substitution is the only mathematical content — the invert and the rotate are "
+        "notation.**",
+        "",
+        "### The two kinds of edge",
+        "",
+        "#### `cv` — change of variables only",
+        "",
+        "A single substitution `psi` with `canon(psi(A)) == canon(B)`. **B is A with new words "
+        "substituted for the generators** — no AC move at all. Every one is derived below, relator "
+        "by relator, in the form just shown.",
+        "",
+        "#### `ac` — AC moves were needed",
+        "",
+        "Both presentations are driven to a common form by **Definition 2.1 moves**:",
+        "",
+        "```",
+        "r_i  <-  rot_k1(r_i) . rot_k2(r_j^±1)          (note: the move inverts the OTHER relator)",
+        "```",
+        "",
+        "In words: rotate relator `i` by `k1`, rotate the *other* relator by `k2` (inverting it "
+        "first if the exponent is `-1`), and **concatenate them** — the product replaces relator "
+        "`i`. The other relator is untouched. Every move below shows the two rotated pieces and "
+        "their product, so you can concatenate the strings yourself.",
+        "",
+        "This proves **A and B are the same problem** — A is AC-trivial ⟺ B is. It does **not** "
+        "exhibit an AC path from A to B, because a change of variables is applied between the moves.",
         "",
         f"On **{s['ac_pure_path_edges']} of the {s['ac_edges']}** the change of variables at every "
         "step is the identity, so the path is Definition 2.1 moves and nothing else. Those are "
         "flagged `pure AC path` and do give an AC path — from `A` to `psi(B)`, where `psi` is the "
         "relabelling that carried the two roots to their `Aut`-minimal forms. **Not** from A to B; "
         "no edge here proves that.",
+        "",
+        "---",
         "",
         "## Index",
         "",
@@ -277,18 +410,93 @@ def render(cert):
     return "\n".join(L) + "\n"
 
 
+def render_norm(origin, subst, witness, phi, target_name, pad="  "):
+    """The pencil-checkable core, one relator at a time:
+
+        original --substitute--> [reduce] --> [invert] --> [rotate] --> the printed target
+
+    Every line is a single mechanical operation a reader can do by hand. Lines that would be
+    no-ops (no reduction needed, no inversion, rotate by 0) are omitted rather than printed as
+    identities, so what remains is exactly the work.
+    """
+    out = []
+    for wit in witness:
+        i = wit["from_relator"] - 1
+        src, sub = origin[i], subst[i]
+        out.append(f"{pad}r{wit['from_relator']} = {src}")
+        if phi is not None:
+            out.append(f"{pad}     substitute      ->  {sub}")
+        cur = wit["reduced"]
+        if cur != sub:
+            out.append(f"{pad}     reduce          ->  {cur}")
+        if wit["inverted"]:
+            cur = inv(cur)
+            out.append(f"{pad}     invert          ->  {cur}")
+        if wit["rotate"]:
+            cur = rot(cur, wit["rotate"])
+            out.append(f"{pad}     rotate by {wit['rotate']:<2}    ->  {cur}")
+        where = f"r{wit['to_relator']}" + (f" of {target_name}" if target_name else "")
+        out.append(f"{pad}                         = {where}"
+                   + ("   [MATCH]" if target_name else ""))
+    return out
+
+
+def render_move(st):
+    """One Definition 2.1 move: the two rotated pieces, their product, and the normalisation.
+
+    The reader can do all of it by hand -- rotate two strings, concatenate them, cancel adjacent
+    inverse pairs, then invert/rotate to the printed form.
+    """
+    t = st["move"][0]
+    d = st["detail"]
+    prod = next(w for w in st["move_witness"] if w["from_relator"] == t)
+    kept = next(w for w in st["move_witness"] if w["from_relator"] != t)
+    k1, k2 = st["move"][2], st["move"][3]
+    sign = "^-1" if st["move"][1] == -1 else ""
+
+    w = 17
+    out = [f"    AC move:  {st['move_desc']}",
+           f"        {f'rot_{k1}(r{t})':<{w}}=  {d['piece_i']}",
+           f"        {f'rot_{k2}(r{3 - t}{sign})':<{w}}=  {d['piece_j']}",
+           f"        {'concatenate':<{w}}=  {d['product']}"]
+    if d["reduced"] != d["product"]:
+        out.append(f"        {'cancel inverses':<{w}}=  {d['reduced']}")
+    cur = prod["reduced"]
+    if cur != d["reduced"]:
+        out.append(f"        {'reduce cyclically':<{w}}=  {cur}")
+    if prod["inverted"]:
+        cur = inv(cur)
+        out.append(f"        {'invert':<{w}}=  {cur}")
+    if prod["rotate"]:
+        cur = rot(cur, prod["rotate"])
+        out.append(f"        {'rotate by ' + str(prod['rotate']):<{w}}=  {cur}")
+    out.append(f"                            ^ the new r{prod['to_relator']}")
+    note = f"        r{3 - t} is untouched by the move"
+    if kept["inverted"] or kept["rotate"]:
+        note += f" (renormalised to r{kept['to_relator']} = {kept['result']})"
+    elif kept["to_relator"] != kept["from_relator"]:
+        note += f" (it becomes r{kept['to_relator']}: the two relators sort into the other order)"
+    out.append(note)
+    return out
+
+
 def render_side(side, tag):
-    out = [f"  {tag} — {side['name']}"]
-    w = 34
-    out.append(f"    {'P':<{w}} = ({side['start'][0]}, {side['start'][1]})")
-    out.append(f"    {hom_str(side['phi0']):<{w}} = ({side['aut_rep'][0]}, {side['aut_rep'][1]})"
-               "   [to the Aut-minimal form]")
-    for i, st in enumerate(side["steps"], 1):
-        out.append(f"    {st['move_desc']:<{w}} = ({st['after_move'][0]}, {st['after_move'][1]})"
-                   "   [AC move]")
+    """One root's route to the meeting state, with every normalisation spelled out."""
+    out = [f"  {tag} — {side['name']}", f"    start: ({side['start'][0]}, {side['start'][1]})"]
+    if side["phi0"] != ID:
+        out.append(f"    change of variables: {hom_str(side['phi0'])}")
+        out += render_norm(side["start"], side["phi0_substituted"], side["phi0_witness"],
+                           side["phi0"], None, pad="      ")
+    out.append(f"    => ({side['aut_rep'][0]}, {side['aut_rep'][1]})"
+               f"{'   [already Aut-minimal]' if side['phi0'] == ID else ''}")
+    for st in side["steps"]:
+        out += [""] + render_move(st)
+        out.append(f"    => ({st['after_move'][0]}, {st['after_move'][1]})")
         if st["phi"] != ID:
-            out.append(f"    {hom_str(st['phi']):<{w}} = ({st['state'][0]}, {st['state'][1]})"
-                       "   [change of variables]")
+            out.append(f"    change of variables: {hom_str(st['phi'])}")
+            out += render_norm(st["after_move"], st["phi_substituted"], st["phi_witness"],
+                               st["phi"], None, pad="      ")
+            out.append(f"    => ({st['state'][0]}, {st['state'][1]})")
     return out
 
 
@@ -312,13 +520,15 @@ def render_class(c):
         a, b = e["a"], e["b"]
         head = f"**{a['pres_id']} ({a['name']})  ≡  {b['pres_id']} ({b['name']})**"
         if e["kind"] == "cv":
-            L += [f"{head} — *change of variables only*", "",
-                  f"Substitute `{hom_str(e['subst'])}` into `{a['name']}`:", "", "```"]
             sa, sb = e["side_a"], e["side_b"]
-            L += [f"    ({sa['start'][0]}, {sa['start'][1]})",
-                  f"      ==>  ({sb['start'][0]}, {sb['start'][1]})   "
-                  f"= the canonical form of {b['name']}   [MATCH]",
-                  "```", ""]
+            L += [f"{head} — *change of variables only*", "",
+                  f"Substitute `{hom_str(e['subst'])}` into **{a['name']}** "
+                  f"(`{sa['start'][0]}`, `{sa['start'][1]}`), then normalise:", "", "```"]
+            L += render_norm(sa["start"], e["subst_substituted"], e["subst_witness"],
+                             e["subst"], b["name"], pad="  ")
+            L += ["```", "",
+                  f"which is exactly **{b['name']}** = (`{sb['start'][0]}`, `{sb['start'][1]}`). "
+                  f"No AC move was used.", ""]
         else:
             kind = ("*pure AC path*" if e["pure_ac_path"]
                     else "*AC moves + change of variables*")

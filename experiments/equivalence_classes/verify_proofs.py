@@ -49,7 +49,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 
 from experiments.equivalence_classes.acmoves import canon  # noqa: E402
 from experiments.equivalence_classes.words import (  # noqa: E402
-    abelian_det, apply_hom, free_reduce, inv, rot,
+    abelian_det, apply_hom, cyc_reduce, free_reduce, inv, rot,
 )
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -110,6 +110,41 @@ class Checker:
             return False
         return True
 
+    def witness(self, raw, target, wit, where):
+        """Re-do the normalisation **the way the proof book prints it, by hand**.
+
+        The book tells a reader: take this relator, reduce it, invert it, rotate it by k, and you
+        get that one. Those printed steps are the proof a human actually reads, so they must be
+        the steps a machine actually checks -- otherwise the human is auditing prose while the
+        machine audits something else. Here each witness is replayed literally: cyclically reduce,
+        invert if it says so, rotate by exactly k, and require the printed result.
+
+        Also requires the witness to be a bijection {r1, r2} -> {r1, r2}: a relator may swap slots,
+        but two of them cannot land in the same one.
+        """
+        if wit is None:
+            return True
+        if len(wit) != 2 or {w["from_relator"] for w in wit} != {1, 2} \
+                or {w["to_relator"] for w in wit} != {1, 2}:
+            self.bad(f"{where}: the normalisation is not a bijection on the two relators")
+            return False
+        for w in wit:
+            src = raw[w["from_relator"] - 1]
+            red = cyc_reduce(src)
+            if red != w["reduced"]:
+                self.bad(f"{where}: r{w['from_relator']} = {src} reduces to {red}, "
+                         f"the book prints {w['reduced']}")
+                return False
+            cur = inv(red) if w["inverted"] else red
+            cur = rot(cur, w["rotate"])
+            if cur != w["result"] or cur != target[w["to_relator"] - 1]:
+                self.bad(f"{where}: r{w['from_relator']}"
+                         f"{' inverted' if w['inverted'] else ''} rotated by {w['rotate']} gives "
+                         f"{cur}, but the book prints {w['result']} and the state has "
+                         f"{target[w['to_relator'] - 1]}")
+                return False
+        return True
+
     def side(self, side, words, where):
         """raw presentation -> phi0 -> Aut-minimal rep -> (move, phi)* -> end. Every step.
 
@@ -120,10 +155,16 @@ class Checker:
             return self.bad(f"{where}: start {side['start']} is not canon{words} = {list(start)}")
         if not self.phi(side["phi0"], f"{where}.phi0"):
             return None
-        got = canon(apply_hom(start[0], side["phi0"]), apply_hom(start[1], side["phi0"]))
+        sub0 = [free_reduce(apply_hom(w, side["phi0"])) for w in start]
+        if sub0 != side["phi0_substituted"]:
+            return self.bad(f"{where}: substituting phi0 gives {sub0}, the book prints "
+                            f"{side['phi0_substituted']}")
+        got = canon(*sub0)
         if got != tuple(side["aut_rep"]):
             return self.bad(f"{where}: phi0 lands on {list(got)}, certificate says "
                             f"{side['aut_rep']}")
+        if not self.witness(sub0, side["aut_rep"], side["phi0_witness"], f"{where}.phi0"):
+            return None
         cur = tuple(side["aut_rep"])
         for i, st in enumerate(side["steps"]):
             if len(st["move"]) != 4:
@@ -135,16 +176,41 @@ class Checker:
             if not (0 <= k1 < max(len(ri), 1)) or not (0 <= k2 < max(len(rj), 1)):
                 return self.bad(f"{where}[{i}]: rotation out of range in {st['move']} on "
                                 f"{list(cur)}")
+            # the two rotated pieces and their product, exactly as the book prints them
+            d = st["detail"]
+            ri, rj = (cur[0], cur[1]) if t == 1 else (cur[1], cur[0])
+            oj = rj if j == 1 else inv(rj)
+            pi, pj = rot(ri, k1), rot(oj, k2)
+            if pi != d["piece_i"] or pj != d["piece_j"]:
+                return self.bad(f"{where}[{i}]: the rotated pieces are {pi} and {pj}, the book "
+                                f"prints {d['piece_i']} and {d['piece_j']}")
+            if pi + pj != d["product"] or free_reduce(pi + pj) != d["reduced"]:
+                return self.bad(f"{where}[{i}]: the product does not match what the book prints")
+            raw_pair = [d["product"], cur[1]] if t == 1 else [cur[0], d["product"]]
+            if raw_pair != d["raw_pair"]:
+                return self.bad(f"{where}[{i}]: raw_pair {d['raw_pair']} is not the pair after "
+                                f"the move ({raw_pair})")
+
             after = replay(cur, st["move"])
             if after != tuple(st["after_move"]):
                 return self.bad(f"{where}[{i}]: the move lands on {list(after)}, certificate "
                                 f"says {st['after_move']}")
+            if not self.witness(raw_pair, st["after_move"], st["move_witness"],
+                                f"{where}[{i}].move"):
+                return None
             if not self.phi(st["phi"], f"{where}[{i}].phi"):
                 return None
-            nxt = canon(apply_hom(after[0], st["phi"]), apply_hom(after[1], st["phi"]))
+            sub = [free_reduce(apply_hom(w, st["phi"])) for w in after]
+            if sub != st["phi_substituted"]:
+                return self.bad(f"{where}[{i}]: substituting phi gives {sub}, the book prints "
+                                f"{st['phi_substituted']}")
+            nxt = canon(*sub)
             if nxt != tuple(st["state"]):
                 return self.bad(f"{where}[{i}]: after the change of variables the state is "
                                 f"{list(nxt)}, certificate says {st['state']}")
+            if st["phi"] != ID and not self.witness(sub, st["state"], st["phi_witness"],
+                                                    f"{where}[{i}].phi"):
+                return None
             cur = nxt
         if cur != tuple(side["end"]):
             return self.bad(f"{where}: path ends at {list(cur)}, certificate says {side['end']}")
@@ -210,11 +276,18 @@ def main():
                     continue
                 if not ck.phi(e["subst"], f"{w}.psi"):
                     continue
-                A = canon(*words[a])
-                got = canon(apply_hom(A[0], e["subst"]), apply_hom(A[1], e["subst"]))
-                if got != canon(*words[b]):
-                    ck.bad(f"{w}: psi carries {a} to {list(got)}, but canon({b}) is "
-                           f"{list(canon(*words[b]))}")
+                A, B = canon(*words[a]), canon(*words[b])
+                sub = [free_reduce(apply_hom(r, e["subst"])) for r in A]
+                if sub != e["subst_substituted"]:
+                    ck.bad(f"{w}: substituting psi gives {sub}, the book prints "
+                           f"{e['subst_substituted']}")
+                    continue
+                got = canon(*sub)
+                if got != B:
+                    ck.bad(f"{w}: psi carries {a} to {list(got)}, but canon({b}) is {list(B)}")
+                    continue
+                # and the pencil-steps the book prints for it
+                if not ck.witness(sub, list(B), e["subst_witness"], f"{w}.psi"):
                     continue
                 n_cv += 1
             else:

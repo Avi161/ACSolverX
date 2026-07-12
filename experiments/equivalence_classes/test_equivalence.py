@@ -336,9 +336,32 @@ def _tamper_meet(cert):
     e["meet"][0] = e["meet"][0] + "x"
 
 
+# The three below tamper with the *printed derivation* rather than the states. They are the ones
+# that matter for a human reader: the book says "rotate by 3" and a person does exactly that with a
+# pencil. If the printed step is wrong but the endpoints still agree, the states all check out and
+# only the reader is misled -- so the witness must be replayed literally, not merely implied.
+def _tamper_witness_rotate(cert):
+    _, e = _first(cert, "cv")
+    e["subst_witness"][0]["rotate"] += 1
+
+
+def _tamper_witness_invert(cert):
+    _, e = _first(cert, "cv")
+    w = e["subst_witness"][0]
+    w["inverted"] = not w["inverted"]
+
+
+def _tamper_move_piece(cert):
+    """The book prints the two rotated pieces so the reader can concatenate them. Corrupt one."""
+    _, e = _first(cert, "ac")
+    st = (e["side_a"]["steps"] or e["side_b"]["steps"])[0]
+    st["detail"]["piece_i"] = st["detail"]["piece_i"] + "x"
+
+
 @pytest.mark.parametrize("mutate", [
     _tamper_subst, _tamper_move, _tamper_pres_id, _tamper_phi,
     _tamper_overmerge, _tamper_pure_flag, _tamper_meet,
+    _tamper_witness_rotate, _tamper_witness_invert, _tamper_move_piece,
 ])
 def test_verify_proofs_catches_a_tampered_certificate(mutate, tmp_path):
     """A checker that has never failed is not evidence of anything. Each mutation is a way a
