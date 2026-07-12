@@ -66,6 +66,26 @@ Result: **168 → 127 or better**, every merge machine-checked.
    The verifier now canonicalises through the repo's numba `canonical_pair_nj`, which the greedy
    test suite already guards.
 
+## Verify the partition, not just the merges — and never trust a derived field
+
+Two separate near-misses, both caught only because the checks were *external* to the search:
+
+1. **Verifying every merge does not verify the count.** The verifier happily checked all 135
+   merges while never confirming that the reported 126 classes were the transitive closure of
+   *those* merges. A union-find that over-merged would have sailed through — every individual
+   merge still checks out, and the `|det|` guard is toothless when `|det| = 1` everywhere. The
+   fix is ten lines: rebuild the partition from the verified pairs alone and require set equality
+   with the reported classes. Only then is the *number* a result. (Doing this immediately caught a
+   bug in the check itself: with bridge sources seeded, a chain runs `rep → bridge → rep`, so the
+   closure must be taken over **all** sources and then projected onto the ones you are counting.)
+
+2. **A derived field reported four presentations as SOLVED.** The runner computed the trivial
+   component as `dsu.find(S - 1)` — correct only while `TRIVIAL` was the last source. The moment
+   bridge sources were appended after it, `S - 1` became a bridge and the code reported *that*
+   component as solved. Four of the 261 appeared to be AC-trivial. They are not; `TRIVIAL` is alone
+   in its class in every run. **A claimed solve is the biggest claim the pipeline can make, so it
+   must be cross-checked against the recorded partition, never read off an index.**
+
 ## Validate against facts the search did not produce
 
 Four external controls, all of which the machinery passes — this is what makes a *negative* result

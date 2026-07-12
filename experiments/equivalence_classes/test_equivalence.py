@@ -200,6 +200,27 @@ def test_search_seeds_reproduce_the_168_aut_classes(reps):
     assert all(m["kind"] == "aut" for m in merges)
 
 
+def test_verifier_rebuilds_the_partition_not_just_the_merges():
+    """The count is a separate claim from the merges.
+
+    Verifying every merge does NOT verify the class count: a union-find that over-merged would
+    put a rep in a class it has no verified chain to, and every individual merge would still
+    check out. The verifier must rebuild the partition from the verified merges alone and get
+    the reported one back. This test pins that the shipped artifact does.
+    """
+    import subprocess
+    art = os.path.join(ROOT, "results", "equivalence_classes", "sweep_seam_28_250.json")
+    if not os.path.exists(art):
+        pytest.skip("headline artifact not present")
+    out = subprocess.run(
+        [sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                      "verify_certificates.py"), art],
+        capture_output=True, text=True, cwd=ROOT)
+    assert out.returncode == 0, out.stdout + out.stderr
+    assert "partition rebuilt from verified merges alone: 126 classes == the 126 reported" \
+        in out.stdout, out.stdout
+
+
 def test_a_merge_implies_equal_abelian_det(reps):
     """|det| of the exponent-sum matrix is an AC-invariant the search never computes, and a
     change of variables preserves it too. Any merge that violates it is simply wrong."""
