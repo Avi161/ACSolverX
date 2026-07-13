@@ -1,19 +1,33 @@
-"""The 126 ACA classes as a run manifest: one Aut-minimal presentation per class.
+"""The 126 ACA classes: one Aut-minimal presentation per class, as a runnable dataset.
 
-This is an INPUT list for the next sweep, not a results file. Every search-produced
-field is null, because these 126 have never been searched -- the 1M-node sweep ran the
-*261 roots*, and 135 of those runs were answering a question another run had already
-answered (results/equivalence_classes/EQUIVALENCE_FINDING.md).
+The 1M-node sweep ran the *261 roots*, and 135 of those runs were answering a question
+another run had already answered (results/equivalence_classes/EQUIVALENCE_FINDING.md).
+This emits the 126 distinct problems so the next sweep does not repeat them.
+
+Two files, because they are for two different readers:
+
+  data/ms_unsolved_reps/ms_reps_126.txt   -- what run_baseline.py actually EATS.
+      Flat ints, one line per presentation, `ast.literal_eval`-able, exactly the format
+      of ms_reps_unsolved.txt (which is what the 261 sweep ran off). Point CONFIG's
+      DATASET at this and the sweep runs the 126. The manifest jsonl is NOT loadable by
+      run_baseline -- load_dataset() parses flat ints, never json -- so a jsonl alone
+      would have been a description of the work, not a way to do it.
+
+  results/equivalence_classes/classes_126_...jsonl  -- the human/analysis record.
+      Same field set as the 261 sweep's jsonl, plus class provenance (which of the 261
+      each row stands for). Every search-produced field is null: these 126 presentations
+      have never been searched.
 
 The presentation emitted per class is the class's **Aut-minimal** form, not one of the
 member roots. That is deliberate: greedy is length-guided, so the shortest presentation of
 a problem is the best-conditioned search for it, and for 6 of the 126 the Aut-minimal form
 is strictly shorter than every member root.
 
-Deliberately NOT written to results/greedy_baseline/. That directory is a resume contract:
-run_baseline.py globs it by run-prefix to find a run to continue, and difficulty_bins.py
-does a non-recursive listdir keyed on `greedy_{budget}_640_`. A hand-built file with a
-run-shaped name in there is a live hazard, not just data.
+The jsonl is deliberately NOT written to results/greedy_baseline/. That directory is a
+resume contract: run_baseline.py globs it by run-prefix to find a run to continue, and
+difficulty_bins.py does a non-recursive listdir keyed on `greedy_{budget}_640_` and
+hard-fails unless it matches exactly one file. A hand-built file with a run-shaped name in
+there is a live hazard, not just data.
 """
 import csv
 import json
@@ -21,6 +35,7 @@ import os
 
 from experiments.equivalence_classes.lib.autcanon import aut_canon
 from experiments.equivalence_classes.lib.words import abelian_det, canon_pair
+from experiments.run_baseline import load_dataset
 
 REPO = os.path.abspath(__file__)
 while not (os.path.isdir(os.path.join(REPO, "experiments"))
@@ -32,6 +47,23 @@ CLASSES = os.path.join(REPO, "results", "equivalence_classes",
 REPS = os.path.join(REPO, "data", "ms_unsolved_reps", "ms_reps_unsolved.csv")
 OUT = os.path.join(REPO, "results", "equivalence_classes",
                    "classes_126_from_greedy_1000000_261_mrl48.jsonl")
+OUT_TXT = os.path.join(REPO, "data", "ms_unsolved_reps", "ms_reps_126.txt")
+
+# The zero-padding width of the DATA FILE -- not the search's MAX_RELATOR_LENGTH cap.
+# int_line_to_relators() strips the zeros, so this only has to be >= the longest single
+# relator (17 here); the search cap is a separate CONFIG knob. ms_reps_unsolved.txt uses
+# 24, so the 126 use 24, and the two files stay drop-in interchangeable.
+PAD = 24
+CHAR_TO_INT = {"x": 1, "X": -1, "y": 2, "Y": -2}
+
+
+def _int_line(r1, r2):
+    """(r1, r2) -> the flat int line, matching data/ms640_solved.txt's encoding."""
+    out = []
+    for rel in (r1, r2):
+        assert len(rel) <= PAD, (rel, len(rel))
+        out += [CHAR_TO_INT[c] for c in rel] + [0] * (PAD - len(rel))
+    return out
 
 # Every field the 261 sweep's jsonl carries. The ones a search *produces* are null here;
 # the run knobs are null too, because the run they describe has not been chosen yet.
@@ -91,10 +123,22 @@ def main():
         for row in rows:
             f.write(json.dumps(row) + "\n")
 
+    with open(OUT_TXT, "w") as f:
+        for row in rows:
+            f.write(json.dumps(_int_line(row["r1"], row["r2"])) + "\n")
+
+    # The dataset is only useful if the thing that will run it can read it. Round-trip
+    # through run_baseline's OWN loader -- not a reimplementation of it -- and require
+    # that what comes back is exactly what went in, in order.
+    loaded = list(load_dataset(OUT_TXT))
+    assert loaded == [(r["pres_id"], r["r1"], r["r2"]) for r in rows], "round-trip failed"
+
     total = sum(r["rep_len"] for r in rows)
     orig = sum(len(a) + len(b) for a, b in roots.values())
+    print(f"{OUT_TXT}")
+    print(f"  run_baseline.load_dataset round-trip : {len(loaded)}/126 exact")
     print(f"{OUT}")
-    print(f"  classes           : {len(rows)}")
+    print(f"  classes            : {len(rows)}")
     print(f"  member roots       : {len(seen_members)} (== the 261, exactly)")
     print(f"  shorter than every member root : "
           f"{sum(1 for r in rows if r['saved'] > 0)}")
