@@ -1,19 +1,40 @@
 # `results/equivalence_classes/`
 
 Outputs of the AC-equivalence analysis of the 261 "unsolved" Miller–Schupp representatives.
-The findings themselves live in [`../greedy_baseline/EQUIVALENCE_FINDING.md`](../greedy_baseline/EQUIVALENCE_FINDING.md);
+The findings themselves live in [`EQUIVALENCE_FINDING.md`](EQUIVALENCE_FINDING.md);
 this directory is the evidence behind them.
 
 ## What is here
 
+Everything at the **top level is the shipped result**. Everything supporting it is in a subfolder.
+
+### The result — read these
+
 | file | contents |
 |---|---|
+| [`EQUIVALENCE_FINDING.md`](EQUIVALENCE_FINDING.md) | **the write-up**: what was found, how, and what it does and does not claim |
+| [`LEMMA_11_AND_THE_126_CLASSES.md`](LEMMA_11_AND_THE_126_CLASSES.md) | addendum: what Lemma 11 (arXiv:2408.15332) is, why it is *not* what produced the 126, and a correction to `EQUIVALENCE_FINDING.md` §5 |
 | **`PROOFS.md`** | **the proof book** — all 126 classes, derived step by step and **checkable with a pencil**: every substitution, inversion, rotation and concatenation is written out as its own line, so nothing has to be taken on faith |
 | **`certificates.json`** | the same, machine-readable and **self-contained**: it needs neither a sweep nor the search to be checked |
-| `sweep_<moves>_<max_total>_<budget>[_ms][_j].json` | one sweep: config, stats, the resulting classes, and a replayable certificate for every merge, in the search's own idiom |
-| `classes_<stem>.csv` | the deliverable: one row per distinct problem, with the `Aut`-minimal presentation to actually run |
-| `merges_<stem>.csv` | the merge list: `kind`, both `pres_id`s, the number of AC moves on each side |
-| `run_*.log` | the run logs, including throughput |
+
+### The canonical data — the four files everything else is derived from
+
+| file | contents |
+|---|---|
+| `sweep_seam_28_250.json` | **the canonical sweep** (cap 28, 250 pops/source): config, stats, the classes, and a replayable certificate for every merge |
+| `classes_sweep_seam_28_250.csv` | **the deliverable**: 126 rows, one per distinct problem, with the `Aut`-minimal presentation to actually run |
+| `merges_sweep_seam_28_250.csv` | the 135-edge merge list: `kind`, both `pres_id`s, the AC-move count on each side |
+
+> ⚠ `merges_*.csv` has **no producer script** in the repo — the one artifact here that cannot be
+> regenerated. It is derivable from the sweep JSON + the reps CSV, but that script was never committed.
+
+### The supporting folders
+
+| folder | contents |
+|---|---|
+| [`convergence/`](convergence/) | the **four other sweeps** — a different move set, a different cap, extra seed sources. *Not an archive*: they are the rows of the five-configuration table that is the argument for believing 126. |
+| [`logs/`](logs/) | the run logs, including throughput |
+| [`superseded/`](superseded/) | the first-pass 261 → 168 dedup. A real archive — nothing reads it. |
 
 Naming: `moves` is `seam` (the baseline's cancelling-seam move set) or `full` (every `(k1,k2)`);
 `max_total` is the cap on **`Aut`-minimal** total length; `budget` is nodes per source. `_ms`
@@ -26,7 +47,7 @@ To check the shipped result — all 126 classes, from the raw data, sharing no i
 search that produced it:
 
 ```bash
-.venv/bin/python3 experiments/equivalence_classes/verify_proofs.py
+.venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py
 ```
 
 It reads `certificates.json` and `data/ms_unsolved_reps/ms_reps_unsolved.csv` and **nothing else**.
@@ -43,21 +64,27 @@ ways and requires each to be rejected.
 
 ## Reproducing from scratch
 
+`run_sweep.py` writes to **this directory's top level**, not into `convergence/` — so the commands
+below produce a fresh `sweep_seam_26_30.json` here, beside (not overwriting) the committed historical
+copy in `convergence/`. It will **not byte-match** that copy: the committed sweeps were written by an
+earlier version of the script and use a different key set. The numbers are unaffected; see
+[`convergence/README.md`](convergence/README.md).
+
 ```bash
 # 1. re-run a sweep (CPU only, single core)
-.venv/bin/python3 experiments/equivalence_classes/run_sweep.py 26 30 seam
+.venv/bin/python3 experiments/equivalence_classes/pipeline/run_sweep.py 26 30 seam
 
 # 2. CHECK IT. Re-derives every merge from data/ by pure substitution, exits non-zero on failure.
-.venv/bin/python3 experiments/equivalence_classes/verify_certificates.py \
+.venv/bin/python3 experiments/equivalence_classes/verify/verify_certificates.py \
     results/equivalence_classes/sweep_seam_26_30.json
 
 # 3. flatten the verified sweep into the proof book, then check THAT independently
-.venv/bin/python3 experiments/equivalence_classes/make_proof_book.py \
+.venv/bin/python3 experiments/equivalence_classes/pipeline/make_proof_book.py \
     results/equivalence_classes/sweep_seam_26_30.json
-.venv/bin/python3 experiments/equivalence_classes/verify_proofs.py
+.venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py
 
 # 4. format the verified result
-.venv/bin/python3 experiments/equivalence_classes/make_class_table.py \
+.venv/bin/python3 experiments/equivalence_classes/pipeline/make_class_table.py \
     results/equivalence_classes/sweep_seam_26_30.json
 ```
 

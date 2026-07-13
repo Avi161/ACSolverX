@@ -1,11 +1,11 @@
 # Proof book — how the 261 unsolved Miller–Schupp reps collapse to 126 classes
 
-Generated from `results/equivalence_classes/sweep_seam_28_250.json` by `experiments/equivalence_classes/make_proof_book.py`.
+Generated from `results/equivalence_classes/sweep_seam_28_250.json` by `experiments/equivalence_classes/pipeline/make_proof_book.py`.
 
 **Re-check every line of this file:**
 
 ```bash
-.venv/bin/python3 experiments/equivalence_classes/verify_proofs.py
+.venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py
 ```
 
 That reads `certificates.json` and the raw presentation CSV and *nothing else* — it replays every AC move by string substitution, re-proves every change of variables is an automorphism by Nielsen reduction, and rebuilds the partition from the verified edges alone. It shares no inference with the search that produced them.

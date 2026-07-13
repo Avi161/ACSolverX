@@ -31,7 +31,7 @@ so a bug here cannot make a bad certificate pass, it can only fail to produce on
 Termination: each move strictly shortens ``|u| + |v|``, and Nielsen's theorem says a basis of
 F2 reduces to a pair of distinct generators.
 """
-from experiments.equivalence_classes.words import apply_hom, free_reduce, inv
+from experiments.equivalence_classes.lib.words import apply_hom, free_reduce, inv
 
 ID = {"x": "x", "y": "y"}
 

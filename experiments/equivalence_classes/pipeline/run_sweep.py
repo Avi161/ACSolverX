@@ -22,11 +22,24 @@ import os
 import sys
 import time
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# The repo root, found by walking up rather than by counting directory levels. A
+# dirname chain encodes this file's depth, so it silently repoints at the wrong
+# directory the moment the file moves -- and every path below is then wrong.
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
 
-from experiments.equivalence_classes.aut_search import aut_key, aut_multi_search  # noqa: E402
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT = _repo_root()
+sys.path.insert(0, ROOT)
+
+from experiments.equivalence_classes.search.aut_search import aut_key, aut_multi_search  # noqa: E402
+
 OUT = os.path.join(ROOT, "results", "equivalence_classes")
 TRIVIAL = "TRIVIAL"
 
@@ -69,7 +82,7 @@ def load_jsonl_states():
 
 def load_ms_cells():
     """The 550 unsolved Miller-Schupp cells, as (source_name, r1, r2)."""
-    from experiments.equivalence_classes.words import ms_presentation
+    from experiments.equivalence_classes.lib.words import ms_presentation
     p = os.path.join(ROOT, "data", "ms_unsolved_reps", "ms_solved_grid.csv")
     rows = list(csv.reader(open(p)))
     ns = [c for c in rows[0][1:] if c.strip()]

@@ -5,6 +5,22 @@ file to the lessons that have already bitten someone there. Read the linked file
 changing the behaviour it describes — each one is a bug that shipped.
 
 Full one-line index of every lesson: the root [`CLAUDE.md`](../CLAUDE.md).
+What each directory here *is*: [`README.md`](README.md).
+
+## Layout
+
+| dir | role | README |
+|---|---|---|
+| `search/` | the two solvers (heavy + compact) — they pop identically | — |
+| `analysis/` | the stable-AC benchmark (difficulty ladder + reach tier) | [→](analysis/README.md) |
+| `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` + `test_equivalence.py` | [→](equivalence_classes/README.md) |
+| `greedy_tests/` | the pipeline's test suite | [→](greedy_tests/README.md) |
+| `lessons/` | 38 shipped bugs. Read via the index, not by browsing. | [→](lessons/README.md) |
+
+**Scripts here find the repo root by walking up until they see `experiments/` + `data/` — never by
+counting `os.path.dirname()` levels.** A dirname chain encodes the file's depth, so it silently
+repoints at the wrong directory the moment the file moves, and every `results/` path below it is then
+wrong *without raising*. Keep the walk-up.
 
 ## Before you edit…
 

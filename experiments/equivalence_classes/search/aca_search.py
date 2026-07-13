@@ -24,8 +24,8 @@ import heapq
 import numpy as np
 from numba import njit
 
-from experiments.equivalence_classes.acmoves import expand_nj
-from experiments.equivalence_classes.relabel import (
+from experiments.equivalence_classes.lib.acmoves import expand_nj
+from experiments.equivalence_classes.lib.relabel import (
     CODE_TO_CHAR, PERMS, _encode, apply_perm_nj, relabel_key_nj,
 )
 from experiments.search.greedy_baseline import (
@@ -256,5 +256,5 @@ def _kv(st_key, st_la, st_lb, sid):
 
 def _pure(path):
     """True if no step needed a non-identity relabeling -- i.e. the path is a raw AC path."""
-    from experiments.equivalence_classes.relabel import IDENTITY_PERM
+    from experiments.equivalence_classes.lib.relabel import IDENTITY_PERM
     return all(step[4] == IDENTITY_PERM for step in path)

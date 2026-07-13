@@ -445,7 +445,7 @@ What the equivalence work changed is only the **shape of the job**:
 | AC1–AC3 · AC4/AC5 · Definition 1 | same file, ~296 · §9.1 ~2485 · 357 |
 | `m` unbounded / no cost bound | same file, the remark right after Lemma 11 |
 | "a real supermove"; the AK(3) example | `literature/txt/change_of_variables_stable_ac.txt` |
-| 261 → 168 → 126; ACA ≠ AC; 0 solved | `results/greedy_baseline/EQUIVALENCE_FINDING.md` |
+| 261 → 168 → 126; ACA ≠ AC; 0 solved | `results/equivalence_classes/EQUIVALENCE_FINDING.md` |
 | `"solved": []`, 126 classes, 135 merges | `results/equivalence_classes/sweep_seam_28_250.json` |
 | the 4-member class 4 | `results/equivalence_classes/classes_sweep_seam_28_250.csv` |
 | the 202/260 and 210/235 collisions | `results/greedy_baseline/greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl` |

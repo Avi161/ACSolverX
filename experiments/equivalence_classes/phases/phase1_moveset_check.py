@@ -10,14 +10,27 @@ import os
 import random
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# The repo root, found by walking up rather than by counting directory levels. A
+# dirname chain encodes this file's depth, so it silently repoints at the wrong
+# directory the moment the file moves -- and every path below is then wrong.
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
 
-from experiments.equivalence_classes.acmoves import canon, children  # noqa: E402
+
+ROOT = _repo_root()
+sys.path.insert(0, ROOT)
+
+from experiments.equivalence_classes.lib.acmoves import canon, children  # noqa: E402
 from experiments.search.greedy_baseline import (  # noqa: E402
     canonical_pair_nj, expand_node_nj, reduce_relator_nj, str_to_arr,
 )
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CAP = 48
 _CHR = {1: "X", 2: "Y", 3: "x", 4: "y"}
 

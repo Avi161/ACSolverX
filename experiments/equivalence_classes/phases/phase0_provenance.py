@@ -11,14 +11,27 @@ import os
 import sys
 from collections import defaultdict
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# The repo root, found by walking up rather than by counting directory levels. A
+# dirname chain encodes this file's depth, so it silently repoints at the wrong
+# directory the moment the file moves -- and every path below is then wrong.
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
 
-from experiments.equivalence_classes.words import (  # noqa: E402
+
+ROOT = _repo_root()
+sys.path.insert(0, ROOT)
+
+from experiments.equivalence_classes.lib.words import (  # noqa: E402
     SIGNED_PERMS, abelian_det, apply_pair, canon_pair, exp_sums, ints_to_word,
     inv, ms_presentation, relabel_key, rev,
 )
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 D = os.path.join(ROOT, "data")
 
 

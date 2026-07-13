@@ -21,26 +21,36 @@ import sys
 
 import pytest
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-sys.path.insert(0, os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "analysis"))
+# The repo root, found by walking up rather than by counting directory levels. A
+# dirname chain encodes this file's depth, so it silently repoints at the wrong
+# directory the moment the file moves -- and every path below is then wrong.
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
 
-import whitehead as wh  # noqa: E402
 
-from experiments.equivalence_classes.acmoves import canon, children  # noqa: E402
-from experiments.equivalence_classes.aut_search import aut_key, aut_multi_search  # noqa: E402
-from experiments.equivalence_classes.autcanon import (  # noqa: E402
+ROOT = _repo_root()
+sys.path.insert(0, ROOT)
+
+from experiments.analysis import whitehead as wh  # noqa: E402
+from experiments.equivalence_classes.lib.acmoves import canon, children  # noqa: E402
+from experiments.equivalence_classes.search.aut_search import aut_key, aut_multi_search  # noqa: E402
+from experiments.equivalence_classes.lib.autcanon import (  # noqa: E402
     aut_canon, check, compose, peak_reduce,
 )
-from experiments.equivalence_classes.verify_certificates import is_basis  # noqa: E402
-from experiments.equivalence_classes.words import (  # noqa: E402
+from experiments.equivalence_classes.verify.verify_certificates import is_basis  # noqa: E402
+from experiments.equivalence_classes.lib.words import (  # noqa: E402
     SIGNED_PERMS, apply_pair, canon_pair, inv, ms_presentation, relabel_key, replay_move, rev,
 )
 from experiments.search.greedy_baseline import (  # noqa: E402
     canonical_pair_nj, expand_node_nj, reduce_relator_nj, str_to_arr,
 )
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CAP = 48
 _CHR = {1: "X", 2: "Y", 3: "x", 4: "y"}
 
@@ -136,7 +146,7 @@ def test_peak_reduction_alone_is_not_a_valid_key(reps):
 def test_compose_is_the_right_way_round():
     f = {"x": "xy", "y": "y"}
     g = {"x": "x", "y": "yx"}
-    from experiments.equivalence_classes.words import apply_hom
+    from experiments.equivalence_classes.lib.words import apply_hom
     h = compose(f, g)
     for w in ("x", "y", "xyX", "YxyX"):
         assert apply_hom(w, h) == apply_hom(apply_hom(w, g), f)
@@ -167,7 +177,7 @@ def test_ms_convention_reproduces_the_1190_file():
     provenance argument rests on."""
     import ast
 
-    from experiments.equivalence_classes.words import ints_to_word
+    from experiments.equivalence_classes.lib.words import ints_to_word
     ms = set()
     with open(os.path.join(ROOT, "data", "1190MS.txt")) as f:
         for line in f:
@@ -215,7 +225,7 @@ def test_verifier_rebuilds_the_partition_not_just_the_merges():
         pytest.skip("headline artifact not present")
     out = subprocess.run(
         [sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                      "verify_certificates.py"), art],
+                                      "verify", "verify_certificates.py"), art],
         capture_output=True, text=True, cwd=ROOT)
     assert out.returncode == 0, out.stdout + out.stderr
     assert "partition rebuilt from verified merges alone: 126 classes == the 126 reported" \
@@ -225,7 +235,7 @@ def test_verifier_rebuilds_the_partition_not_just_the_merges():
 def test_a_merge_implies_equal_abelian_det(reps):
     """|det| of the exponent-sum matrix is an AC-invariant the search never computes, and a
     change of variables preserves it too. Any merge that violates it is simply wrong."""
-    from experiments.equivalence_classes.words import abelian_det
+    from experiments.equivalence_classes.lib.words import abelian_det
     names = sorted(reps)[:40]
     dsu, _, _, _ = aut_multi_search([(n, *reps[n]) for n in names], nodes_per_source=20,
                                     max_total=26, seam_only=True)
@@ -241,8 +251,8 @@ def test_invert_is_a_two_sided_inverse_of_every_phi_in_the_certificates():
     """`make_proof_book` states a change-of-variables merge as ONE substitution
     psi = phi_B^-1 . phi_A, which needs phi_B^-1. Pins that the Nielsen-tracking inverse is right
     on every phi the search actually produced, both ways round."""
-    from experiments.equivalence_classes.autinv import invert
-    from experiments.equivalence_classes.words import apply_hom
+    from experiments.equivalence_classes.lib.autinv import invert
+    from experiments.equivalence_classes.lib.words import apply_hom
     d = json.load(open(os.path.join(ROOT, "results", "equivalence_classes",
                                     "sweep_seam_28_250.json")))
     for name, r in d["roots"].items():
@@ -255,14 +265,14 @@ def test_invert_is_a_two_sided_inverse_of_every_phi_in_the_certificates():
 
 @pytest.mark.parametrize("bad", ["xx", "xyX", "", "y"])
 def test_invert_rejects_a_non_automorphism(bad):
-    from experiments.equivalence_classes.autinv import invert
+    from experiments.equivalence_classes.lib.autinv import invert
     with pytest.raises(ValueError):
         invert({"x": bad, "y": "y"})
 
 
 # ------------------------------------------------------------- the verification pipeline
 CERT = os.path.join(ROOT, "results", "equivalence_classes", "certificates.json")
-VERIFY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "verify_proofs.py")
+VERIFY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "verify", "verify_proofs.py")
 
 
 def _verify(path):

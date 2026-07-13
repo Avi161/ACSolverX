@@ -21,13 +21,26 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# The repo root, found by walking up rather than by counting directory levels. A
+# dirname chain encodes this file's depth, so it silently repoints at the wrong
+# directory the moment the file moves -- and every path below is then wrong.
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
 
-from experiments.equivalence_classes.acmoves import canon  # noqa: E402
-from experiments.equivalence_classes.autcanon import aut_canon  # noqa: E402
-from experiments.equivalence_classes.words import abelian_det  # noqa: E402
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT = _repo_root()
+sys.path.insert(0, ROOT)
+
+from experiments.equivalence_classes.lib.acmoves import canon  # noqa: E402
+from experiments.equivalence_classes.lib.autcanon import aut_canon  # noqa: E402
+from experiments.equivalence_classes.lib.words import abelian_det  # noqa: E402
+
 OUT = os.path.join(ROOT, "results", "equivalence_classes")
 
 

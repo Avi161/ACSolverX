@@ -113,7 +113,7 @@ orbit. **168 classes.** No change of variables can do better; this is a wall, an
 it must be bought with AC moves.
 
 Two independently written implementations — `experiments/analysis/whitehead.py`, and
-`experiments/equivalence_classes/autcanon.py` (which additionally emits the witnessing `φ`) — give
+`experiments/equivalence_classes/lib/autcanon.py` (which additionally emits the witnessing `φ`) — give
 the **same 168-class partition, element for element**. All 261 `φ` certificates verify by pure
 substitution, and each `φ` is separately re-proved to be an automorphism of F₂ by **Nielsen
 reduction**, code that shares nothing with the Whitehead implementation that produced it.
@@ -271,10 +271,10 @@ into one self-contained derivation per class:
 |---|---|
 | [`results/equivalence_classes/PROOFS.md`](../equivalence_classes/PROOFS.md) | all 126 classes, human-readable: the members, and for each edge the explicit substitution or the numbered list of AC moves with every intermediate state |
 | `results/equivalence_classes/certificates.json` | the same, machine-readable and self-contained — it needs neither the sweep nor the search |
-| `experiments/equivalence_classes/verify_proofs.py` | re-proves the whole thing from `certificates.json` + the raw CSV, and **nothing else** |
+| `experiments/equivalence_classes/verify/verify_proofs.py` | re-proves the whole thing from `certificates.json` + the raw CSV, and **nothing else** |
 
 ```bash
-.venv/bin/python3 experiments/equivalence_classes/verify_proofs.py
+.venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py
 # presentations re-read from the CSV : 261
 # change-of-variables edges verified : 93   (one substitution, canon(psi(A)) == canon(B))
 # AC-move edges verified             : 42   (6 of them a pure AC path)
@@ -435,15 +435,15 @@ only a literal replay of the printed step catches it.
 
 | file | what |
 |---|---|
-| `experiments/equivalence_classes/words.py` | F₂ word algebra, `canon_pair` (Booth's O(n) least rotation), the Miller–Schupp definition, Definition 2.1 replay — pure Python, independent of the numba solver |
-| `experiments/equivalence_classes/acmoves.py` | the two move sets (`seam` = the baseline's, `full` = every `(k1,k2)`), importing the baseline's reduce/canonicalise verbatim |
-| `experiments/equivalence_classes/autcanon.py` | Whitehead canonical form **carrying the witnessing automorphism** |
-| `experiments/equivalence_classes/aut_search.py` | the ACA search: multi-source BFS over `Aut`-classes + union-find |
-| `experiments/equivalence_classes/aca_search.py` | the raw-AC multi-source search — kept, because it is the measurement proving the hump is too high |
-| `experiments/equivalence_classes/verify_certificates.py` | the independent proof checker, over a sweep JSON |
-| `experiments/equivalence_classes/autinv.py` | inverse of an automorphism of F₂ (Nielsen reduction with tracking) — turns a two-sided `Aut` merge into a single substitution |
-| `experiments/equivalence_classes/make_proof_book.py` | sweep JSON → `certificates.json` + `PROOFS.md` |
-| `experiments/equivalence_classes/verify_proofs.py` | **the verification pipeline**: re-proves all 126 classes from `certificates.json` + the raw CSV alone |
+| `experiments/equivalence_classes/lib/words.py` | F₂ word algebra, `canon_pair` (Booth's O(n) least rotation), the Miller–Schupp definition, Definition 2.1 replay — pure Python, independent of the numba solver |
+| `experiments/equivalence_classes/lib/acmoves.py` | the two move sets (`seam` = the baseline's, `full` = every `(k1,k2)`), importing the baseline's reduce/canonicalise verbatim |
+| `experiments/equivalence_classes/lib/autcanon.py` | Whitehead canonical form **carrying the witnessing automorphism** |
+| `experiments/equivalence_classes/search/aut_search.py` | the ACA search: multi-source BFS over `Aut`-classes + union-find |
+| `experiments/equivalence_classes/search/aca_search.py` | the raw-AC multi-source search — kept, because it is the measurement proving the hump is too high |
+| `experiments/equivalence_classes/verify/verify_certificates.py` | the independent proof checker, over a sweep JSON |
+| `experiments/equivalence_classes/lib/autinv.py` | inverse of an automorphism of F₂ (Nielsen reduction with tracking) — turns a two-sided `Aut` merge into a single substitution |
+| `experiments/equivalence_classes/pipeline/make_proof_book.py` | sweep JSON → `certificates.json` + `PROOFS.md` |
+| `experiments/equivalence_classes/verify/verify_proofs.py` | **the verification pipeline**: re-proves all 126 classes from `certificates.json` + the raw CSV alone |
 | `experiments/equivalence_classes/test_equivalence.py` | the test suite (32 tests, incl. 7 tamper-detection mutations) |
 | `results/equivalence_classes/PROOFS.md` | the proof book: every class, derived step by step |
 | `results/equivalence_classes/certificates.json` | the same, self-contained and machine-checkable |

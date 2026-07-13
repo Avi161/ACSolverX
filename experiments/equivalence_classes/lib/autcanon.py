@@ -21,7 +21,7 @@ Reducing instead of canonicalising inside the descent brings it to well under 1 
 Phase 2 does need ``canon_pair``, but only on the (small) minimal level set, and callers skip
 phase 2 entirely for states whose phase-1 length already exceeds the search cap.
 """
-from experiments.equivalence_classes.words import (
+from experiments.equivalence_classes.lib.words import (
     apply_hom, canon_pair, cyc_reduce, free_reduce,
 )
 

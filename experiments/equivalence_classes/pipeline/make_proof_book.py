@@ -43,15 +43,28 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+# The repo root, found by walking up rather than by counting directory levels. A
+# dirname chain encodes this file's depth, so it silently repoints at the wrong
+# directory the moment the file moves -- and every path below is then wrong.
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
 
-from experiments.equivalence_classes.acmoves import canon  # noqa: E402
-from experiments.equivalence_classes.autinv import compose, invert  # noqa: E402
-from experiments.equivalence_classes.words import (  # noqa: E402
+
+ROOT = _repo_root()
+sys.path.insert(0, ROOT)
+
+from experiments.equivalence_classes.lib.acmoves import canon  # noqa: E402
+from experiments.equivalence_classes.lib.autinv import compose, invert  # noqa: E402
+from experiments.equivalence_classes.lib.words import (  # noqa: E402
     abelian_det, apply_hom, cyc_reduce, free_reduce, inv, rot,
 )
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "results", "equivalence_classes")
 ID = {"x": "x", "y": "y"}
 
@@ -300,7 +313,7 @@ def render(cert):
         "**Re-check every line of this file:**",
         "",
         "```bash",
-        ".venv/bin/python3 experiments/equivalence_classes/verify_proofs.py",
+        ".venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py",
         "```",
         "",
         "That reads `certificates.json` and the raw presentation CSV and *nothing else* — it "

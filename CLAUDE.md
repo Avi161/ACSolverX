@@ -23,7 +23,9 @@ and a bloated CLAUDE.md gets ignored.
 
 - AC-SolverX: JAX/flax RL solver for the Andrews–Curtis conjecture (Two-Hump paper). `envs/` (`ac_s.py`, `ac_moves.py`), `network.py`, `ppo_ac_s.py` are the JAX/GPU training stack.
 - **This branch's experiment work is CPU + numba only** — no JAX, GPU, or PPO. The JAX code is a *spec to port from, never import*.
-- Experiment code lives under `experiments/` (search core in `experiments/search/`); run outputs go to `results/` (repo root). Baseline greedy pipeline: `experiments/search/greedy_baseline.py` (solver, adapted from `greedy_search.ipynb`), `experiments/run_baseline.py` (jsonl + resume + W&B), `experiments/wandb_tracking.py` (W&B identity + charts), `experiments/greedy_baseline.ipynb` (CONFIG/SETUP/RUN).
+- Experiment code lives under `experiments/` ([map](experiments/README.md)); run outputs go to `results/` ([map](results/README.md)). Baseline greedy pipeline: `experiments/search/greedy_baseline.py` (solver, adapted from `greedy_search.ipynb`), `experiments/run_baseline.py` (jsonl + resume + W&B), `experiments/wandb_tracking.py` (W&B identity + charts), `experiments/greedy_baseline.ipynb` (CONFIG/SETUP/RUN). Also `experiments/analysis/` (the benchmark) and `experiments/equivalence_classes/` (`lib`/`search`/`pipeline`/`verify`/`phases`).
+- **`results/greedy_baseline/` is a resume contract, not just data.** `run_baseline.py` globs it to find a run to continue and `difficulty_bins.py` does a non-recursive `os.listdir` on it — moving a `.jsonl` into a subfolder does not raise, it silently restarts a multi-day run. Never rename anything in there.
+- **Scripts under `experiments/` find the repo root by walking up** until they see `experiments/` + `data/` — never by counting `os.path.dirname()` levels. A dirname chain encodes the file's depth and silently repoints at the wrong directory the moment the file moves.
 - **Do not modify existing code.** New files only; the notebook `greedy_search.ipynb` and `envs/` are read-only references.
 - Active branch: `test/stable-ac-moves-w4`. Remote: `github.com/Avi161/ACSolverX.git`.
 
@@ -51,6 +53,17 @@ and a bloated CLAUDE.md gets ignored.
 
 **Adding the stable-AC solver** (extra generator + relator, change of variables): implement a `SolverAdapter` in `experiments/greedy_tests/adapters.py` and append it to `ALL_ADAPTERS`. The contract, abelianization-invariant and packed-key suites then run against it at `n_gen = 3` **with no test rewriting** — they already run there today against the pure-Python `SpecAdapter`. See `experiments/greedy_tests/README.md`.
 
+### ⛔ MANDATORY after ANY change to `experiments/equivalence_classes/`
+
+```bash
+.venv/bin/python3 -m pytest experiments/equivalence_classes -q          # 35 tests, ~65 s
+.venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py   # must exit 0
+```
+
+The verifier must print `ALL 135 EDGES VERIFY`. This suite was missing from `pytest.ini`'s `testpaths`
+for a while, so nothing ran it by default and a change here could break it silently — it is collected
+by a bare `pytest` now. It is also the safety net any refactor of that package leans on.
+
 ### Other suites
 
 - `.venv/bin/python3 tests/wandb_tracking_test.py` — pure, offline, no wandb server needed.
@@ -59,7 +72,7 @@ and a bloated CLAUDE.md gets ignored.
 ## Lessons index
 
 ### Equivalence classes (the 261 unsolved reps)
-- The 261 are **not** 261 problems: 168 up to change of variables (`Aut(F₂)`, exact — a wall), and fewer still under AC moves. Before searching for AC merges, quotient by every symmetry that preserves the *question* and re-measure the hump in the quotient — raw length is the wrong ruler, and the raw AC ball is exhausted below the hump. Never key on the peak-reduced form (not confluent: 259 classes, not 168), and never let the certificate verifier share the search's canonicalisation. A change-of-variables merge is one substitution (`canon(ψ(A)) == canon(B)`); that equality is **false by construction** on an AC merge, so never assert it there. [[WORKS]](experiments/lessons/search-the-aut-quotient-not-raw-length.md) · [the finding](../results/greedy_baseline/EQUIVALENCE_FINDING.md) · [every class, derived step by step](../results/equivalence_classes/PROOFS.md) — re-check with `verify_proofs.py`
+- The 261 are **not** 261 problems: 168 up to change of variables (`Aut(F₂)`, exact — a wall), and fewer still under AC moves. Before searching for AC merges, quotient by every symmetry that preserves the *question* and re-measure the hump in the quotient — raw length is the wrong ruler, and the raw AC ball is exhausted below the hump. Never key on the peak-reduced form (not confluent: 259 classes, not 168), and never let the certificate verifier share the search's canonicalisation. A change-of-variables merge is one substitution (`canon(ψ(A)) == canon(B)`); that equality is **false by construction** on an AC merge, so never assert it there. [[WORKS]](experiments/lessons/search-the-aut-quotient-not-raw-length.md) · [the finding](results/equivalence_classes/EQUIVALENCE_FINDING.md) · [every class, derived step by step](results/equivalence_classes/PROOFS.md) — re-check with `experiments/equivalence_classes/verify/verify_proofs.py`
 
 ### Search correctness (numba)
 - Before rewriting a priority queue, ask whether its keys are unique: if they are, pop order follows from the comparison alone and the heap implementation is free to change. That is why `greedy_compact` (nibble arena + int32 heap + open-addressing table, ~75 B/state vs ~220) pops identically. Assert the *first-seen* min/max relator strings — they pin discovery order. Size the memory constant at peak, not floor. [[WORKS]](experiments/lessons/compact-solver-arena-heap.md)

@@ -38,10 +38,10 @@ out-edges. Every edge found is real; some are missed.
 """
 import heapq
 
-from experiments.equivalence_classes.acmoves import canon, children
-from experiments.equivalence_classes.aca_search import DSU
-from experiments.equivalence_classes.autcanon import ID, compose, level_min, peak_reduce
-from experiments.equivalence_classes.words import canon_pair
+from experiments.equivalence_classes.lib.acmoves import canon, children
+from experiments.equivalence_classes.search.aca_search import DSU
+from experiments.equivalence_classes.lib.autcanon import ID, compose, level_min, peak_reduce
+from experiments.equivalence_classes.lib.words import canon_pair
 
 # Two memos, because the two phases have very different costs and very different hit rates.
 #   phase 1 (peak reduction)  ~0.18 ms, keyed by the raw pair
