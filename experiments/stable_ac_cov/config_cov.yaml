@@ -1,0 +1,27 @@
+# Step 4 Branch B — one-shot change of variables (case i).
+# Loaded by run_cov.py over its COV_DEFAULTS; every knob here is reviewable.
+
+datasets:                       # frozen benchmark halves (Steps 2/2b) — never regenerate
+  - results/benchmark/subsets/benchmark_subset_10.csv
+  - results/benchmark/reach/reach_tier_1.csv
+
+budgets: [100, 1000]            # local verification ceiling is 1000 (repo hard rule);
+                                # production budgets (e.g. 50000) are the user's, on Colab
+
+mode: cov                       # cov | baseline (identity transform, same rows/budgets,
+                                # for a same-budget comparison file)
+
+z_family: zf1                   # NAIVE_Z_FAMILY version tag — part of the filename
+                                # identity; bump it in cov.py when the family changes
+
+max_relator_length: 24          # base per-relator cap (ms640 layout). A cov row runs at
+                                # max(this, longest transformed relator + cap_headroom),
+                                # recorded per row as max_relator_length_cap
+cap_headroom: 16                # slack above the longest transformed relator — a relator
+                                # pinned at the cap can never lengthen over the hump
+reject_len: 48                  # a z whose output relator exceeds this is rejected and
+                                # the next family member is tried
+
+cyclic_reduce: true
+out_dir: results/stable_ac_cov  # new namespace — never greedy_baseline/ or benchmark/
+resume: true
