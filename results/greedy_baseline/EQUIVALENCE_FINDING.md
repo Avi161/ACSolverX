@@ -320,9 +320,41 @@ their `Aut`-minimal forms:
 | `23_18 ~AC ψ(23_10)` | `x→x, y→Y` |
 | `23_23 ~AC ψ(19_43)` | `x→yyyyyyyx, y→Y` |
 
-`ψ` is never the identity, so **not one of the 261 pairs is joined by a raw AC path** — the AC path
-always lands on a relabelled partner. That is a real limit on what was found, and it is stated rather
+`ψ` is never the identity on any of these 6 — so **within the certificate set**, every AC path lands
+on a relabelled partner. That is a real limit on what the ACA search *found*, and it is stated rather
 than rounded off.
+
+> ### ⚠ CORRECTED — this was previously written as "not one of the 261 pairs is joined by a raw AC path"
+>
+> **That was false, and it contradicted §3 and §4 above.** `ψ ≠ identity` is a property **of the
+> search**, not of the 261: the ACA search expands only one `Aut`-minimal representative per class,
+> so its paths *necessarily* land on relabelled partners. Generalising from the search's output to a
+> claim about the presentations was the error.
+>
+> **Two of the 261 pairs are in fact joined by a raw AC path — no `ψ`, no change of variables.** The
+> 1M-node sweep exhibits both directly: in `greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl`, two
+> pairs of runs record an *identical* `min_relator` state (and there are exactly two; `max_relator`
+> collisions: 0):
+>
+> | pair | shared state | total len |
+> |---|---|---|
+> | `18_9` (`pres_id` 202) ≡ `19_52` (260) | `['YYYxxyX', 'YXYXyXyxxYx']` | 18 |
+> | `18_11` (210) ≡ `19_46` (235) | `['YYYxyXX', 'YXYXXyxyxYx']` | 18 |
+>
+> Both roots reach the same state by S-moves, and §3's own soundness argument closes it: *"`P →* Z`
+> and `Q →* Z` gives `P ~ Q`."* So **`18_9 ~AC 19_52`** and **`18_11 ~AC 19_46`**, raw. §3 already
+> asserted as much — *"the AC path between them climbs above total length 30"* — and §4 already calls
+> them *"the 2 **AC** merges."*
+>
+> **Consequence for the proof book:** class 4's shipped spanning tree uses `18_9—19_46` (`aca`),
+> `19_46—19_52` (`aca`), `18_9—18_11` (`aut`) — **none of them one of the two raw-AC pairs.** The
+> certificates are therefore *weaker than the data supports*; two raw AC equivalences were available
+> and relabelled ones were recorded instead. Worth re-deriving.
+>
+> **None of this moves the count.** All four are already in class 4, and the partition is unchanged:
+> **126**. Rows 1–2 of the headline table also stand — they count distinct *roots* (re-verified:
+> 261/261 exact, 261/261 canonical, 0 collisions), and two presentations can be AC-equivalent while
+> starting from different roots. AC-equivalence enters the ladder only at the last row.
 
 > The equality `canon(ψ(A)) == canon(B)` holds for `cv` and **only** for `cv`. On an `ac` edge the two
 > sides differ by exactly the AC moves, so that equality is false *by construction*; a checker that
