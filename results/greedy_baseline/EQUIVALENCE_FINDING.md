@@ -306,10 +306,10 @@ Both presentations are driven by Definition 2.1 moves to a common `Aut`-class, e
 state recorded. This proves **`A` and `B` are the same problem** — and, as always, *not* that an AC
 path joins them, because a change of variables is applied between the moves.
 
-**A refinement, and the strongest AC statement in this document:** on **6 of the 42** every step's
-change of variables is the identity, so the path is Definition 2.1 moves and nothing else. Those do
-give an AC path — from `A` to `ψ(B)`, where `ψ` is the relabelling that carried the two roots to
-their `Aut`-minimal forms:
+**A refinement, and the strongest AC statement the ACA search itself produces** (the sweep produces a
+strictly stronger one — see the correction below): on **6 of the 42** every step's change of variables
+is the identity, so the path is Definition 2.1 moves and nothing else. Those do give an AC path — from
+`A` to `ψ(B)`, where `ψ` is the relabelling that carried the two roots to their `Aut`-minimal forms:
 
 | | ψ |
 |---|---|
