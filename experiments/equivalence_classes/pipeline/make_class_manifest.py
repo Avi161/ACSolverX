@@ -23,6 +23,18 @@ member roots. That is deliberate: greedy is length-guided, so the shortest prese
 a problem is the best-conditioned search for it, and for 6 of the 126 the Aut-minimal form
 is strictly shorter than every member root.
 
+So "which of the members IS this presentation?" usually has no answer, and the row says so
+rather than leaving the reader to guess:
+
+  rep_from            which member(s) the rep is the Aut-minimal FORM of. Not all of them:
+                      an ACA class is several Aut-classes joined by AC moves, and the rep
+                      canonicalises only the one it came from. Class 0 lists 8 members but
+                      rep_from is ["18_6"] alone -- the other 7 are in different Aut-classes
+                      and reach the rep only via AC moves.
+  rep_phi             the change of variables with canon(phi(root of rep_from[0])) == (r1, r2).
+  rep_is_member_root  whether the rep literally equals some member's canonical root. True in
+                      only 52 of the 126; in the other 74 it is a form no member equals.
+
 The jsonl is deliberately NOT written to results/greedy_baseline/. That directory is a
 resume contract: run_baseline.py globs it by run-prefix to find a run to continue, and
 difficulty_bins.py does a non-recursive listdir keyed on `greedy_{budget}_640_` and
@@ -33,8 +45,8 @@ import csv
 import json
 import os
 
-from experiments.equivalence_classes.lib.autcanon import aut_canon
-from experiments.equivalence_classes.lib.words import abelian_det, canon_pair
+from experiments.equivalence_classes.lib.autcanon import aut_canon, is_automorphism
+from experiments.equivalence_classes.lib.words import abelian_det, apply_pair, canon_pair
 from experiments.run_baseline import load_dataset
 
 REPO = os.path.abspath(__file__)
@@ -93,10 +105,19 @@ def main():
         # canonicalise to something other than what is written here.
         assert (r1, r2) == canon_pair(r1, r2), (c["class_id"], r1, r2)
 
-        # And it must genuinely be the Aut-minimal form of one of its own members. This
-        # re-derives the link from the raw CSV roots, so a corrupted class table cannot
-        # slip a presentation in here that has nothing to do with the class.
-        assert (r1, r2) in {tuple(aut_canon(roots[m])[1]) for m in members}, c["class_id"]
+        # Which members is the rep the Aut-minimal form OF? Not all of them: an ACA class
+        # is several Aut-classes joined by AC moves, and the rep canonicalises only the
+        # one it came from. In class 0 that is 18_6 alone -- the other 7 sit in different
+        # Aut-classes and reach the rep only via AC moves. Recording this is the whole
+        # point: without it the row names 8 members and silently declines to say which one
+        # the presentation on the line actually is. (It is a member ROOT in only 52 of the
+        # 126; in the other 74, like class 0, the rep is a canonical form no member equals.)
+        phis = {m: aut_canon(roots[m]) for m in members}
+        rep_from = sorted(m for m in members if tuple(phis[m][1]) == (r1, r2))
+
+        # This doubles as the integrity check: re-derived from the raw CSV roots, so a
+        # corrupted class table cannot slip in a presentation unrelated to the class.
+        assert rep_from, c["class_id"]
 
         # |det| of the exponent-sum matrix is invariant under both AC moves and change of
         # variables, so it must agree across the rep and every member root. The *sign* is
@@ -108,8 +129,17 @@ def main():
         assert seen_members.isdisjoint(members), c["class_id"]
         seen_members.update(members)
 
+        # phi carries rep_from[0]'s root TO the presentation on this line. Check that by
+        # actually SUBSTITUTING phi and canonicalising -- not by re-reading aut_canon's own
+        # answer, which would just be asking the same oracle twice.
+        phi = phis[rep_from[0]][2]
+        assert apply_pair(roots[rep_from[0]], phi) == (r1, r2), c["class_id"]
+        assert is_automorphism(phi), (c["class_id"], phi)
+
         row = {"pres_id": len(rows), "r1": r1, "r2": r2,
                "class_id": int(c["class_id"]),
+               "rep_from": rep_from, "rep_phi": phi,
+               "rep_is_member_root": any(roots[m] == (r1, r2) for m in members),
                "n_members": len(members), "members": members,
                "rep_len": int(c["rep_len"]), "orig_len": int(c["orig_len"]),
                "saved": int(c["saved"]), "abs_det": int(c["abs_det"]),
@@ -140,6 +170,10 @@ def main():
     print(f"{OUT}")
     print(f"  classes            : {len(rows)}")
     print(f"  member roots       : {len(seen_members)} (== the 261, exactly)")
+    print(f"  rep IS a member root           : "
+          f"{sum(1 for r in rows if r['rep_is_member_root'])}"
+          f"  (in the other {sum(1 for r in rows if not r['rep_is_member_root'])} "
+          f"it equals no member)")
     print(f"  shorter than every member root : "
           f"{sum(1 for r in rows if r['saved'] > 0)}")
     print(f"  total relator length : {total}  (vs {orig} to run all 261)")
