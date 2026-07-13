@@ -1,0 +1,11 @@
+pres_id,bin,r1,r2,nodes_1M,path_1M,aut_class,start_length,baseline_solved_at_50k,baseline_nodes_at_50k,baseline_path_at_50k,baseline_min_relator_length_at_50k,baseline_progress_at_50k
+499,0,YYYYYYYXyyyyyyx,YYYYx,6,5,68,20,True,6,5,2,-18
+165,1,YYYxyXYX,YYXyx,16,10,14,13,True,16,10,2,-11
+303,2,YYYXyyx,YYYxyXYX,70,16,51,15,True,70,16,2,-13
+491,3,YYYYYYXyyyyyx,YYXyyxyx,126,28,96,21,True,126,28,2,-19
+527,4,YYYYYYYYXyyyyyyyx,YYXXyyx,430,49,110,24,True,430,49,2,-22
+539,5,YYYYYXyyyyx,YYYxxYX,1386,76,84,18,True,1386,76,2,-16
+629,6,YYYYYYYYXyyyyyyyx,YYXYXyyx,12452,79,110,25,True,12452,79,2,-23
+613,7,YYYYYYYXyyyyyyx,YYYXYxyX,46481,314,97,23,True,46481,314,2,-21
+625,8,YYYYYYYYXyyyyyyyx,YYXYxyX,78770,665,106,24,False,50000,,19,-5
+637,9,YYYYYYYYXyyyyyyyx,YYYXyxYX,271866,667,106,25,False,50000,,19,-6

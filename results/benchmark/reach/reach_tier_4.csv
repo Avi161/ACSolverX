@@ -1,0 +1,5 @@
+slot,source,name,r1,r2,total_length,aca_class_id,n_members,baseline_start_length,baseline_min_relator_length,baseline_progress,baseline_solved,bar_to_beat,aut_min_rep_r1,aut_min_rep_r2,aut_min_rep_total_length
+0,AK(3),AK(3),xxxYYYY,xyxYXY,13,113,1,13,13,0,False,min_relator_length < 13,YXYxyx,YYYYxxx,13
+1,ms_reps_unsolved / ACA class,14_1,YYYXyyx,YXXYxxx,14,114,1,14,14,0,False,min_relator_length < 14,YYYXyyX,YXXXyxx,14
+2,ms_reps_unsolved / ACA class,19_40,YYYxxYX,YXyxxxyXyXyX,19,5,4,19,19,0,False,min_relator_length < 19,YYXXXyX,YYYxyXyxyxyx,19
+3,ms_reps_unsolved / ACA class,25_1,YYXXYxxx,YYYYYYYYXyyyyyyyx,25,97,2,25,25,0,False,min_relator_length < 25,YYXXXYxx,YYYYYYYYXyyyyyyyx,25

@@ -1,0 +1,217 @@
+{
+  "size": 10,
+  "requested_size": 10,
+  "per_bin": 1,
+  "n_bins": 10,
+  "comparison_budget": 50000,
+  "difficulty_variable": "log10(nodes_explored) at the 1M budget (uncensored)",
+  "binning": "10 equal-width slices of log10(nodes); each bin is x3.37 the one below",
+  "within_bin_selection": "sort by (path_length, nodes_explored, pres_id); take k evenly spaced positions over the full range, endpoints included (median if k=1). Nodes are already fixed to a x3.37 window by the bin, so path is what is left to spread on.",
+  "nested": false,
+  "aut_class_note": "aut_class is the exact Aut(F2)/change-of-variables orbit (the 640 are 113 classes). It is a COLUMN, not a dedup key: search cost is not an orbit invariant (623 and 636 are Aut-equivalent yet cost 59,710 vs 213,882 nodes), and that gap is what Branch B exploits. Use it to (a) spot that a canonicalising technique collapses same-class rows to identical runs, and (b) see the sampling weight -- the four hardest picks of subset_20 span only three classes.",
+  "aut_classes_in_subset": 8,
+  "bins": [
+    {
+      "bin": 0,
+      "lo_nodes": 3,
+      "hi_nodes": 10
+    },
+    {
+      "bin": 1,
+      "lo_nodes": 10,
+      "hi_nodes": 34
+    },
+    {
+      "bin": 2,
+      "lo_nodes": 34,
+      "hi_nodes": 115
+    },
+    {
+      "bin": 3,
+      "lo_nodes": 115,
+      "hi_nodes": 389
+    },
+    {
+      "bin": 4,
+      "lo_nodes": 389,
+      "hi_nodes": 1313
+    },
+    {
+      "bin": 5,
+      "lo_nodes": 1313,
+      "hi_nodes": 4432
+    },
+    {
+      "bin": 6,
+      "lo_nodes": 4432,
+      "hi_nodes": 14958
+    },
+    {
+      "bin": 7,
+      "lo_nodes": 14958,
+      "hi_nodes": 50482
+    },
+    {
+      "bin": 8,
+      "lo_nodes": 50482,
+      "hi_nodes": 170367
+    },
+    {
+      "bin": 9,
+      "lo_nodes": 170367,
+      "hi_nodes": 574959
+    }
+  ],
+  "subset": [
+    {
+      "pres_id": 499,
+      "bin": 0,
+      "r1": "YYYYYYYXyyyyyyx",
+      "r2": "YYYYx",
+      "nodes_1M": 6,
+      "path_1M": 5,
+      "aut_class": 68,
+      "start_length": 20,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 6,
+      "baseline_path_at_50k": 5,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -18
+    },
+    {
+      "pres_id": 165,
+      "bin": 1,
+      "r1": "YYYxyXYX",
+      "r2": "YYXyx",
+      "nodes_1M": 16,
+      "path_1M": 10,
+      "aut_class": 14,
+      "start_length": 13,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 16,
+      "baseline_path_at_50k": 10,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -11
+    },
+    {
+      "pres_id": 303,
+      "bin": 2,
+      "r1": "YYYXyyx",
+      "r2": "YYYxyXYX",
+      "nodes_1M": 70,
+      "path_1M": 16,
+      "aut_class": 51,
+      "start_length": 15,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 70,
+      "baseline_path_at_50k": 16,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -13
+    },
+    {
+      "pres_id": 491,
+      "bin": 3,
+      "r1": "YYYYYYXyyyyyx",
+      "r2": "YYXyyxyx",
+      "nodes_1M": 126,
+      "path_1M": 28,
+      "aut_class": 96,
+      "start_length": 21,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 126,
+      "baseline_path_at_50k": 28,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -19
+    },
+    {
+      "pres_id": 527,
+      "bin": 4,
+      "r1": "YYYYYYYYXyyyyyyyx",
+      "r2": "YYXXyyx",
+      "nodes_1M": 430,
+      "path_1M": 49,
+      "aut_class": 110,
+      "start_length": 24,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 430,
+      "baseline_path_at_50k": 49,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -22
+    },
+    {
+      "pres_id": 539,
+      "bin": 5,
+      "r1": "YYYYYXyyyyx",
+      "r2": "YYYxxYX",
+      "nodes_1M": 1386,
+      "path_1M": 76,
+      "aut_class": 84,
+      "start_length": 18,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 1386,
+      "baseline_path_at_50k": 76,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -16
+    },
+    {
+      "pres_id": 629,
+      "bin": 6,
+      "r1": "YYYYYYYYXyyyyyyyx",
+      "r2": "YYXYXyyx",
+      "nodes_1M": 12452,
+      "path_1M": 79,
+      "aut_class": 110,
+      "start_length": 25,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 12452,
+      "baseline_path_at_50k": 79,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -23
+    },
+    {
+      "pres_id": 613,
+      "bin": 7,
+      "r1": "YYYYYYYXyyyyyyx",
+      "r2": "YYYXYxyX",
+      "nodes_1M": 46481,
+      "path_1M": 314,
+      "aut_class": 97,
+      "start_length": 23,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 46481,
+      "baseline_path_at_50k": 314,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -21
+    },
+    {
+      "pres_id": 625,
+      "bin": 8,
+      "r1": "YYYYYYYYXyyyyyyyx",
+      "r2": "YYXYxyX",
+      "nodes_1M": 78770,
+      "path_1M": 665,
+      "aut_class": 106,
+      "start_length": 24,
+      "baseline_solved_at_50k": false,
+      "baseline_nodes_at_50k": 50000,
+      "baseline_path_at_50k": null,
+      "baseline_min_relator_length_at_50k": 19,
+      "baseline_progress_at_50k": -5
+    },
+    {
+      "pres_id": 637,
+      "bin": 9,
+      "r1": "YYYYYYYYXyyyyyyyx",
+      "r2": "YYYXyxYX",
+      "nodes_1M": 271866,
+      "path_1M": 667,
+      "aut_class": 106,
+      "start_length": 25,
+      "baseline_solved_at_50k": false,
+      "baseline_nodes_at_50k": 50000,
+      "baseline_path_at_50k": null,
+      "baseline_min_relator_length_at_50k": 19,
+      "baseline_progress_at_50k": -6
+    }
+  ]
+}

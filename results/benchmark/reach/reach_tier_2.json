@@ -1,0 +1,71 @@
+{
+  "size": 2,
+  "pairs_with_subset": 20,
+  "pool": "the 126 ACA classes (results/equivalence_classes/, machine-checked)",
+  "truth_budget": 1000000,
+  "comparison_budget": 50000,
+  "question": "does the technique get FURTHER? (not: is it faster)",
+  "metrics": [
+    "solved (binary)",
+    "progress = min_relator_length - starting total length  (< 0 = went below where it started; 0 = never improved on what it was handed)"
+  ],
+  "the_bar": "baseline greedy scores progress = 0 on 247 of the 261 -- and on AK(3) -- at a 1,000,000-node budget. Any technique reaching progress < 0 did something a million nodes of length-guided greedy provably cannot.",
+  "why_not_min_relator_length_alone": "it is degenerate: 247/261 sit exactly at their starting length, so the raw number mostly re-reports how long the presentation was to begin with. Subtract the start.",
+  "read_progress_carefully": "only 7 of the 126 classes have progress < 0, and they are the LONGEST presentations (25_17, 25_2, 25_3, 25_31...). Progress correlates with having slack to shed, NOT with being close to a solution -- AK(3), at total length 13, is already minimal and has nothing to give back. It ranks effort, never promise.",
+  "no_baseline_run_needed": "unsolved at 1M implies unsolved at any smaller budget (a budget-B search is exactly the first B pops of a longer one), and min_relator_length can only fall as the budget grows. So these 1M numbers are a CONSERVATIVE bar for a technique run at 50k -- a 50k baseline would only lower it.",
+  "no_speedup_ratio": "every row is unsolved at 1M, so there is no baseline path_length and no speedup ratio. These rows must never enter the ladder's median/IQR.",
+  "selection": "AK(3) at slot 0 always. Remainder: the 126 ACA classes minus AK(3)'s own class (113, a singleton = 13_1), spread evenly over min_relator_length @1M, endpoints included, tie-broken on best baseline_progress. One row per PROBLEM, not per presentation -- the 261 rows are only 126 problems.",
+  "two_coordinate_choices": "Each row carries BOTH the class's Aut-minimal representative (aut_min_rep_*, which EQUIVALENCE_FINDING argues is better-conditioned because greedy is length-guided -- untested) and the best_known_member (the coordinates from which the 1M sweep actually got closest to trivial). Run both: it is a free A/B on that claim.",
+  "ak3_ms_coordinates": {
+    "name": "13_1",
+    "r1": "YXyXYx",
+    "r2": "YYYXXXX",
+    "total_length": 13,
+    "baseline_min_relator_length": 13,
+    "baseline_progress": 0,
+    "aca_class_id": 113,
+    "aut_min_rep": "YXYxyx,YYYYxxx",
+    "note": "Aut(F2)-equivalent to AK(3): the same problem in Miller-Schupp coordinates. NOT a separate problem -- run it alongside AK(3) as a free A/B on whether a CoV technique reaches the same place from different coordinates. At 1M its min_relator_length is 13, equal to its starting length: the search never went BELOW where it began."
+  },
+  "tier": [
+    {
+      "slot": 0,
+      "source": "AK(3)",
+      "name": "AK(3)",
+      "r1": "xxxYYYY",
+      "r2": "xyxYXY",
+      "total_length": 13,
+      "aca_class_id": 113,
+      "n_members": 1,
+      "baseline_start_length": 13,
+      "baseline_min_relator_length": 13,
+      "baseline_progress": 0,
+      "baseline_solved": false,
+      "bar_to_beat": "min_relator_length < 13",
+      "aut_min_rep_r1": "YXYxyx",
+      "aut_min_rep_r2": "YYYYxxx",
+      "aut_min_rep_total_length": 13,
+      "note": "stable AC-triviality is OPEN; a solve at n_gen=3 is THE RESULT, not a metric. Baseline reached min_relator_length 13 = its start length, at 1,000 nodes AND at 1,000,000. Zero progress either way."
+    },
+    {
+      "slot": 1,
+      "source": "ms_reps_unsolved / ACA class",
+      "name": "19_40",
+      "r1": "YYYxxYX",
+      "r2": "YXyxxxyXyXyX",
+      "total_length": 19,
+      "aca_class_id": 5,
+      "n_members": 4,
+      "baseline_start_length": 19,
+      "baseline_min_relator_length": 19,
+      "baseline_progress": 0,
+      "baseline_solved": false,
+      "bar_to_beat": "min_relator_length < 19",
+      "members": "19_40 19_42 19_47 19_51",
+      "aut_min_rep_r1": "YYXXXyX",
+      "aut_min_rep_r2": "YYYxyXyxyxyx",
+      "aut_min_rep_total_length": 19,
+      "aut_min_rep_is_one_of_the_261": false
+    }
+  ]
+}
