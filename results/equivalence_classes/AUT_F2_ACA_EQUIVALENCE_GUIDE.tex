@@ -1,0 +1,2560 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  urlcolor=blue!55!black,
+  citecolor=blue!55!black,
+  pdftitle={Aut(F2) and ACA Equivalence: A Formal Tutorial and Practice Workbook},
+  pdfauthor={ACSolverX equivalence-class analysis}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\(\operatorname{Aut}(F_2)\) and ACA Equivalence}
+\rhead{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist{itemsep=0.3em,topsep=0.4em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{warning}[theorem]{Warning}
+
+\newcommand{\F}{F_2}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Ncl}[1]{\left\langle\!\left\langle #1\right\rangle\!\right\rangle}
+\newcommand{\AC}{\mathrm{AC}}
+\newcommand{\ACA}{\mathrm{ACA}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\canon}{\operatorname{canon}}
+\newcommand{\len}[1]{\left|#1\right|}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\sourcefile}[1]{\path{#1}}
+\newcommand{\diagnostic}[1]{\par\smallskip\textit{Diagnostic: #1}}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\pagenumbering{roman}
+
+\begin{titlepage}
+\centering
+\vspace*{1.3in}
+{\Huge\bfseries \(\operatorname{Aut}(F_2)\) and ACA Equivalence\par}
+\vspace{0.35in}
+{\Large A Formal Tutorial and Practice Workbook\par}
+\vspace{0.2in}
+{\large Why 261 benchmark presentations reduce to at most 124 distinct problems\par}
+\vfill
+{\large ACSolverX equivalence-class analysis\par}
+\vspace{0.15in}
+{\large July 2026\par}
+\vfill
+\begin{minipage}{0.86\textwidth}
+\small
+\textbf{Central claim.}
+The computation does not prove that any of the 261 presentations is
+AC-trivial.  It proves that a finite graph of certified Andrews--Curtis and
+change-of-basis edges on the 261 inputs has 124 connected components.
+Consequently, proving one representative from each component AC-trivial
+would prove all 261 AC-trivial.  Each verified component is contained in a
+true ACA class, so 124 is an upper bound on the number of distinct problems,
+not a proof that 124 mutually inequivalent AC-classes exist.
+\end{minipage}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\section*{How to use this guide}
+\addcontentsline{toc}{section}{How to use this guide}
+
+This document has three simultaneous purposes.
+
+\begin{enumerate}
+  \item It develops the group theory needed to understand why
+  \(\Aut(\F)\) is relevant to balanced presentations.
+  \item It proves, move by move, why a change of free basis preserves
+  AC-triviality and gives quantitative upper bounds on the transported
+  number of elementary AC moves.
+  \item It explains the complete computational pipeline
+  \[
+    261\longrightarrow261\longrightarrow171\longrightarrow168
+    \longrightarrow126\longrightarrow125\longrightarrow124
+  \]
+  and separates exact conclusions from search-dependent upper bounds.
+\end{enumerate}
+
+Every substantive section ends with exercises.  A complete answer key,
+including diagnostic advice, begins in Section~\ref{sec:answers}.  The final
+summary in Section~\ref{sec:presentation} is designed for a lab presentation.
+
+\begin{warning}[No silent theorem dependencies]
+Elementary free-group and AC facts are proved here.  Whitehead peak reduction
+and the Nielsen basis theorem are classical results too large to reprove
+honestly in a tutorial of this scope.  They are stated with their hypotheses,
+their precise role is isolated, and every project-specific conclusion drawn
+from them is proved.
+\end{warning}
+
+\section{Conventions: three elementary AC moves}
+\label{sec:conventions}
+
+There are multiple numbering conventions in the literature and in the
+ACSolverX materials.  Mixing them changes move counts.  This guide uses the
+convention of the source paper
+\sourcefile{literature/txt/math_ml_paper_2408.15332.txt}, lines 296--298.
+
+\begin{definition}[Source-paper elementary AC moves]
+Let
+\[
+  P=\langle x_1,\ldots,x_n\mid r_1,\ldots,r_n\rangle
+\]
+be balanced.  For \(i\ne j\), the elementary moves are:
+\begin{align*}
+  \text{\rm(AC1)}&\quad r_i\longmapsto r_i r_j,\\
+  \text{\rm(AC2)}&\quad r_i\longmapsto r_i^{-1},\\
+  \text{\rm(AC3)}&\quad r_i\longmapsto g r_i g^{-1},
+       \qquad g\in\{x_1^{\pm1},\ldots,x_n^{\pm1}\}.
+\end{align*}
+Only one relator is replaced; all other relators remain unchanged.
+\end{definition}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\bfseries}l X X}
+\toprule
+Operation & Source-paper convention used here & Two-Hump/solver prose convention\\
+\midrule
+Combine & AC1: \(r_i\mapsto r_i r_j\) & Often called AC2\\
+Invert & AC2: \(r_i\mapsto r_i^{-1}\) & Often called AC1\\
+Conjugate & AC3 by one generator or inverse & Often AC3 by an arbitrary word\\
+Solver S-move & A finite sequence of AC1--AC3 & One encoded macro-move\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{warning}[No inverse multiplier in elementary AC1]
+The source-paper AC1 is \(r_i\mapsto r_i r_j\), not
+\(r_i\mapsto r_i r_j^{-1}\).  The latter can be realized while restoring
+\(r_j\) by three moves:
+\[
+(r_i,r_j)\xrightarrow{\AC2}(r_i,r_j^{-1})
+\xrightarrow{\AC1}(r_i r_j^{-1},r_j^{-1})
+\xrightarrow{\AC2}(r_i r_j^{-1},r_j).
+\]
+Thus the solver parameter \(j=-1\) is part of a macro-move under the
+source-paper convention.
+\end{warning}
+
+Relator order is not mathematical data, so swapping \(r_1,r_2\) is treated
+as zero-cost bookkeeping.  Free reduction is also zero-cost because it
+replaces a word by the same element of the free group.
+
+\subsection*{Exercises}
+
+\begin{exercise}
+Using the convention above, write a three-move sequence that reverses one
+positive AC1 move:
+\[
+  (r_1r_2,r_2)\longrightarrow (r_1,r_2).
+\]
+\end{exercise}
+
+\begin{exercise}
+Explain why the phrase ``one rotation move'' is ambiguous unless one states
+whether AC3 allows conjugation by an arbitrary word or only by one generator.
+\end{exercise}
+
+\begin{exercise}
+Classify each operation as elementary, macro, or bookkeeping:
+\[
+r_1\mapsto r_1^{-1},\qquad
+r_1\mapsto r_1r_2^{-1},\qquad
+r_1\mapsto w r_1w^{-1},\qquad
+(r_1,r_2)\mapsto(r_2,r_1).
+\]
+Use the source-paper convention.
+\end{exercise}
+
+\section{Free groups and balanced presentations}
+\label{sec:free-presentations}
+
+\subsection{The free group \(F_2\)}
+
+\begin{definition}[Free group on two generators]
+The free group
+\[
+  \F=\langle x,y\rangle
+\]
+consists of reduced words in the alphabet
+\[
+  \{x,X,y,Y\},\qquad X=x^{-1},\quad Y=y^{-1}.
+\]
+A word is reduced when it contains no adjacent inverse pair
+\(xX,Xx,yY,Yy\).  Multiplication is concatenation followed by free
+reduction.
+\end{definition}
+
+For a word \(w=a_1\cdots a_m\), its inverse is
+\[
+  w^{-1}=a_m^{-1}\cdots a_1^{-1}.
+\]
+Thus, for example,
+\[
+  (xyX)^{-1}=xYX.
+\]
+The empty word is the identity.  We write \(\len{w}\) for the length of the
+freely reduced word representing \(w\).
+
+\begin{theorem}[Universal property of \(\F\)]
+\label{thm:universal}
+Let \(H\) be any group and choose \(a,b\in H\).  There exists a unique
+homomorphism \(f:\F\to H\) satisfying \(f(x)=a\) and \(f(y)=b\).
+\end{theorem}
+
+\begin{proof}
+Define \(f\) on a word by replacing each letter:
+\[
+x\mapsto a,\quad X\mapsto a^{-1},\quad
+y\mapsto b,\quad Y\mapsto b^{-1},
+\]
+and multiplying the resulting elements of \(H\).  Deleting an adjacent
+inverse pair in \(\F\) deletes \(aa^{-1}\), \(a^{-1}a\), \(bb^{-1}\), or
+\(b^{-1}b\) in \(H\), so the value is unchanged by free reduction.
+Therefore the map is well-defined.  Concatenation gives
+\(f(uv)=f(u)f(v)\), so it is a homomorphism.  Any homomorphism with the
+specified values on \(x,y\) must evaluate every word by the same rule,
+which proves uniqueness.
+\end{proof}
+
+This theorem explains why assigning words to \(x\) and \(y\) automatically
+defines an endomorphism \(\F\to\F\).  It does \emph{not} automatically define
+an automorphism: invertibility must still be proved.
+
+\subsection{Presentations are quotients of the free group}
+
+\begin{definition}[Normal closure]
+For \(r_1,r_2\in\F\), the normal closure
+\[
+  \Ncl{r_1,r_2}
+\]
+is the smallest normal subgroup of \(\F\) containing \(r_1,r_2\).
+Equivalently, its elements are finite products of conjugates of
+\(r_1^{\pm1}\) and \(r_2^{\pm1}\).
+\end{definition}
+
+\begin{definition}[Balanced two-generator presentation]
+\[
+  P=\langle x,y\mid r_1,r_2\rangle
+\]
+denotes the quotient group
+\[
+  G_P=\F/\Ncl{r_1,r_2}.
+\]
+It is balanced because the number of relators equals the number of
+generators.  Balanced does not mean trivial.
+\end{definition}
+
+The presentation defines the trivial group precisely when
+\[
+  G_P=1
+  \quad\Longleftrightarrow\quad
+  \Ncl{r_1,r_2}=\F.
+\]
+The standard trivial presentation is
+\[
+  T=\langle x,y\mid x,y\rangle.
+\]
+
+\begin{definition}[AC-trivial]
+A balanced presentation is AC-trivial when a finite sequence of elementary
+AC moves carries its relator pair to the standard pair \((x,y)\), up to
+free reduction and relator order.
+\end{definition}
+
+\begin{warning}[Trivial group versus AC-trivial presentation]
+If a presentation is AC-trivial, it certainly presents the trivial group.
+The converse is the Andrews--Curtis conjecture and is not known in general.
+The 261 benchmark inputs present the trivial group, but none has been proved
+AC-trivial by the equivalence-class search.
+\end{warning}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+Freely reduce \(xyYXxXY\), and compute the inverse of the reduced word.
+\end{exercise}
+
+\begin{exercise}
+Prove directly that
+\[
+  \langle x,y\mid xy,y\rangle
+\]
+presents the trivial group.  Then give a source-convention AC sequence to
+\((x,y)\).
+\end{exercise}
+
+\begin{exercise}
+Why does the equality \(G_P=1\) not by itself provide an AC path from
+\((r_1,r_2)\) to \((x,y)\)?
+\end{exercise}
+
+\begin{exercise}
+State exactly where balancedness is used in the definition of the
+Andrews--Curtis problem, and explain why a two-generator presentation with
+three relators is not one of the objects counted in the 261-to-124 pipeline.
+\end{exercise}
+
+\section{Automorphisms of \(F_2\) and their action on presentations}
+\label{sec:aut}
+
+\begin{definition}
+An endomorphism \(\phi:\F\to\F\) is an automorphism if it is bijective.
+The group of all such maps under composition is \(\Aut(\F)\).
+\end{definition}
+
+By Theorem~\ref{thm:universal}, words \(u,v\in\F\) determine a unique
+endomorphism
+\[
+  \phi(x)=u,\qquad \phi(y)=v.
+\]
+To prove that \(\phi\) is an automorphism, it is enough to construct an
+endomorphism \(\psi\) satisfying both
+\[
+  \psi\circ\phi=\id_{\F},
+  \qquad
+  \phi\circ\psi=\id_{\F}.
+\]
+Because homomorphisms out of \(\F\) are determined by \(x,y\), each equality
+needs to be checked only on those two generators.
+
+\begin{example}[The basic length-changing automorphism]
+\label{ex:basic-aut}
+Let
+\[
+  \phi(x)=xy,\qquad \phi(y)=y.
+\]
+The universal property makes this a homomorphism.  Define
+\[
+  \psi(x)=xY,\qquad \psi(y)=y.
+\]
+Then
+\begin{align*}
+\psi(\phi(x))&=\psi(xy)=(xY)y=x,&
+\psi(\phi(y))&=y,\\
+\phi(\psi(x))&=\phi(xY)=(xy)Y=x,&
+\phi(\psi(y))&=y.
+\end{align*}
+Hence \(\psi=\phi^{-1}\), so \(\phi\in\Aut(\F)\).
+\end{example}
+
+\begin{remark}
+The rule on inverse letters is forced:
+\[
+  \phi(X)=\phi(x^{-1})=\phi(x)^{-1},\qquad
+  \phi(Y)=\phi(y)^{-1}.
+\]
+For Example~\ref{ex:basic-aut},
+\[
+  \phi(X)=(xy)^{-1}=YX,\qquad \phi(Y)=Y.
+\]
+One must reverse the image word and invert every letter.
+\end{remark}
+
+\subsection{Why the presented group is unchanged}
+
+For \(P=\langle x,y\mid r_1,r_2\rangle\), define
+\[
+  \phi(P)=\langle x,y\mid\phi(r_1),\phi(r_2)\rangle.
+\]
+The symbols \(x,y\) remain the displayed free generators; the relator words
+have been rewritten in a new free basis.
+
+\begin{theorem}[Change of free basis induces a quotient isomorphism]
+\label{thm:quotient-iso}
+Let \(N=\Ncl{r_1,r_2}\).  If \(\phi\in\Aut(\F)\), then
+\[
+  \phi(N)=\Ncl{\phi(r_1),\phi(r_2)}
+\]
+and
+\[
+  \overline{\phi}:\F/N\longrightarrow \F/\phi(N),
+  \qquad
+  wN\longmapsto\phi(w)\phi(N)
+\]
+is an isomorphism.
+\end{theorem}
+
+\begin{proof}
+An automorphism sends products, inverses, and conjugates to products,
+inverses, and conjugates.  Therefore \(\phi(N)\) is a normal subgroup
+containing \(\phi(r_1),\phi(r_2)\), so
+\(\Ncl{\phi(r_1),\phi(r_2)}\subseteq\phi(N)\).
+Applying the same argument to \(\phi^{-1}\) gives the reverse inclusion.
+
+If \(wN=w'N\), then \(w^{-1}w'\in N\), hence
+\(\phi(w)^{-1}\phi(w')\in\phi(N)\), so
+\(\overline{\phi}\) is well-defined.  It is a homomorphism because \(\phi\)
+is.  The map induced by \(\phi^{-1}\) is its two-sided inverse.
+\end{proof}
+
+\begin{corollary}
+If \(P\) presents the trivial group, then \(\phi(P)\) presents the trivial
+group.  The transformed presentation remains balanced.
+\end{corollary}
+
+\begin{warning}
+Theorem~\ref{thm:quotient-iso} proves that \(P\) and \(\phi(P)\) present
+isomorphic groups.  That alone does not prove either presentation
+AC-trivial.  The stronger AC-triviality statement requires the transported
+path theorem in Section~\ref{sec:transport}.
+\end{warning}
+
+\subsection{How the project verifies an automorphism}
+
+The equivalence pipeline does not trust an arbitrary dictionary
+\(\{x\mapsto u,y\mapsto v\}\).  It independently checks that \((u,v)\) is a
+free basis using Nielsen reduction.  The classical Nielsen basis theorem
+says that a generating pair is a basis exactly when elementary Nielsen
+transformations reduce it to a signed permutation of \((x,y)\).
+The verifier in
+\sourcefile{experiments/equivalence_classes/verify/verify_certificates.py}
+implements this check independently of the Whitehead code that produced the
+witness.
+
+\subsection*{Exercises}
+
+\begin{exercise}
+Prove that
+\[
+  \phi_k(x)=xy^k,\qquad \phi_k(y)=y
+\]
+is an automorphism for every \(k\in\mathbb Z\), by constructing its inverse.
+\end{exercise}
+
+\begin{exercise}
+Apply \(\phi(x)=xy,\phi(y)=y\) to the word \(YXyX\), showing the image of
+each capital letter before reducing.
+\end{exercise}
+
+\begin{exercise}
+Let \(\eta(x)=x^2,\eta(y)=y\).  Explain why the universal property proves
+that \(\eta\) is a homomorphism but not that it is an automorphism.  Prove
+that it is not surjective by using exponent sums.
+\end{exercise}
+
+\begin{exercise}
+Prove Theorem~\ref{thm:quotient-iso} in the special case
+\(P=\langle x,y\mid x,y\rangle\) and
+\(\phi(x)=xy,\phi(y)=y\), without invoking the general proof.
+\end{exercise}
+
+\section{Transporting AC moves through a fixed automorphism}
+\label{sec:transport}
+
+This is the central mathematical point.  The correct statement is about
+reachability, not necessarily adjacency.
+
+\begin{theorem}[Transported elementary move]
+\label{thm:one-move}
+Let \(\phi\in\Aut(\F)\).  If
+\[
+  (r_1,r_2)\xrightarrow{\text{one elementary AC move}}(r_1',r_2'),
+\]
+then
+\[
+  (\phi(r_1),\phi(r_2))
+  \xrightarrow{\AC^*}
+  (\phi(r_1'),\phi(r_2')),
+\]
+where \(\AC^*\) denotes a finite sequence of source-convention elementary
+AC moves.
+\end{theorem}
+
+\begin{proof}
+We inspect all three elementary moves.
+
+\textbf{AC1.}  If \(r_i'=r_i r_j\), then
+\[
+  \phi(r_i')=\phi(r_i r_j)=\phi(r_i)\phi(r_j).
+\]
+Thus one transformed AC1 move suffices.
+
+\textbf{AC2.}  If \(r_i'=r_i^{-1}\), then
+\[
+  \phi(r_i')=\phi(r_i^{-1})=\phi(r_i)^{-1}.
+\]
+Thus one transformed AC2 move suffices.
+
+\textbf{AC3.}  Suppose \(r_i'=g r_i g^{-1}\), where \(g\) is one generator
+or inverse.  Write the freely reduced word
+\[
+  \phi(g)=a_1a_2\cdots a_m,
+  \qquad a_s\in\{x,X,y,Y\}.
+\]
+Starting from \(R=\phi(r_i)\), conjugate successively by
+\(a_m,a_{m-1},\ldots,a_1\).  After \(m\) source-convention AC3 moves, the
+result is
+\[
+  a_1\cdots a_m R a_m^{-1}\cdots a_1^{-1}
+  =\phi(g)\phi(r_i)\phi(g)^{-1}
+  =\phi(r_i').
+\]
+The other relator is untouched throughout.
+\end{proof}
+
+\subsection{Quantitative bounds}
+
+\begin{definition}
+For a fixed automorphism \(\phi\), define its generator expansion factor
+\[
+  \Lambda(\phi)
+  =\max\{\len{\phi(x)},\len{\phi(y)}\}.
+\]
+Since inversion preserves reduced length,
+\(\len{\phi(X)}=\len{\phi(x)}\) and
+\(\len{\phi(Y)}=\len{\phi(y)}\).
+\end{definition}
+
+\begin{proposition}[Per-move transport bound]
+\label{prop:per-move-bound}
+Under the source-paper convention, the constructive transported costs are:
+\[
+\begin{array}{c|c}
+\text{original elementary move}&
+\text{number of transformed elementary moves}\\
+\hline
+\AC1&1\\
+\AC2&1\\
+\AC3\text{ by }g&\len{\phi(g)}\le\Lambda(\phi).
+\end{array}
+\]
+These are guaranteed upper bounds for the displayed construction; they are
+not claims about shortest AC distance.
+\end{proposition}
+
+\begin{corollary}[Whole-path bound]
+\label{cor:path-bound}
+Suppose an AC path contains \(N_1\) AC1 moves, \(N_2\) AC2 moves, and
+AC3 conjugations by letters \(g_1,\ldots,g_{N_3}\).  Transporting the path
+through \(\phi\) gives a path of length at most
+\[
+  N_1+N_2+\sum_{t=1}^{N_3}\len{\phi(g_t)}
+  \le N_1+N_2+\Lambda(\phi)N_3.
+\]
+If \(N=N_1+N_2+N_3\), then the coarser bound is
+\[
+  N_\phi\le\Lambda(\phi)N.
+\]
+\end{corollary}
+
+The last inequality uses \(\Lambda(\phi)\ge1\), which holds because an
+automorphism cannot send a free generator to the identity.
+
+\begin{example}
+For \(\phi(x)=xy,\phi(y)=y\), one has \(\Lambda(\phi)=2\).
+Conjugation by \(x\) or \(X\) costs at most two transformed AC3 moves;
+conjugation by \(y\) or \(Y\) costs one.  Hence a path of length \(N\)
+transports to one of length at most \(2N\), before correcting its terminal
+basis.
+\end{example}
+
+\begin{proposition}[No automorphism-independent constant]
+\label{prop:no-uniform}
+There is no constant \(C\) such that every elementary AC3 move transports
+through every \(\phi\in\Aut(\F)\) using at most \(C\) source-convention AC3
+moves via the construction above.
+\end{proposition}
+
+\begin{proof}
+Use \(\phi_k(x)=xy^k,\phi_k(y)=y\).  It is an automorphism with inverse
+\(x\mapsto xy^{-k},y\mapsto y\).  A conjugation by \(x\) transports to a
+conjugation by \(xy^k\), whose freely reduced length is \(k+1\) for
+\(k\ge0\).  The constructive source-convention expansion therefore has
+\(k+1\) AC3 moves, which is unbounded as \(k\to\infty\).
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:no-uniform} concerns a uniform bound over all
+automorphisms.  For each explicitly given \(\phi\), the bound
+\(\Lambda(\phi)\) is finite and directly computable.  This effectiveness is
+fundamentally different from the unbounded normal-closure parameter in
+Lemma 11 of the stable-AC discussion.
+\end{remark}
+
+\subsection{From the transformed endpoint back to \((x,y)\)}
+
+If an original path ends at \((x,y)\), its transported path ends at
+\[
+  (\phi(x),\phi(y)),
+\]
+not necessarily at \((x,y)\).  Because \(\phi\) is an automorphism, this pair
+is a free basis.
+
+\begin{theorem}[Nielsen generation in rank two]
+\label{thm:nielsen-generation}
+The group \(\Aut(\F)\) is generated by the elementary basis operations
+\[
+(u,v)\mapsto(v,u),\qquad
+(u,v)\mapsto(u^{-1},v),\qquad
+(u,v)\mapsto(uv,v),
+\]
+together with the corresponding operations on the second entry.
+\end{theorem}
+
+This is the classical Nielsen generation theorem.  On a relator pair, its
+three displayed generators are respectively relator-order bookkeeping,
+one AC2, and one AC1.  Hence a decomposition of \(\phi^{-1}\) into Nielsen
+generators gives an explicit source-convention AC sequence from
+\((\phi(x),\phi(y))\) to \((x,y)\).  This is stronger than merely observing
+that the terminal pair generates \(\F\).
+
+Let \(C_{\mathrm{basis}}(\phi)\) denote the number of source-convention AC
+steps obtained from one chosen, explicitly tracked decomposition of
+\(\phi^{-1}\) as in Theorem~\ref{thm:nielsen-generation}; swap steps cost
+zero.  Combining it with
+Corollary~\ref{cor:path-bound} gives
+\[
+  N_{\mathrm{total}}
+  \le
+  N_1+N_2+\Lambda(\phi)N_3+C_{\mathrm{basis}}(\phi).
+\]
+No claim is made that this is minimal.
+
+The current project certificates perform an untracked Boolean Nielsen basis
+check: they prove that the endpoint is a basis but do not store a
+decomposition or a numerical value of \(C_{\mathrm{basis}}(\phi)\).
+Obtaining a numerical endpoint bound therefore requires separately logging
+a Nielsen reduction.  If that reduction uses the common replacements below,
+they expand constructively as follows:
+\[
+\begin{array}{c|cccc}
+\text{replacement of }a&
+a b&a b^{-1}&b^{-1}a&b a\\
+\hline
+\text{source-convention cost}&1&3&3&5.
+\end{array}
+\]
+For example, \(b^{-1}a=(a^{-1}b)^{-1}\) costs AC2, AC1, AC2; the other
+three bounds follow by the same inversion-and-restoration constructions.
+Any terminal signs require at most two additional AC2 moves.
+
+\begin{example}[Endpoint cost in the source convention]
+For \((\phi(x),\phi(y))=(xy,y)\), the tempting operation
+\(xy\mapsto xy\,y^{-1}=x\) is not one source-convention AC1 move.  It is
+the three-move sequence
+\[
+(xy,y)\xrightarrow{\AC2}(xy,Y)
+\xrightarrow{\AC1}(xyY,Y)=(x,Y)
+\xrightarrow{\AC2}(x,y).
+\]
+Thus this chosen source-convention endpoint correction has cost \(3\).
+Under a macro convention allowing multiplication by \(r_2^{-1}\), it would
+be encoded as one macro-move.
+\end{example}
+
+\begin{theorem}[Automorphism invariance of AC-triviality]
+\label{thm:main-invariance}
+For every balanced two-generator presentation \(P\) and every
+\(\phi\in\Aut(\F)\),
+\[
+  P\text{ is AC-trivial}
+  \quad\Longleftrightarrow\quad
+  \phi(P)\text{ is AC-trivial}.
+\]
+\end{theorem}
+
+\begin{proof}
+Assume \(P\) is AC-trivial.  Transport its finite AC path to obtain
+\[
+  \phi(P)\xrightarrow{\AC^*}(\phi(x),\phi(y)).
+\]
+Choose a finite Nielsen-generator decomposition of \(\phi^{-1}\); it gives
+a finite AC sequence from the terminal basis to \((x,y)\).  Hence
+\(\phi(P)\) is AC-trivial.  Conversely, apply the same argument to
+\(\phi^{-1}\).
+\end{proof}
+
+\[
+\begin{array}{ccc}
+P&\xrightarrow{\AC^*}&(x,y)\\
+\downarrow\phi&&\downarrow\phi\\
+\phi(P)&\xrightarrow{\AC^*}&(\phi(x),\phi(y))
+\xrightarrow{\AC^*}(x,y).
+\end{array}
+\]
+
+\begin{warning}[What the theorem does not say]
+It does not prove \(P\sim_{\AC}\phi(P)\) for arbitrary \(P\).  An attempted
+chain
+\[
+P\sim_{\AC}(x,y)\sim_{\AC}(\phi(x),\phi(y))
+\sim_{\AC}\phi(P)
+\]
+already assumes the unknown first link.  The theorem says that \(P\) and
+\(\phi(P)\) have the same truth value for AC-triviality; it does not say
+that they lie in the same ordinary AC component.
+\end{warning}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+For \(\phi(x)=xy,\phi(y)=y\), transport the AC3 move
+\[
+  r_1\mapsto x r_1X
+\]
+step by step, using only generator conjugations.
+\end{exercise}
+
+\begin{exercise}
+An original path has 10 AC1 moves, 4 AC2 moves, 7 conjugations by \(x\),
+and 3 conjugations by \(y\).  For the automorphism
+\(\phi(x)=xyY,\phi(y)=Yx\), compute the direct bound from
+Corollary~\ref{cor:path-bound}, after freely reducing the generator images.
+\end{exercise}
+
+\begin{exercise}
+Prove that one source-convention AC1 and one AC2 always transport to one
+move of the same type, even if substantial free cancellation occurs in
+the displayed words.
+\end{exercise}
+
+\begin{exercise}
+Explain precisely why Theorem~\ref{thm:one-move} should use
+\(\xrightarrow{\AC^*}\) rather than a single arrow under the source-paper
+convention, but may use a single arrow for AC3 under an arbitrary-word
+conjugation convention.
+\end{exercise}
+
+\begin{exercise}
+Find the logical error in the statement:
+``Since \(P\) and \(\phi(P)\) present isomorphic trivial groups, they are
+AC-equivalent.''
+\end{exercise}
+
+\section{Canonicalization and the eight signed relabelings}
+\label{sec:canonical-relabel}
+
+\subsection{Canonicalization}
+
+The search stores a canonical representative of a relator pair.  For each
+relator it:
+\begin{enumerate}
+  \item freely and cyclically reduces it;
+  \item considers the relator and its inverse;
+  \item selects the lexicographically least cyclic rotation;
+  \item sorts the two canonical relators by length and lexical order.
+\end{enumerate}
+
+These operations do not invent an equivalence.
+
+\begin{itemize}
+  \item Free reduction preserves the element of \(\F\).
+  \item Removing an outer inverse pair \(a w a^{-1}\mapsto w\) is one
+  source-convention AC3 move, followed by free reduction.
+  \item Whole-relator inversion is AC2.
+  \item If \(r=uv\), the rotation \(uv\mapsto vu\) is conjugation:
+  \[
+    vu=u^{-1}(uv)u.
+  \]
+  Under generator-only AC3 it may require several elementary conjugations.
+  \item Relator order is bookkeeping.
+\end{itemize}
+
+Canonicalization is therefore safe for AC-triviality, although it should
+not be assigned zero elementary AC cost when one is explicitly counting
+source-convention moves.
+
+\subsection{The eight signed permutations}
+
+A signed permutation sends \(x\) to one of \(x,X,y,Y\) and \(y\) to a
+signed version of the other underlying generator.  There are
+\[
+  2!\,2^2=8
+\]
+such maps:
+\[
+\begin{array}{llll}
+(x,y),&(X,y),&(x,Y),&(X,Y),\\
+(y,x),&(Y,x),&(y,X),&(Y,X).
+\end{array}
+\]
+Each is an automorphism whose inverse is another signed permutation.
+
+For every input pair \(P\), the relabeling key is
+\[
+  K_{\mathrm{signed}}(P)
+  =\min_{\sigma\in\Sigma_8}\canon(\sigma(P)).
+\]
+Equal keys mean the two presentations differ by a signed change of free
+basis plus canonical bookkeeping.  By
+Theorem~\ref{thm:main-invariance}, they have the same AC-triviality status.
+
+Signed permutations are particularly well behaved computationally:
+they preserve word length and commute with inversion and cyclic rotation.
+Consequently their child sets under the encoded S-move agree after
+relabeling.  General automorphisms such as \(x\mapsto xy\) do not have this
+property because they change word lengths and rotation positions.
+
+\subsection{Worked example: \(19\_45\) and \(19\_50\)}
+
+The presentations have canonical relator pairs
+\begin{align*}
+19\_45&=(\texttt{YYYxxyyX},\ \texttt{YYYYXyxxYxx}),\\
+19\_50&=(\texttt{YYYxyyXX},\ \texttt{YYYYXXYXXyx}).
+\end{align*}
+Use the signed automorphism
+\[
+  \sigma(x)=x,\qquad \sigma(y)=Y.
+\]
+For the first relator:
+\[
+\texttt{YYYxxyyX}
+\xmapsto{\sigma}
+\texttt{yyyxxYYX}
+\xmapsto{\text{invert}}
+\texttt{xyyXXYYY}
+\xmapsto{\text{right rotate }3}
+\texttt{YYYxyyXX}.
+\]
+For the second:
+\[
+\texttt{YYYYXyxxYxx}
+\xmapsto{\sigma}
+\texttt{yyyyXYxxyxx}
+\xmapsto{\text{invert}}
+\texttt{XXYXXyxYYYY}
+\xmapsto{\text{right rotate }4}
+\texttt{YYYYXXYXXyx}.
+\]
+Thus
+\[
+\canon(\sigma(19\_45))=19\_50.
+\]
+No search is needed.  The substitution is the mathematical change of
+variables; inversion and rotation explain why the canonical strings do not
+match immediately.
+
+\subsection{Counts}
+
+The 261 exact input pairs remain 261 after canonicalization: there are no
+root collisions.  Quotienting by the eight signed permutations yields
+\[
+  261\longrightarrow171.
+\]
+This identifies 90 redundant rows.
+
+\subsection*{Exercises}
+
+\begin{exercise}
+List the eight signed permutations and write the inverse of each one.
+\end{exercise}
+
+\begin{exercise}
+Repeat the first-relator computation for \(19\_45\to19\_50\) without
+looking at the worked derivation.  Explain why simply changing the case of
+\(y\) does not immediately produce the stored target.
+\end{exercise}
+
+\begin{exercise}
+Prove that signed permutations commute with free reduction and cyclic
+rotation.  Identify the step that fails for \(\phi(x)=xy,\phi(y)=y\).
+\end{exercise}
+
+\begin{exercise}
+If a signed-relabeling class has eight members and one representative is
+proved AC-trivial in 200 moves, what can be concluded about the other seven?
+What cannot be concluded about their shortest path lengths?
+\end{exercise}
+
+\section{Full \(\Aut(F_2)\) and Whitehead canonicalization}
+\label{sec:whitehead}
+
+The eight signed permutations form only a small subgroup of
+\(\Aut(\F)\).  Length-changing Nielsen transformations, such as
+\[
+  x\mapsto xy,\qquad y\mapsto y,
+\]
+can identify presentations missed by signed relabeling.
+
+\subsection{The twenty elementary Whitehead generators}
+
+The implementation does not invent thousands of ad hoc maps.
+\sourcefile{experiments/equivalence_classes/lib/autcanon.py}
+always tries the same finite list of \textbf{20} elementary Whitehead
+automorphisms.  Peak reduction and the length-preserving level-set search
+\emph{compose} these maps; a certificate may therefore record a composite
+such as \(x\mapsto\texttt{xxxxxxxy}\), \(y\mapsto X\), which is not itself one
+of the twenty generators.
+
+\paragraph{Eight first-kind maps (signed permutations).}
+\[
+\begin{array}{llll}
+(x,y),&(x,Y),&(X,y),&(X,Y),\\
+(y,x),&(y,X),&(Y,x),&(Y,X).
+\end{array}
+\]
+
+\paragraph{Twelve second-kind maps (length-changing).}
+\[
+\begin{array}{lll}
+x\mapsto x,\ y\mapsto yx &
+x\mapsto x,\ y\mapsto Xy &
+x\mapsto x,\ y\mapsto Xyx \\
+x\mapsto x,\ y\mapsto yX &
+x\mapsto x,\ y\mapsto xy &
+x\mapsto x,\ y\mapsto xyX \\
+x\mapsto xy,\ y\mapsto y &
+x\mapsto Yx,\ y\mapsto y &
+x\mapsto Yxy,\ y\mapsto y \\
+x\mapsto xY,\ y\mapsto y &
+x\mapsto yx,\ y\mapsto y &
+x\mapsto yxY,\ y\mapsto y.
+\end{array}
+\]
+Only the twelve second-kind maps are used in the length-descent loop; the eight
+signed permutations already preserve total length.
+
+\subsection{The classical theorem used}
+
+\begin{theorem}[Whitehead peak reduction, specialized statement]
+\label{thm:whitehead}
+For a finite tuple of cyclic words in a finitely generated free group:
+\begin{enumerate}
+  \item if the tuple is not of minimum total length in its automorphism
+  orbit, some Whitehead automorphism strictly decreases its total length;
+  \item all minimum-length representatives in the same orbit are connected
+  through length-preserving Whitehead moves.
+\end{enumerate}
+\end{theorem}
+
+This classical theorem is cited rather than reproved.  Its hypotheses apply
+to the object used here: an unordered pair of cyclic relators, with each
+relator considered up to cyclic rotation and inversion.  The function
+\(\canon\) chooses a word-pair representative of this object.
+
+The project converts Theorem~\ref{thm:whitehead} into a complete orbit key:
+\begin{enumerate}
+  \item repeatedly apply a length-decreasing Whitehead automorphism;
+  \item once minimum total length is reached, explore the entire
+  length-preserving minimum level set;
+  \item choose the lexicographically least canonical pair in that set.
+\end{enumerate}
+
+\begin{proposition}
+For canonical relator pairs \(P,Q\), their Whitehead keys satisfy
+\[
+K(P)=K(Q)
+\quad\Longleftrightarrow\quad
+\exists\phi\in\Aut(\F)\text{ such that }
+\canon(\phi(P))=\canon(Q).
+\]
+\end{proposition}
+
+\begin{proof}
+An orbit of unordered cyclic-relator pairs modulo inversion has one
+minimum-level set.  By
+Theorem~\ref{thm:whitehead}, every descent reaches its minimum length and
+every minimum representative lies in the connected level set explored in
+step 2.  Hence the lexicographic minimum is independent of the starting
+canonical pair.  Equal keys therefore imply the displayed canonicalized
+automorphism relation, while that relation necessarily produces the same
+key.
+\end{proof}
+
+Peak reduction alone is not a canonical key: distinct descent choices can
+reach different minimum representatives.  On the 261 inputs, using only
+the peak-reduced endpoint would incorrectly produce 259 classes rather
+than 168.  Exploring the complete minimum level set is essential.
+
+\subsection{Independent checks}
+
+The exact partition was computed independently by:
+\begin{itemize}
+  \item \sourcefile{experiments/analysis/whitehead.py}, and
+  \item \sourcefile{experiments/equivalence_classes/lib/autcanon.py}.
+\end{itemize}
+They agree element for element.  The second implementation records a
+witness \(\phi\) satisfying
+\[
+  \canon(\phi(P))=\text{reported orbit representative}.
+\]
+The certificate verifier then proves independently, by Nielsen reduction,
+that every recorded pair \((\phi(x),\phi(y))\) is a basis.  Thus a bug that
+produced a non-invertible substitution would be rejected.
+
+\subsection{Empirical Aut witnesses on the 93 pure change-of-variable edges}
+
+The shipped proof book
+\sourcefile{results/equivalence_classes/certificates.json}
+contains \(137\) verified edges in total:
+\[
+  93\ \texttt{cv}/\texttt{aut}
+  \quad+\quad
+  44\ \texttt{ac}/\texttt{aca}
+  \quad=\quad
+  137.
+\]
+The \(93\) edges are \textbf{pure automorphisms}: a single substitution \(\psi\)
+with \(\canon(\psi(A))=\canon(B)\) and \emph{no} Andrews--Curtis move.  The
+\(44\) remaining edges are the ones that use Definition~2.1 S-moves (ACA
+search); they are not counted in the table below.
+
+Among those \(93\) pure Aut edges, the witnessing substitution \(\psi\) has
+the following empirical frequencies:
+
+\begin{center}
+\begin{tabular}{r l l}
+\toprule
+Count & Map \(\psi\) & Notes\\
+\midrule
+82 & \(x\mapsto x,\ y\mapsto Y\) & dominates; signed\\
+3 & \(x\mapsto Y,\ y\mapsto x\) & signed\\
+2 & \(x\mapsto y,\ y\mapsto x\) & signed\\
+1 & \(x\mapsto X,\ y\mapsto y\) & signed\\
+1 & \(x\mapsto xy,\ y\mapsto y\) & second-kind / composite\\
+1 & \(x\mapsto xY,\ y\mapsto y\) & second-kind / composite\\
+1 & \(x\mapsto XY,\ y\mapsto y\) & longer word\\
+1 & \(x\mapsto xY,\ y\mapsto Y\) & mixed\\
+1 & \(x\mapsto yx,\ y\mapsto Y\) & mixed\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Thus \(88\) of the \(93\) pure Aut merges are single-letter (signed-permutation
+style), and only \(5\) need a longer generator image.  The textbook example
+\(x\mapsto xy,\ y\mapsto y\) appears, but only once as a direct \(\texttt{cv}\)
+witness; signed \(y\mapsto Y\) accounts for almost all Aut collapsing of the
+\(261\) inputs.
+
+\subsection{Worked example: \(19\_37\) and \(17\_41\)}
+
+Take
+\begin{align*}
+19\_37&=(\texttt{YYXXyx},\ \texttt{YXyXyXyxxYxYx}),\\
+17\_41&=(\texttt{YYXYXyx},\ \texttt{YXYxxxyXXX}).
+\end{align*}
+Apply \(\phi(x)=xy,\phi(y)=y\), proved invertible in
+Example~\ref{ex:basic-aut}.  The proof book records:
+\[
+\texttt{YYXXyx}
+\xmapsto{\phi}
+\texttt{YYYXYXyxy}
+\xmapsto{\text{reduce}}
+\texttt{YYXYXyx},
+\]
+and
+\[
+\begin{aligned}
+w_0&=\texttt{YXyXyXyxxYxYx},\\
+w_1&=\texttt{YYXXXyxyxxxy}
+  &&\text{(apply \(\phi\))},\\
+w_2&=\texttt{YXXXyxyxxx}
+  &&\text{(freely reduce)},\\
+w_3&=\texttt{XXXYXYxxxy}
+  &&\text{(invert)},\\
+w_4&=\texttt{YXYxxxyXXX}
+  &&\text{(right rotate by \(7\))}.
+\end{aligned}
+\]
+Therefore
+\[
+  \canon(\phi(19\_37))=17\_41.
+\]
+This is a full-\(\Aut(\F)\) identification not restricted to one-letter
+signed relabeling.
+
+\subsection{Exact count}
+
+Whitehead canonicalization gives
+\[
+  171\longrightarrow168.
+\]
+Unlike the later search-dependent numbers, 168 is exact with respect to
+change of variables: no further \(\Aut(\F)\) orbit mergers exist among the
+261 inputs.
+
+\subsection*{Exercises}
+
+\begin{exercise}
+Explain why the map \(x\mapsto xy,y\mapsto y\) can change which numerical
+rotations exist even though it preserves AC-triviality.
+\end{exercise}
+
+\begin{exercise}
+Why does a witness satisfying
+\(\canon(\phi(P))=\canon(Q)\) fail to prove anything unless \(\phi\) is
+verified to be an automorphism?
+\end{exercise}
+
+\begin{exercise}
+Give a concise proof that equality of complete Whitehead canonical keys is
+an equivalence relation.  Which part depends on
+Theorem~\ref{thm:whitehead}?
+\end{exercise}
+
+\begin{exercise}
+Explain why agreement of two independently written implementations is
+stronger evidence than running one implementation twice, but is not itself
+a replacement for the mathematical theorem.
+\end{exercise}
+
+\section{Definition 2.1 S-moves as elementary AC sequences}
+\label{sec:smove}
+
+The equivalence search does not expand elementary AC1--AC3 one at a time.
+It uses the solver's substitution or S-move encoding:
+\[
+  r_i\longmapsto
+  \rot_{k_1}(r_i)\,
+  \rot_{k_2}(r_j^\eps),
+  \qquad i\ne j,\quad \eps\in\{+1,-1\},
+\]
+followed by reduction and canonicalization.  The other relator must remain
+unchanged in the mathematical presentation.
+
+\subsection{Rotations are conjugates}
+
+Let \(r=uv\), and let the rotation move the suffix \(v\) to the front:
+\[
+  \rot(r)=vu.
+\]
+There are two useful conjugation identities:
+\[
+  vu=u^{-1}(uv)u=v(uv)v^{-1}.
+\]
+Thus one may choose either conjugator \(u^{-1}\) or \(v\).  Under
+generator-only AC3, a conjugator \(c=a_1\cdots a_m\) expands into \(m\)
+generator conjugations.  Define \(C(r,k)\) to be the length of the chosen
+freely reduced conjugator realizing \(\rot_k(r)\).  A convenient bound is
+\[
+  C(r,k)\le\min\{k,\len{r}-k\}
+\]
+for a right rotation by \(k\), before any further cancellation.
+
+\subsection{A constructive elementary realization}
+
+Let
+\[
+R_i=c_1r_ic_1^{-1}=\rot_{k_1}(r_i),\qquad
+R_j=c_2r_j^\eps c_2^{-1}=\rot_{k_2}(r_j^\eps),
+\]
+and put \(m_1=\len{c_1}\), \(m_2=\len{c_2}\).
+The following source-convention sequence replaces \(r_i\) by \(R_iR_j\)
+and restores the other relator to \(r_j\):
+
+\begin{enumerate}
+  \item If \(\eps=-1\), invert \(r_j\) using AC2.
+  \item Conjugate \(r_i\) by \(c_1\), using \(m_1\) generator AC3 moves.
+  \item Conjugate the current \(r_j^\eps\) by \(c_2\), using \(m_2\)
+  generator AC3 moves.
+  \item Apply one AC1 to replace the current target by its product with
+  the current other relator.
+  \item Conjugate the other relator by \(c_2^{-1}\), using \(m_2\) AC3
+  moves, restoring it to \(r_j^\eps\).
+  \item If \(\eps=-1\), invert the other relator again, restoring \(r_j\).
+\end{enumerate}
+
+\begin{proposition}[Source-convention S-move bound]
+\label{prop:smove-bound}
+Before final canonicalization, the construction above uses at most
+\[
+  \boxed{
+  1+m_1+2m_2+2\,\mathbf 1_{\{\eps=-1\}}
+  }
+\]
+elementary source-convention moves.
+\end{proposition}
+
+\begin{proof}
+There is one AC1, \(m_1+2m_2\) generator AC3 moves, and two AC2 moves
+exactly when \(\eps=-1\).  Inspection of the six stages proves that the
+target is \(R_iR_j\) and the other relator is restored.
+\end{proof}
+
+This is a constructive upper bound, not a shortest-path formula.  Other
+realizations may be shorter.  If arbitrary-word conjugation is counted as
+one AC3 macro, the corresponding construction uses at most one AC1, three
+arbitrary-word conjugations (target, other, restore other), and two
+inversions in the negative case.  This explains why different papers quote
+different expansion counts.
+
+\subsection{Canonicalization cost}
+
+The encoded child is then freely/cyclically reduced, possibly inverted,
+rotated, and swapped.  To convert the raw child to that exact stored pair
+under the source convention, add:
+\begin{itemize}
+  \item zero for free reduction and relator sorting;
+  \item one AC2 for each whole-relator inversion selected;
+  \item one generator AC3 per letter in each chosen cyclic-reduction or
+  rotation conjugator.
+\end{itemize}
+Therefore the exact certificate supplies enough information to compute a
+finite elementary upper bound, but the encoded S-move count itself is not
+the elementary AC count.
+
+\subsection{Transporting an S-move through \(\phi\)}
+
+One may first expand the S-move into elementary operations and then apply
+Proposition~\ref{prop:per-move-bound}.  Equivalently, replace each
+conjugator \(c\) by \(\phi(c)\).  Since
+\[
+  \len{\phi(c)}\le\Lambda(\phi)\len{c},
+\]
+the pre-canonicalization transported construction has the bound
+\[
+  1+\len{\phi(c_1)}+2\len{\phi(c_2)}
+  +2\,\mathbf 1_{\{\eps=-1\}}
+\]
+and hence
+\[
+  1+\Lambda(\phi)(m_1+2m_2)
+  +2\,\mathbf 1_{\{\eps=-1\}}.
+\]
+Free cancellation can only lower these lengths.
+
+\begin{warning}[Why child sets do not commute with general automorphisms]
+The raw algebraic identity transports correctly, but the solver enumerates
+rotations by numerical positions in the current words.  A length-changing
+automorphism changes those positions and may introduce cancellation.
+Therefore, for general \(\phi\),
+\[
+  \operatorname{children}(\phi(P))
+  \ne
+  \phi(\operatorname{children}(P))
+\]
+as enumerated canonical sets.  This does not threaten soundness: every
+edge found is still legal.  It causes incompleteness because some quotient
+edges may be missed when only one representative of an Aut-orbit is
+expanded.
+\end{warning}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+For \(r=abcdef\), express the right rotation by \(2\), \(efabcd\), as
+conjugation in two different ways.  Compare the two conjugator lengths.
+\end{exercise}
+
+\begin{exercise}
+Use Proposition~\ref{prop:smove-bound} when
+\(m_1=2,m_2=3,\eps=-1\).  Give the number of AC1, AC2, and AC3 moves
+separately.
+\end{exercise}
+
+\begin{exercise}
+Write all intermediate relator pairs in the six-stage construction when
+\(c_1=x\), \(c_2=Y\), and \(\eps=-1\).  Do not simplify away the restoration
+steps.
+\end{exercise}
+
+\begin{exercise}
+Let \(\phi(x)=xy,\phi(y)=y\).  If \(c_1=Xy\) and \(c_2=xY\), calculate
+\(\phi(c_1),\phi(c_2)\), freely reduce them, and evaluate the sharper
+transported S-move bound for \(\eps=+1\).
+\end{exercise}
+
+\section{ACA: the equivalence relation used by the search}
+\label{sec:aca}
+
+\begin{definition}
+Write \(P\sim_{\ACA}Q\) when \(P\) and \(Q\) are connected by a finite
+sequence whose steps are either:
+\begin{enumerate}
+  \item ordinary AC moves, or
+  \item changes of variables by automorphisms in \(\Aut(\F)\).
+\end{enumerate}
+\end{definition}
+
+An automorphism step is not declared to be an AC step.  Instead, the
+important Boolean property
+\[
+  \mathcal T(P)=
+  \begin{cases}
+  1,&P\text{ is AC-trivial},\\
+  0,&P\text{ is not AC-trivial}
+  \end{cases}
+\]
+is invariant under each type of ACA step.
+
+\begin{proposition}[ACA preserves the problem]
+\label{prop:aca-preserves}
+If \(P\sim_{\ACA}Q\), then
+\[
+  P\text{ is AC-trivial}
+  \quad\Longleftrightarrow\quad
+  Q\text{ is AC-trivial}.
+\]
+\end{proposition}
+
+\begin{proof}
+An AC move preserves membership in the AC component of \((x,y)\), because
+it is reversible by a finite AC sequence.  An automorphism preserves
+AC-triviality by Theorem~\ref{thm:main-invariance}.  Equality of the truth
+value propagates along a finite chain.
+\end{proof}
+
+\begin{warning}
+``Same ACA problem'' is weaker than ``joined by a raw AC path.''  The search
+therefore reports components of a finite verified ACA-edge subgraph, not
+proven ordinary AC-equivalence classes and not an exact partition into full
+ACA classes.
+\end{warning}
+
+\subsection{The quotient search graph}
+
+The search uses:
+\begin{itemize}
+  \item \textbf{Node:} one complete \(\Aut(\F)\)-orbit, keyed by its
+  Whitehead canonical representative.
+  \item \textbf{Edge:} apply one encoded S-move to the chosen Aut-minimal
+  representative, then map the child to its Whitehead key.
+  \item \textbf{Priority:} the Aut-minimal total relator length.
+\end{itemize}
+
+Using Aut-minimal length matters.  A raw word pair of total length 34 may be
+one change of variables away from length 16.  A raw length-ordered search
+must enumerate a large ``hump'' that the quotient representation collapses.
+
+\subsection{Soundness and incompleteness}
+
+\begin{theorem}[Soundness of every reported merge]
+\label{thm:search-sound}
+If two sources meet in the quotient search, they have the same
+AC-triviality status.
+\end{theorem}
+
+\begin{proof}
+Each path step consists of a legal S-move, which
+Proposition~\ref{prop:smove-bound} expands into elementary AC moves,
+followed by a verified automorphism and canonical bookkeeping.  Each part
+preserves \(\mathcal T\).  If paths from \(P\) and \(Q\) end in the same
+Aut-orbit, transitivity gives \(\mathcal T(P)=\mathcal T(Q)\).
+\end{proof}
+
+The search is incomplete for three reasons:
+\begin{enumerate}
+  \item it expands only one representative from each Aut-orbit;
+\item general automorphisms do not preserve the enumerated child set;
+\item length, state, time, and memory caps remove possible states.
+\end{enumerate}
+All three mechanisms remove edges; none can create a false edge.  Hence:
+\[
+\boxed{\text{Every merge found is a proof.  No merge found proves nothing.}}
+\]
+
+\subsection*{Exercises}
+
+\begin{exercise}
+Construct a three-step ACA chain containing one automorphism step and two
+AC steps.  Explain why it proves equality of AC-triviality status without
+proving that the endpoints are directly adjacent in the AC graph.
+\end{exercise}
+
+\begin{exercise}
+Why does expanding only one representative of an Aut-orbit preserve
+soundness but lose completeness?
+\end{exercise}
+
+\begin{exercise}
+Suppose a search cap removes the only path connecting two reported
+components.  Does this create too many components or too few?  Why is this
+the safe direction for choosing a workload?
+\end{exercise}
+
+\begin{exercise}
+State the precise difference between a node of the raw AC graph and a node
+of the ACA quotient graph.
+\end{exercise}
+
+\section{The complete reduction: 261 to at most 124}
+\label{sec:pipeline}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{X r X}
+\toprule
+Identification applied & Count & Status\\
+\midrule
+Exact ordered relator pair & 261 & exact\\
+Canonical rotation/inversion/swap & 261 & exact; no collisions\\
+Eight signed generator relabelings & 171 & exact for this subgroup\\
+Full \(\Aut(\F)\), Whitehead canonical key & 168 & exact Aut-orbit partition\\
+ACA search, Aut-minimal ceiling 28 & 126 & sound upper bound\\
+Probe at ceiling 34 & 125 & sound upper bound\\
+Overnight ladder, ceilings 30--36 & 124 & sound upper bound\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{From 168 to 126}
+
+The canonical cap-28 sweep seeded all 261 roots and the trivial
+presentation.  Initial Aut coincidences supplied 93 change-of-variable
+forest edges, reducing 261 to 168.  The ACA search supplied 42 further
+verified edges, reducing
+\[
+  168\longrightarrow126.
+\]
+The resulting 135 edges form a spanning forest on the 261 input vertices:
+\[
+  261-135=126.
+\]
+This historical 126-component forest is recorded in
+\sourcefile{results/equivalence_classes/sweep_seam_28_250.json}.  The
+current proof book and certificates were regenerated after adding the two
+later edges and contain 124 components.
+
+\subsection{Why 126 became 125}
+
+The cap-28 search could not reach an Aut-minimal meeting state of total
+length 30, regardless of node budget.  A probe with ceiling 34 found
+\[
+  21\_3\sim_{\ACA}21\_29,
+\]
+joining two singleton components and giving 125.  The paths had lengths
+one and three encoded S-moves to a common Aut-orbit.
+
+\subsection{Why 125 became 124}
+
+Five overnight arms at ceilings 30, 32, 32 (deterministic rerun), 34, and
+36 all found the additional merge
+\[
+  21\_7\sim_{\ACA}21\_28.
+\]
+Again the two sides reached a common Aut-orbit in one and three encoded
+S-moves.  This joins another pair of singleton components:
+\[
+  126-2=124.
+\]
+The five arms explored roughly 700,000 nodes in total and found no further
+merger, but every arm ended because of a state or memory resource cap, not
+because its queue was exhausted.
+
+\subsection{The coverage theorem}
+
+\begin{theorem}[One representative per certified component suffices]
+\label{thm:coverage}
+Let \(\mathcal P\) be the 261 input presentations, and let the verified ACA
+edges have 124 connected components.  Choose one representative \(R_C\)
+from each component \(C\).  If every \(R_C\) is AC-trivial, then every
+presentation in \(\mathcal P\) is AC-trivial.
+\end{theorem}
+
+\begin{proof}
+For every \(P\in\mathcal P\), there is exactly one certified component
+\(C\) containing it and a finite verified edge path from \(P\) to \(R_C\).
+By Proposition~\ref{prop:aca-preserves},
+\[
+  P\text{ is AC-trivial}
+  \Longleftrightarrow
+  R_C\text{ is AC-trivial}.
+\]
+The assumed triviality of all 124 representatives therefore implies the
+triviality of all 261 inputs.
+\end{proof}
+
+\begin{corollary}[Safe-direction error]
+If the incomplete search missed additional valid mergers, running 124
+representatives performs redundant work but does not omit any of the 261
+inputs.
+\end{corollary}
+
+\begin{proof}
+A missed edge can only merge two currently separate certified components,
+so the true ACA partition can be coarser and have fewer components.  It
+cannot split a verified component.  Every original vertex is already in
+one selected component.
+\end{proof}
+
+\subsection{How to obtain a 124-representative workload}
+
+The historical probe-seed manifest
+\sourcefile{results/equivalence_classes/classes_126_from_greedy_1000000_261_mrl48.jsonl}
+still contains
+126 rows and is intentionally retained because the probe certificates name
+its class IDs.  Starting from that historical manifest, merge:
+\[
+\begin{array}{ccl}
+C123\ (21\_29)&\text{with}&C124\ (21\_3),\\
+C122\ (21\_28)&\text{with}&C125\ (21\_7).
+\end{array}
+\]
+Keep either representative from each pair.  All other canonical
+components remain unchanged, producing 124 representatives.  The current
+production deliverable has already performed these unions:
+\begin{center}
+\sourcefile{results/equivalence_classes/classes_sweep_seam_28_250_plus_overnight.csv}.
+\end{center}
+It contains 124 rows and supersedes the historical 126-row workload.
+
+\subsection{What 124 does and does not mean}
+
+\begin{itemize}
+  \item It means there are \emph{at most} 124 distinct ACA problems among
+  these 261 inputs.
+  \item It does not mean that the 124 certified components are mutually
+  ACA-inequivalent; more search may merge them.
+  \item It does not mean there are 124 ordinary AC-classes.
+  \item It does not prove any input AC-trivial.  The reported solved set is
+  empty.
+  \item It proves a conditional workload statement: 124 successful
+  trivializations would settle all 261.
+\end{itemize}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+Verify the component arithmetic
+\[
+261-93-42-2=124.
+\]
+Explain what each subtraction represents mathematically.
+\end{exercise}
+
+\begin{exercise}
+Suppose a future verified run finds five additional edges, but two lie
+inside already connected components.  By how much can the component count
+decrease?
+\end{exercise}
+
+\begin{exercise}
+Give a formal counterexample to the statement:
+``Because the search returned 124 components, it proved there are at least
+124 distinct problems.''
+\end{exercise}
+
+\begin{exercise}
+If only 20 of the selected 124 representatives are trivialized, what
+exactly has been proved about the 261 inputs?
+\end{exercise}
+
+\begin{exercise}
+Explain why five runs agreeing on 124 strengthens empirical confidence but
+does not turn the upper bound into an exact count.
+\end{exercise}
+
+\section{Certificates: why the mergers are proofs}
+\label{sec:certificates}
+
+The search output is not trusted merely because it prints a class count.
+The verification layers are deliberately separated.
+
+\subsection{Two edge types}
+
+The current proof book has exactly \(137\) edges.  They split as follows.
+
+\begin{description}
+  \item[\texttt{cv}/\texttt{aut} --- \(93\) edges.]
+  \textbf{Pure Aut / change of variables only.}  A recorded automorphism
+  \(\psi\) must satisfy
+  \[
+    \canon(\psi(A))=\canon(B).
+  \]
+  No Definition~2.1 S-move appears.  These \(93\) forest edges are exactly
+  what collapses \(261\to168\) Aut-orbits.  Empirically, \(82\) of them use
+  \(\psi\colon x\mapsto x,\ y\mapsto Y\); see the frequency table in
+  Section~\ref{sec:whitehead}.
+
+  \item[\texttt{ac}/\texttt{aca} --- \(44\) edges.]
+  \textbf{ACA edges: AC/S-moves are required.}  Both roots have replayable
+  Definition~2.1 paths, optionally interleaved with verified automorphisms,
+  ending in the same Aut-orbit.  The historical cap-28 sweep found \(42\)
+  such edges (\(168\to126\)); the two later probe mergers
+  (\(21\_3\sim 21\_29\) and \(21\_7\sim 21\_28\)) bring the current book to
+  \(44\).  Of these \(44\), only \(6\) are tagged pure AC paths (every
+  recorded Aut witness on the path is the identity after Aut-minimal
+  alignment); the rest mix nontrivial \(\phi\) with S-moves.
+\end{description}
+
+\[
+  \underbrace{93}_{\text{Aut only}}
+  \;+\;
+  \underbrace{44}_{\text{ACA with S-moves}}
+  \;=\;
+  137
+  \qquad\text{and}\qquad
+  261-137=124.
+\]
+
+An \texttt{aca} edge generally does not satisfy
+\(\canon(\psi(A))=\canon(B)\) for one direct substitution; AC moves occur
+between the endpoints.  Applying the pure-change test to an \texttt{aca}
+edge would reject a correct certificate.
+
+\subsection{Independent verification}
+
+The verifier performs the following checks.
+
+\begin{enumerate}
+  \item Re-read each source presentation from the original CSV, binding
+  both its row identity and its relator words.
+  \item Replay each Definition 2.1 move by direct word operations.
+  \item Check every recorded \(\phi\) by independent Nielsen basis
+  reduction.
+  \item Canonicalize independently of the pure-Python search routine.
+  \item Require both sides of an ACA merge to end in the same recorded
+  Aut-orbit.
+  \item Check the exponent-sum determinant invariant.
+  \item Rebuild the entire partition using only edges that passed all
+  previous checks.
+\end{enumerate}
+
+The last step is essential.  Checking each listed edge cannot detect a
+separate union-find bug that assigns an unconnected vertex to a component.
+Rebuilding the transitive closure from verified edges detects such an
+over-merge.
+
+The production verifier
+\begin{center}
+\sourcefile{experiments/equivalence_classes/verify/verify_proofs.py}.
+\end{center}
+re-proves the current 137-edge, 124-component proof book from
+\sourcefile{results/equivalence_classes/certificates.json} and the raw input
+CSV.  The two mergers that
+historically changed 126 to 124 are also checked directly in their original
+probe files by
+\begin{center}
+\sourcefile{experiments/equivalence_classes/verify/verify_probe_merges.py}.
+\end{center}
+The latter reconstructs roots from the historical 126 manifest rather than
+trusting the probe files' own root blocks.
+
+\subsection{Mutation testing}
+
+The checker is tested by deliberately corrupting certificates: replacing
+an automorphism with a non-basis endomorphism, changing a rotation number,
+swapping words between presentation IDs, corrupting a concatenation, or
+forcing an unsupported over-merge.  Each mutation must cause verification
+to fail.  This tests not only the mathematical certificate but also whether
+the checker actually enforces the advertised conditions.
+
+\subsection{Invariant cross-check}
+
+For a pair \(P=(r_1,r_2)\), form the exponent-sum matrix
+\[
+  M(P)=
+  \begin{pmatrix}
+  \exp_x(r_1)&\exp_y(r_1)\\
+  \exp_x(r_2)&\exp_y(r_2)
+  \end{pmatrix}.
+\]
+Elementary AC1 and AC2 perform unimodular row operations; AC3 does not
+change exponent sums.  A change of free basis performs a unimodular column
+operation.  Therefore
+\[
+  \len{\det M(P)}
+\]
+is ACA-invariant.  It equals 1 for every input, so it cannot separate the
+remaining groups, but a mismatch across a claimed merge would expose an
+error.
+
+\subsection*{Exercises}
+
+\begin{exercise}
+Why is checking every edge insufficient to verify the reported component
+count?
+\end{exercise}
+
+\begin{exercise}
+Show directly how AC1, AC2, and AC3 act on the exponent-sum matrix and prove
+that \(\len{\det M}\) is unchanged.
+\end{exercise}
+
+\begin{exercise}
+Explain why the fact that \(\len{\det M}=1\) for all 261 is useful as a
+bug detector but useless as a discriminator among these inputs.
+\end{exercise}
+
+\begin{exercise}
+Design one certificate mutation not listed above and state the verifier
+condition that should reject it.
+\end{exercise}
+
+\section{Presentation-ready synthesis}
+\label{sec:presentation}
+
+\subsection{A concise theorem chain}
+
+\begin{enumerate}
+  \item A balanced presentation
+  \(\langle x,y\mid r_1,r_2\rangle\) is the quotient
+  \(\F/\Ncl{r_1,r_2}\).
+  \item An automorphism \(\phi\in\Aut(\F)\) is a reversible change of free
+  basis and induces an isomorphism of the presented quotient groups.
+  \item Every elementary AC move transports through \(\phi\) to a finite
+  source-convention AC sequence.  AC1 and AC2 cost one; AC3 by \(g\) costs
+  at most \(\len{\phi(g)}\).
+  \item Hence \(P\) is AC-trivial if and only if \(\phi(P)\) is
+  AC-trivial.
+  \item Therefore each AC or Aut edge preserves the question ``is this
+  presentation AC-trivial?''
+  \item The finite verified ACA-edge subgraph on 261 inputs has exactly
+  124 components, each contained in a true ACA class.
+  \item Consequently one representative per component is a sufficient
+  coverage set; proving all 124 representatives AC-trivial would prove all
+  261 AC-trivial.
+\end{enumerate}
+
+\subsection{Move-bound summary}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{X X}
+\toprule
+Object & Constructive source-convention bound\\
+\midrule
+Transported AC1 & \(1\)\\
+Transported AC2 & \(1\)\\
+Transported AC3 by \(g\) & \(\len{\phi(g)}\le\Lambda(\phi)\)\\
+Transported path & \(N_1+N_2+\Lambda(\phi)N_3\), before basis correction\\
+Terminal basis correction &
+\(C_{\mathrm{basis}}(\phi)\), from a separately logged Nielsen reduction;
+not stored by the current certificates\\
+One raw S-move before canonicalization &
+\(1+m_1+2m_2+2\mathbf1_{\{\eps=-1\}}\)\\
+Transported raw S-move &
+\(1+\Lambda(\phi)(m_1+2m_2)+2\mathbf1_{\{\eps=-1\}}\)\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Claims to make}
+
+\begin{itemize}
+  \item ``The 261 inputs represent at most 124 distinct ACA problems.''
+  \item ``The 168 full-\(\Aut(\F)\) count is exact.''
+  \item ``The 124 count is the transitive closure of certified mergers and
+  is still an upper bound.''
+  \item ``One representative per certified component covers all 261.''
+  \item ``Zero of the 261 were trivialized by this analysis.''
+\end{itemize}
+
+\subsection{Claims not to make}
+
+\begin{itemize}
+  \item ``There are exactly 124 AC-classes.''
+  \item ``The 124 certified components are proven ACA-inequivalent.''
+  \item ``\(P\) is always AC-equivalent to \(\phi(P)\).''
+  \item ``An automorphism preserves the same numerical rotation or the
+  same elementary move count.''
+  \item ``The solver's \(r_j^{-1}\) multiplication is one elementary AC1
+  move under the source convention.''
+  \item ``The equivalence-class computation solved any presentation.''
+\end{itemize}
+
+\subsection{Oral rehearsal questions}
+
+\begin{exercise}
+Give a two-minute explanation of why \(\phi(x)=xy,\phi(y)=y\) is an
+automorphism and why it preserves AC-triviality.
+\end{exercise}
+
+\begin{exercise}
+Give a one-minute explanation of why 124 is sufficient but not exact.
+\end{exercise}
+
+\begin{exercise}
+An audience member asks: ``If ACA-equivalence is not AC-equivalence, why
+are you allowed to discard 137 runs?''  Give a rigorous response.
+\end{exercise}
+
+\begin{exercise}
+An audience member asks: ``Did you prove 124 presentations trivial?''
+Answer without weakening or overstating the result.
+\end{exercise}
+
+\newpage
+\section{Complete answer key and learning diagnostics}
+\label{sec:answers}
+
+The answers deliberately show intermediate reasoning.  When an exercise can
+be solved in several ways, the answer gives one auditable construction rather
+than claiming minimality.
+
+\subsection*{Answers for Section 1: AC conventions}
+
+\subsubsection*{Answer to Exercise 1.1}
+
+Invert the second relator, multiply, and restore it:
+\[
+(r_1r_2,r_2)
+\xrightarrow{\AC2}
+(r_1r_2,r_2^{-1})
+\xrightarrow{\AC1}
+(r_1r_2r_2^{-1},r_2^{-1})
+=(r_1,r_2^{-1})
+\xrightarrow{\AC2}
+(r_1,r_2).
+\]
+This also proves that the directed-looking positive AC1 operation is
+reversible by a finite sequence, which is enough for AC-equivalence.
+
+\diagnostic{If the middle step looked like multiplication by an inverse,
+notice that the \emph{current} second relator is already \(r_2^{-1}\).  AC1
+is still positive multiplication by the current relator.}
+
+\subsubsection*{Answer to Exercise 1.2}
+
+If AC3 permits \(r\mapsto w r w^{-1}\) for arbitrary \(w\), then any cyclic
+rotation is one AC3 macro-move.  In the source-paper convention, AC3 permits
+only one generator or inverse.  Conjugation by a reduced word
+\(w=a_1\cdots a_m\) then expands into \(m\) elementary AC3 moves.  Thus
+``one rotation'' may mean one encoded operation or several elementary
+source-paper moves.
+
+\diagnostic{Whenever a move count is quoted, first write the permitted
+conjugator beside AC3.}
+
+\subsubsection*{Answer to Exercise 1.3}
+
+\begin{itemize}
+  \item \(r_1\mapsto r_1^{-1}\) is one elementary AC2.
+  \item \(r_1\mapsto r_1r_2^{-1}\), while restoring \(r_2\), is a
+  three-move macro: AC2, AC1, AC2.
+  \item \(r_1\mapsto w r_1w^{-1}\) is elementary only when the freely
+  reduced \(w\) is one generator or inverse.  Otherwise it is an
+  arbitrary-word macro that expands into \(\len{w}\) generator AC3 moves.
+  \item \((r_1,r_2)\mapsto(r_2,r_1)\) is bookkeeping because relator order
+  is not part of the presentation.
+\end{itemize}
+
+\diagnostic{The operation name alone is insufficient; check both the
+allowed operand and what must remain unchanged.}
+
+\subsection*{Answers for Section 2: free groups and presentations}
+
+\subsubsection*{Answer to Exercise 2.1}
+
+Reduce from left to right:
+\[
+\texttt{xyYXxXY}
+\longrightarrow \texttt{xXxXY}
+\longrightarrow \texttt{xXY}
+\longrightarrow \texttt{Y}.
+\]
+More explicitly, \(yY\), then \(xX\), then the remaining \(xX\) cancel.
+The reduced word is \(Y\), whose inverse is \(y\).
+
+\diagnostic{If a different answer was obtained, use a stack: cancel only
+adjacent inverse letters and re-check adjacency after each cancellation.}
+
+\subsubsection*{Answer to Exercise 2.2}
+
+The relation \(y=1\) and the relation \(xy=1\) imply \(x=1\), so the
+presented group is trivial.  Under the source convention:
+\[
+(xy,y)\xrightarrow{\AC2}(xy,Y)
+\xrightarrow{\AC1}(xyY,Y)=(x,Y)
+\xrightarrow{\AC2}(x,y).
+\]
+Thus the presentation is not merely group-trivial; this explicit sequence
+proves it AC-trivial.
+
+\diagnostic{Separating the quotient argument from the AC sequence is
+important: the first proves the group is trivial, while the second proves
+the stronger AC-triviality statement.}
+
+\subsubsection*{Answer to Exercise 2.3}
+
+\(G_P=1\) says that \(r_1,r_2\) normally generate \(\F\).  A normal-closure
+membership statement permits an unspecified product of conjugates and gives
+no prescribed sequence reducing the \emph{ordered relator pair} through
+AC1--AC3.  Asserting that such a path always exists is precisely the
+Andrews--Curtis conjecture.
+
+\diagnostic{Do not replace ``normally generates'' by ``has a known AC
+derivation.''  They are different strengths of information.}
+
+\subsubsection*{Answer to Exercise 2.4}
+
+Balancedness means that the number of relators equals the number of
+generators.  The standard AC conjecture compares balanced \(n\)-generator,
+\(n\)-relator presentations to the \(n\)-generator trivial presentation.
+The equivalence pipeline fixes \(n=2\) and stores two relator slots.  A
+two-generator, three-relator presentation is not balanced and is neither a
+vertex in that graph nor one of the 261 inputs.
+
+\diagnostic{Stable AC may temporarily change the number of generators and
+relators together, but stabilization is not used in the 261-to-124
+pipeline.}
+
+\subsection*{Answers for Section 3: automorphisms}
+
+\subsubsection*{Answer to Exercise 3.1}
+
+Define
+\[
+\psi_k(x)=xy^{-k},\qquad\psi_k(y)=y.
+\]
+Then
+\[
+\psi_k(\phi_k(x))=\psi_k(xy^k)=xy^{-k}y^k=x,
+\qquad
+\psi_k(\phi_k(y))=y.
+\]
+Similarly,
+\[
+\phi_k(\psi_k(x))=\phi_k(xy^{-k})=xy^ky^{-k}=x,
+\qquad
+\phi_k(\psi_k(y))=y.
+\]
+The two homomorphisms are inverse on the free generators and hence inverse
+on all of \(\F\).
+
+\diagnostic{It is enough to check compositions on \(x,y\) only because of
+the universal property, not because longer words are being ignored.}
+
+\subsubsection*{Answer to Exercise 3.2}
+
+The forced letter images are
+\[
+\phi(Y)=Y,\qquad \phi(X)=YX,\qquad
+\phi(y)=y,\qquad \phi(X)=YX.
+\]
+Therefore
+\[
+\phi(\texttt{YXyX})
+=\texttt{Y}\,\texttt{YX}\,\texttt{y}\,\texttt{YX}
+=\texttt{YYXyYX}.
+\]
+The adjacent \(yY\) cancels, leaving
+\[
+\boxed{\texttt{YYXX}}.
+\]
+
+\diagnostic{For a capital letter, invert the whole image word: reverse it
+and invert every letter.  A simple case swap is wrong for multi-letter
+images.}
+
+\subsubsection*{Answer to Exercise 3.3}
+
+The universal property gives an endomorphism because any two image words
+define a homomorphism.  Let \(\exp_x(w)\) denote the exponent sum of \(x\).
+For every word \(w\),
+\[
+\exp_x(\eta(w))=2\exp_x(w),
+\]
+which is even.  The element \(x\in\F\) has exponent sum \(1\), so it is not
+in the image of \(\eta\).  Thus \(\eta\) is not surjective and cannot be an
+automorphism.
+
+\diagnostic{A determinant or exponent-sum test can disprove
+invertibility, but passing an abelianized test is not generally enough to
+prove a free-group endomorphism invertible.}
+
+\subsubsection*{Answer to Exercise 3.4}
+
+The transformed relators are \((xy,y)\).  Their normal closure is all of
+\(\F\), because it contains \(y\) and
+\[
+(xy)y^{-1}=x.
+\]
+Hence the transformed quotient is trivial.  The explicit inverse
+\(\psi(x)=xY,\psi(y)=y\) proves that the map induced by \(\phi\) on the
+quotients has a two-sided inverse.  This is the special case of
+Theorem~\ref{thm:quotient-iso}.
+
+\diagnostic{The quotient proof uses normal closure; the later three-move
+sequence proves the stronger AC statement.}
+
+\subsection*{Answers for Section 4: transported moves and bounds}
+
+\subsubsection*{Answer to Exercise 4.1}
+
+The original target is \(xr_1X\).  Applying \(\phi\) gives
+\[
+\phi(xr_1X)=xy\,\phi(r_1)\,YX.
+\]
+Starting with \(R=\phi(r_1)\), first conjugate by \(y\), then by \(x\):
+\[
+R\xrightarrow{\AC3}yRY
+\xrightarrow{\AC3}x(yRY)X=xyRYX.
+\]
+The second relator is unchanged.  Thus one original generator conjugation
+became two source-convention AC3 moves.
+
+\diagnostic{Conjugate by the letters of \(\phi(x)=xy\) in reverse order:
+first \(y\), then \(x\).}
+
+\subsubsection*{Answer to Exercise 4.2}
+
+Freely reduce the images:
+\[
+\phi(x)=\texttt{xyY}\longrightarrow\texttt{x},
+\qquad
+\phi(y)=\texttt{Yx}.
+\]
+This is an automorphism; for example, its inverse is
+\(\psi(x)=x,\psi(y)=xY\), since
+\[
+\psi(Yx)=yXx=y,\qquad \phi(xY)=xXy=y,
+\]
+and both compositions also fix \(x\).  The image lengths are \(1\) and \(2\), so
+\(\Lambda(\phi)=2\).  The sharper sum is
+\[
+10+4+7\cdot1+3\cdot2
+=14+7+6
+=\boxed{27}.
+\]
+The coarser bound \(\Lambda(\phi)N\), with
+\(N=10+4+7+3=24\), would be \(48\).
+
+\diagnostic{Reduce \(\phi(x),\phi(y)\) before measuring them, and use the
+actual conjugating letters for the sharper sum.}
+
+\subsubsection*{Answer to Exercise 4.3}
+
+For AC1,
+\[
+\phi(r_ir_j)=\phi(r_i)\phi(r_j)
+\]
+as a group identity.  Any cancellation merely changes the displayed
+reduced representative after the one AC1 operation.  For AC2,
+\[
+\phi(r_i^{-1})=\phi(r_i)^{-1}.
+\]
+Again free reduction is equality in \(\F\), not an extra move.  Therefore
+one transformed operation of the same type reaches the correct free-group
+element.
+
+\diagnostic{Move count concerns operations on group elements; free
+reduction chooses their word representatives.}
+
+\subsubsection*{Answer to Exercise 4.4}
+
+Under generator-only AC3, \(\phi(g)\) may be a word of length greater than
+one, so the conjugation must be decomposed letter by letter and the correct
+arrow is \(\AC^*\).  If AC3 is defined to permit an arbitrary conjugating
+word, the single operation
+\[
+\phi(r_i)\mapsto\phi(g)\phi(r_i)\phi(g)^{-1}
+\]
+is one AC3 macro-move.  AC1 and AC2 remain one move in either convention.
+
+\diagnostic{This is a convention issue, not a failure of the homomorphism
+identity.}
+
+\subsubsection*{Answer to Exercise 4.5}
+
+Isomorphic trivial quotient groups only show that both presentations
+present the group \(1\).  The implication ``presents \(1\)'' \(\Rightarrow\)
+``is AC-trivial'' is exactly the unproved Andrews--Curtis assertion.
+The correct route is stronger: when one presentation already has an AC
+path, transport that path and then reduce the terminal basis.
+
+\diagnostic{Identify whether an argument proves a fact about the quotient
+group or a path in the AC graph.}
+
+\subsection*{Answers for Section 5: canonicalization and relabeling}
+
+\subsubsection*{Answer to Exercise 5.1}
+
+The four unswapped maps are self-inverse:
+\[
+(x,y),\quad(X,y),\quad(x,Y),\quad(X,Y).
+\]
+Among the swapped maps,
+\[
+(y,x)^{-1}=(y,x),\qquad
+(Y,X)^{-1}=(Y,X),
+\]
+and
+\[
+(Y,x)^{-1}=(y,X),\qquad
+(y,X)^{-1}=(Y,x).
+\]
+Here \((u,v)\) abbreviates \(x\mapsto u,y\mapsto v\).  Direct composition on
+\(x,y\) verifies every claim.
+
+\diagnostic{For a swapped signed map, solve for the preimages of \(x\) and
+\(y\); do not assume every signed permutation is self-inverse.}
+
+\subsubsection*{Answer to Exercise 5.2}
+
+First substitute \(y\mapsto Y\), remembering \(Y\mapsto y\):
+\[
+\texttt{YYYxxyyX}\longmapsto\texttt{yyyxxYYX}.
+\]
+Invert by reversing and changing case:
+\[
+\texttt{yyyxxYYX}^{-1}=\texttt{xyyXXYYY}.
+\]
+Move the final three letters to the front:
+\[
+\texttt{xyyXXYYY}\longmapsto\texttt{YYYxyyXX}.
+\]
+This is the first relator of \(19\_50\).  The direct substituted string is
+not stored because canonicalization may invert and rotate it.
+
+\diagnostic{A canonical target is a fingerprint, not necessarily the raw
+substitution output.}
+
+\subsubsection*{Answer to Exercise 5.3}
+
+A signed permutation maps each letter to one letter and maps inverse
+letters to inverse letters.  Hence an adjacent inverse pair maps to an
+adjacent inverse pair, so free reduction commutes.  Because lengths and
+positions are unchanged, mapping a cyclic rotation equals rotating the
+mapped word by the same position.
+
+For \(\phi(x)=xy\), one \(x\)-position becomes two positions and cancellation
+may occur at image boundaries.  The same numerical rotation need no longer
+select the image of the same block.
+
+\diagnostic{The decisive property is length preservation at the letter
+level, not merely invertibility.}
+
+\subsubsection*{Answer to Exercise 5.4}
+
+All eight have the same AC-triviality truth value by
+Theorem~\ref{thm:main-invariance}.  Therefore a 200-move proof for one
+settles all seven others.  It does not imply that each has a shortest path
+of length 200, or even that the mechanically transported path has length
+200: conjugating letters and terminal basis corrections may change the
+elementary count.
+
+\diagnostic{Transfer the existence of a proof, not its optimal path
+length.}
+
+\subsection*{Answers for Section 6: full \(\Aut(F_2)\)}
+
+\subsubsection*{Answer to Exercise 6.1}
+
+An encoded rotation index refers to positions in the current word.  The
+map \(x\mapsto xy\) expands every \(x\) to two letters and may create free
+cancellation next to neighboring images.  Consequently word length and
+the boundaries of cyclic blocks change.  Nevertheless, the underlying
+rotation is a conjugation, and its image is conjugation by the image word,
+so AC-triviality is preserved.
+
+\diagnostic{Numerical rotation indices are representation-dependent;
+conjugation identities are group-theoretic.}
+
+\subsubsection*{Answer to Exercise 6.2}
+
+An arbitrary endomorphism still satisfies the homomorphism identities, but
+it may send the terminal basis \((x,y)\) to a non-basis.  Without
+invertibility there is no guaranteed path from
+\((\phi(x),\phi(y))\) back to \((x,y)\), nor a reverse implication obtained
+from \(\phi^{-1}\).  Thus the entire AC-triviality equivalence can fail.
+
+\diagnostic{The certificate must establish ``basis,'' not merely
+``homomorphism.''}
+
+\subsubsection*{Answer to Exercise 6.3}
+
+Equality of canonical keys is reflexive, symmetric, and transitive because
+ordinary equality is.  The substantive statement is that equality of keys
+is equivalent to equality of Aut-orbits of unordered cyclic-relator pairs,
+with each relator taken modulo inversion.  Whitehead peak reduction supplies
+minimum length, and minimum-level connectivity proves that every member of
+one orbit chooses the same lexicographic minimum.  That is the step depending
+on Theorem~\ref{thm:whitehead}.
+
+\diagnostic{Distinguish ``equality is an equivalence relation'' from
+``this key is complete for the intended orbit relation.''}
+
+\subsubsection*{Answer to Exercise 6.4}
+
+Running one implementation twice repeats the same assumptions and the same
+possible bugs.  Independently written implementations with different data
+flows can expose implementation-specific errors when their partitions
+disagree.  Agreement is strong engineering evidence, but the claim of
+completeness still rests on Whitehead's mathematical theorem; two programs
+could share a mistaken theorem or the same misunderstood convention.
+
+\diagnostic{Independent computation validates implementation, while a
+proof validates the mathematical specification.}
+
+\subsection*{Answers for Section 7: S-moves}
+
+\subsubsection*{Answer to Exercise 7.1}
+
+Write \(u=abcd\) and \(v=ef\), so \(r=uv\).  Then
+\[
+efabcd=v r v^{-1}
+\]
+uses a conjugator of length \(2\).  Also
+\[
+efabcd=u^{-1} r u
+\]
+uses a conjugator of length \(4\).  Both are correct; the suffix
+conjugator is shorter in this case.
+
+\diagnostic{A cyclic rotation has two obvious conjugation expressions.
+Choose the shorter only for a bound, not because the other is false.}
+
+\subsubsection*{Answer to Exercise 7.2}
+
+There is one AC1.  Since \(\eps=-1\), there are two AC2 moves.  The AC3
+count is
+\[
+m_1+2m_2=2+2\cdot3=8.
+\]
+The total is
+\[
+1+2+8=\boxed{11}.
+\]
+
+\diagnostic{The other relator must be conjugated back, which is why
+\(m_2\) occurs twice.}
+
+\subsubsection*{Answer to Exercise 7.3}
+
+Starting from \((r_i,r_j)\):
+\begin{align*}
+(r_i,r_j)
+&\xrightarrow{\AC2}(r_i,r_j^{-1})\\
+&\xrightarrow{\AC3}(x r_iX,r_j^{-1})\\
+&\xrightarrow{\AC3}(x r_iX,Yr_j^{-1}y)\\
+&\xrightarrow{\AC1}
+  (x r_iX\,Yr_j^{-1}y,\;Yr_j^{-1}y)\\
+&\xrightarrow{\AC3}
+  (x r_iX\,Yr_j^{-1}y,\;r_j^{-1})\\
+&\xrightarrow{\AC2}
+  (x r_iX\,Yr_j^{-1}y,\;r_j).
+\end{align*}
+The fifth line conjugates the other relator by \(y=c_2^{-1}\):
+\[
+y(Yr_j^{-1}y)Y=r_j^{-1}.
+\]
+The target retains the rotated inverse factor created before restoration.
+
+\diagnostic{Restoring the other relator must not alter the product already
+stored in the target.}
+
+\subsubsection*{Answer to Exercise 7.4}
+
+Using \(\phi(X)=YX\) and \(\phi(Y)=Y\):
+\[
+\phi(c_1)=\phi(Xy)=YXy,
+\]
+which is reduced and has length \(3\).  Also
+\[
+\phi(c_2)=\phi(xY)=xyY\longrightarrow x,
+\]
+which has length \(1\).  For \(\eps=+1\), the sharper bound is
+\[
+1+\len{\phi(c_1)}+2\len{\phi(c_2)}
+=1+3+2=\boxed{6}.
+\]
+
+\diagnostic{Using only \(\Lambda(\phi)\) would give a valid but weaker
+bound; reduce the complete conjugator images for the sharper value.}
+
+\subsection*{Answers for Section 8: ACA}
+
+\subsubsection*{Answer to Exercise 8.1}
+
+For example,
+\[
+P\xrightarrow{\AC1}P_1
+\xrightarrow{\phi}\phi(P_1)
+\xrightarrow{\AC2}Q.
+\]
+AC1 and AC2 preserve AC-triviality by AC reachability, and the middle step
+preserves it by Theorem~\ref{thm:main-invariance}.  Hence
+\(\mathcal T(P)=\mathcal T(Q)\).  The chain does not say that \(P,Q\) are
+adjacent, and the automorphism step need not itself be an ordinary AC path
+between its endpoints.
+
+\diagnostic{ACA chains preserve a property step by step; they do not
+collapse every step into one AC edge.}
+
+\subsubsection*{Answer to Exercise 8.2}
+
+Every child generated from the chosen representative is produced by a
+legal S-move and verified automorphism, so every reported edge is sound.
+However, a different representative \(\phi(P)\) of the same orbit may have
+different word lengths and different encoded rotations, exposing valid
+children not generated from \(P\).  Those missing edges cause
+incompleteness.
+
+\diagnostic{Soundness asks whether generated edges are valid; completeness
+asks whether all valid edges are generated.}
+
+\subsubsection*{Answer to Exercise 8.3}
+
+Removing the only connecting path leaves two reported components where the
+full graph has one.  Thus the bounded search reports too many components.
+Selecting one representative from each reported component may duplicate
+work, but it still selects at least one representative covering every
+input.  This is the safe direction.
+
+\diagnostic{Pruning can split a true component; it cannot fuse two true
+components.}
+
+\subsubsection*{Answer to Exercise 8.4}
+
+A raw AC-graph node is one specific canonical relator pair.  A quotient
+node is the entire \(\Aut(\F)\)-orbit of such pairs, represented by its
+complete Whitehead canonical key.  A quotient edge records a legal AC
+move from the selected orbit representative followed by re-identification
+of the child orbit.
+
+\diagnostic{Write brackets \([P]_{\Aut}\) when speaking about quotient
+nodes; this prevents confusing a presentation with its orbit.}
+
+\subsection*{Answers for Section 9: the count pipeline}
+
+\subsubsection*{Answer to Exercise 9.1}
+
+\[
+261-93=168
+\]
+uses the pure change-of-variable forest edges identifying full Aut-orbits.
+Then
+\[
+168-42=126
+\]
+uses the verified ACA search edges in the canonical cap-28 sweep.  Finally,
+the two probe-certified edges join two previously separate singleton pairs:
+\[
+126-2=124.
+\]
+Every subtraction is a successful union between two formerly distinct
+components, not merely a listed edge.
+
+\diagnostic{An edge lowers the component count only when its endpoints
+were previously in different components.}
+
+\subsubsection*{Answer to Exercise 9.2}
+
+The two edges internal to existing components lower the count by zero.
+The other three can lower it by at most one each, so the component count
+can decrease by at most \(3\).  It may decrease by less if those three
+become redundant after earlier new unions.
+
+\diagnostic{Count successful unions, not raw edges.}
+
+\subsubsection*{Answer to Exercise 9.3}
+
+The bounded graph can omit a valid edge between any two reported
+components.  In the extreme case, all 124 components could belong to one
+true ACA component; this is compatible with the current search because
+absence of an edge is not a proof.  Therefore 124 is not a lower bound.
+The proved statement is that the true number is at most 124.
+
+\diagnostic{A search-derived partition of a subgraph refines the partition
+of the full graph.}
+
+\subsubsection*{Answer to Exercise 9.4}
+
+For each of the 20 trivialized representatives, every original input in
+its certified component is proved AC-trivial.  The exact number of settled
+rows is the sum of the sizes of those 20 components, which cannot be
+deduced from the number 20 alone.  Nothing about the remaining 104
+representatives is proved by a failed or unfinished search.
+
+\diagnostic{Report solved components and their member counts, not simply
+the number of representative runs.}
+
+\subsubsection*{Answer to Exercise 9.5}
+
+Repeated discovery of the same two mergers under different ceilings and
+resource trajectories is evidence of reproducibility.  Exactness would
+require proving that no further connecting path exists.  Because every
+queue terminated on a state, memory, or time cap rather than exhaustion,
+unvisited states and possible mergers remain.  Agreement cannot replace
+exhaustion or a separating invariant.
+
+\diagnostic{Repeated bounded negative results improve empirical confidence
+but do not prove a global absence.}
+
+\subsection*{Answers for Section 10: certificates}
+
+\subsubsection*{Answer to Exercise 10.1}
+
+Every listed edge may be valid while a separate partition-building bug
+places an additional, unconnected vertex into a component.  Per-edge
+verification never examines that unsupported assignment.  Rebuilding the
+connected components using only verified edges checks that each reported
+membership has an actual certificate chain.
+
+\diagnostic{Edge validity and transitive-closure correctness are separate
+claims and need separate tests.}
+
+\subsubsection*{Answer to Exercise 10.2}
+
+Let the rows of \(M\) be the exponent-sum vectors of \(r_1,r_2\).
+\begin{itemize}
+  \item AC1 replaces row \(i\) by row \(i\) plus row \(j\), an elementary
+  unimodular row operation, so the determinant is unchanged.
+  \item AC2 negates one row, so the determinant changes sign and its
+  absolute value is unchanged.
+  \item AC3 sends \(r_i\) to \(g r_i g^{-1}\).  The exponent contributions
+  of \(g\) and \(g^{-1}\) cancel, so row \(i\) is unchanged.
+\end{itemize}
+Thus \(\len{\det M}\) is invariant under AC1--AC3.  A free-basis
+automorphism acts on exponent sums by a matrix in
+\(\mathrm{GL}(2,\mathbb Z)\), i.e.\ a unimodular column operation, so the
+absolute determinant is ACA-invariant as well.
+
+\diagnostic{Conjugation is invisible after abelianization because its
+prefix and suffix have opposite exponent vectors.}
+
+\subsubsection*{Answer to Exercise 10.3}
+
+Constancy at \(1\) means a claimed edge joining inputs with different
+values would be definitely wrong, so the invariant is useful as an
+independent consistency check.  But because every input already has the
+same value, it partitions the dataset into only one invariant class and
+cannot prove any pair inequivalent.
+
+\diagnostic{An invariant detects differences only when it actually takes
+different values on the objects being compared.}
+
+\subsubsection*{Answer to Exercise 10.4}
+
+One example is to change the recorded meeting state on one side while
+leaving every path step unchanged.  Literal replay should end at the
+original state and fail the equality check against the corrupted claim.
+Another example is to delete a forest edge but leave both endpoints in the
+same reported class; the partition rebuild should reject the unsupported
+membership.
+
+\diagnostic{A good mutation targets one advertised verifier obligation and
+predicts the exact failed assertion.}
+
+\subsection*{Answers for Section 11: oral rehearsal}
+
+\subsubsection*{Answer to Exercise 11.1}
+
+A model two-minute response is:
+
+\begin{quote}
+Because \(F_2\) is free, specifying \(x\mapsto xy\) and \(y\mapsto y\)
+defines a homomorphism.  It is invertible: the inverse sends
+\(x\mapsto xY\) and \(y\mapsto y\), and both compositions fix \(x,y\).
+Now take an AC path from \(P\) to \((x,y)\).  Applying the automorphism to
+every relator sends AC1 and AC2 to one move of the same type.  A
+generator-conjugation AC3 becomes conjugation by the finite word
+\(\phi(g)\), which expands into finitely many generator conjugations.  The
+transformed path ends at \((xy,y)\), a free basis, and a finite Nielsen/AC
+sequence returns it to \((x,y)\).  The inverse automorphism gives the
+converse.  Therefore \(P\) is AC-trivial exactly when \(\phi(P)\) is.
+\end{quote}
+
+\diagnostic{The four indispensable points are homomorphism, inverse,
+transported moves, and terminal basis correction.}
+
+\subsubsection*{Answer to Exercise 11.2}
+
+A model response is:
+
+\begin{quote}
+Every one of the 261 inputs lies in one of 124 components connected by
+verified ACA edges.  Each edge preserves AC-triviality, so one
+representative per component covers every input.  The search is incomplete,
+so additional valid edges may merge components; therefore 124 is an upper
+bound and the true number may be smaller.  Missing edges cause redundant
+work, not missing coverage.
+\end{quote}
+
+\diagnostic{Use both words ``verified'' and ``upper bound.''}
+
+\subsubsection*{Answer to Exercise 11.3}
+
+A rigorous response is:
+
+\begin{quote}
+I am not claiming the endpoints of every discarded run are connected by a
+raw AC path.  I am using the weaker property actually needed for the
+experiment: every certified AC or Aut step preserves whether the
+presentation is AC-trivial.  Along a verified ACA chain, the truth value is
+constant.  Therefore if I solve the retained representative, all discarded
+members of that component follow.  The 137 successful union edges reduce
+261 vertices to 124 certified coverage components.
+\end{quote}
+
+\diagnostic{The justification is invariance of the question, not equality
+of raw AC paths.}
+
+\subsubsection*{Answer to Exercise 11.4}
+
+A correct response is:
+
+\begin{quote}
+No.  This analysis trivialized zero of the 261 presentations.  It grouped
+the inputs into at most 124 distinct ACA problems.  The conditional result
+is that if one representative from each of those 124 components is later
+proved AC-trivial, all 261 presentations will be proved AC-trivial.
+\end{quote}
+
+\diagnostic{Separate classification from solution.  Never turn a component
+count into a trivialization count.}
+
+\section{Sources and reproducibility map}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.29\textwidth}
+                  >{\raggedright\arraybackslash}p{0.65\textwidth}}
+\toprule
+Purpose & Repository source\\
+\midrule
+\endhead
+Source-paper AC1--AC3 &
+\sourcefile{literature/txt/math_ml_paper_2408.15332.txt}, lines 291--302\\
+Master 261-to-124 account &
+\sourcefile{results/equivalence_classes/EQUIVALENCE_FINDING.md}\\
+Current 124-class proof book &
+\sourcefile{results/equivalence_classes/PROOFS.md}\\
+Current 137-edge machine certificates &
+\sourcefile{results/equivalence_classes/certificates.json}\\
+Word algebra and S-move replay &
+\sourcefile{experiments/equivalence_classes/lib/words.py}\\
+S-move generation &
+\sourcefile{experiments/equivalence_classes/lib/acmoves.py}\\
+Whitehead canonicalization with witness &
+\sourcefile{experiments/equivalence_classes/lib/autcanon.py}\\
+Independent Whitehead implementation &
+\sourcefile{experiments/analysis/whitehead.py}\\
+ACA quotient search &
+\sourcefile{experiments/equivalence_classes/search/aut_search.py}\\
+Base certificate verifier &
+\sourcefile{experiments/equivalence_classes/verify/verify_proofs.py}\\
+125/124 probe verifier &
+\sourcefile{experiments/equivalence_classes/verify/verify_probe_merges.py}\\
+Overnight 124 artifacts &
+\sourcefile{results/equivalence_classes/probe/probe_overnight_seam*.json}\\
+\bottomrule
+\end{longtable}
+
+\subsection*{Classical theorem dependencies}
+
+\begin{itemize}
+  \item The universal property of free groups, proved in
+  Theorem~\ref{thm:universal}.
+  \item Nielsen's theorem on bases of finitely generated free groups, used
+  to certify automorphisms, together with Nielsen generation
+  (Theorem~\ref{thm:nielsen-generation}) to reduce the terminal basis.
+  \item Whitehead's peak-reduction theorem, stated in
+  Theorem~\ref{thm:whitehead}, used to make the 168 Aut-orbit count exact.
+  \item The Andrews--Curtis conjecture, used only to explain why presenting
+  the trivial group does not currently imply a known AC trivialization.
+\end{itemize}
+
+\end{document}
