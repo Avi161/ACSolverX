@@ -237,7 +237,7 @@ def test_config_yaml_round_trips_with_default_config():
     # families ordered first so A1/A3 complete before A2 starts
     assert y["BENCHMARK"] == "combined_66"
     assert y["FAMILIES"] == ["A1", "A3", "A2"]
-    assert y["A2_MAX_WORDS"] == 64
+    assert y["A2_MAX_WORDS"] == 100
     # A1 runs the singles on every row; dropping them from A2 removes the
     # systematic cross-family duplicates and improves the capped selection
     assert y["A2_DROP_LEN1"] is True
