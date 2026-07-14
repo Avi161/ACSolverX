@@ -223,3 +223,55 @@ def transformed_flat(result):
             + list(result.r2) + [0] * (slot - len(result.r2)))
     out = change_max_relator_length_of_presentation(flat, result.cap)
     return [int(v) for v in np.asarray(out)]
+
+
+def subword_candidates(r1, r2, min_len=2, max_len=4):
+    """Every distinct mixed-generator subword of the relators, as z candidates.
+
+    The data-driven family for the length-sweep experiment: unlike
+    ``NAIVE_Z_FAMILY``, these w are guaranteed to occur in the presentation
+    (modulo the substitution's linear-scan limitation for subwords that only
+    cross the cyclic seam). Subwords are read off each CYCLICALLY reduced
+    relator, seam included (via the doubled word), lengths min_len..max_len.
+    ``w`` and ``w⁻¹`` yield the same CoV up to inverting z, so each pair keeps
+    one canonical member: ``max(w, w⁻¹)``, which starts with a positive letter
+    whenever the pair has one. Pure powers are excluded as in NAIVE_Z_FAMILY.
+    Deterministic order (length, then tuple) — row identity depends on it.
+    """
+    seen = set()
+    for rel in (r1, r2):
+        cyc = reduce_word(tuple(rel), cyclic=True)
+        n = len(cyc)
+        doubled = cyc + cyc
+        for length in range(min_len, min(max_len, n) + 1):
+            for i in range(n):
+                w = doubled[i:i + length]
+                if len({abs(g) for g in w}) < 2:
+                    continue
+                seen.add(max(w, inverse(w)))
+    return tuple(sorted(seen, key=lambda w: (len(w), w)))
+
+
+def enumerate_cov(r1, r2, family=None, default_cap=DEFAULT_CAP,
+                  cap_headroom=CAP_HEADROOM, reject_len=REJECT_LEN,
+                  subword_min_len=2, subword_max_len=4):
+    """All valid CoVs over ``family`` (default: the presentation's own
+    subwords) — the brute-force half of the length-sweep experiment.
+
+    Distinct z words can land on the same output pair, which would be an
+    identical search run twice, so only the first (in family order) of each
+    output pair is kept. Every returned result is fully validated by
+    ``apply_cov_once``. Order follows family order, so it is deterministic.
+    """
+    r1, r2 = tuple(r1), tuple(r2)
+    if family is None:
+        family = subword_candidates(r1, r2, subword_min_len, subword_max_len)
+    results, seen_pairs = [], set()
+    for z_word in family:
+        res = apply_cov_once(r1, r2, z_word, default_cap=default_cap,
+                             cap_headroom=cap_headroom, reject_len=reject_len)
+        if res is None or (res.r1, res.r2) in seen_pairs:
+            continue
+        seen_pairs.add((res.r1, res.r2))
+        results.append(res)
+    return tuple(results)

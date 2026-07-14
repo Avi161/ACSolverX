@@ -22,6 +22,16 @@ cap_headroom: 16                # slack above the longest transformed relator �
 reject_len: 48                  # a z whose output relator exceeds this is rejected and
                                 # the next family member is tried
 
+experiment_length: false        # true = the length experiment: per presentation run the
+                                # greedy from EVERY valid subword-derived CoV plus one
+                                # no-CoV control row (z_word null). Rows keyed
+                                # (pres_id, z_word); file prefix covsweep_..._sub{K}_.
+                                # Answers: does post-CoV start length predict outcome?
+subword_max_len: 4              # sweep z candidates = subwords of the relators (cyclic,
+                                # w ~ w⁻¹ deduped, mixed-generator only) of length
+                                # 2..this; part of the sweep filename identity (sub4).
+                                # Raise it if the sweep says longer transforms win.
+
 cyclic_reduce: true
 out_dir: results/stable_ac/cov  # new namespace — never greedy_baseline/ or benchmark/
 resume: true

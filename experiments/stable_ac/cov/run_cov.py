@@ -10,6 +10,13 @@ start_total_length_orig, start_total_length_cov, iso_index, n_subs, source}``.
 ``mode: baseline`` runs the identity transform on the same rows/budgets so a
 same-budget cov-vs-baseline comparison needs no other pipeline.
 
+``experiment_length: true`` is the length-sweep experiment: per presentation,
+run the greedy from EVERY valid subword-derived CoV (``cov.enumerate_cov``)
+plus one no-CoV control row, so the jsonl directly answers whether post-CoV
+start length predicts search outcome. Sweep rows are keyed ``(pres_id,
+z_word)`` — the control row has ``z_word: null`` — and the file prefix is
+``covsweep_..._sub{K}_`` where K = ``subword_max_len``.
+
 CLI (from the repo root):
     .venv/bin/python3 -m experiments.stable_ac.cov.run_cov \
         --config experiments/stable_ac/cov/config_cov.yaml
@@ -26,6 +33,7 @@ from datetime import datetime
 import yaml
 
 from experiments import run_baseline
+from experiments.greedy_tests.spec.words import str_to_word, word_to_str
 from experiments.stable_ac.cov import cov
 
 COV_DEFAULTS = {
@@ -42,6 +50,8 @@ COV_DEFAULTS = {
     "cyclic_reduce": True,
     "out_dir": "results/stable_ac/cov",
     "resume": True,
+    "experiment_length": False,       # length sweep: all subword CoVs + control
+    "subword_max_len": 4,             # sweep z = relator subwords of len 2..this
 }
 
 
@@ -89,6 +99,9 @@ def load_config(config_path=None, **overrides):
     c.update({k: v for k, v in overrides.items() if v is not None})
     if c["mode"] not in ("cov", "baseline"):
         raise ValueError(f"mode must be 'cov' or 'baseline', got {c['mode']!r}")
+    if c.get("experiment_length") and c["mode"] != "cov":
+        raise ValueError("experiment_length requires mode 'cov' "
+                         "(the sweep already contains its own control rows)")
     return c
 
 
@@ -125,10 +138,15 @@ def _run_prefix(c, node_budget, n_rows):
 
     The z-family tag is identity for cov mode (a different family = a different
     experiment); row caps are derived deterministically from the inputs, so
-    they stay out of the name. mrl = the base cap / baseline cap.
+    they stay out of the name. mrl = the base cap / baseline cap. The length
+    sweep is its own kind (covsweep) and its family tag is sub{K}: the family
+    is derived from the presentation, so K is the only family knob.
     """
     kind = "cov" if c["mode"] == "cov" else "covbase"
     zfam = f"{c['z_family']}_" if c["mode"] == "cov" else ""
+    if c.get("experiment_length"):
+        kind = "covsweep"
+        zfam = f"sub{c['subword_max_len']}_"
     cyc = "cyc" if c["cyclic_reduce"] else "noncyc"
     tag = _dataset_tag(c["datasets"])
     return (f"{kind}_{node_budget}_{n_rows}_{zfam}mrl{c['max_relator_length']}"
@@ -221,13 +239,162 @@ def run_budget(c, node_budget, rows, root):
     return out_path
 
 
+def _read_done_pairs(out_path):
+    """({(pres_id, z_word)}, n_seen, n_solved) from an existing sweep jsonl.
+
+    Sweep rows are keyed per (presentation, z) like run_nocov's (name, z_word);
+    the control row's key is (pres_id, None). Same torn-final-line tolerance
+    as ``run_baseline._read_done``: unparseable elsewhere is real corruption.
+    """
+    done, n_seen, n_solved = set(), 0, 0
+    if not os.path.exists(out_path):
+        return done, n_seen, n_solved
+    with open(out_path) as f:
+        lines = [ln.strip() for ln in f]
+    for i, ln in enumerate(lines):
+        if not ln:
+            continue
+        try:
+            row = json.loads(ln)
+        except ValueError:
+            if i == len(lines) - 1:
+                continue
+            raise
+        done.add((row["pres_id"], row["z_word"]))
+        n_seen += 1
+        n_solved += int(bool(row.get("solved")))
+    return done, n_seen, n_solved
+
+
+def _sweep_entries(c, r1, r2):
+    """[(z_str, r1t, r2t, cap, n_cov, extra)] — control first (z_str None,
+    original pair, baseline cap), then every valid subword CoV in canonical
+    family order."""
+    orig_len = len(r1) + len(r2)
+    entries = [(None, r1, r2, c["max_relator_length"], 0, {
+        "cov_applicable": None, "z_word": None, "iso_index": None, "n_subs": 0,
+        "start_total_length_orig": orig_len,
+        "start_total_length_cov": orig_len,
+    })]
+    results = cov.enumerate_cov(
+        str_to_word(r1), str_to_word(r2),
+        default_cap=c["max_relator_length"], cap_headroom=c["cap_headroom"],
+        reject_len=c["reject_len"], subword_max_len=c["subword_max_len"])
+    for res in results:
+        z = word_to_str(res.z_word)
+        r1t, r2t = word_to_str(res.r1), word_to_str(res.r2)
+        entries.append((z, r1t, r2t, res.cap, 1, {
+            "cov_applicable": True, "z_word": z, "iso_index": res.iso_index,
+            "n_subs": res.n_subs,
+            "start_total_length_orig": orig_len,
+            "start_total_length_cov": len(r1t) + len(r2t),
+        }))
+    return entries
+
+
+def run_budget_sweep(c, node_budget, rows, root):
+    """The length experiment: every start (control + all CoV variants) per
+    presentation, one row per (pres_id, z_word), then the length-vs-outcome
+    digest. Same write discipline as ``run_budget``."""
+    out_path = _resolve_out_path(c, node_budget, len(rows), root)
+    run_baseline._repair_jsonl(out_path)
+    done, n_seen, n_solved = _read_done_pairs(out_path)
+    print(f"[sweep] budget={node_budget} -> {os.path.basename(out_path)} "
+          f"(resume: {n_seen} done, {n_solved} solved)", flush=True)
+
+    bcfg = _base_cfg(c)
+    with open(out_path, "a") as out_f:
+        for rid, r1, r2, src in rows:
+            entries = _sweep_entries(c, r1, r2)
+            ran = solved_here = 0
+            for z, r1t, r2t, cap, n_cov, extra in entries:
+                if (rid, z) in done:
+                    continue
+                t0 = time.perf_counter()
+                stats = run_baseline.greedy_search(
+                    r1t, r2t, node_budget, max_relator_length=cap,
+                    cyclic_reduce=c["cyclic_reduce"])
+                elapsed = time.perf_counter() - t0
+
+                row = run_baseline._build_row(bcfg, rid, r1t, r2t, node_budget,
+                                              stats, elapsed)
+                row["max_relator_length_cap"] = cap
+                row["mode"] = "cov"
+                row["n_cov"] = n_cov
+                row["r1_orig"] = r1
+                row["r2_orig"] = r2
+                row["source"] = src
+                row["git_commit"] = _git_commit()
+                row.update(extra)
+                out_f.write(json.dumps(row) + "\n")
+                out_f.flush()
+                os.fsync(out_f.fileno())
+
+                ran += 1
+                solved_here += int(bool(stats["solved"]))
+            n_seen += ran
+            n_solved += solved_here
+            print(f"  {rid}: {len(entries)} starts (1 control + "
+                  f"{len(entries) - 1} cov), ran {ran}, solved {solved_here}",
+                  flush=True)
+    print(f"[sweep] budget={node_budget} done: {n_solved}/{n_seen} solved",
+          flush=True)
+    _sweep_summary(out_path)
+    return out_path
+
+
+def _sweep_summary(out_path):
+    """The digest the experiment exists for: per 5-wide bin of post-CoV start
+    length, n / solved / median nodes-to-solve; then control vs best CoV start
+    per presentation. Read back from the file so a resumed run digests every
+    row, not just this session's."""
+    rows = []
+    with open(out_path) as f:
+        for ln in f:
+            ln = ln.strip()
+            if ln:
+                rows.append(json.loads(ln))
+    variants = [r for r in rows if r["z_word"] is not None]
+    controls = [r for r in rows if r["z_word"] is None]
+    if not variants:
+        print("[sweep] no cov variants recorded", flush=True)
+        return
+    print(f"[sweep] post-CoV start length vs outcome "
+          f"({len(variants)} cov starts, {len(controls)} controls):", flush=True)
+    bins = {}
+    for r in variants:
+        bins.setdefault(r["start_total_length_cov"] // 5 * 5, []).append(r)
+    for lo in sorted(bins):
+        rs = bins[lo]
+        solved = sorted(r["nodes_explored"] for r in rs if r["solved"])
+        med = solved[len(solved) // 2] if solved else "-"
+        print(f"  len {lo:>2}-{lo + 4:<3} n={len(rs):>3}  "
+              f"solved={len(solved):>3}/{len(rs):<3} median_nodes={med}",
+              flush=True)
+    print("[sweep] control vs best cov start per presentation:", flush=True)
+    for ctrl in controls:
+        rid = ctrl["pres_id"]
+        sv = [r for r in variants if r["pres_id"] == rid and r["solved"]]
+        best = min(sv, key=lambda r: r["nodes_explored"]) if sv else None
+        n_tried = sum(r["pres_id"] == rid for r in variants)
+        c_txt = (f"control nodes={ctrl['nodes_explored']}" if ctrl["solved"]
+                 else "control UNSOLVED")
+        b_txt = (f"best z={best['z_word']} len={best['start_total_length_cov']} "
+                 f"nodes={best['nodes_explored']}" if best
+                 else f"no cov start solved ({n_tried} tried)")
+        print(f"  {rid}: {c_txt} | {b_txt}", flush=True)
+
+
 def run(config_path=None, **overrides):
     c = load_config(config_path, **overrides)
     root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
     rows = load_rows(c["datasets"], root)
+    sweep = bool(c.get("experiment_length"))
     print(f"{len(rows)} presentations from {len(c['datasets'])} dataset(s); "
-          f"budgets {c['budgets']}; mode {c['mode']}", flush=True)
-    return [run_budget(c, b, rows, root) for b in c["budgets"]]
+          f"budgets {c['budgets']}; mode {c['mode']}"
+          f"{' (length sweep)' if sweep else ''}", flush=True)
+    runner = run_budget_sweep if sweep else run_budget
+    return [runner(c, b, rows, root) for b in c["budgets"]]
 
 
 def main():
@@ -236,8 +403,11 @@ def main():
     ap.add_argument("--mode", default=None, choices=["cov", "baseline"])
     ap.add_argument("--budget", type=int, nargs="*", default=None,
                     help="override budgets, e.g. --budget 100 1000")
+    ap.add_argument("--experiment-length", action="store_true", default=None,
+                    help="run the length sweep (all subword CoVs + control)")
     args = ap.parse_args()
-    run(config_path=args.config, mode=args.mode, budgets=args.budget)
+    run(config_path=args.config, mode=args.mode, budgets=args.budget,
+        experiment_length=args.experiment_length)
 
 
 if __name__ == "__main__":

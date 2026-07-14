@@ -6,13 +6,14 @@ Collected by a bare ``pytest`` (pytest.ini's testpaths includes
     .venv/bin/python3 -m pytest experiments/stable_ac -q
 """
 
+import json
 import os
 
 import pytest
 
 from experiments.greedy_tests.spec.invariants import abs_det
 from experiments.greedy_tests.spec.presentation import Presentation
-from experiments.greedy_tests.spec.words import str_to_word, word_to_str
+from experiments.greedy_tests.spec.words import inverse, str_to_word, word_to_str
 from experiments.stable_ac.cov import cov, run_cov
 
 AK3_R1, AK3_R2 = str_to_word("xyxYXY"), str_to_word("xxxYYYY")
@@ -172,3 +173,99 @@ def test_baseline_mode_is_identity():
     r1t, r2t, cap, n_cov, extra = run_cov._transform(c, "xyxYXY", "xxxYYYY")
     assert (r1t, r2t, cap, n_cov) == ("xyxYXY", "xxxYYYY", 24, 0)
     assert extra["cov_applicable"] is None and extra["z_word"] is None
+
+
+# --- subword family & the length-sweep experiment ----------------------------
+
+def test_subword_candidates_ak3():
+    fam = cov.subword_candidates(AK3_R1, AK3_R2)
+    # mixed-generator only, even though r2 = xxxYYYY is all pure-power subwords
+    assert fam and all(len({abs(g) for g in w}) == 2 for w in fam)
+    # the zf1 winner xy and the paper's xyx are both subwords of r1 = xyxYXY
+    assert str_to_word("xy") in fam
+    assert str_to_word("xyx") in fam
+    # the cyclic seam is included: Yx wraps r1's boundary (…Y|x…); its
+    # canonical member max(Yx, Xy) = Xy is what the family stores
+    assert str_to_word("Xy") in fam
+    # w and w⁻¹ never both present (same CoV up to inverting z)
+    as_set = set(fam)
+    assert not any(inverse(w) in as_set and inverse(w) != w for w in fam)
+    # deterministic canonical order — sweep row identity depends on it
+    assert list(fam) == sorted(fam, key=lambda w: (len(w), w))
+
+
+def test_enumerate_cov_ak3_valid_and_deduped():
+    results = cov.enumerate_cov(AK3_R1, AK3_R2)
+    assert results                       # AK(3) admits at least one CoV (z=xy)
+    assert any(r.z_word == str_to_word("xy") for r in results)
+    pairs = [(r.r1, r.r2) for r in results]
+    assert len(pairs) == len(set(pairs))            # no duplicate searches
+    assert all(r.applicable and r.n_cov == 1 and r.n_subs >= 1 for r in results)
+
+
+def test_enumerate_cov_explicit_family_dedup():
+    fam = (str_to_word("xy"), str_to_word("xy"))
+    assert len(cov.enumerate_cov(AK3_R1, AK3_R2, family=fam)) == 1
+
+
+def test_enumerate_cov_abs_det_on_benchmark_rows():
+    root = run_cov.find_repo_root(os.path.dirname(__file__))
+    rows = run_cov.load_rows(run_cov.COV_DEFAULTS["datasets"], root)
+    total = 0
+    for rid, r1s_, r2s_, _src in rows:
+        r1, r2 = str_to_word(r1s_), str_to_word(r2s_)
+        before = abs_det(Presentation(2, (r1, r2)))
+        for res in cov.enumerate_cov(r1, r2):
+            assert abs_det(Presentation(3, res.meta["intermediate"])) == before
+            assert abs_det(Presentation(2, (res.r1, res.r2))) == before
+            total += 1
+    assert total > 0                     # the sweep family must not be vacuous
+
+
+def test_run_prefix_sweep_identity():
+    c = dict(run_cov.COV_DEFAULTS)
+    c["experiment_length"] = True
+    assert (run_cov._run_prefix(c, 1000, 11)
+            == "covsweep_1000_11_sub4_mrl24_cyc_s10r1_")
+    with pytest.raises(ValueError):
+        run_cov.load_config(mode="baseline", experiment_length=True)
+
+
+def _stub_stats():
+    return {
+        "solved": False, "nodes_explored": 7, "path_length": None,
+        "min_relator_length": 5, "min_relator": "xyxYX",
+        "max_relator_length": 9, "max_relator": "xyxYXYxxx",
+        "max_relator_length_expanded": 9, "max_relator_expanded": "xyxYXYxxx",
+    }
+
+
+def test_sweep_runner_rows_and_resume(tmp_path, monkeypatch):
+    csv_p = tmp_path / "reach_tier_9.csv"
+    csv_p.write_text("name,r1,r2\nAK(3),xyxYXY,xxxYYYY\n")
+    calls = []
+
+    def fake_search(*args, **kwargs):
+        calls.append(args)
+        return _stub_stats()
+
+    monkeypatch.setattr(run_cov.run_baseline, "greedy_search", fake_search)
+    common = dict(datasets=[str(csv_p)], budgets=[100], mode="cov",
+                  experiment_length=True, out_dir=str(tmp_path / "out"))
+    out = run_cov.run(**common)
+
+    assert os.path.basename(out[0]).startswith("covsweep_100_1_sub4_mrl24_cyc_r9_")
+    rows = [json.loads(ln) for ln in open(out[0])]
+    controls = [r for r in rows if r["z_word"] is None]
+    variants = [r for r in rows if r["z_word"] is not None]
+    assert len(controls) == 1 and controls[0]["n_cov"] == 0
+    assert controls[0]["r1"] == "xyxYXY" and controls[0]["max_relator_length_cap"] == 24
+    assert variants and all(v["n_cov"] == 1 and v["cov_applicable"] for v in variants)
+    assert len(rows) == len(calls)       # one search per (pres, z) row
+    keys = {(r["pres_id"], r["z_word"]) for r in rows}
+    assert len(keys) == len(rows)        # pair key is unique
+
+    # resume: a second run finds every (pres_id, z_word) done and re-searches nothing
+    n_calls = len(calls)
+    out2 = run_cov.run(**common)
+    assert out2 == out and len(calls) == n_calls
