@@ -198,6 +198,30 @@ def _build_jobs(cfg, family):
 _LADDER_PASSTHROUGH = ("baseline_nodes_at_50k", "baseline_path_at_50k",
                        "baseline_solved_at_50k")
 
+_GIT_COMMIT = False   # False = not yet resolved (None is a valid answer)
+
+
+def _git_commit():
+    """HEAD of the checkout this module runs from; None outside a git repo.
+
+    Provenance only — which code produced a row. Deliberately NOT part of the
+    filename/resume identity: rows appended after a code update record the
+    new commit in the same file, which is exactly the audit trail wanted.
+    """
+    global _GIT_COMMIT
+    if _GIT_COMMIT is False:
+        import subprocess
+        try:
+            out = subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                cwd=os.path.dirname(os.path.abspath(__file__)),
+                capture_output=True, text=True, timeout=10,
+            )
+            _GIT_COMMIT = out.stdout.strip() or None
+        except Exception:
+            _GIT_COMMIT = None
+    return _GIT_COMMIT
+
 
 def _build_row(cfg, node_budget, family, brow, z_word, z_relator, pres, stats,
                elapsed):
@@ -228,6 +252,7 @@ def _build_row(cfg, node_budget, family, brow, z_word, z_relator, pres, stats,
         "max_relator_length_expanded": stats["max_relator_length_expanded"],
         "max_relator_expanded": stats["max_relator_expanded"],
         "time_seconds": round(elapsed, 4),
+        "git_commit": _git_commit(),
     }
     if "tier" in brow:                       # a future benchmark may carry one
         row["tier"] = brow["tier"]

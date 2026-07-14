@@ -9,6 +9,7 @@ pipeline** (code + config yaml + Colab notebook + tests, all in one place).
 |---|---|
 | `solvern.py` | **general-`n` numba solver** — int8 signed codec, works at any `n_gen ≤ 26`, any `n_rel ≥ 2`. Trace-equal to `greedy_tests/spec/` at `n_gen ≤ 3` (`greedy_tests/test_solvern.py` pins it); `n_gen = 4+` is seamless. Entry: `search_n(pres, budget, cap, cyclic, progress)`. |
 | `word_families.py` | z-word builders, n-agnostic: **A1** curated `\|w\| ≤ 4` · **A2** prefixes of all cyclic rotations of each relator (raw count `Σ\|rᵢ\|²`, deduped; `A2_MAX_WORDS` caps it — A2 dominates cost) · **A3** proportion grid `r1[:p] + r2[:q]`. |
+| `verify_results.py` | the **certificate verifier**: replays every `solved: true` row's move path through the pure-Python spec (never through a solver — a solver bug cannot self-certify), checking move legality, the per-relator cap at every step, a genuinely trivial endpoint, `abs_det` preservation, and cross-file **budget invariance**. Handles both pipelines' formats. Run it on any results before believing them. |
 
 The core's tests live in `experiments/greedy_tests/` (`test_solvern.py`, `test_word_families.py`)
 because spec-parity needs the spec and its fixtures.
@@ -70,3 +71,15 @@ that feeds the **existing** 2-gen numba greedy unchanged.
 ```
 
 Both are collected by a bare `pytest` (see `pytest.ini`).
+
+## Verifying results (do this before believing any run)
+
+```bash
+.venv/bin/python3 -m experiments.stable_ac.verify_results          # everything under results/stable_ac
+.venv/bin/python3 -m experiments.stable_ac.verify_results <files>  # specific jsonl(s)
+```
+
+Runs no searches (safe anywhere, seconds even on production files); exits non-zero and lists every
+failing certificate. `results/README.md` records the current standing count. Every row also carries
+`git_commit` — the exact code that produced it. `greedy_tests/test_verify_results.py` keeps the
+verifier honest by tampering with real certificates and requiring it to fail.

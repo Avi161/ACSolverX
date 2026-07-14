@@ -48,6 +48,12 @@ diff.
 ratios; reach rows (unsolved, `source: "reach"`) score `solved`/`bar_to_beat` and never enter a
 ratio. Produced by `experiments/analysis/combined_benchmark.py`.
 
+> **Certificates:** every `solved: true` row in `stable_ac/` is a claim whose proof is its move
+> path. `.venv/bin/python3 -m experiments.stable_ac.verify_results` replays all of them through the
+> pure-Python spec (independent of every solver) and checks budget invariance across files.
+> Standing count: **ALL 399 SOLVED-ROW CERTIFICATES VERIFY** (2,680 rows, 8 files, 2026-07-13).
+> Rows carry `git_commit` — the code that produced them. Run the verifier before believing any run.
+
 ## `stable_ac/nocov/`
 
 Branch-A sweep results. Filename = the resume key:

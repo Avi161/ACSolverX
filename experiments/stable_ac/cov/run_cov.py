@@ -45,6 +45,29 @@ COV_DEFAULTS = {
 }
 
 
+_GIT_COMMIT = False   # False = not yet resolved (None is a valid answer)
+
+
+def _git_commit():
+    """HEAD of the checkout this module runs from; None outside a git repo.
+
+    Provenance only — which code produced a row. NOT part of `_run_prefix`
+    (it is not a knob, and resume must survive a code update)."""
+    global _GIT_COMMIT
+    if _GIT_COMMIT is False:
+        import subprocess
+        try:
+            out = subprocess.run(
+                ["git", "rev-parse", "HEAD"],
+                cwd=os.path.dirname(os.path.abspath(__file__)),
+                capture_output=True, text=True, timeout=10,
+            )
+            _GIT_COMMIT = out.stdout.strip() or None
+        except Exception:
+            _GIT_COMMIT = None
+    return _GIT_COMMIT
+
+
 def find_repo_root(start):
     """Walk up until a dir holds both experiments/ and data/ (repo rule)."""
     d = os.path.abspath(start)
@@ -181,6 +204,7 @@ def run_budget(c, node_budget, rows, root):
             row["r1_orig"] = r1
             row["r2_orig"] = r2
             row["source"] = src
+            row["git_commit"] = _git_commit()
             row.update(extra)
             out_f.write(json.dumps(row) + "\n")
             out_f.flush()

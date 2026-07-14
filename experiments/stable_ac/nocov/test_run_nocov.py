@@ -40,7 +40,7 @@ BASE_KEYS = {
     "node_budget", "max_relator_length_cap", "cyclic_reduce", "nodes_explored",
     "solved", "path_length", "min_relator_length", "min_relator",
     "max_relator_length", "max_relator", "max_relator_length_expanded",
-    "max_relator_expanded", "time_seconds",
+    "max_relator_expanded", "time_seconds", "git_commit",
 }
 LADDER_KEYS = {"baseline_nodes_at_50k", "baseline_path_at_50k",
                "baseline_solved_at_50k"}
@@ -89,6 +89,10 @@ def test_rows_carry_the_full_schema(cfg, monkeypatch):
         assert r["node_budget"] == 100
         assert r["max_relator_length_cap"] == 64
         assert r["cyclic_reduce"] is True
+        # provenance: a 40-hex commit in a checkout, None outside one
+        assert r["git_commit"] is None or (
+            len(r["git_commit"]) == 40
+            and all(c in "0123456789abcdef" for c in r["git_commit"]))
         assert isinstance(r["time_seconds"], float)
     # combined_11's first two rows are ladder rows -> baseline passthrough
     assert all(r["source"] == "ladder" for r in rows)

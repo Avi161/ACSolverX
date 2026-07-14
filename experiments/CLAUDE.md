@@ -98,6 +98,13 @@ runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_don
 import). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
 changes. Tests are colocated (`cov/test_cov.py`), same command as above.
 
+**`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path
+through `greedy_tests/spec/` ONLY (never a solver — the independence is the point; a solver bug or
+a gamed test suite cannot self-certify). Treat any edit here with the same suspicion as an edit to
+`spec/`. `test_verify_results.py` tampers with real certificates and requires it to fail. Run it on
+any results jsonl before believing the numbers: `-m experiments.stable_ac.verify_results`. Both
+runners stamp `git_commit` into every row (provenance only — NEVER part of the resume identity).
+
 **`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN.
 - [a push does not reach a running Colab](lessons/notebook-push-does-not-reach-colab.md) · [`git pull` is not a module reload](lessons/git-pull-is-not-a-module-reload.md)
 - [`BRANCH` must match git](lessons/notebook-branch-must-match-git.md) · [don't nest the clone](lessons/colab-setup-nested-clone.md) · [Drive mount root isn't writable](lessons/colab-drive-mount-root-not-writable.md)
