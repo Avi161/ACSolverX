@@ -326,7 +326,9 @@ def search_n(pres, budget, cap=64, cyclic=True, progress=None):
 
     ``pres`` is anything with ``.n_gen`` and ``.relators`` (spec Presentation
     works; relators as int tuples). Returns a stats dict generalised to n_rel
-    relators. Per-relator cap only. Spec-shaped loop: pop, count, progress every
+    relators. Per-relator cap only (no total-length cap); a child is dropped
+    when ANY of its relators exceeds cap, inherited ones included, exactly as
+    spec/search.py does. Spec-shaped loop: pop, count, progress every
     1024 pops, terminate when every relator has length 1, expand i->j->s->k1->k2
     (j != i, empty relators skipped), first-time-seen children pushed at
     depth+1, and min/max stats updated by FIRST-CROSSING during iteration.
@@ -359,9 +361,18 @@ def search_n(pres, budget, cap=64, cyclic=True, progress=None):
             break
 
         arrs = [np.array([int(g) for g in r], dtype=np.int8) for r in key]
+        # spec/search.py:72 drops a child when ANY of its relators exceeds cap,
+        # inherited ones included. An inherited relator is over-cap iff the
+        # parent carries an over-cap relator other than the target (only the
+        # start state can — every pushed child is fully cap-filtered), so the
+        # check hoists to one guard per target instead of one per child.
+        over = [len(r) > cap for r in key]
+        n_over = sum(over)
         depth1 = depth + 1
         for i in range(n_rel):
             if len(key[i]) == 0:
+                continue
+            if n_over - over[i] > 0:
                 continue
             ri = arrs[i]
             for j in range(n_rel):

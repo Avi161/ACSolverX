@@ -87,6 +87,29 @@ def test_trace_equality_vs_spec_at_three_generators(pres, name):
     _assert_trace_equal(pres, 1000, cap=64)
 
 
+#: nocov ms640[165] with w=xyy: start relator lengths 4/5/8, so caps 5/6/7 put
+#: the start above/at/below the cap boundary. spec drops a child when ANY of
+#: its relators exceeds cap -- inherited ones included -- which only bites when
+#: the START carries an over-cap relator; this corpus is that regime.
+OVER_CAP_START = Presentation.from_strs(
+    *ms640([165])[0].to_strs(), "Z" + "xyy", n_gen=3)
+
+
+@pytest.mark.parametrize("cap", [5, 6, 7])
+def test_trace_equality_when_the_start_carries_an_over_cap_relator(cap):
+    _assert_trace_equal(OVER_CAP_START, 800, cap=cap)
+
+
+def test_an_over_cap_start_expands_to_nothing_below_the_boundary():
+    """Pins the semantics explicitly (verified against spec, both == 1): at
+    cap=5 the start (lengths 4/5/8) is popped, every child either inherits the
+    over-cap relator or fails the new-relator filter, and the heap empties."""
+    sp = spec_search.search(OVER_CAP_START, 800, cap=5, cyclic=True)
+    me = solvern.search_n(OVER_CAP_START, 800, cap=5, cyclic=True)
+    assert sp["nodes_explored"] == me["nodes_explored"] == 1
+    assert not sp["solved"] and not me["solved"]
+
+
 def test_length_stats_match_greedy_baseline_at_two_generators():
     """The two-generator baseline pops in the same order, so solved/nodes/path
     and the three length stats agree. Its min/max relator *strings* are excluded:
