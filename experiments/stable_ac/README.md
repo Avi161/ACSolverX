@@ -21,6 +21,7 @@ For each benchmark presentation `⟨x,y | r1,r2⟩` and each word `w(x,y)` from 
 
 | file | what it is |
 |---|---|
+| `PIPELINE.md` | **the full walkthrough** — what the experiment is, every knob, exact schemas, measured numbers. Read this first. |
 | `run_nocov.py` | the sweep runner: one jsonl per `(benchmark, family, budget)`, row identity `(name, z_word)`, date-agnostic glob resume, Drive staging, optional minimal W&B (`job_type stable_ac_nocov`). |
 | `config_nocov.yaml` | the production config — every knob commented. The notebook loads it and merges `OVERRIDES`. |
 | `stable_ac_nocov.ipynb` | the 3-cell Colab notebook (CONFIG / SETUP / RUN, branch `test/stable-ac-moves-w4`). |
