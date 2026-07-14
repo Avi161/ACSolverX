@@ -3,7 +3,7 @@ identity, the paths file, the config yaml, the big-budget guard — plus ONE
 real end-to-end micro-run (budget 100) that closes the loop via replay.
 
 Every other test monkeypatches the search seam
-(``experiments.stable_ac.run_nocov.search_n``) so no real search runs; the
+(``experiments.stable_ac.nocov.run_nocov.search_n``) so no real search runs; the
 harness behaviour under test is identical either way because run_nocov only
 ever sees the returned stats dict.
 """
@@ -14,8 +14,8 @@ import os
 import pytest
 import yaml
 
-import experiments.stable_ac.run_nocov as rn
-from experiments.stable_ac.run_nocov import (
+import experiments.stable_ac.nocov.run_nocov as rn
+from experiments.stable_ac.nocov.run_nocov import (
     DEFAULT_CONFIG, _require_budget_allowed, _run_prefix, main, run_nocov,
 )
 from experiments.stable_ac.solvern import moves_to_states, str_to_word

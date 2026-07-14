@@ -6,7 +6,8 @@ Every artifact any experiment has produced. Four directories, each with a differ
 |---|---|---|
 | **`greedy_baseline/`** | the raw baseline runs — 10 `.jsonl`, one per (budget, dataset) | `experiments/run_baseline.py`, on Colab |
 | **`benchmark/`** | the stable-AC benchmark: difficulty ladder + reach tier + `combined/` | `experiments/analysis/*.py` |
-| **`stable_ac/nocov/`** | Branch-A (No-CoV) sweep jsonl, one per `(benchmark, family, budget)` | `experiments/stable_ac/run_nocov.py` |
+| **`stable_ac/nocov/`** | Branch-A (No-CoV) sweep jsonl, one per `(benchmark, family, budget)` | `experiments/stable_ac/nocov/run_nocov.py` |
+| **`stable_ac/cov/`** | Branch-B (one-shot CoV) jsonl, one per budget, `cov` + `covbase` modes | `experiments/stable_ac/cov/run_cov.py` |
 | **`equivalence_classes/`** | the 261 unsolved reps are really **126 distinct problems** — and the proof | `experiments/equivalence_classes/` |
 | **`graphs/`** | two baseline curves + the difficulty ranking | ⚠ no producer script in the repo |
 
@@ -54,6 +55,13 @@ Branch-A sweep results. Filename = the resume key:
 key, same rule as `greedy_baseline/`). One row per `(presentation, z_word)`; solved paths go to the
 `*_paths.jsonl` sibling as replayable move strings. Budget-100/1000 files are local pipeline
 verification, not production data.
+
+## `stable_ac/cov/`
+
+Branch-B (one-shot change of variables) results. Filename = the resume key:
+`cov_<budget>_<n_rows>_<zfam>_mrl<cap>_<cyc|noncyc>_<datasets>_<mm_dd_yy>.jsonl` (`covbase_…` = the
+identity-transform comparison runs; date not part of the key). Produced by
+`experiments/stable_ac/cov/run_cov.py`.
 
 ## `equivalence_classes/`
 

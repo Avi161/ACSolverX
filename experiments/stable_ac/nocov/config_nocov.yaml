@@ -1,5 +1,5 @@
-# Production config for the Branch A No-CoV sweep (experiments/stable_ac/run_nocov.py).
-# Intended runner: Colab via experiments/stable_ac_nocov.ipynb (so MOUNT_DRIVE and
+# Production config for the Branch A No-CoV sweep (experiments/stable_ac/nocov/run_nocov.py).
+# Intended runner: Colab via experiments/stable_ac/nocov/stable_ac_nocov.ipynb (so MOUNT_DRIVE and
 # USE_WANDB are ON here). LOCAL runs must keep every budget <= 1000 nodes —
 # run_nocov refuses a bigger budget unless ACSOLVERX_ALLOW_BIG=1 is set (the
 # notebook RUN cell sets it on Colab).

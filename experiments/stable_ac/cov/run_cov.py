@@ -2,7 +2,7 @@
 
 Reuses ``run_baseline``'s seams by import (the ``greedy_search`` dispatcher,
 ``_repair_jsonl`` / ``_read_done`` resume machinery, ``_build_row`` schema) and
-writes to its own namespace ``results/stable_ac_cov/``. One output file per
+writes to its own namespace ``results/stable_ac/cov/``. One output file per
 budget — when the budget changes, the file changes. jsonl schema = the greedy
 schema + ``{mode, z_word, n_cov, cov_applicable, r1_orig, r2_orig,
 start_total_length_orig, start_total_length_cov, iso_index, n_subs, source}``.
@@ -11,8 +11,8 @@ start_total_length_orig, start_total_length_cov, iso_index, n_subs, source}``.
 same-budget cov-vs-baseline comparison needs no other pipeline.
 
 CLI (from the repo root):
-    .venv/bin/python3 -m experiments.stable_ac_cov.run_cov \
-        --config experiments/stable_ac_cov/config_cov.yaml
+    .venv/bin/python3 -m experiments.stable_ac.cov.run_cov \
+        --config experiments/stable_ac/cov/config_cov.yaml
 """
 
 import argparse
@@ -26,7 +26,7 @@ from datetime import datetime
 import yaml
 
 from experiments import run_baseline
-from experiments.stable_ac_cov import cov
+from experiments.stable_ac.cov import cov
 
 COV_DEFAULTS = {
     "datasets": [
@@ -40,7 +40,7 @@ COV_DEFAULTS = {
     "cap_headroom": cov.CAP_HEADROOM,
     "reject_len": cov.REJECT_LEN,
     "cyclic_reduce": True,
-    "out_dir": "results/stable_ac_cov",
+    "out_dir": "results/stable_ac/cov",
     "resume": True,
 }
 

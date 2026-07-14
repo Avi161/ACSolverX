@@ -23,5 +23,5 @@ reject_len: 48                  # a z whose output relator exceeds this is rejec
                                 # the next family member is tried
 
 cyclic_reduce: true
-out_dir: results/stable_ac_cov  # new namespace — never greedy_baseline/ or benchmark/
+out_dir: results/stable_ac/cov  # new namespace — never greedy_baseline/ or benchmark/
 resume: true

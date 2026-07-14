@@ -1,9 +1,9 @@
 """Tests for the one-shot CoV transform (case i).
 
-Not collected by a bare ``pytest`` (pytest.ini's testpaths is existing code and
-stays untouched); run explicitly:
+Collected by a bare ``pytest`` (pytest.ini's testpaths includes
+``experiments/stable_ac``); run just this pipeline's tests with:
 
-    .venv/bin/python3 -m pytest experiments/stable_ac_cov -q
+    .venv/bin/python3 -m pytest experiments/stable_ac -q
 """
 
 import os
@@ -13,7 +13,7 @@ import pytest
 from experiments.greedy_tests.spec.invariants import abs_det
 from experiments.greedy_tests.spec.presentation import Presentation
 from experiments.greedy_tests.spec.words import str_to_word, word_to_str
-from experiments.stable_ac_cov import cov, run_cov
+from experiments.stable_ac.cov import cov, run_cov
 
 AK3_R1, AK3_R2 = str_to_word("xyxYXY"), str_to_word("xxxYYYY")
 

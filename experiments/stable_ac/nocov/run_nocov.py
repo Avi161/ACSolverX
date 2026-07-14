@@ -13,7 +13,7 @@ monotone step (lesson: wandb-step-must-be-monotonic).
 
 CPU + numba only. From the repo root::
 
-    .venv/bin/python3 -m experiments.stable_ac.run_nocov
+    .venv/bin/python3 -m experiments.stable_ac.nocov.run_nocov
 """
 
 import glob

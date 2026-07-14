@@ -12,7 +12,7 @@ What each directory here *is*: [`README.md`](README.md).
 | dir | role | README |
 |---|---|---|
 | `search/` | the two solvers (heavy + compact) — they pop identically | — |
-| `stable_ac/` | Branch A: general-`n` solver + word families + `run_nocov.py` runner | [→](stable_ac/README.md) |
+| `stable_ac/` | shared core (`solvern.py`, `word_families.py`) + one folder per pipeline: `nocov/` (Branch A) and `cov/` (Branch B), each with runner + yaml + notebook + colocated tests | [→](stable_ac/README.md) |
 | `analysis/` | the stable-AC benchmark (difficulty ladder + reach tier + combined) | [→](analysis/README.md) |
 | `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` + `test_equivalence.py` | [→](equivalence_classes/README.md) |
 | `greedy_tests/` | the pipeline's test suite | [→](greedy_tests/README.md) |
@@ -87,11 +87,16 @@ uses ASCII order `(g>0, abs(g))`. Trace equality with `greedy_tests/spec/` at `n
 `test_solvern.py` pins — any change that survives it is safe. Same reduce/Booth lessons as
 `search/greedy_baseline.py` apply.
 
-**`stable_ac/run_nocov.py`** — Branch-A runner. Same laws as `run_baseline.py`: the filename prefix
-is the resume key (no dates, no result-neutral knobs); row identity is `(name, z_word)`;
+**`stable_ac/nocov/run_nocov.py`** — Branch-A runner. Same laws as `run_baseline.py`: the filename
+prefix is the resume key (no dates, no result-neutral knobs); row identity is `(name, z_word)`;
 `_repair_jsonl` runs before any append, not gated on `RESUME`; `search_n` is the module-global seam
 tests monkeypatch. Budgets > 1000 refuse to run without `ACSOLVERX_ALLOW_BIG=1` (the notebook sets
-it — local runs must not).
+it — local runs must not). Harness tests are colocated: `pytest experiments/stable_ac -q`.
+
+**`stable_ac/cov/`** — Branch-B one-shot change of variables (`cov.py` transform + `run_cov.py`
+runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_done`/`_build_row` by
+import). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
+changes. Tests are colocated (`cov/test_cov.py`), same command as above.
 
 **`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN.
 - [a push does not reach a running Colab](lessons/notebook-push-does-not-reach-colab.md) · [`git pull` is not a module reload](lessons/git-pull-is-not-a-module-reload.md)
