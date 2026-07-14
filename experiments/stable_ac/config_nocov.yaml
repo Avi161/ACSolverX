@@ -1,0 +1,42 @@
+# Production config for the Branch A No-CoV sweep (experiments/stable_ac/run_nocov.py).
+# Intended runner: Colab via experiments/stable_ac_nocov.ipynb (so MOUNT_DRIVE and
+# USE_WANDB are ON here). LOCAL runs must keep every budget <= 1000 nodes —
+# run_nocov refuses a bigger budget unless ACSOLVERX_ALLOW_BIG=1 is set (the
+# notebook RUN cell sets it on Colab).
+# Keys mirror run_nocov.DEFAULT_CONFIG; values match it EXCEPT the Colab trio:
+# MOUNT_DRIVE, USE_WANDB, BUDGET.
+
+BENCHMARK: combined_11        # which combined benchmark (results/benchmark/combined/);
+                              # combined_11 = screen, combined_22 = verdict
+FAMILIES: [A1, A2, A3]        # z-word families to sweep; one jsonl per (budget, family)
+MODE: nocov                   # Branch-A tag; part of the row schema + filename identity
+BUDGET: [50000]               # node budget per search, one sweep per entry; local <= 1000
+MAX_RELATOR_LENGTH: 64        # per-relator cap for the 3-relator search (NO total-length budget)
+CYCLIC_REDUCE: true           # cyclically reduce after each move (matches the baseline)
+
+A1_WORDS: null                # null -> word_families.A1_DEFAULT_WORDS (~16 curated |w|<=4 words)
+A2_MAX_WORDS: null            # cap the A2 relator-prefix family (deterministic even spacing);
+                              # A2 dominates cost — set e.g. 64 if a sweep is too slow
+A2_DROP_LEN1: false           # drop length-1 A2 words (they duplicate A1's singles)
+A3_GRID: [0.25, 0.5, 0.75, 1.0]   # prefix fractions p,q for free_reduce(r1[:p|r1|] + r2[:q|r2|])
+
+RESUME: true                  # skip (name, z_word) jobs already in the jsonl
+PATH_IN_SEPARATE_FILE: true   # solved paths (moves only) -> *_paths.jsonl
+ROW_LIMIT: null               # first N benchmark rows only (smoke runs)
+WORD_LIMIT: null              # first N words per row only (smoke runs)
+NAMES: null                   # run only these row names, e.g. ["AK(3)", "ms499"]
+
+LOCAL_OUT_DIR: results/stable_ac/nocov                                # when MOUNT_DRIVE is false
+DRIVE_OUT_DIR: /content/drive/MyDrive/acsolverx_results/stable_ac/nocov   # when true (Colab)
+MOUNT_DRIVE: true             # Colab default; DEFAULT_CONFIG (local) is false
+PROGRESS_EVERY: 25            # print one status line every N jobs
+
+USE_WANDB: true               # Colab default; DEFAULT_CONFIG (local) is false
+WANDB_ENTITY: avigyapaudel045-aisc
+WANDB_PROJECT: acsolver
+WANDB_JOB_TYPE: stable_ac_nocov
+WANDB_GROUP: null             # null -> "{benchmark}-nocov-mrl{cap}-{cyc}" (group = the sweep)
+WANDB_RUN_NAME: null          # null -> readable derived name, e.g. "A1 · 50000 · combined_11 · nocov"
+WANDB_TAGS: null
+WANDB_NOTES: null
+WANDB_MODE: online            # "offline" for a flaky network -> wandb sync later

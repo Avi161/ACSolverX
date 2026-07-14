@@ -5,7 +5,8 @@ Every artifact any experiment has produced. Four directories, each with a differ
 | directory | what it holds | produced by |
 |---|---|---|
 | **`greedy_baseline/`** | the raw baseline runs — 10 `.jsonl`, one per (budget, dataset) | `experiments/run_baseline.py`, on Colab |
-| **`benchmark/`** | the stable-AC benchmark: difficulty ladder + reach tier | `experiments/analysis/*.py` |
+| **`benchmark/`** | the stable-AC benchmark: difficulty ladder + reach tier + `combined/` | `experiments/analysis/*.py` |
+| **`stable_ac/nocov/`** | Branch-A (No-CoV) sweep jsonl, one per `(benchmark, family, budget)` | `experiments/stable_ac/run_nocov.py` |
 | **`equivalence_classes/`** | the 261 unsolved reps are really **126 distinct problems** — and the proof | `experiments/equivalence_classes/` |
 | **`graphs/`** | two baseline curves + the difficulty ranking | ⚠ no producer script in the repo |
 
@@ -40,6 +41,19 @@ solve-rate curve. `greedy_1000000_640_…` is the one `difficulty_bins.py` treat
 the efficiency ladder (10/20/40/60), `reach/` the unsolved tier (1/2/4/6). All three regenerate from
 the baseline jsonl and the class table — and are checked by regenerating them and requiring a zero
 diff.
+
+`combined/` merges the two into what a technique actually runs on: `benchmark_combined_{11,22,44,66}`
+= subset_10+reach_1 … subset_60+reach_6. Ladder rows (solved, `source: "ladder"`) score speedup
+ratios; reach rows (unsolved, `source: "reach"`) score `solved`/`bar_to_beat` and never enter a
+ratio. Produced by `experiments/analysis/combined_benchmark.py`.
+
+## `stable_ac/nocov/`
+
+Branch-A sweep results. Filename = the resume key:
+`nocov_<benchmark>_<family>_<budget>_mrl<cap>_<cyc|noncyc>_<mm_dd_yy>.jsonl` (date not part of the
+key, same rule as `greedy_baseline/`). One row per `(presentation, z_word)`; solved paths go to the
+`*_paths.jsonl` sibling as replayable move strings. Budget-100/1000 files are local pipeline
+verification, not production data.
 
 ## `equivalence_classes/`
 

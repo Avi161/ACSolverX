@@ -12,7 +12,8 @@ What each directory here *is*: [`README.md`](README.md).
 | dir | role | README |
 |---|---|---|
 | `search/` | the two solvers (heavy + compact) — they pop identically | — |
-| `analysis/` | the stable-AC benchmark (difficulty ladder + reach tier) | [→](analysis/README.md) |
+| `stable_ac/` | Branch A: general-`n` solver + word families + `run_nocov.py` runner | [→](stable_ac/README.md) |
+| `analysis/` | the stable-AC benchmark (difficulty ladder + reach tier + combined) | [→](analysis/README.md) |
 | `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` + `test_equivalence.py` | [→](equivalence_classes/README.md) |
 | `greedy_tests/` | the pipeline's test suite | [→](greedy_tests/README.md) |
 | `lessons/` | 38 shipped bugs. Read via the index, not by browsing. | [→](lessons/README.md) |
@@ -79,6 +80,18 @@ wrong *without raising*. Keep the walk-up.
   · [a vacuous guard makes a green test meaningless](lessons/cap-monotonicity-vacuous-guard.md)
   · [`-q` twice hides the summary](lessons/pytest-qq-suppresses-summary.md)
   · [rebase before you push](lessons/worktree-branch-drift-rebase.md)
+
+**`stable_ac/solvern.py`** — the general-`n` numba solver. Two symbol orders coexist and must never
+be conflated: canonicalisation/relator-sort uses BOOTH order `(-abs(g), g>0)`; the heap tie-break
+uses ASCII order `(g>0, abs(g))`. Trace equality with `greedy_tests/spec/` at `n_gen≤3` is what
+`test_solvern.py` pins — any change that survives it is safe. Same reduce/Booth lessons as
+`search/greedy_baseline.py` apply.
+
+**`stable_ac/run_nocov.py`** — Branch-A runner. Same laws as `run_baseline.py`: the filename prefix
+is the resume key (no dates, no result-neutral knobs); row identity is `(name, z_word)`;
+`_repair_jsonl` runs before any append, not gated on `RESUME`; `search_n` is the module-global seam
+tests monkeypatch. Budgets > 1000 refuse to run without `ACSOLVERX_ALLOW_BIG=1` (the notebook sets
+it — local runs must not).
 
 **`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN.
 - [a push does not reach a running Colab](lessons/notebook-push-does-not-reach-colab.md) · [`git pull` is not a module reload](lessons/git-pull-is-not-a-module-reload.md)

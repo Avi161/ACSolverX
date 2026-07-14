@@ -10,7 +10,9 @@ the repo root (`envs/`, `network.py`, `ppo_ac_s.py`) is a *spec to port from, ne
 | `wandb_tracking.py` | W&B run identity, panels, live metrics | — |
 | `greedy_baseline.ipynb` | the 3-cell Colab notebook (CONFIG / SETUP / RUN) | — |
 | `greedy_tests/` | the pipeline's test suite — a general-`n` spec, an invariant the solver never computes, and a `SolverAdapter` seam the stable-AC port plugs into | [→](greedy_tests/README.md) |
-| `analysis/` | the stable-AC **benchmark**: difficulty ladder + reach tier | [→](analysis/README.md) |
+| `stable_ac/` | **Branch A (No CoV)**: `solvern.py` (general-`n` numba solver, spec-trace-equal at `n_gen≤3`), `word_families.py` (A1/A2/A3), `run_nocov.py` + `config_nocov.yaml` | [→](stable_ac/README.md) |
+| `stable_ac_nocov.ipynb` | the Branch-A 3-cell Colab notebook (CONFIG / SETUP / RUN) | — |
+| `analysis/` | the stable-AC **benchmark**: difficulty ladder + reach tier + the combined (solved+unsolved) sets | [→](analysis/README.md) |
 | `equivalence_classes/` | proves the 261 unsolved reps are **126 distinct problems**, with certificates | [→](equivalence_classes/README.md) |
 | `lessons/` | 38 write-ups of bugs that shipped. Read via the index, not by browsing. | [→](lessons/README.md) |
 

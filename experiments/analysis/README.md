@@ -9,6 +9,7 @@ Run them in this order — each consumes the previous one's output:
 .venv/bin/python3 -m experiments.analysis.difficulty_bins      # -> results/benchmark/difficulty_bins.csv
 .venv/bin/python3 -m experiments.analysis.benchmark_subsets    # -> results/benchmark/subsets/
 .venv/bin/python3 -m experiments.analysis.reach_tier           # -> results/benchmark/reach/
+.venv/bin/python3 -m experiments.analysis.combined_benchmark   # -> results/benchmark/combined/
 ```
 
 **Use `-m`.** Running them by path (`python3 experiments/analysis/difficulty_bins.py`) fails with
@@ -20,6 +21,7 @@ Run them in this order — each consumes the previous one's output:
 | `difficulty_bins.py` | labels all 640 ms640 presentations with a difficulty bin + Aut class |
 | `benchmark_subsets.py` | the **efficiency ladder** — subsets of 10/20/40/60 |
 | `reach_tier.py` | the **reach tier** — 1/2/4/6 genuinely-unsolved problems |
+| `combined_benchmark.py` | **ladder + reach in one file** — `benchmark_combined_{11,22,44,66}` (subset_10+reach_1 … subset_60+reach_6); what a technique sweep consumes via `load_combined` |
 
 ---
 
