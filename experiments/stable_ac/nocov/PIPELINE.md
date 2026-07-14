@@ -90,7 +90,14 @@ job order is deterministic.
   `A2_DROP_LEN1: true` drops the length-1 words that duplicate A1's singles.
 - **A3 — prefix-fraction grid.** `free_reduce(r1[:⌈p·|r1|⌉] + r2[:⌈q·|r2|⌉])` for
   `(p, q)` over `A3_GRID × A3_GRID`, default grid `0.25, 0.5, 0.75, 1.0` → ≤ 16 words
-  (dedup can shrink it).
+  (dedup can shrink it). Every cell mixes BOTH relators — the grid has no `0` entry, so
+  even `p = 1.0` is all of `r1` *plus* ≥ 1 symbol of `r2`, and `(1.0, 1.0)` is
+  `free_reduce(r1·r2)`; pure `r1` is deliberately not a cell because it is already in
+  A2. That is the division of labor: A2 = within-relator material (one relator at a
+  time), A3 = cross-relator blends A2 can never produce. Short cells can accidentally
+  reduce to an A2 word (0–5 per `combined_11` row, e.g. ms499's `YYYY+YY → YYYYYY`);
+  the duplicate jobs land in different family files with identical results (the search
+  is deterministic), so the redundancy is compute-only.
 
 Exact counts on `combined_11` (defaults, no caps):
 
