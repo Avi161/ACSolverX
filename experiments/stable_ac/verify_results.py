@@ -104,8 +104,16 @@ def verify_solved_row(row, path_moves, path_row=None):
     if row.get("path_length") != len(path_moves):
         raise CertificateError(
             f"path_length {row.get('path_length')} != {len(path_moves)} moves")
+    if row.get("mode") == "nocov":
+        # bind the certificate to the row's IDENTITY: rows are keyed by
+        # (name, z_word), so a valid certificate relabeled under a different
+        # z_word must not verify (verifier-audit finding, 2026-07-13)
+        if row.get("z_relator") != "Z" + str(row.get("z_word") or ""):
+            raise CertificateError(
+                f"z_relator {row.get('z_relator')!r} does not encode "
+                f"z_word {row.get('z_word')!r}")
     if path_row is not None:
-        for k in ("r1", "r2"):
+        for k in ("r1", "r2", "z_relator"):
             if path_row.get(k) != row.get(k):
                 raise CertificateError(f"paths row {k} disagrees with results row")
     pres = start_presentation(row, path_row)
@@ -195,6 +203,9 @@ def verify_file(path, invariance_pool=None):
                 verify_solved_row(r, r.get("path_moves"))
         except CertificateError as e:
             failures.append((path, rid, str(e)))
+        except (KeyError, ValueError, TypeError) as e:
+            # a malformed row must FAIL cleanly, never crash the whole run
+            failures.append((path, rid, f"malformed row: {type(e).__name__}: {e}"))
 
     if is_nocov and paths_index:
         orphans = set(paths_index) - solved_keys

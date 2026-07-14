@@ -134,6 +134,37 @@ def test_fake_solved_flag_fails(tmp_path):
     assert failures, "an unsolved row flipped to solved verified"
 
 
+def test_relabelled_z_word_fails(tmp_path):
+    # verifier-audit finding: a VALID certificate relabeled under a different
+    # z_word (consistently, in both files, z_relator untouched) must not
+    # verify -- the certificate must be bound to the row's identity
+    res = _copy_pair(tmp_path)
+    ppath = res[:-len(".jsonl")] + "_paths.jsonl"
+    rrows, prows = _rows(res), _rows(ppath)
+    solved = next(r for r in rrows if r["solved"])
+    key = (solved["name"], solved["z_word"])
+    fake = "XXXXXXX"
+    assert fake != solved["z_word"]
+    solved["z_word"] = fake
+    for p in prows:
+        if (p["name"], p["z_word"]) == key:
+            p["z_word"] = fake
+    _write(res, rrows)
+    _write(ppath, prows)
+    _, _, failures = verify_file(res)
+    assert any("does not encode" in f[2] for f in failures)
+
+
+def test_malformed_row_fails_cleanly(tmp_path):
+    res = _copy_pair(tmp_path)
+    rrows = _rows(res)
+    solved = next(r for r in rrows if r["solved"])
+    del solved["mode"]                        # nocov row masquerading as cov
+    _write(res, rrows)
+    _, _, failures = verify_file(res)         # must report, not crash
+    assert failures
+
+
 def test_orphan_paths_row_fails(tmp_path):
     res = _copy_pair(tmp_path)
     ppath = res[:-len(".jsonl")] + "_paths.jsonl"
