@@ -37,6 +37,7 @@ Usage (one arm; the ladder is four of these in parallel):
 Writes: results/equivalence_classes/probe/probe_<tag>.json  (run_probe schema + `roots`)
 """
 import argparse
+import gc
 import json
 import os
 import subprocess
@@ -160,6 +161,11 @@ def main():
                 print(f"[{args.tag}] rss {rss:.2f}GB > soft {args.soft_gb}GB: dropping phase-1 "
                       f"memo ({len(aut_search._MEMO1)} entries)", flush=True)
                 aut_search._MEMO1.clear()
+                gc.collect()
+                # Re-measure: the memo usually IS the memory. Judging the hard limit on the
+                # pre-clear reading escalated a mitigated condition and stopped an arm 6h early.
+                rss = _rss_gb()
+                print(f"[{args.tag}] rss after memo drop: {rss:.2f}GB", flush=True)
             if rss > args.hard_gb:
                 raise _MemAbort(f"rss {rss:.2f}GB > hard {args.hard_gb}GB")
         return real_children(*a, **kw)
