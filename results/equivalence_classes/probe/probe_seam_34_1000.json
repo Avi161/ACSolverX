@@ -1,0 +1,108 @@
+{
+ "tag": "C_seam34",
+ "config": {
+  "moves": "seam",
+  "max_total": 34,
+  "budget": 1000,
+  "levelset": false,
+  "jsonl": false,
+  "sources": 127
+ },
+ "stats": {
+  "popped": 5123,
+  "states": 224010,
+  "capped": false,
+  "timed_out": true,
+  "seconds": 1681.2,
+  "components": 126
+ },
+ "n_classes": 125,
+ "new_merges": [
+  [
+   "C123",
+   "C124"
+  ]
+ ],
+ "solved": [],
+ "merges": [
+  {
+   "kind": "aca",
+   "a": "C123",
+   "b": "C124",
+   "at": [
+    "YXXXXXXyxxxxx",
+    "YYXXXXXyxxxxxyxYx"
+   ],
+   "len_a": 3,
+   "len_b": 1,
+   "path_a": [
+    [
+     [
+      1,
+      1,
+      3,
+      4
+     ],
+     {
+      "x": "Y",
+      "y": "X"
+     },
+     [
+      "YYYXXXXXXyyX",
+      "YYXXXXXXYXyyX"
+     ]
+    ],
+    [
+     [
+      1,
+      -1,
+      0,
+      0
+     ],
+     {
+      "x": "x",
+      "y": "y"
+     },
+     [
+      "YYXXXXXXYXyyX",
+      "YXXXXXyxxxxxx"
+     ]
+    ],
+    [
+     [
+      1,
+      1,
+      0,
+      6
+     ],
+     {
+      "x": "x",
+      "y": "XXXXXY"
+     },
+     [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXyxxxxxyxYx"
+     ]
+    ]
+   ],
+   "path_b": [
+    [
+     [
+      1,
+      -1,
+      6,
+      7
+     ],
+     {
+      "x": "Y",
+      "y": "X"
+     },
+     [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXyxxxxxyxYx"
+     ]
+    ]
+   ]
+  }
+ ]
+}

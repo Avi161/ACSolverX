@@ -1,0 +1,23 @@
+{
+ "tag": "H_seam28x4",
+ "config": {
+  "moves": "seam",
+  "max_total": 28,
+  "budget": 1000,
+  "levelset": false,
+  "jsonl": false,
+  "sources": 127
+ },
+ "stats": {
+  "popped": 12317,
+  "states": 206276,
+  "capped": false,
+  "timed_out": true,
+  "seconds": 1681.6,
+  "components": 127
+ },
+ "n_classes": 126,
+ "new_merges": [],
+ "solved": [],
+ "merges": []
+}

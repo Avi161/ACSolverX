@@ -1,4 +1,4 @@
-# The 261 "unsolved classes" are at most 126 distinct problems
+# The 261 "unsolved classes" are at most 125 distinct problems
 
 Source: `greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl` (261 rows, budget 1M, `mrl=48`,
 `cyclic_reduce=true`, none solved). Inputs verified line-for-line against
@@ -10,13 +10,14 @@ Source: `greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl` (261 rows, budget 1M, 
 | rotation + inversion + swap (= the search root, `canonical_pair_nj`) | **261** / 261 | 0 collisions — every run had a genuinely distinct root |
 | + generator relabeling (8 signed permutations of `{x,y}`) | **171** / 261 | 88 groups, 90 redundant |
 | + full `Aut(F₂)` (Whitehead's algorithm) | **168** / 261 | **exact** — no change of variables can do better |
-| + AC-move search modulo `Aut(F₂)` (this document) | **126** / 261 | **upper bound**; every merge machine-checked |
+| + AC-move search modulo `Aut(F₂)`, cap 28 (§3) | **126** / 261 | **upper bound**; every merge machine-checked |
+| + the same search at cap 34 (§3b) | **125** / 261 | **upper bound**, and *not* converged — see §3b |
 
-**More than half of that 1M-node sweep was duplicated compute** — 261 runs answering at most 126
+**More than half of that 1M-node sweep was duplicated compute** — 261 runs answering at most 125
 questions. `STABLE_AC_PIPELINE_PLAN.md` calls these "261 unsolved classes"; that premise is wrong,
 and not by a little.
 
-**Read "126 distinct problems", never "126 AC-classes."** The count is up to **ACA**-equivalence
+**Read "125 distinct problems", never "125 AC-classes."** The count is up to **ACA**-equivalence
 (AC moves *together with* change of variables): two presentations in one class are the same
 *problem* — one is AC-trivial if and only if the other is — which is what makes a duplicate run
 wasted. It does **not** mean a path of AC moves joins them. §0 is about exactly this distinction,
@@ -181,8 +182,9 @@ therefore **upper bounds** on the number of distinct problems.
 
 ### Results: 168 → 126
 
-Five independent configurations were run. They **converge**, which is the main reason to believe
-the number:
+Five independent configurations were run. They agree — but note what they vary and what they do
+**not**: the move set (`seam`/`full`) and the seed sources (`+ms`/`+jsonl`), never the `max_total`
+ceiling beyond 28. That blind spot is where the 126 later broke (§3b).
 
 | config | sources | pops | `aut` merges | `aca` merges | **classes** | solved |
 |---|---|---|---|---|---|---|
@@ -197,7 +199,7 @@ the verified merges alone and matches the reported one** — so 126 is the exact
 of independently checked equivalences, not merely a number the search printed. `|det| = 1` is
 constant across every class.
 
-> ## **261 presentations. 126 distinct problems. 52% of that 1M-node sweep was duplicated compute.**
+> ## **261 presentations. 126 distinct problems (125 as of §3b). 52% of that 1M-node sweep was duplicated compute.**
 
 113 of the 126 classes have more than one member; only **13** presentations are alone. The largest
 class has **8** members — eight separate 1M-node runs of a single problem:
@@ -219,8 +221,14 @@ Total relator length to run: **2,488**, against 5,204 for all 261.
   that cost a million nodes each to find. It bought **nothing**: still 127. Those states are deep,
   but they are deep in a direction that does not connect to anything else.
 - **More budget is not the answer.** 30 → 250 nodes per source, with the cap raised from 26 to 28,
-  bought exactly **one** further merge. The search has converged: the remaining classes are far
-  apart in the ACA graph, not merely out of reach.
+  bought exactly **one** further merge. Budget is not the binding constraint.
+
+  > ### ⚠️ This bullet used to end "the search has converged." **That was wrong** — see §3b.
+  >
+  > Budget had converged. The **`max_total` ceiling had not**, and it was never tested above 28.
+  > Raising it to 34 immediately produced a 136th edge, `21_3 ≡ 21_29`, taking 126 → **125**.
+  > The two roots meet at Aut-minimal length **30**, so at cap 28 that merge was not *out of
+  > budget* — it was **outside the search space**, and no budget could ever have reached it.
 - **None of the 261 is AC-trivial** at this budget — and because the search recognises the 640
   known-trivial MS cells in under 20 pops (§4), that is a **real negative**, not an absence of
   evidence.
@@ -231,6 +239,80 @@ Total relator length to run: **2,488**, against 5,204 for all 261.
   > alone in its class in all five runs. The verifier now cross-checks any claimed solve against
   > the recorded partition, so this cannot recur silently. It is recorded here because a claimed
   > trivialisation is the single biggest claim this pipeline can make, and it was wrong.
+
+---
+
+## 3b. The ceiling, not the budget: 126 → 125
+
+**The "converged" claim above was wrong, and this section is the correction.**
+
+Eight further configurations were run over the **126 class reps** (plus `TRIVIAL`), each at 1,000
+nodes/source with a 28-minute wall clock. One of them found a new merge:
+
+| moves | `max_total` | extra | classes |
+|---|---|---|---|
+| `full` | 28 | — | 126 |
+| `full` | 32 | — | 126 |
+| **`seam`** | **34** | — | **125** ✅ |
+| `full` | 28 | **level-set expansion** | 126 |
+| `full` | 30 | +783 recorded 1M-node states | 126 |
+| `seam` | 40 | — | 126 |
+| `full` | 26 | level-set + jsonl | 126 |
+| `seam` | 28 | production config, 4× budget | 126 |
+
+### The 136th edge: `21_3 ≡ 21_29`
+
+```
+21_29 = ('YXXXyxYxx', 'YYYYYYXXXYxx')     Aut-minimal total length 21
+21_3  = ('YXXYxYxx',  'YYYYYYXyyyyyx')    Aut-minimal total length 21
+```
+
+Both were **singletons** in the 126. They are ACA-equivalent: proving one AC-trivial settles the
+other. They meet at the Aut(F₂)-class `('YXXXXXXyxxxxx', 'YYXXXXXyxxxxxyxYx')` — 3 steps from
+`21_29`, 1 step from `21_3`. Both certificates replay by pure word substitution
+(`verify/verify_new_merge.py`, which does not share an implementation with the numba search).
+
+### Why cap 28 could never have found it
+
+The hump, in Aut-minimal total length:
+
+```
+21_29 :  21  →  25  →  26  →  30
+21_3  :  21  →  30
+```
+
+The meeting point sits at **30**. The production sweep capped at **28**. The merge was not out of
+budget — it was **outside the search space**. This is the whole lesson: budget and ceiling are
+different knobs, the convergence study only ever moved the first, and the search was reported
+converged on that basis.
+
+### Two negatives worth as much as the positive
+
+- **Level-set expansion buys nothing.** `aut_search.py` documents its own single incompleteness:
+  it expands only ONE representative per Aut-class, and `children(φ(P)) ⊄ φ(children(P))` for a
+  length-changing `φ`, so it sees a *subset* of each class's true out-edges. `search/levelset.py`
+  closes that hole — it expands **every** member of the minimal level set (skipping the case where
+  that set is just the signed-permutation orbit, where the extra work is *provably* redundant: 122
+  of the 126). It fired on 203 of 2,383 nodes, expanded 2,224 extra members, and found **zero**
+  additional merges. The incompleteness is real and empirically inert.
+- **A higher ceiling is not monotonically better.** Cap 40 *contains* the length-30 meeting point
+  and still missed the merge: a wider cap lets far more children past the phase-1 prefilter, so it
+  managed 3,703 pops against cap 34's 5,123 in the same wall clock. **Tune the ceiling; do not
+  maximise it.**
+
+### 125 is a ceiling touched, not a converged count
+
+The cap-34 run stopped on the **time limit, not exhaustion** — 5,123 pops over 127 sources is ~40
+pops/source against a 1,000/source budget, about **4% of its allowance**. It found one merge and was
+cut off. **The true count at `max_total ≥ 30` is unknown and is probably below 125.**
+
+The pipeline artifacts (`certificates.json`, `PROOFS.md`, the class table, the 126-manifest) are
+deliberately **not** renumbered: 125 is not a converged number, and rebuilding them now would be
+churn. The shipped **135 edges still verify**; this is a 136th, separately certified.
+
+**Next:** `seam` at `max_total` **30** and **32** — the gap in the ladder (28, 34 and 40 were run;
+30 and 32 were not). 30 is the *minimal* ceiling containing this merge, hence the fastest cap that
+can see it, and a tight cap buys the pops/sec the cap-34 run ran out of.
 
 ---
 
@@ -454,10 +536,17 @@ Nothing under `experiments/search/` was modified.
 ## Caveats / follow-up
 
 - **The counts are upper bounds.** The search is sound and incomplete; more budget, a higher
-  `Aut`-minimal length cap, or the enlarged move set can only merge *more*. Nothing here is a
-  lower bound: **no invariant is known that separates the remaining classes.** They all present the
-  trivial group and all have `|det| = 1`, so the two invariants we have are blind. "126 distinct
-  problems" means "at most 126", and it may well be fewer.
+  `Aut`-minimal length cap, or the enlarged move set can only merge *more*. **§3b confirmed this
+  the hard way: raising the cap to 34 broke the 126.** "125 distinct problems" means "at most 125",
+  and it is very likely fewer.
+- **There is no lower bound, and there cannot be one.** All 261 present the **trivial group**, so
+  if Andrews–Curtis is true they are all AC-trivial and collapse to a *single* class.
+  Contrapositive: **any ACA-invariant taking ≥ 2 values on this set would disprove AC.** That is
+  why none is known — not for lack of looking. `|det| = 1` on all of them; `|Hom(G, H)| = 1` for
+  every finite `H` (checked: S₃, D₄, Q₈, A₄, S₄, SL(2,3), A₅, S₅) because the group *is* trivial;
+  each 2-complex is contractible (simply connected, χ = 1 ⟹ H₂ = 0), so every invariant factoring
+  through the presented group is constant. **The provable floor is 1.** The count can only ever
+  come down, and only by exhibiting merges.
 - **`aca` is not `~AC`.** An `aca` merge proves two presentations are the same *problem* — one is
   AC-trivial iff the other is — **not** that a path of AC moves joins them. Do not report it as the
   latter. The distinction is not pedantic: reporting these as AC-equivalences would be a strictly
@@ -466,12 +555,16 @@ Nothing under `experiments/search/` was modified.
   and the representative to run is the `Aut`-minimal one — which, because greedy is length-guided,
   is a strictly better-conditioned search than the presentation as shipped.
 - **What would move the number further**, roughly in order of expected value:
-  1. **Stabilization** (add a generator `z` and the relator `z`). Strictly coarser than ACA, so it
+  1. **A bigger `Aut`-minimal length cap — CONFIRMED, and promoted to first place by §3b.** This
+     was already listed here as "the measured limiter", while the negative-results bullet above
+     simultaneously declared the search converged. The two could not both be true, and the cap was
+     right: **cap 34 broke the 126.** The immediate next step is `seam` at cap **30** and **32** —
+     the untried rungs (28, 34 and 40 were run). 30 is the *minimal* ceiling containing the known
+     `21_3 ≡ 21_29` merge, hence the fastest cap that can see it.
+  2. **Stabilization** (add a generator `z` and the relator `z`). Strictly coarser than ACA, so it
      can only merge more — and it is the one relation in this hierarchy that has not been tried.
      This is `STABLE_AC_PIPELINE_PLAN.md`'s job.
-  2. **A bigger `Aut`-minimal length cap.** The measured limiter, though not as sharply as expected:
-     the 15 unmerged singletons are spread across all lengths, not concentrated at the long roots,
-     so the cap is not the whole story.
-  3. **More budget is *not* the answer.** Going from 30 to 250 nodes per source, with the cap raised
-     from 26 to 28, bought exactly one further merge. The `seam` search has converged; the remaining
-     classes are genuinely far apart in the ACA graph, not merely out of reach.
+  3. **More budget is *not* the answer** — but "the search has converged" (as this bullet used to
+     say) **was wrong**. Budget saturates; the *ceiling* is what binds. See §3b.
+  4. **Level-set expansion is *not* the answer either.** It closes the search's one documented
+     incompleteness and returns exactly the same partition. See §3b.

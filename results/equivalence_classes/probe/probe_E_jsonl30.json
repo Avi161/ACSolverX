@@ -1,0 +1,2884 @@
+{
+ "tag": "E_jsonl30",
+ "config": {
+  "moves": "full",
+  "max_total": 30,
+  "budget": 1000,
+  "levelset": false,
+  "jsonl": true,
+  "sources": 910
+ },
+ "stats": {
+  "popped": 3324,
+  "states": 218323,
+  "capped": false,
+  "timed_out": true,
+  "seconds": 1686.6,
+  "components": 127
+ },
+ "n_classes": 126,
+ "new_merges": [],
+ "solved": [],
+ "merges": [
+  {
+   "kind": "aut",
+   "a": "C114",
+   "b": "J/14_1/min_relator",
+   "at": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C115",
+   "b": "J/14_2/min_relator",
+   "at": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C9",
+   "b": "J/15_2/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYXXyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C10",
+   "b": "J/15_3/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYXYXyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C11",
+   "b": "J/15_4/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C12",
+   "b": "J/15_5/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYXYxyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C11",
+   "b": "J/15_7/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C12",
+   "b": "J/15_8/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYXYxyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C118",
+   "b": "J/16_2/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C119",
+   "b": "J/16_3/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C24",
+   "b": "J/17_2/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYXXYXYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C26",
+   "b": "J/17_3/min_relator",
+   "at": [
+    "YXXYxYxx",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C28",
+   "b": "J/17_4/min_relator",
+   "at": [
+    "YXXYxYxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C23",
+   "b": "J/17_6/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C25",
+   "b": "J/17_7/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C27",
+   "b": "J/17_8/min_relator",
+   "at": [
+    "YXXyXyxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C21",
+   "b": "J/17_9/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C15",
+   "b": "J/17_10/min_relator",
+   "at": [
+    "YXXyXyxx",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C16",
+   "b": "J/17_11/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YXyxxyXYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C17",
+   "b": "J/17_12/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C18",
+   "b": "J/17_13/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C19",
+   "b": "J/17_14/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C20",
+   "b": "J/17_15/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C21",
+   "b": "J/17_16/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C22",
+   "b": "J/17_17/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C15",
+   "b": "J/17_18/min_relator",
+   "at": [
+    "YXXyXyxx",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C23",
+   "b": "J/17_19/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C24",
+   "b": "J/17_21/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYXXYXYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C20",
+   "b": "J/17_22/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C19",
+   "b": "J/17_23/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C18",
+   "b": "J/17_24/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C17",
+   "b": "J/17_25/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C25",
+   "b": "J/17_26/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C26",
+   "b": "J/17_27/min_relator",
+   "at": [
+    "YXXYxYxx",
+    "YYYYxyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C27",
+   "b": "J/17_28/min_relator",
+   "at": [
+    "YXXyXyxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C28",
+   "b": "J/17_29/min_relator",
+   "at": [
+    "YXXYxYxx",
+    "YYYYXyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C8",
+   "b": "J/15_10/min_relator",
+   "at": [
+    "YXyXYxx",
+    "YYXYXyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C34",
+   "b": "J/18_1/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C120",
+   "b": "J/18_2/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C34",
+   "b": "J/18_3/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C37",
+   "b": "J/19_1/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C48",
+   "b": "J/19_2/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C51",
+   "b": "J/19_3/min_relator",
+   "at": [
+    "YXXYxYxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C49",
+   "b": "J/19_4/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYxyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C46",
+   "b": "J/19_5/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C50",
+   "b": "J/19_6/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C52",
+   "b": "J/19_7/min_relator",
+   "at": [
+    "YXXyXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C47",
+   "b": "J/19_8/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYxyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C38",
+   "b": "J/19_10/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C39",
+   "b": "J/19_11/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C40",
+   "b": "J/19_12/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYxyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C41",
+   "b": "J/19_13/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C42",
+   "b": "J/19_14/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C43",
+   "b": "J/19_15/min_relator",
+   "at": [
+    "YXXYxYxxx",
+    "YYXyyXXyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C44",
+   "b": "J/19_16/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYXXyXyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C45",
+   "b": "J/19_17/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C46",
+   "b": "J/19_18/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C47",
+   "b": "J/19_19/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYxyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C49",
+   "b": "J/19_20/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYxyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C38",
+   "b": "J/19_21/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C37",
+   "b": "J/19_22/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C42",
+   "b": "J/19_23/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C41",
+   "b": "J/19_24/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C40",
+   "b": "J/19_25/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYxyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C39",
+   "b": "J/19_26/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C50",
+   "b": "J/19_29/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C52",
+   "b": "J/19_31/min_relator",
+   "at": [
+    "YXXyXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C51",
+   "b": "J/19_32/min_relator",
+   "at": [
+    "YXXYxYxx",
+    "YYYYYXyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C29",
+   "b": "J/17_30/min_relator",
+   "at": [
+    "YYXXXyx",
+    "YYxxyxyXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C30",
+   "b": "J/17_31/min_relator",
+   "at": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C58",
+   "b": "J/20_1/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C121",
+   "b": "J/20_2/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C13",
+   "b": "J/16_4/min_relator",
+   "at": [
+    "YYXXYYx",
+    "YXXXyxxYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C58",
+   "b": "J/20_3/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C60",
+   "b": "J/20_4/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C124",
+   "b": "J/21_3/min_relator",
+   "at": [
+    "YXXYxYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C70",
+   "b": "J/21_4/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C68",
+   "b": "J/21_5/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C73",
+   "b": "J/21_6/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C125",
+   "b": "J/21_7/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C69",
+   "b": "J/21_8/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C61",
+   "b": "J/20_5/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C62",
+   "b": "J/21_10/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C63",
+   "b": "J/21_11/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C64",
+   "b": "J/21_12/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C65",
+   "b": "J/21_13/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C66",
+   "b": "J/21_14/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C67",
+   "b": "J/21_15/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C61",
+   "b": "J/20_6/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C68",
+   "b": "J/21_16/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C69",
+   "b": "J/21_17/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C70",
+   "b": "J/21_18/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/21_9/min_relator",
+   "b": "J/21_19/min_relator",
+   "at": [
+    "YXXXyXyxx",
+    "YYYXXyxxyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/21_2/min_relator",
+   "b": "J/21_20/min_relator",
+   "at": [
+    "YXXYxYxxx",
+    "YYYXYxxxyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C65",
+   "b": "J/21_21/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C64",
+   "b": "J/21_22/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C63",
+   "b": "J/21_23/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C62",
+   "b": "J/21_24/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C67",
+   "b": "J/21_25/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C66",
+   "b": "J/21_26/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C73",
+   "b": "J/21_27/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C60",
+   "b": "J/20_7/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C122",
+   "b": "J/21_28/min_relator",
+   "at": [
+    "YXXyXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C123",
+   "b": "J/21_29/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/20_8/min_relator",
+   "b": "J/20_9/min_relator",
+   "at": [
+    "YXXYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C31",
+   "b": "J/17_34/min_relator",
+   "at": [
+    "YYXXyxx",
+    "YYYYYXyXyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C14",
+   "b": "J/16_7/min_relator",
+   "at": [
+    "YXXyXyx",
+    "YYYXyyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/17_1/min_relator",
+   "b": "J/17_35/min_relator",
+   "at": [
+    "YXXyxYx",
+    "YYYYYXyxyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C53",
+   "b": "J/19_34/min_relator",
+   "at": [
+    "YXXyxYx",
+    "YYXyyXyxyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C14",
+   "b": "J/16_8/min_relator",
+   "at": [
+    "YXXyXyx",
+    "YYYXyyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C79",
+   "b": "J/22_1/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C83",
+   "b": "J/22_2/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C32",
+   "b": "J/17_37/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYXyxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C33",
+   "b": "J/17_38/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYXyXyxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C54",
+   "b": "J/19_35/min_relator",
+   "at": [
+    "YYXXXXyxx",
+    "YYxxyXXXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C83",
+   "b": "J/22_3/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C79",
+   "b": "J/22_4/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C33",
+   "b": "J/17_39/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYXyXyxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C85",
+   "b": "J/23_1/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C74",
+   "b": "J/21_30/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C82",
+   "b": "J/22_5/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C80",
+   "b": "J/22_6/min_relator",
+   "at": [
+    "YYYXXXXXyyx",
+    "YYXyxxyyxYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C87",
+   "b": "J/23_2/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C94",
+   "b": "J/23_3/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C81",
+   "b": "J/22_7/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C84",
+   "b": "J/22_8/min_relator",
+   "at": [
+    "YYYXXXXXyyX",
+    "YYXyxxyyXYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C75",
+   "b": "J/21_31/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C88",
+   "b": "J/23_4/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C92",
+   "b": "J/23_5/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C91",
+   "b": "J/23_6/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYxyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C90",
+   "b": "J/23_7/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C89",
+   "b": "J/23_8/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C93",
+   "b": "J/23_9/min_relator",
+   "at": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C86",
+   "b": "J/23_10/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYXXYxyXyXyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C36",
+   "b": "J/18_4/min_relator",
+   "at": [
+    "YYXYYXXyX",
+    "YYXyxYXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C7",
+   "b": "J/16_10/min_relator",
+   "at": [
+    "YYXXyxx",
+    "YYYYxYXYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C75",
+   "b": "J/21_32/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/21_31/max_relator_expanded",
+   "b": "J/21_32/max_relator_expanded",
+   "at": [
+    "YYYXXXYxxYYXXXyxYxx",
+    "YYXXXYxxYYXXXyxYXyxYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C87",
+   "b": "J/23_11/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C84",
+   "b": "J/22_9/min_relator",
+   "at": [
+    "YYYXXXXXyyX",
+    "YYXyxxyyXYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C80",
+   "b": "J/22_10/min_relator",
+   "at": [
+    "YYYXXXXXyyx",
+    "YYXyxxyyxYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C88",
+   "b": "J/23_12/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C85",
+   "b": "J/23_13/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C89",
+   "b": "J/23_14/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C90",
+   "b": "J/23_15/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C91",
+   "b": "J/23_16/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYxyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C92",
+   "b": "J/23_17/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C94",
+   "b": "J/23_20/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C74",
+   "b": "J/21_33/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C81",
+   "b": "J/22_11/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/22_7/max_relator_expanded",
+   "b": "J/22_11/max_relator_expanded",
+   "at": [
+    "YYYXXXyxxYYYxxxyXXYX",
+    "YYYXXyxxYXYYYxxxyXXYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C82",
+   "b": "J/22_12/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C36",
+   "b": "J/18_5/min_relator",
+   "at": [
+    "YYXYYXXyX",
+    "YYXyxYXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/22_13/min_relator",
+   "b": "J/22_14/min_relator",
+   "at": [
+    "YXXYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/22_13/min_relator",
+   "b": "J/23_21/min_relator",
+   "at": [
+    "YXXYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C2",
+   "b": "J/19_37/min_relator",
+   "at": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C76",
+   "b": "J/21_35/min_relator",
+   "at": [
+    "YYXXyx",
+    "YYYYYYYXyXyxyXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/21_1/min_relator",
+   "b": "J/21_36/min_relator",
+   "at": [
+    "YXYxyx",
+    "YYYYYYYYxxxxxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/21_1/max_relator_expanded",
+   "b": "J/21_36/max_relator_expanded",
+   "at": [
+    "YXXXXXXYxxxxxxyX",
+    "YYYYYYYXyxYXXXXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/22_13/min_relator",
+   "b": "J/23_24/min_relator",
+   "at": [
+    "YXXYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C95",
+   "b": "J/24_1/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C96",
+   "b": "J/24_2/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C55",
+   "b": "J/19_39/min_relator",
+   "at": [
+    "YXXXyXYx",
+    "YYxyxYXXyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C1",
+   "b": "J/15_12/min_relator",
+   "at": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C0",
+   "b": "J/18_6/min_relator",
+   "at": [
+    "YXXyxYx",
+    "YYYYYYXyxyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C2",
+   "b": "J/17_41/min_relator",
+   "at": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C35",
+   "b": "J/18_8/min_relator",
+   "at": [
+    "YYXXXyx",
+    "YYYxxyxyXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C59",
+   "b": "J/20_10/min_relator",
+   "at": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C5",
+   "b": "J/19_40/min_relator",
+   "at": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C4",
+   "b": "J/18_9/min_relator",
+   "at": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C2",
+   "b": "J/17_42/min_relator",
+   "at": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C1",
+   "b": "J/15_13/min_relator",
+   "at": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C96",
+   "b": "J/24_3/min_relator",
+   "at": [
+    "YXXXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C95",
+   "b": "J/24_4/min_relator",
+   "at": [
+    "YXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C35",
+   "b": "J/18_10/min_relator",
+   "at": [
+    "YYXXXyx",
+    "YYYxxyxyXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C59",
+   "b": "J/20_11/min_relator",
+   "at": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C4",
+   "b": "J/18_11/min_relator",
+   "at": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C5",
+   "b": "J/19_42/min_relator",
+   "at": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C97",
+   "b": "J/25_1/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C109",
+   "b": "J/25_4/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C106",
+   "b": "J/25_5/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C110",
+   "b": "J/25_6/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C107",
+   "b": "J/25_8/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C98",
+   "b": "J/25_10/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYYYXXyXyXyXyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C99",
+   "b": "J/25_11/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C100",
+   "b": "J/25_12/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C1",
+   "b": "J/15_14/min_relator",
+   "at": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C101",
+   "b": "J/25_13/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C102",
+   "b": "J/25_14/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C103",
+   "b": "J/25_15/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C104",
+   "b": "J/25_16/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C77",
+   "b": "J/21_39/min_relator",
+   "at": [
+    "YYXXXyyxx",
+    "YXXXXXyxxYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C6",
+   "b": "J/19_43/min_relator",
+   "at": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C56",
+   "b": "J/19_44/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYXYYxxyXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C78",
+   "b": "J/21_40/min_relator",
+   "at": [
+    "YXXXXyxxYx",
+    "YXYxYXyxyXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C57",
+   "b": "J/19_45/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYXYYxyXXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C4",
+   "b": "J/19_46/min_relator",
+   "at": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C1",
+   "b": "J/15_15/min_relator",
+   "at": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C6",
+   "b": "J/19_48/min_relator",
+   "at": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/25_9/min_relator",
+   "b": "J/25_17/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C106",
+   "b": "J/25_18/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/25_5/max_relator_expanded",
+   "b": "J/25_18/max_relator_expanded",
+   "at": [
+    "YYXXXXXXYxxxxxxxyyX",
+    "YYXXXXXXXyXXyxxxxxxxyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C107",
+   "b": "J/25_19/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/25_8/max_relator_expanded",
+   "b": "J/25_19/max_relator_expanded",
+   "at": [
+    "YYXXXXXXXyXyxxxxxxYx",
+    "YYXXXXXXXyxxxxxxxyXYx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C109",
+   "b": "J/25_20/min_relator",
+   "at": [
+    "YXXYxxyx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/25_4/max_relator_expanded",
+   "b": "J/25_20/max_relator_expanded",
+   "at": [
+    "YYXXXXXXXyXyxxxxxxyx",
+    "YYXXXXXXXyxxxxxxxyXyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C102",
+   "b": "J/25_23/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C101",
+   "b": "J/25_24/min_relator",
+   "at": [
+    "YXyXYxxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C100",
+   "b": "J/25_25/min_relator",
+   "at": [
+    "YXXXyxYx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C99",
+   "b": "J/25_26/min_relator",
+   "at": [
+    "YXXXYxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C104",
+   "b": "J/25_27/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C103",
+   "b": "J/25_28/min_relator",
+   "at": [
+    "YYXXXYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C110",
+   "b": "J/25_29/min_relator",
+   "at": [
+    "YXXYxxyX",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/25_2/min_relator",
+   "b": "J/25_30/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/25_7/min_relator",
+   "b": "J/25_31/min_relator",
+   "at": [
+    "YXXyXYxxx",
+    "YYYYYYYYXXyxxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "J/25_3/min_relator",
+   "b": "J/25_32/min_relator",
+   "at": [
+    "YXXXyxYxx",
+    "YYYYYYYYXXXYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C56",
+   "b": "J/19_49/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYXYYxxyXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C77",
+   "b": "J/21_41/min_relator",
+   "at": [
+    "YYXXXyyxx",
+    "YXXXXXyxxYxx"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C57",
+   "b": "J/19_50/min_relator",
+   "at": [
+    "YYXXXyxx",
+    "YYXYYxyXXXX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  },
+  {
+   "kind": "aut",
+   "a": "C4",
+   "b": "J/19_52/min_relator",
+   "at": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "len_a": 0,
+   "len_b": 0,
+   "path_a": [],
+   "path_b": []
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "tag": "F_seam40",
+ "config": {
+  "moves": "seam",
+  "max_total": 40,
+  "budget": 1000,
+  "levelset": false,
+  "jsonl": false,
+  "sources": 127
+ },
+ "stats": {
+  "popped": 3703,
+  "states": 227026,
+  "capped": false,
+  "timed_out": true,
+  "seconds": 1681.3,
+  "components": 127
+ },
+ "n_classes": 126,
+ "new_merges": [],
+ "solved": [],
+ "merges": []
+}

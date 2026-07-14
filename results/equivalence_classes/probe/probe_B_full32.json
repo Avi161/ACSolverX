@@ -1,0 +1,23 @@
+{
+ "tag": "B_full32",
+ "config": {
+  "moves": "full",
+  "max_total": 32,
+  "budget": 1000,
+  "levelset": false,
+  "jsonl": false,
+  "sources": 127
+ },
+ "stats": {
+  "popped": 2301,
+  "states": 226143,
+  "capped": false,
+  "timed_out": true,
+  "seconds": 1682.9,
+  "components": 127
+ },
+ "n_classes": 126,
+ "new_merges": [],
+ "solved": [],
+ "merges": []
+}

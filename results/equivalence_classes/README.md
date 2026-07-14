@@ -32,7 +32,8 @@ Everything at the **top level is the shipped result**. Everything supporting it 
 
 | folder | contents |
 |---|---|
-| [`convergence/`](convergence/) | the **four other sweeps** — a different move set, a different cap, extra seed sources. *Not an archive*: they are the rows of the five-configuration table that is the argument for believing 126. |
+| [`probe/`](probe/) | **the eight arms that broke the 126.** `probe_seam_34_1000.json` carries the 136th edge (`21_3 ≡ 21_29`) and both its path certificates → **125**. The other seven are the negatives, each worth as much: the level-set expansion, the `full` move set, `+jsonl`, and the production config at 4× budget all return exactly 126. See `EQUIVALENCE_FINDING.md` §3b. |
+| [`convergence/`](convergence/) | the **four other sweeps** — a different move set, extra seed sources. *Not an archive*: they are the rows of the five-configuration table that was the argument for believing 126. ⚠ Read them knowing what they do **not** vary: all five held `max_total` at ≤ 28, and that is exactly where the 126 later broke. |
 | [`logs/`](logs/) | the run logs, including throughput |
 | [`superseded/`](superseded/) | the first-pass 261 → 168 dedup. A real archive — nothing reads it. |
 
