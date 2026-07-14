@@ -307,9 +307,10 @@ The cap-34 run stopped on the **time limit, not exhaustion** — 5,123 pops over
 pops/source against a 1,000/source budget, about **4% of its allowance**. It found one merge and was
 cut off. **The true count at `max_total ≥ 30` is unknown and is probably below 125.**
 
-The pipeline artifacts (`certificates.json`, `PROOFS.md`, the class table, the 126-manifest) are
-deliberately **not** renumbered: 125 is not a converged number, and rebuilding them now would be
-churn. The shipped **135 edges still verify**; this is a 136th, separately certified.
+The pipeline artifacts (`certificates.json`, `PROOFS.md`, the class table, the 126-manifest) were
+initially **not** renumbered (125 was not a converged number). After §3c they were rebuilt: the
+proof book now carries **all 137 edges / 124 classes** (see §5). The 126-manifest alone stays —
+it is the seed universe the probes were run against.
 
 **Next:** `seam` at `max_total` **30** and **32** — the gap in the ladder (28, 34 and 40 were run;
 30 and 32 were not). 30 is the *minimal* ceiling containing this merge, hence the fastest cap that
@@ -373,8 +374,10 @@ from the verified merges alone.
   rss), never an empty queue. What §3c adds over §3b is the *shape* of the evidence: §3b's probe
   was cut off at 4% of budget; these arms ran 12–64× deeper and found nothing further.
 - **No solves.** Nothing reached the Aut-class of `(x, y)`.
-- The pipeline artifacts (`certificates.json`, `PROOFS.md`, the class table, the 126-manifest)
-  stay unrenumbered, same reasoning as §3b: 124 is a bound touched, not a converged count.
+- The proof book (`certificates.json`, `PROOFS.md`) has been **rebuilt at 124**: the two new
+  edges were spliced into the sweep artifact (`pipeline/augment_sweep_overnight.py`) and the
+  whole book regenerated and re-verified — `ALL 137 EDGES VERIFY` (§5). The 126-manifest stays
+  as the probes' seed universe; 124 remains a bound touched, not a converged count.
 
 **Next, in order of leverage:** (1) **stabilization** — the one strictly coarser relation still
 untried (`STABLE_AC_PIPELINE_PLAN.md`'s job); (2) **the same ladder on a bigger machine** — the
@@ -419,24 +422,29 @@ into one self-contained derivation per class:
 
 | file | what |
 |---|---|
-| [`results/equivalence_classes/PROOFS.md`](../equivalence_classes/PROOFS.md) | all 126 classes, human-readable: the members, and for each edge the explicit substitution or the numbered list of AC moves with every intermediate state |
+| [`results/equivalence_classes/PROOFS.md`](../equivalence_classes/PROOFS.md) | all 124 classes, human-readable: the members, and for each edge the explicit substitution or the numbered list of AC moves with every intermediate state |
 | `results/equivalence_classes/certificates.json` | the same, machine-readable and self-contained — it needs neither the sweep nor the search |
 | `experiments/equivalence_classes/verify/verify_proofs.py` | re-proves the whole thing from `certificates.json` + the raw CSV, and **nothing else** |
+
+The book was regenerated after §3b–§3c: the two new edges were spliced into the sweep artifact by
+`pipeline/augment_sweep_overnight.py` (→ `sweep_seam_28_250_plus_overnight.json`; the original
+cap-28 sweep is untouched, as the historical record) and the whole book re-derived from it. The
+new classes are `{21_3, 21_29}` and `{21_7, 21_28}`.
 
 ```bash
 .venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py
 # presentations re-read from the CSV : 261
 # change-of-variables edges verified : 93   (one substitution, canon(psi(A)) == canon(B))
-# AC-move edges verified             : 42   (6 of them a pure AC path)
-# partition rebuilt from verified edges alone: 126 classes == the 126 reported
-# ALL 135 EDGES VERIFY. The 261 presentations are 126 distinct problems.
+# AC-move edges verified             : 44   (6 of them a pure AC path)
+# partition rebuilt from verified edges alone: 124 classes == the 124 reported
+# ALL 137 EDGES VERIFY. The 261 presentations are 124 distinct problems.
 ```
 
-The 135 merges form a **spanning forest** over the 262 sources, so each class's edges are already a
+The 137 merges form a **spanning forest** over the 262 sources, so each class's edges are already a
 tree: every member is joined to every other by a unique chain, and there is no cycle to reconcile.
 The edges split into exactly two kinds, and they prove different things.
 
-### `cv` — a change of variables, and nothing else (93 of 135)
+### `cv` — a change of variables, and nothing else (93 of 137)
 
 One substitution `ψ ∈ Aut(F₂)` with
 
@@ -450,7 +458,7 @@ form); the single `ψ = φ_B⁻¹ ∘ φ_A` is recovered by `autinv.py`, which i
 by **Nielsen reduction with tracking** and verifies `φ(φ⁻¹(g)) == g == φ⁻¹(φ(g))` on both generators
 before returning. All 93 land exactly.
 
-### `ac` — AC moves were needed (42 of 135)
+### `ac` — AC moves were needed (44 of 137)
 
 Both presentations are driven by Definition 2.1 moves to a common `Aut`-class, every intermediate
 state recorded. This proves **`A` and `B` are the same problem** — and, as always, *not* that an AC
@@ -595,7 +603,8 @@ only a literal replay of the printed step catches it.
 | `experiments/equivalence_classes/verify/verify_probe_merges.py` | proof checker for probe/overnight files: roots from the manifest, Nielsen-checked φ, replayed paths, rebuilt count |
 | `experiments/equivalence_classes/lib/autinv.py` | inverse of an automorphism of F₂ (Nielsen reduction with tracking) — turns a two-sided `Aut` merge into a single substitution |
 | `experiments/equivalence_classes/pipeline/make_proof_book.py` | sweep JSON → `certificates.json` + `PROOFS.md` |
-| `experiments/equivalence_classes/verify/verify_proofs.py` | **the verification pipeline**: re-proves all 126 classes from `certificates.json` + the raw CSV alone |
+| `experiments/equivalence_classes/verify/verify_proofs.py` | **the verification pipeline**: re-proves all 124 classes from `certificates.json` + the raw CSV alone |
+| `experiments/equivalence_classes/pipeline/augment_sweep_overnight.py` | splices the two overnight edges into the sweep artifact (the cap-28 original stays untouched) so the proof book covers all 137 edges |
 | `experiments/equivalence_classes/test_equivalence.py` | the test suite (32 tests, incl. 7 tamper-detection mutations) |
 | `results/equivalence_classes/PROOFS.md` | the proof book: every class, derived step by step |
 | `results/equivalence_classes/certificates.json` | the same, self-contained and machine-checkable |

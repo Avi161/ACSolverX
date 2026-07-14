@@ -12,7 +12,7 @@ the repo root (`envs/`, `network.py`, `ppo_ac_s.py`) is a *spec to port from, ne
 | `greedy_tests/` | the pipeline's test suite — a general-`n` spec, an invariant the solver never computes, and a `SolverAdapter` seam the stable-AC port plugs into | [→](greedy_tests/README.md) |
 | `stable_ac/` | the **stable-AC umbrella**. Shared core at the top level: `solvern.py` (general-`n` numba solver, spec-trace-equal at `n_gen≤3`) + `word_families.py` (A1/A2/A3). One self-contained folder per pipeline — `nocov/` (**Branch A**: runner + yaml + notebook + tests) and `cov/` (**Branch B**, one-shot change of variables: transform + runner + yaml + notebook + tests) | [→](stable_ac/README.md) |
 | `analysis/` | the stable-AC **benchmark**: difficulty ladder + reach tier + the combined (solved+unsolved) sets | [→](analysis/README.md) |
-| `equivalence_classes/` | proves the 261 unsolved reps are **126 distinct problems**, with certificates | [→](equivalence_classes/README.md) |
+| `equivalence_classes/` | proves the 261 unsolved reps are **124 distinct problems**, with certificates | [→](equivalence_classes/README.md) |
 | `lessons/` | 38 write-ups of bugs that shipped. Read via the index, not by browsing. | [→](lessons/README.md) |
 
 ## Tests

@@ -60,7 +60,7 @@ and a bloated CLAUDE.md gets ignored.
 .venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py   # must exit 0
 ```
 
-The verifier must print `ALL 135 EDGES VERIFY`. This suite was missing from `pytest.ini`'s `testpaths`
+The verifier must print `ALL 137 EDGES VERIFY`. This suite was missing from `pytest.ini`'s `testpaths`
 for a while, so nothing ran it by default and a change here could break it silently — it is collected
 by a bare `pytest` now. It is also the safety net any refactor of that package leans on.
 

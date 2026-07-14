@@ -1,6 +1,6 @@
 # `experiments/equivalence_classes/`
 
-Proves that the 261 "unsolved" Miller–Schupp representatives are really **126 distinct problems** —
+Proves that the 261 "unsolved" Miller–Schupp representatives are really **124 distinct problems** —
 and ships a machine-checkable certificate for every merge. The result and the evidence live in
 [`results/equivalence_classes/`](../../results/equivalence_classes/).
 
@@ -42,7 +42,7 @@ Run in this order; each writes into `results/equivalence_classes/`.
 
 ```bash
 .venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py
-# -> ALL 135 EDGES VERIFY. The 261 presentations are 126 distinct problems.
+# -> ALL 137 EDGES VERIFY. The 261 presentations are 124 distinct problems.
 ```
 
 ## `phases/` — one-shot gates, run once each before the pipeline existed

@@ -5,9 +5,8 @@
 > (`21_7 ≡ 21_28` → 124, §3c) — see [`EQUIVALENCE_FINDING.md`](EQUIVALENCE_FINDING.md). Nothing
 > in *this* document changes: every argument below is about what a class count **does and does
 > not prove**, and that reasoning is identical at 124, at 126, or at any other upper bound. The
-> 126-partition artifacts (`certificates.json`, `PROOFS.md`, the class table) are deliberately
-> not renumbered — 124 is not converged either, so rebuilding them now would be churn. Read
-> "126" below as "the then-current upper bound".
+> proof book (`certificates.json`, `PROOFS.md`) has been rebuilt at 124 — all 137 edges verify.
+> Read "126" below as "the then-current upper bound".
 
 Answers four questions:
 

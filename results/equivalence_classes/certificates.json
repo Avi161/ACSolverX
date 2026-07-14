@@ -1,20 +1,21 @@
 {
- "generated_from": "results/equivalence_classes/sweep_seam_28_250.json",
+ "generated_from": "results/equivalence_classes/sweep_seam_28_250_plus_overnight.json",
  "config": {
   "moves": "seam",
   "max_total": 28,
   "budget": 250,
-  "sources": 262
+  "sources": 262,
+  "augmented_with": "results/equivalence_classes/probe/probe_overnight_seam30.json"
  },
  "summary": {
   "presentations": 261,
-  "classes": 126,
-  "edges": 135,
+  "classes": 124,
+  "edges": 137,
   "cv_edges": 93,
-  "ac_edges": 42,
+  "ac_edges": 44,
   "ac_pure_path_edges": 6,
   "cv_single_letter": 88,
-  "singletons": 13,
+  "singletons": 9,
   "largest_class": 8
  },
  "classes": [
@@ -17639,6 +17640,425 @@
    "abelian_det": 1,
    "members": [
     {
+     "pres_id": 93,
+     "name": "21_3",
+     "r1": "YXXYxYxx",
+     "r2": "YYYYYYXyyyyyx"
+    },
+    {
+     "pres_id": 122,
+     "name": "21_29",
+     "r1": "YXyXXyxxx",
+     "r2": "YYYYYYxxYXXX"
+    }
+   ],
+   "edges": [
+    {
+     "a": {
+      "pres_id": 122,
+      "name": "21_29"
+     },
+     "b": {
+      "pres_id": 93,
+      "name": "21_3"
+     },
+     "side_a": {
+      "name": "21_29",
+      "start": [
+       "YXyXXyxxx",
+       "YYYYYYxxYXXX"
+      ],
+      "phi0": {
+       "x": "X",
+       "y": "Y"
+      },
+      "phi0_substituted": [
+       "yxYxxYXXX",
+       "yyyyyyXXyxxx"
+      ],
+      "phi0_witness": [
+       {
+        "to_relator": 1,
+        "from_relator": 1,
+        "word": "yxYxxYXXX",
+        "reduced": "yxYxxYXXX",
+        "inverted": false,
+        "rotate": 4,
+        "result": "YXXXyxYxx"
+       },
+       {
+        "to_relator": 2,
+        "from_relator": 2,
+        "word": "yyyyyyXXyxxx",
+        "reduced": "yyyyyyXXyxxx",
+        "inverted": true,
+        "rotate": 6,
+        "result": "YYYYYYXXXYxx"
+       }
+      ],
+      "aut_rep": [
+       "YXXXyxYxx",
+       "YYYYYYXXXYxx"
+      ],
+      "steps": [
+       {
+        "move": [
+         1,
+         1,
+         3,
+         4
+        ],
+        "move_desc": "r1 <- rot_3(r1) . rot_4(r2)",
+        "detail": {
+         "piece_i": "YxxYXXXyx",
+         "piece_j": "XYxxYYYYYYXX",
+         "product": "YxxYXXXyxXYxxYYYYYYXX",
+         "reduced": "YxxYXYYYYYYXX",
+         "kept": "YYYYYYXXXYxx",
+         "raw_pair": [
+          "YxxYXXXyxXYxxYYYYYYXX",
+          "YYYYYYXXXYxx"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YYYYYYXXXYxx",
+          "reduced": "YYYYYYXXXYxx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YYYYYYXXXYxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "YxxYXXXyxXYxxYYYYYYXX",
+          "reduced": "YxxYXYYYYYYXX",
+          "inverted": false,
+          "rotate": 8,
+          "result": "YYYYYYXXYxxYX"
+         }
+        ],
+        "after_move": [
+         "YYYYYYXXXYxx",
+         "YYYYYYXXYxxYX"
+        ],
+        "phi": {
+         "x": "Y",
+         "y": "X"
+        },
+        "phi_substituted": [
+         "xxxxxxyyyxYY",
+         "xxxxxxyyxYYxy"
+        ],
+        "phi_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 1,
+          "word": "xxxxxxyyyxYY",
+          "reduced": "xxxxxxyyyxYY",
+          "inverted": true,
+          "rotate": 9,
+          "result": "YYYXXXXXXyyX"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 2,
+          "word": "xxxxxxyyxYYxy",
+          "reduced": "xxxxxxyyxYYxy",
+          "inverted": true,
+          "rotate": 8,
+          "result": "YYXXXXXXYXyyX"
+         }
+        ],
+        "state": [
+         "YYYXXXXXXyyX",
+         "YYXXXXXXYXyyX"
+        ]
+       },
+       {
+        "move": [
+         1,
+         -1,
+         0,
+         0
+        ],
+        "move_desc": "r1 <- rot_0(r1) . rot_0(r2^-1)",
+        "detail": {
+         "piece_i": "YYYXXXXXXyyX",
+         "piece_j": "xYYxyxxxxxxyy",
+         "product": "YYYXXXXXXyyXxYYxyxxxxxxyy",
+         "reduced": "YYYXXXXXyxxxxxxyy",
+         "kept": "YYXXXXXXYXyyX",
+         "raw_pair": [
+          "YYYXXXXXXyyXxYYxyxxxxxxyy",
+          "YYXXXXXXYXyyX"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YYXXXXXXYXyyX",
+          "reduced": "YYXXXXXXYXyyX",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YYXXXXXXYXyyX"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "YYYXXXXXXyyXxYYxyxxxxxxyy",
+          "reduced": "YXXXXXyxxxxxx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YXXXXXyxxxxxx"
+         }
+        ],
+        "after_move": [
+         "YYXXXXXXYXyyX",
+         "YXXXXXyxxxxxx"
+        ],
+        "phi": {
+         "x": "x",
+         "y": "y"
+        },
+        "phi_substituted": [
+         "YYXXXXXXYXyyX",
+         "YXXXXXyxxxxxx"
+        ],
+        "phi_witness": null,
+        "state": [
+         "YYXXXXXXYXyyX",
+         "YXXXXXyxxxxxx"
+        ]
+       },
+       {
+        "move": [
+         1,
+         1,
+         0,
+         6
+        ],
+        "move_desc": "r1 <- rot_0(r1) . rot_6(r2)",
+        "detail": {
+         "piece_i": "YYXXXXXXYXyyX",
+         "piece_j": "xxxxxxYXXXXXy",
+         "product": "YYXXXXXXYXyyXxxxxxxYXXXXXy",
+         "reduced": "YYXXXXXXYXyyxxxxxYXXXXXy",
+         "kept": "YXXXXXyxxxxxx",
+         "raw_pair": [
+          "YYXXXXXXYXyyXxxxxxxYXXXXXy",
+          "YXXXXXyxxxxxx"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YXXXXXyxxxxxx",
+          "reduced": "YXXXXXyxxxxxx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YXXXXXyxxxxxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "YYXXXXXXYXyyXxxxxxxYXXXXXy",
+          "reduced": "YXXXXXXYXyyxxxxxYXXXXX",
+          "inverted": true,
+          "rotate": 11,
+          "result": "YYxyxxxxxxyxxxxxyXXXXX"
+         }
+        ],
+        "after_move": [
+         "YXXXXXyxxxxxx",
+         "YYxyxxxxxxyxxxxxyXXXXX"
+        ],
+        "phi": {
+         "x": "x",
+         "y": "XXXXXY"
+        },
+        "phi_substituted": [
+         "yXXXXXYxxxxxx",
+         "yxxxxxyxYxYYXXXXX"
+        ],
+        "phi_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 1,
+          "word": "yXXXXXYxxxxxx",
+          "reduced": "yXXXXXYxxxxxx",
+          "inverted": true,
+          "rotate": 1,
+          "result": "YXXXXXXyxxxxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 2,
+          "word": "yxxxxxyxYxYYXXXXX",
+          "reduced": "yxxxxxyxYxYYXXXXX",
+          "inverted": false,
+          "rotate": 7,
+          "result": "YYXXXXXyxxxxxyxYx"
+         }
+        ],
+        "state": [
+         "YXXXXXXyxxxxx",
+         "YYXXXXXyxxxxxyxYx"
+        ]
+       }
+      ],
+      "end": [
+       "YXXXXXXyxxxxx",
+       "YYXXXXXyxxxxxyxYx"
+      ]
+     },
+     "side_b": {
+      "name": "21_3",
+      "start": [
+       "YXXYxYxx",
+       "YYYYYYXyyyyyx"
+      ],
+      "phi0": {
+       "x": "x",
+       "y": "y"
+      },
+      "phi0_substituted": [
+       "YXXYxYxx",
+       "YYYYYYXyyyyyx"
+      ],
+      "phi0_witness": [
+       {
+        "to_relator": 1,
+        "from_relator": 1,
+        "word": "YXXYxYxx",
+        "reduced": "YXXYxYxx",
+        "inverted": false,
+        "rotate": 0,
+        "result": "YXXYxYxx"
+       },
+       {
+        "to_relator": 2,
+        "from_relator": 2,
+        "word": "YYYYYYXyyyyyx",
+        "reduced": "YYYYYYXyyyyyx",
+        "inverted": false,
+        "rotate": 0,
+        "result": "YYYYYYXyyyyyx"
+       }
+      ],
+      "aut_rep": [
+       "YXXYxYxx",
+       "YYYYYYXyyyyyx"
+      ],
+      "steps": [
+       {
+        "move": [
+         1,
+         -1,
+         6,
+         7
+        ],
+        "move_desc": "r1 <- rot_6(r1) . rot_7(r2^-1)",
+        "detail": {
+         "piece_i": "XYxYxxYX",
+         "piece_j": "xyyyyyyXYYYYY",
+         "product": "XYxYxxYXxyyyyyyXYYYYY",
+         "reduced": "XYxYxxyyyyyXYYYYY",
+         "kept": "YYYYYYXyyyyyx",
+         "raw_pair": [
+          "XYxYxxYXxyyyyyyXYYYYY",
+          "YYYYYYXyyyyyx"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YYYYYYXyyyyyx",
+          "reduced": "YYYYYYXyyyyyx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YYYYYYXyyyyyx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "XYxYxxYXxyyyyyyXYYYYY",
+          "reduced": "XYxYxxyyyyyXYYYYY",
+          "inverted": false,
+          "rotate": 5,
+          "result": "YYYYYXYxYxxyyyyyX"
+         }
+        ],
+        "after_move": [
+         "YYYYYYXyyyyyx",
+         "YYYYYXYxYxxyyyyyX"
+        ],
+        "phi": {
+         "x": "Y",
+         "y": "X"
+        },
+        "phi_substituted": [
+         "xxxxxxyXXXXXY",
+         "xxxxxyxYxYYXXXXXy"
+        ],
+        "phi_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 1,
+          "word": "xxxxxxyXXXXXY",
+          "reduced": "xxxxxxyXXXXXY",
+          "inverted": true,
+          "rotate": 7,
+          "result": "YXXXXXXyxxxxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 2,
+          "word": "xxxxxyxYxYYXXXXXy",
+          "reduced": "xxxxxyxYxYYXXXXXy",
+          "inverted": false,
+          "rotate": 8,
+          "result": "YYXXXXXyxxxxxyxYx"
+         }
+        ],
+        "state": [
+         "YXXXXXXyxxxxx",
+         "YYXXXXXyxxxxxyxYx"
+        ]
+       }
+      ],
+      "end": [
+       "YXXXXXXyxxxxx",
+       "YYXXXXXyxxxxxyxYx"
+      ]
+     },
+     "meet": [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXyxxxxxyxYx"
+     ],
+     "kind": "ac",
+     "pure_ac_path": false,
+     "endpoint_subst": {
+      "x": "X",
+      "y": "Y"
+     },
+     "n_moves_a": 3,
+     "n_moves_b": 1,
+     "claim": "21_29 and 21_3 are the same problem (ACA): 3 + 1 AC moves, with a change of variables between them"
+    }
+   ],
+   "class_id": 51
+  },
+  {
+   "size": 2,
+   "abelian_det": 1,
+   "members": [
+    {
      "pres_id": 94,
      "name": "21_4",
      "r1": "YXyxxyXX",
@@ -17785,7 +18205,7 @@
      "claim": "canon(psi(21_4)) == canon(21_18) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 51
+   "class_id": 52
   },
   {
    "size": 2,
@@ -17938,7 +18358,7 @@
      "claim": "canon(psi(21_5)) == canon(21_16) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 52
+   "class_id": 53
   },
   {
    "size": 2,
@@ -18091,7 +18511,426 @@
      "claim": "canon(psi(21_6)) == canon(21_27) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 53
+   "class_id": 54
+  },
+  {
+   "size": 2,
+   "abelian_det": 1,
+   "members": [
+    {
+     "pres_id": 97,
+     "name": "21_7",
+     "r1": "YXyXXYxxx",
+     "r2": "YYYYYYxxxyXX"
+    },
+    {
+     "pres_id": 121,
+     "name": "21_28",
+     "r1": "YXYxxyXX",
+     "r2": "YYYYYYXyyyyyx"
+    }
+   ],
+   "edges": [
+    {
+     "a": {
+      "pres_id": 97,
+      "name": "21_7"
+     },
+     "b": {
+      "pres_id": 121,
+      "name": "21_28"
+     },
+     "side_a": {
+      "name": "21_7",
+      "start": [
+       "YXyXXYxxx",
+       "YYYYYYxxxyXX"
+      ],
+      "phi0": {
+       "x": "X",
+       "y": "Y"
+      },
+      "phi0_substituted": [
+       "yxYxxyXXX",
+       "yyyyyyXXXYxx"
+      ],
+      "phi0_witness": [
+       {
+        "to_relator": 1,
+        "from_relator": 1,
+        "word": "yxYxxyXXX",
+        "reduced": "yxYxxyXXX",
+        "inverted": true,
+        "rotate": 6,
+        "result": "YXXyXYxxx"
+       },
+       {
+        "to_relator": 2,
+        "from_relator": 2,
+        "word": "yyyyyyXXXYxx",
+        "reduced": "yyyyyyXXXYxx",
+        "inverted": true,
+        "rotate": 6,
+        "result": "YYYYYYXXyxxx"
+       }
+      ],
+      "aut_rep": [
+       "YXXyXYxxx",
+       "YYYYYYXXyxxx"
+      ],
+      "steps": [
+       {
+        "move": [
+         1,
+         1,
+         1,
+         6
+        ],
+        "move_desc": "r1 <- rot_1(r1) . rot_6(r2)",
+        "detail": {
+         "piece_i": "xYXXyXYxx",
+         "piece_j": "XXyxxxYYYYYY",
+         "product": "xYXXyXYxxXXyxxxYYYYYY",
+         "reduced": "xYXXyxxYYYYYY",
+         "kept": "YYYYYYXXyxxx",
+         "raw_pair": [
+          "xYXXyXYxxXXyxxxYYYYYY",
+          "YYYYYYXXyxxx"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YYYYYYXXyxxx",
+          "reduced": "YYYYYYXXyxxx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YYYYYYXXyxxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "xYXXyXYxxXXyxxxYYYYYY",
+          "reduced": "xYXXyxxYYYYYY",
+          "inverted": false,
+          "rotate": 6,
+          "result": "YYYYYYxYXXyxx"
+         }
+        ],
+        "after_move": [
+         "YYYYYYXXyxxx",
+         "YYYYYYxYXXyxx"
+        ],
+        "phi": {
+         "x": "Y",
+         "y": "x"
+        },
+        "phi_substituted": [
+         "XXXXXXyyxYYY",
+         "XXXXXXYXyyxYY"
+        ],
+        "phi_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 1,
+          "word": "XXXXXXyyxYYY",
+          "reduced": "XXXXXXyyxYYY",
+          "inverted": false,
+          "rotate": 3,
+          "result": "YYYXXXXXXyyx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 2,
+          "word": "XXXXXXYXyyxYY",
+          "reduced": "XXXXXXYXyyxYY",
+          "inverted": false,
+          "rotate": 2,
+          "result": "YYXXXXXXYXyyx"
+         }
+        ],
+        "state": [
+         "YYYXXXXXXyyx",
+         "YYXXXXXXYXyyx"
+        ]
+       },
+       {
+        "move": [
+         1,
+         -1,
+         0,
+         0
+        ],
+        "move_desc": "r1 <- rot_0(r1) . rot_0(r2^-1)",
+        "detail": {
+         "piece_i": "YYYXXXXXXyyx",
+         "piece_j": "XYYxyxxxxxxyy",
+         "product": "YYYXXXXXXyyxXYYxyxxxxxxyy",
+         "reduced": "YYYXXXXXyxxxxxxyy",
+         "kept": "YYXXXXXXYXyyx",
+         "raw_pair": [
+          "YYYXXXXXXyyxXYYxyxxxxxxyy",
+          "YYXXXXXXYXyyx"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YYXXXXXXYXyyx",
+          "reduced": "YYXXXXXXYXyyx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YYXXXXXXYXyyx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "YYYXXXXXXyyxXYYxyxxxxxxyy",
+          "reduced": "YXXXXXyxxxxxx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YXXXXXyxxxxxx"
+         }
+        ],
+        "after_move": [
+         "YYXXXXXXYXyyx",
+         "YXXXXXyxxxxxx"
+        ],
+        "phi": {
+         "x": "x",
+         "y": "y"
+        },
+        "phi_substituted": [
+         "YYXXXXXXYXyyx",
+         "YXXXXXyxxxxxx"
+        ],
+        "phi_witness": null,
+        "state": [
+         "YYXXXXXXYXyyx",
+         "YXXXXXyxxxxxx"
+        ]
+       },
+       {
+        "move": [
+         1,
+         -1,
+         0,
+         8
+        ],
+        "move_desc": "r1 <- rot_0(r1) . rot_8(r2^-1)",
+        "detail": {
+         "piece_i": "YYXXXXXXYXyyx",
+         "piece_j": "XYxxxxxyXXXXX",
+         "product": "YYXXXXXXYXyyxXYxxxxxyXXXXX",
+         "reduced": "YYXXXXXXYXyxxxxxyXXXXX",
+         "kept": "YXXXXXyxxxxxx",
+         "raw_pair": [
+          "YYXXXXXXYXyyxXYxxxxxyXXXXX",
+          "YXXXXXyxxxxxx"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YXXXXXyxxxxxx",
+          "reduced": "YXXXXXyxxxxxx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YXXXXXyxxxxxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "YYXXXXXXYXyyxXYxxxxxyXXXXX",
+          "reduced": "YYXXXXXXYXyxxxxxyXXXXX",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YYXXXXXXYXyxxxxxyXXXXX"
+         }
+        ],
+        "after_move": [
+         "YXXXXXyxxxxxx",
+         "YYXXXXXXYXyxxxxxyXXXXX"
+        ],
+        "phi": {
+         "x": "x",
+         "y": "XXXXXY"
+        },
+        "phi_substituted": [
+         "yXXXXXYxxxxxx",
+         "yxxxxxyXyXYYXXXXX"
+        ],
+        "phi_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 1,
+          "word": "yXXXXXYxxxxxx",
+          "reduced": "yXXXXXYxxxxxx",
+          "inverted": true,
+          "rotate": 1,
+          "result": "YXXXXXXyxxxxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 2,
+          "word": "yxxxxxyXyXYYXXXXX",
+          "reduced": "yxxxxxyXyXYYXXXXX",
+          "inverted": false,
+          "rotate": 7,
+          "result": "YYXXXXXyxxxxxyXyX"
+         }
+        ],
+        "state": [
+         "YXXXXXXyxxxxx",
+         "YYXXXXXyxxxxxyXyX"
+        ]
+       }
+      ],
+      "end": [
+       "YXXXXXXyxxxxx",
+       "YYXXXXXyxxxxxyXyX"
+      ]
+     },
+     "side_b": {
+      "name": "21_28",
+      "start": [
+       "YXYxxyXX",
+       "YYYYYYXyyyyyx"
+      ],
+      "phi0": {
+       "x": "x",
+       "y": "Y"
+      },
+      "phi0_substituted": [
+       "yXyxxYXX",
+       "yyyyyyXYYYYYx"
+      ],
+      "phi0_witness": [
+       {
+        "to_relator": 1,
+        "from_relator": 1,
+        "word": "yXyxxYXX",
+        "reduced": "yXyxxYXX",
+        "inverted": false,
+        "rotate": 3,
+        "result": "YXXyXyxx"
+       },
+       {
+        "to_relator": 2,
+        "from_relator": 2,
+        "word": "yyyyyyXYYYYYx",
+        "reduced": "yyyyyyXYYYYYx",
+        "inverted": true,
+        "rotate": 6,
+        "result": "YYYYYYXyyyyyx"
+       }
+      ],
+      "aut_rep": [
+       "YXXyXyxx",
+       "YYYYYYXyyyyyx"
+      ],
+      "steps": [
+       {
+        "move": [
+         1,
+         -1,
+         6,
+         7
+        ],
+        "move_desc": "r1 <- rot_6(r1) . rot_7(r2^-1)",
+        "detail": {
+         "piece_i": "XyXyxxYX",
+         "piece_j": "xyyyyyyXYYYYY",
+         "product": "XyXyxxYXxyyyyyyXYYYYY",
+         "reduced": "XyXyxxyyyyyXYYYYY",
+         "kept": "YYYYYYXyyyyyx",
+         "raw_pair": [
+          "XyXyxxYXxyyyyyyXYYYYY",
+          "YYYYYYXyyyyyx"
+         ]
+        },
+        "move_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 2,
+          "word": "YYYYYYXyyyyyx",
+          "reduced": "YYYYYYXyyyyyx",
+          "inverted": false,
+          "rotate": 0,
+          "result": "YYYYYYXyyyyyx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 1,
+          "word": "XyXyxxYXxyyyyyyXYYYYY",
+          "reduced": "XyXyxxyyyyyXYYYYY",
+          "inverted": false,
+          "rotate": 5,
+          "result": "YYYYYXyXyxxyyyyyX"
+         }
+        ],
+        "after_move": [
+         "YYYYYYXyyyyyx",
+         "YYYYYXyXyxxyyyyyX"
+        ],
+        "phi": {
+         "x": "Y",
+         "y": "X"
+        },
+        "phi_substituted": [
+         "xxxxxxyXXXXXY",
+         "xxxxxyXyXYYXXXXXy"
+        ],
+        "phi_witness": [
+         {
+          "to_relator": 1,
+          "from_relator": 1,
+          "word": "xxxxxxyXXXXXY",
+          "reduced": "xxxxxxyXXXXXY",
+          "inverted": true,
+          "rotate": 7,
+          "result": "YXXXXXXyxxxxx"
+         },
+         {
+          "to_relator": 2,
+          "from_relator": 2,
+          "word": "xxxxxyXyXYYXXXXXy",
+          "reduced": "xxxxxyXyXYYXXXXXy",
+          "inverted": false,
+          "rotate": 8,
+          "result": "YYXXXXXyxxxxxyXyX"
+         }
+        ],
+        "state": [
+         "YXXXXXXyxxxxx",
+         "YYXXXXXyxxxxxyXyX"
+        ]
+       }
+      ],
+      "end": [
+       "YXXXXXXyxxxxx",
+       "YYXXXXXyxxxxxyXyX"
+      ]
+     },
+     "meet": [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXyxxxxxyXyX"
+     ],
+     "kind": "ac",
+     "pure_ac_path": false,
+     "endpoint_subst": {
+      "x": "X",
+      "y": "y"
+     },
+     "n_moves_a": 3,
+     "n_moves_b": 1,
+     "claim": "21_7 and 21_28 are the same problem (ACA): 3 + 1 AC moves, with a change of variables between them"
+    }
+   ],
+   "class_id": 55
   },
   {
    "size": 2,
@@ -18244,7 +19083,7 @@
      "claim": "canon(psi(21_8)) == canon(21_17) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 54
+   "class_id": 56
   },
   {
    "size": 2,
@@ -18397,7 +19236,7 @@
      "claim": "canon(psi(20_5)) == canon(20_6) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 55
+   "class_id": 57
   },
   {
    "size": 2,
@@ -18606,7 +19445,7 @@
      "claim": "21_9 and 21_19 are the same problem (ACA): 1 + 0 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 56
+   "class_id": 58
   },
   {
    "size": 2,
@@ -18759,7 +19598,7 @@
      "claim": "canon(psi(21_10)) == canon(21_24) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 57
+   "class_id": 59
   },
   {
    "size": 2,
@@ -18912,7 +19751,7 @@
      "claim": "canon(psi(21_11)) == canon(21_23) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 58
+   "class_id": 60
   },
   {
    "size": 2,
@@ -19065,7 +19904,7 @@
      "claim": "canon(psi(21_12)) == canon(21_22) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 59
+   "class_id": 61
   },
   {
    "size": 2,
@@ -19218,7 +20057,7 @@
      "claim": "canon(psi(21_13)) == canon(21_21) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 60
+   "class_id": 62
   },
   {
    "size": 2,
@@ -19371,7 +20210,7 @@
      "claim": "canon(psi(21_14)) == canon(21_26) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 61
+   "class_id": 63
   },
   {
    "size": 2,
@@ -19524,7 +20363,7 @@
      "claim": "canon(psi(21_15)) == canon(21_25) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 62
+   "class_id": 64
   },
   {
    "size": 2,
@@ -19791,7 +20630,7 @@
      "claim": "17_36 and 17_34 are the same problem (ACA): 1 + 1 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 63
+   "class_id": 65
   },
   {
    "size": 2,
@@ -20000,7 +20839,7 @@
      "claim": "19_33 and 19_34 are the same problem (ACA): 1 + 0 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 64
+   "class_id": 66
   },
   {
    "size": 2,
@@ -20153,7 +20992,7 @@
      "claim": "canon(psi(16_7)) == canon(16_8) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 65
+   "class_id": 67
   },
   {
    "size": 2,
@@ -20306,7 +21145,7 @@
      "claim": "canon(psi(22_1)) == canon(22_4) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 66
+   "class_id": 68
   },
   {
    "size": 2,
@@ -20459,7 +21298,7 @@
      "claim": "canon(psi(22_2)) == canon(22_3) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 67
+   "class_id": 69
   },
   {
    "size": 2,
@@ -20649,7 +21488,7 @@
      "claim": "17_37 ~AC psi(17_40) with psi: x -> x, y -> Y -- an AC path, 1 + 0 Definition 2.1 moves"
     }
    ],
-   "class_id": 68
+   "class_id": 70
   },
   {
    "size": 2,
@@ -20802,7 +21641,7 @@
      "claim": "canon(psi(17_38)) == canon(17_39) with psi: x -> yx, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 69
+   "class_id": 71
   },
   {
    "size": 2,
@@ -21126,7 +21965,7 @@
      "claim": "19_36 and 19_35 are the same problem (ACA): 2 + 1 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 70
+   "class_id": 72
   },
   {
    "size": 2,
@@ -21279,7 +22118,7 @@
      "claim": "canon(psi(23_1)) == canon(23_13) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 71
+   "class_id": 73
   },
   {
    "size": 2,
@@ -21432,7 +22271,7 @@
      "claim": "canon(psi(21_30)) == canon(21_33) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 72
+   "class_id": 74
   },
   {
    "size": 2,
@@ -21585,7 +22424,7 @@
      "claim": "canon(psi(22_5)) == canon(22_12) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 73
+   "class_id": 75
   },
   {
    "size": 2,
@@ -21738,7 +22577,7 @@
      "claim": "canon(psi(22_6)) == canon(22_10) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 74
+   "class_id": 76
   },
   {
    "size": 2,
@@ -21891,7 +22730,7 @@
      "claim": "canon(psi(23_2)) == canon(23_11) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 75
+   "class_id": 77
   },
   {
    "size": 2,
@@ -22044,7 +22883,7 @@
      "claim": "canon(psi(23_3)) == canon(23_20) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 76
+   "class_id": 78
   },
   {
    "size": 2,
@@ -22197,7 +23036,7 @@
      "claim": "canon(psi(22_7)) == canon(22_11) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 77
+   "class_id": 79
   },
   {
    "size": 2,
@@ -22350,7 +23189,7 @@
      "claim": "canon(psi(22_8)) == canon(22_9) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 78
+   "class_id": 80
   },
   {
    "size": 2,
@@ -22503,7 +23342,7 @@
      "claim": "canon(psi(21_31)) == canon(21_32) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 79
+   "class_id": 81
   },
   {
    "size": 2,
@@ -22656,7 +23495,7 @@
      "claim": "canon(psi(23_4)) == canon(23_12) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 80
+   "class_id": 82
   },
   {
    "size": 2,
@@ -22809,7 +23648,7 @@
      "claim": "canon(psi(23_5)) == canon(23_17) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 81
+   "class_id": 83
   },
   {
    "size": 2,
@@ -22962,7 +23801,7 @@
      "claim": "canon(psi(23_6)) == canon(23_16) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 82
+   "class_id": 84
   },
   {
    "size": 2,
@@ -23115,7 +23954,7 @@
      "claim": "canon(psi(23_7)) == canon(23_15) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 83
+   "class_id": 85
   },
   {
    "size": 2,
@@ -23268,7 +24107,7 @@
      "claim": "canon(psi(23_8)) == canon(23_14) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 84
+   "class_id": 86
   },
   {
    "size": 2,
@@ -23535,7 +24374,7 @@
      "claim": "23_19 and 23_9 are the same problem (ACA): 1 + 1 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 85
+   "class_id": 87
   },
   {
    "size": 2,
@@ -23897,7 +24736,7 @@
      "claim": "23_18 ~AC psi(23_10) with psi: x -> x, y -> Y -- an AC path, 2 + 2 Definition 2.1 moves"
     }
    ],
-   "class_id": 86
+   "class_id": 88
   },
   {
    "size": 2,
@@ -24050,7 +24889,7 @@
      "claim": "canon(psi(18_4)) == canon(18_5) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 87
+   "class_id": 89
   },
   {
    "size": 2,
@@ -24336,7 +25175,7 @@
      "claim": "21_38 and 21_35 are the same problem (ACA): 1 + 1 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 88
+   "class_id": 90
   },
   {
    "size": 2,
@@ -24489,7 +25328,7 @@
      "claim": "canon(psi(24_1)) == canon(24_4) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 89
+   "class_id": 91
   },
   {
    "size": 2,
@@ -24642,7 +25481,7 @@
      "claim": "canon(psi(24_2)) == canon(24_3) with psi: x -> y, y -> x -- a change of variables, no AC move"
     }
    ],
-   "class_id": 90
+   "class_id": 92
   },
   {
    "size": 2,
@@ -24832,7 +25671,7 @@
      "claim": "19_39 ~AC psi(19_41) with psi: x -> x, y -> Y -- an AC path, 1 + 0 Definition 2.1 moves"
     }
    ],
-   "class_id": 91
+   "class_id": 93
   },
   {
    "size": 2,
@@ -24985,7 +25824,7 @@
      "claim": "canon(psi(18_8)) == canon(18_10) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 92
+   "class_id": 94
   },
   {
    "size": 2,
@@ -25138,7 +25977,7 @@
      "claim": "canon(psi(20_10)) == canon(20_11) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 93
+   "class_id": 95
   },
   {
    "size": 2,
@@ -25633,7 +26472,7 @@
      "claim": "25_1 and 25_22 are the same problem (ACA): 4 + 2 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 94
+   "class_id": 96
   },
   {
    "size": 2,
@@ -25786,7 +26625,7 @@
      "claim": "canon(psi(25_2)) == canon(25_30) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 95
+   "class_id": 97
   },
   {
    "size": 2,
@@ -25939,7 +26778,7 @@
      "claim": "canon(psi(25_3)) == canon(25_32) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 96
+   "class_id": 98
   },
   {
    "size": 2,
@@ -26092,7 +26931,7 @@
      "claim": "canon(psi(25_4)) == canon(25_20) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 97
+   "class_id": 99
   },
   {
    "size": 2,
@@ -26245,7 +27084,7 @@
      "claim": "canon(psi(25_5)) == canon(25_18) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 98
+   "class_id": 100
   },
   {
    "size": 2,
@@ -26398,7 +27237,7 @@
      "claim": "canon(psi(25_6)) == canon(25_29) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 99
+   "class_id": 101
   },
   {
    "size": 2,
@@ -26551,7 +27390,7 @@
      "claim": "canon(psi(25_7)) == canon(25_31) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 100
+   "class_id": 102
   },
   {
    "size": 2,
@@ -26704,7 +27543,7 @@
      "claim": "canon(psi(25_8)) == canon(25_19) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 101
+   "class_id": 103
   },
   {
    "size": 2,
@@ -26857,7 +27696,7 @@
      "claim": "canon(psi(25_9)) == canon(25_17) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 102
+   "class_id": 104
   },
   {
    "size": 2,
@@ -27124,7 +27963,7 @@
      "claim": "25_21 and 25_10 are the same problem (ACA): 1 + 1 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 103
+   "class_id": 105
   },
   {
    "size": 2,
@@ -27277,7 +28116,7 @@
      "claim": "canon(psi(25_11)) == canon(25_26) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 104
+   "class_id": 106
   },
   {
    "size": 2,
@@ -27430,7 +28269,7 @@
      "claim": "canon(psi(25_12)) == canon(25_25) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 105
+   "class_id": 107
   },
   {
    "size": 2,
@@ -27583,7 +28422,7 @@
      "claim": "canon(psi(25_13)) == canon(25_24) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 106
+   "class_id": 108
   },
   {
    "size": 2,
@@ -27736,7 +28575,7 @@
      "claim": "canon(psi(25_14)) == canon(25_23) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 107
+   "class_id": 109
   },
   {
    "size": 2,
@@ -27889,7 +28728,7 @@
      "claim": "canon(psi(25_15)) == canon(25_28) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 108
+   "class_id": 110
   },
   {
    "size": 2,
@@ -28042,7 +28881,7 @@
      "claim": "canon(psi(25_16)) == canon(25_27) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 109
+   "class_id": 111
   },
   {
    "size": 2,
@@ -28195,7 +29034,7 @@
      "claim": "canon(psi(21_39)) == canon(21_41) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 110
+   "class_id": 112
   },
   {
    "size": 2,
@@ -28348,7 +29187,7 @@
      "claim": "canon(psi(19_44)) == canon(19_49) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 111
+   "class_id": 113
   },
   {
    "size": 2,
@@ -28729,7 +29568,7 @@
      "claim": "21_40 and 21_42 are the same problem (ACA): 2 + 2 AC moves, with a change of variables between them"
     }
    ],
-   "class_id": 112
+   "class_id": 114
   },
   {
    "size": 2,
@@ -28882,7 +29721,7 @@
      "claim": "canon(psi(19_45)) == canon(19_50) with psi: x -> x, y -> Y -- a change of variables, no AC move"
     }
    ],
-   "class_id": 113
+   "class_id": 115
   },
   {
    "size": 1,
@@ -28896,7 +29735,7 @@
     }
    ],
    "edges": [],
-   "class_id": 114
+   "class_id": 116
   },
   {
    "size": 1,
@@ -28910,7 +29749,7 @@
     }
    ],
    "edges": [],
-   "class_id": 115
+   "class_id": 117
   },
   {
    "size": 1,
@@ -28924,7 +29763,7 @@
     }
    ],
    "edges": [],
-   "class_id": 116
+   "class_id": 118
   },
   {
    "size": 1,
@@ -28938,7 +29777,7 @@
     }
    ],
    "edges": [],
-   "class_id": 117
+   "class_id": 119
   },
   {
    "size": 1,
@@ -28952,7 +29791,7 @@
     }
    ],
    "edges": [],
-   "class_id": 118
+   "class_id": 120
   },
   {
    "size": 1,
@@ -28966,7 +29805,7 @@
     }
    ],
    "edges": [],
-   "class_id": 119
+   "class_id": 121
   },
   {
    "size": 1,
@@ -28980,7 +29819,7 @@
     }
    ],
    "edges": [],
-   "class_id": 120
+   "class_id": 122
   },
   {
    "size": 1,
@@ -28994,7 +29833,7 @@
     }
    ],
    "edges": [],
-   "class_id": 121
+   "class_id": 123
   },
   {
    "size": 1,
@@ -29008,63 +29847,7 @@
     }
    ],
    "edges": [],
-   "class_id": 122
-  },
-  {
-   "size": 1,
-   "abelian_det": 1,
-   "members": [
-    {
-     "pres_id": 93,
-     "name": "21_3",
-     "r1": "YXXYxYxx",
-     "r2": "YYYYYYXyyyyyx"
-    }
-   ],
-   "edges": [],
-   "class_id": 123
-  },
-  {
-   "size": 1,
-   "abelian_det": 1,
-   "members": [
-    {
-     "pres_id": 97,
-     "name": "21_7",
-     "r1": "YXyXXYxxx",
-     "r2": "YYYYYYxxxyXX"
-    }
-   ],
-   "edges": [],
    "class_id": 124
-  },
-  {
-   "size": 1,
-   "abelian_det": 1,
-   "members": [
-    {
-     "pres_id": 121,
-     "name": "21_28",
-     "r1": "YXYxxyXX",
-     "r2": "YYYYYYXyyyyyx"
-    }
-   ],
-   "edges": [],
-   "class_id": 125
-  },
-  {
-   "size": 1,
-   "abelian_det": 1,
-   "members": [
-    {
-     "pres_id": 122,
-     "name": "21_29",
-     "r1": "YXyXXyxxx",
-     "r2": "YYYYYYxxYXXX"
-    }
-   ],
-   "edges": [],
-   "class_id": 126
   }
  ]
 }

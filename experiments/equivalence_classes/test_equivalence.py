@@ -285,7 +285,9 @@ def test_verify_proofs_passes_on_the_shipped_certificates():
         pytest.skip("certificates.json not present -- run make_proof_book.py")
     out = _verify(CERT)
     assert out.returncode == 0, out.stdout + out.stderr
-    assert "The 261 presentations are 126 distinct problems." in out.stdout, out.stdout
+    # RESULT CHANGE 2026-07-14: the overnight ladder's two verified edges (21_3 == 21_29,
+    # 21_7 == 21_28) took the shipped book from 126 classes / 135 edges to 124 / 137.
+    assert "The 261 presentations are 124 distinct problems." in out.stdout, out.stdout
 
 
 def _first(cert, kind):

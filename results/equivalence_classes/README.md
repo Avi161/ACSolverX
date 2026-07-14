@@ -14,16 +14,17 @@ Everything at the **top level is the shipped result**. Everything supporting it 
 |---|---|
 | [`EQUIVALENCE_FINDING.md`](EQUIVALENCE_FINDING.md) | **the write-up**: what was found, how, and what it does and does not claim |
 | [`LEMMA_11_AND_THE_126_CLASSES.md`](LEMMA_11_AND_THE_126_CLASSES.md) | addendum: what Lemma 11 (arXiv:2408.15332) is, why it is *not* what produced the 126, and a correction to `EQUIVALENCE_FINDING.md` §5 |
-| **`PROOFS.md`** | **the proof book** — all 126 classes, derived step by step and **checkable with a pencil**: every substitution, inversion, rotation and concatenation is written out as its own line, so nothing has to be taken on faith |
+| **`PROOFS.md`** | **the proof book** — all 124 classes, derived step by step and **checkable with a pencil**: every substitution, inversion, rotation and concatenation is written out as its own line, so nothing has to be taken on faith |
 | **`certificates.json`** | the same, machine-readable and **self-contained**: it needs neither a sweep nor the search to be checked |
 
 ### The canonical data — the four files everything else is derived from
 
 | file | contents |
 |---|---|
-| `sweep_seam_28_250.json` | **the canonical sweep** (cap 28, 250 pops/source): config, stats, the classes, and a replayable certificate for every merge |
-| `classes_sweep_seam_28_250.csv` | **the deliverable**: 126 rows, one per distinct problem, with the `Aut`-minimal presentation to actually run |
-| `merges_sweep_seam_28_250.csv` | the 135-edge merge list: `kind`, both `pres_id`s, the AC-move count on each side |
+| `sweep_seam_28_250.json` | the canonical cap-28 sweep (250 pops/source): config, stats, the classes, and a replayable certificate for every merge — kept byte-identical as the historical record |
+| `sweep_seam_28_250_plus_overnight.json` | **the current sweep artifact**: the cap-28 sweep + the two overnight edges spliced in by `pipeline/augment_sweep_overnight.py`. The proof book and the tables below are generated from this file |
+| `classes_sweep_seam_28_250_plus_overnight.csv` | **the deliverable**: 124 rows, one per distinct problem, with the `Aut`-minimal presentation to actually run (supersedes `classes_sweep_seam_28_250.csv`, 126 rows) |
+| `merges_sweep_seam_28_250_plus_overnight.csv` | the 137-edge merge list: `kind`, both `pres_id`s, the AC-move count on each side. Byte-identical to `merges_sweep_seam_28_250.csv` plus the two new edges appended |
 
 > ⚠ `merges_*.csv` has **no producer script** in the repo — the one artifact here that cannot be
 > regenerated. It is derivable from the sweep JSON + the reps CSV, but that script was never committed.
@@ -44,7 +45,7 @@ states the 1M-node sweep recorded were seeded too.
 
 ## The verification pipeline
 
-To check the shipped result — all 126 classes, from the raw data, sharing no inference with the
+To check the shipped result — all 124 classes, from the raw data, sharing no inference with the
 search that produced it:
 
 ```bash
