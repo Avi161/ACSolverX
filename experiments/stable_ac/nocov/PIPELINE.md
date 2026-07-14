@@ -99,22 +99,48 @@ job order is deterministic.
   the duplicate jobs land in different family files with identical results (the search
   is deterministic), so the redundancy is compute-only.
 
-  Worked example — the full 16-cell grid for ms499 (`r1 = YYYYYYYXyyyyyyx`, |r1| = 15;
-  `r2 = YYYYx`, |r2| = 5). Cuts are ceilings: `⌈p·15⌉ ∈ {4, 8, 12, 15}`,
-  `⌈q·5⌉ ∈ {2, 3, 4, 5}`:
+  **How A3 works, exactly.** The grid values are fractions, applied to each relator's
+  length separately, with a ceiling. For each pair `(p, q)` from
+  `[0.25, 0.5, 0.75, 1.0] × [0.25, 0.5, 0.75, 1.0]` (16 cells):
 
-  | p\q | 0.25 (`YY`) | 0.5 (`YYY`) | 0.75 (`YYYY`) | 1.0 (`YYYYx`) |
+  1. Cut a prefix of `r1`: the first `⌈p·|r1|⌉` symbols.
+  2. Cut a prefix of `r2`: the first `⌈q·|r2|⌉` symbols.
+  3. Glue them: `w = free_reduce(prefix1 + prefix2)` — only free reduction, and the
+     only place anything can cancel is the seam where the two prefixes meet.
+  4. Dedup at the end, so you get ≤ 16 words.
+
+  Full real example — ms499: `r1 = YYYYYYYXyyyyyyx` (length 15), `r2 = YYYYx`
+  (length 5). The cuts are `⌈p·15⌉ = 4, 8, 12, 15` and `⌈q·5⌉ = 2, 3, 4, 5` (note the
+  ceiling: 0.25 of 15 gives 4 symbols, not 3). All 16 cells, computed:
+
+  | p | q | pieces | result | len |
   |---|---|---|---|---|
-  | **0.25** (`YYYY`) | `YYYYYY` | `YYYYYYY` | `YYYYYYYY` | `YYYYYYYYx` |
-  | **0.5** (`YYYYYYYX`) | `YYYYYYYXYY` | `YYYYYYYXYYY` | `YYYYYYYXYYYY` | `YYYYYYYXYYYYx` |
-  | **0.75** (`YYYYYYYXyyyy`) | `YYYYYYYXyy` | `YYYYYYYXy` | `YYYYYYYX` | `YYYYYYY` *(dup)* |
-  | **1.0** (`YYYYYYYXyyyyyyx`) | `…yyxYY` (17) | `…yyxYYY` (18) | `…yyxYYYY` (19) | `…yyxYYYYx` (20) |
+  | 0.25 | 0.25 | `YYYY` + `YY` | `YYYYYY` | 6 |
+  | 0.25 | 0.5 | `YYYY` + `YYY` | `YYYYYYY` | 7 |
+  | 0.25 | 0.75 | `YYYY` + `YYYY` | `YYYYYYYY` | 8 |
+  | 0.25 | 1.0 | `YYYY` + `YYYYx` | `YYYYYYYYx` | 9 |
+  | 0.5 | 0.25 | `YYYYYYYX` + `YY` | `YYYYYYYXYY` | 10 |
+  | 0.5 | 0.5 | `YYYYYYYX` + `YYY` | `YYYYYYYXYYY` | 11 |
+  | 0.5 | 0.75 | `YYYYYYYX` + `YYYY` | `YYYYYYYXYYYY` | 12 |
+  | 0.5 | 1.0 | `YYYYYYYX` + `YYYYx` | `YYYYYYYXYYYYx` | 13 |
+  | 0.75 | 0.25 | `YYYYYYYXyyyy` + `YY` | `YYYYYYYXyy` | 10 |
+  | 0.75 | 0.5 | `YYYYYYYXyyyy` + `YYY` | `YYYYYYYXy` | 9 |
+  | 0.75 | 0.75 | `YYYYYYYXyyyy` + `YYYY` | `YYYYYYYX` | 8 |
+  | 0.75 | 1.0 | `YYYYYYYXyyyy` + `YYYYx` | `YYYYYYY` | 7 — **duplicate** of (0.25, 0.5) |
+  | 1.0 | 0.25 | full `r1` + `YY` | `YYYYYYYXyyyyyyxYY` | 17 |
+  | 1.0 | 0.5 | full `r1` + `YYY` | `YYYYYYYXyyyyyyxYYY` | 18 |
+  | 1.0 | 0.75 | full `r1` + `YYYY` | `YYYYYYYXyyyyyyxYYYY` | 19 |
+  | 1.0 | 1.0 | full `r1` + `YYYYx` | `YYYYYYYXyyyyyyxYYYYx` | 20 |
 
-  Rows 0.25/0.5/1.0 are plain concatenations (no seam cancellation — the r1-piece ends
-  in `Y`/`X`/`x`, the r2-piece starts with `Y`). Row 0.75 is the instructive one: the
-  piece ends `…yyyy`, so the r2-prefix `Y…` cancels backwards into it and the word
-  gets SHORTER as q grows (10 → 9 → 8 → 7), collapsing at `(0.75, 1.0)` to `YYYYYYY` —
-  a duplicate of cell `(0.25, 0.5)`, which dedup removes: 16 cells → 15 words.
+  Three regimes visible: rows `p = 0.25, 0.5, 1.0` are plain concatenations (their
+  pieces end in `Y`, `X`, `x` — none is the inverse of the starting `Y`, so nothing
+  cancels). Row `p = 0.75` is the instructive one: its piece ends in `…yyyy`, so the
+  `Y…` prefix of `r2` cancels backwards into the seam and the word gets *shorter* as
+  `q` grows (10 → 9 → 8 → 7), until `(0.75, 1.0)` fully telescopes (`yyyy·YYYY` gone,
+  then `X·x` gone) down to `YYYYYYY` — colliding with cell `(0.25, 0.5)`. Dedup
+  removes it: 16 cells → 15 distinct words for ms499. (Footnote: ms499 itself is a
+  `combined_11` row used here for exposition — `combined_66`'s ladder draws different
+  per-bin members.)
 
 Exact counts on `combined_11` (defaults, no caps):
 
