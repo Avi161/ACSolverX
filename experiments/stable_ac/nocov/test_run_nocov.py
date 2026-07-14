@@ -231,13 +231,13 @@ def test_config_yaml_round_trips_with_default_config():
         assert y[k] == DEFAULT_CONFIG[k], f"{k}: yaml {y[k]!r} != default"
     assert y["MOUNT_DRIVE"] is True
     assert y["USE_WANDB"] is True
-    assert y["BUDGET"] == [50000]
+    assert y["BUDGET"] == [10000]
     # the combined_66 production run: full benchmark, A2 capped (11,648
     # uncapped words -> 13,744 jobs is ~2x the intended sweep), cheap
     # families ordered first so A1/A3 complete before A2 starts
     assert y["BENCHMARK"] == "combined_66"
     assert y["FAMILIES"] == ["A1", "A3", "A2"]
-    assert y["A2_MAX_WORDS"] == 100
+    assert y["A2_MAX_WORDS"] == 64
     # A1 runs the singles on every row; dropping them from A2 removes the
     # systematic cross-family duplicates and improves the capped selection
     assert y["A2_DROP_LEN1"] is True

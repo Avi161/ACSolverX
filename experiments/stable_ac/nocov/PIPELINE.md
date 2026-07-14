@@ -345,20 +345,23 @@ disconnect loses nothing (stage + mirror + row-keyed resume: re-running the RUN 
 reports `N already done, M to run`).
 
 **The production config as committed** targets `combined_66` (60 ladder + 6 reach —
-the full benchmark) at `BUDGET: [50000]` with `A2_MAX_WORDS: 100` and the families
-ordered `[A1, A3, A2]`: A1 = 1,056 jobs and A3 = 1,040 finish first, then A2 = 6,211
-(the cap binds on 52 of 66 rows) — **8,307 searches total**, worst case ≈ 415M nodes ≈
-58 h at 2,000 nodes/s / 115 h at 1,000. For scale: cap 64 → 6,271 jobs (44–87 h),
-uncapped → 13,480 (94–187 h). The cap is result-neutral for resume (it only changes
-which jobs exist, and rows are keyed `(name, z_word)`), so it can be raised later and
-only the newly admitted words run. `A2_DROP_LEN1: true` because A1 already runs the
-four singles on every row: dropping them from A2 removes the systematic cross-family
-duplication and, where the cap binds, admits more distinctive prefix words in their
-place (at cap 100 the remaining accidental overlap is 292 jobs — 232 A1∩A2 short mixed
-words + 60 A2∩A3 cells). That remainder is left alone by design: the search is
-deterministic, so duplicate `(name, z_word)` jobs across family files carry identical
-rows — merge-dedup at analysis time is lossless, whereas runner-side cross-family
-skipping would couple the files and break each sweep's self-containment. Worst case ≈ 314M nodes ≈ 44 h at 2,000 nodes/s (87 h at 1,000 — Colab CPUs
+the full benchmark) at `BUDGET: [10000]` with `A2_MAX_WORDS: 64` and the families
+ordered `[A1, A3, A2]`: A1 = 1,056 jobs and A3 = 1,040 finish first, then A2 = 4,175 —
+**6,271 searches total**, worst case ≈ 62.7M nodes ≈ 8.7 h at 2,000 nodes/s / 17.4 h
+at 1,000 (expected less: solved jobs stop early). The ladder comparison is exact at
+10k despite the 50k snapshot columns, via `nodes_1M`: baseline solves at B iff
+`nodes_1M ≤ B`. Both knobs are result-neutral for resume (they only change which jobs
+exist; rows are keyed `(name, z_word)`), so the cap can be raised later — only newly
+admitted words run — and a later 50k sweep is simply a new set of per-budget files.
+For scale at 50k: cap 64 → 44–87 h, cap 100 → 58–115 h, uncapped → 94–187 h.
+`A2_DROP_LEN1: true` because A1 already runs the four singles on every row: dropping
+them from A2 removes the systematic cross-family duplication and, where the cap binds,
+admits more distinctive prefix words in their place (at cap 64 the remaining
+accidental overlap is 197 jobs — 156 A1∩A2 short mixed words + 41 A2∩A3 cells). That
+remainder is left alone by design: the search is deterministic, so duplicate
+`(name, z_word)` jobs across family files carry identical rows — merge-dedup at
+analysis time is lossless, whereas runner-side cross-family skipping would couple the
+files and break each sweep's self-containment. Worst case ≈ 314M nodes ≈ 44 h at 2,000 nodes/s (87 h at 1,000 — Colab CPUs
 are slower than the local M-series); the row-keyed resume makes it safe to spread over
 any number of Colab sessions, per family and mid-family alike.
 

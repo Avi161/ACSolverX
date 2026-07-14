@@ -11,16 +11,17 @@ BENCHMARK: combined_66        # the full benchmark: 60 ladder + 6 reach rows (ma
 FAMILIES: [A1, A3, A2]        # one jsonl per (budget, family); cheap families first —
                               # A1 (1,056 jobs) and A3 (1,040) finish before A2 (4,183)
 MODE: nocov                   # Branch-A tag; part of the row schema + filename identity
-BUDGET: [50000]               # node budget per search, one sweep per entry; local <= 1000
+BUDGET: [10000]               # node budget per search, one sweep per entry; local <= 1000.
+                              # Ladder comparison stays exact at any budget B via nodes_1M:
+                              # baseline solves at B iff nodes_1M <= B (budget invariance).
 MAX_RELATOR_LENGTH: 64        # per-relator cap for the 3-relator search (NO total-length budget)
 CYCLIC_REDUCE: true           # cyclically reduce after each move (matches the baseline)
 
 A1_WORDS: null                # null -> word_families.A1_DEFAULT_WORDS (~16 curated |w|<=4 words)
-A2_MAX_WORDS: 100             # cap the A2 relator-prefix family (deterministic even spacing).
-                              # On combined_66 (with A2_DROP_LEN1) uncapped A2 is 11,384 words ->
-                              # 13,480 total jobs (~94-187 h worst case); capped at 100 -> 8,307
-                              # jobs (~58-115 h); at 64 -> 6,271 (~44-87 h). Result-neutral for
-                              # resume: raising it later re-runs only the newly admitted words.
+A2_MAX_WORDS: 64              # cap the A2 relator-prefix family (deterministic even spacing).
+                              # combined_66 (with A2_DROP_LEN1): cap 64 -> 4,175 A2 jobs, 6,271
+                              # total; cap 100 -> 8,307 total; uncapped -> 13,480. Result-neutral
+                              # for resume: raising it later re-runs only the newly admitted words.
 A2_DROP_LEN1: true            # A1 already runs the four singles on every row; dropping them
                               # from A2 removes the systematic A1-overlap (350 -> 197 dup jobs
                               # on combined_66) and, since the cap binds, admits ~150 more
