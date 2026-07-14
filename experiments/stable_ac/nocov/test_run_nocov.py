@@ -224,7 +224,7 @@ def test_config_yaml_round_trips_with_default_config():
     # values match DEFAULT_CONFIG except the documented production deltas,
     # each pinned explicitly below so a yaml change stays a conscious act
     deltas = ("MOUNT_DRIVE", "USE_WANDB", "BENCHMARK", "FAMILIES",
-              "A2_MAX_WORDS")
+              "A2_MAX_WORDS", "A2_DROP_LEN1")
     for k in DEFAULT_CONFIG:
         if k in deltas:
             continue
@@ -238,6 +238,9 @@ def test_config_yaml_round_trips_with_default_config():
     assert y["BENCHMARK"] == "combined_66"
     assert y["FAMILIES"] == ["A1", "A3", "A2"]
     assert y["A2_MAX_WORDS"] == 64
+    # A1 runs the singles on every row; dropping them from A2 removes the
+    # systematic cross-family duplicates and improves the capped selection
+    assert y["A2_DROP_LEN1"] is True
 
 
 # -- big-budget guard ---------------------------------------------------------

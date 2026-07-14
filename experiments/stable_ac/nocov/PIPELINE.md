@@ -329,9 +329,16 @@ reports `N already done, M to run`).
 
 **The production config as committed** targets `combined_66` (60 ladder + 6 reach —
 the full benchmark) at `BUDGET: [50000]` with `A2_MAX_WORDS: 64` and the families
-ordered `[A1, A3, A2]`: A1 = 1,056 jobs and A3 = 1,040 finish first, then A2 = 4,183 —
-**6,279 searches total** (uncapped A2 would be 11,648 words → 13,744 jobs, roughly
-double). Worst case ≈ 314M nodes ≈ 44 h at 2,000 nodes/s (87 h at 1,000 — Colab CPUs
+ordered `[A1, A3, A2]`: A1 = 1,056 jobs and A3 = 1,040 finish first, then A2 = 4,175 —
+**6,271 searches total** (uncapped A2 would be 11,648 words → 13,744 jobs, roughly
+double). `A2_DROP_LEN1: true` because A1 already runs the four singles on every row:
+dropping them from A2 cuts the cross-family duplicate jobs from 350 to 197 and, since
+the 64-cap binds on most rows, admits ~150 more distinctive prefix words in their
+place. The remaining ~197 accidental overlaps (mostly A1∩A2 short mixed words, plus
+30 A2∩A3 cells) are left alone by design: the search is deterministic, so duplicate
+`(name, z_word)` jobs across family files carry identical rows — merge-dedup at
+analysis time is lossless, whereas runner-side cross-family skipping would couple the
+files and break each sweep's self-containment. Worst case ≈ 314M nodes ≈ 44 h at 2,000 nodes/s (87 h at 1,000 — Colab CPUs
 are slower than the local M-series); the row-keyed resume makes it safe to spread over
 any number of Colab sessions, per family and mid-family alike.
 

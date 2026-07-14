@@ -18,8 +18,11 @@ CYCLIC_REDUCE: true           # cyclically reduce after each move (matches the b
 A1_WORDS: null                # null -> word_families.A1_DEFAULT_WORDS (~16 curated |w|<=4 words)
 A2_MAX_WORDS: 64              # cap the A2 relator-prefix family (deterministic even spacing).
                               # On combined_66 uncapped A2 is 11,648 words -> 13,744 total jobs
-                              # (~95-190 h worst case); capped at 64 -> 6,279 jobs (~44-87 h).
-A2_DROP_LEN1: false           # drop length-1 A2 words (they duplicate A1's singles)
+                              # (~95-190 h worst case); capped at 64 -> 6,271 jobs (~44-87 h).
+A2_DROP_LEN1: true            # A1 already runs the four singles on every row; dropping them
+                              # from A2 removes the systematic A1-overlap (350 -> 197 dup jobs
+                              # on combined_66) and, since the cap binds, admits ~150 more
+                              # distinctive prefix words instead
 A3_GRID: [0.25, 0.5, 0.75, 1.0]   # prefix fractions p,q for free_reduce(r1[:p|r1|] + r2[:q|r2|])
 
 RESUME: true                  # skip (name, z_word) jobs already in the jsonl
