@@ -76,6 +76,13 @@ job order is deterministic.
 - **A1 — curated.** The fixed 16-word list
   `x, y, X, Y, xy, xY, Xy, XY, yx, yX, xyx, yxy, xyX, yxY, xxy, xyy` (all `|w| ≤ 4`
   after reduction; overridable via `A1_WORDS`). Always exactly 16 words per row.
+  Pure powers (`xx`, `YYY`, …) are deliberately absent: a `Z·w` relator earns its keep
+  by cancelling against both relators, which favours generator-mixing words, and the
+  powers that *are* relevant — those occurring inside the presentation's own relators —
+  are generated per-presentation by A2 anyway (e.g. AK(3)'s A2 contains
+  `xx, xxx, YY, YYY, YYYY`; ms499's contains `yy…y⁶, YY…Y⁷`). Also `z = w` and
+  `z = w⁻¹` are the same problem up to renaming `z ↦ z⁻¹`, so an inverse-closed power
+  list would half-duplicate itself.
 - **A2 — relator prefixes.** Every prefix (length 1..L) of every cyclic rotation of each
   relator: exactly `Σᵢ |rᵢ|²` raw candidates, then free-reduce → drop empties → dedup.
   This is the "the relator itself knows where it hurts" family and **dominates cost**.
