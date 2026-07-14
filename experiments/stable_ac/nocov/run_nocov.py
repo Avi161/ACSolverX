@@ -195,8 +195,11 @@ def _build_jobs(cfg, family):
 
 # Baseline passthrough per source, so analysis compares without a join back
 # into the benchmark file.
+# nodes_1M/path_1M are the 1M-budget ground truth (every ladder row solves
+# there), so a row is self-contained at ANY budget B: by budget invariance the
+# baseline solves at B iff nodes_1M <= B, and then in exactly nodes_1M nodes.
 _LADDER_PASSTHROUGH = ("baseline_nodes_at_50k", "baseline_path_at_50k",
-                       "baseline_solved_at_50k")
+                       "baseline_solved_at_50k", "nodes_1M", "path_1M")
 
 _GIT_COMMIT = False   # False = not yet resolved (None is a valid answer)
 

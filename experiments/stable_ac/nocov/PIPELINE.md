@@ -234,12 +234,31 @@ One row per job in the results jsonl. Keys, in order:
 - **provenance**: `git_commit` — full 40-hex HEAD of the checkout that produced the row
   (null outside a git repo). Deliberately *not* part of the filename/resume identity:
   rows appended after a code update record the new commit in the same file, which is
-  the audit trail wanted. (The committed 07/13 evidence rows predate this field; every
-  row written by the current code carries it.)
+  the audit trail wanted. (The committed 07/13 evidence rows predate this field and
+  the `nodes_1M`/`path_1M` passthrough; every row written by the current code carries
+  them.)
 - **baseline passthrough** — ladder rows: `baseline_nodes_at_50k`,
-  `baseline_path_at_50k`, `baseline_solved_at_50k`; reach rows: `bar_to_beat`,
+  `baseline_path_at_50k`, `baseline_solved_at_50k`, plus `nodes_1M` / `path_1M` (the
+  1M-budget ground truth — every ladder row solves there); reach rows: `bar_to_beat`,
   `start_length`, `aut_min_rep_r1`, `aut_min_rep_r2`. Analysis compares in place, no
-  join back into the benchmark file.
+  join back into the benchmark file — at ANY run budget, for any combined benchmark
+  (the passthrough keys on `source`, not on which combined file).
+
+  **Was this presentation solved by the 2-gen greedy at my budget B?** Every row
+  answers it exactly, via budget invariance (solved with `n` nodes ⟹ solved with the
+  same `n` at every budget ≥ `n`):
+
+  - *ladder, `baseline_solved_at_50k: true`* — yes at every B ≥ that node count;
+    `baseline_nodes_at_50k` / `baseline_path_at_50k` are the exact numbers to beat.
+  - *ladder, `baseline_solved_at_50k: false`* (the 50k columns are censored at 50,000)
+    — solved at B iff `nodes_1M ≤ B`, and then in exactly `nodes_1M` nodes. Example,
+    `combined_66` at B = 500,000: 12 of its 60 ladder rows are censored at 50k; ten
+    have `nodes_1M` between 59,710 and 272,953 (baseline solves them at 500k), two sit
+    at 574,348 and 574,959 (baseline does NOT solve them at 500k — beating those two
+    at 500k is a strict win). For `combined_11`, ms625 (78,770) and ms637 (271,866)
+    both fall below 500k.
+  - *reach* — the baseline never solved these at budget 1,000,000, so it is unsolved
+    at every B ≤ 1M by construction; any `solved: true` here is new, full stop.
 
 Solved jobs additionally append one row to the sibling `*_paths.jsonl`:
 `{name, z_word, r1, r2, z_relator, path_moves}`. `path_moves` is a list of

@@ -43,7 +43,7 @@ BASE_KEYS = {
     "max_relator_expanded", "time_seconds", "git_commit",
 }
 LADDER_KEYS = {"baseline_nodes_at_50k", "baseline_path_at_50k",
-               "baseline_solved_at_50k"}
+               "baseline_solved_at_50k", "nodes_1M", "path_1M"}
 REACH_KEYS = {"bar_to_beat", "start_length", "aut_min_rep_r1",
               "aut_min_rep_r2"}
 
