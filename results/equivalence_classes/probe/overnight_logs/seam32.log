@@ -1,0 +1,23 @@
+[overnight_seam32] sources=127 (126 class reps + TRIVIAL)
+[overnight_seam32] moves=seam max_total=32 budget=1000000 time=28800.0s max_states=4000000 guard=soft 2.2GB / hard 2.8GB
+[overnight_seam32]      5000 pops    176599 states  126 comps     730s (6.9/s) rss=0.58GB
+[overnight_seam32]     10000 pops    312901 states  125 comps    1363s (7.3/s) rss=0.55GB
+[overnight_seam32]     15000 pops    446217 states  125 comps    1991s (7.5/s) rss=0.97GB
+[overnight_seam32]     20000 pops    570071 states  125 comps    2599s (7.7/s) rss=0.41GB
+[overnight_seam32]     25000 pops    689780 states  125 comps    3214s (7.8/s) rss=0.19GB
+[overnight_seam32]     30000 pops    801669 states  125 comps    3791s (7.9/s) rss=1.21GB
+[overnight_seam32]     35000 pops    909599 states  125 comps    4339s (8.1/s) rss=0.42GB
+[overnight_seam32]     40000 pops   1015156 states  125 comps    4891s (8.2/s) rss=0.15GB
+[overnight_seam32]     45000 pops   1116283 states  125 comps    5427s (8.3/s) rss=0.42GB
+[overnight_seam32]     50000 pops   1213964 states  125 comps    5957s (8.4/s) rss=0.47GB
+[overnight_seam32]     55000 pops   1311649 states  125 comps    6491s (8.5/s) rss=0.47GB
+[overnight_seam32]     60000 pops   1409816 states  125 comps    7021s (8.5/s) rss=0.42GB
+[overnight_seam32] rss 3.00GB > soft 2.2GB: dropping phase-1 memo (5256254 entries)
+[overnight_seam32] MEMORY GUARD STOP: rss 3.00GB > hard 2.8GB -- keeping the last checkpoint's results
+
+==================================================================
+[overnight_seam32] pops=62000 states=1449108 7276s  [MEM GUARD]
+[overnight_seam32] CLASSES over the 126 : 124   (baseline 126)
+[overnight_seam32] *** NEW MERGES *** : 2  [['C122', 'C125'], ['C123', 'C124']]
+[overnight_seam32] SOLVED (hit trivial): 0  []
+[overnight_seam32] wrote /Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/overnight-ladder/results/equivalence_classes/probe/probe_overnight_seam32.json

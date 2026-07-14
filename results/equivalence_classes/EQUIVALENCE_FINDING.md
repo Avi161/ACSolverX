@@ -1,4 +1,4 @@
-# The 261 "unsolved classes" are at most 125 distinct problems
+# The 261 "unsolved classes" are at most 124 distinct problems
 
 Source: `greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl` (261 rows, budget 1M, `mrl=48`,
 `cyclic_reduce=true`, none solved). Inputs verified line-for-line against
@@ -12,12 +12,13 @@ Source: `greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl` (261 rows, budget 1M, 
 | + full `Aut(F₂)` (Whitehead's algorithm) | **168** / 261 | **exact** — no change of variables can do better |
 | + AC-move search modulo `Aut(F₂)`, cap 28 (§3) | **126** / 261 | **upper bound**; every merge machine-checked |
 | + the same search at cap 34 (§3b) | **125** / 261 | **upper bound**, and *not* converged — see §3b |
+| + the overnight ladder: caps 30–36 run to their resource caps (§3c) | **124** / 261 | **upper bound** — unanimous across five arms, ~700k pops |
 
-**More than half of that 1M-node sweep was duplicated compute** — 261 runs answering at most 125
+**More than half of that 1M-node sweep was duplicated compute** — 261 runs answering at most 124
 questions. `STABLE_AC_PIPELINE_PLAN.md` calls these "261 unsolved classes"; that premise is wrong,
 and not by a little.
 
-**Read "125 distinct problems", never "125 AC-classes."** The count is up to **ACA**-equivalence
+**Read "124 distinct problems", never "124 AC-classes."** The count is up to **ACA**-equivalence
 (AC moves *together with* change of variables): two presentations in one class are the same
 *problem* — one is AC-trivial if and only if the other is — which is what makes a duplicate run
 wasted. It does **not** mean a path of AC moves joins them. §0 is about exactly this distinction,
@@ -199,7 +200,7 @@ the verified merges alone and matches the reported one** — so 126 is the exact
 of independently checked equivalences, not merely a number the search printed. `|det| = 1` is
 constant across every class.
 
-> ## **261 presentations. 126 distinct problems (125 as of §3b). 52% of that 1M-node sweep was duplicated compute.**
+> ## **261 presentations. 126 distinct problems (124 as of §3b–§3c). 52% of that 1M-node sweep was duplicated compute.**
 
 113 of the 126 classes have more than one member; only **13** presentations are alone. The largest
 class has **8** members — eight separate 1M-node runs of a single problem:
@@ -313,6 +314,73 @@ churn. The shipped **135 edges still verify**; this is a 136th, separately certi
 **Next:** `seam` at `max_total` **30** and **32** — the gap in the ladder (28, 34 and 40 were run;
 30 and 32 were not). 30 is the *minimal* ceiling containing this merge, hence the fastest cap that
 can see it, and a tight cap buys the pops/sec the cap-34 run ran out of.
+
+**→ Run overnight 2026-07-13/14, and it delivered: see §3c. 125 → 124.**
+
+---
+
+## 3c. The overnight ladder: 125 → 124
+
+§3b's next step, run as an overnight production ladder (user-authorized budgets): `seam` at caps
+**30 / 32 / 34 / 36** over the 126 class reps + `TRIVIAL`, hours per arm instead of 28 minutes.
+Runner: `pipeline/run_overnight.py` — `run_probe` plus a rolling merge checkpoint (a found merge
+reaches disk within 2,000 pops) and an rss guard; per-source budget effectively unbounded, so
+time, a 4M-state cap and memory are what ended arms, never the budget.
+
+| arm | cap | pops | Aut-classes explored | ended by | classes |
+|---|---|---|---|---|---|
+| seam30 | 30 | 327,104 | 4,000,028 | state cap | **124** |
+| seam32 | 32 | 62,000 | 1,449,108 | memory guard | **124** |
+| seam32b | 32 | 62,000 | 1,449,108 | memory guard | **124** |
+| seam34 | 34 | 144,502 | 4,000,032 | state cap | **124** |
+| seam36 | 36 | 107,750 | 4,000,037 | state cap | **124** |
+
+Unanimous: **124**, the same two merges, no solves, ~700k combined pops. (seam32's guard fired on
+a stale post-mitigation reading — bug fixed, recorded in
+`experiments/lessons/guard-remeasure-after-mitigation.md`; its rerun seam32b reproduced the exact
+62,000-pop trajectory, a free determinism check.)
+
+### The 137th edge: `21_7 ≡ 21_28`
+
+```
+21_28 = ('YXXyXyxx',  'YYYYYYXyyyyyx')    Aut-minimal total length 21
+21_7  = ('YXXyXYxxx', 'YYYYYYXXyxxx')     Aut-minimal total length 21
+```
+
+Both were **singletons** in the 126 (C122 and C125). Every arm found this merge independently
+within its first ~30 minutes. The seam30 witness meets at
+`('YXXXXXXyxxxxx', 'YYXXXXXyxxxxxyXyX')` — total length **30**, above the cap-28 search space,
+exactly like the 136th edge — 1 step from `21_28`, 3 steps from `21_7`.
+
+**All four newly-merged presentations orbit one hump.** `21_3, 21_7, 21_28, 21_29`: every meeting
+class shares the first relator `YXXXXXXyxxxxx`, and `21_28`'s second relator is literally
+`21_3`'s. They pair as `{21_3, 21_29}` and `{21_7, 21_28}` — and the two pairs did **not** join
+into one class of four anywhere in ~700k pops.
+
+**Verification** — `verify/verify_probe_merges.py`, exit 0 on all five files: every root rebuilt
+from the manifest (never from the file itself) and its `φ` Nielsen-checked, every path step
+replayed by pure substitution, `|det|` constant across each merge, and the count of 124 rebuilt
+from the verified merges alone.
+
+### What 124 means, and does not mean
+
+- **Both merges are shallow finds once the ceiling is right** — every arm that could see them
+  landed them inside ~30 minutes. Beyond them, nothing: seam30 explored **4M Aut-classes over
+  6.75 h** — 64× the pops of the probe that found the 136th edge — and its partition never moved
+  again. At ceilings ≤ 36 and ≤ 4M states/arm, the remaining 124 look genuinely far apart, not
+  merely out of reach.
+- **Still an upper bound, still not exhaustion.** Every arm ended on a resource cap (states or
+  rss), never an empty queue. What §3c adds over §3b is the *shape* of the evidence: §3b's probe
+  was cut off at 4% of budget; these arms ran 12–64× deeper and found nothing further.
+- **No solves.** Nothing reached the Aut-class of `(x, y)`.
+- The pipeline artifacts (`certificates.json`, `PROOFS.md`, the class table, the 126-manifest)
+  stay unrenumbered, same reasoning as §3b: 124 is a bound touched, not a converged count.
+
+**Next, in order of leverage:** (1) **stabilization** — the one strictly coarser relation still
+untried (`STABLE_AC_PIPELINE_PLAN.md`'s job); (2) **the same ladder on a bigger machine** — the
+4M-state / ~2.8 GB caps are what ended three of the arms, and RAM buys ball radius directly;
+(3) caps **38–40 at depth**, which no deep arm has covered (the probe's cap-40 arm had 28
+minutes).
 
 ---
 
@@ -523,6 +591,8 @@ only a literal replay of the printed step catches it.
 | `experiments/equivalence_classes/search/aut_search.py` | the ACA search: multi-source BFS over `Aut`-classes + union-find |
 | `experiments/equivalence_classes/search/aca_search.py` | the raw-AC multi-source search — kept, because it is the measurement proving the hump is too high |
 | `experiments/equivalence_classes/verify/verify_certificates.py` | the independent proof checker, over a sweep JSON |
+| `experiments/equivalence_classes/pipeline/run_probe.py`, `run_overnight.py` | the 126-rep probe (§3b) and its overnight production counterpart (§3c: checkpointed, memory-guarded) |
+| `experiments/equivalence_classes/verify/verify_probe_merges.py` | proof checker for probe/overnight files: roots from the manifest, Nielsen-checked φ, replayed paths, rebuilt count |
 | `experiments/equivalence_classes/lib/autinv.py` | inverse of an automorphism of F₂ (Nielsen reduction with tracking) — turns a two-sided `Aut` merge into a single substitution |
 | `experiments/equivalence_classes/pipeline/make_proof_book.py` | sweep JSON → `certificates.json` + `PROOFS.md` |
 | `experiments/equivalence_classes/verify/verify_proofs.py` | **the verification pipeline**: re-proves all 126 classes from `certificates.json` + the raw CSV alone |
@@ -537,8 +607,9 @@ Nothing under `experiments/search/` was modified.
 
 - **The counts are upper bounds.** The search is sound and incomplete; more budget, a higher
   `Aut`-minimal length cap, or the enlarged move set can only merge *more*. **§3b confirmed this
-  the hard way: raising the cap to 34 broke the 126.** "125 distinct problems" means "at most 125",
-  and it is very likely fewer.
+  the hard way (cap 34 broke the 126), and §3c did it again (the overnight ladder broke the
+  125).** "124 distinct problems" means "at most 124", and it may still be fewer — though §3c is
+  the first evidence with real depth behind it.
 - **There is no lower bound, and there cannot be one.** All 261 present the **trivial group**, so
   if Andrews–Curtis is true they are all AC-trivial and collapse to a *single* class.
   Contrapositive: **any ACA-invariant taking ≥ 2 values on this set would disprove AC.** That is
@@ -555,12 +626,13 @@ Nothing under `experiments/search/` was modified.
   and the representative to run is the `Aut`-minimal one — which, because greedy is length-guided,
   is a strictly better-conditioned search than the presentation as shipped.
 - **What would move the number further**, roughly in order of expected value:
-  1. **A bigger `Aut`-minimal length cap — CONFIRMED, and promoted to first place by §3b.** This
-     was already listed here as "the measured limiter", while the negative-results bullet above
-     simultaneously declared the search converged. The two could not both be true, and the cap was
-     right: **cap 34 broke the 126.** The immediate next step is `seam` at cap **30** and **32** —
-     the untried rungs (28, 34 and 40 were run). 30 is the *minimal* ceiling containing the known
-     `21_3 ≡ 21_29` merge, hence the fastest cap that can see it.
+  1. **A bigger `Aut`-minimal length cap — CONFIRMED twice (§3b, §3c).** This was already listed
+     here as "the measured limiter", while the negative-results bullet above simultaneously
+     declared the search converged. The two could not both be true, and the cap was right:
+     **cap 34 broke the 126, and the overnight ladder at caps 30–36 broke the 125**
+     (`21_7 ≡ 21_28`). After ~700k pops across five deep arms found nothing beyond those two
+     merges, the untried levers are now **stabilization**, **more RAM** (the state/rss caps ended
+     every arm), and **caps 38–40 at depth**.
   2. **Stabilization** (add a generator `z` and the relator `z`). Strictly coarser than ACA, so it
      can only merge more — and it is the one relation in this hierarchy that has not been tried.
      This is `STABLE_AC_PIPELINE_PLAN.md`'s job.

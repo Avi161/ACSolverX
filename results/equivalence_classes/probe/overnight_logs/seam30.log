@@ -1,0 +1,74 @@
+[overnight_seam30] sources=127 (126 class reps + TRIVIAL)
+[overnight_seam30] moves=seam max_total=30 budget=1000000 time=28800.0s max_states=4000000 guard=soft 2.2GB / hard 2.8GB
+[overnight_seam30]      5000 pops    136447 states  126 comps     559s (8.9/s) rss=0.54GB
+[overnight_seam30]     10000 pops    237410 states  125 comps    1039s (9.6/s) rss=0.94GB
+[overnight_seam30]     15000 pops    336659 states  125 comps    1516s (9.9/s) rss=0.81GB
+[overnight_seam30]     20000 pops    435026 states  125 comps    1995s (10.0/s) rss=0.42GB
+[overnight_seam30]     25000 pops    521699 states  125 comps    2454s (10.2/s) rss=0.39GB
+[overnight_seam30]     30000 pops    600673 states  125 comps    2873s (10.4/s) rss=0.44GB
+[overnight_seam30]     35000 pops    676371 states  125 comps    3286s (10.7/s) rss=0.60GB
+[overnight_seam30]     40000 pops    750826 states  125 comps    3699s (10.8/s) rss=0.44GB
+[overnight_seam30]     45000 pops    823509 states  125 comps    4102s (11.0/s) rss=0.48GB
+[overnight_seam30]     50000 pops    897238 states  125 comps    4510s (11.1/s) rss=0.43GB
+[overnight_seam30]     55000 pops    972392 states  125 comps    4925s (11.2/s) rss=0.45GB
+[overnight_seam30]     60000 pops   1044043 states  125 comps    5336s (11.2/s) rss=0.54GB
+[overnight_seam30]     65000 pops   1115516 states  125 comps    5746s (11.3/s) rss=0.41GB
+[overnight_seam30]     70000 pops   1189008 states  125 comps    6166s (11.4/s) rss=0.54GB
+[overnight_seam30]     75000 pops   1260224 states  125 comps    6594s (11.4/s) rss=0.49GB
+[overnight_seam30]     80000 pops   1326284 states  125 comps    6993s (11.4/s) rss=0.56GB
+[overnight_seam30]     85000 pops   1390680 states  125 comps    7387s (11.5/s) rss=0.92GB
+[overnight_seam30]     90000 pops   1458180 states  125 comps    7770s (11.6/s) rss=0.66GB
+[overnight_seam30]     95000 pops   1526056 states  125 comps    8176s (11.6/s) rss=0.51GB
+[overnight_seam30]    100000 pops   1591179 states  125 comps    8566s (11.7/s) rss=0.49GB
+[overnight_seam30]    105000 pops   1653302 states  125 comps    8951s (11.7/s) rss=0.56GB
+[overnight_seam30]    110000 pops   1713294 states  125 comps    9323s (11.8/s) rss=0.62GB
+[overnight_seam30]    115000 pops   1770534 states  125 comps    9686s (11.9/s) rss=0.60GB
+[overnight_seam30]    120000 pops   1827930 states  125 comps   10058s (11.9/s) rss=0.61GB
+[overnight_seam30]    125000 pops   1882171 states  125 comps   10458s (12.0/s) rss=0.66GB
+[overnight_seam30]    130000 pops   1940804 states  125 comps   10837s (12.0/s) rss=0.57GB
+[overnight_seam30]    135000 pops   1999241 states  125 comps   11219s (12.0/s) rss=0.47GB
+[overnight_seam30]    140000 pops   2055910 states  125 comps   11605s (12.1/s) rss=0.58GB
+[overnight_seam30]    145000 pops   2108338 states  125 comps   11958s (12.1/s) rss=0.77GB
+[overnight_seam30]    150000 pops   2160917 states  125 comps   12435s (12.1/s) rss=0.76GB
+[overnight_seam30]    155000 pops   2215421 states  125 comps   12791s (12.1/s) rss=0.70GB
+[overnight_seam30]    160000 pops   2270428 states  125 comps   13160s (12.2/s) rss=0.67GB
+[overnight_seam30]    165000 pops   2324125 states  125 comps   13523s (12.2/s) rss=0.72GB
+[overnight_seam30]    170000 pops   2375729 states  125 comps   13877s (12.3/s) rss=0.64GB
+[overnight_seam30]    175000 pops   2429543 states  125 comps   14248s (12.3/s) rss=0.59GB
+[overnight_seam30]    180000 pops   2484322 states  125 comps   14624s (12.3/s) rss=0.72GB
+[overnight_seam30]    185000 pops   2536594 states  125 comps   14985s (12.3/s) rss=0.71GB
+[overnight_seam30]    190000 pops   2591761 states  125 comps   15357s (12.4/s) rss=0.73GB
+[overnight_seam30]    195000 pops   2648412 states  125 comps   15706s (12.4/s) rss=0.77GB
+[overnight_seam30]    200000 pops   2703551 states  125 comps   16038s (12.5/s) rss=0.83GB
+[overnight_seam30]    205000 pops   2756118 states  125 comps   16367s (12.5/s) rss=0.85GB
+[overnight_seam30]    210000 pops   2805996 states  125 comps   16674s (12.6/s) rss=0.69GB
+[overnight_seam30]    215000 pops   2854938 states  125 comps   17004s (12.6/s) rss=0.74GB
+[overnight_seam30]    220000 pops   2905297 states  125 comps   17333s (12.7/s) rss=0.78GB
+[overnight_seam30]    225000 pops   2957442 states  125 comps   17653s (12.7/s) rss=0.86GB
+[overnight_seam30]    230000 pops   3008258 states  125 comps   17971s (12.8/s) rss=0.82GB
+[overnight_seam30]    235000 pops   3061259 states  125 comps   18310s (12.8/s) rss=0.78GB
+[overnight_seam30]    240000 pops   3115061 states  125 comps   18635s (12.9/s) rss=0.81GB
+[overnight_seam30]    245000 pops   3166801 states  125 comps   18976s (12.9/s) rss=0.83GB
+[overnight_seam30]    250000 pops   3220450 states  125 comps   19466s (12.8/s) rss=0.58GB
+[overnight_seam30]    255000 pops   3277508 states  125 comps   19818s (12.9/s) rss=0.84GB
+[overnight_seam30]    260000 pops   3330457 states  125 comps   20142s (12.9/s) rss=0.87GB
+[overnight_seam30]    265000 pops   3383654 states  125 comps   20518s (12.9/s) rss=0.11GB
+[overnight_seam30]    270000 pops   3436084 states  125 comps   20836s (13.0/s) rss=1.10GB
+[overnight_seam30]    275000 pops   3485283 states  125 comps   21149s (13.0/s) rss=0.06GB
+[overnight_seam30]    280000 pops   3536112 states  125 comps   21433s (13.1/s) rss=2.16GB
+[overnight_seam30]    285000 pops   3588184 states  125 comps   21692s (13.1/s) rss=1.15GB
+[overnight_seam30]    290000 pops   3638780 states  125 comps   21936s (13.2/s) rss=1.36GB
+[overnight_seam30]    295000 pops   3689286 states  125 comps   22178s (13.3/s) rss=1.24GB
+[overnight_seam30]    300000 pops   3737678 states  125 comps   22412s (13.4/s) rss=1.37GB
+[overnight_seam30]    305000 pops   3785284 states  125 comps   23174s (13.2/s) rss=1.35GB
+[overnight_seam30]    310000 pops   3833769 states  125 comps   23404s (13.2/s) rss=1.26GB
+[overnight_seam30]    315000 pops   3884554 states  125 comps   23641s (13.3/s) rss=1.45GB
+[overnight_seam30]    320000 pops   3933650 states  125 comps   23874s (13.4/s) rss=1.52GB
+[overnight_seam30]    325000 pops   3980408 states  125 comps   24099s (13.5/s) rss=1.41GB
+
+==================================================================
+[overnight_seam30] pops=327104 states=4000028 24308s  [STATE CAP]
+[overnight_seam30] CLASSES over the 126 : 124   (baseline 126)
+[overnight_seam30] *** NEW MERGES *** : 2  [['C122', 'C125'], ['C123', 'C124']]
+[overnight_seam30] SOLVED (hit trivial): 0  []
+[overnight_seam30] wrote /Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/overnight-ladder/results/equivalence_classes/probe/probe_overnight_seam30.json

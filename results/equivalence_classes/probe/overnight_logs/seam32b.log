@@ -1,0 +1,24 @@
+[overnight_seam32b] sources=127 (126 class reps + TRIVIAL)
+[overnight_seam32b] moves=seam max_total=32 budget=1000000 time=20400.0s max_states=4000000 guard=soft 2.2GB / hard 2.8GB
+[overnight_seam32b]      5000 pops    176599 states  126 comps     802s (6.2/s) rss=0.16GB
+[overnight_seam32b]     10000 pops    312901 states  125 comps    1477s (6.8/s) rss=0.19GB
+[overnight_seam32b]     15000 pops    446217 states  125 comps    2136s (7.0/s) rss=0.20GB
+[overnight_seam32b]     20000 pops    570071 states  125 comps    2764s (7.2/s) rss=0.28GB
+[overnight_seam32b]     25000 pops    689780 states  125 comps    3393s (7.4/s) rss=0.23GB
+[overnight_seam32b]     30000 pops    801669 states  125 comps    4003s (7.5/s) rss=0.28GB
+[overnight_seam32b]     35000 pops    909599 states  125 comps    4572s (7.7/s) rss=0.33GB
+[overnight_seam32b]     40000 pops   1015156 states  125 comps    5145s (7.8/s) rss=0.28GB
+[overnight_seam32b]     45000 pops   1116283 states  125 comps    5713s (7.9/s) rss=0.37GB
+[overnight_seam32b]     50000 pops   1213964 states  125 comps    6250s (8.0/s) rss=0.27GB
+[overnight_seam32b]     55000 pops   1311649 states  125 comps    6813s (8.1/s) rss=0.41GB
+[overnight_seam32b]     60000 pops   1409816 states  125 comps    7353s (8.2/s) rss=0.39GB
+[overnight_seam32b] rss 3.11GB > soft 2.2GB: dropping phase-1 memo (5256254 entries)
+[overnight_seam32b] rss after memo drop: 3.42GB
+[overnight_seam32b] MEMORY GUARD STOP: rss 3.42GB > hard 2.8GB -- keeping the last checkpoint's results
+
+==================================================================
+[overnight_seam32b] pops=62000 states=1449108 7637s  [MEM GUARD]
+[overnight_seam32b] CLASSES over the 126 : 124   (baseline 126)
+[overnight_seam32b] *** NEW MERGES *** : 2  [['C122', 'C125'], ['C123', 'C124']]
+[overnight_seam32b] SOLVED (hit trivial): 0  []
+[overnight_seam32b] wrote /Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/overnight-ladder/results/equivalence_classes/probe/probe_overnight_seam32b.json

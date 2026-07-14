@@ -1,12 +1,13 @@
 # Lemma 11, and what the 126 classes do and do not prove
 
-> **Update: the count is now 125, not 126.** A later run at `max_total = 34` found a 136th edge,
-> `21_3 ≡ 21_29` — see [`EQUIVALENCE_FINDING.md`](EQUIVALENCE_FINDING.md) §3b. Nothing in *this*
-> document changes: every argument below is about what a class count **does and does not prove**,
-> and that reasoning is identical at 125, at 126, or at any other upper bound. The 126-partition
-> artifacts (`certificates.json`, `PROOFS.md`, the class table) are deliberately not renumbered —
-> 125 is not converged either, so rebuilding them now would be churn. Read "126" below as "the
-> then-current upper bound".
+> **Update: the count is now 124, not 126.** A run at `max_total = 34` found a 136th edge
+> (`21_3 ≡ 21_29` → 125, §3b), and the overnight ladder at caps 30–36 found a 137th
+> (`21_7 ≡ 21_28` → 124, §3c) — see [`EQUIVALENCE_FINDING.md`](EQUIVALENCE_FINDING.md). Nothing
+> in *this* document changes: every argument below is about what a class count **does and does
+> not prove**, and that reasoning is identical at 124, at 126, or at any other upper bound. The
+> 126-partition artifacts (`certificates.json`, `PROOFS.md`, the class table) are deliberately
+> not renumbered — 124 is not converged either, so rebuilding them now would be churn. Read
+> "126" below as "the then-current upper bound".
 
 Answers four questions:
 

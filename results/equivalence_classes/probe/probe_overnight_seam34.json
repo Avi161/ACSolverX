@@ -1,0 +1,1972 @@
+{
+ "tag": "overnight_seam34",
+ "config": {
+  "moves": "seam",
+  "max_total": 34,
+  "budget": 1000000,
+  "time_limit": 28800.0,
+  "max_states": 4000000,
+  "sources": 127
+ },
+ "stats": {
+  "popped": 144502,
+  "states": 4000032,
+  "capped": true,
+  "timed_out": false,
+  "seconds": 21011.9,
+  "components": 125,
+  "mem_abort": null
+ },
+ "n_classes": 124,
+ "new_merges": [
+  [
+   "C122",
+   "C125"
+  ],
+  [
+   "C123",
+   "C124"
+  ]
+ ],
+ "solved": [],
+ "merges": [
+  {
+   "kind": "aca",
+   "a": "C123",
+   "b": "C124",
+   "at": [
+    "YXXXXXXyxxxxx",
+    "YYXXXXXyxxxxxyxYx"
+   ],
+   "len_a": 3,
+   "len_b": 1,
+   "path_a": [
+    [
+     [
+      1,
+      1,
+      3,
+      4
+     ],
+     {
+      "x": "Y",
+      "y": "X"
+     },
+     [
+      "YYYXXXXXXyyX",
+      "YYXXXXXXYXyyX"
+     ]
+    ],
+    [
+     [
+      1,
+      -1,
+      0,
+      0
+     ],
+     {
+      "x": "x",
+      "y": "y"
+     },
+     [
+      "YYXXXXXXYXyyX",
+      "YXXXXXyxxxxxx"
+     ]
+    ],
+    [
+     [
+      1,
+      1,
+      0,
+      6
+     ],
+     {
+      "x": "x",
+      "y": "XXXXXY"
+     },
+     [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXyxxxxxyxYx"
+     ]
+    ]
+   ],
+   "path_b": [
+    [
+     [
+      1,
+      -1,
+      6,
+      7
+     ],
+     {
+      "x": "Y",
+      "y": "X"
+     },
+     [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXyxxxxxyxYx"
+     ]
+    ]
+   ]
+  },
+  {
+   "kind": "aca",
+   "a": "C125",
+   "b": "C122",
+   "at": [
+    "YXXXXXXyxxxxx",
+    "YYXXXXXXXyxxxxxyxYx"
+   ],
+   "len_a": 3,
+   "len_b": 1,
+   "path_a": [
+    [
+     [
+      1,
+      1,
+      1,
+      6
+     ],
+     {
+      "x": "Y",
+      "y": "x"
+     },
+     [
+      "YYYXXXXXXyyx",
+      "YYXXXXXXYXyyx"
+     ]
+    ],
+    [
+     [
+      1,
+      -1,
+      0,
+      0
+     ],
+     {
+      "x": "x",
+      "y": "y"
+     },
+     [
+      "YYXXXXXXYXyyx",
+      "YXXXXXyxxxxxx"
+     ]
+    ],
+    [
+     [
+      1,
+      1,
+      12,
+      7
+     ],
+     {
+      "x": "x",
+      "y": "XXXXXY"
+     },
+     [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXXXyxxxxxyxYx"
+     ]
+    ]
+   ],
+   "path_b": [
+    [
+     [
+      1,
+      1,
+      0,
+      7
+     ],
+     {
+      "x": "Y",
+      "y": "X"
+     },
+     [
+      "YXXXXXXyxxxxx",
+      "YYXXXXXXXyxxxxxyxYx"
+     ]
+    ]
+   ]
+  }
+ ],
+ "roots": {
+  "C0": {
+   "raw": [
+    "YXXyxYx",
+    "YYYYYYXyxyX"
+   ],
+   "aut_rep": [
+    "YXXyxYx",
+    "YYYYYYXyxyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C1": {
+   "raw": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "aut_rep": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C2": {
+   "raw": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "aut_rep": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C3": {
+   "raw": [
+    "YXXyxYx",
+    "YYYYYxyxyX"
+   ],
+   "aut_rep": [
+    "YXXyxYx",
+    "YYYYYxyxyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C4": {
+   "raw": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "aut_rep": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C5": {
+   "raw": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "aut_rep": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C6": {
+   "raw": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "aut_rep": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C7": {
+   "raw": [
+    "YYXXyxx",
+    "YYYYxYXYX"
+   ],
+   "aut_rep": [
+    "YYXXyxx",
+    "YYYYxYXYX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C8": {
+   "raw": [
+    "YXyXYxx",
+    "YYXYXyyx"
+   ],
+   "aut_rep": [
+    "YXyXYxx",
+    "YYXYXyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C9": {
+   "raw": [
+    "YXXXyxx",
+    "YYYXXyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYYXXyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C10": {
+   "raw": [
+    "YXXXyxx",
+    "YYXYXyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYXYXyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C11": {
+   "raw": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C12": {
+   "raw": [
+    "YXXXyxx",
+    "YYXYxyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYXYxyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C13": {
+   "raw": [
+    "YYXXYYx",
+    "YXXXyxxYx"
+   ],
+   "aut_rep": [
+    "YYXXYYx",
+    "YXXXyxxYx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C14": {
+   "raw": [
+    "YXXyXyx",
+    "YYYXyyxx"
+   ],
+   "aut_rep": [
+    "YXXyXyx",
+    "YYYXyyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C15": {
+   "raw": [
+    "YXXyXyxx",
+    "YYYYxyyyX"
+   ],
+   "aut_rep": [
+    "YXXyXyxx",
+    "YYYYxyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C16": {
+   "raw": [
+    "YYXXXyxx",
+    "YXyxxyXYx"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YXyxxyXYx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C17": {
+   "raw": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C18": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYxyyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYxyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C19": {
+   "raw": [
+    "YXyXYxxx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXyXYxxx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C20": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C21": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYxyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYxyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C22": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYxyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYxyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C23": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C24": {
+   "raw": [
+    "YYXXXYxx",
+    "YYYXXYXYx"
+   ],
+   "aut_rep": [
+    "YYXXXYxx",
+    "YYYXXYXYx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C25": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C26": {
+   "raw": [
+    "YXXYxYxx",
+    "YYYYxyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxYxx",
+    "YYYYxyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C27": {
+   "raw": [
+    "YXXyXyxx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXyXyxx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C28": {
+   "raw": [
+    "YXXYxYxx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxYxx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C29": {
+   "raw": [
+    "YYXXXyx",
+    "YYxxyxyXyX"
+   ],
+   "aut_rep": [
+    "YYXXXyx",
+    "YYxxyxyXyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C30": {
+   "raw": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "aut_rep": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C31": {
+   "raw": [
+    "YYXXyxx",
+    "YYYYYXyXyx"
+   ],
+   "aut_rep": [
+    "YYXXyxx",
+    "YYYYYXyXyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C32": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYXyxyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYXyxyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C33": {
+   "raw": [
+    "YXXXyxYx",
+    "YYXyXyxyx"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYXyXyxyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C34": {
+   "raw": [
+    "YXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C35": {
+   "raw": [
+    "YYXXXyx",
+    "YYYxxyxyXyX"
+   ],
+   "aut_rep": [
+    "YYXXXyx",
+    "YYYxxyxyXyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C36": {
+   "raw": [
+    "YYXYYXXyX",
+    "YYXyxYXXX"
+   ],
+   "aut_rep": [
+    "YYXYYXXyX",
+    "YYXyxYXXX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C37": {
+   "raw": [
+    "YYXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YYXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C38": {
+   "raw": [
+    "YYXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C39": {
+   "raw": [
+    "YXXXYxYx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxYx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C40": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYxyyyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYxyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C41": {
+   "raw": [
+    "YXyXYxxx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXyXYxxx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C42": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C43": {
+   "raw": [
+    "YXXYxYxxx",
+    "YYXyyXXyxx"
+   ],
+   "aut_rep": [
+    "YXXYxYxxx",
+    "YYXyyXXyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C44": {
+   "raw": [
+    "YYXXXyxx",
+    "YYYYYXXyXyx"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYYYYXXyXyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C45": {
+   "raw": [
+    "YXXyXYxxx",
+    "YYYYXXXYxx"
+   ],
+   "aut_rep": [
+    "YXXyXYxxx",
+    "YYYYXXXYxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C46": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C47": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYYxyyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYYxyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C48": {
+   "raw": [
+    "YXXXyxYxx",
+    "YYYYXXyxxx"
+   ],
+   "aut_rep": [
+    "YXXXyxYxx",
+    "YYYYXXyxxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C49": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYYxyyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYYxyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C50": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C51": {
+   "raw": [
+    "YXXYxYxx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxYxx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C52": {
+   "raw": [
+    "YXXyXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXyXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C53": {
+   "raw": [
+    "YXXyxYx",
+    "YYXyyXyxyxx"
+   ],
+   "aut_rep": [
+    "YXXyxYx",
+    "YYXyyXyxyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C54": {
+   "raw": [
+    "YYXXXXyxx",
+    "YYxxyXXXXX"
+   ],
+   "aut_rep": [
+    "YYXXXXyxx",
+    "YYxxyXXXXX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C55": {
+   "raw": [
+    "YXXXyXYx",
+    "YYxyxYXXyyX"
+   ],
+   "aut_rep": [
+    "YXXXyXYx",
+    "YYxyxYXXyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C56": {
+   "raw": [
+    "YYXXXyxx",
+    "YYXYYxxyXXX"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYXYYxxyXXX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C57": {
+   "raw": [
+    "YYXXXyxx",
+    "YYXYYxyXXXX"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYXYYxyXXXX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C58": {
+   "raw": [
+    "YXXXYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C59": {
+   "raw": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+   ],
+   "aut_rep": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C60": {
+   "raw": [
+    "YXXXyxYxx",
+    "YYYYYXXyxxx"
+   ],
+   "aut_rep": [
+    "YXXXyxYxx",
+    "YYYYYXXyxxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C61": {
+   "raw": [
+    "YXXyXYxxx",
+    "YYYYYXXXYxx"
+   ],
+   "aut_rep": [
+    "YXXyXYxxx",
+    "YYYYYXXXYxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C62": {
+   "raw": [
+    "YXXXYxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C63": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYYxyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYYxyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C64": {
+   "raw": [
+    "YXyXYxxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXyXYxxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C65": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C66": {
+   "raw": [
+    "YYXXXYxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "aut_rep": [
+    "YYXXXYxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C67": {
+   "raw": [
+    "YYXXXyxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C68": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C69": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYYYxyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYYYxyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C70": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYYYxyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYYYxyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C71": {
+   "raw": [
+    "YXXXyXyxx",
+    "YYYxyyXXXyx"
+   ],
+   "aut_rep": [
+    "YXXXyXyxx",
+    "YYYxyyXXXyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C72": {
+   "raw": [
+    "YXXYxYxxx",
+    "YYYxyyXXYxx"
+   ],
+   "aut_rep": [
+    "YXXYxYxxx",
+    "YYYxyyXXYxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C73": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C74": {
+   "raw": [
+    "YXXXyxYxx",
+    "YYYYYYXXyxxx"
+   ],
+   "aut_rep": [
+    "YXXXyxYxx",
+    "YYYYYYXXyxxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C75": {
+   "raw": [
+    "YXXyXYxxx",
+    "YYYYYYXXXYxx"
+   ],
+   "aut_rep": [
+    "YXXyXYxxx",
+    "YYYYYYXXXYxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C76": {
+   "raw": [
+    "YYXXyx",
+    "YYYYYYYXyXyxyXX"
+   ],
+   "aut_rep": [
+    "YYXXyx",
+    "YYYYYYYXyXyxyXX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C77": {
+   "raw": [
+    "YYXXXyyxx",
+    "YXXXXXyxxYxx"
+   ],
+   "aut_rep": [
+    "YYXXXyyxx",
+    "YXXXXXyxxYxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C78": {
+   "raw": [
+    "YXXXXyxxYx",
+    "YXYxYXyxyXX"
+   ],
+   "aut_rep": [
+    "YXXXXyxxYx",
+    "YXYxYXyxyXX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C79": {
+   "raw": [
+    "YXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C80": {
+   "raw": [
+    "YYYXXXXXyyx",
+    "YYXyxxyyxYX"
+   ],
+   "aut_rep": [
+    "YYYXXXXXyyx",
+    "YYXyxxyyxYX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C81": {
+   "raw": [
+    "YXXyXYxxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "aut_rep": [
+    "YXXyXYxxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C82": {
+   "raw": [
+    "YXXXyxYxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "aut_rep": [
+    "YXXXyxYxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C83": {
+   "raw": [
+    "YXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C84": {
+   "raw": [
+    "YYYXXXXXyyX",
+    "YYXyxxyyXYx"
+   ],
+   "aut_rep": [
+    "YYYXXXXXyyX",
+    "YYXyxxyyXYx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C85": {
+   "raw": [
+    "YYXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YYXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C86": {
+   "raw": [
+    "YYXXXyxx",
+    "YYYYYXXYxyXyXyx"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYYYYXXYxyXyXyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C87": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C88": {
+   "raw": [
+    "YYXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C89": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C90": {
+   "raw": [
+    "YXyXYxxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXyXYxxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C91": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYYYxyyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYYYxyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C92": {
+   "raw": [
+    "YXXXYxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C93": {
+   "raw": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+   ],
+   "aut_rep": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C94": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C95": {
+   "raw": [
+    "YXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C96": {
+   "raw": [
+    "YXXXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C97": {
+   "raw": [
+    "YYXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YYXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C98": {
+   "raw": [
+    "YYXXXyxx",
+    "YYYYYYYXXyXyXyXyx"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYYYYYYXXyXyXyXyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C99": {
+   "raw": [
+    "YXXXYxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C100": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C101": {
+   "raw": [
+    "YXyXYxxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXyXYxxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C102": {
+   "raw": [
+    "YXXXyxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C103": {
+   "raw": [
+    "YYXXXYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "aut_rep": [
+    "YYXXXYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C104": {
+   "raw": [
+    "YYXXXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "aut_rep": [
+    "YYXXXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C105": {
+   "raw": [
+    "YXXyXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXyXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C106": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C107": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C108": {
+   "raw": [
+    "YXXYxYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C109": {
+   "raw": [
+    "YXXYxxyx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "aut_rep": [
+    "YXXYxxyx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C110": {
+   "raw": [
+    "YXXYxxyX",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxxyX",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C111": {
+   "raw": [
+    "YXXYxYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C112": {
+   "raw": [
+    "YXXyXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXyXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C113": {
+   "raw": [
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "aut_rep": [
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C114": {
+   "raw": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "aut_rep": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C115": {
+   "raw": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "aut_rep": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C116": {
+   "raw": [
+    "YXXyxYx",
+    "YYYYXyxx"
+   ],
+   "aut_rep": [
+    "YXXyxYx",
+    "YYYYXyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C117": {
+   "raw": [
+    "YXXyxYx",
+    "YYYYYXyxx"
+   ],
+   "aut_rep": [
+    "YXXyxYx",
+    "YYYYYXyxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C118": {
+   "raw": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C119": {
+   "raw": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C120": {
+   "raw": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C121": {
+   "raw": [
+    "YXXXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C122": {
+   "raw": [
+    "YXXyXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXyXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C123": {
+   "raw": [
+    "YXXXyxYxx",
+    "YYYYYYXXXYxx"
+   ],
+   "aut_rep": [
+    "YXXXyxYxx",
+    "YYYYYYXXXYxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C124": {
+   "raw": [
+    "YXXYxYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "aut_rep": [
+    "YXXYxYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "C125": {
+   "raw": [
+    "YXXyXYxxx",
+    "YYYYYYXXyxxx"
+   ],
+   "aut_rep": [
+    "YXXyXYxxx",
+    "YYYYYYXXyxxx"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  },
+  "TRIVIAL": {
+   "raw": [
+    "Y",
+    "X"
+   ],
+   "aut_rep": [
+    "Y",
+    "X"
+   ],
+   "phi": {
+    "x": "x",
+    "y": "y"
+   }
+  }
+ }
+}

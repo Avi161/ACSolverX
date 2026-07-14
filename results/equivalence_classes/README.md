@@ -32,7 +32,7 @@ Everything at the **top level is the shipped result**. Everything supporting it 
 
 | folder | contents |
 |---|---|
-| [`probe/`](probe/) | **the eight arms that broke the 126.** `probe_seam_34_1000.json` carries the 136th edge (`21_3 ≡ 21_29`) and both its path certificates → **125**. The other seven are the negatives, each worth as much: the level-set expansion, the `full` move set, `+jsonl`, and the production config at 4× budget all return exactly 126. See `EQUIVALENCE_FINDING.md` §3b. |
+| [`probe/`](probe/) | **the eight arms that broke the 126, and the overnight ladder that broke the 125.** `probe_seam_34_1000.json` carries the 136th edge (`21_3 ≡ 21_29`) → **125**; the five `probe_overnight_seam*.json` carry the 137th (`21_7 ≡ 21_28`) → **124**, unanimous across caps 30–36 at 12–64× the probe's depth, verified by `verify_probe_merges.py`. `overnight_logs/` holds every arm's log plus `killed_run1/` (the first launch's checkpoints — the merge's first observation). The seven §3b negatives are each worth as much: level-set expansion, the `full` move set, `+jsonl`, and 4× budget all returned exactly 126. See `EQUIVALENCE_FINDING.md` §3b–§3c. |
 | [`convergence/`](convergence/) | the **four other sweeps** — a different move set, extra seed sources. *Not an archive*: they are the rows of the five-configuration table that was the argument for believing 126. ⚠ Read them knowing what they do **not** vary: all five held `max_total` at ≤ 28, and that is exactly where the 126 later broke. |
 | [`logs/`](logs/) | the run logs, including throughput |
 | [`superseded/`](superseded/) | the first-pass 261 → 168 dedup. A real archive — nothing reads it. |

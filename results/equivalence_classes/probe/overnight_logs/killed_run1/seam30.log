@@ -1,0 +1,6 @@
+[overnight_seam30] sources=127 (126 class reps + TRIVIAL)
+[overnight_seam30] moves=seam max_total=30 budget=1000000 time=30600.0s max_states=1000000 guard=soft 2.2GB / hard 2.8GB
+[overnight_seam30]      5000 pops    136447 states  126 comps     524s (9.5/s) rss=0.52GB
+[overnight_seam30]     10000 pops    237410 states  125 comps     969s (10.3/s) rss=0.71GB
+[overnight_seam30]     15000 pops    336659 states  125 comps    1423s (10.5/s) rss=0.78GB
+[overnight_seam30]     20000 pops    435026 states  125 comps    1888s (10.6/s) rss=0.47GB
