@@ -3,20 +3,22 @@
 # USE_WANDB are ON here). LOCAL runs must keep every budget <= 1000 nodes —
 # run_nocov refuses a bigger budget unless ACSOLVERX_ALLOW_BIG=1 is set (the
 # notebook RUN cell sets it on Colab).
-# Keys mirror run_nocov.DEFAULT_CONFIG; values match it EXCEPT the Colab trio:
-# MOUNT_DRIVE, USE_WANDB, BUDGET.
+# Keys mirror run_nocov.DEFAULT_CONFIG; values match it EXCEPT the documented
+# production deltas: MOUNT_DRIVE, USE_WANDB, BUDGET, BENCHMARK, FAMILIES,
+# A2_MAX_WORDS (all pinned by test_config_yaml_round_trips_with_default_config).
 
-BENCHMARK: combined_11        # which combined benchmark (results/benchmark/combined/);
-                              # combined_11 = screen, combined_22 = verdict
-FAMILIES: [A1, A2, A3]        # z-word families to sweep; one jsonl per (budget, family)
+BENCHMARK: combined_66        # the full benchmark: 60 ladder + 6 reach rows (max reach, AK(3) included)
+FAMILIES: [A1, A3, A2]        # one jsonl per (budget, family); cheap families first —
+                              # A1 (1,056 jobs) and A3 (1,040) finish before A2 (4,183)
 MODE: nocov                   # Branch-A tag; part of the row schema + filename identity
 BUDGET: [50000]               # node budget per search, one sweep per entry; local <= 1000
 MAX_RELATOR_LENGTH: 64        # per-relator cap for the 3-relator search (NO total-length budget)
 CYCLIC_REDUCE: true           # cyclically reduce after each move (matches the baseline)
 
 A1_WORDS: null                # null -> word_families.A1_DEFAULT_WORDS (~16 curated |w|<=4 words)
-A2_MAX_WORDS: null            # cap the A2 relator-prefix family (deterministic even spacing);
-                              # A2 dominates cost — set e.g. 64 if a sweep is too slow
+A2_MAX_WORDS: 64              # cap the A2 relator-prefix family (deterministic even spacing).
+                              # On combined_66 uncapped A2 is 11,648 words -> 13,744 total jobs
+                              # (~95-190 h worst case); capped at 64 -> 6,279 jobs (~44-87 h).
 A2_DROP_LEN1: false           # drop length-1 A2 words (they duplicate A1's singles)
 A3_GRID: [0.25, 0.5, 0.75, 1.0]   # prefix fractions p,q for free_reduce(r1[:p|r1|] + r2[:q|r2|])
 
@@ -35,8 +37,8 @@ USE_WANDB: true               # Colab default; DEFAULT_CONFIG (local) is false
 WANDB_ENTITY: avigyapaudel045-aisc
 WANDB_PROJECT: acsolver
 WANDB_JOB_TYPE: stable_ac_nocov
-WANDB_GROUP: null             # null -> "{benchmark}-nocov-mrl{cap}-{cyc}" (group = the sweep)
-WANDB_RUN_NAME: null          # null -> readable derived name, e.g. "A1 · 50000 · combined_11 · nocov"
+WANDB_GROUP: null             # null -> "combined_66-nocov-mrl64-cyc" (group = the sweep)
+WANDB_RUN_NAME: null          # null -> readable derived name, e.g. "A1 · 50000 · combined_66 · nocov"
 WANDB_TAGS: null
 WANDB_NOTES: null
 WANDB_MODE: online            # "offline" for a flaky network -> wandb sync later

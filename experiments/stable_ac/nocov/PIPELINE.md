@@ -327,7 +327,16 @@ Output lands in `/content/drive/MyDrive/acsolverx_results/stable_ac/nocov/`; a
 disconnect loses nothing (stage + mirror + row-keyed resume: re-running the RUN cell
 reports `N already done, M to run`).
 
-**Cost at `BUDGET: [50000]` on `combined_11`** (defaults): 2,460 searches. Worst case —
+**The production config as committed** targets `combined_66` (60 ladder + 6 reach —
+the full benchmark) at `BUDGET: [50000]` with `A2_MAX_WORDS: 64` and the families
+ordered `[A1, A3, A2]`: A1 = 1,056 jobs and A3 = 1,040 finish first, then A2 = 4,183 —
+**6,279 searches total** (uncapped A2 would be 11,648 words → 13,744 jobs, roughly
+double). Worst case ≈ 314M nodes ≈ 44 h at 2,000 nodes/s (87 h at 1,000 — Colab CPUs
+are slower than the local M-series); the row-keyed resume makes it safe to spread over
+any number of Colab sessions, per family and mid-family alike.
+
+**Cost at `BUDGET: [50000]` on `combined_11`** (yaml overridden back to it): 2,460
+searches. Worst case —
 every job burning the full budget — is 123M nodes ≈ 17 h single-core at the measured
 ~2,000 nodes/s; the real number is meaningfully lower because the easy half of the
 ladder solves in ≤ a few hundred nodes per word (at budget 100 alone, 13–17% of jobs

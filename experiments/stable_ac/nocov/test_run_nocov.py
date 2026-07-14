@@ -221,14 +221,23 @@ def test_config_yaml_round_trips_with_default_config():
     assert y["MODE"] == "nocov"
     assert isinstance(y["BUDGET"], list)
     assert all(isinstance(b, int) for b in y["BUDGET"])
-    # values match DEFAULT_CONFIG except the documented Colab trio
+    # values match DEFAULT_CONFIG except the documented production deltas,
+    # each pinned explicitly below so a yaml change stays a conscious act
+    deltas = ("MOUNT_DRIVE", "USE_WANDB", "BENCHMARK", "FAMILIES",
+              "A2_MAX_WORDS")
     for k in DEFAULT_CONFIG:
-        if k in ("MOUNT_DRIVE", "USE_WANDB"):
+        if k in deltas:
             continue
         assert y[k] == DEFAULT_CONFIG[k], f"{k}: yaml {y[k]!r} != default"
     assert y["MOUNT_DRIVE"] is True
     assert y["USE_WANDB"] is True
     assert y["BUDGET"] == [50000]
+    # the combined_66 production run: full benchmark, A2 capped (11,648
+    # uncapped words -> 13,744 jobs is ~2x the intended sweep), cheap
+    # families ordered first so A1/A3 complete before A2 starts
+    assert y["BENCHMARK"] == "combined_66"
+    assert y["FAMILIES"] == ["A1", "A3", "A2"]
+    assert y["A2_MAX_WORDS"] == 64
 
 
 # -- big-budget guard ---------------------------------------------------------
