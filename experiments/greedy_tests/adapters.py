@@ -21,11 +21,12 @@ from dataclasses import dataclass, field
 
 from experiments.search.greedy_baseline import greedy_search, str_to_move
 from experiments.search.greedy_compact import greedy_search_compact
+from experiments.stable_ac import solvern
 
 from .spec import search as spec_search
 from .spec.moves import Move, legacy_to_move
 from .spec.presentation import Presentation
-from .spec.words import str_to_word
+from .spec.words import max_supported_n_gen, str_to_word
 
 
 @dataclass(frozen=True)
@@ -120,12 +121,51 @@ class CompactNumbaAdapter(_NumbaAdapter):
         return self._normalise(pres, raw)
 
 
+class SolverNAdapter:
+    """The numba general-n solver. Same support breadth as SPEC, minus the
+    renderer's ceiling: it runs at any ``n_gen`` up to 26, ``n_rel >= 2``."""
+
+    name = "solvern"
+    #: reconstructs parent pointers, so a solved run comes back with a path
+    yields_path = True
+
+    def supports(self, pres):
+        return 1 <= pres.n_gen <= 26 and pres.n_rel >= 2
+
+    def search(self, pres, budget, cap=24, cyclic=True, progress=None):
+        raw = solvern.search_n(pres, budget, cap=cap, cyclic=cyclic,
+                               progress=progress)
+        # solvern.str_to_move is the 5-field (i,j,s,k1,k2) codec -- distinct from
+        # the 4-field greedy_baseline.str_to_move imported above.
+        moves = tuple(Move(*solvern.str_to_move(s)) for s in raw["path_moves"])
+        # path_states from int-tuple words, never from rendered strings (spec
+        # cannot render n_gen > 3, but the search runs there).
+        states = tuple(Presentation(pres.n_gen, st) for st in raw["path_words"])
+        return SearchStats(
+            solved=raw["solved"],
+            nodes_explored=raw["nodes_explored"],
+            path_length=raw["path_length"],
+            min_total=raw["min_relator_length"],
+            max_total=raw["max_relator_length"],
+            max_expanded_total=raw["max_relator_length_expanded"],
+            min_relators=tuple(solvern.str_to_word(s) for s in raw["min_relator"]),
+            max_relators=tuple(solvern.str_to_word(s) for s in raw["max_relator"]),
+            max_expanded_relators=tuple(
+                solvern.str_to_word(s) for s in raw["max_relator_expanded"]),
+            path_moves=moves,
+            path_states=states,
+            raw=raw,
+        )
+
+
 class SpecAdapter:
     name = "spec"
     yields_path = True
 
     def supports(self, pres):
-        return pres.n_gen >= 1 and pres.n_rel >= 2
+        # Capped at the renderer's ceiling: word_to_str crashes past n_gen=3, so
+        # spec cannot run the 4-generator contract case (solvern can).
+        return 1 <= pres.n_gen <= max_supported_n_gen() and pres.n_rel >= 2
 
     def search(self, pres, budget, cap=24, cyclic=True, progress=None):
         raw = spec_search.search(pres, budget, cap=cap, cyclic=cyclic,
@@ -150,9 +190,10 @@ NORMAL = NormalNumbaAdapter()
 HEAVY = HeavyNumbaAdapter()
 COMPACT = CompactNumbaAdapter()
 SPEC = SpecAdapter()
+SOLVERN = SolverNAdapter()
 
 #: Append a stable-AC adapter here and the contract suite covers it.
-ALL_ADAPTERS = [NORMAL, HEAVY, COMPACT, SPEC]
+ALL_ADAPTERS = [NORMAL, HEAVY, COMPACT, SPEC, SOLVERN]
 
 #: The three implementations of one search; only these owe exact-trace parity.
 #: They differ only in bookkeeping (dicts of str pairs / a set of packed bytes /
@@ -171,7 +212,8 @@ def replay_moves(pres, moves, cyclic=True):
 __all__ = [
     "SearchStats", "SolverAdapterError", "Move",
     "NormalNumbaAdapter", "HeavyNumbaAdapter", "CompactNumbaAdapter",
-    "SpecAdapter", "NORMAL", "HEAVY", "COMPACT", "SPEC", "ALL_ADAPTERS",
+    "SpecAdapter", "SolverNAdapter",
+    "NORMAL", "HEAVY", "COMPACT", "SPEC", "SOLVERN", "ALL_ADAPTERS",
     "PARITY_TRIO", "PARITY_PAIR", "replay_moves",
 ]
 

@@ -20,7 +20,10 @@ from experiments.greedy_tests.fixtures.presentations import (
 )
 from experiments.greedy_tests.spec.invariants import abs_det
 from experiments.greedy_tests.spec.moves import seam_cancels
-from experiments.greedy_tests.spec.presentation import trivial
+from experiments.greedy_tests.spec.presentation import Presentation, trivial
+
+#: Branch-A no-CoV target: <x,y,z | r1, r2, Z.xy> from ms640[0].
+_NOCOV = Presentation(3, ms640([0])[0].relators + ((-3, 1, 2),))
 
 #: (presentation, budget, id). Mixes solvable, budget-capped and stabilized cases.
 CASES = [
@@ -30,10 +33,13 @@ CASES = [
     (ak(3), 300, "AK(3)"),
     (MMS02_LEN14, 300, "MMS02-len14"),
     (trivial(2), 10, "trivial-2gen"),
-    # Forward-compat: only the spec adapter supports these today.
+    # Forward-compat: only the spec/solvern adapters support these today.
     (trivial(3), 10, "trivial-3gen"),
     (ms640([0])[0].stabilize(), 500, "ms640-0-stabilized"),
     (ak(3).stabilize(), 300, "AK(3)-stabilized"),
+    (_NOCOV, 500, "nocov-Zxy"),
+    # 4 generators: spec cannot render here, so only solvern runs it.
+    (ms640([0])[0].stabilize().stabilize(), 500, "ms640-0-stab-stab-4gen"),
 ]
 
 ADAPTER_IDS = [a.name for a in ALL_ADAPTERS]
@@ -142,11 +148,22 @@ def test_every_adapter_declares_support_honestly():
                 a.search(pres, min(budget, 20), cap=24, cyclic=True)
 
 
-def test_the_numba_adapters_are_two_generator_only_today():
-    """When the stable solver lands, this test is the one that must be updated."""
-    from experiments.greedy_tests.adapters import HEAVY, NORMAL, SPEC
+def test_the_adapter_support_envelopes():
+    """Pins each adapter's declared reach: the two-generator boolean-codec
+    solvers, the render-capped spec, and the general-n numba solver."""
+    from experiments.greedy_tests.adapters import HEAVY, NORMAL, SOLVERN, SPEC
 
+    # normal/heavy: the (n, 2) bool codec is two-generator only.
     assert NORMAL.supports(trivial(2)) and HEAVY.supports(trivial(2))
     assert not NORMAL.supports(trivial(3))
     assert not HEAVY.supports(trivial(3))
-    assert SPEC.supports(trivial(3)), "the spec must already cover n_gen=3"
+
+    # spec: covers n_gen=3 but is now capped at the renderer's ceiling.
+    assert SPEC.supports(trivial(3)), "the spec must cover n_gen=3"
+    assert not SPEC.supports(trivial(4)), "spec cannot render n_gen=4"
+
+    # solvern: general-n, so it runs every case the others cover and the 4-gen one.
+    assert SOLVERN.supports(trivial(2))
+    assert SOLVERN.supports(trivial(3))
+    assert SOLVERN.supports(trivial(4))
+    assert SOLVERN.supports(ms640([0])[0].stabilize().stabilize())

@@ -1,0 +1,12 @@
+name,source,r1,r2,base_total_length,pres_id,bin,aut_class,nodes_1M,path_1M,start_length,baseline_solved_at_50k,baseline_nodes_at_50k,baseline_path_at_50k,baseline_min_relator_length_at_50k,baseline_progress_at_50k,slot,aca_class_id,n_members,baseline_start_length,baseline_min_relator_length,baseline_progress,baseline_solved,bar_to_beat,aut_min_rep_r1,aut_min_rep_r2,aut_min_rep_total_length,note,members
+ms499,ladder,YYYYYYYXyyyyyyx,YYYYx,20,499,0,68,6,5,20,True,6,5,2,-18,,,,,,,,,,,,,
+ms165,ladder,YYYxyXYX,YYXyx,13,165,1,14,16,10,13,True,16,10,2,-11,,,,,,,,,,,,,
+ms303,ladder,YYYXyyx,YYYxyXYX,15,303,2,51,70,16,15,True,70,16,2,-13,,,,,,,,,,,,,
+ms491,ladder,YYYYYYXyyyyyx,YYXyyxyx,21,491,3,96,126,28,21,True,126,28,2,-19,,,,,,,,,,,,,
+ms527,ladder,YYYYYYYYXyyyyyyyx,YYXXyyx,24,527,4,110,430,49,24,True,430,49,2,-22,,,,,,,,,,,,,
+ms539,ladder,YYYYYXyyyyx,YYYxxYX,18,539,5,84,1386,76,18,True,1386,76,2,-16,,,,,,,,,,,,,
+ms629,ladder,YYYYYYYYXyyyyyyyx,YYXYXyyx,25,629,6,110,12452,79,25,True,12452,79,2,-23,,,,,,,,,,,,,
+ms613,ladder,YYYYYYYXyyyyyyx,YYYXYxyX,23,613,7,97,46481,314,23,True,46481,314,2,-21,,,,,,,,,,,,,
+ms625,ladder,YYYYYYYYXyyyyyyyx,YYXYxyX,24,625,8,106,78770,665,24,False,50000,,19,-5,,,,,,,,,,,,,
+ms637,ladder,YYYYYYYYXyyyyyyyx,YYYXyxYX,25,637,9,106,271866,667,25,False,50000,,19,-6,,,,,,,,,,,,,
+AK(3),reach,xxxYYYY,xyxYXY,13,,,,,,,,,,,,0,113,1,13,13,0,False,min_relator_length < 13,YXYxyx,YYYYxxx,13,"stable AC-triviality is OPEN; a solve at n_gen=3 is THE RESULT, not a metric. Baseline reached min_relator_length 13 = its start length, at 1,000 nodes AND at 1,000,000. Zero progress either way.",
