@@ -233,6 +233,28 @@ def test_universe_abs_det_on_benchmark_rows():
     assert by_gen["x"] > 0 and by_gen["y"] > 0
 
 
+def test_subword_relator_minus_one_boundary():
+    """w = a relator minus its last letter shortens that relator to z·g, so
+    isolation from it yields g = z^±1 — a pure re-lettering of coordinates.
+    If that was w's only occurrence, the output is the ORIGINAL pair up to
+    relator order / rotation / letter names (a redundant ~control start).
+    But when w also fires elsewhere, the same boundary word does real work:
+    it substitutes the relation g = rest⁻¹ into the other relator. Both
+    kinds live in sub4pxy today (short-relator benchmark rows); per the
+    empiricism rule neither is filtered out (PIPELINE.md §5)."""
+    # only occurrence -> trivial: output == (r2, rotation of r1)
+    res = cov.apply_cov_once(AK3_R1, AK3_R2, AK3_R1[:-1], iso_gen="y")
+    assert word_to_str(res.expr) == "z" and res.n_subs == 1
+    assert (word_to_str(res.r1), word_to_str(res.r2)) == ("xxxYYYY", "YxyxYX")
+    assert word_to_str(AK3_R1) in word_to_str(res.r2) * 2   # a rotation of r1
+    # multi-occurrence -> real compression (pres 496: 18 letters -> 10)
+    r1, r2 = str_to_word("YYYYYYYXyyyyyyx"), str_to_word("YYX")
+    res2 = cov.apply_cov_once(r1, r2, str_to_word("YY"), iso_gen="x")
+    assert word_to_str(res2.expr) == "z" and res2.n_subs == 7
+    assert (word_to_str(res2.r1), word_to_str(res2.r2)) == ("yyyXYYY", "YXX")
+    assert len(res2.r1) + len(res2.r2) < len(r1) + len(r2)
+
+
 def test_universe_iso2_expr_is_nielsen_shaped():
     """One-shot defining-relator isolation (iso_index 2) realizes exactly the
     elementary Nielsen re-coordinatisations: a freely reduced w with one

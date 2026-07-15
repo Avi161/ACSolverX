@@ -206,6 +206,19 @@ stable-AC transformation, not an automorphism of F₂ at all (its expr can even 
 z-letters — zxZ in the z = xy golden). Universe mode is exactly {subword-fired,
 relator-mediated transforms} ∪ {the elementary-Nielsen slice}.
 
+### Degeneracy at the top of the subword range
+
+w = a relator minus one (cyclic) letter shortens that relator to `z·g`, so isolating from
+it gives `g = z^±1` — the coordinate change is a pure re-lettering. If that was w's **only**
+occurrence, the output is the *original pair* back, up to relator order, rotation and letter
+names — a redundant ~control row (it may still run at a wider cap, longest+16 vs 24). But
+when w **also fires elsewhere**, the same boundary word does real work: on
+`(YYYYYYYXyyyyyyx, YYX)` (pres 496), z = YY compresses 18 letters to 10 by substituting the
+relation x = y⁻² into r1. Census on the current benchmark: 16 of 1,184 sub4pxy starts have
+`expr = z^±1` — 12 fully trivial, 4 working. With K = 4 only relators of length ≤ 5 produce
+them; raising K adds a handful per presentation. Per the empiricism rule none are filtered
+(`test_subword_relator_minus_one_boundary`).
+
 ## 6. The sweep (experiment_length: true) — one file answers everything
 
 Per presentation, the sweep runs the greedy from **every valid CoV start** plus one **no-CoV
