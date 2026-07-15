@@ -57,6 +57,12 @@ COV_DEFAULTS = {
     "z_source": "subwords",           # "subwords" | "universe" (all reduced words,
                                       # defining-relator isolation allowed)
     "universe_max_len": 4,            # universe z = every reduced word of len 2..this
+    # run_baseline.greedy_search(high_speedup=True): the compact solver — same
+    # pop order, same stats, no path. A solved search is re-solved by the
+    # normal solver to recover the path (run_baseline's own pattern), so every
+    # written row is identical to a slow-mode row. Result-neutral -> NOT in
+    # the filename identity; files resume across modes.
+    "high_speedup": False,
 }
 
 
@@ -212,6 +218,26 @@ def _transform(c, r1, r2):
     return r1t, r2t, cap, n_cov, meta
 
 
+def _search(c, r1, r2, node_budget, cap):
+    """One row's search through the ``run_baseline.greedy_search`` seam.
+
+    ``high_speedup`` dispatches to the compact solver — same pop order, same
+    stats, but no path — so a SOLVED fast search is re-solved by the normal
+    solver (deterministic: the re-solve is the identical search and stops at
+    the solved node). Every written row is therefore identical to a slow-mode
+    row; ``high_speedup`` is result-neutral and stays out of the filename.
+    """
+    hs = bool(c.get("high_speedup"))
+    stats = run_baseline.greedy_search(
+        r1, r2, node_budget, max_relator_length=cap,
+        cyclic_reduce=c["cyclic_reduce"], high_speedup=hs)
+    if hs and stats["solved"]:
+        stats = run_baseline.greedy_search(
+            r1, r2, node_budget, max_relator_length=cap,
+            cyclic_reduce=c["cyclic_reduce"], high_speedup=False)
+    return stats
+
+
 def run_budget(c, node_budget, rows, root):
     out_path = _resolve_out_path(c, node_budget, len(rows), root)
     run_baseline._repair_jsonl(out_path)
@@ -226,9 +252,7 @@ def run_budget(c, node_budget, rows, root):
                 continue
             r1t, r2t, cap, n_cov, extra = _transform(c, r1, r2)
             t0 = time.perf_counter()
-            stats = run_baseline.greedy_search(
-                r1t, r2t, node_budget, max_relator_length=cap,
-                cyclic_reduce=c["cyclic_reduce"])
+            stats = _search(c, r1t, r2t, node_budget, cap)
             elapsed = time.perf_counter() - t0
 
             row = run_baseline._build_row(bcfg, rid, r1t, r2t, node_budget,
@@ -335,9 +359,7 @@ def run_budget_sweep(c, node_budget, rows, root):
                 if (rid, z, extra["iso_gen"]) in done:
                     continue
                 t0 = time.perf_counter()
-                stats = run_baseline.greedy_search(
-                    r1t, r2t, node_budget, max_relator_length=cap,
-                    cyclic_reduce=c["cyclic_reduce"])
+                stats = _search(c, r1t, r2t, node_budget, cap)
                 elapsed = time.perf_counter() - t0
 
                 row = run_baseline._build_row(bcfg, rid, r1t, r2t, node_budget,
@@ -432,9 +454,13 @@ def main():
                     help="run the length sweep (all subword CoVs + control)")
     ap.add_argument("--z-source", default=None, choices=["subwords", "universe"],
                     help="sweep family: relator subwords or every reduced word")
+    ap.add_argument("--high-speedup", action="store_true", default=None,
+                    help="compact fast solver (result-neutral; solved rows "
+                         "re-solved for their path)")
     args = ap.parse_args()
     run(config_path=args.config, mode=args.mode, budgets=args.budget,
-        experiment_length=args.experiment_length, z_source=args.z_source)
+        experiment_length=args.experiment_length, z_source=args.z_source,
+        high_speedup=args.high_speedup)
 
 
 if __name__ == "__main__":

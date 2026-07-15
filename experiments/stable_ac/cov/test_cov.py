@@ -475,6 +475,104 @@ def test_sweep_runner_rows_and_resume(tmp_path, monkeypatch):
     assert out2 == out and len(calls) == n_calls
 
 
+# --- HIGH_SPEEDUP (result-neutral fast solver + path recovery) -----------------
+
+def _spy_searches(monkeypatch, solved):
+    """Replace the greedy seam with a spy; returns the list of call kwargs."""
+    calls = []
+
+    def spy(r1, r2, budget, **kw):
+        calls.append(dict(kw))
+        s = dict(_stub_stats())
+        if solved:
+            s.update(solved=True, path_length=3,
+                     path_moves=["r1 <- r1 . r2"] * 3)
+        return s
+
+    monkeypatch.setattr(run_cov.run_baseline, "greedy_search", spy)
+    return calls
+
+
+def _sweep_common(tmp_path):
+    csv_p = tmp_path / "reach_tier_9.csv"
+    csv_p.write_text("name,r1,r2\nAK(3),xyxYXY,xxxYYYY\n")
+    return dict(datasets=[str(csv_p)], budgets=[100], mode="cov",
+                experiment_length=True, out_dir=str(tmp_path / "out"))
+
+
+def test_high_speedup_dispatch_and_path_recovery(tmp_path, monkeypatch):
+    # unsolved rows: exactly one fast call each
+    calls = _spy_searches(monkeypatch, solved=False)
+    out = run_cov.run(**_sweep_common(tmp_path), high_speedup=True)
+    rows = [json.loads(ln) for ln in open(out[0])]
+    assert len(calls) == len(rows)
+    assert all(kw["high_speedup"] is True for kw in calls)
+
+
+def test_high_speedup_resolves_solved_rows_for_the_path(tmp_path, monkeypatch):
+    # solved rows: fast call, then the normal-solver recovery re-solve
+    calls = _spy_searches(monkeypatch, solved=True)
+    out = run_cov.run(**_sweep_common(tmp_path), high_speedup=True)
+    rows = [json.loads(ln) for ln in open(out[0])]
+    assert len(calls) == 2 * len(rows)
+    assert [kw["high_speedup"] for kw in calls] == [True, False] * len(rows)
+
+
+def test_high_speedup_off_stays_on_the_normal_solver(tmp_path, monkeypatch):
+    calls = _spy_searches(monkeypatch, solved=True)
+    out = run_cov.run(**_sweep_common(tmp_path))          # default: off
+    rows = [json.loads(ln) for ln in open(out[0])]
+    assert len(calls) == len(rows)                        # no recovery pass
+    assert all(kw["high_speedup"] is False for kw in calls)
+
+
+def test_run_prefix_neutral_to_high_speedup():
+    # result-neutral -> outside the filename identity; files resume across modes
+    for sweep in (False, True):
+        c = dict(run_cov.COV_DEFAULTS)
+        c["experiment_length"] = sweep
+        p = run_cov._run_prefix(c, 1000, 11)
+        assert run_cov._run_prefix({**c, "high_speedup": True}, 1000, 11) == p
+
+
+def test_resume_interoperates_across_modes(tmp_path, monkeypatch):
+    calls = _spy_searches(monkeypatch, solved=False)
+    common = _sweep_common(tmp_path)
+    out1 = run_cov.run(**common)
+    n_slow = len(calls)
+    assert n_slow > 0 and all(kw["high_speedup"] is False for kw in calls)
+    out2 = run_cov.run(**common, high_speedup=True)
+    assert out2 == out1 and len(calls) == n_slow, \
+        "the fast rerun must resume the slow run's file, not re-search"
+
+
+def test_fast_and_slow_micro_runs_write_identical_rows(tmp_path):
+    """No monkeypatch: real searches both ways on benchmark presentation 491
+    (4 of its 17 sweep starts solve at budget 100, so the recovery re-solve
+    runs for real). Rows must match on every field except ``time_seconds``
+    and the three min/max relator STRINGS — those are tie-broken over a set
+    in the normal solver (PYTHONHASHSEED, documented repo-wide) while the
+    compact solver pins first-seen, so only their lengths are contractual.
+    Paths ARE compared exactly: a solved fast row's path comes from the
+    normal-solver recovery, so it must be bit-identical."""
+    csv_p = tmp_path / "benchmark_subset_1.csv"
+    csv_p.write_text("pres_id,r1,r2\n491,YYYYYYXyyyyyx,YYXyyxyx\n")
+    noncontractual = {"time_seconds", "min_relator", "max_relator",
+                      "max_relator_expanded"}
+    got = {}
+    for high, sub in ((False, "slow"), (True, "fast")):
+        out = run_cov.run(datasets=[str(csv_p)], budgets=[100], mode="cov",
+                          experiment_length=True,
+                          out_dir=str(tmp_path / sub), high_speedup=high)
+        rows = [json.loads(ln) for ln in open(out[0])]
+        got[sub] = [{k: v for k, v in r.items() if k not in noncontractual}
+                    for r in rows]
+    assert got["slow"] == got["fast"]
+    solved = [r for r in got["fast"] if r["solved"]]
+    assert solved, "the fixture must exercise the recovery path"
+    assert all(r["path_moves"] for r in solved)
+
+
 def test_run_prefix_universe_identity_and_validation():
     c = dict(run_cov.COV_DEFAULTS)
     c["experiment_length"], c["z_source"] = True, "universe"

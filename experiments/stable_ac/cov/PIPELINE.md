@@ -243,12 +243,21 @@ rules (`sub4`, `sub4p`, `uni4`, `zf1`) keep their tags and never share a resume 
 Local proof (≤ 1000 nodes — the repo hard cap):
 
 ```bash
-.venv/bin/python3 -m pytest experiments/stable_ac -q            # 42 tests
+.venv/bin/python3 -m pytest experiments/stable_ac -q            # 58 tests
 .venv/bin/python3 -m experiments.stable_ac.cov.run_cov \
     --experiment-length --budget 100 1000                       # subword sweep, 11 rows
 .venv/bin/python3 -m experiments.stable_ac.cov.run_cov \
     --experiment-length --z-source universe --budget 100 1000   # universe sweep
 ```
+
+**high_speedup** (yaml: on in production, off in `COV_DEFAULTS`; CLI `--high-speedup`):
+routes every search through `run_baseline`'s compact fast solver — same pop order, and a
+solved search is re-solved by the normal solver so the written row is identical (0
+contractual mismatches over 420 row pairs; only the min/max relator display strings can
+differ, the documented set-tiebreak). Measured **2.9×** wall on the 11-row double-budget
+sweep locally; bigger budgets amortize the JIT warm-up further. Result-neutral → outside
+the filename identity, so files written in either mode resume each other — flipping the
+knob mid-campaign is safe.
 
 Production (Colab, `cov_baseline.ipynb` — re-open from GitHub after any push; edit only the
 CONFIG cell). Both runs: `BUDGET = [50000]`, `MODE = "cov"`, `EXPERIMENT_LENGTH = True`,

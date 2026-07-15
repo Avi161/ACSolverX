@@ -47,5 +47,10 @@ universe_max_len: 4             # length bound for the universe family (78 canon
                                 # words at 4; grows ~3x per +1)
 
 cyclic_reduce: true
+high_speedup: true              # production delta: run_baseline's compact fast solver —
+                                # same pop order, every written row identical (a solved
+                                # search is re-solved by the normal solver to recover its
+                                # path). Result-neutral -> NOT in the filename identity;
+                                # files written in either mode resume each other.
 out_dir: results/stable_ac/cov  # new namespace — never greedy_baseline/ or benchmark/
 resume: true

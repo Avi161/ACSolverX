@@ -116,8 +116,11 @@ starts are admitted because sweep evidence says some presentations solve only fr
 `z_source: universe` swaps the sweep family for EVERY reduced word of length
 2..`universe_max_len` (`universe_candidates`) with defining-relator isolation allowed
 (`iso_index 2` — z solves to an elementary Nielsen automorphism of either generator, so it need
-not occur in the presentation); prefix `covsweep_..._uni{n}xy_`. Tests are colocated
-(`cov/test_cov.py`), same command as above.
+not occur in the presentation); prefix `covsweep_..._uni{n}xy_`. `high_speedup` (production
+yaml true) routes searches through `run_baseline.greedy_search(high_speedup=True)` and
+re-solves solved rows with the normal solver for their path — result-neutral (rows identical,
+~2.9× measured), so it stays OUT of `_run_prefix` and files resume across modes. Tests are
+colocated (`cov/test_cov.py`), same command as above.
 
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path
 through `greedy_tests/spec/` ONLY (never a solver — the independence is the point; a solver bug or
