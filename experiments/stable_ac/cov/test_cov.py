@@ -144,6 +144,64 @@ def test_pure_power_z_is_a_candidate():
     assert res is not None and res.applicable and res.n_subs >= 1
 
 
+# --- universe family (z need not occur; defining-relator isolation) -----------
+
+def test_universe_candidates_canonical():
+    fam2 = cov.universe_candidates(2, 2)
+    assert set(fam2) == {str_to_word(s) for s in ("xx", "yy", "xy", "yx", "yX", "Xy")}
+    fam4 = cov.universe_candidates(2, 4)
+    # 12 + 36 + 108 reduced words, exactly halved by w ~ w⁻¹ (no fixed points)
+    assert len(fam4) == 78
+    assert list(fam4) == sorted(fam4, key=lambda w: (len(w), w))
+    as_set = set(fam4)
+    assert not any(inverse(w) in as_set and inverse(w) != w for w in fam4)
+
+
+def test_universe_cov_nonoccurring_word():
+    # z=xyy occurs nowhere in AK(3) -> default mode rejects it, universe mode
+    # isolates from the defining relator Zxyy (one x): x = zYY, a pure Nielsen
+    # re-coordinatisation of BOTH relators, no substitution at all.
+    w = str_to_word("xyy")
+    assert cov.apply_cov_once(AK3_R1, AK3_R2, w) is None
+    res = cov.apply_cov_once(AK3_R1, AK3_R2, w, allow_defining_iso=True)
+    assert res.applicable and res.iso_index == 2 and res.n_subs == 0
+    assert word_to_str(res.expr) == "zYY"
+    assert word_to_str(res.r1) == "yXyXYX"
+    assert word_to_str(res.r2) == "yXXyXXyXXXXXX"
+    assert res.cap == max(24, 13 + cov.CAP_HEADROOM) == 29
+    assert _three_stage_dets(AK3_R1, AK3_R2, res) == (1, 1, 1)
+
+
+def test_universe_two_x_nonoccurring_rejected():
+    # w=xxyy neither occurs nor has a single x: no isolation path anywhere
+    assert cov.apply_cov_once(AK3_R1, AK3_R2, str_to_word("xxyy"),
+                              allow_defining_iso=True) is None
+
+
+def test_universe_output_pairs_superset_of_subwords():
+    sub = cov.enumerate_cov(AK3_R1, AK3_R2)
+    uni = cov.enumerate_cov(AK3_R1, AK3_R2, family=cov.universe_candidates(2, 4),
+                            allow_defining_iso=True)
+    sub_pairs = {(r.r1, r.r2) for r in sub}
+    uni_pairs = {(r.r1, r.r2) for r in uni}
+    assert sub_pairs <= uni_pairs and len(uni_pairs) > len(sub_pairs)
+
+
+def test_universe_abs_det_on_benchmark_rows():
+    root = run_cov.find_repo_root(os.path.dirname(__file__))
+    rows = run_cov.load_rows(run_cov.COV_DEFAULTS["datasets"], root)
+    fam = cov.universe_candidates(2, 3)
+    n_results = 0
+    for rid, r1s_, r2s_, _src in rows:
+        r1, r2 = str_to_word(r1s_), str_to_word(r2s_)
+        before = abs_det(Presentation(2, (r1, r2)))
+        for res in cov.enumerate_cov(r1, r2, family=fam, allow_defining_iso=True):
+            assert _three_stage_dets(r1, r2, res) == (before,) * 3, \
+                (rid, word_to_str(res.z_word))
+            n_results += 1
+    assert n_results > 0
+
+
 def test_relabel_preserves_signs():
     assert cov.relabel(str_to_word("yYzZ")) == str_to_word("xXyY")
     with pytest.raises(KeyError):
@@ -279,3 +337,14 @@ def test_sweep_runner_rows_and_resume(tmp_path, monkeypatch):
     n_calls = len(calls)
     out2 = run_cov.run(**common)
     assert out2 == out and len(calls) == n_calls
+
+
+def test_run_prefix_universe_identity_and_validation():
+    c = dict(run_cov.COV_DEFAULTS)
+    c["experiment_length"], c["z_source"] = True, "universe"
+    assert (run_cov._run_prefix(c, 1000, 11)
+            == "covsweep_1000_11_uni4_mrl24_cyc_s10r1_")
+    with pytest.raises(ValueError):
+        run_cov.load_config(z_source="universe")            # needs the sweep
+    with pytest.raises(ValueError):
+        run_cov.load_config(z_source="anything-else")

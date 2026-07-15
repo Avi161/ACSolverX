@@ -101,7 +101,10 @@ changes. The length sweep (`experiment_length: true`) brute-forces every subword
 like Branch A's, and the file prefix is `covsweep_..._sub{K}p_` where K = `subword_max_len` (the
 family is derived from the presentation, so K is its only identity knob; the `p` suffix is the
 family-rule version — pure-power subwords included; suffix-less `sub{K}` files are the old
-mixed-only rule and never share a resume file). Tests are colocated
+mixed-only rule and never share a resume file). `z_source: universe` swaps the sweep family for
+EVERY reduced word of length 2..`universe_max_len` (`universe_candidates`) with defining-relator
+isolation allowed (`iso_index 2` — z solves to an elementary Nielsen automorphism, so it need not
+occur in the presentation); prefix `covsweep_..._uni{n}_`. Tests are colocated
 (`cov/test_cov.py`), same command as above.
 
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path

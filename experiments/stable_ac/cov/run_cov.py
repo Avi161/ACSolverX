@@ -53,6 +53,9 @@ COV_DEFAULTS = {
     "resume": True,
     "experiment_length": False,       # length sweep: all subword CoVs + control
     "subword_max_len": 4,             # sweep z = relator subwords of len 2..this
+    "z_source": "subwords",           # "subwords" | "universe" (all reduced words,
+                                      # defining-relator isolation allowed)
+    "universe_max_len": 4,            # universe z = every reduced word of len 2..this
 }
 
 
@@ -103,6 +106,12 @@ def load_config(config_path=None, **overrides):
     if c.get("experiment_length") and c["mode"] != "cov":
         raise ValueError("experiment_length requires mode 'cov' "
                          "(the sweep already contains its own control rows)")
+    if c["z_source"] not in ("subwords", "universe"):
+        raise ValueError(f"z_source must be 'subwords' or 'universe', "
+                         f"got {c['z_source']!r}")
+    if c["z_source"] == "universe" and not c.get("experiment_length"):
+        raise ValueError("z_source 'universe' is a sweep family — it requires "
+                         "experiment_length (zf1 first-win stays subword-driven)")
     return c
 
 
@@ -150,7 +159,8 @@ def _run_prefix(c, node_budget, n_rows):
     zfam = f"{c['z_family']}_" if c["mode"] == "cov" else ""
     if c.get("experiment_length"):
         kind = "covsweep"
-        zfam = f"sub{c['subword_max_len']}p_"
+        zfam = (f"uni{c['universe_max_len']}_" if c["z_source"] == "universe"
+                else f"sub{c['subword_max_len']}p_")
     cyc = "cyc" if c["cyclic_reduce"] else "noncyc"
     tag = _dataset_tag(c["datasets"])
     return (f"{kind}_{node_budget}_{n_rows}_{zfam}mrl{c['max_relator_length']}"
@@ -280,10 +290,14 @@ def _sweep_entries(c, r1, r2):
         "start_total_length_orig": orig_len,
         "start_total_length_cov": orig_len,
     })]
+    universe = c["z_source"] == "universe"
     results = cov.enumerate_cov(
         str_to_word(r1), str_to_word(r2),
+        family=cov.universe_candidates(2, c["universe_max_len"]) if universe
+        else None,
         default_cap=c["max_relator_length"], cap_headroom=c["cap_headroom"],
-        reject_len=c["reject_len"], subword_max_len=c["subword_max_len"])
+        reject_len=c["reject_len"], subword_max_len=c["subword_max_len"],
+        allow_defining_iso=universe)
     for res in results:
         z = word_to_str(res.z_word)
         r1t, r2t = word_to_str(res.r1), word_to_str(res.r2)
@@ -409,9 +423,11 @@ def main():
                     help="override budgets, e.g. --budget 100 1000")
     ap.add_argument("--experiment-length", action="store_true", default=None,
                     help="run the length sweep (all subword CoVs + control)")
+    ap.add_argument("--z-source", default=None, choices=["subwords", "universe"],
+                    help="sweep family: relator subwords or every reduced word")
     args = ap.parse_args()
     run(config_path=args.config, mode=args.mode, budgets=args.budget,
-        experiment_length=args.experiment_length)
+        experiment_length=args.experiment_length, z_source=args.z_source)
 
 
 if __name__ == "__main__":

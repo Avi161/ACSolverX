@@ -56,7 +56,8 @@ class CoVResult:
     n_cov: int              # 0 or 1 in case (i)
     cap: int                # per-relator cap the greedy should run with
     z_word: tuple = None
-    iso_index: int = None   # 0 = isolated from r1', 1 = from r2'
+    iso_index: int = None   # 0 = isolated from r1', 1 = from r2',
+                            # 2 = from the defining relator Z·w (universe mode)
     expr: tuple = None      # x = expr(y,z), x-free, pre-relabel alphabet
     n_subs: int = 0
     meta: dict = field(default_factory=dict)
@@ -135,12 +136,18 @@ def defining_relator(w):
 
 
 def apply_cov_once(r1, r2, z_word, default_cap=DEFAULT_CAP,
-                   cap_headroom=CAP_HEADROOM, reject_len=REJECT_LEN):
+                   cap_headroom=CAP_HEADROOM, reject_len=REJECT_LEN,
+                   allow_defining_iso=False):
     """Full CoV for one z candidate; None when this z fails.
 
     Tries isolating from r1' then r2'. A candidate isolator whose removal
     degenerates (empty relator, length > ``reject_len``) falls through to the
-    other relator before the z is rejected.
+    next candidate before the z is rejected. With ``allow_defining_iso`` the
+    defining relator Z·w is a third isolation candidate (iso_index 2, tried
+    LAST so shared z words transform identically to the default mode): it
+    isolates whenever w carries exactly one ±x — z = u·x^ε·v solves to
+    x = expr(y,z), an elementary Nielsen automorphism — so w need not occur
+    in the presentation, and the n_subs ≥ 1 gate is waived.
     """
     w = reduce_word(tuple(z_word), cyclic=False)
     if len(w) < 2:
@@ -148,16 +155,19 @@ def apply_cov_once(r1, r2, z_word, default_cap=DEFAULT_CAP,
 
     r1s, n1 = substitute_word(r1, w)
     r2s, n2 = substitute_word(r2, w)
-    if n1 + n2 == 0:
+    if n1 + n2 == 0 and not allow_defining_iso:
         return None
 
     r_def = defining_relator(w)
-    for iso_index, (r_iso, r_other) in enumerate(((r1s, r2s), (r2s, r1s))):
+    candidates = [(0, r1s, r2s, r_def), (1, r2s, r1s, r_def)]
+    if allow_defining_iso:
+        candidates.append((2, r_def, r1s, r2s))
+    for iso_index, r_iso, keep_a, keep_b in candidates:
         ok, expr = isolate(r_iso)
         if not ok:
             continue
-        r_a = substitute_generator(r_other, X_GEN, expr)
-        r_b = substitute_generator(r_def, X_GEN, expr)
+        r_a = substitute_generator(keep_a, X_GEN, expr)
+        r_b = substitute_generator(keep_b, X_GEN, expr)
         if not r_a or not r_b:
             continue
         assert not any(abs(g) == X_GEN for g in r_a + r_b)
@@ -252,9 +262,36 @@ def subword_candidates(r1, r2, min_len=2, max_len=4):
     return tuple(sorted(seen, key=lambda w: (len(w), w)))
 
 
+def universe_candidates(min_len=2, max_len=4):
+    """Every canonical freely reduced (x,y)-word of length min_len..max_len.
+
+    The presentation-independent z family: unlike ``subword_candidates`` these
+    need not occur in the relators, so they only produce a CoV through the
+    defining-relator isolation (``allow_defining_iso``) unless they happen to
+    occur. Same canonicalisation as the subword family — one member per
+    ``w ~ w⁻¹`` pair, ``max(w, w⁻¹)`` — and the same deterministic
+    (length, tuple) order, which sweep row identity depends on.
+    """
+    seen = set()
+    alphabet = (X_GEN, -X_GEN, Y_GEN, -Y_GEN)
+
+    def extend(w):
+        if len(w) >= min_len:
+            seen.add(max(w, inverse(w)))
+        if len(w) == max_len:
+            return
+        for g in alphabet:
+            if not w or g != -w[-1]:
+                extend(w + (g,))
+
+    extend(())
+    return tuple(sorted(seen, key=lambda w: (len(w), w)))
+
+
 def enumerate_cov(r1, r2, family=None, default_cap=DEFAULT_CAP,
                   cap_headroom=CAP_HEADROOM, reject_len=REJECT_LEN,
-                  subword_min_len=2, subword_max_len=4):
+                  subword_min_len=2, subword_max_len=4,
+                  allow_defining_iso=False):
     """All valid CoVs over ``family`` (default: the presentation's own
     subwords) — the brute-force half of the length-sweep experiment.
 
@@ -269,7 +306,8 @@ def enumerate_cov(r1, r2, family=None, default_cap=DEFAULT_CAP,
     results, seen_pairs = [], set()
     for z_word in family:
         res = apply_cov_once(r1, r2, z_word, default_cap=default_cap,
-                             cap_headroom=cap_headroom, reject_len=reject_len)
+                             cap_headroom=cap_headroom, reject_len=reject_len,
+                             allow_defining_iso=allow_defining_iso)
         if res is None or (res.r1, res.r2) in seen_pairs:
             continue
         seen_pairs.add((res.r1, res.r2))
