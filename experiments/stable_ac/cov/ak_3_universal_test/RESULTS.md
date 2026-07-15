@@ -35,7 +35,9 @@ exhaustive ball enumeration pin down, the following structure:
 4. **Certificate 2 — classical, no stabilisation** (`AC17_CERTIFICATE.json`,
    certify_classical.py): AK(3)'s component in the full-move AC graph restricted to total
    length ≤ 17 is **exactly 1,000 states** — enumerated, then **closure-verified** (every
-   child of every member stays inside; no pop cap or traversal order in the argument). It
+   child of every member stays inside; no pop cap or traversal order in the argument), and
+   the child generator itself cross-checked for completeness on 25 sampled states against a
+   brute-force pure-Python enumeration of every Definition 2.1 move (0 mismatches). It
    contains the orbit-2 root, and an explicit **17-move path AK(3) → `YYXXyx|YYYxyXX`**
    inside ceiling 17 verifies by replay. So orbit-2 sits in AK(3)'s *classical* AC class;
    the universal move is a shortcut, not the only door.
