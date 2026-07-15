@@ -13,8 +13,9 @@ budgets: [100, 1000]            # local verification ceiling is 1000 (repo hard 
 mode: cov                       # cov | baseline (identity transform, same rows/budgets,
                                 # for a same-budget comparison file)
 
-z_family: zf1                   # NAIVE_Z_FAMILY version tag — part of the filename
-                                # identity; bump it in cov.py when the family changes
+# z_family (the NAIVE_Z_FAMILY tag, part of the filename identity) is deliberately
+# NOT a yaml knob: it lives only in cov.Z_FAMILY_TAG. A yaml copy shadowed the
+# zf1->zf2 bump once — an identity tag has exactly one source of truth.
 
 max_relator_length: 24          # base per-relator cap (ms640 layout). A cov row runs at
                                 # max(this, longest transformed relator + cap_headroom),

@@ -359,6 +359,16 @@ def test_run_prefix_identity():
     assert run_cov._run_prefix(c, 100, 11) == "covbase_100_11_mrl24_cyc_s10r1_"
 
 
+def test_shipped_yaml_cannot_shadow_the_family_tag():
+    """config_cov.yaml once carried z_family: zf1 after the code moved to zf2 —
+    load_config applies the yaml OVER COV_DEFAULTS, so a yaml copy of an
+    identity tag silently mislabels files (and resumes the wrong family's
+    rows). The tag's only source of truth is cov.Z_FAMILY_TAG."""
+    path = os.path.join(os.path.dirname(cov.__file__), "config_cov.yaml")
+    c = run_cov.load_config(path)
+    assert c["z_family"] == cov.Z_FAMILY_TAG
+
+
 def test_baseline_mode_is_identity():
     c = run_cov.load_config(mode="baseline")
     r1t, r2t, cap, n_cov, extra = run_cov._transform(c, "xyxYXY", "xxxYYYY")
