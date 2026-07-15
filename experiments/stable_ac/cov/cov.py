@@ -1,8 +1,9 @@
 """One-shot change of variables (case i) — the 4-pager's §3.1 as a batch transform.
 
 ``⟨x,y | r1, r2⟩`` → introduce ``z = w(x,y)`` → substitute ``w → z`` → isolate
-``x`` from one relator → remove ``x`` → ``⟨y,z | r_a, r_b⟩`` → relabel
-``(y,z) → (x,y)``. Words are int tuples (1=x, 2=y, 3=z; sign = exponent), the
+``x`` (or ``y``: ``iso_gen``) from one relator → remove it → a 2-generator
+pair → relabel the survivors back to ``(x,y)`` (``relabel``). Words are int
+tuples (1=x, 2=y, 3=z; sign = exponent), the
 same codec as ``experiments/greedy_tests/spec/words.py``, whose helpers this
 module reuses. The output pair feeds the existing 2-gen numba greedy unchanged.
 
@@ -10,10 +11,12 @@ Only case (i) lives here: one CoV on the initial presentation, before any
 search. ``n_cov`` is an int (not a bool) so case (ii) — CoV mid-search, applied
 repeatedly — extends the schema without breaking it.
 
-The z picker is deliberately naive: ``NAIVE_Z_FAMILY`` is a fixed ordered list,
-and the first z whose FULL transform yields a valid non-degenerate pair wins.
-Isolation succeeding is not enough — removal can still produce an empty relator
-or a length blow-up, so each candidate is validated end to end.
+The z picker is deliberately naive: ``NAIVE_Z_FAMILY`` (zf2: every canonical
+freely+cyclically reduced word of length 2..4, nothing excluded) is tried in
+deterministic order and the first z whose FULL transform yields a valid
+non-degenerate pair wins. Isolation succeeding is not enough — removal can
+still produce an empty relator or a structural blow-up past ``reject_len``,
+so each candidate is validated end to end.
 """
 
 from dataclasses import dataclass, field
@@ -31,21 +34,53 @@ X_GEN, Y_GEN, Z_GEN = 1, 2, 3
 DEFAULT_CAP = 24        # the pipeline's baseline per-relator cap (ms640 layout)
 CAP_HEADROOM = 16       # a relator pinned exactly at the cap can never lengthen
                         # over the hump, so the transformed run needs slack
-REJECT_LEN = 48         # a z whose output relator exceeds this is rejected
+REJECT_LEN = 239        # structural ceiling ONLY, not a length prior: the
+                        # packed fast solver caps relators at 255 and a row
+                        # runs at cap = longest + CAP_HEADROOM, so 239 is the
+                        # longest admissible output. Long starts are NOT
+                        # rejected on principle — sweep evidence (629, 539)
+                        # shows some presentations solve only from long
+                        # transformed starts. Part of the sweep family rule:
+                        # changing it requires a tag bump.
 
-Z_FAMILY_TAG = "zf1"    # bump when NAIVE_Z_FAMILY changes: it is part of a
+Z_FAMILY_TAG = "zf2"    # bump when NAIVE_Z_FAMILY changes: it is part of a
                         # run's result identity (goes into the jsonl filename)
 
-# Mixed-generator words only. Pure powers (xx, yy, ...) are excluded on
-# purpose: z = xx fires on any relator with a repeated generator (e.g. AK(3)'s
-# xxxYYYY) and pre-empts the mixed change of variables the method is for.
-# Ordered shortest-first; xyx leads the length-3 block as the paper's canonical
-# example. Order matters: the first z whose full CoV succeeds wins.
-NAIVE_Z_FAMILY = tuple(str_to_word(s) for s in (
-    "xy", "yx", "xY", "Yx", "Xy", "XY",
-    "xyx", "yxy", "xyy", "yyx", "xxy", "yxx", "xYx", "yXy",
-    "xyxY", "xyxy", "xxyy",
-))
+
+def universe_candidates(min_len=2, max_len=4):
+    """Every canonical freely reduced (x,y)-word of length min_len..max_len.
+
+    The presentation-independent z family: unlike ``subword_candidates`` these
+    need not occur in the relators, so they only produce a CoV through the
+    defining-relator isolation (``allow_defining_iso``) unless they happen to
+    occur. Same canonicalisation as the subword family — one member per
+    ``w ~ w⁻¹`` pair, ``max(w, w⁻¹)`` — and the same deterministic
+    (length, tuple) order, which sweep row identity depends on.
+    """
+    seen = set()
+    alphabet = (X_GEN, -X_GEN, Y_GEN, -Y_GEN)
+
+    def extend(w):
+        if len(w) >= min_len:
+            seen.add(max(w, inverse(w)))
+        if len(w) == max_len:
+            return
+        for g in alphabet:
+            if not w or g != -w[-1]:
+                extend(w + (g,))
+
+    extend(())
+    return tuple(sorted(seen, key=lambda w: (len(w), w)))
+
+
+# zf2: EVERY canonical word of length 2..4 that survives free and cyclic
+# reduction — no hand-picking, no exclusions (pure powers like xx/yyy are in;
+# which z wins is an empirical question, never a rule). w ~ w⁻¹ deduped to
+# max(w, w⁻¹); deterministic (length, tuple) order IS the first-win order.
+# zf1 — 17 hand-picked mixed-generator words with xy pinned first — is
+# retired; its files keep the zf1 tag and are never resumed by zf2 runs.
+NAIVE_Z_FAMILY = tuple(w for w in universe_candidates(2, 4)
+                       if w[0] != -w[-1])
 
 
 @dataclass(frozen=True)
@@ -58,7 +93,9 @@ class CoVResult:
     z_word: tuple = None
     iso_index: int = None   # 0 = isolated from r1', 1 = from r2',
                             # 2 = from the defining relator Z·w (universe mode)
-    expr: tuple = None      # x = expr(y,z), x-free, pre-relabel alphabet
+    iso_gen: str = "x"      # which generator the isolation eliminated
+    expr: tuple = None      # eliminated generator = expr (free of it),
+                            # pre-relabel alphabet
     n_subs: int = 0
     meta: dict = field(default_factory=dict)
 
@@ -122,12 +159,17 @@ def substitute_generator(word, g, expr):
     return reduce_word(tuple(out), cyclic=False)
 
 
-_RELABEL = {Y_GEN: X_GEN, -Y_GEN: -X_GEN, Z_GEN: Y_GEN, -Z_GEN: -Y_GEN}
+_RELABEL = {
+    # after x-elimination the survivors mention (y,z): (y,z) → (x,y)
+    "x": {Y_GEN: X_GEN, -Y_GEN: -X_GEN, Z_GEN: Y_GEN, -Z_GEN: -Y_GEN},
+    # after y-elimination they mention (x,z): x stays, z → y
+    "y": {X_GEN: X_GEN, -X_GEN: -X_GEN, Z_GEN: Y_GEN, -Z_GEN: -Y_GEN},
+}
 
 
-def relabel(word):
-    """(y,z) → (x,y) after x has been removed."""
-    return tuple(_RELABEL[g] for g in word)
+def relabel(word, iso_gen="x"):
+    """Back to the (x,y) alphabet after ``iso_gen`` has been removed."""
+    return tuple(_RELABEL[iso_gen][g] for g in word)
 
 
 def defining_relator(w):
@@ -137,21 +179,26 @@ def defining_relator(w):
 
 def apply_cov_once(r1, r2, z_word, default_cap=DEFAULT_CAP,
                    cap_headroom=CAP_HEADROOM, reject_len=REJECT_LEN,
-                   allow_defining_iso=False):
+                   allow_defining_iso=False, iso_gen="x"):
     """Full CoV for one z candidate; None when this z fails.
 
-    Tries isolating from r1' then r2'. A candidate isolator whose removal
-    degenerates (empty relator, length > ``reject_len``) falls through to the
-    next candidate before the z is rejected. With ``allow_defining_iso`` the
-    defining relator Z·w is a third isolation candidate (iso_index 2, tried
-    LAST so shared z words transform identically to the default mode): it
-    isolates whenever w carries exactly one ±x — z = u·x^ε·v solves to
-    x = expr(y,z), an elementary Nielsen automorphism — so w need not occur
-    in the presentation, and the n_subs ≥ 1 gate is waived.
+    ``iso_gen`` picks which generator the destabilization eliminates: after
+    stabilizing to ⟨x,y,z | …⟩ either x or y may be isolated and removed —
+    both are legal destabilizations; the survivors relabel back to (x,y)
+    either way (``relabel``). Tries isolating from r1' then r2'. A candidate
+    isolator whose removal degenerates (empty relator, length >
+    ``reject_len``) falls through to the next candidate before the z is
+    rejected. With ``allow_defining_iso`` the defining relator Z·w is a third
+    isolation candidate (iso_index 2, tried LAST so shared z words transform
+    identically to the default mode): it isolates whenever w carries exactly
+    one ±iso_gen — z = u·g^ε·v solves to g = expr, an elementary Nielsen
+    automorphism — so w need not occur in the presentation, and the
+    n_subs ≥ 1 gate is waived.
     """
     w = reduce_word(tuple(z_word), cyclic=False)
     if len(w) < 2:
         return None
+    gen = X_GEN if iso_gen == "x" else Y_GEN
 
     r1s, n1 = substitute_word(r1, w)
     r2s, n2 = substitute_word(r2, w)
@@ -163,21 +210,22 @@ def apply_cov_once(r1, r2, z_word, default_cap=DEFAULT_CAP,
     if allow_defining_iso:
         candidates.append((2, r_def, r1s, r2s))
     for iso_index, r_iso, keep_a, keep_b in candidates:
-        ok, expr = isolate(r_iso)
+        ok, expr = isolate(r_iso, x=gen)
         if not ok:
             continue
-        r_a = substitute_generator(keep_a, X_GEN, expr)
-        r_b = substitute_generator(keep_b, X_GEN, expr)
+        r_a = substitute_generator(keep_a, gen, expr)
+        r_b = substitute_generator(keep_b, gen, expr)
         if not r_a or not r_b:
             continue
-        assert not any(abs(g) == X_GEN for g in r_a + r_b)
+        assert not any(abs(g) == gen for g in r_a + r_b)
         if max(len(r_a), len(r_b)) > reject_len:
             continue
-        out1, out2 = relabel(r_a), relabel(r_b)
+        out1, out2 = relabel(r_a, iso_gen), relabel(r_b, iso_gen)
         cap = max(default_cap, max(len(out1), len(out2)) + cap_headroom)
         return CoVResult(
             applicable=True, r1=out1, r2=out2, n_cov=1, cap=cap,
-            z_word=w, iso_index=iso_index, expr=expr, n_subs=n1 + n2,
+            z_word=w, iso_index=iso_index, iso_gen=iso_gen, expr=expr,
+            n_subs=n1 + n2,
             meta={"intermediate": (r1s, r2s, r_def)},
         )
     return None
@@ -208,6 +256,7 @@ def cov_for_greedy(r1_str, r2_str, family=NAIVE_Z_FAMILY, **knobs):
         "cov_applicable": result.applicable,
         "z_word": word_to_str(result.z_word) if result.z_word else None,
         "iso_index": result.iso_index,
+        "iso_gen": result.iso_gen if result.applicable else None,
         "n_subs": result.n_subs,
         "start_total_length_orig": len(r1_str) + len(r2_str),
         "start_total_length_cov": len(result.r1) + len(result.r2),
@@ -262,54 +311,35 @@ def subword_candidates(r1, r2, min_len=2, max_len=4):
     return tuple(sorted(seen, key=lambda w: (len(w), w)))
 
 
-def universe_candidates(min_len=2, max_len=4):
-    """Every canonical freely reduced (x,y)-word of length min_len..max_len.
-
-    The presentation-independent z family: unlike ``subword_candidates`` these
-    need not occur in the relators, so they only produce a CoV through the
-    defining-relator isolation (``allow_defining_iso``) unless they happen to
-    occur. Same canonicalisation as the subword family — one member per
-    ``w ~ w⁻¹`` pair, ``max(w, w⁻¹)`` — and the same deterministic
-    (length, tuple) order, which sweep row identity depends on.
-    """
-    seen = set()
-    alphabet = (X_GEN, -X_GEN, Y_GEN, -Y_GEN)
-
-    def extend(w):
-        if len(w) >= min_len:
-            seen.add(max(w, inverse(w)))
-        if len(w) == max_len:
-            return
-        for g in alphabet:
-            if not w or g != -w[-1]:
-                extend(w + (g,))
-
-    extend(())
-    return tuple(sorted(seen, key=lambda w: (len(w), w)))
-
-
 def enumerate_cov(r1, r2, family=None, default_cap=DEFAULT_CAP,
                   cap_headroom=CAP_HEADROOM, reject_len=REJECT_LEN,
                   subword_min_len=2, subword_max_len=4,
-                  allow_defining_iso=False):
+                  allow_defining_iso=False, iso_targets=("x", "y")):
     """All valid CoVs over ``family`` (default: the presentation's own
     subwords) — the brute-force half of the length-sweep experiment.
 
-    Distinct z words can land on the same output pair, which would be an
-    identical search run twice, so only the first (in family order) of each
-    output pair is kept. Every returned result is fully validated by
-    ``apply_cov_once``. Order follows family order, so it is deterministic.
+    Per z word, each isolation target in ``iso_targets`` (family rule:
+    eliminate x AND eliminate y — a z that isolates both ways is two distinct
+    coordinate changes, and which works is an empirical question) yields at
+    most one result. Distinct (z, target) combinations can land on the same
+    output pair, which would be an identical search run twice, so only the
+    first (family order, then target order) of each output pair is kept.
+    Every returned result is fully validated by ``apply_cov_once``. Order is
+    deterministic.
     """
     r1, r2 = tuple(r1), tuple(r2)
     if family is None:
         family = subword_candidates(r1, r2, subword_min_len, subword_max_len)
     results, seen_pairs = [], set()
     for z_word in family:
-        res = apply_cov_once(r1, r2, z_word, default_cap=default_cap,
-                             cap_headroom=cap_headroom, reject_len=reject_len,
-                             allow_defining_iso=allow_defining_iso)
-        if res is None or (res.r1, res.r2) in seen_pairs:
-            continue
-        seen_pairs.add((res.r1, res.r2))
-        results.append(res)
+        for target in iso_targets:
+            res = apply_cov_once(r1, r2, z_word, default_cap=default_cap,
+                                 cap_headroom=cap_headroom,
+                                 reject_len=reject_len,
+                                 allow_defining_iso=allow_defining_iso,
+                                 iso_gen=target)
+            if res is None or (res.r1, res.r2) in seen_pairs:
+                continue
+            seen_pairs.add((res.r1, res.r2))
+            results.append(res)
     return tuple(results)

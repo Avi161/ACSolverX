@@ -19,8 +19,10 @@ max_relator_length: 24          # base per-relator cap (ms640 layout). A cov row
                                 # recorded per row as max_relator_length_cap
 cap_headroom: 16                # slack above the longest transformed relator — a relator
                                 # pinned at the cap can never lengthen over the hump
-reject_len: 48                  # a z whose output relator exceeds this is rejected and
-                                # the next family member is tried
+reject_len: 239                 # structural ceiling only (fast-solver relator cap 255
+                                # minus cap_headroom) — NOT a length prior; long starts
+                                # sometimes hold the only solve (629, 539). Family-rule
+                                # knob: changing it requires a sweep-tag bump.
 
 experiment_length: false        # true = the length experiment: per presentation run the
                                 # greedy from EVERY valid subword-derived CoV plus one
@@ -30,14 +32,17 @@ experiment_length: false        # true = the length experiment: per presentation
 subword_max_len: 4              # sweep z candidates = ALL subwords of the relators
                                 # (cyclic, w ~ w⁻¹ deduped, pure powers included) of
                                 # length 2..this; part of the sweep filename identity
-                                # (sub4p — p marks the pure-powers family rule).
+                                # (sub4pxy — p = pure powers in, xy = each z is tried
+                                # eliminating x AND eliminating y; the x-only sub{K}p
+                                # files never share a resume file with these).
                                 # Raise it if the sweep says longer transforms win.
 z_source: subwords              # subwords = z from the relators themselves (above);
                                 # universe = every reduced (x,y)-word of length
                                 # 2..universe_max_len, with defining-relator isolation
                                 # allowed, so z need NOT occur in the presentation
-                                # (elementary Nielsen re-coordinatisations). Sweep
-                                # only; filename identity uni{universe_max_len}.
+                                # (elementary Nielsen re-coordinatisations, x- and
+                                # y-eliminating). Sweep only; filename identity
+                                # uni{universe_max_len}xy.
 universe_max_len: 4             # length bound for the universe family (78 canonical
                                 # words at 4; grows ~3x per +1)
 

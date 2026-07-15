@@ -11,12 +11,13 @@ start_total_length_orig, start_total_length_cov, iso_index, n_subs, source}``.
 same-budget cov-vs-baseline comparison needs no other pipeline.
 
 ``experiment_length: true`` is the length-sweep experiment: per presentation,
-run the greedy from EVERY valid subword-derived CoV (``cov.enumerate_cov``)
-plus one no-CoV control row, so the jsonl directly answers whether post-CoV
-start length predicts search outcome. Sweep rows are keyed ``(pres_id,
-z_word)`` — the control row has ``z_word: null`` — and the file prefix is
-``covsweep_..._sub{K}p_`` where K = ``subword_max_len`` (p = the family
-rule that includes pure-power subwords).
+run the greedy from EVERY valid subword-derived CoV (``cov.enumerate_cov``,
+eliminating x AND y per z word) plus one no-CoV control row, so the jsonl
+directly answers whether post-CoV start length predicts search outcome. Sweep
+rows are keyed ``(pres_id, z_word, iso_gen)`` — the control row has
+``z_word: null`` — and the file prefix is ``covsweep_..._sub{K}pxy_`` where
+K = ``subword_max_len`` (p = pure-power subwords included, xy = both
+isolation targets).
 
 CLI (from the repo root):
     .venv/bin/python3 -m experiments.stable_ac.cov.run_cov \
@@ -149,18 +150,20 @@ def _run_prefix(c, node_budget, n_rows):
     The z-family tag is identity for cov mode (a different family = a different
     experiment); row caps are derived deterministically from the inputs, so
     they stay out of the name. mrl = the base cap / baseline cap. The length
-    sweep is its own kind (covsweep) and its family tag is sub{K}p: the family
-    is derived from the presentation, so K is the only family knob. The p
-    suffix is the family-rule version — it marks the family that includes
-    pure-power subwords (xx, yyy, …); the suffix-less sub{K} files were the
-    earlier mixed-generator-only rule and must never share a resume file.
+    sweep is its own kind (covsweep) and its family tag is sub{K}pxy: the
+    family is derived from the presentation, so K is the only family knob.
+    The suffix is the family-rule version — p marks pure-power subwords
+    included (the suffix-less sub{K} files were the mixed-generator-only
+    rule), xy marks both isolation targets tried per z (the sub{K}p / uni{n}
+    files were x-elimination only). Different-rule files must never share a
+    resume file.
     """
     kind = "cov" if c["mode"] == "cov" else "covbase"
     zfam = f"{c['z_family']}_" if c["mode"] == "cov" else ""
     if c.get("experiment_length"):
         kind = "covsweep"
-        zfam = (f"uni{c['universe_max_len']}_" if c["z_source"] == "universe"
-                else f"sub{c['subword_max_len']}p_")
+        zfam = (f"uni{c['universe_max_len']}xy_" if c["z_source"] == "universe"
+                else f"sub{c['subword_max_len']}pxy_")
     cyc = "cyc" if c["cyclic_reduce"] else "noncyc"
     tag = _dataset_tag(c["datasets"])
     return (f"{kind}_{node_budget}_{n_rows}_{zfam}mrl{c['max_relator_length']}"
@@ -196,7 +199,7 @@ def _transform(c, r1, r2):
     if c["mode"] == "baseline":
         return r1, r2, c["max_relator_length"], 0, {
             "cov_applicable": None, "z_word": None, "iso_index": None,
-            "n_subs": 0,
+            "iso_gen": None, "n_subs": 0,
             "start_total_length_orig": len(r1) + len(r2),
             "start_total_length_cov": len(r1) + len(r2),
         }
@@ -254,11 +257,12 @@ def run_budget(c, node_budget, rows, root):
 
 
 def _read_done_pairs(out_path):
-    """({(pres_id, z_word)}, n_seen, n_solved) from an existing sweep jsonl.
+    """({(pres_id, z_word, iso_gen)}, n_seen, n_solved) from a sweep jsonl.
 
-    Sweep rows are keyed per (presentation, z) like run_nocov's (name, z_word);
-    the control row's key is (pres_id, None). Same torn-final-line tolerance
-    as ``run_baseline._read_done``: unparseable elsewhere is real corruption.
+    Sweep rows are keyed per (presentation, z, isolation target) — one z can
+    yield both an x- and a y-eliminating start; the control row's key is
+    (pres_id, None, None). Same torn-final-line tolerance as
+    ``run_baseline._read_done``: unparseable elsewhere is real corruption.
     """
     done, n_seen, n_solved = set(), 0, 0
     if not os.path.exists(out_path):
@@ -274,7 +278,7 @@ def _read_done_pairs(out_path):
             if i == len(lines) - 1:
                 continue
             raise
-        done.add((row["pres_id"], row["z_word"]))
+        done.add((row["pres_id"], row["z_word"], row.get("iso_gen")))
         n_seen += 1
         n_solved += int(bool(row.get("solved")))
     return done, n_seen, n_solved
@@ -282,11 +286,13 @@ def _read_done_pairs(out_path):
 
 def _sweep_entries(c, r1, r2):
     """[(z_str, r1t, r2t, cap, n_cov, extra)] — control first (z_str None,
-    original pair, baseline cap), then every valid subword CoV in canonical
-    family order."""
+    original pair, baseline cap), then every valid CoV in canonical family
+    order (per z: x-eliminating start, then y-eliminating; ``iso_gen`` in
+    ``extra`` disambiguates the row key)."""
     orig_len = len(r1) + len(r2)
     entries = [(None, r1, r2, c["max_relator_length"], 0, {
-        "cov_applicable": None, "z_word": None, "iso_index": None, "n_subs": 0,
+        "cov_applicable": None, "z_word": None, "iso_index": None,
+        "iso_gen": None, "n_subs": 0,
         "start_total_length_orig": orig_len,
         "start_total_length_cov": orig_len,
     })]
@@ -303,7 +309,7 @@ def _sweep_entries(c, r1, r2):
         r1t, r2t = word_to_str(res.r1), word_to_str(res.r2)
         entries.append((z, r1t, r2t, res.cap, 1, {
             "cov_applicable": True, "z_word": z, "iso_index": res.iso_index,
-            "n_subs": res.n_subs,
+            "iso_gen": res.iso_gen, "n_subs": res.n_subs,
             "start_total_length_orig": orig_len,
             "start_total_length_cov": len(r1t) + len(r2t),
         }))
@@ -326,7 +332,7 @@ def run_budget_sweep(c, node_budget, rows, root):
             entries = _sweep_entries(c, r1, r2)
             ran = solved_here = 0
             for z, r1t, r2t, cap, n_cov, extra in entries:
-                if (rid, z) in done:
+                if (rid, z, extra["iso_gen"]) in done:
                     continue
                 t0 = time.perf_counter()
                 stats = run_baseline.greedy_search(
@@ -397,7 +403,8 @@ def _sweep_summary(out_path):
         n_tried = sum(r["pres_id"] == rid for r in variants)
         c_txt = (f"control nodes={ctrl['nodes_explored']}" if ctrl["solved"]
                  else "control UNSOLVED")
-        b_txt = (f"best z={best['z_word']} len={best['start_total_length_cov']} "
+        b_txt = (f"best z={best['z_word']} iso={best.get('iso_gen')} "
+                 f"len={best['start_total_length_cov']} "
                  f"nodes={best['nodes_explored']}" if best
                  else f"no cov start solved ({n_tried} tried)")
         print(f"  {rid}: {c_txt} | {b_txt}", flush=True)

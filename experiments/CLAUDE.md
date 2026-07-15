@@ -102,15 +102,21 @@ it — local runs must not). Harness tests are colocated: `pytest experiments/st
 **`stable_ac/cov/`** — Branch-B one-shot change of variables (`cov.py` transform + `run_cov.py`
 runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_done`/`_build_row` by
 import). Full method walkthrough with worked examples: [`cov/PIPELINE.md`](stable_ac/cov/PIPELINE.md). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
-changes. The length sweep (`experiment_length: true`) brute-forces every subword-derived CoV
-(`enumerate_cov`) plus a control row per presentation; sweep rows are keyed `(pres_id, z_word)`
-like Branch A's, and the file prefix is `covsweep_..._sub{K}p_` where K = `subword_max_len` (the
-family is derived from the presentation, so K is its only identity knob; the `p` suffix is the
-family-rule version — pure-power subwords included; suffix-less `sub{K}` files are the old
-mixed-only rule and never share a resume file). `z_source: universe` swaps the sweep family for
-EVERY reduced word of length 2..`universe_max_len` (`universe_candidates`) with defining-relator
-isolation allowed (`iso_index 2` — z solves to an elementary Nielsen automorphism, so it need not
-occur in the presentation); prefix `covsweep_..._uni{n}_`. Tests are colocated
+changes (zf2 = every canonical freely+cyclically reduced word of length 2..4, nothing excluded;
+zf1 was 17 hand-picked mixed words). Destabilization may eliminate **x or y** (`iso_gen`, part of
+the sweep row key) — the two are tied by an exact x↔y swap symmetry that `test_xy_symmetry_oracle`
+pins. The length sweep (`experiment_length: true`) brute-forces every valid CoV per z under BOTH
+targets (`enumerate_cov`) plus a control row per presentation; sweep rows are keyed
+`(pres_id, z_word, iso_gen)` and the file prefix is `covsweep_..._sub{K}pxy_` where
+K = `subword_max_len` (the family is derived from the presentation, so K is its only identity
+knob; suffix = family-rule version: `p` pure powers in, `xy` both isolation targets; `sub{K}` /
+`sub{K}p` files are older rules and never share a resume file). `reject_len` is a structural
+ceiling only (239 = fast-solver relator cap 255 − headroom 16), never a length prior — long
+starts are admitted because sweep evidence says some presentations solve only from them.
+`z_source: universe` swaps the sweep family for EVERY reduced word of length
+2..`universe_max_len` (`universe_candidates`) with defining-relator isolation allowed
+(`iso_index 2` — z solves to an elementary Nielsen automorphism of either generator, so it need
+not occur in the presentation); prefix `covsweep_..._uni{n}xy_`. Tests are colocated
 (`cov/test_cov.py`), same command as above.
 
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path

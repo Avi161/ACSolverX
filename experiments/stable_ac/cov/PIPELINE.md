@@ -35,15 +35,24 @@ Given `(r1, r2)` and a candidate `z = w(x,y)`:
    Every substitution is an AC-move using the defining relator, so this stays in the
    stable AC class. *Limitation:* the scan is linear, so an occurrence straddling the
    cyclic seam of a stored relator is not matched — sound, just less powerful.
-3. **Isolate x** — find a relator containing **exactly one ±x** (counted on the cyclic
-   reduction) **and at least one z-letter**. Rotate the x to the front: `x^ε·s` with s x-free.
-   Then `x·s = 1 → x = s⁻¹` and `X·s = 1 → x = s`. The z-letter requirement exists because a
-   z-free isolator would eliminate x without ever using z — z would be dead weight.
-4. **Destabilize** — rewrite every ±x in the two *kept* relators as `expr` / `expr⁻¹`
-   (`substitute_generator`), then drop the isolating relator together with the generator x.
-   The isolator is consumed: it *became* the definition of x.
-5. **Relabel** — the survivors mention only (y, z); rename `(y,z) → (x,y)`. Output: a
-   2-generator pair the unmodified greedy can search.
+3. **Isolate x — or y** (`iso_gen`) — the stabilized presentation ⟨x,y,z | …⟩ has three
+   generators, and destabilizing back to two may eliminate **either** old one. Find a relator
+   containing **exactly one ±g** (g = x or y, counted on the cyclic reduction) **and at least
+   one z-letter**. Rotate the g to the front: `g^ε·s` with s g-free. Then `g·s = 1 → g = s⁻¹`
+   and `g⁻¹·s = 1 → g = s`. The z-letter requirement exists because a z-free isolator would
+   eliminate g without ever using z — z would be dead weight.
+4. **Destabilize** — rewrite every ±g in the two *kept* relators as `expr` / `expr⁻¹`
+   (`substitute_generator`), then drop the isolating relator together with the generator g.
+   The isolator is consumed: it *became* the definition of g.
+5. **Relabel** — the survivors mention only the other old generator and z; map them back to
+   (x, y): after x-elimination `(y,z) → (x,y)`, after y-elimination `x` stays and `z → y`.
+   Output: a 2-generator pair the unmodified greedy can search.
+
+One z word can therefore yield **two different coordinate systems** — its x-eliminating and
+y-eliminating starts (row field `iso_gen`; both are searched in the sweep). The two targets
+are tied by an exact symmetry: eliminating y on P with z=w equals eliminating x on the
+generator-swapped presentation with the swapped word (`test_xy_symmetry_oracle` pins this on
+every benchmark row — an independent check of the whole y path).
 
 Which relator is isolated decides what survives (`iso_index` in every result row):
 
@@ -83,6 +92,19 @@ of F₂. Rewrite both relators:
 No occurrence needed, ever. This is the mathematically complete form of "try any w": every
 w with exactly one ±x defines a valid re-coordinatisation of the whole presentation.
 
+### Worked example D — eliminating y instead, z = yxx (universe mode)
+
+`yxx` occurs nowhere in AK(3) and carries TWO x — no x-isolation exists even from the
+defining relator. But it has exactly **one y**, so isolate y from `Zyxx`: rotate →
+`y·xxZ`, ε = +1 → **y = zXX** (the y-Nielsen move y ↦ zx⁻²). Rewrite both relators and
+relabel (x stays, z → y):
+
+- r1 = xyxYXY → `xzxZxZ` → relabel → `xyxYxY` (6)
+- r2 = xxxYYYY → `xxxxxZxxZxxZxxZ` → relabel → `xxxxxYxxYxxYxxY` (15), cap 31
+
+Without y-elimination this word — and every re-coordinatisation of y — was silently
+rejected: literally half the elementary Nielsen moves were missing from universe mode.
+
 ## 3. Why it's legal, and how we check it
 
 Stabilize → AC-moves → destabilize is exactly the stable-AC equivalence: the output pair is
@@ -107,9 +129,15 @@ A z candidate is rejected when:
 |---|---|
 | `len(w) < 2` after free reduction | z = x is a rename, not a CoV |
 | no occurrence AND not universe mode | substitution mode has nothing to act on |
-| no relator isolates | can't eliminate x |
+| no relator isolates (per target) | can't eliminate that generator |
 | empty relator after destabilization | degenerate presentation |
-| any output relator > `reject_len = 48` | blow-up; try the next candidate |
+| any output relator > `reject_len = 239` | **structural only**: the packed fast solver caps relators at 255 and a row runs at cap = longest + 16 |
+
+`reject_len` is deliberately NOT a length prior. It used to be 48; that was an empirical
+prejudice, and the sweep's own evidence contradicts it — some presentations solve *only*
+from long transformed starts (629 at length 33, 539 via z=Xyy). Long starts stay in;
+only physics (the 255-relator cap of the fast solver) rejects. Changing `reject_len`
+changes the family, so it requires a sweep-tag bump.
 
 **Cap policy**: a cov row runs at `cap = max(24, longest transformed relator + 16)`. The +16
 headroom is mandatory — a relator already pinned at the cap can never lengthen over the hump,
@@ -120,16 +148,22 @@ the filename.
 
 ## 5. The three z families (and what killed the first)
 
-1. **zf1** — 17 hand-picked mixed words, first-win ordering (`NAIVE_Z_FAMILY`,
-   `change_of_variables`). **Dead**: z = xy fires on nearly everything and won on 65/65
-   applicable rows — an ordering artifact, not a discovery. Kept for provenance; the
-   `mode: cov` non-sweep path still runs it.
-2. **subwords, tag `sub{K}p`** — z = every distinct cyclic subword of the presentation's own
-   relators, length 2..K (default 4), seam included, `w ~ w⁻¹` deduped to `max(w, w⁻¹)`,
-   **pure powers included** (the p; xx/yy were originally excluded — a logical prejudice,
-   removed because *which words work is an empirical question*). ~15 starts/presentation.
-3. **universe, tag `uni{n}`** — z = **every** freely reduced (x,y)-word of length 2..n
-   (78 canonical words at n = 4), with defining-relator isolation allowed (`iso_index 2`).
+1. **zf2** (first-win, `NAIVE_Z_FAMILY`, `change_of_variables`) — every canonical word of
+   length 2..4 that survives free and cyclic reduction (62 words), deterministic
+   (length, tuple) order, **nothing hand-picked and nothing excluded** — pure powers
+   (xx, yyy, …) are candidates like any other word. Supersedes **zf1** (17 hand-picked
+   mixed-only words with xy pinned early — z = xy won 65/65 applicable rows, an ordering
+   artifact; its exclusions were a prejudice). zf1 files keep their tag; the `mode: cov`
+   non-sweep path now writes `cov_..._zf2_...`.
+2. **subwords, tag `sub{K}pxy`** — z = every distinct cyclic subword of the presentation's
+   own relators, length 2..K (default 4), seam included, `w ~ w⁻¹` deduped to `max(w, w⁻¹)`,
+   pure powers included (p), **each z tried eliminating x AND y** (xy). ~19
+   starts/presentation on the 66-row benchmark (1,239 total; the x-only sub4p rule had
+   1,009).
+3. **universe, tag `uni{n}xy`** — z = **every** freely reduced (x,y)-word of length 2..n
+   (78 canonical words at n = 4), with defining-relator isolation allowed (`iso_index 2`)
+   for both targets: x-Nielsen (one ±x) and y-Nielsen (one ±y) moves. 3,626 starts on the
+   66-row benchmark — the x-only uni4 rule had 1,861; the y axis nearly doubles it.
 
 **The collapse insight (why universe mode needed new mechanics):** under substitution-only
 rules, a fixed universe of all words ≤ n produces *exactly* the same runs as the subword
@@ -142,8 +176,9 @@ overlapping rows across the two files double as a consistency check.
 ## 6. The sweep (experiment_length: true) — one file answers everything
 
 Per presentation, the sweep runs the greedy from **every valid CoV start** plus one **no-CoV
-control row** (`z_word: null`, cap 24). Rows are keyed `(pres_id, z_word)`; every row is
-fsynced on write, so resume never re-searches a finished row.
+control row** (`z_word: null`, cap 24). Rows are keyed `(pres_id, z_word, iso_gen)` — one z
+can contribute both an x- and a y-eliminating start; every row is fsynced on write, so resume
+never re-searches a finished row.
 
 Because a search at budget B is exactly the first B pops of any longer search
 (budget-invariance), one 50k sweep file yields, **post-hoc, with no new runs**:
@@ -193,13 +228,15 @@ Greedy schema (`_build_row`) + cov extras. Every row has `min_relator`, `min_rel
 `nodes_explored`, `solved`, `path_length`, `path_moves` (transformed coordinates), plus:
 
 `mode` (cov/baseline) · `z_word` (null = control) · `n_cov` · `cov_applicable` · `iso_index`
-(0/1/2, §2) · `n_subs` · `r1_orig`/`r2_orig` · `start_total_length_orig` /
-`start_total_length_cov` · `max_relator_length_cap` · `source` (which CSV) · `git_commit`
-(provenance only, never identity).
+(0/1/2, §2) · `iso_gen` (x/y — which generator the destabilization eliminated; null = control)
+· `n_subs` · `r1_orig`/`r2_orig` · `start_total_length_orig` / `start_total_length_cov` ·
+`max_relator_length_cap` · `source` (which CSV) · `git_commit` (provenance only, never
+identity).
 
 **Filename = resume identity** (date-less prefix; every result-changing knob, nothing else):
-`covsweep_{budget}_{n}_{fam}_mrl24_cyc_{tag}_` with fam ∈ {`sub4p`, `uni4`} — plus `cov_...`
-(zf1) and `covbase_...` (identity transform) for the non-sweep modes.
+`covsweep_{budget}_{n}_{fam}_mrl24_cyc_{tag}_` with fam ∈ {`sub4pxy`, `uni4xy`} — plus
+`cov_...` (zf2) and `covbase_...` (identity transform) for the non-sweep modes. Older family
+rules (`sub4`, `sub4p`, `uni4`, `zf1`) keep their tags and never share a resume file.
 
 ## 9. Running it
 
@@ -220,9 +257,9 @@ CONFIG cell). Both runs: `BUDGET = [50000]`, `MODE = "cov"`, `EXPERIMENT_LENGTH 
 | | Colab A (Q2) | Colab B (Q1) |
 |---|---|---|
 | `Z_SOURCE` | `None` (subwords) | `"universe"` |
-| file | `covsweep_50000_66_sub4p_...` | `covsweep_50000_66_uni4_...` |
-| rows | 1,009 starts + 66 controls | 1,861 starts (852 pure-Nielsen) + 66 controls |
-| est. time | ~6–8 h | ~11–15 h (may need one resume) |
+| file | `covsweep_50000_66_sub4pxy_...` | `covsweep_50000_66_uni4xy_...` |
+| rows | 1,239 starts + 66 controls | 3,626 starts (1,765 y-eliminating) + 66 controls |
+| est. time | ~2–3 h (fast solver) | ~6–9 h (fast solver; may need one resume) |
 
 Resume is per-row: on disconnect, rerun the RUN cell — it skips every finished
 `(pres_id, z_word)`. The jsonl lives in the ephemeral `/content` clone, so periodically copy
@@ -235,9 +272,6 @@ it to Drive and copy it back before resuming on a fresh VM. Verify before believ
 ## 10. Known limitations / next rungs
 
 - **Linear-scan substitution** misses seam-straddling occurrences (sound, weaker).
-- **x-elimination only**: universe words need exactly one ±x; the symmetric y-eliminating
-  Nielsen moves (one ±y, e.g. z = yxy → y = ...) are not implemented yet — they would roughly
-  double the universe.
 - **One-shot (case i)**: CoV happens once, before the search. Case (ii) — CoV as a move
   *during* search — is the larger design this schema (`n_cov`) anticipates.
 - **Selector not shipped**: argmin-length / top-k are post-hoc derivations today; once the 50k
