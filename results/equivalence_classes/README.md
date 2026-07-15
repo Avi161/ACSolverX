@@ -17,14 +17,15 @@ Everything at the **top level is the shipped result**. Everything supporting it 
 | **`PROOFS.md`** | **the proof book** — all 124 classes, derived step by step and **checkable with a pencil**: every substitution, inversion, rotation and concatenation is written out as its own line, so nothing has to be taken on faith |
 | **`certificates.json`** | the same, machine-readable and **self-contained**: it needs neither a sweep nor the search to be checked |
 
-### The canonical data — the four files everything else is derived from
+### [`sweep/`](sweep/) — the canonical data everything else is derived from
 
 | file | contents |
 |---|---|
-| `sweep_seam_28_250.json` | the canonical cap-28 sweep (250 pops/source): config, stats, the classes, and a replayable certificate for every merge — kept byte-identical as the historical record |
-| `sweep_seam_28_250_plus_overnight.json` | **the current sweep artifact**: the cap-28 sweep + the two overnight edges spliced in by `pipeline/augment_sweep_overnight.py`. The proof book and the tables below are generated from this file |
-| `classes_sweep_seam_28_250_plus_overnight.csv` | **the deliverable**: 124 rows, one per distinct problem, with the `Aut`-minimal presentation to actually run (supersedes `classes_sweep_seam_28_250.csv`, 126 rows) |
-| `merges_sweep_seam_28_250_plus_overnight.csv` | the 137-edge merge list: `kind`, both `pres_id`s, the AC-move count on each side. Byte-identical to `merges_sweep_seam_28_250.csv` plus the two new edges appended |
+| `sweep/sweep_seam_28_250.json` | the canonical cap-28 sweep (250 pops/source): config, stats, the classes, and a replayable certificate for every merge — kept byte-identical as the historical record |
+| `sweep/sweep_seam_28_250_plus_overnight.json` | **the current sweep artifact**: the cap-28 sweep + the two overnight edges spliced in by `pipeline/augment_sweep_overnight.py`. The proof book and the tables below are generated from this file |
+| `sweep/classes_sweep_seam_28_250_plus_overnight.csv` | **the deliverable**: 124 rows, one per distinct problem, with the `Aut`-minimal presentation to actually run (supersedes `classes_sweep_seam_28_250.csv`, 126 rows) |
+| `sweep/merges_sweep_seam_28_250_plus_overnight.csv` | the 137-edge merge list: `kind`, both `pres_id`s, the AC-move count on each side. Byte-identical to `merges_sweep_seam_28_250.csv` plus the two new edges appended |
+| `sweep/classes_126_from_greedy_1000000_261_mrl48.jsonl` | the 126-class manifest (`make_class_manifest.py`): one representative per class, the format `run_probe.py`/`run_overnight.py` seed from |
 
 > ⚠ `merges_*.csv` has **no producer script** in the repo — the one artifact here that cannot be
 > regenerated. It is derivable from the sweep JSON + the reps CSV, but that script was never committed.
@@ -33,6 +34,7 @@ Everything at the **top level is the shipped result**. Everything supporting it 
 
 | folder | contents |
 |---|---|
+| [`guide/`](guide/) | `AUT_F2_ACA_EQUIVALENCE_GUIDE.pdf` (+ `.tex`) — the long-form guide to the Aut(F₂)/ACA equivalence machinery. A snapshot document: file paths cited inside it predate this folder layout |
 | [`probe/`](probe/) | **the eight arms that broke the 126, and the overnight ladder that broke the 125.** `probe_seam_34_1000.json` carries the 136th edge (`21_3 ≡ 21_29`) → **125**; the five `probe_overnight_seam*.json` carry the 137th (`21_7 ≡ 21_28`) → **124**, unanimous across caps 30–36 at 12–64× the probe's depth, verified by `verify_probe_merges.py`. `overnight_logs/` holds every arm's log plus `killed_run1/` (the first launch's checkpoints — the merge's first observation). The seven §3b negatives are each worth as much: level-set expansion, the `full` move set, `+jsonl`, and 4× budget all returned exactly 126. See `EQUIVALENCE_FINDING.md` §3b–§3c. |
 | [`convergence/`](convergence/) | the **four other sweeps** — a different move set, extra seed sources. *Not an archive*: they are the rows of the five-configuration table that was the argument for believing 126. ⚠ Read them knowing what they do **not** vary: all five held `max_total` at ≤ 28, and that is exactly where the 126 later broke. |
 | [`logs/`](logs/) | the run logs, including throughput |
@@ -66,11 +68,11 @@ ways and requires each to be rejected.
 
 ## Reproducing from scratch
 
-`run_sweep.py` writes to **this directory's top level**, not into `convergence/` — so the commands
-below produce a fresh `sweep_seam_26_30.json` here, beside (not overwriting) the committed historical
-copy in `convergence/`. It will **not byte-match** that copy: the committed sweeps were written by an
-earlier version of the script and use a different key set. The numbers are unaffected; see
-[`convergence/README.md`](convergence/README.md).
+`run_sweep.py` writes to **this directory's top level**, not into `sweep/` or `convergence/` — so
+the commands below produce a fresh `sweep_seam_26_30.json` here, clearly separated from the committed
+artifacts. It will **not byte-match** the historical copy in `convergence/`: the committed sweeps
+were written by an earlier version of the script and use a different key set. The numbers are
+unaffected; see [`convergence/README.md`](convergence/README.md).
 
 ```bash
 # 1. re-run a sweep (CPU only, single core)

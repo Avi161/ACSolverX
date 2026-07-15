@@ -13,7 +13,7 @@ Two files, because they are for two different readers:
       run_baseline -- load_dataset() parses flat ints, never json -- so a jsonl alone
       would have been a description of the work, not a way to do it.
 
-  results/equivalence_classes/classes_126_...jsonl  -- the human/analysis record.
+  results/equivalence_classes/sweep/classes_126_...jsonl  -- the human/analysis record.
       Same field set as the 261 sweep's jsonl, plus class provenance (which of the 261
       each row stands for). Every search-produced field is null: these 126 presentations
       have never been searched.
@@ -54,10 +54,10 @@ while not (os.path.isdir(os.path.join(REPO, "experiments"))
            and os.path.isdir(os.path.join(REPO, "data"))):
     REPO = os.path.dirname(REPO)
 
-CLASSES = os.path.join(REPO, "results", "equivalence_classes",
+CLASSES = os.path.join(REPO, "results", "equivalence_classes", "sweep",
                        "classes_sweep_seam_28_250.csv")
 REPS = os.path.join(REPO, "data", "ms_unsolved_reps", "ms_reps_unsolved.csv")
-OUT = os.path.join(REPO, "results", "equivalence_classes",
+OUT = os.path.join(REPO, "results", "equivalence_classes", "sweep",
                    "classes_126_from_greedy_1000000_261_mrl48.jsonl")
 OUT_TXT = os.path.join(REPO, "data", "ms_unsolved_reps", "ms_reps_126.txt")
 

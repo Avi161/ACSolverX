@@ -16,7 +16,7 @@ headline result loses its support.
 | `sweep_seam_26_120_ms.json` | + the 550 raw Miller–Schupp presentations seeded as bridge sources | 127 | **raw MS cells do not bridge classes** |
 | `sweep_seam_26_120_j.json` | + the 783 states the 1M-node greedy sweep recorded, seeded too | 127 | extra seeds do not bridge either |
 
-The canonical sweep (`../sweep_seam_28_250.json`, cap 28, 250 pops) is the tighter one: **126**. The
+The canonical sweep (`../sweep/sweep_seam_28_250.json`, cap 28, 250 pops) is the tighter one: **126**. The
 four above converge on 127; raising the cap merges one more pair. Counts are upper bounds — the
 search is sound and incomplete, so **every merge found is a proof and no merge found proves nothing.**
 

@@ -220,7 +220,8 @@ def test_verifier_rebuilds_the_partition_not_just_the_merges():
     the reported one back. This test pins that the shipped artifact does.
     """
     import subprocess
-    art = os.path.join(ROOT, "results", "equivalence_classes", "sweep_seam_28_250.json")
+    art = os.path.join(ROOT, "results", "equivalence_classes", "sweep",
+                       "sweep_seam_28_250.json")
     if not os.path.exists(art):
         pytest.skip("headline artifact not present")
     out = subprocess.run(
@@ -254,7 +255,7 @@ def test_invert_is_a_two_sided_inverse_of_every_phi_in_the_certificates():
     from experiments.equivalence_classes.lib.autinv import invert
     from experiments.equivalence_classes.lib.words import apply_hom
     d = json.load(open(os.path.join(ROOT, "results", "equivalence_classes",
-                                    "sweep_seam_28_250.json")))
+                                    "sweep", "sweep_seam_28_250.json")))
     for name, r in d["roots"].items():
         phi = r["phi"]
         psi = invert(phi)

@@ -13,7 +13,7 @@ byte-identical -- it is the historical cap-28 record, and `test_equivalence.py` 
 126/135 numbers as exactly that.
 
 Usage:  augment_sweep_overnight.py
-Then:   make_proof_book.py results/equivalence_classes/sweep_seam_28_250_plus_overnight.json
+Then:   make_proof_book.py results/equivalence_classes/sweep/sweep_seam_28_250_plus_overnight.json
 Check:  verify_certificates.py on the new sweep, verify_proofs.py on the regenerated book.
 """
 import json
@@ -34,9 +34,9 @@ def _repo_root():
 ROOT = _repo_root()
 OUT = os.path.join(ROOT, "results", "equivalence_classes")
 
-SWEEP = os.path.join(OUT, "sweep_seam_28_250.json")
+SWEEP = os.path.join(OUT, "sweep", "sweep_seam_28_250.json")
 PROBE = os.path.join(OUT, "probe", "probe_overnight_seam30.json")
-MANIFEST = os.path.join(OUT, "classes_126_from_greedy_1000000_261_mrl48.jsonl")
+MANIFEST = os.path.join(OUT, "sweep", "classes_126_from_greedy_1000000_261_mrl48.jsonl")
 
 
 def main():
@@ -90,7 +90,7 @@ def main():
     sweep["config"] = {**sweep["config"],
                        "augmented_with": os.path.relpath(PROBE, ROOT)}
 
-    path = os.path.join(OUT, "sweep_seam_28_250_plus_overnight.json")
+    path = os.path.join(OUT, "sweep", "sweep_seam_28_250_plus_overnight.json")
     json.dump(sweep, open(path, "w"), indent=1)
     print(f"{len(sweep['merges'])} merges, {sweep['n_classes_excl_trivial']} classes, "
           f"solved={sweep['solved']}")

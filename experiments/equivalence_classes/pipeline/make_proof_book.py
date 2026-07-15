@@ -182,7 +182,8 @@ def build_side(name, raw, root, path):
 
 
 def main():
-    src = sys.argv[1] if len(sys.argv) > 1 else os.path.join(OUT, "sweep_seam_28_250.json")
+    src = sys.argv[1] if len(sys.argv) > 1 else os.path.join(OUT, "sweep",
+                                                             "sweep_seam_28_250.json")
     data = json.load(open(src))
     roots = data["roots"]
 

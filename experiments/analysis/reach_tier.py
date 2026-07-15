@@ -87,7 +87,7 @@ from experiments.greedy_tests.fixtures.presentations import ak
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # the 126-class config: seam move set, Aut-minimal length cap 28, 250 pops/source
-CLASSES_CSV = os.path.join(REPO, "results", "equivalence_classes",
+CLASSES_CSV = os.path.join(REPO, "results", "equivalence_classes", "sweep",
                            "classes_sweep_seam_28_250.csv")
 UNSOLVED_JSONL = os.path.join(REPO, "results", "greedy_baseline",
                               "greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl")

@@ -1,6 +1,6 @@
 # Proof book — how the 261 unsolved Miller–Schupp reps collapse to 124 classes
 
-Generated from `results/equivalence_classes/sweep_seam_28_250_plus_overnight.json` by `experiments/equivalence_classes/make_proof_book.py`.
+Generated from `results/equivalence_classes/sweep/sweep_seam_28_250_plus_overnight.json` by `experiments/equivalence_classes/make_proof_book.py`.
 
 **Re-check every line of this file:**
 

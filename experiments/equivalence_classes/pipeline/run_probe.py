@@ -58,7 +58,7 @@ from experiments.equivalence_classes.search.aut_search import aut_key, aut_multi
 from experiments.equivalence_classes.search.levelset import levelset_children  # noqa: E402
 from experiments.equivalence_classes.search import levelset as levelset_mod  # noqa: E402
 
-MANIFEST = os.path.join(ROOT, "results", "equivalence_classes",
+MANIFEST = os.path.join(ROOT, "results", "equivalence_classes", "sweep",
                         "classes_126_from_greedy_1000000_261_mrl48.jsonl")
 JSONL_1M = os.path.join(ROOT, "results", "greedy_baseline",
                         "greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl")

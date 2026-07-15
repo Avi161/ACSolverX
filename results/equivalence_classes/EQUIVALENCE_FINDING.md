@@ -427,7 +427,7 @@ into one self-contained derivation per class:
 | `experiments/equivalence_classes/verify/verify_proofs.py` | re-proves the whole thing from `certificates.json` + the raw CSV, and **nothing else** |
 
 The book was regenerated after §3b–§3c: the two new edges were spliced into the sweep artifact by
-`pipeline/augment_sweep_overnight.py` (→ `sweep_seam_28_250_plus_overnight.json`; the original
+`pipeline/augment_sweep_overnight.py` (→ `sweep/sweep_seam_28_250_plus_overnight.json`; the original
 cap-28 sweep is untouched, as the historical record) and the whole book re-derived from it. The
 new classes are `{21_3, 21_29}` and `{21_7, 21_28}`.
 

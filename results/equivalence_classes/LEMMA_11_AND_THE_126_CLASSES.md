@@ -50,7 +50,7 @@ found something real: it refutes a *different* claim in the document, and that c
 
 ## 1. The premise, checked against the data
 
-`results/equivalence_classes/sweep_seam_28_250.json` — the best of the five sweeps — has a top-level
+`results/equivalence_classes/sweep/sweep_seam_28_250.json` — the best of the five sweeps — has a top-level
 `solved` field:
 
 ```json
@@ -454,8 +454,8 @@ What the equivalence work changed is only the **shape of the job**:
 | `m` unbounded / no cost bound | same file, the remark right after Lemma 11 |
 | "a real supermove"; the AK(3) example | `literature/txt/change_of_variables_stable_ac.txt` |
 | 261 → 168 → 126; ACA ≠ AC; 0 solved | `results/equivalence_classes/EQUIVALENCE_FINDING.md` |
-| `"solved": []`, 126 classes, 135 merges | `results/equivalence_classes/sweep_seam_28_250.json` |
-| the 4-member class 4 | `results/equivalence_classes/classes_sweep_seam_28_250.csv` |
+| `"solved": []`, 126 classes, 135 merges | `results/equivalence_classes/sweep/sweep_seam_28_250.json` |
+| the 4-member class 4 | `results/equivalence_classes/sweep/classes_sweep_seam_28_250.csv` |
 | the 202/260 and 210/235 collisions | `results/greedy_baseline/greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl` |
 | Branch A = "Lemma-11 form"; pool = the 126 | `plan/week 4/STABLE_AC_PIPELINE_PLAN.md` |
 | "unbounded number of substitutions" | `experiments/greedy_tests/test_stable_ac.py:176` |
