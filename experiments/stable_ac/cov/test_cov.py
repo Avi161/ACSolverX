@@ -233,6 +233,35 @@ def test_universe_abs_det_on_benchmark_rows():
     assert by_gen["x"] > 0 and by_gen["y"] > 0
 
 
+def test_universe_iso2_expr_is_nielsen_shaped():
+    """One-shot defining-relator isolation (iso_index 2) realizes exactly the
+    elementary Nielsen re-coordinatisations: a freely reduced w with one
+    letter of the eliminated generator is forced into kept^a·elim^±1·kept^b
+    (a, b in Z), so expr is a power of the kept generator on each side of
+    exactly one ±z. This is the classical basis condition — (y, w) is a free
+    basis of F2 iff w = y^a x^±1 y^b — so the "exactly one ±g" gate IS the
+    set of valid generator-keeping CoVs, not a filter over it (PIPELINE.md
+    §5). iso 0/1 exprs are relator-mediated and escape this shape (zxZ, two
+    z-letters, in the z=xy golden)."""
+    root = run_cov.find_repo_root(os.path.dirname(__file__))
+    rows = run_cov.load_rows(run_cov.COV_DEFAULTS["datasets"], root)
+    fam = cov.universe_candidates(2, 4)
+    kept = {"x": cov.Y_GEN, "y": cov.X_GEN}
+    seen = {"x": 0, "y": 0}
+    for rid, r1s_, r2s_, _src in rows:
+        r1, r2 = str_to_word(r1s_), str_to_word(r2s_)
+        for res in cov.enumerate_cov(r1, r2, family=fam, allow_defining_iso=True):
+            if res.iso_index != 2:
+                continue
+            seen[res.iso_gen] += 1
+            z_at = [i for i, g in enumerate(res.expr) if abs(g) == cov.Z_GEN]
+            assert len(z_at) == 1, (rid, word_to_str(res.z_word), res.expr)
+            for block in (res.expr[:z_at[0]], res.expr[z_at[0] + 1:]):
+                assert len(set(block)) <= 1, (rid, res.expr)   # one power g^a
+                assert all(abs(g) == kept[res.iso_gen] for g in block)
+    assert seen["x"] > 0 and seen["y"] > 0
+
+
 def test_xy_family_output_pairs_superset_of_x_only():
     # the xy rule strictly extends the retired x-only rule on AK(3)
     x_only = cov.enumerate_cov(AK3_R1, AK3_R2, iso_targets=("x",))

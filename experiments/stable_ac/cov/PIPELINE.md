@@ -176,6 +176,36 @@ iso_index 2 lets non-occurring words act as pure Nielsen re-coordinatisations. S
 transform identically in both modes (the defining-relator branch is tried last), so
 overlapping rows across the two files double as a consistency check.
 
+### What universe mode can — and cannot — reach (one-shot)
+
+The pure-Nielsen branch (iso_index 2) eliminating x accepts exactly the w with **one ±x
+letter** — and a freely reduced word with one x-letter is forced into `w = y^a x^±1 y^b`
+(a, b ∈ ℤ; w may mix letters — yx, Yxyy — but carries only one letter of the *eliminated*
+generator). The substituted expression is correspondingly a power of the kept generator on
+each side of exactly one ±z (`test_universe_iso2_expr_is_nielsen_shaped`). Three facts:
+
+1. **Within its slice the gate is complete — a theorem, not a filter.** (y, w) is a free
+   basis of F₂ **iff** w = y^a x^±1 y^b: Nielsen moves on the pair {y, w} can only strip
+   y-powers off w, a Nielsen-reduced pair is a free basis of the subgroup it generates, and
+   that subgroup is all of F₂ only when w reduces to a single x^±1. So "exactly one ±x" is
+   precisely the condition for z = w to define a change of variables keeping y — a w with
+   two or more x-letters gives no basis, hence no CoV exists there to miss.
+2. **One shot is NOT all of Aut(F₂) — not a superset of all CoVs.** Every one-shot output
+   basis keeps an original generator: (y, w) or (x, w). A basis containing neither — e.g.
+   (xy, xyy), where old y = A⁻¹B and old x = AB⁻¹A — is unreachable in one application,
+   and `universe_max_len` truncates the reachable slice further.
+3. **Composition closes the gap.** Aut(F₂) = ⟨swap, x ↦ x⁻¹, x ↦ xy⟩ (Nielsen), and each
+   generator is ≤ 2 universe moves with |w| = 2: basis (x, xy) is one move (w = xy,
+   y-elim); (y, yx) then (u, u⁻¹v) is the swap; (x, xy⁻¹) then (u, u⁻¹v) is (x, y⁻¹).
+   Iterated CoV — case (ii), or re-running the sweep on transformed outputs — therefore
+   reaches *every* change of variables; one shot cannot.
+
+Mixed words with many x- and y-letters still act — through occurrences (iso_index 0/1).
+That isolation consumes a *transformed relator*, i.e. it uses r = 1 in the group: a
+stable-AC transformation, not an automorphism of F₂ at all (its expr can even carry two
+z-letters — zxZ in the z = xy golden). Universe mode is exactly {subword-fired,
+relator-mediated transforms} ∪ {the elementary-Nielsen slice}.
+
 ## 6. The sweep (experiment_length: true) — one file answers everything
 
 Per presentation, the sweep runs the greedy from **every valid CoV start** plus one **no-CoV
