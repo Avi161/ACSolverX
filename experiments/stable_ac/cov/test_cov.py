@@ -133,8 +133,15 @@ def test_empty_relator_rejected():
 
 def test_degenerate_z_words_rejected():
     assert cov.apply_cov_once(AK3_R1, AK3_R2, (1,)) is None          # too short
-    assert cov.apply_cov_once(AK3_R1, AK3_R2, (1, 1)) is None        # pure power
     assert cov.apply_cov_once(AK3_R1, AK3_R2, (1, -1)) is None       # reduces to ()
+
+
+def test_pure_power_z_is_a_candidate():
+    # z=xx on AK(3): r2 = xxxYYYY -> zxYYYY, one x left -> isolatable. Pure
+    # powers are deliberately IN the family — which words win is the sweep's
+    # empirical question, not a rule.
+    res = cov.apply_cov_once(AK3_R1, AK3_R2, (1, 1))
+    assert res is not None and res.applicable and res.n_subs >= 1
 
 
 def test_relabel_preserves_signs():
@@ -179,11 +186,14 @@ def test_baseline_mode_is_identity():
 
 def test_subword_candidates_ak3():
     fam = cov.subword_candidates(AK3_R1, AK3_R2)
-    # mixed-generator only, even though r2 = xxxYYYY is all pure-power subwords
-    assert fam and all(len({abs(g) for g in w}) == 2 for w in fam)
     # the zf1 winner xy and the paper's xyx are both subwords of r1 = xyxYXY
     assert str_to_word("xy") in fam
     assert str_to_word("xyx") in fam
+    # pure powers are candidates too (from r2 = xxxYYYY; YY canonicalises to yy)
+    assert str_to_word("xx") in fam
+    assert str_to_word("yy") in fam
+    assert str_to_word("xxx") in fam
+    assert str_to_word("yyyy") in fam
     # the cyclic seam is included: Yx wraps r1's boundary (…Y|x…); its
     # canonical member max(Yx, Xy) = Xy is what the family stores
     assert str_to_word("Xy") in fam
@@ -226,7 +236,7 @@ def test_run_prefix_sweep_identity():
     c = dict(run_cov.COV_DEFAULTS)
     c["experiment_length"] = True
     assert (run_cov._run_prefix(c, 1000, 11)
-            == "covsweep_1000_11_sub4_mrl24_cyc_s10r1_")
+            == "covsweep_1000_11_sub4p_mrl24_cyc_s10r1_")
     with pytest.raises(ValueError):
         run_cov.load_config(mode="baseline", experiment_length=True)
 
@@ -254,7 +264,7 @@ def test_sweep_runner_rows_and_resume(tmp_path, monkeypatch):
                   experiment_length=True, out_dir=str(tmp_path / "out"))
     out = run_cov.run(**common)
 
-    assert os.path.basename(out[0]).startswith("covsweep_100_1_sub4_mrl24_cyc_r9_")
+    assert os.path.basename(out[0]).startswith("covsweep_100_1_sub4p_mrl24_cyc_r9_")
     rows = [json.loads(ln) for ln in open(out[0])]
     controls = [r for r in rows if r["z_word"] is None]
     variants = [r for r in rows if r["z_word"] is not None]

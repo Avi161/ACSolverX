@@ -143,7 +143,7 @@ def apply_cov_once(r1, r2, z_word, default_cap=DEFAULT_CAP,
     other relator before the z is rejected.
     """
     w = reduce_word(tuple(z_word), cyclic=False)
-    if len(w) < 2 or len({abs(g) for g in w}) < 2:
+    if len(w) < 2:
         return None
 
     r1s, n1 = substitute_word(r1, w)
@@ -226,7 +226,7 @@ def transformed_flat(result):
 
 
 def subword_candidates(r1, r2, min_len=2, max_len=4):
-    """Every distinct mixed-generator subword of the relators, as z candidates.
+    """Every distinct subword of the relators, as z candidates.
 
     The data-driven family for the length-sweep experiment: unlike
     ``NAIVE_Z_FAMILY``, these w are guaranteed to occur in the presentation
@@ -235,7 +235,9 @@ def subword_candidates(r1, r2, min_len=2, max_len=4):
     relator, seam included (via the doubled word), lengths min_len..max_len.
     ``w`` and ``w⁻¹`` yield the same CoV up to inverting z, so each pair keeps
     one canonical member: ``max(w, w⁻¹)``, which starts with a positive letter
-    whenever the pair has one. Pure powers are excluded as in NAIVE_Z_FAMILY.
+    whenever the pair has one. Pure powers (xx, yyy, …) are candidates too —
+    which words work is the sweep's empirical question, so nothing is excluded
+    a priori (sweep tag sub{K}p; the mixed-only rule was the pre-p family).
     Deterministic order (length, then tuple) — row identity depends on it.
     """
     seen = set()
@@ -246,8 +248,6 @@ def subword_candidates(r1, r2, min_len=2, max_len=4):
         for length in range(min_len, min(max_len, n) + 1):
             for i in range(n):
                 w = doubled[i:i + length]
-                if len({abs(g) for g in w}) < 2:
-                    continue
                 seen.add(max(w, inverse(w)))
     return tuple(sorted(seen, key=lambda w: (len(w), w)))
 

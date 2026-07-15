@@ -27,9 +27,10 @@ experiment_length: false        # true = the length experiment: per presentation
                                 # no-CoV control row (z_word null). Rows keyed
                                 # (pres_id, z_word); file prefix covsweep_..._sub{K}_.
                                 # Answers: does post-CoV start length predict outcome?
-subword_max_len: 4              # sweep z candidates = subwords of the relators (cyclic,
-                                # w ~ w⁻¹ deduped, mixed-generator only) of length
-                                # 2..this; part of the sweep filename identity (sub4).
+subword_max_len: 4              # sweep z candidates = ALL subwords of the relators
+                                # (cyclic, w ~ w⁻¹ deduped, pure powers included) of
+                                # length 2..this; part of the sweep filename identity
+                                # (sub4p — p marks the pure-powers family rule).
                                 # Raise it if the sweep says longer transforms win.
 
 cyclic_reduce: true

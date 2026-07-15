@@ -98,8 +98,10 @@ runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_don
 import). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
 changes. The length sweep (`experiment_length: true`) brute-forces every subword-derived CoV
 (`enumerate_cov`) plus a control row per presentation; sweep rows are keyed `(pres_id, z_word)`
-like Branch A's, and the file prefix is `covsweep_..._sub{K}_` where K = `subword_max_len` (the
-family is derived from the presentation, so K is its only identity knob). Tests are colocated
+like Branch A's, and the file prefix is `covsweep_..._sub{K}p_` where K = `subword_max_len` (the
+family is derived from the presentation, so K is its only identity knob; the `p` suffix is the
+family-rule version — pure-power subwords included; suffix-less `sub{K}` files are the old
+mixed-only rule and never share a resume file). Tests are colocated
 (`cov/test_cov.py`), same command as above.
 
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path

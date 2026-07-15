@@ -15,7 +15,8 @@ run the greedy from EVERY valid subword-derived CoV (``cov.enumerate_cov``)
 plus one no-CoV control row, so the jsonl directly answers whether post-CoV
 start length predicts search outcome. Sweep rows are keyed ``(pres_id,
 z_word)`` — the control row has ``z_word: null`` — and the file prefix is
-``covsweep_..._sub{K}_`` where K = ``subword_max_len``.
+``covsweep_..._sub{K}p_`` where K = ``subword_max_len`` (p = the family
+rule that includes pure-power subwords).
 
 CLI (from the repo root):
     .venv/bin/python3 -m experiments.stable_ac.cov.run_cov \
@@ -139,14 +140,17 @@ def _run_prefix(c, node_budget, n_rows):
     The z-family tag is identity for cov mode (a different family = a different
     experiment); row caps are derived deterministically from the inputs, so
     they stay out of the name. mrl = the base cap / baseline cap. The length
-    sweep is its own kind (covsweep) and its family tag is sub{K}: the family
-    is derived from the presentation, so K is the only family knob.
+    sweep is its own kind (covsweep) and its family tag is sub{K}p: the family
+    is derived from the presentation, so K is the only family knob. The p
+    suffix is the family-rule version — it marks the family that includes
+    pure-power subwords (xx, yyy, …); the suffix-less sub{K} files were the
+    earlier mixed-generator-only rule and must never share a resume file.
     """
     kind = "cov" if c["mode"] == "cov" else "covbase"
     zfam = f"{c['z_family']}_" if c["mode"] == "cov" else ""
     if c.get("experiment_length"):
         kind = "covsweep"
-        zfam = f"sub{c['subword_max_len']}_"
+        zfam = f"sub{c['subword_max_len']}p_"
     cyc = "cyc" if c["cyclic_reduce"] else "noncyc"
     tag = _dataset_tag(c["datasets"])
     return (f"{kind}_{node_budget}_{n_rows}_{zfam}mrl{c['max_relator_length']}"
