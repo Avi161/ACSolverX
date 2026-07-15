@@ -59,6 +59,39 @@ exhaustive ball enumeration pin down, the following structure:
    in AK(3)'s own orbit (`YXYxyx|YYYxxxx`, x↔y-swapped AK3) within 1,000 nodes — no better
    than 13, and no orbit escape from that particular start's control row.
 
+## Anatomy of the ≤17 component (Aut-quotient)
+
+The 1,000 states decompose into **168 Aut(F₂)-orbits**; per-orbit Whitehead minimum
+(`aut_min`, exact by peak reduction):
+
+| aut_min | 13 | 14 | 15 | 16 | 17 |
+|---|---|---|---|---|---|
+| orbits | **2** | 5 | 30 | 32 | 99 |
+
+The two aut_min-13 orbits are exactly AK(3)'s and orbit-2's. **No orbit dips below 13**, so
+one change of variables applied at ANY state of the ≤17 component still cannot beat the bar
+— beating 13 needs height ≥ 18 or ≥ 2 alternating (AC, CoV) phases through states outside
+this component. The five aut_min-14 orbits are fresh low-height coordinates for
+production-budget searches: `YYXyXyx|YXYXyxx`, `YYXYxyx|YXyXyxx`, `YYXyXyx|YXyxxyX`,
+`YYXXXyx|YYxyxyX`, `YXXYx|YYYYXyyyx`.
+
+## Literature fit
+
+- [Havas–Ramsay 2003](https://www.worldscientific.com/doi/10.1142/S0218196703001365):
+  every length-13 normally-generating pair is AC-equivalent to (x,y) or to the *unique*
+  minimum potential counterexample AK(3). Certificate 2 constructively reproduces a small
+  piece of this: orbit-2's rep is length-13 and AC-equivalent to AK(3) — the same AC class.
+  The two-Aut-orbit split at that class's floor is a refinement *within* their unique class;
+  not stated in the sources checked.
+- [Myasnikov–Myasnikov](https://arxiv.org/abs/math/0304305): all length ≤ 12 balanced
+  presentations of the trivial group satisfy AC — which is why any state of total ≤ 12 would
+  have been decisive.
+- **AK(3) is stably AC-trivializable** — proved by Shehper et al. 2024 (the Two-Hump
+  paper's group), re-proved by automated deduction in
+  [arXiv:2501.18601](https://arxiv.org/abs/2501.18601). So the stable escape exists; this
+  experiment shows it is invisible below height 18 in 2-generator moves even after any
+  single re-coordinatisation — the third generator (or real height) is doing essential work.
+
 ## Files
 
 | file | what |
@@ -70,6 +103,7 @@ exhaustive ball enumeration pin down, the following structure:
 | `certify_classical.py` / `AC17_CERTIFICATE.json` | closure proof + 17-move classical path, verified |
 | `ball.py` | bounded-ball separation (disjoint ≤ 16, merged at 17) |
 | `sweep_results.jsonl` | all 390 rows (resume-keyed by canonical start) |
+| `test_ak3.py` | 8 checks incl. the solved branch (never hit by the 390 unsolved rows) + both certificates |
 
 Repro (repo root, all ≤ 1,000 nodes):
 `PYTHONHASHSEED=0 .venv/bin/python3 -m experiments.stable_ac.cov.ak_3_universal_test.<sweep|census|analyze|ball>`
