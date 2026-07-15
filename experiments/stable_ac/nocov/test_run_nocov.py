@@ -180,9 +180,11 @@ def test_prefix_encodes_identity_not_date():
     assert _run_prefix({**c, "MAX_RELATOR_LENGTH": 32}, 100, "A1") != p
     assert _run_prefix({**c, "BENCHMARK": "combined_22"}, 100, "A1") != p
     assert _run_prefix({**c, "CYCLIC_REDUCE": False}, 100, "A1") != p
-    # ...and job-selection / result-neutral knobs do not (resume is row-keyed)
+    # ...and job-selection / result-neutral knobs do not (resume is row-keyed;
+    # HIGH_SPEEDUP is result-neutral, so files resume across modes)
     assert _run_prefix({**c, "ROW_LIMIT": 3, "WORD_LIMIT": 1, "USE_WANDB": True,
-                        "NAMES": ["ms499"], "PROGRESS_EVERY": 1}, 100, "A1") == p
+                        "NAMES": ["ms499"], "PROGRESS_EVERY": 1,
+                        "HIGH_SPEEDUP": True}, 100, "A1") == p
 
 
 # -- paths file -----------------------------------------------------------------
@@ -224,7 +226,7 @@ def test_config_yaml_round_trips_with_default_config():
     # values match DEFAULT_CONFIG except the documented production deltas,
     # each pinned explicitly below so a yaml change stays a conscious act
     deltas = ("MOUNT_DRIVE", "USE_WANDB", "BENCHMARK", "FAMILIES",
-              "A2_MAX_WORDS", "A2_DROP_LEN1")
+              "A2_MAX_WORDS", "A2_DROP_LEN1", "HIGH_SPEEDUP")
     for k in DEFAULT_CONFIG:
         if k in deltas:
             continue
@@ -241,6 +243,68 @@ def test_config_yaml_round_trips_with_default_config():
     # A1 runs the singles on every row; dropping them from A2 removes the
     # systematic cross-family duplicates and improves the capped selection
     assert y["A2_DROP_LEN1"] is True
+    # production runs the fast solver (result-identical, ~5x throughput)
+    assert y["HIGH_SPEEDUP"] is True
+
+
+# -- HIGH_SPEEDUP dispatch ----------------------------------------------------
+
+
+def _fast_stub(monkeypatch, stats=STATS):
+    calls = []
+
+    def spy(*a, **k):
+        calls.append(a)
+        return dict(stats)
+
+    monkeypatch.setattr(rn, "search_n_fast", spy)
+    return calls
+
+
+def test_high_speedup_dispatches_to_the_fast_solver(cfg, monkeypatch):
+    slow_calls = _stub(monkeypatch)
+    fast_calls = _fast_stub(monkeypatch)
+    run_nocov({**cfg, "HIGH_SPEEDUP": True}, 100, "A1")
+    assert len(fast_calls) == 4
+    assert not slow_calls, "fast mode must never fall through to search_n"
+
+
+def test_high_speedup_off_never_calls_the_fast_solver(cfg, monkeypatch):
+    slow_calls = _stub(monkeypatch)
+    fast_calls = _fast_stub(monkeypatch)
+    run_nocov(cfg, 100, "A1")
+    assert len(slow_calls) == 4 and not fast_calls
+
+
+def test_resume_interoperates_across_modes(cfg, monkeypatch):
+    """HIGH_SPEEDUP is result-neutral and outside the filename identity, so a
+    fast rerun must reattach to a slow run's file and search nothing."""
+    slow_calls = _stub(monkeypatch)
+    fast_calls = _fast_stub(monkeypatch)
+    out1 = run_nocov(cfg, 100, "A1")
+    assert len(slow_calls) == 4
+    out2 = run_nocov({**cfg, "HIGH_SPEEDUP": True}, 100, "A1")
+    assert out2 == out1
+    assert not fast_calls, "the fast rerun must resume, not re-search"
+    assert len(_rows(out1)) == 4
+
+
+def test_fast_and_slow_micro_runs_write_identical_rows(tmp_path):
+    """No monkeypatch: real searches both ways at budget 100. Every row field
+    except time_seconds must be bit-identical, and the paths files equal."""
+    rows, paths = {}, {}
+    for high, sub in ((False, "slow"), (True, "fast")):
+        c = {**DEFAULT_CONFIG, "LOCAL_OUT_DIR": str(tmp_path / sub),
+             "NAMES": ["ms499"], "WORD_LIMIT": 3, "USE_WANDB": False,
+             "HIGH_SPEEDUP": high}
+        out = run_nocov(c, 100, "A1")
+        rows[sub] = [{k: v for k, v in r.items() if k != "time_seconds"}
+                     for r in _rows(out)]
+        paths[sub] = _rows(out[:-len(".jsonl")] + "_paths.jsonl")
+    assert rows["slow"] == rows["fast"]
+    assert paths["slow"] == paths["fast"]
+    # non-vacuous: ms499 z=x solves, so the paths comparison saw real moves
+    assert paths["slow"], "expected at least one solved job"
 
 
 # -- big-budget guard ---------------------------------------------------------

@@ -8,6 +8,7 @@ pipeline** (code + config yaml + Colab notebook + tests, all in one place).
 | file | what it is |
 |---|---|
 | `solvern.py` | **general-`n` numba solver** — int8 signed codec, works at any `n_gen ≤ 26`, any `n_rel ≥ 2`. Trace-equal to `greedy_tests/spec/` at `n_gen ≤ 3` (`greedy_tests/test_solvern.py` pins it); `n_gen = 4+` is seamless. Entry: `search_n(pres, budget, cap, cyclic, progress)`. |
+| `solvern_fast.py` | **`search_n_fast` — the HIGH_SPEEDUP twin**: same search, fused `@njit` expansion + packed-bytes keys, ~5× faster, EVERY result field bit-identical (paths included; whole-dict parity pinned by `greedy_tests/test_solvern_fast.py`). Toggled per run by `HIGH_SPEEDUP` in the nocov config; result-neutral, so files resume across modes. |
 | `word_families.py` | z-word builders, n-agnostic: **A1** curated `\|w\| ≤ 4` · **A2** prefixes of all cyclic rotations of each relator (raw count `Σ\|rᵢ\|²`, deduped; `A2_MAX_WORDS` caps it — A2 dominates cost) · **A3** proportion grid `r1[:p] + r2[:q]`. |
 | `verify_results.py` | the **certificate verifier**: replays every `solved: true` row's move path through the pure-Python spec (never through a solver — a solver bug cannot self-certify), checking move legality, the per-relator cap at every step, a genuinely trivial endpoint, `abs_det` preservation, and cross-file **budget invariance**. Handles both pipelines' formats. Run it on any results before believing them. |
 

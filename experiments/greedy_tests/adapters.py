@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 
 from experiments.search.greedy_baseline import greedy_search, str_to_move
 from experiments.search.greedy_compact import greedy_search_compact
-from experiments.stable_ac import solvern
+from experiments.stable_ac import solvern, solvern_fast
 
 from .spec import search as spec_search
 from .spec.moves import Move, legacy_to_move
@@ -129,12 +129,15 @@ class SolverNAdapter:
     #: reconstructs parent pointers, so a solved run comes back with a path
     yields_path = True
 
+    #: the seam the fast twin overrides; everything else is shared.
+    _search_fn = staticmethod(solvern.search_n)
+
     def supports(self, pres):
         return 1 <= pres.n_gen <= 26 and pres.n_rel >= 2
 
     def search(self, pres, budget, cap=24, cyclic=True, progress=None):
-        raw = solvern.search_n(pres, budget, cap=cap, cyclic=cyclic,
-                               progress=progress)
+        raw = self._search_fn(pres, budget, cap=cap, cyclic=cyclic,
+                              progress=progress)
         # solvern.str_to_move is the 5-field (i,j,s,k1,k2) codec -- distinct from
         # the 4-field greedy_baseline.str_to_move imported above.
         moves = tuple(Move(*solvern.str_to_move(s)) for s in raw["path_moves"])
@@ -156,6 +159,16 @@ class SolverNAdapter:
             path_states=states,
             raw=raw,
         )
+
+
+class SolverNFastAdapter(SolverNAdapter):
+    """``search_n_fast`` — solvern's HIGH_SPEEDUP twin. Full result parity
+    INCLUDING paths (it keeps parent/move pointers), so ``yields_path`` is
+    True and the contract's path/abs_det checks run against it for real."""
+
+    name = "solvern_fast"
+    yields_path = True
+    _search_fn = staticmethod(solvern_fast.search_n_fast)
 
 
 class SpecAdapter:
@@ -191,9 +204,10 @@ HEAVY = HeavyNumbaAdapter()
 COMPACT = CompactNumbaAdapter()
 SPEC = SpecAdapter()
 SOLVERN = SolverNAdapter()
+SOLVERN_FAST = SolverNFastAdapter()
 
 #: Append a stable-AC adapter here and the contract suite covers it.
-ALL_ADAPTERS = [NORMAL, HEAVY, COMPACT, SPEC, SOLVERN]
+ALL_ADAPTERS = [NORMAL, HEAVY, COMPACT, SPEC, SOLVERN, SOLVERN_FAST]
 
 #: The three implementations of one search; only these owe exact-trace parity.
 #: They differ only in bookkeeping (dicts of str pairs / a set of packed bytes /
@@ -212,9 +226,9 @@ def replay_moves(pres, moves, cyclic=True):
 __all__ = [
     "SearchStats", "SolverAdapterError", "Move",
     "NormalNumbaAdapter", "HeavyNumbaAdapter", "CompactNumbaAdapter",
-    "SpecAdapter", "SolverNAdapter",
-    "NORMAL", "HEAVY", "COMPACT", "SPEC", "SOLVERN", "ALL_ADAPTERS",
-    "PARITY_TRIO", "PARITY_PAIR", "replay_moves",
+    "SpecAdapter", "SolverNAdapter", "SolverNFastAdapter",
+    "NORMAL", "HEAVY", "COMPACT", "SPEC", "SOLVERN", "SOLVERN_FAST",
+    "ALL_ADAPTERS", "PARITY_TRIO", "PARITY_PAIR", "replay_moves",
 ]
 
 

@@ -5,7 +5,8 @@
 # notebook RUN cell sets it on Colab).
 # Keys mirror run_nocov.DEFAULT_CONFIG; values match it EXCEPT the documented
 # production deltas: MOUNT_DRIVE, USE_WANDB, BUDGET, BENCHMARK, FAMILIES,
-# A2_MAX_WORDS (all pinned by test_config_yaml_round_trips_with_default_config).
+# A2_MAX_WORDS, A2_DROP_LEN1, HIGH_SPEEDUP (all pinned by
+# test_config_yaml_round_trips_with_default_config).
 
 BENCHMARK: combined_66        # the full benchmark: 60 ladder + 6 reach rows (max reach, AK(3) included)
 FAMILIES: [A1, A3, A2]        # one jsonl per (budget, family); cheap families first —
@@ -16,6 +17,10 @@ BUDGET: [10000]               # node budget per search, one sweep per entry; loc
                               # baseline solves at B iff nodes_1M <= B (budget invariance).
 MAX_RELATOR_LENGTH: 64        # per-relator cap for the 3-relator search (NO total-length budget)
 CYCLIC_REDUCE: true           # cyclically reduce after each move (matches the baseline)
+HIGH_SPEEDUP: true            # search_n_fast: same search, fused numba bookkeeping, ~5x
+                              # faster; every row field bit-identical (whole-dict parity
+                              # pinned by test_solvern_fast.py). Result-neutral -> NOT in
+                              # the filename identity; files resume across modes.
 
 A1_WORDS: null                # null -> word_families.A1_DEFAULT_WORDS (~16 curated |w|<=4 words)
 A2_MAX_WORDS: 64              # cap the A2 relator-prefix family (deterministic even spacing).

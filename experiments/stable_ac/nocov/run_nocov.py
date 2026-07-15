@@ -30,6 +30,7 @@ from experiments.run_baseline import (
 from experiments.stable_ac.solvern import (
     nocov_presentation, search_n, word_to_str,
 )
+from experiments.stable_ac.solvern_fast import search_n_fast
 from experiments.stable_ac.word_families import build_family
 
 DEFAULT_CONFIG = {
@@ -38,6 +39,12 @@ DEFAULT_CONFIG = {
     "MODE": "nocov",                 # row tag + part of the filename identity
     "MAX_RELATOR_LENGTH": 64,        # per-relator cap (no total-length budget)
     "CYCLIC_REDUCE": True,
+
+    # search_n_fast: same search, fused numba bookkeeping, ~5x faster, every
+    # row field bit-identical (test_solvern_fast.py pins whole-dict parity).
+    # Result-neutral, so it stays OUT of the filename identity: files written
+    # in either mode resume each other.
+    "HIGH_SPEEDUP": False,
 
     # z-word family knobs (see word_families.build_family)
     "A1_WORDS": None,                # None -> A1_DEFAULT_WORDS
@@ -411,11 +418,12 @@ def run_nocov(cfg, node_budget, family):
     out_f = open(out_path, "a")
     paths_f = open(paths_path, "a") if cfg["PATH_IN_SEPARATE_FILE"] else None
     try:
+        searcher = search_n_fast if cfg["HIGH_SPEEDUP"] else search_n
         for brow, w in todo:
             pres = nocov_presentation(brow["r1"], brow["r2"], w)
             z_relator = word_to_str(pres.relators[-1])   # "Z"+w, as searched
             t0 = time.time()
-            stats = search_n(pres, node_budget,
+            stats = searcher(pres, node_budget,
                              cap=cfg["MAX_RELATOR_LENGTH"],
                              cyclic=cfg["CYCLIC_REDUCE"])
             elapsed = time.time() - t0

@@ -87,6 +87,12 @@ uses ASCII order `(g>0, abs(g))`. Trace equality with `greedy_tests/spec/` at `n
 `test_solvern.py` pins — any change that survives it is safe. Same reduce/Booth lessons as
 `search/greedy_baseline.py` apply.
 
+**`stable_ac/solvern_fast.py`** — `search_n_fast`, the HIGH_SPEEDUP twin: fused kernel + packed
+bytes as heap-tiebreak-AND-state, parent/move pointers kept, so it owes `search_n` **whole-dict
+equality, paths included** (`test_solvern_fast.py`). Two traps its docstring names: the child
+relator sort is length-first (booth-lex alone misorders `x` vs `ZZ`), and unpacking must cast
+uint8→signed before negating. HIGH_SPEEDUP is result-neutral — never in a filename identity.
+
 **`stable_ac/nocov/run_nocov.py`** — Branch-A runner. Same laws as `run_baseline.py`: the filename
 prefix is the resume key (no dates, no result-neutral knobs); row identity is `(name, z_word)`;
 `_repair_jsonl` runs before any append, not gated on `RESUME`; `search_n` is the module-global seam

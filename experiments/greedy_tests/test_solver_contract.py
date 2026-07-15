@@ -151,7 +151,9 @@ def test_every_adapter_declares_support_honestly():
 def test_the_adapter_support_envelopes():
     """Pins each adapter's declared reach: the two-generator boolean-codec
     solvers, the render-capped spec, and the general-n numba solver."""
-    from experiments.greedy_tests.adapters import HEAVY, NORMAL, SOLVERN, SPEC
+    from experiments.greedy_tests.adapters import (
+        HEAVY, NORMAL, SOLVERN, SOLVERN_FAST, SPEC,
+    )
 
     # normal/heavy: the (n, 2) bool codec is two-generator only.
     assert NORMAL.supports(trivial(2)) and HEAVY.supports(trivial(2))
@@ -162,8 +164,10 @@ def test_the_adapter_support_envelopes():
     assert SPEC.supports(trivial(3)), "the spec must cover n_gen=3"
     assert not SPEC.supports(trivial(4)), "spec cannot render n_gen=4"
 
-    # solvern: general-n, so it runs every case the others cover and the 4-gen one.
-    assert SOLVERN.supports(trivial(2))
-    assert SOLVERN.supports(trivial(3))
-    assert SOLVERN.supports(trivial(4))
-    assert SOLVERN.supports(ms640([0])[0].stabilize().stabilize())
+    # solvern (+ its fast twin): general-n, so they run every case the others
+    # cover and the 4-gen one.
+    for a in (SOLVERN, SOLVERN_FAST):
+        assert a.supports(trivial(2))
+        assert a.supports(trivial(3))
+        assert a.supports(trivial(4))
+        assert a.supports(ms640([0])[0].stabilize().stabilize())

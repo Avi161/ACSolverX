@@ -219,6 +219,21 @@ result-neutral.
 `n_gen = 3`, cap 64): 1,659–2,061 nodes/s across the four evidence files. A full 50,000
 budget on an unsolved job at that rate ≈ 25–30 s.
 
+**HIGH_SPEEDUP: `search_n_fast` (`../solvern_fast.py`).** `HIGH_SPEEDUP: true` in the
+config swaps `search_n` for its fast twin — the same search with fused bookkeeping.
+Profiling showed ~70% of `search_n`'s wall time is per-child *Python* work (the relator
+sort, the tie-break byte-packing, tuple conversions), so the fast solver does
+expansion + canonicalisation + relator-sort + key-packing in ONE `@njit` kernel call
+per pop and carries states as packed bytes (the packed key IS the heap tie-break —
+injective, so the pop order is provably identical). It keeps parent/move pointers, so
+**every result field is bit-identical, paths included** — whole-dict equality is
+pinned by `experiments/greedy_tests/test_solvern_fast.py` (parity at n_gen 2–5,
+spec trace-equality, kernel-vs-loop child-order equality, abs_det on every kernel
+child) and the fast/slow micro-run row-equality test in `test_run_nocov.py`.
+Result-neutral ⇒ NOT part of the filename identity: files written in either mode
+resume each other. Measured at budgets ≤ 1,000 (M-series, cap 64): **4.6–5.9×** —
+e.g. ms527+xy 1,972 → 9,981 nodes/s, AK(3)+xxxYYYY 3,010 → 13,933 nodes/s.
+
 ## 5. The runner: `run_nocov.py`
 
 `run_nocov(cfg, node_budget, family)` runs one sweep = one output file. `main()` loops
@@ -373,8 +388,10 @@ reports `N already done, M to run`).
 **The production config as committed** targets `combined_66` (60 ladder + 6 reach —
 the full benchmark) at `BUDGET: [10000]` with `A2_MAX_WORDS: 64` and the families
 ordered `[A1, A3, A2]`: A1 = 1,056 jobs and A3 = 1,040 finish first, then A2 = 4,175 —
-**6,271 searches total**, worst case ≈ 62.7M nodes ≈ 8.7 h at 2,000 nodes/s / 17.4 h
-at 1,000 (expected less: solved jobs stop early). The ladder comparison is exact at
+**6,271 searches total**, worst case ≈ 62.7M nodes. With `HIGH_SPEEDUP: true` (the
+committed default, ~5×: §4) the observed Colab range 0.9–2.1k nodes/s becomes
+≈ 4.5–10k, so worst case ≈ **1.7–4 h** (8.7–17.4 h without it; expected less either
+way — solved jobs stop early). The ladder comparison is exact at
 10k despite the 50k snapshot columns, via `nodes_1M`: baseline solves at B iff
 `nodes_1M ≤ B`. Both knobs are result-neutral for resume (they only change which jobs
 exist; rows are keyed `(name, z_word)`), so the cap can be raised later — only newly
