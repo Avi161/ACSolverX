@@ -77,6 +77,14 @@ this component. The five aut_min-14 orbits are fresh low-height coordinates for
 production-budget searches: `YYXyXyx|YXYXyxx`, `YYXYxyx|YXyXyxx`, `YYXyXyx|YXyxxyX`,
 `YYXXXyx|YYxyxyX`, `YXXYx|YYYYXyyyx`.
 
+**Quotient-graph saddles.** The 168 orbits form a quotient graph with 309 inter-orbit
+edges (edge weight = minimal saddle height). There is **no direct AK3-orbit ↔ orbit-2
+edge** — every route passes through intermediate orbits, which is why the bridge needs 17.
+Orbit switches start at height 15 (first exit from AK(3)'s orbit: `YXYxyx|YYYxxYXyx`).
+The two floor orbits are structurally unequal: AK(3)'s orbit has degree 12 with one
+height-15 exit; **orbit-2 has degree 22 with six height-15 exits** — a crossroads, and one
+more reason production searches should start there.
+
 ## Literature fit
 
 - [Havas–Ramsay 2003](https://www.worldscientific.com/doi/10.1142/S0218196703001365):
