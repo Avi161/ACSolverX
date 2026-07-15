@@ -1,7 +1,9 @@
 # Step 4 Branch B — one-shot change of variables (case i).
 # Loaded by run_cov.py over its COV_DEFAULTS; every knob here is reviewable.
 
-datasets:                       # frozen benchmark halves (Steps 2/2b) — never regenerate
+datasets:                       # benchmark halves (Steps 2/2b). Subsets regenerated
+                                # 2026-07-15: minimally-automorphic picks (Aut-class dedup);
+                                # sweep rows from the old picks stay in the jsonls as dead rows
   - results/benchmark/subsets/benchmark_subset_10.csv
   - results/benchmark/reach/reach_tier_1.csv
 

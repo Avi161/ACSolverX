@@ -29,19 +29,27 @@ Run them in this order — each consumes the previous one's output:
 
 | tier | asks | scored on | deduped by Aut class? |
 |---|---|---|---|
-| **ladder** (`benchmark_subsets`) | is the technique more **efficient**? | node-speedup, path-speedup, Pareto | **No** |
+| **ladder** (`benchmark_subsets`) | is the technique more **efficient**? | node-speedup, path-speedup, Pareto | **Minimally automorphic** (2026-07-15) |
 | **reach** (`reach_tier`) | does it get **further**? | `solved`, and `progress` | **Yes** |
 
-Opposite calls, for opposite reasons — and neither is an oversight.
-
-On the **ladder** the unit is a *search instance*. Search cost is **not** an `Aut(F₂)` orbit
-invariant: presentations 623 and 636 are provably Aut-equivalent yet cost 59,710 vs 213,882 nodes
-(3.6×). Two coordinate systems on one problem are two genuinely different tests — and that gap is
-precisely what a change-of-variables technique sets out to exploit. If cost *were* an orbit
-invariant, CoV could never gain anything. So `aut_class` is a **column, not a dedup key**.
-
 On the **reach** tier the unit is a *problem cracked*. Running the same problem in eight coordinate
-systems and cracking it once is one result, not eight. So there it *is* a dedup key.
+systems and cracking it once is one result, not eight. So there `aut_class` is a hard dedup key.
+
+The **ladder** is *minimally automorphic* (policy change 2026-07-15; before that `aut_class` was a
+column only). Two Aut-equivalent presentations are one problem in two coordinate systems — the same
+lesson the 261 unsolved reps taught when they collapsed to ~125 classes — so a subset that repeats a
+class over-samples that orbit. Selection now guarantees, in priority order: (1) no two picks share an
+`aut_class` wherever the bins allow it, (2) forced duplicates are spread evenly across the available
+classes, (3) within those constraints the old path-length even-spread rule decides. Every subset is
+verified against the true optimum (bipartite matching, `_distinct_bound`): **10/10, 19/20, 33/40,
+45/60** distinct classes. The residue is forced by the hard bins — bins 8+9 hold 12 presentations in
+only **3** classes (106 ×8, 97 ×2, 108 ×2) and bin 7 holds 14 in 4 — and is flagged per row in the
+JSON and as black-edged diamonds in `subset_coverage.png`.
+
+The forced duplicates are still genuinely different *search instances*: cost is not an orbit
+invariant (623 and 636 are Aut-equivalent yet cost 59,710 vs 213,882 nodes, 3.6× — precisely the gap
+a change-of-variables technique exploits). They are informative; they are just no longer chosen when
+a distinct class was available.
 
 ## Why the bins are log-width, not deciles
 
@@ -54,7 +62,10 @@ levels* inside `nodes ≤ 11`, because half of ms640 solves that fast.
 The bin already pins `nodes` to a ×3.37 window — there is nothing left to spread on there. `path`
 inside one bin runs to **×11**. Sorting by path puts the node/path off-diagonal on every rung of the
 ladder for free; sorting by nodes would hand back a set sitting on the diagonal, and the path graph
-would be a rescaled copy of the nodes graph.
+would be a rescaled copy of the nodes graph. Since 2026-07-15 the path spread is the *tie-break
+under* the Aut-class constraint above, not the primary criterion — in practice the rich bins (0–6
+hold 8–58 classes each) still get near-exact even spacing, because a class collision only ever
+shifts a pick by a rank or two.
 
 ## `progress`, not `min_relator_length`
 
