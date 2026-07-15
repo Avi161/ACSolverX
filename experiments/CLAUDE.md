@@ -95,7 +95,7 @@ it — local runs must not). Harness tests are colocated: `pytest experiments/st
 
 **`stable_ac/cov/`** — Branch-B one-shot change of variables (`cov.py` transform + `run_cov.py`
 runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_done`/`_build_row` by
-import). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
+import). Full method walkthrough with worked examples: [`cov/PIPELINE.md`](stable_ac/cov/PIPELINE.md). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
 changes. The length sweep (`experiment_length: true`) brute-forces every subword-derived CoV
 (`enumerate_cov`) plus a control row per presentation; sweep rows are keyed `(pres_id, z_word)`
 like Branch A's, and the file prefix is `covsweep_..._sub{K}p_` where K = `subword_max_len` (the
