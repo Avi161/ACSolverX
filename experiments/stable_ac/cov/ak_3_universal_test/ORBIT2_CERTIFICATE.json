@@ -1,0 +1,148 @@
+{
+ "claim": "AK(3)'s stable-AC class contains a length-13 presentation outside AK(3)'s Aut(F2)-orbit",
+ "ak3": [
+  "xxxYYYY",
+  "xyxYXY"
+ ],
+ "z_word": "Xy",
+ "iso_gen": "y",
+ "phi": {
+  "x": "x",
+  "y": "xy"
+ },
+ "start": [
+  "xxxYXYXYXYX",
+  "xxyxYXXYX"
+ ],
+ "moves": [
+  [
+   2,
+   1,
+   0,
+   1
+  ],
+  [
+   2,
+   1,
+   0,
+   1
+  ],
+  [
+   2,
+   1,
+   0,
+   1
+  ],
+  [
+   1,
+   1,
+   0,
+   3
+  ],
+  [
+   1,
+   -1,
+   2,
+   7
+  ],
+  [
+   2,
+   -1,
+   1,
+   0
+  ],
+  [
+   1,
+   -1,
+   0,
+   5
+  ],
+  [
+   1,
+   1,
+   2,
+   1
+  ],
+  [
+   2,
+   1,
+   0,
+   1
+  ],
+  [
+   2,
+   -1,
+   2,
+   0
+  ]
+ ],
+ "states": [
+  [
+   "YXyxxyX",
+   "YXYXYXYxx"
+  ],
+  [
+   "YXyxxyX",
+   "YXYXYxYXyx"
+  ],
+  [
+   "YXyxxyX",
+   "YXYxYXXyx"
+  ],
+  [
+   "YXyxxyX",
+   "YXXXyxYx"
+  ],
+  [
+   "YXXXyxYx",
+   "YXXXXyxxx"
+  ],
+  [
+   "YXyXyxx",
+   "YXXXXyxxx"
+  ],
+  [
+   "YXyXyxx",
+   "YXyxxxyX"
+  ],
+  [
+   "YYxyxyX",
+   "YXyxxxyX"
+  ],
+  [
+   "YYXXXyx",
+   "YXyxxxyX"
+  ],
+  [
+   "YYXXXyx",
+   "YXXXXyxxx"
+  ],
+  [
+   "YYxyXX",
+   "YYXXXyx"
+  ]
+ ],
+ "floor_state": [
+  "YYxyXX",
+  "YYXXXyx"
+ ],
+ "pops_used": 49,
+ "pop_cap": 1000,
+ "relator_cap": 27,
+ "ak3_aut_rep": [
+  "YXYxyx",
+  "YYYYxxx"
+ ],
+ "ak3_aut_phi": {
+  "x": "x",
+  "y": "y"
+ },
+ "floor_aut_rep": [
+  "YYXXyx",
+  "YYYxyXX"
+ ],
+ "floor_aut_phi": {
+  "x": "y",
+  "y": "x"
+ }
+}
