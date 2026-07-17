@@ -22,7 +22,7 @@ Phase 2 does need ``canon_pair``, but only on the (small) minimal level set, and
 phase 2 entirely for states whose phase-1 length already exceeds the search cap.
 """
 from experiments.equivalence_classes.lib.words import (
-    apply_hom, canon_pair, cyc_reduce, free_reduce,
+    abelian_det, apply_hom, canon_pair, cyc_reduce, free_reduce,
 )
 
 ID = {"x": "x", "y": "y"}
@@ -86,8 +86,9 @@ def level_min(pair, phi, level_cap=50_000):
     """Lex-min of the minimal level set containing ``pair``. Returns (rep, phi_to_rep).
 
     ``pair`` must already be peak-reduced. BFS over automorphisms that PRESERVE the total
-    length; the resulting set is the orbit's minimal level set, and its lex-min is a complete
-    invariant of the Aut(F2)-orbit.
+    length; the resulting set is the orbit's minimal level set, and its lex-min (under Python's
+    default string order) is a complete invariant of the Aut(F2)-orbit. Raises if the set
+    exceeds ``level_cap`` -- a partial ``rep`` would be a silently wrong invariant.
     """
     start = canon_pair(*pair)
     t = len(start[0]) + len(start[1])
@@ -95,7 +96,7 @@ def level_min(pair, phi, level_cap=50_000):
     stack = [(start, phi)]
     while stack:
         if len(seen) > level_cap:
-            break
+            raise RuntimeError(f"minimal level set exceeds level_cap={level_cap}; rep unreliable")
         node, nphi = stack.pop()
         for a in AUTOS:
             r1 = cyc_reduce(apply_hom(node[0], a))
@@ -133,4 +134,5 @@ def phi_str(phi):
 
 
 def is_automorphism(phi):
-    return peak_reduce((free_reduce(phi["x"]), free_reduce(phi["y"])))[0] == 2
+    x, y = free_reduce(phi["x"]), free_reduce(phi["y"])
+    return abelian_det(x, y) in (1, -1) and peak_reduce((x, y))[0] == 2

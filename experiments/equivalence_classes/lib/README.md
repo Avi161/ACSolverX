@@ -6,7 +6,7 @@ This is Whitehead’s algorithm for pairs of cyclically reduced words in `⟨x, 
 
 1. **Peak-reduce** — apply length-changing Whitehead automorphisms until total length `|r1|+|r2|` cannot drop.
 2. **Minimal level set** — explore Aut-images that keep that minimal total length.
-3. **Lex-min** — among those, take the lexicographically smallest pair under the solver’s letter order `Y < y < X < x`.
+3. **Lex-min** — among those, take the smallest pair. Each relator is canonicalised (least rotation, up to inversion) under the solver’s letter order `Y < y < X < x`; the representative among the minimal level set is then the one smallest under Python’s default string order. Any fixed order gives a valid complete invariant, so the tie-break only fixes the representative string, never the equivalence decision.
 
 Two presentations lie in the same Aut(F₂) orbit **iff** their canonical representatives are equal.
 
@@ -14,8 +14,10 @@ Two presentations lie in the same Aut(F₂) orbit **iff** their canonical repres
 
 | file | role |
 |---|---|
-| `autcanon.py` | Whitehead pipeline + witnessing automorphism `φ` |
-| `words.py` | word algebra (`apply_hom`, `canon_pair`, `cyc_reduce`, …) |
+| `lib/autcanon.py` | Whitehead pipeline + witnessing automorphism `φ` |
+| `lib/words.py` | word algebra (`apply_hom`, `canon_pair`, `cyc_reduce`, …) |
+| `../../analysis/whitehead.py` | independent, witness-free canonical form — the cross-check `autcanon.py` cites |
+| `../tests/test_autcanon.py` | asserts the two agree on the orbit partition, plus certificates |
 | `__init__.py` (+ parents) | package markers so imports work |
 
 No numpy, numba, or JAX.
@@ -67,7 +69,7 @@ With the project venv (if present):
 
 ## Cost
 
-On typical AC presentations of total length ~15, one call is about **1–5 ms**. A safety `level_cap=50000` stops exploring if the minimal level set is huge; if that fires, the returned `rep` can be incomplete.
+On typical AC presentations of total length ~15, one call is about **1–5 ms**. A safety `level_cap=50000` bounds the exploration; if the minimal level set exceeds it, `aut_canon` **raises** `RuntimeError` rather than return a silently incomplete `rep`.
 
 ## What this does *not* do
 
