@@ -11,13 +11,16 @@ start_total_length_orig, start_total_length_cov, iso_index, n_subs, source}``.
 same-budget cov-vs-baseline comparison needs no other pipeline.
 
 ``experiment_length: true`` is the length-sweep experiment: per presentation,
-run the greedy from EVERY valid subword-derived CoV (``cov.enumerate_cov``,
-eliminating x AND y per z word) plus one no-CoV control row, so the jsonl
-directly answers whether post-CoV start length predicts search outcome. Sweep
-rows are keyed ``(pres_id, z_word, iso_gen)`` — the control row has
-``z_word: null`` — and the file prefix is ``covsweep_..._sub{K}pxy_`` where
-K = ``subword_max_len`` (p = pure-power subwords included, xy = both
-isolation targets).
+run the greedy from EVERY valid subword-derived CoV (``cov.enumerate_cov``:
+every z word × eliminating x AND y × every isolating branch) plus one no-CoV
+control row, so the jsonl directly answers whether post-CoV start length
+predicts search outcome. Sweep rows are keyed
+``(pres_id, z_word, iso_gen, iso_index)`` — all four, because one (z, iso_gen)
+can isolate from r1′ AND r2′ into two different pairs, and a 3-field key would
+collide them and lose one to resume. The control row has ``z_word: null`` and
+the file prefix is ``covsweep_..._subnc2pxysb_`` (``cov.SUBWORD_FAMILY_TAG``;
+nc2 = the no-collapse gate, the family's only length rule — no |w| knob at all;
+b = every branch is its own row).
 
 CLI (from the repo root):
     .venv/bin/python3 -m experiments.stable_ac.cov.run_cov \
@@ -53,7 +56,10 @@ COV_DEFAULTS = {
     "out_dir": "results/stable_ac/cov",
     "resume": True,
     "experiment_length": False,       # length sweep: all subword CoVs + control
-    "subword_max_len": 4,             # sweep z = relator subwords of len 2..this
+    # NOTE: the subword family has NO length knob — every |w| is enumerated and
+    # the only gate is no-collapse (cov.MIN_TRANSFORMED_LEN), derived from the
+    # presentation. The old "subword_max_len" was a fixed global K; gone, not
+    # renamed.
     "z_source": "subwords",           # "subwords" | "universe" (all reduced words,
                                       # defining-relator isolation allowed)
     "universe_max_len": 4,            # universe z = every reduced word of len 2..this
@@ -156,20 +162,19 @@ def _run_prefix(c, node_budget, n_rows):
     The z-family tag is identity for cov mode (a different family = a different
     experiment); row caps are derived deterministically from the inputs, so
     they stay out of the name. mrl = the base cap / baseline cap. The length
-    sweep is its own kind (covsweep) and its family tag is sub{K}pxy: the
-    family is derived from the presentation, so K is the only family knob.
-    The suffix is the family-rule version — p marks pure-power subwords
-    included (the suffix-less sub{K} files were the mixed-generator-only
-    rule), xy marks both isolation targets tried per z (the sub{K}p / uni{n}
-    files were x-elimination only). Different-rule files must never share a
-    resume file.
+    sweep is its own kind (covsweep); its family tag is cov.SUBWORD_FAMILY_TAG
+    (subnc2pxysb), a CONSTANT rather than anything rebuilt from config — the
+    family is a pure function of the presentation (every |w|, gated only by
+    no-collapse, every isolating branch its own row), so there is no K to
+    interpolate and no yaml value that could shadow the tag. Read the suffix in cov.SUBWORD_FAMILY_TAG's own comment.
+    Different-rule files must never share a resume file.
     """
     kind = "cov" if c["mode"] == "cov" else "covbase"
     zfam = f"{c['z_family']}_" if c["mode"] == "cov" else ""
     if c.get("experiment_length"):
         kind = "covsweep"
-        zfam = (f"uni{c['universe_max_len']}xy_" if c["z_source"] == "universe"
-                else f"sub{c['subword_max_len']}pxy_")
+        zfam = (f"uni{c['universe_max_len']}xys_" if c["z_source"] == "universe"
+                else f"{cov.SUBWORD_FAMILY_TAG}_")
     cyc = "cyc" if c["cyclic_reduce"] else "noncyc"
     tag = _dataset_tag(c["datasets"])
     return (f"{kind}_{node_budget}_{n_rows}_{zfam}mrl{c['max_relator_length']}"
@@ -281,11 +286,15 @@ def run_budget(c, node_budget, rows, root):
 
 
 def _read_done_pairs(out_path):
-    """({(pres_id, z_word, iso_gen)}, n_seen, n_solved) from a sweep jsonl.
+    """({(pres_id, z_word, iso_gen, iso_index)}, n_seen, n_solved) from a sweep jsonl.
 
-    Sweep rows are keyed per (presentation, z, isolation target) — one z can
-    yield both an x- and a y-eliminating start; the control row's key is
-    (pres_id, None, None). Same torn-final-line tolerance as
+    Sweep rows are keyed per (presentation, z, isolation target, isolating
+    branch) — one z can yield an x- and a y-eliminating start, and each target
+    can isolate from r1′ AND r2′, which are different coordinate changes with
+    different outputs. ``iso_index`` MUST be in the key: without it the two
+    branches of one (z, iso_gen) collide, and resume drops whichever it wrote
+    second while reporting the work as finished. The control row's key is
+    (pres_id, None, None, None). Same torn-final-line tolerance as
     ``run_baseline._read_done``: unparseable elsewhere is real corruption.
     """
     done, n_seen, n_solved = set(), 0, 0
@@ -302,38 +311,87 @@ def _read_done_pairs(out_path):
             if i == len(lines) - 1:
                 continue
             raise
-        done.add((row["pres_id"], row["z_word"], row.get("iso_gen")))
+        done.add((row["pres_id"], row["z_word"], row.get("iso_gen"),
+                  row.get("iso_index")))
         n_seen += 1
         n_solved += int(bool(row.get("solved")))
     return done, n_seen, n_solved
 
 
+def _aut_rep(r1, r2):
+    """Aut(F₂)-orbit canonical representative of (r1, r2), as a JSON-able str.
+
+    Two pairs are in the same orbit iff their reps are equal, so a row's
+    ``aut_canon_cov == aut_canon_orig`` is the only sound test of whether the
+    CoV actually changed coordinates. Imported lazily: ``equivalence_classes``
+    pulls in the class machinery, and the non-sweep cov path never needs it.
+    """
+    from experiments.equivalence_classes.lib.autcanon import aut_canon
+    rep = aut_canon((r1, r2))[1]
+    return f"{rep[0]},{rep[1]}"
+
+
 def _sweep_entries(c, r1, r2):
     """[(z_str, r1t, r2t, cap, n_cov, extra)] — control first (z_str None,
     original pair, baseline cap), then every valid CoV in canonical family
-    order (per z: x-eliminating start, then y-eliminating; ``iso_gen`` in
-    ``extra`` disambiguates the row key)."""
+    order: per z, x-eliminating then y-eliminating, and per target, every
+    isolating branch (r1′ before r2′). ``iso_gen`` AND ``iso_index`` in
+    ``extra`` are both needed to disambiguate the row key — one (z, iso_gen)
+    can produce two different branches, so iso_gen alone would collide them.
+
+    Two derived fields are stored, both because they are NOT recoverable from
+    the row alone at acceptable cost or risk:
+
+    ``family_tag`` — the rule that generated the row. The tag-bump discipline
+    rests on the FILENAME, but nothing enforces that a file's rows all came
+    from one rule, so a family change made without a bump would mix rules into
+    a file whose name lies about them. In-row it is detectable afterwards, and
+    it survives the jsonl being renamed or moved.
+
+    ``aut_canon_orig`` / ``aut_canon_cov`` — the Aut(F₂)-orbit canonical
+    representatives of the input and of the searched pair. THE interpretive
+    field: a row can have n_subs=7, a different-looking pair and a shorter
+    total and still be the input in a new alphabet, and only aut_canon can
+    tell — never n_subs or iso_index. Stored as the two REPS, not as a
+    ``same_aut_orbit`` bool: the bool is just their equality (derivable from
+    this same row, like any *_len), while the reps additionally let analysis
+    COUNT and GROUP distinct orbits. ~2 ms/row (24 ms worst) → ~30 s over a
+    6722-row sweep, negligible beside the searches. aut_canon is level_cap
+    truncating in principle, which is why ``test_aut_canon_cap_does_not_truncate``
+    pins that it does not on this data — if that test ever fails these fields
+    become cap-dependent approximations and must move to an analysis pass.
+
+    NOT stored, being recoverable from (r1_orig, r2_orig, z_word, iso_gen,
+    iso_index) with no search and no risk: ``expr`` (~164us/row to re-derive,
+    ~1s for a whole sweep) and any ``*_len`` (len() of a string already in the
+    row, and a stored copy can drift from it).
+    """
     orig_len = len(r1) + len(r2)
+    universe = c["z_source"] == "universe"
+    family_tag = (f"uni{c['universe_max_len']}xys" if universe
+                  else cov.SUBWORD_FAMILY_TAG)
+    canon_orig = _aut_rep(r1, r2)     # per presentation, not per row
     entries = [(None, r1, r2, c["max_relator_length"], 0, {
         "cov_applicable": None, "z_word": None, "iso_index": None,
-        "iso_gen": None, "n_subs": 0,
+        "iso_gen": None, "n_subs": 0, "family_tag": family_tag,
+        "aut_canon_orig": canon_orig, "aut_canon_cov": canon_orig,
         "start_total_length_orig": orig_len,
         "start_total_length_cov": orig_len,
     })]
-    universe = c["z_source"] == "universe"
     results = cov.enumerate_cov(
         str_to_word(r1), str_to_word(r2),
         family=cov.universe_candidates(2, c["universe_max_len"]) if universe
         else None,
         default_cap=c["max_relator_length"], cap_headroom=c["cap_headroom"],
-        reject_len=c["reject_len"], subword_max_len=c["subword_max_len"],
-        allow_defining_iso=universe)
+        reject_len=c["reject_len"], allow_defining_iso=universe)
     for res in results:
         z = word_to_str(res.z_word)
         r1t, r2t = word_to_str(res.r1), word_to_str(res.r2)
         entries.append((z, r1t, r2t, res.cap, 1, {
             "cov_applicable": True, "z_word": z, "iso_index": res.iso_index,
             "iso_gen": res.iso_gen, "n_subs": res.n_subs,
+            "family_tag": family_tag,
+            "aut_canon_orig": canon_orig, "aut_canon_cov": _aut_rep(r1t, r2t),
             "start_total_length_orig": orig_len,
             "start_total_length_cov": len(r1t) + len(r2t),
         }))
@@ -356,7 +414,7 @@ def run_budget_sweep(c, node_budget, rows, root):
             entries = _sweep_entries(c, r1, r2)
             ran = solved_here = 0
             for z, r1t, r2t, cap, n_cov, extra in entries:
-                if (rid, z, extra["iso_gen"]) in done:
+                if (rid, z, extra["iso_gen"], extra["iso_index"]) in done:
                     continue
                 t0 = time.perf_counter()
                 stats = _search(c, r1t, r2t, node_budget, cap)

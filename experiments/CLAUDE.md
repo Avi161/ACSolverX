@@ -102,21 +102,35 @@ it — local runs must not). Harness tests are colocated: `pytest experiments/st
 **`stable_ac/cov/`** — Branch-B one-shot change of variables (`cov.py` transform + `run_cov.py`
 runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_done`/`_build_row` by
 import). Full method walkthrough with worked examples: [`cov/PIPELINE.md`](stable_ac/cov/PIPELINE.md). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
-changes (zf2 = every canonical freely+cyclically reduced word of length 2..4, nothing excluded;
+*or* substitution semantics change (zf3 = zf2 word list + cyclic-seam matches in
+`substitute_word`; zf2 = every canonical freely+cyclically reduced word of length 2..4;
 zf1 was 17 hand-picked mixed words). Destabilization may eliminate **x or y** (`iso_gen`, part of
 the sweep row key) — the two are tied by an exact x↔y swap symmetry that `test_xy_symmetry_oracle`
 pins. The length sweep (`experiment_length: true`) brute-forces every valid CoV per z under BOTH
 targets (`enumerate_cov`) plus a control row per presentation; sweep rows are keyed
-`(pres_id, z_word, iso_gen)` and the file prefix is `covsweep_..._sub{K}pxy_` where
-K = `subword_max_len` (the family is derived from the presentation, so K is its only identity
-knob; suffix = family-rule version: `p` pure powers in, `xy` both isolation targets; `sub{K}` /
-`sub{K}p` files are older rules and never share a resume file). `reject_len` is a structural
+`(pres_id, z_word, iso_gen, iso_index)` and the file prefix is
+`covsweep_..._subnc2pxysb_` (`cov.SUBWORD_FAMILY_TAG`, a constant — never rebuilt from config).
+**`iso_index` is KEY, not a passenger**: both r1' and r2' can isolate one (z, iso_gen) into two
+different pairs, so `enumerate_cov` walks `cov_branches` (not `apply_cov_once`, whose first-wins
+default exists only for single-transform callers) and the resume key carries all four fields — a
+3-field key collides the branches and loses one silently. Enumerating branches is +104 rows and
++75 Aut-orbits on the 66-row benchmark, so first-wins was not a rounding error. **The subword family has NO
+`|w|` knob**: every length is enumerated and the only length rule is the no-collapse gate — drop a
+z that substitutes SOME relator below `cov.MIN_TRANSFORMED_LEN`, judged by effect on *both*
+relators, not by which one w was read from (a w interior to r1 can still collapse r2; see
+`test_subword_no_collapse_gate_is_cross_relator`). A relator collapsed to length 2 is the
+two-letter isolator the factorization theorem proves is ordinary AC + a rename, so it is not a new
+coordinate system. `subword_max_len` is GONE, not renamed — a yaml resurrecting it would silently
+read as a bound (`test_subword_family_has_no_length_knob`). Suffix = family-rule version: `nc2`
+no-collapse, `p` pure powers in, `xy` both isolation targets, `s` cyclic-seam substitution;
+`sub{K}*` files bounded `|w|` by a fixed global K and never share a resume file. `reject_len` is a
+structural
 ceiling only (239 = fast-solver relator cap 255 − headroom 16), never a length prior — long
 starts are admitted because sweep evidence says some presentations solve only from them.
 `z_source: universe` swaps the sweep family for EVERY reduced word of length
 2..`universe_max_len` (`universe_candidates`) with defining-relator isolation allowed
 (`iso_index 2` — z solves to an elementary Nielsen automorphism of either generator, so it need
-not occur in the presentation); prefix `covsweep_..._uni{n}xy_`. `high_speedup` (production
+not occur in the presentation); prefix `covsweep_..._uni{n}xys_`. `high_speedup` (production
 yaml true) routes searches through `run_baseline.greedy_search(high_speedup=True)` and
 re-solves solved rows with the normal solver for their path — result-neutral (rows identical,
 ~2.9× measured), so it stays OUT of `_run_prefix` and files resume across modes. Tests are

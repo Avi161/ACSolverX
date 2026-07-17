@@ -15,7 +15,8 @@ mode: cov                       # cov | baseline (identity transform, same rows/
 
 # z_family (the NAIVE_Z_FAMILY tag, part of the filename identity) is deliberately
 # NOT a yaml knob: it lives only in cov.Z_FAMILY_TAG. A yaml copy shadowed the
-# zf1->zf2 bump once — an identity tag has exactly one source of truth.
+# zf1->zf2->zf3 bumps — an identity tag has exactly one source of truth.
+# zf3 = zf2 word list + cyclic-seam matches in substitute_word.
 
 max_relator_length: 24          # base per-relator cap (ms640 layout). A cov row runs at
                                 # max(this, longest transformed relator + cap_headroom),
@@ -30,22 +31,24 @@ reject_len: 239                 # structural ceiling only (fast-solver relator c
 experiment_length: false        # true = the length experiment: per presentation run the
                                 # greedy from EVERY valid subword-derived CoV plus one
                                 # no-CoV control row (z_word null). Rows keyed
-                                # (pres_id, z_word); file prefix covsweep_..._sub{K}_.
+                                # (pres_id, z_word, iso_gen, iso_index); prefix covsweep_..._subnc2pxysb_.
                                 # Answers: does post-CoV start length predict outcome?
-subword_max_len: 4              # sweep z candidates = ALL subwords of the relators
-                                # (cyclic, w ~ w⁻¹ deduped, pure powers included) of
-                                # length 2..this; part of the sweep filename identity
-                                # (sub4pxy — p = pure powers in, xy = each z is tried
-                                # eliminating x AND eliminating y; the x-only sub{K}p
-                                # files never share a resume file with these).
-                                # Raise it if the sweep says longer transforms win.
+
+# The subword family has NO length knob. z candidates = ALL cyclic subwords of the
+# relators at EVERY length (w ~ w⁻¹ deduped, pure powers included), gated only by
+# no-collapse: a z that substitutes some relator down to < cov.MIN_TRANSFORMED_LEN
+# letters is dropped, because a relator collapsed to length 2 is the two-letter
+# isolator the factorization theorem proves is ordinary AC + a rename. So the family
+# is a pure function of the presentation. The old `subword_max_len: 4` was a fixed
+# global K and is GONE — not renamed; setting it here does nothing. Family tag lives
+# ONLY in cov.SUBWORD_FAMILY_TAG — never mirror it here.
 z_source: subwords              # subwords = z from the relators themselves (above);
                                 # universe = every reduced (x,y)-word of length
                                 # 2..universe_max_len, with defining-relator isolation
                                 # allowed, so z need NOT occur in the presentation
                                 # (elementary Nielsen re-coordinatisations, x- and
                                 # y-eliminating). Sweep only; filename identity
-                                # uni{universe_max_len}xy.
+                                # uni{universe_max_len}xys.
 universe_max_len: 4             # length bound for the universe family (78 canonical
                                 # words at 4; grows ~3x per +1)
 

@@ -10,10 +10,12 @@ import json
 import os
 
 import pytest
+import yaml
 
 from experiments.greedy_tests.spec.invariants import abs_det
 from experiments.greedy_tests.spec.presentation import Presentation
-from experiments.greedy_tests.spec.words import inverse, str_to_word, word_to_str
+from experiments.greedy_tests.spec.words import (
+    inverse, reduce_word, rotate, str_to_word, word_to_str)
 from experiments.stable_ac.cov import cov, run_cov
 
 AK3_R1, AK3_R2 = str_to_word("xyxYXY"), str_to_word("xxxYYYY")
@@ -54,9 +56,10 @@ def test_zf2_family_is_every_canonical_cyclically_reduced_word():
     assert list(fam) == sorted(fam, key=lambda w: (len(w), w))
 
 
-def test_golden_family_path_zf2_picks_xx():
-    # zf2 first-win on AK(3): Xy never occurs, then xx fires on r2 = xxxYYYY
-    # (-> zxYYYY, one x) and its full CoV is valid. The old zf1 ordering
+def test_golden_family_path_zf3_picks_xx():
+    # zf3 first-win on AK(3): Xy now matches via the cyclic seam on both
+    # relators, but the full CoV fails end-to-end; xx then fires on
+    # r2 = xxxYYYY (-> zxYYYY, one x) and is valid. The old zf1 ordering
     # artifact (xy pinned early) is gone with the hand-picked family.
     res = cov.change_of_variables(AK3_R1, AK3_R2)
     assert res.z_word == str_to_word("xx")
@@ -65,6 +68,19 @@ def test_golden_family_path_zf2_picks_xx():
     assert word_to_str(res.r1) == "YxxxxxYXyX"
     assert word_to_str(res.r2) == "YYxxxxYxxxx"
     assert res.cap == max(24, 11 + cov.CAP_HEADROOM) == 27
+
+
+def test_substitute_word_matches_cyclic_seam():
+    # r1 = xyxYXY stores seam …Y|x…; canonical z = Xy (= max(Yx, Xy)).
+    # Linear scan misses it; seam pass must replace once → ZyxYX.
+    out, n = cov.substitute_word(AK3_R1, str_to_word("Xy"))
+    assert n == 1 and word_to_str(out) == "ZyxYX"
+    # r2 = xxxYYYY has the same wrap Y|x → a second independent seam hit.
+    out2, n2 = cov.substitute_word(AK3_R2, str_to_word("Xy"))
+    assert n2 == 1 and word_to_str(out2) == "ZxxYYY"
+    # Contiguous hits are unchanged (paper example).
+    out3, n3 = cov.substitute_word(AK3_R1, str_to_word("xyx"))
+    assert (out3, n3) == (str_to_word("zYXY"), 1)
 
 
 # --- abelianization invariant, including a non-|det|=1 case -----------------
@@ -84,12 +100,12 @@ def test_abs_det_preserved_on_goldens():
 
 def test_abs_det_preserved_nontrivial_group():
     # ⟨x,y | xyxY, xxyy⟩ has |det| = 4, so this equality is not vacuous 1==1.
-    # xy still wins under zf2: Xy never occurs and xx's substitution leaves
-    # zyy / xyxY with no isolatable x, so xx is rejected end-to-end first.
+    # Under zf3, seam-capable Xy wins first (was unreachable under linear-only
+    # substitution); xx still fails end-to-end (zyy / xyxY, no isolatable x).
     r1, r2 = str_to_word("xyxY"), str_to_word("xxyy")
     res = cov.change_of_variables(r1, r2)
-    assert res.z_word == str_to_word("xy") and res.iso_index == 0
-    assert word_to_str(res.r1) == "Yxyx" and word_to_str(res.r2) == "YYxx"
+    assert res.z_word == str_to_word("Xy") and res.iso_index == 0
+    assert word_to_str(res.r1) == "XyXyxx" and word_to_str(res.r2) == "YYxx"
     assert _three_stage_dets(r1, r2, res) == (4, 4, 4)
 
 
@@ -152,6 +168,198 @@ def test_blowup_gate_is_structural_only():
     assert cov.apply_cov_once(AK3_R1, (1,) * 81, str_to_word("xyx")) is None
 
 
+def test_cov_branches_returns_every_isolating_branch():
+    """521 z=yy/iso=y isolates from BOTH r1' and r2' — two different CoVs.
+
+    first-wins would return only iso_index 0 (total 30) and silently discard
+    iso_index 1 (total 16), picking the worse start purely because r1' is tried
+    first. Candidate order is an implementation detail, not a principle.
+    """
+    r1, r2 = str_to_word("YYYYYYYYXyyyyyyyx"), str_to_word("YYYX")
+    br = cov.cov_branches(r1, r2, str_to_word("yy"), iso_gen="y")
+    assert [b.iso_index for b in br] == [0, 1]
+    pairs = [(word_to_str(b.r1), word_to_str(b.r2)) for b in br]
+    assert pairs[0] != pairs[1]                       # genuinely different CoVs
+    assert [len(b.r1) + len(b.r2) for b in br] == [30, 16]
+    # apply_cov_once keeps first-wins for single-transform callers...
+    first = cov.apply_cov_once(r1, r2, str_to_word("yy"), iso_gen="y")
+    assert first.iso_index == 0
+    # ...and can address a specific branch
+    assert cov.apply_cov_once(r1, r2, str_to_word("yy"), iso_gen="y",
+                              iso_index=1).iso_index == 1
+    assert cov.apply_cov_once(r1, r2, str_to_word("yy"), iso_gen="y",
+                              iso_index=2) is None
+    # the sweep must see both
+    keys = {(word_to_str(r.z_word), r.iso_gen, r.iso_index)
+            for r in cov.enumerate_cov(r1, r2)}
+    assert ("yy", "y", 0) in keys and ("yy", "y", 1) in keys
+
+
+def test_sweep_row_key_includes_iso_index():
+    """Without iso_index the two branches of one (z, iso_gen) collide and
+    resume drops the second while reporting the work as finished."""
+    rows = [{"pres_id": "521", "z_word": "yy", "iso_gen": "y", "iso_index": 0,
+             "solved": False},
+            {"pres_id": "521", "z_word": "yy", "iso_gen": "y", "iso_index": 1,
+             "solved": False}]
+    import tempfile
+    with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as f:
+        for r in rows:
+            f.write(json.dumps(r) + "\n")
+        path = f.name
+    try:
+        done, n_seen, _ = run_cov._read_done_pairs(path)
+        assert n_seen == 2
+        assert len(done) == 2, "iso_index missing from the key -> rows collide"
+        assert ("521", "yy", "y", 0) in done and ("521", "yy", "y", 1) in done
+    finally:
+        os.unlink(path)
+
+
+def test_family_tag_stamped_in_every_sweep_row():
+    """The rule that made each row, recorded IN the row.
+
+    The tag-bump discipline rests on the filename; nothing else enforces that
+    a file's rows all came from one rule. Stamping it per row makes a
+    rule-change-without-a-bump detectable afterwards, and survives the jsonl
+    being renamed or moved. It must agree with the filename's tag, or the file
+    name is lying about its contents.
+    """
+    c = run_cov.load_config(experiment_length=True)
+    entries = _sweep_entries_for(c)
+    assert entries, "sweep must produce rows"
+    tags = {extra["family_tag"] for _z, _a, _b, _cap, _n, extra in entries}
+    assert tags == {cov.SUBWORD_FAMILY_TAG}      # control row included
+    assert cov.SUBWORD_FAMILY_TAG in run_cov._run_prefix(c, 100, 1)
+
+
+def _sweep_entries_for(c):
+    return run_cov._sweep_entries(c, "xyxYXY", "xxxYYYY")
+
+
+def test_aut_canon_reps_stamped_and_detect_a_pure_relabel():
+    """The reps are the only sound test of whether a CoV changed coordinates.
+
+    n_subs, iso_index and a shorter total can ALL look like real work on a row
+    that is just the input relabeled — so the row carries the two orbit reps
+    and `same orbit` is their equality. Stored as reps rather than a bool so
+    analysis can also count/group distinct orbits.
+    """
+    c = run_cov.load_config(experiment_length=True)
+    entries = _sweep_entries_for(c)
+    ctrl = entries[0][5]
+    # the control is the input, so it is trivially in its own orbit
+    assert ctrl["aut_canon_orig"] == ctrl["aut_canon_cov"]
+    covs = [e[5] for e in entries[1:]]
+    assert covs and all(e["aut_canon_orig"] == ctrl["aut_canon_orig"] for e in covs)
+    # the sweep must contain BOTH kinds, or the field is decoration
+    same = [e for e in covs if e["aut_canon_cov"] == e["aut_canon_orig"]]
+    moved = [e for e in covs if e["aut_canon_cov"] != e["aut_canon_orig"]]
+    assert same and moved, "AK(3) must show relabels AND real coordinate changes"
+    # Every n_subs == 1 row is a relabel. Do NOT attribute this to PROOFS.tex's
+    # "Only-occurrence degeneracy" corollary: that corollary rides on the
+    # relator-minus-one theorem's two-letter isolator (|w| = |R|-1), and the
+    # no-collapse gate rejects exactly those w — so NO shipped row is inside
+    # its scope. The reason is the stronger argument pinned in
+    # test_n_subs_one_is_an_automorphism_for_any_w_length.
+    # NOTE the converse is NOT pinned: n_subs >= 2 does real substitution work
+    # and may still land back in the input's orbit, which is exactly why the
+    # rep is stored and n_subs is not a proxy for it. On AK(3) the split
+    # happens to be clean (1 -> relabel, 2 -> moved); do not read that as a
+    # general rule.
+    assert all(e["n_subs"] == 1 for e in same)
+
+
+def _canon_cyc(w):
+    """Canonical form under cyclic rotation + whole-word inversion."""
+    w = reduce_word(tuple(w), cyclic=True)
+    if not w:
+        return ()
+    return min(rotate(u, -k) for u in (w, inverse(w)) for k in range(len(u)))
+
+
+def _canon_pair(a, b):
+    return tuple(sorted((_canon_cyc(a), _canon_cyc(b))))
+
+
+def test_n_subs_one_is_an_automorphism_for_any_w_length():
+    """n_subs == 1 => the output is the input renamed, for ANY |w|.
+
+    This is STRONGER than PROOFS.tex's "Only-occurrence degeneracy" corollary,
+    which rides on the relator-minus-one theorem's two-letter isolator
+    (|w| = |R|-1) — a case the no-collapse gate rejects outright, so the
+    corollary covers NO shipped row. The general argument: the lone occurrence
+    sits in R, so S_z = S and R_z is forced to be the isolator (S has no z, and
+    defining-relator isolation is off here). Isolation needs exactly one a in
+    R_z = z^eta t, so t is pure b-powers around it: t = b^m a^eps b^n. Rotating
+    gives a = (b^n z^eta b^m)^-eps =: alpha, and psi: a -> alpha, b -> b is an
+    ISOMORPHISM F(a,b) -> F(b,z) (inverse z -> (b^-n a^-eps b^-m)^eta) for any
+    |w|. The kept relators are then psi(S) and z^-1 psi(w), and
+    psi(R) = psi(w)^eta z^-eta — a rotation of the latter when eta=+1, its
+    inverse when eta=-1. So output == {psi(R), psi(S)} up to order/rotation/
+    inversion, with psi an automorphism after the relabel.
+
+    Pinned as the IDENTITY, not merely the orbit conclusion: aut_canon agreeing
+    would also pass if the transform silently changed to some other rename, and
+    the identity is what the proof actually claims. Verified offline on
+    544326/544326 rows over relator words of length 2..5 (441606 at |R|-1-|w|=1,
+    102720 at gap 2, none at the corollary's gap 0); this tier pins the AK(3)
+    rows plus a pure-power z (the z=xx case the corollary cannot speak to).
+    """
+    cases = [(AK3_R1, AK3_R2), (str_to_word("xx"), str_to_word("xyyy")),
+             (str_to_word("xxyxy"), str_to_word("xyXY"))]
+    n_checked = n_purepow = 0
+    for r1, r2 in cases:
+        for res in cov.enumerate_cov(r1, r2):
+            if res.n_subs != 1:
+                continue
+            # which original relator carries the single selected occurrence?
+            in_r1 = cov.substitute_word(reduce_word(r1, cyclic=True),
+                                        res.z_word)[1] == 1
+            src, oth = (r1, r2) if in_r1 else (r2, r1)
+            a = cov.X_GEN if res.iso_gen == "x" else cov.Y_GEN
+            psi = lambda w: cov.substitute_generator(w, a, res.expr)
+            pred = _canon_pair(
+                cov.relabel(psi(reduce_word(src, cyclic=True)), res.iso_gen),
+                cov.relabel(psi(reduce_word(oth, cyclic=True)), res.iso_gen))
+            assert pred == _canon_pair(res.r1, res.r2), (
+                word_to_str(res.z_word), res.iso_gen, res.iso_index)
+            # the shipped family never produces the corollary's gap-0 isolator
+            assert len(reduce_word(src, cyclic=True)) - 1 - len(res.z_word) >= 1
+            n_checked += 1
+            if len({abs(g) for g in res.z_word}) == 1:
+                n_purepow += 1
+    assert n_checked, "no n_subs==1 rows — the test proves nothing"
+    assert n_purepow, "no pure-power z (the z=xx case) exercised"
+
+
+def test_aut_canon_cap_does_not_truncate_on_this_data():
+    """aut_canon(pair, level_cap=50000) BREAKS out when the orbit level is
+    bigger than the cap, returning the min of a partial exploration — a
+    truncated rep would make the stored fields cap-dependent approximations
+    rather than facts. Measured 0/150 on the longest benchmark outputs; this
+    pins it for the rows the test suite can afford. If this ever fails, the
+    aut_canon_* fields must move to an analysis pass where the cap is visible.
+    """
+    from experiments.equivalence_classes.lib.autcanon import aut_canon
+    entries = _sweep_entries_for(run_cov.load_config(experiment_length=True))
+    pairs = sorted(((e[1], e[2]) for e in entries),
+                   key=lambda p: -(len(p[0]) + len(p[1])))[:12]
+    for a, b in pairs:
+        assert aut_canon((a, b), level_cap=50_000)[1] \
+            == aut_canon((a, b), level_cap=400_000)[1], (a, b)
+
+
+def test_family_tag_tracks_the_universe_family():
+    """A different family must stamp a different tag — otherwise the field is
+    decoration rather than a tripwire."""
+    c = run_cov.load_config(experiment_length=True, z_source="universe")
+    tags = {extra["family_tag"] for _z, _a, _b, _cap, _n, extra
+            in _sweep_entries_for(c)}
+    assert tags == {f"uni{c['universe_max_len']}xys"}
+    assert cov.SUBWORD_FAMILY_TAG not in tags
+
+
 def test_empty_relator_rejected():
     # z=xy on ⟨x,y | xyxY, xYxy⟩: either isolation choice free-reduces the
     # other relator to the empty word -> the z must be rejected
@@ -210,8 +418,21 @@ def test_universe_two_x_nonoccurring_rejected():
 
 
 def test_universe_output_pairs_superset_of_subwords():
+    """Every subword z is a reduced word, so the universe family contains the
+    subword family and its outputs are a superset.
+
+    The universe bound is DERIVED from the subword family, never pinned: the
+    subword family has no |w| knob (no-collapse is its only length rule), so a
+    universe capped at some fixed K is simply a different family and the
+    containment would not hold. Pinning 4 here passed only while the subword
+    family was itself capped at 4.
+    """
+    fam = cov.subword_candidates(AK3_R1, AK3_R2)
+    max_len = max(len(w) for w in fam)
+    assert max_len > 4, "AK(3) must exercise z longer than the old global K"
     sub = cov.enumerate_cov(AK3_R1, AK3_R2)
-    uni = cov.enumerate_cov(AK3_R1, AK3_R2, family=cov.universe_candidates(2, 4),
+    uni = cov.enumerate_cov(AK3_R1, AK3_R2,
+                            family=cov.universe_candidates(2, max_len),
                             allow_defining_iso=True)
     sub_pairs = {(r.r1, r.r2) for r in sub}
     uni_pairs = {(r.r1, r.r2) for r in uni}
@@ -405,19 +626,37 @@ def test_transformed_flat_repads_to_cap():
 
 def test_run_prefix_identity():
     c = dict(run_cov.COV_DEFAULTS)
-    assert run_cov._run_prefix(c, 1000, 11) == "cov_1000_11_zf2_mrl24_cyc_s10r1_"
+    assert run_cov._run_prefix(c, 1000, 11) == "cov_1000_11_zf3_mrl24_cyc_s10r1_"
     c["mode"] = "baseline"
     assert run_cov._run_prefix(c, 100, 11) == "covbase_100_11_mrl24_cyc_s10r1_"
 
 
 def test_shipped_yaml_cannot_shadow_the_family_tag():
-    """config_cov.yaml once carried z_family: zf1 after the code moved to zf2 —
-    load_config applies the yaml OVER COV_DEFAULTS, so a yaml copy of an
-    identity tag silently mislabels files (and resumes the wrong family's
-    rows). The tag's only source of truth is cov.Z_FAMILY_TAG."""
+    """config_cov.yaml once carried z_family: zf1 after the code moved to zf2
+    (now zf3) — load_config applies the yaml OVER COV_DEFAULTS, so a yaml
+    copy of an identity tag silently mislabels files (and resumes the wrong
+    family's rows). The tag's only source of truth is cov.Z_FAMILY_TAG."""
     path = os.path.join(os.path.dirname(cov.__file__), "config_cov.yaml")
     c = run_cov.load_config(path)
     assert c["z_family"] == cov.Z_FAMILY_TAG
+
+
+def test_subword_family_has_no_length_knob():
+    """The subword family's length rule is no-collapse and nothing else.
+
+    `subword_max_len` was a fixed global K that bounded |w| for every
+    presentation; it is GONE, not renamed. A yaml that resurrects the key
+    would read as if it still bounds the sweep while changing nothing — the
+    same shadowing failure as an identity tag mirrored in yaml — so pin its
+    absence from BOTH the defaults and the shipped yaml.
+    """
+    assert "subword_max_len" not in run_cov.COV_DEFAULTS
+    path = os.path.join(os.path.dirname(cov.__file__), "config_cov.yaml")
+    with open(path) as f:
+        raw = yaml.safe_load(f)
+    assert "subword_max_len" not in raw
+    assert cov.SUBWORD_FAMILY_TAG in run_cov._run_prefix(
+        dict(run_cov.load_config(path), experiment_length=True), 100, 1)
 
 
 def test_baseline_mode_is_identity():
@@ -428,6 +667,52 @@ def test_baseline_mode_is_identity():
 
 
 # --- subword family & the length-sweep experiment ----------------------------
+
+def test_subword_no_collapse_gate_is_cross_relator():
+    """A z is judged by what it does to EVERY relator, not by where it was read.
+
+    r1 = xyxxy, r2 = yxxy, w = yxx: |w| = 3 = |r1| - 2, so w is a legitimate
+    interior subword of r1 (-> xzy) and any per-relator |w| <= |r| - 2 rule
+    keeps it. But w also occurs in r2 and takes it to zy — the two-letter
+    isolator z^eta a^eps, which the relator-minus-one factorization theorem
+    proves is ordinary rank-two substitution plus a signed rename. Its outputs
+    are (yx, YYXY) and (X, YYx): primitive relators, i.e. starts that solve in
+    ~1 node and measure nothing.
+    """
+    r1, r2 = str_to_word("xyxxy"), str_to_word("yxxy")
+    w = str_to_word("yxx")
+    # the gate's premise: w IS interior to r1 and DOES collapse r2
+    assert len(w) <= len(reduce_word(r1, cyclic=True)) - 2
+    assert len(cov.substitute_word(r1, w)[0]) >= cov.MIN_TRANSFORMED_LEN
+    assert len(cov.substitute_word(r2, w)[0]) < cov.MIN_TRANSFORMED_LEN
+    # ... so the family drops it, under either canonical spelling
+    fam = cov.subword_candidates(r1, r2)
+    assert w not in fam and inverse(w) not in fam
+    # and it would otherwise have been a valid CoV — the gate is what kills it
+    assert cov.apply_cov_once(r1, r2, w, iso_gen="x") is not None
+    assert all(r.z_word != w for r in cov.enumerate_cov(r1, r2))
+
+
+def test_subword_no_collapse_subsumes_relator_minus_one():
+    """|w| = |r| - 1 collapses that relator to 2 and |w| = |r| collapses it to
+    1, so the no-collapse gate needs no separate |w| bound. 496 is the proofs'
+    worked example: w = YY takes r2 = YYX to zX."""
+    r1, r2 = str_to_word("YYYYYYYXyyyyyyx"), str_to_word("YYX")
+    fam = cov.subword_candidates(r1, r2)
+    assert str_to_word("YY") not in fam and str_to_word("yy") not in fam
+    for w in fam:
+        for rel in (r1, r2):
+            sub, n_subs = cov.substitute_word(rel, w)
+            assert not (n_subs and len(sub) < cov.MIN_TRANSFORMED_LEN)
+
+
+def test_subword_family_is_unbounded_in_length():
+    """No global K: a z longer than the old cap of 4 must survive when it
+    collapses nothing. AK(3)'s r2 = xxxYYYY (len 7) admits |w| = 5."""
+    fam = cov.subword_candidates(AK3_R1, AK3_R2)
+    assert max(len(w) for w in fam) == 5
+    assert str_to_word("Xyyyy") in fam
+
 
 def test_subword_candidates_ak3():
     fam = cov.subword_candidates(AK3_R1, AK3_R2)
@@ -485,8 +770,10 @@ def test_enumerate_cov_abs_det_on_benchmark_rows():
 def test_run_prefix_sweep_identity():
     c = dict(run_cov.COV_DEFAULTS)
     c["experiment_length"] = True
+    # literal on purpose: this is the tripwire for an ACCIDENTAL family-tag
+    # change. Bumping the tag is deliberate and must edit this line too.
     assert (run_cov._run_prefix(c, 1000, 11)
-            == "covsweep_1000_11_sub4pxy_mrl24_cyc_s10r1_")
+            == "covsweep_1000_11_subnc2pxysb_mrl24_cyc_s10r1_")
     with pytest.raises(ValueError):
         run_cov.load_config(mode="baseline", experiment_length=True)
 
@@ -514,7 +801,7 @@ def test_sweep_runner_rows_and_resume(tmp_path, monkeypatch):
                   experiment_length=True, out_dir=str(tmp_path / "out"))
     out = run_cov.run(**common)
 
-    assert os.path.basename(out[0]).startswith("covsweep_100_1_sub4pxy_mrl24_cyc_r9_")
+    assert os.path.basename(out[0]).startswith("covsweep_100_1_subnc2pxysb_mrl24_cyc_r9_")
     rows = [json.loads(ln) for ln in open(out[0])]
     controls = [r for r in rows if r["z_word"] is None]
     variants = [r for r in rows if r["z_word"] is not None]
@@ -638,7 +925,7 @@ def test_run_prefix_universe_identity_and_validation():
     c = dict(run_cov.COV_DEFAULTS)
     c["experiment_length"], c["z_source"] = True, "universe"
     assert (run_cov._run_prefix(c, 1000, 11)
-            == "covsweep_1000_11_uni4xy_mrl24_cyc_s10r1_")
+            == "covsweep_1000_11_uni4xys_mrl24_cyc_s10r1_")
     with pytest.raises(ValueError):
         run_cov.load_config(z_source="universe")            # needs the sweep
     with pytest.raises(ValueError):
