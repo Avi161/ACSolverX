@@ -62,6 +62,11 @@ key, same rule as `greedy_baseline/`). One row per `(presentation, z_word)`; sol
 `*_paths.jsonl` sibling as replayable move strings. Budget-100/1000 files are local pipeline
 verification, not production data.
 
+`old_benchmark/` holds every nocov run produced against the pre-automorphism-minimisation benchmark
+(archived 2026-07-16). Those rows are still valid certificates and the verifier still replays them,
+but their `pres_id`s index the old CSVs — never compare them against a new-benchmark run. Fresh runs
+write to `nocov/` itself, so resume never reaches back into the archive.
+
 ## `stable_ac/cov/`
 
 Branch-B (one-shot change of variables) results. Filename = the resume key:
