@@ -60,3 +60,16 @@ high_speedup: true              # production delta: run_baseline's compact fast 
                                 # files written in either mode resume each other.
 out_dir: results/stable_ac/cov  # new namespace — never greedy_baseline/ or benchmark/
 resume: true
+
+use_chunks: false               # true = stride-split the presentations into `chunks`
+                                # chunks (row j -> chunk j%N+1, so the difficulty
+                                # ladder spreads evenly); each chunk writes its own
+                                # …_c{i}of{N}_… jsonl — the chunk IS resume identity.
+chunks: 3                       # how many chunks
+chunk_index: null               # 1..chunks = run only that chunk (one per parallel
+                                # Colab session); null = run ALL chunks as parallel
+                                # spawned processes in THIS session (high-RAM/multi-
+                                # vCPU runtime). After every chunk completes,
+                                # merge_chunks() (or --merge-chunks) concatenates
+                                # them into the canonical unchunked file, which
+                                # unchunked runs then resume seamlessly.

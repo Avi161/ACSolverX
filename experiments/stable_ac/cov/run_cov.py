@@ -32,6 +32,7 @@ import csv
 import glob
 import json
 import os
+import re
 import time
 from datetime import datetime
 
@@ -69,7 +70,20 @@ COV_DEFAULTS = {
     # written row is identical to a slow-mode row. Result-neutral -> NOT in
     # the filename identity; files resume across modes.
     "high_speedup": False,
+    # Chunked runs: split the presentation list into `chunks` stride-chunks
+    # (row j -> chunk (j % chunks) + 1, so the difficulty ladder spreads evenly)
+    # and run each chunk into its own jsonl (`…_c{i}of{N}_…` — the chunk IS
+    # part of the resume identity). Two ways to use it: chunk_index = i runs
+    # only chunk i (one per parallel Colab session); chunk_index = None runs
+    # EVERY chunk as its own spawned process right here (one high-RAM
+    # multi-vCPU session). merge_chunks() concatenates COMPLETED chunk files
+    # into the canonical unchunked file, which unchunked runs then resume.
+    "use_chunks": False,
+    "chunks": 3,
+    "chunk_index": None,
 }
+
+_CHUNK_MARK = re.compile(r"_c\d+of\d+_")
 
 
 _GIT_COMMIT = False   # False = not yet resolved (None is a valid answer)
@@ -125,6 +139,14 @@ def load_config(config_path=None, **overrides):
     if c["z_source"] == "universe" and not c.get("experiment_length"):
         raise ValueError("z_source 'universe' is a sweep family — it requires "
                          "experiment_length (zf1 first-win stays subword-driven)")
+    if c.get("use_chunks"):
+        n = c.get("chunks")
+        if not isinstance(n, int) or isinstance(n, bool) or n < 2:
+            raise ValueError(f"use_chunks needs an int chunks >= 2, got {n!r}")
+        ci = c.get("chunk_index")
+        if ci is not None and (not isinstance(ci, int) or isinstance(ci, bool)
+                               or not 1 <= ci <= n):
+            raise ValueError(f"chunk_index must be 1..{n} or None, got {ci!r}")
     return c
 
 
@@ -177,8 +199,13 @@ def _run_prefix(c, node_budget, n_rows):
                 else f"{cov.SUBWORD_FAMILY_TAG}_")
     cyc = "cyc" if c["cyclic_reduce"] else "noncyc"
     tag = _dataset_tag(c["datasets"])
+    # A chunk is a different row subset, so the chunk marker is part of the
+    # identity; n_rows stays the FULL dataset size (the family the chunk is
+    # a slice of), so the merged file's name is exactly the unchunked prefix.
+    chunk = (f"c{c['chunk_index']}of{c['chunks']}_"
+             if c.get("use_chunks") and c.get("chunk_index") else "")
     return (f"{kind}_{node_budget}_{n_rows}_{zfam}mrl{c['max_relator_length']}"
-            f"_{cyc}_{tag}_")
+            f"_{cyc}_{tag}_{chunk}")
 
 
 def _resolve_out_path(c, node_budget, n_rows, root):
@@ -190,6 +217,12 @@ def _resolve_out_path(c, node_budget, n_rows, root):
     stem = prefix + datetime.now().strftime("%m_%d_%y")
     if c.get("resume", True):
         existing = glob.glob(os.path.join(out_dir, prefix + "*.jsonl"))
+        if not _CHUNK_MARK.search(prefix):
+            # the unchunked prefix is a proper prefix of every chunk filename,
+            # so an unchunked resume would otherwise glob-match (and silently
+            # resume into) a chunk file — a different row subset
+            existing = [p for p in existing
+                        if not _CHUNK_MARK.search(os.path.basename(p))]
         if existing:
             best = max(existing, key=lambda p: sum(1 for _ in open(p)))
             stem = os.path.basename(best)[:-len(".jsonl")]
@@ -243,8 +276,9 @@ def _search(c, r1, r2, node_budget, cap):
     return stats
 
 
-def run_budget(c, node_budget, rows, root):
-    out_path = _resolve_out_path(c, node_budget, len(rows), root)
+def run_budget(c, node_budget, rows, root, n_rows=None):
+    out_path = _resolve_out_path(c, node_budget,
+                                 len(rows) if n_rows is None else n_rows, root)
     run_baseline._repair_jsonl(out_path)
     done, n_seen, n_solved = run_baseline._read_done(out_path)
     print(f"[{c['mode']}] budget={node_budget} -> {os.path.basename(out_path)} "
@@ -398,11 +432,13 @@ def _sweep_entries(c, r1, r2):
     return entries
 
 
-def run_budget_sweep(c, node_budget, rows, root):
+def run_budget_sweep(c, node_budget, rows, root, n_rows=None):
     """The length experiment: every start (control + all CoV variants) per
     presentation, one row per (pres_id, z_word), then the length-vs-outcome
-    digest. Same write discipline as ``run_budget``."""
-    out_path = _resolve_out_path(c, node_budget, len(rows), root)
+    digest. Same write discipline as ``run_budget``. ``n_rows`` is the FULL
+    dataset size when ``rows`` is one chunk of it (filename identity)."""
+    out_path = _resolve_out_path(c, node_budget,
+                                 len(rows) if n_rows is None else n_rows, root)
     run_baseline._repair_jsonl(out_path)
     done, n_seen, n_solved = _read_done_pairs(out_path)
     print(f"[sweep] budget={node_budget} -> {os.path.basename(out_path)} "
@@ -490,16 +526,145 @@ def _sweep_summary(out_path):
         print(f"  {rid}: {c_txt} | {b_txt}", flush=True)
 
 
-def run(config_path=None, **overrides):
-    c = load_config(config_path, **overrides)
+def _chunk_rows(rows, chunks, chunk_index):
+    """Chunk ``chunk_index`` (1-based) of the stride partition: row j belongs
+    to chunk (j % chunks) + 1. Stride, not blocks, because the benchmark CSVs
+    are difficulty-ordered — a block split would hand one chunk all the hard
+    presentations (which burn their full budget) and finish last by hours."""
+    return [r for j, r in enumerate(rows) if j % chunks == chunk_index - 1]
+
+
+def _run_one(c):
+    """One process's run: the whole dataset, or one chunk of it."""
     root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
     rows = load_rows(c["datasets"], root)
+    n_rows = len(rows)
+    if c.get("use_chunks"):
+        rows = _chunk_rows(rows, c["chunks"], c["chunk_index"])
     sweep = bool(c.get("experiment_length"))
-    print(f"{len(rows)} presentations from {len(c['datasets'])} dataset(s); "
+    chunk_txt = (f" [chunk {c['chunk_index']}/{c['chunks']}: "
+                 f"{len(rows)} of {n_rows} presentations]"
+                 if c.get("use_chunks") else "")
+    print(f"{n_rows} presentations from {len(c['datasets'])} dataset(s); "
           f"budgets {c['budgets']}; mode {c['mode']}"
-          f"{' (length sweep)' if sweep else ''}", flush=True)
+          f"{' (length sweep)' if sweep else ''}{chunk_txt}", flush=True)
     runner = run_budget_sweep if sweep else run_budget
-    return [runner(c, b, rows, root) for b in c["budgets"]]
+    return [runner(c, b, rows, root, n_rows=n_rows) for b in c["budgets"]]
+
+
+def _spawn_entry(c):
+    """Module-level so multiprocessing spawn can import it in the child."""
+    _run_one(c)
+
+
+def _run_chunks_parallel(c):
+    """Every chunk as its own spawned process (spawn, not fork: numba JIT
+    state must not cross a fork). Returns every chunk's out path, budget-major.
+    A dead chunk raises AFTER the others finish — rerunning resumes it."""
+    import multiprocessing as mp
+    ctx = mp.get_context("spawn")
+    procs = []
+    for i in range(1, c["chunks"] + 1):
+        ci = dict(c)
+        ci["chunk_index"] = i
+        p = ctx.Process(target=_spawn_entry, args=(ci,), name=f"cov-chunk{i}")
+        p.start()
+        procs.append(p)
+    print(f"[chunks] {len(procs)} chunk processes launched; each writes its "
+          f"own _c{{i}}of{c['chunks']}_ jsonl (resume is per chunk)", flush=True)
+    failed = []
+    for p in procs:
+        p.join()
+        if p.exitcode != 0:
+            failed.append(p.name)
+    if failed:
+        raise RuntimeError(f"chunk process(es) failed: {failed} — rerun the "
+                           f"same command; finished rows resume, only the "
+                           f"failed chunk's remainder re-runs")
+    root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
+    n_rows = len(load_rows(c["datasets"], root))
+    return [_resolve_out_path({**c, "chunk_index": i}, b, n_rows, root)
+            for b in c["budgets"] for i in range(1, c["chunks"] + 1)]
+
+
+def run(config_path=None, **overrides):
+    c = load_config(config_path, **overrides)
+    if c.get("use_chunks") and c.get("chunk_index") is None:
+        return _run_chunks_parallel(c)
+    return _run_one(c)
+
+
+def merge_chunks(config_path=None, **overrides):
+    """Concatenate COMPLETED chunk files into the canonical unchunked jsonl.
+
+    Safety over convenience, in order: every chunk file must exist (exactly
+    one per chunk), hold exactly its expected number of rows (re-derived by
+    enumeration, so a half-finished chunk cannot slip through), and no row key
+    may repeat across chunks; the target must not already exist. The merged
+    file carries the unchunked prefix, so later unchunked runs (and
+    verify_results, analysis, resume) treat it exactly like a file the serial
+    runner wrote itself.
+    """
+    c = load_config(config_path, **overrides)
+    if not c.get("use_chunks"):
+        raise ValueError("merge_chunks needs use_chunks=True (+ chunks=N) so "
+                         "it knows which chunk files to look for")
+    root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
+    rows = load_rows(c["datasets"], root)
+    out_dir = c["out_dir"]
+    if not os.path.isabs(out_dir):
+        out_dir = os.path.join(root, out_dir)
+    sweep = bool(c.get("experiment_length"))
+    merged = []
+    for b in c["budgets"]:
+        base = {**c, "use_chunks": False, "chunk_index": None}
+        prefix = _run_prefix(base, b, len(rows))
+        clash = [p for p in glob.glob(os.path.join(out_dir, prefix + "*.jsonl"))
+                 if not _CHUNK_MARK.search(os.path.basename(p))]
+        if clash:
+            raise RuntimeError(f"merge target already exists: {clash} — "
+                               f"refusing to merge over it")
+        lines, keys = [], set()
+        for i in range(1, c["chunks"] + 1):
+            ci = {**c, "chunk_index": i}
+            cprefix = _run_prefix(ci, b, len(rows))
+            found = glob.glob(os.path.join(out_dir, cprefix + "*.jsonl"))
+            if len(found) != 1:
+                raise RuntimeError(f"chunk {i}/{c['chunks']} budget {b}: "
+                                   f"expected exactly one {cprefix}*.jsonl, "
+                                   f"found {found}")
+            run_baseline._repair_jsonl(found[0])
+            expected = 0
+            for rid, r1, r2, src in _chunk_rows(rows, c["chunks"], i):
+                expected += (len(_sweep_entries(c, r1, r2)) if sweep else 1)
+            got = 0
+            with open(found[0]) as f:
+                for ln in f:
+                    ln = ln.strip()
+                    if not ln:
+                        continue
+                    row = json.loads(ln)
+                    key = (row["pres_id"], row["z_word"], row.get("iso_gen"),
+                           row.get("iso_index"))
+                    if key in keys:
+                        raise RuntimeError(f"duplicate row key across chunks: "
+                                           f"{key} (budget {b})")
+                    keys.add(key)
+                    lines.append(ln)
+                    got += 1
+            if got != expected:
+                raise RuntimeError(f"chunk {i}/{c['chunks']} budget {b} is "
+                                   f"INCOMPLETE: {got}/{expected} rows in "
+                                   f"{os.path.basename(found[0])} — resume it "
+                                   f"before merging")
+        target = os.path.join(
+            out_dir, prefix + datetime.now().strftime("%m_%d_%y") + ".jsonl")
+        with open(target, "w") as f:
+            f.write("\n".join(lines) + "\n")
+        print(f"[merge] budget={b}: {len(lines)} rows from {c['chunks']} "
+              f"chunks -> {os.path.basename(target)}", flush=True)
+        merged.append(target)
+    return merged
 
 
 def main():
@@ -515,10 +680,26 @@ def main():
     ap.add_argument("--high-speedup", action="store_true", default=None,
                     help="compact fast solver (result-neutral; solved rows "
                          "re-solved for their path)")
+    ap.add_argument("--use-chunks", action="store_true", default=None,
+                    help="stride-split the presentations into --chunks chunks, "
+                         "one jsonl per chunk")
+    ap.add_argument("--chunks", type=int, default=None,
+                    help="number of chunks (with --use-chunks)")
+    ap.add_argument("--chunk", type=int, default=None, dest="chunk_index",
+                    help="run only this chunk (1..N); omit to run all chunks "
+                         "as parallel processes")
+    ap.add_argument("--merge-chunks", action="store_true",
+                    help="merge completed chunk files into the canonical "
+                         "unchunked jsonl instead of running searches")
     args = ap.parse_args()
-    run(config_path=args.config, mode=args.mode, budgets=args.budget,
-        experiment_length=args.experiment_length, z_source=args.z_source,
-        high_speedup=args.high_speedup)
+    kw = dict(config_path=args.config, mode=args.mode, budgets=args.budget,
+              experiment_length=args.experiment_length, z_source=args.z_source,
+              high_speedup=args.high_speedup, use_chunks=args.use_chunks,
+              chunks=args.chunks, chunk_index=args.chunk_index)
+    if args.merge_chunks:
+        merge_chunks(**{k: v for k, v in kw.items() if k != "chunk_index"})
+    else:
+        run(**kw)
 
 
 if __name__ == "__main__":

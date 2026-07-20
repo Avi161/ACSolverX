@@ -75,6 +75,9 @@ Why the reps and not a `same_aut_orbit` bool: the bool is their equality (deriva
 | `high_speedup`       | `true` (yaml)           | compact fast solver + slow re-solve for paths; result-neutral (~2.9×) |
 | `out_dir`            | `results/stable_ac/cov` | output namespace                                                      |
 | `resume`             | `true`                  | skip rows already in the target jsonl                                 |
+| `use_chunks`         | `false`                 | stride-split the presentations into `chunks` chunks (row j → chunk j%N+1, so the difficulty ladder spreads evenly); each chunk writes its own `…_c{i}of{N}_…` jsonl — the chunk is part of the resume identity, and an unchunked resume never globs a chunk file |
+| `chunks`             | `3`                     | number of chunks                                                      |
+| `chunk_index`        | `null`                  | `1..chunks` = run only that chunk (one per parallel Colab session); `null` = run ALL chunks as parallel spawned processes in this session (high-RAM multi-vCPU runtime) |
 
 
 
@@ -90,6 +93,8 @@ Local proof (≤ 1000 nodes), then always verify certificates:
 ```
 
 Production (Colab, `cov_baseline.ipynb` — re-open from GitHub after any push; edit only the CONFIG cell): `BUDGET=[50000]`, `MODE="cov"`, `EXPERIMENT_LENGTH=True`, `Z_SOURCE=None`, `DATASETS=[benchmark_subset_60.csv, reach_tier_6.csv]` → `covsweep_50000_66_subnc2pxysb_...` (6722 cov rows + 66 controls = 6788 per budget, from enumeration; re-measure after a fresh sweep). Resume is per-row: rerun the RUN cell; copy the jsonl to Drive periodically and back before resuming on a fresh VM.
+
+**Chunked production** (the serial runner is one search at a time, so chunks are the parallelism): set `USE_CHUNKS=True`, `CHUNKS=N`. One high-RAM session with `CHUNK_INDEX=None` runs all N chunks as parallel processes; alternatively N sessions each set `CHUNK_INDEX=1..N`. Each chunk resumes independently (rerun the RUN cell). When every chunk is complete, run the MERGE cell once: it re-derives each chunk's expected row count by enumeration, refuses to merge an incomplete chunk or overwrite an existing target, and writes the canonical unchunked `covsweep_...` file — from then on analysis, `verify_results`, and unchunked resume treat the merged file as if the serial runner wrote it. Always `verify_results` after a merge.
 
 ## 7. Known limitations
 
