@@ -1055,3 +1055,53 @@ def test_sweep_emits_heartbeat_lines(tmp_path, monkeypatch, capsys):
     run_cov.run(**_sweep_common(tmp_path))
     out = capsys.readouterr().out
     assert "[hb]" in out and "nodes/s" in out and "rows total" in out
+
+
+# --- RECHUNK (finer partition migration) + list-mode chunk_index ---------------
+
+def test_chunk_index_list_validation():
+    ok = run_cov.load_config(use_chunks=True, chunks=8, chunk_index=[1, 5])
+    assert ok["chunk_index"] == [1, 5]
+    for bad in ([], [0], [9], [1, 1], [1, "2"]):
+        with pytest.raises(ValueError):
+            run_cov.load_config(use_chunks=True, chunks=8, chunk_index=bad)
+
+
+def test_rechunk_rebins_without_rerunning(tmp_path, monkeypatch):
+    calls = _spy_searches(monkeypatch, solved=False)
+    csv_p = tmp_path / "reach_tier_9.csv"
+    csv_p.write_text("name,r1,r2\nAK(3),xyxYXY,xxxYYYY\nW4,xyyxY,yxxxY\n")
+    common = dict(datasets=[str(csv_p)], budgets=[100], mode="cov",
+                  experiment_length=True, out_dir=str(tmp_path / "out"))
+    # the "old" 2-way partition, both chunks complete (serial: spies must apply)
+    run_cov.run(**common, use_chunks=True, chunks=2, chunk_index=1)
+    run_cov.run(**common, use_chunks=True, chunks=2, chunk_index=2)
+    n_searched = len(calls)
+
+    # migrate 2 -> 4: pres0 -> c1of4, pres1 -> c2of4; c3/c4 own no presentations
+    run_cov.rechunk(**common, use_chunks=True, chunks=4, old_chunks=2)
+    files = sorted(os.path.basename(p)
+                   for p in glob.glob(str(tmp_path / "out" / "*_c?of4_*.jsonl")))
+    assert [f.split("_")[7] for f in files] == ["c1of4", "c2of4"]
+
+    # resuming the new partition re-searches NOTHING
+    run_cov.run(**common, use_chunks=True, chunks=4, chunk_index=1)
+    run_cov.run(**common, use_chunks=True, chunks=4, chunk_index=2)
+    assert len(calls) == n_searched
+    # rechunk again: idempotent, everything already present
+    run_cov.rechunk(**common, use_chunks=True, chunks=4, old_chunks=2)
+    run_cov.run(**common, use_chunks=True, chunks=4, chunk_index=1)
+    assert len(calls) == n_searched
+
+    # merge of the NEW partition succeeds (empty chunks owe no file) and
+    # matches the old partition's rows exactly
+    merged = run_cov.merge_chunks(**common, use_chunks=True, chunks=4)
+    rows = [json.loads(ln) for ln in open(merged[0]) if ln.strip()]
+    keys = {(r["pres_id"], r["z_word"], r["iso_gen"], r["iso_index"])
+            for r in rows}
+    old_rows = []
+    for p in glob.glob(str(tmp_path / "out" / "*_c?of2_*.jsonl")):
+        old_rows += [json.loads(ln) for ln in open(p) if ln.strip()]
+    assert keys == {(r["pres_id"], r["z_word"], r["iso_gen"], r["iso_index"])
+                    for r in old_rows}
+    assert len(rows) == len(old_rows) == n_searched

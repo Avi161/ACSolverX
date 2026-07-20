@@ -144,9 +144,16 @@ def load_config(config_path=None, **overrides):
         if not isinstance(n, int) or isinstance(n, bool) or n < 2:
             raise ValueError(f"use_chunks needs an int chunks >= 2, got {n!r}")
         ci = c.get("chunk_index")
-        if ci is not None and (not isinstance(ci, int) or isinstance(ci, bool)
-                               or not 1 <= ci <= n):
-            raise ValueError(f"chunk_index must be 1..{n} or None, got {ci!r}")
+
+        def _ok(i):
+            return isinstance(i, int) and not isinstance(i, bool) and 1 <= i <= n
+        if isinstance(ci, (list, tuple)):
+            if not ci or not all(_ok(i) for i in ci) or len(set(ci)) != len(ci):
+                raise ValueError(f"chunk_index list must be distinct ints in "
+                                 f"1..{n}, got {ci!r}")
+        elif ci is not None and not _ok(ci):
+            raise ValueError(f"chunk_index must be 1..{n}, a list of them, or "
+                             f"None, got {ci!r}")
     return c
 
 
@@ -203,7 +210,8 @@ def _run_prefix(c, node_budget, n_rows):
     # identity; n_rows stays the FULL dataset size (the family the chunk is
     # a slice of), so the merged file's name is exactly the unchunked prefix.
     chunk = (f"c{c['chunk_index']}of{c['chunks']}_"
-             if c.get("use_chunks") and c.get("chunk_index") else "")
+             if c.get("use_chunks") and isinstance(c.get("chunk_index"), int)
+             else "")
     return (f"{kind}_{node_budget}_{n_rows}_{zfam}mrl{c['max_relator_length']}"
             f"_{cyc}_{tag}_{chunk}")
 
@@ -444,12 +452,14 @@ class _SweepHeartbeat:
     measured mean row time, so it tightens as the mix of solved/unsolved rows
     stabilizes. Times are injectable for tests."""
 
-    def __init__(self, total_rows, done_rows, period=_HB_PERIOD, now=None):
+    def __init__(self, total_rows, done_rows, period=_HB_PERIOD, now=None,
+                 label=""):
         self.total = total_rows
         self.done0 = self.done = done_rows   # resumed rows: not in rate/ETA
         self.solved = 0
         self.nodes = 0
         self.period = period
+        self.label = f" {label}" if label else ""
         self.t0 = self.last = time.monotonic() if now is None else now
 
     def note_row(self, stats):
@@ -471,9 +481,9 @@ class _SweepHeartbeat:
                 else f"~{max(left / 60, 1):.0f}m left"
         else:
             eta = "eta n/a"
-        return (f"  [hb] {self.done}/{self.total} rows | {self.solved} solved "
-                f"this session | {self.nodes:,} nodes @ {rate:,.0f} nodes/s | "
-                f"{eta}")
+        return (f"  [hb{self.label}] {self.done}/{self.total} rows | "
+                f"{self.solved} solved this session | {self.nodes:,} nodes @ "
+                f"{rate:,.0f} nodes/s | {eta}")
 
 
 def _sweep_row_count(c, r1, r2):
@@ -505,7 +515,10 @@ def run_budget_sweep(c, node_budget, rows, root, n_rows=None):
           flush=True)
 
     bcfg = _base_cfg(c)
-    hb = _SweepHeartbeat(total_rows, n_seen, period=_HB_PERIOD)
+    hb_label = (f"c{c['chunk_index']}of{c['chunks']}"
+                if c.get("use_chunks") and isinstance(c.get("chunk_index"), int)
+                else "")
+    hb = _SweepHeartbeat(total_rows, n_seen, period=_HB_PERIOD, label=hb_label)
     with open(out_path, "a") as out_f:
         for rid, r1, r2, src in rows:
             entries = _sweep_entries(c, r1, r2)
@@ -622,21 +635,23 @@ def _spawn_entry(c):
     _run_one(c)
 
 
-def _run_chunks_parallel(c):
-    """Every chunk as its own spawned process (spawn, not fork: numba JIT
-    state must not cross a fork). Returns every chunk's out path, budget-major.
-    A dead chunk raises AFTER the others finish — rerunning resumes it."""
+def _run_chunks_parallel(c, indices):
+    """The given chunks, each as its own spawned process (spawn, not fork:
+    numba JIT state must not cross a fork). Returns their out paths,
+    budget-major. A dead chunk raises AFTER the others finish — rerunning
+    resumes it."""
     import multiprocessing as mp
     ctx = mp.get_context("spawn")
     procs = []
-    for i in range(1, c["chunks"] + 1):
+    for i in indices:
         ci = dict(c)
         ci["chunk_index"] = i
         p = ctx.Process(target=_spawn_entry, args=(ci,), name=f"cov-chunk{i}")
         p.start()
         procs.append(p)
-    print(f"[chunks] {len(procs)} chunk processes launched; each writes its "
-          f"own _c{{i}}of{c['chunks']}_ jsonl (resume is per chunk)", flush=True)
+    names = ", ".join(f"c{i}of{c['chunks']}" for i in indices)
+    print(f"[chunks] {len(procs)} chunk processes launched ({names}); "
+          f"each writes its own jsonl (resume is per chunk)", flush=True)
     failed = []
     for p in procs:
         p.join()
@@ -649,13 +664,16 @@ def _run_chunks_parallel(c):
     root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
     n_rows = len(load_rows(c["datasets"], root))
     return [_resolve_out_path({**c, "chunk_index": i}, b, n_rows, root)
-            for b in c["budgets"] for i in range(1, c["chunks"] + 1)]
+            for b in c["budgets"] for i in indices]
 
 
 def run(config_path=None, **overrides):
     c = load_config(config_path, **overrides)
-    if c.get("use_chunks") and c.get("chunk_index") is None:
-        return _run_chunks_parallel(c)
+    ci = c.get("chunk_index")
+    if c.get("use_chunks") and ci is None:
+        return _run_chunks_parallel(c, list(range(1, c["chunks"] + 1)))
+    if c.get("use_chunks") and isinstance(ci, (list, tuple)):
+        return _run_chunks_parallel(c, list(ci))
     return _run_one(c)
 
 
@@ -694,14 +712,16 @@ def merge_chunks(config_path=None, **overrides):
             ci = {**c, "chunk_index": i}
             cprefix = _run_prefix(ci, b, len(rows))
             found = glob.glob(os.path.join(out_dir, cprefix + "*.jsonl"))
+            expected = 0
+            for rid, r1, r2, src in _chunk_rows(rows, c["chunks"], i):
+                expected += (len(_sweep_entries(c, r1, r2)) if sweep else 1)
+            if expected == 0 and not found:
+                continue        # a chunk with no presentations owes no file
             if len(found) != 1:
                 raise RuntimeError(f"chunk {i}/{c['chunks']} budget {b}: "
                                    f"expected exactly one {cprefix}*.jsonl, "
                                    f"found {found}")
             run_baseline._repair_jsonl(found[0])
-            expected = 0
-            for rid, r1, r2, src in _chunk_rows(rows, c["chunks"], i):
-                expected += (len(_sweep_entries(c, r1, r2)) if sweep else 1)
             got = 0
             with open(found[0]) as f:
                 for ln in f:
@@ -730,6 +750,77 @@ def merge_chunks(config_path=None, **overrides):
               f"chunks -> {os.path.basename(target)}", flush=True)
         merged.append(target)
     return merged
+
+
+def rechunk(config_path=None, old_chunks=None, **overrides):
+    """Re-bin finished rows from an old chunk partition into the current one.
+
+    Stride partitions nest: presentation j sits in old chunk (j % M) + 1 and
+    new chunk (j % N) + 1, so every row lands in exactly one new file and a
+    session holding only its OWN old chunk file can migrate it completely —
+    new chunk k of N draws from old chunk ((k-1) % M) + 1 alone when M
+    divides N. Only old chunk files actually present are migrated (each Colab
+    session migrates its own); rows already in a target are skipped, so the
+    call is idempotent and safe to rerun. Old files are left in place — their
+    _c{i}of{M}_ names can never be confused with the new partition's.
+    """
+    c = load_config(config_path, **overrides)
+    if not c.get("use_chunks"):
+        raise ValueError("rechunk needs use_chunks=True with chunks = the NEW "
+                         "partition size")
+    if not isinstance(old_chunks, int) or isinstance(old_chunks, bool) \
+            or old_chunks < 2:
+        raise ValueError(f"old_chunks must be the previous int partition "
+                         f"size, got {old_chunks!r}")
+    root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
+    rows = load_rows(c["datasets"], root)
+    n_rows = len(rows)
+    new_chunk_of = {rid: (j % c["chunks"]) + 1
+                    for j, (rid, _, _, _) in enumerate(rows)}
+    out_dir = c["out_dir"]
+    if not os.path.isabs(out_dir):
+        out_dir = os.path.join(root, out_dir)
+    for b in c["budgets"]:
+        targets = {}          # new index -> (path, done keys, open handle)
+        moved = skipped = 0
+        for i in range(1, old_chunks + 1):
+            oprefix = _run_prefix({**c, "chunks": old_chunks,
+                                   "chunk_index": i}, b, n_rows)
+            for path in sorted(glob.glob(os.path.join(out_dir,
+                                                      oprefix + "*.jsonl"))):
+                run_baseline._repair_jsonl(path)
+                with open(path) as f:
+                    for ln in f:
+                        ln = ln.strip()
+                        if not ln:
+                            continue
+                        row = json.loads(ln)
+                        k = new_chunk_of.get(row["pres_id"])
+                        if k is None:
+                            raise RuntimeError(f"row for unknown presentation "
+                                               f"{row['pres_id']!r} in {path}")
+                        if k not in targets:
+                            tpath = _resolve_out_path(
+                                {**c, "chunk_index": k}, b, n_rows, root)
+                            run_baseline._repair_jsonl(tpath)
+                            done, _, _ = _read_done_pairs(tpath)
+                            targets[k] = (tpath, done, open(tpath, "a"))
+                        tpath, done, tf = targets[k]
+                        key = (row["pres_id"], row["z_word"],
+                               row.get("iso_gen"), row.get("iso_index"))
+                        if key in done:
+                            skipped += 1
+                            continue
+                        done.add(key)
+                        tf.write(ln + "\n")
+                        moved += 1
+        for tpath, done, tf in targets.values():
+            tf.flush()
+            os.fsync(tf.fileno())
+            tf.close()
+        print(f"[rechunk] budget={b}: {moved} rows re-binned into "
+              f"{len(targets)} chunk files of {c['chunks']} "
+              f"({skipped} already present)", flush=True)
 
 
 def main():
