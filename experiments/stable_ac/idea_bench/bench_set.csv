@@ -1,0 +1,17 @@
+pres_id,r1,r2,nodes_1M,path_1M,tier
+499,YYYYYYYXyyyyyyx,YYYYx,6,5,easy
+165,YYYxyXYX,YYXyx,16,10,easy
+303,YYYXyyx,YYYxyXYX,70,16,easy
+491,YYYYYYXyyyyyx,YYXyyxyx,126,28,easy
+548,YYYYYXyyyyx,YYxYYxyX,661,28,easy
+580,YYYYYYXyyyyyx,YYYxxYYX,875,47,easy
+609,YYYYYYYXyyyyyyx,YYYxYxyX,1217,56,boundary
+565,YYYYYYXyyyyyx,YYxyXYx,1404,145,boundary
+549,YYYYYXyyyyx,YYYxYxYX,1411,79,boundary
+544,YYYYYXyyyyx,YYYxyXYx,1569,75,boundary
+543,YYYYYXyyyyx,YYYYXYxx,1813,81,boundary
+606,YYYYYYYXyyyyyyx,YYYxxYYX,2023,39,boundary
+538,YYYYYXyyyyx,YYxYxYX,2261,25,boundary
+602,YYYYYYYXyyyyyyx,YYYxYXX,6285,56,stretch
+632,YYYYYYYYXyyyyyyyx,YYYYXXYx,6425,56,stretch
+AK3,xxxYYYY,xyxYXY,,,marquee
