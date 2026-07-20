@@ -432,6 +432,64 @@ def _sweep_entries(c, r1, r2):
     return entries
 
 
+_HB_PERIOD = 60.0   # seconds between sweep heartbeat lines
+
+
+class _SweepHeartbeat:
+    """The sweep's progress pulse: rows, nodes/s, ETA — printed at most every
+    ``period`` seconds. maybe_beat() is called BETWEEN rows on the main thread
+    (a background thread must never print), so a beat can arrive late by up to
+    one row's search time; the first beat waits a full period (first emission
+    and cadence are separate phases). ETA = remaining rows x the session's
+    measured mean row time, so it tightens as the mix of solved/unsolved rows
+    stabilizes. Times are injectable for tests."""
+
+    def __init__(self, total_rows, done_rows, period=_HB_PERIOD, now=None):
+        self.total = total_rows
+        self.done0 = self.done = done_rows   # resumed rows: not in rate/ETA
+        self.solved = 0
+        self.nodes = 0
+        self.period = period
+        self.t0 = self.last = time.monotonic() if now is None else now
+
+    def note_row(self, stats):
+        self.done += 1
+        self.solved += int(bool(stats["solved"]))
+        self.nodes += int(stats["nodes_explored"])
+
+    def maybe_beat(self, now=None):
+        now = time.monotonic() if now is None else now
+        if now - self.last < self.period:
+            return None
+        self.last = now
+        elapsed = now - self.t0
+        ran = self.done - self.done0
+        rate = self.nodes / elapsed if elapsed > 0 else 0.0
+        if ran:
+            left = (self.total - self.done) * (elapsed / ran)
+            eta = f"~{left / 3600:.1f}h left" if left >= 3600 \
+                else f"~{max(left / 60, 1):.0f}m left"
+        else:
+            eta = "eta n/a"
+        return (f"  [hb] {self.done}/{self.total} rows | {self.solved} solved "
+                f"this session | {self.nodes:,} nodes @ {rate:,.0f} nodes/s | "
+                f"{eta}")
+
+
+def _sweep_row_count(c, r1, r2):
+    """1 control + the number of valid CoV starts — enumeration only, no
+    aut_canon, so a whole chunk's total costs ~a second up front (the ETA's
+    denominator)."""
+    universe = c["z_source"] == "universe"
+    results = cov.enumerate_cov(
+        str_to_word(r1), str_to_word(r2),
+        family=cov.universe_candidates(2, c["universe_max_len"]) if universe
+        else None,
+        default_cap=c["max_relator_length"], cap_headroom=c["cap_headroom"],
+        reject_len=c["reject_len"], allow_defining_iso=universe)
+    return 1 + len(results)
+
+
 def run_budget_sweep(c, node_budget, rows, root, n_rows=None):
     """The length experiment: every start (control + all CoV variants) per
     presentation, one row per (pres_id, z_word), then the length-vs-outcome
@@ -441,10 +499,13 @@ def run_budget_sweep(c, node_budget, rows, root, n_rows=None):
                                  len(rows) if n_rows is None else n_rows, root)
     run_baseline._repair_jsonl(out_path)
     done, n_seen, n_solved = _read_done_pairs(out_path)
+    total_rows = sum(_sweep_row_count(c, r1, r2) for _, r1, r2, _ in rows)
     print(f"[sweep] budget={node_budget} -> {os.path.basename(out_path)} "
-          f"(resume: {n_seen} done, {n_solved} solved)", flush=True)
+          f"(resume: {n_seen} done, {n_solved} solved; {total_rows} rows total)",
+          flush=True)
 
     bcfg = _base_cfg(c)
+    hb = _SweepHeartbeat(total_rows, n_seen, period=_HB_PERIOD)
     with open(out_path, "a") as out_f:
         for rid, r1, r2, src in rows:
             entries = _sweep_entries(c, r1, r2)
@@ -472,6 +533,10 @@ def run_budget_sweep(c, node_budget, rows, root, n_rows=None):
 
                 ran += 1
                 solved_here += int(bool(stats["solved"]))
+                hb.note_row(stats)
+                beat = hb.maybe_beat()
+                if beat:
+                    print(beat, flush=True)
             n_seen += ran
             n_solved += solved_here
             print(f"  {rid}: {len(entries)} starts (1 control + "

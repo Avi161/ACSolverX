@@ -1023,3 +1023,35 @@ def test_merge_refuses_an_incomplete_chunk(tmp_path, monkeypatch):
         f.write("\n".join(lines[:-1]) + "\n")
     with pytest.raises(RuntimeError, match="INCOMPLETE"):
         run_cov.merge_chunks(**chunked)
+
+
+# --- SWEEP HEARTBEAT (nodes/s + ETA, printed between rows) ---------------------
+
+def test_sweep_heartbeat_phases_and_stats():
+    hb = run_cov._SweepHeartbeat(total_rows=100, done_rows=10, period=60.0,
+                                 now=1000.0)
+    assert hb.maybe_beat(1059.9) is None      # first emission waits a FULL period
+    hb.note_row({"solved": True, "nodes_explored": 500})
+    hb.note_row({"solved": False, "nodes_explored": 10000})
+    line = hb.maybe_beat(1060.0)
+    assert line is not None
+    assert "12/100 rows" in line and "1 solved" in line
+    assert "10,500 nodes" in line and "175 nodes/s" in line     # 10500 / 60s
+    # 2 rows in 60s -> 30 s/row x 88 remaining = 44 min
+    assert "~44m left" in line
+    assert hb.maybe_beat(1061.0) is None      # cadence phase: no spam after a beat
+    assert hb.maybe_beat(1121.0) is not None
+
+
+def test_sweep_heartbeat_no_rows_yet():
+    hb = run_cov._SweepHeartbeat(total_rows=10, done_rows=0, period=60.0, now=0.0)
+    line = hb.maybe_beat(60.0)
+    assert line is not None and "eta n/a" in line
+
+
+def test_sweep_emits_heartbeat_lines(tmp_path, monkeypatch, capsys):
+    _spy_searches(monkeypatch, solved=False)
+    monkeypatch.setattr(run_cov, "_HB_PERIOD", 0.0)   # every row beats
+    run_cov.run(**_sweep_common(tmp_path))
+    out = capsys.readouterr().out
+    assert "[hb]" in out and "nodes/s" in out and "rows total" in out
