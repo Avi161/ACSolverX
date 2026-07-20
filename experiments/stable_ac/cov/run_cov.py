@@ -81,6 +81,15 @@ COV_DEFAULTS = {
     "use_chunks": False,
     "chunks": 3,
     "chunk_index": None,
+    # Workers per single-chunk session: with chunk_index = i (an int), the
+    # chunk itself fans out over chunk_procs spawned processes. The chunk
+    # splits into its chunk_procs nested fine chunks of the chunks*chunk_procs
+    # stride partition (stride partitions nest), each a resumable jsonl, and
+    # at the end every fine row folds back into the one c{i}of{N} file — so
+    # resume, merge_chunks and the Drive mirror see exactly what a serial
+    # chunk run would have written. 0 = auto (os.cpu_count()); 1 = serial.
+    # Result-neutral -> NOT in the filename identity.
+    "chunk_procs": 0,
 }
 
 _CHUNK_MARK = re.compile(r"_c\d+of\d+_")
@@ -154,6 +163,10 @@ def load_config(config_path=None, **overrides):
         elif ci is not None and not _ok(ci):
             raise ValueError(f"chunk_index must be 1..{n}, a list of them, or "
                              f"None, got {ci!r}")
+        cp = c.get("chunk_procs", 0)
+        if not isinstance(cp, int) or isinstance(cp, bool) or cp < 0:
+            raise ValueError(f"chunk_procs must be an int >= 0 (0 = auto = "
+                             f"cpu count), got {cp!r}")
     return c
 
 
@@ -612,6 +625,84 @@ def _chunk_rows(rows, chunks, chunk_index):
     return [r for j, r in enumerate(rows) if j % chunks == chunk_index - 1]
 
 
+def _resolved_chunk_procs(c):
+    p = c.get("chunk_procs", 0)
+    return (os.cpu_count() or 1) if p == 0 else p
+
+
+def _fine_indices(chunk_index, chunks, procs):
+    """The fine chunks of the chunks*procs stride partition nested inside
+    coarse chunk ``chunk_index``: row j sits in coarse (j % N) + 1 and fine
+    (j % (N*P)) + 1, and j % (N*P) ≡ s-1 (mod N) exactly when j % N == s-1,
+    so coarse chunk s holds exactly fine chunks s, s+N, ..., s+(P-1)N."""
+    return [chunk_index + j * chunks for j in range(procs)]
+
+
+def _scan_rows(paths):
+    """(n_rows, n_solved, total_nodes) across jsonl files that other processes
+    may be appending to RIGHT NOW: unparseable lines (a torn or in-flight
+    tail) are skipped, never repaired — only the owning process truncates."""
+    n = solved = nodes = 0
+    for path in paths:
+        try:
+            with open(path) as f:
+                for ln in f:
+                    ln = ln.strip()
+                    if not ln:
+                        continue
+                    try:
+                        row = json.loads(ln)
+                    except ValueError:
+                        continue
+                    n += 1
+                    solved += int(bool(row.get("solved")))
+                    nodes += int(row.get("nodes_explored") or 0)
+        except OSError:
+            continue
+    return n, solved, nodes
+
+
+class _ChunkFilesHeartbeat:
+    """The parent's pulse over a fleet of chunk processes. A spawned child's
+    print() never reaches a Jupyter/Colab cell (lesson:
+    heartbeat-worker-cannot-print), so the parent — the only process whose
+    output the notebook shows — scans the children's jsonl files between
+    joins and prints the aggregate, in _SweepHeartbeat's exact format.
+    Resumed rows (present at construction) count toward done but stay out of
+    the session's rate and ETA."""
+
+    def __init__(self, globs, total_rows, period=None, label="", now=None):
+        self.globs = list(globs)
+        self.total = total_rows
+        self.period = _HB_PERIOD if period is None else period
+        self.label = f" {label}" if label else ""
+        self.t0 = self.last = time.monotonic() if now is None else now
+        self.done0, self.solved0, self.nodes0 = self._scan()
+
+    def _scan(self):
+        return _scan_rows(p for g in self.globs for p in glob.glob(g))
+
+    def maybe_beat(self, now=None):
+        now = time.monotonic() if now is None else now
+        if now - self.last < self.period:
+            return None
+        self.last = now
+        done, solved, nodes = self._scan()
+        elapsed = now - self.t0
+        ran = done - self.done0
+        sn = nodes - self.nodes0
+        rate = sn / elapsed if elapsed > 0 else 0.0
+        if ran:
+            left = (self.total - done) * (elapsed / ran)
+            eta = f"~{left / 3600:.1f}h left" if left >= 3600 \
+                else f"~{max(left / 60, 1):.0f}m left"
+        else:
+            eta = "eta n/a"
+        return (f"  [hb{self.label}] {done}/{self.total} rows | "
+                f"{solved - self.solved0} solved this session | {sn:,} nodes "
+                f"@ {rate:,.0f} nodes/s | {eta}")
+
+
 def _run_one(c):
     """One process's run: the whole dataset, or one chunk of it."""
     root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
@@ -635,12 +726,29 @@ def _spawn_entry(c):
     _run_one(c)
 
 
-def _run_chunks_parallel(c, indices):
+def _run_chunks_parallel(c, indices, label=""):
     """The given chunks, each as its own spawned process (spawn, not fork:
-    numba JIT state must not cross a fork). Returns their out paths,
-    budget-major. A dead chunk raises AFTER the others finish — rerunning
-    resumes it."""
+    numba JIT state must not cross a fork). A spawned child's print() never
+    reaches a Jupyter/Colab cell, so the PARENT polls the children's jsonl
+    files between joins and prints the aggregate heartbeat. Returns their
+    out paths, budget-major. A dead chunk raises AFTER the others finish —
+    rerunning resumes it."""
     import multiprocessing as mp
+    root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
+    rows = load_rows(c["datasets"], root)
+    n_rows = len(rows)
+    sel = [r for i in indices for r in _chunk_rows(rows, c["chunks"], i)]
+    per_budget = (sum(_sweep_row_count(c, r1, r2) for _, r1, r2, _ in sel)
+                  if c.get("experiment_length") else len(sel))
+    out_dir = c["out_dir"] if os.path.isabs(c["out_dir"]) \
+        else os.path.join(root, c["out_dir"])
+    globs = [os.path.join(out_dir,
+                          _run_prefix({**c, "chunk_index": i}, b, n_rows)
+                          + "*.jsonl")
+             for b in c["budgets"] for i in indices]
+    hb = _ChunkFilesHeartbeat(globs, per_budget * len(c["budgets"]),
+                              label=label)
+
     ctx = mp.get_context("spawn")
     procs = []
     for i in indices:
@@ -652,6 +760,15 @@ def _run_chunks_parallel(c, indices):
     names = ", ".join(f"c{i}of{c['chunks']}" for i in indices)
     print(f"[chunks] {len(procs)} chunk processes launched ({names}); "
           f"each writes its own jsonl (resume is per chunk)", flush=True)
+    while True:
+        alive = [p for p in procs if p.is_alive()]
+        if not alive:
+            break
+        # wake a few times per period so beat timing never rides join jitter
+        alive[0].join(timeout=max(_HB_PERIOD / 4, 1.0))
+        beat = hb.maybe_beat()
+        if beat:
+            print(beat, flush=True)
     failed = []
     for p in procs:
         p.join()
@@ -661,19 +778,124 @@ def _run_chunks_parallel(c, indices):
         raise RuntimeError(f"chunk process(es) failed: {failed} — rerun the "
                            f"same command; finished rows resume, only the "
                            f"failed chunk's remainder re-runs")
-    root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
-    n_rows = len(load_rows(c["datasets"], root))
     return [_resolve_out_path({**c, "chunk_index": i}, b, n_rows, root)
             for b in c["budgets"] for i in indices]
 
 
+def _run_chunk_workers(c):
+    """One coarse chunk (chunk_index = i of N) fanned out over P = chunk_procs
+    worker processes. The chunk splits into its P nested fine chunks of the
+    N*P stride partition (coarse i holds exactly fine i, i+N, ..., i+(P-1)N).
+    Rows already in the coarse c{i}of{N} file are re-binned into the fine
+    files first (idempotent — a restart migrates nothing twice), each fine
+    chunk runs as its own spawned process with its own resumable jsonl, and
+    afterwards every fine row folds back into the coarse file. From the
+    outside — resume, merge_chunks, the Drive mirror — the run is
+    indistinguishable from a serial chunk run that finished P times faster."""
+    s, n, p = c["chunk_index"], c["chunks"], _resolved_chunk_procs(c)
+    fine = dict(c, chunks=n * p)
+    indices = _fine_indices(s, n, p)
+    print(f"[chunk c{s}of{n}] {p} workers over nested fine chunks "
+          f"{', '.join(f'c{i}of{n * p}' for i in indices)}; rows fold back "
+          f"into the c{s}of{n} file at the end", flush=True)
+    _rechunk_impl(fine, old_chunks=n, old_index=s)
+    _run_chunks_parallel(fine, indices, label=f"c{s}of{n}")
+    return _backfill_coarse(c, fine, indices)
+
+
+def _backfill_coarse(c, fine, indices):
+    """Fold every fine-chunk row back into the coarse c{i}of{N} jsonl — dedup
+    by row key, so reruns add nothing. After this the coarse file holds
+    exactly the rows a serial chunk run would have written (grouped by worker
+    rather than interleaved; resume and merge key on rows, not order)."""
+    root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
+    n_rows = len(load_rows(c["datasets"], root))
+    out_paths = []
+    for b in c["budgets"]:
+        cpath = _resolve_out_path(c, b, n_rows, root)
+        run_baseline._repair_jsonl(cpath)
+        done, _, _ = _read_done_pairs(cpath)
+        added = 0
+        with open(cpath, "a") as out_f:
+            for i in indices:
+                fpath = _resolve_out_path({**fine, "chunk_index": i}, b,
+                                          n_rows, root)
+                if not os.path.exists(fpath):
+                    continue
+                run_baseline._repair_jsonl(fpath)
+                with open(fpath) as f:
+                    for ln in f:
+                        ln = ln.strip()
+                        if not ln:
+                            continue
+                        row = json.loads(ln)
+                        key = (row["pres_id"], row["z_word"],
+                               row.get("iso_gen"), row.get("iso_index"))
+                        if key in done:
+                            continue
+                        done.add(key)
+                        out_f.write(ln + "\n")
+                        added += 1
+            out_f.flush()
+            os.fsync(out_f.fileno())
+        print(f"[chunk c{c['chunk_index']}of{c['chunks']}] budget={b}: "
+              f"{added} rows folded back -> {os.path.basename(cpath)}",
+              flush=True)
+        out_paths.append(cpath)
+    return out_paths
+
+
+def _patch_notebook_mirror():
+    """Retrofit the notebook's Drive mirror to size-monotonic, from the .py
+    side. The live cov_baseline RUN cell defines a ``_sync_to_drive`` that
+    copies on any size DIFFERENCE — with several sessions sharing one
+    DRIVE_DIR, each re-pushes its stale seeded copies of the OTHER sessions'
+    append-only jsonls over the owners' fresh mirrors every tick (flip-flop;
+    lesson: colab-notebook-pattern). Both the 3-min mirror thread and the
+    final sync resolve ``_sync_to_drive`` by NAME in ``__main__``, so
+    rebinding that one global fixes every caller without touching the
+    notebook — a runtime restart picks it up. Bigger-wins is safe because
+    the jsonls are append-only: a fresher copy is never smaller."""
+    import __main__
+    old = getattr(__main__, "_sync_to_drive", None)
+    local_out = getattr(__main__, "LOCAL_OUT", None)
+    drive_dir = getattr(__main__, "DRIVE_DIR", None)
+    if not callable(old) or getattr(old, "_cov_monotonic", False) \
+            or not (local_out and drive_dir):
+        return False
+    import shutil
+
+    def _sync_to_drive_monotonic():
+        if not os.path.isdir(drive_dir):
+            return
+        for src in glob.glob(os.path.join(local_out, "*.jsonl")):
+            dst = os.path.join(drive_dir, os.path.basename(src))
+            try:
+                if not os.path.exists(dst) or \
+                        os.path.getsize(dst) < os.path.getsize(src):
+                    tmp = dst + ".tmp"
+                    shutil.copyfile(src, tmp)
+                    os.replace(tmp, dst)
+            except OSError:
+                pass                        # transient Drive hiccup: next tick
+    _sync_to_drive_monotonic._cov_monotonic = True
+    __main__._sync_to_drive = _sync_to_drive_monotonic
+    return True
+
+
 def run(config_path=None, **overrides):
     c = load_config(config_path, **overrides)
+    if _patch_notebook_mirror():
+        print("[mirror] notebook _sync_to_drive patched to size-monotonic "
+              "(bigger wins — a stale seeded copy can no longer overwrite a "
+              "fresher Drive mirror)", flush=True)
     ci = c.get("chunk_index")
     if c.get("use_chunks") and ci is None:
         return _run_chunks_parallel(c, list(range(1, c["chunks"] + 1)))
     if c.get("use_chunks") and isinstance(ci, (list, tuple)):
         return _run_chunks_parallel(c, list(ci))
+    if c.get("use_chunks") and _resolved_chunk_procs(c) > 1:
+        return _run_chunk_workers(c)
     return _run_one(c)
 
 
@@ -772,6 +994,14 @@ def rechunk(config_path=None, old_chunks=None, **overrides):
             or old_chunks < 2:
         raise ValueError(f"old_chunks must be the previous int partition "
                          f"size, got {old_chunks!r}")
+    _rechunk_impl(c, old_chunks)
+
+
+def _rechunk_impl(c, old_chunks, old_index=None):
+    """rechunk's engine; ``old_index`` restricts the migration to ONE old
+    chunk file (the worker fan-out re-bins only the session's own coarse
+    chunk — a seeded stale copy of another session's chunk must never spawn
+    local fine files that shadow the owner's fresh ones)."""
     root = find_repo_root(os.path.dirname(os.path.abspath(__file__)))
     rows = load_rows(c["datasets"], root)
     n_rows = len(rows)
@@ -780,10 +1010,12 @@ def rechunk(config_path=None, old_chunks=None, **overrides):
     out_dir = c["out_dir"]
     if not os.path.isabs(out_dir):
         out_dir = os.path.join(root, out_dir)
+    old_indices = [old_index] if old_index is not None \
+        else list(range(1, old_chunks + 1))
     for b in c["budgets"]:
         targets = {}          # new index -> (path, done keys, open handle)
         moved = skipped = 0
-        for i in range(1, old_chunks + 1):
+        for i in old_indices:
             oprefix = _run_prefix({**c, "chunks": old_chunks,
                                    "chunk_index": i}, b, n_rows)
             for path in sorted(glob.glob(os.path.join(out_dir,
@@ -844,6 +1076,10 @@ def main():
     ap.add_argument("--chunk", type=int, default=None, dest="chunk_index",
                     help="run only this chunk (1..N); omit to run all chunks "
                          "as parallel processes")
+    ap.add_argument("--chunk-procs", type=int, default=None,
+                    dest="chunk_procs",
+                    help="worker processes per single-chunk run (0 = auto = "
+                         "cpu count; 1 = serial)")
     ap.add_argument("--merge-chunks", action="store_true",
                     help="merge completed chunk files into the canonical "
                          "unchunked jsonl instead of running searches")
@@ -851,7 +1087,8 @@ def main():
     kw = dict(config_path=args.config, mode=args.mode, budgets=args.budget,
               experiment_length=args.experiment_length, z_source=args.z_source,
               high_speedup=args.high_speedup, use_chunks=args.use_chunks,
-              chunks=args.chunks, chunk_index=args.chunk_index)
+              chunks=args.chunks, chunk_index=args.chunk_index,
+              chunk_procs=args.chunk_procs)
     if args.merge_chunks:
         merge_chunks(**{k: v for k, v in kw.items() if k != "chunk_index"})
     else:

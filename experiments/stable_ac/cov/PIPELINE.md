@@ -78,6 +78,7 @@ Why the reps and not a `same_aut_orbit` bool: the bool is their equality (deriva
 | `use_chunks`         | `false`                 | stride-split the presentations into `chunks` chunks (row j → chunk j%N+1, so the difficulty ladder spreads evenly); each chunk writes its own `…_c{i}of{N}_…` jsonl — the chunk is part of the resume identity, and an unchunked resume never globs a chunk file |
 | `chunks`             | `3`                     | number of chunks                                                      |
 | `chunk_index`        | `null`                  | `1..chunks` = run only that chunk (one per parallel Colab session); `null` = run ALL chunks as parallel spawned processes in this session (high-RAM multi-vCPU runtime) |
+| `chunk_procs`        | `0` (auto)              | workers per single-chunk session: the chunk fans out over this many spawned processes (its nested fine chunks of the `chunks*chunk_procs` stride partition) and every row folds back into the one `c{i}of{N}` file at the end — resume and merge unchanged. `0` = all CPU cores, `1` = serial. Result-neutral → not in the filename |
 
 
 
@@ -95,6 +96,8 @@ Local proof (≤ 1000 nodes), then always verify certificates:
 Production (Colab, `cov_baseline.ipynb` — re-open from GitHub after any push; edit only the CONFIG cell): `BUDGET=[50000]`, `MODE="cov"`, `EXPERIMENT_LENGTH=True`, `Z_SOURCE=None`, `DATASETS=[benchmark_subset_60.csv, reach_tier_6.csv]` → `covsweep_50000_66_subnc2pxysb_...` (6722 cov rows + 66 controls = 6788 per budget, from enumeration; re-measure after a fresh sweep). Resume is per-row: rerun the RUN cell; copy the jsonl to Drive periodically and back before resuming on a fresh VM.
 
 **Chunked production** (the serial runner is one search at a time, so chunks are the parallelism): set `USE_CHUNKS=True`, `CHUNKS=N`. One high-RAM session with `CHUNK_INDEX=None` runs all N chunks as parallel processes; alternatively N sessions each set `CHUNK_INDEX=1..N`. Each chunk resumes independently (rerun the RUN cell). When every chunk is complete, run the MERGE cell once: it re-derives each chunk's expected row count by enumeration, refuses to merge an incomplete chunk or overwrite an existing target, and writes the canonical unchunked `covsweep_...` file — from then on analysis, `verify_results`, and unchunked resume treat the merged file as if the serial runner wrote it. Always `verify_results` after a merge.
+
+**Per-session multi-core** (`chunk_procs`, default auto): a session running one chunk (`CHUNK_INDEX = i`) automatically fans that chunk out over one worker process per CPU core. Internally the chunk splits into its `chunk_procs` nested fine chunks of the `N*chunk_procs` stride partition (stride partitions nest, so the fine files hold exactly the coarse chunk's presentations); rows already in the coarse `c{i}of{N}` file are re-binned into the fine files first (nothing re-runs), each worker resumes its own fine jsonl, and at the end every fine row folds back into the single coarse file — so the on-disk contract (one file per chunk, MERGE over `CHUNKS=N`) is exactly the serial one. The parent prints the aggregate heartbeat by scanning the workers' files (a spawned child's `print` never reaches a Colab cell). A mid-run restart is safe at any point: rerun the same cells and everything resumes.
 
 ## 7. Known limitations
 

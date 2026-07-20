@@ -9,6 +9,7 @@ this pipeline's tests with:
 import glob
 import json
 import os
+import shutil
 
 import pytest
 import yaml
@@ -964,7 +965,8 @@ def test_run_prefix_chunk_identity():
 def test_unchunked_resume_never_globs_a_chunk_file(tmp_path, monkeypatch):
     calls = _spy_searches(monkeypatch, solved=False)
     common = _sweep_common(tmp_path)
-    ch1 = run_cov.run(**common, use_chunks=True, chunks=2, chunk_index=1)
+    ch1 = run_cov.run(**common, use_chunks=True, chunks=2, chunk_index=1,
+                      chunk_procs=1)
     assert "_c1of2_" in os.path.basename(ch1[0])
     n_chunk_rows = sum(1 for _ in open(ch1[0]))
     # an unchunked run in the same out_dir must open a FRESH file, not resume
@@ -988,7 +990,7 @@ def test_chunked_sweep_merges_to_the_unchunked_rows(tmp_path, monkeypatch):
         return {(r["pres_id"], r["z_word"], r["iso_gen"], r["iso_index"]):
                 {k: v for k, v in r.items() if k not in volatile} for r in rows}
 
-    chunked = dict(common, use_chunks=True, chunks=2)
+    chunked = dict(common, use_chunks=True, chunks=2, chunk_procs=1)
     # merging before both chunks exist must refuse
     run_cov.run(**chunked, chunk_index=1)
     with pytest.raises(RuntimeError, match="expected exactly one"):
@@ -1011,7 +1013,7 @@ def test_chunked_sweep_merges_to_the_unchunked_rows(tmp_path, monkeypatch):
 def test_merge_refuses_an_incomplete_chunk(tmp_path, monkeypatch):
     _spy_searches(monkeypatch, solved=False)
     common = _sweep_common(tmp_path)
-    chunked = dict(common, use_chunks=True, chunks=2)
+    chunked = dict(common, use_chunks=True, chunks=2, chunk_procs=1)
     run_cov.run(**chunked, chunk_index=1)
     run_cov.run(**chunked, chunk_index=2)
     # single-presentation fixture: chunk 2 is legitimately empty of rows only
@@ -1072,7 +1074,8 @@ def test_rechunk_rebins_without_rerunning(tmp_path, monkeypatch):
     csv_p = tmp_path / "reach_tier_9.csv"
     csv_p.write_text("name,r1,r2\nAK(3),xyxYXY,xxxYYYY\nW4,xyyxY,yxxxY\n")
     common = dict(datasets=[str(csv_p)], budgets=[100], mode="cov",
-                  experiment_length=True, out_dir=str(tmp_path / "out"))
+                  experiment_length=True, out_dir=str(tmp_path / "out"),
+                  chunk_procs=1)
     # the "old" 2-way partition, both chunks complete (serial: spies must apply)
     run_cov.run(**common, use_chunks=True, chunks=2, chunk_index=1)
     run_cov.run(**common, use_chunks=True, chunks=2, chunk_index=2)
@@ -1105,3 +1108,134 @@ def test_rechunk_rebins_without_rerunning(tmp_path, monkeypatch):
     assert keys == {(r["pres_id"], r["z_word"], r["iso_gen"], r["iso_index"])
                     for r in old_rows}
     assert len(rows) == len(old_rows) == n_searched
+
+
+# --- CHUNK WORKERS (one chunk fanned over chunk_procs processes) ---------------
+
+def test_chunk_procs_validation_auto_and_fine_indices(monkeypatch):
+    assert run_cov._fine_indices(2, 4, 8) == [2, 6, 10, 14, 18, 22, 26, 30]
+    assert run_cov._fine_indices(1, 2, 2) == [1, 3]
+    monkeypatch.setattr(run_cov.os, "cpu_count", lambda: 8)
+    assert run_cov._resolved_chunk_procs({"chunk_procs": 0}) == 8
+    assert run_cov._resolved_chunk_procs({"chunk_procs": 3}) == 3
+    assert run_cov.load_config(use_chunks=True, chunks=4,
+                               chunk_index=1)["chunk_procs"] == 0
+    for bad in (True, -1, 2.5):
+        with pytest.raises(ValueError):
+            run_cov.load_config(use_chunks=True, chunks=4, chunk_procs=bad)
+
+
+def test_chunk_workers_dispatch_wiring(tmp_path, monkeypatch):
+    """chunk_index=int + chunk_procs>1 must re-bin ONLY its own coarse chunk,
+    fan out over the NESTED fine indices with chunks scaled to N*P, and
+    return the fold-back's coarse paths (real spawn covered end-to-end
+    below)."""
+    seen = {}
+    monkeypatch.setattr(run_cov, "_rechunk_impl",
+                        lambda c, old_chunks, old_index=None:
+                        seen.update(rebin=(c["chunks"], old_chunks,
+                                           old_index)))
+    monkeypatch.setattr(run_cov, "_run_chunks_parallel",
+                        lambda c, indices, label="":
+                        seen.update(chunks=c["chunks"], indices=indices,
+                                    label=label))
+    monkeypatch.setattr(run_cov, "_backfill_coarse",
+                        lambda c, fine, indices: ["coarse.jsonl"])
+    out = run_cov.run(**_sweep_common(tmp_path), use_chunks=True, chunks=4,
+                      chunk_index=2, chunk_procs=8)
+    assert out == ["coarse.jsonl"]
+    assert seen["rebin"] == (32, 4, 2)
+    assert seen["chunks"] == 32
+    assert seen["indices"] == [2, 6, 10, 14, 18, 22, 26, 30]
+    assert seen["label"] == "c2of4"
+
+
+def test_chunk_files_heartbeat_scans_and_tolerates_torn_tail(tmp_path):
+    f = tmp_path / "c1.jsonl"
+    f.write_text('{"solved": true, "nodes_explored": 100}\n'
+                 '{"solved": false, "nodes_explored": 900}\n'
+                 '{"solved": fal')                       # in-flight tail
+    hb = run_cov._ChunkFilesHeartbeat([str(tmp_path / "*.jsonl")],
+                                      total_rows=10, period=60.0, now=0.0)
+    assert (hb.done0, hb.solved0, hb.nodes0) == (2, 1, 1000)
+    # the scanner reads a file another process owns: skip, NEVER repair
+    assert f.read_text().endswith('{"solved": fal')
+    assert hb.maybe_beat(59.0) is None                # full first period
+    f.write_text('{"solved": true, "nodes_explored": 100}\n'
+                 '{"solved": false, "nodes_explored": 900}\n'
+                 '{"solved": true, "nodes_explored": 500}\n'
+                 '{"solved": false, "nodes_explored": 1500}\n')
+    line = hb.maybe_beat(60.0)
+    assert "4/10 rows" in line and "1 solved this session" in line
+    assert "2,000 nodes" in line
+    # 2 rows in 60 s -> 30 s/row x 6 remaining = 3 min
+    assert "~3m left" in line
+    assert hb.maybe_beat(61.0) is None                # cadence: no spam
+
+
+def test_notebook_mirror_patch_is_monotonic(tmp_path, monkeypatch):
+    """run()'s .py-side retrofit of the notebook's Drive mirror: rebinds a
+    __main__._sync_to_drive to bigger-wins — pushes a grown local file, never
+    clobbers a bigger Drive copy with a stale seeded one (the multi-session
+    flip-flop) — and patches exactly once."""
+    import __main__
+    local, drive = tmp_path / "local", tmp_path / "drive"
+    local.mkdir(), drive.mkdir()
+    monkeypatch.setattr(__main__, "_sync_to_drive", lambda: None,
+                        raising=False)
+    monkeypatch.setattr(__main__, "LOCAL_OUT", str(local), raising=False)
+    monkeypatch.setattr(__main__, "DRIVE_DIR", str(drive), raising=False)
+    assert run_cov._patch_notebook_mirror() is True
+    assert run_cov._patch_notebook_mirror() is False      # idempotent
+    (local / "a_c1of4_x.jsonl").write_text('{"r": 1}\n{"r": 2}\n')   # fresh own
+    (drive / "a_c1of4_x.jsonl").write_text('{"r": 1}\n')
+    (local / "b_c2of4_x.jsonl").write_text('{"r": 1}\n')             # stale seed
+    (drive / "b_c2of4_x.jsonl").write_text('{"r": 1}\n{"r": 2}\n')   # owner fresh
+    __main__._sync_to_drive()
+    assert (drive / "a_c1of4_x.jsonl").read_text().count("\n") == 2  # pushed
+    assert (drive / "b_c2of4_x.jsonl").read_text().count("\n") == 2  # kept
+
+
+def test_chunk_workers_end_to_end(tmp_path):
+    """REAL spawn path (no spies — monkeypatches don't survive spawn). Coarse
+    chunk 1 of 2 holds presentations j=0 and j=2; chunk_procs=2 splits them
+    over fine chunks c1of4 and c3of4, one worker each. The fold-back coarse
+    file must hold exactly the serial chunk run's rows, a rerun must append
+    nothing, and a pre-seeded COMPLETE coarse file (the user's restart after
+    a serial session) must migrate without re-searching."""
+    csv_p = tmp_path / "reach_tier_9.csv"
+    csv_p.write_text("name,r1,r2\nAK(3),xyxYXY,xxxYYYY\nW4,xyyxY,yxxxY\n"
+                     "W4b,xyyxY,yxxxY\n")
+    base = dict(datasets=[str(csv_p)], budgets=[100], mode="cov",
+                experiment_length=True, use_chunks=True, chunks=2,
+                chunk_index=1)
+    volatile = {"time_seconds", "min_relator", "max_relator",
+                "max_relator_expanded"}      # set-tie-broken -> PYTHONHASHSEED
+
+    def keyed(path):
+        rows = [json.loads(ln) for ln in open(path) if ln.strip()]
+        return {(r["pres_id"], r["z_word"], r["iso_gen"], r["iso_index"]):
+                {k: v for k, v in r.items() if k not in volatile}
+                for r in rows}
+
+    ref = run_cov.run(**base, out_dir=str(tmp_path / "ref"), chunk_procs=1)
+    par = run_cov.run(**base, out_dir=str(tmp_path / "out"), chunk_procs=2)
+    assert os.path.basename(par[0]) == os.path.basename(ref[0])
+    assert "_c1of2_" in os.path.basename(par[0])
+    assert keyed(par[0]) == keyed(ref[0])
+    fine = sorted(os.path.basename(p) for p in
+                  glob.glob(str(tmp_path / "out" / "*of4_*.jsonl")))
+    assert [f.split("_")[7] for f in fine] == ["c1of4", "c3of4"]
+
+    # rerun: fine files are complete, so nothing is searched or appended
+    before = open(par[0]).read()
+    par2 = run_cov.run(**base, out_dir=str(tmp_path / "out"), chunk_procs=2)
+    assert par2[0] == par[0] and open(par[0]).read() == before
+
+    # a serial session's coarse file alone migrates: re-bin fills the fine
+    # files, workers re-search nothing, fold-back adds nothing new
+    os.makedirs(tmp_path / "mig")
+    shutil.copyfile(ref[0], tmp_path / "mig" / os.path.basename(ref[0]))
+    mig = run_cov.run(**base, out_dir=str(tmp_path / "mig"), chunk_procs=2)
+    assert keyed(mig[0]) == keyed(ref[0])
+    assert open(mig[0]).read() == open(ref[0]).read()

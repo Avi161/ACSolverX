@@ -73,3 +73,11 @@ chunk_index: null               # 1..chunks = run only that chunk (one per paral
                                 # merge_chunks() (or --merge-chunks) concatenates
                                 # them into the canonical unchunked file, which
                                 # unchunked runs then resume seamlessly.
+chunk_procs: 0                  # workers per single-chunk session (chunk_index = i):
+                                # the chunk fans out over this many spawned processes
+                                # — its nested fine chunks of the chunks*chunk_procs
+                                # stride partition — and every row folds back into
+                                # the one c{i}of{N} file at the end, so resume and
+                                # merge_chunks are unchanged. 0 = auto (all CPU
+                                # cores); 1 = serial. Result-neutral -> NOT in the
+                                # filename identity.
