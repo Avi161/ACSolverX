@@ -1,11 +1,12 @@
 """Tests for the one-shot CoV transform (case i).
 
-Collected by a bare ``pytest`` (pytest.ini's testpaths includes
-``experiments/stable_ac``); run just this pipeline's tests with:
+Collected by a bare ``pytest`` (pytest.ini's testpaths is ``tests``); run just
+this pipeline's tests with:
 
-    .venv/bin/python3 -m pytest experiments/stable_ac -q
+    .venv/bin/python3 -m pytest tests/stable_ac -q
 """
 
+import glob
 import json
 import os
 
@@ -930,3 +931,95 @@ def test_run_prefix_universe_identity_and_validation():
         run_cov.load_config(z_source="universe")            # needs the sweep
     with pytest.raises(ValueError):
         run_cov.load_config(z_source="anything-else")
+
+
+# --- CHUNKED SWEEPS (stride partition, chunk-file identity, merge) -------------
+
+def test_chunk_rows_stride_partition():
+    rows = [(f"p{j}", "r1", "r2", "src") for j in range(7)]
+    parts = [run_cov._chunk_rows(rows, 3, i) for i in (1, 2, 3)]
+    # covers everything, disjoint, stride (not blocks), near-equal sizes
+    assert sorted(sum(parts, [])) == sorted(rows)
+    assert parts[0] == [rows[0], rows[3], rows[6]]
+    assert parts[1] == [rows[1], rows[4]]
+    assert parts[2] == [rows[2], rows[5]]
+
+
+def test_run_prefix_chunk_identity():
+    c = dict(run_cov.COV_DEFAULTS)
+    c["experiment_length"] = True
+    base = run_cov._run_prefix(c, 1000, 66)
+    ch = dict(c, use_chunks=True, chunks=3, chunk_index=2)
+    # the chunk is a different row subset -> in the identity; n_rows stays the
+    # FULL dataset size so the merged file's name is exactly the base prefix
+    assert run_cov._run_prefix(ch, 1000, 66) == base + "c2of3_"
+    # use_chunks without a chunk_index (the parallel parent) resolves nothing
+    assert run_cov._run_prefix(dict(ch, chunk_index=None), 1000, 66) == base
+    with pytest.raises(ValueError):
+        run_cov.load_config(use_chunks=True, chunks=1)
+    with pytest.raises(ValueError):
+        run_cov.load_config(use_chunks=True, chunks=3, chunk_index=4)
+
+
+def test_unchunked_resume_never_globs_a_chunk_file(tmp_path, monkeypatch):
+    calls = _spy_searches(monkeypatch, solved=False)
+    common = _sweep_common(tmp_path)
+    ch1 = run_cov.run(**common, use_chunks=True, chunks=2, chunk_index=1)
+    assert "_c1of2_" in os.path.basename(ch1[0])
+    n_chunk_rows = sum(1 for _ in open(ch1[0]))
+    # an unchunked run in the same out_dir must open a FRESH file, not resume
+    # into the chunk file (a different row subset with the same name prefix)
+    out = run_cov.run(**common)
+    assert "_c1of2_" not in os.path.basename(out[0]) and out[0] != ch1[0]
+    assert sum(1 for _ in open(ch1[0])) == n_chunk_rows
+
+
+def test_chunked_sweep_merges_to_the_unchunked_rows(tmp_path, monkeypatch):
+    _spy_searches(monkeypatch, solved=False)
+    csv_p = tmp_path / "reach_tier_9.csv"
+    csv_p.write_text("name,r1,r2\nAK(3),xyxYXY,xxxYYYY\nW4,xyyxY,yxxxY\n")
+    common = dict(datasets=[str(csv_p)], budgets=[100], mode="cov",
+                  experiment_length=True, out_dir=str(tmp_path / "out"))
+    ref = run_cov.run(**dict(common, out_dir=str(tmp_path / "ref")))
+    volatile = {"time_seconds"}
+
+    def keyed(path):
+        rows = [json.loads(ln) for ln in open(path) if ln.strip()]
+        return {(r["pres_id"], r["z_word"], r["iso_gen"], r["iso_index"]):
+                {k: v for k, v in r.items() if k not in volatile} for r in rows}
+
+    chunked = dict(common, use_chunks=True, chunks=2)
+    # merging before both chunks exist must refuse
+    run_cov.run(**chunked, chunk_index=1)
+    with pytest.raises(RuntimeError, match="expected exactly one"):
+        run_cov.merge_chunks(**chunked)
+    run_cov.run(**chunked, chunk_index=2)
+    merged = run_cov.merge_chunks(**chunked)
+    assert len(merged) == 1
+    assert "_c" not in os.path.basename(merged[0]).replace("_cyc", "")
+    assert keyed(merged[0]) == keyed(ref[0])
+    # a second merge must refuse to overwrite the target
+    with pytest.raises(RuntimeError, match="already exists"):
+        run_cov.merge_chunks(**chunked)
+    # and the merged file IS the unchunked resume target: rerunning the
+    # unchunked sweep finds every row done and re-searches nothing
+    out2 = run_cov.run(**common)
+    assert out2[0] == merged[0]
+    assert keyed(out2[0]) == keyed(ref[0])
+
+
+def test_merge_refuses_an_incomplete_chunk(tmp_path, monkeypatch):
+    _spy_searches(monkeypatch, solved=False)
+    common = _sweep_common(tmp_path)
+    chunked = dict(common, use_chunks=True, chunks=2)
+    run_cov.run(**chunked, chunk_index=1)
+    run_cov.run(**chunked, chunk_index=2)
+    # single-presentation fixture: chunk 2 is legitimately empty of rows only
+    # if it has no presentations — so instead truncate chunk 1 to fake a crash
+    files = sorted(glob.glob(str(tmp_path / "out" / "*_c1of2_*.jsonl")))
+    assert len(files) == 1
+    lines = open(files[0]).read().splitlines()
+    with open(files[0], "w") as f:
+        f.write("\n".join(lines[:-1]) + "\n")
+    with pytest.raises(RuntimeError, match="INCOMPLETE"):
+        run_cov.merge_chunks(**chunked)

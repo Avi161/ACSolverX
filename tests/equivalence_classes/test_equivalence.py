@@ -11,7 +11,7 @@ Layered so a bug in one layer cannot hide a bug in another:
   * the search, against facts established independently of it (the 2 merges the 1M-node sweep
     found, and the known 261 -> 168 Aut partition).
 
-Run:  .venv/bin/python3 -m pytest experiments/equivalence_classes -q
+Run:  .venv/bin/python3 -m pytest tests/equivalence_classes -q
 """
 import csv
 import json
@@ -225,7 +225,7 @@ def test_verifier_rebuilds_the_partition_not_just_the_merges():
     if not os.path.exists(art):
         pytest.skip("headline artifact not present")
     out = subprocess.run(
-        [sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+        [sys.executable, os.path.join(ROOT, "experiments", "equivalence_classes",
                                       "verify", "verify_certificates.py"), art],
         capture_output=True, text=True, cwd=ROOT)
     assert out.returncode == 0, out.stdout + out.stderr
@@ -273,7 +273,7 @@ def test_invert_rejects_a_non_automorphism(bad):
 
 # ------------------------------------------------------------- the verification pipeline
 CERT = os.path.join(ROOT, "results", "equivalence_classes", "certificates.json")
-VERIFY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "verify", "verify_proofs.py")
+VERIFY = os.path.join(ROOT, "experiments", "equivalence_classes", "verify", "verify_proofs.py")
 
 
 def _verify(path):

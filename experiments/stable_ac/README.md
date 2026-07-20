@@ -12,8 +12,8 @@ pipeline** (code + config yaml + Colab notebook + tests, all in one place).
 | `word_families.py` | z-word builders, n-agnostic: **A1** curated `\|w\| ≤ 4` · **A2** prefixes of all cyclic rotations of each relator (raw count `Σ\|rᵢ\|²`, deduped; `A2_MAX_WORDS` caps it — A2 dominates cost) · **A3** proportion grid `r1[:p] + r2[:q]`. |
 | `verify_results.py` | the **certificate verifier**: replays every `solved: true` row's move path through the pure-Python spec (never through a solver — a solver bug cannot self-certify), checking move legality, the per-relator cap at every step, a genuinely trivial endpoint, `abs_det` preservation, and cross-file **budget invariance**. Handles both pipelines' formats. Run it on any results before believing them. |
 
-The core's tests live in `experiments/greedy_tests/` (`test_solvern.py`, `test_word_families.py`)
-because spec-parity needs the spec and its fixtures.
+The core's tests live in `tests/greedy/` (`test_solvern.py`, `test_word_families.py`)
+because spec-parity needs the spec and its fixtures (which stay under `experiments/greedy_tests/`).
 
 ## `nocov/` — Branch A (No CoV)
 
@@ -68,8 +68,8 @@ that feeds the **existing** 2-gen numba greedy unchanged.
 ## Tests
 
 ```bash
-.venv/bin/python3 -m pytest experiments/stable_ac -q     # both pipelines' colocated tests
-.venv/bin/python3 -m pytest experiments/greedy_tests -q  # solver core (spec parity, contract)
+.venv/bin/python3 -m pytest tests/stable_ac -q     # both pipelines' harness tests
+.venv/bin/python3 -m pytest tests/greedy -q        # solver core (spec parity, contract)
 ```
 
 Both are collected by a bare `pytest` (see `pytest.ini`).

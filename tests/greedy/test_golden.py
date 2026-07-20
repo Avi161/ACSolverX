@@ -27,10 +27,7 @@ import pytest
 
 from experiments.search.greedy_baseline import greedy_search
 from experiments.greedy_tests.fixtures.presentations import load_dataset
-from experiments.greedy_tests.tools.regen_golden import MAX_BUDGET
-
-GOLDEN = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                      "golden", "greedy_golden.json")
+from experiments.greedy_tests.tools.regen_golden import GOLDEN, MAX_BUDGET
 
 CHECKED = ("solved", "nodes_explored", "path_length", "min_relator_length",
            "max_relator_length", "max_relator_length_expanded",

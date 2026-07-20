@@ -1,8 +1,8 @@
 """The seam between ``run_dataset`` and ``experiments/wandb_tracking.py``.
 
 Scope. `wandb_tracking`'s own behaviour -- the identity scheme, the anytime
-profile, the panels, the resume semantics -- is covered by `tests/wandb_tracking_test.py`
-and `tests/wandb_offline_integration.py`. Duplicating that here would mean two
+profile, the panels, the resume semantics -- is covered by `tests/wandb_tracking/wandb_tracking_test.py`
+and `tests/wandb_tracking/wandb_offline_integration.py`. Duplicating that here would mean two
 places to update. What is *not* covered there, and is covered here, is the wiring:
 that `run_dataset` reaches `wandb_tracking` with the right arguments, that the
 jsonl is written regardless, and above all that `USE_WANDB=False` never imports

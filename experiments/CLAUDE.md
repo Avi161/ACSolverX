@@ -12,10 +12,10 @@ What each directory here *is*: [`README.md`](README.md).
 | dir | role | README |
 |---|---|---|
 | `search/` | the two solvers (heavy + compact) — they pop identically | — |
-| `stable_ac/` | shared core (`solvern.py`, `word_families.py`) + one folder per pipeline: `nocov/` (Branch A) and `cov/` (Branch B), each with runner + yaml + notebook + colocated tests | [→](stable_ac/README.md) |
+| `stable_ac/` | shared core (`solvern.py`, `word_families.py`) + one folder per pipeline: `nocov/` (Branch A) and `cov/` (Branch B), each with runner + yaml + notebook (tests in `tests/stable_ac/`) | [→](stable_ac/README.md) |
 | `analysis/` | the stable-AC benchmark (difficulty ladder + reach tier + combined) | [→](analysis/README.md) |
-| `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` + `test_equivalence.py` | [→](equivalence_classes/README.md) |
-| `greedy_tests/` | the pipeline's test suite | [→](greedy_tests/README.md) |
+| `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` (tests in `tests/equivalence_classes/`) | [→](equivalence_classes/README.md) |
+| `greedy_tests/` | the greedy test SUPPORT code — `spec/` `fixtures/` `adapters.py` `tools/` `golden/` (imported by production too); the tests live in `tests/greedy/` | [→](greedy_tests/README.md) |
 | `lessons/` | 38 shipped bugs. Read via the index, not by browsing. | [→](lessons/README.md) |
 
 **Scripts here find the repo root by walking up until they see `experiments/` + `data/` — never by
@@ -55,8 +55,9 @@ wrong *without raising*. Keep the walk-up.
   the Python `progress` callback the memory guard rides on.
 - numba: cast **both** ternary branches to `int64`; never round-trip a `uint64` through Python.
 
-**`greedy_tests/`** — the pipeline's test suite. **Run it after ANY change to the three files above**
-(`pytest experiments/greedy_tests -q`; `--runslow` before a push). See its `README.md`.
+**`greedy_tests/`** — the greedy test SUPPORT code (`spec/`, `fixtures/`, `adapters.py`, `tools/`, `golden/`);
+the tests themselves are in `tests/greedy/`. **Run them after ANY change to the three files above or to this
+support code** (`pytest tests/greedy -q`; `--runslow` before a push). See its `README.md`.
 - Three layers, so a bug in one can't hide a bug in another: a general-`n` spec, the abelianization
   invariant the solver never computes, and a `SolverAdapter` seam the stable-AC port plugs into.
   [[WORKS]](lessons/greedy-test-suite-three-layers.md)
@@ -97,7 +98,7 @@ uint8→signed before negating. HIGH_SPEEDUP is result-neutral — never in a fi
 prefix is the resume key (no dates, no result-neutral knobs); row identity is `(name, z_word)`;
 `_repair_jsonl` runs before any append, not gated on `RESUME`; `search_n` is the module-global seam
 tests monkeypatch. Budgets > 1000 refuse to run without `ACSOLVERX_ALLOW_BIG=1` (the notebook sets
-it — local runs must not). Harness tests are colocated: `pytest experiments/stable_ac -q`.
+it — local runs must not). Harness tests: `pytest tests/stable_ac -q`.
 
 **`stable_ac/cov/`** — Branch-B one-shot change of variables (`cov.py` transform + `run_cov.py`
 runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_done`/`_build_row` by
@@ -133,8 +134,8 @@ starts are admitted because sweep evidence says some presentations solve only fr
 not occur in the presentation); prefix `covsweep_..._uni{n}xys_`. `high_speedup` (production
 yaml true) routes searches through `run_baseline.greedy_search(high_speedup=True)` and
 re-solves solved rows with the normal solver for their path — result-neutral (rows identical,
-~2.9× measured), so it stays OUT of `_run_prefix` and files resume across modes. Tests are
-colocated (`cov/test_cov.py`), same command as above.
+~2.9× measured), so it stays OUT of `_run_prefix` and files resume across modes. Tests:
+`tests/stable_ac/test_cov.py`, same command as above.
 
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path
 through `greedy_tests/spec/` ONLY (never a solver — the independence is the point; a solver bug or

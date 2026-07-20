@@ -1,6 +1,6 @@
 """Offline end-to-end check of the new W&B layer. No network, no API key.
 
-    .venv/bin/python3 tests/wandb_offline_integration.py <phase>
+    .venv/bin/python3 tests/wandb_tracking/wandb_offline_integration.py <phase>
 
 Phases run as separate processes so `resume` is exercised the way it happens in
 Colab (a fresh interpreter reattaching to an existing jsonl), not via leftover

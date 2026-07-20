@@ -227,7 +227,7 @@ expansion + canonicalisation + relator-sort + key-packing in ONE `@njit` kernel 
 per pop and carries states as packed bytes (the packed key IS the heap tie-break —
 injective, so the pop order is provably identical). It keeps parent/move pointers, so
 **every result field is bit-identical, paths included** — whole-dict equality is
-pinned by `experiments/greedy_tests/test_solvern_fast.py` (parity at n_gen 2–5,
+pinned by `tests/greedy/test_solvern_fast.py` (parity at n_gen 2–5,
 spec trace-equality, kernel-vs-loop child-order equality, abs_det on every kernel
 child) and the fast/slow micro-run row-equality test in `test_run_nocov.py`.
 Result-neutral ⇒ NOT part of the filename identity: files written in either mode
@@ -329,11 +329,11 @@ diffing states. Example first row of the A1@100 paths file: `ms499`, `z_word: "x
 
 Two independent layers:
 
-1. **Tests.** `test_run_nocov.py` (this folder, collected by `pytest
-   experiments/stable_ac -q`, 29 tests with `cov/`) covers the row schema, resume
+1. **Tests.** `tests/stable_ac/test_run_nocov.py` (collected by `pytest
+   tests/stable_ac -q`, with `test_cov.py`) covers the row schema, resume
    skipping, torn-line repair, filename identity, yaml sanity, the budget guard, and one
    real budget-100 micro-run. The solver itself is pinned in
-   `experiments/greedy_tests/` — `test_solvern.py` proves trace-equality with the
+   `tests/greedy/` — `test_solvern.py` proves trace-equality with the
    pure-Python spec at `n_gen ≤ 3` plus 4-generator seamlessness (752 tests fast tier,
    796 with `--runslow`).
 2. **Certificates.** Every `solved: true` row is a claim; its `path_moves` is the proof.

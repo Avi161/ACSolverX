@@ -256,7 +256,7 @@ def search_n_fast(pres, budget, cap=64, cyclic=True, progress=None):
 
     Same signature, same return dict, every field equal (paths included; the
     parent/move pointers are kept, so no recovery re-solve exists). Only the
-    speed differs. Pinned by experiments/greedy_tests/test_solvern_fast.py.
+    speed differs. Pinned by tests/greedy/test_solvern_fast.py.
     """
     n_rel = len(tuple(pres.relators))
 

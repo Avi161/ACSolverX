@@ -3,13 +3,26 @@
 No wandb, no network. Every expected value below is hand-computed, so a passing
 run means the analytics are right, not merely self-consistent.
 
-    .venv/bin/python3 tests/wandb_tracking_test.py
+    .venv/bin/python3 tests/wandb_tracking/wandb_tracking_test.py
 """
 
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Repo root by walking up (not by counting dirname levels), so a standalone run
+# works regardless of how deep this file sits under tests/.
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
+
+
+sys.path.insert(0, _repo_root())
 
 from experiments.wandb_tracking import (  # noqa: E402
     _spread, anytime_profile, bucket_by_initial_length, canonical_initial_length,

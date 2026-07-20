@@ -1,16 +1,20 @@
 # greedy_tests
 
-Test suite for the greedy AC-search pipeline: `experiments/search/greedy_baseline.py`
-(normal + `HIGH_SPEEDUP` solvers) and `experiments/run_baseline.py` (the runner).
+The test SUPPORT code for the greedy AC-search pipeline — `spec/` (the independent
+general-`n` oracle), `fixtures/`, `adapters.py`, `tools/`, `golden/`. Production modules
+import `spec/` and `fixtures/` too, so this code stays under `experiments/`.
+**The test files themselves live in `tests/greedy/`.** They cover
+`experiments/search/greedy_baseline.py` (normal + `HIGH_SPEEDUP` solvers) and
+`experiments/run_baseline.py` (the runner).
 
 ## Running it
 
 ```bash
 # default tier -- run after ANY change to the pipeline (~2 min; +30-60s cold numba JIT)
-.venv/bin/python3 -m pytest experiments/greedy_tests -q
+.venv/bin/python3 -m pytest tests/greedy -q
 
 # full tier -- run before any push or result claim (~2 min)
-.venv/bin/python3 -m pytest experiments/greedy_tests -q --runslow
+.venv/bin/python3 -m pytest tests/greedy -q --runslow
 ```
 
 **No test uses a node budget above `MAX_BUDGET = 1_000`.** That is a free
@@ -33,9 +37,10 @@ that constant down to 100 and pin the real value separately.
 `--runslow` is passed. Temporary files go to `.pytest_tmp/` inside the repo,
 never `/tmp`.
 
-A bare `pytest` also collects `tests/`, which holds the `wandb_tracking` suite.
-The two do not overlap: `wandb_tracking`'s identity scheme, anytime profile and
-panels are tested there; `test_runner_wandb.py` here tests only the *seam* --
+A bare `pytest` collects every suite under `tests/` (these tests are `tests/greedy/`;
+the `wandb_tracking` suite is `tests/wandb_tracking/`). The two do not overlap:
+`wandb_tracking`'s identity scheme, anytime profile and panels are tested there;
+`test_runner_wandb.py` tests only the *seam* --
 that `run_dataset` reaches `wandb_tracking` with the right arguments, and that
 `USE_WANDB=False` never touches it at all.
 

@@ -37,13 +37,15 @@ and a bloated CLAUDE.md gets ignored.
 
 ## Tests
 
+**All test suites live under one root `tests/`, nested by area** (`tests/greedy/`, `tests/equivalence_classes/`, `tests/stable_ac/`, `tests/wandb_tracking/`), with the shared `conftest.py` at `tests/`. A bare `pytest` collects them all (`pytest.ini` `testpaths = tests`). The test SUPPORT code they import — `experiments/greedy_tests/{spec,fixtures,adapters.py,tools,golden}` — deliberately stays under `experiments/` because production modules import it too; do not move it.
+
 ### ⛔ MANDATORY after ANY change to the greedy pipeline
 
-**Any** edit to `experiments/search/greedy_baseline.py`, `experiments/run_baseline.py`, `experiments/greedy_baseline.ipynb`, or anything under `experiments/greedy_tests/` **must** be followed by:
+**Any** edit to `experiments/search/greedy_baseline.py`, `experiments/run_baseline.py`, `experiments/greedy_baseline.ipynb`, or anything under `tests/greedy/` or `experiments/greedy_tests/` (the spec/fixtures support) **must** be followed by:
 
 ```bash
-.venv/bin/python3 -m pytest experiments/greedy_tests -q            # after every change (~1–2 min)
-.venv/bin/python3 -m pytest experiments/greedy_tests -q --runslow  # before any push or result claim (~2–3 min)
+.venv/bin/python3 -m pytest tests/greedy -q            # after every change (~1–2 min)
+.venv/bin/python3 -m pytest tests/greedy -q --runslow  # before any push or result claim (~2–3 min)
 ```
 
 - **Do not report a change as working, and do not commit, until the default tier is green.** A green default tier says nothing about what it *skipped* — `--runslow` carries the multiprocessing path, the golden regressions, and the deep parity matrix. [[WORKS]](experiments/lessons/slow-tier-caught-broken-path-test.md)
@@ -57,7 +59,7 @@ and a bloated CLAUDE.md gets ignored.
 ### ⛔ MANDATORY after ANY change to `experiments/equivalence_classes/`
 
 ```bash
-.venv/bin/python3 -m pytest experiments/equivalence_classes -q          # 35 tests, ~65 s
+.venv/bin/python3 -m pytest tests/equivalence_classes -q                # 35 tests, ~65 s
 .venv/bin/python3 experiments/equivalence_classes/verify/verify_proofs.py   # must exit 0
 ```
 
@@ -67,8 +69,8 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 
 ### Other suites
 
-- `.venv/bin/python3 tests/wandb_tracking_test.py` — pure, offline, no wandb server needed.
-- `.venv/bin/python3 tests/wandb_offline_integration.py <phase>` — phases: `cum_nodes identity fresh panels resume_full resume_partial heavy`.
+- `.venv/bin/python3 tests/wandb_tracking/wandb_tracking_test.py` — pure, offline, no wandb server needed.
+- `.venv/bin/python3 tests/wandb_tracking/wandb_offline_integration.py <phase>` — phases: `cum_nodes identity fresh panels resume_full resume_partial heavy`.
 
 ## Lessons index
 

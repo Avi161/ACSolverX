@@ -7,8 +7,7 @@ solving in single-digit nodes. The certificate tests re-verify both shipped
 JSONs from disk — they are the experiment's actual claims.
 
 Run from the repo root:
-    PYTHONHASHSEED=0 .venv/bin/python3 -m pytest \
-        experiments/stable_ac/cov/ak_3_universal_test/test_ak3.py -q
+    PYTHONHASHSEED=0 .venv/bin/python3 -m pytest tests/stable_ac/test_ak3.py -q
 """
 
 import pytest

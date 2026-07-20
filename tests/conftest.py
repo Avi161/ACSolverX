@@ -14,8 +14,19 @@ import sys
 
 import pytest
 
-_HERE = os.path.dirname(os.path.abspath(__file__))
-_ROOT = os.path.dirname(os.path.dirname(_HERE))
+# Repo root, found by walking up -- never by counting dirname levels, so this
+# file's depth under the repo is not baked in (it moved to tests/ once already).
+def _repo_root():
+    d = os.path.dirname(os.path.abspath(__file__))
+    while d != os.path.dirname(d):
+        if (os.path.isdir(os.path.join(d, "experiments"))
+                and os.path.isdir(os.path.join(d, "data"))):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root (holding experiments/ and data/) not found")
+
+
+_ROOT = _repo_root()
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
@@ -50,7 +61,7 @@ def numba_warm():
 
 @pytest.fixture(scope="session")
 def repo_root():
-    from .fixtures.presentations import repo_root as _rr
+    from experiments.greedy_tests.fixtures.presentations import repo_root as _rr
 
     return _rr()
 

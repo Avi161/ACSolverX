@@ -91,7 +91,7 @@ All on F₂ = F(x,y). The CoV transform = (S1) stabilize z⁻¹w, (S2) substitut
 - **Pipelines:** `experiments/stable_ac/nocov/` (Branch A: adjoin z, plain or z⁻¹w via families A1/A2/A3, solve at n_gen=3) and `experiments/stable_ac/cov/` (Branch B: one-shot CoV back to 2 generators). Sweep row identity is `(pres_id, z_word, iso_gen, iso_index)` — iso_index is KEY, not a passenger.
 - **Results discipline:** every solved row carries a move path; believe nothing until `experiments/stable_ac/verify_results.py` replays it through the pure-Python spec (a solver bug cannot self-certify). Filename prefix = resume identity: every result-changing knob in, every result-neutral knob out (never dates, never HIGH_SPEEDUP).
 - **Benchmarks/data:** `data/ms640_solved.txt` (640 solved MS instances, flat 48-int rows, cap 24); `results/benchmark/combined/benchmark_combined_{11,22,44,66}.json`; the 66-set is the active CoV benchmark. Equivalence classes: the 261 unsolved MS reps = 168 classes under exact Aut(F₂) canonicalization, ≤ 125 under ACA search so far (`results/equivalence_classes/`).
-- Tests: `pytest experiments/greedy_tests -q` and `pytest experiments/stable_ac -q` gate every pipeline edit; test budgets ≤ 1,000 by design.
+- Tests: `pytest tests/greedy -q` and `pytest tests/stable_ac -q` gate every pipeline edit; test budgets ≤ 1,000 by design.
 
 # Literature index (read on demand — paths relative to repo root)
 

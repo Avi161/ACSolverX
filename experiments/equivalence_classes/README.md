@@ -69,7 +69,7 @@ the verifier** — tampering with `certificates.json` seven ways and requiring e
 It is collected by a bare `pytest` (via `testpaths`), and directly:
 
 ```bash
-.venv/bin/python3 -m pytest experiments/equivalence_classes -q     # 35 passed, ~65s
+.venv/bin/python3 -m pytest tests/equivalence_classes -q     # 35 passed, ~65s
 ```
 
 ## A note on paths

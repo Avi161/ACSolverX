@@ -18,14 +18,15 @@ the repo root (`envs/`, `network.py`, `ppo_ac_s.py`) is a *spec to port from, ne
 ## Tests
 
 ```bash
-.venv/bin/python3 -m pytest experiments/greedy_tests -q            # after ANY pipeline change
-.venv/bin/python3 -m pytest experiments/greedy_tests -q --runslow  # before any push or result claim
-.venv/bin/python3 -m pytest experiments/stable_ac -q               # after any stable_ac pipeline change
-.venv/bin/python3 -m pytest experiments/equivalence_classes -q     # after any equivalence change
+.venv/bin/python3 -m pytest tests/greedy -q               # after ANY pipeline change
+.venv/bin/python3 -m pytest tests/greedy -q --runslow     # before any push or result claim
+.venv/bin/python3 -m pytest tests/stable_ac -q            # after any stable_ac pipeline change
+.venv/bin/python3 -m pytest tests/equivalence_classes -q  # after any equivalence change
 ```
 
-A bare `pytest` collects all four suites plus `tests/` (see `pytest.ini`). The stable-AC solver
-core (`solvern.py`, `word_families.py`) is tested in `greedy_tests/` (spec parity needs the spec);
+All suites live under the root `tests/` (nested by area); a bare `pytest` collects them all (see
+`pytest.ini`). The stable-AC solver core (`solvern.py`, `word_families.py`) is tested in `tests/greedy/`
+(spec parity needs the spec, which stays under `experiments/greedy_tests/`);
 each pipeline's harness tests are colocated in its own folder (`stable_ac/{nocov,cov}/test_*.py`).
 
 **A green default tier says nothing about what it skipped** — `--runslow` carries the multiprocessing
