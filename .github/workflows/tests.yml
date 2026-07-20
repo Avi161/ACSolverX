@@ -1,0 +1,45 @@
+name: tests
+
+# Runs the pytest suite (pytest.ini testpaths: greedy_tests, equivalence_classes,
+# stable_ac, tests) on every PR into main and on pushes to main. The `slow` tier
+# is auto-skipped without --runslow (see conftest), so this is the fast gate.
+# Enable it as a required status check in the main ruleset once one run exists.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # No network / real runs from the wandb-marked tests on CI.
+      WANDB_MODE: offline
+      WANDB_SILENT: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          # Matches the acenv pins in requirements.txt.
+          python-version: "3.10"
+          cache: pip
+
+      - name: Install dependencies
+        # Full pinned stack for import-completeness; trim to numba/numpy/pandas/
+        # scikit-learn/wandb later if faster CI is wanted.
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run test suite (fast tier)
+        run: pytest
