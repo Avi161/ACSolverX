@@ -144,7 +144,9 @@ a gamed test suite cannot self-certify). Treat any edit here with the same suspi
 any results jsonl before believing the numbers: `-m experiments.stable_ac.verify_results`. Both
 runners stamp `git_commit` into every row (provenance only — NEVER part of the resume identity).
 
-**`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN.
+**`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN. This 3-cell shape is THE pattern for every
+Colab notebook in the repo (cov_baseline.ipynb follows it; extra cells only with a structural
+reason; results always jsonl). [[WORKS]](lessons/colab-notebook-pattern.md)
 - [a push does not reach a running Colab](lessons/notebook-push-does-not-reach-colab.md) · [`git pull` is not a module reload](lessons/git-pull-is-not-a-module-reload.md)
 - [`BRANCH` must match git](lessons/notebook-branch-must-match-git.md) · [don't nest the clone](lessons/colab-setup-nested-clone.md) · [Drive mount root isn't writable](lessons/colab-drive-mount-root-not-writable.md)
 - [Colab login is flaky](lessons/wandb-colab-login-flaky.md) · [promptless auth needs a Colab Secret](lessons/wandb-auto-auth-colab-secret.md)

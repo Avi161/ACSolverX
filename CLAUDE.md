@@ -135,6 +135,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - `EnterWorktree` branches from `origin/main`, not the active branch; re-check `git log` on the target before pushing, and test the *seam* when a neighbouring module already has its own tests. [[TRAP]](experiments/lessons/worktree-branch-drift-rebase.md)
 
 ### Colab / notebook
+- New notebooks = the greedy_baseline 3-cell pattern — CONFIG (knobs over yaml, "edit ONLY this cell") / SETUP (clone+reset, `experiments.*` sys.modules purge, Drive mount + seed-back) / RUN (local jsonl writes + background Drive mirror), an extra cell only with a structural reason, results ALWAYS jsonl; verify by exec'ing the real cells with the runner stubbed AFTER SETUP. [[WORKS]](experiments/lessons/colab-notebook-pattern.md)
 - The Drive mount root `/content/drive/` is not writable — every output path goes under `/content/drive/MyDrive/...`. [[TRAP]](experiments/lessons/colab-drive-mount-root-not-writable.md)
 - Anchor to an absolute base before cloning, or each re-run nests the repo one level deeper. [[TRAP]](experiments/lessons/colab-setup-nested-clone.md)
 - Pushing notebook changes does NOT update the user's running Colab cells; they must re-open it from GitHub. Put logic in `.py` modules. [[TRAP]](experiments/lessons/notebook-push-does-not-reach-colab.md)
