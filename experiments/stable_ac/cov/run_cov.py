@@ -29,10 +29,12 @@ CLI (from the repo root):
 
 import argparse
 import csv
+import fcntl
 import glob
 import json
 import os
 import re
+import signal
 import time
 from datetime import datetime
 
@@ -297,9 +299,55 @@ def _search(c, r1, r2, node_budget, cap):
     return stats
 
 
+_HELD_LOCKS = []
+
+
+def _claim_out_path(out_path):
+    """Exclusive-writer claim on ``out_path``, held until this process dies.
+
+    Interrupting a notebook cell kills only the parent loop — the spawned
+    chunk workers survive it, so a re-run races them: both fleets append the
+    same remaining rows to the same jsonl, doubling every row's compute
+    (observed: ~half a session's nodes on the 50k aca124 run). The kernel
+    releases a dead process's flock automatically, so a live holder is by
+    construction a superseded run's worker: kill it and take the file. A
+    kill mid-append leaves at most a torn tail, which ``_repair_jsonl`` —
+    always run after this claim — already removes.
+    """
+    lock_fd = os.open(out_path + ".lock", os.O_RDWR | os.O_CREAT, 0o644)
+    for _ in range(40):
+        try:
+            fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            os.lseek(lock_fd, 0, os.SEEK_SET)
+            try:
+                pid = int(os.read(lock_fd, 32) or b"0")
+            except ValueError:
+                pid = 0
+            if pid == os.getpid():      # this process already holds it
+                os.close(lock_fd)
+                return
+            if pid:
+                try:
+                    os.kill(pid, signal.SIGKILL)
+                except (ProcessLookupError, PermissionError):
+                    pass
+            time.sleep(0.25)
+            continue
+        os.ftruncate(lock_fd, 0)
+        os.lseek(lock_fd, 0, os.SEEK_SET)   # a prior read moved the offset
+        os.write(lock_fd, str(os.getpid()).encode())
+        _HELD_LOCKS.append(lock_fd)     # keep the fd (and the lock) alive
+        return
+    raise RuntimeError(f"could not claim {os.path.basename(out_path)}: a "
+                       f"previous run's worker survived SIGKILL — restart "
+                       f"the runtime")
+
+
 def run_budget(c, node_budget, rows, root, n_rows=None):
     out_path = _resolve_out_path(c, node_budget,
                                  len(rows) if n_rows is None else n_rows, root)
+    _claim_out_path(out_path)
     run_baseline._repair_jsonl(out_path)
     done, n_seen, n_solved = run_baseline._read_done(out_path)
     print(f"[{c['mode']}] budget={node_budget} -> {os.path.basename(out_path)} "
@@ -520,6 +568,7 @@ def run_budget_sweep(c, node_budget, rows, root, n_rows=None):
     dataset size when ``rows`` is one chunk of it (filename identity)."""
     out_path = _resolve_out_path(c, node_budget,
                                  len(rows) if n_rows is None else n_rows, root)
+    _claim_out_path(out_path)
     run_baseline._repair_jsonl(out_path)
     done, n_seen, n_solved = _read_done_pairs(out_path)
     total_rows = sum(_sweep_row_count(c, r1, r2) for _, r1, r2, _ in rows)
@@ -641,9 +690,13 @@ def _fine_indices(chunk_index, chunks, procs):
 def _scan_rows(paths):
     """(n_rows, n_solved, total_nodes) across jsonl files that other processes
     may be appending to RIGHT NOW: unparseable lines (a torn or in-flight
-    tail) are skipped, never repaired — only the owning process truncates."""
+    tail) are skipped, never repaired — only the owning process truncates.
+    Rows are deduped by key within each file — a superseded worker's
+    re-appends must never push the heartbeat past the chunk's row total
+    (which pins the ETA at its floor and hides real progress)."""
     n = solved = nodes = 0
     for path in paths:
+        seen = set()
         try:
             with open(path) as f:
                 for ln in f:
@@ -654,6 +707,11 @@ def _scan_rows(paths):
                         row = json.loads(ln)
                     except ValueError:
                         continue
+                    key = (row.get("pres_id"), row.get("z_word"),
+                           row.get("iso_gen"), row.get("iso_index"))
+                    if key in seen:
+                        continue
+                    seen.add(key)
                     n += 1
                     solved += int(bool(row.get("solved")))
                     nodes += int(row.get("nodes_explored") or 0)

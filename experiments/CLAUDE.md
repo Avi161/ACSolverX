@@ -134,7 +134,10 @@ starts are admitted because sweep evidence says some presentations solve only fr
 not occur in the presentation); prefix `covsweep_..._uni{n}xys_`. `high_speedup` (production
 yaml true) routes searches through `run_baseline.greedy_search(high_speedup=True)` and
 re-solves solved rows with the normal solver for their path — result-neutral (rows identical,
-~2.9× measured), so it stays OUT of `_run_prefix` and files resume across modes. Tests:
+~2.9× measured), so it stays OUT of `_run_prefix` and files resume across modes. Both runners
+`flock`-claim their jsonl before appending (a live holder is an orphaned worker from a superseded
+run — it gets killed), and the chunk heartbeat counts unique row keys, never lines.
+[[TRAP]](lessons/orphaned-workers-double-compute.md) Tests:
 `tests/stable_ac/test_cov.py`, same command as above.
 
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path

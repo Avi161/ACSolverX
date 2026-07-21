@@ -1152,19 +1152,22 @@ def test_chunk_workers_dispatch_wiring(tmp_path, monkeypatch):
 
 def test_chunk_files_heartbeat_scans_and_tolerates_torn_tail(tmp_path):
     f = tmp_path / "c1.jsonl"
-    f.write_text('{"solved": true, "nodes_explored": 100}\n'
-                 '{"solved": false, "nodes_explored": 900}\n'
-                 '{"solved": fal')                       # in-flight tail
+    f.write_text('{"pres_id": 1, "z_word": null, "solved": true, "nodes_explored": 100}\n'
+                 '{"pres_id": 1, "z_word": "xy", "solved": false, "nodes_explored": 900}\n'
+                 '{"pres_id": 1, "z_word": "xyx", "solved": fal')    # in-flight tail
     hb = run_cov._ChunkFilesHeartbeat([str(tmp_path / "*.jsonl")],
                                       total_rows=10, period=60.0, now=0.0)
     assert (hb.done0, hb.solved0, hb.nodes0) == (2, 1, 1000)
     # the scanner reads a file another process owns: skip, NEVER repair
-    assert f.read_text().endswith('{"solved": fal')
+    assert f.read_text().endswith('"solved": fal')
     assert hb.maybe_beat(59.0) is None                # full first period
-    f.write_text('{"solved": true, "nodes_explored": 100}\n'
-                 '{"solved": false, "nodes_explored": 900}\n'
-                 '{"solved": true, "nodes_explored": 500}\n'
-                 '{"solved": false, "nodes_explored": 1500}\n')
+    # last line = a superseded worker's re-append of row 2: same key, counted
+    # ONCE — line counts once pinned the heartbeat past the chunk total
+    f.write_text('{"pres_id": 1, "z_word": null, "solved": true, "nodes_explored": 100}\n'
+                 '{"pres_id": 1, "z_word": "xy", "solved": false, "nodes_explored": 900}\n'
+                 '{"pres_id": 1, "z_word": "xyx", "solved": true, "nodes_explored": 500}\n'
+                 '{"pres_id": 2, "z_word": null, "solved": false, "nodes_explored": 1500}\n'
+                 '{"pres_id": 1, "z_word": "xy", "solved": false, "nodes_explored": 900}\n')
     line = hb.maybe_beat(60.0)
     assert "4/10 rows" in line and "1 solved this session" in line
     assert "2,000 nodes" in line
