@@ -510,9 +510,26 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
     print(f"{len(rows)} presentations, tiers {list(cfg['tiers'])}, budget "
           f"{budget} -> {os.path.basename(out)} ({len(done)} rows done)",
           flush=True)
+    t_run = time.monotonic()
+    n_rows_run, n_solved_run, pops_run = 0, 0, 0
     with open(out, "a") as f:
 
         def _emit(row, p):
+            nonlocal n_rows_run, n_solved_run, pops_run
+            # heartbeat accounting: each branch-tier climb is attributed to
+            # its (unique) plain-arm row, so climbs count exactly once
+            pops_run += row.get("descend_pops", 0)
+            if row.get("arm") == "plain":
+                pops_run += row.get("climb_pops_tier", 0)
+            n_rows_run += 1
+            n_solved_run += bool(row.get("solved"))
+            rate = pops_run / max(time.monotonic() - t_run, 1e-9)
+            print(f"    [{p['pres_id']}] t{row['tier']} "
+                  f"{row.get('branch_id', '-')} {row['arm']}/"
+                  f"{row['cov_idx']} {row['start_total_arm']}->"
+                  f"{row['min_total_reached']} pops={row['descend_pops']} "
+                  f"({rate:.0f} pops/s run-avg)"
+                  f"{' SOLVED' if row.get('solved') else ''}", flush=True)
             row.update({"r1_orig": p["r1"], "r2_orig": p["r2"], **common})
             if row.get("solved"):
                 ok, why = verify_segments(p["r1"], p["r2"], row["segments"])
@@ -528,6 +545,7 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
             f.write(json.dumps(row) + "\n")
             f.flush()
 
+        n_pres_done = 0
         for p in rows:
             t0 = time.monotonic()
             n_new = 0
@@ -557,8 +575,14 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
             for row in ladder_one(p["pres_id"], p["r1"], p["r2"], cfg, done):
                 _emit(row, p)
                 n_new += 1
+            n_pres_done += 1
+            el = time.monotonic() - t_run
+            eta_h = (el / n_pres_done * (len(rows) - n_pres_done)) / 3600
             print(f"  {p['pres_id']}: {n_new} rows "
-                  f"({round(time.monotonic() - t0, 1)}s)", flush=True)
+                  f"({round(time.monotonic() - t0, 1)}s) | "
+                  f"{n_pres_done}/{len(rows)} pres, {n_solved_run} solved "
+                  f"rows, {pops_run / 1000:.1f}k pops, ETA ~{eta_h:.1f}h",
+                  flush=True)
     print(f"written: {out}", flush=True)
     return out
 

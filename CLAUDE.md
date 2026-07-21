@@ -138,6 +138,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 
 ### Colab / notebook
 - New notebooks = the greedy_baseline 3-cell pattern — CONFIG (knobs over yaml, "edit ONLY this cell") / SETUP (clone+reset, `experiments.*` sys.modules purge, Drive mount + seed-back) / RUN (local jsonl writes + background Drive mirror), an extra cell only with a structural reason, results ALWAYS jsonl; verify by exec'ing the real cells with the runner stubbed AFTER SETUP. [[WORKS]](experiments/lessons/colab-notebook-pattern.md)
+- **Every notebook runner ships the standard heartbeat (per-row line with running pops/s + periodic cumulative done/solved/ETA line) AND the restart contract (Restart → Run All continues on an already-open notebook: UPDATE_REPO reset, module purge, seed_from_drive, .py-only hotfixes) — user directive, both mandatory.** [[WORKS]](experiments/lessons/notebook-heartbeat-and-restart-contract.md)
 - The Drive mount root `/content/drive/` is not writable — every output path goes under `/content/drive/MyDrive/...`. [[TRAP]](experiments/lessons/colab-drive-mount-root-not-writable.md)
 - Anchor to an absolute base before cloning, or each re-run nests the repo one level deeper. [[TRAP]](experiments/lessons/colab-setup-nested-clone.md)
 - Pushing notebook changes does NOT update the user's running Colab cells; they must re-open it from GitHub. Put logic in `.py` modules. [[TRAP]](experiments/lessons/notebook-push-does-not-reach-colab.md)
