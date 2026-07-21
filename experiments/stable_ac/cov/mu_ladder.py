@@ -77,7 +77,8 @@ def climb_one(args):
         if best_mu <= stop_mu:
             break
     _, ak3_rep, _ = aut_canon(AK3)
-    return {"pres_id": pres_id, "mu_in": mu_in, "best_mu": best_mu,
+    return {"pres_id": pres_id, "r1_orig": r1, "r2_orig": r2,
+            "mu_in": mu_in, "best_mu": best_mu,
             "best_chain": best_chain, "best_rep": best_rep,
             "hits_stop": best_mu <= stop_mu,
             "is_ak3_orbit": best_rep == ak3_rep,
@@ -117,11 +118,17 @@ def main():
     jobs = args.jobs or max(1, (os.cpu_count() or 4) - 2)
     print(f"{len(todo)} classes, rungs {args.rungs}, beam {args.beam}, "
           f"{jobs} workers -> {os.path.basename(out)}", flush=True)
+    from experiments.stable_ac.cov.run_cov import _git_commit
+    import time as _time
+    commit = _git_commit()
     n = 0
+    t0 = _time.monotonic()
     with open(out, "a") as f, ProcessPoolExecutor(max_workers=jobs) as ex:
         futs = {ex.submit(climb_one, t): t[0] for t in todo}
         for fut in as_completed(futs):
             row = fut.result()
+            row.update({"git_commit": commit,
+                        "elapsed_total_s": round(_time.monotonic() - t0, 1)})
             f.write(json.dumps(row) + "\n")
             f.flush()
             n += 1

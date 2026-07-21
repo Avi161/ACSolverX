@@ -37,7 +37,7 @@ import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 from experiments.run_baseline import _copy_file, _repair_jsonl, _seed_stage
-from experiments.stable_ac.cov.run_cov import _claim_out_path
+from experiments.stable_ac.cov.run_cov import _claim_out_path, _git_commit
 from experiments.stable_ac.idea_bench import harness
 from experiments.stable_ac.idea_bench.run_sweep import _run_cell
 
@@ -162,10 +162,17 @@ def run_portfolio(bench="aca_124", strategies=DEFAULT_STRATEGIES, group="top5",
               f"workers -> {os.path.basename(out_path)}", flush=True)
         n_done, n_solved, last_mirror = 0, 0, time.monotonic()
         with open(out_path, "a") as f:
+            pres_of = {p["pres_id"]: p for p in bench_rows}
+            commit = _git_commit()
+
             def _write(rows):
                 nonlocal n_done, n_solved, last_mirror
                 for r in rows:
-                    r.update({"cap": cap, "bench": bench})
+                    src = pres_of.get(r["pres_id"], {})
+                    r.update({"cap": cap, "bench": bench,
+                              "r1_orig": src.get("r1"),
+                              "r2_orig": src.get("r2"),
+                              "git_commit": commit})
                     if r.get("solved"):
                         n_solved += 1
                         print(f"  SOLVED {r['pres_id']} by {r['strategy']} "

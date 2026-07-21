@@ -254,10 +254,14 @@ def main():
         rows = [p for p in rows if p["pres_id"] in keep]
     if args.row_limit:
         rows = rows[:args.row_limit]
+    from experiments.stable_ac.cov.run_cov import _git_commit
+    import time as _time
+    commit = _git_commit()
     with open(out, "a") as f:
         for p in rows:
             if p["pres_id"] in done:
                 continue
+            t0 = _time.monotonic()
             control = run_baseline.greedy_search(
                 p["r1"], p["r2"], args.budget, max_relator_length=args.cap,
                 cyclic_reduce=True)
@@ -266,12 +270,15 @@ def main():
                                       fanout=args.fanout)
             verify_ok, why = (verify_escape_row(p["r1"], p["r2"], row)
                               if row["solved"] else (None, None))
-            rec = {"pres_id": p["pres_id"], "budget": args.budget,
+            rec = {"pres_id": p["pres_id"], "r1_orig": p["r1"],
+                   "r2_orig": p["r2"], "budget": args.budget,
                    "cap": args.cap, "plateau_k": args.plateau_k,
                    "fanout": args.fanout,
                    "control_solved": control["solved"],
                    "control_nodes": control["nodes_explored"],
-                   "verify_ok": verify_ok, "verify_why": why, **row}
+                   "verify_ok": verify_ok, "verify_why": why,
+                   "git_commit": commit,
+                   "elapsed_s": round(_time.monotonic() - t0, 2), **row}
             f.write(json.dumps(rec) + "\n")
             f.flush()
             tag = ("ESCAPE-SOLVED" if row["solved"] and row["phase"] == "escape"
