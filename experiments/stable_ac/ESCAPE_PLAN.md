@@ -65,5 +65,16 @@ User pushback (correct): the cap-inertness lesson was measured only at cap 24 vs
 3. Theory outputs: any new PROVEN/CHECKED results appended to `STABLE_AC_NEW.tex` conventions (new file if substantial), plus the obstruction note.
 4. Updated `IDEAS.md` annotations (first-result lines) for whatever tonight measures.
 
+## Status (2026-07-21 ~05:00, end-of-night)
+- **T1 SHIPPED**: portfolio runner + `reseed_orbit` + `cov_mu_lex` + aca_124 bench + `portfolio_124.ipynb` + RUN_ME; 15-rep pilot clean, resume no-op verified, tests green.
+- **T2 SHIPPED**: `run_static_rank.py` + independent verifier + `static_rank.ipynb`; pilot 18/110 (easy rows only), all certs verify.
+- **T4 SHIPPED, POSITIVE**: `stall_escape.py` — 12/22 vs greedy 10/22 at matched total 1k, +2 coverage 0 losses, certs verified; tuning: defaults robust (f12/pk400 degrade); 124-pilot 0/20 at 1k as expected.
+- **T5**: driver built by agent (report pending at write time).
+- **T6 DONE, honest negative**: Prover9 IG pilot — sanity proved; AK(3)/aca timeouts, memory-bound before time-bound; exploratory only.
+- **T7 DONE, GO**: Neuwirth memo — 2-generator thickenability collapses to a 4-vertex Whitehead-graph rotation check; Regina validator mandatory; ~1-week build.
+- **T8 DONE, two real results + one refutation**: the n_subs≥2 exact length law (one of the two named open targets — PROVEN + CHECKED 1995/0); the **orbit-floor refutation** (μ can descend under one gated CoV: AK(2) 11→10, ms640 row 6→2-standard; 4 of the 124 have hop-1 descents; AK(3) confirmed at a true wall); obstruction-barrier note. Committed home: `results/stable_ac/theory/` (literature/ is gitignored — see the new lesson).
+- **T9 PARTIAL**: cap-48 arm in the notebook; popped-envelope instrumentation live in stall_escape (1k envelope = 27 — cap non-binding at small budgets, 50k datum pending); μ-descent depth-2 scan running.
+- **T3 NOT BUILT** (descent probe): partially subsumed by `cov_mu_lex` + the μ-scan; the ≤1k realized-descent probe remains open for a future session.
+
 ## Cadence & risk
 Commit every ≤30 min; push at once on any result. ac-advisor verdict gates implementation (this file is what it reviews). Recon (read-only) runs while the advisor deliberates. Subagents: sonnet for recon/mechanical, opus for theory/verification; ≤30 concurrent; intermediate artifacts only under the repo or `$CLAUDE_JOB_DIR/tmp`, never `/tmp`. If a track stalls or its local control beats it, kill it and reallocate to the tracks that are winning — the plan is a portfolio, not a promise.
