@@ -84,6 +84,8 @@ def load_bench(bench="combined_22"):
         path = os.path.join(root, COMBINED[int(bench.split("_")[1])])
     elif bench == "bench_set":
         path = os.path.join(HERE, "bench_set.csv")
+    elif bench == "aca_124":
+        path = os.path.join(root, "data/ms_unsolved_reps/aca_124.csv")
     else:
         path = bench if os.path.isabs(bench) else os.path.join(root, bench)
     rows = []
