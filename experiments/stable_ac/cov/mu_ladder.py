@@ -7,16 +7,21 @@ class, keep a beam of the K lowest-mu CONCRETE reachable pairs, expand each by
 one gated subword-CoV hop per rung, dedupe orbits per class, track the best
 floor and its full z-chain.
 
-WHY THE FINISH LINE MATTERS (the jackpot criterion): every balanced
-2-generator presentation of the trivial group with total length <= 12 is
-AC-trivial (Miasnikov GA 1999 + MM03 exhaustion — AK(3) at length 13 is the
-minimal open case), and by Havas-Ramsay a length-13 one is AC-equivalent to
-standard or to AK(3). A CoV chain is a sequence of STABLE moves, so reaching
-an orbit with mu <= 12 certifies the source class STABLY AC-TRIVIAL, and
-reaching mu = 13 makes it stably equivalent to standard-or-AK(3) — decidable
-by one aut_canon comparison against AK(3)'s orbit. Any hit is reported loudly
-as a LEAD; the claim requires ac-advisor review of the criterion citations
-plus independent chain re-derivation before being believed.
+WHY THE FINISH LINE MATTERS (ac-advisor-reviewed criterion — full statement,
+citations, and the mandatory 7-step verification bar in
+``results/stable_ac/theory/MU_CRITERION.md``): every balanced 2-generator
+presentation of the trivial group with total length <= 12 satisfies the AC
+conjecture (MM03 Thm 1.1, computer-assisted exhaustion + Miasnikov GA
+certificates), so a chain reaching mu <= 12 makes the source class a
+STABLE-AC-TRIVIALITY LEAD — subject to the verification bar, including the
+re-derivation of every hop and the Lemma-11 decomposition citation (the
+descending n_subs >= 2 hops are OUTSIDE PROOFS.tex Thms 1-3). mu = 13 is
+NEVER a removal: Havas-Ramsay (secondary sources only in this repo) makes the
+class's stable fate collapse onto standard-or-AK(3), and AK(3)'s length-13
+AC-class holds TWO Aut-orbits, so an aut_canon comparison CANNOT decide which
+— ``is_ak3_orbit`` is provenance, not a decision. TRIPWIRE: a mu <= 12 hit
+for aca_115 (= AK(3)'s class) is presumed a BUG until independently
+reproduced — it would settle an open problem.
 
 Pure enumeration + Whitehead canonicalisation — zero search nodes.
 
@@ -122,9 +127,10 @@ def main():
             n += 1
             tag2 = ""
             if row["hits_stop"]:
-                tag2 = (" *** JACKPOT-LEAD: mu<=stop — AK3-orbit"
-                        if row["is_ak3_orbit"] else
-                        " *** JACKPOT-LEAD: mu<=stop — NOT AK3 orbit")
+                bug = (" [aca_115 = AK(3)-class: PRESUMED BUG until reproduced]"
+                       if row["pres_id"] == "aca_115" else "")
+                tag2 = (f" *** LEAD mu<={row['best_mu']} — verification bar "
+                        f"applies (MU_CRITERION.md){bug}")
             elif row["best_mu"] < row["mu_in"]:
                 tag2 = f" DESC {row['mu_in']}->{row['best_mu']}"
             print(f"  [{n}/{len(todo)}] {row['pres_id']} best "
