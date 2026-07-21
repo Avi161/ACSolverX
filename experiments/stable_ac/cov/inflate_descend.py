@@ -91,12 +91,17 @@ DEFAULT_BEAM = 3
 DEFAULT_CLIMB_PLATEAU = 50
 DEFAULT_CLIMB_MAX_POPS = 2000
 DEFAULT_CHILD_CAP = 512
+HEARTBEAT_S = 60        # timed in-search beat: TIME-based, never event-based
+DETAIL_EVERY_S = 300    # run-level cumulative line at row boundaries
+# (a slow CPU shows up as a falling pops/s between beats, not as silence —
+#  user directive; both are result-neutral and stay out of the filename)
 
 
 # ── search (one loop, both directions) ──────────────────────────────────────
 
 def search_until(r1s, r2s, budget, cap, up=False, plateau_k=None,
-                 child_cap=DEFAULT_CHILD_CAP):
+                 child_cap=DEFAULT_CHILD_CAP, hb_label=None,
+                 hb_every_s=HEARTBEAT_S):
     """Best-first search; ``up=True`` maximises total length (the climb).
 
     Returns status 'solved' (down only) | 'plateau' | 'budget' | 'exhausted',
@@ -105,6 +110,11 @@ def search_until(r1s, r2s, budget, cap, up=False, plateau_k=None,
     best_total, max_popped_total. State store is string-keys-only (arrays are
     re-parsed on pop — at L=300 an array cache is the memory, not the time).
     ``child_cap`` bounds pushes per pop (beam; None = complete).
+
+    ``hb_label`` enables the TIMED heartbeat: every ``hb_every_s`` seconds a
+    line prints from inside this loop (main thread) with pops so far, the
+    incumbent, and the instantaneous pops/s since the last beat — cadence is
+    wall-clock, so a slowing CPU shows as a falling rate, never as silence.
     """
     key, _ = _canon_key(r1s, r2s)
     sgn = -1 if up else 1
@@ -115,6 +125,7 @@ def search_until(r1s, r2s, budget, cap, up=False, plateau_k=None,
     best_total = -1 if up else 10 ** 9
     best_key, since_best = key, 0
     max_popped = 0
+    last_hb, hb_pops = time.monotonic(), 0
 
     def path_to(k):
         mv = []
@@ -124,6 +135,14 @@ def search_until(r1s, r2s, budget, cap, up=False, plateau_k=None,
         return mv[::-1]
 
     while pq and pops < budget:
+        if hb_label is not None:
+            now = time.monotonic()
+            if now - last_hb >= hb_every_s:
+                inst = (pops - hb_pops) / (now - last_hb)
+                print(f"    hb {hb_label}: {pops}/{budget} pops, "
+                      f"best={best_total if pops else '-'}, {inst:.0f} "
+                      f"pops/s, heap={len(pq)}", flush=True)
+                last_hb, hb_pops = now, pops   # advance only when printed
         _, d, k = heapq.heappop(pq)
         pops += 1
         a1, a2 = str_to_arr(k[0]), str_to_arr(k[1])
@@ -331,7 +350,9 @@ def ladder_one(pres_id, r1, r2, cfg, done):
             cap_t = max(tier, len(s1), len(s2))
             cl = search_until(s1, s2, cfg["climb_max_pops"], cap_t, up=True,
                               plateau_k=cfg["climb_plateau"],
-                              child_cap=cfg["child_cap"])
+                              child_cap=cfg["child_cap"],
+                              hb_label=f"{pres_id} t{tier} {br['id']} climb",
+                              hb_every_s=cfg.get("hb_every_s", HEARTBEAT_S))
             snap = cl["incumbent"]
             segs = br["segs"] + ({"moves": cl["incumbent_moves"]},)
             climb_pops = br["climb_pops"] + cl["pops"]
@@ -371,7 +392,10 @@ def ladder_one(pres_id, r1, r2, cfg, done):
 def _descend_row(base, arm, cidx, start, junc, segs, lineage, dcap, cfg):
     t0 = time.monotonic()
     de = search_until(start[0], start[1], cfg["budget"], dcap, up=False,
-                      plateau_k=None, child_cap=cfg["child_cap"])
+                      plateau_k=None, child_cap=cfg["child_cap"],
+                      hb_label=(f"{base['pres_id']} t{base['tier']} "
+                                f"{base['branch_id']} {arm}/{cidx} descend"),
+                      hb_every_s=cfg.get("hb_every_s", HEARTBEAT_S))
     solved = de["status"] == "solved"
     # EVERY CoV on this row's path, oldest first (earlier-tier continue
     # junctions + this arm's own) — the flat z_word/n_subs are the arm's own.
@@ -512,7 +536,19 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
           flush=True)
     t_run = time.monotonic()
     n_rows_run, n_solved_run, pops_run = 0, 0, 0
+    n_pres_done, last_detail = 0, time.monotonic()
     with open(out, "a") as f:
+
+        def _detail():
+            nonlocal last_detail
+            el = time.monotonic() - t_run
+            eta_h = ((el / n_pres_done * (len(rows) - n_pres_done)) / 3600
+                     if n_pres_done else float("nan"))
+            print(f"  == {n_pres_done}/{len(rows)} pres, {n_rows_run} rows, "
+                  f"{n_solved_run} solved rows, {pops_run / 1000:.1f}k pops, "
+                  f"{pops_run / max(el, 1e-9):.0f} pops/s run-avg, "
+                  f"elapsed {el / 60:.1f}m, ETA ~{eta_h:.1f}h", flush=True)
+            last_detail = time.monotonic()   # advance only when printed
 
         def _emit(row, p):
             nonlocal n_rows_run, n_solved_run, pops_run
@@ -530,6 +566,8 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
                   f"{row['min_total_reached']} pops={row['descend_pops']} "
                   f"({rate:.0f} pops/s run-avg)"
                   f"{' SOLVED' if row.get('solved') else ''}", flush=True)
+            if time.monotonic() - last_detail >= DETAIL_EVERY_S:
+                _detail()
             row.update({"r1_orig": p["r1"], "r2_orig": p["r2"], **common})
             if row.get("solved"):
                 ok, why = verify_segments(p["r1"], p["r2"], row["segments"])
@@ -545,7 +583,6 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
             f.write(json.dumps(row) + "\n")
             f.flush()
 
-        n_pres_done = 0
         for p in rows:
             t0 = time.monotonic()
             n_new = 0

@@ -158,6 +158,17 @@ def test_verify_rederives_junctions_and_rejects_a_tampered_iso_index():
     assert not ok2 and "junction" in why2
 
 
+def test_timed_heartbeat_fires_and_is_wall_clock_gated(capsys):
+    inf.search_until(*AK3, 30, 24, up=True, plateau_k=None, child_cap=64,
+                     hb_label="hb-test", hb_every_s=0.0)
+    outp = capsys.readouterr().out
+    assert "hb hb-test:" in outp and "pops/s" in outp and "heap=" in outp
+    # default cadence (60 s) prints nothing in a sub-second search
+    inf.search_until(*AK3, 30, 24, up=True, plateau_k=None, child_cap=64,
+                     hb_label="hb-test")
+    assert "hb " not in capsys.readouterr().out
+
+
 def test_out_name_encodes_every_result_changing_knob():
     cfg = dict(SMALL_CFG)
     a = inf._out_name("aca_124", 50, cfg, "")

@@ -2,9 +2,10 @@
 
 User directive (nb6, stable-ac-escape): progress visibility and restartability are REQUIREMENTS for every long-running Colab notebook, not niceties. Two parts:
 
-**1. The heartbeat.** The runner the notebook launches must print, streamed live through `run_cli_mirrored`:
-- a per-unit line as each row/cell completes, carrying the work identifier, the result summary, and a **running pops/s (or nodes/s) average** — e.g. `[aca_2] t48 r plain/-1 95->16 pops=50 (830 pops/s run-avg)`;
-- a periodic cumulative line with **units done / total, running SOLVED count, total pops, and an ETA** — e.g. `aca_2: 7 rows (6.0s) | 3/124 pres, 0 solved rows, 0.7k pops, ETA ~4.2h`;
+**1. The heartbeat — TIME-based, never event-based (user directive, second iteration).** Event-driven lines alone hide exactly the situation a heartbeat exists for: a slowing CPU makes rows rarer, so the output goes quiet precisely when you need to see the rate falling. The runner must print, streamed live through `run_cli_mirrored`:
+- a **timed in-search beat every ~60 s** (`HEARTBEAT_S`) from INSIDE the search loop (main thread — a worker can't print, a background thread must not), with the work label, pops/budget, incumbent, **instantaneous pops/s since the last beat**, and heap size — e.g. `hb aca_2 t150 r.s0 plain/-1 descend: 3200/10000 pops, best=44, 412 pops/s, heap=51204`; advance the last-fired timestamp ONLY when a line prints (`heartbeat-first-emission-phase-bug.md`);
+- a per-unit line as each row/cell completes, carrying the work identifier, the result summary, and a **running pops/s average** — e.g. `[aca_2] t48 r plain/-1 95->16 pops=50 (830 pops/s run-avg)`;
+- a **detailed cumulative line every ~5 min** (`DETAIL_EVERY_S`, checked at row boundaries) and after every presentation: **units done / total, running SOLVED count, total pops, run-average pops/s, elapsed, ETA** — e.g. `== 3/124 pres, 21 rows, 0 solved rows, 214.0k pops, 612 pops/s run-avg, elapsed 5.8m, ETA ~4.2h`;
 - loud `*** ... SOLVE LEAD` lines for anything solve-adjacent (verification-bar language, aca_115 tripwire).
 Reference implementation: `experiments/stable_ac/cov/inflate_descend.py` `run_inflate._emit` (climb pops attributed to each branch-tier's unique plain-arm row so nothing double-counts). `run_baseline.py`'s chunk heartbeat is the older reference. A worker process cannot print (parent-side only — see `heartbeat-worker-cannot-print.md`); never print from a background thread.
 
