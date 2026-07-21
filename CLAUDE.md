@@ -144,3 +144,4 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 
 ### Shell
 - zsh aborts a `&&` chain when a glob matches nothing — use `find … -delete`, not a bare `rm results/*.jsonl`. [[TRAP]](experiments/lessons/zsh-glob-nomatch-aborts-chain.md)
+- `literature/` is gitignored (deliberately), so `git add` of a proof `.tex` there is silently skipped — shareable theory needs a committed summary under `results/stable_ac/theory/`, and verify `git show --stat` before claiming a file shipped. [[TRAP]](experiments/lessons/literature-dir-is-gitignored.md)
