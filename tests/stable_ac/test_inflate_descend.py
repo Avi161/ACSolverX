@@ -158,6 +158,42 @@ def test_verify_rederives_junctions_and_rejects_a_tampered_iso_index():
     assert not ok2 and "junction" in why2
 
 
+def test_fused_expansion_matches_the_reference_child_path():
+    """The fused expand_node_nj path must reproduce the reference expansion
+    (get_neighbors -> reduce -> cap-prune -> canonicalise) child-for-child,
+    in generation order — this equality is what keeps rows written by the
+    pre-fused code resume-compatible with the fused code."""
+    from experiments.search.greedy_baseline import (
+        arr_to_str, canonical_pair_nj, expand_node_nj,
+        get_neighbors_with_moves_nj, reduce_relator_nj, str_to_arr)
+
+    states = [AK3, ("YYYYXyyyx", "YYYYxxyX")]
+    fat = inf.search_until(*AK3, 60, 30, up=True, plateau_k=10, child_cap=64)
+    states.append(fat["incumbent"])            # a fat state, cap-prune active
+    n_pruned_cases = 0
+    for s in states:
+        for cap in (18, 30):
+            a1, a2 = str_to_arr(s[0]), str_to_arr(s[1])
+            ref = []
+            for n1, n2, t, js, k1, k2 in get_neighbors_with_moves_nj(a1, a2):
+                n1 = reduce_relator_nj(n1, True)
+                n2 = reduce_relator_nj(n2, True)
+                if len(n1) > cap or len(n2) > cap:
+                    continue
+                c1, c2 = canonical_pair_nj(n1, n2)
+                ref.append(((arr_to_str(c1), arr_to_str(c2)),
+                            (int(t), int(js), int(k1), int(k2))))
+            codes, lens, mvs, count = expand_node_nj(a1, a2, cap, True)
+            fused = [(inf._decode_child(codes, lens, i),
+                      (int(mvs[i, 0]), int(mvs[i, 1]),
+                       int(mvs[i, 2]), int(mvs[i, 3])))
+                     for i in range(count)]
+            assert fused == ref
+            raw = len(get_neighbors_with_moves_nj(a1, a2))
+            n_pruned_cases += (count < raw)
+    assert n_pruned_cases, "no case exercised the cap prune — test is weak"
+
+
 def test_timed_heartbeat_fires_and_is_wall_clock_gated(capsys):
     inf.search_until(*AK3, 30, 24, up=True, plateau_k=None, child_cap=64,
                      hb_label="hb-test", hb_every_s=0.0)

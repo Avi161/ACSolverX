@@ -62,6 +62,8 @@ import json
 import os
 import time
 
+import numpy as np
+
 from experiments.equivalence_classes.lib.autcanon import is_automorphism
 from experiments.greedy_tests.spec.words import (
     inverse,
@@ -71,10 +73,7 @@ from experiments.greedy_tests.spec.words import (
     word_to_str,
 )
 from experiments.search.greedy_baseline import (
-    arr_to_str,
-    canonical_pair_nj,
-    get_neighbors_with_moves_nj,
-    reduce_relator_nj,
+    expand_node_nj,
     str_to_arr,
 )
 from experiments.stable_ac.cov import cov
@@ -98,6 +97,17 @@ DETAIL_EVERY_S = 300    # run-level cumulative line at row boundaries
 
 
 # ── search (one loop, both directions) ──────────────────────────────────────
+
+# expand_node_nj's order-preserving child codes (X=1 < Y=2 < x=3 < y=4)
+_CODES_TO_CHARS = bytes.maketrans(bytes([1, 2, 3, 4]), b"XYxy")
+
+
+def _decode_child(codes, lens, i):
+    """Child i's canonical pair as strings, from the fused kernel's buffers."""
+    la, lb = int(lens[i, 0]), int(lens[i, 1])
+    row = codes[i]
+    return (bytes(row[:la]).translate(_CODES_TO_CHARS).decode(),
+            bytes(row[la:la + lb]).translate(_CODES_TO_CHARS).decode())
 
 def search_until(r1s, r2s, budget, cap, up=False, plateau_k=None,
                  child_cap=DEFAULT_CHILD_CAP, hb_label=None,
@@ -163,25 +173,25 @@ def search_until(r1s, r2s, budget, cap, up=False, plateau_k=None,
                         "incumbent_moves": path_to(best_key),
                         "best_total": best_total,
                         "max_popped_total": max_popped}
-        kids = []
-        for n1, n2, t, js, k1, k2 in get_neighbors_with_moves_nj(a1, a2):
-            n1 = reduce_relator_nj(n1, True)
-            n2 = reduce_relator_nj(n2, True)
-            if len(n1) > cap or len(n2) > cap:
-                continue
-            kids.append((len(n1) + len(n2), n1, n2,
-                         (int(t), int(js), int(k1), int(k2))))
-        if child_cap is not None and len(kids) > child_cap:
-            kids.sort(key=lambda c: sgn * c[0])   # stable: ties keep gen order
-            kids = kids[:child_cap]
-        for tot, n1, n2, mv in kids:
-            c1, c2 = canonical_pair_nj(n1, n2)
-            nk = (arr_to_str(c1), arr_to_str(c2))
-            if nk in visited:
-                continue
-            visited[nk] = k
-            move_in[nk] = mv
-            heapq.heappush(pq, (sgn * tot, d + 1, nk))
+        # fused kernel: enumerate + reduce + cap-prune + canonicalise in ONE
+        # numba call (the per-child Python<->numba crossings were ~1 s/pop at
+        # L=300); children come back in generation order, so a STABLE argsort
+        # on the signed total reproduces the reference selection exactly
+        codes, lens, mvs, count = expand_node_nj(a1, a2, cap, True)
+        if count:
+            tots = lens[:count, 0] + lens[:count, 1]
+            if child_cap is not None and count > child_cap:
+                sel = np.argsort(sgn * tots, kind="stable")[:child_cap]
+            else:
+                sel = range(count)
+            for i in sel:
+                nk = _decode_child(codes, lens, i)
+                if nk in visited:
+                    continue
+                visited[nk] = k
+                move_in[nk] = (int(mvs[i, 0]), int(mvs[i, 1]),
+                               int(mvs[i, 2]), int(mvs[i, 3]))
+                heapq.heappush(pq, (sgn * int(tots[i]), d + 1, nk))
     return {"status": "budget" if pq else "exhausted", "pops": pops,
             "moves": None, "incumbent": best_key,
             "incumbent_moves": path_to(best_key), "best_total": best_total,
