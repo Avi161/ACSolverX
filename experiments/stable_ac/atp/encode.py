@@ -144,7 +144,8 @@ def word_to_term(word):
     return term
 
 
-def build_ig_problem(name, r1, r2, timeout_s=600):
+def build_ig_problem(name, r1, r2, timeout_s=600, max_megs=4000,
+                     max_weight=None):
     """Return Prover9 input text for "presentation (r1, r2) is AC-trivializable".
 
     Fact: R(f(term(r1), term(r2))).  Goal: R(f(a,b))  (the trivial presentation
@@ -154,6 +155,14 @@ def build_ig_problem(name, r1, r2, timeout_s=600):
     ``SEARCH FAILED`` / exit code 4 on its own account if it can't prove the
     goal in time; ``run_prover9.py`` additionally wraps the process in a
     subprocess-level timeout as a backstop.
+
+    ``max_megs`` / ``max_weight``: search-control knobs that MUST be generous
+    for this problem class. Prover9's auto-mode defaults (500 MB; weight-prunes
+    heavy clauses) discard exactly the long two-hump intermediate presentations
+    an AC-trivialization must traverse — measured on Q-form inputs: auto mode
+    returned ``sos_empty`` ("exhausted") in seconds while silently dropping
+    ~71k generated clauses by weight, a FALSE exhaustion. ``max_weight=None``
+    writes a very large bound (effectively disabled).
     """
     t1 = word_to_term(r1)
     t2 = word_to_term(r2)
@@ -168,6 +177,8 @@ def build_ig_problem(name, r1, r2, timeout_s=600):
         "% goal: reach the trivial presentation <a,b|a,b>, i.e. R(f(a,b)).",
         "",
         f"assign(max_seconds, {int(timeout_s)}).",
+        f"assign(max_megs, {int(max_megs)}).",
+        f"assign(max_weight, {int(max_weight) if max_weight else 10000}).",
         "",
         "formulas(assumptions).",
         "",
