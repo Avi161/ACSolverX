@@ -1,6 +1,6 @@
 # RUN_ME — morning launch instructions (2026-07-21, branch `research/stable-ac-escape`)
 
-## THE FIVE NOTEBOOKS (final packaging — run these, one per Colab instance)
+## THE NOTEBOOKS (final packaging — run these, one per Colab instance)
 
 Everything below is packaged as five self-contained notebooks in **`experiments/notebooks/`**, all uphill-then-downhill attacks, all resume-safe (relaunch any dead session freely), all writing dateless `.jsonl` (solved portfolio rows now carry the winning pair + full move path: `win_r1/win_r2/win_cap/win_path_moves`), all mirroring to **`MyDrive/acsolverx_results/stable_ac_escape/`**. Open each from GitHub at this branch, run all cells, in this priority order:
 
@@ -9,6 +9,7 @@ Everything below is packaged as five self-contained notebooks in **`experiments/
 3. **`nb3_stall_escape.ipynb`** — mid-search uphill CoV escape on all 124 at 50k (~2–4 h; also logs `max_popped_total`, the cap-binding probe).
 4. **`nb4_portfolio_124.ipynb`** — μ-descent + orbit-escape strategy portfolio on all 124 (~2–3 h).
 5. **`nb5_static_rank.ipynb`** — rank-4/5 stabilization baseline (~1–2 h at 10k).
+6. **`nb6_inflate_descend.ipynb`** — the arbitrarily-high-length uphill test: seed-CoV coordinate systems (n_subs≥2 + provably-not-a-rename gate via `is_automorphism`), uphill greedy to per-relator tiers 48–300, greedy descend from every fat snapshot, the same snapshot climbing on to the next tier. Two session configs in the CONFIG cell: A = tiers [48,100,150] at 10k (~4–8 h, measured ~500–1200 pops/s), B = tiers [200,250,300] at 2k (all day; shard if needed). Multi-junction segmented certificates; a plain-arm solve would be a FLAT AC path (bigger claim than a stable one). Rows carry the full junction lineage (`junctions`/`z_words`), `min_total_reached` per arm, and a `control` row per class. Fat-state CoVs are opportunistic only — isolation is measured ~inapplicable at high length, which is itself a finding (`scr_*` stats quantify it per snapshot).
 
 Check the VM first in any session: `!grep -m1 "model name" /proc/cpuinfo` — re-roll if Intel Xeon and you can spare the slot (AMD EPYC ≈ 2×). Any SOLVED/LEAD line: stop, apply the verification bar below, remember `aca_115` = AK(3). The sections below document each pipeline in detail.
 
