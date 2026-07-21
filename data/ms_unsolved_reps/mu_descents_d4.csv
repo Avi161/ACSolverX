@@ -1,0 +1,9 @@
+name,r1,r2,source_class,mu_source,mu,hops,z_path
+aca_81_d2_1_d2_0,xYXXXXYxxYxxyXXyX,YxYxyXXyX,aca_81_d2_1,21,18,2,yX+YxyXXXXXy
+aca_97_d2_1_d2_0,xYXXXXXYxxYxxyXXyX,YxYxyXXyX,aca_97_d2_1,22,19,2,yX+YxyXXXXXXy
+aca_97_d2_2_d1_0,xxxxyxYXXXXYXyX,YXXXXXXXyxxxxyxx,aca_97_d2_2,23,19,1,yx
+aca_97_d2_2_d2_1,YXXXXXXyxxxyXYxyxx,YxyxxxyXYXX,aca_97_d2_2,23,22,2,yx+xy
+aca_97_d2_3_d2_0,XYXyXXXXyxYxxxxxx,YXXYxyxYxyx,aca_97_d2_3,23,22,2,yxY+yxxy
+aca_99_d1_0_d2_0,xxxyXYxxYxxyXXXXX,YxxxYxyxYxyXXX,aca_99_d1_0,22,19,2,yxx+yxYxyxY
+aca_100_d2_1_d1_0,XXXXYxYxYxxYxyXyxxx,YXXXYxYxyXyxxx,aca_100_d2_1,24,22,1,yxY
+aca_100_d2_2_d2_0,xxxxYYYxxYXXyyyyXXXXX,YxxxyxyXX,aca_100_d2_2,24,22,2,xy+yy

@@ -65,15 +65,17 @@ def main():
                                       "mu_scan_aca124_d2_k10_mrl24.jsonl")
     ap.add_argument("--out", default="data/ms_unsolved_reps/mu_descents_d2.csv")
     ap.add_argument("--cap", type=int, default=24)
+    ap.add_argument("--base", default="data/ms_unsolved_reps/aca_124.csv",
+                    help="csv holding the scanned presentations (name,r1,r2)")
     args = ap.parse_args()
     root = find_repo_root(HERE)
     scan = os.path.join(root, args.scan)
     out = os.path.join(root, args.out)
+    base = {row["name"]: row for row in csv.DictReader(
+        open(os.path.join(root, args.base)))}
     rows_out, failed = [], []
     for ln in open(scan):
         r = json.loads(ln)
-        base = {row["name"]: row for row in csv.DictReader(
-            open(os.path.join(root, "data/ms_unsolved_reps/aca_124.csv")))}
         if r["pres_id"] not in base:
             continue
         src = base[r["pres_id"]]

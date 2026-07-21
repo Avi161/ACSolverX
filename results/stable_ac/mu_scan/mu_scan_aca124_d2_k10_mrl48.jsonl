@@ -21,3 +21,53 @@
 {"pres_id": "aca_20", "cap": 48, "mu_in": 17, "best_mu1": 19, "best_mu2": 19, "n_orbits1": 9, "n_orbits2": 48, "descents": []}
 {"pres_id": "aca_21", "cap": 48, "mu_in": 17, "best_mu1": 19, "best_mu2": 18, "n_orbits1": 10, "n_orbits2": 47, "descents": []}
 {"pres_id": "aca_22", "cap": 48, "mu_in": 17, "best_mu1": 19, "best_mu2": 18, "n_orbits1": 10, "n_orbits2": 50, "descents": []}
+{"pres_id": "aca_23", "cap": 48, "mu_in": 17, "best_mu1": 19, "best_mu2": 19, "n_orbits1": 10, "n_orbits2": 54, "descents": []}
+{"pres_id": "aca_24", "cap": 48, "mu_in": 17, "best_mu1": 17, "best_mu2": 17, "n_orbits1": 3, "n_orbits2": 11, "descents": []}
+{"pres_id": "aca_25", "cap": 48, "mu_in": 17, "best_mu1": 19, "best_mu2": 19, "n_orbits1": 10, "n_orbits2": 51, "descents": []}
+{"pres_id": "aca_26", "cap": 48, "mu_in": 17, "best_mu1": 21, "best_mu2": 19, "n_orbits1": 9, "n_orbits2": 50, "descents": []}
+{"pres_id": "aca_27", "cap": 48, "mu_in": 17, "best_mu1": 21, "best_mu2": 20, "n_orbits1": 9, "n_orbits2": 43, "descents": []}
+{"pres_id": "aca_28", "cap": 48, "mu_in": 17, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 9, "n_orbits2": 45, "descents": []}
+{"pres_id": "aca_29", "cap": 48, "mu_in": 17, "best_mu1": 17, "best_mu2": 17, "n_orbits1": 2, "n_orbits2": 14, "descents": []}
+{"pres_id": "aca_30", "cap": 48, "mu_in": 17, "best_mu1": 17, "best_mu2": 17, "n_orbits1": 3, "n_orbits2": 20, "descents": []}
+{"pres_id": "aca_31", "cap": 48, "mu_in": 17, "best_mu1": 17, "best_mu2": 17, "n_orbits1": 6, "n_orbits2": 22, "descents": []}
+{"pres_id": "aca_32", "cap": 48, "mu_in": 17, "best_mu1": 17, "best_mu2": 17, "n_orbits1": 8, "n_orbits2": 35, "descents": []}
+{"pres_id": "aca_33", "cap": 48, "mu_in": 17, "best_mu1": 18, "best_mu2": 18, "n_orbits1": 4, "n_orbits2": 19, "descents": []}
+{"pres_id": "aca_34", "cap": 48, "mu_in": 18, "best_mu1": 21, "best_mu2": 16, "n_orbits1": 11, "n_orbits2": 60, "descents": [{"hops": 2, "mu": 16, "z_path": ["xy", "xxxx"], "via": ["YXXXXXyxxxx", "YYXXXXYxxxxyyX"]}]}
+{"pres_id": "aca_35", "cap": 48, "mu_in": 18, "best_mu1": 19, "best_mu2": 19, "n_orbits1": 2, "n_orbits2": 10, "descents": []}
+{"pres_id": "aca_36", "cap": 48, "mu_in": 18, "best_mu1": 21, "best_mu2": 20, "n_orbits1": 1, "n_orbits2": 9, "descents": []}
+{"pres_id": "aca_37", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 10, "n_orbits2": 55, "descents": []}
+{"pres_id": "aca_38", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 10, "n_orbits2": 55, "descents": []}
+{"pres_id": "aca_39", "cap": 48, "mu_in": 19, "best_mu1": 25, "best_mu2": 22, "n_orbits1": 8, "n_orbits2": 49, "descents": []}
+{"pres_id": "aca_40", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 9, "n_orbits2": 44, "descents": []}
+{"pres_id": "aca_41", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 10, "n_orbits2": 53, "descents": []}
+{"pres_id": "aca_42", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 9, "n_orbits2": 46, "descents": []}
+{"pres_id": "aca_43", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 18, "n_orbits1": 5, "n_orbits2": 30, "descents": [{"hops": 2, "mu": 18, "z_path": ["yXX", "yxxY"], "via": ["YYXXyxx", "YYXyxxYxyXYxyX"]}]}
+{"pres_id": "aca_44", "cap": 48, "mu_in": 19, "best_mu1": 19, "best_mu2": 18, "n_orbits1": 4, "n_orbits2": 20, "descents": [{"hops": 2, "mu": 18, "z_path": ["yy", "xx"], "via": ["YXXXyXyxx", "YYXXYxxyyx"]}]}
+{"pres_id": "aca_45", "cap": 48, "mu_in": 19, "best_mu1": 24, "best_mu2": 20, "n_orbits1": 4, "n_orbits2": 23, "descents": []}
+{"pres_id": "aca_46", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 10, "n_orbits2": 49, "descents": []}
+{"pres_id": "aca_47", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 10, "n_orbits2": 45, "descents": []}
+{"pres_id": "aca_48", "cap": 48, "mu_in": 19, "best_mu1": 24, "best_mu2": 20, "n_orbits1": 4, "n_orbits2": 19, "descents": []}
+{"pres_id": "aca_49", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 10, "n_orbits2": 48, "descents": []}
+{"pres_id": "aca_50", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 10, "n_orbits2": 47, "descents": []}
+{"pres_id": "aca_51", "cap": 48, "mu_in": 19, "best_mu1": 25, "best_mu2": 23, "n_orbits1": 9, "n_orbits2": 41, "descents": []}
+{"pres_id": "aca_52", "cap": 48, "mu_in": 19, "best_mu1": 25, "best_mu2": 23, "n_orbits1": 9, "n_orbits2": 37, "descents": []}
+{"pres_id": "aca_53", "cap": 48, "mu_in": 18, "best_mu1": 19, "best_mu2": 19, "n_orbits1": 3, "n_orbits2": 13, "descents": []}
+{"pres_id": "aca_54", "cap": 48, "mu_in": 19, "best_mu1": 19, "best_mu2": 19, "n_orbits1": 3, "n_orbits2": 15, "descents": []}
+{"pres_id": "aca_55", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 19, "n_orbits1": 3, "n_orbits2": 13, "descents": []}
+{"pres_id": "aca_56", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 5, "n_orbits2": 23, "descents": []}
+{"pres_id": "aca_57", "cap": 48, "mu_in": 19, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 5, "n_orbits2": 21, "descents": []}
+{"pres_id": "aca_58", "cap": 48, "mu_in": 20, "best_mu1": 23, "best_mu2": 17, "n_orbits1": 11, "n_orbits2": 61, "descents": [{"hops": 2, "mu": 17, "z_path": ["xy", "xxxxx"], "via": ["YXXXXXXyxxxxx", "YYXXXXXYxxxxxyyX"]}]}
+{"pres_id": "aca_59", "cap": 48, "mu_in": 20, "best_mu1": 21, "best_mu2": 21, "n_orbits1": 3, "n_orbits2": 18, "descents": []}
+{"pres_id": "aca_60", "cap": 48, "mu_in": 20, "best_mu1": 31, "best_mu2": 21, "n_orbits1": 3, "n_orbits2": 15, "descents": []}
+{"pres_id": "aca_61", "cap": 48, "mu_in": 20, "best_mu1": 31, "best_mu2": 21, "n_orbits1": 3, "n_orbits2": 21, "descents": []}
+{"pres_id": "aca_62", "cap": 48, "mu_in": 21, "best_mu1": 29, "best_mu2": 25, "n_orbits1": 8, "n_orbits2": 51, "descents": []}
+{"pres_id": "aca_63", "cap": 48, "mu_in": 21, "best_mu1": 23, "best_mu2": 23, "n_orbits1": 9, "n_orbits2": 44, "descents": []}
+{"pres_id": "aca_64", "cap": 48, "mu_in": 21, "best_mu1": 23, "best_mu2": 23, "n_orbits1": 10, "n_orbits2": 54, "descents": []}
+{"pres_id": "aca_65", "cap": 48, "mu_in": 21, "best_mu1": 23, "best_mu2": 23, "n_orbits1": 9, "n_orbits2": 50, "descents": []}
+{"pres_id": "aca_66", "cap": 48, "mu_in": 21, "best_mu1": 22, "best_mu2": 22, "n_orbits1": 10, "n_orbits2": 56, "descents": []}
+{"pres_id": "aca_67", "cap": 48, "mu_in": 21, "best_mu1": 22, "best_mu2": 22, "n_orbits1": 10, "n_orbits2": 53, "descents": []}
+{"pres_id": "aca_68", "cap": 48, "mu_in": 21, "best_mu1": 23, "best_mu2": 23, "n_orbits1": 10, "n_orbits2": 52, "descents": []}
+{"pres_id": "aca_69", "cap": 48, "mu_in": 21, "best_mu1": 23, "best_mu2": 23, "n_orbits1": 10, "n_orbits2": 46, "descents": []}
+{"pres_id": "aca_70", "cap": 48, "mu_in": 21, "best_mu1": 23, "best_mu2": 23, "n_orbits1": 10, "n_orbits2": 49, "descents": []}
+{"pres_id": "aca_71", "cap": 48, "mu_in": 20, "best_mu1": 23, "best_mu2": 21, "n_orbits1": 2, "n_orbits2": 13, "descents": []}
+{"pres_id": "aca_72", "cap": 48, "mu_in": 20, "best_mu1": 23, "best_mu2": 18, "n_orbits1": 5, "n_orbits2": 20, "descents": [{"hops": 2, "mu": 18, "z_path": ["yXX", "yxYxyxY"], "via": ["YXYXyXYXyxx", "YYxxyXYXyXYXyx"]}]}
