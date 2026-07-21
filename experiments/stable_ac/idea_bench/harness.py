@@ -162,11 +162,19 @@ def evaluate_cands(cands, r1, r2, budget, cap):
         calls += 1
         total_nodes += st["nodes_explored"]
         if st["solved"]:
+            moves = st.get("path_moves")
+            if moves is None:      # high_speedup solver carries no path; the
+                # normal solver is pop-identical, so one re-run recovers it
+                moves = run_baseline.greedy_search(
+                    cr1, cr2, budget, max_relator_length=ccap,
+                    cyclic_reduce=True).get("path_moves")
             return {"solved": True, "winning_nodes": st["nodes_explored"],
                     "path_length": st["path_length"], "solve_idx": i,
                     "n_candidates": len(cands), "search_calls": calls,
                     "total_nodes": total_nodes,
-                    "changed_coords": (cr1, cr2) != (r1, r2)}
+                    "changed_coords": (cr1, cr2) != (r1, r2),
+                    "win_r1": cr1, "win_r2": cr2, "win_cap": ccap,
+                    "win_path_moves": moves}
     return {"solved": False, "winning_nodes": None, "path_length": None,
             "solve_idx": None, "n_candidates": len(cands), "search_calls": calls,
             "total_nodes": total_nodes, "changed_coords": False}

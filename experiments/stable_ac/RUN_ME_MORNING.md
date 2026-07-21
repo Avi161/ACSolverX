@@ -1,5 +1,17 @@
 # RUN_ME — morning launch instructions (2026-07-21, branch `research/stable-ac-escape`)
 
+## THE FIVE NOTEBOOKS (final packaging — run these, one per Colab instance)
+
+Everything below is packaged as five self-contained notebooks in **`experiments/notebooks/`**, all uphill-then-downhill attacks, all resume-safe (relaunch any dead session freely), all writing dateless `.jsonl` (solved portfolio rows now carry the winning pair + full move path: `win_r1/win_r2/win_cap/win_path_moves`), all mirroring to **`MyDrive/acsolverx_results/stable_ac_escape/`**. Open each from GitHub at this branch, run all cells, in this priority order:
+
+1. **`nb1_floors_portfolio.ipynb`** — the 35 deepest verified orbit floors, then the 28 depth-2 descended starts (best odds of the night; ~2–3 h).
+2. **`nb2_big_ladder.ipynb`** — the deep orbit-floor ladder, rungs 20 / beam 32, all 124 (pure CPU, all day; the only session that can hit the μ≤12 auto-solve line directly).
+3. **`nb3_stall_escape.ipynb`** — mid-search uphill CoV escape on all 124 at 50k (~2–4 h; also logs `max_popped_total`, the cap-binding probe).
+4. **`nb4_portfolio_124.ipynb`** — μ-descent + orbit-escape strategy portfolio on all 124 (~2–3 h).
+5. **`nb5_static_rank.ipynb`** — rank-4/5 stabilization baseline (~1–2 h at 10k).
+
+Check the VM first in any session: `!grep -m1 "model name" /proc/cpuinfo` — re-roll if Intel Xeon and you can spare the slot (AMD EPYC ≈ 2×). Any SOLVED/LEAD line: stop, apply the verification bar below, remember `aca_115` = AK(3). The sections below document each pipeline in detail.
+
 Everything below is committed on `research/stable-ac-escape`, piloted locally at ≤1k nodes, tests green (118 in `tests/stable_ac`). Open each notebook **from GitHub at that branch** (a running Colab does not see pushes). Before starting each session, check the VM: `!grep -m1 "model name" /proc/cpuinfo` — AMD EPYC ≈ 2× Intel Xeon 2.20GHz on this workload; re-roll (Runtime → Disconnect and delete runtime) if you land a Xeon and have sessions to spare.
 
 ## Deliverable 1 (primary): `experiments/stable_ac/idea_bench/portfolio_124.ipynb`
