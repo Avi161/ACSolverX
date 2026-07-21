@@ -74,6 +74,7 @@ def greedy_until(r1s, r2s, budget, cap, plateau_k=None):
     arrays = {key: arrs}
     pops = 0
     best_total, best_key, since_best = 10 ** 9, key, 0
+    max_popped = 0        # T9 envelope: the longest total actually POPPED
 
     def path_to(k):
         mv = []
@@ -87,10 +88,12 @@ def greedy_until(r1s, r2s, budget, cap, plateau_k=None):
         pops += 1
         a1, a2 = arrays[k]
         total = len(a1) + len(a2)
+        max_popped = max(max_popped, total)
         if len(a1) == 1 and len(a2) == 1:
             moves, _ = path_to(k)
             return {"status": "solved", "pops": pops, "moves": moves,
-                    "incumbent": k, "incumbent_moves": moves}
+                    "incumbent": k, "incumbent_moves": moves,
+                    "max_popped_total": max_popped}
         if total < best_total:
             best_total, best_key, since_best = total, k, 0
         else:
@@ -98,7 +101,8 @@ def greedy_until(r1s, r2s, budget, cap, plateau_k=None):
             if plateau_k is not None and since_best >= plateau_k:
                 mv, _ = path_to(best_key)
                 return {"status": "plateau", "pops": pops, "moves": None,
-                        "incumbent": best_key, "incumbent_moves": mv}
+                        "incumbent": best_key, "incumbent_moves": mv,
+                        "max_popped_total": max_popped}
         for n1, n2, t, js, k1, k2 in get_neighbors_with_moves_nj(a1, a2):
             n1 = reduce_relator_nj(n1, True)
             n2 = reduce_relator_nj(n2, True)
@@ -115,7 +119,8 @@ def greedy_until(r1s, r2s, budget, cap, plateau_k=None):
     mv, _ = path_to(best_key)
     status = "budget" if pq else "exhausted"
     return {"status": status, "pops": pops, "moves": None,
-            "incumbent": best_key, "incumbent_moves": mv}
+            "incumbent": best_key, "incumbent_moves": mv,
+            "max_popped_total": max_popped}
 
 
 def escape_candidates(r1s, r2s, cap, fanout):
@@ -142,7 +147,8 @@ def stall_escape_search(r1s, r2s, budget, cap, plateau_k=200, fanout=6):
     base = greedy_until(r1s, r2s, budget, cap, plateau_k=plateau_k)
     row = {"solved": False, "phase": None, "nodes_base": base["pops"],
            "base_status": base["status"], "nodes_total": base["pops"],
-           "incumbent": None, "escape": None}
+           "incumbent": None, "escape": None,
+           "max_popped_total": base.get("max_popped_total", 0)}
     if base["status"] == "solved":
         row.update({"solved": True, "phase": "base",
                     "seg1_moves": base["moves"]})
@@ -227,6 +233,7 @@ def main():
     ap.add_argument("--plateau-k", type=int, default=200)
     ap.add_argument("--fanout", type=int, default=6)
     ap.add_argument("--row-limit", type=int, default=None)
+    ap.add_argument("--names", nargs="*", default=None)
     args = ap.parse_args()
     _require_budget_allowed(args.budget)
     root = harness.find_repo_root(HERE)
@@ -242,6 +249,9 @@ def main():
             except (ValueError, KeyError):
                 pass
     rows = harness.load_bench(args.bench)
+    if args.names:
+        keep = set(args.names)
+        rows = [p for p in rows if p["pres_id"] in keep]
     if args.row_limit:
         rows = rows[:args.row_limit]
     with open(out, "a") as f:

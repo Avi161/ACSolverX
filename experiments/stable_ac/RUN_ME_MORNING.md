@@ -17,6 +17,17 @@ Races the validated top CoV rankers + two NEW strategies against the same-budget
 
 The rank-4/5 static stabilization baseline (mentor's "dumbest possible thing", never run by anyone): adjoin 2–3 coupled relators `z⁻¹w`, search at `n_gen = 4/5`. Config `experiments/stable_ac/nocov/config_static_rank.yaml`; budget 10k first (short session), 50k on anything interesting. Local pilot at 1k: 18/110 rank-4 jobs solved (easy ladder rows only — the honest expectation is that rank-4/5 must show movement on rows the 2-gen baseline can't touch at the SAME budget to be interesting). Every solved row carries a full path: verify with `.venv/bin/python3 -m experiments.stable_ac.verify_static_rank results/stable_ac/static_rank` — believe nothing that fails it.
 
+## Deliverable 3 (optional third/fourth session): stall-triggered CoV escape on the 124
+
+The core mission mechanism, now empirically live: at matched TOTAL budget 1000 on the 22-benchmark it solved **12/22 vs plain greedy's 10/22 — two coverage wins (ms538, ms602), zero losses, every certificate spec-verified** (`results/stable_ac/stall_escape/`). It searches until a length plateau, takes the stuck state, fans out its μ-then-abel-ranked CoV candidates, and spends the rest of the budget in the best new coordinates; certificates are segmented (search + stable CoV junction + search) and a verified row certifies STABLE AC-triviality. On Colab (serial CLI, ~2–4 h for all 124 at 50k):
+
+```
+%env ACSOLVERX_ALLOW_BIG=1
+!cd ACSolverX && python3 -m experiments.stable_ac.cov.stall_escape --bench aca_124 --budget 50000
+```
+
+Resume-safe per presentation (relaunch freely). Run the μ-priority names first if you want the highest-prior subset early: `--names aca_99 aca_100 aca_105 aca_106` (the four classes with a proven hop-1 orbit-floor descent). Rows carry `verify_ok` computed in-run; re-verify independently before believing any solve, and the `aca_115` extraordinary-claim rule applies here too. Each row also logs `max_popped_total` — the longest state the search actually popped — which is the measured answer to whether the 24-cap ever binds at 50k (T9).
+
 ## What ran overnight (already committed, read at leisure)
 
 - **Orbit-floor refutation + n_subs≥2 length law**: `literature/proofs/STABLE_AC_NEW.tex` (two new sections; the k≥2 exact law verified on 1,995 reconstructed transforms, 0 violations; the floor counterexamples independently re-verified).
