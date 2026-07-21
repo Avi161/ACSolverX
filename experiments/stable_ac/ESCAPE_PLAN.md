@@ -69,7 +69,8 @@ User pushback (correct): the cap-inertness lesson was measured only at cap 24 vs
 - **T1 SHIPPED**: portfolio runner + `reseed_orbit` + `cov_mu_lex` + aca_124 bench + `portfolio_124.ipynb` + RUN_ME; 15-rep pilot clean, resume no-op verified, tests green.
 - **T2 SHIPPED**: `run_static_rank.py` + independent verifier + `static_rank.ipynb`; pilot 18/110 (easy rows only), all certs verify.
 - **T4 SHIPPED, POSITIVE**: `stall_escape.py` — 12/22 vs greedy 10/22 at matched total 1k, +2 coverage 0 losses, certs verified; tuning: defaults robust (f12/pk400 degrade); 124-pilot 0/20 at 1k as expected.
-- **T5**: driver built by agent (report pending at write time).
+- **T5 SHIPPED**: `run_mitm_aut.py` — dual-stack-verified merges, ceiling ladder; pilot (AK(3) + 5 shortest, time-bounded): no merges; ~2 pops/s at ceilings 26–30 (Whitehead canonicalization is the cost).
+- **μ-DESCENT MAP (the night's biggest strategic find)**: 19/124 classes have a descending orbit-floor path within 2 CoV hops (15 hop-2-only, through uphill intermediates); 7 of the 28 exported starts descend FURTHER by depth 4 (aca_99: 25→19); the 50k sweep never searched any of these; benches `mu_descents_d2`/`mu_descents_d4` shipped; cap-48 arm = exact null at depth 2.
 - **T6 DONE, honest negative**: Prover9 IG pilot — sanity proved; AK(3)/aca timeouts, memory-bound before time-bound; exploratory only.
 - **T7 DONE, GO**: Neuwirth memo — 2-generator thickenability collapses to a 4-vertex Whitehead-graph rotation check; Regina validator mandatory; ~1-week build.
 - **T8 DONE, two real results + one refutation**: the n_subs≥2 exact length law (one of the two named open targets — PROVEN + CHECKED 1995/0); the **orbit-floor refutation** (μ can descend under one gated CoV: AK(2) 11→10, ms640 row 6→2-standard; 4 of the 124 have hop-1 descents; AK(3) confirmed at a true wall); obstruction-barrier note. Committed home: `results/stable_ac/theory/` (literature/ is gitignored — see the new lesson).
