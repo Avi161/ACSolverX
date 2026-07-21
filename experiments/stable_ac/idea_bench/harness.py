@@ -90,6 +90,8 @@ def load_bench(bench="combined_22"):
         path = os.path.join(root, "data/ms_unsolved_reps/mu_descents_d2.csv")
     elif bench == "mu_descents_d4":
         path = os.path.join(root, "data/ms_unsolved_reps/mu_descents_d4.csv")
+    elif bench == "mu_floors_r8":
+        path = os.path.join(root, "data/ms_unsolved_reps/mu_floors_r8.csv")
     else:
         path = bench if os.path.isabs(bench) else os.path.join(root, bench)
     rows = []
