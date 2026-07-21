@@ -596,6 +596,11 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
         for p in rows:
             t0 = time.monotonic()
             n_new = 0
+            if (p["pres_id"], -1, "-", "done", -1) in done:
+                n_pres_done += 1     # O(1) resume: no re-climb of a finished
+                print(f"  {p['pres_id']}: done (sentinel), skipped",
+                      flush=True)   # presentation (climbs re-run otherwise)
+                continue
             ckey = (p["pres_id"], 0, "-", "control", -1)
             if ckey not in done:
                 c = run_baseline.greedy_search(
@@ -622,6 +627,13 @@ def run_inflate(bench="aca_124", budget=50, tiers=DEFAULT_TIERS,
             for row in ladder_one(p["pres_id"], p["r1"], p["r2"], cfg, done):
                 _emit(row, p)
                 n_new += 1
+            # terminal sentinel: the ladder ran to completion for this
+            # presentation — written LAST, so a crash mid-ladder never skips
+            f.write(json.dumps({"pres_id": p["pres_id"], "tier": -1,
+                                "branch_id": "-", "arm": "done",
+                                "cov_idx": -1, "r1_orig": p["r1"],
+                                "r2_orig": p["r2"], **common}) + "\n")
+            f.flush()
             n_pres_done += 1
             el = time.monotonic() - t_run
             eta_h = (el / n_pres_done * (len(rows) - n_pres_done)) / 3600

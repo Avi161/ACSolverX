@@ -205,6 +205,21 @@ def test_timed_heartbeat_fires_and_is_wall_clock_gated(capsys):
     assert "hb " not in capsys.readouterr().out
 
 
+def test_runner_writes_done_sentinel_and_resume_skips_in_o1(tmp_path, capsys):
+    kw = dict(bench="aca_124", budget=40, tiers=(16,), wmax=4, family_cap=60,
+              fanout=1, beam=2, climb_plateau=8, climb_max_pops=40,
+              child_cap=64, row_limit=1, out_dir=str(tmp_path))
+    out = inf.run_inflate(**kw)
+    rows = [__import__("json").loads(ln) for ln in open(out) if ln.strip()]
+    assert rows[-1]["arm"] == "done" and rows[-1]["tier"] == -1
+    n1 = len(rows)
+    capsys.readouterr()
+    out2 = inf.run_inflate(**kw)
+    assert out2 == out
+    assert "done (sentinel), skipped" in capsys.readouterr().out
+    assert len([ln for ln in open(out) if ln.strip()]) == n1  # nothing new
+
+
 def test_out_name_encodes_every_result_changing_knob():
     cfg = dict(SMALL_CFG)
     a = inf._out_name("aca_124", 50, cfg, "")
