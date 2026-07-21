@@ -133,8 +133,10 @@ def load_strategies():
 # ── evaluation ─────────────────────────────────────────────────────────────
 
 def _search(r1, r2, budget, cap):
+    # env var (not a param) so spawned sweep workers inherit it; result-neutral
     return run_baseline.greedy_search(
-        r1, r2, budget, max_relator_length=cap, cyclic_reduce=True)
+        r1, r2, budget, max_relator_length=cap, cyclic_reduce=True,
+        high_speedup=os.environ.get("ACSOLVERX_HIGH_SPEEDUP") == "1")
 
 
 def evaluate_cands(cands, r1, r2, budget, cap):

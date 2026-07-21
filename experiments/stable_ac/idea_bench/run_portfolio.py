@@ -43,9 +43,11 @@ from experiments.stable_ac.idea_bench.run_sweep import _run_cell
 MIRROR_EVERY_S = 60
 
 # the ladder-validated top rankers (idea_bench RESULTS.md) + the un-harvested
-# same-orbit re-seed generator (idea 11) + the mandatory same-budget control
+# same-orbit re-seed generator (idea 11) + the mu-descent ranker (orbit-floor
+# refutation, STABLE_AC_NEW.tex) + the mandatory same-budget control
 DEFAULT_STRATEGIES = ("baseline", "cov_abel_len_lex", "cov_nsubs_escape",
-                      "cov_deep_z", "cov_defining_iso", "reseed_orbit")
+                      "cov_deep_z", "cov_defining_iso", "reseed_orbit",
+                      "cov_mu_lex")
 
 
 def _require_budget_allowed(budgets):
@@ -79,8 +81,10 @@ def _read_done(path):
 def run_portfolio(bench="aca_124", strategies=DEFAULT_STRATEGIES, group="top5",
                   budgets=(500,), cap=harness.DEFAULT_CAP, jobs=None,
                   row_limit=None, names=None, mirror_dir=None,
-                  out_dir="results/stable_ac/portfolio"):
+                  out_dir="results/stable_ac/portfolio", high_speedup=False):
     _require_budget_allowed(budgets)
+    if high_speedup:      # env var so spawned workers inherit it; result-neutral
+        os.environ["ACSOLVERX_HIGH_SPEEDUP"] = "1"
     root = harness.find_repo_root(harness.HERE)
     bench_rows = harness.load_bench(bench)
     if names:
@@ -162,11 +166,12 @@ def main():
     ap.add_argument("--row-limit", type=int, default=None)
     ap.add_argument("--names", nargs="*", default=None)
     ap.add_argument("--mirror-dir", default=None)
+    ap.add_argument("--high-speedup", action="store_true")
     args = ap.parse_args()
     run_portfolio(bench=args.bench, strategies=args.strategies, group=args.group,
                   budgets=args.budgets, cap=args.cap, jobs=args.jobs,
                   row_limit=args.row_limit, names=args.names,
-                  mirror_dir=args.mirror_dir)
+                  mirror_dir=args.mirror_dir, high_speedup=args.high_speedup)
 
 
 if __name__ == "__main__":
