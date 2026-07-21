@@ -22,3 +22,6 @@ literature
 .pytest_tmp/
 .pytest_cache/
 .scratch/
+
+# flock ownership claims (runtime artifacts, never results)
+*.jsonl.lock
