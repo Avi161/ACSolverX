@@ -45,6 +45,7 @@ wrong *without raising*. Keep the walk-up.
 - [paths are Definition 2.1 moves; replay, don't diff](lessons/store-paths-as-definition-2-1-moves.md)
 - [never lower `MAX_RELATOR_LENGTH` for speed](lessons/max-relator-length-is-inert.md)
 - [hoist k1-independent rotations](lessons/hoist-rotation-out-of-inner-loop.md) · [what to `@njit` and what not to](lessons/numba-jit-split.md)
+- `expand_node_topk_nj` screens each child's reduced length from the seam alone and materialises only the kept `topk` — bit-identical to `expand_node_nj` + a stable top-k, which is what keeps written rows resumable. [why, and the 21.5× measurement](lessons/screen-child-length-before-materialising.md)
 
 **`search/greedy_compact.py`** — the same search in numpy. Imports `expand_node_nj` verbatim.
 - Keys are unique, so `(total, depth, row)` is a strict total order and the heap implementation

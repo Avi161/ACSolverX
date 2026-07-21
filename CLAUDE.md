@@ -93,6 +93,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - Store solved paths as Definition 2.1 moves `(i,j,k1,k2)`, not string pairs — the move inverts the **other** relator, so decode by replay, never by diffing states. [[WORKS]](experiments/lessons/store-paths-as-definition-2-1-moves.md)
 - Never lower `MAX_RELATOR_LENGTH` to buy speed: it strictly shrinks the search space and can only reduce the solve rate. Cut `SUBSET` or `BUDGET` instead. [[WORKS]](experiments/lessons/max-relator-length-is-inert.md)
 - Hoist any roll/transform that doesn't depend on the outer index out of nested rotation loops: O(L³) → O(L²). [[WORKS]](experiments/lessons/hoist-rotation-out-of-inner-loop.md)
+- Prune a child by the cheap quantity the cap tests (reduced length, from the seam cancellation alone) BEFORE materialising it — at a saturated climb that is ~every child, and it was 21.5× at cap 300. [[WORKS]](experiments/lessons/screen-child-length-before-materialising.md)
 - `@njit` the per-move math; leave the `heapq`/`dict` search orchestration in plain Python. [[WORKS]](experiments/lessons/numba-jit-split.md)
 
 ### HIGH_SPEEDUP / multiprocessing

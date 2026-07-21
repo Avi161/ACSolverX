@@ -590,6 +590,182 @@ def expand_node_nj(r1, r2, max_relator_length, cyclic):
     return codes, lens, moves, count
 
 
+@njit(inline='always')
+def _rot_at(rel, k, t):
+    """Element ``t`` of ``np.roll(rel, 2 * k)`` without building the rotation."""
+    n = len(rel)
+    return rel[(t - k) % n]
+
+
+@njit(cache=True)
+def _seam_reduced_len_nj(ri, k1, oj, k2, cyclic):
+    """len(reduce_relator_nj(rot_i ++ rot_o, cyclic)) in O(cancelled), no concat.
+
+    ``rot_i = np.roll(ri, 2*k1)``, ``rot_o = np.roll(oj, 2*k2)``. Both halves
+    are freely reduced (rotations of a cyclically reduced relator are), so the
+    only free cancellation is the cascade at the seam and the reduced word is
+    the virtual ``rot_i[:n1-c] ++ rot_o[c:]`` — which is all the cyclic pass
+    then needs to index. Exact only under that precondition; every state in a
+    search satisfies it (children are reduced then canonicalised).
+    """
+    n1 = len(ri)
+    n2 = len(oj)
+    lim = n1 if n1 < n2 else n2
+    c = 0
+    while c < lim and is_inverse_nj(_rot_at(ri, k1, n1 - 1 - c),
+                                    _rot_at(oj, k2, c)):
+        c += 1
+    m = n1 + n2 - 2 * c
+    if (not cyclic) or m <= 1:
+        return m
+    # W[pos] = rot_i[pos] for pos < left, else rot_o[pos - left + c]
+    left = n1 - c
+    p_last = m - 1
+    a = _rot_at(ri, k1, 0) if left > 0 else _rot_at(oj, k2, c)
+    b = (_rot_at(ri, k1, p_last) if p_last < left
+         else _rot_at(oj, k2, p_last - left + c))
+    if not is_inverse_nj(a, b):
+        return m
+    i = 1
+    half = m / 2
+    while i < half:
+        pl = i
+        pr = m - 1 - i
+        a = (_rot_at(ri, k1, pl) if pl < left
+             else _rot_at(oj, k2, pl - left + c))
+        b = (_rot_at(ri, k1, pr) if pr < left
+             else _rot_at(oj, k2, pr - left + c))
+        if not is_inverse_nj(a, b):
+            break
+        i += 1
+    return m - 2 * i
+
+
+@njit(cache=True)
+def expand_node_topk_nj(r1, r2, max_relator_length, cyclic, sgn, topk):
+    """``expand_node_nj``'s children, materialising only the ``topk`` kept ones.
+
+    Pass 1 prices every child by its reduced length alone (``_seam_reduced_len_nj``,
+    O(cancelled)) and drops the over-cap ones there. At a saturated climb that
+    is ~every child — the old kernel paid a full concatenate + two reduces
+    (O(L) each, ~90k children at L=300) before discarding them on the same
+    test, which is the whole reason a tier-300 climb ran at ~1 pop/s.
+    Pass 2 concatenates, reduces, canonicalises and encodes only the survivors
+    the caller would have kept.
+
+    ``sgn`` = +1 keep shortest (descend) | -1 keep longest (climb).
+    ``topk <= 0`` keeps everything. Output order reproduces the caller's old
+    ``np.argsort(sgn * totals, kind='stable')[:child_cap]`` exactly, and
+    generation order when the survivor count is <= ``topk``.
+    """
+    cap = max_relator_length
+    n1 = len(r1)
+    n2 = len(r2)
+    ub = 4 * (n1 + 1) * (n2 + 1)
+    c_len = np.empty(ub, dtype=np.int64)
+    c_tot = np.empty(ub, dtype=np.int64)
+    c_mv = np.empty((ub, 4), dtype=np.int32)
+    cnt = 0
+
+    for target in range(1, 3):
+        if target == 1:
+            ri = r1
+            rj = r2
+        else:
+            ri = r2
+            rj = r1
+        len_i = len(ri)
+        if len_i == 0:
+            continue
+        # the untouched relator is reduced once per target, not per child
+        oth = reduce_relator_nj(rj, cyclic)
+        len_oth = len(oth)
+        if len_oth > cap:
+            continue
+        for idx in range(2):
+            oj = rj if idx == 0 else inverse_relator_nj(rj)
+            jsign = 1 if idx == 0 else -1
+            len_o = len(oj)
+            if len_o == 0:
+                continue
+            for k1 in range(len_i):
+                last_i = _rot_at(ri, k1, len_i - 1)
+                for k2 in range(len_o):
+                    if not is_inverse_nj(last_i, _rot_at(oj, k2, 0)):
+                        continue
+                    m = _seam_reduced_len_nj(ri, k1, oj, k2, cyclic)
+                    if m > cap:
+                        continue
+                    c_len[cnt] = m
+                    c_tot[cnt] = m + len_oth
+                    c_mv[cnt, 0] = target
+                    c_mv[cnt, 1] = jsign
+                    c_mv[cnt, 2] = k1
+                    c_mv[cnt, 3] = k2
+                    cnt += 1
+
+    if topk > 0 and cnt > topk:
+        order = np.argsort(sgn * c_tot[:cnt], kind='mergesort')[:topk]
+    else:
+        order = np.arange(cnt)
+
+    count = len(order)
+    codes = np.empty((count if count > 0 else 1, 2 * cap), dtype=np.uint8)
+    lens = np.empty((count if count > 0 else 1, 2), dtype=np.int32)
+    moves = np.empty((count if count > 0 else 1, 4), dtype=np.int32)
+
+    for out in range(count):
+        s = order[out]
+        target = c_mv[s, 0]
+        k1 = c_mv[s, 2]
+        k2 = c_mv[s, 3]
+        if target == 1:
+            ri = r1
+            rj = r2
+        else:
+            ri = r2
+            rj = r1
+        oj = rj if c_mv[s, 1] == 1 else inverse_relator_nj(rj)
+        piece = np.concatenate((np.roll(ri, 2 * k1), np.roll(oj, 2 * k2)))
+        if target == 1:
+            a = reduce_relator_nj(piece, cyclic)
+            b = reduce_relator_nj(r2, cyclic)
+        else:
+            a = reduce_relator_nj(r1, cyclic)
+            b = reduce_relator_nj(piece, cyclic)
+        ca, cb = canonical_pair_nj(a, b)
+        la = len(ca)
+        lb = len(cb)
+        for t in range(la):
+            v = 2 * ca[t, 0] + ca[t, 1]
+            if v == 0:
+                codes[out, t] = 2
+            elif v == 1:
+                codes[out, t] = 4
+            elif v == 2:
+                codes[out, t] = 1
+            else:
+                codes[out, t] = 3
+        for t in range(lb):
+            v = 2 * cb[t, 0] + cb[t, 1]
+            if v == 0:
+                codes[out, la + t] = 2
+            elif v == 1:
+                codes[out, la + t] = 4
+            elif v == 2:
+                codes[out, la + t] = 1
+            else:
+                codes[out, la + t] = 3
+        lens[out, 0] = la
+        lens[out, 1] = lb
+        moves[out, 0] = target
+        moves[out, 1] = c_mv[s, 1]
+        moves[out, 2] = k1
+        moves[out, 3] = k2
+
+    return codes, lens, moves, count
+
+
 class GreedyHeavySolver:
     """Memory-lean twin of ``GreedyBaselineSolver`` for very large budgets.
 

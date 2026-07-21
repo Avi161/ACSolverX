@@ -5,6 +5,8 @@ set iteration feeds only dedup membership, never ordering (both family and
 candidate lists are sorted with full string tiebreaks).
 """
 
+import numpy as np
+
 from experiments.greedy_tests.spec.moves import legacy_to_move
 from experiments.greedy_tests.spec.presentation import Presentation
 from experiments.greedy_tests.spec.search import replay
@@ -164,13 +166,13 @@ def test_fused_expansion_matches_the_reference_child_path():
     in generation order — this equality is what keeps rows written by the
     pre-fused code resume-compatible with the fused code."""
     from experiments.search.greedy_baseline import (
-        arr_to_str, canonical_pair_nj, expand_node_nj,
+        arr_to_str, canonical_pair_nj, expand_node_nj, expand_node_topk_nj,
         get_neighbors_with_moves_nj, reduce_relator_nj, str_to_arr)
 
     states = [AK3, ("YYYYXyyyx", "YYYYxxyX")]
     fat = inf.search_until(*AK3, 60, 30, up=True, plateau_k=10, child_cap=64)
     states.append(fat["incumbent"])            # a fat state, cap-prune active
-    n_pruned_cases = 0
+    n_pruned_cases, n_topk_cases = 0, 0
     for s in states:
         for cap in (18, 30):
             a1, a2 = str_to_arr(s[0]), str_to_arr(s[1])
@@ -191,7 +193,60 @@ def test_fused_expansion_matches_the_reference_child_path():
             assert fused == ref
             raw = len(get_neighbors_with_moves_nj(a1, a2))
             n_pruned_cases += (count < raw)
+            # and the screening kernel (which never materialises the children
+            # it drops) must reproduce fused + the caller's stable top-k pick
+            tot = [len(c[0][0]) + len(c[0][1]) for c in fused]
+            for sgn in (1, -1):
+                for topk in (0, 512, 5):
+                    if 0 < topk < len(fused):
+                        order = sorted(range(len(fused)),
+                                       key=lambda i: sgn * tot[i])[:topk]
+                        n_topk_cases += 1
+                    else:
+                        order = range(len(fused))
+                    codes, lens, mvs, count = expand_node_topk_nj(
+                        a1, a2, cap, True, sgn, topk)
+                    got = [(inf._decode_child(codes, lens, i),
+                            (int(mvs[i, 0]), int(mvs[i, 1]),
+                             int(mvs[i, 2]), int(mvs[i, 3])))
+                           for i in range(count)]
+                    assert got == [fused[i] for i in order]
     assert n_pruned_cases, "no case exercised the cap prune — test is weak"
+    assert n_topk_cases, "no case exercised top-k truncation — test is weak"
+
+
+def test_seam_length_screen_equals_a_full_reduce():
+    """The screen prices a child by seam cancellation alone; if it ever
+    disagreed with reduce_relator_nj the search would prune the wrong
+    children (silently, and only at high caps)."""
+    import random
+
+    from experiments.search.greedy_baseline import (
+        _seam_reduced_len_nj, reduce_relator_nj, str_to_arr)
+
+    rng = random.Random(11)
+
+    def rnd_reduced(n):
+        while True:
+            w = ""
+            for _ in range(n):
+                c = rng.choice("xXyY")
+                while w and w[-1].swapcase() == c:
+                    c = rng.choice("xXyY")
+                w += c
+            a = reduce_relator_nj(str_to_arr(w), True)
+            if len(a) >= 2:
+                return a
+
+    n_cancelled = 0
+    for _ in range(400):
+        ri, oj = rnd_reduced(rng.randint(2, 14)), rnd_reduced(rng.randint(2, 14))
+        k1, k2 = rng.randrange(len(ri)), rng.randrange(len(oj))
+        ref = len(reduce_relator_nj(
+            np.concatenate((np.roll(ri, 2 * k1), np.roll(oj, 2 * k2))), True))
+        assert _seam_reduced_len_nj(ri, k1, oj, k2, True) == ref
+        n_cancelled += ref < len(ri) + len(oj)
+    assert n_cancelled > 50, "corpus barely cancels — test is weak"
 
 
 def test_timed_heartbeat_fires_and_is_wall_clock_gated(capsys):

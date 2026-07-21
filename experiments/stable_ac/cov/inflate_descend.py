@@ -73,7 +73,7 @@ from experiments.greedy_tests.spec.words import (
     word_to_str,
 )
 from experiments.search.greedy_baseline import (
-    expand_node_nj,
+    expand_node_topk_nj,
     str_to_arr,
 )
 from experiments.stable_ac.cov import cov
@@ -173,25 +173,22 @@ def search_until(r1s, r2s, budget, cap, up=False, plateau_k=None,
                         "incumbent_moves": path_to(best_key),
                         "best_total": best_total,
                         "max_popped_total": max_popped}
-        # fused kernel: enumerate + reduce + cap-prune + canonicalise in ONE
-        # numba call (the per-child Python<->numba crossings were ~1 s/pop at
-        # L=300); children come back in generation order, so a STABLE argsort
-        # on the signed total reproduces the reference selection exactly
-        codes, lens, mvs, count = expand_node_nj(a1, a2, cap, True)
-        if count:
-            tots = lens[:count, 0] + lens[:count, 1]
-            if child_cap is not None and count > child_cap:
-                sel = np.argsort(sgn * tots, kind="stable")[:child_cap]
-            else:
-                sel = range(count)
-            for i in sel:
-                nk = _decode_child(codes, lens, i)
-                if nk in visited:
-                    continue
-                visited[nk] = k
-                move_in[nk] = (int(mvs[i, 0]), int(mvs[i, 1]),
-                               int(mvs[i, 2]), int(mvs[i, 3]))
-                heapq.heappush(pq, (sgn * int(tots[i]), d + 1, nk))
+        # screening kernel: prices every child by its reduced length alone
+        # (O(cancelled), no concatenate), drops the over-cap ones there, and
+        # materialises + canonicalises only the child_cap the caller keeps.
+        # Output order == the old expand_node_nj + STABLE argsort selection,
+        # so pre-existing rows stay resume-compatible (pinned by test).
+        codes, lens, mvs, count = expand_node_topk_nj(
+            a1, a2, cap, True, sgn, 0 if child_cap is None else child_cap)
+        for i in range(count):
+            nk = _decode_child(codes, lens, i)
+            if nk in visited:
+                continue
+            visited[nk] = k
+            move_in[nk] = (int(mvs[i, 0]), int(mvs[i, 1]),
+                           int(mvs[i, 2]), int(mvs[i, 3]))
+            heapq.heappush(
+                pq, (sgn * (int(lens[i, 0]) + int(lens[i, 1])), d + 1, nk))
     return {"status": "budget" if pq else "exhausted", "pops": pops,
             "moves": None, "incumbent": best_key,
             "incumbent_moves": path_to(best_key), "best_total": best_total,
