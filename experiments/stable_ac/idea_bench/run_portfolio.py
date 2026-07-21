@@ -32,6 +32,7 @@ CLI (Colab sets ACSOLVERX_ALLOW_BIG=1; locally keep budgets <= 1000):
 import argparse
 import json
 import os
+import re
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
@@ -63,6 +64,43 @@ def _out_name(bench, group, budget, cap):
     return f"portfolio_{bench}_{group}_{budget}_mrl{cap}.jsonl"
 
 
+def _wandb_start(bench, group, budget, cap, strategies, out_path):
+    """Minimal W&B mirror (jsonl stays source of truth). Run id = the dateless
+    filename stem, resume='allow' — a Colab disconnect reattaches. run/* keys
+    ride a monotone n_cells step; nothing passes step= (monotonic-step lesson).
+    Entity/project come from env (WANDB_ENTITY/WANDB_PROJECT, defaulting to
+    the repo's team entity); the API key is NEVER hardcoded."""
+    import wandb
+
+    run_id = re.sub(r"[^A-Za-z0-9_-]", "-",
+                    os.path.splitext(os.path.basename(out_path))[0])
+    run = wandb.init(
+        entity=os.environ.get("WANDB_ENTITY", "avigyapaudel045-aisc"),
+        project=os.environ.get("WANDB_PROJECT", "acsolver"),
+        id=run_id, name=f"{group} · {budget} · {bench}",
+        group=f"portfolio-{bench}", job_type="stable_ac_portfolio",
+        resume="allow",
+        config={"bench": bench, "group": group, "budget": budget, "cap": cap,
+                "strategies": list(strategies)})
+    run.define_metric("n_cells")
+    run.define_metric("run/*", step_metric="n_cells")
+    return run, run_id
+
+
+def _wandb_finish(run, run_id, out_path):
+    import wandb
+
+    rows = [json.loads(ln) for ln in open(out_path) if ln.strip()]
+    n_solved = sum(bool(r.get("solved")) for r in rows)
+    run.summary.update({"n_rows": len(rows), "n_solved": n_solved,
+                        "cum_nodes": sum(r.get("total_nodes") or 0
+                                         for r in rows)})
+    art = wandb.Artifact(run_id, type="stable_ac_portfolio_results")
+    art.add_file(out_path)
+    run.log_artifact(art)
+    run.finish()
+
+
 def _read_done(path):
     done = set()
     if os.path.exists(path):
@@ -81,7 +119,8 @@ def _read_done(path):
 def run_portfolio(bench="aca_124", strategies=DEFAULT_STRATEGIES, group="top5",
                   budgets=(500,), cap=harness.DEFAULT_CAP, jobs=None,
                   row_limit=None, names=None, mirror_dir=None,
-                  out_dir="results/stable_ac/portfolio", high_speedup=False):
+                  out_dir="results/stable_ac/portfolio", high_speedup=False,
+                  use_wandb=False):
     _require_budget_allowed(budgets)
     if high_speedup:      # env var so spawned workers inherit it; result-neutral
         os.environ["ACSOLVERX_HIGH_SPEEDUP"] = "1"
@@ -111,6 +150,10 @@ def run_portfolio(bench="aca_124", strategies=DEFAULT_STRATEGIES, group="top5",
             _seed_stage(out_path, mirror_path)
         _claim_out_path(out_path)
         _repair_jsonl(out_path)
+        wb_run = None
+        if use_wandb:
+            wb_run, wb_id = _wandb_start(bench, group, budget, cap,
+                                         strategies, out_path)
         done = _read_done(out_path)
         cells = [(s, p, [budget], cap) for s in strategies for p in bench_rows
                  if (s, p["pres_id"], budget) not in done]
@@ -135,6 +178,9 @@ def run_portfolio(bench="aca_124", strategies=DEFAULT_STRATEGIES, group="top5",
                 if n_done % 5 == 0 or n_done == len(cells):
                     print(f"  [{budget}] {n_done}/{len(cells)} cells, "
                           f"{n_solved} solved rows", flush=True)
+                if wb_run is not None:   # len(done)+n_done is monotone across resumes
+                    wb_run.log({"n_cells": len(done) + n_done,
+                                "run/n_solved": n_solved})
                 if mirror_path and time.monotonic() - last_mirror > MIRROR_EVERY_S:
                     _copy_file(out_path, mirror_path)
                     last_mirror = time.monotonic()
@@ -149,6 +195,8 @@ def run_portfolio(bench="aca_124", strategies=DEFAULT_STRATEGIES, group="top5",
                         _write(fut.result())
         if mirror_path:
             _copy_file(out_path, mirror_path)
+        if wb_run is not None:
+            _wandb_finish(wb_run, wb_id, out_path)
         written.append(out_path)
         print(f"[{budget}] written: {out_path}", flush=True)
     return written
@@ -167,11 +215,13 @@ def main():
     ap.add_argument("--names", nargs="*", default=None)
     ap.add_argument("--mirror-dir", default=None)
     ap.add_argument("--high-speedup", action="store_true")
+    ap.add_argument("--wandb", action="store_true")
     args = ap.parse_args()
     run_portfolio(bench=args.bench, strategies=args.strategies, group=args.group,
                   budgets=args.budgets, cap=args.cap, jobs=args.jobs,
                   row_limit=args.row_limit, names=args.names,
-                  mirror_dir=args.mirror_dir, high_speedup=args.high_speedup)
+                  mirror_dir=args.mirror_dir, high_speedup=args.high_speedup,
+                  use_wandb=args.wandb)
 
 
 if __name__ == "__main__":
