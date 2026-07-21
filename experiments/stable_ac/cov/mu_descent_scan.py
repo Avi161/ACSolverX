@@ -96,10 +96,14 @@ def main():
                     help="hop-1 orbits (lowest mu first) to expand at hop 2")
     ap.add_argument("--names", nargs="*", default=None)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--data", default="data/ms_unsolved_reps/aca_124.csv",
+                    help="name,r1,r2 CSV of presentations to scan")
     args = ap.parse_args()
     root = find_repo_root(HERE)
+    tag = os.path.splitext(os.path.basename(args.data))[0]
+    tag = "aca124" if tag == "aca_124" else tag    # keep the shipped file identity
     out = args.out or os.path.join(
-        root, f"results/stable_ac/mu_scan/mu_scan_aca124_d2_k{args.keep}"
+        root, f"results/stable_ac/mu_scan/mu_scan_{tag}_d2_k{args.keep}"
               f"_mrl{args.cap}.jsonl")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     done = set()
@@ -110,8 +114,7 @@ def main():
             except (ValueError, KeyError):
                 continue
     import csv
-    rows = list(csv.DictReader(
-        open(os.path.join(root, "data/ms_unsolved_reps/aca_124.csv"))))
+    rows = list(csv.DictReader(open(os.path.join(root, args.data))))
     if args.names:
         keep_names = set(args.names)
         rows = [r for r in rows if r["name"] in keep_names]
