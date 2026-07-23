@@ -1,0 +1,9 @@
+# [2026-07-23] A control that cannot move measures nothing [TRAP]
+
+The orbit→greedy pilot (`orbit_greedy.py`) asked: does starting the baseline greedy from a μ-ladder orbit beat starting from the original? Run on 6 classes of `aca_124`, 2,886 searches at budget 1,000, cap 96, spread sample over the whole μ range, 8 relabels each. Result: **0 solved, 0 flips, 1/6 classes out-reduced**. Read naively that is "the idea does not work."
+
+It is not. The control's own reduction column was `18 -> 18`, `18 -> 18`, `19 -> 19`, `15 -> 15`, `13 -> 13` — from the original presentation, 1,000 nodes buys **zero** length reduction on every class. The instrument had no dynamic range: it cannot distinguish "the transformed start does not help" from "no start of any kind can show progress at this budget." `aca_124` is the *unsolved* set (hard at 10⁵–10⁷ nodes), while the precedent this experiment scaled up (`AUTOMORPHISMS_COV.md`, 17 unsolved→solved flips) ran on a benchmark whose control already solved 47/66 — a population where the control had room to differ.
+
+What the run *did* establish is a different, real claim: the greedy pulls every orbit start back down to its class floor and stops there (24→18, 26→18, 33→16, 22→19), so Whitehead/Aut canonicalisation and AC search — two independent move systems — agree on the same floor.
+
+**Rule:** before reading a treatment arm, check the control can move. Compute the control's own spread on the outcome metric first; if it is a constant, the experiment is under-powered by construction and its null result is not evidence. Pick the population (or the budget) so the control has variance — the same defect as a guard whose precondition never fires (`cap-monotonicity-vacuous-guard.md`). Corollary: when a repo rule caps what you may run locally, say which claim the cap makes untestable rather than shipping the under-powered number as an answer.
