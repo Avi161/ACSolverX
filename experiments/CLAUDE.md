@@ -141,6 +141,19 @@ run — it gets killed), and the chunk heartbeat counts unique row keys, never l
 [[TRAP]](lessons/orphaned-workers-double-compute.md) Tests:
 `tests/stable_ac/test_cov.py`, same command as above.
 
+**`stable_ac/cov/orbit_greedy.py`** — runs the baseline greedy FROM `mu_ladder_big` orbits (each
+orbit row is a concrete pair obtained at zero search nodes, so it is a free alternative start).
+Rung 0 is the class's original and becomes the **control**, run at the same budget and cap — a CoV
+row compared against a different `max_relator_length` is not a comparison. Each selected orbit
+enters as its 8 signed-permutation relabels: the greedy reads strings, not orbits, and relabels
+supplied 14 of 17 flips in the one-hop sweep. A solve proves the original is **stably** AC-trivial,
+never AC-trivial, and `path_length` from a transformed start is not a certificate. `high_speedup`
+is result-neutral and stays out of `_run_prefix`; over-cap starts are skipped **and counted**.
+[the pilot + what it could not measure](../results/stable_ac/orbit_greedy/ORBIT_GREEDY_PILOT.md)
+· [check the control can move](lessons/control-with-no-dynamic-range.md)
+· [beam vs best-first](lessons/rung-local-beam-abandons-the-low-shell.md)
+Tests: `tests/stable_ac/test_orbit_greedy.py`.
+
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path
 through `greedy_tests/spec/` ONLY (never a solver — the independence is the point; a solver bug or
 a gamed test suite cannot self-certify). Treat any edit here with the same suspicion as an edit to
