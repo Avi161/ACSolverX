@@ -34,11 +34,12 @@ def _root():
 
 
 ROOT = _root()
-NOCOV_DIR = os.path.join(ROOT, "results", "stable_ac", "nocov")
+NOCOV_DIR = os.path.join(ROOT, "results", "stable_ac", "nocov", "old_benchmark")
 COV_DIR = os.path.join(ROOT, "results", "stable_ac", "cov")
 A1_100 = os.path.join(NOCOV_DIR,
                       "nocov_combined_11_A1_100_mrl64_cyc_07_13_26.jsonl")
-COV_100 = os.path.join(COV_DIR, "cov_100_11_zf1_mrl24_cyc_s10r1_07_13_26.jsonl")
+COV_100 = os.path.join(
+    COV_DIR, "covsweep_100_11_subnc2pxysb_mrl24_cyc_s10r1_07_16_26.jsonl")
 
 
 def _rows(path):
@@ -73,7 +74,7 @@ def test_committed_nocov_evidence_verifies():
 def test_committed_cov_evidence_verifies():
     assert os.path.exists(COV_100), "committed evidence file is gone"
     n_rows, n_solved, failures = verify_file(COV_100)
-    assert (n_rows, n_solved, failures) == (11, 4, [])
+    assert (n_rows, n_solved, failures) == (1152, 226, [])
 
 
 def test_main_verifies_everything_committed_including_invariance():

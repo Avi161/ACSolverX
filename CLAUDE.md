@@ -119,6 +119,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - The jsonl filename / `run_id` stem must encode every knob that changes the result — and no knob that doesn't (`use_*`, `HIGH_SPEEDUP`, `HEARTBEAT_*`, `WANDB_*` stay out of `_run_prefix`). [[TRAP]](experiments/lessons/jsonl-filename-encodes-search-identity.md)
 - An identity tag (family tag, schema version) lives in exactly ONE code constant — a yaml copy shadows the next bump via config merge order; pin `load_config(shipped_yaml)` against the constant in a test. [[TRAP]](experiments/lessons/identity-tag-shadowed-by-yaml.md)
 - Never put a wall-clock date in a filename that also serves as a resume key. [[TRAP]](experiments/lessons/date-in-filename-broke-resume.md)
+- A file under `results/` is data *and* somebody's test fixture — `grep -rn "$(basename FILE)" tests/ experiments/` before moving or deleting one; two commits that didn't left `test_verify_results.py` red for days, and that stale red masked a `verify_results.main` crash on its own default argument. When a whole test file is red, check the parent branch before blaming your change. [[TRAP]](experiments/lessons/results-path-is-a-test-fixture.md)
 - `git pull` is NOT a module reload — a pulled `.py` stays stale in `sys.modules`. Prove *which* code is loaded before diagnosing "my fix didn't take". [[TRAP]](experiments/lessons/git-pull-is-not-a-module-reload.md)
 
 ### W&B

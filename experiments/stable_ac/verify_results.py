@@ -254,6 +254,26 @@ def collect_files(args_paths):
     return [f for f in files if not f.endswith("_paths.jsonl")]
 
 
+def _is_search_results(path):
+    """True if `path` is a search-results jsonl (has the `_job_key` fields).
+
+    `results/stable_ac/` also holds analysis jsonl — mu-ladder rungs, MITM
+    merges — that carry no `node_budget`/`max_relator_length_cap` and no
+    certificate to verify. Pooling one into the invariance check raises
+    KeyError, so they are skipped *loudly*: a silent skip in a verifier reads
+    as "everything verified" when it did not."""
+    try:
+        with open(path) as f:
+            for ln in f:
+                if ln.strip():
+                    row = json.loads(ln)
+                    return ("max_relator_length_cap" in row
+                            and "node_budget" in row)
+    except (OSError, json.JSONDecodeError):
+        return True          # let verify_file report it properly
+    return False             # empty file
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("paths", nargs="*", default=["results/stable_ac"],
@@ -264,6 +284,14 @@ def main(argv=None):
     files = collect_files(args.paths)
     if not files:
         print("no results files found")
+        return 1
+
+    skipped = [f for f in files if not _is_search_results(f)]
+    files = [f for f in files if f not in set(skipped)]
+    for f in skipped:
+        print(f"{f}: not a search-results jsonl — SKIPPED (no certificates)")
+    if not files:
+        print("no search-results files among the paths given")
         return 1
 
     pool, all_failures, total_rows, total_solved = {}, [], 0, 0
