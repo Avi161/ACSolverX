@@ -157,3 +157,24 @@ Inside the max_knots = 2 bucket it sharpens further: AUC 0.989 raw / 0.981 lengt
 ### Caveats
 
 Hypothesis-driven and supervised — not protected by the unsupervised sweep's permutation null (the within-bucket nulls in the previous section are its own). And "unsolved" means *not yet trivialised at the budgets tried*, so this may track what current search finds hard rather than what is AC-nontrivial.
+
+## 8. Held-out validation: 70/30 split, 200 seeds
+
+`experiments/clustering/holdout_eval.py` → `holdout_eval.json`. Everything above was fitted and scored on the *same* states, so those accuracies are upper bounds, not estimates — the threshold was chosen by scanning every value in the data. Here the cut is refit on a stratified 70% and scored on a 30% the fit never saw, over 200 seeds.
+
+| model | A tables · 71 held out | B provenance-matched · 82 held out |
+|---|---|---|
+| all 10 features, logistic | **0.981 ± 0.013** | **0.867 ± 0.030** |
+| 3 features (`smaller mean block` + `max_knots` + length) | 0.975 ± 0.018 | 0.857 ± 0.030 |
+| `smaller mean block` alone | 0.945 ± 0.024 | 0.787 ± 0.036 |
+| `max_knots` alone | 0.853 ± 0.035 | 0.638 ± 0.041 |
+| total length alone (yardstick) | 0.760 ± 0.042 | 0.777 ± 0.046 |
+| labels shuffled (leakage control) | 0.522 *(base rate 0.523)* | 0.556 *(base rate 0.585)* |
+
+**Nothing was lost to held-out evaluation.** The in-sample 0.945 for `smaller mean block` reproduces exactly out-of-sample, because 1.25 is refit identically from all 200 training halves — with a threshold that stable there is nothing to overfit. `tests/clustering/test_holdout_eval.py` pins that: 200 seeds, 200 identical fits.
+
+**Ten features are not needed.** Block thickness + knot count + length recover 0.975 of the full model's 0.981 (and 0.857 of 0.867 on B). Length is what the single-feature rule was missing: adding it moves the pair from 0.945 → 0.975 on A and 0.747 → 0.860 on B.
+
+### The seed is not a result
+
+Best of 200 seeds on A is **1.000** against a mean of 0.981 and a worst seed of 0.930. With 71 test points a single split's standard error is ≈ 0.04, so the maximum of 200 draws sits about 2σ high *by construction* — the same garden-of-forking-paths the unsupervised sweep corrects with a permutation null. A seed is a property of the split, not of the model: it does not transfer to the next 30%. The mean is the estimate; the spread is the honest error bar.
