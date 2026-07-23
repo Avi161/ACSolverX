@@ -28,7 +28,7 @@ and a bloated CLAUDE.md gets ignored.
 - **`results/greedy_baseline/` is a resume contract, not just data.** `run_baseline.py` globs it to find a run to continue and `difficulty_bins.py` does a non-recursive `os.listdir` on it — moving a `.jsonl` into a subfolder does not raise, it silently restarts a multi-day run. Never rename anything in there.
 - **Scripts under `experiments/` find the repo root by walking up** until they see `experiments/` + `data/` — never by counting `os.path.dirname()` levels. A dirname chain encodes the file's depth and silently repoints at the wrong directory the moment the file moves.
 - **Do not modify existing code.** New files only; the notebook `greedy_search.ipynb` and `envs/` are read-only references.
-- Active branch: `test/stable-ac-moves-w4`. Remote: `github.com/Avi161/ACSolverX.git`.
+- Active branch: `research/w5/stable-ac-escape` — a clean restart cut from `research/stable-ac-escape`, keeping only nb2 (the μ-ladder) of that push's six notebooks. What was pruned and how to recover it: [`PRUNED.md`](PRUNED.md). Remote: `github.com/Avi161/ACSolverX.git`.
 
 ## Environment
 

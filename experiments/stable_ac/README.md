@@ -65,18 +65,15 @@ that feeds the **existing** 2-gen numba greedy unchanged.
 .venv/bin/python3 -m experiments.stable_ac.cov.run_cov --config experiments/stable_ac/cov/config_cov.yaml
 ```
 
-## Overnight escape additions (2026-07-21, branch `research/stable-ac-escape`)
+## Escape additions (2026-07-21, branch `research/stable-ac-escape`)
 
-Plan + status: [`ESCAPE_PLAN.md`](ESCAPE_PLAN.md); morning launch instructions: [`RUN_ME_MORNING.md`](RUN_ME_MORNING.md); theory: `results/stable_ac/theory/`.
+Plan + status: [`ESCAPE_PLAN.md`](ESCAPE_PLAN.md); theory: `results/stable_ac/theory/`. What of that push survives here and what was pruned: [`../../PRUNED.md`](../../PRUNED.md).
 
 | file | what it is |
 |---|---|
-| `idea_bench/run_portfolio.py` + `portfolio_124.ipynb` | production portfolio runner on the 124 (budget gate, flock claim, per-budget files, Drive mirror); new strategies `strategies/reseed_orbit.py` (same-orbit re-seeds) and `strategies/cov_mu_lex.py` (μ-first ranking); benches `aca_124`, `mu_descents_d2`, `mu_descents_d4`. |
-| `cov/stall_escape.py` | stall-triggered best-of-many CoV escape (pausable python loop over the `@njit` primitives, segmented spec-verified certificates, popped-envelope logging). +2 coverage 0 losses vs greedy at matched 1k on combined_22. |
-| `cov/mu_descent_scan.py` / `cov/export_mu_descents.py` / `cov/mu_ladder.py` | the orbit-floor toolchain: depth-2 μ-descent map, verified export of descended starts as benches, and the iterated beam ladder with the μ≤12 stable-solve finish line. |
+| `cov/mu_descent_scan.py` / `cov/export_mu_descents.py` / `cov/mu_ladder.py` | the orbit-floor toolchain: depth-2 μ-descent map, verified export of descended starts as benches, and the iterated beam ladder with the μ≤12 stable-solve finish line. Driven by `../notebooks/nb2_big_ladder.ipynb`. |
 | `cov/run_mitm_aut.py` | Aut-quotient meet-in-the-middle vs TRIVIAL (ceiling ladder, dual-stack merge verification). |
-| `nocov/run_static_rank.py` + `static_rank.ipynb` + `../verify_static_rank.py` | static rank-4/5 stabilization baseline (the mentor's un-run item 3) + its solver-independent verifier. |
-| `atp/` | Prover9 IG-encoding oracle pilot (leads only, never solves). |
+| `cov/restart_planner.py` / `cov/run_restart_tree.py` / `cov/orbit_links.py` | iterated-CoV restart planning and the stable orbit-link ledger. |
 | `thickenable/NEUWIRTH_FEASIBILITY.md` | thickenability decision feasibility (GO; 4-vertex Whitehead-graph rotation criterion; Regina validator mandatory). |
 
 ## Tests

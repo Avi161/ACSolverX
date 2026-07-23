@@ -1,6 +1,6 @@
 # `results/`
 
-Every artifact any experiment has produced. Four directories, each with a different job.
+Every artifact any experiment has produced. Each directory has a different job.
 
 | directory | what it holds | produced by |
 |---|---|---|
@@ -8,6 +8,10 @@ Every artifact any experiment has produced. Four directories, each with a differ
 | **`benchmark/`** | the stable-AC benchmark: difficulty ladder + reach tier + `combined/` | `experiments/analysis/*.py` |
 | **`stable_ac/nocov/`** | Branch-A (No-CoV) sweep jsonl, one per `(benchmark, family, budget)` | `experiments/stable_ac/nocov/run_nocov.py` |
 | **`stable_ac/cov/`** | Branch-B (one-shot CoV) jsonl, one per budget, `cov` + `covbase` modes | `experiments/stable_ac/cov/run_cov.py` |
+| **`stable_ac/mu_scan/`** | the orbit-floor μ-ladder: depth-2 descent map, the rung ladders, `MU_SCAN_FINDINGS.md` | `experiments/stable_ac/cov/{mu_descent_scan,mu_ladder}.py` |
+| **`stable_ac/mitm/`** | Aut-quotient meet-in-the-middle vs TRIVIAL, one jsonl per length ceiling | `experiments/stable_ac/cov/run_mitm_aut.py` |
+| **`stable_ac/theory/`** | proved/refuted notes from the escape push (μ criterion, MS template, orbit floors) | written by hand, ac-advisor reviewed |
+| **`stable_ac/IDEA_BENCH_RESULTS.md`** | the 16-strategy start-transform race on combined_22 — evidence kept, [producer pruned](../PRUNED.md) | ⚠ `experiments/stable_ac/idea_bench/`, removed |
 | **`equivalence_classes/`** | the 261 unsolved reps are really **126 distinct problems** — and the proof | `experiments/equivalence_classes/` |
 | **`graphs/`** | two baseline curves + the difficulty ranking | ⚠ no producer script in the repo |
 
