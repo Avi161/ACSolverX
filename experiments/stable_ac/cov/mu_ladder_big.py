@@ -68,9 +68,20 @@ try:
         relabel_min as _relabel_min,
         warm as _warm_canon,
     )
-    FAST_CANON = True
+    _FAST_AVAILABLE = True
 except Exception:          # numba unavailable: same rows, just slower
-    FAST_CANON = False
+    _FAST_AVAILABLE = False
+
+# The live switch _orbit_memo reads. The HIGH_SPEEDUP knob (config key
+# ``high_speedup``, default True) sets it per run via _apply_high_speedup —
+# result-neutral like the greedy solver's HIGH_SPEEDUP, so it must never
+# enter the filename identity.
+FAST_CANON = _FAST_AVAILABLE
+
+
+def _apply_high_speedup(c):
+    global FAST_CANON
+    FAST_CANON = _FAST_AVAILABLE and bool(c.get("high_speedup", True))
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -94,6 +105,9 @@ DEFAULTS = dict(
     chunk_index=None,     # None = all chunks as parallel processes here
     out_dir="results/stable_ac/mu_scan",
     names=None,
+    high_speedup=True,    # numba canon (autcanon_fast). False = force the
+                          # pure-Python aut_canon path: identical rows, ~15x
+                          # slower. Result-neutral => NOT in _run_prefix.
 )
 
 
@@ -433,6 +447,7 @@ def run_chunk(c, chunk_index):
     classes, then runs every class not already in the summary. Per class:
     orbit rows land first, the summary row second — a summary row present
     means its provenance block is complete."""
+    _apply_high_speedup(c)
     root = find_repo_root(HERE)
     rows_all = _load_rows(c, root)
     rows = _chunk_rows(rows_all, c["chunks"], chunk_index) \
@@ -451,8 +466,13 @@ def run_chunk(c, chunk_index):
     if FAST_CANON and todo:
         t_w = time.monotonic()
         _warm_canon()
-        print(f"[c{chunk_index}of{c['chunks']}] numba canon warm in "
-              f"{time.monotonic() - t_w:.1f}s", flush=True)
+        print(f"[c{chunk_index}of{c['chunks']}] HIGH_SPEEDUP on: numba canon "
+              f"warm in {time.monotonic() - t_w:.1f}s", flush=True)
+    elif todo:
+        why = ("knob off" if _FAST_AVAILABLE else "numba unavailable")
+        print(f"[c{chunk_index}of{c['chunks']}] HIGH_SPEEDUP off ({why}): "
+              f"pure-Python aut_canon — identical rows, ~15x slower",
+              flush=True)
     commit = _git_commit()
     side = _Sidecar(out_path + ".hb", len(done), len(rows))
     with open(out_path, "a") as out_f, open(orbits_path, "a") as orb_f:
@@ -711,13 +731,17 @@ def main():
     ap.add_argument("--chunk-index", type=int, default=None)
     ap.add_argument("--out-dir", default=DEFAULTS["out_dir"])
     ap.add_argument("--names", nargs="*", default=None)
+    ap.add_argument("--no-high-speedup", action="store_true",
+                    help="force the pure-Python aut_canon path "
+                         "(identical rows, ~15x slower)")
     ap.add_argument("--merge", action="store_true",
                     help="merge completed chunk files instead of running")
     a = ap.parse_args()
     kw = dict(data=a.data, rungs=a.rungs, beam=a.beam, cap=a.cap,
               stop_mu=a.stop_mu, time_per_class_s=a.time_per_class,
               max_orbits=a.max_orbits, chunks=a.chunks,
-              chunk_index=a.chunk_index, out_dir=a.out_dir, names=a.names)
+              chunk_index=a.chunk_index, out_dir=a.out_dir, names=a.names,
+              high_speedup=not a.no_high_speedup)
     if a.merge:
         merge_chunks(**kw)
     else:

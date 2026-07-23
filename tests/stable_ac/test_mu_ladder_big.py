@@ -230,6 +230,28 @@ def test_merge_refuses_orbit_row_mismatch(tiny_setup):
         big.merge_chunks(**kw)
 
 
+def test_high_speedup_toggle_is_result_neutral(tiny_setup, tmp_path):
+    # HIGH_SPEEDUP off => pure-Python aut_canon, byte-identical rows in a
+    # file with the SAME identity (result-neutral knobs stay out of the name)
+    c_fast = dict(tiny_setup, out_dir=str(tmp_path / "fast"))
+    c_slow = dict(tiny_setup, out_dir=str(tmp_path / "slow"),
+                  high_speedup=False)
+    try:
+        sp_f, op_f = big.run_chunk(c_fast, 1)
+        assert big.FAST_CANON is True
+        sp_s, op_s = big.run_chunk(c_slow, 1)
+        assert big.FAST_CANON is False
+    finally:
+        big._apply_high_speedup({})            # restore the module default
+    assert os.path.basename(sp_f) == os.path.basename(sp_s)
+    strip = ("elapsed_s", "git_commit")
+    rows_f = [json.loads(ln) for ln in open(sp_f)]
+    rows_s = [json.loads(ln) for ln in open(sp_s)]
+    assert [{k: v for k, v in r.items() if k not in strip} for r in rows_f] \
+        == [{k: v for k, v in r.items() if k not in strip} for r in rows_s]
+    assert open(op_f).read() == open(op_s).read()
+
+
 def test_end_to_end_spawned_chunks_then_merge_and_verify(tiny_setup):
     c = tiny_setup
     kw = {k: c[k] for k in ("data", "out_dir", "rungs", "beam", "stop_mu",
