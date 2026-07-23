@@ -29,6 +29,7 @@ and a bloated CLAUDE.md gets ignored.
 - **Scripts under `experiments/` find the repo root by walking up** until they see `experiments/` + `data/` — never by counting `os.path.dirname()` levels. A dirname chain encodes the file's depth and silently repoints at the wrong directory the moment the file moves.
 - **Do not modify existing code.** New files only; the notebook `greedy_search.ipynb` and `envs/` are read-only references.
 - Active branch: `research/w5/stable-ac-escape` — a clean restart cut from `research/stable-ac-escape`, keeping only nb2 (the μ-ladder) of that push's six notebooks. What was pruned and how to recover it: [`PRUNED.md`](PRUNED.md). Remote: `github.com/Avi161/ACSolverX.git`.
+- **Scaled nb2 = `experiments/stable_ac/cov/mu_ladder_big.py`** (+ `mu_ladder_big.ipynb`, `verify_mu_ladder.py`; tests `tests/stable_ac/test_mu_ladder_big.py`): same `climb_one` semantics (regression-pinned), plus 5-chunk spawn parallelism, per-class time/orbit budgets, and full provenance — every accepted orbit carries its concrete parent pair + `(z, iso_gen, iso_index)` and replays independently via `verify_mu_ladder` (`--level full` re-derives `aut_canon` too). `stop_mu` defaults to 12, never 13.
 
 ## Environment
 
