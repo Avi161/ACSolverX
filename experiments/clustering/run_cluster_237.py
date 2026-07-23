@@ -203,8 +203,12 @@ def knot_hypothesis(pairs, y):
     # the second relator adds anything once the busiest one is known.
     unev = np.array([(lambda r: max(r) / (sum(r) / len(r)))(
         [n for _, n in F.gen_runs(a)] + [n for _, n in F.gen_runs(b)]) for a, b in pairs])
+    # Enumerate the FULL range from 0, not just the values that occur -- an omitted bucket reads
+    # as "not counted" when it means "empty", and whether knots=0 or 1 ever appears is a real
+    # question about the data. knots=0 needs a word with no blocks at all, i.e. the empty word,
+    # so it is structurally impossible for a relator here rather than merely unobserved.
     table = []
-    for v in sorted({int(t) for t in kmax}):
+    for v in range(0, int(kmax.max()) + 1):
         m = kmax == v
         ns, nu = int(((y == 0) & m).sum()), int(((y == 1) & m).sum())
         table.append({
@@ -216,16 +220,57 @@ def knot_hypothesis(pairs, y):
             "len_solved": float(ln[m & (y == 0)].mean()) if ns else None,
             "len_unsolved": float(ln[m & (y == 1)].mean()) if nu else None,
         })
+    # min_knots gets the same treatment: "BOTH relators are busy" turns out to be a second,
+    # largely independent sufficient condition, so it is not just a passenger of max.
+    table_min = []
+    for v in range(0, int(kmax.max()) + 1):
+        m = kmin == v
+        ns, nu = int(((y == 0) & m).sum()), int(((y == 1) & m).sum())
+        table_min.append({"min_knots": v, "n_solved": ns, "n_unsolved": nu,
+                          "pct_unsolved": nu / (ns + nu) if ns + nu else 0.0})
+
     joint = []
-    for vmin in sorted({int(t) for t in kmin}):
-        for vmax in sorted({int(t) for t in kmax}):
+    for vmin in range(0, int(kmax.max()) + 1):
+        for vmax in range(0, int(kmax.max()) + 1):
             m = (kmin == vmin) & (kmax == vmax)
             if not m.any():
                 continue
             joint.append({"min_knots": vmin, "max_knots": vmax,
                           "n_solved": int(((y == 0) & m).sum()),
                           "n_unsolved": int(((y == 1) & m).sum())})
-    return {"features": out, "knot_hist": hist, "rule": rule, "table": table, "joint": joint,
+
+    # The solved states occupy a tight box in (min_knots, max_knots). Anything outside it is
+    # unsolved -- two sufficient conditions that overlap far less than they look like they should.
+    rules2 = []
+    conds = {
+        "max_knots >= 4  (some relator is busy)": kmax >= 4,
+        "min_knots >= 3  (BOTH relators are busy)": kmin >= 3,
+        "either of the two": (kmax >= 4) | (kmin >= 3),
+        "both of the two": (kmax >= 4) & (kmin >= 3),
+    }
+    for nm, c in conds.items():
+        fs, fu = int(((y == 0) & c).sum()), int(((y == 1) & c).sum())
+        rules2.append({"rule": nm, "n_solved": fs, "n_unsolved": fu,
+                       "precision": fu / (fs + fu) if fs + fu else 0.0,
+                       "recall": fu / max(int((y == 1).sum()), 1)})
+    box = {"solved_max_range": [int(kmax[y == 0].min()), int(kmax[y == 0].max())],
+           "solved_min_range": [int(kmin[y == 0].min()), int(kmin[y == 0].max())],
+           "unsolved_max_range": [int(kmax[y == 1].min()), int(kmax[y == 1].max())],
+           "unsolved_min_range": [int(kmin[y == 1].min()), int(kmin[y == 1].max())]}
+    # Per-relator distribution too: whether knots=0 or 1 occurs at RELATOR level is a different
+    # question from whether it occurs as a presentation's max.
+    per_rel = []
+    for v in range(0, int(kmax.max()) + 1):
+        per_rel.append({
+            "knots": v,
+            "n_solved": int(((k1 == v) & (y == 0)).sum() + ((k2 == v) & (y == 0)).sum()),
+            "n_unsolved": int(((k1 == v) & (y == 1)).sum() + ((k2 == v) & (y == 1)).sum()),
+        })
+    low = sorted({a for a, b in pairs if F.knot_number(a) <= 1}
+                 | {b for a, b in pairs if F.knot_number(b) <= 1})
+    return {"features": out, "knot_hist": hist, "rule": rule, "table": table,
+            "table_min": table_min, "joint": joint, "rules2": rules2, "box": box,
+            "per_relator": per_rel, "low_knot_relators": low,
             "kmax": kmax.tolist(), "kmin": kmin.tolist()}
 
 
@@ -396,8 +441,27 @@ def analyse(tag, rows, rng, verbose=True):
         uu = f"{r['unev_unsolved']:.2f}" if r["unev_unsolved"] is not None else "  - "
         ls = f"{r['len_solved']:.1f}" if r["len_solved"] is not None else "  - "
         lu = f"{r['len_unsolved']:.1f}" if r["len_unsolved"] is not None else "  - "
+        empty = "   <-- EMPTY" if r["n_solved"] + r["n_unsolved"] == 0 else ""
         say(f"     {r['max_knots']:>2} {r['n_solved']:>7} {r['n_unsolved']:>9} "
-            f"{r['pct_unsolved']*100:>10.1f}%   {us:>7} / {uu:<7} {ls:>5} / {lu:<5}")
+            f"{r['pct_unsolved']*100:>10.1f}%   {us:>7} / {uu:<7} {ls:>5} / {lu:<5}{empty}")
+    say("  [per relator] knot_number over all 474 relators (0 needs an empty word: impossible)")
+    for r in knot["per_relator"]:
+        tot = r["n_solved"] + r["n_unsolved"]
+        say(f"     {r['knots']:>2} {tot:>6}   ({r['n_solved']} in solved, {r['n_unsolved']} in "
+            f"unsolved){'   <-- EMPTY' if tot == 0 else ''}")
+    say(f"     relators with knots <= 1: {knot['low_knot_relators']}")
+    say("  [min_knots] BOTH relators at least this busy")
+    for r in knot["table_min"]:
+        tot = r["n_solved"] + r["n_unsolved"]
+        say(f"     {r['min_knots']:>2} {r['n_solved']:>7} {r['n_unsolved']:>9} "
+            f"{r['pct_unsolved']*100:>10.1f}%{'   <-- EMPTY' if tot == 0 else ''}")
+    b = knot["box"]
+    say(f"  [box] solved live in max_knots {b['solved_max_range']} and min_knots "
+        f"{b['solved_min_range']}; unsolved reach max {b['unsolved_max_range']} / min "
+        f"{b['unsolved_min_range']}")
+    for r in knot["rules2"]:
+        say(f"     {r['rule']:42s} {r['n_solved']:>3} solved / {r['n_unsolved']:>3} unsolved  "
+            f"precision {r['precision']:.3f}  recall {r['recall']:.3f}")
 
     coords = {}
     for rep in ("ring_dual", "ring_autocorr", "kmer3", "all", "shape (control)"):

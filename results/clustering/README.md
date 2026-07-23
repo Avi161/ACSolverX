@@ -56,3 +56,67 @@ Counting on x or on y is therefore *forced* to agree, not a convention. The sole
 - Population A mixes two granularities (Aut(F₂) on one side, the coarser ACA on the other). B is the cleaner object.
 - The knot features were chosen because of a conjecture about the label, so their AUCs are **not** protected by the permutation null that covers the sweep.
 - The supervised classifier in the report is a **diagnostic**, not a result — it is shown the labels, and serves only as an upper bound on what any unsupervised method could recover.
+
+---
+
+## Bucket enumeration: does knots = 0 or 1 occur?
+
+Buckets are enumerated from 0, never only over the values present — an omitted bucket reads as "not counted" when it means "empty".
+
+- **knots = 0 never occurs, and cannot.** It needs a word with no blocks at all, i.e. the empty word. Structurally impossible for a relator here, not merely unobserved.
+- **knots = 1 occurs at relator level** — 9 of the 474 relators (7 in solved presentations, 2 in unsolved), from just 3 distinct words: `X` (a pure power, the theorem's exception), `YYYYxxx`, `YYYYxxxxxxx`.
+- **max_knots = 1 never occurs**: every presentation with a 1-knot relator has the other relator at ≥2. So max_knots ranges over {2,3,4,5} and min_knots over {1,2,3}.
+
+## Two independent sufficient conditions
+
+Solved presentations occupy a tight box: `max_knots ∈ {2,3}` **and** `min_knots ∈ {1,2}`. Anything outside it is unsolved.
+
+| rule | solved | unsolved | precision | recall |
+|---|---|---|---|---|
+| `max_knots ≥ 4` (some relator is busy) | 0 | 14 | 1.000 | 0.113 |
+| `min_knots ≥ 3` (**both** relators busy) | 0 | 14 | 1.000 | 0.113 |
+| **either** | **0** | **24** | **1.000** | **0.194** |
+| both | 0 | 4 | 1.000 | 0.032 |
+
+They overlap on only 4 states, so together they certify **24 of the 124 unsolved with zero false positives** — nearly double either alone.
+
+## Inside a bucket: exponent signs vs block sizes
+
+`experiments/clustering/within_bucket.py` (`python3 -m experiments.clustering.within_bucket`) → `within_bucket.json`. Feature code in `signed_knots.py`; a **signed block** is `(generator, length, exponent sum)`.
+
+### The exponent ±1 carries nothing, and it cannot
+
+All three "sign alternates inside a block" features measure **exactly 0.00** on all 237. That is a theorem, not a dataset quirk:
+
+> **In a freely reduced word, every maximal same-generator block is a pure power.** Two adjacent letters in a block share a generator; opposite signs would make the word contain `xX` or `Xx` and it would not be reduced. So a block is always `x^k` or `X^k`.
+
+The fingerprint is that **mean |exponent| and mean block length have identical AUCs** (0.769/0.769 at max_knots = 2; 0.989/0.989 at 3) — because |exponent| = length for every block. The only remaining sign freedom is one sign per block, and that tests at chance (AUC 0.515, 0.522). Pinned over 50,000+ blocks in `tests/clustering/test_signed_knots.py`.
+
+### What does separate: the *thinner* generator's block size
+
+Every feature is scored both raw and with total length regressed out, because length still varies inside a bucket.
+
+**max_knots = 2 (101 solved / 23 unsolved).** Length alone gives AUC 0.797. `smaller mean block` — the mean run length of whichever generator runs thinner — gives **0.989 raw and 0.981 with length removed**, the only feature that beats length. Every other block statistic collapses: max block length 0.743 → **0.500**, unevenness 0.689 → 0.432, block-length sd 0.748 → 0.483. So the between-bucket "unevenness" story does **not** operate within a bucket.
+
+Distributions barely touch: solved span 1.00–1.75 (median 1.25), unsolved 1.50–1.75 (median 1.75). The rule `smaller mean block > 1.25` flags **all 23 unsolved and only 6 of 101 solved** — recall 1.000, balanced accuracy 0.970.
+
+> In a solvable presentation the thin generator appears as **isolated single letters**; in an unsolvable one it clumps into runs of two or more.
+
+Null: best |AUC−0.5| over all 14 features = 0.489 against a 95th percentile of 0.161 and a max of 0.298 over 2,000 permutations → p < 0.001. Not the small bucket talking.
+
+**max_knots = 3 (12 solved / 87 unsolved).** Length alone reaches AUC 0.994 (13.0 vs 19.6 letters), so little room is left. Mean block length holds 0.885 after length removal, but with 12 solved states treat this bucket as corroboration, not independent evidence.
+
+### Block signatures
+
+Necklace-canonical block-size sequences — literally how many x's and y's sit between each knot. Read `x1y7x1y8` as x-block 1, y-block 7, x-block 1, y-block 8.
+
+| | most common |
+|---|---|
+| solved, max_knots 2 | `x1y2x3y1 \| x2y1x3y1`, `x1y1x2y1 \| x1y2x1y3` |
+| unsolved, max_knots 2 | `x1y7x1y8 \| x2y2x3y1`, `x1y4x1y5 \| x2y1x3y1` |
+| solved, max_knots 3 | `x1y1x1y2x1y2 \| x1y1x2y1` |
+| unsolved, max_knots 3 | `x1y1x2y1x2y1 \| x1y3x1y4`, `x1y1x2y1x2y1 \| x1y7x1y8` |
+
+Solved presentations are built from small numbers throughout; unsolved ones carry a long single-generator run. Same knot count, very different interiors.
+
+**Caveat.** This section is hypothesis-driven and supervised — it asks what separates a known label — so it is not covered by the unsupervised sweep's null. Its own within-bucket permutation nulls are reported above instead.

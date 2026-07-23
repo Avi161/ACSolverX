@@ -531,6 +531,26 @@
    ],
    "table": [
     {
+     "max_knots": 0,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0,
+     "unev_solved": null,
+     "unev_unsolved": null,
+     "len_solved": null,
+     "len_unsolved": null
+    },
+    {
+     "max_knots": 1,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0,
+     "unev_solved": null,
+     "unev_unsolved": null,
+     "len_solved": null,
+     "len_unsolved": null
+    },
+    {
      "max_knots": 2,
      "n_solved": 101,
      "n_unsolved": 23,
@@ -569,6 +589,44 @@
      "unev_unsolved": 2.9109913915222836,
      "len_solved": null,
      "len_unsolved": 21.2
+    }
+   ],
+   "table_min": [
+    {
+     "min_knots": 0,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0
+    },
+    {
+     "min_knots": 1,
+     "n_solved": 7,
+     "n_unsolved": 2,
+     "pct_unsolved": 0.2222222222222222
+    },
+    {
+     "min_knots": 2,
+     "n_solved": 106,
+     "n_unsolved": 108,
+     "pct_unsolved": 0.5046728971962616
+    },
+    {
+     "min_knots": 3,
+     "n_solved": 0,
+     "n_unsolved": 14,
+     "pct_unsolved": 1.0
+    },
+    {
+     "min_knots": 4,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0
+    },
+    {
+     "min_knots": 5,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0
     }
    ],
    "joint": [
@@ -626,6 +684,91 @@
      "n_solved": 0,
      "n_unsolved": 1
     }
+   ],
+   "rules2": [
+    {
+     "rule": "max_knots >= 4  (some relator is busy)",
+     "n_solved": 0,
+     "n_unsolved": 14,
+     "precision": 1.0,
+     "recall": 0.11290322580645161
+    },
+    {
+     "rule": "min_knots >= 3  (BOTH relators are busy)",
+     "n_solved": 0,
+     "n_unsolved": 14,
+     "precision": 1.0,
+     "recall": 0.11290322580645161
+    },
+    {
+     "rule": "either of the two",
+     "n_solved": 0,
+     "n_unsolved": 24,
+     "precision": 1.0,
+     "recall": 0.1935483870967742
+    },
+    {
+     "rule": "both of the two",
+     "n_solved": 0,
+     "n_unsolved": 4,
+     "precision": 1.0,
+     "recall": 0.03225806451612903
+    }
+   ],
+   "box": {
+    "solved_max_range": [
+     2,
+     3
+    ],
+    "solved_min_range": [
+     1,
+     2
+    ],
+    "unsolved_max_range": [
+     2,
+     5
+    ],
+    "unsolved_min_range": [
+     1,
+     3
+    ]
+   },
+   "per_relator": [
+    {
+     "knots": 0,
+     "n_solved": 0,
+     "n_unsolved": 0
+    },
+    {
+     "knots": 1,
+     "n_solved": 7,
+     "n_unsolved": 2
+    },
+    {
+     "knots": 2,
+     "n_solved": 207,
+     "n_unsolved": 131
+    },
+    {
+     "knots": 3,
+     "n_solved": 12,
+     "n_unsolved": 101
+    },
+    {
+     "knots": 4,
+     "n_solved": 0,
+     "n_unsolved": 9
+    },
+    {
+     "knots": 5,
+     "n_solved": 0,
+     "n_unsolved": 5
+    }
+   ],
+   "low_knot_relators": [
+    "X",
+    "YYYYxxx",
+    "YYYYxxxxxxx"
    ],
    "kmax": [
     2.0,
@@ -6808,7 +6951,7 @@
     ]
    ]
   },
-  "seconds": 11.5
+  "seconds": 10.8
  },
  "provenance-matched": {
   "tag": "provenance-matched",
@@ -7340,6 +7483,26 @@
    ],
    "table": [
     {
+     "max_knots": 0,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0,
+     "unev_solved": null,
+     "unev_unsolved": null,
+     "len_solved": null,
+     "len_unsolved": null
+    },
+    {
+     "max_knots": 1,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0,
+     "unev_solved": null,
+     "unev_unsolved": null,
+     "len_solved": null,
+     "len_unsolved": null
+    },
+    {
      "max_knots": 2,
      "n_solved": 101,
      "n_unsolved": 87,
@@ -7358,6 +7521,32 @@
      "unev_unsolved": 2.6808568736419054,
      "len_solved": 13.0,
      "len_unsolved": 20.0
+    }
+   ],
+   "table_min": [
+    {
+     "min_knots": 0,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0
+    },
+    {
+     "min_knots": 1,
+     "n_solved": 7,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0
+    },
+    {
+     "min_knots": 2,
+     "n_solved": 106,
+     "n_unsolved": 159,
+     "pct_unsolved": 0.6
+    },
+    {
+     "min_knots": 3,
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "pct_unsolved": 0.0
     }
    ],
    "joint": [
@@ -7379,6 +7568,79 @@
      "n_solved": 12,
      "n_unsolved": 72
     }
+   ],
+   "rules2": [
+    {
+     "rule": "max_knots >= 4  (some relator is busy)",
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "precision": 0.0,
+     "recall": 0.0
+    },
+    {
+     "rule": "min_knots >= 3  (BOTH relators are busy)",
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "precision": 0.0,
+     "recall": 0.0
+    },
+    {
+     "rule": "either of the two",
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "precision": 0.0,
+     "recall": 0.0
+    },
+    {
+     "rule": "both of the two",
+     "n_solved": 0,
+     "n_unsolved": 0,
+     "precision": 0.0,
+     "recall": 0.0
+    }
+   ],
+   "box": {
+    "solved_max_range": [
+     2,
+     3
+    ],
+    "solved_min_range": [
+     1,
+     2
+    ],
+    "unsolved_max_range": [
+     2,
+     3
+    ],
+    "unsolved_min_range": [
+     2,
+     2
+    ]
+   },
+   "per_relator": [
+    {
+     "knots": 0,
+     "n_solved": 0,
+     "n_unsolved": 0
+    },
+    {
+     "knots": 1,
+     "n_solved": 7,
+     "n_unsolved": 0
+    },
+    {
+     "knots": 2,
+     "n_solved": 207,
+     "n_unsolved": 246
+    },
+    {
+     "knots": 3,
+     "n_solved": 12,
+     "n_unsolved": 72
+    }
+   ],
+   "low_knot_relators": [
+    "X"
    ],
    "kmax": [
     2.0,
@@ -14452,6 +14714,6 @@
     ]
    ]
   },
-  "seconds": 11.7
+  "seconds": 13.0
  }
 }

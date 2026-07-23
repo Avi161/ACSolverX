@@ -1,0 +1,386 @@
+{
+ "2": {
+  "n_solved": 101,
+  "n_unsolved": 23,
+  "features": [
+   {
+    "feature": "smaller mean block",
+    "solved_mean": 1.2524752475247525,
+    "unsolved_mean": 1.7391304347826086,
+    "auc": 0.9888075764098149,
+    "auc_length_removed": 0.9806284976323719,
+    "survives": true,
+    "beats_length": true
+   },
+   {
+    "feature": "mean block length",
+    "solved_mean": 2.0314356435643566,
+    "unsolved_mean": 2.516304347826087,
+    "auc": 0.7690486439948343,
+    "auc_length_removed": 0.7324580284115368,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "mean |exponent|",
+    "solved_mean": 2.0314356435643566,
+    "unsolved_mean": 2.516304347826087,
+    "auc": 0.7690486439948343,
+    "auc_length_removed": 0.7324580284115368,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "block length sd",
+    "solved_mean": 1.2367473645291645,
+    "unsolved_mean": 1.7961822549365625,
+    "auc": 0.7477399913904433,
+    "auc_length_removed": 0.4829961256995265,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "max block length",
+    "solved_mean": 4.2772277227722775,
+    "unsolved_mean": 5.826086956521739,
+    "auc": 0.7432199741713301,
+    "auc_length_removed": 0.49956952216960826,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "max |exponent|",
+    "solved_mean": 4.2772277227722775,
+    "unsolved_mean": 5.826086956521739,
+    "auc": 0.7432199741713301,
+    "auc_length_removed": 0.49956952216960826,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "block unevenness",
+    "solved_mean": 2.0486950013242575,
+    "unsolved_mean": 2.2666974591201035,
+    "auc": 0.6894102453723633,
+    "auc_length_removed": 0.4319845027981059,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "larger mean block",
+    "solved_mean": 2.858910891089109,
+    "unsolved_mean": 3.2934782608695654,
+    "auc": 0.6495910460611278,
+    "auc_length_removed": 0.11149375807145932,
+    "survives": false,
+    "beats_length": true
+   },
+   {
+    "feature": "generator asymmetry",
+    "solved_mean": 2.3312116925978312,
+    "unsolved_mean": 1.8954451345755687,
+    "auc": 0.3964700817907878,
+    "auc_length_removed": 0.020232458028411535,
+    "survives": false,
+    "beats_length": true
+   },
+   {
+    "feature": "|#pos-#neg| blocks",
+    "solved_mean": 0.9603960396039604,
+    "unsolved_mean": 1.0434782608695652,
+    "auc": 0.5215238915195868,
+    "auc_length_removed": 0.6549720189410245,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "min(#pos,#neg) blocks",
+    "solved_mean": 3.4158415841584158,
+    "unsolved_mean": 3.4782608695652173,
+    "auc": 0.5146362462333189,
+    "auc_length_removed": 0.3811881188118812,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "frac mixed blocks",
+    "solved_mean": 0.0,
+    "unsolved_mean": 0.0,
+    "auc": 0.5,
+    "auc_length_removed": 0.5,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "n mixed blocks",
+    "solved_mean": 0.0,
+    "unsolved_mean": 0.0,
+    "auc": 0.5,
+    "auc_length_removed": 0.5,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "in-block cancellation",
+    "solved_mean": 0.0,
+    "unsolved_mean": 0.0,
+    "auc": 0.5,
+    "auc_length_removed": 0.5,
+    "survives": false,
+    "beats_length": false
+   }
+  ],
+  "best_abs_auc": 0.48880757640981487,
+  "null_p95": 0.16099870856650877,
+  "null_max": 0.29832113646147224,
+  "p_value": 0.0,
+  "significant": true,
+  "n_perm": 2000,
+  "auc_length_alone": 0.7970297029702971,
+  "len_solved": 15.752475247524753,
+  "len_unsolved": 20.130434782608695,
+  "signatures": {
+   "solved": [
+    [
+     "x1y2x3y1 | x2y1x3y1",
+     4
+    ],
+    [
+     "x1y1x2y1 | x1y2x1y3",
+     3
+    ],
+    [
+     "x1y2x3y1 | x3y1x4y1",
+     3
+    ],
+    [
+     "x1y2x4y1 | x4y1x5y1",
+     3
+    ],
+    [
+     "x1y2x4y1 | x3y1x4y1",
+     3
+    ],
+    [
+     "x2y2x3y1 | x5y1x6y1",
+     3
+    ]
+   ],
+   "unsolved": [
+    [
+     "x1y7x1y8 | x2y2x3y1",
+     3
+    ],
+    [
+     "x1y4x1y5 | x2y1x3y1",
+     2
+    ],
+    [
+     "x1y4x1y5 | x2y2x3y1",
+     2
+    ],
+    [
+     "x1y5x1y6 | x2y1x3y1",
+     2
+    ],
+    [
+     "x1y5x1y6 | x2y2x3y1",
+     2
+    ],
+    [
+     "x1y6x1y7 | x2y1x3y1",
+     2
+    ]
+   ]
+  }
+ },
+ "3": {
+  "n_solved": 12,
+  "n_unsolved": 87,
+  "features": [
+   {
+    "feature": "mean block length",
+    "solved_mean": 1.3000000000000003,
+    "unsolved_mean": 1.9351532567049807,
+    "auc": 0.9885057471264368,
+    "auc_length_removed": 0.8850574712643678,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "larger mean block",
+    "solved_mean": 1.4000000000000001,
+    "unsolved_mean": 2.4065134099616854,
+    "auc": 0.9885057471264368,
+    "auc_length_removed": 0.22988505747126436,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "mean |exponent|",
+    "solved_mean": 1.3000000000000003,
+    "unsolved_mean": 1.9351532567049807,
+    "auc": 0.9885057471264368,
+    "auc_length_removed": 0.8850574712643678,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "block length sd",
+    "solved_mean": 0.5189425209114842,
+    "unsolved_mean": 1.4453100339507283,
+    "auc": 0.9846743295019157,
+    "auc_length_removed": 0.2720306513409962,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "max block length",
+    "solved_mean": 2.3333333333333335,
+    "unsolved_mean": 5.195402298850575,
+    "auc": 0.9655172413793104,
+    "auc_length_removed": 0.5747126436781609,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "max |exponent|",
+    "solved_mean": 2.3333333333333335,
+    "unsolved_mean": 5.195402298850575,
+    "auc": 0.9655172413793104,
+    "auc_length_removed": 0.5747126436781609,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "smaller mean block",
+    "solved_mean": 1.1999999999999997,
+    "unsolved_mean": 1.4637931034482765,
+    "auc": 0.9540229885057471,
+    "auc_length_removed": 0.7471264367816092,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "block unevenness",
+    "solved_mean": 1.7948717948717947,
+    "unsolved_mean": 2.6326286712386615,
+    "auc": 0.9310344827586207,
+    "auc_length_removed": 0.6091954022988506,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "generator asymmetry",
+    "solved_mean": 1.1666666666666665,
+    "unsolved_mean": 1.668048713738369,
+    "auc": 0.7988505747126436,
+    "auc_length_removed": 0.21264367816091953,
+    "survives": true,
+    "beats_length": false
+   },
+   {
+    "feature": "min(#pos,#neg) blocks",
+    "solved_mean": 4.083333333333333,
+    "unsolved_mean": 4.436781609195402,
+    "auc": 0.6259578544061303,
+    "auc_length_removed": 0.45162835249042144,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "|#pos-#neg| blocks",
+    "solved_mean": 1.8333333333333333,
+    "unsolved_mean": 1.3103448275862069,
+    "auc": 0.4027777777777778,
+    "auc_length_removed": 0.5795019157088123,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "frac mixed blocks",
+    "solved_mean": 0.0,
+    "unsolved_mean": 0.0,
+    "auc": 0.5,
+    "auc_length_removed": 0.5,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "n mixed blocks",
+    "solved_mean": 0.0,
+    "unsolved_mean": 0.0,
+    "auc": 0.5,
+    "auc_length_removed": 0.5,
+    "survives": false,
+    "beats_length": false
+   },
+   {
+    "feature": "in-block cancellation",
+    "solved_mean": 0.0,
+    "unsolved_mean": 0.0,
+    "auc": 0.5,
+    "auc_length_removed": 0.5,
+    "survives": false,
+    "beats_length": false
+   }
+  ],
+  "best_abs_auc": 0.4885057471264368,
+  "null_p95": 0.2150383141762452,
+  "null_max": 0.35009578544061304,
+  "p_value": 0.0,
+  "significant": true,
+  "n_perm": 2000,
+  "auc_length_alone": 0.9942528735632183,
+  "len_solved": 13.0,
+  "len_unsolved": 19.60919540229885,
+  "signatures": {
+   "solved": [
+    [
+     "x1y1x1y2x1y2 | x1y1x2y1",
+     8
+    ],
+    [
+     "x1y1x1y1x1y3 | x1y1x2y1",
+     4
+    ]
+   ],
+   "unsolved": [
+    [
+     "x1y1x2y1x2y1 | x1y3x1y4",
+     8
+    ],
+    [
+     "x1y1x2y1x2y1 | x1y7x1y8",
+     8
+    ],
+    [
+     "x1y1x2y1x2y1 | x1y4x1y5",
+     6
+    ],
+    [
+     "x1y1x2y1x2y1 | x1y5x1y6",
+     5
+    ],
+    [
+     "x1y1x1y1x3y1 | x1y3x1y4",
+     4
+    ],
+    [
+     "x1y1x1y1x3y1 | x1y4x1y5",
+     4
+    ]
+   ]
+  }
+ },
+ "4": {
+  "n_solved": 0,
+  "n_unsolved": 9,
+  "pure": true
+ },
+ "5": {
+  "n_solved": 0,
+  "n_unsolved": 5,
+  "pure": true
+ }
+}
