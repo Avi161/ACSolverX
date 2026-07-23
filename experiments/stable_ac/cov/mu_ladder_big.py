@@ -482,7 +482,10 @@ def run_chunk(c, chunk_index):
                     "stop_mu": c["stop_mu"],
                     "time_per_class_s": c["time_per_class_s"],
                     "max_orbits": c["max_orbits"]}
-            side.start_class(r["name"], None)
+            # mu_in up front (sub-ms on the fast path) so every heartbeat can
+            # show best vs the starting Aut-floor, not just a bare number
+            side.start_class(r["name"], _orbit_memo((r["r1"], r["r2"]),
+                                                    None)[0])
             row, orbit_rows = climb_one_big(task, progress=side)
             row["git_commit"] = commit
             orb_f.write("".join(json.dumps(o) + "\n" for o in orbit_rows))
@@ -586,23 +589,34 @@ class _LadderHeartbeat:
                 rate = f"no update for {int(time.time() - hb['ts'])}s"
             else:
                 rate = "orb/s n/a"    # first sample of this class
+            mu_in = hb.get("mu_in")
+            if mu_in is None:
+                vs = f"best {hb['best_mu']}"
+            elif hb["best_mu"] is not None and hb["best_mu"] < mu_in:
+                vs = (f"best {hb['best_mu']} (in {mu_in}, REDUCED "
+                      f"-{mu_in - hb['best_mu']})")
+            else:
+                vs = f"best {hb['best_mu']} (in {mu_in})"
             lines.append(
                 f"  [hb {cid}] {hb['done']}/{hb['total']} classes | now "
                 f"{hb['pres_id']} rung {hb['rung']}, {hb['n_orbits']} orbits"
-                f" @ {rate}, best {hb['best_mu']}")
+                f" @ {rate}, {vs}")
         done = len(rows)
+        desc = sum(1 for r in rows.values() if r["best_mu"] < r["mu_in"])
+        floor = min((r["best_mu"] for r in rows.values()), default=None)
+        # every beat carries the headline: how many finished classes came out
+        # BELOW their starting Aut-floor (live in-progress reductions show as
+        # REDUCED on their chunk's own line above)
+        total_line = (f"  [hb total] {done}/{self.total} classes done | "
+                      f"{desc} reduced | floor {floor}")
         elapsed = now - self.t0
         if now - self.last_detail >= _DETAIL_EVERY:
             self.last_detail = now
-            desc = sum(1 for r in rows.values()
-                       if r["best_mu"] < r["mu_in"])
-            floor = min((r["best_mu"] for r in rows.values()), default=None)
             ran = done - self.done0
             eta = (f"~{(self.total - done) * (elapsed / ran) / 3600:.1f}h left"
                    if ran else "eta n/a")
-            lines.append(f"  [hb total] {done}/{self.total} classes | "
-                         f"{desc} descents | floor {floor} | "
-                         f"{elapsed / 3600:.1f}h elapsed | {eta}")
+            total_line += f" | {elapsed / 3600:.1f}h elapsed | {eta}"
+        lines.append(total_line)
         return "\n".join(lines) if lines else None
 
 

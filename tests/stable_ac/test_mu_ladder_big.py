@@ -243,13 +243,20 @@ def test_heartbeat_beat_carries_instantaneous_rate(tmp_path):
               open(sp + ".hb", "w"))
     first = hb.maybe_beat(now=61.0)
     assert first and "orb/s n/a" in first          # first sample of the class
+    assert "best 16 (in 16)" in first              # starting Aut-floor shown
+    assert "0/2 classes done | 0 reduced" in first
     json.dump({"pres_id": "t_a", "mu_in": 16, "rung": 3, "n_orbits": 700,
                "best_mu": 15, "done": 0, "total": 2, "ts": now_wall},
               open(sp + ".hb", "w"))
     second = hb.maybe_beat(now=122.0)
     assert second and "10.0 orb/s" in second       # (700-100)/60s
+    assert "best 15 (in 16, REDUCED -1)" in second
+    with open(sp, "a") as f:                       # a committed reduced class
+        f.write(json.dumps({"pres_id": "t_b", "mu_in": 16, "best_mu": 14,
+                            "hits_stop": False, "best_chain": ["xy"]}) + "\n")
     third = hb.maybe_beat(now=183.0)               # sidecar frozen
     assert third and "no update for" in third
+    assert "1/2 classes done | 1 reduced | floor 14" in third
 
 
 def test_high_speedup_toggle_is_result_neutral(tiny_setup, tmp_path):
