@@ -162,10 +162,31 @@ Hypothesis-driven and supervised — not protected by the unsupervised sweep's p
 
 `experiments/clustering/holdout_eval.py` → `holdout_eval.json`. Everything above was fitted and scored on the *same* states, so those accuracies are upper bounds, not estimates — the threshold was chosen by scanning every value in the data. Here the cut is refit on a stratified 70% and scored on a 30% the fit never saw, over 200 seeds.
 
+### The 11 columns
+
+Ten candidates plus total length. Length is the *yardstick* when a statistic competes against it alone, but a legitimate term once it is only one column of a model — so `ALL (logistic)` is 11 wide, not 10. All are computed on the concatenated signed-block decomposition of both relators, and all are rotation-invariant.
+
+| # | column | what it is |
+|---|---|---|
+| 1 | `smaller mean block` | mean run length of whichever generator appears in **shorter** runs |
+| 2 | `larger mean block` | the same for the other generator |
+| 3 | `max_knots` | `max(knots(r1), knots(r2))` |
+| 4 | `min_knots` | `min(knots(r1), knots(r2))` |
+| 5 | `knot number (sum)` | `knots(r1) + knots(r2)` |
+| 6 | `knot density` | knot sum ÷ total length |
+| 7 | `max ÷ mean block` | block unevenness — how much the longest run exceeds the average |
+| 8 | `block CV` | standard deviation ÷ mean of run lengths |
+| 9 | `max block length` | longest single run |
+| 10 | `mean block length` | mean run length over both generators |
+| — | `total length` | `|r1| + |r2|` — the confound, and the 11th column |
+
+### Results
+
 | model | A tables · 71 held out | B provenance-matched · 82 held out |
 |---|---|---|
-| all 10 features, logistic | **0.981 ± 0.013** | **0.867 ± 0.030** |
-| 3 features (`smaller mean block` + `max_knots` + length) | 0.975 ± 0.018 | 0.857 ± 0.030 |
+| all 11 columns, logistic | **0.981 ± 0.013** | **0.867 ± 0.030** |
+| 3-feature (`smaller mean block` + `max_knots` + length) | 0.975 ± 0.018 | 0.857 ± 0.030 |
+| 2-feature (`smaller mean block` + `knot number`) | 0.980 ± 0.016 | 0.745 ± 0.043 ⚠ |
 | `smaller mean block` alone | 0.945 ± 0.024 | 0.787 ± 0.036 |
 | `max_knots` alone | 0.853 ± 0.035 | 0.638 ± 0.041 |
 | total length alone (yardstick) | 0.760 ± 0.042 | 0.777 ± 0.046 |
@@ -173,7 +194,25 @@ Hypothesis-driven and supervised — not protected by the unsupervised sweep's p
 
 **Nothing was lost to held-out evaluation.** The in-sample 0.945 for `smaller mean block` reproduces exactly out-of-sample, because 1.25 is refit identically from all 200 training halves — with a threshold that stable there is nothing to overfit. `tests/clustering/test_holdout_eval.py` pins that: 200 seeds, 200 identical fits.
 
-**Ten features are not needed.** Block thickness + knot count + length recover 0.975 of the full model's 0.981 (and 0.857 of 0.867 on B). Length is what the single-feature rule was missing: adding it moves the pair from 0.945 → 0.975 on A and 0.747 → 0.860 on B.
+### Which columns the model actually uses
+
+`forward_selection` adds one column at a time, each scored out-of-sample. A weight table cannot answer this — the columns are heavily collinear (`knot number` = `max_knots` + `min_knots`; `block CV` and `max ÷ mean block` measure one thing twice), so L2 splits a shared effect across correlated columns and each looks individually modest.
+
+| step | A tables | B provenance-matched |
+|---|---|---|
+| 1 | `smaller mean block` → 0.933 | `smaller mean block` → 0.798 |
+| 2 | `knot number (sum)` → **0.983** *(+0.051)* | `mean block length` → 0.843 *(+0.045)* |
+| 3 | `total length` → 0.988 *(+0.004)* | `knot number (sum)` → 0.863 *(+0.020)* |
+| 4 | flat | `block CV` → 0.875 *(+0.012)* |
+| | all 11 = 0.982 | all 11 = 0.870 |
+
+**Block thickness enters first in both populations, and it is most of the model.** On A, two columns then match all eleven.
+
+### ⚠ The two-column model does not transfer
+
+On A, `smaller mean block` + `knot number` reaches 0.980 against 0.981 for all eleven — and it is exactly the pairing the knot hypothesis predicts, which is what makes it worth stating carefully. On the provenance-matched population it scores **0.745, below the single feature at 0.787**. Once both sides are produced the same way the knot count stops carrying information independent of block thickness, and a column that adds nothing still costs variance. Forward selection on B agrees: it picks `mean block length` second, not knots.
+
+The **3-feature model is the one that survives both** (0.975 / 0.857). Pinned as a test so the pair is not later promoted to the headline.
 
 ### The seed is not a result
 

@@ -16,7 +16,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, ROOT)
 
 from experiments.clustering.holdout_eval import (  # noqa: E402
-    PUBLISHED, TEST_FRAC, apply_threshold, evaluate, fit_threshold, shuffle_control,
+    PUBLISHED, TEST_FRAC, apply_threshold, evaluate, fit_threshold, forward_selection,
+    shuffle_control,
     stratified_split,
 )
 from experiments.clustering.rank_signals import candidates  # noqa: E402
@@ -112,3 +113,29 @@ def test_headline_holdout_numbers_are_stable(tables):
     assert by["max_knots"]["acc_mean"] == pytest.approx(0.853, abs=0.020)
     # Refitting the cut every split must equal never fitting it -- see the threshold-stability test.
     assert res["fixed_rule"]["acc_mean"] == pytest.approx(by[PUBLISHED[0]]["acc_mean"], abs=1e-12)
+
+
+@pytest.mark.slow
+def test_two_feature_model_does_not_transfer_to_the_matched_population(tables):
+    """The pairing forward selection picks on A must be pinned as A-specific, not as the answer.
+
+    ``smaller mean block`` + ``knot number (sum)`` ties the full 11-column model on population A,
+    which reads like the minimal model until the provenance control is run: there it falls BELOW
+    the single feature. This pins the drop, so nobody later promotes the pair to the headline.
+    """
+    from experiments.clustering.run_cluster_237 import pop_provenance_matched
+    res = evaluate("B", pop_provenance_matched(), n_seeds=40, verbose=False)
+    by = {r["feature"]: r["acc_mean"] for r in res["features"]}
+    assert by["2-feature (logistic)"] < by[PUBLISHED[0]], (
+        "the 2-feature model now beats the single feature on the matched population -- if that is "
+        "a real change the README's 'A-only' framing needs rewriting, not this assertion")
+    assert by["3-feature (logistic)"] > by[PUBLISHED[0]]
+
+
+@pytest.mark.slow
+def test_forward_selection_prices_block_thickness_first(tables):
+    """Greedy, out-of-sample: whatever else enters, the thinner generator's run length enters first."""
+    fwd = forward_selection(tables, n_seeds=15, max_k=2)
+    assert fwd["path"][0]["added"] == PUBLISHED[0]
+    assert fwd["path"][0]["acc"] > 0.90
+    assert fwd["path"][1]["gain"] > 0.01, "the second column should still be buying something on A"

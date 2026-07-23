@@ -50,12 +50,24 @@ TEST_FRAC = 0.30
 N_SEEDS = 200
 PUBLISHED = ("smaller mean block", 1.25)     # the cut rank_signals found, fitted on all 237
 
-# Multivariate models, as feature lists. The 3-feature one is here because the full model is not
-# actually using ten things: block thickness, knot count and length recover it almost exactly, and
-# a model you can state in one sentence is worth more than two thousandths of accuracy.
+# Multivariate models, as feature lists. ``ALL`` is 11 columns -- the 10 candidates AND total
+# length, which is the yardstick when it is competing but a legitimate predictor once it is only a
+# term in a model. The small models are here because the full one is not using eleven things:
+# ``forward_selection`` prices each column by what it CONTRIBUTES out-of-sample.
+#
+# Both small models are kept because the comparison between them is the result. The 2-feature one
+# is what forward selection picks on population A, where it matches all eleven columns (0.980 vs
+# 0.981) -- and it is precisely the pairing the knot hypothesis predicts. But on the
+# provenance-matched population it scores 0.745, BELOW ``smaller mean block`` alone at 0.787: the
+# knot count stops carrying independent information once both sides are produced the same way, and
+# a second column that adds nothing still costs variance. Forward selection on B agrees, picking
+# ``mean block length`` second instead. The 3-feature model is the one that survives both (0.975 /
+# 0.857), so a selection run on one population is a hypothesis about the other, never a result for
+# it -- delete either model and that lesson disappears from the table.
 MODELS = {
     "ALL (logistic)": None,                  # None = every candidate, length included
     "3-feature (logistic)": ["smaller mean block", "max_knots", YARDSTICK],
+    "2-feature (logistic)": ["smaller mean block", "knot number (sum)"],
 }
 
 
@@ -111,6 +123,54 @@ def _logistic(Xtr, ytr, lam=1.0, iters=2000, lr=0.5):
         p = 1.0 / (1.0 + np.exp(-np.clip(A @ w, -30, 30)))
         w -= lr * (A.T @ (p - ytr) / len(A) + lam * np.r_[0.0, w[1:]] / len(A))
     return lambda X: (np.column_stack([np.ones(len(X)), (X - mu) / sd]) @ w) > 0
+
+
+def _logistic_w(Xtr, ytr, lam=1.0, iters=2000, lr=0.5):
+    """Same fit, but returning the standardised weights -- comparable across features by units."""
+    mu, sd = Xtr.mean(0), Xtr.std(0)
+    sd = np.where(sd == 0, 1.0, sd)
+    A = np.column_stack([np.ones(len(Xtr)), (Xtr - mu) / sd])
+    w = np.zeros(A.shape[1])
+    for _ in range(iters):
+        p = 1.0 / (1.0 + np.exp(-np.clip(A @ w, -30, 30)))
+        w -= lr * (A.T @ (p - ytr) / len(A) + lam * np.r_[0.0, w[1:]] / len(A))
+    return w[1:]
+
+
+def forward_selection(rows, n_seeds=40, max_k=5):
+    """Which of the 11 columns the model is actually using -- greedily, scored out-of-sample.
+
+    A weight table alone cannot answer this: the candidates are heavily collinear (knot number is
+    max_knots + min_knots; block CV and max/mean block measure one thing twice), so L2 splits a
+    shared effect across correlated columns and each looks individually modest. Adding features one
+    at a time and scoring on held-out data prices each one by what it CONTRIBUTES rather than by
+    what it correlates with, which is the question "which features matter" actually asks.
+    """
+    y = np.array([r[1] for r in rows])
+    feats = [candidates(r[2], r[3]) for r in rows]
+    names = list(feats[0])
+    V = np.column_stack([[f[n] for f in feats] for n in names])
+    splits = [stratified_split(y, TEST_FRAC, np.random.default_rng(s)) for s in range(n_seeds)]
+
+    def score(cols):
+        a = []
+        for tr, te in splits:
+            X = V[:, cols]
+            a.append(_score(_logistic(X[tr], y[tr].astype(float))(X[te]), y[te])["accuracy"])
+        return float(np.mean(a))
+
+    chosen, path = [], []
+    while len(chosen) < max_k:
+        cand = [(score(chosen + [i]), i) for i in range(len(names)) if i not in chosen]
+        best_acc, best_i = max(cand)
+        path.append({"added": names[best_i], "n_features": len(chosen) + 1, "acc": best_acc,
+                     "gain": best_acc - (path[-1]["acc"] if path else 0.0)})
+        chosen.append(best_i)
+    full = score(list(range(len(names))))
+    w = np.abs(_logistic_w(V, y.astype(float))).tolist()
+    return {"path": path, "all_features": full,
+            "weights": sorted(({"feature": n, "abs_weight": wi} for n, wi in zip(names, w)),
+                              key=lambda d: -d["abs_weight"])}
 
 
 def shuffle_control(rows, n_seeds=50):
@@ -183,6 +243,7 @@ def evaluate(tag, rows, n_seeds=N_SEEDS, verbose=True):
              "best_seed": int(fixed_acc.argmax()),
              "bal_mean": float(fixed_bal.mean()), "bal_std": float(fixed_bal.std())}
     ctrl = shuffle_control(rows)
+    fwd = forward_selection(rows)
 
     if verbose:
         print(f"\n{'=' * 100}\n{tag}   ({int((y == 0).sum())} solved / {int((y == 1).sum())} "
@@ -202,8 +263,12 @@ def evaluate(tag, rows, n_seeds=N_SEEDS, verbose=True):
               f"[{fixed['acc_min']:.3f}, {fixed['acc_max']:.3f}]   best seed {fixed['best_seed']}")
         print(f"  leakage control, labels shuffled:  {ctrl['acc_mean']:.3f}   "
               f"(base rate {ctrl['base_rate']:.3f} -- anything above it would mean a leak)")
+        print(f"\n  which columns the model is actually using (greedy, scored out-of-sample; "
+              f"all 11 = {fwd['all_features']:.3f}):")
+        for p in fwd["path"]:
+            print(f"    {p['n_features']}. + {p['added']:22s} -> {p['acc']:.3f}   ({p['gain']:+.3f})")
     return {"features": out, "fixed_rule": fixed, "shuffle_control": ctrl,
-            "n_test": n_test, "n_seeds": n_seeds}
+            "forward_selection": fwd, "n_test": n_test, "n_seeds": n_seeds}
 
 
 def main():

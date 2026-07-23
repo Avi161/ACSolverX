@@ -15,6 +15,18 @@
      "modal_threshold": null
     },
     {
+     "feature": "2-feature (logistic)",
+     "acc_mean": 0.9802112676056338,
+     "acc_std": 0.01714018538895148,
+     "acc_min": 0.9295774647887324,
+     "acc_max": 1.0,
+     "best_seed": 3,
+     "seed_selection_gain": 0.019788732394366182,
+     "bal_mean": 0.9799701907790143,
+     "bal_std": 0.01772115318741291,
+     "modal_threshold": null
+    },
+    {
      "feature": "3-feature (logistic)",
      "acc_mean": 0.9753521126760564,
      "acc_std": 0.018023216749393996,
@@ -205,6 +217,87 @@
     "acc_mean": 0.5216901408450705,
     "base_rate": 0.5232067510548524
    },
+   "forward_selection": {
+    "path": [
+     {
+      "added": "smaller mean block",
+      "n_features": 1,
+      "acc": 0.9327464788732394,
+      "gain": 0.9327464788732394
+     },
+     {
+      "added": "knot number (sum)",
+      "n_features": 2,
+      "acc": 0.9834507042253522,
+      "gain": 0.05070422535211283
+     },
+     {
+      "added": "total length",
+      "n_features": 3,
+      "acc": 0.9876760563380282,
+      "gain": 0.004225352112676051
+     },
+     {
+      "added": "max block length",
+      "n_features": 4,
+      "acc": 0.9873239436619718,
+      "gain": -0.00035211267605639307
+     },
+     {
+      "added": "min_knots",
+      "n_features": 5,
+      "acc": 0.9869718309859156,
+      "gain": -0.00035211267605628205
+     }
+    ],
+    "all_features": 0.9823943661971832,
+    "weights": [
+     {
+      "feature": "smaller mean block",
+      "abs_weight": 2.718093391192924
+     },
+     {
+      "feature": "max_knots",
+      "abs_weight": 1.844962116392735
+     },
+     {
+      "feature": "knot number (sum)",
+      "abs_weight": 1.5839553330315355
+     },
+     {
+      "feature": "total length",
+      "abs_weight": 1.0486000643957252
+     },
+     {
+      "feature": "larger mean block",
+      "abs_weight": 0.8114635286456253
+     },
+     {
+      "feature": "max / mean block",
+      "abs_weight": 0.7506933359419162
+     },
+     {
+      "feature": "knot density",
+      "abs_weight": 0.514830232336296
+     },
+     {
+      "feature": "min_knots",
+      "abs_weight": 0.3926913398637104
+     },
+     {
+      "feature": "block CV",
+      "abs_weight": 0.362003411164788
+     },
+     {
+      "feature": "mean block length",
+      "abs_weight": 0.24073303374396554
+     },
+     {
+      "feature": "max block length",
+      "abs_weight": 0.08916221875229975
+     }
+    ]
+   },
    "n_test": 71,
    "n_seeds": 200
   },
@@ -263,6 +356,18 @@
       "rule": "16|1",
       "share": 0.93
      }
+    },
+    {
+     "feature": "2-feature (logistic)",
+     "acc_mean": 0.7446951219512195,
+     "acc_std": 0.04304856456796539,
+     "acc_min": 0.6219512195121951,
+     "acc_max": 0.8292682926829268,
+     "best_seed": 47,
+     "seed_selection_gain": 0.08457317073170734,
+     "bal_mean": 0.7597089460784313,
+     "bal_std": 0.042942464260833244,
+     "modal_threshold": null
     },
     {
      "feature": "max / mean block",
@@ -412,6 +517,87 @@
    "shuffle_control": {
     "acc_mean": 0.5558536585365854,
     "base_rate": 0.5845588235294118
+   },
+   "forward_selection": {
+    "path": [
+     {
+      "added": "smaller mean block",
+      "n_features": 1,
+      "acc": 0.7984756097560974,
+      "gain": 0.7984756097560974
+     },
+     {
+      "added": "mean block length",
+      "n_features": 2,
+      "acc": 0.8432926829268294,
+      "gain": 0.044817073170731914
+     },
+     {
+      "added": "knot number (sum)",
+      "n_features": 3,
+      "acc": 0.8631097560975609,
+      "gain": 0.01981707317073156
+     },
+     {
+      "added": "block CV",
+      "n_features": 4,
+      "acc": 0.8746951219512195,
+      "gain": 0.011585365853658547
+     },
+     {
+      "added": "min_knots",
+      "n_features": 5,
+      "acc": 0.8746951219512195,
+      "gain": 0.0
+     }
+    ],
+    "all_features": 0.8704268292682926,
+    "weights": [
+     {
+      "feature": "knot density",
+      "abs_weight": 1.5251560934912918
+     },
+     {
+      "feature": "smaller mean block",
+      "abs_weight": 1.4932717129534734
+     },
+     {
+      "feature": "max_knots",
+      "abs_weight": 1.0608136128741774
+     },
+     {
+      "feature": "knot number (sum)",
+      "abs_weight": 0.8837138239836422
+     },
+     {
+      "feature": "block CV",
+      "abs_weight": 0.7997849477979591
+     },
+     {
+      "feature": "max / mean block",
+      "abs_weight": 0.5818179161330698
+     },
+     {
+      "feature": "larger mean block",
+      "abs_weight": 0.47577162540797474
+     },
+     {
+      "feature": "total length",
+      "abs_weight": 0.41252543535223235
+     },
+     {
+      "feature": "max block length",
+      "abs_weight": 0.2550339945728629
+     },
+     {
+      "feature": "mean block length",
+      "abs_weight": 0.2215442864867259
+     },
+     {
+      "feature": "min_knots",
+      "abs_weight": 0.09271384890369162
+     }
+    ]
    },
    "n_test": 82,
    "n_seeds": 200
