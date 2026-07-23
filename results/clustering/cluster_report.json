@@ -6,7 +6,7 @@
   "n_unsolved": 124,
   "len_solved_mean": 15.460176991150442,
   "len_unsolved_mean": 19.725806451612904,
-  "n_clusterings": 4898,
+  "n_clusterings": 4900,
   "n_perm": 1000,
   "rotation_invariance": {
    "shape (control)": 0.0,
@@ -309,8 +309,8 @@
    }
   ],
   "null": {
-   "mean": 0.026642187674648207,
-   "p95": 0.04608383047154292,
+   "mean": 0.026664469463135717,
+   "p95": 0.04602472094334874,
    "max": 0.07612406496869184,
    "p_value": 0.0
   },
@@ -329,23 +329,23 @@
     },
     {
      "feature": "min knots (1 relator)",
-     "solved_mean": 1.9380530973451326,
+     "solved_mean": 1.8761061946902655,
      "unsolved_mean": 2.096774193548387,
      "solved_median": 2.0,
      "unsolved_median": 2.0,
-     "auc": 0.5758635455324008,
-     "cohens_d": 0.530149042292335,
+     "auc": 0.5763631173280046,
+     "cohens_d": 0.5236564946517402,
      "direction": "unsolved higher",
-     "auc_matched": 0.5625428963623885
+     "auc_matched": 0.5628002745367193
     },
     {
      "feature": "knot number (r1+r2)",
-     "solved_mean": 4.04424778761062,
+     "solved_mean": 3.982300884955752,
      "unsolved_mean": 5.064516129032258,
      "solved_median": 4.0,
      "unsolved_median": 5.0,
      "auc": 0.8626177562089637,
-     "cohens_d": 1.6155932228399579,
+     "cohens_d": 1.5407037582610708,
      "direction": "unsolved higher",
      "auc_matched": 0.8509351407000686
     },
@@ -384,14 +384,14 @@
     },
     {
      "feature": "knot density",
-     "solved_mean": 0.27677509063879085,
+     "solved_mean": 0.27089470013450656,
      "unsolved_mean": 0.26324786428533087,
      "solved_median": 0.26666666666666666,
      "unsolved_median": 0.2631578947368421,
-     "auc": 0.44918641164715956,
-     "cohens_d": -0.210177391704595,
+     "auc": 0.46695689409077934,
+     "cohens_d": -0.1187024304848366,
      "direction": "unsolved lower",
-     "auc_matched": 0.5164293067947838
+     "auc_matched": 0.5200326012354153
     },
     {
      "feature": "max block / length",
@@ -594,15 +594,15 @@
    "table_min": [
     {
      "min_knots": 0,
-     "n_solved": 0,
+     "n_solved": 7,
      "n_unsolved": 0,
      "pct_unsolved": 0.0
     },
     {
      "min_knots": 1,
-     "n_solved": 7,
+     "n_solved": 0,
      "n_unsolved": 2,
-     "pct_unsolved": 0.2222222222222222
+     "pct_unsolved": 1.0
     },
     {
      "min_knots": 2,
@@ -631,7 +631,7 @@
    ],
    "joint": [
     {
-     "min_knots": 1,
+     "min_knots": 0,
      "max_knots": 2,
      "n_solved": 7,
      "n_unsolved": 0
@@ -721,7 +721,7 @@
      3
     ],
     "solved_min_range": [
-     1,
+     0,
      2
     ],
     "unsolved_max_range": [
@@ -736,12 +736,12 @@
    "per_relator": [
     {
      "knots": 0,
-     "n_solved": 0,
+     "n_solved": 7,
      "n_unsolved": 0
     },
     {
      "knots": 1,
-     "n_solved": 7,
+     "n_solved": 0,
      "n_unsolved": 2
     },
     {
@@ -1011,13 +1011,13 @@
    ],
    "kmin": [
     2.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
     2.0,
     2.0,
     2.0,
@@ -1298,10 +1298,10 @@
    },
    {
     "representation": "knots",
-    "knn5": 0.9419783043105909,
-    "knn15": 0.8968384242078219,
+    "knn5": 0.9339137881815587,
+    "knn15": 0.8883813873822438,
     "logreg": 0.954467599200685,
-    "logreg_nolen": 0.8948758207250928
+    "logreg_nolen": 0.915822152440765
    },
    {
     "representation": "knots+ring",
@@ -1411,12 +1411,12 @@
    },
    {
     "representation": "knots",
-    "best_ari": 0.3416805900018132,
-    "knn5": 0.9477522306108441
+    "best_ari": 0.3495198467490142,
+    "knn5": 0.942433081674674
    },
    {
     "representation": "knots+ring",
-    "best_ari": 0.339195932588459,
+    "best_ari": 0.33191379776912744,
     "knn5": 0.9235586822237474
    },
    {
@@ -6951,7 +6951,7 @@
     ]
    ]
   },
-  "seconds": 10.8
+  "seconds": 10.9
  },
  "provenance-matched": {
   "tag": "provenance-matched",
@@ -6960,7 +6960,7 @@
   "n_unsolved": 159,
   "len_solved_mean": 15.460176991150442,
   "len_unsolved_mean": 20.28301886792453,
-  "n_clusterings": 4918,
+  "n_clusterings": 4922,
   "n_perm": 1000,
   "rotation_invariance": {
    "shape (control)": 0.0,
@@ -7102,16 +7102,6 @@
     "bal_acc": 0.7589469583124617
    },
    {
-    "representation": "knots+ring",
-    "preproc": "z",
-    "metric": "correlation",
-    "algorithm": "spectral",
-    "k": 3,
-    "ari": 0.2866495331397848,
-    "nmi": 0.27132936301421334,
-    "bal_acc": 0.7973506985028107
-   },
-   {
     "representation": "ring_autocorr",
     "preproc": "z",
     "metric": "cosine",
@@ -7122,16 +7112,6 @@
     "bal_acc": 0.7973506985028107
    },
    {
-    "representation": "knots+ring",
-    "preproc": "z+pca10",
-    "metric": "cosine",
-    "algorithm": "spectral",
-    "k": 3,
-    "ari": 0.28084837622346337,
-    "nmi": 0.2883527099749731,
-    "bal_acc": 0.7301998107641787
-   },
-   {
     "representation": "ring_dual",
     "preproc": "z",
     "metric": "euclidean",
@@ -7140,6 +7120,26 @@
     "ari": 0.28068834589680697,
     "nmi": 0.2595725207590606,
     "bal_acc": 0.7986308231758223
+   },
+   {
+    "representation": "knots+ring",
+    "preproc": "z",
+    "metric": "correlation",
+    "algorithm": "spectral",
+    "k": 3,
+    "ari": 0.27896572548947907,
+    "nmi": 0.2605749836634597,
+    "bal_acc": 0.7929259197417488
+   },
+   {
+    "representation": "knots+ring",
+    "preproc": "z+pca10",
+    "metric": "cosine",
+    "algorithm": "spectral",
+    "k": 3,
+    "ari": 0.2781380634905002,
+    "nmi": 0.2819066713579474,
+    "bal_acc": 0.7270551566761285
    },
    {
     "representation": "ring_dual_sym",
@@ -7160,36 +7160,6 @@
     "ari": 0.27710643343857605,
     "nmi": 0.2578316951335351,
     "bal_acc": 0.795486169087772
-   },
-   {
-    "representation": "knots+ring",
-    "preproc": "z+pca10",
-    "metric": "euclidean",
-    "algorithm": "kmeans",
-    "k": 4,
-    "ari": 0.2762773101525573,
-    "nmi": 0.2596758353035799,
-    "bal_acc": 0.7333444648522291
-   },
-   {
-    "representation": "knots+ring",
-    "preproc": "z+pca10",
-    "metric": "cosine",
-    "algorithm": "kmeans",
-    "k": 4,
-    "ari": 0.2762773101525573,
-    "nmi": 0.2596758353035799,
-    "bal_acc": 0.7333444648522291
-   },
-   {
-    "representation": "knots+ring",
-    "preproc": "z+pca10",
-    "metric": "correlation",
-    "algorithm": "kmeans",
-    "k": 4,
-    "ari": 0.2762773101525573,
-    "nmi": 0.2596758353035799,
-    "bal_acc": 0.7333444648522291
    },
    {
     "representation": "knots+ring",
@@ -7260,12 +7230,42 @@
     "ari": 0.2707530207982577,
     "nmi": 0.2373670209052347,
     "bal_acc": 0.7853564868926365
+   },
+   {
+    "representation": "ring_dual",
+    "preproc": "z+pca10",
+    "metric": "cosine",
+    "algorithm": "kmeans",
+    "k": 3,
+    "ari": 0.2707530207982577,
+    "nmi": 0.2373670209052347,
+    "bal_acc": 0.7853564868926365
+   },
+   {
+    "representation": "ring_dual",
+    "preproc": "z+pca10",
+    "metric": "correlation",
+    "algorithm": "kmeans",
+    "k": 3,
+    "ari": 0.2707530207982577,
+    "nmi": 0.2373670209052347,
+    "bal_acc": 0.7853564868926365
+   },
+   {
+    "representation": "whitehead",
+    "preproc": "z",
+    "metric": "correlation",
+    "algorithm": "ward",
+    "k": 3,
+    "ari": 0.27046635510935757,
+    "nmi": 0.22570056926553828,
+    "bal_acc": 0.7328713752991596
    }
   ],
   "null": {
-   "mean": 0.03457881066316155,
-   "p95": 0.05419669853395609,
-   "max": 0.08218723693362667,
+   "mean": 0.03435900252667407,
+   "p95": 0.0540547922063744,
+   "max": 0.08282844721875278,
    "p_value": 0.0
   },
   "knots": {
@@ -7283,23 +7283,23 @@
     },
     {
      "feature": "min knots (1 relator)",
-     "solved_mean": 1.9380530973451326,
+     "solved_mean": 1.8761061946902655,
      "unsolved_mean": 2.0,
      "solved_median": 2.0,
      "unsolved_median": 2.0,
      "auc": 0.5309734513274337,
-     "cohens_d": 0.36181025719852045,
+     "cohens_d": 0.3618102571985198,
      "direction": "unsolved higher",
      "auc_matched": 0.5159574468085106
     },
     {
      "feature": "knot number (r1+r2)",
-     "solved_mean": 4.04424778761062,
+     "solved_mean": 3.982300884955752,
      "unsolved_mean": 4.452830188679245,
      "solved_median": 4.0,
      "unsolved_median": 4.0,
      "auc": 0.6902654867256637,
-     "cohens_d": 0.8947898461269735,
+     "cohens_d": 0.8546817915608937,
      "direction": "unsolved higher",
      "auc_matched": 0.6713167402649538
     },
@@ -7338,14 +7338,14 @@
     },
     {
      "feature": "knot density",
-     "solved_mean": 0.27677509063879085,
+     "solved_mean": 0.27089470013450656,
      "unsolved_mean": 0.22606868376379496,
      "solved_median": 0.26666666666666666,
      "unsolved_median": 0.21739130434782608,
-     "auc": 0.2859130628374242,
-     "cohens_d": -0.8373989871405143,
+     "auc": 0.3063394000111315,
+     "cohens_d": -0.7395176986348693,
      "direction": "unsolved lower",
-     "auc_matched": 0.33634417235380704
+     "auc_matched": 0.34467416031045095
     },
     {
      "feature": "max block / length",
@@ -7526,13 +7526,13 @@
    "table_min": [
     {
      "min_knots": 0,
-     "n_solved": 0,
+     "n_solved": 7,
      "n_unsolved": 0,
      "pct_unsolved": 0.0
     },
     {
      "min_knots": 1,
-     "n_solved": 7,
+     "n_solved": 0,
      "n_unsolved": 0,
      "pct_unsolved": 0.0
     },
@@ -7551,7 +7551,7 @@
    ],
    "joint": [
     {
-     "min_knots": 1,
+     "min_knots": 0,
      "max_knots": 2,
      "n_solved": 7,
      "n_unsolved": 0
@@ -7605,7 +7605,7 @@
      3
     ],
     "solved_min_range": [
-     1,
+     0,
      2
     ],
     "unsolved_max_range": [
@@ -7620,12 +7620,12 @@
    "per_relator": [
     {
      "knots": 0,
-     "n_solved": 0,
+     "n_solved": 7,
      "n_unsolved": 0
     },
     {
      "knots": 1,
-     "n_solved": 7,
+     "n_solved": 0,
      "n_unsolved": 0
     },
     {
@@ -7917,13 +7917,13 @@
     3.0
    ],
    "kmin": [
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
-    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
     2.0,
     2.0,
     2.0,
@@ -8256,17 +8256,17 @@
    },
    {
     "representation": "knots",
-    "knn5": 0.8340568820615573,
-    "knn15": 0.8360327266655535,
-    "logreg": 0.8201981410363444,
-    "logreg_nolen": 0.6150164189903713
+    "knn5": 0.8207825457783715,
+    "knn15": 0.8580453052819057,
+    "logreg": 0.8246229197974064,
+    "logreg_nolen": 0.6181610730784216
    },
    {
     "representation": "knots+ring",
     "knn5": 0.8252073245394334,
-    "knn15": 0.7986586519730617,
-    "logreg": 0.7789836923248177,
-    "logreg_nolen": 0.5
+    "knn15": 0.7942338732119998,
+    "logreg": 0.7834084710858797,
+    "logreg_nolen": 0.6151277341793288
    },
    {
     "representation": "kmer2",
@@ -8369,13 +8369,13 @@
    },
    {
     "representation": "knots",
-    "best_ari": 0.16945380372147295,
+    "best_ari": 0.15504446424793109,
     "knn5": 0.815000669075338
    },
    {
     "representation": "knots+ring",
     "best_ari": 0.24578098675630214,
-    "knn5": 0.8263749498193497
+    "knn5": 0.8210558008831794
    },
    {
     "representation": "kmer2",
@@ -14714,6 +14714,6 @@
     ]
    ]
   },
-  "seconds": 13.0
+  "seconds": 12.3
  }
 }

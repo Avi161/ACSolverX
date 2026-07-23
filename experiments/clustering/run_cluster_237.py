@@ -205,8 +205,9 @@ def knot_hypothesis(pairs, y):
         [n for _, n in F.gen_runs(a)] + [n for _, n in F.gen_runs(b)]) for a, b in pairs])
     # Enumerate the FULL range from 0, not just the values that occur -- an omitted bucket reads
     # as "not counted" when it means "empty", and whether knots=0 or 1 ever appears is a real
-    # question about the data. knots=0 needs a word with no blocks at all, i.e. the empty word,
-    # so it is structurally impossible for a relator here rather than merely unobserved.
+    # question about the data. knots=0 DOES occur at relator level: 7 relators are the bare pure
+    # power ``X``, which kills a generator outright. It never survives to a presentation's
+    # max_knots, though, because the partner relator always carries at least 2.
     table = []
     for v in range(0, int(kmax.max()) + 1):
         m = kmax == v
@@ -444,7 +445,8 @@ def analyse(tag, rows, rng, verbose=True):
         empty = "   <-- EMPTY" if r["n_solved"] + r["n_unsolved"] == 0 else ""
         say(f"     {r['max_knots']:>2} {r['n_solved']:>7} {r['n_unsolved']:>9} "
             f"{r['pct_unsolved']*100:>10.1f}%   {us:>7} / {uu:<7} {ls:>5} / {lu:<5}{empty}")
-    say("  [per relator] knot_number over all 474 relators (0 needs an empty word: impossible)")
+    say("  [per relator] knot_number over all 474 relators "
+        "(0 = a pure power: it kills a generator, nothing is squashed)")
     for r in knot["per_relator"]:
         tot = r["n_solved"] + r["n_unsolved"]
         say(f"     {r['knots']:>2} {tot:>6}   ({r['n_solved']} in solved, {r['n_unsolved']} in "

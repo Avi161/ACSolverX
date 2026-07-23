@@ -57,18 +57,46 @@ def test_balance_theorem_exhaustive():
     assert checked > 20_000, f"only {checked} two-generator words checked -- corpus too thin"
 
 
-def test_pure_power_is_the_only_exception():
-    """A word on one generator is where the two counts genuinely differ; max resolves it."""
+def test_pure_power_is_the_only_exception_and_scores_zero():
+    """A word on one generator is the sole case outside the theorem, and it has 0 knots.
+
+    Nothing is squashed inside anything when the other generator does not occur, so the literal
+    reading of the definition gives 0 -- not the 1 a ``max(#x, #y)`` tie-break would produce.
+    """
     for w in _words(8):
         nx, ny = block_counts(w)
         if nx != ny:
             assert len({c.lower() for c in w}) == 1, f"{w} unbalanced but uses both generators"
             assert {nx, ny} == {0, 1}
-            assert knot_number(w) == 1
+            assert knot_number(w) == 0
     assert block_counts("X") == (1, 0)
-    assert knot_number("X") == 1
+    assert knot_number("X") == 0
     assert block_counts("yyy") == (0, 1)
-    assert knot_number("yyy") == 1
+    assert knot_number("yyy") == 0
+    # A single block of each generator is NOT a pure power and really is one knot.
+    assert block_counts("YYYYxxx") == (1, 1)
+    assert knot_number("YYYYxxx") == 1
+
+
+def test_pure_power_convention_does_not_move_max_knots():
+    """The 0-vs-1 choice must be inert where it matters: no presentation's max_knots may change.
+
+    It only reaches min_knots, and only for the 7 presentations whose r1 is the bare relator X.
+    """
+    import csv as _csv
+    alt = lambda w: max(block_counts(w))          # the rejected max() tie-break
+    path = os.path.join(ROOT, "results", "equivalence_classes", "ms1190_tables",
+                        "solved_640_aut_orbits.csv")
+    moved_max, moved_min = 0, 0
+    with open(path) as f:
+        for row in _csv.DictReader(f):
+            r1, r2 = row["rep_r1"], row["rep_r2"]
+            if max(knot_number(r1), knot_number(r2)) != max(alt(r1), alt(r2)):
+                moved_max += 1
+            if min(knot_number(r1), knot_number(r2)) != min(alt(r1), alt(r2)):
+                moved_min += 1
+    assert moved_max == 0, f"{moved_max} presentations changed max_knots -- the choice is not inert"
+    assert moved_min == 7, f"expected exactly 7 min_knots shifts (the X relators), got {moved_min}"
 
 
 def test_knots_is_half_the_run_count_when_both_generators_occur():
@@ -110,7 +138,8 @@ def test_balance_holds_on_every_shipped_relator(csvname, cols):
                     assert nx == ny, f"{row[c]}: {nx} vs {ny}"
                 else:
                     n_pure += 1
-                    assert knot_number(row[c]) == max(nx, ny)
+                    assert min(nx, ny) == 0, f"{row[c]}: one-generator word must miss a block type"
+                    assert knot_number(row[c]) == 0
     # The pure-power case must actually occur, or the exception branch is untested here.
     if csvname.startswith("solved"):
         assert n_pure > 0, "no pure-power relator found -- the max branch would be vacuous"

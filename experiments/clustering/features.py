@@ -159,8 +159,6 @@ def block_counts(w):
 def knot_number(w):
     """Knots: how many blocks of one generator sit squashed inside the other, counted cyclically.
 
-    Defined as ``max(#x-blocks, #y-blocks)``, which needs no case split because of:
-
     **Theorem.** If a cyclic word contains at least one x-type letter *and* at least one y-type
     letter, then #x-blocks == #y-blocks.
 
@@ -169,15 +167,30 @@ def knot_number(w):
     odd j and l_j = l_2 != l_1 for even j. Cyclicity requires l_m != l_1. Were m odd we would have
     l_m = l_1, a contradiction; so m is even and exactly m/2 arcs carry each generator. QED
 
-    So "counting on either index" is not a convention -- it is forced, and ``max`` returns that
-    common value. The one case outside the hypothesis is a **pure power** (``X``, ``yyy``), which
-    has one block of its own generator and none of the other; there the two counts genuinely differ
-    (1 vs 0) and ``max`` resolves it to 1. ``test_knots.py`` pins both the theorem and this case.
+    So "counting on either index" is not a convention -- it is *forced* to agree, and the shared
+    value is what this returns.
+
+    **The pure-power case is 0, not 1.** A word on a single generator (``X``, ``yyy``) falls
+    outside the hypothesis: it has one block of its own generator and none of the other. Reading
+    the definition literally -- how many blocks of one generator are squashed *inside the other* --
+    the answer is none, because the other generator does not occur. A ``max(#x, #y)`` tie-break
+    would say 1, but that rule only exists to reconcile the two counts when they disagree, and
+    here the disagreement is not a tie to break: there is genuinely nothing squashed.
+
+    0 is also the more informative value. A relator that is a pure power kills a generator
+    outright -- ``sol_001`` is <x, y | x, YYXyx>, i.e. x = 1 -- so a 0 marks a degenerate,
+    trivially-collapsing presentation rather than a merely quiet one.
+
+    Choosing 0 over 1 moves NOTHING measurable: it changes no presentation's ``max_knots`` at all,
+    and only shifts ``min_knots`` from 1 to 0 for the 7 presentations built on ``X``
+    (``sol_001``..``sol_007``). ``test_knots.py`` pins the theorem, this case, and that invariance.
 
         yyyxxxyyyxxx  ->  yyy|xxx|yyy|xxx  ->  (2 x-blocks, 2 y-blocks)  ->  2 knots
         yxxyxyxx      ->  y|xx|y|x|y|xx    ->  (3 x-blocks, 3 y-blocks)  ->  3 knots
+        X             ->  x                ->  (1 x-block,  0 y-blocks) ->  0 knots
     """
-    return max(block_counts(w))
+    nx, ny = block_counts(w)
+    return 0 if min(nx, ny) == 0 else max(nx, ny)
 
 
 def knots(w):

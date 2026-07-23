@@ -63,13 +63,14 @@ Counting on x or on y is therefore *forced* to agree, not a convention. The sole
 
 Buckets are enumerated from 0, never only over the values present — an omitted bucket reads as "not counted" when it means "empty".
 
-- **knots = 0 never occurs, and cannot.** It needs a word with no blocks at all, i.e. the empty word. Structurally impossible for a relator here, not merely unobserved.
-- **knots = 1 occurs at relator level** — 9 of the 474 relators (7 in solved presentations, 2 in unsolved), from just 3 distinct words: `X` (a pure power, the theorem's exception), `YYYYxxx`, `YYYYxxxxxxx`.
+- **knots = 0 does occur** — 7 of the 474 relators, every one of them the bare relator `X`, in `sol_001`…`sol_007`. A pure power has one block of its own generator and none of the other, so nothing is squashed inside anything and the literal reading of the definition gives **0**. A `max(#x,#y)` tie-break would say 1, but that rule exists to reconcile the counts when they *disagree*, and here there is no tie to break. 0 is also the informative value: a pure-power relator kills a generator outright (`sol_001` is ⟨x,y | x, YYXyx⟩, i.e. x = 1), so it flags a degenerate, trivially-collapsing presentation.
+  The choice is **inert where it matters**: no presentation's `max_knots` changes at all, and only `min_knots` shifts 1 → 0 for exactly those 7. Pinned by `test_pure_power_convention_does_not_move_max_knots`.
+- **knots = 1 occurs on 2 relators** — `YYYYxxx` and `YYYYxxxxxxx`, which have one block of *each* generator and so are genuinely one knot.
 - **max_knots = 1 never occurs**: every presentation with a 1-knot relator has the other relator at ≥2. So max_knots ranges over {2,3,4,5} and min_knots over {1,2,3}.
 
 ## Two independent sufficient conditions
 
-Solved presentations occupy a tight box: `max_knots ∈ {2,3}` **and** `min_knots ∈ {1,2}`. Anything outside it is unsolved.
+Solved presentations occupy a tight box: `max_knots ∈ {2,3}` **and** `min_knots ∈ {0,1,2}`. Anything outside it is unsolved.
 
 | rule | solved | unsolved | precision | recall |
 |---|---|---|---|---|
@@ -79,6 +80,8 @@ Solved presentations occupy a tight box: `max_knots ∈ {2,3}` **and** `min_knot
 | both | 0 | 4 | 1.000 | 0.032 |
 
 They overlap on only 4 states, so together they certify **24 of the 124 unsolved with zero false positives** — nearly double either alone.
+
+The mirror also holds: **`min_knots = 0` is a pure *solved* bucket, 7 for 7** — exactly the presentations whose relator kills a generator. (`min_knots = 1` holds only 2 states; read nothing into it.)
 
 ## Inside a bucket: exponent signs vs block sizes
 
