@@ -1,0 +1,409 @@
+{
+ "populations": {
+  "A": [
+   {
+    "feature": "smaller mean block",
+    "auc": 0.9123251498715387,
+    "auc_length_removed": 0.7507136739937197,
+    "auc_matched_band": 0.903783459162663,
+    "solved_mean": 1.2469026548672564,
+    "unsolved_mean": 1.5062788018433177,
+    "rule": {
+     "threshold": 1.25,
+     "bal_acc": 0.9452255209820155,
+     "tp": 117,
+     "fp": 6,
+     "fn": 7,
+     "tn": 107,
+     "precision": 0.9512195121951219,
+     "recall": 0.9435483870967742
+    }
+   },
+   {
+    "feature": "knot number (sum)",
+    "auc": 0.8626177562089637,
+    "auc_length_removed": 0.7806522980302598,
+    "auc_matched_band": 0.8509351407000686,
+    "solved_mean": 3.982300884955752,
+    "unsolved_mean": 5.064516129032258,
+    "rule": {
+     "threshold": 4.0,
+     "bal_acc": 0.8460962032543533,
+     "tp": 99,
+     "fp": 12,
+     "fn": 25,
+     "tn": 101,
+     "precision": 0.8918918918918919,
+     "recall": 0.7983870967741935
+    }
+   },
+   {
+    "feature": "max_knots",
+    "auc": 0.8601555809306309,
+    "auc_length_removed": 0.7740864972880388,
+    "auc_matched_band": 0.8506348661633494,
+    "solved_mean": 2.106194690265487,
+    "unsolved_mean": 2.967741935483871,
+    "rule": {
+     "threshold": 2.0,
+     "bal_acc": 0.8541607193833857,
+     "tp": 101,
+     "fp": 12,
+     "fn": 23,
+     "tn": 101,
+     "precision": 0.8938053097345132,
+     "recall": 0.8145161290322581
+    }
+   },
+   {
+    "feature": "total length",
+    "auc": 0.8090922066799886,
+    "auc_length_removed": null,
+    "auc_matched_band": 0.7705044612216884,
+    "solved_mean": 15.460176991150442,
+    "unsolved_mean": 19.725806451612904,
+    "rule": {
+     "threshold": 16.0,
+     "bal_acc": 0.7633100199828718,
+     "tp": 107,
+     "fp": 38,
+     "fn": 17,
+     "tn": 75,
+     "precision": 0.7379310344827587,
+     "recall": 0.8629032258064516
+    }
+   },
+   {
+    "feature": "max / mean block",
+    "auc": 0.8030616614330573,
+    "auc_length_removed": 0.6364544675992007,
+    "auc_matched_band": 0.7789550446122169,
+    "solved_mean": 2.021740324532846,
+    "unsolved_mean": 2.561727440273944,
+    "rule": {
+     "threshold": 2.3077,
+     "bal_acc": 0.7530687981729947,
+     "tp": 88,
+     "fp": 23,
+     "fn": 36,
+     "tn": 90,
+     "precision": 0.7927927927927928,
+     "recall": 0.7096774193548387
+    }
+   },
+   {
+    "feature": "block CV",
+    "auc": 0.7126748501284613,
+    "auc_length_removed": 0.5030331144733086,
+    "auc_matched_band": 0.6787491420727523,
+    "solved_mean": 0.5550958685930292,
+    "unsolved_mean": 0.6974133809751045,
+    "rule": {
+     "threshold": 0.5728,
+     "bal_acc": 0.6678204396231802,
+     "tp": 91,
+     "fp": 45,
+     "fn": 33,
+     "tn": 68,
+     "precision": 0.6691176470588235,
+     "recall": 0.7338709677419355
+    }
+   },
+   {
+    "feature": "max block length",
+    "auc": 0.683200114187839,
+    "auc_length_removed": 0.37168141592920356,
+    "auc_matched_band": 0.6379975978037062,
+    "solved_mean": 4.070796460176991,
+    "unsolved_mean": 5.17741935483871,
+    "rule": {
+     "threshold": 4.0,
+     "bal_acc": 0.6471595775049956,
+     "tp": 76,
+     "fp": 36,
+     "fn": 48,
+     "tn": 77,
+     "precision": 0.6785714285714286,
+     "recall": 0.6129032258064516
+    }
+   },
+   {
+    "feature": "min_knots",
+    "auc": 0.5763631173280046,
+    "auc_length_removed": 0.32272337996003425,
+    "auc_matched_band": 0.5628002745367193,
+    "solved_mean": 1.8761061946902655,
+    "unsolved_mean": 2.096774193548387,
+    "rule": {
+     "threshold": 2.0,
+     "bal_acc": 0.5564516129032258,
+     "tp": 14,
+     "fp": 0,
+     "fn": 110,
+     "tn": 113,
+     "precision": 1.0,
+     "recall": 0.11290322580645161
+    }
+   },
+   {
+    "feature": "mean block length",
+    "auc": 0.5420353982300885,
+    "auc_length_removed": 0.21592206679988582,
+    "auc_matched_band": 0.4805679478380233,
+    "solved_mean": 1.9537610619469028,
+    "unsolved_mean": 1.9937451996927806,
+    "rule": {
+     "threshold": 1.625,
+     "bal_acc": 0.5902440765058521,
+     "tp": 97,
+     "fp": 68,
+     "fn": 27,
+     "tn": 45,
+     "precision": 0.5878787878787879,
+     "recall": 0.782258064516129
+    }
+   },
+   {
+    "feature": "knot density",
+    "auc": 0.46695689409077934,
+    "auc_length_removed": 0.7617399371966885,
+    "auc_matched_band": 0.5200326012354153,
+    "solved_mean": 0.27089470013450656,
+    "unsolved_mean": 0.26324786428533087,
+    "rule": {
+     "threshold": 0.1905,
+     "bal_acc": 0.5397159577504995,
+     "tp": 113,
+     "fp": 94,
+     "fn": 11,
+     "tn": 19,
+     "precision": 0.5458937198067633,
+     "recall": 0.9112903225806451
+    }
+   },
+   {
+    "feature": "larger mean block",
+    "auc": 0.46934770196974024,
+    "auc_length_removed": 0.16107622038252925,
+    "auc_matched_band": 0.407987302676733,
+    "solved_mean": 2.7039823008849555,
+    "unsolved_mean": 2.481211597542243,
+    "rule": {
+     "threshold": 1.75,
+     "bal_acc": 0.5488509848701113,
+     "tp": 101,
+     "fp": 81,
+     "fn": 23,
+     "tn": 32,
+     "precision": 0.554945054945055,
+     "recall": 0.8145161290322581
+    }
+   }
+  ],
+  "B": [
+   {
+    "feature": "total length",
+    "auc": 0.8306339400011131,
+    "auc_length_removed": null,
+    "auc_matched_band": 0.7964003746821892,
+    "solved_mean": 15.460176991150442,
+    "unsolved_mean": 20.28301886792453,
+    "rule": {
+     "threshold": 16.0,
+     "bal_acc": 0.7626760171425391,
+     "tp": 137,
+     "fp": 38,
+     "fn": 22,
+     "tn": 75,
+     "precision": 0.7828571428571428,
+     "recall": 0.8616352201257862
+    }
+   },
+   {
+    "feature": "smaller mean block",
+    "auc": 0.8265709356041632,
+    "auc_length_removed": 0.7059330995714366,
+    "auc_matched_band": 0.818111869396494,
+    "solved_mean": 1.2469026548672564,
+    "unsolved_mean": 1.4248427672955977,
+    "rule": {
+     "threshold": 1.25,
+     "bal_acc": 0.8067846607669616,
+     "tp": 106,
+     "fp": 6,
+     "fn": 53,
+     "tn": 107,
+     "precision": 0.9464285714285714,
+     "recall": 0.6666666666666666
+    }
+   },
+   {
+    "feature": "max / mean block",
+    "auc": 0.8200589970501475,
+    "auc_length_removed": 0.5876328825068181,
+    "auc_matched_band": 0.7952629466077881,
+    "solved_mean": 2.0217403245328462,
+    "unsolved_mean": 2.5099123046029224,
+    "rule": {
+     "threshold": 2.3077,
+     "bal_acc": 0.7535760004452607,
+     "tp": 113,
+     "fp": 23,
+     "fn": 46,
+     "tn": 90,
+     "precision": 0.8308823529411765,
+     "recall": 0.710691823899371
+    }
+   },
+   {
+    "feature": "block CV",
+    "auc": 0.7963766905994323,
+    "auc_length_removed": 0.5729114487671843,
+    "auc_matched_band": 0.7682657567242072,
+    "solved_mean": 0.5550958685930292,
+    "unsolved_mean": 0.7535941414663481,
+    "rule": {
+     "threshold": 0.6325,
+     "bal_acc": 0.7294762620359547,
+     "tp": 118,
+     "fp": 32,
+     "fn": 41,
+     "tn": 81,
+     "precision": 0.7866666666666666,
+     "recall": 0.7421383647798742
+    }
+   },
+   {
+    "feature": "max block length",
+    "auc": 0.7749206879278677,
+    "auc_length_removed": 0.4113374519953248,
+    "auc_matched_band": 0.7390606182256122,
+    "solved_mean": 4.070796460176991,
+    "unsolved_mean": 5.861635220125786,
+    "rule": {
+     "threshold": 4.0,
+     "bal_acc": 0.7180664551678076,
+     "tp": 120,
+     "fp": 36,
+     "fn": 39,
+     "tn": 77,
+     "precision": 0.7692307692307693,
+     "recall": 0.7547169811320755
+    }
+   },
+   {
+    "feature": "mean block length",
+    "auc": 0.7035954806033283,
+    "auc_length_removed": 0.42942617020092394,
+    "auc_matched_band": 0.6573330657031982,
+    "solved_mean": 1.9537610619469028,
+    "unsolved_mean": 2.3089622641509435,
+    "rule": {
+     "threshold": 1.875,
+     "bal_acc": 0.6932709968275171,
+     "tp": 129,
+     "fp": 48,
+     "fn": 30,
+     "tn": 65,
+     "precision": 0.7288135593220338,
+     "recall": 0.8113207547169812
+    }
+   },
+   {
+    "feature": "knot density",
+    "auc": 0.3063394000111315,
+    "auc_length_removed": 0.5917237157010075,
+    "auc_matched_band": 0.34467416031045095,
+    "solved_mean": 0.27089470013450656,
+    "unsolved_mean": 0.22606868376379496,
+    "rule": {
+     "threshold": 0.1429,
+     "bal_acc": 0.5132743362831859,
+     "tp": 159,
+     "fp": 110,
+     "fn": 0,
+     "tn": 3,
+     "precision": 0.5910780669144982,
+     "recall": 1.0
+    }
+   },
+   {
+    "feature": "knot number (sum)",
+    "auc": 0.6902654867256637,
+    "auc_length_removed": 0.5224856681694218,
+    "auc_matched_band": 0.6713167402649538,
+    "solved_mean": 3.982300884955752,
+    "unsolved_mean": 4.452830188679245,
+    "rule": {
+     "threshold": 4.0,
+     "bal_acc": 0.6733177492068793,
+     "tp": 72,
+     "fp": 12,
+     "fn": 87,
+     "tn": 101,
+     "precision": 0.8571428571428571,
+     "recall": 0.4528301886792453
+    }
+   },
+   {
+    "feature": "max_knots",
+    "auc": 0.6733177492068793,
+    "auc_length_removed": 0.49028774976345524,
+    "auc_matched_band": 0.6625853071055801,
+    "solved_mean": 2.106194690265487,
+    "unsolved_mean": 2.452830188679245,
+    "rule": {
+     "threshold": 2.0,
+     "bal_acc": 0.6733177492068793,
+     "tp": 72,
+     "fp": 12,
+     "fn": 87,
+     "tn": 101,
+     "precision": 0.8571428571428571,
+     "recall": 0.4528301886792453
+    }
+   },
+   {
+    "feature": "larger mean block",
+    "auc": 0.6558412645405466,
+    "auc_length_removed": 0.32245227361273443,
+    "auc_matched_band": 0.6129733708015522,
+    "solved_mean": 2.7039823008849555,
+    "unsolved_mean": 3.1930817610062894,
+    "rule": {
+     "threshold": 2.75,
+     "bal_acc": 0.6506372794567818,
+     "tp": 107,
+     "fp": 42,
+     "fn": 52,
+     "tn": 71,
+     "precision": 0.7181208053691275,
+     "recall": 0.6729559748427673
+    }
+   },
+   {
+    "feature": "min_knots",
+    "auc": 0.5309734513274337,
+    "auc_length_removed": 0.22761173262091614,
+    "auc_matched_band": 0.5159574468085106,
+    "solved_mean": 1.8761061946902655,
+    "unsolved_mean": 2.0,
+    "rule": {
+     "threshold": 0.0,
+     "bal_acc": 0.5309734513274337,
+     "tp": 159,
+     "fp": 106,
+     "fn": 0,
+     "tn": 7,
+     "precision": 0.6,
+     "recall": 1.0
+    }
+   }
+  ]
+ },
+ "winner": "smaller mean block",
+ "band": [
+  13,
+  25
+ ]
+}

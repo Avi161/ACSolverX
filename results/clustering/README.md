@@ -123,3 +123,37 @@ Necklace-canonical block-size sequences — literally how many x's and y's sit b
 Solved presentations are built from small numbers throughout; unsolved ones carry a long single-generator run. Same knot count, very different interiors.
 
 **Caveat.** This section is hypothesis-driven and supervised — it asks what separates a known label — so it is not covered by the unsupervised sweep's null. Its own within-bucket permutation nulls are reported above instead.
+
+---
+
+## Head-to-head: the strongest single signal
+
+`experiments/clustering/rank_signals.py` → `signal_ranking.json`. Every candidate had originally been measured somewhere different — `max_knots` on the whole population, `smaller mean block` only inside one bucket, unevenness only in the matched band — so picking a winner from those numbers would be picking a winner from four different experiments. This puts all of them on one footing: both populations, raw AUC, AUC with total length regressed out, AUC inside the matched band. **Total length is the yardstick, not a candidate.**
+
+### Winner: `smaller mean block`
+
+The mean run length of whichever generator appears in *shorter* runs.
+
+| | A tables (113+124) | B provenance-matched (113+159) |
+|---|---|---|
+| raw AUC | **0.912** | 0.827 |
+| AUC, length removed | **0.751** | **0.706** |
+| AUC, matched band 13–25 | **0.904** | 0.818 |
+| best cut | `> 1.25` | `> 1.25` |
+| balanced accuracy | **0.945** | 0.807 |
+
+On the full 237 the rule `smaller mean block > 1.25` gives **117 tp / 6 fp / 7 fn / 107 tn** — precision 0.951, recall 0.944. The same threshold is optimal in both populations independently, which is not something a fitted parameter usually does.
+
+> In a solvable presentation the thinner generator appears as **isolated single letters**; in an unsolvable one it **clumps into runs of two or more**.
+
+Inside the max_knots = 2 bucket it sharpens further: AUC 0.989 raw / 0.981 length-removed, and `> 1.25` catches **all 23 unsolved with only 6 false positives** (recall 1.000).
+
+### What this demotes
+
+- **`max_knots`** — AUC 0.860 on A with a clean monotone gradient, but **0.673 on B and 0.490 (chance) with length removed**. Once both sides are produced the same way it is largely a length proxy. Its *rules* survive (`max_knots ≥ 4`, `min_knots ≥ 3`, each 14 unsolved / 0 solved) because those describe a tail, not a correlation.
+- **Block unevenness (`max ÷ mean block`)** — 0.803 / 0.820 raw but 0.636 / 0.588 length-removed, and it collapses entirely *within* a bucket (0.689 → 0.432). A real between-bucket effect, not a within-bucket one.
+- **Total length** is itself a serious confound at 0.809 / 0.831; only `smaller mean block` clearly clears it on both populations.
+
+### Caveats
+
+Hypothesis-driven and supervised — not protected by the unsupervised sweep's permutation null (the within-bucket nulls in the previous section are its own). And "unsolved" means *not yet trivialised at the budgets tried*, so this may track what current search finds hard rather than what is AC-nontrivial.
