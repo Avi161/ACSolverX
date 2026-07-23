@@ -230,6 +230,28 @@ def test_merge_refuses_orbit_row_mismatch(tiny_setup):
         big.merge_chunks(**kw)
 
 
+def test_heartbeat_beat_carries_instantaneous_rate(tmp_path):
+    # the mandatory heartbeat rule: the 60s beat shows an instantaneous rate
+    # (orbits/s here), and a frozen sidecar shows its age, never silence
+    import time as _t
+    sp = str(tmp_path / "mu_ladder_big_x_c1of2.jsonl")
+    open(sp, "w").close()
+    hb = big._LadderHeartbeat([sp], total=2, now=0.0)
+    now_wall = _t.time()
+    json.dump({"pres_id": "t_a", "mu_in": 16, "rung": 1, "n_orbits": 100,
+               "best_mu": 16, "done": 0, "total": 2, "ts": now_wall - 60},
+              open(sp + ".hb", "w"))
+    first = hb.maybe_beat(now=61.0)
+    assert first and "orb/s n/a" in first          # first sample of the class
+    json.dump({"pres_id": "t_a", "mu_in": 16, "rung": 3, "n_orbits": 700,
+               "best_mu": 15, "done": 0, "total": 2, "ts": now_wall},
+              open(sp + ".hb", "w"))
+    second = hb.maybe_beat(now=122.0)
+    assert second and "10.0 orb/s" in second       # (700-100)/60s
+    third = hb.maybe_beat(now=183.0)               # sidecar frozen
+    assert third and "no update for" in third
+
+
 def test_high_speedup_toggle_is_result_neutral(tiny_setup, tmp_path):
     # HIGH_SPEEDUP off => pure-Python aut_canon, byte-identical rows in a
     # file with the SAME identity (result-neutral knobs stay out of the name)

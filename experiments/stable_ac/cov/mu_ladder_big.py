@@ -544,6 +544,7 @@ class _LadderHeartbeat:
             time.monotonic() if now is None else now
         self.announced = set(_scan_summary(self.sum_paths))
         self.done0 = len(self.announced)
+        self.prev_hb = {}     # path -> (pres_id, n_orbits, ts) of the last beat
 
     def _news(self, rows):
         out = []
@@ -571,10 +572,24 @@ class _LadderHeartbeat:
                 continue
             m = _CHUNK_MARK.search(os.path.basename(path))
             cid = m.group(0)[1:] if m else "all"
+            # instantaneous orbits/s since the LAST beat (the rule: a slowing
+            # CPU must show as a falling rate, never as silence). The sidecar
+            # count is per-class, so the delta is only valid within one class.
+            prev = self.prev_hb.get(path)
+            self.prev_hb[path] = (hb["pres_id"], hb["n_orbits"], hb["ts"])
+            if prev and prev[0] == hb["pres_id"] and hb["ts"] > prev[2] \
+                    and hb["n_orbits"] >= prev[1]:
+                rate = f"{(hb['n_orbits'] - prev[1]) / (hb['ts'] - prev[2]):.1f} orb/s"
+            elif prev and prev[0] == hb["pres_id"] and hb["ts"] == prev[2]:
+                # sidecar frozen: the worker is inside one very long hop, or
+                # stalled — either way the age must be visible, not silent
+                rate = f"no update for {int(time.time() - hb['ts'])}s"
+            else:
+                rate = "orb/s n/a"    # first sample of this class
             lines.append(
                 f"  [hb {cid}] {hb['done']}/{hb['total']} classes | now "
-                f"{hb['pres_id']} rung {hb['rung']}, {hb['n_orbits']} orbits,"
-                f" best {hb['best_mu']}")
+                f"{hb['pres_id']} rung {hb['rung']}, {hb['n_orbits']} orbits"
+                f" @ {rate}, best {hb['best_mu']}")
         done = len(rows)
         elapsed = now - self.t0
         if now - self.last_detail >= _DETAIL_EVERY:
