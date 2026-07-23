@@ -1,0 +1,114 @@
+aut_id,rep_r1,rep_r2,rep_len,n_cells,ms_r1,ms_r2,cells
+sol_000,YXXyx,YYYXyyx,12,16,YXXyx,YYYXyyx,XXYxxy@1 XYxy@2 YxyXY@2 YxyXYY@2 YxyXYYY@2 yXYxy@2 yxYX@2 yxYXY@2 yxYXYY@2 yxYXYYY@2 yxYXy@2 yxYXyy@2 yxYXyyy@2 yxxYXX@1 yyXYxy@2 yyyXYxy@2
+sol_001,X,YYXyx,6,14,YX,YYXyx,Y@1 YY@1 YYY@1 YYYY@1 YYYYY@1 YYYYYY@1 YYYYYYY@1 y@1 yy@1 yyy@1 yyyy@1 yyyyy@1 yyyyyy@1 yyyyyyy@1
+sol_002,X,YYYXyyx,8,14,YX,YYYXyyx,Y@2 YY@2 YYY@2 YYYY@2 YYYYY@2 YYYYYY@2 YYYYYYY@2 y@2 yy@2 yyy@2 yyyy@2 yyyyy@2 yyyyyy@2 yyyyyyy@2
+sol_003,X,YYYYXyyyx,10,14,YX,YYYYXyyyx,Y@3 YY@3 YYY@3 YYYY@3 YYYYY@3 YYYYYY@3 YYYYYYY@3 y@3 yy@3 yyy@3 yyyy@3 yyyyy@3 yyyyyy@3 yyyyyyy@3
+sol_004,X,YYYYYXyyyyx,12,14,YX,YYYYYXyyyyx,Y@4 YY@4 YYY@4 YYYY@4 YYYYY@4 YYYYYY@4 YYYYYYY@4 y@4 yy@4 yyy@4 yyyy@4 yyyyy@4 yyyyyy@4 yyyyyyy@4
+sol_005,X,YYYYYYXyyyyyx,14,14,YX,YYYYYYXyyyyyx,Y@5 YY@5 YYY@5 YYYY@5 YYYYY@5 YYYYYY@5 YYYYYYY@5 y@5 yy@5 yyy@5 yyyy@5 yyyyy@5 yyyyyy@5 yyyyyyy@5
+sol_006,X,YYYYYYYXyyyyyyx,16,14,YX,YYYYYYYXyyyyyyx,Y@6 YY@6 YYY@6 YYYY@6 YYYYY@6 YYYYYY@6 YYYYYYY@6 y@6 yy@6 yyy@6 yyyy@6 yyyyy@6 yyyyyy@6 yyyyyyy@6
+sol_007,X,YYYYYYYYXyyyyyyyx,18,14,YX,YYYYYYYYXyyyyyyyx,Y@7 YY@7 YYY@7 YYYY@7 YYYYY@7 YYYYYY@7 YYYYYYY@7 y@7 yy@7 yyy@7 yyyy@7 yyyyy@7 yyyyyy@7 yyyyyyy@7
+sol_008,YXXYx,YYYXyyx,12,14,YXXYx,YYYXyyx,XYxY@2 YxYXY@2 YxYXYY@2 YxYXYYY@2 yXYxY@2 yxyX@2 yxyXY@2 yxyXYY@2 yxyXYYY@2 yxyXy@2 yxyXyy@2 yxyXyyy@2 yyXYxY@2 yyyXYxY@2
+sol_009,YXXyx,YYYYXyyyx,14,14,YXXyx,YYYYXyyyx,XYxy@3 YxyXY@3 YxyXYY@3 YxyXYYY@3 yXYxy@3 yxYX@3 yxYXY@3 yxYXYY@3 yxYXYYY@3 yxYXy@3 yxYXyy@3 yxYXyyy@3 yyXYxy@3 yyyXYxy@3
+sol_010,YXXyx,YYYYYXyyyyx,16,14,YXXyx,YYYYYXyyyyx,XYxy@4 YxyXY@4 YxyXYY@4 YxyXYYY@4 yXYxy@4 yxYX@4 yxYXY@4 yxYXYY@4 yxYXYYY@4 yxYXy@4 yxYXyy@4 yxYXyyy@4 yyXYxy@4 yyyXYxy@4
+sol_011,YXXyx,YYYYYYXyyyyyx,18,14,YXXyx,YYYYYYXyyyyyx,XYxy@5 YxyXY@5 YxyXYY@5 YxyXYYY@5 yXYxy@5 yxYX@5 yxYXY@5 yxYXYY@5 yxYXYYY@5 yxYXy@5 yxYXyy@5 yxYXyyy@5 yyXYxy@5 yyyXYxy@5
+sol_012,YXXyx,YYYYYYYXyyyyyyx,20,14,YXXyx,YYYYYYYXyyyyyyx,XYxy@6 YxyXY@6 YxyXYY@6 YxyXYYY@6 yXYxy@6 yxYX@6 yxYXY@6 yxYXYY@6 yxYXYYY@6 yxYXy@6 yxYXyy@6 yxYXyyy@6 yyXYxy@6 yyyXYxy@6
+sol_013,YXXyx,YYYYYYYYXyyyyyyyx,22,14,YXXyx,YYYYYYYYXyyyyyyyx,XYxy@7 YxyXY@7 YxyXYY@7 YxyXYYY@7 yXYxy@7 yxYX@7 yxYXY@7 yxYXYY@7 yxYXYYY@7 yxYXy@7 yxYXyy@7 yxYXyyy@7 yyXYxy@7 yyyXYxy@7
+sol_014,YYXyX,YXXyx,10,14,YYXyx,YXXYx,XYxY@1 YxYXY@1 YxYXYY@1 YxYXYYY@1 yXYxY@1 yxyX@1 yxyXY@1 yxyXYY@1 yxyXYYY@1 yxyXy@1 yxyXyy@1 yxyXyyy@1 yyXYxY@1 yyyXYxY@1
+sol_015,YYXyx,YXXyx,10,14,YYXyx,YXXyx,XYxy@1 YxyXY@1 YxyXYY@1 YxyXYYY@1 yXYxy@1 yxYX@1 yxYXY@1 yxYXYY@1 yxYXYYY@1 yxYXy@1 yxYXyy@1 yxYXyyy@1 yyXYxy@1 yyyXYxy@1
+sol_016,YXXyx,YYXXyX,11,10,YYXyx,YYXXYx,XYxYY@1 YxYYXY@1 YxYYXYY@1 yXYxYY@1 yxyyX@1 yxyyXY@1 yxyyXYY@1 yxyyXy@1 yxyyXyy@1 yyXYxYY@1
+sol_017,YXXyx,YYXXyx,11,10,YYXyx,YYXXyx,XYxyy@1 YxyyXY@1 YxyyXYY@1 yXYxyy@1 yxYYX@1 yxYYXY@1 yxYYXYY@1 yxYYXy@1 yxYYXyy@1 yyXYxyy@1
+sol_018,YXXyx,YYXyXX,11,10,YYXyx,YYxYXX,XYYxY@1 YXYYxY@1 YYxYXYY@1 yXYYxY@1 yyXYYxY@1 yyxyX@1 yyxyXY@1 yyxyXYY@1 yyxyXy@1 yyxyXyy@1
+sol_019,YXXyx,YYXyxx,11,10,YYXyx,YYxxyX,XYYxy@1 YXYYxy@1 YYxyXYY@1 yXYYxy@1 yyXYYxy@1 yyxYX@1 yyxYXY@1 yyxYXYY@1 yyxYXy@1 yyxYXyy@1
+sol_020,YYXXYx,YYYXyyx,13,10,YYXXYx,YYYXyyx,XYxYY@2 YxYYXY@2 YxYYXYY@2 yXYxYY@2 yxyyX@2 yxyyXY@2 yxyyXYY@2 yxyyXy@2 yxyyXyy@2 yyXYxYY@2
+sol_021,YYXXYx,YYYYXyyyx,15,10,YYXXYx,YYYYXyyyx,XYxYY@3 YxYYXY@3 YxYYXYY@3 yXYxYY@3 yxyyX@3 yxyyXY@3 yxyyXYY@3 yxyyXy@3 yxyyXyy@3 yyXYxYY@3
+sol_022,YYXXYx,YYYYYxyyyyX,17,10,YYxYXX,YYYYYXyyyyx,XYYxY@4 YXYYxY@4 YYxYXYY@4 yXYYxY@4 yyXYYxY@4 yyxyX@4 yyxyXY@4 yyxyXYY@4 yyxyXy@4 yyxyXyy@4
+sol_023,YYXXYx,YYYYxyyyX,15,10,YYxYXX,YYYYXyyyx,XYYxY@3 YXYYxY@3 YYxYXYY@3 yXYYxY@3 yyXYYxY@3 yyxyX@3 yyxyXY@3 yyxyXYY@3 yyxyXy@3 yyxyXyy@3
+sol_024,YYXXYx,YYYxyyX,13,10,YYxYXX,YYYXyyx,XYYxY@2 YXYYxY@2 YYxYXYY@2 yXYYxY@2 yyXYYxY@2 yyxyX@2 yyxyXY@2 yyxyXYY@2 yyxyXy@2 yyxyXyy@2
+sol_025,YYXXyx,YXXXXXXyxxxxx,19,10,YYXXyx,YYYYYYXyyyyyx,XYxyy@5 YxyyXY@5 YxyyXYY@5 yXYxyy@5 yxYYX@5 yxYYXY@5 yxYYXYY@5 yxYYXy@5 yxYYXyy@5 yyXYxyy@5
+sol_026,YYXXyx,YXXXXyxxx,15,10,YYXXyx,YYYYXyyyx,XYxyy@3 YxyyXY@3 YxyyXYY@3 yXYxyy@3 yxYYX@3 yxYYXY@3 yxYYXYY@3 yxYYXy@3 yxYYXyy@3 yyXYxyy@3
+sol_027,YYXXyx,YXXXXyxxxxx,17,10,YYxxyX,YYYYYXyyyyx,XYYxy@4 YXYYxy@4 YYxyXYY@4 yXYYxy@4 yyXYYxy@4 yyxYX@4 yyxYXY@4 yyxYXYY@4 yyxYXy@4 yyxYXyy@4
+sol_028,YYXXyx,YXXXyxx,13,10,YYXXyx,YYYXyyx,XYxyy@2 YxyyXY@2 YxyyXYY@2 yXYxyy@2 yxYYX@2 yxYYXY@2 yxYYXYY@2 yxYYXy@2 yxYYXyy@2 yyXYxyy@2
+sol_029,YYXXyx,YXXyxxx,13,10,YYxxyX,YYYXyyx,XYYxy@2 YXYYxy@2 YYxyXYY@2 yXYYxy@2 yyXYYxy@2 yyxYX@2 yyxYXY@2 yyxYXYY@2 yyxYXy@2 yyxYXyy@2
+sol_030,YXXyx,YYXXXyX,12,6,YYXyx,YYYXXYx,XYxYYY@1 YxYYYXY@1 yXYxYYY@1 yxyyyX@1 yxyyyXY@1 yxyyyXy@1
+sol_031,YXXyx,YYXXXyx,12,6,YYXyx,YYYXXyx,XYxyyy@1 YxyyyXY@1 yXYxyyy@1 yxYYYX@1 yxYYYXY@1 yxYYYXy@1
+sol_032,YXXyx,YYXXyXX,12,6,YYXyx,YYXXYYx,XYYxYY@1 YXYYxYY@1 yXYYxYY@1 yyxyyX@1 yyxyyXY@1 yyxyyXy@1
+sol_033,YXXyx,YYXXyxx,12,6,YYXyx,YYXXyyx,XYYxyy@1 YXYYxyy@1 yXYYxyy@1 yyxYYX@1 yyxYYXY@1 yyxYYXy@1
+sol_034,YXXyx,YYXyXXX,12,6,YYXyx,YYYxYXX,XYYYxY@1 YXYYYxY@1 yXYYYxY@1 yyyxyX@1 yyyxyXY@1 yyyxyXy@1
+sol_035,YXXyx,YYXyxxx,12,6,YYXyx,YYYxxyX,XYYYxy@1 YXYYYxy@1 yXYYYxy@1 yyyxYX@1 yyyxYXY@1 yyyxYXy@1
+sol_036,YYXXXyX,YXXXXXXyxxxxx,20,6,YYYXXYx,YYYYYYXyyyyyx,XYxYYY@5 YxYYYXY@5 yXYxYYY@5 yxyyyX@5 yxyyyXY@5 yxyyyXy@5
+sol_037,YYXXXyX,YXXXXXXyxxxxxxx,22,6,YYYxYXX,YYYYYYYXyyyyyyx,XYYYxY@6 YXYYYxY@6 yXYYYxY@6 yyyxyX@6 yyyxyXY@6 yyyxyXy@6
+sol_038,YYXXXyX,YXXXXyxxx,16,6,YYYXXYx,YYYYXyyyx,XYxYYY@3 YxYYYXY@3 yXYxYYY@3 yxyyyX@3 yxyyyXY@3 yxyyyXy@3
+sol_039,YYXXXyX,YXXXXyxxxxx,18,6,YYYxYXX,YYYYYXyyyyx,XYYYxY@4 YXYYYxY@4 yXYYYxY@4 yyyxyX@4 yyyxyXY@4 yyyxyXy@4
+sol_040,YYXXXyX,YXXXyxx,14,6,YYYXYxx,YYYXyyx,XYxYYY@2 YxYYYXY@2 yXYxYYY@2 yxyyyX@2 yxyyyXY@2 yxyyyXy@2
+sol_041,YYXXXyX,YXXXyxxxx,16,6,YYYxYXX,YYYYXyyyx,XYYYxY@3 YXYYYxY@3 yXYYYxY@3 yyyxyX@3 yyyxyXY@3 yyyxyXy@3
+sol_042,YYXXXyX,YXXyxxx,14,6,YYYXyyx,YYYxYXX,XYYYxY@2 YXYYYxY@2 yXYYYxY@2 yyyxyX@2 yyyxyXY@2 yyyxyXy@2
+sol_043,YYXXXyx,YXXXXXXyxxxxx,20,6,YYYXXyx,YYYYYYXyyyyyx,XYxyyy@5 YxyyyXY@5 yXYxyyy@5 yxYYYX@5 yxYYYXY@5 yxYYYXy@5
+sol_044,YYXXXyx,YXXXXXXyxxxxxxx,22,6,YYYxxyX,YYYYYYYXyyyyyyx,XYYYxy@6 YXYYYxy@6 yXYYYxy@6 yyyxYX@6 yyyxYXY@6 yyyxYXy@6
+sol_045,YYXXXyx,YXXXyxx,14,6,YYYXyyx,YYYXXyx,XYxyyy@2 YxyyyXY@2 yXYxyyy@2 yxYYYX@2 yxYYYXY@2 yxYYYXy@2
+sol_046,YYXXXyx,YXXXyxxxx,16,6,YYYxxyX,YYYYXyyyx,XYYYxy@3 YXYYYxy@3 yXYYYxy@3 yyyxYX@3 yyyxYXY@3 yyyxYXy@3
+sol_047,YYXXXyx,YXXyxxx,14,6,YYYXyyx,YYYxxyX,XYYYxy@2 YXYYYxy@2 yXYYYxy@2 yyyxYX@2 yyyxYXY@2 yyyxYXy@2
+sol_048,YYXXYYx,YYYYXyyyx,16,6,YYXXYYx,YYYYXyyyx,XYYxYY@3 YXYYxYY@3 yXYYxYY@3 yyxyyX@3 yyxyyXY@3 yyxyyXy@3
+sol_049,YYXXYYx,YYYYYXyyyyx,18,6,YYXXYYx,YYYYYXyyyyx,XYYxYY@4 YXYYxYY@4 yXYYxYY@4 yyxyyX@4 yyxyyXY@4 yyxyyXy@4
+sol_050,YYXXyXX,YXXXyxx,14,6,YYYXyyx,YYXXYYx,XYYxYY@2 YXYYxYY@2 yXYYxYY@2 yyxyyX@2 yyxyyXY@2 yyxyyXy@2
+sol_051,YYXXyxx,YXXXXXXXXyxxxxxxx,24,6,YYXXyyx,YYYYYYYYXyyyyyyyx,XYYxyy@7 YXYYxyy@7 yXYYxyy@7 yyxYYX@7 yyxYYXY@7 yyxYYXy@7
+sol_052,YYXXyxx,YXXXXXXXyxxxxxx,22,6,YYXXyyx,YYYYYYYXyyyyyyx,XYYxyy@6 YXYYxyy@6 yXYYxyy@6 yyxYYX@6 yyxYYXY@6 yyxYYXy@6
+sol_053,YYXXyxx,YXXXXXXyxxxxx,20,6,YYXXyyx,YYYYYYXyyyyyx,XYYxyy@5 YXYYxyy@5 yXYYxyy@5 yyxYYX@5 yyxYYXY@5 yyxYYXy@5
+sol_054,YYXXyxx,YXXXXXyxxxx,18,6,YYXXyyx,YYYYYXyyyyx,XYYxyy@4 YXYYxyy@4 yXYYxyy@4 yyxYYX@4 yyxYYXY@4 yyxYYXy@4
+sol_055,YYXXyxx,YXXXXyxxx,16,6,YYXXyyx,YYYYXyyyx,XYYxyy@3 YXYYxyy@3 yXYYxyy@3 yyxYYX@3 yyxYYXY@3 yyxYYXy@3
+sol_056,YYXXyxx,YXXXyxx,14,6,YYYXyyx,YYXXyyx,XYYxyy@2 YXYYxyy@2 yXYYxyy@2 yyxYYX@2 yyxYYXY@2 yyxYYXy@2
+sol_057,YXXXyxx,YYXXXXyX,15,2,YYYXyyx,YYYYXXYx,XYxYYYY@2 yxyyyyX@2
+sol_058,YXXXyxx,YYXXXXyx,15,2,YYYXyyx,YYYYXXyx,XYxyyyy@2 yxYYYYX@2
+sol_059,YXXXyxx,YYXXXyXX,15,2,YYYXyyx,YYYXXYYx,XYYxYYY@2 yyxyyyX@2
+sol_060,YXXXyxx,YYXXXyxx,15,2,YYYXyyx,YYYXXyyx,XYYxyyy@2 yyxYYYX@2
+sol_061,YXXXyxx,YYXXyXXX,15,2,YYYXyyx,YYYxYYXX,XYYYxYY@2 yyyxyyX@2
+sol_062,YXXXyxx,YYXXyxxx,15,2,YYYXyyx,YYYxxyyX,XYYYxyy@2 yyyxYYX@2
+sol_063,YXXXyxx,YYXyXXXX,15,2,YYYXyyx,YYYYxYXX,XYYYYxY@2 yyyyxyX@2
+sol_064,YXXXyxx,YYXyxxxx,15,2,YYYXyyx,YYYYxxyX,XYYYYxy@2 yyyyxYX@2
+sol_065,YXXXyxx,YYYXyyXX,15,2,YYYXyyx,YYxxYXXX,XXYYxxY@2 yyxxyXX@2
+sol_066,YXXXyxx,YYYXyyxx,15,2,YYYXyyx,YYxxxyXX,XXYYxxy@2 yyxxYXX@2
+sol_067,YXXYx,YYYXYxyX,13,2,YYXyx,YXyXYxxx,XXYxyxY@1 yxYxyXX@1
+sol_068,YXXyx,YYXXXXyX,13,2,YYXyx,YYYYXXYx,XYxYYYY@1 yxyyyyX@1
+sol_069,YXXyx,YYXXXXyx,13,2,YYXyx,YYYYXXyx,XYxyyyy@1 yxYYYYX@1
+sol_070,YXXyx,YYXXXyXX,13,2,YYXyx,YYYXXYYx,XYYxYYY@1 yyxyyyX@1
+sol_071,YXXyx,YYXXXyxx,13,2,YYXyx,YYYXXyyx,XYYxyyy@1 yyxYYYX@1
+sol_072,YXXyx,YYXXyXXX,13,2,YYXyx,YYYxYYXX,XYYYxYY@1 yyyxyyX@1
+sol_073,YXXyx,YYXXyxxx,13,2,YYXyx,YYYxxyyX,XYYYxyy@1 yyyxYYX@1
+sol_074,YXXyx,YYXYXyyX,13,2,YYXyx,YXXYxxYx,XYxxYXY@1 yxxyXyX@1
+sol_075,YXXyx,YYXYXyyx,13,2,YYXyx,YXXyxxYx,yXXYxxy@1 yxxYXYX@1
+sol_076,YXXyx,YYXYxyyX,13,2,YYXyx,YXXYxxyX,XYxxyXY@1 yxxYXyX@1
+sol_077,YXXyx,YYXYxyyx,13,2,YYXyx,YXXYxxyx,yXXYxxY@1 yxxyXYX@1
+sol_078,YXXyx,YYXyXXXX,13,2,YYXyx,YYYYxYXX,XYYYYxY@1 yyyyxyX@1
+sol_079,YXXyx,YYXyxxxx,13,2,YYXyx,YYYYxxyX,XYYYYxy@1 yyyyxYX@1
+sol_080,YXXyx,YYXyyXYX,13,2,YYXyx,YXXYxYxx,XYXYxxY@1 yxxyXXy@1
+sol_081,YXXyx,YYXyyXYx,13,2,YYXyx,YXXyXYxx,yXYxxYX@1 yxxyXXY@1
+sol_082,YXXyx,YYXyyXyx,13,2,YYXyx,YXXyxYxx,yXYxxyX@1 yxxYXXY@1
+sol_083,YXXyx,YYXyyxYx,13,2,YYXyx,YXXyXyxx,XYXYxxy@1 yxxYXXy@1
+sol_084,YXXyx,YYYXXyyX,13,2,YYXyx,YYXXXYxx,XXYxxYY@1 yxxyyXX@1
+sol_085,YXXyx,YYYXXyyx,13,2,YYXyx,YYXXXyxx,XXYxxyy@1 yxxYYXX@1
+sol_086,YXXyx,YYYXyXyX,13,2,YYXyx,YXXXYxYx,XXYxYxY@1 yxyxyXX@1
+sol_087,YXXyx,YYYXyXyx,13,2,YYXyx,YXXXyxYx,XXYxyxy@1 yxYxYXX@1
+sol_088,YXXyx,YYYXyxyx,13,2,YYXyx,YXYxxxyX,XXYxYxy@1 yxyxYXX@1
+sol_089,YXXyx,YYYXyyX,12,2,YYXyx,YXXXYxx,XXYxxY@1 yxxyXX@1
+sol_090,YXXyx,YYYXyyXX,13,2,YYXyx,YYxxYXXX,XXYYxxY@1 yyxxyXX@1
+sol_091,YXXyx,YYYXyyxx,13,2,YYXyx,YYxxxyXX,XXYYxxy@1 yyxxYXX@1
+sol_092,YYXXXXyX,YXXXXXXXXyxxxxxxx,25,2,YYYYXXYx,YYYYYYYYXyyyyyyyx,XYxYYYY@7 yxyyyyX@7
+sol_093,YYXXXXyX,YXXXXXXyxxxxx,21,2,YYYYXXYx,YYYYYYXyyyyyx,XYxYYYY@5 yxyyyyX@5
+sol_094,YYXXXXyX,YXXXXXyxxxx,19,2,YYYYXXYx,YYYYYXyyyyx,XYxYYYY@4 yxyyyyX@4
+sol_095,YYXXXXyX,YXXXXXyxxxxxx,21,2,YYYYxYXX,YYYYYYXyyyyyx,XYYYYxY@5 yyyyxyX@5
+sol_096,YYXXXXyX,YXXXXyxxx,17,2,YYYYXXYx,YYYYXyyyx,XYxYYYY@3 yxyyyyX@3
+sol_097,YYXXXXyX,YXXXXyxxxxx,19,2,YYYYxYXX,YYYYYXyyyyx,XYYYYxY@4 yyyyxyX@4
+sol_098,YYXXXXyx,YXXXXXXXXyxxxxxxx,25,2,YYYYXXyx,YYYYYYYYXyyyyyyyx,XYxyyyy@7 yxYYYYX@7
+sol_099,YYXXXXyx,YXXXXyxxx,17,2,YYYYXXyx,YYYYXyyyx,XYxyyyy@3 yxYYYYX@3
+sol_100,YYXXXXyx,YXXXXyxxxxx,19,2,YYYYxxyX,YYYYYXyyyyx,XYYYYxy@4 yyyyxYX@4
+sol_101,YYXXXXyx,YXXXyxxxx,17,2,YYYYxxyX,YYYYXyyyx,XYYYYxy@3 yyyyxYX@3
+sol_102,YYXXXyXX,YXXXXXXyxxxxx,21,2,YYYXXYYx,YYYYYYXyyyyyx,XYYxYYY@5 yyxyyyX@5
+sol_103,YYXXXyXX,YXXXXXXyxxxxxxx,23,2,YYYxYYXX,YYYYYYYXyyyyyyx,XYYYxYY@6 yyyxyyX@6
+sol_104,YYXXXyXX,YXXXXXyxxxx,19,2,YYYXXYYx,YYYYYXyyyyx,XYYxYYY@4 yyxyyyX@4
+sol_105,YYXXXyXX,YXXXXXyxxxxxx,21,2,YYYxYYXX,YYYYYYXyyyyyx,XYYYxYY@5 yyyxyyX@5
+sol_106,YYXXXyXX,YXXXyxxxx,17,2,YYYxYYXX,YYYYXyyyx,XYYYxYY@3 yyyxyyX@3
+sol_107,YYXXXyxx,YXXXXXXXyxxxxxx,23,2,YYYXXyyx,YYYYYYYXyyyyyyx,XYYxyyy@6 yyxYYYX@6
+sol_108,YYXXXyxx,YXXXXXXyxxxxx,21,2,YYYXXyyx,YYYYYYXyyyyyx,XYYxyyy@5 yyxYYYX@5
+sol_109,YYXXXyxx,YXXXXXXyxxxxxxx,23,2,YYYxxyyX,YYYYYYYXyyyyyyx,XYYYxyy@6 yyyxYYX@6
+sol_110,YYXXXyxx,YXXXXXyxxxx,19,2,YYYXXyyx,YYYYYXyyyyx,XYYxyyy@4 yyxYYYX@4
+sol_111,YYXXXyxx,YXXXXyxxx,17,2,YYYXXyyx,YYYYXyyyx,XYYxyyy@3 yyxYYYX@3
+sol_112,YYXXXyxx,YXXXyxxxx,17,2,YYYxxyyX,YYYYXyyyx,XYYYxyy@3 yyyxYYX@3
