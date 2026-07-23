@@ -529,6 +529,104 @@
      "bal_acc": 0.5
     }
    ],
+   "table": [
+    {
+     "max_knots": 2,
+     "n_solved": 101,
+     "n_unsolved": 23,
+     "pct_unsolved": 0.18548387096774194,
+     "unev_solved": 2.0486950013242575,
+     "unev_unsolved": 2.2666974591201035,
+     "len_solved": 15.752475247524753,
+     "len_unsolved": 20.130434782608695
+    },
+    {
+     "max_knots": 3,
+     "n_solved": 12,
+     "n_unsolved": 87,
+     "pct_unsolved": 0.8787878787878788,
+     "unev_solved": 1.7948717948717947,
+     "unev_unsolved": 2.6326286712386615,
+     "len_solved": 13.0,
+     "len_unsolved": 19.60919540229885
+    },
+    {
+     "max_knots": 4,
+     "n_solved": 0,
+     "n_unsolved": 9,
+     "pct_unsolved": 1.0,
+     "unev_solved": null,
+     "unev_unsolved": 2.436278853203518,
+     "len_solved": null,
+     "len_unsolved": 19.0
+    },
+    {
+     "max_knots": 5,
+     "n_solved": 0,
+     "n_unsolved": 5,
+     "pct_unsolved": 1.0,
+     "unev_solved": null,
+     "unev_unsolved": 2.9109913915222836,
+     "len_solved": null,
+     "len_unsolved": 21.2
+    }
+   ],
+   "joint": [
+    {
+     "min_knots": 1,
+     "max_knots": 2,
+     "n_solved": 7,
+     "n_unsolved": 0
+    },
+    {
+     "min_knots": 1,
+     "max_knots": 3,
+     "n_solved": 0,
+     "n_unsolved": 2
+    },
+    {
+     "min_knots": 2,
+     "max_knots": 2,
+     "n_solved": 94,
+     "n_unsolved": 23
+    },
+    {
+     "min_knots": 2,
+     "max_knots": 3,
+     "n_solved": 12,
+     "n_unsolved": 75
+    },
+    {
+     "min_knots": 2,
+     "max_knots": 4,
+     "n_solved": 0,
+     "n_unsolved": 6
+    },
+    {
+     "min_knots": 2,
+     "max_knots": 5,
+     "n_solved": 0,
+     "n_unsolved": 4
+    },
+    {
+     "min_knots": 3,
+     "max_knots": 3,
+     "n_solved": 0,
+     "n_unsolved": 10
+    },
+    {
+     "min_knots": 3,
+     "max_knots": 4,
+     "n_solved": 0,
+     "n_unsolved": 3
+    },
+    {
+     "min_knots": 3,
+     "max_knots": 5,
+     "n_solved": 0,
+     "n_unsolved": 1
+    }
+   ],
    "kmax": [
     2.0,
     2.0,
@@ -6710,7 +6808,7 @@
     ]
    ]
   },
-  "seconds": 10.7
+  "seconds": 11.5
  },
  "provenance-matched": {
   "tag": "provenance-matched",
@@ -7238,6 +7336,48 @@
      "recall": 0.0,
      "accuracy": 0.41544117647058826,
      "bal_acc": 0.5
+    }
+   ],
+   "table": [
+    {
+     "max_knots": 2,
+     "n_solved": 101,
+     "n_unsolved": 87,
+     "pct_unsolved": 0.4627659574468085,
+     "unev_solved": 2.0486950013242575,
+     "unev_unsolved": 2.368440937122386,
+     "len_solved": 15.752475247524753,
+     "len_unsolved": 20.517241379310345
+    },
+    {
+     "max_knots": 3,
+     "n_solved": 12,
+     "n_unsolved": 72,
+     "pct_unsolved": 0.8571428571428571,
+     "unev_solved": 1.794871794871795,
+     "unev_unsolved": 2.6808568736419054,
+     "len_solved": 13.0,
+     "len_unsolved": 20.0
+    }
+   ],
+   "joint": [
+    {
+     "min_knots": 1,
+     "max_knots": 2,
+     "n_solved": 7,
+     "n_unsolved": 0
+    },
+    {
+     "min_knots": 2,
+     "max_knots": 2,
+     "n_solved": 94,
+     "n_unsolved": 87
+    },
+    {
+     "min_knots": 2,
+     "max_knots": 3,
+     "n_solved": 12,
+     "n_unsolved": 72
     }
    ],
    "kmax": [
@@ -14312,6 +14452,6 @@
     ]
    ]
   },
-  "seconds": 12.4
+  "seconds": 11.7
  }
 }

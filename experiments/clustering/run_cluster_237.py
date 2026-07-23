@@ -64,13 +64,33 @@ SEED = 0
 # ------------------------------------------------------------------------------- populations
 
 def pop_tables():
+    """The 113 solved Aut(F2)-orbit reps + the 124 unsolved ACA-class reps. NOT the 261 reps.
+
+    The 261 are the pre-quotient unsolved representatives; clustering them would count the same
+    problem up to 34 times over (``13_1`` alone is carried by 34 (w, n) cells) and any structure
+    found would be dominated by that multiplicity. The counts are asserted, not assumed.
+    """
     rows = []
     with open(os.path.join(TABLES, "solved_640_aut_orbits.csv")) as f:
         for r in csv.DictReader(f):
             rows.append((r["aut_id"], 0, r["rep_r1"], r["rep_r2"]))
+    n_solved = len(rows)
     with open(os.path.join(TABLES, "unsolved_124_aca_classes.csv")) as f:
         for r in csv.DictReader(f):
             rows.append((r["aca_id"], 1, r["rep_r1"], r["rep_r2"]))
+    n_unsolved = len(rows) - n_solved
+    if (n_solved, n_unsolved) != (113, 124):
+        raise RuntimeError(
+            f"population A must be 113 solved + 124 unsolved, got {n_solved} + {n_unsolved} "
+            f"-- if this is 261 you are clustering the pre-quotient reps")
+    # Both sides must BE their minimal automorphic state, not merely name one. Table A's reps are
+    # aut_canon output by construction; table B's are an upstream artefact that happens to be
+    # Aut-minimal -- so it is checked, for every row, on both sides.
+    for name, lab, r1, r2 in rows:
+        p = canon_pair(r1, r2)
+        if aut_canon(p)[1] != p:
+            raise RuntimeError(f"{name} is not its own minimal automorphic state: "
+                               f"{p} -> {aut_canon(p)[1]}")
     return rows
 
 
@@ -178,7 +198,34 @@ def knot_hypothesis(pairs, y):
             "bal_acc": 0.5 * ((tp / (tp + fn) if tp + fn else 0.0)
                               + (tn / (tn + fp) if tn + fp else 0.0)),
         })
-    return {"features": out, "knot_hist": hist, "rule": rule,
+    # max_knots as a standalone statistic: the value -> class breakdown, which is the form that
+    # says whether it is a gradient or a threshold, and the (min, max) joint, which says whether
+    # the second relator adds anything once the busiest one is known.
+    unev = np.array([(lambda r: max(r) / (sum(r) / len(r)))(
+        [n for _, n in F.gen_runs(a)] + [n for _, n in F.gen_runs(b)]) for a, b in pairs])
+    table = []
+    for v in sorted({int(t) for t in kmax}):
+        m = kmax == v
+        ns, nu = int(((y == 0) & m).sum()), int(((y == 1) & m).sum())
+        table.append({
+            "max_knots": v, "n_solved": ns, "n_unsolved": nu,
+            "pct_unsolved": nu / (ns + nu) if ns + nu else 0.0,
+            # within-bucket drill-down: what still separates the states that share a max_knots?
+            "unev_solved": float(unev[m & (y == 0)].mean()) if ns else None,
+            "unev_unsolved": float(unev[m & (y == 1)].mean()) if nu else None,
+            "len_solved": float(ln[m & (y == 0)].mean()) if ns else None,
+            "len_unsolved": float(ln[m & (y == 1)].mean()) if nu else None,
+        })
+    joint = []
+    for vmin in sorted({int(t) for t in kmin}):
+        for vmax in sorted({int(t) for t in kmax}):
+            m = (kmin == vmin) & (kmax == vmax)
+            if not m.any():
+                continue
+            joint.append({"min_knots": vmin, "max_knots": vmax,
+                          "n_solved": int(((y == 0) & m).sum()),
+                          "n_unsolved": int(((y == 1) & m).sum())})
+    return {"features": out, "knot_hist": hist, "rule": rule, "table": table, "joint": joint,
             "kmax": kmax.tolist(), "kmin": kmin.tolist()}
 
 
@@ -341,8 +388,16 @@ def analyse(tag, rows, rng, verbose=True):
         star = "  <-- proposed" if r["threshold"] == 3 else ""
         say(f"     {r['threshold']:>3} {r['bal_acc']:8.3f} {r['precision']:6.3f} "
             f"{r['recall']:7.3f}   {r['tp']}/{r['fp']}/{r['fn']}/{r['tn']}{star}")
-    say(f"     max-knot histogram solved   {knot['knot_hist']['solved']}")
-    say(f"     max-knot histogram unsolved {knot['knot_hist']['unsolved']}")
+    say("  [max_knots] value -> class breakdown  (max over the two relators)")
+    say(f"     {'v':>2} {'solved':>7} {'unsolved':>9} {'% unsolved':>11}   "
+        f"{'unevenness s/u':>16}  {'length s/u':>12}")
+    for r in knot["table"]:
+        us = f"{r['unev_solved']:.2f}" if r["unev_solved"] is not None else "  - "
+        uu = f"{r['unev_unsolved']:.2f}" if r["unev_unsolved"] is not None else "  - "
+        ls = f"{r['len_solved']:.1f}" if r["len_solved"] is not None else "  - "
+        lu = f"{r['len_unsolved']:.1f}" if r["len_unsolved"] is not None else "  - "
+        say(f"     {r['max_knots']:>2} {r['n_solved']:>7} {r['n_unsolved']:>9} "
+            f"{r['pct_unsolved']*100:>10.1f}%   {us:>7} / {uu:<7} {ls:>5} / {lu:<5}")
 
     coords = {}
     for rep in ("ring_dual", "ring_autocorr", "kmer3", "all", "shape (control)"):
