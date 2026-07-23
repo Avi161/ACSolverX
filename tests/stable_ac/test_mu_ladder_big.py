@@ -55,7 +55,7 @@ def test_stride_partition_is_equal_and_covers():
 def test_filename_identity_encodes_result_knobs():
     c = dict(big.DEFAULTS)
     base = big._run_prefix(c, 124)
-    assert base == "mu_ladder_big_aca124_n124_r64_b32_s12_t1100_o400000"
+    assert base == "mu_ladder_big_aca124_n124_r256_b64_s12_t14400_o150000"
     for knob in ("rungs", "beam", "stop_mu", "time_per_class_s",
                  "max_orbits"):
         assert big._run_prefix({**c, knob: 7}, 124) != base, knob

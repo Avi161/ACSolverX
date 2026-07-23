@@ -59,6 +59,19 @@ from experiments.greedy_tests.spec.words import str_to_word, word_to_str
 from experiments.stable_ac.cov import cov
 from experiments.stable_ac.cov.mu_descent_scan import find_repo_root
 
+try:
+    # result-identical numba twin of aut_canon (pinned by
+    # tests/stable_ac/test_autcanon_fast.py); the verifier deliberately stays
+    # on slow aut_canon, so every production row is a fast-vs-slow cross-check
+    from experiments.stable_ac.cov.autcanon_fast import (
+        aut_min as _aut_min,
+        relabel_min as _relabel_min,
+        warm as _warm_canon,
+    )
+    FAST_CANON = True
+except Exception:          # numba unavailable: same rows, just slower
+    FAST_CANON = False
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 AK3 = ("xxxYYYY", "xyxYXY")
@@ -70,12 +83,13 @@ _SIDE_EVERY = 5.0
 
 DEFAULTS = dict(
     data="data/ms_unsolved_reps/aca_124.csv",
-    rungs=64,
-    beam=32,
+    rungs=256,
+    beam=64,
     cap=24,               # forwarded default_cap; the admissibility ceiling is cov.REJECT_LEN
     stop_mu=12,
-    time_per_class_s=1100,
-    max_orbits=400_000,
+    time_per_class_s=14400,   # 4h RUNAWAY BACKSTOP only — rungs/max_orbits are
+                              # the budgets (deterministic, machine-independent)
+    max_orbits=150_000,
     chunks=5,
     chunk_index=None,     # None = all chunks as parallel processes here
     out_dir="results/stable_ac/mu_scan",
@@ -231,13 +245,25 @@ def _load_rows(c, root):
 # the climb
 
 def _orbit_memo(pair, memo):
+    """(mu, rep) of the pair's orbit. On the fast path the memo key is the
+    8-signed-perm relabel canonical — coarser than the raw pair but still
+    exact (equal keys => same Aut-orbit => same result), so the cache also
+    hits across relabeled duplicates. Result-identical either way: aut_min
+    == aut_canon[:2] is test-pinned, and aut_canon's rep is an orbit
+    invariant."""
     if memo is None:
+        if FAST_CANON:
+            return _aut_min(pair)
         t, rep, _ = aut_canon(pair)
         return t, rep
-    hit = memo.get(pair)
+    key = _relabel_min(pair) if FAST_CANON else pair
+    hit = memo.get(key)
     if hit is None:
-        t, rep, _ = aut_canon(pair)
-        hit = memo[pair] = (t, rep)
+        if FAST_CANON:
+            hit = memo[key] = _aut_min(pair)
+        else:
+            t, rep, _ = aut_canon(pair)
+            hit = memo[key] = (t, rep)
     return hit
 
 
@@ -422,6 +448,11 @@ def run_chunk(c, chunk_index):
     todo = [r for r in rows if r["name"] not in done]
     print(f"[c{chunk_index}of{c['chunks']}] {len(todo)} classes to climb "
           f"({len(done)} resumed) -> {os.path.basename(out_path)}", flush=True)
+    if FAST_CANON and todo:
+        t_w = time.monotonic()
+        _warm_canon()
+        print(f"[c{chunk_index}of{c['chunks']}] numba canon warm in "
+              f"{time.monotonic() - t_w:.1f}s", flush=True)
     commit = _git_commit()
     side = _Sidecar(out_path + ".hb", len(done), len(rows))
     with open(out_path, "a") as out_f, open(orbits_path, "a") as orb_f:
