@@ -53,6 +53,10 @@ def _work(task):
                     "solved": res["solved"], "nodes": res["nodes"],
                     "path_length": res["path_length"], "min_total": res["min_total"],
                     "max_pop": res["max_pop"],
+                    # Knot progress, for the second-hump rows that never solve at these budgets:
+                    # min_K is the fewest knots any discovered state reached, min_K_len its length.
+                    "start_K": res["start_K"], "min_K": res["min_K"],
+                    "min_K_len": res["min_K_len"],
                     "bar": r.get("bar_to_beat"), "source": r["source"]})
     return out, time.perf_counter() - t0
 
@@ -176,6 +180,17 @@ def score(res, ctrl):
     solved = sum(1 for k in common if res[k]["solved"])
     # Progress on the unsolved: how much shorter the best state reached is than the control's.
     prog = [ctrl[k]["min_total"] - res[k]["min_total"] for k in common if not res[k]["solved"]]
+    # Knot progress on the unsolved: the user's second-hump insight made operational. A row where
+    # this arm reached fewer knots than it started with is one where the ordering opened a
+    # structurally different presentation even though it did not finish -- exactly the "reduce a
+    # single knot to create opportunity" the hard rows need. Guarded on the field's presence so a
+    # file written before knot tracking existed still ranks on solves.
+    has_k = all("min_K" in res[k] and "start_K" in res[k] for k in common)
+    kdrop = ([res[k]["start_K"] - res[k]["min_K"] for k in common if not res[k]["solved"]]
+             if has_k else [])
+    kdrop_vs_ctrl = ([(ctrl[k]["min_K"] - res[k]["min_K"]) for k in common
+                      if has_k and "min_K" in ctrl[k] and not res[k]["solved"]] if has_k else [])
+    n_knot_reduced = sum(1 for d in kdrop if d > 0)
     return {
         "solved": solved, "n": len(common),
         "won": won, "lost": lost, "net": len(won) - len(lost),
@@ -186,6 +201,8 @@ def score(res, ctrl):
         "path_ctrl_mean": (sum(ctrl[k]["path_length"] for k in both) / n) if n else None,
         "n_both": n,
         "min_total_gain": (sum(prog) / len(prog)) if prog else 0.0,
+        "n_knot_reduced": n_knot_reduced,
+        "knot_gain_vs_ctrl": (sum(kdrop_vs_ctrl) / len(kdrop_vs_ctrl)) if kdrop_vs_ctrl else 0.0,
     }
 
 

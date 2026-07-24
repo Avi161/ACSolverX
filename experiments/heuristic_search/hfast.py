@@ -161,7 +161,7 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
 def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
     """One pop's worth of work: children, packed keys, features, segmented priority.
 
-    Returns ``(blob, offs, klens, seg_idx, score, tots, count)``. ``blob`` holds every child's
+    Returns ``(blob, offs, klens, seg_idx, score, tots, knots, count)``. ``blob`` holds every child's
     packed key back to back -- ``pack_key``'s exact byte layout, r1 codes then a 0x00 separator
     then r2 codes -- so the caller slices rather than encoding, and one ``tobytes()`` serves the
     whole pop.
@@ -171,6 +171,7 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
     offs = np.empty(count + 1, dtype=np.int64)
     klens = np.empty(count, dtype=np.int64)
     tots = np.empty(count, dtype=np.int64)
+    knots = np.empty(count, dtype=np.int64)
     pos = 0
     for i in range(count):
         offs[i] = pos
@@ -216,8 +217,9 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
         if not placed:
             seg_idx[i] = n_seg
             score[i] = L
+        knots[i] = int(f[4])
 
-    return blob, offs, klens, seg_idx, score, tots, count
+    return blob, offs, klens, seg_idx, score, tots, knots, count
 
 
 def compile_config(cfg):
@@ -288,6 +290,14 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
     visited = {key0: None}
     min_total = len(ca) + len(cb)
     max_pop = max(len(ca), len(cb))
+    # The second hump's rows solve at no budget this program can run, so `solved` is constant-zero
+    # there and ranks nothing. Knot count is the progress signal that still moves: a state with
+    # fewer knots than the start is a structurally different presentation, and reaching one is the
+    # opportunity the user is after even when the total length went UP to get there. Tracked over
+    # discovered states, exactly like min_total, so the two are read on the same footing.
+    start_K = int(f[4])
+    min_K = start_K
+    min_K_len = min_total
     nodes = 0
 
     while pq and nodes < budget:
@@ -307,10 +317,11 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
                 n += 1
                 sk = visited[sk]
             return {"solved": True, "nodes": nodes, "path_length": n - 1,
-                    "min_total": min_total, "max_pop": max_pop}
+                    "min_total": min_total, "max_pop": max_pop,
+                    "start_K": start_K, "min_K": min_K, "min_K_len": min_K_len}
 
         p1, p2 = _arrs(key)
-        blob, offs, klens, seg_idx, score, tots, count = expand_and_score_nj(
+        blob, offs, klens, seg_idx, score, tots, knots, count = expand_and_score_nj(
             p1, p2, mrl, cyclic, seg_upto, seg_w)
         if count == 0:
             continue
@@ -324,7 +335,14 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
                 t = int(tots[c])
                 if t < min_total:
                     min_total = t
+                kk = int(knots[c])
+                # Strictly fewer knots wins; at equal knots prefer the shorter witness, so
+                # min_K_len reports the cheapest state achieving the best knot count reached.
+                if kk < min_K or (kk == min_K and t < min_K_len):
+                    min_K = kk
+                    min_K_len = t
                 heapq.heappush(pq, ((int(seg_idx[c]), float(score[c])), nd, k))
 
     return {"solved": False, "nodes": nodes, "path_length": None,
-            "min_total": min_total, "max_pop": max_pop}
+            "min_total": min_total, "max_pop": max_pop,
+            "start_K": start_K, "min_K": min_K, "min_K_len": min_K_len}
