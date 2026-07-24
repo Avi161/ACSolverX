@@ -84,34 +84,50 @@ def main():
         evaluate(cand_cfgs, "aut_train", b, MRL, AUT_OUT, label=f"AUT-train-{b}")
         evaluate(cand_cfgs, "aut_test", b, MRL, AUT_OUT, label=f"AUT-test-{b}")
 
-    aut = read(AUT_OUT)
+    # Key by (config, budget): read() groups by config id alone, so the 500 and 1000 rows for one
+    # (config, name) collapse to whichever is last in the file. Splitting on budget here keeps them
+    # distinct -- the same trap that blanked EXP-06's Δ column.
+    aut = read(AUT_OUT, by=("config_id", "budget"))
     tr_names = {r["name"] for r in load_split("aut_train")}
     te_names = {r["name"] for r in load_split("aut_test")}
-    a_tr500 = {cid: {n: r for n, r in v.items() if n in tr_names and r["budget"] == 500}
-               for cid, v in aut.items()}
-    a_te500 = {cid: {n: r for n, r in v.items() if n in te_names and r["budget"] == 500}
-               for cid, v in aut.items()}
 
-    # 3) Choose the winner on aut_train's decidable subset.
-    tr_dec = set(decidable(a_tr500))
-    ranked = sorted(
-        (c for c in a_tr500 if c != ctrl),
-        key=lambda cid: (-sum(1 for nm in tr_dec if a_tr500[cid].get(nm, {}).get("solved")),
-                         score(a_tr500[cid], a_tr500[ctrl])["nodes_mean"] or 1e9,
-                         score(a_tr500[cid], a_tr500[ctrl])["path_mean"] or 1e9))
-    winner = ranked[0]
+    def slice_at(budget):
+        tr, te = {}, {}
+        for arm, v in aut.items():
+            cid, b = arm.rsplit(" | ", 1)
+            if int(b) != budget:
+                continue
+            tr[cid] = {n: r for n, r in v.items() if n in tr_names}
+            te[cid] = {n: r for n, r in v.items() if n in te_names}
+        return tr, te
 
     def dec_solved(res, cid, names):
         return sum(1 for nm in names if nm in res.get(cid, {}) and res[cid][nm]["solved"])
 
-    te_dec500 = set(decidable(a_te500))
-    w_tr = dec_solved(a_tr500, winner, tr_dec)
-    b_tr = dec_solved(a_tr500, ctrl, tr_dec)
-    w_te = dec_solved(a_te500, winner, te_dec500)
-    b_te = dec_solved(a_te500, ctrl, te_dec500)
-    tr_gain = w_tr - b_tr
-    te_gain = w_te - b_te
-    te500 = a_te500
+    def pick(a_tr):
+        """Winner on aut_train's decidable subset: most solves, then fewer nodes, then shorter path."""
+        d = set(decidable(a_tr))
+        ranked = sorted(
+            (c for c in a_tr if c != ctrl),
+            key=lambda cid: (-dec_solved(a_tr, cid, d),
+                             score(a_tr[cid], a_tr[ctrl])["nodes_mean"] or 1e9,
+                             score(a_tr[cid], a_tr[ctrl])["path_mean"] or 1e9))
+        return ranked[0], d
+
+    # The user asked for the best heuristic *by node budget*. The 500-winner and the 1000-winner
+    # need not be the same config -- EXP-06 showed the richer climb keeps converting budget into
+    # solves while the leaner one plateaus -- so a winner is chosen and validated at each budget.
+    per_budget = {}
+    for budget in (500, 1000):
+        a_tr, a_te = slice_at(budget)
+        if ctrl not in a_tr or not a_tr[ctrl]:
+            continue
+        w, tr_dec = pick(a_tr)
+        te_dec = set(decidable(a_te))
+        per_budget[budget] = {
+            "winner": w, "a_tr": a_tr, "a_te": a_te, "tr_dec": tr_dec, "te_dec": te_dec,
+            "w_tr": dec_solved(a_tr, w, tr_dec), "b_tr": dec_solved(a_tr, ctrl, tr_dec),
+            "w_te": dec_solved(a_te, w, te_dec), "b_te": dec_solved(a_te, ctrl, te_dec)}
 
     lines = [
         "# The heuristic — synthesis on the automorphism-disjoint split", "",
@@ -119,35 +135,41 @@ def main():
         "class appears on both sides — so the held-out number is transfer to genuinely new problems, "
         "not memorised change-of-variables twins. **This measures decidable → decidable "
         "generalisation; the decidable → second-hump gap is not measurable at ≤1,000 nodes.**", "",
-        f"Winner, chosen on `aut_train` (decidable subset): **`{winner}`**.", "",
-        "## Does it survive the held-out aut-classes?", "",
-        f"| slice | baseline | winner | gain |", "|---|---|---|---|",
-        f"| aut_train (decidable {len(tr_dec)}) | {b_tr}/{len(tr_dec)} | {w_tr}/{len(tr_dec)} | "
-        f"**{tr_gain:+d}** |",
-        f"| **aut_test** (decidable {len(te_dec500)}) | {b_te}/{len(te_dec500)} | "
-        f"{w_te}/{len(te_dec500)} | **{te_gain:+d}** |", "",
+        "The winner is chosen and validated separately at each budget, because the best ordering "
+        "at 500 nodes is not the best at 1,000 (EXP-06).", "",
+        "## The recommendation, by node budget", "",
+        "| budget | heuristic | aut_train decidable | aut_test decidable (held-out) |",
+        "|---|---|---|---|",
     ]
-    if te_gain >= max(1, tr_gain * 0.5):
-        lines += [f"The gain holds out of sample ({te_gain:+d} on test vs {tr_gain:+d} on train): "
-                  "the ordering is picking up a real property of these presentations, not fitting "
-                  "the training forty.", ""]
-    else:
-        lines += [f"**The gain shrinks out of sample** ({te_gain:+d} on test vs {tr_gain:+d} on "
-                  "train): some of the training margin was selection. Trust the test number as the "
-                  "estimate of what this heuristic buys on unseen presentations.", ""]
+    for budget, d in per_budget.items():
+        lines.append(
+            f"| **{budget}** | `{d['winner']}` | {d['w_tr']}/{len(d['tr_dec'])} "
+            f"(baseline {d['b_tr']}/{len(d['tr_dec'])}) | **{d['w_te']}/{len(d['te_dec'])}** "
+            f"(baseline {d['b_te']}/{len(d['te_dec'])}) |")
+    lines.append("")
 
-    # Per-bin on test at 500, winner + baseline, so the headline is never the saturated 40-denom.
-    lines += ["## Where the test-slice solves land (per bin)", "",
-              bin_table({ctrl: te500[ctrl], winner: te500.get(winner, {})},
-                        [ctrl, winner], ctrl), ""]
+    for budget, d in per_budget.items():
+        tr_gain, te_gain = d["w_tr"] - d["b_tr"], d["w_te"] - d["b_te"]
+        verdict = (f"holds out of sample ({te_gain:+d} test vs {tr_gain:+d} train)"
+                   if te_gain >= max(1, tr_gain * 0.5)
+                   else f"shrinks out of sample ({te_gain:+d} test vs {tr_gain:+d} train) — "
+                        "some of the training margin was selection")
+        lines += [f"### Budget {budget}: `{d['winner']}`", "",
+                  f"On held-out aut-classes the gain **{verdict}**. Per bin on the test slice "
+                  "(floor bins shown so the gain is visibly in the hard bins, not the saturated ones):",
+                  "", bin_table({ctrl: d["a_te"][ctrl], d["winner"]: d["a_te"].get(d["winner"], {})},
+                                [ctrl, d["winner"]], ctrl), ""]
 
     with open(os.path.join(LOGS, "FINDINGS.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
     with open(os.path.join(LOGS, "synthesis.json"), "w") as f:
-        json.dump({"winner": winner, "candidates": proposed,
-                   "train_gain": tr_gain, "test_gain": te_gain,
-                   "train_decidable": len(tr_dec), "test_decidable": len(te_dec500),
-                   "split": "aut_disjoint"}, f, indent=1)
+        json.dump({"split": "aut_disjoint", "candidates": proposed,
+                   "by_budget": {str(b): {"winner": d["winner"],
+                                          "test_gain": d["w_te"] - d["b_te"],
+                                          "train_gain": d["w_tr"] - d["b_tr"],
+                                          "test_decidable": len(d["te_dec"]),
+                                          "train_decidable": len(d["tr_dec"])}
+                                 for b, d in per_budget.items()}}, f, indent=1)
     print("\n".join(lines))
 
 

@@ -1,0 +1,46 @@
+{
+ "split": "aut_disjoint",
+ "candidates": [
+  "[<=16]L1[<=inf]K8.936+L1+xyimb-5.978",
+  "[<=14]L1[<=inf]L1+xyimb-16",
+  "[<=8]L1[<=inf]B10.307+L1+MK4.962+S6.408",
+  "[<=16]L1[<=inf]K2.53+L1+MK6.418+S8.458+xyimb3.292",
+  "[<=16]L1[<=inf]K8+L1",
+  "[<=16]L1[<=inf]L1+nb4",
+  "[<=16]L1[<=inf]B11.25+K7.884+L1",
+  "[<=8]L1[<=inf]Bmin-0.113+K1.809+L1+imbal0.743+xyimb-0.118",
+  "[<=8]L1[<=inf]Bmax-3.046+Bmin-0.499+L1+MK0.612+xyimb-0.109",
+  "[<=inf]K7.119+L1+xyimb-2.169",
+  "[<=12]L1[<=inf]B1-0.272+K1.325+L1+MK-0.499+imbal1.031",
+  "[<=16]L1[<=inf]Bmax-2.185+L1+S5.668",
+  "[<=16]L1[<=inf]K2.51+L1+Lmax5.895+mK13.556",
+  "[<=16]L1[<=inf]L1+xyimb-16",
+  "[<=16]L1[<=inf]K4.769+L1+imbal0.291",
+  "[<=16]L1[<=inf]Bmin0.29+L1+Lmax0.333+xyimb-10.785",
+  "[<=inf]K-0.322+L1+Lmax4.993",
+  "[<=inf]B1-0.537+K2.21+L1+Lmax12.02+xyimb0.688",
+  "[<=10]L1[<=inf]Bmax0.228+L1+Lmax10.895",
+  "[<=6]L1[<=inf]Bmax0.147+L1+Lmax11.396",
+  "[<=16]L1[<=inf]K5.579+L1+xyimb-1.066",
+  "[<=16]L1[<=inf]K0.524+L1+Lmax0.235+S0.175+mK12.546",
+  "[<=16]L1[<=inf]B1-0.315+L1+Lmin-0.569+xyimb-0.687",
+  "[<=12]L1[<=inf]Bmax0.394+K7.948+L1+imbal0.162",
+  "[<=14]L1[<=inf]K7.136+L1"
+ ],
+ "by_budget": {
+  "500": {
+   "winner": "[<=16]L1[<=inf]K8.936+L1+xyimb-5.978",
+   "test_gain": 4,
+   "train_gain": 10,
+   "test_decidable": 6,
+   "train_decidable": 11
+  },
+  "1000": {
+   "winner": "[<=16]L1[<=inf]Bmax-2.185+L1+S5.668",
+   "test_gain": 6,
+   "train_gain": 8,
+   "test_decidable": 6,
+   "train_decidable": 11
+  }
+ }
+}
