@@ -52,3 +52,9 @@ The previous push found that block/knot features make a better heap ordering tha
 
 - `splits.json` — difficulty-stratified, 40/20/6. Used for **feature discovery** (EXP-02…06). Leaks 6 aut-classes across train/test.
 - `splits_aut.json` — automorphism-disjoint, 45/15/6, whole classes to one side. Used for the **final selection + one test read** (`synthesize`), so the held-out number is transfer to new problems, not change-of-variables twins. Measures decidable→decidable generalisation — **not** the decidable→second-hump gap, which is unmeasurable at ≤1,000 nodes.
+
+## Scale, and one file that is deliberately absent
+
+25 experiments, **101,750 recorded searches**, every one of them a row in a committed `.jsonl` beside its report — which is what makes any claim here re-checkable without re-running anything.
+
+There are 25 reports and 24 raw files. `EXP22_complement_cv` has no `.jsonl` **by design**: it re-analyses EXP-19's existing 320-config × 45-row matrix under 200 half-splits and runs no new search. That was the point of it — the question (is the complement strategy hindsight?) had to be answered without spending a fresh slice, and the answer was already latent in data on disk.
