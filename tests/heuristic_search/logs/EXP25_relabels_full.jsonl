@@ -1,0 +1,384 @@
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 111, "path_length": 23}
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 110, "path_length": 23}
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 112, "path_length": 23}
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 114, "path_length": 23}
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 113, "path_length": 23}
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 113, "path_length": 23}
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 111, "path_length": 23}
+{"ordering": "recommended", "name": "ms546", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 112, "path_length": 23}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 496, "path_length": 34}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 497, "path_length": 34}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 497, "path_length": 34}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 497, "path_length": 34}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 485, "path_length": 34}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 484, "path_length": 34}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 484, "path_length": 34}
+{"ordering": "recommended", "name": "ms548", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 484, "path_length": 34}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 227, "path_length": 38}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 227, "path_length": 38}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 227, "path_length": 38}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 227, "path_length": 38}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 227, "path_length": 38}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 227, "path_length": 38}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 228, "path_length": 38}
+{"ordering": "recommended", "name": "ms533", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 228, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 575, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 574, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 576, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 575, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 562, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 563, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 562, "path_length": 38}
+{"ordering": "recommended", "name": "ms589", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 563, "path_length": 38}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 252, "path_length": 42}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 252, "path_length": 42}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 257, "path_length": 43}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 255, "path_length": 43}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 244, "path_length": 42}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 242, "path_length": 43}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 246, "path_length": 43}
+{"ordering": "recommended", "name": "ms580", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 241, "path_length": 42}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 821, "path_length": 45}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 828, "path_length": 45}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 821, "path_length": 45}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 821, "path_length": 45}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 822, "path_length": 45}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 822, "path_length": 45}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 828, "path_length": 45}
+{"ordering": "recommended", "name": "ms609", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 821, "path_length": 45}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 531, "path_length": 32}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 530, "path_length": 32}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 531, "path_length": 32}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 529, "path_length": 32}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 518, "path_length": 32}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 519, "path_length": 32}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 517, "path_length": 32}
+{"ordering": "recommended", "name": "ms538", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 518, "path_length": 32}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 829, "path_length": 45}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 829, "path_length": 45}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 826, "path_length": 44}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 825, "path_length": 44}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 830, "path_length": 45}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 826, "path_length": 44}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 825, "path_length": 44}
+{"ordering": "recommended", "name": "ms606", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 830, "path_length": 45}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 48}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 48}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 48}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 48}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 48}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 48}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 48}
+{"ordering": "recommended", "name": "ms544", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 48}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 135, "path_length": 47}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47}
+{"ordering": "recommended", "name": "ms549", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 135, "path_length": 47}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 52}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 52}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 52}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 52}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 52}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 52}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 52}
+{"ordering": "recommended", "name": "ms543", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 162, "path_length": 52}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 422, "path_length": 99}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 419, "path_length": 99}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 420, "path_length": 99}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 423, "path_length": 99}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 424, "path_length": 99}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 424, "path_length": 99}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 420, "path_length": 99}
+{"ordering": "recommended", "name": "ms565", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 421, "path_length": 99}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 52}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 52}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 52}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 831, "path_length": 52}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 831, "path_length": 52}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 52}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 825, "path_length": 52}
+{"ordering": "recommended", "name": "ms602", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 825, "path_length": 52}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 831, "path_length": 57}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 57}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 57}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 57}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 825, "path_length": 57}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 825, "path_length": 57}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 57}
+{"ordering": "recommended", "name": "ms632", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 831, "path_length": 57}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms573", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 388, "path_length": 99}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 385, "path_length": 99}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 389, "path_length": 99}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 385, "path_length": 99}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 383, "path_length": 99}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 387, "path_length": 99}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 386, "path_length": 99}
+{"ordering": "recommended", "name": "ms586", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 384, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 385, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 388, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 385, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 389, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 387, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 383, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 384, "path_length": 99}
+{"ordering": "recommended", "name": "ms581", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 386, "path_length": 99}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 422, "path_length": 102}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 419, "path_length": 102}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 420, "path_length": 102}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 423, "path_length": 102}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 424, "path_length": 102}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 424, "path_length": 102}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 420, "path_length": 102}
+{"ordering": "recommended", "name": "ms575", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 421, "path_length": 102}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms568", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms578", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms583", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 106, "path_length": 36}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 36}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 35}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 106, "path_length": 36}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 105, "path_length": 35}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 36}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 105, "path_length": 35}
+{"ordering": "recommended", "name": "ms628", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 36}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 36}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 106, "path_length": 36}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 106, "path_length": 36}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 35}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 36}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 105, "path_length": 35}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 107, "path_length": 36}
+{"ordering": "recommended", "name": "ms633", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 105, "path_length": 35}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "recommended", "name": "ms596", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 398, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 406, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 430, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 425, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 370, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 382, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 381, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 368, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 661, "path_length": 28}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 489, "path_length": 27}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 490, "path_length": 27}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 660, "path_length": 28}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 480, "path_length": 27}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 615, "path_length": 26}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 614, "path_length": 26}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 488, "path_length": 27}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 438, "path_length": 43}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 350, "path_length": 37}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 342, "path_length": 37}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 401, "path_length": 37}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 330, "path_length": 37}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 337, "path_length": 37}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 330, "path_length": 37}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 332, "path_length": 37}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 558, "path_length": 46}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 526, "path_length": 38}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 552, "path_length": 46}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 548, "path_length": 46}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 554, "path_length": 46}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 539, "path_length": 46}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 509, "path_length": 38}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 558, "path_length": 46}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": true, "nodes": 875, "path_length": 47}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 869, "path_length": 47}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 867, "path_length": 47}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 854, "path_length": 47}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 862, "path_length": 47}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": true, "nodes": 872, "path_length": 47}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->x,y->y", "identity": true, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->x,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->X,y->y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->X,y->Y", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->Y,y->x", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "relabel": "x->Y,y->X", "identity": false, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null}
