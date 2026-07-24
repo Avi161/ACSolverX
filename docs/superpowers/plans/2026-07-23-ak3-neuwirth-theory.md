@@ -225,6 +225,7 @@ git commit -m "feat: add direct Neuwirth permutation census"
 
 **Files:**
 - Create: `experiments/stable_ac/thickenable/neuwirth_dart_audit.py`
+- Create: `experiments/stable_ac/thickenable/neuwirth_target_certificate.py`
 - Create: `tests/stable_ac/test_neuwirth_dart_audit.py`
 - Create: `results/stable_ac/theory/ak3_neuwirth_census.json`
 
@@ -284,9 +285,9 @@ Run:
 
 Expected: PASS with identical complete trace digests.
 
-- [ ] **Step 6: Generate the JSON certificate**
+- [ ] **Step 6: Add a separate certificate driver**
 
-The CLI writes:
+Create `neuwirth_target_certificate.py` as the only integration layer allowed to import both new enumerators. Do not retrofit CLI behavior into the already committed direct module. Its CLI writes:
 
 ```json
 {
@@ -304,7 +305,7 @@ Each target entry contains exact words, degrees, expected/enumerated cases, full
 Run:
 
 ```bash
-.venv/bin/python3 -m experiments.stable_ac.thickenable.neuwirth_permutation_certificate --audit --output results/stable_ac/theory/ak3_neuwirth_census.json
+.venv/bin/python3 -m experiments.stable_ac.thickenable.neuwirth_target_certificate --output results/stable_ac/theory/ak3_neuwirth_census.json
 ```
 
 - [ ] **Step 7: Replay from JSON**
@@ -312,7 +313,7 @@ Run:
 Run:
 
 ```bash
-.venv/bin/python3 -m experiments.stable_ac.thickenable.neuwirth_permutation_certificate --verify results/stable_ac/theory/ak3_neuwirth_census.json
+.venv/bin/python3 -m experiments.stable_ac.thickenable.neuwirth_target_certificate --verify results/stable_ac/theory/ak3_neuwirth_census.json
 ```
 
 Expected: recomputation succeeds and both module/content digests match.
@@ -322,7 +323,7 @@ Expected: recomputation succeeds and both module/content digests match.
 Run:
 
 ```bash
-git add experiments/stable_ac/thickenable/neuwirth_dart_audit.py tests/stable_ac/test_neuwirth_dart_audit.py results/stable_ac/theory/ak3_neuwirth_census.json
+git add experiments/stable_ac/thickenable/neuwirth_dart_audit.py experiments/stable_ac/thickenable/neuwirth_target_certificate.py tests/stable_ac/test_neuwirth_dart_audit.py results/stable_ac/theory/ak3_neuwirth_census.json
 git commit -m "result: certify AK3 Neuwirth rotation census"
 ```
 
