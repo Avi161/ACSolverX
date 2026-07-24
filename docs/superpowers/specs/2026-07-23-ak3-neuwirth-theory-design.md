@@ -2,7 +2,7 @@
 
 Date: 2026-07-23
 
-Status: revised after an `ac-advisor` verdict of REVISE and a separate hostile topology review; all proposed mathematical statements remain unverified until the proof checks and finite replay pass.
+Status: the base theorem and two independent 86,400-case target replays are complete. The component phase was redesigned after its preflight exposed factorial costs up to 958,003,200 order pairs. The replacement is an exact signed-rank planarity criterion, not a larger brute-force run.
 
 ## Scope and result bar
 
@@ -145,3 +145,77 @@ An algebraic characterization of which \(k\ge2\) CoVs leave an \(\operatorname{A
 ### Production greedy from orbit-2
 
 This remains a valid empirical lead, but it is implementation-heavy and cannot be run at a decisive budget locally. It is deferred in response to the user's theory-first direction.
+
+## Second revision: eliminate the factorial component scan
+
+The old component plan would decide only the 18 of 1,000 height-17 states whose
+raw cyclic-order cost is at most 2,000,000.  The support census is much more
+structured:
+
+- 720 states have simple support \(K_4\);
+- 278 have support \(K_4-e\), split equally between the two missing
+  same-generator edges;
+- 2 have support \(C_4\);
+- none has a link loop or any other support.
+
+This permits an exact theory-first replacement.
+
+### Spherical rotation theorem for \(K_4\) multigraphs
+
+For a loopless multigraph with simple support \(K_4\), a rotation system is
+spherical exactly when every parallel class is one cyclic interval at both
+endpoints, the six contracted intervals form one of the two mirror tetrahedral
+rotations, and the labeled edge orders at opposite ends of every class are
+reverses.  Necessity follows by deleting the two endpoints of a class: the
+remaining graph is connected, so all nonclass edges occupy one angular gap.
+Deleting all but one edge per class leaves the unique spherical embedding of
+\(K_4\).  Sufficiency follows by replacing the six edges of that embedding by
+parallel ribbons.
+
+After fixing one mirror orientation, give edge \(e\) in class \(P_{uv}\) a rank
+\(z_e\in\{0,\ldots,m_{uv}-1\}\), all different within the class.  The two
+endpoint slots are \(z_e\) and \(m_{uv}-1-z_e\), offset by their block starts.
+Unknown cyclic origins at the paired generator ends contribute only two phases
+\(S_x,S_y\).  Neuwirth's reversal condition becomes one modular equation for
+each \(B\)-pair:
+
+\[
+P_d(z_{e(d)})+P_{Bd}(z_{e(Bd)})+S_g\equiv0\pmod{n_g}.
+\]
+
+Contracting the \(A\)-edges leaves a degree-two constraint graph, namely the
+relator cycles.  For fixed phases, one seed rank determines a whole cycle.
+Solutions from the two relators combine exactly when their six class-rank
+bitsets are disjoint.  This replaces the factorial enumeration by a finite
+phase/seed calculation with an independently reconstructed face trace.
+
+### The two proper supports
+
+For \(K_4-cd\), let \(a,b\) be the other vertices.  The central parallel class
+\(P_{ab}\) need not be one block.  The exact spherical schemes are
+
+\[
+C,\ L[0:i],\ D,\ L[i:m]\qquad(0\le i\le m),
+\]
+
+where \(C,D\) are the two branch blocks through \(c,d\), and \(L\) is the
+rank-ordered list of direct \(ab\)-edges.  The order at \(b\) is reversed; the
+four leg classes remain reversed endpoint blocks.  Thus only \(m+1\) schemes
+are needed.  For \(C_4\), every parallel class is a reversed endpoint block and
+there is one scheme.
+
+These support classifications and the signed-rank equivalence are
+load-bearing and must be proved before implementation.  General loopless
+supports are an instance of Synchronized Planarity; the specialized proof is
+kept because it is smaller, auditable, and exactly covers the component.
+
+### Certificate bar for the full component
+
+The rank solver must fail closed on an unclassified support.  It must be
+cross-checked against the factorial enumerator on all 18 affordable component
+states and on generated small \(K_4\), \(K_4-e\), and \(C_4\) instances.  A
+reported positive must include reconstructed rotations and an independent
+genus-zero face trace, then remain `REGINA_REQUIRED`.  A negative is a
+thickenability decision for the exact word-realized complex only; it is not an
+AC invariant.  The component run remains exactly the existing 1,000-state
+height-17 artifact and is not an enlarged AC search.

@@ -4,7 +4,7 @@
 
 **Goal:** Prove the exact Neuwirth thickenability criterion needed for AK(3), independently decide the two base presentation complexes, and use the resulting obstruction profile to inspect the known height-17 classical component without mislabelling any negative as an AC obstruction.
 
-**Architecture:** A theory note is load-bearing. Two dependency-free finite enumerators then realize the same occurrence-order census using different dart numberings: one follows Neuwirth's \(A,B,C\) permutations, the other traces a rotation system directly. A small driver compares their ordered traces and writes a replayable JSON certificate; a separate bounded component scan is attempted only after the base certificate passes.
+**Architecture:** A theory note is load-bearing. Two dependency-free finite enumerators realize the same occurrence-order census using different dart numberings: one follows Neuwirth's \(A,B,C\) permutations, the other traces a rotation system directly. A small driver compares their ordered traces and writes a replayable JSON certificate. For the 1,000-state component, a second theorem classifies all spherical rotations of the only three support types present and turns the compatibility problem into modular signed-rank propagation on the two relator cycles.
 
 **Tech Stack:** Python 3 standard library, pytest, SHA-256, existing read-only AC component generator, Markdown.
 
@@ -348,73 +348,167 @@ git push origin codex/proofs
 
 ---
 
-### Task 4: Extract the obstruction profile and test the known height-17 component
+### Task 4: Prove the signed-rank spherical-rotation criterion
+
+**Files:**
+- Create: `literature/proofs/AK3_SYNCHRONIZED_PLANARITY.md`
+
+**Interfaces:**
+- Consumes: the exact Neuwirth dart dictionary and the support multigraph.
+- Produces: necessary-and-sufficient criteria for \(K_4\), \(K_4-e\), and \(C_4\), plus the modular rank equations implemented in Task 5.
+
+- [ ] **Step 1: Prove the \(K_4\) multigraph theorem**
+
+Prove the block, tetrahedral macro-rotation, and reversed-class-order
+conditions in both directions.  Include the exact count
+\(2\prod_{uv}m_{uv}!\), and address the fact that a chosen skeleton edge may
+have parallel copies on both of its sides.
+
+- [ ] **Step 2: Derive the signed-rank equations**
+
+Define endpoint slot maps, the two cyclic phases, and the modular equation for
+each \(B\)-pair.  Prove that the \(A\)-contracted constraint graph is the union
+of the two relator cycles and that seed propagation plus per-class
+all-different constraints is necessary and sufficient.
+
+- [ ] **Step 3: Prove the \(K_4-e\) classification**
+
+Use the \(\{a,b\}\)-bridge decomposition to prove that the central class is
+split exactly as
+`C, L[:i], D, L[i:]`, for \(0\le i\le m_{ab}\), with reverse order at the
+other pole.  Prove that this lists every spherical scheme exactly once after
+fixing reflection and cyclic origin.
+
+- [ ] **Step 4: Prove the \(C_4\) classification and state scope**
+
+Prove the unique reversed-block scheme.  State that other or disconnected
+supports must fail closed into a general Synchronized Planarity path; do not
+silently extrapolate the specialized theorem.
+
+- [ ] **Step 5: Hostile mathematical review and commit**
+
+Require a reviewer to try to construct omitted embeddings, especially a split
+central class in \(K_4-e\), and to audit every modular sign.  Resolve all
+Critical/Important findings before:
+
+```bash
+git add -f literature/proofs/AK3_SYNCHRONIZED_PLANARITY.md
+git commit -m "docs: prove signed-rank planarity criterion"
+git push origin codex/proofs
+```
+
+---
+
+### Task 5: Implement and cross-check the exact rank solver by TDD
+
+**Files:**
+- Create: `experiments/stable_ac/thickenable/neuwirth_rank_solver.py`
+- Create: `tests/stable_ac/test_neuwirth_rank_solver.py`
+
+**Interfaces:**
+- `classify_support(words) -> SupportClass`
+- `embedding_schemes(data) -> tuple[Scheme, ...]`
+- `solve_spherical(words) -> RankDecision`
+- A positive decision contains exact rotations, ranks, phases, scheme, faces,
+  Euler characteristic, and genus.
+
+- [ ] **Step 1: Write failing support and scheme tests**
+
+Pin generated labeled examples of \(K_4\), both forms of \(K_4-e\), and
+\(C_4\).  Assert exact scheme counts and injective/partitioning slot maps.
+Assert unsupported inputs fail closed.
+
+- [ ] **Step 2: Write failing signed-rank propagation tests**
+
+Pin hand-sized satisfiable and unsatisfiable systems, including a
+\(K_4-e\) case where only a genuinely split central class works.  Require
+closure and all-different checks rather than trusting a reconstructed face
+count alone.
+
+- [ ] **Step 3: Implement the minimal theorem-shaped solver**
+
+Build \(D,A,B\) from exact words, classify support, enumerate the proved
+schemes, enumerate phases, propagate each relator cycle from seed ranks, and
+combine cycle assignments by class bitsets.  Do not import or invoke the
+factorial target enumerators in production solving.
+
+- [ ] **Step 4: Independently reconstruct and face-trace every positive**
+
+Construct the four rotations from the returned witness and trace
+\(\phi=\sigma\alpha\).  A solver acceptance is valid only if the trace has
+Euler characteristic two and all Neuwirth reversal equations replay.
+
+- [ ] **Step 5: Cross-check against exhaustive enumeration**
+
+Compare decisions with the direct factorial census on:
+
+- all 18 component states of cost at most 2,000,000;
+- deterministic generated small examples of all three support types;
+- AK(3) and orbit-2, which must remain negative.
+
+No random-only test is sufficient; generated cases use a recorded seed and
+their exact count is asserted.
+
+- [ ] **Step 6: Commit code and tests**
+
+```bash
+git add experiments/stable_ac/thickenable/neuwirth_rank_solver.py tests/stable_ac/test_neuwirth_rank_solver.py
+git commit -m "feat: solve Neuwirth planarity by signed ranks"
+git push origin codex/proofs
+```
+
+---
+
+### Task 6: Certify the full known height-17 component and report
 
 **Files:**
 - Create: `experiments/stable_ac/thickenable/scan_ak3_component.py`
 - Create: `results/stable_ac/theory/AK3_NEUWIRTH_RESULT.md`
 - Create: `results/stable_ac/theory/ak3_component_thickenability.json`
 
-**Interfaces:**
-- Consumes: the direct census, the independent audit, and the read-only `component(AK3, 17)` generator.
-- Produces: a bounded, reproducible census over exactly the known 1,000-state component, with explicit `DECIDED` versus `SKIPPED_COST` accounting.
+- [ ] **Step 1: Recompute and authenticate the bounded component**
 
-- [ ] **Step 1: Derive the human obstruction profile**
+Recompute the existing AK(3), height-17 component with the hard
+`node_budget=1000`.  Assert exactly 1,000 distinct states and record the
+generator code commit/hash.  This is the maximum permitted AC search.
 
-Name the exact potential
+- [ ] **Step 2: Decide all 1,000 exact complexes**
 
-```text
-gamma_N(P) = min_C (|A|-|C|+2L-|AC|)/2.
-```
+Require the support histogram `720 K4 / 278 K4-e / 2 C4`, zero unsupported
+states, and a signed-rank decision for every state.  Replay every positive
+witness independently.  Never infer anything from an omitted or failed state.
 
-From both target histograms, state \(\gamma_N\), the maximum face count, the number of minimizing orders, and whether the two classically equivalent representatives have identical or different profiles. Use the minimizing orders to test the concrete claim that forced interlacing of occurrence bands accounts for the remaining handles; label any explanation `[PROVEN]` only if it is derived without relying on the enumeration. State explicitly that \(\gamma_N\) is not an AC invariant and is instead a topology-directed search potential whose zero set is the thickenable milestone.
+- [ ] **Step 3: Quarantine positives**
 
-- [ ] **Step 2: Implement the bounded component driver**
+Any positive is reported as `REGINA_REQUIRED` with the exact state, scheme,
+phases, ranks, rotations, and face trace.  It is not promoted to an AC
+certificate until an independently constructed triangulation returns
+`isBall() == True` and its handle incidences match.
 
-Recompute `component(AK3, 17)` with the existing hard `POP_CAP=1000`; assert its size is exactly 1,000 and its set is closed using the existing child generator. For each exact canonical word pair:
+- [ ] **Step 4: Extract the obstruction profile**
 
-```python
-cost = product(factorial(degree[g] - 1) for g in generators)
-if cost > max_orderings:
-    record SKIPPED_COST
-else:
-    run the direct census and record gamma_N
-    independently rerun any Euler-positive through the dart audit
-```
+Report the exact target \(\gamma_N\) histograms.  Include the human
+nonplanarity proof for orbit-2 and its explicit genus-one witness.  State that
+\(\gamma_N\) changes under AC moves and is only a search potential.  For AK(3),
+label the exact \(\gamma_N=2\) conclusion census-derived unless a separate
+short-face packing proof is completed.
 
-Default `max_orderings=2_000_000`. Never infer a verdict for skipped states.
+- [ ] **Step 5: Write the four-part report**
 
-- [ ] **Step 3: Fail closed on any positive**
+Use `What counts`, `What was ruled out`, `Live leads`, and `Open ledger`.
+Distinguish classical AC, stable AC, thickenability of an exact complex, and
+bounded component evidence in every claim.
 
-If any state has an Euler-accepting order, stop result promotion and emit `REGINA_REQUIRED` with the exact state and order. Do not call it a solution until a separate exact regular-neighbourhood triangulation verifies `isBall()`.
+- [ ] **Step 6: Verify, review, commit, and push**
 
-- [ ] **Step 4: Write the bounded report**
-
-The Markdown report must use four sections:
-
-1. `What counts`: theorem/certificate, plus any independently validated positive.
-2. `What was ruled out`: exact base complexes and component coverage, including order cap and skipped count.
-3. `Live leads`: a structural interlacing lemma, a Regina witness if needed, and uncovered high-cost states.
-4. `Open ledger`: AK(3) remains one open AC/stable-AC problem unless a positive survived Regina.
-
-- [ ] **Step 5: Run the full relevant tests**
-
-Run:
-
-```bash
-.venv/bin/python3 -m pytest tests/stable_ac/test_neuwirth_permutation_certificate.py tests/stable_ac/test_neuwirth_dart_audit.py tests/stable_ac/test_thickenable.py -q
-.venv/bin/python3 -m experiments.stable_ac.cov.ak_3_universal_test.certify_classical --verify
-```
-
-Expected: all tests pass; the classical bridge replays.
-
-- [ ] **Step 6: Commit the bounded scan and report**
-
-Run:
+Run all new focused tests, the existing thickenability tests, both target
+certificate replays, and the 17-macro-edge classical certificate replay.  A
+fresh reviewer audits the source/result binding and every claimed count before:
 
 ```bash
 git add experiments/stable_ac/thickenable/scan_ak3_component.py results/stable_ac/theory/AK3_NEUWIRTH_RESULT.md results/stable_ac/theory/ak3_component_thickenability.json
-git commit -m "result: map thickenability across AK3 height-17 component"
+git commit -m "result: certify AK3 height-17 thickenability census"
+git push origin codex/proofs
 ```
 
-Expected: only new files are committed; pre-existing untracked `prompts/` and temporary source-render files remain untouched.
+Expected: all 1,000 states are accounted for; only new task files are changed.
