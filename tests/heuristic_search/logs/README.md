@@ -34,7 +34,12 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-11](EXP11_depth.md) | does a depth term (weighted A*) help? — the axis ruled out on principle earlier | **no** — 1 of 216 arms beat its incumbent, on the weakest one, one budget only |
 | [EXP-13](EXP13_tiers.md) | does a third length tier help, and should the knot weight rise with length? | **no to both** — 3 tiers only ever match 2; the weight wants to FALL with state length |
 | [EXP-14](EXP14_newfeats.md) | does a second feature family (Bmaxrun/Bspread/ratio/density) add anything? | **unlocks nothing** — though the winner already solves all 27 decidable rows, so there was no headroom |
+| [EXP-12](EXP12_unsolved124.md) | can any ordering crack one of the 124 unsolved AC-classes at 1,000? | **no** — 0 solves in 3,920 searches (124 classes x 8 relabels x 4 orderings) |
 | [EXP-15](EXP15_wbd.md) | is a knot worth more on a HARD presentation? (the user's intuition, directly) | **yes, as a threshold** — hard stratum solves 0 below k=3, then 3/8; easy stratum solves all at any k |
+| [EXP-16](EXP16_scaling.md) | how does the advantage scale with budget? (the bridge to Colab) | **only the richer climb is still growing** at the ceiling (+12→+14); the lean 500-winner turns over (+14→+11) |
+| [EXP-17](EXP17_portfolio.md) | at fixed budget, one deep search or a portfolio over the 8 relabels? | **depth wins, monotonically** — k=1 > 2 > 4 > 8 for every ordering; the alternates almost never fire |
+| [EXP-18](EXP18_threshold.md) | is the endgame threshold 16 still right for the ordering that won? | **it is inert for the winner** — worth +3..+5 for lean knot-only climbs, +0 for multi-feature ones |
+| [EXP-19](EXP19_joint1000.md) | joint search at budget 1000 over all 17 features, threshold optional | running |
 | **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **phase at length 16; climb on knots (+blocks at 1000); revert to length below** |
 
 ## Two splits
