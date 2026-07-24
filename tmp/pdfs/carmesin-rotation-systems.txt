@@ -1,0 +1,1266 @@
+                                                           Embedding simply connected
+                                                             2-complexes in 3-space
+
+
+
+
+arXiv:1709.04643v3 [math.CO] 4 Sep 2019
+                                                                    II. Rotation systems
+
+                                                                       Johannes Carmesin
+                                                                   University of Birmingham
+
+                                                                        September 5, 2019
+
+
+                                                                              Abstract
+                                                   We prove that 2-dimensional simplicial complexes whose first ho-
+                                                mology group is trivial have topological embeddings in 3-space if and
+                                                only if there are embeddings of their link graphs in the plane that are
+                                                compatible at the edges and they are simply connected.
+
+
+                                          1    Introduction
+                                          This is the second paper in a series of five papers. In the first paper [3] of
+                                          this series we give an overview about this series as a whole. In this paper we
+                                          give combinatorial characterisations for when certain simplicial complexes
+                                          embed in 3-space. This completes the proof of a 3-dimensional analogue of
+                                          Kuratowski’s characterisation of planarity for graphs, started in [3].
+
+                                              A (2-dimensional) simplicial complex has a topological embedding in 3-
+                                          space if and only if it has a piece-wise linear embedding if and only if it has
+                                          a differential embedding [1, 6, 11].1 Perelman proved that every compact
+                                          simply connected 3-dimensional manifold is isomorphic to the 3-sphere S3
+                                          [13, 14, 15]. In this paper we use Perelman’s theorem to prove a combina-
+                                          torial characterisation of which simply connected simplicial complexes can
+                                          be topologically embedded into S3 as follows.
+                                              The link graph at a vertex v of a simplicial complex is the graph whose
+                                          vertices are the edges incident with v and whose edges are the faces incident
+
+
+
+
+                                                                                  1
+                                   v              e
+
+
+Figure 1: The link graph at the vertex v is indicated in grey. The edge
+e projects down to a vertex in the link graph. The faces incident with e
+project down to edges.
+
+
+
+with v and the incidence relation is as in C, see Figure 1. Roughly, a planar
+rotation system of a simplicial complex C consists of cyclic orientations σ(e)
+of the faces incident with each edge e of C such that there are embeddings
+in the plane of the link graphs such that at vertices e the cyclic orientations
+of the incident edges agree with the cyclic orientations σ(e). It is easy to
+see that if a simplicial complex C has a topological embedding into some
+oriented 3-dimensional manifold, then it has a planar rotation system. Con-
+versely, for simply connected simplicial complexes the existence of planar
+rotation systems is enough to characterise embeddability into S3 :
+Theorem 1.1. Let C be a simply connected simplicial complex. Then C
+has a topological embedding into S3 if and only if C has a planar rotation
+system.
+    A related result has been proved by Skopenkov [16]. The main result of
+this paper is the following extension of Theorem 1.1.
+Theorem 1.2. Let C be a simplicial complex such that the first homology
+group H1 (C, Fp ) is trivial for some prime p. Then C has a topological em-
+bedding into S3 if and only if C is simply connected and it has a planar
+rotation system.
+    This implies characterisations of topological embeddability into S3 for
+the classes of simplicial complexes with abelian fundamental group and sim-
+plicial complexes in general, see Section 7 for details.
+    The paper is organised as follows. After reviewing some elementary def-
+initions in Section 2, in Section 3, we introduce rotation systems, related
+   1
+     However this is not equivalent to having a linear embedding, see [2], and [8] for further
+references.
+
+
+                                              2
+concepts and prove basic properties of them. In Sections 4 and 5 we prove
+Theorem 1.1. The proof of Theorem 1.2 in Section 6 makes use of The-
+orem 1.1. Further extensions are derived in Section 7. In Section 8 we
+discuss how one could characterise embeddability of 2-complexes in general
+3-manifolds combinatorially.
+
+
+2       Basic definitions
+In this short section we recall some elementary definitions that are important
+for this paper.
+    A closed trail in a graph is a cyclically ordered sequence (en |n ∈ Zk ) of
+distinct edges en such that the starting vertex of en is equal to the endvertex
+of en−1 . An (abstract) (2-dimensional) complex is a graph2 G together with
+a family of closed trails in G, called the faces of the complex. We denote
+complexes C by triples C = (V, E, F ), where V is the set of vertices, E the
+set of edges and F the set of faces. We assume furthermore that every vertex
+of a complex is incident with an edge and every edge is incident with a face.
+The 1-skeleton of a complex C = (V, E, F ) is the graph (V, E). A directed
+complex is a complex together with a choice of direction at each of its edges
+and a choice of orientation at each of its faces. For an edge e, we denote the
+direction chosen at e by ~e. For a face f , we denote the orientation chosen
+at f by f~.
+    Examples of complexes are (abstract) (2-dimensional) simplicial com-
+plexes. In this paper all simplicial complexes are directed – although we will
+not always say it explicitly. A (topological) embedding of a simplicial com-
+plex C into a topological space X is an injective continuous map from (the
+geometric realisation of) C into X. In our notation we suppress the embed-
+ding map and for example write ‘S3 \C’ for the topological space obtained
+from S3 by removing all points in the image of the embedding of C.
+    In this paper, a surface is a compact 2-dimensional manifold (without
+boundary)3 . Given an embedding of a graph in an oriented surface, the
+rotation system at a vertex v is the cyclic orientation4 of the edges incident
+with v given by ‘walking around’ v in the surface in a small circle in the
+direction of the orientation. Conversely, a choice of rotation system at each
+vertex of a graph G defines an embedding of G in an oriented surface as
+explained in [3].
+    2
+      In this paper graphs are allowed to have parallel edges and loops.
+    3
+      We allow surfaces to be disconnected.
+    4
+      A cyclic orientation is a choice of one of the two orientations of a cyclic ordering.
+
+
+
+                                              3
+    A cell complex is a graph G together with a set of directed walks such
+that each direction of an edge of G is in precisely one of these directed walk
+es. These directed walks are called the cells. The geometric realisation of
+a cell complex is obtained from (the geometric realisation of) its graph by
+gluing discs so that the cells are the boundaries of these discs. The geometric
+realisation is always an oriented surface. Note that cell complexes need not
+be complexes as cells are allowed to contain both directions of an edge. The
+rotation system of a cell complex C is the rotation system of the graph of
+C in the embedding in the oriented surface given by C.
+
+
+3       Rotation systems
+In this section we introduce rotation systems of complexes and some related
+concepts.
+    The link graph of a simplicial complex C at a vertex v is the graph whose
+vertices are the edges incident with v. The edges are the faces incident5 with
+v. The two endvertices of a face f are those vertices corresponding to the
+two edges of C incident with f and v. We denote the link graph at v by
+L(v).
+    A rotation system of a directed complex C consists of for each edge e of
+C a cyclic orientation6 σ(e) of the faces incident with e.
+    Important examples of rotation systems are those induced by topological
+embeddings of 2-complexes C into S3 (or more generally in some oriented
+3-manifold); here for an edge e of C, the cyclic orientation σ(e) of the faces
+incident with e is the ordering in which we see the faces when walking
+around some midpoint of e in a circle of small radius7 – in the direction of
+the orientation of S3 . It can be shown that σ(e) is independent of the chosen
+circle if small enough and of the chosen midpoint.
+    Such rotation systems have an additional property: let Σ = (σ(e)|e ∈
+E(C)) be a rotation system of a simplicial complex C induced by a topolog-
+ical embedding of C in the 3-sphere. Consider a 2-sphere of small diameter
+around a vertex v. We may assume that each edge of C intersects this 2-
+sphere in at most one point and that each face intersects it in an interval or
+not at all. The intersection of the 2-sphere and C is a graph: the link graph
+at v. Hence link graphs of 2-complexes with rotation systems induced from
+    5
+     A face is incident with a vertex if there is an edge incident with both of them.
+    6
+     If the edge e is only incident with a single face, then σ(e) is empty.
+   7
+     Formally this means that the circle intersects each face in a single point and that it
+can be contracted onto the chosen midpoint of e in such a way that the image of one such
+contraction map intersects each face in an interval.
+
+
+                                            4
+    embeddings in 3-space must always be planar. And even more: the cyclic
+    orientations σ(e) at the edges of C form – when projected down to a link
+    graph to rotators at the vertices of the link graph – a rotation system at the
+    link graph, see Figure 2.
+
+
+e
+                             e      v                e           w              e
+
+
+
+                   Link at v        The edge e with its incident faces          Link at w
+    Figure 2: The cyclic orientation σ(e) of the faces incident with the edge e
+    of C projects down to rotators at e in the link graphs at either endvertex of
+    e. In these link graphs, the projected rotators at e are reverse.
+
+
+        Next we shall define ‘planar rotation systems’ which roughly are rotation
+    systems satisfying such an additional property. The cyclic orientation σ(e)
+    at the edge e of a rotation system defines a rotation system r(e, v, Σ) at
+    each vertex e of a link graph L(v): if the directed edge ~e is directed towards
+    v we take r(e, v, Σ) to be σ(e). Otherwise we take the inverse of σ(e). As
+    explained in Section 2, this defines an embedding of the link graph into an
+    oriented surface. The link complex for (C, Σ) at the vertex v is the cell
+    complex obtained from the link graph L(v) by adding the faces of the above
+    embedding of L(v) into the oriented surface. By definition, the geometric
+    realisation of the link complex is always a surface. To shortcut notation, we
+    will not distinguish between the link complex and its geometric realisation
+    and just say things like: ‘the link complex is a sphere’. A planar rotation
+    system of a directed simplicial complex C is a rotation system such that for
+    each vertex v all link complexes are spheres – or disjoint unions of spheres (if
+    the link graph is not connected). The paragraph before shows the following.
+
+    Observation 3.1. Rotation systems induced by topological embeddings of
+    locally connected8 simplicial complexes in the 3-sphere are planar.
+
+       Next we will define the local surfaces of a topological embedding of a
+    simplicial complex C into S3 . The local surface at a connected component
+       8
+         Observation 3.1 is also true without the assumption of ‘local connectedness’. In that
+    case however the link complex is disconnected. Hence it is no longer directly given by the
+    drawing of the link graph on a ball of small radius as above.
+
+
+                                                5
+of S3 \C is the following. Pour concrete into this connected component. The
+surface of the concrete is a 2-dimensional manifold. The local surface is the
+simplicial complex drawn at the surface by the vertices, edges and faces of
+C. Note that if an edge e of G is incident with more than two faces that are
+on the surface, then the surface will contain at least two clones of the edge
+e, see Figure 3.
+
+
+
+
+Figure 3: On the left we depicted the torus with an additional face attached
+on a genus reducing curve in the inside. On the right we depicted the local
+surface of its inside component. It is a sphere and contains two copies of the
+newly added face (and its incident edges).
+
+
+    Now we will define local surfaces for a pair (C, Σ) consisting of a complex
+C and one of its rotation systems Σ. Lemma 3.4 below says that under
+fairly general circumstances the local surfaces of a topological embedding
+are the local surfaces of the rotation system induced by that topological
+embedding. The set of faces of a local surface will be an equivalence class of
+the set of orientations of faces of C. The local-surface-equivalence relation
+is the symmetric transitive closure of the following relation. An orientation
+f~ of a face f is locally related via an edge e of C to an orientation ~g of a
+face g if f is just before g in σ(e) and e is traversed positively by f~ and
+negatively by ~g and in σ(e) the faces f and g are adjacent. Here we follow
+the convention that if the edge e is only incident with a single face, then the
+two orientations of that face are related via e. Given an equivalence class of
+the local-surface-equivalence relation, the local surface at that equivalence
+class is the following complex whose set of faces is (in bijection with) the
+set of orientations in that equivalence class. We obtain the complex from
+the disjoint union of the faces of these orientations by gluing together two
+of these faces f1 and f2 along two of their edges if these edges are copies of
+the same edge e of C and f1 and f2 are related via e. Of course, we glue
+these two edges in a way that endvertices are identified only with copies of
+the same vertex of C. Hence each edge of a local surface is incident with
+
+
+                                      6
+precisely two faces. Hence its geometric realisation is always a is a surface.
+Similarly as for link complexes, we shall just say things like ‘the local surface
+is a sphere’.
+
+Observation 3.2. Local surfaces of planar rotation systems are always con-
+nected.
+
+    A (2-dimensional) orientation of a complex C such that each edge is in
+precisely two faces is a choice of orientation of each face of C such that each
+edge is traversed in opposite directions by the chosen orientation of the two
+incident faces. Note that a complex whose geometric realisation is a surface
+has an orientation if and only its geometric realisation is orientable.
+
+Observation 3.3. The set of orientations in a local-surface-equivalence
+class defines an orientation of its local surface.
+    In particular, local surfaces are cell complexes.
+
+   We will not use the following lemma in our proof of Theorem 1.1 How-
+ever, we think that it gives a better intuitive understanding of local surfaces.
+We say that a simplicial complex C is locally connected if all link graphs are
+connected.
+
+Lemma 3.4. Let C be a connected and locally connected complex embedded
+into S3 and let Σ be the induced planar rotation system. Then the local
+surfaces of the topological embedding are equal to the local surfaces for (C, Σ).
+
+
+    There is the following relation between vertices of local surfaces and faces
+of link complexes.
+
+Lemma 3.5. Let Σ be a rotation system of a simplicial complex C. There
+is a bijection ι between the set of vertices of local surfaces for (C, Σ) and
+the set of faces of link complexes for (C, Σ), which maps each vertex v 0 of a
+local surface cloned from the vertex v of C to a face f of the link complex at
+v such that the rotation system at v 0 is an orientation of f .
+
+Proof. The set of faces of the link complex at v is in bijection with the
+set of v-equivalence classes; here the v-equivalence relation on the set of
+orientations of faces of C incident with v is the symmetric transitive closure
+of the relation ‘locally related’. Since we work in a subset of the orientations,
+every v-equivalence class is contained in a local-surface-equivalence class. On
+the other hand the set of all clones of a vertex v of C contained in a local
+surface S is in bijection with the set of v-equivalence classes contained in
+
+                                       7
+the local-surface-equivalence class of S. This defines a bijection ι between
+the set of vertices of local surfaces for (C, Σ) and the set of faces of link
+complexes for (C, Σ).
+   It is straightforward to check that ι has all the properties claimed in the
+lemma.
+
+Corollary 3.6. Given a local surface of a simplicial complex C and one of
+its vertices v 0 cloned from a vertex v of C, there is a homeomorphism from
+a neighbourhood around v 0 in the local surface to the cone with top v 0 over
+the face boundary of ι(v 0 ) that fixes v 0 and the edges and faces incident with
+v 0 in a neighbourhood around v 0 .
+
+    The definitions of link graphs and link complexes can be generalised from
+simplicial complexes to complexes as follows. The link graph of a complex C
+at a vertex v is the graph whose vertices are the edges incident with v. For
+any traversal of a face of the vertex v, we add an edge between the two ver-
+tices that when considered as edges of C are in the face just before and just
+after that traversal of v. We stress that we allow parallel edges and loops.
+Given a complex C, any rotation system Σ of C defines rotation systems at
+each link graph of C. Hence the definition of link complex extends.
+
+
+4    Constructing piece-wise linear embeddings
+In this section we prove Theorem 4.7 below, which is used in the proof of
+Theorem 1.1.
+
+
+
+
+            Figure 4: A cylinder with an embedded 2-complex.
+
+
+
+Example 4.1. Here we give the definition of the Solid Klein Bottle and
+construct an embedding of a 2-complex C in the Solid Klein Bottle that
+does not induce a planar rotation system.
+   Given a solid cylinder (see Figure 4), there are two ways to identify the
+bounding discs: one way the boundary becomes a torus and the other way
+the boundary becomes a Klein Bottle. We refer to the topological space
+
+                                       8
+obtained from the solid cylinder by identifying as in the second case as
+the Solid Klein Bottle. In Figure 4 we embedded a 2-complex in the solid
+cylinder. Extending the above identification of the cylinder to the embedded
+2-complex, induces an embedding of this new 2-complex in the Solid Klein
+Bottle. This embedding does not induce a planar rotation system.
+
+    Next we show that the Solid Klein Bottle is the only obstruction that
+prevents embeddings of 2-complexes in 3-manifolds to induce planar rotation
+systems.
+
+Lemma 4.2. Let M be a 3-manifold that does not include the Solid Klein
+Bottle as a submanifold. Then any embedding of a 2-complex C in M induces
+a planar rotation system.
+
+Proof. By treating different connected components separately, we may as-
+sume that C is connected. Around each vertex of C we pick a small neigh-
+bourhood that is an open 3-ball, and around each edge of C we pick a small
+neighbourhood that is an open cylinder. Next we define orientations on
+these neighbourhoods. For that we pick an arbitrary vertex and pick for
+its neighbourhood one of the two orientations arbitrarily. Then we pick
+compatible orientations at the neighbourhoods of the incident edges. As C
+is connected, we can continue recursively along a spanning tree of C until
+we picked orientations at all neighbourhoods of vertices and edges. If for
+a vertex and an incident edge, their neighbourhoods have incompatible ori-
+entations, this edge must be outside the spanning tree and we can build a
+Solid Klein Bottle from its fundamental cycle as follows. Indeed, sticking
+together the balls at the vertices and the cylinders at the edges gives a Solid
+Klein Bottle. By assumption, this does not occur, so all orientations of
+neighbourhoods are compatible.
+    Let Σ be the rotation system induced by this embedding of C in M with
+respect to the orientations chosen above. Clearly, this rotations system Σ is
+planar.
+
+Corollary 4.3. Any embedding of a 2-complex C in an orientable 3-manifold
+M induces a planar rotation system.
+
+Proof. It is well-known that a 3-manifold is orientable if and only if it does
+not have the Solid Klein Bottle as a submanifold. Hence Corollary 4.3 follows
+from Lemma 4.2.
+
+    Throughout this section we fix a connected and locally connected simpli-
+cial complex C with a rotation system Σ. An associated topological space
+
+                                      9
+T (C, Σ) is defined as follows. For each local surface S of (C, Σ) we take
+an embedding into S3 as follows. Let g be the genus of S. We start with
+the unit ball in S3 and then identify g disjoint pairs of discs through the
+outside.9 The constructed surface is isomorphic to S, so this defines an
+embedding of S. Each local surface is oriented and we denote by Ŝ the
+topological space obtained from S3 by deleting all points on the outside of
+S. We obtain T (C, Σ) from the simplicial complex C by gluing onto each
+local surface S the topological space Ŝ along S.
+    We remark that associated topological spaces may depend on the chosen
+embeddings of the local surfaces S into S3 . However, if all local surfaces are
+spheres, then any two associated topological spaces are isomorphic and in
+this case we shall talk about ‘the’ associated topological space.
+    Clearly, associated topological spaces T (C, Σ) are compact and con-
+nected as C is connected.
+
+Lemma 4.4. The rotation system Σ is planar if and only if the associated
+topological space T (C, Σ) is an oriented 3-dimensional manifold.
+
+Proof. Corollary 4.3 implies that if the topological space T (C, Σ) is a 3-
+dimensional orientable 3-manifold, then the rotation system Σ is planar.
+Conversely, now assume that Σ is a planar rotation system. We have to
+show that the topological space T (C, Σ) is an orientable 3-manifold. It
+suffices to show that T (C, Σ) is a 3-manifold since then orientability follows
+immediately from the construction of T (C, Σ). So we are to show that there
+is a neighbourhood around any point x of T (C, Σ) that is isomorphic to the
+closed 3-dimensional ball B3 .
+    If x is a point not in C, this is clear. If x is an interior point of a face f ,
+we obtain a neighbourhood of x by gluing together neighbourhoods of copies
+of x in the local surfaces that contain an orientation of f . Each orientation
+of f is contained in local surfaces exactly once. Hence we glue together the
+two orientations of f and clearly x has a neighbourhood isomorphic to B3 .
+    Next we assume that x is an interior point of an edge e. Some open
+neighbourhood of x is isomorphic to the topological space obtained from
+gluing together for each copy of e in a local surface, a neighbourhood around
+a copy x0 of x on those edges. A neighbourhood around x0 has the shape of
+a piece of a cake, see Figure 5
+    First we consider the case that x has several copies. As σ(e) is a cyclic
+orientation, these pieces of a cake are glued together in a cyclic way along
+   9
+     We have some flexibility along which paths on the outside we do these identifications
+but we do not need to make particular choices for our construction to work.
+
+
+                                           10
+                                x0
+
+Figure 5: A piece of a cake. This space is obtained by taking the product of
+a triangle with the unit interval. The edge e is mapped to the set of points
+corresponding to some vertex of the triangle.
+
+
+
+faces. Since each cyclic orientation of a face appears exactly once in local
+surfaces, we identify in each gluing step the two cyclic orientations of a face.
+Informally, the overall gluing will be a ‘cake’ with x as an interior point.
+Hence a neighbourhood of x is isomorphic to B3 . If there is only one copy
+of x0 , then the copy of e containing x0 is incident with the two orientations
+of a single face. Then we obtain a neighbourhood of x by identifying these
+two orientations. Hence there is a neighbourhood of x isomorphic to B3 .
+    It remains to consider the case where x is a vertex of C. We obtain a
+neighbourhood of x by gluing together neighbourhoods of copies of x in local
+surfaces. We shall show that we have one such copy for every face of the
+link complex for (C, Σ) and a neighbourhood of x in such a copy is given by
+the cone over that face with x being the top of the cone, see Figure 6. We
+
+
+
+
+                       x                                 x
+
+
+
+Figure 6: In this example the link complex of x is a tetrahedron. The three
+faces visible in our drawing are highlighted in red, gold and grey. On the
+left we see how the four cones over the faces of the link complex are pasted
+together to form the cone over the link complex depicted on the right.
+
+
+shall show that the glued together neighbourhood is the cone over the link
+complex with x at the top. Since Σ is planar and C is locally connected, the
+
+
+                                      11
+link complex is isomorphic to the 2-sphere. Since the cone over the 2-sphere
+is a 3-ball, the neighbourhood of x has the desired type.
+    Now we examine this plan in detail. By Lemma 3.5 and Corollary 3.6,
+the copies are mapped by the bijection ι to the faces of the link complex
+at x and a neighbourhood around such a copy x0 is isomorphic to the cone
+with top x0 over the face ι(x0 ). We glue these cones over the faces ι(x0 ) on
+their faces that are obtained from edges of ι(x0 ) by adding the top x0 .
+    The glued together complex is isomorphic to the cone over the complex
+S obtained by gluing together the faces ι(x0 ) along edges, where we always
+glue the edge the way round so that copies of the same vertex of the local
+incidence graph are identified. Hence the vertex-edge-incidence relation and
+the edge-face-incidence relation of S are the same as for the link complex at
+x. The same is true for the cyclic orderings of edges on faces. So S is equal
+to the link complex at x.
+    Hence a neighbourhood of x is isomorphic to a cone with top x over the
+link complex at x. Since Σ is a planar rotation system, the link complex is
+a disjoint union of spheres. As C is locally connected, it is a sphere. Thus
+its cone is isomorphic to B3 .
+Lemma 4.5. If C is simply connected, then any associated topological space
+T (C, Σ) is simply connected.
+Proof. This is a consequence of Van Kampen’s Theorem [7, Theorem 1.20].
+Indeed, we obtain T from T (C, Σ) by deleting all interior points of the sets
+Ŝ for local surfaces S that are not in a small open neighbourhood of C. This
+can be done in such a way that T has a deformation retract to C, and thus
+is simply connected. Now we recursively glue the spaces Ŝ back onto T . In
+each step we glue a single space Ŝ. Call the space obtained after n gluings
+Tn .
+     The fundamental group of Ŝ is a quotient of the fundamental group
+of the intersection of Tn and Ŝ (this follows from the construction of the
+embedding of the surface S into the space Ŝ). And the fundamental group
+of Tn is trivial by induction. So we can apply Van Kampen’s Theorem to
+deduce that the gluing space Tn+1 has trivial fundamental group. Hence
+the final gluing space T (C, Σ) has trivial fundamental group. So it is simply
+connected.
+   The converse of Lemma 4.5 is true if all local surfaces for (C, Σ) are
+spheres as follows.
+Lemma 4.6. If all local surfaces for (C, Σ) are spheres and the associated
+topological space T (C, Σ) is simply connected, then C is simply connected.
+
+                                     12
+Proof. Let ϕ an image of S1 in C. Since T (C, Σ) is simply connected, there
+is a homotopy from ϕ to a point of C in T (C, Σ). We can change the
+homotopy so that it avoids an interior point of each local surface of the em-
+bedding. Since each local surface is a sphere, for each local surface without
+the chosen point there is a continuous projection to its boundary. Since
+these projections are continuous, the concatenation of them with the homo-
+topy is continuous. Since this concatenation is constant on C this defines a
+homotopy of ϕ inside C. Hence C is simply connected.
+
+    We conclude this section with the following special case of Theorem 1.1.
+
+Theorem 4.7. Let Σ be a rotation system of a locally connected simpli-
+cial complex C. Then Σ is planar if and only if T (C, Σ) is an oriented
+3-manifold. And if Σ is planar and C is simply connected, then T (C, Σ)
+must be the 3-sphere.
+
+Proof. By treating different connected components separately, we may as-
+sume that C is connected. The first part follows from Lemma 4.4. The sec-
+ond part follows from Lemma 4.5 and Perelman’s theorem [13, 15, 14] that
+any compact simply connected 3-manifold is isomorphic to the 3-sphere.
+
+Remark 4.8. We used Perelman’s theorem in the proof of Theorem 4.7.
+On the other hand it together with Moise’s theorem [10], which says that ev-
+ery compact 3-dimensional manifold has a triangulation, implies Perelman’s
+theorem as follows. Let M be a simply connected 3-dimensional compact
+manifold. Let T be a triangulation of M . And let C be the simplicial
+complex obtained from T by deleting the 3-dimensional cells. Let Σ be the
+rotation system given by the embedding of C into T . It is clear from that
+construction that T is equal to the triangulation given by the embedding of
+C into T (C, Σ). Hence we can apply Lemma 4.6 to deduce that C is simply
+connected. Hence by Theorem 4.7 the topological space T (C, Σ), into which
+C embeds, is isomorphic to the 3-sphere. Since T (C, Σ) is isomorphic to M ,
+we deduce that M is isomorphic to the 3-sphere.
+
+
+5    Cut vertices
+In this section we deduce Theorem 1.1 from Theorem 4.7 proved in the last
+section. Given a prime p, a simplicial complex C is p-nullhomologous if
+every directed cycle of C is generated over Fp by the boundaries of faces of
+C. Note that a simplicial complex C is p-nullhomologous if and only if the
+
+
+
+                                     13
+first homology group H1 (C, Fp ) is trivial. Clearly, every simply connected
+simplicial complex is p-nullhomologous.
+     A vertex v in a connected complex C is a cut vertex if the 1-skeleton
+of C without v is a disconnected graph10 . A vertex v in an arbitrary, not
+necessarily connected, complex C is a cut vertex if it is a cut vertex in a
+connected component of C.
+
+Lemma 5.1. Every p-nullhomologous simplicial complex without a cut ver-
+tex is locally connected.
+
+Proof. We construct for any vertex v of an arbitrary simplicial complex C
+such that the link graph L(v) at v is not connected and v is not a cut vertex
+a cycle containing v that is not generated by the face boundaries of C.
+    Let e and g be two vertices in different components of L(v). These are
+edges of C and let w and u be their endvertices different from v. Since v is
+not a cut vertex, there is a path in C between u and w that avoids v. This
+path together with the edges e and g is a cycle o in C that contains v.
+    Our aim is to show that o is not generated by the boundaries of faces
+of C. Suppose for a contradiction that o is generated. Let F be a family
+of faces whose boundaries sum up to o. Let Fv be the subfamily of faces
+of F that are incident with v. Each face in Fv is an edge of L(v) and each
+vertex of L(v) is incident with an even number (counted with multiplicities)
+of these edges except for e and g that are incident with an odd number of
+these faces. Let X be the connected component of the graph L(v) restricted
+to the edge set Fv that contains the vertex e. We obtain X 0 from X by
+adding k − 1 parallel edges to each edge that appears k times in Fv . Since
+X 0 has an even number of vertices of odd degree also g must be in X. This is
+a contradiction to the assumption that e and g are in different components
+of L(v). Hence o is not generated by the boundaries of faces of C. This
+completes the proof.
+
+    Given a connected complex C with a cut vertex v and a connected com-
+ponent K of the 1-skeleton of C with v deleted, the complex attached at v
+centered at K has vertex set K + v and its edges and faces are those of C
+all of whose incident vertices are in K + v.
+
+  10
+    We define this in terms of the 1-skeleton instead of directly in terms of C for a
+technical reason: The object obtained from a simplicial complex by deleting a vertex may
+have edges not incident with faces. So it would not be a 2-dimensional simplicial complex
+in the terminology of this paper.
+
+
+
+
+                                           14
+Lemma 5.2. A connected simplicial complex C with a cut vertex v has a
+piece-wise linear embedding into S3 if and only if all complexes attached at
+v have a piece-wise linear embedding into S3 .
+
+Proof. If C has an embedding into S3 , then clearly all complexes attached
+at v have an embedding. Conversely suppose that all complexes attached
+at v have an embedding into S3 . Pick one of these complexes arbitrarily,
+call it X and fix an embedding of it into S3 . In that embedding pick for
+each component of C remove v except that for X a closed ball contained in
+S3 that intersects X precisely in v such that all these closed balls intersect
+pairwise only at v. Each complex attached at v, has a piece-wise linear
+embedding into the 3-dimensional unit ball as they have embeddings into S3
+such that some open set is disjoint from the complex. Now we attach these
+embeddings into the balls of the embedding of X inside the reserved balls
+by identifying the copies of v. This defines an embedding of C.
+
+    Recall that in order to prove Theorem 1.1 it suffices to show that any
+simply connected simplicial complex C has a piece-wise linear embedding
+into S3 if and only if C has a planar rotation system.
+
+Proof of Theorem 1.1. Clearly if a simplicial complex is embeddable into S3 ,
+then it has a planar rotation system. For the other implication, let C be
+a simply connected simplicial complex and Σ be a planar rotation system.
+We prove the theorem by induction on the number of cut vertices of C. If
+C has no cut vertex, it is locally connected by Lemma 5.1. Thus it has a
+piece-wise linear embedding into S3 by Theorem 4.7.
+    Hence we may assume that C has a cut vertex v. As C is simply con-
+nected, every complex attached at v is simply connected. Hence by the
+induction hypothesis each of these complexes has a piece-wise linear em-
+bedding into S3 . Thus C has a piece-wise linear embedding into S3 by
+Lemma 5.2.
+
+
+6    Local surfaces of planar rotation systems
+The aim of this section is to prove Theorem 1.2. A shorter proof is sketched
+in Remark 6.10 using algebraic topology. As a first step in that direction,
+we first prove the following.
+
+Theorem 6.1. Let C be a locally connected p-nullhomologous simplicial
+complex that has a planar rotation system. Then all local surfaces of the
+planar rotation system are spheres.
+
+                                     15
+     Before we can prove Theorem 6.1 we need some preparation. The com-
+plex dual to a simplicial C with a rotation system Σ has as its set of vertices
+the set of local surfaces of Σ. Its set of edges is the set of faces of C, and an
+edge is incident with a vertex if the corresponding face is in the correspond-
+ing local surface. The faces of the dual are the edges of C. Their cyclic
+ordering is as given by Σ. In particular, the edge-face-incidence-relation
+of the dual is the same as that of C but with the roles of edges and faces
+interchanged.
+     Moreover, an orientation f~ of a face f of C corresponds to the direction
+of f when considered as an edge of the dual complex D that points towards
+the vertex of D whose local-surface-equivalence class contains f~. Hence the
+direction of the dual complex C induces a direction of the complex D. By
+ΣC = (σC (f )|f ∈ E(D)) we denote the following rotation system for D: for
+σC (f ) we take the orientation f~ of f in the directed complex C.
+     In this paper we follow the convention that for edges of C we use the
+letter e (with possibly some subscripts) while for faces of C we use the letter
+f . In return, we use the letter f for the edges of a dual complex of C and e
+for its faces.
+Lemma 6.2. Let C be a connected and locally connected simplicial complex.
+Then for any rotation system, the dual complex D is connected.
+Proof. Two edges of C are C-related if there is a face of C incident with both
+of them. And they are C-equivalent if they are in the transitive closure of
+the symmetric relation ‘C-related’. Clearly, any two C-equivalent edges of
+C are in the same connected component. If C however is locally connected,
+also the converse is true: any two edges in the same connected component
+are C-equivalent. Indeed, take a path containing these two edges. Any
+two edges incident with a common vertex are C-equivalent as C is locally
+connected. Hence any two edges on the path are C-equivalent.
+    We define D-equivalent like ‘C-equivalent’ with ‘D’ in place of ‘C’. Now
+let f and f 0 be two edges of D. Let e and e0 be edges of C incident with f
+and f 0 , respectively. Since C is connected and locally connected the edges
+e and e0 are C-equivalent. As C and D have the same edge/face incidence
+relation, the edges f and f 0 of D are D-equivalent. So any two edges of D
+are D-equivalent. Hence D is connected.
+   First, we prove the following, which is reminiscent of euler’s formula.
+Lemma 6.3. Let C be a locally connected p-nullhomologous simplicial com-
+plex with a planar rotation system and D the dual complex. Then
+                       |V (C)| − |E| + |F | − |V (D)| ≥ 0
+
+                                       16
+   Moreover, we have equality if and only if D is p-nullhomologous.
+
+Proof. Let ZC be the dimension over Fp of the cycle space of C. Similarly
+we define ZD . Let r be the rank of the edge-face-incidence matrix over Fp .
+Note that r ≤ ZD and that r = ZC as H1 (C, Fp ) = 0. So ZD − ZC ≥ 0.
+Hence it suffices to prove the following.
+Sublemma 6.4.
+
+                  |V (C)| − |E| + |F | − |V (D)| = ZD − ZC
+
+Proof. Let kC be the number of connected components of C and kD be the
+number of connected components of D. Recall that the space orthogonal
+to the cycle space (over Fp ) in a graph G has dimension |V (G)| minus the
+number of connected components of G. Hence ZC = |E| − |V (C)| + kC and
+ZD = |F | − |V (D)| + kD . Subtracting the first equation from the second
+yields:
+           |V (C)| − |E| + |F | − |V (D)| + (kD − kC ) = ZD − ZC
+Since the dual complex of the disjoint union of two simplicial complexes
+(with planar rotation systems) is the disjoint union of their dual complexes,
+kC ≤ kD . By Lemma 6.2 kC = kD . Plugging this into the equation before,
+proves the sublemma.
+
+     This completes the proof of the inequality. We have equality if and only
+if r = ZD . So the ‘Moreover’-part follows.
+
+    Our next goal is to prove the following, which is also reminiscent of
+euler’s formula but here the inequality goes the other way round.
+
+Lemma 6.5. Let C be a locally connected simplicial complex with a planar
+rotation system Σ and D the dual complex. Then:
+
+                      |V (C)| − |E| + |F | − |V (D)| ≤ 0
+
+with equality if and only if all link complexes for (D, ΣC ) are spheres.
+
+    Before we can prove this, we need some preparation. By a we denote
+the sum of the faces of link complexes for (C, Σ). By a0 we denote the sum
+over the faces of link complexes for (D, ΣC ). Before proving that a is equal
+to a0 we prove that it is useful by showing the following.
+
+Claim 6.6. Lemma 6.5 is true if a = a0 and all link complexes for (D, ΣC )
+are connected.
+
+                                      17
+Proof. Given a face f of C, we denote the number of edges incident with f
+by deg(f ). Our first aim is to prove that
+                                           X
+                      2|V (C)| = 2|E| −           deg(f ) + a               (1)
+                                           f ∈F
+
+    To prove this equation, we apply Euler’s formula [5] in the link complexes
+for (C, Σ). Then we take the sum of all these equations over all v ∈ V (C).
+Since Σ is a planar rotation system, all link complexes are a disjoint union
+of spheres. Since C is locally connected, all link complexes are connected
+and hence are spheres. So they have euler characteristic two. Thus we get
+the term 2|V (C)| on the left hand side. By definition, a is the sum of the
+faces of link complexes for (C, Σ).
+    The term 2|E| is the sum over all vertices of link complexes for (C, Σ).
+Indeed, each edge of C between the two vertices v and w of C is a vertex of
+precisely the two
+               P link complexes for v and w.
+    The term f ∈F deg(f ) is the sum over all edges of link complexes for
+(C, Σ). Indeed, each face f of C is in precisely those link complexes for
+vertices on the boundary of f . This completes the proof of (1).
+    Secondly, we prove the following inequality using a similar argument.
+Given an edge e of C, we denote the number of faces incident with e by
+deg(e).                                  X
+                      2|V (D)| ≥ 2|F | −    deg(e) + a0                    (2)
+                                           e∈E
+
+    To prove this, we apply Euler’s formula in link complexes for (D, ΣC ),
+and take the sum over all v ∈ V (D). Here we have ‘≥’ instead of ‘=’ as we
+just know by assumption that the link complexes are connected but they
+may not be a sphere. So we have 2|V (D)| on the left and a0 is the sum over
+the faces of link complexes for (D, ΣC ).
+    The term 2|F | is the sum over all vertices of link complexes for (D, ΣC ).
+Indeed, each edge of D between the two different vertices v and w of D is a
+vertex of precisely the two link complexes for v and w. A loop gives rise to
+two vertices inP the link graph at the vertex it is attached to.
+    The term e∈E deg(e) is the sum over all edges of link complexes for
+(D, ΣC ). Indeed, each face e of D is in the link complex at v with multiplicity
+equal to the number of times it traverses Pv. This completes Pthe proof of (2).
+                            0
+    By assumption, a = a . The sums f ∈F deg(f ) and e∈E deg(e) both
+count the number of nonzero entries of A, so they are equal. Subtracting
+(2) from (1), rearranging and dividing by 2 yields:
+
+
+
+                                      18
+                          |V (C)| − |E| + |F | − |V (D)| ≤ 0
+with equality if and only if all link complexes for (D, ΣC ) are spheres.
+
+    Hence our next aim is to prove that a is equal to a0 . First we need some
+preparation.
+    Two cell complexes C and D are (abstract) surface duals if the set of
+vertices of C is (in bijection with) the set of faces of D, the set of edges of
+C is the set of edges of D and the set of faces of C is the set of vertices of
+D. And these three bijections preserve incidences.
+
+Lemma 6.7. Let C be a simplicial complex and Σ be a rotation system and
+let D be the dual. The surface dual of a local surface S for (C, Σ) is equal
+to the link complex for (D, ΣC ) at the vertex ` of D that corresponds to S.
+
+Proof. It is immediate from the definitions that the vertices of the link
+complex L̄ at ` are the faces of S. The edges of S are triples (e, f~, ~g ),
+where e is an edge of C and f~ and ~g are orientations of faces of C that are
+related via e and are in the local-surface-equivalence class for S. Hence in
+D, these are triples (e, f~, ~g ) such that f~ and ~g are directions of edges that
+point towards ` and f and g are adjacent in the cyclic ordering of the face
+e. This are precisely the edges of the link graph L(`). Hence the link graph
+L(`) is the dual graph11 of the cell complex S.
+    Now we will use the Edmonds-Hefter-Ringel rotation principle, see [9,
+Theorem 3.2.4], to deduce that the link complex L̄ at ` is the surface dual
+of S. We denote the unique cell complex that is a surface dual of S by S ∗ .
+Above we have shown that L̄ and S ∗ have the same 1-skeleton. Moreover, the
+rotation systems at the vertices of the link complex L̄ are given by the cyclic
+orientations in the local-surface-equivalence class for S. By Observation 3.3
+these local-surface-equivalence classes define an orientation of S. So L̄ and
+S ∗ have the same rotation systems. Hence by the Edmonds-Hefter-Ringel
+rotation principle L̄ and S ∗ have to be isomorphic. So L̄ is a surface dual of
+S.
+
+Proof of Lemma 6.5. Let C be a locally connected simplicial complex and Σ
+be a rotation system and let D be the dual. Let ΣC be as defined above. By
+  11
+     The dual graph of a cell complex C is the graph G whose set of vertices is (in bijection
+with) the set of faces of C and whose set of edges is the set of edges of C. And the incidence
+relation between the vertices and edges of G is the same as the incidence relation between
+the faces and edges of C.
+
+
+                                             19
+Observation 3.2 and Lemma 6.7 every link complex for (D, ΣC ) is connected.
+By Claim 6.6, it suffices to show that the sum over all faces of link complexes
+of C with respect to Σ is equal to the sum over all faces of link complexes
+for D with respect to ΣC . By Lemma 6.7, the second sum is equal to the
+sum over all vertices of local surfaces for (C, Σ). This completes the proof
+by Lemma 3.5.
+
+Proof of Theorem 6.1. Let C be a p-nullhomologous locally connected sim-
+plicial complex that has a planar rotation system Σ. Let D be the dual
+complex. Then by Lemma 6.5 and Lemma 6.3, C and D satisfy Euler’s
+formula, that is:
+                     |V (C)| − |E| + |F | − |V (D)| = 0
+Hence by Lemma 6.5 all link complexes for (D, ΣC ) are spheres. By Lemma 6.7
+these are dual to the local surfaces for (C, Σ). Hence all local surfaces for
+(C, Σ) are spheres.
+
+    The following theorem gives three equivalent characterisations of the
+class of locally connected simply connected simplicial complexes embeddable
+in S3 .
+
+Theorem 6.8. Let C be a locally connected simplicial complex embedded
+into S3 . The following are equivalent.
+
+  1. C is simply connected;
+
+  2. C is p-nullhomologous for some prime p;
+
+  3. all local surfaces of the planar rotation system induced by the topolog-
+     ical embedding are spheres.
+
+Proof. Clearly, 1 implies 2. To see that 2 implies 3, we assume that C
+is p-nullhomologous. Let Σ be the planar rotation system induced by the
+topological embedding of C into S3 . By Theorem 6.1 all local surfaces for
+(C, Σ) are spheres.
+    It remains to prove that 3 implies 1. So assume that C has an embedding
+into S3 such that all local surfaces of the planar rotation system induced
+by the topological embedding are spheres. By treating different connected
+components separately, we may assume that C is connected. By Lemma 3.4
+all local surfaces of the topological embedding are spheres. Thus 3 implies
+1 by Lemma 4.6.
+
+
+
+
+                                      20
+Remark 6.9. Our proof actually proves the strengthening of Theorem 6.8
+with ‘embedded into S3 ’ replaced by ‘embedded into a simply connected
+3-dimensional compact manifold.’ However this strengthening is equivalent
+to Theorem 6.8 by Perelman’s theorem.
+
+    Recall that in order to prove Theorem 1.2, it suffices to show that every
+p-nullhomologous simplicial complex C has a piece-wise linear embedding
+into S3 if and only if it is simply connected and C has a planar rotation
+system.
+
+Proof of Theorem 1.2. Using an induction argument on the number of cut
+vertices as in the proof of Theorem 1.1, we may assume that C is locally
+connected. If C has a piece-wise linear embedding into S3 , then it has a
+planar rotation system and it is simply connected by Theorem 6.8. The
+other direction follows from Theorem 1.1.
+
+Remark 6.10. One step in proving Theorem 1.2 was showing that if a
+simplicial complex whose first homology group is trivial embeds in S3 , then
+it must be simply connected. In this section we have given a proof that only
+uses elementary topology. We use these methods again in [4].
+     However there is a shorter proof of this fact, which we shall sketch in
+the following. Let C be a simplicial complex embedded in S3 such that one
+local surface of the embedding is not a sphere. Our aim is to show that the
+first homology group of C cannot be trivial.
+     We will rely on the fact that the first homology group of X = S3 \ S1 is
+not trivial. It suffices to show that the homology group of X is a quotient of
+the homology group of C. Since here by Hurewicz’s theorem, the homology
+group is the abelisation of the fundamental group, it suffices to show that
+the fundamental group π1 (X) of X is a quotient of the fundamental group
+π1 (C).
+     We let C1 be a small open neighbourhood of C in the embedding of C in
+S3 . Since C1 has a deformation retract onto C, it has the same fundamental
+group. We obtain C2 from C1 by attaching the interiors of all local surfaces
+of the embedding except for one – which is not a sphere. This can be done
+by attaching finitely many 3-balls. Similar as in the proof of Lemma 4.5,
+one can use Van Kampen’s theorem to show that the fundamental group of
+C2 is a quotient of the fundamental group of C1 . By adding finitely many
+spheres if necessary and arguing as above one may assume that remaining
+local surface is a torus. Hence C2 has the same fundamental group as X.
+This completes the sketch.
+
+
+
+                                     21
+7        Embedding general simplicial complexes
+There are three classes of simplicial complexes that naturally include the
+simply connected simplicial complexes: the p-nullhomologous ones that are
+included in those with abelian fundamental group that in turn are included
+in general simplicial complexes. Theorem 1.2 characterises embeddability of
+p-nullhomologous complexes. In this section we prove embedding results for
+the later two classes. The bigger the class gets, the stronger assumptions
+we will require in order to guarantee topological embeddings into S3 .
+    A curve system of a surface S of genus g is a choice of at most g genus
+reducing curves in S that are disjoint. An extension of a rotation system Σ
+is a choice of curve system at every local surface of Σ. An extension of a
+rotation system of a complex C is simply connected if the topological space
+obtained from C by gluing12 a disc at each curve of the extension is simply
+connected. The definition of a p-nullhomologous extension is the same with
+‘p-nullhomologous’ in place of ‘simply connected’.
+
+Theorem 7.1. Let C be a connected and locally connected simplicial com-
+plex with a rotation system Σ. The following are equivalent.
+
+     1. Σ is induced by a topological embedding of C into S3 .
+
+     2. Σ is a planar rotation system that has a simply connected extension.
+
+     3. We can subdivide edges of C, do baricentric subdivision of faces and
+        add new faces such that the resulting simplicial complex is simply con-
+        nected and has a topological embedding into S3 whose induced planar
+        rotation system Σ0 ‘induces’ Σ.
+
+    Here we define that ‘Σ0 induces Σ’ in the obvious way as follows. Let C
+be a simplicial complex obtained from a simplicial complex C 0 by deleting
+faces. A rotation system Σ = (σ(e)|e ∈ E(C)) of C is induced by a rotation
+system Σ0 = (σ 0 (e)|e ∈ E(C)) of C 0 if σ(e) is the restriction of σ 0 (e) to the
+faces incident with e. If C is obtained from contracting edges of C 0 instead,
+a rotation system Σ of C is induced by a rotation system Σ0 of C 0 if Σ is
+the restriction of Σ0 to those edges that are in C. If C 0 is obtained from
+C by a baricentric subdivision of a face f we take the same definition of
+‘induced’, where we make the identification between the face f of C and all
+faces of C 0 obtained by subdividing f . Now in the situation of Theorem 7.1,
+    12
+    We stress that the curves need not go through edges of C. ‘Gluing’ here is on the
+level of topological spaces not of complexes.
+
+
+
+                                         22
+we say that Σ0 induces Σ if there is a chain of planar rotation systems each
+inducing the next one starting with Σ0 and ending with Σ.
+   Before we can prove Theorem 7.1, we need some preparation. The fol-
+lowing is a consequence of the Loop Theorem [12, 6].
+
+Lemma 7.2. Let X be an orientable surface of genus g ≥ 1 embedded
+topologically into R3 , then there is a genus reducing circle13 γ of X and a
+disc D with boundary γ and all interior points of D are contained in the
+interior of X.
+
+Corollary 7.3. Let X be an orientable surface of genus g ≥ 1 embedded
+topologically into R3 , then there are genus reducing circles γ1 ,..., γg of X
+and closed discs Di with boundary γi such that the Di are disjoint and the
+interior points of the discs Di are contained in the interior of X.
+
+Proof. We prove this by induction on g. In the induction step we cut of
+the current surface along D. Then we the apply Lemma 7.2 to that new
+surface.
+
+Proof of Theorem 7.1. 1 is immediately implied by 3.
+     Next assume that Σ is induced by a topological embedding of C into
+S3 . Then Σ is clearly a planar rotation system. It has a simply connected
+extension by Corollary 7.3. Hence 1 implies 2.
+     Next assume that Σ is a planar rotation system that has a simply con-
+nected extension. We can clearly subdivide edges and do baricentric subdi-
+vision and change the curves of the curve system of the simply connected
+extension such that in the resulting simplicial complex C 0 all the curves of
+the simply connected extension closed are walks in the 1-skeleton of C 0 . We
+define a planar rotation system Σ0 of C 0 that induces Σ as follows. If we
+subdivide an edge, we assign to both copies the cyclic orientation of the
+original edge. If we do a baricentric subdivision, we assign to all new edges
+the unique cyclic orientation of size two. Iterating this during the construc-
+tion of C 0 defines Σ0 = (σ 0 (e)|e ∈ E(C)), which clearly is a planar rotation
+system that induces Σ. By construction Σ0 has a simply connected extension
+such that all its curves are walks in the 1-skeleton of C 0 .
+     Informally, we obtain C 00 from C 0 by attaching a disc at the boundary of
+each curve of the simply connected extension. Formally, we obtain C 00 from
+C 0 by first adding a face for each curve γ in the simply connected extension
+whose boundary is the closed walk γ. Then we do a baricentric subdivision
+ 13
+      A circle is a topological space homeomorphic to S1 .
+
+
+
+                                             23
+to all these newly added faces. This ensures that C 00 is a simplicial com-
+plex. Since C is locally connected, also C 00 is locally connected. Since the
+geometric realisation of C 00 is equal to the geometric realisation of C, which
+is simply connected, the simplicial complex C 00 is simply connected.
+     Each newly added face f corresponds to a traversal of a curve γ of some
+edge e of C 0 . This traversal is a unique edge of the local surface S to whose
+curve system γ belongs. For later reference we denote that copy of e in S
+by ef .
+     We define a rotation system Σ00 = (σ 00 (e)|e ∈ E(C)) of C 00 as follows. All
+edges of C 00 that are not edges of C 0 are incident with precisely two faces.
+We take the unique cyclic ordering of size two there.
+     Next we define σ 00 (e) at edges e of C 0 that are incident with newly added
+faces. If e is only incident with a single face of C 0 , then e is only in a single
+local surface and it only has one copy in that local surface. Since the curves
+at that local surface are disjoint. We could have only added a single face
+incident with e. We take for σ 00 (e) the unique cyclic orientation of size two
+at e.
+     So from now assume that e is incident with at least two faces of C 0 . In
+order to define σ 00 (e), we start with σ 0 (e) and define in the following for each
+newly added face in between which two cyclic orientations of faces adjacent
+in σ 0 (e) we put it. We shall ensure that between any two orientations we
+put at most one new face. Recall that two cyclic orientations f~1 and f~2 of
+faces f1 and f2 , respectively, are adjacent in σ 0 (e) if and only if there is a
+clone e0 of e in a local surface S for (C 0 , Σ0 ) containing f~1 and f~2 such that e0
+is incident with f~1 and f~2 in S. Let f be a face newly added to C 00 at e. Let
+γf be the curve from which f is build and let Sf be the local surface that
+has γf in its curve system. Let ef be the copy of e in Sf that corresponds
+to f as defined above. when we consider f has a face obtained from the
+disc glued at γf . We add f to σ 0 (e) in between the two cyclic orientations
+that are incident with ef in Sf . This completes the definition of Σ00 . Since
+the copies ef are distinct for different faces f , the rotation system Σ00 is
+well-defined. By construction Σ00 induces Σ. We prove the following.
+Sublemma 7.4. Σ00 is a planar rotation system of C 00 .
+
+Proof. Let v be a vertex of C 00 . If v is not a vertex of C 0 , then the link graph
+at v is a cycle. Hence the link complex at v is clearly a sphere. Hence we
+may assume that v is a vertex of C 0 .
+    Our strategy to show that the link complex S 00 at v for (C 00 , Σ00 ) is a
+sphere will be to show that it is obtained from the link complex S 0 for
+
+
+                                         24
+(C 0 , Σ0 ) by adding edges in such a way that each newly added edge traverses
+a face of S 0 and two newly added edges traverse different face of S 0 .
+     So let f be a newly added face incident with v of C 0 . Let x and y be
+the two edges of f incident with v. We make use of the notations γf , Sf , xf
+and yf defined above. Let vf be the unique vertex of Sf traversed by γf in
+between xf and yf . By Lemma 3.5 there is a unique face zf of S 0 mapped
+by the map ι of that lemma to vf . And x and y are vertices in the boundary
+of zf . The edges on the boundary of zf incident with x and y are the cyclic
+orientations of the faces that are incident with xf and yf in Sf . Hence in
+S 00 the edge f traverses the face zf .
+     It remains to show that the faces zf of S 0 are distinct for different newly
+added faces f of C 00 . For that it suffices by Lemma 3.5 to show that the
+vertices vf are distinct. This is true as curves for Sf traverse a vertex of Sf
+at most once and different curves for Sf are disjoint.
+
+
+   Since Σ00 is a planar rotation system of the locally connected simplicial
+complex C 00 and C 00 is simply connected, Σ00 is induced by a topological
+embedding of C 00 into S3 by Theorem 4.7. Hence 2 implies 3.
+
+   A natural weakening of the property that C is simply connected is that
+the fundamental group of C is abelian. Note that this is equivalent to the
+condition that every chain that is p-nullhomologous is simply connected.
+
+Theorem 7.5. Let C be a connected and locally connected simplicial com-
+plex with abelian fundamental group. Then C has a topological embed-
+ding into S3 if and only if it has a planar rotation system Σ that has a
+p-nullhomologous extension.
+
+   In order to prove Theorem 7.5, we prove the following.
+
+Lemma 7.6. A p-nullhomologous extension of a planar rotation system of
+a simplicial complex C with abelian fundamental group is a simply connected
+extension.
+
+Proof. Let C 0 be the topological space obtained from C by gluing discs along
+the curves of the p-nullhomologous extension. The fundamental group π 0
+of C 0 is a quotient of the fundamental group π of C, see for example [7,
+Proposition 1.26]. Since π is abelian by assumption, also π 0 is abelian. That
+is, it is equal to its abelisation, which is trivial by assumption. Hence C 0 is
+simply connected.
+
+
+
+                                       25
+Proof of Theorem 7.5. If C has a topological embedding into S3 , then by
+Theorem 7.1 it has a planar rotation system that has a p-nullhomologous
+extension. If C has a planar rotation system that has a p-nullhomologous
+extension, then that extension is simply connected by Lemma 7.6. Hence C
+has a topological embedding into S3 by the other implication of Theorem 7.1.
+
+
+
+8    Non-orientable 3-manifolds
+By Corollary 4.3 and Lemma 4.4 a 2-complex C is embeddable in an ori-
+entable 3-manifold if and only if it has a planar rotation system. Here
+we discuss a notion similar to planar rotation systems that can be used to
+characterise embeddability in 3-manifolds combinatorially.
+    A generalised planar rotation system of a 2-complex C is a choice of
+embedding of all its link graphs in the plane so that for each edge e of C
+in the two link graphs at the endvertices of the edge e, the rotators at the
+vertex e are reverse or agree. We colour an edge red if they agree. We have
+the further condition that for every face f of C its number of red incident
+edges is even.
+Remark 8.1. Any planar rotation system defines a generalised planar ro-
+tation system. In this induced generalised planar rotation system no edge
+is red.
+Remark 8.2. Let C be simplicial complex whose first homology group over
+the binary field F2 is trivial, for example this includes the case where C is
+simply connected. Then C has a planar rotation system if and only if it has
+a generalised planar rotation system by Theorem 6.8 and [3, Lemma 4.3].
+Remark 8.3. A locally 3-connected 2-complex has a generalised planar
+rotation system if and only if every choice of embeddings of its link graphs
+in the plane is a generalised planar rotation system. Indeed, any face shares
+an even number of edges with every vertex. By local 3-connectedness, the
+embeddings of a link graph at some vertex v is unique up to orientation,
+which reverses all rotators at edges incident with v. So it flips red edges to
+non-red ones and vice versa. Hence the number of red edges modulo two
+does not change.
+    Thus there is a trivial algorithm that verifies whether a locally 3-connected
+2-complex has a generalised planar rotation system: embed the link graphs
+in the plane arbitrarily (if possible) and then check the condition at every
+edge and face.
+
+                                      26
+   The following was proved by Skopenkov.
+Theorem 8.4 ([16]). The following are equivalent for a 2-complex C.
+   • C has a generalised planar rotation system;
+   • C has a thickening that is a 3-manifold;
+   • C has a piece-wise linear embedding in some 3-manifold.
+Remark 8.5. For 2-dimensional manifolds there are two types of rotation
+systems: one for the orientable case and one for the general case. In di-
+mension three the situation is analoguous. For orientable 3-manifolds we
+have ‘planar rotation systems’ and ‘generalised planar rotation systems’ for
+general 3-manifolds.
+Remark 8.6. Similarly as for planar rotation systems, the methods of this
+series of papers can also be used to also give a polynomial time algorithm
+that verifies the existence of generalised planar rotation systems. As men-
+tioned in Remark 8.3 the locally 3-connected case is algorithmically trivial
+and the reduction to the locally 3-connected case works the same as for
+planar rotation systems.
+Remark 8.7. The methods of this series of papers can be used to char-
+acterise the existence of generalised planar rotation systems in terms of
+excluded minors as follows.
+    In the locally 3-connected case the list of excluded minors for generalised
+planar rotation systems is slightly shorter than for planar rotation systems.
+It still contains the obstructions in the list Z1 like the cone over K5 , and also
+more complicated obstructions such as that explained in [3, Figure 5]. But
+from the list Z2 this list just contains those obstructions that are derived
+from those in [3, Lemma 5.12] where the vertices v and w are joined by an
+edge.
+    Indeed arguing as in the proof of [3, Lemma 4.1], we find an obstruction
+sitting either at a vertex, an edge or a face. In the first two cases we just
+get obstructions in Z1 . In the third case we can contract two edges of that
+face and we only get those obstructions C ∈ Z2 such that the loop ` bounds
+a face. In this case in the strict marked graph at the link graph of the
+contraction vertex of C, the vertices v and w corresponding to the loop are
+joined by an edge.
+    The other obstructions in the list Z2 are still necessary obstructions for
+embeddability in the 3-sphere but the above shows that under the assump-
+tion of simply connectedness and local 3-connectedness, we do not need them
+to characterise embeddability in the 3-sphere.
+
+                                       27
+    In the general case, however, generalised planar rotation systems need
+also some new obstructions compared to planar rotation systems. Indeed,
+instead of the torus crossing obstructions we now get the following.
+    It is straightforward to check that the torus crossing obstructions, where
+the pair (a,b) of winding numbers is different from (1,2), still give obstruc-
+tions. Thus it remains to understand the obstructions arising from para-
+cycles all of whose winding numbers are one or two. Here additionally we
+have Klein Bottle crossing obstructions. These are defined similarly as torus
+crossing obstructions but here we partition the set into more than two equiv-
+alence classes. These new equivalence classes have winding numbers (1,2,2)
+or (1,1,1,2).
+    Indeed, given a para-cycle all of whose winding numbers are one or two,
+we take a single letter for each equivalence class of winding number one,
+and for each equivalence class of size two we take a pair of letters (n, n0 ).
+Then the para-cycle has a generalised planar rotation system if and only if
+its letters form a word that uses each letter precisely once such that if we
+exchange n and n0 for every pair, the resulting word is equal to the original
+word or its reverse. For (1,2) there is such a word, namely: 1X10 . For (1,1,2),
+such a word is Y 1X10 . So (1,2) and (1,1,2) do not lead to obstructions. All
+other families of winding numbers from {1, 2} of size at least three do lead
+to obstructions. For that it suffices to show that for the (minimal) families
+(1,2,2) and (1,1,1,2) there are no such words. This is an easy exercise14
+    To summarise, for the Kuratowski Theorem characterising 2-complexes
+with generalised planar rotation systems the list of excluded minors is the
+following. It consists of the slightly shorter list for the locally 3-connected
+case described above together with the torus crossing obstructions except
+for (1,2). Additionally we have the Klein Bottle crossing obstructions (1,2,2)
+and (1,1,1,2).
+
+
+Acknowledgement
+I thank Arnaud de Mesmay for useful discussions that led to Section 8.
+  14
+     To give details, for (1,2,2) we have the letters X, 1, 10 , 2, 20 . There is a unique word
+satisfying the requirements if we delete the letter X. It is 1210 20 , up to symmetry. It is
+straightforward to check that this word cannot be extended to a legal word by adding X.
+   For (1,1,1,2) the letters are X, Y, Z, 1, 10 . By symmetry we may assume that XY 1 is a
+subinterval. But this is not contained in any legal word.
+
+
+
+
+                                              28
+References
+ [1] R. H. Bing. An alternative proof that 3-manifolds can be triangulated.
+     Ann. Math.(2), 69:37–65, 1959.
+
+ [2] Ulrich Brehm. A nonpolyhedral triangulated mobius strip. Proc. Amer.
+     Math. Soc., 89(3):519–522, 1983.
+
+ [3] Johannes Carmesin. Embedding simply connected 2-complexes in 3-
+     space – I. A Kuratowski-type characterisation. Preprint 2017, available
+     at ”https://arxiv.org/pdf/1709.04642.pdf”.
+
+ [4] Johannes Carmesin.      Embedding simply connected 2-complexes
+     in 3-space – IV. Dual matroids.         Preprint 2017, available at
+     ”https://arxiv.org/pdf/1709.04652.pdf”.
+
+ [5] Reinhard Diestel. Graph Theory (5th edition). Springer-Verlag, 2016.
+     Electronic edition available at:
+     http://diestel-graph-theory.com/index.html.
+
+ [6] Hatcher.   Notes on basic 3-manifold topology.       available at
+     ”http://www.math.cornell.edu/ hatcher/3M/3Mfds.pdf”.
+
+ [7] A. Hatcher. Algebraic Topology. Cambridge Univ. Press, 2002.
+
+ [8] Jiri Matousek, Martin Tancer, and Uli Wagner. Hardness of embedding
+     simplicial complexes in Rd . J. Eur. Math. Soc. (JEMS), 13(2):259–295,
+     2011.
+
+ [9] B. Mohar and C. Thomassen. Graphs on Surfaces. Johns Hopkins,
+     2001.
+
+[10] Edwin E. Moise. Affine structures in 3-manifolds. V. The triangulation
+     theorem and Hauptvermutung. Annals of Mathematics. Second Series,
+     56:96–114, 1952.
+
+[11] C. Papakyriakopoulos. A new proof for the invariance of the homology
+     groups of a complex (in greek). Bull. Soc. Math. Grece, 22:1–154, 1946.
+
+[12] C. D. Papakyriakopoulos. On Dehn’s Lemma and the Asphericity of
+     Knots. Ann. Math., 66:1–26, 1957.
+
+[13] G. Perelman. The entropy formula for ricci flow and its geometric appli-
+     cations. 2002, available at ”https://arxiv.org/abs/math.DG/0211159”.
+
+
+                                     29
+[14] G. Perelman.        Finite extinction time for the solutions to
+     the ricci flow on certain three-manifolds.    2003, available at
+     ”https://arxiv.org/abs/math.DG/0307245”.
+
+[15] G. Perelman. Ricci flow with surgery on three-manifolds. 2003, available
+     at ”https://arxiv.org/abs/math.DG/0303109”.
+
+[16] A. B. Skopenkov. Geometric proof of Neuwirth’s theorem on the con-
+     struction of 3-manifolds from 2-demensional [2-dimensional] polyhedra.
+     Math Notes, 56(2):827–829, 1994. DOI: 10.1007/BF02110742.
+
+
+
+
+                                     30
+

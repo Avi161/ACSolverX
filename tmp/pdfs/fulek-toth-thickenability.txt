@@ -1,0 +1,1868 @@
+                                             Atomic Embeddability, Clustered Planarity, and Thickenability∗
+                                                                          Radoslav Fulek†              Csaba D. Tóth†‡
+
+                                                                                      December 11, 2019
+
+
+
+
+arXiv:1907.13086v2 [cs.CG] 10 Dec 2019
+                                                                                             Abstract
+                                                     We study the atomic embeddability testing problem, which is a common generalization of
+                                                 clustered planarity (c-planarity, for short) and thickenability testing, and present a polynomial-
+                                                 time algorithm for this problem, thereby giving the first polynomial-time algorithm for c-
+                                                 planarity.
+                                                     C-planarity was introduced in 1995 by Feng, Cohen, and Eades as a variant of graph pla-
+                                                 narity, in which the vertex set of the input graph is endowed with a hierarchical clustering and we
+                                                 seek an embedding (crossing free drawing) of the graph in the plane that respects the clustering
+                                                 in a certain natural sense. Until now, it has been an open problem whether c-planarity can be
+                                                 tested efficiently, despite relentless efforts. The thickenability problem for simplicial complexes
+                                                 emerged in the topology of manifolds in the 1960s. A 2-dimensional simplicial complex is thick-
+                                                 enable if it embeds in some orientable 3-dimensional manifold. Recently, Carmesin announced
+                                                 that thickenability can be tested in polynomial time.
+                                                     Our algorithm for atomic embeddability combines ideas from Carmesin’s work with algorith-
+                                                 mic tools previously developed for weak embeddability testing. We express our results purely
+                                                 in terms of graphs on surfaces, and rely on the machinery of topological graph theory.
+                                                     Finally, we give a polynomial-time reduction from atomic embeddability to thickenabil-
+                                                 ity thereby showing that both problems are polynomially equivalent, and show that a slight
+                                                 generalization of atomic embeddability to the setting in which clusters are toroidal graphs is
+                                                 NP-complete.
+
+
+                                         1       Introduction
+                                         Clustered planarity (for short, c-planarity) was introduced in 1995 by Feng, Cohen, and
+                                         Eades [21, 22], motivated by applications in set visualization. Lengauer [31] considered one of
+                                         its variants already in the 1980s. The problem can be seen as a hierarchical variant of planarity
+                                         testing; a problem for which a linear-time algorithm has been known for a long time [30]. In the
+                                         extensive literature devoted to c-planarity and its variants, the complexity status of only restricted
+                                         special cases has been established, most notably in [2, 5, 17, 27], see also the somewhat outdated
+                                         survey [16]. The c-planarity problem is formally stated as follows.
+                                             ∗
+                                             Research supported in part by Austrian Science Fund (FWF): M2281-N35, and the National Science Foundation
+                                         awards CCF-1422311, CCF-1423615, and DMS-1800734..
+                                           †
+                                             University of Arizona, Tucson, AZ, USA.
+                                           ‡
+                                             Department of Mathematics, California State University Northridge, Los Angeles, CA, USA and Department of
+                                         Computer Science, Tufts University, Medford, MA, USA.
+Problem 1 (C-planarity). We are given a simple graph G = (V, E); a collection C of pairwise
+disjoint simple closed curves in R2 ; and
+                                      S a map µ : V → R, where R is the set of path connected
+components (called regions) of R2 \ C∈C C. Decide whether there exists an embedding ψ of G in
+R2 such that ψ(v) ∈ µ(v) and |ψ(e) ∩ C| ≤ 1 for every C ∈ C and every edge e ∈ E.
+
+Embeddability in R3 and thickenability. Note that a graph is a 1-dimensional simplicial
+complex. We consider the 2-dimensional analog of graph embeddings in R3 . It is a well-known result
+that for every graph G there exists an orientable surface (an orientable 2-dimensional manifold)
+S such that G embeds in S. An analogous result fails for 2-dimensional polyhedra (2-polyhedra
+for short) and 3-dimensional manifolds (3-manifolds for short). A 2-polyhedron P is thickenable
+if P embeds1 in some orientable 3-manifold. It was known at least since the 1960s that testing
+whether a 2-polyhedron is thickenable is in NP, which is an immediate consequence of a theorem
+by Neuwirth [39]; see also [46]. We restate it as Theorem 3 in Section 4 (in essence, it characterizes
+thickenability in terms of so-called link graphs). We remark that Neuwirth’s theorem has been
+recently used in [33] in the first step of an algorithm that decides (not necessarily in polynomial
+time) whether a given 2-polyhedron embeds to R3 .
+    The thickenability problem is formulated as follows. Let H be a finite multigraph without loops
+(multiple edges are allowed). Let P = (H, F ) denote a 2-dimensional (abstract) polyhedron,
+where F is a set of cycles in H. We assume that every edge of H is contained in at least one
+element of F . The multigraph H is the 1-skeleton of P and every element of F is a facet in P .
+Note that H might contain a cycle that is not a facet of P .
+
+Problem 2 (Thickenability). Given a 2-polyhedron P = (H, F ), where H is a multigraph
+without loops and F is the set of facets of P , decide whether P embeds to some orientable 3-
+manifold.
+
+    Recently, Carmesin [14, Section 6] announced that one can test whether a simply connected
+2-polyhedron embeds in R3 in quadratic time2 , while embeddability testing for general 2-polyhedra
+in R3 is known to be NP-hard [19]. In the case of simply connected 2-polyhedra, thickenability is
+equivalent to embeddability in R3 , see for example [13]. Though this equivalence appears to be a
+well-known consequence of Perelman’s famous result [41, 40, 42], see also the book [38].
+    In fact, Carmesin’s approach deals exclusively with testing the thickenability condition in The-
+orem 3 (cf. Section 4). Therefore his approach to the embeddability in R3 applies also to thicken-
+ability in general, but it is restricted simply connected 2-polyhedra. In contrast, testing whether a
+given 2-polyhedron, that is homeomorphic to a nonorientable surface, embeds in a given 3-manifold
+(that is, both the 2-polyhedron and the 3-manifold are given), is already NP-hard [12].
+
+Atomic embeddibility was introduced in [2] and [24, Section 11], see also [25], as a common
+generalization of C-planarity and thickenability. It is an extension of the concept of weak
+embeddability [2] (also known in topology as approximating simplicial maps by embeddings [37, 43,
+45, 47]). We do not define weak embedding here, but remark that its study in computational
+geometry was motivated by the special case of a (piecewise linear) weak embeddings of a cycle in
+the plane, which corresponds to weakly simple polygons [1, 15, 18].
+  1
+      In this case, topological and piecewise linear embeddability are equivalent.
+  2
+      The correctness of the claimed running time has not been confirmed, yet.
+
+
+
+                                                            2
+    Let G and H be finite multigraphs without loops. To distinguish between G and H in our termi-
+nology, the vertices and edges of H are called atoms and pipes, respectively. A map ϕ : G → H
+is simplicial if it maps vertices to vertices (i.e., to atoms), edges to vertices or edges (i.e., to atoms
+or pipes), and preserves edge-vertex incidences. An instance of atomic embeddability is given by
+a simplicial map ϕ : G → H.
+    The thickening H of H is an orientable 2-dimensional surface constructed as follows. For
+each atom ν ∈ V (H), let S(ν) be a 2-sphere with deg(ν) pairwise disjoint open discs, called
+holes, removed. We fix an orientation on S(ν), and define an arbitrary one-to-one correspondence
+between the holes of S(ν) and the pipes incident to ν. The thickening H is obtained by gluing the
+surfaces S(ν), ν ∈ V (H), as follows; see Fig. 1 (left) for an illustration. For every pipe ρ ∈ E(H),
+ρ = νµ, identify the pair of boundaries of the holes corresponding to ρ by an orientation reversing
+homeomorphism. In particular, if νµ 6∈ E(H), then S(ν) and S(µ) are disjoint3 .
+    An embedding E : G → H is an atomic embedding of G with respect to ϕ if every vertex
+v ∈ V (G) is embedded in S(ϕ(v)); and every edge uv ∈ E(G) is embedded as a Jordan arc in
+S(ϕ(u)) ∪ S(ϕ(v)) as follows: If ϕ(u) 6= ϕ(v) then the Jordan arc representing uv intersects the
+hole corresponding to the pipe ϕ(uv) in exactly one point, which is a proper crossing, or in other
+words, a transversal intersection.
+Problem 3 (Atomic embeddability). Given a pair of multigraphs without loops, G and H, and
+a simplicial map ϕ : G → H, decide whether an atomic embedding of G with respect to ϕ exists.
+   We remark that an instance (H, F ) of thickenability corresponds to an instance (G, H) of
+atomic embeddability, where H is the same graph both instances, and G is a vertex disjoint
+union of cycles (disjoint copies of the cycles in F ).
+
+Results. In this paper, we present a polynomial-time algorithm for atomic embeddability, thereby
+giving the first polynomial-time algorithm for c-planarity. Our approach combines ideas from
+Carmesin’s work [14] with algorithmic tools previously developed for weak embeddability testing.
+In particular, the elementary operation “stretch” (defined below) is based on a similar operation
+in [14]. However, by formulating the problem in terms of graphs on surfaces, our results are more
+general and perhaps more accessible to the broader community. A polynomial-time algorithm
+for c-planarity implies that some other constrained planarity problems that have previously been
+reduced to c-planarity are tractable, as well; see [3] and [4, Figure 4].
+    We also consider a further generalization of atomic embeddability in which the surfaces
+S(ν), ν ∈ V (H), may have higher genus (by attaching additional handles), and show that this
+problem is NP-complete even if each surface S(ν) is based on a torus rather than a sphere.
+    In the last section, we give a short polynomial-time reduction of atomic embeddability to
+thickenability, which shows that both problems are polynomially equivalent.
+
+Simultaneous embeddability of two graphs. Angelini and Da Lozzo [4] proved that there
+exists a polynomial time reduction to c-planarity from connected sefe-2, the problem of
+deciding simultaneous embeddability of two graphs in the case when the intersection of the two
+graphs is connected (see Section 4 for a formal statement of the problem). Therefore our algorithm
+gives a polynomial time algorithm for this problem. The general version of the problem, known
+as sefe-2, where the intersection of the two graphs may be disconnected, is notoriously difficult.
+  3
+      The surface H is reminiscent of the ball-and-stick or space-filling models in molecular chemistry.
+
+
+                                                            3
+                              S(ν)
+                                         π                  Gϕ (ν)
+                                                                              w
+
+                       ρ
+                                              v              u                    v
+
+
+
+
+Figure 1: Part of an atomic embedding of G on S(ν), where the atom ν is incident to pipes ρ and
+π (left), and the corresponding local graph Gϕ (ν) (right). The virtual vertices u and w in Gϕ (ν)
+correspond to the pipes ρ and π, respectively. All other vertices in Gϕ (ν) are ordinary.
+
+
+Introduced by Brass et al. [10], it subsumes most of the studied planarity variants [44, Figure 2],
+and has generated considerable research activity [3, 7, 9, 28]; see also [8] for a survey. Schaefer [44,
+Theorem 6.17] realized that c-planarity is reducible in polynomial time to the problem sefe-2.
+Therefore it is an unfortunate state of affairs that its complexity status is still unknown. Although,
+Carmesin’s and our results give a new hope that a resolution of sefe-2 problem might be within
+reach.
+    Let us note that there also exists a natural and fairly straightforward polynomial-time reduction
+of connected sefe-2 to thickenability, which was found independently by de Mesmay, Kaluža,
+and Tancer [11, 35] and these authors. This suggests that thickenability, and hence, atomic
+embeddability, is not powerful enough to solve sefe-2 in general without using significantly novel
+ideas.
+
+Organization. Section 2 presents a polynomial-time algorithm for atomic embeddability. Sec-
+tion 3 shows that a further generalization of the problem is NP-hard. In Section 4, we give a direct
+polynomial-time reduction of atomic embeddability to thickenability, which also establishes
+a polynomial reduction of another problem, connected sefe-2, to thickenability.
+
+
+2    Atomic Embeddings
+In this section we present a polynomial-time algorithm for atomic embeddability. After defining
+local graphs, which are crucial for the algorithm, we present a high-level overview in Section 2.1.
+Section 2.2 introduces additional terminology. We reduce a given instance ϕ to normal form (defined
+below) in Section 2.3; and introduce five elementary operations on atomic instances in Section 2.4
+that are used in our main algorithm. We show how to solve two special cases in linear time in
+Sections 2.5 and 2.6. Our main algorithm in Section 2.7 reduces all normal instances to these
+special cases. We finish with a running time analysis in Section 2.8.
+
+Local graphs. Let ϕ : G → H be an instance of atomic embeddability. The simplicial map
+ϕ : G → H naturally extends to subgraphs of G. For an atom ν ∈ V (H), ϕ−1 [ν] denotes the
+
+
+                                                   4
+subgraph of G mapped to ν by ϕ. For a pipe ρ ∈ E(H), ϕ−1 [ρ] denotes the subset of edges of G
+mapped to ρ by ϕ.
+     For every atom ν ∈ V (H), we define a multigraph Gϕ (ν), which captures the local structure
+of ϕ at the atom ν and its incident pipes; see Fig. 1 for an illustration. (We remark that graphs
+Gϕ (ν) are analogous to the graphs C in [2] and the links in [13].)
+     The vertices of Gϕ (ν) are in a one-to-one correspondence with the union of the set of vertices
+in V (G) mapped by ϕ to ν (that is, V (ϕ−1 [ν])) and the set of pipes incident to ν. Hence, we
+can distinguish between ordinary vertices that correspond to vertices in V (ϕ−1 [ν]) and virtual
+vertices that correspond to pipes incident to ν. For every edge in E(G) between two vertices in
+V (ϕ−1 [ν]) in G, add an edge in Gϕ (ν) between the corresponding vertices. Finally, for every edge
+in uv ∈ E(G) where u ∈ V (ϕ−1 [ν]) and v 6∈ V (ϕ−1 [ν]), add an edge Gϕ (ν) between the ordinary
+vertex u and the virtual vertex corresponding to ϕ(uv). Thus, edges of Gϕ (ν) are in a one-to-one
+correspondence with the union of the edges of G between vertices in V (ϕ−1 [ν]) and the edges of
+G mapped to pipes incident to ν by ϕ. Let e ∈ E(G) denote the edge corresponding to an edge
+e ∈ E(Gϕ (ν)).
+     Note that the virtual vertices form an independent set in Gϕ (ν). An embedding Eν of Gϕ (ν) is
+inherited from an atomic embedding E of G, if Eν is obtained from the restriction E to S(ν) by
+filling the holes of S(ν) with discs, and then contracting them to points.
+     Let E : G → S be an embedding of a graph on an orientable surface. The rotation at a vertex
+v ∈ V (G) is the counterclockwise cyclic order of the end pieces of the edges incident to v. The
+rotation system of E is the set of rotations of all vertices of G. A vertex v of a planar graph
+has a fixed rotation (for short, is fixed) if its rotation in every embedding of the graph in the
+plane is unique up to the choice of orientation. For a pair of virtual vertices u and v of Gϕ (µ)
+and Gϕ (ν), resp., corresponding to a pipe µν = ρ ∈ E(H), the edges e incident to u (resp., v)
+correspond to edges e ∈ ϕ−1 [ρ]. The rotations of u and v in an embedding of all local graphs
+in the plane determine two cyclic orders ϕ−1 [ρ]. This allows us, in particular, to define that the
+rotations at u and v to be opposite (in other words, reverse) to each other, if the rotation at u
+is (uu1 , . . . , uudeg(u) ), at v it is (vvdeg(v) , . . . , vv1 ), and uui = vvi = ui vi ∈ E(G). The rotations
+of u and v are compatible if they are the same or opposite to each other; and incompatible
+otherwise.
+     An instance ϕ of atomic embeddibility is positive if there exists an atomic embedding of
+G with respect to ϕ. Two instances, ϕ and ϕ0 , are equivalent if ϕ and ϕ0 are both positive, or ϕ
+and ϕ0 are both negative. We can now formulate atomic embeddibility in terms of the rotation
+systems of plane embeddings of the graphs Gϕ (ν), ν ∈ V (H).
+Observation 1. An instance ϕ : G → H of atomic embeddability is positive if and only if the
+graphs Gϕ (ν), ν ∈ V (H), are planar, and they each have embeddings in the plane such that for
+every pipe µν ∈ E(H), the virtual vertices corresponding to µν in Gϕ (µ) and Gϕ (ν) have opposite
+rotations (in the sense that we consider every edge e incident to a virtual vertex as e).
+    For a subset V 0 ⊂ V (G), a V 0 -bridge B in G is a subgraph of G obtained as the union of V 0 ,
+a connected component C of G \ V 0 , and all the edges joining a vertex of C with a vertex of V 0 .
+We allow B to consist of a single edge between two vertices in V 0 , or a loop incident to a vertex in
+V 0 (see Fig. 2(left)). Analogously to Carmesin [13], we also define two special graphs (as possible
+local graphs). A p-path is a graph that consists of two vertices (poles) connected by one or more
+subdivided edges (Fig. 2(middle)). A p-star is a graph with a unique cut vertex (center) whose
+bridges are p-paths with one pole at the center (Fig. 2(right)).
+
+                                                      5
+2.1   High Level Overview of the Recognition Algorithm
+Given an instance ϕ of atomic embeddiblity, we apply a sequence of elementary operations that
+each produces an equivalent instance ϕ0 (with respect to atomic embeddability). Intermediate steps
+of our algorithm may detect that the instance is negative when a local graph Gϕ (ν) is nonplanar.
+It may also disconnect the graph H, effectively splitting an instance into independent instances.
+Ultimately, it reduces ϕ to a family of instances, each of which is either toroidal (where both G
+and H are 2-regular), or subcubic (where the maximum degree of all local graphs is at most 3). In
+both cases, we can easily test atomic embeddibility in linear time (Sections 2.5 and 2.6). Hence, the
+witness of atomic non-embeddibility that is provided by our algorithm is either the non-planarity of
+a local graph in an instance produced by a sequence of elementary operations, or negative subcubic
+or toroidal instance.
+    Let G ∗ denote the disjoint union of all local graphs except those belonging to toroidal subin-
+stances. Our algorithm incrementally reduces the maximum degree ∆ = ∆(ϕ) = maxv∈V (G ∗ ) deg(v).
+The two key operations for dealing with a vertex v ∈ V (G ∗ ) of degree ∆ ≥ 4 are Stretch(v, .), which
+splits v into two vertices of smaller degree (illustrated in Fig. 7), and Contract(.), which contracts
+a pipe (illustrated in Fig. 11). Operation Stretch(.) can be applied to a virtual or an ordinary
+vertex: If it is applied to an ordinary vertex, it modifies only G and not H, but if it is applied to a
+virtual vertex, it modifies both G and H, and in particular it increases the genus of the surface H
+by 1. We note that the increase in the genus of H occurs also in the special case that ϕ represents
+an instance of c-planarity (when H is initially homeomorphic to a 2-sphere, i.e., when its genus is
+0). This explains in part why this approach for the inherently planar problem of c-planarity has
+not been considered before. The generalization of c-planarity to surfaces of higher genus allows
+for a broader range of operations, but it also poses several technical challenges that had to be
+resolved—some of them even indicated that the problem might be NP-complete, which we discuss
+next.
+    Unfortunately, Stretch(v, .) produces an equivalent instance only if we already have some partial
+information about the rotation of vertex v. In general, it cannot reduce the degree of a cut vertex.
+This obstacle is overcome with the help of a surprisingly simple operation, Contract(ρ), which
+contracts a pair of atoms in H joined by a single pipe ρ into one atom, thereby eliminating a pair
+of virtual vertices in G ∗ corresponding to ρ. An almost identical operation is also crucial in our
+recent joint work with Akitaya [2] about weak embeddability. Nevertheless, the possibility of using
+this operation in the context of (the general case of) c-planarity or atomic embeddability was not
+clear to us for some time. The reason is that the operation Contract(ρ) for a pipe ρ = µν can only
+be applied in a very restricted setting, essentially if and only if Gϕ (µ) or Gϕ (ν) is a p-path and ρ
+corresponds to a pole of that p-path; or if they are both p-stars and ρ corresponds to their centers.
+The crucial observation that saves the day, which is implicit in Carmesin’s work, is that after some
+preprocessing that resolves 2-cuts with a vertex of degree ∆, we can use the operation Enclose(.),
+illustrated in Fig. 6, to turn each cut vertex of degree ∆ into a center of a p-star.
+    In order to show that our algorithm runs in polynomial time, we define a nonnegative potential
+Φ(ϕ) bounded from above throughout the execution of the algorithm by a polynomial function of
+|V (G)| that strictly decreases after every application of Stretch(.) or Contract(.), but unfortunately,
+not after every application of Enclose(.), which possibly just creates a pair of new virtual vertices
+in G ∗ . Hence, we had to design a charging scheme that controls the growth of G ∗ .
+    Several other similar, but less crucial, operations are used in the preprocessing and postprocess-
+ing steps of the algorithm, where the preprocessing step normalizes the input instance in order to
+
+
+                                                   6
+allow a relatively smooth runtime analysis, and the postprocessing step handles toroidal instances
+and subcubic instances (where ∆(ϕ) ≤ 3).
+
+2.2   Preliminaries
+Let G and H be multigraphs without loops (multiple edges are allowed in both H and G). By a
+slight abuse of notation, if there is no danger of confusion, we sometimes denote edges by unordered
+pairs of their endpoints (even though several edges may connect the same pair of vertices). A path,
+cycle, and walk in a graph is always assumed to be a sequence of edges (rather than vertices). Recall
+that in order to distinguish G and H in our terminology, the vertices and edges of H are called
+atoms and pipes, respectively. We use the convention that vertices and edges of G are denoted by
+lower case Roman letters (e.g., u, v, z and e, f, g), respectively, and the atoms and pipes by lower
+case Greek letters (e.g., ν, µ and ρ, π).
+
+Cut vertices, 2-cuts, and 2-edge-cuts. Every vertex of degree 2 or less has a unique rotation,
+hence it has a fixed rotation. For this reason, we use a topological notion of 1- and 2-cuts, which
+is invariant to subdivisions of edges and supression of vertices of degree 2. For a connected graph
+G, which is not a cycle, denote by G− the multigraph obtained by supressing all vertices of degree
+2. Hence, G− is free of subdivided edges, defined as paths whose internal vertices have degree
+2. Note that G− can have loops corresponding to cycles in G that form leaf blocks.
+    Let G be a connected graph that is not a cycle. A vertex v ∈ V (G− ) ⊆ V (G) is a proper cut
+vertex (or proper 1-cut) of G if there are two or more {v}-bridges in G− . A pair of vertices
+{u, v} ⊂ V (G− ) ⊆ V (G) is a proper 2-cut of G if there are at least three {u, v}-bridges in G− , or
+there are exactly two {u, v}-bridges in G− , neither of which is an edge in G− . (Note that if there
+are exactly two {u, v}-bridges in G− , and one of them is an edge between u and v, then {u, v} is
+not a 2-cut in G− .) A pair of edges {e, f } ⊂ E(G), such that at least one vertex incident to e and
+one vertex incident to f is of degree at least 3, is a proper 2-edge-cut of G if there exist edges e−
+and f − , such that e− and f − were obtained by suppressing internal vertices of degree 2 of a path
+containing e and f , respectively, and {e− , f − } is a 2-edge-cut in G− . Finally, for a proper 2-cut
+{u, v}, a {u, v}-bridge B is separable if degB (u) ∈ {1, deg(u) − 1} and degB (v) ∈ {1, deg(v) − 1},
+otherwise it is nonseparable.
+
+Observation 2. Let G be a connected graph that is not a cycle. If {u, v} is a proper 2-cut and B
+is a separable {u, v}-bridge but not a subdivided edge, then there exists a proper 2-edge-cut {e, f }
+in G such that u ∈ e and v ∈ f .
+
+   We often tacitly use the following well-known result by Mac Lane [32]. If G is a connected
+planar graph, and the rotation of a vertex v is not fixed, then deg(v) ≥ 3 and v participates in a
+proper 1- or 2-cut. In particular, if every graph Gϕ (ν), ν ∈ V (H), is a subdivision of a 3-connected
+graph, we can use planarity testing to check the conditions in Observation 1, and easily reduce the
+atomic embedibility problem to 2SAT (cf. Section 2.6). The challenge is, therefore, to handle the
+possible rotations of vertices that participate in proper 1- or 2-cuts in some local graph Gϕ (ν).
+
+2.3   Preprocessing and Data Structures
+Our algorithm uses a sequence of elementary operations that dynamically modify a given instance
+ϕ : G → H of atomic embeddability. For the running time analysis (Section 2.8), we need to
+
+                                                  7
+                               u                        v
+
+u                          v    u                   v          u                  v           v
+                               u                        v
+
+
+Figure 2: A proper 2-cut {u, v} and its three bridges (left), a p-path with poles u and v (middle),
+and a p-star centered at v (right).
+
+
+                               ρ
+
+
+
+
+                      Sµ                     Sν                            Sµ                     Sν
+
+Figure 3: An atomic embedding of G on S(µ) ∪ S(ν) before and after operation Suppress(ρ), where
+ρ = µν. The operation eliminates a pipe with at most two edges of G.
+
+maintain data structures that support these operations. We assume that the input specifies G, H,
+and ϕ explicitly (i.e., adjacency lists for the graphs G and H, and pointers from the vertices and
+edges of G to their images in H under the map ϕ : G → H). The size of an instance ϕ : G → H
+is the total number of edges and vertices in the graphs G and H. Before we present our data
+structures (which do not maintain H and ϕ explicitly), we preprocess the instance ϕ.
+Definition 1. An instance ϕ : G → H of atomic embeddability is normal if
+    • the degree of every virtual vertex in every Gϕ (ν), ν ∈ V (H), is 3 or higher; and
+    • Gϕ (ν) is connected for all ν ∈ V (H).
+    We define an operation that eliminates pipes with 2 or less edges, see Fig. 3.
+
+Suppress(ρ). We are given a pipe ρ ∈ E(H) such that |ϕ−1 [ρ]| ≤ 2. Let µ, ν ∈ V (H) be the two
+atoms incident to ρ. Remove the pipe ρ from E(H). If ϕ−1 [ρ] contains one edge, say uv ∈ E(G)
+with ϕ(u) = µ and ϕ(v) = ν, then delete uv from E(G), insert two new vertices u0 , v 0 and new
+edges uu0 , vv 0 into G, and update ϕ with ϕ(u0 ) = µ and ϕ(v 0 ) = ν. If ϕ−1 [ρ] contains two edges,
+say ui vi ∈ E(G) with ϕ(ui ) = µ and ϕ(vi ) = ν, for i ∈ {1, 2}, then delete both u1 v1 and u2 v2 from
+E(G), insert two new vertices u0 , v 0 and new edges u1 u0 , u2 u0 , v1 v 0 , and v2 v 0 into G, and update ϕ
+with ϕ(u0 ) = µ and ϕ(v 0 ) = ν.
+   Since the virtual vertices that correspond to ρ in Gϕ (µ) and Gϕ (ν) have fixed rotations, by
+Observation 1, the following is straightforward.
+Lemma 1. For every instance ϕ : G → H of atomic embeddability, and every pipe ρ ∈ E(H),
+whose corresponding vertices in local graphs have degree less than 3, operation Suppress(ρ) produces
+an equivalent instance.
+    We define an operation that splits an atom ν if Gϕ (ν) is disconnected, see Fig. 4.
+
+                                                        8
+                                                          Sν1                        Sν2
+
+
+
+
+                             Sν
+                                                          Sν3                        Sν4
+                                                      S
+Figure 4: An atomic embedding of G on S(ν) and i S(νi ) before and after, respectively, operation
+Split(ν). The operation splits an atom ν ∈ V (H), for which Gϕ (ν) is disconnected, into as many
+atoms as the number of connected components in Gϕ (ν).
+
+
+Split(ν). We are given a local graph Gϕ (ν) whose connected components are C1 , . . . , Ck , for some
+k ∈ N. Delete ν from H, introduce new vertices ν1 , . . . , νk in V (H), and introduce a pipe νi µ for
+every ρ = νµ ∈ E(H) such that ρ corresponds to a virtual vertex of Ci . Finally, redefine ϕ on
+V (ϕ−1 [ν]) as follows: Put ϕ(v) = νi if v ∈ V (Ci ).
+    By Observation 1, the following is straightforward.
+Lemma 2. For every instance ϕ : G → H of atomic embeddability, an application of Split(ν)
+produces an equivalent instance.
+
+     Preprocessing(ϕ). Input: an instance ϕ : G → H of atomic embeddability.
+
+ (1) For every pipe ρ ∈ E(H) with |ϕ−1 [ρ]| ≤ 2, apply Suppress(ρ).
+
+ (2) For every atom ν ∈ V (H), where Gϕ (ν) is disconnected, apply Split(ν).
+
+Lemma 3. For an instance ϕ : G → H of atomic embeddability of size n, Preprocessing runs in
+O(n) time and returns an equivalent normal instance ϕ0 .
+Proof. By Lemmas 1 and 2, the instance ϕ0 is equivalent to ϕ. Step (1) eliminates virtual vertices of
+degree less than 3, and Step (2) does not change the degree of any vertex in local graphs. Step (2)
+splits the local graphs Gϕ (ν), ν ∈ V (H), into connected components. Hence, ϕ0 is normal. Step (1)
+runs in O(1) time for each pipe of degree less than 3. Step (2) runs in O(m) time for every local
+graph Gϕ (ν) with m = m(ν) edges; which yields an overall running time of O(n).
+
+Data Structures. For a normal instance ϕ : G → H, let G be the disjoint union of all local
+graphs Gϕ (ν), ν ∈ V (H). We maintain the graphs G and G by adjacency lists. We maintain the
+set V (H) of atoms implicitly: Each connected component in G corresponds to an atom ν ∈ V (H).
+We maintain the set E(H) of pipes as follows: For every pipe ρ ∈ E(H), we maintain two pointers
+to the two virtual vertices in G that correspond to ρ; and also maintain the set ϕ−1 [ρ] ⊂ E(G) of
+edges mapped to ρ in a doubly linked list. Furthermore, for each edge uv ∈ ϕ−1 [ρ], with ϕ(u) = µ
+and ϕ(v) = ν, we maintain a pointer to ρ, and to the edge in Gϕ (µ) (resp., Gϕ (ν)) that joins the
+virtual vertex corresponding to ρ and u (resp., v).
+    For every connected component Gϕ (ν) of G, we maintain G−    ϕ (ν) (i.e., the multigraph obtained
+by supressing vertices of degree 2), if Gϕ (ν) is not a cycle, by adjacency lists. Furthermore, we
+
+                                                  9
+maintain the block tree of G−  ϕ (ν), which is a bipartite graph that represents incidences between
+cut vertices and blocks (i.e., maximal 2-connected components). For each block of G−     ϕ (ν), we also
+maintain an SPQR decomposition tree introduced by Di Battista and Tamassia [20], which is a
+hierarchical decomposition used for representing all 2-cuts and their bridges. For each vertex v of
+G, we maintain indicator variables that record whether v is an ordinary or virtual vertex, whether
+it is a proper cut vertex or contained in a proper 2-cut. At initialization, all these data structures
+can be computed in linear time in the size of G and H. The data structures can be updated in
+linear time if necessary. (Currently available dynamic data structures for planarity testing and
+SPQR-trees, with sublinear update times, support some but not all of our graph operations.)
+     As we shall see, whenever our algorithm creates a pipe of degree less than 3, it is immediately
+suppressed. If our algorithm modifies a graph Gϕ (ν) in a way that it disconnects into compo-
+nents, then we assume that it immediately splits the corresponding atom ν as described above. In
+particular, our data structure supports the operation Split(ν) in 0 time. In the remainder of the
+algorithm, we may assume that every instance of atomic embeddability is normal.
+
+2.4   Elementary Operations
+In this section we describe operations used in our algorithm for a given instance ϕ : G → H of
+atomic embeddibility. Each operation modifies the instance ϕ. Each operation is local in the sense
+that it affects an atom ν and possibly one or two of its neighbors. That is, the modifications incur
+changes in Gϕ (ν), and possibly in Gϕ (ν 0 ), for some of the neighbors ν 0 of ν.
+
+                                        S(ν)                               S(ν)
+
+
+
+                                   v
+
+
+
+
+Figure 5: An atomic embedding of G on S(ν) before and after operation Detach(v). The operation
+turns an ordinary vertex v, the center of p-star Gϕ (ν), into deg(v) leaves.
+
+   The following operation turns an ordinary vertex v into deg(v) leaves, see Fig. 5.
+
+Detach(v). Let v be an ordinary vertex in a graph Gϕ (ν) such that every {v}-bridge is a p-
+path (that is, either Gϕ (ν) is a p-star with center v, or Gϕ (ν) is a p-path with a pole at v). Let
+vu1 , . . . , vudeg(v) denote the edges incident to v in G. Remove v and its incident edges from G.
+Then introduce deg(v) new vertices v1 , . . . , vdeg(v) and add edges ui vi , for all i ∈ [deg(v)] to G.
+Finally, define ϕ(vi ui ) = ϕ(vui ).
+    By Observation 1, the following is straightforward.
+
+Lemma 4. For an instance ϕ : G → H of atomic embeddability, Detach(v) produces an equivalent
+instance ϕ0 . The operation can be implemented in O(deg(v)) time.
+
+    In the following we define the operation of enclosing a bridge in Gϕ (ν), see Fig. 6. This operation
+is analogous to stretching of a local branch in [14] except that we apply it in a more general setting.
+
+
+                                                  10
+      S(ν)                                           S(ν)                                       S(ν 0 )
+
+
+
+
+       ρ
+                                                            ρ
+
+
+                                                                           νν 0
+
+Figure 6: An atomic embedding of G on S(ν) before and after operation Enclose(B), where B
+(colored blue) is a {v}-bridge of Gϕ (ν) and v is a virtual vertex corresponding to the pipe ρ.
+
+
+Enclose(B). We are given a {v1 , . . . , vk }-bridge B in Gϕ (ν). The operation does not modify G
+except for subdividing its edges. We first describe the changes in H, and then the changes in
+the local graphs. Create a new atom ν 0 and a new pipe νν 0 . Replace every pipe ρ = µν that
+corresponds to a virtual vertex in B \ {v1 , . . . , vk } with a new pipe µν 0 . For every ordinary vertex
+u ∈ V (B) \ {v1 , . . . , vk }, set ϕ(u) = ν 0 . For every edge e ∈ E(G), for which the pipe ϕ(e) = ρ = µν
+has been replaced by ρ0 = µν 0 , set ϕ(e) = ρ0 . If vi u ∈ E(B), and vi or u is a virtual vertex of
+Gϕ (ν), then subdivide vi u ∈ E(G) by a vertex w and define ϕ(w) as follows: If vi is virtual, then
+put ϕ(w) = ν; otherwise put ϕ(w) = ν 0 . Finally, update the definition of ϕ on the edges of B
+according to the value of ϕ on the vertices of G (this is uniquely determined since νν 0 is not a
+multiple pipe in E(H)).
+    For the purpose of the running time analysis the effect of the operation on Gϕ (ν) is that
+we move the subgraph induced by B \ {v1 , . . . , vk } from Gϕ (ν) into a new graph Gϕ (ν 0 ), and
+introduce a virtual vertex corresponding to the pipe νν 0 in both Gϕ (ν) and Gϕ (ν 0 ), whose degree
+is ki=1 degB (vi ). We will be often tacitly using the following lemma.
+   P
+
+Lemma 5. Given an instance of atomic embeddability ϕ, an application of PEnclose(B) results in
+an equivalent instance ϕ : G → H . The operation can be implemented in O( ki=1 degB (vi )) time.
+                        0   0   0
+
+
+Proof. The equivalence is a consequence of Observation 1.
+   For the forward direction, given the set of embeddings Eµ of Gϕ (µ), µ ∈ V (H), inherited from
+an atomic embedding of G, we construct embeddings Eµ0 of Gϕ0 (µ), µ ∈ V (H 0 ), inherited from an
+atomic embedding of G0 as follows. For µ ∈          / {ν, ν 0 }, we put Eµ0 = Eµ . The embedding of Eν0 0 is
+obtained from Eν |B by identifying v1 , . . . , vk , which are incident to a common face, thereby turning
+them into a single virtual vertex corresponding to the pipe νν 0 . Finally, Eν0 is obtained from Eν by
+contracting B \ {v1 , . . . , vk } into a single virtual vertex corresponding to the pipe νν 0 .
+   For the opposite direction, given the set of embeddings Eµ0 of Gϕ (µ), µ ∈ V (H 0 ), inherited from
+an atomic embedding of G0 , we construct embeddings Eµ of Gϕ (µ), µ ∈ V (H), inherited from an
+atomic embedding of G as follows. For every µ ∈ V (H) \ {ν}, we put Eµ = Eµ0 . Finally, Eν is
+obtained from the atomic embedding of G0 on S(ν) ∪ S(ν 0 ) by filling the holes corresponding to
+pipes, except for νν 0 , and contracting the fillings to points.
+
+   In the following we define the operation that replaces a vertex u in Gϕ (µ) by an edge uu0 , and
+
+                                                    11
+                                                                      a4        S(µ)                     a4   S(µ)
+                              a6        a5
+          a6                                         a1             a3 a5               a1
+               a5                                             a2               a6                a2    a3 a5 a6
+                                             a4
+                    a4         u                                          ρ                 ρ0                ρ
+a1
+           u                  u0
+                    a3                       a3
+                         a1                                               b5                                 b5 b
+                                                    b1                         b6      b1                         6
+     a2                                                        b3                                 b3
+                                   a2                    b2          b4                     b2          b4
+                S(µ)                         S(µ)                              S(ν)                               S(ν)
+
+Figure 7: An atomic embedding of G on S(ν) before and after applying Stretch(u, {uv1 , uv2 , uv3 }).
+Vertex u is either ordinary (left) or virtual (right). If u is a virtual vertex, it corresponds to a pipe
+ρ = µν.
+
+
+distributes the edges incident to u among u and u0 . The operation produces an equivalent instance
+if the rotation of u is fixed, see Fig. 7.
+
+Stretch(u, Eu ). We are given a vertex u in Gϕ (µ) and a set Eu = {ua1 , . . . , ua` } of edges incident
+to u where 0 < |Eu | < deg(u). We distinguish between two cases, depending on whether u is an
+ordinary or a virtual vertex.
+     If u is ordinary, then remove the edges ua1 , . . . , ua` , introduce a new vertex u0 and a new edge
+uu0 , as well as new edges u0 a1 , . . . , u0 a` in Gϕ (µ).
+     If u is virtual, then let ρ = µν ∈ E(H) be the pipe corresponding to the virtual vertex u in
+Gϕ (µ) and v in Gϕ (ν); and assume that uai = ai bi , for i ∈ [`], where b1 , . . . , b` are vertices in
+Gϕ (ν). Do the following: Introduce a new pipe ρ0 = µν in H corresponding to new virtual vertices
+u0 in Gϕ (µ) and v 0 in Gϕ (ν); introduce a new connected component in G, which is a cycle with two
+vertices and two parallel edges f, f 0 forming a multiple edge such that ϕ(f ) = ρ and ϕ(f 0 ) = ρ0 ;
+and finally, modify ϕ by setting ϕ(ai bi ) = ρ0 , for all i ∈ [`]. In local graphs this corresponds to
+replacing uai and vbi with u0 ai and v 0 ai , respectively, for all i ∈ [`]; and inserting two new edges
+uv and u0 v 0 in the two local graphs, respectively, and subdividing each with an ordinary vertex.
+    For the purposes of the running time analysis (below) the effect of the operation can be seen
+as the replacement of u by an edge whose two endpoints have degrees ` + 1 and deg(u) − ` + 1,
+respectively (hence the sum of their degrees equals deg(u) + 2). If u is a virtual vertex (i.e.,
+corresponds to a pipe between two atoms), then both virtual vertices corresponding to the same
+pipe go through these changes. By Observation 1, the following is straightforward.
+
+Lemma 6. Given an instance of atomic embeddability ϕ such that the edges in Eu are incident to
+u, and are consecutive in the rotation of vertex u in every embedding of Gϕ (µ) inherited from an
+atomic embedding of G, then the operation Stretch(u, Eu ) produces an equivalent instance.
+
+Corollary 1. For an instance ϕ : G → H of atomic embeddability, if a vertex u ∈ V (Gϕ (ν)) has a
+fixed rotation, in which the edges in Eu are consecutive, then Stretch(u, Eu ) produces an equivalent
+instance.
+
+   The operation of contraction that follows is applied to an edge ρ = νµ of H and it produces an
+equivalent instance if each of Gϕ (ν) and Gϕ (µ) is a p-star or p-path.
+
+
+
+                                                    12
+Contract(ρ). We are given a pipe ρ = µν such that ρ is the only pipe between µ and ν. Contract
+the pipe µν in H into an atom hµνi and change ϕ accordingly (that is, put ϕ(u) = hµνi for all the
+vertices mapped by ϕ to µ or ν). Let ϕ0 denote the resulting instance. Note that Gϕ0 (hµνi) might
+be disconnected, in which case operation Split(hµνi) is automatically applied to obtain a normal
+instance, as explained in Section 2.3. Since ρ is the only pipe between µ and ν the operation does
+not introduce a loop in H.
+    Several incarnations of the following lemma, which is a consequence of Belyi’s theorem [6], were
+proved in related papers; see for example, [2, Lemma 3.2], [25, Claim 7], or [26, Lemma 6].
+
+Lemma 7. Let µν ∈ E(H) be a pipe such that either (i) both Gϕ (µ) and Gϕ (ν) are p-stars, or
+(ii) Gϕ (µ) or Gϕ (ν) is a p-path; and in both cases, ρ corresponds to vertices u and v of maximum
+degree in Gϕ (µ) and Gϕ (ν), respectively. Then Contract(µν) produces an equivalent instance ϕ0 .
+
+Proof. Denote by ϕ0 : G → H 0 the map returned by Contract(µν). First assume that ϕ : G → H
+is atomic embeddable. Then there exists an atomic embedding E : G → H (where every vertex
+a ∈ V (G) is embedded in S(ϕ(a)); and every edge ab ∈ E(G) is embedded as a Jordan arc in
+S(ϕ(a)) ∪ S(ϕ(b)) as specified in the definition of atomic embedding). Let S(hµνi) = S(µ) ∪ S(ν).
+Then the thickening H0 of H 0 equals H, and the embedding E : G → H = H0 witnesses that
+ϕ0 : G → H 0 is atomic embeddable.
+    Conversely, assume that ϕ0 : G → H 0 is atomic embeddable. Let E 0 : G → H0 be an atomic
+embedding. Consider the restriction of E 0 : G → H0 on the surface S(hµνi). Filling the holes of
+S(hµνi) with discs, and then contract them to points, to obtain an embedding of Gϕ0 (hµνi) on the
+sphere S 2 .
+    First, assume that (i) both Gϕ (µ) and Gϕ (ν) are p-stars: Gϕ (µ) is the union of internally vertex
+disjoint paths between u and a vertex set Va , and similarly Gϕ (ν) is the union of internally vertex
+disjoint paths between v and a vertex set Vb . Consequently, Gϕ0 (hµνi) is the union of internally
+vertex disjoint paths between vertices in Va and Vb . (Note that Gϕ0 (hµνi) need not be connected.)
+By suppressing the internal vertices of the paths between Va and Vb , we obtain an embedding of a
+bipartite multigraph G−  ϕ0 (hµνi) with partite sets Va and Vb on S .
+                                                                      2
+
+    By Belyi’s theorem [6], there exists a Jordan curve β : S 1 → S 2 that intersects every edge of
+  −
+Gϕ0 (hµνi) in exactly one point, and the intersection is transversal. The curve β partitions S 2 into
+two parts, A and B. We can subdivide the edges of G−     ϕ0 (hµνi) to obtain an embedding of Gϕ (hµνi)
+                                                                                                0
+
+on a sphere such that the curve β crosses an edge e ∈ E(Gϕ0 (hµνi)) if and only if e ∈ ϕ−1 [ρ].
+Consequently, by contracting A (resp., B) into a vertex v (resp., u), we obtain an embedding of
+Gϕ (ν) (resp., Gϕ (µ)) on a sphere, where the vertices u and v have opposite rotations. Observation 1
+now implies that ϕ : G → H is atomic embeddable.
+    Next assume that (ii) Gϕ (µ) or Gϕ (ν) is a p-path: Without loss of generality, assume that Gϕ (µ)
+is a p-path, with poles u and w. Consequently, Gϕ0 (hµνi) is a subdivision of Gϕ (ν), obtained by
+subdividing the edges incident to v. In particular G−                               −
+                                                        ϕ0 (hµνi) is isomorphic to Gϕ (ν), where vertex
+w in G−                                          −
+        ϕ0 (hµνi) corresponds to vertex v in Gϕ (ν). By imposing the rotation of w on v (and the
+opposite rotation on u), Observation 1 implies that ϕ : G → H is atomic embeddable, completing
+the proof.
+
+   Our last operation deletes a cut edge of a subcubic local graph; see Fig. 8 for an illustration.
+
+
+
+
+                                                  13
+                        w                                        w                               w
+        u                                       u                                    u
+                 ρ                                        v0                              v0
+                                                     v
+                                                                                     v
+            Sν              Sµ                      Sν               Sµ                              Sµ
+
+
+Figure 8: An atomic embedding of G on S(ν) ∪ S(µ) before and after operation Delete(uv), where
+uv ∈ Gϕ (ν) and uw = uv. The operation reduces the degree of a virtual vertex v of Gϕ (ν) such
+that v is incident to a cut-edge, and at most 3 edges of G pass through its corresponding pipe ρ.
+
+
+Delete(e). We are given a cut edge e = uv in a subcubic local graph Gϕ (ν). If both u and v are
+ordinary vertices, then delete uv from E(G) (thereby disconnecting Gϕ (ν) into two components
+and invoking Split(ν)). Else assume w.l.o.g. that u is ordinary and v is virtual. Let ρ = µν be
+the pipe that corresponds to v in Gϕ (ν) and a vertex v 0 in Gϕ (µ), and let uw ∈ E(G) be the
+edge corresponding to uv, that is, uw = uv = v 0 w, where v 0 w ∈ Gϕ (µ). Delete the edge uw from
+G (thereby reducing the degree of ρ to 2), then Suppress(ρ) (which turns v and v 0 into ordinary
+vertices), and finally insert an edge v 0 w into both G and Gϕ (µ).
+
+Lemma 8. For every instance ϕ : G → H of atomic embeddability, an application of Delete(e)
+produces an equivalent instance ϕ0 .
+
+Proof. First, assume that ϕ is atomic embeddable. If both u and v are ordinary vertices, then the
+deletion of edge uv produces an atomic embeddable instance by Observation 1 and Lemma 2. If u is
+ordinary and v is virtual, then we can clearly delete uv = uw from G, suppress the pipe ρ of degree
+at most 2, and insert the edge v 0 w (which was already present in Gϕ (µ) before the operation). By
+Observation 1, and Lemmas 1 and 2, ϕ0 is atomic embeddable.
+     Conversely, assume that ϕ0 is atomic embeddable. Then there exists an atomic embedding
+E : G0 → H0 with respect to ϕ0 , where H0 is the thickening of H 0 . Note that ϕ0 (u) 6= ϕ0 (v) since
+  0
+
+ϕ0 is normal and uv was a cut edge in Gϕ (ν). Let νu , νv ∈ V (H 0 ) be atoms such that ϕ0 (u) = νu
+and ϕ0 (v) = νv . Recall that the embedding E 0 determines a rotation system on all local graphs of
+ϕ0 . Consider disjoint plane embeddings of Gϕ0 (νu ) and Gϕ0 (νv ) with the rotation systems inherited
+from E 0 such that u and v are incident to a common face. If v is a virtual vertex of degree 3 in
+Gϕ (ν) (hence v 0 has degree 3 in Gϕ0 (µ)), we can choose plane embeddings of Gϕ0 (νu ) and Gϕ0 (νv )
+with the additional property that the insertion of the edge uv as a Jordan arc between u and v
+yields the embedding of Gϕ (ν) in which the rotation at v is opposite to the rotation of v 0 in Gϕ0 (µ).
+All other local graphs of ϕ are the same as in ϕ0 , and their rotation systems are inherited from E 0 .
+By Observation 1, ϕ is atomic embeddable.
+
+2.5   Toroidal Instance
+An instance ϕ : G → H is toroidal if H is a cycle and for every atom ν ∈ V (H), the graph Gϕ (ν)
+is a p-path in which both poles are virtual vertices, and correspond to the two pipes incident to ν.
+    Given an instance ϕ : G → H and a subgraph H 0 ⊆ H, such that the restriction of ϕ to
+G = ϕ−1 [H 0 ], denoted ϕ0 : G0 → H 0 , is toroidal, we say that H 0 is a toroidal cycle in H.
+  0
+
+    In this section, we show how to decide toroidal instances of atomic embeddability in linear time.
+First, note that in a toroidal instance every ordinary vertex has degree 2, hence G is a disjoint union
+
+                                                    14
+of cycles, say C1 , . . . , Ct , for some t ∈ N. Furthermore, ϕ maps each cycle Ck , k ∈ [t], to a walk
+that winds around H once or more times.
+
+Lemma 9. Let ϕ : G → H be a toroidal instance of atomic embeddability, where H is a cycle, and
+G is a vertex disjoint union of cycles C1 , . . . , Ct . The instance ϕ is positive if and only if ϕ(Ck ) is
+a walk of the same length for all k ∈ [t] (that is, every cycle winds around the torus H the same
+number of times).
+
+    Roughly speaking, Lemma 9 follows by the intersection form of the closed curves on the torus.
+Indeed, whether a pair of curves could be crossing free on the torus is governed by their homology
+classes [29, Example 2A.2. and Corollary 3A.6.(b)] over Z.
+
+Proof. In an atomic embedding, each cycle Ck is embedded on the torus H as a closed curve, whose
+homology class over Z is given by a pair (ik , jk ) ∈ Z2 , where we assume w.l.o.g. that the first
+component ik is the length of the walk ϕ(Ck ) divided by |V (H)|. In particular, we may assume
+that ik > 0. Since in an atomic embedding, Ck is mapped to a Jordan curve in H, its homology
+class must be primitive [34, 36], or in other words, gcd(ik , jk ) = 1, for all k ∈ [t].
+    The “if” part follows by observing that the restriction of ϕ to a cycle Ci is a positive instance,
+no matter how many times ϕ(Ci ) winds around H. Indeed, a desired atomic embedding lies in
+the primitive homology class (ik , 1). A sufficiently small neighborhood of the embedding of Ci in
+H is homeomorphic to an annulus, into which all cycles C1 , . . . , Ct can be embedded given the
+hypothesis is satisfied. It remains to prove “only if” part.
+    It is well-known that the minimum number of crossings between a pair of closed curves in
+homology classes (ik , jk ) and (i` , j` ) is given as the absolute value of
+                                                       
+                                             0 −1         i`
+                                  ik jk                        = i` jk − ik j` ,
+                                                 1 0       j`
+which counts the algebraic intersection of the pair, see [48, Section 6.4.3], and in particular Ex-
+ercise 6.4.3.2. therein4 . Since the cycles C1 , . . . , Ct embed into H as pairwise disjoint curves in
+an atomic embedding, we have i` jk − ik j` = 0 for every pair of distinct k, ` ∈ [t]. It follows that
+jk    j`
+ik = i` . Since gcd(ik , jk ) = 1, gcd(i` , j` ) = 1, ik > 0, and i` > 0, we have that ik = i` and jk = j` ,
+which concludes the proof.
+
+Corollary 2. We can decide whether a toroidal instance ϕ : G → H is atomic embeddable in time
+O(n), where n is the number of edges and vertices in G.
+
+Proof. Under the assumptions, G is the union of vertex disjoint cycles C1 , . . . , Ct , for some t ∈ N.
+We report that the instance is positive if and only if ϕ(Ci ) is a walk of the same length for all
+k ∈ [t]. This algorithm is correct by Lemma 9. It runs in linear time in the size of G, as the length
+of the walks ϕ(Ci ), i ∈ [t], can be computed in a simple traversal of G.
+   4
+     We refrain from properly defining algebraic intersection, since we will not need it in the sequel, and refer an
+interested reader to [48]. To the readers who are unfamiliar with the intersection form it might be only clear that the
+absolute value of the expression gives a lower bound on the number of crossings between the curves. Nevertheless,
+for our purpose this lower bound is sufficient, and therefore we do not delve into more details to show that the lower
+bound is always tight.
+
+
+
+
+                                                          15
+2.6   The Subcubic Case
+An instance ϕ : G → H of atomic embeddability is subcubic if Gϕ (ν) is subcubic (i.e., its
+maximum degree is at most 3) for every ν ∈ V (H). In this section, we show how to decide subcubic
+instances of atomic embeddibility in linear time. By Observation 1, it is enough to check whether
+all graphs Gϕ (ν), ν ∈ V (H), are planar, and they each have embeddings in the plane such that for
+every pipe µν ∈ E(H), the virtual vertices corresponding to µν in Gϕ (µ) and Gϕ (ν) have opposite
+rotations.
+    Planarity testing for a graph takes linear time [30]. Let n be the number of vertices and edges
+in G. Then the disjoint union of all local graphs G has O(n) size (since each vertex in V (G)
+corresponds to a unique ordinary vertex, and every edge in E(G) corresponds to one or two edges
+in G). Hence planarity testing for G takes O(n) time.
+    In the subcubic case, every vertex in the local graphs Gϕ (ν), ν ∈ V (H), has at most two possible
+rotations (including the vertices of 1- and 2-cuts). We show how to encode the possible embeddings
+of each local graph by a boolean variable, and then reduce the existence of compatible embeddings
+to a 2SAT formula, which can be solved in O(n) time.
+    We start with a postprocessing algorithm that eliminates 1- and 2-edge-cuts from local graphs.
+
+      Postprocessing. We are given a subcubic instance ϕ : G → H of atomic embeddability.
+
+ (1) While there exists a cut edge e in some Gϕ (ν), ν ∈ V (H), apply Delete(e).
+
+ (2) While there exists a proper 2-edge-cut {e, f } in a local graph of ϕ, such that e = u1 v1
+     and f = u2 v2 , where both v1 and v2 are in a {u1 , u2 }-bridge B of Gϕ (ν), apply Enclose(B)
+     (creating a new pipe ρB of degree 2), and Suppress(ρB ).
+
+Lemma 10. For a subcubic instance ϕ of atomic embeddability of size n, Postprocessing runs in
+O(n) time, and it returns an equivalent subcubic instance ϕ0 of size O(n) in which every local graph
+is a cycle, a p-path, or a subdivided 3-connected planar graph.
+
+Proof. The while loop in Step (1) decreases the number of edges in E(G), so it terminates after
+O(n) iterations, and uses O(n) time. The while loop in Step (2) decreases the number of 2-edge-cuts
+in local graphs, and hence, it also terminates after O(n) iterations in O(n) time. By Lemmas 1, 8,
+and 5, the instance ϕ0 : G0 → H 0 returned by the Postprocessing algorithm is equivalent to ϕ.
+    Step (1) can only decrease the degree of a local graph, and Step (2) creates a pair of ordinary
+vertices of degree 2. Since ϕ is a subcubic instance, ϕ0 is also subcubic. When the algorithm
+terminates, then G−  ϕ0 (ν) has neither cut edges nor 2-edge-cuts, for all ν ∈ V (H ).
+                                                                                      0
+
+    We claim that every local graph Gϕ0 (ν), ν ∈ V (H 0 ), is biconnected. (Note that we assume that
+  0
+ϕ is normal, and hence, Gϕ0 (ν) is connected.) Let v be an arbitrary vertex in Gϕ0 (ν). Vertex v
+is incident to at least two edges in each {v}-bridge, otherwise we would find a cut edge. However,
+deg(v) ≤ 3, so there is at most one {v}-bridge, and v is not a cut vertex. This completes the proof
+of the claim.
+    It remains to show that every local graph Gϕ0 (ν), ν ∈ V (H 0 ), is a cycle, a p-path, or a subdivided
+3-connected graph. Consider a graph Gϕ0 (ν). Suppose it is neither a cycle not a subdivided 3-
+connected graph. Let {u, v} be a proper 2-cut. If degB (u) = degB (v) = 1, for some {u, v}-bridge
+B, then B is a uv-path, as otherwise the edges incident to u and v in B would form a 2-edge-cut
+in G−ϕ0 (ν). The number of {u, v}-bridges is at least 2 and at most 3, since Gϕ (ν) is subcubic. If
+                                                                                       0
+
+
+
+
+                                                   16
+there are three {u, v}-bridges, then degB (u) = degB (v) = 1 for every {u, v}-bridge B, and hence,
+every {u, v}-bridge is a uv-path, and so Gϕ0 (ν) is a p-path. Suppose now that there are two {u, v}-
+bridges. Then neither bridge can be a uv-path, otherwise {u, v} would not be a proper 2-cut.
+Therefore max{degB (u), degB (v)} ≥ 2 for every {u, v}-bridge B. Since Gϕ0 (ν) is subcubic, this
+implies min{degB (u), degB (v)} = 1 for both bridges. By Observation 2, there are edges e = uu0
+and f = vv 0 in the two bridges that form a 2-edge-cut in G− ϕ0 (ν), contradicting the assumption that
+no such 2-edge-cut exists.
+
+Lemma 11. We can decide whether a subcubic instance ϕ : G → H is atomic embeddable in O(n)
+time, where n is the number of edges and vertices in G and H.
+
+Proof. By Lemma 10, we may assume that every local graph Gϕ (ν), ν ∈ V (H), is a cycle, a subcubic
+p-path, or a subdivided 3-connected planar graph. We can ignore cycles, as vertices of degree 2 have
+only one rotation. Every subdivided 3-connected planar graph has two possible rotation systems
+given by an embedding, that are equivalent up to a reflection. In every embedding of a p-path with
+poles u and v, the cyclic order of the {u, v}-bridges around u and v are reverse of each other. If
+deg(u) = deg(v) = 3, the three {u, v}-bridges have two possible cyclic orders, that is, the p-path
+have two possible rotation systems in a plane embedding.
+     For every local graph Gϕ (ν), ν ∈ V (H), that is a p-path or a subdivided 3-connected graph, we
+introduce a boolean variable xν , which is the indicator variable for the two possible rotation systems
+of Gϕ (ν) in a plane embedding. In other words, we fix an embedding of Gϕ (ν) corresponding to
+xν = 1, and then the reflected embedding corresponds to xν = 0. Since ϕ is a normal instance,
+every pipe has degree 3, that is, it corresponds to two virtual vertices of degree 3 in two local
+graphs. In particular, for every pipe ρ = µν, both xµ and xν are defined. For every pipe ρ = µν,
+we introduce a constraint xµ = xν if the rotations of its two corresponding virtual vertices in Gϕ (µ)
+and Gϕ (ν) in the embedding of Gϕ (µ) and Gϕ (ν), respectively, corresponding to xν = 1 and xµ = 1
+are opposite of each other; and xµ = ¬xν otherwise.
+     These constraints yield an instance of 2SAT with O(|V (H)|) boolean variables and O(|E(H)|)
+constraints, which can be solved in O(n) time. If the 2SAT instance is positive then the graphs
+Gϕ (ν), ν ∈ V (H), each have an embedding in the plane such that for every pipe µν ∈ E(H),
+the corresponding virtual vertices in Gϕ (µ) and Gϕ (ν) have opposite rotations. It follows that ϕ
+is a positive instance by Observation 1. Conversely, if ϕ is a positive instance, then the atomic
+embedding of G induces plane embeddings of the local graphs such that for every pipe µν ∈ E(H),
+the corresponding virtual vertices have opposite rotations. By construction, the indicator variables
+xν , ν ∈ V (H), satisfy all constraints of the 2SAT instance.
+
+2.7   Main Algorithm
+We define two subroutines and then present our main algorithm. Subroutine 1 ensures that our
+instance has some desirable properties, and Subroutine 2 decreases the maximum degree over all
+local graphs Gϕ (ν), for all atoms ν ∈ V (H), that are not contained in a toroidal cycle C of H.
+    The crucial part of our algorithm reduces the maximum degree in local graphs over all atoms
+that are not in toroidal cycles. Specifically, for an instance ϕ of atomic embeddability, let
+
+   • V ∗ (H) (resp., E ∗ (H)) be the set of atoms (resp., pipes) in H that are not in any toroidal
+     cycle of H; and
+
+
+
+                                                  17
+                                         v                                                      v
+
+             ρ
+
+
+
+                                      S(ν)                                                    S(ν)
+
+Figure 9: An atomic embedding of G on S(ν) before and after Step (i), where u is a virtual vertex
+of Gϕ (ν) corresponding to the pipe ρ, and v is an ordinary vertex of Gϕ (ν).
+
+   • let ∆(ϕ) be the maximum degree over all vertices of all local graphs Gϕ (ν), ν ∈ V ∗ (H), if
+     V ∗ (H) 6= ∅, and let ∆(ϕ) = 2 if V (H) = ∅.
+    We first call Subroutine 1 for a normal instance ϕ, and show that it returns an equivalent
+instance in which the proper 1- and 2-cuts in local graphs Gϕ (ν), ν ∈ V ∗ (H), are in a special form,
+as described in terms of the following definition.
+Definition 2. An instance ϕ of atomic embeddability is d-nice, for d ≥ 3, if it meets the following
+two conditions:
+(N1) ∆(ϕ) ≤ d.
+(N2) If deg(v) = d for a vertex v of some local graph Gϕ (ν), ν ∈ V (H), then v has a fixed rotation,
+     or Gϕ (ν) is a p-path or a p-star.
+(N3) If ρ = µν ∈ E(H), such that both Gϕ (µ) and Gϕ (ν) are p-stars, and ρ corresponds to virtual
+     vertices of degree at least d, then ρ is the only pipe between µ and ν.
+   We present a subroutine that takes a normal instance ϕ as an input, and returns a ∆-nice
+normal instance for the maximum degree ∆ over all local graphs, that is, ∆ = ∆(ϕ) (as shown in
+Lemma 12 and Corollary 4 below).
+      Subroutine 1. Input: a normal instance ϕ of atomic embeddability, where ∆(ϕ) ≥ 4.
+  (i) While there is a proper 2-cut {u, v} and a nonseparable {u, v}-bridge B in Gϕ (ν), for some
+      ν ∈ V (H), such that max{deg(u), deg(v)} = ∆, but neither u nor v is a cut vertex, then do
+      the following: Perform Stretch(u, Eu ), where Eu is the set of edges in E(B) incident to u;
+      and perform Stretch(v, Ev ), where Ev is the set of edges in E(B) incident to v. If u or v is a
+      virtual vertex corresponding to a pipe µν and Gϕ (µ) is nonplanar, report that the instance
+      ϕ is not atomic embeddable and exit the subroutine.
+ (ii) While there is a proper 2-edge-cut {e, f } in Gϕ (ν), for some ν ∈ V (H), then let e = u1 v1 and
+      f = u2 v2 such that both v1 and v2 are in a {u1 , u2 }-bridge B of Gϕ (ν), then apply Enclose(B)
+      (creating a new pipe ρB of degree 2), and Suppress(ρB ).
+ (iii) While there is a proper cut vertex v with deg(v) = ∆ in some local graph of ϕ, then suc-
+       cessively apply Enclose(B) for every bridge B of v (thereby turning every bridge of v into a
+       p-path). Apply Suppress(ρB ) if applicable.
+
+                                                 18
+                        S(ν 0 )             v1                                S(ν 0 )          v1
+                                                  ρB                                    v2
+
+                                                                              ρB
+ v                u               v2             u1          v          u
+                                                                                   u2               u1
+                                       u2
+                                                           S(ν)                 S(ν)
+ S(ν)
+                             S(ν)
+
+Figure 10: The operation Enclose(B) in Step (ii) eliminates every proper 2-cut {u, v} in Gϕ (ν) that
+has exactly two {u, v}-bridges. Either one of the {u, v}-bridges is separable (left), or there exists a
+separable {u1 , u2 }-bridge such that degB (u1 ) = degB (u2 ) = 1 (right).
+
+
+   In Section 2.8 (cf. Corollary 4), we show that Subroutine 1 terminates and analyse its running
+time. Here we prove that if it terminates, it returns a ∆(ϕ)-nice instance.
+
+Lemma 12. For an instance ϕ of atomic embeddibility, if Subroutine 1 terminates, it either returns
+an equivalent, normal, and ∆(ϕ)-nice instance ϕ0 , or reports that ϕ is not atomic embeddable.
+
+Proof. Let ∆ = ∆(ϕ) for short. By Lemmas 1, 5, and 6, Subroutine 1 returns an equivalent instance
+ϕ0 upon termination. Note that instance ϕ0 is normal, since we apply Suppress(νB ) to any pipe of
+degree less than 3. The operations in Subroutine 1 do not increase the maximum degree in any
+local graph outside of toroidal cycles; and make no changes at all in local graphs in toroidal cycles.
+Consequently, ∆(ϕ0 ) ≤ ∆.
+    At the end of Step (i), every {u, v}-bridge is separable for every proper {u, v}-cut where
+max{deg(u), deg(v)} = ∆; see Fig. 9. We consider Step (ii) now. Suppose that {u, v} is a proper
+2-cut in Gϕ (ν), such that min{deg(u), deg(v)} ≥ 3 and max{deg(u), deg(v)} = ∆
+    If there exist exactly two (separable) {u, v}-bridges in Gϕ (ν) (none of which is a subdivided edge
+as otherwise {u, v} would not be a proper 2-cut), then Step (ii) eliminates the proper 2-cut {u, v}
+by a single application of Enclose(.), due to Observation 2, and does not introduce any new proper
+2-cut. Indeed, up to symmetry there are two cases to consider depending on whether degB (u) = 1
+or degB (u) = deg(u) − 1, and degB (v) = 1 or degB (v) = deg(v) − 1; see Fig. 10.
+    If there exist at least three (separable) {u, v}-bridges in Gϕ (ν) such that max{deg(u), deg(v)} =
+∆, then Step (ii) turns Gϕ (ν) into a p-path with the poles u and v.
+    Hence, at the end of Step (ii), for every proper 2-cut {u, v} we have (a) max{deg(u), deg(v)} <
+∆; or (b) u or v is a cut vertex of degree ∆; or (c) u and v are the poles of a p-path. In particular,
+every vertex w with deg(w) = ∆ in a local graph Gϕ (µ), is a proper 1-cut, or a pole of a p-path,
+or has fixed rotation.
+    Step (iii) successively turns every cut vertex of degree ∆ into the center of a p-star. It creates
+new 2-cuts within these p-stars and possibly in adjacent atoms, but it does not create any new vertex
+of degree ∆. Hence, at the end of Subroutine 1 ϕ satisfies (N1) and (N2). For property (N3), note
+that by enclosing all the bridges of the center of every p-star in G of degree ∆, Step (iii) eliminates
+possible problematic multiple pipes ρ = µν in H, where ρ corresponds to a pair of centers of p-
+stars Gϕ (µ) and Gϕ (ν). Overall, the instance ϕ0 returned by Subroutine 1 upon termination meets
+conditions (N1)–(N3), consequently ϕ0 is ∆-nice.
+
+
+
+
+                                                      19
+      G               Gϕ (µ0 )                Gϕ (µ1 )                   Gϕ (µ2 )                Gϕ (µ3 )
+
+
+
+
+          H   µ0                      µ1                     µ2                       µ3
+                      ρ1 = µ0 µ1              ρ2 = µ1 µ2                 ρ3 = µ2 µ3
+
+
+
+
+          G            Sµ0                   Sµ1                   Sµ2                     Sµ3
+
+
+
+
+          G            Sµ0                                         Sµ01                    Sµ3
+
+
+
+
+          G                                                        Sµ00                    Sµ3
+
+
+
+                                                                     ρ03
+
+
+                                                                     ρ3
+
+          G                                                       Sµ00                 Sµ3
+
+Figure 11: A path (ρ1 , ρ2 , ρ3 ) in H through the atoms µ0 , . . . , µ3 . The graph Gϕ (µ0 ) is a p-star,
+Gϕ (µ1 ) and Gϕ (µ2 ) are p-paths, and Gϕ (µ3 ) is 3-connected. In each local graph, the virtual vertices
+corresponding to ρ1 , ρ2 , or ρ3 are vertices of maximum degree. The bottom three subfigures show
+the effect of Step (iv.a) and Step ((v.c)) of Subroutine 2 on the graph G in this instance.
+
+
+
+
+                                                    20
+      G         u1     Gϕ (µ)                    Gϕ (ν)
+                                   v1
+
+
+
+
+                                        v2
+                u2                                                            Sµ                     Sν
+          H                ρ1
+               µ                         ν
+                          ρ2
+
+           Figure 12: An illustration of the setting in Step (iv.b), analogous to Fig. 11.
+
+
+Degree reduction. We are now ready to present the crucial subroutine of our algorithm that
+reduces ∆(ϕ) by eliminating all vertices of degree ∆(ϕ) that are not in toroidal cycles. (See Figs. 11
+and 12 for the possible relations between virtual vertices of degree ∆(ϕ).)
+
+     Subroutine 2. Input: a normal and ∆-nice instance ϕ of atomic embeddability, where
+     ∆ = ∆(ϕ) and ∆ ≥ 4.
+
+(iv) While there exists a pipe µν ∈ E ∗ (H) of degree ∆ such that Gϕ (µ) or Gϕ (ν) is a p-path, do
+     the following. Suppose w.l.o.g. that Gϕ (µ) is a p-path.
+
+      (a) If µν is not a multiple edge apply Contract(µν).
+      (b) Else there exists a pair of pipes ρ1 and ρ2 joining µ with ν. Let ui and vi , resp., be
+          virtual vertices in Gϕ (µ) and Gϕ (ν) corresponding to ρi for i ∈ {1, 2}. Note that u1
+          and u2 are the poles of the p-path Gϕ (µ); and both v1 and v2 are fixed due to (N2),
+          as µ is not in a toroidal cycle. Apply Stretch(v1 , E1 ) and Stretch(v2 , E2 ), where Ei is a
+          set of b∆/2c consecutive edges in the rotation at vi , for i ∈ {1, 2}. If Gϕ (µ) becomes
+          nonplanar, report that the instance is not atomic embeddable and exit the subroutine.
+
+ (v) For every pipe µν ∈ E ∗ (H) of degree ∆ that corresponds to virtual vertices u and v in Gϕ (µ)
+     and Gϕ (ν), respectively, do:
+
+      (a) If both u and v have fixed rotations (in Gϕ (µ) and Gϕ (ν), resp.), then check whether
+          the two rotations are compatible. If they are incompatible, then report that ϕ is not
+          atomic embeddable and exit the subroutine. Otherwise apply Stretch(u, Eu ), where Eu
+          is a set of b∆/2c consecutive edges in the rotation of u.
+      (b) If neither u nor v has a fixed rotation, then apply Contract(µν). This contracts µν
+          into a new atom, denoted by hµνi, and combines Gϕ (µ) and Gϕ (ν) into a new graph
+          Gϕ (hµνi). If Gϕ (hµνi) is nonplanar, report that ϕ is not atomic embeddable and exit
+          the subroutine.
+       (c) Else assume w.l.o.g. that u has fixed rotation in Gϕ (µ), and is incident to edges (uv1 , . . . , uv∆ )
+           in this cyclic rotation order. Successively apply Stretch(u, .), turning vertex u into an
+           induced binary tree with ∆ − 2 vertices. If Gϕ (ν) is nonplanar, report that the instance
+           is not atomic embeddable and exit the subroutine.
+
+
+
+                                                     21
+ (vi) For every ordinary vertex v ∈ V (Gϕ (ν)), ν ∈ V (H), with deg(v) = ∆ that has fixed rotation,
+      apply Stretch(v, Ev ), where Ev is a set of b∆/2c consecutive edges in the rotation of v.
+
+(vii) For every ordinary vertex v ∈ V (Gϕ (ν)), ν ∈ V (H), with deg(v) = ∆ that is part of a 1- or
+      2-cut, apply Detach(v).
+
+    This completes the description of Subroutine 2. In Section 2.8 we show that Subroutine 2
+terminates and analyse its running time. In Lemma 14 below, we prove that if it terminates, it
+returns an instance ϕ0 with ∆(ϕ0 ) < ∆(ϕ). We first clarify when an operation Stretch(.) can create
+a proper 1- or 2-cut.
+Lemma 13. Let u be a vertex in Gϕ (ν) such that deg(u) ≥ 4, and assume that operation Stretch(u, .)
+produces an instance ϕ0 in which u is replaced by an edge uu0 . If u is not a proper 1-cut in Gϕ (ν),
+then neither u nor u0 is a proper 1-cut in Gϕ0 (ν). If u neither is a proper 1-cut nor belongs to a
+proper 2-cut in Gϕ (ν), then neither u nor u0 belongs to a proper 2-cut in Gϕ0 (ν).
+Proof. For the sake of contradiction suppose w.l.o.g. that u0 is a proper 1-cut in Gϕ0 (ν). If we
+contract the edge uu0 back into the vertex u, the vertex u is a proper 1-cut in Gϕ (ν). Indeed, if B
+is the {u0 }-bridge containing u, then B contains at least 3 edges since deg(u) ≥ 3. Thus, the bridge
+B gives rise to a {u}-bridge after we contract uu0 .
+      Similarly, suppose that u0 or u belongs to a proper 2-cut {v, w} of Gϕ0 (ν). If we contract the
+edge uu0 back into the vertex u, no loops are created, since uu0 is not a multiple edge. We show
+that the vertex u belongs to a proper 2-cut in Gϕ (ν) or is a proper 1-cut. The proper 2-cut {v 0 , w0 }
+or 1-cut {v 0 } in Gϕ (ν) is constructed as follows. We put v 0 = u and w0 = u if v ∈ {u, u0 } and
+w ∈ {u, u0 }, respectively, and we put v 0 = v and w0 = w, otherwise. The proper 2-cut {v 0 , w0 } is, in
+fact, a proper 1-cut if v 0 = w0 = u.
+      To see that {v 0 , w0 } is a proper 1-cut if v 0 = w0 , we observe that vw = uu0 and apply the
+definitions of a proper 1-cut and proper 2-cut. Otherwise, w.l.o.g. v = u, and thus, v 0 = u. Let
+B denote the {v, w}-bridge containing uu0 edge. The bridge B is not a (subdivided) edge, since
+deg(u0 ) ≥ 3 and w 6= u0 . Thus, after contracting uu0 , the bridge B gives rise to at least one
+{v 0 , w0 }-bridge that is not a subdivided edge. Hence, {v 0 , w0 } is a proper 2-cut.
+
+Lemma 14. For a ∆(ϕ)-nice instance ϕ : G → H of atomic embeddability, if Subroutine 2 termi-
+nates, then it either returns an equivalent normal instance ϕ0 : G0 → H 0 such that ∆(ϕ0 ) < ∆(ϕ),
+or reports that ϕ is not atomic embeddable.
+Proof. Let ∆ = ∆(ϕ). We show that every step of Subroutine 2 maintains a ∆-nice normal instance
+equivalent to ϕ until it terminates; and it either returns such an instance ϕ0 or reports that ϕ0 is
+not atomic embeddable. Subroutine 2 maintains a normal instance until termination, since it does
+not create virtual vertices of degree 2 and Split(.) is applied automatically whenever a local graph
+disconnects into two or more components.
+    Step (iv.a) produces an equivalent instance by Lemma 7: Each Contract(.) operation merges a
+local graph Gϕ (ν) with a p-path Gϕ (µ) and produces a new local graph Gϕ (hµνi), where G−   ϕ (hµνi)
+is isomorphic to G− ϕ (ν), so the instance  remains   ∆-nice.  In Step (iv.b), the two invocation  of
+Stretch(.) produce an equivalent instance by Lemma 6. At the end of Step (iv), none of the local
+graphs outside of toroidal cycles is a p-path of degree ∆.
+    In Step (v.a), the rotation of the virtual vertices u and v must be compatible in any atomic
+embedding by Observation 1. If they are compatible, then operation Stretch(u, .) produces an
+
+                                                   22
+equivalent instance by Corollary 1; and the resulting instance is still ∆-nice since no new proper
+1-cut or 2-cut is introduced in Gϕ (µ) and Gϕ (ν) by Lemma 13.
+    In Step (v.b), both Gϕ (µ) and Gϕ (ν) are p-star, centered at u, and v resp., since instance
+is ∆-nice, and p-paths of degree ∆ have already been eliminated. By Lemma 7, Contract(µν)
+produces an equivalent instance. The resulting instance is still ∆-nice, since the maximum degree
+of Gϕ (hµνi) is less than ∆; and Gϕ (hµνi) is planar if ϕ is atomic embeddable by Observation 1.
+    In Step (v.c), operation Stretch(u, .) for a fixed vertex u yields an equivalent instance by Corol-
+lary 1. If the rotation of u is incompatible with a p-star centered at v, Stretch(u, .) may turn
+Gϕ (ν) into a nonplanar graph, and then ϕ is not atomic embeddable by Observation 1. Note that
+Gϕ (ν) is a p-star, since p-paths have been eliminated in Step (iv). Successive Stretch(.) operations
+eliminate the only vertex of degree ∆ of Gϕ (ν), namely v. The graph Gϕ (µ)− remains 3-connected
+by Lemma 13, and so the resulting instance is ∆-nice.
+    The equivalence of Step (vi) follows by Lemma 6, and the resulting instance is still ∆-nice, since
+operation Stretch(v, .) does not introduce a 1-cut in Gϕ (ν) that would violate the ∆-nice property
+by Lemma 13.
+    In Step (vii), operation Detach(u) is applied in a ∆-nice instance, hence it produces an equivalent
+instance by Lemma 4, which obviously remains ∆-nice.
+    For the remainder of the proof, assume that Subroutine 2 returns an instance ϕ0 . The operations
+in Subroutine 2 do not increase the maximum degree outside of toroidal cycles; and make no changes
+within toroidal cycles. Consequently, ∆(ϕ0 ) ≤ ∆.
+    It remains to prove that ∆(ϕ0 ) < ∆, i.e., that Subroutine 2 eliminates vertices of degree ∆ from
+all local graphs outside of toroidal cycles; call these vertices ∆-critical. Since ϕ is ∆-nice, every
+∆-critical vertex in a local graph has a fixed rotation, or it is a center of a p-star, or a pole of a p-
+path. Steps (iv)–(vii) each eliminate one or two ∆-critical vertices (possibly a pair of corresponding
+virtual vertices), and do not create any new ∆-critical vertices. Steps (iv)–(v) eliminate all possible
+∆-critical virtual vertices; and Steps (vi)–(vii) eliminate all ∆-critical ordinary vertices. Since
+Subroutine 2 maintains a ∆-nice instance, it ultimately eliminates all ∆-critical vertices, and so
+∆(ϕ0 ) < ∆, as claimed.
+
+Algorithm.     We are given a normal instance ϕ of atomic embeddability.
+
+  (I) While ∆(ϕ) ≥ 4, do the following.
+
+       (a) Call Subroutine 1 (which turns ϕ into a ∆-nice instance) followed by Subroutine 2 (which
+           reduces ∆(ϕ)). If Subroutine 1 or Subroutine 2 reports that the instance ϕ is not atomic
+           embeddable return False and terminate the algorithm.
+
+ (II) For each connected component C of H, let G(C) = ϕ−1 [C].
+
+       (a) If C is a toroidal cycle of H, decide atomic embeddability for ϕ|G(C) using Corollary 2.
+       (b) Else decide atomic embeddability for ϕ|G(C) using Lemma 11.
+
+(III) If ϕ|G(C) is atomic embeddable for all components C of H, then return True; else return
+      False.
+
+   In Section 2.8 we show that the Algorithm terminates and analyse its running time. Here we
+show that if it terminates it correctly decides the atomic embeddability problem.
+
+
+                                                   23
+Lemma 15. Suppose that Algorithm terminates for an instance ϕ : G → H. Then the algorithm
+returns True if and only if ϕ is atomic embeddable.
+
+Proof. Since the input ϕ is normal, it is a valid input for Subroutine 1 in the first iteration of
+Step (I.a). By Lemma 12, Subroutine 1 returns a ∆(ϕ)-nice instance and therefore the input for
+Subroutine 2 is valid. In any subsequent iteration of Step (I.a), Subroutine 1 receives a valid input
+as Subroutine 2 returns a normal instance ϕ∗ (however, this instance need not be ∆(ϕ∗ )-nice). By
+Lemma 12 and Lemma 14, the while loop in Step (I) terminates after at most ∆(ϕ) − 3 iterations,
+and returns an equivalent instance (or correctly reports that ϕ is not atomic embeddable). If the
+Algorithm proceeds to Steps (II)–(III), the correctness of the output follows from Corollary 2 and
+Lemma 11.
+
+2.8    Running Time Analysis
+Potential Functions. We measure the progress of the algorithm, for an instance ϕ : G → H,
+using three parameters defined as follows. Recall that G denotes the disjoint union of all local
+graphs Gϕ (ν), ν ∈ V (H).
+
+   • Let N (ϕ) = |V (G)|, that is, be the number of vertices of G.
+   • let N≥3 (ϕ) = |{v ∈ V (G) : deg(v) ≥ 3}|, i.e., the number of vertices of G of degree 3 or higher.
+   • Let the potential of ϕ be
+                                            X
+                                  Φ(ϕ) =             (max{0, deg(v) − ξ(v)})σ(v) ,
+                                           v∈V (G)
+
+      where ξ(v) = 2 and σ(v) = 3 if v is a proper cut vertex, ξ(v) = 2 and σ(v) = 2 if v is part of
+      a proper 2-cut but not a cut vertex, and ξ(v) = 3 and σ(v) = 1 otherwise.
+
+Note that max{0, deg(v) − 2} = 0 if deg(v) ≤ 2, that is, the vertices of local graphs of degree less
+than 3 do not contribute to the potential. Clearly deg(v) < N (ϕ) for every v ∈ V (G), and so
+Φ(ϕ) ≤ N 4 (ϕ) is a trivial upper bound. Our analysis hinges on the following charging scheme:
+
+Overview. We show below (Lemma 19) that each iteration of Step (I.a) of the Algorithm de-
+creases the potential. This readily implies that the while loop in Step (I) terminates (hence the
+Algorithm terminates, which completes the proof of correctness). Recall that Step (I.a) runs Sub-
+routines 1 and 2, that is, it applies Steps (i)–(vii). We show that both the number of elementary
+operations performed and the number of new vertices created in Steps (i)–(vii) are bounded from
+above by a constant times the decrease of the potential. Step (ii) does not change the potential,
+so we need additional machinery to bound its running time: We use the parameters N (ϕ) and
+N≥3 (ϕ). We continue with the specifics.
+
+Analysis. Recall that each iteration of the while loop of Step (I) of the Algorithm, which calls
+Subroutine 1 followed by Subroutine 2. The two subroutine jointly perform Steps (i)–(vii). We
+use the following notation. Assume that ϕ0 is the input of Subroutine 1, and we obtain instances
+ϕ1 , . . . , ϕ7 at the end of Step (i),. . .,(vii). Denote by Gi the union of all local graphs in the instance
+ϕi for i = 1, . . . , 7. The following lemma is helpful for the analysis of Step (i).
+
+
+                                                        24
+Lemma 16. Let {u, v} be a proper 2-cut in a local graph Gϕ (ν) such that max{deg(u), deg(v)} ≥ 4;
+and let B be a nonseparable {u, v}-bridge. Then one iteration of the while loop in Step (i) produces
+an instance ϕ0 such that Φ(ϕ0 ) < Φ(ϕ) and N (ϕ0 ) ≤ N (ϕ) + 4.
+
+Proof. If u (resp., v is ordinary), then operation Stretch(.) creates 1 new vertex in G; and if it is
+virtual, it creates at most 2 new vertices in G. Overall at most 4 new vertices are created, all of
+which are of degree 3 or higher. That is, N (ϕ0 ) ≤ N (ϕ) + 4.
+    In the following we analyze how the operation impacts the degree of vertices. If u is an ordinary
+vertex, then Stretch(.) changes its degree from deg(u) to deg(u)−degB (u)+1 ≤ deg(u); and creates
+a new vertex of degree degB (u) + 1 ≤ deg(u). If u is a virtual vertex, corresponding to a pipe ρ,
+then both virtual vertices corresponding to ρ go through the same changes.
+    By Lemma 13, the new vertices created by Stretch(.) are not cut vertices (although they may
+participate in proper 2-cuts). If u is a virtual vertex, then the corresponding virtual vertex w in an
+adjacent atom µ might be a cut vertex or a vertex in a proper 2-cut. By Lemma 13, if w or a new
+vertex w0 created by Stretch(u, .) in Gϕ0 (µ) is a proper cut vertex (resp., contained in of a proper
+2-cut), then so is w in Gϕ (µ). In particular, for any existing vertex z in Gϕ (µ) (including vertex
+w), the exponent σ(z) cannot increase, ξ(z) cannot decrease. Consequently, the contribution of z
+to the potential cannot increase.
+    The change in the potential incurred by u is most
+
+                    (degB (u) − 1)2 + (deg(u) − degB (u) − 1)2 − (deg(u) − 2)2 ,
+
+which is nonpositive by convexity, and equals to zero if and only if degB (u) = 1. Since B is a
+nonseparable {u, v}-bridge, we have max{degB (u), degB (v)} ≥ 2, and the two Stretch(.) operations
+at u and v jointly decrease the potential.
+
+Corollary 3. Let ϕ0 be a normal instance of atomic embeddability and let ∆ = ∆(ϕ0 ). Then the
+while loop in Step (i) terminates and returns an instance ϕ1 , after at most Φ(ϕ0 )−Φ(ϕ1 ) iterations,
+such that N (ϕ1 ) ≤ N (ϕ0 ) + 12(Φ(ϕ0 ) − Φ(ϕ1 )).
+
+Proof. By Lemma 16, each iteration of the while loop in Step (i) decreases the potential. Conse-
+quently, the while loop terminates, and performs at most Φ(ϕ) − Φ(ϕ0 ) iterations. Each iteration
+applies up to two Stretch(.) operations, at u or v for some proper {u, v}-cut, and increases the
+number of vertices by at most 4. By Lemma 16, the number of vertices increases by at most 4 times
+the decrease of the potential. Summation over all iterations of the while loop in Step (i) yields
+N (ϕ1 ) ≤ N (ϕ0 ) + 4(Φ(ϕ0 ) − Φ(ϕ1 )).
+
+   We can now focus on Steps (ii)–(vii).
+
+Lemma 17. Let ϕ1 be an instance returned by Step (i). Then the while loop in Step (ii) terminates
+after at most N≥3 (ϕ1 ) iterations, and it returns an instance ϕ2 such that N (ϕ2 ) < N (ϕ1 ) +
+2N≥3 (ϕ1 ), N≥3 (ϕ2 ) = N≥3 (ϕ1 ), and Φ(ϕ2 ) = Φ(ϕ1 ).
+
+Proof. Let ϕ be an instance at the beginning of one iteration of the while loop in Step (ii). Since
+ϕ is normal, every local graph Gϕ (ν) is connected. Let {e, f } be a proper 2-edge-cut in Gϕ (ν),
+let e = u1 v1 and f = u2 v2 such that both v1 and v2 are in a {u1 , u2 }-bridge B. Note that each
+component of Gϕ (ν) \ {e, f } contains a vertex that has degree at least 3 in Gϕ (ν), otherwise one
+of the components would be a path, and the 2-edge-cut would not be proper. In one iteration
+
+
+                                                 25
+of Step (ii), an operation Enclose(.) replaces Gϕ (ν) with two local graphs obtained by removing
+edges e and f , and inserting two new paths (u1 , wu , u2 ) and (v1 , wv , v2 ), where wu and wv are new
+ordinary vertices of degree 2. In particular, Φ and the number of vertices of degree at least 3 do
+not change, and the total number of vertices in G increases by 2.
+     It follows that Φ(ϕ2 ) = Φ(ϕ1 ) and N≥3 (ϕ2 ) = N≥3 (ϕ1 ). Since each iteration in the while loop
+of Step (ii) increases the number of components of G, but each new component contains at least
+one vertex of degree 3 or higher, the number of iterations is at most N≥3 (ϕ) − 1. Summation over
+all iterations yields N (ϕ2 ) ≤ N (ϕ1 ) + 2N≥3 (ϕ1 ) − 2.
+
+   Now we are ready to show that Subroutine 1 terminates.
+
+Corollary 4. For an instance ϕ0 of atomic embeddibility of size n, Subroutine 1 terminates.
+
+Proof. By Corollary 3 the while loop in Step (i) terminates. By Lemma 17, Step (ii) terminates
+and eliminates all proper 2-edge-cuts containing an edge that is incident to a vertex of degree
+∆ = ∆(ϕ0 ). Finally, in the while loop of Step (iii), each iteration decreases the number of vertices
+of degree ∆ in local graphs that are not p-stars. Therefore this while loop terminates, as well.
+
+   Note that Step (iii) increases the potential. We analyse the combined effect of Steps (iii)–(vii),
+and show that they jointly decrease the potential, and we can charge the number of operations, as
+well as the number of new vertices to the decrease of the potential. The following observation will
+be helpful.
+
+Lemma 18. Let d and d1 , . . . , dk be positive integers such that d = ki=1 di , d ≥ 4, and k ≥ 2.
+                                                                      P
+Then we have
+                                         k
+                                         X                    k
+                                                              X
+                                  3                        2
+                    (d − 2) ≥ (2d − 5) +   (max{0, di − 2}) +   (max{0, di − 2})3 .                                                       (1)
+                                                       i=1                                        i=1
+
+Proof. We distinguish among three cases. In Case 1, k = d (hence di = 1 for all i ∈ [k]). Then the
+right hand side of (1) is less than 2(d − 2). Clearly, 2(d − 2) ≤ (d − 2)3 for d ≥ 4.
+    In Case 2, we assume that 2 < k < d. First note that for every i ∈ [k], we have di − 1 ≥
+max{0, di − 2}, and so (di − 1)3 ≥ (max{0, di − 2})3 + (max{0, di − 2})2 . Elementary calculation
+yields
+
+
+                   k
+                              !         !3           k
+                                                                !                        !3                       k
+                                                                                                                               !3
+                   X                                 X                                                            X
+(d − 2)3 =               di       −2         =             di       −k+k−2                    =     (k − 2) +           (di − 1)
+                   i=1                               i=1                                                          i=1
+                              k
+                              X                                                                     k
+                                                                                                    X
+         =(k − 2) +   3                          3                  2
+                                      (di − 1) + 3(k − 2) (d − k) + 3(k − 2)                               (di − 1)2 +
+                              i=1                                                                   i=1
+                               Xk                                                  k
+                                                                                   X                k
+                                                                                                    X
+             + 6(k − 2)                 (di − 1)(d − di − k + 1) +                       (di − 1)         (dj − 1)(d − dj − k + 1)
+                                  i=1                                              i=1              j=1
+             k
+             X                                                      k
+                                                                    X                                       k
+                                                                                                            X
+         ≥         (di − 1)3 + 3(k − 2)2 (d − k) ≥                            (max{0, di − 2})3 +                 (max{0, di − 2})2 + (2d − 5),
+             i=1                                                        i=1                                 i=1
+
+
+
+                                                                              26
+where we have dropped some nonegative terms, and used the inequality 3(k−2)2 (d−k) ≥ 3(d−3) ≥
+(2d − 5) + (d − 4) ≥ 2d − 5 for d ≥ 4.
+    In Case 3, assume k = 2. Then, using d ≥ 4 again, we have
+
+
+                         2
+                                       !3     2              2            2
+                         X                    X              X            X
+                3                                       3
+        (d − 2) =              (di − 1)     ≥   (di − 1) + 3   (di − 1) =   (di − 1)3 + 3(d − 2)
+                         i=1                  i=1                 i=1           i=1
+                        k
+                        X                           k
+                                                    X
+                    >         (max{0, di − 2})3 +         (max{0, di − 2})2 + (2d − 5),
+                        i=1                         i=1
+
+as claimed.
+
+Lemma 19. Consider Steps (iii)–(vii) in an invocation of Subroutine 1 followed by Subroutine 2.
+We have Φ(ϕ2 ) > Φ(ϕ7 ), N (ϕ7 ) ≤ N (ϕ2 ) + O(Φ(ϕ2 ) − Φ(ϕ7 )), and the number of operations
+performed in Steps (iii)–(vii) is O(Φ(ϕ2 ) − Φ(ϕ7 )).
+
+Proof. None of these steps increases the number of vertices of degree ∆ or higher in local graphs.
+Ultimately all vertices of degree ∆ outside of toroidal cycles are eliminated.
+
+Overview. Each operation in Steps (iii)–(vii) is associated to either a unique vertex of degree ∆,
+or two virtual vertices of degree ∆ that correspond to the same pipe. In Step (iii) and Steps (vi)–
+(vii), this is vertex v; in Steps (iv)–(v), these are virtual vertices u and v corresponding to the pipe
+µν. We consider each vertex v of degree ∆ in the instance ϕ2 , and analyse how the operations
+associated with v change the potential and the total number of vertices over Steps (iii)–(vii).
+Let D(Φ, v) and D(N, v), resp., denote the changes in Φ(.) and N (.) incurred by the operations
+associated with vertex v. We claim that for every vertex v of degree ∆ in G2 , we have
+
+                                                    D(Φ, v) ≤ 0,                                      (2)
+
+with equality if and only if v is a a local graph Gϕ2 (ν) where ν is in a toroidal cycle; and
+
+                                            D(N, v) + 20 D(Φ, v) ≤ 0.                                 (3)
+Note that (2) holds with a strict inequality for at least one vertex v. Indeed, we have ∆ = ∆(ϕ3 ) =
+∆(ϕ2 ), and so there is a vertex of degree ∆ in some local graph of ϕ2 outside of toroidal cycles.
+Summation over all vertices of degree ∆ then yields
+
+                                             X
+              Φ(ϕ7 ) = Φ(ϕ2 ) +                           D(Φ, u) < Φ(ϕ2 ),
+                                     u∈V (G2 ):deg(u)=∆
+                                             X
+              N (ϕ7 ) = N (ϕ2 ) +                          D(N, u) ≤ N (ϕ2 ) + 20(Φ(ϕ2 ) − Φ(ϕ7 )).
+                                      u∈V (G2 ):deg(u)=∆
+
+
+
+
+                                                            27
+Elimination of p-paths. Recall that each iteration of Step (iv.a) applies Contract(µν) on a pipe
+µν corresponding to virtual vertices u in Gϕ (µ) and v in Gϕ (ν). Without loss of generality, assume
+that Gϕ (µ) is a p-path with poles u and w. Operation Contract(µν) eliminates u and v, and creates
+a new local graph Gϕ (hµνi) where G−   ϕ (hµνi) is isomorphic to Gϕ (ν). For the analysis of D(Φ, .)
+and D(N, .), we assume that this operation eliminates u and w; and vertex v of Gϕ (ν) survives in
+Gϕ (hµνi). Thus, the effect of Contract(µν) is neutral for v, although v may become an ordinary
+vertex if w is ordinary before the operation.
+    Inequalities (2)–(3) clearly hold for any vertex v in toroidal cycles. For all other vertices of
+degree ∆, we distinguish between three cases as follows.
+
+Vertices of fixed rotation. Let v be a vertex of fixed rotation with deg(v) = ∆ = ∆(ϕ2 ) in ϕ2 . If
+v is an ordinary vertex, then Steps (i)–(vi) do not change v, and in Step (vi) a Stretch(v, .) operation
+replaces v with two vertices v1 and v2 , where deg(v1 )+deg(v2 ) = ∆+2, and min{deg(v1 ), deg(v2 )} ≥
+3. In this case, D(Φ, v) = (deg(v1 ) − 3) + (deg(v2 ) − 3) − (∆ − 3) = −1, and D(N, v) = 1. If v is a
+virtual vertex, then deg(v) decreases in either Step (iv.b), (v.a) or (v.c). In Step (iv.b) or (v.a) one
+Stretch(.) operation has the same effect on the potential as for ordinary vertices, D(Φ, v) = −1, but
+it creates two new vertices, and so D(N, v) = 2. In Step (v.c), ∆−3 successive Stretch(.) operations
+replace v with ∆ − 2 vertices of fixed orientation with degree 3. Thus, D(Φ, v) = 0 − (∆ − 2), and
+D(N, v) ≤ ∆ − 3. In all cases, (2)–(3) follow.
+
+Poles of p-paths. Let v be a pole of a p-path Gϕ2 (ν), with deg(u) = ∆ = ∆(ϕ2 ). Denote the
+other pole of the p-path by u, where obviously deg(u) = deg(v) = ∆. If both u and v are ordinary,
+then Steps (i)–(v) do not change Gϕ2 (ν). The Detach(.) operation in Step (vii) replaces v with ∆
+new vertices of degree 1. Thus, D(Φ, v) = −(∆ − 2)2 and D(N, v) = ∆ − 1, thus (2)–(3) follow.
+   Assume that u or v is a virtual vertex. Then a Contract(.) operation in Step (iv.a) eliminates
+both u and v. We have D(Φ, u) = −(∆ − 2)2 and D(N, u) = −1.
+   Step (iv.b) applies Stretch(.) to a pair of virtual vertices u1 and u2 of Gϕ (µ). Thus, we have
+D(Φ, u1 ) = D(Φ, u2 ) < 0 and D(N, u1 ) = D(N, u2 ) = 1.
+
+Proper cut vertices. Let v be a proper cut vertex in ϕ2 with deg(v) = ∆ = ∆(ϕ2 ) in some local
+graph Gϕ2 (ν). Assume v has k ≥ 2 bridges B1 , . . . , Bk , and degBi (v) = di for all i ∈ [k]. Step (iii)
+successively encloses the k bridges. Note that v remains a proper cut vertex of degreeP     ∆. Step (iii)
+creates new virtual vertices v1 , . . . , vk in the p-star centered at v, where deg(v) = ki=1 deg(vi ).
+Every new virtual vertex vi , i ∈ [k], is part of a proper 2-cut {v, vi }.
+     Moreover, every virtual vertex vi , i ∈ [k], corresponds to another virtual vertex vi0 in the local
+graph of an atom created by enclosing Bi ; this local graph is isomorphic to Bi , where vi0 plays the
+role of v. In particular vi0 cannot be a cut vertex, but it may be contained in a proper 2-cut. At
+the end of Step (iii), we obtain a ∆-nice instance ϕ3 in which none of the local graphs containing
+a virtual vertex vi0 , i ∈ [k], is a p-path or a p-star contain any vertex of degree ∆. Therefore
+Steps (iv)–(vii) do not change the degree of vi0 , and vi0 cannot become a cut vertex for any i ∈ [k].
+     Next we consider the possible changes to the p-star centered at v in Steps (iv)–(vii). Step (iv.a)
+may turn v into an ordinary vertex as noted above (but it changes neither D(Φ, v) nor D(N, v)).
+Since v is a proper cut vertex of degree ∆, the next step that can possibly modify the p-star is
+Step (v.b), (v.c), or (vii). In Step (v.b), a Contract(.) operation eliminates vertex v, and any vertex
+vi , i ∈ [k] may become a cut vertex. In Step (v.c), successive Stretch(.) operations replace v with
+
+
+                                                   28
+∆ − 2 vertices of degree 3. Since each of these vertices could be a proper cut vertex, they contribute
+(∆ − 2)(3 − 2)3 = ∆ − 2 to the potential. Finally, if v is an ordinary vertex, then Detach(v) in
+Step (vii) replaces v with ∆ vertices of degree 1, which do not contribute to the potential.
+   At the beginning of Step (iii), vertex v contributes (∆−2)3 to Φ(ϕ2 ). At the end of Subroutine 2,
+the contribution of v, together with the virtual vertices vi and vi0 , over all i ∈ [k], is at most
+                                            k
+                                            X                        k
+                                                                     X
+                                (∆ − 2) +         (max{0, di })3 +     (max{0, di })2 .
+                                            i=1                      i=1
+
+By Lemma 18, D(Φ, v) ≤ −(∆ − 3) ≤ −∆/4.
+   Let us estimate the number of new vertices created in these steps. In Step (iii), the Enclose(.)
+operations create a pair of virtual vertices for each bridge of v (i.e., 2k vertices), and up to k
+ordinary subdivision vertices. In Step (v.c), Stretch(.) operations create ∆ − 2 new vertices; and
+in Step (vii), the Detach(v) operation increases the number of vertices by ∆ − 1. Therefore,
+D(N, v) ≤ 3k + 2∆ − 3 ≤ 5∆ − 3. Since D(Φ, v) ≤ −∆/4, inequalities (2) and (3) follow.
+
+Lemma 20. For an instance ϕ0 of atomic embeddability of size n, Algorithm terminates, it per-
+forms O(N≥3 (ϕ0 ) + Φ(ϕ0 )) operations, and runs in O(n8 ) time.5
+
+Proof. Consider one iteration of the while loop of Step (I), which calls Subroutines 1 and 2. By
+Corollary 3, Step (i) terminates, performs O(Φ(ϕ0 ) − Φ(ϕ1 )) operations, and returns and instance
+ϕ1 with and N (ϕ1 ) ≤ N (ϕ0 ) + 12(Φ(ϕ0 ) − Φ(ϕ1 )). By Lemma 17, Step (ii) terminates, performs
+O(N≥3 (ϕ0 )) operations, and returns an instance ϕ2 with N≥3 (ϕ2 ) = N≥3 (ϕ1 ) and Φ(ϕ2 ) = Φ(ϕ1 ).
+Similarly, by Lemma 19, the sequence of Steps (iii)–(vii) terminates, performs O(Φ(ϕ2 ) − Φ(ϕ7 ))
+operations, and returns an instance ϕ7 with N (ϕ7 ) ≤ N (ϕ2 ) + O(Φ(ϕ2 ) − Φ(ϕ7 )).
+   Using the definition of the potential, we can bound its initial value by
+                         X
+              Φ(ϕ0 ) =       (max{0, deg(v) − ξ(v)})σ(v) ≤ n · (∆(ϕ0 ) − 2)3 ≤ O(n4 ).
+                            v∈V (G0 )
+
+The while loop in Step (I) of the Algorithm terminates after ∆(ϕ0 ) − 3 ≤ n iterations, since each
+iteration decreases ∆(.) by Lemmas 12 and 14. In each iteration, the potential Φ(.) decreases, and
+N (.) increases by at most constant times the decrease of the potential by Lemmas 16, 17 and 19.
+In particular, for every instance ϕ∗ in intermediate phases of Step (I), both N (ϕ∗ ) and N≥3 (ϕ∗ )
+are bounded by O(n + Φ(ϕ0 )) ≤ O(n4 ).
+    Each operation in Steps (i)–(vii) can be implemented in O(N (ϕ∗ )) time, where ϕ∗ is the instance
+for which the operation is applied (this allows for planarity testing, and recomputing block trees
+and SPQR-trees after each operation). As noted above, we have N (ϕ∗ ) ≤ O(n + Φ(ϕ0 )) ≤ O(n4 ).
+The overall running time of all invocations of Step (i)–(vii) is O(n4 (n + Φ(ϕ0 ))) ≤ O(n8 ).
+    By Lemmas 9 and 11, Steps (II)–(III) of the Algorithm run in O(N (ϕ7 )) ≤ O(n + Φ(ϕ0 )) ≤
+O(n4 ) time.
+
+Theorem 1. There is an algorithm that determines whether a simplicial map ϕ : G → H is atomic
+embeddable in time polynomial in the number of edges and vertices in G and H.
+  5
+      Optimizing the running time analysis further, which we believe is possible, is beyond the scope of this work.
+
+
+
+
+                                                          29
+                  −1          0         1
+
+
+
+
+Figure 13: The complete bipartite graph K3,4 (left) and its toroidal embeddings (middle and right)
+in which 4 cubic vertices do not have the same rotation. The torus is obtained by identifying the
+pairs of opposite sides of the square as indicated by arrows.
+
+
+Proof. Let ϕ be an instance ϕ of atomic embeddability of size n, where n is the number of edges
+and vertices in G and H. The Preprocessing algorithm runs in O(n) time and returns an equivalent
+normal instance ϕ0 of size O(n) by Lemma 3. The main Algorithm for ϕ0 terminates in O(n8 )
+time by Lemma 20, and determines whether ϕ0 is atomic embeddable by Lemma 15. Since ϕ0 and
+ϕ are equivalent, this also determines whether ϕ is atomic embeddable.
+
+
+3    Beyond Atomic Embeddings
+Since atomic embeddability is tractable, it makes sense to consider its generalizations in which
+every atom can have genus higher than 0.
+    We consider the generalized atomic embedding problem for a simplical map ϕ : G → H,
+where G and H are multigraphs without loops. The only difference from atomic embeddibility
+is that we define the surface H as follows: For each atom ν ∈ V (H), we construct S(ν) from an
+oriented surface of genus g(ν) without boundary (rather than a 2-sphere), and remove deg(ν) holes.
+Hence, an instance for generalized atomic embeddability is a pair (ϕ, g), where ϕ is a simplicial
+map ϕ : G → H and g : V (H) → N0 .
+
+Problem 4 (Generalized atomic embeddability). Given a simplicial map ϕ : G → H, where
+G and H are multigraphs without loops, and a function g : V (H) → N0 , decide whether a generalized
+atomic embedding of G with respect to ϕ exists.
+
+    In this section, we show that generalized atomic embeddability is NP-hard, and therefore
+also NP-complete, even when g(ν) ≤ 1 for all atoms ν ∈ V (H), and the number of vertices in
+ϕ−1 [ν] is at most 7 for each atom ν with g(ν) = 1.
+    The NP-hardness proof is based on the embeddings of K3,4 on a torus. For an embedding of
+K3,4 on a torus, we say that two vertices u and v of the same vertex class (i.e., with the same
+degree) have the same rotation if the rotation of u is (uv1 , . . . , uvk ) and the rotation at v is
+(vv1 , . . . , vvk ), where {v1 , . . . , vk } is a vertex class of K3,4 .
+
+Lemma 21. In every embedding of K3,4 on the torus the four cubic vertices do not all have the
+same rotation; subject to the previous claim, any rotations for the four cubic vertices can be realized
+by a toroidal embedding.
+
+Proof. The first author and Kynčl [23, Theorem 7(b)] recently proved that in every embedding of
+K3,4 on the torus there exist two cubic vertices that do not have the same rotation.
+
+
+                                                  30
+                                                                 CPa
+
+
+
+
+                                            a
+                                           CN
+
+
+
+
+Figure 14: The variable gadget Ga0 = C a P1 for the NP-hardness reduction of Not-All-Equal
+3SAT to Generalized atomic embeddability.
+
+
+   It remains to prove that in the following two cases there exists an embedding of K3,4 on the
+torus. In one case, exactly 2 of the 4 cubic vertices have the same rotation; and in the other case,
+exactly 3 of the 4 cubic vertices have the same rotation. Desired toroidal embeddings are given in
+Fig. 13(middle) and (right).
+
+Theorem 2. Generalized Atomic Embeddability is NP-hard.
+Proof. We reduce Generalized Atomic Embeddability from Not-All-Equal 3SAT, which
+is known to be NP-complete. An instance of Not-All-Equal 3SAT is given by a pair (A, C),
+where A is a finite set of boolean variables and C is a finite set of clauses, each of which is a
+conjunction of three literals. Each literal is either a variable a ∈ A or the negation of a, denoted
+by ¬a. An instance (A, C) is positive if there exists an assignment τ : A → {true, false} such
+that at least 1 and at most 2 literals are true in every clause.
+    Given an instance (A, C) of Not-All-Equal 3SAT, we construct an instance (ϕ, g) for Gen-
+eralized atomic embeddability, and show that it is positive if and only if (A, C) is positive.
+Let C = {C1 , . . . , Cn }.
+    We construct an instance (ϕ, g), where ϕ : G → H, g : V (H) → N0 . Let the multigraph H be
+a p-star with a center ν0 , and n additional atoms ν1 , . . . , νn , such that there are 6 pipes between
+ν0 and each νi , for i = 1, . . . , n. In particular, all pipes are incident to the center ν0 .
+    We put g(ν0 ) = 0 and g(ν1 ) = . . . = g(νn ) = 1. We describe ϕ via a construction of local
+graphs G0 = Gϕ (ν0 ), G1 = Gϕ (ν1 ), . . ., Gn = Gϕ (νn ). For ease of presentation, we describe the
+local graphs as semi-directed graphs (in which some edges are directed and others are undirected).
+However, in the eventual instance (ϕ, g), all local graphs are undirected (by replacing every directed
+edge with an undirected edge.)
+    The local graphs G1 , . . . , Gn are each isomorphic to K3,4 . Let G0 be a disjoint union of the
+semi-directed graphs Ga0 = C a P1 , for all a ∈ A, where P1 is a path of length 1 and C a is a directed
+cycle whose length is equal to four times the number of occurrences of a in the clauses in C. Let CPa
+and CN  a denote the two vertex disjoint directed induced cycles in Ga of length equal to the length
+                                                                             0
+of C a , whose orientation is inherited from C a ; see Fig. 14 for an illustration.
+    Next, we define the pipes in E(H) by designating the pairs of corresponding virtual vertices in
+the local graphs; furthermore, for if a pipe ρ ∈ E(H) corresponds to virtual vertices u and v in two
+local graphs, we also specify a bijection between the set of edges incident to u and the set of edges
+
+                                                  31
+incident to v. All vertices in local graphs that are not designated to be virtual will be ordinary.
+This uniquely determines the instance (ϕ, g).
+    For each clause Ci ∈ C, i ∈ [n], we define three pipes in E(H). Assume that Ci = (`1 ∨ `2 ∨ `3 ).
+Recall that Gi is isomorphic to K3,4 . Label the three vertices of degree 4 in Gi by −1, 0, and 1
+resp.; two arbitrary cubic vertices by the literal `1 ; and the remaining two cubic vertices by the
+literals `2 and `3 , respectively. Let every cubic vertex v ∈ V (Gi ) be virtual, and let each vertex
+with label ` ∈ {`1 , `2 , `3 } correspond a vertex u in CPa if ` = a and a vertex u in CN   a if ` = ¬a. We
+
+construct the bijection between the edges incident to v and the edges incident to u as follows: Let
+the edge between v and the vertex of Gi with label −1, 0, and 1, resp., correspond to the incoming,
+undirected, and outgoing edge incident to v 0 in G0 . This completes the definition of the instance
+(ϕ, g)
+    It remains to prove that (ϕ, g) is a positive instance if and only if (A, C) is a positive instance.
+Assume that (ϕ, g) is a positive instance of Generalized atomic embeddibility. Let E : G → H
+be a generalized atomic embedding of G with respect to (ϕ, g). Since g(ν0 ) = 0, the restriction of
+E on S(ν0 ) yields an embedding of G0 in the plane; and an embedding of Gi in the torus for all
+i ∈ [n]. We construct a satisfying assignment τ : A → {true, false} based on the embedding of
+G0 as follows. We put τ (a) = true if the incoming, undirected, and outgoing edges incident to a
+vertex v in CPa appear in this counterclockwise order in the rotation of v in the embedding of G0 ;
+and we put τ (a) = false otherwise. Note that the truth value of a is independent of the choice of
+v. Also note that a literal ` of the clause Ci , i ∈ [n], is satisfied if and only if the edges between the
+vertex v labeled by ` and the vertices labeled by −1, 0 and 1 in Gi appear in this clockwise order
+in the rotation at v in the embedding of Gi . Note that Observation 1 holds also for generalized
+atomic embeddability. By Lemma 21 and Observation 1, every clause Ci must be satisfied by at
+least 1 and at most 2 literals, and hence, (A, C) is positive.
+    Now assume that (A, C) is a positive instance of Not-All-Equal 3SAT. We can easily reverse
+the argument in the previous paragraph as follows. Let τ be a satisfying assignment witnessing
+that the instance is positive. We define a toroidal embedding of Gi , for all i ∈ [n], as follows. For
+every literal `, the edges between a vertex v labeled by ` and the vertices labeled by −1, 0, and 1
+in Gi appear in this clockwise order in the rotation of v in the embedding of Gi if and only if ` is
+satisfied by τ . Lemma 21 and Observation 1 imply that we can construct the desired embeddings
+of G1 , . . . , Gn on tori. This also determines a desired spherical embedding of G0 , which concludes
+the proof.
+
+
+4    Thickenability and Connected SEFE-2
+In this section, we give a polynomial-time reduction of atomic embeddability (Problem 3),
+as well as Connected sefe-2 (defined below) to thickenability (Problem 2). Recall that an
+instance of atomic embeddability is given by a simplicial map ϕ : G → H. The instance is
+positive if its output answer is True.
+
+Thickenability. In the following, we express thickenability as a combinatorial problem, of
+which atomic embaddability is a proper generalization, and then reduce atomic embaddabil-
+ity to this problem.
+    Let P = (H, F ) denote a 2-polyhedron, where the multigraph H is the 1-skeleton of P , and F
+is the set of facets in P , each represented by a cycle in H. Let F = {f1 , . . . , f|F | }. A 2-polyhedron
+
+
+                                                    32
+P embeds in an orientable 3-manifold M (such as R3 ) if the following holds. The multigraph H
+embeds in M so that the facets f1 , . . . , f|T | are mapped into pairwise interior disjoint topological
+discs D1 , . . . , D|T | , resp., in M such that for every i ∈ [|F |] the boundary of Di , denoted by ∂Di ,
+consists of the embedded cycle fi . The representation of P in M given by the discs D1 , . . . , D|F | is
+an embedding of P . The restriction of the embedding of P to the boundaries of these discs gives
+the embedding of H.
+    For every v ∈ V (H), the link of v in P is a multigraph LP (v) = (E(v), F (v)), where the vertex
+set E(v) is the multiset of edges in H incident to v, and the multiset of edges F (v) is in a bijection
+with the set of facets in P that are incident to v and we give it next. Every pair {e, g} ⊂ E(v)
+corresponds to an edge in F (v) whose multiplicity equals the number of facets in F that contain
+both e and g.
+    If P = (H, F ) is thickenable, then the intersection of its embedding in a manifold with a suffi-
+ciently small 2-sphere centered at (the embedding of) a vertex v ∈ V (H) is a spherical embedding of
+the link LP (v). Indeed, the 2-sphere intersects edges of H incident to v in points, and it intersects
+facets in F incident to v in Jordan arcs between these points.
+    Given a polyhedron P = (H, F ), the family {Ev : v ∈ V (H)}, where Ev is a planar (spherical)
+embedding of LP (v), is compatible if, for every e ∈ E(H) joining vertices u and v, the rotation
+at e in Eu is opposite to the rotation of e in Ev . The observation in the previous paragraph proves
+the “only if” part of the following theorem.
+
+Theorem 3 (Neuwirth [39]). The 2-dimensional polyhedron P = (H, F ) is thickenable if and only
+if there exists a family of compatible embeddings of the vertex links of H.
+
+   We show that testing the condition of Theorem 3 generalizes atomic embeddability and
+connected sefe-2.
+
+Reduction. For a given instance ϕ : G → H of atomic embeddibility, we define a 2-
+dimensional polyhedron P (ϕ), and then show that P (ϕ) is thickenable if and only if ϕ is a positive
+instance of atomic embeddibility. Let P (ϕ) = ( b    H, F ) denote the 2-dimensional polyhedron,
+where H and F are defined as follows.
+       b
+    Roughly speaking, H   b is obtained by doubling the multigraph H and connecting each pair
+of corresponding vertices in the two copies of H by new multiple edges, where every such edge
+corresponds to a vertex of G. Hence, the vertex set V (H)
+                                                       b of H b is {(µ, 0), (µ, 1) : µ ∈ V (H)}, and
+we define its edge set as
+
+                  H) ={ρu = (µ, 0)(µ, 1) : µ = ϕ(u) for some u ∈ V (G)}∪
+                E( b
+                        ∪{(ρ, 0) = (µ, 0)(ν, 0), (ρ, 1) = (µ, 1)(ν, 1) : ρ = νµ ∈ E(H)}.
+
+The facets in F are in bijection with the edges in E(G). Formally,
+
+   F ={(ρu = (µ, 0)(µ, 1), ρv = (µ, 1)(µ, 0)) : uv ∈ E(G) such that ϕ(u) = µ = ϕ(v)}∪
+     ∪{((ρ, 0), ρu , (ρ, 1), ρv ) : uv ∈ E(G) such that ϕ(u) = µ, ϕ(v) = ν, µ 6= ν, and ρ = ϕ(uv)}.
+
+Thus, for every edge of uv ∈ E(G), if ϕ maps the vertices u and v to the same atom (resp., different
+atoms) of H, then the edge uv corresponds to a facet of P bounded by 2 (resp., 4) edges.
+   It remains to prove that the polyhedron P (ϕ) has the desired property.
+
+
+                                                    33
+Lemma 22. For every instance ϕ : G → H of atomic embeddability, the 2-dimensional
+polyhedron P (ϕ) is thickenable if and only if ϕ is a positive instance.
+Proof. In order to prove the “only if” part, we assume that the polyhedron P = P (ϕ) = ( b                  H, F )
+is thickenable. By Theorem 3, there exists a family of compatible spherical embeddings {Ev : v ∈
+V(bH)} of the links {Lv (P ) : v ∈ V ( b           H)}. Let {Sv : v ∈ V ( b H)} be a family of pairwise disjoint
+2-spheres, and let Ev : Lv (P ) → Sv be compatible embeddings for all v ∈ V (H).              b We construct an
+atomic embedding of G on H with respect to ϕ in two steps as follows.
+    First, for every (µ, 0) ∈ V ( b      H), we drill a small hole on S(µ,0) around (the embeedding of) every
+vertex of L(µ,0) of the form (µ, 0)(ν, 0). Note that for every such vertex of V ( b       H), we have µν ∈ E(H)
+by construction. Let f1 , . . . , fdeg((ρ,0)) denote the edges that are incident to (ρ, 0) = (µ, 0)(ν, 0) in
+L(µ,0) (P ), for some νµ = ρ ∈ E(H). Formally, we remove from the 2-sphere S(µ,0) a small open
+disc D(µ,0) ((ρ, 0)), thereby shortening edges f1 , . . . , fdeg((ρ,0)) incident to (ρ, 0) in E(µ,0) into Jordan
+arcs a(ρ,0) (f1 ), . . . , a(ρ,0) (fdeg((ρ,0)) ), resp., ending on ∂D(µ,0) ((ρ, 0)), which is the boundary of the
+closure of D(µ,0) ((ρ, 0)). Let S(µ,0)     0      denote the resulting 2-sphere with the removed disc(s) for all
+(µ, 0) ∈ V (H).b
+    Second, for every edge ρ = µν, we identify the curves ∂D(µ,0) ((ρ, 0)) with ∂D(ν,0) ((ρ, 0)) via
+a homeomorphism that identifies the endpoints of a(ρ,0) (f ) and a(ρ,0)) (f ) for every f 3 (ρ, 0). A
+desired homeomorphism exists since the embeddings E(µ,0) are compatible. Let H denote the surface
+obtained by the previous identifications, where each S(µ,0) is interpreted at Sµ . Note that we have
+just constructed a desired atomic embedding. Indeed, a vertex u ∈ V (G) is embedded by E(ϕ(u),0)
+             0
+as ρu on S(ϕ(u),0)     ; an edge uv ∈ E(G) where ϕ(u) = ϕ(v) is embedded by E(ϕ(v),0) as ρu ρv ; and an
+edge uv ∈ E(G) where ϕ(u) 6= ϕ(v) is embedded as the union of a(ϕ(uv),0) (f ) on S(µ,0)          0            0
+                                                                                                     and on S(ν,0) ,
+where ϕ(uv) = νµ, and f corresponds to uv as described in the definition of F . This completes the
+proof of the “only if” part.
+    For the converse, assume that we are given an atomic embedding of G on H. Clearly, the
+previous construction can be reversed to construct a subfamily of compatible spherical embeddings
+E(µ,0) of the links L(µ,0) (P ), for all (µ, 0) ∈ V ( b     H). By taking the mirror image of this construction,
+we obtain E(µ,1) , for all (µ, 1) ∈ V ( b        H). The union of E(µ,0) and E(µ,1) , for all µ ∈ V (H), gives the
+desired family of compatible spherical embeddings. By Theorem 3, P (ϕ) is thickenable.
+
+    An immediate consequence of Lemma 22 is the main result of this section.
+Theorem 4. Atomic Embeddability reduces to thickenability in polynomial time.
+
+Simultaneous embedding with fixed edges (SEFE-2). In the following we discuss an im-
+plication of Theorem 4 to the problem of simultaneous embeddability of two graphs sefe-2, which
+is formally described as follows.
+Problem 5. sefe-2. Given two (planar) graphs, G1 = (V, E1 ) and G2 = (V, E2 ), decide whether
+there exists a planar embedding E of G = G1 ∪ G2 such that both E[G1 ] and E[G2 ] are embeddings.
+   The Connected sefe-2 is a special case of sefe-2 in which G1 ∩ G2 is connected. Angelini
+and Da Lozzo [4] showed that connected sefe-2 is polynomial-time equivalent to c-planarity.
+Since c-planarity is a special case of Atomic Embeddability, together with Theorem 4, this
+immediately implies the following.
+Corollary 5. Connected sefe-2 reduces in polynomial time to thickenability.
+
+                                                        34
+5    Acknowledgment
+The first author would like to thank Arnaud de Mesmay for pointing him to Johannes Carmesin’s
+work. Thanks are extended to Johannes Carmesin for kindly discussing this work with him, and
+to Jan Kynčl for careful reading of the manuscript.
+
+
+References
+ [1] Hugo A. Akitaya, Greg Aloupis, Jeff Erickson, and Csaba D. Tóth. Recognizing weakly
+     simple polygons. Discrete & Computational Geometry, 58(4):785–821, 2017. doi:10.1007/
+     s00454-017-9918-3.
+ [2] Hugo A. Akitaya, Radoslav Fulek, and Csaba D. Tóth. Recognizing weak embeddings of
+     graphs. ACM Trans. Algorithms, 15(4):50:1–50:27, 2019. doi:10.1145/3344549.
+ [3] Patrizio Angelini, Giuseppe Di Battista, Fabrizio Frati, Maurizio Patrignani, and Ignaz Rutter.
+     Testing the simultaneous embeddability of two graphs whose intersection is a biconnected or
+     a connected graph. J. Discrete Algorithms, 14:150–172, 2012. doi:doi.org/10.1016/j.jda.
+     2011.12.015.
+ [4] Patrizio Angelini and Giordano Da Lozzo. SEFE = C-Planarity? Comput. J., 59(12):1831–
+     1838, 2016. doi:10.1093/comjnl/bxw035.
+ [5] Patrizio Angelini and Giordano Da Lozzo. Clustered planarity with pipes. Algorithmica,
+     81(6):2484–2526, 2019. doi:10.1007/s00453-018-00541-w.
+ [6] S. B. Belyi. Self-nonintersecting and non intersecting chains. Mathematical notes of the
+     Academy of Sciences of the USSR, 34(4):802–804, 1983. Translated from Matematicheskie
+     Zametki, 34(4):625–628, 1983. doi:10.1007/BF01157400.
+ [7] Thomas Bläsius, Annette Karrer, and Ignaz Rutter. Simultaneous embedding: Edge or-
+     derings, relative positions, cutvertices. Algorithmica, 80(4):1214–1277, 2018. doi:10.1007/
+     s00453-017-0301-9.
+ [8] Thomas Bläsius, Stephen G. Kobourov, and Ignaz Rutter. Simultaneous embedding of planar
+     graphs. In Roberto Tamassia, editor, Handbook of Graph Drawing and Visualization. Chapman
+     and Hall/CRC, 2013.
+ [9] Thomas Bläsius and Ignaz Rutter. Simultaneous PQ-ordering with applications to constrained
+     embedding problems. ACM Trans. Algorithms, 12(2):article 16, 2016. doi:10.1145/2738054.
+[10] Peter Brass, Eowyn Cenek, Cristian A. Duncan, Alon Efrat, Cesim Erten, Dan P. Ismailescu,
+     Stephen G. Kobourov, Anna Lubiw, and Joseph S.B. Mitchell. On simultaneous planar
+     graph embeddings. Computational Geometry, 36(2):117–130, 2007. doi:doi.org/10.1016/
+     j.comgeo.2006.05.006.
+[11] Benjamin A. Burton, Arnaud de Mesmay, and Uli Wagner. Embeddability of 2-complexes. In
+     Benjamin Burton, Herbert Edelsbrunner, Jeff Erickson, and Stephan Tillmann, editors, Com-
+     putational Geometric and Algebraic Topology, Oberwolfach Reports, chapter 45, pages 2666–
+     2668. Mathematisches Forschungsinstitut Oberwolfach, 2015. doi:10.14760/OWR-2015-45.
+
+                                                35
+[12] Benjamin A Burton, Arnaud de Mesmay, and Uli Wagner. Finding non-orientable surfaces
+     in 3-manifolds. Discrete & Computational Geometry, 58(4):871–888, 2017. doi:10.1007/
+     s00454-017-9900-0.
+[13] Johannes Carmesin. Embedding simply connected 2-complexes in 3-space – II. rotation sys-
+     tems. Preprint, arXiv:1709.04643, 2017.
+[14] Johannes Carmesin. Embedding simply connected 2-complexes in 3-space – V. A refined
+     Kuratowski-type characterisation. Preprint, arXiv:1709.04659, 2017.
+[15] Hsien-Chih Chang, Jeff Erickson, and Chao Xu. Detecting weakly simple polygons. In Proc.
+     26th ACM-SIAM Symposium on Discrete Algorithms (SODA), pages 1655–1670, 2015. doi:
+     10.1137/1.9781611973730.110.
+[16] Pier Francesco Cortese and Giuseppe Di Battista. Clustered planarity (invited lecture). In
+     Proc. 21st Symposium on Computational Geometry (SoCG), pages 30–32. ACM Press, 2005.
+     doi:10.1145/1064092.1064093.
+[17] Pier Francesco Cortese, Giuseppe Di Battista, Fabrizio Frati, Maurizio Patrignani, and Mau-
+     rizio Pizzonia. C-planarity of c-connected clustered graphs. J. Graph Algorithms Appl.,
+     12(2):225–262, 2008. doi:10.7155/jgaa.00165.
+[18] Pier Francesco Cortese, Giuseppe Di Battista, Maurizio Patrignani, and Maurizio Pizzonia.
+     On embedding a cycle in a plane graph. Discrete Mathematics, 309(7):1856–1869, 2009. doi:
+     10.1016/j.disc.2007.12.090.
+[19] Arnaud de Mesmay, Yo’av Rieck, Eric Sedgwick, and Martin Tancer. Embeddability in R3
+     is NP-hard. In Proc. 29th ACM-SIAM Symposium on Discrete Algorithms (SODA), pages
+     1316–1329, 2018. doi:10.1137/1.9781611975031.86.
+[20] Giuseppe Di Battista and Roberto Tamassia. Incremental planarity testing. In 30th IEEE
+     Symposium on Foundations of Computer Science (FOCS), pages 436–441, 1989. doi:10.
+     1109/SFCS.1989.63515.
+[21] Qing-Wen Feng, Robert F. Cohen, and Peter Eades. How to draw a planar clustered graph.
+     In Proc. 1st Conference on Computing and Combinatorics (COCOON), volume 959 of LNCS,
+     pages 21–30. Springer, 1995. doi:10.1007/BFb0030816.
+[22] Qing-Wen Feng, Robert F. Cohen, and Peter Eades. Planarity for clustered graphs. In Proc.
+     3rd European Symposium on Algorithms (ESA), volume 979 of LNCS, pages 213–226. Springer,
+     1995. doi:https://doi.org/10.1007/3-540-60313-1_145.
+[23] Radoslav Fulek and Jan Kynčl. Counterexample to an extension of the Hanani–Tutte theorem
+     on the surface of genus 4. Preprint, arXiv:1709.00508, 2017.
+[24] Radoslav Fulek and Jan Kynčl. Hanani–Tutte for approximating maps of graphs. Preprint,
+     arXiv:1705.05243, 2017.
+[25] Radoslav Fulek and Jan Kynčl. Hanani–Tutte for approximating maps of graphs. In Proc.
+     34th Symposium on Computational Geometry (SoCG), volume 99 of LIPIcs, pages 39:1–39:15.
+     Schloss Dagstuhl, 2018. doi:10.4230/LIPIcs.SoCG.2018.39.
+
+                                              36
+[26] Radoslav Fulek, Jan Kynčl, Igor Malinović, and Dömötör Pálvölgyi. Clustered planarity
+     testing revisited. Electron. J. Combin., 22(4):article P4.24, 2015. URL: https://www.
+     combinatorics.org/ojs/index.php/eljc/article/view/v22i4p24.
+
+[27] Carsten Gutwenger, Michael Jünger, Sebastian Leipert, Petra Mutzel, Merijam Percan, and
+     René Weiskircher. Advances in c-planarity testing of clustered graphs. In Proc. 10th Symposium
+     on Graph Drawing, volume 2528 of LNCS, pages 220–236. Springer, 2002. doi:10.1007/
+     3-540-36151-0_21.
+
+[28] Bernhard Haeupler, Krishnam Raju Jampani, and Anna Lubiw. Testing simultaneous planarity
+     when the common graph is 2-connected. J. Graph Algorithms Appl., 17(3):147–171, 2013.
+     doi:10.7155/jgaa.00289.
+
+[29] Allen Hatcher. Algebraic Topology. Cambridge University Press, 2005.
+
+[30] John E. Hopcroft and Robert E. Tarjan. Efficient planarity testing. J. ACM, 21(4):549–568,
+     1974. doi:10.1145/321850.321852.
+
+[31] Thomas Lengauer. Hierarchical planarity testing algorithms. J. ACM, 36(3):474–509, 1989.
+     doi:10.1145/65950.65952.
+
+[32] Saunders Mac Lane. A structural characterization of planar combinatorial graphs. Duke Math.
+     J., 3(3):460–472, 1937. doi:10.1215/S0012-7094-37-00336-3.
+
+[33] Jiřı́ Matoušek, Eric Sedgwick, Martin Tancer, and Uli Wagner. Embeddability in the 3-sphere
+     is decidable. J. ACM, 65(1):5:1–5:49, 2018. doi:10.1145/3078632.
+
+[34] William H. Meeks and Julie Patrusky. Representing homology classes by embedded circles on
+     a compact surface. Illinois Journal of Mathematics, 22(2):262–269, 1978. doi:10.1215/ijm/
+     1256048735.
+
+[35] Arnaud De Mesmay, Vojtěch Kaluža, and Martin Tancer, 2019. Personal communication.
+
+[36] Mark D. Meyerson. Representing homology classes of closed orientable surfaces. Pro-
+     ceedings of the American Mathematical Society, 61(1):181–182, 1976.   doi:10.1090/
+     S0002-9939-1976-0425967-3.
+
+[37] Piotr Minc. On simplicial maps and chainable continua. Topology and its Applications, 57(1):1–
+     21, 1994. doi:10.1016/0166-8641(94)90028-0.
+
+[38] John Morgan and Gang Tian. Ricci Flow and the Poincaré Conjecture, volume 3 of Clay Math-
+     ematics Monographs. AMS, Providence, 2007. URL: https://books.google.com/books?id=
+     8FctN7U85-QC.
+
+[39] Lee Neuwirth. An algorithm for the construction of 3-manifolds from 2-complexes. Math-
+     ematical Proceedings of the Cambridge Philosophical Society, 64(3), 1968. doi:10.1017/
+     S0305004100043279.
+
+[40] Grisha Perelman. The entropy formula for the Ricci flow and its geometric applications.
+     Preprint, arXiv:math/0211159, 2002.
+
+
+                                                37
+[41] Grisha Perelman. Finite extinction time for the solutions to the Ricci flow on certain three-
+     manifolds. Preprint, arXiv:math/0307245, 2003.
+
+[42] Grisha Perelman. Ricci flow with surgery on three-manifolds. Preprint, arXiv:math/0303109,
+     2003.
+
+[43] Dušan Repovš and Arkadij B. Skopenkov. A deleted product criterion for approximability
+     of maps by embeddings. Topology Appl., 87(1):1–19, 1998. doi:10.1016/S0166-8641(97)
+     00121-1.
+
+[44] Marcus Schaefer. Toward a theory of planarity: Hanani-Tutte and planarity variants. J. Graph
+     Algorithms Appl., 17(4):367–440, 2013. doi:10.7155/jgaa.00298.
+
+[45] Karol Sieklucki. Realization of mappings. Fundamenta Mathematicae, 65(3):325–343, 1969.
+     doi:10.4064/fm-65-3-325-343.
+
+[46] Arkadiy B. Skopenkov. A generalization of Neuwirth’s theorem on thickening 2-dimensional
+     polyhedra. Mathematical Notes, 58(5):1244–1247, 1995. doi:10.1007/BF02305012.
+
+[47] Mikhail Skopenkov. On approximability by embeddings of cycles in the plane. Topology Appl.,
+     134(1):1–22, 2003. doi:10.1016/S0166-8641(03)00069-5.
+
+[48] John Stillwell. Classical Topology and Combinatorial Group Theory, volume 72 of Graduate
+     Texts in Mathematics. Springer, New York, 1993. doi:10.1007/978-1-4612-4372-4.
+
+
+
+
+                                               38
+
