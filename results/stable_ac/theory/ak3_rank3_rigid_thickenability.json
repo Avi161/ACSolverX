@@ -1,0 +1,6146 @@
+{
+  "aggregate_counters": {
+    "closed_component_assignments": 128,
+    "component_combination_budget": 0,
+    "component_combinations_considered": 0,
+    "component_seed_attempts": 1741883,
+    "component_seed_budget": 1741883,
+    "cross_cycle_collision_rejections": 0,
+    "exhaustive_source_count": 64,
+    "phase_tuple_budget": 118976,
+    "phase_tuples_considered": 118976,
+    "scheme_budget": 64,
+    "schemes_considered": 64,
+    "union_cardinality_checks": 0,
+    "union_cardinality_rejections": 0,
+    "within_cycle_collision_rejections": 0,
+    "witness_replay_failures": 0
+  },
+  "candidate_lemma": "REFUTED",
+  "claim": "Every primitive-free source in the certified rank-three AK(3) corridor has a non-spherical compatible Neuwirth link.",
+  "factorial_crosscheck": {
+    "accepting_factorial_orders": 0,
+    "defect_histogram": {
+      "10": 2388,
+      "2": 6,
+      "4": 296,
+      "6": 3916,
+      "8": 10674
+    },
+    "factorial_cases": 17280,
+    "factorial_trace_sha256": "04d2dde2da74fa1e3120a029fd1442afe46ec4c99d08665c01234b871885e40e",
+    "macro_rotation_enumeration_cases": 6912,
+    "minimum_genus": 1,
+    "rank_verdict": "NOT_SPHERICAL",
+    "spherical_macro_rotation_count": 2,
+    "support": "K6-P5",
+    "words": [
+      "XZXTz",
+      "ZTxZZ",
+      "ttXzX"
+    ]
+  },
+  "primitive_occurrence_count": 4616,
+  "rank3_source_count": 3016,
+  "schema": "ak3-rank3-rigid-thickenability-v1",
+  "source_count": 64,
+  "source_records": [
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 5577,
+        "component_seed_budget": 5577,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 6,
+        "0-5": 1,
+        "1-2": 2,
+        "1-4": 6,
+        "1-5": 1,
+        "2-5": 9,
+        "3-4": 6,
+        "3-5": 1,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 250,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXZTZX",
+        "TXZTZTXZTZTXZTZTXZTZxxx",
+        "TXZTZXz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-4": 1,
+        "0-5": 6,
+        "1-2": 6,
+        "1-3": 2,
+        "1-4": 1,
+        "2-4": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 251,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXZTZX",
+        "TZTZXTZTZXTZTZXTxxxZTZX",
+        "TZXTzXZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-4": 1,
+        "0-5": 6,
+        "1-2": 6,
+        "1-3": 2,
+        "1-4": 1,
+        "2-4": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 259,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXZXTZ",
+        "TZTZXTZTZXTZTZXTZTxxxZX",
+        "TZTzXZX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-4": 7,
+        "1-2": 6,
+        "1-3": 2,
+        "1-4": 1,
+        "2-4": 1,
+        "2-5": 6,
+        "3-4": 3,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 267,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXZXtz",
+        "TZXtzTZXtzTZXtzTxxxZXtz",
+        "TxzxZtZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 7,
+        "0-5": 1,
+        "1-3": 2,
+        "1-4": 6,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 6,
+        "3-5": 4,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 294,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXZtzX",
+        "TXZtzTXZtzTXZtzTXZtzxxx",
+        "TXZtzXz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-4": 1,
+        "0-5": 6,
+        "1-2": 1,
+        "1-3": 7,
+        "1-4": 1,
+        "2-4": 6,
+        "2-5": 6,
+        "3-4": 4,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 295,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXZtzX",
+        "TZXZtzX",
+        "TZtzXTZtzXTZtzXTxxxZtzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 5577,
+        "component_seed_budget": 5577,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 2,
+        "0-5": 1,
+        "1-3": 2,
+        "1-4": 6,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 1,
+        "3-5": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 413,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXzTzX",
+        "TXzTzTXzTzTXzTzTXzTzxxx",
+        "TXzTzXZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-4": 1,
+        "0-5": 6,
+        "1-2": 2,
+        "1-3": 6,
+        "1-4": 1,
+        "2-4": 9,
+        "3-4": 1,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 414,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXzTzX",
+        "TZXzTzX",
+        "TxxxzTzXTzTzXTzTzXTzTzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-4": 1,
+        "0-5": 6,
+        "1-2": 2,
+        "1-3": 6,
+        "1-4": 1,
+        "2-4": 9,
+        "3-4": 1,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 421,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXzXTz",
+        "TZXzXTz",
+        "TxxxzXTzTzXTzTzXTzTzXTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-4": 7,
+        "1-2": 2,
+        "1-3": 6,
+        "1-4": 1,
+        "2-4": 3,
+        "2-5": 6,
+        "3-4": 1,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 427,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXzXtZ",
+        "TZXzXtZ",
+        "TxZXXXtzTxZtzTxZtzTxZtz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 7,
+        "0-3": 1,
+        "0-5": 1,
+        "1-2": 2,
+        "1-4": 6,
+        "1-5": 1,
+        "2-5": 4,
+        "3-4": 6,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 436,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXztZX",
+        "TXztZTXztZTXztZTXztZxxx",
+        "TXztZXZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-4": 1,
+        "0-5": 6,
+        "1-2": 7,
+        "1-3": 1,
+        "1-4": 1,
+        "2-4": 4,
+        "3-4": 6,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 439,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTXztZX",
+        "TZXXXtxzTZtxzTZtxzTZtxz",
+        "TZxZtxz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 35321,
+        "component_seed_budget": 35321,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 6,
+        "0-5": 1,
+        "1-2": 2,
+        "1-4": 6,
+        "1-5": 1,
+        "2-5": 9,
+        "3-4": 6,
+        "3-5": 1,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 461,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTZTXZX",
+        "TXZTZTXZTZTXZTZTXZxxxTZ",
+        "TXZXzTZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 5577,
+        "component_seed_budget": 5577,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-4": 6,
+        "0-5": 1,
+        "1-2": 2,
+        "1-3": 6,
+        "1-5": 1,
+        "2-5": 9,
+        "3-4": 6,
+        "3-5": 1,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 468,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTZTxZx",
+        "TZTxZTZTxZTZTxZTZTxZXXX",
+        "TZTxZxz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 16731,
+        "component_seed_budget": 16731,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 2,
+        "0-5": 1,
+        "1-3": 2,
+        "1-5": 7,
+        "2-4": 6,
+        "2-5": 1,
+        "3-4": 6,
+        "3-5": 3,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 584,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTZtXzX",
+        "TZtXzTZtXzTZtXzTZtXzxxx",
+        "TZtXzXZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 16731,
+        "component_seed_budget": 16731,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-5": 7,
+        "1-2": 6,
+        "1-3": 2,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 1,
+        "3-4": 6,
+        "3-5": 3,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 619,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTZtxzx",
+        "TZtxzTZtxzTZtxzTZtxzXXX",
+        "TZtxzxZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 2,
+        "0-4": 1,
+        "1-3": 2,
+        "1-4": 1,
+        "1-5": 6,
+        "2-4": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 679,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxZTZx",
+        "TXXXZTZxTZTZxTZTZxTZTZx",
+        "TZxTzxZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 35321,
+        "component_seed_budget": 35321,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-4": 6,
+        "0-5": 1,
+        "1-2": 2,
+        "1-3": 6,
+        "1-5": 1,
+        "2-5": 9,
+        "3-4": 6,
+        "3-5": 1,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 680,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxZTZx",
+        "TZTxZTZTxZTZTxZTZXXXTxZ",
+        "TZxzTxZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 7,
+        "0-4": 1,
+        "1-3": 2,
+        "1-4": 1,
+        "1-5": 6,
+        "2-4": 6,
+        "2-5": 6,
+        "3-4": 4,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 716,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxZtzx",
+        "TXXXZtzxTZtzxTZtzxTZtzx",
+        "TZxZtzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-4": 6,
+        "0-5": 1,
+        "1-2": 1,
+        "1-3": 7,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 6,
+        "3-5": 4,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 719,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxZtzx",
+        "TxZtzTxZtzTxZtzTxZtzXXX",
+        "TxZtzxz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 2,
+        "0-4": 1,
+        "1-3": 2,
+        "1-4": 1,
+        "1-5": 6,
+        "2-4": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 723,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxZxTZ",
+        "TXXXZxTZTZxTZTZxTZTZxTZ",
+        "TZTzxZx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 2,
+        "0-4": 1,
+        "1-3": 2,
+        "1-4": 7,
+        "2-4": 1,
+        "2-5": 6,
+        "3-4": 3,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 726,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxZxtz",
+        "TXXXZxtzTZxtzTZxtzTZxtz",
+        "TXzXZtZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 6,
+        "0-4": 1,
+        "1-2": 2,
+        "1-4": 1,
+        "1-5": 6,
+        "2-4": 9,
+        "3-4": 1,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 850,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxzTzx",
+        "TXXXzTzxTzTzxTzTzxTzTzx",
+        "TZxzTzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 5577,
+        "component_seed_budget": 5577,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-4": 6,
+        "0-5": 1,
+        "1-2": 6,
+        "1-3": 2,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 1,
+        "3-5": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 851,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxzTzx",
+        "TxzTzTxzTzTxzTzTxzTzXXX",
+        "TxzTzxZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 7,
+        "0-3": 1,
+        "0-4": 1,
+        "1-2": 2,
+        "1-4": 1,
+        "1-5": 6,
+        "2-4": 4,
+        "3-4": 6,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 865,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxztZx",
+        "TXXXztZxTztZxTztZxTztZx",
+        "TZXZtXz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-4": 6,
+        "0-5": 1,
+        "1-2": 7,
+        "1-3": 1,
+        "1-5": 1,
+        "2-5": 4,
+        "3-4": 6,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 868,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxztZx",
+        "TZXtxxxzTZXtzTZXtzTZXtz",
+        "TZXtzXz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 6,
+        "0-4": 1,
+        "1-2": 2,
+        "1-4": 1,
+        "1-5": 6,
+        "2-4": 9,
+        "3-4": 1,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 875,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxzxTz",
+        "TXXXzxTzTzxTzTzxTzTzxTz",
+        "TZxzxTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 6,
+        "0-4": 1,
+        "1-2": 2,
+        "1-4": 7,
+        "2-4": 3,
+        "2-5": 6,
+        "3-4": 1,
+        "3-5": 6,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 876,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTxzxtZ",
+        "TXXXzxtZTzxtZTzxtZTzxtZ",
+        "TXZXztz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 35321,
+        "component_seed_budget": 35321,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 2,
+        "0-5": 1,
+        "1-3": 2,
+        "1-4": 6,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 1,
+        "3-5": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 892,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTzTXzX",
+        "TXzTzTXzTzTXzTzTXzxxxTz",
+        "TXzXZTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 35321,
+        "component_seed_budget": 35321,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 2,
+        "0-4": 6,
+        "0-5": 1,
+        "1-2": 6,
+        "1-3": 2,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 1,
+        "3-5": 9,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 895,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTzTxzx",
+        "TxzTzTxzTzTxzTzTxzXXXTz",
+        "TxzxZTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 27885,
+        "component_seed_budget": 27885,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-3": 6,
+        "0-5": 1,
+        "1-2": 2,
+        "1-5": 7,
+        "2-4": 6,
+        "2-5": 3,
+        "3-4": 6,
+        "3-5": 1,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 951,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTztXZX",
+        "TZtXXXzxTZtzxTZtzxTZtzx",
+        "TZtZxzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 27885,
+        "component_seed_budget": 27885,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 2,
+        "0-5": 7,
+        "1-2": 2,
+        "1-3": 6,
+        "1-5": 1,
+        "2-4": 6,
+        "2-5": 3,
+        "3-4": 6,
+        "3-5": 1,
+        "4-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "source_index": 970,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TTztxZx",
+        "TZtZXzX",
+        "TZtxxxzXTZtzXTZtzXTZtzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 7,
+        "0-5": 1,
+        "1-2": 6,
+        "1-3": 1,
+        "1-4": 2,
+        "2-3": 1,
+        "2-5": 6,
+        "3-4": 4,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1239,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXTZXtz",
+        "TXZZXtz",
+        "TZXtzTZXtzTZXtzTxxxZXtz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 1,
+        "0-5": 2,
+        "1-3": 1,
+        "1-4": 1,
+        "1-5": 7,
+        "2-3": 1,
+        "2-4": 6,
+        "3-4": 6,
+        "3-5": 4
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1259,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXTZtXz",
+        "TZtXzTZtXzTZtXzTZtXzxxx",
+        "TZtXzzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 7,
+        "0-5": 1,
+        "1-2": 1,
+        "1-3": 6,
+        "1-4": 2,
+        "2-3": 1,
+        "2-4": 4,
+        "2-5": 6,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1299,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXTzXtZ",
+        "TXzzXtZ",
+        "TxZXXXtzTxZtzTxZtzTxZtz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 6,
+        "0-5": 2,
+        "1-2": 1,
+        "1-4": 1,
+        "1-5": 7,
+        "2-3": 1,
+        "2-4": 6,
+        "2-5": 4,
+        "3-4": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_index": 1303,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXTztXZ",
+        "TZtXXXzxTZtzxTZtzxTZtzx",
+        "TZtxzzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 1,
+        "0-4": 2,
+        "1-3": 1,
+        "1-4": 2,
+        "1-5": 6,
+        "2-3": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "3-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1552,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXZTZxTZTZxTZTZxTZTZx",
+        "TXtXztz",
+        "TZxTxZZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 7,
+        "0-4": 2,
+        "1-3": 1,
+        "1-4": 2,
+        "1-5": 6,
+        "2-3": 1,
+        "2-4": 6,
+        "2-5": 6,
+        "3-4": 3,
+        "3-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1597,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXZtzxTZtzxTZtzxTZtzx",
+        "TXtXZTz",
+        "TxZZtzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 1,
+        "0-4": 2,
+        "1-3": 1,
+        "1-4": 2,
+        "1-5": 6,
+        "2-3": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "3-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1602,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXZxTZTZxTZTZxTZTZxTZ",
+        "TXtztXz",
+        "TZTxZZx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 1,
+        "0-4": 2,
+        "1-3": 1,
+        "1-4": 7,
+        "1-5": 1,
+        "2-3": 1,
+        "2-5": 6,
+        "3-4": 4,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1620,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXZxtzTZxtzTZxtzTZxtz",
+        "TXztXtZ",
+        "TXzzXtZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 6,
+        "0-4": 2,
+        "1-2": 1,
+        "1-4": 2,
+        "1-5": 6,
+        "2-3": 1,
+        "2-4": 9,
+        "2-5": 1,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1703,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXzTzxTzTzxTzTzxTzTzx",
+        "TXtXZtZ",
+        "TxzzTzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 7,
+        "0-4": 2,
+        "1-2": 1,
+        "1-4": 2,
+        "1-5": 6,
+        "2-3": 1,
+        "2-4": 3,
+        "2-5": 1,
+        "3-4": 6,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1717,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXztZxTztZxTztZxTztZx",
+        "TXtXzTZ",
+        "TZZXtXz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 24167,
+        "component_seed_budget": 24167,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 6,
+        "0-4": 2,
+        "1-2": 1,
+        "1-4": 2,
+        "1-5": 6,
+        "2-3": 1,
+        "2-4": 9,
+        "2-5": 1,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1735,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXzxTzTzxTzTzxTzTzxTz",
+        "TXtZtXZ",
+        "TxzzxTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 6,
+        "0-4": 2,
+        "1-2": 1,
+        "1-4": 7,
+        "1-5": 1,
+        "2-3": 1,
+        "2-4": 4,
+        "2-5": 6,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1751,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXXXzxtZTzxtZTzxtZTzxtZ",
+        "TXZZXtz",
+        "TXZtXtz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 6,
+        "0-5": 2,
+        "1-2": 1,
+        "1-4": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 1,
+        "2-5": 9,
+        "3-4": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_index": 1899,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXZTZTXZTZTXZTZTXZTZxxx",
+        "TXZTZZX",
+        "TXZTZtX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 50193,
+        "component_seed_budget": 50193,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-3": 6,
+        "0-5": 2,
+        "1-2": 1,
+        "1-4": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 1,
+        "2-5": 9,
+        "3-4": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_index": 1900,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXZTZTXZTZTXZTZTXZxxxTZ",
+        "TXZZXTZ",
+        "TXZtXTZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 2,
+        "0-5": 6,
+        "1-2": 6,
+        "1-3": 1,
+        "1-4": 2,
+        "2-3": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "3-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1949,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXZZTZX",
+        "TXtZTZX",
+        "TZTZXTZTZXTZTZXTxxxZTZX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 2,
+        "0-5": 6,
+        "1-2": 6,
+        "1-3": 1,
+        "1-4": 2,
+        "2-3": 1,
+        "2-5": 6,
+        "3-4": 9,
+        "3-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1954,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXZZXTZ",
+        "TXtZXTZ",
+        "TZTZXTZTZXTZTZXTZTxxxZX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 2,
+        "0-5": 6,
+        "1-3": 7,
+        "1-4": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "2-5": 6,
+        "3-4": 3,
+        "3-5": 1
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 1959,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXZZtzX",
+        "TXtZtzX",
+        "TZtzXTZtzXTZtzXTxxxZtzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 7,
+        "0-5": 2,
+        "1-3": 1,
+        "1-4": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "2-5": 6,
+        "3-4": 1,
+        "3-5": 3
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2000,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXZtzTXZtzTXZtzTXZtzxxx",
+        "TXZtztX",
+        "TXZtzzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 2,
+        "0-5": 6,
+        "1-2": 1,
+        "1-3": 6,
+        "1-4": 2,
+        "2-3": 1,
+        "2-4": 9,
+        "2-5": 1,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2159,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXtzTzX",
+        "TXzzTzX",
+        "TxxxzTzXTzTzXTzTzXTzTzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 2,
+        "0-5": 6,
+        "1-2": 1,
+        "1-3": 6,
+        "1-4": 2,
+        "2-3": 1,
+        "2-4": 9,
+        "2-5": 1,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2169,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXtzXTz",
+        "TXzzXTz",
+        "TxxxzXTzTzXTzTzXTzTzXTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 2,
+        "0-5": 6,
+        "1-2": 7,
+        "1-4": 2,
+        "2-3": 1,
+        "2-4": 3,
+        "2-5": 1,
+        "3-4": 6,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2183,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXtztZX",
+        "TXzztZX",
+        "TZXXXtxzTZtxzTZtxzTZtxz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 1,
+        "0-5": 2,
+        "1-3": 1,
+        "1-4": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "3-4": 1,
+        "3-5": 9
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2224,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXzTzTXzTzTXzTzTXzTzxxx",
+        "TXzTztX",
+        "TXzTzzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 50193,
+        "component_seed_budget": 50193,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 6,
+        "0-3": 1,
+        "0-5": 2,
+        "1-3": 1,
+        "1-4": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "3-4": 1,
+        "3-5": 9
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2225,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXzTzTXzTzTXzTzTXzxxxTz",
+        "TXztXTz",
+        "TXzzXTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 7,
+        "0-5": 2,
+        "1-2": 1,
+        "1-4": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 1,
+        "2-5": 3,
+        "3-4": 6,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2259,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TXztZTXztZTXztZTXztZxxx",
+        "TXztZZX",
+        "TXztZtX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 6,
+        "0-5": 2,
+        "1-2": 1,
+        "1-3": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 1,
+        "2-5": 9,
+        "3-4": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_index": 2313,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZTxZTZTxZTZTxZTZTxZXXX",
+        "TZTxZZx",
+        "TZTxZtx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 50193,
+        "component_seed_budget": 50193,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 6,
+        "0-5": 2,
+        "1-2": 1,
+        "1-3": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 1,
+        "2-5": 9,
+        "3-4": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_index": 2314,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZTxZTZTxZTZTxZTZXXXTxZ",
+        "TZZxTxZ",
+        "TZtxTxZ"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 6,
+        "0-5": 2,
+        "1-3": 7,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "2-5": 6,
+        "3-4": 1,
+        "3-5": 3
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2360,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZTzXtX",
+        "TxZtzTxZtzTxZtzTxZtzXXX",
+        "TxZtzzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33462,
+        "component_seed_budget": 33462,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 6,
+        "0-5": 2,
+        "1-2": 7,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 1,
+        "2-5": 3,
+        "3-4": 6,
+        "3-5": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2543,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZXtXTz",
+        "TZXtXzz",
+        "TZXtxxxzTZXtzTZXtzTZXtz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 37180,
+        "component_seed_budget": 37180,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 6,
+        "0-5": 2,
+        "1-2": 6,
+        "1-3": 1,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "3-4": 1,
+        "3-5": 9
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2550,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZXtZtX",
+        "TxzTzTxzTzTxzTzTxzXXXTz",
+        "TxzzxTz"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 39039,
+        "component_seed_budget": 39039,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-2": 1,
+        "0-4": 1,
+        "0-5": 7,
+        "1-2": 1,
+        "1-3": 6,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "2-5": 4,
+        "3-4": 6
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_index": 2701,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZtXtzX",
+        "TZtXzzX",
+        "TZtxxxzXTZtzXTZtzXTZtzX"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11154,
+        "component_seed_budget": 11154,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 6,
+        "0-5": 2,
+        "1-2": 6,
+        "1-3": 1,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "3-4": 1,
+        "3-5": 9
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2737,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZtZXtX",
+        "TxzTzTxzTzTxzTzTxzTzXXX",
+        "TxzTzzx"
+      ]
+    },
+    {
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 20449,
+        "component_seed_budget": 20449,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_tuple_budget": 1859,
+        "phase_tuples_considered": 1859,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "generator_occurrences": {
+        "t": 13,
+        "x": 11,
+        "z": 13
+      },
+      "macro_rotation_count": 2,
+      "parallel_multiplicities": {
+        "0-1": 2,
+        "0-3": 1,
+        "0-4": 1,
+        "0-5": 7,
+        "1-2": 6,
+        "1-3": 1,
+        "1-5": 2,
+        "2-3": 1,
+        "2-4": 6,
+        "3-4": 6,
+        "3-5": 4
+      },
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "source_index": 2762,
+      "support": "K6-P5",
+      "total_length": 37,
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "TZtxzTZtxzTZtxzTZtxzXXX",
+        "TZtxzTx",
+        "TZtxzzx"
+      ]
+    }
+  ],
+  "source_sha256": {
+    "base_rank_solver": "5f5e0587e9f9b605c53412d9e5ab793d6823a9b67c87589a06d9ab36ada2c5cb",
+    "certificate_driver": "807b7b5221e5523beb2d1302f6d911890ba041ea3552358e26642d119bd50c3a",
+    "factorial_solver": "02c9ac34f1869740f3f8addd4a8d96192eaf691a7a03e74e8237ac9f86388bca",
+    "rigid_rank_solver": "d02058487bdca05c3ee44256b3908cfdb22ede5b22454b0eaae56b92fc4447b2",
+    "rigid_theorem": "1b10c4faafd3d0b07f13eacd948003e5892a8a63689a2b87d5c3b682ddcd972a"
+  },
+  "source_with_primitive_count": 2952,
+  "source_without_primitive_count": 64,
+  "support_counts": {
+    "K6-P5": 64
+  },
+  "trace_sha256": "11bd5e72743f0b9b4ec8d4851b6c0f48b7e1f7cbc28ff4a2dc748b2fb437386b",
+  "upstream_trace": "c321c3142f35b34b145fcf74f344b478560b21ed647534ad1d92867be8f798af",
+  "verdict_counts": {
+    "NOT_SPHERICAL": 64
+  }
+}

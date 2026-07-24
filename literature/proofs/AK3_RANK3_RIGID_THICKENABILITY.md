@@ -3,8 +3,8 @@
 Date: 2026-07-24
 
 Status: the rigid-support and signed-rank reduction theorems are **PROVEN**.
-The finite 64-state AK(3) candidate is **UNVERIFIED** until its certificate
-is generated and independently replayed.
+The finite 64-state AK(3) thickenability candidate is **REFUTED** by the
+exact certificate in Section 6.
 
 ## 1. Exact scope
 
@@ -38,8 +38,8 @@ relator.  An independent support inventory finds that every one has:
 - degree sequence \((3,3,3,4,4,5)\); and
 - complement equal to a five-vertex path plus one isolated vertex.
 
-The inventory is a finite claim and must be authenticated by the production
-certificate.  The theorem below is independent of that inventory.
+The inventory is authenticated by the production certificate.  The theorem
+below is independent of that inventory.
 
 ## 2. The simple support \(H=K_6-E(P_5)\)
 
@@ -233,7 +233,46 @@ A solver may return NO only after checking all of the following:
 
 Any other support is unsupported, not non-spherical.
 
-## 6. AK(3) implication
+## 6. Exact finite decision
+
+The chained certificate rederives the complement of all source indices
+having a primitive-relator occurrence.  It obtains exactly 64 sources.
+Every source has the proved \(K_6-E(P_5)\) support, and every exact search
+returns NO after exhausting:
+
+\[
+118{,}976
+\quad\text{phase triples and}\quad
+1{,}741{,}883
+\quad\text{component seeds}.
+\]
+
+There are no surviving component combinations and no positive witnesses.
+The ordered decision trace is
+
+```text
+11bd5e72743f0b9b4ec8d4851b6c0f48b7e1f7cbc28ff4a2dc748b2fb437386b
+```
+
+The certificate also compares the signed-rank solver with the independent
+factorial occurrence-permutation census on a \(K_6-E(P_5)\) fixture.  Both
+return NO after the latter exhausts 17,280 local orders.  Independently
+enumerating all 6,912 simple-support rotations gives exactly the two
+reflected spherical rotations required by Whitney rigidity.
+
+Certificate:
+
+```text
+results/stable_ac/theory/ak3_rank3_rigid_thickenability.json
+```
+
+Verifier:
+
+```text
+experiments/stable_ac/thickenable/rank3_rigid_thickenability_certificate.py
+```
+
+## 7. AK(3) implication
 
 Every one of the 64 finite targets is a certified rank-three presentation of
 the trivial group stably equivalent to AK(3).  Therefore one compatible
@@ -241,6 +280,6 @@ spherical rotation, after the mandatory independent regular-neighbourhood
 audit, would make that exact presentation classically AC-trivial by
 Lackenby's Theorem 1.3 and would prove AK(3) stably AC-trivial.
 
-A complete null would refute only this 64-state exact-complex attempt.  It
-would not obstruct another rank-three corridor, another stable
-representative, or AK(3) itself.
+The complete null refutes only this 64-state exact-complex attempt.  It does
+not obstruct another rank-three corridor, another stable representative, or
+AK(3) itself.
