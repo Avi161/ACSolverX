@@ -553,5 +553,123 @@
    "winner": 7
   }
  },
- "harness_note": "Validated in the research harness (a parameterized heap priority). The production Colab solver orders by length through a packed heap key and does not yet implement the phased priority; using this at large budgets requires porting the ordering into that solver."
+ "harness_note": "Validated in the research harness (a parameterized heap priority). The production Colab solver orders by length through a packed heap key and does not yet implement the phased priority; using this at large budgets requires porting the ordering into that solver.",
+ "wave2": {
+  "distinct_problems": {
+   "note": "bins 4-7 are 24 rows but only 19 distinct automorphism classes",
+   "500": {
+    "baseline": 2,
+    "best": 13,
+    "n": 19
+   },
+   "1000": {
+    "baseline": 5,
+    "best": 16,
+    "n": 19
+   },
+   "resisting": 3
+  },
+  "speedup": [
+   {
+    "name": "ms633",
+    "baseline_nodes": 26838,
+    "knot_nodes": 108,
+    "factor": 248
+   },
+   {
+    "name": "ms628",
+    "baseline_nodes": 26774,
+    "knot_nodes": 107,
+    "factor": 250
+   },
+   {
+    "name": "ms575",
+    "baseline_nodes": 14383,
+    "knot_nodes": 422,
+    "factor": 34
+   },
+   {
+    "name": "ms581",
+    "baseline_nodes": 9567,
+    "knot_nodes": 385,
+    "factor": 25
+   }
+  ],
+  "speedup_note": "the three problems that resist cost the baseline only 13k-16k nodes - LESS than the two beaten 250x, so difficulty under length ordering does not predict difficulty under the knot ordering",
+  "knot_threshold": {
+   "easy": {
+    "k": [
+     0.5,
+     1,
+     2,
+     3,
+     4,
+     8,
+     16
+    ],
+    "solved": [
+     16,
+     16,
+     16,
+     16,
+     16,
+     16,
+     16
+    ],
+    "n": 16
+   },
+   "hard": {
+    "k": [
+     0.5,
+     1,
+     2,
+     3,
+     4,
+     8,
+     16
+    ],
+    "solved": [
+     0,
+     0,
+     0,
+     3,
+     3,
+     3,
+     3
+    ],
+    "n": 8
+   },
+   "verdict": "On hard presentations the knot term is the difference between solving three and solving none; on easy ones it is irrelevant. But the optimum does not climb with difficulty - it is a threshold to clear, not a dial to turn up, so one weight serves every stratum."
+  },
+  "negatives": [
+   {
+    "axis": "depth (weighted A*)",
+    "result": "1 of 216 arms beat its incumbent, on the weakest one, at one budget only - a null result"
+   },
+   {
+    "axis": "a third length tier",
+    "result": "never beats two tiers at either budget, and costs two more parameters"
+   },
+   {
+    "axis": "second feature family",
+    "result": "unlocked no row the winner misses - but with no headroom to find one: the winner already solved every row of that experiment's own decidable set (a data-derived set over its own configs, not the fixed bins 4-7 band used elsewhere here), so no arm could have shown an improvement"
+   }
+  ],
+  "unsolved124": {
+   "classes": 124,
+   "relabels": 8,
+   "starts": 980,
+   "orderings": 4,
+   "searches": 3920,
+   "solved": 0,
+   "budget": 1000,
+   "cap": 64,
+   "knot_reduced": {
+    "baseline": 74,
+    "best": 94,
+    "n": 124
+   },
+   "note": "Every one of the 124 unsolved AC-classes, each entered as its 8 signed-permutation relabels, under all four best orderings. Zero solves - the expected result, now measured over the whole target set rather than inferred from a six-row sample. These classes survived a 10^6-node search and 1000 nodes is three orders of magnitude short."
+  }
+ }
 }
