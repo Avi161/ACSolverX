@@ -191,3 +191,14 @@
 
 - [WORKS] For \(U_{n,m}=t(t^{-4}x^3)^nK_m\) with \(nm\ne0\), isolate \(S_n=\operatorname{red}(t(t^{-4}x^3)^nt^{-1})\). It has exact length \(7|n|\), and the endpoint blocks in `AK3_MIXED_CONSEQUENCE_FAMILY.md` are already Whitehead-minimal.
 - [WORKS] Split the twelve Whitehead deltas only by the three genuinely different sign regions \(n>0\), \(n<0<m\), and \(n,m<0\). The signs of \(m\) do not change the table when \(n>0\), and the complete mixed floor is \(28|n|+12|m|+15\).
+
+### 2026-07-24 Zero commutator parameter
+
+- [TRAP] The literal word \(K_m=t^{-1}x^{3m}tx^{-3m}\) freely reduces to the empty word at \(m=0\). A replay assertion that every constructed commutator word is nonempty incorrectly rejects the coordinate axis.
+- [WORKS] Test `bool(K_m) == (m != 0)` and keep the \(m=0\) axis in every two-parameter signed grid.
+
+### 2026-07-24 Reverse-order cancellation stratum
+
+- [TRAP] For the reverse mixture \(tK_m(t^{-4}x^3)^n\), the chamber \(n<0,m<0\) has an additional boundary type at \(m=-1\): the middle \(x\)-block vanishes and two \(t\)-blocks merge. Extrapolating the \(m\le-2\) Whitehead delta formulas to \(m=-1\) gives the wrong constants.
+- [WORKS] Isolate \(n<0,m=-1\) as its own symbolic Whitehead row. The complete reverse-order mixed floor still has the uniform chamber value \(28|n|+18|m|-13\), but the twelve local deltas have a five-region, not four-region, description.
+- [TRAP] Closing the two collected orders \((R')^nK_m\) and \(K_m(R')^n\) does not imply that every remaining source-relator recovery must interleave their individual factors. Other rotations, conjugated or inverse whole blocks, and different conjugates of \(R\) remain unclassified too.

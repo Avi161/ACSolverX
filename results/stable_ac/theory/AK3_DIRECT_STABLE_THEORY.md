@@ -323,6 +323,35 @@ directions add length rather than canceling in the displayed order.  The
 two-dimensional signed replay and all-quadrant symbolic Whitehead table
 are pinned by `tests/stable_ac/test_mixed_consequence_family.py`.
 
+## Proven result 8: the reverse ordered mixture
+
+Reversing the two blocks also admits a complete symbolic treatment.  Put
+
+\[
+ \widehat U_{n,m}=tK_m(R')^n.
+\]
+
+Off the coordinate axes, the endpoint is again already
+Whitehead-minimal, but its exact floor depends on the sign quadrant:
+
+\[
+ \mu(\widehat P_{n,m})=
+ \begin{cases}
+ 28|n|+18|m|+3,&n>0,\ m>0,\\
+ 28|n|+18|m|-1,&n>0,\ m<0,\\
+ 28|n|+18|m|+15,&n<0,\ m>0,\\
+ 28|n|+18|m|-13,&n<0,\ m<0.
+ \end{cases}
+\]
+
+The \(n<0,m=-1\) line is a real cancellation stratum:
+one middle \(x^3\)-block disappears and adjacent \(t\)-blocks merge.
+Nevertheless, the smallest genuinely mixed floor is still \(33\), at
+\((-1,-1)\).  The exact boundary reduction and five symbolic Whitehead
+rows are proved in
+`literature/proofs/AK3_REVERSE_MIXED_CONSEQUENCE_FAMILY.md` and replayed
+by `tests/stable_ac/test_reverse_mixed_consequence_family.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -339,9 +368,9 @@ newly exposed nonuniqueness: multiply a canonical recovery word by
 controlled consequences of the compressed source relators before
 eliminating \(z\).  Pure powers of one fixed rotation and the full
 power-conjugated direction are now closed.  The smallest genuinely new
-case must reverse their order, interleave individual
-rotations/conjugates instead of collecting them into the proved blocks,
-use defining words with at least two alternating \(v\)-syllables, or use
-the braid relator during recovery.
+case must go beyond these two exact collected blocks: use other rotations
+or conjugates of \(R\), inverse or conjugated whole blocks, interleave
+individual factors, use defining words with at least two alternating
+\(v\)-syllables, or use the braid relator during recovery.
 
 AK(3) remains open.
