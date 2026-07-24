@@ -31,6 +31,10 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-09](EXP09_fullbench.md) | the finalists on the full 66-benchmark | **26→40 at 500, 29→43 at 1000** (+14 solves each) |
 | [FINDINGS](FINDINGS.md) | winner on the aut-disjoint split, per budget, overfit priced | held-out bins 4–7: baseline 1/7 → **5/7** (500), **7/7** (1000) |
 | [EXP-10](EXP10_refine.md) | does a finer search near the winners beat them at budget 1,000? | **no — a dead tie** (20/24 both); best-of-400 optimism 1.23, so stop |
+| [EXP-11](EXP11_depth.md) | does a depth term (weighted A*) help? — the axis ruled out on principle earlier | **no** — 1 of 216 arms beat its incumbent, on the weakest one, one budget only |
+| [EXP-13](EXP13_tiers.md) | does a third length tier help, and should the knot weight rise with length? | **no to both** — 3 tiers only ever match 2; the weight wants to FALL with state length |
+| [EXP-14](EXP14_newfeats.md) | does a second feature family (Bmaxrun/Bspread/ratio/density) add anything? | **unlocks nothing** — though the winner already solves all 27 decidable rows, so there was no headroom |
+| [EXP-15](EXP15_wbd.md) | is a knot worth more on a HARD presentation? (the user's intuition, directly) | **yes, as a threshold** — hard stratum solves 0 below k=3, then 3/8; easy stratum solves all at any k |
 | **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **phase at length 16; climb on knots (+blocks at 1000); revert to length below** |
 
 ## Two splits
