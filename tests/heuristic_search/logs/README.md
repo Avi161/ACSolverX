@@ -32,6 +32,7 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-08](EXP08_reach.md) | can any ordering crack a 2nd-hump row at ≤1,000? | **none** (as expected — needs 60k–10M+ nodes) |
 | [EXP-09](EXP09_fullbench.md) | the finalists on the full 66-benchmark | **26→40 at 500, 29→43 at 1000** (+14 solves each) |
 | [FINDINGS](FINDINGS.md) | winner on the aut-disjoint split, per budget, overfit priced | baseline 0 → **4/6** (500), **6/6** (1000) held-out decidable |
+| [EXP-10](EXP10_refine.md) | does a finer search near the winners beat them at budget 1,000? | **no — a dead tie** (20/24 both); best-of-400 optimism 1.23, so stop |
 | **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **phase at length 16; climb on knots (+blocks at 1000); revert to length below** |
 
 ## Two splits
