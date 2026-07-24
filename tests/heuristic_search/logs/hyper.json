@@ -766,5 +766,28 @@
    "note": "The best single ordering solves 19 of the 24 decidable rows, but the union over every ordering tried in this program solves 23 - only ms596 (aut class 97) has resisted every configuration, across 607 recorded attempts. Different orderings solve different presentations, which is the same thing the 250x result says: the heuristic reorders difficulty rather than uniformly improving it."
   },
   "unsolved124_done": true
+ },
+ "headline": {
+  "baseline": 1,
+  "tuned": 6,
+  "n": 6,
+  "budget": 1000,
+  "baseline_500": 1,
+  "tuned_500": 4,
+  "note": "On held-out automorphism classes \u2014 problems the tuning never saw, sharing no change-of-variables twin with anything it did see \u2014 counted as distinct problems, on the decidable tier: baseline 1 of 6, tuned 6 of 6 at budget 1000 (1 of 6 -> 4 of 6 at budget 500). This is the most defensible framing available: row counts double-count automorphic twins, and the stratified split shares classes across train and test."
+ },
+ "complement_cv": {
+  "complement": 1.18,
+  "strength": 0.27,
+  "random": 0.04,
+  "premium": 0.24,
+  "live": 3,
+  "note": "Cross-validated over 200 half-splits inside a 320-config x 45-row matrix, no new searches. Picking a second ordering FOR COMPLEMENTARITY adds 1.18 rows out of sample, against 0.27 for picking the strongest stand-alone arm and 0.04 for a random one \u2014 so the strategy is worth about 4x the default choice, with a small 0.24-row hindsight premium. Expect roughly one extra presentation, not four; on that slice only 3 rows were even available to gain."
+ },
+ "hump_both_families": {
+  "rows": 18,
+  "orderings": 6,
+  "solved": 0,
+  "note": "Every earlier attempt on the hard tier used knot climbs or close relatives. Since the finalists turn out to be redundant with each other, that negative was a claim about one family. Pointing six deliberately different orderings at bins 8-9 and the reach rows \u2014 including the cross-validation-winning Bspread climb and two led by features never tried there \u2014 still solves nothing. The negative is no longer family-specific."
  }
 }
