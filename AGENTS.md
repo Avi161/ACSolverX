@@ -110,3 +110,8 @@
 - [WORKS] State and use the interval lemma only when \(G-a\) has exactly two components; then a split forces an alternating \(Q_1,Q_2,Q_1,Q_2\) pattern and the Jordan-curve contradiction is valid. This exact hypothesis holds for the paw articulation.
 - [TRAP] The first direct 22-case paw batch exposed a 21-minute outlier at total length 39; a small scheme/phase count does not preclude expensive repeated propagation with large rank domains.
 - [WORKS] Stop the batch at the first runtime outlier and optimize the exact constraint calculation before resuming; never let a bounded topology census silently consume the checkpoint interval.
+
+### 2026-07-24 Focused CoV test dependencies
+
+- [TRAP] `uv run --with pytest python3 -m pytest tests/stable_ac/test_cov.py` supplies the test runner but not JAX; `test_transformed_flat_repads_to_cap` then fails in `envs/utils.py` with `ModuleNotFoundError: No module named 'jax'` even though the proof-specific tests pass.
+- [WORKS] `uv run --with pytest --with jax python3 -m pytest tests/stable_ac/test_cov.py::test_transformed_flat_repads_to_cap` supplies the missing optional runtime and passes. Treat that dependency separately from the exact CoV and thickenability certificate results.

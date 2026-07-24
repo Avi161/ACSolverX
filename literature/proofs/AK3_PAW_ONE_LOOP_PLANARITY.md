@@ -3,8 +3,8 @@
 Date: 2026-07-24
 
 Status: the paw-core rotation and signed-rank reduction theorems are
-**PROVEN**.  The finite two-hop AK(3) CoV candidate is **UNVERIFIED** until
-its certificate is generated and independently replayed.
+**PROVEN**.  The finite two-hop AK(3) CoV thickenability candidate is
+**REFUTED** by the exact certificate in Section 7.
 
 ## 1. Exact scope
 
@@ -184,14 +184,36 @@ Composing the exact 34 one-hop AK(3) subword-CoV outputs with the same
 gated family produces 1,724 raw second hops and 1,352 distinct exact output
 pairs.  Their support inventory is:
 
-- 1,330 outputs in previously proved loopless or one-loop
-  \(K_4,K_4-e,C_4,P_4\) classes;
-- 22 outputs in the paw-core one-loop class proved here.
+| support | outputs | spherical |
+|---|---:|---:|
+| \(K_4\) | 334 | 0 |
+| \(K_4-e\) | 399 | 0 |
+| \(C_4\) | 57 | 0 |
+| \(P_4\) | 2 | 0 |
+| \(K_4\) plus one loop | 164 | 0 |
+| \(K_4-e\) plus one loop | 374 | 0 |
+| paw plus one loop | 22 | 0 |
+| **total** | **1,352** | **0** |
 
 For all 22 paw cases, the loop is attached away from the articulation and
 the hypotheses above hold.
 
-A spherical output would require independent regular-neighbourhood
-validation and, if confirmed, would prove AK(3) stably AC-trivial.  A
-complete null would refute only this exact two-hop CoV-thickenability
-attempt, not stable AK(3).
+The exact searches exhaust 82,776 planar schemes, 10,328,938 phase pairs,
+and 50,566,572 component seeds.  There are no unsupported outputs and no
+positive requiring regular-neighbourhood validation.
+
+Certificate:
+
+```text
+results/stable_ac/theory/ak3_two_hop_cov_thickenability.json
+```
+
+Verifier:
+
+```text
+experiments/stable_ac/thickenable/two_hop_cov_thickenability_certificate.py
+```
+
+This complete null refutes only the exact two-hop
+CoV-thickenability attempt.  It does not cover three CoV hops, another
+stable family, or stable AK(3).
