@@ -20,8 +20,12 @@ machine must show as a falling rate, never as silence).
     run_ab(cfg, out_dir="results/hsearch")
 """
 import csv
+import fcntl
 import json
+import multiprocessing as mp
 import os
+import queue as queue_mod
+import shutil
 import sys
 import time
 
@@ -31,6 +35,9 @@ from experiments.heuristic_search.hlab import ROOT, bench66        # noqa: E402
 from experiments.heuristic_search.hcompact import greedy_search_hcompact  # noqa: E402
 from experiments.heuristic_search.hsolve import (                  # noqa: E402
     LEAN_SMALL_BUDGET, RECOMMENDED, greedy_search_h,
+)
+from experiments.search.greedy_compact import (                    # noqa: E402
+    _RESERVE_SLACK, est_states, row_width,
 )
 
 ARMS = {
@@ -70,6 +77,225 @@ def _done(path):
     return seen
 
 
+# --------------------------------------------------------------------------- parallel machinery
+# The multi-worker path follows run_baseline.py's HIGH_SPEEDUP shape, lesson for lesson:
+# spawn workers (a fork from a threaded notebook parent can deadlock in numba's compiler, and
+# the one unexplained worker hang in this repo was under fork); workers push heartbeat samples
+# onto an mp.Queue the PARENT drains from its main thread (a pool worker's print is silently
+# dropped in a notebook, and a background printing thread is its own trap); only the parent
+# writes the jsonl; on a Drive mount the parent appends to a LOCAL stage file and mirrors
+# whole-file (flush is not durability there — measured loss), seeding the stage back from the
+# mirror on a fresh VM; and the stage is flock-claimed so an orphaned run from an interrupted
+# cell cannot double-compute into the same file. Worker count is sized from measured memory,
+# never just from cores. N_WORKERS is result-neutral: each search is independent and
+# deterministic, so the rows are identical to a serial run's (order in the file may differ),
+# and files resume across serial/parallel and across engines.
+
+_REMOTE_PREFIX = "/content/drive"          # module-level so tests can monkeypatch
+_HB_Q = None
+
+
+def _est_gb(engine, keep_path, budget, mrl):
+    """Peak GB one search costs, from the measured constants. Sizing only."""
+    if engine == "hcompact":
+        n = max(1024, int(est_states(budget) * _RESERVE_SLACK)) + 4 * (mrl + 1) ** 2
+        return n * (row_width(mrl) + 31) / 2**30 + 0.6      # +31: len/depth/seg/score/heap/table
+    per_node = 36_500 if keep_path else 24_000              # measured on the 124 at cap 48
+    return budget * per_node / 2**30 + 0.6
+
+
+def _avail_gb():
+    try:
+        with open("/proc/meminfo") as f:                    # Linux / Colab
+            for ln in f:
+                if ln.startswith("MemAvailable:"):
+                    return int(ln.split()[1]) / 2**20
+    except OSError:
+        pass
+    try:                                                     # macOS: total is the best signal
+        import subprocess
+        total = int(subprocess.run(["sysctl", "-n", "hw.memsize"],
+                                   capture_output=True, text=True).stdout.strip())
+        return total * 0.6 / 2**30
+    except Exception:
+        return None
+
+
+def _resolve_workers(cfg, budget, mrl, engine, keep_path):
+    nw = cfg.get("N_WORKERS", 1)
+    cores = os.cpu_count() or 1
+    if nw in ("auto", 0, None):
+        nw = cores
+    nw = max(1, min(int(nw), cores))
+    per = _est_gb(engine, keep_path, budget, mrl)
+    avail = _avail_gb()
+    if avail is not None:
+        mem_cap = max(1, int((avail - 2.0) // per))
+        if mem_cap < nw:
+            print(f"  N_WORKERS {nw} -> {mem_cap}: memory-capped "
+                  f"({per:.1f} GB/search est., {avail:.0f} GB available)", flush=True)
+            nw = mem_cap
+    return nw, per
+
+
+def _init_worker_ab(q):
+    global _HB_Q
+    _HB_Q = q
+
+
+def _worker_solve_ab(job):
+    """Runs in a spawned pool worker. Returns the finished row dict (parent writes it),
+    or an ``__error__`` row the parent reports and skips — resume retries it later.
+    Certificate recovery happens HERE so the parent only ever persists complete rows."""
+    (arm, cfg_arm, row, budget, mrl, engine, keep_path, hb_secs) = job
+    state = {"last": time.time() + min(10.0, hb_secs), "prev": 0, "t_prev": time.time()}
+
+    def progress(n):
+        now = time.time()
+        if now < state["last"]:
+            return
+        rate = (n - state["prev"]) / max(now - state["t_prev"], 1e-9)
+        state["last"], state["prev"], state["t_prev"] = now + hb_secs, n, now
+        if _HB_Q is not None:
+            try:
+                _HB_Q.put_nowait((arm, row["name"], n, budget, rate))
+            except Exception:
+                pass                                        # a full queue never stalls a search
+
+    try:
+        t = time.perf_counter()
+        if engine == "hcompact":
+            res = greedy_search_hcompact(row["r1"], row["r2"], budget,
+                                         max_relator_length=mrl, config=cfg_arm,
+                                         progress=progress)
+        else:
+            res = greedy_search_h(row["r1"], row["r2"], budget, max_relator_length=mrl,
+                                  config=cfg_arm, progress=progress, keep_path=keep_path)
+        if res["solved"] and (engine == "hcompact" or not keep_path):
+            rec = greedy_search_h(row["r1"], row["r2"], budget, max_relator_length=mrl,
+                                  config=cfg_arm, progress=progress, keep_path=True)
+            assert (rec["solved"], rec["nodes_explored"], rec["path_length"]) == \
+                   (True, res["nodes_explored"], res["path_length"]), \
+                (row["name"], arm, "recovery diverged from the low-memory search")
+            res = rec
+        dt = time.perf_counter() - t
+        return {"arm": arm, "name": row["name"], "res": res, "secs": round(dt, 2)}
+    except Exception as e:                                  # noqa: BLE001 — repr crosses pickle safely
+        return {"arm": arm, "name": row["name"], "__error__": repr(e)}
+
+
+def _mirror(stage, out):
+    """Whole-file copy, atomic at the destination. Append-to-Drive is the known trap."""
+    tmp = out + ".tmp"
+    shutil.copyfile(stage, tmp)
+    os.replace(tmp, out)
+
+
+def _n_lines(path):
+    if not os.path.exists(path):
+        return 0
+    with open(path) as f:
+        return sum(1 for _ in f)
+
+
+def _run_parallel(cfg, out, todo, n_workers, budget, mrl, engine, keep_path,
+                  heartbeat_secs, progress_secs):
+    """The pool loop: parent-only writes, queue-drained heartbeats, stage+mirror on Drive."""
+    remote = out.startswith(_REMOTE_PREFIX)
+    if remote:
+        stage_dir = cfg.get("STAGE_DIR") or os.path.join(os.path.expanduser("~"),
+                                                         ".hsearch_stage")
+        os.makedirs(stage_dir, exist_ok=True)
+        stage = os.path.join(stage_dir, os.path.basename(out))
+        if _n_lines(out) > _n_lines(stage):
+            shutil.copyfile(out, stage)
+            print(f"  seeded stage from the mirror ({_n_lines(stage)} rows)", flush=True)
+    else:
+        stage = out
+
+    # Claim the stage. A live holder means an interrupted cell's run is still writing —
+    # killing IT is a human decision; refusing HERE prevents silent double-compute.
+    lock_fd = os.open(stage + ".lock", os.O_CREAT | os.O_RDWR)
+    try:
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        os.close(lock_fd)
+        raise RuntimeError(
+            f"{stage} is flock-claimed by a live process — a previous run's workers are "
+            "still alive. Find and kill them (sort by RSS, the binary is capitalised "
+            "'Python' under Homebrew) before re-running.") from None
+
+    ctx = mp.get_context("spawn")
+    hb_q = ctx.Queue()
+    jobs = [(arm, ARMS[arm], row, budget, mrl, engine, keep_path, heartbeat_secs)
+            for arm, row in todo]
+    t0 = time.perf_counter()
+    done = solved = errors = 0
+    last_pg = t0
+
+    with ctx.Pool(n_workers, initializer=_init_worker_ab, initargs=(hb_q,)) as pool, \
+            open(stage, "a") as f:
+        pending = [pool.apply_async(_worker_solve_ab, (j,)) for j in jobs]
+        last_mirror = time.perf_counter()
+        while pending:
+            # Drain heartbeats from the MAIN thread; block on the queue (not a sleep) so a
+            # beat prints the moment it arrives and the loop still wakes to check results.
+            try:
+                while True:
+                    arm, name, n, b, rate = hb_q.get(timeout=1.0 if not
+                                                     any(p.ready() for p in pending) else 0.0)
+                    print(f"      [{arm}/{name}] {n:,}/{b:,} nodes  {rate:,.0f} nodes/s",
+                          flush=True)
+            except queue_mod.Empty:
+                pass
+
+            ready = [p for p in pending if p.ready()]
+            if not ready:
+                continue
+            pending = [p for p in pending if not p.ready()]
+            for p in ready:
+                r = p.get()
+                if "__error__" in r:
+                    errors += 1
+                    print(f"    WORKER ERROR [{r['arm']}/{r['name']}]: {r['__error__']} "
+                          "— row NOT written; resume will retry it", flush=True)
+                    continue
+                res = r["res"]
+                f.write(json.dumps({
+                    "arm": r["arm"], "name": r["name"], "dataset": cfg["DATASET"],
+                    "budget": budget, "mrl": mrl,
+                    "solved": res["solved"],
+                    "solved_at": res["nodes_explored"] if res["solved"] else None,
+                    "nodes_explored": res["nodes_explored"],
+                    "path_length": res["path_length"],
+                    "min_relator_length": res["min_relator_length"],
+                    "max_relator_length_expanded": res["max_relator_length_expanded"],
+                    "path_moves": res["path_moves"],
+                    "secs": r["secs"],
+                }) + "\n")
+                f.flush()
+                os.fsync(f.fileno())
+                done += 1
+                solved += bool(res["solved"])
+
+            now = time.perf_counter()
+            if remote and now - last_mirror >= 60:
+                _mirror(stage, out)
+                last_mirror = now
+            if now - last_pg >= progress_secs or not pending:
+                el = now - t0
+                eta = el / max(done, 1) * len(pending)
+                print(f"    {done}/{len(jobs)} searches  {solved} solved  "
+                      f"{errors} errors  {el/60:.1f} min elapsed  "
+                      f"ETA {eta/60:.1f} min  [{n_workers} workers]", flush=True)
+                last_pg = now
+
+    if remote:
+        _mirror(stage, out)
+    os.close(lock_fd)
+    return stage
+
+
 def run_ab(cfg, out_dir="results/hsearch", heartbeat_secs=60, progress_secs=300):
     rows = load_rows(cfg["DATASET"], cfg.get("SUBSET"))
     budget = cfg["NODE_BUDGET"]
@@ -95,13 +321,27 @@ def run_ab(cfg, out_dir="results/hsearch", heartbeat_secs=60, progress_secs=300)
     stem = f"{cfg['OUT_STEM']}_{cfg['DATASET']}_b{budget}_mrl{mrl}"
     out = os.path.join(out_dir, stem + ".jsonl")
 
-    seen = _done(out) if cfg.get("RESUME", True) else set()
+    # Resume from the union of the mirror and the local stage: after a crash inside the
+    # ≤60 s mirror window the stage can be AHEAD of the Drive copy, and rows exist wherever
+    # they were fsynced first.
+    stage_probe = (os.path.join(cfg.get("STAGE_DIR") or os.path.join(
+        os.path.expanduser("~"), ".hsearch_stage"), os.path.basename(out))
+        if out.startswith(_REMOTE_PREFIX) else out)
+    seen = (_done(out) | _done(stage_probe)) if cfg.get("RESUME", True) else set()
     todo = [(a, r) for a in arms for r in rows if (a, r["name"]) not in seen]
+    n_workers, per_gb = _resolve_workers(cfg, budget, mrl, engine, keep_path)
     print(f"  {len(arms)} arms x {len(rows)} presentations, budget {budget:,}, cap {mrl}"
           + ("  [low-memory: KEEP_PATH=False]" if not keep_path else "")
-          + ("  [engine: hcompact]" if engine == "hcompact" else ""))
+          + ("  [engine: hcompact]" if engine == "hcompact" else "")
+          + (f"  [{n_workers} workers, ~{per_gb:.1f} GB/search]" if n_workers > 1 else ""))
     print(f"  {len(seen)} rows resumed; {len(todo)} to run")
     print(f"  -> {out}", flush=True)
+
+    if n_workers > 1:
+        _run_parallel(cfg, out, todo, n_workers, budget, mrl, engine, keep_path,
+                      heartbeat_secs, progress_secs)
+        report(out, cfg)
+        return
 
     t0 = last_hb = last_pg = time.perf_counter()
     done = solved = 0

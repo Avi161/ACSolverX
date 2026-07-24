@@ -18,6 +18,7 @@ NODE_BUDGET = 1_000_000,
 CHECKPOINTS = [1_000, 5_000, 10_000, 50_000, 100_000, 250_000, 500_000, 1_000_000],
 MAX_RELATOR_LENGTH = 48,
 ENGINE    = "hcompact",               # ~7 GB per search at 10^6, not 24 — see memory
+N_WORKERS = "auto",                   # all cores, capped by measured memory — see time
 RESUME    = True,
 OUT_STEM  = "hsearch_ab",
 ```
@@ -30,9 +31,9 @@ OUT_STEM  = "hsearch_ab",
 
 Measured worst-case on these exact rows at cap 48 (full-budget burns): `hsolve` costs **36.5 kB per node popped with the certificate map, 24 kB without** (`KEEP_PATH=False`) — at 10⁶ that is ~36.5 GB vs ~24 GB peak per search, the first a memory-guard coin-flip on a 51 GB Colab. **`ENGINE="hcompact"` replaces both: ~78 B per state, ~7 GB reserved for a 10⁶ search**, and it moves the machine's budget ceiling from ~2M to ~5M nodes ([HCOMPACT.md](HCOMPACT.md) — same search pop for pop, 880-pair cross-check, +13% faster). All three modes are result-pure and write identical rows (pinned by `tests/heuristic_search/test_hsolve.py` and `test_hcompact.py`); `run_ab` recovers the certificate of anything that solves by an automatic deterministic re-run, whose memory is bounded by the *solve's* node count, not the budget. Rows written under any mode resume interchangeably.
 
-## Time — a multi-session campaign, and that is fine
+## Time — parallel workers make it 1–2 sessions
 
-Rates now **measured at scale in EXP-28's full-budget tails**: the user's VM sustained **~170–820 nodes/s** on the open rows at 100k under `hsolve` (state-size dependent; the earlier 742/s reading was one mid-burn sample, not the tail). Budget hours from ~200–500 nodes/s: a 10⁶ burn is **~33–85 min per presentation**, so 124 searches is **~70–170 hours single-arm** (`hcompact` is ~13% faster at small heaps and should degrade less at depth — treat that as upside, not a plan input). No Colab session survives that: the campaign is 4–8 sessions of Restart → Run All, and the per-row append-and-fsync plus `RESUME=True` means a disconnect costs at most the search in flight. Nothing needs babysitting beyond re-opening the notebook.
+Rates **measured at scale in EXP-28's full-budget tails**: the user's VM sustained **~170–820 nodes/s** on the open rows at 100k under `hsolve` (state-size dependent). A 10⁶ burn is **~33–85 min per presentation**, so 124 searches is ~70–170 hours *serial*. **`N_WORKERS = "auto"` divides that by the worker count**: `run_ab` now runs the searches in a spawn pool sized as `min(cores, memory-cap)` — on an 8-core 51 GB VM that is ~6 workers at 10⁶ under `hcompact` (memory-bound at ~7 GB/search; `hsolve` would allow only 1–2, which is why the compact engine is a prerequisite, not a nicety) and all 8 at ≤100k. Expected campaign: **~12–30 hours, 1–2 sessions of Restart → Run All.** The pool follows `run_baseline`'s HIGH_SPEEDUP shape lesson-for-lesson: spawn (never fork from a threaded notebook), worker heartbeats via an `mp.Queue` the parent drains (a pool worker's print is silently dropped), parent-only writes appended to **local** disk and mirrored whole-file to Drive every 60 s (never append to a Drive mount), stage seeded back from the mirror on a fresh VM, and a flock claim so an interrupted cell's orphans cannot double-compute. Parallelism is result-neutral — rows identical to a serial run's (pinned by `tests/heuristic_search/test_run_ab_parallel.py`), files resume across serial/parallel — so a disconnect still costs at most the searches in flight.
 
 If that is too many hours, cut the *rows*, never the budget's tail: run the 124 in difficulty order if a priority subset exists, or accept a first pass at 250k (~17–43 h) — the checkpoint column means a later 10⁶ pass resumes nothing wasted, because a longer search's first 250k pops are exactly the shorter search. (But remember the budget-in-filename rule from above: a later, larger run starts a new file.)
 
