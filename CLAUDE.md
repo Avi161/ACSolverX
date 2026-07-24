@@ -161,6 +161,8 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - Pushing notebook changes does NOT update the user's running Colab cells; they must re-open it from GitHub. Put logic in `.py` modules. [[TRAP]](experiments/lessons/notebook-push-does-not-reach-colab.md)
 - The notebook's `BRANCH` must match the actual git branch — check `git rev-parse --abbrev-ref HEAD` before writing clone config. [[TRAP]](experiments/lessons/notebook-branch-must-match-git.md)
 
+- **Never `git add -A` from inside a worktree — stage named paths.** A worktree's `.venv` is a *symlink* to the main checkout's; committing it meant that merging the branch checked the link out over the real virtualenv, where it pointed at itself and destroyed it (`too many levels of symbolic links`). `git rm --cached` does not undo it, and removing it only from the merge target leaves the source branch armed. Audit staged symlinks with `git diff --cached --raw | awk '$1 ~ /120000/'`. [[TRAP]](experiments/lessons/never-git-add-all-from-a-worktree.md)
+
 ### Shell
 - zsh aborts a `&&` chain when a glob matches nothing — use `find … -delete`, not a bare `rm results/*.jsonl`. [[TRAP]](experiments/lessons/zsh-glob-nomatch-aborts-chain.md)
 - `literature/` is gitignored (deliberately), so `git add` of a proof `.tex` there is silently skipped — shareable theory needs a committed summary under `results/stable_ac/theory/`, and verify `git show --stat` before claiming a file shipped. [[TRAP]](experiments/lessons/literature-dir-is-gitignored.md)
