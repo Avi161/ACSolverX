@@ -1,5 +1,9 @@
 import pytest
 
+from experiments.stable_ac.rank3_compression.two_stabilization_certificate import (
+    build_certificate,
+    verify_certificate,
+)
 from experiments.stable_ac.rank3_compression.two_stabilization import (
     derive_rank3,
     enumerate_immediate_two_stabilizations,
@@ -62,3 +66,10 @@ def test_length_two_length_four_census_contains_fixture():
     )
     assert census.minimum_output_floor == 13
     assert census.trace_sha256
+
+
+def test_small_two_stabilization_certificate_replays():
+    data = build_certificate(max_word_length=1, max_template_length=4)
+    assert data["schema"] == "ak3-two-stabilization-v1"
+    assert data["defining_word_count"] == 4
+    verify_certificate(data)
