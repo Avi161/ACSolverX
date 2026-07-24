@@ -295,8 +295,21 @@ def bench66():
 
 
 def load_split(name):
-    """One frozen slice by name. The split file is written once and never regenerated."""
-    with open(os.path.join(LOGS, "splits.json")) as f:
-        sp = json.load(f)
+    """One frozen slice by name. The split file is written once and never regenerated.
+
+    A name prefixed ``aut_`` reads the automorphism-disjoint split (``splits_aut.json``) instead of
+    the difficulty-stratified one: ``aut_train`` -> that file's ``train``. The two splits partition
+    the same 66 rows differently, so a row can be train under one and test under the other -- which
+    is exactly why the aut split is used only for the final leak-free read, never mixed with the
+    stratified sweeps.
+    """
+    if name.startswith("aut_"):
+        with open(os.path.join(LOGS, "splits_aut.json")) as f:
+            sp = json.load(f)
+        key = name[len("aut_"):]
+    else:
+        with open(os.path.join(LOGS, "splits.json")) as f:
+            sp = json.load(f)
+        key = name
     by = {r["name"]: r for r in bench66()}
-    return [by[n] for n in sp[name]]
+    return [by[n] for n in sp[key]]

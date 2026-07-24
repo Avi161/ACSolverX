@@ -31,7 +31,8 @@ from experiments.heuristic_search.perbin import (                  # noqa: E402
 MRL = 48
 TRAIN_SOURCES = ("EXP02_single.jsonl", "EXP03_segments.jsonl", "EXP04_multi.jsonl",
                  "EXP05_cap.jsonl", "EXP06_promote.jsonl")
-TEST_OUT = os.path.join(LOGS, "TEST_final.jsonl")
+AUT_OUT = os.path.join(LOGS, "AUT_final.jsonl")
+N_CANDIDATES = 25          # proposed from the stratified sweeps, re-selected on the aut split
 
 
 def all_train(budget, mrl=MRL):
@@ -64,50 +65,66 @@ def id_to_cfg(cid):
 def main():
     ctrl = cfg_name(BASELINE_CONFIG)
 
-    # Rank on the decidable subset at 500, then confirm at 1,000 where available.
+    # 1) Propose candidates from the stratified sweeps -- a wide net (top 25 by decidable solves at
+    #    500), used ONLY to narrow the field. The winner is chosen afterwards on the aut split.
     tr500 = all_train(500)
     if ctrl not in tr500:
         raise SystemExit("no baseline rows at 500 -- run the sweeps first")
     dec = set(decidable(tr500))
-    ranked = sorted(
-        tr500,
+    proposed = sorted(
+        (c for c in tr500 if c != ctrl),
         key=lambda cid: (-sum(1 for nm in dec if nm in tr500[cid] and tr500[cid][nm]["solved"]),
                          score(tr500[cid], tr500[ctrl])["nodes_mean"] or 1e9,
-                         score(tr500[cid], tr500[ctrl])["path_mean"] or 1e9))
-    winner = ranked[0] if ranked[0] != ctrl else ranked[1]
-    runners = [c for c in ranked if c != ctrl][:5]
+                         score(tr500[cid], tr500[ctrl])["path_mean"] or 1e9))[:N_CANDIDATES]
+    cand_cfgs = [BASELINE_CONFIG] + [id_to_cfg(c) for c in proposed if id_to_cfg(c)]
 
-    # Spend the test slice, once, on the winner + a few runners + the baseline, both budgets.
-    test_cfgs = [BASELINE_CONFIG] + [id_to_cfg(c) for c in runners if id_to_cfg(c)]
+    # 2) Re-evaluate every candidate on the AUTOMORPHISM-DISJOINT split, both budgets. Selection and
+    #    the held-out read both live inside this partition, so no aut_class is shared across them.
     for b in (500, 1000):
-        evaluate(test_cfgs, "test", b, MRL, TEST_OUT, label=f"TEST-{b}")
+        evaluate(cand_cfgs, "aut_train", b, MRL, AUT_OUT, label=f"AUT-train-{b}")
+        evaluate(cand_cfgs, "aut_test", b, MRL, AUT_OUT, label=f"AUT-test-{b}")
 
-    te = read(TEST_OUT)  # config -> {name: row} (mixed budgets; split below)
-    te500 = {cid: {n: r for n, r in v.items() if r["budget"] == 500} for cid, v in te.items()}
-    te1k = {cid: {n: r for n, r in v.items() if r["budget"] == 1000} for cid, v in te.items()}
+    aut = read(AUT_OUT)
+    tr_names = {r["name"] for r in load_split("aut_train")}
+    te_names = {r["name"] for r in load_split("aut_test")}
+    a_tr500 = {cid: {n: r for n, r in v.items() if n in tr_names and r["budget"] == 500}
+               for cid, v in aut.items()}
+    a_te500 = {cid: {n: r for n, r in v.items() if n in te_names and r["budget"] == 500}
+               for cid, v in aut.items()}
+
+    # 3) Choose the winner on aut_train's decidable subset.
+    tr_dec = set(decidable(a_tr500))
+    ranked = sorted(
+        (c for c in a_tr500 if c != ctrl),
+        key=lambda cid: (-sum(1 for nm in tr_dec if a_tr500[cid].get(nm, {}).get("solved")),
+                         score(a_tr500[cid], a_tr500[ctrl])["nodes_mean"] or 1e9,
+                         score(a_tr500[cid], a_tr500[ctrl])["path_mean"] or 1e9))
+    winner = ranked[0]
 
     def dec_solved(res, cid, names):
         return sum(1 for nm in names if nm in res.get(cid, {}) and res[cid][nm]["solved"])
 
-    tr_dec = dec
-    te_dec500 = set(decidable(te500))
-
-    w_tr = dec_solved(tr500, winner, tr_dec)
-    b_tr = dec_solved(tr500, ctrl, tr_dec)
-    w_te = dec_solved(te500, winner, te_dec500)
-    b_te = dec_solved(te500, ctrl, te_dec500)
-
+    te_dec500 = set(decidable(a_te500))
+    w_tr = dec_solved(a_tr500, winner, tr_dec)
+    b_tr = dec_solved(a_tr500, ctrl, tr_dec)
+    w_te = dec_solved(a_te500, winner, te_dec500)
+    b_te = dec_solved(a_te500, ctrl, te_dec500)
     tr_gain = w_tr - b_tr
     te_gain = w_te - b_te
+    te500 = a_te500
 
     lines = [
-        "# The heuristic — synthesis and the one honest test read", "",
-        f"Winner selected on `train` (decidable subset): **`{winner}`**.", "",
-        "## Does it survive the held-out slice?", "",
+        "# The heuristic — synthesis on the automorphism-disjoint split", "",
+        "Selection and the held-out read both live inside `splits_aut.json`, where no automorphism "
+        "class appears on both sides — so the held-out number is transfer to genuinely new problems, "
+        "not memorised change-of-variables twins. **This measures decidable → decidable "
+        "generalisation; the decidable → second-hump gap is not measurable at ≤1,000 nodes.**", "",
+        f"Winner, chosen on `aut_train` (decidable subset): **`{winner}`**.", "",
+        "## Does it survive the held-out aut-classes?", "",
         f"| slice | baseline | winner | gain |", "|---|---|---|---|",
-        f"| train (decidable {len(tr_dec)}) | {b_tr}/{len(tr_dec)} | {w_tr}/{len(tr_dec)} | "
+        f"| aut_train (decidable {len(tr_dec)}) | {b_tr}/{len(tr_dec)} | {w_tr}/{len(tr_dec)} | "
         f"**{tr_gain:+d}** |",
-        f"| **test** (decidable {len(te_dec500)}) | {b_te}/{len(te_dec500)} | "
+        f"| **aut_test** (decidable {len(te_dec500)}) | {b_te}/{len(te_dec500)} | "
         f"{w_te}/{len(te_dec500)} | **{te_gain:+d}** |", "",
     ]
     if te_gain >= max(1, tr_gain * 0.5):
@@ -127,9 +144,10 @@ def main():
     with open(os.path.join(LOGS, "FINDINGS.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
     with open(os.path.join(LOGS, "synthesis.json"), "w") as f:
-        json.dump({"winner": winner, "runners": runners,
+        json.dump({"winner": winner, "candidates": proposed,
                    "train_gain": tr_gain, "test_gain": te_gain,
-                   "train_decidable": len(tr_dec), "test_decidable": len(te_dec500)}, f, indent=1)
+                   "train_decidable": len(tr_dec), "test_decidable": len(te_dec500),
+                   "split": "aut_disjoint"}, f, indent=1)
     print("\n".join(lines))
 
 
