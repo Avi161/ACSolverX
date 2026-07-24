@@ -119,14 +119,19 @@ def main():
     base_dec = dsolved(ctrl)
 
     # The prior best on this exact slice/budget, for the "did we beat it" line.
+    #
+    # Scored on THIS experiment's decidable set (``dec``), not on one recomputed from the prior
+    # run's own configs. Those are different row sets -- the finalists' was 11 rows, this one is
+    # 24 -- and scoring the prior on its set while printing the result against this denominator
+    # makes any new config look like a breakthrough. That mistake reported "10/24 -> 20/24" here
+    # when the true comparison is a dead tie.
     prior = None
     aut = read(os.path.join(LOGS, "AUT_final.jsonl"), by=("config_id", "budget"))
     tr = {r["name"] for r in load_split(SLICE)}
     prior_res = {c.rsplit(" | ", 1)[0]: {n: r for n, r in v.items() if n in tr}
                  for c, v in aut.items() if c.endswith("| 1000")}
     if prior_res:
-        pdec = set(decidable(prior_res))
-        prior = max(((sum(1 for nm in pdec if prior_res[c].get(nm, {}).get("solved")), c)
+        prior = max(((sum(1 for nm in dec if prior_res[c].get(nm, {}).get("solved")), c)
                      for c in prior_res if c != ctrl), default=(0, None))
 
     lines = [
@@ -145,13 +150,23 @@ def main():
         f"- round-two best: `{best}` — **{dsolved(best)}/{len(dec)}** decidable "
         f"(baseline {base_dec}/{len(dec)})", "",
     ]
-    if prior and dsolved(best) > prior[0]:
-        lines += [f"Round two found a **better** config on `aut_train`. It is a candidate for the "
-                  "user to validate at a larger budget on Colab — this run cannot score it on the "
-                  "spent test slice.", ""]
+    # A raw "beats it" is not enough: best-of-400 on 24 rows hits the ceiling by chance, which is
+    # exactly what the optimism figure prices. Only an edge LARGER than that optimism is a signal
+    # worth the user's Colab time.
+    margin = dsolved(best) - prior[0] if prior else 0
+    if prior and margin > opt["optimism"]:
+        lines += [f"Round two beat the standing best by **{margin}** on `aut_train`, which exceeds "
+                  f"the {opt['optimism']:.2f}-presentation optimism of a best-of-{len(cfgs)} pick. "
+                  "It is a candidate for the user to validate at a larger budget on Colab — this "
+                  "run cannot score it on the spent test slice.", ""]
+    elif prior and margin > 0:
+        lines += [f"Round two is **{margin}** ahead on `aut_train`, but a best-of-{len(cfgs)} pick "
+                  f"buys **{opt['optimism']:.2f}** presentations of optimism for free, so that edge "
+                  "is inside the noise. **The recommendation stands.**", ""]
     else:
-        lines += ["Nothing near the winners beats them on `aut_train`. **The recommendation "
-                  "stands** — the earlier winners are at the local ceiling.", ""]
+        lines += ["Nothing near the winners beats them on `aut_train` — the finalists and the "
+                  "round-two best reach the same count on the same rows. **The recommendation "
+                  "stands**; the earlier winners are at the local ceiling for this family.", ""]
 
     lines += ["## Top 12 on aut_train (decidable)", "",
               "| config | decidable | net | p | mean nodes | mean path |", "|---|---|---|---|---|---|"]
