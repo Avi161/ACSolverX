@@ -119,6 +119,64 @@ class WhiteheadReduction:
     generators: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class WhiteheadWordReduction:
+    minimum_total: int
+    minimum: str
+    phi: dict[str, str]
+    steps: tuple[dict[str, str], ...]
+    generators: tuple[str, ...]
+
+
+def reduce_word(
+    word: str,
+    generators: tuple[str, ...] = ("x", "z", "t"),
+) -> WhiteheadWordReduction:
+    _validate_generators(generators)
+    current = canonical_relator(word)
+    if not current:
+        raise ValueError("Whitehead word must be nontrivial")
+    total = len(current)
+    phi = {generator: generator for generator in generators}
+    steps: list[dict[str, str]] = []
+    automorphisms = second_kind_automorphisms(generators)
+
+    while True:
+        candidates: list[
+            tuple[int, str, tuple[str, ...], dict[str, str]]
+        ] = []
+        for automorphism in automorphisms:
+            image = canonical_relator(
+                apply_automorphism(current, automorphism)
+            )
+            image_total = len(image)
+            if image_total >= total:
+                continue
+            candidates.append(
+                (
+                    image_total,
+                    image,
+                    tuple(
+                        automorphism[generator]
+                        for generator in generators
+                    ),
+                    automorphism,
+                )
+            )
+        if not candidates:
+            return WhiteheadWordReduction(
+                minimum_total=total,
+                minimum=current,
+                phi=phi,
+                steps=tuple(steps),
+                generators=generators,
+            )
+        _, current, _, chosen = min(candidates)
+        total = len(current)
+        phi = compose(chosen, phi)
+        steps.append(chosen)
+
+
 def reduce_pair(
     pair: tuple[str, str],
     generators: tuple[str, ...] = ("x", "z", "t"),
@@ -183,6 +241,47 @@ def is_primitive_pair(result: WhiteheadReduction) -> bool:
         result.minimum[0].lower()
         != result.minimum[1].lower()
     )
+
+
+def is_primitive_word(result: WhiteheadWordReduction) -> bool:
+    return result.minimum_total == 1 and len(result.minimum) == 1
+
+
+def check_word_reduction(
+    word: str,
+    result: WhiteheadWordReduction,
+) -> None:
+    current = canonical_relator(word)
+    if not current:
+        raise AssertionError("source word is trivial")
+    previous_total = len(current)
+    composed = {
+        generator: generator for generator in result.generators
+    }
+    for index, step in enumerate(result.steps):
+        current = canonical_relator(apply_automorphism(current, step))
+        total = len(current)
+        if total >= previous_total:
+            raise AssertionError(
+                f"step {index} does not strictly reduce length"
+            )
+        previous_total = total
+        composed = compose(step, composed)
+    if composed != result.phi:
+        raise AssertionError("composed automorphism mismatch")
+
+    direct = canonical_relator(apply_automorphism(word, result.phi))
+    if direct != result.minimum or current != result.minimum:
+        raise AssertionError("minimum witness does not replay")
+    if result.minimum_total != len(result.minimum):
+        raise AssertionError("minimum total mismatch")
+
+    for automorphism in second_kind_automorphisms(result.generators):
+        image = canonical_relator(
+            apply_automorphism(result.minimum, automorphism)
+        )
+        if len(image) < result.minimum_total:
+            raise AssertionError("stored endpoint admits a Whitehead descent")
 
 
 def check_reduction(
