@@ -1,0 +1,9 @@
+pres_id,n_cov_tried,n_cov_solved,escaped,best_nodes,best_path,best_z,best_iso_gen,best_iso_index,best_cap,best_r1,best_r2,best_left_orbit,blind_restart_expected_nodes,greedy_b1M_nodes,blind_vs_greedy,heur_b100k_nodes
+622,169,50,True,14469,489,xyX,x,1,37,XXXXXXXXXXyxxxxxxxYxx,YxYxyX,False,62749,78774,1.26,62530
+623,169,50,True,14352,488,yx,x,1,33,XXXXXXXyxYxxxxxxy,YxyXYX,True,62524,59710,0.95,62528
+624,169,50,True,14385,488,Xy,x,1,35,XXXXXXXXyxxxxxxYxyx,YXYXyx,True,62817,59971,0.95,62509
+625,169,50,True,14447,489,xyyyy,x,0,34,XXXXXXYXyxYxxxxxxx,YXXXXXXXyxxxxxxxx,False,63029,78770,1.25,62511
+636,172,39,True,14447,489,xyyyyy,x,0,34,XXXXXXYXyxYxxxxxxx,YXXXXXXXyxxxxxxxx,False,82975,213882,2.58,62515
+637,173,40,True,14413,489,xyyy,x,0,33,YXXXXXXyXYxxxxxxx,YXXXXXXXyxxxxxxxx,True,80943,271866,3.36,62528
+638,173,40,True,14469,489,xyX,x,1,39,XXXXXXXXXXXyxxxxxxxYxxx,YxYxyX,False,81099,213878,2.64,62534
+639,172,40,True,14444,489,yyyX,x,0,33,YxxxxxxxYXyXXXXXX,YxxxxxxxxyXXXXXXX,True,80803,272953,3.38,62509

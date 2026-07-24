@@ -74,6 +74,7 @@ Plan + status: [`ESCAPE_PLAN.md`](ESCAPE_PLAN.md); theory: `results/stable_ac/th
 | `cov/mu_descent_scan.py` / `cov/export_mu_descents.py` / `cov/mu_ladder.py` | the orbit-floor toolchain: depth-2 μ-descent map, verified export of descended starts as benches, and the iterated beam ladder with the μ≤12 stable-solve finish line. Driven by `../notebooks/nb2_big_ladder.ipynb`. |
 | `cov/run_mitm_aut.py` | Aut-quotient meet-in-the-middle vs TRIVIAL (ceiling ladder, dual-stack merge verification). |
 | `cov/restart_planner.py` / `cov/run_restart_tree.py` / `cov/orbit_links.py` | iterated-CoV restart planning and the stable orbit-link ledger. |
+| `cov/allcov_escalate.py` / `cov/allcov_escape_report.py` | the budget escalation for the eight benchmark rows no CoV solves at 10,000 nodes: re-run the whole subword family at a higher budget, **deduplicated by output pair** (909 from 1,366 starts, resume key `(r1, r2)`, owning presentations carried in `provenance`), then report per presentation with every gate re-asserted. All eight escape at 20,000 — but price the untransformed route before believing the speedup ([`ESCAPE.md`](../../results/stable_ac/cov/allcov_escape/ESCAPE.md), [the trap](../lessons/price-the-untransformed-route.md)). |
 | `thickenable/NEUWIRTH_FEASIBILITY.md` | thickenability decision feasibility (GO; 4-vertex Whitehead-graph rotation criterion; Regina validator mandatory). |
 
 ## Tests
