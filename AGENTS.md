@@ -175,3 +175,19 @@
 
 - [WORKS] For a one-parameter endpoint family, first apply a fixed signed basis permutation that exposes repeated cyclic blocks. Whitehead length changes then become affine functions of the parameter, so a twelve-row symbolic table proves complete Aut-minimality for all parameters without enumerating an Aut graph.
 - [WORKS] In `AK3_CONSEQUENCE_TWIST_FAMILY.md`, the positive and negative \(t(t^{-4}x^3)^n\) branches have floors \(28n-5\) and \(28|n|+15\); zero is the separate floor-14 compression root.
+
+### 2026-07-24 Cyclic coordinates in parametric replay tests
+
+- [TRAP] `cyc_reduce()` removes boundary cancellation but does not choose a canonical cyclic rotation. An exact block-form assertion can therefore fail even when the computed word is the claimed cyclic conjugate; this occurred for `xxxyXXXXY` versus `yXXXXYxxx` in `test_conjugated_recovery_family.py`.
+- [WORKS] Assert cyclic equivalence between the transformed endpoint and the displayed block form, then run all Whitehead length-change checks on that displayed representative. Cyclic conjugation preserves every cyclic-length calculation.
+- [TRAP] Do not let a rotation-only assertion also accept inverse rotations. Relator inversion is AC-legal, but accepting it silently weakens a certificate whose proof claims the displayed words arise by cyclic rotation alone.
+
+### 2026-07-24 Rank-two alphabet boundary
+
+- [TRAP] `experiments.equivalence_classes.lib.autcanon` accepts only the `xXyY` alphabet. A mixed-consequence census that constructed endpoints over `xXtT` raised `KeyError: 't'` inside `apply_hom`.
+- [WORKS] After eliminating \(z\), relabel `tT` to `yY` before calling `aut_min_len`, `peak_reduce`, or `aut_canon`.
+
+### 2026-07-24 Mixed consequence corridors
+
+- [WORKS] For \(U_{n,m}=t(t^{-4}x^3)^nK_m\) with \(nm\ne0\), isolate \(S_n=\operatorname{red}(t(t^{-4}x^3)^nt^{-1})\). It has exact length \(7|n|\), and the endpoint blocks in `AK3_MIXED_CONSEQUENCE_FAMILY.md` are already Whitehead-minimal.
+- [WORKS] Split the twelve Whitehead deltas only by the three genuinely different sign regions \(n>0\), \(n<0<m\), and \(n,m<0\). The signs of \(m\) do not change the table when \(n>0\), and the complete mixed floor is \(28|n|+12|m|+15\).

@@ -250,6 +250,79 @@ direction climbs away from the compression root and never reaches floor
 \(12\).  Exact endpoints and every symbolic length-change row are pinned by
 `tests/stable_ac/test_consequence_twist_family.py`.
 
+## Proven result 6: the full power-conjugated recovery direction
+
+A mixed two-rotation consequence first produces the shorter recovery word
+
+\[
+ U_1=x^3tx^{-3}.
+\]
+
+This is not an isolated accident.  Put \(a=x^3\) and retain the compressed
+power relator \(R=at^{-4}\).  For every \(m\in\mathbb Z\),
+
+\[
+ K_m=t^{-1}a^mta^{-m}
+\]
+
+is an ordered product of exactly \(2|m|\) conjugates of \(R^{\pm1}\).
+Thus the entire recovery family
+
+\[
+ U_m=tK_m=a^mta^{-m}
+\]
+
+is AC-realizable before eliminating \(z\).
+
+The proof in
+`literature/proofs/AK3_CONJUGATED_RECOVERY_FAMILY.md` gives the complete
+Aut-floor
+
+\[
+ \mu(P_m)=
+ \begin{cases}
+ 3m+14,&m>0,\\
+ 14,&m=0,\\
+ 3(-m)+12,&m<0.
+ \end{cases}
+\]
+
+After one parameter-dependent Nielsen shear, each endpoint has a fixed
+nine-letter first relator and a second relator with one long pure
+\(x\)-block.  The twelve Whitehead length changes are then symbolic:
+four are \(1\), four are \(0\), and the other four are \(3m+5\) on the
+positive branch or \(3|m|+3\) on the negative branch.  Hence all endpoints
+are globally Aut-minimal and none reaches floor \(12\).  The exact
+factorization, endpoints, floors, and symbolic table are pinned by
+`tests/stable_ac/test_conjugated_recovery_family.py`.
+
+## Proven result 7: one ordered two-parameter mixture
+
+The two closed directions can be mixed in a fixed order.  With
+\(R'=t^{-4}x^3\), define
+
+\[
+ U_{n,m}=t(R')^nK_m.
+\]
+
+For \(nm\ne0\), direct reduction exposes a corridor block \(S_n\) of
+length \(7|n|\) and a power block \(x^{3m}\).  The endpoint is already
+Whitehead-minimal: all twelve length changes can be counted symbolically
+in the three sign regions.  The resulting floor is
+
+\[
+ \mu(P_{n,m})=28|n|+12|m|+15
+ \qquad(nm\ne0).
+\]
+
+Together with the two axis theorems, this gives a complete piecewise
+formula on all of \(\mathbb Z^2\), recorded in
+`literature/proofs/AK3_MIXED_CONSEQUENCE_FAMILY.md`.  In particular, every
+genuinely mixed endpoint has floor at least \(55\): these two consequence
+directions add length rather than canceling in the displayed order.  The
+two-dimensional signed replay and all-quadrant symbolic Whitehead table
+are pinned by `tests/stable_ac/test_mixed_consequence_family.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -263,9 +336,12 @@ rank-two quotient has complete Aut-floor at most 12.  A primitive full
 four-relator tuple would be an immediate stable solve.  At the
 one-stabilization root, the most concrete next mechanism is precisely the
 newly exposed nonuniqueness: multiply a canonical recovery word by
-controlled *mixed* rotations or conjugates of the compressed source
-relators before eliminating \(z\).  Pure powers of one fixed rotation are
-now closed.  Separate routes use defining words with at least two
-alternating \(v\)-syllables or use the braid relator during recovery.
+controlled consequences of the compressed source relators before
+eliminating \(z\).  Pure powers of one fixed rotation and the full
+power-conjugated direction are now closed.  The smallest genuinely new
+case must reverse their order, interleave individual
+rotations/conjugates instead of collecting them into the proved blocks,
+use defining words with at least two alternating \(v\)-syllables, or use
+the braid relator during recovery.
 
 AK(3) remains open.
