@@ -41,12 +41,16 @@ Choose distinct indices \(i,j\), a sign
 
 and leave the other two relator conjugacy classes unchanged.
 
-This is the Definition-2.1 cyclic multiplication move used by the repository.
-Indeed, rotations are conjugates of their relators. Conjugate \(A_i\) to
-\(U\), conjugate \(A_j^\delta\) to \(V\), multiply the target by the other
-relator, restore the non-target relator to its original cyclic
-representative, and cyclically reduce the target by conjugation. Relator
-inversion, conjugation, and multiplication are AC1--AC3 operations.
+Every such signed cyclic product is an AC1--AC3 composite. Indeed, rotations
+are conjugates of their relators. Conjugate \(A_i\) to \(U\), conjugate
+\(A_j^\delta\) to \(V\), multiply the target by the other relator, restore
+the non-target relator to its original cyclic representative, and cyclically
+reduce the target by conjugation.
+
+The repository's Definition-2.1 stored move class additionally requires a
+displayed cancelling seam. An arbitrary rotation product need not itself
+have that form. Lemma 3.1 proves that every product relevant to a newly
+created isolator has an equivalent rotation product that does.
 
 There is no need for a separate sign on the target. If the target is inverted
 before multiplication, then
@@ -108,21 +112,19 @@ as cyclic words and the displayed seam of \(U'V'\) satisfies (3.1).
 
 ### Proof
 
-Neither factor can have zero \(x^{\pm1}\)-occurrences. If, say,
-\(\nu_x(P)=0\), every \(x^{\pm1}\) in the concatenation belongs to \(Q\).
-Because \(Q\) is cyclically reduced, cancelling across either factor seam
-cannot cancel an \(x\)-letter of \(Q\) against a letter of \(P\). Thus its
-\(x\)-count cannot change to one. Consequently
+The two nonnegative integers \(\nu_x(P)\) and \(\nu_x(Q)\) are both
+different from one, so their sum is not one. Cyclic reduction cannot
+increase \(x\)-incidence, while the reduced output has incidence one.
+Therefore
 
 \[
- \nu_x(P)\ge2,\qquad \nu_x(Q)\ge2.
+ \nu_x(P)+\nu_x(Q)\ge2.
 \]
 
-The unreduced product therefore has at least four \(x^{\pm1}\)-occurrences,
-whereas its cyclic reduction has one. At least one inverse pair cancels.
-There are no cancellable adjacent pairs internal to \(U\) or \(V\), because
-both factors are cyclically reduced. Hence the first cancellation occurs at
-one of the two factor seams in the cyclic word \(UV\).
+At least one inverse pair must cancel while reducing the cyclic word
+\(UV\). There are no cancellable adjacent pairs internal to \(U\) or \(V\),
+because both factors are cyclically reduced. Hence the first cancellation
+occurs at one of the two factor seams in the cyclic word \(UV\).
 
 If it occurs at the displayed seam between \(U\) and \(V\), (3.1) already
 holds.

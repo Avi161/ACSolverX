@@ -37,6 +37,7 @@ RESULT_PATH = (
     ROOT / "results/stable_ac/theory/ak3_two_hop_cov_thickenability.json"
 )
 SOURCE_PATHS = {
+    "word_codec": ROOT / "experiments/greedy_tests/spec/words.py",
     "cov_implementation": ROOT / "experiments/stable_ac/cov/cov.py",
     "cov_stability_proof": (
         ROOT / "results/stable_ac/theory/MU_CRITERION.md"
@@ -189,6 +190,35 @@ def enumerate_two_hop_paths():
     ):
         raise AssertionError("unexpected two-hop AK(3) CoV census")
     return first_hops, paths, raw_count
+
+
+def _validate_exact_paths(first_hops, paths, raw_second_hop_count: int) -> None:
+    _, exact_first_hops = upstream_driver._stable_cov_results()
+    if tuple(first_hops) != tuple(exact_first_hops):
+        raise ValueError("first-hop inputs must be the exact AK(3) CoV census")
+
+    exact_by_parent = {}
+    exact_raw_count = 0
+    for parent_index, parent in enumerate(first_hops):
+        family = cov.subword_candidates(parent.r1, parent.r2)
+        results = tuple(
+            cov.enumerate_cov(parent.r1, parent.r2, family=family)
+        )
+        exact_by_parent[parent_index] = (family, results)
+        exact_raw_count += len(results)
+    if raw_second_hop_count != exact_raw_count:
+        raise ValueError("raw second-hop count does not match exact replay")
+
+    for path in paths:
+        if not 0 <= path.parent_index < len(first_hops):
+            raise ValueError("two-hop path has invalid parent index")
+        family, exact_results = exact_by_parent[path.parent_index]
+        if path.candidate_count != len(family):
+            raise ValueError("two-hop path has wrong candidate count")
+        if not _stable_hypotheses(path.result, family):
+            raise ValueError("two-hop path misses a stable-move hypothesis")
+        if path.result not in exact_results:
+            raise ValueError("two-hop path is not an exact CoV output")
 
 
 def _cov_record(index: int, result) -> dict[str, object]:
@@ -373,10 +403,7 @@ def build_certificate(
         upstream_trace = _load_upstream_trace()
     if not isinstance(upstream_trace, str):
         raise ValueError("upstream trace is required")
-    if any(
-        not 0 <= path.parent_index < len(first_hops) for path in paths
-    ):
-        raise ValueError("two-hop path has invalid parent index")
+    _validate_exact_paths(first_hops, paths, raw_second_hop_count)
     output_pairs = tuple(
         (path.result.r1, path.result.r2) for path in paths
     )

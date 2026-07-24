@@ -115,3 +115,13 @@
 
 - [TRAP] `uv run --with pytest python3 -m pytest tests/stable_ac/test_cov.py` supplies the test runner but not JAX; `test_transformed_flat_repads_to_cap` then fails in `envs/utils.py` with `ModuleNotFoundError: No module named 'jax'` even though the proof-specific tests pass.
 - [WORKS] `uv run --with pytest --with jax python3 -m pytest tests/stable_ac/test_cov.py::test_transformed_flat_repads_to_cap` supplies the missing optional runtime and passes. Treat that dependency separately from the exact CoV and thickenability certificate results.
+
+### 2026-07-24 Cancelling-seam zero-incidence factor
+
+- [TRAP] In `AK3_ONE_EDGE_COMPRESSION.md`, the claim that both cyclic factors must contain at least two \(x^{\pm1}\)-letters is false: \(P=z\), \(Q=xxzXZ\) have incidences zero and three, but \(\operatorname{cyc}(PQ)=xz\) has incidence one after a wrap cancellation cascade.
+- [WORKS] The seam-normal-form conclusion needs only \(\nu_x(P)+\nu_x(Q)\ne1\), monotonicity of incidence under reduction, and the fact that the first cancellation of two cyclically reduced factors must occur at a factor seam. Pin the zero-incidence counterexample in `tests/stable_ac/test_one_edge.py`.
+
+### 2026-07-24 Injected certificate inputs need theorem validation
+
+- [TRAP] `two_hop_cov_thickenability_certificate.build_certificate` validated stable CoV hypotheses only while generating its default production paths. Explicit paths used by tests could set `n_cov=n_subs=0` and still receive `stable_move_hypotheses_verified=true`.
+- [WORKS] Validate injected inputs against the exact upstream first-hop census, regenerate each parent's exact second-hop family, recheck every stable-move hypothesis, and require membership in the regenerated outputs. Bind direct codec dependencies such as `experiments/greedy_tests/spec/words.py` in the source manifest rather than relying only on complete payload replay.

@@ -7,6 +7,7 @@ from experiments.stable_ac.rank3_compression.one_edge_certificate import (
 from experiments.stable_ac.rank3_compression.one_edge import (
     OneEdgeMove,
     apply_one_edge,
+    canonical_relator,
     canonical_rank3,
     cyclic_reduce,
     enumerate_one_edge_compressions,
@@ -26,6 +27,18 @@ FIXTURE_RANK3 = (
 
 def test_cyclic_reduction_removes_wrap_cascade():
     assert cyclic_reduce("xztZX") == "t"
+
+
+def test_seam_normal_form_allows_zero_x_factor():
+    rank3 = ("z", "xxzXZ", "t")
+    assert cyclic_reduce(rank3[0] + rank3[1]) == "xz"
+    assert any(
+        move.target == 0
+        and move.other == 1
+        and move.sign == 1
+        and canonical_relator(move.child_relator) == canonical_relator("xz")
+        for move in enumerate_seam_moves(rank3)
+    )
 
 
 def test_rotations_use_left_offset_order():

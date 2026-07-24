@@ -1,4 +1,5 @@
 import copy
+from dataclasses import replace
 
 import pytest
 
@@ -53,5 +54,19 @@ def test_two_hop_cov_certificate_rejects_tampering():
             first_hops=first_hops,
             paths=paths[:1],
             raw_second_hop_count=raw_count,
+            run_factorial_crosscheck=False,
+        )
+
+
+def test_two_hop_cov_certificate_rejects_injected_nonstable_path():
+    first_hops, paths, raw_count = enumerate_two_hop_paths()
+    bad_result = replace(paths[0].result, n_cov=0, n_subs=0)
+    bad_path = replace(paths[0], result=bad_result)
+    with pytest.raises(ValueError, match="stable-move hypothesis"):
+        build_certificate(
+            first_hops=first_hops,
+            paths=(bad_path,),
+            raw_second_hop_count=raw_count,
+            upstream_trace="test",
             run_factorial_crosscheck=False,
         )

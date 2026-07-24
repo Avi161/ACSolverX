@@ -117,8 +117,8 @@ The verifier:
 4. dispatches every support to a proved complete rotation solver;
 5. exhausts every scheme, phase pair, component seed, and rank partition;
 6. cross-checks the paw solver against an independent factorial census,
-   including a fixture whose only witness inserts the pendant block inside
-   a parallel class;
+   including a stored witness that inserts the pendant block inside a
+   parallel class;
 7. independently reconstructs every positive fixture witness and checks
    Euler characteristic two; and
 8. requires source hashes and complete payload equality.
