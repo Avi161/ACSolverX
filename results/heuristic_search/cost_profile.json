@@ -1,0 +1,60 @@
+{
+ "subset": "benchmark_subset_60",
+ "tuned_params": [
+  8.0,
+  6.23,
+  0.84,
+  8.33
+ ],
+ "max_relator_length": 24,
+ "rows": [
+  {
+   "budget": 100,
+   "n": 60,
+   "solved_baseline": 17,
+   "solved_tuned": 30,
+   "n_both": 17,
+   "nodes_baseline": 28.470588235294116,
+   "nodes_tuned": 20.529411764705884,
+   "path_baseline": 10.941176470588236,
+   "path_tuned": 11.176470588235293,
+   "path_tuned_all_solves": 18.833333333333332
+  },
+  {
+   "budget": 200,
+   "n": 60,
+   "solved_baseline": 20,
+   "solved_tuned": 32,
+   "n_both": 20,
+   "nodes_baseline": 41.35,
+   "nodes_tuned": 28.25,
+   "path_baseline": 12.0,
+   "path_tuned": 12.8,
+   "path_tuned_all_solves": 20.40625
+  },
+  {
+   "budget": 500,
+   "n": 60,
+   "solved_baseline": 26,
+   "solved_tuned": 39,
+   "n_both": 26,
+   "nodes_baseline": 115.23076923076923,
+   "nodes_tuned": 34.26923076923077,
+   "path_baseline": 16.76923076923077,
+   "path_tuned": 15.692307692307692,
+   "path_tuned_all_solves": 29.41025641025641
+  },
+  {
+   "budget": 1000,
+   "n": 60,
+   "solved_baseline": 29,
+   "solved_tuned": 43,
+   "n_both": 29,
+   "nodes_baseline": 175.51724137931035,
+   "nodes_tuned": 62.37931034482759,
+   "path_baseline": 19.20689655172414,
+   "path_tuned": 17.379310344827587,
+   "path_tuned_all_solves": 30.186046511627907
+  }
+ ]
+}

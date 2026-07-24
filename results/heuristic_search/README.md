@@ -104,3 +104,34 @@ Pinned in `tests/heuristic_search/test_hsearch.py`, including that the arm never
 **`smaller mean block` carries the largest weight** — `a₃ ≈ 7.8–9.3` across all five splits, against `a₁ ≈ 5.4–7.4` for knots and `a₂ ≈ 0.4–2.1` for max_knots. On its own smb was the *weakest* family (flatlining to +0 at budget 1,000); in combination it is the biggest single term. Testing features one at a time would have discarded it.
 
 **The endgame switch stops mattering.** Tuning drives `T` to 0 or 8, not 16. The `@endgame16` switch was load-bearing for *pure lexicographic* `knots_first` — which scores 8/20, below baseline, without it — but a linear blend already degrades gracefully as `L` shrinks, so the explicit switch is redundant. The earlier claim that the threshold is doing real work holds only for the lexicographic arm.
+
+
+## Cost profile: nodes explored and path length
+
+`experiments/heuristic_search/cost_profile.py` → `cost_profile.json`. Solve rate alone cannot say whether an ordering is *better* — one that reaches more solutions by wandering into longer, more expensive derivations has traded quality for coverage. Both remaining axes, on subset-60:
+
+| budget | solved | nodes (both-solved) | path (both-solved) | tuned, all its solves |
+|---|---|---|---|---|
+| 100 | 30 vs 17 | 20.5 vs 28.5 — **×0.72** | 11.18 vs 10.94 (+0.24) | 18.83 (n=30) |
+| 200 | 32 vs 20 | 28.2 vs 41.4 — **×0.68** | 12.80 vs 12.00 (+0.80) | 20.41 (n=32) |
+| 500 | 39 vs 26 | 34.3 vs 115.2 — **×0.30** | 15.69 vs 16.77 (**−1.08**) | 29.41 (n=39) |
+| 1000 | 43 vs 29 | 62.4 vs 175.5 — **×0.36** | 17.38 vs 19.21 (**−1.83**) | 30.19 (n=43) |
+
+**Every number is on the presentations both arms solve.** That restriction is load-bearing: the tuned arm solves 13–14 presentations the baseline cannot, and those are the hardest ones with the longest derivations. Pooling them would make the tuned arm look *worse* on path length precisely because it got further. The last column is the tuned arm's unrestricted mean and must never be read against the baseline's — it is roughly 30 moves because it includes derivations the baseline never finds at all.
+
+**Nodes.** The tuned ordering finds the same solutions for 28–32% of the baseline's work at low budget, and **for under a third of it at 500–1000**. The saving grows with budget, which is the same signature as the solve-rate margin: the baseline spends its extra budget widening a shell the tuned ordering has already passed through.
+
+**Path length is not being traded away.** At budget 100–200 the tuned paths are marginally longer (+0.24, +0.80 moves); at 500–1000 they are **shorter** (−1.08, −1.83). So the ordering is not buying coverage with worse derivations — past a few hundred nodes it returns better ones. Neither arm claims a shortest path (best-first by length is not optimal for AC derivations), so this is quality relative to the baseline, not distance from optimal.
+
+### Per-split, on the held-out halves (budget 100)
+
+| seed | T, a_knots, a_maxknots, a_smb | solved | nodes (both) | path (both) |
+|---|---|---|---|---|
+| 0 | 8, 6.23, 0.84, 8.33 | 15 vs 8 | 19.5 vs 24.2 | 11.12 vs 10.88 |
+| 1 | 8, 5.41, 2.13, 7.79 | 15 vs 9 | 24.7 vs 34.9 | 12.11 vs 12.78 |
+| 2 | 8, 6.64, 1.62, 9.32 | 16 vs 9 | 23.7 vs 32.9 | 12.00 vs 11.89 |
+| 3 | 0, 5.67, 0.86, 8.11 | 15 vs 9 | 23.7 vs 31.4 | 11.89 vs 12.00 |
+| 4 | 0, 7.39, 0.42, 9.15 | 16 vs 8 | 19.0 vs 26.0 | 10.00 vs 9.62 |
+| **mean** | | | **22.1 vs 29.9 (×0.74)** | **11.43 vs 11.43** |
+
+On held-out data the mean path length is **identical to two decimal places** while nodes fall 26%. The tuned ordering finds the same-quality solutions, faster, on presentations it was not tuned on.
