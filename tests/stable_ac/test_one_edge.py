@@ -1,5 +1,9 @@
 import pytest
 
+from experiments.stable_ac.rank3_compression.one_edge_certificate import (
+    build_certificate,
+    verify_certificate,
+)
 from experiments.stable_ac.rank3_compression.one_edge import (
     OneEdgeMove,
     apply_one_edge,
@@ -104,3 +108,14 @@ def test_small_one_edge_census_is_deterministic():
     assert first.one_x_incidence_count > 0
     assert first.minimum_output_floor == 14
     assert first.trace_sha256
+
+
+def test_small_one_edge_certificate_replays():
+    data = build_certificate(
+        max_word_length=2,
+        max_template_length=5,
+    )
+    assert data["schema"] == "ak3-one-edge-v1"
+    assert data["candidate_lemma"] == "REFUTED"
+    assert data["minimum_output_floor"] == 14
+    verify_certificate(data)
