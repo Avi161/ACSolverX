@@ -155,3 +155,18 @@
 
 - [TRAP] A single ordinary `git add` that includes any path under the ignored `literature/` tree aborts the whole staging command, even when another proof file there is already tracked.
 - [WORKS] Stage the exact intended `literature/proofs/...` paths with `git add -f`; stage non-ignored report, test, and lesson files separately, then inspect the cached diff before committing.
+
+### 2026-07-24 Source-relator Bézout recovery
+
+- [WORKS] After proving that free-basis recovery of \(v=zxz^{-1}\) is pure gauge, the first genuinely broader mechanism is to recover \(v\) modulo the source relation \(x^3=v^4\). For \(t=v^k\), aligned cyclic relator products implement the Euclidean algorithm on exponents \((-4,k)\) without an AC graph search.
+- [WORKS] Split odd \(k\) by \(|k|\bmod4\): explicit shears collapse all endpoints to one floor-14 or one floor-15 orbit. For even \(k\), abelianization gives the parity obstruction \(3=4m+3kn\), so direct recovery is impossible before any word-level search.
+
+### 2026-07-24 `cyclic_orientations` does not cyclically reduce
+
+- [TRAP] `two_stabilization.cyclic_orientations(word)` freely reduces its input and enumerates rotations/inverses, but it does not cancel inverse letters across the cyclic boundary. A conjugated word such as \(x^3Wx^{-3}\) therefore does not expose the orientations of \(W\).
+- [WORKS] Call `experiments.equivalence_classes.lib.words.cyc_reduce` before `cyclic_orientations` whenever the identity being tested is conjugacy rather than literal cyclic rotation of an already cyclically reduced spelling.
+
+### 2026-07-24 Quotient recovery words are not unique
+
+- [TRAP] From \(v=U(x,t)\) in the quotient by two relators, it does not follow that the canonical Euclidean word \(U\) is the only AC-realizable replacement in \(B=z^{-1}xv\). Multiplying \(U\) by a suitable consequence of the surviving relators preserves its quotient value but can change the post-removal endpoint orbit.
+- [WORKS] Label the \(t=v^k\) residue-class theorem as a classification of the prescribed Euclidean normal-form recovery only. Pin the \(k=1\) counterexample \(U=t(t^{-4}x^3)=t^{-3}x^3\), whose endpoint has Aut-floor 23, and treat consequence-twisted recoveries as a separate live mechanism.

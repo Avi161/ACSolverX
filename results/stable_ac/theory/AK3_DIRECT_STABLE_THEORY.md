@@ -132,6 +132,88 @@ word in the infinite double-coset pair
 escape.  There is no parameter bound in this conclusion; extra AC moves
 after adjoining the same word are outside its scope.
 
+This family is exhaustive for direct one-block elimination.  If a general
+defining word \(t=w(x,v)\) permits recovery of \(v\) as a word in
+\((x,t)\), then \((x,w)\) generates \(F(x,v)\) and is therefore a basis.
+Nielsen's rank-two kernel theorem forces
+
+\[
+ w\in\langle x\rangle v^{\pm1}\langle x\rangle.
+\]
+
+Thus escaping this mechanism requires an intervening relator operation or
+a compression that does not simply recover the old \(v\)-block in the new
+basis.
+
+## Proven result 4: power recovery via the source relator
+
+The first non-gauge possibility is to use the power relator
+
+\[
+ x^3=v^4
+\]
+
+before recovering \(v\).  For the family \(t=v^k\), the theorem in
+`literature/proofs/AK3_POWER_BEZOUT_CORRIDORS.md` gives an exact canonical
+Euclidean corridor and an absolute obstruction for even \(k\).
+
+For odd \(k\), a literal Euclidean sequence on
+
+\[
+ x^3v^{-4},\qquad t^{-1}v^k
+\]
+
+produces a one-\(v\) isolator.  After compressing
+\(z^{-1}xv\) and removing \(z\), all powers with
+\(|k|\equiv1\pmod4\) return to the floor-14 compression-root orbit, while
+all powers with \(|k|\equiv3\pmod4\) land in the one floor-15 orbit
+
+```text
+YXXYx | YYYXYxyyyX
+```
+
+For even \(k\), recovery is impossible already in the abelianization of
+
+\[
+ \langle x,v,t\mid x^3v^{-4},t^{-1}v^k\rangle:
+\]
+
+an equality \(v=U(x,t)\) would require
+
+\[
+ 3=4m+3kn,
+\]
+
+whose right side is even.  Thus no canonical Euclidean endpoint in this
+unbounded family reaches floor at most \(12\).
+
+The exact Euclidean products, endpoint identities, residue-class shears,
+and two complete Aut representatives are pinned by
+`tests/stable_ac/test_power_bezout_corridors.py`.
+
+An ambient shear of the fresh generator strips arbitrary \(x\)-flanks from
+
+\[
+ t=x^pv^kx^q.
+\]
+
+Therefore the same canonical normal form applies throughout the
+three-parameter family
+\(\bigcup_k\langle x\rangle v^k\langle x\rangle\), not only to bare
+powers.
+
+This does not classify all recovery words.  Already for \(k=1\), replacing
+the canonical \(U=t\) by the equal quotient word
+
+\[
+ U=t(t^{-4}x^3)=t^{-3}x^3
+\]
+
+is AC-realizable and yields a different endpoint of floor \(23\).  This
+counterexample is pinned in the replay test.  Consequence-twisted
+recoveries are therefore a live mechanism rather than part of the claimed
+closure.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -143,8 +225,10 @@ unverified.
 The target is a hidden-cancellation or longer \(F_4\) primitive pair whose
 rank-two quotient has complete Aut-floor at most 12.  A primitive full
 four-relator tuple would be an immediate stable solve.  At the
-one-stabilization root, new defining words should lie outside the proved
-signed double-coset gauge family; merely adding left or right powers of
-\(x\) to this bare corridor cannot help.
+one-stabilization root, the most concrete next mechanism is precisely the
+newly exposed nonuniqueness: multiply a canonical recovery word by
+controlled consequences of the compressed source relators before
+eliminating \(z\).  Separate routes use defining words with at least two
+alternating \(v\)-syllables or use the braid relator during recovery.
 
 AK(3) remains open.

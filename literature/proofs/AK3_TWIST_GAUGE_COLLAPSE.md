@@ -259,7 +259,127 @@ for AK(3).  Since every \(Q^\epsilon_{p,q}\) lies in the same
 Aut(\(F_2\))-orbit of the pair of relator conjugacy classes, its floor is
 also \(13\).  \(\square\)
 
-## 4. Consequence for proof search
+## 4. Exhaustiveness for direct one-block elimination
+
+The signed double-coset family is not merely a convenient parametrization.
+It exhausts every defining word from which the exposed block \(v\) can be
+rewritten using only the surviving generator and the new generator.
+
+### Lemma 4.1 (stabilizer of one basis letter in rank two)
+
+For \(w\in F(x,v)\), the pair \((x,w)\) is a basis of \(F(x,v)\) if and
+only if
+
+\[
+ w=x^pv^\epsilon x^q
+\]
+
+for some \(p,q\in\mathbb Z\) and \(\epsilon\in\{+1,-1\}\).
+
+#### Proof
+
+The reverse implication is given by the explicit automorphism
+
+\[
+ x\longmapsto x,\qquad
+ v\longmapsto x^pv^\epsilon x^q.
+\]
+
+For the forward implication, let \(\alpha\in\operatorname{Aut}(F(x,v))\)
+fix \(x\) and send \(v\) to \(w\).  On abelianization,
+
+\[
+ [w]_{\mathrm{ab}}=(n,\epsilon)
+\]
+
+for some \(n\in\mathbb Z\) and \(\epsilon\in\{+1,-1\}\).  Let
+\(\beta\) fix \(x\) and send \(v\mapsto x^nv^\epsilon\).  Then
+\(\gamma=\beta^{-1}\alpha\) acts trivially on abelianization and fixes
+\(x\).
+
+Nielsen's rank-two theorem says that the kernel of
+
+\[
+ \operatorname{Aut}(F_2)\longrightarrow \operatorname{GL}(2,\mathbb Z)
+\]
+
+is the inner automorphism group.  Hence \(\gamma\) is conjugation by some
+\(c\in F(x,v)\).  Since \(\gamma(x)=x\), the element \(c\) centralizes
+\(x\).  The centralizer of a basis element in a free group is its cyclic
+subgroup, so \(c=x^q\) for some integer \(q\).  Therefore
+
+\[
+ w=\alpha(v)=x^{n-q}v^\epsilon x^q,
+\]
+
+as required.  \(\square\)
+
+The rank-two kernel theorem is also expressed as
+\(\operatorname{Out}(F_2)\cong\operatorname{GL}(2,\mathbb Z)\); see
+M. Bridson and K. Vogtmann,
+["Automorphism groups of free groups, surface groups and free abelian
+groups"](https://arxiv.org/abs/math/0507612).
+
+### Theorem 4.2 (direct one-block exhaustion)
+
+Let \(w\in F(x,v)\), adjoin \(t=w\), and suppose there is
+\(U\in F(x,t)\) such that
+
+\[
+ U(x,w(x,v))=v
+\tag{4.1}
+\]
+
+in the free group \(F(x,v)\).  Use the defining relator only to replace
+the displayed \(v^{-1}\)-blocks in \(A=x^3v^{-4}\) by \(U^{-1}\) and the
+displayed \(v\)-block in \(B=z^{-1}xv\) by \(U\), then remove \(z\) through
+the resulting relator \(z^{-1}xU\).
+
+Every stable corridor of this form is one of the signed gauge corridors in
+Theorem 3.1 and returns to the AK(3) orbit of relator conjugacy classes.
+
+#### Proof
+
+Consider
+
+\[
+ \theta:F(x,t)\longrightarrow F(x,v),
+ \qquad
+ \theta(x)=x,\quad\theta(t)=w.
+\]
+
+Equation (4.1) puts both \(x\) and \(v\) in the image, so \(\theta\) is
+surjective.  A surjection between free groups of the same finite rank is an
+isomorphism.  Thus \((x,w)\) is a basis of \(F(x,v)\).
+
+Lemma 4.1 now gives
+
+\[
+ w=x^pv^\epsilon x^q.
+\]
+
+The inverse basis expression \(U=\theta^{-1}(v)\) is
+
+\[
+ U=
+ \begin{cases}
+ x^{-p}tx^{-q},&\epsilon=+1,\\
+ x^qt^{-1}x^p,&\epsilon=-1.
+ \end{cases}
+\]
+
+The prescribed replacements and removal are therefore exactly the
+positive or negative construction in Section 2.  Theorem 3.1 completes the
+proof.  \(\square\)
+
+The hypothesis (4.1) is the algebraic content of a direct block
+compression that removes \(z\): it says the old block \(v\) is recoverable
+in the proposed surviving basis \((x,t)\).  The theorem does not cover a
+corridor that first changes the relators by additional AC multiplications
+or that uses several interleaved \(v\)-blocks without recovering \(v\)
+itself.
+
+## 5. Consequence for proof search
 
 The theorem removes an infinite false degree of freedom.  Once the
 one-stabilization corridor has exposed
@@ -286,7 +406,7 @@ shows only that the bare compression-and-removal family obtained by
 lengthening \(v^{\pm1}\) with arbitrary left and right powers of \(x\) is
 redundant, without imposing a length bound.
 
-## 5. Independent replay
+## 6. Independent replay
 
 `tests/stable_ac/test_twist_gauge_collapse.py` checks, for a signed grid of
 \((p,q)\)-values:
