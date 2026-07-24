@@ -16,6 +16,8 @@ What each directory here *is*: [`README.md`](README.md).
 | `analysis/` | the stable-AC benchmark (difficulty ladder + reach tier + combined) | [→](analysis/README.md) |
 | `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` (tests in `tests/equivalence_classes/`) | [→](equivalence_classes/README.md) |
 | `greedy_tests/` | the greedy test SUPPORT code — `spec/` `fixtures/` `adapters.py` `tools/` `golden/` (imported by production too); the tests live in `tests/greedy/` | [→](greedy_tests/README.md) |
+| `clustering/` | unsupervised structure of the 237 minimal automorphic states (tests in `tests/clustering/`) | [→](clustering/README.md) |
+| `heuristic_search/` | block/knot **heap orderings** for the greedy — 17/60 → 30/60 at budget 100 (tests in `tests/heuristic_search/`) | [→](heuristic_search/README.md) |
 | `lessons/` | 38 shipped bugs. Read via the index, not by browsing. | [→](lessons/README.md) |
 
 **Scripts here find the repo root by walking up until they see `experiments/` + `data/` — never by

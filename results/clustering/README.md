@@ -1,5 +1,7 @@
 # Unsupervised structure in the 237 minimal automorphic states
 
+> **📊 Rendered write-up with every table and chart:** <https://claude.ai/code/artifact/b9e07614-f290-44cd-807c-2d02e327ec98>
+
 Built by `experiments/clustering/run_cluster_237.py` (`python3 -m experiments.clustering.run_cluster_237`, ~25 s, numpy + scipy only). Live write-up: the published artifact.
 
 **Question.** Does *unsupervised* clustering of the minimal automorphic states recover the solved / unsolved split without ever being shown it? The clustering never sees the label; the label is used only to score a partition afterwards. **No AC moves are run anywhere** — this is purely about the initial states, treated as pairs of cyclic words.

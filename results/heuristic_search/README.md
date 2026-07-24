@@ -1,5 +1,8 @@
 # Block/knot heap orderings vs the baseline greedy
 
+> **📊 Rendered write-up with every table and chart:** <https://claude.ai/code/artifact/b9e07614-f290-44cd-807c-2d02e327ec98>
+
+
 **Question.** The baseline greedy orders its open set by total length alone. The block analysis in `results/clustering/` found that *thickness* (`smaller mean block`) and *knot count* separate solved from unsolved presentations. Does either make a better search priority at a fixed node budget?
 
 **What changes.** Only the heap priority. `experiments/heuristic_search/hsearch.py` subclasses `GreedyBaselineSolver`, so the move generator, free reduction, Booth canonicalisation, per-relator cap, visited set and the `(priority, depth, key)` tie-break are all the baseline's. A difference between arms is attributable to the ordering and nothing else.
