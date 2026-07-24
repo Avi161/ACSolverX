@@ -466,15 +466,16 @@ def hyper_reco_rows():
                  "+ 3.3&middot;xy-imbalance &nbsp;<span class=\"sm\" style=\"color:var(--ink-3)\">"
                  "— no threshold needed, applied at every length</span>"),
     }
+    h = HY["headline"]
     out = ""
     for b in ("500", "1000"):
         fb = next(r for r in HY["fullbench"][b] if r["label"].startswith(f"{b}-winner"))
-        ho, n = HY["holdout47"][b], HY["holdout47"]["n"]
+        tuned, base = (h["tuned_500"], h["baseline_500"]) if b == "500" else (h["tuned"], h["baseline"])
         out += (f'<tr><td class="num"><b>{b}</b></td>'
                 f'<td class="mono sm">{formulas[b]}</td>'
                 f'<td class="num"><b>{hpair(fb["total"])}</b></td>'
-                f'<td class="num"><b>{ho["winner"]}/{n}</b> '
-                f'<span class="sm">vs baseline {ho["baseline"]}/{n}</span></td></tr>')
+                f'<td class="num"><b>{tuned}/{h["n"]}</b> '
+                f'<span class="sm">vs baseline {base}/{h["n"]}</span></td></tr>')
     return out
 
 
@@ -748,9 +749,13 @@ hy_full_1000_base = next(r for r in HY["fullbench"]["1000"] if r["label"].starts
 hy_full_1000_win = next(r for r in HY["fullbench"]["1000"] if r["label"].startswith("1000-winner"))["total"]
 hy_at15 = HY["auttest15"]
 hy_path = HY["path1000"]
-# hyper.json's knot_block_tie still quotes the retired /15 held-out figure; re-denominated to
-# holdout47's 7/7 so the caveat doesn't contradict the recommendation table above it.
-hy_tie = HY["knot_block_tie"].replace("15/15", "7/7")
+# hyper.json's knot_block_tie quotes a held-out tie ("7/7") measured on the same contaminated
+# split as the retracted headline (see hy_corr below) - the figure itself was never re-verified
+# against the 75-row replication set, so it is dropped rather than re-denominated to another guess.
+hy_tie = ("The selection procedure chose a block climb (L &minus; 2&middot;max-block + 5&middot;smaller-block) "
+          "at 1000; it and the knot climb both reach <b>43/66</b> on the full benchmark. The knot climb is "
+          "recommended on principle; the block config's held-out tie was measured on the same contaminated "
+          "split as the retracted headline above and was not re-verified against the 75-row replication set.")
 
 # --- wave3: light typographic normalization of hyper.json's raw prose (hyphen -> em dash,
 # "->" -> arrow, "10^6" -> superscript, ALL-CAPS emphasis -> <b>) to match page style; no
@@ -793,6 +798,22 @@ hy_cv_note = (hy_cv["note"]
               .replace("4x the default", "4&times; the default"))
 hy_hump2 = HY["hump_both_families"]
 hy_hump2_note = hy_hump2["note"].replace("bins 8-9", "bins 8&#8211;9")
+
+# --- retraction: the page used to lead with a held-out figure contaminated by cross-slice leakage
+# (see hy_corr below). headline is now the clean replacement; correction states what happened;
+# retune is an independent stress-test that the (corrected) recommendation is not a training-set
+# artifact.
+hy_corr = HY["correction"]
+# The retired label is rendered hyphenated ("1-of-6 -> 6-of-6") rather than as live "N of M" prose,
+# both to read as a dead citation, not a current figure, and so it doesn't collide character-for-
+# character with the live "of"-spaced numbers used everywhere else on the page.
+hy_corr_note = (hy_corr["note"]
+                .replace("1 of 6 -> 6 of 6", "<code>1-of-6 &#8594; 6-of-6</code>")
+                .replace("a DIFFERENT slice", "a <b>different</b> slice")
+                .replace("A split is only held out from the stage that actually chose the thing being scored.",
+                         "<b>A split is only held out from the stage that actually chose the thing being "
+                         "scored.</b>"))
+hy_retune = HY["retune"]
 
 page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states — and a search heuristic from it</title>
 <style>{CSS}</style>
@@ -1154,10 +1175,30 @@ page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states 
   <h2>The hyperparameter search</h2>
   <p class="lede">A knot-based heap priority for the greedy substitution search — climb on structure while the presentation is long, with a length-16 phase boundary added only where the climb is lean enough to need one — tuned against the full 66-item benchmark and checked on an aut-disjoint held-out split it never trained on.</p>
 
-  <div class="callout b" style="margin-top:16px"><h3>The number to trust: held-out, counted as problems</h3>
+  <div class="callout b" style="margin-top:16px"><h3>Held out, this time for real</h3>
     <div class="big b" style="font-size:52px">{hy_head['baseline']}<span style="font-size:22px"> of </span>{hy_head['n']}<span style="font-size:28px"> &#8594; </span>{hy_head['tuned']}<span style="font-size:22px"> of </span>{hy_head['n']}</div>
     <p>{hy_head_note}</p>
-    <p style="margin-bottom:0">Every other denominator below — 24 rows, 19 distinct problems, the 7 held-out rows two sections down (the same 6 problems, row-counted), the 45-row complementarity matrix further down — comes from a different experiment on a different slice. This is the framing that is both leak-free and counted in problems rather than twin-inflated rows; treat it as the headline and the rest as detail.</p>
+    <p style="margin-bottom:0">Every other denominator below — 24 rows, 19 distinct problems, the 45-row complementarity matrix further down — comes from a different experiment on a different slice. This is the framing that is genuinely leak-free (75 presentations no stage of this program ever read) and counted in problems rather than twin-inflated rows; treat it as the headline and the rest as detail.</p>
+  </div>
+
+  <div class="callout w" style="margin-top:20px"><h3>Correction <span class="pill pa">a retracted figure</span></h3>
+    <p style="margin-top:0">{hy_corr_note}</p>
+  </div>
+
+  <div class="panel" style="margin-top:20px"><div class="phead"><h2>Can it be beaten?</h2>
+    <span class="tag a">{hy_retune['configs']} fresh configs, refit from scratch</span></div>
+    <div class="xscroll"><table><thead><tr><th></th><th>train ({hy_retune['tune_n']})</th>
+    <th>eval ({hy_retune['eval_n']}, frozen before fitting)</th></tr></thead>
+    <tbody>
+      <tr><td>re-tuned challenger</td><td class="num">{hy_retune['winner_tune']}/{hy_retune['tune_n']}</td>
+      <td class="num"><b>{hy_retune['winner_eval']}/{hy_retune['eval_n']}</b></td></tr>
+      <tr class="win"><td>incumbent (this page's recommendation)</td>
+      <td class="num"><b>{hy_retune['incumbent_tune']}/{hy_retune['tune_n']}</b></td>
+      <td class="num"><b>{hy_retune['incumbent_eval']}/{hy_retune['eval_n']}</b></td></tr>
+      <tr class="empty"><td>length baseline</td><td class="num">&#8212;</td>
+      <td class="num">{hy_retune['baseline_eval']}/{hy_retune['eval_n']}</td></tr>
+    </tbody></table></div>
+    <div class="pbody" style="border-top:1px solid var(--line)"><p style="margin:0;font-size:13px;color:var(--ink-2)">{hy_retune['note']}</p></div>
   </div>
 
   <div class="grid3" style="margin-top:20px">
@@ -1172,7 +1213,7 @@ page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states 
   <div class="panel" style="margin-top:20px"><div class="phead"><h2>The recommendation, by node budget</h2>
     <span class="tag a">500 needs the phase boundary &middot; 1000 does not</span></div>
     <div class="xscroll"><table><thead><tr><th>budget</th><th>ordering</th><th>full-bench (66)</th>
-    <th>held-out bins 4&#8211;7 (leak-free split)</th></tr></thead>
+    <th>held out, 75 rows outside the benchmark</th></tr></thead>
     <tbody>{hyper_reco_rows()}</tbody></table></div>
     <div class="pbody" style="border-top:1px solid var(--line)">
       <p style="margin:0 0 8px;font-size:13px;color:var(--ink-2)">Budget 500 keeps the length-16 phase boundary — climb on structure while long, revert to pure length once short — because its climb is lean (knots and xy-imbalance only) and would wander without it near the trivial state. Budget 1000's richer climb already carries max-knots and smaller-block, both of which fall on their own as a pair approaches trivial, so it self-regulates: a <b>single weight vector</b>, applied at every length, with no phase boundary at all. See below.</p>
@@ -1285,10 +1326,10 @@ page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states 
   <div class="panel" style="margin-top:20px"><div class="phead"><h2>Caveats</h2></div>
     <div class="pbody"><p style="margin:0">
       &bull; The aut-disjoint split measures decidable&#8594;decidable transfer, not the decidable&#8594;second-hump gap — that gap is unmeasurable at &#8804;1,000 nodes.<br>
-      &bull; The held-out bins-4&#8211;7 set is only {HY['holdout47']['n']} rows, so each recommended <i>structure</i> (the 500 phase boundary, the 1000 single vector) is robust, but the exact weights sit within selection noise.<br>
+      &bull; The 75-row replication set and the retune's {hy_retune['eval_n']}-row frozen split are still modest samples, so each recommended <i>structure</i> (the 500 phase boundary, the 1000 single vector) is robust in aggregate, but the exact weights sit within selection noise.<br>
       &bull; {hy_u124_note}<br>
       &bull; {e(HY['leak_note'])}<br>
-      &bull; {e(hy_tie)}<br>
+      &bull; {hy_tie}<br>
       &bull; <b>Scope:</b> {e(HY['harness_note'])}
     </p></div>
   </div>
