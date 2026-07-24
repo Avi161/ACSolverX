@@ -40,6 +40,21 @@ And yet the three problems it fails on cost the baseline only ~13k–16k nodes �
 
 This is also the strongest reason to expect the ordering to matter at Colab scale rather than only here: a 250× reduction on a 27k-node problem is the kind of effect that moves a 10⁶-node search into range, not a constant-factor speedup.
 
+## Your knot intuition, tested directly
+
+The claim was that on a very hard presentation, reducing even one knot opens up opportunities worth a longer path. Measured per difficulty stratum (EXP-15), sweeping only the knot coefficient:
+
+| stratum | k=0.5 | k=1 | k=2 | k=3 | k=4 | k=8 | k=16 | reading |
+|---|---|---|---|---|---|---|---|---|
+| easy (bins 0–3) | 16 | 16 | 16 | 16 | 16 | 16 | 16 | knots are **irrelevant** — everything solves at any weight |
+| hard (bins 6–7) | 0 | 0 | 0 | **3** | 3 | 3 | 3 | **nothing solves at all** until the knot term is heavy enough |
+
+**Supported, in the form that matters.** On the hard stratum the knot term is not merely *worth more* — it is the difference between solving three problems and solving **none**. On the easy stratum it does nothing. That is a stronger statement than the original intuition.
+
+**Not supported, in the form it was posed.** The optimum does not keep climbing with difficulty: past the threshold the magnitude stops mattering. It is a threshold to clear, not a dial to turn up — so there is nothing to gain from conditioning the weight on the presentation, and a single value comfortably above it (the 8–9 the winners already use) serves every stratum at once.
+
+Two related negatives, both measured rather than assumed: a **depth** term (weighted-A*) does not improve on a good structural ordering — 1 of 216 arms beat its incumbent, on the weakest one, at one budget only (EXP-11) — and a **third length tier** never beats two (EXP-13). The two-phase, single-knot-weight shape is the whole recommendation; the extra knobs are not worth their parameters.
+
 ## Why knots, and why phased
 
 - **Knots are the signal.** Of the thirteen rotation-invariant state features swept one at a time (EXP-02), knot count moved the needle most: `L + 8·knots` took the baseline from 17/40 to 23/40 on the training slice, and on the *decidable* rows (excluding the 16 easy rows every ordering solves) from 2/10 to 8/10. This is the operational form of the "reduce a knot to open opportunity" idea — a state that bought a knot reduction sorts above one that did not, so the search spends its budget where the structure improves.
