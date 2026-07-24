@@ -553,7 +553,7 @@
    "winner": 7
   }
  },
- "harness_note": "Validated in the research harness (a parameterized heap priority). The production Colab solver orders by length through a packed heap key and does not yet implement the phased priority; using this at large budgets requires porting the ordering into that solver.",
+ "harness_note": "Runnable: experiments/heuristic_search/hsolve.py exposes greedy_search_h, a drop-in for greedy_baseline.greedy_search that takes the ordering as a config and returns the identical dict \u2014 certificate path, path_moves, min/max relators, every key \u2014 so nothing downstream changes. Verified three ways: config=None reproduces the baseline field for field; under a tuned ordering it pops identically to the research harness every number here was measured with; and its certificates replay independently through moves_to_states onto a trivial pair. Not yet exercised inside run_baseline's resume/W&B machinery, and it uses the string-keyed dict rather than the compact packed arena, so size memory accordingly at very large budgets.",
  "wave2": {
   "distinct_problems": {
    "note": "bins 4-7 are 24 rows but only 19 distinct automorphism classes",
@@ -669,7 +669,7 @@
     "best": 94,
     "n": 124
    },
-   "note": "Every one of the 124 unsolved AC-classes, each entered as its 8 signed-permutation relabels, under all four best orderings. Zero solves - the expected result, now measured over the whole target set rather than inferred from a six-row sample. These classes survived a 10^6-node search and 1000 nodes is three orders of magnitude short."
+   "note": "Every one of the 124 unsolved AC-classes, each entered as its distinct signed-permutation relabels \u2014 980 starts, not 992, because three of the classes are symmetric enough to be fixed by half the permutations \u2014 under all four best orderings, for 3,920 searches. Zero solves: the expected result, now measured over the whole target set rather than inferred from a six-row sample. These classes survived a 10^6-node search and 1,000 nodes is three orders of magnitude short."
   }
  },
  "wave3": {
