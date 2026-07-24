@@ -28,6 +28,7 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from experiments.heuristic_search.hlab import ROOT, bench66        # noqa: E402
+from experiments.heuristic_search.hcompact import greedy_search_hcompact  # noqa: E402
 from experiments.heuristic_search.hsolve import (                  # noqa: E402
     LEAN_SMALL_BUDGET, RECOMMENDED, greedy_search_h,
 )
@@ -81,6 +82,14 @@ def run_ab(cfg, out_dir="results/hsearch", heartbeat_secs=60, progress_secs=300)
     # identical either way -- which is why, like HIGH_SPEEDUP, the knob is result-neutral and
     # stays OUT of the filename identity: files resume across modes.
     keep_path = cfg.get("KEEP_PATH", True)
+    # ENGINE="hcompact" runs the same search on the packed-arena solver: pop-identical to
+    # greedy_search_h (880-search cross-check in verify_hcompact.py), ~78 B/state vs ~390,
+    # so a 10^6 search reserves ~7 GB instead of holding ~24. Pathless like KEEP_PATH=False,
+    # with the same automatic certificate recovery on a solve. Result-neutral, so it too
+    # stays out of the filename identity and files resume across engines.
+    engine = cfg.get("ENGINE", "hsolve")
+    if engine not in ("hsolve", "hcompact"):
+        raise ValueError(f"unknown ENGINE {engine!r}")
     os.makedirs(out_dir, exist_ok=True)
     # Identity: every knob that changes a result, and none that does not.
     stem = f"{cfg['OUT_STEM']}_{cfg['DATASET']}_b{budget}_mrl{mrl}"
@@ -89,7 +98,8 @@ def run_ab(cfg, out_dir="results/hsearch", heartbeat_secs=60, progress_secs=300)
     seen = _done(out) if cfg.get("RESUME", True) else set()
     todo = [(a, r) for a in arms for r in rows if (a, r["name"]) not in seen]
     print(f"  {len(arms)} arms x {len(rows)} presentations, budget {budget:,}, cap {mrl}"
-          + ("  [low-memory: KEEP_PATH=False]" if not keep_path else ""))
+          + ("  [low-memory: KEEP_PATH=False]" if not keep_path else "")
+          + ("  [engine: hcompact]" if engine == "hcompact" else ""))
     print(f"  {len(seen)} rows resumed; {len(todo)} to run")
     print(f"  -> {out}", flush=True)
 
@@ -113,10 +123,15 @@ def run_ab(cfg, out_dir="results/hsearch", heartbeat_secs=60, progress_secs=300)
                     _s["last"], _s["prev_nodes"] = now, n
 
             t = time.perf_counter()
-            res = greedy_search_h(row["r1"], row["r2"], budget,
-                                  max_relator_length=mrl, config=ARMS[arm],
-                                  progress=progress, keep_path=keep_path)
-            if res["solved"] and not keep_path:
+            if engine == "hcompact":
+                res = greedy_search_hcompact(row["r1"], row["r2"], budget,
+                                             max_relator_length=mrl,
+                                             config=ARMS[arm], progress=progress)
+            else:
+                res = greedy_search_h(row["r1"], row["r2"], budget,
+                                      max_relator_length=mrl, config=ARMS[arm],
+                                      progress=progress, keep_path=keep_path)
+            if res["solved"] and (engine == "hcompact" or not keep_path):
                 # Deterministic recovery: same search with the parent map on stops at the same
                 # pop, so its memory is bounded by the SOLVE's node count, not the budget --
                 # and solved searches are the cheap ones. The full-budget burns, where the RAM

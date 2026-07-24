@@ -17,16 +17,18 @@ ARMS      = ["recommended"],          # NOT ["baseline", "recommended"] — see 
 NODE_BUDGET = 1_000_000,
 CHECKPOINTS = [1_000, 5_000, 10_000, 50_000, 100_000, 250_000, 500_000, 1_000_000],
 MAX_RELATOR_LENGTH = 48,
-KEEP_PATH = False,                    # mandatory at this budget — see memory
+ENGINE    = "hcompact",               # ~7 GB per search at 10^6, not 24 — see memory
 RESUME    = True,
 OUT_STEM  = "hsearch_ab",
 ```
 
+**Pick the budget once, as large as the hours allow.** A search at budget B is the first B pops of any longer search, so a 3×10⁶ run *contains* the 10⁶ run at every checkpoint — but the budget is part of the output filename identity, so a later, larger run starts a NEW file and re-pays everything already burned. Decide the ceiling from wall-clock before starting (10⁶ ≈ 50–85 h; 3×10⁶ ≈ 150–250 h), never plan to "extend later".
+
 **Drop the baseline arm.** The 124 are the classes the baseline greedy left unsolved at **10 million** nodes — its 10⁶ result is already known to be 0/124, with certainty, from the data that defined the set. Running it again would cost the same ~50 hours as the treatment arm to reproduce a number we already have. This is not the EXP-10 mistake in reverse: the historical baseline was run on these exact 124 presentations, same solver family, at 10× the budget — same denominator, stricter condition. (The report's gap section simply won't render without a `baseline` arm in the file; the comparison lives in the sentence above.)
 
-## Memory — why `KEEP_PATH = False` is mandatory, not advisory
+## Memory — why the engine choice matters
 
-Measured worst-case on these exact rows at cap 48 (full-budget burns, `measure_memory.py`): **36.5 kB per node popped with the certificate map, 24 kB without**. At 10⁶ nodes that is ~36.5 GB vs ~24 GB peak per search — on a 51 GB Colab the first is a memory-guard coin-flip, the second fits with headroom. The mode is result-pure (pinned by `tests/heuristic_search/test_hsolve.py`) and `run_ab` recovers the certificate of anything that solves by an automatic deterministic re-run, whose memory is bounded by the *solve's* node count, not the budget. Rows written in either mode resume interchangeably.
+Measured worst-case on these exact rows at cap 48 (full-budget burns): `hsolve` costs **36.5 kB per node popped with the certificate map, 24 kB without** (`KEEP_PATH=False`) — at 10⁶ that is ~36.5 GB vs ~24 GB peak per search, the first a memory-guard coin-flip on a 51 GB Colab. **`ENGINE="hcompact"` replaces both: ~78 B per state, ~7 GB reserved for a 10⁶ search**, and it moves the machine's budget ceiling from ~2M to ~5M nodes ([HCOMPACT.md](HCOMPACT.md) — same search pop for pop, 880-pair cross-check, +13% faster). All three modes are result-pure and write identical rows (pinned by `tests/heuristic_search/test_hsolve.py` and `test_hcompact.py`); `run_ab` recovers the certificate of anything that solves by an automatic deterministic re-run, whose memory is bounded by the *solve's* node count, not the budget. Rows written under any mode resume interchangeably.
 
 ## Time — a multi-session campaign, and that is fine
 

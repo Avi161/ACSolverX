@@ -49,7 +49,8 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-26](EXP26_clean_holdout.md) | the honest evaluation: 75 presentations outside the benchmark, never read by any stage | **20/75 → 50/75** at budget 1000 (67% vs 27%), a strict superset — 30 gained, 0 lost |
 | [EXP-27](EXP27_retune.md) | can a from-scratch re-tune on *fresh* presentations beat the incumbent? | **no** — ties out of sample (19/25) and loses the half it was selected on (29 vs 31) |
 | **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **never-seen presentations: baseline 20/75 → tuned 50/75**; climb on knots, no threshold needed at 1000 |
-| [SCALE_RUN_PLAN](SCALE_RUN_PLAN.md) | the 10⁶-node campaign on the 124, written before the bench66 gap table landed | gate on **still widening**; single arm, `KEEP_PATH=False` (24 GB), ~50–85 h across 3–5 resumable sessions |
+| [SCALE_RUN_PLAN](SCALE_RUN_PLAN.md) | the 10⁶-node campaign on the 124, written before the bench66 gap table landed | gate on **still widening**; single arm, ~50–85 h across 3–5 resumable sessions |
+| [HCOMPACT](HCOMPACT.md) | the tuned ordering on the packed arena — same search, ~78 B/state | 880 paired searches, 0 mismatches incl. first-seen strings; 10⁶ reserves ~7 GB not 24, ceiling on 51 GB moves ~2M → ~5M, +13% faster |
 
 ## Two splits
 
