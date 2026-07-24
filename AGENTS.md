@@ -97,3 +97,8 @@
 - [WORKS] Run rank-three certificate and rigid-support census code under `uv run --with pytest python3 ...`; the exact 64-state rigid census then exhausts 118,976 phase triples and 1,741,883 component seeds in under five seconds.
 - [TRAP] The shared interpreter path contains `Obsidian Vault`; an unquoted absolute invocation is split at the space and fails with `zsh: no such file or directory: /Users/avigyapaudel/Documents/Obsidian`.
 - [WORKS] Single-quote the complete interpreter path when replaying certificates from the isolated worktree.
+
+### 2026-07-24 One-loop CoV thickenability
+
+- [TRAP] The CoV implementation is `experiments/stable_ac/cov/cov.py`, not `experiments/stable_ac/cov.py`; resolve module paths with `rg --files` before reading.
+- [WORKS] The complete AK(3) subword-CoV family has 34 distinct outputs: 24 have loopless `K4`/`K4-e` support and the other 10 have exactly one loop edge over such a core. Deleting the loop leaves a connected core after removal of its attachment vertex, so spherical rotations are completely parameterized by a core scheme, an insertion gap, and a loop-dart orientation.
