@@ -156,6 +156,22 @@ Four related negatives, all measured rather than assumed. A **depth** term (weig
 - **Knot-*progress* does not predict a solve, even though the knot-*ordering* helps.** A checkpoint proxy — "how many knots did the search shed by node 500" — does not forecast whether it will solve by 1000 (EXP-07: P(solve | dropped a knot) = 0.10 vs 0.14 without; length-progress fails the same way). So for the unsolvable second hump there is no honest progress signal to rank orderings by, and this recommendation is for the decidable regime only. Tuning the climb to be stronger for harder (longer) presentations — the length-tiered knot weight — is the natural next step, but it is an unvalidated extrapolation until the second hump becomes measurable at a larger budget.
 - **Path length is secondary, as requested — and it also improved.** On the 29 rows both the baseline and the budget-1000 winner solve, the winner's mean path is **17.3 moves against the baseline's 19.2**, so the extra solves do not come at the cost of longer certificates. This is a same-row comparison, which is the only fair one: on the rows only the tuned ordering solves there is no baseline path to compare against.
 
+## What an independent audit found
+
+Every headline in this document was re-derived from the committed jsonl by an auditor instructed to refute rather than confirm. Two claims did not survive, and they have been corrected above rather than quietly softened:
+
+- **The headline was contaminated.** "1/6 → 6/6 on held-out classes" used a genuinely automorphism-disjoint split, but the weight vector was selected on a *different* slice that contained 4 of those 7 rows. Corrected to **1/3 → 3/3** on the three classes no tuning stage ever saw.
+- **The cap-48 justification was false.** Caps 24 and 48 solve identically at these budgets. The setting is kept; the reason is now accurate.
+
+What survived, including one check stronger than the one I ran:
+
+- **5 → 19 of 24** at budget 1000 and **2 → 16** at 500: recounted from raw rows, confirmed, label→config mapping verified.
+- **The 250×** is legitimate, and the auditor closed a confound I had left open. `nodes_1M` was produced at cap **24** while this program runs cap **48**, so the comparison could have been borrowing reach from the larger cap. It is not: at cap 24 the tuned climb still solves `ms633` in **108** nodes and `ms628` in 107, with `max_pop ≤ 23`. Same cap, same solver family, same counter — 26,838 vs 108 stands. Two caveats stay attached: those four rows are selected *because* the ordering wins big on them, and the tuned path is shorter (36 moves vs 83), so it is a *different* solution, not the same one found faster.
+- **The threshold is inert** for the recommended ordering at budget 1000 — confirmed more strongly than claimed: the solved sets are identical row for row, not merely equal in count. (It is *not* inert at 500, where the phased form is better; that is why the 500 recommendation keeps its threshold.)
+- **The drop-in is real**: `verify_hsolve` ALL PASS, plus an independent replay of `ms633`'s 36-move certificate onto a trivial pair.
+
+**The two weakest surviving claims, flagged rather than defended.** The extrapolation to 10⁶ nodes rests on a two-point trend (+12 → +14) at a ceiling this program cannot cross — that is why the notebook exists and why its checkpoint table is the thing to read first. And the "+1.18 cross-validated complement gain" was measured on a slice where only 3 rows were gainable at all; the 4×-better-than-strongest-arm framing beside it is easy to over-read.
+
 ## How this was produced
 
 Eight experiments, each with its raw jsonl and a report in this directory; the index is in `README.md`. The search kernel (`hfast.py`) does one numba call per pop and is pinned bit-identical to the reference solver on the states where they could differ (`test_hfast.py`, `verify_fast.py`). Selection used the difficulty-stratified split; the final winner and this held-out number used the automorphism-disjoint split, read once.
