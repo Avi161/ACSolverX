@@ -2,8 +2,9 @@
   "audit_module_sha256": "466a2443941d53df925f97f62a47d33df18f9962842f5fb6598823d507fc4f8d",
   "composition": "right-to-left: PQ(e)=P(Q(e))",
   "direct_module_sha256": "02c9ac34f1869740f3f8addd4a8d96192eaf691a7a03e74e8237ac9f86388bca",
+  "driver_module_sha256": "c9b7aa7cc7335d70731886145a10f51cdb6d1f6dc7930b80112029aaf3bb4540",
   "schema": "ak3-neuwirth-census-v1",
-  "source_commit": "21a77b3325116db27e76d50ffd19e3037b358fdf",
+  "source_commit": "b1fbe1ca58f646bffeddfa8b76fb0b9168bd56f4",
   "targets": {
     "ak3": {
       "accepting_orders": [],
@@ -21,6 +22,9 @@
       "direct_trace_sha256": "2a7ca9d76c549a37a2457b6d66b889c83369a6c978d43a529a3ebdf0f93dc5f3",
       "enumerated_cases": 86400,
       "expected_cases": 86400,
+      "link_components": [
+        1
+      ],
       "minimum_genus": 2,
       "verdict": "NOT_THICKENABLE_EXACT_COMPLEX",
       "words": [
@@ -45,6 +49,9 @@
       "direct_trace_sha256": "99174f3baba0bc9aba7528f250c096df8add73b2dd977564ef2d8dce7ee51f30",
       "enumerated_cases": 86400,
       "expected_cases": 86400,
+      "link_components": [
+        1
+      ],
       "minimum_genus": 1,
       "verdict": "NOT_THICKENABLE_EXACT_COMPLEX",
       "words": [
