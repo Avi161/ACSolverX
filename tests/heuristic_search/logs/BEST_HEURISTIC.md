@@ -6,7 +6,17 @@ The short answer, then the evidence and the caveats. Everything here is measured
 
 **Order the heap by length plus a structural climb — one that values knots.** The one thing every result in this program agrees on is that a knot term in the heap key is what separates a search that crosses the two-hump barrier from one that does not.
 
-The right denominator is **the 24 rows in difficulty bins 4–7** — the ones that are neither free (bins 0–3, which every ordering solves) nor out of reach (bins 8–9 and the reach rows, which nothing solves at ≤1000). That is where an ordering is actually tested.
+> ### The one number
+>
+> On **held-out automorphism classes** — problems the tuning never saw, sharing no change-of-variables twin with anything it did see — at budget 1,000:
+>
+> ### baseline 1 / 6  →  tuned **6 / 6**
+>
+> Counted as *distinct problems*, on the *leak-free* slice, restricted to the *decidable* tier. It is the most defensible number in this document because every other framing is either easier (rows double-count automorphic twins) or dirtier (the training slice shares classes with the test one). At budget 500 the same measurement is 1/6 → 4/6.
+
+Everything below is subordinate detail. Several other denominators appear — 24 rows, 19 distinct problems, 31, 45 — because different experiments ran on different slices; each is stated where it is used, and none of them supersedes the line above.
+
+The right denominator for the *in-sample* tables is **the 24 rows in difficulty bins 4–7** — neither free (bins 0–3, which every ordering solves) nor out of reach (bins 8–9 and the reach rows, which nothing solves at ≤1000). That is where an ordering is actually tested.
 
 | your node budget | the ordering to use | bins 4–7 (of 24) | full 66 | held-out bins 4–7 (leak-free) |
 |---|---|---|---|---|
@@ -18,6 +28,33 @@ The right denominator is **the 24 rows in difficulty bins 4–7** — the ones t
 **Counted as problems rather than rows, which is the honest unit.** Those 24 rows are only **19 distinct automorphism classes** — several are the same presentation up to a change of variables, so a row count double-counts. On distinct problems the tuned ordering solves **16/19 at budget 1000 against the baseline's 5/19**, and **13/19 vs 2/19** at 500. Only three distinct problems resist it (classes 93, 97, 98; class 93 alone contributes three of the five "unsolved rows") — and all but one of those is reachable by a second ordering from a different family, see below. This is the same discipline the equivalence-class work already established for this benchmark — quotient by every symmetry that preserves the question before counting anything.
 
 At budget 1000 that is a near-4× improvement on the rows in question (5 → 19 of 24). On the leak-free held-out slice, restricted to the same bins 4–7, the tuned ordering solves **7/7** where the baseline solves **1/7** (at 500: 5/7 vs 1/7). It also solves *shorter*: on the 29 rows both solve at 1000, mean path **17.3 vs 19.2** — a win on the secondary criterion too.
+
+## The Colab handoff — everything needed, in one place
+
+**Getting the code there.** The push is DNS-blocked on the machine this ran on, so all commits sit on the local branch `worktree-hsearch-hyper`. A portable copy is at **`ACSolverX/hsearch-hyper.bundle`** (34 MB, `git bundle verify` reports a complete history). On a networked machine:
+
+```bash
+git fetch /path/to/hsearch-hyper.bundle worktree-hsearch-hyper:hsearch-hyper
+git checkout research/w5/stable-ac-escape && git merge hsearch-hyper
+git push origin research/w5/stable-ac-escape
+```
+
+**What to run.**
+
+```python
+from experiments.heuristic_search.hsolve import greedy_search_h, RECOMMENDED
+
+a = greedy_search_h(r1, r2, node_budget=10**6, max_relator_length=48, config=None)         # baseline
+b = greedy_search_h(r1, r2, node_budget=10**6, max_relator_length=48, config=RECOMMENDED)  # tuned
+```
+
+Same function, same returned dict, so an A/B is one run. If you have compute for a third arm, make it *structurally different* rather than another knot climb — see the two-ordering section below.
+
+**Set `max_relator_length` to 48, not 24.** The climb pops relators past 30; capping at 24 truncates it. It costs nothing at these budgets and the whole point is to let them expand.
+
+**Memory.** `hsolve` uses the normal solver's string-keyed dict, not the compact packed arena, so at 10⁶ nodes it will want noticeably more RAM than `high_speedup` mode. Size for it, or port the ordering into the compact key first.
+
+**The one prediction worth checking, and the only thing that cannot be settled locally.** Everything here was measured at ≤1,000 nodes, and the bridge to 10⁶ is EXP-16's *shape*: the recommended climb's advantage over the baseline was still **widening** where the local ceiling cut the curve off (+12 → +14 from budget 500 to 1,000), while the leaner orderings had already turned over. If that keeps holding, the advantage grows with your budget and this ordering is the right one to spend it on. **If the gap stops widening past 1,000, stop trusting the extrapolation** — the ordering would be buying earliness rather than reach, and the second-hump case would collapse. Record solve counts at several budget checkpoints in one long run and the answer falls out for free.
 
 ## How to actually run it
 
@@ -122,7 +159,7 @@ Two related negatives, both measured rather than assumed: a **depth** term (weig
 ## The caveats — read these before trusting the numbers
 
 - **This is decidable → decidable generalisation, and the split is leak-free — but the pipeline is not perfectly so.** Train and test share no automorphism class (`splits_aut.json`), so the held-out solves are transfer to genuinely new problems, not change-of-variables twins. The one caveat: the 25 candidates that were re-scored on the aut split were *proposed* by ranking on the stratified train slice, which overlaps the held-out rows — so a config could have entered the shortlist partly for solving a row it is later "held out" on. Treat the held-out fraction (7/7) as an optimistic upper bound, not a clean transfer number. The qualitative claim — baseline 1/7 → tuned 7/7 on unseen aut-classes, structure generalises — survives this; the exact figure is soft. The *structure* (phase at 16, climb on knots/blocks) is what is robust; the exact weights are within selection noise, so do not read the third decimal of any weight as meaningful.
-- **The second hump is out of reach at ≤1000 nodes, and that is now measured over the whole target set.** EXP-12 ran all **124 unsolved AC-classes**, each entered as its 8 signed-permutation relabels, under all four best orderings: **0 solves in 3,920 searches**. Nothing in bins 8–9 or the six reach rows solved either (EXP-08). These need tens of thousands to millions of nodes; a 1000-node budget cannot reach them. The knot ordering does not collapse a second-hump row to a small search — it helps on the decidable rows, which is a different and measurable claim.
+- **The second hump is untouched, and none of the numbers above are progress on it.** Everything in this document is the *decidable* tier. On the hard tier the result is zero, unchanged, across both ordering families — EXP-12 ran all **124 unsolved AC-classes**, each entered as its 8 signed-permutation relabels, under all four best orderings: **0 solves in 3,920 searches**. Nothing in bins 8–9 or the six reach rows solved either (EXP-08). These need tens of thousands to millions of nodes; a 1000-node budget cannot reach them. The knot ordering does not collapse a second-hump row to a small search — it helps on the decidable rows, which is a different and measurable claim.
 - **Knot-*progress* does not predict a solve, even though the knot-*ordering* helps.** A checkpoint proxy — "how many knots did the search shed by node 500" — does not forecast whether it will solve by 1000 (EXP-07: P(solve | dropped a knot) = 0.10 vs 0.14 without; length-progress fails the same way). So for the unsolvable second hump there is no honest progress signal to rank orderings by, and this recommendation is for the decidable regime only. Tuning the climb to be stronger for harder (longer) presentations — the length-tiered knot weight — is the natural next step, but it is an unvalidated extrapolation until the second hump becomes measurable at a larger budget.
 - **Path length is secondary, as requested — and it also improved.** On the 29 rows both the baseline and the budget-1000 winner solve, the winner's mean path is **17.3 moves against the baseline's 19.2**, so the extra solves do not come at the cost of longer certificates. This is a same-row comparison, which is the only fair one: on the rows only the tuned ordering solves there is no baseline path to compare against.
 
