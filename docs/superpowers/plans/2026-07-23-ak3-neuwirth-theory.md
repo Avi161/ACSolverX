@@ -275,17 +275,11 @@ phi[d] = sigma[alpha[d]]
 
 Construct the boundary audit from the independently numbered corner and tube transitions and return the same invariant tuple in the same order descriptor. Document the conjugacy explaining why direct `phi` face counts match \(|AC|\).
 
-- [ ] **Step 5: Run both target audits**
+- [ ] **Step 5: Write a failing certificate-driver test**
 
-Run:
+Before creating the driver, add a small-fixture test that imports `build_certificate` and `verify_certificate`, asserts the schema/composition strings, source commit, module hashes, equal direct/audit digests, exact summary fields, and fail-closed verdict semantics. Run the focused test and require an import failure before implementation.
 
-```bash
-.venv/bin/python3 -m pytest tests/stable_ac/test_neuwirth_dart_audit.py -q
-```
-
-Expected: PASS with identical complete trace digests.
-
-- [ ] **Step 6: Add a separate certificate driver**
+- [ ] **Step 6: Add the separate certificate driver**
 
 Create `neuwirth_target_certificate.py` as the only integration layer allowed to import both new enumerators. Do not retrofit CLI behavior into the already committed direct module. Its CLI writes:
 
@@ -300,7 +294,31 @@ Create `neuwirth_target_certificate.py` as the only integration layer allowed to
 }
 ```
 
-Each target entry contains exact words, degrees, expected/enumerated cases, full defect histogram, minimum genus, accepting orders with correct boundary-orbit counts, both trace digests, and a fail-closed verdict. Generate from a clean commit so `source_commit` identifies the code state.
+Each target entry contains exact words, degrees, expected/enumerated cases, full defect histogram, minimum genus, accepting orders with correct boundary-orbit counts, both trace digests, and a fail-closed verdict. The result file stores the trace digests rather than duplicating all 172,800 trace records; replay recomputes and compares the complete ordered traces.
+
+- [ ] **Step 7: Run both target audits and driver tests**
+
+Run:
+
+```bash
+.venv/bin/python3 -m pytest tests/stable_ac/test_neuwirth_dart_audit.py -q
+```
+
+Expected: PASS with identical complete trace digests.
+
+- [ ] **Step 8: Commit and push the code state**
+
+Run:
+
+```bash
+git add experiments/stable_ac/thickenable/neuwirth_dart_audit.py experiments/stable_ac/thickenable/neuwirth_target_certificate.py tests/stable_ac/test_neuwirth_dart_audit.py
+git commit -m "feat: add independent Neuwirth dart audit"
+git push origin codex/proofs
+```
+
+The result generator must now run from a clean working tree and record this exact code commit as `source_commit`.
+
+- [ ] **Step 9: Generate the JSON certificate**
 
 Run:
 
@@ -308,7 +326,7 @@ Run:
 .venv/bin/python3 -m experiments.stable_ac.thickenable.neuwirth_target_certificate --output results/stable_ac/theory/ak3_neuwirth_census.json
 ```
 
-- [ ] **Step 7: Replay from JSON**
+- [ ] **Step 10: Replay from JSON**
 
 Run:
 
@@ -318,13 +336,14 @@ Run:
 
 Expected: recomputation succeeds and both module/content digests match.
 
-- [ ] **Step 8: Commit the independent audit and certificate**
+- [ ] **Step 11: Commit and push the generated certificate**
 
 Run:
 
 ```bash
-git add experiments/stable_ac/thickenable/neuwirth_dart_audit.py experiments/stable_ac/thickenable/neuwirth_target_certificate.py tests/stable_ac/test_neuwirth_dart_audit.py results/stable_ac/theory/ak3_neuwirth_census.json
+git add results/stable_ac/theory/ak3_neuwirth_census.json
 git commit -m "result: certify AK3 Neuwirth rotation census"
+git push origin codex/proofs
 ```
 
 ---
