@@ -165,6 +165,37 @@ def main():
             w.writerow(row)
     print(f"[report] wrote {out_csv}")
 
+    # -- the blind-restart ratio as a function of the COLLECTION budget --------
+    # A search at budget B is exactly the first B pops of a longer one, so every
+    # row can be re-scored at any B <= the run's budget with no new search. B was
+    # picked before the data existed and both k(B) and mean_solved(B) move with
+    # it, so the ratio is not a property of the method until this is swept.
+    grid = [b for b in (12000, 14000, 15000, 16000, 17000, 18000, 19000, 20000)
+            if b <= args.budget]
+    print()
+    print("  blind-restart E[nodes] vs greedy@1M, by collection budget B")
+    print("  pres  " + "".join(f"{b // 1000:>7}k  " for b in grid))
+    best_b = {}
+    for p in pres_ids:
+        got = owned[p]
+        cells = []
+        for b in grid:
+            sol = [r for r, _ in got if r["solved"] and r["nodes_explored"] <= b]
+            n, k = len(got), len(sol)
+            if not k:
+                cells.append("     --  ")
+                continue
+            e = ((n + 1) / (k + 1) - 1) * b + sum(r["nodes_explored"] for r in sol) / k
+            g = greedy_1m.get(p, (False, None))[1]
+            ratio = g / e if g else 0.0
+            best_b[p] = max(best_b.get(p, (0.0, None)), (ratio, b))
+            cells.append(f"{ratio:7.2f}  ")
+        print(f"  ms{p} " + "".join(cells))
+    at_reported = [p for p in pres_ids if best_b.get(p, (0, None))[1] == args.budget]
+    print(f"  B={args.budget} is the most favourable collection budget on "
+          f"{len(at_reported)} of {len(pres_ids)} rows ({at_reported}) — the headline "
+          f"ratios are a best case over B, not a floor")
+
     # -- orbit split of the solving pairs (a relabel is not a no-op) -----------
     orbits_all, orbits_sol = {}, {}
     in_orbit_sol = 0

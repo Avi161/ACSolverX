@@ -23,6 +23,21 @@ Per-row provenance (`best_z`, `iso_gen`, `iso_index`, the transformed pair, and 
 
 **Blind restart is the runnable version, and it is a wash on four of the eight.** 221 of the 909 pairs solve (24.3%), so drawing this presentation's CoV starts in random order and stopping at the first that trivialises has its first success at expected position `(n+1)/(k+1)`; every earlier draw costs the full 20,000. That expectation beats the greedy by 2.58×–3.38× on the four bin-9 rows and by 0.95×–1.26× — i.e. not at all — on the four bin-8 rows. **The tuned heuristic ordering is cheaper than both on every one of the eight**, at ~62.5k nodes with a single search and no restarts.
 
+**Those two ratios are a best case over the collection budget, not a floor.** `B = 20,000` was fixed before any of this data existed, and both the number of solving starts `k(B)` and their mean cost move with it, so the ratio is a property of `(method, B)` and not of the method. A search at budget `B` is exactly the first `B` pops of a longer one, so every row re-scores at any smaller `B` with no new search — and the ratio is **not monotone**: it drops each time failed draws get more expensive and jumps down whenever a cluster of solves comes into range (`k` goes 12→35 between 15k and 16k on `ms622`, and 26→40 between 18k and 19k on `ms637`).
+
+| B | `ms622` | `ms623` | `ms624` | `ms625` | `ms636` | `ms637` | `ms638` | `ms639` |
+|---|---|---|---|---|---|---|---|---|
+| 15,000 | 0.40 | 0.56 | 0.57 | 0.40 | 0.91 | 1.78 | 0.90 | 1.79 |
+| 16,000 | 1.06 | 0.80 | 0.81 | 1.06 | 2.11 | 2.67 | 2.09 | 2.69 |
+| 17,000 | 1.01 | 0.76 | 0.77 | 1.01 | 2.00 | 2.53 | 1.99 | 2.56 |
+| 18,000 | 0.96 | 0.73 | 0.73 | 0.96 | 1.90 | 2.41 | 1.89 | 2.43 |
+| 19,000 | **1.30** | **0.99** | 0.70 | 0.92 | 1.82 | **3.50** | **2.75** | 2.32 |
+| 20,000 | 1.26 | 0.95 | **0.95** | **1.25** | **2.58** | 3.36 | 2.64 | **3.38** |
+
+20,000 is the *most favourable* B on four of the eight and within 5% of it on the other four. Read the published ratios as an optimistic bound: at 15,000 the blind restart loses to the greedy on six of the eight. What survives the sweep is the **direction** — bin 8 never clears 1.3 at any B, bin 9 clears 1.8 at every B ≥ 16,000.
+
+**And the bin-9 "win" is the denominator moving, not the transform improving.** Blind restart costs 62.5k–83.0k across all eight — nearly flat. The greedy costs 59.7k–78.8k on bin 8 and 213.9k–273.0k on bin 9. CoV does nothing special on the harder rows; the greedy simply gets much worse there while the restart portfolio does not.
+
 **The escape is mostly a rename.** The 1,366 CoV starts reduce to 909 distinct pairs reaching 23 distinct Aut orbits; 803 of the 909 pairs (88.3%) — 1,244 of the 1,366 starts (91.1%) — are the input orbit under a different name. Of the 221 solving pairs, **187 (84.6%) never left the input orbit**, and the solvers occupy only 9 of the 23 orbits. This is [the relabel finding](../AUTOMORPHISMS_COV.md) again, at a larger budget: the solver reads strings, so a rename is a different search even when the group-theoretic content is identical.
 
 ## Scope
