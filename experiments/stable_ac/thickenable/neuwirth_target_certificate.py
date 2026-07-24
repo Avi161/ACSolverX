@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 from pathlib import Path
 from typing import Mapping
@@ -20,9 +21,21 @@ TARGETS = {
     "ak3": ("xxxYYYY", "xyxYXY"),
     "orbit_2": ("YYXXyx", "YYYxyXX"),
 }
+ROOT = Path(__file__).resolve().parents[3]
+MODULE_PATHS = {
+    "direct_module_sha256": Path(
+        "experiments/stable_ac/thickenable/neuwirth_permutation_certificate.py"
+    ),
+    "audit_module_sha256": Path(
+        "experiments/stable_ac/thickenable/neuwirth_dart_audit.py"
+    ),
+    "driver_module_sha256": Path(
+        "experiments/stable_ac/thickenable/neuwirth_target_certificate.py"
+    ),
+}
 
 
-def _module_sha256(module_file: str) -> str:
+def _module_sha256(module_file: str | Path) -> str:
     return hashlib.sha256(Path(module_file).read_bytes()).hexdigest()
 
 
@@ -45,22 +58,39 @@ def _accepting_orders_json(accepting_orders: tuple) -> list[dict[str, object]]:
     return encoded
 
 
-def _verdict(accepting_orders: tuple) -> str:
+def _verdict(
+    *,
+    link_components: set[int],
+    accepting_orders: tuple,
+    trusted_balanced_trivial: bool,
+) -> str:
+    if link_components != {1}:
+        return "OUT_OF_SCOPE_DISCONNECTED_LINK"
     if not accepting_orders:
         return "NOT_THICKENABLE_EXACT_COMPLEX"
-    if any(trace_item[3] == 1 for _, trace_item in accepting_orders):
-        return "REGINA_REQUIRED"
-    return "AUDIT_CONTRADICTION"
+    if not trusted_balanced_trivial:
+        return "EULER_ACCEPTING_UNTRUSTED"
+    if any(trace_item[3] != 1 for _, trace_item in accepting_orders):
+        return "AUDIT_CONTRADICTION"
+    return "REGINA_REQUIRED"
 
 
 def build_certificate(
     targets: Mapping[str, tuple[str, ...]],
     *,
     source_commit: str,
+    trusted_balanced_trivial_targets: set[str] | frozenset[str] = frozenset(),
 ) -> dict[str, object]:
     """Run both complete enumerators and return their compact certificate."""
     if not source_commit:
         raise ValueError("source_commit must be nonempty")
+    trusted_targets = frozenset(trusted_balanced_trivial_targets)
+    unknown_trusted_targets = trusted_targets.difference(targets)
+    if unknown_trusted_targets:
+        raise ValueError(
+            "trusted balanced-trivial targets are absent from the census: "
+            f"{sorted(unknown_trusted_targets)!r}"
+        )
 
     target_entries: dict[str, object] = {}
     for name, words in targets.items():
@@ -82,6 +112,7 @@ def build_certificate(
             "degrees": dict(direct.degrees),
             "expected_cases": direct.expected_cases,
             "enumerated_cases": direct.enumerated_cases,
+            "link_components": sorted(direct.link_components),
             "defect_histogram": {
                 str(defect): count
                 for defect, count in sorted(direct.defect_histogram.items())
@@ -90,19 +121,75 @@ def build_certificate(
             "accepting_orders": _accepting_orders_json(direct.accepting_orders),
             "direct_trace_sha256": direct.trace_sha256,
             "audit_trace_sha256": audit.trace_sha256,
-            "verdict": _verdict(direct.accepting_orders),
+            "verdict": _verdict(
+                link_components=direct.link_components,
+                accepting_orders=direct.accepting_orders,
+                trusted_balanced_trivial=name in trusted_targets,
+            ),
         }
 
-    direct_module = Path(__file__).with_name("neuwirth_permutation_certificate.py")
-    audit_module = Path(__file__).with_name("neuwirth_dart_audit.py")
     return {
         "schema": SCHEMA,
         "composition": COMPOSITION,
         "targets": target_entries,
         "source_commit": source_commit,
-        "direct_module_sha256": _module_sha256(str(direct_module)),
-        "audit_module_sha256": _module_sha256(str(audit_module)),
+        **{
+            field: _module_sha256(ROOT / relative_path)
+            for field, relative_path in MODULE_PATHS.items()
+        },
     }
+
+
+def _resolve_source_commit(source_commit: object) -> str:
+    if (
+        not isinstance(source_commit, str)
+        or re.fullmatch(r"[0-9a-f]{40}", source_commit) is None
+    ):
+        raise ValueError("certificate source commit must be a full Git commit")
+    try:
+        resolved = subprocess.run(
+            ["git", "rev-parse", "--verify", f"{source_commit}^{{commit}}"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    except subprocess.CalledProcessError as error:
+        raise ValueError("certificate source commit does not resolve") from error
+    if resolved != source_commit:
+        raise ValueError("certificate source commit did not resolve exactly")
+    return resolved
+
+
+def _git_blob_sha256(source_commit: str, relative_path: Path) -> str:
+    try:
+        content = subprocess.run(
+            ["git", "show", f"{source_commit}:{relative_path.as_posix()}"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        ).stdout
+    except subprocess.CalledProcessError as error:
+        raise ValueError(
+            f"source commit does not contain {relative_path.as_posix()}"
+        ) from error
+    return hashlib.sha256(content).hexdigest()
+
+
+def _authenticate_source_modules(
+    certificate: Mapping[str, object],
+    source_commit: str,
+) -> None:
+    for field, relative_path in MODULE_PATHS.items():
+        recorded_hash = certificate.get(field)
+        if not isinstance(recorded_hash, str):
+            raise ValueError(f"certificate has no {field}")
+        committed_hash = _git_blob_sha256(source_commit, relative_path)
+        if recorded_hash != committed_hash:
+            raise AssertionError(f"recorded {field} hash does not match source commit")
+        current_hash = _module_sha256(ROOT / relative_path)
+        if current_hash != committed_hash:
+            raise AssertionError(f"current {field} hash does not match source commit")
 
 
 def verify_certificate(certificate: Mapping[str, object]) -> bool:
@@ -111,9 +198,7 @@ def verify_certificate(certificate: Mapping[str, object]) -> bool:
         raise ValueError("unsupported certificate schema")
     if certificate.get("composition") != COMPOSITION:
         raise ValueError("unsupported permutation composition convention")
-    source_commit = certificate.get("source_commit")
-    if not isinstance(source_commit, str) or not source_commit:
-        raise ValueError("certificate has no source commit")
+    source_commit = _resolve_source_commit(certificate.get("source_commit"))
     encoded_targets = certificate.get("targets")
     if not isinstance(encoded_targets, Mapping):
         raise ValueError("certificate targets must be an object")
@@ -128,18 +213,24 @@ def verify_certificate(certificate: Mapping[str, object]) -> bool:
         ):
             raise ValueError(f"invalid exact words for target {name!r}")
         targets[name] = tuple(words)
+    if targets != TARGETS:
+        raise ValueError("certificate does not contain the exact canonical targets")
 
-    recomputed = build_certificate(targets, source_commit=source_commit)
+    _authenticate_source_modules(certificate, source_commit)
+    recomputed = build_certificate(
+        targets,
+        source_commit=source_commit,
+        trusted_balanced_trivial_targets=frozenset(TARGETS),
+    )
     if dict(certificate) != recomputed:
         raise AssertionError("certificate replay mismatch")
     return True
 
 
 def _clean_source_commit() -> str:
-    root = Path(__file__).resolve().parents[3]
     status = subprocess.run(
         ["git", "status", "--porcelain", "--untracked-files=no"],
-        cwd=root,
+        cwd=ROOT,
         check=True,
         capture_output=True,
         text=True,
@@ -148,7 +239,7 @@ def _clean_source_commit() -> str:
         raise RuntimeError("refusing to generate from a dirty tracked worktree")
     return subprocess.run(
         ["git", "rev-parse", "HEAD"],
-        cwd=root,
+        cwd=ROOT,
         check=True,
         capture_output=True,
         text=True,
@@ -169,6 +260,7 @@ def main() -> None:
         certificate = build_certificate(
             TARGETS,
             source_commit=_clean_source_commit(),
+            trusted_balanced_trivial_targets=frozenset(TARGETS),
         )
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(
