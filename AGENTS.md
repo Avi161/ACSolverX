@@ -125,3 +125,8 @@
 
 - [TRAP] `two_hop_cov_thickenability_certificate.build_certificate` validated stable CoV hypotheses only while generating its default production paths. Explicit paths used by tests could set `n_cov=n_subs=0` and still receive `stable_move_hypotheses_verified=true`.
 - [WORKS] Validate injected inputs against the exact upstream first-hop census, regenerate each parent's exact second-hop family, recheck every stable-move hypothesis, and require membership in the regenerated outputs. Bind direct codec dependencies such as `experiments/greedy_tests/spec/words.py` in the source manifest rather than relying only on complete payload replay.
+
+### 2026-07-24 Stable ambient automorphism rank
+
+- [TRAP] `PROOFS.tex` proves the stable ambient automorphism principle only for balanced rank-two presentations. Citing it directly for a primitive pair in \(F_4\) leaves an arity gap even though the generalization is natural.
+- [WORKS] Before using an ambient automorphism in higher stable rank, prove the rank-\(n\) form from the substitution-and-removal exchange: fresh-letter renames realize swaps and inversions, and adjoining \(v^{-1}a_i a_j^{-1}\), removing \(a_i\), then renaming \(v\) realizes a Nielsen transvection.
