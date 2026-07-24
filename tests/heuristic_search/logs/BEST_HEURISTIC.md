@@ -15,7 +15,7 @@ The right denominator is **the 24 rows in difficulty bins 4–7** — the ones t
 
 **The threshold is only needed for the lean ordering** (EXP-18). A climb carrying *only* a knot term must be switched back to pure length below 16, or it keeps chasing knots into the endgame where nothing structural is left to buy — that is worth +3 to +5 presentations. The richer climb already contains `smaller-block` and `max-knots`, both of which fall as a pair approaches the trivial state, so it self-regulates: with and without the threshold it scores the identical 19/24 at budget 1,000. If you use the budget-1000 ordering, it is a **single weight vector with no phases at all** — simpler than the phased form this document previously recommended. (`T = 16` is still a safe default if you want one: it is among the optima in 7 of 8 measured cases.)
 
-**Counted as problems rather than rows, which is the honest unit.** Those 24 rows are only **19 distinct automorphism classes** — several are the same presentation up to a change of variables, so a row count double-counts. On distinct problems the tuned ordering solves **16/19 at budget 1000 against the baseline's 5/19**, and **13/19 vs 2/19** at 500. Only three distinct problems resist it (classes 93, 97, 98; class 93 alone contributes three of the five "unsolved rows"). This is the same discipline the equivalence-class work already established for this benchmark — quotient by every symmetry that preserves the question before counting anything.
+**Counted as problems rather than rows, which is the honest unit.** Those 24 rows are only **19 distinct automorphism classes** — several are the same presentation up to a change of variables, so a row count double-counts. On distinct problems the tuned ordering solves **16/19 at budget 1000 against the baseline's 5/19**, and **13/19 vs 2/19** at 500. Only three distinct problems resist it (classes 93, 97, 98; class 93 alone contributes three of the five "unsolved rows") — and all but one of those is reachable by a second ordering from a different family, see below. This is the same discipline the equivalence-class work already established for this benchmark — quotient by every symmetry that preserves the question before counting anything.
 
 At budget 1000 that is a near-4× improvement on the rows in question (5 → 19 of 24). On the leak-free held-out slice, restricted to the same bins 4–7, the tuned ordering solves **7/7** where the baseline solves **1/7** (at 500: 5/7 vs 1/7). It also solves *shorter*: on the 29 rows both solve at 1000, mean path **17.3 vs 19.2** — a win on the secondary criterion too.
 
@@ -45,6 +45,21 @@ Two caveats worth keeping. It has not been run inside `run_baseline.py`'s resume
 What shifts with budget is how rich the climb should be. At 500 a lean knots + generator-imbalance climb is best — a richer one wastes early pops — and it needs the length-16 boundary to stop it chasing knots into the endgame. At 1000 the richer climb overtakes it (bins 4–7: 11 → 19 with budget, where the lean one holds at 16) and no longer needs the boundary at all. That crossover is the whole reason to re-tune at the budget you actually run.
 
 **One honest wrinkle on the 1000 pick.** The selection procedure actually chose a *block* climb (`L − 2·max-block + 5·smaller-block`, also threshold-free) — it and the knot climb both reach 43/66 and both solve 7/7 on the held-out bins 4–7, a dead tie. I recommend the knot climb above because it is the more principled (it is what the whole study points at) and it is what the budget-1000 promotion (EXP-06) selected; the block config is an equally-good empirical alternative, not a better one. If you want one ordering for both budgets, use the 500 row.
+
+## If you have compute for two runs, make the second one *different*
+
+The single most useful thing found late in this program, and it inverts the obvious move. At budget 1,000 on the decidable band:
+
+| second ordering, run at **full** budget alongside the recommended climb | alone | union with the climb |
+|---|---|---|
+| `blocks` — another finalist, equally strong | **19**/24 | 19/24 — **adds nothing** |
+| `while L>16: L + 7.5·smaller-block + 1.2·imbal`, **no knot term at all** | 15/24 | **23**/24 — adds 4 rows |
+
+A *weaker* ordering from a **different family** is worth far more as a partner than an equally strong one from the same family. At budget 1,000 the union of all five finalists is 19/24 — exactly what the best single reaches — so they are redundant with one another: they find the same presentations easy and the same ones hard. The four extra rows (`ms568`, `ms573`, `ms578`, `ms583`) come from leaving the knot family entirely.
+
+So: **with 2× the compute, run the recommended climb and one structurally different ordering at full budget each.** Do *not* run two knot climbs, and do not divide one budget between them — splitting loses at every ratio tested (EXP-17, EXP-20).
+
+One caveat on the number: those complements were picked *because* they solved rows the finalists miss, so 23/24 is optimistic on exactly those rows. The qualitative claim — a different family reaches different presentations — is what the experiment supports; treat the count as a demonstration, not an out-of-sample estimate.
 
 ## Which one to run at Colab scale
 
