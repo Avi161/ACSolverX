@@ -23,12 +23,16 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-01](EXP01_mrl.md) | does raising the relator cap above 24 do anything? | **inert under length-ordering** — 24/32/48/64 bit-identical; must be tested as an interaction (→ EXP-05) |
 | [EXP-02](EXP02_single.md) | which single features carry signal, and at what sign? | **knots win** — `L+8K` 17/40→23/40 (p=0.031); decidable 2/10→8/10; winner pops a 28-letter relator |
 | [EXP-03](EXP03_segments.md) | should the ordering change phase as the state shortens? | **yes** — `[<=16]L1[<=inf]K8+L1` 25/40 (p=0.008); climb while long, revert to length when short; inverted never beats control |
-| [EXP-04](EXP04_multi.md) | joint weight search, with best-of-N optimism measured | running |
+| [EXP-04](EXP04_multi.md) | joint weight search, with best-of-N optimism measured | **27/40, optimism only 0.20** — phased `K8.9+xyimb-6`, margin is signal not selection |
 | [EXP-05](EXP05_cap.md) | does the cap bind once the ordering climbs? | queued |
 | [EXP-06](EXP06_promote.md) | do the 500-node winners hold at budget 1,000? | queued |
 | [EXP-07](EXP07_knot_proxy.md) | does knot-progress predict a solve? (gate before ranking the 2nd hump on it) | **NO** — P(solve\|knot drop)=0.10 vs 0.14; length-progress fails too; rank the 2nd hump on real solves only |
-| [EXP-08](EXP08_reach.md) | can any ordering crack a 2nd-hump row at ≤1,000? | queued (expected: none) |
-| [FINDINGS](FINDINGS.md) | the winner, on the aut-disjoint split, with the overfit price | queued |
+| [EXP-05](EXP05_cap.md) | does the cap bind once the ordering climbs? | **reaches the cap but no extra solves** — climb pops maxpop 31 (vs 19 for length), yet 27/40 at every cap 24–96 |
+| [EXP-06](EXP06_promote.md) | do the 500-node winners hold at budget 1,000? | **no — the winner changes** — richer knot climb 25→29 while the lean 500-winner plateaus 27→27 |
+| [EXP-08](EXP08_reach.md) | can any ordering crack a 2nd-hump row at ≤1,000? | **none** (as expected — needs 60k–10M+ nodes) |
+| [EXP-09](EXP09_fullbench.md) | the finalists on the full 66-benchmark | **26→40 at 500, 29→43 at 1000** (+14 solves each) |
+| [FINDINGS](FINDINGS.md) | winner on the aut-disjoint split, per budget, overfit priced | baseline 0 → **4/6** (500), **6/6** (1000) held-out decidable |
+| **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **phase at length 16; climb on knots (+blocks at 1000); revert to length below** |
 
 ## Two splits
 
