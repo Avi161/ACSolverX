@@ -2,9 +2,9 @@
 
 Everything below is arithmetic from measured quantities, written down **before** the bench66 100k run finished, so the decision procedure is on record rather than reconstructed after the fact.
 
-## The gate
+## The gate — RESOLVED: FIRE (2026-07-24, [EXP-28](EXP28_colab_scale.md))
 
-Do not launch this campaign until the bench66 run's gap table (`hsearch_ab_bench66_b100000_mrl48.md`, section "The gap over the baseline") says **still widening**. The local study saw +12 → +14 between budgets 500 and 1,000 and everything past that is extrapolation; if the gap flattens by 100k, the ordering buys earliness rather than reach, and burning ~2.5 days of Colab on the 124 buys a foregone conclusion. If it widens, the campaign below is the right next spend.
+The bench66 run at 100k landed. The raw gap metric read "turned over" — a saturation artifact: **the tuned ordering finished the benchmark at 62,534 nodes (60/60 graded)**, so past that point the gap could only compress. Where headroom existed the scale answer is emphatic: 6/6 on bin 9 where the baseline takes 0/6 at 100k, and a **3.4×–23× node multiplier** against the baseline's `nodes_1M` on the hump band. A tuned run at 10⁶ therefore probes a baseline-equivalent ~3.4M–23M, and 3×10⁶ probes ~10M–70M — past the 10⁷ regime the 124 are known to survive. Prior for solves stays low (bin-8 parity rows show the multiplier can be ~1×), but this is the first probe of a genuinely new region. The campaign below is the right next spend.
 
 ## What to run
 
@@ -32,13 +32,13 @@ Measured worst-case on these exact rows at cap 48 (full-budget burns): `hsolve` 
 
 ## Time — a multi-session campaign, and that is fine
 
-Rates measured: ~1,600–2,700 nodes/s on these rows locally at small heaps; **742 nodes/s on Colab mid-way into a 100k burn** (the honest at-scale anchor — the rate falls as the heap and relators grow, so expect 400–700 nodes/s in the tail of a 10⁶ burn). Since ~everything burns the full budget here, per search that is **~24–40 min**, and for 124 searches **~50–85 hours single-arm**. No Colab session survives that: the campaign is 3–5 sessions of Restart → Run All, and the per-row append-and-fsync plus `RESUME=True` means a disconnect costs at most the search in flight. Nothing needs babysitting beyond re-opening the notebook.
+Rates now **measured at scale in EXP-28's full-budget tails**: the user's VM sustained **~170–820 nodes/s** on the open rows at 100k under `hsolve` (state-size dependent; the earlier 742/s reading was one mid-burn sample, not the tail). Budget hours from ~200–500 nodes/s: a 10⁶ burn is **~33–85 min per presentation**, so 124 searches is **~70–170 hours single-arm** (`hcompact` is ~13% faster at small heaps and should degrade less at depth — treat that as upside, not a plan input). No Colab session survives that: the campaign is 4–8 sessions of Restart → Run All, and the per-row append-and-fsync plus `RESUME=True` means a disconnect costs at most the search in flight. Nothing needs babysitting beyond re-opening the notebook.
 
-If 85 hours is too much, cut the *rows*, never the budget's tail: run the 124 in difficulty order if a priority subset exists, or accept a first pass at 250k (~13–21 h) — the checkpoint column means a later 10⁶ pass resumes nothing wasted, because a longer search's first 250k pops are exactly the shorter search.
+If that is too many hours, cut the *rows*, never the budget's tail: run the 124 in difficulty order if a priority subset exists, or accept a first pass at 250k (~17–43 h) — the checkpoint column means a later 10⁶ pass resumes nothing wasted, because a longer search's first 250k pops are exactly the shorter search. (But remember the budget-in-filename rule from above: a later, larger run starts a new file.)
 
 ## What to expect, and what would actually be signal
 
-The honest prior is **0/124**. At budget 1,000 both ordering families went 0 for 3,920 searches on these classes, and the tuned ordering's wins on the benchmark came from reordering *reachable* solutions, not from reaching new ones. The campaign is still worth running if the gap gate passes, because 10⁶ tuned nodes explore a genuinely different ball than 10⁷ length-ordered nodes — the ordering changes *which* states are in the ball, not just their order (EXP-16's widening gap is the evidence that difference grows with budget).
+The honest prior is still **0/124**, but EXP-28 sharpened it in both directions. Against it: both ordering families went 0 for 3,920 searches at budget 1,000, and on the bin-8 band (ms622–ms625) the tuned multiplier is only ~1×. For it: on bin 9 the multiplier is 3.4–23×, so a tuned 10⁶ probes a baseline-equivalent **~3.4M–23M** and a tuned 3×10⁶ probes **~10M–70M — beyond the 10⁷ regime the 124 are defined by surviving**. The ordering changes *which* states are in the ball, not just their order; the 124 have never been searched in this ball at depth.
 
 **One solve would be a major result** — the first member of the 124 ever solved by direct search. The row's `path_moves` is the certificate (recovered automatically despite `KEEP_PATH=False`); verify it by replay through `moves_to_states` before believing it, and treat the presentation's whole AC-class as settled, not just the row.
 
