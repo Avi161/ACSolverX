@@ -1,0 +1,14 @@
+{
+ "best": "[<=16]L1[<=inf]K9.39+L1+S4.742+imbal0.092",
+ "best_decidable": 20,
+ "baseline_decidable": 12,
+ "decidable_n": 24,
+ "optimism": {
+  "gain_selection_half": 4.25,
+  "gain_held_half": 3.025,
+  "optimism": 1.225,
+  "distinct_winners": 7,
+  "modal_winner": "[<=16]L1[<=inf]K9.39+L1+S4.742+imbal0.092"
+ },
+ "prior_best": 20
+}

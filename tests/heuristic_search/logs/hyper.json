@@ -1,0 +1,811 @@
+{
+ "fullbench": {
+  "500": [
+   {
+    "label": "baseline (length)",
+    "total": [
+     26,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     2,
+     6
+    ],
+    "b5": [
+     0,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     0,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "500-winner: phased K+xyimb",
+    "total": [
+     40,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "1000-winner: phased blocks",
+    "total": [
+     35,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     6,
+     6
+    ],
+    "b5": [
+     5,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     0,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "richer knot climb (EXP-06)",
+    "total": [
+     38,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     4,
+     6
+    ],
+    "b5": [
+     5,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "simple phased K8",
+    "total": [
+     36,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     5,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   }
+  ],
+  "1000": [
+   {
+    "label": "baseline (length)",
+    "total": [
+     29,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     0,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     0,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "500-winner: phased K+xyimb",
+    "total": [
+     40,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "1000-winner: phased blocks",
+    "total": [
+     43,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     6,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     5,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "richer knot climb (EXP-06)",
+    "total": [
+     43,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     6,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     5,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "simple phased K8",
+    "total": [
+     40,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   }
+  ]
+ },
+ "feature_screen": [
+  {
+   "feature": "K",
+   "weight": 8,
+   "solved": 23,
+   "net": 6,
+   "p": 0.031
+  },
+  {
+   "feature": "nb",
+   "weight": 4,
+   "solved": 23,
+   "net": 6,
+   "p": 0.031
+  },
+  {
+   "feature": "MK",
+   "weight": 8,
+   "solved": 22,
+   "net": 5,
+   "p": 0.062
+  },
+  {
+   "feature": "xyimb",
+   "weight": -16,
+   "solved": 21,
+   "net": 4,
+   "p": 0.289
+  },
+  {
+   "feature": "Lmax",
+   "weight": 4,
+   "solved": 21,
+   "net": 4,
+   "p": 0.125
+  },
+  {
+   "feature": "S",
+   "weight": 8,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "Bmax",
+   "weight": -2,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "imbal",
+   "weight": 0.5,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "Lmin",
+   "weight": -0.5,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "mK",
+   "weight": -0.5,
+   "solved": 19,
+   "net": 2,
+   "p": 0.5
+  },
+  {
+   "feature": "B1",
+   "weight": -0.25,
+   "solved": 18,
+   "net": 1,
+   "p": 1.0
+  },
+  {
+   "feature": "Bmin",
+   "weight": -4,
+   "solved": 17,
+   "net": 0,
+   "p": 1.0
+  }
+ ],
+ "baseline_train500": 17,
+ "knot_proxy": {
+  "n_windows": 187,
+  "mean_kp_solved": 0.6190476190476191,
+  "mean_kp_unsolved": 0.7530120481927711,
+  "table": {
+   "drop_solved": 12,
+   "drop_unsolved": 109,
+   "nodrop_solved": 9,
+   "nodrop_unsolved": 57
+  },
+  "p_solve_given_drop": 0.09917355371900827,
+  "p_solve_given_no_drop": 0.13636363636363635,
+  "verdict": "NOT VALIDATED \u2014 knot-progress does not discriminate at the boundary; do not rank the second hump on it, use min_total and real solves instead"
+ },
+ "synthesis": {
+  "split": "aut_disjoint",
+  "candidates": [
+   "[<=16]L1[<=inf]K8.936+L1+xyimb-5.978",
+   "[<=14]L1[<=inf]L1+xyimb-16",
+   "[<=8]L1[<=inf]B10.307+L1+MK4.962+S6.408",
+   "[<=16]L1[<=inf]K2.53+L1+MK6.418+S8.458+xyimb3.292",
+   "[<=16]L1[<=inf]K8+L1",
+   "[<=16]L1[<=inf]L1+nb4",
+   "[<=16]L1[<=inf]B11.25+K7.884+L1",
+   "[<=8]L1[<=inf]Bmin-0.113+K1.809+L1+imbal0.743+xyimb-0.118",
+   "[<=8]L1[<=inf]Bmax-3.046+Bmin-0.499+L1+MK0.612+xyimb-0.109",
+   "[<=inf]K7.119+L1+xyimb-2.169",
+   "[<=12]L1[<=inf]B1-0.272+K1.325+L1+MK-0.499+imbal1.031",
+   "[<=16]L1[<=inf]Bmax-2.185+L1+S5.668",
+   "[<=16]L1[<=inf]K2.51+L1+Lmax5.895+mK13.556",
+   "[<=16]L1[<=inf]L1+xyimb-16",
+   "[<=16]L1[<=inf]K4.769+L1+imbal0.291",
+   "[<=16]L1[<=inf]Bmin0.29+L1+Lmax0.333+xyimb-10.785",
+   "[<=inf]K-0.322+L1+Lmax4.993",
+   "[<=inf]B1-0.537+K2.21+L1+Lmax12.02+xyimb0.688",
+   "[<=10]L1[<=inf]Bmax0.228+L1+Lmax10.895",
+   "[<=6]L1[<=inf]Bmax0.147+L1+Lmax11.396",
+   "[<=16]L1[<=inf]K5.579+L1+xyimb-1.066",
+   "[<=16]L1[<=inf]K0.524+L1+Lmax0.235+S0.175+mK12.546",
+   "[<=16]L1[<=inf]B1-0.315+L1+Lmin-0.569+xyimb-0.687",
+   "[<=12]L1[<=inf]Bmax0.394+K7.948+L1+imbal0.162",
+   "[<=14]L1[<=inf]K7.136+L1"
+  ],
+  "by_budget": {
+   "500": {
+    "winner": "[<=16]L1[<=inf]K8.936+L1+xyimb-5.978",
+    "test_gain": 4,
+    "train_gain": 10,
+    "test_decidable": 6,
+    "train_decidable": 11
+   },
+   "1000": {
+    "winner": "[<=16]L1[<=inf]Bmax-2.185+L1+S5.668",
+    "test_gain": 6,
+    "train_gain": 8,
+    "test_decidable": 6,
+    "train_decidable": 11
+   }
+  }
+ },
+ "bins47": {
+  "500": {
+   "baseline": [
+    2,
+    24
+   ],
+   "winner": [
+    16,
+    24
+   ]
+  },
+  "1000": {
+   "baseline": [
+    5,
+    24
+   ],
+   "winner": [
+    19,
+    24
+   ]
+  }
+ },
+ "auttest15": {
+  "n": 15,
+  "500": {
+   "baseline": 9,
+   "winner": 13
+  },
+  "1000": {
+   "baseline": 9,
+   "winner": 15
+  }
+ },
+ "path1000": {
+  "winner": 17.3,
+  "baseline": 19.2,
+  "n": 29
+ },
+ "leak_note": "Candidates were proposed by ranking on the stratified train slice, which overlaps the held-out aut-test rows, so the held-out fraction is an optimistic upper bound, not a clean transfer number.",
+ "knot_block_tie": "The selection procedure chose a block climb (L - 2*max-block + 5*smaller-block) at 1000; it and the knot climb both reach 43/66 and both solve 7/7 held-out. The knot climb is recommended on principle; the block config is an equally-good empirical alternative.",
+ "holdout47": {
+  "n": 7,
+  "500": {
+   "baseline": 1,
+   "winner": 5
+  },
+  "1000": {
+   "baseline": 1,
+   "winner": 7
+  }
+ },
+ "harness_note": "Runnable: experiments/heuristic_search/hsolve.py exposes greedy_search_h, a drop-in for greedy_baseline.greedy_search that takes the ordering as a config and returns the identical dict \u2014 certificate path, path_moves, min/max relators, every key \u2014 so nothing downstream changes. Verified three ways: config=None reproduces the baseline field for field; under a tuned ordering it pops identically to the research harness every number here was measured with; and its certificates replay independently through moves_to_states onto a trivial pair. Not yet exercised inside run_baseline's resume/W&B machinery, and it uses the string-keyed dict rather than the compact packed arena, so size memory accordingly at very large budgets.",
+ "wave2": {
+  "distinct_problems": {
+   "note": "bins 4-7 are 24 rows but only 19 distinct automorphism classes",
+   "500": {
+    "baseline": 2,
+    "best": 13,
+    "n": 19
+   },
+   "1000": {
+    "baseline": 5,
+    "best": 16,
+    "n": 19
+   },
+   "resisting": 3
+  },
+  "speedup": [
+   {
+    "name": "ms633",
+    "baseline_nodes": 26838,
+    "knot_nodes": 108,
+    "factor": 248
+   },
+   {
+    "name": "ms628",
+    "baseline_nodes": 26774,
+    "knot_nodes": 107,
+    "factor": 250
+   },
+   {
+    "name": "ms575",
+    "baseline_nodes": 14383,
+    "knot_nodes": 422,
+    "factor": 34
+   },
+   {
+    "name": "ms581",
+    "baseline_nodes": 9567,
+    "knot_nodes": 385,
+    "factor": 25
+   }
+  ],
+  "speedup_note": "the three problems that resist cost the baseline only 13k-16k nodes - LESS than the two beaten 250x, so difficulty under length ordering does not predict difficulty under the knot ordering",
+  "knot_threshold": {
+   "easy": {
+    "k": [
+     0.5,
+     1,
+     2,
+     3,
+     4,
+     8,
+     16
+    ],
+    "solved": [
+     16,
+     16,
+     16,
+     16,
+     16,
+     16,
+     16
+    ],
+    "n": 16
+   },
+   "hard": {
+    "k": [
+     0.5,
+     1,
+     2,
+     3,
+     4,
+     8,
+     16
+    ],
+    "solved": [
+     0,
+     0,
+     0,
+     3,
+     3,
+     3,
+     3
+    ],
+    "n": 8
+   },
+   "verdict": "On hard presentations the knot term is the difference between solving three and solving none; on easy ones it is irrelevant. But the optimum does not climb with difficulty - it is a threshold to clear, not a dial to turn up, so one weight serves every stratum."
+  },
+  "negatives": [
+   {
+    "axis": "depth (weighted A*)",
+    "result": "1 of 216 arms beat its incumbent, on the weakest one, at one budget only - a null result"
+   },
+   {
+    "axis": "a third length tier",
+    "result": "never beats two tiers at either budget, and costs two more parameters"
+   },
+   {
+    "axis": "second feature family",
+    "result": "unlocked no row the winner misses - but with no headroom to find one: the winner already solved every row of that experiment's own decidable set (a data-derived set over its own configs, not the fixed bins 4-7 band used elsewhere here), so no arm could have shown an improvement"
+   }
+  ],
+  "unsolved124": {
+   "classes": 124,
+   "relabels": 8,
+   "starts": 980,
+   "orderings": 4,
+   "searches": 3920,
+   "solved": 0,
+   "budget": 1000,
+   "cap": 64,
+   "knot_reduced": {
+    "baseline": 74,
+    "best": 94,
+    "n": 124
+   },
+   "note": "Every one of the 124 unsolved AC-classes, each entered as its distinct signed-permutation relabels \u2014 980 starts, not 992, because three of the classes are symmetric enough to be fixed by half the permutations \u2014 under all four best orderings, for 3,920 searches. Zero solves: the expected result, now measured over the whole target set rather than inferred from a six-row sample. These classes survived a 10^6-node search and 1,000 nodes is three orders of magnitude short."
+  }
+ },
+ "wave3": {
+  "scaling": {
+   "grid": [
+    500,
+    1000
+   ],
+   "rows": [
+    {
+     "ordering": "L + 8K - 6 xyimb (the 500 winner)",
+     "g500": 14,
+     "g1000": 11,
+     "tail": "turning over"
+    },
+    {
+     "ordering": "L + 8K",
+     "g500": 10,
+     "g1000": 11,
+     "tail": "flat (within noise)"
+    },
+    {
+     "ordering": "the richer climb",
+     "g500": 12,
+     "g1000": 14,
+     "tail": "still growing"
+    }
+   ],
+   "note": "Gap over the length baseline on the 24 decidable rows. Over the whole range every ordering widens (the baseline solves nothing below 500); what bears on a 10^6 run is the tail. Only the richer climb is still converting budget into new solves where the local ceiling cuts the curve off - and that agrees with EXP-06, which found the same crossover by a different route (richer 25->29 with budget while the lean winner plateaued 27->27)."
+  },
+  "threshold": {
+   "rows": [
+    {
+     "climb": "L + 8K",
+     "terms": "length + knots",
+     "worth": "+3 / +3"
+    },
+    {
+     "climb": "L + 8.9K - 6 xyimb",
+     "terms": "+ generator imbalance",
+     "worth": "+4 / +5"
+    },
+    {
+     "climb": "the richer climb",
+     "terms": "+ max-knots, smaller-block",
+     "worth": "+1 / +0"
+    },
+    {
+     "climb": "the block climb",
+     "terms": "length + block extremes",
+     "worth": "+0 / +0"
+    }
+   ],
+   "note": "What the endgame phase boundary is worth (budget 500 / 1000). It is load-bearing only for LEAN knot-only climbs: near the trivial state there is nothing structural left to buy, so an ordering carrying only a knot term wanders instead of cancelling and must be forced back to length. The richer climbs already carry smaller-block and max-knots, both of which fall as a pair approaches trivial, so they self-regulate. Consequence: the recommended ordering is a SINGLE weight vector with no phases at all."
+  },
+  "portfolio": {
+   "rows": [
+    {
+     "k": 1,
+     "each": 1000,
+     "richer": 19,
+     "K8": 16,
+     "baseline": 5
+    },
+    {
+     "k": 2,
+     "each": 500,
+     "richer": 14,
+     "K8": 12,
+     "baseline": 3
+    },
+    {
+     "k": 4,
+     "each": 250,
+     "richer": 8,
+     "K8": 10,
+     "baseline": 0
+    },
+    {
+     "k": 8,
+     "each": 125,
+     "richer": 3,
+     "K8": 4,
+     "baseline": 0
+    }
+   ],
+   "note": "At a FIXED total budget, one deep search versus k shallow searches from k signed-permutation relabels. Depth wins monotonically for every ordering, with no crossover. The mechanism is that a divided search which succeeds almost always succeeds on the FIRST string it is given - the alternates run and contribute nothing at these depths, so splitting only shortens the search that was going to work."
+  },
+  "union": {
+   "best_single": 19,
+   "union": 23,
+   "n": 24,
+   "frontier": "ms596",
+   "note": "The best single ordering solves 19 of the 24 decidable rows, but the union over every ordering tried in this program solves 23 - only ms596 (aut class 97) has resisted every configuration, across 607 recorded attempts. Different orderings solve different presentations, which is the same thing the 250x result says: the heuristic reorders difficulty rather than uniformly improving it."
+  },
+  "unsolved124_done": true
+ },
+ "headline": {
+  "baseline": 20,
+  "tuned": 50,
+  "n": 75,
+  "budget": 1000,
+  "baseline_500": 11,
+  "tuned_500": 39,
+  "gained": 30,
+  "lost": 0,
+  "note": "On 75 presentations no stage of this program ever read \u2014 not the shortlist, not the weight search, not the promotion, not any split \u2014 in the decidable band, at budget 1000: baseline 20 of 75, tuned 50 of 75. That is 67% against 27%, and a strict superset: 30 presentations gained, 0 lost. At budget 500 it is 11 of 75 against 39. Per bin the separation is total \u2014 the length baseline solves nothing at all in bins 5, 6 and 7 (0/20, 0/22, 0/8) where the tuned ordering takes 16/20 and 9/22. These come from data/ms640_solved.txt, the 640-presentation set the 66-row benchmark was drawn from; the 580 outside the benchmark were never in any file this program read."
+ },
+ "complement_cv": {
+  "complement": 1.18,
+  "strength": 0.27,
+  "random": 0.04,
+  "premium": 0.24,
+  "live": 3,
+  "note": "Cross-validated over 200 half-splits inside a 320-config x 45-row matrix, no new searches. Picking a second ordering FOR COMPLEMENTARITY adds 1.18 rows out of sample, against 0.27 for picking the strongest stand-alone arm and 0.04 for a random one \u2014 so the strategy is worth about 4x the default choice, with a small 0.24-row hindsight premium. Expect roughly one extra presentation, not four; on that slice only 3 rows were even available to gain."
+ },
+ "hump_both_families": {
+  "rows": 18,
+  "orderings": 6,
+  "solved": 0,
+  "note": "Every earlier attempt on the hard tier used knot climbs or close relatives. Since the finalists turn out to be redundant with each other, that negative was a claim about one family. Pointing six deliberately different orderings at bins 8-9 and the reach rows \u2014 including the cross-validation-winning Bspread climb and two led by features never tried there \u2014 still solves nothing. The negative is no longer family-specific."
+ },
+ "correction": {
+  "was": "1 of 6 -> 6 of 6 on held-out automorphism classes",
+  "now": "20 of 75 -> 50 of 75",
+  "note": "An earlier version of this page led with 1 of 6 -> 6 of 6 on held-out automorphism classes. That split was genuinely automorphism-disjoint, but the weight vector was selected on a DIFFERENT slice \u2014 the stratified 40-row one \u2014 which contained 4 of those 7 rows. An independent audit of the raw jsonl caught it. Removing every row any tuning stage read left only 3 classes, because the two training slices between them cover 52 of the benchmark's 60 ladder rows: the benchmark is too small to support both this much tuning and a real holdout. Going outside it gave the figure above. A split is only held out from the stage that actually chose the thing being scored."
+ },
+ "retune": {
+  "configs": 260,
+  "tune_n": 50,
+  "eval_n": 25,
+  "winner_tune": 29,
+  "winner_eval": 19,
+  "incumbent_tune": 31,
+  "incumbent_eval": 19,
+  "baseline_eval": 7,
+  "note": "The standing objection to any tuned ordering is that it is only the best ordering its training set could reveal. 260 fresh configs over all 17 features were fitted on 50 presentations no earlier stage had read, then scored on 25 held back by a split frozen before any fitting. The re-tuned winner reached 19 of 25 \u2014 a dead tie with the incumbent \u2014 and lost the half it was selected on (29 of 50 against 31). A config fitted on entirely different presentations is better on the re-tune's own training data than the re-tune's own winner. On those 25 rows the baseline gets 7."
+ }
+}

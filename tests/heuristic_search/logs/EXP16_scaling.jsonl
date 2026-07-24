@@ -1,0 +1,240 @@
+{"ordering": "baseline (length)", "name": "ms0", "bin": 0, "mrl": 48, "solved": true, "solved_at": 3, "path_length": 2}
+{"ordering": "baseline (length)", "name": "ms496", "bin": 0, "mrl": 48, "solved": true, "solved_at": 4, "path_length": 3}
+{"ordering": "baseline (length)", "name": "ms521", "bin": 0, "mrl": 48, "solved": true, "solved_at": 5, "path_length": 4}
+{"ordering": "baseline (length)", "name": "ms323", "bin": 0, "mrl": 48, "solved": true, "solved_at": 7, "path_length": 6}
+{"ordering": "baseline (length)", "name": "ms228", "bin": 0, "mrl": 48, "solved": true, "solved_at": 9, "path_length": 7}
+{"ordering": "baseline (length)", "name": "ms455", "bin": 0, "mrl": 48, "solved": true, "solved_at": 10, "path_length": 9}
+{"ordering": "baseline (length)", "name": "ms77", "bin": 1, "mrl": 48, "solved": true, "solved_at": 11, "path_length": 8}
+{"ordering": "baseline (length)", "name": "ms43", "bin": 1, "mrl": 48, "solved": true, "solved_at": 13, "path_length": 9}
+{"ordering": "baseline (length)", "name": "ms141", "bin": 1, "mrl": 48, "solved": true, "solved_at": 12, "path_length": 10}
+{"ordering": "baseline (length)", "name": "ms48", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 11}
+{"ordering": "baseline (length)", "name": "ms155", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 12}
+{"ordering": "baseline (length)", "name": "ms505", "bin": 1, "mrl": 48, "solved": true, "solved_at": 34, "path_length": 23}
+{"ordering": "baseline (length)", "name": "ms247", "bin": 2, "mrl": 48, "solved": true, "solved_at": 46, "path_length": 9}
+{"ordering": "baseline (length)", "name": "ms217", "bin": 2, "mrl": 48, "solved": true, "solved_at": 57, "path_length": 13}
+{"ordering": "baseline (length)", "name": "ms201", "bin": 2, "mrl": 48, "solved": true, "solved_at": 61, "path_length": 15}
+{"ordering": "baseline (length)", "name": "ms288", "bin": 2, "mrl": 48, "solved": true, "solved_at": 106, "path_length": 17}
+{"ordering": "baseline (length)", "name": "ms367", "bin": 2, "mrl": 48, "solved": true, "solved_at": 83, "path_length": 21}
+{"ordering": "baseline (length)", "name": "ms331", "bin": 2, "mrl": 48, "solved": true, "solved_at": 93, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms203", "bin": 3, "mrl": 48, "solved": true, "solved_at": 116, "path_length": 16}
+{"ordering": "baseline (length)", "name": "ms265", "bin": 3, "mrl": 48, "solved": true, "solved_at": 121, "path_length": 21}
+{"ordering": "baseline (length)", "name": "ms579", "bin": 3, "mrl": 48, "solved": true, "solved_at": 366, "path_length": 26}
+{"ordering": "baseline (length)", "name": "ms327", "bin": 3, "mrl": 48, "solved": true, "solved_at": 273, "path_length": 29}
+{"ordering": "baseline (length)", "name": "ms333", "bin": 3, "mrl": 48, "solved": true, "solved_at": 313, "path_length": 35}
+{"ordering": "baseline (length)", "name": "ms380", "bin": 3, "mrl": 48, "solved": true, "solved_at": 381, "path_length": 39}
+{"ordering": "baseline (length)", "name": "ms546", "bin": 4, "mrl": 48, "solved": true, "solved_at": 398, "path_length": 24}
+{"ordering": "baseline (length)", "name": "ms548", "bin": 4, "mrl": 48, "solved": true, "solved_at": 661, "path_length": 28}
+{"ordering": "baseline (length)", "name": "ms533", "bin": 4, "mrl": 48, "solved": true, "solved_at": 438, "path_length": 43}
+{"ordering": "baseline (length)", "name": "ms589", "bin": 4, "mrl": 48, "solved": true, "solved_at": 558, "path_length": 46}
+{"ordering": "baseline (length)", "name": "ms580", "bin": 4, "mrl": 48, "solved": true, "solved_at": 875, "path_length": 47}
+{"ordering": "baseline (length)", "name": "ms609", "bin": 4, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms538", "bin": 5, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms606", "bin": 5, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms544", "bin": 5, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms549", "bin": 5, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms543", "bin": 5, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms565", "bin": 5, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms602", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms632", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms573", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms586", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms581", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms575", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms568", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms578", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms583", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms628", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms633", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms596", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms605", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms610", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms625", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms622", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms624", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms623", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms634", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms635", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms637", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms639", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms638", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "baseline (length)", "name": "ms636", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms0", "bin": 0, "mrl": 48, "solved": true, "solved_at": 3, "path_length": 2}
+{"ordering": "phased K8", "name": "ms496", "bin": 0, "mrl": 48, "solved": true, "solved_at": 4, "path_length": 3}
+{"ordering": "phased K8", "name": "ms521", "bin": 0, "mrl": 48, "solved": true, "solved_at": 5, "path_length": 4}
+{"ordering": "phased K8", "name": "ms323", "bin": 0, "mrl": 48, "solved": true, "solved_at": 7, "path_length": 6}
+{"ordering": "phased K8", "name": "ms228", "bin": 0, "mrl": 48, "solved": true, "solved_at": 9, "path_length": 7}
+{"ordering": "phased K8", "name": "ms455", "bin": 0, "mrl": 48, "solved": true, "solved_at": 10, "path_length": 9}
+{"ordering": "phased K8", "name": "ms77", "bin": 1, "mrl": 48, "solved": true, "solved_at": 11, "path_length": 8}
+{"ordering": "phased K8", "name": "ms43", "bin": 1, "mrl": 48, "solved": true, "solved_at": 13, "path_length": 9}
+{"ordering": "phased K8", "name": "ms141", "bin": 1, "mrl": 48, "solved": true, "solved_at": 12, "path_length": 10}
+{"ordering": "phased K8", "name": "ms48", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 11}
+{"ordering": "phased K8", "name": "ms155", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 12}
+{"ordering": "phased K8", "name": "ms505", "bin": 1, "mrl": 48, "solved": true, "solved_at": 36, "path_length": 23}
+{"ordering": "phased K8", "name": "ms247", "bin": 2, "mrl": 48, "solved": true, "solved_at": 46, "path_length": 9}
+{"ordering": "phased K8", "name": "ms217", "bin": 2, "mrl": 48, "solved": true, "solved_at": 57, "path_length": 13}
+{"ordering": "phased K8", "name": "ms201", "bin": 2, "mrl": 48, "solved": true, "solved_at": 61, "path_length": 15}
+{"ordering": "phased K8", "name": "ms288", "bin": 2, "mrl": 48, "solved": true, "solved_at": 106, "path_length": 17}
+{"ordering": "phased K8", "name": "ms367", "bin": 2, "mrl": 48, "solved": true, "solved_at": 80, "path_length": 21}
+{"ordering": "phased K8", "name": "ms331", "bin": 2, "mrl": 48, "solved": true, "solved_at": 55, "path_length": 12}
+{"ordering": "phased K8", "name": "ms203", "bin": 3, "mrl": 48, "solved": true, "solved_at": 116, "path_length": 16}
+{"ordering": "phased K8", "name": "ms265", "bin": 3, "mrl": 48, "solved": true, "solved_at": 121, "path_length": 21}
+{"ordering": "phased K8", "name": "ms579", "bin": 3, "mrl": 48, "solved": true, "solved_at": 186, "path_length": 27}
+{"ordering": "phased K8", "name": "ms327", "bin": 3, "mrl": 48, "solved": true, "solved_at": 140, "path_length": 24}
+{"ordering": "phased K8", "name": "ms333", "bin": 3, "mrl": 48, "solved": true, "solved_at": 182, "path_length": 25}
+{"ordering": "phased K8", "name": "ms380", "bin": 3, "mrl": 48, "solved": true, "solved_at": 194, "path_length": 30}
+{"ordering": "phased K8", "name": "ms546", "bin": 4, "mrl": 48, "solved": true, "solved_at": 189, "path_length": 25}
+{"ordering": "phased K8", "name": "ms548", "bin": 4, "mrl": 48, "solved": true, "solved_at": 71, "path_length": 21}
+{"ordering": "phased K8", "name": "ms533", "bin": 4, "mrl": 48, "solved": true, "solved_at": 195, "path_length": 32}
+{"ordering": "phased K8", "name": "ms589", "bin": 4, "mrl": 48, "solved": true, "solved_at": 321, "path_length": 35}
+{"ordering": "phased K8", "name": "ms580", "bin": 4, "mrl": 48, "solved": true, "solved_at": 96, "path_length": 34}
+{"ordering": "phased K8", "name": "ms609", "bin": 4, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms538", "bin": 5, "mrl": 48, "solved": true, "solved_at": 269, "path_length": 31}
+{"ordering": "phased K8", "name": "ms606", "bin": 5, "mrl": 48, "solved": true, "solved_at": 243, "path_length": 29}
+{"ordering": "phased K8", "name": "ms544", "bin": 5, "mrl": 48, "solved": true, "solved_at": 198, "path_length": 50}
+{"ordering": "phased K8", "name": "ms549", "bin": 5, "mrl": 48, "solved": true, "solved_at": 197, "path_length": 59}
+{"ordering": "phased K8", "name": "ms543", "bin": 5, "mrl": 48, "solved": true, "solved_at": 205, "path_length": 54}
+{"ordering": "phased K8", "name": "ms565", "bin": 5, "mrl": 48, "solved": true, "solved_at": 594, "path_length": 87}
+{"ordering": "phased K8", "name": "ms602", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms632", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms573", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms586", "bin": 6, "mrl": 48, "solved": true, "solved_at": 564, "path_length": 97}
+{"ordering": "phased K8", "name": "ms581", "bin": 6, "mrl": 48, "solved": true, "solved_at": 555, "path_length": 97}
+{"ordering": "phased K8", "name": "ms575", "bin": 6, "mrl": 48, "solved": true, "solved_at": 597, "path_length": 90}
+{"ordering": "phased K8", "name": "ms568", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms578", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms583", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms628", "bin": 7, "mrl": 48, "solved": true, "solved_at": 82, "path_length": 36}
+{"ordering": "phased K8", "name": "ms633", "bin": 7, "mrl": 48, "solved": true, "solved_at": 81, "path_length": 36}
+{"ordering": "phased K8", "name": "ms596", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms605", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms610", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms625", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms622", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms624", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms623", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms634", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms635", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms637", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms639", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms638", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K8", "name": "ms636", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms0", "bin": 0, "mrl": 48, "solved": true, "solved_at": 3, "path_length": 2}
+{"ordering": "phased K+xyimb", "name": "ms496", "bin": 0, "mrl": 48, "solved": true, "solved_at": 4, "path_length": 3}
+{"ordering": "phased K+xyimb", "name": "ms521", "bin": 0, "mrl": 48, "solved": true, "solved_at": 5, "path_length": 4}
+{"ordering": "phased K+xyimb", "name": "ms323", "bin": 0, "mrl": 48, "solved": true, "solved_at": 7, "path_length": 6}
+{"ordering": "phased K+xyimb", "name": "ms228", "bin": 0, "mrl": 48, "solved": true, "solved_at": 9, "path_length": 7}
+{"ordering": "phased K+xyimb", "name": "ms455", "bin": 0, "mrl": 48, "solved": true, "solved_at": 10, "path_length": 9}
+{"ordering": "phased K+xyimb", "name": "ms77", "bin": 1, "mrl": 48, "solved": true, "solved_at": 11, "path_length": 8}
+{"ordering": "phased K+xyimb", "name": "ms43", "bin": 1, "mrl": 48, "solved": true, "solved_at": 13, "path_length": 9}
+{"ordering": "phased K+xyimb", "name": "ms141", "bin": 1, "mrl": 48, "solved": true, "solved_at": 12, "path_length": 10}
+{"ordering": "phased K+xyimb", "name": "ms48", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 11}
+{"ordering": "phased K+xyimb", "name": "ms155", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 12}
+{"ordering": "phased K+xyimb", "name": "ms505", "bin": 1, "mrl": 48, "solved": true, "solved_at": 37, "path_length": 23}
+{"ordering": "phased K+xyimb", "name": "ms247", "bin": 2, "mrl": 48, "solved": true, "solved_at": 46, "path_length": 9}
+{"ordering": "phased K+xyimb", "name": "ms217", "bin": 2, "mrl": 48, "solved": true, "solved_at": 57, "path_length": 13}
+{"ordering": "phased K+xyimb", "name": "ms201", "bin": 2, "mrl": 48, "solved": true, "solved_at": 61, "path_length": 15}
+{"ordering": "phased K+xyimb", "name": "ms288", "bin": 2, "mrl": 48, "solved": true, "solved_at": 106, "path_length": 17}
+{"ordering": "phased K+xyimb", "name": "ms367", "bin": 2, "mrl": 48, "solved": true, "solved_at": 73, "path_length": 21}
+{"ordering": "phased K+xyimb", "name": "ms331", "bin": 2, "mrl": 48, "solved": true, "solved_at": 55, "path_length": 12}
+{"ordering": "phased K+xyimb", "name": "ms203", "bin": 3, "mrl": 48, "solved": true, "solved_at": 116, "path_length": 16}
+{"ordering": "phased K+xyimb", "name": "ms265", "bin": 3, "mrl": 48, "solved": true, "solved_at": 121, "path_length": 21}
+{"ordering": "phased K+xyimb", "name": "ms579", "bin": 3, "mrl": 48, "solved": true, "solved_at": 139, "path_length": 27}
+{"ordering": "phased K+xyimb", "name": "ms327", "bin": 3, "mrl": 48, "solved": true, "solved_at": 116, "path_length": 24}
+{"ordering": "phased K+xyimb", "name": "ms333", "bin": 3, "mrl": 48, "solved": true, "solved_at": 169, "path_length": 25}
+{"ordering": "phased K+xyimb", "name": "ms380", "bin": 3, "mrl": 48, "solved": true, "solved_at": 171, "path_length": 30}
+{"ordering": "phased K+xyimb", "name": "ms546", "bin": 4, "mrl": 48, "solved": true, "solved_at": 142, "path_length": 25}
+{"ordering": "phased K+xyimb", "name": "ms548", "bin": 4, "mrl": 48, "solved": true, "solved_at": 71, "path_length": 21}
+{"ordering": "phased K+xyimb", "name": "ms533", "bin": 4, "mrl": 48, "solved": true, "solved_at": 172, "path_length": 32}
+{"ordering": "phased K+xyimb", "name": "ms589", "bin": 4, "mrl": 48, "solved": true, "solved_at": 239, "path_length": 35}
+{"ordering": "phased K+xyimb", "name": "ms580", "bin": 4, "mrl": 48, "solved": true, "solved_at": 76, "path_length": 34}
+{"ordering": "phased K+xyimb", "name": "ms609", "bin": 4, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms538", "bin": 5, "mrl": 48, "solved": true, "solved_at": 231, "path_length": 31}
+{"ordering": "phased K+xyimb", "name": "ms606", "bin": 5, "mrl": 48, "solved": true, "solved_at": 201, "path_length": 36}
+{"ordering": "phased K+xyimb", "name": "ms544", "bin": 5, "mrl": 48, "solved": true, "solved_at": 178, "path_length": 50}
+{"ordering": "phased K+xyimb", "name": "ms549", "bin": 5, "mrl": 48, "solved": true, "solved_at": 171, "path_length": 59}
+{"ordering": "phased K+xyimb", "name": "ms543", "bin": 5, "mrl": 48, "solved": true, "solved_at": 181, "path_length": 54}
+{"ordering": "phased K+xyimb", "name": "ms565", "bin": 5, "mrl": 48, "solved": true, "solved_at": 408, "path_length": 87}
+{"ordering": "phased K+xyimb", "name": "ms602", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms632", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms573", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms586", "bin": 6, "mrl": 48, "solved": true, "solved_at": 385, "path_length": 97}
+{"ordering": "phased K+xyimb", "name": "ms581", "bin": 6, "mrl": 48, "solved": true, "solved_at": 383, "path_length": 97}
+{"ordering": "phased K+xyimb", "name": "ms575", "bin": 6, "mrl": 48, "solved": true, "solved_at": 408, "path_length": 90}
+{"ordering": "phased K+xyimb", "name": "ms568", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms578", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms583", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms628", "bin": 7, "mrl": 48, "solved": true, "solved_at": 75, "path_length": 36}
+{"ordering": "phased K+xyimb", "name": "ms633", "bin": 7, "mrl": 48, "solved": true, "solved_at": 76, "path_length": 36}
+{"ordering": "phased K+xyimb", "name": "ms596", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms605", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms610", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms625", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms622", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms624", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms623", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms634", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms635", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms637", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms639", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms638", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "phased K+xyimb", "name": "ms636", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms0", "bin": 0, "mrl": 48, "solved": true, "solved_at": 3, "path_length": 2}
+{"ordering": "richer knot climb", "name": "ms496", "bin": 0, "mrl": 48, "solved": true, "solved_at": 4, "path_length": 3}
+{"ordering": "richer knot climb", "name": "ms521", "bin": 0, "mrl": 48, "solved": true, "solved_at": 5, "path_length": 4}
+{"ordering": "richer knot climb", "name": "ms323", "bin": 0, "mrl": 48, "solved": true, "solved_at": 7, "path_length": 6}
+{"ordering": "richer knot climb", "name": "ms228", "bin": 0, "mrl": 48, "solved": true, "solved_at": 9, "path_length": 7}
+{"ordering": "richer knot climb", "name": "ms455", "bin": 0, "mrl": 48, "solved": true, "solved_at": 10, "path_length": 9}
+{"ordering": "richer knot climb", "name": "ms77", "bin": 1, "mrl": 48, "solved": true, "solved_at": 11, "path_length": 8}
+{"ordering": "richer knot climb", "name": "ms43", "bin": 1, "mrl": 48, "solved": true, "solved_at": 13, "path_length": 9}
+{"ordering": "richer knot climb", "name": "ms141", "bin": 1, "mrl": 48, "solved": true, "solved_at": 12, "path_length": 10}
+{"ordering": "richer knot climb", "name": "ms48", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 11}
+{"ordering": "richer knot climb", "name": "ms155", "bin": 1, "mrl": 48, "solved": true, "solved_at": 18, "path_length": 12}
+{"ordering": "richer knot climb", "name": "ms505", "bin": 1, "mrl": 48, "solved": true, "solved_at": 37, "path_length": 23}
+{"ordering": "richer knot climb", "name": "ms247", "bin": 2, "mrl": 48, "solved": true, "solved_at": 46, "path_length": 9}
+{"ordering": "richer knot climb", "name": "ms217", "bin": 2, "mrl": 48, "solved": true, "solved_at": 57, "path_length": 13}
+{"ordering": "richer knot climb", "name": "ms201", "bin": 2, "mrl": 48, "solved": true, "solved_at": 61, "path_length": 15}
+{"ordering": "richer knot climb", "name": "ms288", "bin": 2, "mrl": 48, "solved": true, "solved_at": 106, "path_length": 17}
+{"ordering": "richer knot climb", "name": "ms367", "bin": 2, "mrl": 48, "solved": true, "solved_at": 63, "path_length": 21}
+{"ordering": "richer knot climb", "name": "ms331", "bin": 2, "mrl": 48, "solved": true, "solved_at": 93, "path_length": 24}
+{"ordering": "richer knot climb", "name": "ms203", "bin": 3, "mrl": 48, "solved": true, "solved_at": 116, "path_length": 16}
+{"ordering": "richer knot climb", "name": "ms265", "bin": 3, "mrl": 48, "solved": true, "solved_at": 121, "path_length": 21}
+{"ordering": "richer knot climb", "name": "ms579", "bin": 3, "mrl": 48, "solved": true, "solved_at": 102, "path_length": 26}
+{"ordering": "richer knot climb", "name": "ms327", "bin": 3, "mrl": 48, "solved": true, "solved_at": 107, "path_length": 24}
+{"ordering": "richer knot climb", "name": "ms333", "bin": 3, "mrl": 48, "solved": true, "solved_at": 163, "path_length": 25}
+{"ordering": "richer knot climb", "name": "ms380", "bin": 3, "mrl": 48, "solved": true, "solved_at": 165, "path_length": 30}
+{"ordering": "richer knot climb", "name": "ms546", "bin": 4, "mrl": 48, "solved": true, "solved_at": 112, "path_length": 24}
+{"ordering": "richer knot climb", "name": "ms548", "bin": 4, "mrl": 48, "solved": true, "solved_at": 442, "path_length": 30}
+{"ordering": "richer knot climb", "name": "ms533", "bin": 4, "mrl": 48, "solved": true, "solved_at": 166, "path_length": 32}
+{"ordering": "richer knot climb", "name": "ms589", "bin": 4, "mrl": 48, "solved": true, "solved_at": 518, "path_length": 34}
+{"ordering": "richer knot climb", "name": "ms580", "bin": 4, "mrl": 48, "solved": true, "solved_at": 176, "path_length": 38}
+{"ordering": "richer knot climb", "name": "ms609", "bin": 4, "mrl": 48, "solved": true, "solved_at": 763, "path_length": 39}
+{"ordering": "richer knot climb", "name": "ms538", "bin": 5, "mrl": 48, "solved": true, "solved_at": 476, "path_length": 28}
+{"ordering": "richer knot climb", "name": "ms606", "bin": 5, "mrl": 48, "solved": true, "solved_at": 747, "path_length": 41}
+{"ordering": "richer knot climb", "name": "ms544", "bin": 5, "mrl": 48, "solved": true, "solved_at": 227, "path_length": 58}
+{"ordering": "richer knot climb", "name": "ms549", "bin": 5, "mrl": 48, "solved": true, "solved_at": 204, "path_length": 59}
+{"ordering": "richer knot climb", "name": "ms543", "bin": 5, "mrl": 48, "solved": true, "solved_at": 227, "path_length": 62}
+{"ordering": "richer knot climb", "name": "ms565", "bin": 5, "mrl": 48, "solved": true, "solved_at": 422, "path_length": 99}
+{"ordering": "richer knot climb", "name": "ms602", "bin": 6, "mrl": 48, "solved": true, "solved_at": 765, "path_length": 46}
+{"ordering": "richer knot climb", "name": "ms632", "bin": 6, "mrl": 48, "solved": true, "solved_at": 773, "path_length": 51}
+{"ordering": "richer knot climb", "name": "ms573", "bin": 6, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms586", "bin": 6, "mrl": 48, "solved": true, "solved_at": 388, "path_length": 99}
+{"ordering": "richer knot climb", "name": "ms581", "bin": 6, "mrl": 48, "solved": true, "solved_at": 385, "path_length": 99}
+{"ordering": "richer knot climb", "name": "ms575", "bin": 6, "mrl": 48, "solved": true, "solved_at": 422, "path_length": 102}
+{"ordering": "richer knot climb", "name": "ms568", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms578", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms583", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms628", "bin": 7, "mrl": 48, "solved": true, "solved_at": 107, "path_length": 36}
+{"ordering": "richer knot climb", "name": "ms633", "bin": 7, "mrl": 48, "solved": true, "solved_at": 108, "path_length": 36}
+{"ordering": "richer knot climb", "name": "ms596", "bin": 7, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms605", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms610", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms625", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms622", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms624", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms623", "bin": 8, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms634", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms635", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms637", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms639", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms638", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}
+{"ordering": "richer knot climb", "name": "ms636", "bin": 9, "mrl": 48, "solved": false, "solved_at": null, "path_length": null}

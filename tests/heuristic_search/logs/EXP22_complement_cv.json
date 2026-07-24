@@ -1,0 +1,11 @@
+{
+ "n_configs": 320,
+ "n_rows": 45,
+ "base": 28,
+ "live": 3,
+ "complement_held": 1.18,
+ "solo_held": 0.265,
+ "random_held": 0.045,
+ "premium": 0.2350000000000001,
+ "distinct_winners": 2
+}
