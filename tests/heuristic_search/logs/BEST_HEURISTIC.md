@@ -139,7 +139,7 @@ The claim was that on a very hard presentation, reducing even one knot opens up 
 
 **Not supported, in the form it was posed.** The optimum does not keep climbing with difficulty: past the threshold the magnitude stops mattering. It is a threshold to clear, not a dial to turn up — so there is nothing to gain from conditioning the weight on the presentation, and a single value comfortably above it (the 8–9 the winners already use) serves every stratum at once.
 
-Two related negatives, both measured rather than assumed: a **depth** term (weighted-A*) does not improve on a good structural ordering — 1 of 216 arms beat its incumbent, on the weakest one, at one budget only (EXP-11) — and a **third length tier** never beats two (EXP-13). The two-phase, single-knot-weight shape is the whole recommendation; the extra knobs are not worth their parameters.
+Four related negatives, all measured rather than assumed. A **depth** term (weighted-A*) does not improve on a good structural ordering — 1 of 216 arms beat its incumbent, on the weakest one, at one budget only (EXP-11). A **third length tier** never beats two (EXP-13). Flipping the **tie-break** to deepest-first is exactly inert for the recommended ordering (EXP-24). And **beam-style child filtering** loses at every width — keeping only the 8 shortest children solves *nothing* — because the priority is already the filter, so a beam only deletes states the search needed later (EXP-24). The single-vector knot climb is the whole recommendation; every extra knob tested is either inert or harmful.
 
 ## Why knots, and why phased
 
