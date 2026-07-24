@@ -1,0 +1,17 @@
+{
+ "best": "[<=inf]Bmax-2.185+L1+S5.668",
+ "best_decidable": 28,
+ "incumbents": {
+  "richer (recommended)": 28,
+  "richer phased": 28,
+  "blocks": 28
+ },
+ "optimism": {
+  "gain_selection_half": 4.5,
+  "gain_held_half": 2.85,
+  "optimism": 1.65,
+  "distinct_winners": 7
+ },
+ "margin": 0,
+ "decidable_n": 31
+}
