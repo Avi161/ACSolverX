@@ -1,0 +1,109 @@
+{
+ "subset": "benchmark_subset_20",
+ "n": 20,
+ "budgets": [
+  500,
+  1000
+ ],
+ "arms": [
+  "length+4.0*knots",
+  "knots_first@endgame16"
+ ],
+ "max_relator_length": 24,
+ "results": {
+  "500": {
+   "length": {
+    "solved": 9,
+    "won": [],
+    "lost": [],
+    "net": 0,
+    "sign_p": 1.0,
+    "nodes_both": 1097,
+    "nodes_both_ctrl": 1097,
+    "nodes_both_mean": 121.88888888888889,
+    "nodes_both_ctrl_mean": 121.88888888888889,
+    "n_both": 9
+   },
+   "length+4.0*knots": {
+    "solved": 11,
+    "won": [
+     537,
+     633
+    ],
+    "lost": [],
+    "net": 2,
+    "sign_p": 0.5,
+    "nodes_both": 582,
+    "nodes_both_ctrl": 1097,
+    "nodes_both_mean": 64.66666666666667,
+    "nodes_both_ctrl_mean": 121.88888888888889,
+    "n_both": 9
+   },
+   "knots_first@endgame16": {
+    "solved": 11,
+    "won": [
+     537,
+     538,
+     633
+    ],
+    "lost": [
+     546
+    ],
+    "net": 2,
+    "sign_p": 0.625,
+    "nodes_both": 537,
+    "nodes_both_ctrl": 699,
+    "nodes_both_mean": 67.125,
+    "nodes_both_ctrl_mean": 87.375,
+    "n_both": 8
+   }
+  },
+  "1000": {
+   "length": {
+    "solved": 10,
+    "won": [],
+    "lost": [],
+    "net": 0,
+    "sign_p": 1.0,
+    "nodes_both": 1676,
+    "nodes_both_ctrl": 1676,
+    "nodes_both_mean": 167.6,
+    "nodes_both_ctrl_mean": 167.6,
+    "n_both": 10
+   },
+   "length+4.0*knots": {
+    "solved": 13,
+    "won": [
+     565,
+     581,
+     633
+    ],
+    "lost": [],
+    "net": 3,
+    "sign_p": 0.25,
+    "nodes_both": 860,
+    "nodes_both_ctrl": 1676,
+    "nodes_both_mean": 86.0,
+    "nodes_both_ctrl_mean": 167.6,
+    "n_both": 10
+   },
+   "knots_first@endgame16": {
+    "solved": 14,
+    "won": [
+     538,
+     565,
+     581,
+     633
+    ],
+    "lost": [],
+    "net": 4,
+    "sign_p": 0.125,
+    "nodes_both": 1338,
+    "nodes_both_ctrl": 1676,
+    "nodes_both_mean": 133.8,
+    "nodes_both_ctrl_mean": 167.6,
+    "n_both": 10
+   }
+  }
+ }
+}
