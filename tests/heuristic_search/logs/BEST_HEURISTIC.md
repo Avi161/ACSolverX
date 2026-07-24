@@ -8,13 +8,15 @@ The short answer, then the evidence and the caveats. Everything here is measured
 
 > ### The one number
 >
-> On the **three automorphism classes no tuning slice ever contained** — not the shortlist, not the weight search, not the promotion — at budget 1,000, counted as distinct problems:
+> On **75 presentations no stage of this program ever read** — not the shortlist, not the weight search, not the promotion, not any split — in the decidable band, at budget 1,000:
 >
-> ### baseline 1 / 3  →  tuned **3 / 3**
+> ### baseline 20 / 75  →  tuned **50 / 75**
 >
-> At budget 500 the same three go 1/3 → 2/3. Three problems is a small number and it is the honest one: it is what remains after removing every row any stage of the tuning could have seen.
+> 67% against 27%, and a **strict superset**: 30 presentations gained, **0 lost**. At budget 500 it is 11/75 → 39/75. Per bin the separation is total — the length baseline solves **nothing at all** in bins 5, 6 and 7 (0/20, 0/22, 0/8) where the tuned ordering takes 16/20 and 9/22.
 
-**A correction, because an earlier version of this document overstated it.** This box previously read *"1/6 → 6/6 on held-out automorphism classes"*, using the 6 classes in `splits_aut.json`'s test side. That split is genuinely automorphism-disjoint from `aut_train`, and the arithmetic was right — but the weight vector was **not** selected on `aut_train`. It came from EXP-04 (the joint weight search) and EXP-06 (the budget-1000 promotion), both of which ran on the **stratified** 40-row slice in `splits.json` — and that slice contains `ms544`, `ms602`, `ms628` and `ms633`, which are 4 of the 7 rows in the supposedly held-out set, covering classes 74, 103 and 110. For class 110 the tuning saw both members. So four sevenths of that "held-out" evidence was selection data wearing a different split's label. An independent audit of the raw jsonl caught it; the number above is what survives.
+These come from `data/ms640_solved.txt`, the 640-presentation set the 66-row benchmark was itself drawn from. The 580 outside the benchmark were never in any file this program read, so they cannot have leaked into the tuning; 75 of them fall in the decidable band. Both orderings were fixed before that experiment was written (EXP-26).
+
+**Two earlier versions of this box were wrong, and the corrections are worth knowing.** It first read *"1/6 → 6/6 on held-out automorphism classes"*. The split used was genuinely automorphism-disjoint — but the weight vector was selected on a *different* slice, the stratified 40-row one, which contained 4 of those 7 rows. An independent audit of the raw jsonl caught it. Removing every row any tuning stage read left only **3** classes (1/3 → 3/3), because the two training slices between them cover 52 of the benchmark's 60 ladder rows — the benchmark is simply too small to support both this much tuning and a real holdout. Going outside it fixed that, and the number above is what a clean measurement gives.
 
 Everything below is subordinate detail. Several other denominators appear — 24 rows, 19 distinct problems, 31, 45 — because different experiments ran on different slices; each is stated where it is used, and none of them supersedes the line above.
 
