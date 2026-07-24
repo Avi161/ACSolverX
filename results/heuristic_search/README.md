@@ -20,7 +20,28 @@
 
 `length + 4·knots` solves one fewer than the endgame arm but does it in **half the nodes** of the baseline, consistently (×0.53 at 500, ×0.51 at 1000).
 
-**Significance.** Neither result is significant on 20 presentations: the exact paired sign test gives p = 0.25 and p = 0.12. Both arms are, however, strictly non-losing at 1,000 (0 losses each). Treat this as a promising signal sized for a Colab run, not as an established gain.
+**Significance.** Neither result is significant *on 20 presentations*: the exact paired sign test gives p = 0.25 and p = 0.12. Both arms are strictly non-losing at 1,000 (0 losses each). For a number that carries weight, see the pooled validation below.
+
+## It replicates on untouched presentations (budget 500)
+
+| priority | tune (20) | exploratory (22) | **confirm (34, untouched)** |
+|---|---|---|---|
+| `length` (baseline) | 9 | 9 | 18 |
+| `length + 4·knots` | 11 (+2) | 11 (+2) | 20 (+2) |
+| `knots_first@endgame16` | 11 (+2) | 12 (+3) | **23 (+5)** |
+| `length + 4·smb` | 10 (+1) | 9 (=) | 21 (+3) |
+
+Pooling the paired win/loss outcomes over the **two validation sets only** — 56 presentations, tuning set excluded because that is where the arm was selected:
+
+| priority | pooled W–L | exact sign test |
+|---|---|---|
+| `knots_first@endgame16` | **10W–2L** | **p = 0.039** |
+| `length + 4·smb` | 3W–0L | p = 0.250 |
+| `length + 4·knots` | 6W–2L | p = 0.289 |
+
+**Caveat on that 0.039.** Three arms were carried from tuning into validation, so a Bonferroni correction over those three puts it at p ≈ 0.12. It is the strongest signal here and it survives on data used for nothing else, but it is a single-digit number of discordant pairs and should be confirmed at production budget before it is treated as established.
+
+**Why the knot ordering wins where the linear blend does not.** `knots_first` expands *any* state that reduced the knot count before any state that merely got shorter — which is the user's original observation, that a knot reduction is rare and therefore worth following immediately. The `@endgame16` switch is what stops that from being self-defeating: below total length 16 it reverts to pure length, because near the trivial state the remaining work is cancellation, not restructuring. Without the switch, plain `knots_first` scores 8/20 at 500 — *below* the baseline. The threshold is doing real work, and 16 was selected from {4, 6, 8, 10, 12, 14, 16, 20} on the tuning set.
 
 ## Protocol
 
