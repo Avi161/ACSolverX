@@ -1,0 +1,102 @@
+{
+ "grid": [
+  50,
+  100,
+  200,
+  300,
+  500,
+  700,
+  1000
+ ],
+ "baseline": [
+  0,
+  0,
+  0,
+  0,
+  2,
+  4,
+  5
+ ],
+ "curves": {
+  "baseline (length)": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   4,
+   5
+  ],
+  "phased K8": [
+   0,
+   4,
+   8,
+   11,
+   12,
+   16,
+   16
+  ],
+  "phased K+xyimb": [
+   0,
+   4,
+   9,
+   12,
+   16,
+   16,
+   16
+  ],
+  "richer knot climb": [
+   0,
+   0,
+   5,
+   8,
+   14,
+   15,
+   19
+  ]
+ },
+ "shapes": {
+  "phased K8": {
+   "gap": [
+    0,
+    4,
+    8,
+    11,
+    10,
+    12,
+    11
+   ],
+   "overall": "widening",
+   "tail": "flat (\u00b11)",
+   "tail_delta": 1
+  },
+  "phased K+xyimb": {
+   "gap": [
+    0,
+    4,
+    9,
+    12,
+    14,
+    12,
+    11
+   ],
+   "overall": "widening",
+   "tail": "**turning over**",
+   "tail_delta": -3
+  },
+  "richer knot climb": {
+   "gap": [
+    0,
+    0,
+    5,
+    8,
+    12,
+    11,
+    14
+   ],
+   "overall": "widening",
+   "tail": "**still growing**",
+   "tail_delta": 2
+  }
+ }
+}
