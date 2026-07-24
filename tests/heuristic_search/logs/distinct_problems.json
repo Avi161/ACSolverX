@@ -1,0 +1,76 @@
+{
+ "500": [
+  {
+   "label": "baseline (length)",
+   "classes_solved": 2,
+   "classes": 19,
+   "rows_solved": 2,
+   "rows": 24
+  },
+  {
+   "label": "500-winner: phased K+xyimb",
+   "classes_solved": 13,
+   "classes": 19,
+   "rows_solved": 16,
+   "rows": 24
+  },
+  {
+   "label": "1000-winner: phased blocks",
+   "classes_solved": 11,
+   "classes": 19,
+   "rows_solved": 11,
+   "rows": 24
+  },
+  {
+   "label": "richer knot climb (EXP-06)",
+   "classes_solved": 11,
+   "classes": 19,
+   "rows_solved": 14,
+   "rows": 24
+  },
+  {
+   "label": "simple phased K8",
+   "classes_solved": 11,
+   "classes": 19,
+   "rows_solved": 12,
+   "rows": 24
+  }
+ ],
+ "1000": [
+  {
+   "label": "baseline (length)",
+   "classes_solved": 5,
+   "classes": 19,
+   "rows_solved": 5,
+   "rows": 24
+  },
+  {
+   "label": "500-winner: phased K+xyimb",
+   "classes_solved": 13,
+   "classes": 19,
+   "rows_solved": 16,
+   "rows": 24
+  },
+  {
+   "label": "1000-winner: phased blocks",
+   "classes_solved": 16,
+   "classes": 19,
+   "rows_solved": 19,
+   "rows": 24
+  },
+  {
+   "label": "richer knot climb (EXP-06)",
+   "classes_solved": 16,
+   "classes": 19,
+   "rows_solved": 19,
+   "rows": 24
+  },
+  {
+   "label": "simple phased K8",
+   "classes_solved": 13,
+   "classes": 19,
+   "rows_solved": 16,
+   "rows": 24
+  }
+ ]
+}
