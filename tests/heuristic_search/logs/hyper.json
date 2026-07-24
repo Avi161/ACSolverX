@@ -671,5 +671,100 @@
    },
    "note": "Every one of the 124 unsolved AC-classes, each entered as its 8 signed-permutation relabels, under all four best orderings. Zero solves - the expected result, now measured over the whole target set rather than inferred from a six-row sample. These classes survived a 10^6-node search and 1000 nodes is three orders of magnitude short."
   }
+ },
+ "wave3": {
+  "scaling": {
+   "grid": [
+    500,
+    1000
+   ],
+   "rows": [
+    {
+     "ordering": "L + 8K - 6 xyimb (the 500 winner)",
+     "g500": 14,
+     "g1000": 11,
+     "tail": "turning over"
+    },
+    {
+     "ordering": "L + 8K",
+     "g500": 10,
+     "g1000": 11,
+     "tail": "flat (within noise)"
+    },
+    {
+     "ordering": "the richer climb",
+     "g500": 12,
+     "g1000": 14,
+     "tail": "still growing"
+    }
+   ],
+   "note": "Gap over the length baseline on the 24 decidable rows. Over the whole range every ordering widens (the baseline solves nothing below 500); what bears on a 10^6 run is the tail. Only the richer climb is still converting budget into new solves where the local ceiling cuts the curve off - and that agrees with EXP-06, which found the same crossover by a different route (richer 25->29 with budget while the lean winner plateaued 27->27)."
+  },
+  "threshold": {
+   "rows": [
+    {
+     "climb": "L + 8K",
+     "terms": "length + knots",
+     "worth": "+3 / +3"
+    },
+    {
+     "climb": "L + 8.9K - 6 xyimb",
+     "terms": "+ generator imbalance",
+     "worth": "+4 / +5"
+    },
+    {
+     "climb": "the richer climb",
+     "terms": "+ max-knots, smaller-block",
+     "worth": "+1 / +0"
+    },
+    {
+     "climb": "the block climb",
+     "terms": "length + block extremes",
+     "worth": "+0 / +0"
+    }
+   ],
+   "note": "What the endgame phase boundary is worth (budget 500 / 1000). It is load-bearing only for LEAN knot-only climbs: near the trivial state there is nothing structural left to buy, so an ordering carrying only a knot term wanders instead of cancelling and must be forced back to length. The richer climbs already carry smaller-block and max-knots, both of which fall as a pair approaches trivial, so they self-regulate. Consequence: the recommended ordering is a SINGLE weight vector with no phases at all."
+  },
+  "portfolio": {
+   "rows": [
+    {
+     "k": 1,
+     "each": 1000,
+     "richer": 19,
+     "K8": 16,
+     "baseline": 5
+    },
+    {
+     "k": 2,
+     "each": 500,
+     "richer": 14,
+     "K8": 12,
+     "baseline": 3
+    },
+    {
+     "k": 4,
+     "each": 250,
+     "richer": 8,
+     "K8": 10,
+     "baseline": 0
+    },
+    {
+     "k": 8,
+     "each": 125,
+     "richer": 3,
+     "K8": 4,
+     "baseline": 0
+    }
+   ],
+   "note": "At a FIXED total budget, one deep search versus k shallow searches from k signed-permutation relabels. Depth wins monotonically for every ordering, with no crossover. The mechanism is that a divided search which succeeds almost always succeeds on the FIRST string it is given - the alternates run and contribute nothing at these depths, so splitting only shortens the search that was going to work."
+  },
+  "union": {
+   "best_single": 19,
+   "union": 23,
+   "n": 24,
+   "frontier": "ms596",
+   "note": "The best single ordering solves 19 of the 24 decidable rows, but the union over every ordering tried in this program solves 23 - only ms596 (aut class 97) has resisted every configuration, across 607 recorded attempts. Different orderings solve different presentations, which is the same thing the 250x result says: the heuristic reorders difficulty rather than uniformly improving it."
+  },
+  "unsolved124_done": true
  }
 }
