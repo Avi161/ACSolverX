@@ -2,6 +2,10 @@ from experiments.stable_ac.rank3_compression.primitive_single import (
     enumerate_primitive_single_removals,
     remove_primitive_relator,
 )
+from experiments.stable_ac.rank3_compression.primitive_single_certificate import (
+    build_certificate,
+    verify_certificate,
+)
 from experiments.stable_ac.rank3_compression.rank3_whitehead import (
     reduce_word,
 )
@@ -34,3 +38,14 @@ def test_explicit_single_source_census_is_deterministic():
     assert first.relators_tested == 3
     assert first.primitive_occurrence_count == 3
     assert first.minimum_output_floor == 2
+
+
+def test_explicit_single_source_certificate_replays():
+    data = build_certificate(
+        sources=(("xz", "z", "t"),),
+        upstream_trace="test",
+    )
+    assert data["schema"] == "ak3-primitive-single-v1"
+    assert data["minimum_output_floor"] == 2
+    assert data["candidate_lemma"] == "PROVED"
+    verify_certificate(data, verify_upstream=False)

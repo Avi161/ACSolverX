@@ -53,6 +53,11 @@ class PrimitiveSingleCensus:
     distinct_relator_count: int
     primitive_relator_count: int
     primitive_occurrence_count: int
+    reduction_records: tuple[
+        tuple[str, WhiteheadWordReduction],
+        ...,
+    ]
+    primitive_witnesses: tuple[PrimitiveSingleWitness, ...]
     output_witnesses: tuple[PrimitiveSingleWitness, ...]
     aut_records: tuple[PrimitiveSingleAutRecord, ...]
     floor_distribution: dict[int, int]
@@ -157,6 +162,7 @@ def enumerate_primitive_single_removals(
     trace.update(b"UPSTREAM\0" + upstream_trace.encode("ascii") + b"\n")
     reduction_cache: dict[str, WhiteheadWordReduction] = {}
     primitive_occurrences = 0
+    primitive_witnesses: list[PrimitiveSingleWitness] = []
     first_by_output: dict[
         tuple[str, str],
         PrimitiveSingleWitness,
@@ -196,18 +202,17 @@ def enumerate_primitive_single_removals(
                 relator_index,
                 reduction,
             )
-            first_by_output.setdefault(
-                output,
-                PrimitiveSingleWitness(
-                    rank3=rank3,
-                    relator_index=relator_index,
-                    relator=relator,
-                    reduction=reduction,
-                    transformed_rank3=transformed,
-                    eliminated_generator=eliminated,
-                    output=output,
-                ),
+            witness = PrimitiveSingleWitness(
+                rank3=rank3,
+                relator_index=relator_index,
+                relator=relator,
+                reduction=reduction,
+                transformed_rank3=transformed,
+                eliminated_generator=eliminated,
+                output=output,
             )
+            primitive_witnesses.append(witness)
+            first_by_output.setdefault(output, witness)
 
     outputs = tuple(sorted(first_by_output))
     aut_records: list[PrimitiveSingleAutRecord] = []
@@ -235,6 +240,8 @@ def enumerate_primitive_single_removals(
         distinct_relator_count=len(reduction_cache),
         primitive_relator_count=primitive_relators,
         primitive_occurrence_count=primitive_occurrences,
+        reduction_records=tuple(sorted(reduction_cache.items())),
+        primitive_witnesses=tuple(primitive_witnesses),
         output_witnesses=tuple(
             first_by_output[output] for output in outputs
         ),
