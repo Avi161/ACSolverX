@@ -181,11 +181,17 @@ def main():
                   "constraint, not the feature space. This is a candidate to replace the "
                   "recommendation, pending a check at larger budget.", ""]
     elif w_e == r_e:
+        # Report the tuning half honestly in whichever direction it fell -- the earlier version of
+        # this branch asserted the re-tune had won it, which is not implied by an out-of-sample tie.
+        tune_note = (f"and it did not even win the half it was selected on ({w_t} vs the "
+                     f"incumbent's {r_t}) — the incumbent, fitted on entirely different "
+                     f"presentations, is better on the re-tune's own training data"
+                     if r_t >= w_t else
+                     f"having won the half it was selected on ({w_t} vs {r_t}), a gap that is "
+                     f"exactly what selection buys and that vanishes out of sample")
         lines += [f"The re-tune **ties** the incumbent out of sample ({w_e}/{len(evl)} each), "
-                  f"having beaten it on the tuning half ({w_t} vs {r_t}). That gap between the "
-                  "halves is exactly what selection buys, and its disappearance out of sample is "
-                  "the point: **the incumbent is confirmed on genuinely independent data**, fitted "
-                  "elsewhere, by a search that had every chance to beat it.", ""]
+                  f"{tune_note}. **The incumbent is confirmed on genuinely independent data**, by "
+                  "a search fitted elsewhere that had every chance to beat it.", ""]
     else:
         lines += [f"The re-tune **wins on the tuning half and loses out of sample** "
                   f"({w_t} vs {r_t} tuned, {w_e} vs {r_e} held back). That is overfitting, plainly "
