@@ -170,3 +170,8 @@
 
 - [TRAP] From \(v=U(x,t)\) in the quotient by two relators, it does not follow that the canonical Euclidean word \(U\) is the only AC-realizable replacement in \(B=z^{-1}xv\). Multiplying \(U\) by a suitable consequence of the surviving relators preserves its quotient value but can change the post-removal endpoint orbit.
 - [WORKS] Label the \(t=v^k\) residue-class theorem as a classification of the prescribed Euclidean normal-form recovery only. Pin the \(k=1\) counterexample \(U=t(t^{-4}x^3)=t^{-3}x^3\), whose endpoint has Aut-floor 23, and treat consequence-twisted recoveries as a separate live mechanism.
+
+### 2026-07-24 Parametric Whitehead proofs from block counts
+
+- [WORKS] For a one-parameter endpoint family, first apply a fixed signed basis permutation that exposes repeated cyclic blocks. Whitehead length changes then become affine functions of the parameter, so a twelve-row symbolic table proves complete Aut-minimality for all parameters without enumerating an Aut graph.
+- [WORKS] In `AK3_CONSEQUENCE_TWIST_FAMILY.md`, the positive and negative \(t(t^{-4}x^3)^n\) branches have floors \(28n-5\) and \(28|n|+15\); zero is the separate floor-14 compression root.

@@ -214,6 +214,42 @@ counterexample is pinned in the replay test.  Consequence-twisted
 recoveries are therefore a live mechanism rather than part of the claimed
 closure.
 
+## Proven result 5: one infinite consequence direction
+
+The first consequence-twisted family can also be closed without a parameter
+bound.  For the \(k=1\) stabilization, compress the power relator to
+
+\[
+ R=x^3t^{-4}
+\]
+
+and let \(R'=t^{-4}x^3\) be its cyclic rotation.  Every recovery word
+
+\[
+ U_n=t(R')^n,\qquad n\in\mathbb Z,
+\]
+
+is AC-realizable before eliminating \(z\).
+
+The symbolic Whitehead proof in
+`literature/proofs/AK3_CONSEQUENCE_TWIST_FAMILY.md` gives the complete
+Aut-floor
+
+\[
+ \mu(P_n)=
+ \begin{cases}
+ 28(-n)+15,&n<0,\\
+ 14,&n=0,\\
+ 28n-5,&n>0.
+ \end{cases}
+\]
+
+It checks all twelve second-kind Whitehead length changes as affine
+functions of \(|n|\); none is negative.  Thus this entire infinite
+direction climbs away from the compression root and never reaches floor
+\(12\).  Exact endpoints and every symbolic length-change row are pinned by
+`tests/stable_ac/test_consequence_twist_family.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -227,8 +263,9 @@ rank-two quotient has complete Aut-floor at most 12.  A primitive full
 four-relator tuple would be an immediate stable solve.  At the
 one-stabilization root, the most concrete next mechanism is precisely the
 newly exposed nonuniqueness: multiply a canonical recovery word by
-controlled consequences of the compressed source relators before
-eliminating \(z\).  Separate routes use defining words with at least two
+controlled *mixed* rotations or conjugates of the compressed source
+relators before eliminating \(z\).  Pure powers of one fixed rotation are
+now closed.  Separate routes use defining words with at least two
 alternating \(v\)-syllables or use the braid relator during recovery.
 
 AK(3) remains open.
