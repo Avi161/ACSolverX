@@ -352,6 +352,42 @@ rows are proved in
 `literature/proofs/AK3_REVERSE_MIXED_CONSEQUENCE_FAMILY.md` and replayed
 by `tests/stable_ac/test_reverse_mixed_consequence_family.py`.
 
+## Proven result 9: the full short recovery word equation
+
+The consequence grammar can be removed entirely at bounded word length.
+Every direct recovery is a solution of
+
+\[
+ U=t
+ \quad\text{in}\quad
+ \langle x,t\mid x^3=t^4\rangle.
+\]
+
+This torus-knot group is an amalgamated product of two infinite cyclic
+groups.  Its central normal form gives an exact equality test.  Among all
+
+\[
+ 86{,}093{,}440
+\]
+
+freely reduced words \(U\) of length at most \(16\), exactly \(17{,}155\)
+represent \(t\).  The complete endpoint census proves
+
+\[
+ \mu(P(U))\ge14,
+\]
+
+with equality only for \(U=t\).  The only six endpoints of floor at most
+\(23\) are already members of the proved power-conjugated or
+fixed-rotation families.  Thus no unclassified short consequence syntax
+hides a floor-\(12\) endpoint.
+
+The amalgam normal-form proof and complete counts are in
+`literature/proofs/AK3_RECOVERY_WORD_EQUATION_BARRIER.md`; the exact
+enumerator and replay are
+`experiments/stable_ac/rank3_compression/recovery_word_equation.py` and
+`tests/stable_ac/test_recovery_word_equation.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -367,10 +403,10 @@ one-stabilization root, the most concrete next mechanism is precisely the
 newly exposed nonuniqueness: multiply a canonical recovery word by
 controlled consequences of the compressed source relators before
 eliminating \(z\).  Pure powers of one fixed rotation and the full
-power-conjugated direction are now closed.  The smallest genuinely new
-case must go beyond these two exact collected blocks: use other rotations
-or conjugates of \(R\), inverse or conjugated whole blocks, interleave
-individual factors, use defining words with at least two alternating
+power-conjugated direction are now closed.  Any still-viable floor-\(12\)
+direct recovery in this one-source model must have freely reduced length
+at least \(17\).  Separate routes change \(R\) before recovery, use \(D\)
+nontrivially, use defining words with at least two alternating
 \(v\)-syllables, or use the braid relator during recovery.
 
 AK(3) remains open.

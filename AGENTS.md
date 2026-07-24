@@ -202,3 +202,14 @@
 - [TRAP] For the reverse mixture \(tK_m(t^{-4}x^3)^n\), the chamber \(n<0,m<0\) has an additional boundary type at \(m=-1\): the middle \(x\)-block vanishes and two \(t\)-blocks merge. Extrapolating the \(m\le-2\) Whitehead delta formulas to \(m=-1\) gives the wrong constants.
 - [WORKS] Isolate \(n<0,m=-1\) as its own symbolic Whitehead row. The complete reverse-order mixed floor still has the uniform chamber value \(28|n|+18|m|-13\), but the twelve local deltas have a five-region, not four-region, description.
 - [TRAP] Closing the two collected orders \((R')^nK_m\) and \(K_m(R')^n\) does not imply that every remaining source-relator recovery must interleave their individual factors. Other rotations, conjugated or inverse whole blocks, and different conjugates of \(R\) remain unclassified too.
+
+### 2026-07-24 System Python compatibility for proof tools
+
+- [TRAP] The system `python3` in this worktree is Python 3.9.6, while `uv run --with pytest` currently selects Python 3.14. An unevaluated `str | None` annotation passed the pytest environment but raised `TypeError: unsupported operand type(s) for |` under the system interpreter.
+- [WORKS] Add `from __future__ import annotations` to new proof modules that use PEP 604 unions or built-in generic annotations, and smoke-test imports under both system `python3` and the uv test runtime.
+
+### 2026-07-24 Recovery word equations via amalgam normal form
+
+- [WORKS] Replace bounded enumeration of chosen consequence products by the exact equation \(U=t\) in \(\langle x,t\mid x^3=t^4\rangle\). With central \(c=x^3=t^4\), alternating residues \(x,x^2\) and \(t,t^2,t^3\) give a unique amalgam normal form and a complete equality test.
+- [WORKS] With exact abelianization prefix pruning, the exhaustive length-\(16\) census covers 86,093,440 freely reduced words and exactly 17,155 recoveries. Its unique floor-14 endpoint is \(U=t\); every floor-\(\le23\) word lies in a previously proved parametric family.
+- [TRAP] State this as a bounded recovery-word theorem only. Normal-form completeness through a word-length cap does not rule out longer recoveries, changes to the retained source relator, or nontrivial use of the defining relator.
