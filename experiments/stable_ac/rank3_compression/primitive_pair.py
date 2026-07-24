@@ -45,6 +45,7 @@ class PrimitivePairCensus:
     tested_relator_pair_count: int
     distinct_relator_pair_count: int
     minimum_distribution: dict[int, int]
+    rows: tuple[PrimitivePairRow, ...]
     primitive_rows: tuple[PrimitivePairRow, ...]
     source_trace_sha256: str
     trace_sha256: str
@@ -75,6 +76,7 @@ def enumerate_primitive_pair_corridors(
         WhiteheadReduction,
     ] = {}
     minimum_distribution: Counter[int] = Counter()
+    rows: list[PrimitivePairRow] = []
     primitive_rows: list[PrimitivePairRow] = []
 
     for source in sources:
@@ -106,15 +108,15 @@ def enumerate_primitive_pair_corridors(
                 ).encode("ascii")
                 + b"\n"
             )
+            row = PrimitivePairRow(
+                source=source,
+                indices=(left, right),
+                pair=relator_pair,
+                reduction=reduction,
+            )
+            rows.append(row)
             if primitive:
-                primitive_rows.append(
-                    PrimitivePairRow(
-                        source=source,
-                        indices=(left, right),
-                        pair=relator_pair,
-                        reduction=reduction,
-                    )
-                )
+                primitive_rows.append(row)
 
     return PrimitivePairCensus(
         pair=tuple(pair),
@@ -135,6 +137,7 @@ def enumerate_primitive_pair_corridors(
         tested_relator_pair_count=len(sources) * 3,
         distinct_relator_pair_count=len(reduction_cache),
         minimum_distribution=dict(sorted(minimum_distribution.items())),
+        rows=tuple(rows),
         primitive_rows=tuple(primitive_rows),
         source_trace_sha256=source_trace,
         trace_sha256=trace.hexdigest(),
