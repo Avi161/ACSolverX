@@ -173,7 +173,7 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
 
 
 @njit(cache=True)
-def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
+def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w, topk=0):
     """One pop's worth of work: children, packed keys, features, segmented priority.
 
     Returns ``(blob, offs, klens, seg_idx, score, tots, knots, moves, count)``. ``blob`` holds every
@@ -187,7 +187,7 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
     diffing two states instead would be wrong: the move inverts the *other* relator, so a diff
     misreads which one changed.
     """
-    codes, lens, moves, count = expand_node_topk_nj(r1, r2, cap, cyclic, 1, 0)
+    codes, lens, moves, count = expand_node_topk_nj(r1, r2, cap, cyclic, 1, topk)
 
     offs = np.empty(count + 1, dtype=np.int64)
     klens = np.empty(count, dtype=np.int64)
@@ -286,7 +286,7 @@ def _arrs(key):
             np.stack(((c2 & 1) == 1, c2 >= 3), axis=1))
 
 
-def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
+def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True, tie=1, topk=0):
     """``hlab.run_one`` with the fast kernel. Same pops, same order, same numbers.
 
     The heap entry is ``(priority, depth, key)`` exactly as in ``LabSolver``; ``key`` is packed
@@ -301,6 +301,20 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
     priority of a state" stops being well defined, so the term is opt-in and named separately
     rather than hidden among the thirteen. With every ``depth`` absent or zero this function is
     bit-identical to the pure-state version (pinned in ``test_hfast.py``).
+
+    **``tie``** sets the sign of the ``depth`` tie-break. Every heap entry is
+    ``(priority, tie * depth, key)``, so ``tie = +1`` pops the *shallowest* of several
+    equally-scored states and ``tie = -1`` the deepest. This is not the depth *term* of EXP-11 --
+    it never changes a state's score and so never reorders states with different priorities. It
+    only decides among exact ties, which a structural score produces constantly (integer knot
+    counts and block counts collide far more than a length ordering's do). ``tie = +1`` is what
+    every result in this program was measured with, and it was inherited from the base solver
+    rather than chosen.
+
+    **``topk``** caps how many children of a pop are kept, scored by reduced total length --
+    beam-style filtering, passed through to ``expand_node_topk_nj``. ``0`` keeps everything, which
+    is what every experiment here has done. A positive value makes the search incomplete in
+    exchange for spending its budget deeper along fewer lines.
     """
     seg_upto, seg_w, seg_depth = compile_config(cfg)
     use_depth = bool(np.any(seg_depth != 0.0))
@@ -359,7 +373,7 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
 
         p1, p2 = _arrs(key)
         blob, offs, klens, seg_idx, score, tots, knots, _mv, count = expand_and_score_nj(
-            p1, p2, mrl, cyclic, seg_upto, seg_w)
+            p1, p2, mrl, cyclic, seg_upto, seg_w, topk)
         if count == 0:
             continue
         raw = blob.tobytes()
@@ -380,7 +394,7 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
                 if kk < min_K or (kk == min_K and t < min_K_len):
                     min_K = kk
                     min_K_len = t
-                heapq.heappush(pq, ((int(seg_idx[c]), float(score[c])), nd, k))
+                heapq.heappush(pq, ((int(seg_idx[c]), float(score[c])), tie * nd, k))
 
     return {"solved": False, "nodes": nodes, "path_length": None,
             "min_total": min_total, "max_pop": max_pop,
