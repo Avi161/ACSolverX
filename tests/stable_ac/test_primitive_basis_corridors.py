@@ -1,5 +1,9 @@
 import pytest
 
+from experiments.stable_ac.rank3_compression.primitive_certificate import (
+    build_certificate,
+    verify_certificate,
+)
 from experiments.stable_ac.rank3_compression.primitive_bases import (
     NielsenMove,
     apply_basis,
@@ -94,3 +98,15 @@ def test_signed_renaming_preserves_key():
     pair = apply_basis(AK3, ("x", "xy"))
     renamed = apply_basis(pair, ("Y", "x"))
     assert signed_pair_key(pair) == signed_pair_key(renamed)
+
+
+def test_small_primitive_certificate_replays():
+    data = build_certificate(
+        max_basis_total=2,
+        max_word_length=2,
+        max_template_length=4,
+    )
+    assert data["schema"] == "ak3-primitive-basis-corridors-v1"
+    assert data["basis_count"] == 8
+    assert data["class_count"] == 1
+    verify_certificate(data)
