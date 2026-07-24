@@ -45,6 +45,7 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-22](EXP22_complement_cv.md) | is the complement strategy real, or hindsight? (200 half-splits, no new searches) | **real** — +1.18 rows held out vs +0.27 strongest-arm, +0.04 random; premium only 0.24 |
 | [EXP-23](EXP23_hump_diverse.md) | the second hump, attacked from the *other* ordering family | **still nothing** — the negative is no longer specific to knot climbs |
 | [EXP-24](EXP24_tie_topk.md) | the tie-break sign and beam-style child filtering — 2 knobs never swept | **neither changes the recommendation** — filtering loses at every width (topk=8 solves 0); tie inert for the winner |
+| [EXP-25](EXP25_relabels_full.md) | 8 relabels at FULL budget on the tier with dynamic range | **+0** — canonicalisation absorbs a relabel; spend spare compute on a different *ordering* instead |
 | **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **held-out, distinct problems: baseline 1/6 → tuned 6/6**; climb on knots, no threshold needed at 1000 |
 
 ## Two splits
