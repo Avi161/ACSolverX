@@ -472,6 +472,7 @@ git push origin codex/proofs
 **Files:**
 - Create: `experiments/stable_ac/thickenable/scan_ak3_component.py`
 - Create: `tests/stable_ac/test_scan_ak3_component.py`
+- Create: `literature/proofs/ORBIT2_NEUWIRTH_GENUS.md`
 - Create: `results/stable_ac/theory/AK3_NEUWIRTH_RESULT.md`
 - Create: `results/stable_ac/theory/ak3_component_thickenability.json`
 
@@ -516,10 +517,14 @@ Report the exact target \(\gamma_N\) histograms only from the separate
 86,400-case factorial certificates; the rank solver decides the zero-versus-
 positive question and does not minimize positive genus.  Include the human
 proof that orbit-2 has no **synchronized compatible spherical rotation** and
-its explicit genus-one witness.  Do not call its abstract \(K_4\) support
-nonplanar.  State that \(\gamma_N\) changes under AC moves and is only a search
-potential.  For AK(3), label the exact \(\gamma_N=2\) conclusion census-derived
-unless a separate short-face packing proof is completed.
+its explicit genus-one witness in
+`literature/proofs/ORBIT2_NEUWIRTH_GENUS.md`.  The proof must derive its
+forced-digon saturation and the resulting cyclic-neighbor contradiction by
+hand, and independently face-trace the stated witness.  Do not call its
+abstract \(K_4\) support nonplanar.  State that \(\gamma_N\) changes under AC
+moves and is only a search potential.  For AK(3), label the exact
+\(\gamma_N=2\) conclusion census-derived unless a separate short-face packing
+proof is completed.
 
 - [ ] **Step 5: Write the four-part report**
 
