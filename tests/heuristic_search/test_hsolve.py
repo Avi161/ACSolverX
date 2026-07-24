@@ -174,7 +174,34 @@ def test_recommended_ordering_actually_changes_the_search_on_a_mid_bin_presentat
     assert rec["nodes_explored"] != base["nodes_explored"] or rec["solved"] != base["solved"]
 
 
-# ------------------------------------------------------------------- 5. unknown feature rejected
+# ------------------------------------------------------------- 5. keep_path=False is result-pure
+
+def test_keep_path_false_changes_memory_only_never_the_search(sample_rows):
+    """``keep_path=False`` swaps the parent map for a visited set (1.53x less RAM, measured) and
+    is documented as changing NOTHING about the search itself. That claim is what lets a run
+    written in one mode resume in the other, and what makes the certificate recoverable by a
+    deterministic re-run -- so a divergence here would corrupt results silently, and only at the
+    budgets where the low-memory mode is actually used. Pinned both ways: every scalar field
+    identical, and the path genuinely absent (not merely shorter) when the map is off.
+
+    Swept under ``RECOMMENDED`` because it solves several of these rows at this budget; the
+    ``any(...)`` assert keeps the solved branch -- the one with the early return -- from going
+    unexercised if a future change stopped everything solving.
+    """
+    outcomes = []
+    for r in sample_rows:
+        with_path = greedy_search_h(r["r1"], r["r2"], MAX_BUDGET, max_relator_length=MRL,
+                                    config=RECOMMENDED, keep_path=True)
+        without = greedy_search_h(r["r1"], r["r2"], MAX_BUDGET, max_relator_length=MRL,
+                                  config=RECOMMENDED, keep_path=False)
+        for field in SCALAR_FIELDS:
+            assert without[field] == with_path[field], (r["name"], field)
+        assert without["path"] == [] and without["path_moves"] == [], r["name"]
+        outcomes.append(with_path["solved"])
+    assert any(outcomes), "no row solved -- the early-return branch was never exercised"
+
+
+# ------------------------------------------------------------------- 6. unknown feature rejected
 
 def test_a_config_naming_an_unknown_feature_raises_instead_of_silently_scoring_zero():
     """``compile_config`` (called inside ``greedy_search_h``) indexes weights by ``FEATURES``

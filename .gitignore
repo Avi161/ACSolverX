@@ -25,3 +25,4 @@ literature
 
 # flock ownership claims (runtime artifacts, never results)
 *.jsonl.lock
+.venv

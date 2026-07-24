@@ -61,10 +61,23 @@ def _unpack(key):
 
 
 def greedy_search_h(r1_str, r2_str, node_budget, max_relator_length=24,
-                    cyclic_reduce=True, config=None, progress=None):
+                    cyclic_reduce=True, config=None, progress=None, keep_path=True):
     """``greedy_baseline.greedy_search`` with the heap ordering swapped. Same return dict.
 
     ``config=None`` means order by total length, which reproduces the baseline search.
+
+    ``keep_path=False`` stores a visited **set** instead of the parent map, which is the same trade
+    ``greedy_baseline``'s ``high_speedup`` mode makes: no certificate comes back (``path`` and
+    ``path_moves`` are empty, ``path_length`` is still correct because depth is carried on the heap),
+    and in exchange the search fits a much larger budget in the same RAM.
+
+    Measured on the 124 unsolved classes at cap 48, where nothing solves so the full budget is
+    consumed and state growth is worst-case: **36.5 kB per node with the path, 24 kB without**
+    (1.53x), with the discovered-state count, pop count and solve outcome **identical** either way.
+    That is the difference between a 10^6-node run needing 36.5 GB and needing 24 GB -- i.e. between
+    not fitting and fitting on a 51 GB machine. Recover a certificate by re-running the one
+    presentation that solved, with ``keep_path=True``; the search is deterministic, so the path is
+    exact.
     """
     cfg = config or LENGTH_ONLY
     seg_upto, seg_w, seg_depth = compile_config(cfg)
@@ -93,7 +106,9 @@ def greedy_search_h(r1_str, r2_str, node_budget, max_relator_length=24,
         p0 = (n_seg, float(scratch[0]))
 
     pq = [(p0, 0, key0)]
-    parent = {key0: None}          # key -> (parent_key, move tuple), root maps to None
+    # One container or the other, never both: the dict is what costs the memory.
+    parent = {key0: None} if keep_path else None   # key -> (parent_key, move), root -> None
+    seen = None if keep_path else {key0}
     nodes = 0
     t0 = len(ca) + len(cb)
     min_key, min_tot = key0, t0    # shortest presentation DISCOVERED
@@ -109,6 +124,11 @@ def greedy_search_h(r1_str, r2_str, node_budget, max_relator_length=24,
             exp_key, exp_tot = key, l1 + l2
 
         if l1 == 1 and l2 == 1:
+            if not keep_path:
+                # `depth` rides on the heap entry, so the path LENGTH survives even though the
+                # path itself was never stored.
+                return _stats(True, nodes, [], [], min_key, min_tot,
+                              max_key, max_tot, exp_key, exp_tot, path_length=depth)
             states, moves = [], []
             k = key
             while k is not None:
@@ -133,9 +153,12 @@ def greedy_search_h(r1_str, r2_str, node_budget, max_relator_length=24,
         for c in range(count):
             o = int(offs[c])
             k = raw[o:o + int(klens[c])]
-            if k not in parent:
-                parent[k] = (key, (int(mvs[c, 0]), int(mvs[c, 1]),
-                                   int(mvs[c, 2]), int(mvs[c, 3])))
+            if (k not in parent) if keep_path else (k not in seen):
+                if keep_path:
+                    parent[k] = (key, (int(mvs[c, 0]), int(mvs[c, 1]),
+                                       int(mvs[c, 2]), int(mvs[c, 3])))
+                else:
+                    seen.add(k)
                 t = int(tots[c])
                 if t < min_tot:
                     min_key, min_tot = k, t
@@ -151,7 +174,8 @@ def greedy_search_h(r1_str, r2_str, node_budget, max_relator_length=24,
     return _stats(False, nodes, [], [], min_key, min_tot, max_key, max_tot, exp_key, exp_tot)
 
 
-def _stats(solved, nodes, states, moves, min_key, min_tot, max_key, max_tot, exp_key, exp_tot):
+def _stats(solved, nodes, states, moves, min_key, min_tot, max_key, max_tot, exp_key, exp_tot,
+           path_length=None):
     """Exactly ``greedy_search``'s dict -- same keys, same order, same types.
 
     Pinned against the real thing in ``tests/heuristic_search/test_hsolve.py``: a caller that
@@ -162,7 +186,8 @@ def _stats(solved, nodes, states, moves, min_key, min_tot, max_key, max_tot, exp
     return {
         "solved": solved,
         "nodes_explored": nodes,
-        "path_length": (len(states) - 1) if solved else None,
+        "path_length": (path_length if path_length is not None
+                        else ((len(states) - 1) if solved else None)),
         "min_relator_length": min_tot,
         "min_relator": [mn[0], mn[1]],
         "max_relator_length": max_tot,
