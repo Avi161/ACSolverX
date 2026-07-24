@@ -223,19 +223,24 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
 
 
 def compile_config(cfg):
-    """A config dict -> ``(seg_upto[n_seg], seg_w[n_seg, 13])``, the kernel's weight form.
+    """A config dict -> ``(seg_upto[n_seg], seg_w[n_seg, 13], seg_depth[n_seg])``.
 
     Weights are placed by ``FEATURES`` index, so a config naming a feature this module does not
     know raises here rather than silently scoring zero.
+
+    ``depth`` is a per-segment scalar, kept OUT of the feature vector because it is not a property
+    of the state -- see ``search_fast``.
     """
     segs = cfg["segments"]
     upto = np.empty(len(segs), dtype=np.float64)
     w = np.zeros((len(segs), N_FEAT), dtype=np.float64)
+    dep = np.zeros(len(segs), dtype=np.float64)
     for i, s in enumerate(segs):
         upto[i] = INF if s.get("upto") is None else float(s["upto"])
+        dep[i] = float(s.get("depth", 0.0))
         for k, v in s["w"].items():
             w[i, _FIDX[k]] = float(v)
-    return upto, w
+    return upto, w, dep
 
 
 def _pack(a1, a2):
@@ -265,8 +270,19 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
 
     The heap entry is ``(priority, depth, key)`` exactly as in ``LabSolver``; ``key`` is packed
     bytes rather than a string tuple, which sorts identically, so the tie-break is unchanged.
+
+    **The optional ``depth`` weight.** A segment may carry ``"depth": w``, adding ``w * depth`` to
+    that segment's score -- the ``g`` term of a weighted A*, with the structural features as ``h``.
+    It is deliberately not a feature: ``depth`` is a property of the *path that found* a state, not
+    of the state, and because the visited set keeps the first discovery with no decrease-key, a
+    state reached later by a shorter route keeps its original key. The search stays perfectly
+    deterministic -- it is the same inadmissible-search bargain weighted A* makes -- but "the
+    priority of a state" stops being well defined, so the term is opt-in and named separately
+    rather than hidden among the thirteen. With every ``depth`` absent or zero this function is
+    bit-identical to the pure-state version (pinned in ``test_hfast.py``).
     """
-    seg_upto, seg_w = compile_config(cfg)
+    seg_upto, seg_w, seg_depth = compile_config(cfg)
+    use_depth = bool(np.any(seg_depth != 0.0))
     a1 = str_to_arr(r1_str)
     a2 = str_to_arr(r2_str)
     ca, cb = canonical_pair_nj(reduce_relator_nj(a1, cyclic), reduce_relator_nj(a2, cyclic))
@@ -335,6 +351,8 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
                 t = int(tots[c])
                 if t < min_total:
                     min_total = t
+                if use_depth:
+                    score[c] += seg_depth[int(seg_idx[c])] * nd
                 kk = int(knots[c])
                 # Strictly fewer knots wins; at equal knots prefer the shorter witness, so
                 # min_K_len reports the cheapest state achieving the best knot count reached.
