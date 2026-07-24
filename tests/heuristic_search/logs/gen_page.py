@@ -1173,7 +1173,7 @@ page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states 
 
 <section id="hyper">
   <h2>The hyperparameter search</h2>
-  <p class="lede">A knot-based heap priority for the greedy substitution search — climb on structure while the presentation is long, with a length-16 phase boundary added only where the climb is lean enough to need one — tuned against the full 66-item benchmark and checked on an aut-disjoint held-out split it never trained on.</p>
+  <p class="lede">A knot-based heap priority for the greedy substitution search — climb on structure while the presentation is long, with a length-16 phase boundary added only where the climb is lean enough to need one — tuned against the full 66-item benchmark and validated on 75 presentations no stage of the program ever read.</p>
 
   <div class="callout b" style="margin-top:16px"><h3>Held out, this time for real</h3>
     <div class="big b" style="font-size:52px">{hy_head['baseline']}<span style="font-size:22px"> of </span>{hy_head['n']}<span style="font-size:28px"> &#8594; </span>{hy_head['tuned']}<span style="font-size:22px"> of </span>{hy_head['n']}</div>
@@ -1325,10 +1325,10 @@ page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states 
 
   <div class="panel" style="margin-top:20px"><div class="phead"><h2>Caveats</h2></div>
     <div class="pbody"><p style="margin:0">
-      &bull; The aut-disjoint split measures decidable&#8594;decidable transfer, not the decidable&#8594;second-hump gap — that gap is unmeasurable at &#8804;1,000 nodes.<br>
+      &bull; Even the corrected 75-row replication measures decidable&#8594;decidable transfer, not the decidable&#8594;second-hump gap — that gap is unmeasurable at &#8804;1,000 nodes.<br>
       &bull; The 75-row replication set and the retune's {hy_retune['eval_n']}-row frozen split are still modest samples, so each recommended <i>structure</i> (the 500 phase boundary, the 1000 single vector) is robust in aggregate, but the exact weights sit within selection noise.<br>
       &bull; {hy_u124_note}<br>
-      &bull; {e(HY['leak_note'])}<br>
+      &bull; The original leak this bullet used to describe as an "optimistic upper bound" is the same leak the correction above escalates to a retraction — see it there; the 75-row and retune figures are the clean replacements.<br>
       &bull; {hy_tie}<br>
       &bull; <b>Scope:</b> {e(HY['harness_note'])}
     </p></div>
