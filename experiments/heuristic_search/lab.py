@@ -21,7 +21,6 @@ import json
 import os
 import sys
 import time
-from concurrent.futures import ProcessPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
@@ -29,12 +28,19 @@ from experiments.heuristic_search.hlab import (        # noqa: E402
     LOGS, cfg_name, load_split, make_priority, run_one,
 )
 
-WORKERS = 9                    # 10 cores, one left for the parent and the OS
+# ONE core, one search at a time. This is not a tuning choice, it is a hard rule.
+#
+# A ProcessPoolExecutor here spawns children that outlive their parent: when the harness reaps a
+# long-running sweep it kills only the parent, and the workers keep searching. Two such batches --
+# eighteen processes -- survived unnoticed and drove this machine 22 GB into swap, at which point
+# the editor the user was working in reported a 75 GB footprint and became unusable. Serial
+# execution has no children to orphan, so the failure mode does not exist rather than being
+# guarded against. Parallelism belongs on Colab, where the user runs it and can see it.
 BUDGET_CEILING = 1_000         # the hard local cap; asserted, never merely documented
 
 
 def _work(task):
-    """One config over one slice. Module-level so a spawn pool can pickle it."""
+    """One config over one slice, in this process."""
     cid, cfg, rows, budget, mrl = task
     p = make_priority(cfg)
     t0 = time.perf_counter()
@@ -64,11 +70,15 @@ def done_keys(path):
     return seen
 
 
-def evaluate(configs, slice_name, budget, mrl, out_path, workers=WORKERS, label=""):
-    """Run every config over the slice, skipping whatever the jsonl already holds.
+def evaluate(configs, slice_name, budget, mrl, out_path, label="", deadline=None):
+    """Run every config over the slice, one at a time, skipping whatever the jsonl already holds.
 
     ``configs`` is a list of config dicts; ids come from ``cfg_name`` so the same ordering always
     gets the same id and a resumed run lines up with the file it is resuming.
+
+    ``deadline`` (seconds) stops cleanly between configs. Every completed config is already on
+    disk, so stopping early costs nothing and the next call resumes exactly where this one left
+    off -- which is what makes a serial sweep survivable in a bounded-timeout environment.
     """
     assert budget <= BUDGET_CEILING, f"{budget} exceeds the {BUDGET_CEILING}-node local cap"
     rows = load_split(slice_name)
@@ -81,28 +91,22 @@ def evaluate(configs, slice_name, budget, mrl, out_path, workers=WORKERS, label=
         if todo:
             tasks.append((cid, cfg, todo, budget, mrl))
 
-    # Chunking by config keeps each worker's word cache hot, but with fewer configs than workers
-    # the pool would sit idle -- so split the slice instead. The cache loss is the cheaper trade.
-    if 0 < len(tasks) < workers:
-        split = max(1, len(rows) // max(1, workers // max(1, len(tasks))))
-        tasks = [(cid, cfg, sub[i:i + split], b, m)
-                 for cid, cfg, sub, b, m in tasks
-                 for i in range(0, len(sub), split)]
-
     if not tasks:
         print(f"  [{label}] all {len(configs)} configs already done in "
               f"{os.path.basename(out_path)}", flush=True)
-        return
+        return True
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     t0, n_done = time.perf_counter(), 0
     print(f"  [{label}] {len(tasks)} configs x {len(rows)} pres, budget {budget}, mrl {mrl}"
           f"  ({len(seen)} rows resumed)", flush=True)
 
-    with open(out_path, "a") as f, ProcessPoolExecutor(max_workers=workers) as pool:
+    with open(out_path, "a") as f:
         last_beat = t0
-        for out, dt in pool.map(_work, tasks, chunksize=1):
+        for task in tasks:
+            out, dt = _work(task)
             for row in out:
+                row["secs"] = round(dt, 3)
                 f.write(json.dumps(row) + "\n")
             f.flush()
             os.fsync(f.fileno())
@@ -115,6 +119,11 @@ def evaluate(configs, slice_name, budget, mrl, out_path, workers=WORKERS, label=
                 print(f"    [{label}] {n_done}/{len(tasks)} configs  {el/60:.1f} min elapsed  "
                       f"ETA {eta/60:.1f} min  ({el/n_done:.1f} s/config)", flush=True)
                 last_beat = now
+            if deadline is not None and now - t0 >= deadline:
+                print(f"    [{label}] deadline hit at {n_done}/{len(tasks)} — "
+                      f"stopping cleanly, resume picks up here", flush=True)
+                return False
+    return True
 
 
 # ------------------------------------------------------------------------------------ reporting
@@ -215,13 +224,13 @@ def main():
     ap.add_argument("--budget", type=int, default=500)
     ap.add_argument("--mrl", type=int, default=48)
     ap.add_argument("--configs", required=True, help="json file: list of config dicts")
-    ap.add_argument("--workers", type=int, default=WORKERS)
+    ap.add_argument("--deadline", type=float, default=None, help="seconds; stops between configs")
     a = ap.parse_args()
 
     with open(a.configs) as f:
         cfgs = json.load(f)
     out = os.path.join(LOGS, f"{a.exp}.jsonl")
-    evaluate(cfgs, a.slice, a.budget, a.mrl, out, a.workers, label=a.exp)
+    evaluate(cfgs, a.slice, a.budget, a.mrl, out, label=a.exp, deadline=a.deadline)
 
 
 if __name__ == "__main__":

@@ -39,6 +39,7 @@ BUDGET = 100                 # the user's screening budget; the local ceiling is
 N_SPLITS = 5
 N_CANDIDATES = 200
 WORKERS = 8
+LOCAL_MAX_WORKERS = int(os.environ.get("ACSOLVERX_MAX_WORKERS", "1"))
 BASELINE = (0.0, 0.0, 0.0, 0.0)          # T, a1, a2, a3 -- exactly the length ordering
 
 
@@ -103,7 +104,10 @@ def main():
         rows = json.load(f)["subset"]
     by = {p: (r1, r2) for p, r1, r2 in load([r["pres_id"] for r in rows])}
 
-    report, pool = [], ProcessPoolExecutor(max_workers=WORKERS)
+    # WORKERS is capped at 1 locally: a pool's children outlive a reaped parent, and eighteen such
+    # orphans once drove this machine into swap under a live editing session. Raise it only on
+    # Colab, where the fleet is visible and disposable.
+    report, pool = [], ProcessPoolExecutor(max_workers=min(WORKERS, LOCAL_MAX_WORKERS))
     try:
         for seed in range(N_SPLITS):
             rng = np.random.default_rng(seed)
