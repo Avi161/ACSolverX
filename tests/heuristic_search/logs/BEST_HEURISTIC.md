@@ -6,14 +6,14 @@ The short answer, then the evidence and the caveats. Everything here is measured
 
 **One shape wins at every budget: phase the ordering at total length 16.** While the pair is longer than 16 letters, order by a structural climb (tolerate a temporarily worse-by-length state if it is structurally better); once it is 16 or shorter, revert to pure length and cash in. The phase boundary sits where the two-hump barrier is, and reverting below it is not optional — the `inverted` direction (structure when short, length when long) never beat the baseline.
 
-| your node budget | the ordering to use | what it buys on held-out problems |
-|---|---|---|
-| **~500** | `while L>16: L + 8·knots − 6·xy-imbalance;  else: L` | baseline solves **0/6** decidable, this solves **4/6** |
-| **~1000** | `while L>16: L − 2·max-block + 5·smaller-block;  else: L` | baseline solves **0/6** decidable, this solves **6/6** |
+| your node budget | the ordering to use | full 66-benchmark | held-out (aut-disjoint) |
+|---|---|---|---|
+| **~500** | `while L>16: L + 8·knots − 6·xy-imbalance;  else: L` | **40/66** (baseline 26) | 4/6 decidable (baseline 0) |
+| **~1000** | `while L>16: L + 2.5·knots + 6.4·max-knots + 8.5·smaller-block + 3.3·xy-imbalance;  else: L` | **43/66** (baseline 29) | 6/6 decidable (baseline 0) |
 
-`L` = total length of the pair. `knots` = `max(#x-blocks, #y-blocks)` summed over both relators. `xy-imbalance` = `|#x − #y| / L`. `max-block` / `smaller-block` = the larger / smaller of the two generators' mean run-lengths. **Let relators grow to ~48** (they climb to ~30; capping at 24 loses nothing at these budgets but nothing is gained by capping either — see caveats).
+`L` = total length of the pair. `knots` = `max(#x-blocks, #y-blocks)` summed over both relators. `max-knots` = the larger relator's knot count. `xy-imbalance` = `|#x − #y| / L`. `smaller-block` = the smaller of the two generators' mean run-lengths. **Let relators grow to ~48** (they climb to ~30; capping at 24 loses nothing at these budgets but nothing is gained by capping either — see caveats).
 
-Both rows are the *same* config family — a length-16 phase boundary with a structural climb above it. The only thing that shifts with budget is which structural features drive the climb: knots + generator-imbalance carry it at 500, block geometry at 1000. If you want one ordering for both, use the 500 row — it is the more robustly validated of the two (below).
+Both rows are the *same* config family — a length-16 phase boundary with a structural climb above it and pure length below. What shifts with budget is how rich the climb should be: at 500 a lean knots + generator-imbalance climb is best (a richer one wastes early pops), while at 1000 the richer knots + block climb overtakes it (**35→43 with budget** where the lean one plateaus at 40→40). That crossover is the whole reason to re-tune at the budget you run. A block-only climb (`L − 2·max-block + 5·smaller-block`) ties the knot climb at 43/66 at 1000, so blocks and knots are near-interchangeable there; the knot climb is recommended as the more principled and more robustly-validated of the two. If you want one ordering for both budgets, use the 500 row.
 
 ## Why knots, and why phased
 
