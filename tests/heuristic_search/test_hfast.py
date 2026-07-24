@@ -30,11 +30,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, ROOT)
 
 from experiments.heuristic_search.hlab import (              # noqa: E402
-    BASELINE_CONFIG, LabSolver, load_split, make_priority, phi, run_one,
+    BASELINE_CONFIG, FEATURES, LabSolver, load_split, make_priority, phi, run_one,
 )
 from experiments.heuristic_search.hfast import (              # noqa: E402
-    _feats_nj, _pack, search_fast,
+    _feats_nj, _pack, compile_config, search_fast,
 )
+from experiments.heuristic_search.perbin import bin_of        # noqa: E402
 from experiments.search.greedy_baseline import str_to_arr     # noqa: E402
 
 MAX_BUDGET = 500          # the repo-wide test ceiling; matches test_hlab.py's MAX_BUDGET
@@ -227,3 +228,121 @@ def test_baseline_config_still_reproduces_the_baseline_search_at_budget_100(stru
         for field in FIELDS:
             assert slow[field] == fast[field], (
                 f"{r['name']} field={field}: slow={slow} fast={fast}")
+
+
+# ---------------------------------------------------------------------------------- depth (EXP-11)
+#
+# A config segment may now carry a ``"depth": w`` key. ``compile_config`` returns a three-tuple
+# ``(seg_upto, seg_w, seg_depth)`` instead of two, and when any ``seg_depth`` entry is nonzero,
+# ``search_fast`` adds ``seg_depth[segment_index] * child_depth`` to a child's score before it is
+# pushed -- the ``g`` term of a weighted A*, with the thirteen structural features as ``h``. Depth
+# is deliberately NOT one of the thirteen: it is a property of the *path that discovered* a state,
+# not of the state itself, and the visited set keeps first-discovery with no decrease-key (see
+# ``search_fast``'s own docstring). ``exp11_depth.py`` is the sweep that measured this; the cases
+# below are pinned from what it found on the train split.
+
+# A phased two-segment KNOT config -- same shape as ``exp11_depth.BASES["phasedK8"]`` -- so the
+# backward-compat gate below covers a phased config as well as a single-segment and a growth one.
+_CFG_PHASEDK = {"segments": [{"upto": 16, "w": {"L": 1.0}},
+                              {"upto": None, "w": {"L": 1.0, "K": 8.0}}]}
+
+NO_DEPTH_CONFIGS = [
+    pytest.param(BASELINE_CONFIG, id="baseline"),
+    pytest.param(_CFG_PHASEDK, id="phasedK8"),
+    pytest.param(_CFG_LMAX, id="Lmax-growth"),
+]
+
+
+@pytest.mark.parametrize("cfg", NO_DEPTH_CONFIGS)
+def test_configs_with_no_depth_key_at_all_are_bit_identical_to_labsolver(structural_sample, cfg):
+    """The backward-compatibility gate. The entire EXP-01..10 experiment program ran before
+    ``depth`` existed as a concept, over configs that never carry the key -- a plain single-segment
+    config, a phased two-segment knot config, and a growth config that lets a relator run past
+    where it started. ``compile_config`` changed arity (two-tuple -> three-tuple) and
+    ``search_fast`` grew a ``use_depth`` branch it did not have before; none of that may change one
+    bit of what these configs already produced, or every prior EXP-01..10 result becomes
+    unreproducible.
+    """
+    p = make_priority(cfg)
+    for r in structural_sample:
+        slow = run_one(r["r1"], r["r2"], MAX_BUDGET, p, MRL)
+        fast = search_fast(r["r1"], r["r2"], MAX_BUDGET, cfg, MRL)
+        for field in FIELDS:
+            assert slow[field] == fast[field], (
+                f"{r['name']} field={field}: slow={slow} fast={fast}")
+
+
+def test_explicit_depth_zero_is_identical_to_omitting_the_key_entirely(structural_sample):
+    """``use_depth`` in ``search_fast`` is ``any(seg_depth != 0.0)`` -- it must gate on VALUE, not
+    on key presence, so a swept config that sets ``depth: 0.0`` as one point in a sweep (as
+    ``exp11_depth.py``'s zero-depth incumbent rows do) is never silently different from a config
+    that never mentions depth at all. Same config, with and without the key, at every field.
+    """
+    omitted = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
+    explicit_zero = {"segments": [{"upto": None, "w": {"L": 1.0}, "depth": 0.0}]}
+    for r in structural_sample:
+        a = search_fast(r["r1"], r["r2"], MAX_BUDGET, omitted, MRL)
+        b = search_fast(r["r1"], r["r2"], MAX_BUDGET, explicit_zero, MRL)
+        assert a == b, r["name"]
+
+
+def test_compile_config_returns_the_depth_vector_correctly():
+    """The tuple-arity change (``seg_upto, seg_w`` -> ``seg_upto, seg_w, seg_depth``) must not
+    scramble the first two elements, and the new third element must be 0.0 exactly where a segment
+    carries no ``depth`` key and the segment's own value everywhere it does.
+    """
+    cfg = {"segments": [{"upto": 16, "w": {"L": 1.0}},
+                         {"upto": None, "w": {"L": 1.0, "K": 8.0}, "depth": 2.0}]}
+    seg_upto, seg_w, seg_depth = compile_config(cfg)
+    assert len(seg_depth) == 2
+    assert seg_depth[0] == 0.0        # no "depth" key on this segment
+    assert seg_depth[1] == 2.0        # exact value carried through
+    # seg_upto / seg_w still line up with the segments -- the arity change didn't scramble them.
+    assert seg_upto[0] == 16.0
+    assert seg_upto[1] == float("inf")
+    assert seg_w[0, FEATURES.index("L")] == 1.0
+    assert seg_w[1, FEATURES.index("L")] == 1.0
+    assert seg_w[1, FEATURES.index("K")] == 8.0
+
+
+def test_a_nonzero_depth_weight_actually_changes_the_search():
+    """Not vacuous by construction, which is easy to get wrong here: a depth term added to EVERY
+    child of a single expansion shifts them all equally and cannot move the pop order under a
+    single-segment config where nothing else competes for rank, and placing it in a segment that
+    an easy presentation never reaches (e.g. an ``upto: 16`` endgame segment on a presentation that
+    solves inside length 16) does nothing either. So this uses a SINGLE-segment, pure-weighted-A*
+    config -- ``{"upto": None, "w": {"L": 1.0}, "depth": w}`` -- on ``ms589``, a bin-4 presentation
+    (``perbin.bin_of``, difficulty measured under plain length ordering) that plain length ordering
+    does NOT solve inside budget 500.
+
+    A naive positive weight (prefer shallower/breadth-first) was tried first and is exactly the
+    vacuous case the task warns about: at ``depth=1.0`` this presentation still exhausts the
+    budget unsolved with identical ``nodes`` to ``depth=0`` (verified empirically, not asserted
+    here). ``depth=-1.0`` (prefer DEEPER states -- dive first) is the case that actually differs:
+    it flips ``solved`` False -> True and finds the trivial pair in 86 nodes instead of 500.
+    """
+    train = load_split("train")
+    by = {r["name"]: r for r in train}
+    r = by["ms589"]
+    assert 4 <= bin_of("ms589") <= 7
+
+    zero = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
+    weighted = {"segments": [{"upto": None, "w": {"L": 1.0}, "depth": -1.0}]}
+
+    base = search_fast(r["r1"], r["r2"], MAX_BUDGET, zero, MRL)
+    dep = search_fast(r["r1"], r["r2"], MAX_BUDGET, weighted, MRL)
+
+    assert base["solved"] is False and base["nodes"] == MAX_BUDGET
+    assert dep["solved"] is True and dep["nodes"] == 86
+    assert dep["nodes"] != base["nodes"] or dep["solved"] != base["solved"]
+
+
+def test_depth_named_inside_the_weight_dict_is_rejected_not_silently_ignored():
+    """``depth`` is not a member of ``FEATURES``. ``compile_config`` indexes
+    ``w[i, _FIDX[k]]`` for every key in a segment's ``w`` dict, so a config that puts ``"depth"``
+    inside ``w`` (rather than as a sibling key next to it) must ``KeyError`` rather than silently
+    scoring it as zero -- exactly the typo a config author could make.
+    """
+    bad_cfg = {"segments": [{"upto": None, "w": {"L": 1.0, "depth": 2.0}}]}
+    with pytest.raises(KeyError):
+        compile_config(bad_cfg)
