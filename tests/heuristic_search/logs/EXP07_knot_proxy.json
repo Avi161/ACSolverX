@@ -1,0 +1,14 @@
+{
+ "n_windows": 187,
+ "mean_kp_solved": 0.6190476190476191,
+ "mean_kp_unsolved": 0.7530120481927711,
+ "table": {
+  "drop_solved": 12,
+  "drop_unsolved": 109,
+  "nodrop_solved": 9,
+  "nodrop_unsolved": 57
+ },
+ "p_solve_given_drop": 0.09917355371900827,
+ "p_solve_given_no_drop": 0.13636363636363635,
+ "verdict": "NOT VALIDATED \u2014 knot-progress does not discriminate at the boundary; do not rank the second hump on it, use min_total and real solves instead"
+}
