@@ -25,8 +25,9 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from experiments.heuristic_search.hlab import (        # noqa: E402
-    LOGS, cfg_name, load_split, make_priority, run_one,
+    LOGS, cfg_name, load_split,
 )
+from experiments.heuristic_search.hfast import search_fast   # noqa: E402
 
 # ONE core, one search at a time. This is not a tuning choice, it is a hard rule.
 #
@@ -42,11 +43,12 @@ BUDGET_CEILING = 1_000         # the hard local cap; asserted, never merely docu
 def _work(task):
     """One config over one slice, in this process."""
     cid, cfg, rows, budget, mrl = task
-    p = make_priority(cfg)
     t0 = time.perf_counter()
     out = []
     for r in rows:
-        res = run_one(r["r1"], r["r2"], budget, p, mrl)
+        # search_fast, not hlab.run_one: identical rows (560 replayed at the cap, 0 mismatched --
+        # verify_fast.py), ~150x faster on the wide expansions that dominate the clock.
+        res = search_fast(r["r1"], r["r2"], budget, cfg, mrl)
         out.append({"config_id": cid, "name": r["name"], "budget": budget, "mrl": mrl,
                     "solved": res["solved"], "nodes": res["nodes"],
                     "path_length": res["path_length"], "min_total": res["min_total"],

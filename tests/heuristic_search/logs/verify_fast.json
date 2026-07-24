@@ -1,0 +1,9 @@
+{
+ "budget": 500,
+ "mrl": 48,
+ "slice": "train",
+ "configs_checked": 14,
+ "rows_checked": 560,
+ "mismatches": 0,
+ "detail": []
+}
