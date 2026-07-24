@@ -243,9 +243,26 @@ The two quotient relator pairs differ by that induced automorphism, up to
 relator conjugation and inversion.  Hence their Aut(\(F_2\))-orbits agree.
 \(\square\)
 
-Theorem 3.1 is the constructive triangular special case of Theorem 3.4:
-its two successive solutions explicitly provide a basis straightening of
-the source-template pair.
+Theorems 3.1 and 3.4 are complementary.  The triangular theorem uses
+relator deletion and substitution; it does not require, or in general
+assert, that the two source-template conjugacy classes form a primitive
+pair.
+
+### Corollary 3.5 (full-basis finish)
+
+If all four conjugacy classes
+
+\[
+ ([I_R],[I_y],[D_z],[D_t])
+\]
+
+form a basis of \(F_4\), then \(P\) is stably AC-trivial.
+
+#### Proof
+
+Use Proposition 3.3 to send the four relators to a free basis, independently
+conjugate and invert them to literal basis letters, and remove all four
+generator--relator pairs.  \(\square\)
 
 ## 4. Exact AK(3) corridor
 

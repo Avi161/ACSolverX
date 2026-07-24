@@ -91,6 +91,47 @@ is pinned by
 This remains local in the number of multiplications.  It does not bound the
 Aut-floor of every child and is not a stable-AC obstruction.
 
+## Proven result 3: an infinite twist family is pure gauge
+
+At the same compression root, put \(v=zxz^{-1}\).  For arbitrary
+\(p,q\in\mathbb Z\) and \(\epsilon\in\{+1,-1\}\), adjoin
+
+\[
+ t=x^pv^\epsilon x^q
+\]
+
+by reverse substitution-and-removal.  For \(\epsilon=+1\), compressing the
+two source relators and eliminating \(z\) gives
+
+\[
+\begin{aligned}
+ C_{p,q}&=x^3(x^qt^{-1}x^p)^4,\\
+ E_{p,q}&=t^{-1}xtxt^{-1}x^{p+q-1}.
+\end{aligned}
+\]
+
+After \(t\mapsto y\), the automorphism
+
+\[
+ x\mapsto x,\qquad y\mapsto x^pyx^q
+\]
+
+sends \(C_{p,q}\) literally to the first AK(3) relator and sends
+\(E_{p,q}\) to a conjugate of a cyclic rotation of the second.  Thus the
+positive family is a stable self-loop.  The negative family has an analogous
+literal formula under \(y\mapsto x^py^{-1}x^q\), landing on the inverse
+second relator.  Thus the entire signed two-parameter family has Aut-floor
+\(13\).
+The symbolic proof is in
+`literature/proofs/AK3_TWIST_GAUGE_COLLAPSE.md`; its literal identities are
+pinned by `tests/stable_ac/test_twist_gauge_collapse.py`.
+
+This rules out the bare compress-and-remove corridor for every stabilizer
+word in the infinite double-coset pair
+\(\langle x\rangle(zxz^{-1})^{\pm1}\langle x\rangle\) as a source of orbit
+escape.  There is no parameter bound in this conclusion; extra AC moves
+after adjoining the same word are outside its scope.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -101,6 +142,9 @@ unverified.
 
 The target is a hidden-cancellation or longer \(F_4\) primitive pair whose
 rank-two quotient has complete Aut-floor at most 12.  A primitive full
-four-relator tuple would be an immediate stable solve.
+four-relator tuple would be an immediate stable solve.  At the
+one-stabilization root, new defining words should lie outside the proved
+signed double-coset gauge family; merely adding left or right powers of
+\(x\) to this bare corridor cannot help.
 
 AK(3) remains open.

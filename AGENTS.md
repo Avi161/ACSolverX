@@ -130,3 +130,28 @@
 
 - [TRAP] `PROOFS.tex` proves the stable ambient automorphism principle only for balanced rank-two presentations. Citing it directly for a primitive pair in \(F_4\) leaves an arity gap even though the generalization is natural.
 - [WORKS] Before using an ambient automorphism in higher stable rank, prove the rank-\(n\) form from the substitution-and-removal exchange: fresh-letter renames realize swaps and inversions, and adjoining \(v^{-1}a_i a_j^{-1}\), removing \(a_i\), then renaming \(v\) realizes a Nielsen transvection.
+
+### 2026-07-24 Triangular elimination is not pair primitivity
+
+- [TRAP] Two relators that can be removed successively by unique-occurrence substitution need not form a primitive pair: the first relator may be used to clear the second by relator operations, while primitive-pair straightening permits only one ambient free-group automorphism plus independent conjugation/inversion.
+- [WORKS] State triangular Lemma-11 elimination and \(F_n\) primitive-pair compression as complementary criteria unless a separate Whitehead certificate proves primitivity for the exact template pair.
+
+### 2026-07-24 Survivor alphabet before Aut-canonicalization
+
+- [TRAP] Passing an exact rank-two survivor pair over \(\{x,t\}\) directly to `aut_canon` fails with `KeyError: 't'`; the routine is intentionally written for the canonical \(\{x,y\}\) alphabet.
+- [WORKS] Perform the theorem's final signed relabel \(t\mapsto y\), \(T\mapsto Y\) before calling the rank-two Whitehead code, and keep the pre-relabel words alongside the result for proof replay.
+
+### 2026-07-24 Check conjugation orientation before promoting a symbolic family
+
+- [TRAP] For \(u=z^{-1}xz\), one has \(u^{-1}=z^{-1}x^{-1}z\), not \(zx^{-1}z^{-1}\). Treating these as equal produced the wrong defining relator and survivor formula in a scratch derivation of the AK(3) twist family.
+- [WORKS] Before writing a parametric compression theorem, replay both template expansions and the eliminated defining relator as literal free words. For the valid family use \(t=zxz^{-1}x^m\), whose inverse really compresses the blocks \(zx^{-1}z^{-1}\) in the power relator.
+
+### 2026-07-24 Parametric free reduction versus cyclic conjugacy
+
+- [TRAP] The unreduced survivor spelling \(TxtxTXx^m\) has reduced tail \(x^{m-1}\); writing it as a literal reduced expected word fails at \(m>0\). After the shear \(t\mapsto tx^m\), the second relator is generally a conjugate of the AK(3) relator, not the same linear spelling.
+- [WORKS] State parametric formulas with group powers, reduce the complete expansion, and use cyclic reduction before comparing conjugacy classes. Test negative, zero, and positive parameter values because cancellation changes sides at \(m=0\).
+
+### 2026-07-24 Ignored proof directory staging
+
+- [TRAP] A single ordinary `git add` that includes any path under the ignored `literature/` tree aborts the whole staging command, even when another proof file there is already tracked.
+- [WORKS] Stage the exact intended `literature/proofs/...` paths with `git add -f`; stage non-ignored report, test, and lesson files separately, then inspect the cached diff before committing.
