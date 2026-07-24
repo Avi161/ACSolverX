@@ -53,3 +53,53 @@ Tuning on `benchmark_subset_20`; the winner is pre-registered from the tuning se
 ### The tie-break bug, recorded
 
 The first ranking compared arms by the raw **sum** of nodes over each arm's own both-solved set. Those sets differ in size, so 537 nodes over 8 presentations "beat" 582 over 9 — when the per-presentation means are 67.1 against 64.7, the opposite order. It picked the wrong pre-registered winner, and it was only caught because the held-out numbers looked odd. `compare()` now reports `nodes_both_mean` and the ranking uses it.
+
+
+# Multi-feature tuned priority — the strongest result here
+
+`experiments/heuristic_search/tune_multi.py` → `tune_multi.json`. Instead of fixing one weight by hand, tune all of them:
+
+```
+priority(r1, r2) = (0, L)                                        if L <= T
+                   (1, L + a₁·knots + a₂·max_knots + a₃·smb)     otherwise
+```
+
+This **subsumes** every single-feature arm — large `a₁` is lexicographic knots-first, `a₁ = 4, a₂ = a₃ = 0` is `length+4·knots`, and the all-zero vector with `T = 0` is exactly the baseline. The zero vector is kept in the candidate pool on purpose: a search space that cannot express "no change" will always appear to beat the control.
+
+**Protocol.** Subset-60, budget 100. Five splits stratified by the benchmark's difficulty `bin` (with 17/60 solvable at this budget, an unstratified split swings the achievable score more than any heuristic does). 200 random configs tuned on each train half, the winner scored once on the held-out half.
+
+| | train (30) | **test (30, held out)** |
+|---|---|---|
+| mean gain over baseline | +6.8 | **+6.8** |
+| **overfitting gap** | | **0.0** |
+| splits won | | **5/5** (sign p = 0.062) |
+
+Per split, the tuned model scores 15–16/30 against a baseline of 8–9/30.
+
+## On the full 60, at every budget
+
+| budget | baseline | tuned | net | W–L |
+|---|---|---|---|---|
+| 100 | 17/60 | **30/60** | +13 | 13W–**0L** |
+| 200 | 20/60 | **32/60** | +12 | 12W–**0L** |
+| 500 | 26/60 | **39/60** | +13 | 13W–**0L** |
+
+**It never loses a presentation, at any budget.** 13 wins against 0 losses is p = 0.0002 on the exact sign test. Budget 100 with the tuned ordering beats budget 500 with the baseline (30 vs 26) — a better ordering is worth more than 5× the node budget on this benchmark.
+
+*(The full-60 numbers are partly in-sample, since the weights were tuned on splits of this same set. The held-out table above is the generalisation evidence; this table shows the effect size and that it never trades a solve.)*
+
+## Verification
+
+The solve rate is the headline, so it is checked rather than trusted:
+
+- **every** returned path is re-walked against a freshly generated neighbour set at each step, and must end at the trivial state — 30/30 valid, 0 broken edges;
+- the zero-weight vector is asserted to reproduce `greedy_search` pop for pop, so "no change" really is no change;
+- 10 of the 13 extra solves at budget 100 are independently confirmed solvable by the *baseline* at budget 1,000 (all 60 come from `ms640_solved.txt`, so all 13 are known-trivial by construction anyway).
+
+Pinned in `tests/heuristic_search/test_hsearch.py`, including that the arm never loses a presentation — a net gain can hide churn, and "strictly dominates" is a much stronger claim than "nets positive".
+
+## Two things this corrects
+
+**`smaller mean block` carries the largest weight** — `a₃ ≈ 7.8–9.3` across all five splits, against `a₁ ≈ 5.4–7.4` for knots and `a₂ ≈ 0.4–2.1` for max_knots. On its own smb was the *weakest* family (flatlining to +0 at budget 1,000); in combination it is the biggest single term. Testing features one at a time would have discarded it.
+
+**The endgame switch stops mattering.** Tuning drives `T` to 0 or 8, not 16. The `@endgame16` switch was load-bearing for *pure lexicographic* `knots_first` — which scores 8/20, below baseline, without it — but a linear blend already degrades gracefully as `L` shrinks, so the explicit switch is redundant. The earlier claim that the threshold is doing real work holds only for the lexicographic arm.

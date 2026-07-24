@@ -7,7 +7,8 @@
  ],
  "arms": [
   "length+4.0*knots",
-  "knots_first@endgame16"
+  "knots_first@endgame16",
+  "length+4.0*smb"
  ],
  "max_relator_length": 24,
  "results": {
@@ -56,6 +57,20 @@
     "nodes_both_mean": 67.125,
     "nodes_both_ctrl_mean": 87.375,
     "n_both": 8
+   },
+   "length+4.0*smb": {
+    "solved": 10,
+    "won": [
+     537
+    ],
+    "lost": [],
+    "net": 1,
+    "sign_p": 1.0,
+    "nodes_both": 565,
+    "nodes_both_ctrl": 1097,
+    "nodes_both_mean": 62.77777777777778,
+    "nodes_both_ctrl_mean": 121.88888888888889,
+    "n_both": 9
    }
   },
   "1000": {
@@ -101,6 +116,18 @@
     "nodes_both": 1338,
     "nodes_both_ctrl": 1676,
     "nodes_both_mean": 133.8,
+    "nodes_both_ctrl_mean": 167.6,
+    "n_both": 10
+   },
+   "length+4.0*smb": {
+    "solved": 10,
+    "won": [],
+    "lost": [],
+    "net": 0,
+    "sign_p": 1.0,
+    "nodes_both": 853,
+    "nodes_both_ctrl": 1676,
+    "nodes_both_mean": 85.3,
     "nodes_both_ctrl_mean": 167.6,
     "n_both": 10
    }

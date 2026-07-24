@@ -128,3 +128,80 @@ def test_endgame_threshold_reverts_to_pure_length_when_short():
     long_key = p("YYYXyyX", "YXXXyxx")                         # total 14 > 10
     assert long_key[0] == 1
     assert short_b < long_key, "every endgame state must outrank every opening state"
+
+
+# ------------------------------------------------------------------- the tuned multi-feature arm
+
+TUNED = (8.0, 6.23, 0.84, 8.33)      # T, a_knots, a_maxknots, a_smb -- from tune_multi on subset-60
+
+
+@pytest.fixture(scope="module")
+def bench60():
+    from experiments.heuristic_search.run_sweep import load, subset_ids
+    return load(subset_ids(60))
+
+
+def test_baseline_params_reproduce_the_length_ordering(bench60):
+    """The tuner's zero vector must BE the control, or the search space cannot express 'no change'.
+
+    A weight space that cannot return the baseline will always appear to beat it, so this is the
+    tuning equivalent of the control gate above.
+    """
+    from experiments.heuristic_search.tune_multi import BASELINE, make_priority
+    p = make_priority(BASELINE)
+    for pid, r1, r2 in bench60[:8]:
+        a = greedy_search(r1, r2, 100, max_relator_length=24)
+        b = hsearch(r1, r2, 100, p, max_relator_length=24)
+        assert bool(a["solved"]) == bool(b["solved"]), f"pres {pid}"
+        assert a["nodes_explored"] == b["nodes_explored"], f"pres {pid}"
+
+
+@pytest.mark.slow
+def test_tuned_solution_paths_are_real_move_chains(bench60):
+    """Every returned path must be a chain of legal S-moves ending at the trivial state.
+
+    A heap ordering cannot invent a solution -- but a bug in the re-stated solve loop could return
+    a path that skips an edge, and the solve rate is the headline number here. This regenerates the
+    neighbour set at each step and requires the next state to be in it.
+    """
+    from experiments.heuristic_search.hsearch import HeuristicSolver
+    from experiments.heuristic_search.tune_multi import make_priority
+    from experiments.search.greedy_baseline import (
+        canonical_pair_nj, get_neighbors_with_moves_nj, reduce_relator_nj, state_to_key,
+        str_to_arr,
+    )
+    checked = 0
+    for pid, r1, r2 in bench60:
+        s = HeuristicSolver(r1, r2, priority=make_priority(TUNED), max_nodes=100,
+                            max_relator_length=24)
+        path, _, _, _ = s.solve()
+        if path is None:
+            continue
+        checked += 1
+        assert len(path[-1][0]) == 1 and len(path[-1][1]) == 1, f"pres {pid} ends untrivial"
+        for a, b in zip(path, path[1:]):
+            kids = set()
+            for nr1, nr2, *_ in get_neighbors_with_moves_nj(str_to_arr(a[0]), str_to_arr(a[1])):
+                x, y = reduce_relator_nj(nr1, True), reduce_relator_nj(nr2, True)
+                if len(x) <= 24 and len(y) <= 24:
+                    kids.add(state_to_key(canonical_pair_nj(x, y)))
+            assert b in kids, f"pres {pid}: {a} -> {b} is not a legal move"
+    assert checked >= 25, f"only {checked} solved paths checked -- the guard would be vacuous"
+
+
+@pytest.mark.slow
+def test_tuned_arm_beats_the_baseline_on_subset_60_and_never_loses(bench60):
+    """Regression pin on the headline: 17/60 -> 30/60 at budget 100, with no presentation lost.
+
+    'Never loses' is the part worth pinning -- a net gain can hide churn, and an ordering that
+    trades solves is a different (and much weaker) claim than one that strictly dominates.
+    """
+    from experiments.heuristic_search.tune_multi import BASELINE, make_priority
+    base, tuned = [], []
+    for pid, r1, r2 in bench60:
+        base.append(hsearch(r1, r2, 100, make_priority(BASELINE), max_relator_length=24)["solved"])
+        tuned.append(hsearch(r1, r2, 100, make_priority(TUNED), max_relator_length=24)["solved"])
+    lost = [i for i in range(len(base)) if base[i] and not tuned[i]]
+    assert sum(base) == 17, f"baseline moved: {sum(base)}/60 -- diagnose before regenerating"
+    assert sum(tuned) >= 28, f"tuned arm fell to {sum(tuned)}/60"
+    assert not lost, f"tuned arm lost presentations {lost} the baseline solved"

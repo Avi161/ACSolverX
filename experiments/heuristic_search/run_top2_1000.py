@@ -1,4 +1,4 @@
-"""The two best orderings against the baseline at the 1,000-node ceiling, on benchmark subset 20.
+"""The best orderings against the baseline at the 1,000-node ceiling, on benchmark subset 20.
 
 Budget 1,000 is the hard local maximum (``experiments/lessons/local-run-budget-cap.md``) and this
 script must never be edited to exceed it -- ``_BUDGET_CEILING`` is asserted, not commented.
@@ -26,7 +26,12 @@ from experiments.heuristic_search.run_sweep import (                # noqa: E402
 
 _BUDGET_CEILING = 1_000
 BUDGETS = (500, 1_000)
-ARMS = ("length+4.0*knots", "knots_first@endgame16")   # the top two on the tuning set at 500
+# The two best by SOLVE COUNT, plus the best smaller-mean-block arm. smb is included even though
+# it ranks below both on solves, because it is the best arm on NODES PER SOLVE (x0.47 on the
+# confirmation set) -- ranking the 1,000-node run by solve count alone would have quietly dropped
+# the only arm that wins on the other metric, and "we tested it" is not the same as "we reported
+# it at every budget".
+ARMS = ("length+4.0*knots", "knots_first@endgame16", "length+4.0*smb")
 
 
 def main():
