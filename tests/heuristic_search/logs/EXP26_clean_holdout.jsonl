@@ -1,0 +1,450 @@
+{"arm": "baseline (length)", "name": "ms416", "pres_id": 416, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 485, "path_length": 52, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms422", "pres_id": 422, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 490, "path_length": 52, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms464", "pres_id": 464, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms466", "pres_id": 466, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms527", "pres_id": 527, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 430, "path_length": 49, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms529", "pres_id": 529, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 414, "path_length": 51, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms535", "pres_id": 535, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms536", "pres_id": 536, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms537", "pres_id": 537, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 13}
+{"arm": "baseline (length)", "name": "ms539", "pres_id": 539, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms540", "pres_id": 540, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms541", "pres_id": 541, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 474, "path_length": 67, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms542", "pres_id": 542, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms545", "pres_id": 545, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms547", "pres_id": 547, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms550", "pres_id": 550, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms551", "pres_id": 551, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms552", "pres_id": 552, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms553", "pres_id": 553, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms554", "pres_id": 554, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms555", "pres_id": 555, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 406, "path_length": 24, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms556", "pres_id": 556, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms557", "pres_id": 557, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 489, "path_length": 27, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms558", "pres_id": 558, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms559", "pres_id": 559, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms560", "pres_id": 560, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms561", "pres_id": 561, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms562", "pres_id": 562, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms563", "pres_id": 563, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms564", "pres_id": 564, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms566", "pres_id": 566, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms567", "pres_id": 567, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms569", "pres_id": 569, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms570", "pres_id": 570, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms571", "pres_id": 571, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms572", "pres_id": 572, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms574", "pres_id": 574, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 13}
+{"arm": "baseline (length)", "name": "ms576", "pres_id": 576, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms577", "pres_id": 577, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms582", "pres_id": 582, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms584", "pres_id": 584, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms585", "pres_id": 585, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms587", "pres_id": 587, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms588", "pres_id": 588, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms590", "pres_id": 590, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms591", "pres_id": 591, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms592", "pres_id": 592, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms593", "pres_id": 593, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms594", "pres_id": 594, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms595", "pres_id": 595, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms597", "pres_id": 597, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms598", "pres_id": 598, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms599", "pres_id": 599, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 478, "path_length": 40, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms600", "pres_id": 600, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms601", "pres_id": 601, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 476, "path_length": 40, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms603", "pres_id": 603, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms604", "pres_id": 604, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms607", "pres_id": 607, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms608", "pres_id": 608, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms611", "pres_id": 611, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms612", "pres_id": 612, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms613", "pres_id": 613, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms614", "pres_id": 614, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms615", "pres_id": 615, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms616", "pres_id": 616, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms617", "pres_id": 617, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms618", "pres_id": 618, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms619", "pres_id": 619, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms620", "pres_id": 620, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms621", "pres_id": 621, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms626", "pres_id": 626, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms627", "pres_id": 627, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 477, "path_length": 40, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms629", "pres_id": 629, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms630", "pres_id": 630, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms631", "pres_id": 631, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 481, "path_length": 40, "min_total": 2}
+{"arm": "recommended", "name": "ms416", "pres_id": 416, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 90, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms422", "pres_id": 422, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 90, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms464", "pres_id": 464, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 283, "path_length": 83, "min_total": 2}
+{"arm": "recommended", "name": "ms466", "pres_id": 466, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 280, "path_length": 83, "min_total": 2}
+{"arm": "recommended", "name": "ms527", "pres_id": 527, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 62, "path_length": 33, "min_total": 2}
+{"arm": "recommended", "name": "ms529", "pres_id": 529, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 63, "path_length": 33, "min_total": 2}
+{"arm": "recommended", "name": "ms535", "pres_id": 535, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 497, "path_length": 29, "min_total": 2}
+{"arm": "recommended", "name": "ms536", "pres_id": 536, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 496, "path_length": 29, "min_total": 2}
+{"arm": "recommended", "name": "ms537", "pres_id": 537, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 160, "path_length": 45, "min_total": 2}
+{"arm": "recommended", "name": "ms539", "pres_id": 539, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 136, "path_length": 44, "min_total": 2}
+{"arm": "recommended", "name": "ms540", "pres_id": 540, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 136, "path_length": 44, "min_total": 2}
+{"arm": "recommended", "name": "ms541", "pres_id": 541, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 160, "path_length": 45, "min_total": 2}
+{"arm": "recommended", "name": "ms542", "pres_id": 542, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 13}
+{"arm": "recommended", "name": "ms545", "pres_id": 545, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 134, "path_length": 39, "min_total": 2}
+{"arm": "recommended", "name": "ms547", "pres_id": 547, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 13}
+{"arm": "recommended", "name": "ms550", "pres_id": 550, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 134, "path_length": 41, "min_total": 2}
+{"arm": "recommended", "name": "ms551", "pres_id": 551, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 134, "path_length": 39, "min_total": 2}
+{"arm": "recommended", "name": "ms552", "pres_id": 552, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 134, "path_length": 41, "min_total": 2}
+{"arm": "recommended", "name": "ms553", "pres_id": 553, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 160, "path_length": 52, "min_total": 2}
+{"arm": "recommended", "name": "ms554", "pres_id": 554, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 160, "path_length": 48, "min_total": 2}
+{"arm": "recommended", "name": "ms555", "pres_id": 555, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 110, "path_length": 23, "min_total": 2}
+{"arm": "recommended", "name": "ms556", "pres_id": 556, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47, "min_total": 2}
+{"arm": "recommended", "name": "ms557", "pres_id": 557, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 497, "path_length": 34, "min_total": 2}
+{"arm": "recommended", "name": "ms558", "pres_id": 558, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 13}
+{"arm": "recommended", "name": "ms559", "pres_id": 559, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 327, "path_length": 96, "min_total": 2}
+{"arm": "recommended", "name": "ms560", "pres_id": 560, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 327, "path_length": 85, "min_total": 2}
+{"arm": "recommended", "name": "ms561", "pres_id": 561, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms562", "pres_id": 562, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 324, "path_length": 85, "min_total": 2}
+{"arm": "recommended", "name": "ms563", "pres_id": 563, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms564", "pres_id": 564, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 324, "path_length": 96, "min_total": 2}
+{"arm": "recommended", "name": "ms566", "pres_id": 566, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 327, "path_length": 88, "min_total": 2}
+{"arm": "recommended", "name": "ms567", "pres_id": 567, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms569", "pres_id": 569, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 324, "path_length": 88, "min_total": 2}
+{"arm": "recommended", "name": "ms570", "pres_id": 570, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms571", "pres_id": 571, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms572", "pres_id": 572, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 419, "path_length": 99, "min_total": 2}
+{"arm": "recommended", "name": "ms574", "pres_id": 574, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 13}
+{"arm": "recommended", "name": "ms576", "pres_id": 576, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 386, "path_length": 91, "min_total": 2}
+{"arm": "recommended", "name": "ms577", "pres_id": 577, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms582", "pres_id": 582, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 383, "path_length": 91, "min_total": 2}
+{"arm": "recommended", "name": "ms584", "pres_id": 584, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms585", "pres_id": 585, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 252, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms587", "pres_id": 587, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms588", "pres_id": 588, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 419, "path_length": 102, "min_total": 2}
+{"arm": "recommended", "name": "ms590", "pres_id": 590, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms591", "pres_id": 591, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms592", "pres_id": 592, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms593", "pres_id": 593, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms594", "pres_id": 594, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms595", "pres_id": 595, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms597", "pres_id": 597, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms598", "pres_id": 598, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "recommended", "name": "ms599", "pres_id": 599, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 427, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms600", "pres_id": 600, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms601", "pres_id": 601, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 434, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms603", "pres_id": 603, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms604", "pres_id": 604, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms607", "pres_id": 607, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "recommended", "name": "ms608", "pres_id": 608, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "recommended", "name": "ms611", "pres_id": 611, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "recommended", "name": "ms612", "pres_id": 612, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms613", "pres_id": 613, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms614", "pres_id": 614, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "recommended", "name": "ms615", "pres_id": 615, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "recommended", "name": "ms616", "pres_id": 616, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms617", "pres_id": 617, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms618", "pres_id": 618, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms619", "pres_id": 619, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "recommended", "name": "ms620", "pres_id": 620, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "recommended", "name": "ms621", "pres_id": 621, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms626", "pres_id": 626, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "recommended", "name": "ms627", "pres_id": 627, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 427, "path_length": 47, "min_total": 2}
+{"arm": "recommended", "name": "ms629", "pres_id": 629, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 133, "path_length": 35, "min_total": 2}
+{"arm": "recommended", "name": "ms630", "pres_id": 630, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 134, "path_length": 35, "min_total": 2}
+{"arm": "recommended", "name": "ms631", "pres_id": 631, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 427, "path_length": 47, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms416", "pres_id": 416, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 113, "path_length": 44, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms422", "pres_id": 422, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 190, "path_length": 46, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms464", "pres_id": 464, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 326, "path_length": 81, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms466", "pres_id": 466, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 324, "path_length": 81, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms527", "pres_id": 527, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 64, "path_length": 33, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms529", "pres_id": 529, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 65, "path_length": 33, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms535", "pres_id": 535, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 230, "path_length": 28, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms536", "pres_id": 536, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 232, "path_length": 28, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms537", "pres_id": 537, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 178, "path_length": 47, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms539", "pres_id": 539, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 170, "path_length": 56, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms540", "pres_id": 540, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 157, "path_length": 54, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms541", "pres_id": 541, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 191, "path_length": 49, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms542", "pres_id": 542, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 233, "path_length": 31, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms545", "pres_id": 545, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 155, "path_length": 49, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms547", "pres_id": 547, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 293, "path_length": 34, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms550", "pres_id": 550, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 168, "path_length": 53, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms551", "pres_id": 551, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 168, "path_length": 51, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms552", "pres_id": 552, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 155, "path_length": 51, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms553", "pres_id": 553, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 194, "path_length": 56, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms554", "pres_id": 554, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 191, "path_length": 52, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms555", "pres_id": 555, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 141, "path_length": 25, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms556", "pres_id": 556, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 158, "path_length": 57, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms557", "pres_id": 557, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 108, "path_length": 21, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms558", "pres_id": 558, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 235, "path_length": 34, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms559", "pres_id": 559, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 330, "path_length": 84, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms560", "pres_id": 560, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 331, "path_length": 83, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms561", "pres_id": 561, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms562", "pres_id": 562, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 329, "path_length": 83, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms563", "pres_id": 563, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms564", "pres_id": 564, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 405, "path_length": 84, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms566", "pres_id": 566, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 331, "path_length": 86, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms567", "pres_id": 567, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms569", "pres_id": 569, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 329, "path_length": 86, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms570", "pres_id": 570, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms571", "pres_id": 571, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms572", "pres_id": 572, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 406, "path_length": 87, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms574", "pres_id": 574, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 239, "path_length": 35, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms576", "pres_id": 576, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 383, "path_length": 89, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms577", "pres_id": 577, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms582", "pres_id": 582, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 381, "path_length": 89, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms584", "pres_id": 584, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms585", "pres_id": 585, "bin": 4, "budget": 500, "mrl": 48, "solved": true, "nodes": 76, "path_length": 33, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms587", "pres_id": 587, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms588", "pres_id": 588, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 406, "path_length": 90, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms590", "pres_id": 590, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "lean (500 rec)", "name": "ms591", "pres_id": 591, "bin": 5, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "lean (500 rec)", "name": "ms592", "pres_id": 592, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "lean (500 rec)", "name": "ms593", "pres_id": 593, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "lean (500 rec)", "name": "ms594", "pres_id": 594, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "lean (500 rec)", "name": "ms595", "pres_id": 595, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms597", "pres_id": 597, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "lean (500 rec)", "name": "ms598", "pres_id": 598, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms599", "pres_id": 599, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms600", "pres_id": 600, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 19}
+{"arm": "lean (500 rec)", "name": "ms601", "pres_id": 601, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms603", "pres_id": 603, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms604", "pres_id": 604, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms607", "pres_id": 607, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms608", "pres_id": 608, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms611", "pres_id": 611, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms612", "pres_id": 612, "bin": 5, "budget": 500, "mrl": 48, "solved": true, "nodes": 203, "path_length": 36, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms613", "pres_id": 613, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms614", "pres_id": 614, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms615", "pres_id": 615, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms616", "pres_id": 616, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms617", "pres_id": 617, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms618", "pres_id": 618, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms619", "pres_id": 619, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms620", "pres_id": 620, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms621", "pres_id": 621, "bin": 7, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms626", "pres_id": 626, "bin": 6, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms627", "pres_id": 627, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms629", "pres_id": 629, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 73, "path_length": 35, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms630", "pres_id": 630, "bin": 6, "budget": 500, "mrl": 48, "solved": true, "nodes": 74, "path_length": 35, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms631", "pres_id": 631, "bin": 4, "budget": 500, "mrl": 48, "solved": false, "nodes": 500, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms416", "pres_id": 416, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 485, "path_length": 52, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms422", "pres_id": 422, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 490, "path_length": 52, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms464", "pres_id": 464, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 592, "path_length": 99, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms466", "pres_id": 466, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 614, "path_length": 101, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms527", "pres_id": 527, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 430, "path_length": 49, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms529", "pres_id": 529, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 414, "path_length": 51, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms535", "pres_id": 535, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 641, "path_length": 25, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms536", "pres_id": 536, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 629, "path_length": 23, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms537", "pres_id": 537, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 579, "path_length": 73, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms539", "pres_id": 539, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms540", "pres_id": 540, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms541", "pres_id": 541, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 474, "path_length": 67, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms542", "pres_id": 542, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms545", "pres_id": 545, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 914, "path_length": 69, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms547", "pres_id": 547, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms550", "pres_id": 550, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms551", "pres_id": 551, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 990, "path_length": 69, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms552", "pres_id": 552, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms553", "pres_id": 553, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms554", "pres_id": 554, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms555", "pres_id": 555, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 406, "path_length": 24, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms556", "pres_id": 556, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms557", "pres_id": 557, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 489, "path_length": 27, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms558", "pres_id": 558, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms559", "pres_id": 559, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms560", "pres_id": 560, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms561", "pres_id": 561, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms562", "pres_id": 562, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms563", "pres_id": 563, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms564", "pres_id": 564, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms566", "pres_id": 566, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms567", "pres_id": 567, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms569", "pres_id": 569, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms570", "pres_id": 570, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms571", "pres_id": 571, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms572", "pres_id": 572, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms574", "pres_id": 574, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 526, "path_length": 38, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms576", "pres_id": 576, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms577", "pres_id": 577, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms582", "pres_id": 582, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms584", "pres_id": 584, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms585", "pres_id": 585, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 869, "path_length": 47, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms587", "pres_id": 587, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "baseline (length)", "name": "ms588", "pres_id": 588, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms590", "pres_id": 590, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms591", "pres_id": 591, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms592", "pres_id": 592, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms593", "pres_id": 593, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms594", "pres_id": 594, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms595", "pres_id": 595, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms597", "pres_id": 597, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms598", "pres_id": 598, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 16}
+{"arm": "baseline (length)", "name": "ms599", "pres_id": 599, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 478, "path_length": 40, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms600", "pres_id": 600, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms601", "pres_id": 601, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 476, "path_length": 40, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms603", "pres_id": 603, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms604", "pres_id": 604, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms607", "pres_id": 607, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms608", "pres_id": 608, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms611", "pres_id": 611, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms612", "pres_id": 612, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "baseline (length)", "name": "ms613", "pres_id": 613, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms614", "pres_id": 614, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "baseline (length)", "name": "ms615", "pres_id": 615, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 19}
+{"arm": "baseline (length)", "name": "ms616", "pres_id": 616, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms617", "pres_id": 617, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms618", "pres_id": 618, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms619", "pres_id": 619, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms620", "pres_id": 620, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms621", "pres_id": 621, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms626", "pres_id": 626, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "baseline (length)", "name": "ms627", "pres_id": 627, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 477, "path_length": 40, "min_total": 2}
+{"arm": "baseline (length)", "name": "ms629", "pres_id": 629, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms630", "pres_id": 630, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 21}
+{"arm": "baseline (length)", "name": "ms631", "pres_id": 631, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 481, "path_length": 40, "min_total": 2}
+{"arm": "recommended", "name": "ms416", "pres_id": 416, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 90, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms422", "pres_id": 422, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 90, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms464", "pres_id": 464, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 283, "path_length": 83, "min_total": 2}
+{"arm": "recommended", "name": "ms466", "pres_id": 466, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 280, "path_length": 83, "min_total": 2}
+{"arm": "recommended", "name": "ms527", "pres_id": 527, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 62, "path_length": 33, "min_total": 2}
+{"arm": "recommended", "name": "ms529", "pres_id": 529, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 63, "path_length": 33, "min_total": 2}
+{"arm": "recommended", "name": "ms535", "pres_id": 535, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 497, "path_length": 29, "min_total": 2}
+{"arm": "recommended", "name": "ms536", "pres_id": 536, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 496, "path_length": 29, "min_total": 2}
+{"arm": "recommended", "name": "ms537", "pres_id": 537, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 45, "min_total": 2}
+{"arm": "recommended", "name": "ms539", "pres_id": 539, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 136, "path_length": 44, "min_total": 2}
+{"arm": "recommended", "name": "ms540", "pres_id": 540, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 136, "path_length": 44, "min_total": 2}
+{"arm": "recommended", "name": "ms541", "pres_id": 541, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 45, "min_total": 2}
+{"arm": "recommended", "name": "ms542", "pres_id": 542, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 530, "path_length": 32, "min_total": 2}
+{"arm": "recommended", "name": "ms545", "pres_id": 545, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 134, "path_length": 39, "min_total": 2}
+{"arm": "recommended", "name": "ms547", "pres_id": 547, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 569, "path_length": 35, "min_total": 2}
+{"arm": "recommended", "name": "ms550", "pres_id": 550, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 134, "path_length": 41, "min_total": 2}
+{"arm": "recommended", "name": "ms551", "pres_id": 551, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 134, "path_length": 39, "min_total": 2}
+{"arm": "recommended", "name": "ms552", "pres_id": 552, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 134, "path_length": 41, "min_total": 2}
+{"arm": "recommended", "name": "ms553", "pres_id": 553, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 52, "min_total": 2}
+{"arm": "recommended", "name": "ms554", "pres_id": 554, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 160, "path_length": 48, "min_total": 2}
+{"arm": "recommended", "name": "ms555", "pres_id": 555, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 110, "path_length": 23, "min_total": 2}
+{"arm": "recommended", "name": "ms556", "pres_id": 556, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 137, "path_length": 47, "min_total": 2}
+{"arm": "recommended", "name": "ms557", "pres_id": 557, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 497, "path_length": 34, "min_total": 2}
+{"arm": "recommended", "name": "ms558", "pres_id": 558, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 541, "path_length": 35, "min_total": 2}
+{"arm": "recommended", "name": "ms559", "pres_id": 559, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 327, "path_length": 96, "min_total": 2}
+{"arm": "recommended", "name": "ms560", "pres_id": 560, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 327, "path_length": 85, "min_total": 2}
+{"arm": "recommended", "name": "ms561", "pres_id": 561, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms562", "pres_id": 562, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 324, "path_length": 85, "min_total": 2}
+{"arm": "recommended", "name": "ms563", "pres_id": 563, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms564", "pres_id": 564, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 324, "path_length": 96, "min_total": 2}
+{"arm": "recommended", "name": "ms566", "pres_id": 566, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 327, "path_length": 88, "min_total": 2}
+{"arm": "recommended", "name": "ms567", "pres_id": 567, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms569", "pres_id": 569, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 324, "path_length": 88, "min_total": 2}
+{"arm": "recommended", "name": "ms570", "pres_id": 570, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms571", "pres_id": 571, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms572", "pres_id": 572, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 419, "path_length": 99, "min_total": 2}
+{"arm": "recommended", "name": "ms574", "pres_id": 574, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 574, "path_length": 38, "min_total": 2}
+{"arm": "recommended", "name": "ms576", "pres_id": 576, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 386, "path_length": 91, "min_total": 2}
+{"arm": "recommended", "name": "ms577", "pres_id": 577, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms582", "pres_id": 582, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 383, "path_length": 91, "min_total": 2}
+{"arm": "recommended", "name": "ms584", "pres_id": 584, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms585", "pres_id": 585, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 252, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms587", "pres_id": 587, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "recommended", "name": "ms588", "pres_id": 588, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 419, "path_length": 102, "min_total": 2}
+{"arm": "recommended", "name": "ms590", "pres_id": 590, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms591", "pres_id": 591, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms592", "pres_id": 592, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms593", "pres_id": 593, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms594", "pres_id": 594, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms595", "pres_id": 595, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms597", "pres_id": 597, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms598", "pres_id": 598, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 52, "min_total": 2}
+{"arm": "recommended", "name": "ms599", "pres_id": 599, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 427, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms600", "pres_id": 600, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms601", "pres_id": 601, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 434, "path_length": 42, "min_total": 2}
+{"arm": "recommended", "name": "ms603", "pres_id": 603, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms604", "pres_id": 604, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms607", "pres_id": 607, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 901, "path_length": 55, "min_total": 2}
+{"arm": "recommended", "name": "ms608", "pres_id": 608, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 822, "path_length": 50, "min_total": 2}
+{"arm": "recommended", "name": "ms611", "pres_id": 611, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 822, "path_length": 50, "min_total": 2}
+{"arm": "recommended", "name": "ms612", "pres_id": 612, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 829, "path_length": 45, "min_total": 2}
+{"arm": "recommended", "name": "ms613", "pres_id": 613, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "recommended", "name": "ms614", "pres_id": 614, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 828, "path_length": 45, "min_total": 2}
+{"arm": "recommended", "name": "ms615", "pres_id": 615, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 901, "path_length": 55, "min_total": 2}
+{"arm": "recommended", "name": "ms616", "pres_id": 616, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms617", "pres_id": 617, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms618", "pres_id": 618, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms619", "pres_id": 619, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms620", "pres_id": 620, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms621", "pres_id": 621, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "recommended", "name": "ms626", "pres_id": 626, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 824, "path_length": 57, "min_total": 2}
+{"arm": "recommended", "name": "ms627", "pres_id": 627, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 427, "path_length": 47, "min_total": 2}
+{"arm": "recommended", "name": "ms629", "pres_id": 629, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 133, "path_length": 35, "min_total": 2}
+{"arm": "recommended", "name": "ms630", "pres_id": 630, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 134, "path_length": 35, "min_total": 2}
+{"arm": "recommended", "name": "ms631", "pres_id": 631, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 427, "path_length": 47, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms416", "pres_id": 416, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 113, "path_length": 44, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms422", "pres_id": 422, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 190, "path_length": 46, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms464", "pres_id": 464, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 326, "path_length": 81, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms466", "pres_id": 466, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 324, "path_length": 81, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms527", "pres_id": 527, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 64, "path_length": 33, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms529", "pres_id": 529, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 65, "path_length": 33, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms535", "pres_id": 535, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 230, "path_length": 28, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms536", "pres_id": 536, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 232, "path_length": 28, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms537", "pres_id": 537, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 178, "path_length": 47, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms539", "pres_id": 539, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 170, "path_length": 56, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms540", "pres_id": 540, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 157, "path_length": 54, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms541", "pres_id": 541, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 191, "path_length": 49, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms542", "pres_id": 542, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 233, "path_length": 31, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms545", "pres_id": 545, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 155, "path_length": 49, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms547", "pres_id": 547, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 293, "path_length": 34, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms550", "pres_id": 550, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 168, "path_length": 53, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms551", "pres_id": 551, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 168, "path_length": 51, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms552", "pres_id": 552, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 155, "path_length": 51, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms553", "pres_id": 553, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 194, "path_length": 56, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms554", "pres_id": 554, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 191, "path_length": 52, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms555", "pres_id": 555, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 141, "path_length": 25, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms556", "pres_id": 556, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 158, "path_length": 57, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms557", "pres_id": 557, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 108, "path_length": 21, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms558", "pres_id": 558, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 235, "path_length": 34, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms559", "pres_id": 559, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 330, "path_length": 84, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms560", "pres_id": 560, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 331, "path_length": 83, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms561", "pres_id": 561, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms562", "pres_id": 562, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 329, "path_length": 83, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms563", "pres_id": 563, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms564", "pres_id": 564, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 405, "path_length": 84, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms566", "pres_id": 566, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 331, "path_length": 86, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms567", "pres_id": 567, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms569", "pres_id": 569, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 329, "path_length": 86, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms570", "pres_id": 570, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms571", "pres_id": 571, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms572", "pres_id": 572, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 406, "path_length": 87, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms574", "pres_id": 574, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 239, "path_length": 35, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms576", "pres_id": 576, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 383, "path_length": 89, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms577", "pres_id": 577, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms582", "pres_id": 582, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 381, "path_length": 89, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms584", "pres_id": 584, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms585", "pres_id": 585, "bin": 4, "budget": 1000, "mrl": 48, "solved": true, "nodes": 76, "path_length": 33, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms587", "pres_id": 587, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 15}
+{"arm": "lean (500 rec)", "name": "ms588", "pres_id": 588, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 406, "path_length": 90, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms590", "pres_id": 590, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms591", "pres_id": 591, "bin": 5, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms592", "pres_id": 592, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms593", "pres_id": 593, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms594", "pres_id": 594, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms595", "pres_id": 595, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms597", "pres_id": 597, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms598", "pres_id": 598, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms599", "pres_id": 599, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms600", "pres_id": 600, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms601", "pres_id": 601, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms603", "pres_id": 603, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms604", "pres_id": 604, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms607", "pres_id": 607, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms608", "pres_id": 608, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms611", "pres_id": 611, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms612", "pres_id": 612, "bin": 5, "budget": 1000, "mrl": 48, "solved": true, "nodes": 203, "path_length": 36, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms613", "pres_id": 613, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 17}
+{"arm": "lean (500 rec)", "name": "ms614", "pres_id": 614, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms615", "pres_id": 615, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms616", "pres_id": 616, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms617", "pres_id": 617, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms618", "pres_id": 618, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms619", "pres_id": 619, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms620", "pres_id": 620, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms621", "pres_id": 621, "bin": 7, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 18}
+{"arm": "lean (500 rec)", "name": "ms626", "pres_id": 626, "bin": 6, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms627", "pres_id": 627, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
+{"arm": "lean (500 rec)", "name": "ms629", "pres_id": 629, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 73, "path_length": 35, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms630", "pres_id": 630, "bin": 6, "budget": 1000, "mrl": 48, "solved": true, "nodes": 74, "path_length": 35, "min_total": 2}
+{"arm": "lean (500 rec)", "name": "ms631", "pres_id": 631, "bin": 4, "budget": 1000, "mrl": 48, "solved": false, "nodes": 1000, "path_length": null, "min_total": 14}
