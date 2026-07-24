@@ -422,8 +422,9 @@ Assert unsupported inputs fail closed.
 
 Pin hand-sized satisfiable and unsatisfiable systems, including a
 \(K_4-e\) case where only a genuinely split central class works.  Require
-closure and all-different checks rather than trusting a reconstructed face
-count alone.
+closure, no repeated rank within an individual relator cycle, disjoint
+class-rank bitsets across relators, and exhaustion of every class rank rather
+than trusting a reconstructed face count alone.
 
 - [ ] **Step 3: Implement the minimal theorem-shaped solver**
 
@@ -443,11 +444,18 @@ Euler characteristic two and all Neuwirth reversal equations replay.
 Compare decisions with the direct factorial census on:
 
 - all 18 component states of cost at most 2,000,000;
-- deterministic generated small examples of all three support types;
+- every ordered pair of nonempty cyclically reduced words over
+  \(\{x,X,y,Y\}\) with total length at most 7, quotienting only cyclic rotation
+  of each relator and relator swap, whose loopless connected support is
+  \(K_4\), \(K_4-e\), or \(C_4\);
 - AK(3) and orbit-2, which must remain negative.
 
-No random-only test is sufficient; generated cases use a recorded seed and
-their exact count is asserted.
+Assert the exact number of canonical systems and the exact count in each
+support class.  Compare every decision case-by-case with factorial
+enumeration.  This bounded equivalence census, rather than a random sample,
+must exercise both modular signs, both relator-cycle closures, every
+\(K_4-e\) split index available at the bound, within-cycle rank collisions,
+and cross-cycle rank collisions.
 
 - [ ] **Step 6: Commit code and tests**
 
@@ -463,19 +471,36 @@ git push origin codex/proofs
 
 **Files:**
 - Create: `experiments/stable_ac/thickenable/scan_ak3_component.py`
+- Create: `tests/stable_ac/test_scan_ak3_component.py`
 - Create: `results/stable_ac/theory/AK3_NEUWIRTH_RESULT.md`
 - Create: `results/stable_ac/theory/ak3_component_thickenability.json`
 
 - [ ] **Step 1: Recompute and authenticate the bounded component**
 
 Recompute the existing AK(3), height-17 component with the hard
-`node_budget=1000`.  Assert exactly 1,000 distinct states and record the
-generator code commit/hash.  This is the maximum permitted AC search.
+`node_budget=1000`.  Merely reaching 1,000 states is not completeness:
+require that the BFS queue is empty after the 1,000th pop and explicitly
+check closure under every permitted height-17 move.  Record and verify:
+
+```text
+root exact words;
+height ceiling = 17;
+pop cap = 1000 and actual pop count;
+queue-exhausted and closure-verified flags;
+canonicalization function and implementation hash;
+move generator and implementation hash;
+all child options, including cap and seam_only=False;
+SHA-256 of the sorted exact state set;
+source commit and scanner/rank-solver module hashes.
+```
+
+This is the maximum permitted AC search.
 
 - [ ] **Step 2: Decide all 1,000 exact complexes**
 
 Require the support histogram `720 K4 / 278 K4-e / 2 C4`, zero unsupported
-states, and a signed-rank decision for every state.  Replay every positive
+states, and a signed-rank decision for every state.  Store a canonical
+per-state decision record and its ordered digest.  Replay every positive
 witness independently.  Never infer anything from an omitted or failed state.
 
 - [ ] **Step 3: Quarantine positives**
@@ -487,11 +512,14 @@ certificate until an independently constructed triangulation returns
 
 - [ ] **Step 4: Extract the obstruction profile**
 
-Report the exact target \(\gamma_N\) histograms.  Include the human
-nonplanarity proof for orbit-2 and its explicit genus-one witness.  State that
-\(\gamma_N\) changes under AC moves and is only a search potential.  For AK(3),
-label the exact \(\gamma_N=2\) conclusion census-derived unless a separate
-short-face packing proof is completed.
+Report the exact target \(\gamma_N\) histograms only from the separate
+86,400-case factorial certificates; the rank solver decides the zero-versus-
+positive question and does not minimize positive genus.  Include the human
+proof that orbit-2 has no **synchronized compatible spherical rotation** and
+its explicit genus-one witness.  Do not call its abstract \(K_4\) support
+nonplanar.  State that \(\gamma_N\) changes under AC moves and is only a search
+potential.  For AK(3), label the exact \(\gamma_N=2\) conclusion census-derived
+unless a separate short-face packing proof is completed.
 
 - [ ] **Step 5: Write the four-part report**
 
@@ -499,14 +527,31 @@ Use `What counts`, `What was ruled out`, `Live leads`, and `Open ledger`.
 Distinguish classical AC, stable AC, thickenability of an exact complex, and
 bounded component evidence in every claim.
 
-- [ ] **Step 6: Verify, review, commit, and push**
+- [ ] **Step 6: Build the fail-closed replay verifier**
+
+The scanner CLI has separate `--output` and `--verify` modes.  Verification
+must rebuild the exact component, compare its identity and sorted-state digest,
+and rerun support classification plus the complete scheme/phase/seed search
+for all 1,000 states.  It compares every canonical per-state record and the
+ordered decision digest.  It fails closed on any source/hash/option mismatch,
+unsupported state, incomplete search, or witness replay failure.
+
+- [ ] **Step 7: Commit the clean source state**
 
 Run all new focused tests, the existing thickenability tests, both target
-certificate replays, and the 17-macro-edge classical certificate replay.  A
-fresh reviewer audits the source/result binding and every claimed count before:
+certificate replays, and the 17-macro-edge classical certificate replay.
+Then commit and push only the scanner and its tests.  Generate no promoted JSON
+or report from a dirty source tree.
+
+- [ ] **Step 8: Generate, replay, review, and commit the result**
+
+Generate the JSON from the clean source commit, run `--verify`, and have a
+fresh reviewer audit the source/result binding, queue-exhaustion/closure
+evidence, exact state digest, all 1,000 rerun decisions, and every claimed
+count before:
 
 ```bash
-git add experiments/stable_ac/thickenable/scan_ak3_component.py results/stable_ac/theory/AK3_NEUWIRTH_RESULT.md results/stable_ac/theory/ak3_component_thickenability.json
+git add results/stable_ac/theory/AK3_NEUWIRTH_RESULT.md results/stable_ac/theory/ak3_component_thickenability.json
 git commit -m "result: certify AK3 height-17 thickenability census"
 git push origin codex/proofs
 ```

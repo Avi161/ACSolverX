@@ -185,9 +185,15 @@ P_d(z_{e(d)})+P_{Bd}(z_{e(Bd)})+S_g\equiv0\pmod{n_g}.
 
 Contracting the \(A\)-edges leaves a degree-two constraint graph, namely the
 relator cycles.  For fixed phases, one seed rank determines a whole cycle.
-Solutions from the two relators combine exactly when their six class-rank
-bitsets are disjoint.  This replaces the factorial enumeration by a finite
-phase/seed calculation with an independently reconstructed face trace.
+An individual cycle assignment is admissible only if it never repeats a rank
+inside any parallel class.  Two relator assignments combine only if their
+six class-rank bitsets are pairwise disjoint **and**, for every class
+\(P_{uv}\), their union has cardinality \(m_{uv}\).  The last assertion is
+mathematically redundant once every one of the \(m_{uv}\) edge variables has
+been assigned injectively, but it is an explicit certificate invariant rather
+than an inference hidden in code.  This replaces the factorial enumeration by
+a finite phase/seed calculation with an independently reconstructed face
+trace.
 
 ### The two proper supports
 
@@ -213,9 +219,17 @@ kept because it is smaller, auditable, and exactly covers the component.
 
 The rank solver must fail closed on an unclassified support.  It must be
 cross-checked against the factorial enumerator on all 18 affordable component
-states and on generated small \(K_4\), \(K_4-e\), and \(C_4\) instances.  A
-reported positive must include reconstructed rotations and an independent
-genus-zero face trace, then remain `REGINA_REQUIRED`.  A negative is a
-thickenability decision for the exact word-realized complex only; it is not an
-AC invariant.  The component run remains exactly the existing 1,000-state
-height-17 artifact and is not an enlarged AC search.
+states and on the exhaustive deterministic set of small exact two-relator
+systems specified in the implementation plan.  A reported positive must
+include reconstructed rotations and an independent genus-zero face trace,
+then remain `REGINA_REQUIRED`.
+
+The component result is replayable rather than a one-way summary.  Its source
+identity includes the root words, height ceiling, move generator and
+canonicalization implementations, every move option, cap semantics, exact
+sorted state-set digest, actual pop count, queue exhaustion, and an explicit
+closure check.  Verification rebuilds the component and reruns the complete
+support/scheme/phase/seed decision for every state, including every negative.
+A negative is a thickenability decision for the exact word-realized complex
+only; it is not an AC invariant.  The run remains exactly the existing
+1,000-state height-17 computation and is not an enlarged AC search.
