@@ -59,7 +59,17 @@ A *weaker* ordering from a **different family** is worth far more as a partner t
 
 So: **with 2× the compute, run the recommended climb and one structurally different ordering at full budget each.** Do *not* run two knot climbs, and do not divide one budget between them — splitting loses at every ratio tested (EXP-17, EXP-20).
 
-One caveat on the number: those complements were picked *because* they solved rows the finalists miss, so 23/24 is optimistic on exactly those rows. The qualitative claim — a different family reaches different presentations — is what the experiment supports; treat the count as a demonstration, not an out-of-sample estimate.
+**How much to actually expect.** The 23/24 above is optimistic — those complements were picked *because* they solved the rows the finalists miss. EXP-22 measures the real effect by cross-validation, inside a 320-config × 45-row matrix with 200 half-splits: choose the complement on one half, score its marginal gain on the other.
+
+| how you pick the second ordering | rows it adds, **held out** |
+|---|---|
+| for complementarity (adds most rows the climb misses) | **+1.18** |
+| for stand-alone strength (solves most on its own) | +0.27 |
+| at random | +0.04 |
+
+So picking *for complementarity* is worth about **4×** picking the strongest second arm, and the hindsight premium is small (0.24 rows). Expect roughly **one extra presentation**, not four — though on that slice only 3 rows were even available to gain, so it captures ~40% of what a complement could possibly add.
+
+A related detail worth knowing if you tune further: the complement chosen in 173 of 200 splits uses `Bspread` (longest block − shortest), a feature that never improved the *primary* ordering in any experiment. A feature can be useless for building the best ordering and valuable for building a usefully different one.
 
 ## Which one to run at Colab scale
 
