@@ -91,6 +91,7 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
     sx1 = 0
     nb1 = 0
     mn1 = _BIG
+    mx1 = 0
     for t in range(nr1):
         if r_isx[t]:
             x1 += 1
@@ -101,6 +102,8 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
             nb1 += 1
         if r_len[t] < mn1:
             mn1 = r_len[t]
+        if r_len[t] > mx1:
+            mx1 = r_len[t]
 
     nr2 = _runs_nj(codes, off + la, lb, r_isx, r_len)
     x2 = 0
@@ -108,6 +111,7 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
     sx2 = 0
     nb2 = 0
     mn2 = _BIG
+    mx2 = 0
     for t in range(nr2):
         if r_isx[t]:
             x2 += 1
@@ -118,6 +122,8 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
             nb2 += 1
         if r_len[t] < mn2:
             mn2 = r_len[t]
+        if r_len[t] > mx2:
+            mx2 = r_len[t]
 
     k1 = 0 if (x1 == 0 or y1 == 0) else (x1 if x1 > y1 else y1)
     k2 = 0 if (x2 == 0 or y2 == 0) else (x2 if x2 > y2 else y2)
@@ -155,6 +161,15 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
     out[10] = float(mnb) if nb > 0 else 0.0
     out[11] = float(nb)
     out[12] = (abs(sum_x - sum_y) / L) if L > 0 else 0.0
+    # Second family (index 13+). ``nb == 0`` only when the pair is empty, in which case the
+    # min sentinel is still _BIG -- guard so it never leaks into a score.
+    mxb = mx1 if mx1 > mx2 else mx2
+    out[13] = float(mxb) if nb > 0 else 0.0
+    out[14] = float(mxb - mnb) if nb > 0 else 0.0
+    lo = la if la < lb else lb
+    hi = la if la > lb else lb
+    out[15] = (lo / hi) if hi > 0 else 0.0
+    out[16] = (nb / L) if L > 0 else 0.0
 
 
 @njit(cache=True)
@@ -195,7 +210,7 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
     n_seg = len(seg_upto)
     seg_idx = np.empty(count, dtype=np.int64)
     score = np.empty(count, dtype=np.float64)
-    f = np.empty(13, dtype=np.float64)
+    f = np.empty(N_FEAT, dtype=np.float64)
     r_isx = np.empty(2 * cap + 2, dtype=np.bool_)
     r_len = np.empty(2 * cap + 2, dtype=np.int64)
 
@@ -206,7 +221,7 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
         for s in range(n_seg):
             if L <= seg_upto[s]:
                 acc = 0.0
-                for d in range(13):
+                for d in range(N_FEAT):
                     w = seg_w[s, d]
                     if w != 0.0:
                         acc += w * f[d]
@@ -223,7 +238,7 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
 
 
 def compile_config(cfg):
-    """A config dict -> ``(seg_upto[n_seg], seg_w[n_seg, 13], seg_depth[n_seg])``.
+    """A config dict -> ``(seg_upto[n_seg], seg_w[n_seg, N_FEAT], seg_depth[n_seg])``.
 
     Weights are placed by ``FEATURES`` index, so a config naming a feature this module does not
     know raises here rather than silently scoring zero.
@@ -288,7 +303,7 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
     ca, cb = canonical_pair_nj(reduce_relator_nj(a1, cyclic), reduce_relator_nj(a2, cyclic))
     key0 = _pack(ca, cb)
 
-    f = np.empty(13, dtype=np.float64)
+    f = np.empty(N_FEAT, dtype=np.float64)
     c0 = np.frombuffer(key0.replace(_SEP, b""), dtype=np.uint8)
     r_isx = np.empty(2 * mrl + 2, dtype=np.bool_)
     r_len = np.empty(2 * mrl + 2, dtype=np.int64)

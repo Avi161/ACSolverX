@@ -30,7 +30,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, ROOT)
 
 from experiments.heuristic_search.hlab import (              # noqa: E402
-    BASELINE_CONFIG, FEATURES, LabSolver, load_split, make_priority, phi, run_one,
+    BASELINE_CONFIG, FEATURES, N_FEAT, LabSolver, load_split, make_priority, phi, run_one,
 )
 from experiments.heuristic_search.hfast import (              # noqa: E402
     _feats_nj, _pack, compile_config, search_fast,
@@ -110,7 +110,10 @@ def _feats_via_kernel(r1_str, r2_str, mrl=MRL):
     codes = np.frombuffer(key.replace(b"\x00", b""), dtype=np.uint8)
     r_isx = np.empty(2 * mrl + 2, dtype=np.bool_)
     r_len = np.empty(2 * mrl + 2, dtype=np.int64)
-    out = np.empty(13, dtype=np.float64)
+    # Sized from N_FEAT, never a literal: the feature vector has been extended once already
+    # (a second family at index 13), and numba does not bounds-check, so a stale literal here
+    # would have the kernel writing past the end of this buffer instead of failing loudly.
+    out = np.empty(N_FEAT, dtype=np.float64)
     _feats_nj(codes, 0, la, lb, r_isx, r_len, out)
     return tuple(out)
 

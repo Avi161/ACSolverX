@@ -79,6 +79,13 @@ FEATURES = (
     "Bmin",     # shortest block anywhere in the pair
     "nb",       # total number of blocks across both relators
     "xyimb",    # |#x letters - #y letters| / L; generator imbalance, scale-free
+    # --- second family, appended at index 13 so every earlier index and every config that
+    # names one keeps its meaning. The first thirteen are all means, counts and differences;
+    # these four are the extremes, the spread and the two scale-free shapes those miss.
+    "Bmaxrun",  # LONGEST single block anywhere -- Bmax is the larger *mean*, which hides a spike
+    "Bspread",  # longest block - shortest block; how uneven the blocking is
+    "ratio",    # Lmin / Lmax; imbalance as a ratio, where imbal is the raw difference
+    "density",  # blocks per letter (nb / L); how finely the pair alternates, scale-free
 )
 _FIDX = {f: i for i, f in enumerate(FEATURES)}
 N_FEAT = len(FEATURES)
@@ -158,6 +165,10 @@ def phi(r1, r2):
         float(min(allb)) if allb else 0.0,
         float(len(allb)),
         (abs((nx1 + nx2) - (L - nx1 - nx2)) / L) if L else 0.0,
+        float(max(allb)) if allb else 0.0,
+        float(max(allb) - min(allb)) if allb else 0.0,
+        (min(n1, n2) / max(n1, n2)) if max(n1, n2) else 0.0,
+        (len(allb) / L) if L else 0.0,
     )
     _STATE_CACHE[(r1, r2)] = out
     return out
