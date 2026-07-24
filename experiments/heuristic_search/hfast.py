@@ -176,10 +176,16 @@ def _feats_nj(codes, off, la, lb, r_isx, r_len, out):
 def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
     """One pop's worth of work: children, packed keys, features, segmented priority.
 
-    Returns ``(blob, offs, klens, seg_idx, score, tots, knots, count)``. ``blob`` holds every child's
-    packed key back to back -- ``pack_key``'s exact byte layout, r1 codes then a 0x00 separator
-    then r2 codes -- so the caller slices rather than encoding, and one ``tobytes()`` serves the
-    whole pop.
+    Returns ``(blob, offs, klens, seg_idx, score, tots, knots, moves, count)``. ``blob`` holds every
+    child's packed key back to back -- ``pack_key``'s exact byte layout, r1 codes then a 0x00
+    separator then r2 codes -- so the caller slices rather than encoding, and one ``tobytes()``
+    serves the whole pop.
+
+    ``moves[i]`` is child ``i``'s Definition 2.1 move ``(target, jsign, k1, k2)``, passed straight
+    through from the expansion kernel. It costs nothing here -- the kernel already computed it --
+    and it is what lets a production caller reconstruct a certificate path. Recovering the move by
+    diffing two states instead would be wrong: the move inverts the *other* relator, so a diff
+    misreads which one changed.
     """
     codes, lens, moves, count = expand_node_topk_nj(r1, r2, cap, cyclic, 1, 0)
 
@@ -234,7 +240,7 @@ def expand_and_score_nj(r1, r2, cap, cyclic, seg_upto, seg_w):
             score[i] = L
         knots[i] = int(f[4])
 
-    return blob, offs, klens, seg_idx, score, tots, knots, count
+    return blob, offs, klens, seg_idx, score, tots, knots, moves, count
 
 
 def compile_config(cfg):
@@ -352,7 +358,7 @@ def search_fast(r1_str, r2_str, budget, cfg, mrl, cyclic=True):
                     "start_K": start_K, "min_K": min_K, "min_K_len": min_K_len}
 
         p1, p2 = _arrs(key)
-        blob, offs, klens, seg_idx, score, tots, knots, count = expand_and_score_nj(
+        blob, offs, klens, seg_idx, score, tots, knots, _mv, count = expand_and_score_nj(
             p1, p2, mrl, cyclic, seg_upto, seg_w)
         if count == 0:
             continue
