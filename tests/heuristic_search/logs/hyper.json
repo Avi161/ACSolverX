@@ -1,0 +1,557 @@
+{
+ "fullbench": {
+  "500": [
+   {
+    "label": "baseline (length)",
+    "total": [
+     26,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     2,
+     6
+    ],
+    "b5": [
+     0,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     0,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "500-winner: phased K+xyimb",
+    "total": [
+     40,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "1000-winner: phased blocks",
+    "total": [
+     35,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     6,
+     6
+    ],
+    "b5": [
+     5,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     0,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "richer knot climb (EXP-06)",
+    "total": [
+     38,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     4,
+     6
+    ],
+    "b5": [
+     5,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "simple phased K8",
+    "total": [
+     36,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     5,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   }
+  ],
+  "1000": [
+   {
+    "label": "baseline (length)",
+    "total": [
+     29,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     0,
+     6
+    ],
+    "b6": [
+     0,
+     6
+    ],
+    "b7": [
+     0,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "500-winner: phased K+xyimb",
+    "total": [
+     40,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "1000-winner: phased blocks",
+    "total": [
+     43,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     6,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     5,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "richer knot climb (EXP-06)",
+    "total": [
+     43,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     6,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     5,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   },
+   {
+    "label": "simple phased K8",
+    "total": [
+     40,
+     66
+    ],
+    "easy": [
+     24,
+     24
+    ],
+    "b4": [
+     5,
+     6
+    ],
+    "b5": [
+     6,
+     6
+    ],
+    "b6": [
+     3,
+     6
+    ],
+    "b7": [
+     2,
+     6
+    ],
+    "hump": [
+     0,
+     12
+    ],
+    "reach": [
+     0,
+     6
+    ]
+   }
+  ]
+ },
+ "feature_screen": [
+  {
+   "feature": "K",
+   "weight": 8,
+   "solved": 23,
+   "net": 6,
+   "p": 0.031
+  },
+  {
+   "feature": "nb",
+   "weight": 4,
+   "solved": 23,
+   "net": 6,
+   "p": 0.031
+  },
+  {
+   "feature": "MK",
+   "weight": 8,
+   "solved": 22,
+   "net": 5,
+   "p": 0.062
+  },
+  {
+   "feature": "xyimb",
+   "weight": -16,
+   "solved": 21,
+   "net": 4,
+   "p": 0.289
+  },
+  {
+   "feature": "Lmax",
+   "weight": 4,
+   "solved": 21,
+   "net": 4,
+   "p": 0.125
+  },
+  {
+   "feature": "S",
+   "weight": 8,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "Bmax",
+   "weight": -2,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "imbal",
+   "weight": 0.5,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "Lmin",
+   "weight": -0.5,
+   "solved": 20,
+   "net": 3,
+   "p": 0.25
+  },
+  {
+   "feature": "mK",
+   "weight": -0.5,
+   "solved": 19,
+   "net": 2,
+   "p": 0.5
+  },
+  {
+   "feature": "B1",
+   "weight": -0.25,
+   "solved": 18,
+   "net": 1,
+   "p": 1.0
+  },
+  {
+   "feature": "Bmin",
+   "weight": -4,
+   "solved": 17,
+   "net": 0,
+   "p": 1.0
+  }
+ ],
+ "baseline_train500": 17,
+ "knot_proxy": {
+  "n_windows": 187,
+  "mean_kp_solved": 0.6190476190476191,
+  "mean_kp_unsolved": 0.7530120481927711,
+  "table": {
+   "drop_solved": 12,
+   "drop_unsolved": 109,
+   "nodrop_solved": 9,
+   "nodrop_unsolved": 57
+  },
+  "p_solve_given_drop": 0.09917355371900827,
+  "p_solve_given_no_drop": 0.13636363636363635,
+  "verdict": "NOT VALIDATED \u2014 knot-progress does not discriminate at the boundary; do not rank the second hump on it, use min_total and real solves instead"
+ },
+ "synthesis": {
+  "split": "aut_disjoint",
+  "candidates": [
+   "[<=16]L1[<=inf]K8.936+L1+xyimb-5.978",
+   "[<=14]L1[<=inf]L1+xyimb-16",
+   "[<=8]L1[<=inf]B10.307+L1+MK4.962+S6.408",
+   "[<=16]L1[<=inf]K2.53+L1+MK6.418+S8.458+xyimb3.292",
+   "[<=16]L1[<=inf]K8+L1",
+   "[<=16]L1[<=inf]L1+nb4",
+   "[<=16]L1[<=inf]B11.25+K7.884+L1",
+   "[<=8]L1[<=inf]Bmin-0.113+K1.809+L1+imbal0.743+xyimb-0.118",
+   "[<=8]L1[<=inf]Bmax-3.046+Bmin-0.499+L1+MK0.612+xyimb-0.109",
+   "[<=inf]K7.119+L1+xyimb-2.169",
+   "[<=12]L1[<=inf]B1-0.272+K1.325+L1+MK-0.499+imbal1.031",
+   "[<=16]L1[<=inf]Bmax-2.185+L1+S5.668",
+   "[<=16]L1[<=inf]K2.51+L1+Lmax5.895+mK13.556",
+   "[<=16]L1[<=inf]L1+xyimb-16",
+   "[<=16]L1[<=inf]K4.769+L1+imbal0.291",
+   "[<=16]L1[<=inf]Bmin0.29+L1+Lmax0.333+xyimb-10.785",
+   "[<=inf]K-0.322+L1+Lmax4.993",
+   "[<=inf]B1-0.537+K2.21+L1+Lmax12.02+xyimb0.688",
+   "[<=10]L1[<=inf]Bmax0.228+L1+Lmax10.895",
+   "[<=6]L1[<=inf]Bmax0.147+L1+Lmax11.396",
+   "[<=16]L1[<=inf]K5.579+L1+xyimb-1.066",
+   "[<=16]L1[<=inf]K0.524+L1+Lmax0.235+S0.175+mK12.546",
+   "[<=16]L1[<=inf]B1-0.315+L1+Lmin-0.569+xyimb-0.687",
+   "[<=12]L1[<=inf]Bmax0.394+K7.948+L1+imbal0.162",
+   "[<=14]L1[<=inf]K7.136+L1"
+  ],
+  "by_budget": {
+   "500": {
+    "winner": "[<=16]L1[<=inf]K8.936+L1+xyimb-5.978",
+    "test_gain": 4,
+    "train_gain": 10,
+    "test_decidable": 6,
+    "train_decidable": 11
+   },
+   "1000": {
+    "winner": "[<=16]L1[<=inf]Bmax-2.185+L1+S5.668",
+    "test_gain": 6,
+    "train_gain": 8,
+    "test_decidable": 6,
+    "train_decidable": 11
+   }
+  }
+ },
+ "bins47": {
+  "500": {
+   "baseline": [
+    2,
+    24
+   ],
+   "winner": [
+    16,
+    24
+   ]
+  },
+  "1000": {
+   "baseline": [
+    5,
+    24
+   ],
+   "winner": [
+    19,
+    24
+   ]
+  }
+ },
+ "auttest15": {
+  "n": 15,
+  "500": {
+   "baseline": 9,
+   "winner": 13
+  },
+  "1000": {
+   "baseline": 9,
+   "winner": 15
+  }
+ },
+ "path1000": {
+  "winner": 17.3,
+  "baseline": 19.2,
+  "n": 29
+ },
+ "leak_note": "Candidates were proposed by ranking on the stratified train slice, which overlaps the held-out aut-test rows, so the held-out fraction is an optimistic upper bound, not a clean transfer number.",
+ "knot_block_tie": "The selection procedure chose a block climb (L - 2*max-block + 5*smaller-block) at 1000; it and the knot climb both reach 43/66 and both solve 7/7 held-out. The knot climb is recommended on principle; the block config is an equally-good empirical alternative.",
+ "holdout47": {
+  "n": 7,
+  "500": {
+   "baseline": 1,
+   "winner": 5
+  },
+  "1000": {
+   "baseline": 1,
+   "winner": 7
+  }
+ },
+ "harness_note": "Validated in the research harness (a parameterized heap priority). The production Colab solver orders by length through a packed heap key and does not yet implement the phased priority; using this at large budgets requires porting the ordering into that solver."
+}
