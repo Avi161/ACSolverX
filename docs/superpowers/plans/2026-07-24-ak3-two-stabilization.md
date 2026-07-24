@@ -165,7 +165,7 @@ Add:
 def test_valid_factor_derives_exact_rank3_tuple():
     assert solve_isolator("zxYT", "y") == "Tzx"
     assert derive_rank3(AK3, 1, "xy", "yx", "zxYT") == (
-        "xxxXZtXZtXZtXZt",
+        "xxZtXZtXZtXZt",
         "ZxTzx",
         "TTzxx",
     )
