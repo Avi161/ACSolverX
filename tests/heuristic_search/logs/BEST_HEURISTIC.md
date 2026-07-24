@@ -18,7 +18,7 @@ The short answer, then the evidence and the caveats. Everything here is measured
 
 Everything below is subordinate detail. Several other denominators appear — 24 rows, 19 distinct problems, 31, 45 — because different experiments ran on different slices; each is stated where it is used, and none of them supersedes the line above.
 
-The right denominator for the *in-sample* tables is **the 24 rows in difficulty bins 4–7** — neither free (bins 0–3, which every ordering solves) nor out of reach (bins 8–9 and the reach rows, which nothing solves at ≤1000). That is where an ordering is actually tested.
+Throughout this document "decidable tier" means **difficulty bins 4–7** (24 rows) — a fixed structural band, *not* `perbin.decidable()`, which derives a mixed-outcome row set from whichever configs are in a given file and therefore differs between experiments. The right denominator for the *in-sample* tables is those 24 rows — neither free (bins 0–3, which every ordering solves) nor out of reach (bins 8–9 and the reach rows, which nothing solves at ≤1000). That is where an ordering is actually tested.
 
 | your node budget | the ordering to use | bins 4–7 (of 24) | full 66 | held-out bins 4–7 (leak-free) |
 |---|---|---|---|---|
@@ -52,7 +52,7 @@ b = greedy_search_h(r1, r2, node_budget=10**6, max_relator_length=48, config=REC
 
 Same function, same returned dict, so an A/B is one run. If you have compute for a third arm, make it *structurally different* rather than another knot climb — see the two-ordering section below.
 
-**Set `max_relator_length` to 48, not 24.** The climb pops relators past 30; capping at 24 truncates it. It costs nothing at these budgets and the whole point is to let them expand.
+**Set `max_relator_length` to 48** — but not for the reason an earlier version of this document gave. It claimed the climb pops relators past 30 and that capping at 24 truncates it. Measured: at budget 1,000 caps 24 and 48 solve **exactly the same 43 of 66**, and the longest relator popped on a decidable row is **25**. The cap does not bind at these budgets. Use 48 anyway because it costs nothing, it is the setting every number here was measured at, and it removes a ceiling that could bind at the far larger budgets you will actually run — where the climb has room to go further than anything observed here. Do not expect it to change results at 10³.
 
 **Memory.** `hsolve` uses the normal solver's string-keyed dict, not the compact packed arena, so at 10⁶ nodes it will want noticeably more RAM than `high_speedup` mode. Size for it, or port the ordering into the compact key first.
 
