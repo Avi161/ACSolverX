@@ -39,7 +39,9 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-16](EXP16_scaling.md) | how does the advantage scale with budget? (the bridge to Colab) | **only the richer climb is still growing** at the ceiling (+12→+14); the lean 500-winner turns over (+14→+11) |
 | [EXP-17](EXP17_portfolio.md) | at fixed budget, one deep search or a portfolio over the 8 relabels? | **depth wins, monotonically** — k=1 > 2 > 4 > 8 for every ordering; the alternates almost never fire |
 | [EXP-18](EXP18_threshold.md) | is the endgame threshold 16 still right for the ordering that won? | **it is inert for the winner** — worth +3..+5 for lean knot-only climbs, +0 for multi-feature ones |
-| [EXP-19](EXP19_joint1000.md) | joint search at budget 1000 over all 17 features, threshold optional | running |
+| [EXP-19](EXP19_joint1000.md) | joint search at budget 1000 over all 17 features, threshold optional | **nothing beats the incumbent** (28/31, +0 against 1.65 optimism) — the recommendation is at its ceiling |
+| [EXP-20](EXP20_cportfolio.md) | at fixed budget, split across different *orderings*? | **no** — pairs average 15.5/24 vs singles' 18.0; but later members DO fire, so the complementarity is real |
+| [EXP-21](EXP21_complement.md) | with more compute, what makes a good *second* ordering? | **a different family** — a weaker knot-free climb adds 4 rows (19→23/24); another finalist adds 0 |
 | **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **phase at length 16; climb on knots (+blocks at 1000); revert to length below** |
 
 ## Two splits
