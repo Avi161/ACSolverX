@@ -1,5 +1,9 @@
 import pytest
 
+from experiments.stable_ac.rank3_compression.certificate import (
+    build_certificate,
+    verify_certificate,
+)
 from experiments.stable_ac.rank3_compression.corridors import (
     corridor_output,
     enumerate_short_corridors,
@@ -73,3 +77,15 @@ def test_one_z_templates_are_excluded():
         row.template.count("z") + row.template.count("Z") >= 2
         for row in census.accepted
     )
+
+
+def test_certificate_replays():
+    data = build_certificate(max_word_length=2, max_template_length=4)
+    assert data["schema"] == "ak3-rank3-corridors-v1"
+    assert data["pair"] == ["xxxYYYY", "xyxYXY"]
+    assert data["bounds"] == {
+        "max_word_length": 2,
+        "max_template_length": 4,
+        "minimum_z_occurrences": 2,
+    }
+    verify_certificate(data)
