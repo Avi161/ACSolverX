@@ -6,6 +6,7 @@ from experiments.stable_ac.rank3_compression.rank3_whitehead import (
     is_primitive_pair,
     reduce_pair,
     reduce_word,
+    reduce_word_fast,
     second_kind_automorphisms,
 )
 
@@ -52,3 +53,11 @@ def test_nonprimitive_power_word_stops_at_length_two():
     assert result.minimum_total == 2
     assert not is_primitive_word(result)
     check_word_reduction("xx", result)
+
+
+def test_fast_word_reducer_matches_certified_minima():
+    for word in ("xz", "xx", "TTTXZtX", "TXZZxzz"):
+        slow = reduce_word(word)
+        fast = reduce_word_fast(word)
+        assert fast.minimum_total == slow.minimum_total
+        check_word_reduction(word, fast)

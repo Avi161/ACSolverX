@@ -177,6 +177,53 @@ def reduce_word(
         steps.append(chosen)
 
 
+def reduce_word_fast(
+    word: str,
+    generators: tuple[str, ...] = ("x", "z", "t"),
+) -> WhiteheadWordReduction:
+    """Length-only candidate scoring; canonicalize just the chosen descent."""
+    _validate_generators(generators)
+    current = canonical_relator(word)
+    if not current:
+        raise ValueError("Whitehead word must be nontrivial")
+    total = len(current)
+    phi = {generator: generator for generator in generators}
+    steps: list[dict[str, str]] = []
+    automorphisms = second_kind_automorphisms(generators)
+
+    while True:
+        best = None
+        for automorphism in automorphisms:
+            image = cyclic_reduce(
+                apply_automorphism(current, automorphism)
+            )
+            image_total = len(image)
+            if image_total >= total:
+                continue
+            key = (
+                image_total,
+                tuple(
+                    automorphism[generator]
+                    for generator in generators
+                ),
+            )
+            if best is None or key < best[0]:
+                best = (key, image, automorphism)
+        if best is None:
+            return WhiteheadWordReduction(
+                minimum_total=total,
+                minimum=current,
+                phi=phi,
+                steps=tuple(steps),
+                generators=generators,
+            )
+        _, image, chosen = best
+        current = canonical_relator(image)
+        total = len(current)
+        phi = compose(chosen, phi)
+        steps.append(chosen)
+
+
 def reduce_pair(
     pair: tuple[str, str],
     generators: tuple[str, ...] = ("x", "z", "t"),
