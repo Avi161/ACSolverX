@@ -232,7 +232,9 @@ def write_md(agg, path, src_name):
         f"| baseline (greedy, no CoV) solves | **{t['base_solved']}/{t['n_pres']}** |",
         f"| flips — baseline fails, some CoV solves | **{t['flips']}** |",
         f"| solved by best CoV | **{t['best_solved']}/{t['n_pres']}** |",
-        f"| never solved by anything | {t['never']} |",
+        # "never" is the klass name, but the count is only ever "not at THIS
+        # budget" -- 8 of the 14 at b10000 solve at b20000 (allcov_escape/)
+        f"| not solved by anything *at this budget* | {t['never']} |",
         "",
         f"## A random CoV vs its baseline ({t['base_solved']} baseline-solved presentations, {t['lot_total']:,} CoV rows)",
         "",

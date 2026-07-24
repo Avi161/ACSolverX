@@ -45,7 +45,7 @@ At budget 500 (baseline 9/22) the picture is the same, cov_defining_iso and cov_
 ## Coverage: what CoV cracked, and the wall it hit
 
 - **Cracked at budget 1000** (baseline unsolved → CoV solved at ≤1000): **ms538 (2261), ms565 (1404), ms602 (6285), ms581 (9567), ms633 (26838), ms634 (574348)** — six presentations, including two whose *baseline* optimum needs 27k and **574k** nodes, solved after a change of variables in tens of nodes.
-- **The wall (unsolved by every strategy at ≤1000):** ms568 (15814), ms605 (60593), ms623 (59710), ms636 (213882), and the two reach cases **AK(3)** and **19_40**. So CoV coverage is strong but NOT universal on the deep tail, and the marquee open cases stay open — the honest ceiling.
+- **The wall (unsolved by every strategy at ≤1000):** ms568 (15814), ms605 (60593), ms623 (59710), ms636 (213882), and the two reach cases **AK(3)** and **19_40**. So CoV coverage is strong but NOT universal on the deep tail, and the marquee open cases stay open — the honest ceiling. **Update: "wall" was the wrong word for the two ladder rows.** `ms623` and `ms636` are budget-bound, not inert — a CoV solves each at budget 20,000 (39–50 of their ~170 starts, cheapest 14,352 nodes; [`ESCAPE.md`](cov/allcov_escape/ESCAPE.md)), and the parenthesised figures above are exactly the plain greedy solving them at 1M. Only **AK(3)** and **19_40** are genuinely open.
 - **Baseline difficulty does not predict CoV difficulty.** ms634 (574k baseline nodes) is cracked while ms605 (60k) is not — a good CoV exists for one and not the other within the portfolio. Coordinate choice, not baseline depth, is what matters.
 
 ## Mechanism (mixed — verified by spot-check)

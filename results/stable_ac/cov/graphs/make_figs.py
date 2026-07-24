@@ -58,7 +58,9 @@ fig=plt.figure(figsize=(15,9)); gs=fig.add_gridspec(2,2,height_ratios=[1,1.25],h
 axa=fig.add_subplot(gs[0,0])
 c=collections.Counter(r['klass'] for r in per)
 vals=[c['baseline_solved'],c['flip'],c['never_solved']]
-axa.bar(['baseline\nsolved','flip: only CoV\nsolves','never solved\nby anything'],vals,
+# the third bar is "not at THIS budget", never "never": 8 of the rows it counts
+# (ms622-625, ms636-639) solve at budget 20,000 -- results/.../allcov_escape/
+axa.bar(['baseline\nsolved','flip: only CoV\nsolves','unsolved\nat this budget'],vals,
         color=[C_BASE,C_FEWER,'#bbbbbb'],edgecolor='white')
 for i,v in enumerate(vals): axa.text(i,v+0.6,str(v),ha='center',weight='bold')
 axa.set_ylim(0,36); axa.set_ylabel("# presentations")

@@ -9,7 +9,9 @@ Source: `covsweep_10000_66_subnc2pxysb_mrl24_cyc_s60r6_07_20_26.jsonl` (66 prese
 | baseline (greedy, no CoV) solves | **40/66** |
 | flips — baseline fails, some CoV solves | **12** |
 | solved by best CoV | **52/66** |
-| never solved by anything | 14 |
+| not solved by anything *at this budget* | 14 |
+
+> **`klass = never` means "not at 10,000 nodes", not "never".** Eight of those 14 — `ms622`–`ms625` and `ms636`–`ms639`, one Aut class — **escape at budget 20,000**, where 39–50 of the same ~170 CoV starts solve and the cheapest costs 14,352 nodes. Nothing but the budget changed; every pair is joined back to its row here and asserted to carry an identical cap and `cyclic_reduce`. See [`ESCAPE.md`](../allcov_escape/ESCAPE.md). The remaining six (`14_1`, `17_41`, `19_40`, `25_1`, `25_17`, `AK(3)`) are reach cases and are untouched by that run — they stay open.
 
 ## A random CoV vs its baseline (40 baseline-solved presentations, 3,211 CoV rows)
 

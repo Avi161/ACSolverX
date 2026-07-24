@@ -86,6 +86,8 @@ identity-transform comparison runs; date not part of the key). Produced by
 
 Cross-arm tables that no single runner produces. `three_way_b10k_subset60.csv` is greedy vs best-CoV vs the tuned heuristic at a matched budget (10,000) and matched cap (24) over the 60-row benchmark, written by `experiments/heuristic_search/three_way_b10k.py` — which refuses to write unless its length-only control reproduces the greedy column pop for pop on all 60 rows. `nodes_comparison_subset60.csv` joins the 1M-budget greedy and 100k heuristic runs to the b10k CoV table; its trailing rows are aggregates, not presentations, so filter on a numeric `pres_id`.
 
+⚠ **`nodes_comparison_subset60.png` is stale on eight rows and cannot be regenerated here.** Its best-CoV arm draws `ms622`–`ms625` and `ms636`–`ms639` as hollow ✗ at the 10,000-node budget, and its lower-left panel is captioned "gaps = the 8 it does not [solve]". All eight solve with a CoV at 20,000 (cheapest 14,352 nodes) — the ✗ marks are a budget artifact, not a property of those presentations. Nothing on the figure is false for the run it plots, and it is left untouched because no producer script for it exists in the repo (it was made ad hoc, and matplotlib is not in the venv). The corrected picture for those eight is [`escape_b20000_cost.svg`](stable_ac/cov/allcov_escape/escape_b20000_cost.svg), whose producer *is* committed (`experiments/stable_ac/cov/make_escape_fig.py`).
+
 ## `equivalence_classes/`
 
 The shipped result and every piece of evidence behind it. See its own `README.md`.

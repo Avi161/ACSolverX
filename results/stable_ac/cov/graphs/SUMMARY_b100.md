@@ -9,7 +9,9 @@ Source: `covsweep_100_66_subnc2pxysb_mrl24_cyc_s60r6_07_16_26.jsonl` (66 present
 | baseline (greedy, no CoV) solves | **17/66** |
 | flips — baseline fails, some CoV solves | **17** |
 | solved by best CoV | **34/66** |
-| never solved by anything | 32 |
+| not solved by anything *at this budget* | 32 |
+
+> **`klass = never` means "not at 100 nodes", not "never".** Among these are `ms622`–`ms625` and `ms636`–`ms639`, one Aut class, which **escape at budget 20,000** — 39–50 of their ~170 CoV starts solve there, cheapest at 14,352 nodes, with nothing but the budget changed. See [`ESCAPE.md`](../allcov_escape/ESCAPE.md).
 
 ## A random CoV vs its baseline (17 baseline-solved presentations, 1,039 CoV rows)
 

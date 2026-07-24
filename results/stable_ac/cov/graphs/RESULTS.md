@@ -8,7 +8,7 @@ Does every change of variables reduce the greedy's `nodes_explored` vs the basel
 
 ## Answer: no. It is a difficulty-tracking lottery, not a consistent reduction.
 
-**Solve landscape (66 presentations).** Baseline solves **17/66**; a CoV solves where the baseline could not (a "flip") on **17** more; **32** are never solved by anything. So the node-reduction question is only well-posed on the **17 baseline-solved** presentations (elsewhere the baseline has no finite node count to beat).
+**Solve landscape (66 presentations).** Baseline solves **17/66**; a CoV solves where the baseline could not (a "flip") on **17** more; **32** are not solved by anything *at this budget of 100* — including `ms622`–`ms625` and `ms636`–`ms639`, which escape at 20,000 ([`ESCAPE.md`](../allcov_escape/ESCAPE.md)). So the node-reduction question is only well-posed on the **17 baseline-solved** presentations (elsewhere the baseline has no finite node count to beat).
 
 **Over those 17 presentations there are 1039 CoV variants. Split vs baseline:**
 
