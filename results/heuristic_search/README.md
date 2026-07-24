@@ -83,8 +83,9 @@ Per split, the tuned model scores 15–16/30 against a baseline of 8–9/30.
 | 100 | 17/60 | **30/60** | +13 | 13W–**0L** |
 | 200 | 20/60 | **32/60** | +12 | 12W–**0L** |
 | 500 | 26/60 | **39/60** | +13 | 13W–**0L** |
+| 1000 | 29/60 | **43/60** | +14 | 14W–**0L** |
 
-**It never loses a presentation, at any budget.** 13 wins against 0 losses is p = 0.0002 on the exact sign test. Budget 100 with the tuned ordering beats budget 500 with the baseline (30 vs 26) — a better ordering is worth more than 5× the node budget on this benchmark.
+**It never loses a presentation, at any budget**, and the margin grows rather than closing (+13 → +14 as the baseline gets 10× the budget). 14 wins against 0 losses is p = 0.0001 on the exact sign test. Budget 100 with the tuned ordering beats budget 1,000 with the baseline (30 vs 29) — **the ordering is worth more than a 10× node budget on this benchmark**.
 
 *(The full-60 numbers are partly in-sample, since the weights were tuned on splits of this same set. The held-out table above is the generalisation evidence; this table shows the effect size and that it never trades a solve.)*
 
