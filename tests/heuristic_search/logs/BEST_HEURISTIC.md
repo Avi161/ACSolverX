@@ -25,6 +25,21 @@ Both rows are the *same* config family — a length-16 phase boundary with a str
 
 **One honest wrinkle on the 1000 pick.** The selection procedure actually chose a *block* climb (`while L>16: L − 2·max-block + 5·smaller-block`) — it and the knot climb both reach 43/66 and both solve 7/7 on the held-out bins 4–7, a dead tie. I recommend the knot climb above because it is the more principled (it is what the whole study points at) and it is what the budget-1000 promotion (EXP-06) selected; the block config is an equally-good empirical alternative, not a better one. If you want one ordering for both budgets, use the 500 row.
 
+## The most striking number: it does not just solve more, it reorders difficulty
+
+Counting solves understates what happens. On the rows it does crack, the reduction against the length baseline's own measured cost is enormous:
+
+| presentation | baseline needs | knot ordering | reduction |
+|---|---|---|---|
+| `ms633` | 26,838 nodes | **108** | **248×** |
+| `ms628` | 26,774 nodes | **107** | **250×** |
+| `ms575` | 14,383 nodes | 422 | 34× |
+| `ms581` | 9,567 nodes | 385 | 25× |
+
+And yet the three problems it fails on cost the baseline only ~13k–16k nodes — *less* than the two it solves 250× faster. **Difficulty under length ordering does not predict difficulty under the knot ordering.** The two orderings find different things hard, which is why the difficulty bins (graded under the baseline) are the right axis to report *against* and the wrong thing to tune toward.
+
+This is also the strongest reason to expect the ordering to matter at Colab scale rather than only here: a 250× reduction on a 27k-node problem is the kind of effect that moves a 10⁶-node search into range, not a constant-factor speedup.
+
 ## Why knots, and why phased
 
 - **Knots are the signal.** Of the thirteen rotation-invariant state features swept one at a time (EXP-02), knot count moved the needle most: `L + 8·knots` took the baseline from 17/40 to 23/40 on the training slice, and on the *decidable* rows (excluding the 16 easy rows every ordering solves) from 2/10 to 8/10. This is the operational form of the "reduce a knot to open opportunity" idea — a state that bought a knot reduction sorts above one that did not, so the search spends its budget where the structure improves.
