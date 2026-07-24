@@ -20,7 +20,12 @@ The exact deliverables are:
 1. a theorem and proof giving a necessary-and-sufficient finite Neuwirth criterion for thickenability of the balanced presentation complexes needed here when the Whitehead/link graph is connected;
 2. an explicit dictionary between relator occurrences and Neuwirth's permutations \(A,B,C\), including the orientation-reversing coupling at the two ends of each generator;
 3. an independent exhaustive decision certificate for the two target complexes over all \(5!\,6!=86{,}400\) compatible cyclic-order choices each;
-4. an adversarial report that states precisely what the decisions do and do not imply.
+4. the exact Neuwirth genus potential
+   \[
+   \gamma_N(P)=\min_C\frac{|A|-|C|+2L-|AC|}{2},
+   \]
+   which vanishes exactly at thickenable presentation complexes but is intentionally not claimed to be AC-invariant;
+5. an adversarial report that states precisely what the decisions do and do not imply.
 
 A positive thickenability verdict would count only after an independent Regina construction and `isBall()` check, as required by the operating contract. A negative verdict for either base complex says only that this particular presentation complex is not thickenable. It does not prove that AK(3) is an AC or stable-AC counterexample.
 

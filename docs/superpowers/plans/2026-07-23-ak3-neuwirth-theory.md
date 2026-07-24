@@ -341,7 +341,13 @@ git commit -m "result: certify AK3 Neuwirth rotation census"
 
 - [ ] **Step 1: Derive the human obstruction profile**
 
-From both target histograms, state the maximum face count, minimum compatible genus, number of minimum-genus orders, and whether the two classically equivalent representatives have identical or different profiles. Attempt a combinatorial explanation in terms of forced interlacing of occurrence bands; label it `[PROVEN]` only if it is derived without relying on the enumeration.
+Name the exact potential
+
+```text
+gamma_N(P) = min_C (|A|-|C|+2L-|AC|)/2.
+```
+
+From both target histograms, state \(\gamma_N\), the maximum face count, the number of minimizing orders, and whether the two classically equivalent representatives have identical or different profiles. Use the minimizing orders to test the concrete claim that forced interlacing of occurrence bands accounts for the remaining handles; label any explanation `[PROVEN]` only if it is derived without relying on the enumeration. State explicitly that \(\gamma_N\) is not an AC invariant and is instead a topology-directed search potential whose zero set is the thickenable milestone.
 
 - [ ] **Step 2: Implement the bounded component driver**
 
@@ -352,7 +358,7 @@ cost = product(factorial(degree[g] - 1) for g in generators)
 if cost > max_orderings:
     record SKIPPED_COST
 else:
-    run the direct census
+    run the direct census and record gamma_N
     independently rerun any Euler-positive through the dart audit
 ```
 
