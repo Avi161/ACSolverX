@@ -8,11 +8,13 @@ The short answer, then the evidence and the caveats. Everything here is measured
 
 > ### The one number
 >
-> On **held-out automorphism classes** — problems the tuning never saw, sharing no change-of-variables twin with anything it did see — at budget 1,000:
+> On the **three automorphism classes no tuning slice ever contained** — not the shortlist, not the weight search, not the promotion — at budget 1,000, counted as distinct problems:
 >
-> ### baseline 1 / 6  →  tuned **6 / 6**
+> ### baseline 1 / 3  →  tuned **3 / 3**
 >
-> Counted as *distinct problems*, on the *leak-free* slice, restricted to the *decidable* tier. It is the most defensible number in this document because every other framing is either easier (rows double-count automorphic twins) or dirtier (the training slice shares classes with the test one). At budget 500 the same measurement is 1/6 → 4/6.
+> At budget 500 the same three go 1/3 → 2/3. Three problems is a small number and it is the honest one: it is what remains after removing every row any stage of the tuning could have seen.
+
+**A correction, because an earlier version of this document overstated it.** This box previously read *"1/6 → 6/6 on held-out automorphism classes"*, using the 6 classes in `splits_aut.json`'s test side. That split is genuinely automorphism-disjoint from `aut_train`, and the arithmetic was right — but the weight vector was **not** selected on `aut_train`. It came from EXP-04 (the joint weight search) and EXP-06 (the budget-1000 promotion), both of which ran on the **stratified** 40-row slice in `splits.json` — and that slice contains `ms544`, `ms602`, `ms628` and `ms633`, which are 4 of the 7 rows in the supposedly held-out set, covering classes 74, 103 and 110. For class 110 the tuning saw both members. So four sevenths of that "held-out" evidence was selection data wearing a different split's label. An independent audit of the raw jsonl caught it; the number above is what survives.
 
 Everything below is subordinate detail. Several other denominators appear — 24 rows, 19 distinct problems, 31, 45 — because different experiments ran on different slices; each is stated where it is used, and none of them supersedes the line above.
 
