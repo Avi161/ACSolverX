@@ -47,14 +47,17 @@ def main():
     rows_hi = {r["config_id"]: r for r in rank(hi, ctrl)}
 
     # The same configs at 500, so the two columns are the same arms and the movement is readable.
+    # Filter each row to (500, mrl) BEFORE merging: EXP-05 carries five caps per name, and read()
+    # groups by config id alone, so a blind merge lets a non-48 cap overwrite the 48 row and the
+    # filter then drops it -- which blanked this column the first time.
     lo_all = {}
     for src in ("EXP02_single.jsonl", "EXP03_segments.jsonl", "EXP04_multi.jsonl",
                 "EXP05_cap.jsonl"):
-        r = read(os.path.join(LOGS, src))
-        for cid, v in r.items():
-            lo_all.setdefault(cid, {}).update(v)
-    lo_all = {cid: {n: r for n, r in v.items() if r["budget"] == 500 and r["mrl"] == MRL}
-              for cid, v in lo_all.items()}
+        r = read(os.path.join(LOGS, src), by=("config_id", "budget", "mrl"))
+        for arm, v in r.items():
+            cid, budget, mrl = arm.rsplit(" | ", 2)
+            if int(budget) == 500 and int(mrl) == MRL:
+                lo_all.setdefault(cid, {}).update(v)
     lo = {}
     if ctrl in lo_all and lo_all[ctrl]:
         lo = {r["config_id"]: r for r in rank({k: v for k, v in lo_all.items() if v}, ctrl)}
