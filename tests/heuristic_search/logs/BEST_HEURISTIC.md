@@ -19,7 +19,26 @@ The right denominator is **the 24 rows in difficulty bins 4–7** — the ones t
 
 At budget 1000 that is a near-4× improvement on the rows in question (5 → 19 of 24). On the leak-free held-out slice, restricted to the same bins 4–7, the tuned ordering solves **7/7** where the baseline solves **1/7** (at 500: 5/7 vs 1/7). It also solves *shorter*: on the 29 rows both solve at 1000, mean path **17.3 vs 19.2** — a win on the secondary criterion too.
 
-> **Before you try to run this: it is not wired into the Colab solver yet.** The ordering was built and validated in the research harness (`experiments/heuristic_search/hfast.py`, a parameterized heap priority). The production path used for large runs — `run_baseline.py → greedy_search → the compact/heavy solver` — orders by total length through a packed integer heap key and knows nothing about knots or length segments. Getting this heuristic into a real Colab run therefore needs the phased priority ported into that solver's key, which is a genuine piece of work (the compact solver's packed key is the friction) and, under this repo's rules, a new file rather than an edit to the existing ones. **The finding is solid; the plumbing is the follow-up.**
+## How to actually run it
+
+`experiments/heuristic_search/hsolve.py` is a drop-in for `greedy_baseline.greedy_search`. It returns **exactly** the same dict — the certificate `path` and `path_moves`, `min_relator`/`max_relator`, `max_relator_length_expanded`, every key — so nothing downstream needs to change:
+
+```python
+from experiments.heuristic_search.hsolve import greedy_search_h, RECOMMENDED
+
+stats = greedy_search_h(r1, r2, node_budget=10**6,
+                        max_relator_length=48, config=RECOMMENDED)
+```
+
+`config=None` orders by length and reproduces the baseline exactly, so you can A/B the two in one run. `RECOMMENDED` is the budget-1000 ordering above; `LEAN_SMALL_BUDGET` is the ~500 one.
+
+**What is verified** (`python3 -m experiments.heuristic_search.verify_hsolve`, and it must print ALL PASS):
+
+1. with `config=None` it reproduces `greedy_search` field for field, `path_moves` included;
+2. under a tuned ordering it pops identically to the research harness every number in this document was measured with — so the reports describe what a production run will do;
+3. every certificate it returns replays **independently**, through `moves_to_states` from the recorded Definition 2.1 moves, and lands on a trivial pair. That is the check a self-consistent bug cannot pass, and it is the one that matters: a bad path would corrupt results rows silently.
+
+Two caveats worth keeping. It has not been run inside `run_baseline.py`'s resume/W&B machinery — the function contract matches, but the integration itself is untested. And it uses the string-keyed dict of the normal solver, not the compact solver's packed arena, so at very large budgets it will want more memory than `high_speedup` mode; size accordingly or port the ordering into the compact key as a follow-up.
 
 `L` = total length of the pair. `knots` = `max(#x-blocks, #y-blocks)` summed over both relators. `max-knots` = the larger relator's knot count. `xy-imbalance` = `|#x − #y| / L`. `smaller-block` = the smaller of the two generators' mean run-lengths. **Let relators grow to ~48** (they climb to ~30; capping at 24 loses nothing at these budgets but nothing is gained by capping either — see caveats).
 
