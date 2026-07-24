@@ -17,7 +17,7 @@
 
 Per-row provenance (`best_z`, `iso_gen`, `iso_index`, the transformed pair, and whether it left the input orbit) is in [`escape_b20000_summary.csv`](escape_b20000_summary.csv); every search is a row in [`allcov_b20000_8rows_subnc2pxysb.jsonl`](allcov_b20000_8rows_subnc2pxysb.jsonl). The same table as a figure: [`escape_b20000_cost.svg`](escape_b20000_cost.svg) (producer `experiments/stable_ac/cov/make_escape_fig.py`).
 
-Two earlier artifacts still show these eight as unsolved, correctly for the runs they plot and misleadingly out of context: `results/stable_ac/cov/graphs/per_presentation_b10000.csv` classes them `klass = never` (which means *never at 10,000 nodes* — see the note in [`SUMMARY_b10000.md`](../graphs/SUMMARY_b10000.md)), and `results/comparison/nodes_comparison_subset60.png` draws them as hollow ✗ at the 10,000-node budget. The PNG is left as-is because no producer for it exists in the repo; see the warning in [`results/README.md`](../../../README.md).
+Downstream artifacts now carry the escape: `results/comparison/nodes_comparison_subset60.csv` has `nodes_bestcov_b20k` / `solved_bestcov_b20k` (60/60) beside its untouched b10k columns, `nodes_comparison_subset60.png` is regenerated with these eight ringed instead of drawn as hollow ✗, and [`greedy_vs_bestcov_subset60_nodes_path.csv`](../../../comparison/greedy_vs_bestcov_subset60_nodes_path.csv) is the two-arm nodes-and-path table over all 60. One artifact still reads `never` and is correct to: `graphs/per_presentation_b10000.csv`'s `klass` column is a record of the 10,000-node run, and its meaning is pinned in [`SUMMARY_b10000.md`](../graphs/SUMMARY_b10000.md).
 
 ## Read the last three columns before the fourth
 

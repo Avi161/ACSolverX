@@ -133,7 +133,11 @@ def main():
     for p in pres_ids:
         got = owned[p]
         sol = [(r, pr) for r, pr in got if r["solved"]]
-        best = min(sol, key=lambda t: (t[0]["nodes_explored"], t[0]["r1"], t[0]["r2"])) if sol else None
+        # a pair can carry several provenances; tie-break on the witness too so
+        # every reader of this file names the same (z, iso_gen, iso_index)
+        best = min(sol, key=lambda t: (t[0]["nodes_explored"], t[0]["r1"], t[0]["r2"],
+                                       t[1]["z_word"], t[1]["iso_gen"],
+                                       t[1]["iso_index"])) if sol else None
         row = {"pres_id": p, "n_cov_tried": len(got), "n_cov_solved": len(sol),
                "escaped": bool(sol)}
         if best:
