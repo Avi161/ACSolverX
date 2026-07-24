@@ -1,0 +1,3033 @@
+{
+  "aggregate_counters": {
+    "closed_component_assignments": 423,
+    "component_combination_budget": 0,
+    "component_combinations_considered": 0,
+    "component_seed_attempts": 553571,
+    "component_seed_budget": 553571,
+    "cross_cycle_collision_rejections": 0,
+    "exhaustive_output_count": 34,
+    "phase_pair_budget": 139804,
+    "phase_pairs_considered": 139804,
+    "scheme_budget": 1419,
+    "schemes_considered": 1419,
+    "union_cardinality_checks": 0,
+    "union_cardinality_rejections": 0,
+    "within_cycle_collision_rejections": 0,
+    "witness_replay_failures": 0
+  },
+  "ak3": [
+    "xyxYXY",
+    "xxxYYYY"
+  ],
+  "candidate_lemma": "REFUTED",
+  "claim": "Every exact output of the complete no-collapse subword-CoV family on AK(3) has a non-spherical compatible Neuwirth link.",
+  "cov_family_tag": "subnc2pxysb",
+  "cov_output_count": 34,
+  "factorial_crosscheck": {
+    "fixture_count": 2,
+    "negative_fixture_count": 1,
+    "positive_fixture_count": 1,
+    "records": [
+      {
+        "accepting_factorial_orders": 2,
+        "factorial_cases": 12,
+        "minimum_genus": 0,
+        "rank_spherical": true,
+        "support": "K4-e+1loop",
+        "trace_sha256": "f6d207f62193e7f90d1a769fe722ca7eb6c86d309ee28670d8af87ae45bc0652",
+        "words": [
+          "xxy",
+          "yXYy"
+        ]
+      },
+      {
+        "accepting_factorial_orders": 0,
+        "factorial_cases": 12,
+        "minimum_genus": 1,
+        "rank_spherical": false,
+        "support": "K4-e+1loop",
+        "trace_sha256": "72e931ec7e61c7b3b2f6ff675ec33c4a8b36c2cd4ffac72866955fc29190400f",
+        "words": [
+          "x",
+          "YXyxyy"
+        ]
+      }
+    ],
+    "trace_sha256": "4e7e7039a3f45da7cda35dbe3b3611995f48c0e88776e69c7a387b15bc884949"
+  },
+  "output_records": [
+    {
+      "cap": 27,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 450,
+        "component_seed_budget": 450,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 90,
+        "phase_pairs_considered": 90,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        2,
+        2,
+        2,
+        2
+      ],
+      "index": 0,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          3,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          1,
+          1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YxxxxxYXyX",
+        "YYxxxxYxxxx"
+      ],
+      "z_word": "xx"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 180,
+        "component_seed_budget": 180,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 45,
+        "phase_pairs_considered": 45,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        2,
+        3
+      ],
+      "index": 1,
+      "intermediate": [
+        [
+          3,
+          1,
+          -3,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 2,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YxxxyXXXX",
+        "YYxyx"
+      ],
+      "z_word": "xy"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 135,
+        "component_seed_budget": 135,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 45,
+        "phase_pairs_considered": 45,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        1,
+        -3
+      ],
+      "index": 2,
+      "intermediate": [
+        [
+          3,
+          1,
+          -3,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 2,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxyXXXXY",
+        "YxyxY"
+      ],
+      "z_word": "xy"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 135,
+        "component_seed_budget": 135,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 45,
+        "phase_pairs_considered": 45,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        2,
+        -3
+      ],
+      "index": 3,
+      "intermediate": [
+        [
+          1,
+          3,
+          -2,
+          -3
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 2,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "yxxxYXXXX",
+        "YxyxY"
+      ],
+      "z_word": "yx"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 180,
+        "component_seed_budget": 180,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 45,
+        "phase_pairs_considered": 45,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        1,
+        3
+      ],
+      "index": 4,
+      "intermediate": [
+        [
+          1,
+          3,
+          -2,
+          -3
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 2,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxYXXXXy",
+        "YYxyx"
+      ],
+      "z_word": "yx"
+    },
+    {
+      "cap": 24,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 168,
+        "component_seed_budget": 168,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 42,
+        "phase_pairs_considered": 42,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -1,
+        3,
+        1
+      ],
+      "index": 5,
+      "intermediate": [
+        [
+          3,
+          1,
+          -2,
+          -1
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -2,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxYYYYx",
+        "YXYxyx"
+      ],
+      "z_word": "Yxy"
+    },
+    {
+      "cap": 26,
+      "counters": {
+        "closed_component_assignments": 8,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 2496,
+        "component_seed_budget": 2496,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 624,
+        "phase_pairs_considered": 624,
+        "scheme_budget": 8,
+        "schemes_considered": 8,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        2,
+        2,
+        2
+      ],
+      "index": 6,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -3,
+          1,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1,
+          2
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "yxxxxyXYX",
+        "YXXXYXXXYx"
+      ],
+      "z_word": "XXy"
+    },
+    {
+      "cap": 24,
+      "counters": {
+        "closed_component_assignments": 0,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 210,
+        "component_seed_budget": 210,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 42,
+        "phase_pairs_considered": 42,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -2,
+        3,
+        2
+      ],
+      "index": 7,
+      "intermediate": [
+        [
+          -3,
+          2,
+          1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "XyyyXXX",
+        "YXYxyx"
+      ],
+      "z_word": "Xyx"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 2268,
+        "component_seed_budget": 2268,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 756,
+        "phase_pairs_considered": 756,
+        "scheme_budget": 14,
+        "schemes_considered": 14,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        2,
+        3,
+        -2
+      ],
+      "index": 8,
+      "intermediate": [
+        [
+          1,
+          2,
+          -3,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xyyyXXXXX",
+        "YxyxYX"
+      ],
+      "z_word": "xyX"
+    },
+    {
+      "cap": 29,
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 4992,
+        "component_seed_budget": 4992,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 624,
+        "phase_pairs_considered": 624,
+        "scheme_budget": 8,
+        "schemes_considered": 8,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -2,
+        3,
+        -2
+      ],
+      "index": 9,
+      "intermediate": [
+        [
+          3,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          1,
+          2,
+          1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "XyXXyXXyXXXXX",
+        "YXyXyX"
+      ],
+      "z_word": "xyx"
+    },
+    {
+      "cap": 31,
+      "counters": {
+        "closed_component_assignments": 66,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 251940,
+        "component_seed_budget": 251940,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 50388,
+        "phase_pairs_considered": 50388,
+        "scheme_budget": 442,
+        "schemes_considered": 442,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        2,
+        2,
+        2,
+        3
+      ],
+      "index": 10,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          1,
+          -3,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          -1,
+          -1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxyxxxxyXYXXXX",
+        "YxYXXXYXXX"
+      ],
+      "z_word": "yXX"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 2,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 2016,
+        "component_seed_budget": 2016,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 672,
+        "phase_pairs_considered": 672,
+        "scheme_budget": 12,
+        "schemes_considered": 12,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        1,
+        3,
+        -1
+      ],
+      "index": 11,
+      "intermediate": [
+        [
+          1,
+          3,
+          -1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1,
+          -2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxxYYYYX",
+        "YxyxYX"
+      ],
+      "z_word": "yxY"
+    },
+    {
+      "cap": 31,
+      "counters": {
+        "closed_component_assignments": 4,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 6272,
+        "component_seed_budget": 6272,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 784,
+        "phase_pairs_considered": 784,
+        "scheme_budget": 8,
+        "schemes_considered": 8,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -1,
+        3,
+        -1
+      ],
+      "index": 12,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -3
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxxYxxYxxYxxYx",
+        "YXyXyX"
+      ],
+      "z_word": "yxy"
+    },
+    {
+      "cap": 31,
+      "counters": {
+        "closed_component_assignments": 68,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 22344,
+        "component_seed_budget": 22344,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 11172,
+        "phase_pairs_considered": 11172,
+        "scheme_budget": 76,
+        "schemes_considered": 76,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        1,
+        1,
+        1,
+        -3
+      ],
+      "index": 13,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -3,
+          -2
+        ],
+        [
+          -3,
+          2,
+          2,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxxYxyXXXXyXXX",
+        "YxxxYxxxYxxxY"
+      ],
+      "z_word": "yyy"
+    },
+    {
+      "cap": 26,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 270,
+        "component_seed_budget": 270,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 54,
+        "phase_pairs_considered": 54,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        -2
+      ],
+      "index": 14,
+      "intermediate": [
+        [
+          -3,
+          -2,
+          -1
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -2,
+          -1,
+          2
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YXYXYXXXXX",
+        "Yxyyx"
+      ],
+      "z_word": "XYXy"
+    },
+    {
+      "cap": 27,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 252,
+        "component_seed_budget": 252,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -1,
+        -3
+      ],
+      "index": 15,
+      "intermediate": [
+        [
+          -3,
+          -2,
+          -1
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -2,
+          -1,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxyxyxyxyx",
+        "YXyXY"
+      ],
+      "z_word": "XYXy"
+    },
+    {
+      "cap": 24,
+      "counters": {
+        "closed_component_assignments": 8,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 1296,
+        "component_seed_budget": 1296,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 216,
+        "phase_pairs_considered": 216,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        2
+      ],
+      "index": 16,
+      "intermediate": [
+        [
+          3,
+          1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -2,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "YxYxYXXX",
+        "YXyXYxx"
+      ],
+      "z_word": "XYxy"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 6,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 756,
+        "component_seed_budget": 756,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 189,
+        "phase_pairs_considered": 189,
+        "scheme_budget": 3,
+        "schemes_considered": 3,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        1
+      ],
+      "index": 17,
+      "intermediate": [
+        [
+          3,
+          1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -2,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxYXYXYXY",
+        "YXXYxyx"
+      ],
+      "z_word": "XYxy"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 8,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 1584,
+        "component_seed_budget": 1584,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 396,
+        "phase_pairs_considered": 396,
+        "scheme_budget": 6,
+        "schemes_considered": 6,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        2,
+        2
+      ],
+      "index": 18,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -3,
+          1,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1,
+          2,
+          2
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "yxxxyXYX",
+        "YXXYXXYxx"
+      ],
+      "z_word": "XXyy"
+    },
+    {
+      "cap": 26,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 432,
+        "component_seed_budget": 432,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 54,
+        "phase_pairs_considered": 54,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -2,
+        3
+      ],
+      "index": 19,
+      "intermediate": [
+        [
+          -3,
+          2,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          2,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "XyXyXyXXXX",
+        "YYxyx"
+      ],
+      "z_word": "Xyxy"
+    },
+    {
+      "cap": 27,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 378,
+        "component_seed_budget": 378,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        -1
+      ],
+      "index": 20,
+      "intermediate": [
+        [
+          -3,
+          2,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          2,
+          1,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxxYxYxYxY",
+        "YXyyX"
+      ],
+      "z_word": "Xyxy"
+    },
+    {
+      "cap": 27,
+      "counters": {
+        "closed_component_assignments": 6,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 3528,
+        "component_seed_budget": 3528,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 504,
+        "phase_pairs_considered": 504,
+        "scheme_budget": 6,
+        "schemes_considered": 6,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        1,
+        1
+      ],
+      "index": 21,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -3,
+          1,
+          1,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          2,
+          2,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xYxyXXXy",
+        "YXYxxYxxYxx"
+      ],
+      "z_word": "Xyyy"
+    },
+    {
+      "cap": 26,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 270,
+        "component_seed_budget": 270,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 54,
+        "phase_pairs_considered": 54,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -2,
+        -3
+      ],
+      "index": 22,
+      "intermediate": [
+        [
+          -3,
+          -1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          -1,
+          -2,
+          -1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "XYXYXYXXXX",
+        "Yxyyx"
+      ],
+      "z_word": "yXYX"
+    },
+    {
+      "cap": 27,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 630,
+        "component_seed_budget": 630,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        -1
+      ],
+      "index": 23,
+      "intermediate": [
+        [
+          -3,
+          -1,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          -1,
+          -2,
+          -1
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxxyxyxyxy",
+        "YYXyX"
+      ],
+      "z_word": "yXYX"
+    },
+    {
+      "cap": 26,
+      "counters": {
+        "closed_component_assignments": 48,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11880,
+        "component_seed_budget": 11880,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 5940,
+        "phase_pairs_considered": 5940,
+        "scheme_budget": 90,
+        "schemes_considered": 90,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        2,
+        -3
+      ],
+      "index": 24,
+      "intermediate": [
+        [
+          1,
+          3,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1,
+          -2,
+          -1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xYxYxYXXXX",
+        "YxxYXyX"
+      ],
+      "z_word": "yxYX"
+    },
+    {
+      "cap": 27,
+      "counters": {
+        "closed_component_assignments": 48,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 33264,
+        "component_seed_budget": 33264,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 5544,
+        "phase_pairs_considered": 5544,
+        "scheme_budget": 72,
+        "schemes_considered": 72,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        1,
+        3
+      ],
+      "index": 25,
+      "intermediate": [
+        [
+          1,
+          3,
+          -2
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1,
+          -2,
+          -1
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxYXYXYXYX",
+        "YxyxYXX"
+      ],
+      "z_word": "yxYX"
+    },
+    {
+      "cap": 26,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 270,
+        "component_seed_budget": 270,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 54,
+        "phase_pairs_considered": 54,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        -2
+      ],
+      "index": 26,
+      "intermediate": [
+        [
+          1,
+          2,
+          -3
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "yXyXyXXXXX",
+        "YxyxY"
+      ],
+      "z_word": "yxyX"
+    },
+    {
+      "cap": 27,
+      "counters": {
+        "closed_component_assignments": 1,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 252,
+        "component_seed_budget": 252,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 63,
+        "phase_pairs_considered": 63,
+        "scheme_budget": 1,
+        "schemes_considered": 1,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -1,
+        3
+      ],
+      "index": 27,
+      "intermediate": [
+        [
+          1,
+          2,
+          -3
+        ],
+        [
+          1,
+          1,
+          1,
+          -2,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1,
+          2,
+          -1
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 0,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxYxYxYxYx",
+        "YXyyX"
+      ],
+      "z_word": "yxyX"
+    },
+    {
+      "cap": 28,
+      "counters": {
+        "closed_component_assignments": 46,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 105300,
+        "component_seed_budget": 105300,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 21060,
+        "phase_pairs_considered": 21060,
+        "scheme_budget": 234,
+        "schemes_considered": 234,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        2,
+        2,
+        3
+      ],
+      "index": 28,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          1,
+          -3,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          2,
+          2,
+          -1,
+          -1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxyxxxyXYXXX",
+        "YxxYXXYXX"
+      ],
+      "z_word": "yyXX"
+    },
+    {
+      "cap": 28,
+      "counters": {
+        "closed_component_assignments": 42,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 56448,
+        "component_seed_budget": 56448,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 28224,
+        "phase_pairs_considered": 28224,
+        "scheme_budget": 252,
+        "schemes_considered": 252,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        1,
+        1,
+        -3
+      ],
+      "index": 29,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          1,
+          1,
+          -3,
+          -2
+        ],
+        [
+          -3,
+          2,
+          2,
+          2,
+          -1
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxxYxyXXXyXX",
+        "YxxYxxYxxYX"
+      ],
+      "z_word": "yyyX"
+    },
+    {
+      "cap": 24,
+      "counters": {
+        "closed_component_assignments": 8,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 864,
+        "component_seed_budget": 864,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 216,
+        "phase_pairs_considered": 216,
+        "scheme_budget": 4,
+        "schemes_considered": 4,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        3,
+        2
+      ],
+      "index": 30,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -3,
+          1,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1,
+          2,
+          2,
+          2
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "yxxyXYX",
+        "YXYXYxxx"
+      ],
+      "z_word": "XXyyy"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 6,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 1323,
+        "component_seed_budget": 1323,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 189,
+        "phase_pairs_considered": 189,
+        "scheme_budget": 3,
+        "schemes_considered": 3,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        -3,
+        1
+      ],
+      "index": 31,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -3,
+          1,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1,
+          2,
+          2,
+          2
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xYxyXXy",
+        "YXXYxYxYx"
+      ],
+      "z_word": "XXyyy"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 16,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 29700,
+        "component_seed_budget": 29700,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 5940,
+        "phase_pairs_considered": 5940,
+        "scheme_budget": 90,
+        "schemes_considered": 90,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        2,
+        3
+      ],
+      "index": 32,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          1,
+          -3,
+          -2
+        ],
+        [
+          -3,
+          2,
+          2,
+          2,
+          -1,
+          -1
+        ]
+      ],
+      "iso_gen": "x",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xyxxyXYXX",
+        "YxxxYXYX"
+      ],
+      "z_word": "yyyXX"
+    },
+    {
+      "cap": 25,
+      "counters": {
+        "closed_component_assignments": 14,
+        "component_combination_budget": 0,
+        "component_combinations_considered": 0,
+        "component_seed_attempts": 11088,
+        "component_seed_budget": 11088,
+        "cross_cycle_collision_rejections": 0,
+        "exhaustive": true,
+        "phase_pair_budget": 5544,
+        "phase_pairs_considered": 5544,
+        "scheme_budget": 72,
+        "schemes_considered": 72,
+        "union_cardinality_checks": 0,
+        "union_cardinality_rejections": 0,
+        "within_cycle_collision_rejections": 0,
+        "witness_replay_failures": 0
+      },
+      "expr": [
+        1,
+        -3
+      ],
+      "index": 33,
+      "intermediate": [
+        [
+          1,
+          2,
+          1,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          1,
+          -3,
+          -2
+        ],
+        [
+          -3,
+          2,
+          2,
+          2,
+          -1,
+          -1
+        ]
+      ],
+      "iso_gen": "y",
+      "iso_index": 1,
+      "n_subs": 1,
+      "reason": null,
+      "simple_edges": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "stable_move_hypotheses_verified": true,
+      "support": "K4-e+1loop",
+      "verdict": "NOT_SPHERICAL",
+      "witness": null,
+      "words": [
+        "xxYxyXXyX",
+        "YxYxYxYXX"
+      ],
+      "z_word": "yyyXX"
+    }
+  ],
+  "schema": "ak3-cov-thickenability-v1",
+  "source_sha256": {
+    "base_rank_solver": "5f5e0587e9f9b605c53412d9e5ab793d6823a9b67c87589a06d9ab36ada2c5cb",
+    "base_theorem": "cd829d5899235a70441497a579c3c65647882376d61511e2af27a980c4a1fe9b",
+    "certificate_driver": "540e6a6e1139477b87997ef96d811260b18b56161f6238d5f6998e033cc51b56",
+    "cov_implementation": "0dee6af682e9ac8381c4c0d4fad5c124daf701fd9e9b5ae3bb04dcc8cbc03a97",
+    "cov_stability_proof": "986f910fb8f1fb764ecb633216a7d2359ea7e287343f18a12b0c0de48f4d0242",
+    "factorial_solver": "02c9ac34f1869740f3f8addd4a8d96192eaf691a7a03e74e8237ac9f86388bca",
+    "one_loop_rank_solver": "5962751e54d3adc94da64ba6c3db1d4236f3999298ea27b39f7b992d36ac30fc",
+    "one_loop_theorem": "96952a15b3abf745d1553334a8790566b7dc9f71ca5907c05ac04a37b2b6aeaa"
+  },
+  "stable_equivalence_count": 34,
+  "subword_candidate_count": 38,
+  "support_counts": {
+    "K4": 15,
+    "K4+1loop": 2,
+    "K4-e": 9,
+    "K4-e+1loop": 8
+  },
+  "trace_sha256": "d2ecadb2eb740dae256c3afec98ae69564522273313e7a129468e82086279d2d",
+  "verdict_counts": {
+    "NOT_SPHERICAL": 34
+  }
+}

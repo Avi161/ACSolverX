@@ -102,3 +102,5 @@
 
 - [TRAP] The CoV implementation is `experiments/stable_ac/cov/cov.py`, not `experiments/stable_ac/cov.py`; resolve module paths with `rg --files` before reading.
 - [WORKS] The complete AK(3) subword-CoV family has 34 distinct outputs: 24 have loopless `K4`/`K4-e` support and the other 10 have exactly one loop edge over such a core. Deleting the loop leaves a connected core after removal of its attachment vertex, so spherical rotations are completely parameterized by a core scheme, an insertion gap, and a loop-dart orientation.
+- [TRAP] `("xx", "yy")` has no A-link loops: its repeated letters give parallel positive-to-negative edges. It cannot test a multi-loop fail-closed guard.
+- [WORKS] Use `("xX", "yy")` for two distinct loop classes and `("xXy", "xXy")` for multiplicity two in one loop class; inspect the exact occurrence dictionary instead of inferring link loops from repeated letters.

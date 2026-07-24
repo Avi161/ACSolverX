@@ -40,6 +40,12 @@ def test_one_loop_rank_solver_matches_factorial_negative():
 
 
 def test_one_loop_solver_fails_closed_on_two_loop_edges():
-    decision = solve_one_loop_spherical(("xx", "yy"))
+    decision = solve_one_loop_spherical(("xX", "yy"))
+    assert decision.spherical is None
+    assert decision.verdict == "UNSUPPORTED"
+
+
+def test_one_loop_solver_fails_closed_on_repeated_loop_class():
+    decision = solve_one_loop_spherical(("xXy", "xXy"))
     assert decision.spherical is None
     assert decision.verdict == "UNSUPPORTED"

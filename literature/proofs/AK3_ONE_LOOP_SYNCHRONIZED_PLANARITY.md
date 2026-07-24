@@ -3,8 +3,8 @@
 Date: 2026-07-24
 
 Status: the one-loop rotation and signed-rank theorems are **PROVEN**.  The
-finite 34-image AK(3) CoV candidate is **UNVERIFIED** until its exact
-certificate is generated and independently replayed.
+finite 34-image AK(3) CoV thickenability candidate is **REFUTED** by the
+exact certificate in Section 6.
 
 ## 1. Exact scope
 
@@ -160,16 +160,45 @@ Every other support is unsupported, not non-spherical.
 
 ## 6. Stable AK(3) implication
 
-The complete no-collapse subword CoV family of AK(3) has 34 distinct exact
-outputs.  Each is stably AC-equivalent to AK(3) by the proved Lemma-11 CoV
-criterion.  Existing loopless theorems decide 24 outputs as non-spherical.
+The complete no-collapse subword CoV family of AK(3) has 38 candidate
+subwords and 34 distinct exact outputs.  Each output satisfies the hypotheses
+of the proved Lemma-11 CoV criterion and is therefore stably AC-equivalent
+to AK(3).  Existing loopless theorems decide 24 outputs as non-spherical.
 The other ten have exactly the one-loop support of this note.
 
-If any of the 34 outputs has a compatible spherical rotation, it must
-receive the mandatory independent regular-neighbourhood validation before
-being called thickenable.  A validated positive would prove AK(3) stably
-AC-trivial by Lackenby's Theorem 1.3.
+The chained certificate finds:
 
-A complete null would refute only this exact finite CoV-thickenability
-attempt.  It would not obstruct another CoV family, a composition of CoVs,
-another stable representative, or AK(3) itself.
+| support | outputs | spherical |
+|---|---:|---:|
+| \(K_4\) | 15 | 0 |
+| \(K_4-e\) | 9 | 0 |
+| \(K_4\) plus one loop | 2 | 0 |
+| \(K_4-e\) plus one loop | 8 | 0 |
+| **total** | **34** | **0** |
+
+It exhausts 1,419 planar schemes, 139,804 phase pairs, and 553,571
+component seeds.  The ordered decision trace is
+
+```text
+d2ecadb2eb740dae256c3afec98ae69564522273313e7a129468e82086279d2d
+```
+
+The one-loop solver also agrees with an independent factorial rotation
+census on one spherical and one non-spherical fixture, twelve complete
+orders each.
+
+Certificate:
+
+```text
+results/stable_ac/theory/ak3_cov_thickenability.json
+```
+
+Verifier:
+
+```text
+experiments/stable_ac/thickenable/cov_thickenability_certificate.py
+```
+
+This complete null refutes only the exact one-hop subword-CoV
+thickenability attempt.  It does not obstruct another CoV family, a
+composition of CoVs, another stable representative, or AK(3) itself.
