@@ -42,7 +42,9 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-19](EXP19_joint1000.md) | joint search at budget 1000 over all 17 features, threshold optional | **nothing beats the incumbent** (28/31, +0 against 1.65 optimism) — the recommendation is at its ceiling |
 | [EXP-20](EXP20_cportfolio.md) | at fixed budget, split across different *orderings*? | **no** — pairs average 15.5/24 vs singles' 18.0; but later members DO fire, so the complementarity is real |
 | [EXP-21](EXP21_complement.md) | with more compute, what makes a good *second* ordering? | **a different family** — a weaker knot-free climb adds 4 rows (19→23/24); another finalist adds 0 |
-| **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **phase at length 16; climb on knots (+blocks at 1000); revert to length below** |
+| [EXP-22](EXP22_complement_cv.md) | is the complement strategy real, or hindsight? (200 half-splits, no new searches) | **real** — +1.18 rows held out vs +0.27 strongest-arm, +0.04 random; premium only 0.24 |
+| [EXP-23](EXP23_hump_diverse.md) | the second hump, attacked from the *other* ordering family | **still nothing** — the negative is no longer specific to knot climbs |
+| **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **held-out, distinct problems: baseline 1/6 → tuned 6/6**; climb on knots, no threshold needed at 1000 |
 
 ## Two splits
 
