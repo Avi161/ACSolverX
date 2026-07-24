@@ -768,13 +768,15 @@
   "unsolved124_done": true
  },
  "headline": {
-  "baseline": 1,
-  "tuned": 6,
-  "n": 6,
+  "baseline": 20,
+  "tuned": 50,
+  "n": 75,
   "budget": 1000,
-  "baseline_500": 1,
-  "tuned_500": 4,
-  "note": "On held-out automorphism classes \u2014 problems the tuning never saw, sharing no change-of-variables twin with anything it did see \u2014 counted as distinct problems, on the decidable tier: baseline 1 of 6, tuned 6 of 6 at budget 1000 (1 of 6 -> 4 of 6 at budget 500). This is the most defensible framing available: row counts double-count automorphic twins, and the stratified split shares classes across train and test."
+  "baseline_500": 11,
+  "tuned_500": 39,
+  "gained": 30,
+  "lost": 0,
+  "note": "On 75 presentations no stage of this program ever read \u2014 not the shortlist, not the weight search, not the promotion, not any split \u2014 in the decidable band, at budget 1000: baseline 20 of 75, tuned 50 of 75. That is 67% against 27%, and a strict superset: 30 presentations gained, 0 lost. At budget 500 it is 11 of 75 against 39. Per bin the separation is total \u2014 the length baseline solves nothing at all in bins 5, 6 and 7 (0/20, 0/22, 0/8) where the tuned ordering takes 16/20 and 9/22. These come from data/ms640_solved.txt, the 640-presentation set the 66-row benchmark was drawn from; the 580 outside the benchmark were never in any file this program read."
  },
  "complement_cv": {
   "complement": 1.18,
@@ -789,5 +791,21 @@
   "orderings": 6,
   "solved": 0,
   "note": "Every earlier attempt on the hard tier used knot climbs or close relatives. Since the finalists turn out to be redundant with each other, that negative was a claim about one family. Pointing six deliberately different orderings at bins 8-9 and the reach rows \u2014 including the cross-validation-winning Bspread climb and two led by features never tried there \u2014 still solves nothing. The negative is no longer family-specific."
+ },
+ "correction": {
+  "was": "1 of 6 -> 6 of 6 on held-out automorphism classes",
+  "now": "20 of 75 -> 50 of 75",
+  "note": "An earlier version of this page led with 1 of 6 -> 6 of 6 on held-out automorphism classes. That split was genuinely automorphism-disjoint, but the weight vector was selected on a DIFFERENT slice \u2014 the stratified 40-row one \u2014 which contained 4 of those 7 rows. An independent audit of the raw jsonl caught it. Removing every row any tuning stage read left only 3 classes, because the two training slices between them cover 52 of the benchmark's 60 ladder rows: the benchmark is too small to support both this much tuning and a real holdout. Going outside it gave the figure above. A split is only held out from the stage that actually chose the thing being scored."
+ },
+ "retune": {
+  "configs": 260,
+  "tune_n": 50,
+  "eval_n": 25,
+  "winner_tune": 29,
+  "winner_eval": 19,
+  "incumbent_tune": 31,
+  "incumbent_eval": 19,
+  "baseline_eval": 7,
+  "note": "The standing objection to any tuned ordering is that it is only the best ordering its training set could reveal. 260 fresh configs over all 17 features were fitted on 50 presentations no earlier stage had read, then scored on 25 held back by a split frozen before any fitting. The re-tuned winner reached 19 of 25 \u2014 a dead tie with the incumbent \u2014 and lost the half it was selected on (29 of 50 against 31). A config fitted on entirely different presentations is better on the re-tune's own training data than the re-tune's own winner. On those 25 rows the baseline gets 7."
  }
 }
