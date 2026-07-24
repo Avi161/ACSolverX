@@ -1,3 +1,6 @@
+import hashlib
+import json
+
 import pytest
 
 from experiments.stable_ac.thickenable.neuwirth_permutation_certificate import (
@@ -98,3 +101,22 @@ def test_census_json_is_replayable_data():
     assert encoded["expected_cases"] == encoded["enumerated_cases"] == 1
     assert encoded["trace_sha256"] == census.trace_sha256
     assert encoded["accepting_orders"]
+
+
+def test_complete_ordered_trace_recomputes_digest_from_json():
+    census = enumerate_trace(("xxxx",))
+    serialized_trace = census.to_json()["trace"]
+
+    assert len(census.trace) == len(serialized_trace) == census.enumerated_cases == 6
+    assert any(record[1][2] != 0 for record in serialized_trace)
+
+    digest = hashlib.sha256()
+    for record in serialized_trace:
+        canonical_line = json.dumps(
+            record,
+            ensure_ascii=True,
+            separators=(",", ":"),
+        )
+        digest.update(canonical_line.encode("ascii"))
+        digest.update(b"\n")
+    assert digest.hexdigest() == census.trace_sha256

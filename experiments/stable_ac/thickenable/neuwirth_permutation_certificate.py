@@ -15,7 +15,8 @@ from dataclasses import dataclass
 Permutation = tuple[int, ...]
 OrderDescriptor = tuple[tuple[str, tuple[int, ...]], ...]
 TraceItem = tuple[int, int, int, int, int]
-AcceptingOrder = tuple[OrderDescriptor, TraceItem]
+TraceRecord = tuple[OrderDescriptor, TraceItem]
+AcceptingOrder = TraceRecord
 
 
 def _validate_permutation(p: Permutation) -> None:
@@ -161,6 +162,7 @@ class Census:
     link_components: set[int]
     defect_histogram: dict[int, int]
     minimum_genus: int
+    trace: tuple[TraceRecord, ...]
     accepting_orders: tuple[AcceptingOrder, ...]
     trace_sha256: str
 
@@ -191,6 +193,16 @@ class Census:
                 for defect, count in sorted(self.defect_histogram.items())
             },
             "minimum_genus": self.minimum_genus,
+            "trace": [
+                [
+                    [
+                        [generator, list(occurrences)]
+                        for generator, occurrences in descriptor
+                    ],
+                    list(trace_item),
+                ]
+                for descriptor, trace_item in self.trace
+            ],
             "accepting_orders": accepting_orders,
             "trace_sha256": self.trace_sha256,
         }
@@ -236,6 +248,7 @@ def enumerate_trace(words: tuple[str, ...]) -> Census:
     enumerated_cases = 0
     link_components: set[int] = set()
     defect_histogram: dict[int, int] = {}
+    trace: list[TraceRecord] = []
     accepting_orders: list[AcceptingOrder] = []
 
     for positive_orders in itertools.product(*options):
@@ -277,6 +290,7 @@ def enumerate_trace(words: tuple[str, ...]) -> Census:
         trace_digest.update(b"\n")
 
         enumerated_cases += 1
+        trace.append((descriptor, trace_item))
         link_components.add(link_component_count)
         defect_histogram[defect] = defect_histogram.get(defect, 0) + 1
         if defect == 0:
@@ -298,6 +312,7 @@ def enumerate_trace(words: tuple[str, ...]) -> Census:
         link_components=link_components,
         defect_histogram=defect_histogram,
         minimum_genus=min(defect_histogram) // 2,
+        trace=tuple(trace),
         accepting_orders=tuple(accepting_orders),
         trace_sha256=trace_digest.hexdigest(),
     )
