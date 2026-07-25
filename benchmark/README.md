@@ -11,6 +11,10 @@ What every technique in this repo is scored on. It is **derived** from `results/
 
 Ladder rows carry `source: "ladder"` and score speedup ratios. Reach rows carry `source: "reach"` and never enter a ratio.
 
+## What each technique costs on it
+
+[`subsets/ARMS.md`](subsets/ARMS.md) + `subsets/benchmark_subset_{N}_arms.{csv,json}` give the other half of the picture: per presentation, the **nodes explored** and the **path length** for the baseline greedy, the best change of variables, and the tuned heap ordering (whose formula is stated there). Rows no transformed arm has run on carry `tested = False` with `-1`/`none` rather than a `False` solve flag — untested is not failed. Regenerate with `.venv/bin/python3 -m experiments.analysis.benchmark_arms`.
+
 ## Regenerating
 
 All four regenerate from the baseline jsonl and the class table, and are checked by regenerating and requiring a zero diff:
