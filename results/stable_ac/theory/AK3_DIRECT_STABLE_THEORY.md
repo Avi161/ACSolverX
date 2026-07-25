@@ -433,6 +433,55 @@ recovery corridor below floor \(14\).  The exact endpoint rewriting,
 sharpness witness, and bridge congruence are pinned by
 `tests/stable_ac/test_arbitrary_recovery_floor_barrier.py`.
 
+## Proven result 11: the whole direct recovery family is a classical self-loop
+
+There is a stronger closure than the floor bound.  Keep the notation
+
+\[
+Y_U=(xU)x(xU)^{-1},\quad
+S_U=t^{-1}Y_U,\quad
+R=x^3t^{-4},\quad
+A_U=x^3Y_U^{-4}.
+\]
+
+The restored and unrestored endpoints are
+
+\[
+P(U)=(A_U,S_U),\qquad Q(U)=(R,S_U).
+\]
+
+The theorem in
+`literature/proofs/AK3_ARBITRARY_RECOVERY_SELF_LOOP.md` proves
+
+\[
+\boxed{
+P(U)\sim_{\mathrm{AC1-3}}Q(U)
+\sim_{\mathrm{AC1-3}}\operatorname{AK}(3)
+}
+\]
+
+for every \(U=t\) in
+\(\langle x,t\mid x^3=t^4\rangle\).
+
+The first equivalence has an explicit four-factor certificate:
+
+\[
+A_U^{-1}R
+=
+\prod_{i=1}^4 t^iS_Ut^{-i}.
+\]
+
+For the second, \(U=t\) modulo the retained \(R\) implies
+\(S_U=S_t\) modulo \(R\); a finite normal-closure factorization is exactly
+a sequence of AC1--AC3 multiplications by conjugates of the other relator.
+Finally, \(S_t\) is literally a conjugate of AK(3)'s braid relator.
+
+Thus the direct recovery architecture does not merely fail to reach floor
+\(12\): every endpoint returns to AK(3)'s classical AC class.  No unstable
+ambient-automorphism principle is used.  The normal-closure diamond and
+its exact identities are pinned by
+`tests/stable_ac/test_arbitrary_recovery_self_loop.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -446,13 +495,14 @@ rank-two quotient has complete Aut-floor at most 12.  A primitive full
 four-relator tuple would be an immediate stable solve.  The entire
 one-source mechanism which retains \(x^3=t^4\), chooses an arbitrary
 quotient-equal recovery \(U=t\), and eliminates through \(z=xU\) is now
-closed at floor \(14\), with no word-length bound.
+closed as a classical AC self-loop, with no word-length bound.
 
-The remaining one-stabilization routes must change the retained source
-relator before recovery, interleave the defining relator \(D\)
-nontrivially, use a defining word with at least two alternating
-\(v\)-syllables, or use the braid relator during recovery.  These are
-structurally different mechanisms rather than longer instances of the
-now-closed recovery word equation.
+The remaining one-stabilization routes must leave at least one exact
+hypothesis of the self-loop theorem: retain a different source relator,
+change the recovery equation, or construct a final isolator other than
+\(z^{-1}xU\).  Concrete options use the defining relator \(D\) or the
+braid relator during recovery, or use a defining word with at least two
+alternating \(v\)-syllables.  Dual-source primitive-pair compression before
+either old generator is removed remains the broadest separate route.
 
 AK(3) remains open.
