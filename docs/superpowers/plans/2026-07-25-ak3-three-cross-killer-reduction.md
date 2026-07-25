@@ -81,6 +81,6 @@ word utilities, `runpy` replay.
   exclusions.
 - [x] Update the theory ledger and project lesson.
 - [x] Run all related proof replays, placeholder scans, and diff checks.
-- [ ] Perform two independent hostile self-review passes: one on algebra,
+- [x] Perform two independent hostile self-review passes: one on algebra,
   one on scope/completeness.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
