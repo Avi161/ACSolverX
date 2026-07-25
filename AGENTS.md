@@ -216,3 +216,8 @@
 - [WORKS] There are exactly 40,503 recoveries through length \(17\). The unique floor-14 endpoint is \(U=t\); every floor-\(\le23\) word lies in a previously proved parametric family.
 - [TRAP] State this as a bounded recovery-word theorem only. Normal-form completeness through a word-length cap does not rule out longer recoveries, changes to the retained source relator, or nontrivial use of the defining relator.
 - [TRAP] Distinguish “shortest nonliteral recovery” from “smallest nonliteral endpoint floor”: nonliteral recoveries first occur at length \(6\), while the floor-\(15\) minimizer has length \(7\). Also do not call the word-equation model broader than every possible conjugate grammar; arbitrary products of arbitrary relator conjugates are extensionally complete.
+
+### 2026-07-24 Dependency-free proof-test replay
+
+- [TRAP] `/Library/Developer/CommandLineTools/usr/bin/python3` has no `pytest` module in this worktree, so `python3 -m pytest ...` fails before collecting any test.
+- [WORKS] For proof tests whose imports are dependency-free, load the test file with `runpy.run_path` and call every `test_*` function directly under system Python. Use the managed test runtime only when pytest fixtures or third-party dependencies are actually required.

@@ -388,6 +388,51 @@ enumerator and replay are
 `experiments/stable_ac/rank3_compression/recovery_word_equation.py` and
 `tests/stable_ac/test_recovery_word_equation.py`.
 
+## Proven result 10: the arbitrary recovery word equation
+
+The length bound can be removed.  For every freely reduced word satisfying
+
+\[
+U=t
+\quad\text{in}\quad
+\langle x,t\mid x^3=t^4\rangle,
+\]
+
+put \(e=xU\) and
+
+\[
+P(U)=
+\left(x^3ex^{-4}e^{-1},\,t^{-1}exe^{-1}\right).
+\]
+
+The theorem in
+`literature/proofs/AK3_ARBITRARY_RECOVERY_FLOOR_BARRIER.md` proves
+
+\[
+\boxed{\mu(P(U))\ge14}
+\]
+
+without a bound on \(|U|\), a consequence grammar, or an AC graph search.
+The literal recovery \(U=t\) realizes equality.
+
+The proof rewrites the endpoint as
+
+\[
+\left(X^3Y^{-4},\,T^{-1}Y\right)
+\]
+
+after an arbitrary basis automorphism, where \(Y\) is a conjugate of the
+primitive word \(X\).  A free-tree axis estimate disposes of cyclic
+lengths \(\|X\|\ge2\).  In the remaining length-one case, the amalgam
+centralizers in \(\langle X,T\mid X^3=T^4\rangle\), a mod-\(4\) character,
+and the integral weight \((X,T)\mapsto(4,3)\) force the second relator to
+contribute at least five letters whenever the first can have length nine.
+
+Thus arbitrary consequence twisting cannot push this direct one-source
+recovery corridor below floor \(14\).  The exact endpoint rewriting,
+sharpness witness, and bridge congruence are pinned by
+`tests/stable_ac/test_arbitrary_recovery_floor_barrier.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -398,15 +443,16 @@ unverified.
 
 The target is a hidden-cancellation or longer \(F_4\) primitive pair whose
 rank-two quotient has complete Aut-floor at most 12.  A primitive full
-four-relator tuple would be an immediate stable solve.  At the
-one-stabilization root, the most concrete next mechanism is precisely the
-newly exposed nonuniqueness: multiply a canonical recovery word by
-controlled consequences of the compressed source relators before
-eliminating \(z\).  Pure powers of one fixed rotation and the full
-power-conjugated direction are now closed.  Any still-viable floor-\(12\)
-direct recovery in this one-source model must have freely reduced length
-at least \(18\).  Separate routes change \(R\) before recovery, use \(D\)
-nontrivially, use defining words with at least two alternating
-\(v\)-syllables, or use the braid relator during recovery.
+four-relator tuple would be an immediate stable solve.  The entire
+one-source mechanism which retains \(x^3=t^4\), chooses an arbitrary
+quotient-equal recovery \(U=t\), and eliminates through \(z=xU\) is now
+closed at floor \(14\), with no word-length bound.
+
+The remaining one-stabilization routes must change the retained source
+relator before recovery, interleave the defining relator \(D\)
+nontrivially, use a defining word with at least two alternating
+\(v\)-syllables, or use the braid relator during recovery.  These are
+structurally different mechanisms rather than longer instances of the
+now-closed recovery word equation.
 
 AK(3) remains open.
