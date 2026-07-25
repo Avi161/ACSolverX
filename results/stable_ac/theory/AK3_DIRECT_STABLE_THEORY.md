@@ -721,6 +721,50 @@ The exact quotient normal form, four literal witnesses, sixteen forced
 are pinned by
 `tests/stable_ac/test_quotient_one_d_catalyst_barrier.py`.
 
+## Proven result 17: passive-source absorption
+
+The remaining one-cross role is governed by the more general theorem in
+
+```text
+literature/proofs/AK3_PASSIVE_SOURCE_ELIMINATION_SELF_LOOP.md
+```
+
+Let \(I_0=z^{-1}e_0\) be a baseline source isolator in
+\(H=G*\langle z\rangle\), and let \(I=z^{-1}e\) be the eventual
+isolator.  If their quotient shadows have the same normal closure \(L\),
+then evaluation at \(z=e\) kills \(L\) and forces \(e=e_0\) in \(G\).
+Consequently, every finite history which changes the other relator only by
+source factors from \(L\), fixed-\(R\) gauges, conjugation, and inversion
+returns after deletion to the baseline endpoint up to classical AC1--AC3.
+
+For AK(3), take
+
+\[
+I_0=B=z^{-1}xt,
+\qquad
+J_0=D=t^{-1}zxz^{-1}.
+\]
+
+Thus any finite number of passive \(B\)-source multiplications into the
+\(D\)-slot, with arbitrary conjugators and fixed-\(R\) gauges, disappears
+when the final \(B\)-type isolator is removed.  The survivor returns to
+
+\[
+D[z\mapsto xt]
+=t^{-1}xtxt^{-1}x^{-1},
+\]
+
+a conjugate of the AK(3) braid relator.  This closes the realizable
+source-eliminated branch of the exactly-one-cross theorem and all its
+finite passive-source iterations.
+
+The opposite role is vacuous in the one-\(z\) corridor:
+\(D=t^{-1}zxz^{-1}\) has \(z\)-exponent zero, preserved by
+fixed-\(R\) gauges, conjugation, and inversion, whereas a normalized
+one-\(z\) isolator has exponent \(\pm1\).  The representative multi-factor
+evaluation identities and this exponent obstruction are pinned by
+`tests/stable_ac/test_passive_source_elimination.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -744,14 +788,19 @@ one-\(D\), one-\(z\)-elimination stratum is closed for both target/source
 roles.
 
 Every fixed-\(R\) ordering with exactly one \(B/D\) cross multiplication
-which ends by eliminating its cross target is now closed, including
-arbitrary pre-twists of the \(D\)-slot and arbitrary post-catalyst gauge
-tails.  The remaining one-cross role is to preserve the cross target and
-eliminate the restored source instead.  Beyond that, the next one-source
-route must use at least two \(B/D\) cross multiplications, change the
-retained relator or recovery equation, or produce a primitive eliminator
-with several \(z\)-letters.  Using the braid relator during recovery is
-another distinct option.  Dual-source primitive-pair compression before
-either old generator is removed remains the broadest separate route.
+and a final one-\(z\) eliminator is now closed.  If the cross target is
+eliminated, the quotient axis theorem returns it to one of two standard
+catalyst endpoints.  If the restored source is eliminated, passive-source
+absorption closes the \(B\)-source branch and the \(D\)-source branch is
+impossible by \(z\)-exponent.
+
+Passive-source absorption also closes arbitrarily many cross events when
+all of them target the other slot.  A genuinely new two-cross route must
+therefore feed the modified target back into the eventual source, so that
+the source temporarily leaves its final quotient normal closure.  Other
+remaining routes must change the retained relator or recovery equation,
+produce a primitive eliminator with several \(z\)-letters, use the braid
+relator during recovery, or compress both source relators before either old
+generator is removed.
 
 AK(3) remains open.

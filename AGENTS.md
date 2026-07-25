@@ -278,3 +278,13 @@
 
 - [TRAP] Running `python3 tests/stable_ac/test_*.py` directly sets the import root to `tests/stable_ac` and fails with `ModuleNotFoundError: No module named 'experiments'`.
 - [WORKS] From the repository root, use `python3 -c 'import runpy; ... = runpy.run_path(...)'` so the current directory remains on `sys.path`, then invoke the dependency-free `test_*` functions.
+
+### 2026-07-25 Passive-source normal-closure absorption
+
+- [WORKS] If a final isolator \(I=z^{-1}e\) has quotient normal closure \(L\), evaluation at \(z=e\) kills all of \(L\). Any finite number of left or right survivor multiplications by conjugates of source spellings in \(L\) therefore disappears after elimination; target conjugation/inversion survives only as AC3/AC1.
+- [TRAP] Restoring the source only at the end is insufficient. Every source spelling used at a cross event must lie in the final \(L\); a temporary source outside \(L\) can leave a permanent nontrivial factor in the survivor quotient.
+- [WORKS] For the AK(3) rank-three root, this closes arbitrarily many passive \(B=z^{-1}xt\)-source events targeting \(D\). The opposite passive-\(D\) one-\(z\) elimination is impossible because \(D=t^{-1}zxz^{-1}\) has \(z\)-exponent zero.
+
+### 2026-07-25 Checkpoint plan state
+
+- [TRAP] Do not mark a plan's commit-and-push item complete before both Git commands have actually succeeded. Keep it unchecked through staging and verification, then update it in a follow-up checkpoint if necessary.
