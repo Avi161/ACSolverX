@@ -228,3 +228,10 @@
 - [WORKS] For arbitrary \(U=t\) modulo \(R=x^3t^{-4}\), both the restored endpoint \(P(U)\) and the unrestored endpoint \(Q(U)\) return classically to AK(3). The restored-to-unrestored side has the exact four-factor identity \(A_U^{-1}R=\prod_{i=1}^4t^iS_Ut^{-i}\).
 - [TRAP] Do not infer that arbitrary CoV transforms are classical self-loops. This diamond requires the exact fixed relator \(R\), final isolator \(z^{-1}xU\), and recovery equation \(U=t\bmod\langle\!\langle R\rangle\!\rangle\).
 - [TRAP] Large combined `apply_patch` calls fail atomically when one late context hunk misses changed line wrapping. Add new files and patch an evolving report in separate calls, using a fresh read for the report context.
+
+### 2026-07-24 Arbitrary-conjugator catalyst via axis bridges
+
+- [WORKS] For one multiplication of \(B=z^{-1}xt\) by an arbitrary conjugate of \(D^{\pm1}=(t^{-1}zxz^{-1})^{\pm1}\), normalize the written conjugator to the shortest bridge between the two axes. A nonempty bridge gives a cyclically reduced word with at least three \(z^{\pm1}\)-letters, so every one-\(z\) isolator comes from intersecting axes and a finite signed-rotation residue.
+- [WORKS] The 24 signed rotation products have four raw one-\(z\) witnesses and only two cyclic isolators, `ZTxtx` and `ZtxtX`; both substitutions return the surviving pair classically to AK(3).
+- [TRAP] The literal-\(B\) one-\(D\) theorem does not cover first replacing \(B\) by an arbitrary recovery \(B_U=z^{-1}xU\) and then applying one \(D\)-factor. Preserve that mixed recovery-plus-catalyst mechanism as open.
+- [TRAP] The system-Python scratch census once used a conditional expression inside a `from ... import ...` list and stopped with `SyntaxError: invalid syntax`. Keep scratch imports literal and separate; conditional selection belongs after import.

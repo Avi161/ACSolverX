@@ -482,6 +482,54 @@ ambient-automorphism principle is used.  The normal-closure diamond and
 its exact identities are pinned by
 `tests/stable_ac/test_arbitrary_recovery_self_loop.py`.
 
+## Proven result 12: one arbitrary defining-relator catalyst
+
+At the rank-three root, write
+
+\[
+R=x^3t^{-4},\qquad
+B=z^{-1}xt,\qquad
+D=t^{-1}zxz^{-1}.
+\]
+
+The theorem in
+`literature/proofs/AK3_ONE_D_CATALYST_BARRIER.md` classifies one
+multiplication targeting the future eliminator \(B\) by an arbitrarily
+conjugated \(D^{\pm1}\).
+
+A Cayley-tree bridge normal form makes the conjugator unbounded but
+manageable.  If the axes are disjoint, the cyclically reduced product has
+exact \(z\)-incidence
+
+\[
+\nu_z(B)+\nu_z(D)+2\nu_z(c)\ge3,
+\]
+
+so it cannot be a generator isolator.  Intersecting axes reduce to the 24
+signed products of cyclic rotations.  Only four products have one
+\(z^{\pm1}\), in two cyclic classes:
+
+```text
+ZTxtx
+ZtxtX
+```
+
+They isolate
+
+\[
+z=t^{-1}xtx
+\quad\text{or}\quad
+z=txtx^{-1}.
+\]
+
+Substitution in the surviving \(D\) yields either the AK(3) braid relator
+or a conjugate of it.  Since \(R\) is unchanged, both endpoints are
+classically AC-equivalent to AK(3) and have complete Aut-floor \(13\).
+Thus the full arbitrary-conjugator one-\(D\) catalyst is another self-loop,
+not an orbit escape.  The complete 24-case residue, both substitution
+identities, and both floors are pinned by
+`tests/stable_ac/test_one_d_catalyst_barrier.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -498,11 +546,14 @@ quotient-equal recovery \(U=t\), and eliminates through \(z=xU\) is now
 closed as a classical AC self-loop, with no word-length bound.
 
 The remaining one-stabilization routes must leave at least one exact
-hypothesis of the self-loop theorem: retain a different source relator,
-change the recovery equation, or construct a final isolator other than
-\(z^{-1}xU\).  Concrete options use the defining relator \(D\) or the
-braid relator during recovery, or use a defining word with at least two
-alternating \(v\)-syllables.  Dual-source primitive-pair compression before
+hypothesis of the self-loop theorem.  The simplest one-\(D\) catalyst is
+now closed even with an arbitrary conjugator when it targets the literal
+\(B=z^{-1}xt\).  The next mixed one-source route is to replace \(B\) first
+by an arbitrary quotient-equal \(B_U=z^{-1}xU\), then target \(B_U\) with
+one \(D\)-factor.  Other routes use at least two defining-relator factors,
+a changed retained relator or recovery equation, or a primitive eliminator
+with several \(z\)-letters.  Using the braid relator during recovery is
+another distinct option.  Dual-source primitive-pair compression before
 either old generator is removed remains the broadest separate route.
 
 AK(3) remains open.
