@@ -21,6 +21,8 @@ Also dropped: `experiments/stable_ac/RUN_ME_MORNING.md` (launch instructions for
 
 ## Kept deliberately
 
+> Paths below are as they stood at the prune (2026-07). `experiments/stable_ac/cov/` has since been grouped into `run/` `ladder/` `escape/` `figures/` `verify/` `notebooks/` `ak3/` (`ak_3_universal_test/` → `ak3/`, its results to `results/stable_ac/ak3/`), and `experiments/heuristic_search/` into `core/` `exp/` `runners/` `verify/` `splits/`. Left unrewritten because this file is a record of what was true then — see [`experiments/CLAUDE.md`](experiments/CLAUDE.md) for the current layout.
+
 - **nb2 and its chain**: `experiments/notebooks/nb2_big_ladder.ipynb` → `cov/mu_ladder.py` + `cov/mu_descent_scan.py` + `cov/export_mu_descents.py`, results in `results/stable_ac/mu_scan/`.
 - **All CoV work**: `experiments/stable_ac/cov/` (transform, runner, sweep, MITM, restart tree, `ak_3_universal_test/`) and all 33 MB of `results/stable_ac/cov/`.
 - **All lessons**: `experiments/lessons/` in full — the memory of everything tried, including the arms deleted above.
