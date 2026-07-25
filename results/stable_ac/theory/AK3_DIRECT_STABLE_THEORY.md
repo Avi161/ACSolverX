@@ -1048,6 +1048,57 @@ mechanism, not two.  The factor switch and evaluated survivor identities
 are independently replayed by
 `tests/stable_ac/test_final_target_switch_duality.py`.
 
+## Proven result 23: central quotient plus weight decides conjugacy
+
+The theorem in
+
+```text
+literature/proofs/AK3_CENTRAL_QUOTIENT_CONJUGACY_CRITERION.md
+```
+
+gives an exact non-abelian finish test inside
+
+\[
+G=\langle x,t\mid x^3=t^4\rangle.
+\]
+
+Put \(c=x^3=t^4\).  It is central, has weight \(12\), and
+
+\[
+G/\langle c\rangle\cong C_3*C_4.
+\]
+
+For all \(U,V\in G\),
+
+\[
+U\sim_GV
+\iff
+\operatorname{wt}(U)=\operatorname{wt}(V)
+\quad\text{and}\quad
+\bar U\sim_{C_3*C_4}\bar V.
+\]
+
+Indeed, quotient conjugacy lifts to
+\(U=c^kgVg^{-1}\), and equal weight forces \(12k=0\).  Conjugacy in
+\(C_3*C_4\) is decided exactly by cyclic reduction of its alternating
+normal form followed by cyclic-rotation comparison.
+
+Every feasible prefix-\(DB\) survivor already has weight
+\(s\in\{\pm1\}\).  Hence
+
+\[
+\bar C\sim\overline{D_p^s}
+\]
+
+is sufficient and exact for concluding \(C\sim_GD_p^s\), after which the
+fixed-\(R\) lemma returns the endpoint classically to AK(3).
+
+Failure of the quotient test is not AC inequivalence: it rules out only
+this direct fixed-\(R\) conjugacy finish.  Central shifts, negative
+controls, and representative HNN endpoints for \(-12\le n\le12\) are
+independently replayed by
+`tests/stable_ac/test_central_quotient_conjugacy_criterion.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1085,7 +1136,17 @@ either final target choice.  A genuinely new exactly-three-cross endpoint
 must use one of its six sign rows and nontrivial relative bridge,
 vertex-twist, or literal \(R\)-gauge geometry.  The two target spellings
 give the same classical endpoint class, and both literal untwisted
-corridors return exactly to \(D_p\).
+corridors return exactly to \(D_p\).  Weight plus cyclic conjugacy in
+\(C_3*C_4\) is now an exact decision procedure for whether any resulting
+survivor is conjugate to \(D_p^{\pm1}\) in the retained torus-knot
+quotient.
+
+The next exact word equation is therefore whether every arbitrary
+bridge/twist prefix-\(DB\) survivor projects to the conjugacy class of
+\(D_p^s\), where its already-forced weight is \(s\in\{\pm1\}\).
+One- and two-letter canonical bridge probes satisfy this equation, but
+that bounded evidence is not a theorem.  A projected-conjugacy failure
+would refute only this direct fixed-\(R\) finish, not stable AC.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a

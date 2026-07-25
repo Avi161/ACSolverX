@@ -345,3 +345,20 @@
 - [WORKS] A final target \(A\,uB^\theta u^{-1}\) is conjugate to \(B^\theta u^{-1}Au\), so the same final isolator can be realized with either slot designated as target.
 - [WORKS] Evaluation of that target gives \(A_e=u_eB_e^{-\theta}u_e^{-1}\) in the fixed-\(R\) quotient. The two possible survivors are therefore classically AC-equivalent by the fixed-relator lemma, AC1, and AC3.
 - [WORKS] Pair target words by their last letter. In particular \(DBB\leftrightarrow DBD\), so exactly-three traffic has one arbitrary bridge/twist killer mechanism with prefix \(DB\), not two.
+
+### 2026-07-25 Central quotient plus weight lifts conjugacy
+
+- [WORKS] In \(G=\langle x,t\mid x^3=t^4\rangle\), the central quotient by \(c=x^3=t^4\) is \(C_3*C_4\), with kernel exactly \(\langle c\rangle\).
+- [WORKS] If two elements have conjugate images in \(C_3*C_4\), they differ after lifting the conjugator by \(c^k\); equal torus weight forces \(12k=0\), so quotient conjugacy plus weight exactly decides conjugacy in \(G\).
+- [WORKS] Decide conjugacy in \(C_3*C_4\) by cyclically reducing the alternating normal form and comparing cyclic rotations. This gives an exact finish test for a weight-\(\pm1\) prefix-\(DB\) survivor against \(D_p^{\pm1}\).
+- [TRAP] Failure of projected conjugacy rules out only the direct fixed-\(R\) conjugacy finish. It is not AC inequivalence, not a stable-AC obstruction, and not a counterexample certificate.
+
+### 2026-07-25 Distinguish literal endpoints from AC3 endpoints
+
+- [TRAP] If \(D_p=t^{-1}St\), then \((R,D_p)\) is AC3-equivalent to \((R,S)\), not literally equal to it. Write the conjugation step explicitly in displayed endpoint chains.
+- [TRAP] Define every endpoint symbol locally before using it in a proof chain; importing the meaning of \(S\) from an earlier theorem makes a corrected equality formally incomplete.
+- [TRAP] A finite replay over \(-12\le n\le12\) samples an infinite HNN family; describe the replay as representative even when a separate symbolic identity proves the formula for every \(n\).
+
+### 2026-07-25 Zsh reserves `path`
+
+- [TRAP] In zsh, assigning a loop variable named `path` mutates the special array tied to `PATH` and can make the next command fail with `command not found`. Use `proof_file` or another task-specific name in shell loops.
