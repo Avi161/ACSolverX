@@ -578,6 +578,46 @@ endpoint in this mixed unbounded family also returns classically to AK(3).
 The two seam templates and exact conjugation identities are pinned by
 `tests/stable_ac/test_mixed_recovery_one_d_self_loop.py`.
 
+## Proven result 14: reversing the catalyst target is also a self-loop
+
+The cyclic isolator classification in Proven result 13 is symmetric in
+factor order, but the survivor after elimination is not.  The theorem in
+
+```text
+literature/proofs/AK3_MIXED_RECOVERY_REVERSE_TARGET_SELF_LOOP.md
+```
+
+therefore treats the missing role separately: \(D\) is the target of one
+arbitrary-relative-conjugator \(B_U^{\pm1}\)-multiplication, the modified
+\(D\)-slot is removed, and the restored \(B_U=z^{-1}w\) slot survives.
+
+The bridge and forced-seam argument again gives exactly
+
+\[
+e_+=t^{-1}wx,
+\qquad
+e_-=twx^{-1}.
+\]
+
+Substitution in the surviving \(B_U\) gives
+
+\[
+\begin{aligned}
+C_+
+&=e_+^{-1}w
+=w^{-1}S_0(U)^{-1}w,\\
+C_-
+&=e_-^{-1}w
+=(t^{-1}w)^{-1}S_0(U)(t^{-1}w),
+\end{aligned}
+\]
+
+where \(S_0(U)=t^{-1}wxw^{-1}\).  Hence both endpoints differ from the
+direct recovery endpoint only by AC1/AC3 moves and return classically to
+AK(3).  This has no recovery-length or conjugator-length bound.  The two
+exact conjugacy identities and the signed cyclic residue are pinned by
+`tests/stable_ac/test_mixed_recovery_reverse_target_self_loop.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -594,15 +634,17 @@ quotient-equal recovery \(U=t\), and eliminates through \(z=xU\) is now
 closed as a classical AC self-loop, with no word-length bound.
 
 The remaining one-stabilization routes must leave at least one exact
-hypothesis of the self-loop theorem.  The simplest one-\(D\) catalyst is
-now closed even with an arbitrary conjugator when it targets the literal
-\(B=z^{-1}xt\), and the recovery-then-one-\(D\) order is now closed for
-arbitrary recovery words too.  The next one-source route must change the
-interleaving order, reverse the target/source roles so that \(D\) is removed
-and \(B_U\) survives, use at least two defining-relator factors, change the
-retained relator or recovery equation, or produce a primitive eliminator
-with several \(z\)-letters.  Using the braid relator during recovery is
-another distinct option.  Dual-source primitive-pair compression before
-either old generator is removed remains the broadest separate route.
+hypothesis of the self-loop theorems.  The simplest one-\(D\) catalyst is
+closed even with an arbitrary conjugator when it targets the literal
+\(B=z^{-1}xt\).  More strongly, after arbitrary recovery, the complete
+one-\(D\), one-\(z\)-elimination stratum is closed for both target/source
+roles.
+
+The next one-source route must change the \(R/D\) interleaving order, use at
+least two defining-relator factors, change the retained relator or recovery
+equation, or produce a primitive eliminator with several \(z\)-letters.
+Using the braid relator during recovery is another distinct option.
+Dual-source primitive-pair compression before either old generator is
+removed remains the broadest separate route.
 
 AK(3) remains open.

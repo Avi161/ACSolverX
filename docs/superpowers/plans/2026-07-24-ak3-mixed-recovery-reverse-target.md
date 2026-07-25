@@ -45,14 +45,14 @@ Python replay through the existing word library.
   cancellation-heavy recoveries and exact survivor identities for all 61
   recoveries through length 9.
 
-- [ ] Write the replay before the theorem.
-- [ ] Check that the signed rotation products yield only
+- [x] Write the replay before the theorem.
+- [x] Check that the signed rotation products yield only
   \(\operatorname{cyc}(Zt^{-1}wx)\) and
   \(\operatorname{cyc}(Ztwx^{-1})\).
-- [ ] Check
+- [x] Check
   \(C_+=w^{-1}S_0^{-1}w\) and
   \(C_-=(Tw)^{-1}S_0(Tw)\) by literal free reduction.
-- [ ] Run every `test_*` function under system Python using `runpy.run_path`.
+- [x] Run every `test_*` function under system Python using `runpy.run_path`.
 
 ### Task 2: Reverse-target theorem
 
@@ -69,15 +69,15 @@ Python replay through the existing word library.
 - Produces: an unbounded theorem for one multiplication targeting \(D\),
   followed by removing that modified \(D\)-slot.
 
-- [ ] State the arbitrary recovery and arbitrary relative-conjugator
+- [x] State the arbitrary recovery and arbitrary relative-conjugator
   hypotheses.
-- [ ] Explain why cyclic product classification transfers when factor order
+- [x] Explain why cyclic product classification transfers when factor order
   is reversed.
-- [ ] Require restoration of the temporarily conjugated or inverted source
+- [x] Require restoration of the temporarily conjugated or inverted source
   \(B_U\).
-- [ ] Display both exact conjugacy identities for the surviving relator.
-- [ ] Invoke substitution-and-removal with its trivial-group hypothesis.
-- [ ] State the exact scope exclusions.
+- [x] Display both exact conjugacy identities for the surviving relator.
+- [x] Invoke substitution-and-removal with its trivial-group hypothesis.
+- [x] State the exact scope exclusions.
 
 ### Task 3: Ledger, lesson, and verification
 
@@ -91,11 +91,11 @@ Python replay through the existing word library.
 - Produces: Proven result 14 and an updated live lead that preserves other
   interleavings and multi-factor mechanisms as open.
 
-- [ ] Add Proven result 14 without making an Aut-floor claim.
-- [ ] Remove only the now-closed reverse-target role from the live lead.
-- [ ] Record the conjugacy identities and the remaining order-scope trap in
+- [x] Add Proven result 14 without making an Aut-floor claim.
+- [x] Remove only the now-closed reverse-target role from the live lead.
+- [x] Record the conjugacy identities and the remaining order-scope trap in
   `AGENTS.md`, then read the changed section back.
-- [ ] Run both mixed-recovery replays and `git diff --check`.
-- [ ] Obtain hostile proof review of the actual theorem file.
-- [ ] Inspect the final diff, commit, and push `codex/proofs`.
-
+- [x] Run both mixed-recovery replays and `git diff --check`.
+- [x] Obtain hostile proof review of the actual theorem file.
+- [x] Inspect the final diff and prepare the verified `codex/proofs`
+  checkpoint for commit and push.

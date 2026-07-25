@@ -242,3 +242,8 @@
 - [WORKS] If \(S_0=t^{-1}wxw^{-1}\) is the direct survivor, the two catalyst survivors reduce exactly to \(t^{-1}S_0t\) and \(tS_0t^{-1}\). Therefore arbitrary recovery followed by one \(D\)-factor is only a relator-conjugation self-loop.
 - [TRAP] This theorem fixes the order “all \(R\)-recovery factors, then one \(D\)-factor.” It does not close other \(R/D\) interleavings or two \(D\)-factors.
 - [TRAP] Cyclic factor-order symmetry does not exchange target/source roles after elimination. If \(D\) is targeted by \(B_U\), the modified \(D\) is removed and \(B_U\) survives; preserve that reverse-role endpoint as a distinct open mechanism.
+
+### 2026-07-24 Reverse-target mixed recovery collapse
+
+- [WORKS] When one \(B_U^{\pm1}\)-multiplication targets \(D\), the cyclic isolator classification transfers because \(V_DV_B\) and \(V_BV_D\) are conjugate, but the restored source \(B_U=z^{-1}w\) must be substituted separately. The exact survivors are \(C_+=w^{-1}S_0^{-1}w\) and \(C_-=(t^{-1}w)^{-1}S_0(t^{-1}w)\), so both return by AC1/AC3 to the direct endpoint \(Q(U)\).
+- [TRAP] Closing both target/source roles after “all recovery, then one \(D\)-factor” closes only that order's one-\(z\)-elimination stratum. It does not close \(D\)-before-\(R\) or alternating \(R/D\) interleavings, two \(D\)-factors, or primitive eliminators with several \(z^{\pm1}\)-occurrences.
