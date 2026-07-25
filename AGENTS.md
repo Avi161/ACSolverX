@@ -293,3 +293,9 @@
 
 - [TRAP] Passive-source absorption closes repeated cross events only when the eventual eliminator is the source at every event. It does not close two or more source factors multiplied into a slot which is itself later used as the eliminator.
 - [WORKS] Split the two-cross frontier into repeated hits on the eventual eliminator and alternating-target feedback. Do not describe feedback as the only remaining two-cross mechanism.
+
+### 2026-07-25 Quotient by the passive source
+
+- [WORKS] For repeated \(D\)-source hits on \(B\), quotient by \(D\) instead of analyzing three interacting axes. The quotient is the HNN extension \(\langle G,z\mid zxz^{-1}=t\rangle\); Britton--Collins conjugacy forces every final one-\(z\) tail to \(e_n=t^{-n}(xt)x^n\), and \(D(e_n)=t^{-n}D(xt)t^n\).
+- [WORKS] For repeated \(B\)-source hits on \(D\), quotient by \(B\), set \(z=xt\), and read the surviving \(B\)-relator as the inverse of the final target class. This closes every one-way history that actually produces a one-\(z\) target; when each event source is a signed conjugate of \(B\), even event count is excluded by \(z\)-exponent parity.
+- [TRAP] Per-event membership in the passive source normal closure erases cross factors, but it does not finish the endpoint argument. If the source survives, restore its final quotient shadow up to conjugation/inversion; if it is eliminated, require its final isolator to preserve the baseline source normal closure.

@@ -765,6 +765,63 @@ one-\(z\) isolator has exponent \(\pm1\).  The representative multi-factor
 evaluation identities and this exponent obstruction are pinned by
 `tests/stable_ac/test_passive_source_elimination.py`.
 
+## Proven result 18: every one-way cross history returns
+
+The theorem in
+
+```text
+literature/proofs/AK3_ONE_WAY_CROSS_TRAFFIC_SELF_LOOP.md
+```
+
+closes every finite history in which one of the \(B/D\) slots remains a
+passive source and all cross events target the other slot, whenever a
+one-\(z\) eliminator is produced and a surviving source shadow is restored
+up to conjugation and inversion, or an eliminated source preserves its
+baseline quotient normal closure.
+
+For passive \(D\)-source traffic targeting \(B\), quotient by \(D\):
+
+\[
+H/\langle\!\langle D\rangle\!\rangle
+\cong
+\langle G,z\mid zxz^{-1}=t\rangle .
+\]
+
+This is an HNN extension of \(G\).  Britton's lemma embeds \(G\), and the
+length-one Collins conjugacy theorem forces every normalized final
+\(B\)-target \(z^{-1}e\) into the complete family
+
+\[
+[e]_G=e_n=t^{-n}(xt)x^n,
+\qquad n\in\mathbb Z.
+\]
+
+Substitution gives the exact endpoint identity
+
+\[
+D[z\mapsto e_n]
+=t^{-n}D[z\mapsto xt]t^n.
+\]
+
+Thus the HNN parameter produces only a relator conjugation.  For exactly
+two \(D\)-source factors with signs \(\epsilon,\eta\), weight forces
+\(n=\epsilon+\eta\), so the four signed rows give only \(e_2,e_0,e_{-2}\).
+
+For passive \(B\)-source traffic targeting \(D\), quotient by \(B\), which
+sets \(z=xt\) and returns \(G\).  If a final target \(z^{-1}e\) maps to
+\(aD(xt)^\delta a^{-1}\), then the surviving \(B\)-slot maps to
+\(aD(xt)^{-\delta}a^{-1}\).  It is already a conjugate or inverse of the
+AK(3) braid endpoint.  An even number of \(B\)-source factors cannot
+produce a one-\(z\) \(D\)-target when each source spelling is a conjugate
+of \(B^{\pm1}\), because its \(z\)-exponent remains even.
+
+Together with passive-source absorption for the source-eliminated role,
+these quotient arguments close both directions and both choices of the
+eliminated slot.  The exact seam recurrences, signed two-\(D\) table,
+endpoint conjugacies, reverse-direction survivor formula, and parity
+obstruction are pinned by
+`tests/stable_ac/test_one_way_cross_traffic.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -794,15 +851,15 @@ catalyst endpoints.  If the restored source is eliminated, passive-source
 absorption closes the \(B\)-source branch and the \(D\)-source branch is
 impossible by \(z\)-exponent.
 
-Passive-source absorption also closes arbitrarily many cross events when
-the eventual eliminator is their source throughout.  It does not close
-repeated hits on a slot which is itself later eliminated.  The two-cross
-frontier therefore splits into two genuinely new branches: two source
-factors targeting the eventual eliminator, and feedback which targets both
-slots so that an eventual source leaves its final quotient normal closure.
-Other remaining routes must change the retained relator or recovery
-equation, produce a primitive eliminator with several \(z\)-letters, use
-the braid relator during recovery, or compress both source relators before
-either old generator is removed.
+Every finite one-way \(B/D\) cross history with a final one-\(z\)
+eliminator and the stated source-restoration condition is now closed,
+including repeated hits on the slot later eliminated.  A genuinely new
+cross history must therefore alternate target roles, fail the restoration
+condition, or otherwise feed a modified target back into the eventual
+source so that the source used at a later event leaves its final quotient
+normal closure.  Other remaining routes must change the retained relator
+or recovery equation, produce a primitive eliminator with several
+\(z\)-letters, use the braid relator during recovery, or compress both
+source relators before either old generator is removed.
 
 AK(3) remains open.
