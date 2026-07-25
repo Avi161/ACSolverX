@@ -1,6 +1,6 @@
 # `experiments/lessons/`
 
-38 write-ups. **Each one is a bug that already shipped, or an approach that was measured and worked.**
+68 write-ups. **Each one is a bug that already shipped, or an approach that was measured and worked.**
 
 You are not meant to browse this folder. The operative rules — one sentence each, which is all you
 need to avoid the trap — are indexed in the two `CLAUDE.md` files, and those are loaded automatically:

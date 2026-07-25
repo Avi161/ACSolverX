@@ -12,18 +12,22 @@ What each directory here *is*: [`README.md`](README.md).
 | dir | role | README |
 |---|---|---|
 | `search/` | the two solvers (heavy + compact) — they pop identically | — |
-| `stable_ac/` | shared core (`solvern.py`, `word_families.py`) + one folder per pipeline: `nocov/` (Branch A) and `cov/` (Branch B), each with runner + yaml + notebook (tests in `tests/stable_ac/`) | [→](stable_ac/README.md) |
-| `analysis/` | the stable-AC benchmark (difficulty ladder + reach tier + combined) | [→](analysis/README.md) |
+| `stable_ac/` | shared core (`solvern.py`, `word_families.py`) + one folder per pipeline: `nocov/` (Branch A) and `cov/` (Branch B). `cov/` keeps `cov.py` at its top and splits the rest into `run/` `ladder/` `escape/` `figures/` `verify/` `notebooks/` `ak3/` (tests in `tests/stable_ac/`) | [→](stable_ac/README.md) |
+| `analysis/` | builds the frozen benchmark at `benchmark/` (ladder + reach + combined) and `benchmark_arms.py`, what each technique costs on it | [→](analysis/README.md) |
 | `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` (tests in `tests/equivalence_classes/`) | [→](equivalence_classes/README.md) |
 | `greedy_tests/` | the greedy test SUPPORT code — `spec/` `fixtures/` `adapters.py` `tools/` `golden/` (imported by production too); the tests live in `tests/greedy/` | [→](greedy_tests/README.md) |
 | `clustering/` | unsupervised structure of the 237 minimal automorphic states (tests in `tests/clustering/`) | [→](clustering/README.md) |
-| `heuristic_search/` | block/knot **heap orderings** for the greedy — 17/60 → 30/60 at budget 100 (tests in `tests/heuristic_search/`) | [→](heuristic_search/README.md) |
-| `lessons/` | 38 shipped bugs. Read via the index, not by browsing. | [→](lessons/README.md) |
+| `heuristic_search/` | block/knot **heap orderings** for the greedy — 17/60 → 30/60 at budget 100. `core/` (the library) `exp/` (EXP-01…27) `runners/` `verify/` `splits/` (tests in `tests/heuristic_search/`) | [→](heuristic_search/README.md) |
+| `lessons/` | 68 shipped bugs. Read via the index, not by browsing. | [→](lessons/README.md) |
+
+Results go to `results/<area>/`, never beside the code that made them, and never under `tests/`. The frozen evaluation set is `benchmark/` at the repo root — derived from `results/greedy_baseline/`, but consumed as an *input* by two dozen files, which is why it is not under `results/`.
 
 **Scripts here find the repo root by walking up until they see `experiments/` + `data/` — never by
 counting `os.path.dirname()` levels.** A dirname chain encodes the file's depth, so it silently
 repoints at the wrong directory the moment the file moves, and every `results/` path below it is then
 wrong *without raising*. Keep the walk-up.
+
+> This rule earned its keep on 2026-07-24: 45 files in `heuristic_search/` were still counting dirnames, and every one of them broke the moment the directory was subpackaged. **Neither pytest nor an import check can catch it** — both already have the repo root on `sys.path`, which makes a wrong `sys.path.insert` inert, so both stay green while the path is wrong. Test it by executing the file's root-resolution prologue at its real depth from `cwd=/` with `PYTHONPATH` unset.
 
 ## Before you edit…
 
@@ -103,7 +107,7 @@ prefix is the resume key (no dates, no result-neutral knobs); row identity is `(
 tests monkeypatch. Budgets > 1000 refuse to run without `ACSOLVERX_ALLOW_BIG=1` (the notebook sets
 it — local runs must not). Harness tests: `pytest tests/stable_ac -q`.
 
-**`stable_ac/cov/`** — Branch-B one-shot change of variables (`cov.py` transform + `run_cov.py`
+**`stable_ac/cov/`** — Branch-B one-shot change of variables (`cov.py` transform + `run/run_cov.py`
 runner, which reuses `run_baseline`'s `greedy_search`/`_repair_jsonl`/`_read_done`/`_build_row` by
 import). Full method walkthrough with worked examples: [`cov/PIPELINE.md`](stable_ac/cov/PIPELINE.md). `Z_FAMILY_TAG` is part of the filename identity — bump it whenever `NAIVE_Z_FAMILY`
 *or* substitution semantics change (zf3 = zf2 word list + cyclic-seam matches in
@@ -143,7 +147,7 @@ run — it gets killed), and the chunk heartbeat counts unique row keys, never l
 [[TRAP]](lessons/orphaned-workers-double-compute.md) Tests:
 `tests/stable_ac/test_cov.py`, same command as above.
 
-**`stable_ac/cov/orbit_greedy.py`** — runs the baseline greedy FROM `mu_ladder_big` orbits (each
+**`stable_ac/cov/run/orbit_greedy.py`** — runs the baseline greedy FROM `mu_ladder_big` orbits (each
 orbit row is a concrete pair obtained at zero search nodes, so it is a free alternative start).
 Rung 0 is the class's original and becomes the **control**, run at the same budget and cap — a CoV
 row compared against a different `max_relator_length` is not a comparison. Each selected orbit
@@ -162,6 +166,37 @@ a gamed test suite cannot self-certify). Treat any edit here with the same suspi
 `spec/`. `test_verify_results.py` tampers with real certificates and requires it to fail. Run it on
 any results jsonl before believing the numbers: `-m experiments.stable_ac.verify_results`. Both
 runners stamp `git_commit` into every row (provenance only — NEVER part of the resume identity).
+
+**`heuristic_search/`** — the heap orderings. Five subpackages, and which one a file belongs in is
+decided by what it *does*, not by what it imports: `core/` the library (`hlab` the config-driven
+ordering + harness, `hsearch` the original 25 hand-written orderings, `hfast`/`hsolve`/`hcompact`
+the solver variants, `lab`, `perbin`), `exp/` the numbered EXP-01…27 program, `runners/` the entry
+points that write to `results/`, `verify/` the equivalence checks between solver variants, `splits/`
+the one-shot freezers. Notebook stays at the top.
+- **`core/hlab.py` owns the three output paths, and they have three different lifetimes**: `RESULTS`
+  (synthesis documents), `LOGS` = `results/heuristic_search/runs/` (per-experiment rows), `SPLITS`
+  (the frozen evaluation splits). A `freeze_*` script writes `SPLITS` once; nothing regenerates it,
+  because regenerating one silently changes what "held out" means for every number under `runs/`.
+- **The control gate is the foundation.** `PRIORITIES["length"]` and the all-zero weight vector must
+  reproduce `greedy_search` **pop for pop** — same solved flag *and* same `nodes_explored`, not
+  merely the same score. Pinned in `tests/heuristic_search/test_hsearch.py`; no number in this
+  directory is interpretable if it fails. Keep the baseline inside any tuner's search space: a space
+  that cannot express "no change" will always appear to beat the control.
+- Compare nodes as a **mean**, never a sum — each arm's both-solved set has its own size, and a sum
+  once picked the wrong pre-registered winner. [[TRAP]](lessons/compare-on-the-same-denominator.md)
+- State every published number as a **pair** — selected on X, evaluated on Y.
+  [[TRAP]](lessons/held-out-means-held-out-from-selection.md)
+- `runners/gen_page.py` is all top-level code; its write is under `__main__` so that importing it
+  (a `pkgutil` sweep, an IDE indexer) does not emit a 380 KB file into `results/`.
+
+**`analysis/benchmark_arms.py`** — per-presentation cost of each technique on the benchmark, into
+`benchmark/subsets/*_arms.{csv,json}` + `ARMS.md`. It never touches the frozen subset files: those
+regenerate from the baseline jsonl alone and are checked by a zero-diff regeneration, and folding a
+scoreboard into them would make the problem set depend on the results measured on it. `HEUR_WEIGHTS`
+is asserted against `heuristic_search/core/hsolve.py:RECOMMENDED`, so the documented formula cannot
+drift from the shipped one. Rows no arm has run on carry `tested = False` with `-1`/`"none"` — never
+`False` in a `*_solved` column, which would claim a failed solve instead of an absent one. The three
+best-known columns ran at **different budgets and caps**; only the `m10k_*` block is matched.
 
 **`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN. This 3-cell shape is THE pattern for every
 Colab notebook in the repo (cov_baseline.ipynb follows it; extra cells only with a structural
