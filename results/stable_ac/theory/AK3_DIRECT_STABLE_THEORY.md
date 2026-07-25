@@ -662,6 +662,65 @@ over all 61 recoveries through length 9, both catalyst signs, both target
 roles, and gauge factors with \(z\)-containing conjugators is pinned by
 `tests/stable_ac/test_post_catalyst_r_gauge_self_loop.py`.
 
+## Proven result 16: the quotient one-\(D\) theorem
+
+Pre-twisting the \(D\)-slot by fixed-\(R\) moves appears to escape the
+literal free-group catalyst theorem.  The quotient theorem in
+
+```text
+literature/proofs/AK3_QUOTIENT_ONE_D_CATALYST_SELF_LOOP.md
+```
+
+closes that gap and every other fixed-\(R\) ordering with exactly one
+\(B/D\) cross multiplication when the cross target is the relator finally
+eliminated.
+
+Project to
+
+\[
+H=
+\langle x,t\mid x^3=t^4\rangle*\langle z\rangle .
+\]
+
+Every fixed-\(R\) gauge factor vanishes in \(H\).  The Bass--Serre
+classification of the remaining cross product must retain a residual
+vertex twist:
+
+\[
+UhVh^{-1},
+\qquad
+h\in
+\langle x,t\mid x^3=t^4\rangle
+\ \text{or}\
+h\in\langle z\rangle .
+\]
+
+Axes sharing an edge give the literal rotation residue.  Axes sharing only
+a vertex give two \(2\times4\) forcing tables for \(G\)-vertex twists and
+four exponent solutions per sign for \(\langle z\rangle\)-vertex twists.
+Every one-\(z\) result is still one of
+
+\[
+\operatorname{cyc}(z^{-1}t^{-1}xtx),
+\qquad
+\operatorname{cyc}(z^{-1}txtx^{-1}).
+\]
+
+The quotient tails have weights \(8\) and \(6\), so they are nontrivial.
+Free-product conjugacy therefore upgrades the cyclic classification of a
+normalized final isolator \(z^{-1}e\) to the exact equality
+\(e=e_\pm\) modulo \(R\).  Evaluating the restored survivor and applying
+the fixed-relator normal-closure lemma returns the endpoint classically to
+AK(3), in either target role.
+
+Thus arbitrary fixed-\(R\) gauge moves may occur on either slot, before and
+after the unique cross event, with unbounded \(z\)-containing conjugators,
+provided the cross-target slot becomes the final one-\(z\) isolator.
+The exact quotient normal form, four literal witnesses, sixteen forced
+\(G\)-vertex twists, eight \(z^k\)-vertex solutions, and sample pre-gauges
+are pinned by
+`tests/stable_ac/test_quotient_one_d_catalyst_barrier.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -684,13 +743,15 @@ closed even with an arbitrary conjugator when it targets the literal
 one-\(D\), one-\(z\)-elimination stratum is closed for both target/source
 roles.
 
-An arbitrary recovery prefix, one \(D\)-event, and any later fixed-\(R\)
-gauge tail is now closed.  The next one-source route must pre-twist the
-\(D\)-slot by \(R\)-moves before the cross multiplication, use at least two
-\(B_U/D\) cross multiplications, change the retained relator or recovery
-equation, or produce a primitive eliminator with several \(z\)-letters.
-Using the braid relator during recovery is another distinct option.
-Dual-source primitive-pair compression before either old generator is
-removed remains the broadest separate route.
+Every fixed-\(R\) ordering with exactly one \(B/D\) cross multiplication
+which ends by eliminating its cross target is now closed, including
+arbitrary pre-twists of the \(D\)-slot and arbitrary post-catalyst gauge
+tails.  The remaining one-cross role is to preserve the cross target and
+eliminate the restored source instead.  Beyond that, the next one-source
+route must use at least two \(B/D\) cross multiplications, change the
+retained relator or recovery equation, or produce a primitive eliminator
+with several \(z\)-letters.  Using the braid relator during recovery is
+another distinct option.  Dual-source primitive-pair compression before
+either old generator is removed remains the broadest separate route.
 
 AK(3) remains open.

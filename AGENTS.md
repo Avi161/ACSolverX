@@ -258,3 +258,23 @@
 
 - [TRAP] An added file with an explicit empty content line after its final paragraph triggers `git diff --check` with `new blank line at EOF`, even though the rendered Markdown or Python looks unchanged.
 - [WORKS] Run `git diff --check` after staging new proof artifacts and remove the final empty content line while preserving the normal terminating newline.
+
+### 2026-07-25 Bass--Serre vertex stabilizers
+
+- [TRAP] In \(G*\langle z\rangle\), intersecting hyperbolic axes are not exhausted by literal signed syllable rotations. If the axes meet only at a vertex, its nontrivial stabilizer leaves a residual twist \(UhVh^{-1}\) with \(h\in G\) or \(h\in\langle z\rangle\). Importing the free-group Cayley-tree rotation lemma unchanged leaves an infinite gap.
+- [TRAP] For disjoint Bass--Serre axes, do not assert a literal bridge spelling with exact \(z\)-incidence unless endpoint stabilizer twists have been normalized. Vertex stabilizers make that free-group argument unsafe.
+- [WORKS] Exclude the disjoint case invariantly: \(\ell(B)=2\), \(\ell(D)=4\), and disjoint axes give product translation length \(6+2d\ge8\), while the cross-product weight \(7\pm1\) makes any one-\(z\) shadow nonelliptic of length \(2\).
+- [WORKS] Split quotient axes into disjoint, shared-edge, and shared-vertex cases. For the AK(3) \(B/D\) pair, the \(G\)-vertex one-\(z\) condition forces one unique \(h\) in each signed \(2\times4\) cell; the \(z^k\)-vertex condition has four affine-exponent solutions per sign. Every cell returns `ZTxtx` or `ZtxtX`.
+- [TRAP] In the \(z^k\)-vertex table, do not combine powers across a separating \(G\)-syllable. For \((B_0,D_1^+)\), the cyclic incidence is \(|k+1|+1+|-k-1|=2|k+1|+1\), not a two-factor boundary calculation.
+- [WORKS] This corrected quotient classification closes arbitrary fixed-\(R\) gauge moves on either slot before and after exactly one \(B/D\) cross multiplication when the cross target becomes the final generator isolator.
+- [TRAP] It does not cover preserving the cross target and eliminating the restored source instead, a second cross event, a changed \(R\)-normal closure, or a multi-\(z\) primitive eliminator.
+
+### 2026-07-25 LaTeX line-end whitespace
+
+- [TRAP] A display split across Markdown lines as `\ \text{or}\ ` left a literal trailing space and failed `git diff --check`.
+- [WORKS] End the LaTeX command at the final backslash with no following space, and run `git diff --check` before staging.
+
+### 2026-07-25 Proof-test import roots
+
+- [TRAP] Running `python3 tests/stable_ac/test_*.py` directly sets the import root to `tests/stable_ac` and fails with `ModuleNotFoundError: No module named 'experiments'`.
+- [WORKS] From the repository root, use `python3 -c 'import runpy; ... = runpy.run_path(...)'` so the current directory remains on `sys.path`, then invoke the dependency-free `test_*` functions.
