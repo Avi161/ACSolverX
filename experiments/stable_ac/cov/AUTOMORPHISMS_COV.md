@@ -156,7 +156,7 @@ Also unresolved: the 12 primitive-output rows that leak past the no-collapse gat
 
 ```bash
 # the sweep (66 presentations x every CoV start + control, budget 100)
-.venv/bin/python3 -m experiments.stable_ac.cov.run_cov --config <cfg> --budget 100 --experiment-length --high-speedup
+.venv/bin/python3 -m experiments.stable_ac.cov.run.run_cov --config <cfg> --budget 100 --experiment-length --high-speedup
 # -> results/stable_ac/cov/covsweep_100_66_subnc2pxysb_mrl24_cyc_s60r6_<date>.jsonl
 ```
 

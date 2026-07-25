@@ -2,7 +2,7 @@
 
 Every row of a `mu_ladder_big` `*_orbits.jsonl` is a concrete 2-generator pair reached from its class's original by a chain of subword-CoV hops, produced at **zero search nodes**. So each orbit is a free alternative *start* for the same question, and the natural experiment is: run the baseline greedy from the orbits instead of from the original. Precedent: [`AUTOMORPHISMS_COV.md`](../../../experiments/stable_ac/cov/AUTOMORPHISMS_COV.md) did the one-hop version and got **17 unsolved→solved flips** at budget 100 over the 66-row benchmark.
 
-Runner: `experiments/stable_ac/cov/orbit_greedy.py` (tests: `tests/stable_ac/test_orbit_greedy.py`).
+Runner: `experiments/stable_ac/cov/run/orbit_greedy.py` (tests: `tests/stable_ac/test_orbit_greedy.py`).
 
 ## What a solve would prove
 
@@ -40,7 +40,7 @@ Instrumenting `aca_39` showed the rung-local beam is a drifting front, not a fro
 ## Running it at a real budget
 
 ```bash
-python3 -m experiments.stable_ac.cov.orbit_greedy \
+python3 -m experiments.stable_ac.cov.run.orbit_greedy \
     --orbits 'results/stable_ac/mu_scan/*_orbits.jsonl' \
     --budget 100000 --cap 96 --per-class 200 --strategy spread --relabels 8
 # resumable (append-only jsonl, keyed on kind/pres_id/orbit rep/relabel);

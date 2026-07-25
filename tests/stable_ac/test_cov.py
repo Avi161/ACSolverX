@@ -18,7 +18,8 @@ from experiments.greedy_tests.spec.invariants import abs_det
 from experiments.greedy_tests.spec.presentation import Presentation
 from experiments.greedy_tests.spec.words import (
     inverse, reduce_word, rotate, str_to_word, word_to_str)
-from experiments.stable_ac.cov import cov, run_cov
+from experiments.stable_ac.cov import cov
+from experiments.stable_ac.cov.run import run_cov
 
 AK3_R1, AK3_R2 = str_to_word("xyxYXY"), str_to_word("xxxYYYY")
 
@@ -638,7 +639,7 @@ def test_shipped_yaml_cannot_shadow_the_family_tag():
     (now zf3) — load_config applies the yaml OVER COV_DEFAULTS, so a yaml
     copy of an identity tag silently mislabels files (and resumes the wrong
     family's rows). The tag's only source of truth is cov.Z_FAMILY_TAG."""
-    path = os.path.join(os.path.dirname(cov.__file__), "config_cov.yaml")
+    path = os.path.join(os.path.dirname(cov.__file__), "run", "config_cov.yaml")
     c = run_cov.load_config(path)
     assert c["z_family"] == cov.Z_FAMILY_TAG
 
@@ -653,7 +654,7 @@ def test_subword_family_has_no_length_knob():
     absence from BOTH the defaults and the shipped yaml.
     """
     assert "subword_max_len" not in run_cov.COV_DEFAULTS
-    path = os.path.join(os.path.dirname(cov.__file__), "config_cov.yaml")
+    path = os.path.join(os.path.dirname(cov.__file__), "run", "config_cov.yaml")
     with open(path) as f:
         raw = yaml.safe_load(f)
     assert "subword_max_len" not in raw

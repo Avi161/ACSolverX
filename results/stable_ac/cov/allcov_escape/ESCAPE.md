@@ -15,7 +15,7 @@
 | `ms638` | 173 | 40 | 14,469 | 489 | 81,099 | 213,878 | 2.64× | 62,534 |
 | `ms639` | 172 | 40 | 14,444 | 489 | 80,803 | 272,953 | 3.38× | 62,509 |
 
-Per-row provenance (`best_z`, `iso_gen`, `iso_index`, the transformed pair, and whether it left the input orbit) is in [`escape_b20000_summary.csv`](escape_b20000_summary.csv); every search is a row in [`allcov_b20000_8rows_subnc2pxysb.jsonl`](allcov_b20000_8rows_subnc2pxysb.jsonl). The same table as a figure: [`escape_b20000_cost.svg`](escape_b20000_cost.svg) (producer `experiments/stable_ac/cov/make_escape_fig.py`).
+Per-row provenance (`best_z`, `iso_gen`, `iso_index`, the transformed pair, and whether it left the input orbit) is in [`escape_b20000_summary.csv`](escape_b20000_summary.csv); every search is a row in [`allcov_b20000_8rows_subnc2pxysb.jsonl`](allcov_b20000_8rows_subnc2pxysb.jsonl). The same table as a figure: [`escape_b20000_cost.svg`](escape_b20000_cost.svg) (producer `experiments/stable_ac/cov/figures/make_escape_fig.py`).
 
 Downstream artifacts now carry the escape: `results/comparison/nodes_comparison_subset60.csv` has `nodes_bestcov_b20k` / `solved_bestcov_b20k` (60/60) beside its untouched b10k columns, `nodes_comparison_subset60.png` is regenerated with these eight ringed instead of drawn as hollow ✗, and [`greedy_vs_bestcov_subset60_nodes_path.csv`](../../../comparison/greedy_vs_bestcov_subset60_nodes_path.csv) is the two-arm nodes-and-path table over all 60. One artifact still reads `never` and is correct to: `graphs/per_presentation_b10000.csv`'s `klass` column is a record of the 10,000-node run, and its meaning is pinned in [`SUMMARY_b10000.md`](../graphs/SUMMARY_b10000.md).
 
@@ -59,8 +59,8 @@ The eight are one Aut class, so this is really **one** presentation escaping, me
 ## Reproduce
 
 ```bash
-.venv/bin/python3 -m experiments.stable_ac.cov.allcov_escalate --budget 20000 --workers 6 --seconds 0
-.venv/bin/python3 -m experiments.stable_ac.cov.allcov_escape_report --budget 20000
+.venv/bin/python3 -m experiments.stable_ac.cov.escape.allcov_escalate --budget 20000 --workers 6 --seconds 0
+.venv/bin/python3 -m experiments.stable_ac.cov.escape.allcov_escape_report --budget 20000
 ```
 
 The runner is resume-safe on `(r1, r2)` and the report is pure analysis — re-running it recomputes every number above and re-asserts every gate. Total cost of the sweep: 909 searches, 17.3M nodes, 2.31 CPU-hours across 6 workers (~34 min wall).

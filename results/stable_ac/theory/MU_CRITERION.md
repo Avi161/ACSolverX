@@ -1,6 +1,6 @@
 # The μ-descent solve criterion (ac-advisor-reviewed, verdict REVISE → this is the revised form)
 
-*2026-07-21. The finish line for `experiments/stable_ac/cov/mu_ladder.py`. Reviewed by the ac-advisor gate; all five must-address items are incorporated below.*
+*2026-07-21. The finish line for `experiments/stable_ac/cov/ladder/mu_ladder.py`. Reviewed by the ac-advisor gate; all five must-address items are incorporated below.*
 
 ## Proposition A (CoV is a stable move, any n_subs) — closes the citation gap
 
@@ -18,7 +18,7 @@ Let `Q'` = `aut_canon`'s canonical representative of `Q_final`'s orbit and `μ` 
 
 **(i) μ ≤ 12 ⇒ the source class is stably AC-trivializable.** Chain: `P ~st Q_final` (Prop A, per hop) `~st Q'` (`PROOFS.tex` Thm 3 — `Q'` IS an automorphic image of `Q_final`) `~AC trivial` (MM03 Thm 1.1: every balanced 2-generator trivial-group presentation of total length ≤ 12 satisfies the AC conjecture — a computer-assisted exhaustion with constructive GA certificates, covering every freely-reduced pair; degenerate one-relator shapes cannot present the trivial group, so both relators are automatically non-empty).
 
-**(ii) μ = 13 is NEVER a removal.** Havas–Ramsay (IJAC 13, 2003 — primary text NOT in this repo; consistent secondary paraphrases: `mms02` §1, the Two-Hump paper §2, `ak_3_universal_test/RESULTS.md`) makes a length-13 trivial-group presentation AC-equivalent to standard or to AK(3), so the honest claim is "the class's stable fate collapses onto AK(3)-or-trivial". An `aut_canon` comparison CANNOT decide which: AK(3)'s length-13 AC-class provably holds at least two Aut-orbits (orbit-2 = `YYXXyx|YYYxyXX` is AC-equivalent to AK(3) yet a different orbit), so "not AK(3)'s orbit" does not imply "trivializable". A μ=13 landing IN AK(3)'s orbit gives `P ~st AK(3)` — structural news if `P` is not already known to be in that situation (aca_115 already is).
+**(ii) μ = 13 is NEVER a removal.** Havas–Ramsay (IJAC 13, 2003 — primary text NOT in this repo; consistent secondary paraphrases: `mms02` §1, the Two-Hump paper §2, `results/stable_ac/ak3/RESULTS.md`) makes a length-13 trivial-group presentation AC-equivalent to standard or to AK(3), so the honest claim is "the class's stable fate collapses onto AK(3)-or-trivial". An `aut_canon` comparison CANNOT decide which: AK(3)'s length-13 AC-class provably holds at least two Aut-orbits (orbit-2 = `YYXXyx|YYYxyXX` is AC-equivalent to AK(3) yet a different orbit), so "not AK(3)'s orbit" does not imply "trivializable". A μ=13 landing IN AK(3)'s orbit gives `P ~st AK(3)` — structural news if `P` is not already known to be in that situation (aca_115 already is).
 
 **(iii) Constructiveness, honestly.** The z-chain is recorded and each hop re-derivable; the CoV prefix is certified structurally (Prop A), never as a bounded elementary path (Lemma-11 cost is unbounded). The ≤ 12 endpoint's explicit AC path is expected from a modest greedy run, but MM03 calls lengths 11–12 its own hardest cases — if the path resists a local ≤ 1,000-node budget, the segment is certified by MM03-existence and labeled so, not silently assumed replayed.
 

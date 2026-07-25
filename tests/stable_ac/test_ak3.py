@@ -12,10 +12,10 @@ Run from the repo root:
 
 import pytest
 
-from experiments.stable_ac.cov.ak_3_universal_test import ball, census
-from experiments.stable_ac.cov.ak_3_universal_test import certify
-from experiments.stable_ac.cov.ak_3_universal_test import certify_classical
-from experiments.stable_ac.cov.ak_3_universal_test import sweep as S
+from experiments.stable_ac.cov.ak3 import ball, census
+from experiments.stable_ac.cov.ak3 import certify
+from experiments.stable_ac.cov.ak3 import certify_classical
+from experiments.stable_ac.cov.ak3 import sweep as S
 
 MAX_BUDGET = 1_000   # repo hard rule
 

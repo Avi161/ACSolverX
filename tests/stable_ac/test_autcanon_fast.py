@@ -18,7 +18,7 @@ import pytest
 
 from experiments.equivalence_classes.lib.autcanon import AUTOS, aut_canon
 from experiments.equivalence_classes.lib.words import apply_hom, relabel_key
-from experiments.stable_ac.cov.autcanon_fast import (
+from experiments.stable_ac.cov.ladder.autcanon_fast import (
     aut_min,
     relabel_min,
     warm,
@@ -51,7 +51,7 @@ def test_all_124_class_reps(aca_pairs):
 
 def test_real_hop_outputs(aca_pairs):
     # the production call sites: score actual CoV outputs of two classes
-    from experiments.stable_ac.cov.mu_descent_scan import hop_outputs
+    from experiments.stable_ac.cov.ladder.mu_descent_scan import hop_outputs
     outs = []
     for p in (aca_pairs[115], aca_pairs[1]):     # aca_115 (AK3's class), aca_1
         outs.extend(op for _, op, _ in hop_outputs(*p, 24).values())
@@ -97,5 +97,5 @@ def test_relabel_min_refines_the_orbit(aca_pairs):
 
 def test_ladder_actually_uses_the_fast_path():
     # a silent ImportError fallback would turn every speedup claim false
-    from experiments.stable_ac.cov import mu_ladder_big
+    from experiments.stable_ac.cov.ladder import mu_ladder_big
     assert mu_ladder_big.FAST_CANON is True

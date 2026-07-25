@@ -20,7 +20,7 @@ Consequences: (a) the per-relator form extends the proven cap-fit **pre-filter**
 - **ms640 solved row** `⟨YYYx, YYXyx⟩`, μ = 6: one hop (`z = yy`, n_subs = 2) lands the **standard orbit (μ = 2)**.
 - Sampled sweep: μ-lowering hops on 6 of 15 inputs; descents can pass through UPHILL intermediates (one case descends 8→6 via a μ = 14 intermediate) — so a restart tree must not prune per-hop μ increases.
 - **AK(3) is confirmed lateral-at-the-wall** (depth-3 reachable min μ = 13): the shipped AK(3) observation survives; only its universal generalization dies.
-- **On the 124 (11,246 sweep rows): exactly 4 classes have a μ-descending hop-1** — aca_99, aca_100 (25→22), aca_105, aca_106 (25→24), all via `z = yy`; the other 120 are lateral-or-up at hop 1. Depth-2 map: `results/stable_ac/mu_scan/` (via `experiments/stable_ac/cov/mu_descent_scan.py`).
+- **On the 124 (11,246 sweep rows): exactly 4 classes have a μ-descending hop-1** — aca_99, aca_100 (25→22), aca_105, aca_106 (25→24), all via `z = yy`; the other 120 are lateral-or-up at hop 1. Depth-2 map: `results/stable_ac/mu_scan/` (via `experiments/stable_ac/cov/ladder/mu_descent_scan.py`).
 
 Search consequences shipped tonight: the `cov_mu_lex` portfolio strategy (μ-first candidate ranking) and the μ-ranked escape ordering inside `stall_escape.py`.
 

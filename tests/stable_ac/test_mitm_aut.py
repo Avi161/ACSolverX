@@ -1,7 +1,7 @@
 """run_mitm_aut (T5) harness tests.
 
 Most tests monkeypatch the search seam
-(``experiments.stable_ac.cov.run_mitm_aut.aut_multi_search``) with canned
+(``experiments.stable_ac.cov.run.run_mitm_aut.aut_multi_search``) with canned
 ``(dsu, merges, stats, roots_of)`` tuples, so no real Aut-quotient search runs;
 run_mitm only ever sees what the stub returns. They pin the load-bearing logic:
 
@@ -23,7 +23,7 @@ import re
 
 import pytest
 
-import experiments.stable_ac.cov.run_mitm_aut as R
+import experiments.stable_ac.cov.run.run_mitm_aut as R
 
 
 # --------------------------------------------------------------------------

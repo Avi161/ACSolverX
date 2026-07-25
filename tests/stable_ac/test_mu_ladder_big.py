@@ -1,5 +1,5 @@
 """Harness tests for the chunked, provenance-complete mu-ladder
-(``experiments/stable_ac/cov/mu_ladder_big.py`` + its verifier).
+(``experiments/stable_ac/cov/ladder/mu_ladder_big.py`` + its verifier).
 
 The load-bearing pin is ``test_climb_matches_mu_ladder``: with both budgets
 unlimited, ``climb_one_big`` must reproduce ``mu_ladder.climb_one``'s row
@@ -14,10 +14,10 @@ import os
 
 import pytest
 
-from experiments.stable_ac.cov import mu_ladder_big as big
-from experiments.stable_ac.cov.mu_descent_scan import hop_outputs
-from experiments.stable_ac.cov.mu_ladder import climb_one
-from experiments.stable_ac.cov.verify_mu_ladder import (
+from experiments.stable_ac.cov.ladder import mu_ladder_big as big
+from experiments.stable_ac.cov.ladder.mu_descent_scan import hop_outputs
+from experiments.stable_ac.cov.ladder.mu_ladder import climb_one
+from experiments.stable_ac.cov.verify.verify_mu_ladder import (
     verify_class,
     verify_files,
 )

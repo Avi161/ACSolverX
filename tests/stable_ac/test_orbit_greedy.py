@@ -1,4 +1,4 @@
-"""Harness tests for ``experiments/stable_ac/cov/orbit_greedy.py`` — running
+"""Harness tests for ``experiments/stable_ac/cov/run/orbit_greedy.py`` — running
 the baseline greedy from mu-ladder orbits.
 
 This module OWNS no search semantics: it selects starts, calls the
@@ -17,8 +17,8 @@ import os
 
 import pytest
 
-from experiments.stable_ac.cov import orbit_greedy as og
-from experiments.stable_ac.cov.autcanon_fast import relabel_min
+from experiments.stable_ac.cov.run import orbit_greedy as og
+from experiments.stable_ac.cov.ladder.autcanon_fast import relabel_min
 
 # Two tiny classes: one with a rung-0 control row, several orbits each.
 _ORBITS = [

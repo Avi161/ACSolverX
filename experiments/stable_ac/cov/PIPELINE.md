@@ -89,7 +89,7 @@ Local proof (≤ 1000 nodes), then always verify certificates:
 
 ```bash
 .venv/bin/python3 -m pytest experiments/stable_ac -q
-.venv/bin/python3 -m experiments.stable_ac.cov.run_cov --experiment-length --budget 100 1000
+.venv/bin/python3 -m experiments.stable_ac.cov.run.run_cov --experiment-length --budget 100 1000
 .venv/bin/python3 -m experiments.stable_ac.verify_results results/stable_ac/cov
 ```
 

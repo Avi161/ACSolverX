@@ -36,7 +36,7 @@ Mid-search Lemma-11 escape: plain-Python `heapq` loop over the existing `@njit` 
 - Bonus: its plateau leaders are exactly the candidate states T7 (thickenability) needs.
 
 ### T5 — Aut-quotient MITM diagnostic (idea 5)
-Thin driver `experiments/stable_ac/cov/run_mitm_aut.py` over the shipped `equivalence_classes/search/aut_search.py:aut_multi_search` — seed each target + TRIVIAL, `stop_when_merged=True`; sweep the length *ceiling* (the binding knob), not just budget. Local: AK(3) + ~5 of the 124 at `nodes_per_source ≤ 1000`. A merge = stitched path → replay. Honest value: diagnostic on AK(3) (the balls were measured tiny/disjoint), real merge power on the 124 (this tool already cut 261→125).
+Thin driver `experiments/stable_ac/cov/run/run_mitm_aut.py` over the shipped `equivalence_classes/search/aut_search.py:aut_multi_search` — seed each target + TRIVIAL, `stop_when_merged=True`; sweep the length *ceiling* (the binding knob), not just budget. Local: AK(3) + ~5 of the 124 at `nodes_per_source ≤ 1000`. A merge = stitched path → replay. Honest value: diagnostic on AK(3) (the balls were measured tiny/disjoint), real merge power on the 124 (this tool already cut 261→125).
 
 ### T6 — ATP oracle pilot (idea 7) — independent non-monotone solver
 Prover9 has no length-monotonicity, and Lisitsa never ran the diverse-`w` residual. Feasibility-first: install Prover9 locally (time-boxed); encoder for Lisitsa's ground + non-ground encodings; pilot AK(3)→trivial (never via the broken MMS02 P-chain) + 3–5 of the 124 with a hard per-instance timeout (≤15 min each). Any returned sequence is untrusted until replayed as Definition-2.1 moves through `verify_results.py`. If install fails inside the box, document and drop.
