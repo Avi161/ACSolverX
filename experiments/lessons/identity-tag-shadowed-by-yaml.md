@@ -1,7 +1,7 @@
 # [2026-07-15] Identity tag shadowed by a yaml copy [TRAP]
 
 5cb9471 bumped `cov.Z_FAMILY_TAG` zf1 → zf2 (the zf2 family change) but
-`experiments/stable_ac/cov/config_cov.yaml` still carried its own
+`experiments/stable_ac/cov/run/config_cov.yaml` still carried its own
 `z_family: zf1`. `run_cov.load_config` applies the yaml **over**
 `COV_DEFAULTS`, so any yaml-driven `mode: cov` run would have written
 `cov_..._zf1_...` files while actually running the zf2 family — and resumed

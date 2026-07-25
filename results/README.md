@@ -8,13 +8,14 @@ Every artifact any experiment has produced. Each directory has a different job.
 |---|---|---|
 | **`greedy_baseline/`** | the raw baseline runs — 10 `.jsonl`, one per (budget, dataset) | `experiments/run_baseline.py`, on Colab |
 | **`stable_ac/nocov/`** | Branch-A (No-CoV) sweep jsonl, one per `(benchmark, family, budget)` | `experiments/stable_ac/nocov/run_nocov.py` |
-| **`stable_ac/cov/`** | Branch-B (one-shot CoV) jsonl, one per budget, `cov` + `covbase` modes | `experiments/stable_ac/cov/run_cov.py` |
+| **`stable_ac/cov/`** | Branch-B (one-shot CoV) jsonl, one per budget, `cov` + `covbase` modes | `experiments/stable_ac/cov/run/run_cov.py` |
 | **`stable_ac/mu_scan/`** | the orbit-floor μ-ladder: depth-2 descent map, the rung ladders, `MU_SCAN_FINDINGS.md` | `experiments/stable_ac/cov/{mu_descent_scan,mu_ladder}.py` |
-| **`stable_ac/mitm/`** | Aut-quotient meet-in-the-middle vs TRIVIAL, one jsonl per length ceiling | `experiments/stable_ac/cov/run_mitm_aut.py` |
-| **`stable_ac/cov/allcov_escape/`** | the whole subword-CoV family of the eight b10k-resistant rows, re-run at a higher budget; keyed by output pair, not presentation | `experiments/stable_ac/cov/allcov_escalate.py` |
+| **`stable_ac/mitm/`** | Aut-quotient meet-in-the-middle vs TRIVIAL, one jsonl per length ceiling | `experiments/stable_ac/cov/run/run_mitm_aut.py` |
+| **`stable_ac/cov/allcov_escape/`** | the whole subword-CoV family of the eight b10k-resistant rows, re-run at a higher budget; keyed by output pair, not presentation | `experiments/stable_ac/cov/escape/allcov_escalate.py` |
 | **`comparison/`** | cross-arm tables: greedy vs best-CoV vs tuned heuristic at a matched budget | `experiments/heuristic_search/three_way_b10k.py` |
 | **`stable_ac/theory/`** | proved/refuted notes from the escape push (μ criterion, MS template, orbit floors) | written by hand, ac-advisor reviewed |
 | **`stable_ac/IDEA_BENCH_RESULTS.md`** | the 16-strategy start-transform race on combined_22 — evidence kept, [producer pruned](../PRUNED.md) | ⚠ `experiments/stable_ac/idea_bench/`, removed |
+| **`stable_ac/ak3/`** | the AK(3) universal test: two certificates, the sweep jsonl, `RESULTS.md` | `experiments/stable_ac/cov/ak3/` |
 | **`equivalence_classes/`** | the 261 unsolved reps are really **126 distinct problems** — and the proof | `experiments/equivalence_classes/` |
 | **`superseded/`** | artifacts kept for provenance only, never cited — see `superseded/README.md` | — |
 
@@ -67,9 +68,9 @@ write to `nocov/` itself, so resume never reaches back into the archive.
 Branch-B (one-shot change of variables) results. Filename = the resume key:
 `cov_<budget>_<n_rows>_<zfam>_mrl<cap>_<cyc|noncyc>_<datasets>_<mm_dd_yy>.jsonl` (`covbase_…` = the
 identity-transform comparison runs; date not part of the key). Produced by
-`experiments/stable_ac/cov/run_cov.py`.
+`experiments/stable_ac/cov/run/run_cov.py`.
 
-`allcov_escape/` is a different shape and a different key: one jsonl per budget over the whole subword-CoV family of the eight benchmark rows that resist every CoV at 10,000 nodes, **deduplicated by output pair** rather than by presentation (909 distinct pairs from 1,366 starts), so the resume key is `(r1, r2)` and the owning presentations ride along in each row's `provenance`. All eight escape at budget 20,000 — [`ESCAPE.md`](stable_ac/cov/allcov_escape/ESCAPE.md) has the table and the gates behind it. Produced by `experiments/stable_ac/cov/allcov_escalate.py`, analysed by `allcov_escape_report.py`.
+`allcov_escape/` is a different shape and a different key: one jsonl per budget over the whole subword-CoV family of the eight benchmark rows that resist every CoV at 10,000 nodes, **deduplicated by output pair** rather than by presentation (909 distinct pairs from 1,366 starts), so the resume key is `(r1, r2)` and the owning presentations ride along in each row's `provenance`. All eight escape at budget 20,000 — [`ESCAPE.md`](stable_ac/cov/allcov_escape/ESCAPE.md) has the table and the gates behind it. Produced by `experiments/stable_ac/cov/escape/allcov_escalate.py`, analysed by `allcov_escape_report.py`.
 
 ## `comparison/`
 
@@ -77,7 +78,7 @@ Cross-arm tables that no single runner produces. `three_way_b10k_subset60.csv` i
 
 `greedy_vs_bestcov_subset60_nodes_path.csv` + [`GREEDY_VS_BESTCOV.md`](comparison/GREEDY_VS_BESTCOV.md) is the two-arm table on **both** axes — greedy at 1M against best CoV at ≤20,000, nodes *and* path length, 60/60 on each side. Best CoV is defined for all 60 without a new sweep because a search at budget `B` is the first `B` pops of a longer one, so a row that solved at 10,000 keeps its exact value; the builder asserts that on all 52 before writing.
 
-**`nodes_comparison_subset60.png` was regenerated, and its producer is now committed** (`experiments/stable_ac/cov/make_nodes_comparison_fig.py`). It is a **re-creation, not the original script** — the original was made ad hoc on Colab and was never in the repo, so fonts and tick placement differ from the superseded image. What changed in the data is one arm: best CoV used to draw `ms622`–`ms625` / `ms636`–`ms639` as hollow ✗ at the 10,000-node budget, and now solves 60/60 with those eight ringed at their real cost. Every other arm reproduces its previous mean and median exactly (greedy 45,244/1,310 · stdcov 26,130/70 · dualcov 9,754/438 · h-search base 10,977/610 · h-search reco 10,244/226), which is what makes the re-creation checkable. The eight on their own: [`escape_b20000_cost.svg`](stable_ac/cov/allcov_escape/escape_b20000_cost.svg).
+**`nodes_comparison_subset60.png` was regenerated, and its producer is now committed** (`experiments/stable_ac/cov/figures/make_nodes_comparison_fig.py`). It is a **re-creation, not the original script** — the original was made ad hoc on Colab and was never in the repo, so fonts and tick placement differ from the superseded image. What changed in the data is one arm: best CoV used to draw `ms622`–`ms625` / `ms636`–`ms639` as hollow ✗ at the 10,000-node budget, and now solves 60/60 with those eight ringed at their real cost. Every other arm reproduces its previous mean and median exactly (greedy 45,244/1,310 · stdcov 26,130/70 · dualcov 9,754/438 · h-search base 10,977/610 · h-search reco 10,244/226), which is what makes the re-creation checkable. The eight on their own: [`escape_b20000_cost.svg`](stable_ac/cov/allcov_escape/escape_b20000_cost.svg).
 
 ## `equivalence_classes/`
 

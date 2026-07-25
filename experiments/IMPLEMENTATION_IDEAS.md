@@ -33,7 +33,7 @@ If an idea is tagged `124` do not expect it to touch AK(3), and vice-versa. Idea
 
 ## 1. Iterated-CoV restart-tree driver — `124` · *ship-ready*
 
-**Build:** `experiments/stable_ac/cov/run_restart_tree.py` (runner). The planner already exists — `experiments/stable_ac/cov/restart_planner.py:68 build_restart_plan` — but it only *ranks* restart points; it runs no search. This wires it to a real production sweep.
+**Build:** `experiments/stable_ac/cov/run/run_restart_tree.py` (runner). The planner already exists — `experiments/stable_ac/cov/escape/restart_planner.py:68 build_restart_plan` — but it only *ranks* restart points; it runs no search. This wires it to a real production sweep.
 
 **Reuse:** `restart_planner.build_restart_plan(r1, r2, depth, cap, max_nodes)` for the ranked restart list; `experiments/run_baseline.py:22 greedy_search(...)` (the single monkeypatch seam, `solver="compact"`) to search each restart point; `run_baseline.py:159 load_dataset` + `:151 int_line_to_relators` to read `data/ms_unsolved_reps/ms_reps_126.txt`; `run_cov.py`'s jsonl+resume+`_repair_jsonl` pattern for durability (import it, don't reimplement).
 
@@ -97,7 +97,7 @@ If an idea is tagged `124` do not expect it to touch AK(3), and vice-versa. Idea
 
 ## 5. Aut-quotient bidirectional meet-in-the-middle — `AK(3)` + `124` · *reuses shipped infrastructure*
 
-**Build:** `experiments/stable_ac/cov/run_mitm_aut.py` (thin driver). Almost all the machinery already exists under `equivalence_classes/`.
+**Build:** `experiments/stable_ac/cov/run/run_mitm_aut.py` (thin driver). Almost all the machinery already exists under `equivalence_classes/`.
 
 **Why the quotient, not raw bidirectional:** raw bidirectional search (`IDEAS.md` idea 14) targets exponential *depth* while greedy's failure is a *local minimum*, and a 3-generator backward state can never equal a 2-generator forward state. But `experiments/equivalence_classes/search/aut_search.py` already runs BFS in the **Aut(F₂)-class quotient** — the graph where relabels collapse and the wall was measured *smaller* — with path-carrying merges, one CoV automorphism per step.
 

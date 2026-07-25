@@ -40,7 +40,7 @@ Downstream artifacts now carry the escape: `results/comparison/nodes_comparison_
 
 **And the bin-9 "win" is the denominator moving, not the transform improving.** Blind restart costs 62.5k–83.0k across all eight — nearly flat. The greedy costs 59.7k–78.8k on bin 8 and 213.9k–273.0k on bin 9. CoV does nothing special on the harder rows; the greedy simply gets much worse there while the restart portfolio does not.
 
-**The escape is mostly a rename.** The 1,366 CoV starts reduce to 909 distinct pairs reaching 23 distinct Aut orbits; 803 of the 909 pairs (88.3%) — 1,244 of the 1,366 starts (91.1%) — are the input orbit under a different name. Of the 221 solving pairs, **187 (84.6%) never left the input orbit**, and the solvers occupy only 9 of the 23 orbits. This is [the relabel finding](../AUTOMORPHISMS_COV.md) again, at a larger budget: the solver reads strings, so a rename is a different search even when the group-theoretic content is identical.
+**The escape is mostly a rename.** The 1,366 CoV starts reduce to 909 distinct pairs reaching 23 distinct Aut orbits; 803 of the 909 pairs (88.3%) — 1,244 of the 1,366 starts (91.1%) — are the input orbit under a different name. Of the 221 solving pairs, **187 (84.6%) never left the input orbit**, and the solvers occupy only 9 of the 23 orbits. This is [the relabel finding](../../../../experiments/stable_ac/cov/AUTOMORPHISMS_COV.md) again, at a larger budget: the solver reads strings, so a rename is a different search even when the group-theoretic content is identical.
 
 ## Scope
 

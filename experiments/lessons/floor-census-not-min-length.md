@@ -2,7 +2,7 @@
 
 AK(3) at a 1,000,000-node budget reports `min_relator_length = 13 = start` — "zero
 progress" — and that number was read as "the search saw nothing". The universal-CoV sweep
-(`experiments/stable_ac/cov/ak_3_universal_test/`) showed the floor itself has structure the
+(`experiments/stable_ac/cov/ak3/`) showed the floor itself has structure the
 metric cannot express: the 13-length states reached across 390 searches fall into TWO
 Aut(F₂)-orbits — AK(3)'s own and `YYXXyx|YYYxyXX` — and the baseline's own move set visits
 both. `min_relator_length` is blind to an orbit switch at the same length, so the discovery

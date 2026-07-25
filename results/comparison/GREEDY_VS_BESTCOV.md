@@ -1,6 +1,6 @@
 # Greedy against best CoV, all 60 — nodes explored and path length
 
-`greedy_vs_bestcov_subset60_nodes_path.csv`, written by `experiments/stable_ac/cov/rebuild_comparison_tables.py`. Both arms cover **60/60**. No search was run to build it: every row is a join over runs that already existed.
+`greedy_vs_bestcov_subset60_nodes_path.csv`, written by `experiments/stable_ac/cov/figures/rebuild_comparison_tables.py`. Both arms cover **60/60**. No search was run to build it: every row is a join over runs that already existed.
 
 | | greedy | best CoV |
 |---|---|---|
@@ -27,4 +27,4 @@ A search at budget `B` is exactly the first `B` pops of any longer search. So fo
 
 ## Related
 
-`nodes_comparison_subset60.csv` is the wider six-arm table; it now carries `nodes_bestcov_b20k` / `solved_bestcov_b20k` alongside the untouched `*_bestcov_b10k` columns, and `best_technique_is_oracle` marks every row whose winner is a best-of-N rather than a single search (**53 of 60** — 45 of those predate the escalation, and only 7 rows are won by a single-search arm). `nodes_comparison_subset60.png` is regenerated from it by `experiments/stable_ac/cov/make_nodes_comparison_fig.py`.
+`nodes_comparison_subset60.csv` is the wider six-arm table; it now carries `nodes_bestcov_b20k` / `solved_bestcov_b20k` alongside the untouched `*_bestcov_b10k` columns, and `best_technique_is_oracle` marks every row whose winner is a best-of-N rather than a single search (**53 of 60** — 45 of those predate the escalation, and only 7 rows are won by a single-search arm). `nodes_comparison_subset60.png` is regenerated from it by `experiments/stable_ac/cov/figures/make_nodes_comparison_fig.py`.

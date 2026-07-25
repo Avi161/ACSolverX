@@ -16,7 +16,7 @@ Repo string encoding (lowercase = generator, uppercase = inverse): `r1 = xxxYYYY
 
 ## Traps — do not trip these
 
-1. **AK(3)'s stable status is OPEN.** The believed proof (MMS02 → a length-25 presentation → AK(3)) is *broken* by a misprint Shehper et al. found; Lisitsa (arXiv:2501.18601) re-proves only the *unstable* link. Any in-repo bullet saying "AK(3) is known stably AC-trivial" (e.g. the "Literature fit" bullet in `experiments/stable_ac/cov/ak_3_universal_test/RESULTS.md`) is **stale — disregard it.**
+1. **AK(3)'s stable status is OPEN.** The believed proof (MMS02 → a length-25 presentation → AK(3)) is *broken* by a misprint Shehper et al. found; Lisitsa (arXiv:2501.18601) re-proves only the *unstable* link. Any in-repo bullet saying "AK(3) is known stably AC-trivial" (e.g. the "Literature fit" bullet in `experiments/stable_ac/cov/ak3/RESULTS.md`) is **stale — disregard it.**
 2. **Reaching `Q` or any stable-class sibling is not progress** — it shares AK(3)'s wall by construction.
 3. **The length-13 floor holds two Aut-orbits** — `min_relator_length` can't see an orbit switch at equal length. The second, **orbit-2** (`YYXXyx | YYYxyXX`), is *classically AC-equivalent to AK(3)* and far better-connected (6 length-15 exits vs AK(3)'s 1).
 4. **A change-of-variables solve proves *stable* triviality only**, and CoV is near-inert on AK(3) (reaches 2→12→55 orbits over 3 hops, none below length 13). Don't expect it to solve AK(3).
@@ -29,7 +29,7 @@ Repo string encoding (lowercase = generator, uppercase = inverse): `r1 = xxxYYYY
 
 ## Do this
 
-1. **Orient:** read `experiments/stable_ac/cov/ak_3_universal_test/RESULTS.md` and `results/stable_ac/theory/MU_CRITERION.md`; confirm for yourself that AK(3)'s stable status is OPEN and orbit-2 is classically AC-equivalent to it.
+1. **Orient:** read `experiments/stable_ac/cov/ak3/RESULTS.md` and `results/stable_ac/theory/MU_CRITERION.md`; confirm for yourself that AK(3)'s stable status is OPEN and orbit-2 is classically AC-equivalent to it.
 2. **Pick a direction and write the exact deliverable that would count** (per the section above). Highest-EV first target: greedy from orbit-2 at scale, and/or the thickenability certificate.
 3. **Gate your plan before coding:** read `.claude/agents/ac-advisor.md` and adopt it as a hostile-referee reviewer persona in a separate pass over your plan; reconcile every objection against cited sources.
 4. **Build new files only** (never modify the solvers/runner/notebooks). Runtime is CPU + numba, `.venv/bin/python3`. **Never run a search above node_budget 1000 yourself** — production budgets go to Colab. Verify every solved row by independent replay. Report results labelled AC-trivial vs stably-AC-trivial, and state every negative as bounded ("unsolved within budget/ceiling B"), never as a counterexample.
