@@ -1,0 +1,7 @@
+[allcov] budget=100000 pairs=909 done=0 todo=909 workers=4 presentations=8
+[allcov] 1/909       30s  SOLVED nodes=15454 minlen=2 eta=457min
+[allcov] 2/909       30s  SOLVED nodes=15490 minlen=2 eta=230min
+[allcov] 3/909       60s  SOLVED nodes=15411 minlen=2 eta=300min
+[allcov] 4/909       61s  SOLVED nodes=15410 minlen=2 eta=230min
+[allcov] 6/909      110s  SOLVED nodes=15385 minlen=2 eta=276min
+[allcov] 9/909      187s  SOLVED nodes=14447 minlen=2 eta=311min

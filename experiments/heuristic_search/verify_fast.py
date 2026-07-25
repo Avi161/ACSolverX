@@ -24,7 +24,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from experiments.heuristic_search.hlab import LOGS, load_split       # noqa: E402
+from experiments.heuristic_search.hlab import RESULTS, load_split       # noqa: E402
 from experiments.heuristic_search.hfast import search_fast           # noqa: E402
 from experiments.heuristic_search.exp02_single import (              # noqa: E402
     OUT as EXP02_OUT, BUDGET, MRL, SLICE, configs as exp02_configs,
@@ -96,7 +96,7 @@ def main():
 
     out = {"budget": BUDGET, "mrl": MRL, "slice": SLICE, "configs_checked": n,
            "rows_checked": checked, "mismatches": mism, "detail": bad[:40]}
-    with open(os.path.join(LOGS, "verify_fast.json"), "w") as f:
+    with open(os.path.join(RESULTS, "verify_fast.json"), "w") as f:
         json.dump(out, f, indent=1)
 
     print(f"\n  {checked} rows replayed, {mism} mismatched", flush=True)

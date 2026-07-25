@@ -56,7 +56,13 @@ from experiments.search.greedy_baseline import (                              # 
 
 BENCH66 = os.path.join(ROOT, "benchmark", "combined",
                        "benchmark_combined_66.json")
-LOGS = os.path.join(ROOT, "tests", "heuristic_search", "logs")
+
+# Three destinations under one results root, because they have different lifetimes: RESULTS holds
+# the synthesis documents, LOGS the per-experiment rows, SPLITS the frozen evaluation splits that
+# are written once by a freeze_* script and thereafter only read.
+RESULTS = os.path.join(ROOT, "results", "heuristic_search")
+LOGS = os.path.join(RESULTS, "runs")
+SPLITS = os.path.join(RESULTS, "splits")
 
 INF = float("inf")
 
@@ -315,11 +321,11 @@ def load_split(name):
     stratified sweeps.
     """
     if name.startswith("aut_"):
-        with open(os.path.join(LOGS, "splits_aut.json")) as f:
+        with open(os.path.join(SPLITS, "splits_aut.json")) as f:
             sp = json.load(f)
         key = name[len("aut_"):]
     else:
-        with open(os.path.join(LOGS, "splits.json")) as f:
+        with open(os.path.join(SPLITS, "splits.json")) as f:
             sp = json.load(f)
         key = name
     by = {r["name"]: r for r in bench66()}

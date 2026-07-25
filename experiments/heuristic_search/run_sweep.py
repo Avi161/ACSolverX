@@ -31,7 +31,7 @@ from experiments.run_baseline import load_dataset                           # no
 from experiments.search.greedy_baseline import greedy_search                # noqa: E402
 
 SUBSETS = os.path.join(ROOT, "benchmark", "subsets")
-OUT = os.path.join(ROOT, "results", "heuristic_search")
+OUT = os.path.join(ROOT, "results", "heuristic_search", "sweep")
 BUDGETS = (100, 200, 500)          # 500 is the hard local ceiling -- never raise it here
 MRL = 24
 

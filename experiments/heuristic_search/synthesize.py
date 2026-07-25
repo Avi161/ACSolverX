@@ -160,9 +160,9 @@ def main():
                   "", bin_table({ctrl: d["a_te"][ctrl], d["winner"]: d["a_te"].get(d["winner"], {})},
                                 [ctrl, d["winner"]], ctrl), ""]
 
-    with open(os.path.join(LOGS, "FINDINGS.md"), "w") as f:
+    with open(os.path.join(RESULTS, "FINDINGS.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
-    with open(os.path.join(LOGS, "synthesis.json"), "w") as f:
+    with open(os.path.join(RESULTS, "synthesis.json"), "w") as f:
         json.dump({"split": "aut_disjoint", "candidates": proposed,
                    "by_budget": {str(b): {"winner": d["winner"],
                                           "test_gain": d["w_te"] - d["b_te"],

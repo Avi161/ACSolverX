@@ -23,7 +23,7 @@ import statistics
 HERE = os.path.dirname(os.path.abspath(__file__))
 COV_DIR = os.path.normpath(os.path.join(HERE, ".."))
 ACS = os.path.normpath(os.path.join(HERE, "..", "..", ".."))
-COMBINED = os.path.join(ACS, "results", "benchmark", "combined", "benchmark_combined_66.csv")
+COMBINED = os.path.join(ACS, "benchmark", "combined", "benchmark_combined_66.csv")
 _CHUNK = re.compile(r"_c\d+of\d+_")
 
 

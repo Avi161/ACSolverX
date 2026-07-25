@@ -1,9 +1,17 @@
-import csv, html, json, os
+"""One-off: renders the shipped tables + the heuristic program into a single standalone HTML page.
 
-W = "/Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/hs-docs"
+Run it as a module so the repo root resolves the same way every other script here resolves it::
+
+    .venv/bin/python3 -m experiments.heuristic_search.gen_page [DEST.html]
+
+It reads only committed results and writes one self-contained file; nothing else imports it.
+"""
+import csv, html, json, os, sys
+
+W = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 T = os.path.join(W, "results/equivalence_classes/ms1190_tables")
 C = os.path.join(W, "results/clustering")
-DEST = "/Users/avigyapaudel/.claude/jobs/95ce2a8b/tmp/ms1190_tables.html"
+DEST = sys.argv[1] if len(sys.argv) > 1 else os.path.join(W, "results/heuristic_search/ms1190_tables.html")
 
 solved = list(csv.DictReader(open(T + "/solved_640_aut_orbits.csv")))
 unsolved = list(csv.DictReader(open(T + "/unsolved_124_aca_classes.csv")))
@@ -12,10 +20,10 @@ WB = json.load(open(C + "/within_bucket.json"))
 RK = json.load(open(C + "/signal_ranking.json"))
 HO = json.load(open(C + "/holdout_eval.json"))
 HS = os.path.join(W, "results/heuristic_search")
-SW = json.load(open(HS + "/sweep.json"))
-T2 = json.load(open(HS + "/top2_1000.json"))
-TM = json.load(open(HS + "/tune_multi.json"))
-CP = json.load(open(HS + "/cost_profile.json"))
+SW = json.load(open(HS + "/sweep/sweep.json"))
+T2 = json.load(open(HS + "/sweep/top2_1000.json"))
+TM = json.load(open(HS + "/sweep/tune_multi.json"))
+CP = json.load(open(HS + "/sweep/cost_profile.json"))
 HY = json.load(open(HS + "/hyper.json"))
 TA, TB = R["tables"], R["provenance-matched"]
 e = html.escape
@@ -1273,7 +1281,7 @@ page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states 
     <th>tail</th></tr></thead>
     <tbody>{hyper_scaling_rows()}</tbody></table></div>
     <div class="pbody" style="border-top:1px solid var(--line)"><p style="margin:0;font-size:13px;color:var(--ink-2)">{hy_scaling_note}</p>
-    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-2)"><b>Settled at 100,000 nodes (EXP-28, run on Colab).</b> The pre-registered gap metric read &#8220;turned over&#8221; (+14 at 10&#179; &#8594; +6 at 10&#8309;) &#8212; a saturation artifact: <b>the tuned ordering finished the benchmark at 62,534 nodes, 60/60 graded rows</b>, its only misses the six open reach problems, so past 62.5k the gap could only compress. Where headroom existed the answer is emphatic: the strict superset held at every checkpoint, the six tuned-exclusive solves are <b>all of bin&#8202;9 &#8212; 6/6 against the baseline&#8217;s 0/6 at 100k</b> &#8212; and against the baseline&#8217;s own 10<sup>6</sup>-node data the hump-band multiplier is <b>3.4&#215;&#8211;23&#215;</b> (ms634/ms635: 25k tuned vs 574k baseline). The campaign this gated &#8212; 10<sup>6</sup> nodes on the 124 unsolved classes, treatment arm only, on the packed-arena solver (<code>hcompact</code>, ~78&#8202;B/state, pop-identical across an 880-search cross-check, ~7&#8202;GB per 10<sup>6</sup> search) &#8212; is a go: it probes a baseline-equivalent 3.4M&#8211;23M, past the 10<sup>7</sup> regime the 124 are defined by surviving. Plan: <code>tests/heuristic_search/logs/SCALE_RUN_PLAN.md</code>.</p></div>
+    <p style="margin:10px 0 0;font-size:13px;color:var(--ink-2)"><b>Settled at 100,000 nodes (EXP-28, run on Colab).</b> The pre-registered gap metric read &#8220;turned over&#8221; (+14 at 10&#179; &#8594; +6 at 10&#8309;) &#8212; a saturation artifact: <b>the tuned ordering finished the benchmark at 62,534 nodes, 60/60 graded rows</b>, its only misses the six open reach problems, so past 62.5k the gap could only compress. Where headroom existed the answer is emphatic: the strict superset held at every checkpoint, the six tuned-exclusive solves are <b>all of bin&#8202;9 &#8212; 6/6 against the baseline&#8217;s 0/6 at 100k</b> &#8212; and against the baseline&#8217;s own 10<sup>6</sup>-node data the hump-band multiplier is <b>3.4&#215;&#8211;23&#215;</b> (ms634/ms635: 25k tuned vs 574k baseline). The campaign this gated &#8212; 10<sup>6</sup> nodes on the 124 unsolved classes, treatment arm only, on the packed-arena solver (<code>hcompact</code>, ~78&#8202;B/state, pop-identical across an 880-search cross-check, ~7&#8202;GB per 10<sup>6</sup> search) &#8212; is a go: it probes a baseline-equivalent 3.4M&#8211;23M, past the 10<sup>7</sup> regime the 124 are defined by surviving. Plan: <code>results/heuristic_search/SCALE_RUN_PLAN.md</code>.</p></div>
   </div>
 
   <div class="panel" style="margin-top:20px"><div class="phead"><h2>The endgame phase is only needed by lean orderings</h2>

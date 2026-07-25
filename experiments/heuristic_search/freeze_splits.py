@@ -21,10 +21,10 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from experiments.heuristic_search.hlab import LOGS, bench66      # noqa: E402
+from experiments.heuristic_search.hlab import SPLITS, bench66      # noqa: E402
 
 SEED = 20260723
-OUT = os.path.join(LOGS, "splits.json")
+OUT = os.path.join(SPLITS, "splits.json")
 
 
 def main():
@@ -61,7 +61,7 @@ def main():
         "test": sorted(test),
         "reach": sorted(r["name"] for r in reach),
     }
-    os.makedirs(LOGS, exist_ok=True)
+    os.makedirs(SPLITS, exist_ok=True)
     with open(OUT, "w") as f:
         json.dump(out, f, indent=1)
     print(f"train {len(train)}  test {len(test)}  reach {len(reach)}  -> {OUT}")

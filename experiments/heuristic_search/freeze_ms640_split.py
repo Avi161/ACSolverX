@@ -24,11 +24,11 @@ import collections
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import numpy as np                                                  # noqa: E402
-from experiments.heuristic_search.hlab import LOGS                  # noqa: E402
+from experiments.heuristic_search.hlab import SPLITS                  # noqa: E402
 from experiments.heuristic_search.exp26_clean_holdout import clean_rows  # noqa: E402
 
 SEED = 20260724
-OUT = os.path.join(LOGS, "splits_ms640.json")
+OUT = os.path.join(SPLITS, "splits_ms640.json")
 TUNE_FRACTION = 2 / 3
 
 

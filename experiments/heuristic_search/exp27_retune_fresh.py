@@ -29,7 +29,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from experiments.heuristic_search.hlab import LOGS, cfg_name        # noqa: E402
+from experiments.heuristic_search.hlab import LOGS, SPLITS, cfg_name        # noqa: E402
 from experiments.heuristic_search.hfast import search_fast          # noqa: E402
 from experiments.heuristic_search.hsolve import (                   # noqa: E402
     LEAN_SMALL_BUDGET, RECOMMENDED,
@@ -41,7 +41,7 @@ MRL = 48
 SEED = 2607
 N_RANDOM = 260
 OUT = os.path.join(LOGS, "EXP27_retune.jsonl")
-SPLIT = os.path.join(LOGS, "splits_ms640.json")
+SPLIT = os.path.join(SPLITS, "splits_ms640.json")
 
 POOL = ("K", "MK", "mK", "S", "Bmax", "B1", "Bmin", "Lmin", "Lmax", "imbal", "xyimb",
         "Bmaxrun", "Bspread", "ratio", "density")

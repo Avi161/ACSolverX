@@ -29,7 +29,7 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-06](EXP06_promote.md) | do the 500-node winners hold at budget 1,000? | **no — the winner changes** — richer knot climb 25→29 while the lean 500-winner plateaus 27→27 |
 | [EXP-08](EXP08_reach.md) | can any ordering crack a 2nd-hump row at ≤1,000? | **none** (as expected — needs 60k–10M+ nodes) |
 | [EXP-09](EXP09_fullbench.md) | the finalists on the full 66-benchmark | **26→40 at 500, 29→43 at 1000** (+14 solves each) |
-| [FINDINGS](FINDINGS.md) | winner on the aut-disjoint split, per budget, overfit priced | held-out bins 4–7: baseline 1/7 → **5/7** (500), **7/7** (1000) |
+| [FINDINGS](../FINDINGS.md) | winner on the aut-disjoint split, per budget, overfit priced | held-out bins 4–7: baseline 1/7 → **5/7** (500), **7/7** (1000) |
 | [EXP-10](EXP10_refine.md) | does a finer search near the winners beat them at budget 1,000? | **no — a dead tie** (20/24 both); best-of-400 optimism 1.23, so stop |
 | [EXP-11](EXP11_depth.md) | does a depth term (weighted A*) help? — the axis ruled out on principle earlier | **no** — 1 of 216 arms beat its incumbent, on the weakest one, one budget only |
 | [EXP-13](EXP13_tiers.md) | does a third length tier help, and should the knot weight rise with length? | **no to both** — 3 tiers only ever match 2; the weight wants to FALL with state length |
@@ -49,9 +49,9 @@ The previous push found that block/knot features make a better heap ordering tha
 | [EXP-26](EXP26_clean_holdout.md) | the honest evaluation: 75 presentations outside the benchmark, never read by any stage | **20/75 → 50/75** at budget 1000 (67% vs 27%), a strict superset — 30 gained, 0 lost |
 | [EXP-27](EXP27_retune.md) | can a from-scratch re-tune on *fresh* presentations beat the incumbent? | **no** — ties out of sample (19/25) and loses the half it was selected on (29 vs 31) |
 | [EXP-28](EXP28_colab_scale.md) | the Colab run at 100k: does the advantage extrapolate? (user-executed) | **benchmark FINISHED at 62.5k — 60/60 graded**, 6/6 vs 0/6 on bin 9, hump multiplier 3.4–23× vs `nodes_1M`; the raw gap "turned over" only by saturation |
-| **[BEST_HEURISTIC](BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **never-seen presentations: baseline 20/75 → tuned 50/75**; climb on knots, no threshold needed at 1000 |
-| [SCALE_RUN_PLAN](SCALE_RUN_PLAN.md) | the 10⁶-node campaign on the 124, written before the bench66 gap table landed | gate on **still widening**; single arm, ~50–85 h across 3–5 resumable sessions |
-| [HCOMPACT](HCOMPACT.md) | the tuned ordering on the packed arena — same search, ~78 B/state | 880 paired searches, 0 mismatches incl. first-seen strings; 10⁶ reserves ~7 GB not 24, ceiling on 51 GB moves ~2M → ~5M, +13% faster |
+| **[BEST_HEURISTIC](../BEST_HEURISTIC.md)** | **the recommendation to use, by node budget** | **never-seen presentations: baseline 20/75 → tuned 50/75**; climb on knots, no threshold needed at 1000 |
+| [SCALE_RUN_PLAN](../SCALE_RUN_PLAN.md) | the 10⁶-node campaign on the 124, written before the bench66 gap table landed | gate on **still widening**; single arm, ~50–85 h across 3–5 resumable sessions |
+| [HCOMPACT](../HCOMPACT.md) | the tuned ordering on the packed arena — same search, ~78 B/state | 880 paired searches, 0 mismatches incl. first-seen strings; 10⁶ reserves ~7 GB not 24, ceiling on 51 GB moves ~2M → ~5M, +13% faster |
 
 ## Two splits
 

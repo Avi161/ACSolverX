@@ -29,10 +29,10 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import numpy as np                                                 # noqa: E402
-from experiments.heuristic_search.hlab import LOGS, bench66        # noqa: E402
+from experiments.heuristic_search.hlab import SPLITS, bench66        # noqa: E402
 
 SEED = 20260723
-OUT = os.path.join(LOGS, "splits_aut.json")
+OUT = os.path.join(SPLITS, "splits_aut.json")
 TEST_FRACTION = 1 / 3
 
 
