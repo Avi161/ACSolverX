@@ -44,4 +44,4 @@ apply it to the four pairs of length-three target words.
 - [x] Pair all eight three-cross target words by their final letter.
 - [x] Reduce `DBB` and `DBD` to one open prefix-`DB` killer mechanism.
 - [x] Run related replays, diff checks, and two hostile reviews.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
