@@ -45,4 +45,4 @@ form, `runpy`.
 - [x] Apply it to weight-\(\pm1\) prefix-`DB` survivors.
 - [x] State explicitly that criterion failure is not AC inequivalence.
 - [x] Run related replays, diff checks, and two hostile reviews.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
