@@ -822,6 +822,67 @@ endpoint conjugacies, reverse-direction survivor formula, and parity
 obstruction are pinned by
 `tests/stable_ac/test_one_way_cross_traffic.py`.
 
+## Proven result 19: alternating two-cross feedback also returns
+
+The theorem in
+
+```text
+literature/proofs/AK3_TWO_CROSS_FEEDBACK_SELF_LOOP.md
+```
+
+closes the minimal coupled history: first \(D^\epsilon\) targets \(B\),
+producing \(B_1\), then \(B_1^\eta\) targets \(D\), producing \(D_1\).
+Suppose the second target normalizes after orientation
+\(\delta\) to \(z^{-1}e\).
+
+Quotient by the original \(D\), not the modified survivor.  The first
+cross disappears, \(B_1=B\), and \(D_1\) becomes a conjugate of
+\(B^\eta\) in
+
+\[
+K_D=\langle G,z\mid zxz^{-1}=t\rangle .
+\]
+
+Stable-letter exponent forces
+
+\[
+\delta=\eta.
+\]
+
+The length-one HNN theorem then gives
+
+\[
+[e]_G=e_n=t^{-n}(xt)x^n,
+\]
+
+and torus weight forces
+
+\[
+n=\epsilon+\eta.
+\]
+
+After evaluation, write \(C=B_1[z\mapsto e]\) for the survivor and
+\(Q=D[z\mapsto e]\).  The identity \(D_1[z\mapsto e]=1\) forces \(C\) to
+be conjugate to \(Q^{-\eta}\).  Since
+
+\[
+[Q]_G
+=
+\left[t^{-n}D(xt)t^n\right]_G,
+\]
+
+the fixed-\(R\) lemma followed by AC1/AC3 returns \((R,C)\) classically to
+AK(3).
+
+The reverse alternating order cannot eliminate its second target: its
+\(z\)-exponent is \(0\) or \(\pm2\).  Eliminating the first target/source
+in either order absorbs the later event and reduces to the one-way
+theorem.  Together with Proven result 18, every exactly-two-cross route
+with a final one-\(z\) eliminator is closed under the stated restoration
+hypotheses.  The four sign rows, survivor classes, endpoint conjugacies,
+and opposite-order exponent obstruction are pinned by
+`tests/stable_ac/test_two_cross_feedback.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -851,15 +912,14 @@ catalyst endpoints.  If the restored source is eliminated, passive-source
 absorption closes the \(B\)-source branch and the \(D\)-source branch is
 impossible by \(z\)-exponent.
 
-Every finite one-way \(B/D\) cross history with a final one-\(z\)
-eliminator and the stated source-restoration condition is now closed,
-including repeated hits on the slot later eliminated.  A genuinely new
-cross history must therefore alternate target roles, fail the restoration
-condition, or otherwise feed a modified target back into the eventual
-source so that the source used at a later event leaves its final quotient
-normal closure.  Other remaining routes must change the retained relator
-or recovery equation, produce a primitive eliminator with several
-\(z\)-letters, use the braid relator during recovery, or compress both
-source relators before either old generator is removed.
+Every one-way history and every exactly-two-cross alternating history with
+a final one-\(z\) eliminator and the stated restoration condition is now
+closed.  A genuinely new fixed-\(R\) cross history must use at least three
+alternating events, fail restoration, or make a later source leave the
+normal closure needed by the quotient argument.  Other remaining routes
+must change the retained relator or recovery equation, produce a primitive
+eliminator with several \(z\)-letters, use the braid relator during
+recovery, or compress both source relators before either old generator is
+removed.
 
 AK(3) remains open.

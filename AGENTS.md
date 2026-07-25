@@ -299,3 +299,13 @@
 - [WORKS] For repeated \(D\)-source hits on \(B\), quotient by \(D\) instead of analyzing three interacting axes. The quotient is the HNN extension \(\langle G,z\mid zxz^{-1}=t\rangle\); Britton--Collins conjugacy forces every final one-\(z\) tail to \(e_n=t^{-n}(xt)x^n\), and \(D(e_n)=t^{-n}D(xt)t^n\).
 - [WORKS] For repeated \(B\)-source hits on \(D\), quotient by \(B\), set \(z=xt\), and read the surviving \(B\)-relator as the inverse of the final target class. This closes every one-way history that actually produces a one-\(z\) target; when each event source is a signed conjugate of \(B\), even event count is excluded by \(z\)-exponent parity.
 - [TRAP] Per-event membership in the passive source normal closure erases cross factors, but it does not finish the endpoint argument. If the source survives, restore its final quotient shadow up to conjugation/inversion; if it is eliminated, require its final isolator to preserve the baseline source normal closure.
+
+### 2026-07-25 Original-source quotient closes two-cross feedback
+
+- [WORKS] In the alternating order “\(D^\epsilon\) targets \(B\), then the modified \(B_1^\eta\) targets \(D\),” quotient by the original \(D\), not by \(B_1\). This erases the first cross, makes the final target conjugate to \(B\), and reuses the HNN family with \(n=\epsilon+\eta\).
+- [WORKS] Evaluation of the second target identity forces the actual \(B_1\)-survivor to be conjugate to \(D(e_n)^{-\eta}\), so arbitrary conjugators and either multiplication side introduce no new endpoint.
+- [TRAP] In the reverse alternating order, the second target has \(z\)-exponent \(0\) or \(\pm2\); do not spend a cancellation census on a one-\(z\) isolator that exponent already forbids.
+
+### 2026-07-25 Replay manifests must use tree paths
+
+- [TRAP] A compacted checkpoint can abbreviate test filenames. Before a multi-file `runpy` replay, resolve every path with `rg --files tests/stable_ac`; otherwise the harness can fail before exercising any proof test.
