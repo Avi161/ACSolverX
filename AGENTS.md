@@ -288,3 +288,8 @@
 ### 2026-07-25 Checkpoint plan state
 
 - [TRAP] Do not mark a plan's commit-and-push item complete before both Git commands have actually succeeded. Keep it unchecked through staging and verification, then update it in a follow-up checkpoint if necessary.
+
+### 2026-07-25 Passive-source scope versus repeated targets
+
+- [TRAP] Passive-source absorption closes repeated cross events only when the eventual eliminator is the source at every event. It does not close two or more source factors multiplied into a slot which is itself later used as the eliminator.
+- [WORKS] Split the two-cross frontier into repeated hits on the eventual eliminator and alternating-target feedback. Do not describe feedback as the only remaining two-cross mechanism.

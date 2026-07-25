@@ -795,12 +795,14 @@ absorption closes the \(B\)-source branch and the \(D\)-source branch is
 impossible by \(z\)-exponent.
 
 Passive-source absorption also closes arbitrarily many cross events when
-all of them target the other slot.  A genuinely new two-cross route must
-therefore feed the modified target back into the eventual source, so that
-the source temporarily leaves its final quotient normal closure.  Other
-remaining routes must change the retained relator or recovery equation,
-produce a primitive eliminator with several \(z\)-letters, use the braid
-relator during recovery, or compress both source relators before either old
-generator is removed.
+the eventual eliminator is their source throughout.  It does not close
+repeated hits on a slot which is itself later eliminated.  The two-cross
+frontier therefore splits into two genuinely new branches: two source
+factors targeting the eventual eliminator, and feedback which targets both
+slots so that an eventual source leaves its final quotient normal closure.
+Other remaining routes must change the retained relator or recovery
+equation, produce a primitive eliminator with several \(z\)-letters, use
+the braid relator during recovery, or compress both source relators before
+either old generator is removed.
 
 AK(3) remains open.
