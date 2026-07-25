@@ -52,7 +52,7 @@ def main():
 
     out = {
         "seed": SEED,
-        "source": "results/benchmark/combined/benchmark_combined_66.json",
+        "source": "benchmark/combined/benchmark_combined_66.json",
         "policy": ("train is the ONLY slice any configuration may be selected on; test is read "
                    "once, at the end, and never used to choose anything; reach rows are open "
                    "problems scored on min_total vs bar_to_beat, not on solves"),

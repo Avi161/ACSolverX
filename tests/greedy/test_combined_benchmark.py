@@ -1,8 +1,8 @@
 """``experiments/analysis/combined_benchmark.py`` -- the merged ladder+reach benchmark.
 
-Reads the real ``results/benchmark/subsets/`` and ``results/benchmark/reach/`` fixtures
+Reads the real ``benchmark/subsets/`` and ``benchmark/reach/`` fixtures
 (committed data, not stubbed) and writes to ``tmp_path`` so the test suite never touches
-``results/benchmark/combined/``.
+``benchmark/combined/``.
 """
 
 import csv

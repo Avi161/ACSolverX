@@ -40,7 +40,7 @@ run_nocov(cfg, 1000, 'A1')"
 ```
 
 Outputs → `results/stable_ac/nocov/`. Benchmark input →
-`results/benchmark/combined/benchmark_combined_{11,22,44,66}.json`
+`benchmark/combined/benchmark_combined_{11,22,44,66}.json`
 (`experiments/analysis/combined_benchmark.py`). Scoring rules (ladder = speedup ratios, reach =
 `solved`/`bar_to_beat`, never mixed) live in the week-4 plan and `analysis/README.md`.
 

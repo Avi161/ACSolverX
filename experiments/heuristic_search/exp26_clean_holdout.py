@@ -11,7 +11,7 @@ Three is also the ceiling *within the benchmark*: the two training slices togeth
 never in any slice, any sweep, any shortlist, or any report here.** They are exactly what is
 needed, and they cost nothing but the searches.
 
-Difficulty is taken from the baseline's own 10^6-node run (``results/benchmark/difficulty_bins.csv``,
+Difficulty is taken from the baseline's own 10^6-node run (``benchmark/difficulty_bins.csv``,
 the same source the benchmark's bins came from), so the rows can be stratified the same way and the
 result is comparable to everything above. The evaluation is restricted to the **decidable band**
 (bins 4-7): easier rows are solved by every ordering and harder ones by none, so neither can
@@ -37,7 +37,7 @@ from experiments.heuristic_search.hsolve import (                  # noqa: E402
 
 MRL = 48
 OUT = os.path.join(LOGS, "EXP26_clean_holdout.jsonl")
-BINS_CSV = os.path.join(ROOT, "results", "benchmark", "difficulty_bins.csv")
+BINS_CSV = os.path.join(ROOT, "benchmark", "difficulty_bins.csv")
 MS640 = os.path.join(ROOT, "data", "ms640_solved.txt")
 
 LENGTH_ONLY = {"segments": [{"upto": None, "w": {"L": 1.0}}]}

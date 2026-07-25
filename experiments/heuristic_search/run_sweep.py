@@ -2,7 +2,7 @@
 
 Protocol, and why each piece is there:
 
-  * **Benchmark**: the frozen difficulty-stratified subsets in ``results/benchmark/subsets/`` --
+  * **Benchmark**: the frozen difficulty-stratified subsets in ``benchmark/subsets/`` --
     10 log-width bins of search difficulty, minimally automorphic, so the set is not 20 copies of
     the same easy problem. Tuning happens on ``subset_20``; the reported held-out check is the
     **22 presentations in subset_40 that are not in subset_20** (the two overlap by 18, so
@@ -30,7 +30,7 @@ from experiments.heuristic_search.hsearch import PRIORITIES, ROOT, hsearch   # n
 from experiments.run_baseline import load_dataset                           # noqa: E402
 from experiments.search.greedy_baseline import greedy_search                # noqa: E402
 
-SUBSETS = os.path.join(ROOT, "results", "benchmark", "subsets")
+SUBSETS = os.path.join(ROOT, "benchmark", "subsets")
 OUT = os.path.join(ROOT, "results", "heuristic_search")
 BUDGETS = (100, 200, 500)          # 500 is the hard local ceiling -- never raise it here
 MRL = 24

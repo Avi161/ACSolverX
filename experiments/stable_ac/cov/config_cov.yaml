@@ -4,8 +4,8 @@
 datasets:                       # benchmark halves (Steps 2/2b). Subsets regenerated
                                 # 2026-07-15: minimally-automorphic picks (Aut-class dedup);
                                 # sweep rows from the old picks stay in the jsonls as dead rows
-  - results/benchmark/subsets/benchmark_subset_10.csv
-  - results/benchmark/reach/reach_tier_1.csv
+  - benchmark/subsets/benchmark_subset_10.csv
+  - benchmark/reach/reach_tier_1.csv
 
 budgets: [100, 1000]            # local verification ceiling is 1000 (repo hard rule);
                                 # production budgets (e.g. 50000) are the user's, on Colab

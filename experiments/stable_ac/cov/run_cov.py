@@ -46,8 +46,8 @@ from experiments.stable_ac.cov import cov
 
 COV_DEFAULTS = {
     "datasets": [
-        "results/benchmark/subsets/benchmark_subset_10.csv",
-        "results/benchmark/reach/reach_tier_1.csv",
+        "benchmark/subsets/benchmark_subset_10.csv",
+        "benchmark/reach/reach_tier_1.csv",
     ],
     "budgets": [100, 1000],
     "mode": "cov",                    # "cov" | "baseline"

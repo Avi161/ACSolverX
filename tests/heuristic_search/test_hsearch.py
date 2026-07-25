@@ -28,7 +28,7 @@ MAX_BUDGET = 500          # the local ceiling; never raise it in a test
 @pytest.fixture(scope="module")
 def bench():
     """The frozen difficulty-stratified benchmark subset -- 20 presentations across 10 bins."""
-    with open(os.path.join(ROOT, "results", "benchmark", "subsets",
+    with open(os.path.join(ROOT, "benchmark", "subsets",
                            "benchmark_subset_20.json")) as f:
         ids = [r["pres_id"] for r in json.load(f)["subset"]]
     by = {p: (a, b) for p, a, b in load_dataset(os.path.join(ROOT, "data/ms640_solved.txt"))}

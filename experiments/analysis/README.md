@@ -1,15 +1,15 @@
 # `experiments/analysis/`
 
 Builds the **stable-AC benchmark**: which presentations to test a new technique on, and what bar it
-has to clear. Read-only over `results/greedy_baseline/`; writes `results/benchmark/`.
+has to clear. Read-only over `results/greedy_baseline/`; writes `benchmark/`.
 
 Run them in this order — each consumes the previous one's output:
 
 ```bash
-.venv/bin/python3 -m experiments.analysis.difficulty_bins      # -> results/benchmark/difficulty_bins.csv
-.venv/bin/python3 -m experiments.analysis.benchmark_subsets    # -> results/benchmark/subsets/
-.venv/bin/python3 -m experiments.analysis.reach_tier           # -> results/benchmark/reach/
-.venv/bin/python3 -m experiments.analysis.combined_benchmark   # -> results/benchmark/combined/
+.venv/bin/python3 -m experiments.analysis.difficulty_bins      # -> benchmark/difficulty_bins.csv
+.venv/bin/python3 -m experiments.analysis.benchmark_subsets    # -> benchmark/subsets/
+.venv/bin/python3 -m experiments.analysis.reach_tier           # -> benchmark/reach/
+.venv/bin/python3 -m experiments.analysis.combined_benchmark   # -> benchmark/combined/
 ```
 
 **Use `-m`.** Running them by path (`python3 experiments/analysis/difficulty_bins.py`) fails with

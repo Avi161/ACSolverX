@@ -54,7 +54,7 @@ from experiments.search.greedy_baseline import (                              # 
     reduce_relator_nj, state_to_key,
 )
 
-BENCH66 = os.path.join(ROOT, "results", "benchmark", "combined",
+BENCH66 = os.path.join(ROOT, "benchmark", "combined",
                        "benchmark_combined_66.json")
 LOGS = os.path.join(ROOT, "tests", "heuristic_search", "logs")
 

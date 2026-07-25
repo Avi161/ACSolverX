@@ -1,6 +1,6 @@
 """Freeze the stable-AC benchmark subsets: 10 / 20 / 40 / 60 presentations.
 
-Reads ``results/benchmark/difficulty_bins.csv`` (see ``difficulty_bins.py``) and
+Reads ``benchmark/difficulty_bins.csv`` (see ``difficulty_bins.py``) and
 picks ``k = size // 10`` presentations from each of the 10 log-width difficulty
 bins.
 
@@ -37,7 +37,7 @@ design: screen word families on subset-10, then validate the winner on 40/60 and
 have that be a genuine held-out check rather than a re-scoring of the set the
 words were tuned on.
 
-Writes ``results/benchmark/subsets/``. Read-only over the baseline jsonl.
+Writes ``benchmark/subsets/``. Read-only over the baseline jsonl.
 """
 
 import csv
@@ -52,8 +52,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-BINS_CSV = os.path.join(REPO, "results", "benchmark", "difficulty_bins.csv")
-OUT_DIR = os.path.join(REPO, "results", "benchmark", "subsets")
+BINS_CSV = os.path.join(REPO, "benchmark", "difficulty_bins.csv")
+OUT_DIR = os.path.join(REPO, "benchmark", "subsets")
 
 SIZES = (10, 20, 40, 60)
 N_BINS = 10

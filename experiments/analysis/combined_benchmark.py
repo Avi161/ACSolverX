@@ -15,7 +15,7 @@ with the reach tier's own ``source`` column (``"AK(3)"`` / ``"ms_reps_unsolved
 / ACA class"``), which is deliberately dropped rather than carried through,
 since it would collide.
 
-Writes ``results/benchmark/combined/``::
+Writes ``benchmark/combined/``::
 
     .venv/bin/python3 -m experiments.analysis.combined_benchmark
 """
@@ -29,9 +29,9 @@ while not (os.path.isdir(os.path.join(REPO, "experiments"))
            and os.path.isdir(os.path.join(REPO, "data"))):
     REPO = os.path.dirname(REPO)
 
-SUBSETS_DIR = os.path.join(REPO, "results", "benchmark", "subsets")
-REACH_DIR = os.path.join(REPO, "results", "benchmark", "reach")
-OUT_DIR = os.path.join(REPO, "results", "benchmark", "combined")
+SUBSETS_DIR = os.path.join(REPO, "benchmark", "subsets")
+REACH_DIR = os.path.join(REPO, "benchmark", "reach")
+OUT_DIR = os.path.join(REPO, "benchmark", "combined")
 
 PAIRING = {11: (10, 1), 22: (20, 2), 44: (40, 4), 66: (60, 6)}
 COMPARE_BUDGET = 50_000

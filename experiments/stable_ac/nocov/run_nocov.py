@@ -34,7 +34,7 @@ from experiments.stable_ac.solvern_fast import search_n_fast
 from experiments.stable_ac.word_families import build_family
 
 DEFAULT_CONFIG = {
-    "BENCHMARK": "combined_11",      # results/benchmark/combined/benchmark_{...}.json
+    "BENCHMARK": "combined_11",      # benchmark/combined/benchmark_{...}.json
     "FAMILIES": ["A1", "A2", "A3"],  # used by main()/the notebook loop only
     "MODE": "nocov",                 # row tag + part of the filename identity
     "MAX_RELATOR_LENGTH": 64,        # per-relator cap (no total-length budget)

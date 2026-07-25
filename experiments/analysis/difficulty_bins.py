@@ -39,7 +39,7 @@ picks cover only three classes).
 AC-equivalence, by contrast, is vacuous here: every ms640 presentation is
 AC-trivialisable by construction, so all 640 lie in one AC class.
 
-Writes ``results/benchmark/difficulty_bins.csv``. Read-only over ``results/``::
+Writes ``benchmark/difficulty_bins.csv``. Read-only over ``results/``::
 
     .venv/bin/python3 -m experiments.analysis.difficulty_bins
 """
@@ -55,7 +55,7 @@ from experiments.analysis.whitehead import canon_pair, canonical_form
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASELINE_DIR = os.path.join(REPO, "results", "greedy_baseline")
-OUT_DIR = os.path.join(REPO, "results", "benchmark")
+OUT_DIR = os.path.join(REPO, "benchmark")
 
 TRUTH_BUDGET = 1_000_000      # every presentation solves here -- nothing censored
 COMPARE_BUDGET = 50_000       # the budget Steps 3-5 actually run at

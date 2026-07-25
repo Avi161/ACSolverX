@@ -42,7 +42,7 @@ Two different success criteria, depending on the row's `source`:
 
 ## 2. Input: the combined benchmark
 
-`BENCHMARK: combined_11` → `results/benchmark/combined/benchmark_combined_11.json`,
+`BENCHMARK: combined_11` → `benchmark/combined/benchmark_combined_11.json`,
 built by `experiments/analysis/combined_benchmark.py` as `subset_10` (efficiency ladder,
 one presentation per difficulty bin) + `reach_tier_1` (1 unsolved problem). Document
 constants: `size: 11`, `n_ladder: 10`, `n_reach: 1`, `comparison_budget: 50000`.

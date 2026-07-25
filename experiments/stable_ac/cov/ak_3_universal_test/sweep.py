@@ -2,7 +2,7 @@
 greedy provably cannot?
 
 Base: AK(3) = ⟨x,y | xxxYYYY, xyxYXY⟩, total length 13. Benchmark facts
-(results/benchmark/reach/reach_tier_1.csv): the baseline greedy from the raw
+(benchmark/reach/reach_tier_1.csv): the baseline greedy from the raw
 start never reaches a state with total length < 13 — at 1,000 nodes NOR at
 1,000,000 — and the Aut(F₂)-minimal representative of the pair is ALSO 13, so
 no chain of pure changes of variables can shorten it on its own. The open

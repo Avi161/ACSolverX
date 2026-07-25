@@ -2,10 +2,11 @@
 
 Every artifact any experiment has produced. Each directory has a different job.
 
+> The frozen evaluation set moved out of here to [`benchmark/`](../benchmark/README.md) at the repo root. It is *derived* from `greedy_baseline/` but *consumed* as an input by roughly two dozen files, and living under `results/` hid that.
+
 | directory | what it holds | produced by |
 |---|---|---|
 | **`greedy_baseline/`** | the raw baseline runs — 10 `.jsonl`, one per (budget, dataset) | `experiments/run_baseline.py`, on Colab |
-| **`benchmark/`** | the stable-AC benchmark: difficulty ladder + reach tier + `combined/` | `experiments/analysis/*.py` |
 | **`stable_ac/nocov/`** | Branch-A (No-CoV) sweep jsonl, one per `(benchmark, family, budget)` | `experiments/stable_ac/nocov/run_nocov.py` |
 | **`stable_ac/cov/`** | Branch-B (one-shot CoV) jsonl, one per budget, `cov` + `covbase` modes | `experiments/stable_ac/cov/run_cov.py` |
 | **`stable_ac/mu_scan/`** | the orbit-floor μ-ladder: depth-2 descent map, the rung ladders, `MU_SCAN_FINDINGS.md` | `experiments/stable_ac/cov/{mu_descent_scan,mu_ladder}.py` |
@@ -41,18 +42,6 @@ solve-rate curve. `greedy_1000000_640_…` is the one `difficulty_bins.py` treat
 
 > ⚠ **No `*_paths.jsonl` companions are present**, although `run_baseline.py` defaults to writing them
 > (`use_path`, `PATH_IN_SEPARATE_FILE`). They may exist only on Drive. Unresolved.
-
-## `benchmark/`
-
-`difficulty_bins.csv` labels all 640 presentations with a log-width difficulty bin. `subsets/` holds
-the efficiency ladder (10/20/40/60), `reach/` the unsolved tier (1/2/4/6). All three regenerate from
-the baseline jsonl and the class table — and are checked by regenerating them and requiring a zero
-diff.
-
-`combined/` merges the two into what a technique actually runs on: `benchmark_combined_{11,22,44,66}`
-= subset_10+reach_1 … subset_60+reach_6. Ladder rows (solved, `source: "ladder"`) score speedup
-ratios; reach rows (unsolved, `source: "reach"`) score `solved`/`bar_to_beat` and never enter a
-ratio. Produced by `experiments/analysis/combined_benchmark.py`.
 
 > **Certificates:** every `solved: true` row in `stable_ac/` is a claim whose proof is its move
 > path. `.venv/bin/python3 -m experiments.stable_ac.verify_results` replays all of them through the

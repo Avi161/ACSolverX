@@ -73,7 +73,7 @@ problem in a second coordinate system, a free A/B test for any CoV technique. At
 its ``min_relator_length`` is **13 -- equal to its starting length**. A million nodes
 and the search never went *below* where it began. That is the two-hump wall.
 
-Writes ``results/benchmark/reach/``::
+Writes ``benchmark/reach/``::
 
     .venv/bin/python3 -m experiments.analysis.reach_tier
 """
@@ -92,7 +92,7 @@ CLASSES_CSV = os.path.join(REPO, "results", "equivalence_classes", "sweep",
 UNSOLVED_JSONL = os.path.join(REPO, "results", "greedy_baseline",
                               "greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl")
 NAMES_CSV = os.path.join(REPO, "data", "ms_unsolved_reps", "ms_reps_unsolved.csv")
-OUT_DIR = os.path.join(REPO, "results", "benchmark", "reach")
+OUT_DIR = os.path.join(REPO, "benchmark", "reach")
 
 SIZES = (1, 2, 4, 6)          # pairs 1:10 with subsets 10/20/40/60
 TRUTH_BUDGET = 1_000_000

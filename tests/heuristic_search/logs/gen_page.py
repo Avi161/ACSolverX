@@ -1354,7 +1354,7 @@ page = f"""<title>Miller–Schupp 1190: shape of the minimal automorphic states 
 
   <div class="callout" style="margin-top:20px">
     <h3>The benchmark, and what &#8220;held out&#8221; means here</h3>
-    <p>The frozen subsets in <code>results/benchmark/subsets/</code> — 10 log-width difficulty bins, minimally automorphic, so the set is not 20 copies of the same easy problem. Tuning happens on <b>subset-20</b>. Two validation sets, because the first was compromised:</p>
+    <p>The frozen subsets in <code>benchmark/subsets/</code> — 10 log-width difficulty bins, minimally automorphic, so the set is not 20 copies of the same easy problem. Tuning happens on <b>subset-20</b>. Two validation sets, because the first was compromised:</p>
     <p><b>exploratory (22)</b> — the members of subset-40 not in subset-20. These were inspected under a <i>buggy</i> tie-break (below), so they can no longer serve as a clean confirmation and are labelled accordingly rather than quietly reused. <b>confirm (34)</b> — the members of subset-60 in neither set above. Untouched.</p>
     <p style="margin-bottom:0"><b>The bug worth recording.</b> The first ranking compared arms by the raw <i>sum</i> of nodes over each arm's own both-solved set. Those sets differ in size, so 537 nodes over 8 presentations &#8220;beat&#8221; 582 over 9 — when the per-presentation means are 67.1 against 64.7, the opposite order. It pre-registered the wrong winner, and was caught only because the held-out numbers looked odd. Ranking now uses the mean.</p>
   </div>
