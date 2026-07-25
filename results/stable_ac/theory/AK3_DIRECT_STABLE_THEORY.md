@@ -530,6 +530,54 @@ not an orbit escape.  The complete 24-case residue, both substitution
 identities, and both floors are pinned by
 `tests/stable_ac/test_one_d_catalyst_barrier.py`.
 
+## Proven result 13: arbitrary recovery followed by one catalyst
+
+The literal-\(B\) hypothesis can also be removed.  Let
+
+\[
+U=t\pmod{\langle\!\langle x^3t^{-4}\rangle\!\rangle},
+\qquad
+w=xU,\qquad
+B_U=z^{-1}w.
+\]
+
+The theorem in
+`literature/proofs/AK3_MIXED_RECOVERY_ONE_D_SELF_LOOP.md` allows one
+arbitrary-relative-conjugator \(D^{\pm1}\)-multiplication to target this
+arbitrary \(B_U\).
+
+The axis bridge again removes the unrestricted conjugator.  In the
+intersecting-axis residue, reducing three \(z\)-incidences to one forces the
+unique \(Zz\) seam.  The two complete symbolic templates are
+
+\[
+z^{-1}t^{-1}wx,
+\qquad
+z^{-1}twx^{-1}.
+\]
+
+They isolate \(e_+=t^{-1}wx\) and \(e_-=twx^{-1}\).  If
+
+\[
+S_0(U)=t^{-1}wxw^{-1}
+\]
+
+is the unrestored direct endpoint, substitution in \(D\) gives the exact
+free identities
+
+\[
+D[z=e_+]=t^{-1}S_0(U)t,
+\qquad
+D[z=e_-]=tS_0(U)t^{-1}.
+\]
+
+Thus the catalyst merely conjugates the direct survivor.  The arbitrary
+recovery self-loop theorem already gives
+\((x^3t^{-4},S_0(U))\sim_{\mathrm{AC1-3}}\operatorname{AK}(3)\), so every
+endpoint in this mixed unbounded family also returns classically to AK(3).
+The two seam templates and exact conjugation identities are pinned by
+`tests/stable_ac/test_mixed_recovery_one_d_self_loop.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -548,10 +596,11 @@ closed as a classical AC self-loop, with no word-length bound.
 The remaining one-stabilization routes must leave at least one exact
 hypothesis of the self-loop theorem.  The simplest one-\(D\) catalyst is
 now closed even with an arbitrary conjugator when it targets the literal
-\(B=z^{-1}xt\).  The next mixed one-source route is to replace \(B\) first
-by an arbitrary quotient-equal \(B_U=z^{-1}xU\), then target \(B_U\) with
-one \(D\)-factor.  Other routes use at least two defining-relator factors,
-a changed retained relator or recovery equation, or a primitive eliminator
+\(B=z^{-1}xt\), and the recovery-then-one-\(D\) order is now closed for
+arbitrary recovery words too.  The next one-source route must change the
+interleaving order, reverse the target/source roles so that \(D\) is removed
+and \(B_U\) survives, use at least two defining-relator factors, change the
+retained relator or recovery equation, or produce a primitive eliminator
 with several \(z\)-letters.  Using the braid relator during recovery is
 another distinct option.  Dual-source primitive-pair compression before
 either old generator is removed remains the broadest separate route.

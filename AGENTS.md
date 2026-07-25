@@ -235,3 +235,10 @@
 - [WORKS] The 24 signed rotation products have four raw one-\(z\) witnesses and only two cyclic isolators, `ZTxtx` and `ZtxtX`; both substitutions return the surviving pair classically to AK(3).
 - [TRAP] The literal-\(B\) one-\(D\) theorem does not cover first replacing \(B\) by an arbitrary recovery \(B_U=z^{-1}xU\) and then applying one \(D\)-factor. Preserve that mixed recovery-plus-catalyst mechanism as open.
 - [TRAP] The system-Python scratch census once used a conditional expression inside a `from ... import ...` list and stopped with `SyntaxError: invalid syntax`. Keep scratch imports literal and separate; conditional selection belongs after import.
+
+### 2026-07-24 Mixed recovery-plus-catalyst collapse
+
+- [WORKS] For \(B_U=z^{-1}w\), \(w=xU\), an arbitrary-conjugator one-\(D\) multiplication can create a one-\(z\) target only by canceling \(B_U\)'s unique \(z^{-1}\) with \(D^{\pm1}\)'s unique \(z\). Moving that canceled pair to the displayed seam leaves exactly the templates \(z^{-1}t^{-1}wx\) and \(z^{-1}twx^{-1}\).
+- [WORKS] If \(S_0=t^{-1}wxw^{-1}\) is the direct survivor, the two catalyst survivors reduce exactly to \(t^{-1}S_0t\) and \(tS_0t^{-1}\). Therefore arbitrary recovery followed by one \(D\)-factor is only a relator-conjugation self-loop.
+- [TRAP] This theorem fixes the order “all \(R\)-recovery factors, then one \(D\)-factor.” It does not close other \(R/D\) interleavings or two \(D\)-factors.
+- [TRAP] Cyclic factor-order symmetry does not exchange target/source roles after elimination. If \(D\) is targeted by \(B_U\), the modified \(D\) is removed and \(B_U\) survives; preserve that reverse-role endpoint as a distinct open mechanism.
