@@ -1099,6 +1099,65 @@ controls, and representative HNN endpoints for \(-12\le n\le12\) are
 independently replayed by
 `tests/stable_ac/test_central_quotient_conjugacy_criterion.py`.
 
+## Proven result 24: the evaluated prefix-\(DB\) equations have a non-braid killer
+
+The theorem in
+
+```text
+literature/proofs/AK3_PREFIX_DB_EVALUATED_COUNTERMODEL.md
+```
+
+shows that the central-quotient finish criterion does not hold
+automatically.  If \(e\) is the final tail, put
+
+\[
+b=e^{-1}p,\qquad d=t^{-1}exe^{-1}.
+\]
+
+After evaluation, every \(DBD\) representative satisfies
+
+\[
+K=d\alpha b^\epsilon\alpha^{-1},\qquad
+C=b\beta K^\eta\beta^{-1},\qquad
+1=K\gamma C^\theta\gamma^{-1}.
+\]
+
+For the feasible row \((\epsilon,\eta,\theta)=(1,1,-1)\), there is an
+exact solution in \(G\) with
+
+\[
+\operatorname{wt}(e)=7,\qquad
+\operatorname{wt}(C)=1,
+\]
+
+whose survivor projects to
+
+\[
+\bar C=X^2T^3X^2\sim XT^{-1}
+\]
+
+in \(C_3*C_4\).  The lifted survivor \(C\) normally generates \(G\), but
+its projected cyclic length is \(2\), while the projected cyclic lengths of
+\(D_p^{\pm1}\) are \(6\).  It is therefore not conjugate to
+\(D_p^{\pm1}\).
+
+This is a countermodel to the evaluated equations, weights, and killer
+condition, not a realized stable history.  Evaluation proves only that
+the oriented unevaluated target lies in
+\(\langle\!\langle z^{-1}e\rangle\!\rangle\); a legal deletion requires
+its conjugacy class to contain the cyclically reduced length-two
+representative \(z^{-1}e\).
+
+The explicit solution is in fact nonliftable.  Here \(\delta=-1\).
+Quotienting by the original \(B=z^{-1}p\) would force
+\(b=e^{-1}p\) to be conjugate to a commutator \([D_p,h]\).
+In \(C_3*C_4\), \(\bar b\) has cyclic length \(4\), whereas the complete
+Bass--Serre edge/vertex reduction gives commutator lengths
+\(0,8,10,12\), or at least \(14\).  The exact normal forms,
+cyclic-length separation, and \(216\)-case commutator sieve are
+independently replayed by
+`tests/stable_ac/test_prefix_db_evaluated_countermodel.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1141,12 +1200,18 @@ corridors return exactly to \(D_p\).  Weight plus cyclic conjugacy in
 survivor is conjugate to \(D_p^{\pm1}\) in the retained torus-knot
 quotient.
 
-The next exact word equation is therefore whether every arbitrary
-bridge/twist prefix-\(DB\) survivor projects to the conjugacy class of
-\(D_p^s\), where its already-forced weight is \(s\in\{\pm1\}\).
-One- and two-letter canonical bridge probes satisfy this equation, but
-that bounded evidence is not a theorem.  A projected-conjugacy failure
-would refute only this direct fixed-\(R\) finish, not stable AC.
+The evaluated quotient equation is not enough: it has a weight-one killer
+solution outside the conjugacy classes of \(D_p^{\pm1}\), but the
+quotient-\(B\) commutator sieve proves that explicit solution nonliftable.
+The next exact word equation is to classify all other solutions satisfying
+the true condition in \(H=G*\langle z\rangle\): the oriented third target
+must have cyclically reduced syllable length \(2\), represented by
+\(z^{-1}e\), rather than merely lie in its normal closure.  Equivalently,
+its word in the free evaluation kernel must be conjugate to one basis
+letter.  One- and two-letter canonical bridge probes return to the braid
+class, but that bounded evidence is not a theorem.  Even a liftable
+non-braid survivor would refute only this direct fixed-\(R\) finish, not
+stable AC.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a

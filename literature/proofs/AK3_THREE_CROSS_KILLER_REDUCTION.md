@@ -374,10 +374,11 @@ D_p=t^{-1}(xt)x(xt)^{-1}
 \]
 
 The unique signed cyclic key is `TXTxtx`. Hence the fixed-\(R\) endpoint
-is classically AC-equivalent to
+is classically AC-equivalent to \((R,D_p)\), and \(D_p\) is a conjugate
+of the AK(3) braid relator. Thus
 
 \[
-(R,D_p)=\operatorname{AK}(3)
+(R,D_p)\sim_{\mathrm{AC3}}\operatorname{AK}(3)
 \tag{6.8}
 \]
 

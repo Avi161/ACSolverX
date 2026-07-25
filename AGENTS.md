@@ -362,3 +362,25 @@
 ### 2026-07-25 Zsh reserves `path`
 
 - [TRAP] In zsh, assigning a loop variable named `path` mutates the special array tied to `PATH` and can make the next command fail with `command not found`. Use `proof_file` or another task-specific name in shell loops.
+
+### 2026-07-25 Evaluated prefix-DB equations lose liftability
+
+- [WORKS] The evaluated \(DBD\) system reduces to \(K=d\alpha b^\epsilon\alpha^{-1}\), \(C=b\beta K^\eta\beta^{-1}\), and \(1=K\gamma C^\theta\gamma^{-1}\). With \(\rho=\beta\gamma\) and \(m=\eta\theta\), this forces \(b=C\rho C^m\rho^{-1}\).
+- [WORKS] The feasible \((+,+,-)\) row has an exact weight-one killer solution whose image in \(C_3*C_4\) has cyclic length \(2\), while \(D_p^{\pm1}\) have cyclic length \(6\). Thus the evaluated equations, weights, and killer property do not force the braid class.
+- [WORKS] When lifting a projected solution by central powers, solve all central defects simultaneously and verify the resulting amalgam normal forms; independent equation-by-equation shifts need not be globally consistent.
+- [WORKS] Quotienting a genuine \((+,+,-)\) \(DBD\) history by the original \(B=z^{-1}p\) turns its third target into \([D_p,h]\) up to conjugacy/inversion. The explicit countermodel would require a cyclic-length-\(4\) commutator, while the complete Bass--Serre edge/vertex reduction permits only \(0,8,10,12\), or at least \(14\); hence that countermodel is nonliftable.
+- [TRAP] From \(T[z\mapsto e]=1\), conclude only \(T\in\langle\!\langle z^{-1}e\rangle\!\rangle\). A legal one-\(z\) deletion requires \(T\) to be a single conjugate of \(z^{-1}e\), a strictly stronger Bass--Serre liftability condition.
+- [TRAP] Track the final orientation: in the \((+,+,-)\) row, \(\delta=-1\), so \(D_2^{-1}\), not \(D_2\), is conjugate to \(z^{-1}e\). An arbitrary conjugate can contain many literal \(z\)-letters; the invariant statement is that its conjugacy class has a cyclically reduced syllable-length-two representative.
+- [TRAP] A non-braid killer solving the evaluated equations is not an AC obstruction, an AC-inequivalent endpoint, or a realized stable history.
+
+### 2026-07-25 Replace complete prose sentences
+
+- [TRAP] A line-level wording patch can preserve the old first line and insert the revised sentence beneath it, duplicating a clause. Replace the complete sentence or paragraph and read the local result immediately.
+
+### 2026-07-25 Search LaTeX with fixed strings
+
+- [TRAP] Combining escaped LaTeX delimiters and alternation in one `rg` regular expression can produce `regex parse error: unopened group`. Use separate fixed-string searches (`rg -F`) for proof-notation audits.
+
+### 2026-07-25 Stage ignored proof directories separately
+
+- [TRAP] An explicit `git add` path under ignored `literature/` can abort a mixed staging command even when some proof files are already tracked. Stage ordinary files first, then use `git add -f` with every exact intended proof-file path.

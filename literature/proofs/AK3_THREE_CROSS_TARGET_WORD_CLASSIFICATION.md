@@ -199,7 +199,8 @@ D_p=t^{-1}pxp^{-1}.
 \]
 
 The fixed-\(R\) lemma followed by AC1/AC3 returns \((R,C)\) classically to
-\((R,D_p)=\operatorname{AK}(3)\).
+\((R,D_p)\), and one more AC3 move returns it to
+\(\operatorname{AK}(3)\).
 
 ## 3. The word \(BDD\) closes
 
