@@ -58,4 +58,4 @@ Bass--Serre cyclic forms, Schreier rewriting, `runpy`.
 - [x] Replay kernel length seven for the literal \(G\)-bridge lift.
 - [x] State arbitrary kernel decorations as open.
 - [x] Run focused and full replay, diff audit, and hostile review.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
