@@ -994,6 +994,60 @@ again only the signed cyclic class of \(D_p\).
 The arithmetic and all \(522\) untwisted substitutions are independently
 replayed by `tests/stable_ac/test_three_cross_target_words.py`.
 
+## Proven result 22: the final target choice is redundant
+
+The theorem in
+
+```text
+literature/proofs/AK3_FINAL_TARGET_SWITCH_DUALITY.md
+```
+
+is an abstract final-event duality.  If the current slots are \(A,B\) and
+the final cross targets \(A\), its target class has a representative
+
+\[
+T_A=A\,uB^\theta u^{-1}.
+\]
+
+The cyclic conjugate
+
+\[
+T_B=B^\theta u^{-1}Au
+\]
+
+is the target of a legal final cross with the other slot designated as
+target.  Therefore the identical one-\(z\) isolator \(z^{-1}e\) can be
+obtained with either target choice.
+
+After evaluation,
+
+\[
+[A_e]_G=[u_eB_e^{-\theta}u_e^{-1}]_G.
+\]
+
+The two possible survivors are conjugate up to inversion in the
+fixed-\(R\) quotient, so the fixed-relator lemma gives
+
+\[
+(R,A_e)\sim_{\mathrm{AC1-3}}(R,B_e).
+\]
+
+This is unbounded in the relative conjugator and independent of
+multiplication side.  Consequently target words pair by their final
+letter:
+
+\[
+BBB\leftrightarrow BBD,\quad
+BDD\leftrightarrow BDB,\quad
+DBB\leftrightarrow DBD,\quad
+DDB\leftrightarrow DDD.
+\]
+
+In particular, \(DBB\) and \(DBD\) are one arbitrary bridge/twist killer
+mechanism, not two.  The factor switch and evaluated survivor identities
+are independently replayed by
+`tests/stable_ac/test_final_target_switch_duality.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1025,11 +1079,13 @@ impossible by \(z\)-exponent.
 
 Every one-way history and every exactly-two-cross alternating history with
 a final one-\(z\) eliminator and the stated restoration condition is now
-closed.  The complete three-event classification leaves exactly two
-killer target words.  A genuinely new exactly-three-cross endpoint must
-use \(DBB\) or \(DBD\), one of the six sign rows, and nontrivial relative
-bridge, vertex-twist, or literal \(R\)-gauge geometry.  Both literal
-untwisted corridors return exactly to \(D_p\).
+closed.  The complete three-event classification and final-target
+duality leave exactly one killer mechanism: prefix \(DB\), followed by
+either final target choice.  A genuinely new exactly-three-cross endpoint
+must use one of its six sign rows and nontrivial relative bridge,
+vertex-twist, or literal \(R\)-gauge geometry.  The two target spellings
+give the same classical endpoint class, and both literal untwisted
+corridors return exactly to \(D_p\).
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a

@@ -339,3 +339,9 @@
 ### 2026-07-25 Keep hostile audit scripts readable
 
 - [TRAP] Do not compress an independent matrix census into a nested one-line assertion; a parenthesis error can invalidate the audit while later shell checks continue. Build the result dictionary in a plain loop, print it, and assert it separately.
+
+### 2026-07-25 Final-target switch duality
+
+- [WORKS] A final target \(A\,uB^\theta u^{-1}\) is conjugate to \(B^\theta u^{-1}Au\), so the same final isolator can be realized with either slot designated as target.
+- [WORKS] Evaluation of that target gives \(A_e=u_eB_e^{-\theta}u_e^{-1}\) in the fixed-\(R\) quotient. The two possible survivors are therefore classically AC-equivalent by the fixed-relator lemma, AC1, and AC3.
+- [WORKS] Pair target words by their last letter. In particular \(DBB\leftrightarrow DBD\), so exactly-three traffic has one arbitrary bridge/twist killer mechanism with prefix \(DB\), not two.
