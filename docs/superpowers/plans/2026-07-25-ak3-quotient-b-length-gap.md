@@ -52,4 +52,4 @@ formula.
 - [x] Prove length zero is a classical self-loop.
 - [x] State the positive-length frontier without overclaim.
 - [x] Run related replays, diff checks, and two hostile reviews.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
