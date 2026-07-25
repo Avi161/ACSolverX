@@ -16,7 +16,7 @@ Every artifact any experiment has produced. Each directory has a different job.
 | **`stable_ac/theory/`** | proved/refuted notes from the escape push (μ criterion, MS template, orbit floors) | written by hand, ac-advisor reviewed |
 | **`stable_ac/IDEA_BENCH_RESULTS.md`** | the 16-strategy start-transform race on combined_22 — evidence kept, [producer pruned](../PRUNED.md) | ⚠ `experiments/stable_ac/idea_bench/`, removed |
 | **`equivalence_classes/`** | the 261 unsolved reps are really **126 distinct problems** — and the proof | `experiments/equivalence_classes/` |
-| **`graphs/`** | two baseline curves + the difficulty ranking | ⚠ no producer script in the repo |
+| **`superseded/`** | artifacts kept for provenance only, never cited — see `superseded/README.md` | — |
 
 ---
 
@@ -83,9 +83,11 @@ Cross-arm tables that no single runner produces. `three_way_b10k_subset60.csv` i
 
 The shipped result and every piece of evidence behind it. See its own `README.md`.
 
-## `graphs/`
+## `superseded/`
 
-⚠ **No script in the repo produces these.** They were made ad hoc. `difficulty_ranking.csv` (the 640
-sorted by `(nodes_explored, path_length, pres_id)`) is superseded by `benchmark/difficulty_bins.csv`,
-which carries the same ranking as its `difficulty_rank` column, plus the bin, the Aut class, and the
-50k columns. Prefer the latter.
+Artifacts kept for provenance, never for citation. `superseded/graphs/` (formerly a top-level
+directory directly under `results/`) holds two baseline curves + `difficulty_ranking.csv`. ⚠ **No script in the repo produces these.** They
+were made ad hoc. `difficulty_ranking.csv` (the 640 sorted by `(nodes_explored, path_length, pres_id)`)
+is superseded by `benchmark/difficulty_bins.csv`, which carries the same ranking as its
+`difficulty_rank` column, plus the bin, the Aut class, and the 50k columns. Prefer the latter. See
+[`superseded/README.md`](superseded/README.md).

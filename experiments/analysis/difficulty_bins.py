@@ -106,7 +106,8 @@ def main():
     class_id = {cf: i for i, cf in
                 enumerate(sorted({cf for cf, _, _ in forms.values()}))}
 
-    # difficulty_rank ties break the same way as results/graphs/difficulty_ranking.csv
+    # difficulty_rank ties break the same way as difficulty_ranking.csv in
+    # results/superseded/ (the superseded ranking this file's difficulty_rank replaces)
     order = sorted(truth.values(),
                    key=lambda r: (r["nodes_explored"], r["path_length"], r["pres_id"]))
 

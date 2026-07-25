@@ -37,13 +37,7 @@ At budget 1000 that is a near-4× improvement on the rows in question (5 → 19 
 
 ## The Colab handoff — everything needed, in one place
 
-**Getting the code there.** The push is DNS-blocked on the machine this ran on, so all commits sit on the local branch `worktree-hsearch-hyper`. A portable copy is at **`ACSolverX/hsearch-hyper.bundle`** (34 MB, `git bundle verify` reports a complete history). On a networked machine:
-
-```bash
-git fetch /path/to/hsearch-hyper.bundle worktree-hsearch-hyper:hsearch-hyper
-git checkout research/w5/stable-ac-escape && git merge hsearch-hyper
-git push origin research/w5/stable-ac-escape
-```
+**Getting the code there.** The push was DNS-blocked on the machine this ran on, so a portable 34 MB git-bundle file was carried over to a networked machine and used to land the history. That has since happened: the work is on `origin/worktree-hsearch-hyper` and merged into `research/w5/stable-ac-escape` (which is itself pushed to origin). The bundle was a one-time transport for a DNS-blocked push and has been deleted from the repo — `git clone`/`git fetch origin` is now sufficient; there is nothing left to do here.
 
 **What to run.**
 

@@ -93,6 +93,21 @@ presentation `<x, y | x, y>`.
 
 ## Layout
 
+Top level, and what each directory is for:
+
+| directory | role | map |
+|---|---|---|
+| `data/` | the raw presentation datasets, one Python-literal presentation per line | [below](#datasets-data) |
+| `benchmark/` | the **frozen evaluation set** — difficulty ladder, reach tier, `combined/`, and what each technique costs on it | [→](benchmark/README.md) |
+| `experiments/` | all experiment code: the solvers, the pipelines, and 38 shipped-bug lessons | [→](experiments/README.md) |
+| `results/` | every artifact any experiment produced | [→](results/README.md) |
+| `tests/` | one root, nested by area (`greedy/`, `stable_ac/`, `heuristic_search/`, …); a bare `pytest` collects them all | — |
+| `envs/`, `network.py`, `ppo_ac_s.py`, `beam/` | the original JAX/GPU training stack, described below | — |
+
+`benchmark/` is derived from `results/greedy_baseline/` but consumed as an *input* by roughly two dozen files, which is why it sits beside `data/` rather than under `results/`.
+
+### The JAX stack
+
 ```
 envs/                environment logic
   environment.py     gymnax base Environment (reset/step take idx, sample, probs)

@@ -26,3 +26,15 @@ literature
 # flock ownership claims (runtime artifacts, never results)
 *.jsonl.lock
 .venv
+
+# Background/nohup runner scratch: a run's stdout capture (.log) paired with its
+# process-id marker (.pid), e.g. results/comparison/three_way_b10k.{log,pid} or
+# results/stable_ac/cov/allcov_escape/run_b20000.{log,pid}. Dead the moment the run
+# ends; the actual result is the .jsonl it wrote, never this pair. .pid is ignored
+# everywhere under results/ (repo-wide, nothing legitimate is ever named *.pid).
+# .log stays scoped to the two directories these appear in, not results/**/*.log,
+# because results/equivalence_classes/ tracks real .log files as results, not
+# process scratch.
+results/comparison/*.log
+results/stable_ac/cov/allcov_escape/*.log
+results/**/*.pid
