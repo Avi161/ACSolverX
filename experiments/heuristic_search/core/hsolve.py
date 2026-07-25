@@ -28,7 +28,11 @@ import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+_d = os.path.dirname(os.path.abspath(__file__))
+while _d != os.path.dirname(_d) and not all(
+        os.path.isdir(os.path.join(_d, _s)) for _s in ("experiments", "data")):
+    _d = os.path.dirname(_d)
+sys.path.insert(0, _d)
 
 from experiments.search.greedy_baseline import (                    # noqa: E402
     canonical_pair_nj, move_to_str, reduce_relator_nj, str_to_arr,

@@ -27,7 +27,11 @@ import sys
 
 import numpy as np
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+_d = os.path.dirname(os.path.abspath(__file__))
+while _d != os.path.dirname(_d) and not all(
+        os.path.isdir(os.path.join(_d, _s)) for _s in ("experiments", "data")):
+    _d = os.path.dirname(_d)
+sys.path.insert(0, _d)
 
 from experiments.heuristic_search.core.hlab import LOGS, SPLITS, cfg_name        # noqa: E402
 from experiments.heuristic_search.core.hfast import search_fast          # noqa: E402

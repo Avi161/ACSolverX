@@ -8,7 +8,11 @@ It reads only committed results and writes one self-contained file; nothing else
 """
 import csv, html, json, os, sys
 
-W = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+_d = os.path.dirname(os.path.abspath(__file__))
+while _d != os.path.dirname(_d) and not all(
+        os.path.isdir(os.path.join(_d, _s)) for _s in ("experiments", "data")):
+    _d = os.path.dirname(_d)
+W = _d
 T = os.path.join(W, "results/equivalence_classes/ms1190_tables")
 C = os.path.join(W, "results/clustering")
 DEST = sys.argv[1] if len(sys.argv) > 1 else os.path.join(W, "results/heuristic_search/ms1190_tables.html")

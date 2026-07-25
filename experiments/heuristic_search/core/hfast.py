@@ -32,7 +32,11 @@ import numpy as np
 from numba import njit
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(_HERE))))
+_d = _HERE
+while _d != os.path.dirname(_d) and not all(
+        os.path.isdir(os.path.join(_d, _s)) for _s in ("experiments", "data")):
+    _d = os.path.dirname(_d)
+sys.path.insert(0, _d)
 
 from experiments.search.greedy_baseline import (                    # noqa: E402
     expand_node_topk_nj, str_to_arr, reduce_relator_nj, canonical_pair_nj,
