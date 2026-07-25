@@ -72,4 +72,4 @@ replay.
   read it back.
 - [x] Run all related replays and diff checks.
 - [x] Obtain two hostile reviews of the actual theorem and replay.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
