@@ -69,4 +69,4 @@ homomorphisms, Markdown proof, dependency-free Python replay.
   then read it back.
 - [x] Run all related dependency-free proof tests and diff checks.
 - [x] Obtain two hostile reviews of the actual theorem and replay.
-- [ ] Commit and push the verified checkpoint to `codex/proofs`.
+- [x] Commit and push the verified checkpoint to `codex/proofs`.
