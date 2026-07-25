@@ -618,6 +618,50 @@ AK(3).  This has no recovery-length or conjugator-length bound.  The two
 exact conjugacy identities and the signed cyclic residue are pinned by
 `tests/stable_ac/test_mixed_recovery_reverse_target_self_loop.py`.
 
+## Proven result 15: every post-catalyst \(R\)-gauge tail
+
+The two one-\(D\) theorems classify the immediate eliminator, but a later
+sequence of \(R\)-source moves could alter both the future isolator and its
+survivor before deletion.  The quotient-shadow theorem in
+
+```text
+literature/proofs/AK3_POST_CATALYST_R_GAUGE_SELF_LOOP.md
+```
+
+closes this unbounded suffix without a seam census.
+
+For a general fixed relator \(R\in F(X)\), put
+
+\[
+G=F(X)/\langle\!\langle R\rangle\!\rangle .
+\]
+
+Then
+
+\[
+F(X,z)/\langle\!\langle R\rangle\!\rangle
+\cong G*\langle z\rangle .
+\]
+
+If two isolator shadows \(z^{-1}e\) and \(z^{-1}e_0\) are equal in this free
+product, then \(e=e_0\) in \(G\).  Evaluation at \(z=e\) therefore agrees
+with evaluation at \(z=e_0\).  Any two quotient-equal survivor shadows
+evaluate to the same word modulo \(R\), and the fixed-relator
+normal-closure lemma turns that equality into classical AC equivalence.
+
+Consequently, after arbitrary recovery and one classified \(B_U/D\) cross
+multiplication in either target role, an arbitrary finite suffix preserving
+both non-\(R\) quotient shadows cannot change the eliminated endpoint's
+classical AC class.  This includes arbitrarily many multiplications by
+arbitrarily conjugated \(R^{\pm1}\)-factors on the isolator, the survivor,
+or both.  Taking the recovery prefix to be literal closes the collected
+\(D\)-then-\(R\) order for both target roles.
+
+The exact evaluation identity is unbounded.  A cancellation-heavy replay
+over all 61 recoveries through length 9, both catalyst signs, both target
+roles, and gauge factors with \(z\)-containing conjugators is pinned by
+`tests/stable_ac/test_post_catalyst_r_gauge_self_loop.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -640,8 +684,10 @@ closed even with an arbitrary conjugator when it targets the literal
 one-\(D\), one-\(z\)-elimination stratum is closed for both target/source
 roles.
 
-The next one-source route must change the \(R/D\) interleaving order, use at
-least two defining-relator factors, change the retained relator or recovery
+An arbitrary recovery prefix, one \(D\)-event, and any later fixed-\(R\)
+gauge tail is now closed.  The next one-source route must pre-twist the
+\(D\)-slot by \(R\)-moves before the cross multiplication, use at least two
+\(B_U/D\) cross multiplications, change the retained relator or recovery
 equation, or produce a primitive eliminator with several \(z\)-letters.
 Using the braid relator during recovery is another distinct option.
 Dual-source primitive-pair compression before either old generator is

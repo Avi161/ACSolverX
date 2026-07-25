@@ -247,3 +247,14 @@
 
 - [WORKS] When one \(B_U^{\pm1}\)-multiplication targets \(D\), the cyclic isolator classification transfers because \(V_DV_B\) and \(V_BV_D\) are conjugate, but the restored source \(B_U=z^{-1}w\) must be substituted separately. The exact survivors are \(C_+=w^{-1}S_0^{-1}w\) and \(C_-=(t^{-1}w)^{-1}S_0(t^{-1}w)\), so both return by AC1/AC3 to the direct endpoint \(Q(U)\).
 - [TRAP] Closing both target/source roles after “all recovery, then one \(D\)-factor” closes only that order's one-\(z\)-elimination stratum. It does not close \(D\)-before-\(R\) or alternating \(R/D\) interleavings, two \(D\)-factors, or primitive eliminators with several \(z^{\pm1}\)-occurrences.
+
+### 2026-07-24 Post-catalyst quotient shadows
+
+- [WORKS] With \(R\in F(X)\) fixed, work in \((F(X)/\langle\!\langle R\rangle\!\rangle)*\langle z\rangle\). Equality of isolator shadows \(z^{-1}e=z^{-1}e_0\) forces \(e=e_0\) modulo \(R\); evaluation at \(z=e\) then sends quotient-equal survivor shadows to the same element modulo \(R\). The fixed-relator normal-closure lemma converts this into classical AC equivalence after deletion.
+- [WORKS] This closes arbitrary fixed-\(R\) gauge suffixes after one classified \(B_U/D\) catalyst, including gauge factors on both the future isolator and survivor and conjugators containing \(z\). The \(D\)-then-\(R\) collected order is therefore a self-loop in both target roles.
+- [TRAP] The quotient-shadow theorem requires the final chosen isolator spelling and survivor to retain their exact post-catalyst quotient shadows. It does not cover a net conjugation/inversion that is not restored, pre-catalyst \(R\)-twisting of \(D\), a second \(B_U/D\) cross multiplication, a changed \(R\), or a multi-\(z\) primitive eliminator.
+
+### 2026-07-24 New-file EOF checks
+
+- [TRAP] An added file with an explicit empty content line after its final paragraph triggers `git diff --check` with `new blank line at EOF`, even though the rendered Markdown or Python looks unchanged.
+- [WORKS] Run `git diff --check` after staging new proof artifacts and remove the final empty content line while preserving the normal terminating newline.
