@@ -57,4 +57,4 @@ word utilities, `runpy` replay.
 - [x] Update the theory ledger and lessons without broadening scope.
 - [x] Run all related proof replays, placeholder scans, and diff checks.
 - [x] Complete separate algebra and scope hostile reviews.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
