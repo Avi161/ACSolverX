@@ -309,3 +309,18 @@
 ### 2026-07-25 Replay manifests must use tree paths
 
 - [TRAP] A compacted checkpoint can abbreviate test filenames. Before a multi-file `runpy` replay, resolve every path with `rg --files tests/stable_ac`; otherwise the harness can fail before exercising any proof test.
+
+### 2026-07-25 Three-cross bridge census fan-out
+
+- [TRAP] Do not enumerate even one-letter relative bridges independently at all three cross events: signed rotations and cyclic classes already expand the second-stage pair set enough to make the third Cartesian product impractical. Derive the exponent/weight and quotient equations first, and use a finite census only on the resulting zero-bridge seam cases.
+
+### 2026-07-25 Patch theorem ledgers by exact local anchors
+
+- [TRAP] Before inserting a new numbered result into `results/stable_ac/theory/AK3_DIRECT_STABLE_THEORY.md`, read the exact paragraph immediately before `## Live lead`; compacted summaries can omit a line and make a broad multi-file patch fail atomically.
+
+### 2026-07-25 Three-cross routes reach the killer frontier
+
+- [WORKS] In the strict order \(D\to B\to D\to B\), the third target has \(z\)-exponent \(0\) or \(\pm2\); eliminating its source erases the third event and reduces to the two-cross theorem.
+- [WORKS] In the reverse strict order, exactly six sign triples have a one-\(z\) third target. Weight pins the tail to \(5,7,\) or \(9\) and the evaluated survivor to weight \(\pm1\), so the endpoint is a killer of \(\langle x,t\mid x^3=t^4\rangle\).
+- [TRAP] Never infer “killer implies meridian” in a torus-knot group. Silver--Whitten--Williams, Theorem 1.2 and Corollary 1.3, give infinitely many inequivalent pseudo-meridians in every nontrivial torus-knot group.
+- [WORKS] The literal untwisted three-seam grammar is finite: \(16\) first targets, \(416\) intermediate pairs, \(522\) one-\(z\) triples, \(69\) final target classes, and one evaluated survivor class \(D_p^{\pm1}\). Keep arbitrary bridges, vertex twists, and literal \(R\)-gauges outside this certificate's scope.

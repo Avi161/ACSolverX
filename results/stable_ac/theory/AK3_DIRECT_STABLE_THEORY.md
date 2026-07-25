@@ -883,6 +883,73 @@ hypotheses.  The four sign rows, survivor classes, endpoint conjugacies,
 and opposite-order exponent obstruction are pinned by
 `tests/stable_ac/test_two_cross_feedback.py`.
 
+## Proven result 20: three-cross routes reach the killer frontier
+
+The theorem in
+
+```text
+literature/proofs/AK3_THREE_CROSS_KILLER_REDUCTION.md
+```
+
+analyzes both strictly alternating target orders with three cross events.
+For
+
+\[
+D\to B_1,\qquad B_1\to D_1,\qquad D_1\to B_2,
+\]
+
+the third target has stable-letter exponent
+
+\[
+\sigma_z(B_2)=-1-\eta\theta\in\{0,-2\}.
+\]
+
+It cannot be a one-\(z\) eliminator.  If its source \(D_1\) is eliminated
+instead, the third event vanishes under evaluation and Proven result 19
+closes the endpoint.
+
+For the reverse order
+
+\[
+B\to D_1,\qquad D_1\to B_1,\qquad B_1\to D_2,
+\]
+
+the final target exponent is
+
+\[
+\sigma_z(D_2)=-\epsilon-\theta-\epsilon\eta\theta.
+\]
+
+The all-positive and all-negative rows have absolute exponent \(3\).
+Exactly six sign rows have absolute exponent \(1\).  Torus weight pins the
+corresponding tail weights to \(5,7,\) or \(9\), and after evaluation every
+survivor \(C=B_1[z\mapsto e]\) has weight \(\pm1\).  Since \((R,C)\)
+presents the trivial group, \(C\) is a weight-\(\pm1\) normal generator,
+or killer, of
+
+\[
+G=\langle x,t\mid x^3=t^4\rangle.
+\]
+
+This is the first branch not closed by quotient exponent and weight.
+Killer does not imply meridian: nontrivial torus-knot groups have
+infinitely many inequivalent pseudo-meridians (Silver--Whitten--Williams,
+Theorem 1.2 and Corollary 1.3).
+
+The literal untwisted signed-seam subcorridor is nevertheless closed
+completely.  The finite certificate enumerates \(16\) first targets,
+\(416\) intermediate pairs, \(522\) one-\(z\) triples, and \(69\) final
+target classes.  Every evaluated survivor has the single signed cyclic
+class of
+
+\[
+D_p=t^{-1}(xt)x(xt)^{-1}.
+\]
+
+The arithmetic table and complete seam certificate are independently
+replayed by
+`tests/stable_ac/test_three_cross_killer_reduction.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -914,12 +981,18 @@ impossible by \(z\)-exponent.
 
 Every one-way history and every exactly-two-cross alternating history with
 a final one-\(z\) eliminator and the stated restoration condition is now
-closed.  A genuinely new fixed-\(R\) cross history must use at least three
-alternating events, fail restoration, or make a later source leave the
-normal closure needed by the quotient argument.  Other remaining routes
-must change the retained relator or recovery equation, produce a primitive
-eliminator with several \(z\)-letters, use the braid relator during
-recovery, or compress both source relators before either old generator is
-removed.
+closed.  Among strictly alternating three-cross histories, one target
+order is also closed and the reverse untwisted-seam corridor returns
+exactly to \(D_p\).  The first unresolved strictly alternating cross
+mechanism is now precise:
+one of six reverse-order sign rows with a nontrivial relative bridge,
+vertex-stabilizer twist, or literal intermediate \(R\)-gauge must produce
+a new weight-\(\pm1\) killer of the \((3,4)\)-torus-knot group.
+
+Other remaining routes can use a non-strict three-event target order,
+fail restoration, change the retained relator or recovery equation,
+produce a primitive eliminator with several \(z\)-letters, use the braid
+relator during recovery, or compress both source relators before either
+old generator is removed.
 
 AK(3) remains open.
