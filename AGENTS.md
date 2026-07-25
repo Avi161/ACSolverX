@@ -384,3 +384,27 @@
 ### 2026-07-25 Stage ignored proof directories separately
 
 - [TRAP] An explicit `git add` path under ignored `literature/` can abort a mixed staging command even when some proof files are already tracked. Stage ordinary files first, then use `git add -f` with every exact intended proof-file path.
+
+### 2026-07-25 Quotient-B length gap for all six rows
+
+- [WORKS] Quotienting a prefix-\(DB\) \(DBD\) representative by the original \(B=z^{-1}p\) sends its third target to \(W_m(h)=D_phD_p^mh^{-1}\), where \(m=\eta\theta\), and literal liftability forces \(b=e^{-1}p\) to be conjugate to \(W_m(h)^{-\delta}\).
+- [WORKS] The Bass--Serre spectra are unbounded but exact: for \(m=-1\), cyclic length is \(0,8,10,12\), or \(12+2d\ge14\); for \(m=1\), it is \(6,10,12\), or \(12+2d\ge14\).
+- [WORKS] All four \(m=-1\) rows have \(\operatorname{wt}(b)=0\). Quotient length zero puts \(b\) in the central kernel, weight forces \(b=1\), and the survivor is a conjugate of \(D_p^\eta\). Thus every non-braid commutator-row lift has quotient length at least \(8\).
+- [WORKS] The minimum \(m=1\) stratum has exactly two projected length-six classes. Their weight-two central lifts determine the tail up to conjugacy, but the previous non-braid killer solves the last two evaluated equations in both classes; the first-cross equation and free-kernel lift remain essential.
+- [TRAP] The positive-length spectra are necessary liftability conditions, not sufficient constructions and not AC obstructions. The two \(m=1\) rows genuinely begin at length \(6\).
+
+### 2026-07-25 Qualify zero-length self-loops
+
+- [TRAP] Do not call every nonempty three-cross history “nontrivial” when its quotient shadow can have cyclic length zero. State the precise condition \(\bar b\ne1\), positive quotient length, or non-braid endpoint.
+- [TRAP] In LaTeX spectrum tables, the `array` column declaration must count the label column plus every numeric heading; a five-value spectrum uses `c|rrrrr`.
+
+### 2026-07-25 Follow the operating-contract AC numbering
+
+- [TRAP] The project prompt defines AC1 as relator multiplication, AC2 as relator inversion, and AC3 as conjugation. Some legacy proof prose uses a different numbering. When removing a survivor sign, name AC2 or say AC1--AC3; never say AC1 removes the sign.
+- [TRAP] A \(6\times6\times6\) rotation/twist list is an overcomplete template census. Call \(k=1\) the template slice covering shared-edge cases and the other \(180\) nonidentity-twist templates; they are not counts of geometrically distinct axis configurations.
+- [TRAP] Once whole-slot inversions have been absorbed into canonical signs \(\epsilon,\eta,\theta,\delta\), do not leave a residual “up to inversion” ambiguity in the quotient equation. Multiplication-side changes leave only conjugacy, which is needed for exact oriented class statements such as \(b^{-\delta}\sim\lambda_j\).
+
+### 2026-07-25 Distinguish lifts from lifted conjugacy classes
+
+- [TRAP] A projected conjugacy class has many literal lifts and representatives. Weight plus projected conjugacy determines a unique \(G\)-conjugacy class, not a unique word or element.
+- [TRAP] State an “if and only if” length classification only inside the necessary quotient equation it classifies; arbitrary elements of the same weight and length need not occur as \(AhA^mh^{-1}\).

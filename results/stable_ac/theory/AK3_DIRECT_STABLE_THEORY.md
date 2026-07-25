@@ -1158,6 +1158,76 @@ cyclic-length separation, and \(216\)-case commutator sieve are
 independently replayed by
 `tests/stable_ac/test_prefix_db_evaluated_countermodel.py`.
 
+## Proven result 25: quotient-B imposes a cyclic-length gap
+
+The theorem in
+
+```text
+literature/proofs/AK3_QUOTIENT_B_LENGTH_GAP.md
+```
+
+applies the quotient-\(B\) sieve to all six feasible prefix-\(DB\) rows.
+Put
+
+\[
+A=\overline{D_p}\in C_3*C_4,
+\qquad
+b=e^{-1}p,
+\qquad
+m=\eta\theta.
+\]
+
+Every literal one-\(z\) lift must satisfy
+
+\[
+\bar b\sim
+\left(AhA^mh^{-1}\right)^{-\delta}
+\]
+
+for some \(h\in C_3*C_4\).  The complete Bass--Serre axis trichotomy
+gives
+
+\[
+\begin{aligned}
+m=-1:\quad&
+\ell_{\mathrm{cyc}}(\bar b)\in\{0,8,10,12\}
+\text{ or }\ell_{\mathrm{cyc}}(\bar b)\ge14,\\
+m=1:\quad&
+\ell_{\mathrm{cyc}}(\bar b)\in\{6,10,12\}
+\text{ or }\ell_{\mathrm{cyc}}(\bar b)\ge14.
+\end{aligned}
+\]
+
+The four \(m=-1\) rows all have
+\(\operatorname{wt}(e)=7\) and \(\operatorname{wt}(b)=0\).
+If their quotient length is zero, central weight forces \(b=1\), hence
+\(e=p\), and the survivor is conjugate to \(D_p^\eta\).  Therefore the
+zero-length branch is a classical self-loop, and every non-braid
+commutator-row lift has quotient length at least \(8\).  The two
+same-orientation rows begin at length \(6\).
+
+That minimum length-six stratum consists of exactly two projected
+conjugacy classes \(L_1,L_2\).  The unique weight-two \(G\)-conjugacy
+class above each \(L_j\) is represented by \(\lambda_j\), and the
+necessary quotient equation forces
+
+\[
+b^{-\delta}\sim_G\lambda_j,
+\qquad
+[e]_G=[p\,g\lambda_j^\delta g^{-1}]_G.
+\]
+
+The previous non-braid killer solves the last two evaluated equations for
+both \(L_j\), so minimum quotient length alone does not close these rows.
+The first evaluated cross equation and literal free-kernel liftability
+remain.
+
+The intersecting-axis spectra are exact \(216\)-case reductions; disjoint
+axes at distance \(d\ge1\) give the unbounded formula \(12+2d\).
+Both spectra, the complete sign table, and the two minimum classes are
+replayed by
+`tests/stable_ac/test_prefix_db_evaluated_countermodel.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1208,10 +1278,17 @@ the true condition in \(H=G*\langle z\rangle\): the oriented third target
 must have cyclically reduced syllable length \(2\), represented by
 \(z^{-1}e\), rather than merely lie in its normal closure.  Equivalently,
 its word in the free evaluation kernel must be conjugate to one basis
-letter.  One- and two-letter canonical bridge probes return to the braid
-class, but that bounded evidence is not a theorem.  Even a liftable
-non-braid survivor would refute only this direct fixed-\(R\) finish, not
-stable AC.
+letter.  The quotient-\(B\) theorem now puts every non-braid commutator
+row at quotient cyclic length at least \(8\), and both same-orientation
+rows at length at least \(6\).  The frontier is to solve the free-kernel
+lift equation on those allowed length strata.  At the minimum
+same-orientation length, there are exactly two tail classes; the old
+non-braid killer passes the last two evaluated equations in both, so the
+immediate exact test is the first-cross equation together with the
+free-kernel lift.  One- and two-letter canonical bridge probes return to
+the braid class, but that bounded evidence is not a theorem.  Even a
+liftable non-braid survivor would refute only this direct fixed-\(R\)
+finish, not stable AC.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a
