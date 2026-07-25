@@ -2,7 +2,7 @@
 
 Everything below is arithmetic from measured quantities, written down **before** the bench66 100k run finished, so the decision procedure is on record rather than reconstructed after the fact.
 
-## The gate — RESOLVED: FIRE (2026-07-24, [EXP-28](EXP28_colab_scale.md))
+## The gate — RESOLVED: FIRE (2026-07-24, [EXP-28](runs/EXP28_colab_scale.md))
 
 The bench66 run at 100k landed. The raw gap metric read "turned over" — a saturation artifact: **the tuned ordering finished the benchmark at 62,534 nodes (60/60 graded)**, so past that point the gap could only compress. Where headroom existed the scale answer is emphatic: 6/6 on bin 9 where the baseline takes 0/6 at 100k, and a **3.4×–23× node multiplier** against the baseline's `nodes_1M` on the hump band. A tuned run at 10⁶ therefore probes a baseline-equivalent ~3.4M–23M, and 3×10⁶ probes ~10M–70M — past the 10⁷ regime the 124 are known to survive. Prior for solves stays low (bin-8 parity rows show the multiplier can be ~1×), but this is the first probe of a genuinely new region. The campaign below is the right next spend.
 
