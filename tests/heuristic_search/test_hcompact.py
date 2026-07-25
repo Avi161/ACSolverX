@@ -17,11 +17,11 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
-from experiments.heuristic_search.hlab import load_split             # noqa: E402
-from experiments.heuristic_search.hsolve import (                    # noqa: E402
+from experiments.heuristic_search.core.hlab import load_split             # noqa: E402
+from experiments.heuristic_search.core.hsolve import (                    # noqa: E402
     LEAN_SMALL_BUDGET, RECOMMENDED, greedy_search_h,
 )
-from experiments.heuristic_search.hcompact import (                  # noqa: E402
+from experiments.heuristic_search.core.hcompact import (                  # noqa: E402
     greedy_search_hcompact,
 )
 
@@ -96,7 +96,7 @@ def test_chunk_boundary_preserves_the_search(sample_rows, monkeypatch):
     through ``st[]``, score/seg surviving the boundary -- is never crossed by the other tests.
     Shrink the chunk so a 500-node burn crosses it four times and require total agreement.
     """
-    import experiments.heuristic_search.hcompact as hc
+    import experiments.heuristic_search.core.hcompact as hc
     monkeypatch.setattr(hc, "_HB_CHECK_EVERY", 100)
     for r in sample_rows[:3]:
         a = greedy_search_h(r["r1"], r["r2"], MAX_BUDGET, max_relator_length=MRL,

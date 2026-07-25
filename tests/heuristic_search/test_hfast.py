@@ -29,13 +29,13 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
-from experiments.heuristic_search.hlab import (              # noqa: E402
+from experiments.heuristic_search.core.hlab import (              # noqa: E402
     BASELINE_CONFIG, FEATURES, N_FEAT, LabSolver, load_split, make_priority, phi, run_one,
 )
-from experiments.heuristic_search.hfast import (              # noqa: E402
+from experiments.heuristic_search.core.hfast import (              # noqa: E402
     _feats_nj, _pack, compile_config, search_fast,
 )
-from experiments.heuristic_search.perbin import bin_of        # noqa: E402
+from experiments.heuristic_search.core.perbin import bin_of        # noqa: E402
 from experiments.search.greedy_baseline import str_to_arr     # noqa: E402
 
 MAX_BUDGET = 500          # the repo-wide test ceiling; matches test_hlab.py's MAX_BUDGET

@@ -24,11 +24,11 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
-from experiments.heuristic_search.hlab import (  # noqa: E402
-    BASELINE_CONFIG, FEATURES, LabSolver, bench66, cfg_name, load_split,
+from experiments.heuristic_search.core.hlab import (  # noqa: E402
+    BASELINE_CONFIG, FEATURES, SPLITS, LabSolver, bench66, cfg_name, load_split,
     make_priority, phi, run_one, word_stats,
 )
-from experiments.heuristic_search.hsearch import feats  # noqa: E402
+from experiments.heuristic_search.core.hsearch import feats  # noqa: E402
 from experiments.search.greedy_baseline import greedy_search  # noqa: E402
 
 MAX_BUDGET = 500          # the local ceiling for a test; the research runs go to 1,000
@@ -164,7 +164,7 @@ def test_segment_index_dominates_the_score(rows):
 
 def test_known_orderings_are_points_in_the_config_space(sample):
     """The tuner can only return something already known to work if the space contains it."""
-    from experiments.heuristic_search.hsearch import PRIORITIES, hsearch
+    from experiments.heuristic_search.core.hsearch import PRIORITIES, hsearch
     knots_first = {"segments": [{"upto": None, "w": {"K": 1e6, "L": 1.0}}]}
     p = make_priority(knots_first)
     for r in sample[:5]:
@@ -179,7 +179,7 @@ def test_known_orderings_are_points_in_the_config_space(sample):
 def test_the_frozen_split_is_a_partition_and_stays_frozen():
     """train/test/reach must tile the 66 exactly. A drifting split invalidates every held-out
     number reported against it, silently and after the fact."""
-    with open(os.path.join(ROOT, "tests", "heuristic_search", "logs", "splits.json")) as f:
+    with open(os.path.join(SPLITS, "splits.json")) as f:
         sp = json.load(f)
     names = {r["name"] for r in bench66()}
     tr, te, re_ = set(sp["train"]), set(sp["test"]), set(sp["reach"])

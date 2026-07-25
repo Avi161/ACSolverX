@@ -22,7 +22,7 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
-import experiments.heuristic_search.run_ab as ra                     # noqa: E402
+import experiments.heuristic_search.runners.run_ab as ra                     # noqa: E402
 
 
 def _rows(path):

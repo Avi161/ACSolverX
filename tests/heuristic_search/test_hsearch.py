@@ -16,7 +16,7 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
-from experiments.heuristic_search.hsearch import (  # noqa: E402
+from experiments.heuristic_search.core.hsearch import (  # noqa: E402
     PRIORITIES, blocks, feats, hsearch,
 )
 from experiments.run_baseline import load_dataset  # noqa: E402
@@ -137,7 +137,7 @@ TUNED = (8.0, 6.23, 0.84, 8.33)      # T, a_knots, a_maxknots, a_smb -- from tun
 
 @pytest.fixture(scope="module")
 def bench60():
-    from experiments.heuristic_search.run_sweep import load, subset_ids
+    from experiments.heuristic_search.runners.run_sweep import load, subset_ids
     return load(subset_ids(60))
 
 
@@ -147,7 +147,7 @@ def test_baseline_params_reproduce_the_length_ordering(bench60):
     A weight space that cannot return the baseline will always appear to beat it, so this is the
     tuning equivalent of the control gate above.
     """
-    from experiments.heuristic_search.tune_multi import BASELINE, make_priority
+    from experiments.heuristic_search.runners.tune_multi import BASELINE, make_priority
     p = make_priority(BASELINE)
     for pid, r1, r2 in bench60[:8]:
         a = greedy_search(r1, r2, 100, max_relator_length=24)
@@ -164,8 +164,8 @@ def test_tuned_solution_paths_are_real_move_chains(bench60):
     a path that skips an edge, and the solve rate is the headline number here. This regenerates the
     neighbour set at each step and requires the next state to be in it.
     """
-    from experiments.heuristic_search.hsearch import HeuristicSolver
-    from experiments.heuristic_search.tune_multi import make_priority
+    from experiments.heuristic_search.core.hsearch import HeuristicSolver
+    from experiments.heuristic_search.runners.tune_multi import make_priority
     from experiments.search.greedy_baseline import (
         canonical_pair_nj, get_neighbors_with_moves_nj, reduce_relator_nj, state_to_key,
         str_to_arr,
@@ -196,7 +196,7 @@ def test_tuned_arm_beats_the_baseline_on_subset_60_and_never_loses(bench60):
     'Never loses' is the part worth pinning -- a net gain can hide churn, and an ordering that
     trades solves is a different (and much weaker) claim than one that strictly dominates.
     """
-    from experiments.heuristic_search.tune_multi import BASELINE, make_priority
+    from experiments.heuristic_search.runners.tune_multi import BASELINE, make_priority
     base, tuned = [], []
     for pid, r1, r2 in bench60:
         base.append(hsearch(r1, r2, 100, make_priority(BASELINE), max_relator_length=24)["solved"])

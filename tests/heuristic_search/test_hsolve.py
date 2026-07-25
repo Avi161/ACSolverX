@@ -37,10 +37,10 @@ import pytest
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
-from experiments.heuristic_search.hlab import load_split             # noqa: E402
-from experiments.heuristic_search.hfast import search_fast           # noqa: E402
-from experiments.heuristic_search.perbin import bin_of               # noqa: E402
-from experiments.heuristic_search.hsolve import (                    # noqa: E402
+from experiments.heuristic_search.core.hlab import load_split             # noqa: E402
+from experiments.heuristic_search.core.hfast import search_fast           # noqa: E402
+from experiments.heuristic_search.core.perbin import bin_of               # noqa: E402
+from experiments.heuristic_search.core.hsolve import (                    # noqa: E402
     LEAN_SMALL_BUDGET, RECOMMENDED, greedy_search_h,
 )
 from experiments.search.greedy_baseline import (                     # noqa: E402
