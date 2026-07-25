@@ -324,3 +324,18 @@
 - [WORKS] In the reverse strict order, exactly six sign triples have a one-\(z\) third target. Weight pins the tail to \(5,7,\) or \(9\) and the evaluated survivor to weight \(\pm1\), so the endpoint is a killer of \(\langle x,t\mid x^3=t^4\rangle\).
 - [TRAP] Never infer “killer implies meridian” in a torus-knot group. Silver--Whitten--Williams, Theorem 1.2 and Corollary 1.3, give infinitely many inequivalent pseudo-meridians in every nontrivial torus-knot group.
 - [WORKS] The literal untwisted three-seam grammar is finite: \(16\) first targets, \(416\) intermediate pairs, \(522\) one-\(z\) triples, \(69\) final target classes, and one evaluated survivor class \(D_p^{\pm1}\). Keep arbitrary bridges, vertex twists, and literal \(R\)-gauges outside this certificate's scope.
+
+### 2026-07-25 Split ledger insertion from live-lead rewrites
+
+- [TRAP] Even after reading the local anchor, a combined result insertion plus distant live-lead replacement can fail atomically on whitespace. Patch the new numbered result and the live-lead paragraph separately, then read both back.
+
+### 2026-07-25 All exactly-three target words
+
+- [WORKS] Record a three-event history by its target word in \(\{B,D\}^3\). The one-way theorem closes \(BBB,DDD\); quotient and exponent arguments close \(BBD,BDD,DDB\); the strict theorem closes \(BDB\).
+- [WORKS] For \(BBD\), quotient by original \(D\): both earlier hits vanish, HNN weight gives \(n=\epsilon+\eta+\theta\), and evaluation identifies the survivor with \(D(e_n)^{-\theta}\). For \(DDB\), quotient by original \(B\): the two earlier hits vanish and final-target evaluation identifies the survivor with \(D_p^{\pm1}\).
+- [TRAP] Exactly three cross events are not exhausted by strict alternation. The only two killer target words are \(DBB\) and \(DBD\); both have six feasible sign rows and the tail-weight set \(\{5,7,9\}\).
+- [WORKS] The literal untwisted \(DBB\) grammar has the same \(16/416/522/69\) counts as \(DBD\) and the same unique survivor class \(D_p^{\pm1}\). Arbitrary bridge/twist geometry remains open in both.
+
+### 2026-07-25 Keep hostile audit scripts readable
+
+- [TRAP] Do not compress an independent matrix census into a nested one-line assertion; a parenthesis error can invalidate the audit while later shell checks continue. Build the result dictionary in a plain loop, print it, and assert it separately.

@@ -950,6 +950,50 @@ The arithmetic table and complete seam certificate are independently
 replayed by
 `tests/stable_ac/test_three_cross_killer_reduction.py`.
 
+## Proven result 21: all three-cross target words are classified
+
+The theorem in
+
+```text
+literature/proofs/AK3_THREE_CROSS_TARGET_WORD_CLASSIFICATION.md
+```
+
+classifies the eight length-three words recording which \(B/D\) slot is
+targeted at each cross event:
+
+| target word | conclusion |
+|---|---|
+| \(BBB,DDD\) | one-way self-loop |
+| \(BBD,BDD,DDB\) | quotient/exponent self-loop |
+| \(BDB\) | strict-order self-loop |
+| \(DBB,DBD\) | six-row killer equation |
+
+For \(BBD\), quotient by the original \(D\).  The first two events vanish,
+the HNN family returns, and weight pins
+
+\[
+n=\epsilon+\eta+\theta.
+\]
+
+Evaluation makes the survivor a conjugate of
+\(D(e_n)^{-\theta}\), hence of \(D_p^{\pm1}\).
+
+For \(BDD\), the third target has even \(z\)-exponent.  Deleting its
+source erases both later events and leaves the first one-way self-loop.
+
+For \(DDB\), the third source has even \(z\)-exponent.  Quotient by the
+original \(B\), which sets \(z=xt\); evaluation of the final target makes
+the actual survivor a conjugate of \(D_p^{\pm1}\).
+
+The remaining non-strict word \(DBB\) has exactly six exponent-feasible
+rows.  Their tail weights are \(5,7,\) or \(9\), and their survivor is a
+weight-\(\pm1\) killer of \(G\).  Its literal untwisted seam census has
+the same exact \(16/416/522/69\) counts as the strict \(DBD\) corridor and
+again only the signed cyclic class of \(D_p\).
+
+The arithmetic and all \(522\) untwisted substitutions are independently
+replayed by `tests/stable_ac/test_three_cross_target_words.py`.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -981,18 +1025,16 @@ impossible by \(z\)-exponent.
 
 Every one-way history and every exactly-two-cross alternating history with
 a final one-\(z\) eliminator and the stated restoration condition is now
-closed.  Among strictly alternating three-cross histories, one target
-order is also closed and the reverse untwisted-seam corridor returns
-exactly to \(D_p\).  The first unresolved strictly alternating cross
-mechanism is now precise:
-one of six reverse-order sign rows with a nontrivial relative bridge,
-vertex-stabilizer twist, or literal intermediate \(R\)-gauge must produce
-a new weight-\(\pm1\) killer of the \((3,4)\)-torus-knot group.
+closed.  The complete three-event classification leaves exactly two
+killer target words.  A genuinely new exactly-three-cross endpoint must
+use \(DBB\) or \(DBD\), one of the six sign rows, and nontrivial relative
+bridge, vertex-twist, or literal \(R\)-gauge geometry.  Both literal
+untwisted corridors return exactly to \(D_p\).
 
-Other remaining routes can use a non-strict three-event target order,
-fail restoration, change the retained relator or recovery equation,
-produce a primitive eliminator with several \(z\)-letters, use the braid
-relator during recovery, or compress both source relators before either
-old generator is removed.
+Other remaining routes can use four or more cross events, fail
+restoration, change the retained relator or recovery equation, produce a
+primitive eliminator with several \(z\)-letters, use the braid relator
+during recovery, or compress both source relators before either old
+generator is removed.
 
 AK(3) remains open.
