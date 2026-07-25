@@ -1,8 +1,21 @@
 # Best-known cost per presentation, per technique
 
-`benchmark_subset_60_arms.{csv,json}` give one row per presentation: what each technique costs to solve it, in **nodes explored** and the **path length** that came with those nodes. Produced by `experiments/analysis/benchmark_arms.py`; the frozen `benchmark_subset_{N}.{csv,json}` are untouched.
+`benchmark_subset_{10,20,40,60}_arms.{csv,json}` give one row per presentation: what each technique costs to solve it, in **nodes explored** and the **path length** that came with those nodes. Produced by `experiments/analysis/benchmark_arms.py`; the frozen `benchmark_subset_{N}.{csv,json}` are untouched.
 
-**Subset-60 only.** The four subsets are *not* nested (`nested: false` in each file), and both the CoV sweep and the heuristic campaign were run against subset-60's row list — so subset-10/20/40 have arm data for only 4/10, 18/20 and 25/40 of their rows. Subset-60 is the one that was actually carried out, and it is complete at 60/60.
+## Not every row has been tested
+
+The four subsets are *not* nested (`nested: false` in each file), and both the CoV sweep and the heuristic campaign were run against **subset-60's** row list. So the smaller subsets contain presentations no transformed arm has ever run on:
+
+| subset | rows | tested | not tested |
+|---|---|---|---|
+| **subset-10** | 10 | 4 | 6 |
+| **subset-20** | 20 | 18 | 2 |
+| **subset-40** | 40 | 25 | 15 |
+| **subset-60** | 60 | 60 | — |
+
+A not-tested row carries `tested = False`, `-1` in every numeric arm column and `none` in every string one — including `*_solved`. **`none` is not `False`.** A blank or a `False` there would read as "we ran it and it did not solve", which is a far stronger claim than "we have not run it"; every summary below counts only `tested` rows, because scoring an untested row as a failure would understate the transformed arms on exactly the subsets they were never run on.
+
+The `greedy_*` columns are populated on **every** row of every subset — they come from the baseline's own 10⁶-node run, where all 640 presentations solve.
 
 ## The heuristic
 

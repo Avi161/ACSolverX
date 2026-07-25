@@ -4,13 +4,17 @@ The subset files say what the *problems* are. This says what each technique curr
 them -- nodes explored and the path length that came with those nodes -- so a new technique can be
 priced against the field without re-deriving the field.
 
-Writes ``benchmark/subsets/benchmark_subset_60_arms.{csv,json}`` plus
+Writes ``benchmark/subsets/benchmark_subset_{10,20,40,60}_arms.{csv,json}`` plus
 ``benchmark/subsets/ARMS.md``. It never touches the frozen ``benchmark_subset_{N}.{csv,json}``:
 those regenerate from the baseline jsonl alone and are checked by a zero-diff regeneration, and
 folding a scoreboard into them would make the problem set depend on the results measured on it.
 
-**Subset-60 only.** The four subsets are not nested, and both campaigns ran against subset-60's row
-list, so 10/20/40 have arm data for only 4/10, 18/20 and 25/40 of their rows.
+**Coverage is partial below subset-60.** The four subsets are not nested (``nested: false``) and
+both campaigns ran against subset-60's row list, so subset-10/20/40 have arm data for only 4/10,
+18/20 and 25/40 of their rows. Untested rows are emitted with ``tested = False``, ``-1`` in every
+numeric arm column and ``"none"`` in every string one -- **including ``*_solved``, which must never
+be ``False`` there**: ``False`` says "we ran it and it did not solve", a far stronger claim than
+"we have not run it". Every summary counts ``tested`` rows only.
 
 Two blocks of columns, and they answer different questions.
 
@@ -54,11 +58,16 @@ THREEWAY_CSV = os.path.join(COMPARISON, "three_way_b10k_subset60.csv")
 EXP28_JSONL = os.path.join(REPO, "results", "heuristic_search", "runs",
                            "EXP28_colab_scale.jsonl")
 
-# Subset-60 only. The four subsets are **not** nested (`nested: false` in each file), and both the
-# CoV sweep and the heuristic campaign were run against subset-60's row list -- so 10/20/40 each
-# contain rows nothing has been measured on (4/10, 18/20 and 25/40 have arm data). Emitting those
-# would ship mostly-blank tables; subset-60 is the set that was actually carried out, 60/60.
-SIZES = (60,)
+SIZES = (10, 20, 40, 60)
+
+# The four subsets are **not** nested (`nested: false` in each file), and both the CoV sweep and the
+# heuristic campaign were run against subset-60's row list -- so 10/20/40 contain rows no arm has
+# ever been run on (4/10, 18/20 and 25/40 have data). Those rows are emitted with an explicit
+# not-tested marker rather than dropped or left blank: a dropped row misrepresents the subset, and a
+# blank or `False` in a `*_solved` column reads as "we tried and it failed", which is a different
+# and much stronger claim than "we have not tried".
+UNTESTED_NUM = -1        # every numeric arm column
+UNTESTED_STR = "none"    # every string arm column, including *_solved
 
 # The recommended heap ordering, as shipped in experiments/heuristic_search/hsolve.py:RECOMMENDED.
 # Mirrored here as data so this file can state the formula without importing the solver; the
@@ -88,7 +97,7 @@ ARMS = {
 }
 
 FIELDS = [
-    "pres_id", "bin", "aut_class", "start_length", "r1", "r2",
+    "pres_id", "bin", "aut_class", "start_length", "r1", "r2", "tested",
     # best known, each arm at its own budget/cap -- see ARMS
     "greedy_solved", "greedy_nodes", "greedy_path",
     "bestcov_solved", "bestcov_nodes", "bestcov_path",
@@ -163,19 +172,24 @@ def load_matched():
     return out
 
 
+def _untested_block():
+    """Every arm column marked not-tested: -1 for numbers, "none" for strings and solved flags."""
+    out = {}
+    for k in FIELDS:
+        if not k.startswith(("bestcov_", "heur_", "m10k_")):
+            continue
+        out[k] = UNTESTED_STR if (k.endswith(("_solved", "_z", "_class"))) else UNTESTED_NUM
+    return out
+
+
 def build_rows(size, bestcov, heur, matched):
     with open(os.path.join(SUBSETS_DIR, f"benchmark_subset_{size}.json")) as f:
         subset = json.load(f)["subset"]
-    missing = [s["pres_id"] for s in subset
-               if not (s["pres_id"] in bestcov and s["pres_id"] in heur
-                       and s["pres_id"] in matched)]
-    assert not missing, (
-        f"subset_{size} has {len(missing)} rows no arm was measured on: {missing}. "
-        "Emitting them blank would read as 'no technique solves it' -- rerun the arms on "
-        "these rows, or restrict SIZES to the subset that was actually carried out.")
+    untested = _untested_block()
     rows = []
     for s in subset:
         pid = s["pres_id"]
+        has = pid in bestcov and pid in heur and pid in matched
         row = {
             "pres_id": pid,
             "bin": s["bin"],
@@ -183,32 +197,42 @@ def build_rows(size, bestcov, heur, matched):
             "start_length": s.get("start_length"),
             "r1": s["r1"],
             "r2": s["r2"],
-            # The baseline's 10^6-node run is the subset's own ground truth: all 640 solve there.
+            "tested": has,
+            # The baseline's 10^6-node run is the subset's own ground truth: all 640 solve there,
+            # so the greedy columns are populated on every row of every subset.
             "greedy_solved": True,
             "greedy_nodes": s["nodes_1M"],
             "greedy_path": s["path_1M"],
         }
-        row.update(bestcov[pid])
-        row.update(heur[pid])
-        row.update(matched[pid])
+        if has:
+            row.update(bestcov[pid])
+            row.update(heur[pid])
+            row.update(matched[pid])
+        else:
+            row.update(untested)
         rows.append(row)
     return rows
 
 
 def summarize(rows):
-    """Means over the rows every listed arm solves -- the only set a cross-arm mean is honest on."""
-    both = [r for r in rows
+    """Means over the rows every listed arm solves -- the only set a cross-arm mean is honest on.
+
+    Restricted to `tested` rows throughout. An untested row is not a failure: counting it as one
+    would understate every transformed arm on exactly the subsets they were never run on.
+    """
+    tested = [r for r in rows if r["tested"]]
+    both = [r for r in tested
             if r["greedy_solved"] and r["bestcov_solved"] and r["heur_solved"]]
-    out = {"n_rows": len(rows), "n_all_three_solved": len(both)}
+    out = {"n_rows": len(rows), "n_tested": len(tested),
+           "n_untested": len(rows) - len(tested), "n_all_three_solved": len(both)}
     for arm in ("greedy", "bestcov", "heur"):
-        out[f"{arm}_solved"] = sum(1 for r in rows if r[f"{arm}_solved"])
-        if both:
-            out[f"{arm}_mean_nodes"] = round(
-                sum(r[f"{arm}_nodes"] for r in both) / len(both), 2)
-            out[f"{arm}_mean_path"] = round(
-                sum(r[f"{arm}_path"] for r in both) / len(both), 2)
+        out[f"{arm}_solved"] = sum(1 for r in tested if r[f"{arm}_solved"] is True)
+        out[f"{arm}_mean_nodes"] = (round(sum(r[f"{arm}_nodes"] for r in both) / len(both), 2)
+                                    if both else None)
+        out[f"{arm}_mean_path"] = (round(sum(r[f"{arm}_path"] for r in both) / len(both), 2)
+                                   if both else None)
     for arm in ("m10k_greedy", "m10k_bestcov", "m10k_heur"):
-        out[f"{arm}_solved"] = sum(1 for r in rows if r[f"{arm}_solved"])
+        out[f"{arm}_solved"] = sum(1 for r in tested if r[f"{arm}_solved"] is True)
     return out
 
 
@@ -230,6 +254,7 @@ def main():
             w = csv.DictWriter(f, fieldnames=FIELDS)
             w.writeheader()
             w.writerows(rows)
+        s = summarize(rows)
         json_path = os.path.join(SUBSETS_DIR, f"benchmark_subset_{size}_arms.json")
         with open(json_path, "w") as f:
             json.dump({
@@ -238,28 +263,41 @@ def main():
                 "heuristic_weights": HEUR_WEIGHTS,
                 "heuristic_terms": HEUR_TERMS,
                 "arms": ARMS,
+                "untested_marker": {"numeric": UNTESTED_NUM, "string": UNTESTED_STR,
+                                    "flag": "tested",
+                                    "note": "a not-tested row means no CoV/heuristic run has "
+                                            "covered it -- it is NOT a failed solve"},
                 "summary": summarize(rows),
                 "rows": rows,
             }, f, indent=1)
-        s = summarize(rows)
-        print(f"subset_{size:<3} n={s['n_rows']:<3} "
+        untested = f", {s['n_untested']} NOT TESTED" if s["n_untested"] else ""
+        print(f"subset_{size:<3} n={s['n_rows']:<3} tested {s['n_tested']}{untested:<18} "
               f"solved greedy {s['greedy_solved']}, cov {s['bestcov_solved']}, "
-              f"heur {s['heur_solved']}  |  on the {s['n_all_three_solved']} all three solve: "
+              f"heur {s['heur_solved']}  |  all-three-solve rows: {s['n_all_three_solved']}  "
               f"nodes {s['greedy_mean_nodes']} / {s['bestcov_mean_nodes']} / {s['heur_mean_nodes']}"
               f"   path {s['greedy_mean_path']} / {s['bestcov_mean_path']} / {s['heur_mean_path']}")
 
     write_doc(bestcov, heur, matched)
-    print("\nwrote -> benchmark/subsets/benchmark_subset_60_arms.{csv,json}"
-          f" + ARMS.md")
+    print("\nwrote -> benchmark/subsets/benchmark_subset_{10,20,40,60}_arms.{csv,json} + ARMS.md")
 
 
 def write_doc(bestcov, heur, matched):
     lines = [
         "# Best-known cost per presentation, per technique",
         "",
-        "`benchmark_subset_60_arms.{csv,json}` give one row per presentation: what each technique costs to solve it, in **nodes explored** and the **path length** that came with those nodes. Produced by `experiments/analysis/benchmark_arms.py`; the frozen `benchmark_subset_{N}.{csv,json}` are untouched.",
+        "`benchmark_subset_{10,20,40,60}_arms.{csv,json}` give one row per presentation: what each technique costs to solve it, in **nodes explored** and the **path length** that came with those nodes. Produced by `experiments/analysis/benchmark_arms.py`; the frozen `benchmark_subset_{N}.{csv,json}` are untouched.",
         "",
-        "**Subset-60 only.** The four subsets are *not* nested (`nested: false` in each file), and both the CoV sweep and the heuristic campaign were run against subset-60's row list — so subset-10/20/40 have arm data for only 4/10, 18/20 and 25/40 of their rows. Subset-60 is the one that was actually carried out, and it is complete at 60/60.",
+        "## Not every row has been tested",
+        "",
+        "The four subsets are *not* nested (`nested: false` in each file), and both the CoV sweep and the heuristic campaign were run against **subset-60's** row list. So the smaller subsets contain presentations no transformed arm has ever run on:",
+        "",
+        "| subset | rows | tested | not tested |",
+        "|---|---|---|---|",
+        "__COVERAGE_ROWS__",
+        "",
+        "A not-tested row carries `tested = False`, `-1` in every numeric arm column and `none` in every string one — including `*_solved`. **`none` is not `False`.** A blank or a `False` there would read as \"we ran it and it did not solve\", which is a far stronger claim than \"we have not run it\"; every summary below counts only `tested` rows, because scoring an untested row as a failure would understate the transformed arms on exactly the subsets they were never run on.",
+        "",
+        "The `greedy_*` columns are populated on **every** row of every subset — they come from the baseline's own 10⁶-node run, where all 640 presentations solve.",
         "",
         "## The heuristic",
         "",
@@ -330,8 +368,14 @@ def write_doc(bestcov, heur, matched):
         "> The best-CoV column is an **oracle**: 2,383 median nodes is what the winning `z` costs *once you know which `z` wins*, and finding it cost ~2.2M nodes per presentation of sweeping. It is a lower bound on a transformed route, not a runnable procedure ([why that distinction matters](../../experiments/lessons/price-the-untransformed-route.md)). The heuristic column has no such caveat — it is one search, with one fixed ordering.",
         "",
     ]
+    cov = []
+    for size in SIZES:
+        cs = summarize(build_rows(size, bestcov, heur, matched))
+        cov.append(f"| **subset-{size}** | {cs['n_rows']} | {cs['n_tested']} |"
+                   f" {cs['n_untested'] or '—'} |")
+    out = "\n".join(lines).replace("__COVERAGE_ROWS__", "\n".join(cov))
     with open(os.path.join(SUBSETS_DIR, "ARMS.md"), "w") as f:
-        f.write("\n".join(lines))
+        f.write(out)
 
 
 if __name__ == "__main__":
