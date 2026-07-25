@@ -367,10 +367,10 @@ This torus-knot group is an amalgamated product of two infinite cyclic
 groups.  Its central normal form gives an exact equality test.  Among all
 
 \[
- 86{,}093{,}440
+ 258{,}280{,}324
 \]
 
-freely reduced words \(U\) of length at most \(16\), exactly \(17{,}155\)
+freely reduced words \(U\) of length at most \(17\), exactly \(40{,}503\)
 represent \(t\).  The complete endpoint census proves
 
 \[
@@ -405,7 +405,7 @@ controlled consequences of the compressed source relators before
 eliminating \(z\).  Pure powers of one fixed rotation and the full
 power-conjugated direction are now closed.  Any still-viable floor-\(12\)
 direct recovery in this one-source model must have freely reduced length
-at least \(17\).  Separate routes change \(R\) before recovery, use \(D\)
+at least \(18\).  Separate routes change \(R\) before recovery, use \(D\)
 nontrivially, use defining words with at least two alternating
 \(v\)-syllables, or use the braid relator during recovery.
 

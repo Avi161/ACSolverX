@@ -54,45 +54,16 @@ def equals_t(word: str) -> bool:
     return normal_form(word) == _TARGET_T
 
 
-def _abelianization_can_reach_t(
-    x_sum: int,
-    t_sum: int,
-    remaining: int,
-) -> bool:
-    """Necessary endpoint test used only to prune impossible prefixes.
-
-    If a word represents ``t``, its exponent sums have the form
-    ``(3k, 1-4k)`` because the defining relator has vector ``(3,-4)``.
-    """
-    minimum_k = -((-(x_sum - remaining)) // 3)
-    maximum_k = (x_sum + remaining) // 3
-    for k in range(minimum_k, maximum_k + 1):
-        distance = abs(3 * k - x_sum) + abs(1 - 4 * k - t_sum)
-        if distance <= remaining and (remaining - distance) % 2 == 0:
-            return True
-    return False
-
-
-def _recovery_words_of_length(
+def _freely_reduced_words(
     length: int,
 ) -> Iterator[tuple[str, NormalForm]]:
     def visit(
         prefix: str,
         previous: str | None,
         state: NormalForm,
-        x_sum: int,
-        t_sum: int,
     ) -> Iterator[tuple[str, NormalForm]]:
-        remaining = length - len(prefix)
-        if not _abelianization_can_reach_t(
-            x_sum,
-            t_sum,
-            remaining,
-        ):
-            return
         if len(prefix) == length:
-            if state == _TARGET_T:
-                yield prefix, state
+            yield prefix, state
             return
         for letter in _ALPHABET:
             if previous is not None and letter == _INVERSE[previous]:
@@ -101,13 +72,30 @@ def _recovery_words_of_length(
                 prefix + letter,
                 letter,
                 _append_letter(state, letter),
-                x_sum
-                + (1 if letter == "x" else -1 if letter == "X" else 0),
-                t_sum
-                + (1 if letter == "t" else -1 if letter == "T" else 0),
             )
 
-    yield from visit("", None, (0, ()), 0, 0)
+    yield from visit("", None, (0, ()))
+
+
+def _inverse_word(word: str) -> str:
+    return "".join(_INVERSE[letter] for letter in reversed(word))
+
+
+def _recoveries_of_length(length: int) -> Iterator[str]:
+    """Meet-in-the-middle enumeration of exact-length recoveries."""
+    left_length = length // 2
+    right_length = length - left_length
+
+    right_by_state: dict[NormalForm, list[str]] = {}
+    for word, state in _freely_reduced_words(right_length):
+        right_by_state.setdefault(state, []).append(word)
+
+    for left, _ in _freely_reduced_words(left_length):
+        required = normal_form(_inverse_word(left) + "t")
+        for right in right_by_state.get(required, ()):
+            if left and right and right[0] == _INVERSE[left[-1]]:
+                continue
+            yield left + right
 
 
 def recoveries_up_to(max_length: int) -> tuple[str, ...]:
@@ -119,8 +107,5 @@ def recoveries_up_to(max_length: int) -> tuple[str, ...]:
 
     recoveries = []
     for length in range(1, max_length + 1):
-        recoveries.extend(
-            word
-            for word, _ in _recovery_words_of_length(length)
-        )
+        recoveries.extend(_recoveries_of_length(length))
     return tuple(recoveries)

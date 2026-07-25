@@ -211,5 +211,8 @@
 ### 2026-07-24 Recovery word equations via amalgam normal form
 
 - [WORKS] Replace bounded enumeration of chosen consequence products by the exact equation \(U=t\) in \(\langle x,t\mid x^3=t^4\rangle\). With central \(c=x^3=t^4\), alternating residues \(x,x^2\) and \(t,t^2,t^3\) give a unique amalgam normal form and a complete equality test.
-- [WORKS] With exact abelianization prefix pruning, the exhaustive length-\(16\) census covers 86,093,440 freely reduced words and exactly 17,155 recoveries. Its unique floor-14 endpoint is \(U=t\); every floor-\(\le23\) word lies in a previously proved parametric family.
+- [SUPERSEDED] Exact abelianization prefix pruning first made the length-\(16\) census feasible, but the DFS still scaled poorly at length \(17\).
+- [WORKS] Split each word into two freely reduced halves, index right halves by independent amalgam normal form, and join a left half \(L\) only to state \(\operatorname{NF}(L^{-1}t)\), excluding inverse seam cancellation. This exact meet-in-the-middle census covers all 258,280,324 raw words through length \(17\) in well under a second of enumeration time.
+- [WORKS] There are exactly 40,503 recoveries through length \(17\). The unique floor-14 endpoint is \(U=t\); every floor-\(\le23\) word lies in a previously proved parametric family.
 - [TRAP] State this as a bounded recovery-word theorem only. Normal-form completeness through a word-length cap does not rule out longer recoveries, changes to the retained source relator, or nontrivial use of the defining relator.
+- [TRAP] Distinguish “shortest nonliteral recovery” from “smallest nonliteral endpoint floor”: nonliteral recoveries first occur at length \(6\), while the floor-\(15\) minimizer has length \(7\). Also do not call the word-equation model broader than every possible conjugate grammar; arbitrary products of arbitrary relator conjugates are extensionally complete.

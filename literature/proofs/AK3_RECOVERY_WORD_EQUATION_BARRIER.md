@@ -3,7 +3,7 @@
 Date: 2026-07-24
 
 Status: **PROVEN** for every freely reduced recovery word of length at
-most \(16\).  This is a bounded theorem, not a solution of stable AK(3).
+most \(17\).  This is a bounded theorem, not a solution of stable AK(3).
 
 ## 1. Replace consequence syntax by a word equation
 
@@ -69,8 +69,8 @@ with
 \tag{1.4}
 \]
 
-This formulation strictly contains any fixed syntax built from chosen
-rotations or conjugates of \(R\).
+This formulation contains every fixed rotation/conjugate syntax studied
+above and is strictly broader than those particular families.
 
 ## 2. Exact normal form in \(G\)
 
@@ -132,18 +132,18 @@ U=t\text{ in }G
 
 This is an exact equality test, not a bounded relator-rewrite heuristic.
 
-## 3. Complete length-\(16\) census
+## 3. Complete length-\(17\) census
 
 There are
 
 \[
-\sum_{\ell=1}^{16}4\cdot3^{\ell-1}
-=86{,}093{,}440
+\sum_{\ell=1}^{17}4\cdot3^{\ell-1}
+=258{,}280{,}324
 \tag{3.1}
 \]
 
 freely reduced nonempty words over \(x^{\pm1},t^{\pm1}\) of length at
-most \(16\).  Applying (2.3) to every one gives exactly \(17{,}155\)
+most \(17\).  Applying (2.3) gives exactly \(40{,}503\)
 recovery words:
 
 | \(|U|\) | recoveries \(U=t\) in \(G\) |
@@ -160,10 +160,23 @@ recovery words:
 | 14 | 1,748 |
 | 15 | 4,040 |
 | 16 | 10,028 |
+| 17 | 23,348 |
 
 There are no recovery words of lengths \(2,3,4,\) or \(5\).
 
-For each of the \(17{,}155\) words, construct (1.3), relabel \(t\) as
+The implementation performs this exhaustive test by splitting a word
+into two freely reduced halves.  It indexes the normal form of every
+right half and, for a left half \(L\), joins exactly the states
+
+\[
+\operatorname{NF}(L^{-1}t),
+\]
+
+excluding inverse cancellation at the seam.  This meet-in-the-middle
+join is equivalent to testing all words in (3.1), not a sampling or beam
+search.
+
+For each of the \(40{,}503\) recovery words, construct (1.3), relabel \(t\) as
 \(y\), and apply all rank-two Whitehead descents.  Whitehead's
 strict-reduction theorem makes the resulting total cyclic length the
 complete Aut(\(F_2\))-floor.
@@ -184,10 +197,11 @@ The minimum floor at each represented word length is:
 | 14 | 29 |
 | 15 | 29 |
 | 16 | 36 |
+| 17 | 29 |
 
 ### Theorem 3.1
 
-For every freely reduced word \(U\) of length at most \(16\) satisfying
+For every freely reduced word \(U\) of length at most \(17\) satisfying
 \(U=t\) in \(G\),
 
 \[
@@ -206,7 +220,7 @@ In particular, no such recovery reaches the length-\(12\) theorem.
 
 ## 4. The complete low-floor stratum
 
-Only six of the \(17{,}155\) endpoints have floor at most \(23\):
+Only six of the \(40{,}503\) endpoints have floor at most \(23\):
 
 | floor | \(|U|\) | recovery \(U\) |
 |---:|---:|---|
@@ -219,23 +233,23 @@ Only six of the \(17{,}155\) endpoints have floor at most \(23\):
 
 The first five entries lie on the already proved power-conjugated family
 \(x^{3m}tx^{-3m}\).  The last lies on the fixed-rotation family.
-Therefore the entire low-floor stratum through recovery length \(16\)
+Therefore the entire low-floor stratum through recovery length \(17\)
 contains no mechanism not already covered by the infinite symbolic
 theorems.
 
-The shortest recovery outside the literal root has floor \(15\), not
+The smallest endpoint floor outside the literal root is \(15\), not
 \(12\).  The best recovery at length \(12\) has floor \(24\).
 
 ## 5. Scope
 
 The theorem classifies all raw freely reduced spellings \(U\) of length
-at most \(16\), regardless of how many rotations, conjugates, inverse
+at most \(17\), regardless of how many rotations, conjugates, inverse
 blocks, or cancellations produced them.  It is broader than a bounded
 search over a chosen consequence grammar.
 
 It does not rule out:
 
-- a recovery word of length at least \(17\) with floor at most \(12\);
+- a recovery word of length at least \(18\) with floor at most \(12\);
 - a route that changes the retained source relator before recovery;
 - a nontrivial use of the defining relator \(D\); or
 - a stabilization mechanism that does not eliminate \(z\) through one
@@ -247,7 +261,7 @@ It does not rule out:
 
 1. the amalgam normal form against the defining relation and its inverse;
 2. the complete list of shortest nonliteral recoveries;
-3. all \(17{,}155\) recovery counts through length \(16\);
+3. all \(40{,}503\) recovery counts through length \(17\);
 4. every endpoint floor;
 5. the unique floor-\(14\) minimum and complete floor-\(\le23\) list; and
 6. the minimum floor at every represented recovery length.

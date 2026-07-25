@@ -62,9 +62,9 @@ def test_shortest_nontrivial_recoveries_are_complete():
     )
 
 
-def test_exact_recovery_census_through_length_sixteen():
-    recoveries = recoveries_up_to(16)
-    assert len(recoveries) == 17_155
+def test_exact_recovery_census_through_length_seventeen():
+    recoveries = recoveries_up_to(17)
+    assert len(recoveries) == 40_503
     assert Counter(map(len, recoveries)) == {
         1: 1,
         6: 4,
@@ -78,6 +78,7 @@ def test_exact_recovery_census_through_length_sixteen():
         14: 1_748,
         15: 4_040,
         16: 10_028,
+        17: 23_348,
     }
 
     scored = sorted(
@@ -112,4 +113,5 @@ def test_exact_recovery_census_through_length_sixteen():
         14: 29,
         15: 29,
         16: 36,
+        17: 29,
     }
