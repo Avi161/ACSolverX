@@ -54,4 +54,4 @@ form, `runpy`.
 - [x] Prove the explicit countermodel is not liftable.
 - [x] Correct two older literal-equality endpoint statements.
 - [x] Run related replays, diff checks, and two hostile reviews.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
