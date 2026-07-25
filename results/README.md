@@ -12,7 +12,7 @@ Every artifact any experiment has produced. Each directory has a different job.
 | **`stable_ac/mu_scan/`** | the orbit-floor μ-ladder: depth-2 descent map, the rung ladders, `MU_SCAN_FINDINGS.md` | `experiments/stable_ac/cov/{mu_descent_scan,mu_ladder}.py` |
 | **`stable_ac/mitm/`** | Aut-quotient meet-in-the-middle vs TRIVIAL, one jsonl per length ceiling | `experiments/stable_ac/cov/run/run_mitm_aut.py` |
 | **`stable_ac/cov/allcov_escape/`** | the whole subword-CoV family of the eight b10k-resistant rows, re-run at a higher budget; keyed by output pair, not presentation | `experiments/stable_ac/cov/escape/allcov_escalate.py` |
-| **`comparison/`** | cross-arm tables: greedy vs best-CoV vs tuned heuristic at a matched budget | `experiments/heuristic_search/three_way_b10k.py` |
+| **`comparison/`** | cross-arm tables: greedy vs best-CoV vs tuned heuristic at a matched budget | `experiments/heuristic_search/runners/three_way_b10k.py` |
 | **`stable_ac/theory/`** | proved/refuted notes from the escape push (μ criterion, MS template, orbit floors) | written by hand, ac-advisor reviewed |
 | **`stable_ac/IDEA_BENCH_RESULTS.md`** | the 16-strategy start-transform race on combined_22 — evidence kept, [producer pruned](../PRUNED.md) | ⚠ `experiments/stable_ac/idea_bench/`, removed |
 | **`stable_ac/ak3/`** | the AK(3) universal test: two certificates, the sweep jsonl, `RESULTS.md` | `experiments/stable_ac/cov/ak3/` |
@@ -74,7 +74,7 @@ identity-transform comparison runs; date not part of the key). Produced by
 
 ## `comparison/`
 
-Cross-arm tables that no single runner produces. `three_way_b10k_subset60.csv` is greedy vs best-CoV vs the tuned heuristic at a matched budget (10,000) and matched cap (24) over the 60-row benchmark, written by `experiments/heuristic_search/three_way_b10k.py` — which refuses to write unless its length-only control reproduces the greedy column pop for pop on all 60 rows. `nodes_comparison_subset60.csv` joins the 1M-budget greedy and 100k heuristic runs to the b10k CoV table; its trailing rows are aggregates, not presentations, so filter on a numeric `pres_id`.
+Cross-arm tables that no single runner produces. `three_way_b10k_subset60.csv` is greedy vs best-CoV vs the tuned heuristic at a matched budget (10,000) and matched cap (24) over the 60-row benchmark, written by `experiments/heuristic_search/runners/three_way_b10k.py` — which refuses to write unless its length-only control reproduces the greedy column pop for pop on all 60 rows. `nodes_comparison_subset60.csv` joins the 1M-budget greedy and 100k heuristic runs to the b10k CoV table; its trailing rows are aggregates, not presentations, so filter on a numeric `pres_id`.
 
 `greedy_vs_bestcov_subset60_nodes_path.csv` + [`GREEDY_VS_BESTCOV.md`](comparison/GREEDY_VS_BESTCOV.md) is the two-arm table on **both** axes — greedy at 1M against best CoV at ≤20,000, nodes *and* path length, 60/60 on each side. Best CoV is defined for all 60 without a new sweep because a search at budget `B` is the first `B` pops of a longer one, so a row that solved at 10,000 keeps its exact value; the builder asserts that on all 52 before writing.
 

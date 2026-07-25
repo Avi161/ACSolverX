@@ -4,7 +4,7 @@ Second occurrence of the orphaned-worker defect (the first is [double-compute](o
 
 ## What happened
 
-`experiments/heuristic_search/lab.py` evaluated configs through a `ProcessPoolExecutor(max_workers=9)`. Two separate sweeps were reaped by the harness mid-run. Each time the harness killed **only the parent** — the nine spawned children kept searching, detached, with no one reading their futures and nothing left to write their results to.
+`experiments/heuristic_search/core/lab.py` evaluated configs through a `ProcessPoolExecutor(max_workers=9)`. Two separate sweeps were reaped by the harness mid-run. Each time the harness killed **only the parent** — the nine spawned children kept searching, detached, with no one reading their futures and nothing left to write their results to.
 
 Eighteen orphans accumulated across the two batches. They were still expanding nodes at cap 48, where a single search's `visited` dict runs to ~1 GB. System swap reached **22.5 GB used with 50 million pageins**, and the user — editing in Cursor on the same machine — saw Cursor reporting a **75 GB** footprint and asked for an emergency fix.
 

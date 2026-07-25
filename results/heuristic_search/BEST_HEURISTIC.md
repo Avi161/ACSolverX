@@ -42,7 +42,7 @@ At budget 1000 that is a near-4× improvement on the rows in question (5 → 19 
 **What to run.**
 
 ```python
-from experiments.heuristic_search.hsolve import greedy_search_h, RECOMMENDED
+from experiments.heuristic_search.core.hsolve import greedy_search_h, RECOMMENDED
 
 a = greedy_search_h(r1, r2, node_budget=10**6, max_relator_length=48, config=None)         # baseline
 b = greedy_search_h(r1, r2, node_budget=10**6, max_relator_length=48, config=RECOMMENDED)  # tuned
@@ -58,7 +58,7 @@ Same function, same returned dict, so an A/B is one run. If you have compute for
 
 ## What is verified about the drop-in
 
-`experiments/heuristic_search/hsolve.py` returns **exactly** `greedy_baseline.greedy_search`'s dict — certificate `path` and `path_moves`, `min_relator`/`max_relator`, `max_relator_length_expanded`, every key — so nothing downstream changes. Run `python3 -m experiments.heuristic_search.verify_hsolve`; it must print ALL PASS. It checks three things:
+`experiments/heuristic_search/core/hsolve.py` returns **exactly** `greedy_baseline.greedy_search`'s dict — certificate `path` and `path_moves`, `min_relator`/`max_relator`, `max_relator_length_expanded`, every key — so nothing downstream changes. Run `python3 -m experiments.heuristic_search.verify.verify_hsolve`; it must print ALL PASS. It checks three things:
 
 1. with `config=None` it reproduces `greedy_search` field for field, `path_moves` included;
 2. under a tuned ordering it pops identically to the research harness every number in this document was measured with — so these reports describe what a production run will do;

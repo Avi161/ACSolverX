@@ -553,7 +553,7 @@
    "winner": 7
   }
  },
- "harness_note": "Runnable: experiments/heuristic_search/hsolve.py exposes greedy_search_h, a drop-in for greedy_baseline.greedy_search that takes the ordering as a config and returns the identical dict \u2014 certificate path, path_moves, min/max relators, every key \u2014 so nothing downstream changes. Verified three ways: config=None reproduces the baseline field for field; under a tuned ordering it pops identically to the research harness every number here was measured with; and its certificates replay independently through moves_to_states onto a trivial pair. Not yet exercised inside run_baseline's resume/W&B machinery, and it uses the string-keyed dict rather than the compact packed arena, so size memory accordingly at very large budgets.",
+ "harness_note": "Runnable: experiments/heuristic_search/core/hsolve.py exposes greedy_search_h, a drop-in for greedy_baseline.greedy_search that takes the ordering as a config and returns the identical dict \u2014 certificate path, path_moves, min/max relators, every key \u2014 so nothing downstream changes. Verified three ways: config=None reproduces the baseline field for field; under a tuned ordering it pops identically to the research harness every number here was measured with; and its certificates replay independently through moves_to_states onto a trivial pair. Not yet exercised inside run_baseline's resume/W&B machinery, and it uses the string-keyed dict rather than the compact packed arena, so size memory accordingly at very large budgets.",
  "wave2": {
   "distinct_problems": {
    "note": "bins 4-7 are 24 rows but only 19 distinct automorphism classes",

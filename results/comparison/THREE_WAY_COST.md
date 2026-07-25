@@ -1,10 +1,10 @@
 # The three-way cost table — standard greedy vs best CoV vs the tuned heuristic
 
-Matched comparison: same 60 benchmark presentations, same node budget (10,000), same per-relator cap (24), one search per arm. Source: `three_way_b10k_subset60.csv` (built by `experiments/heuristic_search/three_way_b10k.py`), with the CoV portfolio cost recovered from `results/stable_ac/cov/covsweep_10000_66_subnc2pxysb_mrl24_cyc_s60r6_07_20_26.jsonl`. The runner's control gate passed on all 60 rows: the length-only ordering reproduces the greedy column pop for pop, so any difference below is attributable to the heap ordering alone.
+Matched comparison: same 60 benchmark presentations, same node budget (10,000), same per-relator cap (24), one search per arm. Source: `three_way_b10k_subset60.csv` (built by `experiments/heuristic_search/runners/three_way_b10k.py`), with the CoV portfolio cost recovered from `results/stable_ac/cov/covsweep_10000_66_subnc2pxysb_mrl24_cyc_s60r6_07_20_26.jsonl`. The runner's control gate passed on all 60 rows: the length-only ordering reproduces the greedy column pop for pop, so any difference below is attributable to the heap ordering alone.
 
 ## The winner
 
-Roughly **2,270 config-arms across 28 experiments** (EXP-01 … EXP-28) reduce to one shipped ordering, `RECOMMENDED` in `experiments/heuristic_search/hsolve.py:45`:
+Roughly **2,270 config-arms across 28 experiments** (EXP-01 … EXP-28) reduce to one shipped ordering, `RECOMMENDED` in `experiments/heuristic_search/core/hsolve.py:45`:
 
 ```
 priority = L + 2.53·K + 6.418·MK + 8.458·S + 3.292·xyimb        # one weight vector, no phases

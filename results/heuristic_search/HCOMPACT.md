@@ -1,6 +1,6 @@
 # HCOMPACT — the tuned ordering at ~78 bytes per state
 
-Engineering, not an experiment: no new search claims, only the same search made to fit. `experiments/heuristic_search/hcompact.py` runs the recommended ordering on `greedy_compact`'s packed layout — nibble arena, int32 binary heap, open-addressing visited table — plus two arrays the heuristic needs (`score: float64`, `seg: uint8`).
+Engineering, not an experiment: no new search claims, only the same search made to fit. `experiments/heuristic_search/core/hcompact.py` runs the recommended ordering on `greedy_compact`'s packed layout — nibble arena, int32 binary heap, open-addressing visited table — plus two arrays the heuristic needs (`score: float64`, `seg: uint8`).
 
 ## The identity claim, and how it is proven
 
@@ -35,8 +35,8 @@ Reservation for 10⁶ at cap 48, measured from the real containers: **6.97 GiB, 
 `hsearch_ab.ipynb` CONFIG: `ENGINE = "hcompact"`. Result-neutral like `KEEP_PATH` and `HIGH_SPEEDUP` — rows are byte-identical across engines (verified end-to-end through `run_ab` at budget 1,000: 16/16 rows equal minus `secs`, certificates present on every solve), so it stays out of the filename identity and files resume across engines. Direct use:
 
 ```python
-from experiments.heuristic_search.hcompact import greedy_search_hcompact
-from experiments.heuristic_search.hsolve import RECOMMENDED
+from experiments.heuristic_search.core.hcompact import greedy_search_hcompact
+from experiments.heuristic_search.core.hsolve import RECOMMENDED
 stats = greedy_search_hcompact(r1, r2, node_budget=3 * 10**6,
                                max_relator_length=48, config=RECOMMENDED)
 ```

@@ -5,7 +5,7 @@
 
 **Question.** The baseline greedy orders its open set by total length alone. The block analysis in `results/clustering/` found that *thickness* (`smaller mean block`) and *knot count* separate solved from unsolved presentations. Does either make a better search priority at a fixed node budget?
 
-**What changes.** Only the heap priority. `experiments/heuristic_search/hsearch.py` subclasses `GreedyBaselineSolver`, so the move generator, free reduction, Booth canonicalisation, per-relator cap, visited set and the `(priority, depth, key)` tie-break are all the baseline's. A difference between arms is attributable to the ordering and nothing else.
+**What changes.** Only the heap priority. `experiments/heuristic_search/core/hsearch.py` subclasses `GreedyBaselineSolver`, so the move generator, free reduction, Booth canonicalisation, per-relator cap, visited set and the `(priority, depth, key)` tie-break are all the baseline's. A difference between arms is attributable to the ordering and nothing else.
 
 **Control gate.** The `length` arm is asserted to reproduce `greedy_search` *pop for pop* — same solved flag and same `nodes_explored` on every presentation, at every budget — before any comparison is read. Pinned in `tests/heuristic_search/test_hsearch.py`. A control that merely scores the same is not the same search.
 
@@ -60,7 +60,7 @@ The first ranking compared arms by the raw **sum** of nodes over each arm's own 
 
 # Multi-feature tuned priority — the strongest result here
 
-`experiments/heuristic_search/tune_multi.py` → `tune_multi.json`. Instead of fixing one weight by hand, tune all of them:
+`experiments/heuristic_search/runners/tune_multi.py` → `tune_multi.json`. Instead of fixing one weight by hand, tune all of them:
 
 ```
 priority(r1, r2) = (0, L)                                        if L <= T
@@ -111,7 +111,7 @@ Pinned in `tests/heuristic_search/test_hsearch.py`, including that the arm never
 
 ## Cost profile: nodes explored and path length
 
-`experiments/heuristic_search/cost_profile.py` → `cost_profile.json`. Solve rate alone cannot say whether an ordering is *better* — one that reaches more solutions by wandering into longer, more expensive derivations has traded quality for coverage. Both remaining axes, on subset-60:
+`experiments/heuristic_search/runners/cost_profile.py` → `cost_profile.json`. Solve rate alone cannot say whether an ordering is *better* — one that reaches more solutions by wandering into longer, more expensive derivations has traded quality for coverage. Both remaining axes, on subset-60:
 
 | budget | solved | nodes (both-solved) | path (both-solved) | tuned, all its solves |
 |---|---|---|---|---|

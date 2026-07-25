@@ -1503,5 +1503,8 @@ btn.textContent=open?"+"+box.children.length:"−";}});
 </script>
 """
 
-open(DEST, "w").write(page)
-print("wrote", DEST, len(page), "bytes")
+# Guarded because this module is all top-level code: anything that merely *imports* it (a
+# pkgutil.walk_packages sweep, an IDE indexer) would otherwise write a ~380 KB file into results/.
+if __name__ == "__main__":
+    open(DEST, "w").write(page)
+    print("wrote", DEST, len(page), "bytes")

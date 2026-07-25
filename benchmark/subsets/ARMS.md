@@ -35,7 +35,7 @@ priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb   (one segment,
 
 Lower is popped first. Every term is a pure function of the state and rotation-invariant — a priority reading `depth` or the parent would make pop order depend on discovery order and stop being reproducible. It is a **single segment with no length threshold**: the earlier phased form is unnecessary here, because `S` and `MK` both fall as a pair approaches the trivial state, so the climb self-regulates.
 
-Shipped as `RECOMMENDED` in `experiments/heuristic_search/hsolve.py`; the producer asserts these weights against it, so the two cannot drift apart.
+Shipped as `RECOMMENDED` in `experiments/heuristic_search/core/hsolve.py`; the producer asserts these weights against it, so the two cannot drift apart.
 
 ## Columns
 

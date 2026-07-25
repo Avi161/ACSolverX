@@ -69,7 +69,7 @@ SIZES = (10, 20, 40, 60)
 UNTESTED_NUM = -1        # every numeric arm column
 UNTESTED_STR = "none"    # every string arm column, including *_solved
 
-# The recommended heap ordering, as shipped in experiments/heuristic_search/hsolve.py:RECOMMENDED.
+# The recommended heap ordering, as shipped in experiments/heuristic_search/core/hsolve.py:RECOMMENDED.
 # Mirrored here as data so this file can state the formula without importing the solver; the
 # weights are asserted against RECOMMENDED at run time, so the two cannot drift apart silently.
 HEUR_WEIGHTS = {"L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}
@@ -238,7 +238,7 @@ def summarize(rows):
 
 def main():
     # Fail loudly rather than shipping a stale formula if RECOMMENDED ever changes.
-    from experiments.heuristic_search.hsolve import RECOMMENDED
+    from experiments.heuristic_search.core.hsolve import RECOMMENDED
     shipped = RECOMMENDED["segments"]
     assert len(shipped) == 1 and shipped[0]["upto"] is None, \
         f"RECOMMENDED is no longer a single unthresholded segment: {RECOMMENDED}"
@@ -318,7 +318,7 @@ def write_doc(bestcov, heur, matched):
         "",
         "Lower is popped first. Every term is a pure function of the state and rotation-invariant — a priority reading `depth` or the parent would make pop order depend on discovery order and stop being reproducible. It is a **single segment with no length threshold**: the earlier phased form is unnecessary here, because `S` and `MK` both fall as a pair approaches the trivial state, so the climb self-regulates.",
         "",
-        "Shipped as `RECOMMENDED` in `experiments/heuristic_search/hsolve.py`; the producer asserts these weights against it, so the two cannot drift apart.",
+        "Shipped as `RECOMMENDED` in `experiments/heuristic_search/core/hsolve.py`; the producer asserts these weights against it, so the two cannot drift apart.",
         "",
         "## Columns",
         "",
