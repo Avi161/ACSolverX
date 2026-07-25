@@ -1228,6 +1228,132 @@ Both spectra, the complete sign table, and the two minimum classes are
 replayed by
 `tests/stable_ac/test_prefix_db_evaluated_countermodel.py`.
 
+## Proven result 26: minimum-tail repositioning defeats the evaluated first-cross barrier
+
+The theorem in
+
+```text
+literature/proofs/AK3_MINIMUM_TAIL_REPOSITIONING_COUNTERMODEL.md
+```
+
+first applies the exact first-cross conjugacy test
+
+\[
+d^{-1}K\sim_Gb^\epsilon
+\]
+
+to the four minimum-tail representatives displayed in Result 25. An
+exhaustive relative-axis overcensus in \(C_3*C_4\) gives respective
+minimum product lengths
+
+\[
+12,\quad14,\quad16,\quad14,
+\]
+
+while \(b^\epsilon\) has length \(6\). Those four fixed representatives
+therefore fail for every remaining conjugator.
+
+The failure is not invariant under repositioning the tail relative to the
+fixed word \(p=xt\). In the dual row
+\((\epsilon,\eta,\theta)=(+,-,-)\), put
+
+\[
+C_0=c^{-2}x^2t^3x^2,
+\qquad
+s=xtx^{-1},
+\]
+
+and define
+
+\[
+\begin{aligned}
+C&=sC_0^{-1}s^{-1},&
+\rho&=s(xt^{-1})s^{-1},\\
+\gamma&=xt^{-1}x^{-1},&
+\beta&=x,\\
+b&=C\rho C\rho^{-1},&
+e&=pb^{-1},\\
+d&=t^{-1}exe^{-1},&
+K&=\gamma C\gamma^{-1},\qquad \alpha=t.
+\end{aligned}
+\]
+
+Amalgam normal form verifies all three evaluated equations exactly:
+
+\[
+K=d\alpha b\alpha^{-1},
+\qquad
+C=b\beta K^{-1}\beta^{-1},
+\qquad
+1=K\gamma C^{-1}\gamma^{-1}.
+\]
+
+Here
+
+\[
+\operatorname{wt}(e)=9,\quad
+\operatorname{wt}(b)=-2,\quad
+\operatorname{wt}(C)=-1.
+\]
+
+The survivor \(C\) is a conjugate of the non-braid killer \(C_0^{-1}\),
+while \(\bar b^{-1}\) is exactly the minimum length-six class \(L_1\).
+Thus even the first evaluated equation does not force the braid class.
+
+The candidate also passes the synchronized quotient-\(B\) test. For
+
+\[
+\Phi=(r_e,r_p):G*\langle z\rangle\to G\times G,
+\]
+
+\[
+\operatorname{im}\Phi
+=
+\{(g,gn):n\in\langle\!\langle b\rangle\!\rangle_G\}.
+\]
+
+In this candidate
+
+\[
+G/\langle\!\langle b\rangle\!\rangle_G\cong C_2,
+\]
+
+so the normal closure of \(b\) is the even-weight subgroup. This permits
+the evaluated bridges to interpolate to
+
+\[
+h_0=xtx^{-1},
+\qquad
+D_ph_0D_ph_0^{-1}=b^{-1}.
+\]
+
+What remains is a genuinely nonabelian free-kernel equation. With
+\(q=ze^{-1}\),
+
+\[
+N=\ker r_e
+=
+F\{q_g=gqg^{-1}:g\in G\}.
+\]
+
+Arbitrary lifts of the three evaluated bridges introduce
+\(U,V,W\in N\), and semidirect expansion gives an explicit
+\(n_3(U,V,W)\) recorded in the proof. Literal liftability is exactly the
+condition that \(n_3\) be conjugate in \(N\) to one negative basis
+letter. The \(G\)-valued lift \(U=V=W=1\) has cyclic kernel length \(7\),
+not \(1\), but this excludes only that point. Scalar augmentation already
+matches the required basis letter. The full
+\(N_{\rm ab}\cong\mathbb Z[G]\) Fox equation is explicit in the proof but
+remains unchecked; finite quotient group algebras give the next exact
+sieve before the nonabelian equation.
+
+The four relative-axis overcensuses, repositioned equations,
+synchronized bridge arithmetic, quotient-\(B\) identity, and literal
+Schreier length are replayed by
+`tests/stable_ac/test_prefix_db_evaluated_countermodel.py`.
+The hand proof that the relevant normal closure is the even-weight
+subgroup supplies the remaining synchronization step.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1273,22 +1399,22 @@ quotient.
 The evaluated quotient equation is not enough: it has a weight-one killer
 solution outside the conjugacy classes of \(D_p^{\pm1}\), but the
 quotient-\(B\) commutator sieve proves that explicit solution nonliftable.
-The next exact word equation is to classify all other solutions satisfying
-the true condition in \(H=G*\langle z\rangle\): the oriented third target
-must have cyclically reduced syllable length \(2\), represented by
-\(z^{-1}e\), rather than merely lie in its normal closure.  Equivalently,
-its word in the free evaluation kernel must be conjugate to one basis
-letter.  The quotient-\(B\) theorem now puts every non-braid commutator
-row at quotient cyclic length at least \(8\), and both same-orientation
-rows at length at least \(6\).  The frontier is to solve the free-kernel
-lift equation on those allowed length strata.  At the minimum
-same-orientation length, there are exactly two tail classes; the old
-non-braid killer passes the last two evaluated equations in both, so the
-immediate exact test is the first-cross equation together with the
-free-kernel lift.  One- and two-letter canonical bridge probes return to
-the braid class, but that bounded evidence is not a theorem.  Even a
-liftable non-braid survivor would refute only this direct fixed-\(R\)
-finish, not stable AC.
+The quotient-\(B\) theorem puts every non-braid commutator row at quotient
+cyclic length at least \(8\), and both same-orientation rows at length at
+least \(6\).
+
+At the minimum same-orientation length, the first evaluated cross equation
+is no longer a barrier.  A repositioned non-braid killer in the dual row
+satisfies all three evaluated equations and the exact synchronized
+\(z=e,p\) quotient shadow.  The literal \(G\)-bridge lift fails, but only
+because its word in the free evaluation kernel has cyclic length \(7\)
+instead of \(1\).  The immediate frontier is the explicit three-variable
+equation \(n_3(U,V,W)\): either make it conjugate to a negative Schreier
+basis letter, producing a genuine one-\(z\) target, or find a nonabelian
+quotient invariant excluding every \(U,V,W\).  Scalar augmentation does
+not exclude it, but the full \(\mathbb Z[G]\) Fox equation has not yet
+been solved.  Even a liftable non-braid survivor would refute only this
+direct fixed-\(R\) finish, not stable AC.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a

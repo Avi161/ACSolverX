@@ -408,3 +408,35 @@
 
 - [TRAP] A projected conjugacy class has many literal lifts and representatives. Weight plus projected conjugacy determines a unique \(G\)-conjugacy class, not a unique word or element.
 - [TRAP] State an “if and only if” length classification only inside the necessary quotient equation it classifies; arbitrary elements of the same weight and length need not occur as \(AhA^mh^{-1}\).
+
+### 2026-07-25 Superpowers plan location and scratch-length replay
+
+- [TRAP] This worktree stores design and execution artifacts under `docs/superpowers/specs/` and `docs/superpowers/plans/`; probing nonexistent `docs/specs/` or `docs/plans/` wastes a retry.
+- [TRAP] An informal scratch note recorded quotient cyclic length \(26\) for one dual first-cross product, while the independent normal-form replay gives \(24\). Never promote scratch numerics into a theorem.
+- [WORKS] Derive every stated projected length from `projected_conjugacy_key` in `tests/stable_ac/test_prefix_db_evaluated_countermodel.py`; do not infer a uniform lower bound from the two factor lengths.
+
+### 2026-07-25 Translation length has no reverse triangle inequality
+
+- [TRAP] Tree translation length is conjugacy invariant but is not a norm. For arbitrary relative conjugation, \(\ell(g^{-1}uhu^{-1})\ge|\ell(g)-\ell(h)|\) is false: the four minimum-template probes reach \(12,14,16,14\), below the proposed \(16/20\) bounds.
+- [WORKS] Before using an axis inequality uniformly over a free conjugator, enumerate reduced conjugators far enough to attack it. Then replace the false inequality by the complete relative-axis product formula or an exact cyclic-word overlap argument.
+- [TRAP] Do not cite a two-axis product formula without checking which overlap regime applies. A conjugated short cyclic word can acquire a long handle whose cancellation with the other factor changes the product length even though its own translation length stays short.
+
+### 2026-07-25 Repositioned minimum tails and the exact free-kernel frontier
+
+- [TRAP] Failure of the first-cross equation for fixed \(C,\rho,b\) representatives need not survive simultaneous conjugation: \(e=pb^{-1}\) keeps \(p=xt\) fixed, so \(d=t^{-1}exe^{-1}\) changes non-equivariantly.
+- [WORKS] A repositioned row-\((+,-,-)\) length-six tail satisfies all three evaluated equations with a non-braid killer. The first evaluated cross equation is therefore not a general minimum-stratum barrier.
+- [WORKS] For \(\Phi=(r_e,r_p):G*\langle z\rangle\to G\times G\), \(\operatorname{im}\Phi=\{(g,gn):n\in\langle\!\langle e^{-1}p\rangle\!\rangle_G\}\). Use this image subgroup, not separate evaluations, to test bridge synchronization.
+- [WORKS] With \(q=ze^{-1}\), the true remaining target condition is a three-variable equation in the free kernel \(N=F\{q_g:g\in G\}\): the resulting \(n_3(U,V,W)\) must be conjugate to one negative distinguished basis letter.
+- [TRAP] Kernel length seven for the literal \(G\)-valued bridges proves only that \(U=V=W=1\) fails. It is not evidence that arbitrary kernel-decorated lifts fail.
+- [TRAP] Scalar augmentation \(-1\) checks only the augmentation of \(N_{\rm ab}\cong\mathbb Z[G]\). It does not solve the full Fox group-ring equation and must not be reported as “the abelian obstruction vanishes.”
+- [WORKS] Project the explicit Fox equation to \(\mathbb F_p[Q]\) for finite quotients \(G\to Q\). Linear failure is a rigorous nonlift certificate; linear success remains only necessary.
+
+### 2026-07-25 Target-word replay filename
+
+- [TRAP] The three-cross target-word replay is `tests/stable_ac/test_three_cross_target_words.py`, not a filename copied from the proof title such as `test_three_cross_target_word_classification.py`.
+- [WORKS] Resolve verification manifests with `rg --files tests/stable_ac` before running them; a missing test must not silently reduce the claimed replay total.
+
+### 2026-07-25 Patch audited claims by exact local paragraph
+
+- [TRAP] A multi-file `apply_patch` aborts atomically when one wrapped prose paragraph differs from the assumed context, even if every other hunk is correct.
+- [WORKS] After a hostile wording audit, locate every exact phrase with `rg`, read the local paragraphs, and patch those verified contexts together.

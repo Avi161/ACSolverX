@@ -121,6 +121,78 @@ def intersecting_axis_class_counts(
     return class_counts
 
 
+def relative_axis_length_counts(left_word: str, right_word: str) -> Counter[int]:
+    left = projected_cyclic_reduce(normal_form(left_word)[1])
+    right = projected_cyclic_reduce(normal_form(right_word)[1])
+    twists = ("", "x", "xx", "t", "tt", "ttt")
+    length_counts = Counter()
+
+    for left_rotation in syllable_rotations(left):
+        for right_rotation in syllable_rotations(right):
+            for twist in twists:
+                product_shadow = (
+                    syllable_word(left_rotation)
+                    + twist
+                    + syllable_word(right_rotation)
+                    + inv(twist)
+                )
+                length_counts[len(projected_conjugacy_key(product_shadow))] += 1
+
+    return length_counts
+
+
+def evaluate_stable_letter(word: str, replacement: str) -> str:
+    evaluated = ""
+    for letter in word:
+        if letter == "z":
+            evaluated += replacement
+        elif letter == "Z":
+            evaluated += inv(replacement)
+        else:
+            evaluated += letter
+    return free_reduce(evaluated)
+
+
+def evaluation_kernel_cyclic_word(
+    word: str,
+    replacement: str,
+) -> tuple[tuple[tuple[int, tuple[tuple[str, int], ...]], int], ...]:
+    prefix = ""
+    basis_word: list[
+        tuple[tuple[int, tuple[tuple[str, int], ...]], int]
+    ] = []
+
+    def append_basis(
+        index: tuple[int, tuple[tuple[str, int], ...]],
+        sign: int,
+    ) -> None:
+        if basis_word and basis_word[-1] == (index, -sign):
+            basis_word.pop()
+        else:
+            basis_word.append((index, sign))
+
+    for letter in word:
+        if letter == "z":
+            append_basis(normal_form(prefix), 1)
+            prefix = free_reduce(prefix + replacement)
+        elif letter == "Z":
+            prefix = free_reduce(prefix + inv(replacement))
+            append_basis(normal_form(prefix), -1)
+        else:
+            prefix = free_reduce(prefix + letter)
+
+    assert normal_form(prefix) == (0, ())
+
+    while (
+        len(basis_word) > 1
+        and basis_word[0][0] == basis_word[-1][0]
+        and basis_word[0][1] == -basis_word[-1][1]
+    ):
+        basis_word = basis_word[1:-1]
+
+    return tuple(basis_word)
+
+
 def test_explicit_lifts_solve_every_evaluated_prefix_db_equation():
     assert normal_form(inv(E) + P) == normal_form(B)
     assert normal_form(K) == normal_form(C)
@@ -250,3 +322,126 @@ def test_length_six_last_two_equations_still_allow_the_nonbraid_killer():
 
     assert positive_keys == expected_keys
     assert negative_keys == expected_keys
+
+
+def test_first_cross_excludes_only_the_four_fixed_minimum_templates():
+    expected = {
+        ("positive", "xttt"): Counter({20: 118, 18: 42, 16: 26, 14: 20, 12: 10}),
+        ("positive", "xtt"): Counter({20: 118, 14: 40, 18: 35, 16: 23}),
+        ("dual", "xttt"): Counter({24: 150, 20: 59, 22: 35, 16: 10, 18: 10}),
+        ("dual", "xtt"): Counter(
+            {24: 142, 22: 49, 16: 30, 20: 23, 14: 10, 18: 10}
+        ),
+    }
+
+    for row, candidate_c in (("positive", C), ("dual", inv(C))):
+        for rho in ("xttt", "xtt"):
+            candidate_b = free_reduce(
+                candidate_c + rho + candidate_c + inv(rho)
+            )
+            candidate_e = free_reduce(P + inv(candidate_b))
+            candidate_d = free_reduce(
+                "T" + candidate_e + "x" + inv(candidate_e)
+            )
+            counts = relative_axis_length_counts(inv(candidate_d), inv(C))
+
+            assert counts == expected[(row, rho)]
+            assert 6 not in counts
+
+
+def test_repositioned_minimum_tail_solves_all_evaluated_equations():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    alpha = "t"
+
+    assert normal_form(candidate_k) == normal_form(
+        candidate_d + alpha + candidate_b + inv(alpha)
+    )
+    assert normal_form(candidate_c) == normal_form(
+        candidate_b + beta + inv(candidate_k) + inv(beta)
+    )
+    assert normal_form(
+        candidate_k + gamma + inv(candidate_c) + inv(gamma)
+    ) == (0, ())
+
+    assert torus_weight(candidate_e) == 9
+    assert torus_weight(candidate_b) == -2
+    assert torus_weight(candidate_c) == -1
+    assert projected_conjugacy_key(candidate_c) == (("t", 1), ("x", 2))
+    assert len(projected_conjugacy_key(candidate_c)) == 2
+    assert len(projected_conjugacy_key(D_P)) == 6
+    assert projected_conjugacy_key(inv(candidate_b)) == (
+        ("t", 1),
+        ("x", 1),
+        ("t", 2),
+        ("x", 2),
+        ("t", 3),
+        ("x", 2),
+    )
+
+
+def test_repositioned_tail_replays_synchronized_quotient_b_arithmetic():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+
+    quotient_witness = "xtX"
+    beta_at_p = "xttX"
+    bridge_difference = free_reduce(inv(beta) + beta_at_p)
+    quotient_product = free_reduce(
+        D_P + quotient_witness + D_P + inv(quotient_witness)
+    )
+
+    assert normal_form(gamma + beta) == normal_form("xT")
+    assert normal_form(gamma + beta_at_p) == normal_form(quotient_witness)
+    assert normal_form(bridge_difference) == normal_form("ttX")
+    assert torus_weight(bridge_difference) == 2
+    assert normal_form(quotient_product) == normal_form(inv(candidate_b))
+
+
+def test_literal_g_bridge_lift_is_not_the_required_kernel_basis_letter():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    alpha = "t"
+
+    original_b = "Z" + P
+    original_d = "TzxZ"
+    first_target = free_reduce(
+        original_d + alpha + original_b + inv(alpha)
+    )
+    second_target = free_reduce(
+        original_b + beta + inv(first_target) + inv(beta)
+    )
+    third_target = free_reduce(
+        first_target + gamma + inv(second_target) + inv(gamma)
+    )
+    isolator = "Z" + candidate_e
+
+    assert normal_form(
+        evaluate_stable_letter(third_target, candidate_e)
+    ) == (0, ())
+    assert len(evaluation_kernel_cyclic_word(isolator, candidate_e)) == 1
+    assert len(evaluation_kernel_cyclic_word(third_target, candidate_e)) == 7
