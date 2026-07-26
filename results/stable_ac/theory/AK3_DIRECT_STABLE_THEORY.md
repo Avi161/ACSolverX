@@ -3208,6 +3208,45 @@ This does not classify a newly primitive changed carrier after D
 deletion, a primitive pair involving it and Q, the nonmixed Q rows, or
 intervening traffic.
 
+## Result 55: arbitrary A--D products satisfy a Fox exponent sieve
+
+The unbounded obstruction is proved in
+
+```text
+literature/proofs/AK3_AD_RELATIVE_PRODUCT_FOX_SIEVE.md
+```
+
+Normalize either target direction and both carrier orientations to
+
+\[
+P_\sigma(c)=A\,cD^\sigma c^{-1}.
+\]
+
+At the abelian character \(x=t=1\), \(q=4z/3\), both A and D evaluate
+to one. The conjugator derivative therefore disappears from the
+abelianized Fox row, leaving
+
+\[
+\nabla P_\sigma(c)
+=
+(3q+\sigma\lambda z,-4-\sigma\lambda,0,0),
+\qquad
+\lambda=\overline c.
+\]
+
+Writing \(k=e_q(c)\) and \(n=e_q(c)+e_z(c)\), a common torus zero
+exists whenever \(n\ne0\). When \(n=0\), a modular witness exists
+except for
+
+\[
+(\sigma,k)=(+,1),\quad(-,0),\quad(-,1).
+\]
+
+A primitive word has a unimodular abelianized Fox row, so every detected
+case is nonprimitive. Thus arbitrary A--D primitivity is confined to
+those three normalized exponent classes. They are residual classes of
+this character slice, not claimed primitive families.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3265,8 +3304,11 @@ well; source-first deletion is even insensitive to arbitrary relative
 conjugators. Result 52 additionally closes every changed-row-first A--W
 edge whose normalized relative conjugator is z-free. Result 53 closes
 arbitrary relative conjugators on every Q--carrier edge for direct-pair
-and changed-row-first deletion. The immediate exact leads are therefore
-z-dependent A--W conjugators, arbitrary A--D or W--D conjugators,
+and changed-row-first deletion. Result 54 closes arbitrary A--W traffic
+in the fixed D-then-mixed-Q order. Result 55 confines arbitrary A--D
+primitive creation to three normalized exponent classes. The immediate
+exact leads are therefore z-dependent A--W conjugators, those three
+A--D classes, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
@@ -3388,8 +3430,13 @@ closed under changed-row-first deletion; they collapse by the retained
 A-normal closure and a second stable q-deletion. Arbitrary Q--carrier
 relative conjugators add no primitive class either: seam-robust
 transformed Q-rows force every primitive case back into Result 49's
-finite table. A different viable primitive-slot branch must use
-z-dependent A--W traffic, arbitrary A--D or W--D relative traffic,
+finite table. For arbitrary A--D relative products, the abelianized Fox
+row now gives an unbounded exponent sieve: primitivity forces
+\(e_q+e_z=0\), and on that hyperplane only
+\((\sigma,e_q)=(+,1),(-,0),(-,1)\) escape the chosen character slice.
+A different viable primitive-slot branch must therefore use
+z-dependent A--W traffic, one of those three A--D exponent classes,
+arbitrary W--D relative traffic,
 non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
 two row changes before deletion, another \(Wq^{-1}\) block, a
 repeatedly changed source, alter W by traffic with nontrivial

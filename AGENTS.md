@@ -729,3 +729,23 @@
 
 - [TRAP] The first D-then-Q draft treated a Q-row that becomes primitive only after D deletion as a based primitive pair with D. Complete rank-four pair descent disproves that lift.
 - [WORKS] For sequential deletion, prove equality of the relevant normal closures and reuse a valid fixed quotient coordinate; never infer simultaneous based-pair primitivity from primitivity in the first quotient.
+
+### 2026-07-26 Quotient bridge automata before exhaustive expansion
+
+- [TRAP] A direct W--D bridge-edge automaton expanded more than 230,000 states for one exceptional cut because it retained every accumulated Whitehead edge set, even though the goal was only to decide whether accepting cycles exist.
+- [WORKS] First test for pumpable accepting states on a symmetry-reduced exceptional cut and derive a symbolic cycle witness. Only build a full automaton after minimizing states by the cut partition or other proof-relevant invariant.
+
+### 2026-07-26 Count every generator in hand-written exponent fixtures
+
+- [TRAP] The first Fox-sieve fixture labeled `qzxTZQ` abelianization-zero even though its x- and t-exponent sums are \(+1\) and \(-1\).
+- [WORKS] Construct zero-abelianization fixtures from an explicit word and its balancing letters, then assert all four computed coordinates rather than trusting a visual cancellation.
+
+### 2026-07-26 Close both signs in exponential Diophantine bounds
+
+- [TRAP] The first A--D Fox proof asserted \(\lvert4^{k-1}-3^k\rvert>1\) after ruling out only the value \(+1\); the value \(-1\) needed a separate congruence/factorization argument.
+- [WORKS] Whenever a prime-divisor proof uses an absolute lower bound, audit both exceptional equations \(M=+1\) and \(M=-1\). If the obstruction is stated for arbitrary quotient rings, prove the relevant small integers are units rather than discussing only fields of exceptional characteristic.
+
+### 2026-07-26 Split distant theory-index patches
+
+- [TRAP] A single patch tried to insert a new result section and update a distant live-lead paragraph; one context mismatch rejected both otherwise independent edits.
+- [WORKS] Patch a theory index one local section at a time, then update plan checkboxes separately so a distant wording change cannot discard completed content.
