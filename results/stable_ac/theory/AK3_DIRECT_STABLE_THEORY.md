@@ -1856,19 +1856,116 @@ result does not close the multi-\(q\) route. It isolates the next
 production problem: create \(V_3\) by classical AC moves while leaving a
 survivor outside the coherent \(\phi\)-orbit.
 
-## Live lead
+## Result 33: direct relation-splitting production is a stable self-loop
 
-The sharpest new direct mechanism is now the asymmetric production of
-the primitive word
+The universal closure theorem is proved in
+
+```text
+literature/proofs/AK3_RELATION_SPLIT_PRIMITIVE_SELF_LOOP.md
+```
+
+Let
+\(\langle X\mid R,S_1,\ldots,S_m\rangle\) be a balanced trivial-group
+presentation, let \(\rho:F(X)*\langle q\rangle\to F(X)\) kill \(q\),
+choose
 
 \[
-V_3=qx^3q^{-1}t^{-4}q.
+U\in\langle\!\langle R\rangle\!\rangle_{F(X)},
 \]
 
-Its coherent ambient-automorphism construction is a self-loop, so a
-productive history must manufacture this word in one relator slot
-without transporting all survivors by the same automorphism. Its exact
-Fox coordinate \(2-x^3\) is the first necessary certificate to track.
+and take
+\(\beta\in\operatorname{Aut}(F(X,q))\) with
+
+\[
+\beta(q)=q,\qquad \rho\beta=\rho.
+\]
+
+Put
+
+\[
+\alpha_U(q)=Uq,\qquad
+\phi=\beta\alpha_U,\qquad
+W=\phi(q)=\beta(U)q.
+\]
+
+The fixed-\(q\) lemma replaces \(R\) by \(\beta(R)\). Since
+\(\beta(U)\in\langle\!\langle\beta(R)\rangle\!\rangle\), a second
+fixed-relator application and one conjugation give a classical AC
+sequence
+
+\[
+(R,S_1,\ldots,S_m,q)
+\sim_{\mathrm{AC1-3}}
+(\beta(R),S_1,\ldots,S_m,W).
+\]
+
+After straightening \(W\) by \(\phi^{-1}\) and deleting it, the endpoint
+is
+
+\[
+\bigl(R,p(S_1),\ldots,p(S_m)\bigr),
+\qquad
+p=\rho\phi^{-1}.
+\]
+
+Modulo the retained \(R\), both \(\alpha_U^{-1}\) and \(\beta^{-1}\)
+become invisible after \(q=1\). Hence
+
+\[
+p(S_i)=S_i
+\pmod{\langle\!\langle R\rangle\!\rangle}
+\]
+
+for every survivor. The fixed-\(R\) lemma returns the endpoint
+classically to the original tuple.
+
+For AK(3), take \(U=R\) and
+
+\[
+\beta(x)=qxq^{-1},\qquad
+\beta(t)=t,\qquad
+\beta(z)=z.
+\]
+
+Then \(W=V_3\). Its direct creation has the literal certificate
+
+\[
+R^{-1}\beta(R)
+=
+(R^{-1}qR)(t^4q^{-1}t^{-4}),
+\]
+
+and primitive deletion produces
+
+\[
+B'=z^{-1}RxR^{-1}t,
+\qquad
+D'=t^{-1}zRxR^{-1}z^{-1}.
+\]
+
+Each of \(B^{-1}B'\) and \(D^{-1}D'\) is an explicit product of two
+conjugates of \(R^{\pm1}\). Thus the obvious asymmetric production of
+\(V_3\) is reachable but returns exactly to the rank-three AK(3) root.
+
+## Live lead
+
+The direct relation-splitting manufacture of
+\[
+V_3=qx^3q^{-1}t^{-4}q
+\]
+is now closed. In fact the same theorem closes every arbitrarily long
+\(\beta(U)q\) with \(U\in\langle\!\langle R\rangle\!\rangle\) and
+\(\rho\beta=\rho\). A productive use must leave at least one survivor
+outside its baseline class modulo the retained \(R\), or must change the
+normal closure of the retained \(R\)-slot. Merely leaving the survivors
+untransported is insufficient: after deletion their apparent asymmetry
+is absorbed by \(R\)-source AC moves.
+
+The next minimal branch is therefore cross-coupled production: use
+\(B\) or \(D\) as a source or target during the manufacture of \(V_3\),
+then ask whether the resulting survivor leaves its baseline class in the
+fixed-\(R\) quotient. The exact Fox coordinate \(2-x^3\) remains the
+necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -1948,9 +2045,10 @@ primitive eliminator with several \(z\)-letters, use the braid relator
 during recovery, or compress both source relators before either old
 generator is removed.
 
-The multi-\(z\) phrase is no longer unconstrained. Literal
-free-kernel candidates collapse to conjugates of the stabilizer, and the
-natural three-letter split family has one exact primitive member. The
-open branch is its asymmetric AC production, not its primitivity.
+The multi-\(z\) phrase is no longer unconstrained. Literal free-kernel
+candidates collapse to conjugates of the stabilizer, the natural
+three-letter split family has one exact primitive member, and its direct
+relation-splitting production is a stable self-loop. The open branch is
+cross-coupled production, not primitivity or bare asymmetry.
 
 AK(3) remains open.
