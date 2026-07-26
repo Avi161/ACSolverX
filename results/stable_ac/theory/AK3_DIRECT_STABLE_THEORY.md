@@ -1700,6 +1700,82 @@ equation.}
 This closes that candidate and the entire target residue left by
 Results 27--29. It does not close other stable histories or AK(3).
 
+## Result 31: one signed-HNN Fox factorization covers every row
+
+The master lemma is proved in
+
+```text
+literature/proofs/AK3_SIGNED_HNN_FOX_MASTER_LEMMA.md
+```
+
+For the general signed history
+
+\[
+D_1=D\,uB^\epsilon u^{-1},\qquad
+B_1=B\,vD_1^\eta v^{-1},\qquad
+D_2=D_1\,wB_1^\theta w^{-1},
+\]
+
+the abelianized free-kernel recurrence factors as
+
+\[
+\Xi=A_0+A_U\mathbf u+A_V\mathbf v+A_W\mathbf w,
+\]
+
+where, with \(m=\eta\theta\),
+
+\[
+\begin{aligned}
+A_0&=(1+mL)F_\epsilon+M_\theta\mathbf j,\\
+A_U&=(1+mL)(d-K),\\
+A_V&=-mL(K-1)\beta^{-1},\\
+A_W&=K-1.
+\end{aligned}
+\]
+
+The group element \(L\) has one of four explicit spellings according to
+\((\eta,\theta)\). The two bridge coefficients always generate
+
+\[
+A_VR+A_WR
+=I_P,
+\qquad
+P=\langle K,LKL^{-1}\rangle.
+\]
+
+If \(J=\langle K,L\rangle\cong F(K,L)\), the residual operator is
+
+\[
+\mathcal B_m(z)=\pi_P((1+mL)z).
+\]
+
+Modulo \((K-1)R\), this is edge incidence on the HNN Bass--Serre
+forest:
+
+- \(m=+1\): unsigned incidence, with zero bipartite signed sum as its
+  exact image criterion;
+- \(m=-1\): oriented incidence, with zero ordinary component sum as its
+  exact image criterion.
+
+Both are injective on finite-support edge chains. Therefore
+
+\[
+\boxed{
+\ker\mathcal B_+
+=\ker\mathcal B_-
+=(K-1)R.
+}
+\]
+
+An independent \(S_3\) semidirect-product replay checks all eight sign
+rows, and a separate finite-tree replay checks both incidence signs.
+
+This shows exactly which part of Result 30 is uniform. The HNN
+factorization and path uniqueness are sign-independent; the later
+support-versus-\(QJ\) obstruction is not. Extending the all-target
+closure to another row requires a candidate-specific evaluated solution
+and a new \(Q\)-\(J\) double-coset certificate.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1766,6 +1842,14 @@ paths have support in \(QJ\) after the central translation. A fixed
 coset outside \(QJ\) obstructs the residual module equation. There is
 therefore no nonabelian basis-letter equation left to solve in this
 candidate.
+
+The signed master lemma now supplies the same exact HNN reduction in
+every sign row. The four \(m=-1\) rows do not occur at the global
+minimum quotient-\(B\) length six, and the old literal representatives
+in the other length-six row \((-,+,+)\) fail the first evaluated
+equation. A row-to-row extension therefore starts by constructing a
+repositioned evaluated \((-,+,+)\) candidate; only then is there a
+concrete \(Q\)-\(J\) support vector to decide.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a

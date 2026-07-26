@@ -519,3 +519,18 @@
 
 - [TRAP] `wait_agent` rejects `timeout_ms` below 10000; a one-second poll produces only a parameter error.
 - [WORKS] Use `timeout_ms: 10000` for the shortest agent-status wait.
+
+### 2026-07-25 Do not generate mixed LaTeX regex alternations
+
+- [TRAP] Dynamically joining search terms into one `rg` regex reintroduced invalid escapes such as `\Xi`, even after the literal-search rule was recorded.
+- [WORKS] For mathematical symbols, issue separate `rg -F` calls or search only their plain identifier fragments; never programmatically assemble them into one regex.
+
+### 2026-07-25 Carry structural hypotheses into theorem headlines
+
+- [TRAP] The signed Fox factorization is universal, but its HNN-incidence kernel conclusion requires \(J=\langle K,L\rangle\cong F(K,L)\); stating the conclusion before that hypothesis made the opening broader than the proof.
+- [WORKS] When a theorem has an unconditional algebraic half and a conditional geometric half, put the geometric hypothesis in the status paragraph as well as in the proof body.
+
+### 2026-07-25 Claim audits must use the file's actual delimiter spelling
+
+- [TRAP] A fixed-string audit searched for `$J=` although the manuscript used `\(J=`, so the check failed despite the required sentence being present.
+- [WORKS] Copy the exact phrase from a readback into `rg -F`; do not guess whether the file uses dollar or parenthesized LaTeX delimiters.
