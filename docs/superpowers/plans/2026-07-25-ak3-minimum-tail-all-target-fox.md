@@ -59,4 +59,4 @@ modules.
   free-basis readout, lift equality, and fixed coset separation.
 - [x] Run the full proof replay and inspect the diff.
 - [x] Obtain hostile review.
-- [ ] Commit and push the verified branch checkpoint.
+- [x] Commit and push the verified branch checkpoint.
