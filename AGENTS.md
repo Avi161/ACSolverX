@@ -584,3 +584,8 @@
 
 - [TRAP] A combined replay named `test_relation_split_primitive_self_loop.py` from the theorem title, but the repository file is `tests/stable_ac/test_relation_split_primitive_loop.py`; pytest stopped before running any test.
 - [WORKS] Before assembling a multi-file replay command, derive the exact manifest with `rg --files tests/stable_ac` rather than translating proof titles into guessed filenames.
+
+### 2026-07-25 Run diff-check before staging new Markdown
+
+- [TRAP] A newly added design spec retained a blank line after its final paragraph; `git diff --check` correctly stopped the combined stage-and-commit command before any files were staged.
+- [WORKS] Keep the pre-stage `git diff --check` gate, remove trailing blank lines with `apply_patch`, and rerun the full gate before committing.

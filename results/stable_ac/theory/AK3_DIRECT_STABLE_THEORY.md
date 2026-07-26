@@ -2214,6 +2214,71 @@ Moreover \((D')^{-1}D_R'\) is an explicit product of two conjugates of
 \(R^{\pm1}\), after which the old source-slot certificate returns to the
 rank-three AK(3) root.
 
+## Result 38: both literal q-source orientations close
+
+The two-sign theorem is proved in
+
+```text
+literature/proofs/AK3_LITERAL_Q_SOURCE_TRAFFIC_SELF_LOOP.md
+```
+
+Let \(U\) be primitive in the unstabilized free group and suppose a
+balanced trivial-group checkpoint has
+
+\[
+W=\phi(q),
+\qquad
+\phi^{-1}(q)=U^{-1}q,
+\]
+
+together with a surviving literal \(q\)-relator. Both q-dependent
+primitive-slot targets
+
+\[
+Wq
+\qquad\text{and}\qquad
+Wq^{-1}
+\]
+
+are primitive. In a basis containing \(U\), the positive branch uses
+
+\[
+\delta_+(q)=qU^{-1}q,
+\qquad
+\delta_+(U)=q,
+\]
+
+while the negative branch uses the involution \(\delta_-\) swapping
+\(q\) and \(U\). Thus
+
+\[
+Wq^{\pm1}=(\phi\delta_\pm)(q).
+\]
+
+After deletion, the surviving q-slot becomes \(U^{-1}\) in the positive
+branch and \(U\) in the negative branch. Modulo
+\(\langle\!\langle U\rangle\!\rangle\), both new straightening maps equal
+the old one. The surviving source therefore returns every other slot to
+the original \(W\)-deletion endpoint.
+
+For AK(3),
+
+\[
+U=RB=x^3t^{-4}z^{-1}xt
+\]
+
+is primitive because it contains \(z^{-1}\) exactly once. The positive
+endpoint is
+
+\[
+(R,D_+,U^{-1}),
+\]
+
+and \((D')^{-1}D_+\) is exactly two conjugates of the surviving
+\(U^{\pm1}\)-relator. The negative branch has an exact six-factor
+return. Hence both first literal-q target multiplications return to the
+rank-three AK(3) root.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2233,12 +2298,13 @@ and deleting a quotient-equal source slot also fails: the surviving
 stabilizer relator becomes \(U^{-1}\) and recovers the deleted normal
 generator. Within the relative-transvection family, the next minimal
 branch cannot be post-manufacture traffic which avoids AC1 into the
-primitive slot: all such traffic descends through deletion. It must
-multiply a relator whose pullback contains \(q\), or a \(q\)-free word
-outside the retained joint normal closure, into the primitive slot;
-otherwise Result 37 absorbs the target move. Changing the primitive
-relator before the fixed checkpoint, choosing a different primitive slot,
-or breaking an earlier manufacture hypothesis also remains open. The
+primitive slot: all such traffic descends through deletion. Result 38
+also closes multiplication by the surviving literal \(q^{\pm1}\)-slot,
+despite its q-dependent pullback. The next target move must therefore use
+a nontrivial conjugate or a changed spelling of that q-source, use a
+q-free word outside the retained joint normal closure, or break another
+earlier hypothesis. Changing the primitive relator before the fixed
+checkpoint or choosing a different primitive slot also remains open. The
 exact Fox coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
@@ -2328,8 +2394,7 @@ must lose a needed source normal closure without having the surviving
 stabilizer restore it, or change the survivor quotient class; bare
 asymmetry, retained-source cross-coupling, and quotient-equal source
 deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
-insufficient unless the primitive slot is multiplied by a source whose
-pullback is \(q\)-dependent or lies outside the retained source normal
-closure.
+insufficient unless the primitive slot is multiplied by a nonliteral
+q-dependent source, or by a source outside the retained normal closure.
 
 AK(3) remains open.
