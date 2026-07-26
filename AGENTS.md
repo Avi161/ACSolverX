@@ -724,3 +724,8 @@
 
 - [TRAP] In a relative product \(UcVc^{-1}\), the written c is not generally the shortest bridge between factor axes, and an ambient automorphism need not preserve axis intersection in the original Cayley metric.
 - [WORKS] Apply the row-specific automorphism first, cyclically reduce both factors, absorb their reduction prefixes into the transformed conjugator, and then take shortest-axis-bridge normal form in that transformed basis. State separately whether the normalized bridge is empty.
+
+### 2026-07-26 Do not lift quotient primitivity to a based pair
+
+- [TRAP] The first D-then-Q draft treated a Q-row that becomes primitive only after D deletion as a based primitive pair with D. Complete rank-four pair descent disproves that lift.
+- [WORKS] For sequential deletion, prove equality of the relevant normal closures and reuse a valid fixed quotient coordinate; never infer simultaneous based-pair primitivity from primitivity in the first quotient.

@@ -511,6 +511,27 @@ def all_k_pair_quotient(exponent: int) -> tuple[str, str]:
     )
 
 
+def all_k_word_quotient(word: str, exponent: int) -> str:
+    lambda_k = word_map(
+        GENERATORS4,
+        "x",
+        "t",
+        free_reduce("z" + word_power("t", exponent)),
+        "q",
+    )
+    kill_t_z_and_rename_q = word_map(
+        GENERATORS4,
+        "x",
+        "",
+        "",
+        "y",
+    )
+    return substitute(
+        substitute(theta_image(word), lambda_k),
+        kill_t_z_and_rename_q,
+    )
+
+
 def test_based_pair_certificate_gives_an_all_integer_power_coordinate():
     whitehead_maps = second_kind_automorphisms(GENERATORS4)
     assert len(whitehead_maps) == 504
@@ -607,6 +628,57 @@ def test_all_integer_power_pair_quotients_are_the_same():
             endpoint,
             FLOOR_23_COORDINATE,
         ) == common
+
+
+def test_arbitrary_aw_edges_descend_to_one_relative_product():
+    conjugators = (
+        "",
+        "z",
+        "xzQTx",
+        "qZtxQz",
+        "TzqXQt",
+    )
+    for delta in (-1, 1):
+        a_word, w_word = all_k_pair_quotient(delta)
+        assert (a_word, w_word) == ALL_K_RAW_ENDPOINT
+        mixed_q = free_reduce(
+            "Q" + W + word_power(D, delta)
+        )
+        assert all_k_word_quotient(D, delta) == ""
+        assert all_k_word_quotient(mixed_q, delta) == ""
+        for conjugator in conjugators:
+            c_word = all_k_word_quotient(conjugator, delta)
+            for source_sign in (-1, 1):
+                a_target = free_reduce(
+                    A
+                    + conjugator
+                    + word_power(W, source_sign)
+                    + inverse_word(conjugator)
+                )
+                w_target = free_reduce(
+                    W
+                    + conjugator
+                    + word_power(A, source_sign)
+                    + inverse_word(conjugator)
+                )
+                assert all_k_word_quotient(
+                    a_target,
+                    delta,
+                ) == free_reduce(
+                    a_word
+                    + c_word
+                    + word_power(w_word, source_sign)
+                    + inverse_word(c_word)
+                )
+                assert all_k_word_quotient(
+                    w_target,
+                    delta,
+                ) == free_reduce(
+                    w_word
+                    + c_word
+                    + word_power(a_word, source_sign)
+                    + inverse_word(c_word)
+                )
 
 
 def test_every_split_d_tail_reduces_to_the_total_power():

@@ -3167,6 +3167,47 @@ The relative-conjugator witness set is infinite, so the old finite
 literal multiplicities do not extend. The primitive class and endpoint
 classification does.
 
+## Result 54: arbitrary A--W products close in the D-then-Q order
+
+The quotient theorem is proved in
+
+```text
+literature/proofs/AK3_ARBITRARY_AW_D_THEN_Q_CLOSURE.md
+```
+
+Perform an arbitrary A--W relative product, delete unchanged D first,
+and then consider the unchanged Q-row. Because the edge changes neither
+D nor the separately retained Q word, its image under the fixed D
+quotient is literally the baseline image for every conjugator.
+
+Exactly the two mixed rows
+
+\[
+Q_{-1,+1,\delta}=q^{-1}WD^\delta,
+\qquad
+\delta=\pm1,
+\]
+
+are primitive there. Use Result 47's fixed double quotient and write
+the exact raw surviving A--W pair as \((a,w)\). For
+\(c=\pi_\delta(u)\), the two target directions become
+
+\[
+(a c w^\sigma c^{-1},w),
+\qquad
+(a,w c a^\sigma c^{-1}).
+\]
+
+Each is classically AC-equivalent to the raw baseline \((a,w)\) by a
+multiplication-by-conjugate sequence. A fixed rank-two ambient
+coordinate places that baseline in the displayed floor-23 Aut-orbit,
+so the full conclusion is stable: every such arbitrary-conjugator
+D-then-mixed-Q branch returns to the old corridor.
+
+This does not classify a newly primitive changed carrier after D
+deletion, a primitive pair involving it and Q, the nonmixed Q rows, or
+intervening traffic.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3226,7 +3267,7 @@ edge whose normalized relative conjugator is z-free. Result 53 closes
 arbitrary relative conjugators on every Q--carrier edge for direct-pair
 and changed-row-first deletion. The immediate exact leads are therefore
 z-dependent A--W conjugators, arbitrary A--D or W--D conjugators,
-non-source deletion, or two row-changing edges
+non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
@@ -3349,10 +3390,11 @@ relative conjugators add no primitive class either: seam-robust
 transformed Q-rows force every primitive case back into Result 49's
 finite table. A different viable primitive-slot branch must use
 z-dependent A--W traffic, arbitrary A--D or W--D relative traffic,
-non-source deletion, two row changes before deletion, another
-\(Wq^{-1}\) block, a repeatedly changed source, alter W by traffic with
-nontrivial first-deletion image, lose a needed carrier source, use
-traffic with nontrivial deletion image, or draw from a source outside
-the retained normal closure.
+non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
+two row changes before deletion, another \(Wq^{-1}\) block, a
+repeatedly changed source, alter W by traffic with nontrivial
+first-deletion image, lose a needed carrier source, use traffic with
+nontrivial deletion image, or draw from a source outside the retained
+normal closure.
 
 AK(3) remains open.
