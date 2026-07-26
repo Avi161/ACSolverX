@@ -445,3 +445,145 @@ def test_literal_g_bridge_lift_is_not_the_required_kernel_basis_letter():
     ) == (0, ())
     assert len(evaluation_kernel_cyclic_word(isolator, candidate_e)) == 1
     assert len(evaluation_kernel_cyclic_word(third_target, candidate_e)) == 7
+
+
+def test_fox_subgroup_has_disjoint_projected_axes():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    conjugate_c = free_reduce(rho + candidate_c + inv(rho))
+    candidate_b = free_reduce(candidate_c + conjugate_c)
+
+    assert len(projected_conjugacy_key(candidate_c)) == 2
+    assert len(projected_conjugacy_key(conjugate_c)) == 2
+    assert len(projected_conjugacy_key(candidate_b)) == 6
+
+
+def test_fox_s4_projection_restricts_the_target_to_the_p_stabilizer():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    candidate_h = free_reduce(gamma + candidate_b + inv(gamma))
+    alpha = "t"
+
+    def compose(
+        left: tuple[int, ...],
+        right: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        return tuple(left[right[index]] for index in range(4))
+
+    def permutation_inverse(
+        permutation: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        result = [0] * 4
+        for source, target in enumerate(permutation):
+            result[target] = source
+        return tuple(result)
+
+    identity = (0, 1, 2, 3)
+    x_permutation = (0, 2, 3, 1)
+    t_permutation = (1, 2, 3, 0)
+    letter_permutations = {
+        "x": x_permutation,
+        "X": permutation_inverse(x_permutation),
+        "t": t_permutation,
+        "T": permutation_inverse(t_permutation),
+    }
+
+    def evaluate_permutation(word: str) -> tuple[int, ...]:
+        result = identity
+        for letter in word:
+            result = compose(result, letter_permutations[letter])
+        return result
+
+    def generated_subgroup(
+        generators: tuple[tuple[int, ...], ...],
+    ) -> set[tuple[int, ...]]:
+        subgroup = {identity}
+        frontier = [identity]
+        signed_generators = generators + tuple(
+            permutation_inverse(generator) for generator in generators
+        )
+        while frontier:
+            current = frontier.pop()
+            for generator in signed_generators:
+                product_permutation = compose(current, generator)
+                if product_permutation not in subgroup:
+                    subgroup.add(product_permutation)
+                    frontier.append(product_permutation)
+        return subgroup
+
+    quotient_group = generated_subgroup((x_permutation, t_permutation))
+    p_image = generated_subgroup(
+        (
+            evaluate_permutation(candidate_k),
+            evaluate_permutation(candidate_h),
+        )
+    )
+
+    assert len(quotient_group) == 24
+    assert len(p_image) == 6
+    assert all(permutation[3] == 3 for permutation in p_image)
+
+    multiplier = free_reduce(
+        gamma + candidate_b + beta + inv(candidate_k)
+    )
+    constant_seed = (
+        ("T", 1),
+        (candidate_d, -1),
+        (free_reduce(candidate_d + alpha + inv(candidate_e)), -1),
+    )
+    constant_terms = []
+    for word, coefficient in constant_seed:
+        constant_terms.append((word, coefficient))
+        constant_terms.append(
+            (free_reduce(multiplier + word), coefficient)
+        )
+    constant_terms.append((free_reduce(gamma + inv(candidate_e)), 1))
+    u_terms = (
+        (candidate_d, 1),
+        (free_reduce(multiplier + candidate_d), 1),
+        (candidate_k, -1),
+        (free_reduce(multiplier + candidate_k), -1),
+    )
+
+    def coset_index(word: str) -> int:
+        permutation = evaluate_permutation(word)
+        return permutation_inverse(permutation)[3]
+
+    def coset_vector(
+        terms: list[tuple[str, int]] | tuple[tuple[str, int], ...],
+    ) -> tuple[int, int, int, int]:
+        result = [0, 0, 0, 0]
+        for word, coefficient in terms:
+            result[coset_index(word)] += coefficient
+        return tuple(result)
+
+    constant_vector = coset_vector(constant_terms)
+    u_vector = coset_vector(u_terms)
+
+    assert constant_vector == (0, -2, 0, 1)
+    assert u_vector == (2, 0, 0, -2)
+
+    target_differences = []
+    for target_index in range(4):
+        difference = tuple(
+            -(1 if index == target_index else 0) - constant_vector[index]
+            for index in range(4)
+        )
+        target_differences.append(
+            sum(difference) == 0
+            and all(coordinate % 2 == 0 for coordinate in difference)
+        )
+
+    assert target_differences == [False, False, False, True]

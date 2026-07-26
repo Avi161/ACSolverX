@@ -440,3 +440,21 @@
 
 - [TRAP] A multi-file `apply_patch` aborts atomically when one wrapped prose paragraph differs from the assumed context, even if every other hunk is correct.
 - [WORKS] After a hostile wording audit, locate every exact phrase with `rg`, read the local paragraphs, and patch those verified contexts together.
+
+### 2026-07-25 Bound finite-quotient Fox scans before symmetric degree six
+
+- [TRAP] Enumerating every exact-order generator pair in \(S_6\) repeats many conjugate representations and spends most time rebuilding the same subgroups and linear spans.
+- [WORKS] The complete raw scans through \(S_4\) and \(S_5\) found no Fox obstruction. Treat that only as bounded negative evidence, stop before an uncached \(S_6\) fan-out, and prefer the exact \(\mathbb Z[P\backslash G]\) coset-module reduction or conjugacy-class representatives.
+- [WORKS] For any longer finite-quotient scan, run Python unbuffered and print/cache quotient signatures so progress is visible and duplicate representations are removed.
+
+### 2026-07-25 Fox bridge ideal and infinite-index subgroup
+
+- [WORKS] In the repositioned minimum-tail Fox equation, the \(V,W\) coefficients generate exactly \(I_P=\sum_{p\in P}(p-1)\mathbb Z[G]\) for \(P=\langle K,\gamma b\gamma^{-1}\rangle\). Quotient them first; the remaining equation lives in \(\mathbb Z[P\backslash G]\).
+- [WORKS] The projected generators of \(P\) are two length-two hyperbolics with disjoint axes at distance one. Tree ping-pong gives \(P\cong F_2\), the central projection is injective on \(P\), and Euler characteristic proves infinite index.
+- [WORKS] The exact \(S_4\) quotient maps \(P\) to a point stabilizer. Its four-coset Fox module restricts the target residue to that stabilizer.
+- [TRAP] A finite Fox quotient which leaves even one target residue is not a nonlift certificate. Here the identity residue survives, so the \(S_4\) restriction is progress but not closure.
+
+### 2026-07-25 Retry a timed-out exact force-add once
+
+- [TRAP] Automatic approval review can time out while force-adding one exact ignored proof file; a timeout is not a safety rejection and does not imply the path is wrong.
+- [WORKS] Retry the identical exact `git add -f literature/proofs/<file>` once, then stop for guidance if the retry also fails.
