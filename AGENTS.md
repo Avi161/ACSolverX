@@ -714,3 +714,8 @@
 
 - [TRAP] The first unchanged-primitive-first proof called \(T\mapsto TcS^\epsilon c^{-1}\) one ordinary relator multiplication. It is classically AC-equivalent but generally needs source inversion, source conjugation, multiplication, and restoration.
 - [WORKS] Describe a relative product as a multiplication by a conjugate and display the finite classical AC sequence; reserve “one relator multiplication” for the literal \(T\mapsto TS^{\pm1}\) move.
+
+### 2026-07-26 Derive reverse-target straighteners independently
+
+- [TRAP] The first z-free A--W design reused the W-target normal form \(Az^{-1}CV\) for the reverse A-target word. The two directions share only their post-deletion shadow; before deletion, A-target needs sign-dependent coordinates and \(u\mapsto u^{-1}\).
+- [WORKS] For a claimed target-direction duality, substitute both literal changed rows through separate full-tuple straighteners and compare every survivor after deletion. Do not infer a common pre-deletion coordinate from a common quotient formula.

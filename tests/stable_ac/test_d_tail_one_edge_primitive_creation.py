@@ -1666,3 +1666,209 @@ def test_non_source_second_deletions_have_no_low_endpoint():
         },
     }
     assert observed["endpoint_at_most_12_count"] == 0
+
+
+def test_z_free_aw_relative_conjugators_have_exact_deletion_forms():
+    kill_z = {"x": "x", "t": "t", "z": "", "q": "q"}
+    conjugators = (
+        "",
+        "q",
+        "Q",
+        "qq",
+        "xTqX",
+        "tQxtqT",
+    )
+    checkpoints = tuple(
+        (eta, epsilon, delta)
+        for eta, epsilon in ((1, 1), (-1, 1), (-1, -1))
+        for delta in (1, -1)
+    )
+
+    for conjugator in conjugators:
+        conjugator_inverse = inverse_word(conjugator)
+        for source_sign in (1, -1):
+            a_signed = word_power(A, source_sign)
+
+            v_forward = free_reduce(
+                conjugator
+                + a_signed
+                + conjugator_inverse
+            )
+            p_forward = free_reduce(W + v_forward)
+            theta_forward = {
+                "x": "x",
+                "t": "t",
+                "z": free_reduce(
+                    C + v_forward + "Z" + A
+                ),
+                "q": "q",
+            }
+            assert substitute(p_forward, theta_forward) == "z"
+            k_forward = free_reduce(C + v_forward + A)
+            d_forward = free_reduce(
+                "T"
+                + k_forward
+                + "x"
+                + inverse_word(k_forward)
+            )
+            assert substitute(
+                substitute(W, theta_forward),
+                kill_z,
+            ) == inverse_word(v_forward)
+            assert substitute(
+                substitute(D, theta_forward),
+                kill_z,
+            ) == d_forward
+
+            reverse_conjugator = conjugator_inverse
+            v_reverse = free_reduce(
+                reverse_conjugator
+                + a_signed
+                + conjugator
+            )
+            p_reverse = free_reduce(
+                A
+                + conjugator
+                + word_power(W, source_sign)
+                + conjugator_inverse
+            )
+            theta_reverse = {
+                "x": "x",
+                "t": "t",
+                "z": free_reduce(
+                    (
+                        C
+                        + reverse_conjugator
+                        + "Z"
+                        + A
+                        + conjugator
+                        + A
+                    )
+                    if source_sign == 1
+                    else (
+                        C
+                        + reverse_conjugator
+                        + inverse_word(A)
+                        + "z"
+                        + conjugator
+                        + A
+                    )
+                ),
+                "q": "q",
+            }
+            assert substitute(p_reverse, theta_reverse) == "z"
+            k_reverse = free_reduce(C + v_reverse + A)
+            d_reverse = free_reduce(
+                "T"
+                + k_reverse
+                + "x"
+                + inverse_word(k_reverse)
+            )
+            b_reverse = inverse_word(v_reverse)
+            assert substitute(
+                substitute(W, theta_reverse),
+                kill_z,
+            ) == b_reverse
+            assert substitute(
+                substitute(D, theta_reverse),
+                kill_z,
+            ) == d_reverse
+
+            for eta, epsilon, delta in checkpoints:
+                q_word = d_tail(eta, epsilon, delta)
+                expected_forward = free_reduce(
+                    word_power("q", eta)
+                    + word_power(
+                        inverse_word(v_forward),
+                        epsilon,
+                    )
+                    + word_power(d_forward, delta)
+                )
+                expected_reverse = free_reduce(
+                    word_power("q", eta)
+                    + word_power(b_reverse, epsilon)
+                    + word_power(d_reverse, delta)
+                )
+                assert substitute(
+                    substitute(q_word, theta_forward),
+                    kill_z,
+                ) == expected_forward
+                assert substitute(
+                    substitute(q_word, theta_reverse),
+                    kill_z,
+                ) == expected_reverse
+
+
+def test_z_free_aw_collapse_and_unbounded_family_are_exact():
+    d_zero = free_reduce(
+        "T" + C + "x" + inverse_word(C)
+    )
+    for eta in (1, -1):
+        for delta in (1, -1):
+            q_zero = free_reduce(
+                word_power("q", eta)
+                + word_power(d_zero, delta)
+            )
+            if eta == 1:
+                reduced_q = free_reduce(
+                    q_zero + word_power(d_zero, -delta)
+                )
+            else:
+                inverted = inverse_word(q_zero)
+                conjugated = free_reduce(
+                    word_power(d_zero, delta)
+                    + inverted
+                    + word_power(d_zero, -delta)
+                )
+                reduced_q = free_reduce(
+                    conjugated
+                    + word_power(d_zero, delta)
+                )
+            assert reduced_q == "q"
+
+    kill_q = {"x": "x", "t": "t", "z": "z", "q": ""}
+    r_word = substitute(A, kill_q)
+    e_word = substitute(d_zero, kill_q)
+    braid = "xtxTXT"
+    assert r_word == "xxxTTTT"
+    assert e_word == "TxtxTX"
+    assert e_word == free_reduce("T" + braid + "t")
+    assert rank2_aut_canonical(relabel_to_xy(
+        (r_word, e_word),
+        ("x", "t"),
+    )) == ("XXXXYYY", "XYxYXy")
+
+    cyclic_lengths = []
+    for exponent in range(2, 8):
+        conjugator = word_power("q", exponent)
+        child = free_reduce(
+            W
+            + conjugator
+            + A
+            + inverse_word(conjugator)
+        )
+        assert sum(letter in "zZ" for letter in child) == 1
+        cyclic_lengths.append(len(cyclic_reduce(child)))
+        assert cyclic_lengths[-1] == 22 + 2 * exponent
+        assert cyclic_lengths[-1] > len(A) + len(W)
+    assert len(set(cyclic_lengths)) == len(cyclic_lengths)
+
+
+def test_z_free_aw_boundary_has_a_z_dependent_counterexample():
+    conjugator = "xz"
+    child = free_reduce(
+        W + conjugator + A + inverse_word(conjugator)
+    )
+    assert child == "qxxxQTTTTZqxQtqxzqxxxQTTTTZX"
+    minimum, _, chain = whitehead_reduce(
+        (child,),
+        GENERATORS4,
+    )
+    assert chain == (28, 23, 21, 20, 19, 18, 17, 15, 14)
+    assert minimum == ("QXzQzXttttXXZT",)
+    graph = whitehead_graph_on(minimum[0], GENERATORS4)
+    assert graph_is_connected(graph)
+    assert all(
+        graph_is_connected(graph, omitted=vertex)
+        for vertex in graph
+    )

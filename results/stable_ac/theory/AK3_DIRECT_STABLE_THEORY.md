@@ -3063,6 +3063,65 @@ stratum is closed. The source-first part is stronger and already covers
 arbitrary relative conjugators; the non-source arbitrary-conjugator
 family remains open.
 
+## Result 52: z-free A--W relative conjugators are unbounded self-loops
+
+The unbounded theorem is proved in
+
+```text
+literature/proofs/AK3_Z_FREE_AW_RELATIVE_CONJUGATOR_SELF_LOOP.md
+```
+
+Let \(H=F(x,t,q)\). For arbitrary \(u\in H\) and
+\(\sigma=\pm1\), consider either normalized target direction
+
+\[
+W\longmapsto WuA^\sigma u^{-1},
+\qquad
+A\longmapsto AuW^\sigma u^{-1}.
+\]
+
+Each changed row contains exactly one z-letter and is therefore
+primitive. The two directions require different literal straighteners:
+the A-target direction replaces u by \(u^{-1}\) and leaves the old W-row
+as a conjugate of \(A^{\pm1}\), which relator inversion and conjugation
+restore to A.
+
+In both directions, changed-row deletion reduces the surviving tuple
+to
+
+\[
+(A,D_V,q^\eta V^{-\epsilon}D_V^\delta),
+\qquad
+D_V=t^{-1}(CVA)x(CVA)^{-1},
+\]
+
+with \(V\) a conjugate of \(A^{\pm1}\). Because
+\(V\in\langle\!\langle A\rangle\!\rangle\), the fixed-source
+normal-closure lemma gives the classical rank-three reduction
+
+\[
+(A,D_V,q^\eta V^{-\epsilon}D_V^\delta)
+\sim_{\rm AC}
+(A,D_0,q),
+\qquad
+D_0=t^{-1}CxC^{-1}.
+\]
+
+Stable q-deletion leaves
+
+\[
+(R,E)=(\texttt{xxxTTTT},\texttt{TxtxTX}),
+\]
+
+the floor-13 AK(3) orbit. Thus this entire unbounded z-free family is a
+stable self-loop in both target directions and for all six checkpoints.
+
+For \(n\ge1\), the family \(u=q^n\) gives pairwise distinct primitive
+children of cyclic length \(22+2n\); the members with \(n\ge2\) go
+strictly beyond the finite cyclic census. The z-free hypothesis cannot
+be removed wholesale: already \(u=xz\) in the positive W-target branch
+gives a nonprimitive word with complete rank-four Whitehead minimum 14.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3117,10 +3176,12 @@ pair, and its only 12 changed-row-first second deletions are one
 A-block cancellation returning exactly to AK(3)'s floor-13 orbit. The
 signed-cyclic alternate first-deletion order is closed by Result 51 as
 well; source-first deletion is even insensitive to arbitrary relative
-conjugators. The immediate exact leads are therefore a nontrivial
-relative conjugator when the changed row or a non-source row is deleted,
-or two row-changing edges before deletion. Longer branches may use
-additional \(Wq^{-1}\) blocks, alter W by traffic with nontrivial
+conjugators. Result 52 additionally closes every changed-row-first A--W
+edge whose normalized relative conjugator is z-free. The immediate exact
+leads are therefore z-dependent A--W conjugators, arbitrary
+relative-conjugator traffic on the other carrier pairs or with non-source
+deletion, or two row-changing edges before deletion. Longer branches may
+use additional \(Wq^{-1}\) blocks, alter W by traffic with nontrivial
 first-deletion image, delete or alter a needed carrier, change the fixed
 checkpoint, or choose a different primitive slot. The exact Fox
 coordinate remains a necessary free-kernel certificate.
@@ -3234,12 +3295,14 @@ unchanged-primitive-first orders are now closed too. Source-first
 deletion is a quotient gauge for every relative conjugator;
 signed-cyclic non-source deletion either stops or returns by a short
 classical sequence in a fixed deletion coordinate, hence stably to the
-old floor-23 corridor. A different viable
-primitive-slot branch must use a nontrivial relative conjugator with
-changed-row or non-source deletion, two row changes before deletion,
-another \(Wq^{-1}\) block, a repeatedly changed source, alter W by
-traffic with nontrivial first-deletion image, lose a needed carrier
-source, use traffic with nontrivial deletion image, or draw from a
-source outside the retained normal closure.
+old floor-23 corridor. Even arbitrary z-free A--W conjugators are now
+closed under changed-row-first deletion; they collapse by the retained
+A-normal closure and a second stable q-deletion. A different viable
+primitive-slot branch must use z-dependent A--W traffic, another
+carrier pair with a nontrivial relative conjugator, non-source deletion,
+two row changes before deletion, another \(Wq^{-1}\) block, a repeatedly
+changed source, alter W by traffic with nontrivial first-deletion image,
+lose a needed carrier source, use traffic with nontrivial deletion
+image, or draw from a source outside the retained normal closure.
 
 AK(3) remains open.
