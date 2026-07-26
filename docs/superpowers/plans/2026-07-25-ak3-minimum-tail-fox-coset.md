@@ -49,4 +49,4 @@ Bass--Serre axes, integral permutation modules, `runpy`.
 - [x] Prove only target residues in the point stabilizer survive.
 - [x] State explicitly that the identity target survives.
 - [x] Run full replay, diff audit, and hostile review.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
