@@ -57,4 +57,4 @@ normal closure, then replay \(V=R\) exactly for AK(3).
 - [x] State Result 37 and narrow the live lead.
 - [x] Run focused tests, syntax, claim, placeholder, and diff audits.
 - [x] Complete an independent hostile review.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
