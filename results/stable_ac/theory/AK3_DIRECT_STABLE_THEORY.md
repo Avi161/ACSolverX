@@ -1536,6 +1536,87 @@ This removes the identity target and the natural target
 \(g=\gamma e^{-1}\). The central target \(g=c^{-1}\) survives, so the
 binary lift is still a target sieve rather than a nonlift certificate.
 
+## Result 29: the central target is Fox-obstructed
+
+The exact obstruction is proved in
+
+```text
+literature/proofs/AK3_MINIMUM_TAIL_CENTRAL_TARGET_OBSTRUCTION.md
+```
+
+The evaluated identities sharpen the subgroup geometry:
+
+\[
+H=(LKL^{-1})K,
+\qquad
+P=\langle K,LKL^{-1}\rangle.
+\]
+
+A four-state folded core proves
+
+\[
+J:=\langle P,L\rangle=\langle K,L\rangle\cong F_2.
+\]
+
+Thus \(J\) is the HNN extension of \(P\) which identifies
+\(\langle K\rangle\) with
+\(\langle LKL^{-1}\rangle\). The operator
+
+\[
+\mathcal B(z)=\pi_P((1+L)z)
+\]
+
+becomes unsigned edge incidence on the HNN Bass--Serre forest after
+quotienting its domain by \((K-1)R\). Leaf peeling gives the exact
+kernel
+
+\[
+\boxed{
+\ker\mathcal B=(K-1)R.
+}
+\]
+
+For \(g=c^{-1}\), the Fox equation would therefore force
+
+\[
+-(F_0+c^{-1})
+\in
+(d-K)R+(K-1)R
+=
+I_Q,
+\qquad
+Q=\langle d,K\rangle.
+\]
+
+A second folded core proves
+
+\[
+Q\cong F_2,
+\qquad
+Q\cap\langle c\rangle=1,
+\]
+
+and separates the four cosets in
+
+\[
+\pi_Q(F_0+c^{-1})
+=
+[Qc^{-1}]+[Qt^{-1}]-[Q]-[Qdte^{-1}].
+\]
+
+This vector is nonzero. Consequently
+
+\[
+\boxed{
+-[Pc^{-1}]-\pi_P(A_0)
+\notin
+\pi_P(A_U)\mathbb Z[G].
+}
+\]
+
+The central target is impossible at the Fox level. Other exact targets
+over the surviving binary residue remain open.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1600,21 +1681,27 @@ in \(\mathbb Z[P\backslash G]\), where \(P\cong F_2\) is center-free and
 infinite-index. The binary \(S_4\) lift repairs the first quotient's loss
 of central sign: the identity and \(g=\gamma e^{-1}\) targets are now
 excluded, while every surviving finite image lies in
-\((-I)\rho(P)\). The simplest surviving exact target is \(g=c^{-1}\).
-The next exact test is
+\((-I)\rho(P)\). The simplest surviving exact target \(g=c^{-1}\) is now
+also excluded by the exact HNN-kernel theorem and the
+\(Q=\langle d,K\rangle\) coset obstruction.
+
+The next exact problem is to classify all \(g\) for which the two-point
+chain
 
 \[
--[Pc^{-1}]-\pi_P(A_0)
-\stackrel{?}{\in}
-\pi_P(A_U)\mathbb Z[G].
+-[Pg]-[Pc^{-1}L]
 \]
 
-A second finite representation with a disjoint target-orbit condition
-would prove Fox nonliftability. Otherwise the nine-edge folded core now
-provides the exact infinite coset normal form needed for a direct
-coloring or module-membership proof. Fox success would still leave the
-nonabelian basis-letter equation. Even a liftable non-braid survivor
-would refute only this direct fixed-\(R\) finish, not stable AC.
+lies in the unsigned incidence image of the \(P\)-HNN forest. For every
+such target, the forest gives a unique finite edge chain modulo
+\((K-1)R\); the remaining question is whether its difference from
+\(F_0\) lies in the \(d-K\) image. This turns the existential target
+problem into a path-and-coset classification rather than another blind
+finite-quotient scan.
+
+Fox success would still leave the nonabelian basis-letter equation. Even
+a liftable non-braid survivor would refute only this direct fixed-\(R\)
+finish, not stable AC.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a

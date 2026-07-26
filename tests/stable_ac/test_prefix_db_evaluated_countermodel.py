@@ -832,3 +832,258 @@ def test_fox_binary_s4_lift_excludes_identity_and_q_targets():
     assert identity not in allowed_targets
     assert evaluate_matrix(target_q) not in allowed_targets
     assert negative_identity in allowed_targets
+
+
+def test_fox_hnn_core_replays_the_unsigned_incidence_kernel():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    candidate_h = free_reduce(gamma + candidate_b + inv(gamma))
+    multiplier = free_reduce(
+        gamma + candidate_b + beta + inv(candidate_k)
+    )
+
+    conjugate_k = free_reduce(
+        multiplier + candidate_k + inv(multiplier)
+    )
+    assert normal_form(conjugate_k) == normal_form(
+        candidate_h + inv(candidate_k)
+    )
+    assert normal_form(candidate_h) == normal_form(
+        conjugate_k + candidate_k
+    )
+
+    x_cycles = ((3, 0, 1),)
+    t_cycles = ((0, 1, 2, 3),)
+
+    def transition(
+        cycles: tuple[tuple[int, ...], ...],
+        state: int,
+        exponent: int,
+    ) -> int | None:
+        for cycle in cycles:
+            if state in cycle:
+                return cycle[(cycle.index(state) + exponent) % len(cycle)]
+        return None
+
+    def state_path(word: str) -> tuple[int | None, ...]:
+        state = 3
+        path: list[int | None] = [state]
+        for generator, exponent in normal_form(word)[1]:
+            cycles = x_cycles if generator == "x" else t_cycles
+            state = transition(cycles, state, exponent)
+            path.append(state)
+            if state is None:
+                break
+        return tuple(path)
+
+    assert state_path(candidate_k) == (3, 0, 1, 3)
+    assert state_path(multiplier) == (3, 0, 1, 0, 3)
+
+    # The trimmed theta core has three edges and two factor vertices.
+    assert 3 - 2 + 1 == 2
+    assert torus_weight(candidate_k) == -1
+    assert torus_weight(multiplier) == 0
+
+
+def test_fox_central_target_fails_the_q_coset_ideal():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+
+    x_cycles = (
+        (0, 1, 2),
+        (3, 5, 6),
+        (8, 10, 11),
+    )
+    t_cycles = (
+        (1, 2, 3, 4),
+        (5, 7, 8, 9),
+        (11, 12, 13, 0),
+    )
+
+    def transition(
+        cycles: tuple[tuple[int, ...], ...],
+        state: int,
+        exponent: int,
+    ) -> int | None:
+        for cycle in cycles:
+            if state in cycle:
+                return cycle[(cycle.index(state) + exponent) % len(cycle)]
+        return None
+
+    def state_path(word: str) -> tuple[int | None, ...]:
+        state = 0
+        path: list[int | None] = [state]
+        for generator, exponent in normal_form(word)[1]:
+            cycles = x_cycles if generator == "x" else t_cycles
+            state = transition(cycles, state, exponent)
+            path.append(state)
+            if state is None:
+                break
+        return tuple(path)
+
+    assert state_path(candidate_k) == (0, 1, 2, 0)
+    assert state_path(candidate_d) == (0, 1, 3, 5, 8, 11, 0)
+
+    # Seven trimmed core edges and six factor vertices give rank two.
+    assert 7 - 6 + 1 == 2
+
+    coset_representatives = {
+        "central_inverse": "XXX",
+        "t_inverse": "T",
+        "identity": "",
+        "last": free_reduce(candidate_d + "t" + inv(candidate_e)),
+    }
+    expected_paths = {
+        ("central_inverse", "t_inverse"): (0, 11),
+        ("central_inverse", "last"): (0, 13, None),
+        ("t_inverse", "identity"): (0, 13),
+        ("t_inverse", "last"): (0, 12, None),
+        ("identity", "last"): (0, 13, None),
+    }
+
+    for (left_name, right_name), expected in expected_paths.items():
+        difference = free_reduce(
+            coset_representatives[left_name]
+            + inv(coset_representatives[right_name])
+        )
+        assert state_path(difference) == expected
+        assert expected[-1] != 0
+
+    central_difference = free_reduce(
+        coset_representatives["central_inverse"]
+        + inv(coset_representatives["identity"])
+    )
+    assert normal_form(central_difference) == (-1, ())
+
+    # The central projection is injective on Q=<d,K>, because the two
+    # displayed loops freely generate the rank-two folded core.
+    assert torus_weight(central_difference) == -12
+
+    f0_terms = (
+        ("XXX", 1),
+        ("T", 1),
+        (candidate_d, -1),
+        (free_reduce(candidate_d + "t" + inv(candidate_e)), -1),
+    )
+    assert tuple(coefficient for _, coefficient in f0_terms) == (
+        1,
+        1,
+        -1,
+        -1,
+    )
+    assert f0_terms[0][0] == coset_representatives["central_inverse"]
+    assert f0_terms[1][0] == coset_representatives["t_inverse"]
+    assert f0_terms[3][0] == coset_representatives["last"]
+
+
+def test_fox_central_target_has_independent_s5_obstruction():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    last_term = free_reduce(
+        candidate_d + "t" + inv(candidate_e)
+    )
+
+    identity = (0, 1, 2, 3, 4)
+    x_permutation = (1, 2, 0, 3, 4)
+    t_permutation = (0, 2, 3, 4, 1)
+
+    def compose(
+        left: tuple[int, ...],
+        right: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        return tuple(left[right[index]] for index in range(5))
+
+    def permutation_inverse(
+        permutation: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        result = [0] * 5
+        for source, target in enumerate(permutation):
+            result[target] = source
+        return tuple(result)
+
+    letter_permutations = {
+        "x": x_permutation,
+        "X": permutation_inverse(x_permutation),
+        "t": t_permutation,
+        "T": permutation_inverse(t_permutation),
+    }
+
+    def evaluate_permutation(word: str) -> tuple[int, ...]:
+        result = identity
+        for letter in word:
+            result = compose(result, letter_permutations[letter])
+        return result
+
+    def generated_subgroup(
+        generators: tuple[tuple[int, ...], ...],
+    ) -> set[tuple[int, ...]]:
+        signed_generators = generators + tuple(
+            permutation_inverse(generator)
+            for generator in generators
+        )
+        subgroup = {identity}
+        frontier = [identity]
+        while frontier:
+            current = frontier.pop()
+            for generator in signed_generators:
+                candidate = compose(current, generator)
+                if candidate not in subgroup:
+                    subgroup.add(candidate)
+                    frontier.append(candidate)
+        return subgroup
+
+    quotient_group = generated_subgroup(
+        (x_permutation, t_permutation)
+    )
+    q_image = generated_subgroup(
+        (
+            evaluate_permutation(candidate_k),
+            evaluate_permutation(candidate_d),
+        )
+    )
+
+    assert len(quotient_group) == 120
+    assert len(q_image) == 8
+    assert all(permutation[0] == 0 for permutation in q_image)
+    assert evaluate_permutation("xxx") == identity
+    assert evaluate_permutation("tttt") == identity
+    assert evaluate_permutation(candidate_k) == (0, 3, 1, 4, 2)
+    assert evaluate_permutation(candidate_d) == (0, 1, 3, 2, 4)
+    assert evaluate_permutation(last_term) == evaluate_permutation("xt")
+
+    def coset_index(word: str) -> int:
+        return permutation_inverse(evaluate_permutation(word))[0]
+
+    assert coset_index("T") == 0
+    assert coset_index("xt") == 1

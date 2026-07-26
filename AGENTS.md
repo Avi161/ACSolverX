@@ -494,3 +494,13 @@
 
 - [TRAP] An `rg` alternation containing the shell spelling `L\\notin P` was parsed as a forbidden literal newline escape and aborted the entire final claim audit.
 - [WORKS] Run prose alternatives and each LaTeX command as separate fixed-string searches with `rg -F`; never place LaTeX backslashes inside a shared regular-expression audit.
+
+### 2026-07-25 Layer BFS must expand the current frontier
+
+- [TRAP] A scratch basis-word BFS compared `len(word) >= depth` while starting at depth zero, consumed the only frontier state, and then reported empty frontiers at every later depth.
+- [WORKS] Advance one complete frontier layer per outer iteration and build the next layer unconditionally from those states; test that depth one has the expected signed-generator count before trusting a null word search.
+
+### 2026-07-25 Fold two-generator subgroups before word BFS
+
+- [TRAP] Literal \(G\)-normal-form BFS in the signed generators \(K,d\) reached 118,097 words at depth ten and spent over a minute rebuilding long representatives before interruption.
+- [WORKS] Fold the two projected generator loops first. Use the finite precover for subgroup membership and central voltage, then search only the few support-word differences required by the module equation.
