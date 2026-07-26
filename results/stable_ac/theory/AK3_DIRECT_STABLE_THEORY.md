@@ -2614,6 +2614,66 @@ difference of the last relator from \(D\) is
 so two retained-R factors return it to \(D\). Hence \(q\beta(R)\) gives
 no new classical endpoint.
 
+## Result 44: every signed qW changed source cancels with W
+
+The two-source cancellation theorem is proved in
+
+```text
+literature/proofs/AK3_QW_SOURCE_PAIR_CANCELLATION_SELF_LOOP.md
+```
+
+At the fixed source-slot checkpoint, write
+
+\[
+A=\beta(R),
+\qquad
+C=\beta(xt)q,
+\qquad
+W=Az^{-1}C.
+\]
+
+For every sign pair,
+
+\[
+Q_{\eta,\epsilon}=q^\eta W^\epsilon,
+\qquad
+\eta,\epsilon\in\{+1,-1\},
+\]
+
+contains z exactly once and is primitive. Explicit triangular
+z-coordinate automorphisms straighten all four words. Deleting
+\(Q_{\eta,\epsilon}\) first sends the surviving W-slot uniformly to
+
+\[
+q^{-\eta\epsilon}.
+\]
+
+Thus a second literal q-deletion is available, after inversion when
+necessary. Before that second deletion, the D-slot has form
+
+\[
+t^{-1}E_sxE_s^{-1},
+\qquad
+E_s=Cq^{\eta\epsilon}A.
+\]
+
+Killing q sends \(A\mapsto R\) and \(E_s\mapsto(xt)R\), independently
+of both signs. Every branch therefore reaches
+
+\[
+\left(
+R,\;
+t^{-1}(xtR)x(xtR)^{-1}
+\right).
+\]
+
+The standard two retained-R factors return this to the rank-two AK
+endpoint. Arbitrary later traffic from
+\(\langle\!\langle Q_{\eta,\epsilon}\rangle\!\rangle\), including
+traffic into any survivor slot, vanishes in the first deletion. Hence
+all four incoherent source products \(q^\eta W^\epsilon\) are
+self-loops.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2635,19 +2695,22 @@ generator. Within the relative-transvection family, the next minimal
 branch cannot be post-manufacture traffic which avoids target
 multiplication into the primitive slot: all such traffic descends through
 deletion. Result 38 also closes multiplication by the surviving literal
-\(q^{\pm1}\)-slot,
-despite its q-dependent pullback. Result 39 closes every coherent
+\(q^{\pm1}\)-slot, despite its q-dependent pullback. Result 39 closes
+every coherent
 conjugator pulled back from a complement to \(U\), and Result 41 closes
 the full normal closure of the restored literal q-source, including
 arbitrary z-dependent traffic. Result 42 also closes every changed source
 \(qV\) carried by passive q-free sources that remain distinct; in
 particular, \(qD\) is a gauge. Result 43 closes the coherent q-dependent
 extension \(q\beta(V)=\beta(qV)\); in particular, \(q\beta(R)\) is also a
-gauge. The next source-traffic branch must therefore use an incoherent
-q-dependent source change, delete a needed carrier or alter it by traffic
-with nontrivial deletion image, change the source a second time, change
-the fixed checkpoint, or choose a different primitive slot. The exact
-Fox coordinate remains a necessary free-kernel certificate.
+gauge. Result 44 closes the first incoherent pair source
+\(q^\eta W^\epsilon\) in all four orientations, even with arbitrary
+later traffic from that changed source. The next source-traffic branch
+must therefore use a longer mixed source word, change the source a second
+time, alter W by traffic with nontrivial first-deletion image, delete a
+needed carrier or alter it by traffic with nontrivial deletion image,
+change the fixed checkpoint, or choose a different primitive slot. The
+exact Fox coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2739,10 +2802,11 @@ deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
 insufficient when it comes from the restored literal q-source, even when
 its conjugators involve \(z\). Passive-source changes \(qV\) do not help
 either while their q-free carrier sources survive, and coherent
-transported changes \(q\beta(V)\) are gauges as well. A viable
-primitive-slot branch must make the source change incoherently
-q-dependent, lose a needed carrier source, use traffic with nontrivial
-deletion image, or draw from a source outside the retained normal
-closure.
+transported changes \(q\beta(V)\) are gauges as well. Even the first
+incoherent products \(q^\eta W^\epsilon\) cancel against the surviving
+W-slot. A viable primitive-slot branch must use a longer or repeatedly
+changed source, alter W by traffic with nontrivial first-deletion image,
+lose a needed carrier source, use traffic with nontrivial deletion image,
+or draw from a source outside the retained normal closure.
 
 AK(3) remains open.
