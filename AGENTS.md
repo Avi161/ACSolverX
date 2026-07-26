@@ -629,3 +629,8 @@
 
 - [TRAP] One patch tried to broaden the passive-slot theorem across proof, spec, and test; a stale equation block rejected every hunk. A follow-up typo then guessed a nonexistent context line.
 - [WORKS] For a scope generalization, read and patch the theorem statement/proof first, then patch the concrete specialization, boundary, spec, and replay in separate verified hunks.
+
+### 2026-07-26 Treat the live-lead tail as a separate patch target
+
+- [TRAP] The Result 43 live-lead rewrite again combined the main source paragraph with the distant final paragraph; a line-wrap mismatch in the tail rejected both changes.
+- [WORKS] After inserting a numbered result, patch the first live-lead paragraph alone, then read `tail` and patch the final frontier paragraph separately.

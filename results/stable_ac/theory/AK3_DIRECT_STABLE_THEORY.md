@@ -2549,6 +2549,71 @@ returns \(U\) to \(B\) by one R-source factor. Thus the first nonliteral
 source \(qD\), including arbitrary traffic from it into the other
 slots, gives no new classical endpoint.
 
+## Result 43: coherently transported q-source changes are gauges
+
+The transported-source theorem is proved in
+
+```text
+literature/proofs/AK3_TRANSPORTED_Q_SOURCE_GAUGE_SELF_LOOP.md
+```
+
+Let \(R_1,\ldots,R_k\) be q-free retained sources, let \(V\) lie in
+their joint normal closure, and suppose
+
+\[
+\beta(q)=q,
+\qquad
+\rho\beta=\rho.
+\]
+
+At a checkpoint carrying the coherent source slots \(\beta(R_i)\), the
+q-dependent word
+
+\[
+Q=\beta(qV)=q\beta(V)
+\]
+
+is primitive and can be manufactured from those sources. Straightening
+and deleting \(Q\) uses
+
+\[
+\sigma=\rho\delta_V^{-1}\beta^{-1}.
+\]
+
+It returns every coherent carrier \(\beta(R_i)\) literally to \(R_i\).
+Modulo their joint normal closure, \(\sigma\) agrees with ordinary
+q-deletion, while all later traffic from
+\(\langle\!\langle Q\rangle\!\rangle\) vanishes. Thus this entire
+coherently transported q-dependent source family is a retained-source
+gauge.
+
+For AK(3), take \(V=R\). The source
+
+\[
+Q=q\beta(R)=\beta(qR)
+\]
+
+deletes, independently of arbitrary later \(Q\)-source traffic, to
+
+\[
+\left(
+R,\;
+RBR^{-1},\;
+t^{-1}zRxR^{-1}z^{-1}
+\right).
+\]
+
+One AC3 conjugation returns the middle relator to \(B\). The exact
+difference of the last relator from \(D\) is
+
+\[
+\bigl((zx^{-1})R(xz^{-1})\bigr)
+\bigl(zR^{-1}z^{-1}\bigr),
+\]
+
+so two retained-R factors return it to \(D\). Hence \(q\beta(R)\) gives
+no new classical endpoint.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2569,19 +2634,20 @@ stabilizer relator becomes \(U^{-1}\) and recovers the deleted normal
 generator. Within the relative-transvection family, the next minimal
 branch cannot be post-manufacture traffic which avoids target
 multiplication into the primitive slot: all such traffic descends through
-deletion. Result 38
-also closes multiplication by the surviving literal \(q^{\pm1}\)-slot,
+deletion. Result 38 also closes multiplication by the surviving literal
+\(q^{\pm1}\)-slot,
 despite its q-dependent pullback. Result 39 closes every coherent
 conjugator pulled back from a complement to \(U\), and Result 41 closes
 the full normal closure of the restored literal q-source, including
 arbitrary z-dependent traffic. Result 42 also closes every changed source
-\(qV\) carried by passive q-free sources that survive unchanged; in
-particular, \(qD\) is a gauge. The next source-traffic branch must
-therefore use a q-dependent source change, alter or delete the passive
-carrier, change the source a second time, draw traffic from another
-source with nontrivial deletion image, change the fixed checkpoint, or
-choose a different primitive slot. The exact Fox coordinate remains a
-necessary free-kernel certificate.
+\(qV\) carried by passive q-free sources that remain distinct; in
+particular, \(qD\) is a gauge. Result 43 closes the coherent q-dependent
+extension \(q\beta(V)=\beta(qV)\); in particular, \(q\beta(R)\) is also a
+gauge. The next source-traffic branch must therefore use an incoherent
+q-dependent source change, delete a needed carrier or alter it by traffic
+with nontrivial deletion image, change the source a second time, change
+the fixed checkpoint, or choose a different primitive slot. The exact
+Fox coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2672,9 +2738,11 @@ asymmetry, retained-source cross-coupling, and quotient-equal source
 deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
 insufficient when it comes from the restored literal q-source, even when
 its conjugators involve \(z\). Passive-source changes \(qV\) do not help
-either while their q-free carrier sources survive. A viable
-primitive-slot branch must make the source change q-dependent, lose a
-needed carrier source, use traffic with nontrivial deletion image, or
-draw from a source outside the retained normal closure.
+either while their q-free carrier sources survive, and coherent
+transported changes \(q\beta(V)\) are gauges as well. A viable
+primitive-slot branch must make the source change incoherently
+q-dependent, lose a needed carrier source, use traffic with nontrivial
+deletion image, or draw from a source outside the retained normal
+closure.
 
 AK(3) remains open.
