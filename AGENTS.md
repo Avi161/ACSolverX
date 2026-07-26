@@ -569,3 +569,8 @@
 
 - [TRAP] The nontrivial-\(U\) replay compared `phi["q"]` with the raw concatenation `beta_u + "q"`; when `beta_u` ended in `Q`, the implementation correctly canceled the terminal `Qq` and the assertion failed.
 - [WORKS] Every literal expected image assembled from word pieces must pass through `free_reduce` before comparison.
+
+### 2026-07-25 Split ledger insertions from live-lead rewrites
+
+- [TRAP] A single patch combined a new numbered result with two distant live-lead replacements; one stale line wrap in the final hunk rejected the entire otherwise-correct insertion.
+- [WORKS] Insert a numbered result in one patch, read the current live-lead text, then patch each live-lead paragraph separately.

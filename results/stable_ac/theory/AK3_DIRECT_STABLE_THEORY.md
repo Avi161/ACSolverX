@@ -2029,6 +2029,76 @@ The difference \(D^{-1}D'\) is an explicit product of four conjugates of
 \(R^{\pm1},B^{\pm1}\). Thus this first genuinely \(B\)-coupled
 five-\(q\) construction is also a stable self-loop.
 
+## Result 35: deleting the source slot still recovers its normal closure
+
+The source-slot exchange theorem is proved in
+
+```text
+literature/proofs/AK3_SOURCE_SLOT_PRIMITIVE_EXCHANGE_SELF_LOOP.md
+```
+
+Let
+
+\[
+L_0
+=
+\langle\!\langle R_1,\ldots,R_{k-1}\rangle\!\rangle
+\]
+
+and suppose
+
+\[
+R_k^{-1}U\in L_0.
+\]
+
+Thus \(U\) is quotient-equal to the source \(R_k\) which will be
+replaced. After the relative \(\beta\)-transport, the multi-source lemma
+changes the \(\beta(R_k)\)-slot to \(\beta(U)\), and the untouched
+stabilizer changes it once more to
+
+\[
+W=\beta(U)q.
+\]
+
+This time \(W\) occupies the \(R_k\)-slot and the \(q\)-relator survives.
+Straightening and primitive deletion send that surviving relator to
+
+\[
+U^{-1}.
+\]
+
+Modulo \(L_0\), this is \(R_k^{-1}\). The other retained sources replace
+it by \(R_k^{-1}\), one inversion recovers \(R_k\), and the recovered
+full source subtuple absorbs every remaining survivor distortion.
+
+For AK(3), let \(R_k=B\), \(L_0=\langle\!\langle R\rangle\!\rangle\),
+and \(U=RB\). The literal target moves are
+
+\[
+\beta(B)
+\longmapsto
+\beta(R)\beta(B)
+\longmapsto
+\beta(R)\beta(B)q=W.
+\]
+
+Deletion produces
+
+\[
+(R,D',U^{-1}),
+\]
+
+but
+
+\[
+\boxed{U^{-1}R=B^{-1}.}
+\]
+
+One multiplication and inversion recover \(B\); the earlier four-factor
+\((R,B)\)-certificate returns \(D'\) to \(D\). Thus even targeting and
+deleting the \(B\)-source with the five-\(q\) primitive word is a stable
+self-loop.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2043,12 +2113,14 @@ normal closure of the retained \(R\)-slot. Merely leaving the survivors
 untransported is insufficient: after deletion their apparent asymmetry
 is absorbed by \(R\)-source AC moves.
 
-Merely cross-coupling retained sources is now closed as well. The next
-minimal branch must make a source normal closure unavailable after
-primitive deletion—for example, manufacture the primitive relator in a
-source slot rather than the stabilizer slot—or else leave a survivor
-outside its baseline class modulo every retained source. The exact Fox
-coordinate remains the necessary free-kernel certificate.
+Merely cross-coupling retained sources is now closed as well. Targeting
+and deleting a quotient-equal source slot also fails: the surviving
+stabilizer relator becomes \(U^{-1}\) and recovers the deleted normal
+generator. Within the relative-transvection family, the next minimal
+branch must modify that surviving stabilizer before straightening, change
+the joint retained normal closure, or leave a survivor outside its
+baseline class modulo every recovered source. The exact Fox coordinate
+remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2133,7 +2205,9 @@ candidates collapse to conjugates of the stabilizer, the natural
 three-letter split family has one exact primitive member, and its direct
 relation-splitting production is a stable self-loop. Even arbitrary
 consequences of a retained multi-source subtuple close. The open branch
-must lose a needed source normal closure or change the survivor quotient
-class; bare asymmetry and retained-source cross-coupling are insufficient.
+must lose a needed source normal closure without having the surviving
+stabilizer restore it, or change the survivor quotient class; bare
+asymmetry, retained-source cross-coupling, and quotient-equal source
+deletion are insufficient.
 
 AK(3) remains open.
