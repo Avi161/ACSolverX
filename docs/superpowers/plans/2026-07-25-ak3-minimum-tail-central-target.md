@@ -48,4 +48,4 @@ free-product Stallings cores, Bass--Serre HNN tree, coset modules.
 - [x] Prove the four support cosets are pairwise distinct.
 - [x] Conclude that \(g=c^{-1}\) is Fox-obstructed.
 - [x] Run full replay, diff audit, and hostile review.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
