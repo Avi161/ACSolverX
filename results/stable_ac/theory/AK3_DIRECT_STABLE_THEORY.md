@@ -1947,6 +1947,88 @@ Each of \(B^{-1}B'\) and \(D^{-1}D'\) is an explicit product of two
 conjugates of \(R^{\pm1}\). Thus the obvious asymmetric production of
 \(V_3\) is reachable but returns exactly to the rank-three AK(3) root.
 
+## Result 34: retained multi-source primitive production also closes
+
+The multi-source theorem is proved in
+
+```text
+literature/proofs/AK3_MULTISOURCE_PRIMITIVE_SELF_LOOP.md
+```
+
+Let
+
+\[
+\langle X\mid
+R_1,\ldots,R_k,S_1,\ldots,S_m
+\rangle
+\]
+
+be a balanced trivial-group presentation. If
+
+\[
+U\in
+L=
+\langle\!\langle R_1,\ldots,R_k\rangle\!\rangle,
+\]
+
+and \(\beta(q)=q,\ \rho\beta=\rho\), then
+
+\[
+W=\beta(U)q
+\]
+
+can be manufactured after replacing every \(R_i\) by \(\beta(R_i)\).
+Straightening \(W\) returns those retained sources literally to \(R_i\).
+For \(p=\rho(\beta\alpha_U)^{-1}\),
+
+\[
+p(S_j)=S_j\pmod L,
+\]
+
+so the multi-source normal-closure lemma returns every other survivor by
+classical AC moves.
+
+This strictly extends Result 33: \(U\) may couple several defining
+relators. For AK(3), take
+
+\[
+U=RB,
+\qquad
+\beta(x)=qxq^{-1}.
+\]
+
+The resulting primitive word is
+
+\[
+\boxed{
+W
+=
+qx^3q^{-1}t^{-4}z^{-1}qxq^{-1}tq.
+}
+\]
+
+It is freely and cyclically reduced, has \(q\)-exponent one, and has
+exactly five \(q^{\pm1}\)-occurrences. Both \(R\) and \(B\) have literal
+two-factor \(q\)-source certificates, so
+
+\[
+(R,B,D,q)
+\sim_{\mathrm{AC1-3}}
+(\beta(R),\beta(B),D,W).
+\]
+
+Primitive deletion produces
+
+\[
+(R,B,D'),
+\qquad
+D'=t^{-1}z(RB)x(RB)^{-1}z^{-1}.
+\]
+
+The difference \(D^{-1}D'\) is an explicit product of four conjugates of
+\(R^{\pm1},B^{\pm1}\). Thus this first genuinely \(B\)-coupled
+five-\(q\) construction is also a stable self-loop.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -1961,11 +2043,12 @@ normal closure of the retained \(R\)-slot. Merely leaving the survivors
 untransported is insufficient: after deletion their apparent asymmetry
 is absorbed by \(R\)-source AC moves.
 
-The next minimal branch is therefore cross-coupled production: use
-\(B\) or \(D\) as a source or target during the manufacture of \(V_3\),
-then ask whether the resulting survivor leaves its baseline class in the
-fixed-\(R\) quotient. The exact Fox coordinate \(2-x^3\) remains the
-necessary free-kernel certificate.
+Merely cross-coupling retained sources is now closed as well. The next
+minimal branch must make a source normal closure unavailable after
+primitive deletion—for example, manufacture the primitive relator in a
+source slot rather than the stabilizer slot—or else leave a survivor
+outside its baseline class modulo every retained source. The exact Fox
+coordinate remains the necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2048,7 +2131,9 @@ generator is removed.
 The multi-\(z\) phrase is no longer unconstrained. Literal free-kernel
 candidates collapse to conjugates of the stabilizer, the natural
 three-letter split family has one exact primitive member, and its direct
-relation-splitting production is a stable self-loop. The open branch is
-cross-coupled production, not primitivity or bare asymmetry.
+relation-splitting production is a stable self-loop. Even arbitrary
+consequences of a retained multi-source subtuple close. The open branch
+must lose a needed source normal closure or change the survivor quotient
+class; bare asymmetry and retained-source cross-coupling are insufficient.
 
 AK(3) remains open.
