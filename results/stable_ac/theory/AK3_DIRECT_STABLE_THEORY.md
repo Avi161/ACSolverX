@@ -1461,6 +1461,81 @@ The axis lengths, subgroup images, coefficient vectors, and target
 parity are replayed by
 `tests/stable_ac/test_prefix_db_evaluated_countermodel.py`.
 
+## Result 28: the binary \(S_4\) lift removes two Fox targets
+
+The exact refinement is proved in
+
+```text
+literature/proofs/AK3_MINIMUM_TAIL_BINARY_COSET_SIEVE.md
+```
+
+The projected subgroup \(\pi(P)\le C_3*C_4\) has a nine-edge folded
+core. Its partial factor actions are
+
+\[
+\begin{array}{c|c}
+x & (0\,1\,2),\ (5\,8\,9)\\
+t & (1\,2\,4\,5),\ (8\,9\,11\,12),
+\end{array}
+\]
+
+with the remaining incidences forming the core boundary. The core has
+rank two. Its two fundamental chains recover the exponent sums
+\((m,n)\) in the free basis \((K,H_0)\), and central weight gives the
+exact lift criterion
+
+\[
+w\in P
+\iff
+\pi(w)\text{ is an accepted based loop and }
+\operatorname{wt}(w)=-m-2n.
+\]
+
+In particular,
+
+\[
+L,\gamma e^{-1}\notin P,
+\qquad
+\gamma e^{-1}=c^{-1}L.
+\]
+
+Thus left multiplication by \(L\) cannot be treated as an action on
+\(P\backslash G\).
+
+The previous projective quotient lifts to
+
+\[
+\rho(x)=
+\begin{pmatrix}0&1\\2&1\end{pmatrix},
+\qquad
+\rho(t)=
+\begin{pmatrix}0&1\\1&1\end{pmatrix}
+\quad\text{in }GL_2(\mathbb F_3),
+\]
+
+where both defining powers equal \(-I\). For \(\ell=(1,2)\),
+
+\[
+\rho(P)=\operatorname{Stab}(\ell),
+\qquad
+\ell\rho(A_U)=0,
+\qquad
+\ell\rho(A_0)=\ell.
+\]
+
+The induced functional on \(\mathbb F_3[P\backslash G]\) proves that
+every Fox target must satisfy
+
+\[
+\boxed{
+\rho(g)\in(-I)\rho(P).
+}
+\]
+
+This removes the identity target and the natural target
+\(g=\gamma e^{-1}\). The central target \(g=c^{-1}\) survives, so the
+binary lift is still a target sieve rather than a nonlift certificate.
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1522,13 +1597,24 @@ excluding every \(U,V,W\).
 
 The full Fox equation is now reduced to a single cyclic-submodule problem
 in \(\mathbb Z[P\backslash G]\), where \(P\cong F_2\) is center-free and
-infinite-index.  The first \(S_4\) coset quotient restricts the target
-residue to the image of \(P\), but the identity residue survives.  The
-next exact test is therefore the infinite coset-module membership
-equation itself, or a stronger finite quotient which excludes every
-target residue.  Fox success would still leave the nonabelian
-basis-letter equation.  Even a liftable non-braid survivor would refute
-only this direct fixed-\(R\) finish, not stable AC.
+infinite-index. The binary \(S_4\) lift repairs the first quotient's loss
+of central sign: the identity and \(g=\gamma e^{-1}\) targets are now
+excluded, while every surviving finite image lies in
+\((-I)\rho(P)\). The simplest surviving exact target is \(g=c^{-1}\).
+The next exact test is
+
+\[
+-[Pc^{-1}]-\pi_P(A_0)
+\stackrel{?}{\in}
+\pi_P(A_U)\mathbb Z[G].
+\]
+
+A second finite representation with a disjoint target-orbit condition
+would prove Fox nonliftability. Otherwise the nine-edge folded core now
+provides the exact infinite coset normal form needed for a direct
+coloring or module-membership proof. Fox success would still leave the
+nonabelian basis-letter equation. Even a liftable non-braid survivor
+would refute only this direct fixed-\(R\) finish, not stable AC.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a

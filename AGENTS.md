@@ -458,3 +458,39 @@
 
 - [TRAP] Automatic approval review can time out while force-adding one exact ignored proof file; a timeout is not a safety rejection and does not imply the path is wrong.
 - [WORKS] Retry the identical exact `git add -f literature/proofs/<file>` once, then stop for guidance if the retry also fails.
+
+### 2026-07-25 Compile folded-graph scratch helpers before running
+
+- [TRAP] A missing parenthesis in an inline folded-coset prototype can abort before any mathematical check and waste a full retry.
+- [WORKS] Keep the prototype short, run its syntax/initialization path first, and only then add the subgroup and coset-module workload. Treat an aborted prototype as producing no evidence.
+
+### 2026-07-25 System `py_compile` cache outside the worktree
+
+- [TRAP] `python3 -m py_compile .scratch/<file>.py` tries to create its mirrored bytecode cache under `~/Library/Caches/com.apple.python/...` and fails in the isolated worktree with `PermissionError: [Errno 1] Operation not permitted`.
+- [SUPERSEDED] `python3 -m ast < .scratch/<file>.py` does parse the file, but dumps the entire AST and creates unusably noisy logs.
+- [WORKS] Syntax-check scratch proof helpers with `PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONPATH=. python3 -m py_compile .scratch/<file>.py`, then run them with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=.`. The explicit `PYTHONPATH` is required because launching a script under `.scratch/` otherwise omits the project root and breaks imports such as `experiments`.
+
+### 2026-07-25 Folded-core homology orientation
+
+- [TRAP] A folded coset core can accept both subgroup generators while a guessed fundamental-cycle coordinate still assigns the wrong second basis vector; graph acceptance alone does not validate the homology transducer.
+- [WORKS] Replay the complete state path and raw oriented edge chain for each named subgroup generator, derive the coordinate change from those two actual chains, and only then use central weight to decide membership in \(P<G\).
+
+### 2026-07-25 Canonicalize cosets before linear algebra
+
+- [TRAP] Pairwise `same_left_coset` clustering is quadratic in all support points; the exact target solve reached 1,016 rows at multiplier radius five but spent over two minutes constructing radius six and required interruption.
+- [WORKS] Use the folded core to assign a canonical left-coset key (core transversal, first unreadable tail, and central defect) once per word. Build sparse module rows by hashing that key rather than comparing every pair by subgroup membership.
+
+### 2026-07-25 Test finite-module targets by coset, not element
+
+- [TRAP] Recomputing a full augmented RREF for every element of an 8,064-element combined quotient repeats the same target vector once per element of each left \(P\)-coset and required interruption.
+- [WORKS] Row-reduce the orbit-column span once, test one basis target for each left coset, and then lift the allowed coset indices back to group elements only if needed.
+
+### 2026-07-25 Left multiplication is not a coset-module action
+
+- [TRAP] In the right module \(\mathbb Z[P\backslash G]\), \((1+L)z\) maps to \([Pz]+[PLz]\), not \([Pz]+[PzL]\). Left multiplication by \(L\) is not a well-defined action on left cosets unless \(L\) normalizes \(P\); the folded core proves \(L\notin P\) here.
+- [WORKS] Evaluate every coefficient monomial before taking its left coset, or use a row representation \(F([Pg])=\ell\rho(g)\) with \(\ell\rho(P)=\ell\). Never turn a left group-ring factor into a right Schreier orbit.
+
+### 2026-07-25 Do not mix LaTeX backslashes into audit alternation
+
+- [TRAP] An `rg` alternation containing the shell spelling `L\\notin P` was parsed as a forbidden literal newline escape and aborted the entire final claim audit.
+- [WORKS] Run prose alternatives and each LaTeX command as separate fixed-string searches with `rg -F`; never place LaTeX backslashes inside a shared regular-expression audit.

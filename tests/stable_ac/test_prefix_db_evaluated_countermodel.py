@@ -587,3 +587,248 @@ def test_fox_s4_projection_restricts_the_target_to_the_p_stabilizer():
         )
 
     assert target_differences == [False, False, False, True]
+
+
+def test_fox_folded_core_recognizes_p_and_its_central_lifts():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    candidate_h = free_reduce(gamma + candidate_b + inv(gamma))
+    multiplier = free_reduce(
+        gamma + candidate_b + beta + inv(candidate_k)
+    )
+    target_q = free_reduce(gamma + inv(candidate_e))
+
+    core_states = (0, 1, 2, 4, 5, 8, 9, 11, 12)
+    core_index = {
+        state: index
+        for index, state in enumerate(core_states)
+    }
+    x_cycles = ((0, 1, 2), (5, 8, 9))
+    t_cycles = ((1, 2, 4, 5), (8, 9, 11, 12))
+
+    def transition(
+        cycles: tuple[tuple[int, ...], ...],
+        state: int,
+        exponent: int,
+    ) -> int | None:
+        for cycle in cycles:
+            if state in cycle:
+                return cycle[(cycle.index(state) + exponent) % len(cycle)]
+        return None
+
+    def loop_coordinates(word: str) -> tuple[int, int] | None:
+        state = 0
+        raw_chain = [0] * len(core_states)
+        for generator, exponent in normal_form(word)[1]:
+            cycles = x_cycles if generator == "x" else t_cycles
+            destination = transition(cycles, state, exponent)
+            if destination is None:
+                return None
+            source_index = core_index[state]
+            destination_index = core_index[destination]
+            if generator == "x":
+                raw_chain[source_index] -= 1
+                raw_chain[destination_index] += 1
+            else:
+                raw_chain[source_index] += 1
+                raw_chain[destination_index] -= 1
+            state = destination
+
+        if state != 0 or any(value % 2 for value in raw_chain):
+            return None
+        chain = [value // 2 for value in raw_chain]
+        h_exponent = chain[5]
+        k_exponent = chain[1] - h_exponent
+        return k_exponent, h_exponent
+
+    def lies_in_p(word: str) -> bool:
+        coordinates = loop_coordinates(word)
+        if coordinates is None:
+            return False
+        k_exponent, h_exponent = coordinates
+        return torus_weight(word) == -k_exponent - 2 * h_exponent
+
+    assert loop_coordinates(candidate_k) == (1, 0)
+    assert loop_coordinates(candidate_h) == (0, 1)
+    assert lies_in_p(candidate_k)
+    assert lies_in_p(candidate_h)
+    assert lies_in_p(free_reduce(candidate_k + candidate_h))
+    assert not lies_in_p(free_reduce("xxx" + candidate_k))
+    assert not lies_in_p(multiplier)
+    assert not lies_in_p(target_q)
+    assert normal_form(target_q) == normal_form("XXX" + multiplier)
+
+
+def test_fox_binary_s4_lift_excludes_identity_and_q_targets():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    candidate_h = free_reduce(gamma + candidate_b + inv(gamma))
+    alpha = "t"
+    multiplier = free_reduce(
+        gamma + candidate_b + beta + inv(candidate_k)
+    )
+    target_q = free_reduce(gamma + inv(candidate_e))
+
+    prime = 3
+    identity = (1, 0, 0, 1)
+    negative_identity = (2, 0, 0, 2)
+    x_matrix = (0, 1, 2, 1)
+    t_matrix = (0, 1, 1, 1)
+
+    def multiply(
+        left: tuple[int, int, int, int],
+        right: tuple[int, int, int, int],
+    ) -> tuple[int, int, int, int]:
+        a, b, c, d = left
+        e, f, g, h = right
+        return (
+            (a * e + b * g) % prime,
+            (a * f + b * h) % prime,
+            (c * e + d * g) % prime,
+            (c * f + d * h) % prime,
+        )
+
+    def matrix_inverse(
+        matrix: tuple[int, int, int, int],
+    ) -> tuple[int, int, int, int]:
+        a, b, c, d = matrix
+        determinant = (a * d - b * c) % prime
+        scale = pow(determinant, -1, prime)
+        return (
+            d * scale % prime,
+            -b * scale % prime,
+            -c * scale % prime,
+            a * scale % prime,
+        )
+
+    letter_matrices = {
+        "x": x_matrix,
+        "X": matrix_inverse(x_matrix),
+        "t": t_matrix,
+        "T": matrix_inverse(t_matrix),
+    }
+
+    def evaluate_matrix(word: str) -> tuple[int, int, int, int]:
+        result = identity
+        for letter in word:
+            result = multiply(result, letter_matrices[letter])
+        return result
+
+    def add_terms(
+        terms: tuple[tuple[str, int], ...] | list[tuple[str, int]],
+    ) -> tuple[int, int, int, int]:
+        result = [0, 0, 0, 0]
+        for word, coefficient in terms:
+            matrix = evaluate_matrix(word)
+            for index, value in enumerate(matrix):
+                result[index] = (
+                    result[index] + coefficient * value
+                ) % prime
+        return tuple(result)
+
+    def row_multiply(
+        row: tuple[int, int],
+        matrix: tuple[int, int, int, int],
+    ) -> tuple[int, int]:
+        return (
+            (row[0] * matrix[0] + row[1] * matrix[2]) % prime,
+            (row[0] * matrix[1] + row[1] * matrix[3]) % prime,
+        )
+
+    def generated_group(
+        generators: tuple[tuple[int, int, int, int], ...],
+    ) -> set[tuple[int, int, int, int]]:
+        subgroup = {identity}
+        frontier = [identity]
+        signed_generators = generators + tuple(
+            matrix_inverse(generator)
+            for generator in generators
+        )
+        while frontier:
+            current = frontier.pop()
+            for generator in signed_generators:
+                candidate = multiply(current, generator)
+                if candidate not in subgroup:
+                    subgroup.add(candidate)
+                    frontier.append(candidate)
+        return subgroup
+
+    constant_terms: list[tuple[str, int]] = []
+    for word, coefficient in (
+        ("T", 1),
+        (candidate_d, -1),
+        (free_reduce(candidate_d + alpha + inv(candidate_e)), -1),
+    ):
+        constant_terms.append((word, coefficient))
+        constant_terms.append(
+            (free_reduce(multiplier + word), coefficient)
+        )
+    constant_terms.append((target_q, 1))
+    u_terms = (
+        (candidate_d, 1),
+        (free_reduce(multiplier + candidate_d), 1),
+        (candidate_k, -1),
+        (free_reduce(multiplier + candidate_k), -1),
+    )
+
+    assert evaluate_matrix("xxx") == negative_identity
+    assert evaluate_matrix("tttt") == negative_identity
+    assert evaluate_matrix(candidate_k) == (1, 1, 0, 2)
+    assert evaluate_matrix(candidate_h) == (2, 2, 1, 0)
+
+    constant_matrix = add_terms(constant_terms)
+    u_matrix = add_terms(u_terms)
+    assert constant_matrix == (2, 1, 1, 2)
+    assert u_matrix == (1, 0, 1, 0)
+
+    row = (1, 2)
+    assert row_multiply(row, evaluate_matrix(candidate_k)) == row
+    assert row_multiply(row, evaluate_matrix(candidate_h)) == row
+    assert row_multiply(row, constant_matrix) == row
+    assert row_multiply(row, u_matrix) == (0, 0)
+
+    quotient_group = generated_group((x_matrix, t_matrix))
+    p_image = generated_group(
+        (
+            evaluate_matrix(candidate_k),
+            evaluate_matrix(candidate_h),
+        )
+    )
+    assert len(quotient_group) == 48
+    assert len(p_image) == 6
+    assert all(row_multiply(row, element) == row for element in p_image)
+
+    allowed_targets = {
+        element
+        for element in quotient_group
+        if row_multiply(row, element) == (2, 1)
+    }
+    assert allowed_targets == {
+        multiply(negative_identity, element)
+        for element in p_image
+    }
+    assert identity not in allowed_targets
+    assert evaluate_matrix(target_q) not in allowed_targets
+    assert negative_identity in allowed_targets
