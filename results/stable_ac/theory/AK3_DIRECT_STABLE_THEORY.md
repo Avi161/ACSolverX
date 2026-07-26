@@ -1776,13 +1776,104 @@ support-versus-\(QJ\) obstruction is not. Extending the all-target
 closure to another row requires a candidate-specific evaluated solution
 and a new \(Q\)-\(J\) double-coset certificate.
 
+## Result 32: the multi-\(z\) escape has a literal-kernel gate
+
+The primitive-gate theorem is proved in
+
+```text
+literature/proofs/AK3_MULTI_Z_PRIMITIVE_GATE.md
+```
+
+Let
+
+\[
+\rho:F(X)*\langle q\rangle\longrightarrow F(X)
+\]
+
+kill \(q\). If a primitive word \(W\) satisfies \(\rho(W)=1\)
+literally, then
+
+\[
+\boxed{W\text{ is conjugate to }q^{\pm1}.}
+\]
+
+Indeed, \(\langle\!\langle W\rangle\!\rangle\) lies in
+\(\langle\!\langle q\rangle\!\rangle\); the corresponding quotients are
+free groups of the same finite rank, so Hopficity makes the natural
+surjection an isomorphism. The normal closures coincide, and Magnus's
+normal-closure theorem finishes the proof.
+
+Thus a genuinely new primitive multi-\(q\) eliminator for AK(3) must
+specialize in \(F(x,t)\) to a nontrivial consequence of the retained
+relator
+
+\[
+R=x^3t^{-4}.
+\]
+
+For exponent-\(\pm1\) candidates, the smallest possible
+\(q^{\pm1}\)-occurrence count after the one-\(q\) stratum is three.
+Split the fixed reduced spelling
+\(R=xxxTTTT=A_kB_k\) at any of its six internal seams and put
+
+\[
+V_k=qA_kq^{-1}B_kq.
+\]
+
+Exact Whitehead graphs and an explicit automorphism prove
+
+\[
+\boxed{V_k\text{ is primitive}\iff k=3,}
+\qquad
+V_3=qx^3q^{-1}t^{-4}q.
+\]
+
+This is an exact classification of the six consecutive seam splits,
+not of all three-\(q\) words and not by minimum total word length.
+
+For every seam, the evaluated Fox row is
+
+\[
+\left(
+\partial_xR,\partial_tR,1-A_k+R
+\right),
+\]
+
+so the primitive member has free-kernel coordinate \(2-x^3\) in
+\(\mathbb Z[\langle x,t\mid R\rangle]\).
+
+Writing \(V_3=\phi(q)\), coherent transport is an exact self-loop:
+the straightening quotient \(p=\rho\phi^{-1}\) satisfies
+\(p(\phi(U))=U\) for every \(q\)-free survivor \(U\). But on
+untransported generators,
+
+\[
+p(x)=RxR^{-1},\qquad p(t)=t,\qquad p(q)=R^{-1}.
+\]
+
+The induced rank-two endomorphism is not an automorphism. Therefore this
+result does not close the multi-\(q\) route. It isolates the next
+production problem: create \(V_3\) by classical AC moves while leaving a
+survivor outside the coherent \(\phi\)-orbit.
+
 ## Live lead
 
-The strongest remaining direct mechanism is primitive-pair compression
-before either old generator is removed.  Short templates produce the
-floor-16 corridor above.  A broader visible-block pass returned only to
-AK(3)'s floor-13 classical class, but that finite observation remains
-unverified.
+The sharpest new direct mechanism is now the asymmetric production of
+the primitive word
+
+\[
+V_3=qx^3q^{-1}t^{-4}q.
+\]
+
+Its coherent ambient-automorphism construction is a self-loop, so a
+productive history must manufacture this word in one relator slot
+without transporting all survivors by the same automorphism. Its exact
+Fox coordinate \(2-x^3\) is the first necessary certificate to track.
+
+Primitive-pair compression before either old generator is removed also
+remains open. Short templates produce the floor-16 corridor above. A
+broader visible-block pass returned only to AK(3)'s floor-13 classical
+class, but that finite observation remains unverified.
 
 The target is a hidden-cancellation or longer \(F_4\) primitive pair whose
 rank-two quotient has complete Aut-floor at most 12.  A primitive full
@@ -1856,5 +1947,10 @@ restoration, change the retained relator or recovery equation, produce a
 primitive eliminator with several \(z\)-letters, use the braid relator
 during recovery, or compress both source relators before either old
 generator is removed.
+
+The multi-\(z\) phrase is no longer unconstrained. Literal
+free-kernel candidates collapse to conjugates of the stabilizer, and the
+natural three-letter split family has one exact primitive member. The
+open branch is its asymmetric AC production, not its primitivity.
 
 AK(3) remains open.
