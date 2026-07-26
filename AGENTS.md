@@ -689,3 +689,23 @@
 
 - [TRAP] The first Result 49 draft called a finite signed-rotation census all AC1--AC3 realizations and called its changed-row-first sequential branches every primitive deletion. An arbitrary relative conjugator gives \(TuSu^{-1}\), an infinite family, and an unchanged primitive survivor may be deleted first.
 - [WORKS] Name finite cyclic-representative strata literally. Put arbitrary relative conjugators, alternate deletion orders, and changed-nonprimitive-first histories in the boundary unless the replay transports those cases explicitly.
+
+### 2026-07-26 Summarize large positive word families before printing
+
+- [TRAP] An exploratory carrier-edge probe printed all 186 primitive A--W child words and their per-direction multiplicities, producing thousands of noisy tokens when only the four exceptional W--D words were needed.
+- [WORKS] Print counts and short exceptional families first; for a large symbolic family such as the unique-z A--W class, suppress the member list and verify its structural criterion separately.
+
+### 2026-07-26 Cache exhaustive theorem classifiers across tests
+
+- [SUPERSEDED] The initial diagnosis attributed the 80-second carrier replay to three uncached calls. The inner Whitehead cache already made later calls cheap; a fresh cached full replay still takes about 78 seconds for its first exhaustive pass.
+- [WORKS] Keep `@lru_cache(maxsize=1)` so separate assertions do not repeat enumeration, but budget about three minutes for the strengthened carrier subset and more than three minutes for combined Results 46--50. Optimize the first pass only with a separately verified structural gate, never by assuming the decorator removes its cost.
+
+### 2026-07-26 Split structural proof upgrades from footer renumbering
+
+- [TRAP] A patch that replaced the carrier-cancellation proof and simultaneously renumbered its distant verifier bullet was rejected as one large context match.
+- [WORKS] Upgrade the algebraic block in short equation-local hunks first, then patch references and verifier bullets separately after reading the new numbering.
+
+### 2026-07-26 Anchor repeated classifier blocks by function
+
+- [TRAP] A patch anchored only on `primitive_children = {` matched the earlier Result 49 classifier and inserted Result 50 histogram variables after an unreachable return. Syntax compilation passed, but the carrier classifier would have raised `NameError`.
+- [WORKS] When one test module contains parallel classifiers, include the target function signature or a unique nearby variable in every patch context, then read the definition site and run the exact new assertion before staging.

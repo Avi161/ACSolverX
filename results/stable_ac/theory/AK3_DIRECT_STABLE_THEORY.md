@@ -2954,6 +2954,60 @@ conjugators, alternate first-deletion orders, an edge solely among the
 carriers A, W, D while retaining the nonprimitive Q, and two
 row-changing edges before deletion.
 
+## Result 50: cyclic carrier edges return only to AK(3)
+
+The complete carrier-edge classification is proved in
+
+```text
+literature/proofs/AK3_CARRIER_EDGE_PRIMITIVE_CREATION.md
+```
+
+At each of the six nonprimitive D-tail checkpoints, exhaust the
+signed-cyclic image of one relator multiplication between two of A, W,
+D, in both target directions.
+
+The quotient model contains 5,544 literal representatives, or 11,088
+if redundant target inversion is separately indexed. It has 4,104
+checkpoint-direction-child states and 342 global child classes.
+
+All 186 A--W classes are primitive by an explicit unique-z coordinate.
+None of the 58 A--D classes is primitive. Exactly four of the 98 W--D
+classes are primitive. Complete pair descent proves that none of these
+primitive children forms a direct primitive pair.
+
+After changed-row-first deletion, 2,268 of the 2,280 primitive-child
+states have no primitive rank-three survivor. The other 12 are the
+single A-block cancellation
+
+\[
+H=\operatorname{can}(A^{-1}W)=C^{-1}z.
+\]
+
+The straightener \(z\mapsto Cz\), followed by \(\beta^{-1}\), maps
+every sign row uniformly to
+
+\[
+(R,E,q^\eta R^\epsilon E^\delta),
+\qquad
+R=x^3t^{-4},
+\quad
+E=t^{-1}xtxt^{-1}x^{-1}.
+\]
+
+The last word has exactly one \(q^{\pm1}\). Deleting it leaves the same
+literal pair \((R,E)\) in all signs and both directions, with canonical
+representative
+
+```text
+XXXXYYY | XYxYXy
+```
+
+at floor 13: the original rank-two AK(3) orbit `13_1`. The ambient
+straightening and primitive deletions make this a stable self-loop;
+this is not a claim of a classical rank-two AC identification. Thus
+the entire finite carrier-edge stratum has no new endpoint and none of
+floor at most 12.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3002,14 +3056,17 @@ signed-cyclic image of one multiplication between each nonprimitive
 first D-tail and one carrier, in both target directions. Primitive rows
 and pairs do occur, but all 30 direct pair deletions and all 32
 changed-row-first sequential branches return to the known floor-23
-compression or floor-27 backtrack orbits. The immediate exact leads
-are a nontrivial relative conjugator, an alternate first-deletion
-order, a carrier-carrier edge among A, W, D while retaining the
-nonprimitive Q-row, or two row-changing edges before deletion. Longer
-branches may use additional \(Wq^{-1}\) blocks, alter W by traffic with
-nontrivial first-deletion image, delete or alter a needed carrier,
-change the fixed checkpoint, or choose a different primitive slot. The
-exact Fox coordinate remains a necessary free-kernel certificate.
+compression or floor-27 backtrack orbits. Result 50 closes the
+signed-cyclic carrier-carrier image as well: it has no direct primitive
+pair, and its only 12 changed-row-first second deletions are one
+A-block cancellation returning exactly to AK(3)'s floor-13 orbit. The
+immediate exact leads are therefore a nontrivial relative conjugator,
+an alternate first-deletion order, or two row-changing edges before
+deletion. Longer branches may use additional \(Wq^{-1}\) blocks, alter
+W by traffic with nontrivial first-deletion image, delete or alter a
+needed carrier, change the fixed checkpoint, or choose a different
+primitive slot. The exact Fox coordinate remains a necessary
+free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -3113,12 +3170,14 @@ primitive, and its pair quotient is the old floor-14 route. The
 signed-cyclic image of one product between any of the six nonprimitive
 first D-tails and A, W, or D is also closed in both target directions
 for direct pair deletion and changed-row-first sequential deletion.
-A different viable primitive-slot branch must use a nontrivial
-relative conjugator, an alternate first-deletion order, a
-carrier-carrier edge while retaining Q, two row changes before
-deletion, another \(Wq^{-1}\) block, a repeatedly changed source,
-alter W by traffic with nontrivial first-deletion image, lose a needed
-carrier source, use traffic with nontrivial deletion image, or draw
-from a source outside the retained normal closure.
+The signed-cyclic carrier-carrier image is closed too: no direct pair
+is primitive, and its only changed-row-first continuation is the
+A-block cancellation returning to AK(3) itself. A different viable
+primitive-slot branch must use a nontrivial relative conjugator, an
+alternate first-deletion order, two row changes before deletion,
+another \(Wq^{-1}\) block, a repeatedly changed source, alter W by
+traffic with nontrivial first-deletion image, lose a needed carrier
+source, use traffic with nontrivial deletion image, or draw from a
+source outside the retained normal closure.
 
 AK(3) remains open.
