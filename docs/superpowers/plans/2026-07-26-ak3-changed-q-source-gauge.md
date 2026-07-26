@@ -41,4 +41,4 @@ an exact retained-factor return for \(V=D\).
 - [x] Replay representative \(Q\)-source traffic.
 - [x] Verify every exact endpoint and factor identity.
 - [x] Run focused tests and a hostile audit.
-- [ ] Record the result, commit, and push the branch.
+- [x] Record the result, commit, and push the branch.
