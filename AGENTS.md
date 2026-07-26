@@ -574,3 +574,13 @@
 
 - [TRAP] A single patch combined a new numbered result with two distant live-lead replacements; one stale line wrap in the final hunk rejected the entire otherwise-correct insertion.
 - [WORKS] Insert a numbered result in one patch, read the current live-lead text, then patch each live-lead paragraph separately.
+
+### 2026-07-25 Rank-three Whitehead reducer is alphabet-hardcoded
+
+- [TRAP] Passing generators `("x","t","z","q")` to `rank3_whitehead.reduce_word_fast` still fails before reduction because `two_stabilization._validate_word` rejects `q`; the downstream `generators` parameter does not make the word utilities rank-generic.
+- [WORKS] Use a dependency-free rank-four Whitehead implementation for \(F(x,t,z,q)\); do not treat the rank-three validator failure as evidence about primitivity.
+
+### 2026-07-25 Build focused test manifests from repository paths
+
+- [TRAP] A combined replay named `test_relation_split_primitive_self_loop.py` from the theorem title, but the repository file is `tests/stable_ac/test_relation_split_primitive_loop.py`; pytest stopped before running any test.
+- [WORKS] Before assembling a multi-file replay command, derive the exact manifest with `rg --files tests/stable_ac` rather than translating proof titles into guessed filenames.
