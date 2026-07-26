@@ -997,11 +997,12 @@ def test_fox_central_target_fails_the_q_coset_ideal():
     assert f0_terms[3][0] == coset_representatives["last"]
 
 
-def test_fox_central_target_has_independent_s5_obstruction():
+def test_fox_all_target_double_coset_certificate_replays_exactly():
     repositioner = "xtX"
     candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
     rho = free_reduce(repositioner + "xT" + inv(repositioner))
     gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
     candidate_b = free_reduce(
         candidate_c + rho + candidate_c + inv(rho)
     )
@@ -1010,6 +1011,248 @@ def test_fox_central_target_has_independent_s5_obstruction():
         "T" + candidate_e + "x" + inv(candidate_e)
     )
     candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    candidate_l = free_reduce(
+        gamma + candidate_b + beta + inv(candidate_k)
+    )
+
+    q_x_cycles = (
+        (0, 1, 2),
+        (3, 5, 6),
+        (8, 10, 11),
+    )
+    q_t_cycles = (
+        (1, 2, 3, 4),
+        (5, 7, 8, 9),
+        (11, 12, 13, 0),
+    )
+    j_x_cycles = ((3, 0, 1),)
+    j_t_cycles = ((0, 1, 2, 3),)
+
+    def transition(
+        cycles: tuple[tuple[int, ...], ...],
+        state: int,
+        exponent: int,
+    ) -> int | None:
+        for cycle in cycles:
+            if state in cycle:
+                return cycle[(cycle.index(state) + exponent) % len(cycle)]
+        return None
+
+    def product_transition(
+        state: tuple[int, int],
+        generator: str,
+        exponent: int,
+    ) -> tuple[int, int] | None:
+        q_cycles = q_x_cycles if generator == "x" else q_t_cycles
+        j_cycles = j_x_cycles if generator == "x" else j_t_cycles
+        q_state = transition(q_cycles, state[0], exponent)
+        j_state = transition(j_cycles, state[1], exponent)
+        if q_state is None or j_state is None:
+            return None
+        return q_state, j_state
+
+    root = (0, 3)
+    reachable = {root}
+    frontier = [root]
+    for state in frontier:
+        for generator, order in (("x", 3), ("t", 4)):
+            for exponent in range(1, order):
+                destination = product_transition(
+                    state,
+                    generator,
+                    exponent,
+                )
+                if destination is not None and destination not in reachable:
+                    reachable.add(destination)
+                    frontier.append(destination)
+
+    def factor_orbit(
+        state: tuple[int, int],
+        generator: str,
+        order: int,
+    ) -> frozenset[tuple[int, int]]:
+        orbit = {state}
+        for exponent in range(1, order):
+            destination = product_transition(
+                state,
+                generator,
+                exponent,
+            )
+            if destination is not None:
+                orbit.add(destination)
+        return frozenset(orbit)
+
+    incidences = {
+        state: (
+            ("x", factor_orbit(state, "x", 3)),
+            ("t", factor_orbit(state, "t", 4)),
+        )
+        for state in reachable
+    }
+    core = set(reachable)
+    while True:
+        degrees = Counter(
+            vertex
+            for state in core
+            for vertex in incidences[state]
+        )
+        removable = {
+            state
+            for state in core
+            if any(degrees[vertex] == 1 for vertex in incidences[state])
+        }
+        if not removable:
+            break
+        core.difference_update(removable)
+
+    indexed_edges = (
+        (2, 1),
+        (8, 1),
+        (3, 1),
+        (11, 0),
+        (0, 3),
+        (2, 0),
+        (1, 0),
+        (5, 3),
+        (1, 3),
+    )
+    assert core == set(indexed_edges)
+
+    factor_vertices = {
+        vertex
+        for state in core
+        for vertex in incidences[state]
+    }
+    assert len(core) == 9
+    assert len(factor_vertices) == 8
+    assert len(core) - len(factor_vertices) + 1 == 2
+
+    tree_edge_indices = {0, 1, 2, 3, 4, 5, 7}
+    tree_adjacency: dict[
+        tuple[str, frozenset[tuple[int, int]]],
+        set[tuple[str, frozenset[tuple[int, int]]]],
+    ] = {vertex: set() for vertex in factor_vertices}
+    for index in tree_edge_indices:
+        left, right = incidences[indexed_edges[index]]
+        tree_adjacency[left].add(right)
+        tree_adjacency[right].add(left)
+
+    seen_vertices = {next(iter(factor_vertices))}
+    vertex_frontier = list(seen_vertices)
+    for vertex in vertex_frontier:
+        for neighbor in tree_adjacency[vertex]:
+            if neighbor not in seen_vertices:
+                seen_vertices.add(neighbor)
+                vertex_frontier.append(neighbor)
+    assert seen_vertices == factor_vertices
+    assert len(tree_edge_indices) == len(factor_vertices) - 1
+    assert set(range(9)) - tree_edge_indices == {6, 8}
+
+    h_q = free_reduce(inv(candidate_d) + inv(candidate_k) + candidate_d)
+    h_j = free_reduce(
+        inv(candidate_l)
+        + inv(candidate_k)
+        + candidate_l
+        + inv(candidate_k)
+        + inv(candidate_k)
+        + candidate_l
+        + candidate_k
+        + inv(candidate_l)
+        + candidate_k
+        + candidate_l
+    )
+
+    def product_state_path(word: str) -> tuple[tuple[int, int], ...]:
+        state = root
+        path = [state]
+        for generator, exponent in normal_form(word)[1]:
+            destination = product_transition(state, generator, exponent)
+            assert destination is not None
+            state = destination
+            path.append(state)
+        return tuple(path)
+
+    assert product_state_path(candidate_k) == (
+        (0, 3),
+        (1, 0),
+        (2, 1),
+        (0, 3),
+    )
+    assert product_state_path(h_q) == (
+        (0, 3),
+        (11, 0),
+        (8, 1),
+        (5, 3),
+        (3, 1),
+        (1, 3),
+        (2, 0),
+        (3, 1),
+        (5, 3),
+        (8, 1),
+        (11, 0),
+        (0, 3),
+    )
+
+    expected_h_shadow = (
+        ("t", 1),
+        ("x", 1),
+        ("t", 2),
+        ("x", 2),
+        ("t", 2),
+        ("x", 1),
+        ("t", 1),
+        ("x", 1),
+        ("t", 2),
+        ("x", 2),
+        ("t", 3),
+    )
+    assert normal_form(h_q) == (-5, expected_h_shadow)
+    assert normal_form(h_j) == (-5, expected_h_shadow)
+    assert normal_form(h_q + inv(h_j)) == (0, ())
+
+    last_term = free_reduce(
+        candidate_d + "t" + inv(candidate_e)
+    )
+    central_word = "xxx"
+    assert normal_form("T" + central_word) == normal_form("ttt")
+    assert normal_form(last_term) == normal_form(
+        inv(central_word) + "xt"
+    )
+
+    def q_state_path(word: str) -> tuple[int | None, ...]:
+        state = 0
+        path: list[int | None] = [state]
+        for generator, exponent in normal_form(word)[1]:
+            cycles = q_x_cycles if generator == "x" else q_t_cycles
+            state = transition(cycles, state, exponent)
+            path.append(state)
+            if state is None:
+                break
+        return tuple(path)
+
+    assert normal_form(central_word)[1] == ()
+    assert q_state_path(central_word) == (0,)
+    assert q_state_path("ttt") == (0, 13)
+    assert q_state_path("xt") == (0, 1, 2)
+
+
+def test_fox_all_targets_have_independent_s5_support_obstruction():
+    repositioner = "xtX"
+    candidate_c = free_reduce(repositioner + inv(C) + inv(repositioner))
+    rho = free_reduce(repositioner + "xT" + inv(repositioner))
+    gamma = "xTX"
+    beta = free_reduce(rho + inv(gamma))
+    candidate_b = free_reduce(
+        candidate_c + rho + candidate_c + inv(rho)
+    )
+    candidate_e = free_reduce(P + inv(candidate_b))
+    candidate_d = free_reduce(
+        "T" + candidate_e + "x" + inv(candidate_e)
+    )
+    candidate_k = free_reduce(gamma + candidate_c + inv(gamma))
+    candidate_l = free_reduce(
+        gamma + candidate_b + beta + inv(candidate_k)
+    )
     last_term = free_reduce(
         candidate_d + "t" + inv(candidate_e)
     )
@@ -1072,9 +1315,22 @@ def test_fox_central_target_has_independent_s5_obstruction():
             evaluate_permutation(candidate_d),
         )
     )
+    j_image = generated_subgroup(
+        (
+            evaluate_permutation(candidate_k),
+            evaluate_permutation(candidate_l),
+        )
+    )
+    qj_image = {
+        compose(q_element, j_element)
+        for q_element in q_image
+        for j_element in j_image
+    }
 
     assert len(quotient_group) == 120
     assert len(q_image) == 8
+    assert len(j_image) == 20
+    assert len(qj_image) == 40
     assert all(permutation[0] == 0 for permutation in q_image)
     assert evaluate_permutation("xxx") == identity
     assert evaluate_permutation("tttt") == identity
@@ -1087,3 +1343,13 @@ def test_fox_central_target_has_independent_s5_obstruction():
 
     assert coset_index("T") == 0
     assert coset_index("xt") == 1
+    assert evaluate_permutation("T") not in qj_image
+
+    fixed_support = ("T", "", "xt")
+    for left_index, left in enumerate(fixed_support):
+        for right in fixed_support[left_index + 1 :]:
+            difference = compose(
+                evaluate_permutation(left),
+                permutation_inverse(evaluate_permutation(right)),
+            )
+            assert difference not in q_image

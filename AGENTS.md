@@ -504,3 +504,18 @@
 
 - [TRAP] Literal \(G\)-normal-form BFS in the signed generators \(K,d\) reached 118,097 words at depth ten and spent over a minute rebuilding long representatives before interruption.
 - [WORKS] Fold the two projected generator loops first. Use the finite precover for subgroup membership and central voltage, then search only the few support-word differences required by the module equation.
+
+### 2026-07-25 Distinguish the central element from the candidate relator
+
+- [TRAP] In the minimum-tail replay, `candidate_c` denotes the repositioned candidate relator, while theorem notation \(c\) denotes the central element \(x^3=t^4\); substituting the former into \(t^{-1}c=t^3\) makes the exact identity fail.
+- [WORKS] Implement the central-extension element with an explicit name such as `central_word = "xxx"`.
+
+### 2026-07-25 Keep LaTeX commands out of regex claim audits
+
+- [TRAP] Repeating an `rg` alternation with `\notin` again triggered the literal-newline parser error and aborted every later audit pattern in that command.
+- [WORKS] Audit each LaTeX-bearing claim with a separate `rg -F '<literal>'` invocation; use regex alternation only for plain prose.
+
+### 2026-07-25 Agent waits have a ten-second minimum
+
+- [TRAP] `wait_agent` rejects `timeout_ms` below 10000; a one-second poll produces only a parameter error.
+- [WORKS] Use `timeout_ms: 10000` for the shortest agent-status wait.

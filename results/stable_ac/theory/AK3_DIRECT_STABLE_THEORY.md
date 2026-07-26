@@ -1617,6 +1617,89 @@ This vector is nonzero. Consequently
 The central target is impossible at the Fox level. Other exact targets
 over the surviving binary residue remain open.
 
+## Result 30: every minimum-tail Fox target is obstructed
+
+The all-target theorem is proved in
+
+```text
+literature/proofs/AK3_MINIMUM_TAIL_ALL_TARGET_FOX_OBSTRUCTION.md
+```
+
+For an arbitrary target \(g\), the exact equation is
+
+\[
+\mathcal B\bigl(F_0+(d-K)u\bigr)
+=-[Pg]-[Pc^{-1}L],
+\qquad
+\mathcal B(z)=\pi_P((1+L)z).
+\]
+
+The HNN forest gives a complete image classification. A target can pass
+the first equation only when
+
+\[
+g=jc^{-1},
+\qquad
+j\in J=\langle K,L\rangle,
+\qquad
+\exp_L(j)\equiv0\pmod2.
+\]
+
+For every such target, unsigned incidence has one alternating odd-path
+preimage \(z_g\) modulo \((K-1)R\). Choosing its edge representatives in
+\(Jc^{-1}\) gives
+
+\[
+\operatorname{supp}(z_gc)\subset J.
+\]
+
+The residual equation in
+\(\mathbb Z[Q\backslash G]\), \(Q=\langle d,K\rangle\), would require
+
+\[
+\pi_Q(z_g)c=\pi_Q(F_0)c
+=[Qt^3]-[Qc]-[Qxt].
+\]
+
+The based folded fiber product of the projected \(Q\)- and \(J\)-cores
+has nine edges, eight factor vertices, and rank two. Its two chord loops
+are \(\bar K\) and
+
+\[
+\bar h=t x t^2x^2t^2x t x t^2x^2t^3.
+\]
+
+Their unique \(Q\)- and \(J\)-lifts agree exactly, so the central
+lift-defect vanishes on \(\bar Q\cap\bar J\). Consequently
+
+\[
+Qc\notin QJ.
+\]
+
+The \(Q\)-core also separates \(Qc\) from \(Qt^3\) and \(Qxt\).
+Therefore the coefficient \(-1\) at \(Qc\) cannot be supplied by any
+moving path.
+
+An independent \(S_5\) certificate gives the same support obstruction:
+for the exact images \(Q_0,J_0\),
+
+\[
+|Q_0|=8,\qquad |J_0|=20,\qquad
+\sigma(t^{-1})\notin Q_0J_0.
+\]
+
+Thus
+
+\[
+\boxed{
+\text{no }g\in G\text{ solves the repositioned minimum-tail Fox
+equation.}
+}
+\]
+
+This closes that candidate and the entire target residue left by
+Results 27--29. It does not close other stable histories or AK(3).
+
 ## Live lead
 
 The strongest remaining direct mechanism is primitive-pair compression
@@ -1676,32 +1759,13 @@ equation \(n_3(U,V,W)\): either make it conjugate to a negative Schreier
 basis letter, producing a genuine one-\(z\) target, or find an invariant
 excluding every \(U,V,W\).
 
-The full Fox equation is now reduced to a single cyclic-submodule problem
-in \(\mathbb Z[P\backslash G]\), where \(P\cong F_2\) is center-free and
-infinite-index. The binary \(S_4\) lift repairs the first quotient's loss
-of central sign: the identity and \(g=\gamma e^{-1}\) targets are now
-excluded, while every surviving finite image lies in
-\((-I)\rho(P)\). The simplest surviving exact target \(g=c^{-1}\) is now
-also excluded by the exact HNN-kernel theorem and the
-\(Q=\langle d,K\rangle\) coset obstruction.
-
-The next exact problem is to classify all \(g\) for which the two-point
-chain
-
-\[
--[Pg]-[Pc^{-1}L]
-\]
-
-lies in the unsigned incidence image of the \(P\)-HNN forest. For every
-such target, the forest gives a unique finite edge chain modulo
-\((K-1)R\); the remaining question is whether its difference from
-\(F_0\) lies in the \(d-K\) image. This turns the existential target
-problem into a path-and-coset classification rather than another blind
-finite-quotient scan.
-
-Fox success would still leave the nonabelian basis-letter equation. Even
-a liftable non-braid survivor would refute only this direct fixed-\(R\)
-finish, not stable AC.
+The full Fox equation for the repositioned minimum-tail candidate is now
+closed for every target. The HNN forest supplies the unique path for
+each target that passes its component/parity criterion, but all such
+paths have support in \(QJ\) after the central translation. A fixed
+coset outside \(QJ\) obstructs the residual module equation. There is
+therefore no nonabelian basis-letter equation left to solve in this
+candidate.
 
 Other remaining routes can use four or more cross events, fail
 restoration, change the retained relator or recovery equation, produce a
