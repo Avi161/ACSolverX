@@ -3247,6 +3247,44 @@ case is nonprimitive. Thus arbitrary A--D primitivity is confined to
 those three normalized exponent classes. They are residual classes of
 this character slice, not claimed primitive families.
 
+## Result 56: the A--D sieve is noncommutatively exact
+
+The induced-module refinement is proved in
+
+```text
+literature/proofs/AK3_AD_INDUCED_MODULE_SIEVE.md
+```
+
+Keep the full projection \(\pi:F(x,t,z,q)\to F(q,z)\), put
+\(g=\pi(c)\), and set \(h=qz^{-1}\). The evaluated Fox row is
+
+\[
+(3q+\sigma gz,-4-\sigma g,0,0).
+\]
+
+If \(g\notin\langle h\rangle\), the subgroup \(\langle h,g\rangle\)
+is freely based by \((h,g)\). Give it the character
+
+\[
+h\mapsto4/3,\qquad g\mapsto-4\sigma
+\]
+
+and induce the resulting one-dimensional right module to \(F(q,z)\).
+Its base vector annihilates the Fox row, contradicting the
+right-unimodularity forced by primitivity.
+
+Thus \(g=h^m\). Result 55's modular argument on m leaves only
+
+\[
+\sigma=+1:\quad\pi(c)=h,
+\qquad
+\sigma=-1:\quad\pi(c)\in\{1,h\}.
+\]
+
+These are exact projection fibers, not primitive families. In
+particular, every noncommuting q,z projection is now excluded even if
+its exponent sums lie in one of Result 55's old residual classes.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3305,10 +3343,12 @@ conjugators. Result 52 additionally closes every changed-row-first A--W
 edge whose normalized relative conjugator is z-free. Result 53 closes
 arbitrary relative conjugators on every Q--carrier edge for direct-pair
 and changed-row-first deletion. Result 54 closes arbitrary A--W traffic
-in the fixed D-then-mixed-Q order. Result 55 confines arbitrary A--D
-primitive creation to three normalized exponent classes. The immediate
+in the fixed D-then-mixed-Q order. Results 55--56 confine arbitrary
+A--D primitive creation to three exact normalized projection fibers:
+\(\pi(c)=qz^{-1}\) for the positive source and
+\(\pi(c)\in\{1,qz^{-1}\}\) for the negative source. The immediate
 exact leads are therefore z-dependent A--W conjugators, those three
-A--D classes, arbitrary W--D conjugators,
+A--D fibers, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
@@ -3435,7 +3475,8 @@ row now gives an unbounded exponent sieve: primitivity forces
 \(e_q+e_z=0\), and on that hyperplane only
 \((\sigma,e_q)=(+,1),(-,0),(-,1)\) escape the chosen character slice.
 A different viable primitive-slot branch must therefore use
-z-dependent A--W traffic, one of those three A--D exponent classes,
+z-dependent A--W traffic, one of Result 56's three exact A--D
+projection fibers,
 arbitrary W--D relative traffic,
 non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
 two row changes before deletion, another \(Wq^{-1}\) block, a

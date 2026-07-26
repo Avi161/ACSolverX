@@ -749,3 +749,13 @@
 
 - [TRAP] A single patch tried to insert a new result section and update a distant live-lead paragraph; one context mismatch rejected both otherwise independent edits.
 - [WORKS] Patch a theory index one local section at a time, then update plan checkboxes separately so a distant wording change cannot discard completed content.
+
+### 2026-07-26 Cap exploratory automorphism images
+
+- [TRAP] An unconstrained random Nielsen walk made basis images grow until even free reduction stalled; a bounded residual-conjugator scan likewise spent minutes repeating exact Whitehead descent on thousands of graph-positive words.
+- [WORKS] Reset random automorphism walks at a fixed image-length cap. For residual-language discovery, canonicalize and deduplicate children before exact descent, print each completed length with flushing, and never treat a bounded scan as a theorem.
+
+### 2026-07-26 Zero winding does not preserve primitive retractions
+
+- [TRAP] A proposed shortcut claimed that a primitive word with zero z-exponent must retract to a primitive or trivial word after \(z\mapsto1\). A bounded Nielsen construction produced a primitive counterexample whose rank-two retraction is nonprimitive.
+- [WORKS] Zero winding makes a primitive word primitive in the infinite cyclic-cover kernel, but says nothing this strong about the base retraction. Use Schreier/Fox data in the cover rather than collapsing every z-level.

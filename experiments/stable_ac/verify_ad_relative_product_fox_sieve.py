@@ -86,6 +86,43 @@ def fox_gradient_mod(
     )
 
 
+def fox_gradient_qz(
+    word: str,
+) -> tuple[dict[str, int], ...]:
+    gradient = {
+        generator: {} for generator in GENERATORS
+    }
+    prefix = ""
+
+    def add_term(
+        coordinate: dict[str, int],
+        group_word: str,
+        coefficient: int,
+    ) -> None:
+        coordinate[group_word] = (
+            coordinate.get(group_word, 0) + coefficient
+        )
+        if coordinate[group_word] == 0:
+            del coordinate[group_word]
+
+    for letter in word:
+        generator = letter.lower()
+        if letter.islower():
+            add_term(gradient[generator], prefix, 1)
+            if generator in {"q", "z"}:
+                prefix = free_reduce(prefix + letter)
+        else:
+            inverse_image = (
+                letter if generator in {"q", "z"} else ""
+            )
+            prefix = free_reduce(prefix + inverse_image)
+            add_term(gradient[generator], prefix, -1)
+
+    return tuple(
+        gradient[generator] for generator in GENERATORS
+    )
+
+
 def finite_modulus_witness(
     sigma: int,
     q_exponent: int,
@@ -112,3 +149,51 @@ def finite_modulus_witness(
         modulus //= 3
 
     return modulus if modulus > 1 else None
+
+
+def project_qz(word: str) -> str:
+    return free_reduce(
+        "".join(
+            letter for letter in word
+            if letter.lower() in {"q", "z"}
+        )
+    )
+
+
+def qz_axis_power(projected_word: str) -> int | None:
+    projected_word = free_reduce(projected_word)
+    if not projected_word:
+        return 0
+
+    positive_axis = "qZ"
+    negative_axis = inverse_word(positive_axis)
+    if (
+        len(projected_word) % len(positive_axis) == 0
+        and projected_word
+        == positive_axis * (
+            len(projected_word) // len(positive_axis)
+        )
+    ):
+        return len(projected_word) // len(positive_axis)
+    if (
+        len(projected_word) % len(negative_axis) == 0
+        and projected_word
+        == negative_axis * (
+            len(projected_word) // len(negative_axis)
+        )
+    ):
+        return -len(projected_word) // len(negative_axis)
+    return None
+
+
+def projection_sieve_kind(
+    conjugator: str,
+    sigma: int,
+) -> str:
+    projected = project_qz(conjugator)
+    axis_power = qz_axis_power(projected)
+    if axis_power is None:
+        return "induced-module"
+    if finite_modulus_witness(sigma, axis_power) is not None:
+        return "cyclic-modular"
+    return "residual"
