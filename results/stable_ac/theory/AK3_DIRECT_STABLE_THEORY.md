@@ -2279,6 +2279,81 @@ and \((D')^{-1}D_+\) is exactly two conjugates of the surviving
 return. Hence both first literal-q target multiplications return to the
 rank-three AK(3) root.
 
+## Result 39: coherent complement conjugators close
+
+The complement-conjugator theorem is proved in
+
+```text
+literature/proofs/AK3_COMPLEMENT_CONJUGATED_Q_TRAFFIC_SELF_LOOP.md
+```
+
+Write
+
+\[
+F_0=F(K)*\langle U\rangle
+\]
+
+with \(U\) primitive, and suppose the balanced trivial-group checkpoint
+has
+
+\[
+W=\phi(q),
+\qquad
+\phi^{-1}(q)=U^{-1}q.
+\]
+
+For any \(a\in F(K)\), put \(c=\phi(a)\). Both conjugated-source targets
+
+\[
+Wcqc^{-1},
+\qquad
+Wcq^{-1}c^{-1}
+\]
+
+are primitive. Their pullbacks contain the basis letter \(U^{\pm1}\)
+exactly once:
+
+\[
+qaU^{-1}qa^{-1},
+\qquad
+qaq^{-1}Ua^{-1}.
+\]
+
+Straightening and deleting that U-coordinate leaves a conjugate of
+\(q^{-1}\) or \(q\), which also deletes. If \(\lambda\) kills \(U\) and
+\(q\), both one-U automorphisms satisfy
+
+\[
+\lambda\delta_{a,\pm}^{-1}=\lambda.
+\]
+
+Thus the final endpoint is literally the old double quotient
+\(\lambda\phi^{-1}\), not merely equivalent modulo a source.
+
+For AK(3), use
+
+\[
+F(x,t,z)=F(x,t)*\langle U\rangle.
+\]
+
+The choice \(a=t\) has \(c=\phi(t)=t\), proving both nontrivial literal
+targets
+
+\[
+Wtqt^{-1},
+\qquad
+Wtq^{-1}t^{-1}
+\]
+
+primitive self-loops. Both delete to
+
+\[
+\left(R,\;t^{-1}(xtR)x(xtR)^{-1}\right),
+\]
+
+whose second relator differs from the standard rank-two AK relator
+\(t^{-1}(xt)x(xt)^{-1}\) by exactly two conjugates of \(R^{\pm1}\).
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2301,9 +2376,12 @@ branch cannot be post-manufacture traffic which avoids AC1 into the
 primitive slot: all such traffic descends through deletion. Result 38
 also closes multiplication by the surviving literal \(q^{\pm1}\)-slot,
 despite its q-dependent pullback. The next target move must therefore use
-a nontrivial conjugate or a changed spelling of that q-source, use a
-q-free word outside the retained joint normal closure, or break another
-earlier hypothesis. Changing the primitive relator before the fixed
+a conjugator whose pullback involves the primitive recovery coordinate
+\(U\), a changed spelling of the q-source, a q-free word outside the
+retained joint normal closure, or another broken hypothesis: Result 39
+closes every coherent conjugator pulled back from a complement to \(U\).
+For the AK checkpoint, literal \(x\) and \(z\) are the first uncovered
+basis conjugators. Changing the primitive relator before the fixed
 checkpoint or choosing a different primitive slot also remains open. The
 exact Fox coordinate remains a necessary free-kernel certificate.
 
@@ -2394,7 +2472,8 @@ must lose a needed source normal closure without having the surviving
 stabilizer restore it, or change the survivor quotient class; bare
 asymmetry, retained-source cross-coupling, and quotient-equal source
 deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
-insufficient unless the primitive slot is multiplied by a nonliteral
-q-dependent source, or by a source outside the retained normal closure.
+insufficient unless the primitive slot is multiplied by a q-dependent
+source conjugated through the recovery coordinate, by a changed q-source,
+or by a source outside the retained normal closure.
 
 AK(3) remains open.
