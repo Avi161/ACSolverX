@@ -2354,6 +2354,62 @@ primitive self-loops. Both delete to
 whose second relator differs from the standard rank-two AK relator
 \(t^{-1}(xt)x(xt)^{-1}\) by exactly two conjugates of \(R^{\pm1}\).
 
+## Result 40: arbitrary z-free q-source traffic closes
+
+The unique-z theorem is proved in
+
+```text
+literature/proofs/AK3_Z_FREE_Q_TRAFFIC_SELF_LOOP.md
+```
+
+At the fixed AK source-slot checkpoint, write
+
+\[
+W=\beta(R)z^{-1}\beta(xt)q.
+\]
+
+For every finite z-free q-source history, its total target multiplier is
+an arbitrary
+
+\[
+v\in
+\langle\!\langle q\rangle\!\rangle_{F(x,t,q)}.
+\]
+
+Then
+
+\[
+Wv
+=
+\beta(R)z^{-1}\bigl(\beta(xt)qv\bigr)
+\]
+
+contains \(z^{-1}\) exactly once and is primitive. The explicit
+orientation-reversing automorphism sends \(z\) to \(Wv\) and fixes
+\(x,t,q\). After deleting z, the q-relator remains literal and also
+deletes.
+
+The double quotient is independent of \(v\): since \(v\) vanishes under
+\(q\mapsto1\), the inverse automorphism sends
+
+\[
+z\longmapsto xtR.
+\]
+
+Consequently every such history gives
+
+\[
+\left(R,\;t^{-1}(xtR)x(xtR)^{-1}\right),
+\]
+
+which returns to the standard rank-two AK endpoint by two conjugates of
+\(R^{\pm1}\).
+
+This closes arbitrary products of z-free conjugates of
+\(q^{\pm1}\), with no bound on their number, word length, conjugators, or
+q-occurrences. In particular, both literal \(x\)-conjugator branches are
+self-loops.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2376,14 +2432,15 @@ branch cannot be post-manufacture traffic which avoids AC1 into the
 primitive slot: all such traffic descends through deletion. Result 38
 also closes multiplication by the surviving literal \(q^{\pm1}\)-slot,
 despite its q-dependent pullback. The next target move must therefore use
-a conjugator whose pullback involves the primitive recovery coordinate
-\(U\), a changed spelling of the q-source, a q-free word outside the
-retained joint normal closure, or another broken hypothesis: Result 39
-closes every coherent conjugator pulled back from a complement to \(U\).
-For the AK checkpoint, literal \(x\) and \(z\) are the first uncovered
-basis conjugators. Changing the primitive relator before the fixed
-checkpoint or choosing a different primitive slot also remains open. The
-exact Fox coordinate remains a necessary free-kernel certificate.
+a changed spelling of the q-source, a multiplier involving \(z\), a
+q-free word outside the retained joint normal closure, or another broken
+hypothesis. Result 39 closes every coherent conjugator pulled back from
+a complement to \(U\), and Result 40 closes the entire z-free normal
+closure of the literal q-source. For the AK checkpoint, literal \(z\) is
+now the first uncovered basis conjugator. Changing the primitive relator
+before the fixed checkpoint or choosing a different primitive slot also
+remains open. The exact Fox coordinate remains a necessary free-kernel
+certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2472,8 +2529,8 @@ must lose a needed source normal closure without having the surviving
 stabilizer restore it, or change the survivor quotient class; bare
 asymmetry, retained-source cross-coupling, and quotient-equal source
 deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
-insufficient unless the primitive slot is multiplied by a q-dependent
-source conjugated through the recovery coordinate, by a changed q-source,
-or by a source outside the retained normal closure.
+insufficient unless the primitive slot receives a q-dependent multiplier
+involving \(z\), a changed q-source, or a source outside the retained
+normal closure.
 
 AK(3) remains open.

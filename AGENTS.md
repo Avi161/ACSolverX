@@ -589,3 +589,23 @@
 
 - [TRAP] A newly added design spec retained a blank line after its final paragraph; `git diff --check` correctly stopped the combined stage-and-commit command before any files were staged.
 - [WORKS] Keep the pre-stage `git diff --check` gate, remove trailing blank lines with `apply_patch`, and rerun the full gate before committing.
+
+### 2026-07-25 Separate file moves from theorem-wide rewrites
+
+- [TRAP] One patch tried to rename a new proof and simultaneously replace many LaTeX-aligned blocks; a single mismatch around `&=` rejected the whole proof update.
+- [WORKS] Move the file first, then rewrite one exact section at a time using anchors copied from a fresh readback.
+
+### 2026-07-25 Apply-patch moves require a content hunk
+
+- [TRAP] An `apply_patch` update containing only `*** Move to:` is rejected as an empty hunk.
+- [WORKS] Pair every file move with one minimal verified content change, such as updating the document title.
+
+### 2026-07-25 Re-read the exact small block after partial rewrites
+
+- [TRAP] After several successful local theorem patches, a later hunk still used the pre-rewrite quotient symbols and an assumed duplicate line, so its context failed.
+- [WORKS] After each cluster of local patches, read the next 80-line block fresh and use only its current literal symbols as patch anchors.
+
+### 2026-07-25 Treat overlapping sed output as presentation, not file content
+
+- [TRAP] Two overlapping `sed` ranges made a boundary line appear twice in combined output; a later patch included that apparent duplicate and missed the actual single-copy paragraph.
+- [WORKS] When auditing a suspicious duplicate, read one non-overlapping range around it before constructing the patch.
