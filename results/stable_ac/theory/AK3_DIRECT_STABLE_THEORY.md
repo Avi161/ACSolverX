@@ -2736,6 +2736,50 @@ Arbitrary later traffic from
 survivor vanishes in the first deletion. Thus the entire coherent
 z-free tail family is a two-deletion self-loop.
 
+## Result 46: the first z-dependent D-tail has two primitive rows
+
+The exact rank-four Whitehead classification is proved in
+
+```text
+literature/proofs/AK3_Z_DEPENDENT_D_TAIL_PRIMITIVITY.md
+```
+
+For
+
+\[
+Q_{\eta,\epsilon,\delta}
+=
+q^\eta W^\epsilon D^\delta,
+\qquad
+\eta,\epsilon,\delta\in\{+1,-1\},
+\]
+
+exactly two of the eight sign rows are primitive:
+
+\[
+\boxed{
+qW^{-1}D,
+\qquad
+qW^{-1}D^{-1}.
+}
+\]
+
+Explicit strict Whitehead descents of 12 and 13 steps take these words
+to \(q^{-1}\) and \(z^{-1}\), respectively. Every move is replayed
+against the complete dependency-free rank-four list of second-kind
+Whitehead automorphisms.
+
+For each of the other six rows, explicit Whitehead moves produce a
+cyclically reduced terminal word whose Whitehead graph contains a
+spanning cycle through all eight signed basis vertices. Each graph is
+therefore connected and has no cut vertex. Whitehead's cut-vertex lemma
+proves all six rows nonprimitive.
+
+This closes primitive-single deletion for six of the eight first
+z-dependent D-tails. It does not yet compute the stable deletion
+endpoints of the two primitive exceptions, and it says nothing against
+primitive-pair compression.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2769,13 +2813,16 @@ gauge. Result 44 closes the first incoherent pair source
 \(q^\eta W^\epsilon\) in all four orientations, even with arbitrary
 later traffic from that changed source. Result 45 closes every longer
 pair source with a coherent z-free tail
-\(q^\eta W^\epsilon\beta(V)\). The next source-traffic branch must
-therefore use a z-dependent or incoherent q-dependent tail, change the
-source a second time, alter W by traffic with nontrivial first-deletion
-image, delete a needed carrier or alter it by traffic with nontrivial
-deletion image, change the fixed checkpoint, or choose a different
-primitive slot. The exact Fox coordinate remains a necessary free-kernel
-certificate.
+\(q^\eta W^\epsilon\beta(V)\). Result 46 classifies the first
+z-dependent tails \(q^\eta W^\epsilon D^\delta\): six sign rows are
+nonprimitive, while exactly \(qW^{-1}D^{\pm1}\) survive the
+primitive-single gate. The immediate exact lead is to compute the full
+stable deletion endpoints of those two exceptions. The other six rows
+can matter only through primitive-pair compression or a longer changed
+source history. Further branches may alter W by traffic with nontrivial
+first-deletion image, delete or alter a needed carrier, change the fixed
+checkpoint, or choose a different primitive slot. The exact Fox
+coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2870,10 +2917,13 @@ either while their q-free carrier sources survive, and coherent
 transported changes \(q\beta(V)\) are gauges as well. Even the first
 incoherent products \(q^\eta W^\epsilon\) cancel against the surviving
 W-slot, and arbitrary coherent z-free tails merely transfer into a
-second deletable source. A viable primitive-slot branch must use a
-z-dependent or incoherent q-dependent tail, a repeatedly changed source,
-alter W by traffic with nontrivial first-deletion image, lose a needed
-carrier source, use traffic with nontrivial deletion image, or draw from
-a source outside the retained normal closure.
+second deletable source. Among the first z-dependent D-tails, only
+\(qW^{-1}D^{\pm1}\) are primitive; their transported full-tuple
+endpoints are the immediate open calculation. A different viable
+primitive-slot branch must use a longer or differently interleaved
+z-dependent tail, a repeatedly changed source, alter W by traffic with
+nontrivial first-deletion image, lose a needed carrier source, use
+traffic with nontrivial deletion image, or draw from a source outside
+the retained normal closure.
 
 AK(3) remains open.

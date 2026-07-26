@@ -639,3 +639,18 @@
 
 - [TRAP] The first qW-tail derivation tracked the second straightening on the outer conjugator but implicitly fixed the inner `x`; since `beta^{-1}(x)=q^{-1}xq`, the exact replay contradicted the claimed V=R endpoints.
 - [WORKS] For an endpoint `t^{-1} E x E^{-1}`, compute and replay both `theta^{-1}(E)` and `theta^{-1}(x)`. Here the missing image is `x -> V^eta x V^{-eta}`, which changes the conjugator to `p V^{-eta} R V^eta`.
+
+### 2026-07-26 Resolve Whitehead verifier names before importing
+
+- [TRAP] The rank-four translated Whitehead probe guessed `verify_word_reduction`, but `rank3_whitehead.py` exports `check_word_reduction`; the import failed before any mathematical computation.
+- [WORKS] Resolve verifier entry points with `rg '^def (check|verify)'` before an inline proof probe, then import the exact symbol.
+
+### 2026-07-26 Do not BFS the full strict Whitehead descent DAG
+
+- [TRAP] A shortest-certificate BFS over every strict rank-four Whitehead reduction from the length-18 qWD words fanned out without a clean result, despite the already verified greedy certificates.
+- [WORKS] Once a complete strict descent and endpoint minimality replay exists, keep its 12/13 small steps. Improve presentation only with bounded beam search or structural algebra, never an unrestricted all-state BFS.
+
+### 2026-07-26 Compare cyclic Whitehead witnesses canonically
+
+- [TRAP] The D-tail replay compared a canonical per-step word with a deliberately chosen human-readable cyclic orientation of the same terminal word, so the literal assertion failed although all six pairs were cyclically equivalent.
+- [WORKS] Compare descent outputs with `canonical_relator(displayed_terminal)`; compute the undirected Whitehead graph on the displayed orientation, which is invariant under cyclic rotation and inversion.
