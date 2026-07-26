@@ -609,3 +609,8 @@
 
 - [TRAP] Two overlapping `sed` ranges made a boundary line appear twice in combined output; a later patch included that apparent duplicate and missed the actual single-copy paragraph.
 - [WORKS] When auditing a suspicious duplicate, read one non-overlapping range around it before constructing the patch.
+
+### 2026-07-26 Do not regress a recorded split-patch rule
+
+- [TRAP] The Result 41 insertion was again bundled with two distant live-lead rewrites even though the project already records that this pattern rejects the whole patch on one stale line wrap.
+- [WORKS] Treat a matching project lesson as an executable constraint: insert a numbered result alone, read back the exact live-lead paragraphs, and only then patch those paragraphs.

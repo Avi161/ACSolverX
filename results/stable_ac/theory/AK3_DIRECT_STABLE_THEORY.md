@@ -2410,6 +2410,83 @@ This closes arbitrary products of z-free conjugates of
 q-occurrences. In particular, both literal \(x\)-conjugator branches are
 self-loops.
 
+## Result 41: the full q-source normal closure closes
+
+The source-first theorem and its literal-z target obstruction are proved
+in
+
+```text
+literature/proofs/AK3_FULL_Q_TRAFFIC_SELF_LOOP.md
+```
+
+At the same fixed source-slot checkpoint, let
+
+\[
+v\in
+\langle\!\langle q\rangle\!\rangle_{F(x,t,z,q)}
+\]
+
+be arbitrary. The q-source traffic lemma gives
+
+\[
+(\beta(R),Wv,D,q)
+\]
+
+with the final q-slot restored literally. Delete that source slot first.
+Killing q sends the remaining tuple exactly to
+
+\[
+(R,U,D),
+\qquad
+U=Rz^{-1}xt,
+\]
+
+independently of \(v\). The word \(U\) is primitive via
+
+\[
+z\longmapsto Rz^{-1}xt,
+\qquad
+z\longmapsfrom xtz^{-1}R.
+\]
+
+Straightening and deleting \(U\) gives
+
+\[
+(R,E_R),
+\qquad
+E_R=t^{-1}(xtR)x(xtR)^{-1}.
+\]
+
+With \(E_0=t^{-1}(xt)x(xt)^{-1}\), the exact identity
+
+\[
+E_0^{-1}E_R
+=
+\bigl((xtx^{-1})R(xt^{-1}x^{-1})\bigr)
+\bigl((xt)R^{-1}(xt)^{-1}\bigr)
+\]
+
+returns \(E_R\) to \(E_0\) by two retained-\(R\) source factors.
+Therefore every finite target history in the full normal closure of the
+restored q-source is a stable self-loop, with no restriction on
+z-occurrences, conjugators, signs, factor count, or word length.
+
+There is nevertheless a sharp local obstruction to deleting the changed
+target first. All four exact words
+
+\[
+Wz^\delta q^\epsilon z^{-\delta},
+\qquad
+\delta,\epsilon\in\{+1,-1\},
+\]
+
+are nonprimitive. Explicit Whitehead reductions give two terminal common
+graphs containing spanning cycles on all eight signed basis vertices, so
+the cut-vertex lemma applies. This nonprimitivity does not obstruct the
+source-first deletion above. Result 41 supersedes Result 40's z-free
+restriction for stable closure, but not Result 40's stronger assertion
+that its changed target itself is primitive.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2431,16 +2508,14 @@ generator. Within the relative-transvection family, the next minimal
 branch cannot be post-manufacture traffic which avoids AC1 into the
 primitive slot: all such traffic descends through deletion. Result 38
 also closes multiplication by the surviving literal \(q^{\pm1}\)-slot,
-despite its q-dependent pullback. The next target move must therefore use
-a changed spelling of the q-source, a multiplier involving \(z\), a
-q-free word outside the retained joint normal closure, or another broken
-hypothesis. Result 39 closes every coherent conjugator pulled back from
-a complement to \(U\), and Result 40 closes the entire z-free normal
-closure of the literal q-source. For the AK checkpoint, literal \(z\) is
-now the first uncovered basis conjugator. Changing the primitive relator
-before the fixed checkpoint or choosing a different primitive slot also
-remains open. The exact Fox coordinate remains a necessary free-kernel
-certificate.
+despite its q-dependent pullback. Result 39 closes every coherent
+conjugator pulled back from a complement to \(U\), and Result 41 closes
+the full normal closure of the restored literal q-source, including
+arbitrary z-dependent traffic. The next source-traffic branch must
+therefore change the final q-source spelling, use a multiplier with
+nontrivial q-kill, leave the q-normal closure, change the fixed
+checkpoint, or choose a different primitive slot. The exact Fox
+coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2529,8 +2604,9 @@ must lose a needed source normal closure without having the surviving
 stabilizer restore it, or change the survivor quotient class; bare
 asymmetry, retained-source cross-coupling, and quotient-equal source
 deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
-insufficient unless the primitive slot receives a q-dependent multiplier
-involving \(z\), a changed q-source, or a source outside the retained
-normal closure.
+insufficient when it comes from the restored literal q-source, even when
+its conjugators involve \(z\). A viable primitive-slot branch must change
+that source, use traffic with nontrivial q-kill, or draw from a source
+outside the retained normal closure.
 
 AK(3) remains open.
