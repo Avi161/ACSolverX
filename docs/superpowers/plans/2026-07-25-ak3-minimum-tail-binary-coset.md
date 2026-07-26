@@ -48,4 +48,4 @@ folded free-product core, finite-field linear algebra, `runpy`.
 - [x] Exclude \(g=\gamma e^{-1}\).
 - [x] Record that \(g=c^{-1}\) survives.
 - [x] Run full replay, diff audit, and hostile review.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
