@@ -59,4 +59,4 @@ semidirect products, HNN extensions, Bass--Serre trees.
 - [x] Add independent finite-group and tree-incidence replays.
 - [x] Run the focused verification and inspect the diff.
 - [x] Obtain hostile review.
-- [ ] Commit and push the verified branch checkpoint.
+- [x] Commit and push the verified branch checkpoint.
