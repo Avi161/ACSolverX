@@ -64,4 +64,4 @@ replay.
 - [x] Update the theory ledger and lessons.
 - [x] Run focused replay, syntax, placeholder, claim, and diff audits.
 - [x] Complete an independent hostile review.
-- [ ] Commit and push the verified checkpoint.
+- [x] Commit and push the verified checkpoint.
