@@ -312,7 +312,7 @@ v=\prod_{i=1}^{m}c_iq^{\epsilon_i}c_i^{-1},
 For each factor, conjugate the q-source relator by \(c_i\), invert it
 when \(\epsilon_i=-1\), multiply the target on the right by that source,
 and undo the inversion and conjugation on the source slot. These are
-AC3, AC2, AC1, and their inverses. Iteration produces \(Wv\) while
+AC3, AC1, AC2, and their inverses. Iteration produces \(Wv\) while
 restoring the source relator to the literal word q. Thus (5.2) holds for
 every element of the full normal closure, not merely for the displayed
 sample conjugates.
@@ -397,7 +397,15 @@ E_0^{-1}E_R
 \tag{5.10}
 \]
 
-Two retained-\(R\) source factors return \(E_R\) to \(E_0\).
+Writing the two displayed factors as \(f_1,f_2\), respectively, the
+actual return order is
+
+\[
+E_Rf_2^{-1}f_1^{-1}=E_0.
+\]
+
+Both inverse factors are still conjugates of \(R^{\pm1}\), so two
+retained-\(R\) source multiplications return \(E_R\) to \(E_0\).
 Therefore:
 
 \[
@@ -407,7 +415,8 @@ Therefore:
 (R,E_0)
 \quad
 \text{for every }
-v\in\langle\!\langle q\rangle\!\rangle_F.
+v\in
+\langle\!\langle q\rangle\!\rangle_{F(x,t,z,q)}.
 }
 \tag{5.11}
 \]
@@ -435,7 +444,7 @@ The stable closure (5.11) requires:
 It does not close a changed final q-source, a multiplier with nontrivial
 q-kill, a different checkpoint, or primitive-pair compression.
 
-Nonprimitivity is not preserved by subsequent AC1 target traffic, so
+Nonprimitivity is not preserved by subsequent target multiplication, so
 the four-word obstruction remains a local deletion-order gate rather
 than a stable-AC obstruction. AK(3) and stable AC remain open.
 

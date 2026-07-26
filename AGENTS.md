@@ -614,3 +614,8 @@
 
 - [TRAP] The Result 41 insertion was again bundled with two distant live-lead rewrites even though the project already records that this pattern rejects the whole patch on one stale line wrap.
 - [WORKS] Treat a matching project lesson as an executable constraint: insert a numbered result alone, read back the exact live-lead paragraphs, and only then patch those paragraphs.
+
+### 2026-07-26 Resolve proof filenames before parallel reads
+
+- [TRAP] A theory read guessed `AK3_SOURCE_SLOT_PRIMITIVE_EXCHANGE.md`; the tracked file includes the `_SELF_LOOP.md` suffix, so that arm of the combined read failed.
+- [WORKS] Resolve proof paths with `rg --files literature/proofs | rg '<stem>'` before issuing a multi-file read, just as for focused test manifests.

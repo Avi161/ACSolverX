@@ -2446,7 +2446,7 @@ independently of \(v\). The word \(U\) is primitive via
 \[
 z\longmapsto Rz^{-1}xt,
 \qquad
-z\longmapsfrom xtz^{-1}R.
+\nu^{-1}(z)=xtz^{-1}R.
 \]
 
 Straightening and deleting \(U\) gives

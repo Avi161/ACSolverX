@@ -36,10 +36,10 @@ targets.
 - Create:
   `literature/proofs/AK3_FULL_Q_TRAFFIC_SELF_LOOP.md`
 
-- [ ] Delete the restored literal q-slot before the changed target.
-- [ ] Prove q-killing sends every \(Wv\) to \(U\).
-- [ ] Delete primitive \(U\) and compute the rank-two endpoint.
-- [ ] Return the endpoint by two retained-\(R\) factors.
+- [x] Delete the restored literal q-slot before the changed target.
+- [x] Prove q-killing sends every \(Wv\) to \(U\).
+- [x] Delete primitive \(U\) and compute the rank-two endpoint.
+- [x] Return the endpoint by two retained-\(R\) factors.
 
 ### Task 2: Prove the four-target obstruction
 
@@ -47,10 +47,10 @@ targets.
 - Modify:
   `literature/proofs/AK3_FULL_Q_TRAFFIC_SELF_LOOP.md`
 
-- [ ] Replay the first Whitehead automorphism on all four targets.
-- [ ] Replay the second reduction for the positive-z conjugator pair.
-- [ ] Exhibit both common spanning cycles.
-- [ ] Apply the cut-vertex lemma with exact scope.
+- [x] Replay the first Whitehead automorphism on all four targets.
+- [x] Replay the second reduction for the positive-z conjugator pair.
+- [x] Exhibit both common spanning cycles.
+- [x] Apply the cut-vertex lemma with exact scope.
 
 ### Task 3: Build the independent replay
 
@@ -59,12 +59,12 @@ targets.
 - Modify:
   `literature/proofs/AK3_FULL_Q_TRAFFIC_SELF_LOOP.md`
 
-- [ ] Test full q-normal-closure multipliers containing z.
-- [ ] Replay q-first and U-second deletion.
-- [ ] Verify both automorphisms and inverses.
-- [ ] Verify all word images and strict length drops.
-- [ ] Verify both exact Whitehead edge sets.
-- [ ] Verify connectedness and absence of cut vertices.
+- [x] Test full q-normal-closure multipliers containing z.
+- [x] Replay q-first and U-second deletion.
+- [x] Verify both automorphisms and inverses.
+- [x] Verify all word images and strict length drops.
+- [x] Verify both exact Whitehead edge sets.
+- [x] Verify connectedness and absence of cut vertices.
 
 ### Task 4: Verify, review, and checkpoint
 
@@ -72,7 +72,7 @@ targets.
 - Modify: `results/stable_ac/theory/AK3_DIRECT_STABLE_THEORY.md`
 - Modify: `AGENTS.md` only if the work reveals a reusable lesson.
 
-- [ ] State Result 41 and narrow the live lead.
-- [ ] Run focused tests, syntax, claim, placeholder, and diff audits.
-- [ ] Complete an independent hostile review.
-- [ ] Commit and push the verified checkpoint.
+- [x] State Result 41 and narrow the live lead.
+- [x] Run focused tests, syntax, claim, placeholder, and diff audits.
+- [x] Complete an independent hostile review.
+- [x] Commit and push the verified checkpoint.
