@@ -2780,6 +2780,86 @@ z-dependent D-tails. It does not yet compute the stable deletion
 endpoints of the two primitive exceptions, and it says nothing against
 primitive-pair compression.
 
+## Result 47: every qW-inverse D-power pair merges into the floor-14 corridor
+
+The structural pair-compression theorem is proved in
+
+```text
+literature/proofs/AK3_QW_D_POWER_TAIL_COMPRESSION_MERGE.md
+```
+
+Put
+
+\[
+S=Wq^{-1}
+=
+\beta(Rz^{-1}xt).
+\]
+
+A based eleven-step Whitehead certificate proves that the ordered pair
+
+\[
+\left(
+Rz^{-1}xt,\;
+\beta^{-1}(D)
+\right)
+\]
+
+extends to a basis. After restoring \(\beta\), one obtains an
+automorphism \(\theta\) satisfying
+
+\[
+\theta(S)=z^{-1},
+\qquad
+\theta(D)=t^{-1}.
+\]
+
+For every integer k,
+
+\[
+Q_k=qW^{-1}D^k=S^{-1}D^k.
+\]
+
+The triangular shear \(z\mapsto zt^k\) therefore sends
+\((\theta(Q_k),\theta(D))\) exactly to \((z,t^{-1})\). Thus
+\((Q_k,D)\) is a based primitive pair for all
+\(k\in\mathbb Z\), with no bound or finite census.
+
+More generally,
+
+\[
+D^a qW^{-1}D^b
+\]
+
+is conjugate to \(qW^{-1}D^{a+b}\). Thus every D-only left/right split
+around one \(qW^{-1}\) block has the same pair quotient.
+
+Deleting this pair from the full checkpoint tuple gives one
+k-independent rank-two pair. Its complete Whitehead floor is 23.
+One ordinary retained-source AC factor lowers it, and a stable ambient
+signed relabel maps it to
+
+```text
+YXXYx | YYYYXyyyx
+```
+
+the exact floor-14 representative already proved to occur in the
+rank-three compression corridor. The classical factor alone does not
+identify the endpoints; the final ambient step is stable.
+
+For the two first powers \(k=\pm1\), complete rank-three survivor
+classification proves more: after deleting \(Q_k\), the D-image is the
+unique primitive survivor. The two exceptional primitive-single rows
+from Result 46 therefore have no alternative second primitive-single
+branch at that checkpoint.
+
+This closes all D-only traffic around one \(qW^{-1}\) block and the
+immediate primitive-single second deletion of the two first powers by
+merging them into a previously certified stable corridor. It does not
+obstruct primitive pairs involving the six nonprimitive sign rows,
+longer histories changing a displayed survivor, or histories
+containing another \(Wq^{-1}\) block.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2816,13 +2896,18 @@ pair source with a coherent z-free tail
 \(q^\eta W^\epsilon\beta(V)\). Result 46 classifies the first
 z-dependent tails \(q^\eta W^\epsilon D^\delta\): six sign rows are
 nonprimitive, while exactly \(qW^{-1}D^{\pm1}\) survive the
-primitive-single gate. The immediate exact lead is to compute the full
-stable deletion endpoints of those two exceptions. The other six rows
-can matter only through primitive-pair compression or a longer changed
-source history. Further branches may alter W by traffic with nontrivial
-first-deletion image, delete or alter a needed carrier, change the fixed
-checkpoint, or choose a different primitive slot. The exact Fox
-coordinate remains a necessary free-kernel certificate.
+primitive-single gate. Result 47 closes their immediate second
+primitive-single gate: D is the unique primitive displayed survivor,
+and both signs merge into the old floor-14 compression corridor. More
+structurally,
+\((qW^{-1}D^k,D)\) is a based primitive pair with the same quotient for
+every integer k. The immediate exact lead is now to classify
+primitive-pair deletion for the six individually nonprimitive first
+D-tail rows against A, W, and D. Longer branches may interleave or
+conjugate additional \(Wq^{-1}\) blocks, alter W by traffic with
+nontrivial first-deletion image, delete or alter a needed carrier,
+change the fixed checkpoint, or choose a different primitive slot.
+The exact Fox coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2918,12 +3003,15 @@ transported changes \(q\beta(V)\) are gauges as well. Even the first
 incoherent products \(q^\eta W^\epsilon\) cancel against the surviving
 W-slot, and arbitrary coherent z-free tails merely transfer into a
 second deletable source. Among the first z-dependent D-tails, only
-\(qW^{-1}D^{\pm1}\) are primitive; their transported full-tuple
-endpoints are the immediate open calculation. A different viable
-primitive-slot branch must use a longer or differently interleaved
-z-dependent tail, a repeatedly changed source, alter W by traffic with
-nontrivial first-deletion image, lose a needed carrier source, use
-traffic with nontrivial deletion image, or draw from a source outside
-the retained normal closure.
+\(qW^{-1}D^{\pm1}\) are primitive, and their forced immediate
+primitive-single second deletions merge into the old floor-14 sibling.
+In fact every D-only split pair
+\((D^a qW^{-1}D^b,D)\) has that same quotient. The next first-tail
+question is whether one of the six nonprimitive source rows forms a
+primitive pair with A, W, or D. A different viable primitive-slot
+branch must use another \(Wq^{-1}\) block, a repeatedly changed source,
+alter W by traffic with nontrivial first-deletion image, lose a needed
+carrier source, use traffic with nontrivial deletion image, or draw
+from a source outside the retained normal closure.
 
 AK(3) remains open.

@@ -654,3 +654,18 @@
 
 - [TRAP] The D-tail replay compared a canonical per-step word with a deliberately chosen human-readable cyclic orientation of the same terminal word, so the literal assertion failed although all six pairs were cyclically equivalent.
 - [WORKS] Compare descent outputs with `canonical_relator(displayed_terminal)`; compute the undirected Whitehead graph on the displayed orientation, which is invariant under cyclic rotation and inversion.
+
+### 2026-07-26 Replay advisory endpoint coordinates literally
+
+- [TRAP] A read-only endpoint derivation reported the negative rank-two coordinate as `x -> X, y -> Y` and identified the post-factor pair literally with the old compression pair. Full-tuple replay found the exact coordinate is `x -> X, y -> YXX`, and the post-factor pair meets the old corridor only after both are mapped to the same floor-14 Aut representative.
+- [WORKS] Treat agent/advisor word formulas as hypotheses: substitute them into every survivor, verify explicit inverses, and compare exact canonical outputs before writing a theorem.
+
+### 2026-07-26 Use the uv Python for modern test syntax
+
+- [TRAP] Importing a replay under the macOS system Python failed on `zip(..., strict=True)` because that interpreter predates the argument, even though the pytest environment uses Python 3.14.
+- [WORKS] Run inline probes for new test modules through `UV_CACHE_DIR=.scratch/uv-cache uv run --with pytest python3`, matching the focused test interpreter.
+
+### 2026-07-26 Display changed-source manufacture before deletion
+
+- [TRAP] The first D-power-tail draft proved the primitive pair and its quotient but began from `(A,W,D,Q_k)` without displaying how the literal checkpoint reaches that tuple while restoring the carrier rows.
+- [WORKS] Before every changed-source deletion theorem, give the exact AC1--AC3 manufacture from the prior checkpoint, including inversions and restoration of every source carrier; only then invoke stable ambient straightening.
