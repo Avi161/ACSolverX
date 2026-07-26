@@ -709,3 +709,8 @@
 
 - [TRAP] A patch anchored only on `primitive_children = {` matched the earlier Result 49 classifier and inserted Result 50 histogram variables after an unreachable return. Syntax compilation passed, but the carrier classifier would have raised `NameError`.
 - [WORKS] When one test module contains parallel classifiers, include the target function signature or a unique nearby variable in every patch context, then read the definition site and run the exact new assertion before staging.
+
+### 2026-07-26 Distinguish multiplication from multiplication by a conjugate
+
+- [TRAP] The first unchanged-primitive-first proof called \(T\mapsto TcS^\epsilon c^{-1}\) one ordinary relator multiplication. It is classically AC-equivalent but generally needs source inversion, source conjugation, multiplication, and restoration.
+- [WORKS] Describe a relative product as a multiplication by a conjugate and display the finite classical AC sequence; reserve “one relator multiplication” for the literal \(T\mapsto TS^{\pm1}\) move.

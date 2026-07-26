@@ -3008,6 +3008,61 @@ this is not a claim of a classical rank-two AC identification. Thus
 the entire finite carrier-edge stratum has no new endpoint and none of
 floor at most 12.
 
+## Result 51: unchanged-primitive-first carrier orders close
+
+The source-first and non-source theorem is proved in
+
+```text
+literature/proofs/AK3_UNCHANGED_PRIMITIVE_FIRST_CLOSURE.md
+```
+
+For an edge
+
+\[
+T\longmapsto TuS^\sigma u^{-1}
+\]
+
+with an unchanged primitive source S, deleting S first kills the
+conjugated factor exactly. This is quotient naturality and holds for
+every relative conjugator u, with no word-length bound. At the current
+checkpoints it covers Q targeted by W or D and the four carrier orders
+
+\[
+A\leftarrow W,\quad
+A\leftarrow D,\quad
+W\leftarrow D,\quad
+D\leftarrow W.
+\]
+
+Within the signed-cyclic carrier image, the only non-source
+unchanged-primitive-first choices are D-first after an A--W edge and
+W-first after an A--D edge. Their complete rank-three image has 2,928
+labeled states:
+
+\[
+2{,}184\text{ have no primitive survivor},\qquad
+744\text{ have Q as the unique primitive survivor}.
+\]
+
+The positives occur exactly in the two mixed
+\((\eta,\epsilon)=(-,+)\) rows. After Q deletion, the carrier edge
+descends in Result 47's fixed double-deletion coordinate to a
+multiplication by a conjugate from the known floor-23 baseline pair.
+This is a short classical AC sequence. Arbitrary straightener outputs
+are Aut-equivalent to those fixed-coordinate representatives, so the
+conclusion for the whole image is stable rather than a classical
+identification of every displayed pair.
+
+There are 154 distinct normalized final pairs in each target direction.
+The two sets are disjoint. Complete Aut-minima are at least 19 when A
+was targeted and at least 14 when W was targeted. No endpoint has floor
+at most 12.
+
+Thus every unchanged-primitive-first order in the signed-cyclic carrier
+stratum is closed. The source-first part is stronger and already covers
+arbitrary relative conjugators; the non-source arbitrary-conjugator
+family remains open.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3060,13 +3115,15 @@ compression or floor-27 backtrack orbits. Result 50 closes the
 signed-cyclic carrier-carrier image as well: it has no direct primitive
 pair, and its only 12 changed-row-first second deletions are one
 A-block cancellation returning exactly to AK(3)'s floor-13 orbit. The
-immediate exact leads are therefore a nontrivial relative conjugator,
-an alternate first-deletion order, or two row-changing edges before
-deletion. Longer branches may use additional \(Wq^{-1}\) blocks, alter
-W by traffic with nontrivial first-deletion image, delete or alter a
-needed carrier, change the fixed checkpoint, or choose a different
-primitive slot. The exact Fox coordinate remains a necessary
-free-kernel certificate.
+signed-cyclic alternate first-deletion order is closed by Result 51 as
+well; source-first deletion is even insensitive to arbitrary relative
+conjugators. The immediate exact leads are therefore a nontrivial
+relative conjugator when the changed row or a non-source row is deleted,
+or two row-changing edges before deletion. Longer branches may use
+additional \(Wq^{-1}\) blocks, alter W by traffic with nontrivial
+first-deletion image, delete or alter a needed carrier, change the fixed
+checkpoint, or choose a different primitive slot. The exact Fox
+coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -3172,9 +3229,14 @@ first D-tails and A, W, or D is also closed in both target directions
 for direct pair deletion and changed-row-first sequential deletion.
 The signed-cyclic carrier-carrier image is closed too: no direct pair
 is primitive, and its only changed-row-first continuation is the
-A-block cancellation returning to AK(3) itself. A different viable
-primitive-slot branch must use a nontrivial relative conjugator, an
-alternate first-deletion order, two row changes before deletion,
+A-block cancellation returning to AK(3) itself. All signed-cyclic
+unchanged-primitive-first orders are now closed too. Source-first
+deletion is a quotient gauge for every relative conjugator;
+signed-cyclic non-source deletion either stops or returns by a short
+classical sequence in a fixed deletion coordinate, hence stably to the
+old floor-23 corridor. A different viable
+primitive-slot branch must use a nontrivial relative conjugator with
+changed-row or non-source deletion, two row changes before deletion,
 another \(Wq^{-1}\) block, a repeatedly changed source, alter W by
 traffic with nontrivial first-deletion image, lose a needed carrier
 source, use traffic with nontrivial deletion image, or draw from a

@@ -1294,3 +1294,375 @@ def test_carrier_cancellation_has_a_uniform_unique_q_return():
         (r_word, e_word),
         ("x", "t"),
     )) == ("XXXXYYY", "XYxYXy")
+
+
+def test_primitive_source_first_erases_every_relative_conjugator():
+    source_data = {
+        "W": (
+            W,
+            {
+                "x": "x",
+                "t": "t",
+                "z": free_reduce(C + "Z" + A),
+                "q": "q",
+            },
+            "z",
+        ),
+        "D": (
+            D,
+            {
+                "x": "Ztxz",
+                "t": "t",
+                "z": "z",
+                "q": "q",
+            },
+            "x",
+        ),
+    }
+    checkpoints = tuple(
+        d_tail(eta, epsilon, delta)
+        for eta, epsilon in ((1, 1), (-1, 1), (-1, -1))
+        for delta in (1, -1)
+    )
+    eligible = (
+        *((q_word, "W") for q_word in checkpoints),
+        *((q_word, "D") for q_word in checkpoints),
+        (A, "W"),
+        (A, "D"),
+        (W, "D"),
+        (D, "W"),
+    )
+    conjugators = (
+        "",
+        "x",
+        "qZtxQ",
+        "ztQXq",
+        "xTzqXZt",
+    )
+
+    for target, source_name in eligible:
+        source, straightener, killed = source_data[source_name]
+        assert substitute(source, straightener) == killed
+        quotient = {
+            generator: "" if generator == killed else generator
+            for generator in GENERATORS4
+        }
+        target_quotient = substitute(
+            substitute(target, straightener),
+            quotient,
+        )
+        for sign in (1, -1):
+            for conjugator in conjugators:
+                child = free_reduce(
+                    target
+                    + conjugator
+                    + word_power(source, sign)
+                    + inverse_word(conjugator)
+                )
+                assert substitute(
+                    substitute(child, straightener),
+                    quotient,
+                ) == target_quotient
+
+
+@lru_cache(maxsize=1)
+def classify_unchanged_primitive_first() -> dict[str, object]:
+    carriers = {"A": A, "W": W, "D": D}
+    deletion_data = {
+        "D": (
+            {
+                "x": "Ztxz",
+                "t": "t",
+                "z": "z",
+                "q": "q",
+            },
+            "x",
+        ),
+        "W": (
+            {
+                "x": "x",
+                "t": "t",
+                "z": free_reduce(C + "Z" + A),
+                "q": "q",
+            },
+            "z",
+        ),
+    }
+    cases = (
+        ("A", "W", "D"),
+        ("W", "A", "D"),
+        ("A", "D", "W"),
+        ("D", "A", "W"),
+    )
+    checkpoints = tuple(
+        (eta, epsilon, delta)
+        for eta, epsilon in ((1, 1), (-1, 1), (-1, -1))
+        for delta in (1, -1)
+    )
+    direction_state_counts: Counter[str] = Counter()
+    quotient_primitive_counts: Counter[int] = Counter()
+    primitive_survivor_labels: Counter[str] = Counter()
+    quotient_primitive_pair_count = 0
+    endpoint_floor_distributions: dict[
+        str,
+        Counter[int],
+    ] = defaultdict(Counter)
+    raw_endpoint_sets: dict[
+        str,
+        set[tuple[str, str]],
+    ] = defaultdict(set)
+    endpoint_records: dict[
+        str,
+        list[tuple[int, tuple[str, str]]],
+    ] = defaultdict(list)
+
+    for target_name, source_name, deleted_name in cases:
+        target = carriers[target_name]
+        source = carriers[source_name]
+        children = {
+            canonical_relator(
+                target_rotation + source_rotation
+            )
+            for target_rotation in rotations(target)
+            for source_rotation in signed_rotations(source)
+        }
+        case_name = (
+            f"{target_name}<-{source_name}; "
+            f"delete {deleted_name}"
+        )
+        straightener, killed = deletion_data[deleted_name]
+        assert substitute(
+            carriers[deleted_name],
+            straightener,
+        ) == killed
+        quotient = {
+            generator: "" if generator == killed else generator
+            for generator in GENERATORS4
+        }
+        generators3 = tuple(
+            generator for generator in GENERATORS4
+            if generator != killed
+        )
+
+        for child in children:
+            for eta, epsilon, delta in checkpoints:
+                rows = {
+                    **carriers,
+                    "Q": d_tail(eta, epsilon, delta),
+                }
+                rows[target_name] = child
+                survivor_rows = tuple(sorted(
+                    (name, canonical_relator(substitute(
+                        substitute(word, straightener),
+                        quotient,
+                    )))
+                    for name, word in rows.items()
+                    if name != deleted_name
+                ))
+                direction_state_counts[case_name] += 1
+                primitive_indices = [
+                    index
+                    for index, (_, word) in enumerate(survivor_rows)
+                    if passes_primitive_graph_gate_on(
+                        word,
+                        generators3,
+                    )
+                    and is_primitive_word(word, generators3)
+                ]
+                quotient_primitive_counts[
+                    len(primitive_indices)
+                ] += 1
+                for index in primitive_indices:
+                    primitive_survivor_labels[
+                        survivor_rows[index][0]
+                    ] += 1
+                if len(primitive_indices) >= 2:
+                    for left_index in range(3):
+                        for right_index in range(
+                            left_index + 1,
+                            3,
+                        ):
+                            quotient_primitive_pair_count += (
+                                is_primitive_pair(
+                                    survivor_rows[left_index][1],
+                                    survivor_rows[right_index][1],
+                                    generators3,
+                                )
+                            )
+                for primitive_index in primitive_indices:
+                    second = survivor_rows[primitive_index][1]
+                    second_minimum, second_images, _ = (
+                        whitehead_reduce(
+                            (second,),
+                            generators3,
+                        )
+                    )
+                    assert len(second_minimum[0]) == 1
+                    killed_second = primitive_terminal_generators(
+                        (second,),
+                        second_images,
+                        generators3,
+                    )
+                    remaining_words = tuple(
+                        word
+                        for index, (_, word) in enumerate(
+                            survivor_rows
+                        )
+                        if index != primitive_index
+                    )
+                    final_words, generators2 = delete_coordinates(
+                        remaining_words,
+                        second_images,
+                        generators3,
+                        killed_second,
+                    )
+                    raw_endpoint = relabel_to_xy(
+                        final_words,
+                        generators2,
+                    )
+                    minimum, _, _ = whitehead_reduce(
+                        raw_endpoint,
+                        ("x", "y"),
+                    )
+                    floor = sum(map(len, minimum))
+                    endpoint_floor_distributions[
+                        case_name
+                    ][floor] += 1
+                    raw_endpoint_sets[case_name].add(raw_endpoint)
+                    endpoint_records[case_name].append(
+                        (floor, raw_endpoint)
+                    )
+
+    minimum_aut_representatives = {}
+    for case_name, records in endpoint_records.items():
+        floor = min(record[0] for record in records)
+        minimum_aut_representatives[case_name] = {
+            rank2_aut_canonical(raw_endpoint)
+            for observed_floor, raw_endpoint in records
+            if observed_floor == floor
+        }
+
+    return {
+        "direction_state_counts": direction_state_counts,
+        "quotient_primitive_counts": quotient_primitive_counts,
+        "primitive_survivor_labels": primitive_survivor_labels,
+        "quotient_primitive_pair_count": (
+            quotient_primitive_pair_count
+        ),
+        "endpoint_floor_distributions": (
+            endpoint_floor_distributions
+        ),
+        "distinct_raw_endpoint_counts": {
+            case_name: len(endpoints)
+            for case_name, endpoints in raw_endpoint_sets.items()
+        },
+        "raw_endpoint_intersection_count": len(
+            raw_endpoint_sets["A<-W; delete D"]
+            & raw_endpoint_sets["W<-A; delete D"]
+        ),
+        "minimum_aut_representatives": (
+            minimum_aut_representatives
+        ),
+        "endpoint_at_most_12_count": sum(
+            count
+            for distribution in endpoint_floor_distributions.values()
+            for floor, count in distribution.items()
+            if floor <= 12
+        ),
+    }
+
+
+def test_non_source_primitive_first_rank3_gate_is_complete():
+    observed = classify_unchanged_primitive_first()
+    assert observed["direction_state_counts"] == {
+        "A<-W; delete D": 1_116,
+        "W<-A; delete D": 1_116,
+        "A<-D; delete W": 348,
+        "D<-A; delete W": 348,
+    }
+    assert observed["quotient_primitive_counts"] == {
+        0: 2_184,
+        1: 744,
+    }
+    assert observed["primitive_survivor_labels"] == {"Q": 744}
+    assert observed["quotient_primitive_pair_count"] == 0
+
+
+def test_non_source_second_deletions_have_no_low_endpoint():
+    observed = classify_unchanged_primitive_first()
+    assert observed["endpoint_floor_distributions"] == {
+        "A<-W; delete D": {
+            19: 8,
+            31: 6,
+            33: 6,
+            35: 14,
+            37: 58,
+            39: 8,
+            41: 12,
+            43: 8,
+            45: 40,
+            47: 8,
+            49: 12,
+            51: 12,
+            53: 4,
+            55: 16,
+            59: 4,
+            61: 12,
+            63: 20,
+            65: 36,
+            67: 32,
+            69: 24,
+            71: 32,
+        },
+        "W<-A; delete D": {
+            14: 8,
+            26: 6,
+            27: 8,
+            28: 6,
+            30: 20,
+            31: 14,
+            32: 36,
+            33: 2,
+            34: 6,
+            35: 2,
+            36: 8,
+            37: 12,
+            38: 4,
+            39: 4,
+            40: 28,
+            41: 8,
+            42: 4,
+            43: 8,
+            44: 4,
+            45: 8,
+            50: 16,
+            53: 4,
+            54: 4,
+            55: 8,
+            56: 8,
+            57: 16,
+            58: 12,
+            59: 20,
+            60: 16,
+            61: 16,
+            62: 12,
+            63: 12,
+            64: 8,
+            65: 4,
+            66: 20,
+        },
+    }
+    assert observed["distinct_raw_endpoint_counts"] == {
+        "A<-W; delete D": 154,
+        "W<-A; delete D": 154,
+    }
+    assert observed["raw_endpoint_intersection_count"] == 0
+    assert observed["minimum_aut_representatives"] == {
+        "A<-W; delete D": {
+            ("XXXXYYxyxYxxxy", "XYXyy"),
+        },
+        "W<-A; delete D": {
+            ("XXXXYxxxy", "XYXyy"),
+        },
+    }
+    assert observed["endpoint_at_most_12_count"] == 0

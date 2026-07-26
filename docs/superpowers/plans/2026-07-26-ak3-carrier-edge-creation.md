@@ -43,4 +43,4 @@ changed-row-first primitive deletion through the full labeled tuple.
 - [x] Run the focused and regression replays.
 - [x] Obtain a hostile audit.
 - [x] Record Result 50 and update the live lead.
-- [ ] Commit and push.
+- [x] Commit and push.
