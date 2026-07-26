@@ -3122,6 +3122,51 @@ strictly beyond the finite cyclic census. The z-free hypothesis cannot
 be removed wholesale: already \(u=xz\) in the positive W-target branch
 gives a nonprimitive word with complete rank-four Whitehead minimum 14.
 
+## Result 53: arbitrary Q--carrier relative products add no primitive class
+
+The seam-robust theorem is proved in
+
+```text
+literature/proofs/AK3_SEAM_ROBUST_RELATIVE_PRODUCT_CLOSURE.md
+```
+
+For each of the six nonprimitive D-tail Q-rows, a row-specific
+automorphism makes every linear cut of the transformed cyclic word
+contain a Hamiltonian cycle on all eight signed basis vertices.
+
+Now take an arbitrary relative product between that Q-row and A, W, or
+D. In the transformed Cayley tree, split the two factor axes:
+
+- if they are disjoint, shortest-bridge normal form leaves a full
+  linear-cut Q-graph inside the child Whitehead graph, so the child is
+  connected with no cut vertex and is nonprimitive;
+- if they intersect, basing both factors at an intersection vertex
+  reduces the child to a finite product of signed cyclic rotations in
+  the transformed basis.
+
+The six complete transformed rotation tables map back to exactly Result
+49's six primitive changed conjugacy classes, with the same checkpoint
+and carrier labels. There is no additional primitive class for an
+arbitrary-length conjugator.
+
+Because only the changed target row differs, conjugating or inverting
+it to the Result 49 representative makes the full labeled tuple one of
+the already transported states. Hence the exact class-state and endpoint
+counts remain:
+
+\[
+\begin{array}{c|c}
+\text{direct primitive-pair endpoints}&
+18\mathcal F_{23}+12\mathcal F_{27}\\
+\text{changed-row-first sequential endpoints}&
+20\mathcal F_{23}+12\mathcal F_{27}.
+\end{array}
+\]
+
+The relative-conjugator witness set is infinite, so the old finite
+literal multiplicities do not extend. The primitive class and endpoint
+classification does.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3177,14 +3222,16 @@ A-block cancellation returning exactly to AK(3)'s floor-13 orbit. The
 signed-cyclic alternate first-deletion order is closed by Result 51 as
 well; source-first deletion is even insensitive to arbitrary relative
 conjugators. Result 52 additionally closes every changed-row-first A--W
-edge whose normalized relative conjugator is z-free. The immediate exact
-leads are therefore z-dependent A--W conjugators, arbitrary
-relative-conjugator traffic on the other carrier pairs or with non-source
-deletion, or two row-changing edges before deletion. Longer branches may
-use additional \(Wq^{-1}\) blocks, alter W by traffic with nontrivial
-first-deletion image, delete or alter a needed carrier, change the fixed
-checkpoint, or choose a different primitive slot. The exact Fox
-coordinate remains a necessary free-kernel certificate.
+edge whose normalized relative conjugator is z-free. Result 53 closes
+arbitrary relative conjugators on every Q--carrier edge for direct-pair
+and changed-row-first deletion. The immediate exact leads are therefore
+z-dependent A--W conjugators, arbitrary A--D or W--D conjugators,
+non-source deletion, or two row-changing edges
+before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
+alter W by traffic with nontrivial first-deletion image, delete or alter
+a needed carrier, change the fixed checkpoint, or choose a different
+primitive slot. The exact Fox coordinate remains a necessary free-kernel
+certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -3297,12 +3344,15 @@ signed-cyclic non-source deletion either stops or returns by a short
 classical sequence in a fixed deletion coordinate, hence stably to the
 old floor-23 corridor. Even arbitrary z-free A--W conjugators are now
 closed under changed-row-first deletion; they collapse by the retained
-A-normal closure and a second stable q-deletion. A different viable
-primitive-slot branch must use z-dependent A--W traffic, another
-carrier pair with a nontrivial relative conjugator, non-source deletion,
-two row changes before deletion, another \(Wq^{-1}\) block, a repeatedly
-changed source, alter W by traffic with nontrivial first-deletion image,
-lose a needed carrier source, use traffic with nontrivial deletion
-image, or draw from a source outside the retained normal closure.
+A-normal closure and a second stable q-deletion. Arbitrary Q--carrier
+relative conjugators add no primitive class either: seam-robust
+transformed Q-rows force every primitive case back into Result 49's
+finite table. A different viable primitive-slot branch must use
+z-dependent A--W traffic, arbitrary A--D or W--D relative traffic,
+non-source deletion, two row changes before deletion, another
+\(Wq^{-1}\) block, a repeatedly changed source, alter W by traffic with
+nontrivial first-deletion image, lose a needed carrier source, use
+traffic with nontrivial deletion image, or draw from a source outside
+the retained normal closure.
 
 AK(3) remains open.

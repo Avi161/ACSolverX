@@ -719,3 +719,8 @@
 
 - [TRAP] The first z-free A--W design reused the W-target normal form \(Az^{-1}CV\) for the reverse A-target word. The two directions share only their post-deletion shadow; before deletion, A-target needs sign-dependent coordinates and \(u\mapsto u^{-1}\).
 - [WORKS] For a claimed target-direction duality, substitute both literal changed rows through separate full-tuple straighteners and compare every survivor after deletion. Do not infer a common pre-deletion coordinate from a common quotient formula.
+
+### 2026-07-26 Normalize axes after the chosen basis change
+
+- [TRAP] In a relative product \(UcVc^{-1}\), the written c is not generally the shortest bridge between factor axes, and an ambient automorphism need not preserve axis intersection in the original Cayley metric.
+- [WORKS] Apply the row-specific automorphism first, cyclically reduce both factors, absorb their reduction prefixes into the transformed conjugator, and then take shortest-axis-bridge normal form in that transformed basis. State separately whether the normalized bridge is empty.

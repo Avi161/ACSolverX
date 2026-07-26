@@ -1872,3 +1872,272 @@ def test_z_free_aw_boundary_has_a_z_dependent_counterexample():
         graph_is_connected(graph, omitted=vertex)
         for vertex in graph
     )
+
+
+def seam_robust_row_data() -> dict[
+    tuple[int, int, int],
+    tuple[
+        dict[str, str],
+        dict[str, str],
+        str,
+        int,
+        tuple[str, ...],
+        tuple[int, ...],
+    ],
+]:
+    alpha = {
+        "x": "Qxq",
+        "t": "t",
+        "z": "zq",
+        "q": "q",
+    }
+    alpha_inverse = {
+        "x": "qxQ",
+        "t": "t",
+        "z": "zQ",
+        "q": "q",
+    }
+    mu = {
+        "x": "txT",
+        "t": "t",
+        "z": "tzT",
+        "q": "qT",
+    }
+    mu_inverse = {
+        "x": "Txt",
+        "t": "t",
+        "z": "Tzt",
+        "q": "qt",
+    }
+    nu = {
+        "x": "x",
+        "t": "Xtx",
+        "z": "zx",
+        "q": "Xqx",
+    }
+    nu_inverse = {
+        "x": "x",
+        "t": "xtX",
+        "z": "zX",
+        "q": "xqX",
+    }
+    identity = identity_map(GENERATORS4)
+    return {
+        (-1, 1, 1): (
+            identity,
+            identity,
+            "QTTTTZqxQtqTzxZxxx",
+            10,
+            (
+                "QTqtzxZX",
+                "QXZtTqzx",
+                "QTqztZxX",
+            ),
+            (1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 3, 3, 1, 1),
+        ),
+        (-1, 1, -1): (
+            identity,
+            identity,
+            "QTTTTZqxQtqzXZtxxx",
+            10,
+            (
+                "QXZxTqtz",
+                "QXZtzqTx",
+                "QXxZtTqz",
+            ),
+            (1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 3, 2, 3, 3, 1, 1),
+        ),
+        (1, 1, 1): (
+            alpha,
+            alpha_inverse,
+            "QTXzqttttXXXQzXZt",
+            13,
+            (
+                "QtTXZqzx",
+                "QTqZXtzx",
+                "QTXxZqzt",
+                "QTqztXZx",
+            ),
+            (1, 1, 1, 3, 4, 2, 1, 1, 1, 2, 1, 1, 3, 2, 3, 1, 1),
+        ),
+        (-1, -1, 1): (
+            alpha,
+            alpha_inverse,
+            "QQTXzqttttXXXTzxZ",
+            13,
+            (
+                "QqTXZxzt",
+                "QtTqZXxz",
+                "QqZxXTtz",
+            ),
+            (1, 2, 3, 1, 3, 1, 3, 1, 1, 1, 2, 1, 1, 1, 2, 2, 3),
+        ),
+        (1, 1, -1): (
+            compose(mu, alpha, GENERATORS4),
+            compose(
+                alpha_inverse,
+                mu_inverse,
+                GENERATORS4,
+            ),
+            "QXzTqttttXXXQzxZ",
+            12,
+            (
+                "QtTZXqzx",
+                "QxZXTtqz",
+                "QtqXTZxz",
+            ),
+            (1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 3),
+        ),
+        (-1, -1, -1): (
+            compose(nu, alpha, GENERATORS4),
+            compose(
+                alpha_inverse,
+                nu_inverse,
+                GENERATORS4,
+            ),
+            "QQTzqttttXXzXZXt",
+            14,
+            (
+                "QqTXZxzt",
+                "QTqZXzxt",
+                "QTXztxZq",
+            ),
+            (1, 2, 3, 2, 1, 3, 1, 1, 1, 2, 1, 3, 3, 2, 1, 1),
+        ),
+    }
+
+
+def linear_cut_whitehead_graph(
+    word: str,
+) -> dict[str, set[str]]:
+    graph = {letter: set() for letter in LETTERS4}
+    for left, right in zip(word, word[1:]):
+        first = INVERSE_LETTER[left]
+        graph[first].add(right)
+        graph[right].add(first)
+    return graph
+
+
+def test_six_q_tail_rows_are_seam_robust():
+    for signs, (
+        images,
+        inverse_images,
+        robust_word,
+        distinct_graph_count,
+        cycles,
+        cut_cycle_ids,
+    ) in seam_robust_row_data().items():
+        q_word = d_tail(*signs)
+        assert canonical_relator(
+            substitute(q_word, images)
+        ) == canonical_relator(robust_word)
+        for generator in GENERATORS4:
+            assert substitute(
+                substitute(generator, images),
+                inverse_images,
+            ) == generator
+            assert substitute(
+                substitute(generator, inverse_images),
+                images,
+            ) == generator
+
+        cut_graphs = []
+        assert len(cut_cycle_ids) == len(robust_word)
+        for cut_word, cycle_id in zip(
+            rotations(robust_word),
+            cut_cycle_ids,
+            strict=True,
+        ):
+            graph = linear_cut_whitehead_graph(cut_word)
+            cut_graphs.append(tuple(
+                (vertex, tuple(sorted(graph[vertex])))
+                for vertex in LETTERS4
+            ))
+            cycle = cycles[cycle_id - 1]
+            assert len(cycle) == len(LETTERS4)
+            assert set(cycle) == set(LETTERS4)
+            assert all(
+                right in graph[left]
+                for left, right in zip(
+                    cycle,
+                    cycle[1:] + cycle[:1],
+                )
+            )
+        assert len(set(cut_graphs)) == distinct_graph_count
+
+
+def test_intersecting_axis_tables_recover_only_result49_classes():
+    carriers = {"A": A, "W": W, "D": D}
+    expected = {
+        (-1, 1, 1): {
+            "A": (230, 0, set()),
+            "W": (394, 1, {"QTzxZ"}),
+            "D": (110, 1, {"QTTTTZqxQtqxxx"}),
+        },
+        (-1, 1, -1): {
+            "A": (230, 0, set()),
+            "W": (394, 1, {"QzXZt"}),
+            "D": (110, 1, {"QTTTTZqxQtqxxx"}),
+        },
+        (1, 1, 1): {
+            "A": (160, 1, {"QTqXQzQzXZt"}),
+            "W": (290, 1, {"QzXZt"}),
+            "D": (102, 1, {"QQQTqXQzttttqXXX"}),
+        },
+        (-1, -1, 1): {
+            "A": (160, 0, set()),
+            "W": (290, 1, {"QTzxZ"}),
+            "D": (102, 1, {"QQQTqXQzttttqXXX"}),
+        },
+        (1, 1, -1): {
+            "A": (154, 1, {"QTqXQzQTzxZ"}),
+            "W": (276, 1, {"QTzxZ"}),
+            "D": (96, 1, {"QQQTqXQzttttqXXX"}),
+        },
+        (-1, -1, -1): {
+            "A": (152, 0, set()),
+            "W": (250, 1, {"QzXZt"}),
+            "D": (144, 1, {"QQQTqXQzttttqXXX"}),
+        },
+    }
+
+    for signs, (
+        images,
+        inverse_images,
+        robust_word,
+        _,
+        _,
+        _,
+    ) in seam_robust_row_data().items():
+        for carrier_name, carrier in carriers.items():
+            transformed_carrier = cyclic_reduce(
+                substitute(carrier, images)
+            )
+            children = {
+                canonical_relator(q_rotation + carrier_rotation)
+                for q_rotation in rotations(robust_word)
+                for carrier_rotation in signed_rotations(
+                    transformed_carrier
+                )
+            }
+            graph_positive = {
+                child for child in children
+                if passes_primitive_graph_gate(child)
+            }
+            primitive = {
+                child for child in graph_positive
+                if is_primitive_word(child, GENERATORS4)
+            }
+            original_classes = {
+                canonical_relator(
+                    substitute(child, inverse_images)
+                )
+                for child in primitive
+            }
+            expected_children, expected_gate, expected_classes = (
+                expected[signs][carrier_name]
+            )
+            assert len(children) == expected_children
+            assert len(graph_positive) == expected_gate
+            assert len(primitive) == expected_gate
+            assert original_classes == expected_classes
