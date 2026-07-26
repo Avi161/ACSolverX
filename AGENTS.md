@@ -679,3 +679,13 @@
 
 - [TRAP] A normal multi-file `git add` included a new file under ignored `literature/`; Git staged the other paths but exited 1 on the ignored proof, leaving a misleading partially successful command.
 - [WORKS] Stage normal and already tracked files first, then force-add each new ignored proof in its own command and inspect `git status --short` before committing.
+
+### 2026-07-26 Separate literal orientation counts from symmetry quotients
+
+- [TRAP] The one-edge census expected 25,984 literal moves while its stated enumeration had already quotiented target inversion, so the first replay correctly produced only 12,992 representatives. An advisory unchanged-pair floor of 18 also failed complete Whitehead descent, which independently gives 16.
+- [WORKS] Report the full oriented count and the symmetry-reduced count separately, prove the factor-two target-inversion symmetry, and replay every advisory Whitehead minimum with an independent reducer before putting it in a theorem.
+
+### 2026-07-26 Do not identify cyclic rotation with arbitrary AC3 traffic
+
+- [TRAP] The first Result 49 draft called a finite signed-rotation census all AC1--AC3 realizations and called its changed-row-first sequential branches every primitive deletion. An arbitrary relative conjugator gives \(TuSu^{-1}\), an infinite family, and an unchanged primitive survivor may be deleted first.
+- [WORKS] Name finite cyclic-representative strata literally. Put arbitrary relative conjugators, alternate deletion orders, and changed-nonprimitive-first histories in the boundary unless the replay transports those cases explicitly.

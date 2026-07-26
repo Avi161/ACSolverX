@@ -2912,6 +2912,48 @@ the negative rows cannot be paired directly with any unchanged
 relator. The next genuine gate must first use an AC2 product to change
 one row and then test whether the new row or pair is primitive.
 
+## Result 49: cyclic one-edge D-tail creation has no new endpoint
+
+The complete one-AC2-edge classification is proved in
+
+```text
+literature/proofs/AK3_D_TAIL_ONE_EDGE_PRIMITIVE_CREATION.md
+```
+
+At each of the six nonprimitive first D-tail checkpoints, exhaust one
+AC2 multiplication between signed cyclic representatives of Q and one
+of A, W, D, in both target directions. Arbitrary relative conjugators
+between the two factors are not part of this finite image.
+
+There are 12,992 literal representatives after quotienting the
+redundant target inversion, or 25,984 if that orientation is indexed
+separately. They give 9,480 direction-tagged child states and 4,720
+global changed-word classes. A Whitehead-graph gate followed by
+complete descent under all 504 rank-four second-kind maps leaves
+exactly six primitive child classes, occurring in 28 states.
+
+Complete labeled-tuple transport gives two different counts:
+
+- 30 direct primitive-pair incidences, split as 18 copies of the
+  known floor-23 compression orbit and 12 of the floor-27 qW
+  backtrack orbit;
+- 32 sequential primitive-single continuations, split as 20 copies
+  of floor 23 and 12 of floor 27.
+
+The extra two sequential branches occur when a mixed-sign D-target
+child is deleted and the original Q becomes primitive only in the
+quotient. Its direct rank-four pair has minimum 28, not 2. This is an
+alignment issue: independently conjugated primitive conjugacy classes
+do not make the literal product alignment into a based primitive pair.
+
+Thus every direct primitive-pair deletion in this cyclic image, and
+every sequential deletion which removes the changed primitive row
+first, returns to a known endpoint orbit. None reaches a new rank-two
+orbit or floor at most 12. Still open are arbitrary relative
+conjugators, alternate first-deletion orders, an edge solely among the
+carriers A, W, D while retaining the nonprimitive Q, and two
+row-changing edges before deletion.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2955,15 +2997,19 @@ structurally,
 \((qW^{-1}D^k,D)\) is a based primitive pair with the same quotient for
 every integer k. Result 48 classifies every signed integer D-tail and
 every D-only left/right split: outside zero total power, only the
-positive inverse-W orientation is primitive. The immediate exact lead
-is now one-edge primitive-pair creation: first use an AC2 product to
-change a nonprimitive Q-row or another survivor, then test the
-resulting pair. Directly pairing any unchanged nonprimitive row is
-impossible. Longer branches may use additional \(Wq^{-1}\) blocks,
-alter W by traffic with nontrivial first-deletion image, delete or
-alter a needed carrier, change the fixed checkpoint, or choose a
-different primitive slot. The exact Fox coordinate remains a
-necessary free-kernel certificate.
+positive inverse-W orientation is primitive. Result 49 exhausts the
+signed-cyclic image of one multiplication between each nonprimitive
+first D-tail and one carrier, in both target directions. Primitive rows
+and pairs do occur, but all 30 direct pair deletions and all 32
+changed-row-first sequential branches return to the known floor-23
+compression or floor-27 backtrack orbits. The immediate exact leads
+are a nontrivial relative conjugator, an alternate first-deletion
+order, a carrier-carrier edge among A, W, D while retaining the
+nonprimitive Q-row, or two row-changing edges before deletion. Longer
+branches may use additional \(Wq^{-1}\) blocks, alter W by traffic with
+nontrivial first-deletion image, delete or alter a needed carrier,
+change the fixed checkpoint, or choose a different primitive slot. The
+exact Fox coordinate remains a necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -3063,13 +3109,16 @@ second deletable source. Among the first z-dependent D-tails, only
 primitive-single second deletions merge into the old floor-14 sibling.
 In fact every signed D-only split has now been classified: outside
 zero total D-power, only the positive inverse-W orientation is
-primitive, and its pair quotient is the old floor-14 route. The next
-first-tail question is whether one AC2 product changing a nonprimitive
-source row or another survivor creates a primitive pair. Direct pairing
-of an unchanged nonprimitive row is impossible. A different viable
-primitive-slot branch must use another \(Wq^{-1}\) block, a repeatedly
-changed source, alter W by traffic with nontrivial first-deletion image,
-lose a needed carrier source, use traffic with nontrivial deletion
-image, or draw from a source outside the retained normal closure.
+primitive, and its pair quotient is the old floor-14 route. The
+signed-cyclic image of one product between any of the six nonprimitive
+first D-tails and A, W, or D is also closed in both target directions
+for direct pair deletion and changed-row-first sequential deletion.
+A different viable primitive-slot branch must use a nontrivial
+relative conjugator, an alternate first-deletion order, a
+carrier-carrier edge while retaining Q, two row changes before
+deletion, another \(Wq^{-1}\) block, a repeatedly changed source,
+alter W by traffic with nontrivial first-deletion image, lose a needed
+carrier source, use traffic with nontrivial deletion image, or draw
+from a source outside the retained normal closure.
 
 AK(3) remains open.
