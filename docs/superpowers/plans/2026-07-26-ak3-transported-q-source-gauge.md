@@ -40,4 +40,4 @@ then replay the exact AK return.
 - [x] Replay representative \(Q\)-normal-closure traffic in every slot.
 - [x] Verify all endpoint and return identities.
 - [x] Complete focused tests and hostile audit.
-- [ ] Record Result 43, commit, and push.
+- [x] Record Result 43, commit, and push.
