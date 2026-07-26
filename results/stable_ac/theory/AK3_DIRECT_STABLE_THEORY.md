@@ -2099,6 +2099,59 @@ One multiplication and inversion recover \(B\); the earlier four-factor
 deleting the \(B\)-source with the five-\(q\) primitive word is a stable
 self-loop.
 
+## Result 36: all traffic away from a fixed primitive slot descends
+
+The quotient-naturality theorem is proved in
+
+```text
+literature/proofs/AK3_POST_PRIMITIVE_TRAFFIC_SELF_LOOP.md
+```
+
+Let \(W=\phi(q)\) be the fixed primitive slot and put
+
+\[
+\theta=\rho\phi^{-1},
+\qquad
+\rho(q)=1.
+\]
+
+Then \(\theta(W)=1\). Every AC1--AC3 move commutes with \(\theta\)
+provided no AC1 multiplication targets the \(W\)-slot:
+
+- inversion and conjugation remain the corresponding quotient moves;
+- inversion or conjugation of \(W\) itself is a quotient no-op and can
+  be normalized before deletion;
+- multiplication by a non-\(W\) source remains the corresponding
+  quotient multiplication;
+- multiplication by any current conjugate of \(W^{\pm1}\) becomes a
+  no-op.
+
+By induction, any finite post-manufacture history without AC1 into \(W\)
+descends to a classical AC history on the immediate primitive quotient.
+There is no bound on the number of moves, conjugators, or intermediate
+word lengths.
+
+Applied to the AK(3) source-slot checkpoint
+
+\[
+(\beta(R),W,D,q),
+\]
+
+this means arbitrary mutual traffic among \(\beta(R),D,q\), with
+arbitrary uses, inversions, and conjugations of \(W\), still deletes to a
+tuple classically equivalent to
+
+\[
+(R,D',U^{-1})
+\sim_{\mathrm{AC1-3}}
+(R,B,D).
+\]
+
+An independent seven-move replay uses all three move types, inversion and
+conjugation of \(W\), a conjugator containing \(q\), a modified source,
+and the changed \(W\)-slot as a source. “Move then quotient” and
+“quotient then move” agree literally.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2117,10 +2170,12 @@ Merely cross-coupling retained sources is now closed as well. Targeting
 and deleting a quotient-equal source slot also fails: the surviving
 stabilizer relator becomes \(U^{-1}\) and recovers the deleted normal
 generator. Within the relative-transvection family, the next minimal
-branch must modify that surviving stabilizer before straightening, change
-the joint retained normal closure, or leave a survivor outside its
-baseline class modulo every recovered source. The exact Fox coordinate
-remains a necessary free-kernel certificate.
+branch cannot be post-manufacture traffic which avoids AC1 into the
+primitive slot: all such traffic descends through deletion. It must
+multiply another relator into the primitive slot itself, change the primitive relator
+before the fixed checkpoint, choose a different primitive slot, or break
+an earlier manufacture hypothesis. The exact Fox coordinate remains a
+necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2208,6 +2263,8 @@ consequences of a retained multi-source subtuple close. The open branch
 must lose a needed source normal closure without having the surviving
 stabilizer restore it, or change the survivor quotient class; bare
 asymmetry, retained-source cross-coupling, and quotient-equal source
-deletion are insufficient.
+deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
+insufficient unless another relator is multiplied into the primitive
+slot.
 
 AK(3) remains open.
