@@ -634,3 +634,8 @@
 
 - [TRAP] The Result 43 live-lead rewrite again combined the main source paragraph with the distant final paragraph; a line-wrap mismatch in the tail rejected both changes.
 - [WORKS] After inserting a numbered result, patch the first live-lead paragraph alone, then read `tail` and patch the final frontier paragraph separately.
+
+### 2026-07-26 Replay ambient straightening on the inner payload letter
+
+- [TRAP] The first qW-tail derivation tracked the second straightening on the outer conjugator but implicitly fixed the inner `x`; since `beta^{-1}(x)=q^{-1}xq`, the exact replay contradicted the claimed V=R endpoints.
+- [WORKS] For an endpoint `t^{-1} E x E^{-1}`, compute and replay both `theta^{-1}(E)` and `theta^{-1}(x)`. Here the missing image is `x -> V^eta x V^{-eta}`, which changes the conjugator to `p V^{-eta} R V^eta`.
