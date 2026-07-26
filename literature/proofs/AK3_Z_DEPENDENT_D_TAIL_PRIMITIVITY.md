@@ -257,8 +257,15 @@ primitive-single deletion. It does not:
 - compute the stable deletion endpoints of
   \(qW^{-1}D^{\pm1}\);
 - prove those two primitive branches productive or self-looping;
-- obstruct primitive-pair deletion in any row;
+- classify primitive pairs after an AC product changes one of the
+  displayed rows;
 - classify longer or interleaved z-dependent source histories.
+
+An unchanged nonprimitive row cannot belong to a primitive pair,
+because each component of a basis pair is itself primitive. Thus the
+six negative rows are also excluded from direct primitive-pair
+deletion. A later AC product can change a row before the pair test and
+lies outside this classification.
 
 The two primitive exceptions are the next exact stable-AC candidates.
 Their proof certificates are complete, but the whole surviving tuple

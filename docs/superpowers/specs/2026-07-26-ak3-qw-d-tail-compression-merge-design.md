@@ -56,8 +56,9 @@ Even if all four claims hold, the result proves neither AK(3) nor
 stable AC. It closes the pure D-power pair-compression route, and for
 the first two powers it closes the immediate primitive-single second
 deletion by merging into a previously certified stable corridor. It
-does not rule out primitive-pair deletion using one of the six
-nonprimitive \(Q_{\eta,\epsilon,\delta}\) rows, histories with another
-\(Wq^{-1}\) block, changes to the displayed survivor or carrier
-relators, or a different first primitive slot. D-only left/right
-splits around one \(qW^{-1}\) block are included in the theorem.
+does not rule out primitive-pair creation after an AC product changes
+one of the six nonprimitive \(Q_{\eta,\epsilon,\delta}\) rows,
+histories with another \(Wq^{-1}\) block, changes to the displayed
+survivor or carrier relators, or a different first primitive slot.
+D-only left/right splits around one \(qW^{-1}\) block are included in
+the theorem.

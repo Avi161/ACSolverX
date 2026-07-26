@@ -2776,9 +2776,11 @@ therefore connected and has no cut vertex. Whitehead's cut-vertex lemma
 proves all six rows nonprimitive.
 
 This closes primitive-single deletion for six of the eight first
-z-dependent D-tails. It does not yet compute the stable deletion
-endpoints of the two primitive exceptions, and it says nothing against
-primitive-pair compression.
+z-dependent D-tails. Since every component of a primitive pair is
+individually primitive, it also excludes any direct primitive pair
+containing one of those six unchanged rows. It does not yet compute the
+stable deletion endpoints of the two primitive exceptions or classify
+pair creation after an AC product changes a row.
 
 ## Result 47: every qW-inverse D-power pair merges into the floor-14 corridor
 
@@ -2855,10 +2857,60 @@ branch at that checkpoint.
 
 This closes all D-only traffic around one \(qW^{-1}\) block and the
 immediate primitive-single second deletion of the two first powers by
-merging them into a previously certified stable corridor. It does not
-obstruct primitive pairs involving the six nonprimitive sign rows,
-longer histories changing a displayed survivor, or histories
+merging them into a previously certified stable corridor. The six
+nonprimitive sign rows are already excluded from direct primitive
+pairs. What remains open is pair creation after a row-changing AC
+product, longer histories changing a displayed survivor, or histories
 containing another \(Wq^{-1}\) block.
+
+## Result 48: all integer D-tail primitivity is classified
+
+The unbounded classification is proved in
+
+```text
+literature/proofs/AK3_ALL_INTEGER_D_TAIL_PRIMITIVITY.md
+```
+
+For every sign pair and every integer k,
+
+\[
+\boxed{
+q^\eta W^\epsilon D^k
+\text{ is primitive}
+\quad\Longleftrightarrow\quad
+k=0
+\ \text{or}\
+(\eta,\epsilon)=(+1,-1).
+}
+\]
+
+The four \(k=0\) rows are unique-z coordinates. The entire
+\((+,-)\) row is primitive by Result 47's based
+\((Wq^{-1},D)\) coordinate and triangular Nielsen shear.
+
+For each of the other three orientations with \(k\ne0\), one common
+rank-four Whitehead automorphism produces a fixed length-13 boundary
+block followed by \(D^k\). Five explicit Whitehead-graph cycles cover
+the three orientations and both signs of k. Each cycle visits all
+eight signed basis vertices. Repeating \(D\) or \(D^{-1}\) preserves
+every cycle edge and only adds block-seam edges, so the connected
+no-cut-vertex obstruction holds for every nonzero power, not merely a
+finite sweep.
+
+More generally,
+
+\[
+D^a q^\eta W^\epsilon D^b
+\]
+
+is primitive exactly when \(a+b=0\) or
+\((\eta,\epsilon)=(+1,-1)\), since conjugation by \(D^{-a}\) reduces
+it to the right-tail row with exponent \(a+b\).
+
+Because every member of a primitive pair is individually primitive,
+the negative rows cannot be paired directly with any unchanged
+relator. The next genuine gate must first use an AC2 product to change
+one row and then test whether the new row or pair is primitive.
 
 ## Live lead
 
@@ -2901,13 +2953,17 @@ primitive-single gate: D is the unique primitive displayed survivor,
 and both signs merge into the old floor-14 compression corridor. More
 structurally,
 \((qW^{-1}D^k,D)\) is a based primitive pair with the same quotient for
-every integer k. The immediate exact lead is now to classify
-primitive-pair deletion for the six individually nonprimitive first
-D-tail rows against A, W, and D. Longer branches may interleave or
-conjugate additional \(Wq^{-1}\) blocks, alter W by traffic with
-nontrivial first-deletion image, delete or alter a needed carrier,
-change the fixed checkpoint, or choose a different primitive slot.
-The exact Fox coordinate remains a necessary free-kernel certificate.
+every integer k. Result 48 classifies every signed integer D-tail and
+every D-only left/right split: outside zero total power, only the
+positive inverse-W orientation is primitive. The immediate exact lead
+is now one-edge primitive-pair creation: first use an AC2 product to
+change a nonprimitive Q-row or another survivor, then test the
+resulting pair. Directly pairing any unchanged nonprimitive row is
+impossible. Longer branches may use additional \(Wq^{-1}\) blocks,
+alter W by traffic with nontrivial first-deletion image, delete or
+alter a needed carrier, change the fixed checkpoint, or choose a
+different primitive slot. The exact Fox coordinate remains a
+necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -3005,13 +3061,15 @@ W-slot, and arbitrary coherent z-free tails merely transfer into a
 second deletable source. Among the first z-dependent D-tails, only
 \(qW^{-1}D^{\pm1}\) are primitive, and their forced immediate
 primitive-single second deletions merge into the old floor-14 sibling.
-In fact every D-only split pair
-\((D^a qW^{-1}D^b,D)\) has that same quotient. The next first-tail
-question is whether one of the six nonprimitive source rows forms a
-primitive pair with A, W, or D. A different viable primitive-slot
-branch must use another \(Wq^{-1}\) block, a repeatedly changed source,
-alter W by traffic with nontrivial first-deletion image, lose a needed
-carrier source, use traffic with nontrivial deletion image, or draw
-from a source outside the retained normal closure.
+In fact every signed D-only split has now been classified: outside
+zero total D-power, only the positive inverse-W orientation is
+primitive, and its pair quotient is the old floor-14 route. The next
+first-tail question is whether one AC2 product changing a nonprimitive
+source row or another survivor creates a primitive pair. Direct pairing
+of an unchanged nonprimitive row is impossible. A different viable
+primitive-slot branch must use another \(Wq^{-1}\) block, a repeatedly
+changed source, alter W by traffic with nontrivial first-deletion image,
+lose a needed carrier source, use traffic with nontrivial deletion
+image, or draw from a source outside the retained normal closure.
 
 AK(3) remains open.

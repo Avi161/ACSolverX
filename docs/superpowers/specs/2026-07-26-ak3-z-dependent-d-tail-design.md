@@ -56,5 +56,9 @@ with one additional Whitehead move in two rows.
 
 This classifies primitive-single deletion of the changed source only.
 It does not compute the deletion endpoints of the two primitive
-exceptions, obstruct primitive-pair compression, or classify longer
-z-dependent tails.
+exceptions, classify primitive-pair creation after an AC2 product
+changes a row, or classify longer z-dependent tails.
+
+The six nonprimitive rows cannot themselves be components of a
+primitive pair. What remains open is primitive-pair creation after an
+AC product changes one of the displayed rows.

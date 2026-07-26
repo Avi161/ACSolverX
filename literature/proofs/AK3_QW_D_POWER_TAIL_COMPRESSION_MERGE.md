@@ -551,8 +551,8 @@ It does not prove:
 
 - that the floor-14 sibling is classically AC-trivial;
 - that AK(3) is stably AC-trivial;
-- that the six nonprimitive first D-tail rows cannot participate in a
-  primitive pair;
+- that an AC2 product changing one of the six nonprimitive first
+  D-tail rows cannot create a primitive pair;
 - that histories with another \(S^{\pm1}\) block behave like the
   one-block family;
 - that longer histories changing A, W, or D before deletion close.

@@ -669,3 +669,13 @@
 
 - [TRAP] The first D-power-tail draft proved the primitive pair and its quotient but began from `(A,W,D,Q_k)` without displaying how the literal checkpoint reaches that tuple while restoring the carrier rows.
 - [WORKS] Before every changed-source deletion theorem, give the exact AC1--AC3 manufacture from the prior checkpoint, including inversions and restoration of every source carrier; only then invoke stable ambient straightening.
+
+### 2026-07-26 Propagate individual nonprimitivity to pair gates
+
+- [TRAP] The live lead proposed an 18-case primitive-pair census using six source rows already proved nonprimitive. This is logically redundant: every component of a primitive pair is individually primitive.
+- [WORKS] As soon as a relator is proved nonprimitive, exclude every direct primitive pair containing that unchanged row. The next genuine pair gate must first change a row by AC2 multiplication, with AC1/AC3 used only for normalization.
+
+### 2026-07-26 Keep new ignored proofs out of normal multi-file staging
+
+- [TRAP] A normal multi-file `git add` included a new file under ignored `literature/`; Git staged the other paths but exited 1 on the ignored proof, leaving a misleading partially successful command.
+- [WORKS] Stage normal and already tracked files first, then force-add each new ignored proof in its own command and inspect `git status --short` before committing.
