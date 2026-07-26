@@ -619,3 +619,13 @@
 
 - [TRAP] A theory read guessed `AK3_SOURCE_SLOT_PRIMITIVE_EXCHANGE.md`; the tracked file includes the `_SELF_LOOP.md` suffix, so that arm of the combined read failed.
 - [WORKS] Resolve proof paths with `rg --files literature/proofs | rg '<stem>'` before issuing a multi-file read, just as for focused test manifests.
+
+### 2026-07-26 Expand named words inside letter-level replay inputs
+
+- [TRAP] `test_changed_q_source_gauge.py` put the mathematical name `D` inside a literal conjugator string, but the free-word alphabet contains only `xXtTzZqQ`; inversion failed with `KeyError: 'D'`.
+- [WORKS] Build mixed conjugators by concatenating the defined word constant, such as `"Z" + D + "q"`, and freely reduce before passing them to letter-level helpers.
+
+### 2026-07-26 Apply audit-driven scope changes one artifact at a time
+
+- [TRAP] One patch tried to broaden the passive-slot theorem across proof, spec, and test; a stale equation block rejected every hunk. A follow-up typo then guessed a nonexistent context line.
+- [WORKS] For a scope generalization, read and patch the theorem statement/proof first, then patch the concrete specialization, boundary, spec, and replay in separate verified hunks.

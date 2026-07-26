@@ -2487,6 +2487,68 @@ source-first deletion above. Result 41 supersedes Result 40's z-free
 restriction for stable closure, but not Result 40's stronger assertion
 that its changed target itself is primitive.
 
+## Result 42: passive-source changes to the q-slot are gauges
+
+The changed-source theorem is proved in
+
+```text
+literature/proofs/AK3_CHANGED_Q_SOURCE_GAUGE_SELF_LOOP.md
+```
+
+Let \(S_1,\ldots,S_k\) be q-free passive source slots, put
+
+\[
+L=\langle\!\langle S_1,\ldots,S_k\rangle\!\rangle,
+\]
+
+and take \(V\in L\). Change the literal stabilizer source to
+
+\[
+Q=qV
+\]
+
+while leaving the passive sources literal through this manufacture. The
+word \(Q\) is primitive. Straightening and deleting it evaluates
+
+\[
+q\longmapsto V^{-1}.
+\]
+
+Modulo \(L\), this is exactly ordinary q-deletion. Moreover, every
+subsequent target multiplier in
+\(\langle\!\langle Q\rangle\!\rangle\) vanishes in that quotient.
+This includes later \(Q\)-traffic into the passive slots themselves:
+they return literally after deletion and restore every other survivor
+to the ordinary-q endpoint by classical AC moves. This covers arbitrary
+finite \(Q\)-source traffic, provided \(Q\) itself is not changed again
+and is deleted first.
+
+For AK(3), keep \(D=t^{-1}zxz^{-1}\) passive and take \(Q=qD\). Deletion
+gives
+
+\[
+(R_D,W_D,D),
+\]
+
+where
+
+\[
+R_D=D^{-1}x^3Dt^{-4},
+\qquad
+W_D=R_Dz^{-1}(D^{-1}xDt)D^{-1}.
+\]
+
+Two explicit D-source factors return \(R_D\) to \(R\), five return
+\(W_D\) to \(U=RB\), and the identity
+
+\[
+U^{-1}B=B^{-1}R^{-1}B
+\]
+
+returns \(U\) to \(B\) by one R-source factor. Thus the first nonliteral
+source \(qD\), including arbitrary traffic from it into the other
+slots, gives no new classical endpoint.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -2505,17 +2567,21 @@ Merely cross-coupling retained sources is now closed as well. Targeting
 and deleting a quotient-equal source slot also fails: the surviving
 stabilizer relator becomes \(U^{-1}\) and recovers the deleted normal
 generator. Within the relative-transvection family, the next minimal
-branch cannot be post-manufacture traffic which avoids AC1 into the
-primitive slot: all such traffic descends through deletion. Result 38
+branch cannot be post-manufacture traffic which avoids target
+multiplication into the primitive slot: all such traffic descends through
+deletion. Result 38
 also closes multiplication by the surviving literal \(q^{\pm1}\)-slot,
 despite its q-dependent pullback. Result 39 closes every coherent
 conjugator pulled back from a complement to \(U\), and Result 41 closes
 the full normal closure of the restored literal q-source, including
-arbitrary z-dependent traffic. The next source-traffic branch must
-therefore change the final q-source spelling, use a multiplier with
-nontrivial q-kill, leave the q-normal closure, change the fixed
-checkpoint, or choose a different primitive slot. The exact Fox
-coordinate remains a necessary free-kernel certificate.
+arbitrary z-dependent traffic. Result 42 also closes every changed source
+\(qV\) carried by passive q-free sources that survive unchanged; in
+particular, \(qD\) is a gauge. The next source-traffic branch must
+therefore use a q-dependent source change, alter or delete the passive
+carrier, change the source a second time, draw traffic from another
+source with nontrivial deletion image, change the fixed checkpoint, or
+choose a different primitive slot. The exact Fox coordinate remains a
+necessary free-kernel certificate.
 
 Primitive-pair compression before either old generator is removed also
 remains open. Short templates produce the floor-16 corridor above. A
@@ -2605,8 +2671,10 @@ stabilizer restore it, or change the survivor quotient class; bare
 asymmetry, retained-source cross-coupling, and quotient-equal source
 deletion are insufficient. Arbitrary later AC1--AC3 traffic is also
 insufficient when it comes from the restored literal q-source, even when
-its conjugators involve \(z\). A viable primitive-slot branch must change
-that source, use traffic with nontrivial q-kill, or draw from a source
-outside the retained normal closure.
+its conjugators involve \(z\). Passive-source changes \(qV\) do not help
+either while their q-free carrier sources survive. A viable
+primitive-slot branch must make the source change q-dependent, lose a
+needed carrier source, use traffic with nontrivial deletion image, or
+draw from a source outside the retained normal closure.
 
 AK(3) remains open.
