@@ -7,6 +7,8 @@ relations annihilate the evaluated row for an arbitrary element ``g``.
 
 from __future__ import annotations
 
+from math import gcd
+
 
 GroupRingElement = dict[str, int]
 
@@ -296,3 +298,17 @@ def four_state_residuals(sigma: int, g: str) -> tuple[GroupRingElement, ...]:
             )
         )
     return tuple(residuals)
+
+
+def finite_bs34_order_compatible(n: int) -> bool:
+    """Return whether order ``n`` survives conjugacy of ``x^3`` and ``x^4``."""
+    if n < 1:
+        raise ValueError("a finite group element must have positive order")
+    return n // gcd(n, 3) == n // gcd(n, 4)
+
+
+def finite_cyclic_collapse_certificate(n: int) -> tuple[int, int]:
+    """Return inverses of 4 and 3 modulo a compatible finite order."""
+    if not finite_bs34_order_compatible(n):
+        raise ValueError("n is incompatible with the BS(3,4) conjugacy relation")
+    return pow(4, -1, n), pow(3, -1, n)

@@ -3285,6 +3285,43 @@ These are exact projection fibers, not primitive families. In
 particular, every noncommuting q,z projection is now excluded even if
 its exponent sums lie in one of Result 55's old residual classes.
 
+## Result 57: finite quotients erase the A--D HNN index gap
+
+The finite-quotient module barrier is proved in
+
+```text
+literature/proofs/AK3_AD_FINITE_QUOTIENT_MODULE_BARRIER.md
+```
+
+In every finite quotient of
+\(BS(3,4)*\langle z\rangle\), the image of \(x\) has order coprime to
+12. This is an exact, unbounded consequence of the conjugacy of
+\(x^3\) and \(x^4\), not an inference from a finite group census.
+
+For an arbitrary right module over the finite quotient, the four-state
+relations therefore force
+
+\[
+vt=v,\qquad 3v(qz^{-1})=4v.
+\]
+
+Thus finite quotients erase the \(3\)-versus-\(4\) HNN index gap.
+Using group-element invertibility and integer identities, the
+four-state vector collapses to zero for exactly the three literal
+representatives
+
+\[
+(\sigma,g)=(+1,qz^{-1}),\quad
+(-1,1),\quad
+(-1,qz^{-1}).
+\]
+
+This does not close Result 56's three projection fibers. A conjugator
+whose projection is \(1\) or \(qz^{-1}\) can retain a kernel component
+in a finite quotient, and that component can still be detected. The
+result is a structural barrier to the finite-module route, not an
+arbitrary-\(c\) obstruction.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

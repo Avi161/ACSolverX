@@ -1,8 +1,12 @@
+from math import gcd
+
 from experiments.stable_ac.verify_ad_bs34_module import (
     A,
     D,
     evaluated_ad_rows,
     evaluated_relative_row,
+    finite_bs34_order_compatible,
+    finite_cyclic_collapse_certificate,
     four_state_residuals,
     free_reduce,
     inverse_word,
@@ -60,3 +64,16 @@ def test_four_state_identities_annihilate_every_evaluated_coordinate():
     for sigma in (1, -1):
         for g in ("", "qZ", "xTqZ", "qzQZ", "qXXXQ", "TTTT", "zXZ", "T"):
             assert four_state_residuals(sigma, g) == ({}, {}, {}, {})
+
+
+def test_finite_bs34_order_spectrum_is_exact_through_300():
+    for n in range(1, 301):
+        assert finite_bs34_order_compatible(n) == (gcd(n, 12) == 1)
+
+
+def test_compatible_finite_orders_have_cyclic_collapse_certificates():
+    for n in range(1, 301):
+        if finite_bs34_order_compatible(n):
+            a, b = finite_cyclic_collapse_certificate(n)
+            assert (4 * a) % n == 1 % n
+            assert (3 * b) % n == 1 % n
