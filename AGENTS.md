@@ -153,8 +153,8 @@
 
 ### 2026-07-24 Ignored proof directory staging
 
-- [TRAP] A single ordinary `git add` that includes any path under the ignored `literature/` tree aborts the whole staging command, even when another proof file there is already tracked.
-- [WORKS] Stage the exact intended `literature/proofs/...` paths with `git add -f`; stage non-ignored report, test, and lesson files separately, then inspect the cached diff before committing.
+- [TRAP] A single ordinary `git add` that includes any path under the ignored `literature/` tree exits nonzero and may leave the non-ignored paths partially staged, even when a proof file there is already tracked. Do not assume either an empty or a complete index after this error.
+- [WORKS] Stage every exact intended `literature/proofs/...` path with a separate `git add -f`, including modifications to already tracked proof files; stage non-ignored report, test, and lesson files in another command, then inspect the cached diff before committing.
 
 ### 2026-07-24 Source-relator Bézout recovery
 
@@ -779,3 +779,8 @@
 
 - [TRAP] `git diff --check` did not inspect a new ignored proof file before it was force-added, so a trailing space survived the first verification pass.
 - [WORKS] Force-add each requested ignored proof before the final audit, then run both `git diff --check` and `git diff --cached --check`.
+
+### 2026-07-27 Relative endpoint multiplication can hide torsion
+
+- [TRAP] For \(u\in A*C\), infinite order of \(u\) does not imply that \(A\) and \(u\) generate \(A*\langle u\rangle\). In \(C_2*C_2=\langle a,c\mid a^2,c^2\rangle\), the element \(u=ac\) has infinite order but \(aua=u^{-1}\), so a nontrivial relative word dies.
+- [WORKS] Remove the optional initial and final \(A\)-syllables by the relative Nielsen map \(s\mapsto a_0sa_1\). The correct rank-one criterion is infinite order of the resulting \(C\)-ended core, not infinite order of the original element. Only specialize this to \(u\notin A\) after proving the whole ambient free product torsion-free.

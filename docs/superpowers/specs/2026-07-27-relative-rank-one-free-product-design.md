@@ -28,33 +28,41 @@ u=z^{-1}gz.
 
 The target is a theorem, not a bounded normal-form census.
 
-## Candidate theorem
+## Corrected theorem
 
-The expected exact criterion is
+Write the reduced normal form of \(u\notin A\) as
+
+\[
+u=a_0wa_1,
+\]
+
+where \(a_0,a_1\in A\) are the optional endpoint syllables and \(w\)
+begins and ends in \(C\).  Then the exact criterion is
 
 \[
 \boxed{\Phi_u\text{ is injective}
-\iff u\notin A\text{ and }u\text{ has infinite order}.}
+\iff w\text{ has infinite order}.}
 \]
 
-Necessity is immediate:
+If \(u\in A\), the core is empty and \(\Phi_u\) is not injective.
+Necessity for a nonempty core is immediate after the endpoint Nielsen
+transformation: if \(w\) has finite order \(n\), then \(s^n\) is a
+nontrivial kernel word for the transformed map.
 
-- if \(u\in A\), then \(su^{-1}\) is a nontrivial kernel word;
-- if \(u\) has finite order \(n\), then \(s^n\) is a nontrivial kernel
-  word.
+Infinite order of \(u\) itself is not sufficient.  In
 
-The proof burden is sufficiency.
+\[
+C_2*C_2=\langle a,c\mid a^2=c^2=1\rangle,
+\qquad A=\langle a\rangle,
+\]
+
+the element \(u=ac\) has infinite order, but \(aua=u^{-1}\).  Its
+\(A\)-trimmed core is the order-two element \(c\), exactly as the
+criterion predicts.
 
 ## Normal-form proof
 
-Write the reduced free-product normal form of \(u\notin A\) as
-
-\[
-u=a_0\,w\,a_1,
-\]
-
-where \(a_0,a_1\in A\) and the reduced word \(w\) begins and ends in
-\(C\).  The relative Nielsen map
+The relative Nielsen map
 
 \[
 s\longmapsto a_0sa_1
@@ -100,6 +108,11 @@ Consequently, for the element \(u=z^{-1}gz\) in Result 58,
 \Phi_u\text{ is injective}\iff u\notin B.
 \]
 
+Indeed, \(u\notin B\) has a nonempty trimmed core, and every nonempty
+element of the torsion-free group \(G\) has infinite order.  Notice
+that this specialization uses torsion-freeness of the whole free
+product, not merely infinite order of the untrimmed \(u\).
+
 Result 58 then obstructs every \(g\notin zBz^{-1}\).  The exact
 remaining A--D cases are the internal elements
 
@@ -118,7 +131,8 @@ A dependency-free syllable reducer will replay:
 - trimming of the two \(A\)-end syllables;
 - the two induction branches of the power lemma;
 - noncancellation of representative alternating relative words;
-- the finite-order and internal-element kernel counterexamples.
+- the finite-core, infinite-untrimmed \(C_2*C_2\) counterexample; and
+- the internal-element kernel counterexample.
 
 The executable replay is not evidence for the universal theorem.  The
 proof is the induction above; tests protect the displayed reductions

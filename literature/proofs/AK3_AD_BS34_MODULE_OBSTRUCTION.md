@@ -22,7 +22,7 @@ Fix \(\sigma\in\{+1,-1\}\) and \(g\in G\), and set
 u=z^{-1}gz.
 \]
 
-Assume the **relative-free condition**: the natural homomorphism
+The group-theoretic input is exact: the natural homomorphism
 
 \[
 B*\langle s\rangle\longrightarrow G,
@@ -31,8 +31,10 @@ b\longmapsto b,\quad s\longmapsto u,
 \tag{1}
 \]
 
-is injective. Then there is a right \(\mathbb Q[G]\)-module containing
-a nonzero vector \(w\) such that
+is injective if and only if \(u\notin B\), equivalently if and only if
+\(g\notin zBz^{-1}\). Under these equivalent conditions, there is a
+right \(\mathbb Q[G]\)-module containing a nonzero vector \(w\) such
+that
 
 \[
 w(x^4-1)=0,\qquad
@@ -65,7 +67,7 @@ v\bigl(q(1+x+x^2)-(1+t+t^2+t^3)z\bigr)=0.
 Thus the corresponding evaluated Fox row is not right-unimodular, and
 the relative product cannot be primitive.
 
-The hypothesis is (1), not merely \(u\notin B\).
+The cases \(g\in zBz^{-1}\), equivalently \(u\in B\), are not covered.
 
 ## 1. The affine \(BS(3,4)\)-action
 
@@ -166,7 +168,7 @@ U(w)+\sigma wR_4=-\sigma W+\sigma W=0.
 The action from Section 1 is a right action of \(B\), and \(U\) is
 invertible. The free-product universal property therefore defines a
 right action of \(B*\langle s\rangle\) on \(V\), with \(s\) acting as
-\(U\). Under the injectivity hypothesis (1), its image is
+\(U\). Under the injectivity condition (1), its image is
 
 \[
 H=\langle B,u\rangle\le G,
@@ -176,8 +178,7 @@ and this action is a well-defined right \(\mathbb Q[H]\)-module
 structure in which \(u\) acts as \(U\). Equations (10), (12), and
 (15) prove all three relations in (2).
 
-No step here deduces (1) from \(u\notin B\). An element outside \(B\)
-may still satisfy a nontrivial relation relative to \(B\).
+Section 5 proves that (1) is injective exactly when \(u\notin B\).
 
 ## 3. Induction to \(G\) preserves the vector
 
@@ -282,7 +283,51 @@ persist after scalar extension to \(\mathbb Q[G]\), so none exists
 there either. The usual necessary Fox condition for a primitive word
 now proves the claimed nonprimitivity.
 
-## 5. Exact scope and unresolved residue
+## 5. Torsion-freeness and the exact relative-free range
+
+View
+
+\[
+B=\langle x,y\mid yx^3y^{-1}=x^4\rangle
+\]
+
+as the HNN extension of the infinite cyclic base
+\(\langle x\rangle\), with associated subgroups
+\(\langle x^3\rangle\) and \(\langle x^4\rangle\). Its Bass--Serre
+action is without inversions. If \(b\in B\) has finite order, the
+finite cyclic group \(\langle b\rangle\) fixes a vertex of the
+Bass--Serre tree. Hence \(b\) lies in a conjugate of the vertex
+stabilizer \(\langle x\rangle\). Since \(\langle x\rangle\cong
+\mathbb Z\) is torsion-free, \(b=1\). Thus \(B\) is torsion-free.
+
+Apply the same argument to the Bass--Serre tree of the free product
+
+\[
+G=B*\langle z\rangle.
+\]
+
+Every finite cyclic subgroup fixes a vertex, and the vertex
+stabilizers are conjugates of \(B\) and of
+\(\langle z\rangle\). Both are torsion-free, so \(G\) is
+torsion-free.
+
+The relative rank-one free-product theorem in
+`literature/proofs/RELATIVE_RANK_ONE_FREE_PRODUCT.md` now applies to
+(1). In a torsion-free free product \(B*\langle z\rangle\), the map
+which fixes \(B\) and sends \(s\) to \(u\) is injective exactly when
+\(u\notin B\). Since \(u=z^{-1}gz\),
+
+\[
+u\notin B
+\quad\Longleftrightarrow\quad
+g\notin zBz^{-1}.
+\]
+
+Therefore Sections 1--4 obstruct every such noninternal element. If
+\(u\in B\), the nontrivial source word \(su^{-1}\) lies in the kernel
+of (1); the module construction does not obstruct that case.
+
+## 6. Exact unresolved residue
 
 Let
 
@@ -303,18 +348,14 @@ bounded representatives, the three Result 56 fibers are
 \tag{24}
 \]
 
-The proved class consists exactly of the pairs \((\sigma,g)\) for
-which (1) is known to be injective. The unresolved residue for this
-argument is
+The proved class consists of every pair in these fibers with
+\(g\notin zBz^{-1}\). The exact unresolved residue for this argument
+consists of the internal elements
 
 \[
-\boxed{\text{every }u=z^{-1}gz\text{ for which (1) fails}.}
+\boxed{g\in zBz^{-1},\quad\text{equivalently }u\in B.}
 \tag{25}
 \]
-
-This residue includes every \(u\in B\): if \(u\in B\), then the
-nontrivial free-product word \(su^{-1}\) lies in the kernel of (1).
-It may also include elements \(u\notin B\); no converse is asserted.
 
 For the internal \(B\)-cases inside the three Result 56 fibers, write
 
@@ -344,9 +385,9 @@ their translation is
 \]
 
 All cases in (28) have \(u=b\in B\), so they belong to the unresolved
-residue (25), not to the theorem proved above.
+residue (25). None is claimed obstructed here.
 
-## 6. Independent replay
+## 7. Independent replay
 
 `experiments/stable_ac/verify_ad_bs34_module.py` and
 `tests/stable_ac/test_ad_bs34_module.py` replay:
@@ -360,3 +401,12 @@ residue (25), not to the theorem proved above.
 
 The replay is a check of these displayed identities. It is not used
 to infer the relative-free condition for an arbitrary \(u\).
+
+The separate files
+`experiments/stable_ac/verify_relative_free_product.py` and
+`tests/stable_ac/test_relative_free_product.py` replay the syllable
+reductions used by the relative rank-one theorem, including its
+\(C_2*C_2\) torsion counterexample. The universal theorem is the
+normal-form induction in
+`literature/proofs/RELATIVE_RANK_ONE_FREE_PRODUCT.md`, not a conclusion
+from those finite fixtures.
