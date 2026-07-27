@@ -3438,6 +3438,114 @@ internal:
 
 None of these three internal classes is claimed obstructed.
 
+## Result 60: the internal module is an exact Bass--Serre flow quotient
+
+The internal right-ideal calculation is recast in
+
+```text
+literature/proofs/AK3_AD_INTERNAL_BS34_FLOW_MODULE.md
+```
+
+Put
+
+\[
+H=\langle x\rangle,\qquad C=\langle x^4\rangle,
+\]
+
+and use the right-coset edge and vertex sets
+
+\[
+E=C\backslash B,\qquad V=H\backslash B.
+\]
+
+For \(v=Hg\), the four incoming and three outgoing half-stars are
+
+\[
+I(v)=\sum_{i=0}^{3}e_{x^ig},
+\qquad
+O(v)=\sum_{j=0}^{2}e_{yx^jg}.
+\]
+
+The cyclic right module defined by the first two internal relations is
+exactly
+
+\[
+\mathbb Q[E]\big/\langle O(v)-I(v):v\in V\rangle.
+\]
+
+This is an isomorphism of right modules, not a chosen representation:
+\(\mathbb Q[B]/(x^4-1)\mathbb Q[B]\cong\mathbb Q[C\backslash B]\),
+and every translate of \(yR_3-R_4\) is one conservation vector.
+
+For an internal element \(b\), the third relation imposes
+
+\[
+e_{bg}=-\sigma I(Hg)
+\qquad(g\in B).
+\]
+
+At a fixed vertex, it therefore assigns the same value to every edge
+in the image of the double coset \(CbHg\). This makes the full
+double-coset geometry of \(b\), rather than only \(e_y(b)\), the exact
+remaining invariant.
+
+Two unbounded local double-coset families collapse the flow module.
+If \(b\in H\), all four incoming edges at every vertex equal
+\(-\sigma I(v)\), giving
+
+\[
+(1+4\sigma)I(v)=0.
+\]
+
+If \(b\in yH\), all three outgoing edges equal
+\(-\sigma I(v)\), and conservation gives
+
+\[
+(1+3\sigma)I(v)=0.
+\]
+
+Over \(\mathbb Q\), both coefficients are nonzero for both signs, so
+the corresponding quotient is zero. This proves only that the flow
+module cannot obstruct these canonical double cosets; it does not
+prove their relative products primitive.
+
+The noncanonical flow residue is exact:
+
+\[
+\begin{array}{c|c}
+e_y(b)=0&b\notin H\\
+e_y(b)=1&b\notin yH.
+\end{array}
+\]
+
+Its constraints are global on the Bass--Serre tree. No finite tree
+ball is used to infer propriety or collapse.
+
+There is nevertheless an exact component reduction. Put
+
+\[
+K_b=\langle H,b^{-1}Cb\rangle.
+\]
+
+A nonzero dual conserved edge current exists exactly when there is a
+nonzero function \(s:K_b\backslash B\to\mathbb Q\) satisfying, for
+every \(g\in B\),
+
+\[
+\sum_{i=0}^{3}s(K_bb^{-1}x^ig)=-\sigma s(K_bg),
+\]
+
+\[
+\sum_{j=0}^{2}s(K_bb^{-1}yx^jg)=-\sigma s(K_bg).
+\]
+
+The subgroup \(K_b\) lies in \(\ker e_y\), so these equations have an
+exact height grading: one is intralayer and the other interlayer in
+each of the exponent-zero and exponent-one cases. They are not
+ordinary Hecke recurrences, because left prefixing is not generally a
+well-defined operation on \(K_b\backslash B\). Existence, cycles, and
+collapse for these translated scalar systems remain open.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3500,12 +3608,13 @@ in the fixed D-then-mixed-Q order. Results 55--56 confine arbitrary
 A--D primitive creation to three exact normalized projection fibers:
 \(\pi(c)=qz^{-1}\) for the positive source and
 \(\pi(c)\in\{1,qz^{-1}\}\) for the negative source. Results 58--59
-obstruct every noninternal element of those fibers. Their exact
-remaining residue consists of the three internal classes
-\(g=zbz^{-1}\): \(e_y(b)=1\) in the positive and negative
-\(h\)-fibers, and \(e_y(b)=0\) in the negative identity fiber. The
-immediate exact leads are therefore z-dependent A--W conjugators,
-these three internal A--D classes, arbitrary W--D conjugators,
+obstruct every noninternal element of those fibers. Result 60 splits
+their three internal classes into canonical double cosets
+\(b\in H\) or \(b\in yH\), where this module collapses and a different
+method is required, and noncanonical double cosets, where the exact
+Bass--Serre flow quotient remains undecided. The immediate exact leads
+are therefore z-dependent A--W conjugators, these two internal A--D
+subproblems, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
@@ -3632,9 +3741,8 @@ row now gives an unbounded exponent sieve: primitivity forces
 \(e_q+e_z=0\), and on that hyperplane only
 \((\sigma,e_q)=(+,1),(-,0),(-,1)\) escape the chosen character slice.
 A different viable primitive-slot branch must therefore use
-z-dependent A--W traffic, one of Result 59's three internal A--D
-classes \(g=zbz^{-1}\) with the indicated \(e_y(b)\), arbitrary W--D
-relative traffic,
+z-dependent A--W traffic, one of Result 60's canonical-collapse or
+noncanonical-flow internal A--D classes, arbitrary W--D relative traffic,
 non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
 two row changes before deletion, another \(Wq^{-1}\) block, a
 repeatedly changed source, alter W by traffic with nontrivial

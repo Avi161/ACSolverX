@@ -32,13 +32,13 @@ dependency-free Python, exact rational linear algebra, pytest.
 **Files:**
 - Create: `literature/proofs/AK3_AD_INTERNAL_BS34_FLOW_MODULE.md`
 
-- [ ] Define the right-coset edge and vertex sets with consistent
+- [x] Define the right-coset edge and vertex sets with consistent
   handedness.
-- [ ] Prove the two half-star sums are representative-independent.
-- [ ] Identify \(x^4-1\) with edge stabilization.
-- [ ] Identify every right translate of \(yR_3-R_4\) with conservation
+- [x] Prove the two half-star sums are representative-independent.
+- [x] Identify \(x^4-1\) with edge stabilization.
+- [x] Identify every right translate of \(yR_3-R_4\) with conservation
   at one vertex.
-- [ ] Prove the resulting quotient is exactly the universal cyclic
+- [x] Prove the resulting quotient is exactly the universal cyclic
   module, not merely one representation of it.
 
 ---
@@ -50,11 +50,11 @@ dependency-free Python, exact rational linear algebra, pytest.
 - Create: `experiments/stable_ac/verify_internal_bs34_flow.py`
 - Create: `tests/stable_ac/test_internal_bs34_flow.py`
 
-- [ ] Write failing incidence and local-collapse tests.
-- [ ] Implement the exact \(4\)-incoming/\(3\)-outgoing replay.
-- [ ] Prove zero quotient for \(b\in H\), both signs.
-- [ ] Prove zero quotient for \(b\in yH\), both signs.
-- [ ] State that these are module failures, not primitive certificates.
+- [x] Write failing incidence and local-collapse tests.
+- [x] Implement the exact \(4\)-incoming/\(3\)-outgoing replay.
+- [x] Prove zero quotient for \(b\in H\), both signs.
+- [x] Prove zero quotient for \(b\in yH\), both signs.
+- [x] State that these are module failures, not primitive certificates.
 
 ---
 
@@ -66,7 +66,7 @@ dependency-free Python, exact rational linear algebra, pytest.
 
 - [ ] Parameterize \(CbH\) by Britton-reduced normal form without a
   syllable bound.
-- [ ] Dualize the quotient to conserved scalar edge assignments.
+- [x] Dualize the quotient to conserved scalar edge assignments.
 - [ ] Prove that an acyclic recurrence admits a nonzero boundary
   current.
 - [ ] Classify any cyclic recurrences by exact double-coset geometry.

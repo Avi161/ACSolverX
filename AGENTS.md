@@ -784,3 +784,8 @@
 
 - [TRAP] For \(u\in A*C\), infinite order of \(u\) does not imply that \(A\) and \(u\) generate \(A*\langle u\rangle\). In \(C_2*C_2=\langle a,c\mid a^2,c^2\rangle\), the element \(u=ac\) has infinite order but \(aua=u^{-1}\), so a nontrivial relative word dies.
 - [WORKS] Remove the optional initial and final \(A\)-syllables by the relative Nielsen map \(s\mapsto a_0sa_1\). The correct rank-one criterion is infinite order of the resulting \(C\)-ended core, not infinite order of the original element. Only specialize this to \(u\notin A\) after proving the whole ambient free product torsion-free.
+
+### 2026-07-27 Checkpoint global tree recurrences before editing
+
+- [TRAP] The first noncanonical \(BS(3,4)\) flow subtask stayed active through repeated waits without returning the requested early checkpoint or producing an edit. A global double-coset recurrence can absorb an unbounded amount of silent analysis.
+- [WORKS] Split this attack at the exact component reduction: first return and review the subgroup \(K_b=\langle H,b^{-1}Cb\rangle\) and the induced scalar equations, then launch a separate task for existence or collapse. Interrupt after two empty post-checkpoint waits and preserve the already reviewed local-flow theorem.
