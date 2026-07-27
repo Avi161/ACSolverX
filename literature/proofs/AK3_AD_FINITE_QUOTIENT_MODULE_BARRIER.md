@@ -42,8 +42,8 @@ vt=v
 \tag{2}
 \]
 
-Consequently \(vg=-4\sigma v\). For exactly the following three
-literal representatives,
+Consequently \(vg=-4\sigma v\). For each of the following three
+canonical literal representatives,
 
 \[
 (\sigma,g)=(+1,qz^{-1}),\qquad

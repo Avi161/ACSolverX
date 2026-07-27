@@ -166,7 +166,9 @@ The replay will:
 - verify the quotient isomorphism in both directions by substitution;
 - compute the literal evaluated Fox row in the group ring;
 - check the algebraic four-state reduction independently;
-- replay the finite-order lemma and the induced scalar relations;
+- replay the finite-order lemma and exact integral right-action
+  certificates for the full Result 57 chain and its three literal
+  collapses;
 - treat any finite quotient only as a certificate for its exact g;
 - distinguish a proved universal module from bounded experimental
   evidence.

@@ -9,6 +9,7 @@ from experiments.stable_ac.verify_ad_bs34_module import (
     evaluated_relative_row,
     finite_bs34_order_compatible,
     finite_cyclic_collapse_certificate,
+    finite_module_replay,
     four_state_residuals,
     free_reduce,
     integer_progression_partition,
@@ -82,6 +83,56 @@ def test_compatible_finite_orders_have_cyclic_collapse_certificates():
             a, b = finite_cyclic_collapse_certificate(n)
             assert (4 * a) % n == 1 % n
             assert (3 * b) % n == 1 % n
+
+
+def test_finite_module_replay_derives_the_full_result_57_chain():
+    trace = finite_module_replay(7)
+
+    assert all(step.expansion == step.target for step in trace.values())
+    assert trace["vt4_implies_vt"].target == {("v", "t"): 1, ("v", ""): -1}
+    assert trace["wx_equals_w"].target == {
+        ("v", "zx"): 1,
+        ("v", "z"): -1,
+    }
+    assert trace["wyx3_equals_wy"].target == {
+        ("v", "zyxxx"): 1,
+        ("v", "zy"): -1,
+    }
+    assert trace["wyx_equals_wy"].target == {
+        ("v", "zyx"): 1,
+        ("v", "zy"): -1,
+    }
+    assert trace["three_wy_equals_four_w"].target == {
+        ("v", "zy"): 3,
+        ("v", "z"): -4,
+    }
+    assert trace["three_vh_equals_four_v"].target == {
+        ("v", "qZ"): 3,
+        ("v", ""): -4,
+    }
+
+
+def test_finite_module_replay_uses_integer_and_invertible_right_actions():
+    trace = finite_module_replay(7)
+
+    for literal_pair in ("positive_h", "negative_one", "negative_h"):
+        zero_step = trace[f"{literal_pair}_v_equals_zero"]
+        assert zero_step.target == {("v", ""): 1}
+        assert zero_step.expansion == zero_step.target
+
+
+def test_finite_module_replay_detects_mutated_three_or_four_coefficients():
+    mutated_three = finite_module_replay(7, three=2)
+    mutated_four = finite_module_replay(7, four=5)
+
+    assert (
+        mutated_three["wyx3_equals_wy"].expansion
+        != mutated_three["wyx3_equals_wy"].target
+    )
+    assert (
+        mutated_four["three_wy_equals_four_w"].expansion
+        != mutated_four["three_wy_equals_four_w"].target
+    )
 
 
 def test_affine_bs34_action_and_comb_partitions_are_exact():

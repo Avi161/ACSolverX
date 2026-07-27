@@ -7,6 +7,7 @@ relations annihilate the evaluated row for an arbitrary element ``g``.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from fractions import Fraction
 from math import gcd
 
@@ -313,6 +314,337 @@ def finite_cyclic_collapse_certificate(n: int) -> tuple[int, int]:
     if not finite_bs34_order_compatible(n):
         raise ValueError("n is incompatible with the BS(3,4) conjugacy relation")
     return pow(4, -1, n), pow(3, -1, n)
+
+
+SymbolicModuleTerm = tuple[str, str]
+SymbolicModuleVector = dict[SymbolicModuleTerm, int]
+
+
+@dataclass(frozen=True)
+class ExactRelationCertificate:
+    """An integral relation and the exact combination that derives it."""
+
+    target: SymbolicModuleVector
+    expansion: SymbolicModuleVector
+
+
+def _module_add_term(
+    vector: SymbolicModuleVector,
+    term: SymbolicModuleTerm,
+    coefficient: int,
+) -> None:
+    vector[term] = vector.get(term, 0) + coefficient
+    if not vector[term]:
+        del vector[term]
+
+
+def _module_vector(*terms: tuple[int, str]) -> SymbolicModuleVector:
+    vector: SymbolicModuleVector = {}
+    for coefficient, word in terms:
+        _module_add_term(vector, ("v", free_reduce(word)), coefficient)
+    return vector
+
+
+def _module_add(*vectors: SymbolicModuleVector) -> SymbolicModuleVector:
+    result: SymbolicModuleVector = {}
+    for vector in vectors:
+        for term, coefficient in vector.items():
+            _module_add_term(result, term, coefficient)
+    return result
+
+
+def _module_scale(
+    vector: SymbolicModuleVector,
+    coefficient: int,
+) -> SymbolicModuleVector:
+    return {
+        term: coefficient * value
+        for term, value in vector.items()
+        if coefficient * value
+    }
+
+
+def _module_right_word(
+    vector: SymbolicModuleVector,
+    word: str,
+) -> SymbolicModuleVector:
+    return _module_vector(
+        *((coefficient, base_word + word) for (_, base_word), coefficient in vector.items())
+    )
+
+
+def _reduce_trailing_power(word: str, generator: str, n: int) -> str:
+    power = len(word) - len(word.rstrip(generator))
+    return word[:-power] + generator * (power % n) if power else word
+
+
+def _module_cyclic_right_power(
+    vector: SymbolicModuleVector,
+    generator: str,
+    power: int,
+    n: int,
+) -> SymbolicModuleVector:
+    acted = _module_right_word(vector, generator * power)
+    reduced: SymbolicModuleVector = {}
+    for (base, word), coefficient in acted.items():
+        _module_add_term(
+            reduced,
+            (base, _reduce_trailing_power(word, generator, n)),
+            coefficient,
+        )
+    return reduced
+
+
+def _cyclic_step_expansion(
+    relation: SymbolicModuleVector,
+    generator: str,
+    step: int,
+    n: int,
+) -> SymbolicModuleVector:
+    inverse = pow(step, -1, n)
+    return _module_add(
+        *(
+            _module_cyclic_right_power(relation, generator, step * index, n)
+            for index in range(inverse)
+        )
+    )
+
+
+def finite_module_replay(
+    n: int,
+    *,
+    three: int = 3,
+    four: int = 4,
+) -> dict[str, ExactRelationCertificate]:
+    """Replay Result 57 by integral symbolic right-action certificates.
+
+    ``three`` and ``four`` parameterize the two BS indices so tests can
+    pressure-test the literal coefficients.  Targets remain the canonical
+    Result 57 identities; every expansion is built from the displayed group
+    and module relations, integer combinations, and right multiplication.
+    """
+    if not finite_bs34_order_compatible(n):
+        raise ValueError("n is incompatible with the BS(3,4) conjugacy relation")
+    if gcd(n, three * four) != 1:
+        raise ValueError("the replay indices must be invertible modulo n")
+
+    trace: dict[str, ExactRelationCertificate] = {}
+
+    vt_four_relation = _module_vector((1, "t" * four), (-1, ""))
+    vt_expansion = _cyclic_step_expansion(vt_four_relation, "t", four, n)
+    trace["vt4_implies_vt"] = ExactRelationCertificate(
+        _module_vector((1, "t"), (-1, "")),
+        vt_expansion,
+    )
+
+    wx_target = _module_vector((1, "zx"), (-1, "z"))
+    zx_equals_tz = _module_vector((1, "zx"), (-1, "tz"))
+    vt_equals_v_right_z = _module_right_word(vt_expansion, "z")
+    wx_expansion = _module_add(zx_equals_tz, vt_equals_v_right_z)
+    trace["wx_equals_w"] = ExactRelationCertificate(wx_target, wx_expansion)
+
+    wyx_three_target = _module_vector((1, "zyxxx"), (-1, "zy"))
+    bs_relation = _module_vector(
+        (1, "zy" + "x" * three),
+        (-1, "z" + "x" * four + "y"),
+    )
+    wx_four_equals_w = _module_add(
+        *(
+            _module_right_word(wx_expansion, "x" * power + "y")
+            for power in range(four)
+        )
+    )
+    wyx_three_expansion = _module_add(bs_relation, wx_four_equals_w)
+    trace["wyx3_equals_wy"] = ExactRelationCertificate(
+        wyx_three_target,
+        wyx_three_expansion,
+    )
+
+    wyx_expansion = _cyclic_step_expansion(
+        wyx_three_expansion,
+        "x",
+        three,
+        n,
+    )
+    trace["wyx_equals_wy"] = ExactRelationCertificate(
+        _module_vector((1, "zyx"), (-1, "zy")),
+        wyx_expansion,
+    )
+
+    module_relation = _module_add(
+        _module_vector(
+            *((1, "zy" + "x" * power) for power in range(three))
+        ),
+        _module_vector(
+            *((-1, "t" * power + "z") for power in range(four))
+        ),
+    )
+    collapse_x_terms = _module_scale(
+        _module_add(
+            *(
+                _module_add(
+                    *(
+                        _module_right_word(wyx_expansion, "x" * shift)
+                        for shift in range(power)
+                    )
+                )
+                for power in range(1, three)
+            )
+        ),
+        -1,
+    )
+    collapse_t_terms = _module_add(
+        *(
+            _module_add(
+                *(
+                    _module_right_word(vt_expansion, "t" * shift + "z")
+                    for shift in range(power)
+                )
+            )
+            for power in range(1, four)
+        )
+    )
+    index_gap_expansion = _module_add(
+        module_relation,
+        collapse_x_terms,
+        collapse_t_terms,
+    )
+    trace["three_wy_equals_four_w"] = ExactRelationCertificate(
+        _module_vector((3, "zy"), (-4, "z")),
+        index_gap_expansion,
+    )
+
+    h_gap_expansion = _module_add(
+        _module_right_word(index_gap_expansion, "Z"),
+        _module_vector((three, "qZ"), (-three, "zyZ")),
+    )
+    trace["three_vh_equals_four_v"] = ExactRelationCertificate(
+        _module_vector((3, "qZ"), (-4, "")),
+        h_gap_expansion,
+    )
+
+    s_collapse = _module_add(
+        *(
+            _module_add(
+                *(
+                    _module_right_word(vt_expansion, "t" * shift)
+                    for shift in range(power)
+                )
+            )
+            for power in range(1, four)
+        )
+    )
+
+    def collapsed_g_relation(sigma: int, g: str) -> SymbolicModuleVector:
+        original = _module_add(
+            _module_vector((1, g)),
+            _module_vector(
+                *((sigma, "t" * power) for power in range(four))
+            ),
+        )
+        return _module_add(original, _module_scale(s_collapse, -sigma))
+
+    h = "qZ"
+    h_inverse = "zQ"
+    positive_h_relation = collapsed_g_relation(1, h)
+    trace["positive_h_vg_equals_minus_four_v"] = ExactRelationCertificate(
+        _module_vector((1, h), (4, "")),
+        positive_h_relation,
+    )
+    positive_h_scalar = _module_add(
+        _module_scale(positive_h_relation, three),
+        _module_scale(h_gap_expansion, -1),
+    )
+    trace["positive_h_sixteen_v"] = ExactRelationCertificate(
+        _module_vector((16, "")),
+        positive_h_scalar,
+    )
+    positive_h_four_vh = _module_add(
+        _module_scale(positive_h_relation, four),
+        _module_scale(positive_h_scalar, -1),
+    )
+    trace["positive_h_four_vh"] = ExactRelationCertificate(
+        _module_vector((4, h)),
+        positive_h_four_vh,
+    )
+    positive_h_four_v = _module_right_word(positive_h_four_vh, h_inverse)
+    trace["positive_h_four_v"] = ExactRelationCertificate(
+        _module_vector((4, "")),
+        positive_h_four_v,
+    )
+    positive_h_vh = _module_add(
+        positive_h_relation,
+        _module_scale(positive_h_four_v, -1),
+    )
+    positive_h_v = _module_right_word(positive_h_vh, h_inverse)
+    trace["positive_h_v_equals_zero"] = ExactRelationCertificate(
+        _module_vector((1, "")),
+        positive_h_v,
+    )
+
+    negative_one_relation = collapsed_g_relation(-1, "")
+    trace["negative_one_vg_equals_four_v"] = ExactRelationCertificate(
+        _module_vector((-3, "")),
+        negative_one_relation,
+    )
+    negative_one_three_v = _module_scale(negative_one_relation, -1)
+    trace["negative_one_three_v"] = ExactRelationCertificate(
+        _module_vector((3, "")),
+        negative_one_three_v,
+    )
+    negative_one_three_vh = _module_right_word(negative_one_three_v, h)
+    negative_one_four_v = _module_add(
+        negative_one_three_vh,
+        _module_scale(h_gap_expansion, -1),
+    )
+    trace["negative_one_four_v"] = ExactRelationCertificate(
+        _module_vector((4, "")),
+        negative_one_four_v,
+    )
+    negative_one_v = _module_add(
+        negative_one_four_v,
+        _module_scale(negative_one_three_v, -1),
+    )
+    trace["negative_one_v_equals_zero"] = ExactRelationCertificate(
+        _module_vector((1, "")),
+        negative_one_v,
+    )
+
+    negative_h_relation = collapsed_g_relation(-1, h)
+    trace["negative_h_vg_equals_four_v"] = ExactRelationCertificate(
+        _module_vector((1, h), (-4, "")),
+        negative_h_relation,
+    )
+    negative_h_eight_v = _module_add(
+        h_gap_expansion,
+        _module_scale(negative_h_relation, -three),
+    )
+    trace["negative_h_eight_v"] = ExactRelationCertificate(
+        _module_vector((8, "")),
+        negative_h_eight_v,
+    )
+    negative_h_two_vh = _module_add(
+        _module_scale(negative_h_relation, three - 1),
+        negative_h_eight_v,
+    )
+    trace["negative_h_two_vh"] = ExactRelationCertificate(
+        _module_vector((2, h)),
+        negative_h_two_vh,
+    )
+    negative_h_two_v = _module_right_word(negative_h_two_vh, h_inverse)
+    trace["negative_h_two_v"] = ExactRelationCertificate(
+        _module_vector((2, "")),
+        negative_h_two_v,
+    )
+    negative_h_four_v = _module_scale(negative_h_two_v, 2)
+    negative_h_vh = _module_add(negative_h_relation, negative_h_four_v)
+    negative_h_v = _module_right_word(negative_h_vh, h_inverse)
+    trace["negative_h_v_equals_zero"] = ExactRelationCertificate(
+        _module_vector((1, "")),
+        negative_h_v,
+    )
+
+    return trace
 
 
 AffineAction = tuple[Fraction, Fraction]

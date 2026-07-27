@@ -3306,9 +3306,9 @@ vt=v,\qquad 3v(qz^{-1})=4v.
 \]
 
 Thus finite quotients erase the \(3\)-versus-\(4\) HNN index gap.
-Using group-element invertibility and integer identities, the
-four-state vector collapses to zero for exactly the three literal
-representatives
+For each of the following three canonical literal representatives,
+group-element invertibility and integer identities show that the
+four-state vector collapses to zero:
 
 \[
 (\sigma,g)=(+1,qz^{-1}),\quad
