@@ -48,8 +48,8 @@ entering the key.
 import heapq
 
 from experiments.search.greedy_baseline import (
-    GreedyBaselineSolver, arr_to_str, canonical_pair_nj, get_neighbors_with_moves_nj,
-    move_to_str, reduce_relator_nj, state_to_key,
+    _HB_CHECK_EVERY, GreedyBaselineSolver, arr_to_str, canonical_pair_nj,
+    get_neighbors_with_moves_nj, move_to_str, reduce_relator_nj, state_to_key,
 )
 
 INF = float("inf")
@@ -274,7 +274,7 @@ class HeuristicSolver(GreedyBaselineSolver):
         while self.pq and nodes_visited < self.max_nodes:
             _, depth, key = heapq.heappop(self.pq)
             nodes_visited += 1
-            if progress is not None and nodes_visited % 1024 == 0:
+            if progress is not None and nodes_visited % _HB_CHECK_EVERY == 0:
                 progress(nodes_visited)
             if len(key[0]) + len(key[1]) > \
                     len(self.max_expanded_key[0]) + len(self.max_expanded_key[1]):

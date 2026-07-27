@@ -4,6 +4,8 @@ The greedy solver in [`greedy_baseline.py`](greedy_baseline.py) is a best-first 
 
 **The result.** On twenty presentations of `data/ms640_solved.txt`, two from each of ten difficulty bins, at a node budget of 1,000: the baseline solves 10, the recommended ordering solves 15, and it does not lose a single presentation the baseline solved. Pinned in [`../../tests/test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py).
 
+**Selected on, evaluated on.** State those two separately or the number reads as more than it is. `RECOMMENDED`'s weights were tuned on a difficulty-stratified slice, and **14 of these 20 rows are in that slice** — 4 are in the held-out half, and 2 appear in neither. So 10 → 15 is a *regression pin*, not held-out validation: it says the shipped weights still do what they did, on rows they were largely chosen against. The held-out reading is the four-row one, where the baseline solves 1 and the recommended ordering solves 3, and 2 of the 5 flips overall land there.
+
 ## Using it
 
 ```python

@@ -62,13 +62,17 @@ _RUNS = {}
 
 
 def _run(bench, config, budget, tag):
-    """Every arm runs once per module; the search is deterministic, so caching is free."""
-    if tag not in _RUNS:
-        _RUNS[tag] = {pid: greedy_search_h(r1, r2, budget,
-                                           max_relator_length=MAX_RELATOR_LENGTH,
-                                           config=config)
-                      for pid, r1, r2 in bench}
-    return _RUNS[tag]
+    """Every arm runs once per module; the search is deterministic, so caching is free.
+
+    Keyed on ``(tag, budget)``, not ``tag`` alone: a later test that reuses a tag at a different
+    budget would otherwise be handed the first budget's rows without anything raising.
+    """
+    if (tag, budget) not in _RUNS:
+        _RUNS[(tag, budget)] = {pid: greedy_search_h(r1, r2, budget,
+                                                     max_relator_length=MAX_RELATOR_LENGTH,
+                                                     config=config)
+                                for pid, r1, r2 in bench}
+    return _RUNS[(tag, budget)]
 
 
 # ------------------------------------------------------------------------------ 1. control gate
@@ -145,6 +149,11 @@ def test_preset_solves_a_superset_of_the_baseline(bench, name, config):
 
     "More solved" alone would permit an ordering that wins two rows and loses two others; the
     superset assertion is what makes the headline a monotone improvement rather than a reshuffle.
+
+    This is a **regression pin, not held-out validation**. Fourteen of these twenty rows are in the
+    difficulty-stratified slice the shipped weights were selected on, so a green run says the
+    presets still do what they did — it does not say they generalise. Read the green as "nothing
+    regressed", and see HEURISTICS.md for the four-row held-out reading (1 -> 3).
     """
     base = _run(bench, None, MAX_BUDGET, "base")
     arm = _run(bench, config, MAX_BUDGET, name)
