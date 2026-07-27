@@ -1,0 +1,11 @@
+pres_id,bin,aut_class,start_length,r1,r2,tested,greedy_solved,greedy_nodes,greedy_path,bestcov_solved,bestcov_nodes,bestcov_path,bestcov_z,bestcov_class,bestcov_found_at_budget,heur_solved,heur_nodes,heur_path,m10k_greedy_solved,m10k_greedy_nodes,m10k_greedy_path,m10k_bestcov_solved,m10k_bestcov_nodes,m10k_bestcov_path,m10k_heur_solved,m10k_heur_nodes,m10k_heur_path
+499,0,68,20,YYYYYYYXyyyyyyx,YYYYx,False,True,6,5,none,-1,-1,none,none,-1,none,-1,-1,none,-1,-1,none,-1,-1,none,-1,-1
+165,1,14,13,YYYxyXYX,YYXyx,False,True,16,10,none,-1,-1,none,none,-1,none,-1,-1,none,-1,-1,none,-1,-1,none,-1,-1
+303,2,51,15,YYYXyyx,YYYxyXYX,False,True,70,16,none,-1,-1,none,none,-1,none,-1,-1,none,-1,-1,none,-1,-1,none,-1,-1
+491,3,96,21,YYYYYYXyyyyyx,YYXyyxyx,False,True,126,28,none,-1,-1,none,none,-1,none,-1,-1,none,-1,-1,none,-1,-1,none,-1,-1
+580,4,101,21,YYYYYYXyyyyyx,YYYxxYYX,True,True,875,47,True,25,17,Xyyyyy,relabel,10000,True,252,42,True,875,47,True,25,17,True,252,42
+539,5,84,18,YYYYYXyyyyx,YYYxxYX,False,True,1386,76,none,-1,-1,none,none,-1,none,-1,-1,none,-1,-1,none,-1,-1,none,-1,-1
+576,6,87,21,YYYYYYXyyyyyx,YYYXyxYX,False,True,7029,141,none,-1,-1,none,none,-1,none,-1,-1,none,-1,-1,none,-1,-1,none,-1,-1
+633,7,110,25,YYYYYYYYXyyyyyyyx,YYXyyxyx,True,True,26838,83,True,158,51,XYYxyy,relabel,10000,True,107,36,False,10000,,True,158,51,True,107,36
+610,8,97,23,YYYYYYYXyyyyyyx,YYYxYXyx,True,True,61366,309,True,3359,225,XYxy,relabel,10000,True,8230,203,False,10000,,True,3359,225,False,10000,
+637,9,106,25,YYYYYYYYXyyyyyyyx,YYYXyxYX,True,True,271866,667,True,14413,489,xyyy,moved,20000,True,62528,451,False,10000,,False,,,False,10000,

@@ -1,0 +1,219 @@
+{
+  "size": 10,
+  "requested_size": 10,
+  "per_bin": 1,
+  "n_bins": 10,
+  "comparison_budget": 50000,
+  "difficulty_variable": "log10(nodes_explored) at the 1M budget (uncensored)",
+  "binning": "10 equal-width slices of log10(nodes); each bin is x3.37 the one below",
+  "within_bin_selection": "minimise Aut(F2)-equivalent pairs across the whole subset first (no two picks share an aut_class wherever the bins allow; forced duplicates -- bins 7-9 -- are spread evenly across classes); subject to that, sort by (path_length, nodes_explored, pres_id) and take k evenly spaced positions over the full range, endpoints included (median if k=1). Nodes are already fixed to a x3.37 window by the bin, so path is what is left to spread on.",
+  "nested": false,
+  "aut_class_note": "aut_class is the exact Aut(F2)/change-of-variables orbit (the 640 are 113 classes). Since 2026-07-15 the subsets are MINIMALLY AUTOMORPHIC: two Aut-equivalent presentations are one problem in two coordinate systems (the 261 unsolved reps collapsed the same way), so picks avoid sharing a class wherever the bins allow. aut_distinct_optimum is the proven ceiling (bipartite matching); the residual duplicates are forced by bins 8+9 (12 presentations, 3 classes: 106 x8, 97 x2, 108 x2) and bin 7 (14 in 4). Search cost is still not an orbit invariant (623 vs 636: 59,710 vs 213,882 nodes), so the forced duplicates remain genuinely different search instances -- but they are no longer over-sampled.",
+  "aut_classes_in_subset": 10,
+  "aut_distinct_optimum": 10,
+  "aut_pairs_in_subset": 0,
+  "bins": [
+    {
+      "bin": 0,
+      "lo_nodes": 3,
+      "hi_nodes": 10
+    },
+    {
+      "bin": 1,
+      "lo_nodes": 10,
+      "hi_nodes": 34
+    },
+    {
+      "bin": 2,
+      "lo_nodes": 34,
+      "hi_nodes": 115
+    },
+    {
+      "bin": 3,
+      "lo_nodes": 115,
+      "hi_nodes": 389
+    },
+    {
+      "bin": 4,
+      "lo_nodes": 389,
+      "hi_nodes": 1313
+    },
+    {
+      "bin": 5,
+      "lo_nodes": 1313,
+      "hi_nodes": 4432
+    },
+    {
+      "bin": 6,
+      "lo_nodes": 4432,
+      "hi_nodes": 14958
+    },
+    {
+      "bin": 7,
+      "lo_nodes": 14958,
+      "hi_nodes": 50482
+    },
+    {
+      "bin": 8,
+      "lo_nodes": 50482,
+      "hi_nodes": 170367
+    },
+    {
+      "bin": 9,
+      "lo_nodes": 170367,
+      "hi_nodes": 574959
+    }
+  ],
+  "subset": [
+    {
+      "pres_id": 499,
+      "bin": 0,
+      "r1": "YYYYYYYXyyyyyyx",
+      "r2": "YYYYx",
+      "nodes_1M": 6,
+      "path_1M": 5,
+      "aut_class": 68,
+      "start_length": 20,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 6,
+      "baseline_path_at_50k": 5,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -18
+    },
+    {
+      "pres_id": 165,
+      "bin": 1,
+      "r1": "YYYxyXYX",
+      "r2": "YYXyx",
+      "nodes_1M": 16,
+      "path_1M": 10,
+      "aut_class": 14,
+      "start_length": 13,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 16,
+      "baseline_path_at_50k": 10,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -11
+    },
+    {
+      "pres_id": 303,
+      "bin": 2,
+      "r1": "YYYXyyx",
+      "r2": "YYYxyXYX",
+      "nodes_1M": 70,
+      "path_1M": 16,
+      "aut_class": 51,
+      "start_length": 15,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 70,
+      "baseline_path_at_50k": 16,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -13
+    },
+    {
+      "pres_id": 491,
+      "bin": 3,
+      "r1": "YYYYYYXyyyyyx",
+      "r2": "YYXyyxyx",
+      "nodes_1M": 126,
+      "path_1M": 28,
+      "aut_class": 96,
+      "start_length": 21,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 126,
+      "baseline_path_at_50k": 28,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -19
+    },
+    {
+      "pres_id": 580,
+      "bin": 4,
+      "r1": "YYYYYYXyyyyyx",
+      "r2": "YYYxxYYX",
+      "nodes_1M": 875,
+      "path_1M": 47,
+      "aut_class": 101,
+      "start_length": 21,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 875,
+      "baseline_path_at_50k": 47,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -19
+    },
+    {
+      "pres_id": 539,
+      "bin": 5,
+      "r1": "YYYYYXyyyyx",
+      "r2": "YYYxxYX",
+      "nodes_1M": 1386,
+      "path_1M": 76,
+      "aut_class": 84,
+      "start_length": 18,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 1386,
+      "baseline_path_at_50k": 76,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -16
+    },
+    {
+      "pres_id": 576,
+      "bin": 6,
+      "r1": "YYYYYYXyyyyyx",
+      "r2": "YYYXyxYX",
+      "nodes_1M": 7029,
+      "path_1M": 141,
+      "aut_class": 87,
+      "start_length": 21,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 7029,
+      "baseline_path_at_50k": 141,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -19
+    },
+    {
+      "pres_id": 633,
+      "bin": 7,
+      "r1": "YYYYYYYYXyyyyyyyx",
+      "r2": "YYXyyxyx",
+      "nodes_1M": 26838,
+      "path_1M": 83,
+      "aut_class": 110,
+      "start_length": 25,
+      "baseline_solved_at_50k": true,
+      "baseline_nodes_at_50k": 26838,
+      "baseline_path_at_50k": 83,
+      "baseline_min_relator_length_at_50k": 2,
+      "baseline_progress_at_50k": -23
+    },
+    {
+      "pres_id": 610,
+      "bin": 8,
+      "r1": "YYYYYYYXyyyyyyx",
+      "r2": "YYYxYXyx",
+      "nodes_1M": 61366,
+      "path_1M": 309,
+      "aut_class": 97,
+      "start_length": 23,
+      "baseline_solved_at_50k": false,
+      "baseline_nodes_at_50k": 50000,
+      "baseline_path_at_50k": null,
+      "baseline_min_relator_length_at_50k": 17,
+      "baseline_progress_at_50k": -6
+    },
+    {
+      "pres_id": 637,
+      "bin": 9,
+      "r1": "YYYYYYYYXyyyyyyyx",
+      "r2": "YYYXyxYX",
+      "nodes_1M": 271866,
+      "path_1M": 667,
+      "aut_class": 106,
+      "start_length": 25,
+      "baseline_solved_at_50k": false,
+      "baseline_nodes_at_50k": 50000,
+      "baseline_path_at_50k": null,
+      "baseline_min_relator_length_at_50k": 19,
+      "baseline_progress_at_50k": -6
+    }
+  ]
+}
