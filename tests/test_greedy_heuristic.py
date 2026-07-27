@@ -14,6 +14,8 @@ Node budgets never exceed ``MAX_BUDGET = 1000``: a search at budget ``B`` is exa
 pops of any longer search, so a bigger budget buys a slower test, never different behaviour.
 """
 import ast
+import csv
+import json
 import os
 
 import pytest
@@ -26,14 +28,14 @@ from experiments.search.heuristics import (
 MAX_BUDGET = 1000          # the ceiling; never raise it in a test
 MAX_RELATOR_LENGTH = 24    # the layout of data/ms640_solved.txt (48 ints per line)
 
-# These twenty ids are `benchmark/subsets/benchmark_subset_20.json`, verbatim and in file order.
-# That file is not in this repo — it lives on the research branch, which is why the ids are inlined
-# here rather than read. How it was built, so the list can be audited rather than trusted: line
-# numbers of `data/ms640_solved.txt`, binned into ten equal-width slices of log10(nodes_explored)
-# for a 10^6-node baseline run (each bin 3.37x the one below), two rows per bin, picked to minimise
-# Aut(F2)-equivalent pairs and then spread evenly over path length. Stratified rather than sampled,
-# so the easy rows — where every ordering ties because the search ends in single digits — cannot
-# dominate the comparison.
+# These twenty ids are `benchmark/subsets/benchmark_subset_20.json`, verbatim and in file order —
+# inlined rather than loaded so that what CI measures cannot change when that file does, and pinned
+# against it by `test_bench_ids_are_the_shipped_subset_20`. How it was built, so the list can be
+# audited rather than trusted: line numbers of `data/ms640_solved.txt`, binned into ten equal-width
+# slices of log10(nodes_explored) for a 10^6-node baseline run (each bin 3.37x the one below), two
+# rows per bin, picked to minimise Aut(F2)-equivalent pairs and then spread evenly over path length.
+# Stratified rather than sampled, so the easy rows — where every ordering ties because the search
+# ends in single digits — cannot dominate the comparison.
 BENCH = (0, 455, 77, 505, 247, 344, 203, 380, 546, 537,
          538, 565, 602, 581, 568, 633, 605, 623, 634, 636)
 
@@ -214,6 +216,88 @@ def test_recommended_is_the_formula_the_docs_publish():
     """
     assert RECOMMENDED == {"segments": [{"upto": None, "w": {
         "L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
+
+
+def test_bench_ids_are_the_shipped_subset_20():
+    """`BENCH` claims to be `benchmark_subset_20.json` in file order. Hold it to that.
+
+    Inlined rather than loaded on purpose — CI must measure a fixed row list — so the claim needs a
+    pin, or the comment above `BENCH` slowly becomes fiction. Missing file is a failure, not a skip.
+    """
+    with open(os.path.join(_ROOT, "benchmark", "subsets", "benchmark_subset_20.json")) as f:
+        subset = json.load(f)["subset"]
+    assert tuple(r["pres_id"] for r in subset) == BENCH
+
+
+@pytest.mark.parametrize("n", [10, 20, 40, 60])
+def test_subset_rows_are_line_indices_into_the_data_file(n):
+    """`pres_id` addresses `data/ms640_solved.txt` by line, and `r1`/`r2` are that line decoded.
+
+    The subsets are consumed as an input everywhere, so a row that has drifted from the data file
+    would silently rebase every technique's numbers onto a different presentation.
+    """
+    with open(os.path.join(_ROOT, "data", "ms640_solved.txt")) as f:
+        lines = f.read().splitlines()
+    with open(os.path.join(_ROOT, "benchmark", "subsets", f"benchmark_subset_{n}.json")) as f:
+        doc = json.load(f)
+    assert doc["size"] == len(doc["subset"]) == n
+    for row in doc["subset"]:
+        flat = ast.literal_eval(lines[row["pres_id"]])
+        half = len(flat) // 2
+        r1, r2 = (''.join(_INT_TO_CHAR[v] for v in part if v)
+                  for part in (flat[:half], flat[half:]))
+        assert (r1, r2) == (row["r1"], row["r2"])
+
+
+@pytest.mark.parametrize("n", [10, 20, 40, 60])
+def test_untested_arm_rows_say_none_and_never_false(n):
+    """An untested row must read as untested, never as a failed solve.
+
+    ARMS.md documents `tested = False` => `-1` in every numeric arm column and `none` in every
+    string one. A `False` there would score a search that was never run as one that lost, which
+    understates the transformed arms on exactly the subsets they were never run on.
+
+    Asserted over *every* column the contract covers rather than a chosen few — naming two of them
+    would leave `bestcov_path`, `bestcov_z` and the whole `m10k_*` block free to say `False`.
+    """
+    identity = {"pres_id", "bin", "aut_class", "start_length", "r1", "r2", "tested"}
+    path = os.path.join(_ROOT, "benchmark", "subsets", f"benchmark_subset_{n}_arms.csv")
+    with open(path) as f:
+        rows = list(csv.DictReader(f))
+    assert len(rows) == n
+    untested = 0
+    for row in rows:
+        # The greedy ran on every row of every subset; only the transformed arms can be untested.
+        assert row["greedy_solved"] == "True"
+        if row["tested"] == "True":
+            continue
+        untested += 1
+        for column, value in row.items():
+            if column in identity or column.startswith("greedy_"):
+                continue
+            assert value in ("-1", "none"), f"{column} = {value!r} on untested row {row['pres_id']}"
+    # subset-60 is the row list both campaigns ran, so it alone has nothing untested. Everywhere
+    # else the guard has to actually fire — a vacuous pass here would prove nothing.
+    assert (untested == 0) == (n == 60)
+
+
+@pytest.mark.parametrize("n", [10, 20, 40, 60])
+def test_arms_csv_and_json_are_the_same_table(n):
+    """Each arms table ships twice. Two shipped representations that disagree is a real defect.
+
+    The JSON also records the weight vector its `heur_*` columns were measured with, so it pins
+    `RECOMMENDED` from the data side: a weight edit that left the doc alone would still be caught.
+    """
+    stem = os.path.join(_ROOT, "benchmark", "subsets", f"benchmark_subset_{n}_arms")
+    with open(stem + ".csv") as f:
+        from_csv = list(csv.DictReader(f))
+    with open(stem + ".json") as f:
+        doc = json.load(f)
+    assert doc["heuristic_weights"] == RECOMMENDED["segments"][0]["w"]
+    assert len(from_csv) == len(doc["rows"]) == n
+    for c, j in zip(from_csv, doc["rows"]):
+        # The CSV is the JSON stringified, so compare on that footing rather than re-typing it.
+        assert c == {k: ("" if v is None else str(v)) for k, v in j.items()}
 
 
 def test_every_feature_is_addressable_as_a_weight():
