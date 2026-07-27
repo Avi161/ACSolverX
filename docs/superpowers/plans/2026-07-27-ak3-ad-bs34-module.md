@@ -255,13 +255,13 @@ handedness, module nonzeroness, and scope.
 **Files:**
 - Modify: `AGENTS.md` only if the attempt exposes a non-obvious trap.
 
-- [ ] **Step 1: Stage normal files and force-add the ignored proof**
+- [x] **Step 1: Stage normal files and force-add the ignored proof**
 
-- [ ] **Step 2: Inspect staged scope and commit**
+- [x] **Step 2: Inspect staged scope and commit**
 
-- [ ] **Step 3: Push `codex/proofs`**
+- [x] **Step 3: Push `codex/proofs`**
 
-- [ ] **Step 4: Continue the proof loop**
+- [x] **Step 4: Continue the proof loop**
 
 If A--D closes, move to arbitrary W--D products. If it does not, attack
 the exact residual group-ring condition from Task 3 with a different
