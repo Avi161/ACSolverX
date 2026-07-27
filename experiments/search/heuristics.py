@@ -1,18 +1,10 @@
-"""Block/knot heap orderings for the greedy substitution search.
+"""Block/knot heap ordering for the greedy substitution search.
 
 The baseline (``greedy_baseline.greedy_search``) orders its open set by **total length alone**. This
 module changes *only that expression* and holds everything else fixed — the move generator, the
 reduction, the canonicalisation, the per-relator cap, the visited set and the ``(priority, depth,
 key)`` tie-break are the baseline's, reached by subclassing rather than by copying. So a difference
-in solve rate between two runs is attributable to the ordering and to nothing else.
-
-The features come from a block analysis of the presentations: a relator is a **cyclic** word, its
-*blocks* are the maximal runs of one generator read around the ring, and the statistics that
-separate solved from unsolved presentations are the **knot count** (how many blocks) and the
-**smaller mean block** (how thick the thinner generator's runs are). ``HEURISTICS.md``, beside this
-file, documents every feature and every preset.
-
-Three functions are the whole public surface:
+between two runs is attributable to the ordering and to nothing else.
 
     from experiments.search.heuristics import greedy_search_h, RECOMMENDED
 
@@ -20,30 +12,20 @@ Three functions are the whole public surface:
                             config=RECOMMENDED)      # config=None => the baseline, exactly
 
 ``greedy_search_h`` returns **exactly** the dict ``greedy_baseline.greedy_search`` returns — same
-keys, same order, same types — so an existing caller switches ordering by passing one argument and
-touches nothing downstream. ``phi`` exposes the feature vector and ``make_priority`` compiles a
-config into the callable the heap pushes with, for anyone who wants to score or tune orderings
-without running a search.
+keys, same order, same types — so a caller switches ordering by passing one argument and touches
+nothing downstream. ``phi`` exposes the feature vector and ``make_priority`` compiles a config into
+the callable the heap pushes with. ``HEURISTICS.md``, beside this file, documents every feature.
 
-Two invariants this file is built around, both pinned in ``tests/test_greedy_heuristic.py``:
+Two invariants, both pinned in ``tests/test_greedy_heuristic.py``:
 
   * ``config=None`` (equivalently ``BASELINE_CONFIG``) must reproduce the baseline **exactly** —
-    same solved flag *and* same ``nodes_explored`` on every presentation. It is the control, and a
-    control that merely scores the same is not the same; it has to be the same search. Nothing else
-    here is interpretable until that holds. It also means the baseline is inside any tuner's search
-    space: a space that cannot express "no change" will always appear to beat the control.
-  * A priority key is ``(segment_index, score)`` and the leading element is an **int**. Segments
-    return scores on incomparable scales, and without the leading index heapq would compare them
-    against each other — or, if a branch returned a bare number, compare an int against a tuple and
-    raise mid-search.
-
-**The priority must be a pure function of the state.** The visited set dedups canonical states on
-first discovery and there is no decrease-key, so a state's priority is fixed by whichever path
-reached it first. Under a non-length ordering that path is not the shortest one, so any term reading
-``depth`` — or reading the parent, e.g. "did this move drop a knot?" — makes the pop order depend on
-discovery order and stop being reproducible. A knot *reduction* is already carried by the absolute
-knot count: a state that bought one sorts above a state that did not, with nothing path-dependent
-entering the key.
+    same solved flag *and* same ``nodes_explored`` on every presentation. A control that merely
+    scores the same is not the same; it has to be the same search.
+  * **The priority must be a pure function of the state.** The visited set dedups on first discovery
+    and there is no decrease-key, so a state's priority is fixed by whichever path reached it first.
+    Any term reading ``depth`` — or the parent, e.g. "did this move drop a knot?" — would make pop
+    order depend on discovery order and stop being reproducible. A knot *reduction* is already
+    carried by the absolute knot count.
 """
 import heapq
 
@@ -176,32 +158,26 @@ def phi(r1, r2):
 # -------------------------------------------------------------------------------------- configs
 #
 # A config is {"segments": [{"upto": <total length ceiling>, "w": {feature: weight}}, ...]}.
-# Segments are tried in order and the FIRST whose ``upto`` covers the state's total length wins;
-# the last segment should carry ``"upto": None`` (read as +inf) or nothing will match a long state.
+# Segments are tried in order and the FIRST whose ``upto`` covers the state's total length wins; the
+# last one should carry ``"upto": None`` (read as +inf) or nothing will match a long state.
 #
-# One segment is a single linear ordering. Two or more give the "endgame" shape: order by structure
-# while the presentation is long, revert to pure length once it is short — the trivial state has 0
-# knots and length 2, so near the solution the remaining work is cancellation, not restructuring.
+# ONE segment is a single linear ordering, which is what both configs below use. Two or more switch
+# weight vectors at a length boundary — the "endgame" shape — and the schema keeps that door open
+# because the research harness this was ported from speaks the same format.
 
 BASELINE_CONFIG = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
 
-# The ordering to use for a large run: a single weight vector, no segment boundary. Tuned on a
-# difficulty-stratified slice of the benchmark and evaluated on an automorphism-disjoint held-out
-# slice; an endgame boundary measured inert for a climb that already carries ``S`` and ``MK``.
+# The shipped ordering. One segment, no boundary, five of the seventeen features:
+#
+#     priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb
+#
+# i.e. total length, plus penalties for knot sum, worst-relator knots, smaller mean block and
+# generator imbalance. Lower pops first, so every term above pushes a state DOWN the queue: a state
+# is preferred for being short, for being less tangled, and for using its two generators evenly.
+# The weights were tuned jointly, not one at a time — S is the weakest single ordering of the five
+# and carries the largest weight here, so a one-at-a-time search would have discarded it.
 RECOMMENDED = {"segments": [
     {"upto": None, "w": {"L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
-
-# The lean alternative for small budgets (~500 nodes). It DOES need its endgame boundary: with only
-# a knot term it would otherwise keep chasing knots where nothing structural is left to buy.
-LEAN_SMALL_BUDGET = {"segments": [
-    {"upto": 16, "w": {"L": 1.0}},
-    {"upto": None, "w": {"L": 1.0, "K": 8.936, "xyimb": -5.978}}]}
-
-PRESETS = {
-    "baseline": BASELINE_CONFIG,
-    "recommended": RECOMMENDED,
-    "lean_small_budget": LEAN_SMALL_BUDGET,
-}
 
 
 def make_priority(config=None):
@@ -235,15 +211,6 @@ def make_priority(config=None):
         # No segment covered it: fall through to pure length, in a bucket of its own.
         return (n_seg, L)
     return priority
-
-
-def cfg_name(config):
-    """A short stable label for a config. Used as an id in logs, so it must not depend on dict order."""
-    parts = []
-    for s in (config or BASELINE_CONFIG)["segments"]:
-        w = "+".join(f"{k}{v:g}" for k, v in sorted(s["w"].items()) if v)
-        parts.append(f"[<={'inf' if s.get('upto') is None else s['upto']}]{w or '0'}")
-    return "".join(parts)
 
 
 # --------------------------------------------------------------------------------------- solver
@@ -318,7 +285,7 @@ def greedy_search_h(r1_str, r2_str, node_budget, max_relator_length=24,
     """``greedy_baseline.greedy_search`` with the heap ordering swapped. Same return dict.
 
     ``config=None`` orders by total length and IS the baseline search, pop for pop. Pass
-    ``RECOMMENDED`` (or any config, or a ``PRESETS`` entry) to order by the heuristic.
+    ``RECOMMENDED``, or any config of your own, to order by the heuristic.
 
     Returns the same eleven keys ``greedy_search`` returns — ``solved``, ``nodes_explored``,
     ``path_length``, ``min_relator_length``, ``min_relator``, ``max_relator_length``,

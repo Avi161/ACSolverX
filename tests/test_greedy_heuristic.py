@@ -2,21 +2,15 @@
 
 What this file guards, in order of how much it would cost to get wrong:
 
-1. **The control gate.** ``greedy_search_h(config=None)`` must reproduce ``greedy_search`` *pop for
-   pop* — same ``solved`` flag AND same ``nodes_explored`` on every presentation, at every budget.
-   Agreeing on the solved flag is not enough: a subclass that changed the reduction, the cap or the
-   heap tie-break could still tie on this benchmark, and every reported delta would then be
-   measuring that change instead of the ordering. No other number here is interpretable if this
-   fails.
-2. **The drop-in contract.** The returned dict must be ``greedy_search``'s, key for key — a missing
-   key surfaces only when a result row is written, i.e. hours into a run.
-3. **The certificate.** A solved path is stored as Definition 2.1 moves and must replay, from the
-   start presentation, to a trivial state. Replay is the only decoder: the move inverts the *other*
-   relator, so diffing consecutive states misreads it.
-4. **The features.** The two ways they could silently read something other than the presentation
-   are a miscounted cyclic seam and a heap key whose branches are not comparable.
+1. **The control gate.** ``config=None`` must reproduce ``greedy_search`` *pop for pop* — same
+   ``solved`` flag AND same ``nodes_explored``. No other number here is interpretable if it fails.
+2. **The drop-in contract.** The returned dict is ``greedy_search``'s, key for key.
+3. **The certificate.** A solved path is stored as Definition 2.1 moves and must replay to a trivial
+   state; the move inverts the *other* relator, so diffing consecutive states misreads it.
+4. **The features.** The two ways they could read something other than the presentation are a
+   miscounted cyclic seam and a heap key whose branches are not comparable.
 
-Node budgets never exceed ``MAX_BUDGET = 1000``. A search at budget ``B`` is exactly the first ``B``
+Node budgets never exceed ``MAX_BUDGET = 1000``: a search at budget ``B`` is exactly the first ``B``
 pops of any longer search, so a bigger budget buys a slower test, never different behaviour.
 """
 import ast
@@ -26,16 +20,20 @@ import pytest
 
 from experiments.search.greedy_baseline import greedy_search, moves_to_states, str_to_move
 from experiments.search.heuristics import (
-    BASELINE_CONFIG, FEATURES, LEAN_SMALL_BUDGET, RECOMMENDED, cfg_name, greedy_search_h,
-    make_priority, phi, word_stats,
+    BASELINE_CONFIG, FEATURES, RECOMMENDED, greedy_search_h, make_priority, phi, word_stats,
 )
 
 MAX_BUDGET = 1000          # the ceiling; never raise it in a test
 MAX_RELATOR_LENGTH = 24    # the layout of data/ms640_solved.txt (48 ints per line)
 
-# Twenty presentations of ms640, two from each of ten difficulty bins (binned by the node count a
-# 10^6-node baseline run needed). Stratified rather than sampled, so the easy rows — where every
-# ordering ties because the search ends in single digits — cannot dominate the comparison.
+# These twenty ids are `benchmark/subsets/benchmark_subset_20.json`, verbatim and in file order.
+# That file is not in this repo — it lives on the research branch, which is why the ids are inlined
+# here rather than read. How it was built, so the list can be audited rather than trusted: line
+# numbers of `data/ms640_solved.txt`, binned into ten equal-width slices of log10(nodes_explored)
+# for a 10^6-node baseline run (each bin 3.37x the one below), two rows per bin, picked to minimise
+# Aut(F2)-equivalent pairs and then spread evenly over path length. Stratified rather than sampled,
+# so the easy rows — where every ordering ties because the search ends in single digits — cannot
+# dominate the comparison.
 BENCH = (0, 455, 77, 505, 247, 344, 203, 380, 546, 537,
          538, 565, 602, 581, 568, 633, 605, 623, 634, 636)
 
@@ -142,23 +140,20 @@ def test_every_solved_path_replays_to_a_trivial_state(bench):
 
 # ------------------------------------------------------------------- the result the PR claims
 
-@pytest.mark.parametrize("name,config", [("recommended", RECOMMENDED),
-                                         ("lean", LEAN_SMALL_BUDGET)])
-def test_preset_solves_a_superset_of_the_baseline(bench, name, config):
+def test_recommended_solves_a_superset_of_the_baseline(bench):
     """Strictly more presentations, and not one traded away.
 
     "More solved" alone would permit an ordering that wins two rows and loses two others; the
     superset assertion is what makes the headline a monotone improvement rather than a reshuffle.
 
     This is a **regression pin, not held-out validation**. Fourteen of these twenty rows are in the
-    difficulty-stratified slice the shipped weights were selected on, so a green run says the
-    presets still do what they did — it does not say they generalise. Read the green as "nothing
-    regressed", and see HEURISTICS.md for the four-row held-out reading (1 -> 3).
+    slice the shipped weights were selected on, so a green run says they still do what they did — it
+    does not say they generalise. See HEURISTICS.md for the four-row held-out reading (1 -> 3).
     """
     base = _run(bench, None, MAX_BUDGET, "base")
-    arm = _run(bench, config, MAX_BUDGET, name)
+    arm = _run(bench, RECOMMENDED, MAX_BUDGET, "rec")
     lost = [p for p in base if base[p]["solved"] and not arm[p]["solved"]]
-    assert not lost, f"{name} lost presentations the baseline solved: {lost}"
+    assert not lost, f"RECOMMENDED lost presentations the baseline solved: {lost}"
     assert sum(r["solved"] for r in arm.values()) > sum(r["solved"] for r in base.values())
 
 
@@ -211,6 +206,16 @@ def test_phi_hand_checked():
     assert dict(zip(FEATURES, phi("xxxx", "xy")))["K"] == 1
 
 
+def test_recommended_is_the_formula_the_docs_publish():
+    """HEURISTICS.md and the 60-row results quote these five weights. Pin them.
+
+    The published numbers were measured with this exact vector; a silent edit here would leave the
+    doc describing an ordering nothing runs, and the benchmark CSV attributing its rows to it.
+    """
+    assert RECOMMENDED == {"segments": [{"upto": None, "w": {
+        "L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
+
+
 def test_every_feature_is_addressable_as_a_weight():
     """A name in FEATURES that no config can reference is a feature that silently does nothing."""
     for name in FEATURES:
@@ -221,20 +226,14 @@ def test_every_feature_is_addressable_as_a_weight():
 def test_priority_keys_stay_comparable_across_segments():
     """The leading segment index is load-bearing twice over.
 
-    It makes every state below the boundary outrank every state above it — the endgame switch —
-    and it keeps two segments' scores, which are on unrelated scales, from ever being compared.
+    It makes every state below the boundary outrank every state above it, and it keeps two
+    segments' scores, which are on unrelated scales, from ever being compared. RECOMMENDED is one
+    segment, but the schema allows more, so the shape is pinned here rather than left to a caller.
     """
-    p = make_priority(LEAN_SMALL_BUDGET)              # boundary at total length 16
+    p = make_priority({"segments": [{"upto": 16, "w": {"L": 1.0}},
+                                    {"upto": None, "w": {"L": 1.0, "K": 4.0}}]})
     short = p("xxyy", "xy")                           # L = 6  -> segment 0
     long_ = p("xxyyxxyyxxyy", "xyxyxyxy")             # L = 20 -> segment 1
     assert short[0] == 0 and long_[0] == 1
     assert short < long_                              # int-vs-int first: heapq never raises here
     assert isinstance(short[0], int) and isinstance(long_[0], int)
-
-
-def test_cfg_name_is_stable_under_dict_order():
-    """The label is a log id, so it must not depend on the order the weights were written in."""
-    a = {"segments": [{"upto": None, "w": {"L": 1.0, "K": 2.0}}]}
-    b = {"segments": [{"upto": None, "w": {"K": 2.0, "L": 1.0}}]}
-    assert cfg_name(a) == cfg_name(b)
-    assert cfg_name(None) == cfg_name(BASELINE_CONFIG)
