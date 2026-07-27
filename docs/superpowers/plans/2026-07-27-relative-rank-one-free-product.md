@@ -87,6 +87,6 @@ Bass--Serre torsion arguments, dependency-free Python, pytest.
 - [x] Run syntax compilation and `git diff --check`.
 - [x] Obtain independent proof and scope reviews; resolve every
   Critical or Important finding.
-- [ ] Force-add the new proof file, inspect staged scope, commit, and
+- [x] Force-add the new proof file, inspect staged scope, commit, and
   push `codex/proofs`.
-- [ ] Continue with the internal \(BS(3,4)\) module problem.
+- [x] Continue with the internal \(BS(3,4)\) module problem.
