@@ -206,6 +206,16 @@ def test_phi_hand_checked():
     assert dict(zip(FEATURES, phi("xxxx", "xy")))["K"] == 1
 
 
+def test_recommended_is_the_formula_the_docs_publish():
+    """HEURISTICS.md and the 60-row results quote these five weights. Pin them.
+
+    The published numbers were measured with this exact vector; a silent edit here would leave the
+    doc describing an ordering nothing runs, and the benchmark CSV attributing its rows to it.
+    """
+    assert RECOMMENDED == {"segments": [{"upto": None, "w": {
+        "L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
+
+
 def test_every_feature_is_addressable_as_a_weight():
     """A name in FEATURES that no config can reference is a feature that silently does nothing."""
     for name in FEATURES:

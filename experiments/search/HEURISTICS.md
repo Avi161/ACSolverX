@@ -23,13 +23,41 @@ stats = greedy_search_h(r1, r2, node_budget=100_000, max_relator_length=24,
 
 `greedy_search_h` returns **exactly** `greedy_search`'s eleven-key dict — same keys, same order, same types — so an existing call site switches ordering by passing one argument and touches nothing downstream. `phi(r1, r2)` returns the feature vector and `make_priority(config)` compiles a config into the callable the heap pushes with, for scoring or tuning without running a search.
 
-## The result
+## Results — the 60-row benchmark
 
-Twenty presentations at a node budget of 1,000: baseline **10/20**, `RECOMMENDED` **15/20**, with no presentation traded away and fewer nodes on the mean over the both-solved set. Pinned in [`../../tests/test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py).
+Sixty presentations, six per difficulty bin, every one of them solved by all three techniques. Per-presentation data for all 60 — nodes, path length and solved flag for each arm — is in [`../../benchmark/subsets/benchmark_subset_60_arms.csv`](../../benchmark/subsets/benchmark_subset_60_arms.csv), which is what every number below is computed from.
 
-Which twenty: `benchmark/subsets/benchmark_subset_20.json` verbatim, in file order. That file lives on the research branch and is not in this repo, so the ids are inlined in the test. They are line numbers of `data/ms640_solved.txt`, binned into ten equal-width slices of `log10(nodes_explored)` for a 10⁶-node baseline run (each bin 3.37× the one below), two rows per bin, picked to minimise Aut(F₂)-equivalent pairs and then spread evenly over path length.
+![Nodes explored per presentation on the 60-row benchmark](../../results/comparison/nodes_comparison_subset60.png)
 
-**Read 10 → 15 as a regression pin, not held-out validation:** 14 of those 20 rows are in the slice these weights were tuned on. On the 4 that were held out, baseline solves 1 and `RECOMMENDED` solves 3.
+Top panel: nodes to solve each presentation, easy → hard left to right, log scale. Bottom left: the same divided by the best-CoV cost. Bottom right: mean and median across the subset. The figure carries two arms not discussed here — *standard single-CoV GS* and *dual single-CoV gap10* — which are intermediate change-of-variables strategies; the three that matter for this file are grey (plain greedy), purple dashed (best CoV) and red (this heuristic).
+
+**Best known cost.** What a presentation actually costs to solve, all 60 rows, all arms at 60/60:
+
+| arm | solved | median nodes | mean nodes | median path | mean path |
+|---|---|---|---|---|---|
+| greedy baseline | 60/60 | 1,310.5 | 45,244.2 | 46.5 | 142.62 |
+| best change of variables | 60/60 | 34.5 | 2,383.1 | 16.5 | 97.05 |
+| **`RECOMMENDED`** | 60/60 | **226.5** | **10,244.0** | **38.0** | **102.73** |
+
+Both transformed arms cost less than the plain greedy *and* return shorter derivations — path length is not being traded for reach. **Read the median, not the mean:** the mean is dominated by a handful of second-hump rows, and the greedy's 45,244 mean against a 1,310 median is a 35× skew.
+
+Two things that table is not. **The three columns ran at different budgets and different relator caps** — greedy at 10⁶/cap 24, best CoV at ≤20,000/cap 24, the heuristic at 100,000/cap 48 — so a ratio across them is not a controlled speedup, it is three separate best-known costs side by side. And **best CoV is an oracle**: 2,383 median nodes is what the winning change of variables costs *once you already know which one wins*, and finding it cost ~2.2M nodes per presentation of sweeping. It is a lower bound on a transformed route, not a runnable procedure. The heuristic column carries no such caveat — it is one search with one fixed ordering.
+
+**Matched budget.** For a head-to-head, all three at budget 10,000 and cap 24, from the same CSV's `m10k_*` columns:
+
+| arm | solved @10k | median nodes | mean nodes | median path | mean path |
+|---|---|---|---|---|---|
+| greedy baseline | 40/60 | 197.0 | 1,205.7 | 24.0 | 36.88 |
+| best change of variables | 52/60 | 14.0 | 72.0 | 11.5 | 19.60 |
+| **`RECOMMENDED`** | **47/60** | **100.0** | **214.9** | **25.0** | **31.07** |
+
+The three arms solve different numbers of rows, so the cost columns are computed on the **40 rows all three solve** — scoring one arm's mean against another's denominator would rank the arm that solves less as the cheaper one. On those 40, the heuristic is 5.6× cheaper than the plain greedy on the mean and 2.0× on the median, at a shorter mean path.
+
+## What CI runs
+
+The suite here uses the 20-row subset at a node budget of 1,000, where the baseline solves **10/20** and `RECOMMENDED` **15/20** with nothing traded away — small enough to run on every push. Those twenty ids are `benchmark/subsets/benchmark_subset_20.json` verbatim, in file order; that file is not in this repo, so they are inlined in [`../../tests/test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py) with their provenance beside them.
+
+**Read 10 → 15 as a regression pin, not held-out validation:** 14 of those 20 rows are in the slice these weights were tuned on. On the 4 that were held out, the baseline solves 1 and `RECOMMENDED` solves 3.
 
 ## The features
 
