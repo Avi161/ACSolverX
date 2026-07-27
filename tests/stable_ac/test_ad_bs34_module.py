@@ -2,6 +2,7 @@ from experiments.stable_ac.verify_ad_bs34_module import (
     A,
     D,
     evaluated_ad_rows,
+    evaluated_relative_row,
     four_state_residuals,
     free_reduce,
     inverse_word,
@@ -36,7 +37,26 @@ def test_evaluated_fox_rows_are_the_literal_a_d_rows_in_the_quotient():
     )
 
 
+def test_relative_row_prefixes_g_times_d_row_and_rewrites_the_prefix():
+    assert evaluated_relative_row(1, "x") == (
+        {"q": 1, "qx": 1, "qxx": 1, "xTz": 1},
+        {"": -1, "t": -1, "tt": -1, "ttt": -1, "xT": -1},
+        {"xT": 1, "x": -1},
+        {"": 1, "tttt": -1},
+    )
+    assert evaluated_relative_row(-1, "qxxxQ") == (
+        {"q": 1, "qx": 1, "qxx": 1, "tttz": -1},
+        {"": -1, "t": -1, "tt": -1},
+        {"ttt": -1, "tttt": 1},
+        {"": 1, "tttt": -1},
+    )
+    assert evaluated_relative_row(-1, "qxxxQ") == evaluated_relative_row(-1, "tttt")
+    assert evaluated_relative_row(1, "qXXXQ") == evaluated_relative_row(1, "TTTT")
+    assert evaluated_relative_row(-1, "qxxxxxxQ") == evaluated_relative_row(-1, "tttttttt")
+    assert evaluated_relative_row(1, "zXZ") == evaluated_relative_row(1, "T")
+
+
 def test_four_state_identities_annihilate_every_evaluated_coordinate():
     for sigma in (1, -1):
-        for g in ("", "qZ", "xTqZ", "qzQZ"):
+        for g in ("", "qZ", "xTqZ", "qzQZ", "qXXXQ", "TTTT", "zXZ", "T"):
             assert four_state_residuals(sigma, g) == ({}, {}, {}, {})

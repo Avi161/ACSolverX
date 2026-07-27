@@ -75,7 +75,26 @@ def _impose_quotient_equalities(word: str) -> str:
     reduced = free_reduce(word)
     while reduced != previous:
         previous = reduced
-        reduced = reduced.replace("qxxxQ", "tttt").replace("zxZ", "t")
+        rewritten: list[str] = []
+        index = 0
+        while index < len(reduced):
+            letter = reduced[index]
+            if letter in "qz":
+                middle = "x" if index + 1 < len(reduced) and reduced[index + 1] == "x" else "X"
+                end = "Q" if letter == "q" else "Z"
+                cursor = index + 1
+                while cursor < len(reduced) and reduced[cursor] == middle:
+                    cursor += 1
+                power = cursor - index - 1
+                divisor = 3 if letter == "q" else 1
+                if power and power % divisor == 0 and cursor < len(reduced) and reduced[cursor] == end:
+                    t_letter = "t" if middle == "x" else "T"
+                    rewritten.append(t_letter * (4 * power // divisor if letter == "q" else power))
+                    index = cursor + 1
+                    continue
+            rewritten.append(letter)
+            index += 1
+        reduced = "".join(rewritten)
         reduced = free_reduce(reduced)
     return reduced
 
@@ -95,7 +114,89 @@ def evaluated_ad_rows() -> tuple[tuple[GroupRingElement, ...], tuple[GroupRingEl
     )
 
 
+def _add_elements(*elements: GroupRingElement) -> GroupRingElement:
+    result: GroupRingElement = {}
+    for element in elements:
+        for word, coefficient in element.items():
+            _add_term(result, word, coefficient)
+    return result
+
+
+def _scale_element(element: GroupRingElement, coefficient: int) -> GroupRingElement:
+    return {
+        word: coefficient * value
+        for word, value in element.items()
+        if coefficient * value
+    }
+
+
+def _prefix_element(prefix: str, element: GroupRingElement) -> GroupRingElement:
+    prefixed: GroupRingElement = {}
+    for word, coefficient in element.items():
+        _add_term(
+            prefixed,
+            _impose_quotient_equalities(prefix + word),
+            coefficient,
+        )
+    return prefixed
+
+
+def evaluated_relative_row(sigma: int, g: str) -> tuple[GroupRingElement, ...]:
+    """Build ``A_row + sigma*g*D_row`` in the evaluated quotient group ring."""
+    if sigma not in (1, -1):
+        raise ValueError("sigma must be 1 or -1")
+    evaluated_g = _impose_quotient_equalities(g)
+    a_row, d_row = evaluated_ad_rows()
+    return tuple(
+        _add_elements(
+            a_coordinate,
+            _scale_element(_prefix_element(evaluated_g, d_coordinate), sigma),
+        )
+        for a_coordinate, d_coordinate in zip(a_row, d_row, strict=True)
+    )
+
+
 StateVector = dict[tuple[int, str], int]
+SymbolicCoordinate = dict[tuple[bool, str], int]
+
+
+def _symbolic_relative_row(sigma: int) -> tuple[SymbolicCoordinate, ...]:
+    """Keep the two summands of ``A_row + sigma*g*D_row`` distinguishable."""
+    a_row, d_row = evaluated_ad_rows()
+    row: list[SymbolicCoordinate] = []
+    for a_coordinate, d_coordinate in zip(a_row, d_row, strict=True):
+        coordinate: SymbolicCoordinate = {}
+        for word, coefficient in a_coordinate.items():
+            coordinate[(False, word)] = coefficient
+        for word, coefficient in d_coordinate.items():
+            coordinate[(True, word)] = sigma * coefficient
+        row.append(coordinate)
+    return tuple(row)
+
+
+def _project_symbolic_coordinate(
+    coordinate: SymbolicCoordinate,
+    g: str,
+) -> GroupRingElement:
+    projected: GroupRingElement = {}
+    for (has_g_prefix, word), coefficient in coordinate.items():
+        _add_term(
+            projected,
+            _impose_quotient_equalities((g if has_g_prefix else "") + word),
+            coefficient,
+        )
+    return projected
+
+
+def _symbolic_part(
+    coordinate: SymbolicCoordinate,
+    has_g_prefix: bool,
+) -> GroupRingElement:
+    return {
+        word: coefficient
+        for (is_prefixed, word), coefficient in coordinate.items()
+        if is_prefixed == has_g_prefix
+    }
 
 
 def _state_add(*vectors: StateVector) -> StateVector:
@@ -116,15 +217,38 @@ def _state_scale(vector: StateVector, coefficient: int) -> StateVector:
     }
 
 
-def _state_right_multiply(
-    vector: StateVector,
-    t_shift: int = 0,
-    suffix: str = "",
-) -> StateVector:
-    return {
-        ((power + t_shift) % 4, tail + suffix): coefficient
-        for (power, tail), coefficient in vector.items()
-    }
+def _state_right_word(vector: StateVector, word: str) -> StateVector:
+    """Apply a t/z word to a four-state vector from left to right."""
+    result = vector
+    for letter in word:
+        if letter == "t":
+            result = {
+                ((power + 1) % 4, tail): coefficient
+                for (power, tail), coefficient in result.items()
+            }
+        elif letter == "T":
+            result = {
+                ((power - 1) % 4, tail): coefficient
+                for (power, tail), coefficient in result.items()
+            }
+        elif letter == "z":
+            result = {
+                (power, tail + "z"): coefficient
+                for (power, tail), coefficient in result.items()
+            }
+        else:
+            raise ValueError(f"four-state action cannot reduce {word!r}")
+    return result
+
+
+def _state_action(vector: StateVector, element: GroupRingElement) -> StateVector:
+    result: StateVector = {}
+    for word, coefficient in element.items():
+        result = _state_add(
+            result,
+            _state_scale(_state_right_word(vector, word), coefficient),
+        )
+    return result
 
 
 def _as_group_ring(vector: StateVector) -> GroupRingElement:
@@ -144,23 +268,31 @@ def four_state_residuals(sigma: int, g: str) -> tuple[GroupRingElement, ...]:
     """
     if sigma not in (1, -1):
         raise ValueError("sigma must be 1 or -1")
-    free_reduce(g)
-
     s: StateVector = {(power, ""): 1 for power in range(4)}
-    s_z = _state_right_multiply(s, suffix="z")
+    v: StateVector = {(0, ""): 1}
+    evaluated_g = _impose_quotient_equalities(g)
+    symbolic_row = _symbolic_relative_row(sigma)
+    relative_row = evaluated_relative_row(sigma, g)
 
-    # x: Sz + sigma(-sigma S)t^-1z; t: -S + sigma(-sigma S)(-t^-1).
-    x_residual = _state_add(s_z, _state_scale(s_z, -1))
-    t_residual = _state_add(_state_scale(s, -1), s)
+    residuals: list[GroupRingElement] = []
+    for index, (coordinate, concrete_coordinate) in enumerate(
+        zip(symbolic_row, relative_row, strict=True)
+    ):
+        if _project_symbolic_coordinate(coordinate, evaluated_g) != concrete_coordinate:
+            raise AssertionError("symbolic relative row does not match its group-ring row")
+        a_coordinate = _symbolic_part(coordinate, has_g_prefix=False)
+        g_d_coordinate = _symbolic_part(coordinate, has_g_prefix=True)
+        if index == 0:
+            if a_coordinate != {"q": 1, "qx": 1, "qxx": 1}:
+                raise AssertionError("x-coordinate is not q(1+x+x^2)")
+            a_action = _state_right_word(s, "z")
+        else:
+            a_action = _state_action(v, a_coordinate)
 
-    # z: sigma(-sigma S)(t^-1 - 1), using St^-1 = S; q: v(1-t^4).
-    z_residual = _state_add(
-        _state_scale(_state_right_multiply(s, t_shift=-1), -1),
-        s,
-    )
-    q_residual: StateVector = {}
-
-    return tuple(
-        _as_group_ring(residual)
-        for residual in (x_residual, t_residual, z_residual, q_residual)
-    )
+        g_d_action = _state_action(_state_scale(s, -sigma), g_d_coordinate)
+        residuals.append(
+            _as_group_ring(
+                _state_add(a_action, g_d_action)
+            )
+        )
+    return tuple(residuals)
