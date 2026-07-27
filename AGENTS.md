@@ -759,3 +759,8 @@
 
 - [TRAP] A proposed shortcut claimed that a primitive word with zero z-exponent must retract to a primitive or trivial word after \(z\mapsto1\). A bounded Nielsen construction produced a primitive counterexample whose rank-two retraction is nonprimitive.
 - [WORKS] Zero winding makes a primitive word primitive in the infinite cyclic-cover kernel, but says nothing this strong about the base retraction. Use Schreier/Fox data in the cover rather than collapsing every z-level.
+
+### 2026-07-27 Keep escalated Git checkpoints atomic
+
+- [TRAP] Chaining `git add`, `git commit`, and `git push` in one escalated command caused the approval review to time out and obscured which permission prefix applied.
+- [WORKS] Run staging, commit, and push as separate escalated calls with the matching narrow prefix and inspect staged state before the commit.
