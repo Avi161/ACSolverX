@@ -116,7 +116,7 @@ Expected: every quotient, Fox-row, and four-state assertion passes.
 - Establishes: a finite-module four-state vector satisfies
   `v*t = v` and `3*v*(q*z^-1) = 4*v`
 
-- [ ] **Step 1: Write the failing order-spectrum tests**
+- [x] **Step 1: Write the failing order-spectrum tests**
 
 For every \(1\le n\le300\), assert
 
@@ -132,14 +132,14 @@ For each compatible n, require
 3*b = 1 (mod n).
 ```
 
-- [ ] **Step 2: Prove the finite-order lemma**
+- [x] **Step 2: Prove the finite-order lemma**
 
 If x has order n, compute
 \(\operatorname{ord}(x^k)=n/\gcd(n,k)\). Since \(x^3\) and \(x^4\)
 are conjugate, their orders agree. Prove that
 \(\gcd(n,3)=\gcd(n,4)\) is possible only when both equal one.
 
-- [ ] **Step 3: Derive the module collapse**
+- [x] **Step 3: Derive the module collapse**
 
 Let n be the order of t. Use \(4a\equiv1\pmod n\) to derive
 \(vt=v\) from \(vt^4=v\). Put \(w=vz\). Derive, in order,
@@ -155,7 +155,7 @@ w*y*x = w*y
 State exactly that finite quotients erase the HNN index gap but may
 still detect the kernel component of a particular g.
 
-- [ ] **Step 4: Close only the literal representatives**
+- [x] **Step 4: Close only the literal representatives**
 
 Using `v*g = -4*sigma*v`, prove \(v=0\) for exactly
 
@@ -168,7 +168,7 @@ Using `v*g = -4*sigma*v`, prove \(v=0\) for exactly
 Do not replace the Result 56 conditions
 `pi(g) in {1, q*z^-1}` by these literal equalities.
 
-- [ ] **Step 5: Run the focused replay and update the theory index**
+- [x] **Step 5: Run the focused replay and update the theory index**
 
 Run the focused pytest file and syntax compilation. Label the result a
 finite-quotient module barrier, not an arbitrary-c obstruction.
