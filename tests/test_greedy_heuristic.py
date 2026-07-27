@@ -256,19 +256,29 @@ def test_untested_arm_rows_say_none_and_never_false(n):
     ARMS.md documents `tested = False` => `-1` in every numeric arm column and `none` in every
     string one. A `False` there would score a search that was never run as one that lost, which
     understates the transformed arms on exactly the subsets they were never run on.
+
+    Asserted over *every* column the contract covers rather than a chosen few — naming two of them
+    would leave `bestcov_path`, `bestcov_z` and the whole `m10k_*` block free to say `False`.
     """
+    identity = {"pres_id", "bin", "aut_class", "start_length", "r1", "r2", "tested"}
     path = os.path.join(_ROOT, "benchmark", "subsets", f"benchmark_subset_{n}_arms.csv")
     with open(path) as f:
         rows = list(csv.DictReader(f))
     assert len(rows) == n
+    untested = 0
     for row in rows:
         # The greedy ran on every row of every subset; only the transformed arms can be untested.
         assert row["greedy_solved"] == "True"
         if row["tested"] == "True":
             continue
-        for arm in ("bestcov", "heur"):
-            assert row[f"{arm}_solved"] == "none"
-            assert row[f"{arm}_nodes"] == "-1"
+        untested += 1
+        for column, value in row.items():
+            if column in identity or column.startswith("greedy_"):
+                continue
+            assert value in ("-1", "none"), f"{column} = {value!r} on untested row {row['pres_id']}"
+    # subset-60 is the row list both campaigns ran, so it alone has nothing untested. Everywhere
+    # else the guard has to actually fire — a vacuous pass here would prove nothing.
+    assert (untested == 0) == (n == 60)
 
 
 @pytest.mark.parametrize("n", [10, 20, 40, 60])
