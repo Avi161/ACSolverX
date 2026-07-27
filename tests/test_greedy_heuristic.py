@@ -271,6 +271,25 @@ def test_untested_arm_rows_say_none_and_never_false(n):
             assert row[f"{arm}_nodes"] == "-1"
 
 
+@pytest.mark.parametrize("n", [10, 20, 40, 60])
+def test_arms_csv_and_json_are_the_same_table(n):
+    """Each arms table ships twice. Two shipped representations that disagree is a real defect.
+
+    The JSON also records the weight vector its `heur_*` columns were measured with, so it pins
+    `RECOMMENDED` from the data side: a weight edit that left the doc alone would still be caught.
+    """
+    stem = os.path.join(_ROOT, "benchmark", "subsets", f"benchmark_subset_{n}_arms")
+    with open(stem + ".csv") as f:
+        from_csv = list(csv.DictReader(f))
+    with open(stem + ".json") as f:
+        doc = json.load(f)
+    assert doc["heuristic_weights"] == RECOMMENDED["segments"][0]["w"]
+    assert len(from_csv) == len(doc["rows"]) == n
+    for c, j in zip(from_csv, doc["rows"]):
+        # The CSV is the JSON stringified, so compare on that footing rather than re-typing it.
+        assert c == {k: ("" if v is None else str(v)) for k, v in j.items()}
+
+
 def test_every_feature_is_addressable_as_a_weight():
     """A name in FEATURES that no config can reference is a feature that silently does nothing."""
     for name in FEATURES:

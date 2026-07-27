@@ -43,7 +43,7 @@ Two caveats. The columns ran at **different budgets and caps** (10⁶/24, ≤20k
 
 ## What CI runs
 
-The 20-row subset at budget 1,000 — baseline **10/20**, `RECOMMENDED` **15/20**, nothing traded away. Those ids are `benchmark/subsets/benchmark_subset_20.json` verbatim, in file order; that file is not in this repo, so they are inlined in [`test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py) with their provenance.
+The 20-row subset at budget 1,000 — baseline **10/20**, `RECOMMENDED` **15/20**, nothing traded away. Those ids are [`benchmark/subsets/benchmark_subset_20.json`](../../benchmark/subsets/benchmark_subset_20.json) verbatim, in file order. They stay inlined in [`test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py) so CI measures a fixed row list even if the file changes, and `test_bench_ids_are_the_shipped_subset_20` pins the two together.
 
 A **regression pin, not held-out validation**: 14 of the 20 are in the slice these weights were tuned on. On the 4 held out, baseline 1, `RECOMMENDED` 3.
 
