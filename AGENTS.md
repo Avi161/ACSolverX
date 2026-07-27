@@ -764,3 +764,13 @@
 
 - [TRAP] Chaining `git add`, `git commit`, and `git push` in one escalated command caused the approval review to time out and obscured which permission prefix applied.
 - [WORKS] Run staging, commit, and push as separate escalated calls with the matching narrow prefix and inspect staged state before the commit.
+
+### 2026-07-27 Replay Fox rows before applying module relations
+
+- [TRAP] The first \(BS(3,4)\) four-state verifier wrote down already-cancelled module residuals without constructing \(\nabla A+\sigma g\nabla D\), so changes to the Fox row, coordinate order, or left \(g\)-factor could not make the test fail.
+- [WORKS] Build every tested residual from the independently computed Fox rows, then apply the proposed module rewrite rules. A proof replay must fail when its upstream algebra changes.
+
+### 2026-07-27 Finite \(BS(3,4)\) quotients erase the index gap
+
+- [TRAP] A planned finite-quotient module scan could not expose the \(3\)-versus-\(4\) HNN asymmetry: in every finite quotient, conjugacy of \(x^3\) and \(x^4\) forces \(\gcd(|x|,12)=1\), so \(vt^4=v\) already implies \(vt=v\).
+- [WORKS] Prove order-spectrum compatibility before scanning finite HNN quotients. Any residual A--D obstruction that uses the Baumslag--Solitar index gap must use an infinite quotient or infinite-dimensional module.

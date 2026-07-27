@@ -8,11 +8,12 @@ right-module obstruction for all three Result 56 projection fibers.
 **Architecture:** Rewrite the pair quotient as
 \(BS(3,4)*\langle z\rangle\), verify the exact evaluated Fox row, and
 reduce right-unimodularity to a three-relation cyclic module. Use exact
-finite quotient modules for discovery, then prove either a uniform
-module construction or an exact obstruction to that construction.
+finite-order algebra to prove why finite quotients erase the HNN index
+gap, then test an infinite Bass--Serre module for the three residual
+fibers.
 
-**Tech Stack:** Markdown proof, dependency-free Python, finite
-permutations, modular Gaussian elimination.
+**Tech Stack:** Markdown proof, dependency-free Python, free-product
+and HNN normal forms, exact integer arithmetic.
 
 ## Global Constraints
 
@@ -39,7 +40,7 @@ permutations, modular Gaussian elimination.
 - Produces: `evaluated_ad_rows() -> tuple[tuple[GroupRingElement, ...], tuple[GroupRingElement, ...]]`
 - Produces: `four_state_residuals(sigma: int, g: str) -> tuple[GroupRingElement, ...]`
 
-- [ ] **Step 1: Write the failing quotient test**
+- [x] **Step 1: Write the failing quotient test**
 
 Assert the substitutions
 
@@ -51,7 +52,7 @@ send D to the identity and A to a conjugate of
 `yxxxYXXXX`, and assert the inverse generator formulas
 `t=zxZ`, `q=zy`, `y=Zq`.
 
-- [ ] **Step 2: Run the quotient test and verify failure**
+- [x] **Step 2: Run the quotient test and verify failure**
 
 Run:
 
@@ -62,7 +63,7 @@ UV_CACHE_DIR=.scratch/uv-cache uv run --with pytest \
 
 Expected: import failure for `verify_ad_bs34_module`.
 
-- [ ] **Step 3: Implement free-word substitution and group-ring Fox evaluation**
+- [x] **Step 3: Implement free-word substitution and group-ring Fox evaluation**
 
 Differentiate the literal A and D words, then impose only the quotient
 equalities
@@ -81,7 +82,7 @@ A_z = 0                 D_z = t^-1-1
 A_q = 1-t^4             D_q = 0
 ```
 
-- [ ] **Step 4: Verify the four-state reduction**
+- [x] **Step 4: Verify the four-state reduction**
 
 Represent the formal vector actions
 
@@ -94,62 +95,87 @@ v q(1+x+x^2) = v(1+t+t^2+t^3) z
 and assert that substitution annihilates all four coordinates of
 `A_row + sigma*g*D_row`.
 
-- [ ] **Step 5: Run the focused test**
+- [x] **Step 5: Run the focused test**
 
 Expected: every quotient, Fox-row, and four-state assertion passes.
 
 ---
 
-### Task 2: Exact finite quotient discovery
+### Task 2: Finite-quotient collapse theorem
 
 **Files:**
 - Modify: `experiments/stable_ac/verify_ad_bs34_module.py`
 - Modify: `tests/stable_ac/test_ad_bs34_module.py`
-- Create: `results/stable_ac/analysis/ad_bs34_finite_module_scan.txt`
+- Create: `literature/proofs/AK3_AD_FINITE_QUOTIENT_MODULE_BARRIER.md`
+- Modify: `results/stable_ac/theory/AK3_DIRECT_STABLE_THEORY.md`
 
 **Interfaces:**
-- Produces: `Permutation = tuple[int, ...]`
-- Produces: `bs34_s5_models() -> tuple[dict[str, Permutation], ...]`
-- Produces: `common_right_annihilator_dimension(row, model, prime) -> int`
+- Produces: `finite_bs34_order_compatible(n: int) -> bool`
+- Produces: `finite_cyclic_collapse_certificate(n: int) -> tuple[int, int]`
+- Establishes: every finite image of x has order coprime to 12
+- Establishes: a finite-module four-state vector satisfies
+  `v*t = v` and `3*v*(q*z^-1) = 4*v`
 
-- [ ] **Step 1: Write failing finite-model tests**
+- [ ] **Step 1: Write the failing order-spectrum tests**
 
-Use \(x=(0\,1\,2\,3\,4)\). Enumerate permutations y satisfying
-\(yx^3y^{-1}=x^4\), and arbitrary z in \(S_5\). Define
-`t=z*x*z^-1`, `q=z*y`; assert A and D evaluate to the identity.
+For every \(1\le n\le300\), assert
 
-- [ ] **Step 2: Implement permutation and modular linear algebra**
-
-Implement composition, inverse, word evaluation, regular right action,
-row-matrix assembly, and row reduction over primes 5, 7, and 11.
-
-- [ ] **Step 3: Scan structurally distinct residual samples**
-
-For each sign, include:
-
-```text
-pi(c)=1:       1, x, t, [x,q], qxq^-1
-pi(c)=qz^-1:  qz^-1, xqz^-1, qxq^-1 qz^-1, [x,t]qz^-1
+```python
+finite_bs34_order_compatible(n) == (gcd(n, 12) == 1)
 ```
 
-Record model counts and annihilator dimensions. The file must label
-these as discovery evidence, never as an arbitrary-c theorem.
+For each compatible n, require
+`finite_cyclic_collapse_certificate(n)` to return `(a, b)` satisfying
 
-- [ ] **Step 4: Extract a candidate uniform representation**
+```text
+4*a = 1 (mod n)
+3*b = 1 (mod n).
+```
 
-Group successful certificates by the orbit of
-`(v, vt, vt^2, vt^3, vg)`. Retain only a pattern expressible from g and
-the group operations; discard certificates depending on the sampled
-spelling length.
+- [ ] **Step 2: Prove the finite-order lemma**
 
-- [ ] **Step 5: Run focused tests and save the scan**
+If x has order n, compute
+\(\operatorname{ord}(x^k)=n/\gcd(n,k)\). Since \(x^3\) and \(x^4\)
+are conjugate, their orders agree. Prove that
+\(\gcd(n,3)=\gcd(n,4)\) is possible only when both equal one.
 
-Expected: every reported certificate is replayed by direct matrix
-multiplication.
+- [ ] **Step 3: Derive the module collapse**
+
+Let n be the order of t. Use \(4a\equiv1\pmod n\) to derive
+\(vt=v\) from \(vt^4=v\). Put \(w=vz\). Derive, in order,
+
+```text
+w*x = w
+w*y*x^3 = w*y
+w*y*x = w*y
+3*w*y = 4*w
+3*v*(q*z^-1) = 4*v.
+```
+
+State exactly that finite quotients erase the HNN index gap but may
+still detect the kernel component of a particular g.
+
+- [ ] **Step 4: Close only the literal representatives**
+
+Using `v*g = -4*sigma*v`, prove \(v=0\) for exactly
+
+```text
+(sigma, g) = (+1, q*z^-1)
+(sigma, g) = (-1, 1)
+(sigma, g) = (-1, q*z^-1).
+```
+
+Do not replace the Result 56 conditions
+`pi(g) in {1, q*z^-1}` by these literal equalities.
+
+- [ ] **Step 5: Run the focused replay and update the theory index**
+
+Run the focused pytest file and syntax compilation. Label the result a
+finite-quotient module barrier, not an arbitrary-c obstruction.
 
 ---
 
-### Task 3: Prove or refute the cyclic-module construction
+### Task 3: Infinite HNN module for the residual fibers
 
 **Files:**
 - Create: `literature/proofs/AK3_AD_BS34_MODULE_OBSTRUCTION.md`
@@ -171,13 +197,26 @@ I_sigma,g = <
   Result 56 fiber, or a literal Bézout/collapse certificate showing
   that this proposed module cannot obstruct that fiber.
 
-- [ ] **Step 1: Translate the finite pattern into normal-form identities**
+- [ ] **Step 1: Parameterize the exact fibers**
 
-Write every proposed action in the free-product normal form
-\(BS(3,4)*\langle z\rangle\). Check the HNN pinches only through
-\(yx^3y^{-1}=x^4\).
+Let \(h=qz^{-1}=zyz^{-1}\) and let K be the kernel of the map killing
+x. Write the three fibers without choosing bounded representatives:
 
-- [ ] **Step 2: Prove nonzero or exhibit collapse**
+```text
+sigma=+1: g=k*h
+sigma=-1: g=k or g=k*h
+```
+
+for arbitrary \(k\in K\).
+
+- [ ] **Step 2: Construct the infinite normal-form module**
+
+Use an infinite coset or Bass--Serre-tree basis in which
+\(\langle x^3\rangle\) and \(\langle x^4\rangle\) have different
+indices. Define the right actions of x, y, and z and verify the HNN
+relation before imposing any relation involving g.
+
+- [ ] **Step 3: Prove nonzero or exhibit collapse**
 
 For a positive result, identify a basis vector or coset whose
 coefficient is invariant under all three right-ideal generators; this
@@ -191,19 +230,19 @@ right coefficients \(b_1,b_2,b_3\) satisfying
 = 1.
 ```
 
-- [ ] **Step 3: State only the proved scope**
+- [ ] **Step 4: State only the proved scope**
 
 If all three fibers are covered, conclude that arbitrary A--D relative
 products never create a primitive row. Otherwise state the exact
-covered fibers and the exact residual condition; do not extrapolate
-from Task 2.
+covered fibers and the exact residual condition. Do not infer an
+arbitrary-g theorem from the finite-quotient collapse in Task 2.
 
-- [ ] **Step 4: Add independent replay assertions**
+- [ ] **Step 5: Add independent replay assertions**
 
 Replay every displayed group-ring or matrix certificate literally in
 `test_ad_bs34_module.py`.
 
-- [ ] **Step 5: Run verification and hostile audit**
+- [ ] **Step 6: Run verification and hostile audit**
 
 Run the focused tests, the Result 56 regression, syntax compilation,
 and `git diff --check`. Obtain a read-only hostile audit of Fox
