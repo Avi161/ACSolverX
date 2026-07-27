@@ -197,7 +197,7 @@ I_sigma,g = <
   Result 56 fiber, or a literal Bézout/collapse certificate showing
   that this proposed module cannot obstruct that fiber.
 
-- [ ] **Step 1: Parameterize the exact fibers**
+- [x] **Step 1: Parameterize the exact fibers**
 
 Let \(h=qz^{-1}=zyz^{-1}\) and let K be the kernel of the map killing
 x. Write the three fibers without choosing bounded representatives:
@@ -209,14 +209,14 @@ sigma=-1: g=k or g=k*h
 
 for arbitrary \(k\in K\).
 
-- [ ] **Step 2: Construct the infinite normal-form module**
+- [x] **Step 2: Construct the infinite normal-form module**
 
 Use an infinite coset or Bass--Serre-tree basis in which
 \(\langle x^3\rangle\) and \(\langle x^4\rangle\) have different
 indices. Define the right actions of x, y, and z and verify the HNN
 relation before imposing any relation involving g.
 
-- [ ] **Step 3: Prove nonzero or exhibit collapse**
+- [x] **Step 3: Prove nonzero or exhibit collapse**
 
 For a positive result, identify a basis vector or coset whose
 coefficient is invariant under all three right-ideal generators; this
@@ -230,19 +230,19 @@ right coefficients \(b_1,b_2,b_3\) satisfying
 = 1.
 ```
 
-- [ ] **Step 4: State only the proved scope**
+- [x] **Step 4: State only the proved scope**
 
 If all three fibers are covered, conclude that arbitrary A--D relative
 products never create a primitive row. Otherwise state the exact
 covered fibers and the exact residual condition. Do not infer an
 arbitrary-g theorem from the finite-quotient collapse in Task 2.
 
-- [ ] **Step 5: Add independent replay assertions**
+- [x] **Step 5: Add independent replay assertions**
 
 Replay every displayed group-ring or matrix certificate literally in
 `test_ad_bs34_module.py`.
 
-- [ ] **Step 6: Run verification and hostile audit**
+- [x] **Step 6: Run verification and hostile audit**
 
 Run the focused tests, the Result 56 regression, syntax compilation,
 and `git diff --check`. Obtain a read-only hostile audit of Fox

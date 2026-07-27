@@ -7,6 +7,7 @@ relations annihilate the evaluated row for an arbitrary element ``g``.
 
 from __future__ import annotations
 
+from fractions import Fraction
 from math import gcd
 
 
@@ -312,3 +313,75 @@ def finite_cyclic_collapse_certificate(n: int) -> tuple[int, int]:
     if not finite_bs34_order_compatible(n):
         raise ValueError("n is incompatible with the BS(3,4) conjugacy relation")
     return pow(4, -1, n), pow(3, -1, n)
+
+
+AffineAction = tuple[Fraction, Fraction]
+ArithmeticProgression = tuple[Fraction, Fraction]
+
+
+def affine_word_action(word: str) -> AffineAction:
+    """Return ``(scale, offset)`` for the right affine action of an x,y word."""
+    if set(word) - set("xXyY"):
+        raise ValueError(f"affine action only accepts x and y: {word!r}")
+
+    scale = Fraction(1)
+    offset = Fraction(0)
+    for letter in word:
+        if letter == "x":
+            offset += 1
+        elif letter == "X":
+            offset -= 1
+        elif letter == "y":
+            scale *= Fraction(3, 4)
+            offset *= Fraction(3, 4)
+        else:
+            scale *= Fraction(4, 3)
+            offset *= Fraction(4, 3)
+    return scale, offset
+
+
+def progression_right_word(
+    progression: ArithmeticProgression,
+    word: str,
+) -> ArithmeticProgression:
+    """Map one rational arithmetic progression through the affine action."""
+    step, start = progression
+    if step <= 0:
+        raise ValueError("progression step must be positive")
+    scale, offset = affine_word_action(word)
+    image_step = step * scale
+    image_start = (start * scale + offset) % image_step
+    return image_step, image_start
+
+
+def integer_progression_partition(
+    progressions: tuple[ArithmeticProgression, ...],
+) -> bool:
+    """Decide the displayed exact partition of Z by all residue classes."""
+    if not progressions:
+        return False
+    step = progressions[0][0]
+    if step.denominator != 1 or step <= 0:
+        return False
+    modulus = step.numerator
+    return (
+        len(progressions) == modulus
+        and all(candidate_step == step for candidate_step, _ in progressions)
+        and {
+            start.numerator
+            for _, start in progressions
+            if start.denominator == 1
+        }
+        == set(range(modulus))
+    )
+
+
+def relative_free_u_action(
+    sigma: int,
+    vector: tuple[int, int],
+) -> tuple[int, int]:
+    """Apply the explicit U on coordinates in the basis (w, wR4)."""
+    if sigma not in (1, -1):
+        raise ValueError("sigma must be 1 or -1")
+    w_coefficient, w_r4_coefficient = vector
+    return w_r4_coefficient, -sigma * w_coefficient

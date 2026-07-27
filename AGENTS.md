@@ -774,3 +774,8 @@
 
 - [TRAP] A planned finite-quotient module scan could not expose the \(3\)-versus-\(4\) HNN asymmetry: in every finite quotient, conjugacy of \(x^3\) and \(x^4\) forces \(\gcd(|x|,12)=1\), so \(vt^4=v\) already implies \(vt=v\).
 - [WORKS] Prove order-spectrum compatibility before scanning finite HNN quotients. Any residual A--D obstruction that uses the Baumslag--Solitar index gap must use an infinite quotient or infinite-dimensional module.
+
+### 2026-07-27 Check ignored proof whitespace after force-add
+
+- [TRAP] `git diff --check` did not inspect a new ignored proof file before it was force-added, so a trailing space survived the first verification pass.
+- [WORKS] Force-add each requested ignored proof before the final audit, then run both `git diff --check` and `git diff --cached --check`.

@@ -1,15 +1,20 @@
+from fractions import Fraction
 from math import gcd
 
 from experiments.stable_ac.verify_ad_bs34_module import (
     A,
     D,
+    affine_word_action,
     evaluated_ad_rows,
     evaluated_relative_row,
     finite_bs34_order_compatible,
     finite_cyclic_collapse_certificate,
     four_state_residuals,
     free_reduce,
+    integer_progression_partition,
     inverse_word,
+    progression_right_word,
+    relative_free_u_action,
     substitute_word,
 )
 
@@ -77,3 +82,70 @@ def test_compatible_finite_orders_have_cyclic_collapse_certificates():
             a, b = finite_cyclic_collapse_certificate(n)
             assert (4 * a) % n == 1 % n
             assert (3 * b) % n == 1 % n
+
+
+def test_affine_bs34_action_and_comb_partitions_are_exact():
+    assert affine_word_action("yxxxY") == affine_word_action("xxxx")
+    assert affine_word_action("xxxx") == (Fraction(1), Fraction(4))
+
+    four_z = (Fraction(4), Fraction(0))
+    assert progression_right_word(four_z, "xxxx") == four_z
+
+    y_r3 = tuple(
+        progression_right_word(four_z, "y" + "x" * power)
+        for power in range(3)
+    )
+    r4 = tuple(
+        progression_right_word(four_z, "x" * power)
+        for power in range(4)
+    )
+    assert y_r3 == (
+        (Fraction(3), Fraction(0)),
+        (Fraction(3), Fraction(1)),
+        (Fraction(3), Fraction(2)),
+    )
+    assert r4 == (
+        (Fraction(4), Fraction(0)),
+        (Fraction(4), Fraction(1)),
+        (Fraction(4), Fraction(2)),
+        (Fraction(4), Fraction(3)),
+    )
+    assert integer_progression_partition(y_r3)
+    assert integer_progression_partition(r4)
+
+
+def test_w_to_v_coordinate_change_is_literal_in_the_universal_quotient():
+    forward = {"x": "x", "t": "zxZ", "z": "z", "q": "zy"}
+
+    assert substitute_word("Zq", forward) == "y"
+    for power in range(5):
+        assert substitute_word("Z" + "t" * power + "z", forward) == "x" * power
+
+
+def test_relative_free_u_action_is_an_explicit_automorphism():
+    w = (1, 0)
+    w_r4 = (0, 1)
+
+    for sigma in (1, -1):
+        assert relative_free_u_action(sigma, w) == (0, -sigma)
+        assert relative_free_u_action(sigma, w_r4) == w
+        assert relative_free_u_action(
+            sigma,
+            relative_free_u_action(sigma, (7, -5)),
+        ) == (-7 * sigma, 5 * sigma)
+
+
+def test_two_comb_vectors_are_nonzero_and_linearly_independent():
+    def values_at_zero_and_one(vector):
+        w_coefficient, w_r4_coefficient = vector
+        return (
+            w_coefficient + w_r4_coefficient,
+            w_r4_coefficient,
+        )
+
+    w_values = values_at_zero_and_one((1, 0))
+    w_r4_values = values_at_zero_and_one((0, 1))
+
+    assert w_values == (1, 0)
+    assert w_r4_values == (1, 1)
+    assert w_values[0] * w_r4_values[1] - w_values[1] * w_r4_values[0] == 1

@@ -3322,6 +3322,59 @@ in a finite quotient, and that component can still be detected. The
 result is a structural barrier to the finite-module route, not an
 arbitrary-\(c\) obstruction.
 
+## Result 58: a relative-free \(BS(3,4)\) module obstructs primitivity
+
+The infinite-module construction is proved in
+
+```text
+literature/proofs/AK3_AD_BS34_MODULE_OBSTRUCTION.md
+```
+
+Put
+
+\[
+B=BS(3,4),\qquad G=B*\langle z\rangle,\qquad u=z^{-1}gz.
+\]
+
+If the natural homomorphism
+
+\[
+B*\langle s\rangle\longrightarrow G,
+\qquad s\longmapsto u,
+\]
+
+which is the identity on \(B\), is injective, then the exact A--D Fox
+row has a nonzero right-module annihilator. Indeed, the right affine
+action
+
+\[
+r x=r+1,\qquad r y=\frac34r
+\]
+
+on \(\mathbb Q\) respects \(yx^3y^{-1}=x^4\). In the permutation
+module of all \(\mathbb Q\)-valued functions, the indicator
+\(w=\mathbf1_{4\mathbb Z}\) satisfies
+
+\[
+wx^4=w,\qquad wy(1+x+x^2)=w(1+x+x^2+x^3).
+\]
+
+The two nonzero vectors \(w\) and
+\(w(1+x+x^2+x^3)=\mathbf1_{\mathbb Z}\) are linearly independent.
+An automorphism can therefore send the first to \(-\sigma\) times the
+second. The relative-free hypothesis makes this the action of \(u\).
+Induction from \(\langle B,u\rangle\) to \(G\) preserves \(w\ne0\);
+with \(v=wz^{-1}\), the three original four-state relations follow
+with coefficients on the right.
+
+This proves nonprimitivity only under the displayed injectivity
+hypothesis. It is not proved by \(u\notin B\). The exact unresolved
+residue is every \(u\) for which the homomorphism fails to be
+injective, including all \(u\in B\). For the internal cases
+\(g=zbz^{-1}\) in Result 56, the positive and negative \(h\)-fibers
+have \(e_y(b)=1\), while the negative identity fiber has \(e_y(b)=0\).
+All these internal cases have \(u=b\in B\) and remain unresolved.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3384,8 +3437,11 @@ in the fixed D-then-mixed-Q order. Results 55--56 confine arbitrary
 A--D primitive creation to three exact normalized projection fibers:
 \(\pi(c)=qz^{-1}\) for the positive source and
 \(\pi(c)\in\{1,qz^{-1}\}\) for the negative source. The immediate
-exact leads are therefore z-dependent A--W conjugators, those three
-A--D fibers, arbitrary W--D conjugators,
+relative-free \(BS(3,4)\) module now obstructs the part of those
+fibers satisfying its injectivity hypothesis, but every failure of
+that hypothesis remains open. The immediate exact leads are therefore
+z-dependent A--W conjugators, the non-relative-free residue of those
+three A--D fibers, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
@@ -3513,7 +3569,7 @@ row now gives an unbounded exponent sieve: primitivity forces
 \((\sigma,e_q)=(+,1),(-,0),(-,1)\) escape the chosen character slice.
 A different viable primitive-slot branch must therefore use
 z-dependent A--W traffic, one of Result 56's three exact A--D
-projection fibers,
+projection fibers outside the proved relative-free class,
 arbitrary W--D relative traffic,
 non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
 two row changes before deletion, another \(Wq^{-1}\) block, a
