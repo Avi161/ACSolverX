@@ -3809,6 +3809,11 @@ d_O(b_{\ell,p,r})=
 \end{cases}
 \]
 
+Because \(a^{-r}x^{-p}=z_r^{-p}a^{-r}\) and \(z_r\in K_b\), the
+parameter \(p\) disappears from both exact scalar stencils.  The
+twenty-four codes therefore represent only eight scalar systems,
+indexed by \((\ell,r)\).
+
 For \(\ell=0\), the outgoing equation folds to
 
 \[
@@ -3825,10 +3830,11 @@ coefficient \(26\) or \(28\) times every value of \(s\).  Thus, for
 =\mathbb Q[B].
 \]
 
-This closes all six \(\ell=0\) codes, including the minimal failed
-leaf geometry \(y^2xy^{-1}\), by scalar collapse rather than
-interpolation.  For the other eighteen codes the exact fold pair is
-\((4,3)\), so neither stencil is scalar and no outcome is claimed.
+This closes all six \(\ell=0\) codes, representing two scalar systems,
+including the minimal failed leaf geometry \(y^2xy^{-1}\), by scalar
+collapse rather than interpolation.  The other eighteen codes
+represent six systems with exact fold pair \((4,3)\), so neither
+stencil is scalar and no outcome is claimed.
 The collapse is a failure of the flow obstruction only, not a
 primitivity or Andrews--Curtis theorem.
 
@@ -3874,6 +3880,43 @@ This closes an entire tempting representation route, including every
 seed function and every constant invertible \(y\)-twist.  It does not
 prove the universal flow module collapses and gives no primitivity or
 Andrews--Curtis conclusion.
+
+**Result 67 (finite nilpotent/Magnus primitivity tests are blind).**
+The proof is in
+literature/proofs/AK3_AD_NILPOTENT_PRIMITIVITY_NO_GO.md.
+
+For every relative conjugator \(c\),
+
+\[
+\operatorname{ab}(P_+(c))=(4,-5,0,0),
+\qquad
+\operatorname{ab}(P_-(c))=(2,-3,0,0).
+\]
+
+Both vectors are primitive.  More generally, any word with primitive
+integral abelianization maps to a primitive element of every free
+nilpotent quotient \(F_n/\gamma_{s+1}F_n\).  After choosing a basis
+whose first member has the same abelianization as the word, substitute
+the word for that member.  The resulting endomorphism is the identity
+on abelianization.  Its image \(H\) satisfies
+\(H\gamma_2=N\); commutator collection gives
+\(\gamma_j\subseteq H\gamma_{j+1}\), hence \(H=N\).  Hopficity makes
+the endomorphism an automorphism.
+
+Consequently every \(P_\sigma(c)\) is primitive in every free
+nilpotent quotient, including the concrete negative--positive
+length-two flow-collapse families.  Since a finite-degree integral
+Magnus expansion factors through a finite lower-central quotient,
+ordinary degree-two and all fixed finite quotient-primitivity tests
+on truncated Magnus images cannot obstruct this family.  Standard
+finite free
+lower-\(p\)-central and Zassenhaus quotients are blind for the same
+Frattini-quotient reason.
+
+This does not exclude a second Fox/Jacobian obstruction which retains
+lift data rather than only the truncated word image.  It sharply
+removes nilpotent quotient-primitivity tests, not finer induced-orbit
+invariants or the full higher-order Fox route.
 
 ## Live lead
 

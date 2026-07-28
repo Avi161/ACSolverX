@@ -1742,6 +1742,19 @@ s(K_ba^{-r}x^{-p}u^{-\ell}x^jg)
 \tag{104}
 \]
 
+The parameter \(p\) disappears from the entire scalar system.  For
+every suffix \(q\in B\),
+
+\[
+K_ba^{-r}x^{-p}q
+=K_bz_r^{-p}a^{-r}q
+=K_ba^{-r}q.
+\]
+
+Thus the twenty-four normalized codes (95) yield only eight distinct
+systems, indexed by \((\ell,r)\); the eighteen multiport codes below
+yield only six.
+
 When \(\ell=0\), the three targets in (104) are all
 \(K_ba^{-r}g\), because
 \(a^{-r}x^{j-p}=z_r^{\,j-p}a^{-r}\).  Thus
@@ -1770,7 +1783,8 @@ duality in Section 8, for \(p=0,1,2\), \(r=1,2\), and both signs,
 \]
 
 This closes all six normalized sign-\((+,+,-)\) codes with
-\(\ell=0\), including (62).  For the remaining eighteen codes
+\(\ell=0\), representing two scalar systems, including (62).  For the
+remaining eighteen codes, representing six scalar systems,
 \(\ell=1,2,3\), the exact fold pair is \((d_I,d_O)=(4,3)\); neither
 stencil is scalar, so this argument proves neither collapse nor
 propriety.  As before, flow collapse is not a primitivity theorem and
@@ -1906,5 +1920,5 @@ This does not say that the universal flow quotient is zero: it says
 that the full affine coinduced family cannot witness its propriety.
 In particular, changing the seed function, taking all functions
 instead of finitely supported functions, or adding a constant
-\(y\)-character cannot resolve the eighteen multiport codes left open
-in Section 15.
+\(y\)-character cannot resolve the six multiport scalar systems left
+open in Section 15.
