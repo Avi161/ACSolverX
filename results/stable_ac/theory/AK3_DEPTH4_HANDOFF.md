@@ -571,6 +571,74 @@ The exact proofs and checkers are
 \end{gathered}
 \]
 
+### A source-coupled syzygy kills all three recorded bits
+
+There is a second exact homogeneous syzygy \(z\), now with
+\[
+z_1=e_{ct},
+\]
+16 support entries and coefficient \(\ell^1\)-norm 16.  The source column
+\(L_1e_{ct}\) has sum zero on both binomial-forest orbits.  In the free
+basis \(A=t,B=X,G=U^{-1}t^{-1}\), its two connecting paths are
+\[
+ctcTcttct\xrightarrow{\ aGbaGaGbAA\ }tt,
+\qquad
+ttct\xrightarrow{\ aaBgA\ }ctcTctt.
+\]
+Their exact edge flow reconstructs \(z\) and verifies
+\(\sum_iL_i z_i=0\).
+
+Adding \(z\) to the canonical first-layer solution produces a residual of
+free length 322, kernel length 70, and wedge support 112.  The full wedge
+sum is \(-10\), the three-point vector is \((-1,-21,-10)\), and the
+four-point vector is \((6,6,5,6,-3,-4)\). Therefore
+\[
+(\Phi_\infty,\Phi_3,\Phi_4)=(0,0,0).
+\]
+The three recorded functionals are not a global degree-two obstruction.
+They do not decide global image membership of the complete 112-term residual
+in \(\sum_iL_i(\Lambda^2M)\); the next section closes that question
+negatively for this lift with a different quotient.
+
+The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_PHI4\_ESCAPE.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_phi4\_escape\_certificate.py}.
+\end{gathered}
+\]
+
+### A cyclic three-point quotient obstructs that lift
+
+Global image membership of the full 112-term residual for the preceding lift
+is now closed negatively. Over \(\mathbb F_2\), use
+\[
+c=1,\qquad t=(0\ 1\ 2)
+\]
+on three points. The sum of the three wedge coordinates is \(Q\)-invariant
+and annihilates every \(L_i\)-image because all five operators have
+augmentation zero. The source-coupled residual maps exactly to
+\[
+(-1,-3,-3),
+\]
+whose sum is odd. Thus it does not lift through degree two. The induced
+operator image has rank two, while adjoining the residual raises the rank
+to three.
+
+The four functionals
+\(\Phi_\infty,\Phi_3,\Phi_4,\Psi_{\rm cyc}\) also separate all 16 exact
+nonlinear replays in the mod-two affine span of the two one-hop directions
+and the two known remote syzygies. This is not a global classification of
+all compact homogeneous syzygies.
+
+The proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_CYCLIC\_DEGREE\_TWO\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_cyclic\_degree\_two\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -585,9 +653,12 @@ The exact proofs and checkers are
    polynomial argument proves full majority-killing \(SU(2)\) blindness
    for the sixth. The period-two quotient is also blind by an exact
    hyperbolic witness, and its complete relation-module lift obstruction
-   vanishes. Degree two rules out every one-hop lift. A first exact remote
-   syzygy clears the two old bits but is separated by a four-point wedge
-   quotient. Pure binomial cycles are impossible, so the next correction
-   must again use \(L_0\) or \(L_1\) and kill the four-point parity.
+   vanishes. Degree two rules out every one-hop lift. Remote source-coupled
+   syzygies defeat the first three recorded wedge bits, but a cyclic
+   three-point quotient separates the new lift and all 16 classes in the
+   currently known four-direction span. The next exact problem is to build a
+   fifth compact source-coupled direction outside that span which kills all
+   four bits, or prove that the four quotient functionals control the full
+   homogeneous syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

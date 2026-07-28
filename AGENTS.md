@@ -1190,3 +1190,33 @@
 
 - [TRAP] A parameterized source-flow probe reconstructed the known exponent-one syzygy at radius two, then spent the remaining budget expanding the exponent-two forest component without first deciding whether its source boundary balanced on each subgroup orbit.
 - [WORKS] Reduce candidate (L_0w_0+L_1w_1) boundaries to exact (K\backslash Q/\langle c\rangle) orbit sums before building paths. Construct the unique tree flow only for orbit-balanced candidates, and flush each completed family record immediately.
+
+### 2026-07-28 Rewrite balanced forest paths algebraically
+
+- [TRAP] Even after the exponent-four source boundary passed exact orbit balance, radius-first construction again expanded for more than a minute without returning a flow.
+- [WORKS] Orbit balance proves existence but does not make breadth-first path recovery efficient. Rewrite each endpoint ratio in the free subgroup generators and emit the corresponding tree path directly; do not resume radius expansion for balanced source boundaries.
+
+### 2026-07-28 Use an isolated pytest runtime for certificate tests
+
+- [TRAP] The system `python3` runs the standard-library certificates but does not provide `pytest`, so `python3 -m pytest` fails with `No module named pytest`.
+- [WORKS] Run focused proof tests with `uv run --with pytest python3 -m pytest ...`; keep direct certificate replay on system `python3` when it has no third-party imports.
+
+### 2026-07-28 Split multi-file proof-ledger patches
+
+- [TRAP] One combined `apply_patch` for the direct ledger and handoff was rejected atomically because the continuation paragraph differed slightly from the copied context; neither file changed.
+- [WORKS] Read the exact insertion neighborhoods and patch long proof ledgers one file at a time. Re-read both result blocks before validation.
+
+### 2026-07-28 Keep Python bytecode inside the project
+
+- [TRAP] System `python3 -m py_compile` tried to write under `~/Library/Caches/com.apple.python/...` and failed with `PermissionError`, even though the source files were readable.
+- [WORKS] Set `PYTHONPYCACHEPREFIX=.scratch/pycache` for syntax-only compilation in this worktree, or rely on a successful direct certificate import when compilation adds no evidence.
+
+### 2026-07-28 Put the project root on scratch-script imports
+
+- [TRAP] Executing `.scratch/depth4_period2_phi4_finite_action_search.py` directly set the script directory, not the worktree root, on `sys.path` and failed to import `experiments`.
+- [WORKS] For scratch scripts using project-package imports, run with `PYTHONPATH=.` from the worktree root or spec-load every dependency under its exact fallback module name.
+
+### 2026-07-28 Include the identity involution in period-two quotients
+
+- [TRAP] The first finite-action enumeration started the number of transpositions in the image of `c` at one, omitting the legal quotient `c=1`; it found a valid four-point separator but missed the simpler cyclic three-point separator.
+- [WORKS] When enumerating representations of `Q=<c,t | c^2=1>`, include every involution cycle type, starting with the identity. Killing `c` can change wedge-pair collisions even when nontrivial `c`-actions are blind.
