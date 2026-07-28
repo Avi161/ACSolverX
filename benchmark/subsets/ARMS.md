@@ -53,6 +53,8 @@ Shipped as `RECOMMENDED` in `experiments/heuristic_search/core/hsolve.py`; the p
 
 `bestcov_z` is the change of variables that produced the win and `bestcov_class` how it acts (`relabel` = a pure renaming, which is most of them — a rename is not a no-op, because the greedy reads strings, not orbits).
 
+**Combined** — `b1k_*`, the 2×2 of *transform the start* × *change the ordering*, every arm one search at budget 1,000, from `results/comparison/cov_heur_b1k_subset60.csv`. It is the only block whose arms do **not** all solve: an unsolved row there carries `nodes = 1,000` and a blank path, so never take a mean across it. Read it in the section below.
+
 ## What the numbers say
 
 On subset-60 all three arms solve **60/60**, so every row below is a like-for-like row. **Read the median, not the mean** — both are given because the mean is dominated by a handful of second-hump rows (greedy: mean 45,244 against a median of 1,310, a 35× skew).
@@ -68,3 +70,22 @@ Both transformed arms cost **less** than the untransformed greedy on the same ro
 At the matched budget of 10,000 and cap 24, the solve counts are greedy **40/60**, best CoV **52/60**, heuristic **47/60**. That is the controlled comparison; the table above is best-known cost, where each arm ran at a different budget.
 
 > The best-CoV column is an **oracle**: 2,383 median nodes is what the winning `z` costs *once you know which `z` wins*, and finding it cost ~2.2M nodes per presentation of sweeping. It is a lower bound on a transformed route, not a runnable procedure ([why that distinction matters](../../experiments/lessons/price-the-untransformed-route.md)). The heuristic column has no such caveat — it is one search, with one fixed ordering.
+
+## Combining them: transform × ordering at budget 1,000
+
+`b1k_covheur_*` is the combination the CoV work and the heuristic work each point at: singly destabilise with the winning `z` (`bestcov_z`), then search the transformed pair with the recommended ordering. Every arm here is **one** search at budget 1,000.
+
+**The comparison that is controlled** — `b1k_covheur_*` against `b1k_covgreedy_*`: same transformed start, same per-row cap, the ordering is the only difference.
+
+| arm on the best-CoV start | solved | gained | lost |
+|---|---|---|---|
+| length-only ordering (`b1k_covgreedy_*`) | 45/60 | — | — |
+| recommended ordering (`b1k_covheur_*`) | **43/60** | 0 | 2 |
+
+**The ordering does not add to the transform.** It gains **0** rows and loses **2** (634 (bin 9), 635 (bin 9)): the solved sets are nested, covheur ⊂ covgreedy. The union of all four `b1k_*` arms is 45/60 — nothing anywhere in the block reaches a row the transform alone misses.
+
+On the 43 rows both CoV arms solve it is not paying for those losses in nodes: the medians tie at 15 nodes and the mean nearly halves, 49.3 against 88.6 — cheaper on 19 rows, equal on 13, dearer on 11. What the ordering costs on this start is reach at the hard end, not nodes on the rows it reaches.
+
+**Reference, not a matched comparison** — the same two orderings on the *untransformed* pair are `b1k_greedy_*` 29/60 and `b1k_heur_*` 43/60. Do not read those against the CoV row as a clean 2×2: a CoV lengthens relators, so a transformed arm runs at `b1k_cov_cap` = longest + 16 (24–46 on these rows) while an untransformed one runs at 24, and [a CoV row compared against a control at a different `max_relator_length` is not a comparison](../../experiments/lessons/control-with-no-dynamic-range.md). The cap is carried per row so the confound stays visible.
+
+> Two caveats the controlled contrast cannot shed. **The `z` is a doubly-selected oracle**: it is the cheapest of ~80–174 subword CoVs (~2.2M nodes per presentation to find) *and* it was ranked by what **length-only** ordering cost at ≤20,000 nodes. So `b1k_covheur_*` runs the recommended ordering from a start chosen to suit the other ordering, which is not a clean measurement of either. **And on 29 of the 60 rows more than one transformed start ties for cheapest** (`b1k_cov_n_tied_starts`); the winner is a first-seen tie-break, so on those rows the transformed pair is arbitrary among starts that are equally cheap *for length-only ordering*. The 2 lost rows are not among them — each has a unique cheapest CoV start, so the tie-break did not choose their start for them.

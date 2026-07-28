@@ -1,0 +1,64 @@
+{
+  "n_seeds": 237,
+  "n_seeds_solved": 113,
+  "n_seeds_unsolved": 124,
+  "n_cov_total": 18486,
+  "n_relabels_dropped": 16039,
+  "n_moved_cov_applications": 2447,
+  "n_unique_orbits": 1566,
+  "n_seed_orbits": 237,
+  "n_moved_orbits": 1329,
+  "n_edges": 2447,
+  "n_seed_hits": 677,
+  "seed_hit_counts": {
+    "unsolved_to_solved": 0,
+    "solved_to_unsolved": 0,
+    "solved_to_solved": 677,
+    "unsolved_to_unsolved": 0
+  },
+  "source_side_counts": {
+    "solved": 523,
+    "unsolved": 1043,
+    "both": 0
+  },
+  "n_subs1_total": 16037,
+  "n_subs1_moved": 0,
+  "n_subs1_all_relabel": true,
+  "n_subs_hist_all": {
+    "1": 16037,
+    "2": 1807,
+    "3": 416,
+    "4": 98,
+    "5": 43,
+    "6": 34,
+    "7": 33,
+    "8": 13,
+    "9": 5
+  },
+  "n_subs_hist_relabel": {
+    "1": 16037,
+    "2": 1,
+    "3": 1
+  },
+  "n_subs_hist_moved": {
+    "2": 1806,
+    "3": 415,
+    "4": 98,
+    "5": 43,
+    "6": 34,
+    "7": 33,
+    "8": 13,
+    "9": 5
+  },
+  "cap": 24,
+  "family": "subnc2pxysb",
+  "fast_canon": true,
+  "slow_aut_canon_spot_check": 20,
+  "edge_replay_spot_check": 20,
+  "wall_seconds": 7.24,
+  "moved_orbits_by_source_side": {
+    "solved_seeds_only": 410,
+    "unsolved_seeds_only": 919,
+    "both": 0
+  }
+}

@@ -16,7 +16,7 @@ numeric arm column and ``"none"`` in every string one -- **including ``*_solved`
 be ``False`` there**: ``False`` says "we ran it and it did not solve", a far stronger claim than
 "we have not run it". Every summary counts ``tested`` rows only.
 
-Two blocks of columns, and they answer different questions.
+Three blocks of columns, and they answer different questions.
 
 **Best-known** (``greedy_*``, ``bestcov_*``, ``heur_*``) -- the cheapest solve anyone has recorded,
 each arm at its own budget and its own relator cap. This is what "how expensive is this row" means
@@ -28,8 +28,17 @@ at 1,000,000 / <=20,000 / 100,000 nodes and at cap 24 / 24 / 48. Never read a ra
 length-only control reproduces the plain greedy pop for pop on all 60 rows. This is the block a
 head-to-head claim belongs in.
 
+**Combined** (``b1k_*``) -- the 2x2 of *transform the start* x *change the ordering*, every arm one
+search at budget 1,000, from ``results/comparison/cov_heur_b1k_subset60.csv``. ``b1k_covheur_*`` is
+the combination: singly destabilise with the winning ``z`` (the same ``bestcov_z`` this file already
+carries), then search with the recommended ordering. Its control is ``b1k_covgreedy_*`` -- same
+start, same per-row cap (``b1k_cov_cap``), ordering the only difference. Unlike the blocks above,
+**these arms do not all solve**, so an unsolved row carries ``nodes = 1,000`` and a blank path; no
+mean or median over them is taken except over the rows the compared arms both solve.
+
 Run::
 
+    .venv/bin/python3 -m experiments.heuristic_search.runners.cov_heur_b1k   # writes the b1k source
     .venv/bin/python3 -m experiments.analysis.benchmark_arms
 """
 import csv
@@ -57,6 +66,7 @@ BESTCOV_CSV = os.path.join(COMPARISON, "greedy_vs_bestcov_subset60_nodes_path.cs
 THREEWAY_CSV = os.path.join(COMPARISON, "three_way_b10k_subset60.csv")
 EXP28_JSONL = os.path.join(REPO, "results", "heuristic_search", "runs",
                            "EXP28_colab_scale.jsonl")
+B1K_CSV = os.path.join(COMPARISON, "cov_heur_b1k_subset60.csv")
 
 SIZES = (10, 20, 40, 60)
 
@@ -94,6 +104,9 @@ ARMS = {
              "source": "results/heuristic_search/runs/EXP28_colab_scale.jsonl, arm=recommended"},
     "m10k": {"what": "all three arms at a matched budget and cap", "budget": 10_000, "cap": 24,
              "source": "results/comparison/three_way_b10k_subset60.csv"},
+    "b1k": {"what": "transform x ordering, 2x2 -- greedy / heuristic, on the original pair and on "
+                    "the best-CoV pair", "budget": 1_000, "cap": "24 (original) / b1k_cov_cap (CoV)",
+            "source": "results/comparison/cov_heur_b1k_subset60.csv"},
 }
 
 FIELDS = [
@@ -107,7 +120,14 @@ FIELDS = [
     "m10k_greedy_solved", "m10k_greedy_nodes", "m10k_greedy_path",
     "m10k_bestcov_solved", "m10k_bestcov_nodes", "m10k_bestcov_path",
     "m10k_heur_solved", "m10k_heur_nodes", "m10k_heur_path",
+    # budget 1,000 -- the 2x2 of transform x ordering; these arms do NOT all solve
+    "b1k_greedy_solved", "b1k_greedy_nodes", "b1k_greedy_path",
+    "b1k_heur_solved", "b1k_heur_nodes", "b1k_heur_path",
+    "b1k_covgreedy_solved", "b1k_covgreedy_nodes", "b1k_covgreedy_path",
+    "b1k_covheur_solved", "b1k_covheur_nodes", "b1k_covheur_path",
+    "b1k_cov_cap", "b1k_cov_n_tied_starts",
 ]
+B1K_ARMS = ("b1k_greedy", "b1k_heur", "b1k_covgreedy", "b1k_covheur")
 
 
 def _int(v):
@@ -172,24 +192,43 @@ def load_matched():
     return out
 
 
+def load_b1k():
+    """pres_id -> the 2x2 at budget 1,000: {greedy, heur} x {original pair, best-CoV pair}.
+
+    An unsolved row here is a real measurement, not a gap: it carries ``solved = False``,
+    ``nodes = 1,000`` (the budget) and a blank path, exactly as the m10k block does.
+    """
+    out = {}
+    with open(B1K_CSV) as f:
+        for r in csv.DictReader(f):
+            row = {"b1k_cov_cap": _int(r["cov_cap"]),
+                   "b1k_cov_n_tied_starts": _int(r["cov_n_tied_starts"])}
+            for arm in B1K_ARMS:
+                row[f"{arm}_solved"] = _bool(r[f"{arm}_solved"])
+                row[f"{arm}_nodes"] = _int(r[f"{arm}_nodes"])
+                row[f"{arm}_path"] = _int(r[f"{arm}_path"]) if r[f"{arm}_path"] else ""
+            out[int(r["pres_id"])] = row
+    return out
+
+
 def _untested_block():
     """Every arm column marked not-tested: -1 for numbers, "none" for strings and solved flags."""
     out = {}
     for k in FIELDS:
-        if not k.startswith(("bestcov_", "heur_", "m10k_")):
+        if not k.startswith(("bestcov_", "heur_", "m10k_", "b1k_")):
             continue
         out[k] = UNTESTED_STR if (k.endswith(("_solved", "_z", "_class"))) else UNTESTED_NUM
     return out
 
 
-def build_rows(size, bestcov, heur, matched):
+def build_rows(size, bestcov, heur, matched, b1k):
     with open(os.path.join(SUBSETS_DIR, f"benchmark_subset_{size}.json")) as f:
         subset = json.load(f)["subset"]
     untested = _untested_block()
     rows = []
     for s in subset:
         pid = s["pres_id"]
-        has = pid in bestcov and pid in heur and pid in matched
+        has = pid in bestcov and pid in heur and pid in matched and pid in b1k
         row = {
             "pres_id": pid,
             "bin": s["bin"],
@@ -208,6 +247,7 @@ def build_rows(size, bestcov, heur, matched):
             row.update(bestcov[pid])
             row.update(heur[pid])
             row.update(matched[pid])
+            row.update(b1k[pid])
         else:
             row.update(untested)
         rows.append(row)
@@ -233,7 +273,22 @@ def summarize(rows):
                                    if both else None)
     for arm in ("m10k_greedy", "m10k_bestcov", "m10k_heur"):
         out[f"{arm}_solved"] = sum(1 for r in tested if r[f"{arm}_solved"] is True)
+    # The b1k arms do not all solve, so only the solve count is a whole-block statistic. Nodes are
+    # summarised over the rows an arm SOLVES -- an unsolved row's node count is the budget, and
+    # averaging the ceiling in would report "how long we waited" as "what it cost".
+    for arm in B1K_ARMS:
+        won = [r for r in tested if r[f"{arm}_solved"] is True]
+        out[f"{arm}_solved"] = len(won)
+        out[f"{arm}_median_nodes_solved"] = _median([r[f"{arm}_nodes"] for r in won])
+        out[f"{arm}_median_path_solved"] = _median([r[f"{arm}_path"] for r in won])
     return out
+
+
+def _median(v):
+    v = sorted(v)
+    if not v:
+        return None
+    return (v[len(v) // 2 - 1] + v[len(v) // 2]) / 2 if len(v) % 2 == 0 else v[len(v) // 2]
 
 
 def main():
@@ -246,9 +301,10 @@ def main():
         f"HEUR_WEIGHTS drifted from hsolve.RECOMMENDED: {shipped[0]['w']} != {HEUR_WEIGHTS}"
 
     bestcov, heur, matched = load_bestcov(), load_heuristic(), load_matched()
+    b1k = load_b1k()
 
     for size in SIZES:
-        rows = build_rows(size, bestcov, heur, matched)
+        rows = build_rows(size, bestcov, heur, matched, b1k)
         csv_path = os.path.join(SUBSETS_DIR, f"benchmark_subset_{size}_arms.csv")
         with open(csv_path, "w", newline="") as f:
             w = csv.DictWriter(f, fieldnames=FIELDS)
@@ -270,18 +326,63 @@ def main():
                 "summary": summarize(rows),
                 "rows": rows,
             }, f, indent=1)
+        b1k_line = "  ".join(f"{a[4:]} {s[f'{a}_solved']}" for a in B1K_ARMS)
         untested = f", {s['n_untested']} NOT TESTED" if s["n_untested"] else ""
         print(f"subset_{size:<3} n={s['n_rows']:<3} tested {s['n_tested']}{untested:<18} "
               f"solved greedy {s['greedy_solved']}, cov {s['bestcov_solved']}, "
               f"heur {s['heur_solved']}  |  all-three-solve rows: {s['n_all_three_solved']}  "
               f"nodes {s['greedy_mean_nodes']} / {s['bestcov_mean_nodes']} / {s['heur_mean_nodes']}"
               f"   path {s['greedy_mean_path']} / {s['bestcov_mean_path']} / {s['heur_mean_path']}")
+        print(f"{'':<12} b1k @1,000 solved:  {b1k_line}")
 
-    write_doc(bestcov, heur, matched)
+    write_doc(bestcov, heur, matched, b1k)
     print("\nwrote -> benchmark/subsets/benchmark_subset_{10,20,40,60}_arms.{csv,json} + ARMS.md")
 
 
-def write_doc(bestcov, heur, matched):
+def _b1k_section(rows60):
+    """The 2x2 block, written from the rows so the prose can never drift from the CSV."""
+    n = {a: sum(1 for r in rows60 if r[f"{a}_solved"] is True) for a in B1K_ARMS}
+    both = [r for r in rows60 if r["b1k_covgreedy_solved"] and r["b1k_covheur_solved"]]
+    ch_only = [r["pres_id"] for r in rows60
+               if r["b1k_covheur_solved"] and not r["b1k_covgreedy_solved"]]
+    cg_only = [(r["pres_id"], r["bin"]) for r in rows60
+               if r["b1k_covgreedy_solved"] and not r["b1k_covheur_solved"]]
+    caps = sorted(r["b1k_cov_cap"] for r in rows60)
+    n_tied = sum(1 for r in rows60 if r["b1k_cov_n_tied_starts"] > 1)
+    lost_ids = {p for p, _b in cg_only}
+    tied_losses = [r["pres_id"] for r in rows60
+                   if r["pres_id"] in lost_ids and r["b1k_cov_n_tied_starts"] > 1]
+    lines = [
+        "## Combining them: transform × ordering at budget 1,000",
+        "",
+        f"`b1k_covheur_*` is the combination the CoV work and the heuristic work each point at: singly destabilise with the winning `z` (`bestcov_z`), then search the transformed pair with the recommended ordering. Every arm here is **one** search at budget 1,000.",
+        "",
+        f"**The comparison that is controlled** — `b1k_covheur_*` against `b1k_covgreedy_*`: same transformed start, same per-row cap, the ordering is the only difference.",
+        "",
+        "| arm on the best-CoV start | solved | gained | lost |",
+        "|---|---|---|---|",
+        f"| length-only ordering (`b1k_covgreedy_*`) | {n['b1k_covgreedy']}/60 | — | — |",
+        f"| recommended ordering (`b1k_covheur_*`) | **{n['b1k_covheur']}/60** | {len(ch_only)} | {len(cg_only)} |",
+        "",
+        f"**The ordering does not add to the transform.** It gains **{len(ch_only)}** rows and loses **{len(cg_only)}**"
+        + (f" ({', '.join(f'{p} (bin {b})' for p, b in cg_only)})" if cg_only else "")
+        + f": the solved sets are nested, {'covheur ⊂ covgreedy' if not ch_only else 'neither contains the other'}. The union of all four `b1k_*` arms is {sum(1 for r in rows60 if any(r[f'{a}_solved'] for a in B1K_ARMS))}/60 — nothing anywhere in the block reaches a row the transform alone misses.",
+        "",
+        f"On the {len(both)} rows both CoV arms solve it is not paying for those losses in nodes: the medians tie at {_median([r['b1k_covheur_nodes'] for r in both]):,.0f} nodes and the mean nearly halves, {sum(r['b1k_covheur_nodes'] for r in both)/len(both):,.1f} against {sum(r['b1k_covgreedy_nodes'] for r in both)/len(both):,.1f} — cheaper on {sum(1 for r in both if r['b1k_covheur_nodes'] < r['b1k_covgreedy_nodes'])} rows, equal on {sum(1 for r in both if r['b1k_covheur_nodes'] == r['b1k_covgreedy_nodes'])}, dearer on {sum(1 for r in both if r['b1k_covheur_nodes'] > r['b1k_covgreedy_nodes'])}. What the ordering costs on this start is reach at the hard end, not nodes on the rows it reaches.",
+        "",
+        f"**Reference, not a matched comparison** — the same two orderings on the *untransformed* pair are `b1k_greedy_*` {n['b1k_greedy']}/60 and `b1k_heur_*` {n['b1k_heur']}/60. Do not read those against the CoV row as a clean 2×2: a CoV lengthens relators, so a transformed arm runs at `b1k_cov_cap` = longest + 16 ({caps[0]}–{caps[-1]} on these rows) while an untransformed one runs at 24, and [a CoV row compared against a control at a different `max_relator_length` is not a comparison](../../experiments/lessons/control-with-no-dynamic-range.md). The cap is carried per row so the confound stays visible.",
+        "",
+        f"> Two caveats the controlled contrast cannot shed. **The `z` is a doubly-selected oracle**: it is the cheapest of ~80–174 subword CoVs (~2.2M nodes per presentation to find) *and* it was ranked by what **length-only** ordering cost at ≤20,000 nodes. So `b1k_covheur_*` runs the recommended ordering from a start chosen to suit the other ordering, which is not a clean measurement of either. **And on {n_tied} of the 60 rows more than one transformed start ties for cheapest** (`b1k_cov_n_tied_starts`); the winner is a first-seen tie-break, so on those rows the transformed pair is arbitrary among starts that are equally cheap *for length-only ordering*. "
+        + (f"The {len(cg_only)} lost rows are not among them — each has a unique cheapest CoV start, so the tie-break did not choose their start for them."
+           if cg_only and not tied_losses else
+           f"{len(tied_losses)} of the {len(cg_only)} lost rows are among them." if cg_only else
+           "No row is lost, so the tie-break cannot explain one."),
+        "",
+    ]
+    return lines
+
+
+def write_doc(bestcov, heur, matched, b1k):
     lines = [
         "# Best-known cost per presentation, per technique",
         "",
@@ -339,10 +440,12 @@ def write_doc(bestcov, heur, matched):
         "",
         "`bestcov_z` is the change of variables that produced the win and `bestcov_class` how it acts (`relabel` = a pure renaming, which is most of them — a rename is not a no-op, because the greedy reads strings, not orbits).",
         "",
+        "**Combined** — `b1k_*`, the 2×2 of *transform the start* × *change the ordering*, every arm one search at budget 1,000, from `results/comparison/cov_heur_b1k_subset60.csv`. It is the only block whose arms do **not** all solve: an unsolved row there carries `nodes = 1,000` and a blank path, so never take a mean across it. Read it in the section below.",
+        "",
         "## What the numbers say",
         "",
     ]
-    rows60 = build_rows(60, bestcov, heur, matched)
+    rows60 = build_rows(60, bestcov, heur, matched, b1k)
     s = summarize(rows60)
     lab = {"greedy": "greedy @ 1,000,000, cap 24",
            "bestcov": "best CoV @ ≤20,000, cap 24",
@@ -368,9 +471,10 @@ def write_doc(bestcov, heur, matched):
         "> The best-CoV column is an **oracle**: 2,383 median nodes is what the winning `z` costs *once you know which `z` wins*, and finding it cost ~2.2M nodes per presentation of sweeping. It is a lower bound on a transformed route, not a runnable procedure ([why that distinction matters](../../experiments/lessons/price-the-untransformed-route.md)). The heuristic column has no such caveat — it is one search, with one fixed ordering.",
         "",
     ]
+    lines += _b1k_section(rows60)
     cov = []
     for size in SIZES:
-        cs = summarize(build_rows(size, bestcov, heur, matched))
+        cs = summarize(build_rows(size, bestcov, heur, matched, b1k))
         cov.append(f"| **subset-{size}** | {cs['n_rows']} | {cs['n_tested']} |"
                    f" {cs['n_untested'] or '—'} |")
     out = "\n".join(lines).replace("__COVERAGE_ROWS__", "\n".join(cov))

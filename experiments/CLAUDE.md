@@ -196,7 +196,10 @@ scoreboard into them would make the problem set depend on the results measured o
 is asserted against `heuristic_search/core/hsolve.py:RECOMMENDED`, so the documented formula cannot
 drift from the shipped one. Rows no arm has run on carry `tested = False` with `-1`/`"none"` — never
 `False` in a `*_solved` column, which would claim a failed solve instead of an absent one. The three
-best-known columns ran at **different budgets and caps**; only the `m10k_*` block is matched.
+best-known columns ran at **different budgets and caps**; only the `m10k_*` block is matched. The `b1k_*`
+block is the transform × ordering 2×2 at budget 1,000 (`heuristic_search/runners/cov_heur_b1k.py`) and is
+the one block whose arms do **not** all solve — an unsolved row there is `nodes = 1,000` + blank path, so
+never take a mean over it.
 
 **`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN. This 3-cell shape is THE pattern for every
 Colab notebook in the repo (cov_baseline.ipynb follows it; extra cells only with a structural
