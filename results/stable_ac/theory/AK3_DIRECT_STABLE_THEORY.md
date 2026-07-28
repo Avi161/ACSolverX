@@ -5210,6 +5210,102 @@ again turn these into both-sign nonprimitivity obstructions for every
 free-kernel lift.  At stable-letter length four, only the
 \((+,+,-,-)\) nonalternating stratum remains open.
 
+**Result 89 (every height-zero length-four sign string is
+obstructed).**  For the remaining word
+
+\[
+b=x^\ell yx^r yx^s y^{-1}x^t y^{-1},
+\qquad 3\nmid s,
+\]
+
+work over \(\overline{\mathbb F}_5\).  Choose
+
+\[
+v=v_1+v_{-1}+v_\iota,
+\qquad
+S=vR_4=4v_1,
+\qquad
+h=3v_1+z,
+\]
+
+where \(\iota\) and \(\omega\) are primitive fourth and cube roots
+and \(z\in V_\omega\) is fresh.  Then \(vX^4=v\) and
+\(hR_3=S\).
+
+If \(\ell\not\equiv0\pmod4\), the vectors
+\(v,vX^\ell,S\) are independent.  Choose fresh independent
+\(p,q\in V_\omega\) and prescribe
+
+\[
+vY=h,
+\qquad
+(vX^\ell)Y=p,
+\qquad
+SY=q.
+\]
+
+For \(\delta^3=\omega\), take
+\(d=d_\delta+d_{\delta\omega}\) with fresh components.  The turn
+condition \(3\nmid s\) makes \(d,dX^s\) independent, so the second
+block prescription
+
+\[
+(pX^r)Y=d,
+\qquad
+(qX^{-t})Y=dX^s
+\]
+
+is injective.  It gives
+
+\[
+vb=pX^rYX^sY^{-1}X^tY^{-1}=S.
+\]
+
+If \(\ell\equiv0\pmod4\), put
+\(k_0=k_1+k_\omega\) with fresh
+\(k_1\in V_1,k_\omega\in V_\omega\), and prescribe
+
+\[
+vY=h,
+\qquad
+SY=k_0,
+\qquad
+k_1Y=\frac13k_0X^s.
+\]
+
+Both source and image triples are independent.  In the
+\(c=\omega\) block choose \(d_\omega,d_\omega X^s\) independent and
+prescribe
+
+\[
+(\omega^rz)Y=d_\omega,
+\qquad
+(\omega^{-t}k_\omega)Y=d_\omega X^s.
+\]
+
+With \(d_1=\frac13k_0\), these blockwise equations give
+
+\[
+(hX^r)Y=d_1+d_\omega,
+\qquad
+(k_0X^{-t})Y=(d_1+d_\omega)X^s.
+\]
+
+Therefore
+
+\[
+vb=hX^rYX^sY^{-1}X^tY^{-1}=S
+\]
+
+in the zero-phase case as well.  All partial maps extend blockwise to
+one invertible BS\((3,4)\)-module action.  Thus the negative-sign
+ideal is proper for arbitrary \(\ell,r,t\).  Together with the
+length-two results, Results 79, 83, and 85--88, and the Fox bridge,
+both A--D signs are obstructed for every Britton-reduced height-zero
+sign string of stable-letter length at most four and every
+free-kernel lift.  This is a complete length-four classification,
+not a resolution of Andrews--Curtis.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5286,7 +5382,9 @@ invariant on every canonical double coset, and Result 84 supplies it
 on the complete negative--positive length-two family. Result 85 closes
 the first negative-start alternating length-four family and every
 positive-sign height-zero parameter. Result 86 extends the negative
-alternating construction to arbitrary stable-letter length. Results 73--75 close the
+alternating construction to arbitrary stable-letter length. Results
+87--89 close all four nonalternating height-zero sign strings of
+stable-letter length four. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5296,7 +5394,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--88, arbitrary W--D conjugators,
+61--89, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

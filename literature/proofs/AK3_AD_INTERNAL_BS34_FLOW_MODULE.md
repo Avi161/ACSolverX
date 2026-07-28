@@ -5042,3 +5042,213 @@ have height zero.  Therefore both A--D signs are obstructed on the
 complete \((-,+,+,-)\) and \((+,-,-,+)\) strata.  Among the four
 nonalternating height-zero sign strings of stable-letter length four,
 only \((+,+,-,-)\) remains outside Sections 34--35.
+
+## 36. The final nonalternating height-zero length-four stratum
+
+It remains to treat the sign string \((+,+,-,-)\).  Let
+
+\[
+b=x^\ell yx^r yx^s y^{-1}x^t y^{-1},
+\qquad
+\ell,r,t\in\mathbb Z,
+\qquad
+3\nmid s.
+\tag{320}
+\]
+
+Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{321}
+\]
+
+Write \(k=\overline{\mathbb F}_5\).  Choose a primitive fourth root
+\(\iota\), a primitive cube root \(\omega\), and fresh nonzero
+vectors
+
+\[
+v_1\in V_1,\qquad
+v_{-1}\in V_{-1},\qquad
+v_\iota\in V_\iota,\qquad
+z\in V_\omega.
+\]
+
+Put
+
+\[
+v=v_1+v_{-1}+v_\iota,
+\qquad
+S=vR_4=4v_1,
+\qquad
+h=\frac43v_1+z=3v_1+z.
+\tag{322}
+\]
+
+Thus
+
+\[
+vX^4=v,
+\qquad
+hR_3=4v_1=S.
+\tag{323}
+\]
+
+There are two interpolation patterns.
+
+### 36.1 Nonzero initial phase
+
+Suppose \(\ell\not\equiv0\pmod4\).  The vectors
+
+\[
+v,\qquad vX^\ell,\qquad S
+\tag{324}
+\]
+
+are independent.  Indeed, after removing the \(V_1\)-coordinate,
+the ratios on the \(V_{-1}\)- and \(V_\iota\)-coordinates are
+\((-1)^\ell\) and \(\iota^\ell\), and these do not agree for
+\(\ell=1,2,3\pmod4\).
+
+Choose fresh independent \(p,q\in V_\omega\).  In the
+\(D_1\to\mathcal R_1\) block prescribe
+
+\[
+vY=h,
+\qquad
+(vX^\ell)Y=p,
+\qquad
+SY=q.
+\tag{325}
+\]
+
+The image list \(h,p,q\) is independent, so this partial map is
+injective.  Choose \(\delta\) with \(\delta^3=\omega\), take fresh
+nonzero
+
+\[
+d_\delta\in V_\delta,
+\qquad
+d_{\delta\omega}\in V_{\delta\omega},
+\qquad
+d=d_\delta+d_{\delta\omega}.
+\tag{326}
+\]
+
+Both summands lie in \(\mathcal R_\omega\).  Since \(3\nmid s\), the
+vectors \(d,dX^s\) are independent.  The vectors
+\(pX^r,qX^{-t}\) are independent in \(D_\omega\), so prescribe
+
+\[
+(pX^r)Y=d,
+\qquad
+(qX^{-t})Y=dX^s.
+\tag{327}
+\]
+
+The right-action replay is
+
+\[
+\begin{aligned}
+vb
+&=pX^rYX^sY^{-1}X^tY^{-1}\\
+&=dX^sY^{-1}X^tY^{-1}\\
+&=qX^{-t}X^tY^{-1}\\
+&=S.
+\end{aligned}
+\tag{328}
+\]
+
+### 36.2 Zero initial phase
+
+Now suppose \(\ell\equiv0\pmod4\).  Choose fresh nonzero
+\(k_1\in V_1\), \(k_\omega\in V_\omega\), and put
+\(k_0=k_1+k_\omega\).  Prescribe in \(D_1\to\mathcal R_1\)
+
+\[
+vY=h,
+\qquad
+SY=k_0,
+\qquad
+k_1Y=\frac13k_0X^s.
+\tag{329}
+\]
+
+The sources \(v,S,k_1\) are independent.  The images
+
+\[
+h,\qquad k_0,\qquad k_0X^s
+\tag{330}
+\]
+
+are independent: \(3\nmid s\) makes the last two independent, and
+the \(V_1\oplus V_\omega\) support of \(h\) was chosen fresh.
+Therefore (329) is injective.
+
+Put \(d_1=\frac13k_0\).  In the \(D_\omega\to\mathcal R_\omega\)
+block choose \(d_\omega\) exactly as in (326), with
+\(d_\omega,d_\omega X^s\) independent, and prescribe
+
+\[
+(\omega^r z)Y=d_\omega,
+\qquad
+(\omega^{-t}k_\omega)Y=d_\omega X^s.
+\tag{331}
+\]
+
+Set
+
+\[
+p_0=hX^r,\qquad
+q_0=k_0X^{-t},\qquad
+d_0=d_1+d_\omega.
+\]
+
+The \(D_1\)-part of \(p_0\) is \(3v_1=\frac13S\), so (329) maps it
+to \(d_1\); its \(D_\omega\)-part maps to \(d_\omega\) by (331).
+Similarly, (329) maps the \(D_1\)-part of \(q_0\) to
+\(d_1X^s\), and (331) maps its \(D_\omega\)-part to
+\(d_\omega X^s\).  Hence
+
+\[
+p_0Y=d_0,
+\qquad
+q_0Y=d_0X^s.
+\tag{332}
+\]
+
+Since \(vX^\ell=v\), equations (329)--(332) give
+
+\[
+\begin{aligned}
+vb
+&=hX^rYX^sY^{-1}X^tY^{-1}\\
+&=d_0X^sY^{-1}X^tY^{-1}\\
+&=q_0X^tY^{-1}\\
+&=k_0Y^{-1}\\
+&=S.
+\end{aligned}
+\tag{333}
+\]
+
+Every displayed partial map is injective inside its indicated
+\(D_c\to\mathcal R_c\) block, so the reserved infinite complements
+extend them to one global invertible \(Y\).  Equations (323), (328),
+and (333) show in both cases that
+
+\[
+vX^4=v,\qquad
+vYR_3=vR_4,\qquad
+vb=vR_4.
+\tag{334}
+\]
+
+This proves (321).  By the Fox bridge, every free-group conjugator
+\(c\) with \(\rho(c)=zbz^{-1}\) gives a nonprimitive \(P_-(c)\),
+independently of its free-kernel decoration.  Equation (286) gives
+the same conclusion for \(P_+(c)\).  Combining Sections 12--13,
+28, 30--31, and 33--36 obstructs both A--D signs for every
+Britton-reduced height-zero sign string of stable-letter length at
+most four.  This is a complete length-four classification, not a
+proof of the Andrews--Curtis conjecture.
