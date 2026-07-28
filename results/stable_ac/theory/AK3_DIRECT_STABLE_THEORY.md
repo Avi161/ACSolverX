@@ -4341,6 +4341,118 @@ By Result 74, the corresponding evaluated internal A--D relative
 products are nonprimitive.  This closes the flow/Fox obstruction on
 the whole sign-\((+,-,+)\) length-three stratum, not AC itself.
 
+**Result 76 (the last exponent-one length-three stratum reduces to one
+aggregate compatibility).**  For
+
+\[
+b_{\ell,p,q}=x^\ell y^{-1}x^pyx^qy,
+\qquad
+0\leq\ell<4,\quad p=1,2,3,\quad q=0,1,2,
+\]
+
+put
+
+\[
+t=b^{-1}xb,\quad w=b^{-1}(yxy^{-1})b,\quad
+s=t^4=w^3.
+\]
+
+Normal form gives
+
+\[
+H\cap\langle t\rangle
+=\langle t^{12}\rangle
+=\langle x^9\rangle.
+\]
+
+The stronger Bass--Serre combination theorem, applied to
+\(H\) and \(b^{-1}\langle x,yxy^{-1}\rangle b\), yields
+
+\[
+K_b=\langle x,s\mid x^9=s^3\rangle.
+\]
+
+Moreover
+
+\[
+K_b\cap\langle t\rangle=\langle t^4\rangle,
+\qquad
+K_b\cap\langle w\rangle=\langle w^3\rangle,
+\]
+
+so all thirty-six normalized codes have
+\((d_I,d_O)=(4,3)\).
+
+Put \(L=\langle s\rangle\) and
+\(A_9=\langle x^9\rangle=\langle s^3\rangle\).  Resolving
+\(K_b=H*_{A_9}L\) and eliminating the \(H\)-coordinate gives
+
+\[
+\operatorname{coker}D_\lambda
+\cong\operatorname{coker}E_\lambda,
+\]
+
+\[
+E_\lambda(\mu,\nu)
+=(P_I-P_O)\mu
++(P_I\pi_H-\lambda\pi_L)\nu
+\in\mathscr I_L.
+\]
+
+The bijection
+
+\[
+\Theta:L\backslash B\to C\backslash B,
+\qquad Ld\mapsto Cbd,
+\]
+
+turns \(P_I-P_O\) into the ordinary conservation star.  A second row,
+indexed by \(A_9d\), is the four-edge incoming star at \(Hd\) minus
+\(\lambda\) times \(Cbd\), the terminal edge of its fixed
+nonbacktracking length-three path.  Each remote target has three
+\(A_9\)-phases.
+
+Those two zero-sum phase modes are harmless in finite support.  The
+equal-phase section
+
+\[
+j[Ld]=\frac13([A_9d]+[A_9sd]+[A_9s^2d])
+\]
+
+splits \(\nu=j(\alpha)+\delta\), with
+\(\pi_L\delta=0\), and the \((9,3)\)-tree resolution gives
+
+\[
+\pi_H:\ker\pi_L
+\overset{\cong}{\longrightarrow}\ker(\mathscr I_H\to\mathscr I_K).
+\]
+
+If the aggregate \(\alpha\) is zero and the resulting row combination
+is zero, its edge coefficients say \(f(v)=\mu(q)\) on every directed
+edge \(q\to v\).  These are constants on infinite
+\((3,4)\)-biregular forest components, so finite support forces every
+coefficient, including the zero modes, to vanish.
+
+The exact residue is therefore aggregate-only.  A certificate exists
+exactly when there are finite
+\(\alpha\in\mathscr I_L\) and \(f,\mu\in\mathscr I_H\) such that
+
+\[
+f(v)-\mu(q)
+=\mathbf1_{\{e=Cb\}}+\lambda\Theta(\alpha)(e)
+\quad(e:q\to v)
+\]
+
+and
+
+\[
+\rho(f-\mu)=\varepsilon_L(\alpha).
+\]
+
+No membership conclusion is claimed.  These two equations are the
+remaining length-three flow target, with the remote phases resolved
+but their aggregate compatibility still open.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -4412,10 +4524,15 @@ one-positive-stable-letter representative. Result 62 also closes the
 entire positive--negative length-two exponent-zero family. Result 63
 completes the flow-module classification at length two: the
 negative--positive family makes this module collapse and therefore
-requires a different invariant. Longer multi-syllable internal double
-cosets remain undecided. The immediate exact leads are therefore
-z-dependent A--W conjugators, the canonical, module-collapse, and
-longer multi-syllable internal A--D subproblems, arbitrary W--D conjugators,
+requires a different invariant. Results 73--75 close the
+positive--positive--negative and positive--negative--positive
+exponent-one length-three strata and translate every proper internal
+flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
+reduces the last negative--positive--positive stratum to one aggregate
+compatibility after proving that its two zero-sum phases cannot form a
+finite certificate. The immediate exact leads are therefore
+that aggregate compatibility, z-dependent A--W conjugators, the
+canonical and module-collapse internal A--D subproblems, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

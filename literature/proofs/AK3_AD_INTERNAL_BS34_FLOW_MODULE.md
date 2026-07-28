@@ -3164,3 +3164,317 @@ internal A--D relative products from being primitive.  This closes
 the flow and Fox-primitivity questions for the whole
 sign-\((+,-,+)\) length-three stratum, not the Andrews--Curtis
 conjecture.
+
+## 25. The negative--positive--positive three-phase reduction
+
+The remaining exponent-one length-three sign pattern has normalized
+representatives
+
+\[
+b_{\ell,p,q}
+=x^\ell y^{-1}x^pyx^qy,
+\qquad
+0\leq\ell<4,\quad
+p=1,2,3,\quad q=0,1,2.
+\tag{186}
+\]
+
+Put \(u=y^{-1}xy\), \(a=yxy^{-1}\), and define
+
+\[
+t=b^{-1}xb,\qquad
+w=b^{-1}ab,\qquad
+s=b^{-1}x^4b=t^4=w^3.
+\tag{187}
+\]
+
+The relevant cyclic intersections have a larger index than in the
+previous two strata.  Since
+
+\[
+b=x^\ell u^px^qy
+\]
+
+and \(x^3=u^4\) is central in
+
+\[
+J_+=\langle x\rangle*_{\langle x^3=u^4\rangle}\langle u\rangle,
+\]
+
+amalgam normal form gives
+
+\[
+H\cap\langle t\rangle
+=\langle t^{12}\rangle
+=\langle x^9\rangle.
+\tag{188}
+\]
+
+Indeed, collapsing the \(u^{-p}x^mu^p\) turn first requires
+\(3\mid m\), and entering \(yHy^{-1}\cap H=\langle x^4\rangle\)
+then requires \(4\mid m\).  For \(m=12k\), centrality gives
+
+\[
+t^{12k}=b^{-1}x^{12k}b=x^{9k}.
+\]
+
+Let
+
+\[
+J'=b^{-1}J_-b
+=\langle t\rangle*_{\langle s\rangle}\langle w\rangle,
+\qquad
+J_-=\langle x\rangle*_{\langle x^4=a^3\rangle}\langle a\rangle.
+\]
+
+The exact combination statement needed below is
+
+\[
+\langle H,J'\rangle
+=H*_{\langle x^9\rangle}J'.
+\tag{189}
+\]
+
+To verify it, conjugate by \(y\).  The first factor becomes
+\(\langle a\rangle\), while the second becomes
+\(n^{-1}J_-n\), where \(n=x^\ell u^px^q\).  In the Bass--Serre tree
+of \(J_-*_{H}J_+\), the two \(J_-\)-vertices are distinct because
+\(u^p\notin H\).  Their path stabilizer is
+\(\langle x^3\rangle\), and
+
+\[
+\langle a\rangle\cap\langle x^3\rangle
+=\langle x^{12}\rangle
+=\langle a^9\rangle.
+\]
+
+Every alternating word whose factors lie outside this intersection
+retains a nonedge syllable on each side of that path and is therefore
+reduced.  This proves the corresponding amalgam normal form;
+conjugating back gives (189).
+
+Put
+
+\[
+L=\langle s\rangle,
+\qquad
+A_9=\langle x^9\rangle=\langle s^3\rangle.
+\]
+
+Since \(A_9\leq L\leq J'\), (189) implies
+
+\[
+K_b=\langle H,L\rangle
+=H*_{A_9}L
+=\langle x,s\mid x^9=s^3\rangle.
+\tag{190}
+\]
+
+It also gives
+
+\[
+K_b\cap\langle t\rangle
+=\langle t^4\rangle=L,
+\qquad
+K_b\cap\langle w\rangle
+=\langle w^3\rangle=L.
+\tag{191}
+\]
+
+Thus all thirty-six codes (186) have the exact fold pair
+
+\[
+(d_I,d_O)=(4,3);
+\tag{192}
+\]
+
+there is no scalar-fold subfamily.  The scalar equations are
+
+\[
+\sum_{i=0}^{3}
+s(K_bt^ib^{-1}g)
+=\lambda s(K_bg),
+\tag{193}
+\]
+
+\[
+\sum_{j=0}^{2}
+s(K_bw^jb^{-1}yg)
+=\lambda s(K_bg),
+\qquad\lambda=-\sigma.
+\tag{194}
+\]
+
+The amalgam in (190) again removes the infinite column incidence.
+Its tree resolution is
+
+\[
+0\longrightarrow\mathscr I_{A_9}
+\longrightarrow\mathscr I_H\oplus\mathscr I_L
+\longrightarrow\mathscr I_{K_b}
+\longrightarrow0.
+\tag{195}
+\]
+
+Define
+
+\[
+P_I[Hg]=\sum_{i=0}^{3}[Lb^{-1}x^ig],
+\qquad
+P_O[Hg]=\sum_{j=0}^{2}[Lb^{-1}yx^jg].
+\tag{196}
+\]
+
+The same exact elimination as in Section 21 gives
+
+\[
+\operatorname{coker}D_\lambda
+\cong\operatorname{coker}E_\lambda,
+\tag{197}
+\]
+
+where
+
+\[
+E_\lambda:
+\mathscr I_H\oplus\mathscr I_{A_9}
+\longrightarrow\mathscr I_L,
+\]
+
+\[
+E_\lambda(\mu,\nu)
+=(P_I-P_O)\mu
++(P_I\pi_H-\lambda\pi_L)\nu.
+\tag{198}
+\]
+
+The distinguished class \([K_b]\) corresponds to \([L]\).
+
+There is a useful second geometric identification:
+
+\[
+\Theta:L\backslash B\longrightarrow C\backslash B,
+\qquad
+\Theta(Ld)=Cbd.
+\tag{199}
+\]
+
+It is well-defined because \(L=b^{-1}Cb\), and it gives
+
+\[
+\Theta P_I[Hg]=I(Hg),
+\qquad
+\Theta P_O[Hg]=O(Hg).
+\tag{200}
+\]
+
+Consequently a \(\mu\)-row is exactly the ordinary
+incoming-minus-outgoing conservation star.  A \(\nu\)-row indexed by
+\(A_9d\) is
+
+\[
+I(Hd)-\lambda e_{bd},
+\tag{201}
+\]
+
+where \(e_{bd}=Cbd\) is the terminal edge of the fixed
+nonbacktracking length-three path represented by (186), starting at
+\(Hd\).  The target \([L]\) in (197) is the edge \(Cb\), not the base
+edge \(C\).
+
+This presentation is row- and column-finite.  An edge occurs in its
+two conservation stars, in the nine incoming-star lifts over an
+\(H\)-center, and in the three remote-edge lifts over an \(L\)-target.
+Those three remote lifts are the remaining phase collision.
+
+The two zero-sum phase modes can nevertheless be removed exactly.
+For each \(Ld\), define the equal-phase section
+
+\[
+j[Ld]
+=\frac13\bigl([A_9d]+[A_9sd]+[A_9s^2d]\bigr).
+\tag{202}
+\]
+
+Every finite \(\nu\) decomposes uniquely as
+
+\[
+\nu=j(\alpha)+\delta,
+\qquad
+\alpha=\pi_L\nu,
+\qquad
+\pi_L\delta=0.
+\tag{203}
+\]
+
+Exactness of the \((9,3)\)-tree resolution gives
+
+\[
+\pi_H:\ker\pi_L
+\overset{\cong}{\longrightarrow}
+\ker\bigl(\rho:\mathscr I_H\to\mathscr I_{K_b}\bigr).
+\tag{204}
+\]
+
+In particular, the two rational zero-sum vectors on each three-phase
+fiber map to the corresponding differences of its three neighboring
+\(H\)-vertices; no scalar extension and no phase quotient are hidden.
+
+Pure zero modes have no finite homogeneous cancellation.  Suppose
+\(\alpha=0\) and
+
+\[
+E_\lambda(\mu,\delta)=0.
+\]
+
+Put \(\eta=\pi_H\delta\) and \(f=\mu+\eta\).  The equation is
+
+\[
+P_If=P_O\mu.
+\tag{205}
+\]
+
+Under (199), the coefficient of a directed edge \(e:q\to v\) in
+(205) is
+
+\[
+f(v)-\mu(q)=0.
+\tag{206}
+\]
+
+For each pair of adjacent heights, these equations are constancy on
+components of an infinite \((3,4)\)-biregular forest.  Finite support
+forces \(f=\mu=0\), then \(\eta=0\), and (204) forces
+\(\delta=0\).
+
+Thus the three-phase zero modes cannot themselves form a finite
+certificate.  For a fixed aggregate \(\alpha\) and target, a finite
+zero-mode completion is unique if it exists.  The unresolved part is
+now aggregate-only.  With
+
+\[
+\tau=\pi_Hj,
+\]
+
+a certificate is equivalent to finite
+\(\alpha\in\mathscr I_L\) and \(f,\mu\in\mathscr I_H\) satisfying,
+for every directed edge \(e:q\to v\),
+
+\[
+f(v)-\mu(q)
+=\mathbf1_{\{e=Cb\}}
++\lambda\,\Theta(\alpha)(e),
+\tag{207}
+\]
+
+and the single compatibility equation
+
+\[
+\rho(f-\mu)=\varepsilon_L(\alpha).
+\tag{208}
+\]
+
+Equations (207)--(208) retain the full target and all phases.  They
+prove neither a finite certificate nor a separator.  They are the
+exact remaining flow problem for the sign-\((-,+,+)\) length-three
+stratum.
