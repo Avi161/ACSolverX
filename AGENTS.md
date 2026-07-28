@@ -970,3 +970,8 @@
 
 - [TRAP] Importing `experiments.stable_ac.rank3_compression.one_edge` solely for cyclic reduction also imports `numba`; the system Python failed before the intended word calculation.
 - [WORKS] For disposable theory diagnostics, implement the few-line free/cyclic reduction locally or use the verified `uv` environment. Do not import a broad experiment module for a basic word operation.
+
+### 2026-07-27 Do not use a reverse triangle inequality for cyclic length
+
+- [TRAP] The proposed family-wide corridor barrier used `min_h ||P hQh^-1|| >= ||P|-|Q||`. This is false: after the shorter factor cancels, cyclic reduction can expose and cancel more of the longer factor. For example, cyclically reduced `P=abaB`, `Q=A` have lengths 4 and 1, but a suitable rotated product cyclically reduces to `b` of length 1.
+- [WORKS] Bound products of conjugacy classes through the exact two-seam rotation/common-factor calculation or a proved Stallings bounded-cancellation lemma specific to the words. Raw cyclic lengths alone supply no reverse triangle inequality.

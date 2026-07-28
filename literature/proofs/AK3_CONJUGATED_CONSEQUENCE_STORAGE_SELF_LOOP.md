@@ -1279,3 +1279,29 @@ one-source relative product of \(\phi_{yx}(A)\) and \(\phi_{yx}(B)\) is
 nonprimitive.  Thus the first proper stable image has no one-source
 primitive exit in any image-subgroup double coset.  General g and the
 deeper iterates remain open.
+
+## 20. The first image has exact external minimum 25
+
+The folded core of \(K=\langle x,yxyx^{-1}y^{-1}\rangle\) is the barbell
+with a path labelled yx between the x- and y-loops.  Its off-diagonal fiber
+product is a two-edge path, so two distinct lifts have common reduced
+length at most two.  Therefore, for the image sources a,b and every
+\(h\notin K\),
+
+\[
+\|a hb^\eta h^{-1}\|
+\ge |a|+|b|-4=25.
+\tag{92}
+\]
+
+The external conjugators y for \(\eta=1\) and xxYX for \(\eta=-1\)
+attain 25 and fail the core membership test.
+
+### Theorem 20.1 (exact external-double-coset barrier)
+
+For both source orders and both signs, the exact minimum over external
+double cosets of the first proper image subgroup is 25.  The smaller
+global minima 23 and 21 occur internally and are nonprimitive by Theorem
+18.1.  For a general conjugating corridor, the remaining invariant is the
+off-diagonal fiber-product overlap diameter of its normalized barbell
+core.

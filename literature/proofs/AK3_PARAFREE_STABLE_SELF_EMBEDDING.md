@@ -555,9 +555,11 @@ L(a,b)=4,
 For example the common length-three factors in (8.4) are
 \(XYx,YXY,xyx,yxY\), while the common length-four factors in (8.5) are
 \(YXYx,xyxY\).  The stated empty intersections certify maximality.
+In particular, neither cyclic factor can cancel completely.
 
 The Cayley-tree axis-alignment lemma used for Result 116 is unbounded in
-the ambient conjugator:
+the ambient conjugator.  In this non-complete-cancellation case, its
+two-seam common-factor formula is
 
 \[
 \min_{h\in F_2}\|P hQh^{-1}\|
@@ -599,6 +601,82 @@ the first proper self-embedding.  It does not yet prove the same inequality
 for every \(\phi_g\) or every iterate of \(\phi\).  The normalized family
 suggests a weighted bridge-length theorem, but that general statement
 still requires a proof rather than a bounded census.
+
+## 9. Exact external double-coset geometry at the first image
+
+The external part of Section 8 has a sharper Stallings explanation.  The
+folded core \(\Gamma_K\) of
+
+\[
+K=\langle x,yxyx^{-1}y^{-1}\rangle
+\tag{9.1}
+\]
+
+has vertices \(0,1,2\), an x-loop at 0, the path
+
+\[
+0\mathrel{\mathop{\longrightarrow}^{y}}1
+\mathrel{\mathop{\longrightarrow}^{x}}2,
+\tag{9.2}
+\]
+
+and a y-loop at 2.  Its off-diagonal fiber product has, up to transposing
+the two coordinates, only the undirected path
+
+\[
+(0,1)\mathrel{\mathop{\longrightarrow}^{x}}(0,2)
+\mathrel{\mathop{\longrightarrow}^{y}}(1,2).
+\tag{9.3}
+\]
+
+Thus its longest reduced path has length two, with labels xy and its
+inverse YX.  There is no off-diagonal reduced common path of length three.
+
+Let u,v be nontrivial elements of K and let \(h\notin K\).  If
+\(\operatorname{Ax}(u)\) and \(h\operatorname{Ax}(v)\) shared three
+edges, the common segment and its h-translate back would project to two
+equal-labelled length-three paths in \(\Gamma_K\).  Equal starting
+vertices would force \(h\in K\) by freeness of the Cayley-tree action;
+distinct starting vertices contradict (9.3).  Hence
+
+\[
+\operatorname{diam}
+\bigl(\operatorname{Ax}(u)\cap h\operatorname{Ax}(v)\bigr)\le2.
+\tag{9.4}
+\]
+
+For the image sources a,b of Section 8, whose translation lengths are 11
+and 18, disjoint axes add a positive bridge and intersecting axes can
+cancel at most twice the overlap in (9.4).  Therefore every external
+double coset satisfies
+
+\[
+\|a hb^\eta h^{-1}\|
+\ge 11+18-2\cdot2=25,
+\qquad h\notin K,quad \eta=\pm1.
+\tag{9.5}
+\]
+
+The bound is exact.  For the positive sign, \(h=y\notin K\) gives cyclic
+length 25.  For the negative sign, \(h=xxYX\notin K\) also gives cyclic
+length 25.  Membership failure is read directly in \(\Gamma_K\): y ends
+at vertex 1, while xxYX is not readable from vertex 0.  Cyclic conjugacy,
+inversion, and \(h\mapsto h^{-1}\) give the same exact minimum after
+exchanging a and b.  Thus
+
+\[
+\boxed{
+\min_{h\notin K}\|a hb^\eta h^{-1}\|
+=\min_{h\notin K}\|b ha^\eta h^{-1}\|=25.}
+\tag{9.6}
+\]
+
+This isolates the internal minima 23 and 21 from Section 8: all shorter
+axis alignments occur inside K, where Result 121 supplies the general
+quotient obstruction.  The fiber-product formulation is the right route
+for a general \(g\), because it measures the self-overlap of the normalized
+bridge rather than relying on a false reverse triangle inequality for
+cyclic length.
 
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 

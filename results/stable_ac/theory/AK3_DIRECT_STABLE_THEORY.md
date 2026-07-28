@@ -7222,6 +7222,33 @@ lies outside the image subgroup.  Result 121's double-coset residue is
 therefore empty for the first proper corridor.  A family-wide bridge
 inequality for general g or for all iterates remains to be proved.
 
+**Result 123 (the first image has exact external minimum 25).**  The
+folded core of \(K=\langle x,yxyx^{-1}y^{-1}\rangle\) has three vertices:
+an x-loop, a path labelled yx, and a y-loop.  Its off-diagonal fiber
+product is a two-edge path, so no two distinct lifts have a common reduced
+label of length three.  Consequently, for nontrivial \(u,v\in K\) and
+\(h\notin K\),
+
+\[
+\operatorname{diam}
+(\operatorname{Ax}(u)\cap h\operatorname{Ax}(v))\le2.
+\]
+
+Applying this to the image sources of lengths 11 and 18 gives, for both
+signs and both source orders,
+
+\[
+\|a hb^\eta h^{-1}\|\ge25
+\qquad(h\notin K).
+\]
+
+This is exact: \(h=y\) attains 25 for the positive sign and \(h=xxYX\)
+attains 25 for the negative sign; both lie outside K by direct core
+membership.  Hence every shorter alignment from Result 122 lies inside
+K.  This converts the general-g problem into an off-diagonal fiber-product
+overlap problem for the normalized bridge core, rather than a raw
+word-length inequality.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7385,7 +7412,9 @@ primitive. A one-step compression must cross a nontrivial image-subgroup
 double coset or leave the one-source regime. Result 122 closes those
 external double cosets for the first proper image \(g=yx\): exact axis
 alignment gives cyclic-length minima 23 and 21, far above the primitive
-lengths 9 and 5.
+lengths 9 and 5. Result 123 sharpens its external part. The off-diagonal
+Stallings fiber product has diameter two, so every external double coset
+has exact minimum 25; all shorter alignments are internal.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7397,12 +7426,13 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--122, arbitrary W--D conjugators,
+61--123, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by
 Results 117--118, or use Result 120's conjugator family to expose a new
-primitive compression. Longer branches may use additional \(Wq^{-1}\) blocks,
+primitive compression beyond the first image closed by Result 122.
+Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
 primitive slot. The exact Fox coordinate remains a necessary free-kernel

@@ -176,3 +176,107 @@ def test_first_proper_corridor_has_an_ambient_conjugator_length_gap() -> None:
 
     assert positive_rotation_minimum == 23
     assert negative_rotation_minimum == 21
+
+
+def test_all_shortest_normalized_proper_corridors_clear_the_boundary_case() -> None:
+    old_a = "xxxYYYY"
+    old_b = "xyxYXY"
+
+    for conjugator in ("yx", "yX", "Yx", "YX"):
+        u = conjugator + "y" + inverse(conjugator)
+        image_a = cyclic_reduce(substitute(old_a, "y", u))
+        image_b = cyclic_reduce(substitute(old_b, "y", u))
+
+        assert len(image_a) == 11
+        assert len(image_b) == 18
+
+        positive_minimum = min(
+            len(cyclic_reduce(left + right))
+            for left in cyclic_rotations(image_a)
+            for right in cyclic_rotations(image_b)
+        )
+        negative_minimum = min(
+            len(cyclic_reduce(left + right))
+            for left in cyclic_rotations(image_a)
+            for right in cyclic_rotations(inverse(image_b))
+        )
+
+        assert positive_minimum == 23
+        assert negative_minimum == 21
+
+
+def test_first_image_off_diagonal_core_overlap_is_exactly_two() -> None:
+    transitions = {
+        (0, "x"): 0,
+        (0, "X"): 0,
+        (0, "y"): 1,
+        (1, "Y"): 0,
+        (1, "x"): 2,
+        (2, "X"): 1,
+        (2, "y"): 2,
+        (2, "Y"): 2,
+    }
+
+    def endpoint(start: int, word: str) -> int | None:
+        vertex = start
+        for letter in word:
+            if (vertex, letter) not in transitions:
+                return None
+            vertex = transitions[vertex, letter]
+        return vertex
+
+    reduced_length_three = (
+        first + second + third
+        for first in "xXyY"
+        for second in "xXyY"
+        if second != INVERSE[first]
+        for third in "xXyY"
+        if third != INVERSE[second]
+    )
+    for word in reduced_length_three:
+        starts = [vertex for vertex in range(3) if endpoint(vertex, word) is not None]
+        assert len(starts) <= 1
+
+    assert endpoint(0, "xy") is not None
+    assert endpoint(1, "xy") is not None
+    assert endpoint(1, "YX") is not None
+    assert endpoint(2, "YX") is not None
+
+
+def test_external_double_coset_minimum_has_exact_witnesses() -> None:
+    image_a = "xxxyxYYYYXY"
+    image_b = "xyxyXYxyxYXYXyxYXY"
+
+    positive_conjugator = "y"
+    negative_conjugator = "xxYX"
+    positive = cyclic_reduce(
+        image_a + positive_conjugator + image_b + inverse(positive_conjugator)
+    )
+    negative = cyclic_reduce(
+        image_a + negative_conjugator + inverse(image_b)
+        + inverse(negative_conjugator)
+    )
+
+    assert len(positive) == 25
+    assert len(negative) == 25
+
+    transitions = {
+        (0, "x"): 0,
+        (0, "X"): 0,
+        (0, "y"): 1,
+        (1, "Y"): 0,
+        (1, "x"): 2,
+        (2, "X"): 1,
+        (2, "y"): 2,
+        (2, "Y"): 2,
+    }
+
+    for conjugator in (positive_conjugator, negative_conjugator):
+        vertex = 0
+        readable = True
+        for letter in conjugator:
+            if (vertex, letter) not in transitions:
+                readable = False
+                break
+            vertex = transitions[vertex, letter]
+        assert not readable or vertex != 0
