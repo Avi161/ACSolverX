@@ -4677,6 +4677,198 @@ negative--positive--positive cases.  Result 74 turns their proper
 flow ideals into evaluated A--D Fox nonprimitivity obstructions.  It
 does not prove AC or stable AC.
 
+**Result 81 (the canonical A--D literals are nonprimitive).**  Put
+
+\[
+h=qz^{-1}.
+\]
+
+The three literal representatives of Result 56's residual projection
+fibers,
+
+\[
+P_+(h),\qquad P_-(h),\qquad P_-(1),
+\]
+
+are nonprimitive in \(F(x,t,z,q)\).  Explicit Whitehead
+automorphisms send them, up to cyclic conjugacy, to
+
+\[
+\texttt{TTTTZTzxxxx},\qquad
+\texttt{TTTTZtzxx},\qquad
+\texttt{TTTzXZxxx}.
+\]
+
+Each transformed word lies in \(F(x,t,z)\) and uses all three
+generators.  The first two Whitehead graphs contain the spanning
+cycle
+
+\[
+t-x-X-z-T-Z-t,
+\]
+
+and the third contains
+
+\[
+t-T-Z-X-z-x-t.
+\]
+
+Thus each graph is connected with no cut vertex.  The Whitehead
+cut-vertex lemma, together with Kurosh's theorem to exclude
+primitivity appearing after adjoining the unused fourth generator,
+proves nonprimitivity.
+
+The same argument applies to the explicit nonliteral kernel lift
+
+\[
+c_0=zq^{-1}zxz^{-1}qz^{-1}
+\]
+
+in the negative identity fiber: a Whitehead automorphism sends
+\(P_-(c_0)\) to the cyclic word
+
+\[
+\texttt{QQxqTxQXqttttqXXX},
+\]
+
+whose graph in \(F(q,t,x)\) contains the spanning cycle
+
+\[
+q-t-Q-x-X-T-q.
+\]
+
+This is a full free-group obstruction where the internal flow module
+collapses and nilpotent quotient primitivity is blind.  It proves four
+individual cases; by itself it does not give invariance under
+arbitrary free-kernel insertions.  Result 83 closes those canonical
+double-coset lifts by a different characteristic.
+
+**Result 82 (an unbounded canonical-kernel family is
+nonprimitive).**  The first Whitehead automorphism in Result 81 sends
+
+\[
+A\longmapsto R=x^3t^{-4},\qquad
+D\longmapsto D,\qquad
+h\longmapsto z^{-1}.
+\]
+
+It therefore sends \(P_\sigma(hA^n)\) to
+
+\[
+Rz^{-1}R^nD^\sigma R^{-n}z.
+\]
+
+For every \(n\ne0\) and both signs, this cyclic word has a Whitehead
+graph containing the fixed spanning cycle
+
+\[
+t-T-Z-X-z-x-t.
+\]
+
+The \(n=0\) cases are Result 81.  Hence
+
+\[
+P_\sigma(hA^n)\text{ is nonprimitive}
+\qquad(n\in\mathbb Z,\ \sigma=\pm1).
+\]
+
+The exact centralizer gauge
+
+\[
+P_\sigma(A^rcD^s)
+=A^rP_\sigma(c)A^{-r}
+\]
+
+then proves the three-parameter theorem
+
+\[
+P_\sigma(A^rhA^nD^s)\text{ is nonprimitive}
+\qquad(r,n,s\in\mathbb Z,\ \sigma=\pm1).
+\]
+
+It also propagates Result 81's \(c=1\) and \(c=c_0\) conclusions over
+their \(\langle A\rangle\)-\(\langle D\rangle\) double orbits.  These
+are unbounded kernel-insertion families, but they do not exhaust the
+free evaluation kernel.
+
+**Result 83 (finite-characteristic currents close every canonical
+double-coset lift).**  The canonical flow quotient collapses over
+\(\mathbb Q\), but not integrally.  Let
+
+\[
+J^{(k)}_{b,\sigma}
+=(x^4-1)k[B]
++(yR_3-R_4)k[B]
++(b+\sigma R_4)k[B].
+\]
+
+If \(b\in yH\), then \(J^{(k)}_{b,\sigma}\) is proper whenever
+\(\operatorname{char}k\) divides \(1+3\sigma\).  In particular,
+\(\mathbb F_2\) works for both signs.  If \(b\in H\), the ideal is
+proper whenever the characteristic divides \(1+4\sigma\):
+\(\mathbb F_3\) works for \(\sigma=-1\), and \(\mathbb F_5\) for
+\(\sigma=+1\).
+
+The proof is a global tree current, not a finite truncation.  For
+\(b\in yH\), assign a vertex function \(m\) and put
+
+\[
+F(e:u\to v)=-\sigma m(u).
+\]
+
+The three outgoing edge values sum to \(m(u)\) in the stated
+characteristic.  The incoming condition is the recurrence
+
+\[
+m(v)=-\sigma\sum_{u\to v}m(u).
+\]
+
+Choose a negative directed end and let \(m(v)\) be one exactly when
+the ray from \(v\) to that end always uses incoming predecessors.
+Exactly one predecessor continues such a ray, so this \(0\)-\(1\)
+function satisfies the recurrence over \(\mathbb F_2\).
+
+For \(b\in H\), put instead
+
+\[
+F(e:u\to v)=-\sigma m(v).
+\]
+
+The four incoming values sum to \(m(v)\), and conservation becomes
+
+\[
+m(u)=-\sigma\sum_{u\to v}m(v).
+\]
+
+Choose a positive directed end.  Its \(0\)-\(1\) indicator satisfies
+\(m(u)=\sum_{u\to v}m(v)\), which is the required recurrence for
+\(\sigma=-1\) over \(\mathbb F_3\).  For the optional positive case
+over \(\mathbb F_5\), multiply the indicator by
+\((-\sigma)^\beta\), where \(\beta\) is a Busemann function increasing
+toward the end.  Both constructions give nonzero algebraic currents,
+hence proper ideals.
+
+Result 74's Fox bridge uses only integral group-ring identities and
+works over every field.  A primitive word would supply an integral
+Fox Bezout identity which survives evaluation and reduction modulo
+the chosen prime, contradicting the nonzero annihilator.  Because the
+evaluated row depends on the conjugator only through
+\(\rho(c)=zbz^{-1}\), this proves nonprimitivity for every free-kernel
+lift in the three canonical residues relevant to Result 56:
+
+\[
+\begin{array}{c|c|c}
+\sigma&b&\text{field}\\ \hline
++1&yH&\mathbb F_2\\
+-1&yH&\mathbb F_2\\
+-1&H&\mathbb F_3.
+\end{array}
+\]
+
+Thus the canonical internal double cosets are closed completely.
+The unresolved internal residue now consists only of noncanonical
+double cosets not already covered by Results 61--80.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -4757,7 +4949,8 @@ compatibility after proving that its two zero-sum phases cannot form a
 finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
-canonical and module-collapse internal A--D subproblems, arbitrary W--D conjugators,
+noncanonical module-collapse internal A--D fibers beyond Results
+61--83, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

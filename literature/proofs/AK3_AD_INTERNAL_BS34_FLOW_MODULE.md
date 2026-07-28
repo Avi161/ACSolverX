@@ -4082,3 +4082,179 @@ signs, have proper internal flow ideals.  Section 23 turns this into
 evaluated A--D Fox-row non-unimodularity and nonprimitivity.  This
 closes the length-three aggregate problem, not the Andrews--Curtis
 conjecture.
+
+## 30. Finite-characteristic currents survive the canonical rational collapse
+
+Section 6 proves that the canonical flow quotient vanishes over
+\(\mathbb Q\).  The same calculation exposes torsion rather than
+integral collapse.  Over the characteristics dividing its scalar
+coefficient, a nonzero current exists.
+
+For a field \(k\), write
+
+\[
+J^{(k)}_{b,\sigma}
+=(x^4-1)k[B]
++(yR_3-R_4)k[B]
++(b+\sigma R_4)k[B].
+\tag{249}
+\]
+
+**Finite-characteristic canonical-current theorem.**
+
+1. If \(b\in yH\) and
+   \(\operatorname{char}k\mid(1+3\sigma)\), then
+   \(J^{(k)}_{b,\sigma}\ne k[B]\).
+2. If \(b\in H\) and
+   \(\operatorname{char}k\mid(1+4\sigma)\), then
+   \(J^{(k)}_{b,\sigma}\ne k[B]\).
+
+Here divisibility refers to the integer represented in the prime
+field.  In particular, characteristic two works for \(b\in yH\) and
+both signs; characteristic five works for \(b\in H,\sigma=+1\), and
+characteristic three works for \(b\in H,\sigma=-1\).
+
+There are two canonical \(0\)-\(1\) currents on the directed tree.
+Choose an end \(\xi_-\) represented by a ray which always moves from
+a vertex to an incoming predecessor, and put
+
+\[
+m_-(v)=
+\begin{cases}
+1,&\text{if the ray from \(v\) to \(\xi_-\) always uses incoming
+predecessors},\\
+0,&\text{otherwise}.
+\end{cases}
+\]
+
+If \(m_-(v)=1\), exactly one predecessor \(u\to v\) continues that
+ray and has \(m_-(u)=1\); every other predecessor first moves toward
+\(v\) on its ray to \(\xi_-\).  Conversely, a predecessor with value
+one forces the ray from \(v\) to begin with that predecessor.  Hence,
+over every field,
+
+\[
+m_-(v)=\sum_{u\to v}m_-(u).
+\tag{250}
+\]
+
+Dually, choose a positive directed end \(\xi_+\).  Its indicator
+\(m_+\) satisfies
+
+\[
+m_+(u)=\sum_{u\to v}m_+(v).
+\tag{251}
+\]
+
+First let \(b\in yH\).  On the directed Bass--Serre tree, write an
+edge as \(e:u\to v\).  Put \(m=m_-\) and define
+
+\[
+F(e)=-\sigma m(u).
+\tag{252}
+\]
+
+This is exactly the third canonical relation: every outgoing edge at
+\(u\) has value \(-\sigma I_F(u)\), provided
+\(I_F(u)=m(u)\).  Its outgoing sum is
+
+\[
+O_F(u)=-3\sigma m(u)=m(u)
+\tag{253}
+\]
+
+in the stated characteristic.  The remaining condition
+\(I_F(v)=m(v)\) is
+exactly (250), because \(-\sigma=1\) in characteristic two.  Thus
+(252) is a nonzero current satisfying conservation and every relation
+in (249).
+
+Now let \(b\in H\).  Fix a Busemann function \(\beta\) for
+\(\xi_+\), normalized so that \(\beta(v)=\beta(u)+1\) when the
+positive ray uses \(u\to v\), and put
+
+\[
+m(v)=(-\sigma)^{\beta(v)}m_+(v).
+\]
+
+Define
+
+\[
+F(e)=-\sigma m(v).
+\tag{254}
+\]
+
+This is the incoming canonical relation.  Its incoming sum is
+
+\[
+I_F(v)=-4\sigma m(v)=m(v)
+\tag{255}
+\]
+
+in the stated characteristic.  Conservation is therefore equivalent
+to
+
+\[
+m(u)=-\sigma\sum_{u\to v}m(v).
+\]
+
+If \(m_+(u)=1\), exactly one outgoing neighbor \(v\) has value
+\((-\sigma)m(u)\), so the right side is
+\((-\sigma)^2m(u)=m(u)\).  If \(m_+(u)=0\), no outgoing neighbor has
+nonzero value.  Thus (254) is again a nonzero global current.  For
+the relevant negative sign over \(\mathbb F_3\), the Busemann weight
+is identically one; the alternating weight is needed only for the
+optional positive-sign case over \(\mathbb F_5\).
+
+In either case, pairing finite-support edge vectors with \(F\)
+annihilates the presentation relations but not the entire edge
+module.  Hence the quotient and the right ideal (249) are proper.
+No analytic convergence or finite-support assumption is imposed on
+the dual current.
+
+The Fox bridge of Section 23 is characteristic-free.  Indeed, for
+any field \(k\), put
+
+\[
+W=k[B]/J^{(k)}_{b,\sigma}
+\]
+
+and induce it to \(G=B*\langle z\rangle\).  The group ring \(k[G]\)
+is free as a left \(k[B]\)-module, so the nonzero cyclic vector
+remains nonzero after induction.  Equations (169)--(173) and the
+four-coordinate annihilation of (174) use only integral group-ring
+identities and remain valid over \(k\).  Therefore the evaluated Fox
+row is not right-unimodular over \(k[G]\).
+
+If \(P_\sigma(c)\) were primitive in the free group, its integral Fox
+row would have a right Bezout identity.  Evaluation followed by
+reduction to \(k[G]\) would preserve that identity, contradicting the
+nonzero annihilator.  Since the evaluated row depends on \(c\) only
+through
+
+\[
+\rho(c)=zbz^{-1},
+\tag{256}
+\]
+
+the conclusion covers every free-kernel lift of each canonical
+internal parameter:
+
+\[
+\boxed{
+\begin{array}{c|c|c}
+\sigma&b&\text{obstructing field}\\ \hline
++1&yH&\mathbb F_2\\
+-1&yH&\mathbb F_2\\
+-1&H&\mathbb F_3.
+\end{array}
+}
+\tag{257}
+\]
+
+The unused case \(\sigma=+1,b\in H\) is likewise obstructed over
+\(\mathbb F_5\).  Thus the canonical double-coset residue of each of
+Result 56's three internal projection classes is nonprimitive for
+every conjugator \(c\), even though its rational flow quotient is
+zero.  Noncanonical internal double cosets outside the families
+already decided above remain a separate problem.

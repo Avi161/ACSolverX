@@ -868,3 +868,8 @@
 
 - [TRAP] Staging a mixed checkpoint failed because literature is ignored, even though the edited proof ledger is already part of this proof branch.
 - [WORKS] Stage ordinary tracked files normally and force-add only the exact edited literature/proofs file; never force-add the literature tree broadly.
+
+### 2026-07-27 Read the exact summary block before replacing prose
+
+- [TRAP] A theory-summary rewrite used remembered sentence wrapping and failed to match, even though the mathematical proof file had already been corrected.
+- [WORKS] Read the exact local summary paragraph immediately before applying a prose replacement; do not reuse context copied from the longer proof ledger.
