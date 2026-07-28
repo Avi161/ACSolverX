@@ -794,3 +794,8 @@
 
 - [TRAP] The first leaf-elimination proof treated an outward incoming predecessor \(p\) as visible only to the leaf relation \(A_v\). The unique interior predecessor \(w_0\) can also reach one such \(p\) through its fixed-turn relation \(B_{w_0}\), using \(v\) as their common successor.
 - [WORKS] In a directed Bass--Serre leaf argument, classify center, parent, and every sibling-turn contributor separately. Here at least three incoming predecessors point outward, and excluding the single target \(\rho_v^{-r}(w_0)\) leaves at least two genuinely unique witnesses.
+
+### 2026-07-27 Normalize both endpoints of HNN double cosets
+
+- [TRAP] Reducing the initial exponent modulo the left subgroup and deleting the final base coefficient does not make a unique double-coset code. Right-end carries can change internal turns; for example \(Cy^2H=CyxyH\).
+- [WORKS] Parameterize \(C\backslash B/H\) by fixed-transversal Britton codes modulo the deterministic endpoint-carry maps \(T_m\). Audit carry-induced turn changes before claiming an individual code is canonical.

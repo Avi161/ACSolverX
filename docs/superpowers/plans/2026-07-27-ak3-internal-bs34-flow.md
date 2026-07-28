@@ -64,7 +64,7 @@ dependency-free Python, exact rational linear algebra, pytest.
 - Modify: `literature/proofs/AK3_AD_INTERNAL_BS34_FLOW_MODULE.md`
 - Modify: `results/stable_ac/theory/AK3_DIRECT_STABLE_THEORY.md`
 
-- [ ] Parameterize \(CbH\) by Britton-reduced normal form without a
+- [x] Parameterize \(CbH\) by Britton-reduced normal form without a
   syllable bound.
 - [x] Dualize the quotient to conserved scalar edge assignments.
 - [x] Prove propriety for every noncanonical double coset represented

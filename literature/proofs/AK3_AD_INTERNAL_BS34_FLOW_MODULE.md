@@ -834,3 +834,196 @@ Consequently, for both signs \(\sigma\), the right ideal
 is proper for \(r=1,2,3\).  The proof deliberately excludes \(r=0\):
 then every turn in (50) fixes \(v\) and
 \(B_v=(3+\sigma)\delta_v\), recovering the canonical collapse.
+
+## 11. Exact Britton turn codes and the first multi-syllable fold
+
+Every double coset in \(C\backslash B/H\) other than \(H\) has a
+Britton-reduced representative
+
+\[
+x^{r_0}y^{\epsilon_1}x^{r_1}\cdots
+y^{\epsilon_{n-1}}x^{r_{n-1}}y^{\epsilon_n},
+\qquad n\geq1,
+\tag{55}
+\]
+
+with the following normalized turn code:
+
+\[
+0\leq r_0<4,
+\qquad
+\begin{cases}
+0\leq r_i<3,&\epsilon_i=+1,\\
+0\leq r_i<4,&\epsilon_i=-1,
+\end{cases}
+\quad 1\leq i<n,
+\tag{56}
+\]
+
+and with \(r_i\ne0\) whenever
+\(\epsilon_{i+1}=-\epsilon_i\).  The exponent sum is
+
+\[
+e_y(b)=\sum_{i=1}^n\epsilon_i.
+\tag{57}
+\]
+
+This is the standard HNN normal form with fixed right transversals.
+After a positive stable letter, use
+\(yx^{3k}=x^{4k}y\) to reduce the following exponent modulo three;
+after a negative stable letter, use
+\(y^{-1}x^{4k}=x^{3k}y^{-1}\) to reduce it modulo four.  A zero residue
+between opposite stable letters is exactly a Britton pinch.  Left
+multiplication by \(C\) reduces the initial exponent modulo four, and
+right multiplication by \(H\) removes the final base coefficient.
+
+The normalized code need not be unique.  Right multiplication by a
+base-group element can carry from the final end through several stable
+letters and change internal residues.  For example,
+
+\[
+Cy^2H=CyxyH,
+\tag{58}
+\]
+
+because
+
+\[
+y^2x^3=yx^4y=x^4yxy.
+\]
+
+There is nevertheless an exact parameterization.  On the set of codes
+(55)--(56), let \(T_m\) multiply the represented word on the right by
+\(x^m\), restore the fixed-transversal HNN normal form by the two carry
+rules
+
+\[
+yx^{3k}=x^{4k}y,
+\qquad
+y^{-1}x^{4k}=x^{3k}y^{-1},
+\]
+
+normalize the final base coefficient with the transversal appropriate
+to the last stable letter, discard the remaining final coefficient by
+the right-\(H\) quotient, and finally reduce the initial exponent
+modulo four.  These maps do not form a \(\mathbb Z\)-action.  The exact
+equivalence is instead
+
+\[
+\mathfrak c'\sim\mathfrak c
+\quad\Longleftrightarrow\quad
+\mathfrak c'=T_m(\mathfrak c)
+\text{ for some }m\in\mathbb Z.
+\]
+
+Surjectivity is the normal-form reduction above; the converse and
+completeness follow by normalizing an equality
+\(w'=x^{4k}wx^m\).  Thus the double-coset space is parameterized by
+endpoint-carry equivalence classes, not by individual turn strings.
+
+Endpoint carry preserves the number and signs of the stable letters.
+At an opposite-sign turn, the carried increment is a multiple of the
+applicable transversal modulus: a multiple of three in
+\(yx^ry^{-1}\), and a multiple of four in
+\(y^{-1}x^ry\).  Its nonzero residue therefore cannot become a
+Britton pinch.  Same-sign turns never form a pinch.  Hence \(n\) and
+the sequence \((\epsilon_1,\ldots,\epsilon_n)\) are invariants of the
+endpoint-carry class.
+
+Consequently, the exact multi-syllable residue is
+
+\[
+\begin{array}{c|c}
+e_y(b)=1& n\geq3,\ \sum\epsilon_i=1,\\
+e_y(b)=0& n\geq2,\ \sum\epsilon_i=0.
+\end{array}
+\tag{59}
+\]
+
+The length-one exponent-one codes are precisely \(x^ryH\): \(r=0\)
+is the canonical collapse and \(r=1,2,3\) are covered by Section 10.
+
+For multi-syllable codes, even an outward target need not be unique.
+There are universal adjacent-center collisions in the exact
+\(K_b\backslash B\) scalar system.  For every \(v=Hg\),
+
+\[
+\underbrace{K_bb^{-1}yx^jg}_{\text{a target of (37) at }Hg}
+=
+\underbrace{K_bb^{-1}(yx^jg)}_{
+\text{the }i=0\text{ target of (36) at }Hyx^jg},
+\tag{60}
+\]
+
+and
+
+\[
+\underbrace{K_bb^{-1}x^ig}_{\text{a target of (36) at }Hg}
+=
+\underbrace{K_bb^{-1}y(y^{-1}x^ig)}_{
+\text{the }j=0\text{ target of (37) at }Hy^{-1}x^ig}.
+\tag{61}
+\]
+
+Thus an exposed coordinate must, after projection, be separated from
+every relation center whose stencil can hit it; lying outside the
+lifted coefficient hull is not enough.
+
+The local leaf lemma from Section 10 does not extend verbatim to
+(59).  A shortest exponent-one countergeometry is
+
+\[
+b=y^2xy^{-1},
+\qquad e_y(b)=1,
+\qquad b^{-1}=yx^{-1}y^{-2}.
+\tag{62}
+\]
+
+It is Britton reduced and has the minimum possible stable-letter
+length three beyond the length-one stratum.  At the root \(H\), the
+lifts of all targets in the two scalar relation vectors are
+
+\[
+Hyx^{-1}y^{-2}x^i\quad(0\leq i<4),
+\qquad
+Hyx^{-1}y^{-1}x^j\quad(0\leq j<3).
+\tag{63}
+\]
+
+Every word in (63) is Britton reduced and its geodesic begins through
+the same neighbor
+
+\[
+c=Hyx^{-1}.
+\tag{64}
+\]
+
+Thus, if a finite coefficient hull has the edge \([H,c]\) as its sole
+edge at the leaf \(H\), neither scalar stencil supplies an unused
+outward branch there.  This does not prove collapse or propriety for
+(62).  It proves only that the one-\(y\) leaf argument needs a new
+ingredient: targets must be separated after projection to
+\(K_b\backslash B\), rather than merely lying off a chosen lifted
+tree branch.
+
+The universal collision (60) is already visible in the shortest
+exponent-zero code
+
+\[
+b_0=yxy^{-1}.
+\tag{65}
+\]
+
+Here \(b_0^{-1}x^4b_0=x^4\), so \(K_{b_0}=H\).  If
+\(c_j=Hyx^j\), the corresponding target of (37) is
+
+\[
+d_j=Hb_0^{-1}yx^j=Hyx^{j-1}.
+\tag{66}
+\]
+
+The vertex \(d_j\) lies in an outgoing branch different from
+\(c_j\), but it is simultaneously the \(i=0\) target of (36) centered
+at \(c_j\).  Hence even for \(K_b=H\), and even when the target is
+genuinely outward from the hull edge \([H,c_j]\), outwardness alone
+does not imply uniqueness.
