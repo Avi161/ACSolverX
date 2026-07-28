@@ -1,6 +1,7 @@
 from collections import Counter
+from fractions import Fraction
 from itertools import product
-from math import gcd
+from math import gcd, sqrt
 
 
 FREE_INVERSE = {
@@ -457,6 +458,95 @@ def test_explicit_target_commutator_does_not_transport_the_fixed_entry() -> None
     assert commutator_image == target_image
     assert cycle_type(a_image) == (4,)
     assert cycle_type(r_image) == (2,)
+
+
+def test_su2_obstructs_last_depth_three_residue() -> None:
+    Quaternion = tuple[float, tuple[float, float, float]]
+
+    def dot(left: tuple[float, ...], right: tuple[float, ...]) -> float:
+        return sum(a * b for a, b in zip(left, right))
+
+    def cross(
+        left: tuple[float, float, float],
+        right: tuple[float, float, float],
+    ) -> tuple[float, float, float]:
+        return (
+            left[1] * right[2] - left[2] * right[1],
+            left[2] * right[0] - left[0] * right[2],
+            left[0] * right[1] - left[1] * right[0],
+        )
+
+    def multiply(left: Quaternion, right: Quaternion) -> Quaternion:
+        scalar, vector = left
+        other_scalar, other_vector = right
+        vector_cross = cross(vector, other_vector)
+        return (
+            scalar * other_scalar - dot(vector, other_vector),
+            tuple(
+                scalar * other_vector[index]
+                + other_scalar * vector[index]
+                + vector_cross[index]
+                for index in range(3)
+            ),
+        )
+
+    def inverse(value: Quaternion) -> Quaternion:
+        return value[0], tuple(-coordinate for coordinate in value[1])
+
+    def power(value: Quaternion, exponent: int) -> Quaternion:
+        if exponent < 0:
+            return power(inverse(value), -exponent)
+        result: Quaternion = (1.0, (0.0, 0.0, 0.0))
+        for _ in range(exponent):
+            result = multiply(result, value)
+        return result
+
+    def polynomial(value: float) -> float:
+        return 216 * value**3 - 144 * value**2 - 66 * value + 169
+
+    assert Fraction(-125) == 216 * Fraction(-1) ** 3 - 144 - 66 * Fraction(-1) + 169
+    assert Fraction(2381, 125) == 216 * Fraction(-4, 5) ** 3 - 144 * Fraction(16, 25) - 66 * Fraction(-4, 5) + 169
+    lower, upper = -1.0, -4 / 5
+    for _ in range(80):
+        middle = (lower + upper) / 2
+        if polynomial(middle) < 0:
+            lower = middle
+        else:
+            upper = middle
+    m = (lower + upper) / 2
+
+    radius = sqrt(Fraction(3, 5))
+    scalar = sqrt(Fraction(2, 5))
+    p = (0.0, 0.0, 1.0)
+    q_axis = (sqrt(1 - m * m), 0.0, m)
+    x_image = (scalar, tuple(radius * coordinate for coordinate in p))
+    y_image = (scalar, tuple(radius * coordinate for coordinate in q_axis))
+    g_image = multiply(y_image, x_image)
+    u_image = multiply(multiply(g_image, y_image), inverse(g_image))
+
+    braid_left = multiply(multiply(x_image, u_image), x_image)
+    braid_right = multiply(multiply(u_image, x_image), u_image)
+    assert max(
+        abs(left - right)
+        for left, right in zip(
+            (braid_left[0],) + braid_left[1],
+            (braid_right[0],) + braid_right[1],
+        )
+    ) < 1e-12
+
+    a_image = multiply(power(x_image, 3), power(u_image, -4))
+    c_image = multiply(y_image, inverse(x_image))
+    expected_a_scalar = Fraction(167, 125) * scalar
+    expected_c_scalar = Fraction(2, 5) + Fraction(3, 5) * m
+    assert abs(a_image[0] - expected_a_scalar) < 1e-12
+    assert abs(c_image[0] - expected_c_scalar) < 1e-12
+    assert Fraction(55778, 78125) > Fraction(1, 2)
+    assert -1 < c_image[0] < Fraction(-2, 25)
+
+    obstruction_margin = a_image[0] * (1 - c_image[0]) - sqrt(
+        (1 - a_image[0] ** 2) * (1 - c_image[0] ** 2)
+    )
+    assert obstruction_margin > 0
 
 
 def test_last_residue_cyclic_cover_has_rank_four_monodromy() -> None:

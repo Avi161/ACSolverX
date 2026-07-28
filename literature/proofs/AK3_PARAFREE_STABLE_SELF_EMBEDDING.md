@@ -1848,6 +1848,118 @@ r alone does not close the larger intersection (21.2).  A finite
 quotient closes the residue exactly when the image conjugacy class of a
 misses both \(a\operatorname{Cl}(c^{\pm1})\).
 
+## 22. An SU(2) representation closes the intersection
+
+Use unit quaternions \((r,v)\in\mathbb R\oplus\mathbb R^3\) to model
+\(SU(2)\).  Let m be a root in \((-1,-4/5)\) of
+
+\[
+216m^3-144m^2-66m+169=0.
+\tag{22.1}
+\]
+
+The endpoint values are \(-125\) and \(2381/125\), so such a root
+exists.  Choose unit vectors p, q with \(p\cdot q=m\), and put
+
+\[
+X=\left(\sqrt{\frac25},\sqrt{\frac35}\,p\right),
+\qquad
+Y=\left(\sqrt{\frac25},\sqrt{\frac35}\,q\right).
+\tag{22.2}
+\]
+
+Set \(G=YX\) and \(U=GYG^{-1}\).  If
+\(U=(\sqrt{2/5},\sqrt{3/5}\,u)\), Rodrigues' formula gives
+
+\[
+p\cdot u
+=\frac{36m^3-24m^2-11m+24}{25}
+=-\frac16.
+\tag{22.3}
+\]
+
+For equal-angle unit quaternions \((R,Sp)\) and \((R,Su)\), direct
+multiplication gives
+
+\[
+XUX-UXU
+=S\bigl(2(R^2-S^2p\cdot u)-1\bigr)(p-u)
+\tag{22.4}
+\]
+
+in the vector coordinate.  Since
+\((R^2-1/2)/S^2=-1/6\), equations (22.3)--(22.4) prove
+\(XUX=UXU\).  Hence \(x\mapsto X\), \(y\mapsto Y\) defines a
+homomorphism
+
+\[
+\rho:H\longrightarrow SU(2).
+\tag{22.5}
+\]
+
+Write
+
+\[
+A=\rho(a)=(A_0,v),
+\qquad
+C=\rho(c)=(C_0,d_0).
+\]
+
+Exact multiple-angle identities give
+
+\[
+A_0=\frac{167}{125}\sqrt{\frac25},
+\qquad
+A_0^2=\frac{55778}{78125}>\frac12,
+\tag{22.6}
+\]
+
+while
+
+\[
+C_0=\frac{2+3m}{5}<0.
+\tag{22.7}
+\]
+
+Suppose a conjugate of A belonged to
+\(A\operatorname{Cl}_{SU(2)}(C^\eta)\).  Scalar parts would then force
+
+\[
+v\cdot d=A_0(C_0-1)
+\tag{22.8}
+\]
+
+for a vector d of length \(\sqrt{1-C_0^2}\).  Cauchy--Schwarz instead
+gives
+
+\[
+|v\cdot d|
+\le\sqrt{1-A_0^2}\sqrt{1-C_0^2}
+<A_0(1-C_0).
+\tag{22.9}
+\]
+
+The first strict inequality factor follows from \(A_0^2>1/2\), and the
+second from \(-1<C_0<0\).  This contradicts (22.8).  Since C and
+\(C^{-1}\) have the same scalar part, both signs are excluded.
+
+### Theorem 22.1 (complete first-image depth-three closure)
+
+For both signs,
+
+\[
+\operatorname{Cl}_H(a)\cap
+a\operatorname{Cl}_H(c^\eta)=\varnothing.
+\tag{22.10}
+\]
+
+Thus equation (20.10), equivalently the final residue (18.9), has no
+solution.  Together with the other seventeen provenance certificates,
+this proves that no row reached from the first proper AK image with at
+most three AC2 multiplications is primitive.  The full calculation is
+also recorded in
+\(\texttt{AK3_SU2_FIXED_COMMUTATOR_OBSTRUCTION.md}\).
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

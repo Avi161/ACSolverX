@@ -1688,3 +1688,73 @@ close it.  The exact remaining issue is the fixed-factor intersection
 (108).  The \(S_4\) certificate closes the most direct transport of
 (110), but nonconjugacy of a and r does not exclude every point of
 (108).
+
+## 33. An SU(2) trace gap closes the last residue
+
+Let m be a root in \((-1,-4/5)\) of
+
+\[
+216m^3-144m^2-66m+169=0.
+\tag{114}
+\]
+
+Choose unit vectors p, q with \(p\cdot q=m\), and define unit
+quaternions
+
+\[
+X=\left(\sqrt{\frac25},\sqrt{\frac35}\,p\right),
+\qquad
+Y=\left(\sqrt{\frac25},\sqrt{\frac35}\,q\right).
+\tag{115}
+\]
+
+For \(G=YX\) and \(U=GYG^{-1}\), Rodrigues' formula and (114) give
+
+\[
+p\cdot\operatorname{axis}(U)
+=\frac{36m^3-24m^2-11m+24}{25}
+=-\frac16.
+\tag{116}
+\]
+
+The equal-angle quaternion braid criterion then gives
+\(XUX=UXU\).  Therefore (115) defines a homomorphism
+\(\rho:H\to SU(2)\).
+
+If \(A=\rho(a)=(A_0,v)\) and \(C=\rho(c)=(C_0,d_0)\), exact
+multiple-angle formulas give
+
+\[
+A_0^2=\frac{55778}{78125}>\frac12,
+\qquad
+C_0=\frac{2+3m}{5}<0.
+\tag{117}
+\]
+
+Membership of a conjugate of A in
+\(A\operatorname{Cl}(C^\eta)\) would force
+
+\[
+v\cdot d=A_0(C_0-1)
+\tag{118}
+\]
+
+for \(|d|=\sqrt{1-C_0^2}\).  Cauchy--Schwarz instead gives
+
+\[
+|v\cdot d|
+\le\sqrt{1-A_0^2}\sqrt{1-C_0^2}
+<A_0(1-C_0),
+\tag{119}
+\]
+
+contradicting (118).  The scalar part is unchanged by inversion, so the
+same contradiction holds for both signs.
+
+### Theorem 33.1 (the eighteenth provenance class is closed)
+
+The intersection (108) is empty for \(\eta=\pm1\).  Consequently the
+last first-image depth-three equation has no solution.  All eighteen
+depth-three provenance classes at the first proper AK image are closed,
+so no history from that image using at most three AC2 multiplications
+reaches a primitive row.

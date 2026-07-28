@@ -1039,3 +1039,9 @@
 - [TRAP] The compact Magnus diagnostic encoded a positive `z_i` by the integer `i` and a negative `z_i^-1` by `-i-1`; the value `-1` can therefore be misread if the sign channel is discarded. A positive `y` encountered at height `-1` is `z_-1`, not `z_0^-1`. For new rewrites, store `(index, sign)` pairs or verify the final kernel word by direct semidirect multiplication.
 - [TRAP] A three-file proof patch anchored the main ledger on prose whose line wrapping differed from the expected context, so the whole patch was rejected. Read the exact insertion neighborhood and patch each proof file separately when their surrounding formats differ.
 - [TRAP] The first displayed expansion of `Delta x Delta^-1` retained one extra `x` after cancelling the middle `x x^-1`. Verify braid identities as freely reduced words before typesetting the intermediate equality; the correct line is `x u x u^-1 x^-1 = u x u u^-1 x^-1 = u`.
+
+### 2026-07-27 Separate fixed commutators with compact Lie geometry
+
+- [WORKS] After reducing a fixed-entry commutator equation to `Cl(a) intersect a Cl(c^+/-1)`, allow representations into compact Lie groups, not only finite quotients. In `SU(2)`, conjugacy fixes quaternion scalar part, and Cauchy--Schwarz can separate an entire translated conjugacy class at once.
+- [WORKS] For the last first-image depth-three AK residue, choose equal-angle quaternion images of `x,y` with axis dot product an algebraic root. The braid relation becomes one scalar dot-product equation, while `scal(a)^2>1/2` and `scal(c)<0` create a strict trace gap for both orientations.
+- [WORKS] The exact `SU(2)` obstruction closes the eighteenth first-image depth-three provenance class. The complete statement is in `literature/proofs/AK3_SU2_FIXED_COMMUTATOR_OBSTRUCTION.md`; keep finite and nilpotent blindness results as motivation, not as evidence for solvability.

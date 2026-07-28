@@ -7649,6 +7649,79 @@ intersection remains the exact residue, and a finite quotient closes it
 precisely when the image conjugacy class of a misses both sets
 \(a\operatorname{Cl}(c^{\pm1})\).
 
+**Result 136 (an exact \(SU(2)\) obstruction closes first-image depth
+three).**  Represent \(SU(2)\) by unit quaternions.  Choose a root
+
+\[
+m\in(-1,-4/5)
+\quad\text{of}\quad
+216m^3-144m^2-66m+169=0.
+\]
+
+Such a root exists because the polynomial has values \(-125\) and
+\(2381/125\) at the two endpoints.  Choose unit vectors p, q with
+\(p\cdot q=m\), and put
+
+\[
+X=\left(\sqrt{\frac25},\sqrt{\frac35}\,p\right),
+\qquad
+Y=\left(\sqrt{\frac25},\sqrt{\frac35}\,q\right).
+\]
+
+For \(G=YX\) and \(U=GYG^{-1}\), Rodrigues' formula gives
+
+\[
+p\cdot\operatorname{axis}(U)
+=\frac{36m^3-24m^2-11m+24}{25}
+=-\frac16.
+\]
+
+Two equal-angle quaternions \((R,Sp)\), \((R,Su)\) satisfy the braid
+relation when \(p\cdot u=(R^2-1/2)/S^2\).  Here that value is
+\(-1/6\), so \(XUX=UXU\).  Thus \(x\mapsto X\), \(y\mapsto Y\)
+defines a homomorphism \(\rho:H\to SU(2)\).
+
+Let \(A=\rho(a)=(A_0,v)\) and \(C=\rho(c)=(C_0,d_0)\).  Exact angle
+formulas give
+
+\[
+A_0=\frac{167}{125}\sqrt{\frac25},
+\qquad
+A_0^2=\frac{55778}{78125}>\frac12,
+\qquad
+C_0=\frac{2+3m}{5}<0.
+\]
+
+If a conjugate of A lay in \(A\operatorname{Cl}(C^\eta)\), taking
+scalar parts would force
+
+\[
+v\cdot d=A_0(C_0-1)
+\]
+
+for a vector d of length \(\sqrt{1-C_0^2}\).  But
+
+\[
+|v\cdot d|
+\le\sqrt{1-A_0^2}\sqrt{1-C_0^2}
+<A_0(1-C_0),
+\]
+
+a contradiction.  The argument uses only the scalar part of C, so it
+handles \(\eta=\pm1\) simultaneously.  Therefore
+
+\[
+\operatorname{Cl}_H(a)\cap
+a\operatorname{Cl}_H(c^\eta)=\varnothing
+\quad(\eta=\pm1).
+\]
+
+Result 135 now closes the eighteenth and last provenance class from
+Result 132.  Hence no row reached from the first proper AK image by at
+most three AC2 multiplications is primitive.  The exact quaternion
+certificate is recorded in
+\(\texttt{literature/proofs/AK3_SU2_FIXED_COMMUTATOR_OBSTRUCTION.md}\).
+
 ## Live lead
 
 The direct relation-splitting manufacture of
