@@ -5903,3 +5903,131 @@ negative-start alternating family at \(p=0\), every negative-first
 single valley at \(n=1\), and the complete \((-,-,+,-,+,+)\)
 length-six stratum at \(p=1,n=2\).  It is an unbounded multi-turn
 family, not an arbitrary-sign theorem.
+
+## 41. Arbitrarily many shallow loops around one deep excursion
+
+There is a serial counterpart to the nested theorem of Section 40.
+Define the height-zero blocks
+
+\[
+L(r,c)=y^{-1}x^ryx^c
+\tag{381}
+\]
+
+and
+
+\[
+D(A,s,B,C)
+=y^{-1}x^Ay^{-1}x^syx^Byx^C.
+\tag{382}
+\]
+
+Let \(N\geq0\), \(0\leq m\leq N\), and put
+
+\[
+\begin{aligned}
+b={}&x^\ell
+L(r_1,c_1)\cdots L(r_m,c_m)
+D(A,s,B,C)\\
+&\hspace{18mm}{}\cdot
+L(r_{m+1},c_{m+1})\cdots L(r_N,c_N)x^q,
+\end{aligned}
+\tag{383}
+\]
+
+where every exponent is arbitrary except
+
+\[
+4\nmid s.
+\tag{384}
+\]
+
+Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{385}
+\]
+
+Choose independent \(w,a\in V_1\), a fresh nonzero
+\(z\in V_\omega\), and \(\gamma\in\mu_4\) with
+
+\[
+\gamma^s=4=-1.
+\tag{386}
+\]
+
+Choose \(0\ne d\in V_\gamma\).  In \(D_1\to\mathcal R_1\)
+prescribe
+
+\[
+wY=3w+z,
+\qquad
+aY=w,
+\qquad
+dY=a.
+\tag{387}
+\]
+
+The sources \(w,a,d\) are independent because \(\gamma\ne1\).  The
+images \(3w+z,w,a\) are independent because \(z\) is fresh.  Thus
+(387) extends to a global cyclotomic BS\((3,4)\)-module action.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=(3w+z)R_3=4w=wR_4.
+\tag{388}
+\]
+
+Every shallow block acts identically:
+
+\[
+\begin{aligned}
+wL(r,c)
+&=wY^{-1}X^rYX^c\\
+&=aX^rYX^c
+=w,
+\end{aligned}
+\tag{389}
+\]
+
+because \(a,w\in V_1\).  The unique deep block contributes four:
+
+\[
+\begin{aligned}
+wD(A,s,B,C)
+&=wY^{-1}X^AY^{-1}X^sYX^BYX^C\\
+&=dX^sYX^BYX^C\\
+&=4w.
+\end{aligned}
+\tag{390}
+\]
+
+By linearity, every shallow block after the deep block fixes \(4w\).
+The leading and trailing \(x\)-powers also fix \(w\).  Therefore
+
+\[
+wb=4w=wR_4,
+\tag{391}
+\]
+
+which proves (385).
+
+No condition besides (384) is needed for the algebraic theorem.  If
+the displayed concatenation is required to be Britton-reduced, impose
+the usual \(4\nmid r_i\) at shallow negative--positive turns and
+\(3\nmid c_i\) whenever that trailing exponent is followed by the
+next block's negative letter; likewise impose \(3\nmid C\) when a
+shallow block follows \(D\).  The equal-sign gaps \(A,B\) remain
+unrestricted.
+
+The Fox bridge and (286) obstruct both A--D signs for every
+free-kernel lift.  At \(N=1\), placing \(D\) before or after the one
+shallow block closes the complete \((-,-,+,+,-,+)\) and
+\((-,+,-,-,+,+)\) length-six strata.  More generally, (383) permits
+arbitrarily many stable letters and turns; it is not an
+arbitrary-depth theorem.

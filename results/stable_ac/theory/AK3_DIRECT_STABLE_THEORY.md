@@ -5570,6 +5570,61 @@ theorem contains Result 86 at \(p=0\), Result 90 at inner length two,
 and the complete \((-,-,+,-,+,+)\) length-six stratum at
 \(p=1\) with inner length four.
 
+**Result 94 (one deep excursion tolerates arbitrarily many shallow
+loops).**  Define
+
+\[
+L(r,c)=y^{-1}x^ryx^c,
+\qquad
+D(A,s,B,C)=y^{-1}x^Ay^{-1}x^syx^Byx^C.
+\]
+
+For arbitrary \(N\geq0\) and \(0\leq m\leq N\), let
+
+\[
+b=x^\ell L_1\cdots L_mD(A,s,B,C)
+L_{m+1}\cdots L_Nx^q,
+\qquad 4\nmid s.
+\]
+
+Over \(\overline{\mathbb F}_5\), choose independent
+\(w,a\in V_1\), a fresh \(z\in V_\omega\), and
+\(d\in V_\gamma\), where \(\gamma^4=1\) and
+\(\gamma^s=4=-1\).  Prescribe
+
+\[
+wY=3w+z,
+\qquad
+aY=w,
+\qquad
+dY=a.
+\]
+
+The source and image triples are independent, so the map extends
+inside \(D_1\to\mathcal R_1\).  It gives the baseline
+
+\[
+wYR_3=4w=wR_4.
+\]
+
+Every shallow loop acts identically:
+
+\[
+wL(r,c)=aX^rYX^c=w,
+\]
+
+while the unique deep block gives
+
+\[
+wD(A,s,B,C)=dX^sYX^BYX^C=4w.
+\]
+
+Hence \(wb=4w\), independently of every exponent except the central
+turn exponent \(s\).  The Fox bridge and Result 85 obstruct both A--D
+signs for every free-kernel lift.  This closes the complete
+\((-,-,+,+,-,+)\) and \((-,+,-,-,+,+)\) length-six strata and an
+unbounded serial family with arbitrarily many stable-letter turns.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5653,8 +5708,9 @@ single-valley word at arbitrary length. Result 91 closes the dual
 positive-first family at arbitrary length whenever the initial
 fourth-root phase is nonzero, and Result 92 closes its first open
 zero-phase case at stable-letter length six. Result 93 closes every
-arbitrarily deep symmetric wrapper around an alternating core. Results
-73--75 close the
+arbitrarily deep symmetric wrapper around an alternating core. Result
+94 closes arbitrarily many shallow loops around one deep excursion.
+Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5664,7 +5720,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--93, arbitrary W--D conjugators,
+61--94, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
