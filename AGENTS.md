@@ -1070,3 +1070,29 @@
 
 - [TRAP] A combined target-basis handoff patch used an ordinary JavaScript string, so LaTeX backslashes disappeared from a later context anchor and the whole patch was rejected.
 - [WORKS] Patch each theory file separately with a short prose-only anchor; add LaTeX-heavy sections with an escape-safe payload, then immediately reread the inserted region before running verification.
+
+### 2026-07-28 Bound periodic-cover probes structurally
+
+- [TRAP] The direct radius-three four-conjugator sweep in the periodic quotient C3 times Z free-product model did not finish promptly and was interrupted; the completed C2 case checked 234,256 tuples but remained bounded evidence only.
+- [TRAP] The periodic-cover conjugator generator enumerated all four-letter literal strings before quotient deduplication, so a nominal one-variable radius-14 probe stalled inside generator construction. Generate reduced free-product normal forms breadth-first instead of filtering a four-to-the-radius literal product.
+- [WORKS] Use a periodic-cover quotient only through class-product geometry, automata, or meet-in-the-middle state sets. Do not extend another nested four-conjugator enumeration merely because the quotient reducer is fast.
+
+### 2026-07-28 Orient SU2 triangle inequalities before elimination
+
+- [TRAP] The first Fourier--Motzkin model encoded three conditions of the form x plus y minus z is nonnegative as less-than inequalities without negating them, and consequently emitted impossible constraints such as target angle at most zero.
+- [WORKS] Normalize every SU2 class-product triangle to less-than form explicitly: x plus y plus z at most two pi, z minus x minus y at most zero, y minus x minus z at most zero, and x minus y minus z at most zero. Check a known feasible numeric triple before trusting any projection.
+
+### 2026-07-28 Stage linear-real elimination
+
+- [TRAP] A single Z3 quantifier-elimination call comparing the six-internal-variable flat SU2 chain with the projected facets exceeded the time bound, ignored stdin interrupts in its non-TTY session, and required terminating the exact script process.
+- [WORKS] Eliminate one SU2 triangle variable at a time with exact Fourier--Motzkin projection and redundancy removal after every stage. Emit the row count after each leaf so a blowup is visible before it becomes an opaque long-running solver call.
+
+### 2026-07-28 Accumulate repeated symbolic variables
+
+- [TRAP] The first staged flat SU2 projection represented the triangle a star a to p with a dictionary literal; the repeated a key collapsed coefficient two to coefficient one and produced false 2a plus 5b facets.
+- [WORKS] Build symbolic linear rows by accumulating a sequence of variable-coefficient pairs. Always audit a repeated-factor triangle to confirm its first two inequalities contain coefficients plus-or-minus two before elimination.
+
+### 2026-07-28 Scope local angle relaxations precisely
+
+- [TRAP] Equality between the four-local-triangle SU2 angle projection and the flat class interval was initially phrased as excluding every scalar-angle obstruction. Simultaneously compatible matrices can form a smaller set whose eliminated joint constraints are still scalar.
+- [WORKS] State this theorem only as blindness of the local shared-angle relaxation. Do not exclude scalar consequences of axes, mixed traces, image-subgroup restrictions, or global matrix compatibility unless those joint variables have also been eliminated exactly.
