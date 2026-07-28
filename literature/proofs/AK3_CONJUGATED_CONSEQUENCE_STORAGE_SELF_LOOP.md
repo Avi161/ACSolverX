@@ -1502,3 +1502,38 @@ No AC1--AC3 history from the original AK pair which uses at most three
 AC2 multiplications reaches a primitive row.  This conclusion covers
 arbitrary conjugators but does not extend to depth three at the first
 proper image or depth four at the source.
+
+## 29. One dependent first-image depth-three equation
+
+The same virtually free quotients close sixteen of the eighteen
+first-image depth-three provenance classes.  A separate \(S_5\)
+cycle-type certificate closes the only four-leaf tie.  The remaining
+class has unsigned multiplicities \((2,3)\) and signed coefficients
+\((0,-1)\).
+
+Every history in that class has the exact alternating normal form
+
+\[
+X=a^\sigma h_0b^\tau h_0^{-1},\qquad
+Y=b^{-1}h_1Xh_1^{-1},\qquad
+Z=X^{-1}h_2Yh_2^{-1},
+\tag{100}
+\]
+
+up to row gauge, and every choice in (100) is realizable.  The row Y is
+already nonprimitive by the depth-two theorem.  The vector of Z is
+\((-1,1)\), so Z is primitive precisely when
+
+\[
+X^{-1}h_2(b^{-1}h_1Xh_1^{-1})h_2^{-1}
+=k(yx^{-1})k^{-1}.
+\tag{101}
+\]
+
+### Theorem 29.1 (sharp first-image depth-three residue)
+
+Seventeen of the eighteen first-image depth-three provenance classes
+are closed.  The last class contains a primitive row if and only if
+(101) has a solution in \(F(x,y)\).  The projected equation has
+solutions in \(C_2*C_3\), so that quotient supplies no further
+obstruction.

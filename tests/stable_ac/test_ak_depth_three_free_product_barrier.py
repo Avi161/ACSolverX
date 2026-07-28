@@ -197,9 +197,10 @@ def test_depth_three_provenance_has_eighteen_new_signed_multisets() -> None:
     }
 
 
-def test_every_depth_three_ak_multiset_fails_in_a_free_product_quotient() -> None:
-    source_a = "xxxYYYY"
-    source_b = "xyxYXY"
+def depth_three_free_product_survivors(
+    source_a: str,
+    source_b: str,
+) -> set[tuple[int, int, int, int, int]]:
     quotients = {
         "kill_a": (
             {"X": 3, "Y": 4},
@@ -217,6 +218,7 @@ def test_every_depth_three_ak_multiset_fails_in_a_free_product_quotient() -> Non
     assert evaluate_free_word(source_a, *reversed(quotients["kill_a"])) == ()
     assert evaluate_free_word(source_b, *reversed(quotients["kill_b"])) == ()
 
+    survivors = set()
     for leaves in three_move_leaf_multisets():
         counts = Counter(leaves)
         a_count = counts["A", 1] + counts["A", -1]
@@ -248,7 +250,21 @@ def test_every_depth_three_ak_multiset_fails_in_a_free_product_quotient() -> Non
 
         if len(leaves) == 4:
             assert len(minority_signs) == 1
-            assert len(primitive_image) != len(minority_image)
+            signed_minority = (
+                minority_image
+                if minority_signs[0] > 0
+                else free_product_inverse(minority_image, orders)
+            )
+            if free_product_conjugate(signed_minority, primitive_image, orders):
+                survivors.add(
+                    (
+                        len(leaves),
+                        a_count,
+                        b_count,
+                        a_coefficient,
+                        b_coefficient,
+                    )
+                )
             continue
 
         assert len(minority_signs) == 2
@@ -295,4 +311,84 @@ def test_every_depth_three_ak_multiset_fails_in_a_free_product_quotient() -> Non
                     break
             if found:
                 break
-        assert not found
+        if found:
+            survivors.add(
+                (
+                    len(leaves),
+                    a_count,
+                    b_count,
+                    a_coefficient,
+                    b_coefficient,
+                )
+            )
+    return survivors
+
+
+def test_every_depth_three_ak_multiset_fails_in_a_free_product_quotient() -> None:
+    assert not depth_three_free_product_survivors("xxxYYYY", "xyxYXY")
+
+
+def test_first_image_depth_three_has_one_residue_after_a_finite_certificate() -> None:
+    survivors = depth_three_free_product_survivors(
+        "xxxyxYYYYXY",
+        "xyxyXYxyxYXYXyxYXY",
+    )
+    four_leaf = (4, 1, 3, -1, 3)
+    five_leaf = (5, 2, 3, 0, -1)
+    assert survivors == {four_leaf, five_leaf}
+
+    def compose(
+        left: tuple[int, ...],
+        right: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        return tuple(left[right[index]] for index in range(len(left)))
+
+    def inverse(permutation: tuple[int, ...]) -> tuple[int, ...]:
+        result = [0] * len(permutation)
+        for source, target in enumerate(permutation):
+            result[target] = source
+        return tuple(result)
+
+    def evaluate(
+        word: str,
+        x_image: tuple[int, ...],
+        y_image: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        identity = tuple(range(len(x_image)))
+        images = {
+            "x": x_image,
+            "X": inverse(x_image),
+            "y": y_image,
+            "Y": inverse(y_image),
+        }
+        result = identity
+        for letter in word:
+            result = compose(result, images[letter])
+        return result
+
+    def cycle_type(permutation: tuple[int, ...]) -> tuple[int, ...]:
+        unseen = set(range(len(permutation)))
+        lengths = []
+        while unseen:
+            start = next(iter(unseen))
+            current = start
+            length = 0
+            while current in unseen:
+                unseen.remove(current)
+                current = permutation[current]
+                length += 1
+            if length > 1:
+                lengths.append(length)
+        return tuple(sorted(lengths, reverse=True)) or (1,)
+
+    x_image = (1, 2, 3, 4, 0)
+    y_image = (1, 3, 0, 4, 2)
+    a_image = evaluate("xxxyxYYYYXY", x_image, y_image)
+    b_image = evaluate("xyxyXYxyxYXYXyxYXY", x_image, y_image)
+    primitive_image = evaluate("y", x_image, y_image)
+
+    assert cycle_type(a_image) == (3,)
+    assert cycle_type(b_image) == (1,)
+    assert cycle_type(primitive_image) == (5,)
+    survivors.remove(four_leaf)
+    assert survivors == {five_leaf}

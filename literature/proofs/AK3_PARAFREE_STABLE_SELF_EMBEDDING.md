@@ -1370,6 +1370,128 @@ all eighteen four- and five-leaf possibilities.  The first proper image
 is still closed only through two multiplications; depth four at the
 source also remains open.
 
+## 18. One exact depth-three residue at the first image
+
+The same quotients lift to the first image for a simpler reason than
+surjectivity of \(\phi\).  The word
+
+\[
+\phi(y)=(yx)y(yx)^{-1}
+\tag{18.1}
+\]
+
+is conjugate to y.  Thus \(Q_A\) kills
+\(a=x^3\phi(y)^{-4}\).  Exact cyclic normal forms give
+
+\[
+\|\overline b\|_{Q_A}=18.
+\tag{18.2}
+\]
+
+The quotient \(Q_B\) also kills b directly, and
+
+\[
+\|\overline a\|_{Q_B}=2.
+\tag{18.3}
+\]
+
+Apply the eighteen provenance cases of (17.1).  The connector certificate
+closes sixteen immediately.  In the four-leaf case
+\((c_a,c_b)=(-1,3)\), both the signed minority and the Christoffel
+candidate have \(Q_B\)-length two and are conjugate there.  A separate
+\(S_5\) certificate closes it: under
+
+\[
+x\mapsto(12345),\qquad y\mapsto(12453),
+\tag{18.4}
+\]
+
+a maps to a 3-cycle, b maps to the identity, and the candidate y maps
+to a 5-cycle.  Hence the required product cannot be conjugate to the
+candidate.
+
+Exactly one provenance case remains:
+
+\[
+\text{unsigned multiplicities }(2,3),\qquad
+(c_a,c_b)=(0,-1).
+\tag{18.5}
+\]
+
+It can only come from alternating row targets.  For arbitrary source
+rows u,v, every such history, up to row exchange, terminal inversion,
+and terminal conjugacy, has the complete form
+
+\[
+\begin{aligned}
+X&=u^\sigma h_0v^\tau h_0^{-1},\\
+Y&=v^{-1}h_1Xh_1^{-1},\\
+Z&=X^{-1}h_2Yh_2^{-1},
+\end{aligned}
+\qquad \sigma,\tau\in\{\pm1\},
+\tag{18.6}
+\]
+
+with endpoint \(([Z],[Y])\).  Conversely every choice in (18.6) is
+realized by a legal three-AC2 alternating history.  To derive it, write
+
+\[
+\begin{aligned}
+P&=u^\alpha h_0v^\beta h_0^{-1},\\
+Q&=v^\gamma h_1P^\delta h_1^{-1},\\
+R&=P^\epsilon h_2Q^\zeta h_2^{-1}.
+\end{aligned}
+\]
+
+The leaf vector of R is
+
+\[
+\bigl(\alpha(\epsilon+\zeta\delta),
+\ \beta(\epsilon+\zeta\delta)+\zeta\gamma\bigr).
+\tag{18.7}
+\]
+
+It equals \((0,-1)\) precisely when
+\(\epsilon=-\zeta\delta\) and \(\gamma=-\zeta\).
+Absorbing the resulting cyclic rotations and dependent conjugations
+gives (18.6).  The dependence matters: the identical X occurs inside Y
+and as \(X^{-1}\) in Z.
+
+Now put \(u=a,\ v=b\).  Result 130 already excludes Y, which has at most
+three leaves.  Since
+
+\[
+[Z]_{\rm ab}=-[b]_{\rm ab}=(-1,1),
+\tag{18.8}
+\]
+
+Z is primitive exactly when it is conjugate to the signed Christoffel
+word \(yx^{-1}\).  Therefore the whole first-image depth-three residue
+is the single equation
+
+\[
+\boxed{
+X^{-1}h_2
+\bigl(b^{-1}h_1Xh_1^{-1}\bigr)
+h_2^{-1}
+=k(yx^{-1})k^{-1},
+\quad
+X=a^\sigma h_0b^\tau h_0^{-1}.}
+\tag{18.9}
+\]
+
+All four variables \(h_0,h_1,h_2,k\) range over \(F(x,y)\), and both
+signs are allowed.  In \(Q_B\), (18.9) becomes a product of a conjugate
+of \(a^{-1}\) and a conjugate of a; that quotient genuinely admits the
+candidate, so the virtually free argument cannot close (18.9).
+
+### Theorem 18.1 (sharp first-image depth-three reduction)
+
+Seventeen of the eighteen new depth-three provenance classes at the
+first proper image cannot contain a primitive row.  The remaining class
+contains a primitive row if and only if (18.9) has a solution.  No
+solution or obstruction is asserted here.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

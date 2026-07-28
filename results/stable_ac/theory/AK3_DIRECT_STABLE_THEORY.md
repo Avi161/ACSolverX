@@ -7475,6 +7475,41 @@ reaches a primitive row.  This is a source-leaf and free-product
 certificate, not an AC graph search.  The first proper image remains
 closed only through depth two.
 
+**Result 132 (first-image depth three reduces to one dependent
+equation).**  The quotients from Result 131 also retain useful
+first-image information.  Since \(\phi(y)\) is conjugate to y,
+\(Q_A=C_3*C_4\) kills a and gives b cyclic syllable length 18.
+The quotient \(Q_B=C_2*C_3\) kills b and gives a cyclic syllable length
+2.  Their connector certificates close sixteen of the eighteen new
+provenance classes.  An \(S_5\) cycle-type certificate closes the sole
+four-leaf tie.
+
+The remaining class has unsigned multiplicities \((2,3)\) and signed
+coefficient vector \((c_a,c_b)=(0,-1)\).  It necessarily comes from
+alternating row targets.  Up to the standard row gauges, every such
+history has
+
+\[
+X=a^\sigma h_0b^\tau h_0^{-1},\qquad
+Y=b^{-1}h_1Xh_1^{-1},\qquad
+Z=X^{-1}h_2Yh_2^{-1},
+\]
+
+where \(\sigma,\tau=\pm1\), and conversely every such tuple is realized
+by a three-AC2 history.  The other row Y is nonprimitive by Result 130.
+The final row has vector \((-1,1)\), so it is primitive exactly when
+
+\[
+X^{-1}h_2(b^{-1}h_1Xh_1^{-1})h_2^{-1}
+=k(yx^{-1})k^{-1}
+\]
+
+for some \(h_0,h_1,h_2,k\in F(x,y)\).  Thus seventeen depth-three
+classes at the first proper image are closed, and the eighteenth is
+equivalent to this one dependent three-conjugator equation.  The
+virtually free quotient genuinely realizes its projected candidate, so
+no closure is claimed.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7659,7 +7694,8 @@ descent alone cannot certify progress. Result 130 replaces the failed
 three-axis estimate by a whole-history source-leaf reduction and closes
 all depth-two histories at both the source and the first proper image.
 Result 131 combines that reduction with two virtually free quotients to
-close depth three at the original source.
+close depth three at the original source. Result 132 reduces depth three
+at the first proper image to the single dependent equation above.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7671,7 +7707,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--131, arbitrary W--D conjugators,
+61--132, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

@@ -1009,3 +1009,10 @@
 - [WORKS] In a free product Bass--Serre tree, normalize a product of two hyperbolic conjugacy classes to syllable rotations joined by a connector. Intersecting axes need connector length at most one; disjoint axes at vertex distance `D` need at most `D+1`, and the product translation length determines `D`.
 - [TRAP] Full symmetric-group class products saturated at depth three, and a subgroup-sensitive exhaustive `S5` pass ran too long and had to be interrupted. Prefer the infinite virtually free quotient and its finite axis-connector normal form before broadening a finite-group loop.
 - [TRAP] A large `String.raw` proof patch again contained a Markdown backtick and failed with `SyntaxError: Unexpected identifier 'tests'`. Before sending any raw template patch, search the payload itself for backticks; write code paths as LaTeX `texttt` or patch that prose separately.
+
+### 2026-07-27 Preserve dependent provenance in the last quotient residue
+
+- [TRAP] To lift `C3*C4` through the first stable image, an unnecessary diagnostic searched for `phi(y)=Y`. The needed fact is only that `phi(y)` is conjugate to `y`, so the torsion relation `y^4=1` already kills `phi(A)`.
+- [WORKS] The same quotients give `phi(A)=1, |phi(B)|_syl=18` in `C3*C4` and `phi(B)=1, |phi(A)|_syl=2` in `C2*C3`. Combined with one `S5` certificate, they close seventeen of eighteen first-image depth-three provenance classes.
+- [WORKS] Do not flatten the last class beyond its shared subexpressions. Its exact normal form is `X=u^s h0 v^t h0^-1`, `Y=v^-1 h1 X h1^-1`, `Z=X^-1 h2 Y h2^-1`; the identical `X` and `Y` occurrences are the remaining structure to exploit.
+- [TRAP] Symmetric quotients through degree six, small `SL(2,p)` quotients through `p=7`, and conjugators of free length at most three did not resolve the final equation. These bounded failures are lead diagnostics only, never proof evidence.
