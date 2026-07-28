@@ -684,4 +684,126 @@ deleting \(s\).  Concretely, it must:
 5. avoid the two-stage kernel equality (43) by deleting a different
    primitive slot.
 
+The first post-deletion edge is narrowed further next.
+
+## 10. Zero-bridge traffic into the surviving primitive slot closes
+
+Normalize the intermediate tuple stably as in Theorem 8.1, so its
+primitive survivor is the literal relator \(r\) and its old survivor
+tuple
+
+\[
+\mathbf T=(T_1,\ldots,T_n)
+\tag{51}
+\]
+
+lies in \(F_0\).  Fix one old source \(V=T_j\).  Consider one
+multiplication targeting the r-slot:
+
+\[
+r\longmapsto r\,cV^\epsilon c^{-1}
+\quad\text{or}\quad
+r\longmapsto cV^\epsilon c^{-1}r,
+\qquad
+\epsilon\in\{+1,-1\}.
+\tag{52}
+\]
+
+Use the free-product splitting
+
+\[
+F_0*\langle r\rangle.
+\tag{53}
+\]
+
+The fixed vertex of \(\langle r\rangle\) and the fixed vertex
+\(cF_0\) of the conjugated old factor are adjacent in its Bass--Serre
+tree exactly when
+
+\[
+c\in\langle r\rangle F_0.
+\tag{54}
+\]
+
+This is the zero-bridge case.  Write
+
+\[
+c=r^k a,
+\qquad
+k\in\mathbb Z,
+\qquad
+a\in F_0.
+\tag{55}
+\]
+
+Put \(H=cV^\epsilon c^{-1}\).  The left target in (52) is conjugate to
+the right target because
+
+\[
+H^{-1}(Hr)H=rH.
+\tag{56}
+\]
+
+For the right target, conjugation by \(r^{-k}\) gives the exact free
+group identity
+
+\[
+\begin{aligned}
+r^{-k}
+\bigl(r\,r^kaV^\epsilon a^{-1}r^{-k}\bigr)
+r^k
+&=
+r\,aV^\epsilon a^{-1}.
+\end{aligned}
+\tag{57}
+\]
+
+The final word contains exactly one \(r\)-letter.  The stable
+substitution-and-removal composite deletes it with the r-generator.
+Every old survivor \(T_i\), including the source \(V\), is r-free and
+therefore remains literal.  The endpoint is exactly \(\mathbf T\).
+
+### Theorem 10.1 (zero-bridge primitive-slot traffic)
+
+At a normalized balanced trivial-group checkpoint
+\((\mathbf T,r)\), every one-edge target multiplication (52) whose
+relative conjugator has zero Bass--Serre bridge is a stable self-loop
+with literal endpoint \(\mathbf T\).  Its target normalization is
+classical AC3; the rank-changing unique-r deletion is the stable
+substitution-and-removal composite.  No primitivity assumption is
+needed: (57) proves the changed target primitive.
+
+Combined with Theorem 8.1, a post-cycle one-edge escape requires
+
+\[
+\boxed{
+c\notin\langle r\rangle F_0,
+}
+\tag{58}
+\]
+
+so the \(\langle r\rangle\)-vertex and the conjugated old-factor vertex
+have strictly positive bridge length.  The shortest apparent primitive
+\(r^2V r^{-1}\) is not exceptional; it is the \(k=1,a=1\) instance of
+(57).
+
+## 11. Exact remaining storage frontier
+
+After normalization, the first unresolved event is
+
+\[
+r\longmapsto r\,cV^\epsilon c^{-1}
+\tag{59}
+\]
+
+with positive Bass--Serre bridge, followed by primitive deletion of
+the changed r-slot.  All q-free or zero-bridge conjugators, all traffic
+away from the primitive slot, unique-letter changed-source cycles, and
+immediate second deletions are already closed.  A proof must now either:
+
+1. show that positive-bridge words (59) are nonprimitive for the AK
+   source relators;
+2. classify their primitive quotient maps; or
+3. use more than one post-deletion target edge.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.

@@ -287,3 +287,40 @@ def test_changed_source_cycle_allows_an_r_dependent_conjugator() -> None:
         inverse(conjugator_image) + inverse(p) + conjugator_image
     )
     assert survivor_r == inverse(p)
+
+
+def test_zero_bridge_primitive_slot_traffic_reduces_to_unique_r() -> None:
+    source = "xyX"
+    old_conjugator = "zY"
+
+    for exponent in range(-3, 4):
+        r_power = "r" * exponent if exponent >= 0 else "R" * (-exponent)
+        conjugator = r_power + old_conjugator
+
+        for sign in (1, -1):
+            source_power = source if sign == 1 else inverse(source)
+            h = reduce_word(
+                conjugator + source_power + inverse(conjugator)
+            )
+            right_target = reduce_word("r" + h)
+            left_target = reduce_word(h + "r")
+
+            left_as_right = reduce_word(
+                inverse(h) + left_target + h
+            )
+            assert left_as_right == right_target
+
+            normalized = reduce_word(
+                inverse(r_power) + right_target + r_power
+            )
+            expected = reduce_word(
+                "r"
+                + old_conjugator
+                + source_power
+                + inverse(old_conjugator)
+            )
+            assert normalized == expected
+
+            r_solution = solve_unique_generator(normalized, "r")
+            assert substitute_generator(normalized, "r", r_solution) == ""
+            assert "r" not in source.lower()

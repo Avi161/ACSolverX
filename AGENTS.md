@@ -923,3 +923,8 @@
 
 - [TRAP] An all-at-once rank-three conjugator census through length eight ran long enough to require interruption and produced no checkpointed partial counts.
 - [WORKS] Sweep one word length at a time, print the completed level, and apply algebraic occurrence and abelianization filters before Whitehead reduction. Treat every bounded absence as diagnostic evidence only.
+
+### 2026-07-27 Separate cyclic normalization from the Whitehead automorphism
+
+- [TRAP] A primitive word reduced to a one-letter cyclic representative while the stored Whitehead automorphism stayed the identity; reading this as an inconsistent witness initially obscured that the source was already a conjugate of that letter.
+- [WORKS] The word reducer cyclically canonicalizes before recording Whitehead descents. Recover and verify the peeled conjugating prefix separately whenever the minimum changes under free or cyclic normalization with no recorded automorphism step.

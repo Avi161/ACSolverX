@@ -6743,6 +6743,57 @@ intermediate rank-\((n+1)\) tuple before deleting \(s\), or else lose
 relative primitivity, use the source repeatedly, or delete another
 slot.
 
+**Result 113 (zero-bridge traffic into the primitive slot closes).**
+Normalize the intermediate tuple stably to
+
+\[
+(\mathbf T,r),
+\qquad
+\mathbf T\subset F_0,
+\]
+
+and use one old row \(V\in\mathbf T\) as a source:
+
+\[
+r\longmapsto r\,cV^\epsilon c^{-1}
+\quad\text{or}\quad
+r\longmapsto cV^\epsilon c^{-1}r.
+\]
+
+In the Bass--Serre tree of \(F_0*\langle r\rangle\), the r-factor
+vertex and \(cF_0\) are adjacent exactly when
+
+\[
+c\in\langle r\rangle F_0.
+\]
+
+Write such a zero-bridge conjugator as \(c=r^ka\), with \(a\in F_0\).
+The left target is conjugate to the right target.  Conjugating the
+right target by \(r^{-k}\) gives
+
+\[
+r^{-k}
+\bigl(r\,r^kaV^\epsilon a^{-1}r^{-k}\bigr)
+r^k
+=
+r\,aV^\epsilon a^{-1}.
+\]
+
+This contains r exactly once.  Unique-r deletion fixes every old
+survivor literally, including \(V\), and returns \(\mathbf T\).
+Therefore every zero-bridge event is a stable self-loop with literal
+old endpoint; its target normalization is classical AC3 and its
+rank-changing deletion is the stable substitution-and-removal
+composite.  The first unresolved post-cycle edge must have
+
+\[
+c\notin\langle r\rangle F_0,
+\]
+
+so the \(\langle r\rangle\)-vertex and \(cF_0\) have strictly positive
+bridge length.  The apparent
+primitive \(r^2Vr^{-1}\) is merely the \(k=1,a=1\) gauge.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6870,7 +6921,11 @@ two-stage kernel equals the original relative-storage kernel, and the
 endpoint is only a simultaneous ambient-Aut image of the old tuple.
 This is a stable, not proved classical, return. The live opportunity is
 therefore traffic in the intermediate rank-\((n+1)\) tuple before the
-surviving source is deleted. Results
+surviving source is deleted. Result 113 closes every first target edge
+whose conjugator has zero Bass--Serre bridge:
+\(c=r^ka\), \(a\in F_0\), conjugates the target to a unique-r word and
+returns the old tuple literally. A productive edge must use a
+strictly positive bridge. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6881,10 +6936,11 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--112, arbitrary W--D conjugators,
+61--113, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion outside Results 111--112's source-consumption and
-immediate-second-deletion closures. Longer branches may use additional \(Wq^{-1}\) blocks,
+immediate-second-deletion closures, followed by positive-bridge
+primitive-slot traffic outside Result 113. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
 primitive slot. The exact Fox coordinate remains a necessary free-kernel
