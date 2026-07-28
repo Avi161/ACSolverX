@@ -1393,33 +1393,3 @@ change followed by an external second row change are nonprimitive.  A
 fully internal history pulls back to AK by Theorem 22.1.  Thus every
 genuinely new two-row exit must use an external conjugator on its first
 edge.  The surviving branch is a three-translate barbell problem.
-
-## 25. Three translates close the full two-AC2 layer
-
-At the first image, the exact same-source two-copy minima are 18 and 16
-for a, and 20 and 26 for b, in the same-sign and nontrivial
-opposite-sign cases respectively.
-
-A first external edge followed by a second AC2 edge produces three source
-conjugates of type \((a,b,b)\) or \((a,a,b)\).  Three distinct K-translates
-give lower bounds 35 and 28 by the three-axis cancellation lemma: each
-factor retains a nonempty central segment after its two overlap-two
-seams.  If two translates coincide, combine them:
-a mixed pair has length at least 21, an equal-source pair uses the preceding
-two-copy minima, and exact opposite cancellation leaves only an old
-nonprimitive source.  Every nontrivial terminal has length at least 27,
-while the largest primitive target length is 16.
-
-An internal first edge followed by an external second edge has length at
-least 28.  If both AC2 edges have internal effective relative geometry
-after AC1/AC3 normalization, every terminal conjugacy class pulls back to
-AK.  The row not targeted by AC2 number two is old or the nonprimitive
-one-AC2 row.
-
-### Theorem 25.1 (complete two-AC2 first-image barrier)
-
-No history from the first proper image with at most two AC2 row
-multiplications creates a new primitive row.  AC1 and AC3 traffic between
-the row multiplications is allowed.  A new corridor exit requires at least
-three AC2 edges, an ambient automorphism moving the image subgroup, or a
-different stabilization architecture.

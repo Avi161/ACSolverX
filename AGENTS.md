@@ -990,4 +990,6 @@
 ### 2026-07-27 Adjacent axis overlaps do not control long products
 
 - [TRAP] The proposed Result 129 summed pairwise adjacent overlap bounds through an arbitrary cyclic product. The four leaves `u`, `v`, `u^-1`, `u v^-1 u^-1` can have distinct adjacent K-tags and still multiply to 1: cancellation passes through a conjugator bridge and exposes a new seam.
-- [WORKS] The three-axis lemma is valid only because every one of its three factor segments retains a central portion. For four or more history-derived leaves, use a provenance-aware whole cancellation diagram; never extrapolate local seam bounds without controlling conjugator bridges and newly exposed seams.
+- [SUPERSEDED] The initial response incorrectly retained a three-axis version of the seam lemma; a legal two-AC2 history refutes it too.
+- [TRAP] With `u=a` and `v=yby^-1`, a legal two-AC2 history produces `uv^-1uvu^-1`, cyclically conjugate to `v^-1uv`, even though its three inherited source tags are pairwise distinct and their axes have overlap at most two.
+- [WORKS] Axis-overlap bounds are safe for the two-factor product estimates used through Result 127. For three or more history-derived leaves, fold the whole based history word including conjugator bridges; never sum source-axis seam bounds in isolation.
