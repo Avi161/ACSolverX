@@ -7537,6 +7537,53 @@ realizes the projected fixed-entry commutator required by Result 132.
 Nilpotent quotients cannot obstruct the last equation; a useful
 invariant must preserve non-nilpotent braid information.
 
+**Result 134 (the last residue is an explicit free-group twisted
+equation).**  In the infinite cyclic cover of
+\(G_b=F(x,y)/\langle\!\langle b\rangle\!\rangle\), put \(t=x\) and
+\(z_i=t^iyt^{-(i+1)}\).  Magnus rewriting gives a relator whose bottom
+\(z_0\) and top \(z_4\) occur once.  It follows that
+
+\[
+G_b\cong F(z_0,z_1,z_2,z_3)\rtimes_\Phi\langle t\rangle,
+\]
+
+where
+
+\[
+\Phi(z_0)=z_1,\quad
+\Phi(z_1)=z_2,\quad
+\Phi(z_2)=z_3,\quad
+\Phi(z_3)=
+z_2^{-1}z_1z_2^{-1}z_0^{-1}z_1z_3z_2^{-1}z_3.
+\]
+
+An explicit inverse comes from the shifted relator, so this is an
+automorphism, not merely an ascending endomorphism.  The candidate is
+\(yx^{-1}=z_0\), while \(a=qt^{-1}\) for an explicit 16-letter
+\(q\in F_4\).  If the other commutator entry is \(wt^n\), its kernel
+coordinate is
+
+\[
+C(w,n)=
+\Phi(q^{-1})\Phi(w)\Phi^{n+1}(q)w^{-1}.
+\]
+
+Therefore the projected residue is exactly
+
+\[
+C(w,n)\sim_{F_4}\Phi^j(z_0^\eta)
+\quad(w\in F_4,\ n,j\in\mathbb Z,\ \eta=\pm1).
+\]
+
+The sign retains the two possible orientations of the fixed a-entry.
+The abelianized monodromy has characteristic polynomial
+\((\lambda^2-\lambda+1)^2\) and \(\det(M-I)=1\), so the Alexander
+module always solves the induced linear equation.  The natural full
+\(B_3\) quotient also realizes the fixed-entry commutator explicitly
+using the half-twist \(\Delta\).  Thus the remaining problem is a
+nonabelian twisted-conjugacy equation in a free group; both ordinary
+Alexander data and the braid quotient are provably blind.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7723,7 +7770,9 @@ all depth-two histories at both the source and the first proper image.
 Result 131 combines that reduction with two virtually free quotients to
 close depth three at the original source. Result 132 reduces depth three
 at the first proper image to the single dependent equation above.
-Result 133 proves that no nilpotent quotient can close it.
+Result 133 proves that no nilpotent quotient can close it. Result 134
+converts its projected form into an explicit rank-four free-group
+twisted-conjugacy equation.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7735,7 +7784,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--133, arbitrary W--D conjugators,
+61--134, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

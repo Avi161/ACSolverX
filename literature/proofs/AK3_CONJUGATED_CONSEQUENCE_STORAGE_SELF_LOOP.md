@@ -1567,3 +1567,45 @@ Every nilpotent quotient of \(G_b\) realizes the projected fixed-entry
 commutator equation from Theorem 29.1.  No nilpotent quotient, regardless
 of class or exponent, can close the remaining first-image depth-three
 case.
+
+## 31. The cyclic cover gives a rank-four twisted equation
+
+With \(t=x\) and \(z_i=t^iyt^{-(i+1)}\), Magnus rewriting of b has one
+bottom \(z_0\) and one top \(z_4\).  Eliminating them in both directions
+gives
+
+\[
+G_b\cong F(z_0,z_1,z_2,z_3)\rtimes_\Phi\langle t\rangle,
+\tag{104}
+\]
+
+where
+
+\[
+\Phi(z_0,z_1,z_2,z_3)=
+\left(
+z_1,\ z_2,\ z_3,\
+z_2^{-1}z_1z_2^{-1}z_0^{-1}z_1z_3z_2^{-1}z_3
+\right).
+\tag{105}
+\]
+
+The candidate is \(z_0\), and \(a=qt^{-1}\) for an explicit
+\(q\in F_4\).  The projected residue is equivalent to
+
+\[
+\Phi(q^{-1})\Phi(w)\Phi^{n+1}(q)w^{-1}
+\sim_{F_4}\Phi^j(z_0^\eta),
+\qquad \eta\in\{\pm1\},
+\tag{106}
+\]
+
+for some \(w\in F_4\) and \(n,j\in\mathbb Z\).
+
+### Theorem 31.1 (exact twisted-conjugacy reduction)
+
+Equation (106) is exactly the projected last depth-three residue.  Its
+ordinary Alexander equation is always soluble because
+\(\det(\Phi_{\rm ab}-I)=1\), and the natural full braid quotient also
+realizes it.  A successful obstruction must use nonabelian free-kernel
+information.

@@ -1576,6 +1576,183 @@ separate the two sides: (19.7) supplies a solution uniformly.  Any
 successful obstruction must retain non-nilpotent information in the
 braid subgroup.
 
+## 20. The last residue is a free-group twisted equation
+
+Send both x and y to \(1\in\mathbb Z\), put \(t=x\), and define
+
+\[
+z_i=t^iyt^{-(i+1)}.
+\tag{20.1}
+\]
+
+Then \(tz_it^{-1}=z_{i+1}\), and Magnus rewriting gives
+
+\[
+b=
+z_1z_3z_2^{-1}z_3z_4^{-1}
+z_2^{-1}z_1z_2^{-1}z_0^{-1}.
+\tag{20.2}
+\]
+
+The bottom and top letters occur once.  Solving (20.2) for \(z_4\)
+defines
+
+\[
+\begin{aligned}
+\Phi(z_0)&=z_1,\\
+\Phi(z_1)&=z_2,\\
+\Phi(z_2)&=z_3,\\
+\Phi(z_3)&=
+z_2^{-1}z_1z_2^{-1}z_0^{-1}
+z_1z_3z_2^{-1}z_3.
+\end{aligned}
+\tag{20.3}
+\]
+
+This endomorphism of \(F_4=F(z_0,z_1,z_2,z_3)\) is an automorphism.  An
+explicit inverse is
+
+\[
+\begin{aligned}
+\Phi^{-1}(z_0)&=
+z_0z_2z_1^{-1}z_2z_3^{-1}z_1^{-1}z_0z_1^{-1},\\
+\Phi^{-1}(z_1)&=z_0,\qquad
+\Phi^{-1}(z_2)=z_1,\qquad
+\Phi^{-1}(z_3)=z_2.
+\end{aligned}
+\tag{20.4}
+\]
+
+Direct free reduction verifies both compositions.  Tietze elimination
+of all other \(z_i\) therefore gives
+
+\[
+\boxed{
+G_b\cong F_4\rtimes_\Phi\langle t\rangle.}
+\tag{20.5}
+\]
+
+The candidate is especially simple:
+
+\[
+yx^{-1}=z_0.
+\tag{20.6}
+\]
+
+The other fixed entry rewrites as
+
+\[
+a=q\,t^{-1},
+\tag{20.7}
+\]
+
+where
+
+\[
+\begin{aligned}
+q={}&
+z_2z_3^{-1}z_1^{-1}z_0z_2z_1^{-1}z_2z_3^{-1}\\
+&{}\cdot
+z_2^{-1}z_0^{-1}z_1z_3z_2^{-1}z_1z_2^{-1}z_0^{-1}.
+\end{aligned}
+\tag{20.8}
+\]
+
+Write an arbitrary element of the mapping torus as \(w t^n\), with
+\(w\in F_4\).  The fixed-entry commutator from (19.7) has kernel
+coordinate
+
+\[
+C(w,n)=
+\Phi(q^{-1})\,
+\Phi(w)\,
+\Phi^{n+1}(q)\,
+w^{-1}.
+\tag{20.9}
+\]
+
+Two kernel elements are conjugate in the mapping torus precisely when
+one is conjugate in \(F_4\) to a \(\Phi\)-iterate of the other.
+Consequently the projected residue from (18.9) is exactly
+
+\[
+\boxed{
+C(w,n)\sim_{F_4}\Phi^j(z_0^\eta)
+\quad\text{for some }w\in F_4,\ n,j\in\mathbb Z,
+\eta\in\{\pm1\}.}
+\tag{20.10}
+\]
+
+The sign records whether X in (18.6) is conjugate to a or to
+\(a^{-1}\): replacing the fixed entry by its inverse turns the
+commutator into a conjugate of the inverse orientation.
+
+This is a twisted conjugacy equation in a rank-four free group, with no
+remaining arbitrary one-relator quotient.
+
+The abelianized monodromy, with columns corresponding to
+\((z_0,z_1,z_2,z_3)\), is
+
+\[
+M=
+\begin{pmatrix}
+0&0&0&-1\\
+1&0&0&2\\
+0&1&0&-3\\
+0&0&1&2
+\end{pmatrix}.
+\tag{20.11}
+\]
+
+It satisfies
+
+\[
+\det(M-I)=1,
+\qquad
+\det(\lambda I-M)=(\lambda^2-\lambda+1)^2.
+\tag{20.12}
+\]
+
+Abelianizing (20.10) gives
+
+\[
+(M-I)\overline w
++(M^{n+1}-M)\overline q
+=\eta M^j e_0.
+\tag{20.13}
+\]
+
+Since \(M-I\) is unimodular, (20.13) has an integral solution
+\(\overline w\) for every n, j, and \(\eta\).  Thus the ordinary
+Alexander module cannot obstruct the residue.
+
+Even the full braid quotient is blind.  Map \(G_b\) to
+\(B_3=\langle \sigma_1,\sigma_2\mid
+\sigma_1\sigma_2\sigma_1=\sigma_2\sigma_1\sigma_2\rangle\) by
+\(x\mapsto\sigma_1,\ y\mapsto\sigma_2\).  Then
+\(\phi(y)\mapsto\sigma_1\), so b dies and \(a\mapsto\sigma_1^{-1}\).
+For \(\Delta=\sigma_1\sigma_2\sigma_1\), conjugation by \(\Delta\)
+swaps the two braid generators.  Hence
+
+\[
+\begin{aligned}
+a^{-1}\Delta a\Delta^{-1}&=\sigma_1\sigma_2^{-1},\\
+\Delta(\sigma_1\sigma_2^{-1})\Delta^{-1}
+&=\sigma_2\sigma_1^{-1}.
+\end{aligned}
+\tag{20.14}
+\]
+
+The last word is the image of \(yx^{-1}\).
+
+### Theorem 20.1 (exact free-by-cyclic reduction)
+
+The projected first-image depth-three residue is equivalent to the
+rank-four free-group equation (20.10).  Its abelianization and the
+natural full braid quotient both admit solutions.  Any closure must use
+nonabelian information in the free kernel together with the explicit
+monodromy \(\Phi\).
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

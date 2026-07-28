@@ -392,3 +392,85 @@ def test_first_image_depth_three_has_one_residue_after_a_finite_certificate() ->
     assert cycle_type(primitive_image) == (5,)
     survivors.remove(four_leaf)
     assert survivors == {five_leaf}
+
+
+def test_last_residue_cyclic_cover_has_rank_four_monodromy() -> None:
+    def inverse(word: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple(-letter for letter in reversed(word))
+
+    def reduce_word(word: tuple[int, ...]) -> tuple[int, ...]:
+        reduced = []
+        for letter in word:
+            if reduced and reduced[-1] == -letter:
+                reduced.pop()
+            else:
+                reduced.append(letter)
+        return tuple(reduced)
+
+    def substitute(
+        word: tuple[int, ...],
+        images: dict[int, tuple[int, ...]],
+    ) -> tuple[int, ...]:
+        result: tuple[int, ...] = ()
+        for letter in word:
+            image = images[abs(letter)]
+            if letter < 0:
+                image = inverse(image)
+            result = reduce_word(result + image)
+        return result
+
+    def magnus_rewrite(word: str) -> tuple[tuple[int, ...], int]:
+        height = 0
+        kernel_word = []
+        for letter in word:
+            if letter == "x":
+                height += 1
+            elif letter == "X":
+                height -= 1
+            elif letter == "y":
+                kernel_word.append(height)
+                height += 1
+            else:
+                height -= 1
+                kernel_word.append(-height - 1)
+        return tuple(kernel_word), height
+
+    relator, exponent = magnus_rewrite("xyxyXYxyxYXYXyxYXY")
+    assert exponent == 0
+    assert relator == (1, 3, -3, 3, -5, -3, 1, -3, -1)
+
+    z4 = (-3, 2, -3, -1, 2, 4, -3, 4)
+    z_minus_one = (1, 3, -2, 3, -4, -2, 1, -2)
+    monodromy = {
+        1: (2,),
+        2: (3,),
+        3: (4,),
+        4: z4,
+    }
+    inverse_monodromy = {
+        1: z_minus_one,
+        2: (1,),
+        3: (2,),
+        4: (3,),
+    }
+
+    for generator in range(1, 5):
+        assert substitute(substitute((generator,), monodromy), inverse_monodromy) == (
+            generator,
+        )
+        assert substitute(substitute((generator,), inverse_monodromy), monodromy) == (
+            generator,
+        )
+
+    a_rewrite, a_exponent = magnus_rewrite("xxxyxYYYYXY")
+    assert a_exponent == -1
+    z4_image = z4
+    z_minus_one_image = z_minus_one
+    q = reduce_word(
+        (4,)
+        + inverse(z4_image)
+        + (-4, -3, -2)
+        + inverse(z_minus_one_image)
+    )
+    assert a_rewrite == (3, -5, -4, -3, -2, 0)
+    assert q == (3, -4, -2, 1, 3, -2, 3, -4, -3, -1, 2, 4, -3, 2, -3, -1)

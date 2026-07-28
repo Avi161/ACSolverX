@@ -1022,3 +1022,12 @@
 - [WORKS] In any nilpotent group, `rsr=srs` implies `r=s`: abelianization gives the base case, and centrality of `gamma_n/gamma_{n+1}` advances `rs^-1` through the lower central series.
 - [WORKS] For the last first-image depth-three residue, `b=1` makes `x=phi(y)` in every nilpotent quotient. Since `phi(y)=(yx)y(yx)^-1`, this makes `a=x^-1` and explicitly writes `yx^-1` as a conjugate of `a^-1 (yx) a (yx)^-1`.
 - [TRAP] Do not spend more searches on nilpotent or finite p-group quotients for this residue. They uniformly realize the projected commutator; the next invariant must retain non-nilpotent braid information.
+
+### 2026-07-27 Rewrite exponent-zero residues in the cyclic cover
+
+- [WORKS] For `G_b`, use `t=x` and `z_i=t^i y t^(-i-1)`. The Magnus rewrite of `b` contains its bottom `z_0` and top `z_4` once, giving an explicit rank-four free-by-cyclic presentation and converting the last residue into a free-group twisted-conjugacy equation.
+- [WORKS] Check both directions of the monodromy by solving the shifted relator for `z_-1`; a monic top letter alone proves only an ascending presentation until the explicit inverse is verified.
+- [TRAP] The ordinary Alexander module is blind here because `det(Phi_ab-I)=1`, and the full braid quotient is also blind via the half-twist that swaps the two braid generators. Do not retry invariants factoring through either quotient.
+- [TRAP] The first class-two kernel diagnostic built a 10-dimensional action from only four generator columns and failed with `IndexError`. Include the six exterior-square commutator columns. The corrected mod-3 semidirect quotient admits a solution, so that bounded class-two result is diagnostic only.
+- [TRAP] The first mapping-torus statement dropped the surviving sign of the fixed a-entry. The exact target is `Phi^j(z_0^eta)` with `eta=+/-1`; carry source orientation through every quotient and twisted-conjugacy reduction.
+- [TRAP] A split LaTeX quantifier line left a trailing space after the comma and failed `git diff --check`. Break display lines after punctuation without padding before the newline.
