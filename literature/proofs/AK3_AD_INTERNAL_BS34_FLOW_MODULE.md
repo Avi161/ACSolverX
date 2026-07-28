@@ -3478,3 +3478,151 @@ Equations (207)--(208) retain the full target and all phases.  They
 prove neither a finite certificate nor a separator.  They are the
 exact remaining flow problem for the sign-\((-,+,+)\) length-three
 stratum.
+
+## 26. Aggregate weights and spherical boundary charges are blind
+
+The aggregate residue cannot be decided by an ordinary weighted leaf
+functional.  This failure is exact.
+
+Under \(\Theta\), write
+
+\[
+\alpha_e=\Theta(\alpha)(e),
+\qquad
+T(Cd)=K_bb^{-1}d.
+\tag{209}
+\]
+
+Then (207)--(208) become
+
+\[
+f(\operatorname{ter}e)-\mu(\operatorname{ini}e)
+-\mathbf1_{\{e=Cb\}}-\lambda\alpha_e=0,
+\tag{210}
+\]
+
+\[
+\sum_{\rho(v)=c}(f(v)-\mu(v))
+-\sum_{T(e)=c}\alpha_e=0
+\qquad(c\in K_b\backslash B).
+\tag{211}
+\]
+
+Suppose one takes a linear combination of (210)--(211), with edge
+weights \(\psi(e)\) and \(K_b\)-coset weights \(\chi(c)\).  Cancellation
+of every \(\alpha_e\)-coefficient forces
+
+\[
+-\lambda\psi(e)-\chi(T(e))=0,
+\qquad
+\psi(e)=-\lambda\chi(T(e)).
+\tag{212}
+\]
+
+Thus the edge weight is constant on each complete \(T\)-fiber and
+cannot distinguish an ordinary-tree leaf edge from its remote phase
+collisions.  Cancellation of the \(f(Hg)\)- and \(\mu(Hg)\)-
+coefficients then gives
+
+\[
+\sum_{i=0}^{3}\chi(K_bb^{-1}x^ig)
+=\lambda\chi(K_bg),
+\tag{213}
+\]
+
+\[
+\sum_{j=0}^{2}\chi(K_bb^{-1}yx^jg)
+=\lambda\chi(K_bg).
+\tag{214}
+\]
+
+These are exactly the unresolved scalar current equations
+(193)--(194).  The value of the weighted combination on the target is
+\(\lambda\chi(K_b)\).  Therefore a separating weighted functional
+exists exactly when the missing current already exists.  No
+lexicographic or scalar edge weighting that respects (211) is a
+strictly weaker proof target.
+
+The same circularity has a boundary interpretation.  A dual separator
+may be written as a rational edge flow
+
+\[
+J:C\backslash B\longrightarrow\mathbb Q
+\]
+
+with
+
+\[
+I_J(Hg)=O_J(Hg)=m(Hg),
+\qquad
+m(Hkg)=m(Hg)\quad(k\in K_b),
+\tag{215}
+\]
+
+\[
+J(Cbd)=\lambda m(Hd).
+\tag{216}
+\]
+
+After antisymmetrizing the two orientations of the Bass--Serre tree,
+(215) is zero divergence.  Such algebraic flows are finitely additive
+rational charges on the tree boundary; no summability is required.
+The desired current is therefore a boundary martingale satisfying the
+additional \(K_b\)-fiber and remote-cylinder conditions
+(215)--(216).
+
+Two natural boundary ansatzes vanish.  First, if \(J\) is radial in
+height and has value \(c_n\) on edges terminating at height \(n\),
+conservation gives
+
+\[
+c_{n+1}=\frac43c_n.
+\]
+
+The remote condition, since \(e_y(b)=1\), instead gives
+
+\[
+c_{n+1}=4\lambda c_n.
+\]
+
+For \(\lambda=\pm1\), these force \(c_n=0\).
+
+Second, one cannot collapse the internal \((9,3)\)-tree to the larger
+subgroup
+
+\[
+P=\langle H,b^{-1}J_-b\rangle.
+\]
+
+If a current factors through \(P\backslash B\), then
+\(t,w\in P\) collapse (193)--(194) to
+
+\[
+4S(Pb^{-1}g)=\lambda S(Pg),
+\qquad
+3S(Pb^{-1}yg)=\lambda S(Pg).
+\tag{217}
+\]
+
+Write \(b=ny\), where \(n=x^\ell u^px^q\) has height zero.
+Comparing the two equations gives
+
+\[
+S(Pyg)=\frac43S(Pg),
+\qquad
+S(Pn^{-1}g)=\frac{\lambda}{3}S(Pg).
+\]
+
+Because \(H\leq P\) and \(x,y\) generate \(B\), the first recurrence
+forces
+
+\[
+S(Pg)=c(4/3)^{e_y(g)}.
+\]
+
+The second then gives \(c=\lambda c/3\), so \(c=0\).
+
+Hence any successful separator must be genuinely nonradial and must
+retain the boundary modes of the internal \((9,3)\)-tree.  This is a
+no-go theorem for the displayed compressions, not a decision of the
+aggregate compatibility.

@@ -831,3 +831,8 @@
 
 - [TRAP] A two-file LaTeX patch failed as a whole because one line in the second file lacked its diff prefix, discarding a valid first-file section.
 - [WORKS] Apply and read back each proof-file insertion separately; only combine files after each hunk has independently passed patch parsing.
+
+### 2026-07-27 Reuse live reviewers before opening another task
+
+- [TRAP] A follow-up review request hit the agent-thread limit while two long aggregate attacks and their inherited review threads were still live.
+- [WORKS] Check the live-agent tree before dispatching another review; finish or interrupt a redundant live attack, then reuse an existing reviewer instead of adding a sibling thread.

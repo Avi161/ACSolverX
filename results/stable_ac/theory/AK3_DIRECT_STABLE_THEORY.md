@@ -4453,6 +4453,52 @@ No membership conclusion is claimed.  These two equations are the
 remaining length-three flow target, with the remote phases resolved
 but their aggregate compatibility still open.
 
+**Result 77 (ordinary weights, height martingales, and spherical
+collapse cannot decide that aggregate).**  Write the two equations of
+Result 76 as an edge equation and a \(K_b\)-fiber compatibility.  In
+any weighted linear combination of them, cancellation of the aggregate
+edge variable forces the edge weight to factor through
+
+\[
+Cg\longmapsto K_bb^{-1}g.
+\]
+
+Cancellation of the two compact potentials then gives exactly the
+original two scalar current equations.  Thus a weighted separator
+exists precisely when the missing current already exists; an
+ordinary-tree extreme-edge weight cannot distinguish the other
+members of the same infinite \(K_b\)-fiber.
+
+Equivalently, a separator is a zero-divergence rational flow on the
+original Bass--Serre tree—a finitely additive boundary charge—whose
+incoming mass is constant on \(K_b\)-fibers and whose remote
+\(b\)-edge cylinder has mass \(\lambda\) times that value.
+
+Two broad ansatzes are forced to zero.  A height-radial flow satisfies
+
+\[
+c_{n+1}=\frac43c_n
+\]
+
+by conservation, but
+
+\[
+c_{n+1}=4\lambda c_n
+\]
+
+by the remote relation.  A current factoring through the larger
+subgroup
+
+\[
+\langle H,b^{-1}\langle x,yxy^{-1}\rangle b\rangle
+\]
+
+also vanishes: both stencils become scalar, forcing simultaneously
+the height factor \(4/3\) and the incompatible height-zero factor
+\(\lambda/3\).  Any successful current must therefore retain
+genuinely nonradial boundary modes of the internal \((9,3)\)-tree.
+This rules out those compressions; it does not decide Result 76.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
