@@ -6575,6 +6575,67 @@ self-loop.  Histories with later changes to \(Q\), several target
 multiplications, multiple \(q\)-letters, or a different deleted slot
 remain outside the theorem.
 
+**Result 110 (two storage rows plus one extra multiplication remain
+gauge).**  Stabilize an old tuple \((A,\mathbf B)\) twice and use
+restored source moves to manufacture
+
+\[
+Q=qC,\qquad R=rD,
+\qquad
+C,D\in\langle\!\langle A,\mathbf B\rangle\!\rangle.
+\]
+
+For \(\varepsilon=\pm1\), change the \(A\)-slot to
+
+\[
+P=A(gQ^\varepsilon g^{-1}).
+\]
+
+Deleting \(q\) with \(P\) sends
+
+\[
+Q\longmapsto K_\varepsilon
+:=g^{-1}A^{-\varepsilon}g.
+\]
+
+Allow one further AC multiplication before deletion, under the
+hypothesis that the deleted target still has exactly one
+\(q^{\pm1}\)-occurrence.  If its target is a survivor, the deletion
+substitution is a homomorphism, so the move descends to the identical
+survivor AC move and can be reversed.  This covers both directions of
+traffic between \(Q\) and \(R\).
+
+If the extra target is \(P\), let its source factor be a conjugate
+\(H\) of a q-free surviving row.  Its conjugator may contain q.  If
+\(\overline H\) denotes the image of \(H\) under the changed-target
+deletion, then \(\overline H\) is still a conjugate of that surviving
+row.  Multiplication on either side makes \(P=H^{-1}\), and exact side
+order gives
+
+\[
+\varepsilon=+1:
+\quad
+Q=K_+(g^{-1}\overline H^{-1}g),
+\]
+
+\[
+\varepsilon=-1:
+\quad
+Q=(g^{-1}\overline Hg)K_-.
+\]
+
+Because its source survives, a matching-side AC multiplication peels
+the displayed correction and recovers
+\(K_\varepsilon\).  The recovered tuple has the same normal closure as
+\((A,\mathbf B)\), so \(R=rD\) changes back to \(r\) and destabilizes.
+Thus every such history is a stable self-loop.
+
+A \(Q\)-bearing source makes the total q-letter count even, and free
+cancellation preserves that parity, so it cannot remain in the
+unique-letter branch.  The first untreated storage mechanism needs at least a
+dependency cycle with two interacting row changes, or a multi-q
+primitive eliminator.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6684,7 +6745,13 @@ single-peak family at arbitrary length; multiple-excursion initial
 positive seams remain. Result 109 closes the braid-swapped-consequence
 stable route, and more generally every history that stores (qC),
 multiplies (A) by one conjugate of that source, and deletes the changed
-(A)-slot: the consequence (C) cancels in side order. Results
+(A)-slot: the consequence (C) cancels in side order. Result 110 closes
+both source orientations and the entire two-storage/one-extra-
+multiplication layer under unique-q deletion. Any survivor-targeted
+move descends through the deletion homomorphism; a deleted-target
+correction peels using its still-live source. The first possible
+storage escape therefore needs a two-row dependency cycle, a multi-q
+primitive, or a different deleted slot. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6695,7 +6762,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--109, arbitrary W--D conjugators,
+61--110, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
