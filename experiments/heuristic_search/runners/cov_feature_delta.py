@@ -345,32 +345,43 @@ def fig_simple_higher_and_means(rows):
     mean_prio_orig = statistics.fmean(po)
     mean_prio_cov = statistics.fmean(pc)
 
-    fig = plt.figure(figsize=(13.2, 8.0), facecolor=SURFACE)
-    gs = fig.add_gridspec(2, 2, height_ratios=(1.05, 1.0), hspace=0.42, wspace=0.28)
+    fig = plt.figure(figsize=(12.8, 8.6), facecolor=SURFACE)
+    gs = fig.add_gridspec(
+        2, 2, height_ratios=(1.15, 1.0), hspace=0.55, wspace=0.30,
+        top=0.88, bottom=0.08, left=0.08, right=0.98)
     ax0 = fig.add_subplot(gs[0, :])
     ax1 = fig.add_subplot(gs[1, 0])
     ax2 = fig.add_subplot(gs[1, 1])
 
-    # --- top: how many higher after CoV ---
+    fig.suptitle(
+        "Original vs best-CoV starts — 60 benchmark presentations",
+        x=0.08, ha="left", fontsize=16, color=INK, y=0.97)
+    fig.text(
+        0.08, 0.925,
+        "RECOMMENDED weights are all positive, so a higher score is worse for the heuristic (min-heap).",
+        ha="left", color=SECONDARY, fontsize=10)
+
+    # --- top: stacked higher / same / lower ---
     x_all = np.arange(len(all_labels))
-    disp_all = [d if d != "prio" else "weighted priority" for d in all_labels]
-    ax0.bar(x_all, n_higher, color=WORSENED, width=0.62)
-    ax0.axhline(30, color=MUTED, linewidth=0.9, linestyle=":", zorder=1)
-    for i, (hi, lo, sm) in enumerate(zip(n_higher, n_lower, n_same)):
-        ax0.text(i, hi + 1.0, f"{hi}/60", ha="center", va="bottom",
-                 color=INK, fontsize=11, fontweight="bold")
-        ax0.text(i, -0.8, f"lower {lo} · same {sm}", ha="center", va="top",
-                 color=SECONDARY, fontsize=8)
-    ax0.set_ylim(-8, 68)
+    disp_all = [d if d != "prio" else "weighted\npriority" for d in all_labels]
+    hi = np.array(n_higher)
+    sm = np.array(n_same)
+    lo = np.array(n_lower)
+    ax0.bar(x_all, hi, color=WORSENED, width=0.62, label="higher after CoV (worse)")
+    ax0.bar(x_all, sm, bottom=hi, color=UNCHANGED, width=0.62, label="same")
+    ax0.bar(x_all, lo, bottom=hi + sm, color=IMPROVED, width=0.62,
+            label="lower after CoV (better)")
+    for i, h in enumerate(hi):
+        ax0.text(i, h / 2 if h >= 8 else h + 1.5, str(h),
+                 ha="center", va="center" if h >= 8 else "bottom",
+                 color="white" if h >= 8 else INK, fontsize=11, fontweight="bold")
+    ax0.set_ylim(0, 72)
+    ax0.set_yticks([0, 20, 40, 60])
     ax0.set_xticks(x_all, disp_all)
-    ax0.set_ylabel("presentations (of 60)", color=SECONDARY)
-    ax0.set_title(
-        "Of the 60 presentations, how many had a HIGHER score after best CoV?",
-        loc="left", fontsize=14, color=INK, pad=8)
-    ax0.text(
-        0.0, 1.02,
-        "All RECOMMENDED weights are positive → higher score = worse for the heuristic (min-heap)",
-        transform=ax0.transAxes, color=SECONDARY, fontsize=10, va="bottom")
+    ax0.set_ylabel("count (of 60)", color=SECONDARY)
+    ax0.set_title("Score after best CoV vs original",
+                  loc="left", fontsize=13, color=INK, pad=10)
+    ax0.legend(frameon=False, loc="upper right", ncol=3, fontsize=9)
     _style_axis(ax0)
     ax0.grid(False, axis="x")
 
@@ -379,48 +390,44 @@ def fig_simple_higher_and_means(rows):
     w = 0.36
     ax1.bar(x_f - w / 2, mean_orig_f, width=w, color=MUTED, label="original")
     ax1.bar(x_f + w / 2, mean_cov_f, width=w, color=WORSENED, label="best CoV")
+    ymax = max(max(mean_orig_f), max(mean_cov_f))
+    ax1.set_ylim(0, ymax * 1.22)
     for i, (mo, mc) in enumerate(zip(mean_orig_f, mean_cov_f)):
-        ax1.text(i - w / 2, mo, f"{mo:.2f}", ha="center", va="bottom",
-                 color=SECONDARY, fontsize=8)
-        ax1.text(i + w / 2, mc, f"{mc:.2f}", ha="center", va="bottom",
-                 color=INK, fontsize=8)
+        ax1.text(i - w / 2, mo + 0.02 * ymax, f"{mo:.2f}", ha="center",
+                 va="bottom", color=SECONDARY, fontsize=8)
+        ax1.text(i + w / 2, mc + 0.02 * ymax, f"{mc:.2f}", ha="center",
+                 va="bottom", color=INK, fontsize=8)
     ax1.set_xticks(x_f, feat_labels)
     ax1.set_ylabel("mean feature value", color=SECONDARY)
-    ax1.set_title("Mean feature: original vs best-CoV",
-                  loc="left", fontsize=13, color=INK, pad=8)
+    ax1.set_title("Mean feature: original vs best CoV",
+                  loc="left", fontsize=13, color=INK, pad=10)
     ax1.legend(frameon=False, loc="upper right")
     _style_axis(ax1)
     ax1.grid(False, axis="x")
 
     # --- bottom right: mean weighted priority alone ---
-    ax2.bar([-0.2], [mean_prio_orig], width=0.35, color=MUTED, label="original")
-    ax2.bar([0.2], [mean_prio_cov], width=0.35, color=WORSENED, label="best CoV")
-    ax2.text(-0.2, mean_prio_orig, f"{mean_prio_orig:.1f}", ha="center",
-             va="bottom", color=SECONDARY, fontsize=12, fontweight="bold")
-    ax2.text(0.2, mean_prio_cov, f"{mean_prio_cov:.1f}", ha="center",
-             va="bottom", color=INK, fontsize=12, fontweight="bold")
-    ax2.set_xticks([-0.2, 0.2], ["original", "best CoV"])
-    ax2.set_xlim(-0.7, 0.7)
+    ax2.bar([-0.22], [mean_prio_orig], width=0.38, color=MUTED, label="original")
+    ax2.bar([0.22], [mean_prio_cov], width=0.38, color=WORSENED, label="best CoV")
+    pmax = max(mean_prio_orig, mean_prio_cov)
+    ax2.set_ylim(0, pmax * 1.28)
+    ax2.text(-0.22, mean_prio_orig + 0.02 * pmax, f"{mean_prio_orig:.1f}",
+             ha="center", va="bottom", color=SECONDARY, fontsize=12,
+             fontweight="bold")
+    ax2.text(0.22, mean_prio_cov + 0.02 * pmax, f"{mean_prio_cov:.1f}",
+             ha="center", va="bottom", color=INK, fontsize=12, fontweight="bold")
+    ax2.set_xticks([-0.22, 0.22], ["original", "best CoV"])
+    ax2.set_xlim(-0.75, 0.75)
     ax2.set_ylabel("mean weighted priority", color=SECONDARY)
-    ax2.set_title("Mean RECOMMENDED score (prio)",
-                  loc="left", fontsize=13, color=INK, pad=8)
-    ax2.text(
-        0.5, 0.92,
-        f"original {mean_prio_orig:.1f}  →  CoV {mean_prio_cov:.1f}"
-        f"  (Δ {mean_prio_cov - mean_prio_orig:+.1f})",
-        transform=ax2.transAxes, ha="center", va="top",
-        color=SECONDARY, fontsize=10)
+    ax2.set_title(
+        f"Mean RECOMMENDED score   (Δ {mean_prio_cov - mean_prio_orig:+.1f})",
+        loc="left", fontsize=13, color=INK, pad=10)
     _style_axis(ax2)
     ax2.grid(False, axis="x")
 
-    fig.suptitle(
-        "Original presentation vs best-CoV presentation — 60 benchmark rows",
-        x=0.01, ha="left", fontsize=15, color=INK, y=0.995)
     path = os.path.join(FIG_DIR, "cov_feature_simple.png")
     fig.savefig(path, dpi=140, bbox_inches="tight", facecolor=SURFACE)
     plt.close(fig)
     print(f"wrote {path}")
-    # Replace the old confusing outcome graph with this simple one
     path2 = os.path.join(FIG_DIR, "cov_delta_by_outcome.png")
     shutil.copyfile(path, path2)
     print(f"wrote {path2} (same simple figure)")
