@@ -5359,6 +5359,66 @@ handles the positive A--D sign, and the Fox bridge covers every
 free-kernel lift.  Results 84 and 87 are the cases \(n=1\) and
 \(n=2\).
 
+**Result 91 (positive-first single peaks are obstructed at every
+length off the zero initial phase).**  Let
+
+\[
+\begin{aligned}
+b={}&x^\ell yx^{r_1}y\cdots x^{r_{n-1}}yx^s y^{-1}\\
+&\hspace{25mm}{}\cdot
+x^{t_{n-1}}y^{-1}\cdots x^{t_1}y^{-1}x^q,
+\end{aligned}
+\]
+
+where \(n\geq1\), \(\ell\not\equiv0\pmod4\), \(3\nmid s\), and all
+other exponents are arbitrary.  Over \(\overline{\mathbb F}_5\), take
+
+\[
+v=v_1+v_{-1}+v_\iota,
+\qquad
+S=vR_4=4v_1,
+\qquad
+h=3v_1+z.
+\]
+
+Then \(v,vX^\ell,S\) are independent and \(hR_3=S\).  Choose fresh
+\(1\)-eigenvector chains \(p_1,\ldots,p_{n-1}\) and
+\(q_1,\ldots,q_{n-1}\), and let
+
+\[
+d=d_\omega+d_{\omega^2}.
+\]
+
+Since \(3\nmid s\), the vectors \(d,dX^s\) are independent.
+Prescribe one \(D_1\to\mathcal R_1\) block map by
+
+\[
+\begin{aligned}
+v&\longmapsto h,\\
+vX^\ell&\longmapsto p_1\longmapsto\cdots
+\longmapsto p_{n-1}\longmapsto d,\\
+S&\longmapsto q_1\longmapsto\cdots
+\longmapsto q_{n-1}\longmapsto dX^s.
+\end{aligned}
+\]
+
+For \(n=1\), the last two rows mean
+\(vX^\ell\mapsto d\) and \(S\mapsto dX^s\).  Both the source and
+image lists are independent, so the prescription extends globally.
+It gives
+
+\[
+vYR_3=S=vR_4,
+\qquad
+vb=S.
+\]
+
+Thus both A--D signs are obstructed throughout the complete
+nonzero-initial-phase \((+^n,-^n)\) family, with no length bound and
+with every free-kernel lift covered.  Result 89 supplies the
+zero-phase case for \(n=2\).  For \(n\geq3\), the zero-phase branch
+requires a still-unproved multi-block recombination.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5438,7 +5498,9 @@ positive-sign height-zero parameter. Result 86 extends the negative
 alternating construction to arbitrary stable-letter length. Results
 87--89 close all four nonalternating height-zero sign strings of
 stable-letter length four, and Result 90 closes every negative-first
-single-valley word at arbitrary length. Results 73--75 close the
+single-valley word at arbitrary length. Result 91 closes the dual
+positive-first family at arbitrary length whenever the initial
+fourth-root phase is nonzero. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5448,7 +5510,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--90, arbitrary W--D conjugators,
+61--91, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

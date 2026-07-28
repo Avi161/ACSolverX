@@ -5379,3 +5379,141 @@ its free-kernel decoration.  Equation (286) gives the same conclusion
 for \(P_+(c)\).  Hence both A--D signs are obstructed on the complete
 unbounded single-valley family.  The cases \(n=1\) and \(n=2\)
 recover the negative-sign parts of Sections 31 and 34.
+
+## 38. Positive-first single peaks with nonzero initial phase
+
+There is a dual unbounded theorem away from the zero initial phase.
+Let \(n\geq1\) and
+
+\[
+\begin{aligned}
+b={}&x^\ell yx^{r_1}y\cdots x^{r_{n-1}}yx^s y^{-1}\\
+&\hspace{28mm}{}\cdot
+x^{t_{n-1}}y^{-1}\cdots x^{t_1}y^{-1}x^q,
+\end{aligned}
+\tag{342}
+\]
+
+where
+
+\[
+\ell\not\equiv0\pmod4,
+\qquad
+3\nmid s,
+\tag{343}
+\]
+
+and every other exponent is arbitrary.  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{344}
+\]
+
+Choose a primitive fourth root \(\iota\), a primitive cube root
+\(\omega\), and fresh nonzero vectors
+
+\[
+v_1\in V_1,\qquad
+v_{-1}\in V_{-1},\qquad
+v_\iota\in V_\iota,\qquad
+z\in V_\omega.
+\]
+
+Put
+
+\[
+v=v_1+v_{-1}+v_\iota,
+\qquad
+S=vR_4=4v_1,
+\qquad
+h=3v_1+z.
+\tag{345}
+\]
+
+As in (324), the vectors \(v,vX^\ell,S\) are independent.  Choose
+fresh independent vectors
+
+\[
+p_1,\ldots,p_{n-1},q_1,\ldots,q_{n-1}\in V_1.
+\]
+
+Choose fresh nonzero \(d_\omega\in V_\omega\) and
+\(d_{\omega^2}\in V_{\omega^2}\), and put
+
+\[
+d=d_\omega+d_{\omega^2}.
+\tag{346}
+\]
+
+The central Britton condition \(3\nmid s\) makes \(d,dX^s\)
+independent.
+
+For \(n\geq2\), prescribe in \(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+vY&=h,\\
+(vX^\ell)Y&=p_1,\\
+p_jY&=p_{j+1}\qquad(1\leq j<n-1),\\
+p_{n-1}Y&=d,\\
+SY&=q_1,\\
+q_jY&=q_{j+1}\qquad(1\leq j<n-1),\\
+q_{n-1}Y&=dX^s.
+\end{aligned}
+\tag{347}
+\]
+
+For \(n=1\), omit the \(p_j,q_j\) and replace their chains by
+
+\[
+(vX^\ell)Y=d,
+\qquad
+SY=dX^s.
+\tag{348}
+\]
+
+The source list in (347) consists of the independent triple
+\(v,vX^\ell,S\) and fresh \(1\)-eigenvectors.  The image list consists
+of \(h\), fresh \(1\)-eigenvectors, and the independent pair
+\(d,dX^s\).  All choices were made in independent multiplicity
+slots, so both lists are independent.  Every source lies in \(D_1\)
+and every image lies in \(\mathcal R_1\).  Thus (347), or (348),
+extends to a global cyclotomic BS\((3,4)\)-module action.
+
+The baseline is
+
+\[
+vX^4=v,
+\qquad
+vYR_3=hR_3=S=vR_4.
+\tag{349}
+\]
+
+The positive letters move from \(vX^\ell\) through the \(p\)-chain
+to \(d\).  The central power moves \(d\) to \(dX^s\).  The negative
+letters traverse the \(q\)-chain backwards to \(S\), and the terminal
+\(x^q\) fixes \(S\).  Hence
+
+\[
+\begin{aligned}
+vb
+&=p_1Y\cdots YX^sY^{-1}\cdots Y^{-1}X^q\\
+&=dX^sY^{-1}\cdots Y^{-1}X^q\\
+&=SX^q
+=S
+=vR_4,
+\end{aligned}
+\tag{350}
+\]
+
+with the evident omission of the \(p_j,q_j\) when \(n=1\).
+Equations (349)--(350) prove (344).
+
+The Fox bridge and (286) therefore obstruct both A--D signs for every
+free-kernel lift of the complete nonzero-initial-phase
+\((+^n,-^n)\) family.  Section 36 supplies the missing
+\(\ell\equiv0\pmod4\) case when \(n=2\).  For \(n\geq3\), that
+zero-phase branch remains a genuine multi-block recombination
+problem; the present theorem makes no claim about it.
