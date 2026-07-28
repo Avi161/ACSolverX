@@ -120,6 +120,36 @@ def test_braid_source_is_standard_torus_relator_in_explicit_basis() -> None:
     )
 
 
+def test_two_source_combination_and_length_two_exception_are_exact() -> None:
+    a = "xxxYYYY"
+    b = "xyxYXY"
+    c = "xry"
+    d = "RYx"
+
+    for epsilon in (1, -1):
+        a_power = a if epsilon == 1 else inverse(a)
+        for eta in (1, -1):
+            b_power = b if eta == 1 else inverse(b)
+            target = reduce_word(
+                "r" + c + a_power + inverse(c)
+                + d + b_power + inverse(d)
+            )
+            relative = reduce_word(inverse(c) + d)
+            combined_source = reduce_word(
+                a_power + relative + b_power + inverse(relative)
+            )
+
+            assert target == reduce_word(
+                "r" + c + combined_source + inverse(c)
+            )
+
+    apparent_two_location = reduce_word("r" + a + "r" + b + "R")
+    unique_r_conjugate = reduce_word("R" + apparent_two_location + "r")
+
+    assert unique_r_conjugate == a + "r" + b
+    assert sum(letter in "rR" for letter in unique_r_conjugate) == 1
+
+
 def test_two_storage_nontarget_moves_descend_to_survivor_moves() -> None:
     a = "xyX"
     c = "zY"

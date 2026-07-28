@@ -950,3 +950,8 @@
 - [TRAP] The first repair changed the earlier x-z test because the patch matched the first identical assertion, while leaving the new x-y test unchanged.
 - [WORKS] Name basis-specific word invariants explicitly and add a separate helper when a proof changes alphabets. Pin the expected exponent vector before trusting a cyclic-length comparison.
 - [WORKS] When two tests contain the same assertion spelling, anchor each replacement on its function name and verify both call sites before rerunning.
+
+### 2026-07-27 Re-read theorem endpoints before ledger insertion
+
+- [TRAP] A Result 117 insertion used a remembered terminal sentence from Result 116 and failed because the actual ledger ended with a more specific r-slot sentence.
+- [WORKS] Read the exact final paragraph and anchor a new numbered result on the following heading, not on remembered prose from an earlier draft.
