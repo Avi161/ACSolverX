@@ -4499,6 +4499,44 @@ the height factor \(4/3\) and the incompatible height-zero factor
 genuinely nonradial boundary modes of the internal \((9,3)\)-tree.
 This rules out those compressions; it does not decide Result 76.
 
+**Result 78 (an unbounded radius-one-gap nonprimitivity sieve).**
+Consider a normalized Britton word beginning with a positive stable
+letter,
+
+\[
+b=x^\ell yx^{r_1}y^{\epsilon_2}\cdots
+x^{r_{n-1}}y^{\epsilon_n}.
+\]
+
+Assume its exact component subgroup and folds satisfy
+
+\[
+K_b=H,\qquad(d_I,d_O)=(4,3).
+\]
+
+The incoming targets are geodesic distance \(n\), one in each incoming
+branch of the ordinary Bass--Serre tree.  If \(\ell\ne0\bmod4\), the
+outgoing targets have distance \(n+1\), one in each outgoing branch.
+If \(\ell=0\), \(n\ge2\), and \(\epsilon_2=-1\), the endpoint pinch
+shortens them to distance \(n-1\), again one in each outgoing branch.
+
+For any two such row systems on a directed tree, with radii differing
+by one, a finite-certificate leaf argument is uniform.  At a
+non-target leaf, an outward target of the longer row is beyond the
+radius of every other supported center and kills its coefficient.
+For the shorter row, only the longer row at the inward neighbor can
+collide, and it reaches at most one outward branch; another branch
+kills the shorter coefficient.  The singleton hull is handled in the
+same order.
+
+Hence the internal flow ideal is proper for every such \(b\), at
+arbitrary stable-letter length and for both signs.  Result 74 turns
+this into A--D Fox nonprimitivity whenever \(b\) is the evaluated
+internal parameter.  Results 61, 62, and 75 are the first three
+finite-length instances.  The theorem excludes words whose endpoint
+pinch puts both stencils in the same branch family, any nontrivial
+fold, and \(K_b\ne H\); it is not an AC theorem.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

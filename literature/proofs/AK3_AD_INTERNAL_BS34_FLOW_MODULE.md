@@ -3626,3 +3626,104 @@ Hence any successful separator must be genuinely nonradial and must
 retain the boundary modes of the internal \((9,3)\)-tree.  This is a
 no-go theorem for the displayed compressions, not a decision of the
 aggregate compatibility.
+
+## 27. A radius-one-gap theorem for arbitrary positive-start words
+
+The leaf arguments above have an unbounded form which is independent
+of the internal word length.
+
+**Radius-one-gap leaf lemma.**  Let \(\mathcal T\) be a directed tree
+in which every vertex has at least three incoming and at least three
+outgoing branches.  At every vertex \(v\), suppose there are two
+finite row vectors:
+
+1. an incoming row, with one target at geodesic distance \(r_I\) in
+   every incoming branch of \(v\), plus an arbitrary center
+   coefficient at \(v\);
+2. an outgoing row, with one target at geodesic distance \(r_O\) in
+   every outgoing branch of \(v\), plus an arbitrary center
+   coefficient at \(v\).
+
+Assume
+
+\[
+|r_I-r_O|=1.
+\tag{218}
+\]
+
+Then no basis vector lies in the span of a finite set of these rows.
+
+Indeed, suppose a finite combination were one basis vector and take a
+non-target leaf \(v\) of the convex hull of the target and all row
+centers.  Choose an outward branch of the longer row type.  Its target
+is farther from every other supported center than either row radius,
+so it isolates and kills the longer-row coefficient at \(v\).
+
+Now choose an outward branch of the shorter row type.  Only the longer
+row at the unique inward neighbor can reach its target: every other
+center is too far away.  That one row uses at most one branch of the
+required orientation.  A leaf has at most one inward branch, so at
+least two outward branches of either orientation remain; choose one
+which avoids the possible collision.  This kills the shorter-row
+coefficient.  Thus no non-target leaf belongs to the defining support.
+A nontrivial finite tree has two leaves, and the singleton-hull case
+is disposed of by killing the longer and then the shorter coefficient
+at the target itself.
+
+Apply the lemma to a normalized Britton word whose first stable letter
+is positive:
+
+\[
+b=x^\ell yx^{r_1}y^{\epsilon_2}\cdots
+x^{r_{n-1}}y^{\epsilon_n},
+\qquad n\geq1.
+\tag{219}
+\]
+
+Assume
+
+\[
+K_b=H,
+\qquad
+(d_I,d_O)=(4,3).
+\tag{220}
+\]
+
+The inverse word is Britton-reduced.  Thus the four incoming targets
+\(Hb^{-1}x^ig\) are geodesic distance \(n\) from \(Hg\), one in each
+incoming branch.
+
+If \(\ell\ne0\bmod4\), the appended positive stable letter in
+\(b^{-1}yx^jg\) cannot pinch the final \(y^{-1}\).  The three outgoing
+targets are geodesic distance \(n+1\), one in each outgoing branch.
+All internal turns remain those of the normalized Britton word, so
+the radius-one-gap lemma applies.
+
+If \(\ell=0\), the final \(y^{-1}y\) cancels.  When \(n\geq2\) and
+\(\epsilon_2=-1\), the new final stable letter is positive.  The
+three targets are then geodesic distance \(n-1\), one in each outgoing
+branch, and the same lemma applies with the incoming row longer.
+
+Consequently, under (220), the internal flow ideal is proper for every
+word (219) satisfying either
+
+\[
+\ell\ne0
+\quad\text{or}\quad
+\bigl(\ell=0,\ n\geq2,\ \epsilon_2=-1\bigr).
+\tag{221}
+\]
+
+This single theorem contains the noncanonical one-positive-letter
+family, the positive--negative length-two family, and the complete
+positive--negative--positive length-three family.  It also applies at
+arbitrary stable-letter length whenever the exact subgroup and fold
+hypotheses (220) hold.  It deliberately excludes endpoint
+cancellation with \(\epsilon_2=+1\), which puts the shortened stencil
+back in the incoming branch family, and it says nothing when
+\(K_b\ne H\) or a stencil folds.
+
+By Section 23, every proper ideal in this radius-one-gap family gives
+an A--D Fox nonprimitivity obstruction for the corresponding internal
+parameter.  The theorem is an unbounded primitivity sieve, not an
+Andrews--Curtis proof.
