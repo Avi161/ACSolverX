@@ -1065,3 +1065,8 @@
 - [TRAP] Simulated annealing on the four dependency conjugators spent minutes improving cyclic output length only from 39 to 17 and supplied no certificate. Do not extend heuristic search budgets after a plateau; switch to the target-basis cancellation theorem or an exact free-group equation algorithm.
 - [WORKS] For the 24 depth-four one/two-minority certificates, a connector product of raw length `R` reaching target length `T` must retain an unchanged connector block of length at least `k-(R-T)`. Pruning DFS prefixes that cannot extend such a cyclic target subword reduced the exact focused test to seconds; where the prune is nonvacuous, check `R-T<L` so a source word cannot vanish and expose an unmodeled internal seam.
 - [TRAP] Staging the tracked `.scratch/depth4_provenance_check.py` together with ordinary files returned exit 1 and an ignored-path warning even though `git status --short` showed all three requested files staged. Inspect the index after this warning before retrying; use `git add -f` only if the exact scratch path is still unstaged.
+
+### 2026-07-28 Keep multi-file theory patches escape-safe
+
+- [TRAP] A combined target-basis handoff patch used an ordinary JavaScript string, so LaTeX backslashes disappeared from a later context anchor and the whole patch was rejected.
+- [WORKS] Patch each theory file separately with a short prose-only anchor; add LaTeX-heavy sections with an escape-safe payload, then immediately reread the inserted region before running verification.

@@ -224,6 +224,48 @@ Together the exact metric and three-class certificates close 24 of the
 above.  The standalone metric proof is
 `literature/proofs/AK3_DEPTH4_BIINVARIANT_METRIC_OBSTRUCTION.md`.
 
+## Dependency-sensitive reduction for the hardest overlap
+
+For the signature `(8,3,5,-3,5)`, put
+
+\[
+c=yyX,\qquad t=c^3(yX)=\operatorname{Chr}(-4,7).
+\]
+
+Then \((c,t)\) is a free basis.  The height map \(\chi(c)=1\),
+\(\chi(t)=0\) has free kernel
+
+\[
+K=\langle t_j=c^jtc^{-j}\mid j\in\mathbb Z\rangle .
+\]
+
+Exact push-through identities and four Bezout steps show that every
+hypothetical solution is gauge-equivalent to one with all four
+conjugators in \(K\).  In shifted Schreier coordinates it must solve
+
+\[
+\begin{aligned}
+r&=aG_0\sigma^2(b^{-1})\sigma^{-3}(G_0^{-1}),\\
+s&=bG_1\sigma(r^{-1})\sigma^{-2}(G_1^{-1}),\\
+u&=rG_2\sigma(s^{-1})\sigma^{-1}(G_2^{-1}),\\
+z&=\sigma^{-1}(u^{-1})G_3\sigma^{-1}(s)\sigma(G_3^{-1}).
+\end{aligned}
+\]
+
+The target condition is exactly that the cyclic reduction of \(z\) is
+one positive basis letter \(t_m\).  If all four seams are axial
+(pure powers of \(c\) before normalization), the expanded kernel word
+has length 43 and at most nine cancellation pairs.  Its cyclic length is
+therefore at least 25, sharply, so the entire axial stratum is excluded.
+
+This does not close the signature.  Abelianizing \(K\) is provably blind:
+the last seam contributes \((X^{-1}-1)G_3\), which can repair every
+Laurent-polynomial discrepancy of augmentation one.  The remaining
+problem is consequently the genuinely nonabelian gap-\(3,2,1,1\)
+equation above.  The proof and replay are
+`literature/proofs/AK3_DEPTH4_TARGET_BASIS_RIGIDITY.md` and
+`experiments/stable_ac/depth4_target_basis_certificate.py`.
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -231,7 +273,9 @@ above.  The standalone metric proof is
 3. Exact metric and directed-interval certificates close 24 of the 30
    three-minority signatures.
 4. Attack the six remaining signatures with invariants retaining both
-   relators.  Exact triple-class identities prove majority-killing
+   relators.  For the hardest overlap, the target-basis reduction above
+   excludes all axial seams and isolates the exact nonabelian kernel
+   equation.  Exact triple-class identities prove majority-killing
    representations intrinsically blind for five; an independent trace-
    polynomial argument proves full majority-killing \(SU(2)\) blindness
    for the sixth.
