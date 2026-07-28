@@ -6317,3 +6317,115 @@ The omitted \(r,t,u,\ell,q\)-powers act on \(1\)-eigenvectors.  Thus
 (416)--(417) prove (411).  The Fox bridge and (286) obstruct both
 A--D signs for every free-kernel lift.  Hence the complete
 \((-,-,+,+,+,-)\) length-six stratum is closed.
+
+## 44. The alternating-prefix terminal-return stratum
+
+Let
+
+\[
+b=x^\ell y^{-1}x^ryx^sy^{-1}x^uyx^vyx^ty^{-1}x^q,
+\tag{418}
+\]
+
+where
+
+\[
+4\nmid r,\qquad
+3\nmid s,\qquad
+4\nmid u,\qquad
+3\nmid t,
+\tag{419}
+\]
+
+and \(\ell,v,q\in\mathbb Z\) are arbitrary.  Thus the sign string is
+\((-,+,-,+,+,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{420}
+\]
+
+Choose fresh independent \(w,e\in V_1\), fresh nonzero
+
+\[
+z_1\in V_\omega,\qquad
+z_2\in V_{\omega^2},
+\]
+
+and put
+
+\[
+h=3w+z_1+z_2.
+\tag{421}
+\]
+
+Choose fresh nonzero
+\(p_\omega\in V_\omega,p_{\omega^2}\in V_{\omega^2}\), disjoint from
+the \(z\)-packet, and put
+
+\[
+p=p_\omega+p_{\omega^2}.
+\tag{422}
+\]
+
+Choose \(a,c\in D_1\) with disjoint complete four-phase supports,
+also disjoint from the fresh \(1\)-eigenvectors.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+aY&=w,\\
+(aX^r)Y&=p,\\
+cY&=pX^s,\\
+(cX^u)Y&=e,\\
+eY&=4hX^{-t}.
+\end{aligned}
+\tag{423}
+\]
+
+The source list \(w,a,aX^r,c,cX^u,e\) is independent: each
+four-phase pair is independent by (419), and the two orbit packets
+and two \(V_1\)-lines were chosen disjointly.  The image list is
+independent as well.  The vectors \(p,pX^s\) form a rank-two packet
+because \(3\nmid s\).  On the disjoint baseline packet, the
+determinant of \(h,hX^{-t}\) modulo \(kw\) is
+
+\[
+\omega^{-2t}-\omega^{-t}\ne0
+\tag{424}
+\]
+
+because \(3\nmid t\).  The vector \(e\) supplies one further fresh
+\(V_1\)-line.  Therefore (423) extends to a global cyclotomic
+BS\((3,4)\)-module action.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=hR_3=4w=wR_4.
+\tag{425}
+\]
+
+The word replay is
+
+\[
+\begin{aligned}
+wb
+&=aX^rYX^sY^{-1}X^uYX^vYX^tY^{-1}X^q\\
+&=pX^sY^{-1}X^uYX^vYX^tY^{-1}X^q\\
+&=cX^uYX^vYX^tY^{-1}X^q\\
+&=eYX^tY^{-1}X^q\\
+&=4hX^{-t}X^tY^{-1}X^q\\
+&=4w.
+\end{aligned}
+\tag{426}
+\]
+
+The omitted \(x^\ell\), \(x^v\), and \(x^q\) powers fix their
+\(1\)-eigenvectors.  Equations (425)--(426) prove (420).  The Fox
+bridge and (286) obstruct both A--D signs for every free-kernel lift.
+Hence the complete \((-,+,-,+,+,-)\) length-six stratum is closed.
