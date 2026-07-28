@@ -1165,3 +1165,23 @@
 
 - [TRAP] The new degree-two certificate passed all pytest imports but failed its documented direct replay because `from experiments.stable_ac ...` is unavailable when Python sets the script directory as the import root.
 - [WORKS] Certificate modules which reuse a sibling must support both package import and direct sibling import, then run pytest and the literal `python3 experiments/...py` replay before staging.
+
+### 2026-07-28 Preload transitive dependencies for spec-loaded certificates
+
+- [TRAP] Spec-loading the degree-two certificate from a scratch script still failed because that certificate's sibling fallback was neither importable from `.scratch/` nor registered in `sys.modules`.
+- [WORKS] Before spec-loading a project certificate with sibling imports, spec-load each direct sibling under the exact fallback module name and register it in `sys.modules`; then execute the top-level certificate.
+
+### 2026-07-28 Test one Bass--Serre component before seeding hundreds
+
+- [TRAP] The remote-cycle probe seeded all 449 local output vertices despite the earlier orbit-BFS warning; the binomial graph had no cycles through radius four and expanded from 13,472 to 336,970 vertices before interruption.
+- [WORKS] For homogeneous-cycle searches, start from one component and prove or refute a cycle algebraically before adding defect-row seeds. A forest through several radii is a signal to derive subgroup freeness, not to deepen breadth-first enumeration.
+
+### 2026-07-28 Recheck nested agents before independent review spawns
+
+- [TRAP] A review spawn hit the thread limit after the active remote-syzygy agent created its own certificate-algebra child; completed historical agents were not the issue.
+- [WORKS] Immediately list live nested agents before every review spawn as well as every research spawn. When a research child is active, perform the independent audit locally or wait for that child instead of retrying.
+
+### 2026-07-28 Canonicalize Stallings folds before freezing hashes
+
+- [TRAP] The exploratory Stallings core used set iteration during vertex unions; its graph rank was correct, but its serialized vertex numbering hash changed after the tracked certificate made union order deterministic.
+- [WORKS] Sort fold transitions and choose union roots deterministically before recording a graph hash. Freeze the hash from the canonical certificate, not from an exploratory graph with incidental numbering.
