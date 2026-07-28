@@ -804,3 +804,8 @@
 
 - [TRAP] In the general scalar system, every (37) target is also the \(i=0\) target of (36) at an adjacent center, and dually for (36). A target outside a lifted coefficient hull therefore need not have a unique coefficient.
 - [WORKS] When the internal stencil is a nonzero turn in an amalgam fiber, prove two local interpolation lemmas (prescribed vertex value and prescribed block sum), then glue fibers across the second HNN tree. One macro edge imposes one port datum, so tree recursion avoids the cross-collision without claiming coordinate uniqueness.
+
+### 2026-07-27 Preserve LaTeX escapes in scripted patches
+
+- [TRAP] Passing a LaTeX-heavy patch through an ordinary JavaScript template string converted backslash escapes and inserted NUL bytes before commands such as \(\sigma\); the first read-back exposed corrupted inline math.
+- [WORKS] Use a raw JavaScript string for every LaTeX-heavy apply-patch payload, then immediately read back the edited section and scan the diff before mathematical review.

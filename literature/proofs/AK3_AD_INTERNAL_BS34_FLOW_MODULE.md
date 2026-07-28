@@ -1350,3 +1350,248 @@ relevant negative exponent-zero fiber, the negative--positive
 length-two classes therefore require a different invariant.  Together
 with Section 12, this classifies the flow module on every
 stable-letter-length-two exponent-zero double coset.
+
+## 14. A finite-interface turn-transfer theorem
+
+The previous three sections use two different mechanisms: open turns
+are solved by interpolation on a tree, while a completely folded turn
+is killed by nontrivial monodromy.  This section isolates the exact
+linear statement common to both mechanisms.  Its hypotheses are not
+asserted for every Britton word.
+
+For fixed \(b\) and \(\sigma\), form the coefficient hypergraph
+\(\mathscr X_{b,\sigma}\).  Its variable nodes are the cosets \(K_bg\).
+It has two relation nodes \(I_g,O_g\), indexed by \(Hg\), with relation
+vectors
+
+\[
+\sum_{i=0}^{3}[K_bb^{-1}x^ig]+\sigma[K_bg],
+\qquad
+\sum_{j=0}^{2}[K_bb^{-1}yx^jg]+\sigma[K_bg].
+\tag{88}
+\]
+
+Repeated variable nodes in a stencil are retained with their
+multiplicity.  The two vectors in (88) are independent of the chosen
+representative of \(Hg\).  For the first vector, replacing \(g\) by
+\(xg\) permutes the four targets modulo
+\(b^{-1}Cb\leq K_b\); for the second it permutes the three targets by
+\(yx^3=x^4y\), using the same subgroup inclusion.  By Section 8,
+functions on the variable nodes annihilating every relation node of
+\(\mathscr X_{b,\sigma}\) are exactly the scalar currents (36)--(37).
+
+There is an unconditional finite object behind the subgroup \(K_b\),
+although it does not by itself make the coefficient hypergraph finite.
+Let \(T\) be the ordinary Bass--Serre tree, let \(v_0\) be the vertex
+fixed by \(H\), and let \(e_0\) be the edge fixed by \(C\).  Let \(P_b\)
+be the finite convex hull of \(v_0\) and \(b^{-1}e_0\), and put
+
+\[
+S_b=K_bP_b.
+\]
+
+This is connected.  A translate \(hP_b\), with \(h\in H\), meets
+\(P_b\) at \(v_0\), while a translate \(qP_b\), with
+\(q\in b^{-1}Cb\), meets \(P_b\) at \(b^{-1}e_0\).  Induction on a
+word in the two generating subgroups joins every translate to
+\(P_b\).  Therefore
+
+\[
+\Gamma_b=K_b\backslash S_b
+\]
+
+is a finite graph of cyclic groups covered by the image of the one
+finite path \(P_b\), and Bass--Serre reconstruction gives
+\(\pi_1(\Gamma_b)\cong K_b\).  Replacing \(b\) by \(cbh\), with
+\(c\in C\) and \(h\in H\), leaves \(K_b\) unchanged and moves the
+terminal marked edge within its \(K_b\)-orbit.  Thus the pointed
+folded core is an invariant of the double coset \(CbH\).  It must be
+decorated by the two stencils in (88): the abstract graph
+\(\Gamma_b\) alone loses their placement.
+
+The collisions internal to each stencil have an exact arithmetic
+description.  Define
+
+\[
+\begin{aligned}
+D_I(b)&=\{n\in\mathbb Z:b^{-1}x^nb\in K_b\}
+       =d_I\mathbb Z,\\
+D_O(b)&=\{n\in\mathbb Z:b^{-1}yx^ny^{-1}b\in K_b\}
+       =d_O\mathbb Z.
+\end{aligned}
+\tag{89}
+\]
+
+Both are subgroups of \(\mathbb Z\).  Moreover \(4\mathbb Z\leq
+D_I(b)\), directly from the definition of \(K_b\), and
+\(3\mathbb Z\leq D_O(b)\), because
+\(yx^3y^{-1}=x^4\).  Hence
+
+\[
+d_I\mid4,\qquad d_O\mid3.
+\]
+
+Two incoming targets with exponents \(i,j\) are equal precisely when
+\(i-j\in D_I(b)\); two outgoing targets are equal precisely when
+\(i-j\in D_O(b)\).  Combining equal terms, (36)--(37) therefore
+become
+
+\[
+\frac4{d_I}\sum_{r=0}^{d_I-1}
+s(K_bb^{-1}x^rg)=\lambda s(K_bg),
+\tag{90}
+\]
+
+\[
+\frac3{d_O}\sum_{r=0}^{d_O-1}
+s(K_bb^{-1}yx^rg)=\lambda s(K_bg),
+\qquad \lambda=-\sigma.
+\tag{91}
+\]
+
+Thus an incoming stencil has exactly \(1,2\), or \(4\) distinct ports,
+and an outgoing stencil has exactly \(1\) or \(3\).  These fold indices
+are read from the endpoint stabilizers in the decorated
+\(\Gamma_b\).  This proves all identifications *within* a stencil; it
+does not remove the cross-stencil and adjacent-center collisions
+(60)--(61).
+
+Equations (90)--(91) also give an unconditional scalar-collapse
+certificate.  If one fold index is \(1\), write its unique target as
+\(K_bag\), and let \(q=4\) for the incoming stencil or \(q=3\) for the
+outgoing stencil.  The corresponding equation is
+
+\[
+q\,s(K_bag)=\lambda s(K_bg).
+\]
+
+If \(a^m\in K_b\) for some \(m>0\), apply the equation successively at
+\(g,ag,\ldots,a^{m-1}g\).  It follows that
+
+\[
+(q^m-\lambda^m)s(K_bg)=0.
+\]
+
+The coefficient is nonzero over \(\mathbb Q\), so every scalar current
+vanishes and the flow ideal collapses.  Section 13 is the incoming
+case \(a=u^{-r}\), \(q=4\), and
+\(m=4/\gcd(4,r)\); the canonical cases in Section 6 are the length-one
+returns.  When \(d_I=2\) or \(4\), or \(d_O=3\), a closed return is
+intrinsically multiport unless further identifications are proved.
+
+Here is the abstract elimination statement.  It is phrased as a
+certificate so that none of the necessary finiteness is hidden.
+
+**Finite-interface transfer lemma.**  Let \(\mathscr X\) be a linear
+coefficient hypergraph over \(\mathbb Q\).  Suppose a decomposition of
+\(\mathscr X\) supplies:
+
+1. a finite-dimensional core-coordinate space \(Q_0\);
+2. exterior full sub-hypergraphs \(U_\alpha\), each meeting the rest of
+   the system only through a finite-dimensional port space
+   \(P_{t(\alpha)}\), with only finitely many port types;
+3. for each exterior piece, its solution space \(E_\alpha\), trace map
+   \(\tau_\alpha:E_\alpha\to P_{t(\alpha)}\), and zero-trace space
+   \(Z_\alpha=\ker\tau_\alpha\); and
+4. a finite-rank factorization of all core equations and all port
+   identifications as one linear map
+
+\[
+M:W\longrightarrow R_0,
+\tag{92}
+\]
+
+   where \(W\) is a finite-dimensional space of core coordinates and
+   surviving port coordinates.
+
+Assume every required exterior trace lies in
+\(\operatorname{im}\tau_\alpha\).  Equivalently, after replacing a
+port by the subspace actually required in (92), every
+\(\tau_\alpha\) is onto.  Then restriction to the finite interface
+gives an exact sequence
+
+\[
+0\longrightarrow\prod_\alpha Z_\alpha
+\longrightarrow \operatorname{Sol}(\mathscr X)
+\longrightarrow\ker M\longrightarrow0.
+\tag{93}
+\]
+
+The product in (93), rather than a direct sum, is essential: dual
+currents are arbitrary functions and need not have finite support.
+
+To prove the lemma, restrict a global solution to its core and port
+coordinates.  The remaining equations say exactly that the resulting
+finite vector lies in \(\ker M\).  A solution with zero finite trace
+is an independent choice in \(Z_\alpha\) on every exterior piece,
+which gives the kernel in (93).  Conversely, take a vector in
+\(\ker M\).  Trace surjectivity chooses a lift in every \(E_\alpha\);
+the exterior pieces share no relation away from their recorded ports,
+so those lifts and the core vector glue to a global solution.  This
+proves exactness.
+
+Consequently, when \(\mathscr X=\mathscr X_{b,\sigma}\), the flow
+ideal is proper if some \(Z_\alpha\ne0\) or \(\ker M\ne0\).  It
+collapses if all \(Z_\alpha\) vanish and \(M\) is injective.  This is
+an exact criterion for any exhibited finite-interface certificate; it
+is not a claim that every \(\mathscr X_{b,\sigma}\) has such a
+certificate.
+
+There is also a useful open-tree form which does not require a finite
+interface.  Suppose blocks are indexed by a rooted tree, a parent
+block prescribes one finite-dimensional port datum in each child, and
+the corresponding child trace is onto.  Any chosen solution in the
+root block extends recursively to the whole tree.  This follows by
+choosing one lift at each successive distance from the root.  Thus a
+nonzero root solution gives a nonzero global current.  This is exactly
+the logical form of the macro-tree construction in Section 12.
+
+For a closed component with a one-dimensional surviving port, let
+\(\mu_1,\ldots,\mu_m\) be the successive transfer scalars.  Its return
+block in (92) is
+
+\[
+1-\prod_{i=1}^{m}\mu_i.
+\tag{94}
+\]
+
+For a \(d\)-dimensional port it is instead
+\(I-T_m\cdots T_1\).  Hence scalar monodromy is a special case; an
+arbitrary closed fold need not reduce to one scalar recurrence.
+
+The earlier results are consistent checks on the theorem.  For
+\(b\in H\), all four targets in (36) fold to the center and the
+one-dimensional return coefficient is \(4+\sigma\), which is
+nonzero.  For Section 10, the outside-target lemma supplies the
+required open one-parent interpolation and leaves a free root mode.
+In Section 12, the direct ports collide, but the \(J_-\)-fiber
+interpolation is onto for an individual value or any nonzero
+functional on at most three vertices; the macro graph is a tree, so
+again a free root mode extends.  In Section 13, the surviving port is
+one-dimensional and (84) has transfer factor \(\lambda/4\).  The
+return length is \(m=4/\gcd(4,r)\), so (94), after clearing
+denominators, is \(4^m-\lambda^m\ne0\).
+
+Two independent facts remain to be proved before this becomes an
+arbitrary-Britton-word decision theorem:
+
+1. the representative-indexed hypergraph \(\mathscr X_{b,\sigma}\)
+   must have a finite-interface or finite-rank port decomposition;
+   finite generation of \(K_b\) alone does not imply this, because the
+   equations are indexed by \(H\backslash B\), not
+   \(K_b\backslash B\);
+2. every open exterior block in that decomposition must have the
+   asserted trace-surjectivity property.
+
+The second point already fails for the naive branch proof at the
+length-three word \(b=y^2xy^{-1}\): Section 11 shows that both stencils
+at the root lie behind the same hull edge, and (60)--(61) create
+adjacent-center collisions.  This is a failure of that proposed proof,
+not evidence of flow collapse.  Finally, an undecorated subgroup core
+cannot decide the problem: \(b=1\) and \(b=yxy^{-1}\) both have
+\(K_b=H\), but Sections 6 and 12 give opposite flow outcomes.  Any
+successful corridor theorem must retain the two stencils and their
+turn labels, not merely \(K_b\).  The necessity of this decoration
+already appears at stable-letter length one: \(b=y\) and \(b=xy\)
+both have \(K_b=H\), but Section 6 gives collapse for the first while
+Section 10 gives propriety for the second.

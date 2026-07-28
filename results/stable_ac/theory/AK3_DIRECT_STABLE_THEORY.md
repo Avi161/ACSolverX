@@ -3701,6 +3701,75 @@ and 63 completely classify the flow module on all exponent-zero
 stable-letter-length-two double cosets: the positive--negative family
 is proper, while the negative--positive family collapses.
 
+**Result 64 (exact stencil folds and finite-interface transfer).**
+Every internal element \(b\) has a finite pointed folded subgroup core
+\(\Gamma_b\) representing \(K_b=\langle H,b^{-1}Cb\rangle\).  The
+core alone does not decide the flow system, but its two decorated
+stencils have exact fold indices
+
+\[
+\begin{aligned}
+D_I(b)&=\{n:b^{-1}x^nb\in K_b\}=d_I\mathbb Z,
+&d_I&\mid4,\\
+D_O(b)&=\{n:b^{-1}yx^ny^{-1}b\in K_b\}=d_O\mathbb Z,
+&d_O&\mid3.
+\end{aligned}
+\]
+
+After equal targets are combined, (36)--(37) become
+
+\[
+\frac4{d_I}\sum_{r=0}^{d_I-1}s(K_bb^{-1}x^rg)
+=-\sigma s(K_bg),
+\]
+
+\[
+\frac3{d_O}\sum_{r=0}^{d_O-1}s(K_bb^{-1}yx^rg)
+=-\sigma s(K_bg).
+\]
+
+Thus an incoming stencil has exactly \(1,2\), or \(4\) genuine ports,
+and an outgoing stencil has \(1\) or \(3\).  If a stencil has one port
+\(K_bag\) and \(a^m\in K_b\), iteration gives
+\((q^m-(-\sigma)^m)s=0\), with \(q=4\) or \(3\).  This is an
+unconditional scalar-collapse certificate.  Result 63 is its incoming
+\(q=4\) instance.
+
+The exact scalar system also has a conditional finite reduction which
+separates open interpolation from closed monodromy.  Whenever its
+decorated, representative-indexed coefficient hypergraph is
+decomposed into a finite-rank core and exterior pieces whose finite
+port traces are onto, restriction gives
+
+\[
+0\longrightarrow\prod_\alpha Z_\alpha
+\longrightarrow \operatorname{Sol}_{b,\sigma}
+\longrightarrow\ker M_{b,\sigma}\longrightarrow0.
+\]
+
+Here \(Z_\alpha\) is the zero-trace solution space of the exterior
+piece and \(M_{b,\sigma}\) is the finite port-return map.  The
+Cartesian product is forced because dual currents need not be finitely
+supported.  Hence the flow ideal is proper exactly when an exterior
+zero-trace mode or a return-kernel vector survives; it collapses when
+all such modes vanish and the return map is injective.
+
+On a one-dimensional closed port, the return block is
+\(1-\prod_i\mu_i\); in higher dimension it is
+\(I-T_m\cdots T_1\), so arbitrary folds are not automatically scalar.
+Results 61--62 are open-tree instances: their local interpolation maps
+are onto and a free root mode extends.  Result 63 is the scalar closed
+case, with return coefficient \(4^m-\lambda^m\).
+
+The finite reduction is conditional for longer Britton codes.  Two
+separate missing lemmas are now explicit: finite rank of the
+decorated, representative-indexed interface, and trace surjectivity of
+each open block.  Neither follows from finite generation of \(K_b\).
+Indeed \(b=y\) and \(b=xy\) both have \(K_b=H\), but the first
+collapses while the second is proper.  The minimal length-three word
+\(y^2xy^{-1}\) separately defeats the naive exposed-leaf proof.  No
+new primitivity or Andrews--Curtis claim is made here.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
