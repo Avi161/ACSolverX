@@ -653,7 +653,7 @@ double coset satisfies
 \[
 \|a hb^\eta h^{-1}\|
 \ge 11+18-2\cdot2=25,
-\qquad h\notin K,quad \eta=\pm1.
+\qquad h\notin K,\quad \eta=\pm1.
 \tag{9.5}
 \]
 
@@ -677,6 +677,115 @@ quotient obstruction.  The fiber-product formulation is the right route
 for a general \(g\), because it measures the self-overlap of the normalized
 bridge rather than relying on a false reverse triangle inequality for
 cyclic length.
+
+## 10. A uniform barbell-piece bound closes the whole family
+
+Normalize an arbitrary reduced conjugator as
+
+\[
+g=x^p c y^q,
+\tag{10.1}
+\]
+
+where the maximal initial x-block and terminal y-block have been removed.
+Right multiplication by \(y^q\) does not change \(gyg^{-1}\), and left
+multiplication by \(x^p\) globally conjugates the image pair by \(x^p\).
+If c is empty, \(\phi_g\) is an automorphism and Result 116 applies.
+
+Suppose c is nonempty.  Then c begins in \(y^{\pm1}\), ends in
+\(x^{\pm1}\), and has length \(n\ge2\).  The folded core \(\Gamma_c\)
+of
+
+\[
+K_c=\langle x,cyc^{-1}\rangle
+\tag{10.2}
+\]
+
+is a barbell: an x-loop at \(v_0\), a path of n edges labelled c from
+\(v_0\) to \(v_n\), and a y-loop at \(v_n\).  The endpoint conditions and
+reduction of c make this graph folded.
+
+### Lemma 10.1 (uniform off-diagonal piece bound)
+
+Every reduced path in the off-diagonal fiber product
+\(\Gamma_c\times_R\Gamma_c\) has length at most \(3n\).
+
+**Proof.**  Such a path projects to two reduced paths with the same label.
+Write their successive positions on the bridge as \(i<j\).  This order is
+preserved: equality would contradict determinism of the folded inverse
+graph, while swapping across one edge would require a letter to equal its
+inverse.
+
+At an interior bridge vertex a reduced path cannot turn around.  The lower
+coordinate can therefore use only the x-loop at \(v_0\), and the upper
+coordinate only the y-loop at \(v_n\).  Each loop can occur in at most one
+block.  If at least one projection uses no endpoint loop, it is monotone
+on the bridge, so the common path has length at most n.
+
+If both projections use their endpoint loops, the common label is
+simultaneously a subword of
+
+\[
+c^{-1}x^k c
+\quad\text{and}\quad
+c y^\ell c^{-1},
+\qquad k,\ell\ne0,
+\tag{10.3}
+\]
+
+with either sign allowed in the two pure blocks.  The consecutive x-block
+cannot meet the nonempty central y-block in the second word.  It must lie
+inside one of that word's two c-flanks, so \(|k|\le n\).  The portions on
+the two sides of the x-block lie in the two c-flanks of the first word and
+have total length at most \(2n\).  The common path therefore has length at
+most \(3n\). \(\square\)
+
+Now put \(a_c=\phi_c(A)\), \(b_c=\phi_c(B)\).  No seam cancels in
+
+\[
+a_c=x^3cy^{-4}c^{-1},
+\qquad \|a_c\|=2n+7,
+\tag{10.4}
+\]
+
+or in the three conjugated-y blocks of \(b_c\), so
+
+\[
+\|b_c\|=6n+6.
+\tag{10.5}
+\]
+
+If \(h\notin K_c\), an intersection of the axes of \(a_c\) and
+\(hb_c^{\pm1}h^{-1}\) projects to an off-diagonal fiber-product path.
+Lemma 10.1 and the standard tree product estimate give
+
+\[
+\|a_c h b_c^{\pm1}h^{-1}\|
+\ge (2n+7)+(6n+6)-2(3n)
+=2n+13\ge17.
+\tag{10.6}
+\]
+
+The same estimate holds with the sources exchanged.  This exceeds the
+Osborne--Zieschang primitive lengths 9 and 5.  If \(h\in K_c\), Result
+121 gives nonprimitivity by the Klyachko--Magnus quotient argument.
+Combining the internal and external cases proves
+
+\[
+\boxed{
+\phi_g(A)h\phi_g(B)^\eta h^{-1}
+\text{ and }
+\phi_g(B)h\phi_g(A)^\eta h^{-1}
+\text{ are nonprimitive}}
+\tag{10.7}
+\]
+
+for every \(g,h\in F_2\) and \(\eta=\pm1\).  Since every iterate in
+Section 5 still fixes x and sends y to a conjugate of y, (10.7) holds at
+every depth of the descending stable corridor.  Thus the entire family of
+Result 120 has no one-source primitive exit.  Any successful corridor use
+must modify both sources before the primitive test, use more than one
+row-changing edge, or change the stabilizer architecture.
 
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 

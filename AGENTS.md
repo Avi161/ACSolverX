@@ -975,3 +975,9 @@
 
 - [TRAP] The proposed family-wide corridor barrier used `min_h ||P hQh^-1|| >= ||P|-|Q||`. This is false: after the shorter factor cancels, cyclic reduction can expose and cancel more of the longer factor. For example, cyclically reduced `P=abaB`, `Q=A` have lengths 4 and 1, but a suitable rotated product cyclically reduces to `b` of length 1.
 - [WORKS] Bound products of conjugacy classes through the exact two-seam rotation/common-factor calculation or a proved Stallings bounded-cancellation lemma specific to the words. Raw cyclic lengths alone supply no reverse triangle inequality.
+
+### 2026-07-27 Use raw patch strings for every LaTeX insertion
+
+- [TRAP] A regular JavaScript patch string dropped the backslash from `\\quad` in equation (9.5), repeating the already documented LaTeX-escape class of failure.
+- [TRAP] A subsequent raw template failed to parse because the lesson text itself contained unescaped backticks.
+- [WORKS] Use `String.raw` for LaTeX-only patch payloads and a separate regular string for prose containing backticks. Search the edited region for bare command names before verification.

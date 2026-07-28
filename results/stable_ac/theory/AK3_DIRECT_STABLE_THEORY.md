@@ -7193,9 +7193,9 @@ exit).**  For the concrete map \(\phi(x)=x\),
 cyclic representatives have lengths
 
 \[
-a=xxxyxYYYYXY,quad |a|=11,
+a=xxxyxYYYYXY,\quad |a|=11,
 \qquad
-b=xyxyXYxyxYXYXyxYXY,quad |b|=18.
+b=xyxyXYxyxYXYXyxYXY,\quad |b|=18.
 \]
 
 Their maximum common cyclic-factor lengths are
@@ -7248,6 +7248,35 @@ membership.  Hence every shorter alignment from Result 122 lies inside
 K.  This converts the general-g problem into an off-diagonal fiber-product
 overlap problem for the normalized bridge core, rather than a raw
 word-length inequality.
+
+**Result 124 (the whole conjugating family has no one-source primitive
+exit).**  Normalize \(g=x^pcy^q\), with c empty or reduced, beginning in
+\(y^{\pm1}\), and ending in \(x^{\pm1}\).  The outer blocks change the
+map only by a global inner automorphism.  If c is empty, Result 116
+applies.  Otherwise put \(n=|c|\ge2\).
+
+The core of \(K_c=\langle x,cyc^{-1}\rangle\) is the folded barbell with
+bridge c.  Every reduced path in its off-diagonal fiber product has length
+at most \(3n\).  Indeed, its two ordered bridge coordinates cannot cross;
+the lower coordinate can use only the x-loop, the upper only the y-loop,
+and each loop occurs in at most one block.  If both loops occur, the common
+label lies in both \(c^{-1}x^kc\) and \(cy^\ell c^{-1}\).  The x-block
+lies in one c-flank of the latter, so it has length at most n, while its
+two flanks contribute at most \(2n\).
+
+The image sources have cyclic lengths \(2n+7\) and \(6n+6\).  Hence every
+external relative conjugator gives cyclic length at least
+
+\[
+(2n+7)+(6n+6)-2(3n)=2n+13\ge17,
+\]
+
+well above the primitive lengths 9 and 5.  Result 121 closes every
+internal conjugator.  Therefore for every g, every ambient h, both signs,
+and both source orders, a one-source relative product of \(\phi_g(A)\)
+and \(\phi_g(B)\) is nonprimitive.  This includes every iterate of Result
+119's descending corridor.  A useful exit must change both rows before
+testing primitivity or use a different stabilization architecture.
 
 ## Live lead
 
@@ -7414,7 +7443,10 @@ external double cosets for the first proper image \(g=yx\): exact axis
 alignment gives cyclic-length minima 23 and 21, far above the primitive
 lengths 9 and 5. Result 123 sharpens its external part. The off-diagonal
 Stallings fiber product has diameter two, so every external double coset
-has exact minimum 25; all shorter alignments are internal.
+has exact minimum 25; all shorter alignments are internal. Result 124
+proves a uniform \(3|c|\) barbell-piece bound and closes the whole
+conjugating-endomorphism family, at every iterate, against every
+one-source primitive exit.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7426,12 +7458,13 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--123, arbitrary W--D conjugators,
+61--124, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by
-Results 117--118, or use Result 120's conjugator family to expose a new
-primitive compression beyond the first image closed by Result 122.
+Results 117--118, or use Result 120's corridor only after changing both
+rows before the primitive test or changing the stabilizer architecture,
+as forced by Result 124.
 Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different

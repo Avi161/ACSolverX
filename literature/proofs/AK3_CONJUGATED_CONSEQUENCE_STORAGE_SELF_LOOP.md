@@ -1305,3 +1305,34 @@ global minima 23 and 21 occur internally and are nonprimitive by Theorem
 18.1.  For a general conjugating corridor, the remaining invariant is the
 off-diagonal fiber-product overlap diameter of its normalized barbell
 core.
+
+## 21. A uniform barbell bound closes every conjugating corridor
+
+Normalize \(g=x^pcy^q\), where a nonempty c begins in \(y^{\pm1}\), ends
+in \(x^{\pm1}\), and has length \(n\ge2\).  The folded core of
+\(K_c=\langle x,cyc^{-1}\rangle\) is the barbell with bridge c.
+
+Two paths in an off-diagonal fiber-product component retain their order
+along the bridge.  The lower path can use only the x-loop and the upper
+only the y-loop, each in at most one block.  If both loops occur, their
+common label lies in both \(c^{-1}x^kc\) and \(cy^\ell c^{-1}\).  The
+x-block occupies at most one c-flank in the latter, proving the uniform
+piece bound \(3n\).
+
+The image-source lengths are \(2n+7\) and \(6n+6\), so every external
+relative conjugator has cyclic length at least
+
+\[
+(2n+7)+(6n+6)-6n=2n+13\ge17.
+\tag{93}
+\]
+
+Internal conjugators are already closed by Theorem 18.1.
+
+### Theorem 21.1 (family-wide one-source corridor barrier)
+
+For every conjugating endomorphism \(\phi_g\), every ambient relative
+conjugator, both signs, and both source orders, one multiplication between
+the two image sources is nonprimitive.  This remains true at every depth
+of the descending proper corridor.  Any successful use must change both
+rows before the primitive test or use a different stabilizer architecture.

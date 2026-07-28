@@ -1,3 +1,6 @@
+from itertools import product
+
+
 INVERSE = {
     "x": "X", "X": "x",
     "y": "Y", "Y": "y",
@@ -280,3 +283,75 @@ def test_external_double_coset_minimum_has_exact_witnesses() -> None:
                 break
             vertex = transitions[vertex, letter]
         assert not readable or vertex != 0
+
+
+def test_normalized_barbell_off_diagonal_piece_bound() -> None:
+    def transitions_for(bridge: str) -> dict[tuple[int, str], int]:
+        transitions: dict[tuple[int, str], int] = {}
+        for target, letter in enumerate(bridge, start=1):
+            source = target - 1
+            transitions[source, letter] = target
+            transitions[target, INVERSE[letter]] = source
+        last = len(bridge)
+        transitions[0, "x"] = 0
+        transitions[0, "X"] = 0
+        transitions[last, "y"] = last
+        transitions[last, "Y"] = last
+        return transitions
+
+    def off_diagonal_adjacency(bridge: str) -> dict[tuple[int, int], set[tuple[int, int]]]:
+        transitions = transitions_for(bridge)
+        vertices = range(len(bridge) + 1)
+        states = [(left, right) for left in vertices for right in vertices if left < right]
+        adjacency = {state: set() for state in states}
+        for left, right in states:
+            for letter in "xXyY":
+                if (left, letter) not in transitions or (right, letter) not in transitions:
+                    continue
+                targets = transitions[left, letter], transitions[right, letter]
+                assert targets[0] != targets[1]
+                target = tuple(sorted(targets))
+                adjacency[left, right].add(target)
+                adjacency[target].add((left, right))
+        return adjacency
+
+    def component_diameters(
+        adjacency: dict[tuple[int, int], set[tuple[int, int]]],
+    ) -> tuple[int, ...]:
+        unseen = set(adjacency)
+        diameters: list[int] = []
+        while unseen:
+            start = unseen.pop()
+            component = {start}
+            frontier = [start]
+            while frontier:
+                vertex = frontier.pop()
+                for neighbor in adjacency[vertex]:
+                    if neighbor not in component:
+                        component.add(neighbor)
+                        unseen.discard(neighbor)
+                        frontier.append(neighbor)
+            edge_count = sum(len(adjacency[vertex]) for vertex in component) // 2
+            assert edge_count == len(component) - 1
+            diameter = 0
+            for vertex in component:
+                distances = {vertex: 0}
+                queue = [vertex]
+                for current in queue:
+                    for neighbor in adjacency[current]:
+                        if neighbor not in distances:
+                            distances[neighbor] = distances[current] + 1
+                            queue.append(neighbor)
+                diameter = max(diameter, max(distances.values()))
+            diameters.append(diameter)
+        return tuple(diameters)
+
+    for length in range(2, 7):
+        for letters in product("xXyY", repeat=length):
+            bridge = "".join(letters)
+            if bridge[0] not in "yY" or bridge[-1] not in "xX":
+                continue
+            if any(bridge[index + 1] == INVERSE[bridge[index]] for index in range(length - 1)):
+                continue
+            diameters = component_diameters(off_diagonal_adjacency(bridge))
+            assert max(diameters, default=0) <= 3 * length
