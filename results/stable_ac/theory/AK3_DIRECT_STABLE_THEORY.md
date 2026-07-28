@@ -7380,6 +7380,31 @@ universal classical AC self-loop.  Iteration gives an infinite proper
 formal corridor while leaving both evaluated row conjugacy classes
 unchanged.
 
+**Result 129 (the row-braid corridor gives strict classical subgroup
+descent).**  Since the formal map \(\Theta\) is injective and proper,
+
+\[
+F(U,V)>\Theta(F(U,V))>\Theta^2(F(U,V))>\cdots
+\]
+
+is strict.  For any noncommuting pair u,v, evaluation is an isomorphism
+from \(F(U,V)\) to \(\langle u,v\rangle\), so the evaluated subgroups also
+form a strict chain:
+
+\[
+\langle u,v\rangle>
+\langle\Theta(u),\Theta(v)\rangle>
+\langle\Theta^2(u),\Theta^2(v)\rangle>\cdots.
+\]
+
+Every adjacent pair is classically AC-equivalent by Result 128, while
+\(\Theta^n(u)\) remains conjugate to u and \(\Theta^n(v)\) remains
+conjugate to v.  The AK rows are noncommuting because their exponent
+vectors have determinant one.  Thus AK(3), and each earlier stable image,
+has an infinite strict classical subgroup corridor which never changes
+either relator conjugacy class.  Strict descent of the displayed-relator
+subgroup is therefore not a valid progress invariant.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7558,7 +7583,9 @@ sharp first-image overlap bound to close the reverse orientation there.
 Any genuinely new two-row exit from that image must go external first.
 Result 128 identifies the first provenance-sensitive collapse found in
 that branch as a universal row-braid self-loop rather than a primitive
-compression.
+compression. Result 129 shows that iterating this loop nevertheless gives
+strict classical descent of the displayed-relator subgroup, so subgroup
+descent alone cannot certify progress.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7570,7 +7597,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--128, arbitrary W--D conjugators,
+61--129, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

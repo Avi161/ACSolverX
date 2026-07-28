@@ -1422,3 +1422,24 @@ The provenance-sensitive cascade which defeats pairwise axis-overlap
 estimates is a classical AC self-loop for every input pair.  It cannot
 change either row's primitivity status.  Its formal endomorphism is proper,
 but evaluation preserves the two row conjugacy classes separately.
+
+## 26. The row-braid subgroup corridor descends strictly
+
+Injectivity and propriety of the formal row map imply
+
+\[
+F(U,V)>\Theta(F(U,V))>\Theta^2(F(U,V))>\cdots.
+\tag{97}
+\]
+
+For any noncommuting concrete pair u,v, evaluation identifies \(F(U,V)\)
+with \(\langle u,v\rangle\), so (97) remains a strict subgroup chain after
+evaluation.  Every adjacent pair is classically AC-equivalent, while the
+two row conjugacy classes remain fixed at every depth.
+
+### Theorem 26.1 (strict classical subgroup descent is a gauge)
+
+AK(3) and every preceding stable image admit a strict infinite descending
+chain of displayed-relator subgroups within one classical AC class.
+Therefore subgroup descent, even strict descent at every step, is not a
+progress invariant toward a primitive row.
