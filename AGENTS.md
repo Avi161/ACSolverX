@@ -814,3 +814,15 @@
 
 - [TRAP] Reading \(K_b=\langle x,z^3\rangle\) directly from \(b^{-1}Cb\) initially missed the additional relation \(z^4=x^4\in H\); together \(z^3,z^4\in K_b\) force \(z\in K_b\), changing a three-port stencil into a one-port stencil.
 - [WORKS] Before declaring a stencil fold index, collect every available power of its cyclic endpoint generator and replace the exponent set by its gcd saturation. Only count ports after this subgroup closure.
+
+### 2026-07-27 Keep small proof-graph checks dependency-free
+
+- [TRAP] A one-line Whitehead-graph audit imported NetworkX, which is not installed in this proof worktree, and failed before producing any evidence.
+- [WORKS] For finite proof graphs, compute adjacency, connectivity, and articulation vertices with the Python standard library; reserve optional graph packages for project code that declares them.
+
+### 2026-07-27 Keep diagnostic scripts readable
+
+- [TRAP] Compressing the dependency-free articulation check into a side-effect-heavy Python comprehension produced a NameError and no evidence.
+- [WORKS] Put even small graph traversals in a readable multiline standard-library script with named adjacency and connectivity functions; proof diagnostics should optimize for auditability, not one-line brevity.
+- [TRAP] The readable retry still printed a hardcoded connected-true guard even though its adjacency list visibly had two components.
+- [WORKS] Compute the baseline component count explicitly and define an articulation vertex by an increase from that count; never infer articulation points from a graph that was not first verified connected.

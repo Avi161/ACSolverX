@@ -2093,3 +2093,120 @@ relations, is insufficient.  It must solve simultaneous compatibility
 over the entire family (121).  Equations (114)--(121) are an exact
 reduction of the remaining six systems, not a propriety or collapse
 result.
+
+## 18. Every finite-dimensional characteristic-zero module is blind
+
+The affine no-go in Section 16 is a special case of a
+representation-independent fact.  Let \(k\) be any field of
+characteristic zero, let \(V\) be finite-dimensional over \(k\), and
+let \(X,Y\in\operatorname{GL}(V)\) satisfy
+
+\[
+YX^3Y^{-1}=X^4.
+\tag{122}
+\]
+
+Suppose a row vector \(v\in V\) satisfies the first two internal
+relations
+
+\[
+v(X^4-I)=0,
+\qquad
+v\bigl(YR_3(X)-R_4(X)\bigr)=0.
+\tag{123}
+\]
+
+Then necessarily
+
+\[
+vX=v,\qquad vY=\frac43v.
+\tag{124}
+\]
+
+To prove this, extend scalars to an algebraic closure and list the
+eigenvalues of \(X\), with multiplicity, as
+\(\lambda_1,\ldots,\lambda_n\).  Similarity of \(X^3\) and \(X^4\)
+gives a permutation \(\pi\) such that
+
+\[
+\lambda_i^3=\lambda_{\pi(i)}^4.
+\]
+
+If \(i\) lies on a \(\pi\)-cycle of length \(m\), iteration gives
+
+\[
+\lambda_i^{3^m}=\lambda_i^{4^m},
+\qquad
+\lambda_i^{\,4^m-3^m}=1.
+\tag{125}
+\]
+
+The integer \(4^m-3^m\) is odd and congruent to \(1\pmod3\).
+Consequently \(X\) has neither a nontrivial fourth root nor a
+nontrivial cube root of unity as an eigenvalue.  Therefore both
+
+\[
+R_4(X)=I+X+X^2+X^3,
+\qquad
+R_3(X)=I+X+X^2
+\]
+
+are invertible.
+
+Their determinants are already nonzero in \(k\), because they remain
+nonzero after extension to the algebraic closure.  Hence the two
+matrices are invertible over the original field, and all vector
+equalities obtained after scalar extension descend along the
+injective map \(V\to V\otimes_k\overline{k}\).
+
+The first equation in (123) factors as
+
+\[
+0=v(X-I)R_4(X),
+\]
+
+so \(vX=v\).  Equation (122) also gives
+
+\[
+vY(X^3-I)=v(X^4-I)Y=0.
+\]
+
+Since \(X^3-I=(X-I)R_3(X)\), invertibility of \(R_3(X)\) gives
+\(vYX=vY\).  The second equation in (123) now reduces to
+
+\[
+3vY=4v,
+\]
+
+which proves (124).
+
+It follows that \(v\) affords the one-dimensional character
+
+\[
+x\longmapsto1,\qquad y\longmapsto4/3.
+\]
+
+Hence, for every \(b\in B\),
+
+\[
+vb=(4/3)^{e_y(b)}v.
+\tag{126}
+\]
+
+If \(e_y(b)=1\), the third internal relation would require
+
+\[
+0=v\bigl(b+\sigma R_4(X)\bigr)
+=\left(\frac43+4\sigma\right)v.
+\tag{127}
+\]
+
+The coefficient is \(16/3\) for \(\sigma=+1\) and \(-8/3\) for
+\(\sigma=-1\).  Thus \(v=0\).
+
+Therefore no finite-dimensional characteristic-zero representation of
+\(B\) contains a nonzero vector annihilated by the three internal
+relations for any \(b\) with \(e_y(b)=1\).  This includes all six open
+systems in Section 17, but it does not prove their flow quotients
+collapse: Result 61 gives proper exponent-one ideals whose annihilating
+currents are necessarily infinite-dimensional.

@@ -3968,6 +3968,47 @@ checking one adjacent center is not enough.  This is an exact
 structural theorem, with no propriety, primitivity, or
 Andrews--Curtis conclusion.
 
+**Result 69 (all finite-dimensional characteristic-zero modules are
+blind in the exponent-one internal fiber).**  Let \(V\) be
+finite-dimensional over a characteristic-zero field, and let
+\(X,Y\in\operatorname{GL}(V)\) satisfy \(YX^3Y^{-1}=X^4\).  If a row
+vector \(v\) satisfies
+
+\[
+v(X^4-I)=0,
+\qquad
+v\bigl(YR_3(X)-R_4(X)\bigr)=0,
+\]
+
+then
+
+\[
+vX=v,\qquad vY=\frac43v.
+\]
+
+Indeed, similarity of \(X^3\) and \(X^4\) partitions the eigenvalues
+of \(X\) into cycles satisfying
+\(\lambda^{4^m-3^m}=1\).  The exponent is odd and is \(1\bmod3\), so
+no nontrivial fourth or cube root of unity occurs.  Hence \(R_4(X)\)
+and \(R_3(X)\) are invertible.  The two displayed relations then give
+\(vX=v\), \(vYX=vY\), and \(3vY=4v\).
+
+For every \(b\in B\) with \(e_y(b)=1\), it follows that
+\(vb=(4/3)v\), while \(vR_4(X)=4v\).  Thus
+
+\[
+v(b+\sigma R_4(X))
+=\left(\frac43+4\sigma\right)v
+\]
+
+forces \(v=0\) for both signs.  No finite-dimensional
+characteristic-zero module can witness propriety anywhere in the
+internal exponent-one fiber.  Since Result 61 already gives proper
+ideals in that fiber, its currents—and any possible currents for
+Result 68's six open systems—are intrinsically
+infinite-dimensional.  This is a representation no-go, not a flow
+collapse or primitivity theorem.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
