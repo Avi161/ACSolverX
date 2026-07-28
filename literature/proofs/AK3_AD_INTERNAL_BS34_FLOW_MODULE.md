@@ -4919,3 +4919,126 @@ decoration.  Result (286) supplies the positive-sign obstruction for
 the same words.  Hence both signs are obstructed throughout the
 entire \((-,-,+,+)\) height-zero stratum.  This is the first complete
 nonalternating stratum; it does not yet cover arbitrary sign strings.
+
+## 35. Two more nonalternating height-zero strata
+
+The other mixed block with negative initial sign has a
+finite-characteristic cyclotomic separator.  Let
+
+\[
+b_-=x^\ell y^{-1}x^r yx^s yx^t y^{-1},
+\qquad
+4\nmid r,
+\qquad
+3\nmid t,
+\tag{311}
+\]
+
+where \(\ell,s\in\mathbb Z\) are arbitrary.  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b_-,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{312}
+\]
+
+Choose primitive roots \(i^4=1\), \(\omega^3=1\), and independent
+
+\[
+v,w,e\in V_1,
+\qquad
+0\ne f\in V_i,
+\qquad
+0\ne z_1\in V_\omega,
+\qquad
+0\ne z_2\in V_{\omega^2}.
+\]
+
+Put
+
+\[
+a=e+f,
+\qquad
+h=\frac43v+z_1+z_2.
+\tag{313}
+\]
+
+Because \(4\nmid r\), the two vectors \(a,aX^r\) are independent.
+Because \(3\nmid t\), the three vectors
+
+\[
+h,\quad v,\quad hX^{-t}
+\tag{314}
+\]
+
+are independent: after quotienting by \(kv\), the determinant of
+the two \((z_1,z_2)\)-coordinates is
+\(\omega^{-2t}-\omega^{-t}\ne0\).  Consequently both lists in the
+partial block prescription
+
+\[
+\begin{array}{c|cccc}
+\text{source}&v&a&aX^r&w\\ \hline
+\text{image}&h&v&w&4hX^{-t}
+\end{array}
+\tag{315}
+\]
+
+are independent.  Every source lies in \(D_1\), every image lies in
+\(\mathcal R_1\), so (315) extends to an isomorphism
+\(Y_1:D_1\to\mathcal R_1\), and then to a BS\((3,4)\)-module as in
+Section 29.
+
+The first prescription gives the baseline
+
+\[
+vYR_3=hR_3=4v=vR_4.
+\tag{316}
+\]
+
+The remaining three give the exact replay
+
+\[
+\begin{aligned}
+vb_-
+&=vX^\ell Y^{-1}X^rYX^sYX^tY^{-1}\\
+&=(aX^r)YX^sYX^tY^{-1}\\
+&=wYX^tY^{-1}\\
+&=4hX^{-t}X^tY^{-1}\\
+&=4v
+=vR_4.
+\end{aligned}
+\tag{317}
+\]
+
+This proves (312).  It also closes the inverse sign pattern.  Let
+
+\[
+b_+=x^\ell yx^r y^{-1}x^s y^{-1}x^t y,
+\qquad
+3\nmid r,
+\qquad
+4\nmid t.
+\tag{318}
+\]
+
+After deleting its harmless initial \(x^\ell\), the inverse of
+\(b_+\) has the form (311), with turn exponents \(-t\) and \(-r\).
+In characteristic five, \(4^{-1}=4\).  Thus
+
+\[
+vb_+^{-1}=4v
+\quad\Longrightarrow\quad
+vb_+=4v,
+\tag{319}
+\]
+
+and \(vX^\ell=v\) restores the arbitrary initial exponent.  Hence
+\(J^{(\overline{\mathbb F}_5)}_{b_+,-1}\) is proper as well.
+
+The Fox bridge applies to every free-kernel lift in both (311) and
+(318), and (286) handles the positive A--D sign because both words
+have height zero.  Therefore both A--D signs are obstructed on the
+complete \((-,+,+,-)\) and \((+,-,-,+)\) strata.  Among the four
+nonalternating height-zero sign strings of stable-letter length four,
+only \((+,+,-,-)\) remains outside Sections 34--35.

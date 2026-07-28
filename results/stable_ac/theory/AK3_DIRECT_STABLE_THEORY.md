@@ -5157,6 +5157,59 @@ bridge obstructs \(P_-(c)\) for every free-kernel lift with
 nonalternating height-zero stratum, with no restrictions on the
 equal-sign exponents.
 
+**Result 88 (two further nonalternating length-four strata are
+obstructed).**  For
+
+\[
+b_-=x^\ell y^{-1}x^r yx^s yx^t y^{-1},
+\qquad 4\nmid r,\quad 3\nmid t,
+\]
+
+work over \(\overline{\mathbb F}_5\).  Choose independent
+\(v,w,e\in V_1\), nonzero \(f\in V_i\), and nonzero
+\(z_1\in V_\omega,z_2\in V_{\omega^2}\), where \(i\) and
+\(\omega\) are primitive fourth and cube roots.  Put
+
+\[
+a=e+f,
+\qquad
+h=\frac43v+z_1+z_2.
+\]
+
+The turn conditions make \(a,aX^r\) independent and make
+\(h,v,hX^{-t}\) independent.  Hence the partial block map
+
+\[
+vY=h,
+\qquad aY=v,
+\qquad (aX^r)Y=w,
+\qquad wY=4hX^{-t}
+\]
+
+is injective and extends to the full cyclotomic module.  It gives
+
+\[
+vYR_3=4v=vR_4
+\]
+
+and
+
+\[
+vb_-=(aX^r)YX^sYX^tY^{-1}
+=wYX^tY^{-1}
+=4v.
+\]
+
+Thus the complete \((-,+,+,-)\) stratum has proper negative-sign
+internal ideal.  In characteristic five \(4^{-1}=4\), so the same
+eigenvector equation is invariant under inversion.  The inverse of
+the general \((+,-,-,+)\) word, after its initial \(x\)-power is
+discarded on \(v\), is a word of the displayed type.  This closes the
+entire \((+,-,-,+)\) stratum as well.  Result 85 and the Fox bridge
+again turn these into both-sign nonprimitivity obstructions for every
+free-kernel lift.  At stable-letter length four, only the
+\((+,+,-,-)\) nonalternating stratum remains open.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5243,7 +5296,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--87, arbitrary W--D conjugators,
+61--88, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
