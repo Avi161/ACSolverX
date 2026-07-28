@@ -585,6 +585,7 @@ ctcTcttct\xrightarrow{\ aGbaGaGbAA\ }tt,
 \qquad
 ttct\xrightarrow{\ aaBgA\ }ctcTctt.
 \]
+The displayed letters are successive left actions, read left-to-right.
 Their exact edge flow reconstructs \(z\) and verifies
 \(\sum_iL_i z_i=0\).
 
@@ -639,6 +640,81 @@ The proof and checker are
 \end{gathered}
 \]
 
+### A fifth direction escapes modulo two but fails modulo three
+
+A second \(L_1\)-coupled homogeneous syzygy has 12 entries and source
+component
+\[
+v_1=e_{TT}.
+\]
+Its two exact forest paths are
+\[
+1\xrightarrow{\ aaBgA\ }ctcTctcTT,
+\qquad
+ctcT\xrightarrow{\ aGaGbA\ }tcTT,
+\]
+with letters read left-to-right as successive left actions. The resulting
+edge flow verifies \(\sum_iL_iv_i=0\).
+
+The nonlinear residual has free length 276, kernel length 64, and wedge
+support 79. Its full, nontrivial-three-point, four-point, and cyclic
+coordinate sums all vanish modulo two. This zero four-bit vector is absent
+from the preceding 16-class table, so \(v\) is outside the known
+four-direction span modulo two.
+
+The same cyclic action \(c=1,t=(0\ 1\ 2)\) detects the lift over
+\(\mathbb F_3\), but odd-prime wedge signs require the invariant covector
+\((1,-1,1)\).  Its value on the projected wedge \((-1,-3,-4)\) is
+\(-2\equiv1\pmod3\).  This covector annihilates all 15 operator columns;
+the operator rank is two and the augmented rank is three. Direct support
+flattening also raises the known direction rank from four to five modulo
+two. Thus the fifth direction still fails at degree two.
+
+The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_MOD3\_ESCAPE\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_mod3\_escape\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
+### Five mod-two functionals close the known integer span
+
+Integral coefficient classes matter across the mod-two/mod-three hierarchy.
+For example,
+\[
+x^{\rm int}=x^{00}+2z-v
+\]
+kills the four earlier mod-two bits and the signed cyclic mod-three bit. Its
+residual has free length 542, kernel length 134, and wedge support 264.
+
+The new three-point action
+\[
+c=(1\ 2),\qquad t=(0\ 1)
+\]
+maps this residual to \((7,-10,20)\), whose sum is odd. The operator image
+has rank two and the augmented image rank three over \(\mathbb F_2\).
+
+Class-two Magnus coordinates are integer-valued quadratic polynomials in
+the five direction coefficients. Modulo two they therefore have period
+dividing four in each coefficient. Exact replay of all
+\(4^5=1024\) coefficient classes finds no zero row for
+\[
+(\Phi_\infty,\Phi_3,\Phi_4,
+  \Psi_{\rm cyc}^{(2)},\Phi_{S_3}).
+\]
+The five directions have rank five modulo two. Thus every integer
+combination in the known affine family is globally obstructed at degree two.
+This does not classify homogeneous syzygies outside that span.
+
+The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_FIVE\_DIRECTION\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_five\_direction\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -655,10 +731,13 @@ The proof and checker are
    hyperbolic witness, and its complete relation-module lift obstruction
    vanishes. Degree two rules out every one-hop lift. Remote source-coupled
    syzygies defeat the first three recorded wedge bits, but a cyclic
-   three-point quotient separates the new lift and all 16 classes in the
-   currently known four-direction span. The next exact problem is to build a
-   fifth compact source-coupled direction outside that span which kills all
-   four bits, or prove that the four quotient functionals control the full
-   homogeneous syzygy module.
+   three-point quotient separates the new lift, and the four functionals
+   jointly separate all 16 classes in the currently known four-direction
+   span. A fifth source-coupled direction kills all four mod-two bits but is
+   separated by the signed cyclic invariant modulo three. A new three-point
+   action then separates all 1024 mod-four coefficient classes in the known
+   five-direction integer span. The next exact problem is to construct a
+   compact direction outside that span, or promote the five mod-two
+   functionals to a theorem about the full homogeneous syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

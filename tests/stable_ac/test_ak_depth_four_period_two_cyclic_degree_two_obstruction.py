@@ -21,6 +21,7 @@ def test_cyclic_three_point_action_separates_the_phi4_escape_lift() -> None:
 def test_four_functionals_separate_the_known_affine_span() -> None:
     certificate = period_two_cyclic_degree_two_obstruction_certificate()
 
+    assert certificate.known_direction_rank_mod_two == 4
     assert certificate.known_affine_bits == (
         ((0, 0, 0, 0), (1, 1, 1, 1)),
         ((0, 0, 0, 1), (0, 0, 0, 1)),

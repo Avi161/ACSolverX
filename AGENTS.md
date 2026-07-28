@@ -1220,3 +1220,38 @@
 
 - [TRAP] The first finite-action enumeration started the number of transpositions in the image of `c` at one, omitting the legal quotient `c=1`; it found a valid four-point separator but missed the simpler cyclic three-point separator.
 - [WORKS] When enumerating representations of `Q=<c,t | c^2=1>`, include every involution cycle type, starting with the identity. Killing `c` can change wedge-pair collisions even when nontrivial `c`-actions are blind.
+
+### 2026-07-28 Close each apply-patch hunk before another file
+
+- [TRAP] A multi-file documentation patch placed the next `*** Update File` marker while the prior hunk was still syntactically open, so `apply_patch` rejected the complete patch before editing anything.
+- [WORKS] Patch long proof files separately. When a multi-file patch is genuinely mechanical, ensure every hunk has complete context before the next file marker.
+
+### 2026-07-28 Filter source columns by every known finite quotient first
+
+- [TRAP] The extended `L_1e_v` scan solved exact forest paths for each orbit-balanced source before checking the new mod-three cyclic obstruction, and a depth-eight candidate stalled targeted path recovery for more than a minute.
+- [WORKS] Derive the finite-quotient obstruction values available from a source boundary before subgroup path rewriting whenever possible. Construct Cayley-tree paths only for candidates predicted to kill every currently known prime/action pair.
+
+### 2026-07-28 Rewrite forest paths through the complete Stallings cover
+
+- [WORKS] The complete four-sheet Stallings cover gives an exact, radius-free path constructor: convert an endpoint ratio to `F(p,q) semidirect C2`, read its loop in a spanning-tree basis of the core, invert the Nielsen basis map to the five Reidemeister--Schreier generators, then substitute those into `(A,B,G)` and reverse the word for successive left actions.
+- [WORKS] This reconstruction reproduces the certified `aGbaGaGbAA`, `aaBgA`, and `aGaGbA` paths exactly and scans all 165 balanced single-column `L_1` sources through depth eight in seconds rather than expanding Cayley balls.
+
+### 2026-07-28 Preserve wedge signs at odd primes
+
+- [TRAP] The first mod-three cyclic argument reused the mod-two coordinate-sum functional. At odd primes, wedge orientation signs survive: for `t=(0 1 2)`, the invariant covector in basis `(01,02,12)` is `(1,-1,1)`, not `(1,1,1)`.
+- [WORKS] For every odd-prime finite action, build the signed induced wedge matrix and verify the proposed covector on every operator column. A rank jump alone proves separation, but the stated functional must match the signed left kernel.
+
+### 2026-07-28 Search integral coefficient classes across all obstruction primes
+
+- [TRAP] After finding a fifth mod-two-independent direction, the frontier incorrectly demanded a sixth direction. Coefficients modulo six in the existing span matter: `x00 + 2*z - v` already kills the four mod-two bits and the signed cyclic mod-three bit.
+- [WORKS] Before seeking a new homogeneous direction, enumerate coefficient classes modulo the least common multiple of all obstruction primes on the current exact directions, replaying nonlinear degree-two terms because the obstruction map is quadratic rather than linear.
+
+### 2026-07-28 Use mod four for quadratic mod-two coefficient closure
+
+- [TRAP] Enumerating only the 32 coefficient parity classes would not by itself close all integer combinations: integer-valued class-two quadratic coordinates may contain `binomial(n,2)`, whose reduction modulo two has period four.
+- [WORKS] Express the degree-two obstruction as an integer-valued polynomial of degree at most two, prove period dividing four modulo two, and exhaust `(Z/4)^d`. For the five known directions, all 1024 classes are separated.
+
+### 2026-07-28 Stage ignored proof notes in a separate force-add
+
+- [TRAP] A combined staging command included tracked and new files under the ignored `literature/` directory; Git staged the nonignored paths but exited before the subsequent force-add segment, leaving a partially staged checkpoint.
+- [WORKS] Stage tracked updates and new nonignored code/tests first, then run a separate `git add -f` for every new or modified proof note under `literature/proofs/`, and finish with `git diff --cached --check` plus `git status`.

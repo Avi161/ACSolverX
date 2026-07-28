@@ -100,8 +100,13 @@ The binomial-forest theorem proves that
 finitely supported source boundary has a finite \(L_2,L_3,L_4\) flow
 exactly when its coefficient sum is zero on every orbit.
 
-Result 146 gives \(K\cong F_3\). Since
-\(\chi(Q)=-1/2\) and \(\chi(F_3)=-2\), finite index would have to be four.
+Let \(H=\ker(Q\to C_2)=F(p,q)\) and \(J=K\cap H\). The deterministic
+Stallings core for the five Reidemeister--Schreier generators of \(J\) has
+four vertices, and every vertex has transitions labelled
+\(p,P,q,Q\). It is therefore a complete four-sheet cover of the rank-two
+rose, proving \([H:J]=4\). Since \(B\) has odd parity, \(K\) maps onto
+\(Q/H\), and hence \([Q:K]=[H:J]=4\).
+
 The permutations
 \[
 c=(0\ 1)(2\ 3),

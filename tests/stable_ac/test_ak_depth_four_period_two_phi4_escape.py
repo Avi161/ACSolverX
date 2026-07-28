@@ -12,7 +12,9 @@ def test_source_column_has_an_exact_forest_flow() -> None:
     )
     assert certificate.right_coset_action_transitive
     assert certificate.forest_generators_fix_base
-    assert certificate.subgroup_index_from_euler_characteristic == 4
+    assert certificate.parity_kernel_core_is_complete_cover
+    assert certificate.forest_subgroup_surjects_parity
+    assert certificate.subgroup_index_from_stallings_cover == 4
     assert certificate.coset_stabilizer_is_forest_subgroup
     assert certificate.source_component_sums == (0, 0)
     assert certificate.forest_paths == (

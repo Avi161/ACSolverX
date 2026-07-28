@@ -8036,6 +8036,7 @@ ctcTcttct\xrightarrow{\ aGbaGaGbAA\ }tt,
 \qquad
 ttct\xrightarrow{\ aaBgA\ }ctcTctt.
 \]
+The displayed letters are successive left actions, read left-to-right.
 Converting their edges through \(L_2,L_3,L_4\) gives \(z_2,z_3,z_4\) and
 verifies \(\sum_iL_i z_i=0\) over the integers.
 
@@ -8077,6 +8078,66 @@ and the two certified remote syzygies.  This is not a global theorem about
 the complete homogeneous syzygy module.  The next lift must introduce a
 fifth direction outside that known span or prove that these finite quotients
 already control every compact source-coupled syzygy.
+
+**Result 150 (a fifth direction escapes modulo two but fails modulo
+three).**  A second \(L_1\)-coupled homogeneous syzygy \(v\) has 12 entries,
+coefficient \(\ell^1\)-norm 12, and source component
+\[
+v_1=e_{TT}.
+\]
+Its exact forest paths are
+\[
+1\xrightarrow{\ aaBgA\ }ctcTctcTT,
+\qquad
+ctcT\xrightarrow{\ aGaGbA\ }tcTT,
+\]
+with letters read left-to-right as successive left actions.  Their edge
+flow verifies \(\sum_iL_iv_i=0\).
+
+Adding \(v\) to the canonical lift gives a residual of free length 276,
+kernel length 64, and wedge support 79.  The full wedge sum is \(-24\); the
+three-point coordinates are \((-4,3,3)\); the four-point coordinates are
+\((2,3,1,2,0,2)\); and the cyclic coordinates are \((-1,-3,-4)\).  All
+four coordinate sums vanish modulo two.  Since the preceding 16-class table
+has no zero row, \(v\) is outside the known four-direction span modulo two.
+
+Over \(\mathbb F_3\), wedge orientation signs survive.  The invariant cyclic
+covector is \((1,-1,1)\), and its value on \((-1,-3,-4)\) is
+\(-2\equiv1\).  It annihilates all 15 operator columns; the induced image
+has rank two and adjoining the residual raises the rank to three.  Thus this
+fifth direction also fails at degree two.  Direct flattening raises the
+known homogeneous-direction rank from four to five modulo two.  Integral
+combinations of the five directions still require a joint coefficient-class
+analysis; Result 151 supplies it.
+
+**Result 151 (five mod-two functionals close the known integer span).**
+The integral solution
+\[
+x^{\rm int}=x^{00}+2z-v
+\]
+kills the four earlier mod-two bits and the signed cyclic mod-three bit.  Its
+degree-two residual has 264 terms and maps to \((-3,-5,-2)\) in the cyclic
+action, where the signed mod-three value is zero.
+
+The new three-point action
+\[
+c=(1\ 2),\qquad t=(0\ 1)
+\]
+maps this residual to \((7,-10,20)\).  The coordinate sum is odd, and the
+induced operator rank jumps from two to three after adjoining the residual.
+
+More generally, class-two Magnus coordinates are integer-valued quadratic
+polynomials in the five direction coefficients, so their reductions modulo
+two have period dividing four.  Exact replay of all \(4^5=1024\) coefficient
+classes finds no class on which
+\[
+(\Phi_\infty,\Phi_3,\Phi_4,
+  \Psi_{\rm cyc}^{(2)},\Phi_{S_3})
+\]
+vanishes.  The five directions have rank five modulo two.  Therefore every
+integer combination in the known five-dimensional affine family is
+obstructed at degree two.  This is not a global theorem about the complete
+homogeneous syzygy module; any lift must leave this known span.
 
 ## Live lead
 

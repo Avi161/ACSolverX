@@ -31,6 +31,7 @@ class PeriodTwoCyclicDegreeTwoObstructionCertificate:
     operator_rank_mod_two: int
     augmented_rank_mod_two: int
     obstruction: int
+    known_direction_rank_mod_two: int
     known_affine_bits: tuple[tuple[tuple[int, ...], tuple[int, ...]], ...]
     known_affine_span_separated: bool
 
@@ -70,6 +71,20 @@ def period_two_cyclic_degree_two_obstruction_certificate(
         escape.variables_from_entries(remote.REMOTE_SYZYGY),
         phi4_direction,
     )
+    direction_rows = sorted({
+        (operator_index, module_vertex)
+        for direction in directions
+        for operator_index, variable in enumerate(direction)
+        for module_vertex in variable
+    })
+    direction_columns = tuple(
+        tuple(
+            direction[operator_index].get(module_vertex, 0)
+            for operator_index, module_vertex in direction_rows
+        )
+        for direction in directions
+    )
+    direction_rank = remote.rank_mod_two(direction_columns)
     affine_bits = []
     for coefficients in product((0, 1), repeat=4):
         variables = base
@@ -87,12 +102,14 @@ def period_two_cyclic_degree_two_obstruction_certificate(
         operator_rank_mod_two=operator_rank,
         augmented_rank_mod_two=augmented_rank,
         obstruction=sum(projected) % 2,
+        known_direction_rank_mod_two=direction_rank,
         known_affine_bits=tuple(affine_bits),
         known_affine_span_separated=all(any(bits) for _, bits in affine_bits),
     )
     assert certificate.operator_augmentations == (0, 0, 0, 0, 0)
     assert certificate.obstruction == 1
     assert certificate.augmented_rank_mod_two > certificate.operator_rank_mod_two
+    assert certificate.known_direction_rank_mod_two == 4
     assert certificate.known_affine_span_separated
     return certificate
 

@@ -107,7 +107,9 @@ class PeriodTwoPhi4EscapeCertificate:
     right_coset_action: tuple[tuple[int, ...], tuple[int, ...]]
     right_coset_action_transitive: bool
     forest_generators_fix_base: bool
-    subgroup_index_from_euler_characteristic: int
+    parity_kernel_core_is_complete_cover: bool
+    forest_subgroup_surjects_parity: bool
+    subgroup_index_from_stallings_cover: int
     coset_stabilizer_is_forest_subgroup: bool
     source_component_sums: tuple[int, int]
     forest_paths: tuple[tuple[str, str, str], ...]
@@ -151,10 +153,26 @@ def period_two_phi4_escape_certificate() -> PeriodTwoPhi4EscapeCertificate:
         for word in forest_generators(operators).values()
     )
     forest_certificate = forest.period_two_binomial_forest_certificate()
-    subgroup_index = 2 * (len(forest_certificate.ambient_generators) - 1)
+    core_base, folded = forest.fold(forest.RS_KERNEL_GENERATORS)
+    core = forest.prune_core(core_base, folded)
+    core_vertices = {vertex for edge in core for vertex in (edge[0], edge[2])}
+    core_transitions = {(source, label) for source, label, _ in core}
+    core_is_complete_cover = all(
+        (vertex, label) in core_transitions
+        for vertex in core_vertices
+        for label in (forest.P, -forest.P, forest.Q, -forest.Q)
+    )
+    forest_words = tuple(forest_generators(operators).values())
+    surjects_parity = any(
+        sum(abs(letter) == lift.C for letter in word) % 2
+        for word in forest_words
+    )
+    subgroup_index = len(core_vertices) if core_is_complete_cover and surjects_parity else 0
     stabilizer_is_subgroup = (
         forest_certificate.free_rank_three
         and generators_fix_base
+        and core_is_complete_cover
+        and surjects_parity
         and len(seen) == subgroup_index == 4
     )
 
@@ -217,7 +235,9 @@ def period_two_phi4_escape_certificate() -> PeriodTwoPhi4EscapeCertificate:
         right_coset_action=right_coset_action,
         right_coset_action_transitive=len(seen) == 4,
         forest_generators_fix_base=generators_fix_base,
-        subgroup_index_from_euler_characteristic=subgroup_index,
+        parity_kernel_core_is_complete_cover=core_is_complete_cover,
+        forest_subgroup_surjects_parity=surjects_parity,
+        subgroup_index_from_stallings_cover=subgroup_index,
         coset_stabilizer_is_forest_subgroup=stabilizer_is_subgroup,
         source_component_sums=tuple(source_sums),
         forest_paths=FOREST_PATHS,
