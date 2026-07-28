@@ -218,7 +218,8 @@ C,D\in
 \tag{18}
 \]
 
-Fix \(\varepsilon\in\{+1,-1\}\) and change the \(A\)-slot to
+Let \(g\) be a word in the old generators.  Fix
+\(\varepsilon\in\{+1,-1\}\) and change the \(A\)-slot to
 
 \[
 P=A(gQ^\varepsilon g^{-1}).
@@ -284,8 +285,8 @@ therefore only
 \begin{array}{c|c}
 \text{extra move before deletion}
   &\text{survivors after deletion}\\ \hline
-Q\mapsto QH_R &(K_\varepsilon H_R,\ R)\\
-Q\mapsto H_RQ &(H_RK_\varepsilon,\ R)\\
+Q\mapsto QH_R &(K_\varepsilon\phi(H_R),\ R)\\
+Q\mapsto H_RQ &(\phi(H_R)K_\varepsilon,\ R)\\
 R\mapsto RH_Q &(K_\varepsilon,\ R\,\phi(H_Q))\\
 R\mapsto H_QR &(K_\varepsilon,\ \phi(H_Q)R),
 \end{array}
@@ -369,7 +370,7 @@ AC multiplication is a stable self-loop.  The second storage row never
 creates a lost-source effect: it remains present precisely long enough
 to peel any correction that it inserts into the deleted target.
 
-## 5. Exact remaining frontier
+## 5. Frontier after one additional multiplication
 
 An escape from this storage mechanism requires at least one of:
 
@@ -380,7 +381,139 @@ An escape from this storage mechanism requires at least one of:
 4. a stored row whose carrier is not a consequence of the ultimately
    retained tuple.
 
-The smallest untreated storage branch therefore has two interacting
-row changes, not one.
+The smallest candidate storage branch therefore has two interacting
+row changes, not one.  Its unique-letter part is closed next.
+
+## 6. A changed storage source is consumed by unique-letter deletion
+
+Work at a balanced presentation of the trivial group, so the established
+substitution-and-removal composite is available.  Keep the old tuple
+\((A,\mathbf B)\) and the first stored row
+
+\[
+Q=qC,
+\qquad
+C\in\langle\!\langle A,\mathbf B\rangle\!\rangle.
+\tag{29}
+\]
+
+Let \(r\) be a second fresh generator.  At the checkpoint of interest,
+let \(R'\) be any current relator in the second storage slot.  It may
+have been changed by \(Q\), may contain q-letters, and need not retain
+the spelling \(rD\).  Require only that the other displayed slots have
+the spellings in this section.
+
+Put
+
+\[
+P=A(gQ^\varepsilon g^{-1}),
+\qquad
+\varepsilon\in\{+1,-1\},
+\tag{30}
+\]
+
+where \(g\) is a word in the old generators.  Use the changed second
+row once as a source and replace the \(P\)-slot, on either side, by
+
+\[
+E=P\,u(R')^\eta u^{-1}
+\quad\text{or}\quad
+E=u(R')^\eta u^{-1}P,
+\qquad
+\eta\in\{+1,-1\}.
+\tag{31}
+\]
+
+Assume the freely reduced word \(E\) contains exactly one
+\(r^{\pm1}\)-letter.  It is then a primitive relator relative to the
+other generators.  Let
+
+\[
+\psi:F(\text{old generators},q,r)
+\longrightarrow F(\text{old generators},q)
+\tag{32}
+\]
+
+be the substitution-and-removal homomorphism obtained by solving
+\(E=1\) for \(r\).  Since \(P\) and \(Q\) are r-free,
+
+\[
+\psi(P)=P,
+\qquad
+\psi(Q)=Q.
+\tag{33}
+\]
+
+Write \(\overline u=\psi(u)\).  Either placement in (31) gives
+
+\[
+\overline u\,\psi(R')^\eta\overline u^{-1}=P^{-1}.
+\tag{34}
+\]
+
+Therefore the surviving changed storage row is forced to be
+
+\[
+\boxed{
+\psi(R')
+=
+\overline u^{-1}P^{-\eta}\overline u.
+}
+\tag{35}
+\]
+
+This identity is independent of the spelling and entire prior history
+of \(R'\).  It also allows \(u\) to contain r: only its deletion image
+\(\overline u\) occurs in (35).
+
+Invert the survivor when \(\eta=+1\), if necessary, and remove the
+conjugator \(\overline u\).  Classical AC2--AC3 moves normalize its
+slot to \(P\).  The literal \(Q\)-slot still survives, so one
+matching-side multiplication gives
+
+\[
+P\,(gQ^{-\varepsilon}g^{-1})
+=A.
+\tag{36}
+\]
+
+The old tuple \((A,\mathbf B)\) has now been recovered.  Because \(C\)
+lies in its normal closure, restored source transvections change
+
+\[
+Q=qC\longmapsto q.
+\tag{37}
+\]
+
+The generator-relator pair \(q,q\) destabilizes.  Thus the whole
+changed-source cycle returns to the original tuple.
+
+### Theorem 6.1 (unique-r changed-source cycle)
+
+At a balanced trivial-group checkpoint, every history satisfying
+(29)--(31) whose final target contains exactly one
+\(r^{\pm1}\)-letter is a stable self-loop.  Arbitrarily changing the
+second storage row before using it as the final source does not create
+an escape: deletion consumes that source and turns its surviving slot
+into the target it had changed.
+
+The replay covers both signs in (30), both signs in (31), left and
+right \(Q\)-traffic into \(R'\), both placements of the final source,
+and an r-dependent conjugator.
+
+## 7. Exact remaining frontier
+
+Results 110--111 close both the acyclic one-extra-edge layer and the
+minimal changed-source cycle whenever the final deletion is a
+unique-letter deletion in either fresh generator.  A storage escape
+must now violate at least one of:
+
+1. the final primitive relator has a unique \(q\)- or r-letter;
+2. the changed source is used only once in the final target;
+3. the literal \(Q\)-row survives long enough to peel (36);
+4. the old carrier \(C\) remains a consequence of the recovered tuple;
+   or
+5. the relator changed by the consumed source is the relator that gets
+   primitively deleted.
 
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.

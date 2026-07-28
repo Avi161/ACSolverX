@@ -3,6 +3,7 @@ INVERSE = {
     "y": "Y", "Y": "y",
     "z": "Z", "Z": "z",
     "q": "Q", "Q": "q",
+    "r": "R", "R": "r",
 }
 
 
@@ -21,24 +22,38 @@ def reduce_word(word: str) -> str:
 
 
 def solve_unique_q(word: str) -> str:
-    positions = [index for index, letter in enumerate(word) if letter in "qQ"]
+    return solve_unique_generator(word, "q")
+
+
+def solve_unique_generator(word: str, generator: str) -> str:
+    generator_inverse = INVERSE[generator]
+    positions = [
+        index
+        for index, letter in enumerate(word)
+        if letter in (generator, generator_inverse)
+    ]
     assert len(positions) == 1
     index = positions[0]
     left = word[:index]
     right = word[index + 1:]
-    if word[index] == "q":
+    if word[index] == generator:
         solution = inverse(left) + inverse(right)
     else:
         solution = right + left
     solution = reduce_word(solution)
-    assert substitute_q(word, solution) == ""
+    assert substitute_generator(word, generator, solution) == ""
     return solution
 
 
 def substitute_q(word: str, q_solution: str) -> str:
+    return substitute_generator(word, "q", q_solution)
+
+
+def substitute_generator(word: str, generator: str, solution: str) -> str:
+    generator_inverse = INVERSE[generator]
     expanded = "".join(
-        q_solution if letter == "q"
-        else inverse(q_solution) if letter == "Q"
+        solution if letter == generator
+        else inverse(solution) if letter == generator_inverse
         else letter
         for letter in word
     )
@@ -176,3 +191,99 @@ def test_target_peeling_allows_a_q_dependent_conjugator() -> None:
     assert h_image == source
     assert survivor_q == reduce_word(k + inverse(h_image))
     assert reduce_word(survivor_q + h_image) == k
+
+
+def test_q_bearing_source_cannot_leave_one_q_letter() -> None:
+    q_word = "qz"
+    primitive = reduce_word("xy" + q_word + "Y")
+
+    for epsilon in (1, -1):
+        q_source = q_word if epsilon == 1 else inverse(q_word)
+        for conjugator in ("", "qX", "zQy"):
+            h_q = reduce_word(
+                conjugator + q_source + inverse(conjugator)
+            )
+            for changed_target in (
+                reduce_word(primitive + h_q),
+                reduce_word(h_q + primitive),
+            ):
+                q_count = sum(letter in "qQ" for letter in changed_target)
+                assert q_count % 2 == 0
+                assert q_count != 1
+
+
+def test_changed_second_storage_source_cycle_recovers_the_old_row() -> None:
+    a = "xyX"
+    c = "zY"
+    d = "Yx"
+    g = "yx"
+    q_word = "q" + c
+    r_word = "r" + d
+
+    for epsilon in (1, -1):
+        q_power = q_word if epsilon == 1 else inverse(q_word)
+        h_q_for_p = reduce_word(g + q_power + inverse(g))
+        p = reduce_word(a + h_q_for_p)
+
+        for delta in (1, -1):
+            q_source = q_word if delta == 1 else inverse(q_word)
+            h_q_for_r = reduce_word("xz" + q_source + "ZX")
+
+            for r_prime in (
+                reduce_word(r_word + h_q_for_r),
+                reduce_word(h_q_for_r + r_word),
+            ):
+                for eta in (1, -1):
+                    r_power = r_prime if eta == 1 else inverse(r_prime)
+                    conjugator = "qX"
+                    h_r = reduce_word(
+                        conjugator + r_power + inverse(conjugator)
+                    )
+
+                    for eliminator in (
+                        reduce_word(p + h_r),
+                        reduce_word(h_r + p),
+                    ):
+                        r_solution = solve_unique_generator(eliminator, "r")
+                        assert substitute_generator(
+                            eliminator, "r", r_solution
+                        ) == ""
+
+                        survivor_r = substitute_generator(
+                            r_prime, "r", r_solution
+                        )
+                        expected = reduce_word(
+                            inverse(conjugator)
+                            + (inverse(p) if eta == 1 else p)
+                            + conjugator
+                        )
+                        assert survivor_r == expected
+
+                        oriented = inverse(survivor_r) if eta == 1 else survivor_r
+                        assert reduce_word(
+                            conjugator + oriented + inverse(conjugator)
+                        ) == p
+                        assert reduce_word(p + inverse(h_q_for_p)) == a
+                        assert reduce_word(q_word + inverse(c)) == "q"
+
+
+def test_changed_source_cycle_allows_an_r_dependent_conjugator() -> None:
+    p = "xq"
+    r_prime = "r"
+    conjugator = "R"
+    h_r = reduce_word(
+        conjugator + r_prime + inverse(conjugator)
+    )
+    eliminator = reduce_word(p + h_r)
+    r_solution = solve_unique_generator(eliminator, "r")
+    conjugator_image = substitute_generator(
+        conjugator, "r", r_solution
+    )
+    survivor_r = substitute_generator(r_prime, "r", r_solution)
+
+    assert h_r == "r"
+    assert substitute_generator(eliminator, "r", r_solution) == ""
+    assert survivor_r == reduce_word(
+        inverse(conjugator_image) + inverse(p) + conjugator_image
+    )
+    assert survivor_r == inverse(p)

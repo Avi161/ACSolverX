@@ -6585,7 +6585,8 @@ Q=qC,\qquad R=rD,
 C,D\in\langle\!\langle A,\mathbf B\rangle\!\rangle.
 \]
 
-For \(\varepsilon=\pm1\), change the \(A\)-slot to
+For an old-generator word \(g\) and \(\varepsilon=\pm1\), change the
+\(A\)-slot to
 
 \[
 P=A(gQ^\varepsilon g^{-1}).
@@ -6635,6 +6636,58 @@ cancellation preserves that parity, so it cannot remain in the
 unique-letter branch.  The first untreated storage mechanism needs at least a
 dependency cycle with two interacting row changes, or a multi-q
 primitive eliminator.
+
+**Result 111 (unique-r deletion consumes a changed storage source).**
+At a balanced trivial-group checkpoint, keep
+
+\[
+Q=qC,\qquad
+C\in\langle\!\langle A,\mathbf B\rangle\!\rangle,
+\]
+
+and put
+
+\[
+P=A(gQ^\varepsilon g^{-1}),
+\qquad
+\varepsilon=\pm1,
+\]
+
+with \(g\) an old-generator word.  Let \(R'\) be an arbitrarily changed
+second storage row involving a fresh generator \(r\).  Use it once as a
+source to form
+
+\[
+E=P\,u(R')^\eta u^{-1}
+\quad\text{or}\quad
+E=u(R')^\eta u^{-1}P,
+\qquad
+\eta=\pm1.
+\]
+
+Assume \(E\) has exactly one \(r^{\pm1}\)-letter, and let \(\psi\) be
+the substitution obtained by solving \(E=1\) for \(r\).  Since \(P,Q\)
+are r-free, \(\psi(P)=P\) and \(\psi(Q)=Q\).  With
+\(\overline u=\psi(u)\), either target side gives
+
+\[
+\psi(R')
+=
+\overline u^{-1}P^{-\eta}\overline u.
+\]
+
+Thus primitive r-deletion turns the surviving changed source into a
+conjugate of \(P^{\pm1}\), regardless of its previous spelling.
+Inversion and conjugation normalize it to \(P\); the still-literal
+\(Q\)-row then peels \(gQ^\varepsilon g^{-1}\), recovering \(A\).
+Finally the recovered old sources change \(Q=qC\) to q, which
+destabilizes.
+
+Consequently the minimal two-row changed-source dependency cycle is
+also a stable self-loop throughout its unique-r branch.  A genuine
+storage escape must use a multi-letter primitive deletion, use the
+changed source more than once, alter or delete \(Q\) before recovery,
+or delete a different primitive slot.
 
 ## Live lead
 
@@ -6751,7 +6804,13 @@ multiplication layer under unique-q deletion. Any survivor-targeted
 move descends through the deletion homomorphism; a deleted-target
 correction peels using its still-live source. The first possible
 storage escape therefore needs a two-row dependency cycle, a multi-q
-primitive, or a different deleted slot. Results
+primitive, or a different deleted slot. Result 111 closes the minimal
+changed-source cycle whenever its final target has one r-letter:
+primitive r-deletion forces the surviving changed source to become a
+conjugate of the target it changed, after which Q recovers A and
+destabilizes. The remaining cyclic branch must use a multi-letter
+primitive, repeated source use, premature loss of Q, or a different
+deleted slot. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6762,9 +6821,10 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--110, arbitrary W--D conjugators,
+61--111, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
-before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
+before deletion outside Result 111's unique-letter source-consumption
+closure. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
 primitive slot. The exact Fox coordinate remains a necessary free-kernel

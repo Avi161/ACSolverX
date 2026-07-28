@@ -903,3 +903,13 @@
 
 - [TRAP] Solving `L q M=1` as `q=M^{-1}L^{-1}` manufactured a false AK(3) endpoint that appeared stably trivial.
 - [WORKS] The exact solution is `q=L^{-1}M^{-1}`. Assert both the factorization and `free_reduce(L + q_solution + M) == ""`, then replay the solution in every survivor before analyzing later moves.
+
+### 2026-07-27 Apply deletion to whole conjugated source factors
+
+- [TRAP] A survivor table wrote \(H_R\) unchanged after q-deletion even though the conjugator defining \(H_R\) may contain q; the core gauge argument survived, but the displayed word was too strong.
+- [WORKS] Write the survivor as \(\phi(H_R)\), observe that it is still a conjugate of the retained source, and restate explicitly which fixed words are q-free. For occurrence sieves, use parity: conjugator letters enter in inverse pairs, so a Q-bearing source makes the total q-letter count even but not necessarily only zero or two.
+
+### 2026-07-27 State the stable-deletion hypothesis at each theorem boundary
+
+- [TRAP] The changed-source exchange algebra used a valid unique-r substitution but initially omitted that the checkpoint must be a balanced trivial-group presentation, making the step readable as an unauthorized bare generator-relator deletion.
+- [WORKS] Every primitive or unique-letter deletion theorem must state the balanced trivial-group hypothesis and name the stable substitution-and-removal composite. Use its explicit triangular substitution when claiming that unaffected generators or relators remain fixed.
