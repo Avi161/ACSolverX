@@ -5721,3 +5721,185 @@ the three nonzero initial residues.  Hence the full
 (286) handles the positive sign, and the Fox bridge covers every
 free-kernel lift.  This is the complete single-peak classification at
 stable-letter length six, not an all-length zero-phase theorem.
+
+## 40. Arbitrarily deep wrappers around every alternating core
+
+The Kurosh construction of Section 33 has an unused outgoing port at
+its distinguished vector.  This permits an arbitrary number of outer
+layers.
+
+Let \(p\geq0\), \(n\geq1\), and let
+
+\[
+b_{\mathrm{alt}}
+=y^{-1}x^{r_1}yx^{s_1}y^{-1}x^{r_2}y
+\cdots x^{s_{n-1}}y^{-1}x^{r_n}y,
+\tag{367}
+\]
+
+where
+
+\[
+4\nmid r_i,
+\qquad
+3\nmid s_i.
+\tag{368}
+\]
+
+Wrap this core as
+
+\[
+\begin{aligned}
+b={}&x^\ell
+y^{-1}x^{a_1}\cdots y^{-1}x^{a_p}
+b_{\mathrm{alt}}\\
+&\hspace{22mm}{}\cdot
+x^{c_p}y\cdots x^{c_1}yx^q,
+\end{aligned}
+\tag{369}
+\]
+
+where \(\ell,q,a_j,c_j\in\mathbb Z\) are arbitrary.  For \(p=0\),
+both wrapper strings are empty.  The stable-letter sign string is
+
+\[
+(\underbrace{-,\ldots,-}_{p},
+\underbrace{-,+,\ldots,-,+}_{2n},
+\underbrace{+,\ldots,+}_{p}).
+\tag{370}
+\]
+
+There is a field
+
+\[
+k\in\{\overline{\mathbb F}_5,\overline{\mathbb F}_7\}
+\tag{371}
+\]
+
+for which
+
+\[
+J^{(k)}_{b,-1}\ne k[B].
+\tag{372}
+\]
+
+Retain the induced \(\Gamma_0=C_4*C_3\)-module from Section 33, with
+its disjoint spectral embeddings
+
+\[
+U\subset D_1,\qquad W\subset\mathcal R_1,\qquad U\cap W=0,
+\]
+
+and its isomorphism \(T:U\to W\).  If \(a\in U\) is the distinguished
+induced-module vector, put
+
+\[
+w_p=aT\in W\cap V_1.
+\tag{373}
+\]
+
+The Kurosh character calculation, and the replay preceding the old
+baseline prescription, give
+
+\[
+w_pX=w_p,
+\qquad
+w_pb_{\mathrm{alt}}=4w_p.
+\tag{374}
+\]
+
+Crucially, this replay never evaluates \(w_pY\).  It begins with
+\(w_pY^{-1}=a\), uses \(T\) and \(T^{-1}\) at the alternating turns,
+and ends with the map from \(U\) back into \(W\).  Therefore omit
+Section 33's former prescription on the source \(w_p\).
+
+For \(p\geq1\), choose fresh
+
+\[
+w_0,\ldots,w_{p-1}\in V_1
+\]
+
+so that their span is disjoint from \(U+W\).  For \(p=0\), set
+\(w_0=w_p\).  Choose a fresh nonzero \(z_0\in V_\omega\), outside
+all these spaces, and put
+
+\[
+h_0=\frac43w_0+z_0.
+\tag{375}
+\]
+
+Extend the partial map \(Y|_U=T\) by
+
+\[
+w_jY=w_{j-1}\quad(1\leq j\leq p),
+\qquad
+w_0Y=h_0.
+\tag{376}
+\]
+
+For \(p\geq1\), the exact domain and image of this enlarged partial
+map are
+
+\[
+\begin{aligned}
+\mathcal D_{\mathrm{par}}
+&=U\oplus kw_p\oplus
+  \bigoplus_{j=0}^{p-1}kw_j,\\
+\mathcal I_{\mathrm{par}}
+&=W\oplus
+  \bigoplus_{j=0}^{p-1}kw_j
+  \oplus kh_0.
+\end{aligned}
+\tag{377}
+\]
+
+Both sums are direct: \(w_p\in W\) but \(w_p\notin U\); the wrapper
+vectors are fresh outside \(U+W\); and the \(z_0\)-component puts
+\(h_0\) outside all preceding image summands.  When \(p=0\), the
+same statement reads
+
+\[
+\mathcal D_{\mathrm{par}}=U\oplus kw_0,
+\qquad
+\mathcal I_{\mathrm{par}}=W\oplus kh_0,
+\tag{378}
+\]
+
+and is direct because \(w_0\in W\setminus U\) while
+\(z_0\notin W\).  All domain summands lie in \(D_1\), and all image
+summands lie in \(\mathcal R_1\).  The reserved infinite
+multiplicities extend (376) to a block isomorphism and then to one
+global invertible \(Y\).
+
+The baseline is
+
+\[
+w_0X^4=w_0,
+\qquad
+w_0YR_3=h_0R_3=4w_0=w_0R_4.
+\tag{379}
+\]
+
+Every wrapper exponent acts trivially on its \(1\)-eigenvector.
+The first \(p\) negative letters descend the chain from \(w_0\) to
+\(w_p\); equation (374) contributes the scalar four; the last
+\(p\) positive letters ascend the same chain.  Thus
+
+\[
+w_0b
+=4w_0X^q
+=4w_0
+=w_0R_4.
+\tag{380}
+\]
+
+Equations (379)--(380) prove (372).  The field is exactly the one
+selected by the inner cyclic Kurosh factor in Section 33; the wrapper
+adds no new characteristic condition.
+
+The Fox bridge and (286) obstruct both A--D signs for every
+free-kernel lift of (369).  This theorem contains the full
+negative-start alternating family at \(p=0\), every negative-first
+single valley at \(n=1\), and the complete \((-,-,+,-,+,+)\)
+length-six stratum at \(p=1,n=2\).  It is an unbounded multi-turn
+family, not an arbitrary-sign theorem.

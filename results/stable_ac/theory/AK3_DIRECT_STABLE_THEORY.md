@@ -5502,6 +5502,74 @@ Result 91 closes the other three residues.  Thus every
 free-kernel lift.  This is the full single-peak classification at
 stable-letter length six, not an all-length zero-phase theorem.
 
+**Result 93 (alternating cores admit arbitrarily deep outer
+wrappers).**  Let \(b_{\rm alt}\) be any negative-start alternating
+word from Result 86 and put
+
+\[
+\begin{aligned}
+b={}&x^\ell
+y^{-1}x^{a_1}\cdots y^{-1}x^{a_p}
+b_{\rm alt}\\
+&\hspace{20mm}{}\cdot
+x^{c_p}y\cdots x^{c_1}yx^q,
+\qquad p\geq0,
+\end{aligned}
+\]
+
+with all wrapper exponents arbitrary.  Retain Result 86's disjoint
+spectral embeddings \(U\subset D_1\), \(W\subset\mathcal R_1\), and
+its map \(T:U\to W\).  Its distinguished vector
+
+\[
+w_p=aT\in W\cap V_1
+\]
+
+satisfies
+
+\[
+w_pb_{\rm alt}=4w_p.
+\]
+
+That replay uses \(w_pY^{-1}\), \(T\), and \(T^{-1}\), but never
+uses \(w_pY\).  Delete the old baseline prescription on \(w_p\).
+Choose fresh \(w_0,\ldots,w_{p-1}\in V_1\) outside \(U+W\) and set
+
+\[
+w_jY=w_{j-1}\quad(1\leq j\leq p),
+\qquad
+w_0Y=\frac43w_0+z_0,
+\]
+
+with \(z_0\) a fresh primitive-cube vector.  The enlarged partial map
+has direct domain and image
+
+\[
+\begin{aligned}
+U\oplus kw_p\oplus\bigoplus_{j<p}kw_j,
+\qquad
+W\oplus\bigoplus_{j<p}kw_j
+\oplus k\left(\frac43w_0+z_0\right).
+\end{aligned}
+\]
+
+Hence it extends inside \(D_1\to\mathcal R_1\).  The wrapper descends
+from \(w_0\) to \(w_p\), the inner core contributes four, and the
+wrapper ascends back to \(w_0\).  Therefore
+
+\[
+w_0YR_3=4w_0=w_0R_4,
+\qquad
+w_0b=4w_0.
+\]
+
+The field remains the characteristic-five or characteristic-seven
+field selected by the inner Kurosh factor.  The Fox bridge and Result
+85 obstruct both A--D signs for every free-kernel lift.  This one
+theorem contains Result 86 at \(p=0\), Result 90 at inner length two,
+and the complete \((-,-,+,-,+,+)\) length-six stratum at
+\(p=1\) with inner length four.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5584,7 +5652,9 @@ stable-letter length four, and Result 90 closes every negative-first
 single-valley word at arbitrary length. Result 91 closes the dual
 positive-first family at arbitrary length whenever the initial
 fourth-root phase is nonzero, and Result 92 closes its first open
-zero-phase case at stable-letter length six. Results 73--75 close the
+zero-phase case at stable-letter length six. Result 93 closes every
+arbitrarily deep symmetric wrapper around an alternating core. Results
+73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5594,7 +5664,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--92, arbitrary W--D conjugators,
+61--93, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
