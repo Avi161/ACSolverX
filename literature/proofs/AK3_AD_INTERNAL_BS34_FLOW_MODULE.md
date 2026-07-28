@@ -2398,3 +2398,121 @@ This correspondence theorem proves neither side of (138).  It isolates
 the missing step as an infinite-dimensional kernel problem on a
 three-phase decorated \((4,4)\)-tree, with no finite-truncation
 inference.
+
+## 20. Coinduction and the exact finite-support target
+
+For a subgroup \(S\leq B\), distinguish the all-functions and
+finite-support permutation modules
+
+\[
+\mathscr C_S=\mathbb Q^{S\backslash B}
+=\operatorname{Coind}_S^B(\mathbf1),
+\qquad
+\mathscr I_S=\mathbb Q[S\backslash B]
+=\operatorname{Ind}_S^B(\mathbf1).
+\tag{139}
+\]
+
+The maps \(q_{I!},q_{O!}\) in Section 19 are the conjugated
+corestriction maps from \(\mathscr C_L\) to \(\mathscr C_H\), of
+degrees four and three.  Thus \(\mathcal A_\lambda\) is a pair of
+restriction--corestriction Mackey operators, not an endomorphism of
+one ordinary Hecke module.
+
+Under the natural pairings
+
+\[
+\mathscr I_S\times\mathscr C_S\longrightarrow\mathbb Q,
+\]
+
+the algebraic transpose of \(\mathcal A_\lambda\) is the
+finite-support map
+
+\[
+D_\lambda:
+\mathscr I_H\oplus\mathscr I_H\longrightarrow\mathscr I_K
+\tag{140}
+\]
+
+defined on basis vectors by
+
+\[
+D_\lambda([Hg],0)
+=\sum_{i=0}^{3}[Kb^{-1}x^ig]-\lambda[Kg],
+\tag{141}
+\]
+
+\[
+D_\lambda(0,[Hg])
+=\sum_{j=0}^{2}[Kb^{-1}yx^jg]-\lambda[Kg].
+\tag{142}
+\]
+
+Therefore
+
+\[
+\ker\mathcal A_\lambda
+\cong\bigl(\operatorname{coker}D_\lambda\bigr)^\vee.
+\tag{143}
+\]
+
+In particular, \(\mathcal A_\lambda\) is injective exactly when
+\(D_\lambda\) is surjective.  The right \(B\)-action is transitive on
+\(K\backslash B\), so surjectivity is equivalent to the single
+condition
+
+\[
+[K]\in\operatorname{im}D_\lambda.
+\tag{144}
+\]
+
+Condition (144) is one explicit finite-support identity.  It asks for
+finitely supported functions
+
+\[
+\alpha,\beta:H\backslash B\longrightarrow\mathbb Q
+\]
+
+such that, for every \(d\in B\),
+
+\[
+\begin{aligned}
+&\sum_{Lk\in L\backslash K}\alpha(Hbkd)
++\sum_{Lk\in L\backslash K}\beta(Hy^{-1}bkd)\\
+&\qquad
+-\lambda\sum_{Hk\in H\backslash K}
+\bigl(\alpha(Hkd)+\beta(Hkd)\bigr)
+=\mathbf1_{\{Kd=K\}}.
+\end{aligned}
+\tag{145}
+\]
+
+Every sum in (145) is finite despite its infinite index set, because
+\(\alpha,\beta\) have finite support.  The first two sums enumerate
+all target-row incidences through the \(p\)-fiber
+\(L\backslash K\); the last sum enumerates all relation centers whose
+center variable is \(Kd\).  Thus (145) retains every \(H\)-row and
+every phase from Section 19.
+
+If (145) is impossible, the class of \([K]\) is nonzero in
+\(\operatorname{coker}D_\lambda\).  Choose a linear functional
+\(\varphi\) on that cokernel with
+
+\[
+\varphi([K])=1.
+\]
+
+Then
+
+\[
+s(Kd)=\varphi([Kd])
+\]
+
+is a nonzero algebraic current in \(\ker\mathcal A_\lambda\).  No
+summability is required.  Conversely, a solution of (145) proves
+\(D_\lambda\) surjective and hence \(\ker\mathcal A_\lambda=0\).
+
+Thus the six remaining flow problems are exactly the question whether
+the finite identity (145) exists.  The three-phase tree specifies all
+of its incidences but does not by itself decide membership (144).
+No outcome is claimed here.

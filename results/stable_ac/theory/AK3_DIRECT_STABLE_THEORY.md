@@ -4065,6 +4065,62 @@ formal composition.  The exact unresolved question is whether
 reduction, not a propriety, collapse, primitivity, or
 Andrews--Curtis theorem.
 
+**Result 71 (one exact finite-support identity decides each open
+system).**  Let
+
+\[
+\mathscr I_S=\mathbb Q[S\backslash B],
+\qquad
+\mathscr C_S=\mathbb Q^{S\backslash B}.
+\]
+
+The operator in Result 70 is the algebraic transpose of
+
+\[
+D_\lambda:\mathscr I_H^2\longrightarrow\mathscr I_K
+\]
+
+with rows
+
+\[
+D_\lambda([Hg],0)
+=\sum_{i=0}^{3}[Kb^{-1}x^ig]-\lambda[Kg],
+\]
+
+\[
+D_\lambda(0,[Hg])
+=\sum_{j=0}^{2}[Kb^{-1}yx^jg]-\lambda[Kg].
+\]
+
+Hence
+
+\[
+\ker\mathcal A_\lambda
+\cong(\operatorname{coker}D_\lambda)^\vee.
+\]
+
+Transitivity of the \(B\)-action reduces surjectivity of \(D_\lambda\)
+to the single question \([K]\in\operatorname{im}D_\lambda\).  Written
+coefficientwise, this is one identity for finitely supported
+\(\alpha,\beta:H\backslash B\to\mathbb Q\):
+
+\[
+\begin{aligned}
+&\sum_{Lk\in L\backslash K}\alpha(Hbkd)
++\sum_{Lk\in L\backslash K}\beta(Hy^{-1}bkd)\\
+&\quad-\lambda\sum_{Hk\in H\backslash K}
+\bigl(\alpha(Hkd)+\beta(Hkd)\bigr)
+=\mathbf1_{\{Kd=K\}}
+\qquad(d\in B).
+\end{aligned}
+\]
+
+The sums are finite because the coefficient functions are finitely
+supported, but every \(L\backslash K\) phase remains present.  If the
+identity is impossible, linear separation of the cokernel constructs
+a nonzero current; if it exists, the flow quotient collapses.  This is
+the exact next proof target, not a decision of either side.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
