@@ -965,3 +965,8 @@
 
 - [TRAP] A focused proof-regression command used remembered descriptive filenames for Results 114--117; several results share older verifier files instead of having one test module per theorem, so collection stopped at the first nonexistent path.
 - [WORKS] Build focused test commands from `rg --files tests/stable_ac` and the committed file lists, never from theorem titles or remembered names.
+
+### 2026-07-27 Keep word diagnostics dependency-free
+
+- [TRAP] Importing `experiments.stable_ac.rank3_compression.one_edge` solely for cyclic reduction also imports `numba`; the system Python failed before the intended word calculation.
+- [WORKS] For disposable theory diagnostics, implement the few-line free/cyclic reduction locally or use the verified `uv` environment. Do not import a broad experiment module for a basic word operation.

@@ -507,6 +507,99 @@ test, or use another stabilizer.  The exact remaining one-step problem is
 the geometry of the nontrivial double cosets \(K_g\backslash F_2/K_g\),
 not the internal copy of the original arbitrary-conjugator problem.
 
+## 8. The first proper corridor has no one-source exit at all
+
+For the concrete map \(\phi=\phi_{yx}\), put
+
+\[
+a=\phi(A),\qquad b=\phi(B).
+\tag{8.1}
+\]
+
+Free and cyclic reduction gives the exact representatives
+
+\[
+a=xxxyxYYYYXY,
+\qquad |a|=11,
+\tag{8.2}
+\]
+
+and
+
+\[
+b=xyxyXYxyxYXYXyxYXY,
+\qquad |b|=18.
+\tag{8.3}
+\]
+
+Here capital letters denote inverses.  Let \(L(P,Q)\) be the maximum
+length of a common cyclic factor of P and Q.  The finite factor
+certificate read directly from (8.2)--(8.3) is
+
+\[
+L(a,b^{-1})=3,
+\qquad
+\operatorname{Sub}_4(a)\cap\operatorname{Sub}_4(b^{-1})=\varnothing,
+\tag{8.4}
+\]
+
+and
+
+\[
+L(a,b)=4,
+\qquad
+\operatorname{Sub}_5(a)\cap\operatorname{Sub}_5(b)=\varnothing.
+\tag{8.5}
+\]
+
+For example the common length-three factors in (8.4) are
+\(XYx,YXY,xyx,yxY\), while the common length-four factors in (8.5) are
+\(YXYx,xyxY\).  The stated empty intersections certify maximality.
+
+The Cayley-tree axis-alignment lemma used for Result 116 is unbounded in
+the ambient conjugator:
+
+\[
+\min_{h\in F_2}\|P hQh^{-1}\|
+=|P|+|Q|-2L(P,Q^{-1}).
+\tag{8.6}
+\]
+
+Equations (8.2)--(8.5) therefore give
+
+\[
+\min_h\|a hbh^{-1}\|=11+18-2\cdot3=23,
+\tag{8.7}
+\]
+
+and
+
+\[
+\min_h\|a hb^{-1}h^{-1}\|=11+18-2\cdot4=21.
+\tag{8.8}
+\]
+
+The same minima hold with a and b exchanged.  Yet their exponent vectors
+are \((4,-5)\), \((2,-3)\), and \((-2,3)\), so a primitive representative
+would have cyclic length 9 or 5 by Osborne--Zieschang.  Thus every value
+in (8.7)--(8.8) is too long:
+
+\[
+\boxed{
+a hb^\eta h^{-1}
+\text{ and }
+b ha^\eta h^{-1}
+\text{ are nonprimitive for every }h\in F_2,
+\ \eta=\pm1.}
+\tag{8.9}
+\]
+
+This closes all nontrivial double cosets as well as the internal ones for
+the first proper self-embedding.  It does not yet prove the same inequality
+for every \(\phi_g\) or every iterate of \(\phi\).  The normalized family
+suggests a weighted bridge-length theorem, but that general statement
+still requires a proof rather than a bounded census.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

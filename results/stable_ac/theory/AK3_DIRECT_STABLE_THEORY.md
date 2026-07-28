@@ -7187,6 +7187,41 @@ compression in a proper corridor must use a conjugator outside \(K_g\).
 The surviving parameter is the nontrivial double-coset space
 \(K_g\backslash F_2/K_g\), not a bounded word-length census.
 
+**Result 122 (the first proper corridor has no one-source primitive
+exit).**  For the concrete map \(\phi(x)=x\),
+\(\phi(y)=yxyx^{-1}y^{-1}\), put \(a=\phi(A)\), \(b=\phi(B)\).  Exact
+cyclic representatives have lengths
+
+\[
+a=xxxyxYYYYXY,quad |a|=11,
+\qquad
+b=xyxyXYxyxYXYXyxYXY,quad |b|=18.
+\]
+
+Their maximum common cyclic-factor lengths are
+
+\[
+L(a,b^{-1})=3,
+\qquad
+L(a,b)=4.
+\]
+
+The unbounded axis-alignment formula therefore gives
+
+\[
+\min_h\|a hbh^{-1}\|=23,
+\qquad
+\min_h\|a hb^{-1}h^{-1}\|=21,
+\]
+
+with the same values after exchanging a and b.  A primitive word with
+the corresponding exponent vector would have cyclic length 9 or 5.
+Consequently neither source can become primitive after one multiplication
+by an arbitrarily conjugated copy of the other, even when the conjugator
+lies outside the image subgroup.  Result 121's double-coset residue is
+therefore empty for the first proper corridor.  A family-wide bridge
+inequality for general g or for all iterates remains to be proved.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7347,7 +7382,10 @@ subgroups. Result 120 extends the construction to every endomorphism
 Result 121 proves a family-wide barrier: after any such lift, no relative
 source multiplication conjugated inside the image subgroup can be
 primitive. A one-step compression must cross a nontrivial image-subgroup
-double coset or leave the one-source regime.
+double coset or leave the one-source regime. Result 122 closes those
+external double cosets for the first proper image \(g=yx\): exact axis
+alignment gives cyclic-length minima 23 and 21, far above the primitive
+lengths 9 and 5.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7359,7 +7397,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--121, arbitrary W--D conjugators,
+61--122, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

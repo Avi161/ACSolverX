@@ -1247,3 +1247,35 @@ one-step primitive compression reached through a proper corridor must use
 a conjugator outside \(K_g\).  The remaining problem lives in the
 nontrivial double cosets \(K_g\backslash F_2/K_g\), or beyond one-source
 traffic altogether.
+
+## 19. The first proper corridor closes every double coset
+
+For \(g=yx\), write \(a=\phi_g(A)\), \(b=\phi_g(B)\).  Their exact cyclic
+words have lengths 11 and 18.  Direct cyclic-factor comparison gives
+
+\[
+L(a,b^{-1})=3,
+\qquad
+L(a,b)=4.
+\tag{90}
+\]
+
+Axis alignment over every \(h\in F_2\) now yields
+
+\[
+\min_h\|a hbh^{-1}\|=23,
+\qquad
+\min_h\|a hb^{-1}h^{-1}\|=21.
+\tag{91}
+\]
+
+The Osborne--Zieschang primitive lengths for the relevant exponent
+vectors are only 9 and 5.
+
+### Theorem 19.1 (ambient-conjugator barrier at the first proper image)
+
+For both source orders, both signs, and every ambient conjugator h, the
+one-source relative product of \(\phi_{yx}(A)\) and \(\phi_{yx}(B)\) is
+nonprimitive.  Thus the first proper stable image has no one-source
+primitive exit in any image-subgroup double coset.  General g and the
+deeper iterates remain open.

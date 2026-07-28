@@ -20,6 +20,30 @@ def reduce_word(word: str) -> str:
     return "".join(stack)
 
 
+def cyclic_reduce(word: str) -> str:
+    reduced = reduce_word(word)
+    while len(reduced) > 1 and INVERSE[reduced[0]] == reduced[-1]:
+        reduced = reduce_word(reduced[1:-1])
+    return reduced
+
+
+def cyclic_factors(word: str, length: int) -> set[str]:
+    assert 0 < length <= len(word)
+    wrapped = word + word[:length - 1]
+    return {wrapped[index:index + length] for index in range(len(word))}
+
+
+def cyclic_rotations(word: str) -> tuple[str, ...]:
+    return tuple(word[index:] + word[:index] for index in range(len(word)))
+
+
+def longest_common_cyclic_factor(left: str, right: str) -> int:
+    for length in range(min(len(left), len(right)), 0, -1):
+        if cyclic_factors(left, length) & cyclic_factors(right, length):
+            return length
+    return 0
+
+
 def substitute(word: str, generator: str, image: str) -> str:
     inverse_generator = INVERSE[generator]
     return reduce_word("".join(
@@ -112,3 +136,43 @@ def test_both_torus_coefficient_images_are_proper_in_finite_quotients() -> None:
     assert u_s3 == x_s3
     assert evaluate_permutation_word("xyxYXY", x_s3, u_s3) == tuple(range(3))
     assert y_s3 not in generated_subgroup((x_s3, u_s3))
+
+
+def test_first_proper_corridor_has_an_ambient_conjugator_length_gap() -> None:
+    old_a = "xxxYYYY"
+    old_b = "xyxYXY"
+    u = "yxyXY"
+    image_a = cyclic_reduce(substitute(old_a, "y", u))
+    image_b = cyclic_reduce(substitute(old_b, "y", u))
+
+    assert image_a == "xxxyxYYYYXY"
+    assert image_b == "xyxyXYxyxYXYXyxYXY"
+    assert len(image_a) == 11
+    assert len(image_b) == 18
+
+    positive_overlap = longest_common_cyclic_factor(image_a, inverse(image_b))
+    negative_overlap = longest_common_cyclic_factor(image_a, image_b)
+
+    assert positive_overlap == 3
+    assert cyclic_factors(image_a, 4).isdisjoint(
+        cyclic_factors(inverse(image_b), 4)
+    )
+    assert negative_overlap == 4
+    assert cyclic_factors(image_a, 5).isdisjoint(cyclic_factors(image_b, 5))
+
+    assert len(image_a) + len(image_b) - 2 * positive_overlap == 23
+    assert len(image_a) + len(image_b) - 2 * negative_overlap == 21
+
+    positive_rotation_minimum = min(
+        len(cyclic_reduce(left + right))
+        for left in cyclic_rotations(image_a)
+        for right in cyclic_rotations(image_b)
+    )
+    negative_rotation_minimum = min(
+        len(cyclic_reduce(left + right))
+        for left in cyclic_rotations(image_a)
+        for right in cyclic_rotations(inverse(image_b))
+    )
+
+    assert positive_rotation_minimum == 23
+    assert negative_rotation_minimum == 21
