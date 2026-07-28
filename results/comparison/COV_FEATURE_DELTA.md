@@ -30,21 +30,25 @@ Priority drops on **14/60** rows and rises on **45/60** (same on 1).
 Among rows where priority **falls**, 29% are CoV unlocks (4/14).
 Among rows where priority **rises**, 27% are CoV unlocks (12/45).
 
+## Simple picture
+
+For each RECOMMENDED axis (and the weighted priority), count how many of the 60 presentations got a **higher** score after best CoV, and compare the **mean on the original** vs the **mean on the best-CoV** start. Higher = worse for the heuristic (all weights positive, min-heap).
+
+![Simple: higher counts + means](figures/cov_feature_simple.png)
+
 ## Verdict
 
 **Best CoV does not win by improving the RECOMMENDED feature axes.** L rises on 47/60 rows; K and MK usually stay put or rise; xyimb worsens on 42/60; the weighted priority rises on 45/60 (mean Δprio ≈ +12.7). Only S tilts the helpful way more often than not (19 improved vs 7 worsened), and the effect is tiny.
 
 Δprio also does **not** track CoV’s solve advantage: unlock rate is almost identical when priority falls (29%) and when it rises (27%). On the 16 rows CoV actually unlocks at b1k, mean Δprio is **worse** (+30) than on the rest (+6) — CoV helps despite looking worse to RECOMMENDED, not because of it.
 
-## Figures
+## More figures
 
 ![Before vs after](figures/cov_feature_before_after.png)
 
 ![Delta direction bars](figures/cov_feature_delta_bars.png)
 
 ![Priority scatter](figures/cov_priority_scatter.png)
-
-![Delta by outcome](figures/cov_delta_by_outcome.png)
 
 ## Stratified means (CoV unlock vs not)
 

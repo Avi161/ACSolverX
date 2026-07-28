@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import os
+import shutil
 import statistics
 import sys
 
@@ -315,44 +316,122 @@ def fig_priority_scatter(rows):
     print(f"wrote {path}")
 
 
-def fig_delta_by_outcome(rows, summary):
-    fig, ax = plt.subplots(figsize=(9.5, 5.4), facecolor=SURFACE)
-    labels = list(DIMS) + ["prio"]
-    helped_means = []
-    other_means = []
-    for d in labels:
-        key = d if d != "prio" else "prio"
-        helped_means.append(
-            summary["helped"][key]["mean"] if summary["helped"] else 0.0)
-        other_means.append(
-            summary["other"][key]["mean"] if summary["other"] else 0.0)
-    x = np.arange(len(labels))
+def fig_simple_higher_and_means(rows):
+    """Simple view: how many of 60 got higher after CoV, and mean orig vs mean CoV."""
+    feat_labels = list(DIMS)
+    all_labels = feat_labels + ["prio"]
+
+    def series(d):
+        if d == "prio":
+            okey, ckey = "prio_orig", "prio_cov"
+        else:
+            okey, ckey = f"{d}_orig", f"{d}_cov"
+        orig = [float(r[okey]) for r in rows]
+        covv = [float(r[ckey]) for r in rows]
+        return orig, covv
+
+    n_higher, n_lower, n_same = [], [], []
+    mean_orig_f, mean_cov_f = [], []
+    for d in all_labels:
+        orig, covv = series(d)
+        n_higher.append(sum(1 for a, b in zip(orig, covv) if b > a))
+        n_lower.append(sum(1 for a, b in zip(orig, covv) if b < a))
+        n_same.append(sum(1 for a, b in zip(orig, covv) if b == a))
+    for d in feat_labels:
+        orig, covv = series(d)
+        mean_orig_f.append(statistics.fmean(orig))
+        mean_cov_f.append(statistics.fmean(covv))
+    po, pc = series("prio")
+    mean_prio_orig = statistics.fmean(po)
+    mean_prio_cov = statistics.fmean(pc)
+
+    fig = plt.figure(figsize=(13.2, 8.0), facecolor=SURFACE)
+    gs = fig.add_gridspec(2, 2, height_ratios=(1.05, 1.0), hspace=0.42, wspace=0.28)
+    ax0 = fig.add_subplot(gs[0, :])
+    ax1 = fig.add_subplot(gs[1, 0])
+    ax2 = fig.add_subplot(gs[1, 1])
+
+    # --- top: how many higher after CoV ---
+    x_all = np.arange(len(all_labels))
+    disp_all = [d if d != "prio" else "weighted priority" for d in all_labels]
+    ax0.bar(x_all, n_higher, color=WORSENED, width=0.62)
+    ax0.axhline(30, color=MUTED, linewidth=0.9, linestyle=":", zorder=1)
+    for i, (hi, lo, sm) in enumerate(zip(n_higher, n_lower, n_same)):
+        ax0.text(i, hi + 1.0, f"{hi}/60", ha="center", va="bottom",
+                 color=INK, fontsize=11, fontweight="bold")
+        ax0.text(i, -0.8, f"lower {lo} · same {sm}", ha="center", va="top",
+                 color=SECONDARY, fontsize=8)
+    ax0.set_ylim(-8, 68)
+    ax0.set_xticks(x_all, disp_all)
+    ax0.set_ylabel("presentations (of 60)", color=SECONDARY)
+    ax0.set_title(
+        "Of the 60 presentations, how many had a HIGHER score after best CoV?",
+        loc="left", fontsize=14, color=INK, pad=8)
+    ax0.text(
+        0.0, 1.02,
+        "All RECOMMENDED weights are positive → higher score = worse for the heuristic (min-heap)",
+        transform=ax0.transAxes, color=SECONDARY, fontsize=10, va="bottom")
+    _style_axis(ax0)
+    ax0.grid(False, axis="x")
+
+    # --- bottom left: mean feature values ---
+    x_f = np.arange(len(feat_labels))
     w = 0.36
-    ax.axhline(0, color=MUTED, linewidth=1.0, linestyle="--", zorder=1)
-    b1 = ax.bar(x - w / 2, helped_means, width=w, color=IMPROVED,
-                label=f"CoV helped at b1k (n={summary['n_helped']})")
-    b2 = ax.bar(x + w / 2, other_means, width=w, color=WORSENED, alpha=0.85,
-                label=f"CoV did not help (n={summary['n_other']})")
-    ax.set_xticks(x, [d if d != "prio" else "weighted\npriority" for d in labels])
-    ax.set_ylabel("mean Δ (CoV − original); negative = better", color=SECONDARY)
-    ax.set_title("Mean feature change on rows CoV unlocked vs the rest",
-                 loc="left", fontsize=14, color=INK, pad=12)
-    ax.legend(frameon=False, loc="best")
-    _style_axis(ax)
-    ax.grid(False, axis="x")
-    path = os.path.join(FIG_DIR, "cov_delta_by_outcome.png")
+    ax1.bar(x_f - w / 2, mean_orig_f, width=w, color=MUTED, label="original")
+    ax1.bar(x_f + w / 2, mean_cov_f, width=w, color=WORSENED, label="best CoV")
+    for i, (mo, mc) in enumerate(zip(mean_orig_f, mean_cov_f)):
+        ax1.text(i - w / 2, mo, f"{mo:.2f}", ha="center", va="bottom",
+                 color=SECONDARY, fontsize=8)
+        ax1.text(i + w / 2, mc, f"{mc:.2f}", ha="center", va="bottom",
+                 color=INK, fontsize=8)
+    ax1.set_xticks(x_f, feat_labels)
+    ax1.set_ylabel("mean feature value", color=SECONDARY)
+    ax1.set_title("Mean feature: original vs best-CoV",
+                  loc="left", fontsize=13, color=INK, pad=8)
+    ax1.legend(frameon=False, loc="upper right")
+    _style_axis(ax1)
+    ax1.grid(False, axis="x")
+
+    # --- bottom right: mean weighted priority alone ---
+    ax2.bar([-0.2], [mean_prio_orig], width=0.35, color=MUTED, label="original")
+    ax2.bar([0.2], [mean_prio_cov], width=0.35, color=WORSENED, label="best CoV")
+    ax2.text(-0.2, mean_prio_orig, f"{mean_prio_orig:.1f}", ha="center",
+             va="bottom", color=SECONDARY, fontsize=12, fontweight="bold")
+    ax2.text(0.2, mean_prio_cov, f"{mean_prio_cov:.1f}", ha="center",
+             va="bottom", color=INK, fontsize=12, fontweight="bold")
+    ax2.set_xticks([-0.2, 0.2], ["original", "best CoV"])
+    ax2.set_xlim(-0.7, 0.7)
+    ax2.set_ylabel("mean weighted priority", color=SECONDARY)
+    ax2.set_title("Mean RECOMMENDED score (prio)",
+                  loc="left", fontsize=13, color=INK, pad=8)
+    ax2.text(
+        0.5, 0.92,
+        f"original {mean_prio_orig:.1f}  →  CoV {mean_prio_cov:.1f}"
+        f"  (Δ {mean_prio_cov - mean_prio_orig:+.1f})",
+        transform=ax2.transAxes, ha="center", va="top",
+        color=SECONDARY, fontsize=10)
+    _style_axis(ax2)
+    ax2.grid(False, axis="x")
+
+    fig.suptitle(
+        "Original presentation vs best-CoV presentation — 60 benchmark rows",
+        x=0.01, ha="left", fontsize=15, color=INK, y=0.995)
+    path = os.path.join(FIG_DIR, "cov_feature_simple.png")
     fig.savefig(path, dpi=140, bbox_inches="tight", facecolor=SURFACE)
     plt.close(fig)
     print(f"wrote {path}")
-    del b1, b2
+    # Replace the old confusing outcome graph with this simple one
+    path2 = os.path.join(FIG_DIR, "cov_delta_by_outcome.png")
+    shutil.copyfile(path, path2)
+    print(f"wrote {path2} (same simple figure)")
 
 
 def write_figures(rows, summary):
     os.makedirs(FIG_DIR, exist_ok=True)
+    fig_simple_higher_and_means(rows)
     fig_before_after(rows)
     fig_delta_bars(rows, summary)
     fig_priority_scatter(rows)
-    fig_delta_by_outcome(rows, summary)
 
 
 def _pct(frac):
@@ -425,6 +504,15 @@ def write_md(rows, summary):
             f"/{summary['n_prio_rise']}).")
     lines.extend([
         "",
+        "## Simple picture",
+        "",
+        "For each RECOMMENDED axis (and the weighted priority), count how many of "
+        "the 60 presentations got a **higher** score after best CoV, and compare "
+        "the **mean on the original** vs the **mean on the best-CoV** start. "
+        "Higher = worse for the heuristic (all weights positive, min-heap).",
+        "",
+        "![Simple: higher counts + means](figures/cov_feature_simple.png)",
+        "",
         "## Verdict",
         "",
         "**Best CoV does not win by improving the RECOMMENDED feature axes.** "
@@ -438,15 +526,13 @@ def write_md(rows, summary):
         "CoV actually unlocks at b1k, mean Δprio is **worse** (+30) than on the rest "
         "(+6) — CoV helps despite looking worse to RECOMMENDED, not because of it.",
         "",
-        "## Figures",
+        "## More figures",
         "",
         "![Before vs after](figures/cov_feature_before_after.png)",
         "",
         "![Delta direction bars](figures/cov_feature_delta_bars.png)",
         "",
         "![Priority scatter](figures/cov_priority_scatter.png)",
-        "",
-        "![Delta by outcome](figures/cov_delta_by_outcome.png)",
         "",
         "## Stratified means (CoV unlock vs not)",
         "",
