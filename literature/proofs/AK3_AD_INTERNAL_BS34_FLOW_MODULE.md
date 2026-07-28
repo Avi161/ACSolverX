@@ -6429,3 +6429,106 @@ The omitted \(x^\ell\), \(x^v\), and \(x^q\) powers fix their
 \(1\)-eigenvectors.  Equations (425)--(426) prove (420).  The Fox
 bridge and (286) obstruct both A--D signs for every free-kernel lift.
 Hence the complete \((-,+,-,+,+,-)\) length-six stratum is closed.
+
+## 45. The two-turn separated-return stratum
+
+Let
+
+\[
+b=x^\ell y^{-1}x^ryx^syx^ty^{-1}x^uyx^vy^{-1}x^q,
+\tag{427}
+\]
+
+where
+
+\[
+4\nmid r,\qquad
+3\nmid t,\qquad
+4\nmid u,\qquad
+3\nmid v,
+\tag{428}
+\]
+
+and \(\ell,s,q\in\mathbb Z\) are arbitrary.  Thus the sign string is
+\((-,+,+,-,+,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{429}
+\]
+
+Choose fresh independent \(w,p\in V_1\), fresh nonzero
+\(z_1\in V_\omega,z_2\in V_{\omega^2}\), and put
+
+\[
+h=3w+z_1+z_2.
+\tag{430}
+\]
+
+Choose a disjoint fresh cube-phase packet
+
+\[
+Q=Q_\omega+Q_{\omega^2}.
+\tag{431}
+\]
+
+Choose \(A,c\in D_1\) with disjoint complete four-phase supports,
+also disjoint from \(w,p\).  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+AY&=w,\\
+(AX^r)Y&=p,\\
+pY&=Q,\\
+cY&=QX^t,\\
+(cX^u)Y&=4hX^{-v}.
+\end{aligned}
+\tag{432}
+\]
+
+The source list \(w,A,AX^r,p,c,cX^u\) is independent because the
+two four-phase pairs have ranks two by (428) and use disjoint
+multiplicity packets.  The image list is independent because
+\(Q,QX^t\) form a disjoint rank-two packet, while
+\(w,h,hX^{-v}\) have determinant
+
+\[
+\omega^{-2v}-\omega^{-v}\ne0
+\tag{433}
+\]
+
+on the baseline cube packet; \(p\) is one further fresh
+\(1\)-eigenvector.  Hence (432) extends to a global cyclotomic
+BS\((3,4)\)-module action.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=hR_3=4w=wR_4.
+\tag{434}
+\]
+
+The exact replay is
+
+\[
+\begin{aligned}
+wb
+&=AX^rYX^sYX^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=pYX^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=QX^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=cX^uYX^vY^{-1}X^q\\
+&=4hX^{-v}X^vY^{-1}X^q\\
+&=4w.
+\end{aligned}
+\tag{435}
+\]
+
+The omitted \(\ell,s,q\)-powers fix their \(1\)-eigenvectors.
+Equations (434)--(435) prove (429).  The Fox bridge and (286)
+obstruct both A--D signs for every free-kernel lift.  Hence the
+complete \((-,+,+,-,+,-)\) length-six stratum is closed.

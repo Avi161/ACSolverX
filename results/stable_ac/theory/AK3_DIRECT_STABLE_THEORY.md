@@ -5781,6 +5781,58 @@ The Fox bridge and Result 85 close both A--D signs for every
 free-kernel lift.  Hence the complete \((-,+,-,+,+,-)\) length-six
 stratum is obstructed.
 
+**Result 98 (the two-turn separated-return stratum is obstructed).**
+Let
+
+\[
+b=x^\ell y^{-1}x^ryx^syx^ty^{-1}x^uyx^vy^{-1}x^q,
+\]
+
+where \(4\nmid r,u\), \(3\nmid t,v\), and \(\ell,s,q\) are
+arbitrary.  Over \(\overline{\mathbb F}_5\), choose fresh
+\(w,p\in V_1\), disjoint complete fourth-phase packets
+\(A,c\in D_1\), and disjoint cube-phase packets
+
+\[
+h=3w+z_1+z_2,
+\qquad
+Q=Q_\omega+Q_{\omega^2}.
+\]
+
+Prescribe
+
+\[
+wY=h,\quad
+AY=w,\quad
+(AX^r)Y=p,\quad
+pY=Q,\quad
+cY=QX^t,\quad
+(cX^u)Y=4hX^{-v}.
+\]
+
+The source list is independent because both fourth-phase pairs have
+rank two.  The image list is independent because the two cube-phase
+packets are disjoint and have determinants
+
+\[
+\omega^{-2v}-\omega^{-v}\ne0,
+\qquad
+\omega^{2t}-\omega^t\ne0.
+\]
+
+The partial map therefore extends globally.  It satisfies
+\(wYR_3=4w=wR_4\), and
+
+\[
+wb=QX^tY^{-1}X^uYX^vY^{-1}X^q
+=4hX^{-v}X^vY^{-1}X^q
+=4w.
+\]
+
+The Fox bridge and Result 85 close both A--D signs for every
+free-kernel lift.  Hence the complete \((-,+,+,-,+,-)\) length-six
+stratum is obstructed.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5869,7 +5921,8 @@ arbitrarily deep symmetric wrapper around an alternating core. Result
 Result 95 closes the self-inverse mixed length-six stratum, and Result
 96 closes the two-negative three-positive terminal-return stratum.
 Result 97 closes the alternating-prefix terminal-return stratum.
-Results 73--75 close the
+Result 98 closes the two-turn separated-return stratum. Results
+73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5879,7 +5932,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--97, arbitrary W--D conjugators,
+61--98, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
