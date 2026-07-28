@@ -928,3 +928,13 @@
 
 - [TRAP] A primitive word reduced to a one-letter cyclic representative while the stored Whitehead automorphism stayed the identity; reading this as an inconsistent witness initially obscured that the source was already a conjugate of that letter.
 - [WORKS] The word reducer cyclically canonicalizes before recording Whitehead descents. Recover and verify the peeled conjugating prefix separately whenever the minimum changes under free or cyclic normalization with no recorded automorphism step.
+
+### 2026-07-27 Relabel auxiliary generators before rank-three Whitehead diagnostics
+
+- [TRAP] `rank3_whitehead.reduce_word_fast` accepts a caller-supplied generator tuple, but its shared word validator still rejects `r/R`; a positive-bridge diagnostic failed before performing any Whitehead step.
+- [WORKS] Relabel the auxiliary generator `r/R` to the repository's supported `z/Z` alphabet before calling the rank-three reducer, and pass `("x", "y", "z")`. Treat the relabeling as notation only and replay any witness after translating back.
+
+### 2026-07-27 Do not rechoose a Cohen--Lyndon transversal
+
+- [TRAP] Cohen--Lyndon asphericity supplies a particular transversal whose conjugates of the relator freely generate its normal closure. Replacing those representatives by convenient elements of a subgroup in the same normal-closure cosets need not preserve a free basis; independently conjugated basis elements can generate a proper subgroup.
+- [WORKS] Keep the existential Cohen--Lyndon transversal fixed unless a separate Nielsen or Bass--Serre argument proves the replacement is basis-preserving. The implication `Q = K <<v>>` and `v` root-free therefore does not by itself prove `Q = K`.
