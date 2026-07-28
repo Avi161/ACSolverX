@@ -8139,6 +8139,38 @@ integer combination in the known five-dimensional affine family is
 obstructed at degree two.  This is not a global theorem about the complete
 homogeneous syzygy module; any lift must leave this known span.
 
+**Result 152 (a two-point quotient closes the known six-direction span).**
+There is an 18-entry homogeneous syzygy \(s\), with \(s_1=e_{tcTTT}\),
+whose exact forest paths are
+\[
+tttcTTT\xrightarrow{\ aaBgA\ }ctcTctctcTTT,
+\qquad
+ctcTctttcTTT\xrightarrow{\ aGbaGBgAbaGA\ }tctcTTT.
+\]
+It kills all five mod-two functionals from Result 151 and raises the known
+direction rank from five to six modulo two, but its signed cyclic mod-three
+value is two.
+
+The integral combination
+\[
+x^{00}+4z-4v-3s
+\]
+kills those five mod-two bits and the signed mod-three bit.  Its residual has
+612 wedge terms.  The two-point action
+\[
+c=1,\qquad t=(0\ 1)
+\]
+maps it to the single wedge coordinate \((45)\).  Every operator acts as
+zero on this one-dimensional wedge space, so the lift is obstructed.
+
+The six obstruction bits are integer-valued quadratic functions of the six
+direction coefficients.  Twenty-eight exact replays determine the complete
+quadratic model, and 21 further points verify it.  Evaluation on all
+\(4^6=4096\) mod-four coefficient classes yields no zero row.  Therefore
+every integer combination in the known six-dimensional affine family is
+degree-two obstructed.  This still does not classify syzygies outside that
+span.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

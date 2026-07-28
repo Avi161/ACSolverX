@@ -715,6 +715,42 @@ The exact proof and checker are
 \end{gathered}
 \]
 
+### A two-point quotient closes the known six-direction span
+
+An 18-entry homogeneous syzygy \(s\), with \(s_1=e_{tcTTT}\), has exact
+forest paths
+\[
+tttcTTT\xrightarrow{\ aaBgA\ }ctcTctctcTTT,
+\qquad
+ctcTctttcTTT\xrightarrow{\ aGbaGBgAbaGA\ }tctcTTT.
+\]
+It kills the five mod-two functionals from the preceding result and raises
+the known direction rank from five to six, but its signed cyclic mod-three
+value is two.
+
+The integral solution \(x^{00}+4z-4v-3s\) kills those five mod-two bits and
+the signed mod-three bit. Its residual has 612 wedge terms. Under the
+two-point action
+\[
+c=1,\qquad t=(0\ 1),
+\]
+it maps to the single wedge coordinate \((45)\). Every \(L_i\) acts as zero
+on this wedge space, proving obstruction.
+
+The six obstruction bits are integer-valued quadratic functions of the six
+direction coefficients. Twenty-eight exact replays determine the model and
+21 additional points validate it. Evaluation on all \(4^6=4096\) mod-four
+classes yields no zero row. Hence the complete known six-direction integer
+span is degree-two obstructed, but the full syzygy module is not classified.
+
+The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_SIX\_DIRECTION\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_six\_direction\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -736,8 +772,10 @@ The exact proof and checker are
    span. A fifth source-coupled direction kills all four mod-two bits but is
    separated by the signed cyclic invariant modulo three. A new three-point
    action then separates all 1024 mod-four coefficient classes in the known
-   five-direction integer span. The next exact problem is to construct a
-   compact direction outside that span, or promote the five mod-two
-   functionals to a theorem about the full homogeneous syzygy module.
+   five-direction integer span. A sixth direction escapes those five bits,
+   but a two-point quotient separates every one of the 4096 mod-four classes
+   in the resulting six-direction integer span. The next exact problem is to
+   construct a compact direction outside that span, or promote the six
+   mod-two functionals to a theorem about the full homogeneous syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

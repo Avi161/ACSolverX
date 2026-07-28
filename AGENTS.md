@@ -1255,3 +1255,8 @@
 
 - [TRAP] A combined staging command included tracked and new files under the ignored `literature/` directory; Git staged the nonignored paths but exited before the subsequent force-add segment, leaving a partially staged checkpoint.
 - [WORKS] Stage tracked updates and new nonignored code/tests first, then run a separate `git add -f` for every new or modified proof note under `literature/proofs/`, and finish with `git diff --cached --check` plus `git status`.
+
+### 2026-07-28 Interpolate class-two obstruction tables
+
+- [WORKS] For `d` homogeneous directions, a mod-two integer-valued quadratic obstruction is determined by `1 + 2*d + binomial(d,2)` exact replays at `0`, `e_i`, `2e_i`, and `e_i+e_j`. Validate at `3e_i` and `3e_i+e_j`, then evaluate the complete `(Z/4)^d` table algebraically.
+- [WORKS] For six directions this reduced nonlinear replays from 4096 to 28 plus 21 validations while reproducing the complete table hash `58994ebbd8531bc402c4c8e15410c2a70448db8f8f50298f24f9c87fc1811298`.
