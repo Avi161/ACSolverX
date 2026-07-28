@@ -3611,6 +3611,45 @@ positive stable letter. It does not yet settle arbitrary elements with
 total \(y\)-exponent one, whose Britton normal form may contain several
 positive and negative stable letters.
 
+**Result 62 (initial-residue-zero exponent-zero propriety).** Put
+\(a=yxy^{-1}\). For \(r=1,2\) and either sign \(\sigma\),
+
+\[
+(x^4-1)\mathbb Q[B]+(yR_3-R_4)\mathbb Q[B]
++(a^r+\sigma R_4)\mathbb Q[B]
+\]
+
+is a proper right ideal.
+
+Here \(K_{a^r}=H\), but the direct leaf proof from Result 61 has an
+adjacent-center collision. The replacement is a second tree
+decomposition. With
+
+\[
+J_-=
+\langle x,a\mid x^4=a^3\rangle
+\cong\langle x\rangle*_{\langle x^4=a^3\rangle}\langle a\rangle,
+\]
+
+the intralayer scalar equation takes one fixed nonzero turn modulo
+three in each of the four adjacent \(\langle a\rangle\)-blocks. It
+admits a rational eigenfunction with either an arbitrary prescribed
+\(H\)-vertex value or an arbitrary prescribed block sum. The
+equivalent HNN presentation
+
+\[
+B=\langle J_-,y\mid yxy^{-1}=a\rangle
+\]
+
+then supplies a macro tree. Each new macro fiber receives exactly one
+prescribed vertex value or block sum from its parent edge, so the local
+interpolation extends recursively to a nonzero global current.
+
+This closes \(b=yx^ry^{-1}\), \(r=1,2\), in the relevant negative
+exponent-zero fiber. It does not include nonzero initial residues
+\(x^s yx^ry^{-1}\), the inverse sign sequence
+\(y^{-1}x^ry\), or longer Britton codes.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3678,8 +3717,10 @@ their three internal classes into canonical double cosets
 \(b\in H\) or \(b\in yH\), where this module collapses and a different
 method is required, and noncanonical double cosets. Result 61 proves
 the flow quotient nonzero for every noncanonical double coset with a
-one-positive-stable-letter representative; multi-syllable internal
-double cosets remain undecided. The immediate exact leads are therefore
+one-positive-stable-letter representative. Result 62 also closes the
+initial-residue-zero positive--negative length-two exponent-zero
+family; the other multi-syllable internal double cosets remain
+undecided. The immediate exact leads are therefore
 z-dependent A--W conjugators, the canonical and multi-syllable internal
 A--D subproblems, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
@@ -3810,7 +3851,7 @@ row now gives an unbounded exponent sieve: primitivity forces
 A different viable primitive-slot branch must therefore use
 z-dependent A--W traffic, one of Result 60's canonical-collapse
 internal A--D classes or a multi-syllable noncanonical class beyond
-Result 61, arbitrary W--D relative traffic,
+Results 61--62, arbitrary W--D relative traffic,
 non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
 two row changes before deletion, another \(Wq^{-1}\) block, a
 repeatedly changed source, alter W by traffic with nontrivial

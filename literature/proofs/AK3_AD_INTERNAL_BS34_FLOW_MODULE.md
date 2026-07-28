@@ -1027,3 +1027,186 @@ The vertex \(d_j\) lies in an outgoing branch different from
 at \(c_j\).  Hence even for \(K_b=H\), and even when the target is
 genuinely outward from the hull edge \([H,c_j]\), outwardness alone
 does not imply uniqueness.
+
+## 12. The positive--negative exponent-zero family is proper
+
+The collision in (66) does not force collapse.  In fact it is bypassed
+by a second Bass--Serre decomposition.  Put
+
+\[
+a=yxy^{-1},
+\qquad L=\langle a\rangle,
+\qquad A=\langle x^4\rangle=\langle a^3\rangle,
+\qquad J_-:=\langle H,L\rangle.
+\tag{67}
+\]
+
+The adjacent-stabilizer normal-form theorem gives
+
+\[
+J_-\cong H*_{A}L
+=\langle x,a\mid x^4=a^3\rangle.
+\tag{68}
+\]
+
+Fix \(r\in\{1,2\}\) and
+
+\[
+b=yx^ry^{-1}=a^r,
+\qquad \lambda=-\sigma\in\{+1,-1\}.
+\tag{69}
+\]
+
+Since \(a\) centralizes \(A\), one has
+
+\[
+b^{-1}Cb=C,
+\qquad K_b=H.
+\tag{70}
+\]
+
+Equations (36)--(37) therefore become
+
+\[
+\boxed{
+\sum_{i=0}^{3}s(Ha^{-r}x^ig)=\lambda s(Hg),
+}
+\tag{71}
+\]
+
+\[
+\boxed{
+\sum_{j=0}^{2}s(Hyx^jg)=\lambda s(Hg).
+}
+\tag{72}
+\]
+
+In (72) the shift by \(-r\) has disappeared because
+\(a^{-r}y=yx^{-r}\) and the three residues are cyclic.
+
+### 12.1 Local interpolation in \(J_-\)
+
+The Bass--Serre tree of (68) is \((4,3)\)-biregular.  Its
+\(H\)-vertices are \(H\backslash J_-\), its \(L\)-vertices are
+\(L\backslash J_-\), and an \(H\)-vertex \(Hq\) has the four adjacent
+\(L\)-vertices
+
+\[
+Lx^iq,\qquad i\in\mathbb Z/4.
+\]
+
+At the block \(Lx^iq\), the three adjacent \(H\)-vertices are
+
+\[
+Ha^kx^iq,\qquad k\in\mathbb Z/3.
+\]
+
+Thus the left side of (71) takes, in each of the four adjacent
+\(L\)-blocks, the branch obtained from \(Hq\) by the fixed turn
+\(-r\pmod3\).  Since \(r=1,2\), this turn has no fixed point.
+
+For either value of \(\lambda\), the following two interpolation
+statements hold:
+
+1. an eigenfunction satisfying (71) may be prescribed arbitrarily at
+   one \(H\)-vertex;
+2. the sum of its values on the three \(H\)-neighbors of one
+   \(L\)-vertex may be prescribed arbitrarily.
+
+To prove the first statement, root the internal bipartite tree at the
+chosen \(H\)-vertex and assign its value.  When an \(H\)-vertex \(v\)
+is processed, its unique already exposed parent block contributes a
+known value \(c\); the root has \(c=0\).  Every other incident block is
+fresh.  In one fresh block assign the turned target the residual
+
+\[
+\lambda s(v)-c,
+\]
+
+and assign zero to the turned target in the other fresh blocks and to
+all remaining new \(H\)-vertices.  The equation at \(v\) now holds.
+The nonzero turn ensures that every assigned target is new, and the
+tree ensures that distinct fresh blocks do not conflict.  Recursion on
+distance assigns every \(H\)-vertex exactly once.
+
+For the second statement, root at the chosen \(L\)-block, assign its
+three neighboring values to \((q,0,0)\), where \(q\) is the prescribed
+sum, and run the same outward recursion from those three
+\(H\)-vertices.  All values are rational and no division is used.
+
+### 12.2 The macro HNN tree
+
+There is an equivalent presentation
+
+\[
+B=\langle J_-,y\mid yxy^{-1}=a\rangle.
+\tag{73}
+\]
+
+Indeed, eliminating \(a\) from (68) and (73) recovers
+\(yx^3y^{-1}=x^4\).  The macro Bass--Serre tree has vertices
+\(J_-\backslash B\) and edges \(H\backslash B\).  For an edge \(Hq\),
+use the right-coset endpoints
+
+\[
+\operatorname{ini}(Hq)=J_-q,
+\qquad
+\operatorname{ter}(Hq)=J_-yq.
+\tag{74}
+\]
+
+They are well-defined: if \(Hq=Hx^nq\), then
+\(J_-yx^nq=J_-a^nyq=J_-yq\).
+
+The source port of (74) is the individual \(H\)-vertex \(Hq\) in the
+fiber over \(J_-q\).  Its target port is the \(L\)-block \(Lyq\) in
+the fiber over \(J_-yq\).  The three \(H\)-neighbors of that block are
+
+\[
+Ha^jyq=Hyx^jq,\qquad j\in\mathbb Z/3.
+\]
+
+Consequently, (72) is exactly the macro-edge condition
+
+\[
+\sum_{j=0}^{2}s(Ha^jyq)=\lambda s(Hq).
+\tag{75}
+\]
+
+### 12.3 Global current
+
+Because \(H\leq J_-\), the map
+\(H\backslash B\to J_-\backslash B\) partitions the global vertex set
+into the disjoint fibers \(H\backslash J_-q\).  A local function on
+each macro vertex therefore defines one global function with no
+overlap ambiguity.
+
+Root the macro tree.  In its root fiber choose a nonzero local
+solution of (71), prescribing value one at one \(H\)-vertex.  Decorate
+the remaining macro vertices by increasing distance from the root.
+
+Across an edge oriented from a decorated fiber to a new fiber,
+equation (75) prescribes one \(L\)-block sum in the new fiber; use the
+second local interpolation statement.  Across an edge oriented from a
+new fiber to a decorated fiber, (75) prescribes one \(H\)-vertex value
+in the new fiber; use the first statement.  The macro graph is a tree,
+so a new fiber has exactly one edge back to the decorated ball and
+receives exactly one scalar prescription.  There are no compatibility
+cycles.
+
+The resulting nonzero function \(s:H\backslash B\to\mathbb Q\)
+satisfies (71)--(72), hence (36)--(37).  Section 8 reconstructs a
+nonzero edge current.  Therefore, for \(r=1,2\) and both signs
+\(\sigma\),
+
+\[
+(x^4-1)R+(yR_3-R_4)R+
+(yx^ry^{-1}+\sigma R_4)R
+\tag{76}
+\]
+
+is a proper right ideal of \(R=\mathbb Q[B]\).  In the A--D residue,
+this closes the initial-residue-zero positive--negative,
+stable-letter-length-two family for the relevant sign \(\sigma=-1\).
+It does not cover \(x^s yx^ry^{-1}\) with \(s\not\equiv0\pmod4\), the
+inverse sign sequence \(y^{-1}x^ry\), or longer endpoint-carry classes.

@@ -799,3 +799,8 @@
 
 - [TRAP] Reducing the initial exponent modulo the left subgroup and deleting the final base coefficient does not make a unique double-coset code. Right-end carries can change internal turns; for example \(Cy^2H=CyxyH\).
 - [WORKS] Parameterize \(C\backslash B/H\) by fixed-transversal Britton codes modulo the deterministic endpoint-carry maps \(T_m\). Audit carry-induced turn changes before claiming an individual code is canonical.
+
+### 2026-07-27 Replace colliding leaf markers by macro ports
+
+- [TRAP] In the general scalar system, every (37) target is also the \(i=0\) target of (36) at an adjacent center, and dually for (36). A target outside a lifted coefficient hull therefore need not have a unique coefficient.
+- [WORKS] When the internal stencil is a nonzero turn in an amalgam fiber, prove two local interpolation lemmas (prescribed vertex value and prescribed block sum), then glue fibers across the second HNN tree. One macro edge imposes one port datum, so tree recursion avoids the cross-collision without claiming coordinate uniqueness.
