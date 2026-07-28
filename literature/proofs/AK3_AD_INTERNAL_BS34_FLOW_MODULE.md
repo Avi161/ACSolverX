@@ -7834,3 +7834,153 @@ using one vector first as an image and later as a source.  It is also
 exactly why Section 32 switches to characteristic seven on the
 order-three Kurosh factor: there \(4\) has order three, so the
 eigenvalue demanded by (538) becomes admissible.
+
+## 53. Zero phase with an immediate descent at arbitrary length
+
+Let
+
+\[
+b=yx^{a_1}y^{-1}x^{a_2}y^{\epsilon_3}x^{a_3}
+\cdots x^{a_{N-1}}y^{\epsilon_N}x^q,
+\tag{541}
+\]
+
+where
+
+\[
+N\ge2,\qquad
+\epsilon_1=+1,\qquad
+\epsilon_2=-1,\qquad
+\sum_{i=1}^{N}\epsilon_i=0,
+\tag{542}
+\]
+
+and the word is Britton-reduced.  Thus
+
+\[
+3\nmid a_1.
+\tag{543}
+\]
+
+Then, over \(k=\overline{\mathbb F}_5\),
+
+\[
+J^{(k)}_{b,-1}\ne k[B].
+\tag{544}
+\]
+
+Choose mutually fresh vectors
+
+\[
+w=w_1+w'\in D_1,\qquad
+S=wR_4=4w_1,
+\tag{545}
+\]
+
+where \(w'\) lies in a nontrivial fourth-root eigenspace, and put
+
+\[
+h=3w_1+z_\omega+z_{\omega^2},
+\qquad
+0\ne z_{\omega^j}\in V_{\omega^j}.
+\tag{546}
+\]
+
+Then
+
+\[
+hR_3=S,
+\qquad
+w,S\ \text{are independent}.
+\tag{547}
+\]
+
+More strongly, (543) gives
+
+\[
+h,\qquad hX^{a_1},\qquad S
+\tag{548}
+\]
+
+independent.  Indeed, in the component basis
+\((w_1,z_\omega,z_{\omega^2})\), their determinant is a nonzero
+multiple of
+
+\[
+\omega^{2a_1}-\omega^{a_1}.
+\tag{549}
+\]
+
+Put \(v_1=h\) and \(v_N=S\).  For \(2\le i<N\), choose mutually
+fresh state packets exactly as in (522):
+
+\[
+\begin{array}{c|c}
+(\epsilon_i,\epsilon_{i+1})&v_i\\ \hline
+(+1,+1)\text{ or }(-1,-1)&v_i\in V_1,\\
+(+1,-1)&v_i\in\mathcal R_1,\quad
+v_i,v_iX^{a_i}\text{ independent},\\
+(-1,+1)&v_i\in D_1,\quad
+v_i,v_iX^{a_i}\text{ independent}.
+\end{array}
+\tag{550}
+\]
+
+Set
+
+\[
+p_i=v_{i-1}X^{a_{i-1}}\qquad(2\le i\le N)
+\tag{551}
+\]
+
+and prescribe
+
+\[
+wY=h,
+\qquad
+\begin{cases}
+p_iY=v_i,&\epsilon_i=+1,\\
+v_iY=p_i,&\epsilon_i=-1
+\end{cases}
+\quad(2\le i\le N).
+\tag{552}
+\]
+
+All arrows lie in \(D_1\to\mathcal R_1\).  The internal source and
+image relations are exactly those proved in Section 51.  At the new
+initial boundary, \(h\) and \(p_2=hX^{a_1}\) are the two images
+created by the \(+\!-\) turn.  They are independent by (548).  If
+the last sign is negative, the endpoint \(S\) is a source and
+\(w,S\) are independent by (547).  If the last sign is positive,
+\(S\) is a third boundary image and the full triple (548) is
+independent.  Freshness separates every other packet.
+
+Thus the source and image lists in (552) are independently free, and
+the prescription extends to a global block isomorphism.  Replaying
+the word gives
+
+\[
+wb=v_N=S.
+\tag{553}
+\]
+
+Together with (545)--(547), this proves
+
+\[
+wX^4=w,\qquad
+wYR_3=S=wR_4,\qquad
+wb=S=wR_4.
+\tag{554}
+\]
+
+Hence (544) follows, and the Fox bridge plus (286) obstruct both A--D
+signs for every free-kernel lift.  Combining Sections 51 and 53, the
+only positive-start arbitrary-length branch not covered by the
+single-block path construction has
+
+\[
+\ell\equiv0\pmod4,
+\qquad
+(\epsilon_1,\epsilon_2)=(+1,+1).
+\tag{555}
+\]

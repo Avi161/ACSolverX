@@ -6346,6 +6346,62 @@ characteristic-five cyclotomic module.  Result 85 and the Kurosh
 construction use characteristic seven precisely because \(4\) then
 has order three.
 
+**Result 106 (zero-phase immediate descents are obstructed at every
+length).**  Let
+
+\[
+b=yx^{a_1}y^{-1}x^{a_2}y^{\epsilon_3}\cdots
+x^{a_{N-1}}y^{\epsilon_N}x^q
+\]
+
+be a positive-start Britton-reduced height-zero word.  Thus
+\(3\nmid a_1\).  Over \(\overline{\mathbb F}_5\), choose
+
+\[
+w=w_1+w',\qquad S=wR_4=4w_1,
+\]
+
+and
+
+\[
+h=3w_1+z_\omega+z_{\omega^2}.
+\]
+
+Then \(hR_3=S\), \(w,S\) are independent, and the three boundary
+vectors
+
+\[
+h,\qquad hX^{a_1},\qquad S
+\]
+
+are independent: their cube-phase determinant is a nonzero multiple
+of \(\omega^{2a_1}-\omega^{a_1}\).
+
+Set the state after the first stable letter equal to \(h\), the final
+state equal to \(S\), and choose every intervening state by Result
+104's local rule: a \(V_1\)-line at equal signs, a cube packet at a
+\((+,-)\) turn, and a fourth packet at a \((-,+)\) turn.  Prescribe
+the \(Y\)-arrows along the word path.  The internal lists remain
+independent by the Britton conditions.  At the initial turn,
+\(h,hX^{a_1}\) are the two image entries; if the final sign is
+positive, \(S\) is the third.  The displayed triple handles either
+boundary, while \(w,S\) handle a negative final sign.
+
+Thus the finite block map extends and the path ends at \(S\), giving
+
+\[
+wX^4=w,\qquad wYR_3=wR_4,\qquad wb=wR_4.
+\]
+
+Both A--D signs and every free-kernel lift are obstructed.  Together
+with Result 104, the only positive-start arbitrary-length family not
+covered by the single-block theorem now has
+
+\[
+\ell\equiv0\pmod4,\qquad
+(\epsilon_1,\epsilon_2)=(+1,+1).
+\]
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6444,7 +6500,10 @@ codes for both A--D signs. Result 104 replaces the nonzero-initial-phase
 part of that census by a single arbitrary-length positive-start
 sign-path theorem. Result 105 proves that the field cannot be fixed to
 characteristic five: an order-three phase family forces the
-characteristic-seven branch of Result 85. Results 73--75 close the
+characteristic-seven branch of Result 85. Result 106 closes every
+zero-phase positive-start path whose first turn is an immediate
+descent, leaving only the initial positive--positive seam. Results
+73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -6454,7 +6513,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--105, arbitrary W--D conjugators,
+61--106, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
