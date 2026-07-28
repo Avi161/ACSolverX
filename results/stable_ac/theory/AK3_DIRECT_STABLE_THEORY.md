@@ -4185,6 +4185,55 @@ rows of the first type and sixteen of the second.  Thus the previous
 infinite-column obstruction has been removed exactly, not truncated.
 Membership of \([Z]\) is still open.
 
+**Result 73 (all six remaining length-three flow systems are
+proper).**  The right-\(B\)-equivariant bijection
+
+\[
+Z\backslash B\longrightarrow H\backslash B,
+\qquad
+Zd\longmapsto Ha^rd
+\]
+
+identifies the variables of Result 72 with the vertices of the
+directed Bass--Serre tree of \(B\).  Under this identification, a
+\((P_I-P_O)\)-row centered at \(v\) has coefficient \(+1\) at all
+four incoming predecessors of \(v\), and coefficient \(-1\) at one
+nontrivial phase predecessor across each of its three outgoing
+successors.  A
+\((P_I\pi_H-\lambda\pi_Z)\)-row indexed by an edge \(q\to v\) has
+coefficient \(+1\) at all four incoming predecessors of \(v\), and
+coefficient \(-\lambda\) at one nontrivial phase successor of \(q\).
+The phases are nontrivial precisely because
+\(\ell\in\{1,2,3\}\) and \(r\in\{1,2\}\).
+
+If a finite combination of these rows equaled the target \([Z]\),
+take the convex hull of the target, all supported vertex centers, and
+both endpoints of every supported edge.  At any non-target leaf, an
+outgoing phase target is reached only by the row centered at that
+leaf, forcing its coefficient to vanish.  If the unique inward edge
+terminates at the leaf, one of the other incoming predecessors,
+excluding the sole possible sibling-turn collision, isolates its edge
+coefficient.  If the edge starts at the leaf, its nontrivial outgoing
+phase target isolates the same coefficient.  Thus no non-target leaf
+can occur.  A finite nontrivial tree has two leaves, so the hull is the
+single target vertex; the same outward argument then kills its only
+possible vertex coefficient.  This contradiction proves
+
+\[
+[Z]\notin\operatorname{im}E_\lambda
+\]
+
+for every \(\ell=1,2,3\), \(r=1,2\), and
+\(\lambda=\pm1\).  Hence \(D_\lambda\) is not surjective and
+\(\ker\mathcal A_\lambda\ne0\).
+
+Consequently, for all \(p=0,1,2\), both signs, and all eighteen
+normalized length-three words \(b_{\ell,p,r}\) with
+\(\ell\ne0\), the internal flow ideal is proper.  Result 65 gives
+collapse for the six words with \(\ell=0\).  This decides the flow
+quotient for the whole sign-\((+,+,-)\) stratum, not primitivity or
+Andrews--Curtis equivalence.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

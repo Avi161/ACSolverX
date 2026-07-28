@@ -2679,3 +2679,202 @@ out on an honest locally finite coefficient hypergraph.  Equations
 (153)--(156) do not decide whether that proof yields a separator or a
 certificate, so they prove neither propriety nor collapse by
 themselves.
+
+## 22. Leaf elimination decides all six locally finite systems
+
+The locally finite presentation does admit a global leaf argument.
+It proves propriety for every system left open in Section 15.
+
+Recall \(h=a^{-r}\), so \(z=hxh^{-1}\) and
+\(Z=hHh^{-1}\).  There is a right \(B\)-equivariant bijection
+
+\[
+\Theta:Z\backslash B\longrightarrow H\backslash B,
+\qquad
+\Theta(Zd)=Hh^{-1}d=Ha^rd.
+\tag{157}
+\]
+
+Use the directed Bass--Serre tree \(\mathcal T\) of \(B\), with
+
+\[
+\operatorname{ini}(Cg)=Hy^{-1}g,
+\qquad
+\operatorname{ter}(Cg)=Hg.
+\tag{158}
+\]
+
+Every vertex has four incoming predecessors and three outgoing
+successors.  For the general representative
+
+\[
+b=x^\ell a^pya^r
+\]
+
+from (95), one has
+
+\[
+h^{-1}b^{-1}
+=x^{-p}y^{-1}x^{-\ell}.
+\]
+
+The initial \(x^{-p}\) is absorbed by the left \(H\)-coset.  Therefore
+
+\[
+\Theta(Zb^{-1}x^ig)
+=Hy^{-1}x^{i-\ell}g,
+\tag{159}
+\]
+
+and these are exactly the four incoming predecessors of \(Hg\).
+Similarly,
+
+\[
+\Theta(Zb^{-1}yx^jg)
+=Hu^{-\ell}x^jg.
+\tag{160}
+\]
+
+For each outgoing successor
+
+\[
+s_j=Hyx^jg
+\]
+
+of \(v=Hg\), its four incoming predecessors are
+\(Hu^kx^jg\), \(k\bmod4\).  The vertex \(v\) is phase \(k=0\), while
+the target in (160) is the nontrivial phase \(k=-\ell\).  It is
+different from \(v\) because \(\ell\in\{1,2,3\}\).
+
+Thus, after applying \(\Theta\), a row
+\((P_I-P_O)[Hg]\), centered at \(v\), has:
+
+1. coefficient \(+1\) at all four incoming predecessors of \(v\);
+2. for each of the three outgoing successors \(s\) of \(v\),
+   coefficient \(-1\) at one fixed nontrivial-phase predecessor of
+   \(s\).
+
+The edge rows have an equally local description.  Let \(e=Cg\), with
+
+\[
+q=\operatorname{ini}(e)=Hy^{-1}g,
+\qquad
+v=\operatorname{ter}(e)=Hg.
+\]
+
+The \(P_I\pi_H\)-part is \(+1\) at all four incoming predecessors of
+\(v\).  The remaining target is
+
+\[
+\Theta(Zg)=Ha^rg.
+\tag{161}
+\]
+
+The three outgoing successors of \(q\) are \(Ha^jg\),
+\(j\bmod3\).  The vertex \(v\) is phase zero and (161) is the
+nontrivial phase \(r\in\{1,2\}\).  Consequently a row
+\((P_I\pi_H-\lambda\pi_Z)[Cg]\) has:
+
+1. coefficient \(+1\) at all four incoming predecessors of
+   \(\operatorname{ter}(e)\);
+2. coefficient \(-\lambda\) at one fixed nontrivial-phase outgoing
+   successor of \(\operatorname{ini}(e)\).
+
+We now rule out a finite certificate.  Suppose
+
+\[
+E_\lambda(\mu,\nu)=[Z]
+\tag{162}
+\]
+
+for finitely supported \(\mu,\nu\), and put
+
+\[
+o=\Theta(Z)=Ha^r.
+\]
+
+Let \(Q\subset\mathcal T\) be the finite convex hull of \(o\), every
+vertex on which \(\mu\) is nonzero, and both endpoints of every edge
+on which \(\nu\) is nonzero.
+
+Assume first that \(Q\) has a leaf \(v\ne o\).  Choose an outgoing
+edge \(v\to s\) outside \(Q\).  At least two such edges exist.  Let
+\(w\ne v\) be the fixed phase-\(-\ell\) predecessor of \(s\) used by
+the \(\mu(v)\)-row.  Then \(w\notin Q\).  Among rows whose centers or
+edge endpoints lie in \(Q\), only the row centered at \(v\) contains
+\(w\): a positive vertex contribution would be centered beyond
+\(w\); a negative vertex contribution through \(s\) has center \(v\)
+by injectivity of the four-phase turn; a positive edge contribution
+has terminal beyond \(w\); and a negative edge contribution is based
+at a predecessor of \(w\), again outside \(Q\).  Taking the
+\(w\)-coefficient in (162) gives
+
+\[
+-\mu(v)=0.
+\tag{163}
+\]
+
+It remains to eliminate the only possible supported edge incident to
+the leaf \(v\).
+
+If that edge is \(e:q\to v\), then the other three incoming
+predecessors of \(v\) lie outside \(Q\).  At most one is the
+phase-\(-\ell\) target of a possible row centered at \(q\).  Choose
+another, \(w\).  The only supported contribution at \(w\), after
+(163), is the positive occurrence in the \(e\)-row.  Hence
+
+\[
+\nu(e)=0.
+\tag{164}
+\]
+
+If instead the edge is \(e:v\to q\), let \(w\) be the fixed
+nontrivial phase-\(r\) successor of \(v\) selected by its negative
+term.  The turn is nontrivial, so \(w\) lies outside \(Q\).  Its only
+supported contributor is the \(e\)-row, and therefore
+
+\[
+-\lambda\nu(e)=0.
+\tag{165}
+\]
+
+Since \(\lambda=\pm1\), (164)--(165) both kill the edge coefficient.
+Every leaf of the convex hull belongs to its defining finite set.
+Thus a non-target leaf would support \(\mu\) or be an endpoint of a
+supported edge, contradicting (163)--(165).
+
+A finite tree with more than one vertex has at least two leaves, only
+one of which can be \(o\).  Hence \(Q=\{o\}\).  Then \(\nu=0\) and
+\(\mu\) can be supported only at \(o\).  Applying the same outward
+target argument at \(o\) gives \(\mu(o)=0\), contradicting (162).
+We have proved
+
+\[
+[Z]\notin\operatorname{im}E_\lambda
+\tag{166}
+\]
+
+for every \(\ell=1,2,3\), \(r=1,2\), and
+\(\lambda=\pm1\).
+
+By (153), \(D_\lambda\) is not surjective.  Equations (143) and (135)
+then give
+
+\[
+\ker\mathcal A_\lambda\ne0.
+\tag{167}
+\]
+
+Therefore, for all \(p=0,1,2\), all \(\ell=1,2,3\), all \(r=1,2\),
+and both signs \(\sigma\), the right ideal
+
+\[
+(x^4-1)R+(yR_3-R_4)R
++(b_{\ell,p,r}+\sigma R_4)R
+\]
+
+is proper.  Together with the scalar collapse at \(\ell=0\), this
+decides the internal flow quotient for every normalized
+sign-\((+,+,-)\) length-three code in (95).  Proper flow is still
+only a module obstruction; this theorem is not a primitivity or
+Andrews--Curtis result.
