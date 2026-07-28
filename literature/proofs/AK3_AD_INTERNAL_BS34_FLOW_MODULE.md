@@ -7984,3 +7984,121 @@ single-block path construction has
 (\epsilon_1,\epsilon_2)=(+1,+1).
 \tag{555}
 \]
+
+## 54. The pure-baseline peeling ansatz already fails at length four
+
+The remaining branch cannot be closed by taking the baseline row in
+\(V_1\) and relying only on field selection.  Consider
+
+\[
+b=y^2xy^{-2},
+\tag{556}
+\]
+
+the Britton-reduced sign string \((+,+,-,-)\) with central exponent
+one.  Let
+
+\[
+k\in\{\overline{\mathbb F}_5,\overline{\mathbb F}_7\}.
+\tag{557}
+\]
+
+In the cyclotomic block representation over either field, there is no
+nonzero \(w\in V_1\) satisfying
+
+\[
+wYR_3=wR_4,
+\qquad
+wb=wR_4.
+\tag{558}
+\]
+
+This does not contradict Section 36: its zero-phase construction uses
+a mixed fourth-root baseline.  Rather, (558) proves that such mixing
+is essential even in the smallest positive-peak example.
+
+Suppose (558) holds and put
+
+\[
+h=wY,\qquad
+p=hY,\qquad
+S=wR_4=4w.
+\tag{559}
+\]
+
+The endpoint equation for (556) is
+
+\[
+pXY^{-2}=S.
+\]
+
+Since \(S=4w\), applying \(Y^2\) gives
+
+\[
+pX=SY^2=4wY^2=4p.
+\tag{560}
+\]
+
+Thus
+
+\[
+p\in V_4.
+\tag{561}
+\]
+
+Because \(w\in D_1\), the first arrow gives
+
+\[
+h\in\mathcal R_1.
+\tag{562}
+\]
+
+The second arrow \(hY=p\) must respect a single color block.  The
+target eigenvector \(p\in V_4\) belongs to
+\(\mathcal R_{4^3}\), so its source lies in \(D_{4^3}\).  Hence
+
+\[
+h\in\mathcal R_1\cap D_{4^3}.
+\tag{563}
+\]
+
+In characteristic five, \(4^3=4\).  An eigenvalue \(\lambda\) in the
+intersection (563) would satisfy
+
+\[
+\lambda^3=1,\qquad \lambda^4=4,
+\]
+
+and therefore \(\lambda=4\), contradicting \(4^3\ne1\).  Thus
+\(h=0\), impossible.
+
+In characteristic seven, \(4^3=1\), and coprimality of three and four
+reduces (563) to
+
+\[
+h\in\mathcal R_1\cap D_1=V_1.
+\tag{564}
+\]
+
+The baseline equation in (558) now gives
+
+\[
+3h=4w,
+\qquad
+h=\frac43w.
+\tag{565}
+\]
+
+Consequently
+
+\[
+p=hY=\frac43wY=\frac43h\in V_1,
+\tag{566}
+\]
+
+contradicting (560), since \(4\ne1\) in characteristic seven.
+
+Therefore the pure-\(V_1\) baseline fails in both complementary
+fields.  Any all-length treatment of the initial \(+\!+\) seam must
+retain at least one nontrivial fourth-root component of \(w\) and
+transport the resulting nontrivial color through the word.

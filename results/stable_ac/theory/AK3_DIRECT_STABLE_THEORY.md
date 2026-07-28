@@ -6402,6 +6402,48 @@ covered by the single-block theorem now has
 (\epsilon_1,\epsilon_2)=(+1,+1).
 \]
 
+**Result 107 (a pure baseline cannot close the initial positive seam).**
+Let
+
+\[
+b=y^2xy^{-2}.
+\]
+
+In the cyclotomic block representation over either
+\(\overline{\mathbb F}_5\) or \(\overline{\mathbb F}_7\), no nonzero
+\(w\in V_1\) can satisfy
+
+\[
+wYR_3=wR_4,\qquad wb=wR_4.
+\]
+
+Indeed, put \(h=wY\), \(p=hY\), and \(S=4w\).  The endpoint equation
+gives
+
+\[
+pX=SY^2=4p,
+\]
+
+so \(p\in V_4\).  Since \(h\in\mathcal R_1\) and \(hY=p\), block
+compatibility also forces
+
+\[
+h\in\mathcal R_1\cap D_{4^3}.
+\]
+
+In characteristic five this intersection is zero: an eigenvalue in
+it would satisfy \(\lambda^3=1\) and \(\lambda^4=4\), hence
+\(\lambda=4\), which is not a cube root of unity.  In characteristic
+seven, \(4^3=1\), so the intersection is \(V_1\).  The baseline then
+gives \(h=(4/3)w\), whence \(p=(4/3)h\in V_1\), contradicting
+\(pX=4p\).
+
+Result 89 still obstructs this word using a mixed fourth-root
+baseline.  Thus the failure is specifically a no-go for pure-baseline
+peeling: the arbitrary initial-\(+,+\) branch requires genuine
+multiblock color transport, not merely a switch between
+characteristics five and seven.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6502,7 +6544,10 @@ sign-path theorem. Result 105 proves that the field cannot be fixed to
 characteristic five: an order-three phase family forces the
 characteristic-seven branch of Result 85. Result 106 closes every
 zero-phase positive-start path whose first turn is an immediate
-descent, leaving only the initial positive--positive seam. Results
+descent, leaving only the initial positive--positive seam. Result 107
+proves that a pure baseline fails on that seam even after switching
+between characteristics five and seven, so a general proof must retain
+mixed fourth-root color transport. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6513,7 +6558,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--106, arbitrary W--D conjugators,
+61--107, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
