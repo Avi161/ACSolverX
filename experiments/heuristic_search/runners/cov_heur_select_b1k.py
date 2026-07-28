@@ -56,6 +56,9 @@ WEIGHTS = RECOMMENDED["segments"][0]["w"]
 
 FIELDS = [
     "pres_id", "bin", "aut_class", "start_length", "r1", "r2",
+    # shipped untransformed baselines
+    "b1k_greedy_solved", "b1k_greedy_nodes", "b1k_greedy_path",
+    "b1k_heur_solved", "b1k_heur_nodes", "b1k_heur_path",
     # shipped greedy-oracle bestcov
     "bestcov_z", "bestcov_iso_gen", "bestcov_iso_index", "bestcov_class",
     "bestcov_cap", "bestcov_r1", "bestcov_r2", "bestcov_n_tied_starts",
@@ -186,6 +189,12 @@ def run():
             "start_length": s["start_length"],
             "r1": r1,
             "r2": r2,
+            "b1k_greedy_solved": _bool(s["b1k_greedy_solved"]),
+            "b1k_greedy_nodes": int(s["b1k_greedy_nodes"]),
+            "b1k_greedy_path": s["b1k_greedy_path"],
+            "b1k_heur_solved": _bool(s["b1k_heur_solved"]),
+            "b1k_heur_nodes": int(s["b1k_heur_nodes"]),
+            "b1k_heur_path": s["b1k_heur_path"],
             "bestcov_z": s["cov_z"],
             "bestcov_iso_gen": s["cov_iso_gen"],
             "bestcov_iso_index": s["cov_iso_index"],
@@ -239,7 +248,8 @@ def run():
         w.writeheader()
         for r in rows:
             out = dict(r)
-            for k in ("b1k_covgreedy_solved", "b1k_covheur_solved",
+            for k in ("b1k_greedy_solved", "b1k_heur_solved",
+                      "b1k_covgreedy_solved", "b1k_covheur_solved",
                       "hsel_covgreedy_solved", "hsel_covheur_solved",
                       "same_as_bestcov"):
                 out[k] = "true" if r[k] else "false"
@@ -255,7 +265,52 @@ def _solved_set(rows, key):
     return {r["pres_id"] for r in rows if r[key]}
 
 
+def _arm_cost(rows, solved_key, nodes_key, path_key):
+    """Mean/median nodes and path over solved rows only (unsolved nodes = budget)."""
+    sol = [r for r in rows if r[solved_key]]
+    n = len(sol)
+    if not sol:
+        return {"solved": 0, "mean_nodes": None, "median_nodes": None,
+                "mean_path": None, "median_path": None}
+    nodes = [int(r[nodes_key]) for r in sol]
+    paths = [int(r[path_key]) for r in sol if str(r[path_key]) != ""]
+    return {
+        "solved": n,
+        "mean_nodes": statistics.fmean(nodes),
+        "median_nodes": statistics.median(nodes),
+        "mean_path": statistics.fmean(paths) if paths else None,
+        "median_path": statistics.median(paths) if paths else None,
+    }
+
+
+def _fmt(v, digits=1):
+    if v is None:
+        return "—"
+    if abs(v - round(v)) < 1e-9:
+        return f"{int(round(v))}"
+    return f"{v:.{digits}f}"
+
+
 def write_md(rows):
+    arms = [
+        ("b1k_greedy", "original", "length-only (greedy baseline)",
+         "b1k_greedy_solved", "b1k_greedy_nodes", "b1k_greedy_path"),
+        ("b1k_heur", "original", "RECOMMENDED",
+         "b1k_heur_solved", "b1k_heur_nodes", "b1k_heur_path"),
+        ("b1k_covgreedy", "greedy-oracle bestcov", "length-only",
+         "b1k_covgreedy_solved", "b1k_covgreedy_nodes", "b1k_covgreedy_path"),
+        ("b1k_covheur", "greedy-oracle bestcov", "RECOMMENDED",
+         "b1k_covheur_solved", "b1k_covheur_nodes", "b1k_covheur_path"),
+        ("hsel_covgreedy", "min RECOMMENDED start prio", "length-only",
+         "hsel_covgreedy_solved", "hsel_covgreedy_nodes", "hsel_covgreedy_path"),
+        ("hsel_covheur", "min RECOMMENDED start prio", "RECOMMENDED",
+         "hsel_covheur_solved", "hsel_covheur_nodes", "hsel_covheur_path"),
+    ]
+    stats = {
+        name: _arm_cost(rows, sk, nk, pk)
+        for name, _sel, _ord, sk, nk, pk in arms
+    }
+
     bc_g = _solved_set(rows, "b1k_covgreedy_solved")
     bc_h = _solved_set(rows, "b1k_covheur_solved")
     hs_g = _solved_set(rows, "hsel_covgreedy_solved")
@@ -266,7 +321,6 @@ def write_md(rows):
     hsel_prios = [r["hsel_prio"] for r in rows]
     best_prios = [r["bestcov_prio"] for r in rows]
 
-    # rows 634, 635: bestcov heur lost vs covgreedy
     lost_ids = {"634", "635"}
     lost_info = []
     for r in rows:
@@ -278,7 +332,6 @@ def write_md(rows):
                 f"shipped covheur={r['b1k_covheur_solved']} "
                 f"({r['b1k_covheur_nodes']})")
 
-    # gains unique to hsel
     new_heur = sorted(hs_h - bc_h, key=int)
     lost_heur = sorted(bc_h - hs_h, key=int)
     new_greedy = sorted(hs_g - bc_g, key=int)
@@ -290,21 +343,29 @@ def write_md(rows):
         "For each of the 60 benchmark presentations, pick the subword CoV with "
         "the **lowest RECOMMENDED start priority** (static `phi` score — no search "
         "to select `z`), then run length-only and `RECOMMENDED` searches at budget "
-        "1,000 on that start. Compare to the shipped greedy-oracle best-CoV arms "
-        "(`b1k_covgreedy` 45/60, `b1k_covheur` 43/60).",
+        "1,000 on that start. Compare to the shipped greedy baseline and "
+        "greedy-oracle best-CoV arms.",
         "",
         "```text",
         "prio = L + 2.53·K + 6.418·MK + 8.458·S + 3.292·xyimb   # min-heap, lower better",
         "```",
         "",
-        "## Solve counts",
+        "Mean/median **nodes** and **path** are over solved rows only "
+        "(an unsolved row sits at the 1,000-node ceiling).",
         "",
-        "| arm | start selection | ordering | solved / 60 |",
-        "|---|---|---|---:|",
-        f"| `b1k_covgreedy` (shipped) | greedy-oracle bestcov | length-only | **{len(bc_g)}** |",
-        f"| `b1k_covheur` (shipped) | greedy-oracle bestcov | RECOMMENDED | **{len(bc_h)}** |",
-        f"| `hsel_covgreedy` | min RECOMMENDED start prio | length-only | **{len(hs_g)}** |",
-        f"| `hsel_covheur` | min RECOMMENDED start prio | RECOMMENDED | **{len(hs_h)}** |",
+        "## Arms at budget 1,000",
+        "",
+        "| arm | start | ordering | solved | mean nodes | med nodes | mean path | med path |",
+        "|---|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for name, sel, ordering, sk, nk, pk in arms:
+        st = stats[name]
+        lines.append(
+            f"| `{name}` | {sel} | {ordering} | **{st['solved']}/60** | "
+            f"{_fmt(st['mean_nodes'])} | {_fmt(st['median_nodes'])} | "
+            f"{_fmt(st['mean_path'])} | {_fmt(st['median_path'])} |"
+        )
+    lines.extend([
         "",
         f"Heur-selected recipe equals shipped bestcov on **{n_same}/60** rows "
         f"(differs on {n_diff}).",
@@ -351,7 +412,7 @@ def write_md(rows):
         "",
         "## The two rows shipped covheur lost (634, 635)",
         "",
-    ]
+    ])
     lines.extend(lost_info or ["- (not in this subset)"])
     lines.extend([
         "",
@@ -368,18 +429,14 @@ def write_md(rows):
 
 
 def print_summary(rows):
-    bc_g = sum(1 for r in rows if r["b1k_covgreedy_solved"])
-    bc_h = sum(1 for r in rows if r["b1k_covheur_solved"])
-    hs_g = sum(1 for r in rows if r["hsel_covgreedy_solved"])
-    hs_h = sum(1 for r in rows if r["hsel_covheur_solved"])
-    n_same = sum(1 for r in rows if r["same_as_bestcov"])
-    print(json.dumps({
-        "b1k_covgreedy": bc_g,
-        "b1k_covheur": bc_h,
-        "hsel_covgreedy": hs_g,
-        "hsel_covheur": hs_h,
-        "same_as_bestcov": n_same,
-    }, indent=2))
+    arms = (
+        "b1k_greedy", "b1k_heur",
+        "b1k_covgreedy", "b1k_covheur",
+        "hsel_covgreedy", "hsel_covheur",
+    )
+    out = {a: sum(1 for r in rows if r[f"{a}_solved"]) for a in arms}
+    out["same_as_bestcov"] = sum(1 for r in rows if r["same_as_bestcov"])
+    print(json.dumps(out, indent=2))
 
 
 def main(argv=None):

@@ -1,19 +1,23 @@
 # Heur-selected CoV vs greedy-oracle best-CoV at budget 1,000
 
-For each of the 60 benchmark presentations, pick the subword CoV with the **lowest RECOMMENDED start priority** (static `phi` score — no search to select `z`), then run length-only and `RECOMMENDED` searches at budget 1,000 on that start. Compare to the shipped greedy-oracle best-CoV arms (`b1k_covgreedy` 45/60, `b1k_covheur` 43/60).
+For each of the 60 benchmark presentations, pick the subword CoV with the **lowest RECOMMENDED start priority** (static `phi` score — no search to select `z`), then run length-only and `RECOMMENDED` searches at budget 1,000 on that start. Compare to the shipped greedy baseline and greedy-oracle best-CoV arms.
 
 ```text
 prio = L + 2.53·K + 6.418·MK + 8.458·S + 3.292·xyimb   # min-heap, lower better
 ```
 
-## Solve counts
+Mean/median **nodes** and **path** are over solved rows only (an unsolved row sits at the 1,000-node ceiling).
 
-| arm | start selection | ordering | solved / 60 |
-|---|---|---|---:|
-| `b1k_covgreedy` (shipped) | greedy-oracle bestcov | length-only | **45** |
-| `b1k_covheur` (shipped) | greedy-oracle bestcov | RECOMMENDED | **43** |
-| `hsel_covgreedy` | min RECOMMENDED start prio | length-only | **36** |
-| `hsel_covheur` | min RECOMMENDED start prio | RECOMMENDED | **43** |
+## Arms at budget 1,000
+
+| arm | start | ordering | solved | mean nodes | med nodes | mean path | med path |
+|---|---|---|---:|---:|---:|---:|---:|
+| `b1k_greedy` | original | length-only (greedy baseline) | **29/60** | 175.5 | 61 | 19.2 | 16 |
+| `b1k_heur` | original | RECOMMENDED | **43/60** | 214.7 | 106 | 33.0 | 25 |
+| `b1k_covgreedy` | greedy-oracle bestcov | length-only | **45/60** | 102.9 | 17 | 23.6 | 12 |
+| `b1k_covheur` | greedy-oracle bestcov | RECOMMENDED | **43/60** | 49.3 | 15 | 20.2 | 12 |
+| `hsel_covgreedy` | min RECOMMENDED start prio | length-only | **36/60** | 168.9 | 53 | 22.2 | 15 |
+| `hsel_covheur` | min RECOMMENDED start prio | RECOMMENDED | **43/60** | 172.4 | 77 | 28.4 | 20 |
 
 Heur-selected recipe equals shipped bestcov on **6/60** rows (differs on 54).
 
