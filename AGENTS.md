@@ -3,6 +3,10 @@
 ### 2026-07-14 Equivalence tutorial verification environment
 
 - [TRAP] This checkout has no `ACSolverX/.venv/bin/python3`; commands copied from the proof-book documentation fail here.
+- [TRAP] The macOS system `python3` in this worktree also has no `pytest` module. Run focused Python tests through `uv run --with pytest python3 -m pytest ...` rather than calling the system interpreter directly.
+- [TRAP] Sandboxed `uv` cannot initialize its default cache under `~/.cache/uv` (`Operation not permitted`). Set `UV_CACHE_DIR=.scratch/uv-cache` so dependency and interpreter state remains project-relative.
+- [TRAP] Running the whole `tests/stable_ac` suite with only `--with pytest` leaves the unrelated CoV import path without JAX; `test_transformed_flat_repads_to_cap` then fails at import time with `ModuleNotFoundError: No module named 'jax'`. Include `--with numpy --with jax` when verifying that test or the full suite.
+- [WORKS] The first JAX verification may require approved network access because the project-relative uv cache is initially empty. After downloading JAX, SciPy, and jaxlib once, the previously blocked CoV test passes in the isolated environment.
 - [WORKS] Run the independent certificate verifier without modifying the project environment via `uv run --with numba --with numpy python3 <absolute-path>/experiments/equivalence_classes/verify/verify_proofs.py`.
 - [WORKS] Pass absolute input and output paths to Tectonic in this workspace; relative `--outdir` resolution was unreliable.
 
@@ -1032,3 +1036,6 @@
 - [TRAP] The first mapping-torus statement dropped the surviving sign of the fixed a-entry. The exact target is `Phi^j(z_0^eta)` with `eta=+/-1`; carry source orientation through every quotient and twisted-conjugacy reduction.
 - [TRAP] A split LaTeX quantifier line left a trailing space after the comma and failed `git diff --check`. Break display lines after punctuation without padding before the newline.
 - [TRAP] Explicitly generating each diagonal image subgroup attached to all 72 `S3` representation orbits stalled even though the representation-orbit classification was cheap. Do not enumerate the whole diagonal subgroup; saturate only the equation's reachable states, work one orbit at a time, and impose a hard state cap with progress output.
+- [TRAP] The compact Magnus diagnostic encoded a positive `z_i` by the integer `i` and a negative `z_i^-1` by `-i-1`; the value `-1` can therefore be misread if the sign channel is discarded. A positive `y` encountered at height `-1` is `z_-1`, not `z_0^-1`. For new rewrites, store `(index, sign)` pairs or verify the final kernel word by direct semidirect multiplication.
+- [TRAP] A three-file proof patch anchored the main ledger on prose whose line wrapping differed from the expected context, so the whole patch was rejected. Read the exact insertion neighborhood and patch each proof file separately when their surrounding formats differ.
+- [TRAP] The first displayed expansion of `Delta x Delta^-1` retained one extra `x` after cancelling the middle `x x^-1`. Verify braid identities as freely reduced words before typesetting the intermediate equality; the correct line is `x u x u^-1 x^-1 = u x u u^-1 x^-1 = u`.

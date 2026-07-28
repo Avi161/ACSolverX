@@ -394,6 +394,71 @@ def test_first_image_depth_three_has_one_residue_after_a_finite_certificate() ->
     assert survivors == {five_leaf}
 
 
+def test_explicit_target_commutator_does_not_transport_the_fixed_entry() -> None:
+    def compose(
+        left: tuple[int, ...],
+        right: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        return tuple(left[right[index]] for index in range(len(left)))
+
+    def inverse(permutation: tuple[int, ...]) -> tuple[int, ...]:
+        result = [0] * len(permutation)
+        for source, target in enumerate(permutation):
+            result[target] = source
+        return tuple(result)
+
+    def evaluate(
+        word: str,
+        x_image: tuple[int, ...],
+        y_image: tuple[int, ...],
+    ) -> tuple[int, ...]:
+        images = {
+            "x": x_image,
+            "X": inverse(x_image),
+            "y": y_image,
+            "Y": inverse(y_image),
+        }
+        result = tuple(range(len(x_image)))
+        for letter in word:
+            result = compose(result, images[letter])
+        return result
+
+    def cycle_type(permutation: tuple[int, ...]) -> tuple[int, ...]:
+        unseen = set(range(len(permutation)))
+        lengths = []
+        while unseen:
+            current = next(iter(unseen))
+            length = 0
+            while current in unseen:
+                unseen.remove(current)
+                current = permutation[current]
+                length += 1
+            if length > 1:
+                lengths.append(length)
+        return tuple(sorted(lengths, reverse=True)) or (1,)
+
+    x_image = (1, 2, 3, 0)
+    y_image = (1, 3, 0, 2)
+    u_image = evaluate("yxyXY", x_image, y_image)
+    a_image = evaluate("xxxyxYYYYXY", x_image, y_image)
+    b_image = evaluate("xyxyXYxyxYXYXyxYXY", x_image, y_image)
+    r_image = evaluate("XyxYXYXyx", x_image, y_image)
+    target_image = evaluate("yX", x_image, y_image)
+    commutator_image = compose(
+        compose(
+            compose(inverse(r_image), x_image),
+            r_image,
+        ),
+        inverse(x_image),
+    )
+
+    assert u_image == x_image
+    assert b_image == tuple(range(4))
+    assert commutator_image == target_image
+    assert cycle_type(a_image) == (4,)
+    assert cycle_type(r_image) == (2,)
+
+
 def test_last_residue_cyclic_cover_has_rank_four_monodromy() -> None:
     def inverse(word: tuple[int, ...]) -> tuple[int, ...]:
         return tuple(-letter for letter in reversed(word))
@@ -474,3 +539,28 @@ def test_last_residue_cyclic_cover_has_rank_four_monodromy() -> None:
     )
     assert a_rewrite == (3, -5, -4, -3, -2, 0)
     assert q == (3, -4, -2, 1, 3, -2, 3, -4, -3, -1, 2, 4, -3, 2, -3, -1)
+
+    explicit_commutator_entry = (
+        3,
+        -4,
+        -2,
+        1,
+        -2,
+        -1,
+        2,
+        -1,
+        2,
+        4,
+        -3,
+        2,
+        -3,
+        -1,
+    )
+    explicit_commutator = reduce_word(
+        substitute(inverse(explicit_commutator_entry), monodromy)
+        + substitute(
+            substitute(explicit_commutator_entry, monodromy),
+            monodromy,
+        )
+    )
+    assert explicit_commutator == (1,)

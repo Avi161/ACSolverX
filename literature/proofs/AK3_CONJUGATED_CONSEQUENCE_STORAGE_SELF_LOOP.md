@@ -1609,3 +1609,82 @@ ordinary Alexander equation is always soluble because
 \(\det(\Phi_{\rm ab}-I)=1\), and the natural full braid quotient also
 realizes it.  A successful obstruction must use nonabelian free-kernel
 information.
+
+## 32. The target commutator and the fixed-factor intersection
+
+Let \(H=G_b\) and \(c=yx^{-1}=z_0\).  Equation (106) is equivalent to
+
+\[
+[a,h]=s c^\eta s^{-1}
+\quad(h,s\in H,\ \eta\in\{\pm1\}),
+\tag{107}
+\]
+
+where \([a,h]=a^{-1}hah^{-1}\).  Equivalently,
+
+\[
+\operatorname{Cl}_H(a)\cap
+a\operatorname{Cl}_H(c^\eta)\ne\varnothing
+\tag{108}
+\]
+
+for at least one sign.  The integers n and j in (106) are simply the
+stable-letter heights of h and s.
+
+There is an explicit commutator expression for c.  Put
+
+\[
+g=yx,\qquad u=gyg^{-1},\qquad \Delta=xux=uxu.
+\tag{109}
+\]
+
+The braid relation gives \(\Delta x\Delta^{-1}=u\).  Hence, for
+\(r=\Delta^{-1}g\),
+
+\[
+r^{-1}xr=g^{-1}ug=y,
+\qquad
+c=r^{-1}xrx^{-1}=[r,x].
+\tag{110}
+\]
+
+In the coordinates (104), \(r=r_0t^{-1}\), with
+
+\[
+r_0=
+z_2z_3^{-1}z_1^{-1}z_0z_1^{-1}z_0^{-1}z_1z_0^{-1}
+z_1z_3z_2^{-1}z_1z_2^{-1}z_0^{-1}.
+\tag{111}
+\]
+
+Direct free reduction verifies
+
+\[
+\Phi(r_0^{-1})\Phi^2(r_0)=z_0.
+\tag{112}
+\]
+
+The explicit commutator cannot be transported to the fixed entry.  The
+assignment
+
+\[
+x\mapsto(0\,1\,2\,3),
+\qquad
+y\mapsto(0\,1\,3\,2)
+\tag{113}
+\]
+
+defines a quotient onto \(S_4\): it sends u to x, so b dies.  It sends a
+to a four-cycle and r to a transposition.  Therefore
+\(a\not\sim_H r\); the height map independently excludes
+\(a\sim_H r^{-1}\).
+
+### Theorem 32.1 (commutator-genus blindness)
+
+The target of the last depth-three residue is already a single
+commutator in \(G_b\).  Stable commutator length and any quasimorphism
+criterion which only obstructs commutator length one therefore cannot
+close it.  The exact remaining issue is the fixed-factor intersection
+(108).  The \(S_4\) certificate closes the most direct transport of
+(110), but nonconjugacy of a and r does not exclude every point of
+(108).

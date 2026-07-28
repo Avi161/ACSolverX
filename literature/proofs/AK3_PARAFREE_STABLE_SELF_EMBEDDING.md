@@ -1753,6 +1753,101 @@ natural full braid quotient both admit solutions.  Any closure must use
 nonabelian information in the free kernel together with the explicit
 monodromy \(\Phi\).
 
+## 21. The target is a commutator, but with the wrong fixed entry
+
+Let \(H=G_b\) and \(c=yx^{-1}=z_0\).  Equation (20.10) can be read
+without coordinates as
+
+\[
+[a,h]=s c^\eta s^{-1}
+\quad(h,s\in H,\ \eta\in\{\pm1\}),
+\tag{21.1}
+\]
+
+where \([a,h]=a^{-1}hah^{-1}\).  Multiplication by a gives the exact
+conjugacy-class-product criterion
+
+\[
+\boxed{
+\operatorname{Cl}_H(a)\cap
+a\operatorname{Cl}_H(c^\eta)\ne\varnothing
+\quad\text{for at least one }\eta.}
+\tag{21.2}
+\]
+
+The parameters n and j in (20.10) are only the stable-letter heights of
+h and s.  Thus (21.2), not a separate search over those integers, is the
+intrinsic residue.
+
+The target c is already a single commutator in H.  Put
+
+\[
+g=yx,\qquad u=gyg^{-1},\qquad \Delta=xux=uxu.
+\tag{21.3}
+\]
+
+The braid relation implies
+
+\[
+\Delta x\Delta^{-1}
+=xuxu^{-1}x^{-1}
+=uxuu^{-1}x^{-1}
+=u.
+\tag{21.4}
+\]
+
+For \(r=\Delta^{-1}g\), therefore,
+
+\[
+r^{-1}xr=g^{-1}ug=y,
+\qquad
+c=r^{-1}xrx^{-1}=[r,x].
+\tag{21.5}
+\]
+
+The cyclic-cover coordinate of r is \(r=r_0t^{-1}\), where
+
+\[
+\begin{aligned}
+r_0={}&z_2z_3^{-1}z_1^{-1}z_0z_1^{-1}z_0^{-1}z_1z_0^{-1}\\
+&{}\cdot z_1z_3z_2^{-1}z_1z_2^{-1}z_0^{-1}.
+\end{aligned}
+\tag{21.6}
+\]
+
+Direct free reduction gives
+
+\[
+\Phi(r_0^{-1})\Phi^2(r_0)=z_0.
+\tag{21.7}
+\]
+
+This independently verifies \([r,t]=z_0\).  But this commutator cannot
+be transported to the fixed entry.  The quotient
+
+\[
+x\mapsto(0\,1\,2\,3),
+\qquad
+y\mapsto(0\,1\,3\,2)
+\quad\text{in }S_4
+\tag{21.8}
+\]
+
+sends u to x and therefore kills b.  It sends a to a four-cycle and r
+to a transposition, proving \(a\not\sim_H r\).  The height homomorphism
+also rules out \(a\sim_H r^{-1}\).
+
+### Theorem 21.1 (fixed-factor formulation)
+
+Stable commutator length cannot obstruct (20.10): its target already
+has commutator length one.  More generally, any homogeneous
+quasimorphism argument which only excludes single commutators is blind.
+The unresolved issue is specifically the first entry a.  The quotient
+(21.8) closes the direct transport of (21.5), but nonconjugacy of a and
+r alone does not close the larger intersection (21.2).  A finite
+quotient closes the residue exactly when the image conjugacy class of a
+misses both \(a\operatorname{Cl}(c^{\pm1})\).
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

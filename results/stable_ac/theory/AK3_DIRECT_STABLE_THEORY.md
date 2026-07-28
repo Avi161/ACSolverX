@@ -7584,6 +7584,71 @@ using the half-twist \(\Delta\).  Thus the remaining problem is a
 nonabelian twisted-conjugacy equation in a free group; both ordinary
 Alexander data and the braid quotient are provably blind.
 
+**Result 135 (the target is already a commutator, and the residue is a
+conjugacy-class intersection).**  Put \(H=G_b\) and \(c=yx^{-1}=z_0\).
+Result 134 is equivalently
+
+\[
+[a,h]=s c^\eta s^{-1}
+\quad(h,s\in H,\ \eta=\pm1),
+\]
+
+where \([a,h]=a^{-1}hah^{-1}\).  Multiplying by a on the left shows
+that this is exactly
+
+\[
+\operatorname{Cl}_H(a)\cap
+a\operatorname{Cl}_H(c^\eta)\ne\varnothing
+\quad\text{for at least one }\eta\in\{\pm1\}.
+\]
+
+The two integer parameters in Result 134 are only the stable-letter
+heights of h and s.
+
+The target itself has an explicit genus-one expression in H.  Write
+\(g=yx\), \(u=gyg^{-1}\), and \(\Delta=xux=uxu\).  The braid relation
+gives \(\Delta x\Delta^{-1}=u\).  For \(r=\Delta^{-1}g\), it follows
+that
+
+\[
+r^{-1}xr=g^{-1}ug=y,
+\qquad
+c=r^{-1}xrx^{-1}=[r,x].
+\]
+
+Thus stable commutator length and any homogeneous-quasimorphism bound
+which only obstructs being one commutator are necessarily blind.  The
+issue is the fixed first entry a, not the commutator genus of c.
+
+In the free-by-cyclic coordinates of Result 134,
+\(r=r_0t^{-1}\), where
+
+\[
+\begin{aligned}
+r_0={}&z_2z_3^{-1}z_1^{-1}z_0z_1^{-1}z_0^{-1}z_1z_0^{-1}\\
+&{}\cdot z_1z_3z_2^{-1}z_1z_2^{-1}z_0^{-1}.
+\end{aligned}
+\]
+
+Direct free reduction gives
+\(\Phi(r_0^{-1})\Phi^2(r_0)=z_0\), independently verifying
+\([r,t]=z_0\).  This particular commutator cannot be transported to the
+fixed entry: the quotient
+
+\[
+x\longmapsto(0\,1\,2\,3),
+\qquad
+y\longmapsto(0\,1\,3\,2)
+\quad\text{in }S_4
+\]
+
+kills b but sends a to a four-cycle and r to a transposition.  Hence
+\(a\not\sim_H r\); height also rules out \(a\sim_H r^{-1}\).  This
+closes only the explicit transport route.  The full class-product
+intersection remains the exact residue, and a finite quotient closes it
+precisely when the image conjugacy class of a misses both sets
+\(a\operatorname{Cl}(c^{\pm1})\).
+
 ## Live lead
 
 The direct relation-splitting manufacture of
