@@ -2875,6 +2875,292 @@ and both signs \(\sigma\), the right ideal
 
 is proper.  Together with the scalar collapse at \(\ell=0\), this
 decides the internal flow quotient for every normalized
-sign-\((+,+,-)\) length-three code in (95).  Proper flow is still
-only a module obstruction; this theorem is not a primitivity or
-Andrews--Curtis result.
+sign-\((+,+,-)\) length-three code in (95).  Flow collapse proves
+only failure of this obstruction.  The next section records the
+separate implication from flow propriety to nonprimitivity in the
+A--D application; neither outcome is itself an Andrews--Curtis
+theorem.
+
+## 23. Exact return from internal flow to the A--D Fox row
+
+For completeness, propriety of the internal flow ideal is not merely
+an analogy to the earlier relative-free obstruction.  It supplies the
+same nonprimitivity certificate without the relative-free hypothesis.
+
+Let
+
+\[
+J_{b,\sigma}
+=(x^4-1)\mathbb Q[B]
++(yR_3-R_4)\mathbb Q[B]
++(b+\sigma R_4)\mathbb Q[B].
+\tag{168}
+\]
+
+Suppose \(J_{b,\sigma}\ne\mathbb Q[B]\), and put
+
+\[
+W=\mathbb Q[B]/J_{b,\sigma},
+\qquad w=1+J_{b,\sigma}\ne0.
+\]
+
+Then
+
+\[
+w(x^4-1)=0,\qquad
+w(yR_3-R_4)=0,\qquad
+w(b+\sigma R_4)=0.
+\tag{169}
+\]
+
+Let \(G=B*\langle z\rangle\) and induce \(W\) to a right
+\(\mathbb Q[G]\)-module:
+
+\[
+M=W\otimes_{\mathbb Q[B]}\mathbb Q[G].
+\tag{170}
+\]
+
+The group ring \(\mathbb Q[G]\) is free as a left
+\(\mathbb Q[B]\)-module on right-coset representatives.  Hence
+\(W\to M\), \(w\mapsto w\otimes1\), is injective; retain the notation
+\(w\ne0\) for its image.
+
+Set
+
+\[
+t=zxz^{-1},\qquad q=zy,\qquad
+g=zbz^{-1},\qquad v=wz^{-1}.
+\tag{171}
+\]
+
+Right multiplication by \(z^{-1}\) is invertible, so \(v\ne0\).
+The three relations (169) give
+
+\[
+v(t^4-1)=0,
+\qquad
+v\bigl(g+\sigma R_4(t)\bigr)=0,
+\tag{172}
+\]
+
+\[
+v\bigl(qR_3-R_4(t)z\bigr)=0.
+\tag{173}
+\]
+
+The literal evaluated A--D Fox row is
+
+\[
+\left(
+qR_3+\sigma gt^{-1}z,\;
+-R_4(t)-\sigma gt^{-1},\;
+\sigma g(t^{-1}-1),\;
+1-t^4
+\right).
+\tag{174}
+\]
+
+Equation (172) gives \(vt^{-1}=vt^3\), and therefore
+\(vR_4(t)t^{-1}=vR_4(t)\).  Using (172)--(173), the four coordinates
+of (174) annihilate \(v\), exactly as in the noninternal
+relative-free calculation.  Thus (174) is not right-unimodular over
+\(\mathbb Q[G]\).
+
+If an A--D relative product \(P_\sigma(c)\) is primitive, its Fox row
+is right-unimodular over the integral free-group ring, and every
+evaluation of that row remains right-unimodular after scalar
+extension.  Consequently, whenever its evaluated internal parameter
+is
+
+\[
+g=zbz^{-1}
+\]
+
+and \(J_{b,\sigma}\) is proper, \(P_\sigma(c)\) is nonprimitive.
+This implication applies in particular to the proper families in
+Sections 10, 12, and 22.  A collapsed flow quotient gives no converse:
+it neither proves primitivity nor supplies an Andrews--Curtis
+reduction.
+
+## 24. The positive--negative--positive length-three stratum
+
+Consider the other normalized exponent-one length-three family
+
+\[
+b_{\ell,p,q}
+=x^\ell yx^py^{-1}x^qy,
+\qquad
+0\leq\ell<4,\quad
+p=1,2,\quad q=1,2,3.
+\tag{175}
+\]
+
+Put \(a=yxy^{-1}\).  Then
+
+\[
+b_{\ell,p,q}=x^\ell a^px^qy=ny,
+\qquad
+n=x^\ell a^px^q\in
+J_-=\langle x\rangle*_{C}\langle a\rangle.
+\]
+
+The subgroup \(C=\langle x^4\rangle=\langle a^3\rangle\) is central
+in \(J_-\).  Hence
+
+\[
+b^{-1}Cb
+=y^{-1}n^{-1}Cny
+=y^{-1}Cy
+=\langle x^3\rangle,
+\]
+
+and therefore
+
+\[
+K_b=\langle H,b^{-1}Cb\rangle=H.
+\tag{176}
+\]
+
+Both stencil folds are open.  For the incoming one,
+
+\[
+b^{-1}x^mb
+=y^{-1}
+\bigl(x^{-q}a^{-p}x^ma^px^q\bigr)y.
+\tag{177}
+\]
+
+The value in (177) lies in \(H\) exactly when the parenthesized word
+lies in \(\langle a\rangle\).  If \(4\nmid m\), it is a reduced
+five-syllable word in
+\(\langle x\rangle*_{C}\langle a\rangle\), since
+\(p\not\equiv0\pmod3\) and \(q\not\equiv0\pmod4\).  If \(4\mid m\),
+centrality of \(C\) gives membership.  Thus \(d_I=4\).
+
+Similarly,
+
+\[
+b^{-1}yx^my^{-1}b
+=y^{-1}
+\bigl(
+x^{-q}a^{-p}x^{-\ell}a^mx^\ell a^px^q
+\bigr)y.
+\tag{178}
+\]
+
+If \(3\mid m\), the middle power \(a^m\) lies in the central subgroup
+\(C\).  If \(3\nmid m\), the inner word is reduced and does not lie in
+\(\langle a\rangle\); when \(\ell=0\), it reduces only to
+\(x^{-q}a^mx^q\), which has the same conclusion.  Hence
+
+\[
+(d_I,d_O)=(4,3).
+\tag{179}
+\]
+
+Since \(K_b=H\), the exact scalar equations are, for every \(g\in B\),
+
+\[
+\sum_{i=0}^{3}
+s\!\left(
+Hy^{-1}x^{-q}yx^{-p}y^{-1}x^{i-\ell}g
+\right)
+=\lambda s(Hg),
+\tag{180}
+\]
+
+\[
+\sum_{j=0}^{2}
+s\!\left(
+Hy^{-1}x^{-q}yx^{-p}y^{-1}x^{-\ell}yx^jg
+\right)
+=\lambda s(Hg),
+\qquad\lambda=-\sigma.
+\tag{181}
+\]
+
+Their geometry in the ordinary Bass--Serre tree is exact.  Every
+target in (180) is at distance three from its center, one in each
+incoming branch.  Reading from the center outward, the internal turns
+are the nonzero phases \(p\bmod3\) and \(q\bmod4\).
+
+If \(\ell\ne0\), every target in (181) is at distance four, one in
+each outgoing branch; all three internal phases
+\(\ell\bmod4\), \(p\bmod3\), and \(q\bmod4\) are nonzero.  If
+\(\ell=0\), the middle \(y^{-1}y\) cancels and (181) becomes
+
+\[
+\sum_{j=0}^{2}
+s\!\left(
+Hy^{-1}x^{-q}yx^{j-p}g
+\right)
+=\lambda s(Hg).
+\tag{182}
+\]
+
+Its three targets are at distance two, one in each outgoing branch,
+and the \(q\)-turn is nontrivial.
+
+This distance separation gives a finite-support leaf proof.  Let
+
+\[
+D_\lambda:
+\mathbb Q[H\backslash B]^2
+\longrightarrow\mathbb Q[H\backslash B]
+\]
+
+be the transpose of (180)--(181), and suppose
+
+\[
+D_\lambda(\alpha,\beta)=[H]
+\tag{183}
+\]
+
+with finite support.  Let \(Q\) be the finite convex hull of the
+target \(H\) and all centers supporting \(\alpha\) or \(\beta\).
+Choose a non-target leaf \(v\), with inward neighbor \(u\).
+
+If \(\ell\ne0\), choose an outward outgoing branch of \(v\) and its
+distance-four target from the \(\beta(v)\)-row.  Every other supported
+center is at least distance five from that target, while every row has
+radius at most four.  Its coefficient in (183) is therefore
+\(\beta(v)\), so \(\beta(v)=0\).  Next choose a distance-three
+incoming target of the \(\alpha(v)\)-row.  Only a radius-four row at
+\(u\) could also reach it, and that row can use at most one of the at
+least three outward incoming branches.  Choosing another branch
+forces \(\alpha(v)=0\).
+
+If \(\ell=0\), first choose a distance-three incoming target.  Every
+other center is at least distance four from it and all rows have
+radius at most three, so \(\alpha(v)=0\).  Then choose a distance-two
+outgoing target.  A radius-three row at \(u\) can collide through at
+most one outgoing branch of \(v\).  Another outward branch exists and
+isolates \(\beta(v)\), forcing \(\beta(v)=0\).
+
+Thus no non-target leaf can belong to the defining support of \(Q\).
+A nontrivial finite tree has at least two leaves, so \(Q=\{H\}\).
+The same maximum-radius argument at \(H\) first kills the longer row
+and then the shorter one, contradicting (183).  Consequently
+
+\[
+[H]\notin\operatorname{im}D_\lambda.
+\tag{184}
+\]
+
+It follows that, for all twenty-four normalized words (175) and both
+signs,
+
+\[
+(x^4-1)\mathbb Q[B]
++(yR_3-R_4)\mathbb Q[B]
++(b_{\ell,p,q}+\sigma R_4)\mathbb Q[B]
+\ne\mathbb Q[B].
+\tag{185}
+\]
+
+The bridge in Section 23 therefore obstructs the corresponding
+internal A--D relative products from being primitive.  This closes
+the flow and Fox-primitivity questions for the whole
+sign-\((+,-,+)\) length-three stratum, not the Andrews--Curtis
+conjecture.

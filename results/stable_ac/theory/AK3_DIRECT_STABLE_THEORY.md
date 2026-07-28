@@ -4234,6 +4234,113 @@ collapse for the six words with \(\ell=0\).  This decides the flow
 quotient for the whole sign-\((+,+,-)\) stratum, not primitivity or
 Andrews--Curtis equivalence.
 
+**Result 74 (internal flow propriety is an A--D nonprimitivity
+certificate).**  Let
+
+\[
+J_{b,\sigma}
+=(x^4-1)\mathbb Q[B]
++(yR_3-R_4)\mathbb Q[B]
++(b+\sigma R_4)\mathbb Q[B].
+\]
+
+If \(J_{b,\sigma}\) is proper, its nonzero cyclic quotient has a
+vector \(w\) annihilated by the three generators.  Induce this module
+from \(B\) to \(G=B*\langle z\rangle\); freeness of
+\(\mathbb Q[G]\) as a left \(\mathbb Q[B]\)-module preserves
+\(w\ne0\).  With
+
+\[
+t=zxz^{-1},\qquad q=zy,\qquad
+g=zbz^{-1},\qquad v=wz^{-1},
+\]
+
+the vector \(v\) annihilates
+
+\[
+v(t^4-1),\qquad
+v\bigl(g+\sigma R_4(t)\bigr),\qquad
+v\bigl(qR_3-R_4(t)z\bigr).
+\]
+
+These identities annihilate every coordinate of the literal
+evaluated A--D Fox row
+
+\[
+\left(
+qR_3+\sigma gt^{-1}z,\;
+-R_4(t)-\sigma gt^{-1},\;
+\sigma g(t^{-1}-1),\;
+1-t^4
+\right).
+\]
+
+Therefore, when an A--D relative product has evaluated internal
+parameter \(g=zbz^{-1}\), propriety of \(J_{b,\sigma}\) proves that
+relative product nonprimitive.  This applies to the proper families
+in Results 61, 62, and 73.  Flow collapse has no converse implication:
+it proves neither primitivity nor an AC reduction.
+
+**Result 75 (the full positive--negative--positive length-three
+stratum is proper).**  Let
+
+\[
+b_{\ell,p,q}
+=x^\ell yx^py^{-1}x^qy,
+\qquad
+0\leq\ell<4,\quad p=1,2,\quad q=1,2,3.
+\]
+
+Writing \(a=yxy^{-1}\), one has
+\(b=x^\ell a^px^qy\).  The centrality of
+\(C=\langle x^4\rangle=\langle a^3\rangle\) in
+\(\langle x,a\rangle\) gives
+
+\[
+b^{-1}Cb=y^{-1}Cy=\langle x^3\rangle,
+\qquad K_b=H.
+\]
+
+Amalgam normal form gives the exact fold pair
+
+\[
+(d_I,d_O)=(4,3).
+\]
+
+In the ordinary Bass--Serre tree, the four incoming-row targets are
+geodesic distance three from their center, one in each incoming
+branch.  For \(\ell\ne0\), the three outgoing-row targets are
+geodesic distance four, one in each outgoing branch.  For \(\ell=0\),
+the middle stable letters cancel and those three targets have distance
+two, still one in each outgoing branch.  The phases \(p=1,2\) and
+\(q=1,2,3\), together with \(\ell\ne0\) in the length-four case,
+make every internal turn nonbacktracking.
+
+If a finite row combination equaled one target basis vector, take a
+non-target leaf of the convex hull of its row centers and the target.
+For \(\ell\ne0\), a distance-four outward target first isolates the
+outgoing coefficient; a distance-three target in another incoming
+branch then isolates the incoming coefficient, avoiding the sole
+possible radius-four collision from the inward neighbor.  For
+\(\ell=0\), distance three first isolates the incoming coefficient,
+then a distance-two outgoing branch avoiding the sole possible
+radius-three collision isolates the outgoing coefficient.  The same
+argument handles the singleton hull.  Hence the target is outside the
+finite-row image.
+
+Therefore, for all twenty-four normalized words, both signs,
+
+\[
+(x^4-1)\mathbb Q[B]
++(yR_3-R_4)\mathbb Q[B]
++(b_{\ell,p,q}+\sigma R_4)\mathbb Q[B]
+\ne\mathbb Q[B].
+\]
+
+By Result 74, the corresponding evaluated internal A--D relative
+products are nonprimitive.  This closes the flow/Fox obstruction on
+the whole sign-\((+,-,+)\) length-three stratum, not AC itself.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
