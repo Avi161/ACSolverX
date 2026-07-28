@@ -4537,6 +4537,52 @@ finite-length instances.  The theorem excludes words whose endpoint
 pinch puts both stencils in the same branch family, any nontrivial
 fold, and \(K_b\ne H\); it is not an AC theorem.
 
+**Result 79 (the whole \(K_b=H\) stratum is classified).**  For a
+Britton-reduced word
+
+\[
+b=x^{r_0}y^{\epsilon_1}x^{r_1}\cdots
+x^{r_{n-1}}y^{\epsilon_n},
+\qquad n\ge1,
+\]
+
+conjugate-peeling decides \(b^{-1}x^4b\in H\).  A positive stable
+letter requires divisibility by \(4\) and sends the exponent
+\(4k\mapsto3k\); a negative one requires divisibility by \(3\) and
+sends \(3k\mapsto4k\).  At the first failed pinch, Britton's lemma
+leaves a reduced core which no outer syllable can remove.  Starting
+from exponent \(4\), every pinch succeeds exactly for the alternating
+sign string
+
+\[
+(+,-,+,-,\ldots).
+\]
+
+Therefore
+
+\[
+K_b=H
+\quad\Longleftrightarrow\quad
+(\epsilon_1,\ldots,\epsilon_n)
+=(+,-,+,-,\ldots).
+\]
+
+For every such word, \(d_I=4\).  Amalgam normal form at the initial
+turn gives \(d_O=3\), except for the single-stable-letter endpoint
+\(r_0=0\), where \(b\in yH\) and \(d_O=1\).  Result 78 therefore
+gives the exact unbounded classification
+
+\[
+\begin{array}{c|c}
+b\in H\text{ or }b\in yH&\text{flow collapse},\\
+K_b=H,\ b\notin H\cup yH&\text{flow ideal proper}.
+\end{array}
+\]
+
+By Result 74, every word in the second row obstructs its evaluated
+internal A--D relative product from being primitive.  The canonical
+collapse row has no converse primitivity conclusion.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

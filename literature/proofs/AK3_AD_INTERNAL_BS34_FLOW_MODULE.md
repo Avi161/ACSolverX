@@ -3727,3 +3727,117 @@ By Section 23, every proper ideal in this radius-one-gap family gives
 an A--D Fox nonprimitivity obstruction for the corresponding internal
 parameter.  The theorem is an unbounded primitivity sieve, not an
 Andrews--Curtis proof.
+
+## 28. Exact classification of the \(K_b=H\) stratum
+
+The hypotheses of Section 27 can be recognized directly from the
+stable-letter signs.  Let
+
+\[
+b=x^{r_0}y^{\epsilon_1}x^{r_1}\cdots
+x^{r_{n-1}}y^{\epsilon_n}
+\tag{222}
+\]
+
+be any Britton-reduced representative with \(n\geq1\) and no trailing
+\(H\)-factor.
+
+Use the standard conjugate-peeling form of Britton's lemma.  To decide
+whether \(b^{-1}x^mb\) lies in \(H\), start with the central power
+\(x^m\) and process the stable letters of \(b\) from left to right.
+Base powers do not change \(m\).  A positive stable letter can pinch
+exactly when \(4\mid m\), and then
+
+\[
+y^{-1}x^my=x^{3m/4}.
+\tag{223}
+\]
+
+A negative stable letter can pinch exactly when \(3\mid m\), and then
+
+\[
+yx^my^{-1}=x^{4m/3}.
+\tag{224}
+\]
+
+At the first failed divisibility, the two central stable letters
+survive.  The remaining outer syllables of the reduced word (222) are
+separated by that reduced core and cannot create a later pinch.
+Therefore membership in \(H\) is equivalent to success of every
+transition (223)--(224).
+
+Apply this with \(m=4\).  The first sign must be positive and sends
+\(4\) to \(3\).  The next sign must be negative and sends \(3\) back
+to \(4\), and so on.  Consequently
+
+\[
+\boxed{
+K_b=H
+\quad\Longleftrightarrow\quad
+(\epsilon_1,\ldots,\epsilon_n)
+=(+,-,+,-,\ldots).
+}
+\tag{225}
+\]
+
+The same peeling calculation determines the folds throughout this
+stratum.  For an alternating positive-start word, an arbitrary
+\(b^{-1}x^mb\) survives all transitions exactly when \(4\mid m\).
+Hence
+
+\[
+d_I=4.
+\tag{226}
+\]
+
+For the outgoing fold, write
+
+\[
+b=x^{r_0}yc,
+\qquad a=yxy^{-1}.
+\]
+
+If \(r_0\ne0\bmod4\), amalgam normal form in
+\(\langle x\rangle*_{\langle x^4=a^3\rangle}\langle a\rangle\)
+shows
+
+\[
+x^{-r_0}a^mx^{r_0}\in\langle a\rangle
+\quad\Longleftrightarrow\quad
+3\mid m.
+\tag{227}
+\]
+
+For \(3\mid m\), centrality reduces the conjugate to \(a^m\);
+conjugating by \(y^{-1}\) gives \(x^m\), and the remaining sign string
+of \(c\) alternates beginning with a negative sign, so every later
+pinch succeeds.  Thus \(d_O=3\).
+
+If \(r_0=0\) and \(n\geq2\), the same first cancellation gives
+\(x^m\), while \(c\) begins with a negative stable letter.  Its first
+pinch succeeds exactly when \(3\mid m\), and all later alternating
+pinches then succeed.  Again \(d_O=3\).  The only exception is
+\(n=1,r_0=0\), where \(b\in yH\) and every outgoing port folds:
+
+\[
+d_O=1.
+\tag{228}
+\]
+
+Combining (225)--(228) with the radius-one-gap theorem gives a complete
+flow classification for \(K_b=H\):
+
+\[
+\begin{array}{c|c}
+b\in H&\text{flow collapse},\\
+b\in yH&\text{flow collapse},\\
+K_b=H,\ b\notin H\cup yH&\text{flow ideal proper}.
+\end{array}
+\tag{229}
+\]
+
+The last line contains every Britton length, not a bounded list.  By
+Section 23, every word in that line obstructs the corresponding
+internal A--D relative product from being primitive.  The two
+canonical collapse rows still require a different invariant and are
+not claimed primitive.
