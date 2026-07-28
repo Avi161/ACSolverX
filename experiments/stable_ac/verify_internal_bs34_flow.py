@@ -23,6 +23,13 @@ class OneYSelectedEdge:
     local_half_star: str | None
 
 
+@dataclass(frozen=True)
+class OneYScalarPatterns:
+    left_residue: int
+    intralayer_turns: tuple[tuple[int, int], ...]
+    interlayer_x_powers: tuple[int, ...]
+
+
 def half_star_indices(kind: str, representative_power: int = 0) -> tuple[int, ...]:
     """Return the cyclic coset indices in one directed half-star."""
     if kind == "incoming":
@@ -117,4 +124,16 @@ def classify_one_y_selected_edge(
             + _power_word("x", right_x_power)
         ),
         local_half_star="outgoing" if residue == 0 else None,
+    )
+
+
+def one_y_scalar_patterns(left_x_power: int) -> OneYScalarPatterns:
+    """Replay the prefixes in (36)--(37) for ``b=x^r y H``."""
+    residue = left_x_power % 4
+    return OneYScalarPatterns(
+        left_residue=residue,
+        intralayer_turns=tuple((-residue, right_power) for right_power in range(3)),
+        interlayer_x_powers=tuple(
+            incoming_power - residue for incoming_power in range(4)
+        ),
     )

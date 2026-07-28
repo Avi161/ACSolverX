@@ -4,6 +4,7 @@ from experiments.stable_ac.verify_internal_bs34_flow import (
     half_star_indices,
     matrix_rank,
     one_y_double_coset_signature,
+    one_y_scalar_patterns,
 )
 
 
@@ -68,3 +69,16 @@ def test_cxy_is_a_britton_reduced_selected_edge_outside_both_local_half_stars():
     assert noncanonical.left_residue == 1
     assert noncanonical.britton_word == "xy"
     assert noncanonical.local_half_star is None
+
+
+def test_one_y_scalar_system_splits_into_fixed_turn_and_height_lowering_patterns():
+    canonical = one_y_scalar_patterns(0)
+    noncanonical = one_y_scalar_patterns(5)
+
+    assert canonical.left_residue == 0
+    assert canonical.intralayer_turns == ((0, 0), (0, 1), (0, 2))
+    assert canonical.interlayer_x_powers == (0, 1, 2, 3)
+
+    assert noncanonical.left_residue == 1
+    assert noncanonical.intralayer_turns == ((-1, 0), (-1, 1), (-1, 2))
+    assert noncanonical.interlayer_x_powers == (-1, 0, 1, 2)

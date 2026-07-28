@@ -536,3 +536,141 @@ change of representative \(g\).  The equations are required for every
 \(g\in B\), and those additional translated constraints may contain
 cycles.  No nonzero solution, acyclicity theorem, or collapse is
 claimed here.
+
+## 9. Exact one-\(y\) reduction in the exponent-one fibers
+
+The quotient defined by (4) depends only on the double coset \(CbH\).
+Indeed, replacing \(b\) by \(cbh\), with \(c\in C\) and \(h\in H\),
+does not change any selected set \(CbHg\).
+
+Suppose \(b\) has a representative with one positive stable letter:
+
+\[
+b=x^r yx^s.
+\tag{39}
+\]
+
+The right \(H\)-factor removes \(s\), and the left \(C\)-factor reduces
+\(r\) modulo four.  Thus there are exactly four one-\(y\) double
+cosets
+
+\[
+Cx^r yH,\qquad r\in\{0,1,2,3\}.
+\tag{40}
+\]
+
+These four classes are distinct.  An equality
+\(Cx^ryH=Cx^{r'}yH\) would give integers \(m,n\) with
+
+\[
+x^{4m+r}yx^ny^{-1}x^{-r'}=1.
+\]
+
+Britton reduction forces \(n=3k\); the defining relation then gives
+\(4m+r+4k-r'=0\), so \(r\equiv r'\pmod4\).
+
+The case \(r=0\) is the canonical double coset \(CyH\) from
+Section 6.2.  The three values \(r=1,2,3\) are noncanonical.
+
+For every value of \(r\), put
+
+\[
+A=\langle x^3\rangle,\qquad
+u=y^{-1}xy,\qquad H'=y^{-1}Hy.
+\]
+
+Since \(y^{-1}Cy=A\),
+
+\[
+b^{-1}Cb=A
+\quad\text{and hence}\quad
+K_b=\langle H,A\rangle=H.
+\tag{41}
+\]
+
+Moreover,
+
+\[
+H\cap H'=A=\langle u^4\rangle,
+\qquad x^3=u^4.
+\]
+
+The Bass--Serre normal-form theorem for the two adjacent vertex
+stabilizers gives
+
+\[
+J:=\langle H,H'\rangle
+\cong H*_{A}H'.
+\tag{42}
+\]
+
+Now specialize (36)--(37), absorbing the left factor \(x^{-s}\) into
+the left \(H\)-coset.  Equation (37) stays within one height and
+becomes
+
+\[
+\boxed{
+\sum_{j=0}^{2}s(Hu^{-r}x^jg)
+=-\sigma s(Hg).
+}
+\tag{43}
+\]
+
+Equation (36) couples the preceding height to the current one:
+
+\[
+\boxed{
+\sum_{i=0}^{3}s(Hy^{-1}x^{i-r}g)
+=-\sigma s(Hg).
+}
+\tag{44}
+\]
+
+For a fixed right \(J\)-coset \(Jg\), the intralayer equation (43) is
+the eigenvalue equation
+
+\[
+T_rs=-\sigma s,
+\qquad
+(T_rs)(Hq)=\sum_{j=0}^{2}s(Hu^{-r}x^jq)
+\tag{45}
+\]
+
+on the \(H\)-type vertices of the Bass--Serre tree of
+\(H*_{A}H'\).  Unlike the general left-prefix expressions discussed
+at the end of Section 8, this operator is genuinely well-defined.
+Indeed,
+
+\[
+\begin{aligned}
+Hu^{-r}x^{m+3}q
+ &=Hu^{-r}x^3x^mq\\
+ &=Hu^{4-r}x^mq\\
+ &=Hu^{-r}x^mq,
+\end{aligned}
+\tag{46}
+\]
+
+where \(x^3=u^4\) and the last equality absorbs \(x^3\) on the left.
+Thus replacing \(q\) by \(x^nq\) only permutes the three summands in
+(45).  The four-term window in (44) has the analogous structural
+periodicity
+
+\[
+Hy^{-1}x^{m+4}q
+=Hx^3y^{-1}x^mq
+=Hy^{-1}x^mq.
+\tag{47}
+\]
+
+At each of the three adjacent \(H'\)-vertices, the
+operator takes the branch obtained by the fixed nonzero turn
+\(-r\pmod4\).  The values \(r=1,2,3\) are therefore three explicit
+fixed-turn operators, not an unbounded family of words.
+
+For \(r=0\), every term in (43) is \(s(Hg)\), and the equation forces
+\((3+\sigma)s(Hg)=0\), recovering the rational canonical collapse.
+For \(r=1,2,3\), neither a nonzero eigenfunction compatible with
+(44) nor a collapse has been proved.  Equations (43)--(45) are the
+exact next subproblem; no conclusion from a finite truncation is
+claimed here.

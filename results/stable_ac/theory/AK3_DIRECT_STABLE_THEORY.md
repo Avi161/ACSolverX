@@ -3546,6 +3546,38 @@ ordinary Hecke recurrences, because left prefixing is not generally a
 well-defined operation on \(K_b\backslash B\). Existence, cycles, and
 collapse for these translated scalar systems remain open.
 
+The first exponent-one stratum does simplify exactly. For a
+one-stable-letter element \(b=x^ryx^s\), the double coset depends only
+on \(r\bmod4\):
+
+\[
+CbH=Cx^ryH,\qquad r\in\{0,1,2,3\}.
+\]
+
+The value \(r=0\) is the canonical collapse. For \(r=1,2,3\),
+\(K_b=H\). Writing \(u=y^{-1}xy\), the intralayer equation on
+
+\[
+\langle H,y^{-1}Hy\rangle
+\cong H*_{\langle x^3\rangle}y^{-1}Hy
+\]
+
+is one of the three fixed-turn eigenvalue problems
+
+\[
+\sum_{j=0}^{2}s(Hu^{-r}x^jg)=-\sigma s(Hg),
+\]
+
+coupled to the preceding height by
+
+\[
+\sum_{i=0}^{3}s(Hy^{-1}x^{i-r}g)=-\sigma s(Hg).
+\]
+
+This replaces an arbitrary one-\(y\) word family by three exact
+operators. Their compatible nonzero eigenfunctions or collapse remain
+open.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
