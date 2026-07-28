@@ -8102,3 +8102,250 @@ Therefore the pure-\(V_1\) baseline fails in both complementary
 fields.  Any all-length treatment of the initial \(+\!+\) seam must
 retain at least one nontrivial fourth-root component of \(w\) and
 transport the resulting nontrivial color through the word.
+
+## 55. Every zero-phase positive single peak
+
+The root chain from Section 39 has an arbitrary-length triangular
+form.  Let \(n\ge2\) and
+
+\[
+\begin{aligned}
+b={}&yx^{r_1}y\cdots x^{r_{n-1}}yx^sy^{-1}
+x^{t_{n-1}}y^{-1}\cdots x^{t_1}y^{-1}x^q,
+\end{aligned}
+\tag{567}
+\]
+
+where
+
+\[
+3\nmid s
+\tag{568}
+\]
+
+and every \(r_i,t_i,q\in\mathbb Z\) is arbitrary.  Thus the stable
+sign string is \((+^n,-^n)\), the initial fourth-root phase is zero,
+and the only opposing-sign turn is Britton-reduced.  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{569}
+\]
+
+Put \(\alpha=1/3=2\).  Choose a root tower
+
+\[
+\lambda_0=\omega,\qquad
+\omega^3=1,\quad \omega\ne1,\qquad
+\lambda_{j+1}^3=\lambda_j^4
+\quad(0\le j\le n-2).
+\tag{570}
+\]
+
+For \(0\le j\le n-1\), choose a fresh nonzero
+\(z_j\in V_{\lambda_j}\).  Prescribe
+
+\[
+z_jY=z_{j+1}
+\quad(0\le j\le n-2).
+\tag{571}
+\]
+
+This respects the blocks because the source belongs to
+\(D_{\lambda_j^4}\) and the image to
+\(\mathcal R_{\lambda_{j+1}^3}\).
+
+Choose a mixed \(w\in D_1\) with \(S=wR_4\ne0\) and \(w,S\)
+independent, and put
+
+\[
+h=\alpha S+z_0.
+\tag{572}
+\]
+
+Choose fresh \(u_0,\ldots,u_{n-2}\in V_1\), disjoint from all previous
+packets.  Define nonzero scalars
+
+\[
+c_0=
+\left(
+\prod_{i=0}^{n-2}
+\lambda_i^{\,r_{i+1}+t_{i+1}}
+\right)\lambda_{n-1}^{\,s},
+\tag{573}
+\]
+
+and, for \(1\le j\le n-2\),
+
+\[
+c_j=
+\alpha c_{j-1}
+\left(
+\prod_{i=0}^{n-2-j}
+\lambda_i^{\,r_{i+j+1}+t_{i+j+1}}
+\right)
+\lambda_{n-1-j}^{\,s}.
+\tag{574}
+\]
+
+Put
+
+\[
+K_j=u_j+c_jz_0
+\quad(0\le j\le n-2).
+\tag{575}
+\]
+
+Prescribe in \(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+SY&=K_0,\\
+u_jY&=K_{j+1}
+&& (0\le j<n-2),\\
+u_{n-2}Y&=\alpha K_{n-2}X^s.
+\end{aligned}
+\tag{576}
+\]
+
+For \(n=2\), the middle row is empty.  The source list
+
+\[
+w,\ S,\ u_0,\ldots,u_{n-2}
+\tag{577}
+\]
+
+is independent.  The image list is
+
+\[
+h,\ K_0,\ldots,K_{n-2},\
+\alpha K_{n-2}X^s.
+\]
+
+After projecting successively to the unique \(S,u_0,\ldots,u_{n-3}\)
+directions, its last determinant on the
+\((u_{n-2},z_0)\)-plane is
+
+\[
+\alpha c_{n-2}(\lambda_0^s-1)\ne0
+\tag{578}
+\]
+
+by (568).  Hence (576) is injective.  Together with the singleton
+maps (571), it extends to a global cyclotomic block isomorphism.
+
+It remains to verify that the coefficient recursion closes the two
+halves of the word.  Define the forward states
+
+\[
+F_0=h,\qquad
+F_m=(F_{m-1}X^{r_m})Y
+\quad(1\le m\le n-1),
+\tag{579}
+\]
+
+and the states obtained by replaying backward from the endpoint,
+
+\[
+Q_1=K_0X^{-t_1},\qquad
+Q_m=(Q_{m-1}Y)X^{-t_m}
+\quad(2\le m\le n-1).
+\tag{580}
+\]
+
+A direct induction using (571) and (576) gives
+
+\[
+\begin{aligned}
+F_m={}&
+\alpha K_{m-1}\\
+&+\sum_{k=1}^{m-1}
+\alpha c_{m-k-1}
+\left(
+\prod_{j=0}^{k-1}
+\lambda_j^{\,r_{m-k+1+j}}
+\right)z_k\\
+&+
+\left(
+\prod_{j=0}^{m-1}
+\lambda_j^{\,r_{j+1}}
+\right)z_m,
+\end{aligned}
+\tag{581}
+\]
+
+and
+
+\[
+Q_m=
+u_{m-1}
++\sum_{k=0}^{m-1}
+c_{m-1-k}
+\left(
+\prod_{j=0}^{k}
+\lambda_j^{-t_{m-k+j}}
+\right)z_k.
+\tag{582}
+\]
+
+For the last coefficient \(z_{n-1}\), equality between
+\(Q_{n-1}Y\) and \(F_{n-1}X^s\) is exactly (573).  For
+\(1\le m<n-1\), equality of their \(z_m\)-coefficients is
+
+\[
+\begin{aligned}
+c_{n-1-m}
+={}&\alpha c_{n-2-m}
+\left(
+\prod_{j=0}^{m-1}
+\lambda_j^{\,r_{n-m+j}+t_{n-m+j}}
+\right)\lambda_m^s,
+\end{aligned}
+\tag{583}
+\]
+
+which is (574) with the indices reversed.  The \(V_1\)- and
+\(z_0\)-coefficients agree by the last row of (576).  Therefore
+
+\[
+Q_{n-1}Y=F_{n-1}X^s.
+\tag{584}
+\]
+
+The complete replay is now
+
+\[
+\begin{aligned}
+wb
+&=F_{n-1}X^sY^{-1}
+X^{t_{n-1}}Y^{-1}\cdots X^{t_1}Y^{-1}X^q\\
+&=Q_{n-1}X^{t_{n-1}}Y^{-1}
+\cdots X^{t_1}Y^{-1}X^q\\
+&=K_0Y^{-1}X^q
+=S.
+\end{aligned}
+\tag{585}
+\]
+
+Finally,
+
+\[
+hR_3=\alpha S R_3+z_0R_3=S=wR_4,
+\tag{586}
+\]
+
+so
+
+\[
+wX^4=w,\qquad
+wYR_3=wR_4,\qquad
+wb=wR_4.
+\tag{587}
+\]
+
+This proves (569).  Section 53 contains the case \(n=1\), so the
+entire zero-phase positive single-peak family is obstructed at every
+length.  The Fox bridge and (286) cover both A--D signs and every
+free-kernel lift.

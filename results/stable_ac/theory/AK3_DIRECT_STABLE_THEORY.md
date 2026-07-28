@@ -6444,6 +6444,78 @@ peeling: the arbitrary initial-\(+,+\) branch requires genuine
 multiblock color transport, not merely a switch between
 characteristics five and seven.
 
+**Result 108 (every zero-phase positive single peak is obstructed).**
+For \(n\ge2\), let
+
+\[
+b=yx^{r_1}y\cdots x^{r_{n-1}}yx^sy^{-1}
+x^{t_{n-1}}y^{-1}\cdots x^{t_1}y^{-1}x^q,
+\qquad 3\nmid s.
+\]
+
+Over \(\overline{\mathbb F}_5\), put \(\alpha=1/3\), choose
+\(\lambda_0=\omega\ne1\) with \(\omega^3=1\), and build a root tower
+
+\[
+\lambda_{j+1}^3=\lambda_j^4
+\quad(0\le j\le n-2).
+\]
+
+For fresh \(z_j\in V_{\lambda_j}\), prescribe
+\(z_jY=z_{j+1}\).  Choose mixed \(w\in D_1\), put
+\(S=wR_4\), \(h=\alpha S+z_0\), and take fresh
+\(u_0,\ldots,u_{n-2}\in V_1\).
+
+Define
+
+\[
+c_0=
+\left(\prod_{i=0}^{n-2}
+\lambda_i^{r_{i+1}+t_{i+1}}\right)\lambda_{n-1}^s
+\]
+
+and, for \(1\le j\le n-2\),
+
+\[
+c_j=\alpha c_{j-1}
+\left(\prod_{i=0}^{n-2-j}
+\lambda_i^{r_{i+j+1}+t_{i+j+1}}\right)
+\lambda_{n-1-j}^s.
+\]
+
+Put \(K_j=u_j+c_jz_0\), and prescribe
+
+\[
+wY=h,\quad SY=K_0,\quad
+u_jY=K_{j+1}\ (j<n-2),\quad
+u_{n-2}Y=\alpha K_{n-2}X^s.
+\]
+
+All sources lie in \(D_1\), all images in \(\mathcal R_1\), and the
+last image determinant is a nonzero multiple of
+
+\[
+\alpha c_{n-2}(\omega^s-1).
+\]
+
+The root-tower maps occupy their matching nontrivial blocks.
+Forward replay through the positive run and backward replay from
+\(SY=K_0\) give coefficient vectors whose \(z_{n-1}\)-equation is
+the definition of \(c_0\), and whose remaining equations are exactly
+the recursion for the \(c_j\).  Hence the two replays meet at the
+central turn and
+
+\[
+wb=S.
+\]
+
+Since \(hR_3=S=wR_4\), the negative-sign ideal is proper.  Result 85
+and the Fox bridge cover the other A--D sign and every free-kernel
+lift.  The construction specializes to Result 89 at \(n=2\) and
+Result 92 at \(n=3\); together with Result 106 at \(n=1\), it closes
+the full zero-phase positive single-peak family without a length
+bound.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6547,7 +6619,10 @@ zero-phase positive-start path whose first turn is an immediate
 descent, leaving only the initial positive--positive seam. Result 107
 proves that a pure baseline fails on that seam even after switching
 between characteristics five and seven, so a general proof must retain
-mixed fourth-root color transport. Results
+mixed fourth-root color transport. Result 108 supplies an explicit
+root-tower transport and closes the complete zero-phase positive
+single-peak family at arbitrary length; multiple-excursion initial
+positive seams remain. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6558,7 +6633,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--107, arbitrary W--D conjugators,
+61--108, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
