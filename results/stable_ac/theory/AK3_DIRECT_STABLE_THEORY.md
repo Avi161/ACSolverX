@@ -7350,6 +7350,36 @@ two-row primitive exit from the first proper image must use an external
 conjugator on its first edge.  The surviving first-external branch involves
 three translates of the barbell core and is not claimed closed.
 
+**Result 128 (the cascade counterexample is a proper formal row-braid
+self-loop).**  For arbitrary group elements u,v, an explicit history with
+two AC2 moves and AC1/AC3 normalization gives
+
+\[
+(u,v)\sim_{\mathrm{AC}}(v^{-1}uv,\;uvu^{-1}).
+\]
+
+Both terminal rows are conjugates of their corresponding source rows, so
+this cascade preserves individual primitivity.
+
+On the formal row-symbol free group, the induced endomorphism
+
+\[
+\Theta(U)=V^{-1}UV,\qquad \Theta(V)=UVU^{-1}
+\]
+
+is injective and unimodular but proper.  Its two images generate a
+nonabelian rank-two subgroup, while
+
+\[
+\|\Theta([U,V])\|=12>4=\|[U,V]\|,
+\]
+
+which excludes an automorphism.  Thus the cancellation pattern that
+refuted the attempted three-axis estimate is not an escape: it is a
+universal classical AC self-loop.  Iteration gives an infinite proper
+formal corridor while leaving both evaluated row conjugacy classes
+unchanged.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7526,6 +7556,9 @@ A-image change followed by an external B-image change: the long B-axis
 leaves terminal length at least \(15\) or \(11\). Result 127 uses the
 sharp first-image overlap bound to close the reverse orientation there.
 Any genuinely new two-row exit from that image must go external first.
+Result 128 identifies the first provenance-sensitive collapse found in
+that branch as a universal row-braid self-loop rather than a primitive
+compression.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7537,7 +7570,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--127, arbitrary W--D conjugators,
+61--128, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

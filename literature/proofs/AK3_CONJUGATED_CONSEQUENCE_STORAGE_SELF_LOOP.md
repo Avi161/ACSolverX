@@ -1393,3 +1393,32 @@ change followed by an external second row change are nonprimitive.  A
 fully internal history pulls back to AK by Theorem 22.1.  Thus every
 genuinely new two-row exit must use an external conjugator on its first
 edge.  The surviving branch is a three-translate barbell problem.
+
+## 25. The cascade collapse is a universal row-braid self-loop
+
+For arbitrary group elements u,v, two AC2 moves with AC1/AC3 normalization
+give
+
+\[
+(u,v)\sim_{\mathrm{AC}}(v^{-1}uv,\;uvu^{-1}).
+\tag{95}
+\]
+
+Both output rows are conjugates of their input rows.  Formally, (95)
+induces the injective unimodular endomorphism
+
+\[
+U\mapsto V^{-1}UV,
+\qquad
+V\mapsto UVU^{-1}.
+\tag{96}
+\]
+
+It is proper because it sends the cyclic commutator length from 4 to 12.
+
+### Theorem 25.1 (row-braid cascade self-loop)
+
+The provenance-sensitive cascade which defeats pairwise axis-overlap
+estimates is a classical AC self-loop for every input pair.  It cannot
+change either row's primitivity status.  Its formal endomorphism is proper,
+but evaluation preserves the two row conjugacy classes separately.

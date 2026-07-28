@@ -993,3 +993,4 @@
 - [SUPERSEDED] The initial response incorrectly retained a three-axis version of the seam lemma; a legal two-AC2 history refutes it too.
 - [TRAP] With `u=a` and `v=yby^-1`, a legal two-AC2 history produces `uv^-1uvu^-1`, cyclically conjugate to `v^-1uv`, even though its three inherited source tags are pairwise distinct and their axes have overlap at most two.
 - [WORKS] Axis-overlap bounds are safe for the two-factor product estimates used through Result 127. For three or more history-derived leaves, fold the whole based history word including conjugator bridges; never sum source-axis seam bounds in isolation.
+- [WORKS] Replay a cancellation counterexample as an exact AC history before discarding the branch. Here the failure exposed the universal row-braid self-loop `(u,v) -> (v^-1uv,uvu^-1)`, whose formal map is proper but whose evaluated rows remain individually conjugate.

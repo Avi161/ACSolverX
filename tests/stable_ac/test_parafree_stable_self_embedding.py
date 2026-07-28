@@ -381,3 +381,24 @@ def test_first_image_same_source_two_copy_minima() -> None:
         assert min(length for length in opposite_lengths if length) == (
             nontrivial_opposite_minimum
         )
+
+
+def test_two_ac2_cascade_is_a_proper_formal_row_braid_self_loop() -> None:
+    u = "x"
+    v = "y"
+
+    first = inverse(u)
+    first = reduce_word(first + v)
+    first = reduce_word(v + first + inverse(v))
+    first = inverse(first)
+    second = reduce_word(u + v + inverse(u))
+    first = reduce_word(first + second)
+    first = reduce_word(inverse(u) + first + u)
+
+    assert first == "Yxy"
+    assert second == "xyX"
+
+    formal_commutator_image = cyclic_reduce(
+        first + second + inverse(first) + inverse(second)
+    )
+    assert len(formal_commutator_image) == 12

@@ -997,6 +997,77 @@ This is a reduction, not a closure of the first-external branch.  Once the
 first changed row leaves K, the second axis no longer lies in the same
 barbell core and requires a three-translate geometry.
 
+## 14. The cascade counterexample is a universal row-braid self-loop
+
+The failure of a three-axis length estimate comes from an exact group
+identity.  For arbitrary elements u,v of any group, the following legal
+AC1--AC3 sequence uses exactly two AC2 moves:
+
+\[
+\begin{aligned}
+(u,v)
+&\longmapsto(u^{-1},v)
+\longmapsto(u^{-1}v,v)
+\longmapsto(vu^{-1},v)\\
+&\longmapsto(uv^{-1},v)
+\longmapsto(uv^{-1},uvu^{-1})\\
+&\longmapsto(uv^{-1}uvu^{-1},uvu^{-1})\\
+&\longmapsto(v^{-1}uv,uvu^{-1}).
+\end{aligned}
+\tag{14.1}
+\]
+
+The last step conjugates the first row by \(u^{-1}\), using
+
+\[
+u^{-1}(uv^{-1}uvu^{-1})u=v^{-1}uv.
+\tag{14.2}
+\]
+
+Thus
+
+\[
+\boxed{
+(u,v)\sim_{\mathrm{AC}}
+(v^{-1}uv,\;uvu^{-1}).}
+\tag{14.3}
+\]
+
+Both terminal rows are conjugates of their respective source rows.
+Consequently (14.3) preserves the primitivity status of each displayed
+row and can never expose a primitive row from the AK sources or any of
+their image pairs.
+
+There is nevertheless a genuinely proper formal map behind the loop.  On
+the free row-symbol group \(F(U,V)\), define
+
+\[
+\Theta(U)=V^{-1}UV,
+\qquad
+\Theta(V)=UVU^{-1}.
+\tag{14.4}
+\]
+
+Its abelianization is the identity.  The two images do not commute, so
+they generate a rank-two free subgroup and \(\Theta\) is injective.  But
+
+\[
+\|\Theta([U,V])\|=12,
+\qquad
+\|[U,V]\|=4.
+\tag{14.5}
+\]
+
+An automorphism of \(F_2\) sends the commutator to a conjugate of
+\([U,V]^{\pm1}\), so (14.5) proves that \(\Theta\) is proper.
+
+This distinction is essential.  The proper endomorphism acts on formal
+row symbols, while its evaluation at a concrete pair merely conjugates
+the two row values individually.  Iterating (14.3) gives an infinite
+classical AC corridor but never changes either relator conjugacy class.
+The audit counterexample to the false three-axis estimate is exactly one
+instance of this row-braid corridor.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References
