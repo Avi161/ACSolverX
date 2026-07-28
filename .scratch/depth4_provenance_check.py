@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-# [unverified] The provenance assertions are fast, but the two-minority
-# connector census was interrupted before completion; optimize before relying on it.
+# The 30 three-minority cases are enumerated here but are not certified.
 
 from collections import Counter, defaultdict
 from hashlib import sha256
 from itertools import product
 from math import gcd
+from typing import Callable, Iterator, NamedTuple
 
 
 Leaf = tuple[str, int]
@@ -107,8 +107,108 @@ def cyclic_reduce(word: FPWord, orders: dict[str, int]) -> FPWord:
     return reduced
 
 
+def cyclic_reduce_for_target_lengths(
+    parts: tuple[FPWord, ...],
+    orders: dict[str, int],
+    target_lengths: set[int],
+) -> FPWord | None:
+    total_length = sum(len(part) for part in parts)
+    possible_lengths = {length for length in target_lengths if length <= total_length}
+    if not possible_lengths:
+        return None
+
+    reduced: list[tuple[str, int]] = []
+    processed = 0
+    for part in parts:
+        for factor, exponent in part:
+            processed += 1
+            if reduced and reduced[-1][0] == factor:
+                combined = (reduced[-1][1] + exponent) % orders[factor]
+                reduced.pop()
+                if combined:
+                    reduced.append((factor, combined))
+            else:
+                reduced.append((factor, exponent))
+
+            maximum_final_length = len(reduced) + total_length - processed
+            possible_lengths = {
+                length
+                for length in possible_lengths
+                if length <= maximum_final_length
+            }
+            if not possible_lengths:
+                return None
+
+    cyclically_reduced = cyclic_reduce(tuple(reduced), orders)
+    if len(cyclically_reduced) not in possible_lengths:
+        return None
+    return cyclically_reduced
+
+
 def rotations(word: FPWord) -> set[FPWord]:
     return {word[index:] + word[:index] for index in range(len(word))}
+
+
+def cyclic_subwords(word: FPWord, length: int) -> set[FPWord]:
+    if not length:
+        return {()}
+    doubled = word + word
+    return {
+        doubled[index : index + length]
+        for index in range(len(word))
+    }
+
+
+def connector_can_retain_target_subword(
+    connector: FPWord,
+    source_length: int,
+    target_length: int,
+    target_subwords: dict[int, set[FPWord]],
+) -> bool:
+    raw_length = 2 * source_length + 2 * len(connector)
+    syllable_loss = raw_length - target_length
+    if syllable_loss < 0:
+        return False
+    retained_length = len(connector) - syllable_loss
+    if retained_length <= 0:
+        return True
+    return any(
+        connector[start : start + retained_length] in target_subwords[retained_length]
+        for start in range(syllable_loss + 1)
+    )
+
+
+def connector_prefix_can_reach_target(
+    prefix: FPWord,
+    source_length: int,
+    target_length: int,
+    connector_bound: int,
+    target_subwords: dict[int, set[FPWord]],
+) -> bool:
+    first_factor = prefix[0][0] if prefix else None
+    factors = {word[0][0] for word in target_subwords[1]}
+    for final_length in range(len(prefix), connector_bound + 1):
+        syllable_loss = 2 * source_length + 2 * final_length - target_length
+        if syllable_loss < 0:
+            continue
+        retained_length = final_length - syllable_loss
+        if retained_length <= 0:
+            return True
+        for start in range(syllable_loss + 1):
+            for target_segment in target_subwords[retained_length]:
+                if first_factor is not None:
+                    expected_factor = first_factor if start % 2 == 0 else next(
+                        factor for factor in factors if factor != first_factor
+                    )
+                    if target_segment[0][0] != expected_factor:
+                        continue
+                overlap_end = min(start + retained_length, len(prefix))
+                if start < overlap_end:
+                    overlap = prefix[start:overlap_end]
+                    if overlap != target_segment[: len(overlap)]:
+                        continue
+                return True
+    return False
 
 
 def conjugate(left: FPWord, right: FPWord, orders: dict[str, int]) -> bool:
@@ -121,21 +221,46 @@ def conjugate(left: FPWord, right: FPWord, orders: dict[str, int]) -> bool:
     return left in rotations(right)
 
 
-def reduced_connectors(orders: dict[str, int], maximum_length: int) -> list[FPWord]:
-    connectors: list[FPWord] = [()]
-    frontier: list[FPWord] = [()]
-    for _ in range(maximum_length):
-        next_frontier = []
-        for word in frontier:
-            for factor, order in orders.items():
-                if word and word[-1][0] == factor:
+def stream_reduced_connectors(
+    orders: dict[str, int],
+    maximum_length: int,
+    branch_possible: Callable[[FPWord], bool] | None = None,
+) -> Iterator[tuple[FPWord, FPWord]]:
+    if branch_possible is not None and not branch_possible(()):
+        return
+    yield (), ()
+
+    def extend(word: FPWord, inverse: FPWord) -> Iterator[tuple[FPWord, FPWord]]:
+        if len(word) == maximum_length:
+            return
+        for factor, order in orders.items():
+            if word and word[-1][0] == factor:
+                continue
+            for exponent in range(1, order):
+                candidate = word + ((factor, exponent),)
+                candidate_inverse = (
+                    (factor, (-exponent) % order),
+                ) + inverse
+                if branch_possible is not None and not branch_possible(candidate):
                     continue
-                for exponent in range(1, order):
-                    candidate = word + ((factor, exponent),)
-                    connectors.append(candidate)
-                    next_frontier.append(candidate)
-        frontier = next_frontier
-    return connectors
+                yield candidate, candidate_inverse
+                yield from extend(candidate, candidate_inverse)
+
+    yield from extend((), ())
+
+
+def connector_count(orders: dict[str, int], maximum_length: int) -> int:
+    counts = {factor: order - 1 for factor, order in orders.items()}
+    total = 1 + sum(counts.values())
+    ending_counts = counts
+    for _ in range(2, maximum_length + 1):
+        ending_counts = {
+            factor: (order - 1)
+            * sum(count for other, count in ending_counts.items() if other != factor)
+            for factor, order in orders.items()
+        }
+        total += sum(ending_counts.values())
+    return total
 
 
 def christoffel(x_exponent: int, y_exponent: int) -> str:
@@ -172,7 +297,17 @@ QUOTIENTS = {
 SOURCES = {"A": "xxxYYYY", "B": "xyxYXY"}
 
 
-def main() -> None:
+class LowMinorityCertificate(NamedTuple):
+    signature: tuple[int, int, int, int, int]
+    quotient: str
+    minority_length: int
+    target_length: int
+    connector_bound: int | None
+    candidate_words_checked: int
+    found_target: bool
+
+
+def new_depth_four_multisets() -> set[Leaves]:
     depth_four = row_multisets(4)
     old = set().union(*(row_multisets(depth) for depth in range(4)))
     new = depth_four - old
@@ -181,6 +316,12 @@ def main() -> None:
     assert len(old) == 28
     assert len(new) == 54
     assert len(set(signatures)) == 54
+    return new
+
+
+def low_minority_certificate_records() -> tuple[LowMinorityCertificate, ...]:
+    new = new_depth_four_multisets()
+    signatures = sorted(signature(leaves) for leaves in new)
 
     cases_by_minority: dict[int, list[tuple[int, int, int, int, int]]] = defaultdict(list)
     leaves_by_signature = {signature(leaves): leaves for leaves in new}
@@ -196,9 +337,17 @@ def main() -> None:
     assert evaluate(SOURCES["A"], *reversed(QUOTIENTS["Q_A"])) == ()
     assert evaluate(SOURCES["B"], *reversed(QUOTIENTS["Q_B"])) == ()
 
-    records = []
-    checked_words = 0
-    connector_cache: dict[tuple[str, int], list[FPWord]] = {}
+    records: dict[tuple[int, int, int, int, int], LowMinorityCertificate] = {}
+    two_minority_groups: dict[
+        tuple[str, tuple[int, int]],
+        list[
+            tuple[
+                tuple[int, int, int, int, int],
+                int,
+                FPWord,
+            ]
+        ],
+    ] = defaultdict(list)
     for sig in cases_by_minority[1] + cases_by_minority[2]:
         _, a_count, b_count, a_coefficient, b_coefficient = sig
         majority = "A" if a_count > b_count else "B"
@@ -216,15 +365,17 @@ def main() -> None:
         if len(signs) == 1:
             signed = minority_image if signs[0] > 0 else fp_inverse(minority_image, orders)
             found = conjugate(signed, target_image, orders)
-            records.append(
-                (sig, quotient, len(minority_image), len(target_image), "-", 1, found)
+            records[sig] = LowMinorityCertificate(
+                sig,
+                quotient,
+                len(minority_image),
+                len(target_image),
+                None,
+                1,
+                found,
             )
             continue
 
-        signed_images = [
-            minority_image if sign > 0 else fp_inverse(minority_image, orders)
-            for sign in signs
-        ]
         source_length = len(minority_image)
         target_length = len(target_image)
         bridge_length = (
@@ -233,53 +384,137 @@ def main() -> None:
             else 0
         )
         connector_bound = bridge_length + 2
-        cache_key = (quotient, connector_bound)
-        if cache_key not in connector_cache:
-            connector_cache[cache_key] = reduced_connectors(orders, connector_bound)
-        connectors = connector_cache[cache_key]
-        target_rotations = rotations(target_image) if len(target_image) >= 2 else {target_image}
-        found = False
-        local_checked = 0
-        for left_rotation in rotations(signed_images[0]):
-            for right_rotation in rotations(signed_images[1]):
-                for connector in connectors:
-                    product_word = fp_multiply(left_rotation, connector, orders)
-                    product_word = fp_multiply(product_word, right_rotation, orders)
-                    product_word = fp_multiply(product_word, fp_inverse(connector, orders), orders)
-                    local_checked += 1
-                    reduced = cyclic_reduce(product_word, orders)
-                    if len(reduced) == target_length and reduced in target_rotations:
-                        found = True
-                        break
-                if found:
-                    break
-            if found:
-                break
-        checked_words += local_checked
-        records.append(
-            (
-                sig,
-                quotient,
-                source_length,
-                target_length,
-                connector_bound,
-                local_checked,
-                found,
-            )
+        two_minority_groups[(quotient, tuple(signs))].append(
+            (sig, connector_bound, target_image)
         )
 
-    assert len(records) == 24
-    assert not any(record[-1] for record in records)
+    for (quotient, signs), cases in two_minority_groups.items():
+        orders, images = QUOTIENTS[quotient]
+        minority = "B" if quotient == "Q_A" else "A"
+        minority_image = cyclic_reduce(evaluate(SOURCES[minority], images, orders), orders)
+        signed_images = tuple(
+            minority_image if sign > 0 else fp_inverse(minority_image, orders)
+            for sign in signs
+        )
+        left_rotations = rotations(signed_images[0])
+        right_rotations = rotations(signed_images[1])
+        targets_by_length: dict[
+            int,
+            list[
+                tuple[
+                    tuple[int, int, int, int, int],
+                    int,
+                    set[FPWord],
+                    dict[int, set[FPWord]],
+                ]
+            ],
+        ] = defaultdict(list)
+        for sig, connector_bound, target_image in cases:
+            target_rotations = rotations(target_image) if len(target_image) >= 2 else {target_image}
+            target_subwords = {
+                length: cyclic_subwords(target_image, length)
+                if length <= len(target_image)
+                else set()
+                for length in range(1, connector_bound + 1)
+            }
+            targets_by_length[len(target_image)].append(
+                (sig, connector_bound, target_rotations, target_subwords)
+            )
+
+        maximum_bound = max(connector_bound for _, connector_bound, _ in cases)
+        found_signatures = set()
+
+        def branch_possible(prefix: FPWord) -> bool:
+            return any(
+                sig not in found_signatures
+                and connector_prefix_can_reach_target(
+                    prefix,
+                    len(minority_image),
+                    target_length,
+                    connector_bound,
+                    target_subwords,
+                )
+                for target_length, targets in targets_by_length.items()
+                for sig, connector_bound, _, target_subwords in targets
+            )
+
+        for connector, connector_inverse in stream_reduced_connectors(
+            orders,
+            maximum_bound,
+            branch_possible,
+        ):
+            active_targets = [
+                (target_length, sig, target_rotations)
+                for target_length, targets in targets_by_length.items()
+                for sig, connector_bound, target_rotations, target_subwords in targets
+                if len(connector) <= connector_bound
+                and sig not in found_signatures
+                and connector_can_retain_target_subword(
+                    connector,
+                    len(minority_image),
+                    target_length,
+                    target_subwords,
+                )
+            ]
+            if not active_targets:
+                continue
+            active_lengths = {target_length for target_length, _, _ in active_targets}
+            for left_rotation in left_rotations:
+                for right_rotation in right_rotations:
+                    reduced = cyclic_reduce_for_target_lengths(
+                        (
+                            left_rotation,
+                            connector,
+                            right_rotation,
+                            connector_inverse,
+                        ),
+                        orders,
+                        active_lengths,
+                    )
+                    if reduced is None:
+                        continue
+                    for target_length, sig, target_rotations in active_targets:
+                        if len(reduced) == target_length and reduced in target_rotations:
+                            found_signatures.add(sig)
+
+        rotation_pairs = len(left_rotations) * len(right_rotations)
+        for sig, connector_bound, target_image in cases:
+            records[sig] = LowMinorityCertificate(
+                sig,
+                quotient,
+                len(minority_image),
+                len(target_image),
+                connector_bound,
+                rotation_pairs * connector_count(orders, connector_bound),
+                sig in found_signatures,
+            )
+
+    ordered_records = tuple(records[sig] for sig in sorted(records))
+    assert len(ordered_records) == 24
+    return ordered_records
+
+
+def main() -> None:
+    new = new_depth_four_multisets()
+    signatures = sorted(signature(leaves) for leaves in new)
+    cases_by_minority: dict[int, list[tuple[int, int, int, int, int]]] = defaultdict(list)
+    for sig in signatures:
+        _, a_count, b_count, _, _ = sig
+        cases_by_minority[min(a_count, b_count)].append(sig)
+
+    records = low_minority_certificate_records()
+    assert not any(record.found_target for record in records)
 
     signature_payload = "\n".join(",".join(map(str, sig)) for sig in signatures)
     record_payload = "\n".join(repr(record) for record in records)
-    print("depth-four row multisets:", len(depth_four))
-    print("old through depth three:", len(old))
     print("new depth-four multisets:", len(new))
     print("minority split:", {key: len(value) for key, value in cases_by_minority.items()})
     print("signature sha256:", sha256(signature_payload.encode()).hexdigest())
     print("certificate sha256:", sha256(record_payload.encode()).hexdigest())
-    print("two-minority candidate words checked:", checked_words)
+    print(
+        "two-minority candidate words checked:",
+        sum(record.candidate_words_checked for record in records if record.connector_bound is not None),
+    )
     print("\nCLOSED CASES")
     for record in records:
         print(record)

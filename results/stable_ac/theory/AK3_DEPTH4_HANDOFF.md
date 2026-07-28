@@ -43,11 +43,11 @@ minority conjugates:
 Thus the new geometric problem has no four-minority case: 24 classes
 use at most two minority conjugates, while 30 use exactly three.
 
-## Interrupted exact diagnostic
+## Verified low-minority closure
 
 `.scratch/depth4_provenance_check.py` reproduces the 82/28/54 counts
-and the 10/14/30 split, then attempts to close the 24 one/two-minority
-classes in the established quotients
+and the 10/14/30 split, then closes all 24 one/two-minority classes in
+the established quotients
 
 \[
 Q_A=C_3*C_4,
@@ -55,10 +55,79 @@ Q_A=C_3*C_4,
 Q_B=C_2*C_3.
 \]
 
-The connector census was interrupted before completion because it
-materializes too many connectors.  Its closure assertion is therefore
-**[unverified]**.  Optimize by streaming connectors, pruning by target
-length while generating them, and printing per-signature progress.
+For one minority leaf, exact cyclic normal-form comparison suffices.  For
+two minority leaves, the checker uses the finite Bass--Serre connector
+normal form from the depth-three proof.  It streams reduced connectors
+through the safe bound, cyclically rotates both signed source images,
+and compares the exactly reduced product with every cyclic target
+rotation.
+
+The terminating prune is also exact.  If the two source images have
+syllable length \(L\), a connector has length \(k\), and the target has
+length \(T\), the raw word has length \(R=2L+2k\).  Reduction to the
+target loses exactly \(R-T\) syllables.  Since the first connector is
+internally reduced, any changed connector syllables occur at its two
+boundary seams and each costs at least one unit of this loss.  Hence a
+contiguous block of at least \(k-(R-T)\) connector syllables survives
+unchanged in the cyclic target.  A connector branch is discarded when
+no such cyclic target subword exists.  During the remaining exact word
+reduction, monotone accumulated syllable loss gives a second safe early
+exit.  In every case where the subword prune is nonvacuous here,
+\(R-T\le4<L\), so neither source word can disappear and expose an
+additional internal connector seam.
+
+The ten one-minority records have no connector bound.  Their exact
+target-length data are
+
+| signature | quotient | minority length | target length |
+|---|---|---:|---:|
+| `(5,1,4,-1,-4)` | \(Q_B\) | 14 | 30 |
+| `(5,1,4,-1,-2)` | \(Q_B\) | 14 | 22 |
+| `(5,1,4,-1,0)` | \(Q_B\) | 14 | 14 |
+| `(5,1,4,-1,2)` | \(Q_B\) | 14 | 6 |
+| `(5,1,4,-1,4)` | \(Q_B\) | 14 | 2 |
+| `(5,4,1,-4,-1)` | \(Q_A\) | 6 | 26 |
+| `(5,4,1,-4,1)` | \(Q_A\) | 6 | 22 |
+| `(5,4,1,-2,-1)` | \(Q_A\) | 6 | 14 |
+| `(5,4,1,-2,1)` | \(Q_A\) | 6 | 10 |
+| `(5,4,1,0,-1)` | \(Q_A\) | 6 | 2 |
+
+The fourteen two-minority connector records are
+
+| signature | quotient | minority length | target length | connector bound | candidate products certified |
+|---|---|---:|---:|---:|---:|
+| `(7,2,5,-2,-5)` | \(Q_B\) | 14 | 48 | 12 | 86,632 |
+| `(7,2,5,-2,-3)` | \(Q_B\) | 14 | 40 | 8 | 20,776 |
+| `(7,2,5,-2,-1)` | \(Q_B\) | 14 | 32 | 4 | 4,312 |
+| `(7,2,5,-2,1)` | \(Q_B\) | 14 | 24 | 2 | 1,568 |
+| `(7,2,5,-2,3)` | \(Q_B\) | 14 | 16 | 2 | 1,568 |
+| `(7,2,5,-2,5)` | \(Q_B\) | 14 | 8 | 2 | 1,568 |
+| `(7,2,5,0,-1)` | \(Q_B\) | 14 | 4 | 2 | 1,568 |
+| `(7,5,2,-5,-2)` | \(Q_A\) | 6 | 34 | 13 | 14,108,688 |
+| `(7,5,2,-5,2)` | \(Q_A\) | 6 | 26 | 9 | 391,824 |
+| `(7,5,2,-3,-2)` | \(Q_A\) | 6 | 22 | 7 | 65,232 |
+| `(7,5,2,-3,2)` | \(Q_A\) | 6 | 14 | 3 | 1,728 |
+| `(7,5,2,-1,-2)` | \(Q_A\) | 6 | 10 | 2 | 648 |
+| `(7,5,2,-1,0)` | \(Q_A\) | 6 | 6 | 2 | 648 |
+| `(7,5,2,-1,2)` | \(Q_A\) | 6 | 2 | 2 | 648 |
+
+None contains a target.  The deterministic record hashes are
+
+```text
+54-signature SHA-256:
+f6bdbc8bcb71936ccef6703577a727cc263729a603d9200c17981ba2284a50dd
+
+24-certificate SHA-256:
+5771323340314606a35f044cbca02a5d1ddf4a2bf88f2dc6b070ddda995f5199
+```
+
+Focused verification plus the established depth-three regression:
+
+```text
+tests/stable_ac/test_ak_depth_four_barriers.py
+tests/stable_ac/test_ak_depth_three_free_product_barrier.py
+7 passed in 22.97s
+```
 
 ## Exact three-conjugate SU(2) lemma to formalize
 
