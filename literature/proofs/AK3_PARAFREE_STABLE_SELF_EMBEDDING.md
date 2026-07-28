@@ -924,6 +924,180 @@ conjugator in the first edge.  The reverse target orientation is not
 claimed closed by this estimate, because its fixed A-image axis is the
 short one.
 
+## 13. At the first image, both second-edge orientations close
+
+Return to the concrete first image \(g=yx\), with subgroup K and source
+lengths
+
+\[
+\|a\|=11,\qquad \|b\|=18.
+\tag{13.1}
+\]
+
+First change the b-row internally:
+
+\[
+b_1=b h a^\epsilon h^{-1},
+\qquad h\in K.
+\tag{13.2}
+\]
+
+Result 122 applies to every h and both source orders, giving
+
+\[
+\|b_1\|\ge
+\begin{cases}
+23,&\epsilon=1,\\
+21,&\epsilon=-1.
+\end{cases}
+\tag{13.3}
+\]
+
+Now target a with an external conjugator:
+
+\[
+a_1=a k b_1^\delta k^{-1},
+\qquad k\notin K.
+\tag{13.4}
+\]
+
+Result 123 bounds the overlap of any two K-axes across an external double
+coset by two.  Hence
+
+\[
+\|a_1\|\ge
+\begin{cases}
+11+23-4=30,&\epsilon=1,\\
+11+21-4=28,&\epsilon=-1.
+\end{cases}
+\tag{13.5}
+\]
+
+The exponent-vector audit is
+
+\[
+\begin{array}{c|c|c}
+(\epsilon,\delta)&[a_1]&\text{primitive length}\\ \hline
+(+,+)&(7,-9)&16\\
+(+,-)&(-1,1)&2\\
+(-,+)&(1,-1)&2\\
+(-,-)&(5,-7)&12
+\end{array}
+\tag{13.6}
+\]
+
+so (13.5) excludes all four cases.  Section 12 already closes the opposite
+orientation, where an internal a-change is followed by an external
+b-change.  If both conjugators are internal, Theorem 11.1 pulls the
+history back to the original AK pair.
+
+Therefore, at the first proper image, any genuinely new two-row primitive
+terminal must use an external conjugator on its first row-changing edge.
+This is a reduction, not a closure of the first-external branch.  Once the
+first changed row leaves K, the second axis no longer lies in the same
+barbell core and requires a three-translate geometry.
+
+## 14. Three-translate geometry closes every second AC2 edge
+
+The needed three-translate geometry is still finite.  First record the
+exact two-copy rotation minima at the first image:
+
+\[
+\begin{array}{c|c|c}
+\text{source}&
+\min\|srsr^{-1}\|&
+\min\{\|srs^{-1}r^{-1}\|:\text{nontrivial}\}\\ \hline
+a&18&16\\
+b&20&26
+\end{array}
+\tag{14.1}
+\]
+
+The minima range over every ambient r.  They follow from the same cyclic
+rotation audit as Section 8; the opposite-sign column excludes the exact
+zero obtained when the two conjugates coincide inversely.
+
+Now suppose the first AC2 multiplication uses an external conjugator.
+After absorbing intervening AC1 and AC3 moves into signs and conjugators,
+the row tested after the second AC2 multiplication is a cyclic product of
+three source conjugates.  Its type is either
+
+\[
+(a,b,b)
+\quad\text{or}\quad
+(a,a,b),
+\tag{14.2}
+\]
+
+with arbitrary signs and cyclic order.  Associate to the three factors
+the three translates of K containing their axes.  The first external edge
+ensures that not all three translates coincide.
+
+If all three translates are distinct, Result 123 bounds every pairwise
+axis overlap by two.  Since the shortest factor has length 11, no factor
+can disappear through its two seams, and the cyclic tree estimate gives
+
+\[
+\|(a,b,b)\text{-product}\|\ge11+18+18-12=35,
+\tag{14.3}
+\]
+
+and
+
+\[
+\|(a,a,b)\text{-product}\|\ge11+11+18-12=28.
+\tag{14.4}
+\]
+
+If exactly two translates coincide, combine that adjacent pair after a
+cyclic rotation.  A mixed a--b pair has length at least 21 by Result 122.
+The remaining external factor then leaves length at least 35 in type
+\((a,b,b)\), or 28 in type \((a,a,b)\).  For an equal-source pair, (14.1)
+applies.  A nontrivial b--b pair leaves length at least
+
+\[
+20+11-4=27,
+\tag{14.5}
+\]
+
+and a nontrivial a--a pair leaves length at least
+
+\[
+16+18-4=30.
+\tag{14.6}
+\]
+
+If an opposite-sign equal-source pair cancels completely, the terminal is
+only a conjugate of the remaining old source, hence is nonprimitive.
+
+The largest primitive length allowed by abelianization is 11 for type
+\((a,b,b)\), and 16 for type \((a,a,b)\).  Thus every nontrivial bound
+(14.3)--(14.6) is strictly too large.
+
+It remains to include histories whose first AC2 edge is internal.  Its
+changed row has length at least 21 by Result 122.  If the second edge is
+external, Result 123 gives terminal length at least
+
+\[
+21+11-4=28,
+\tag{14.7}
+\]
+
+regardless of which row is targeted.  If the second edge is internal, the
+whole history pulls back by Theorem 11.1.
+
+### Theorem 14.1 (two-AC2 corridor barrier)
+
+Starting from the first proper image pair \((a,b)\), no history with at
+most two AC2 row multiplications creates an ambient-primitive row unless
+all its conjugators lie in K, in which case the history is exactly the
+image of a history from the original AK pair.  This allows arbitrary AC1
+inversions and AC3 conjugations between the two AC2 moves.
+
+Thus the proper corridor supplies no new primitive row at two-AC2 depth.
+A genuinely new use must have at least three row multiplications, move K
+by an ambient automorphism, or change the stabilizer architecture.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

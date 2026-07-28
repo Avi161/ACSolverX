@@ -355,3 +355,29 @@ def test_normalized_barbell_off_diagonal_piece_bound() -> None:
                 continue
             diameters = component_diameters(off_diagonal_adjacency(bridge))
             assert max(diameters, default=0) <= 3 * length
+
+
+def test_first_image_same_source_two_copy_minima() -> None:
+    image_a = "xxxyxYYYYXY"
+    image_b = "xyxyXYxyxYXYXyxYXY"
+
+    for source, same_minimum, nontrivial_opposite_minimum in (
+        (image_a, 18, 16),
+        (image_b, 20, 26),
+    ):
+        same_lengths = {
+            len(cyclic_reduce(left + right))
+            for left in cyclic_rotations(source)
+            for right in cyclic_rotations(source)
+        }
+        opposite_lengths = {
+            len(cyclic_reduce(left + right))
+            for left in cyclic_rotations(source)
+            for right in cyclic_rotations(inverse(source))
+        }
+
+        assert min(same_lengths) == same_minimum
+        assert 0 in opposite_lengths
+        assert min(length for length in opposite_lengths if length) == (
+            nontrivial_opposite_minimum
+        )

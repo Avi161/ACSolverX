@@ -1377,3 +1377,44 @@ change of the B-image cannot produce a primitive second row.  If the
 second conjugator is internal, the history pulls back by Theorem 22.1.
 Thus a genuinely new exit in this orientation must already be external
 on its first edge.  The reverse B-first/A-second orientation remains open.
+
+## 24. The first proper image closes both external-second orientations
+
+For \(g=yx\), an internal first change of the b-row has length at least 23
+or 21 by the exact one-source theorem.  An external second change targeting
+the a-row loses at most four letters, because the off-diagonal core piece
+bound is two.  Its terminal length is therefore at least 30 or 28, while
+the four primitive target lengths are \(16,2,2,12\).
+
+### Theorem 24.1 (first-external necessity)
+
+At the first proper image, both orientations of an internal first row
+change followed by an external second row change are nonprimitive.  A
+fully internal history pulls back to AK by Theorem 22.1.  Thus every
+genuinely new two-row exit must use an external conjugator on its first
+edge.  The surviving branch is a three-translate barbell problem.
+
+## 25. Three translates close the full two-AC2 layer
+
+At the first image, the exact same-source two-copy minima are 18 and 16
+for a, and 20 and 26 for b, in the same-sign and nontrivial
+opposite-sign cases respectively.
+
+A first external edge followed by a second AC2 edge produces three source
+conjugates of type \((a,b,b)\) or \((a,a,b)\).  Three distinct K-translates
+give lower bounds 35 and 28.  If two translates coincide, combine them:
+a mixed pair has length at least 21, an equal-source pair uses the preceding
+two-copy minima, and exact opposite cancellation leaves only an old
+nonprimitive source.  Every nontrivial terminal has length at least 27,
+while the largest primitive target length is 16.
+
+An internal first edge followed by an external second edge has length at
+least 28; two internal edges lift to AK.
+
+### Theorem 25.1 (complete two-AC2 first-image barrier)
+
+No history from the first proper image with at most two AC2 row
+multiplications creates a new primitive row.  AC1 and AC3 traffic between
+the row multiplications is allowed.  A new corridor exit requires at least
+three AC2 edges, an ambient automorphism moving the image subgroup, or a
+different stabilization architecture.
