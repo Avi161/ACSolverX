@@ -1537,3 +1537,33 @@ are closed.  The last class contains a primitive row if and only if
 (101) has a solution in \(F(x,y)\).  The projected equation has
 solutions in \(C_2*C_3\), so that quotient supplies no further
 obstruction.
+
+## 30. Nilpotent quotients are uniformly blind
+
+In a nilpotent group, \(rsr=srs\) forces \(r=s\): abelianization starts
+the induction, and if \(rs^{-1}\in\gamma_n\), centrality modulo
+\(\gamma_{n+1}\) advances it one lower-central step.
+
+In a nilpotent quotient of \(G_b\), put
+\(u=(yx)y(yx)^{-1}\) and \(g=yx\).  The relation b is the braid relation
+between x and u, hence
+
+\[
+x=u=gyg^{-1},\qquad a=x^{-1}.
+\tag{102}
+\]
+
+Consequently
+
+\[
+yx^{-1}
+=g^{-1}(a^{-1}gag^{-1})g.
+\tag{103}
+\]
+
+### Theorem 30.1 (nilpotent blindness)
+
+Every nilpotent quotient of \(G_b\) realizes the projected fixed-entry
+commutator equation from Theorem 29.1.  No nilpotent quotient, regardless
+of class or exponent, can close the remaining first-image depth-three
+case.

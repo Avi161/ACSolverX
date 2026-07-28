@@ -1492,6 +1492,90 @@ first proper image cannot contain a primitive row.  The remaining class
 contains a primitive row if and only if (18.9) has a solution.  No
 solution or obstruction is asserted here.
 
+## 19. Every nilpotent quotient erases the last residue
+
+### Lemma 19.1 (braid collapse in nilpotent groups)
+
+If elements r,s of a nilpotent group satisfy
+
+\[
+rsr=srs,
+\tag{19.1}
+\]
+
+then \(r=s\).
+
+#### Proof
+
+Abelianizing (19.1) gives \(r=s\) modulo \(\gamma_2\).  Suppose
+\(d=rs^{-1}\in\gamma_n\).  Modulo \(\gamma_{n+1}\), d is central and
+\(r=ds\).  Substitution in (19.1) gives
+
+\[
+d^2s^3=ds^3,
+\]
+
+so \(d\in\gamma_{n+1}\).  Induction puts d in every term of the lower
+central series.  A nilpotent group has some
+\(\gamma_{c+1}=1\), hence \(d=1\).  \(\square\)
+
+Now let N be any nilpotent quotient of
+
+\[
+G_b=F(x,y)/\langle\!\langle b\rangle\!\rangle.
+\tag{19.2}
+\]
+
+Put
+
+\[
+u=\phi(y)=(yx)y(yx)^{-1},\qquad g=yx.
+\tag{19.3}
+\]
+
+The relation \(b=B(x,u)=1\) is exactly
+
+\[
+xux=uxu.
+\tag{19.4}
+\]
+
+Lemma 19.1 gives \(x=u\) in N.  Since \(u=gyg^{-1}\),
+
+\[
+y=g^{-1}xg.
+\tag{19.5}
+\]
+
+Moreover
+
+\[
+a=x^3u^{-4}=x^{-1}.
+\tag{19.6}
+\]
+
+The primitive candidate in (18.9) therefore satisfies
+
+\[
+\begin{aligned}
+yx^{-1}
+&=g^{-1}xgx^{-1}\\
+&=g^{-1}\bigl(a^{-1}gag^{-1}\bigr)g.
+\end{aligned}
+\tag{19.7}
+\]
+
+Thus it is conjugate to a product of a conjugate of \(a^{-1}\) and a
+conjugate of a in every nilpotent quotient of \(G_b\).
+
+### Theorem 19.2 (nilpotent blindness)
+
+No nilpotent quotient of \(G_b\), of any class or exponent, can obstruct
+the projected form of (18.9).  The quotient does not merely fail to
+separate the two sides: (19.7) supplies a solution uniformly.  Any
+successful obstruction must retain non-nilpotent information in the
+braid subgroup.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

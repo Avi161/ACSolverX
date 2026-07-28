@@ -1016,3 +1016,9 @@
 - [WORKS] The same quotients give `phi(A)=1, |phi(B)|_syl=18` in `C3*C4` and `phi(B)=1, |phi(A)|_syl=2` in `C2*C3`. Combined with one `S5` certificate, they close seventeen of eighteen first-image depth-three provenance classes.
 - [WORKS] Do not flatten the last class beyond its shared subexpressions. Its exact normal form is `X=u^s h0 v^t h0^-1`, `Y=v^-1 h1 X h1^-1`, `Z=X^-1 h2 Y h2^-1`; the identical `X` and `Y` occurrences are the remaining structure to exploit.
 - [TRAP] Symmetric quotients through degree six, small `SL(2,p)` quotients through `p=7`, and conjugators of free length at most three did not resolve the final equation. These bounded failures are lead diagnostics only, never proof evidence.
+
+### 2026-07-27 Nilpotent quotients erase braid separation
+
+- [WORKS] In any nilpotent group, `rsr=srs` implies `r=s`: abelianization gives the base case, and centrality of `gamma_n/gamma_{n+1}` advances `rs^-1` through the lower central series.
+- [WORKS] For the last first-image depth-three residue, `b=1` makes `x=phi(y)` in every nilpotent quotient. Since `phi(y)=(yx)y(yx)^-1`, this makes `a=x^-1` and explicitly writes `yx^-1` as a conjugate of `a^-1 (yx) a (yx)^-1`.
+- [TRAP] Do not spend more searches on nilpotent or finite p-group quotients for this residue. They uniformly realize the projected commutator; the next invariant must retain non-nilpotent braid information.

@@ -7510,6 +7510,33 @@ equivalent to this one dependent three-conjugator equation.  The
 virtually free quotient genuinely realizes its projected candidate, so
 no closure is claimed.
 
+**Result 133 (every nilpotent quotient erases the last depth-three
+residue).**  In any nilpotent group, the braid relation \(rsr=srs\)
+forces \(r=s\).  Indeed \(rs^{-1}\) lies in \(\gamma_2\); if it lies in
+\(\gamma_n\), centrality modulo \(\gamma_{n+1}\) and substitution into
+the braid relation put it in \(\gamma_{n+1}\).
+
+In a nilpotent quotient of
+\(G_b=F(x,y)/\langle\!\langle b\rangle\!\rangle\), write
+\(u=\phi(y)=(yx)y(yx)^{-1}\) and \(g=yx\).  The relation b says
+\(xux=uxu\), hence \(x=u=gyg^{-1}\).  Therefore
+
+\[
+y=g^{-1}xg,\qquad a=x^3u^{-4}=x^{-1},
+\]
+
+and
+
+\[
+yx^{-1}
+=g^{-1}\bigl(a^{-1}gag^{-1}\bigr)g.
+\]
+
+So every nilpotent quotient, of arbitrary class and exponent, uniformly
+realizes the projected fixed-entry commutator required by Result 132.
+Nilpotent quotients cannot obstruct the last equation; a useful
+invariant must preserve non-nilpotent braid information.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7696,6 +7723,7 @@ all depth-two histories at both the source and the first proper image.
 Result 131 combines that reduction with two virtually free quotients to
 close depth three at the original source. Result 132 reduces depth three
 at the first proper image to the single dependent equation above.
+Result 133 proves that no nilpotent quotient can close it.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7707,7 +7735,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--132, arbitrary W--D conjugators,
+61--133, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by
