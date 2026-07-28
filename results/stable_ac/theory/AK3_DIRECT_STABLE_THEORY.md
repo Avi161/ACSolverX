@@ -6163,6 +6163,65 @@ signs for every free-kernel lift.  The complete
 \((+,-,-,+,+,-)\) among the twenty height-zero length-six sign
 strings for the negative A--D sign.
 
+**Result 103 (all height-zero length-six sign strings are
+obstructed).**  For the last remaining sign string, let
+
+\[
+b=x^\ell yx^ry^{-1}x^sy^{-1}x^tyx^uyx^vy^{-1}x^q,
+\qquad
+3\nmid r,v,\quad 4\nmid t.
+\]
+
+Over \(\overline{\mathbb F}_5\), put \(S=wR_4\).  For
+\(\ell\not\equiv0\pmod4\), choose mixed \(w\) so that
+\(w,wX^\ell,S\) are independent, choose \(hR_3=S\), and take fresh
+cube-phase packets \(P,D\), a fourth-phase packet \(B\), and
+\(A,C\in V_1\).  Prescribe
+
+\[
+wY=h,\quad (wX^\ell)Y=P,\quad AY=PX^r,\quad
+BY=A,
+\]
+
+\[
+(BX^t)Y=C,\qquad CY=D,\qquad SY=DX^v.
+\]
+
+The turn hypotheses make \(P,PX^r\), \(B,BX^t\), and \(D,DX^v\)
+independent pairs.  Hence the finite prescription extends, and the
+word replays through
+
+\[
+P\longmapsto A\longmapsto B\longmapsto C
+\longmapsto D\longmapsto S.
+\]
+
+For \(\ell\equiv0\pmod4\), take
+
+\[
+w=w_1+w',\qquad S=4w_1,\qquad h=3w_1+z,
+\quad 0\ne z\in V_\omega.
+\]
+
+Then \(hR_3=S\) and \(h,hX^r\) are independent.  Prescribing
+
+\[
+wY=h,\quad AY=hX^r,\quad BY=A,\quad
+(BX^t)Y=C,\quad CY=D,\quad SY=DX^v
+\]
+
+gives the same replay.  Vectors \(A,C\) occurring once as images and
+once as later sources cause no conflict: the full source and image
+lists are separately independent.
+
+Thus \(wX^4=w\), \(wYR_3=wR_4\), and \(wb=wR_4\) in every case.
+Together with Results 85--102, this proves that for every
+Britton-reduced height-zero word \(b\) of stable-letter length six,
+both exact A--D signs are obstructed over a suitable module, and the
+Fox bridge covers every free-kernel lift.  This is a complete
+length-six obstruction theorem; it is not a proof of the stable
+Andrews--Curtis conjecture or of the Andrews--Curtis conjecture.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6255,8 +6314,9 @@ Result 98 closes the two-turn separated-return stratum. Result 99
 completes every negative-start length-six stratum and reaches sixteen
 of the twenty total sign strings by inversion. Result 100 closes the
 first remaining positive-start stratum, and Result 101 closes the
-second. Result 102 closes the penultimate stratum, leaving only one
-negative-sign length-six code. Results 73--75 close the
+second. Result 102 closes the penultimate stratum, and Result 103
+closes the last one, completing all twenty height-zero length-six
+codes for both A--D signs. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -6266,7 +6326,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--102, arbitrary W--D conjugators,
+61--103, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

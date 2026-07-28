@@ -7369,3 +7369,161 @@ Equations (499)--(503) prove (495) for every initial residue.
 The Fox bridge and (286) obstruct both A--D signs for every
 free-kernel lift.  Hence the complete
 \((+,-,+,+,-,-)\) length-six stratum is closed.
+
+## 50. The last height-zero length-six stratum
+
+Let
+
+\[
+b=x^\ell yx^ry^{-1}x^sy^{-1}x^tyx^uyx^vy^{-1}x^q,
+\tag{504}
+\]
+
+where
+
+\[
+3\nmid r,\qquad
+4\nmid t,\qquad
+3\nmid v,
+\tag{505}
+\]
+
+and \(s,u,q\in\mathbb Z\) are arbitrary.  Thus the sign string is
+\((+,-,-,+,+,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{506}
+\]
+
+Again only the initial phase needs to be split.
+
+### 50.1 Nonzero initial phase
+
+Suppose \(\ell\not\equiv0\pmod4\).  Choose mixed \(w\in D_1\) so
+that, with \(S=wR_4\),
+
+\[
+w,\qquad wX^\ell,\qquad S
+\tag{507}
+\]
+
+are independent, and choose fresh \(h\in\mathcal R_1\) with
+\(hR_3=S\).  Choose disjoint fresh full cube-phase packets
+\(P,D\in\mathcal R_1\), a full fourth-phase packet \(B\in D_1\),
+and fresh \(A,C\in V_1\).  By (505),
+
+\[
+P,PX^r,\qquad
+B,BX^t,\qquad
+D,DX^v
+\tag{508}
+\]
+
+are three independent pairs.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+(wX^\ell)Y&=P,\\
+AY&=PX^r,\\
+BY&=A,\\
+(BX^t)Y&=C,\\
+CY&=D,\\
+SY&=DX^v.
+\end{aligned}
+\tag{509}
+\]
+
+The source list is the direct sum of the triple (507), the pair
+\(B,BX^t\), and the fresh lines \(A,C\).  The image list is the
+direct sum of \(h,A,C\) and the pairs \(P,PX^r\), \(D,DX^v\).
+Although \(A\) and \(C\) occur once on each side, the source and image
+lists are separately independent; that is precisely the criterion
+for the finite partial isomorphism (509) to extend globally.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=S=wR_4.
+\tag{510}
+\]
+
+Since \(A,C,S\in V_1\), the arbitrary exponents \(s,u,q\) disappear
+in the replay:
+
+\[
+\begin{aligned}
+wb
+&=PX^rY^{-1}X^sY^{-1}X^tYX^uYX^vY^{-1}X^q\\
+&=AX^sY^{-1}X^tYX^uYX^vY^{-1}X^q\\
+&=BX^tYX^uYX^vY^{-1}X^q\\
+&=CX^uYX^vY^{-1}X^q\\
+&=DX^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{511}
+\]
+
+### 50.2 Zero initial phase
+
+Suppose \(\ell\equiv0\pmod4\).  Choose
+
+\[
+w=w_1+w',\qquad
+S=4w_1,\qquad
+h=3w_1+z,
+\tag{512}
+\]
+
+where \(w'\) lies in a nontrivial fourth-root eigenspace and
+\(0\ne z\in V_\omega\).  Then
+
+\[
+hR_3=S=wR_4,
+\]
+
+and \(h,hX^r\) are independent because \(3\nmid r\).  Choose a
+fresh full fourth-phase packet \(B\), a disjoint full cube-phase
+packet \(D\), and fresh \(A,C\in V_1\).  Prescribe
+
+\[
+\begin{aligned}
+wY&=h,\\
+AY&=hX^r,\\
+BY&=A,\\
+(BX^t)Y&=C,\\
+CY&=D,\\
+SY&=DX^v.
+\end{aligned}
+\tag{513}
+\]
+
+The source list \(w,A,B,BX^t,C,S\) is independent because
+\(4\nmid t\).  The image list
+\(h,hX^r,A,C,D,DX^v\) is independent because \(3\nmid r,v\);
+all component packets were chosen disjoint.  Hence (513) extends to
+a block isomorphism.  Its word replay is
+
+\[
+\begin{aligned}
+wb
+&=hX^rY^{-1}X^sY^{-1}X^tYX^uYX^vY^{-1}X^q\\
+&=AX^sY^{-1}X^tYX^uYX^vY^{-1}X^q\\
+&=BX^tYX^uYX^vY^{-1}X^q\\
+&=CX^uYX^vY^{-1}X^q\\
+&=DX^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{514}
+\]
+
+Equations (510)--(514) prove (506) for every initial residue.
+The Fox bridge and (286) obstruct both A--D signs for every
+free-kernel lift.  Together with Sections 27 and 34--49, this closes
+all twenty Britton-reduced height-zero sign strings of stable-letter
+length six.
