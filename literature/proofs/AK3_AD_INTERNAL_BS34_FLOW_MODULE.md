@@ -1775,3 +1775,136 @@ This closes all six normalized sign-\((+,+,-)\) codes with
 stencil is scalar, so this argument proves neither collapse nor
 propriety.  As before, flow collapse is not a primitivity theorem and
 not an Andrews--Curtis reduction.
+
+## 16. Affine coinduction is blind to the exponent-one internal fiber
+
+The standard affine action which starts the relative-free obstruction
+cannot detect any internal element of \(y\)-exponent one, even after a
+constant coefficient twist.  This is a representation-level no-go
+theorem, independent of the fold calculation above.
+
+Let \(V\) be a \(\mathbb Q\)-vector space and let
+\(A\in\operatorname{GL}(V)\).  On the space \(V^{\mathbb Q}\) of all
+functions \(f:\mathbb Q\to V\), define
+
+\[
+(f\cdot x)(t)=f(t-1),
+\qquad
+(f\cdot y)(t)=A f\!\left(\frac43t\right).
+\tag{106}
+\]
+
+These operators give a right \(B\)-module.  Indeed,
+right multiplication by \(y^{-1}\) sends \(f(t)\) to
+\(A^{-1}f(3t/4)\), and direct substitution gives
+
+\[
+f\cdot(yx^3y^{-1})(t)=f(t-4)=f\cdot x^4(t).
+\]
+
+Equivalently, (106) is the coinduced action from the right affine
+\(B\)-set
+
+\[
+t\cdot x=t+1,\qquad t\cdot y=\frac34t,
+\]
+
+with the \(y\)-action on values twisted by \(A\).
+
+Let \(b\in B\) satisfy \(e_y(b)=1\).  Its affine action has the form
+
+\[
+t\cdot b=\frac34t+c_b
+\]
+
+for some \(c_b\in\mathbb Q\).  Therefore there is
+\(d_b\in\mathbb Q\) such that
+
+\[
+(f\cdot b)(t)=A f\!\left(\frac43t+d_b\right).
+\tag{107}
+\]
+
+More generally, induction on a word \(w\) gives
+\[
+(f\cdot w)(t)
+=A^{e_y(w)}
+f\!\left((4/3)^{e_y(w)}t+d_w\right)
+\]
+for a rational \(d_w\).  The coefficient factors are all powers of
+the single operator \(A\), so their order introduces no additional
+hypothesis on \(A\).
+
+Suppose \(f\) satisfies the three module relations
+
+\[
+f\cdot(x^4-1)=0,\qquad
+f\cdot(yR_3-R_4)=0,\qquad
+f\cdot(b+\sigma R_4)=0.
+\tag{108}
+\]
+
+Put
+
+\[
+S(t)=\sum_{k=0}^{3}f(t-k).
+\]
+
+The first relation makes \(f\) four-periodic and hence makes \(S\)
+one-periodic.  The other two relations are
+
+\[
+A\sum_{k=0}^{2}
+f\!\left(\frac43(t-k)\right)=S(t),
+\tag{109}
+\]
+
+\[
+A f\!\left(\frac43t+d_b\right)+\sigma S(t)=0.
+\tag{110}
+\]
+
+Compare (110) at \(t\) and \(t+1\).  The right-hand values of \(S\)
+are equal, \(A\) is invertible, and
+\((4/3)t+d_b\) ranges over all of \(\mathbb Q\).  Consequently
+
+\[
+f(v+4/3)=f(v)
+\qquad(v\in\mathbb Q).
+\tag{111}
+\]
+
+All three summands on the left of (109) now coincide, so, with
+\(v=4t/3\),
+
+\[
+S(t)=3A f(v).
+\]
+
+Substitution in (110) and cancellation of \(A\) give
+
+\[
+f(v+d_b)=-3\sigma f(v).
+\tag{112}
+\]
+
+Because \(d_b\) is rational, there is an integer \(m>0\) such that
+\(md_b\in(4/3)\mathbb Z\).  Iterating (112) \(m\) times and using
+(111) yields
+
+\[
+\bigl(1-(-3\sigma)^m\bigr)f(v)=0.
+\tag{113}
+\]
+
+The rational coefficient in (113) is nonzero, so \(f=0\).
+
+Thus, for every \(b\in B\) with \(e_y(b)=1\), both signs \(\sigma\),
+every coefficient space \(V\), and every invertible constant twist
+\(A\), the module (106) contains no nonzero vector satisfying (108).
+This does not say that the universal flow quotient is zero: it says
+that the full affine coinduced family cannot witness its propriety.
+In particular, changing the seed function, taking all functions
+instead of finitely supported functions, or adding a constant
+\(y\)-character cannot resolve the eighteen multiport codes left open
+in Section 15.

@@ -3832,6 +3832,49 @@ interpolation.  For the other eighteen codes the exact fold pair is
 The collapse is a failure of the flow obstruction only, not a
 primitivity or Andrews--Curtis theorem.
 
+**Result 66 (affine coinduction is blind to every internal
+exponent-one element).**  Let \(V\) be any \(\mathbb Q\)-vector space,
+let \(A\in\operatorname{GL}(V)\), and give \(V^{\mathbb Q}\) the
+right \(B\)-action
+
+\[
+(f\cdot x)(t)=f(t-1),
+\qquad
+(f\cdot y)(t)=A f(4t/3).
+\]
+
+For every \(b\in B\) with \(e_y(b)=1\) and both signs \(\sigma\), the
+three internal module relations have only the zero solution in this
+module.  The proof is uniform.  The first relation makes \(f\)
+four-periodic and the four-term sum
+\(S(t)=\sum_{k=0}^3f(t-k)\) one-periodic.  Since
+
+\[
+(f\cdot b)(t)=A f(4t/3+d_b)
+\]
+
+for some rational \(d_b\), comparing the third relation at \(t\) and
+\(t+1\) forces \(4/3\)-periodicity.  The second and third relations
+then reduce to
+
+\[
+f(v+d_b)=-3\sigma f(v).
+\]
+
+Some positive multiple of \(d_b\) lies in
+\((4/3)\mathbb Z\), so iteration gives
+
+\[
+\bigl(1-(-3\sigma)^m\bigr)f(v)=0
+\]
+
+with a nonzero rational coefficient.  Hence \(f=0\).
+
+This closes an entire tempting representation route, including every
+seed function and every constant invertible \(y\)-twist.  It does not
+prove the universal flow module collapses and gives no primitivity or
+Andrews--Curtis conclusion.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
