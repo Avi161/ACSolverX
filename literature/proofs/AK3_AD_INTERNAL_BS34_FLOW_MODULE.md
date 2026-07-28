@@ -7704,3 +7704,133 @@ The remaining positive-start branch has
 \(\ell\equiv0\pmod4\); there the baseline source \(w\) coincides with
 the first word source, so (524) acquires a genuine boundary
 compatibility instead of two independent arrows.
+
+## 52. A minimal characteristic-five phase obstruction
+
+The field in the arbitrary-length program cannot be fixed to
+\(\overline{\mathbb F}_5\).  This is already forced at stable-letter
+length four.
+
+Let
+
+\[
+b=x^\ell y^{-1}x^ryx^sy^{-1}x^tyx^q,
+\tag{529}
+\]
+
+where
+
+\[
+4\nmid r,\qquad
+3\nmid s,\qquad
+4\nmid t,\qquad
+r+t\equiv0\pmod4.
+\tag{530}
+\]
+
+In the characteristic-five cyclotomic block representation, there is
+no nonzero row \(w\) satisfying
+
+\[
+wX^4=w,
+\qquad
+wb=wR_4.
+\tag{531}
+\]
+
+In particular there is no row satisfying all three negative-sign
+ideal equations.  The concrete shortest example is
+
+\[
+b=y^{-1}xyxy^{-1}x^{-1}y.
+\tag{532}
+\]
+
+This is a no-go for this characteristic-five certificate, not a
+statement that the group-ring ideal is the whole ring and not an
+Andrews--Curtis counterexample.
+
+Put
+
+\[
+S=wR_4.
+\tag{533}
+\]
+
+The word (529) is a product of two negative--positive stable-letter
+pairs.  Each operator
+
+\[
+Y^{-1}X^aY
+\]
+
+preserves every \(\mathcal R_c\) block: \(Y^{-1}\) takes
+\(\mathcal R_c\) to \(D_c\), \(X^a\) preserves \(D_c\), and \(Y\)
+returns it to \(\mathcal R_c\).  The intervening \(X^s\) also
+preserves each block.  Thus \(b\) preserves the complete
+\(\mathcal R_c\)-decomposition.
+
+On the other hand, \(wX^4=w\) puts \(w\) in \(D_1\), while
+
+\[
+S=wR_4=4w_1\in V_1\subset\mathcal R_1.
+\tag{534}
+\]
+
+Since the action of \(b\) is invertible on every color block,
+\(wb=S\) forces every \(\mathcal R_c\)-component of \(w\) with
+\(c\ne1\) to vanish.  Hence
+
+\[
+w\in D_1\cap\mathcal R_1=V_1,
+\qquad
+S=4w.
+\tag{535}
+\]
+
+Set
+
+\[
+a=wY^{-1}\in D_1,\qquad
+\alpha=X|_{D_1},\qquad
+\theta=(YXY^{-1})|_{D_1}.
+\tag{536}
+\]
+
+The Baumslag--Solitar relation gives
+
+\[
+\alpha^4=1,\qquad
+\theta^3=1.
+\tag{537}
+\]
+
+Cancelling the final \(Y\) from \(wb=4w\) gives
+
+\[
+a\alpha^r\theta^s\alpha^t=4a.
+\tag{538}
+\]
+
+By (530),
+
+\[
+\alpha^r\theta^s\alpha^t
+=\alpha^r\theta^s\alpha^{-r}
+\tag{539}
+\]
+
+has order three.  Cubing (538) therefore yields
+
+\[
+a=4^3a=4a
+\tag{540}
+\]
+
+in characteristic five, and hence \(a=0\), a contradiction.
+
+The obstruction is a global endpoint phase, not a failure caused by
+using one vector first as an image and later as a source.  It is also
+exactly why Section 32 switches to characteristic seven on the
+order-three Kurosh factor: there \(4\) has order three, so the
+eigenvalue demanded by (538) becomes admissible.

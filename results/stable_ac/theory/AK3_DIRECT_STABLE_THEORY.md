@@ -6290,6 +6290,62 @@ positive-start branch is now exactly the zero initial phase
 \(\ell\equiv0\pmod4\), where the baseline source and first word
 source coincide.
 
+**Result 105 (a minimal characteristic-five phase no-go).**  Let
+
+\[
+b=x^\ell y^{-1}x^ryx^sy^{-1}x^tyx^q,
+\]
+
+where
+
+\[
+4\nmid r,t,\qquad 3\nmid s,\qquad r+t\equiv0\pmod4.
+\]
+
+In the characteristic-five cyclotomic block representation there is
+no nonzero \(w\) satisfying even
+
+\[
+wX^4=w,\qquad wb=wR_4.
+\]
+
+Indeed, the two negative--positive stable-letter pairs preserve each
+\(\mathcal R_c\) color block.  Since \(w\in D_1\) and
+\(wR_4\in V_1\subset\mathcal R_1\), the endpoint equation forces
+
+\[
+w\in D_1\cap\mathcal R_1=V_1,\qquad wR_4=4w.
+\]
+
+For
+
+\[
+a=wY^{-1},\qquad
+\alpha=X|_{D_1},\qquad
+\theta=(YXY^{-1})|_{D_1},
+\]
+
+one has \(\alpha^4=\theta^3=1\), and the endpoint equation becomes
+
+\[
+a\alpha^r\theta^s\alpha^t=4a.
+\]
+
+Because \(t\equiv-r\pmod4\), the operator on the left is the
+order-three conjugate \(\alpha^r\theta^s\alpha^{-r}\).  Cubing would
+give \(a=4^3a=4a\), impossible for nonzero \(a\) in characteristic
+five.  The shortest example is
+
+\[
+b=y^{-1}xyxy^{-1}x^{-1}y.
+\]
+
+This does not make the ideal improper or proper by itself; it proves
+that one cannot extend Result 104 to all sign paths over a fixed
+characteristic-five cyclotomic module.  Result 85 and the Kurosh
+construction use characteristic seven precisely because \(4\) then
+has order three.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6386,7 +6442,9 @@ second. Result 102 closes the penultimate stratum, and Result 103
 closes the last one, completing all twenty height-zero length-six
 codes for both A--D signs. Result 104 replaces the nonzero-initial-phase
 part of that census by a single arbitrary-length positive-start
-sign-path theorem. Results 73--75 close the
+sign-path theorem. Result 105 proves that the field cannot be fixed to
+characteristic five: an order-three phase family forces the
+characteristic-seven branch of Result 85. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -6396,7 +6454,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--104, arbitrary W--D conjugators,
+61--105, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
