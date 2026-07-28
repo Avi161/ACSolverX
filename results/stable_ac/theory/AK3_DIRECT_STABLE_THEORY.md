@@ -5109,6 +5109,54 @@ free-kernel lift with \(\rho(c)=zbz^{-1}\).  Together with Result
 throughout this arbitrary-length family.  Nonalternating stable-sign
 strings remain open.
 
+**Result 87 (the full negative--negative--positive--positive stratum
+is obstructed).**  Let
+
+\[
+b=x^\ell y^{-1}x^r y^{-1}x^s yx^t y,
+\qquad 4\nmid s,
+\]
+
+with \(\ell,r,t\) arbitrary.  Over
+\(k=\overline{\mathbb F}_5\), choose independent
+\(v,a\in V_1\), a primitive cube-root vector
+\(0\ne z\in V_\omega\), and \(0\ne d\in V_\gamma\), where
+\(\gamma^4=1\) and \(\gamma^s=4=-1\).  Prescribe in the block
+\(D_1\to\mathcal R_1\)
+
+\[
+vY=3v+z,
+\qquad aY=v,
+\qquad dY=a.
+\]
+
+Both the source and image lists are independent, so this extends to
+an invertible BS\((3,4)\)-module action.  The baseline is
+
+\[
+vYR_3=4v=vR_4,
+\]
+
+and the complete word evaluation is
+
+\[
+\begin{aligned}
+vb
+&=vX^\ell Y^{-1}X^rY^{-1}X^sYX^tY\\
+&=aX^rY^{-1}X^sYX^tY\\
+&=dX^sYX^tY
+=4aX^tY
+=4v.
+\end{aligned}
+\]
+
+Therefore the negative-sign internal ideal is proper.  The Fox
+bridge obstructs \(P_-(c)\) for every free-kernel lift with
+\(\rho(c)=zbz^{-1}\), while Result 85 obstructs \(P_+(c)\) because
+\(e_y(b)=0\).  This closes both signs for the complete first
+nonalternating height-zero stratum, with no restrictions on the
+equal-sign exponents.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5195,7 +5243,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--86, arbitrary W--D conjugators,
+61--87, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

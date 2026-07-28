@@ -4827,3 +4827,95 @@ bound on \(n,\ell\), or the free-kernel decoration.  Together with
 (286), both signs are obstructed throughout this negative-start
 alternating height-zero family.  Nonalternating stable-letter sign
 strings remain outside the theorem.
+
+## 34. The first nonalternating height-zero stratum
+
+The alternating hypothesis in Section 33 is not a boundary of the
+finite-characteristic method.  Let
+
+\[
+b=x^\ell y^{-1}x^r y^{-1}x^s yx^t y,
+\qquad \ell,r,t\in\mathbb Z,
+\qquad 4\nmid s.
+\tag{305}
+\]
+
+Thus the stable-letter sign string is \((-,-,+,+)\).  The exponents
+between equal signs are unrestricted; \(4\nmid s\) is exactly the
+Britton condition at the sole negative--positive turn.  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{306}
+\]
+
+Work in the cyclotomic block module of Section 31 over
+\(k=\overline{\mathbb F}_5\).  Choose independent
+\(v,a\in V_1\), a primitive cube root \(\omega\), and a nonzero
+\(z\in V_\omega\).  Since \(s\not\equiv0\pmod4\), there is
+\(\gamma\in\mu_4\) such that
+
+\[
+\gamma^s=4=-1.
+\tag{307}
+\]
+
+Indeed, take \(\gamma=-1\) when \(s\) is odd and a primitive fourth
+root when \(s\equiv2\pmod4\).  In particular \(\gamma\ne1\).  Choose
+\(0\ne d\in V_\gamma\) and prescribe, inside the single block
+\(D_1\to\mathcal R_1\),
+
+\[
+vY=3v+z,
+\qquad
+aY=v,
+\qquad
+dY=a.
+\tag{308}
+\]
+
+The sources \(v,a,d\) are independent, and so are the images
+\(3v+z,v,a\).  Hence (308) is an injective partial prescription and
+extends to a block isomorphism.  Complete all other blocks
+arbitrarily.  As before, the resulting invertible \(Y\) satisfies
+\(YX^3=X^4Y\).
+
+The baseline relations hold because, in characteristic five,
+
+\[
+vX^4=v,
+\qquad
+vYR_3=(3v+z)R_3=9v=4v=vR_4.
+\tag{309}
+\]
+
+All unrestricted exponents disappear on the \(1\)-eigenvectors,
+while (307) supplies the required scalar at the unique turn:
+
+\[
+\begin{aligned}
+vb
+&=vX^\ell Y^{-1}X^rY^{-1}X^sYX^tY\\
+&=aX^rY^{-1}X^sYX^tY\\
+&=dX^sYX^tY\\
+&=4aX^tY
+=4v
+=vR_4.
+\end{aligned}
+\tag{310}
+\]
+
+Thus \(v\ne0\) annihilates the three generators of
+\(J^{(k)}_{b,-1}\), proving (306).  The characteristic-free Fox
+bridge now shows that every free-group conjugator \(c\) with
+
+\[
+\rho(c)=zbz^{-1}
+\]
+
+gives a nonprimitive \(P_-(c)\), independently of its free-kernel
+decoration.  Result (286) supplies the positive-sign obstruction for
+the same words.  Hence both signs are obstructed throughout the
+entire \((-,-,+,+)\) height-zero stratum.  This is the first complete
+nonalternating stratum; it does not yet cover arbitrary sign strings.
