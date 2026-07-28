@@ -6097,6 +6097,72 @@ signs for every free-kernel lift.  The complete
 remain open among the twenty height-zero length-six sign strings for
 the negative A--D sign.
 
+**Result 102 (the penultimate positive-start length-six stratum is
+obstructed).**  Let
+
+\[
+b=x^\ell yx^ry^{-1}x^syx^tyx^uy^{-1}x^vy^{-1}x^q,
+\qquad
+3\nmid r,u,\quad 4\nmid s.
+\]
+
+Over \(\overline{\mathbb F}_5\), put \(S=wR_4\).  For
+\(\ell\not\equiv0\pmod4\), choose mixed \(w\in D_1\) so that
+\(w,wX^\ell,S\) are independent, and choose \(hR_3=S\).
+Using mutually disjoint packets, choose \(P,C\in\mathcal R_1\),
+\(A\in D_1\), and \(B,D\in V_1\) so that
+
+\[
+P,PX^r,\qquad A,AX^s,\qquad C,CX^u
+\]
+
+are independent pairs.  Prescribe
+
+\[
+wY=h,\quad (wX^\ell)Y=P,\quad AY=PX^r,\quad
+(AX^s)Y=B,
+\]
+
+\[
+BY=C,\qquad DY=CX^u,\qquad SY=D.
+\]
+
+Both finite lists are independent, so the prescription extends.
+The resulting word replay is
+
+\[
+P\longmapsto A\longmapsto B\longmapsto C
+\longmapsto D\longmapsto S.
+\]
+
+For \(\ell\equiv0\pmod4\), take
+
+\[
+w=w_1+w',\qquad S=4w_1,\qquad h=3w_1+z,
+\quad 0\ne z\in V_\omega.
+\]
+
+Then \(hR_3=S\), while \(h,hX^r\) are independent because
+\(3\nmid r\).  With fresh \(A,C,B,D\) as above, prescribe
+
+\[
+wY=h,\quad AY=hX^r,\quad (AX^s)Y=B,\quad
+BY=C,\quad DY=CX^u,\quad SY=D.
+\]
+
+Again both lists are independent and the same replay ends at \(S\).
+Thus
+
+\[
+wX^4=w,\qquad wYR_3=wR_4,\qquad wb=wR_4
+\]
+
+in every residue case.  The Fox bridge and Result 85 close both A--D
+signs for every free-kernel lift.  The complete
+\((+,-,+,+,-,-)\) stratum is obstructed, leaving only
+\((+,-,-,+,+,-)\) among the twenty height-zero length-six sign
+strings for the negative A--D sign.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6189,7 +6255,8 @@ Result 98 closes the two-turn separated-return stratum. Result 99
 completes every negative-start length-six stratum and reaches sixteen
 of the twenty total sign strings by inversion. Result 100 closes the
 first remaining positive-start stratum, and Result 101 closes the
-second. Results 73--75 close the
+second. Result 102 closes the penultimate stratum, leaving only one
+negative-sign length-six code. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -6199,7 +6266,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--101, arbitrary W--D conjugators,
+61--102, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

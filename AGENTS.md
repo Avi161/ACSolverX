@@ -873,3 +873,8 @@
 
 - [TRAP] A theory-summary rewrite used remembered sentence wrapping and failed to match, even though the mathematical proof file had already been corrected.
 - [WORKS] Read the exact local summary paragraph immediately before applying a prose replacement; do not reuse context copied from the longer proof ledger.
+
+### 2026-07-27 Append theorem sections from a single terminal line
+
+- [TRAP] Appending Section 49 with a multi-line end-of-file anchor failed even after the visible tail appeared to match exactly.
+- [WORKS] When extending a rapidly growing proof ledger, anchor the append on its unique final content line; read back the new tail before making any distant summary edit.

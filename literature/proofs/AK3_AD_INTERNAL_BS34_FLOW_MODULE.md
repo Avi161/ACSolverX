@@ -7213,3 +7213,159 @@ Equations (478)--(479), (481)--(484), and (485)--(492) prove (474)
 for every residue.  The Fox bridge and (286) obstruct both A--D signs
 for every free-kernel lift.  Hence the complete
 \((+,+,-,-,+,-)\) length-six stratum is closed.
+
+## 49. The penultimate positive-start length-six stratum
+
+Let
+
+\[
+b=x^\ell yx^ry^{-1}x^syx^tyx^uy^{-1}x^vy^{-1}x^q,
+\tag{493}
+\]
+
+where
+
+\[
+3\nmid r,\qquad
+4\nmid s,\qquad
+3\nmid u,
+\tag{494}
+\]
+
+and \(t,v,q\in\mathbb Z\) are arbitrary.  Thus the sign string is
+\((+,-,+,+,-,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{495}
+\]
+
+Only the initial fourth-root phase needs to be split.
+
+### 49.1 Nonzero initial phase
+
+Suppose \(\ell\not\equiv0\pmod4\).  Choose mixed \(w\in D_1\) so
+that, with \(S=wR_4\),
+
+\[
+w,\qquad wX^\ell,\qquad S
+\tag{496}
+\]
+
+are independent.  Choose \(h\in\mathcal R_1\) with \(hR_3=S\).
+Choose disjoint fresh full cube-phase packets \(P,C\in\mathcal R_1\),
+a full fourth-phase packet \(A\in D_1\), and fresh
+\(B,D\in V_1\).  By (494),
+
+\[
+P,PX^r,\qquad
+A,AX^s,\qquad
+C,CX^u
+\tag{497}
+\]
+
+are three independent pairs.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+(wX^\ell)Y&=P,\\
+AY&=PX^r,\\
+(AX^s)Y&=B,\\
+BY&=C,\\
+DY&=CX^u,\\
+SY&=D.
+\end{aligned}
+\tag{498}
+\]
+
+The sources are the direct sum of the triple (496), the pair
+\(A,AX^s\), and the fresh lines \(B,D\).  The images are the direct
+sum of \(h,B,D\) and the pairs \(P,PX^r\), \(C,CX^u\).  All packets
+were chosen disjoint, so (498) extends to the required block
+isomorphism.
+
+The baseline relation is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=S=wR_4.
+\tag{499}
+\]
+
+Since \(B,D,S\in V_1\), the arbitrary exponents \(t,v,q\) disappear
+in the replay:
+
+\[
+\begin{aligned}
+wb
+&=PX^rY^{-1}X^sYX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=AX^sYX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=BX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=CX^uY^{-1}X^vY^{-1}X^q\\
+&=DX^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{500}
+\]
+
+### 49.2 Zero initial phase
+
+Suppose \(\ell\equiv0\pmod4\).  Choose fresh
+
+\[
+w=w_1+w',\qquad
+S=4w_1,\qquad
+h=3w_1+z,
+\tag{501}
+\]
+
+where \(w'\) lies in a nontrivial fourth-root eigenspace and
+\(0\ne z\in V_\omega\).  Then
+
+\[
+hR_3=S=wR_4.
+\]
+
+Moreover \(h,hX^r\) are independent because \(3\nmid r\).
+Choose a fresh full fourth-phase packet \(A\), a disjoint full
+cube-phase packet \(C\), and fresh \(B,D\in V_1\).  Prescribe
+
+\[
+\begin{aligned}
+wY&=h,\\
+AY&=hX^r,\\
+(AX^s)Y&=B,\\
+BY&=C,\\
+DY&=CX^u,\\
+SY&=D.
+\end{aligned}
+\tag{502}
+\]
+
+The source list \(w,A,AX^s,B,D,S\) is independent because
+\(4\nmid s\).  The image list
+\(h,hX^r,B,C,CX^u,D\) is independent because \(3\nmid r,u\);
+freshness separates the three packets.  Thus (502) also extends
+globally.  Its replay is
+
+\[
+\begin{aligned}
+wb
+&=hX^rY^{-1}X^sYX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=AX^sYX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=BX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=CX^uY^{-1}X^vY^{-1}X^q\\
+&=DX^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{503}
+\]
+
+Equations (499)--(503) prove (495) for every initial residue.
+The Fox bridge and (286) obstruct both A--D signs for every
+free-kernel lift.  Hence the complete
+\((+,-,+,+,-,-)\) length-six stratum is closed.
