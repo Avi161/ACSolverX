@@ -1922,3 +1922,174 @@ In particular, changing the seed function, taking all functions
 instead of finitely supported functions, or adding a constant
 \(y\)-character cannot resolve the six multiport scalar systems left
 open in Section 15.
+
+## 17. The remaining multiport systems have infinite cross-incidence
+
+Fix one of the six systems left open in Section 15:
+
+\[
+\ell\in\{1,2,3\},\qquad r\in\{1,2\}.
+\]
+
+The parameter \(p\) has already disappeared.  Put
+
+\[
+h=a^{-r},\qquad K=K_b=\langle x,z_r\rangle.
+\]
+
+The Bass--Serre normal form used in (98) also gives
+
+\[
+K\cap\langle a\rangle
+=\langle a^3\rangle=\langle x^4\rangle.
+\tag{114}
+\]
+
+The incoming equation (103) also loses its apparent \(\ell\)-shift.
+Indeed,
+
+\[
+u^my^{-1}=y^{-1}x^m,
+\]
+
+and the four incoming targets are periodic modulo four by
+\(d_I=4\).  Thus the two equations may be written
+
+\[
+\sum_{i=0}^{3}s(Khy^{-1}x^ig)=\lambda s(Kg),
+\tag{115}
+\]
+
+\[
+\sum_{j=0}^{2}s(Khu^{-\ell}x^jg)=\lambda s(Kg),
+\qquad\lambda=-\sigma.
+\tag{116}
+\]
+
+The system is not indexed by \(K\backslash B\).  Equations
+(114)--(115) are required at every center \(Hg\).  In particular,
+the centers \(Hkg\), with \(k\in K\), all have the same scalar value
+\(s(Kg)\) but generally have different stencils.
+
+Distinct \(H\)-centers over one \(K\)-center have no same-type
+collisions.  More precisely, for \(k,k'\in K\), the outgoing stencils
+
+\[
+\{Khu^{-\ell}x^jkg:0\leq j<3\},
+\qquad
+\{Khu^{-\ell}x^jk'g:0\leq j<3\}
+\]
+
+intersect only if \(Hkg=Hk'g\), in which case they are the same
+stencil with its usual modulo-three permutation.  To see this, an
+equality of two targets forces
+
+\[
+hu^{-\ell}wu^\ell h^{-1}\in K,
+\qquad
+w=x^jkk'^{-1}x^{-j'}\in J_-.
+\]
+
+In the amalgam
+\[
+\langle J_-,J_+\rangle=J_-*_{H}J_+,
+\]
+if \(w\notin H\), the displayed word is reduced across the two vertex
+groups and cannot lie in \(K\leq J_-\).  If \(w=x^n\), membership
+forces \(3\mid n\), giving precisely the modulo-three permutation and
+\(kk'^{-1}\in H\).
+
+The incoming stencils over \(Hkg\) and \(Hk'g\) satisfy the analogous
+statement with period four.  Here an equality reduces to
+
+\[
+y^{-1}x^ikk'^{-1}x^{-i'}y\in h^{-1}Kh\leq J_-.
+\]
+
+Since \(y^{-1}J_-y=J_+\), amalgam normal form forces
+\[
+x^ikk'^{-1}x^{-i'}\in K\cap\langle a\rangle
+=\langle a^3\rangle=\langle x^4\rangle.
+\]
+Thus \(kk'^{-1}\in H\), and the two stencils differ only by their
+usual modulo-four permutation.
+
+The full cross-incidence can be classified exactly.  Return for a
+moment to the original notation
+
+\[
+A_i(g)=Kb^{-1}x^ig,
+\qquad
+B_j(g)=Kb^{-1}yx^jg.
+\tag{117}
+\]
+
+Every outgoing-relation center whose stencil contains \(A_i(g)\) is
+
+\[
+H\,y^{-1}bkb^{-1}x^ig
+\qquad(k\in K).
+\tag{118}
+\]
+
+Indeed, using the \(j=0\) representative of an outgoing stencil, the
+condition is
+
+\[
+Kb^{-1}yq=Kb^{-1}x^ig.
+\]
+
+Solving this left-coset equality gives
+\(q=y^{-1}bkb^{-1}x^ig\), and every \(k\in K\) gives a solution.
+Similarly, every incoming-relation center whose stencil contains
+\(B_j(g)\) is
+
+\[
+H\,bkb^{-1}yx^jg
+\qquad(k\in K).
+\tag{119}
+\]
+
+The repetitions in these two parameterizations are also exact.  Two
+values \(k,k'\) in (117) give the same \(H\)-center precisely when
+
+\[
+kk'^{-1}\in K\cap b^{-1}\langle a\rangle b,
+\]
+
+while in (118) the condition is
+
+\[
+kk'^{-1}\in K\cap b^{-1}Hb.
+\]
+
+The fold equalities \(d_O=3\) and \(d_I=4\), respectively, give
+
+\[
+K\cap b^{-1}\langle a\rangle b
+=K\cap b^{-1}Hb
+=b^{-1}\langle x^4\rangle b
+=\langle z_r^3\rangle.
+\tag{120}
+\]
+
+Consequently every port in (116) belongs to an infinite family of
+opposite-stencil equations indexed by
+
+\[
+\langle z_r^3\rangle\backslash K.
+\tag{121}
+\]
+
+This coset space is infinite.  Quotienting the amalgam presentation
+\(K=\langle x,z_r\mid x^4=z_r^4\rangle\) by its central subgroup
+\(\langle x^4\rangle\) gives \(C_4*C_4\), in which the cyclic image
+of \(\langle z_r^3\rangle\) has infinite index.
+
+The adjacent-center identities (60)--(61) are only the \(k=1\)
+members of (118)--(119).  Thus a local interpolation argument which
+checks one adjacent relation, or even one finite family of adjacent
+relations, is insufficient.  It must solve simultaneous compatibility
+over the entire family (121).  Equations (114)--(121) are an exact
+reduction of the remaining six systems, not a propriety or collapse
+result.

@@ -3918,6 +3918,56 @@ lift data rather than only the truncated word image.  It sharply
 removes nilpotent quotient-primitivity tests, not finer induced-orbit
 invariants or the full higher-order Fox route.
 
+**Result 68 (exact infinite cross-incidence in the six remaining
+length-three systems).**  After the \(p\)-reduction in Result 65, fix
+\(\ell=1,2,3\) and \(r=1,2\).  With
+\(h=a^{-r}\), the exact scalar equations simplify to
+
+\[
+\sum_{i=0}^{3}s(Khy^{-1}x^ig)=\lambda s(Kg),
+\]
+
+\[
+\sum_{j=0}^{2}s(Khu^{-\ell}x^jg)=\lambda s(Kg).
+\]
+
+The first stencil is independent of \(\ell\), but the equations remain
+indexed by \(H\backslash B\), not \(K\backslash B\).  For an incoming
+port \(A_i(g)=Kb^{-1}x^ig\), all outgoing centers containing it are
+
+\[
+H\,y^{-1}bkb^{-1}x^ig,\qquad k\in K.
+\]
+
+For an outgoing port \(B_j(g)=Kb^{-1}yx^jg\), all incoming centers
+containing it are
+
+\[
+H\,bkb^{-1}yx^jg,\qquad k\in K.
+\]
+
+Amalgam normal form also shows that distinct \(H\)-centers over the
+same \(K\)-center have disjoint same-type stencils, apart from the
+ordinary modulo-four or modulo-three permutation of one relation.
+Thus all remaining collisions are genuinely cross-stencil.
+
+In both formulas two parameters give the same center exactly when
+they differ by
+
+\[
+K\cap b^{-1}\langle a\rangle b
+=K\cap b^{-1}Hb
+=\langle z_r^3\rangle.
+\]
+
+Hence every port belongs to an infinite opposite-stencil center family
+indexed by \(\langle z_r^3\rangle\backslash K\).  The universal
+adjacent collisions are only the \(k=1\) members.  Any interpolation
+proof must solve all of these simultaneous compatibility conditions;
+checking one adjacent center is not enough.  This is an exact
+structural theorem, with no propriety, primitivity, or
+Andrews--Curtis conclusion.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
