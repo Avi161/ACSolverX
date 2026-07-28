@@ -5682,6 +5682,61 @@ Both cases satisfy \(wYR_3=4w=wR_4\).  Thus no phase residue remains,
 and the Fox bridge plus Result 85 closes both A--D signs for the
 complete \((-,+,+,-,-,+)\) stratum and every free-kernel lift.
 
+**Result 96 (the two-negative three-positive terminal-return stratum
+is obstructed).**  Let
+
+\[
+b=x^\ell y^{-1}x^ry^{-1}x^syx^tyx^uyx^vy^{-1}x^q,
+\qquad
+4\nmid s,\quad 3\nmid v,
+\]
+
+with all other exponents arbitrary.  Over
+\(\overline{\mathbb F}_5\), choose fresh
+\(w,a_0,a_1,e\in V_1\), fresh
+\(z_1\in V_\omega,z_2\in V_{\omega^2}\), and put
+
+\[
+h=3w+z_1+z_2.
+\]
+
+Choose \(d\in D_1\) with complete four-phase support.  Prescribe
+
+\[
+wY=h,\quad
+a_0Y=w,\quad
+dY=a_0,\quad
+(dX^s)Y=a_1,\quad
+a_1Y=e,\quad
+eY=4hX^{-v}.
+\]
+
+The source list is independent because \(d,dX^s\) are independent.
+The image list is independent because, modulo the fresh
+\(1\)-eigenvectors, its only comparison has determinant
+
+\[
+\omega^{-2v}-\omega^{-v}\ne0.
+\]
+
+Thus the partial map extends globally.  The baseline gives
+
+\[
+wYR_3=4w=wR_4,
+\]
+
+and the full replay is
+
+\[
+wb=dX^sYX^tYX^uYX^vY^{-1}X^q
+=4hX^{-v}X^vY^{-1}X^q
+=4w.
+\]
+
+The Fox bridge and Result 85 close both A--D signs for every
+free-kernel lift.  Hence the complete \((-,-,+,+,+,-)\) length-six
+stratum is obstructed.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5767,8 +5822,9 @@ fourth-root phase is nonzero, and Result 92 closes its first open
 zero-phase case at stable-letter length six. Result 93 closes every
 arbitrarily deep symmetric wrapper around an alternating core. Result
 94 closes arbitrarily many shallow loops around one deep excursion.
-Result 95 closes the self-inverse mixed length-six stratum. Results
-73--75 close the
+Result 95 closes the self-inverse mixed length-six stratum, and Result
+96 closes the two-negative three-positive terminal-return stratum.
+Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5778,7 +5834,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--95, arbitrary W--D conjugators,
+61--96, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

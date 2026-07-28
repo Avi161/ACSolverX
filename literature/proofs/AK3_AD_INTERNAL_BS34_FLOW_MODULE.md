@@ -6208,3 +6208,112 @@ The equal-sign exponents \(s,u\) and both endpoint exponents are
 invisible on the chosen \(1\)-eigenvectors.  The Fox bridge and (286)
 obstruct both A--D signs for every free-kernel lift.  Hence the
 complete \((-,+,+,-,-,+)\) length-six stratum is closed.
+
+## 43. The two-negative three-positive terminal-return stratum
+
+Let
+
+\[
+b=x^\ell y^{-1}x^ry^{-1}x^syx^tyx^uyx^vy^{-1}x^q,
+\tag{409}
+\]
+
+where
+
+\[
+4\nmid s,
+\qquad
+3\nmid v,
+\tag{410}
+\]
+
+and \(\ell,r,t,u,q\in\mathbb Z\) are arbitrary.  Thus the sign string
+is \((-,-,+,+,+,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{411}
+\]
+
+Choose fresh independent \(w,a_0,a_1,e\in V_1\), fresh nonzero
+
+\[
+z_1\in V_\omega,
+\qquad
+z_2\in V_{\omega^2},
+\]
+
+and put
+
+\[
+h=3w+z_1+z_2.
+\tag{412}
+\]
+
+Choose \(d\in D_1\) with a complete four-phase support, using
+multiplicity slots disjoint from the preceding vectors.  Since
+\(4\nmid s\), the vectors \(d,dX^s\) are independent.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+a_0Y&=w,\\
+dY&=a_0,\\
+(dX^s)Y&=a_1,\\
+a_1Y&=e,\\
+eY&=4hX^{-v}.
+\end{aligned}
+\tag{413}
+\]
+
+The source list \(w,a_0,d,dX^s,a_1,e\) is independent.  Every image
+lies in \(\mathcal R_1\).  Modulo the fresh \(V_1\)-span, the only
+nontrivial image comparison is between
+
+\[
+z_1+z_2
+\quad\text{and}\quad
+\omega^{-v}z_1+\omega^{-2v}z_2.
+\tag{414}
+\]
+
+Its determinant is
+
+\[
+\omega^{-2v}-\omega^{-v}\ne0
+\tag{415}
+\]
+
+because \(3\nmid v\).  Thus the image list
+\(h,w,a_0,a_1,e,4hX^{-v}\) is independent, and (413) extends to a
+global cyclotomic BS\((3,4)\)-module action.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=hR_3=9w=4w=wR_4.
+\tag{416}
+\]
+
+The exact replay is
+
+\[
+\begin{aligned}
+wb
+&=dX^sYX^tYX^uYX^vY^{-1}X^q\\
+&=a_1YX^uYX^vY^{-1}X^q\\
+&=eYX^vY^{-1}X^q\\
+&=4hX^{-v}X^vY^{-1}X^q\\
+&=4w.
+\end{aligned}
+\tag{417}
+\]
+
+The omitted \(r,t,u,\ell,q\)-powers act on \(1\)-eigenvectors.  Thus
+(416)--(417) prove (411).  The Fox bridge and (286) obstruct both
+A--D signs for every free-kernel lift.  Hence the complete
+\((-,-,+,+,+,-)\) length-six stratum is closed.
