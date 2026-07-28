@@ -809,3 +809,8 @@
 
 - [TRAP] Passing a LaTeX-heavy patch through an ordinary JavaScript template string converted backslash escapes and inserted NUL bytes before commands such as \(\sigma\); the first read-back exposed corrupted inline math.
 - [WORKS] Use a raw JavaScript string for every LaTeX-heavy apply-patch payload, then immediately read back the edited section and scan the diff before mathematical review.
+
+### 2026-07-27 Saturate cyclic fold labels before counting ports
+
+- [TRAP] Reading \(K_b=\langle x,z^3\rangle\) directly from \(b^{-1}Cb\) initially missed the additional relation \(z^4=x^4\in H\); together \(z^3,z^4\in K_b\) force \(z\in K_b\), changing a three-port stencil into a one-port stencil.
+- [WORKS] Before declaring a stencil fold index, collect every available power of its cyclic endpoint generator and replace the exponent set by its gcd saturation. Only count ports after this subgroup closure.

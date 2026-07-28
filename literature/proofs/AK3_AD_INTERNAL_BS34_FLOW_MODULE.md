@@ -1000,11 +1000,12 @@ c=Hyx^{-1}.
 
 Thus, if a finite coefficient hull has the edge \([H,c]\) as its sole
 edge at the leaf \(H\), neither scalar stencil supplies an unused
-outward branch there.  This does not prove collapse or propriety for
-(62).  It proves only that the one-\(y\) leaf argument needs a new
-ingredient: targets must be separated after projection to
-\(K_b\backslash B\), rather than merely lying off a chosen lifted
-tree branch.
+outward branch there.  At this point this did not prove collapse or
+propriety for (62).  It proved only that the one-\(y\) leaf argument
+needed a new ingredient: targets must be separated after projection to
+\(K_b\backslash B\), rather than merely lying off a chosen lifted tree
+branch.  Section 15 below settles this class by a folded outgoing-port
+argument instead.
 
 The universal collision (60) is already visible in the shortest
 exponent-zero code
@@ -1595,3 +1596,182 @@ turn labels, not merely \(K_b\).  The necessity of this decoration
 already appears at stable-letter length one: \(b=y\) and \(b=xy\)
 both have \(K_b=H\), but Section 6 gives collapse for the first while
 Section 10 gives propriety for the second.
+
+## 15. A length-three same-sign family has scalar outgoing collapse
+
+The countergeometry (62) does not require an open-port interpolation
+theorem.  Its outgoing stencil folds completely.  This extends across
+the first same-sign turn.  Put
+
+\[
+a=yxy^{-1},\qquad u=y^{-1}xy,
+\]
+
+and consider every normalized sign-\((+,+,-)\) code
+
+\[
+b_{\ell,p,r}
+=x^\ell yx^pyx^ry^{-1}
+=x^\ell a^pya^r,
+\tag{95}
+\]
+
+where \(0\leq\ell<4\), \(0\leq p<3\), and \(r=1,2\).
+The values \(r=0\bmod3\) Britton-reduce to the length-one stratum.
+Define
+
+\[
+z_r=a^{-r}xa^r.
+\tag{96}
+\]
+
+The subgroup \(K_b\) is independent of \(\ell\) and \(p\).  Indeed,
+\(C=\langle x^4\rangle=\langle a^3\rangle\) is central in
+
+\[
+J_-=\langle x,a\mid x^4=a^3\rangle.
+\]
+
+Since \(x^\ell a^p\in J_-\), it centralizes \(C\), and hence
+
+\[
+b_{\ell,p,r}^{-1}Cb_{\ell,p,r}
+=a^{-r}y^{-1}Cy a^r
+=\langle a^{-r}x^3a^r\rangle
+=\langle z_r^3\rangle.
+\tag{97}
+\]
+
+Moreover \(z_r^4=a^{-r}x^4a^r=x^4\).  Therefore
+
+\[
+z_r=z_r^4(z_r^3)^{-1}\in K_b,
+\qquad
+K_b=\langle x,z_r\rangle.
+\]
+
+The exact subgroup presentation is
+
+\[
+K_b\cong
+\langle x\rangle*_{\langle x^4=z_r^4\rangle}\langle z_r\rangle
+=\langle x,z_r\mid x^4=z_r^4\rangle.
+\tag{98}
+\]
+
+To prove this, use the Bass--Serre tree of
+\(J_-=\langle x\rangle*_{\langle x^4=a^3\rangle}\langle a\rangle\).
+The groups \(\langle x\rangle\) and
+\(a^{-r}\langle x\rangle a^r=\langle z_r\rangle\) stabilize two
+distinct \(H\)-vertices adjacent to the same
+\(\langle a\rangle\)-vertex.  Their intersection is exactly
+\(\langle x^4\rangle=\langle z_r^4\rangle\); amalgam normal form
+proves (98).
+
+The incoming fold index is always four.  Direct calculation gives
+
+\[
+b_{\ell,p,r}^{-1}x^nb_{\ell,p,r}
+=a^{-r}x^{-p}u^nx^pa^r.
+\tag{99}
+\]
+
+The infinite-line graph-of-groups normal form gives
+
+\[
+\langle u\rangle\cap J_-=\langle u^4\rangle
+=\langle x^3\rangle.
+\]
+
+Thus (99) can lie in \(K_b\leq J_-\) only if \(4\mid n\).
+Conversely \(u^{4k}=x^{3k}\), so the value for \(n=4k\) is
+\(z_r^{3k}\in K_b\).  Hence
+
+\[
+d_I(b_{\ell,p,r})=4.
+\tag{100}
+\]
+
+For the outgoing fold, one has
+
+\[
+b_{\ell,p,r}^{-1}yx^ny^{-1}b_{\ell,p,r}
+=a^{-r}x^{-p}
+\bigl(u^{-\ell}x^nu^\ell\bigr)
+x^pa^r.
+\tag{101}
+\]
+
+If \(4\mid\ell\), then \(u^\ell=x^{3\ell/4}\), so (101) is
+\(z_r^n\in K_b\) for every \(n\).  If \(4\nmid\ell\), multiples of
+three still work because \(x^3=u^4\) is central in
+\(J_+=\langle x,u\mid x^3=u^4\rangle\).  For \(3\nmid n\), however,
+\(u^{-\ell}x^nu^\ell\) is a reduced non-\(H\) word in \(J_+\).
+The line-of-groups normal form
+
+\[
+\langle J_-,J_+\rangle=J_-*_{H}J_+
+\]
+
+then shows that (101) is not in \(J_-\), and hence not in \(K_b\).
+Consequently
+
+\[
+d_O(b_{\ell,p,r})=
+\begin{cases}
+1,&\ell=0,\\
+3,&\ell=1,2,3.
+\end{cases}
+\tag{102}
+\]
+
+Equations (36)--(37) themselves take the explicit form
+
+\[
+\sum_{i=0}^{3}
+s(K_ba^{-r}x^{-p}u^{\,i-\ell}y^{-1}g)
+=\lambda s(K_bg),
+\tag{103}
+\]
+
+\[
+\sum_{j=0}^{2}
+s(K_ba^{-r}x^{-p}u^{-\ell}x^jg)
+=\lambda s(K_bg),
+\qquad\lambda=-\sigma.
+\tag{104}
+\]
+
+When \(\ell=0\), the three targets in (104) are all
+\(K_ba^{-r}g\), because
+\(a^{-r}x^{j-p}=z_r^{\,j-p}a^{-r}\).  Thus
+
+\[
+3s(K_ba^{-r}g)=\lambda s(K_bg).
+\]
+
+Apply this successively at
+\(g,a^{-r}g,a^{-2r}g\).  Since
+\(a^{-3r}=x^{-4r}\in H\leq K_b\), one obtains
+
+\[
+(27-\lambda^3)s(K_bg)=0.
+\]
+
+The coefficient is \(26\) for \(\lambda=1\) and \(28\) for
+\(\lambda=-1\).  Hence \(s=0\) over \(\mathbb Q\).  By the exact
+duality in Section 8, for \(p=0,1,2\), \(r=1,2\), and both signs,
+
+\[
+(x^4-1)R+(yR_3-R_4)R+
+(yx^pyx^ry^{-1}+\sigma R_4)R
+=R.
+\tag{105}
+\]
+
+This closes all six normalized sign-\((+,+,-)\) codes with
+\(\ell=0\), including (62).  For the remaining eighteen codes
+\(\ell=1,2,3\), the exact fold pair is \((d_I,d_O)=(4,3)\); neither
+stencil is scalar, so this argument proves neither collapse nor
+propriety.  As before, flow collapse is not a primitivity theorem and
+not an Andrews--Curtis reduction.

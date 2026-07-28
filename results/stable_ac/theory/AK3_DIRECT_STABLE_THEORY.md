@@ -3770,6 +3770,68 @@ collapses while the second is proper.  The minimal length-three word
 \(y^2xy^{-1}\) separately defeats the naive exposed-leaf proof.  No
 new primitivity or Andrews--Curtis claim is made here.
 
+**Result 65 (same-sign length-three outgoing collapse).**  Every
+normalized sign-\((+,+,-)\) code is
+
+\[
+b_{\ell,p,r}=x^\ell yx^pyx^ry^{-1},
+\quad
+0\leq\ell<4,\quad 0\leq p<3,\quad r=1,2.
+\]
+
+Put \(a=yxy^{-1}\), \(u=y^{-1}xy\), and
+\(z_r=a^{-r}xa^r\).  For all twenty-four codes,
+
+\[
+K_{b_{\ell,p,r}}
+=\langle x,z_r\rangle
+\cong\langle x,z_r\mid x^4=z_r^4\rangle.
+\]
+
+The key saturation is
+
+\[
+b_{\ell,p,r}^{-1}x^4b_{\ell,p,r}=z_r^3,
+\qquad z_r^4=x^4:
+\]
+
+although the definition of \(K_b\) initially supplies only \(z_r^3\),
+it therefore supplies \(z_r\) itself.  Exact line-of-groups normal
+forms give the stencil indices
+
+\[
+d_I(b_{\ell,p,r})=4,
+\qquad
+d_O(b_{\ell,p,r})=
+\begin{cases}
+1,&\ell=0,\\
+3,&\ell=1,2,3.
+\end{cases}
+\]
+
+For \(\ell=0\), the outgoing equation folds to
+
+\[
+3s(K_ba^{-r}g)=-\sigma s(K_bg).
+\]
+
+Since \(a^{-3r}=x^{-4r}\in K_b\), three iterations give a nonzero
+coefficient \(26\) or \(28\) times every value of \(s\).  Thus, for
+\(p=0,1,2\), \(r=1,2\), and both signs,
+
+\[
+(x^4-1)\mathbb Q[B]+(yR_3-R_4)\mathbb Q[B]
++(yx^pyx^ry^{-1}+\sigma R_4)\mathbb Q[B]
+=\mathbb Q[B].
+\]
+
+This closes all six \(\ell=0\) codes, including the minimal failed
+leaf geometry \(y^2xy^{-1}\), by scalar collapse rather than
+interpolation.  For the other eighteen codes the exact fold pair is
+\((4,3)\), so neither stencil is scalar and no outcome is claimed.
+The collapse is a failure of the flow obstruction only, not a
+primitivity or Andrews--Curtis theorem.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
