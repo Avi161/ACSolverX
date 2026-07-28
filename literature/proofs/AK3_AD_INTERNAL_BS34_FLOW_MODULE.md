@@ -2516,3 +2516,166 @@ Thus the six remaining flow problems are exactly the question whether
 the finite identity (145) exists.  The three-phase tree specifies all
 of its incidences but does not by itself decide membership (144).
 No outcome is claimed here.
+
+## 21. The amalgam resolution makes the target locally finite
+
+The infinite column incidence in Section 20 can be removed without
+discarding any equation.  Put
+
+\[
+Z=\langle z\rangle,
+\qquad K=H*_C Z,
+\qquad C=\langle x^4\rangle=\langle z^4\rangle.
+\tag{146}
+\]
+
+The cellular chain complex of the Bass--Serre tree of (146), summed
+over the right \(K\)-cosets in \(B\), is the exact sequence of right
+\(B\)-modules
+
+\[
+0\longrightarrow \mathscr I_C
+\xrightarrow{\partial}
+\mathscr I_H\oplus\mathscr I_Z
+\xrightarrow{\varepsilon}
+\mathscr I_K\longrightarrow0,
+\tag{147}
+\]
+
+where
+
+\[
+\partial[Cg]=([Hg],-[Zg]),
+\qquad
+\varepsilon([Hg],0)=\varepsilon(0,[Zg])=[Kg].
+\tag{148}
+\]
+
+Define two finite-fiber maps
+
+\[
+\begin{aligned}
+P_I[Hg]&=\sum_{i=0}^{3}[Zb^{-1}x^ig],\\
+P_O[Hg]&=\sum_{j=0}^{2}[Zb^{-1}yx^jg].
+\end{aligned}
+\tag{149}
+\]
+
+They are well-defined on \(H\backslash B\).  In the first line, a
+change \(g\mapsto xg\) permutes the four terms because
+\(b^{-1}x^4b=z^3\in Z\).  In the second, it permutes the three terms
+because \(yx^3=x^4y\) and again \(b^{-1}x^4b=z^3\).
+
+The map \(D_\lambda\) from (140) lifts through (147) as
+
+\[
+\widetilde D_\lambda(\alpha,\beta)
+=\bigl(-\lambda(\alpha+\beta),\,
+P_I\alpha+P_O\beta\bigr),
+\qquad
+\varepsilon\widetilde D_\lambda=D_\lambda.
+\tag{150}
+\]
+
+Since \(\lambda=\pm1\), the first coordinate in (150) can be
+eliminated exactly.  If
+
+\[
+\pi_H:\mathscr I_C\to\mathscr I_H,
+\qquad
+\pi_Z:\mathscr I_C\to\mathscr I_Z
+\]
+
+are the natural projections, define
+
+\[
+E_\lambda:\mathscr I_H\oplus\mathscr I_C
+\longrightarrow\mathscr I_Z
+\tag{151}
+\]
+
+by
+
+\[
+E_\lambda(\mu,\nu)
+=(P_I-P_O)\mu
++(P_I\pi_H-\lambda\pi_Z)\nu.
+\tag{152}
+\]
+
+Then elementary elimination in the cokernel of
+\((\partial,\widetilde D_\lambda)\) gives a canonical isomorphism
+
+\[
+\operatorname{coker}D_\lambda
+\cong\operatorname{coker}E_\lambda.
+\tag{153}
+\]
+
+Explicitly, the relation
+\((-\lambda[Hg],P_I[Hg])=0\) replaces the \(H\)-coordinate by
+\(\lambda^{-1}P_I[Hg]\).  The second \(H\)-row then becomes
+\((P_O-P_I)[Hg]\), and the edge relation in (148) becomes, after
+clearing the unit \(\lambda\),
+\((P_I\pi_H-\lambda\pi_Z)[Cg]\).  This proves (153), including its
+signs.  Under (153), the class of \([K]\) is the class of \([Z]\).
+
+Consequently the six open systems have the equivalent finite-support
+target
+
+\[
+[Z]\stackrel{?}{\in}\operatorname{im}E_\lambda.
+\tag{154}
+\]
+
+Unlike \(D_\lambda\), the presentation (151)--(152) is locally finite
+in both directions.  Its two kinds of rows have respectively seven
+and five terms.  A fixed variable \([Zd]\) occurs in only finitely
+many rows.  Indeed, (120) gives
+
+\[
+Z\cap b^{-1}Hb
+=Z\cap b^{-1}yHy^{-1}b
+=L=\langle z^3\rangle.
+\tag{155}
+\]
+
+Thus the \(P_I\)-rows containing \([Zd]\) are
+\(Hbz^nd\), and the \(P_O\)-rows are
+\(Hy^{-1}bz^nd\), with \(n\bmod3\).  For the second summand of
+(152), each of the three \(P_I\)-centers has four lifts from
+\(H\backslash B\) to \(C\backslash B\), while the center term has
+the four lifts \(Cz^qd\), \(q\bmod4\).  Hence a column meets at most
+six rows of the first kind and sixteen of the second.
+
+Writing (154) coefficientwise gives a completely fixed-valence
+identity.  It asks for finitely supported
+
+\[
+\mu:H\backslash B\to\mathbb Q,
+\qquad
+\nu:C\backslash B\to\mathbb Q
+\]
+
+such that, for every \(d\in B\),
+
+\[
+\begin{aligned}
+&\sum_{n=0}^{2}\mu(Hbz^nd)
+-\sum_{n=0}^{2}\mu(Hy^{-1}bz^nd)\\
+&\quad
++\sum_{n=0}^{2}\sum_{q=0}^{3}
+  \nu(Cx^qbz^nd)
+-\lambda\sum_{q=0}^{3}\nu(Cz^qd)
+=\mathbf1_{\{Zd=Z\}}.
+\end{aligned}
+\tag{156}
+\]
+
+All four sums in (156) have fixed finite ranges; no hidden
+\(L\backslash K\) fiber remains.  Thus a finite-support
+leaf-elimination, leading-term, or matching proof may now be carried
+out on an honest locally finite coefficient hypergraph.  Equations
+(153)--(156) do not decide whether that proof yields a separator or a
+certificate, so they prove neither propriety nor collapse by
+themselves.

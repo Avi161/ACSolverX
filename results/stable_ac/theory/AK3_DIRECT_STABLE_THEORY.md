@@ -4121,6 +4121,70 @@ identity is impossible, linear separation of the cokernel constructs
 a nonzero current; if it exists, the flow quotient collapses.  This is
 the exact next proof target, not a decision of either side.
 
+**Result 72 (the amalgam resolution makes that identity locally
+finite).**  Put \(Z=\langle z\rangle\).  The Bass--Serre tree of
+
+\[
+K=H*_C Z
+\]
+
+gives an exact sequence
+
+\[
+0\longrightarrow\mathscr I_C
+\longrightarrow\mathscr I_H\oplus\mathscr I_Z
+\longrightarrow\mathscr I_K\longrightarrow0.
+\]
+
+Using it to lift \(D_\lambda\), then eliminating the
+\(\mathscr I_H\)-coordinate through the unit \(-\lambda\), gives
+
+\[
+\operatorname{coker}D_\lambda
+\cong\operatorname{coker}E_\lambda,
+\]
+
+where
+
+\[
+E_\lambda:\mathscr I_H\oplus\mathscr I_C\to\mathscr I_Z,
+\]
+
+\[
+E_\lambda(\mu,\nu)
+=(P_I-P_O)\mu
++(P_I\pi_H-\lambda\pi_Z)\nu,
+\]
+
+and
+
+\[
+P_I[Hg]=\sum_{i=0}^{3}[Zb^{-1}x^ig],
+\qquad
+P_O[Hg]=\sum_{j=0}^{2}[Zb^{-1}yx^jg].
+\]
+
+The class of \([K]\) corresponds to \([Z]\).  Therefore the exact
+remaining question is \([Z]\in\operatorname{im}E_\lambda\).  In
+coefficients this asks for finitely supported \(\mu,\nu\) satisfying
+
+\[
+\begin{aligned}
+&\sum_{n=0}^{2}\mu(Hbz^nd)
+-\sum_{n=0}^{2}\mu(Hy^{-1}bz^nd)\\
+&\quad+\sum_{n=0}^{2}\sum_{q=0}^{3}
+\nu(Cx^qbz^nd)
+-\lambda\sum_{q=0}^{3}\nu(Cz^qd)
+=\mathbf1_{\{Zd=Z\}}.
+\end{aligned}
+\]
+
+This presentation is row- and column-finite: its two row types have
+seven and five terms, and each \(Z\)-variable occurs in at most six
+rows of the first type and sixteen of the second.  Thus the previous
+infinite-column obstruction has been removed exactly, not truncated.
+Membership of \([Z]\) is still open.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

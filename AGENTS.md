@@ -826,3 +826,8 @@
 - [WORKS] Put even small graph traversals in a readable multiline standard-library script with named adjacency and connectivity functions; proof diagnostics should optimize for auditability, not one-line brevity.
 - [TRAP] The readable retry still printed a hardcoded connected-true guard even though its adjacency list visibly had two components.
 - [WORKS] Compute the baseline component count explicitly and define an articulation vertex by an increase from that count; never infer articulation points from a graph that was not first verified connected.
+
+### 2026-07-27 Keep multi-file patches syntactically independent
+
+- [TRAP] A two-file LaTeX patch failed as a whole because one line in the second file lacked its diff prefix, discarding a valid first-file section.
+- [WORKS] Apply and read back each proof-file insertion separately; only combine files after each hunk has independently passed patch parsing.
