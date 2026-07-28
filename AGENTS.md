@@ -1045,3 +1045,9 @@
 - [WORKS] After reducing a fixed-entry commutator equation to `Cl(a) intersect a Cl(c^+/-1)`, allow representations into compact Lie groups, not only finite quotients. In `SU(2)`, conjugacy fixes quaternion scalar part, and Cauchy--Schwarz can separate an entire translated conjugacy class at once.
 - [WORKS] For the last first-image depth-three AK residue, choose equal-angle quaternion images of `x,y` with axis dot product an algebraic root. The braid relation becomes one scalar dot-product equation, while `scal(a)^2>1/2` and `scal(c)<0` create a strict trace gap for both orientations.
 - [WORKS] The exact `SU(2)` obstruction closes the eighteenth first-image depth-three provenance class. The complete statement is in `literature/proofs/AK3_SU2_FIXED_COMMUTATOR_OBSTRUCTION.md`; keep finite and nilpotent blindness results as motivation, not as evidence for solvability.
+
+### 2026-07-28 Disable external Python bytecode caches in scratch verification
+
+- [TRAP] `python3 -m py_compile .scratch/depth4_provenance_check.py` tried to create a mirrored cache below `/Users/avigyapaudel/Library/Caches/com.apple.python/` and failed with `PermissionError: [Errno 1] Operation not permitted` even though the source file is project-local.
+- [WORKS] Run disposable project diagnostics with `PYTHONDONTWRITEBYTECODE=1 python3 ...` in this macOS workspace, or set an explicitly project-local cache prefix before using `py_compile`.
+- [TRAP] `.scratch/depth4_provenance_check.py` eagerly materializes every free-product connector up to the largest per-case bound and did not finish the 24 one/two-minority census before handoff. Stream connectors per case, prune by target length during generation, and emit progress before treating those cases as closed.
