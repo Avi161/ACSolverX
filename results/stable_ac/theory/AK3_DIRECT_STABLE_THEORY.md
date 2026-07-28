@@ -7366,19 +7366,49 @@ over arbitrary ambient conjugators.
 After a first external AC2 edge, the terminal after a second AC2 edge is
 a cyclic product of three source conjugates of type \((a,b,b)\) or
 \((a,a,b)\).  If their K-translates are all distinct, the overlap-two
-bound gives lengths at least 35 and 28.  If two translates coincide, a
+bound and the explicit three-axis cancellation lemma give lengths at
+least 35 and 28.  If two translates coincide, a
 mixed pair uses Result 122, while an equal-source pair uses the table.
 The terminal is either an old nonprimitive source or has length at least
 27.  The largest possible primitive lengths are only 11 and 16.
 
 If the first edge is internal and the second external, the changed row
 has length at least 21 and the terminal at least \(21+11-4=28\).  If both
-are internal, Result 125 pulls the history back.  Hence no history with at
-most two AC2 row multiplications from the first proper image creates a new
-ambient-primitive row.  Arbitrary AC1/AC3 traffic between the AC2 moves is
-absorbed into signs and conjugators.  A genuinely new corridor use needs
+have internal effective relative geometry after AC1/AC3 normalization,
+Result 125 pulls each terminal conjugacy class back.  The row not targeted
+by AC2 number two is either old or the nonprimitive one-AC2 row.  Hence no
+history with at most two AC2 row multiplications from the first proper
+image creates a new ambient-primitive row.  Arbitrary AC1/AC3 traffic
+between the AC2 moves is absorbed into signs, conjugators, and final
+conjugacy.  A genuinely new corridor use needs
 at least three row multiplications, an ambient automorphism moving K, or a
 different stabilization architecture.
+
+**Result 129 (every arbitrary-depth exit needs a translate collision).**
+Flatten any AC1--AC3 history from the first proper image into a cyclic
+product of signed conjugates of a and b, and tag each leaf by the
+K-translate containing its axis.  If every cyclically adjacent pair of
+tags is distinct, Result 123 bounds each seam overlap by two.  With
+\(N_a,N_b\) leaves of the two types,
+
+\[
+\|W\|\ge 11N_a+18N_b-4(N_a+N_b)=7N_a+14N_b.
+\]
+
+But abelianization gives
+
+\[
+\|[W]\|_1\le7N_a+2N_b.
+\]
+
+After any AC2 multiplication the exact leaf expansion contains both
+source types, so \(N_b\ge1\), and the cyclic length is at least
+\(12N_b\) above the largest possible primitive length.  Therefore every
+primitive terminal at any depth must contain an adjacent pair of leaves
+in the same K-translate.  Result 128 closes all such collision patterns
+available through two AC2 moves.  The three-move problem is now the
+classification of coherent same-translate seams, not unrestricted
+ambient conjugators.
 
 ## Live lead
 
@@ -7558,7 +7588,10 @@ sharp first-image overlap bound to close the reverse orientation there.
 Any genuinely new two-row exit from that image must go external first.
 Result 128 closes that first-external three-translate geometry as well:
 every two-AC2 terminal is either an old source, an internal pullback, or
-has cyclic length at least 27.
+has cyclic length at least 27. Result 129 extends the geometry to arbitrary
+depth: every primitive terminal must create an adjacent same-translate
+leaf collision; collision-free translate words retain a strict
+\(12N_b\) length gap.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7570,7 +7603,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--128, arbitrary W--D conjugators,
+61--129, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

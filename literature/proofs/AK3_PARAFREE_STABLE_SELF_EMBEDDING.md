@@ -1017,6 +1017,32 @@ The minima range over every ambient r.  They follow from the same cyclic
 rotation audit as Section 8; the opposite-sign column excludes the exact
 zero obtained when the two conjugates coincide inversely.
 
+### Lemma 14.1 (three-axis cancellation)
+
+Let \(u_1,u_2,u_3\) be hyperbolic isometries of a tree, with translation
+lengths \(\ell_i\) and finite pairwise axis-intersection diameters
+\(d_{ij}\).  If
+
+\[
+\ell_i>d_{ij}+d_{ik}
+\qquad(\{i,j,k\}=\{1,2,3\}),
+\]
+
+then
+
+\[
+\|u_1u_2u_3\|
+\ge \sum_i\ell_i-2\sum_{i<j}d_{ij}.
+\]
+
+**Proof.**  Mark one translation segment on each axis in cyclic product
+order.  At either end of the i-th segment, cancellation can use only the
+part lying in the intersection with the adjacent factor's axis, of length
+at most \(d_{ij}\) or \(d_{ik}\).  The strict inequality leaves a
+nonempty central part of every segment, so no factor disappears and
+exposes a new seam.  Removing the two bounded end portions from every
+segment gives the estimate. \(\square\)
+
 Now suppose the first AC2 multiplication uses an external conjugator.
 After absorbing intervening AC1 and AC3 moves into signs and conjugators,
 the row tested after the second AC2 multiplication is a cyclic product of
@@ -1035,7 +1061,7 @@ ensures that not all three translates coincide.
 
 If all three translates are distinct, Result 123 bounds every pairwise
 axis overlap by two.  Since the shortest factor has length 11, no factor
-can disappear through its two seams, and the cyclic tree estimate gives
+can disappear through its two seams, and Lemma 14.1 gives
 
 \[
 \|(a,b,b)\text{-product}\|\ge11+18+18-12=35,
@@ -1084,19 +1110,120 @@ external, Result 123 gives terminal length at least
 \]
 
 regardless of which row is targeted.  If the second edge is internal, the
-whole history pulls back by Theorem 11.1.
+effective relative geometry of both AC2 edges lies in one K-translate.
+After absorbing AC1/AC3, each terminal conjugacy class is then a conjugate
+or inverse of \(\phi(V)\) for a pulled-back history on the original AK
+pair, by Theorem 11.1.
 
-### Theorem 14.1 (two-AC2 corridor barrier)
+The row not targeted by the second AC2 move is also closed.  If both AC2
+moves target the same row, the other row is an old nonprimitive source.
+If the targets alternate, the other row is the one-AC2 row, nonprimitive
+by Section 8.  The zero- and one-AC2 cases are respectively the old
+sources and Result 122.
+
+### Theorem 14.2 (two-AC2 corridor barrier)
 
 Starting from the first proper image pair \((a,b)\), no history with at
 most two AC2 row multiplications creates an ambient-primitive row unless
-all its conjugators lie in K, in which case the history is exactly the
-image of a history from the original AK pair.  This allows arbitrary AC1
-inversions and AC3 conjugations between the two AC2 moves.
+after absorbing AC1/AC3, all effective relative factor geometry lies in
+one K-translate.  In that case every terminal conjugacy class is a
+conjugate or inverse of the image of a terminal from an original-AK
+history.  This allows arbitrary AC1 inversions and AC3 conjugations
+between the two AC2 moves.
 
 Thus the proper corridor supplies no new primitive row at two-AC2 depth.
 A genuinely new use must have at least three row multiplications, move K
 by an ambient automorphism, or change the stabilizer architecture.
+
+## 15. Arbitrary depth requires an adjacent translate collision
+
+Every finite AC1--AC3 history can be flattened recursively.  A displayed
+row becomes a cyclic product of signed conjugates of the original image
+sources:
+
+\[
+W=\prod_{i=1}^{N} g_i s_i^{\epsilon_i}g_i^{-1},
+\qquad
+s_i\in\{a,b\},\quad \epsilon_i=\pm1.
+\tag{15.1}
+\]
+
+Tag the i-th leaf by the translate \(g_iK\) containing its axis.  AC1
+reverses and changes the leaf signs, AC2 concatenates two leaf lists, and
+AC3 left-multiplies every tag in one list.  Thus (15.1) is exact, with no
+bound on the history or conjugators.
+
+### Lemma 15.1 (cyclic many-axis cancellation)
+
+Let \(u_1,\ldots,u_N\) be hyperbolic tree isometries in cyclic order.
+Write \(\ell_i=\|u_i\|\), and let \(d_i\) bound the intersection diameter
+of the axes of \(u_i\) and \(u_{i+1}\), with indices modulo N.  If
+
+\[
+\ell_i>d_{i-1}+d_i
+\qquad(1\le i\le N),
+\tag{15.2}
+\]
+
+then
+
+\[
+\|u_1\cdots u_N\|
+\ge\sum_i\ell_i-2\sum_i d_i.
+\tag{15.3}
+\]
+
+The proof is the marked-segment argument of Lemma 14.1: only the two end
+portions of the i-th translation segment can cancel at its adjacent
+seams, and (15.2) leaves a nonempty central segment.  Thus no factor
+disappears and creates a new seam.
+
+Assume every two cyclically adjacent tags in (15.1) are distinct.  Result
+123 bounds the corresponding axis overlap by two.  Each seam can therefore
+remove at most four letters from the sum of cyclic source lengths.  Since
+\(\|a\|=11\) and \(\|b\|=18\), and no factor of length at least 11 can
+disappear through its two overlap-two seams,
+
+\[
+\|W\|\ge 11N_a+18N_b-4(N_a+N_b)
+=7N_a+14N_b,
+\tag{15.4}
+\]
+
+where \(N_a,N_b\) count the two leaf types without signs.
+
+On the other hand, the exponent vector of W is the signed sum of the
+source vectors.  The triangle inequality gives
+
+\[
+\|[W]\|_1
+\le N_a\|(3,-4)\|_1+N_b\|(1,-1)\|_1
+=7N_a+2N_b.
+\tag{15.5}
+\]
+
+If W were primitive, Osborne--Zieschang would make its cyclic length
+exactly \(\|[W]\|_1\).  Equations (15.4)--(15.5) contradict this whenever
+\(N_b\ge1\), with gap at least \(12N_b\).
+
+Before any AC2 move a row is only an old nonprimitive source.  After an
+AC2 move its unreduced leaf expansion contains both source types; AC1 and
+AC3 never delete leaves.  Consequently every primitive terminal reached
+after row multiplication must violate the distinct-adjacent-tag
+hypothesis.
+
+### Theorem 15.1 (translate-collision necessity)
+
+At the first proper image, every primitive-row history using AC1--AC3 must
+contain a cyclically adjacent pair of source leaves whose axes lie in the
+same translate of K.  Equivalently, a successful history must coherently
+reuse external traffic so that two adjacent leaf tags collide.  Histories
+whose leaf-tag word is cyclically reduced in the translate alphabet are
+nonprimitive at every depth.
+
+This does not yet classify all collision patterns.  Result 128 closes all
+patterns available through two AC2 moves.  At three moves, only histories
+which deliberately create and then exploit a same-translate seam remain.
 
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 

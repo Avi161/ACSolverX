@@ -981,3 +981,8 @@
 - [TRAP] A regular JavaScript patch string dropped the backslash from `\\quad` in equation (9.5), repeating the already documented LaTeX-escape class of failure.
 - [TRAP] A subsequent raw template failed to parse because the lesson text itself contained unescaped backticks.
 - [WORKS] Use `String.raw` for LaTeX-only patch payloads and a separate regular string for prose containing backticks. Search the edited region for bare command names before verification.
+
+### 2026-07-27 Patch audited proof corrections in small anchors
+
+- [TRAP] A multi-file audit correction failed atomically because its final hunk matched a remembered line break instead of the committed Section 14 wording; a second combined raw patch failed because lesson prose contained backticks.
+- [WORKS] After an audit, reread the exact theorem region and split structural lemma insertion, theorem wording, and lesson updates into separately anchored patch payloads.
