@@ -1,0 +1,181 @@
+order,pres_id,name,bin,start_length,arm,arm_label,config,budget,mrl,solved,nodes_explored,path_length,derived,source,source_budget,in_all_three_solved
+0,0,ms0,0,7,baseline,Greedy baseline,L,1000,48,True,3,2,True,EXP28_colab_scale.jsonl,100000,True
+0,0,ms0,0,7,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,3,2,True,EXP28_colab_scale.jsonl,100000,True
+0,0,ms0,0,7,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,3,2,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+1,496,ms496,0,18,baseline,Greedy baseline,L,1000,48,True,4,3,True,EXP28_colab_scale.jsonl,100000,True
+1,496,ms496,0,18,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,4,3,True,EXP28_colab_scale.jsonl,100000,True
+1,496,ms496,0,18,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,4,3,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+2,521,ms521,0,21,baseline,Greedy baseline,L,1000,48,True,5,4,True,EXP28_colab_scale.jsonl,100000,True
+2,521,ms521,0,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,5,4,True,EXP28_colab_scale.jsonl,100000,True
+2,521,ms521,0,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,5,4,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+3,323,ms323,0,15,baseline,Greedy baseline,L,1000,48,True,7,6,True,EXP28_colab_scale.jsonl,100000,True
+3,323,ms323,0,15,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,7,6,True,EXP28_colab_scale.jsonl,100000,True
+3,323,ms323,0,15,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,7,6,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+4,228,ms228,0,14,baseline,Greedy baseline,L,1000,48,True,9,7,True,EXP28_colab_scale.jsonl,100000,True
+4,228,ms228,0,14,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,8,7,True,EXP28_colab_scale.jsonl,100000,True
+4,228,ms228,0,14,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,9,8,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+5,455,ms455,0,19,baseline,Greedy baseline,L,1000,48,True,10,9,True,EXP28_colab_scale.jsonl,100000,True
+5,455,ms455,0,19,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,10,9,True,EXP28_colab_scale.jsonl,100000,True
+5,455,ms455,0,19,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,10,9,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+6,77,ms77,1,13,baseline,Greedy baseline,L,1000,48,True,11,8,True,EXP28_colab_scale.jsonl,100000,True
+6,77,ms77,1,13,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,11,10,True,EXP28_colab_scale.jsonl,100000,True
+6,77,ms77,1,13,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,11,10,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+7,43,ms43,1,12,baseline,Greedy baseline,L,1000,48,True,13,9,True,EXP28_colab_scale.jsonl,100000,True
+7,43,ms43,1,12,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,14,11,True,EXP28_colab_scale.jsonl,100000,True
+7,43,ms43,1,12,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,15,11,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+8,141,ms141,1,13,baseline,Greedy baseline,L,1000,48,True,12,10,True,EXP28_colab_scale.jsonl,100000,True
+8,141,ms141,1,13,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,12,10,True,EXP28_colab_scale.jsonl,100000,True
+8,141,ms141,1,13,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,12,10,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+9,48,ms48,1,12,baseline,Greedy baseline,L,1000,48,True,18,11,True,EXP28_colab_scale.jsonl,100000,True
+9,48,ms48,1,12,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,13,11,True,EXP28_colab_scale.jsonl,100000,True
+9,48,ms48,1,12,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,14,11,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+10,155,ms155,1,13,baseline,Greedy baseline,L,1000,48,True,18,12,True,EXP28_colab_scale.jsonl,100000,True
+10,155,ms155,1,13,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,13,12,True,EXP28_colab_scale.jsonl,100000,True
+10,155,ms155,1,13,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,14,12,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+11,505,ms505,1,22,baseline,Greedy baseline,L,1000,48,True,34,23,True,EXP28_colab_scale.jsonl,100000,True
+11,505,ms505,1,22,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,23,17,True,EXP28_colab_scale.jsonl,100000,True
+11,505,ms505,1,22,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,22,17,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+12,247,ms247,2,15,baseline,Greedy baseline,L,1000,48,True,46,9,True,EXP28_colab_scale.jsonl,100000,True
+12,247,ms247,2,15,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,70,13,True,EXP28_colab_scale.jsonl,100000,True
+12,247,ms247,2,15,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,184,13,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+13,217,ms217,2,14,baseline,Greedy baseline,L,1000,48,True,57,13,True,EXP28_colab_scale.jsonl,100000,True
+13,217,ms217,2,14,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,48,18,True,EXP28_colab_scale.jsonl,100000,True
+13,217,ms217,2,14,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,183,15,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+14,201,ms201,2,14,baseline,Greedy baseline,L,1000,48,True,61,15,True,EXP28_colab_scale.jsonl,100000,True
+14,201,ms201,2,14,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,49,20,True,EXP28_colab_scale.jsonl,100000,True
+14,201,ms201,2,14,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,183,17,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+15,288,ms288,2,15,baseline,Greedy baseline,L,1000,48,True,106,17,True,EXP28_colab_scale.jsonl,100000,True
+15,288,ms288,2,15,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,97,21,True,EXP28_colab_scale.jsonl,100000,True
+15,288,ms288,2,15,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,235,21,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+16,367,ms367,2,17,baseline,Greedy baseline,L,1000,48,True,83,21,True,EXP28_colab_scale.jsonl,100000,True
+16,367,ms367,2,17,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,64,25,True,EXP28_colab_scale.jsonl,100000,True
+16,367,ms367,2,17,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,206,22,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+17,331,ms331,2,16,baseline,Greedy baseline,L,1000,48,True,93,24,True,EXP28_colab_scale.jsonl,100000,True
+17,331,ms331,2,16,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,51,23,True,EXP28_colab_scale.jsonl,100000,True
+17,331,ms331,2,16,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,196,21,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+18,203,ms203,3,14,baseline,Greedy baseline,L,1000,48,True,116,16,True,EXP28_colab_scale.jsonl,100000,True
+18,203,ms203,3,14,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,98,20,True,EXP28_colab_scale.jsonl,100000,True
+18,203,ms203,3,14,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,236,20,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+19,265,ms265,3,15,baseline,Greedy baseline,L,1000,48,True,121,21,True,EXP28_colab_scale.jsonl,100000,True
+19,265,ms265,3,15,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,99,25,True,EXP28_colab_scale.jsonl,100000,True
+19,265,ms265,3,15,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,238,25,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+20,579,ms579,3,21,baseline,Greedy baseline,L,1000,48,True,366,26,True,EXP28_colab_scale.jsonl,100000,True
+20,579,ms579,3,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,101,25,True,EXP28_colab_scale.jsonl,100000,True
+20,579,ms579,3,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,193,25,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+21,327,ms327,3,15,baseline,Greedy baseline,L,1000,48,True,273,29,True,EXP28_colab_scale.jsonl,100000,True
+21,327,ms327,3,15,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,198,34,True,EXP28_colab_scale.jsonl,100000,True
+21,327,ms327,3,15,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,499,36,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+22,333,ms333,3,16,baseline,Greedy baseline,L,1000,48,True,313,35,True,EXP28_colab_scale.jsonl,100000,True
+22,333,ms333,3,16,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,224,31,True,EXP28_colab_scale.jsonl,100000,True
+22,333,ms333,3,16,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,530,31,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+23,380,ms380,3,17,baseline,Greedy baseline,L,1000,48,True,381,39,True,EXP28_colab_scale.jsonl,100000,True
+23,380,ms380,3,17,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,226,36,True,EXP28_colab_scale.jsonl,100000,True
+23,380,ms380,3,17,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,542,36,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+24,546,ms546,4,19,baseline,Greedy baseline,L,1000,48,True,398,24,True,EXP28_colab_scale.jsonl,100000,True
+24,546,ms546,4,19,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,111,23,True,EXP28_colab_scale.jsonl,100000,True
+24,546,ms546,4,19,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,198,23,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+25,548,ms548,4,19,baseline,Greedy baseline,L,1000,48,True,661,28,True,EXP28_colab_scale.jsonl,100000,False
+25,548,ms548,4,19,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,496,34,True,EXP28_colab_scale.jsonl,100000,False
+25,548,ms548,4,19,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+26,533,ms533,4,17,baseline,Greedy baseline,L,1000,48,True,438,43,True,EXP28_colab_scale.jsonl,100000,True
+26,533,ms533,4,17,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,227,38,True,EXP28_colab_scale.jsonl,100000,True
+26,533,ms533,4,17,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,543,38,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+27,589,ms589,4,21,baseline,Greedy baseline,L,1000,48,True,558,46,True,EXP28_colab_scale.jsonl,100000,False
+27,589,ms589,4,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,575,38,True,EXP28_colab_scale.jsonl,100000,False
+27,589,ms589,4,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+28,580,ms580,4,21,baseline,Greedy baseline,L,1000,48,True,875,47,True,EXP28_colab_scale.jsonl,100000,True
+28,580,ms580,4,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,252,42,True,EXP28_colab_scale.jsonl,100000,True
+28,580,ms580,4,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,691,45,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,True
+29,609,ms609,4,23,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+29,609,ms609,4,23,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,821,45,True,EXP28_colab_scale.jsonl,100000,False
+29,609,ms609,4,23,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+30,538,ms538,5,18,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+30,538,ms538,5,18,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,531,32,True,EXP28_colab_scale.jsonl,100000,False
+30,538,ms538,5,18,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+31,606,ms606,5,23,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+31,606,ms606,5,23,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,829,45,True,EXP28_colab_scale.jsonl,100000,False
+31,606,ms606,5,23,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+32,544,ms544,5,19,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+32,544,ms544,5,19,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,160,48,True,EXP28_colab_scale.jsonl,100000,False
+32,544,ms544,5,19,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,359,48,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+33,549,ms549,5,19,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+33,549,ms549,5,19,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,137,47,True,EXP28_colab_scale.jsonl,100000,False
+33,549,ms549,5,19,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,227,47,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+34,543,ms543,5,19,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+34,543,ms543,5,19,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,160,52,True,EXP28_colab_scale.jsonl,100000,False
+34,543,ms543,5,19,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,376,52,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+35,565,ms565,5,20,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+35,565,ms565,5,20,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,422,99,True,EXP28_colab_scale.jsonl,100000,False
+35,565,ms565,5,20,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,898,97,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+36,602,ms602,6,22,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+36,602,ms602,6,22,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,824,52,True,EXP28_colab_scale.jsonl,100000,False
+36,602,ms602,6,22,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+37,632,ms632,6,25,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+37,632,ms632,6,25,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,831,57,True,EXP28_colab_scale.jsonl,100000,False
+37,632,ms632,6,25,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+38,573,ms573,6,21,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+38,573,ms573,6,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+38,573,ms573,6,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+39,586,ms586,6,21,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+39,586,ms586,6,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,388,99,True,EXP28_colab_scale.jsonl,100000,False
+39,586,ms586,6,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,667,97,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+40,581,ms581,6,21,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+40,581,ms581,6,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,385,99,True,EXP28_colab_scale.jsonl,100000,False
+40,581,ms581,6,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,658,97,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+41,575,ms575,6,21,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+41,575,ms575,6,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,422,102,True,EXP28_colab_scale.jsonl,100000,False
+41,575,ms575,6,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,900,100,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+42,568,ms568,7,20,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+42,568,ms568,7,20,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+42,568,ms568,7,20,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+43,578,ms578,7,21,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+43,578,ms578,7,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+43,578,ms578,7,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+44,583,ms583,7,21,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+44,583,ms583,7,21,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+44,583,ms583,7,21,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+45,628,ms628,7,25,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+45,628,ms628,7,25,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,106,36,True,EXP28_colab_scale.jsonl,100000,False
+45,628,ms628,7,25,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,111,36,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+46,633,ms633,7,25,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+46,633,ms633,7,25,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,True,107,36,True,EXP28_colab_scale.jsonl,100000,False
+46,633,ms633,7,25,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,True,110,36,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+47,596,ms596,7,22,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+47,596,ms596,7,22,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+47,596,ms596,7,22,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+48,605,ms605,8,23,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+48,605,ms605,8,23,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+48,605,ms605,8,23,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+49,610,ms610,8,23,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+49,610,ms610,8,23,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+49,610,ms610,8,23,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+50,625,ms625,8,24,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+50,625,ms625,8,24,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+50,625,ms625,8,24,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+51,622,ms622,8,24,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+51,622,ms622,8,24,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+51,622,ms622,8,24,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+52,624,ms624,8,24,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+52,624,ms624,8,24,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+52,624,ms624,8,24,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+53,623,ms623,8,24,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+53,623,ms623,8,24,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+53,623,ms623,8,24,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+54,634,ms634,9,23,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+54,634,ms634,9,23,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+54,634,ms634,9,23,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+55,635,ms635,9,23,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+55,635,ms635,9,23,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+55,635,ms635,9,23,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+56,637,ms637,9,25,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+56,637,ms637,9,25,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+56,637,ms637,9,25,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+57,639,ms639,9,25,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+57,639,ms639,9,25,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+57,639,ms639,9,25,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+58,638,ms638,9,25,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+58,638,ms638,9,25,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+58,638,ms638,9,25,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
+59,636,ms636,9,25,baseline,Greedy baseline,L,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+59,636,ms636,9,25,recommended,Full RECOMMENDED,L=1; K=2.53; MK=6.418; S=8.458; xyimb=3.292,1000,48,False,1000,,True,EXP28_colab_scale.jsonl,100000,False
+59,636,ms636,9,25,lkmk,L + 2.53K + 6.418MK,L=1; K=2.53; MK=6.418,1000,48,False,1000,,False,EXP29_lkmk_bench66_b1000_mrl48.jsonl,1000,False
