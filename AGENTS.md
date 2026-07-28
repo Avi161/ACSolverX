@@ -955,3 +955,13 @@
 
 - [TRAP] A Result 117 insertion used a remembered terminal sentence from Result 116 and failed because the actual ledger ended with a more specific r-slot sentence.
 - [WORKS] Read the exact final paragraph and anchor a new numbered result on the following heading, not on remembered prose from an earlier draft.
+
+### 2026-07-27 Stress-test rigidity with conjugating endomorphisms
+
+- [TRAP] Two simultaneous proper torus-quotient embeddings, first-homology isomorphisms, normal generation, and even a primitive syllable-six realization looked close to forcing the old free factor onto, but the proper map x -> x, y -> y[x,y] satisfies all of them.
+- [WORKS] Before promoting a package of relative one-relator conditions to rigidity, test x -> x, y -> gyg^-1. Klyachko injects every root-free coefficient quotient because the defining relative equation has y-exponent one; the exact marked AC source factorization may be the only remaining information.
+
+### 2026-07-27 Resolve focused regression paths from the checkout
+
+- [TRAP] A focused proof-regression command used remembered descriptive filenames for Results 114--117; several results share older verifier files instead of having one test module per theorem, so collection stopped at the first nonexistent path.
+- [WORKS] Build focused test commands from `rg --files tests/stable_ac` and the committed file lists, never from theorem titles or remembered names.

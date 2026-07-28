@@ -1064,3 +1064,186 @@ word of syllable length two.  The next theorem must exclude the
 simultaneous proper extensions, align the two marked relators, or exploit
 the geometry of both relative equations together.  AK(3), stable
 Andrews--Curtis, and Andrews--Curtis remain open.
+
+## 15. The simultaneous-extension obstruction is sharp
+
+Let \(H=F(X,U)\), \(Q=F(x,y)\), and define
+
+\[
+u=yxyx^{-1}y^{-1},
+\qquad
+\phi(X)=x,
+\qquad
+\phi(U)=u.
+\tag{77}
+\]
+
+This is an injective unimodular map with proper image
+\(K=\langle x,u\rangle<Q\).  For every root-free \(V\in H\), Tietze
+transformation gives
+
+\[
+Q/\langle\!\langle\phi(V)\rangle\!\rangle
+\cong
+\langle G(V),y\mid U^{-1}yXyX^{-1}y^{-1}\rangle.
+\tag{78}
+\]
+
+The relative relator has y-exponent one, so Klyachko embeds \(G(V)\).
+For \(V=A,B\), both embeddings are proper: finite quotients \(S_4\) and
+\(S_3\) separate y from the respective coefficient subgroups.  The pair
+\(\phi(A),\phi(B)\) normally generates Q, so the opposite sources normally
+generate both relative quotients.
+
+The embedding is induced by the primitive relator
+
+\[
+R=U^{-1}rXrX^{-1}r^{-1},
+\tag{79}
+\]
+
+which has cyclic \(H*\langle r\rangle\)-syllable length six.  Solving it
+gives \(U=rXrX^{-1}r^{-1}\), exactly (77) after renaming \(r=y\).
+It is not a word of the two-source form (71): its exponent vector is
+\((0,-1,1)\), while (71) has old-factor vector
+\(\pm(4,-5)\) or \(\pm(2,-3)\).
+
+### Theorem 15.1 (sharpness of Theorem 14.1)
+
+Primitivity with cyclic syllable length greater than two, proper old-factor
+embedding, both proper torus coefficient extensions, both first-homology
+isomorphisms, and opposite-source normal generation can all occur
+simultaneously.  None of these abstract properties can close the
+two-source branch.  A proof must use the exact factorization in (71) by one
+conjugate of A and one conjugate of B.
+
+## 16. A proper stable self-embedding corridor
+
+The sharpness example is reachable from the AK tuple.  In
+\((A(X,U),B(X,U),r)\), the normal closure of the old source rows contains
+
+\[
+[X,r]U^{-1}.
+\tag{80}
+\]
+
+Consequently AC2 moves targeting r change it to
+
+\[
+r[X,r]U^{-1},
+\tag{81}
+\]
+
+which is conjugate to R.  Primitive substitution and U-removal sends the
+surviving rows to
+
+\[
+(\phi(A),\phi(B)).
+\tag{82}
+\]
+
+### Theorem 16.1 (parafree AK corridor)
+
+The AK presentation is stably AC-equivalent to its image under the proper
+injective endomorphism
+
+\[
+\phi(x)=x,
+\qquad
+\phi(y)=yxyx^{-1}y^{-1}.
+\tag{83}
+\]
+
+Iteration gives stable equivalences to
+\((\phi^n(A),\phi^n(B))\) for every \(n\ge0\), and the image subgroups form
+a strictly descending chain.  This is not an ambient-automorphism
+self-loop, but it does not yet trivialize AK(3).  The new live question is
+whether this proper corridor supplies a shorter primitive compression or
+an invariant monotone under iteration.  Stable Andrews--Curtis and
+Andrews--Curtis remain open.
+
+## 17. Arbitrary conjugating endomorphisms have stable lifts
+
+The preceding map is part of a general family.  For any
+\(g\in F(x,y)\), put
+
+\[
+\phi_g(x)=x,
+\qquad
+\phi_g(y)=g y g^{-1}.
+\tag{84}
+\]
+
+The image vectors are the standard basis, so \(\phi_g\) is injective, and
+its image normally generates \(F_2\).  For every root-free V, Klyachko
+injects the induced one-relator map: the relative relator
+
+\[
+U^{-1}g(X,y)y g(X,y)^{-1}
+\tag{85}
+\]
+
+has y-exponent one.
+
+In the stabilized group, define
+
+\[
+R_g=U^{-1}g(X,r)r g(X,r)^{-1}.
+\tag{86}
+\]
+
+It contains U once and is primitive.  Killing the old AK source normal
+closure sends \(R_g\) to r, so \(r^{-1}R_g\) belongs to that normal
+closure.  Finite AC2 traffic therefore replaces the r-row by \(R_g\),
+and primitive U-deletion leaves
+
+\[
+(\phi_g(A),\phi_g(B)).
+\tag{87}
+\]
+
+### Theorem 17.1 (conjugating-endomorphism corridor)
+
+For every g,
+
+\[
+(A,B)\sim_{\mathrm{stable\ AC}}
+(\phi_g(A),\phi_g(B)).
+\tag{88}
+\]
+
+Whenever \(\phi_g\) is proper, (88) is a nonautomorphic stable corridor.
+The case \(g=yx\) is Theorem 16.1.  The next theoretical attack can now
+vary g deliberately to seek a new primitive compression or prove a
+family-wide barrier, without an AC graph search.  AK(3), stable
+Andrews--Curtis, and Andrews--Curtis remain open.
+
+## 18. Internal conjugators remain trapped in every corridor
+
+Let \(K_g=\phi_g(F_2)\).  If \(h\in K_g\), write \(h=\phi_g(k)\).  A
+one-source multiplication in the image then has the form
+
+\[
+\phi_g(A)h\phi_g(B)^\eta h^{-1}
+=\phi_g(AkB^\eta k^{-1}),
+\tag{89}
+\]
+
+or the same formula with A and B exchanged.  The word inside \(\phi_g\)
+is nonprimitive by the unbounded axis-alignment theorem, and its exponent
+vector is one of \((4,-5),(2,-3),(-2,3)\).  It is therefore root-free.
+
+Klyachko embeds its one-relator quotient into the quotient by (89).  If
+(89) were primitive, the target quotient would be \(\mathbb Z\), so the
+source quotient would be cyclic.  Its abelianization is \(\mathbb Z\),
+and Magnus normal-closure rigidity would then force the source relator to
+be primitive, a contradiction.
+
+### Theorem 18.1 (family-wide internal-conjugator barrier)
+
+For every g, every \(h\in K_g\), and both signs, both one-source relative
+products of \(\phi_g(A)\) and \(\phi_g(B)\) are nonprimitive.  Therefore a
+one-step primitive compression reached through a proper corridor must use
+a conjugator outside \(K_g\).  The remaining problem lives in the
+nontrivial double cosets \(K_g\backslash F_2/K_g\), or beyond one-source
+traffic altogether.

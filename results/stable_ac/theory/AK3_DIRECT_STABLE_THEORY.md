@@ -7022,6 +7022,171 @@ reduces to a one-r word of syllable length two.  The live two-source
 problem is now the simultaneous exclusion of the two proper extensions,
 not the mere presence of two displayed source conjugates.
 
+**Result 118 (the simultaneous-extension package is realizable).**  Let
+
+\[
+H=F(X,U),
+\qquad
+Q=F(x,y),
+\qquad
+u=yxyx^{-1}y^{-1},
+\]
+
+and define the unimodular injection
+
+\[
+\phi(X)=x,
+\qquad
+\phi(U)=u.
+\]
+
+Its image \(K=\langle x,u\rangle\) is proper.  Under
+\(x\mapsto(23),y\mapsto(12)\) in \(S_3\), both x and u map to
+\((23)\), while y does not lie in their image subgroup.
+
+For every root-free \(V\in H\), the quotient by \(\phi(V)\) has the
+relative presentation
+
+\[
+\langle G(V),y\mid U^{-1}yXyX^{-1}y^{-1}\rangle.
+\]
+
+The relative relator has y-exponent one, so Klyachko injects \(G(V)\).
+This simultaneously gives both exact intersections for A and B.  Both
+coefficient inclusions are proper: an \(S_4\) quotient with
+\(x=(234),y=(12),u=(23)\) separates y from the \(G_{3,4}\) coefficient,
+and the preceding \(S_3\) quotient separates it from the \(G_{2,3}\)
+coefficient.  The image pair \(\phi(A),\phi(B)\) normally generates Q,
+so each opposite source normally generates the corresponding quotient.
+
+Moreover, the word
+
+\[
+R=U^{-1}rXrX^{-1}r^{-1}
+\]
+
+is primitive, because U occurs once, and has cyclic
+\(H*\langle r\rangle\)-syllable length six.  Its quotient solves
+\(U=rXrX^{-1}r^{-1}\), which becomes u after renaming \((X,r)=(x,y)\).
+Thus even a genuine primitive syllable-six quotient can realize every
+abstract conclusion of Result 117.  What it does not have is Result 117's
+exact factorization by one conjugate of A and one conjugate of B.  Indeed,
+\([R]=(0,-1,1)\), whereas every such two-source word has old-factor
+vector \(\pm(4,-5)\) or \(\pm(2,-3)\).
+
+**Result 119 (AK has a proper stable self-embedding corridor).**  Start
+from \((A(X,U),B(X,U),r)\).  Since A and B normally generate H, their
+normal closure in \(H*\langle r\rangle\) contains
+
+\[
+[X,r]U^{-1}.
+\]
+
+Finitely many AC2 moves targeting the r-row therefore change it to
+
+\[
+r[X,r]U^{-1},
+\]
+
+which is conjugate to R.  Straighten this primitive relator and delete it
+with U.  Substitution gives the surviving pair
+
+\[
+(\phi(A),\phi(B)).
+\]
+
+Hence
+
+\[
+\boxed{
+(A,B)\sim_{\mathrm{stable\ AC}}(\phi(A),\phi(B)),
+\qquad
+\phi(x)=x,
+\quad
+\phi(y)=yxyx^{-1}y^{-1}.
+}
+\]
+
+Iteration yields stable equivalences to
+\((\phi^n(A),\phi^n(B))\) for every \(n\ge0\), while the image subgroups
+form the strict descending chain
+
+\[
+F_2>\phi(F_2)>\phi^2(F_2)>\cdots.
+\]
+
+This is not an ambient-automorphism self-loop and not a proof of stable
+triviality.  It is a new infinite stable corridor.  It also proves that a
+successful exclusion of the two-source branch must use its exact
+two-conjugate spelling; primitive quotient structure, both torus
+embeddings, homology, and normal generation are all insufficient.
+
+**Result 120 (arbitrary conjugating endomorphisms lift stably).**  For
+every \(g\in F(x,y)\), define
+
+\[
+\phi_g(x)=x,
+\qquad
+\phi_g(y)=g y g^{-1}.
+\]
+
+The image vectors are the standard basis, so \(\phi_g\) is injective; its
+image normally generates \(F_2\).  For every root-free relator V,
+Klyachko injects the induced one-relator map, because after adjoining a
+name U for \(gyg^{-1}\), the relative relator
+
+\[
+U^{-1}g(X,y)y g(X,y)^{-1}
+\]
+
+has y-exponent one.
+
+Every \(\phi_g\) also has an exact stable lift.  The relator
+
+\[
+R_g=U^{-1}g(X,r)r g(X,r)^{-1}
+\]
+
+contains U once and is primitive.  Modulo the old AK source normal
+closure it equals r, so finite AC2 traffic changes the stabilized r-row to
+\(R_g\).  U-deletion leaves
+
+\[
+(\phi_g(A),\phi_g(B)).
+\]
+
+Thus every proper \(\phi_g\) produces a nonautomorphic stable corridor;
+Result 119 is the case \(g=yx\).  This converts the next attack into a
+design problem over conjugators g: find one whose proper image admits a
+new primitive compression, or prove that the whole family remains trapped.
+
+**Result 121 (internal-conjugator barrier for every stable corridor).**
+Fix g and write \(K_g=\phi_g(F_2)\).  For every \(h\in K_g\) and every
+\(\eta\in\{\pm1\}\), neither
+
+\[
+\phi_g(A)h\phi_g(B)^\eta h^{-1}
+\quad\hbox{nor}\quad
+\phi_g(B)h\phi_g(A)^\eta h^{-1}
+\]
+
+is primitive in the ambient free group.
+
+Indeed, write \(h=\phi_g(k)\).  The displayed word is \(\phi_g(V)\),
+where V is one of the original one-source changes
+\(AkB^\eta k^{-1}\) or \(BkA^\eta k^{-1}\).  Result 116 proves V
+nonprimitive and its primitive exponent vector makes it root-free.
+Klyachko injects \(F_2/\langle\!\langle V\rangle\!\rangle\) into the
+quotient by \(\phi_g(V)\).  If the latter relator were primitive, both
+quotients would be cyclic; Magnus normal-closure rigidity would then make
+V primitive, a contradiction.
+
+Thus Result 120 cannot expose a new primitive row by merely repeating an
+old one-source multiplication inside its image.  Any one-step primitive
+compression in a proper corridor must use a conjugator outside \(K_g\).
+The surviving parameter is the nontrivial double-coset space
+\(K_g\backslash F_2/K_g\), not a bounded word-length census.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7171,7 +7336,19 @@ multiplied directly into the primitive slot. Klyachko embeds both residual
 torus coefficient groups. A genuine primitive forces simultaneous proper
 homologically onto extensions of \(G_{3,4}\) and \(G_{2,3}\), each normally
 generated by the other AK source; surjectivity of either coefficient would
-return to Result 114's contradiction. Results
+return to Result 114's contradiction. Result 118 proves that this abstract
+package is sharp: one proper unimodular embedding realizes both proper
+torus extensions and comes from a primitive syllable-six deletion, though
+its exponent vector excludes the exact two-source spelling. Result 119
+turns that example into a nonautomorphic stable self-embedding
+\((A,B)\sim(\phi(A),\phi(B))\) with strictly descending iterated image
+subgroups. Result 120 extends the construction to every endomorphism
+\(x\mapsto x,y\mapsto gyg^{-1}\), each with an exact primitive stable lift.
+Result 121 proves a family-wide barrier: after any such lift, no relative
+source multiplication conjugated inside the image subgroup can be
+primitive. A one-step compression must cross a nontrivial image-subgroup
+double coset or leave the one-source regime.
+Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -7182,11 +7359,12 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--117, arbitrary W--D conjugators,
+61--121, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
-rigidity failure, use an r-dependent source change, or realize Result 117's
-two simultaneous proper relative torus extensions. Longer branches may use additional \(Wq^{-1}\) blocks,
+rigidity failure, exploit the exact two-conjugate marking left open by
+Results 117--118, or use Result 120's conjugator family to expose a new
+primitive compression. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
 primitive slot. The exact Fox coordinate remains a necessary free-kernel
