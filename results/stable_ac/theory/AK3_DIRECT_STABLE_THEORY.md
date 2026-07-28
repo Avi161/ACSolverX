@@ -4009,6 +4009,62 @@ Result 68's six open systems—are intrinsically
 infinite-dimensional.  This is a representation no-go, not a flow
 collapse or primitivity theorem.
 
+**Result 70 (exact three-phase correspondence for the six open
+systems).**  Put
+
+\[
+c=x^4=z_r^4,\quad
+C=\langle c\rangle,\quad
+L=\langle z_r^3\rangle,\quad
+K=\langle x\rangle*_{C}\langle z_r\rangle.
+\]
+
+On
+
+\[
+V=K\backslash B,\qquad
+W=H\backslash B,\qquad
+\Omega=L\backslash B,
+\]
+
+define
+
+\[
+p(Ld)=Kd,\quad
+\rho(Hg)=Kg,\quad
+q_I(Ld)=Hbd,\quad
+q_O(Ld)=Hy^{-1}bd.
+\]
+
+The \(q_I\)-fibers have size four and the \(q_O\)-fibers size three.
+If \(q_!\) denotes finite-fiber summation, the scalar-current space is
+exactly
+
+\[
+\ker\mathcal A_{-\sigma},
+\qquad
+\mathcal A_\lambda(s)=
+\bigl(q_{I!}p^*s-\lambda\rho^*s,\,
+q_{O!}p^*s-\lambda\rho^*s\bigr).
+\]
+
+The Bass--Serre tree of
+\(K/C\cong C_4*C_4\) is \((4,4)\)-biregular.  The infinite cross-index
+set \(L\backslash K\) maps three-to-one onto its
+\(\langle z_r\rangle\)-vertex set.  Since
+\(C\cap L=\langle c^3\rangle\), right multiplication by \(c\)
+cyclically permutes the three points above each vertex.  This
+three-phase decoration is essential: forgetting it identifies
+distinct equations.
+
+The operator is row-finite but has infinite column incidence, and
+\(p\) has infinite fibers.  Hence there is no pushforward \(p_!\) on
+arbitrary currents and no valid finite return matrix obtained by
+formal composition.  The exact unresolved question is whether
+\(\ker\mathcal A_{\pm1}\) is nonzero.  This is a correspondence
+reduction, not a propriety, collapse, primitivity, or
+Andrews--Curtis theorem.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

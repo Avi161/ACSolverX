@@ -2210,3 +2210,191 @@ relations for any \(b\) with \(e_y(b)=1\).  This includes all six open
 systems in Section 17, but it does not prove their flow quotients
 collapse: Result 61 gives proper exponent-one ideals whose annihilating
 currents are necessarily infinite-dimensional.
+
+## 19. Exact three-phase correspondence over the \(C_4*C_4\) tree
+
+The infinite cross-incidence in Section 17 has a canonical operator
+form.  Fix one of its six systems and write
+
+\[
+z=z_r,\qquad
+c=x^4=z^4,\qquad
+C=\langle c\rangle,\qquad
+L=\langle z^3\rangle=b^{-1}Cb.
+\]
+
+Then
+
+\[
+K=\langle x\rangle*_{C}\langle z\rangle.
+\tag{128}
+\]
+
+Define three coset spaces
+
+\[
+V=K\backslash B,\qquad
+W=H\backslash B,\qquad
+\Omega=L\backslash B
+\]
+
+and maps
+
+\[
+\begin{aligned}
+p:\Omega&\longrightarrow V,&p(Ld)&=Kd,\\
+\rho:W&\longrightarrow V,&\rho(Hg)&=Kg,\\
+q_I:\Omega&\longrightarrow W,&q_I(Ld)&=Hbd,\\
+q_O:\Omega&\longrightarrow W,&q_O(Ld)&=Hy^{-1}bd.
+\end{aligned}
+\tag{129}
+\]
+
+These maps are well-defined.  The first two use \(L,H\leq K\).  For
+the other two,
+
+\[
+bLb^{-1}=C\leq H,
+\qquad
+y^{-1}bLb^{-1}y
+=y^{-1}Cy=\langle x^3\rangle\leq H.
+\]
+
+The two \(q\)-maps have finite fibers:
+
+\[
+q_I^{-1}(Hg)
+=\{Lb^{-1}x^ig:0\leq i<4\},
+\tag{130}
+\]
+
+\[
+q_O^{-1}(Hg)
+=\{Lb^{-1}yx^jg:0\leq j<3\}.
+\tag{131}
+\]
+
+The entries in each displayed fiber are distinct by
+\([H:C]=4\) and
+\([H:\langle x^3\rangle]=3\), respectively.  In contrast,
+
+\[
+p^{-1}(Kd)=\{Lkd:k\in K\}
+\cong L\backslash K
+\tag{132}
+\]
+
+is infinite.
+
+For a finite-fiber map \(q\), write \(q_!\) for summation over its
+fibers, and write \(p^*,\rho^*\) for pullback of arbitrary
+\(\mathbb Q\)-valued functions.  Equations (36)--(37) are exactly
+
+\[
+\mathcal A_\lambda(s)=0,
+\tag{133}
+\]
+
+where
+
+\[
+\mathcal A_\lambda:
+\mathbb Q^V\longrightarrow\mathbb Q^W\oplus\mathbb Q^W,
+\qquad
+\mathcal A_\lambda(s)=
+\bigl(q_{I!}p^*s-\lambda\rho^*s,\,
+      q_{O!}p^*s-\lambda\rho^*s\bigr).
+\tag{134}
+\]
+
+Indeed, (130)--(131) give
+
+\[
+(q_{I!}p^*s)(Hg)
+=\sum_{i=0}^{3}s(Kb^{-1}x^ig),
+\]
+
+\[
+(q_{O!}p^*s)(Hg)
+=\sum_{j=0}^{2}s(Kb^{-1}yx^jg).
+\]
+
+Consequently
+
+\[
+\operatorname{Sol}_{\ell,r,\sigma}
+=\ker\mathcal A_{-\sigma}.
+\tag{135}
+\]
+
+The correspondence (129) has a canonical decorated-tree
+interpretation.  Quotienting (128) by the central subgroup \(C\)
+gives
+
+\[
+K/C\cong C_4*C_4.
+\]
+
+The Bass--Serre tree \(T\) is the \((4,4)\)-biregular tree with
+
+\[
+V_X(T)=H\backslash K,\qquad
+V_Z(T)=\langle z\rangle\backslash K,\qquad
+E(T)=C\backslash K.
+\tag{136}
+\]
+
+The cross-index set in (132) maps to the \(Z\)-vertices:
+
+\[
+L\backslash K\longrightarrow\langle z\rangle\backslash K.
+\tag{137}
+\]
+
+Every fiber has three elements because
+\([\langle z\rangle:L]=3\).  Moreover,
+
+\[
+C\cap L=\langle c^3\rangle.
+\]
+
+Right multiplication by \(c\) therefore fixes the underlying
+\(Z\)-vertex and cyclically permutes the three points above it.
+Thus (137) is a canonical three-phase decoration of the \(Z\)-vertex
+set.  Forgetting the phase merges distinct relation centers.
+
+All of Section 17's cross-incidences are retained in (129).  For each
+\(v=Kd\), both \(q_I\) and \(q_O\) restrict injectively to
+\(p^{-1}(v)\).  This is exactly the pair of intersection equalities
+
+\[
+K\cap b^{-1}Hb
+=K\cap b^{-1}\langle a\rangle b
+=L
+\]
+
+from (120).  Evaluating \(q_O\) on
+\(Lk\,b^{-1}x^ig\) gives every center in (118), while evaluating
+\(q_I\) on \(Lk\,b^{-1}yx^jg\) gives every center in (119).
+
+The operator (134) is row-finite, but it has infinite column
+incidence: every retained variable is seen by all phases over all
+vertices in (137).  There is no algebraic pushforward \(p_!\) on
+arbitrary currents, because the fibers (132) are infinite.  Therefore
+one cannot obtain a legitimate finite return operator by simply
+composing the four maps in (129), and every finite tree truncation
+omits infinitely many equations incident to each retained port.
+
+The remaining problem is now the exact alternative
+
+\[
+\ker\mathcal A_\lambda\ne0
+\quad\text{or}\quad
+\mathcal A_\lambda\text{ is injective}.
+\tag{138}
+\]
+
+This correspondence theorem proves neither side of (138).  It isolates
+the missing step as an infinite-dimensional kernel problem on a
+three-phase decorated \((4,4)\)-tree, with no finite-truncation
+inference.
