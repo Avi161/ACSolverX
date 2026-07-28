@@ -372,27 +372,19 @@ def fig_simple_higher_and_means(rows):
     ax0.bar(x_all, lo, bottom=hi + sm, color=IMPROVED, width=0.62,
             label="lower after CoV (better)")
     for i, (h, s, l) in enumerate(zip(hi, sm, lo)):
-        # label each stack segment when large enough; otherwise put the count just above it
-        for val, y0, color_in, color_out in (
-            (h, 0.0, "white", INK),
-            (s, float(h), "white", INK),
-            (l, float(h + s), "white", INK),
-        ):
-            if val <= 0:
-                continue
-            if val >= 6:
-                ax0.text(i, y0 + val / 2, str(int(val)), ha="center", va="center",
-                         color=color_in, fontsize=10, fontweight="bold")
-            else:
-                ax0.text(i, y0 + val / 2, str(int(val)), ha="center", va="center",
-                         color=color_out, fontsize=9, fontweight="bold")
-    ax0.set_ylim(0, 72)
+        # Always put all three counts above the stack so nothing is lost on grey/blue.
+        ax0.text(i, 61.5, f"↑{int(h)}", ha="center", va="bottom",
+                 color=WORSENED, fontsize=10, fontweight="bold")
+        ax0.text(i, 66.0, f"={int(s)}  ↓{int(l)}", ha="center", va="bottom",
+                 color=SECONDARY, fontsize=9)
+    ax0.set_ylim(0, 74)
     ax0.set_yticks([0, 20, 40, 60])
     ax0.set_xticks(x_all, disp_all)
     ax0.set_ylabel("count (of 60)", color=SECONDARY)
-    ax0.set_title("Score after best CoV vs original",
+    ax0.set_title("Score after best CoV vs original  (↑ higher / = same / ↓ lower)",
                   loc="left", fontsize=13, color=INK, pad=10)
-    ax0.legend(frameon=False, loc="upper right", ncol=3, fontsize=9)
+    ax0.legend(frameon=False, loc="lower right", ncol=3, fontsize=9,
+               bbox_to_anchor=(1.0, -0.22))
     _style_axis(ax0)
     ax0.grid(False, axis="x")
 
