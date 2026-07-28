@@ -7870,6 +7870,50 @@ solution therefore lifts through every lower-central quotient, and the
 corrections converge in the pro-nilpotent completion.  This proves local
 solvability in every nilpotent quotient, not a solution in the free group.
 
+**Result 142 (the period-two elliptic branch is impossible).**  Impose
+\(c^2=1\), put \(G=C_2*\mathbb Z\), and let
+\(H=\ker(G\to C_2)\).  If the second intermediate row \(S\) is elliptic,
+the first two backward equations are equivalent to
+\[
+A\in\operatorname{Cl}_H(c)
+       \operatorname{Cl}_H(B)\operatorname{Cl}_H(B).
+\]
+Map \(G\) to \(PSU(2)\cong SO(3)\) using quaternion lifts
+\[
+C=(0,1,0,0),\qquad
+T=\left(\frac{\sqrt2}{2},\frac12,\frac12,0\right).
+\]
+Exact multiplication gives \(C^2=-1\),
+\[
+\widetilde\rho(B)=-1,\qquad
+\widetilde\rho(A)=
+\left(\frac{\sqrt2}{2},0,0,-\frac{\sqrt2}{2}\right).
+\]
+Thus the two \(B\)-classes are projectively trivial, while \(A\) is not
+conjugate to the half-turn \(c\): their lift scalar squares are \(1/2\)
+and \(0\).  Hence an elliptic \(S\) is impossible.
+
+**Result 143 (the period-two quotient is nevertheless soluble).**  In
+\(H=F(p,q)\), where \(p=t,\ q=ctc\), use upper case for inverse and take
+\[
+h_0=QQppp,\qquad h_1=1,\qquad h_2=Qppp,\qquad h_3=p.
+\]
+Independent reduction in \(C_2*\mathbb Z\) gives
+\[
+\begin{aligned}
+R&=t^{-2}ctct^{-1}ctc,\\
+S&=t^{-3}ct^2ct^{-1}ct^2,\\
+U&=t^{-2}ct^2ct^{-1}c,\\
+h_3Sh_3^{-1}&=Ut.
+\end{aligned}
+\]
+Therefore the final row is \(Z=t\) literally.  This solution lies in the
+equal-length hyperbolic branch, with
+\(\ell_T(S)=\ell_T(U)=6\).  Consequently every invariant factoring through
+\(c^2=1\) is blind to the hardest class.  The remaining problem is not
+quotient emptiness but the obstruction to lifting this exact witness from
+\(C_2*\mathbb Z\) to the original free group \(F(c,t)\).
+
 ## Live lead
 
 The direct relation-splitting manufacture of

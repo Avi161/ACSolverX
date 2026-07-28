@@ -305,6 +305,85 @@ exhausted for this class.  This is local solvability, not a free-group
 solution; the exact proof is
 `literature/proofs/AK3_DEPTH4_PRONILPOTENT_BLINDNESS.md`.
 
+### Period-two quotient: exact witness, so this quotient is blind
+
+Impose \(c^2=1\) in the target basis. Then
+\[
+G=C_2*\mathbb Z,\qquad
+H=\ker(G\to C_2)=F(p,q),
+\]
+where \(p=t,\ q=ctc\), and conjugation by \(c\) swaps \(p,q\).
+The fixed rows are
+\[
+A=t^{-2}ct^{-2}ct^2c,\qquad
+B=t^{-3}ctctc.
+\]
+
+The full quotient recurrence is exactly equivalent to the backward system
+\[
+\begin{aligned}
+R^{-1}A&\in\operatorname{Cl}_H(B),\\
+S^{-1}B&\in\operatorname{Cl}_H(R),\\
+X,Y&\in\operatorname{Cl}_H(S),\\
+e&\in\operatorname{Cl}_H(p)\cup\operatorname{Cl}_H(q),\\
+R&=Ye^{-1}X.
+\end{aligned}
+\]
+
+The elliptic-\(S\) branch is impossible. Eliminating its first two equations
+would force
+\[
+A\in\operatorname{Cl}_H(c)
+       \operatorname{Cl}_H(B)\operatorname{Cl}_H(B).
+\]
+In \(PSU(2)\cong SO(3)\), quaternion lifts
+\[
+C=(0,1,0,0),\qquad
+T=\left(\frac{\sqrt2}{2},\frac12,\frac12,0\right)
+\]
+give \(C^2=-1\),
+\[
+\widetilde\rho(B)=-1,\qquad
+\widetilde\rho(A)=
+\left(\frac{\sqrt2}{2},0,0,-\frac{\sqrt2}{2}\right).
+\]
+The two \(B\)-classes vanish projectively, but \(A\) is not conjugate to the
+half-turn \(c\): their lift scalar squares are \(1/2\) and \(0\).
+
+The surviving hyperbolic branch nevertheless has an exact solution. In
+\(H=F(p,q)\), with upper case denoting inverse, take
+\[
+h_0=QQppp,\qquad h_1=1,\qquad h_2=Qppp,\qquad h_3=p.
+\]
+Independent free reduction in \(C_2*\mathbb Z\) gives
+\[
+\begin{aligned}
+R&=t^{-2}ctct^{-1}ctc,\\
+S&=t^{-3}ct^2ct^{-1}ct^2,\\
+U&=t^{-2}ct^2ct^{-1}c,\\
+h_3Sh_3^{-1}&=Ut.
+\end{aligned}
+\]
+Therefore the final row is
+\[
+Z=U^{-1}h_3Sh_3^{-1}=t
+\]
+literally. The witness lies in the equal-length hyperbolic alternative,
+with \(\ell_T(S)=\ell_T(U)=6\).
+
+Thus every invariant factoring through \(c^2=1\) is now proved blind to the
+hardest class. The next problem is to measure the failure of this exact
+quotient witness to lift to the original free group. The standalone proofs
+and exact checkers are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_ELLIPTIC\_OBSTRUCTION.md},\\
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_WITNESS.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_elliptic\_certificate.py},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_witness.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -317,6 +396,8 @@ solution; the exact proof is
    equation.  Exact triple-class identities prove majority-killing
    representations intrinsically blind for five; an independent trace-
    polynomial argument proves full majority-killing \(SU(2)\) blindness
-   for the sixth.
+   for the sixth. The period-two quotient is also blind by an exact
+   hyperbolic witness; compare that witness with a hypothetical free-group
+   lift and isolate the first \(c^2\)-correction obstruction.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

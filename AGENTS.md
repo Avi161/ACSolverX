@@ -1106,3 +1106,34 @@
 
 - [TRAP] A combined regular expression intended to find stale H and p symbols after generalizing the pro-nilpotent proof had an unclosed escaped parenthesis and failed before scanning.
 - [WORKS] For post-rewrite symbol audits, pass each token as a separate fixed-string pattern. Reserve regular expressions for structure that cannot be checked literally.
+
+### 2026-07-28 Recheck child-agent slots before late fan-out
+
+- [TRAP] A late elliptic-branch delegation hit the thread limit because an already running period-two agent had spawned its own constructive-solution child after the root's earlier slot check.
+- [WORKS] Call the live-agent listing immediately before every additional spawn, not only before the initial fan-out; count nested running children against the four-slot limit.
+
+### 2026-07-28 Preserve fixed rows when normalizing an elliptic recurrence row
+
+- [TRAP] Conjugating an elliptic intermediate row `S` to `c` also simultaneously conjugates the fixed source rows `A,B`; treating the resulting second equation as the fixed class `Cl_H(cB)` silently drops the normalizing parameter.
+- [WORKS] Eliminate that parameter before normalizing. For the period-two depth-four recurrence, the full first-two-row elliptic condition is exactly `A in Cl_H(c) Cl_H(B) Cl_H(B)`, with all three conjugates independent.
+
+### 2026-07-28 Represent involutions projectively, not in SU(2)
+
+- [TRAP] A pure unit quaternion squares to `-1`, so it cannot be the image of the order-two generator `c` in an `SU(2)` representation of `C2 * Z`.
+- [WORKS] Pass to `PSU(2)=SO(3)`: pure quaternions represent half-turns modulo the central signs. Quaternion lifts still calculate products exactly, but every conclusion must be invariant under changing a lift by `-1`.
+
+### 2026-07-28 Keep uv caches inside the worktree sandbox
+
+- [TRAP] Bare `uv run` tried to initialize `/Users/avigyapaudel/.cache/uv` and failed with `Operation not permitted`; the system Python also has no `pytest` module.
+- [WORKS] Prefix focused test commands with `UV_CACHE_DIR=.scratch/uv-cache`; the project-local cache initializes and reaches pytest normally.
+
+### 2026-07-28 Keep Markdown code ticks out of raw JavaScript patches
+
+- [TRAP] A `String.raw` handoff patch still failed at JavaScript parse time because the Markdown body contained inline code ticks; raw strings preserve backslashes but do not neutralize their own delimiter.
+- [TRAP] Removing code ticks from inserted text was insufficient when an unchanged patch-context line still contained them; the JavaScript parser sees the entire patch payload, including context and removed lines.
+- [WORKS] In `String.raw` patch payloads, replace inline code ticks with plain prose or LaTeX before execution. If code ticks are essential, assemble the payload from quoted line arrays instead.
+
+### 2026-07-28 Resolve focused test paths before batching pytest
+
+- [TRAP] A verification batch guessed `tests/stable_ac/test_ak_depth_four_minimal_seam.py`, but that proof's regressions live in the existing target-basis test module; pytest aborted before running any tests.
+- [WORKS] Use `rg -l` on the certificate module name before composing a multi-file focused suite. Run the resolved list only, then report its actual count.
