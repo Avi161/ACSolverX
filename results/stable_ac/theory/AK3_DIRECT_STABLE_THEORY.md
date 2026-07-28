@@ -5625,6 +5625,63 @@ signs for every free-kernel lift.  This closes the complete
 \((-,-,+,+,-,+)\) and \((-,+,-,-,+,+)\) length-six strata and an
 unbounded serial family with arbitrarily many stable-letter turns.
 
+**Result 95 (the self-inverse mixed length-six stratum is
+obstructed).**  Let
+
+\[
+b=x^\ell y^{-1}x^ryx^syx^ty^{-1}x^uy^{-1}x^vyx^q,
+\]
+
+where \(4\nmid r,v\), \(3\nmid t\), and every other exponent is
+arbitrary.
+
+If \(r+v\not\equiv0\pmod4\), work over
+\(\overline{\mathbb F}_5\).  Choose fresh \(w,p,c\in V_1\), put
+\(h=3w+z\), choose \(A\in D_1\) with a complete four-phase orbit, and
+take \(Q=Q_\omega+Q_{\omega^2}\).  The source and image lists in
+
+\[
+wY=h,\quad
+AY=w,\quad
+(AX^r)Y=p,\quad
+pY=Q,\quad
+cY=QX^t,\quad
+(4AX^{-v})Y=c
+\]
+
+are independent because \(0,r,-v\) are distinct modulo four and
+\(Q,QX^t\) are independent.  The replay gives
+
+\[
+wb=QX^tY^{-1}X^uY^{-1}X^vYX^q
+=cX^uY^{-1}X^vYX^q
+=4w.
+\]
+
+If \(r+v\equiv0\pmod4\), work over
+\(\overline{\mathbb F}_7\).  Choose \(A,AX^r\) independent,
+fresh \(w,p\in V_1\), and \(\eta^3=1\) with \(\eta^t=4\).
+Prescribe
+
+\[
+wY=\frac43w+z,\qquad
+AY=w,\qquad
+(AX^r)Y=p,\qquad
+pY=Q,\quad Q\in V_\eta.
+\]
+
+Then
+
+\[
+wb=QX^tY^{-1}X^uY^{-1}X^vYX^q
+=4AX^{r+v}YX^q
+=4w.
+\]
+
+Both cases satisfy \(wYR_3=4w=wR_4\).  Thus no phase residue remains,
+and the Fox bridge plus Result 85 closes both A--D signs for the
+complete \((-,+,+,-,-,+)\) stratum and every free-kernel lift.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5710,7 +5767,8 @@ fourth-root phase is nonzero, and Result 92 closes its first open
 zero-phase case at stable-letter length six. Result 93 closes every
 arbitrarily deep symmetric wrapper around an alternating core. Result
 94 closes arbitrarily many shallow loops around one deep excursion.
-Results 73--75 close the
+Result 95 closes the self-inverse mixed length-six stratum. Results
+73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5720,7 +5778,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--94, arbitrary W--D conjugators,
+61--95, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

@@ -6031,3 +6031,180 @@ shallow block closes the complete \((-,-,+,+,-,+)\) and
 \((-,+,-,-,+,+)\) length-six strata.  More generally, (383) permits
 arbitrarily many stable letters and turns; it is not an
 arbitrary-depth theorem.
+
+## 42. The self-inverse mixed length-six stratum
+
+Consider
+
+\[
+b=x^\ell y^{-1}x^ryx^syx^ty^{-1}x^uy^{-1}x^vyx^q,
+\tag{392}
+\]
+
+where
+
+\[
+4\nmid r,\qquad
+3\nmid t,\qquad
+4\nmid v,
+\tag{393}
+\]
+
+and \(\ell,s,u,q\in\mathbb Z\) are arbitrary.  Thus the stable-letter
+sign string is \((-,+,+,-,-,+)\).  There is a field
+
+\[
+k\in\{\overline{\mathbb F}_5,\overline{\mathbb F}_7\}
+\tag{394}
+\]
+
+for which
+
+\[
+J^{(k)}_{b,-1}\ne k[B].
+\tag{395}
+\]
+
+The choice depends only on \(r+v\bmod4\).
+
+### 42.1 The generic phase
+
+Suppose
+
+\[
+r+v\not\equiv0\pmod4
+\tag{396}
+\]
+
+and work over \(k=\overline{\mathbb F}_5\).  Choose fresh independent
+\(w,p,c\in V_1\), a fresh nonzero \(z\in V_\omega\), and put
+
+\[
+h=3w+z.
+\tag{397}
+\]
+
+Choose \(A\in D_1\) with a complete four-phase support, disjoint from
+the preceding vectors.  The residues
+
+\[
+0,\qquad r,\qquad -v
+\tag{398}
+\]
+
+are pairwise distinct modulo four by (393) and (396).  Hence
+
+\[
+A,\qquad AX^r,\qquad AX^{-v}
+\tag{399}
+\]
+
+are independent.  Choose fresh nonzero
+\(Q_\omega\in V_\omega\), \(Q_{\omega^2}\in V_{\omega^2}\), and put
+
+\[
+Q=Q_\omega+Q_{\omega^2}.
+\tag{400}
+\]
+
+Since \(3\nmid t\), the vectors \(Q,QX^t\) are independent.
+Prescribe in \(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+AY&=w,\\
+(AX^r)Y&=p,\\
+pY&=Q,\\
+cY&=QX^t,\\
+(4AX^{-v})Y&=c.
+\end{aligned}
+\tag{401}
+\]
+
+The source list consists of the independent triple (399) and the
+fresh \(1\)-eigenvectors \(w,p,c\).  The image list consists of the
+fresh \(1\)-eigenvectors \(w,p,c\), the independent pair
+\(Q,QX^t\), and \(h\), whose \(z\)-component is fresh.  Thus both
+lists are independent and (401) extends globally.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=hR_3=4w=wR_4.
+\tag{402}
+\]
+
+The exact replay is
+
+\[
+\begin{aligned}
+wb
+&=pX^sYX^tY^{-1}X^uY^{-1}X^vYX^q\\
+&=QX^tY^{-1}X^uY^{-1}X^vYX^q\\
+&=cX^uY^{-1}X^vYX^q\\
+&=4AX^{-v}X^vYX^q\\
+&=4w.
+\end{aligned}
+\tag{403}
+\]
+
+### 42.2 The phase collision
+
+Now suppose
+
+\[
+r+v\equiv0\pmod4
+\tag{404}
+\]
+
+and work over \(k=\overline{\mathbb F}_7\).  Choose fresh independent
+\(w,p\in V_1\), a fresh primitive-cube vector \(z\), and put
+
+\[
+h=\frac43w+z.
+\tag{405}
+\]
+
+Choose \(A\in D_1\) with \(A,AX^r\) independent.  In characteristic
+seven, \(4\) has order three.  Since \(3\nmid t\), choose
+\(\eta^3=1\) with
+
+\[
+\eta^t=4
+\tag{406}
+\]
+
+and a fresh nonzero \(Q\in V_\eta\).  Prescribe
+
+\[
+wY=h,\qquad
+AY=w,\qquad
+(AX^r)Y=p,\qquad
+pY=Q.
+\tag{407}
+\]
+
+Both source and image lists are independent, so (407) extends
+globally.  The same baseline (402) holds with (405), and
+
+\[
+\begin{aligned}
+wb
+&=QX^tY^{-1}X^uY^{-1}X^vYX^q\\
+&=4pX^uY^{-1}X^vYX^q\\
+&=4AX^{r+v}YX^q\\
+&=4w,
+\end{aligned}
+\tag{408}
+\]
+
+where \(X^{r+v}=1\) on \(D_1\) by (404).
+
+Equations (402)--(403) and (405)--(408) prove (395) in every residue.
+The equal-sign exponents \(s,u\) and both endpoint exponents are
+invisible on the chosen \(1\)-eigenvectors.  The Fox bridge and (286)
+obstruct both A--D signs for every free-kernel lift.  Hence the
+complete \((-,+,+,-,-,+)\) length-six stratum is closed.
