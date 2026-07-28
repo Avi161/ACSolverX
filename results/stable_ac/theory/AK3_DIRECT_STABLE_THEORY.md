@@ -5419,6 +5419,89 @@ with every free-kernel lift covered.  Result 89 supplies the
 zero-phase case for \(n=2\).  For \(n\geq3\), the zero-phase branch
 requires a still-unproved multi-block recombination.
 
+**Result 92 (the full positive single peak of length six is
+obstructed).**  Result 91 leaves the initial phase zero for
+
+\[
+b=x^{4m}yx^ryx^uyx^sy^{-1}x^vy^{-1}x^ty^{-1}x^q,
+\qquad 3\nmid s.
+\]
+
+Over \(\overline{\mathbb F}_5\), put \(\alpha=1/3\) and choose
+
+\[
+\omega^3=1,\quad
+\delta^3=\omega,\quad
+\epsilon^3=\delta^4.
+\]
+
+For fresh vectors in their indicated eigenspaces, define
+
+\[
+\begin{aligned}
+w&=e_1+e_{-1}+e_\iota,&
+S&=4e_1=wR_4,&
+h&=3e_1+z,\\
+\lambda&=\omega^{r+t}\delta^{u+v}\epsilon^s,&
+\kappa&=\alpha\lambda\omega^{u+v}\delta^s,\\
+k_0&=k_1+\lambda z,&
+a&=a_1+\kappa z.
+\end{aligned}
+\]
+
+Prescribe
+
+\[
+\begin{array}{c|l}
+D_1\to\mathcal R_1&
+wY=h,\quad SY=k_0,\quad k_1Y=a,\quad
+a_1Y=\alpha(a_1+\kappa\omega^sz),\\
+D_\omega\to\mathcal R_\omega&zY=d,\\
+D_{\delta^4}\to\mathcal R_{\delta^4}&dY=c.
+\end{array}
+\]
+
+The \(D_1\)-image determinant reduces to
+\(\alpha\kappa(\omega^s-1)\), which is nonzero exactly under the
+central Britton condition.  The singleton maps respect their blocks
+by the root equations.
+
+Set
+
+\[
+\begin{aligned}
+A&=(hX^r)Y
+&=\alpha k_0+\omega^rd,\\
+D&=(AX^u)Y
+&=\alpha a+\alpha\lambda\omega^ud+\omega^r\delta^uc,\\
+q_1&=k_0X^{-t},\qquad
+q_2=(q_1Y)X^{-v}.
+\end{aligned}
+\]
+
+The definitions of \(\lambda,\kappa\) give the two exact
+compatibilities
+
+\[
+\kappa\omega^{-v}
+=\alpha\lambda\omega^u\delta^s,
+\qquad
+\lambda\omega^{-t}\delta^{-v}
+=\omega^r\delta^u\epsilon^s.
+\]
+
+Consequently \(q_2Y=DX^s\), and the entire backward replay gives
+
+\[
+wb=DX^sY^{-1}X^vY^{-1}X^tY^{-1}X^q=S=wR_4.
+\]
+
+Also \(wYR_3=S\) and \(wX^4=w\).  This closes the zero initial phase;
+Result 91 closes the other three residues.  Thus every
+\((+,+,+,-,-,-)\) word is obstructed for both A--D signs and every
+free-kernel lift.  This is the full single-peak classification at
+stable-letter length six, not an all-length zero-phase theorem.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5500,7 +5583,8 @@ alternating construction to arbitrary stable-letter length. Results
 stable-letter length four, and Result 90 closes every negative-first
 single-valley word at arbitrary length. Result 91 closes the dual
 positive-first family at arbitrary length whenever the initial
-fourth-root phase is nonzero. Results 73--75 close the
+fourth-root phase is nonzero, and Result 92 closes its first open
+zero-phase case at stable-letter length six. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5510,7 +5594,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--91, arbitrary W--D conjugators,
+61--92, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

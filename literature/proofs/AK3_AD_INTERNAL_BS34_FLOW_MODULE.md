@@ -5517,3 +5517,207 @@ free-kernel lift of the complete nonzero-initial-phase
 \(\ell\equiv0\pmod4\) case when \(n=2\).  For \(n\geq3\), that
 zero-phase branch remains a genuine multi-block recombination
 problem; the present theorem makes no claim about it.
+
+## 39. The zero-phase positive peak at stable-letter length six
+
+The first open zero-phase case admits a compact three-block cascade.
+Let
+
+\[
+b=x^{4m}yx^ryx^uyx^sy^{-1}x^vy^{-1}x^ty^{-1}x^q,
+\qquad
+3\nmid s,
+\tag{351}
+\]
+
+where \(m,r,u,v,t,q\in\mathbb Z\) are arbitrary.  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{352}
+\]
+
+Work over \(k=\overline{\mathbb F}_5\), put
+\(\alpha=1/3=2\), and choose roots
+
+\[
+\omega^3=1,\quad \omega\ne1,
+\qquad
+\delta^3=\omega,
+\qquad
+\epsilon^3=\delta^4.
+\tag{353}
+\]
+
+Choose fresh nonzero vectors
+
+\[
+\begin{gathered}
+e_1\in V_1,\qquad e_{-1}\in V_{-1},\qquad
+e_\iota\in V_\iota,\qquad z\in V_\omega,\\
+k_1,a_1\in V_1,\qquad
+d\in V_\delta,\qquad c\in V_\epsilon,
+\end{gathered}
+\]
+
+where \(\iota\) is a primitive fourth root.  Define
+
+\[
+\begin{aligned}
+w&=e_1+e_{-1}+e_\iota,\\
+S&=wR_4=4e_1,\\
+h&=3e_1+z,\\
+\lambda&=\omega^{r+t}\delta^{u+v}\epsilon^s,\\
+\kappa&=\alpha\lambda\omega^{u+v}\delta^s,\\
+k_0&=k_1+\lambda z,\\
+a&=a_1+\kappa z.
+\end{aligned}
+\tag{354}
+\]
+
+All displayed scalars are nonzero.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+SY&=k_0,\\
+k_1Y&=a,\\
+a_1Y&=\alpha(a_1+\kappa\omega^s z).
+\end{aligned}
+\tag{355}
+\]
+
+The sources \(w,S,k_1,a_1\) are independent.  The images are
+independent as well.  Indeed, \(h\) and \(k_0\) have the unique
+\(e_1\)- and \(k_1\)-directions, while the determinant of the last
+two images on the \((a_1,z)\)-plane is
+
+\[
+\alpha\kappa(\omega^s-1)\ne0
+\tag{356}
+\]
+
+because \(3\nmid s\).
+
+Use two singleton prescriptions in the next root-fiber blocks:
+
+\[
+zY=d
+\quad\text{in }D_\omega\to\mathcal R_\omega,
+\qquad
+dY=c
+\quad\text{in }D_{\delta^4}\to\mathcal R_{\delta^4}.
+\tag{357}
+\]
+
+They respect the blocks by (353).  Equations (355)--(357) are
+injective partial maps and extend to one global cyclotomic
+BS\((3,4)\)-module action.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=hR_3=4e_1=S=wR_4.
+\tag{358}
+\]
+
+The first two positive steps give
+
+\[
+\begin{aligned}
+A:=(hX^r)Y
+&=\alpha k_0+\omega^r d,\\
+D:=(AX^u)Y
+&=\alpha a+\alpha\lambda\omega^u d
+  +\omega^r\delta^u c.
+\end{aligned}
+\tag{359}
+\]
+
+For the backward ports, put
+
+\[
+q_1=k_0X^{-t},
+\qquad
+q_2=(q_1Y)X^{-v}.
+\tag{360}
+\]
+
+Using (354)--(357),
+
+\[
+q_2
+=a_1+\kappa\omega^{-v}z+\lambda\omega^{-t}\delta^{-v}d.
+\tag{361}
+\]
+
+Applying \(Y\) gives
+
+\[
+\begin{aligned}
+q_2Y
+={}&\alpha(a_1+\kappa\omega^s z)
+ +\kappa\omega^{-v}d
+ +\lambda\omega^{-t}\delta^{-v}c.
+\end{aligned}
+\tag{362}
+\]
+
+On the other hand,
+
+\[
+\begin{aligned}
+DX^s
+={}&\alpha(a_1+\kappa\omega^s z)
+ +\alpha\lambda\omega^u\delta^s d
+ +\omega^r\delta^u\epsilon^s c.
+\end{aligned}
+\tag{363}
+\]
+
+The definitions in (354) are exactly the two coefficient
+compatibilities
+
+\[
+\kappa\omega^{-v}
+=\alpha\lambda\omega^u\delta^s,
+\qquad
+\lambda\omega^{-t}\delta^{-v}
+=\omega^r\delta^u\epsilon^s.
+\tag{364}
+\]
+
+Therefore
+
+\[
+q_2Y=DX^s.
+\tag{365}
+\]
+
+The entire word now replays without an omitted compatibility:
+
+\[
+\begin{aligned}
+wb
+&=DX^sY^{-1}X^vY^{-1}X^tY^{-1}X^q\\
+&=q_2X^vY^{-1}X^tY^{-1}X^q\\
+&=q_1X^tY^{-1}X^q\\
+&=k_0Y^{-1}X^q\\
+&=SX^q
+=S
+=wR_4.
+\end{aligned}
+\tag{366}
+\]
+
+The leading \(x^{4m}\) fixes \(w\), so (366) proves (352) for every
+initial exponent congruent to zero modulo four.  Section 38 handles
+the three nonzero initial residues.  Hence the full
+\((+,+,+,-,-,-)\) stratum is obstructed for the negative A--D sign;
+(286) handles the positive sign, and the Fox bridge covers every
+free-kernel lift.  This is the complete single-peak classification at
+stable-letter length six, not an all-length zero-phase theorem.
