@@ -384,6 +384,74 @@ and exact checkers are
 \end{gathered}
 \]
 
+### The first lift layer is also blind
+
+Read the same four quotient conjugators in the original free group
+\(F(c,t)\), and put
+\[
+N=\ker(F(c,t)\to C_2*\mathbb Z)
+ =\langle\!\langle c^2\rangle\!\rangle.
+\]
+Using the unreduced original source rows, the lifted recurrence has
+\[
+\bigl(|R|,|S|,|U|,|Z|\bigr)=(49,63,116,177),
+\]
+and
+\[
+D=Zt^{-1}\in N,\qquad |D|=178.
+\]
+
+Kurosh rewriting identifies
+\[
+M=N_{\mathrm{ab}}\cong\mathbb Z[Q/\langle c\rangle].
+\]
+The defect \([D]\) has 21 basis terms, coefficient sum zero, and
+coefficient \(\ell^1\)-norm \(48\). Correcting the four conjugators by
+\(x_0,\ldots,x_3\in M\), and the target conjugator by \(x_4\), gives the
+exact module equation
+\[
+[D]+L_0x_0+L_1x_1+L_2x_2+L_3x_3+L_4x_4=0,
+\]
+where
+\[
+\begin{aligned}
+L_0&=-U^{-1}(A-R)
+     -(h_2+U^{-1}h_3)S(A-R),\\
+L_1&=(h_2+U^{-1}h_3)(B-S),\\
+L_2&=1-X,\qquad
+L_3=U^{-1}-t,\qquad
+L_4=t-1.
+\end{aligned}
+\]
+
+This equation has the explicit integral solution
+\[
+\begin{aligned}
+x_0&=2e_{cT}-2e_{cTTct}-2e_{cTTctt},\\
+x_1&=0,\\
+x_2&=-2e_{cTct}-2e_{cTctt},\\
+x_3&=-2e_1-e_{TTct},\\
+x_4&=e_{Tct},
+\end{aligned}
+\]
+where \(T=t^{-1}\) and \(e_v\) is the \(C\)-vertex basis element.
+Lifting these vectors to actual products of conjugates of \(c^2\) and
+recomputing the recurrence leaves a freely reduced residual of length \(82\)
+inside \([N,N]\).
+
+Thus the exact quotient witness lifts through \(F/[N,N]\). The next honest
+obstruction is degree two,
+\[
+[N,N]/[[N,N],N],
+\]
+not the ordinary relation module. The proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_RELATION\_MODULE\_LIFT.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_lift\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -397,7 +465,8 @@ and exact checkers are
    representations intrinsically blind for five; an independent trace-
    polynomial argument proves full majority-killing \(SU(2)\) blindness
    for the sixth. The period-two quotient is also blind by an exact
-   hyperbolic witness; compare that witness with a hypothetical free-group
-   lift and isolate the first \(c^2\)-correction obstruction.
+   hyperbolic witness, and its complete relation-module lift obstruction
+   vanishes. Analyze the explicit length-\(82\) residual in
+   \([N,N]/[[N,N],N]\).
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

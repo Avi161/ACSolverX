@@ -7914,6 +7914,39 @@ equal-length hyperbolic branch, with
 quotient emptiness but the obstruction to lifting this exact witness from
 \(C_2*\mathbb Z\) to the original free group \(F(c,t)\).
 
+**Result 144 (the period-two witness lifts through its relation module).**
+Let
+\[
+N=\ker\bigl(F(c,t)\to\langle c,t\mid c^2=1\rangle\bigr).
+\]
+Reading the exact quotient conjugators in \(F(c,t)\) with the original source
+rows produces a final word of length \(177\), with
+\[
+D=Zt^{-1}\in N,\qquad |D|=178.
+\]
+Kurosh rewriting gives
+\[
+N_{\mathrm{ab}}\cong\mathbb Z[Q/\langle c\rangle].
+\]
+The defect has 21 basis terms, augmentation zero, and coefficient
+\(\ell^1\)-norm \(48\). Exact variation of the four conjugators and a target
+conjugator gives five group-ring operators of support sizes
+\((6,4,2,2,2)\). The integral correction
+\[
+\begin{aligned}
+x_0&=2e_{cT}-2e_{cTTct}-2e_{cTTctt},\\
+x_1&=0,\\
+x_2&=-2e_{cTct}-2e_{cTctt},\\
+x_3&=-2e_1-e_{TTct},\\
+x_4&=e_{Tct}
+\end{aligned}
+\]
+kills the complete defect exactly. Lifting these vectors to products of
+conjugates of \(c^2\) leaves a nontrivial freely reduced residual of length
+\(82\) in \([N,N]\). Hence the witness lifts through \(F/[N,N]\), but not
+yet through \(F\). The next unresolved layer is
+\([N,N]/[[N,N],N]\).
+
 ## Live lead
 
 The direct relation-splitting manufacture of
