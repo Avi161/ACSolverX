@@ -7947,6 +7947,32 @@ conjugates of \(c^2\) leaves a nontrivial freely reduced residual of length
 yet through \(F\). The next unresolved layer is
 \([N,N]/[[N,N],N]\).
 
+**Result 145 (degree-two lifting forces support escape).**  In the
+relation-module equation \(d+\sum_iL_ix_i=0\), allow a one-hop variable
+\((i,v)\) exactly when one term of \(L_i e_v\) lands on
+\(\operatorname{supp}(d)\).  The resulting exact matrix has \(449\) rows,
+\(242\) columns, \(880\) nonzero entries, and rank \(240\) over each of
+\(\mathbb F_2,\mathbb F_3,\mathbb F_5\).  A particular integral solution
+and two independent homogeneous solutions exhaust its four mod-\(2\)
+solution classes.
+
+On \(\Lambda^2N_{\mathrm{ab}}\), use the full mod-\(2\) wedge augmentation
+and the wedge augmentation induced by the three-point action
+\[
+c=(1\ 2),\qquad t=(0\ 1\ 2).
+\]
+Both functionals kill every second-layer correction because all five
+\(L_i\) have augmentation zero.  The four first-layer parity classes give
+the obstruction pairs
+\[
+(1,1),\qquad(0,1),\qquad(0,1),\qquad(1,0).
+\]
+Therefore no one-hop first-layer solution lifts through
+\(F(c,t)/\gamma_3N\).  Any degree-two lift of this exact period-two witness
+must use relation-module support outside the \(242\)-variable set, creating
+cancellation wholly away from the original defect before returning to it.
+This is a nonlocality theorem, not a global lifting obstruction.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

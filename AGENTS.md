@@ -1160,3 +1160,8 @@
 - [TRAP] Calling `exec_module` on a dataclass-bearing module before registering it in `sys.modules` failed inside Python 3.9 dataclass type resolution with `AttributeError: 'NoneType' object has no attribute '__dict__'`.
 - [WORKS] For disposable scripts outside a package, load the exact project module with `importlib.util.spec_from_file_location`; do not rely on the shell working directory to enter `sys.path`.
 - [WORKS] Insert the created module under `spec.name` in `sys.modules` before `exec_module` whenever the loaded file declares dataclasses or resolves annotations through its module namespace.
+
+### 2026-07-28 Verify certificate modules both as imports and files
+
+- [TRAP] The new degree-two certificate passed all pytest imports but failed its documented direct replay because `from experiments.stable_ac ...` is unavailable when Python sets the script directory as the import root.
+- [WORKS] Certificate modules which reuse a sibling must support both package import and direct sibling import, then run pytest and the literal `python3 experiments/...py` replay before staging.

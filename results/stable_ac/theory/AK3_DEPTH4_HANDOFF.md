@@ -452,6 +452,48 @@ not the ordinary relation module. The proof and checker are
 \end{gathered}
 \]
 
+### Degree two forces nonlocal first-layer support
+
+For the relation-module equation
+\[
+d+\sum_{i=0}^4L_i x_i=0,
+\]
+define the one-hop support by allowing \(e_v\) in \(x_i\) precisely when
+some term of \(L_i e_v\) lands on the original \(21\)-term support of
+\(d\). This gives \(242\) variables, \(449\) output rows, and an integral
+matrix with \(880\) nonzero entries. Its rank is \(240\) over each of
+\(\mathbb F_2,\mathbb F_3,\mathbb F_5\).
+
+A particular integral solution and two independent homogeneous solutions
+exhaust the four mod-\(2\) classes of all one-hop solutions. Two global
+degree-two functionals are available:
+
+1. the mod-\(2\) sum of all coordinates in \(\Lambda^2M\);
+2. the same wedge sum after the three-point action
+   \(c=(1\ 2),\ t=(0\ 1\ 2)\).
+
+Both kill every \(L_i\)-image because all five operators have augmentation
+zero. Direct nonlinear replay gives:
+
+| parity class | free residual | kernel length | full wedge | three-point wedge |
+|---:|---:|---:|---:|---:|
+| \((0,0)\) | 82 | 24 | 1 | 1 |
+| \((1,0)\) | 442 | 104 | 0 | 1 |
+| \((0,1)\) | 678 | 212 | 0 | 1 |
+| \((1,1)\) | 614 | 178 | 1 | 0 |
+
+Thus no one-hop first-layer correction lifts through
+\(F/\gamma_3N\). Any degree-two lift must introduce relation-module support
+whose entire first image lies away from the original defect and cancels
+nonlocally before returning. This is a support-escape theorem, not global
+impossibility. The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_DEGREE\_TWO\_ESCAPE.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_degree\_two\_escape\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -466,7 +508,8 @@ not the ordinary relation module. The proof and checker are
    polynomial argument proves full majority-killing \(SU(2)\) blindness
    for the sixth. The period-two quotient is also blind by an exact
    hyperbolic witness, and its complete relation-module lift obstruction
-   vanishes. Analyze the explicit length-\(82\) residual in
-   \([N,N]/[[N,N],N]\).
+   vanishes. Degree two rules out every one-hop lift, so construct or
+   obstruct the required nonlocal module cancellation outside the
+   \(242\)-variable support.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.
