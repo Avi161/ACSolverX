@@ -4583,6 +4583,100 @@ By Result 74, every word in the second row obstructs its evaluated
 internal A--D relative product from being primitive.  The canonical
 collapse row has no converse primitivity conclusion.
 
+**Result 80 (a cyclotomic current closes the last length-three
+aggregate).**  Let
+
+\[
+b=x^\ell y^{-1}x^pyx^qy,
+\qquad
+\ell,q\in\mathbb Z,\quad p\in\{1,2,3\},\quad
+\lambda\in\{\pm1\}.
+\]
+
+There is a right \(\mathbb Q[B]\)-module and a nonzero vector \(v\)
+such that
+
+\[
+v(X^4-1)=0,\qquad
+v(YR_3-R_4)=0,\qquad
+v(b-\lambda R_4)=0.
+\]
+
+The construction is exact.  Over \(\mathbb C\), take countably
+infinite eigenspaces \(V_\zeta\) for every root of unity \(\zeta\).
+The fourth-power blocks
+
+\[
+D_c=\bigoplus_{\zeta^4=c}V_\zeta
+\]
+
+and third-power blocks
+
+\[
+\mathcal R_c=\bigoplus_{\eta^3=c}V_\eta
+\]
+
+have the same countable dimension.  A block isomorphism
+\(Y_c:D_c\to\mathcal R_c\) satisfies \(YX^3=X^4Y\).  Finite
+independent source/image prescriptions can therefore be imposed and
+extended to a global invertible \(Y\).
+
+Choose \(v=v_++v_-\) in the \(X\)-eigenspaces \(1,-1\) and prescribe
+
+\[
+vY=\frac43v_++z,\qquad z\in V_\omega,
+\]
+
+where \(\omega^3=1\ne\omega\).  Then
+
+\[
+vX^4=v,\qquad vYR_3=vR_4=4v_+.
+\]
+
+For odd \(p\), two independent vectors in each of the fourth-power
+blocks \(c=1,-1\) absorb the parity
+\((-1)^{\ell+q}\).  For \(p=2\), a vector in an eigenspace
+\(\delta^4=-1\) supplies the factor \(\delta^2=\pm i\).  The
+blockwise prescriptions give, in both cases,
+
+\[
+vb=4\lambda v_+=\lambda vR_4.
+\]
+
+Restricting scalars to \(\mathbb Q\) proves that
+
+\[
+(x^4-1)\mathbb Q[B]
++(yR_3-R_4)\mathbb Q[B]
++(b-\lambda R_4)\mathbb Q[B]
+\]
+
+is proper.
+
+The same module gives the missing normalized current without a
+duality shortcut.  Put \(m=4v_+\) and
+\(K_b=\langle x,b^{-1}x^4b\rangle\).  The identities above make \(m\)
+\(K_b\)-fixed.  For a rational linear functional \(\psi\) with
+\(\psi(m)=1\),
+
+\[
+S(K_bg)=\psi(mg)
+\]
+
+is well-defined, satisfies both scalar equations (193)--(194), and
+has \(S(K_b)=1\).  Therefore
+
+\[
+[K_b]\notin\operatorname{im}D_\lambda,
+\qquad
+[L]\notin\operatorname{im}E_\lambda.
+\]
+
+This decides all \(36\cdot2=72\) normalized
+negative--positive--positive cases.  Result 74 turns their proper
+flow ideals into evaluated A--D Fox nonprimitivity obstructions.  It
+does not prove AC or stable AC.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -4660,8 +4754,9 @@ exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
 reduces the last negative--positive--positive stratum to one aggregate
 compatibility after proving that its two zero-sum phases cannot form a
-finite certificate. The immediate exact leads are therefore
-that aggregate compatibility, z-dependent A--W conjugators, the
+finite certificate, and Result 80 closes that aggregate by an exact
+cyclotomic current. The immediate exact leads are therefore
+z-dependent A--W conjugators, the
 canonical and module-collapse internal A--D subproblems, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,

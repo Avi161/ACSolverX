@@ -3841,3 +3841,244 @@ Section 23, every word in that line obstructs the corresponding
 internal A--D relative product from being primitive.  The two
 canonical collapse rows still require a different invariant and are
 not claimed primitive.
+
+## 29. A cyclotomic current closes the negative--positive--positive aggregate
+
+The aggregate system left open in Section 25 has a separator.  In
+fact the construction does not require normalized endpoint exponents.
+
+**Cyclotomic separator theorem.**  Let
+
+\[
+b=x^\ell y^{-1}x^pyx^qy,
+\qquad
+\ell,q\in\mathbb Z,\quad p\in\{1,2,3\},
+\quad\lambda\in\{+1,-1\}.
+\tag{230}
+\]
+
+Then the right ideal
+
+\[
+J_\lambda
+=(x^4-1)\mathbb Q[B]
++(yR_3-R_4)\mathbb Q[B]
++(b-\lambda R_4)\mathbb Q[B]
+\tag{231}
+\]
+
+is proper.  For the subgroup \(K_b\) of Section 25 this gives
+
+\[
+[K_b]\notin\operatorname{im}D_\lambda,
+\qquad
+[L]\notin\operatorname{im}E_\lambda.
+\tag{232}
+\]
+
+Use row-vector right actions, so \(u\cdot x=uX\) and
+\(u\cdot y=uY\).  Let \(\mu_\infty\) be the complex roots of unity
+and put
+
+\[
+V=\bigoplus_{\zeta\in\mu_\infty}V_\zeta,
+\tag{233}
+\]
+
+where every \(V_\zeta\) is countably infinite-dimensional over
+\(\mathbb C\), and let \(X\) act on \(V_\zeta\) as multiplication by
+\(\zeta\).  For \(c\in\mu_\infty\), define
+
+\[
+D_c=\bigoplus_{\zeta^4=c}V_\zeta,
+\qquad
+\mathcal R_c=\bigoplus_{\eta^3=c}V_\eta.
+\tag{234}
+\]
+
+Both spaces have countably infinite dimension, and both displayed
+families decompose \(V\).  Choose isomorphisms
+\(Y_c:D_c\to\mathcal R_c\) and put \(Y=\bigoplus_cY_c\).  If
+\(d\in D_c\), then
+
+\[
+(dY)X^3=c(dY)=(dX^4)Y.
+\tag{235}
+\]
+
+Hence \(YX^3=X^4Y\), so \(X,Y\) give a right \(B\)-action.  Moreover,
+any finite injective prescription inside one block extends to such a
+\(Y_c\): extend its independent source and image lists to bases.
+Prescriptions in different \(c\)-blocks cannot conflict.
+
+Fix nonzero vectors
+
+\[
+v_+,u_+\in V_1,\qquad
+v_-,u_-\in V_{-1},\qquad z\in V_\omega,
+\tag{236}
+\]
+
+where each displayed pair is independent and \(\omega\) is a
+primitive cube root of unity.  Put \(v=v_++v_-\) and prescribe
+
+\[
+vY=\frac43v_++z.
+\tag{237}
+\]
+
+This is a \(D_1\)-to-\(\mathcal R_1\) prescription.  It gives
+
+\[
+vX^4=v,\qquad
+vR_4(X)=4v_+,\qquad
+vYR_3(X)=4v_+,
+\tag{238}
+\]
+
+because \(R_3(1)=3\) and \(R_3(\omega)=0\).
+
+First suppose \(p\) is odd.  Write
+
+\[
+\epsilon=(-1)^{\ell+q},
+\qquad
+a_+=\frac{u_++\epsilon u_-}{4\lambda}\in D_1.
+\tag{239}
+\]
+
+Choose \(\delta^4=-1\), nonzero
+\(h_1\in V_\delta\), \(h_2\in V_{-\delta}\), and put
+\(a_-=h_1+h_2\in D_{-1}\).  In addition to (237), prescribe
+
+\[
+\begin{aligned}
+a_+Y&=v_+,&(a_+X^p)Y&=u_+,\\
+a_-Y&=v_-,&(a_-X^p)Y&=u_-.
+\end{aligned}
+\tag{240}
+\]
+
+These are injective partial maps in the indicated blocks.  Indeed,
+
+\[
+a_+X^p=\frac{u_+-\epsilon u_-}{4\lambda},
+\qquad
+a_-X^p=\delta^p(h_1-h_2).
+\tag{241}
+\]
+
+The first two sources, together with \(v\), are independent because
+\((v_+,u_+)\) and \((v_-,u_-)\) are independent; their images are
+independent because \(z\) lies in the separate \(V_\omega\)-summand.
+The second source pair has determinant \(-2\delta^p\ne0\), and its
+image pair is independent.  Thus (240) extends blockwise to \(Y\).
+Now
+
+\[
+\begin{aligned}
+vb
+&=vX^\ell Y^{-1}X^pYX^qY\\
+&=(u_++(-1)^\ell u_-)X^qY\\
+&=(u_++\epsilon u_-)Y\\
+&=4\lambda a_+Y
+=4\lambda v_+
+=\lambda vR_4(X).
+\end{aligned}
+\tag{242}
+\]
+
+It remains to treat \(p=2\).  Keep \(\epsilon,\delta\) and choose a
+nonzero \(h\in V_\delta\).  Put
+
+\[
+a_+=\frac{v_++\epsilon\delta^2v_-}{4\lambda}\in D_1
+\tag{243}
+\]
+
+and prescribe
+
+\[
+a_+Y=v_+,\qquad
+vY=\frac43v_++z,\qquad
+hY=v_-.
+\tag{244}
+\]
+
+The two \(D_1\)-sources \(a_+,v\) are independent because
+\(\epsilon\delta^2=\pm i\ne1\), and their images are independent
+because \(z\ne0\).  The \(D_{-1}\)-prescription is nonzero.  Since
+\(a_+X^2=a_+\) and \(hX^2=\delta^2h\),
+
+\[
+\begin{aligned}
+vb
+&=(a_++(-1)^\ell h)X^2YX^qY\\
+&=(v_++(-1)^\ell\delta^2v_-)X^qY\\
+&=(v_++\epsilon\delta^2v_-)Y\\
+&=4\lambda a_+Y
+=4\lambda v_+
+=\lambda vR_4(X).
+\end{aligned}
+\tag{245}
+\]
+
+Equations (238), (242), and (245) show that \(v\ne0\) annihilates
+all three generators of (231).  Restricting scalars makes \(V\) a
+right \(\mathbb Q[B]\)-module.  If \(1\in J_\lambda\), applying that
+identity to \(v\) would give \(v=0\).  This proves propriety.
+
+There is also a direct normalized scalar current.  Put
+
+\[
+m=vR_4=4v_+,\qquad
+s_0=b^{-1}x^4b,\qquad
+K_b=\langle x,s_0\rangle.
+\]
+
+Then \(mX=m\), and \(vb=\lambda m\) gives
+
+\[
+ms_0
+=\lambda^{-1}vbb^{-1}X^4b
+=\lambda^{-1}vX^4b
+=m.
+\tag{246}
+\]
+
+Thus \(m\) is fixed by \(K_b\).  Choose a
+\(\mathbb Q\)-linear functional \(\psi:V\to\mathbb Q\) with
+\(\psi(m)=1\), and define
+
+\[
+S(K_bg)=\psi(mg).
+\tag{247}
+\]
+
+This is well-defined and \(S(K_b)=1\).  Since
+\(mb^{-1}=\lambda v\), equation (238) yields
+
+\[
+mb^{-1}R_4=\lambda m,
+\qquad
+mb^{-1}yR_3=\lambda m.
+\tag{248}
+\]
+
+Using
+
+\[
+t^ib^{-1}=b^{-1}x^i,
+\qquad
+w^jb^{-1}y=b^{-1}yx^j,
+\]
+
+equation (248) is exactly (193)--(194).  Hence pairing with \(S\)
+annihilates \(\operatorname{im}D_\lambda\) but sends \([K_b]\) to
+\(1\), proving the first assertion in (232); (197) gives the second.
+
+In particular, all thirty-six normalized codes (186), for both
+signs, have proper internal flow ideals.  Section 23 turns this into
+evaluated A--D Fox-row non-unimodularity and nonprimitivity.  This
+closes the length-three aggregate problem, not the Andrews--Curtis
+conjecture.

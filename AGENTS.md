@@ -836,3 +836,35 @@
 
 - [TRAP] A follow-up review request hit the agent-thread limit while two long aggregate attacks and their inherited review threads were still live.
 - [WORKS] Check the live-agent tree before dispatching another review; finish or interrupt a redundant live attack, then reuse an existing reviewer instead of adding a sibling thread.
+
+### 2026-07-27 Use fixed-string searches for LaTeX fragments
+
+- [TRAP] A combined ripgrep regex for LaTeX fragments with braces treated them as repetition syntax and failed before searching.
+- [WORKS] Search LaTeX literals with separate fixed-string queries, or escape every regex metacharacter and test one term before combining patterns.
+
+### 2026-07-27 Avoid literal backticks inside raw patch templates
+
+- [TRAP] A JavaScript raw-template patch contained Markdown backticks, which terminated the template and caused a syntax error before the patch ran.
+- [WORKS] Omit Markdown backticks from raw patch payload text or use a safely quoted construction that cannot terminate on documentation punctuation.
+
+### 2026-07-27 Run Whitehead diagnostics with the proof dependencies
+
+- [TRAP] Importing rank3_whitehead.py with the system Python failed at acmoves.py because numba is absent from this proof worktree.
+- [WORKS] Run isolated Whitehead diagnostics with uv and explicit numba and numpy dependencies, matching the established verifier environment.
+- [TRAP] The reducer accepts an arbitrary generators tuple at its public boundary, but its imported free-reduction and cyclic-canonicalization helpers validate only x, y, z, and t; adding q therefore fails before Whitehead reduction. The primitivity predicate also accepts the completed reduction object, not the source word and basis.
+- [WORKS] For rank-four diagnostics, use an independently checked alphabet-generic reducer or first generalize and test the shared helpers; do not infer rank-four support from the public tuple alone.
+
+### 2026-07-27 Resolve truncated paths from commit statistics
+
+- [TRAP] A truncated git-show statistics line was read as experiments/stable_ac/theory, but the committed ledger actually lives at results/stable_ac/theory; the subsequent read failed.
+- [WORKS] Before opening a path shown with an ellipsis in commit statistics, recover the exact name with git show --name-only or rg --files.
+
+### 2026-07-27 Separate theorem insertion from frontier rewrites
+
+- [TRAP] A large one-file patch combined a new theorem insertion with a distant live-frontier replacement; changed line wrapping in the frontier made the entire patch fail atomically.
+- [WORKS] Apply a self-contained theorem insertion first and read it back, then patch distant status prose in a separate hunk using freshly read context.
+
+### 2026-07-27 Force-add proof-archive updates explicitly
+
+- [TRAP] Staging a mixed checkpoint failed because literature is ignored, even though the edited proof ledger is already part of this proof branch.
+- [WORKS] Stage ordinary tracked files normally and force-add only the exact edited literature/proofs file; never force-add the literature tree broadly.
