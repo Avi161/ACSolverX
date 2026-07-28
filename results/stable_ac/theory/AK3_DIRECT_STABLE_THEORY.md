@@ -5918,6 +5918,91 @@ Fox bridge covers every free-kernel lift in the sixteen closed
 negative-sign strata.  This is a complete negative-start
 classification, not a complete all-sign classification.
 
+**Result 100 (the first remaining positive-start length-six stratum is
+obstructed).**  Let
+
+\[
+b=x^\ell yx^ryx^sy^{-1}x^tyx^uy^{-1}x^vy^{-1}x^q,
+\qquad
+3\nmid s,u,\quad 4\nmid t.
+\]
+
+Over \(\overline{\mathbb F}_5\), split by \(\ell\bmod4\).
+
+For \(\ell\ne0\), choose mixed \(w\in D_1\) so that
+\(w,wX^\ell,S=wR_4\) are independent, put \(wY=h\), and choose fresh
+\(p,D\in V_1\), disjoint cube-phase pairs
+\(A,AX^s\) and \(C,CX^u\), and a fourth-phase pair \(B,BX^t\).
+Prescribe
+
+\[
+wX^\ell\longmapsto p\longmapsto A,
+\qquad
+B\longmapsto AX^s,
+\qquad
+BX^t\longmapsto C,
+\qquad
+D\longmapsto CX^u,
+\qquad
+S\longmapsto D.
+\]
+
+Together with \(wY=h\), the source and image lists are independent.
+The replay ends at \(S=wR_4\).
+
+For \(\ell=0\), take
+
+\[
+w=w_1+w',\quad S=4w_1,\quad h=3w_1+z,\quad
+K=k_1+k_\omega,
+\]
+
+and prescribe \(wY=h\), \(SY=K\).  Choose
+\(P_\omega\in\mathcal R_\omega\) and prescribe
+\((\omega^rz)Y=P_\omega\); then
+
+\[
+P=(hX^r)Y=2K+P_\omega.
+\]
+
+Use fresh packets \(B_1,B_\omega,C_1,C_\omega\) and prescribe
+
+\[
+\begin{array}{c|l}
+D_1\to\mathcal R_1&
+B_1Y=2KX^s,\quad
+(B_1X^t)Y=C_1,\quad
+k_1Y=C_1X^u,\\
+D_\omega\to\mathcal R_\omega&
+B_\omega Y=P_\omega X^s,\quad
+(B_\omega X^t)Y=C_\omega,\quad
+(\omega^{-v}k_\omega)Y=C_\omega X^u.
+\end{array}
+\]
+
+Every source and image list is a direct sum of independent phase
+pairs.  With
+
+\[
+B=B_1+B_\omega,\qquad
+C=C_1+C_\omega,\qquad
+D=KX^{-v},
+\]
+
+one has
+
+\[
+BY=PX^s,\qquad
+(BX^t)Y=C,\qquad
+DY=CX^u.
+\]
+
+Thus the zero-phase replay also ends at \(S\).  The Fox bridge and
+Result 85 close both A--D signs for every free-kernel lift.  The
+complete \((+,+,-,+,-,-)\) stratum is obstructed, leaving three of
+the twenty height-zero length-six sign strings open for the negative
+A--D sign.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6008,7 +6093,8 @@ Result 95 closes the self-inverse mixed length-six stratum, and Result
 Result 97 closes the alternating-prefix terminal-return stratum.
 Result 98 closes the two-turn separated-return stratum. Result 99
 completes every negative-start length-six stratum and reaches sixteen
-of the twenty total sign strings by inversion. Results 73--75 close the
+of the twenty total sign strings by inversion. Result 100 closes the
+first remaining positive-start stratum. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -6018,7 +6104,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--99, arbitrary W--D conjugators,
+61--100, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

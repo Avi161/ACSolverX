@@ -6723,3 +6723,252 @@ of these height-zero words.  The Fox bridge covers every free-kernel
 lift throughout all the closed strata.  This is a complete
 negative-start classification and a \(16/20\) total sign
 classification at length six, not an all-sign theorem.
+
+## 47. The first remaining positive-start length-six stratum
+
+Let
+
+\[
+b=x^\ell yx^ryx^sy^{-1}x^tyx^uy^{-1}x^vy^{-1}x^q,
+\tag{452}
+\]
+
+where
+
+\[
+3\nmid s,\qquad
+4\nmid t,\qquad
+3\nmid u,
+\tag{453}
+\]
+
+and \(r,v,q\in\mathbb Z\) are arbitrary.  Thus the sign string is
+\((+,+,-,+,-,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{454}
+\]
+
+There are two initial-phase constructions.
+
+### 47.1 Nonzero initial phase
+
+Suppose \(\ell\not\equiv0\pmod4\).  Choose fresh nonzero
+
+\[
+w_1\in V_1,\qquad
+w_{-1}\in V_{-1},\qquad
+w_\iota\in V_\iota,\qquad
+z\in V_\omega,
+\]
+
+where \(\iota\) and \(\omega\) are primitive fourth and cube roots.
+Put
+
+\[
+w=w_1+w_{-1}+w_\iota,
+\qquad
+S=wR_4=4w_1,
+\qquad
+h=3w_1+z.
+\tag{455}
+\]
+
+The vectors
+
+\[
+w,\qquad wX^\ell,\qquad S
+\tag{456}
+\]
+
+are independent.  Choose fresh \(p,D\in V_1\).  Choose disjoint
+fresh cube-phase packets
+
+\[
+A=A_\omega+A_{\omega^2},
+\qquad
+C=C_\omega+C_{\omega^2}.
+\tag{457}
+\]
+
+Then \(A,AX^s\) and \(C,CX^u\) are independent by (453).  Choose
+\(B\in D_1\) with a complete fresh four-phase support, so that
+\(B,BX^t\) are independent.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+(wX^\ell)Y&=p,\\
+pY&=A,\\
+BY&=AX^s,\\
+(BX^t)Y&=C,\\
+DY&=CX^u,\\
+SY&=D.
+\end{aligned}
+\tag{458}
+\]
+
+The source list consists of the independent triple (456), the
+disjoint pair \(B,BX^t\), and the fresh \(V_1\)-lines \(p,D\).  The
+image list consists of \(h\), the fresh lines \(p,D\), and the two
+disjoint cube-phase pairs from (457).  Thus both lists are independent
+and (458) extends globally.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=hR_3=S=wR_4.
+\tag{459}
+\]
+
+The replay is
+
+\[
+\begin{aligned}
+wb
+&=pX^rYX^sY^{-1}X^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=AX^sY^{-1}X^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=BX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=CX^uY^{-1}X^vY^{-1}X^q\\
+&=DX^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{460}
+\]
+
+### 47.2 Zero initial phase
+
+Now suppose \(\ell\equiv0\pmod4\).  Choose fresh nonzero
+\(w_1\in V_1\), a nonzero \(w'\) in a nontrivial fourth-root
+eigenspace, and put
+
+\[
+w=w_1+w',
+\qquad
+S=wR_4=4w_1,
+\qquad
+h=3w_1+z,
+\quad 0\ne z\in V_\omega.
+\tag{461}
+\]
+
+Choose fresh \(k_1\in V_1,k_\omega\in V_\omega\), put
+
+\[
+K=k_1+k_\omega,
+\tag{462}
+\]
+
+and prescribe \(SY=K\).  Since \(3w_1=\frac13S\), this forces
+
+\[
+(3w_1)Y=2K.
+\tag{463}
+\]
+
+Choose \(P_\omega\in\mathcal R_\omega\) with
+\(P_\omega,P_\omega X^s\) independent and prescribe
+
+\[
+(\omega^rz)Y=P_\omega.
+\tag{464}
+\]
+
+It follows that
+
+\[
+P:=(hX^r)Y=2K+P_\omega.
+\tag{465}
+\]
+
+Choose \(B_1\in D_1\), \(B_\omega\in D_\omega\) with fresh complete
+four-phase supports, and choose fresh
+\(C_1\in\mathcal R_1,C_\omega\in\mathcal R_\omega\), so that
+
+\[
+\begin{gathered}
+B_1,B_1X^t,\qquad B_\omega,B_\omega X^t,\\
+C_1,C_1X^u,\qquad C_\omega,C_\omega X^u
+\end{gathered}
+\tag{466}
+\]
+
+are four independent pairs.  Prescribe in \(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+SY&=K,\\
+B_1Y&=2KX^s,\\
+(B_1X^t)Y&=C_1,\\
+k_1Y&=C_1X^u,
+\end{aligned}
+\tag{467}
+\]
+
+and in \(D_\omega\to\mathcal R_\omega\)
+
+\[
+\begin{aligned}
+(\omega^rz)Y&=P_\omega,\\
+B_\omega Y&=P_\omega X^s,\\
+(B_\omega X^t)Y&=C_\omega,\\
+(\omega^{-v}k_\omega)Y&=C_\omega X^u.
+\end{aligned}
+\tag{468}
+\]
+
+The \(D_1\)-source list is the direct sum of the independent
+\(w,S\), the fresh pair \(B_1,B_1X^t\), and \(k_1\).  Its image list
+is direct because \(K,KX^s\) and \(C_1,C_1X^u\) are disjoint
+rank-two packets and \(h\) has a fresh baseline component.  The
+\(D_\omega\)-source list in (468) is fresh, while its image list is
+the direct sum of the two independent pairs
+\(P_\omega,P_\omega X^s\) and \(C_\omega,C_\omega X^u\).
+Therefore (467)--(468) extend simultaneously.
+
+Set
+
+\[
+B=B_1+B_\omega,\qquad
+C=C_1+C_\omega,\qquad
+D=KX^{-v}.
+\tag{469}
+\]
+
+Equations (465), (467), and (468) give
+
+\[
+BY=PX^s,
+\qquad
+(BX^t)Y=C,
+\qquad
+DY=CX^u.
+\tag{470}
+\]
+
+Since \(wX^\ell=w\), the full replay is
+
+\[
+\begin{aligned}
+wb
+&=hX^rYX^sY^{-1}X^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=PX^sY^{-1}X^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=BX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=CX^uY^{-1}X^vY^{-1}X^q\\
+&=DX^vY^{-1}X^q\\
+&=KY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{471}
+\]
+
+Thus (459)--(460) and (461)--(471) prove (454) for every initial
+residue.  The Fox bridge and (286) obstruct both A--D signs for every
+free-kernel lift.  Hence the complete \((+,+,-,+,-,-)\) length-six
+stratum is closed.
