@@ -7811,6 +7811,65 @@ this depth-four class: only genuinely nonabelian kernel order can now
 obstruct it.  The exact proof is recorded in
 \(\texttt{literature/proofs/AK3_DEPTH4_TARGET_BASIS_RIGIDITY.md}\).
 
+**Result 139 (the local \(SU(2)\) dependency-angle relaxation is flat).**
+Normalize conjugacy angles by \(\pi\).  The four recurrence stages become
+
+\[
+\Delta(a,b,r),\quad\Delta(b,r,s),\quad
+\Delta(r,s,u),\quad\Delta(u,s,t),
+\]
+
+where each \(\Delta\) is cut out by the four spherical-triangle
+inequalities.  Exact elimination shows that the projection to \((a,b,t)\)
+has only four non-box facets:
+
+\[
+-3a-5b+t\le0,\quad 3a-5b-t\le2,
+\]
+
+\[
+-3a+5b-t\le4,\quad 3a+5b+t\le8.
+\]
+
+These are exactly the irredundant rank-one Horn facets for the flat product
+of three \(a\)-classes and five \(b\)-classes.  Four nonnegative elimination
+certificates prove one containment; twelve exact rational vertex lifts prove
+the reverse.  This exhausts the local shared-angle relaxation only, not
+relations obtained after enforcing simultaneous matrix compatibility.
+
+**Result 140 (coordinatewise shortest seams need not be axial).**  Set all
+four zero-height conjugators to \(H=tctc^{-1}=t_0t_1\).  Direct reduction
+gives normalized seams
+
+\[
+(G_0,G_1,G_2,G_3)
+=(t_5t_6,t_3t_4,t_2t_3,t_{-1}t_0).
+\]
+
+Exact all-integer length formulas show that \(H\) is the unique shortest
+representative in each of the four evolving cyclic double cosets.  None of
+the seams is trivial or a power of one kernel generator.  The final cyclic
+kernel word nevertheless has length 57.  Hence local double-coset minimality
+alone cannot imply the axial theorem; a viable peak reduction must use the
+one-letter target or a coupled global complexity.  The exact formulas are in
+\(\texttt{literature/proofs/AK3_DEPTH4_MINIMAL_SEAM_COUNTEREXAMPLE.md}\).
+
+**Result 141 (the hardest overlap is pro-nilpotently soluble).**  In the
+full cyclic-cover kernel \(K=\langle t_j\mid j\in\mathbb Z\rangle\), set
+\(G_0=G_1=G_2=1\).  The Alexander equation chooses a finite Laurent
+polynomial \(H_3\) with final abelianization \(X^m\).  For the graded free
+Lie ring of \(K\), shift equivariance gives, in every degree \(n\ge2\),
+
+\[
+L_n=(1-\sigma)L_n+[L_{n-1},t_m].
+\]
+
+Changing \(G_3\) in \(\gamma_nK\) supplies the first summand; changing the
+target conjugator in \(\gamma_{n-1}K\) supplies the second.  The abelian
+solution therefore lifts through every lower-central quotient, and the
+corrections converge in the pro-nilpotent completion.  This proves local
+solvability in every nilpotent quotient, not a solution in the free group.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

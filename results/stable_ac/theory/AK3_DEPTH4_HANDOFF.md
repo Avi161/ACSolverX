@@ -266,6 +266,45 @@ equation above.  The proof and replay are
 `literature/proofs/AK3_DEPTH4_TARGET_BASIS_RIGIDITY.md` and
 `experiments/stable_ac/depth4_target_basis_certificate.py`.
 
+### Exact no-go results beyond the axial theorem
+
+The four-local-triangle \(SU(2)\) angle relaxation retains the repeated
+scalar angles \(r,s,u\) but forgets simultaneous matrix compatibility.
+Its projection is exactly the flat three-\(A\), five-\(B\) interval.  In
+angles normalized by \(\pi\), that common interval is
+
+\[
+\begin{aligned}
+L(a,b)&=\max(0,3a-5b-2,5b-3a-4),\\
+U(a,b)&=\min(1,3a+5b,8-3a-5b).
+\end{aligned}
+\]
+
+Thus the local shared-angle relaxation supplies no new obstruction.  The
+exact facet and vertex proof is
+`literature/proofs/AK3_DEPTH4_SU2_DEPENDENCY_BLINDNESS.md`.
+
+Coordinatewise shortest representatives in the four evolving cyclic
+double cosets do not force axial seams.  The exact tuple with every ambient
+conjugator equal to \(tctc^{-1}\) has four uniquely shortest nonaxial seams,
+while its final cyclic kernel length is 57.  Any peak theorem must therefore
+use the target condition or a coupled global complexity.  The exact length
+proof is `literature/proofs/AK3_DEPTH4_MINIMAL_SEAM_COUNTEREXAMPLE.md`.
+
+More strongly, the full infinite-kernel equation has a solution in every
+lower-central nilpotent quotient and in the pro-nilpotent completion.  On
+the graded free Lie ring,
+
+\[
+L_n=(1-\sigma)L_n+[L_{n-1},t_m],
+\]
+
+so the last seam and target conjugator repair every successive error after
+the explicit Alexander-level solution.  Nilpotent obstructions are therefore
+exhausted for this class.  This is local solvability, not a free-group
+solution; the exact proof is
+`literature/proofs/AK3_DEPTH4_PRONILPOTENT_BLINDNESS.md`.
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.

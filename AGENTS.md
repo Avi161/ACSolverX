@@ -1096,3 +1096,13 @@
 
 - [TRAP] Equality between the four-local-triangle SU2 angle projection and the flat class interval was initially phrased as excluding every scalar-angle obstruction. Simultaneously compatible matrices can form a smaller set whose eliminated joint constraints are still scalar.
 - [WORKS] State this theorem only as blindness of the local shared-angle relaxation. Do not exclude scalar consequences of axes, mixed traces, image-subgroup restrictions, or global matrix compatibility unless those joint variables have also been eliminated exactly.
+
+### 2026-07-28 Distinguish conjugacy-compatible nilpotent lifts
+
+- [TRAP] The first pro-nilpotent wording said target conjugators lift compatibly even though the degree-n correction lies in gamma_(n-1), so its element can change in the preceding quotient while its conjugate of p does not.
+- [WORKS] Track compatibility of the conjugacy equation, not a chosen conjugator representative. Prove the cumulative corrections are Cauchy because their lower-central depths tend to infinity, then take the eventual residue in each fixed quotient.
+
+### 2026-07-28 Use literal scans for stale proof symbols
+
+- [TRAP] A combined regular expression intended to find stale H and p symbols after generalizing the pro-nilpotent proof had an unclosed escaped parenthesis and failed before scanning.
+- [WORKS] For post-rewrite symbol audits, pass each token as a separate fixed-string pattern. Reserve regular expressions for structure that cannot be checked literally.
