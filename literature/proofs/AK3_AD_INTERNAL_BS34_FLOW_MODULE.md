@@ -674,3 +674,163 @@ For \(r=1,2,3\), neither a nonzero eigenfunction compatible with
 (44) nor a collapse has been proved.  Equations (43)--(45) are the
 exact next subproblem; no conclusion from a finite truncation is
 claimed here.
+
+## 10. The noncanonical one-\(y\) ideals are proper
+
+We now solve that subproblem.  Fix \(r\in\{1,2,3\}\).  Let
+\(\delta_v\) denote the basis vector at \(v\) in
+\(\mathbb Q[H\backslash B]\).  The primal relation vectors dual to
+(44) and (43) are, respectively,
+
+\[
+\begin{aligned}
+A_{Hg}
+ &=\sigma\delta_{Hg}
+   +\sum_{i=0}^{3}\delta_{Hy^{-1}x^{i-r}g},\\
+B_{Hg}
+ &=\sigma\delta_{Hg}
+   +\sum_{j=0}^{2}\delta_{Hu^{-r}x^jg}.
+\end{aligned}
+\tag{48}
+\]
+
+Equations (46)--(47) show that these vectors are independent of the
+representative \(g\), so we write them as \(A_v,B_v\).
+
+We use the underlying unoriented Bass--Serre tree \(\mathcal T\) from
+Section 1.  Its vertices are \(H\backslash B\), every vertex has four
+incoming predecessors and three outgoing successors, and an oriented
+edge runs from \(Hy^{-1}g\) to \(Hg\).
+
+For an outgoing successor
+
+\[
+c_j=Hyx^jg
+\]
+
+of \(v=Hg\), cyclically label its four incoming predecessors by
+
+\[
+p_k(c_j)=Hy^{-1}x^kyx^jg=Hu^kx^jg,
+\qquad k\in\mathbb Z/4.
+\tag{49}
+\]
+
+Thus \(p_0(c_j)=v\).  Let \(\rho_{c_j}\) send \(p_k(c_j)\) to
+\(p_{k+1}(c_j)\).  The second relation in (48) is exactly
+
+\[
+B_v=\sigma\delta_v+
+\sum_{\substack{c\text{ outgoing}\\\text{from }v}}
+\delta_{\rho_c^{-r}(v)}.
+\tag{50}
+\]
+
+Because \(r\ne0\pmod4\), every target
+\(\rho_c^{-r}(v)\) is a predecessor of \(c\) distinct from \(v\).
+This nontrivial turn is the only fact needed in the following
+finite-support argument.
+
+### 10.1 Outside-target lemma
+
+Let \(K\) be a subtree of \(\mathcal T\), let \(v\in K\) have degree
+at most one in \(K\), and suppose all relation centers under
+consideration lie in \(K\).
+
+Choose an outgoing edge \(v\longrightarrow c\) outside \(K\), and put
+
+\[
+t=\rho_c^{-r}(v).
+\]
+
+Then \(t\notin K\), and the only relation centered in \(K\) which can
+contain \(\delta_t\) is \(B_v\).  Indeed, a relation centered at \(t\)
+is excluded.  If \(A_w\) contains \(t\), then \(t\) is an incoming
+predecessor of \(w\); unless \(w=c\), the path from \(w\) to \(K\)
+passes through \(t,c,v\), and \(c\notin K\) as well.  If \(B_w\)
+contains \(t\) through the successor \(c\), bijectivity of
+\(\rho_c^{-r}\) forces \(w=v\).  If it contains \(t\) through another
+successor, the unique path from \(w\) to \(K\) again passes through
+\(t,c,v\).
+
+There is a slightly subtler incoming version.  At least three of the
+four incoming predecessors of \(v\) lie outside \(K\).  If the unique
+possible neighbor \(w_0\in K\) of \(v\) is itself another incoming
+predecessor of \(v\), exclude the one vertex
+
+\[
+p_0=\rho_v^{-r}(w_0).
+\tag{51}
+\]
+
+Choose any other incoming predecessor \(p\) of \(v\) outside \(K\);
+at least two choices remain.  Then the only relation centered in
+\(K\) which contains \(\delta_p\) is \(A_v\).
+
+To verify the last assertion, an \(A_w\)-contribution requires
+\(p\longrightarrow w\).  Besides \(w=v\), every such \(w\) lies
+beyond \(p\) outside \(K\).  A \(B_w\)-contribution makes \(p,w\)
+incoming predecessors of a common successor \(d\).  If \(d=v\), the
+only possible center is \(w=\rho_v^r(p)\); it could lie in \(K\) only
+as \(w_0\), precisely the case excluded by (51).  If \(d\ne v\), the
+path from \(w\) to \(K\) passes through \(d,p,v\).
+
+### 10.2 Leaf elimination
+
+Suppose that a finite Bézout certificate existed:
+
+\[
+\lambda\delta_o
+=\sum_v\alpha_vA_v+\sum_v\beta_vB_v,
+\tag{52}
+\]
+
+where only finitely many \(\alpha_v,\beta_v\) are nonzero.  Let \(S\)
+be their joint support and let \(K\) be the finite convex hull of
+\(S\cup\{o\}\).
+
+If \(S=\varnothing\), equation (52) already forces \(\lambda=0\), so
+assume \(S\ne\varnothing\).
+If \(K\) has more than one vertex, it has a leaf \(v\in S\): its
+leaves lie in \(S\cup\{o\}\), and at most one of them is the separately
+adjoined point \(o\).  If \(K=\{o\}\), take \(v=o\).  Thus in either
+case \(v\in S\) and \(v\) has degree at most one in \(K\).
+
+At least two outgoing edges at \(v\) leave \(K\).  Choose one and form
+\(t=\rho_c^{-r}(v)\).  The coefficient of \(\delta_t\) on the left of
+(52) is zero, while the outside-target lemma says that its coefficient
+on the right is exactly \(\beta_v\).  Hence \(\beta_v=0\).
+
+Next choose \(p\) by the incoming part of the lemma.  Its coefficient
+on the left of (52) is again zero, and its coefficient on the right is
+exactly \(\alpha_v\).  Hence \(\alpha_v=0\), contradicting \(v\in S\).
+Therefore (52) forces \(S=\varnothing\) and \(\lambda=0\).
+
+In particular,
+
+\[
+\delta_o\notin
+\operatorname{span}_{\mathbb Q}
+\{A_v,B_v:v\in H\backslash B\}.
+\tag{53}
+\]
+
+The span in (53) is proper.  Linear-functional separation gives a
+function \(s:H\backslash B\to\mathbb Q\), with \(s(o)=1\), which
+annihilates every \(A_v,B_v\).  It is a nonzero solution of
+(43)--(44).  Section 8 then gives the nonzero edge current
+
+\[
+F(Cq)=-\sigma s(Hb^{-1}q).
+\tag{54}
+\]
+
+Consequently, for both signs \(\sigma\), the right ideal
+
+\[
+(x^4-1)R+(yR_3-R_4)R+(x^ry+\sigma R_4)R
+\]
+
+is proper for \(r=1,2,3\).  The proof deliberately excludes \(r=0\):
+then every turn in (50) fixes \(v\) and
+\(B_v=(3+\sigma)\delta_v\), recovering the canonical collapse.

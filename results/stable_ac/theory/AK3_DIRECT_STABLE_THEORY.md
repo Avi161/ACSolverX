@@ -3575,8 +3575,41 @@ coupled to the preceding height by
 \]
 
 This replaces an arbitrary one-\(y\) word family by three exact
-operators. Their compatible nonzero eigenfunctions or collapse remain
-open.
+operators.
+
+**Result 61 (noncanonical one-\(y\) propriety).** For
+\(r=1,2,3\) and either sign \(\sigma\),
+
+\[
+(x^4-1)\mathbb Q[B]+(yR_3-R_4)\mathbb Q[B]
++(x^ry+\sigma R_4)\mathbb Q[B]
+\]
+
+is a proper right ideal.
+
+The proof uses the actual Bass--Serre tree, not a finite truncation.
+The dual relations at a vertex \(v\) are the sum of its four incoming
+predecessors plus \(\sigma\delta_v\), and the sum of one fixed
+nontrivial cyclic turn through each of its three outgoing successors
+plus \(\sigma\delta_v\). If a finite linear combination of these
+vectors equaled a basis vector, take a leaf of the convex hull of its
+coefficient support. An outward turned target sees only the
+fixed-turn relation at that leaf, so its coefficient vanishes. An
+outward incoming predecessor, chosen to avoid the one possible
+interior sibling contribution, then sees only the incoming relation,
+so that coefficient also vanishes. This contradicts the choice of
+leaf.
+
+Linear-functional separation therefore produces a nonzero rational
+solution of the scalar systems, and the exact reconstruction in
+Result 60 produces a nonzero conserved edge current. The sole
+one-positive-stable-letter exception is \(r=0\), where the turn fixes
+the starting predecessor and the canonical module collapses.
+
+This settles every double coset represented by a word with exactly one
+positive stable letter. It does not yet settle arbitrary elements with
+total \(y\)-exponent one, whose Britton normal form may contain several
+positive and negative stable letters.
 
 ## Live lead
 
@@ -3643,10 +3676,12 @@ A--D primitive creation to three exact normalized projection fibers:
 obstruct every noninternal element of those fibers. Result 60 splits
 their three internal classes into canonical double cosets
 \(b\in H\) or \(b\in yH\), where this module collapses and a different
-method is required, and noncanonical double cosets, where the exact
-Bass--Serre flow quotient remains undecided. The immediate exact leads
-are therefore z-dependent A--W conjugators, these two internal A--D
-subproblems, arbitrary W--D conjugators,
+method is required, and noncanonical double cosets. Result 61 proves
+the flow quotient nonzero for every noncanonical double coset with a
+one-positive-stable-letter representative; multi-syllable internal
+double cosets remain undecided. The immediate exact leads are therefore
+z-dependent A--W conjugators, the canonical and multi-syllable internal
+A--D subproblems, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
@@ -3773,8 +3808,9 @@ row now gives an unbounded exponent sieve: primitivity forces
 \(e_q+e_z=0\), and on that hyperplane only
 \((\sigma,e_q)=(+,1),(-,0),(-,1)\) escape the chosen character slice.
 A different viable primitive-slot branch must therefore use
-z-dependent A--W traffic, one of Result 60's canonical-collapse or
-noncanonical-flow internal A--D classes, arbitrary W--D relative traffic,
+z-dependent A--W traffic, one of Result 60's canonical-collapse
+internal A--D classes or a multi-syllable noncanonical class beyond
+Result 61, arbitrary W--D relative traffic,
 non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
 two row changes before deletion, another \(Wq^{-1}\) block, a
 repeatedly changed source, alter W by traffic with nontrivial

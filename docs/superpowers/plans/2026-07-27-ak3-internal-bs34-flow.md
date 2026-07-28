@@ -67,6 +67,8 @@ dependency-free Python, exact rational linear algebra, pytest.
 - [ ] Parameterize \(CbH\) by Britton-reduced normal form without a
   syllable bound.
 - [x] Dualize the quotient to conserved scalar edge assignments.
+- [x] Prove propriety for every noncanonical double coset represented
+  by one positive stable letter.
 - [ ] Prove that an acyclic recurrence admits a nonzero boundary
   current.
 - [ ] Classify any cyclic recurrences by exact double-coset geometry.

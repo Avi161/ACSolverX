@@ -789,3 +789,8 @@
 
 - [TRAP] The first noncanonical \(BS(3,4)\) flow subtask stayed active through repeated waits without returning the requested early checkpoint or producing an edit. A global double-coset recurrence can absorb an unbounded amount of silent analysis.
 - [WORKS] Split this attack at the exact component reduction: first return and review the subgroup \(K_b=\langle H,b^{-1}Cb\rangle\) and the induced scalar equations, then launch a separate task for existence or collapse. Interrupt after two empty post-checkpoint waits and preserve the already reviewed local-flow theorem.
+
+### 2026-07-27 Audit sibling contributors in tree leaf arguments
+
+- [TRAP] The first leaf-elimination proof treated an outward incoming predecessor \(p\) as visible only to the leaf relation \(A_v\). The unique interior predecessor \(w_0\) can also reach one such \(p\) through its fixed-turn relation \(B_{w_0}\), using \(v\) as their common successor.
+- [WORKS] In a directed Bass--Serre leaf argument, classify center, parent, and every sibling-turn contributor separately. Here at least three incoming predecessors point outward, and excluding the single target \(\rho_v^{-r}(w_0)\) leaves at least two genuinely unique witnesses.
