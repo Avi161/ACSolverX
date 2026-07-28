@@ -6516,6 +6516,65 @@ Result 92 at \(n=3\); together with Result 106 at \(n=1\), it closes
 the full zero-phase positive single-peak family without a length
 bound.
 
+**Result 109 (conjugated consequence storage cancels under target
+deletion).**  Let a relator \(A\) coexist with retained sources whose
+normal closure contains \(C\).  After stabilizing with \(q\), those
+sources may change the new relator to
+
+\[
+Q=qC.
+\]
+
+For any old-generator word \(g\), replace \(A\) by
+
+\[
+P=A(gQg^{-1})=AgqCg^{-1}.
+\]
+
+Writing \(P=LqM\), with \(L=Ag\) and \(M=Cg^{-1}\), the
+unique-letter equation has the side-ordered solution
+
+\[
+q=L^{-1}M^{-1}=g^{-1}A^{-1}gC^{-1}.
+\]
+
+Deleting \(q,P\) therefore sends the surviving source to
+
+\[
+Q\longmapsto g^{-1}A^{-1}gC^{-1}C
+=g^{-1}A^{-1}g.
+\]
+
+The stored consequence cancels identically, and the endpoint is the
+original tuple up to inversion and conjugation of \(A\).  This is an
+unbounded self-loop theorem for every consequence \(C\) and
+conjugator \(g\).
+
+For AK(3), take
+
+\[
+A=x^3y^{-4},\qquad
+B=xyxy^{-1}x^{-1}y^{-1},\qquad
+C=y^3x^{-4}.
+\]
+
+The braid relation, with \(\Delta=xyx\), gives
+\(\Delta x\Delta^{-1}=y\) and
+\(\Delta y\Delta^{-1}=x\) modulo \(B\).  Hence
+\(C\in\langle\!\langle A,B\rangle\!\rangle\), so manufacturing
+\(Q=qC\) is legitimate.  The tempting choice \(g=y\) gives
+
+\[
+P=x^3y^{-3}q\,y^3x^{-4}y^{-1}.
+\]
+
+Correct elimination returns \(Q\) to \(y^{-1}A^{-1}y\), not to the
+apparently shorter word obtained by reversing the two inverse
+factors.  Thus the braid-swapped power route is exactly a stable
+self-loop.  Histories with later changes to \(Q\), several target
+multiplications, multiple \(q\)-letters, or a different deleted slot
+remain outside the theorem.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6622,7 +6681,10 @@ between characteristics five and seven, so a general proof must retain
 mixed fourth-root color transport. Result 108 supplies an explicit
 root-tower transport and closes the complete zero-phase positive
 single-peak family at arbitrary length; multiple-excursion initial
-positive seams remain. Results
+positive seams remain. Result 109 closes the braid-swapped-consequence
+stable route, and more generally every history that stores (qC),
+multiplies (A) by one conjugate of that source, and deletes the changed
+(A)-slot: the consequence (C) cancels in side order. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6633,7 +6695,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--108, arbitrary W--D conjugators,
+61--109, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

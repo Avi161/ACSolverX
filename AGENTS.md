@@ -883,3 +883,23 @@
 
 - [TRAP] An all-add hunk for Section 51 duplicated the ledger's terminal sentence, and a LaTeX turn label beginning with a plus sign lost that sign to the unified-diff marker.
 - [WORKS] Append by replacing one exact terminal line with itself plus the new section; avoid content lines that begin with a literal plus sign, or include a second plus after the diff marker and verify the rendered tail immediately.
+
+### 2026-07-27 Use the uv Python for repository verifiers
+
+- [TRAP] The macOS system Python 3.9.6 failed inside the Whitehead verifier at `zip(..., strict=True)` before evaluating the candidate.
+- [WORKS] Run repository proof diagnostics through `UV_CACHE_DIR=.scratch/uv-cache uv run python3`; this workspace resolves Python 3.14.3 and supports the verifier's language features.
+
+### 2026-07-27 Pass real newlines to multiline Python diagnostics
+
+- [TRAP] Escaped `\\n` sequences inside a shell `python3 -c` argument reached Python as literal line-continuation characters and caused a SyntaxError before the cancellation audit.
+- [WORKS] Put actual newline characters inside the quoted `-c` program, or reduce the diagnostic to one expression; do not double-escape program structure through both JavaScript and the shell.
+
+### 2026-07-27 Factor primitive eliminators before solving them
+
+- [TRAP] A diagnostic retyped the left factor of the one-q relator with the wrong y-orientation, so its computed q-substitution was unrelated to the displayed relator.
+- [SUPERSEDED] The former rule incorrectly said that `L q M=1` gives `q=M^{-1}L^{-1}`; that reverses the two factors in the wrong order.
+
+### 2026-07-27 Preserve side order when solving a unique-letter relator
+
+- [TRAP] Solving `L q M=1` as `q=M^{-1}L^{-1}` manufactured a false AK(3) endpoint that appeared stably trivial.
+- [WORKS] The exact solution is `q=L^{-1}M^{-1}`. Assert both the factorization and `free_reduce(L + q_solution + M) == ""`, then replay the solution in every survivor before analyzing later moves.
