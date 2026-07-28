@@ -1002,3 +1002,10 @@
 - [WORKS] In rank two, primitivity fixes the signed Christoffel conjugacy class from the exponent vector. A finite quotient can then exclude all conjugators at once by separating that class from the required product of source conjugacy classes; the depth-two AK and first-image certificates reduce to cycle types in `S4` and `S5`.
 - [TRAP] Quotients through degree five closed all six signed cases for the fixed first image but only two cases uniformly over every conjugating embedding. Do not extrapolate the fixed-image theorem to all `phi_g` or all corridor depths.
 - [TRAP] A disposable quotient diagnostic used a mutable `set` as a dictionary key and failed with `TypeError: unhashable type: 'set'`. Keep subgroup-dependent caches local to the subgroup or key them by a `frozenset`.
+
+### 2026-07-27 Kill the majority provenance source
+
+- [WORKS] At fixed AC2 depth, quotient by the majority source relator before testing a primitive Christoffel candidate. For AK depth three, the central quotients `A=1 -> C3*C4` and `B=1 -> C2*C3` leave only one or two minority conjugates and close all eighteen new provenance multisets.
+- [WORKS] In a free product Bass--Serre tree, normalize a product of two hyperbolic conjugacy classes to syllable rotations joined by a connector. Intersecting axes need connector length at most one; disjoint axes at vertex distance `D` need at most `D+1`, and the product translation length determines `D`.
+- [TRAP] Full symmetric-group class products saturated at depth three, and a subgroup-sensitive exhaustive `S5` pass ran too long and had to be interrupted. Prefer the infinite virtually free quotient and its finite axis-connector normal form before broadening a finite-group loop.
+- [TRAP] A large `String.raw` proof patch again contained a Markdown backtick and failed with `SyntaxError: Unexpected identifier 'tests'`. Before sending any raw template patch, search the payload itself for backticks; write code paths as LaTeX `texttt` or patch that prose separately.

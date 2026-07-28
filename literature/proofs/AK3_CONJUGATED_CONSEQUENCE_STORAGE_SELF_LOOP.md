@@ -1470,3 +1470,35 @@ No AC1--AC3 history from the AK source or its first proper stable image
 which uses at most two AC2 multiplications reaches a primitive row.
 This closes the first-external residue of Theorem 24.1.  Depth three and
 later stable images remain open.
+
+## 28. Virtually free quotients close AK depth three
+
+The third AC2 move creates exactly eighteen new source-leaf multisets:
+eight of sizes \(3+1\) and \(1+3\), and ten of sizes \(3+2\) and
+\(2+3\).  Kill the majority source in
+
+\[
+Q_A=C_3*C_4
+\quad\text{or}\quad
+Q_B=C_2*C_3.
+\tag{99}
+\]
+
+In \(Q_A\), A dies and B has cyclic syllable length six.  In \(Q_B\),
+B dies and A has cyclic syllable length fourteen.  The four-leaf cases
+are excluded because the primitive candidate has the wrong cyclic
+syllable length.
+
+For five leaves, only two signed minority conjugates remain.  The
+Bass--Serre axis normal form reduces their product to two cyclic
+rotations joined by a finite connector.  Intersecting axes require at
+most one connector syllable; disjoint axes at distance D require at
+most \(D+1\), with D fixed by the target translation length.  Exact
+normal-form certificates exclude all ten primitive Christoffel classes.
+
+### Theorem 28.1 (AK depth-three closure)
+
+No AC1--AC3 history from the original AK pair which uses at most three
+AC2 multiplications reaches a primitive row.  This conclusion covers
+arbitrary conjugators but does not extend to depth three at the first
+proper image or depth four at the source.

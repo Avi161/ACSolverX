@@ -1220,6 +1220,156 @@ a primitive row.  In particular the external-first branch left open in
 Section 13 is closed.  Three or more multiplications, later stable
 images, and other conjugating embeddings are not claimed closed.
 
+## 17. Virtually free quotients close depth three at the AK source
+
+After three AC2 moves, a row not already covered by Section 16 has four
+or five source leaves.  The leaf recursion gives exactly eighteen new
+signed multisets up to total inversion.  Write \((c_A,c_B)\) for their
+signed coefficient pair.  They are
+
+\[
+\begin{array}{c|c}
+\text{unsigned multiplicities}&(c_A,c_B)\\ \hline
+(3,1)&(-3,-1),(-3,1),(-1,-1),(-1,1)\\
+(1,3)&(-1,-3),(-1,-1),(-1,1),(-1,3)\\
+(3,2)&(-3,-2),(-3,2),(-1,-2),(-1,0),(-1,2)\\
+(2,3)&(-2,-3),(-2,-1),(-2,1),(-2,3),(0,-1).
+\end{array}
+\tag{17.1}
+\]
+
+Every vector
+
+\[
+(p,q)=(3c_A+c_B,-4c_A-c_B)
+\tag{17.2}
+\]
+
+in (17.1) is primitive.  Hence a primitive terminal would be conjugate
+to the signed Christoffel word \(P_{p,q}\).
+
+Two infinite quotients retain the minority leaves.  First,
+
+\[
+Q_A=\langle X,Y\mid X^3,Y^4\rangle=C_3*C_4,
+\qquad x\mapsto X,\quad y\mapsto Y.
+\tag{17.3}
+\]
+
+It kills A, while
+
+\[
+\overline B=XYXY^3X^2Y^3
+\tag{17.4}
+\]
+
+is cyclically reduced of syllable length six.  Second,
+
+\[
+Q_B=\langle s,t\mid s^2,t^3\rangle=C_2*C_3,
+\qquad x\mapsto t^2s,\quad y\mapsto st^2.
+\tag{17.5}
+\]
+
+Both \(xyx\) and \(yxy\) map to s, so (17.5) kills B.  The image
+
+\[
+\overline A=(t^2s)^3(ts)^4
+\tag{17.6}
+\]
+
+is cyclically reduced of syllable length fourteen.
+
+### Lemma 17.1 (finite connector normal form)
+
+Let \(G=G_0*G_1\), and let \(u,v,p\) be cyclically reduced hyperbolic
+elements.  If p is conjugate to a product of a conjugate of u and a
+conjugate of v, then it is conjugate to
+
+\[
+u_0 c v_0c^{-1},
+\tag{17.7}
+\]
+
+where \(u_0,v_0\) are cyclic syllable rotations of \(u,v\).  If the two
+axes intersect, c may be chosen with syllable length at most one.  If
+they are disjoint at vertex distance D in the Bass--Serre tree, c may be
+chosen with syllable length at most \(D+1\), and
+
+\[
+\|p\|_{\rm syl}
+=\|u\|_{\rm syl}+\|v\|_{\rm syl}+2D.
+\tag{17.8}
+\]
+
+#### Proof
+
+Use the line graph of the Bass--Serre tree and a base edge e.  A reduced
+group word c has syllable length \(d(e,ce)\), and the axis of a
+cyclically reduced hyperbolic word passes through e.  Edges on that axis
+are reached by powers followed by syllable prefixes; changing the base
+edge to one of them cyclically rotates the word.
+
+For arbitrary conjugates of u and v, choose closest edges on their
+axes and conjugate the whole product so that the first chosen edge is
+e.  If the axes share an edge, the connector is trivial.  If they meet
+only at a vertex, incident chosen edges differ by one syllable.  If they
+are disjoint, closest vertices at distance D have incident axis edges
+at line-graph distance \(D+1\).  This proves the connector bounds.
+The usual disjoint-axis product formula in a tree gives (17.8).
+There is no hidden vertex-group twist because edge stabilizers are
+trivial; a vertex twist is exactly the one-syllable connector already
+allowed.  \(\square\)
+
+For the four-leaf cases, kill the majority source.  The candidate
+syllable lengths are
+
+\[
+\begin{array}{c|c|c|c}
+\text{multiplicities}&\text{quotient}&
+\|\text{minority}\|_{\rm syl}&\|P_{p,q}\|_{\rm syl}\\ \hline
+(3,1)&Q_A&6&20,16,8,4\\
+(1,3)&Q_B&14&26,18,10,2.
+\end{array}
+\tag{17.9}
+\]
+
+Conjugacy preserves cyclic syllable length, so all eight cases are
+impossible.
+
+For five leaves, the majority again vanishes and exactly two signed
+minority conjugates remain.  Lemma 17.1 makes the check finite:
+
+\[
+\begin{array}{c|c|c|c}
+(c_A,c_B)&Q&\|P_{p,q}\|_{\rm syl}&
+\text{safe connector bound}\\ \hline
+(-3,-2),(-3,2),(-1,-2),(-1,0),(-1,2)
+&Q_A&22,14,10,6,2&7,3,2,2,2\\
+(-2,-3),(-2,-1),(-2,1),(-2,3),(0,-1)
+&Q_B&40,32,24,16,4&8,4,2,2,2.
+\end{array}
+\tag{17.10}
+\]
+
+The first row uses two signed copies of (17.4), the second two signed
+copies of (17.6).  Exhausting all syllable rotations, all reduced
+connectors through the displayed bounds, and then exact cyclic
+reduction finds no conjugate of the corresponding \(P_{p,q}\) in any
+of the ten cases.  This is a finite normal-form certificate, verified
+independently in
+\(\texttt{tests/stable_ac/test\_ak\_depth\_three\_free\_product\_barrier.py}\);
+it is not an AC graph search.
+
+### Theorem 17.2 (AK depth-three closure)
+
+No AC1--AC3 history starting at the original AK pair and containing at
+most three AC2 multiplications reaches a primitive row.  Rows with at
+most three leaves are covered by Section 16, and (17.9)--(17.10) cover
+all eighteen four- and five-leaf possibilities.  The first proper image
+is still closed only through two multiplications; depth four at the
+source also remains open.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

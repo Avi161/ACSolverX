@@ -7434,6 +7434,47 @@ Result 127 without any bound on its conjugators.  It does not cover
 three multiplications, later images, or arbitrary members of the
 conjugating family.
 
+**Result 131 (virtually free quotients close depth three at the AK
+source).**  The exact leaf recursion after three AC2 moves has eighteen
+new signed multisets: eight with four leaves of unsigned multiplicity
+\((3,1)\) or \((1,3)\), and ten with five leaves of multiplicity
+\((3,2)\) or \((2,3)\).
+
+Kill the majority source in one of two infinite quotients:
+
+\[
+Q_A=C_3*C_4,\qquad x\mapsto X,\quad y\mapsto Y,
+\]
+
+where A dies and B has cyclic syllable length six, or
+
+\[
+Q_B=C_2*C_3,\qquad x\mapsto t^2s,\quad y\mapsto st^2,
+\]
+
+where the braid relator B dies and A has cyclic syllable length
+fourteen.  In every four-leaf case the primitive Christoffel candidate
+has cyclic syllable length different from the single surviving
+minority leaf.
+
+In every five-leaf case exactly two signed minority conjugates survive.
+A Bass--Serre axis normal form reduces their product to cyclic rotations
+joined by a connector of length at most one for intersecting axes and
+\(D+1\) for axes at distance D.  The disjoint-axis formula determines
+\(D\) from the candidate length.  Exact normal-form enumeration gives
+safe connector bounds
+
+\[
+(7,3,2,2,2)\quad\text{in }Q_A,\qquad
+(8,4,2,2,2)\quad\text{in }Q_B,
+\]
+
+and excludes all ten candidate conjugacy classes.  Thus no AC1--AC3
+history from the AK source using at most three AC2 multiplications
+reaches a primitive row.  This is a source-leaf and free-product
+certificate, not an AC graph search.  The first proper image remains
+closed only through depth two.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7617,6 +7658,8 @@ strict classical descent of the displayed-relator subgroup, so subgroup
 descent alone cannot certify progress. Result 130 replaces the failed
 three-axis estimate by a whole-history source-leaf reduction and closes
 all depth-two histories at both the source and the first proper image.
+Result 131 combines that reduction with two virtually free quotients to
+close depth three at the original source.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7628,7 +7671,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--130, arbitrary W--D conjugators,
+61--131, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

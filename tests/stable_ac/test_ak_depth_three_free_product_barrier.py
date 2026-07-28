@@ -1,0 +1,298 @@
+from collections import Counter
+from itertools import product
+from math import gcd
+
+
+FREE_INVERSE = {
+    "x": "X",
+    "X": "x",
+    "y": "Y",
+    "Y": "y",
+}
+
+
+def invert_leaves(
+    leaves: tuple[tuple[str, int], ...],
+) -> tuple[tuple[str, int], ...]:
+    return tuple((source, -sign) for source, sign in reversed(leaves))
+
+
+def canonical_leaf_multiset(
+    leaves: tuple[tuple[str, int], ...],
+) -> tuple[tuple[str, int], ...]:
+    direct = tuple(sorted(leaves))
+    inverted = tuple(sorted(invert_leaves(leaves)))
+    return min(direct, inverted)
+
+
+def three_move_leaf_multisets() -> set[tuple[tuple[str, int], ...]]:
+    states = {((("A", 1),), (("B", 1),))}
+    for _ in range(3):
+        next_states = set()
+        for rows in states:
+            for target in (0, 1):
+                source = 1 - target
+                for invert_target, invert_source in product((False, True), repeat=2):
+                    next_rows = list(rows)
+                    left = invert_leaves(rows[target]) if invert_target else rows[target]
+                    right = invert_leaves(rows[source]) if invert_source else rows[source]
+                    next_rows[target] = left + right
+                    next_states.add(tuple(next_rows))
+        states = next_states
+    return {
+        canonical_leaf_multiset(row)
+        for rows in states
+        for row in rows
+        if len(row) > 3
+    }
+
+
+FreeProductWord = tuple[tuple[str, int], ...]
+
+
+def free_product_multiply(
+    left: FreeProductWord,
+    right: FreeProductWord,
+    orders: dict[str, int],
+) -> FreeProductWord:
+    reduced = list(left)
+    for factor, exponent in right:
+        exponent %= orders[factor]
+        if not exponent:
+            continue
+        if reduced and reduced[-1][0] == factor:
+            combined = (reduced[-1][1] + exponent) % orders[factor]
+            reduced.pop()
+            if combined:
+                reduced.append((factor, combined))
+        else:
+            reduced.append((factor, exponent))
+    return tuple(reduced)
+
+
+def free_product_inverse(
+    word: FreeProductWord,
+    orders: dict[str, int],
+) -> FreeProductWord:
+    return tuple(
+        (factor, (-exponent) % orders[factor])
+        for factor, exponent in reversed(word)
+    )
+
+
+def evaluate_free_word(
+    word: str,
+    images: dict[str, FreeProductWord],
+    orders: dict[str, int],
+) -> FreeProductWord:
+    result: FreeProductWord = ()
+    for letter in word:
+        image = images[letter.lower()]
+        if letter.isupper():
+            image = free_product_inverse(image, orders)
+        result = free_product_multiply(result, image, orders)
+    return result
+
+
+def cyclic_reduce_free_product(
+    word: FreeProductWord,
+    orders: dict[str, int],
+) -> FreeProductWord:
+    reduced = word
+    while len(reduced) > 1 and reduced[0][0] == reduced[-1][0]:
+        factor = reduced[0][0]
+        exponent = (reduced[-1][1] + reduced[0][1]) % orders[factor]
+        prefix = ((factor, exponent),) if exponent else ()
+        reduced = free_product_multiply(prefix, reduced[1:-1], orders)
+    return reduced
+
+
+def free_product_conjugate(
+    left: FreeProductWord,
+    right: FreeProductWord,
+    orders: dict[str, int],
+) -> bool:
+    left = cyclic_reduce_free_product(left, orders)
+    right = cyclic_reduce_free_product(right, orders)
+    if len(left) != len(right):
+        return False
+    if len(left) < 2:
+        return left == right
+    return any(left == right[index:] + right[:index] for index in range(len(right)))
+
+
+def cyclic_rotations(word: FreeProductWord) -> set[FreeProductWord]:
+    return {word[index:] + word[:index] for index in range(len(word))}
+
+
+def reduced_connectors(
+    orders: dict[str, int],
+    maximum_length: int,
+) -> tuple[FreeProductWord, ...]:
+    connectors: list[FreeProductWord] = [()]
+    frontier: list[FreeProductWord] = [()]
+    for _ in range(maximum_length):
+        next_frontier = []
+        for word in frontier:
+            for factor, order in orders.items():
+                if word and word[-1][0] == factor:
+                    continue
+                for exponent in range(1, order):
+                    candidate = word + ((factor, exponent),)
+                    connectors.append(candidate)
+                    next_frontier.append(candidate)
+        frontier = next_frontier
+    return tuple(connectors)
+
+
+def signed_christoffel_word(x_exponent: int, y_exponent: int) -> str:
+    x_letter = "x" if x_exponent >= 0 else "X"
+    y_letter = "y" if y_exponent >= 0 else "Y"
+    x_count = abs(x_exponent)
+    y_count = abs(y_exponent)
+    length = x_count + y_count
+    if not x_count:
+        return y_letter
+    if not y_count:
+        return x_letter
+    return "".join(
+        x_letter
+        if ((index + 1) * x_count) // length > (index * x_count) // length
+        else y_letter
+        for index in range(length)
+    )
+
+
+def test_depth_three_provenance_has_eighteen_new_signed_multisets() -> None:
+    multisets = three_move_leaf_multisets()
+    signatures = set()
+    for leaves in multisets:
+        counts = Counter(leaves)
+        a_count = counts["A", 1] + counts["A", -1]
+        b_count = counts["B", 1] + counts["B", -1]
+        a_coefficient = counts["A", 1] - counts["A", -1]
+        b_coefficient = counts["B", 1] - counts["B", -1]
+        signatures.add((len(leaves), a_count, b_count, a_coefficient, b_coefficient))
+
+    assert len(multisets) == 18
+    assert signatures == {
+        (4, 3, 1, -3, -1),
+        (4, 3, 1, -3, 1),
+        (4, 3, 1, -1, -1),
+        (4, 3, 1, -1, 1),
+        (4, 1, 3, -1, -3),
+        (4, 1, 3, -1, -1),
+        (4, 1, 3, -1, 1),
+        (4, 1, 3, -1, 3),
+        (5, 3, 2, -3, -2),
+        (5, 3, 2, -3, 2),
+        (5, 3, 2, -1, -2),
+        (5, 3, 2, -1, 0),
+        (5, 3, 2, -1, 2),
+        (5, 2, 3, -2, -3),
+        (5, 2, 3, -2, -1),
+        (5, 2, 3, -2, 1),
+        (5, 2, 3, -2, 3),
+        (5, 2, 3, 0, -1),
+    }
+
+
+def test_every_depth_three_ak_multiset_fails_in_a_free_product_quotient() -> None:
+    source_a = "xxxYYYY"
+    source_b = "xyxYXY"
+    quotients = {
+        "kill_a": (
+            {"X": 3, "Y": 4},
+            {"x": (("X", 1),), "y": (("Y", 1),)},
+        ),
+        "kill_b": (
+            {"s": 2, "t": 3},
+            {
+                "x": (("t", 2), ("s", 1)),
+                "y": (("s", 1), ("t", 2)),
+            },
+        ),
+    }
+
+    assert evaluate_free_word(source_a, *reversed(quotients["kill_a"])) == ()
+    assert evaluate_free_word(source_b, *reversed(quotients["kill_b"])) == ()
+
+    for leaves in three_move_leaf_multisets():
+        counts = Counter(leaves)
+        a_count = counts["A", 1] + counts["A", -1]
+        b_count = counts["B", 1] + counts["B", -1]
+        a_coefficient = counts["A", 1] - counts["A", -1]
+        b_coefficient = counts["B", 1] - counts["B", -1]
+        vector = (
+            3 * a_coefficient + b_coefficient,
+            -4 * a_coefficient - b_coefficient,
+        )
+        assert gcd(abs(vector[0]), abs(vector[1])) == 1
+        primitive = signed_christoffel_word(*vector)
+
+        quotient_name = "kill_a" if a_count > b_count else "kill_b"
+        orders, images = quotients[quotient_name]
+        minority_name = "B" if quotient_name == "kill_a" else "A"
+        minority_word = source_b if minority_name == "B" else source_a
+        minority_image = cyclic_reduce_free_product(
+            evaluate_free_word(minority_word, images, orders),
+            orders,
+        )
+        primitive_image = cyclic_reduce_free_product(
+            evaluate_free_word(primitive, images, orders),
+            orders,
+        )
+        minority_signs = [
+            sign for source, sign in leaves if source == minority_name
+        ]
+
+        if len(leaves) == 4:
+            assert len(minority_signs) == 1
+            assert len(primitive_image) != len(minority_image)
+            continue
+
+        assert len(minority_signs) == 2
+        left = (
+            minority_image
+            if minority_signs[0] > 0
+            else free_product_inverse(minority_image, orders)
+        )
+        right = (
+            minority_image
+            if minority_signs[1] > 0
+            else free_product_inverse(minority_image, orders)
+        )
+        source_length = len(minority_image)
+        primitive_length = len(primitive_image)
+        bridge_length = (
+            (primitive_length - 2 * source_length) // 2
+            if primitive_length >= 2 * source_length
+            else 0
+        )
+        connector_bound = bridge_length + 2
+
+        found = False
+        for left_rotation in cyclic_rotations(left):
+            for right_rotation in cyclic_rotations(right):
+                for connector in reduced_connectors(orders, connector_bound):
+                    product_word = free_product_multiply(
+                        free_product_multiply(
+                            free_product_multiply(
+                                left_rotation,
+                                connector,
+                                orders,
+                            ),
+                            right_rotation,
+                            orders,
+                        ),
+                        free_product_inverse(connector, orders),
+                        orders,
+                    )
+                    if free_product_conjugate(product_word, primitive_image, orders):
+                        found = True
+                        break
+                if found:
+                    break
+            if found:
+                break
+        assert not found
