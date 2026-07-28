@@ -6972,3 +6972,244 @@ Thus (459)--(460) and (461)--(471) prove (454) for every initial
 residue.  The Fox bridge and (286) obstruct both A--D signs for every
 free-kernel lift.  Hence the complete \((+,+,-,+,-,-)\) length-six
 stratum is closed.
+
+## 48. The second remaining positive-start length-six stratum
+
+Let
+
+\[
+b=x^\ell yx^ryx^sy^{-1}x^ty^{-1}x^uyx^vy^{-1}x^q,
+\tag{472}
+\]
+
+where
+
+\[
+3\nmid s,\qquad
+4\nmid u,\qquad
+3\nmid v,
+\tag{473}
+\]
+
+and \(r,t,q\in\mathbb Z\) are arbitrary.  Thus the sign string is
+\((+,+,-,-,+,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{474}
+\]
+
+Three constructions cover all initial and collision residues.
+
+### 48.1 Nonzero initial phase
+
+Suppose \(\ell\not\equiv0\pmod4\).  Choose mixed \(w\in D_1\) as in
+(455), so that
+
+\[
+w,\qquad wX^\ell,\qquad S=wR_4
+\tag{475}
+\]
+
+are independent, and choose \(h\in\mathcal R_1\) with
+\(hR_3=S\).  Choose fresh \(p,B\in V_1\), disjoint cube-phase
+packets \(A,D\in\mathcal R_1\), and a complete fresh four-phase packet
+\(C\in D_1\).  Then
+
+\[
+A,AX^s,\qquad C,CX^u,\qquad D,DX^v
+\tag{476}
+\]
+
+are three independent pairs.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+(wX^\ell)Y&=p,\\
+pY&=A,\\
+BY&=AX^s,\\
+CY&=B,\\
+(CX^u)Y&=D,\\
+SY&=DX^v.
+\end{aligned}
+\tag{477}
+\]
+
+The source list is the direct sum of the independent triple (475),
+the pair \(C,CX^u\), and the fresh \(V_1\)-lines \(p,B\).  The image
+list is the direct sum of \(h,p,B\) and the two cube-phase pairs
+\(A,AX^s\), \(D,DX^v\).  Hence (477) extends globally.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=S=wR_4.
+\tag{478}
+\]
+
+The replay follows the actual stable-letter orientations:
+
+\[
+\begin{aligned}
+wb
+&=pX^rYX^sY^{-1}X^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=AX^sY^{-1}X^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=BX^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=CX^uYX^vY^{-1}X^q\\
+&=DX^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{479}
+\]
+
+### 48.2 Zero phase without a cube collision
+
+Suppose \(\ell\equiv0\pmod4\) and
+
+\[
+s+v\not\equiv0\pmod3.
+\tag{480}
+\]
+
+Choose \(w=w_1+w'\in D_1\), with \(w'\) in a nontrivial
+fourth-root eigenspace, and put
+
+\[
+S=4w_1,\qquad h=3w_1.
+\tag{481}
+\]
+
+Thus \(hR_3=S\) and \(h=\frac13S\).  Choose a full fresh cube-phase
+packet \(K\in\mathcal R_1\).  The vectors
+
+\[
+K,\qquad KX^s,\qquad KX^{-v}
+\tag{482}
+\]
+
+are independent by (473) and (480).  Choose a fresh \(B\in V_1\)
+and a complete four-phase packet \(D\in D_1\), so that
+\(D,DX^u\) are independent.  Prescribe
+
+\[
+wY=h,\qquad
+SY=K,\qquad
+BY=2KX^s,\qquad
+DY=B,\qquad
+(DX^u)Y=KX^{-v}.
+\tag{483}
+\]
+
+The source list \(w,S,B,D,DX^u\) is independent.  The image list
+\(h,K,2KX^s,B,KX^{-v}\) is independent by (482).  Hence (483)
+extends globally.  Since \(hY=2K\), the replay is
+
+\[
+\begin{aligned}
+wb
+&=2KX^sY^{-1}X^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=BX^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=DX^uYX^vY^{-1}X^q\\
+&=KX^{-v}X^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{484}
+\]
+
+### 48.3 The zero-phase cube collision
+
+Finally suppose \(\ell\equiv0\pmod4\) and
+
+\[
+s+v\equiv0\pmod3.
+\tag{485}
+\]
+
+Choose \(w=w_1+w'\), \(S=4w_1\), and
+
+\[
+h=3w_1+z,\qquad 0\ne z\in V_\omega.
+\tag{486}
+\]
+
+Choose fresh \(C\in V_1\), \(k\in V_\omega\), and put
+
+\[
+K=2C+k.
+\tag{487}
+\]
+
+Choose \(P_\omega\in\mathcal R_\omega\) with
+\(P_\omega,P_\omega X^s\) independent.  Prescribe in
+\(D_1\to\mathcal R_1\)
+
+\[
+wY=h,\qquad
+SY=K,\qquad
+CY=KX^s,
+\tag{488}
+\]
+
+and in \(D_\omega\to\mathcal R_\omega\)
+
+\[
+zY=\omega^{-r}P_\omega,
+\qquad
+kY=\omega^{t-s}P_\omega X^s.
+\tag{489}
+\]
+
+The \(D_1\)-sources \(w,S,C\) are independent, and their images
+\(h,K,KX^s\) are independent because \(3\nmid s\).  The
+\(D_\omega\)-source pair \(z,k\) is fresh, and its image pair is
+independent.  Thus (488)--(489) extend simultaneously.
+
+Put
+
+\[
+P=(hX^r)Y=2K+P_\omega,
+\qquad
+B=2C+\omega^{s-t}k.
+\tag{490}
+\]
+
+Then
+
+\[
+\begin{aligned}
+BY
+&=2KX^s+P_\omega X^s
+=PX^s,\\
+BX^t
+&=2C+\omega^s k
+=KX^s
+=KX^{-v}
+=CY.
+\end{aligned}
+\tag{491}
+\]
+
+The collision has therefore been matched on both sides, not treated
+as an independent pair.  Since \(C\in V_1\),
+
+\[
+\begin{aligned}
+wb
+&=PX^sY^{-1}X^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=BX^tY^{-1}X^uYX^vY^{-1}X^q\\
+&=CX^uYX^vY^{-1}X^q\\
+&=KX^{-v}X^vY^{-1}X^q\\
+&=S.
+\end{aligned}
+\tag{492}
+\]
+
+Equations (478)--(479), (481)--(484), and (485)--(492) prove (474)
+for every residue.  The Fox bridge and (286) obstruct both A--D signs
+for every free-kernel lift.  Hence the complete
+\((+,+,-,-,+,-)\) length-six stratum is closed.
