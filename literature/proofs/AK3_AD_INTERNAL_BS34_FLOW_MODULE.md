@@ -1049,15 +1049,15 @@ J_-\cong H*_{A}L
 \tag{68}
 \]
 
-Fix \(r\in\{1,2\}\) and
+Fix \(\ell\in\{0,1,2,3\}\), \(r\in\{1,2\}\), and
 
 \[
-b=yx^ry^{-1}=a^r,
+b=x^\ell yx^ry^{-1}=x^\ell a^r,
 \qquad \lambda=-\sigma\in\{+1,-1\}.
 \tag{69}
 \]
 
-Since \(a\) centralizes \(A\), one has
+Since both \(x\) and \(a\) centralize \(A\), one has
 
 \[
 b^{-1}Cb=C,
@@ -1076,13 +1076,14 @@ Equations (36)--(37) therefore become
 
 \[
 \boxed{
-\sum_{j=0}^{2}s(Hyx^jg)=\lambda s(Hg).
+\sum_{j=0}^{2}s(Ha^{-r}x^{-\ell}a^jyg)=\lambda s(Hg).
 }
 \tag{72}
 \]
 
-In (72) the shift by \(-r\) has disappeared because
-\(a^{-r}y=yx^{-r}\) and the three residues are cyclic.
+In (71), the shift \(i\mapsto i-\ell\) in (36) disappears by the
+four-periodicity.  Formula (72) follows from
+\(b^{-1}=a^{-r}x^{-\ell}\) and \(yx^j=a^jy\).
 
 ### 12.1 Local interpolation in \(J_-\)
 
@@ -1110,8 +1111,8 @@ statements hold:
 
 1. an eigenfunction satisfying (71) may be prescribed arbitrarily at
    one \(H\)-vertex;
-2. the sum of its values on the three \(H\)-neighbors of one
-   \(L\)-vertex may be prescribed arbitrarily.
+2. any nonzero rational linear functional supported on at most three
+   \(H\)-vertices may be prescribed arbitrarily.
 
 To prove the first statement, root the internal bipartite tree at the
 chosen \(H\)-vertex and assign its value.  When an \(H\)-vertex \(v\)
@@ -1129,10 +1130,23 @@ The nonzero turn ensures that every assigned target is new, and the
 tree ensures that distinct fresh blocks do not conflict.  Recursion on
 distance assigns every \(H\)-vertex exactly once.
 
-For the second statement, root at the chosen \(L\)-block, assign its
-three neighboring values to \((q,0,0)\), where \(q\) is the prescribed
-sum, and run the same outward recursion from those three
-\(H\)-vertices.  All values are rational and no division is used.
+For the second statement, combine repeated coordinates and let \(S\)
+be the resulting support, so \(1\leq|S|\leq3\).  Choose a leaf \(v\)
+of the finite convex hull of \(S\) in the internal bipartite tree.
+Prescribe value one at \(v\) and value zero at every other
+\(H\)-vertex of that hull.  Process the hull outward from \(v\).  At a
+nonroot \(H\)-vertex, at most two of its three fresh \(L\)-blocks lead
+toward the other members of \(S\); at the root, at most one of its
+four fresh blocks does.  There is therefore always a fresh block off
+the hull in which to place the residual required by (71).  Put zero
+on every new vertex in the hull-facing blocks.  In the selected
+off-hull block put the residual on its turned target and zero on every
+other new \(H\)-vertex.  Assign zero to every new \(H\)-vertex in all
+remaining fresh blocks as well.  Continue by the unrestricted
+recursion from the first statement outside the hull.  The resulting
+eigenfunction is one at \(v\) and zero on \(S\setminus\{v\}\), so the
+functional takes the nonzero coefficient of \(v\).  Scaling gives any
+prescribed rational value.  All assignments remain rational.
 
 ### 12.2 The macro HNN tree
 
@@ -1159,18 +1173,34 @@ They are well-defined: if \(Hq=Hx^nq\), then
 \(J_-yx^nq=J_-a^nyq=J_-yq\).
 
 The source port of (74) is the individual \(H\)-vertex \(Hq\) in the
-fiber over \(J_-q\).  Its target port is the \(L\)-block \(Lyq\) in
-the fiber over \(J_-yq\).  The three \(H\)-neighbors of that block are
+fiber over \(J_-q\).  In the target fiber over \(J_-yq\), define the
+three-slot functional
 
 \[
-Ha^jyq=Hyx^jq,\qquad j\in\mathbb Z/3.
+P_{\ell,r,q}(s)
+:=\sum_{j=0}^{2}s(Ha^{-r}x^{-\ell}a^jyq).
+\tag{75}
 \]
 
-Consequently, (72) is exactly the macro-edge condition
+All three coordinates lie in that target fiber because their prefixes
+before \(yq\) belong to \(J_-\).  After repeated coordinates are
+combined, \(P_{\ell,r,q}\) is a nonzero rational functional supported
+on at most three \(H\)-vertices.  It depends only on the edge \(Hq\):
+replacing \(q\) by \(x^nq\) shifts \(j\) modulo three, and the period
+three is explicit:
 
 \[
-\sum_{j=0}^{2}s(Ha^jyq)=\lambda s(Hq).
-\tag{75}
+Ha^{-r}x^{-\ell}a^{j+3}yq
+=Hx^4a^{-r}x^{-\ell}a^jyq
+=Ha^{-r}x^{-\ell}a^jyq,
+\]
+
+because \(x^4=a^3\) is central in \(J_-\).  Equation (72) is exactly
+the macro-edge condition
+
+\[
+P_{\ell,r,q}(s)=\lambda s(Hq).
+\tag{76}
 \]
 
 ### 12.3 Global current
@@ -1186,27 +1216,26 @@ solution of (71), prescribing value one at one \(H\)-vertex.  Decorate
 the remaining macro vertices by increasing distance from the root.
 
 Across an edge oriented from a decorated fiber to a new fiber,
-equation (75) prescribes one \(L\)-block sum in the new fiber; use the
-second local interpolation statement.  Across an edge oriented from a
-new fiber to a decorated fiber, (75) prescribes one \(H\)-vertex value
-in the new fiber; use the first statement.  The macro graph is a tree,
-so a new fiber has exactly one edge back to the decorated ball and
-receives exactly one scalar prescription.  There are no compatibility
-cycles.
+equation (76) prescribes one three-slot target functional in the new
+fiber; use the second local interpolation statement.  Across an edge
+oriented from a new fiber to a decorated fiber, (76) prescribes one
+\(H\)-vertex value in the new fiber; use the first statement.  The
+macro graph is a tree, so a new fiber has exactly one edge back to the
+decorated ball and receives exactly one scalar prescription.  There
+are no compatibility cycles.
 
 The resulting nonzero function \(s:H\backslash B\to\mathbb Q\)
 satisfies (71)--(72), hence (36)--(37).  Section 8 reconstructs a
-nonzero edge current.  Therefore, for \(r=1,2\) and both signs
-\(\sigma\),
+nonzero edge current.  Therefore, for
+\(\ell=0,1,2,3\), \(r=1,2\), and both signs \(\sigma\),
 
 \[
 (x^4-1)R+(yR_3-R_4)R+
-(yx^ry^{-1}+\sigma R_4)R
-\tag{76}
+(x^\ell yx^ry^{-1}+\sigma R_4)R
+\tag{77}
 \]
 
 is a proper right ideal of \(R=\mathbb Q[B]\).  In the A--D residue,
-this closes the initial-residue-zero positive--negative,
-stable-letter-length-two family for the relevant sign \(\sigma=-1\).
-It does not cover \(x^s yx^ry^{-1}\) with \(s\not\equiv0\pmod4\), the
-inverse sign sequence \(y^{-1}x^ry\), or longer endpoint-carry classes.
+this closes the entire positive--negative, stable-letter-length-two
+family for the relevant sign \(\sigma=-1\).  It does not cover the
+inverse sign sequence \(y^{-1}x^ry\) or longer endpoint-carry classes.

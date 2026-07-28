@@ -3611,17 +3611,18 @@ positive stable letter. It does not yet settle arbitrary elements with
 total \(y\)-exponent one, whose Britton normal form may contain several
 positive and negative stable letters.
 
-**Result 62 (initial-residue-zero exponent-zero propriety).** Put
-\(a=yxy^{-1}\). For \(r=1,2\) and either sign \(\sigma\),
+**Result 62 (positive--negative length-two exponent-zero propriety).**
+Put \(a=yxy^{-1}\). For \(\ell=0,1,2,3\), \(r=1,2\), and either sign
+\(\sigma\),
 
 \[
 (x^4-1)\mathbb Q[B]+(yR_3-R_4)\mathbb Q[B]
-+(a^r+\sigma R_4)\mathbb Q[B]
++(x^\ell a^r+\sigma R_4)\mathbb Q[B]
 \]
 
 is a proper right ideal.
 
-Here \(K_{a^r}=H\), but the direct leaf proof from Result 61 has an
+Here \(K_{x^\ell a^r}=H\), but the direct leaf proof from Result 61 has an
 adjacent-center collision. The replacement is a second tree
 decomposition. With
 
@@ -3641,14 +3642,19 @@ equivalent HNN presentation
 B=\langle J_-,y\mid yxy^{-1}=a\rangle
 \]
 
-then supplies a macro tree. Each new macro fiber receives exactly one
-prescribed vertex value or block sum from its parent edge, so the local
-interpolation extends recursively to a nonzero global current.
+then supplies a macro tree. For nonzero \(\ell\), the target port is no
+longer one block sum, but it remains a nonzero functional on at most
+three internal vertices. The fixed-turn eigenspace can realize any
+prescribed value of such a functional: protect its at most three
+support vertices and route every equation residual through a fresh
+block outside their finite convex hull. Each new macro fiber therefore
+receives exactly one realizable port datum from its parent edge, so the
+local interpolation extends recursively to a nonzero global current.
 
-This closes \(b=yx^ry^{-1}\), \(r=1,2\), in the relevant negative
-exponent-zero fiber. It does not include nonzero initial residues
-\(x^s yx^ry^{-1}\), the inverse sign sequence
-\(y^{-1}x^ry\), or longer Britton codes.
+This closes every \(b=x^\ell yx^ry^{-1}\), with \(\ell\bmod4\) and
+\(r=1,2\), in the relevant negative exponent-zero fiber. It does not
+include the inverse sign sequence \(y^{-1}x^ry\) or longer Britton
+codes.
 
 ## Live lead
 
@@ -3718,9 +3724,9 @@ their three internal classes into canonical double cosets
 method is required, and noncanonical double cosets. Result 61 proves
 the flow quotient nonzero for every noncanonical double coset with a
 one-positive-stable-letter representative. Result 62 also closes the
-initial-residue-zero positive--negative length-two exponent-zero
-family; the other multi-syllable internal double cosets remain
-undecided. The immediate exact leads are therefore
+entire positive--negative length-two exponent-zero family; the other
+multi-syllable internal double cosets remain undecided. The immediate
+exact leads are therefore
 z-dependent A--W conjugators, the canonical and multi-syllable internal
 A--D subproblems, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
