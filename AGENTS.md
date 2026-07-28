@@ -943,3 +943,10 @@
 
 - [TRAP] A JavaScript string interpreted a LaTeX backslash sequence while adding a proof file, split a content line, and made `apply_patch` reject it as an invalid hunk.
 - [WORKS] Pass LaTeX-heavy patches with a raw string so every backslash reaches `apply_patch` literally, and avoid unescaped backticks inside the raw template. Read the rendered equations back from disk.
+
+### 2026-07-27 Match verifier helpers to the word alphabet
+
+- [TRAP] A regression test reused the compression-root abelianization helper, which counts x and z, on the original AK words in x and y; every y-exponent was silently reported as zero.
+- [TRAP] The first repair changed the earlier x-z test because the patch matched the first identical assertion, while leaving the new x-y test unchanged.
+- [WORKS] Name basis-specific word invariants explicitly and add a separate helper when a proof changes alphabets. Pin the expected exponent vector before trusting a cyclic-length comparison.
+- [WORKS] When two tests contain the same assertion spelling, anchor each replacement on its function name and verify both call sites before rerunning.

@@ -906,3 +906,77 @@ The next storage frontier must use at least two post-deletion row-changing
 edges, change the source before it is used, delete another primitive slot,
 or leave the normalized checkpoint.  AK(3), stable Andrews--Curtis, and
 Andrews--Curtis remain open.
+
+## 13. One old-factor source change has an exact rigidity obstruction
+
+Result 12 extends conditionally beyond the two original sources.  Call a
+non-simple word \(V\in F_0\) admissibly Nielsen-rigid if every injective
+endomorphism \(\phi:F_0\to F_0\) which is unimodular on abelianization
+and induces an isomorphism
+
+\[
+F_0/\langle\!\langle V\rangle\!\rangle
+\xrightarrow{\ \cong\ }
+F_0/\langle\!\langle\phi(V)\rangle\!\rangle
+\tag{67}
+\]
+
+carries \(\phi(V)\), after a target automorphism, to a conjugate of
+\(V^{\pm1}\).  The quotient proof of Section 12 then applies verbatim:
+Turner makes the aligned injection onto, and positive bridge length
+contradicts Magnus rigidity.  Hence
+
+\[
+V\text{ non-simple and admissibly Nielsen-rigid}
+\Longrightarrow
+rcV^\epsilon c^{-1}\text{ nonprimitive for positive bridge}.
+\tag{68}
+\]
+
+Now make one row multiplication inside the old factor before targeting r.
+Up to conjugacy and inversion, its changed source is
+
+\[
+V^A_{g,\eta}=AgB^\eta g^{-1}
+\quad\text{or}\quad
+V^B_{g,\eta}=BgA^\eta g^{-1},
+\qquad
+g\in F_0,
+\quad\eta=\pm1.
+\tag{69}
+\]
+
+Axis alignment reduces the minimum cyclic length over arbitrary \(g\) to
+the finite cyclic-rotation table for \(A\) and \(B\).  Osborne--Zieschang
+then gives
+
+\[
+\begin{array}{c|c|c}
+\eta&\min_g\|V^A_{g,\eta}\|&
+\text{cyclic length if primitive}\\
+\hline
++1&11&9\\
+-1&9&5.
+\end{array}
+\tag{70}
+\]
+
+The B-target versions have the same lengths.  Thus none of (69) is
+primitive.  Their exponent vectors are primitive, so none is a proper
+power; in rank two they are consequently non-simple.
+
+### Theorem 13.1 (z-free changed-source reduction)
+
+After one arbitrary old-factor source change (69), a zero-bridge
+multiplication into the r-slot is still a stable self-loop.  A
+positive-bridge primitive target can exist only if its changed source
+fails admissible Nielsen rigidity.  Concretely, the primitive quotient
+must supply a proper unimodular injection \(\phi:F_2\hookrightarrow F_2\)
+which induces (67) but puts \(\phi(V)\) outside the Aut-orbit of conjugates
+of \(V^{\pm1}\).
+
+The next proof problem is therefore no longer arbitrary source
+primitivity.  It is the existence or exclusion of that marked proper
+self-embedding, an r-dependent first source change, or two direct source
+multiplications into the r-slot.  AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.

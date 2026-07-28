@@ -6859,6 +6859,95 @@ escape must use at least two row-changing edges before deletion, change
 the source, delete another primitive slot, or leave the normalized
 checkpoint.
 
+**Result 115 (admissible one-relator rigidity closes a positive
+bridge).**  For \(V\in F_0=F(x,y)\), call an injective endomorphism
+\(\phi:F_0\to F_0\) admissible when its abelianization is unimodular and
+the natural map
+
+\[
+F_0/\langle\!\langle V\rangle\!\rangle
+\longrightarrow
+F_0/\langle\!\langle\phi(V)\rangle\!\rangle
+\]
+
+is an isomorphism.  Say that \(V\) is admissibly Nielsen-rigid when every
+such \(\phi(V)\) is carried by an ambient automorphism to a conjugate of
+\(V^{\pm1}\).
+
+If \(V\) is non-simple and admissibly Nielsen-rigid, then every
+
+\[
+r\,cV^\epsilon c^{-1},
+\qquad
+c\notin\langle r\rangle F_0,
+\]
+
+is nonprimitive.  Indeed, a hypothetical primitive quotient embeds the
+old factor \(K\cong F_0\) into \(Q\cong F_2\), and the inclusion is
+exactly an admissible map: it is unimodular and induces the one-relator
+quotient isomorphism obtained by killing the image of \(V\).  Rigidity
+aligns the inclusion to an injective endomorphism taking \(V\) to
+\(V^{\pm1}\).  Turner, applied directly or to its square, makes the
+endomorphism onto.  Magnus rigidity and positive Bass--Serre syllable
+length then contradict each other as in Result 114.
+
+The non-simple hypothesis is necessary.  If \(V\) is primitive and
+\((V^\epsilon,U)\) is a basis, the positive-bridge conjugator
+
+\[
+c=Ur^{-1}V^{-\epsilon}
+\]
+
+makes \(rcV^\epsilon c^{-1}\) primitive: in the basis
+\((V^\epsilon,U,r)\), the V-letter occurs exactly once.
+
+**Result 116 (one z-free source change cannot enter through the
+primitive-source branch).**  After one old-factor multiplication, the
+changed AK source is, up to conjugacy and inversion,
+
+\[
+V^A_{g,\eta}=A gB^\eta g^{-1}
+\quad\text{or}\quad
+V^B_{g,\eta}=B gA^\eta g^{-1},
+\qquad
+g\in F_0,
+\quad\eta=\pm1.
+\]
+
+Axis alignment reduces the minimum cyclic length over every \(g\) to
+the complete \(7\cdot6\) cyclic-rotation table.  The exact values are
+
+\[
+\begin{array}{c|c|c}
+\text{sign}&\text{minimum cyclic length}&
+\text{length forced by primitivity}\\
+\hline
++&11&9\\
+-&9&5.
+\end{array}
+\]
+
+The target-reversed rows have the same lengths by cyclic conjugacy.
+Osborne--Zieschang therefore rules out primitivity for every old-factor
+conjugator, without a length bound on \(g\).  Their exponent vectors are
+\((4,-5)\), \((2,-3)\), or \((-2,3)\), so they are root-free; in rank
+two, nonprimitive plus root-free makes them non-simple.
+
+Consequently a positive-bridge primitive deletion after one z-free
+source change forces a proper unimodular injection
+
+\[
+\phi:F_2\hookrightarrow F_2
+\]
+
+which induces an isomorphism of the one-relator quotients but sends the
+changed source outside the Aut-orbit of its conjugacy class and inverse.
+This admissible Nielsen-rigidity failure is now the exact algebraic
+obstruction.  An unrelated second presentation of the same abstract
+one-relator group is insufficient.  The remaining two-edge routes must
+realize such an injection, use an r-dependent source change, or multiply
+two sources directly into the r-slot.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6996,7 +7085,14 @@ small torus-knot one-relator quotient. Collins--Zieschang uniqueness
 and Turner monomorphism rigidity make that embedding onto, while
 Magnus rigidity and Bass--Serre syllable length then contradict a
 positive bridge. Thus every one-edge multiplication into the normalized
-primitive slot is closed. Results
+primitive slot is closed. Result 115 extracts the exact general
+hypothesis: a non-simple source closes whenever every proper unimodular
+self-embedding preserving its one-relator quotient stays in the source's
+Nielsen orbit. Result 116 applies this after one arbitrary z-free source
+change. Axis alignment and Osborne--Zieschang rule out the primitive-source
+alternative for every conjugator; a positive-bridge deletion must therefore
+realize a marked admissible Nielsen-rigidity failure, not merely a second
+abstract presentation of the same group. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -7007,10 +7103,11 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--114, arbitrary W--D conjugators,
-non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
-before deletion outside Results 111--112's source-consumption and
-immediate-second-deletion closures. Longer branches may use additional \(Wq^{-1}\) blocks,
+61--116, arbitrary W--D conjugators,
+non-source deletion outside Result 54's D-then-mixed-Q order, or two
+row-changing edges before deletion which realize Result 116's admissible
+rigidity failure, use an r-dependent source change, or multiply two sources
+directly into the primitive slot. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
 primitive slot. The exact Fox coordinate remains a necessary free-kernel
