@@ -1336,3 +1336,44 @@ conjugator, both signs, and both source orders, one multiplication between
 the two image sources is nonprimitive.  This remains true at every depth
 of the descending proper corridor.  Any successful use must change both
 rows before the primitive test or use a different stabilizer architecture.
+
+## 22. Conjugating corridor maps reflect primitivity
+
+For every word V, a primitive \(\phi_g(V)\) forces V to be root-free.
+Klyachko embeds \(G(V)\) into the cyclic quotient by \(\phi_g(V)\).
+Abelianization is unchanged by \(\phi_g\), so \(G(V)_{\rm ab}\cong
+\mathbb Z\); hence \(G(V)\cong\mathbb Z\).  Magnus normal-closure rigidity
+then makes V primitive.
+
+### Theorem 22.1 (internal histories lift)
+
+Every \(\phi_g\) reflects primitive elements.  Therefore every finite
+AC1--AC3 history on an image pair whose conjugators remain in \(K_g\)
+pulls back move-for-move to the original AK pair, and an ambient-primitive
+terminal pulls back to a primitive terminal.  A genuinely new history at
+any corridor depth must use an external conjugator or move the image
+subgroup by an ambient automorphism.
+
+## 23. An external second B-edge is too long
+
+Let \(a_1=a h b^\epsilon h^{-1}\) with \(h\in K_g\), and then
+\(b_1=b k a_1^\delta k^{-1}\) with \(k\notin K_g\).  In a proper
+normalized corridor of bridge length n, the b-axis has length \(6n+6\),
+the changed a-row has length at least 9 or 5, and the external axis overlap
+is at most \(3n\).  Hence
+
+\[
+\|b_1\|\ge\|a_1\|+6.
+\tag{94}
+\]
+
+The four resulting lower bounds are \(15,15,11,11\), whereas the
+primitive lengths dictated by abelianization are \(11,7,7,3\).
+
+### Theorem 23.1 (external-second-edge barrier)
+
+An internal change of the A-image followed by an externally conjugated
+change of the B-image cannot produce a primitive second row.  If the
+second conjugator is internal, the history pulls back by Theorem 22.1.
+Thus a genuinely new exit in this orientation must already be external
+on its first edge.  The reverse B-first/A-second orientation remains open.

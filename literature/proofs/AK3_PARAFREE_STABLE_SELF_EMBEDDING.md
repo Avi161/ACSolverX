@@ -787,6 +787,143 @@ Result 120 has no one-source primitive exit.  Any successful corridor use
 must modify both sources before the primitive test, use more than one
 row-changing edge, or change the stabilizer architecture.
 
+## 11. The corridor maps reflect primitivity
+
+The Klyachko argument is not limited to AK source products.
+
+### Theorem 11.1 (primitivity reflection)
+
+For every \(g\in F_2\) and every \(V\in F_2\),
+
+\[
+\phi_g(V)\text{ primitive in }F_2
+\quad\Longrightarrow\quad
+V\text{ primitive in }F_2.
+\tag{11.1}
+\]
+
+**Proof.**  Since \(\phi_g\) is injective, a proper-power V would have
+proper-power image, so (11.1)'s hypothesis makes V root-free.  Section 6
+and Klyachko then embed
+
+\[
+G(V)=F_2/\langle\!\langle V\rangle\!\rangle
+\hookrightarrow
+F_2/\langle\!\langle\phi_g(V)\rangle\!\rangle
+\cong\mathbb Z.
+\tag{11.2}
+\]
+
+Thus \(G(V)\) is cyclic.  The map \(\phi_g\) is the identity on
+abelianization, and a primitive image has primitive exponent vector.
+Consequently \(H_1(G(V))\cong\mathbb Z\), so \(G(V)\cong\mathbb Z\).
+Normalize the quotient epimorphism \(F_2\to\mathbb Z\) by an ambient
+automorphism.  Its kernel is the normal closure of a basis element P.
+Hence
+
+\[
+\langle\!\langle V\rangle\!\rangle
+=\langle\!\langle P\rangle\!\rangle.
+\tag{11.3}
+\]
+
+Magnus's normal-closure theorem makes V conjugate to \(P^{\pm1}\), proving
+that V is primitive. \(\square\)
+
+There is an immediate history-level consequence.  Start from
+\((\phi_g(A),\phi_g(B))\) and perform any finite AC1--AC3 history in which
+every conjugator lies in \(K_g=\phi_g(F_2)\).  Every row stays in \(K_g\),
+and the isomorphism \(\phi_g:F_2\to K_g\) pulls the entire history back,
+move by move, to a history from \((A,B)\).  If an image row becomes
+primitive in the ambient free group, Theorem 11.1 makes its pulled-back
+row primitive as well.
+
+Thus the proper stable corridor creates no new primitive terminal through
+purely internal traffic of any depth, not merely through the one-source
+move closed in Result 121.  Any genuinely new two-row or longer exit must
+use an ambient conjugator outside the current image subgroup, or an
+ambient automorphism which moves that subgroup.
+
+## 12. One external second edge is too long
+
+Fix a proper normalized corridor with bridge c of length \(n\ge2\), and
+write
+
+\[
+a=\phi_c(A),\qquad b=\phi_c(B),\qquad K=K_c.
+\tag{12.1}
+\]
+
+First change the a-row using an internal conjugator:
+
+\[
+a_1=a h b^\epsilon h^{-1},
+\qquad h\in K,\quad \epsilon=\pm1.
+\tag{12.2}
+\]
+
+Then target the b-row using an external conjugator:
+
+\[
+b_1=b k a_1^\delta k^{-1},
+\qquad k\notin K,\quad \delta=\pm1.
+\tag{12.3}
+\]
+
+The row \(a_1\) lies in K.  Its exponent vector and elementary cyclic
+length lower bound are
+
+\[
+[a_1]=
+\begin{cases}
+(4,-5),&\epsilon=1,\\
+(2,-3),&\epsilon=-1,
+\end{cases}
+\qquad
+\|a_1\|\ge
+\begin{cases}
+9,&\epsilon=1,\\
+5,&\epsilon=-1.
+\end{cases}
+\tag{12.4}
+\]
+
+The b-axis has length \(6n+6\).  Since k is external, Lemma 10.1 bounds
+its overlap with the translated \(a_1\)-axis by \(3n\).  The tree product
+estimate therefore gives
+
+\[
+\|b_1\|
+\ge (6n+6)+\|a_1\|-6n
+=\|a_1\|+6.
+\tag{12.5}
+\]
+
+The four cases are
+
+\[
+\begin{array}{c|c|c|c}
+(\epsilon,\delta)&[b_1]&
+\text{primitive length}&\text{lower bound from (12.5)}\\ \hline
+(+,+)&(5,-6)&11&15\\
+(+,-)&(-3,4)&7&15\\
+(-,+)&(3,-4)&7&11\\
+(-,-)&(-1,2)&3&11
+\end{array}
+\tag{12.6}
+\]
+
+Every lower bound is strictly too large for primitivity.  Hence no history
+of the form (12.2)--(12.3) creates a primitive second row.
+
+If k is internal instead, the two moves lift to the original AK pair by
+Theorem 11.1; the corridor contributes no new terminal.  Thus, in the
+orientation which first changes the A-image and then targets the B-image,
+a genuinely new two-row primitive exit must already use an external
+conjugator in the first edge.  The reverse target orientation is not
+claimed closed by this estimate, because its fixed A-image axis is the
+short one.
+
 AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
 
 ## References

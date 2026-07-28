@@ -7278,6 +7278,57 @@ and \(\phi_g(B)\) is nonprimitive.  This includes every iterate of Result
 119's descending corridor.  A useful exit must change both rows before
 testing primitivity or use a different stabilization architecture.
 
+**Result 125 (every conjugating corridor reflects primitivity).**  For
+every g and every word V,
+
+\[
+\phi_g(V)\text{ primitive}\Longrightarrow V\text{ primitive}.
+\]
+
+Indeed, a primitive image makes V root-free.  Klyachko embeds the
+one-relator group \(G(V)\) into the quotient by \(\phi_g(V)\), which is
+\(\mathbb Z\).  Since \(\phi_g\) is the identity on abelianization,
+\(G(V)_{\rm ab}\cong\mathbb Z\), so \(G(V)\cong\mathbb Z\).  After
+normalizing the quotient epimorphism, Magnus normal-closure rigidity makes
+V conjugate to a basis element or its inverse.
+
+Consequently any finite AC1--AC3 history on
+\((\phi_g(A),\phi_g(B))\) whose conjugators all lie in the image subgroup
+\(K_g\) pulls back exactly to a history on \((A,B)\).  If the image
+history reaches a primitive row, so does the original history.  This
+holds at every iterated image.  Hence a genuinely new two-row corridor
+exit must use an external conjugator somewhere, or an ambient automorphism
+which moves the image subgroup.
+
+**Result 126 (an internal A-change followed by an external B-change is
+too long).**  In a proper normalized corridor with bridge length
+\(n\ge2\), put \(a=\phi_g(A)\), \(b=\phi_g(B)\), and K equal to the image
+subgroup.  Let
+
+\[
+a_1=a h b^\epsilon h^{-1},\quad h\in K,
+\qquad
+b_1=b k a_1^\delta k^{-1},\quad k\notin K.
+\]
+
+The vector of \(a_1\) is \((4,-5)\) or \((2,-3)\), so
+\(\|a_1\|\ge9\) or 5.  The b-axis has length \(6n+6\), and the external
+barbell-piece bound limits its overlap with the translated \(a_1\)-axis
+to \(3n\).  Therefore
+
+\[
+\|b_1\|\ge\|a_1\|+6,
+\]
+
+giving lower bounds \(15,15,11,11\) in the four sign cases.  Their
+primitive lengths are only \(11,7,7,3\), respectively.  Thus the external
+second edge can never produce a primitive b-row.  If the second edge is
+internal, Result 125 pulls the history back to the original AK pair.
+Consequently a genuinely new two-row exit in this target orientation must
+already use an external conjugator on the first edge.  The reverse
+B-first/A-second orientation remains open because the fixed A-image axis
+is shorter.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7446,7 +7497,12 @@ Stallings fiber product has diameter two, so every external double coset
 has exact minimum 25; all shorter alignments are internal. Result 124
 proves a uniform \(3|c|\) barbell-piece bound and closes the whole
 conjugating-endomorphism family, at every iterate, against every
-one-source primitive exit.
+one-source primitive exit. Result 125 proves that every corridor map
+reflects primitivity, so every entirely internal AC1--AC3 history lifts
+back to the original AK tuple; a genuinely new longer exit must use
+external traffic. Result 126 closes the orientation with an internal
+A-image change followed by an external B-image change: the long B-axis
+leaves terminal length at least \(15\) or \(11\).
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7458,13 +7514,13 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--124, arbitrary W--D conjugators,
+61--126, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by
 Results 117--118, or use Result 120's corridor only after changing both
 rows before the primitive test or changing the stabilizer architecture,
-as forced by Result 124.
+as forced by Results 124--125.
 Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
