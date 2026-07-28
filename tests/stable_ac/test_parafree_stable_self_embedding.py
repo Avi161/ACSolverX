@@ -1,4 +1,4 @@
-from itertools import product
+from itertools import permutations, product
 
 
 INVERSE = {
@@ -402,3 +402,103 @@ def test_two_ac2_cascade_is_a_proper_formal_row_braid_self_loop() -> None:
         first + second + inverse(first) + inverse(second)
     )
     assert len(formal_commutator_image) == 12
+
+
+def test_ak_and_first_stable_image_three_leaf_finite_quotient_barriers() -> None:
+    def conjugacy_class(
+        element: tuple[int, ...],
+        symmetric_group: tuple[tuple[int, ...], ...],
+    ) -> set[tuple[int, ...]]:
+        return {
+            compose(compose(conjugator, element), permutation_inverse(conjugator))
+            for conjugator in symmetric_group
+        }
+
+    def class_product(
+        classes: tuple[set[tuple[int, ...]], ...],
+        degree: int,
+    ) -> set[tuple[int, ...]]:
+        result = {tuple(range(degree))}
+        for conjugacy_class_set in classes:
+            result = {
+                compose(left, right)
+                for left in result
+                for right in conjugacy_class_set
+            }
+        return result
+
+    signed_cases = (
+        (
+            (("a", 1), ("a", 1), ("b", 1)),
+            "YYxYxYxYYxYxYxYx",
+        ),
+        (
+            (("a", 1), ("a", 1), ("b", -1)),
+            "YYxYxYYxYxYx",
+        ),
+        (
+            (("a", 1), ("a", -1), ("b", 1)),
+            "Yx",
+        ),
+        (
+            (("a", 1), ("b", 1), ("b", 1)),
+            "YYxYxYxYxYx",
+        ),
+        (
+            (("a", 1), ("b", 1), ("b", -1)),
+            "YYxYxYx",
+        ),
+        (
+            (("a", -1), ("b", 1), ("b", 1)),
+            "yyX",
+        ),
+    )
+    source_certificates = (
+        (
+            "xxxYYYY",
+            "xyxYXY",
+            (
+                ((0, 2, 3, 1), (1, 0, 2, 3)),
+                ((0, 1, 3, 4, 2), (1, 2, 3, 0, 4)),
+                ((0, 2, 3, 1), (1, 0, 2, 3)),
+                ((1, 2, 3, 4, 0), (2, 0, 4, 1, 3)),
+                ((0, 1, 3, 4, 2), (1, 2, 4, 3, 0)),
+                ((1, 2, 3, 0), (1, 3, 0, 2)),
+            ),
+        ),
+        (
+            "xxxyxYYYYXY",
+            "xyxyXYxyxYXYXyxYXY",
+            (
+                ((0, 2, 3, 1), (1, 0, 2, 3)),
+                ((0, 1, 3, 4, 2), (1, 2, 3, 0, 4)),
+                ((0, 2, 3, 1), (1, 0, 2, 3)),
+                ((0, 1, 3, 4, 2), (1, 2, 3, 0, 4)),
+                ((0, 2, 3, 4, 1), (1, 4, 2, 0, 3)),
+                ((1, 2, 3, 0), (1, 3, 0, 2)),
+            ),
+        ),
+    )
+
+    for image_a, image_b, quotient_images in source_certificates:
+        for (factors, primitive), (x_image, y_image) in zip(
+            signed_cases,
+            quotient_images,
+            strict=True,
+        ):
+            degree = len(x_image)
+            symmetric_group = tuple(permutations(range(degree)))
+            a_image = evaluate_permutation_word(image_a, x_image, y_image)
+            b_image = evaluate_permutation_word(image_b, x_image, y_image)
+            primitive_image = evaluate_permutation_word(primitive, x_image, y_image)
+            factor_classes = []
+            for source, sign in factors:
+                source_image = a_image if source == "a" else b_image
+                if sign < 0:
+                    source_image = permutation_inverse(source_image)
+                factor_classes.append(conjugacy_class(source_image, symmetric_group))
+
+            assert primitive_image not in class_product(
+                tuple(factor_classes),
+                degree,
+            )

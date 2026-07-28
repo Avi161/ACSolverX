@@ -995,3 +995,10 @@
 - [WORKS] Axis-overlap bounds are safe for the two-factor product estimates used through Result 127. For three or more history-derived leaves, fold the whole based history word including conjugator bridges; never sum source-axis seam bounds in isolation.
 - [WORKS] Replay a cancellation counterexample as an exact AC history before discarding the branch. Here the failure exposed the universal row-braid self-loop `(u,v) -> (v^-1uv,uvu^-1)`, whose formal map is proper but whose evaluated rows remain individually conjugate.
 - [WORKS] A proper injective row-symbol map can produce strict descending displayed-relator subgroups inside one classical AC class. Never use subgroup descent alone as evidence of progress; also track the evaluated relator conjugacy classes.
+
+### 2026-07-27 Replace long-product geometry by source-leaf quotients
+
+- [WORKS] Under AC1--AC3, track each row as a product of conjugates of signed source leaves. At fixed AC2 depth this gives finitely many signed multisets even though every conjugator is arbitrary.
+- [WORKS] In rank two, primitivity fixes the signed Christoffel conjugacy class from the exponent vector. A finite quotient can then exclude all conjugators at once by separating that class from the required product of source conjugacy classes; the depth-two AK and first-image certificates reduce to cycle types in `S4` and `S5`.
+- [TRAP] Quotients through degree five closed all six signed cases for the fixed first image but only two cases uniformly over every conjugating embedding. Do not extrapolate the fixed-image theorem to all `phi_g` or all corridor depths.
+- [TRAP] A disposable quotient diagnostic used a mutable `set` as a dictionary key and failed with `TypeError: unhashable type: 'set'`. Keep subgroup-dependent caches local to the subgroup or key them by a `frozenset`.

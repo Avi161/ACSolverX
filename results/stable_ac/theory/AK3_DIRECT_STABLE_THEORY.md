@@ -7405,6 +7405,35 @@ has an infinite strict classical subgroup corridor which never changes
 either relator conjugacy class.  Strict descent of the displayed-relator
 subgroup is therefore not a valid progress invariant.
 
+**Result 130 (finite quotients close every depth-two history at the
+source and first stable image).**  Track a row through AC1--AC3 as a
+product of conjugates of signed source leaves.  After at most two AC2
+multiplications it has at most three leaves.  One-leaf rows are the
+nonprimitive sources, and Results 116 and 124 close every two-leaf row.
+Up to inverting the complete row, a three-leaf row has one of the six
+signed multisets
+
+\[
+2A+B,\quad 2A-B,\quad A-A+B,\quad
+A+2B,\quad A+B-B,\quad -A+2B.
+\]
+
+Their primitive vectors have signed Christoffel representatives of
+lengths \(16,12,2,11,7,3\), respectively.  For both the original AK
+pair and the first proper image \(g=yx\), explicit homomorphisms to
+\(S_4\) or \(S_5\) separate each Christoffel conjugacy class from the
+required product of three source conjugacy classes.  The certificates
+reduce to cycle types: one nontrivial source factor has the wrong type,
+or the only possible nontrivial product is a product of two
+transpositions and hence cannot be a 5-cycle.
+
+Therefore no AC1--AC3 history with at most two AC2 multiplications,
+starting at either the AK source or its first proper image, reaches a
+primitive row.  This closes the first-external branch left open by
+Result 127 without any bound on its conjugators.  It does not cover
+three multiplications, later images, or arbitrary members of the
+conjugating family.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -7585,7 +7614,9 @@ Result 128 identifies the first provenance-sensitive collapse found in
 that branch as a universal row-braid self-loop rather than a primitive
 compression. Result 129 shows that iterating this loop nevertheless gives
 strict classical descent of the displayed-relator subgroup, so subgroup
-descent alone cannot certify progress.
+descent alone cannot certify progress. Result 130 replaces the failed
+three-axis estimate by a whole-history source-leaf reduction and closes
+all depth-two histories at both the source and the first proper image.
 Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
@@ -7597,7 +7628,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--129, arbitrary W--D conjugators,
+61--130, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two
 row-changing edges before deletion which realize Result 116's admissible
 rigidity failure, exploit the exact two-conjugate marking left open by

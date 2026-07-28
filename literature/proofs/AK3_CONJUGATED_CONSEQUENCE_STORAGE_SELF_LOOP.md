@@ -1443,3 +1443,30 @@ AK(3) and every preceding stable image admit a strict infinite descending
 chain of displayed-relator subgroups within one classical AC class.
 Therefore subgroup descent, even strict descent at every step, is not a
 progress invariant toward a primitive row.
+
+## 27. Source-leaf quotients close depth two
+
+Every row obtained using at most two AC2 multiplications is a product of
+at most three conjugates of signed source relators.  Up to total
+inversion, the possible three-leaf multisets are
+
+\[
+2A+B,\quad 2A-B,\quad A-A+B,\quad
+A+2B,\quad A+B-B,\quad -A+2B.
+\tag{98}
+\]
+
+Primitivity fixes one signed Christoffel conjugacy class in each case.
+For the original AK pair and for the first proper image, explicit
+\(S_4\) and \(S_5\) homomorphisms exclude that class from the product of
+the three required source conjugacy classes.  The certificate uses only
+cycle types and therefore covers arbitrary intervening conjugators.
+The one- and two-leaf cases were already closed by source
+nonprimitivity and the arbitrary-conjugator one-edge barriers.
+
+### Theorem 27.1 (first-image depth-two closure)
+
+No AC1--AC3 history from the AK source or its first proper stable image
+which uses at most two AC2 multiplications reaches a primitive row.
+This closes the first-external residue of Theorem 24.1.  Depth three and
+later stable images remain open.
