@@ -371,10 +371,21 @@ def fig_simple_higher_and_means(rows):
     ax0.bar(x_all, sm, bottom=hi, color=UNCHANGED, width=0.62, label="same")
     ax0.bar(x_all, lo, bottom=hi + sm, color=IMPROVED, width=0.62,
             label="lower after CoV (better)")
-    for i, h in enumerate(hi):
-        ax0.text(i, h / 2 if h >= 8 else h + 1.5, str(h),
-                 ha="center", va="center" if h >= 8 else "bottom",
-                 color="white" if h >= 8 else INK, fontsize=11, fontweight="bold")
+    for i, (h, s, l) in enumerate(zip(hi, sm, lo)):
+        # label each stack segment when large enough; otherwise put the count just above it
+        for val, y0, color_in, color_out in (
+            (h, 0.0, "white", INK),
+            (s, float(h), "white", INK),
+            (l, float(h + s), "white", INK),
+        ):
+            if val <= 0:
+                continue
+            if val >= 6:
+                ax0.text(i, y0 + val / 2, str(int(val)), ha="center", va="center",
+                         color=color_in, fontsize=10, fontweight="bold")
+            else:
+                ax0.text(i, y0 + val / 2, str(int(val)), ha="center", va="center",
+                         color=color_out, fontsize=9, fontweight="bold")
     ax0.set_ylim(0, 72)
     ax0.set_yticks([0, 20, 40, 60])
     ax0.set_xticks(x_all, disp_all)
