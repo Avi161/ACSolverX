@@ -71,6 +71,8 @@ dependency-free Python, exact rational linear algebra, pytest.
   by one positive stable letter.
 - [x] Construct a macro-tree current for every positive--negative
   length-two exponent-zero double coset.
+- [x] Prove flow-module collapse for every negative--positive
+  length-two exponent-zero double coset.
 - [ ] Prove that an acyclic recurrence admits a nonzero boundary
   current.
 - [ ] Classify any cyclic recurrences by exact double-coset geometry.

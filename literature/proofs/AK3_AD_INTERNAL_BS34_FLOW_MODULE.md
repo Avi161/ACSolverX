@@ -1239,3 +1239,114 @@ is a proper right ideal of \(R=\mathbb Q[B]\).  In the A--D residue,
 this closes the entire positive--negative, stable-letter-length-two
 family for the relevant sign \(\sigma=-1\).  It does not cover the
 inverse sign sequence \(y^{-1}x^ry\) or longer endpoint-carry classes.
+
+## 13. The negative--positive length-two flow module collapses
+
+The inverse turn sequence has the opposite outcome for this module.
+Put
+
+\[
+u=y^{-1}xy,
+\qquad
+J_+=\langle x,u\mid x^3=u^4\rangle,
+\qquad
+D=\langle x^3\rangle=\langle u^4\rangle.
+\tag{78}
+\]
+
+The subgroup \(D\) is central in the amalgam \(J_+\).  Fix
+
+\[
+\ell\in\{0,1,2,3\},
+\qquad r\in\{1,2,3\},
+\qquad b=x^\ell u^r=x^\ell y^{-1}x^ry.
+\tag{79}
+\]
+
+Let \(K=K_b\).  Since \(C=\langle x^4\rangle\) and
+\(x^4=xx^3\),
+
+\[
+b^{-1}x^4b
+=u^{-r}x^4u^r
+=(u^{-r}xu^r)x^3.
+\tag{80}
+\]
+
+The left side generates \(b^{-1}Cb\), while \(x^3\in H\leq K\).
+Therefore
+
+\[
+h_r:=u^{-r}xu^r\in K.
+\tag{81}
+\]
+
+For every integer \(n\),
+
+\[
+u^{-r}x^n=h_r^n u^{-r}.
+\tag{82}
+\]
+
+Since \(b^{-1}=u^{-r}x^{-\ell}\), all four terms on the left of
+(36) are consequently the same \(K\)-coset:
+
+\[
+Kb^{-1}x^ig
+=Ku^{-r}x^{i-\ell}g
+=Ku^{-r}g.
+\tag{83}
+\]
+
+Write \(\lambda=-\sigma\).  Equation (36) alone reduces to
+
+\[
+4s(Ku^{-r}g)=\lambda s(Kg)
+\qquad(g\in B).
+\tag{84}
+
+Let
+
+\[
+m=\frac4{\gcd(4,r)}.
+\]
+
+Applying (84) successively at
+\(g,u^{-r}g,\ldots,u^{-(m-1)r}g\) gives
+
+\[
+4^m s(Ku^{-rm}g)=\lambda^m s(Kg).
+\tag{85}
+
+But \(4\mid rm\), so
+
+\[
+u^{-rm}=(u^4)^{-rm/4}=x^{-3rm/4}\in H\leq K.
+\]
+
+Thus (85) is
+
+\[
+(4^m-\lambda^m)s(Kg)=0.
+\tag{86}
+
+For \(\lambda=\pm1\), the rational coefficient in (86) is nonzero.
+Hence \(s=0\).  Section 8 gives a bijection between such scalar
+solutions and dual edge currents, so the flow quotient has zero
+algebraic dual.  A nonzero vector space over \(\mathbb Q\) always has
+a nonzero linear functional; therefore the quotient itself is zero.
+Equivalently, for every \(\ell,r\) in (79) and both signs \(\sigma\),
+
+\[
+(x^4-1)R+(yR_3-R_4)R+
+(x^\ell y^{-1}x^ry+\sigma R_4)R
+=R.
+\tag{87}
+\]
+
+This is a complete failure theorem for the chosen flow obstruction,
+not a primitivity theorem and not an Andrews--Curtis sequence.  In the
+relevant negative exponent-zero fiber, the negative--positive
+length-two classes therefore require a different invariant.  Together
+with Section 12, this classifies the flow module on every
+stable-letter-length-two exponent-zero double coset.

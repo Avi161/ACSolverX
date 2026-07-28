@@ -3656,6 +3656,51 @@ This closes every \(b=x^\ell yx^ry^{-1}\), with \(\ell\bmod4\) and
 include the inverse sign sequence \(y^{-1}x^ry\) or longer Britton
 codes.
 
+**Result 63 (negative--positive length-two flow collapse).** Put
+\(u=y^{-1}xy\). For \(\ell=0,1,2,3\), \(r=1,2,3\), and either sign
+\(\sigma\),
+
+\[
+(x^4-1)\mathbb Q[B]+(yR_3-R_4)\mathbb Q[B]
++(x^\ell u^r+\sigma R_4)\mathbb Q[B]
+=\mathbb Q[B].
+\]
+
+Let \(K=\langle H,u^{-r}Cu^r\rangle\) and
+\(h_r=u^{-r}xu^r\). Since \(u^4=x^3\) is central in
+\(\langle x,u\rangle\), one has
+
+\[
+u^{-r}x^4u^r=h_r^4,
+\qquad h_r^3=x^3.
+\]
+
+Both powers lie in \(K\), so \(h_r\in K\). All four terms in scalar
+equation (36) are therefore the same coset, and with
+\(\lambda=-\sigma\) it becomes
+
+\[
+4s(Ku^{-r}g)=\lambda s(Kg).
+\]
+
+Applying this equation successively
+\(m=4/\gcd(4,r)\) times and using
+\(u^{-rm}\in\langle u^4\rangle\leq K\) gives
+
+\[
+(4^m-\lambda^m)s(Kg)=0.
+\]
+
+The coefficient is nonzero over \(\mathbb Q\), so the scalar current
+and hence the entire algebraic dual vanish. Linear functionals separate
+points, so the flow quotient itself is zero.
+
+This is only a failure of this module obstruction. It does not prove
+the corresponding relative products primitive. Together, Results 62
+and 63 completely classify the flow module on all exponent-zero
+stable-letter-length-two double cosets: the positive--negative family
+is proper, while the negative--positive family collapses.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -3724,11 +3769,13 @@ their three internal classes into canonical double cosets
 method is required, and noncanonical double cosets. Result 61 proves
 the flow quotient nonzero for every noncanonical double coset with a
 one-positive-stable-letter representative. Result 62 also closes the
-entire positive--negative length-two exponent-zero family; the other
-multi-syllable internal double cosets remain undecided. The immediate
-exact leads are therefore
-z-dependent A--W conjugators, the canonical and multi-syllable internal
-A--D subproblems, arbitrary W--D conjugators,
+entire positive--negative length-two exponent-zero family. Result 63
+completes the flow-module classification at length two: the
+negative--positive family makes this module collapse and therefore
+requires a different invariant. Longer multi-syllable internal double
+cosets remain undecided. The immediate exact leads are therefore
+z-dependent A--W conjugators, the canonical, module-collapse, and
+longer multi-syllable internal A--D subproblems, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
@@ -3857,7 +3904,7 @@ row now gives an unbounded exponent sieve: primitivity forces
 A different viable primitive-slot branch must therefore use
 z-dependent A--W traffic, one of Result 60's canonical-collapse
 internal A--D classes or a multi-syllable noncanonical class beyond
-Results 61--62, arbitrary W--D relative traffic,
+Results 61--63, arbitrary W--D relative traffic,
 non-source deletion outside the arbitrary A--W/D-then-mixed-Q closure,
 two row changes before deletion, another \(Wq^{-1}\) block, a
 repeatedly changed source, alter W by traffic with nontrivial
