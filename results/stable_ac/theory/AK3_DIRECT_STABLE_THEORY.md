@@ -7722,6 +7722,67 @@ most three AC2 multiplications is primitive.  The exact quaternion
 certificate is recorded in
 \(\texttt{literature/proofs/AK3_SU2_FIXED_COMMUTATOR_OBSTRUCTION.md}\).
 
+**Result 137 (exact source depth four reduces to six classes).**  Signed
+source-leaf enumeration gives exactly 54 new row classes after four AC2
+multiplications at the original AK pair.  All have primitive exponent
+vectors.  Killing the majority source leaves one minority conjugate in
+10 classes, two in 14 classes, and three in 30 classes.
+
+Exact free-product normal forms in
+
+\[
+C_3*C_4\qquad\text{and}\qquad C_2*C_3
+\]
+
+exclude the 24 one/two-minority classes.  The connector search is finite
+by the Bass--Serre translation-length bound and a necessary cyclic
+target-subword condition; pruned/unpruned positive controls verify the
+implementation in both quotients.
+
+For 19 of the 30 three-minority classes, choose one of three rational
+quaternion representations.  Bi-invariance of the \(SU(2)\) angle gives
+
+\[
+d(W)\le n_A d(A)+n_B d(B)
+\]
+
+for every legal signed source-leaf product, whereas exact rational angle
+bounds give the strict reverse inequality.  This obstruction retains
+both source relators and covers arbitrary conjugators.
+
+Five more classes are excluded by the exact three-class formula
+
+\[
+C_\alpha^3=
+\begin{cases}
+[0,3\alpha],&0\le\alpha\le\pi/3,\\
+[0,\pi],&\pi/3\le\alpha\le2\pi/3,\\
+[3\alpha-2\pi,\pi],&2\pi/3\le\alpha\le\pi,
+\end{cases}
+\]
+
+using majority-killing quaternion representations and outward rational
+radical intervals.  Thus 48 of the 54 new classes are excluded exactly.
+The six remaining signatures and primitive vectors are
+
+\[
+\begin{array}{c|c}
+(7,3,4,-1,-2)&(-5,6)\\
+(8,3,5,-3,5)&(-4,7)\\
+(8,3,5,-1,-1)&(-4,5)\\
+(8,3,5,-1,3)&(0,1)\\
+(8,5,3,-1,-1)&(-4,5)\\
+(8,5,3,-1,3)&(0,1).
+\end{array}
+\]
+
+This is not source depth-four closure.  Exact triple-class identities in
+the universal majority quotients prove that killing the majority source
+is intrinsically blind for five of the six.  An exact trace-polynomial
+argument proves that the entire majority-killing \(SU(2)\) braid
+character variety is blind for the sixth.  Any continuation must retain
+both source relators or use a genuinely higher-rank invariant.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

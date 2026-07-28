@@ -303,7 +303,7 @@ class LowMinorityCertificate(NamedTuple):
     minority_length: int
     target_length: int
     connector_bound: int | None
-    candidate_words_checked: int
+    candidate_products_certified: int
     found_target: bool
 
 
@@ -512,8 +512,12 @@ def main() -> None:
     print("signature sha256:", sha256(signature_payload.encode()).hexdigest())
     print("certificate sha256:", sha256(record_payload.encode()).hexdigest())
     print(
-        "two-minority candidate words checked:",
-        sum(record.candidate_words_checked for record in records if record.connector_bound is not None),
+        "two-minority candidate products certified:",
+        sum(
+            record.candidate_products_certified
+            for record in records
+            if record.connector_bound is not None
+        ),
     )
     print("\nCLOSED CASES")
     for record in records:

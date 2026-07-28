@@ -118,7 +118,7 @@ None contains a target.  The deterministic record hashes are
 f6bdbc8bcb71936ccef6703577a727cc263729a603d9200c17981ba2284a50dd
 
 24-certificate SHA-256:
-5771323340314606a35f044cbca02a5d1ddf4a2bf88f2dc6b070ddda995f5199
+b01df11a74afcc40b0f930ad73a301dc766c145cbc35921605af79e5438ee59c
 ```
 
 Focused verification plus the established depth-three regression:
@@ -126,10 +126,16 @@ Focused verification plus the established depth-three regression:
 ```text
 tests/stable_ac/test_ak_depth_four_barriers.py
 tests/stable_ac/test_ak_depth_three_free_product_barrier.py
-7 passed in 22.97s
+10 passed in 6.78s
 ```
 
-## Exact three-conjugate SU(2) lemma to formalize
+These tests now include reachable positive controls in both quotients,
+pruned/unpruned parity, admitted-prefix checks, and exhaustive parity
+between the target-length reducer and ordinary reduction through
+connector length two.  Constant-false mutations of either pruning
+predicate, and a constant-`None` reducer mutation, are all detected.
+
+## Exact three-conjugate SU(2) lemma
 
 If \(C_\alpha\) is the \(SU(2)\) conjugacy class with quaternion angle
 \(\alpha\in[0,\pi]\), the product of three copies has angle interval
@@ -161,12 +167,16 @@ s<-\frac12,
 t>4s^3-3s.
 \]
 
-The lemma is theoretically exact but has not yet been added to the
-formal proof ledger or certificate tests.
+The proof and exact certificate replay are now in
+`literature/proofs/AK3_SU2_THREE_CLASS_INTERVAL.md` and
+`experiments/stable_ac/depth4_three_class_certificates.py`.
 
-## Numerical depth-four SU(2) lead
+## Exact three-minority reduction
 
-The following is **[unverified] numerical screening**, not a theorem.
+The numerical families below have now been converted to exact directed
+rational-interval certificates.  A complementary bi-invariant metric
+argument supplies 19 exact certificates; the three-class calculation
+supplies five more.
 
 When B is the majority source, impose \(B=1\) using equal-angle
 quaternions with
@@ -209,19 +219,21 @@ not separated are
 (8,5,3,-1, 3)  vector ( 0,1)
 ```
 
-Together these leads would close 24 of the 30 three-minority classes,
-leaving six, if converted to exact radical or rational-interval
-certificates.
+Together the exact metric and three-class certificates close 24 of the
+30 three-minority classes and leave precisely the six signatures shown
+above.  The standalone metric proof is
+`literature/proofs/AK3_DEPTH4_BIINVARIANT_METRIC_OBSTRUCTION.md`.
 
 ## Exact continuation order
 
-1. Optimize and finish the 24 one/two-minority free-product
-   certificates.
-2. Prove the three-class \(SU(2)\) angle interval and add a test for it.
-3. Replace the numerical scalar comparisons above by exact radical or
-   directed rational-interval certificates.
-4. Attack the six remaining signatures using a different majority-
-   killing representation or an exact triple-class calculation in
-   \(C_3*C_4\) and \(C_2*C_3\).
+1. The 24 one/two-minority free-product certificates are complete.
+2. The three-class \(SU(2)\) angle interval is proved exactly.
+3. Exact metric and directed-interval certificates close 24 of the 30
+   three-minority signatures.
+4. Attack the six remaining signatures with invariants retaining both
+   relators.  Exact triple-class identities prove majority-killing
+   representations intrinsically blind for five; an independent trace-
+   polynomial argument proves full majority-killing \(SU(2)\) blindness
+   for the sixth.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.
