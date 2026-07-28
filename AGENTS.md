@@ -1260,3 +1260,8 @@
 
 - [WORKS] For `d` homogeneous directions, a mod-two integer-valued quadratic obstruction is determined by `1 + 2*d + binomial(d,2)` exact replays at `0`, `e_i`, `2e_i`, and `e_i+e_j`. Validate at `3e_i` and `3e_i+e_j`, then evaluate the complete `(Z/4)^d` table algebraically.
 - [WORKS] For six directions this reduced nonlinear replays from 4096 to 28 plus 21 validations while reproducing the complete table hash `58994ebbd8531bc402c4c8e15410c2a70448db8f8f50298f24f9c87fc1811298`.
+
+### 2026-07-28 Use exact in-repo elimination for quadratic forms
+
+- [TRAP] The proof worktree's system Python has NumPy but not SymPy; importing `sympy` to compute the exact nullspace of the seven-direction obstruction matrix failed with `ModuleNotFoundError`.
+- [WORKS] Keep rational row reduction and congruence solving in small dependency-free certificate helpers using `fractions.Fraction`; use NumPy eigenvalues only as exploratory evidence, never as the exact proof.
