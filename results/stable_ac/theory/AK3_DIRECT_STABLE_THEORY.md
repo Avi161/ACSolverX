@@ -4867,7 +4867,75 @@ lift in the three canonical residues relevant to Result 56:
 
 Thus the canonical internal double cosets are closed completely.
 The unresolved internal residue now consists only of noncanonical
-double cosets not already covered by Results 61--80.
+double cosets not already covered by Results 61--84.
+
+**Result 84 (characteristic five closes the negative--positive
+length-two collapse).**  Let
+
+\[
+b=x^\ell y^{-1}x^ry,
+\qquad
+\ell\in\mathbb Z,\quad r\not\equiv0\pmod4.
+\]
+
+For both signs, the internal flow ideal is proper over
+\(\overline{\mathbb F}_5\).  Use the cyclotomic block module of Result
+80 in characteristic five.
+
+For \(\sigma=+1\), choose \(0\ne v\in V_1\) and prescribe
+
+\[
+vY=3v.
+\]
+
+Then
+
+\[
+vX^4=v,\qquad
+vYR_3=vR_4=4v,
+\]
+
+and
+
+\[
+vb=vX^\ell Y^{-1}X^rY=v=-vR_4.
+\]
+
+For \(\sigma=-1\), choose a primitive cube root \(\omega\), vectors
+
+\[
+0\ne v\in V_1,\qquad 0\ne z\in V_\omega,
+\]
+
+and a fourth root \(\zeta\) with \(\zeta^r=-1\).  Such a root exists
+for every displayed \(r\): use \(\zeta=-1\) for odd \(r\), and a
+square root of \(-1\) for \(r\equiv2\pmod4\).  For
+\(0\ne a\in V_\zeta\), prescribe
+
+\[
+vY=3v+z,\qquad aY=v.
+\]
+
+The source and image pairs are independent inside the
+\(D_1\)-to-\(\mathcal R_1\) block, so the prescription extends to the
+global \(BS(3,4)\) action.  It gives
+
+\[
+vYR_3=vR_4=4v,\qquad
+vb=aX^rY=4v=vR_4.
+\]
+
+Thus in either sign a nonzero vector annihilates all three ideal
+generators.  The characteristic-free Fox bridge proves
+\(P_\sigma(c)\) nonprimitive for every conjugator satisfying
+
+\[
+\rho(c)=zbz^{-1}
+\]
+
+with such a \(b\).  This closes every free-kernel lift of all twelve
+normalized negative--positive length-two codes and both signs.  The
+negative sign is the previously unresolved Result-56 residue.
 
 ## Live lead
 
@@ -4940,7 +5008,9 @@ one-positive-stable-letter representative. Result 62 also closes the
 entire positive--negative length-two exponent-zero family. Result 63
 completes the flow-module classification at length two: the
 negative--positive family makes this module collapse and therefore
-requires a different invariant. Results 73--75 close the
+requires a different invariant. Result 83 supplies that different
+invariant on every canonical double coset, and Result 84 supplies it
+on the complete negative--positive length-two family. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -4950,7 +5020,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--83, arbitrary W--D conjugators,
+61--84, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

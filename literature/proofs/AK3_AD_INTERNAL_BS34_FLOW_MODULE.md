@@ -4258,3 +4258,147 @@ Result 56's three internal projection classes is nonprimitive for
 every conjugator \(c\), even though its rational flow quotient is
 zero.  Noncanonical internal double cosets outside the families
 already decided above remain a separate problem.
+
+## 31. Characteristic five closes the negative--positive rational collapse
+
+The length-two family in Section 13 also retains finite-characteristic
+information.  Let
+
+\[
+b=x^\ell y^{-1}x^ry,
+\qquad
+\ell\in\mathbb Z,\quad r\not\equiv0\pmod4.
+\tag{258}
+\]
+
+Then, for both \(\sigma=\pm1\),
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,\sigma}
+\ne\overline{\mathbb F}_5[B].
+\tag{259}
+\]
+
+Thus all twelve normalized codes
+\(\ell=0,1,2,3\), \(r=1,2,3\), for both signs, are proper in
+characteristic five even though Section 13 proves that their rational
+quotients vanish.
+
+Use the cyclotomic block construction of Section 29 over
+\(k=\overline{\mathbb F}_5\).  Let \(V_\zeta\) be countably
+infinite-dimensional for every root of unity \(\zeta\in k\), let
+\(X\) act by \(\zeta\) on \(V_\zeta\), and set
+
+\[
+D_c=\bigoplus_{\zeta^4=c}V_\zeta,
+\qquad
+\mathcal R_c=\bigoplus_{\eta^3=c}V_\eta.
+\tag{260}
+\]
+
+The polynomials defining the fourth and third roots are separable in
+characteristic five.  Hence both sides of (260) have countable
+dimension, finite injective prescriptions
+\(D_c\to\mathcal R_c\) extend to block isomorphisms, and their direct
+sum \(Y\) satisfies
+
+\[
+YX^3=X^4Y.
+\tag{261}
+\]
+
+First suppose \(\sigma=+1\).  Choose \(0\ne v\in V_1\) and prescribe
+
+\[
+vY=3v.
+\tag{262}
+\]
+
+Then
+
+\[
+vX^4=v,\qquad
+vYR_3=3\cdot3v=4v=vR_4.
+\tag{263}
+\]
+
+Also \(3^{-1}=2\) in \(k\), so
+
+\[
+\begin{aligned}
+vb
+&=vX^\ell Y^{-1}X^rY\\
+&=2vY=v=-4v=-vR_4.
+\end{aligned}
+\tag{264}
+\]
+
+Thus \(v\) annihilates \(b+R_4\).
+
+Now suppose \(\sigma=-1\).  Choose a primitive cube root
+\(\omega\), nonzero vectors
+
+\[
+v\in V_1,\qquad z\in V_\omega,
+\]
+
+and choose a fourth root of unity \(\zeta\) satisfying
+
+\[
+\zeta^r=-1=4.
+\tag{265}
+\]
+
+Such a \(\zeta\) always exists under (258): take \(\zeta=-1\) when
+\(r\) is odd and take a square root of \(-1\) when
+\(r\equiv2\pmod4\).  Choose \(0\ne a\in V_\zeta\) and prescribe
+
+\[
+vY=3v+z,\qquad aY=v.
+\tag{266}
+\]
+
+Both sources lie in \(D_1\), and both images lie in
+\(\mathcal R_1\).  The sources are independent because
+\(\zeta\ne1\), while the images are independent because of the
+nonzero \(V_\omega\)-component.  Thus (266) extends to a block
+isomorphism.  Since \(R_3(\omega)=0\),
+
+\[
+vX^4=v,\qquad
+vYR_3=3\cdot3v=4v=vR_4.
+\tag{267}
+\]
+
+Moreover,
+
+\[
+\begin{aligned}
+vb
+&=vX^\ell Y^{-1}X^rY\\
+&=aX^rY
+=4aY
+=4v
+=vR_4.
+\end{aligned}
+\tag{268}
+\]
+
+Thus \(v\) annihilates \(b-R_4\).  In both signs a nonzero module
+vector annihilates all three generators of (249), proving (259).
+
+The characteristic-free Fox bridge in Section 30 now applies.
+Therefore every relative conjugator \(c\) with
+
+\[
+\rho(c)=zbz^{-1},
+\qquad
+b=x^\ell y^{-1}x^ry,\quad r\not\equiv0\pmod4,
+\tag{269}
+\]
+
+gives a nonprimitive A--D product \(P_\sigma(c)\), for either sign
+and with no bound on the free-kernel decoration of \(c\).  In the
+Result 56 residue, the relevant case is \(\sigma=-1\); this closes
+the entire negative--positive length-two family which the rational
+flow module could not see.
