@@ -1185,3 +1185,8 @@
 
 - [TRAP] The exploratory Stallings core used set iteration during vertex unions; its graph rank was correct, but its serialized vertex numbering hash changed after the tracked certificate made union order deterministic.
 - [WORKS] Sort fold transitions and choose union roots deterministically before recording a graph hash. Freeze the hash from the canonical certificate, not from an exploratory graph with incidental numbering.
+
+### 2026-07-28 Solve orbit balance before extending source-flow families
+
+- [TRAP] A parameterized source-flow probe reconstructed the known exponent-one syzygy at radius two, then spent the remaining budget expanding the exponent-two forest component without first deciding whether its source boundary balanced on each subgroup orbit.
+- [WORKS] Reduce candidate (L_0w_0+L_1w_1) boundaries to exact (K\backslash Q/\langle c\rangle) orbit sums before building paths. Construct the unique tree flow only for orbit-balanced candidates, and flush each completed family record immediately.
