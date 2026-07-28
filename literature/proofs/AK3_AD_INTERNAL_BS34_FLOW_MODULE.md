@@ -5252,3 +5252,130 @@ the same conclusion for \(P_+(c)\).  Combining Sections 12--13,
 Britton-reduced height-zero sign string of stable-letter length at
 most four.  This is a complete length-four classification, not a
 proof of the Andrews--Curtis conjecture.
+
+## 37. Every negative-first single-valley word
+
+The monomial chain of Section 34 has no length bound.  Let \(n\geq1\)
+and
+
+\[
+\begin{aligned}
+b={}&x^\ell y^{-1}x^{r_1}y^{-1}\cdots
+x^{r_{n-1}}y^{-1}x^s y\\
+&\hspace{35mm}{}\cdot
+x^{t_{n-1}}y\cdots x^{t_1}yx^q,
+\end{aligned}
+\tag{335}
+\]
+
+where
+
+\[
+\ell,q,r_1,\ldots,r_{n-1},t_1,\ldots,t_{n-1}\in\mathbb Z,
+\qquad
+4\nmid s.
+\tag{336}
+\]
+
+Thus the stable-letter sign string is
+
+\[
+(\underbrace{-,\ldots,-}_{n},
+\underbrace{+,\ldots,+}_{n}),
+\]
+
+and the only opposing-sign turn is Britton-reduced.  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{337}
+\]
+
+Choose independent
+
+\[
+v,a_1,\ldots,a_{n-1}\in V_1
+\]
+
+and a fresh nonzero \(z\in V_\omega\), where \(\omega\) is a
+primitive cube root.  Choose \(\gamma\in\mu_4\) with
+
+\[
+\gamma^s=4=-1
+\tag{338}
+\]
+
+and a nonzero \(d\in V_\gamma\).  As in Section 34, take
+\(\gamma=-1\) for odd \(s\) and a primitive fourth root for
+\(s\equiv2\pmod4\).  In particular, \(\gamma\ne1\).
+
+For \(n\geq2\), prescribe in \(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+vY&=3v+z,\\
+a_1Y&=v,\\
+a_jY&=a_{j-1}\qquad(2\leq j\leq n-1),\\
+dY&=a_{n-1}.
+\end{aligned}
+\tag{339}
+\]
+
+For \(n=1\), omit the \(a_j\)'s and read the last prescription as
+\(dY=v\).  The sources
+
+\[
+v,a_1,\ldots,a_{n-1},d
+\]
+
+are independent because \(d\) lies in the separate
+\(V_\gamma\)-summand.  The images
+
+\[
+3v+z,v,a_1,\ldots,a_{n-1}
+\]
+
+are independent because \(z\) is fresh.  Thus (339) is an injective
+partial block map and extends to a global cyclotomic BS\((3,4)\)
+action.
+
+The baseline is
+
+\[
+vX^4=v,
+\qquad
+vYR_3=(3v+z)R_3=4v=vR_4.
+\tag{340}
+\]
+
+Every \(r_j\)- and \(t_j\)-power acts trivially on the
+\(1\)-eigenvector chain.  The negative letters descend from \(v\)
+through \(a_1,\ldots,a_{n-1}\) to \(d\); equation (338) supplies the
+scalar four; the positive letters ascend the same chain.  Therefore
+
+\[
+v
+\xmapsto{x^\ell}v
+\xmapsto{y^{-1}}a_1
+\xmapsto{y^{-1}}\cdots
+\xmapsto{y^{-1}}d
+\xmapsto{x^s}4d
+\xmapsto{y}4a_{n-1}
+\xmapsto{y}\cdots
+\xmapsto{y}4v
+\xmapsto{x^q}4v
+=vR_4.
+\tag{341}
+\]
+
+For \(n=1\), omit all \(a_j\)'s in (341).  The omitted
+\(X\)-powers fix the displayed chain vectors.
+Equations (340)--(341) prove (337).
+
+The Fox bridge gives a nonprimitive \(P_-(c)\) for every
+free-group conjugator with \(\rho(c)=zbz^{-1}\), independently of
+its free-kernel decoration.  Equation (286) gives the same conclusion
+for \(P_+(c)\).  Hence both A--D signs are obstructed on the complete
+unbounded single-valley family.  The cases \(n=1\) and \(n=2\)
+recover the negative-sign parts of Sections 31 and 34.

@@ -5306,6 +5306,59 @@ sign string of stable-letter length at most four and every
 free-kernel lift.  This is a complete length-four classification,
 not a resolution of Andrews--Curtis.
 
+**Result 90 (the negative-first single-valley family is obstructed at
+every length).**  Let \(n\geq1\) and
+
+\[
+\begin{aligned}
+b={}&x^\ell y^{-1}x^{r_1}y^{-1}\cdots
+x^{r_{n-1}}y^{-1}x^s y\\
+&\hspace{30mm}{}\cdot
+x^{t_{n-1}}y\cdots x^{t_1}yx^q,
+\qquad 4\nmid s,
+\end{aligned}
+\]
+
+with every other exponent, including \(\ell\) and \(q\), arbitrary.  Over
+\(\overline{\mathbb F}_5\), choose independent
+\(v,a_1,\ldots,a_{n-1}\in V_1\), a fresh
+\(z\in V_\omega\), and \(d\in V_\gamma\), where
+\(\gamma^4=1\) and \(\gamma^s=4=-1\).  Prescribe
+
+\[
+vY=3v+z,
+\qquad
+a_1Y=v,
+\qquad
+a_jY=a_{j-1},
+\qquad
+dY=a_{n-1}.
+\]
+
+For \(n=1\), the last equation means \(dY=v\).  Both the source and
+image lists are independent, so the prescription extends to the
+cyclotomic module.  The baseline is
+
+\[
+vYR_3=4v=vR_4.
+\]
+
+Every equal-sign exponent acts on a \(1\)-eigenvector.  The negative
+letters descend the chain from \(v\) to \(d\), the central exponent
+gives \(dX^s=4d\), and the positive letters ascend the same chain.
+The final \(x^q\) also fixes \(v\).
+Hence
+
+\[
+vb=4v=vR_4.
+\]
+
+The negative-sign internal ideal is therefore proper for every
+\((-^n,+^n)\) word, without a stable-letter-length bound.  Result 85
+handles the positive A--D sign, and the Fox bridge covers every
+free-kernel lift.  Results 84 and 87 are the cases \(n=1\) and
+\(n=2\).
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5384,7 +5437,8 @@ the first negative-start alternating length-four family and every
 positive-sign height-zero parameter. Result 86 extends the negative
 alternating construction to arbitrary stable-letter length. Results
 87--89 close all four nonalternating height-zero sign strings of
-stable-letter length four. Results 73--75 close the
+stable-letter length four, and Result 90 closes every negative-first
+single-valley word at arbitrary length. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5394,7 +5448,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--89, arbitrary W--D conjugators,
+61--90, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
