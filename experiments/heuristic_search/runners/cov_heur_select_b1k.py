@@ -284,9 +284,6 @@ def write_md(rows):
     new_greedy = sorted(hs_g - bc_g, key=int)
     lost_greedy = sorted(bc_g - hs_g, key=int)
 
-    nested_hsel = hs_h <= hs_g or hs_g <= hs_h
-    nested_ship = bc_h <= bc_g  # known: covheur ⊂ covgreedy
-
     lines = [
         "# Heur-selected CoV vs greedy-oracle best-CoV at budget 1,000",
         "",
