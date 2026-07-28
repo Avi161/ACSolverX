@@ -4867,7 +4867,7 @@ lift in the three canonical residues relevant to Result 56:
 
 Thus the canonical internal double cosets are closed completely.
 The unresolved internal residue now consists only of noncanonical
-double cosets not already covered by Results 61--84.
+double cosets not already covered by Results 61--85.
 
 **Result 84 (characteristic five closes the negative--positive
 length-two collapse).**  Let
@@ -4936,6 +4936,81 @@ generators.  The characteristic-free Fox bridge proves
 with such a \(b\).  This closes every free-kernel lift of all twelve
 normalized negative--positive length-two codes and both signs.  The
 negative sign is the previously unresolved Result-56 residue.
+
+**Result 85 (characteristic seven closes the first length-four
+alternating family).**  Let
+
+\[
+b=x^\ell y^{-1}x^ryx^sy^{-1}x^ty,
+\]
+
+where \(r,t\not\equiv0\pmod4\) and
+\(s\not\equiv0\pmod3\).  Then the negative-sign internal ideal is
+proper over \(\overline{\mathbb F}_7\).
+
+Choose \(v\in V_1\) and prescribe
+
+\[
+vY=6v+z,
+\]
+
+where \(z\) lies in a primitive cube-root eigenspace.  Then
+
+\[
+vYR_3=vR_4=4v.
+\]
+
+Choose \(a\in D_1\) with a full independent four-phase \(X\)-orbit
+and prescribe \(aY=v\).
+
+If \(r+t\not\equiv0\pmod4\), the sources
+
+\[
+v,\ a,\ aX^r,\ aX^{-t}
+\]
+
+are independent.  Choose \(u=u_2+u_4\) using fresh vectors in the two
+primitive cube-root eigenspaces and prescribe
+
+\[
+(aX^r)Y=u,\qquad
+(aX^{-t})Y=2uX^s.
+\]
+
+Since \(2^{-1}=4\) in characteristic seven,
+
+\[
+vb=uX^sY^{-1}X^tY=4aY=4v.
+\]
+
+If \(r+t\equiv0\pmod4\), choose
+\(\eta^3=1\) with \(\eta^s=4\), take \(u\in V_\eta\), and prescribe
+
+\[
+(aX^r)Y=u.
+\]
+
+Now \(aX^r=aX^{-t}\) and \(uX^s=4u\), so the same endpoint
+calculation gives \(vb=4v\).  The block lists are independent in both
+cases.  Hence all
+
+\[
+4\cdot3\cdot2\cdot3=72
+\]
+
+normalized sign-\((-,+,-,+)\) codes are obstructed, and the
+characteristic-free Fox bridge covers every free-kernel lift.
+
+There is also an all-length side theorem.  Over \(\mathbb F_5\), the
+one-line prescription \(vY=3v\), \(v\in V_1\), gives
+
+\[
+vb=3^{e_y(b)}v.
+\]
+
+Thus every height-zero internal parameter satisfies
+\(v(b+R_4)=0\), and every corresponding positive-sign A--D product
+is nonprimitive, without a Britton-length bound.
 
 ## Live lead
 
@@ -5010,7 +5085,9 @@ completes the flow-module classification at length two: the
 negative--positive family makes this module collapse and therefore
 requires a different invariant. Result 83 supplies that different
 invariant on every canonical double coset, and Result 84 supplies it
-on the complete negative--positive length-two family. Results 73--75 close the
+on the complete negative--positive length-two family. Result 85 closes
+the first negative-start alternating length-four family and every
+positive-sign height-zero parameter. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5020,7 +5097,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--84, arbitrary W--D conjugators,
+61--85, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

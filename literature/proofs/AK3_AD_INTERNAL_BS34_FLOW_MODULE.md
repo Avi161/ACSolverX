@@ -4402,3 +4402,185 @@ and with no bound on the free-kernel decoration of \(c\).  In the
 Result 56 residue, the relevant case is \(\sigma=-1\); this closes
 the entire negative--positive length-two family which the rational
 flow module could not see.
+
+## 32. A uniform characteristic-seven length-four interpolation
+
+Finite-characteristic block interpolation also closes the first
+arbitrary negative-start alternating family.  Let
+
+\[
+b=x^\ell y^{-1}x^ryx^sy^{-1}x^ty,
+\tag{270}
+\]
+
+where
+
+\[
+\ell\in\mathbb Z,\qquad
+r,t\not\equiv0\pmod4,\qquad
+s\not\equiv0\pmod3.
+\tag{271}
+\]
+
+Then
+
+\[
+J^{(\overline{\mathbb F}_7)}_{b,-1}
+\ne\overline{\mathbb F}_7[B].
+\tag{272}
+\]
+
+Thus every normalized sign-\((-,+,-,+)\) code is obstructed for the
+negative A--D product.
+
+Work in the cyclotomic block module over
+\(k=\overline{\mathbb F}_7\).  Choose \(0\ne v\in V_1\), a primitive
+cube-root vector \(z\), and prescribe
+
+\[
+vY=6v+z.
+\tag{273}
+\]
+
+Since \(6=4/3\) in \(k\),
+
+\[
+vX^4=v,\qquad
+vYR_3=6\cdot3v=4v=vR_4.
+\tag{274}
+\]
+
+Choose \(a\in D_1\) whose four phase components are nonzero and
+independent.  Equivalently,
+
+\[
+\{a,aX,aX^2,aX^3\}
+\tag{275}
+\]
+
+is independent.  Choose \(v\) outside this span and prescribe
+
+\[
+aY=v.
+\tag{276}
+\]
+
+First suppose
+
+\[
+r+t\not\equiv0\pmod4.
+\tag{277}
+\]
+
+The four sources
+
+\[
+v,\qquad a,\qquad aX^r,\qquad aX^{-t}
+\tag{278}
+\]
+
+are independent.  Let \(2,4\in k\) denote the two primitive cube
+roots of unity.  Using fresh vectors in \(V_2,V_4\), choose
+
+\[
+u=u_2+u_4
+\]
+
+so that \(u,uX^s\) are independent and their span is disjoint from
+the images already prescribed.  Extend (273), (276) by
+
+\[
+(aX^r)Y=u,\qquad
+(aX^{-t})Y=2uX^s.
+\tag{279}
+\]
+
+All sources lie in \(D_1\), all images lie in \(\mathcal R_1\), and
+both lists are independent.  Thus the prescription extends to the
+global block isomorphism.  Since \(2^{-1}=4\) in \(k\),
+
+\[
+\begin{aligned}
+vb
+&=vX^\ell Y^{-1}X^rYX^sY^{-1}X^tY\\
+&=uX^sY^{-1}X^tY\\
+&=4aX^{-t}X^tY\\
+&=4v
+=vR_4.
+\end{aligned}
+\tag{280}
+\]
+
+Now suppose
+
+\[
+r+t\equiv0\pmod4.
+\tag{281}
+\]
+
+Choose a cube root \(\eta\) satisfying
+
+\[
+\eta^s=4:
+\qquad
+\eta=4\ \text{if }s\equiv1\pmod3,\qquad
+\eta=2\ \text{if }s\equiv2\pmod3.
+\tag{282}
+\]
+
+Take \(0\ne u\in V_\eta\), choose the vector \(z\) in the other
+primitive cube-root eigenspace, and prescribe
+
+\[
+(aX^r)Y=u.
+\tag{283}
+\]
+
+The three source and image vectors in (273), (276), and (283) are
+independent.  Because \(aX^{-t}=aX^r\), equation (282) gives
+
+\[
+uX^sY^{-1}=4aX^r=4aX^{-t}.
+\]
+
+The calculation (280) again yields \(vb=4v=vR_4\).  This proves
+(272) in both spectral cases.
+
+There is also an all-length positive-sign statement.  Over
+\(\mathbb F_5\), choose \(0\ne v\in V_1\) and prescribe \(vY=3v\).
+For every \(b\in B\),
+
+\[
+vb=3^{e_y(b)}v.
+\tag{284}
+\]
+
+Consequently, if \(e_y(b)=0\), then
+
+\[
+v(b+R_4)=v+4v=0.
+\tag{285}
+\]
+
+Thus
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,+1}
+\ne\overline{\mathbb F}_5[B]
+\qquad(e_y(b)=0),
+\tag{286}
+\]
+
+with no Britton-length restriction.
+
+Finally, the characteristic-free Fox bridge gives the free-group
+consequence.  Every conjugator \(c\) with
+
+\[
+\rho(c)=zbz^{-1}
+\]
+
+and \(b\) as in (270)--(271) makes \(P_-(c)\) nonprimitive, regardless
+of its free-kernel decoration.  For every height-zero \(b\), the same
+holds for \(P_+(c)\) by (286).  These are primitivity obstructions,
+not Andrews--Curtis reductions.
