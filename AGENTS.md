@@ -878,3 +878,8 @@
 
 - [TRAP] Appending Section 49 with a multi-line end-of-file anchor failed even after the visible tail appeared to match exactly.
 - [WORKS] When extending a rapidly growing proof ledger, anchor the append on its unique final content line; read back the new tail before making any distant summary edit.
+
+### 2026-07-27 Avoid all-add append hunks in proof ledgers
+
+- [TRAP] An all-add hunk for Section 51 duplicated the ledger's terminal sentence, and a LaTeX turn label beginning with a plus sign lost that sign to the unified-diff marker.
+- [WORKS] Append by replacing one exact terminal line with itself plus the new section; avoid content lines that begin with a literal plus sign, or include a second plus after the diff marker and verify the rendered tail immediately.

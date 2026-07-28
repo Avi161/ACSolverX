@@ -7527,3 +7527,180 @@ The Fox bridge and (286) obstruct both A--D signs for every
 free-kernel lift.  Together with Sections 27 and 34--49, this closes
 all twenty Britton-reduced height-zero sign strings of stable-letter
 length six.
+
+## 51. An arbitrary-length sign-path theorem away from zero phase
+
+Let
+
+\[
+b=x^\ell yx^{a_1}y^{\epsilon_2}x^{a_2}\cdots
+x^{a_{N-1}}y^{\epsilon_N}x^q,
+\qquad
+\epsilon_i\in\{+1,-1\},
+\tag{515}
+\]
+
+where
+
+\[
+N\ge2,\qquad
+\epsilon_1=+1,\qquad
+\sum_{i=1}^{N}\epsilon_i=0,\qquad
+\ell\not\equiv0\pmod4.
+\tag{516}
+\]
+
+Assume that (515) is Britton-reduced.  Equivalently, at each turn,
+
+\[
+\begin{array}{c|c}
+(\epsilon_i,\epsilon_{i+1})&\text{condition on }a_i\\ \hline
+(+1,-1)&3\nmid a_i,\\
+(-1,+1)&4\nmid a_i,
+\end{array}
+\tag{517}
+\]
+
+with no restriction at equal-sign transitions.  Then, over
+\(k=\overline{\mathbb F}_5\),
+
+\[
+J^{(k)}_{b,-1}\ne k[B].
+\tag{518}
+\]
+
+This is a single construction for every stable-letter length and sign
+path satisfying (516), not an induction over the twenty length-six
+codes.
+
+Choose fresh
+
+\[
+w=w_1+w_{-1}+w_\iota\in D_1,
+\qquad
+S=wR_4=4w_1,
+\qquad
+h=3w_1+z,\quad 0\ne z\in V_\omega.
+\tag{519}
+\]
+
+Here \(\iota\) is a primitive fourth root and \(\omega\) a primitive
+cube root.  As in (455),
+
+\[
+w,\qquad wX^\ell,\qquad S
+\tag{520}
+\]
+
+are independent for every nonzero \(\ell\bmod4\).  Also
+
+\[
+hR_3=S,
+\qquad
+h,S\ \text{are independent}.
+\tag{521}
+\]
+
+For \(1\le i<N\), choose a fresh state vector \(v_i\), with all
+component packets mutually disjoint, according to the local turn:
+
+\[
+\begin{array}{c|c}
+(\epsilon_i,\epsilon_{i+1})&v_i\\ \hline
+(+1,+1)\text{ or }(-1,-1)&\text{a fresh line in }V_1,\\
+(+1,-1)&\text{a full cube-phase packet in }\mathcal R_1,\\
+(-1,+1)&\text{a full fourth-phase packet in }D_1.
+\end{array}
+\tag{522}
+\]
+
+In the second row choose the packet so that
+\(v_i,v_iX^{a_i}\) are independent; (517) permits this.  Make the
+analogous choice in the third row.  Put
+
+\[
+v_N=S,\qquad
+p_1=wX^\ell,\qquad
+p_i=v_{i-1}X^{a_{i-1}}\quad(2\le i\le N).
+\tag{523}
+\]
+
+Prescribe the finite part of \(Y\) by
+
+\[
+wY=h,
+\qquad
+\begin{cases}
+p_iY=v_i,&\epsilon_i=+1,\\
+v_iY=p_i,&\epsilon_i=-1.
+\end{cases}
+\quad(1\le i\le N).
+\tag{524}
+\]
+
+Every arrow in (524) lies in the single block
+\(D_1\to\mathcal R_1\).  Indeed, before a positive letter the preceding
+state is in \(V_1\) after a positive letter and in \(D_1\) after a
+negative letter.  After a positive letter the next state is in
+\(V_1\) before another positive letter and in \(\mathcal R_1\) before
+a negative letter.  The negative-letter statement is the same
+argument with sources and images reversed.  The first source
+\(p_1=wX^\ell\) lies in \(D_1\), and the endpoint \(S\) lies in
+\(V_1\).
+
+The complete source and image lists in (524) are
+
+\[
+\mathscr S
+=\{w\}\cup\{p_i:\epsilon_i=+1\}
+\cup\{v_i:\epsilon_i=-1\},
+\tag{525}
+\]
+
+\[
+\mathscr T
+=\{h\}\cup\{v_i:\epsilon_i=+1\}
+\cup\{p_i:\epsilon_i=-1\}.
+\tag{526}
+\]
+
+Their independence is local.  At a \(+\!+\) turn, \(v_i\) occurs
+once in \(\mathscr T\) and once in \(\mathscr S\).  At a
+\(-\!-\) turn it occurs once in the reverse order.  At a
+\((+,-)\) turn, the two entries in \(\mathscr T\) are
+\(v_i,v_iX^{a_i}\), independent by (517) and (522).  At a
+\((-,+)\) turn, the corresponding independent pair lies in
+\(\mathscr S\).  Freshness separates different turns.
+
+At the initial boundary, \(w,wX^\ell\) are independent.  If the last
+sign is negative, \(S\) also belongs to \(\mathscr S\), and (520)
+handles the whole boundary triple.  If the last sign is positive,
+\(S\in\mathscr T\), and (521) makes it independent from \(h\).
+Thus both (525) and (526) are independent, and (524) extends to a
+global block isomorphism.
+
+The word itself now replays tautologically along the state path:
+
+\[
+wX^\ell y^{\epsilon_1}x^{a_1}
+y^{\epsilon_2}\cdots x^{a_{N-1}}y^{\epsilon_N}
+=v_N=S.
+\tag{527}
+\]
+
+Since \(S\in V_1\), the terminal \(x^q\) fixes it.  Equations
+(519), (521), and (527) therefore give
+
+\[
+wX^4=w,\qquad
+wYR_3=S=wR_4,\qquad
+wb=S=wR_4.
+\tag{528}
+\]
+
+This proves (518).  The Fox bridge and (286) obstruct both A--D
+signs for every free-kernel lift in this arbitrary-length family.
+The remaining positive-start branch has
+\(\ell\equiv0\pmod4\); there the baseline source \(w\) coincides with
+the first word source, so (524) acquires a genuine boundary
+compatibility instead of two independent arrows.

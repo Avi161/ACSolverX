@@ -6222,6 +6222,74 @@ Fox bridge covers every free-kernel lift.  This is a complete
 length-six obstruction theorem; it is not a proof of the stable
 Andrews--Curtis conjecture or of the Andrews--Curtis conjecture.
 
+**Result 104 (arbitrary-length positive-start paths away from zero
+phase are obstructed).**  Let
+
+\[
+b=x^\ell yx^{a_1}y^{\epsilon_2}x^{a_2}\cdots
+x^{a_{N-1}}y^{\epsilon_N}x^q
+\]
+
+be Britton-reduced, where
+
+\[
+\sum_{i=1}^{N}\epsilon_i=0,\qquad
+\epsilon_1=+1,\qquad
+\ell\not\equiv0\pmod4.
+\]
+
+At each \((+,-)\) turn Britton reduction says \(3\nmid a_i\);
+at each \((-,+)\) turn it says \(4\nmid a_i\).
+
+Over \(\overline{\mathbb F}_5\), choose mixed \(w\in D_1\), put
+\(S=wR_4\), and arrange that \(w,wX^\ell,S\) are independent.
+Choose \(hR_3=S\) with \(h,S\) independent.  For each state \(v_i\)
+after the \(i\)-th stable letter, choose a mutually fresh packet by
+the local turn:
+
+\[
+\begin{array}{c|c}
+(+,+)\text{ or }(-,-)&v_i\in V_1,\\
+(+,-)&v_i\in\mathcal R_1,\quad
+v_i,v_iX^{a_i}\text{ independent},\\
+(-,+)&v_i\in D_1,\quad
+v_i,v_iX^{a_i}\text{ independent}.
+\end{array}
+\]
+
+Put \(v_N=S\), \(p_1=wX^\ell\), and
+\(p_i=v_{i-1}X^{a_{i-1}}\).  Prescribe
+
+\[
+wY=h,\qquad
+p_iY=v_i\quad(\epsilon_i=+1),\qquad
+v_iY=p_i\quad(\epsilon_i=-1).
+\]
+
+All arrows lie in \(D_1\to\mathcal R_1\).  At equal-sign turns a
+state appears once on each side of the partial map.  At a
+\((+,-)\) turn its two translates occur only in the image list; at
+a \((-,+)\) turn they occur only in the source list.  The Britton
+conditions make those pairs independent, and freshness separates
+different turns.  The initial boundary is controlled by
+\(w,wX^\ell,S\), while \(h,S\) control a positive final sign.
+Hence both finite lists are independent and the prescription
+extends globally.
+
+The word then replays exactly through the states and ends at \(S\).
+Thus
+
+\[
+wX^4=w,\qquad wYR_3=wR_4,\qquad wb=wR_4.
+\]
+
+The negative A--D ideal is proper for every word in this
+arbitrary-length family.  Result 85 supplies the other sign, and the
+Fox bridge covers every free-kernel lift.  The unresolved
+positive-start branch is now exactly the zero initial phase
+\(\ell\equiv0\pmod4\), where the baseline source and first word
+source coincide.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6316,7 +6384,9 @@ of the twenty total sign strings by inversion. Result 100 closes the
 first remaining positive-start stratum, and Result 101 closes the
 second. Result 102 closes the penultimate stratum, and Result 103
 closes the last one, completing all twenty height-zero length-six
-codes for both A--D signs. Results 73--75 close the
+codes for both A--D signs. Result 104 replaces the nonzero-initial-phase
+part of that census by a single arbitrary-length positive-start
+sign-path theorem. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -6326,7 +6396,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--103, arbitrary W--D conjugators,
+61--104, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
