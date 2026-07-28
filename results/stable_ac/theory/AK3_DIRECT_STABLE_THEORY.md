@@ -6689,6 +6689,60 @@ storage escape must use a multi-letter primitive deletion, use the
 changed source more than once, alter or delete \(Q\) before recovery,
 or delete a different primitive slot.
 
+**Result 112 (immediate two-stage deletion gives only an ambient-Aut
+endpoint).**  Let \(F_0\) be the old rank-\(n\) free group and suppose
+the current storage rows \(P,R'\) are a relative primitive pair in
+
+\[
+F=F_0*\langle q,r\rangle:
+\]
+
+some \(\Phi\in\operatorname{Aut}(F)\) fixes \(F_0\) pointwise and sends
+\(q\mapsto P,\ r\mapsto R'\).  Form
+
+\[
+W=P\,u(R')^\eta u^{-1}
+\quad\text{or}\quad
+W=u(R')^\eta u^{-1}P,
+\qquad \eta=\pm1,
+\]
+
+and assume \(W\) is primitive, without any unique-letter hypothesis.
+After primitive deletion of \(W\), let \(s\) be the surviving image of
+\(R'\).  Then
+
+\[
+\langle\!\langle W,R'\rangle\!\rangle
+=
+\langle\!\langle P,R'\rangle\!\rangle,
+\]
+
+so
+
+\[
+\bigl(F/\langle\!\langle W\rangle\!\rangle\bigr)
+/\langle\!\langle s\rangle\!\rangle
+\cong F_0.
+\]
+
+The first quotient is free of rank \(n+1\), and the second is free of
+rank \(n\).  The classical one-relator freeness theorem therefore makes
+\(s\) primitive.  It may be deleted immediately.
+
+The combined two-stage quotient and
+\(\rho\Phi^{-1}:F\to F_0\) have the same kernel, where \(\rho\) kills
+\(q,r\).  Hence they differ by an automorphism
+\(\alpha\in\operatorname{Aut}(F_0)\).  Every restored old relator \(T\)
+reaches \(\alpha(T)\).
+
+Thus immediate deletion of the surviving changed source yields only a
+simultaneous ambient-Aut image of the old tuple.  This is a stable
+self-loop by the stable ambient automorphism theorem, not a proved
+classical AC self-loop.  A multi-letter storage escape must exploit the
+intermediate rank-\((n+1)\) tuple before deleting \(s\), or else lose
+relative primitivity, use the source repeatedly, or delete another
+slot.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6810,7 +6864,13 @@ primitive r-deletion forces the surviving changed source to become a
 conjugate of the target it changed, after which Q recovers A and
 destabilizes. The remaining cyclic branch must use a multi-letter
 primitive, repeated source use, premature loss of Q, or a different
-deleted slot. Results
+deleted slot. Result 112 reduces the primitive multi-letter branch
+further: if the changed source is deleted immediately afterward, the
+two-stage kernel equals the original relative-storage kernel, and the
+endpoint is only a simultaneous ambient-Aut image of the old tuple.
+This is a stable, not proved classical, return. The live opportunity is
+therefore traffic in the intermediate rank-\((n+1)\) tuple before the
+surviving source is deleted. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6821,10 +6881,10 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--111, arbitrary W--D conjugators,
+61--112, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
-before deletion outside Result 111's unique-letter source-consumption
-closure. Longer branches may use additional \(Wq^{-1}\) blocks,
+before deletion outside Results 111--112's source-consumption and
+immediate-second-deletion closures. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
 primitive slot. The exact Fox coordinate remains a necessary free-kernel

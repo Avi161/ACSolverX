@@ -913,3 +913,13 @@
 
 - [TRAP] The changed-source exchange algebra used a valid unique-r substitution but initially omitted that the checkpoint must be a balanced trivial-group presentation, making the step readable as an unauthorized bare generator-relator deletion.
 - [WORKS] Every primitive or unique-letter deletion theorem must state the balanced trivial-group hypothesis and name the stable substitution-and-removal composite. Use its explicit triangular substitution when claiming that unaffected generators or relators remain fixed.
+
+### 2026-07-27 Distinguish exact basis pairs from relator conjugacy-class pairs
+
+- [TRAP] The rank-three Whitehead pair reducer cyclically canonicalizes each word independently. Its positive result certifies a primitive pair of relator conjugacy classes, which is correct after AC3, but it cannot test whether the two displayed based elements themselves extend to one ambient basis.
+- [WORKS] Before using a primitive-pair diagnostic, state whether independent conjugation is allowed. Use the cyclic Whitehead reducer for AC relator slots; use an exact Nielsen or Stallings based-subgroup test for an endomorphism or exact basis-pair claim.
+
+### 2026-07-27 Bound exploratory Whitehead diagnostics incrementally
+
+- [TRAP] An all-at-once rank-three conjugator census through length eight ran long enough to require interruption and produced no checkpointed partial counts.
+- [WORKS] Sweep one word length at a time, print the completed level, and apply algebraic occurrence and abelianization filters before Whitehead reduction. Treat every bounded absence as diagnostic evidence only.
