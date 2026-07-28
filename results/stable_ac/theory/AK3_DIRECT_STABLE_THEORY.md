@@ -5833,6 +5833,91 @@ The Fox bridge and Result 85 close both A--D signs for every
 free-kernel lift.  Hence the complete \((-,+,+,-,+,-)\) length-six
 stratum is obstructed.
 
+**Result 99 (every negative-start height-zero length-six string is
+obstructed).**  The last missing negative-start code is
+
+\[
+b=x^\ell y^{-1}x^ryx^syx^tyx^uy^{-1}x^vy^{-1}x^q,
+\qquad
+4\nmid r,\quad 3\nmid u.
+\]
+
+Over \(\overline{\mathbb F}_5\), choose
+
+\[
+h=3w+z_1+z_2,
+\qquad
+Q=q_0+r_1+r_2,
+\]
+
+where \(w,p,q_0\in V_1\),
+\(z_j,r_j\in V_{\omega^j}\), and all packets are fresh.  Choose
+\(a\in D_1\) with full fourth-phase support.  For \(j=1,2\), choose
+\(d_j\in\mathcal R_{\omega^j}\) so that
+\(d_j,d_jX^{-u}\) are independent.  Prescribe
+
+\[
+wY=h,\quad
+aY=w,\quad
+(aX^r)Y=p,\quad
+pY=Q,\quad
+q_0Y=2hX^{-u},
+\]
+
+and
+
+\[
+z_jY=d_j,\qquad
+r_jY=4\omega^{-j(v+t)}d_jX^{-u}.
+\]
+
+All source and image lists are independent in their respective
+blocks.  For \(P=4hX^{-v}\), the two blockwise expansions give
+
+\[
+(PY)X^{-u}=(QX^t)Y.
+\]
+
+Consequently
+
+\[
+wb=QX^tYX^uY^{-1}X^vY^{-1}X^q
+=PY^{-1}X^vY^{-1}X^q
+=4w.
+\]
+
+Together with Results 86, 90, and 93--98, this closes every
+negative-start height-zero sign string of stable-letter length six.
+
+There is also a characteristic-five inversion corollary.  If
+\(wX=w\) and \(wb=4w\), then \(4^{-1}=4\) gives
+\(wb^{-1}=4w\).  Applying this to Results 96--99 closes the four
+additional positive-start strings
+
+\[
+(+,-,-,-,+,+),\quad
+(+,-,-,+,-,+),\quad
+(+,-,+,-,-,+),\quad
+(+,+,-,-,-,+).
+\]
+
+Together with the positive single peak and positive alternating
+families, sixteen of the twenty height-zero length-six sign strings
+are obstructed for the negative A--D sign.  The four remaining
+strings are
+
+\[
+(+,+,-,+,-,-),\quad
+(+,+,-,-,+,-),\quad
+(+,-,+,+,-,-),\quad
+(+,-,-,+,+,-).
+\]
+
+Result 85 already handles the positive A--D sign on all twenty.  The
+Fox bridge covers every free-kernel lift in the sixteen closed
+negative-sign strata.  This is a complete negative-start
+classification, not a complete all-sign classification.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -5921,8 +6006,9 @@ arbitrarily deep symmetric wrapper around an alternating core. Result
 Result 95 closes the self-inverse mixed length-six stratum, and Result
 96 closes the two-negative three-positive terminal-return stratum.
 Result 97 closes the alternating-prefix terminal-return stratum.
-Result 98 closes the two-turn separated-return stratum. Results
-73--75 close the
+Result 98 closes the two-turn separated-return stratum. Result 99
+completes every negative-start length-six stratum and reaches sixteen
+of the twenty total sign strings by inversion. Results 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
 flow ideal back to an exact Fox nonprimitivity obstruction. Result 76
@@ -5932,7 +6018,7 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--98, arbitrary W--D conjugators,
+61--99, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter

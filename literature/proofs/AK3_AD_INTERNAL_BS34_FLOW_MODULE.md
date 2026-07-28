@@ -6532,3 +6532,194 @@ The omitted \(\ell,s,q\)-powers fix their \(1\)-eigenvectors.
 Equations (434)--(435) prove (429).  The Fox bridge and (286)
 obstruct both A--D signs for every free-kernel lift.  Hence the
 complete \((-,+,+,-,+,-)\) length-six stratum is closed.
+
+## 46. The last negative-start length-six stratum
+
+Let
+
+\[
+b=x^\ell y^{-1}x^ryx^syx^tyx^uy^{-1}x^vy^{-1}x^q,
+\tag{436}
+\]
+
+where
+
+\[
+4\nmid r,
+\qquad
+3\nmid u,
+\tag{437}
+\]
+
+and \(\ell,s,t,v,q\in\mathbb Z\) are arbitrary.  Thus the sign string
+is \((-,+,+,+,-,-)\).  Then
+
+\[
+J^{(\overline{\mathbb F}_5)}_{b,-1}
+\ne\overline{\mathbb F}_5[B].
+\tag{438}
+\]
+
+Choose a primitive cube root \(\omega\), a fresh \(w\in V_1\), fresh
+nonzero \(z_j\in V_{\omega^j}\) for \(j=1,2\), and put
+
+\[
+h=3w+z_1+z_2.
+\tag{439}
+\]
+
+Choose \(a\in D_1\) with a complete four-phase support and fresh
+\(p,q_0\in V_1\).  Choose fresh
+
+\[
+r_j\in V_{\omega^j}
+\qquad(j=1,2)
+\]
+
+and set
+
+\[
+Q=q_0+r_1+r_2.
+\tag{440}
+\]
+
+For each \(j=1,2\), choose
+
+\[
+d_j\in\mathcal R_{\omega^j}
+\tag{441}
+\]
+
+with two fresh root components whose eigenvalues differ by
+\(\omega\).  Then \(d_j,d_jX^{-u}\) are independent because
+\(3\nmid u\).
+
+Prescribe in \(D_1\to\mathcal R_1\)
+
+\[
+\begin{aligned}
+wY&=h,\\
+aY&=w,\\
+(aX^r)Y&=p,\\
+pY&=Q,\\
+q_0Y&=2hX^{-u}.
+\end{aligned}
+\tag{442}
+\]
+
+For \(j=1,2\), prescribe in
+\(D_{\omega^j}\to\mathcal R_{\omega^j}\)
+
+\[
+z_jY=d_j,
+\qquad
+r_jY=4\omega^{-j(v+t)}d_jX^{-u}.
+\tag{443}
+\]
+
+The \(D_1\)-sources in (442) are independent because
+\(a,aX^r\) are independent and all remaining lines are fresh.  Its
+images are independent because \(w,h,hX^{-u}\) have the nonzero
+baseline determinant, while \(p\) and \(Q\) use fresh packets.  In
+each block of (443), the source pair is fresh and the image pair
+\(d_j,d_jX^{-u}\) is independent.  Hence (442)--(443) extend
+simultaneously to one global cyclotomic BS\((3,4)\)-module action.
+
+The baseline is
+
+\[
+wX^4=w,
+\qquad
+wYR_3=hR_3=4w=wR_4.
+\tag{444}
+\]
+
+Put
+
+\[
+P=4hX^{-v}.
+\tag{445}
+\]
+
+In characteristic five, the \(V_1\)-component of \(P\) is
+\(4\cdot3w=2w\).  Equations (442)--(443) give
+
+\[
+\begin{aligned}
+(PY)X^{-u}
+&=2hX^{-u}
+ +\sum_{j=1}^2
+   4\omega^{-jv}d_jX^{-u},\\
+(QX^t)Y
+&=2hX^{-u}
+ +\sum_{j=1}^2
+   4\omega^{jt-j(v+t)}d_jX^{-u}.
+\end{aligned}
+\tag{446}
+\]
+
+The two right sides coincide, so
+
+\[
+(QX^t)YX^u=PY.
+\tag{447}
+\]
+
+The complete replay is therefore
+
+\[
+\begin{aligned}
+wb
+&=aX^rYX^sYX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=pYX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=QX^tYX^uY^{-1}X^vY^{-1}X^q\\
+&=PY^{-1}X^vY^{-1}X^q\\
+&=4hX^{-v}X^vY^{-1}X^q\\
+&=4w.
+\end{aligned}
+\tag{448}
+\]
+
+This proves (438).  Together with Sections 33, 37, and 40--45, it
+completes every negative-start height-zero stable-letter sign string
+of length six.
+
+There is also an inversion corollary.  Over \(\mathbb F_5\),
+\(4^{-1}=4\).  Thus, whenever a vector fixed by \(X\) satisfies
+\(wb=4w\), it also satisfies
+
+\[
+wb^{-1}=4w.
+\tag{449}
+\]
+
+The characteristic-five constructions of Sections 43--46 therefore
+also close the inverse sign strings
+
+\[
+(+,-,-,-,+,+),\quad
+(+,-,-,+,-,+),\quad
+(+,-,+,-,-,+),\quad
+(+,+,-,-,-,+).
+\tag{450}
+\]
+
+Including the positive single peak of Sections 38--39 and the
+positive-start alternating classification of Sections 28 and 30,
+sixteen of the twenty height-zero sign strings of stable-letter
+length six are now obstructed for the negative A--D sign.  The four
+remaining sign strings are
+
+\[
+(+,+,-,+,-,-),\quad
+(+,+,-,-,+,-),\quad
+(+,-,+,+,-,-),\quad
+(+,-,-,+,+,-).
+\tag{451}
+\]
+
+Equation (286) already obstructs the positive A--D sign on every one
+of these height-zero words.  The Fox bridge covers every free-kernel
+lift throughout all the closed strata.  This is a complete
+negative-start classification and a \(16/20\) total sign
+classification at length six, not an all-sign theorem.
