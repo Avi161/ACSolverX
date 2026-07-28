@@ -986,3 +986,8 @@
 
 - [TRAP] A multi-file audit correction failed atomically because its final hunk matched a remembered line break instead of the committed Section 14 wording; a second combined raw patch failed because lesson prose contained backticks.
 - [WORKS] After an audit, reread the exact theorem region and split structural lemma insertion, theorem wording, and lesson updates into separately anchored patch payloads.
+
+### 2026-07-27 Adjacent axis overlaps do not control long products
+
+- [TRAP] The proposed Result 129 summed pairwise adjacent overlap bounds through an arbitrary cyclic product. The four leaves `u`, `v`, `u^-1`, `u v^-1 u^-1` can have distinct adjacent K-tags and still multiply to 1: cancellation passes through a conjugator bridge and exposes a new seam.
+- [WORKS] The three-axis lemma is valid only because every one of its three factor segments retains a central portion. For four or more history-derived leaves, use a provenance-aware whole cancellation diagram; never extrapolate local seam bounds without controlling conjugator bridges and newly exposed seams.

@@ -1423,32 +1423,3 @@ multiplications creates a new primitive row.  AC1 and AC3 traffic between
 the row multiplications is allowed.  A new corridor exit requires at least
 three AC2 edges, an ambient automorphism moving the image subgroup, or a
 different stabilization architecture.
-
-## 26. Arbitrary depth requires a translate collision
-
-Flatten an AC1--AC3 history into signed a- and b-leaves and tag each leaf
-by its K-translate.  If adjacent cyclic tags are distinct, each seam loses
-at most four letters.  Thus
-
-\[
-\|W\|\ge7N_a+14N_b,
-\tag{95}
-\]
-
-while abelianization bounds a primitive target by
-
-\[
-\|[W]\|_1\le7N_a+2N_b.
-\tag{96}
-\]
-
-Every post-AC2 leaf expansion contains both source types, so the gap is at
-least \(12N_b>0\).
-
-### Theorem 26.1 (translate-collision necessity)
-
-Every primitive-row history from the first proper image must create a
-cyclically adjacent pair of source leaves in the same K-translate.
-Collision-free translate words are nonprimitive at arbitrary depth.
-Theorem 25.1 closes all collisions through two AC2 moves; at three moves
-only coherent same-translate seam patterns remain.
