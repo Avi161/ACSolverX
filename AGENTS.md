@@ -938,3 +938,8 @@
 
 - [TRAP] Cohen--Lyndon asphericity supplies a particular transversal whose conjugates of the relator freely generate its normal closure. Replacing those representatives by convenient elements of a subgroup in the same normal-closure cosets need not preserve a free basis; independently conjugated basis elements can generate a proper subgroup.
 - [WORKS] Keep the existential Cohen--Lyndon transversal fixed unless a separate Nielsen or Bass--Serre argument proves the replacement is basis-preserving. The implication `Q = K <<v>>` and `v` root-free therefore does not by itself prove `Q = K`.
+
+### 2026-07-27 Preserve LaTeX backslashes in patch scripts
+
+- [TRAP] A JavaScript string interpreted a LaTeX backslash sequence while adding a proof file, split a content line, and made `apply_patch` reject it as an invalid hunk.
+- [WORKS] Pass LaTeX-heavy patches with a raw string so every backslash reaches `apply_patch` literally, and avoid unescaped backticks inside the raw template. Read the rendered equations back from disk.

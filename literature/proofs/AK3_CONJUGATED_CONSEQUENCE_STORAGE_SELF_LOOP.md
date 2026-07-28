@@ -806,4 +806,103 @@ immediate second deletions are already closed.  A proof must now either:
 2. classify their primitive quotient maps; or
 3. use more than one post-deletion target edge.
 
-AK(3), stable Andrews--Curtis, and Andrews--Curtis remain open.
+## 12. Positive-bridge traffic into the primitive slot is impossible
+
+For the two AK source relators
+
+\[
+A=x^3y^{-4},
+\qquad
+B=xyxy^{-1}x^{-1}y^{-1},
+\tag{60}
+\]
+
+the first alternative in Section 11 can now be proved.  Let
+
+\[
+W=r\,cV^\epsilon c^{-1},
+\qquad
+V\in\{A,B\},
+\qquad
+\epsilon=\pm1,
+\tag{61}
+\]
+
+and suppose for contradiction that \(W\) is primitive.  Then
+
+\[
+Q=(F_0*\langle r\rangle)/
+\langle\!\langle W\rangle\!\rangle\cong F_2.
+\tag{62}
+\]
+
+Freiheitssatz embeds the old factor as a rank-two subgroup
+\(K\cong F_0\) of \(Q\).  If \(v\) is the image of \(V\), then killing
+\(v\) gives the exact quotient isomorphism
+
+\[
+K/\langle\!\langle v\rangle\!\rangle_K
+\cong
+Q/\langle\!\langle v\rangle\!\rangle_Q
+\cong
+F_0/\langle\!\langle V\rangle\!\rangle.
+\tag{63}
+\]
+
+For \(A\), this is the \((3,4)\)-torus-knot group.  For \(B\), the
+basis
+
+\[
+a=xyx,
+\qquad b=xy,
+\qquad x=b^{-1}a,
+\qquad y=a^{-1}b^2
+\tag{64}
+\]
+
+puts \(B\) in the conjugacy class of \(a^2b^{-3}\), so (63) is the
+\((2,3)\)-torus-knot group.
+
+The Collins--Zieschang classification has a single Nielsen class of
+two-generator one-relator presentations for each of these two small
+torus-knot groups.  After automorphisms in the source and target, the
+inclusion \(K\hookrightarrow Q\) is therefore an injective endomorphism
+of \(F_2\) taking the standard torus relator
+\(R=X^pY^q\) to \(R^{\pm1}\).  The word \(R\) is non-simple.  Turner's
+monomorphism-test theorem makes the endomorphism an automorphism; in the
+negative case apply the theorem to its square.  Hence
+
+\[
+K=Q.
+\tag{65}
+\]
+
+Identify \(Q\) with \(F_0\) through this isomorphism.  The quotient map
+now fixes \(F_0\) and sends \(r\) to some \(u\in F_0\).  Magnus's
+normal-closure theorem makes \(W\) conjugate to
+\((ru^{-1})^{\pm1}\), of cyclic free-product syllable length at most
+two.  If \(c\notin\langle r\rangle F_0\), shortest double-coset normal
+form instead makes (61) cyclically reduced of syllable length at least
+six.  This contradiction proves
+
+\[
+\boxed{
+W\text{ primitive}
+\quad\Longrightarrow\quad
+c\in\langle r\rangle F_0.
+}
+\tag{66}
+\]
+
+### Theorem 12.1 (complete one-edge primitive-slot closure)
+
+At the normalized AK checkpoint \((\mathbf T,r)\), where the chosen old
+source is \(A\) or \(B\), no one-edge multiplication into the r-slot can
+escape.  A zero-bridge conjugator is the literal stable self-loop of
+Theorem 10.1.  A positive-bridge conjugator produces a nonprimitive
+target by (66), so the proposed primitive deletion cannot occur.
+
+The next storage frontier must use at least two post-deletion row-changing
+edges, change the source before it is used, delete another primitive slot,
+or leave the normalized checkpoint.  AK(3), stable Andrews--Curtis, and
+Andrews--Curtis remain open.

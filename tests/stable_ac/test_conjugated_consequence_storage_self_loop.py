@@ -105,6 +105,21 @@ def test_braid_swap_identities_are_exact() -> None:
     )
 
 
+def test_braid_source_is_standard_torus_relator_in_explicit_basis() -> None:
+    braid = "xyxYXY"
+    a = "xyx"
+    b = "xy"
+    x_in_ab = inverse(b) + a
+    y_in_ab = inverse(a) + b + b
+
+    assert reduce_word(x_in_ab) == "x"
+    assert reduce_word(y_in_ab) == "y"
+    assert reduce_word(a + inverse(b) * 3 + a) == braid
+    assert reduce_word(a + braid + inverse(a)) == reduce_word(
+        a + a + inverse(b) * 3
+    )
+
+
 def test_two_storage_nontarget_moves_descend_to_survivor_moves() -> None:
     a = "xyX"
     c = "zY"

@@ -6794,6 +6794,71 @@ so the \(\langle r\rangle\)-vertex and \(cF_0\) have strictly positive
 bridge length.  The apparent
 primitive \(r^2Vr^{-1}\) is merely the \(k=1,a=1\) gauge.
 
+**Result 114 (positive-bridge traffic into the primitive slot is
+nonprimitive).**  Specialize the normalized checkpoint to either AK
+source
+
+\[
+V=A=x^3y^{-4}
+\quad\text{or}\quad
+V=B=xyxy^{-1}x^{-1}y^{-1},
+\]
+
+and suppose
+
+\[
+W=r\,cV^\epsilon c^{-1}
+\]
+
+is primitive.  Its quotient \(Q=F/\langle\!\langle
+W\rangle\!\rangle\) is free of rank two, and Freiheitssatz embeds the
+old factor as \(K\cong F_0\).  If \(v\) is the image of \(V\), then
+
+\[
+K/\langle\!\langle v\rangle\!\rangle_K
+\cong
+Q/\langle\!\langle v\rangle\!\rangle_Q
+\cong
+F_0/\langle\!\langle V\rangle\!\rangle.
+\]
+
+The last group is the \((3,4)\)-torus-knot group for \(A\) and the
+\((2,3)\)-torus-knot group for \(B\).  In the latter case the exact
+basis \(a=xyx,b=xy\) gives
+
+\[
+B=ab^{-3}a\sim a^2b^{-3}.
+\]
+
+The Collins--Zieschang classification has only one Nielsen class of
+two-generator one-relator presentations for each of these two groups.
+The inclusion \(K\hookrightarrow Q\) can therefore be aligned to an
+injective endomorphism of \(F_2\) taking the standard torus relator
+\(R=X^pY^q\) to \(R^{\pm1}\).  Since \(R\) is non-simple, Turner's
+monomorphism-test theorem, applied to the endomorphism or its square,
+forces it to be an automorphism.  Hence \(K=Q\).
+
+After identifying \(Q\) with \(F_0\), Magnus normal-closure rigidity
+makes \(W\) conjugate to a word \((ru^{-1})^{\pm1}\), whose cyclic
+free-product syllable length is at most two.  But if
+\(c\notin\langle r\rangle F_0\), shortest double-coset normal form gives
+cyclic syllable length at least six.  Therefore
+
+\[
+\boxed{
+W\text{ primitive}
+\Longrightarrow
+c\in\langle r\rangle F_0.
+}
+\]
+
+Together with Result 113, this closes every one-edge multiplication
+into the normalized r-slot: zero bridge is a literal stable self-loop,
+and positive bridge is not primitively deletable.  A surviving storage
+escape must use at least two row-changing edges before deletion, change
+the source, delete another primitive slot, or leave the normalized
+checkpoint.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
@@ -6924,8 +6989,14 @@ therefore traffic in the intermediate rank-\((n+1)\) tuple before the
 surviving source is deleted. Result 113 closes every first target edge
 whose conjugator has zero Bass--Serre bridge:
 \(c=r^ka\), \(a\in F_0\), conjugates the target to a unique-r word and
-returns the old tuple literally. A productive edge must use a
-strictly positive bridge. Results
+returns the old tuple literally. Result 114 closes the complementary
+positive-bridge case for both AK source relators. A primitive quotient
+would embed the old factor into a rank-two free group with the same
+small torus-knot one-relator quotient. Collins--Zieschang uniqueness
+and Turner monomorphism rigidity make that embedding onto, while
+Magnus rigidity and Bass--Serre syllable length then contradict a
+positive bridge. Thus every one-edge multiplication into the normalized
+primitive slot is closed. Results
 73--75 close the
 positive--positive--negative and positive--negative--positive
 exponent-one length-three strata and translate every proper internal
@@ -6936,11 +7007,10 @@ finite certificate, and Result 80 closes that aggregate by an exact
 cyclotomic current. The immediate exact leads are therefore
 z-dependent A--W conjugators, the
 noncanonical module-collapse internal A--D fibers beyond Results
-61--113, arbitrary W--D conjugators,
+61--114, arbitrary W--D conjugators,
 non-source deletion outside Result 54's D-then-mixed-Q order, or two row-changing edges
 before deletion outside Results 111--112's source-consumption and
-immediate-second-deletion closures, followed by positive-bridge
-primitive-slot traffic outside Result 113. Longer branches may use additional \(Wq^{-1}\) blocks,
+immediate-second-deletion closures. Longer branches may use additional \(Wq^{-1}\) blocks,
 alter W by traffic with nontrivial first-deletion image, delete or alter
 a needed carrier, change the fixed checkpoint, or choose a different
 primitive slot. The exact Fox coordinate remains a necessary free-kernel
