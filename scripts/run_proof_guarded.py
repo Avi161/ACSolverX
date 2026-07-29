@@ -24,6 +24,7 @@ MAX_TIMEOUT_SECONDS = 60.0
 MAX_LONG_TIMEOUT_SECONDS = 600.0
 DEFAULT_PREFLIGHT_SECONDS = 60.0
 DEFAULT_PROGRESS_SECONDS = 60.0
+MIN_PROGRESS_SECONDS = 1.0
 DEFAULT_GRACE_SECONDS = 2.0
 MAX_GRACE_SECONDS = 5.0
 DUPLICATE_EXIT = 73
@@ -31,8 +32,12 @@ TIMEOUT_EXIT = 124
 PREFLIGHT_EXIT = 125
 SAFETY_EXIT = 126
 SAFETY_SAMPLE_SECONDS = 1.0
+DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS = 2.0
 MAX_GROUP_CPU_PERCENT = 125.0
 MAX_CONSECUTIVE_HIGH_CPU_SAMPLES = 3
+MAX_PROGRESS_LINES_PER_LOOP = int(
+    MAX_LONG_TIMEOUT_SECONDS / MIN_PROGRESS_SECONDS
+)
 THREAD_ENV = (
     "NUMBA_NUM_THREADS",
     "OMP_NUM_THREADS",
@@ -115,18 +120,23 @@ def _print_due_progress(
     phase: str,
     phase_started_at: float,
     through_time: float,
-    next_progress_at: float,
+    next_progress_index: int,
     progress_interval: float,
     sample: SafetySample,
-) -> float:
-    while next_progress_at <= through_time:
+) -> int:
+    elapsed_seconds = max(0.0, through_time - phase_started_at)
+    last_due_index = math.floor(elapsed_seconds / progress_interval)
+    last_emitted_index = min(
+        last_due_index,
+        next_progress_index + MAX_PROGRESS_LINES_PER_LOOP - 1,
+    )
+    for progress_index in range(next_progress_index, last_emitted_index + 1):
         _print_progress(
             phase,
-            next_progress_at - phase_started_at,
+            progress_index * progress_interval,
             sample,
         )
-        next_progress_at += progress_interval
-    return next_progress_at
+    return max(next_progress_index, last_emitted_index + 1)
 
 
 def read_macos_thermal_state() -> int:
@@ -213,14 +223,14 @@ def read_macos_thermal_state() -> int:
     return thermal_state
 
 
-def _read_process_table() -> tuple[ProcessInfo, ...]:
+def _read_process_table(timeout_seconds: float) -> tuple[ProcessInfo, ...]:
     try:
         result = subprocess.run(
             ["ps", "-axo", "pid=,ppid=,pgid=,%cpu=,state=,ucomm="],
             check=True,
             capture_output=True,
             text=True,
-            timeout=2.0,
+            timeout=timeout_seconds,
         )
         processes: list[ProcessInfo] = []
         seen_pids: set[int] = set()
@@ -262,7 +272,7 @@ def _read_process_table() -> tuple[ProcessInfo, ...]:
 class SafetyMonitor:
     def __init__(
         self,
-        process_reader: Callable[[], Sequence[ProcessInfo]] = _read_process_table,
+        process_reader: Callable[[float], Sequence[ProcessInfo]] = _read_process_table,
         thermal_reader: Callable[[], int] = read_macos_thermal_state,
     ) -> None:
         self._process_reader = process_reader
@@ -273,6 +283,7 @@ class SafetyMonitor:
         child_pid: int,
         process_group_id: int,
         controller_pid: int,
+        process_timeout_seconds: float = DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS,
     ) -> SafetySample:
         try:
             thermal_state = self._thermal_reader()
@@ -299,7 +310,7 @@ class SafetyMonitor:
             )
 
         try:
-            processes = tuple(self._process_reader())
+            processes = tuple(self._process_reader(process_timeout_seconds))
             by_pid = {process.pid: process for process in processes}
             if len(by_pid) != len(processes):
                 raise RuntimeError("process table contains duplicate PIDs")
@@ -535,6 +546,22 @@ def _clean_exact_group(
     return True
 
 
+def _stop_timed_out_phase(
+    child: subprocess.Popen[bytes],
+    phase: str,
+    timeout_seconds: float,
+    grace_seconds: float,
+) -> tuple[int, bool]:
+    if not _clean_exact_group(child, grace_seconds):
+        return SAFETY_EXIT, True
+    print(
+        f"proof guard stopped {phase} process group {child.pid} "
+        f"after {timeout_seconds:g} seconds",
+        file=sys.stderr,
+    )
+    return TIMEOUT_EXIT, False
+
+
 def _run_long_phase(
     command: Sequence[str],
     phase: str,
@@ -561,11 +588,7 @@ def _run_long_phase(
         deadline = phase_started_at + timeout_seconds
         next_sample_at = phase_started_at
         progress_interval = min(progress_seconds, MAX_TIMEOUT_SECONDS)
-        next_progress_at = (
-            phase_started_at + progress_interval
-            if phase == "experiment"
-            else None
-        )
+        next_progress_index = 1 if phase == "experiment" else None
         latest_sample: SafetySample | None = None
         phase_start_reported = False
         consecutive_high_cpu_samples = 0
@@ -573,50 +596,90 @@ def _run_long_phase(
             if (
                 phase_start_reported
                 and latest_sample is not None
-                and next_progress_at is not None
+                and next_progress_index is not None
             ):
-                next_progress_at = _print_due_progress(
+                next_progress_index = _print_due_progress(
                     phase,
                     phase_started_at,
                     clock(),
-                    next_progress_at,
+                    next_progress_index,
                     progress_interval,
                     latest_sample,
                 )
 
             now = clock()
+            if now >= deadline:
+                return _stop_timed_out_phase(
+                    child,
+                    phase,
+                    timeout_seconds,
+                    grace_seconds,
+                )
+
             safety_failure: str | None = None
             if monitor is not None and now >= next_sample_at:
-                try:
-                    sample = monitor.sample(
-                        child_pid=child.pid,
-                        process_group_id=child.pid,
-                        controller_pid=os.getpid(),
+                sampling_deadline = deadline
+                if next_progress_index is not None:
+                    sampling_deadline = min(
+                        sampling_deadline,
+                        phase_started_at
+                        + next_progress_index * progress_interval,
                     )
-                    if not isinstance(sample, SafetySample):
-                        raise RuntimeError("monitor returned an invalid safety sample")
-                except (GuardSignal, KeyboardInterrupt):
-                    raise
-                except Exception as exc:
-                    safety_failure = f"sampling failed: {exc}"
+                process_timeout_seconds = min(
+                    DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS,
+                    sampling_deadline - now,
+                )
+                if process_timeout_seconds <= 0:
+                    safety_failure = "no time remains for process sampling"
+                    sample_finished_at = now
                 else:
-                    latest_sample = sample
-                    safety_failure = sample.failure_reason
-                    if sample.group_cpu_percent > MAX_GROUP_CPU_PERCENT:
-                        consecutive_high_cpu_samples += 1
-                    else:
-                        consecutive_high_cpu_samples = 0
-                    if (
-                        safety_failure is None
-                        and consecutive_high_cpu_samples
-                        >= MAX_CONSECUTIVE_HIGH_CPU_SAMPLES
-                    ):
-                        safety_failure = (
-                            "exact process group exceeded "
-                            f"{MAX_GROUP_CPU_PERCENT:g}% CPU for "
-                            f"{consecutive_high_cpu_samples} consecutive samples"
+                    try:
+                        sample = monitor.sample(
+                            child_pid=child.pid,
+                            process_group_id=child.pid,
+                            controller_pid=os.getpid(),
+                            process_timeout_seconds=process_timeout_seconds,
                         )
+                        if not isinstance(sample, SafetySample):
+                            raise RuntimeError(
+                                "monitor returned an invalid safety sample"
+                            )
+                    except (GuardSignal, KeyboardInterrupt):
+                        raise
+                    except Exception as exc:
+                        safety_failure = f"sampling failed: {exc}"
+                    else:
+                        latest_sample = sample
+                        safety_failure = sample.failure_reason
+                        if sample.group_cpu_percent > MAX_GROUP_CPU_PERCENT:
+                            consecutive_high_cpu_samples += 1
+                        else:
+                            consecutive_high_cpu_samples = 0
+                        if (
+                            safety_failure is None
+                            and consecutive_high_cpu_samples
+                            >= MAX_CONSECUTIVE_HIGH_CPU_SAMPLES
+                        ):
+                            safety_failure = (
+                                "exact process group exceeded "
+                                f"{MAX_GROUP_CPU_PERCENT:g}% CPU for "
+                                f"{consecutive_high_cpu_samples} consecutive samples"
+                            )
+                    sample_finished_at = clock()
                 next_sample_at = now + SAFETY_SAMPLE_SECONDS
+
+                if sample_finished_at >= deadline:
+                    return _stop_timed_out_phase(
+                        child,
+                        phase,
+                        timeout_seconds,
+                        grace_seconds,
+                    )
+                if (
+                    sample_finished_at > sampling_deadline
+                    and safety_failure is None
+                ):
+                    safety_failure = "process sampling exceeded its deadline"
 
             if safety_failure is not None:
                 print(
@@ -630,12 +693,12 @@ def _run_long_phase(
                 if not phase_start_reported:
                     _print_progress(phase, 0.0, latest_sample)
                     phase_start_reported = True
-                if next_progress_at is not None:
-                    next_progress_at = _print_due_progress(
+                if next_progress_index is not None:
+                    next_progress_index = _print_due_progress(
                         phase,
                         phase_started_at,
                         clock(),
-                        next_progress_at,
+                        next_progress_index,
                         progress_interval,
                         latest_sample,
                     )
@@ -654,14 +717,12 @@ def _run_long_phase(
 
             remaining_seconds = deadline - clock()
             if remaining_seconds <= 0:
-                if not _clean_exact_group(child, grace_seconds):
-                    return SAFETY_EXIT, True
-                print(
-                    f"proof guard stopped {phase} process group {child.pid} "
-                    f"after {timeout_seconds:g} seconds",
-                    file=sys.stderr,
+                return _stop_timed_out_phase(
+                    child,
+                    phase,
+                    timeout_seconds,
+                    grace_seconds,
                 )
-                return TIMEOUT_EXIT, False
 
             wait_seconds = remaining_seconds
             if monitor is not None:
@@ -669,10 +730,15 @@ def _run_long_phase(
                     wait_seconds,
                     max(0.0, next_sample_at - clock()),
                 )
-                if next_progress_at is not None and phase_start_reported:
+                if next_progress_index is not None and phase_start_reported:
                     wait_seconds = min(
                         wait_seconds,
-                        max(0.0, next_progress_at - clock()),
+                        max(
+                            0.0,
+                            phase_started_at
+                            + next_progress_index * progress_interval
+                            - clock(),
+                        ),
                     )
             if wait_seconds <= 0:
                 continue
@@ -773,8 +839,13 @@ def parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
         parser.error(
             f"--preflight-seconds cannot exceed {MAX_TIMEOUT_SECONDS:g} seconds"
         )
-    if not math.isfinite(args.progress_seconds) or args.progress_seconds <= 0:
-        parser.error("--progress-seconds must be positive")
+    if (
+        not math.isfinite(args.progress_seconds)
+        or args.progress_seconds < MIN_PROGRESS_SECONDS
+    ):
+        parser.error(
+            f"--progress-seconds must be at least {MIN_PROGRESS_SECONDS:g} second"
+        )
     if args.progress_seconds > MAX_TIMEOUT_SECONDS:
         parser.error(
             f"--progress-seconds cannot exceed {MAX_TIMEOUT_SECONDS:g} seconds"

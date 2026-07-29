@@ -352,7 +352,39 @@ def test_long_run_invalid_preflight_or_progress_is_rejected_without_disclosure(
     assert sentinel not in result.stderr
 
 
-def test_long_run_parser_preserves_finite_positive_phase_values() -> None:
+def test_subsecond_progress_is_rejected_without_launch_or_disclosure(
+    tmp_path: Path,
+) -> None:
+    marker = tmp_path / "subsecond-progress-started"
+    sentinel = "subsecond-progress-secret"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(RUNNER),
+            "--long-run",
+            "--timeout-seconds",
+            "61",
+            "--progress-seconds",
+            "0.999999",
+            "--",
+            sys.executable,
+            "-c",
+            f"from pathlib import Path; Path({str(marker)!r}).write_text({sentinel!r})",
+        ],
+        cwd=PROJECT_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+        timeout=2,
+    )
+
+    assert result.returncode == 2
+    assert not marker.exists()
+    assert sentinel not in result.stdout
+    assert sentinel not in result.stderr
+
+
+def test_long_run_parser_accepts_smallest_progress_interval() -> None:
     args = parse_args(
         [
             "--long-run",
@@ -361,7 +393,7 @@ def test_long_run_parser_preserves_finite_positive_phase_values() -> None:
             "--preflight-seconds",
             "0.25",
             "--progress-seconds",
-            "1.5",
+            "1",
             "--",
             "proof-command",
         ]
@@ -369,7 +401,7 @@ def test_long_run_parser_preserves_finite_positive_phase_values() -> None:
 
     assert args.long_run is True
     assert args.preflight_seconds == 0.25
-    assert args.progress_seconds == 1.5
+    assert args.progress_seconds == 1.0
 
 
 def test_long_run_replays_exact_command_in_two_phases_under_one_lock(
@@ -521,7 +553,7 @@ def test_timed_out_experiment_returns_124_and_cleans_its_exact_group(
         [sys.executable, "-c", child_program],
         preflight_seconds=0.5,
         experiment_seconds=0.2,
-        progress_seconds=0.1,
+        progress_seconds=1.0,
         grace_seconds=0.1,
         monitor=None,
     )
@@ -617,7 +649,7 @@ def test_sigkill_disappearance_race_preserves_phase_status_without_group_leak(
         ["synthetic-command", "unchanged-argument"],
         preflight_seconds=0.1,
         experiment_seconds=0.1,
-        progress_seconds=0.1,
+        progress_seconds=1.0,
         grace_seconds=0.0,
         monitor=None,
     )
@@ -723,7 +755,7 @@ def test_monitor_counts_only_exact_group_and_reports_escaped_descendants(
         _process_info(300, 100, 300, 88.0, ucomm="unrelated"),
     )
     monitor = proof_guard.SafetyMonitor(
-        process_reader=lambda: processes,
+        process_reader=lambda _timeout: processes,
         thermal_reader=lambda: 0,
     )
 
@@ -740,13 +772,38 @@ def test_monitor_counts_only_exact_group_and_reports_escaped_descendants(
         processes[0].pid = 0
 
 
+def test_monitor_forwards_bounded_process_sampling_timeout() -> None:
+    observed_timeouts: list[float] = []
+    processes = (
+        _process_info(100, 1, 100, 0.0),
+        _process_info(200, 100, 200, 1.0),
+    )
+
+    def read_processes(timeout_seconds: float) -> tuple[object, ...]:
+        observed_timeouts.append(timeout_seconds)
+        return processes
+
+    sample = proof_guard.SafetyMonitor(
+        process_reader=read_processes,
+        thermal_reader=lambda: 0,
+    ).sample(
+        child_pid=200,
+        process_group_id=200,
+        controller_pid=100,
+        process_timeout_seconds=0.75,
+    )
+
+    assert sample.failure_reason is None
+    assert observed_timeouts == [0.75]
+
+
 def test_monitor_reports_lost_controller_and_reparented_child() -> None:
     lost_controller = proof_guard.SafetyMonitor(
-        process_reader=lambda: (_process_info(200, 100, 200, 1.0),),
+        process_reader=lambda _timeout: (_process_info(200, 100, 200, 1.0),),
         thermal_reader=lambda: 0,
     ).sample(child_pid=200, process_group_id=200, controller_pid=100)
     reparented_child = proof_guard.SafetyMonitor(
-        process_reader=lambda: (
+        process_reader=lambda _timeout: (
             _process_info(100, 1, 100, 0.0),
             _process_info(200, 1, 200, 1.0),
         ),
@@ -762,7 +819,7 @@ def test_monitor_reports_lost_controller_and_reparented_child() -> None:
 @pytest.mark.parametrize("thermal_state", (0, 1, 2, 3))
 def test_monitor_accepts_only_nominal_thermal_state(thermal_state: int) -> None:
     monitor = proof_guard.SafetyMonitor(
-        process_reader=lambda: (
+        process_reader=lambda _timeout: (
             _process_info(100, 1, 100, 0.0),
             _process_info(200, 100, 200, 1.0),
         ),
@@ -779,7 +836,7 @@ def test_monitor_fails_closed_when_thermal_state_is_unreadable() -> None:
         raise RuntimeError("thermal API unavailable")
 
     monitor = proof_guard.SafetyMonitor(
-        process_reader=lambda: (),
+        process_reader=lambda _timeout: (),
         thermal_reader=unreadable,
     )
 
@@ -966,7 +1023,7 @@ def test_process_reader_requests_only_non_sensitive_fields(
 
     monkeypatch.setattr(proof_guard.subprocess, "run", run)
 
-    processes = proof_guard._read_process_table()
+    processes = proof_guard._read_process_table(0.75)
 
     assert processes == (_process_info(200, 100, 200, 12.5),)
     assert calls == [
@@ -976,7 +1033,7 @@ def test_process_reader_requests_only_non_sensitive_fields(
                 "check": True,
                 "capture_output": True,
                 "text": True,
-                "timeout": 2.0,
+                "timeout": 0.75,
             },
         )
     ]
@@ -998,13 +1055,16 @@ class _SequenceMonitor:
         *,
         sample_advances: list[float] | None = None,
         output_stream: io.StringIO | None = None,
+        honor_sample_timeout: bool = False,
     ) -> None:
         self.samples = samples
         self.clock = clock
         self.sample_advances = sample_advances
         self.output_stream = output_stream
+        self.honor_sample_timeout = honor_sample_timeout
         self.calls: list[tuple[int, int, int]] = []
         self.sample_times: list[float] = []
+        self.sample_timeouts: list[float] = []
         self.output_before_samples: list[list[str]] = []
 
     def sample(
@@ -1012,9 +1072,11 @@ class _SequenceMonitor:
         child_pid: int,
         process_group_id: int,
         controller_pid: int,
+        process_timeout_seconds: float = 2.0,
     ) -> object:
         self.calls.append((child_pid, process_group_id, controller_pid))
         self.sample_times.append(self.clock.monotonic())
+        self.sample_timeouts.append(process_timeout_seconds)
         if self.output_stream is not None:
             self.output_before_samples.append(
                 self.output_stream.getvalue().splitlines()
@@ -1027,7 +1089,17 @@ class _SequenceMonitor:
         if self.sample_advances is not None:
             if not self.sample_advances:
                 raise AssertionError("monitor advanced more often than expected")
-            self.clock.now += self.sample_advances.pop(0)
+            sample_advance = self.sample_advances.pop(0)
+            if (
+                self.honor_sample_timeout
+                and sample_advance > process_timeout_seconds
+            ):
+                self.clock.now += process_timeout_seconds
+                raise subprocess.TimeoutExpired(
+                    "synthetic process sample",
+                    process_timeout_seconds,
+                )
+            self.clock.now += sample_advance
         return sample
 
 
@@ -1061,6 +1133,10 @@ def _run_synthetic_monitored_phases(
     progress_seconds: float = 10.0,
     sample_advances: list[float] | None = None,
     output_stream: io.StringIO | None = None,
+    honor_sample_timeout: bool = False,
+    preflight_seconds: float = 10.0,
+    experiment_seconds: float = 10.0,
+    events: list[tuple[str, int, float]] | None = None,
 ) -> tuple[int, list[tuple[int, int]], _SequenceMonitor]:
     clock = _FakeClock()
     alive: dict[int, bool] = {}
@@ -1078,6 +1154,8 @@ def _run_synthetic_monitored_phases(
 
         def poll(self) -> int | None:
             assert self.deadline is not None
+            if events is not None:
+                events.append(("poll", self.pid, clock.now))
             if clock.now >= self.deadline:
                 alive[self.pid] = False
                 return 0
@@ -1100,6 +1178,7 @@ def _run_synthetic_monitored_phases(
         SyntheticChild(700_000 + index, complete_after)
         for index, complete_after in enumerate(completion_times)
     )
+    children_by_pid = {child.pid: child for child in children}
     killpg_calls: list[tuple[int, int]] = []
 
     def popen(*_args: object, **_kwargs: object) -> object:
@@ -1109,29 +1188,42 @@ def _run_synthetic_monitored_phases(
 
     def killpg(process_group_id: int, signum: int) -> None:
         killpg_calls.append((process_group_id, signum))
-        if not alive.get(process_group_id, False):
+        if events is not None:
+            events.append(("killpg", process_group_id, clock.now))
+        if not process_group_alive(process_group_id):
             raise ProcessLookupError
         if signum in (signal.SIGTERM, signal.SIGKILL):
             alive[process_group_id] = False
+
+    def process_group_alive(process_group_id: int) -> bool:
+        child = children_by_pid.get(process_group_id)
+        if child is None or not alive.get(process_group_id, False):
+            return False
+        assert child.deadline is not None
+        if clock.now >= child.deadline:
+            alive[process_group_id] = False
+            return False
+        return True
 
     monitor = _SequenceMonitor(
         samples,
         clock,
         sample_advances=sample_advances,
         output_stream=output_stream,
+        honor_sample_timeout=honor_sample_timeout,
     )
     monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
     monkeypatch.setattr(
         proof_guard,
         "group_exists",
-        lambda process_group_id: alive.get(process_group_id, False),
+        process_group_alive,
     )
     monkeypatch.setattr(proof_guard.os, "killpg", killpg)
 
     status = run_long_guarded(
         command,
-        preflight_seconds=10.0,
-        experiment_seconds=10.0,
+        preflight_seconds=preflight_seconds,
+        experiment_seconds=experiment_seconds,
         progress_seconds=progress_seconds,
         grace_seconds=0.1,
         monitor=monitor,
@@ -1205,7 +1297,7 @@ def test_immediate_success_still_reports_both_phase_starts(
     ]
 
 
-def test_due_progress_precedes_blocking_sample_and_reports_each_missed_boundary(
+def test_slow_sample_honors_progress_budget_and_aborts_without_late_write(
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
 ) -> None:
@@ -1221,21 +1313,23 @@ def test_due_progress_precedes_blocking_sample_and_reports_each_missed_boundary(
                 _safety_sample(cpu_percent=10.0, group_process_count=1),
                 _safety_sample(cpu_percent=20.0, group_process_count=2),
                 _safety_sample(cpu_percent=30.0, group_process_count=3),
-                _safety_sample(cpu_percent=40.0, group_process_count=4),
             ],
             completion_times=(0.0, 3.5),
             command=("synthetic-command", command_sentinel),
             progress_seconds=1.0,
-            sample_advances=[0.0, 0.0, 2.2, 0.0],
+            sample_advances=[0.0, 0.0, 2.2],
             output_stream=output,
+            honor_sample_timeout=True,
         )
 
     captured = capsys.readouterr()
     lines = output.getvalue().splitlines()
-    assert status == 0
-    assert killpg_calls == []
-    assert monitor.sample_times == [0.0, 0.0, 1.0, 3.2]
-    expected_before_blocking_sample = [
+    assert status == 126
+    assert killpg_calls == [(700_001, signal.SIGTERM)]
+    assert monitor.sample_times == [0.0, 0.0, 1.0]
+    assert monitor.sample_timeouts == [2.0, 1.0, 1.0]
+    assert monitor.clock.now == 2.0
+    expected_lines = [
         "proof guard progress phase=preflight elapsed=0s "
         "exact_group_process_count=1 aggregate_cpu=10% thermal=nominal",
         "proof guard progress phase=experiment elapsed=0s "
@@ -1243,20 +1337,58 @@ def test_due_progress_precedes_blocking_sample_and_reports_each_missed_boundary(
         "proof guard progress phase=experiment elapsed=1s "
         "exact_group_process_count=2 aggregate_cpu=20% thermal=nominal",
     ]
-    expected_lines = [
-        *expected_before_blocking_sample,
-        "proof guard progress phase=experiment elapsed=2s "
-        "exact_group_process_count=3 aggregate_cpu=30% thermal=nominal",
-        "proof guard progress phase=experiment elapsed=3s "
-        "exact_group_process_count=3 aggregate_cpu=30% thermal=nominal",
-    ]
-    assert monitor.output_before_samples[2] == expected_before_blocking_sample
-    assert monitor.output_before_samples[3] == expected_lines
+    assert monitor.output_before_samples[2] == expected_lines
     assert lines == expected_lines
     assert command_sentinel not in output.getvalue()
     assert command_sentinel not in captured.err
     assert environment_sentinel not in output.getvalue()
     assert environment_sentinel not in captured.err
+
+
+@pytest.mark.parametrize("phase", ("preflight", "experiment"))
+@pytest.mark.parametrize("child_state", ("completed", "running"))
+def test_post_sample_timeout_precedes_progress_and_child_state(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    phase: str,
+    child_state: str,
+) -> None:
+    child_duration = 0.5 if child_state == "completed" else 2.0
+    events: list[tuple[str, int, float]] = []
+    if phase == "preflight":
+        samples = [_safety_sample(), _safety_sample()]
+        sample_advances = [1.1, 0.0]
+        completion_times = (child_duration, 0.0)
+        target_pid = 700_000
+        expected_status = 125
+        expected_lines: list[str] = []
+    else:
+        samples = [_safety_sample(), _safety_sample()]
+        sample_advances = [0.0, 1.1]
+        completion_times = (0.0, child_duration)
+        target_pid = 700_001
+        expected_status = 124
+        expected_lines = [
+            "proof guard progress phase=preflight elapsed=0s "
+            "exact_group_process_count=1 aggregate_cpu=0% thermal=nominal"
+        ]
+
+    status, killpg_calls, _monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        samples,
+        completion_times=completion_times,
+        progress_seconds=1.0,
+        sample_advances=sample_advances,
+        preflight_seconds=1.0,
+        experiment_seconds=1.0,
+        events=events,
+    )
+
+    assert status == expected_status
+    assert killpg_calls == [(target_pid, signal.SIGTERM)]
+    target_events = [event for event in events if event[1] == target_pid]
+    assert target_events[0] == ("killpg", target_pid, 1.1)
+    assert capsys.readouterr().out.splitlines() == expected_lines
 
 
 def test_progress_flushes_each_line() -> None:
@@ -1278,6 +1410,22 @@ def test_progress_flushes_each_line() -> None:
         )
 
     assert stream.flush_count == 1
+
+
+def test_progress_catch_up_has_a_finite_per_loop_line_bound() -> None:
+    output = io.StringIO()
+    with redirect_stdout(output):
+        next_progress_index = proof_guard._print_due_progress(
+            "experiment",
+            0.0,
+            10_000.0,
+            1,
+            1.0,
+            _safety_sample(),
+        )
+
+    assert len(output.getvalue().splitlines()) == 600
+    assert next_progress_index == 601
 
 
 def test_one_high_cpu_sample_does_not_abort(
