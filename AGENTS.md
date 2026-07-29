@@ -1463,3 +1463,15 @@
 
 - [TRAP] Translating the committed MMS state `ZYx|ZxyX|ZZZyyyy` by `(x,y,z)->(x,z,t)` incorrectly changed the final lowercase `x` of the first row to uppercase `X`, producing the false tuple `TZX|TxzX|TTTzzzz`. That sign error manufactured a triangular AC-trivial presentation and two irrelevant genus-zero Neuwirth neighbors.
 - [WORKS] Every alphabet rename must map each literal letter with case preserved, then round-trip through the inverse map and compare byte-for-byte with the committed source before any AC or topology computation. Bind target tuples by importing the source artifact rather than manually transcribing them.
+
+### 2026-07-29 Test proposed group symmetries on the cyclic quotient first
+
+- [TRAP] An odd automorphism of the displayed `A5` quotient exchanged the two kill-word classes and lifted to the involution `x -> xY`, `y -> Y`, `z -> zy` of the ambient free group, but this did not preserve the exact two-relator normal closure. In the cyclic quotients with `x=y=z`, the base relators vanish while the substituted relators generally do not.
+- [WORKS] Before investing in a finite-quotient or Alexander-polynomial symmetry, test the proposed free-group map against the universal cyclic quotient and then all already-certified quotient witnesses. A symmetry of one quotient is not evidence of an automorphism of the presented group unless every base relator maps to the normal closure.
+- [TRAP] A second free involution `x -> y`, `y -> x`, `z -> zyX` passed the cyclic test and every homomorphism into `S_n` for `n <= 5`, but its relator images were nonzero in the exact Alexander module. Agreement in the available small finite quotients did not detect failure of normal-closure preservation.
+- [WORKS] After abelianization, apply the full Alexander-module membership test before any bounded finite-quotient scan or van Kampen search. For the MMS02 misprinted base, reduce each exponent-zero image through `b=(2-t-t^-1)a` and reject it unless the resulting Laurent coefficient is divisible by `t^4-3t^3+5t^2-3t+1`.
+
+### 2026-07-29 Stage worktree checkpoints with git-metadata permission
+
+- [TRAP] The proof worktree itself is writable, but its Git index lives at `.git/worktrees/codex-proofs/index`; a sandboxed `git add` failed with `Unable to create .../index.lock: Operation not permitted` after verification had passed.
+- [WORKS] Keep staging targets explicit, then run staging, commit, and push with the scoped Git-metadata permission required by the parent repository. Recheck the cached diff before committing so escalation does not broaden the file set.
