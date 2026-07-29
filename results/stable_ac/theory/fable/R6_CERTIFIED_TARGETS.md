@@ -104,6 +104,22 @@ certified targets live and where no published search has gone. AK(3) plus four
 stabilisations has 6 generators and total length 17; the 514 complexity-5 targets have 6
 generators and total length 18 — the profiles nearly coincide.
 
+## Searching at the right rank (first attempt)
+
+`stabilized_meet.py` acts on that finding: it starts from AK(3) plus k plain
+stabilisations and runs the same rotation-expanded operator, testing every state
+against the certified targets **of its own rank**. At the session budget of 1,000 pops
+per rank:
+
+| rank | root | targets at rank | states reached | matches |
+|---|---|---|---|---|
+| 4 | AK(3) + 2 stabilisations | 238 | 30,906 | 0 |
+| 5 | AK(3) + 3 stabilisations | 4,618 | 58,849 | 0 |
+
+These are, as far as we know, the first searches ever run at ranks 4-5 against certified
+stably-trivial targets. 1,000 pops is a demonstration, not an attempt — the point is that
+the pipeline runs end-to-end and the scaling is now a matter of budget, which is Run E.
+
 ## How to read this, and how not to
 
 What it is: a *validated* detector — the strongest form of negative evidence this
