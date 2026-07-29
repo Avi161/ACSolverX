@@ -40,3 +40,25 @@ Adversarial check needed: Lemma D1's germ argument uses ν(C(d)) = ν(d) — tru
 permutes darts within a germ cycle by construction; and looplessness for cyclically
 reduced words — a loop would need a corner (u, u⁻¹) which reduced words forbid (checked:
 also cyclically at the seam). Both steps elementary; audit welcome.
+
+## Addendum (same day): the obstruction is pure synchronization
+
+The link multigraph of any pair with planar simple support (always true at rank 2:
+support ⊆ K₄, and parallel edges never destroy planarity) has UNCONSTRAINED orientable
+genus 0 — some rotation system embeds it in S². Therefore γ_N > 0 is caused ENTIRELY by
+the B-coupling constraint C_{τv} = B C_v⁻¹ B, i.e. by how the occurrence pairing (the
+letter order of the two cyclic words) forces the two ends of each generator handle to
+interleave. γ_N is a "constrained genus" / synchronization defect of the word pair.
+
+Consequences for R3′:
+- Any candidate obstruction must be a functional of the occurrence pairing (word
+  combinatorics), not of the abstract multigraph (which is always planar here).
+- Move behavior: AC3 is free (cyclic words); AC1 grafts one relator's corner set into the
+  other (link grows by the guest's germ degrees, two junction corners replace two seam
+  corners); AC4 adds a two-germ component bridged by a single A-edge. γ_N is known
+  non-monotone under AC1 in both directions, so only quotient/aggregate functionals can
+  survive the class — a candidate must be tested against move-grafting explicitly.
+- Related classical machinery to consult when sources are reachable: Wicks forms / genus
+  of words (one-face constrained surfaces — dual to our unrestricted-faces,
+  constrained-vertices setting), and quadratic-word genus theory. [unverified this
+  session — proxy blocks the literature; flag for the user's Colab session.]
