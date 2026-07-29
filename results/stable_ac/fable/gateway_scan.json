@@ -1,0 +1,96 @@
+{
+ "summary": {
+  "record": "gateway_scan",
+  "source": "results/stable_ac/fable/ak3_matched_members.jsonl.gz",
+  "members_total": 124296,
+  "members_scanned": 2500,
+  "samples_per_member": 8000,
+  "seed": 20260729,
+  "gamma_hat_histogram": {
+   "1": 1,
+   "2": 63,
+   "3": 316,
+   "4": 932,
+   "5": 814,
+   "6": 355,
+   "7": 19
+  },
+  "gateways_found": 1,
+  "gateway_by_length": {
+   "14": 1
+  },
+  "scanned_by_length": {
+   "14": 1,
+   "15": 1,
+   "16": 4,
+   "17": 16,
+   "18": 19,
+   "19": 63,
+   "20": 48,
+   "21": 218,
+   "22": 163,
+   "23": 575,
+   "24": 315,
+   "25": 391,
+   "26": 237,
+   "27": 207,
+   "28": 242
+  },
+  "anomalies": [],
+  "note": "gamma_hat is an UPPER bound from sampling; gamma_hat = 1 combined with the solver's certified NOT_SPHERICAL pins gamma_N = 1 exactly. Absence of a witness proves nothing -- gateway counts are lower bounds.",
+  "elapsed_seconds": 212.0
+ },
+ "gateways": [
+  {
+   "pair": [
+    "YYYXXyx",
+    "YXYXyxx"
+   ],
+   "total_length": 14,
+   "gamma_N": 1,
+   "certificate": {
+    "upper_bound": "sampled compatible rotation with defect 2",
+    "lower_bound": "solver verdict NOT_SPHERICAL => gamma_N >= 1",
+    "witness_defect_recomputed": 2
+   },
+   "witness_rotation": {
+    "0": [
+     7,
+     9,
+     21,
+     26,
+     24,
+     12,
+     17
+    ],
+    "1": [
+     16,
+     13,
+     25,
+     27,
+     20,
+     8,
+     6
+    ],
+    "2": [
+     1,
+     22,
+     10,
+     19,
+     3,
+     15,
+     5
+    ],
+    "3": [
+     4,
+     14,
+     2,
+     18,
+     11,
+     23,
+     0
+    ]
+   }
+  }
+ ]
+}

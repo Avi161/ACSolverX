@@ -203,11 +203,17 @@ def canon_exact_pair(words):
 # --------------------------------------------------------------------------------------
 
 
+_CR_CACHE: dict = {}
+
+
 def cyclically_reduced_words(length: int):
-    for letters in product(LETTERS, repeat=length):
-        w = "".join(letters)
-        if is_cyclically_reduced(w):
-            yield w
+    """All cyclically reduced words of exactly ``length`` letters (memoised)."""
+    got = _CR_CACHE.get(length)
+    if got is None:
+        got = tuple(w for w in ("".join(t) for t in product(LETTERS, repeat=length))
+                    if is_cyclically_reduced(w))
+        _CR_CACHE[length] = got
+    return got
 
 
 def enumerate_bases(max_total: int):
@@ -435,6 +441,52 @@ def _hist_add(hist: dict, key) -> None:
     hist[key] = hist.get(key, 0) + 1
 
 
+def _classify_counterexamples(counterexamples):
+    """``(breakdown histogram, STRICT sublist)``.
+
+    STRICT = the base has every relator of length >= 3 AND every relator using both
+    generators, i.e. the degenerate shapes (a one-letter relator, or a relator over a
+    single generator) are excluded.  This is bookkeeping, not a verdict.
+    """
+    breakdown: dict = {}
+    strict = []
+    for ce in counterexamples:
+        prof = ce["base_profile"]
+        key = (f"min_relator_length={prof['min_relator_length']}"
+               f";both_generators_in_every_relator="
+               f"{prof['every_relator_uses_both_generators']}"
+               f";base_solver_verdict={ce.get('base_solver_verdict')}")
+        _hist_add(breakdown, key)
+        if (prof["min_relator_length"] >= 3
+                and prof["every_relator_uses_both_generators"]):
+            strict.append(ce)
+    return dict(sorted(breakdown.items())), strict
+
+
+def presentation_profile(words, generators=GENERATORS) -> dict:
+    """Structural profile used to classify counterexamples (no verdict is derived)."""
+    words = tuple(words)
+    data = build_link_n(words, generators)
+    both = all(set(w.lower()) == set(generators) for w in words)
+    return {
+        "relator_lengths": [len(w) for w in words],
+        "min_relator_length": min(len(w) for w in words),
+        "every_relator_uses_both_generators": bool(both),
+        "link_components": int(data.link_components),
+        "has_A_loop": bool(data.has_loop),
+        "cyclically_reduced": all(is_cyclically_reduced(w) for w in words),
+    }
+
+
+def _solver_verdict(words, generators=GENERATORS):
+    """The R1c-v2 rank-n solver verdict (recorded for context only, never as gamma_N)."""
+    from experiments.stable_ac.fable.neuwirth_rank_n import solve_spherical_n
+    try:
+        return solve_spherical_n(words, generators).verdict
+    except Exception as exc:  # pragma: no cover - defensive
+        return f"ERROR: {type(exc).__name__}"
+
+
 def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
           verbose: bool = False) -> dict:
     """Exhaustive single spikes on every canonical base of total length <= max_total."""
@@ -480,6 +532,10 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
                     "site": {"relator": site[0], "position": site[1], "letter": site[2]},
                     "base_defect_histogram": info_base["defect_histogram"],
                     "spiked_defect_histogram": info["defect_histogram"],
+                    "base_profile": presentation_profile(base),
+                    "spiked_profile": presentation_profile(got),
+                    "base_solver_verdict": _solver_verdict(base),
+                    "spiked_solver_verdict": _solver_verdict(got),
                 })
             if cross_check_every and attempted % cross_check_every == 0:
                 chk = cross_check(got, cap=cap)
@@ -492,6 +548,7 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
         if verbose and (n + 1) % 100 == 0:
             print(f"  tier1 base {n + 1}/{len(bases)} "
                   f"({time.time() - t0:.1f}s, {attempted} spikes)", flush=True)
+    breakdown, strict = _classify_counterexamples(counterexamples)
     return {
         "max_total_length": max_total,
         "cap_rotations": cap,
@@ -504,6 +561,9 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
         "coverage_ok": measured + skipped == attempted,
         "counterexamples": counterexamples,
         "counterexample_count": len(counterexamples),
+        "counterexample_breakdown": breakdown,
+        "strict_counterexamples": strict,
+        "strict_counterexample_count": len(strict),
         "delta_histogram": {str(k): v for k, v in sorted(delta_hist.items())},
         "base_gamma_histogram": {str(k): v for k, v in sorted(base_gamma_hist.items())},
         "spiked_gamma_histogram": {str(k): v for k, v in sorted(spiked_gamma_hist.items())},
@@ -557,6 +617,7 @@ def tier2(bases, n_bases: int = 150, max_pairs_per_base: int = 200,
                     "base": list(base), "base_gamma_N": g_base,
                     "double_spiked": list(twice), "double_spiked_gamma_N": g_two,
                     "site1": list(site1), "site2": list(site2),
+                    "base_profile": presentation_profile(base),
                 })
         if verbose and (n + 1) % 25 == 0:
             print(f"  tier2 base {n + 1}/{len(sample)} "
