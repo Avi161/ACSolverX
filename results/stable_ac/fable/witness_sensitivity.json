@@ -1008,7 +1008,46 @@
    "grow_seconds": 22.6
   }
  ],
- "stalls": [],
+ "stalls": [
+  {
+   "target_length": 23,
+   "chain_tip": [
+    "YyxyXY",
+    "xXYyXxxXyYxyYxy"
+   ],
+   "reason": "no child certified at any probe tier",
+   "children_enumerated": 63,
+   "tiers_completed": 4,
+   "probe_tiers": [
+    6000,
+    60000,
+    600000,
+    2000000
+   ],
+   "best_defect_seen": 2,
+   "reading": "proves nothing about the children's gamma_N -- the instrument, not the states, is what failed here",
+   "chain": "odd"
+  },
+  {
+   "target_length": 24,
+   "chain_tip": [
+    "XYYyxXxyyYYXX",
+    "XxXYyxxxy"
+   ],
+   "reason": "no child certified at any probe tier",
+   "children_enumerated": 66,
+   "tiers_completed": 4,
+   "probe_tiers": [
+    6000,
+    60000,
+    600000,
+    2000000
+   ],
+   "best_defect_seen": 2,
+   "reading": "proves nothing about the children's gamma_N -- the instrument, not the states, is what failed here",
+   "chain": "even"
+  }
+ ],
  "detection": {
   "11": {
    "words": [
@@ -1637,6 +1676,26 @@
      ],
      "mean_seconds": 1.138,
      "complete": true
+    },
+    "120000": {
+     "samples": 120000,
+     "runs": 10,
+     "hits": 4,
+     "rate": 0.4,
+     "run_best_defects": [
+      0,
+      2,
+      2,
+      0,
+      2,
+      2,
+      0,
+      2,
+      0,
+      2
+     ],
+     "mean_seconds": 0.81,
+     "complete": true
     }
    }
   },
@@ -1706,6 +1765,26 @@
       0
      ],
      "mean_seconds": 1.746,
+     "complete": true
+    },
+    "120000": {
+     "samples": 120000,
+     "runs": 10,
+     "hits": 2,
+     "rate": 0.2,
+     "run_best_defects": [
+      2,
+      2,
+      2,
+      2,
+      0,
+      2,
+      2,
+      2,
+      0,
+      2
+     ],
+     "mean_seconds": 0.937,
      "complete": true
     }
    }
@@ -1777,6 +1856,26 @@
      ],
      "mean_seconds": 1.96,
      "complete": true
+    },
+    "120000": {
+     "samples": 120000,
+     "runs": 10,
+     "hits": 0,
+     "rate": 0.0,
+     "run_best_defects": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "mean_seconds": 1.126,
+     "complete": true
     }
    }
   },
@@ -1847,12 +1946,262 @@
      ],
      "mean_seconds": 1.773,
      "complete": true
+    },
+    "120000": {
+     "samples": 120000,
+     "runs": 10,
+     "hits": 1,
+     "rate": 0.1,
+     "run_best_defects": [
+      2,
+      2,
+      4,
+      2,
+      2,
+      4,
+      2,
+      2,
+      0,
+      2
+     ],
+     "mean_seconds": 1.103,
+     "complete": true
     }
    }
   }
  },
  "anomalies": [],
  "truncated": false,
- "summary": null,
- "elapsed_seconds": 185.9
+ "summary": {
+  "reference_samples": 40000,
+  "table": [
+   {
+    "total_length": 11,
+    "certified_by": "census+witness",
+    "predicted_family": 2880,
+    "rates": {
+     "10000": 1.0,
+     "40000": 1.0,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 12,
+    "certified_by": "census+witness",
+    "predicted_family": 14400,
+    "rates": {
+     "10000": 1.0,
+     "40000": 1.0,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 13,
+    "certified_by": "census+witness",
+    "predicted_family": 120960,
+    "rates": {
+     "10000": 1.0,
+     "40000": 1.0,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 14,
+    "certified_by": "census+witness",
+    "predicted_family": 604800,
+    "rates": {
+     "10000": 1.0,
+     "40000": 1.0,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 15,
+    "certified_by": "census+witness",
+    "predicted_family": 3628800,
+    "rates": {
+     "10000": 1.0,
+     "40000": 1.0,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 16,
+    "certified_by": "witness",
+    "predicted_family": 25401600,
+    "rates": {
+     "10000": 1.0,
+     "40000": 1.0,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 17,
+    "certified_by": "witness",
+    "predicted_family": 261273600,
+    "rates": {
+     "10000": 0.4,
+     "40000": 0.7,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 18,
+    "certified_by": "witness",
+    "predicted_family": 1828915200,
+    "rates": {
+     "10000": 0.3,
+     "40000": 0.4,
+     "120000": null,
+     "200000": 1.0
+    }
+   },
+   {
+    "total_length": 19,
+    "certified_by": "witness",
+    "predicted_family": 14631321600,
+    "rates": {
+     "10000": 0.1,
+     "40000": 0.2,
+     "120000": 0.4,
+     "200000": 0.6
+    }
+   },
+   {
+    "total_length": 20,
+    "certified_by": "witness",
+    "predicted_family": 131681894400,
+    "rates": {
+     "10000": 0.0,
+     "40000": 0.4,
+     "120000": 0.2,
+     "200000": 0.1
+    }
+   },
+   {
+    "total_length": 21,
+    "certified_by": "witness",
+    "predicted_family": 1316818944000,
+    "rates": {
+     "10000": 0.0,
+     "40000": 0.0,
+     "120000": 0.0,
+     "200000": 0.2
+    }
+   },
+   {
+    "total_length": 22,
+    "certified_by": "witness",
+    "predicted_family": 14485008384000,
+    "rates": {
+     "10000": 0.0,
+     "40000": 0.0,
+     "120000": 0.1,
+     "200000": 0.1
+    }
+   }
+  ],
+  "first_length_below_half_at_40k": 18,
+  "first_length_zero_at_40k": 21,
+  "stalled_chains": [
+   {
+    "target_length": 23,
+    "chain_tip": [
+     "YyxyXY",
+     "xXYyXxxXyYxyYxy"
+    ],
+    "reason": "no child certified at any probe tier",
+    "children_enumerated": 63,
+    "tiers_completed": 4,
+    "probe_tiers": [
+     6000,
+     60000,
+     600000,
+     2000000
+    ],
+    "best_defect_seen": 2,
+    "reading": "proves nothing about the children's gamma_N -- the instrument, not the states, is what failed here",
+    "chain": "odd"
+   },
+   {
+    "target_length": 24,
+    "chain_tip": [
+     "XYYyxXxyyYYXX",
+     "XxXYyxxxy"
+    ],
+    "reason": "no child certified at any probe tier",
+    "children_enumerated": 66,
+    "tiers_completed": 4,
+    "probe_tiers": [
+     6000,
+     60000,
+     600000,
+     2000000
+    ],
+    "best_defect_seen": 2,
+    "reading": "proves nothing about the children's gamma_N -- the instrument, not the states, is what failed here",
+    "chain": "even"
+   }
+  ],
+  "recommendation_at_max_length": {
+   "length": 24,
+   "status": "NO_CALIBRATION_STATE",
+   "detail": "no gamma_N = 0 rung could be certified at length 24 (see stalled_chains); sensitivity there is UNMEASURED.  Even the top probe tier failed on every candidate, so R7 nulls at this length carry no information at any production budget",
+   "stalls": [
+    {
+     "target_length": 23,
+     "chain_tip": [
+      "YyxyXY",
+      "xXYyXxxXyYxyYxy"
+     ],
+     "reason": "no child certified at any probe tier",
+     "children_enumerated": 63,
+     "tiers_completed": 4,
+     "probe_tiers": [
+      6000,
+      60000,
+      600000,
+      2000000
+     ],
+     "best_defect_seen": 2,
+     "reading": "proves nothing about the children's gamma_N -- the instrument, not the states, is what failed here",
+     "chain": "odd"
+    },
+    {
+     "target_length": 24,
+     "chain_tip": [
+      "XYYyxXxyyYYXX",
+      "XxXYyxxxy"
+     ],
+     "reason": "no child certified at any probe tier",
+     "children_enumerated": 66,
+     "tiers_completed": 4,
+     "probe_tiers": [
+      6000,
+      60000,
+      600000,
+      2000000
+     ],
+     "best_defect_seen": 2,
+     "reading": "proves nothing about the children's gamma_N -- the instrument, not the states, is what failed here",
+     "chain": "even"
+    }
+   ]
+  }
+ },
+ "elapsed_seconds": 332.7,
+ "production_samples_extended": [
+  10000,
+  40000,
+  120000,
+  200000
+ ],
+ "cell_120000_note": "the 120000-sample cells were measured for lengths 19-22 only, at the same master seed and 10 independent seeds per cell, to calibrate a deployed 120000-evaluation sweep at those lengths; other lengths have no 120000 cell"
 }

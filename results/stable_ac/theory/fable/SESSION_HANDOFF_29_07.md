@@ -78,3 +78,68 @@ segment. Lessons in `experiments/lessons/` + the CLAUDE.md index — including t
 ones this segment (duplicate writers corrupting an artifact; which side a tool bounds a
 quantity from). Codex fetched throughout; their frontier is per-realisation
 Fox-calculus/Hessian work and the Aut-frontier manifest — no collisions.
+
+---
+
+## Segment update (~17:00 UTC) — spelling space, two self-audits, four live routes
+
+**Test gate: `python3 -m pytest -q` on the bare suite → 604 passed, 5 skipped, 0 failures,
+0 errors** (247 s). Every result below is behind that gate. (An earlier run showed 25
+errors; all were `tests/fable/test_stable_matched_contrast.py` reading the contrast
+artifact while the run was still writing it, and all cleared once it finished.)
+
+### Established
+
+* **AK(3)'s spelling fibre is real and now measured.** γ_N = 2 for the reduced spelling;
+  exactly **8 of the 39 distinct single spikes are at γ_N = 1**, and **no single spike is
+  thickenable**. Three independent confirmations agreeing spelling for spelling: a numba
+  census kernel cross-validated 844× against the audited pure-Python census; a standalone
+  census driver (8/8, histogram {1: 8}); and hill-climbed rotation-system witnesses
+  re-verified in isolation. The 8 minimisers each have exactly 2 minimising systems out of
+  3.6–4.8 million — a needle no uniform sampler would ever hit.
+* **R9, the stable-class contrast**, with its own length confound exposed and reported in
+  the headline rather than buried. See `R9_STABLE_CLASS_CONTRAST.md`.
+* **R7's hunt: 1,909 states swept for a defect-0 witness, none found.** Silence by
+  construction — the instrument is one-sided and a null carries no claim.
+* **The 150 loop-bearing rows are UNDECIDABLE by present means**, not merely undecided:
+  censuses of 1.46e10–1.46e11, solver fails closed on A-loops, no defect-0 witness at
+  120,000 evaluations. They now carry certified upper bounds (5 at ≤1, 138 at ≤2, 7 at ≤3).
+
+### Two self-audits that cut against this line's own results
+
+1. **`LITERATURE_STATUS.md` — the Lackenby dependency is unsourced.** `literature/` is
+   gitignored and absent from cloud clones; every citation was carried in from an earlier
+   session. Only the abstract is sourced. The theorem's number, its hypotheses, the
+   definition of "thickenable", and the existence of "move (0)" are all UNVERIFIED. Also:
+   the FQW census is cellular and partial at complexity 5. The (V+1, V+1, 3V+3) dictionary
+   re-checked clean against all 5,389 upstream rows.
+2. **The contrast's 54.8%-vs-0 headline is substantially a LENGTH gap.** In the shared
+   band it is 0.147% vs 0 — 13/8,862 against 0/31,039.
+
+Repairs from an adversarial pass: FRAMING.md had AC1/AC2 swapped against every other file;
+R1F's "costs nothing to reach" was wrong (a spike spends the same ceiling unit as a graft);
+`spike_space_hunt.py` now gates on the generator set, because both witness entry points
+derive generators FROM the words and a rank-losing state could report a spurious defect 0.
+
+### The strategic correction this line had been getting wrong
+
+A class-wide thickenability obstruction is **the DISPROOF of stable ACC**, not a negative
+result — via the reformulation, proving AK(3)'s stable class contains no thickenable member
+in any spelling disproves the conjecture. That is why Wall 5 bites, and why any candidate
+obstruction must be audited with maximum hostility. Recorded in `FRAMING.md` §2.
+
+### Four routes live, deliberately incompatible
+
+| route | question | status |
+|---|---|---|
+| **R7 / γ\*** | spelling-independent lower bound on γ_N; the spike ceiling; **"spiked thickenable ⇒ reduced thickenable"** | under proof attempt — the highest-value target on the board |
+| **R8 / fake surfaces** | what is AK(3)'s fake-surface complexity? if ≤ 5, FQW settles it outright | under investigation |
+| **R10 / Zeeman** | is AK(3)'s K × I collapsible? a collapse is a complete positive certificate | under investigation |
+| **R6 / certified targets** | meet-in-the-middle at ranks 4–6 | rank-6 row added: 84,009 states, 0 matches, but only 128 at the targets' own length — the window barely opened |
+
+### The single theorem to prove next
+
+**"spiked thickenable ⇒ reduced thickenable"** — zero counterexamples in 110,917 measured
+spiked complexes, while the converse is refuted by an explicit counterexample. Proving it
+extends the ~141,000 recorded NOT_SPHERICAL verdicts from single realizations to whole
+spelling families, closes all 150 undecided rows at once, and closes the spelling route.
