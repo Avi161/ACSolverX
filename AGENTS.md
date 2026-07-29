@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-29 Open-ended age cell identifier
+
+- [TRAP] The threshold-state label is normally `ge3`, but the literal certificate cell ID for `a=None` is `age3` (not `agege3`).
+- [WORKS] Keep the stored age state as `None` and its base value as `3`; special-case only the rendered `age3` identifier.
+
 ### 2026-07-14 Equivalence tutorial verification environment
 
 - [TRAP] This checkout has no `ACSolverX/.venv/bin/python3`; commands copied from the proof-book documentation fail here.
