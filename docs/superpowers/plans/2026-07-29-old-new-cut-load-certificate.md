@@ -14,7 +14,7 @@
 - Never import `.scratch/period_two_old_new_cut_covariance_checker.py` as a trusted dependency.
 - The independent verifier must not import the generator.
 - Do not assert `Q(A_(n,d))=[d=0]`; the certificate domain is exactly `n>=0, d>=1`.
-- Treat the 9,408-load census, 790,272 active comparisons, and six family values as `[unverified]` until both generator and independent replay pass.
+- Treat the 9,408 source-load census, 17,760 occurrence-load census, 1,491,840 active comparisons, and six family values as `[unverified]` until both generator and independent replay pass.
 - Run every test, checker, linter, compiler, or proof command in the foreground through `scripts/run_proof_guarded.py`, with one job and a 30-second deadline; never exceed 60 seconds.
 - Never rerun an unchanged timed-out command. Reduce allocation or simplify the algorithm first.
 - Never write temporary artifacts under `/tmp`; use `.scratch/test-artifacts/old-new-load/`.
@@ -292,8 +292,13 @@ assert summary["load_rows"] == {
     "P": 1728, "C": 624, "Q": 5888,
 }
 assert summary["total_load_rows"] == 9408
-assert summary["b_tokens_per_load"] == 84
-assert summary["active_comparisons"] == 790272
+assert summary["occurrence_loads"] == {
+    "fixed": 1120, "base": 64, "singleton": 96,
+    "P": 3456, "C": 1248, "Q": 11776,
+}
+assert summary["total_occurrence_loads"] == 17760
+assert summary["b_tokens_per_occurrence"] == 84
+assert summary["active_comparisons"] == 1491840
 ```
 
 - [ ] **Step 2: Run the new tests and verify RED**
@@ -302,9 +307,17 @@ Expected: FAIL because comparison histograms and family ledgers are absent.
 
 - [ ] **Step 3: Implement comparison records and histogram partitioning**
 
-For each active old `TokenRef`, compare all 84 B-tokens exactly once. The bucket key contains B source class/coordinate, equality exclusion, old polarity, module method/order, chronology order, label method/order, and contribution bit. Store sorted bucket records with count and 84-bit mask encoded as 21 lowercase hexadecimal digits.
+For each source-fiber/cell load, iterate its exact old occurrence footprint and
+compare every occurrence with all 84 B-tokens exactly once.  The bucket key
+contains the old occurrence/leaf, B source class/coordinate, equality
+exclusion, old polarity, module method/order, chronology order, label
+method/order, and contribution bit. Store sorted bucket records with count
+and 84-bit mask encoded as 21 lowercase hexadecimal digits.
 
-Validate within each load: all masks are disjoint, their union is `2^84-1`, sum of bucket counts is 84, and each count equals the bit count of its mask.
+Validate independently for every footprint occurrence: all masks are
+disjoint, their union is `2^84-1`, the sum of bucket counts is 84, and each
+count equals the bit count of its mask.  Then derive each grouped load's bit
+as the xor of all contributions over its complete footprint.
 
 - [ ] **Step 4: Implement family xor and fail-closed expectations**
 
@@ -411,7 +424,11 @@ B(A_(n,d), b_(n,d)) = [d>1] for n>=0 and d>=1,
 so B(A_(n+1,d), b_(n+1,d)) = B(A_(n,d), b_(n,d)).
 ```
 
-Include the six computed family tables, 9,408 load rows, 790,272 active comparisons, raw-fiber census, all-power witness counts, exact hashes, guarded replay commands, and independent verifier result. State explicitly that the d=0 endpoint, Q(A), covariance outside this cut, AC, and stable AC remain open.
+Include the six computed family tables, 9,408 source loads, 17,760
+occurrence-loads, 1,491,840 active comparisons, raw-fiber census, all-power
+witness counts, exact hashes, guarded replay commands, and independent
+verifier result. State explicitly that the d=0 endpoint, Q(A), covariance
+outside this cut, AC, and stable AC remain open.
 
 - [ ] **Step 4: Run the complete focused suite and deterministic replay**
 

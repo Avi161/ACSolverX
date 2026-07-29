@@ -14,10 +14,10 @@ only unresolved positive-chamber identity in the period-two argument:
 
 The endpoint-potential reduction has already reduced this claim to six family
 parities.  The certificate will materialize those parities as 9,408
-occurrence-specific, collision-safe load rows.  It will bind the larger raw
-ledger through integral collision fibers instead of serializing every
-pre-collision pair, which previously ran too slowly and overheated the
-machine.
+source-fiber/cell loads carrying 17,760 old-occurrence histograms.  It will
+bind raw provenance through integral collision fibers and compress the
+1,491,840 active comparisons instead of serializing every pair as a separate
+JSON object, which previously ran too slowly and overheated the machine.
 
 This certificate is not, by itself, an AC or stable-AC trivialization of
 AK(3).  It is one lemma in the current proof route.  It must not assert the
@@ -29,11 +29,12 @@ branch as closed.
 ### A. Grouped load histograms with independent replay (selected)
 
 Aggregate the old source rows by integral collision fiber before parity, then
-record one load row for each surviving row and threshold cell.  Each load row
-contains a complete partition of its comparisons with the 84-token
-collision-first word `T=b_(n,d)`.  Stable token masks and computed counts bind
-the compact histogram to every underlying comparison.  A separate verifier
-reconstructs the rows and comparisons without importing generator logic.
+record one load row for each surviving source fiber and threshold cell.  For
+every old occurrence in that load's exact footprint, store a complete
+partition of its comparisons with the 84-token collision-first word
+`T=b_(n,d)`.  Stable token masks and computed counts bind the compact
+histograms to every underlying comparison.  A separate verifier reconstructs
+the rows and comparisons without importing generator logic.
 
 This approach retains every proof obligation while keeping the executable
 artifact small enough for a guarded 30-second run.
@@ -127,32 +128,34 @@ The endpoint reduction predicts the following census.  These values remain
 **[unverified]** until the new generator derives them from the bound sources
 and the independent verifier reproduces them:
 
-| family | rows/cell | cells | load rows |
-|---|---:|---:|---:|
-| fixed | 70 | 16 | 1,120 |
-| base | 2 | 16 | 32 |
-| singleton | 1 | 16 | 16 |
-| P | 32 | 54 | 1,728 |
-| C | 39 | 16 | 624 |
-| Q | 92 | 64 | 5,888 |
-| total |  |  | **9,408** |
+| family | rows/cell | cells | source loads | footprint/load | occurrence-loads | comparisons |
+|---|---:|---:|---:|---:|---:|---:|
+| fixed | 70 | 16 | 1,120 | 1 | 1,120 | 94,080 |
+| base | 2 | 16 | 32 | 2 | 64 | 5,376 |
+| singleton | 1 | 16 | 16 | 6 | 96 | 8,064 |
+| P | 32 | 54 | 1,728 | 2 | 3,456 | 290,304 |
+| C | 39 | 16 | 624 | 2 | 1,248 | 104,832 |
+| Q | 92 | 64 | 5,888 | 2 | 11,776 | 989,184 |
+| total |  |  | **9,408** |  | **17,760** | **1,491,840** |
 
-Each load row is already occurrence-specific.  It names its source fiber,
-cell, module schema, label schema, occurrence, polarity, and literal AST leaf.
-Fixed rows instead name their literal leaf and have no occurrence.  Every
-surviving load is compared with exactly 84 collision-first B-tokens, so the
-predicted active workload is **[unverified]**
-`9,408 * 84 = 790,272` comparisons.
+Each source load names its integral collision fiber, cell, module/label
+schema references, and complete old occurrence footprint.  A footprint entry
+names its occurrence, polarity, literal AST leaf, module schema, and label
+schema; a fixed entry instead names its literal leaf and has no occurrence.
+Every footprint entry is compared with exactly 84 collision-first B-tokens,
+giving the predicted **[unverified]** workload
+`17,760 * 84 = 1,491,840` comparisons.
 
-The larger pre-collision ledger is a different object.  Its raw rows are
-bound by the integral-fiber records in Section 4, and bilinearity proves that
-even fiber sums contribute zero.  The compact certificate therefore need not
-replay or serialize every pre-collision pair.  It must compute both the raw
-fiber census and the active 9,408-row census so a missing cancellation cannot
+Raw provenance rows remain bound by the integral-fiber records in Section 4,
+and bilinearity proves that even fiber sums contribute zero.  The compact
+certificate need not serialize one object for every comparison: each grouped
+load retains the source fiber, while one histogram per occurrence retains the
+complete active comparison partition.  It must compute the raw-fiber, source
+load, occurrence-load, and comparison censuses so a missing occurrence cannot
 masquerade as compression.
 
-For each load row, the 84 comparisons are partitioned into histogram buckets
-keyed by:
+For each footprint occurrence, the 84 comparisons are partitioned into
+histogram buckets keyed by:
 
 - stable B-token source class and coordinate;
 - equality exclusion;
@@ -163,7 +166,7 @@ keyed by:
 - final contribution bit.
 
 Each bucket stores its count and an 84-bit token mask.  Masks must be disjoint
-and have union `(1<<84)-1` for each load row.  The independent verifier
+and have union `(1<<84)-1` for each footprint occurrence.  The independent verifier
 recomputes every mask and bucket key from the bound source data.  Thus the
 histogram is compact, but omitting, duplicating, or reclassifying an atomic
 comparison is detectable without storing 1.49 million JSON objects.

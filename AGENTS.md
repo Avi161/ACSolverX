@@ -1519,6 +1519,11 @@
 - [TRAP] Invoking `scripts/sdd-workspace` with the skill package as the working directory made it treat the read-only plugin cache as the repository and fail while creating `.superpowers` there.
 - [WORKS] Invoke the helper by absolute path with the target linked worktree as `cwd`; its plan-specific ledger then resolves under the project's ignored `.superpowers/sdd/` tree.
 
+### 2026-07-29 Distinguish source-fiber loads from occurrence comparisons
+
+- [TRAP] A hostile design edit misread the 9,408 grouped old-row loads as occurrence-specific and changed the predicted comparison total to `9,408 * 84 = 790,272`. The exact decorated catalog shows that this drops the old occurrence footprint: fixed loads have one occurrence, base/P/C/Q loads have two, and singleton loads have six.
+- [WORKS] Derive footprint counts from `build_task4_schema_catalog` before freezing a ledger census. The exact target is 9,408 source-fiber/cell loads, 17,760 occurrence-loads, and `17,760 * 84 = 1,491,840` comparisons; serialize one complete 84-token histogram per old occurrence while keeping collision-fiber membership on the grouped load.
+
 ### 2026-07-29 Inspect nested manifest shapes before mapping
 
 - [TRAP] A Task 2 `jq` inspection assumed `cells[0].path_fibers` was an array, but it is an object keyed by `b0` and `b1`; the query failed before returning the intended counts.
