@@ -191,6 +191,8 @@ def write_results(winner_arm=None):
     train = _rank(rows, "train")
     hold = _rank(rows, "holdout")
     split = json.load(open(SPLIT))
+    length_tr = next((r for r in train if r["arm"] == "length"), None)
+    length_ho = next((r for r in hold if r["arm"] == "length"), None)
 
     lines = [
         "# Aut-disjoint S+K+MK weight tune @ budget 1,000",
@@ -202,42 +204,60 @@ def write_results(winner_arm=None):
         f"zero Aut overlap; prior s_grid/scale10k scout orbits excluded.",
         "",
         f"Grid: |S|={len(S_GRID)} × |K|={len(K_GRID)} × |MK|={len(MK_GRID)} "
-        f"= {len(S_GRID)*len(K_GRID)*len(MK_GRID)} (+ length). **No xyimb.**",
+        f"= {len(S_GRID)*len(K_GRID)*len(MK_GRID)} (+ **length baseline**). "
+        f"**No xyimb.**",
         "",
         f"**selected_on** = train · **evaluated_on** = holdout (one read).",
+        "",
+        "Every arm is scored against the **length-only greedy baseline** "
+        "(`arm=length`). Without that column a lift is undefined.",
+        "",
+        "Note: this pool is *defined* as length-failures at budget 1k, so "
+        "length is expected to be ~0/N here — useful for ranking treatments, "
+        "but the production comparison is Colab @200k where baseline can move.",
         "",
     ]
     if train:
         b = train[0]
+        d_base = (
+            f" vs length **{length_tr['solved']}/{length_tr['n']}** "
+            f"(Δ=+{b['solved'] - length_tr['solved']})"
+            if length_tr else "")
         lines += [
             f"## Winner on TRAIN: `{b['arm']}`",
             "",
             f"S={b['S']:g}, K={b['K']:g}, MK={b['MK']:g} → "
-            f"**{b['solved']}/{b['n']}** "
-            + (f"(mean nodes {b['mean_nodes_solved']:.0f})"
-               if b["mean_nodes_solved"] else ""),
+            f"**{b['solved']}/{b['n']}**"
+            + (f" (mean nodes {b['mean_nodes_solved']:.0f})"
+               if b["mean_nodes_solved"] else "")
+            + d_base,
             "",
-            "### Train top 30",
+            "### Train top 30 (Δ vs length)",
             "",
-            "| rank | arm | S | K | MK | solved | mean nodes |",
-            "|---:|---|---:|---:|---:|---:|---:|",
+            "| rank | arm | S | K | MK | solved | Δ vs length | mean nodes |",
+            "|---:|---|---:|---:|---:|---:|---:|---:|",
         ]
+        base_n = length_tr["solved"] if length_tr else 0
         for i, r in enumerate(train[:30], 1):
             mn = f"{r['mean_nodes_solved']:.0f}" if r["mean_nodes_solved"] else "—"
+            dlt = r["solved"] - base_n
             lines.append(
                 f"| {i} | `{r['arm']}` | {r['S']:g} | {r['K']:g} | "
-                f"{r['MK']:g} | **{r['solved']}/{r['n']}** | {mn} |")
+                f"{r['MK']:g} | **{r['solved']}/{r['n']}** | "
+                f"{dlt:+d} | {mn} |")
         lines.append("")
 
         def fam(name, pred):
             xs = [r for r in train if pred(r)]
             if xs:
                 r = xs[0]
+                dlt = r["solved"] - base_n
                 lines.append(
                     f"- **{name}:** `{r['arm']}` → {r['solved']}/{r['n']} "
-                    f"(S={r['S']:g}, K={r['K']:g}, MK={r['MK']:g})")
+                    f"(Δ={dlt:+d} vs length; "
+                    f"S={r['S']:g}, K={r['K']:g}, MK={r['MK']:g})")
 
-        lines.append("### Train best by family")
+        lines.append("### Train best by family (each vs length)")
         lines.append("")
         fam("length", lambda r: r["arm"] == "length")
         fam("pure S", lambda r: r["S"] > 0 and r["K"] == 0 and r["MK"] == 0)
@@ -252,48 +272,59 @@ def write_results(winner_arm=None):
         with open(CSV, "w", newline="") as f:
             w = csv.DictWriter(f, fieldnames=[
                 "rank", "arm", "S", "K", "MK", "solved", "n",
-                "mean_nodes_solved"])
+                "delta_vs_length", "mean_nodes_solved",
+                "length_solved", "length_n"])
             w.writeheader()
             for i, r in enumerate(train, 1):
                 w.writerow({
                     "rank": i, "arm": r["arm"], "S": r["S"], "K": r["K"],
                     "MK": r["MK"], "solved": r["solved"], "n": r["n"],
+                    "delta_vs_length": r["solved"] - base_n,
                     "mean_nodes_solved": r["mean_nodes_solved"],
+                    "length_solved": base_n,
+                    "length_n": length_tr["n"] if length_tr else None,
                 })
 
     if hold:
+        base_h = length_ho["solved"] if length_ho else 0
         lines += [
-            "## HOLDOUT (Aut-disjoint — one read)",
+            "## HOLDOUT (Aut-disjoint — one read; always vs length)",
             "",
-            "| rank | arm | S | K | MK | solved | mean nodes |",
-            "|---:|---|---:|---:|---:|---:|---:|",
+            "| rank | arm | S | K | MK | solved | Δ vs length | mean nodes |",
+            "|---:|---|---:|---:|---:|---:|---:|---:|",
         ]
         for i, r in enumerate(hold[:30], 1):
             mn = f"{r['mean_nodes_solved']:.0f}" if r["mean_nodes_solved"] else "—"
             mark = " ← train winner" if winner_arm and r["arm"] == winner_arm else ""
+            dlt = r["solved"] - base_h
             lines.append(
                 f"| {i} | `{r['arm']}` | {r['S']:g} | {r['K']:g} | "
-                f"{r['MK']:g} | **{r['solved']}/{r['n']}** | {mn} |{mark}")
+                f"{r['MK']:g} | **{r['solved']}/{r['n']}** | "
+                f"{dlt:+d} | {mn} |{mark}")
         lines.append("")
         with open(HOLDOUT_CSV, "w", newline="") as f:
             w = csv.DictWriter(f, fieldnames=[
                 "rank", "arm", "S", "K", "MK", "solved", "n",
-                "mean_nodes_solved"])
+                "delta_vs_length", "mean_nodes_solved",
+                "length_solved", "length_n"])
             w.writeheader()
             for i, r in enumerate(hold, 1):
                 w.writerow({
                     "rank": i, "arm": r["arm"], "S": r["S"], "K": r["K"],
                     "MK": r["MK"], "solved": r["solved"], "n": r["n"],
+                    "delta_vs_length": r["solved"] - base_h,
                     "mean_nodes_solved": r["mean_nodes_solved"],
+                    "length_solved": base_h,
+                    "length_n": length_ho["n"] if length_ho else None,
                 })
         if winner_arm:
             wr = next((r for r in hold if r["arm"] == winner_arm), None)
-            length = next((r for r in hold if r["arm"] == "length"), None)
-            if wr and length:
+            if wr and length_ho:
                 lines += [
                     f"**Train winner on holdout:** `{winner_arm}` → "
                     f"**{wr['solved']}/{wr['n']}** vs length "
-                    f"**{length['solved']}/{length['n']}**.",
+                    f"**{length_ho['solved']}/{length_ho['n']}** "
+                    f"(Δ={wr['solved'] - length_ho['solved']:+d}).",
                     "",
                 ]
 

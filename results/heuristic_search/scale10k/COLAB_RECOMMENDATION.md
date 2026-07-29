@@ -35,6 +35,10 @@ CHUNKS    = 5
 RESUME    = True
 ```
 
+**`baseline` (length-only greedy) is mandatory** — every treatment arm is
+reported as solved/N **and** Δ vs baseline at the same budget. Without that
+column we cannot say better/worse. Do not drop it to free a Colab slot.
+
 **Do not add `recommended` / xyimb** — overfits; weight selection is S+K+MK only
 on Aut-disjoint train/holdout (`results/heuristic_search/splits/splits_ac1m_hard_aut.json`).
 
