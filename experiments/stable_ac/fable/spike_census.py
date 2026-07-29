@@ -48,8 +48,9 @@ def census(words, cap: int) -> dict:
     if result["status"] == "OK":
         row["minimum_defect"] = result["minimum_defect"]
         row["gamma_N"] = result["minimum_defect"] // 2
-        row["defect_histogram"] = {str(k): v
-                                   for k, v in sorted(result["histogram"].items())}
+        row["defect_histogram"] = {
+            str(k): v for k, v in sorted(result["defect_histogram"].items())}
+        row["enumerated_cases"] = result["enumerated_cases"]
     return row
 
 

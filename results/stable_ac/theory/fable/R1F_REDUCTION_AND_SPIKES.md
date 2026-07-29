@@ -123,14 +123,29 @@ So the strict-stratum break is CONFIRMED, and by eight independent witnesses rat
 than one: AK(3) sits at spelling distance 1 from gateway level in eight different ways,
 six of them in the first relator and two in the second.
 
-[REMAINING GAP, stated precisely: the witnesses bound gamma_N from ABOVE only. They
-establish `gamma_N <= 1 < 2`, which is the whole of the strict-drop claim, but they do
-not distinguish gamma_N = 1 from gamma_N = 0 — and gamma_N = 0 would mean a THICKENABLE
-spelling of AK(3), the outcome that decides the sub-goal. The hill-climber found no
-defect-0 system on any of the 39 at 80,000 evaluations each, which is evidence and not
-proof, since absence of a witness proves nothing in this direction. An exhaustive census
-of the eight (3.6-4.8 million rotation systems apiece) is running to settle it;
-`spike_census.py`, artifact `spike_census_gateways.json`.]
+### Exact values, and the gamma_N = 0 question closed for single spikes
+
+The witnesses bound gamma_N from ABOVE only, which is the whole of the strict-drop
+claim but does not distinguish gamma_N = 1 from gamma_N = 0 — and gamma_N = 0 would be a
+THICKENABLE spelling of AK(3), the outcome that decides the sub-goal. That gap is now
+closed by exhaustive census, at cap 20,000,000 with 100% coverage, run independently of
+the witness hunt and re-verified through the audited `gamma_N_factorial_n`:
+
+**every one of the eight has minimum defect exactly 2, i.e. gamma_N = 1 exactly**, with
+precisely 2 minimising rotation systems out of 3,628,800 (six of them) or 4,838,400
+(two of them). **No single spike of AK(3) is thickenable.** The 39 spiked spellings
+split as gamma_N histogram {1: 8, 2: 31}.
+
+The two runs are a genuine cross-check, not one measurement counted twice: they use
+different search strategies (exhaustive census versus hill-climbed witness), different
+engines (a numba census kernel cross-validated 844 times against the audited pure-Python
+census inside its own tier-1 run, 0 disagreements, versus the pure-Python rotation
+verifier), and different deduplication code — yet they independently produce the SAME
+count of 39 distinct spikes and the SAME set of 8 minimisers, spelling for spelling.
+
+The tightness is worth recording: 2 minimising systems in 3.6 million is a needle the
+uniform sampler of an earlier session could never have found, and is why the hunt for
+gamma_N = 0 at greater lengths must use witnesses rather than censuses (see R7).
 
 ## What this changes
 
