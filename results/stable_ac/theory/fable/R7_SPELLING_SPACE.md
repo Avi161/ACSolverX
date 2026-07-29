@@ -343,12 +343,12 @@ slot`_X` `≍` slot`_Y` in `R₁`, so inserting `e_0` is not genus-raising and
 `def(R₀) = def(R₁) = 0`. ∎
 
 *Machine verification of S10.* Exhaustive over all cyclically reduced 2-relator bases on
-`{x, y}` of total length 6 (1,400 bases) and all of their single spikes: **115,264**
-compatible rotation systems of spiked complexes had `defect′ = 0` **and** were unnested;
-in **every one** of them `defect(ρ(C′)) = 0`. Zero violations. The hypothesis is not
-decoration: **12,736** nested `defect′ = 0` rows also occurred, and **4,288** of those had
-`defect(ρ(C′)) = 2`. So the naive statement "ρ preserves defect 0" is FALSE, and unnesting
-is exactly what repairs it.
+`{x, y}` of total length 6 (1,400 bases) and of total length 7 (5,264 bases), and over all
+of their single spikes, with FULL censuses: **502,976** compatible rotation systems of
+spiked complexes had `defect′ = 0` **and** were unnested; in **every one** of them
+`defect(ρ(C′)) = 0`. Zero violations. The hypothesis is not decoration: **50,752** nested
+`defect′ = 0` rows also occurred, and **24,640** of those had `defect(ρ(C′)) = 2`. So the
+naive statement "ρ preserves defect 0" is FALSE, and unnesting is exactly what repairs it.
 
 ### 3.1 The two conjectures
 
@@ -361,16 +361,31 @@ complex is thickenable, so is the complex one free reduction closer to reduced.
 By Theorem S10, **U ⇒ SR**. (The converse is not claimed: SR could hold for another reason.)
 
 **Evidence for U and SR.**
-* U: 23,328 of 23,328 spiked complexes with `γ_N = 0` at total length 6 possess an unnested
-  defect-0 witness — no exception. (Same run as above.)
-* SR: R1F's 110,917 measured spiked complexes contain zero counterexamples; every one of
-  the 13,976 spiked complexes with `γ_N = 0` descends from a base already at `γ_N = 0`; the
-  2,514 bases sitting at `γ_N = 1` produced ≈ 58,000 spikes and not one reached 0; all 464
-  observed strict drops are `2 → 1`.
+* U: **95,072 of 95,072** spiked complexes with `γ_N = 0` at total lengths 6 and 7 possess
+  an unnested defect-0 witness — no exception. (Same runs as above.)
+* SR: re-derived **directly from R1F's own committed per-base data**
+  (`results/stable_ac/fable/spike_monotonicity.json`, tier 1: exhaustive at total length
+  ≤ 9, 3,511 bases, 81,942 distinct single spikes, 0 skipped, 844 numba-vs-pure-Python
+  cross-checks with 0 disagreements). Cross-tabulating `gamma_N` against
+  `min_spiked_gamma_N` over all 3,511 bases gives, with no other rows:
+
+      base γ_N = 0  →  min over its spikes = 0    (821 bases)
+      base γ_N = 1  →  min over its spikes = 1    (2,514 bases)   ← never 0
+      base γ_N = 2  →  min over its spikes = 1    (144 bases)     ← ceiling attained
+      base γ_N = 2  →  min over its spikes = 2    (32 bases)
+
+  **SR counterexample bases: 0.** The 144 rows at `2 → 1` also show the S5 ceiling is
+  attained far below AK(3)'s length, so AK(3)'s eight gateways are a generic phenomenon.
+  The tier-1 `Δγ_N` histogram is `{−1: 424, 0: 78,530, +1: 2,988}`.
+* Spike saturation: R1F tier 2 measured 28,786 **double** spikes; its `Δγ_N` histogram is
+  `{−1: 40, 0: 26,080, +1: 2,664, +2: 2}` — **two spikes never lowered `γ_N` by 2**, in any
+  of the 28,786 measured cases. That is direct evidence that the `−1` of S5 does not
+  compound, and it is exactly what a proof would have to establish.
 * This note's independent re-derivation, by a different method (randomized defect-0 witness
   hunt rather than census — the correct bound direction, since 0 is the floor so an upper
   bound of 0 is exact): exhaustive over total length 8 (77 canonical bases, 48 of them with
-  `γ_N ≥ 1`, 1,080 spiked complexes tested) — **0 counterexamples**; and over the 12
+  `γ_N ≥ 1`, 1,080 spiked complexes) and total length 9 (204 canonical bases, 165 with
+  `γ_N ≥ 1`, 4,161 spiked complexes) — **0 counterexamples** in 5,241 tests; and over the 12
   certified AC-trivial states of §5 — **0 counterexamples**. The witness hunter was
   calibrated first on seven anchors of known γ_N including AK(3) itself and two of R1F's
   gateway spikes (where the minimisers are 2-in-3.6M needles): it reproduced all seven
@@ -656,19 +671,33 @@ existing code was modified and no new file was added to the repo except this not
    `L` motion observed in both regimes: `("xx","yy") → ("yYxx","yy")` has `L 2 → 1`
    (`δ = 1`), `("xyxy","xy") → ("xyxXxy","xy")` has `L 2 → 2` (`δ = 0`) — both predicted
    correctly by S1(4).
-2. *Unnesting / Theorem S10* (`adjacency_test.py`, total length 6): 1,400 bases, all single
-   spikes, full censuses. `spiked γ_N = 0`: 23,328; of these, **23,328 have an unnested
-   defect-0 witness** (0 exceptions → Conjecture U). Rows: **115,264 unnested defect-0 rows,
-   all with `defect(ρ) = 0`** → **0 violations of S10**; **12,736 nested defect-0 rows**, of
-   which **8,448 have `defect(ρ) = 0` and 4,288 have `defect(ρ) = 2`** → the unnesting
-   hypothesis is necessary. SR counterexamples found: **0**.
-3. *SR counterexample hunt* (`sr_hunt.py`, total length 8, exhaustive): 77 canonical
-   cyclically reduced bases, 48 with `γ_N ≥ 1`, **1,080 spiked complexes** searched for
-   defect-0 witnesses (60 restarts × 400 hill-climb steps each) — **0 counterexamples**.
+2. *Unnesting / Theorem S10* (`adjacency_test.py`, total lengths 6 and 7): 1,400 + 5,264
+   bases, all single spikes, FULL censuses on both sides.
+
+   | | length 6 | length 7 | total |
+   |---|---|---|---|
+   | spiked complexes with `γ_N = 0` | 23,328 | 71,744 | 95,072 |
+   | …of which have an UNNESTED defect-0 witness | 23,328 | 71,744 | **95,072 (all)** |
+   | unnested defect-0 rows | 115,264 | 387,712 | 502,976 |
+   | …violating S10 (`defect(ρ) ≠ 0`) | 0 | 0 | **0** |
+   | nested defect-0 rows | 12,736 | 38,016 | 50,752 |
+   | …with `defect(ρ) = 2` | 4,288 | 20,352 | 24,640 |
+   | SR counterexamples | 0 | 0 | **0** |
+
+3. *SR counterexample hunt* (`sr_hunt.py`, exhaustive at total lengths 8 and 9):
+   77 + 204 canonical cyclically reduced bases, 48 + 165 of them with `γ_N ≥ 1`,
+   **1,080 + 4,161 = 5,241 spiked complexes** searched for defect-0 witnesses (60 restarts
+   × 400 hill-climb steps each) — **0 counterexamples**.
    Witness-hunter calibration (7 anchors, all reproduced exactly): `("xyXY","xxy")` → 0,
    `("xyXY","yYxxy")` → 2, AK(3) → 4, `("xyYxxYYYY","xyxYXY")` → 2,
    `("xxxYYYY","xxXyxYXY")` → 2, `("x","y")` → 0, `("xy","y")` → 0 (unhalved defects).
-4. *AC-trivial states* (`actrivial_gamma.py`): BFS of depth 4 from `("x","y")` under
+   The two AK(3)-gateway anchors are the sharp test: their minimisers are 2 rotation systems
+   out of 3.6M / 4.8M, and the hunter neither missed the minimum nor invented a smaller one.
+4. *Δγ_N histogram under a single spike* (`delta_hist.py`, total length 6, exhaustive, both
+   sides by exact census): 1,400 bases, 33,600 spiked complexes,
+   `Δγ_N ∈ {0: 32,160, +1: 1,440}` — **never a drop, never a rise above +1** at this length.
+   This is the small-length end of R1F's picture and is consistent with Conjecture R.
+5. *AC-trivial states* (`actrivial_gamma.py`): BFS of depth 4 from `("x","y")` under
    AC1/AC2/AC3 + move (0), 578 certified AC-trivial reduced states of total length ≤ 14;
    **12 with `γ_N ≥ 1`** by exact census; the six shortest were spike-hunted (all single
    spikes, defect-0 witness search) with **0 hits**.

@@ -376,7 +376,8 @@ class CollapseEngine:
 
     __slots__ = ("present", "up", "buckets", "free_set", "protected", "maxdim")
 
-    def __init__(self, faces: Iterable[Face], protected: Iterable[Face] = ()):
+    def __init__(self, faces: Iterable[Face], protected: Iterable[Face] = (),
+                 rng: Optional[random.Random] = None):
         self.present: Set[Face] = set(faces)
         self.protected: FrozenSet[Face] = frozenset(protected)
         self.up: Dict[Face, Set[Face]] = {f: set() for f in self.present}
@@ -386,8 +387,13 @@ class CollapseEngine:
         self.maxdim = max((len(f) for f in self.present), default=1) - 1
         self.buckets: Dict[int, List[Face]] = {d: [] for d in range(self.maxdim + 1)}
         self.free_set: Set[Face] = set()
-        for f in self.present:
+        for f in sorted(self.present):
             self._refresh(f)
+        if rng is not None:
+            # a randomized starting order is what makes the LIFO/FIFO pickers differ
+            # from restart to restart
+            for b in self.buckets.values():
+                rng.shuffle(b)
 
     # -- internals -------------------------------------------------------------------
     def _is_free(self, f: Face) -> bool:
@@ -411,35 +417,51 @@ class CollapseEngine:
             self.free_set.discard(f)
 
     # -- public ----------------------------------------------------------------------
-    def pick(self, rng: random.Random, strategy: str = "uniform") -> Optional[Face]:
-        """Pop a free face, or ``None`` when the complex is stuck."""
+    def pick(self, rng: random.Random, strategy: str = "uniform",
+             noise: float = 0.0) -> Optional[Face]:
+        """Pop a free face, or ``None`` when the complex is stuck.
+
+        ``strategy`` fixes which dimension bucket is drawn from
+        (``uniform`` / ``top`` / ``bottom``) and, after a ``-lifo`` / ``-fifo``
+        suffix, which end of that bucket is taken.  Because freshly freed faces are
+        appended, ``-lifo`` makes the collapse sweep locally through the complex
+        instead of hopping around at random -- the single change that gets the
+        larger products past their plateau.  ``noise`` is the probability of taking
+        a uniformly random element of the bucket instead.
+        """
+        base, _, order_mode = strategy.partition("-")
+        if order_mode not in ("", "lifo", "fifo", "rand"):
+            raise ValueError(f"unknown pick order {order_mode!r}")
         while True:
             sizes = [(d, len(b)) for d, b in self.buckets.items() if b]
             if not sizes:
                 return None
-            if strategy == "top":
-                order = [max(d for d, _ in sizes)]
-            elif strategy == "bottom":
-                order = [min(d for d, _ in sizes)]
-            elif strategy == "uniform":
+            if base == "top":
+                d = max(d for d, _ in sizes)
+            elif base == "bottom":
+                d = min(d for d, _ in sizes)
+            elif base == "uniform":
                 total = sum(n for _, n in sizes)
                 r = rng.randrange(total)
-                order = []
-                for d, n in sizes:
+                d = sizes[-1][0]
+                for dd, n in sizes:
                     if r < n:
-                        order = [d]
+                        d = dd
                         break
                     r -= n
-                if not order:
-                    order = [sizes[-1][0]]
             else:
                 raise ValueError(f"unknown strategy {strategy!r}")
-            d = order[0]
             bucket = self.buckets[d]
-            i = rng.randrange(len(bucket))
-            f = bucket[i]
-            bucket[i] = bucket[-1]
-            bucket.pop()
+            greedy = noise <= 0.0 or rng.random() >= noise
+            if order_mode == "lifo" and greedy:
+                f = bucket.pop()
+            elif order_mode == "fifo" and greedy:
+                f = bucket.pop(0)
+            else:
+                i = rng.randrange(len(bucket))
+                f = bucket[i]
+                bucket[i] = bucket[-1]
+                bucket.pop()
             if f in self.free_set and self._is_free(f):
                 self.free_set.discard(f)
                 return f
@@ -472,12 +494,13 @@ def run_collapse(
     rng: random.Random,
     strategy: str = "uniform",
     protected: Iterable[Face] = (),
+    noise: float = 0.0,
 ) -> Tuple[List[Tuple[Face, Face]], Set[Face]]:
     """Collapse greedily until stuck.  Returns ``(sequence, residual face set)``."""
-    eng = CollapseEngine(faces, protected)
+    eng = CollapseEngine(faces, protected, rng)
     seq: List[Tuple[Face, Face]] = []
     while True:
-        tau = eng.pick(rng, strategy)
+        tau = eng.pick(rng, strategy, noise)
         if tau is None:
             break
         seq.append(eng.collapse(tau))
@@ -500,6 +523,7 @@ def search_collapse(
     target: str = "point",
     protected: Iterable[Face] = (),
     time_budget: Optional[float] = None,
+    noise: float = 0.0,
     verbose: bool = False,
 ) -> Dict[str, object]:
     """Restarted randomized free-face collapse search.
@@ -519,7 +543,7 @@ def search_collapse(
         used = r + 1
         strategy = strategies[r % len(strategies)]
         rng = random.Random((seed * 1_000_003) ^ (r * 2_654_435_761))
-        seq, residual = run_collapse(faces, rng, strategy, protected)
+        seq, residual = run_collapse(faces, rng, strategy, protected, noise)
         if _residual_ok(residual, target, protected):
             return {
                 "success": True,
@@ -563,6 +587,7 @@ def search_collapse_rollback(
     protected: Iterable[Face] = (),
     time_budget: Optional[float] = None,
     restart_after: int = 300,
+    noise: float = 0.0,
     verbose: bool = False,
 ) -> Dict[str, object]:
     """Iterated local search: greedy-to-stuck, then undo a random tail and retry.
@@ -588,13 +613,13 @@ def search_collapse_rollback(
         it += 1
         if time_budget is not None and time.time() - t0 > time_budget:
             break
-        eng = CollapseEngine(faces, protected)
+        eng = CollapseEngine(faces, protected, rng)
         for (tau, _sigma) in cur:
             eng.collapse(tau)
         strategy = strategies[it % len(strategies)]
         seq = list(cur)
         while True:
-            tau = eng.pick(rng, strategy)
+            tau = eng.pick(rng, strategy, noise)
             if tau is None:
                 break
             seq.append(eng.collapse(tau))
@@ -981,7 +1006,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--time-budget", type=float, default=None)
     ap.add_argument("--strategies", nargs="*",
-                    default=["uniform", "top", "bottom"])
+                    default=["uniform-lifo", "top-lifo", "uniform", "top"])
+    ap.add_argument("--noise", type=float, default=0.0)
+    ap.add_argument("--search", default="restart", choices=("restart", "rollback"))
     ap.add_argument("--out", default=None)
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args(argv)
@@ -1010,10 +1037,19 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             target = "subcomplex"
 
     t0 = time.time()
-    res = search_collapse(work, restarts=args.restarts, seed=args.seed,
-                          strategies=tuple(args.strategies), target=target,
-                          protected=protected, time_budget=args.time_budget,
-                          verbose=args.verbose)
+    if args.search == "rollback":
+        res = search_collapse_rollback(
+            work, iterations=args.restarts, seed=args.seed,
+            strategies=tuple(args.strategies), target=target, protected=protected,
+            time_budget=args.time_budget, noise=args.noise, verbose=args.verbose)
+        res.setdefault("restarts_used", res.get("iterations_used"))
+        res.setdefault("restart_index", None)
+        res.setdefault("strategy", ",".join(args.strategies))
+    else:
+        res = search_collapse(work, restarts=args.restarts, seed=args.seed,
+                              strategies=tuple(args.strategies), target=target,
+                              protected=protected, time_budget=args.time_budget,
+                              noise=args.noise, verbose=args.verbose)
     res["target"] = label
     res["mode"] = args.mode
     res["layers"] = args.layers
