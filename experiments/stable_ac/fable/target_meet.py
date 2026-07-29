@@ -26,6 +26,7 @@ import gzip
 import json
 import os
 import sys
+import zlib
 from collections import Counter, deque
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -183,7 +184,7 @@ def run(depth: int = 1, out_path: str = DEFAULT_OUT,
                         "seed_target": hit["target"],
                         "replay_required": ("CANDIDATE: reconstruct and replay the "
                                             "full AC path before any claim")})
-        except (EOFError, OSError, json.JSONDecodeError) as exc:
+        except (EOFError, OSError, zlib.error, json.JSONDecodeError) as exc:
             status = f"PARTIAL ({type(exc).__name__}: file still being written)"
         report["sources"].append({"name": name, "status": status,
                                   "members_checked": checked,

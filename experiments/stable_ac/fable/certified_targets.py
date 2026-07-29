@@ -48,6 +48,7 @@ import itertools
 import json
 import os
 import sys
+import zlib
 from collections import Counter
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -166,7 +167,7 @@ def intersect_corpus(sources, targets: dict) -> dict:
                     report["hits"].append({"source": name, "member": list(words),
                                            "match_kind": found["kind"],
                                            "target": found["target"]})
-        except (EOFError, OSError, json.JSONDecodeError) as exc:
+        except (EOFError, OSError, zlib.error, json.JSONDecodeError) as exc:
             # an artifact still being written by a running harvest: report what was
             # read rather than crashing, and never present it as complete
             status = f"PARTIAL ({type(exc).__name__}: file still being written)"

@@ -849,6 +849,11 @@ def main(argv=None) -> int:
         for tgt in report["tier3"]["targets"]:
             total_cases += tgt["spikes_measured"]
             refuted.extend(tgt["drops_below_base"])
+            prof = tgt["base_profile"]
+            if (prof["min_relator_length"] >= 3
+                    and prof["every_relator_uses_both_generators"]):
+                strict.extend(tgt["drops_below_base"])
+    strict.sort(key=lambda ce: -(len(ce["base"][0]) + len(ce["base"][1])))
     if refuted:
         first = strict[0] if strict else refuted[0]
         line = ("SPIKE MONOTONICITY: REFUTED by "
