@@ -111,6 +111,24 @@ def _print_progress(
     )
 
 
+def _print_due_progress(
+    phase: str,
+    phase_started_at: float,
+    through_time: float,
+    next_progress_at: float,
+    progress_interval: float,
+    sample: SafetySample,
+) -> float:
+    while next_progress_at <= through_time:
+        _print_progress(
+            phase,
+            next_progress_at - phase_started_at,
+            sample,
+        )
+        next_progress_at += progress_interval
+    return next_progress_at
+
+
 def read_macos_thermal_state() -> int:
     if sys.platform != "darwin":
         raise RuntimeError("macOS thermal monitoring requires macOS")
@@ -552,17 +570,19 @@ def _run_long_phase(
         phase_start_reported = False
         consecutive_high_cpu_samples = 0
         while True:
-            return_code = child.poll()
-            if return_code is not None:
-                if group_exists(child.pid):
-                    _clean_exact_group(child, grace_seconds)
-                    print(
-                        f"proof guard found a lingering {phase} process group "
-                        f"{child.pid}",
-                        file=sys.stderr,
-                    )
-                    return SAFETY_EXIT, True
-                return return_code, False
+            if (
+                phase_start_reported
+                and latest_sample is not None
+                and next_progress_at is not None
+            ):
+                next_progress_at = _print_due_progress(
+                    phase,
+                    phase_started_at,
+                    clock(),
+                    next_progress_at,
+                    progress_interval,
+                    latest_sample,
+                )
 
             now = clock()
             safety_failure: str | None = None
@@ -610,19 +630,27 @@ def _run_long_phase(
                 if not phase_start_reported:
                     _print_progress(phase, 0.0, latest_sample)
                     phase_start_reported = True
-                elif next_progress_at is not None and now >= next_progress_at:
-                    _print_progress(
+                if next_progress_at is not None:
+                    next_progress_at = _print_due_progress(
                         phase,
-                        now - phase_started_at,
+                        phase_started_at,
+                        clock(),
+                        next_progress_at,
+                        progress_interval,
                         latest_sample,
                     )
-                    boundaries_crossed = (
-                        math.floor(
-                            (now - next_progress_at) / progress_interval
-                        )
-                        + 1
+
+            return_code = child.poll()
+            if return_code is not None:
+                if group_exists(child.pid):
+                    _clean_exact_group(child, grace_seconds)
+                    print(
+                        f"proof guard found a lingering {phase} process group "
+                        f"{child.pid}",
+                        file=sys.stderr,
                     )
-                    next_progress_at += boundaries_crossed * progress_interval
+                    return SAFETY_EXIT, True
+                return return_code, False
 
             remaining_seconds = deadline - clock()
             if remaining_seconds <= 0:

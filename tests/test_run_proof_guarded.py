@@ -991,11 +991,21 @@ class _FakeClock:
 
 
 class _SequenceMonitor:
-    def __init__(self, samples: list[object], clock: _FakeClock) -> None:
+    def __init__(
+        self,
+        samples: list[object],
+        clock: _FakeClock,
+        *,
+        sample_advances: list[float] | None = None,
+        output_stream: io.StringIO | None = None,
+    ) -> None:
         self.samples = samples
         self.clock = clock
+        self.sample_advances = sample_advances
+        self.output_stream = output_stream
         self.calls: list[tuple[int, int, int]] = []
         self.sample_times: list[float] = []
+        self.output_before_samples: list[list[str]] = []
 
     def sample(
         self,
@@ -1005,11 +1015,19 @@ class _SequenceMonitor:
     ) -> object:
         self.calls.append((child_pid, process_group_id, controller_pid))
         self.sample_times.append(self.clock.monotonic())
+        if self.output_stream is not None:
+            self.output_before_samples.append(
+                self.output_stream.getvalue().splitlines()
+            )
         if not self.samples:
             raise AssertionError("monitor sampled more often than expected")
         sample = self.samples.pop(0)
         if isinstance(sample, BaseException):
             raise sample
+        if self.sample_advances is not None:
+            if not self.sample_advances:
+                raise AssertionError("monitor advanced more often than expected")
+            self.clock.now += self.sample_advances.pop(0)
         return sample
 
 
@@ -1041,6 +1059,8 @@ def _run_synthetic_monitored_phases(
     *,
     command: tuple[str, ...] = ("synthetic-command",),
     progress_seconds: float = 10.0,
+    sample_advances: list[float] | None = None,
+    output_stream: io.StringIO | None = None,
 ) -> tuple[int, list[tuple[int, int]], _SequenceMonitor]:
     clock = _FakeClock()
     alive: dict[int, bool] = {}
@@ -1094,7 +1114,12 @@ def _run_synthetic_monitored_phases(
         if signum in (signal.SIGTERM, signal.SIGKILL):
             alive[process_group_id] = False
 
-    monitor = _SequenceMonitor(samples, clock)
+    monitor = _SequenceMonitor(
+        samples,
+        clock,
+        sample_advances=sample_advances,
+        output_stream=output_stream,
+    )
     monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
     monkeypatch.setattr(
         proof_guard,
@@ -1146,13 +1171,91 @@ def test_progress_reports_sanitized_phase_starts_and_two_experiment_boundaries(
         "proof guard progress phase=experiment elapsed=0s "
         "exact_group_process_count=2 aggregate_cpu=20% thermal=nominal",
         "proof guard progress phase=experiment elapsed=1s "
-        "exact_group_process_count=3 aggregate_cpu=30% thermal=nominal",
+        "exact_group_process_count=2 aggregate_cpu=20% thermal=nominal",
         "proof guard progress phase=experiment elapsed=2s "
-        "exact_group_process_count=4 aggregate_cpu=40% thermal=nominal",
+        "exact_group_process_count=3 aggregate_cpu=30% thermal=nominal",
     ]
     assert command_sentinel not in captured.out
     assert command_sentinel not in captured.err
     assert environment_sentinel not in captured.out
+    assert environment_sentinel not in captured.err
+
+
+def test_immediate_success_still_reports_both_phase_starts(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    status, killpg_calls, monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        [
+            _safety_sample(cpu_percent=10.0, group_process_count=1),
+            _safety_sample(cpu_percent=20.0, group_process_count=2),
+        ],
+        completion_times=(0.0, 0.0),
+    )
+
+    assert status == 0
+    assert killpg_calls == []
+    assert monitor.sample_times == [0.0, 0.0]
+    assert capsys.readouterr().out.splitlines() == [
+        "proof guard progress phase=preflight elapsed=0s "
+        "exact_group_process_count=1 aggregate_cpu=10% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=0s "
+        "exact_group_process_count=2 aggregate_cpu=20% thermal=nominal",
+    ]
+
+
+def test_due_progress_precedes_blocking_sample_and_reports_each_missed_boundary(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    command_sentinel = "blocking-sample-command-secret"
+    environment_sentinel = "blocking-sample-environment-secret"
+    monkeypatch.setenv("PROOF_GUARD_BLOCKING_SAMPLE_SECRET", environment_sentinel)
+    output = io.StringIO()
+
+    with redirect_stdout(output):
+        status, killpg_calls, monitor = _run_synthetic_monitored_phases(
+            monkeypatch,
+            [
+                _safety_sample(cpu_percent=10.0, group_process_count=1),
+                _safety_sample(cpu_percent=20.0, group_process_count=2),
+                _safety_sample(cpu_percent=30.0, group_process_count=3),
+                _safety_sample(cpu_percent=40.0, group_process_count=4),
+            ],
+            completion_times=(0.0, 3.5),
+            command=("synthetic-command", command_sentinel),
+            progress_seconds=1.0,
+            sample_advances=[0.0, 0.0, 2.2, 0.0],
+            output_stream=output,
+        )
+
+    captured = capsys.readouterr()
+    lines = output.getvalue().splitlines()
+    assert status == 0
+    assert killpg_calls == []
+    assert monitor.sample_times == [0.0, 0.0, 1.0, 3.2]
+    expected_before_blocking_sample = [
+        "proof guard progress phase=preflight elapsed=0s "
+        "exact_group_process_count=1 aggregate_cpu=10% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=0s "
+        "exact_group_process_count=2 aggregate_cpu=20% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=1s "
+        "exact_group_process_count=2 aggregate_cpu=20% thermal=nominal",
+    ]
+    expected_lines = [
+        *expected_before_blocking_sample,
+        "proof guard progress phase=experiment elapsed=2s "
+        "exact_group_process_count=3 aggregate_cpu=30% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=3s "
+        "exact_group_process_count=3 aggregate_cpu=30% thermal=nominal",
+    ]
+    assert monitor.output_before_samples[2] == expected_before_blocking_sample
+    assert monitor.output_before_samples[3] == expected_lines
+    assert lines == expected_lines
+    assert command_sentinel not in output.getvalue()
+    assert command_sentinel not in captured.err
+    assert environment_sentinel not in output.getvalue()
     assert environment_sentinel not in captured.err
 
 
