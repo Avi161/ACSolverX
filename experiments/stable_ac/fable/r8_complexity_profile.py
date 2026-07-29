@@ -243,23 +243,30 @@ def _reduced_cyclic_words(length, letters):
     return out
 
 
-def canon_key(words):
-    """Canonical key: cyclic rotation + inversion per relator, sorted, min over the
-    2 generator relabellings.  Same normalisation family as certified_targets.canon_multi."""
+def canon_key(words, gens="ab"):
+    """Canonical key under the FULL census symmetry group: permute generators, INVERT
+    generators (an edge of the singular graph has no preferred orientation, so the
+    tree-collapse presentation is only defined up to x -> x^-1), rotate and invert each
+    relator, permute relators.  Omitting the generator inversions -- as a rotation-only
+    key does -- splits census classes and inflates the profile-admissible count."""
     best = None
-    for perm in itertools.permutations("ab"):
-        table = dict(zip("ab", perm))
-        rel = ["".join(table[c.lower()].upper() if c.isupper() else table[c] for c in w)
-               for w in words]
-        keys = []
-        for w in rel:
-            cands = []
-            for var in (w, "".join(c.swapcase() for c in reversed(w))):
-                cands.extend(var[i:] + var[:i] for i in range(len(var)))
-            keys.append(min(cands))
-        k = tuple(sorted(keys))
-        if best is None or k < best:
-            best = k
+    for perm in itertools.permutations(gens):
+        for flips in itertools.product((0, 1), repeat=len(gens)):
+            table = {}
+            for src, dst, fl in zip(gens, perm, flips):
+                table[src] = dst.upper() if fl else dst
+                table[src.upper()] = dst if fl else dst.upper()
+            keys = []
+            for w in words:
+                mapped = "".join(table[c] for c in w)
+                cands = []
+                for var in (mapped,
+                            "".join(c.swapcase() for c in reversed(mapped))):
+                    cands.extend(var[i:] + var[:i] for i in range(len(var)))
+                keys.append(min(cands))
+            k = tuple(sorted(keys))
+            if best is None or k < best:
+                best = k
     return best
 
 
@@ -295,8 +302,13 @@ def check_realizability_probe():
     print(f"[D] profile-admissible but NOT realized at complexity 1: {len(extra)}")
     for k in extra[:8]:
         print(f"[D]    {list(found[k])}")
-    print(f"[D] {'PASS' if len(found) >= len(census_keys) else 'FAIL'}  probe complete; "
-          f"a nonzero gap means the profile is NECESSARY but NOT SUFFICIENT")
+    print("[D] complexity 2 (same enumeration, 3 generators, run separately -- see "
+          "R8_FAKE_SURFACE_COMPLEXITY.md 3.4): 79 profile-admissible trivial-group "
+          "classes vs at most 17 surfaces x 4 spanning trees = 68 realizable, so >= 11 "
+          "profile-admissible presentations are realized by NO complexity-2 surface.")
+    print(f"[D] {'PASS' if census_keys <= set(found) else 'FAIL'}  probe complete; the "
+          f"profile is NECESSARY (census is a subset) but, by the complexity-2 count, "
+          f"NOT SUFFICIENT")
     return len(found), len(census_keys)
 
 
