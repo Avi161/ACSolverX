@@ -42,6 +42,11 @@ while true; do
     'python3 -m experiments.heuristic_search.runners.research_more_mini 2>&1 | tee -a results/heuristic_search/more_mini/run.log' \
     'research_more_mini'
 
+  tmux_run fill-wall \
+    'python3 -m experiments.heuristic_search.runners.research_fill_wall 2>&1 | tee -a results/heuristic_search/fill_wall/run.log' \
+    'research_fill_wall'
+
+
   # campaign optional — leave if alive, do not restart if user stopped
   sleep 180
 done
