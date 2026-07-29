@@ -36,6 +36,19 @@ notify the user and keep the retry cadence.
   defect / class-functional obstruction) is the live disproof-side program
   (R3PRIME_DIGON_EXCESS.md).
 
+## R3′ execution update (~14:21 UTC; supersedes item ordering below)
+
+Battery (b) built (ak2_battery.py: 13,040 AK(2) members, 397 SPHERICAL — positive
+control fires; 27-move trivialization path + census track). Graft calculus AUDITED
+(R3PRIME_GRAFT_CALCULUS.md: fibration, master formula, tight ceiling — γ_N drops 2→0
+under a non-cancelling graft witness — Δ̂ heuristic). Matched AK(3) control:
+**0/124,296 spherical at ΣE 5.03** vs AK(2)'s 397 at ΣE 649 — first null-model
+tension (p 0.65–4.6%), committed honestly in R3PRIME_DIGON_EXCESS.md. NEW TOP
+PRIORITY FOR THE USER: Colab Run D (matched contrast at 100k+ pops — amendment 3 in
+R1_COLAB_RUNNER_SPEC.md); zero at ΣE ≳ 300 is phenomenon-level, hits decide AK(3).
+Steps 2/4 of R3′ (candidate functionals) remain gated on the tail battery per the
+advisor. Suite: 510 passed 5 skipped.
+
 ## Next actions, in order of value
 
 1. USER: run the Colab tier (R1_COLAB_RUNNER_SPEC.md — deep harvest with E-descending

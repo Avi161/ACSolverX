@@ -65,7 +65,18 @@ current work; two touch their proof texts.
    will occur — when the frontier survey starts deciding thickenability per bucket,
    Theorem D + Lemma S is the criterion that covers those rows; the fable
    `disconnected_split.py` gate/decomposition code is import-ready.
-8. **Corollary 3 sharpness example worth adding to their notes**: ("XXY","XYxy")
+8. **First null-model tension + audited graft calculus (14:2x UTC)**: the matched
+   rotation-expanded contrast found AK(2)'s class at 397/13,040 spherical (ΣE 649,
+   factor 0.61) vs AK(3)'s class at **0/124,296 (ΣE 5.03; p 0.65% raw / 4.6%
+   calibrated)** — the first genuine tension with the E-yield null model; framed as
+   suggestive-to-significant, the Colab tier decides (Run D in our runner spec). Also:
+   R3PRIME_GRAFT_CALCULUS.md (AUDITED) proves the non-cancelling exact AC2 graft
+   fibration with master defect formula and the ceiling γ_N(post) ≥ γ_N(pre) − 1,
+   PLUS a tightness witness — ("yyxYxy","yx") drops min defect 2 → 0 under a
+   non-cancelling graft — so γ_N is non-monotone BOTH ways even without cancellation;
+   and a certified-lower-bound move-ordering heuristic Δ̂ for harvest prioritization.
+   Their Aut-frontier survey may want Δ̂ as a cheap pre-filter.
+9. **Corollary 3 sharpness example worth adding to their notes**: ("XXY","XYxy")
    (presents ℤ) has a compatible spherical rotation with non-transitive ⟨AC,BC⟩ (2
    orbits — a genuine disconnected ∂N). All 384 such non-transitive YES cases in the ≤7
    batch have abelianization determinant 0. The "Euler pass + BC-transitivity fail =
