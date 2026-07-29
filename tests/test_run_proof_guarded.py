@@ -7,6 +7,7 @@ import signal
 import subprocess
 import sys
 import time
+from dataclasses import FrozenInstanceError
 from pathlib import Path
 
 import pytest
@@ -644,3 +645,429 @@ def test_nonfinite_or_excessive_limits_are_rejected_before_launch(
     )
     assert result.returncode == 2
     assert not marker.exists()
+
+
+def _process_info(
+    pid: int,
+    ppid: int,
+    pgid: int,
+    cpu_percent: float,
+    state: str = "S",
+    ucomm: str = "python3",
+) -> object:
+    return proof_guard.ProcessInfo(pid, ppid, pgid, cpu_percent, state, ucomm)
+
+
+@pytest.mark.parametrize(
+    ("child_cpu", "expected_cpu"),
+    ((76.0, 136.0), (64.9, 124.9)),
+)
+def test_monitor_counts_only_exact_group_and_reports_escaped_descendants(
+    child_cpu: float,
+    expected_cpu: float,
+) -> None:
+    processes = (
+        _process_info(100, 1, 100, 0.0, ucomm="guard"),
+        _process_info(200, 100, 200, 50.0, ucomm="phase"),
+        _process_info(201, 200, 200, child_cpu, ucomm="worker"),
+        _process_info(202, 201, 202, 99.0, ucomm="escaped"),
+        _process_info(203, 1, 200, 10.0, ucomm="reparented-worker"),
+        _process_info(300, 100, 300, 88.0, ucomm="unrelated"),
+    )
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda: processes,
+        thermal_reader=lambda: 0,
+    )
+
+    sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
+
+    assert sample.controller_alive is True
+    assert sample.child_reparented is False
+    assert sample.group_process_count == 3
+    assert sample.group_cpu_percent == pytest.approx(expected_cpu)
+    assert sample.escaped_pids == (202,)
+    with pytest.raises(FrozenInstanceError):
+        sample.group_cpu_percent = 0.0
+    with pytest.raises(FrozenInstanceError):
+        processes[0].pid = 0
+
+
+def test_monitor_reports_lost_controller_and_reparented_child() -> None:
+    lost_controller = proof_guard.SafetyMonitor(
+        process_reader=lambda: (_process_info(200, 100, 200, 1.0),),
+        thermal_reader=lambda: 0,
+    ).sample(child_pid=200, process_group_id=200, controller_pid=100)
+    reparented_child = proof_guard.SafetyMonitor(
+        process_reader=lambda: (
+            _process_info(100, 1, 100, 0.0),
+            _process_info(200, 1, 200, 1.0),
+        ),
+        thermal_reader=lambda: 0,
+    ).sample(child_pid=200, process_group_id=200, controller_pid=100)
+
+    assert lost_controller.controller_alive is False
+    assert lost_controller.failure_reason is not None
+    assert reparented_child.child_reparented is True
+    assert reparented_child.failure_reason is not None
+
+
+@pytest.mark.parametrize("thermal_state", (0, 1, 2, 3))
+def test_monitor_accepts_only_nominal_thermal_state(thermal_state: int) -> None:
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda: (
+            _process_info(100, 1, 100, 0.0),
+            _process_info(200, 100, 200, 1.0),
+        ),
+        thermal_reader=lambda: thermal_state,
+    )
+
+    sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
+
+    assert (sample.failure_reason is None) is (thermal_state == 0)
+
+
+def test_monitor_fails_closed_when_thermal_state_is_unreadable() -> None:
+    def unreadable() -> int:
+        raise RuntimeError("thermal API unavailable")
+
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda: (),
+        thermal_reader=unreadable,
+    )
+
+    sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
+
+    assert sample.failure_reason is not None
+    assert "thermal API unavailable" in sample.failure_reason
+
+
+def _install_fake_macos_thermal_api(
+    monkeypatch: pytest.MonkeyPatch,
+    thermal_state: int,
+) -> list[str]:
+    import ctypes
+
+    selectors = {b"processInfo": 11, b"thermalState": 12}
+    objc_get_class = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p)(
+        lambda name: 10 if name == b"NSProcessInfo" else 0
+    )
+    selector_register = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p)(
+        lambda name: selectors.get(name, 0)
+    )
+    message_send = ctypes.CFUNCTYPE(
+        ctypes.c_long, ctypes.c_void_p, ctypes.c_void_p
+    )(
+        lambda receiver, selector: (
+            20 if (receiver, selector) == (10, 11) else thermal_state
+        )
+    )
+
+    class ObjCLibrary:
+        objc_getClass = objc_get_class
+        sel_registerName = selector_register
+        objc_msgSend = message_send
+
+    loaded: list[str] = []
+
+    def load_library(path: str) -> object:
+        loaded.append(path)
+        if path == "/usr/lib/libobjc.A.dylib":
+            return ObjCLibrary()
+        if path == "/System/Library/Frameworks/Foundation.framework/Foundation":
+            return object()
+        raise OSError(path)
+
+    monkeypatch.setattr(sys, "platform", "darwin")
+    monkeypatch.setattr(ctypes, "CDLL", load_library)
+    return loaded
+
+
+def test_macos_thermal_reader_uses_foundation_and_libobjc(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    loaded = _install_fake_macos_thermal_api(monkeypatch, thermal_state=0)
+
+    assert proof_guard.read_macos_thermal_state() == 0
+    assert loaded == [
+        "/System/Library/Frameworks/Foundation.framework/Foundation",
+        "/usr/lib/libobjc.A.dylib",
+    ]
+
+
+@pytest.mark.parametrize("thermal_state", (1, 2, 3))
+def test_macos_thermal_reader_rejects_pressure_states(
+    monkeypatch: pytest.MonkeyPatch,
+    thermal_state: int,
+) -> None:
+    _install_fake_macos_thermal_api(monkeypatch, thermal_state)
+
+    with pytest.raises(RuntimeError, match="not nominal"):
+        proof_guard.read_macos_thermal_state()
+
+
+def test_macos_thermal_reader_rejects_unsupported_platform(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(sys, "platform", "linux")
+
+    with pytest.raises(RuntimeError, match="requires macOS"):
+        proof_guard.read_macos_thermal_state()
+
+
+def test_macos_thermal_reader_wraps_objective_c_api_failures(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import ctypes
+
+    monkeypatch.setattr(sys, "platform", "darwin")
+
+    def fail_to_load(_path: str) -> object:
+        raise ctypes.ArgumentError("invalid Objective-C call")
+
+    monkeypatch.setattr(ctypes, "CDLL", fail_to_load)
+
+    with pytest.raises(RuntimeError, match="macOS thermal API failure"):
+        proof_guard.read_macos_thermal_state()
+
+
+def test_process_reader_requests_only_non_sensitive_fields(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[tuple[object, object]] = []
+
+    def run(command: object, **kwargs: object) -> subprocess.CompletedProcess[str]:
+        calls.append((command, kwargs))
+        return subprocess.CompletedProcess(
+            command,
+            0,
+            stdout="200 100 200 12.5 S python3\n",
+            stderr="",
+        )
+
+    monkeypatch.setattr(proof_guard.subprocess, "run", run)
+
+    processes = proof_guard._read_process_table()
+
+    assert processes == (_process_info(200, 100, 200, 12.5),)
+    assert calls == [
+        (
+            ["ps", "-axo", "pid=,ppid=,pgid=,%cpu=,state=,ucomm="],
+            {
+                "check": True,
+                "capture_output": True,
+                "text": True,
+                "timeout": 2.0,
+            },
+        )
+    ]
+
+
+class _FakeClock:
+    def __init__(self) -> None:
+        self.now = 0.0
+
+    def monotonic(self) -> float:
+        return self.now
+
+
+class _SequenceMonitor:
+    def __init__(self, samples: list[object]) -> None:
+        self.samples = samples
+        self.calls: list[tuple[int, int, int]] = []
+
+    def sample(
+        self,
+        child_pid: int,
+        process_group_id: int,
+        controller_pid: int,
+    ) -> object:
+        self.calls.append((child_pid, process_group_id, controller_pid))
+        if not self.samples:
+            raise AssertionError("monitor sampled more often than expected")
+        sample = self.samples.pop(0)
+        if isinstance(sample, BaseException):
+            raise sample
+        return sample
+
+
+def _safety_sample(
+    *,
+    cpu_percent: float = 0.0,
+    thermal_state: int | None = 0,
+    controller_alive: bool = True,
+    child_reparented: bool = False,
+    escaped_pids: tuple[int, ...] = (),
+    error: str | None = None,
+) -> object:
+    return proof_guard.SafetySample(
+        thermal_state=thermal_state,
+        controller_alive=controller_alive,
+        child_reparented=child_reparented,
+        group_process_count=1,
+        group_cpu_percent=cpu_percent,
+        escaped_pids=escaped_pids,
+        error=error,
+    )
+
+
+def _run_synthetic_monitored_phases(
+    monkeypatch: pytest.MonkeyPatch,
+    samples: list[object],
+    completion_times: tuple[float, ...],
+) -> tuple[int, list[tuple[int, int]], _SequenceMonitor]:
+    clock = _FakeClock()
+    alive: dict[int, bool] = {}
+    children: list[object] = []
+
+    class SyntheticChild:
+        def __init__(self, pid: int, complete_after: float) -> None:
+            self.pid = pid
+            self.deadline = clock.now + complete_after
+            alive[pid] = True
+
+        def poll(self) -> int | None:
+            if clock.now >= self.deadline:
+                alive[self.pid] = False
+                return 0
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            if timeout is None:
+                clock.now = self.deadline
+                alive[self.pid] = False
+                return 0
+            if clock.now + timeout >= self.deadline:
+                clock.now = self.deadline
+                alive[self.pid] = False
+                return 0
+            clock.now += timeout
+            raise subprocess.TimeoutExpired("synthetic phase", timeout)
+
+    children.extend(
+        SyntheticChild(700_000 + index, complete_after)
+        for index, complete_after in enumerate(completion_times)
+    )
+    killpg_calls: list[tuple[int, int]] = []
+
+    def popen(*_args: object, **_kwargs: object) -> object:
+        return children.pop(0)
+
+    def killpg(process_group_id: int, signum: int) -> None:
+        killpg_calls.append((process_group_id, signum))
+        if not alive.get(process_group_id, False):
+            raise ProcessLookupError
+        if signum in (signal.SIGTERM, signal.SIGKILL):
+            alive[process_group_id] = False
+
+    monitor = _SequenceMonitor(samples)
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard,
+        "group_exists",
+        lambda process_group_id: alive.get(process_group_id, False),
+    )
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+
+    status = run_long_guarded(
+        ["synthetic-command"],
+        preflight_seconds=10.0,
+        experiment_seconds=10.0,
+        progress_seconds=10.0,
+        grace_seconds=0.1,
+        monitor=monitor,
+    )
+    return status, killpg_calls, monitor
+
+
+def test_one_high_cpu_sample_does_not_abort(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    status, killpg_calls, _monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        [_safety_sample(cpu_percent=126.0), _safety_sample()],
+        completion_times=(0.5, 0.5),
+    )
+
+    assert status == 0
+    assert killpg_calls == []
+
+
+def test_three_consecutive_high_cpu_samples_abort_exact_group(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    status, killpg_calls, _monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        [
+            _safety_sample(cpu_percent=126.0),
+            _safety_sample(cpu_percent=130.0),
+            _safety_sample(cpu_percent=125.1),
+        ],
+        completion_times=(3.0,),
+    )
+
+    assert status == 126
+    assert killpg_calls == [(700_000, signal.SIGTERM)]
+
+
+def test_compliant_cpu_sample_resets_high_cpu_streak(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    status, killpg_calls, _monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        [
+            _safety_sample(cpu_percent=126.0),
+            _safety_sample(cpu_percent=125.0),
+            _safety_sample(cpu_percent=130.0),
+            _safety_sample(cpu_percent=140.0),
+            _safety_sample(),
+        ],
+        completion_times=(3.5, 0.5),
+    )
+
+    assert status == 0
+    assert killpg_calls == []
+
+
+@pytest.mark.parametrize(
+    ("failure", "reported_pid"),
+    (
+        ("thermal", None),
+        ("controller", None),
+        ("reparented", None),
+        ("escaped", 812_345),
+        ("sampling", None),
+    ),
+)
+def test_immediate_safety_failure_aborts_only_exact_group(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    failure: str,
+    reported_pid: int | None,
+) -> None:
+    direct_kills: list[tuple[int, int]] = []
+    monkeypatch.setattr(
+        proof_guard.os,
+        "kill",
+        lambda pid, signum: direct_kills.append((pid, signum)),
+    )
+    samples = {
+        "thermal": lambda: _safety_sample(thermal_state=1),
+        "controller": lambda: _safety_sample(controller_alive=False),
+        "reparented": lambda: _safety_sample(child_reparented=True),
+        "escaped": lambda: _safety_sample(escaped_pids=(812_345,)),
+        "sampling": lambda: RuntimeError("ps sampling failed"),
+    }
+
+    status, killpg_calls, _monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        [samples[failure]()],
+        completion_times=(3.0,),
+    )
+
+    assert status == 126
+    assert killpg_calls == [(700_000, signal.SIGTERM)]
+    assert direct_kills == []
+    if reported_pid is not None:
+        assert str(reported_pid) in capsys.readouterr().err
+        assert all(process_group_id != reported_pid for process_group_id, _ in killpg_calls)
