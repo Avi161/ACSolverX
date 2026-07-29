@@ -228,11 +228,21 @@ def build_groups(double_spikes: bool = True) -> dict:
 
 
 def run(samples: int = 40_000, seed: int = 20260729, out_path: str = DEFAULT_OUT,
-        double_spikes: bool = True, groups_only=None) -> dict:
+        double_spikes: bool = True, groups_only=None, max_length: int | None = None,
+        min_length: int | None = None) -> dict:
     rng = random.Random(seed)
     groups = build_groups(double_spikes)
     if groups_only:
         groups = {k: v for k, v in groups.items() if k in groups_only}
+    # Length filtering exists because the climber's detection rate is a function of
+    # length (`witness_sensitivity.json`): a null is worth recording only at lengths
+    # where the instrument has measured power at the chosen budget.
+    if max_length is not None or min_length is not None:
+        lo = min_length if min_length is not None else 0
+        hi = max_length if max_length is not None else 10**9
+        groups = {k: [s for s in v if lo <= sum(len(w) for w in s) <= hi]
+                  for k, v in groups.items()}
+        groups = {k: v for k, v in groups.items() if v}
     report = {
         "record": "spike_space_hunt",
         "root": list(AK3),
@@ -272,8 +282,11 @@ def main(argv=None):
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--no-double-spikes", action="store_true")
     parser.add_argument("--groups", nargs="*", default=None)
+    parser.add_argument("--max-length", type=int, default=None)
+    parser.add_argument("--min-length", type=int, default=None)
     args = parser.parse_args(argv)
-    run(args.samples, args.seed, args.out, not args.no_double_spikes, args.groups)
+    run(args.samples, args.seed, args.out, not args.no_double_spikes, args.groups,
+        args.max_length, args.min_length)
 
 
 if __name__ == "__main__":

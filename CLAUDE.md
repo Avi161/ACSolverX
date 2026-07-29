@@ -118,6 +118,10 @@ much harder than those Erdős problems. Its three keys:
   compare only inside the length band the two harvests share — and never quote a p-value,
   because class members come from a move tree and are not independent draws.
   [[TRAP]](experiments/lessons/contrast-length-confound.md)
+- A one-sided hunt's silence is worth exactly its MEASURED detection rate: calibrate on a
+  ladder of states known to have the property before reading any null. Ours fell from 100%
+  at length 16 to 0% at 21, retiring 1,312 of 1,909 swept states as uninformative.
+  [[TRAP]](experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md)
 - A resumed subagent can relaunch its job beside yours: two writers, one output path,
   corrupt artifact (check `ps` ELAPSED, kill both, rerun one with explicit --out). And
   record which SIDE each tool bounds a quantity from — a heuristic witness bounds γ_N
