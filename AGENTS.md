@@ -1370,4 +1370,11 @@
 ### 2026-07-28 Avoid full symbolic syndrome grids for theory probes
 
 - [TRAP] A foreground $5\times5$ grid of `diagonal_left_pair_value` recomputed the complete analytic residual/syndrome 25 times, consumed 99% CPU for more than two minutes without output, and was unnecessary once the all-index companion identity had become the actual theorem target.
+- [TRAP] Even a two-entry `anchored_hessian_subtotals` batch can cross 30 seconds when a new long row context is built; batching a small number of points is not a reliable safety bound.
 - [WORKS] Probe the normalized equality/inversion/external subtotals directly, cache repeated anchored directions and contexts, and start with the smallest matrix that distinguishes candidate identities. Audit CPU/elapsed time promptly and terminate the exact probe when it no longer informs the proof.
+- [WORKS] Run at most one new long-index Hessian entry per foreground process, impose a 30-second wall-clock stop, and verify the exact child exited before returning to the symbolic proof.
+
+### 2026-07-29 Preserve raw quotient elements before module-coset canonicalization
+
+- [TRAP] `depth4_period_two_lift_certificate.parse_quotient` returns `c_vertex(...)`, not a raw element of `Q`; parsing `p = tc` through it silently returns `t` and changes the anchored ray family before any later multiplication can cancel the terminal `c`.
+- [WORKS] Build group contexts and factors such as `p`, `h_j`, and `w_i` with raw quotient reduction that preserves a terminal `c`. Apply `c_vertex` only to the final module vertex, and print the literal raw factor in every bounded replay whose proof uses cancellation across factor boundaries.
