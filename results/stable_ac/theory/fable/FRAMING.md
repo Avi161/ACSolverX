@@ -128,11 +128,18 @@ sources before load-bearing use)
   1.2 + extract exact words; port/extend a Neuwirth planarity certificate to length ~25;
   generalize the mechanism into a neighbor generator; run the decidable test on each neighbor.
   Failure mode to respect: all tested neighbors non-thickenable ⇒ bounded negative, write up.
-- **R2 — Wirtinger chain repair (positive direction).** Determine from sources whether the
-  CORRECTED 13-relator Wirtinger presentation still (a) is a genuine Wirtinger/LOT
-  presentation to which the stable-triviality mechanism applies, and (b) connects to P/AK(3).
-  If (a) holds and (b) fails, compute where the chain breaks and whether a different bridge
-  exists (tiny searches ≤1000 nodes; production bridging searches go to the user).
+- **R2 — Wirtinger chain repair (positive direction). STATUS: BLOCKED by the codex line,
+  29-07 ~15:32 UTC** — do not re-open without new input. They reconstructed the 14-relator
+  MMS02 corridor with the corrected r13 = x4 x12 x4^-1 and the printed x5 misprint; after
+  the paper's deletion and eleven exact eliminations the corrected descendant reaches the
+  trivial basis (45 primitive AC1–AC3 moves) while the misprinted one is exactly the
+  published P and reaches AK(3) by all 53 Appendix-F moves. Their conclusion, which we
+  adopt: **bridging the two descendants is equivalent to AC-trivializing AK(3)**, so the
+  repair is not a proof but a restatement of the open problem. They further separate the
+  corrected and misprinted r13 probes by an A5 quotient (cycle types 3 vs 5) and by
+  Alexander polynomial (t^4-3t^3+5t^2-3t+1 vs 1), which blocks a fixed-base final-row
+  substitution repair specifically. Their residual open piece is a literal rank-three
+  bridge with all rows free — the one place our rank-3 machinery could still contribute.
 - **R3 — Disproof-side invariant frontier (negative direction; kept alive).** Map what any
   stable-AC invariant must evade (semisimple TQFT blindness, Gompf standardness of
   Cappell–Shaneson spheres, homological triviality); identify genuinely unexplored invariant
