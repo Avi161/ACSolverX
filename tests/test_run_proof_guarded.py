@@ -3,13 +3,13 @@ from __future__ import annotations
 import errno
 import json
 import os
-from pathlib import Path
+import signal
 import subprocess
 import sys
 import time
+from pathlib import Path
 
 import pytest
-
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RUNNER = PROJECT_ROOT / "scripts" / "run_proof_guarded.py"
@@ -61,6 +61,24 @@ def wait_for_pid_exit(pid: int, timeout: float = 1.0) -> None:
             return
         time.sleep(0.01)
     pytest.fail(f"PID {pid} survived process-group cleanup")
+
+
+def stop_fixture_pid(pid: int) -> None:
+    if not pid_exists(pid):
+        return
+    try:
+        os.kill(pid, signal.SIGTERM)
+    except ProcessLookupError:
+        return
+    deadline = time.monotonic() + 0.2
+    while time.monotonic() < deadline:
+        if not pid_exists(pid):
+            return
+        time.sleep(0.01)
+    try:
+        os.kill(pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
 
 
 @pytest.fixture(autouse=True)
@@ -116,6 +134,47 @@ def test_timeout_kills_child_and_grandchild_process_group(tmp_path: Path) -> Non
     wait_for_pid_exit(grandchild_pid)
 
 
+def test_sigterm_cleans_up_child_group_and_lock(tmp_path: Path) -> None:
+    pids_file = tmp_path / "signal-pids.json"
+    child_program = (
+        "import json, os, pathlib, subprocess, sys, time; "
+        "grandchild=subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(10)']); "
+        f"pathlib.Path({str(pids_file)!r}).write_text(json.dumps([os.getpid(), grandchild.pid])); "
+        "time.sleep(10)"
+    )
+    runner = subprocess.Popen(
+        runner_command(sys.executable, "-c", child_program, timeout=5),
+        cwd=PROJECT_ROOT,
+    )
+    wait_for_path(pids_file)
+    child_pid, grandchild_pid = json.loads(pids_file.read_text())
+    runner.send_signal(signal.SIGTERM)
+    assert runner.wait(timeout=2) == 128 + signal.SIGTERM
+    wait_for_pid_exit(child_pid)
+    wait_for_pid_exit(grandchild_pid)
+
+
+def test_normal_parent_exit_does_not_leak_its_grandchild(tmp_path: Path) -> None:
+    grandchild_file = tmp_path / "normal-exit-grandchild.txt"
+    child_program = (
+        "import pathlib, subprocess, sys; "
+        "grandchild=subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(10)']); "
+        f"pathlib.Path({str(grandchild_file)!r}).write_text(str(grandchild.pid))"
+    )
+    result = subprocess.run(
+        runner_command(sys.executable, "-c", child_program),
+        cwd=PROJECT_ROOT,
+        check=False,
+        timeout=2,
+    )
+    assert result.returncode == 0
+    grandchild_pid = int(grandchild_file.read_text())
+    try:
+        wait_for_pid_exit(grandchild_pid)
+    finally:
+        stop_fixture_pid(grandchild_pid)
+
+
 def test_child_receives_one_thread_numerical_environment(tmp_path: Path) -> None:
     env_file = tmp_path / "threads.json"
     child_program = (
@@ -154,6 +213,37 @@ def test_timeout_above_hard_maximum_is_rejected_before_launch(tmp_path: Path) ->
             f"from pathlib import Path; Path({str(marker)!r}).write_text('bad')",
             timeout=61,
         ),
+        cwd=PROJECT_ROOT,
+        check=False,
+        timeout=2,
+    )
+    assert result.returncode == 2
+    assert not marker.exists()
+
+
+@pytest.mark.parametrize(
+    ("option", "value"),
+    (
+        ("--timeout-seconds", "nan"),
+        ("--grace-seconds", "nan"),
+        ("--grace-seconds", "6"),
+    ),
+)
+def test_nonfinite_or_excessive_limits_are_rejected_before_launch(
+    tmp_path: Path, option: str, value: str
+) -> None:
+    marker = tmp_path / f"invalid-{option[2:]}-{value}"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(RUNNER),
+            option,
+            value,
+            "--",
+            sys.executable,
+            "-c",
+            f"from pathlib import Path; Path({str(marker)!r}).write_text('bad')",
+        ],
         cwd=PROJECT_ROOT,
         check=False,
         timeout=2,

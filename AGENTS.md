@@ -1490,3 +1490,11 @@
 
 - [TRAP] A ripgrep alternation containing the LaTeX fragment `P_\nu` was parsed as the unsupported regex newline escape `\n`, so the audit command stopped before its later checks ran.
 - [WORKS] Search LaTeX commands with `rg -F` in a separate call, or search nearby plain-text tokens; do not mix backslash commands into an extended regular-expression alternation.
+
+### 2026-07-29 Fail closed on proof computation and agent teardown
+
+- [TRAP] Four redundant proof/checker children outlived their controlling agents and simultaneously consumed roughly one CPU core each. Agent interruption alone did not clean their detached process groups, and the thirty-minute audit reacted too slowly to prevent overheating.
+- [WORKS] Every computational proof, checker, census, test, or search launched for this goal must run in the foreground through `scripts/run_proof_guarded.py`. Permit exactly one guarded job, keep its timeout at 30 seconds unless a shorter value suffices, never exceed 60 seconds, and never rerun an unchanged command after timeout; simplify the proof or algorithm first. The guard's own focused integration suite is the sole exception because it must acquire and contest the lock itself; keep that suite under its verified three-second bound.
+- [WORKS] Before handoff and after any interruption, explicitly interrupt every no-longer-needed subagent and perform a targeted process re-scan. Treat the agent UI's `Working` label as untrusted: reconcile the exact agent lifecycle with the OS process tree. A stale or `pending_init` agent record with no backing process consumes no proof CPU, but it must not be reused as evidence that work is active.
+- [TRAP] The first guard regression invocation used the system Python, which has no pytest, and the sandboxed `uv` retry could not access the existing global dependency cache.
+- [WORKS] Run focused pytest gates through `uv run --with pytest` with scoped cache permission, keep bytecode under `.scratch/pycache`, and ensure fixture cleanup targets every exact synthetic PID even when the assertion intentionally fails.
