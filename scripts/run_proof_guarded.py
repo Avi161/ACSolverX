@@ -162,10 +162,12 @@ def terminate_group(child: subprocess.Popen[bytes], grace_seconds: float) -> Non
         raise RuntimeError(f"process group {process_group_id} survived SIGKILL") from exc
 
 
-def limited_environment() -> dict[str, str]:
+def limited_environment(phase: str | None = None) -> dict[str, str]:
     environment = os.environ.copy()
     for name in THREAD_ENV:
         environment[name] = "1"
+    if phase is not None:
+        environment["ACSOLVERX_PROOF_PHASE"] = phase
     return environment
 
 
@@ -199,6 +201,104 @@ def run_guarded(
     except BaseException:
         terminate_group(child, grace_seconds)
         raise
+
+
+def _clean_exact_group(
+    child: subprocess.Popen[bytes], grace_seconds: float
+) -> bool:
+    try:
+        terminate_group(child, grace_seconds)
+    except RuntimeError as exc:
+        print(f"proof guard cleanup failed: {exc}", file=sys.stderr)
+        return False
+    if group_exists(child.pid):
+        print(
+            f"proof guard cleanup left process group {child.pid} alive",
+            file=sys.stderr,
+        )
+        return False
+    return True
+
+
+def _run_long_phase(
+    command: Sequence[str],
+    phase: str,
+    timeout_seconds: float,
+    progress_seconds: float,
+    grace_seconds: float,
+    monitor: object | None,
+) -> tuple[int, bool]:
+    del progress_seconds, monitor
+    try:
+        child = subprocess.Popen(
+            list(command),
+            cwd=PROJECT_ROOT,
+            env=limited_environment(phase),
+            shell=False,
+            start_new_session=True,
+        )
+    except OSError as exc:
+        print(f"proof guard could not start the command: {exc.strerror}", file=sys.stderr)
+        return 127, False
+
+    try:
+        try:
+            return_code = child.wait(timeout=timeout_seconds)
+        except subprocess.TimeoutExpired:
+            if not _clean_exact_group(child, grace_seconds):
+                return SAFETY_EXIT, True
+            print(
+                f"proof guard stopped {phase} process group {child.pid} "
+                f"after {timeout_seconds:g} seconds",
+                file=sys.stderr,
+            )
+            return TIMEOUT_EXIT, False
+
+        if group_exists(child.pid):
+            _clean_exact_group(child, grace_seconds)
+            print(
+                f"proof guard found a lingering {phase} process group {child.pid}",
+                file=sys.stderr,
+            )
+            return SAFETY_EXIT, True
+        return return_code, False
+    except BaseException:
+        _clean_exact_group(child, grace_seconds)
+        raise
+
+
+def run_long_guarded(
+    command: Sequence[str],
+    preflight_seconds: float,
+    experiment_seconds: float,
+    progress_seconds: float,
+    grace_seconds: float,
+    monitor: object | None,
+) -> int:
+    preflight_status, cleanup_failed = _run_long_phase(
+        command,
+        "preflight",
+        preflight_seconds,
+        progress_seconds,
+        grace_seconds,
+        monitor,
+    )
+    if cleanup_failed:
+        return SAFETY_EXIT
+    if preflight_status != 0:
+        return PREFLIGHT_EXIT
+
+    experiment_status, cleanup_failed = _run_long_phase(
+        command,
+        "experiment",
+        experiment_seconds,
+        progress_seconds,
+        grace_seconds,
+        monitor,
+    )
+    if cleanup_failed:
+        return SAFETY_EXIT
+    return experiment_status
 
 
 def parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
@@ -273,6 +373,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"proof guard refused duplicate run: {exc}", file=sys.stderr)
             return DUPLICATE_EXIT
         try:
+            if args.long_run:
+                return run_long_guarded(
+                    args.command,
+                    args.preflight_seconds,
+                    args.timeout_seconds,
+                    args.progress_seconds,
+                    args.grace_seconds,
+                    None,
+                )
             return run_guarded(
                 args.command, args.timeout_seconds, args.grace_seconds
             )
