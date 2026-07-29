@@ -3,18 +3,21 @@
 The test SUPPORT code for the greedy AC-search pipeline — `spec/` (the independent
 general-`n` oracle), `fixtures/`, `adapters.py`, `tools/`, `golden/`. Production modules
 import `spec/` and `fixtures/` too, so this code stays under `experiments/`.
-**The test files themselves live in `tests/greedy/`.** They cover
+**The greedy suite's own test files live in `tests/greedy/`.** They cover
 `experiments/search/greedy_baseline.py` (normal + `HIGH_SPEEDUP` solvers) and
-`experiments/run_baseline.py` (the runner).
+`experiments/run_baseline.py` (the runner). This support code is also imported by tests that live
+elsewhere by area: `tests/stable_ac/test_solvern.py`, `test_solvern_fast.py`, and
+`test_verify_results.py` pull `spec/`/`fixtures/` directly, and `test_word_families.py` sits
+alongside them in `tests/stable_ac/`; `tests/analysis/test_combined_benchmark.py` is its own area.
 
 ## Running it
 
 ```bash
-# default tier -- run after ANY change to the pipeline (~2 min; +30-60s cold numba JIT)
-.venv/bin/python3 -m pytest tests/greedy -q
+# default tier -- run after ANY change to the pipeline (~3-5 min; +30-60s cold numba JIT)
+.venv/bin/python3 -m pytest tests/greedy tests/stable_ac tests/analysis -q
 
-# full tier -- run before any push or result claim (~2 min)
-.venv/bin/python3 -m pytest tests/greedy -q --runslow
+# full tier -- run before any push or result claim (~5-8 min)
+.venv/bin/python3 -m pytest tests/greedy tests/stable_ac tests/analysis -q --runslow
 ```
 
 **No test uses a node budget above `MAX_BUDGET = 1_000`.** That is a free
@@ -37,9 +40,10 @@ that constant down to 100 and pin the real value separately.
 `--runslow` is passed. Temporary files go to `.pytest_tmp/` inside the repo,
 never `/tmp`.
 
-A bare `pytest` collects every suite under `tests/` (these tests are `tests/greedy/`;
-the `wandb_tracking` suite is `tests/wandb_tracking/`). The two do not overlap:
-`wandb_tracking`'s identity scheme, anytime profile and panels are tested there;
+A bare `pytest` collects every suite under `tests/` (the greedy suite proper is `tests/greedy/`,
+its stable-AC-solver-importing siblings are `tests/stable_ac/` and `tests/analysis/`, and
+the `wandb_tracking` suite is `tests/wandb_tracking/`). The greedy and `wandb_tracking` suites do
+not overlap: `wandb_tracking`'s identity scheme, anytime profile and panels are tested there;
 `test_runner_wandb.py` tests only the *seam* --
 that `run_dataset` reaches `wandb_tracking` with the right arguments, and that
 `USE_WANDB=False` never touches it at all.

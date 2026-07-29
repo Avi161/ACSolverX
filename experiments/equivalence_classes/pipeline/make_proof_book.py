@@ -309,7 +309,7 @@ def render(cert):
         f"{s['classes']} classes",
         "",
         f"Generated from `{cert['generated_from']}` by `experiments/equivalence_classes/"
-        "make_proof_book.py`.",
+        "pipeline/make_proof_book.py`.",
         "",
         "**Re-check every line of this file:**",
         "",

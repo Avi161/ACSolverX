@@ -14,7 +14,10 @@ import sys
 
 import pytest
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT = os.path.dirname(os.path.abspath(__file__))
+while ROOT != os.path.dirname(ROOT) and not all(
+        os.path.isdir(os.path.join(ROOT, _s)) for _s in ("experiments", "data")):
+    ROOT = os.path.dirname(ROOT)
 sys.path.insert(0, ROOT)
 
 from experiments.heuristic_search.core.hlab import load_split             # noqa: E402

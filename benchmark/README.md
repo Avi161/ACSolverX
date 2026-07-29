@@ -28,6 +28,6 @@ All four regenerate from the baseline jsonl and the class table, and are checked
 .venv/bin/python3 -m experiments.analysis.combined_benchmark
 ```
 
-Producers live in [`experiments/analysis/`](../experiments/analysis/README.md); `tests/greedy/test_combined_benchmark.py` reads these files as fixtures.
+Producers live in [`experiments/analysis/`](../experiments/analysis/README.md); `tests/analysis/test_combined_benchmark.py` reads these files as fixtures.
 
 > **These are frozen.** A row's `pres_id` indexes into them, so regenerating them against a different baseline run silently redefines every result keyed on a `pres_id`. `results/stable_ac/nocov/old_benchmark/` exists precisely because that happened once.

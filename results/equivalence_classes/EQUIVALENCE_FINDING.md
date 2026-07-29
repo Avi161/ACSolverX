@@ -605,7 +605,7 @@ only a literal replay of the printed step catches it.
 | `experiments/equivalence_classes/pipeline/make_proof_book.py` | sweep JSON → `certificates.json` + `PROOFS.md` |
 | `experiments/equivalence_classes/verify/verify_proofs.py` | **the verification pipeline**: re-proves all 124 classes from `certificates.json` + the raw CSV alone |
 | `experiments/equivalence_classes/pipeline/augment_sweep_overnight.py` | splices the two overnight edges into the sweep artifact (the cap-28 original stays untouched) so the proof book covers all 137 edges |
-| `experiments/equivalence_classes/test_equivalence.py` | the test suite (32 tests, incl. 7 tamper-detection mutations) |
+| `tests/equivalence_classes/test_equivalence.py` | the test suite (32 tests, incl. 7 tamper-detection mutations) |
 | `results/equivalence_classes/PROOFS.md` | the proof book: every class, derived step by step |
 | `results/equivalence_classes/certificates.json` | the same, self-contained and machine-checkable |
 | `results/equivalence_classes/` | class tables, merges, sweep artifacts, run logs |

@@ -12,8 +12,15 @@ drop it for both modes and nothing else would notice until a results row came ba
 
     python3 -m experiments.heuristic_search.verify.verify_keep_path
 """
+import os
 import sys
-sys.path.insert(0,"/Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/hsearch-hyper")
+
+_d = os.path.dirname(os.path.abspath(__file__))
+while _d != os.path.dirname(_d) and not all(
+        os.path.isdir(os.path.join(_d, _s)) for _s in ("experiments", "data")):
+    _d = os.path.dirname(_d)
+sys.path.insert(0, _d)
+
 from experiments.heuristic_search.core.hlab import load_split
 from experiments.heuristic_search.core.hsolve import greedy_search_h, RECOMMENDED, LEAN_SMALL_BUDGET
 from experiments.heuristic_search.core.perbin import bin_of

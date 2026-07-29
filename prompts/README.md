@@ -12,6 +12,7 @@ Point your agent at **one** problem prompt. It begins by reading the shared oper
 |---|---|
 | [`00_operating_contract.md`](00_operating_contract.md) | **The spine — read by every problem prompt.** The trivialize-vs-counterexample asymmetry, the search discipline, what counts as a result, the ten red lines (ported from `.claude/agents/ac-advisor.md`), the verification protocol, and the CPU+numba / budget≤1000 / new-files-only engineering constraints. |
 | [`01_ak3.md`](01_ak3.md) | **AK(3)** = ⟨x,y \| xyx=yxy, x³=y⁴⟩ — the unique minimal open case. Resolve it: (stably) AC-trivial, or a genuine counterexample. Highest-value single target. |
+| [`codex_ak3.md`](codex_ak3.md) | The Codex-harness variant of `01_ak3.md` — same AK(3) target and traps, self-contained per the Tooling note above (no subagent mechanism assumed: the `ac-advisor` gate is a separate reviewer pass over the plan, not a launched subagent). |
 | [`02_miller_schupp_frontier.md`](02_miller_schupp_frontier.md) | **The 124 distinct unsolved Miller–Schupp classes** — trivialize as many as possible, or lower the count by a verified merge. (0 of 124 trivialized to date.) Folds in the knot/block search heuristic. |
 | [`03_stable_ac.md`](03_stable_ac.md) | **Stable AC (AC4/AC5) searched directly** — the project's core mission. Targeted Lemma-11/CoV stabilization, the μ-ladder toward the μ≤12 criterion, and thickenability as a decidable milestone. |
 

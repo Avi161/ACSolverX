@@ -53,7 +53,11 @@ from collections import Counter
 
 from experiments.analysis.whitehead import canon_pair, canonical_form
 
-REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+REPO = os.path.abspath(__file__)
+while REPO != os.path.dirname(REPO) and not (
+        os.path.isdir(os.path.join(REPO, "experiments"))
+        and os.path.isdir(os.path.join(REPO, "data"))):
+    REPO = os.path.dirname(REPO)
 BASELINE_DIR = os.path.join(REPO, "results", "greedy_baseline")
 OUT_DIR = os.path.join(REPO, "benchmark")
 

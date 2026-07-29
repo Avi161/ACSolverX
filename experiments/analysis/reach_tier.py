@@ -85,7 +85,11 @@ import os
 from experiments.analysis.whitehead import canon_pair, canonical_form
 from experiments.greedy_tests.fixtures.presentations import ak
 
-REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+REPO = os.path.abspath(__file__)
+while REPO != os.path.dirname(REPO) and not (
+        os.path.isdir(os.path.join(REPO, "experiments"))
+        and os.path.isdir(os.path.join(REPO, "data"))):
+    REPO = os.path.dirname(REPO)
 # the 126-class config: seam move set, Aut-minimal length cap 28, 250 pops/source
 CLASSES_CSV = os.path.join(REPO, "results", "equivalence_classes", "sweep",
                            "classes_sweep_seam_28_250.csv")

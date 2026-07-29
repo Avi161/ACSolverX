@@ -97,14 +97,18 @@ Top level, and what each directory is for:
 
 | directory | role | map |
 |---|---|---|
-| `data/` | the raw presentation datasets, one Python-literal presentation per line | [below](#datasets-data) |
+| `data/` | the raw presentation datasets, one Python-literal presentation per line | [→](data/README.md) |
 | `benchmark/` | the **frozen evaluation set** — difficulty ladder, reach tier, `combined/`, and what each technique costs on it | [→](benchmark/README.md) |
-| `experiments/` | all experiment code: the solvers, the pipelines, and 38 shipped-bug lessons | [→](experiments/README.md) |
+| `experiments/` | all experiment code: the solvers, the pipelines, the Colab notebooks, and 68 shipped-bug lessons | [→](experiments/README.md) |
 | `results/` | every artifact any experiment produced | [→](results/README.md) |
-| `tests/` | one root, nested by area (`greedy/`, `stable_ac/`, `heuristic_search/`, …); a bare `pytest` collects them all | — |
-| `envs/`, `network.py`, `ppo_ac_s.py`, `beam/` | the original JAX/GPU training stack, described below | — |
+| `tests/` | one root, nested by area (`greedy/`, `stable_ac/`, `heuristic_search/`, …); a bare `pytest` collects them all | [→](tests/README.md) |
+| `prompts/` | the standing operating contract and the per-target briefs handed to an agent starting work | [→](prompts/README.md) |
+| `logs/` | one `DD-MM-YYYY.md` per day, one section per push — required by the checklist in [`CLAUDE.md`](CLAUDE.md) | — |
+| `envs/`, `network.py`, `ppo_ac_s.py`, `wrappers.py`, `beam/`, `scripts/`, `ppo_checkpoints/` | the original JAX/GPU training stack, described below | — |
 
 `benchmark/` is derived from `results/greedy_baseline/` but consumed as an *input* by roughly two dozen files, which is why it sits beside `data/` rather than under `results/`.
+
+**Two stacks live in this repo, and they never import each other.** The files in the last row above are the original **JAX/GPU PPO stack** — the upstream AC-SolverX training code, kept verbatim as a read-only correctness spec. Everything else (`experiments/`, `tests/`, `results/`, `benchmark/`, `data/`) is the **CPU + numba search stack**, which is where all current work happens: no JAX, no GPU, no RL training. When the two describe the same operation, the JAX version is the specification and the numba version is the implementation ported from it. `greedy_search.ipynb` at the root belongs to neither pipeline — it is the standalone numpy+numba prototype the production solver was adapted from.
 
 ### The JAX stack
 

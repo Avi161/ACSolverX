@@ -620,6 +620,11 @@ def test_cov_for_greedy_strings():
 
 
 def test_transformed_flat_repads_to_cap():
+    # transformed_flat re-pads via envs/utils.py, which imports jax. jax is platform-specific and
+    # lives only in requirements-{cuda,rocm}.txt, so it is absent from this CPU+numba branch's venv
+    # AND from CI (which installs requirements.txt alone). Skip rather than fail: a hard failure
+    # here makes the mandatory pre-push gate red out of the box on every machine without jax.
+    pytest.importorskip("jax")
     paper = cov.apply_cov_once(AK3_R1, AK3_R2, str_to_word("xyx"))
     flat = cov.transformed_flat(paper)
     assert len(flat) == 2 * paper.cap

@@ -9,7 +9,10 @@ import itertools
 import os
 import sys
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT = os.path.dirname(os.path.abspath(__file__))
+while ROOT != os.path.dirname(ROOT) and not all(
+        os.path.isdir(os.path.join(ROOT, _s)) for _s in ("experiments", "data")):
+    ROOT = os.path.dirname(ROOT)
 sys.path.insert(0, ROOT)
 
 from experiments.clustering.signed_knots import (  # noqa: E402

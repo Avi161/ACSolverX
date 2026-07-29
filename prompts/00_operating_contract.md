@@ -58,7 +58,7 @@ These are ported verbatim from the project's domain-expert gate (`.claude/agents
 - **CPU + numba only.** No JAX, no GPU, no PPO/RL on this branch. The JAX stack (`envs/`, `network.py`, `ppo_ac_s.py`) is a *correctness spec to port from, never to import*. There is no `python` on the machine — use `.venv/bin/python3`.
 - **Hard budget rule: never run a search above `node_budget = 1000` yourself.** A search at budget `B` is the first `B` pops of any longer run, so a bigger local budget proves nothing new. Production budgets (50k–1M) are the user's to run, on Colab. Structure code to be budget-agnostic; hand the big runs off.
 - **New files only.** Never modify the solvers (`experiments/search/`, `experiments/stable_ac/solvern*.py`), the runner (`run_baseline.py`), or the notebooks. `results/greedy_baseline/` is a *resume contract* — never rename anything in it. Every result-changing knob belongs in the filename identity; every result-neutral knob must stay out of it.
-- **Run the tests after any pipeline-adjacent change** (`pytest tests/greedy -q`, `tests/stable_ac -q`, `tests/equivalence_classes -q`; `--runslow` before any push or result claim). A green default tier says nothing about what it skipped.
+- **Run the tests after any pipeline-adjacent change** (`pytest tests/greedy tests/stable_ac tests/analysis -q`, plus `tests/equivalence_classes -q` when that package is touched; `--runslow` before any push or result claim). A green default tier says nothing about what it skipped.
 
 ## Reporting format
 

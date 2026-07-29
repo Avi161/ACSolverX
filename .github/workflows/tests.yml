@@ -1,8 +1,9 @@
 name: tests
 
-# Runs the pytest suite (pytest.ini testpaths: greedy_tests, equivalence_classes,
-# stable_ac, tests) on every PR into main and on pushes to main. The `slow` tier
-# is auto-skipped without --runslow (see conftest), so this is the fast gate.
+# Runs the pytest suite (pytest.ini: testpaths = tests, which collects every
+# suite nested under tests/) on every PR into main and on pushes to main. The
+# `slow` tier is auto-skipped without --runslow (see conftest), so this is the
+# fast gate.
 # Enable it as a required status check in the main ruleset once one run exists.
 
 on:

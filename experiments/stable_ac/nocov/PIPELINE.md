@@ -2,7 +2,7 @@
 
 Every number in this document is measured from the committed evidence in
 `results/stable_ac/nocov/` or read directly off the code in this folder. Files referenced:
-`run_nocov.py` (runner), `config_nocov.yaml` (production config), `stable_ac_nocov.ipynb`
+`run_nocov.py` (runner), `config_nocov.yaml` (production config), [`../../notebooks/stable_ac/stable_ac_nocov.ipynb`](../../notebooks/stable_ac/stable_ac_nocov.ipynb)
 (Colab notebook), `../solvern.py` (solver), `../word_families.py` (z-words),
 `../verify_results.py` (certificate verifier).
 
@@ -168,7 +168,7 @@ drops to 11 × 64 = 704 and the sweep to 1,053 searches.
 A numba port of the pure-Python reference `experiments/greedy_tests/spec/search.py`,
 generalised to any `n_gen ≤ 26`, any `n_rel ≥ 2` — Branch A calls it at
 `n_gen = 3, n_rel = 3`. It reproduces the spec's pop order **exactly** wherever the spec
-can run (`n_gen ≤ 3`); `greedy_tests/test_solvern.py` pins that trace equality, so
+can run (`n_gen ≤ 3`); `tests/stable_ac/test_solvern.py` pins that trace equality, so
 correctness is a tested property, not an intention. CPU-only: words are 1-D `np.int8`
 arrays (generator `i` = `±i`; `x=1, X=-1, y=2, Y=-2, z=3, Z=-3`), the hot loops are
 `@njit`, the heap/dict orchestration is plain Python.
@@ -227,7 +227,7 @@ expansion + canonicalisation + relator-sort + key-packing in ONE `@njit` kernel 
 per pop and carries states as packed bytes (the packed key IS the heap tie-break —
 injective, so the pop order is provably identical). It keeps parent/move pointers, so
 **every result field is bit-identical, paths included** — whole-dict equality is
-pinned by `tests/greedy/test_solvern_fast.py` (parity at n_gen 2–5,
+pinned by `tests/stable_ac/test_solvern_fast.py` (parity at n_gen 2–5,
 spec trace-equality, kernel-vs-loop child-order equality, abs_det on every kernel
 child) and the fast/slow micro-run row-equality test in `test_run_nocov.py`.
 Result-neutral ⇒ NOT part of the filename identity: files written in either mode
@@ -333,7 +333,7 @@ Two independent layers:
    tests/stable_ac -q`, with `test_cov.py`) covers the row schema, resume
    skipping, torn-line repair, filename identity, yaml sanity, the budget guard, and one
    real budget-100 micro-run. The solver itself is pinned in
-   `tests/greedy/` — `test_solvern.py` proves trace-equality with the
+   `tests/stable_ac/` — `test_solvern.py` proves trace-equality with the
    pure-Python spec at `n_gen ≤ 3` plus 4-generator seamlessness (752 tests fast tier,
    796 with `--runslow`).
 2. **Certificates.** Every `solved: true` row is a claim; its `path_moves` is the proof.
@@ -371,7 +371,7 @@ Colab budgets are for). Solved path lengths observed: 6–27 moves at budget 100
 
 ## 9. Running it
 
-**Production (Colab)** — open `experiments/stable_ac/nocov/stable_ac_nocov.ipynb` on
+**Production (Colab)** — open `experiments/notebooks/stable_ac/stable_ac_nocov.ipynb` on
 branch `test/stable-ac-moves-w4`; three cells:
 
 1. **CONFIG** — `BRANCH`, `BUDGET` (production default `[50000]`), loads

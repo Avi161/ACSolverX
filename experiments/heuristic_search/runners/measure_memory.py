@@ -19,8 +19,14 @@ figure for the tier that matters rather than an optimistic one from easy rows.
 
     python3 -m experiments.heuristic_search.runners.measure_memory
 """
-import sys, heapq
-sys.path.insert(0,"/Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/hsearch-hyper")
+import os, sys, heapq
+
+_d = os.path.dirname(os.path.abspath(__file__))
+while _d != os.path.dirname(_d) and not all(
+        os.path.isdir(os.path.join(_d, _s)) for _s in ("experiments", "data")):
+    _d = os.path.dirname(_d)
+sys.path.insert(0, _d)
+
 import numpy as np
 from experiments.heuristic_search.core.hlab import bench66, N_FEAT
 from experiments.heuristic_search.core.hsolve import RECOMMENDED
