@@ -1408,3 +1408,8 @@
 
 - [TRAP] The system interpreter has no `pytest`, while a sandboxed `uv run` cannot open the existing cache under `/Users/avigyapaudel/.cache/uv`; both fail before collection and say nothing about the branch.
 - [WORKS] Run focused suites in the foreground with the approved `uv run --with pytest --with numba --with numpy python3 -m pytest ...` environment. Record the exact exit and do not replace a cache-permission failure with an unprovisioned system interpreter.
+
+### 2026-07-29 Re-run the exact lint toolchain on self-hashed artifacts
+
+- [TRAP] A subagent report said `uv run ruff check` passed without recording the Ruff version, but the controller's fresh `uv run --with ruff ruff check` installed Ruff 0.16.0 and found two `I001` import-order failures plus `RUF007`. Because the manifest hashes its own module, even the mechanical import repair changed the frozen JSON bytes.
+- [WORKS] Record `ruff --version` and use the identical fully specified invocation in the implementer and controller gates. After any source-byte-only repair to a self-hashed payload, regenerate it, rerun byte replay and tests, and obtain scoped mathematical and quality rereviews before commit.
