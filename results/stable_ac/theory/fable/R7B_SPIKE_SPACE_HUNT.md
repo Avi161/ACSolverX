@@ -46,15 +46,15 @@ known about that rate at these lengths. So it was measured, on a ladder of 16 st
 3,628,800) and a re-verified defect-0 witness at every rung through length 22 — with 10
 independent seeds per cell (`witness_sensitivity.json`):
 
-| total length | 10k | 40k | 120k | 200k |
-|---|---|---|---|---|
-| ≤ 16 | 10/10 | 10/10 | — | 10/10 |
-| 17 | 4/10 | 7/10 | — | 10/10 |
-| 18 | 3/10 | **4/10** | — | 10/10 |
-| 19 | 1/10 | 2/10 | **4/10** | 6/10 |
-| 20 | 0/10 | 4/10 | **2/10** | 1/10 |
-| 21 | 0/10 | **0/10** | 0/10 | 2/10 |
-| 22 | 0/10 | 0/10 | 1/10 | 1/10 |
+| total length | 10k | 40k | 120k | 200k | 2M |
+|---|---|---|---|---|---|
+| ≤ 16 | 10/10 | 10/10 | — | 10/10 | — |
+| 17 | 4/10 | 7/10 | — | 10/10 | — |
+| 18 | 3/10 | **4/10** | — | 10/10 | — |
+| 19 | 1/10 | 2/10 | **4/10** | 6/10 | — |
+| 20 | 0/10 | 4/10 | **2/10** | 1/10 | — |
+| 21 | 0/10 | **0/10** | 0/10 | 2/10 | **9/10** |
+| 22 | 0/10 | 0/10 | 1/10 | 1/10 | **8/10** |
 | 23, 24 | ladder STALLED — no γ_N = 0 rung certifiable even at 2,000,000 evaluations |
 
 (Non-monotone cells at length 20 are seed noise; disjoint seeds, SE ≈ ±0.15 at n = 10.
@@ -75,10 +75,21 @@ So of 1,909 states swept, **447 carry a null worth recording and 1,312 do not.**
 graft-image group — the largest and the one at exactly the right frontier, since AK(3)'s
 γ_N = 2 minus one spike minus one graft is precisely 0 — was run at a budget that has
 demonstrated **zero detections on any known-positive state above length 20.** That null is
-withdrawn. A re-run of the 486 length-21 members at 2,000,000 evaluations (the tier at
-which the ladder did certify length 21) is in progress; lengths 22–24 have no defensible
-budget, because 50× the production budget could not certify a single known-positive rung
-at 23–24.
+withdrawn.
+
+**The budget that IS defensible, and the re-run.** At 2,000,000 evaluations the climber
+recovers the known-positive rung 9/10 at length 21 and 8/10 at length 22 — a 50× budget
+buys back the whole regime that 40,000 could not see. So the 486 length-21 graft images
+are being re-run at 2M (measured cost ~20 s per full-budget miss, so ~3 core-hours), and
+extending to the 170 length-22 members is equally defensible. **Lengths 23–24 remain
+off-limits at any budget we can justify**: that is exactly where the ladder itself
+stalled — no γ_N = 0 rung could be certified there even at 2M — so the new 21/22 cells
+must not be extrapolated upward, and a null at 23–24 carries no information whatever.
+
+Caveats that travel with the 90%/80%: one rung per length, n = 10 seeds (90% has a 95% CI
+of roughly 60–98%), and the rungs bound sensitivity from ABOVE, being climbable by
+construction — real states of equal length can only be harder. Even at 90%, a null never
+proves γ_N > 0.
 
 The 150-row null at lengths 19–20 sits in between: at 40% and 20% detection, if those
 states carried witnesses as findable as the ladder's rungs, roughly 30–60 hits would have
