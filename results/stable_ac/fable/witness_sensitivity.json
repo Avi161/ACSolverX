@@ -1998,6 +1998,24 @@
      ],
      "mean_seconds": 1.103,
      "complete": true
+    },
+    "2000000": {
+     "samples": 2000000,
+     "runs": 3,
+     "hits": 2,
+     "rate": 0.6666666666666666,
+     "run_best_defects": [
+      0,
+      0,
+      2
+     ],
+     "run_seconds": [
+      4.9,
+      5.9,
+      20.9
+     ],
+     "mean_seconds": 10.6,
+     "complete": false
     }
    }
   }
@@ -2228,7 +2246,7 @@
    ]
   }
  },
- "elapsed_seconds": 424.8,
+ "elapsed_seconds": 456.5,
  "production_samples_extended": [
   10000,
   40000,
