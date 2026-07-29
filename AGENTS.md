@@ -1475,3 +1475,8 @@
 
 - [TRAP] The proof worktree itself is writable, but its Git index lives at `.git/worktrees/codex-proofs/index`; a sandboxed `git add` failed with `Unable to create .../index.lock: Operation not permitted` after verification had passed.
 - [WORKS] Keep staging targets explicit, then run staging, commit, and push with the scoped Git-metadata permission required by the parent repository. Recheck the cached diff before committing so escalation does not broaden the file set.
+
+### 2026-07-29 Redirect Python bytecode during sandboxed compilation
+
+- [TRAP] `python3 -m py_compile` tried to create its mirrored cache under `/Users/avigyapaudel/Library/Caches/com.apple.python/...` and failed with `PermissionError`, even though both source files and the worktree were writable.
+- [WORKS] For an explicit compilation gate, set `PYTHONPYCACHEPREFIX=.scratch/pycache` so bytecode remains project-relative. For ordinary replay/tests, use `PYTHONDONTWRITEBYTECODE=1` when no cache is needed.

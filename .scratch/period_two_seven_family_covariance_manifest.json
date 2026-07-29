@@ -1,0 +1,1739 @@
+{
+  "cells": [
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a0_n0",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3496,
+        "ordered_comparison_digest_sha256": "80ed7a81f9dc74a0d65805e083b05095bbd43cf34953c57599fad444dfeded27"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 0,
+        "n": 0
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "8fb7a5e002e95aed6270b3f94cbf32c4feccaea98f1ed10add62b7ff3c0fb004",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "f6495b9310dd0a7596692777befa2e95d583d2303df5153858bfbc623b0123f4"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "a9fc22a1894be6fea369db95a5d0bb6b82db8d135e2f514eac4bef6b2ff0267b",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "63f922fccaf88f1c1b23b03ff2e0b521070da97af7336468520b2327724b929f"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a0_n1",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3496,
+        "ordered_comparison_digest_sha256": "80ed7a81f9dc74a0d65805e083b05095bbd43cf34953c57599fad444dfeded27"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 0,
+        "n": 1
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "8fb7a5e002e95aed6270b3f94cbf32c4feccaea98f1ed10add62b7ff3c0fb004",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "f6495b9310dd0a7596692777befa2e95d583d2303df5153858bfbc623b0123f4"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "a9fc22a1894be6fea369db95a5d0bb6b82db8d135e2f514eac4bef6b2ff0267b",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "63f922fccaf88f1c1b23b03ff2e0b521070da97af7336468520b2327724b929f"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a0_n2",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3496,
+        "ordered_comparison_digest_sha256": "80ed7a81f9dc74a0d65805e083b05095bbd43cf34953c57599fad444dfeded27"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 0,
+        "n": 2
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "8fb7a5e002e95aed6270b3f94cbf32c4feccaea98f1ed10add62b7ff3c0fb004",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "f6495b9310dd0a7596692777befa2e95d583d2303df5153858bfbc623b0123f4"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "a9fc22a1894be6fea369db95a5d0bb6b82db8d135e2f514eac4bef6b2ff0267b",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "63f922fccaf88f1c1b23b03ff2e0b521070da97af7336468520b2327724b929f"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a0_nge3",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3496,
+        "ordered_comparison_digest_sha256": "80ed7a81f9dc74a0d65805e083b05095bbd43cf34953c57599fad444dfeded27"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 0,
+        "n": ">=3"
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "8fb7a5e002e95aed6270b3f94cbf32c4feccaea98f1ed10add62b7ff3c0fb004",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "f6495b9310dd0a7596692777befa2e95d583d2303df5153858bfbc623b0123f4"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3384,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 56
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "a9fc22a1894be6fea369db95a5d0bb6b82db8d135e2f514eac4bef6b2ff0267b",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "63f922fccaf88f1c1b23b03ff2e0b521070da97af7336468520b2327724b929f"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a1_n0",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 1,
+        "n": 0
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a1_n1",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 1,
+        "n": 1
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a1_n2",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 1,
+        "n": 2
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a1_nge3",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 1,
+        "n": ">=3"
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a2_n0",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 2,
+        "n": 0
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a2_n1",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 2,
+        "n": 1
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a2_n2",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 2,
+        "n": 2
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "a2_nge3",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "cf8fbdef374fa28edbb56ec80d573b3aada3ceba2696ccebea047e6c72e89720"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": 2,
+        "n": ">=3"
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "age3_n0",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "8c47be53a870e7313a805a0022e0d05534ecdea86dd7b1cb3cdc26ba579e6424"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": ">=3",
+        "n": 0
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "age3_n1",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "8c47be53a870e7313a805a0022e0d05534ecdea86dd7b1cb3cdc26ba579e6424"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": ">=3",
+        "n": 1
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "age3_n2",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "8c47be53a870e7313a805a0022e0d05534ecdea86dd7b1cb3cdc26ba579e6424"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": ">=3",
+        "n": 2
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "cell": "age3_nge3",
+      "cross_records": {
+        "B_b0_b1": 0,
+        "comparison_count": 7056,
+        "equal_coordinates": 0,
+        "one_count": 3478,
+        "ordered_comparison_digest_sha256": "8c47be53a870e7313a805a0022e0d05534ecdea86dd7b1cb3cdc26ba579e6424"
+      },
+      "pair_counts": {
+        "b0": 3486,
+        "b1": 3486
+      },
+      "path_fibers": {
+        "b0": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        },
+        "b1": {
+          "active": 36,
+          "equality_checks": 1398,
+          "equality_methods": {
+            "affine_length": 1336,
+            "canonical_pumped_word_equality": 50,
+            "fixed_prefix_first_mismatch": 12
+          },
+          "total": 53
+        }
+      },
+      "predicate": {
+        "a": ">=3",
+        "n": ">=3"
+      },
+      "quadratic_records": {
+        "b0": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "579426fc4834128e0e9e497a6472f94d145632a34aeb44539cd6fa54c612ab56",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "fcd8992175b59d8af7241a2523828d7c1df9908b0fe42b0021c8081a1f1b3136"
+        },
+        "b1": {
+          "Q": 1,
+          "chronology_counts": {
+            "literal_occurrence_order": 3060,
+            "same_occurrence_decreasing": 213,
+            "same_occurrence_increasing": 213
+          },
+          "label_method_counts": {
+            "affine_length": 3388,
+            "canonical_pumped_word_equality": 46,
+            "fixed_prefix_first_mismatch": 52
+          },
+          "module_method_counts": {
+            "affine_length": 422,
+            "fixed_prefix_first_mismatch": 4
+          },
+          "one_count": 1647,
+          "ordered_pair_digest_sha256": "c1c9da941127c03ccc5594d57a2c88f59e6df20059e417dcd2b2a246ad0e5be5",
+          "pair_count": 3486,
+          "semantic_pair_digest_sha256": "5316a7fc6f4981101968959180cfb7f3a351fb8e91174e78acf3607cc0cce42e"
+        }
+      },
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    }
+  ],
+  "checks": {
+    "cells": 16,
+    "chronology_failures": 0,
+    "collision_failures": 0,
+    "coverage_failures": 0,
+    "cross_comparisons_all_cells": 112896,
+    "direct_replay_failures": 0,
+    "direct_replays": 16,
+    "pairs_all_cells": 111552,
+    "pairs_per_edge": 3486,
+    "quadratic_equality_failures": 0,
+    "tokens_per_edge": 84
+  },
+  "direct_replays": [
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 0,
+      "cell": "a0_n0",
+      "d": 1,
+      "i": 1,
+      "n": 0,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 0,
+      "cell": "a0_n1",
+      "d": 1,
+      "i": 2,
+      "n": 1,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 0,
+      "cell": "a0_n2",
+      "d": 1,
+      "i": 3,
+      "n": 2,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 0,
+      "cell": "a0_nge3",
+      "d": 1,
+      "i": 4,
+      "n": 3,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 1,
+      "cell": "a1_n0",
+      "d": 2,
+      "i": 2,
+      "n": 0,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 1,
+      "cell": "a1_n1",
+      "d": 2,
+      "i": 3,
+      "n": 1,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 1,
+      "cell": "a1_n2",
+      "d": 2,
+      "i": 4,
+      "n": 2,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 1,
+      "cell": "a1_nge3",
+      "d": 2,
+      "i": 5,
+      "n": 3,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 2,
+      "cell": "a2_n0",
+      "d": 3,
+      "i": 3,
+      "n": 0,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 2,
+      "cell": "a2_n1",
+      "d": 3,
+      "i": 4,
+      "n": 1,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 2,
+      "cell": "a2_n2",
+      "d": 3,
+      "i": 5,
+      "n": 2,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 2,
+      "cell": "a2_nge3",
+      "d": 3,
+      "i": 6,
+      "n": 3,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 3,
+      "cell": "age3_n0",
+      "d": 4,
+      "i": 4,
+      "n": 0,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 3,
+      "cell": "age3_n1",
+      "d": 4,
+      "i": 5,
+      "n": 1,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 3,
+      "cell": "age3_n2",
+      "d": 4,
+      "i": 6,
+      "n": 2,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    },
+    {
+      "B_b_g": 0,
+      "Q_b0": 1,
+      "Q_b1": 1,
+      "a": 3,
+      "cell": "age3_nge3",
+      "d": 4,
+      "i": 7,
+      "n": 3,
+      "token_counts": {
+        "b0": 84,
+        "b1": 84
+      }
+    }
+  ],
+  "domain": "a=d-1>=0, n=i-d>=0",
+  "format": "period-two-seven-family-covariance-v1",
+  "provenance": {
+    "checker_sha256": "e8946bfef79b4f4c267c20bcd0f82a4776fff56e1087df4854f74cbf5004d164",
+    "inputs": {
+      ".scratch/period_two_inverse_q_companion_checker.py": "37bfcd326951848f2a721e3dabbaa6d65220b5b1109fafb21e4aa403db94d980",
+      ".scratch/period_two_inverse_q_companion_manifest.json": "616c7eaa570f0be87a42c1dae17d0301cbe0b0280f52777f926c6504172225d3",
+      ".scratch/period_two_new_new_aggregate.md": "2d6b53a91a364da116a0303e3def99eeded698092f02dc42b4ef1343a9dfb4ad",
+      ".scratch/period_two_new_new_aggregate_checker.py": "e1f8b9f748ca5a6cfeed9f7db7243892bc888a92ab0e096e754fb0d06b9ec650",
+      ".scratch/period_two_new_new_aggregate_manifest.json": "39183f77a56915b6f1e135b23b26d1067c1b56f0a4af8b6c09057d9fc477d640",
+      ".scratch/period_two_residual_augmented_defect.md": "981ccbee84c302c69dfe5c235d0467aa97f5c0d3ab46f981789ec2ed73398c73"
+    }
+  },
+  "raw_parser_guard": {
+    "p": "tc",
+    "p_inverse": "cT"
+  },
+  "status": "partial theorem: B(b,g)=0; complete seven-family xor remains open",
+  "theorem": {
+    "cell_values": {
+      "a0_n0": 0,
+      "a0_n1": 0,
+      "a0_n2": 0,
+      "a0_nge3": 0,
+      "a1_n0": 0,
+      "a1_n1": 0,
+      "a1_n2": 0,
+      "a1_nge3": 0,
+      "a2_n0": 0,
+      "a2_n1": 0,
+      "a2_n2": 0,
+      "a2_nge3": 0,
+      "age3_n0": 0,
+      "age3_n1": 0,
+      "age3_n2": 0,
+      "age3_nge3": 0
+    },
+    "formula": "Q(b_(n+1,d))=Q(b_(n,d)), hence B(b,g)=0",
+    "name": "diagonal invariance of the j-increment quadratic"
+  }
+}
