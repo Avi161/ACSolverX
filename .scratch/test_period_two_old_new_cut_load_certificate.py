@@ -749,3 +749,422 @@ def test_first_mismatch_inside_a_powered_block_is_rejected() -> None:
     right = replace(right, blocks=(("r", changed_core, (1, 0)),))
     with pytest.raises(ValueError, match="mismatch lies inside powered block"):
         module.compare_templates(left, right, cell)
+
+
+def test_manifest_census_expands_every_catalog_occurrence_footprint() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+
+    manifest = module.build_manifest(catalog=catalog)
+    summary = manifest["summary"]
+
+    assert summary["load_rows"] == {
+        "fixed": 1120,
+        "base": 32,
+        "singleton": 16,
+        "P": 1728,
+        "C": 624,
+        "Q": 5888,
+    }
+    assert summary["total_load_rows"] == 9408
+    assert summary["footprint_sizes"] == {
+        "fixed": {"1": 70},
+        "base": {"2": 2},
+        "singleton": {"6": 1},
+        "P": {"2": 32},
+        "C": {"2": 39},
+        "Q": {"2": 92},
+    }
+    assert summary["occurrence_loads"] == {
+        "fixed": 1120,
+        "base": 64,
+        "singleton": 96,
+        "P": 3456,
+        "C": 1248,
+        "Q": 11776,
+    }
+    assert summary["total_occurrence_loads"] == 17760
+    assert summary["b_tokens_per_occurrence"] == 84
+    assert summary["active_comparisons"] == 1491840
+    assert manifest["status"] == "proved-positive-chamber-old-new-cut"
+    assert {
+        family: {cell["value"] for cell in ledger["cells"]}
+        for family, ledger in manifest["family_ledgers"].items()
+        if family != "C"
+    } == {
+        "fixed": {0},
+        "base": {0},
+        "singleton": {1},
+        "P": {0},
+        "Q": {0},
+    }
+    assert {
+        cell["cell_id"]
+        for cell in manifest["family_ledgers"]["C"]["cells"]
+        if cell["value"]
+    } == {"age0_n0", "age0_n1", "age0_n2", "age0_nge3"}
+
+
+def test_comparison_records_pin_all_five_chronology_branches() -> None:
+    module = load_generator()
+    cell = next(
+        item for item in module.make_cells(("a",)) if item.cell_id == "age0"
+    )
+    templates = {
+        schema_id: module.build_template(
+            module.Schema(
+                schema_id, ("a",), (("fixed", (letter,), None),)
+            ),
+            cell,
+        )
+        for schema_id, letter in {
+            "module:2": 2,
+            "module:3": 3,
+            "label:2": 2,
+            "label:3": 3,
+        }.items()
+    }
+    fixed_old = {
+        "token_id": "old:fixed",
+        "source_class": "fixed",
+        "coordinate": ["fixed", 1, 1],
+        "leaf": 1,
+        "occurrence": None,
+        "polarity": None,
+        "module_schema": None,
+        "label_schema": "label:2",
+    }
+    correction_old = {
+        "token_id": "old:correction",
+        "source_class": "old_path",
+        "coordinate": ["correction", 1, "module:2"],
+        "leaf": 2,
+        "occurrence": 1,
+        "polarity": 1,
+        "module_schema": "module:2",
+        "label_schema": "label:2",
+    }
+    positive_new = {
+        "token_id": "b:positive",
+        "token_index": 0,
+        "source_class": "b_path",
+        "coordinate": ["correction", 1, "module:3"],
+        "leaf": 2,
+        "occurrence": 1,
+        "polarity": 1,
+        "module_schema": "module:3",
+        "label_schema": "label:3",
+    }
+    cases = (
+        (
+            fixed_old,
+            positive_new,
+            {
+                "token_index": 0,
+                "old_occurrence": None,
+                "old_leaf": 1,
+                "b_source_class": "b_path",
+                "b_coordinate": ["correction", 1, "module:3"],
+                "equality_exclusion": False,
+                "old_polarity": None,
+                "module_method": None,
+                "module_order": None,
+                "chronology": "fixed_vs_correction_literal_leaf_order",
+                "chronology_order": -1,
+                "label_method": "fixed_mismatch_after_pumped_prefix",
+                "label_order": -1,
+                "contribution_bit": 1,
+            },
+        ),
+        (
+            correction_old,
+            {
+                **positive_new,
+                "token_id": "b:distinct",
+                "coordinate": ["correction", 2, "module:3"],
+                "leaf": 3,
+                "occurrence": 2,
+            },
+            {
+                "token_index": 0,
+                "old_occurrence": 1,
+                "old_leaf": 2,
+                "b_source_class": "b_path",
+                "b_coordinate": ["correction", 2, "module:3"],
+                "equality_exclusion": False,
+                "old_polarity": 1,
+                "module_method": None,
+                "module_order": None,
+                "chronology": "distinct_occurrences_literal_AST_order",
+                "chronology_order": -1,
+                "label_method": "fixed_mismatch_after_pumped_prefix",
+                "label_order": -1,
+                "contribution_bit": 1,
+            },
+        ),
+        (
+            correction_old,
+            {
+                **positive_new,
+                "token_id": "b:equal",
+                "coordinate": ["correction", 1, "module:2"],
+                "module_schema": "module:2",
+                "label_schema": "label:2",
+            },
+            {
+                "token_index": 0,
+                "old_occurrence": 1,
+                "old_leaf": 2,
+                "b_source_class": "b_path",
+                "b_coordinate": ["correction", 1, "module:2"],
+                "equality_exclusion": True,
+                "old_polarity": 1,
+                "module_method": "identical_pumped_blocks",
+                "module_order": 0,
+                "chronology": "equal_coordinate_excluded",
+                "chronology_order": 0,
+                "label_method": "identical_pumped_blocks",
+                "label_order": 0,
+                "contribution_bit": 0,
+            },
+        ),
+        (
+            correction_old,
+            positive_new,
+            {
+                "token_index": 0,
+                "old_occurrence": 1,
+                "old_leaf": 2,
+                "b_source_class": "b_path",
+                "b_coordinate": ["correction", 1, "module:3"],
+                "equality_exclusion": False,
+                "old_polarity": 1,
+                "module_method": "fixed_mismatch_after_pumped_prefix",
+                "module_order": -1,
+                "chronology": "same_occurrence_increasing",
+                "chronology_order": -1,
+                "label_method": "fixed_mismatch_after_pumped_prefix",
+                "label_order": -1,
+                "contribution_bit": 1,
+            },
+        ),
+        (
+            {**correction_old, "polarity": -1, "label_schema": "label:3"},
+            {**positive_new, "polarity": -1, "label_schema": "label:2"},
+            {
+                "token_index": 0,
+                "old_occurrence": 1,
+                "old_leaf": 2,
+                "b_source_class": "b_path",
+                "b_coordinate": ["correction", 1, "module:3"],
+                "equality_exclusion": False,
+                "old_polarity": -1,
+                "module_method": "fixed_mismatch_after_pumped_prefix",
+                "module_order": -1,
+                "chronology": "same_occurrence_decreasing",
+                "chronology_order": 1,
+                "label_method": "fixed_mismatch_after_pumped_prefix",
+                "label_order": 1,
+                "contribution_bit": 1,
+            },
+        ),
+    )
+
+    assert [
+        module.comparison_record(old, new, templates, cell)
+        for old, new, _ in cases
+    ] == [expected for _, _, expected in cases]
+
+
+def test_histogram_for_load_serializes_one_complete_84_token_partition() -> None:
+    module = load_generator()
+    cell = next(
+        item for item in module.make_cells(("a",)) if item.cell_id == "age0"
+    )
+    templates = {
+        schema_id: module.build_template(
+            module.Schema(
+                schema_id, ("a",), (("fixed", (letter,), None),)
+            ),
+            cell,
+        )
+        for schema_id, letter in {
+            "module:2": 2,
+            "module:3": 3,
+            "label:2": 2,
+            "label:3": 3,
+        }.items()
+    }
+    old = {
+        "token_id": "old:correction",
+        "source_class": "old_path",
+        "coordinate": ["correction", 1, "module:2"],
+        "leaf": 2,
+        "occurrence": 1,
+        "polarity": 1,
+        "module_schema": "module:2",
+        "label_schema": "label:2",
+    }
+    new_tokens = tuple(
+        {
+            "token_id": f"b:{index:02d}",
+            "token_index": index,
+            "source_class": "b_path",
+            "coordinate": ["correction", 2, "module:3"],
+            "leaf": 3,
+            "occurrence": 2,
+            "polarity": 1,
+            "module_schema": "module:3",
+            "label_schema": "label:3",
+        }
+        for index in range(84)
+    )
+
+    histogram = module.histogram_for_load(old, new_tokens, templates, cell)
+
+    assert histogram == {
+        "old_occurrence": 1,
+        "old_leaf": 2,
+        "old_polarity": 1,
+        "comparison_count": 84,
+        "one_count": 84,
+        "value": 0,
+        "buckets": [
+            {
+                "key": {
+                    "old_occurrence": 1,
+                    "old_leaf": 2,
+                    "b_source_class": "b_path",
+                    "b_coordinate": ["correction", 2, "module:3"],
+                    "equality_exclusion": False,
+                    "old_polarity": 1,
+                    "module_method": None,
+                    "module_order": None,
+                    "chronology": "distinct_occurrences_literal_AST_order",
+                    "chronology_order": -1,
+                    "label_method": "fixed_mismatch_after_pumped_prefix",
+                    "label_order": -1,
+                    "contribution_bit": 1,
+                },
+                "count": 84,
+                "mask": "fffffffffffffffffffff",
+            }
+        ],
+    }
+
+
+def literal_complete_histogram() -> dict:
+    return {
+        "old_occurrence": 1,
+        "old_leaf": 2,
+        "old_polarity": 1,
+        "comparison_count": 84,
+        "one_count": 84,
+        "value": 0,
+        "buckets": [
+            {
+                "key": {
+                    "old_occurrence": 1,
+                    "old_leaf": 2,
+                    "b_source_class": "b_path",
+                    "b_coordinate": ["fixture"],
+                    "equality_exclusion": False,
+                    "old_polarity": 1,
+                    "module_method": None,
+                    "module_order": None,
+                    "chronology": "distinct_occurrences_literal_AST_order",
+                    "chronology_order": -1,
+                    "label_method": "fixed_mismatch_after_pumped_prefix",
+                    "label_order": -1,
+                    "contribution_bit": 1,
+                },
+                "count": 84,
+                "mask": "fffffffffffffffffffff",
+            }
+        ],
+    }
+
+
+def test_histogram_validation_rejects_missing_and_duplicated_mask_bits() -> None:
+    module = load_generator()
+    valid = literal_complete_histogram()
+    assert module.validate_histogram(valid) == valid
+
+    missing = copy.deepcopy(valid)
+    missing["buckets"][0]["count"] = 83
+    missing["buckets"][0]["mask"] = "7ffffffffffffffffffff"
+    with pytest.raises(module.CertificateFailure, match="do not cover"):
+        module.validate_histogram(missing)
+
+    duplicated = copy.deepcopy(valid)
+    duplicate = copy.deepcopy(duplicated["buckets"][0])
+    duplicate["count"] = 1
+    duplicate["mask"] = "000000000000000000001"
+    duplicated["buckets"].append(duplicate)
+    with pytest.raises(module.CertificateFailure, match="overlap"):
+        module.validate_histogram(duplicated)
+
+
+def test_histogram_validation_rejects_wrong_occurrence_and_polarity() -> None:
+    module = load_generator()
+    wrong_occurrence = literal_complete_histogram()
+    wrong_occurrence["old_occurrence"] = 2
+    with pytest.raises(module.CertificateFailure, match="old occurrence"):
+        module.validate_histogram(wrong_occurrence)
+
+    wrong_polarity = literal_complete_histogram()
+    wrong_polarity["old_polarity"] = -1
+    with pytest.raises(module.CertificateFailure, match="old polarity"):
+        module.validate_histogram(wrong_polarity)
+
+
+def test_manifest_rejects_wrong_catalog_footprint_and_polarity_binding() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+    singleton = catalog.families["singleton"]
+    token = singleton.old_tokens[0]
+    reference = singleton.old_schema_refs[token.token_id]
+    short_reference = replace(
+        reference, label_schemas=reference.label_schemas[:-1]
+    )
+    wrong_references = dict(singleton.old_schema_refs)
+    wrong_references[token.token_id] = short_reference
+    wrong_singleton = replace(
+        singleton, old_schema_refs=wrong_references
+    )
+    wrong_families = dict(catalog.families)
+    wrong_families["singleton"] = wrong_singleton
+    with pytest.raises(module.CertificateFailure, match="occurrence footprint"):
+        module.build_manifest(catalog=replace(catalog, families=wrong_families))
+
+    wrong_polarities = dict(catalog.occurrence_polarities)
+    wrong_polarities[4] = 1
+    with pytest.raises(
+        module.CertificateFailure, match="chronology metadata digest"
+    ):
+        module.build_manifest(
+            catalog=replace(catalog, occurrence_polarities=wrong_polarities)
+        )
+
+
+def test_family_ledger_rejects_one_flipped_derived_bit(monkeypatch) -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+    original = module.histogram_for_load
+    flipped = False
+
+    def flip_first_histogram(*args, **kwargs):
+        nonlocal flipped
+        histogram = original(*args, **kwargs)
+        if not flipped:
+            flipped = True
+            histogram = dict(histogram)
+            histogram["value"] ^= 1
+        return histogram
+
+    monkeypatch.setattr(module, "histogram_for_load", flip_first_histogram)
+    with pytest.raises(
+        module.CertificateFailure,
+        match=r"family=fixed, cell=age0_n0.*first_odd_load_ids",
+    ):
+        module.family_ledger(catalog.families["fixed"], catalog)

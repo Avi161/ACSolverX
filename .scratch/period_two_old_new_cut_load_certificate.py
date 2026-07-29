@@ -12,6 +12,21 @@ from typing import Any
 
 TOKEN_COUNT = 84
 THRESHOLD_STATES = (0, 1, 2, None)
+HISTOGRAM_KEY_FIELDS = (
+    "old_occurrence",
+    "old_leaf",
+    "b_source_class",
+    "b_coordinate",
+    "equality_exclusion",
+    "old_polarity",
+    "module_method",
+    "module_order",
+    "chronology",
+    "chronology_order",
+    "label_method",
+    "label_order",
+    "contribution_bit",
+)
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SOURCE_DIGESTS = {
     ".scratch/period_two_raw_stream_manifest_generator.py": "edd1f21fda1665b092447143b30d25e65f8c9a9cf2753a56ceb5da16db150bb1",
@@ -38,6 +53,10 @@ INVERSE_CELL_IDS = (
     "age2_n1",
     "age2_nge2",
 )
+
+
+class CertificateFailure(RuntimeError):
+    pass
 
 
 @dataclass(frozen=True)
@@ -214,6 +233,10 @@ class Task4FamilyCatalog:
 @dataclass(frozen=True)
 class Task4SchemaCatalog:
     families: Mapping[str, Task4FamilyCatalog]
+    occurrence_leafs: Mapping[int, int]
+    occurrence_polarities: Mapping[int, int]
+    fixed_metadata: Mapping[str, Mapping[str, Any]]
+    chronology_digest: str
 
 
 @dataclass(frozen=True)
@@ -789,6 +812,219 @@ def compare_templates(
         prefix_length=left_length,
         mismatch_letters=(left_letter, right_letter),
     ).to_record()
+
+
+def comparison_record(
+    old: Mapping[str, Any],
+    new: Mapping[str, Any],
+    templates: Mapping[str, Template],
+    cell: Cell,
+    *,
+    comparison_cache: dict[tuple[str, str, str], Mapping[str, Any]] | None = None,
+) -> dict[str, Any]:
+    def compare(left_schema: str, right_schema: str) -> Mapping[str, Any]:
+        key = (left_schema, right_schema, cell.cell_id)
+        if comparison_cache is not None and key in comparison_cache:
+            return comparison_cache[key]
+        result = compare_templates(
+            templates[left_schema], templates[right_schema], cell
+        )
+        if comparison_cache is not None:
+            comparison_cache[key] = result
+        return result
+
+    label_comparison = compare(old["label_schema"], new["label_schema"])
+    module_comparison = None
+    equality_exclusion = False
+    if old["occurrence"] is None:
+        chronology_order = -1 if old["leaf"] < new["leaf"] else 1
+        chronology = "fixed_vs_correction_literal_leaf_order"
+    elif old["occurrence"] != new["occurrence"]:
+        chronology_order = -1 if old["leaf"] < new["leaf"] else 1
+        chronology = "distinct_occurrences_literal_AST_order"
+    else:
+        if old["module_schema"] is None or new["module_schema"] is None:
+            raise ValueError("same-occurrence correction lacks module schema")
+        module_comparison = compare(
+            old["module_schema"], new["module_schema"]
+        )
+        if module_comparison["order"] == 0:
+            equality_exclusion = True
+            chronology_order = 0
+            chronology = "equal_coordinate_excluded"
+        else:
+            if old["polarity"] != new["polarity"]:
+                raise ValueError("same occurrence has inconsistent polarity")
+            chronology_order = old["polarity"] * module_comparison["order"]
+            chronology = (
+                "same_occurrence_increasing"
+                if old["polarity"] == 1
+                else "same_occurrence_decreasing"
+            )
+    return {
+        "token_index": new["token_index"],
+        "old_occurrence": old["occurrence"],
+        "old_leaf": old["leaf"],
+        "b_source_class": new["source_class"],
+        "b_coordinate": new["coordinate"],
+        "equality_exclusion": equality_exclusion,
+        "old_polarity": old["polarity"],
+        "module_method": (
+            None if module_comparison is None else module_comparison["method"]
+        ),
+        "module_order": (
+            None if module_comparison is None else module_comparison["order"]
+        ),
+        "chronology": chronology,
+        "chronology_order": chronology_order,
+        "label_method": label_comparison["method"],
+        "label_order": label_comparison["order"],
+        "contribution_bit": int(
+            not equality_exclusion
+            and label_comparison["order"] == chronology_order
+        ),
+    }
+
+
+def _hashable_histogram_key(value: Any) -> Any:
+    if isinstance(value, Mapping):
+        return tuple(
+            (key, _hashable_histogram_key(item))
+            for key, item in sorted(value.items())
+        )
+    if isinstance(value, (list, tuple)):
+        return tuple(_hashable_histogram_key(item) for item in value)
+    return value
+
+
+def _sortable_histogram_key(value: Any) -> Any:
+    if value is None:
+        return (0, "")
+    if isinstance(value, bool):
+        return (1, int(value))
+    if isinstance(value, int):
+        return (2, value)
+    if isinstance(value, str):
+        return (3, value)
+    if isinstance(value, (list, tuple)):
+        return (4, tuple(_sortable_histogram_key(item) for item in value))
+    if isinstance(value, Mapping):
+        return (
+            5,
+            tuple(
+                (key, _sortable_histogram_key(item))
+                for key, item in sorted(value.items())
+            ),
+        )
+    raise ValueError(f"unsupported histogram key value: {type(value).__name__}")
+
+
+def validate_histogram(histogram: Mapping[str, Any]) -> Mapping[str, Any]:
+    buckets = histogram["buckets"]
+    union = 0
+    decoded = []
+    for bucket in buckets:
+        mask_hex = bucket["mask"]
+        if (
+            not isinstance(mask_hex, str)
+            or len(mask_hex) != 21
+            or any(letter not in "0123456789abcdef" for letter in mask_hex)
+        ):
+            raise CertificateFailure("histogram mask is not 21 lowercase hex digits")
+        mask = int(mask_hex, 16)
+        if union & mask:
+            raise CertificateFailure("histogram masks overlap")
+        union |= mask
+        decoded.append((bucket, mask))
+        key = bucket["key"]
+        if key["old_occurrence"] != histogram["old_occurrence"]:
+            raise CertificateFailure("histogram old occurrence differs from key")
+        if key["old_leaf"] != histogram["old_leaf"]:
+            raise CertificateFailure("histogram old leaf differs from key")
+        if key["old_polarity"] != histogram["old_polarity"]:
+            raise CertificateFailure("histogram old polarity differs from key")
+    if union != (1 << TOKEN_COUNT) - 1:
+        raise CertificateFailure("histogram masks do not cover all 84 tokens")
+    if histogram["comparison_count"] != TOKEN_COUNT:
+        raise CertificateFailure("histogram comparison count differs from 84")
+    if sum(bucket["count"] for bucket, _ in decoded) != TOKEN_COUNT:
+        raise CertificateFailure("histogram bucket counts do not sum to 84")
+    if any(
+        bucket["count"]
+        != bin(mask).count("1")  # noqa: FURB161 - Python 3.9
+        for bucket, mask in decoded
+    ):
+        raise CertificateFailure("histogram count differs from mask population")
+    one_count = sum(
+        bucket["count"] * bucket["key"]["contribution_bit"]
+        for bucket, _ in decoded
+    )
+    if histogram["one_count"] != one_count:
+        raise CertificateFailure("histogram one count differs from buckets")
+    if histogram["value"] != one_count % 2:
+        raise CertificateFailure("histogram value differs from one-count parity")
+    return histogram
+
+
+def histogram_for_load(
+    old: Mapping[str, Any],
+    new_tokens: Sequence[Mapping[str, Any]],
+    templates: Mapping[str, Template],
+    cell: Cell,
+    *,
+    comparison_cache: dict[tuple[str, str, str], Mapping[str, Any]] | None = None,
+) -> dict[str, Any]:
+    records = tuple(
+        comparison_record(
+            old,
+            new,
+            templates,
+            cell,
+            comparison_cache=comparison_cache,
+        )
+        for new in new_tokens
+    )
+    grouped: dict[Any, list[Any]] = {}
+    seen_indices = set()
+    for record in records:
+        token_index = record["token_index"]
+        if token_index in seen_indices:
+            raise ValueError(f"duplicate token_index: {token_index}")
+        if not 0 <= token_index < TOKEN_COUNT:
+            raise ValueError("token_index must be in 0..83")
+        seen_indices.add(token_index)
+        key = tuple(record[field] for field in HISTOGRAM_KEY_FIELDS)
+        hashable_key = _hashable_histogram_key(key)
+        if hashable_key not in grouped:
+            grouped[hashable_key] = [key, 0, 0]
+        grouped[hashable_key][1] += 1
+        grouped[hashable_key][2] |= 1 << token_index
+    if seen_indices != set(range(TOKEN_COUNT)):
+        raise ValueError("token indices must cover 0..83 exactly")
+    buckets = tuple(
+        HistogramBucket(key=key, count=count, mask=mask)
+        for key, count, mask in sorted(
+            grouped.values(), key=lambda row: _sortable_histogram_key(row[0])
+        )
+    )
+    one_count = sum(record["contribution_bit"] for record in records)
+    histogram = {
+        "old_occurrence": old["occurrence"],
+        "old_leaf": old["leaf"],
+        "old_polarity": old["polarity"],
+        "comparison_count": len(records),
+        "one_count": one_count,
+        "value": one_count % 2,
+        "buckets": [
+            {
+                "key": dict(zip(HISTOGRAM_KEY_FIELDS, bucket.key)),
+                "count": bucket.count,
+                "mask": f"{bucket.mask:021x}",
+            }
+            for bucket in buckets
+        ],
+    }
+    return dict(validate_histogram(histogram))
 
 
 def canonical_json(value: Any) -> str:
@@ -1789,6 +2025,51 @@ def _build_b_family_schemas(
     return schemas, references
 
 
+def _task4_chronology_metadata(
+    context: SourceContext,
+) -> tuple[dict[int, int], dict[int, int], dict[str, dict[str, Any]]]:
+    seven = context.modules["seven"]
+    occurrence_leafs = {}
+    occurrence = 0
+    for leaf_index, leaf in enumerate(
+        seven.hessian._expand(seven.hessian._residual_ast()), start=1
+    ):
+        if leaf.literal is not None:
+            continue
+        occurrence += 1
+        occurrence_leafs[occurrence] = leaf_index
+    if set(occurrence_leafs) != set(context.occurrences):
+        raise ValueError("AST occurrence leaves do not cover 1..16")
+    occurrence_polarities = {
+        order: row["polarity"] for order, row in context.occurrences.items()
+    }
+    fixed_metadata = {
+        f"old:{token.token_id}": {
+            "leaf": token.leaf,
+            "coordinate": list(token.coordinate),
+        }
+        for token in seven.fixed_tokens()
+    }
+    if len(fixed_metadata) != 70:
+        raise ValueError("fixed chronology metadata does not contain 70 tokens")
+    return occurrence_leafs, occurrence_polarities, fixed_metadata
+
+
+def _chronology_digest(
+    occurrence_leafs: Mapping[int, int],
+    occurrence_polarities: Mapping[int, int],
+    fixed_metadata: Mapping[str, Mapping[str, Any]],
+) -> str:
+    payload = canonical_json(
+        {
+            "occurrence_leafs": dict(occurrence_leafs),
+            "occurrence_polarities": dict(occurrence_polarities),
+            "fixed_metadata": dict(fixed_metadata),
+        }
+    ).encode("ascii")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
     b_tokens, _ = build_b_catalog(context)
     old_tokens, _ = build_old_rows(context)
@@ -1838,7 +2119,18 @@ def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
             old_schema_refs=old_references,
             b_schema_refs=b_references,
         )
-    return Task4SchemaCatalog(families=families)
+    occurrence_leafs, occurrence_polarities, fixed_metadata = (
+        _task4_chronology_metadata(context)
+    )
+    return Task4SchemaCatalog(
+        families=families,
+        occurrence_leafs=occurrence_leafs,
+        occurrence_polarities=occurrence_polarities,
+        fixed_metadata=fixed_metadata,
+        chronology_digest=_chronology_digest(
+            occurrence_leafs, occurrence_polarities, fixed_metadata
+        ),
+    )
 
 
 def build_task4_template_records(
@@ -1854,6 +2146,319 @@ def build_task4_template_records(
         }
         for family, item in catalog.families.items()
     }
+
+
+def _b_occurrence_records(
+    item: Task4FamilyCatalog,
+    catalog: Task4SchemaCatalog,
+) -> tuple[dict[str, Any], ...]:
+    records = []
+    for token in item.b_tokens:
+        reference = item.b_schema_refs[token.token_id]
+        if token.token_index is None or token.occurrence is None:
+            raise CertificateFailure(f"incomplete B token: {token.token_id}")
+        if reference.module_schema is None or len(reference.label_schemas) != 1:
+            raise CertificateFailure(
+                f"incomplete B schema reference: {token.token_id}"
+            )
+        label_occurrence, label_schema = reference.label_schemas[0]
+        if label_occurrence != token.occurrence:
+            raise CertificateFailure(
+                f"B label occurrence differs: {token.token_id}"
+            )
+        records.append(
+            {
+                "token_id": token.token_id,
+                "token_index": token.token_index,
+                "source_class": token.family,
+                "coordinate": [token.slot, *token.source_members],
+                "leaf": catalog.occurrence_leafs[token.occurrence],
+                "occurrence": token.occurrence,
+                "polarity": token.polarity,
+                "module_schema": reference.module_schema,
+                "label_schema": label_schema,
+            }
+        )
+    if len(records) != TOKEN_COUNT:
+        raise CertificateFailure(
+            f"family {item.family} has {len(records)} B tokens"
+        )
+    return tuple(records)
+
+
+def _old_occurrence_records(
+    token: TokenRef,
+    reference: DecoratedSchemaRef,
+    catalog: Task4SchemaCatalog,
+) -> tuple[dict[str, Any], ...]:
+    records = []
+    for occurrence, label_schema in reference.label_schemas:
+        if occurrence is None:
+            metadata = catalog.fixed_metadata.get(token.token_id)
+            if metadata is None or reference.module_schema is not None:
+                raise CertificateFailure(
+                    f"incomplete fixed chronology metadata: {token.token_id}"
+                )
+            leaf = metadata["leaf"]
+            polarity = None
+            coordinate = metadata["coordinate"]
+        else:
+            if reference.module_schema is None:
+                raise CertificateFailure(
+                    f"correction lacks module schema: {token.token_id}"
+                )
+            leaf = catalog.occurrence_leafs[occurrence]
+            polarity = catalog.occurrence_polarities[occurrence]
+            coordinate = [token.slot, *token.source_members]
+        records.append(
+            {
+                "token_id": token.token_id,
+                "source_class": token.family,
+                "coordinate": coordinate,
+                "leaf": leaf,
+                "occurrence": occurrence,
+                "polarity": polarity,
+                "module_schema": reference.module_schema,
+                "label_schema": label_schema,
+            }
+        )
+    if not records:
+        raise CertificateFailure(f"empty old footprint: {token.token_id}")
+    return tuple(records)
+
+
+def _expected_family_value(family: str, cell: Cell) -> int:
+    if family == "singleton":
+        return 1
+    if family == "C":
+        return int(cell.states[cell.names.index("a")] == 0)
+    if family in {"fixed", "base", "P", "Q"}:
+        return 0
+    raise CertificateFailure(f"unknown Task 4 family: {family}")
+
+
+def family_ledger(
+    item: Task4FamilyCatalog,
+    catalog: Task4SchemaCatalog,
+) -> dict[str, Any]:
+    b_records = _b_occurrence_records(item, catalog)
+    cell_records = []
+    family_comparisons = 0
+    family_occurrence_loads = 0
+    for cell in item.cells:
+        templates = {
+            schema_id: build_template(schema, cell)
+            for schema_id, schema in item.schemas.items()
+        }
+        comparison_cache: dict[
+            tuple[str, str, str], Mapping[str, Any]
+        ] = {}
+        loads = []
+        odd_load_ids = []
+        cell_value = 0
+        cell_comparisons = 0
+        cell_occurrence_loads = 0
+        for token in item.old_tokens:
+            if token.coefficient % 2 != 1:
+                raise CertificateFailure(
+                    f"inactive old fiber reached Task 4: {token.token_id}"
+                )
+            reference = item.old_schema_refs[token.token_id]
+            occurrence_records = _old_occurrence_records(
+                token, reference, catalog
+            )
+            histograms = [
+                histogram_for_load(
+                    old,
+                    b_records,
+                    templates,
+                    cell,
+                    comparison_cache=comparison_cache,
+                )
+                for old in occurrence_records
+            ]
+            load_value = sum(
+                histogram["value"] for histogram in histograms
+            ) % 2
+            load_id = f"{item.family}|{cell.cell_id}|{token.token_id}"
+            if load_value:
+                odd_load_ids.append(load_id)
+            cell_value ^= load_value
+            occurrence_count = len(histograms)
+            comparison_count = sum(
+                histogram["comparison_count"] for histogram in histograms
+            )
+            cell_occurrence_loads += occurrence_count
+            cell_comparisons += comparison_count
+            loads.append(
+                {
+                    "load_id": load_id,
+                    "old_token_id": token.token_id,
+                    "coefficient": token.coefficient,
+                    "source_members": list(token.source_members),
+                    "occurrence_footprint": occurrence_count,
+                    "histograms": histograms,
+                    "value": load_value,
+                }
+            )
+        expected = _expected_family_value(item.family, cell)
+        if cell_value != expected:
+            raise CertificateFailure(
+                "family parity mismatch: "
+                f"family={item.family}, cell={cell.cell_id}, "
+                f"expected={expected}, actual={cell_value}, "
+                f"first_odd_load_ids={odd_load_ids[:8]}"
+            )
+        if len(loads) != len(item.old_tokens):
+            raise CertificateFailure(
+                f"source load count mismatch: {item.family}, {cell.cell_id}"
+            )
+        if cell_comparisons != cell_occurrence_loads * TOKEN_COUNT:
+            raise CertificateFailure(
+                f"comparison count mismatch: {item.family}, {cell.cell_id}"
+            )
+        family_occurrence_loads += cell_occurrence_loads
+        family_comparisons += cell_comparisons
+        cell_records.append(
+            {
+                "cell_id": cell.cell_id,
+                "load_count": len(loads),
+                "occurrence_load_count": cell_occurrence_loads,
+                "comparison_count": cell_comparisons,
+                "odd_load_ids": odd_load_ids,
+                "value": cell_value,
+                "loads": loads,
+            }
+        )
+    return {
+        "family": item.family,
+        "cells": cell_records,
+        "summary": {
+            "load_rows": len(item.old_tokens) * len(item.cells),
+            "occurrence_loads": family_occurrence_loads,
+            "comparisons": family_comparisons,
+        },
+    }
+
+
+def _catalog_summary(catalog: Task4SchemaCatalog) -> dict[str, Any]:
+    load_rows = {}
+    footprint_sizes = {}
+    occurrence_loads = {}
+    comparisons = {}
+    for family, item in catalog.families.items():
+        footprints = [
+            len(item.old_schema_refs[token.token_id].label_schemas)
+            for token in item.old_tokens
+        ]
+        distribution = {
+            str(size): footprints.count(size) for size in sorted(set(footprints))
+        }
+        load_rows[family] = len(item.old_tokens) * len(item.cells)
+        footprint_sizes[family] = distribution
+        occurrence_loads[family] = sum(footprints) * len(item.cells)
+        comparisons[family] = occurrence_loads[family] * len(item.b_tokens)
+    return {
+        "load_rows": load_rows,
+        "total_load_rows": sum(load_rows.values()),
+        "footprint_sizes": footprint_sizes,
+        "occurrence_loads": occurrence_loads,
+        "total_occurrence_loads": sum(occurrence_loads.values()),
+        "b_tokens_per_occurrence": TOKEN_COUNT,
+        "active_comparisons": sum(comparisons.values()),
+    }
+
+
+def _validate_catalog_summary(summary: Mapping[str, Any]) -> None:
+    expected_loads = {
+        "fixed": 1120,
+        "base": 32,
+        "singleton": 16,
+        "P": 1728,
+        "C": 624,
+        "Q": 5888,
+    }
+    expected_footprints = {
+        "fixed": {"1": 70},
+        "base": {"2": 2},
+        "singleton": {"6": 1},
+        "P": {"2": 32},
+        "C": {"2": 39},
+        "Q": {"2": 92},
+    }
+    expected_occurrence_loads = {
+        "fixed": 1120,
+        "base": 64,
+        "singleton": 96,
+        "P": 3456,
+        "C": 1248,
+        "Q": 11776,
+    }
+    if summary["load_rows"] != expected_loads:
+        raise CertificateFailure(
+            f"source load census mismatch: {summary['load_rows']}"
+        )
+    if summary["total_load_rows"] != 9408:
+        raise CertificateFailure(
+            f"total source load census mismatch: {summary['total_load_rows']}"
+        )
+    if summary["footprint_sizes"] != expected_footprints:
+        raise CertificateFailure(
+            f"occurrence footprint mismatch: {summary['footprint_sizes']}"
+        )
+    if summary["occurrence_loads"] != expected_occurrence_loads:
+        raise CertificateFailure(
+            f"occurrence load census mismatch: {summary['occurrence_loads']}"
+        )
+    if summary["total_occurrence_loads"] != 17760:
+        raise CertificateFailure(
+            "total occurrence load census mismatch: "
+            f"{summary['total_occurrence_loads']}"
+        )
+    if summary["b_tokens_per_occurrence"] != TOKEN_COUNT:
+        raise CertificateFailure("B token count differs from 84")
+    if summary["active_comparisons"] != 1491840:
+        raise CertificateFailure(
+            f"active comparison census mismatch: {summary['active_comparisons']}"
+        )
+
+
+def build_manifest(
+    *, catalog: Task4SchemaCatalog | None = None
+) -> dict[str, Any]:
+    if catalog is None:
+        catalog = build_task4_schema_catalog(load_source_context())
+    live_chronology_digest = _chronology_digest(
+        catalog.occurrence_leafs,
+        catalog.occurrence_polarities,
+        catalog.fixed_metadata,
+    )
+    if live_chronology_digest != catalog.chronology_digest:
+        raise CertificateFailure("chronology metadata digest mismatch")
+    summary = _catalog_summary(catalog)
+    _validate_catalog_summary(summary)
+    manifest = {
+        "format": "period-two-old-new-cut-load-v1",
+        "domain": "a=d-1>=0, n>=0; positive chamber d>=1",
+        "status": "unverified",
+        "summary": summary,
+        "family_ledgers": {},
+    }
+    ledgers = {
+        family: family_ledger(item, catalog)
+        for family, item in catalog.families.items()
+    }
+    derived_comparisons = sum(
+        ledger["summary"]["comparisons"] for ledger in ledgers.values()
+    )
+    if derived_comparisons != summary["active_comparisons"]:
+        raise CertificateFailure(
+            "ledger comparison census differs from catalog summary: "
+            f"{derived_comparisons}"
+        )
+    manifest["family_ledgers"] = ledgers
+    manifest["status"] = "proved-positive-chamber-old-new-cut"
+    return manifest
 
 
 def _state_label(name: str, state: int | None) -> str:

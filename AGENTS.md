@@ -1562,3 +1562,8 @@
 
 - [TRAP] The first Task 3 real-schema gate adapted only the inverse and slot-zero powered source catalogs to `(a,n)`. It did not build the fixed/base/singleton/P/C/Q module and transported-label schemas that Task 4 actually compares, and its boundary records kept terminal data only in memory.
 - [WORKS] Build the pumping gate from `build_old_rows` and `build_b_catalog`, decorate every module/label context with its actual occurrence action and family selector cells, and round-trip one canonical proof record containing the tagged base, terminal branch, normalized blocks, and boundary witnesses before declaring Task 4 schema coverage.
+
+### 2026-07-29 Avoid macOS resource timing inside the proof guard
+
+- [TRAP] `/usr/bin/time -l` can run its guarded child test successfully and then exit one because sandboxed `sysctl kern.clockrate` returns `Operation not permitted`; the wrapper status then obscures the child's passing exit.
+- [WORKS] Run the authoritative proof/test command directly through `scripts/run_proof_guarded.py` and use the guard's wall time. Do not repeat the unchanged `/usr/bin/time -l` wrapper after this post-test failure.
