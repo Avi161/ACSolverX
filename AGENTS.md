@@ -1536,3 +1536,9 @@
 - [TRAP] Ruff reported `I001` after the imports were alphabetized because each scratch module retained two blank lines before its first constant; the ordinary diagnostic did not show that whitespace-only cause.
 - [WORKS] Retain `bin(mask).count("1")` with a narrow `FURB161` suppression when testing Python-3.9-compatible scratch certificates; do not accept an unsafe version-floor increase as a lint fix.
 - [WORKS] Use guarded `ruff check --diff` when an `I001` suggestion renders no visible reordered imports, then apply the displayed whitespace edit explicitly.
+
+### 2026-07-29 Replay grouped-load bindings below summary fields
+
+- [TRAP] The first Task 2 load binding checked digest shape, row totals, stable-cell count, and upstream parity/label booleans, but did not pin digest values, replay V rows, require the exact inverse cell IDs, or recompute B activity and label equality from member data.
+- [WORKS] Pin every approved source digest literally; replay V/W/anchor rows with unique IDs, exact family counts, coefficients, domains, and `current_equality`; require the exact inverse-Q cell-ID set; and derive each B fiber's parity and transported-label equality from reconstructed member coefficients and action schemas before selecting active tokens.
+- [WORKS] Mutation-test integer-first aggregation with signed member coefficients such as `-1,+1`; counts and mod-two activity alone cannot distinguish summing in integers from reducing each row first.

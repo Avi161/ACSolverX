@@ -1,12 +1,40 @@
+import copy
 import functools
 import importlib.util
 import operator
 import re
 import sys
+from dataclasses import replace
 from pathlib import Path
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / ".scratch/period_two_old_new_cut_load_certificate.py"
+EXPECTED_SOURCE_DIGESTS = {
+    ".scratch/period_two_raw_stream_manifest_generator.py": "edd1f21fda1665b092447143b30d25e65f8c9a9cf2753a56ceb5da16db150bb1",
+    ".scratch/period_two_raw_stream_manifest.json": "824d17adc0bc9b553d722eb627ee60f363451673237e366f6eb869acc6e058dd",
+    ".scratch/period_two_inverse_q_companion_checker.py": "37bfcd326951848f2a721e3dabbaa6d65220b5b1109fafb21e4aa403db94d980",
+    ".scratch/period_two_inverse_q_companion_manifest.json": "616c7eaa570f0be87a42c1dae17d0301cbe0b0280f52777f926c6504172225d3",
+    ".scratch/period_two_new_new_aggregate_checker.py": "e1f8b9f748ca5a6cfeed9f7db7243892bc888a92ab0e096e754fb0d06b9ec650",
+    ".scratch/period_two_new_new_aggregate_manifest.json": "39183f77a56915b6f1e135b23b26d1067c1b56f0a4af8b6c09057d9fc477d640",
+    ".scratch/period_two_seven_family_covariance_checker.py": "e8946bfef79b4f4c267c20bcd0f82a4776fff56e1087df4854f74cbf5004d164",
+    ".scratch/period_two_seven_family_covariance_manifest.json": "a044e99d93ed43e10721c7f3925f0d750f23944f07d4f385f41fe810f1b62894",
+    ".scratch/period_two_old_new_cut_selector_theory.md": "8c5cb9898068e34b34ac2871f6ab82fb9db7bad5da4c5df2cacc2c24fd14baa0",
+    ".scratch/period_two_old_new_cut_endpoint_potential.md": "856fba47ee4d4dece0698e10a27a916db533c8a119f3ab3f510a74cc143b6911",
+    ".scratch/period_two_intact_boundary_pumping_lemma.md": "7833a0d68b8d088a355db0e4cf659291325d05b0ddbac81cb6d410106f361f94",
+}
+EXPECTED_INVERSE_CELL_IDS = {
+    "a0_n0",
+    "a0_n1",
+    "a0_nge2",
+    "a1_n0",
+    "a1_n1",
+    "a1_nge2",
+    "age2_n0",
+    "age2_n1",
+    "age2_nge2",
+}
 
 
 def load_module(name: str, path: Path):
@@ -20,6 +48,12 @@ def load_module(name: str, path: Path):
 
 def load_generator():
     return load_module("old_new_load_generator", GENERATOR)
+
+
+def with_manifest(context, name: str, manifest):
+    manifests = dict(context.manifests)
+    manifests[name] = manifest
+    return replace(context, manifests=manifests)
 
 
 def test_generator_file_exists_before_loading() -> None:
@@ -134,23 +168,14 @@ def test_integral_collision_fibers_cancel_before_parity() -> None:
 def test_bound_source_has_84_collision_first_b_tokens() -> None:
     module = load_generator()
     context = module.load_source_context()
-    expected_paths = {
-        ".scratch/period_two_raw_stream_manifest_generator.py",
-        ".scratch/period_two_raw_stream_manifest.json",
-        ".scratch/period_two_inverse_q_companion_checker.py",
-        ".scratch/period_two_inverse_q_companion_manifest.json",
-        ".scratch/period_two_new_new_aggregate_checker.py",
-        ".scratch/period_two_new_new_aggregate_manifest.json",
-        ".scratch/period_two_seven_family_covariance_checker.py",
-        ".scratch/period_two_seven_family_covariance_manifest.json",
-        ".scratch/period_two_old_new_cut_selector_theory.md",
-        ".scratch/period_two_old_new_cut_endpoint_potential.md",
-        ".scratch/period_two_intact_boundary_pumping_lemma.md",
-    }
-    assert set(context.source_digests) == expected_paths
+    assert context.source_digests == EXPECTED_SOURCE_DIGESTS
     assert all(
         re.fullmatch(r"[0-9a-f]{64}", digest)
         for digest in context.source_digests.values()
+    )
+    assert (
+        set(context.manifests["inverse"]["collision_fibers"])
+        == EXPECTED_INVERSE_CELL_IDS
     )
     assert len(context.raw_rows) == 585
     assert all(row["domain"] and row["current_equality"] for row in context.raw_rows)
@@ -183,3 +208,90 @@ def test_bound_source_has_84_collision_first_b_tokens() -> None:
     assert old_proof["anchor_rows"] == 21
     assert old_proof["anchor_integral_sum"] == 2
     assert old_proof["missing_raw_provenance"] == []
+
+
+def test_b_activity_is_derived_from_integer_coefficients_before_parity() -> None:
+    module = load_generator()
+    context = module.load_source_context()
+    inverse_manifest = copy.deepcopy(context.manifests["inverse"])
+    target_members = ["nu1:k10:delta0"]
+    changed = 0
+    for fibers in inverse_manifest["collision_fibers"].values():
+        for fiber in fibers:
+            if fiber["members"] == target_members:
+                fiber["activity_parity"] = 0
+                changed += 1
+    assert changed == 9
+    tampered = with_manifest(context, "inverse", inverse_manifest)
+
+    with pytest.raises(ValueError, match="integer-first B parity mismatch"):
+        module.build_b_catalog(tampered)
+
+
+def test_old_family_fibers_preserve_signed_integer_members_before_parity() -> None:
+    module = load_generator()
+    context = module.load_source_context()
+    _, proof = module.build_old_rows(context)
+    target_members = ["W:nu2:P:9:o+1", "W:nu6:P:9:o+1"]
+    fiber = next(
+        item
+        for item in proof["integral_fibers"]["P"]
+        if item["member_ids"] == target_members
+    )
+
+    assert fiber["coefficients"] == [-1, -1]
+    assert fiber["integral_sum"] == -2
+    assert fiber["parity"] == 0
+    assert fiber["active"] is False
+
+
+def test_bound_source_replays_exact_v_rows_and_unique_family_ids() -> None:
+    module = load_generator()
+    context = module.load_source_context()
+    _, proof = module.build_old_rows(context)
+    assert proof["raw_provenance_counts"] == {"V": 167, "W": 397, "A": 21}
+    assert proof["raw_ids_unique"] is True
+
+    raw_manifest = copy.deepcopy(context.manifests["raw"])
+    raw_manifest["source_schema_manifest"]["V_rows"][0]["coefficient"] += 2
+    tampered = with_manifest(context, "raw", raw_manifest)
+    with pytest.raises(ValueError, match="live V rows differ"):
+        module.build_old_rows(tampered)
+
+
+def test_b_catalog_requires_exact_inverse_q_cell_ids() -> None:
+    module = load_generator()
+    context = module.load_source_context()
+    inverse_manifest = copy.deepcopy(context.manifests["inverse"])
+    collision_cells = inverse_manifest["collision_fibers"]
+    collision_cells["copied_cell"] = collision_cells.pop("a0_n1")
+    assert len(collision_cells) == 9
+
+    with pytest.raises(ValueError, match="exact inverse-Q cell IDs"):
+        module.build_b_catalog(with_manifest(context, "inverse", inverse_manifest))
+
+
+def test_b_catalog_derives_and_rejects_member_label_inequality(monkeypatch) -> None:
+    module = load_generator()
+    context = module.load_source_context()
+    _, proof = module.build_b_catalog(context)
+    assert all(
+        fiber["label_equality_witness"]["method"]
+        == "canonical_member_action_blocks_all_inverse_cells"
+        and fiber["label_equality_witness"]["checks"]
+        for fiber in proof["collision_fibers"]
+    )
+
+    inverse = context.modules["inverse"]
+    original_build_templates = inverse.build_templates
+
+    def tampered_build_templates(generator):
+        templates, metadata = original_build_templates(generator)
+        templates[("partner:action:nu4:k12:delta0:o1", "a0_n0")] = templates[
+            ("terminal:module", "a0_n0")
+        ]
+        return templates, metadata
+
+    monkeypatch.setattr(inverse, "build_templates", tampered_build_templates)
+    with pytest.raises(ValueError, match="unequal transported labels"):
+        module.build_b_catalog(context)
