@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import errno
+import io
 import json
 import os
 import signal
 import subprocess
 import sys
 import time
+from contextlib import redirect_stdout
 from dataclasses import FrozenInstanceError
 from pathlib import Path
 
@@ -1152,6 +1154,27 @@ def test_progress_reports_sanitized_phase_starts_and_two_experiment_boundaries(
     assert command_sentinel not in captured.err
     assert environment_sentinel not in captured.out
     assert environment_sentinel not in captured.err
+
+
+def test_progress_flushes_each_line() -> None:
+    class FlushRecordingStream(io.StringIO):
+        def __init__(self) -> None:
+            super().__init__()
+            self.flush_count = 0
+
+        def flush(self) -> None:
+            self.flush_count += 1
+            super().flush()
+
+    stream = FlushRecordingStream()
+    with redirect_stdout(stream):
+        proof_guard._print_progress(
+            "experiment",
+            1.0,
+            _safety_sample(cpu_percent=25.0, group_process_count=2),
+        )
+
+    assert stream.flush_count == 1
 
 
 def test_one_high_cpu_sample_does_not_abort(
