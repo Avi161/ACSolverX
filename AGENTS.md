@@ -1413,3 +1413,8 @@
 
 - [TRAP] A subagent report said `uv run ruff check` passed without recording the Ruff version, but the controller's fresh `uv run --with ruff ruff check` installed Ruff 0.16.0 and found two `I001` import-order failures plus `RUF007`. Because the manifest hashes its own module, even the mechanical import repair changed the frozen JSON bytes.
 - [WORKS] Record `ruff --version` and use the identical fully specified invocation in the implementer and controller gates. After any source-byte-only repair to a self-hashed payload, regenerate it, rerun byte replay and tests, and obtain scoped mathematical and quality rereviews before commit.
+
+### 2026-07-29 Assert raw-prefix parser typing before every theory pin
+
+- [TRAP] A later cochain probe again parsed the raw quotient prefix `tc` with `lift.parse_quotient`, which applies `c_vertex` and silently changes it to `t`; the resulting rectangle value was not an evaluation of the theorem and had to be discarded.
+- [WORKS] Before any raw-prefix replay, assert the raw parser round-trips `tc` and its inverse `cT`, forbid the module-vertex parser at transport/action boundaries, and have the hostile referee independently check the parser path. A corrected zero rectangle remains only a semantic pin.
