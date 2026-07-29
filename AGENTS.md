@@ -1388,3 +1388,8 @@
 
 - [TRAP] The first tracked Hessian boundary draft asserted the primitive identity and concrete subgroup rewrite using proofs left only in ignored scratch memos, reused a stale JUnit suite that omitted the new Hessian tests, and said the wedge projection killed diagonals even though the implementation requires them to cancel before its reader.
 - [WORKS] Move every load-bearing argument into a tracked proof, identify concrete certificate maps rather than relying on abstract isomorphisms, run the current wildcard suite and inspect its JUnit case coverage, and match proof wording to executable preconditions such as the diagonal-free wedge gate.
+
+### 2026-07-29 Preflight every subagent write root
+
+- [TRAP] A literature subagent was told to work in `.claude/worktrees/codex-proofs` but wrote its final memo to the main checkout's `.scratch/` and returned that path, bypassing the isolated proof worktree.
+- [WORKS] Put the exact absolute worktree root and artifact path in every dispatch, require an initial `pwd`/path-parent check before writing, and verify the returned canonical path begins with that root. If a no-delete constraint leaves a stray artifact, preserve it and copy its exact bytes into the correct worktree with `apply_patch`.
