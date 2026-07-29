@@ -1341,3 +1341,13 @@
 
 - [TRAP] A mixed `git add` that included the requested ignored `.superpowers/sdd/.../progress.md` exited one even though every ordinary file and the exact ledger were staged, making an immediate force-add retry unnecessary.
 - [WORKS] After any ignored-path staging warning, inspect `git status --short` and `git diff --cached --name-only`; force-add only exact paths still absent from the index, and keep new ignored proof notes in a separate exact force-add.
+
+### 2026-07-28 Propagate diagonal increments through quotient conjugation
+
+- [TRAP] A tensor-diagonal increment central in `N/gamma_3 N` does not cancel when its conjugated payload has nontrivial image `q` in `Q`; the first four `corrected_residual` payloads all have nontrivial quotient reductions.
+- [WORKS] Use the `Q`-stable diagonal subspace instead: conjugator transport contributes `delta + q delta`, multiplication and inversion preserve translated diagonals, and an induction through `r,s,u,z,target,residual` keeps the final tensor difference diagonal before exterior projection kills it.
+
+### 2026-07-28 Verify automations by registry file count
+
+- [TRAP] Repeated `automation_update` view/create rendering can show multiple identical cards in the conversation even when only one `automation.toml` exists.
+- [WORKS] Verify the registry by the exact automation-file count and avoid repeated view calls; never delete the sole active schedule merely to clear duplicate rendered cards.

@@ -374,16 +374,70 @@ of the tensor-diagonal subspace
 \tag{28}
 \]
 
-The corrected-residual word circuit preserves \(\Delta\).  Here is the
-needed universal check.  The \(Q\)-action permutes the basis \(e_v\), hence
-preserves \(\Delta\).  Multiplication and inversion of two class-two
-coordinates with the same linear part carry a tensor difference in
-\(\Delta\) to a tensor difference in \(\Delta\).  For the first four
-correction slots, the lifted word occurs as a conjugator of a word in \(N\);
-a central degree-two increment cancels between the conjugator and its
-inverse.  In the target slot the conjugated word has quotient \(t\), so the
-same increment contributes \(\delta+t\delta\), which is still in
-\(\Delta\).  Induction through the fixed recurrence therefore gives
+The corrected-residual word circuit preserves \(\Delta\), but not by
+cancelling a central increment in the first four conjugation slots.  A
+degree-two element central in \(N/\gamma_3N\) need not commute with a word
+whose image in \(Q\) is nontrivial.
+
+The correct argument is invariant-subspace propagation.  The \(Q\)-action
+on \(V\) permutes module vertices:
+\[
+q e_v=e_{qv}.
+\]
+Consequently
+\[
+q(e_v\otimes e_v)=e_{qv}\otimes e_{qv},
+\]
+so \(\Delta\) is \(Q\)-stable.  Say that two crossed class-two coordinates
+are \(\Delta\)-equivalent when they have the same quotient coordinate, the
+same mod-two linear coordinate, and tensor coordinates differing by an
+element of \(\Delta\).  The crossed multiplication law shows that a product
+of two pairs of \(\Delta\)-equivalent coordinates is again
+\(\Delta\)-equivalent: the two tensor differences are merely added after
+the appropriate \(Q\)-translation.  The inversion law has the same
+property.
+
+For conjugation, suppose the payload changes by a tensor increment
+\(\eta\in\Delta\), while the conjugator changes by a central tensor
+increment \(\delta\in\Delta\).  Transport of \(\eta\) by the fixed quotient
+of the conjugator remains in \(\Delta\).  If \(q\in Q\) is the quotient of
+the conjugated payload, the extra contribution from the conjugator is
+\[
+\delta+q\delta.
+\tag{28'}
+\]
+Both summands lie in \(\Delta\).  This is the point at which centrality
+inside \(N/\gamma_3N\) is insufficient for cancellation but \(Q\)-stability
+is sufficient for propagation.
+
+Apply this observation successively to the exact recurrence.  Write
+\(r',s',u',z'\), and \(\operatorname{target}'\) for the words formed from
+\(D+2E\).  Equation (27) says that each corrected conjugator changes by
+some \(\delta_i\in\Delta\).
+
+1. In
+   \(r=\operatorname{SOURCE}_A\,
+   \operatorname{conj}(\operatorname{SOURCE}_B^{-1},h_0H_0)\), the fixed
+   payload \(\operatorname{SOURCE}_B^{-1}\) has a generally nontrivial
+   quotient.  Formula (28') gives \(r'\sim_\Delta r\).
+2. In
+   \(s=\operatorname{SOURCE}_B\,
+   \operatorname{conj}(r^{-1},h_1H_1)\), closure under inversion first
+   gives \((r')^{-1}\sim_\Delta r^{-1}\), and then the conjugation and
+   product laws give \(s'\sim_\Delta s\).
+3. The same argument in
+   \(u=r\,\operatorname{conj}(s^{-1},h_2H_2)\) gives
+   \(u'\sim_\Delta u\).
+4. Applying it to
+   \(z=u^{-1}\operatorname{conj}(s,h_3H_3)\) gives
+   \(z'\sim_\Delta z\).
+5. Finally,
+   \(\operatorname{target}=\operatorname{conj}(t,h_4)\) changes by
+   \(\delta_4+t\delta_4\in\Delta\), and multiplication by its inverse
+   gives the same conclusion for the residual.
+
+Thus induction through \(r,s,u,z,\operatorname{target}\), and the final
+residual gives
 \[
 \mu(R(D+2E))-\mu(R(D))\in\Delta
 \qquad\text{over }\mathbb F_2.
