@@ -1,47 +1,59 @@
-# Campaign 12h — anti-overfit heuristic evaluation
+# Campaign 12h RESULTS — anti-overfit heuristic evaluation
 
-Updated: `2026-07-29T12:45:10.832914+00:00` · wall end `2026-07-29T14:01:44+00:00` · remaining `1.28 h`
+Updated: `2026-07-29T12:49:11.504353+00:00` · branch `cursor/heur-12h-anti-overfit-a42e`
 
-Advisor **BLOCK**ed fitting on the CoV/automorphic unsolved-descended pool; this run is **evaluation-only** on never-read AC1M (+ ms640 clean null), budget 1000, cap 48. Negatives mean unsolved within budget 1000.
+## Advisor gate
 
-## Screen (length-only denominator)
+`ac-advisor` **BLOCK**ed fitting on the CoV/automorphic unsolved-descended pool. Evaluation-only on never-read AC1M (Aut-expanded AC19 family; row≠independent problem). Budget 1000, cap 48.
 
-- Screened rows: **24173**
-- Easy (solved <100 nodes): 15437
-- Mid (solved 100–999 nodes): 4517
-- Hard (unsolved at 1000): 4219
+## Screen (length-only)
 
-- Solve rate @1000: **19954/24173** (82.5%)
+- Screened: **24173** (easy/mid/hard = 15437/4517/4219)
+- Solve rate @1000: **19954/24173**
 
-## Go / no-go (dynamic range)
+## Hard recoveries (590 complete)
 
-Mid-band size (length-only solved in [100,1000)): **4517**.
+| arm | recovered |
+|---|---:|
+| `length` | **0/590** |
+| `recommended` | **119/590** |
+| `mk8` | **87/590** |
+| `k8` | **50/590** |
+| `kms5` | **105/590** |
+| `s24` | **204/590** |
 
-**GO for evaluation** — mid-band large enough to compare pre-registered arms (still no fitting).
+## Mid speed (1372 complete)
 
-## Pre-registered arms on mid-band
+| arm | solved | mean nodes |
+|---|---:|---:|
+| `length` | 1372/1372 | 157.0 |
+| `recommended` | 1344/1372 | 236.4 |
+| `mk8` | 1288/1372 | 300.5 |
+| `k8` | 798/1372 | 145.0 |
+| `kms5` | 1353/1372 | 188.7 |
+| `s24` | 1364/1372 | 122.3 |
 
-| arm | solved | n | mean nodes (solved) |
-|---|---:|---:|---:|
-| `length` | **1372/1372** | 1372 | 157.0 |
-| `recommended` | **1344/1372** | 1372 | 236.4 |
-| `mk8` | **1288/1372** | 1372 | 300.5 |
-| `k8` | **798/1372** | 1372 | 145.0 |
-| `kms5` | **1353/1372** | 1372 | 188.7 |
-| `s24` | **1364/1372** | 1372 | 122.3 |
+## S-grid (select/holdout)
 
-## Matched mid-band: vs length-only
+| w | select | holdout |
+|---:|---:|---:|
+| 4 | 66/396 | 61/404 |
+| 8.458 | 146/396 | 143/404 |
+| 12 | 170/396 | 148/404 |
+| 16 | 161/396 | 147/404 |
+| 20 | 160/396 | 153/404 |
+| 24 | 146/396 | 145/404 |
+| 32 | 135/396 | 128/404 |
+| 40 | 133/396 | 127/404 |
 
-- `recommended` vs length: better 496 / worse 873 / same 3
-- `mk8` vs length: better 344 / worse 1028 / same 0
-- `k8` vs length: better 545 / worse 826 / same 1
-- `kms5` vs length: better 585 / worse 779 / same 8
-- `s24` vs length: better 1060 / worse 297 / same 15
+## ms640 clean null
 
-## Method notes
+- `kms5`: 43/75
+- `length`: 20/75
+- `mk8`: 36/75
+- `recommended`: 50/75
 
-- Denominator fixed by length-only screen before any other arm.
-- AC1M rows excluding exact string pairs from ms640 / 1190MS / solved-aut / unsolved-124 tables.
-- No unsolved ACA reps used for selection (there is no selection).
-- See [`PLAN.md`](PLAN.md).
+## Files
+
+- `screen_length_ac1m.jsonl`, `arms_on_band.jsonl`, `arms_hard_full.jsonl`, `s_grid_hard.jsonl`, `aut_disjoint_null.jsonl`
 
