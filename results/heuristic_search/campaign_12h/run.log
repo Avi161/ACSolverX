@@ -6893,3 +6893,12 @@ wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESUL
 
 === round 665 remain=9.34h ===
 [screen] resume 24173 done; target 999500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 666 remain=9.34h ===
+[screen] resume 24173 done; target 1001000

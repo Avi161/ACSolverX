@@ -1,10 +1,10 @@
 # Campaign 12h RESULTS — anti-overfit heuristic evaluation
 
-Updated: `2026-07-29T04:41:21.653173+00:00` · branch `cursor/heur-12h-anti-overfit-a42e`
+Updated: `2026-07-29T04:41:24.042941+00:00` · branch `cursor/heur-12h-anti-overfit-a42e`
 
 ## Advisor gate
 
-`ac-advisor` **BLOCK**ed fitting on the CoV/automorphic unsolved-descended pool. Evaluation-only on never-read AC1M (Aut-expanded AC19 family). Budget 1000, cap 48.
+`ac-advisor` **BLOCK**ed fitting on the CoV/automorphic unsolved-descended pool. Evaluation-only on never-read AC1M (Aut-expanded AC19 family; row≠independent problem). Budget 1000, cap 48.
 
 ## Screen (length-only)
 
@@ -53,5 +53,7 @@ Updated: `2026-07-29T04:41:21.653173+00:00` · branch `cursor/heur-12h-anti-over
 - `mk8`: 36/75
 - `recommended`: 50/75
 
-Jsonl checkpointed frequently to git (every ~3 min).
+## Files
+
+- `screen_length_ac1m.jsonl`, `arms_on_band.jsonl`, `arms_hard_full.jsonl`, `s_grid_hard.jsonl`, `aut_disjoint_null.jsonl`
 
