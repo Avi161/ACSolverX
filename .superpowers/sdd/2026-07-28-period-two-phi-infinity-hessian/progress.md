@@ -56,13 +56,16 @@
   anchored image; no finite state, period-two lift, stable AC, or AC conclusion
   is claimed.
 
-- Task 3: closed as an exact documented-open boundary, not as a completed
-  finite/infinite rank decision. The new proof records the verified
+- Task 3 documentation branch: complete after review fix round 1 as an exact
+  documented-open boundary, not as a completed finite/infinite rank decision.
+  The tracked proof records the verified
   16-occurrence crossed normal form and 12-occurrence anchored normal form;
-  the first-family all-index primitive identity `P_ij = delta_ij`; the exact
-  complete-cover path and right-deck/current recurrences; and the 76 canonical
-  two-step cross-defect obligations with separate regional-zero and
-  diagonal-boundary-vector requirements.
+  the full diagonal/below/above proof of the first-family all-index primitive
+  identity `P_ij = delta_ij`; the concrete complete-cover core coordinates,
+  inverse Nielsen substitutions, `RS_IN_K` basis, inverse-homomorphism proof,
+  and all 18 fixed-factor evaluations; the exact right-deck/current
+  recurrences; and the 76 canonical two-step cross-defect obligations with
+  separate regional-zero and diagonal-boundary-vector requirements.
 - Withdrawn claims: the unproved all-index 75-kernel companion identity, the
   resulting universal first-family cancellation, and every row-2/row-3
   primitive or companion theorem are explicitly withdrawn. The ten-cell
@@ -71,8 +74,25 @@
   H(cTTT)) = 1`, so the alternating coboundary is not pointwise zero on the
   anchored image. The exact integral unary recurrence retains doubled anchors,
   base--direction products, one-vertex transport, quotient-section defects,
-  and tensor diagonals. Its ten representative final bits are `0000110000`,
-  matching `delta_ij` only as bounded evidence.
+  and tensor diagonals. All coordinates stay integral through the typed AST;
+  `Pi` is the post-precondition-check wedge conversion plus the fifteen
+  readouts, and `u_infinity(F)` is explicitly base-subtracted. Diagonals
+  propagate through every gate and cancel in the final admissible residual
+  tensor before the wedge reader. Its ten representative final bits are
+  `0000110000`, matching `delta_ij` only as bounded evidence.
 - Open boundary: finite diagonal-left rank, infinite diagonal-left rank, a
   finite quotient, an infinite-Hankel-rank family in the complete anchored
   image, the period-two lift, stable AC, and AC all remain open.
+- Current complete-suite gate: one fresh retained period-two invocation,
+  including 14 Hessian cases, passed `75/75` in `159.92s`. JUnit is
+  `.scratch/task3-period-two-full.xml` (`tests=75`, `failures=0`, `errors=0`,
+  `skipped=0`, suite time `159.917s`); exact shell exit status `0` is recorded
+  in `.scratch/task3-period-two-full.exit`. The separate focused
+  Hessian/tree-flow/source-flow/subgroup-rewrite replay passed `25/25` in
+  `8.83s`.
+- Review state: `.scratch/hessian_boundary_task_review.md` reported I1--I5
+  and M1--M2 against `f0c2e18`. Fix round 1 addresses each finding in the
+  tracked proof/ledger or scratch report, and line-by-line self-review finds
+  no unresolved Important finding in the current tree. A subsequent external
+  re-review of the fix commit is not yet recorded. Push and push-log closure
+  remain pending because this dispatch explicitly forbids both.

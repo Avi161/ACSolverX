@@ -447,9 +447,14 @@ residual gives
 \tag{29}
 \]
 
-Exterior projection kills \(\Delta\), both before and after every finite
-point-action pushforward.  All fifteen functionals in (24) factor through
-that exterior projection.  Hence
+For every admissible homogeneous input, the final residual has zero linear
+coordinate and lies in the commutator subgroup of the free relation-kernel
+group.  Its final degree-two tensor is therefore opposite-orientation
+antisymmetric and diagonal-free.  Since both residual tensors in (29) are
+already diagonal-free, the propagated diagonal difference in \(\Delta\)
+cancels before `_residual_tensor_to_wedge` is called; the reader merely checks
+this precondition.  Equivalently, the mathematical exterior projection and
+every finite point-action pushforward are insensitive to \(\Delta\).  Hence
 \[
 \boxed{S(D+2E)=S(D)}
 \tag{30}
@@ -469,10 +474,10 @@ The genuine sequence
 \[
 0,0,1,1,0
 \]
-for coefficients \(0,1,2,3,4\) belongs to the pre-wedge diagonal term
-\(\binom n2 e_v\otimes e_v\).  It is a valid Magnus-tensor fixture, but (29)
-and exterior projection prevent it from surviving in the fifteen-bit
-syndrome.
+for coefficients \(0,1,2,3,4\) belongs to the internal pre-wedge diagonal
+term \(\binom n2 e_v\otimes e_v\).  It is a valid Magnus-tensor fixture, but
+gate-by-gate propagation and final admissible-tensor cancellation prevent it
+from reaching the wedge reader or surviving in the fifteen-bit syndrome.
 
 In particular, the historical enumeration of
 \[

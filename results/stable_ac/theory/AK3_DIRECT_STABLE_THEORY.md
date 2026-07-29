@@ -8365,8 +8365,9 @@ every balanced \(e_x+\epsilon e_y\) satisfies
 D(e_x+\epsilon e_y)=H(x)+\epsilon H(y).
 \]
 The exact fifteen-bit syndrome on homogeneous directions is affine
-quadratic.  Its tensor-diagonal binomial term is preserved by the
-corrected-residual circuit and killed by exterior projection, so
+quadratic.  Its tensor-diagonal binomial term propagates through the complete
+corrected-residual circuit and cancels in the final admissible residual tensor
+before wedge conversion, so
 \[
 S(D+2E)=S(D).
 \]

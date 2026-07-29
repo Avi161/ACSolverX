@@ -70,9 +70,10 @@ coefficient-record digest is
 Positive and inverse correction leaves have the polarity-correct section
 jets \(\Gamma_+\) and \(\Gamma_-\).  The symbolic raw mixed tensor, including
 all propagated diagonals, agrees with an independent direct four-corner raw
-tensor before exterior projection.  Tensor diagonals are propagated through
-the quotient action and the complete residual circuit; they are killed only
-by the final exterior projection, never deleted at a correction leaf.
+tensor before exterior projection.  Tensor diagonals propagate through every
+quotient and typed-AST gate and cancel in the final admissible residual tensor
+before `_residual_tensor_to_wedge` is called.  The reader asserts that its
+input is already diagonal-free; it does not perform the cancellation.
 
 ## 2. Exact anchored normal form
 
@@ -165,23 +166,133 @@ ray argument proves
 \boxed{P_{ij}=\delta_{ij}\qquad(i,j\geq0).}
 \tag{3.2}
 \]
+
+To prove (3.2), note that \(g\) is cyclically reduced of length \(L=8\).
+There is no cancellation in \(g^m\), in \(g^mcg^{-r}\), or at the final
+tails \(T,t\).  After the base action \(p\), the two singleton vertices in
+the \((j,i)\)-entry are
+\[
+x_j=ph_jv=g^{-n_j}T,
+\qquad
+y_{ji}=ph_jw_i=g^{n_i-n_j}c\,g^{-(n_i-2)}t.
+\tag{3.3}
+\]
+The inversion multiplier is \(g=ctcTTTct\), so the primitive value is the
+parity of shortlex-order reversal between \((x_j,y_{ji})\) and
+\((gx_j,gy_{ji})\).  There are three cases.
+
+**Diagonal \(i=j\).**  Here
+\[
+y_{ii}=c\,g^{-(n_i-2)}t.
+\]
+Before multiplication by \(g\),
+\[
+|x_i|=Ln_i+1,
+\qquad
+|y_{ii}|=1+L(n_i-2)+1=Ln_i-14,
+\]
+so \(y_{ii}<x_i\) by length.  Afterwards,
+\[
+|gx_i|=L(n_i-1)+1=Ln_i-7,
+\qquad
+|gy_{ii}|=L+1+L(n_i-2)+1=Ln_i-6.
+\]
+Thus \(gx_i<gy_{ii}\), and the order reverses exactly once.
+
+**Below the diagonal \(j<i\).**  Now
+\[
+y_{ji}=g^{n_i-n_j}c\,g^{-(n_i-2)}t
+\]
+and
+\[
+|y_{ji}|-|x_j|=2L(n_i-n_j)-2L+1>0,
+\tag{3.4}
+\]
+because \(n_i-n_j\geq3\).  Left multiplication by \(g\) shortens \(x_j\)
+by \(L\) and lengthens \(y_{ji}\) by \(L\), so the order cannot reverse.
+
+**Above the diagonal \(j>i\).**  Both \(x_j\) and \(y_{ji}\) begin with
+the same reduced block \(g^{-1}\).  Left multiplication by \(g\) deletes
+that common block from both words.  Both lengths fall by \(L\), and deletion
+of a common shortlex prefix preserves their relative order.  Again there is
+no reversal.
+
+The diagonal value is therefore one and both off-diagonal values are zero,
+which proves (3.2) for every \(i,j\geq0\).
+
 This is the only retained all-index primitive identity.  No analogous
 row-2 or row-3 primitive theorem is stated here.
 
 ### 3.1 Exact complete-cover factorization
 
 Let \(\kappa:K\to F(A,B,G)\) be the inverse-coordinate homomorphism supplied
-by the complete four-sheet Stallings cover and its displayed Nielsen inverse,
-and set
+by the complete four-sheet Stallings cover and the concrete Nielsen inverse
+below, and set
 \[
 \Theta(k)=\operatorname{rev}(\kappa(k)).
 \]
 Then, for arbitrary powers,
 \[
 \Theta(k\ell)=\operatorname{red}(\Theta(\ell)\Theta(k)).
-\tag{3.3}
+\tag{3.5}
 \]
 This is an exact anti-homomorphism, not a bounded membership replay.
+
+Here is the implementation-specific inverse-homomorphism argument.  In this
+paragraph only, the code letters \(p,q\) mean \(t,ctc\), respectively; this
+\(p\) is not the ray prefix \(p=tc\) from (3.1).  Write
+\[
+Q=F(p,q)\rtimes\langle c\mid c^2=1\rangle,
+\]
+where conjugation by \(c\) exchanges \(p\) and \(q\).  The subgroup
+generators have semidirect images
+\[
+A=((p),0),\qquad B=((qPQp),1),\qquad G=((qPPq),1),
+\tag{3.6}
+\]
+with upper-case letters denoting inverses.  The parity-zero
+Reidemeister--Schreier loops used by the implementation are
+\[
+\begin{aligned}
+&p,\quad qPPqPqpQ,\quad qPQpqPqpQ,\\
+&qPQppQPq,\quad qPQppQQp.
+\end{aligned}
+\tag{3.7}
+\]
+Their folded core has four vertices and sixteen directed edges, hence eight
+unoriented edges and free rank \(8-4+1=5\).  In the five non-tree-edge
+coordinates selected by `core_coordinates`, these loops are
+\[
+\begin{aligned}
+(-1),\quad &(2,4,-5,3,-2),\quad (2,-3,-5,3,-2),\\
+&(2,-3,-4,-3,2),\quad (2,-3,-4,-3,-1).
+\end{aligned}
+\tag{3.8}
+\]
+The recorded Nielsen moves reduce this ordered tuple to the five signed
+one-letter basis elements.  Reversing those moves gives the exact inverse
+words
+\[
+\begin{aligned}
+&(-1),\quad (1,-5,4),\\
+&(1,-5,3,-2,1,-5,4),\\
+&(-4,5,-1,2,-3,2,-3,5,-1),\\
+&(1,-5,3,-2,-3,2,-3,5,-1).
+\end{aligned}
+\tag{3.9}
+\]
+These are the implementation's `CORE_IN_RS` substitutions.  The same
+transversal \(\{1,B\}\) gives the five `RS_IN_K` basis words
+\[
+(A),\qquad(Gb),\qquad(BAb),\qquad(BB),\qquad(BG),
+\tag{3.10}
+\]
+where lower case denotes inverse.  Evaluation sends the words in (3.10) to
+the five loops (3.7), while the core-coordinate map followed by (3.9) and
+(3.10) sends \(A,B,G\) back to themselves.  Thus the concrete
+`rewrite_k` and evaluation maps are inverse free-group homomorphisms on all
+of \(K\).  Reversal therefore gives the exact anti-homomorphism (3.5) on
+arbitrary powers; no bounded round-trip flag is used.
 
 For the six \(L_0\) endpoints, in the order
 \[
@@ -194,7 +305,7 @@ R=\texttt{BgAbaBgAgAggAB}.
 The \(h_jv\) paths are
 \[
 W^v_{\nu,j}=L_\nu R^{j+e_\nu}M_\nu,
-\tag{3.4}
+\tag{3.11}
 \]
 with freely reduced factors
 
@@ -210,10 +321,38 @@ with freely reduced factors
 The \(h_jw_i\) paths are, including when \(i<j\),
 \[
 \boxed{W^w_{\nu,i,j}=\operatorname{red}(P_\nu^iC_\nu Q_\nu^{i-j}).}
-\tag{3.5}
+\tag{3.12}
 \]
 Here the path words \(P_\nu\) are unrelated to the primitive scalar
-\(P_{ij}\) in (3.2), and the fixed factors are
+\(P_{ij}\) in (3.2).  To identify the eighteen fixed evaluations, put
+\[
+\begin{aligned}
+a_\nu&=g_\nu p^{-1},&
+b_\nu&=tc^{\epsilon_\nu}r_\nu^{-1},\\
+X_\nu&=a_\nu\gamma a_\nu^{-1},&
+Z_\nu&=b_\nu^{-1}\gamma^{-1}b_\nu,&
+D_\nu&=a_\nu c\gamma^{-1}b_\nu,
+\end{aligned}
+\tag{3.13}
+\]
+where the component roots and right-\(c\) choices are
+\[
+(r_\nu)=(ct,1,ct,ct,ct,1),
+\qquad
+(\epsilon_\nu)=(0,0,1,1,1,0).
+\]
+The exact lifted ratio is
+\[
+k^w_{\nu,i,j}=X_\nu^{i-j}D_\nu Z_\nu^i.
+\]
+Applying (3.5) gives (3.12), with the eighteen concrete evaluations
+\[
+P_\nu=\Theta(Z_\nu),\qquad
+C_\nu=\Theta(D_\nu),\qquad
+Q_\nu=\Theta(X_\nu)
+\tag{3.14}
+\]
+listed in the following table:
 
 | \(\nu\) | \(P_\nu\) | \(C_\nu\) | \(Q_\nu\) |
 |---:|---|---|---|
@@ -231,7 +370,7 @@ W^w_{\nu,i,j+1}&=\operatorname{red}(W^w_{\nu,i,j}Q_\nu^{-1}),\\
 W^w_{\nu,i+1,j}&=\operatorname{red}(P_\nu W^w_{\nu,i,j}Q_\nu),\\
 W^w_{\nu,i+1,j+1}&=\operatorname{red}(P_\nu W^w_{\nu,i,j}).
 \end{aligned}
-\tag{3.6}
+\tag{3.15}
 \]
 
 ### 3.2 Exact right-deck and current recurrence
@@ -244,7 +383,7 @@ Stored path letters act successively on the left.  If
 For a rooted component vertex \(ko\), the right deck action is
 \[
 R_h(ko)=(kh)o.
-\tag{3.7}
+\tag{3.16}
 \]
 It preserves every oriented \(A/B/G\)-edge label.  Write
 \([W]=R_{\operatorname{ev}_L(W)}\), and let \(\mathsf E_s(W)\) be the
@@ -252,7 +391,7 @@ integral edge current in slot \(s\in\{2,3,4\}\).  Then
 \[
 [UV]=[U][V],\qquad
 \mathsf E_s(UV)=\mathsf E_s(U)+[U]\mathsf E_s(V).
-\tag{3.8}
+\tag{3.17}
 \]
 
 Set
@@ -276,7 +415,7 @@ a_{\nu,i+1,j+1}&=p_\nu a_{\nu,ij},\\
 x^s_{\nu,i+1,j+1}
  &=\mathsf E_s(P_\nu)+p_\nu x^s_{\nu,ij}.
 \end{aligned}}
-\tag{3.9}
+\tag{3.18}
 \]
 These are identities of finite edge chains, not finite-state claims: their
 states are unbounded sparse currents and deck operators.
@@ -299,10 +438,12 @@ delete a terminal \(c\).  Raw free-word block cancellation therefore cannot
 prove an order identity.
 
 Let \(F_{r,j}\) and \(G_{r,i,j}\) be the twelve normalized occurrence
-currents for \(H(h_jv)\) and \(H(h_jw_i)\).  Define
+currents for \(H(h_jv)\) and \(H(h_jw_i)\).  For any one occurrence index
+\(r\), write generically \(F_j=F_{r,j}\) and \(G_{i,j}=G_{r,i,j}\), and
+define
 \[
-\dot F_j=F_{j+2}+F_j,quad
-\dot G^i_{i,j}=G_{i+2,j}+G_{i,j},quad
+\dot F_j=F_{j+2}+F_j,\quad
+\dot G^i_{i,j}=G_{i+2,j}+G_{i,j},\quad
 \dot G^j_{i,j}=G_{i,j+2}+G_{i,j},
 \tag{4.3}
 \]
@@ -487,7 +628,8 @@ parity shadow but must remain in the integral unary evaluator.
 
 ### 6.1 Base, transport, and section terms
 
-Represent a typed AST node by a crossed class-two coordinate
+All linear and tensor coordinates in this subsection are integral until the
+final readout.  Represent a typed AST node by a crossed class-two coordinate
 \[
 X=(q,a,A)\in Q\ltimes(V\oplus V\otimes V).
 \]
@@ -530,9 +672,14 @@ dropped from a unary calculation.  Inversion is
 and conjugation uses the literal AST order
 \(X\star Y\star\operatorname{Inv}(X)\).
 
-Let \(B\) be the fixed tracked correction and let \(M_B(F)\) be the final
-tensor of the literal residual AST evaluated at \(B+F\).  The exact unary
-syndrome is
+All coordinates in (6.3)--(6.5) and in the residual evaluation remain
+integral.  Let \(B\) be the fixed tracked correction and let \(M_B(F)\) be
+the final integral tensor of the literal residual AST evaluated at \(B+F\).
+After checking zero linear coordinate, zero tensor diagonal, and
+opposite-orientation antisymmetry, let \(\Pi\) denote
+`_residual_tensor_to_wedge` followed by the fourteen finite-action readouts
+and the full-wedge sum.  Let \(\Pi_\infty\) denote its last scalar readout.
+The exact base-subtracted unary syndrome is
 \[
 \boxed{U_{ij}=\Pi\bigl(M_B(D_{ij})-M_B(0)\bigr)\in\mathbb F_2^{15}.}
 \tag{6.6}
@@ -560,23 +707,28 @@ a_{\nu,ij}\mathsf E_s(Q_\nu^{-1}),
 \end{aligned}
 \tag{6.7}
 \]
-Let \(u_\infty(F)\) denote the final coordinate of the complete unary
-evaluator on an integral homogeneous direction \(F\), and put
-\(u_{ij}=U_{ij}^{(\infty)}\).  Affine quadraticity gives the exact scalar
-increment identity
+For every integral homogeneous direction \(F\), define the normalized
+base-subtracted final coordinate
+\[
+u_\infty(F)=\Pi_\infty\bigl(M_B(F)-M_B(0)\bigr).
+\tag{6.8}
+\]
+Put \(u_{ij}=u_\infty(D_{ij})=U_{ij}^{(\infty)}\).  Affine quadraticity on
+the integral homogeneous lattice now gives the exact scalar increment
+identity
 \[
 \boxed{
 u_{i,j+1}+u_{ij}
 =u_\infty(\widetilde\Delta^j_{ij})
 +\beta_\infty(D_{ij},\widetilde\Delta^j_{ij}).
 }
-\tag{6.8}
+\tag{6.9}
 \]
 The first term retains all fixed-base, transport, and section defects.  The
-second is evaluated by the exact mixed formula.  Equation (6.8) is an exact
+second is evaluated by the exact mixed formula.  Equation (6.9) is an exact
 evaluator-level recurrence, not a smaller closed recurrence and not a
 finite-state theorem.  The \(i\)- and diagonal-increment identities follow
-from the other two lines of (3.9) in the same integral typing.
+from the other two lines of (3.18) in the same integral typing.
 
 ### 6.3 Exact ten-cell unary fixture
 
