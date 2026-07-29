@@ -14,8 +14,10 @@ only unresolved positive-chamber identity in the period-two argument:
 
 The endpoint-potential reduction has already reduced this claim to six family
 parities.  The certificate will materialize those parities as 9,408
-collision-safe load rows, not as the 1,491,840-record raw comparison ledger
-that previously ran too slowly and overheated the machine.
+occurrence-specific, collision-safe load rows.  It will bind the larger raw
+ledger through integral collision fibers instead of serializing every
+pre-collision pair, which previously ran too slowly and overheated the
+machine.
 
 This certificate is not, by itself, an AC or stable-AC trivialization of
 AK(3).  It is one lemma in the current proof route.  It must not assert the
@@ -121,7 +123,9 @@ than by sampling.
 
 ## 6. Load-row representation
 
-Integral cancellation leaves exactly:
+The endpoint reduction predicts the following census.  These values remain
+**[unverified]** until the new generator derives them from the bound sources
+and the independent verifier reproduces them:
 
 | family | rows/cell | cells | load rows |
 |---|---:|---:|---:|
@@ -133,14 +137,22 @@ Integral cancellation leaves exactly:
 | Q | 92 | 64 | 5,888 |
 | total |  |  | **9,408** |
 
-Each load row names its source fiber, cell, module schema, label schema, and
-complete occurrence footprint.  The footprint size is data, not a hard-coded
-constant.  Across all 9,408 load rows it must contain exactly 17,760
-occurrence-loads, hence `17,760 * 84 = 1,491,840` reconstructed atomic
-comparisons.
+Each load row is already occurrence-specific.  It names its source fiber,
+cell, module schema, label schema, occurrence, polarity, and literal AST leaf.
+Fixed rows instead name their literal leaf and have no occurrence.  Every
+surviving load is compared with exactly 84 collision-first B-tokens, so the
+predicted active workload is **[unverified]**
+`9,408 * 84 = 790,272` comparisons.
 
-For each footprint occurrence, the 84 comparisons are partitioned into
-histogram buckets keyed by:
+The larger pre-collision ledger is a different object.  Its raw rows are
+bound by the integral-fiber records in Section 4, and bilinearity proves that
+even fiber sums contribute zero.  The compact certificate therefore need not
+replay or serialize every pre-collision pair.  It must compute both the raw
+fiber census and the active 9,408-row census so a missing cancellation cannot
+masquerade as compression.
+
+For each load row, the 84 comparisons are partitioned into histogram buckets
+keyed by:
 
 - stable B-token source class and coordinate;
 - equality exclusion;
@@ -151,15 +163,16 @@ histogram buckets keyed by:
 - final contribution bit.
 
 Each bucket stores its count and an 84-bit token mask.  Masks must be disjoint
-and have union `(1<<84)-1` for each occurrence.  The independent verifier
+and have union `(1<<84)-1` for each load row.  The independent verifier
 recomputes every mask and bucket key from the bound source data.  Thus the
 histogram is compact, but omitting, duplicating, or reclassifying an atomic
 comparison is detectable without storing 1.49 million JSON objects.
 
 ## 7. Family aggregation and success condition
 
-All values are computed by xor from the load rows.  The only accepted family
-table is:
+All values are computed by xor from the load rows.  The endpoint reduction
+predicts the following **[unverified]** family table; a mismatch is a failed
+proof attempt, not a constant to update:
 
 - fixed: zero on all 16 cells;
 - base: zero on all 16 cells;
