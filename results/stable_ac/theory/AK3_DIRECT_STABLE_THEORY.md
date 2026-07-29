@@ -8313,10 +8313,12 @@ to \((-29,-6,-3,20,-14,19)\), with covector values \((1,0)\), so the
 augmented rank is five.
 
 The resulting fifteen quadratic bits are determined by 78 exact replays
-and validated at 66 further points.  All \(4^{11}=4194304\) mod-four
-classes have nonzero syndrome.  Therefore the complete known
-eleven-direction span is degree-two obstructed; the full syzygy module
-remains open.
+and validated at 66 further points.  The historical replay finds nonzero
+syndrome on all \(4^{11}=4194304\) mod-four classes.  Result 158 proves
+that this enumeration is valid but redundant: the final exterior-wedge
+syndrome factors through the \(2^{11}\) coefficient-parity classes.
+Therefore the complete known eleven-direction span is degree-two
+obstructed; the full syzygy module remains open.
 
 **Bounded depth-six balanced-(L_0) census after Result 157.**
 The complete-cover rewrite, source classifier, and census are tracked by
@@ -8342,23 +8344,85 @@ no final survivor, and exact digest
 This is bounded depth-six evidence, not a theorem at depth seven or all
 depth, and it does not settle stable AC.
 
-The next theorem target is transition closure under left extension by
-\(c,t,T\) of
+**Result 158 (tree-flow factorization and the exact transition boundary).**
+The parity-kernel Reidemeister--Schreier restriction proves
+\[
+K=\langle A,B,G\rangle\cong F_3,\qquad[Q:K]=4.
+\]
+Torsion-freeness makes the \(K\)-action free on both module-vertex
+components, so they are \(F_3\) Cayley trees.  Leaf removal makes finite edge
+boundary injective.  Every canonical component-balanced \(L_0\)-boundary
+therefore has a unique finite flow, linear in the source and independent of
+endpoint pairing; only the path metadata can change.
+
+With \(\lambda(v)\) the first component sum of \(L_0e_v\), \(\lambda(T)=1\),
+and
+\[
+H(v)=D(e_v-\lambda(v)e_T),
+\]
+every balanced \(e_x+\epsilon e_y\) satisfies
+\[
+D(e_x+\epsilon e_y)=H(x)+\epsilon H(y).
+\]
+The exact fifteen-bit syndrome on homogeneous directions is affine
+quadratic.  Its tensor-diagonal binomial term is preserved by the
+corrected-residual circuit and killed by exterior projection, so
+\[
+S(D+2E)=S(D).
+\]
+Its polarization is biadditive and alternating; no mod-four self term
+survives.
+
+The formerly proposed transition tuple was
 
 ```text
-(K-coset/rewrite state, source action class, L0 pairing type,
- projected fourteen-bit class-two state, Phi_infinity gate).
+(unordered source-action classes, signed L0 orbit scalars,
+ endpoint-action-class/epsilon pair multiset,
+ projected fourteen-bit state and Phi_infinity).
 ```
 
-Task 1 realizes the index-four \(K=\langle A,B,G\rangle\le C_2*\mathbb Z\)
-component by a four-state Reidemeister--Schreier transducer.  The displayed
-tuple is a proposed target, not a proved Markov state: extra prefix/order
-data may be required.  Proposed structural inference: the fourteen finite
-action bits may form a finite product of class-two Magnus states; by contrast
-\(\Phi_\infty\bmod2\) is the parity of interleavings/crossings among
-equal-vertex occurrence chords in the Schreier-kernel word, not simply one
-more finite point-action quotient.  A separate subtarget is to prove finite
-transition data for that parity on the projected-zero source-pair language.
+This finite tuple explicitly excludes the complete reduced
+\(A/B/G\)-rewrite word.  The two depth-six near-survivors have exactly that
+same summary and syndrome
+\[
+000000000000001,
+\]
+but their simultaneous \(c,t,T\) extensions have respective syndrome pairs
+\[
+\begin{array}{c|c}
+c&(000100000000100,\ 100100011000001)\\
+t&(000000001000000,\ 100100011000100)\\
+T&(011110110101110,\ 011110111101010).
+\end{array}
+\]
+Thus the displayed tuple is not Markov.  This conclusion is limited to that
+summary and does not rule out a richer finite automaton.
+
+For the canonical shortlex section, the exact transport cocycle is the sum
+of linear one-vertex defects and the bilinear inversion form:
+\[
+\kappa_g(f)=\sum_xf_x\tau_g(x)
++\sum_{\substack{x<y\\gx>gy}}f_xf_y\,e_{gx}\wedge e_{gy}.
+\]
+The full-wedge polarization is
+\[
+b_\infty(f,g)=\varepsilon(f)\varepsilon(g)+\langle f,g\rangle,
+\]
+and therefore becomes exact label equality on augmentation-zero currents.
+Equality and shortlex inversion have infinite rank on arbitrary finite
+currents, including after any fixed finite collection of point-action and
+bounded-local data.  This rules out finite-dimensional linear,
+point-action, and local additive summaries in the ambient current space.
+
+Those rank theorems do not rule out an arbitrary finite automaton on the
+actual anchored \(L_0\) two-source geodesic-current language.  The exact
+next alternative is to prove the equality and inversion kernels rational
+finite-state after pullback to that restricted anchored image, or exhibit
+infinite Hankel rank inside that image.  No depth-seven census is called
+for.  The complete proof and bounded certificate are in
+\[
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_TREE\_FLOW\_FACTORIZATION.md}.
+\]
 
 Focused replay:
 

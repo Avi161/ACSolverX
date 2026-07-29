@@ -1321,3 +1321,23 @@
 
 - [TRAP] A generic integer-valued class-two model suggested a mod-four $\binom n2$ self term for the fifteen final obstruction bits, but the only odd binomial contribution of the canonical coordinatewise lift lies in the tensor diagonal $e_v\otimes e_v$.
 - [WORKS] On finitely supported homogeneous directions, the corrected-residual circuit preserves that diagonal modulo two and exterior projection kills it. The fourteen projected bits plus `Phi_infinity` therefore factor through direction coefficients modulo two and have alternating polarization. Keep the genuine `0,0,1,1,0` period-four pattern labelled as a pre-wedge Magnus-tensor fixture, never as a surviving wedge syndrome.
+
+### 2026-07-28 Replay uv tests through the available dependency cache
+
+- [TRAP] A sandboxed `uv run` can fail before collection with `Failed to initialize cache at /Users/avigyapaudel/.cache/uv` / `Operation not permitted`, even when the identical test command is valid and dependencies are already cached.
+- [WORKS] Replay the same bounded foreground command with the approved read access to the existing uv cache. A project-relative `UV_CACHE_DIR=.scratch/uv-cache` is suitable only when that cache has already been populated; do not mistake sandbox cache denial for a test failure.
+
+### 2026-07-28 Preserve leading operators in add-file proof patches
+
+- [TRAP] In an all-add unified-diff hunk, a displayed equation line whose mathematical content began with `+ \sum` used only the diff marker plus and reached the file without its binary plus.
+- [WORKS] After adding a proof file, read every multiline equation back from disk; give a content-leading plus its own second plus in the patch, or keep the binary operator on the preceding line.
+
+### 2026-07-28 Quotient-word sections are not multiplicative
+
+- [TRAP] A class-two transport formula written directly for `g,h` in `Q` used the ordinary cocycle identity even though canonical reduced-word lifts need not multiply: the lifts of `c,c` multiply to `c^2` while the lift of the identity is empty.
+- [WORKS] Either formulate transport for literal free-group words, or fix a section `iota: Q -> F(c,t)` and include the section-multiplication defect `omega(g,h) = iota(g)iota(h)iota(gh)^-1`; read the `c,c` case before claiming a quotient-level cocycle law.
+
+### 2026-07-28 Inspect partial staging after an ignored SDD ledger warning
+
+- [TRAP] A mixed `git add` that included the requested ignored `.superpowers/sdd/.../progress.md` exited one even though every ordinary file and the exact ledger were staged, making an immediate force-add retry unnecessary.
+- [WORKS] After any ignored-path staging warning, inspect `git status --short` and `git diff --cached --name-only`; force-add only exact paths still absent from the index, and keep new ignored proof notes in a separate exact force-add.

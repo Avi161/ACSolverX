@@ -939,8 +939,11 @@ Result 156 bits.
 For \(c=(1\ 2)\), \(t=(0\ 1)(2\ 3)\), the four-point wedge image has rank
 four and a two-dimensional annihilator.  The residual vector
 \((-29,-6,-3,20,-14,19)\) has covector values \((1,0)\), raising the rank
-to five.  The resulting fifteen quadratic bits have no zero on any of the
-\(4^{11}=4194304\) coefficient classes.
+to five.  The historical replay of the resulting fifteen quadratic bits
+has no zero on any of the \(4^{11}=4194304\) coefficient classes.  The
+tree-flow factorization theorem below proves that this mod-four enumeration
+is valid but redundant: the final exterior-wedge syndrome depends only on
+the \(2^{11}\) coefficient-parity classes.
 
 The proof and checker are
 \[
@@ -977,23 +980,64 @@ final survivor; the exact record-stream digest is
 This is bounded depth-six evidence only: it makes no depth-seven, all-depth,
 or stable-AC claim.
 
-The next theorem target is proposed transition closure, under left extension
-by \(c,t,T\), of
+### Tree-flow factorization and exact transition boundary
+
+The universal theorem in
+\(\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_TREE\_FLOW\_FACTORIZATION.md}\)
+now proves the parity-kernel restriction \(K\cong F_3\), the free action on
+the two module-vertex components, finite edge-boundary injectivity, unique
+linear forest flow, and the anchored decomposition
+\[
+H(v)=D(e_v-\lambda(v)e_T).
+\]
+It also proves that the exact fifteen-bit syndrome is affine quadratic on
+homogeneous directions, factors through coefficient parity, and has
+biadditive alternating polarization.  In particular there is no surviving
+mod-four self term; the older mod-four enumerations remain correct redundant
+replays of parity classes.
+
+The previously proposed transition tuple was
 
 ```text
-(K-coset/rewrite state, source action class, L0 pairing type,
- projected fourteen-bit class-two state, Phi_infinity gate).
+(unordered source-action classes, signed L0 orbit scalars,
+ endpoint-action-class/epsilon pair multiset,
+ projected fourteen-bit state and Phi_infinity).
 ```
 
-Here Task 1's four-state Reidemeister--Schreier transducer realizes the
-index-four \(K=\langle A,B,G\rangle\le C_2*\mathbb Z\) component.  This
-tuple is a target, not a proved Markov state: additional prefix/order data
-may be needed.  As a proposed structural inference, the fourteen finite
-bits may lie in a finite product of class-two Magnus states, whereas
-\(\Phi_\infty\bmod2\) is crossing parity for equal-vertex occurrence chords
-in the Schreier-kernel word, not merely another finite point-action
-quotient.  Establishing finite transition data for that parity on the
-projected-zero source-pair language is its own subtarget.
+This finite tuple explicitly excludes the complete reduced
+\(A/B/G\)-rewrite word.  It is now refuted as a Markov state.  The two
+near-survivors have that same complete summary and common syndrome
+\[
+000000000000001,
+\]
+but simultaneous left extension gives
+\[
+\begin{array}{c|c|c}
+&TT+TTTct&Tctt+Tctct\\ \hline
+c&000100000000100&100100011000001\\
+t&000000001000000&100100011000100\\
+T&011110110101110&011110111101010.
+\end{array}
+\]
+This proves failure only for the displayed summary.
+
+The exact section cocycle splits into linear one-vertex defects and the
+bilinear shortlex-inversion form.  Moreover
+\[
+b_\infty(f,g)=\varepsilon(f)\varepsilon(g)+\langle f,g\rangle,
+\]
+so on augmentation-zero currents \(\Phi_\infty\)'s polarization is exact
+label equality.  Equality and shortlex inversion have infinite rank on
+arbitrary finite currents, even after fixing finitely many point-action and
+bounded-local data.  This excludes finite-dimensional linear,
+point-action, and local additive summaries in that ambient setting.
+
+It does not exclude an arbitrary finite automaton on the actual anchored
+\(L_0\) two-source geodesic-current language.  The next exact alternative is
+to prove that the equality and inversion kernels pulled back to that
+restricted anchored image are rational finite-state kernels, or exhibit
+infinite Hankel rank inside the same restricted image.  No depth-seven
+census is the next step.
 
 Focused replay:
 
@@ -1001,9 +1045,12 @@ Focused replay:
 PYTHONPYCACHEPREFIX=.scratch/pycache uv run --with numba --with numpy --with pytest python3 -m pytest -q tests/stable_ac/test_ak_depth_four_period_two_*.py
 ```
 
-The preserved frontier note is
+The bounded census and universal theorem records are
 \[
-\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_DEPTH6\_BALANCED\_L0\_CENSUS.md}.
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_DEPTH6\_BALANCED\_L0\_CENSUS.md},\\
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_TREE\_FLOW\_FACTORIZATION.md}.
+\end{gathered}
 \]
 
 ## Exact continuation order
@@ -1042,12 +1089,15 @@ The preserved frontier note is
    escapes all eleven bits; a five-cycle quotient adds two covectors which
    separate all 1048576 mod-four classes in the resulting ten-direction
    span. An eleventh balanced $L_0$ direction escapes all thirteen bits; a
-   double-transposition quotient adds two covectors which separate all
-   4194304 mod-four classes in the resulting eleven-direction span. The next
-   depth-six census has no survivor among 4671 balanced pairs. The next exact
-   problem is to promote the complete Stallings-cover rewrite into a stable
-   finite-state syndrome certificate before scanning depth seven, or promote
-   the fifteen mod-two functionals to a theorem about the full homogeneous
-   syzygy module.
+   double-transposition quotient adds two covectors. The historical
+   4194304-class mod-four replay is valid but redundantly repeats the
+   coefficient-parity classes. The depth-six census has no survivor among
+   4671 balanced pairs, and the tree-flow theorem proves unique linear flow,
+   anchored factorization, and alternating affine quadraticity at arbitrary
+   finite support. Its exact near-survivor collision refutes the proposed
+   finite summary. The next problem is either rational finite-state
+   recognition of the pulled-back equality and shortlex-inversion kernels,
+   or an infinite-Hankel-rank family inside the actual anchored
+   \(L_0\) geodesic-current image. Do not scan depth seven.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

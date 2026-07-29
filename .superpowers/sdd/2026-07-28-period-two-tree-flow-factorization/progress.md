@@ -6,3 +6,7 @@
 - Task 2: complete; corrected base `3745761`, implementation `24205e0`; TDD
   red confirmed the missing certificate module, then raw-alias scaling
   overwrite; final scoped suite 11/11 passed; independent review `APPROVE`.
+- Task 3: complete; universal tree-flow/factorization proof and both theory
+  ledgers integrated; hostile mathematical re-review `APPROVE`; complete
+  period-two wildcard suite 61/61 passed with retained JUnit at
+  `.scratch/task3-period-two-full.xml`.
