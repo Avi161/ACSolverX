@@ -36,12 +36,28 @@ V+1 / V+1 / 3V+3 profile (5,389/5,389); the abelianised relation matrix has |det
 (5,389/5,389); and an INDEPENDENT Todd–Coxeter run certifies the trivial group, index 1,
 on 457/457 tested (all of complexity 1–3 plus random samples at 4 and 5).
 
-Flags, which every positive result routed through this set inherits: the full text of
-arXiv:2412.12293 is unreachable this session, so whether the complexity < 6 theorem is
-stated for all or only *cellular* fake surfaces, and the exact form of the equivalence,
-are [UNVERIFIED]. Matching "up to generator relabelling" additionally leans on the
-stable ambient automorphism theorem; exact matches are reported separately so the
-weaker, dependency-free reading is always available.
+Flags, which every positive result routed through this set inherits — see
+`LITERATURE_STATUS.md` for the full sourcing ledger. The body of arXiv:2412.12293 is
+unreachable (proxy-blocked; no source mirror exists; only the abstract was recovered
+verbatim, from mirrored arXiv RSS, in both v1 and v2 — identical text). So the exact form
+of the equivalence is [UNVERIFIED], and there is a **live discrepancy on cellularity**:
+the abstract's theorem is unqualified ("every contractible fake surface of complexity
+less than 6"), while the census it rests on is, in the authors' own README, "the
+classification of acyclic **cellular** fake surfaces of complexity 1-4 and a **partial**
+classification of complexity 5: surfaces without small disks". Concretely, **the 514
+complexity-5 targets come from a partial classification**, and whether the body's theorem
+carries a cellularity hypothesis is unknown. Do not propagate the unqualified form.
+
+Matching "up to generator relabelling" additionally leans on the stable ambient
+automorphism theorem; exact matches are reported separately so the weaker,
+dependency-free reading is always available.
+
+The dictionary itself is in better shape than the theorem: it is a DERIVATION, re-checked
+this session against all 5,389 upstream rows with zero failures (disks = V+1; total
+attaching length = 6V; every edge label occurs exactly 3 times), from which
+generators = 2V−(V−1) = V+1, relators = V+1, total length = 6V−3(V−1) = 3V+3 follows as
+arithmetic. What is unverified is whether the paper states it this way, not whether it
+holds of the data.
 
 ## Results so far
 
@@ -115,10 +131,19 @@ per rank:
 |---|---|---|---|---|
 | 4 | AK(3) + 2 stabilisations | 238 | 30,906 | 0 |
 | 5 | AK(3) + 3 stabilisations | 4,618 | 58,849 | 0 |
+| 6 | AK(3) + 4 stabilisations | 514 | 84,009 | 0 |
 
-These are, as far as we know, the first searches ever run at ranks 4-5 against certified
+These are, as far as we know, the first searches ever run at ranks 4-6 against certified
 stably-trivial targets. 1,000 pops is a demonstration, not an attempt — the point is that
 the pipeline runs end-to-end and the scaling is now a matter of budget, which is Run E.
+
+**How little the rank-6 window actually opened, stated honestly.** The 514 rank-6 targets
+all have total length 3V+3 = 18. The rank-6 harvest's length histogram is
+{18: 128, 19: 8,534, 20: 59,349, 21: 15,997} — so of 84,009 states reached, exactly **128
+were at the targets' own length**. A non-match against 514 targets from 128 same-length
+states is not a measurement of anything; it is the window barely opening. The rank-6 row
+belongs in this table as a pipeline demonstration and nothing more, and any future run
+should drive the forward search by length-18 states specifically rather than by pops.
 
 ## How to read this, and how not to
 

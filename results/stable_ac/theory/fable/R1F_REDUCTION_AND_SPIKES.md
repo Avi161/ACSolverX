@@ -147,6 +147,34 @@ The tightness is worth recording: 2 minimising systems in 3.6 million is a needl
 uniform sampler of an earlier session could never have found, and is why the hunt for
 gamma_N = 0 at greater lengths must use witnesses rather than censuses (see R7).
 
+### The eight are the ceiling being attained, not a lucky find
+
+[ADDED after adversarial audit; the derivation is being written up and audited as the
+SPIKE CEILING in `R7_SPELLING_SPACE.md`, and until that audit returns the statement here
+is a CONJECTURE with a proof sketch, not a theorem.]
+
+A spike is one edge-deletion plus three edge-insertions in the ribbon graph, so the graft
+calculus's own machinery (Lemma G2's restriction map, Lemma G4's boundary-circle case
+analysis, Theorem G5's canonical interpolation) should give
+
+    gamma_N(spike(P)) >= gamma_N(P) - 1,   hence   gamma_N(spike^k(P)) >= gamma_N(P) - k.
+
+If that holds then, since gamma_N(AK(3)) = 2, **no single spike of AK(3) can be
+thickenable** — which is exactly what the exhaustive census found, and the eight
+minimisers at gamma_N = 1 are the bound being attained rather than a discovery. The
+scope condition that must be checked rather than assumed: G6's stated domain in
+`R3PRIME_GRAFT_CALCULUS.md` requires both words cyclically reduced and the seam
+non-cancelling, and spiked spellings are by construction neither.
+
+The corresponding empirical prior, from the 110,917 measured spiked complexes: all 464
+observed strict drops are 2 -> 1, **not one reaches 0**; the 2,514 bases at gamma_N = 1
+produced no thickenable spike in ~58,000 attempts; and every one of the 13,976 spiked
+complexes at gamma_N = 0 descends from a base already at gamma_N = 0. So across the whole
+corpus, "spiked thickenable => reduced thickenable" holds with zero counterexamples,
+while the converse is refuted by the counterexample at the top of this document. If that
+implication can be PROVED, the spelling-space route closes completely — and that is a
+clean negative result worth having.
+
 ## What this changes
 
 1. **Reduced-form search is NOT without loss of generality.** Every harvest in this
@@ -155,11 +183,15 @@ gamma_N = 0 at greater lengths must use witnesses rather than censuses (see R7).
    contains every spelling, and here the unreduced spellings are strictly CLOSER to
    thickenable than the reduced one: gamma_N = 1 versus 2. The reduced representative is
    not the best representative.
-2. **AK(3) reaches gateway level immediately, by spelling alone.** R1g established that
+2. **AK(3) reaches gateway level at spelling distance 1 — but it is NOT free.**
+   [CORRECTED after adversarial audit. The original text here read "it costs nothing to
+   reach", and that is wrong in the only sense that matters.] R1g established that
    gamma_N = 1 states are the only ones from which a single graft can reach a thickenable
-   presentation, and that they are rare (1 in 2,500 sampled class members). AK(3) has one
-   at spelling distance 1. That is a concrete, unexplored launchpad, and it costs nothing
-   to reach.
+   presentation, and that they are rare (1 in 2,500 sampled class members). AK(3) has
+   eight at spelling distance 1. But a spike consumes exactly the same one unit of
+   ceiling budget as a graft does (see the spike ceiling below): the spiked states are
+   NEW states, not CHEAPER states. Reaching gamma_N = 1 by spelling buys a different
+   launchpad, not a discount.
 3. **The 150 undecided rows of `gateway_neighborhood.json` cannot be waved away.** They
    are loop-bearing spellings, and this result says loop-bearing spellings can be
    genuinely better than their reductions — so their verdicts must be computed, not

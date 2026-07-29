@@ -117,10 +117,28 @@ def graft_images(words, reduce_result: bool = False):
     return list(out.values())
 
 
+def in_scope(words, generators=("x", "y")) -> bool:
+    """Gate against the one path that could manufacture a spurious defect-0 hit.
+
+    `gateway_scan.sampled_min_defect` and `verify_witness` both derive the generator
+    set FROM THE WORDS.  A state that has lost a generator (or has an empty relator) is
+    therefore scored as a lower-rank complex, which can legitimately have defect 0 while
+    saying nothing about the rank-2 problem.  Every state is gated here before it is
+    scored, and a hit is re-checked against this predicate.
+    """
+    if any(not word for word in words):
+        return False
+    return set("".join(words).lower()) == set(generators)
+
+
 def hunt(states, samples: int, rng: random.Random, label: str,
          report: dict) -> None:
     """Hill-climb each state for a defect-0 witness; verify every candidate."""
     for n, words in enumerate(states, 1):
+        if not in_scope(words):
+            report["out_of_scope"].append({"group": label, "words": list(words),
+                                           "reason": "generator lost or empty relator"})
+            continue
         start = time.time()
         best, orders = GS.sampled_min_defect(tuple(words), samples, rng)
         row = {"group": label, "words": list(words),
@@ -132,7 +150,7 @@ def hunt(states, samples: int, rng: random.Random, label: str,
             row["gamma_upper_bound"] = checked // 2
             if checked != best:
                 row["ERROR"] = "sampler and verifier disagree"
-            if checked == 0:
+            if checked == 0 and in_scope(words):
                 row["THICKENABLE_WITNESS"] = {str(k): list(v)
                                               for k, v in orders.items()}
                 report["HITS"].append(row)
@@ -197,7 +215,7 @@ def run(samples: int = 40_000, seed: int = 20260729, out_path: str = DEFAULT_OUT
             "and replay it through the pure-Python spec",
             "confirm Lackenby Thm 1.3 applies to an unreduced spelling",
         ],
-        "best_bound": {}, "rows": [], "HITS": [],
+        "best_bound": {}, "rows": [], "HITS": [], "out_of_scope": [],
     }
     print(f"[hunt] groups: {report['group_sizes']}", flush=True)
     for label, states in groups.items():

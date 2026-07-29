@@ -14,8 +14,15 @@ Neuwirth planarity censuses of AK(3)'s CoV family and small-length pairs).
 Fix a balanced presentation P = ⟨x₁,…,xₙ | r₁,…,rₙ⟩ of the trivial group.
 Moves (project operating-contract numbering — beware: papers permute the numbers):
 
-- **AC1** (multiply): rᵢ → rᵢrⱼ, j ≠ i.
-- **AC2** (invert): rᵢ → rᵢ⁻¹.
+- **AC1** (invert): rᵢ → rᵢ⁻¹.
+- **AC2** (multiply): rᵢ → rᵢrⱼ, j ≠ i.
+
+  [CORRECTED after adversarial audit: this file previously had AC1 and AC2 the other way
+  round, contradicting `CLAUDE.md`, `R1E_DISCONNECTED_LINK.md` and
+  `R3PRIME_GRAFT_CALCULUS.md`, which all use AC1 = invert / AC2 = multiply. Under the old
+  numbering a phrase like "all AC2 graft images" read as *inversions*. The project
+  convention above is now the single one in force on this line; papers permute these
+  numbers, so always check a paper's own definition before quoting a move by number.]
 - **AC3** (conjugate): rᵢ → w rᵢ w⁻¹, w ∈ F(x₁..xₙ).
 - **(0)** free and cyclic reduction (Lackenby's move (0); harmless normalization).
 - **AC4** (stabilize): adjoin fresh generator xₙ₊₁ and fresh relator xₙ₊₁.
@@ -46,6 +53,24 @@ Lackenby 2026 Thm 1.2/1.3 — is acceptable; effective bounds are NOT required.)
 **Disproof of stable ACC:** one explicit balanced presentation of 1 PLUS a proof that no
 AC1–AC5 chain to standard exists — i.e. a quantity invariant under all five moves, computed
 to differ between it and standard. "Search exhausted budget B" is never such a proof.
+
+**A second, equivalent shape for the disproof — recorded because this line kept
+mis-filing it as a negative result.** By the thickenability reformulation, stable ACC is
+equivalent to: *every balanced presentation of the trivial group reaches SOME thickenable
+presentation by stable AC moves.* Therefore
+
+> a proof that AK(3)'s STABLE CLASS contains no thickenable member — in any spelling —
+> **disproves the stable AC conjecture.**
+
+This matters for how the γ_N machinery is valued. A spelling-independent, class-wide
+LOWER bound on γ_N is not a "route closed, write up the negative" outcome; it is the
+headline disproof, and that is precisely why no such bound is known. It also explains
+Wall 5 (R3_INVARIANT_LANDSCAPE): natural class functionals are tautological because
+Φ_min = 0 ⟺ the class contains a thickenable member, so any functional that could
+witness the obstruction is the obstruction. Any candidate obstruction must therefore be
+audited with maximum hostility — the prior against it is exactly the prior that stable
+ACC is true. [Depends on the thickenability reformulation, which is [UNVERIFIED] this
+session — see LITERATURE_STATUS.md §1.]
 
 **Named sub-goal (huge result on its own, commit + notify immediately):** AK(3) is stably
 AC-trivial (or AC-trivial, or any resolution of AK(3)'s stable class). This does not resolve

@@ -20,7 +20,9 @@
  ],
  "best_bound": {
   "ak3_single_spikes": 1,
-  "gateway_spike_grafts": 1
+  "gateway_spike_grafts": 1,
+  "reduced_gateway_spikes": 1,
+  "ak3_double_spikes": 1
  },
  "rows": [
   {
@@ -16234,7 +16236,4905 @@
    "seconds": 0.38,
    "verified_defect": 6,
    "gamma_upper_bound": 3
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "XxYYXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YyYYXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "xXYYXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.28,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "yYYYXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YXxYXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.28,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYyYXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YxXYXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXxXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYYyXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYxXXXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXxXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXYyXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXyYXyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXXxyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXYyyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.29,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyYyx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyXxx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyyYx",
+    "YYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "XxYYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YyYYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "xXYYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "yYYYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YXxYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYyYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YxXYYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYXxYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.3,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYyYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxXYxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYXxxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.3,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYYyxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxXxyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxYyyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxxXyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxyYyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxyXxXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxyxXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxyyYXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.3,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxyXYyX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYxyXyYX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "XxYYXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YyYYXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "xXYYXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "yYYYXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YXxYXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYyYXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YxXYXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.3,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXxXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYYyXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYxXXXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXxXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXYyXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.29,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXyYXyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXXxyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXYyyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.3,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyYyx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyXxx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyyYx",
+    "YYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.3,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "XxYYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YyYYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "xXYYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "yYYYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YXxYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYyYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YxXYxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYXxxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.29,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYYyxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxXxyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxYyyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.36,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxxXyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyYyXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyXxXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyxXXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.3,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyyYXXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyXXxXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.3,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyXYyXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyXyYXX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyXXYyX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "reduced_gateway_spikes",
+   "words": [
+    "YYXXyx",
+    "YYxyXXyYX"
+   ],
+   "total_length": 15,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyyYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXyYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYyYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyXxYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyxXYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyyYYxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.37,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYXxxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYYyxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxXxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxXxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxyYxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.34,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYyYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxxXYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxyYYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYyYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYXxYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYyYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYxXYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.42,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "XxxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "YyxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xXxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "yYxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xYyyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.34,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyxYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXxYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxXYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxyYYyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYXxyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYYyyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYxXyxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyXxxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxXxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyyYxYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYyYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxxXYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxyYYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYyYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYXxYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYyYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYxXYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "XxxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "YyxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xXxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "yYxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xYyyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.35,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.36,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.34,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyxxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXxxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxXxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxyYxYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYyYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.34,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxxXYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxyYYXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYyXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.39,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXXxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXXxxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXYyxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXyYxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYyYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxyYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYXxYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYyYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYxXYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.36,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "XxxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "YyxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xXxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "yYxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xYyyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.35,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyxxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXxxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxXxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxyYxYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYyYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxxXYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxyYYxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYyxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXxXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxYyXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxxXXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxyYXYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYyYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXyYYYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYXxYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYyYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYxXYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "XxxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "YyxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xXxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "yYxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xYyyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.44,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.34,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.38,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.54,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.53,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.42,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyxxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXxxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxXxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxyYxYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYyYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxxXYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxyYYYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYyYYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYXxYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYyYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYxXYXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYYyXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXXxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXXxxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXYyxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXyYxY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxyYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "XxxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "YyxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xXxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "yYxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xYyyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.35,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyxxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXxxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxXxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxyYxYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYyYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxxXYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxyYYYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYyYYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYXxYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYyYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYxXYxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYYyxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXxXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxYyXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxxXXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxyYXY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXyYY",
+    "xyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "XxxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "YyxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xXxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "yYxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xYyyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyxxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXxxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxXxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxyYxYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYyYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxxXYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxyYYYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYyYYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYXxYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYyYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYxXYY",
+    "xxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "XxxxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "YyxxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xXxxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "yYxxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xYyxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyYxXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxYyXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxxXXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxyYXyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXXxyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXYyyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "XxxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "YyxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xXxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.34,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "yYxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xYyxxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxXxxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxXxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxyYxYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYyYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxxXYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxyYYYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYyYYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYXxYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYyYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYxXYY",
+    "xyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "XxxyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "YyxyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xXxyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "yYxyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xYyyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.33,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyYyXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.34,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyxXXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyyYXxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXXxxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXYyxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXyYxxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxYyxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxXxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxyYxYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxYyYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxxXYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.31,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxyYYXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXxXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.33,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxYYyXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.31,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxYxXXY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 4,
+   "seconds": 0.32,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXXxY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "ak3_double_spikes",
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXyYY"
+   ],
+   "total_length": 17,
+   "sampler_defect": 2,
+   "seconds": 0.32,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
   }
  ],
- "HITS": []
+ "HITS": [],
+ "states_hunted": 1759,
+ "THICKENABLE_FOUND": false
 }
