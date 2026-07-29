@@ -1547,3 +1547,8 @@
 
 - [TRAP] Task 2 sorted B-fiber member IDs only when serializing them, after reconstructing coefficients in upstream member order. An unsorted fiber could therefore preserve its sum and parity while assigning a signed coefficient to the wrong serialized member.
 - [WORKS] Establish one canonical member tuple first, then reconstruct coefficients and every dependent witness from that tuple. Regression tests must assert literal `(member, coefficient)` pairs with distinguishable signs, not separate lists plus a total.
+
+### 2026-07-29 Place powered-block mutations in the serialized pump
+
+- [TRAP] A Task 3 mismatch mutation changed a source core, but `build_template` correctly retained every base copy in fixed blocks and represented only zero-at-base increments as powered blocks. The resulting mismatch was therefore a stable fixed-prefix mismatch, not a mismatch inside a powered block.
+- [WORKS] To mutation-test the powered-block rejection, alter the serialized template block placement itself so the first differing base letter is covered by a nonconstant affine block; keep both mutated cores reduced and cyclically reduced so core validation does not preempt the intended check.

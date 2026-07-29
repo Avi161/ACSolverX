@@ -35,6 +35,37 @@ EXPECTED_INVERSE_CELL_IDS = {
     "age2_n1",
     "age2_nge2",
 }
+CORE_R = (1, 2, 1, -2, -2, -2, 1, 2)
+CORE_S = (1, -2, 1, 2, 2, 2, 1, -2)
+
+
+def literal_inverse(letter: int) -> int:
+    return 1 if abs(letter) == 1 else -letter
+
+
+def literal_cvert(word: tuple[int, ...]) -> tuple[tuple[int, ...], int | None]:
+    reduced = []
+    for raw_letter in word:
+        letter = 1 if abs(raw_letter) == 1 else raw_letter
+        if reduced and reduced[-1] == literal_inverse(letter):
+            reduced.pop()
+        else:
+            reduced.append(letter)
+    terminal = reduced[-1] if reduced else None
+    if terminal == 1:
+        reduced.pop()
+    return tuple(reduced), terminal
+
+
+def literal_schema_word(schema, point: tuple[int, ...]) -> tuple[int, ...]:
+    word = []
+    for _, block_word, affine in schema.blocks:
+        copies = 1 if affine is None else sum(
+            coefficient * value
+            for coefficient, value in zip(affine[:-1], point)
+        ) + affine[-1]
+        word.extend(block_word if affine is None else block_word * copies)
+    return literal_cvert(tuple(word))[0]
 
 
 def load_module(name: str, path: Path):
@@ -327,3 +358,268 @@ def test_b_fiber_serialization_keeps_member_coefficient_alignment() -> None:
         ("nu4:k12:delta0", 1),
         ("nu5:k7:delta0", -1),
     ]
+
+
+def synthetic_two_power_schema(module):
+    return module.Schema(
+        schema_id="synthetic:two-power",
+        variables=("a", "n"),
+        blocks=(
+            ("fixed", (3,), None),
+            ("r", CORE_R, (1, 0, 0)),
+            ("fixed", (3,), None),
+            ("s", CORE_S, (0, 1, 0)),
+            ("fixed", (1,), None),
+        ),
+    )
+
+
+def test_primitive_cores_and_two_distinct_intact_boundaries_pump() -> None:
+    module = load_generator()
+    for core in (CORE_R, CORE_S):
+        assert core
+        assert len(core) == 8
+        assert all(
+            right != literal_inverse(left)
+            for left, right in zip(core, (*core[1:], core[:1]))
+        )
+
+    schema = synthetic_two_power_schema(module)
+    cell = next(
+        item for item in module.make_cells(schema.variables)
+        if item.cell_id == "age3_nge3"
+    )
+    template = module.build_template(schema, cell)
+
+    assert template.base_word == literal_schema_word(schema, (3, 3))
+    assert module.expand_template(template, (3, 3)) == literal_schema_word(
+        schema, (3, 3)
+    )
+    assert module.expand_template(template, (4, 4)) == literal_schema_word(
+        schema, (4, 4)
+    )
+    assert template.terminal_full_letter == 1
+    assert template.terminal_c_deleted is True
+    assert [witness.to_record() for witness in template.pumping_witnesses] == [
+        {
+            "block_name": "r",
+            "block_index": 1,
+            "core": list(CORE_R),
+            "base_copies": 3,
+            "slopes": [1, 0],
+            "split_position": 9,
+            "left_copy_id": 0,
+            "right_copy_id": 1,
+            "left_core_offset": 7,
+            "right_core_offset": 0,
+        },
+        {
+            "block_name": "s",
+            "block_index": 3,
+            "core": list(CORE_S),
+            "base_copies": 3,
+            "slopes": [0, 1],
+            "split_position": 34,
+            "left_copy_id": 0,
+            "right_copy_id": 1,
+            "left_core_offset": 7,
+            "right_core_offset": 0,
+        },
+    ]
+    assert module.verify_intact_boundaries(schema, cell, template) == (
+        template.pumping_witnesses
+    )
+
+
+def test_all_approved_powered_schemas_have_intact_threshold_three_boundaries() -> None:
+    module = load_generator()
+    context = module.load_source_context()
+    inverse = context.modules["inverse"]
+    aggregate = context.modules["aggregate"]
+    raw = context.modules["raw"]
+    inverse_schemas, _ = inverse.schema_words(raw)
+    real_powered_schemas = {
+        **inverse_schemas,
+        **aggregate.g_zero_schemas(inverse, raw),
+    }
+    schemas = {
+        schema_id: module.schema_from_powered(
+            powered,
+            variables=("a", "n"),
+            q_exponent=(1, 0, 0),
+            p_exponent=(1, 1, powered.p_offset),
+        )
+        for schema_id, powered in real_powered_schemas.items()
+    }
+    templates = {
+        (schema_id, cell.cell_id): module.build_template(schema, cell)
+        for schema_id, schema in schemas.items()
+        for cell in module.make_cells(("a", "n"))
+    }
+
+    assert len(schemas) == 583
+    assert len(templates) == 9328
+    assert {
+        witness.core
+        for template in templates.values()
+        for witness in template.pumping_witnesses
+    } == {CORE_R, CORE_S}
+
+
+def test_compare_templates_serializes_exactly_three_all_power_methods() -> None:
+    module = load_generator()
+    cell = next(
+        item for item in module.make_cells(("a",))
+        if item.cell_id == "age3"
+    )
+    strict_left = module.build_template(
+        module.Schema("strict:left", ("a",), (("r", CORE_R, (1, 0)),)),
+        cell,
+    )
+    strict_right = module.build_template(
+        module.Schema("strict:right", ("a",), (("fixed", (3,), None),)),
+        cell,
+    )
+    identical_left = module.build_template(
+        module.Schema(
+            "identical:left",
+            ("a",),
+            (("fixed", CORE_R, None), ("r", CORE_R, (1, 0))),
+        ),
+        cell,
+    )
+    identical_right = module.build_template(
+        module.Schema(
+            "identical:right", ("a",), (("r", CORE_R, (1, 1)),)
+        ),
+        cell,
+    )
+    mismatch_left = module.build_template(
+        module.Schema(
+            "mismatch:left",
+            ("a",),
+            (("r", CORE_R, (1, 0)), ("fixed", (-3,), None)),
+        ),
+        cell,
+    )
+    mismatch_right = module.build_template(
+        module.Schema(
+            "mismatch:right",
+            ("a",),
+            (("r", CORE_R, (1, 0)), ("fixed", (3,), None)),
+        ),
+        cell,
+    )
+
+    strict = module.compare_templates(strict_left, strict_right, cell)
+    identical = module.compare_templates(identical_left, identical_right, cell)
+    mismatch = module.compare_templates(mismatch_left, mismatch_right, cell)
+
+    assert strict == {
+        "method": "strict_affine_length",
+        "order": 1,
+        "difference": [8, -1],
+    }
+    assert identical == {
+        "method": "identical_pumped_blocks",
+        "order": 0,
+        "normalized_blocks": [
+            {"block_name": "r", "word": list(CORE_R), "affine": [1, 1]}
+        ],
+    }
+    assert mismatch == {
+        "method": "fixed_mismatch_after_pumped_prefix",
+        "order": -1,
+        "prefix_length": [8, 0],
+        "mismatch_letters": [-3, 3],
+    }
+
+
+def test_missing_intact_boundary_is_rejected() -> None:
+    module = load_generator()
+    schema = module.Schema(
+        "mutation:missing-boundary",
+        ("a",),
+        (("r", CORE_R, (1, -2)),),
+    )
+    cell = next(
+        item for item in module.make_cells(("a",))
+        if item.cell_id == "age3"
+    )
+    with pytest.raises(ValueError, match="missing intact boundary"):
+        module.build_template(schema, cell)
+
+
+def test_coincident_selected_boundaries_are_rejected() -> None:
+    module = load_generator()
+    schema = synthetic_two_power_schema(module)
+    cell = next(
+        item for item in module.make_cells(schema.variables)
+        if item.cell_id == "age3_nge3"
+    )
+    template = module.build_template(schema, cell)
+    first, second = template.pumping_witnesses
+    tampered = replace(
+        template,
+        pumping_witnesses=(
+            first,
+            replace(second, split_position=first.split_position),
+        ),
+    )
+    with pytest.raises(ValueError, match="coincident intact boundaries"):
+        module.verify_intact_boundaries(schema, cell, tampered)
+
+
+def test_terminal_c_branch_change_is_rejected() -> None:
+    module = load_generator()
+    schema = synthetic_two_power_schema(module)
+    cell = next(
+        item for item in module.make_cells(schema.variables)
+        if item.cell_id == "age3_nge3"
+    )
+    template = module.build_template(schema, cell)
+    tampered = replace(
+        template,
+        terminal_full_letter=2,
+        terminal_c_deleted=False,
+    )
+    with pytest.raises(ValueError, match="terminal-c branch changed"):
+        module.verify_intact_boundaries(schema, cell, tampered)
+
+
+def test_nonconstant_affine_length_sign_is_rejected() -> None:
+    module = load_generator()
+    cell = next(
+        item for item in module.make_cells(("a",))
+        if item.cell_id == "age3"
+    )
+    left = module.build_template(
+        module.Schema("sign:left", ("a",), (("r", CORE_R, (1, 0)),)),
+        cell,
+    )
+    right = replace(left, schema_id="sign:right", length_affine=(7, 3))
+    with pytest.raises(ValueError, match="no fixed strict sign"):
+        module.compare_templates(left, right, cell)
+
+
+def test_first_mismatch_inside_a_powered_block_is_rejected() -> None:
+    module = load_generator()
+    changed_core = (1, 2, 1, -2, -2, 3, 1, 2)
+    cell = next(
+        item for item in module.make_cells(("a",))
+        if item.cell_id == "age3"
+    )
+    left = module.build_template(
+        module.Schema("inside:left", ("a",), (("r", CORE_R, (1, 0)),)),
+        cell,
+    )
+    right = module.build_template(
+        module.Schema(
+            "inside:right", ("a",), (("r", changed_core, (1, 0)),)
+        ),
+        cell,
+    )
+    left = replace(left, blocks=(("r", CORE_R, (1, 0)),))
+    right = replace(right, blocks=(("r", changed_core, (1, 0)),))
+    with pytest.raises(ValueError, match="mismatch lies inside powered block"):
+        module.compare_templates(left, right, cell)

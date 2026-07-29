@@ -83,9 +83,93 @@ class TokenRef:
 
 
 @dataclass(frozen=True)
+class Schema:
+    schema_id: str
+    variables: tuple[str, ...]
+    blocks: tuple[
+        tuple[str, tuple[int, ...], tuple[int, ...] | None], ...
+    ]
+
+
+@dataclass(frozen=True)
+class PumpingWitness:
+    block_name: str
+    block_index: int
+    core: tuple[int, ...]
+    base_copies: int
+    slopes: tuple[int, ...]
+    split_position: int
+    left_copy_id: int
+    right_copy_id: int
+    left_core_offset: int
+    right_core_offset: int
+
+    def to_record(self) -> dict[str, Any]:
+        return {
+            "block_name": self.block_name,
+            "block_index": self.block_index,
+            "core": list(self.core),
+            "base_copies": self.base_copies,
+            "slopes": list(self.slopes),
+            "split_position": self.split_position,
+            "left_copy_id": self.left_copy_id,
+            "right_copy_id": self.right_copy_id,
+            "left_core_offset": self.left_core_offset,
+            "right_core_offset": self.right_core_offset,
+        }
+
+
+@dataclass(frozen=True)
+class ComparisonWitness:
+    method: str
+    order: int
+    difference: tuple[int, ...] = ()
+    normalized_blocks: tuple[
+        tuple[str, tuple[int, ...], tuple[int, ...] | None], ...
+    ] = ()
+    prefix_length: tuple[int, ...] = ()
+    mismatch_letters: tuple[int, int] = ()
+
+    def to_record(self) -> dict[str, Any]:
+        if self.method == "strict_affine_length":
+            return {
+                "method": self.method,
+                "order": self.order,
+                "difference": list(self.difference),
+            }
+        if self.method == "identical_pumped_blocks":
+            return {
+                "method": self.method,
+                "order": self.order,
+                "normalized_blocks": _serialize_blocks(
+                    self.normalized_blocks
+                ),
+            }
+        if self.method == "fixed_mismatch_after_pumped_prefix":
+            return {
+                "method": self.method,
+                "order": self.order,
+                "prefix_length": list(self.prefix_length),
+                "mismatch_letters": list(self.mismatch_letters),
+            }
+        raise ValueError(f"unknown comparison witness method: {self.method}")
+
+
+@dataclass(frozen=True)
 class Template:
     schema_id: str
     canonical_key: Any
+    cell_id: str | None = None
+    variables: tuple[str, ...] = ()
+    blocks: tuple[
+        tuple[str, tuple[int, ...], tuple[int, ...] | None], ...
+    ] = ()
+    tagged_base_word: tuple[tuple[int, tuple[Any, ...]], ...] = ()
+    base_word: tuple[int, ...] = ()
+    length_affine: tuple[int, ...] = ()
+    pumping_witnesses: tuple[PumpingWitness, ...] = ()
+    terminal_full_letter: int | None = None
+    terminal_c_deleted: bool = False
 
 
 @dataclass(frozen=True)
@@ -97,6 +181,555 @@ class CollisionFiber:
     parity: int
     label_equality_witness: Mapping[str, Any]
     active: bool
+
+
+def _eval_affine(affine: tuple[int, ...], point: tuple[int, ...]) -> int:
+    if len(affine) != len(point) + 1:
+        raise ValueError("affine dimension differs from its point")
+    return sum(
+        coefficient * value
+        for coefficient, value in zip(affine[:-1], point)
+    ) + affine[-1]
+
+
+def _inverse_letter(letter: int, c_letter: int) -> int:
+    return c_letter if abs(letter) == c_letter else -letter
+
+
+def _validate_core(core: tuple[int, ...], c_letter: int) -> None:
+    if not core:
+        raise ValueError("powered core must be nonempty")
+    normalized = tuple(c_letter if abs(letter) == c_letter else letter for letter in core)
+    if normalized != core:
+        raise ValueError("powered core must use the normalized order-two letter")
+    cyclic_pairs = zip(core, (*core[1:], core[:1]))
+    if any(right == _inverse_letter(left, c_letter) for left, right in cyclic_pairs):
+        raise ValueError("powered core must be reduced and cyclically reduced")
+
+
+def _merge_fixed_blocks(
+    blocks: Sequence[
+        tuple[str, tuple[int, ...], tuple[int, ...] | None]
+    ],
+) -> tuple[tuple[str, tuple[int, ...], tuple[int, ...] | None], ...]:
+    merged: list[tuple[str, tuple[int, ...], tuple[int, ...] | None]] = []
+    for block_name, word, affine in blocks:
+        if affine is None and not word:
+            continue
+        if merged and affine is None and merged[-1][2] is None:
+            prior_name, prior_word, _ = merged.pop()
+            merged.append((prior_name, (*prior_word, *word), None))
+        else:
+            merged.append((block_name, tuple(word), affine))
+    return tuple(merged)
+
+
+def _normalize_blocks(
+    source: Sequence[
+        tuple[str, tuple[int, ...], tuple[int, ...] | None]
+    ],
+) -> tuple[tuple[str, tuple[int, ...], tuple[int, ...] | None], ...]:
+    blocks: list[list[Any]] = [
+        [name, tuple(word), list(affine) if affine is not None else None]
+        for name, word, affine in source
+    ]
+    for index, block in enumerate(blocks):
+        if block[2] is None:
+            continue
+        core = block[1]
+        affine = block[2]
+        if index > 0 and blocks[index - 1][2] is None:
+            while (
+                len(blocks[index - 1][1]) >= len(core)
+                and tuple(blocks[index - 1][1][-len(core) :]) == core
+            ):
+                blocks[index - 1][1] = tuple(
+                    blocks[index - 1][1][: -len(core)]
+                )
+                affine[-1] += 1
+        if index + 1 < len(blocks) and blocks[index + 1][2] is None:
+            while (
+                len(blocks[index + 1][1]) >= len(core)
+                and tuple(blocks[index + 1][1][: len(core)]) == core
+            ):
+                blocks[index + 1][1] = tuple(
+                    blocks[index + 1][1][len(core) :]
+                )
+                affine[-1] += 1
+    return _merge_fixed_blocks(
+        (
+            str(name),
+            tuple(word),
+            tuple(affine) if affine is not None else None,
+        )
+        for name, word, affine in blocks
+    )
+
+
+def _serialize_blocks(
+    blocks: Sequence[
+        tuple[str, tuple[int, ...], tuple[int, ...] | None]
+    ],
+) -> list[dict[str, Any]]:
+    return [
+        {
+            "block_name": block_name,
+            "word": list(word),
+            "affine": list(affine) if affine is not None else None,
+        }
+        for block_name, word, affine in blocks
+    ]
+
+
+def schema_from_powered(
+    powered: Any,
+    *,
+    variables: Sequence[str],
+    q_exponent: Sequence[int],
+    p_exponent: Sequence[int],
+) -> Schema:
+    variable_names = tuple(variables)
+    q_affine = tuple(powered.q_multiplier * value for value in q_exponent)
+    p_affine = tuple(powered.p_multiplier * value for value in p_exponent)
+    if len(q_affine) != len(variable_names) + 1:
+        raise ValueError("q exponent has the wrong affine dimension")
+    if len(p_affine) != len(variable_names) + 1:
+        raise ValueError("p exponent has the wrong affine dimension")
+    return Schema(
+        schema_id=powered.schema_id,
+        variables=variable_names,
+        blocks=_merge_fixed_blocks(
+            (
+                ("fixed", tuple(powered.fixed_0), None),
+                ("q", tuple(powered.q_core), q_affine),
+                ("fixed", tuple(powered.fixed_1), None),
+                ("p", tuple(powered.p_core), p_affine),
+                ("fixed", tuple(powered.fixed_2), None),
+            )
+        ),
+    )
+
+
+def _tagged_reduced_word(
+    schema: Schema,
+    point: tuple[int, ...],
+    c_letter: int,
+) -> tuple[tuple[int, tuple[Any, ...]], ...]:
+    expanded: list[tuple[int, tuple[Any, ...]]] = []
+    for block_index, (block_name, word, affine) in enumerate(schema.blocks):
+        if affine is None:
+            expanded.extend(
+                (letter, ("fixed", block_index, offset))
+                for offset, letter in enumerate(word)
+            )
+            continue
+        _validate_core(word, c_letter)
+        if len(affine) != len(schema.variables) + 1:
+            raise ValueError("powered affine has the wrong dimension")
+        if any(coefficient < 0 for coefficient in affine[:-1]):
+            raise ValueError("powered affine slopes must be nonnegative")
+        copies = _eval_affine(affine, point)
+        if copies < 0:
+            raise ValueError("powered exponent is negative at the cell base")
+        expanded.extend(
+            (
+                letter,
+                (block_name, block_index, copy_index, core_offset),
+            )
+            for copy_index in range(copies)
+            for core_offset, letter in enumerate(word)
+        )
+
+    reduced: list[tuple[int, tuple[Any, ...]]] = []
+    for raw_letter, tag in expanded:
+        letter = c_letter if abs(raw_letter) == c_letter else raw_letter
+        if reduced and reduced[-1][0] == _inverse_letter(letter, c_letter):
+            reduced.pop()
+        else:
+            reduced.append((letter, tag))
+    return tuple(reduced)
+
+
+def _retained_word(
+    tagged_full: tuple[tuple[int, tuple[Any, ...]], ...],
+    c_letter: int,
+) -> tuple[tuple[tuple[int, tuple[Any, ...]], ...], int | None, bool]:
+    terminal = tagged_full[-1][0] if tagged_full else None
+    deleted = terminal == c_letter
+    retained = tagged_full[:-1] if deleted else tagged_full
+    return retained, terminal, deleted
+
+
+def _changing_slopes(
+    affine: tuple[int, ...], cell: Cell
+) -> tuple[int, ...]:
+    return tuple(
+        coefficient if state is None else 0
+        for coefficient, state in zip(affine[:-1], cell.states)
+    )
+
+
+def _find_intact_boundary(
+    tagged: Sequence[tuple[int, tuple[Any, ...]]],
+    block_name: str,
+    block_index: int,
+    core_length: int,
+) -> tuple[int, int, int] | None:
+    for split in range(1, len(tagged)):
+        left = tagged[split - 1][1]
+        right = tagged[split][1]
+        if (
+            len(left) == 4
+            and len(right) == 4
+            and left[0] == right[0] == block_name
+            and left[1] == right[1] == block_index
+            and left[3] == core_length - 1
+            and right[3] == 0
+            and right[2] == left[2] + 1
+        ):
+            return split, int(left[2]), int(right[2])
+    return None
+
+
+def build_template(
+    schema: Schema,
+    cell: Cell,
+    *,
+    c_letter: int = 1,
+) -> Template:
+    if schema.variables != cell.names:
+        raise ValueError("schema variables differ from cell variables")
+    tagged_full = _tagged_reduced_word(schema, cell.base_values, c_letter)
+    tagged_base, terminal, terminal_c_deleted = _retained_word(
+        tagged_full, c_letter
+    )
+    base_word = tuple(letter for letter, _ in tagged_base)
+    insertions: list[
+        tuple[PumpingWitness, tuple[int, ...]]
+    ] = []
+    for block_index, (block_name, core, affine) in enumerate(schema.blocks):
+        if affine is None:
+            continue
+        slopes = _changing_slopes(affine, cell)
+        if not any(slopes):
+            continue
+        boundary = _find_intact_boundary(
+            tagged_base, block_name, block_index, len(core)
+        )
+        if boundary is None:
+            raise ValueError(
+                "missing intact boundary: "
+                f"{schema.schema_id}, {cell.cell_id}, {block_name}"
+            )
+        split, left_copy, right_copy = boundary
+        witness = PumpingWitness(
+            block_name=block_name,
+            block_index=block_index,
+            core=core,
+            base_copies=_eval_affine(affine, cell.base_values),
+            slopes=slopes,
+            split_position=split,
+            left_copy_id=left_copy,
+            right_copy_id=right_copy,
+            left_core_offset=len(core) - 1,
+            right_core_offset=0,
+        )
+        delta_affine = (
+            *slopes,
+            -sum(
+                coefficient * value
+                for coefficient, value in zip(slopes, cell.base_values)
+            ),
+        )
+        insertions.append((witness, delta_affine))
+    insertions.sort(key=lambda item: item[0].split_position)
+    splits = [item[0].split_position for item in insertions]
+    if len(set(splits)) != len(splits):
+        raise ValueError("coincident intact boundaries")
+
+    pumped_blocks: list[
+        tuple[str, tuple[int, ...], tuple[int, ...] | None]
+    ] = []
+    cursor = 0
+    for witness, delta_affine in insertions:
+        pumped_blocks.append(
+            ("fixed", base_word[cursor : witness.split_position], None)
+        )
+        pumped_blocks.append(
+            (witness.block_name, witness.core, delta_affine)
+        )
+        cursor = witness.split_position
+    pumped_blocks.append(("fixed", base_word[cursor:], None))
+    blocks = _merge_fixed_blocks(pumped_blocks)
+    coefficients = tuple(
+        sum(
+            len(word) * affine[axis]
+            for _, word, affine in blocks
+            if affine is not None
+        )
+        for axis in range(len(schema.variables))
+    )
+    length_affine = (
+        *coefficients,
+        len(base_word)
+        - sum(
+            coefficient * value
+            for coefficient, value in zip(coefficients, cell.base_values)
+        ),
+    )
+    normalized = _normalize_blocks(blocks)
+    template = Template(
+        schema_id=schema.schema_id,
+        canonical_key=normalized,
+        cell_id=cell.cell_id,
+        variables=schema.variables,
+        blocks=blocks,
+        tagged_base_word=tagged_base,
+        base_word=base_word,
+        length_affine=length_affine,
+        pumping_witnesses=tuple(item[0] for item in insertions),
+        terminal_full_letter=terminal,
+        terminal_c_deleted=terminal_c_deleted,
+    )
+    verify_intact_boundaries(schema, cell, template, c_letter=c_letter)
+    return template
+
+
+def expand_template(template: Template, point: tuple[int, ...]) -> tuple[int, ...]:
+    if len(point) != len(template.variables):
+        raise ValueError("template point has the wrong dimension")
+    output: list[int] = []
+    for _, word, affine in template.blocks:
+        if affine is None:
+            output.extend(word)
+            continue
+        copies = _eval_affine(affine, point)
+        if copies < 0:
+            raise ValueError("template expansion has a negative copy count")
+        output.extend(word * copies)
+    return tuple(output)
+
+
+def verify_intact_boundaries(
+    schema: Schema,
+    cell: Cell,
+    template: Template,
+    *,
+    c_letter: int = 1,
+) -> tuple[PumpingWitness, ...]:
+    splits = [
+        witness.split_position for witness in template.pumping_witnesses
+    ]
+    if len(set(splits)) != len(splits):
+        raise ValueError("coincident intact boundaries")
+    tagged_full = _tagged_reduced_word(schema, cell.base_values, c_letter)
+    tagged_base, terminal, terminal_c_deleted = _retained_word(
+        tagged_full, c_letter
+    )
+    if (
+        terminal != template.terminal_full_letter
+        or terminal_c_deleted != template.terminal_c_deleted
+    ):
+        raise ValueError("terminal-c branch changed")
+    if tagged_base != template.tagged_base_word:
+        raise ValueError("tagged fully reduced base word changed")
+    if tuple(letter for letter, _ in tagged_base) != template.base_word:
+        raise ValueError("fully reduced base word changed")
+
+    changing_blocks = []
+    for block_index, (block_name, core, affine) in enumerate(schema.blocks):
+        if affine is None:
+            continue
+        slopes = _changing_slopes(affine, cell)
+        if any(slopes):
+            changing_blocks.append((block_index, block_name, core, affine, slopes))
+    if len(changing_blocks) != len(template.pumping_witnesses):
+        raise ValueError("missing intact boundary witness")
+
+    witnesses_by_block = {
+        witness.block_index: witness
+        for witness in template.pumping_witnesses
+    }
+    for block_index, block_name, core, affine, slopes in changing_blocks:
+        witness = witnesses_by_block.get(block_index)
+        if witness is None:
+            raise ValueError("missing intact boundary witness")
+        if not 0 < witness.split_position < len(tagged_base):
+            raise ValueError("pumping insertion is not internal to retained word")
+        left = tagged_base[witness.split_position - 1][1]
+        right = tagged_base[witness.split_position][1]
+        expected = PumpingWitness(
+            block_name=block_name,
+            block_index=block_index,
+            core=core,
+            base_copies=_eval_affine(affine, cell.base_values),
+            slopes=slopes,
+            split_position=witness.split_position,
+            left_copy_id=int(left[2]) if len(left) == 4 else -1,
+            right_copy_id=int(right[2]) if len(right) == 4 else -1,
+            left_core_offset=len(core) - 1,
+            right_core_offset=0,
+        )
+        if witness != expected or _find_intact_boundary(
+            tagged_base,
+            block_name,
+            block_index,
+            len(core),
+        ) != (
+            witness.split_position,
+            witness.left_copy_id,
+            witness.right_copy_id,
+        ):
+            raise ValueError("invalid intact boundary witness")
+
+    if expand_template(template, cell.base_values) != template.base_word:
+        raise ValueError("base template expansion differs from reduction")
+    for axis, state in enumerate(cell.states):
+        if state is not None:
+            continue
+        point = list(cell.base_values)
+        point[axis] += 1
+        point_tuple = tuple(point)
+        incremented_full = _tagged_reduced_word(schema, point_tuple, c_letter)
+        incremented, incremented_terminal, incremented_deleted = _retained_word(
+            incremented_full, c_letter
+        )
+        if (
+            incremented_terminal != terminal
+            or incremented_deleted != terminal_c_deleted
+        ):
+            raise ValueError("terminal-c branch changed after pumping")
+        if expand_template(template, point_tuple) != tuple(
+            letter for letter, _ in incremented
+        ):
+            raise ValueError("one-copy pumping differs from direct reduction")
+    return template.pumping_witnesses
+
+
+def _prefix_witness(
+    template: Template,
+    point: tuple[int, ...],
+    position: int,
+) -> tuple[
+    tuple[tuple[str, tuple[int, ...], tuple[int, ...] | None], ...],
+    tuple[int, ...],
+    int,
+]:
+    cursor = 0
+    for index, (block_name, word, affine) in enumerate(template.blocks):
+        length = len(word) if affine is None else len(word) * _eval_affine(
+            affine, point
+        )
+        if position >= cursor + length:
+            cursor += length
+            continue
+        if affine is not None:
+            raise ValueError("mismatch lies inside powered block")
+        offset = position - cursor
+        prefix = _normalize_blocks(
+            (*template.blocks[:index], ("fixed", word[:offset], None))
+        )
+        coefficients = tuple(
+            sum(
+                len(prefix_word) * prefix_affine[axis]
+                for _, prefix_word, prefix_affine in prefix
+                if prefix_affine is not None
+            )
+            for axis in range(len(template.variables))
+        )
+        constant = sum(
+            len(prefix_word)
+            if prefix_affine is None
+            else len(prefix_word) * prefix_affine[-1]
+            for _, prefix_word, prefix_affine in prefix
+        )
+        return prefix, (*coefficients, constant), word[offset]
+    raise ValueError("first mismatch is outside the template")
+
+
+def _affine_sign_on_cell(
+    difference: tuple[int, ...], cell: Cell
+) -> int | None:
+    base_value = _eval_affine(difference, cell.base_values)
+    changing = tuple(
+        coefficient
+        for coefficient, state in zip(difference[:-1], cell.states)
+        if state is None
+    )
+    if all(coefficient == 0 for coefficient in changing):
+        return -1 if base_value < 0 else 1 if base_value > 0 else 0
+    if base_value > 0 and all(coefficient >= 0 for coefficient in changing):
+        return 1
+    if base_value < 0 and all(coefficient <= 0 for coefficient in changing):
+        return -1
+    return None
+
+
+def compare_templates(
+    left: Template,
+    right: Template,
+    cell: Cell,
+) -> dict[str, Any]:
+    if left.cell_id != cell.cell_id or right.cell_id != cell.cell_id:
+        raise ValueError("comparison templates differ from the cell")
+    if left.variables != cell.names or right.variables != cell.names:
+        raise ValueError("comparison variables differ from the cell")
+    if len(left.length_affine) != len(right.length_affine):
+        raise ValueError("comparison affine dimensions differ")
+    difference = tuple(
+        left_value - right_value
+        for left_value, right_value in zip(
+            left.length_affine, right.length_affine
+        )
+    )
+    sign = _affine_sign_on_cell(difference, cell)
+    if sign is None:
+        raise ValueError("affine length difference has no fixed strict sign")
+    if sign:
+        return ComparisonWitness(
+            method="strict_affine_length",
+            order=sign,
+            difference=difference,
+        ).to_record()
+
+    left_normalized = _normalize_blocks(left.blocks)
+    right_normalized = _normalize_blocks(right.blocks)
+    if left_normalized == right_normalized:
+        return ComparisonWitness(
+            method="identical_pumped_blocks",
+            order=0,
+            normalized_blocks=left_normalized,
+        ).to_record()
+
+    mismatch = next(
+        (
+            (position, left_letter, right_letter)
+            for position, (left_letter, right_letter) in enumerate(
+                zip(left.base_word, right.base_word)
+            )
+            if left_letter != right_letter
+        ),
+        None,
+    )
+    if mismatch is None:
+        raise ValueError("equal base words have different normalized pumps")
+    position, left_letter, right_letter = mismatch
+    left_prefix, left_length, witnessed_left = _prefix_witness(
+        left, cell.base_values, position
+    )
+    right_prefix, right_length, witnessed_right = _prefix_witness(
+        right, cell.base_values, position
+    )
+    if left_prefix != right_prefix or left_length != right_length:
+        raise ValueError("pumped prefixes before fixed mismatch differ")
+    if (witnessed_left, witnessed_right) != (left_letter, right_letter):
+        raise ValueError("fixed mismatch letters changed")
+    return ComparisonWitness(
+        method="fixed_mismatch_after_pumped_prefix",
+        order=-1 if left_letter < right_letter else 1,
+        prefix_length=left_length,
+        mismatch_letters=(left_letter, right_letter),
+    ).to_record()
 
 
 def canonical_json(value: Any) -> str:
