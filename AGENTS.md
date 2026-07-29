@@ -1366,3 +1366,8 @@
 
 - [TRAP] Monkeypatching only `source.source_vertices` did not detect that the Task 2 Hessian fixture path still consumed direction constructors through `depth4_period_two_depth6_l0_census_certificate`; the no-census test passed despite the aggregate dependency.
 - [WORKS] Replace the aggregate package attribute with a fail-closed object, delete any stale subject-module binding, reload the subject, and execute the certificate. Import action/covector modules directly and reconstruct pinned source fixtures through the unique tree flow.
+
+### 2026-07-28 Avoid full symbolic syndrome grids for theory probes
+
+- [TRAP] A foreground $5\times5$ grid of `diagonal_left_pair_value` recomputed the complete analytic residual/syndrome 25 times, consumed 99% CPU for more than two minutes without output, and was unnecessary once the all-index companion identity had become the actual theorem target.
+- [WORKS] Probe the normalized equality/inversion/external subtotals directly, cache repeated anchored directions and contexts, and start with the smallest matrix that distinguishes candidate identities. Audit CPU/elapsed time promptly and terminate the exact probe when it no longer informs the proof.
