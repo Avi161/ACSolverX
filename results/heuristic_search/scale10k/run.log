@@ -606,3 +606,14 @@ KeyError: 'name'
   [u124] +390 last=s20/aca_97 solved=False pops_s=902.7
     [hcompact] reservation exceeded at 1,800,087 states; growing to 3,633,800 (this copies)
   [u124] +400 last=s12/aca_99 solved=False pops_s=1339.2
+    [hcompact] reservation exceeded at 1,800,083 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,087 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,099 states; growing to 3,633,800 (this copies)
+  [u124] +410 last=s20/aca_102 solved=False pops_s=803.9
+    [hcompact] reservation exceeded at 1,800,071 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,164 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,124 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,111 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,019 states; growing to 3,633,800 (this copies)
+  [u124] +420 last=s12/aca_104 solved=False pops_s=967.4
+    [hcompact] reservation exceeded at 1,800,217 states; growing to 3,633,800 (this copies)
