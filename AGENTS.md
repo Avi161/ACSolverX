@@ -1393,3 +1393,8 @@
 
 - [TRAP] A literature subagent was told to work in `.claude/worktrees/codex-proofs` but wrote its final memo to the main checkout's `.scratch/` and returned that path, bypassing the isolated proof worktree.
 - [WORKS] Put the exact absolute worktree root and artifact path in every dispatch, require an initial `pwd`/path-parent check before writing, and verify the returned canonical path begins with that root. If a no-delete constraint leaves a stray artifact, preserve it and copy its exact bytes into the correct worktree with `apply_patch`.
+
+### 2026-07-29 Exhausted overlap does not exhaust the second word
+
+- [TRAP] The first raw-stream manifest made its terminal overlap branch require `len(v)=b(q)`. Once the entire cancellable trailing `T/t` run of `q` is consumed, the preceding `c` (or exhaustion of `q`) blocks further free cancellation, so `v` may retain an arbitrary canonical suffix; the live case `q=()`, `v=T` was incorrectly uncovered.
+- [WORKS] In bounded-overlap partitions, distinguish “the overlap bound is exhausted” from “the other operand is exhausted.” Prove symbolic coverage and disjointness for every terminal branch, then replay every fixed action against a bounded canonical-word audit before accepting the general proof; asserted JSON booleans and hashes are integrity evidence, not a derivation.
