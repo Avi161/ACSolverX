@@ -1,0 +1,567 @@
+{
+ "record": "gamma_floor_measurement",
+ "theorem_context": "R3PRIME_GRAFT_CALCULUS.md Theorem G6 (AUDITED): a non-cancelling AC2 graft lowers gamma_N by at most 1, so gamma_N = 1 members are the gateway to thickenability.",
+ "units": "minimum_defect = 2 * gamma_N (unhalved); reported values are gamma_N",
+ "classes": {
+  "AK(3) classical class": {
+   "class": "AK(3) classical class",
+   "source": "results/stable_ac/fable/ak3_matched_members.jsonl.gz",
+   "rows_total": 124296,
+   "census_cap": 400000,
+   "sample_per_stratum": 260,
+   "seed": 20260729,
+   "measured": 6,
+   "skipped_over_cap": 3438,
+   "gamma_floor_over_sample": 1,
+   "gamma_histogram": {
+    "1": 4,
+    "2": 2
+   },
+   "floor_witnesses": [
+    {
+     "pair": [
+      "YYXXyx",
+      "YYxyXXX"
+     ],
+     "gamma_N": 1,
+     "total_length": 13,
+     "support": "K4",
+     "E": 0.0044444444444444444,
+     "census_size": 86400
+    },
+    {
+     "pair": [
+      "YYXXyx",
+      "YYYxyXX"
+     ],
+     "gamma_N": 1,
+     "total_length": 13,
+     "support": "K4",
+     "E": 0.0044444444444444444,
+     "census_size": 86400
+    },
+    {
+     "pair": [
+      "YYxyXX",
+      "YYYXXyx"
+     ],
+     "gamma_N": 1,
+     "total_length": 13,
+     "support": "K4",
+     "E": 0.0044444444444444444,
+     "census_size": 86400
+    },
+    {
+     "pair": [
+      "YYxyXX",
+      "YYXXXyx"
+     ],
+     "gamma_N": 1,
+     "total_length": 13,
+     "support": "K4",
+     "E": 0.0044444444444444444,
+     "census_size": 86400
+    }
+   ],
+   "per_length": {
+    "13": {
+     "stratum_size": 6,
+     "sampled": 6,
+     "measured": 6,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "1": 4,
+      "2": 2
+     },
+     "floor": 1
+    },
+    "14": {
+     "stratum_size": 12,
+     "sampled": 12,
+     "measured": 0,
+     "skipped_over_cap": 12,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "15": {
+     "stratum_size": 156,
+     "sampled": 156,
+     "measured": 0,
+     "skipped_over_cap": 156,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "16": {
+     "stratum_size": 150,
+     "sampled": 150,
+     "measured": 0,
+     "skipped_over_cap": 150,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "17": {
+     "stratum_size": 676,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "18": {
+     "stratum_size": 644,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "19": {
+     "stratum_size": 3072,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "20": {
+     "stratum_size": 2394,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "21": {
+     "stratum_size": 11640,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "22": {
+     "stratum_size": 8214,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "23": {
+     "stratum_size": 27322,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "24": {
+     "stratum_size": 17038,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "25": {
+     "stratum_size": 17874,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "26": {
+     "stratum_size": 12542,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "27": {
+     "stratum_size": 10486,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "28": {
+     "stratum_size": 12070,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    }
+   },
+   "verdict_cross_check": {
+    "agree": 6,
+    "disagree": []
+   },
+   "elapsed_seconds": 4.3
+  },
+  "AK(2) classical class": {
+   "class": "AK(2) classical class",
+   "source": "results/stable_ac/fable/ak2_members.jsonl",
+   "rows_total": 13040,
+   "census_cap": 400000,
+   "sample_per_stratum": 260,
+   "seed": 20260729,
+   "measured": 1483,
+   "skipped_over_cap": 1419,
+   "gamma_floor_over_sample": 0,
+   "gamma_histogram": {
+    "0": 162,
+    "1": 1241,
+    "2": 80
+   },
+   "floor_witnesses": [
+    {
+     "pair": [
+      "Y",
+      "X"
+     ],
+     "gamma_N": 0,
+     "total_length": 2,
+     "support": "disconnected",
+     "E": null,
+     "census_size": 1
+    },
+    {
+     "pair": [
+      "Y",
+      "YX"
+     ],
+     "gamma_N": 0,
+     "total_length": 3,
+     "support": "P4",
+     "E": null,
+     "census_size": 1
+    },
+    {
+     "pair": [
+      "X",
+      "Yx"
+     ],
+     "gamma_N": 0,
+     "total_length": 3,
+     "support": "P4",
+     "E": null,
+     "census_size": 1
+    },
+    {
+     "pair": [
+      "Y",
+      "Yx"
+     ],
+     "gamma_N": 0,
+     "total_length": 3,
+     "support": "P4",
+     "E": null,
+     "census_size": 1
+    },
+    {
+     "pair": [
+      "X",
+      "YX"
+     ],
+     "gamma_N": 0,
+     "total_length": 3,
+     "support": "P4",
+     "E": null,
+     "census_size": 1
+    },
+    {
+     "pair": [
+      "X",
+      "Yxx"
+     ],
+     "gamma_N": 0,
+     "total_length": 4,
+     "support": "P4",
+     "E": null,
+     "census_size": 2
+    },
+    {
+     "pair": [
+      "Y",
+      "YYx"
+     ],
+     "gamma_N": 0,
+     "total_length": 4,
+     "support": "P4",
+     "E": null,
+     "census_size": 2
+    },
+    {
+     "pair": [
+      "X",
+      "YXX"
+     ],
+     "gamma_N": 0,
+     "total_length": 4,
+     "support": "P4",
+     "E": null,
+     "census_size": 2
+    },
+    {
+     "pair": [
+      "Y",
+      "YYX"
+     ],
+     "gamma_N": 0,
+     "total_length": 4,
+     "support": "P4",
+     "E": null,
+     "census_size": 2
+    },
+    {
+     "pair": [
+      "Y",
+      "YYYx"
+     ],
+     "gamma_N": 0,
+     "total_length": 5,
+     "support": "P4",
+     "E": null,
+     "census_size": 6
+    },
+    {
+     "pair": [
+      "X",
+      "YXXX"
+     ],
+     "gamma_N": 0,
+     "total_length": 5,
+     "support": "P4",
+     "E": null,
+     "census_size": 6
+    },
+    {
+     "pair": [
+      "Y",
+      "YYYX"
+     ],
+     "gamma_N": 0,
+     "total_length": 5,
+     "support": "P4",
+     "E": null,
+     "census_size": 6
+    }
+   ],
+   "per_length": {
+    "2": {
+     "stratum_size": 1,
+     "sampled": 1,
+     "measured": 1,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 1
+     },
+     "floor": 0
+    },
+    "3": {
+     "stratum_size": 4,
+     "sampled": 4,
+     "measured": 4,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 4
+     },
+     "floor": 0
+    },
+    "4": {
+     "stratum_size": 4,
+     "sampled": 4,
+     "measured": 4,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 4
+     },
+     "floor": 0
+    },
+    "5": {
+     "stratum_size": 8,
+     "sampled": 8,
+     "measured": 8,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 8
+     },
+     "floor": 0
+    },
+    "6": {
+     "stratum_size": 12,
+     "sampled": 12,
+     "measured": 12,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 8,
+      "1": 4
+     },
+     "floor": 0
+    },
+    "7": {
+     "stratum_size": 60,
+     "sampled": 60,
+     "measured": 60,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 28,
+      "1": 32
+     },
+     "floor": 0
+    },
+    "8": {
+     "stratum_size": 100,
+     "sampled": 100,
+     "measured": 100,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 24,
+      "1": 72,
+      "2": 4
+     },
+     "floor": 0
+    },
+    "9": {
+     "stratum_size": 360,
+     "sampled": 260,
+     "measured": 260,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 39,
+      "1": 210,
+      "2": 11
+     },
+     "floor": 0
+    },
+    "10": {
+     "stratum_size": 565,
+     "sampled": 260,
+     "measured": 260,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 16,
+      "1": 205,
+      "2": 39
+     },
+     "floor": 0
+    },
+    "11": {
+     "stratum_size": 1841,
+     "sampled": 260,
+     "measured": 260,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 16,
+      "1": 226,
+      "2": 18
+     },
+     "floor": 0
+    },
+    "12": {
+     "stratum_size": 543,
+     "sampled": 260,
+     "measured": 260,
+     "skipped_over_cap": 0,
+     "gamma_histogram": {
+      "0": 8,
+      "1": 251,
+      "2": 1
+     },
+     "floor": 0
+    },
+    "13": {
+     "stratum_size": 1791,
+     "sampled": 260,
+     "measured": 254,
+     "skipped_over_cap": 6,
+     "gamma_histogram": {
+      "0": 6,
+      "1": 241,
+      "2": 7
+     },
+     "floor": 0
+    },
+    "14": {
+     "stratum_size": 312,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "15": {
+     "stratum_size": 2132,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "16": {
+     "stratum_size": 1225,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "17": {
+     "stratum_size": 2194,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "18": {
+     "stratum_size": 24,
+     "sampled": 24,
+     "measured": 0,
+     "skipped_over_cap": 24,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "19": {
+     "stratum_size": 1775,
+     "sampled": 260,
+     "measured": 0,
+     "skipped_over_cap": 260,
+     "gamma_histogram": {},
+     "floor": null
+    },
+    "20": {
+     "stratum_size": 89,
+     "sampled": 89,
+     "measured": 0,
+     "skipped_over_cap": 89,
+     "gamma_histogram": {},
+     "floor": null
+    }
+   },
+   "verdict_cross_check": {
+    "agree": 1483,
+    "disagree": []
+   },
+   "elapsed_seconds": 224.0
+  }
+ },
+ "contrast": {
+  "ak3_floor": 1,
+  "ak2_floor": 0,
+  "ak3_histogram": {
+   "1": 4,
+   "2": 2
+  },
+  "ak2_histogram": {
+   "0": 162,
+   "1": 1241,
+   "2": 80
+  },
+  "reading": "floors are over the MEASURED SAMPLE only (upper bounds for the true class floors); unmeasured members are counted per stratum"
+ }
+}
