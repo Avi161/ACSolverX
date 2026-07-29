@@ -17,6 +17,12 @@ literature
 
 .env
 
+# NOT a duplicate of line 3 — do not "dedupe" it. gitignore is order-sensitive: the
+# `!ppo_checkpoints/610model/**` negation above re-includes EVERYTHING under that directory,
+# .DS_Store included, and only a later rule can re-ignore it. Deleting this line untracks
+# nothing but starts surfacing ppo_checkpoints/610model/.DS_Store as an untracked file.
+.DS_Store
+
 # pytest: --basetemp is project-relative (agent sandboxes deny /tmp).
 .pytest_tmp/
 .pytest_cache/
