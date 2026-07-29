@@ -1,0 +1,58 @@
+[freeze] L-stratified=80 fresh_hard=60
+[scale10k] wall_end=2026-07-29T16:12:20.673566+00:00 remain=10.00h
+
+=== round 1 phase=cost remain=10.00h ===
+  [cost] length/L1296/b1000 pops_s=6821.9 solved=True
+  [cost] length/L1296/b5000 pops_s=3194.6 solved=True
+  [cost] length/L1296/b10000 pops_s=8212.6 solved=True
+  [cost] s20/L1296/b1000 pops_s=5336.9 solved=True
+  [cost] s20/L1296/b5000 pops_s=2966.0 solved=True
+  [cost] s20/L1296/b10000 pops_s=5119.8 solved=True
+  [cost] recommended/L1296/b1000 pops_s=8625.5 solved=True
+  [cost] recommended/L1296/b5000 pops_s=7248.3 solved=True
+  [cost] recommended/L1296/b10000 pops_s=5852.5 solved=True
+  [cost] length/L152166/b1000 pops_s=7123.6 solved=True
+  [cost] length/L152166/b5000 pops_s=6131.7 solved=True
+  [cost] length/L152166/b10000 pops_s=4451.8 solved=True
+  [cost] s20/L152166/b1000 pops_s=5630.7 solved=True
+  [cost] s20/L152166/b5000 pops_s=4885.6 solved=True
+  [cost] s20/L152166/b10000 pops_s=4756.9 solved=True
+  [cost] recommended/L152166/b1000 pops_s=5926.3 solved=True
+  [cost] recommended/L152166/b5000 pops_s=5217.8 solved=True
+  [cost] recommended/L152166/b10000 pops_s=5158.7 solved=True
+  [cost] length/H220504/b1000 pops_s=5627.5 solved=False
+  [cost] length/H220504/b5000 pops_s=5460.2 solved=True
+  [cost] length/H220504/b10000 pops_s=5443.2 solved=True
+  [cost] s20/H220504/b1000 pops_s=6070.1 solved=True
+  [cost] s20/H220504/b5000 pops_s=5636.9 solved=True
+  [cost] s20/H220504/b10000 pops_s=5217.0 solved=True
+  [cost] recommended/H220504/b1000 pops_s=4846.4 solved=True
+  [cost] recommended/H220504/b5000 pops_s=4435.7 solved=True
+  [cost] recommended/H220504/b10000 pops_s=4165.6 solved=True
+  [cost] length/H220551/b1000 pops_s=4578.0 solved=False
+  [cost] length/H220551/b5000 pops_s=3979.1 solved=False
+  [cost] length/H220551/b10000 pops_s=3831.0 solved=False
+  [cost] s20/H220551/b1000 pops_s=4187.1 solved=False
+  [cost] s20/H220551/b5000 pops_s=3810.9 solved=True
+  [cost] s20/H220551/b10000 pops_s=3805.8 solved=True
+  [cost] recommended/H220551/b1000 pops_s=3487.0 solved=False
+  [cost] recommended/H220551/b5000 pops_s=2997.3 solved=False
+  [cost] recommended/H220551/b10000 pops_s=2945.2 solved=True
+  phase cost new=36
+
+=== round 1 phase=anytime_L remain=9.99h ===
+  [any] l_stratified/length/idx=1296 solved=True nodes=20 pops_s=5858.3
+  [any] l_stratified/s12/idx=1296 solved=True nodes=18 pops_s=7716.7
+  [any] l_stratified/s20/idx=1296 solved=True nodes=20 pops_s=7287.9
+  [any] l_stratified/recommended/idx=1296 solved=True nodes=50 pops_s=7696.4
+  [any] l_stratified/length/idx=152166 solved=True nodes=93 pops_s=5696.3
+  [any] l_stratified/s12/idx=152166 solved=True nodes=30 pops_s=5378.3
+  [any] l_stratified/s20/idx=152166 solved=True nodes=40 pops_s=4980.7
+  [any] l_stratified/recommended/idx=152166 solved=True nodes=19 pops_s=5291.7
+  [any] l_stratified/length/idx=327241 solved=True nodes=261 pops_s=4553.7
+  [any] l_stratified/s12/idx=327241 solved=True nodes=95 pops_s=4003.5
+  [any] l_stratified/s20/idx=327241 solved=True nodes=80 pops_s=3795.3
+  [any] l_stratified/recommended/idx=327241 solved=True nodes=819 pops_s=2870.2
+  [any] l_stratified/length/idx=486618 solved=True nodes=211 pops_s=6234.3
+  [any] l_stratified/s12/idx=486618 solved=True nodes=360 pops_s=5593.8
+  [any] l_stratified/s20/idx=486618 solved=True nodes=463 pops_s=5363.1
