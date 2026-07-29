@@ -131,30 +131,29 @@ def write_csv(assigned, path):
 
 
 def fig_mean_median(assigned, path):
-    """Bar chart: mean/median nodes and path over solved rows only."""
+    """Bar chart: mean/median on the all-five-solved intersection (unbiased)."""
+    all5 = [r for r in assigned if all(r[f"{a}_solved"] for a in ARMS)]
+    n = len(all5)
     fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.2))
     x = np.arange(len(ARMS))
     width = 0.36
 
-    means_n, meds_n, means_p, meds_p, ns = [], [], [], [], []
+    means_n, meds_n, means_p, meds_p = [], [], [], []
     for a in ARMS:
-        nodes = [r[f"{a}_nodes"] for r in assigned if r[f"{a}_solved"]]
-        paths = [r[f"{a}_path"] for r in assigned
-                 if r[f"{a}_solved"] and r[f"{a}_path"] is not None]
-        means_n.append(float(np.mean(nodes)) if nodes else float("nan"))
-        meds_n.append(float(np.median(nodes)) if nodes else float("nan"))
-        means_p.append(float(np.mean(paths)) if paths else float("nan"))
-        meds_p.append(float(np.median(paths)) if paths else float("nan"))
-        ns.append(len(nodes))
+        nodes = [r[f"{a}_nodes"] for r in all5]
+        paths = [r[f"{a}_path"] for r in all5]
+        means_n.append(float(np.mean(nodes)))
+        meds_n.append(float(np.median(nodes)))
+        means_p.append(float(np.mean(paths)))
+        meds_p.append(float(np.median(paths)))
 
     ax = axes[0]
     ax.bar(x - width / 2, means_n, width, label="mean", color="#5b7c99")
     ax.bar(x + width / 2, meds_n, width, label="median", color="#c4a35a")
     ax.set_yscale("log")
     ax.set_xticks(x)
-    ax.set_xticklabels(
-        [f"{a}\n(n={n})" for a, n in zip(ARMS, ns)], fontsize=8)
-    ax.set_ylabel("nodes to solve (solved rows only)")
+    ax.set_xticklabels(ARMS, fontsize=8)
+    ax.set_ylabel("nodes to solve")
     ax.set_title("Nodes explored — mean / median")
     ax.legend(frameon=False)
     ax.grid(True, axis="y", alpha=0.3)
@@ -163,15 +162,15 @@ def fig_mean_median(assigned, path):
     ax.bar(x - width / 2, means_p, width, label="mean", color="#5b7c99")
     ax.bar(x + width / 2, meds_p, width, label="median", color="#c4a35a")
     ax.set_xticks(x)
-    ax.set_xticklabels(
-        [f"{a}\n(n={n})" for a, n in zip(ARMS, ns)], fontsize=8)
-    ax.set_ylabel("path length (solved rows only)")
+    ax.set_xticklabels(ARMS, fontsize=8)
+    ax.set_ylabel("path length")
     ax.set_title("Path length — mean / median")
     ax.legend(frameon=False)
     ax.grid(True, axis="y", alpha=0.3)
 
-    fig.suptitle("solved_1hop_autclean @ 100k  (solved rows only)",
-                 fontsize=11, y=1.02)
+    fig.suptitle(
+        f"solved_1hop_autclean @ 100k  (all 5 arms solved, n={n}/{len(assigned)})",
+        fontsize=11, y=1.02)
     fig.tight_layout()
     fig.savefig(path, dpi=140, bbox_inches="tight")
     plt.close(fig)

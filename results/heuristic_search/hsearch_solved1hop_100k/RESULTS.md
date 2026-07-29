@@ -53,15 +53,17 @@ read the table row-level / stratified below.
 | short_relator | 38 | 38/38 | 38/38 | 38/38 | 38/38 | 38/38 |
 | non-short moved_cov | 339 | 296/339 | 306/339 | 308/339 | 323/339 | 322/339 |
 
-## Node efficiency vs baseline (both solved)
+## Node / path efficiency (all 5 arms solved)
 
-| arm | geo-mean nodes ratio | n paired | med solved_at |
-|---|---:|---:|---:|
-| baseline | — | — | 54 |
-| s12 | 0.645 | 389 | 38 |
-| s28 | 0.780 | 388 | 53 |
-| s20_mk2 | 0.674 | 389 | 62 |
-| s24_k1_mk2 | 0.706 | 389 | 59 |
+Denominator = presentations every arm solved: **388/432**. Per-arm solved-only means are biased (treatments pick up harder residuals and inflate their mean nodes/path).
+
+| arm | mean nodes | med nodes | mean path | med path | geo ratio vs baseline |
+|---|---:|---:|---:|---:|---:|
+| baseline | 2608.7 | 54.0 | 35.5 | 16.0 | — |
+| s12 | 1097.7 | 36.5 | 35.9 | 16.5 | 0.641 |
+| s28 | 2276.7 | 44.0 | 35.9 | 17.0 | 0.780 |
+| s20_mk2 | 851.0 | 45.0 | 40.8 | 18.0 | 0.671 |
+| s24_k1_mk2 | 1056.5 | 43.5 | 41.3 | 19.0 | 0.703 |
 
 ## Difficulty bins (benchmark log-edges, length-baseline @100k)
 
@@ -84,7 +86,7 @@ Baseline-censored (unsolved @100k): **43** presentations (placed in bin by nodes
 
 ### Figures
 
-- `solved1hop_100k_mean_median.png`
+- `solved1hop_100k_mean_median.png` (all-five-solved denominator)
 - `solved1hop_100k_nodes_explored.png`
 - `solved1hop_100k_path_length.png`
 - `solved1hop_100k_difficulty_bins.png`
