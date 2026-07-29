@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import importlib.util
 import json
 import sys
+import tempfile
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, replace
 from itertools import product
@@ -236,6 +238,7 @@ class Task4FamilyCatalog:
 @dataclass(frozen=True)
 class Task4SchemaCatalog:
     families: Mapping[str, Task4FamilyCatalog]
+    dependency_digests: Mapping[str, str]
     occurrence_leafs: Mapping[int, int]
     occurrence_polarities: Mapping[int, int]
     occurrence_slots: Mapping[int, int]
@@ -1035,6 +1038,65 @@ def histogram_for_load(
 
 def canonical_json(value: Any) -> str:
     return json.dumps(value, ensure_ascii=True, separators=(",", ":"), sort_keys=True)
+
+
+def _canonical_bytes(value: Any) -> bytes:
+    return (canonical_json(value) + "\n").encode("ascii")
+
+
+def _project_local_path(path: Path) -> Path:
+    resolved = path.resolve()
+    root = ROOT.resolve()
+    if resolved != root and root not in resolved.parents:
+        raise CertificateFailure(f"manifest path is outside the project: {path}")
+    return resolved
+
+
+def _atomic_write(path: Path, payload: bytes) -> None:
+    target = _project_local_path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=target.parent,
+            prefix=f".{target.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary = Path(handle.name)
+            handle.write(payload)
+            handle.flush()
+        temporary.replace(target)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Generate the grouped old--new cut load certificate."
+    )
+    action = parser.add_mutually_exclusive_group(required=True)
+    action.add_argument("--write", type=Path, metavar="PATH")
+    action.add_argument("--check", type=Path, metavar="PATH")
+    action.add_argument("--summary", action="store_true")
+    arguments = parser.parse_args(argv)
+
+    manifest = build_manifest()
+    payload = _canonical_bytes(manifest)
+    if arguments.write is not None:
+        _atomic_write(arguments.write, payload)
+    elif arguments.check is not None:
+        target = _project_local_path(arguments.check)
+        if not target.is_file() or target.read_bytes() != payload:
+            raise CertificateFailure(f"canonical manifest differs: {target}")
+    else:
+        print(
+            canonical_json(
+                {"status": manifest["status"], "summary": manifest["summary"]}
+            )
+        )
+    return 0
 
 
 def _sha256_path(path: Path) -> str:
@@ -2171,6 +2233,25 @@ def _identity_digest(table: Sequence[Mapping[str, Any]]) -> str:
     return hashlib.sha256(canonical_json(table).encode("ascii")).hexdigest()
 
 
+def _template_record_body(record: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        key: value
+        for key, value in record.items()
+        if key not in {"schema_id", "cell_id"}
+    }
+
+
+def _template_body_digest(body: Mapping[str, Any]) -> str:
+    return hashlib.sha256(canonical_json(body).encode("ascii")).hexdigest()
+
+
+def _template_catalog_digest(
+    mapping: Mapping[str, str], records: Mapping[str, Mapping[str, Any]]
+) -> str:
+    payload = canonical_json({"mapping": mapping, "records": records})
+    return hashlib.sha256(payload.encode("ascii")).hexdigest()
+
+
 def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
     b_tokens, _ = build_b_catalog(context)
     b_identity_table = _b_identity_table(b_tokens)
@@ -2234,6 +2315,7 @@ def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
         )
     return Task4SchemaCatalog(
         families=families,
+        dependency_digests=dict(context.source_digests),
         occurrence_leafs=occurrence_leafs,
         occurrence_polarities=occurrence_polarities,
         occurrence_slots=occurrence_slots,
@@ -2402,6 +2484,8 @@ def family_ledger(
         )
     b_records = _b_occurrence_records(item, catalog)
     cell_records = []
+    template_mapping: dict[str, str] = {}
+    template_records: dict[str, Mapping[str, Any]] = {}
     family_comparisons = 0
     family_occurrence_loads = 0
     for cell in item.cells:
@@ -2409,6 +2493,20 @@ def family_ledger(
             schema_id: build_template(schema, cell)
             for schema_id, schema in item.schemas.items()
         }
+        for schema_id, template in templates.items():
+            identity = f"{schema_id}|{cell.cell_id}"
+            if identity in template_mapping:
+                raise CertificateFailure(
+                    f"duplicate template identity: {item.family}, {identity}"
+                )
+            body = _template_record_body(template.to_record())
+            body_digest = _template_body_digest(body)
+            prior = template_records.setdefault(body_digest, body)
+            if canonical_json(prior) != canonical_json(body):
+                raise CertificateFailure(
+                    f"template body digest collision: {body_digest}"
+                )
+            template_mapping[identity] = body_digest
         comparison_cache: dict[
             tuple[str, str, str], Mapping[str, Any]
         ] = {}
@@ -2498,6 +2596,15 @@ def family_ledger(
     return {
         "family": item.family,
         "cells": cell_records,
+        "template_catalog": {
+            "template_count": len(template_mapping),
+            "record_count": len(template_records),
+            "mapping": template_mapping,
+            "records": template_records,
+            "digest": _template_catalog_digest(
+                template_mapping, template_records
+            ),
+        },
         "summary": {
             "load_rows": len(item.old_tokens) * len(item.cells),
             "occurrence_loads": family_occurrence_loads,
@@ -2511,6 +2618,7 @@ def _catalog_summary(catalog: Task4SchemaCatalog) -> dict[str, Any]:
     footprint_sizes = {}
     occurrence_loads = {}
     comparisons = {}
+    template_counts = {}
     for family, item in catalog.families.items():
         footprints = [
             len(item.old_schema_refs[token.token_id].label_schemas)
@@ -2523,6 +2631,7 @@ def _catalog_summary(catalog: Task4SchemaCatalog) -> dict[str, Any]:
         footprint_sizes[family] = distribution
         occurrence_loads[family] = sum(footprints) * len(item.cells)
         comparisons[family] = occurrence_loads[family] * len(item.b_tokens)
+        template_counts[family] = len(item.schemas) * len(item.cells)
     return {
         "load_rows": load_rows,
         "total_load_rows": sum(load_rows.values()),
@@ -2531,6 +2640,8 @@ def _catalog_summary(catalog: Task4SchemaCatalog) -> dict[str, Any]:
         "total_occurrence_loads": sum(occurrence_loads.values()),
         "b_tokens_per_occurrence": TOKEN_COUNT,
         "active_comparisons": sum(comparisons.values()),
+        "template_counts": template_counts,
+        "total_templates": sum(template_counts.values()),
     }
 
 
@@ -2559,6 +2670,14 @@ def _validate_catalog_summary(summary: Mapping[str, Any]) -> None:
         "C": 1248,
         "Q": 11776,
     }
+    expected_template_counts = {
+        "fixed": 3072,
+        "base": 2048,
+        "singleton": 2064,
+        "P": 11772,
+        "C": 3824,
+        "Q": 25472,
+    }
     if summary["load_rows"] != expected_loads:
         raise CertificateFailure(
             f"source load census mismatch: {summary['load_rows']}"
@@ -2586,6 +2705,14 @@ def _validate_catalog_summary(summary: Mapping[str, Any]) -> None:
         raise CertificateFailure(
             f"active comparison census mismatch: {summary['active_comparisons']}"
         )
+    if summary["template_counts"] != expected_template_counts:
+        raise CertificateFailure(
+            f"template census mismatch: {summary['template_counts']}"
+        )
+    if summary["total_templates"] != 48252:
+        raise CertificateFailure(
+            f"total template census mismatch: {summary['total_templates']}"
+        )
 
 
 def build_manifest(
@@ -2610,6 +2737,7 @@ def build_manifest(
         "domain": "a=d-1>=0, n>=0; positive chamber d>=1",
         "status": "unverified",
         "summary": summary,
+        "dependency_digests": dict(catalog.dependency_digests),
         "b_identity_table": [dict(row) for row in catalog.b_identity_table],
         "b_identity_digest": catalog.b_identity_digest,
         "family_ledgers": {},
@@ -2625,6 +2753,14 @@ def build_manifest(
         raise CertificateFailure(
             "ledger comparison census differs from catalog summary: "
             f"{derived_comparisons}"
+        )
+    derived_templates = {
+        family: ledger["template_catalog"]["template_count"]
+        for family, ledger in ledgers.items()
+    }
+    if derived_templates != summary["template_counts"]:
+        raise CertificateFailure(
+            f"ledger template census differs: {derived_templates}"
         )
     manifest["family_ledgers"] = ledgers
     manifest["status"] = "generated-awaiting-independent-replay"
@@ -2709,3 +2845,7 @@ def bucketize_records(
         union |= bucket.mask
     assert union == (1 << TOKEN_COUNT) - 1
     return buckets
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

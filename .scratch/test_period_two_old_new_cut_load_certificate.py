@@ -1,6 +1,7 @@
 import copy
 import functools
 import importlib.util
+import json
 import operator
 import re
 import sys
@@ -11,6 +12,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / ".scratch/period_two_old_new_cut_load_certificate.py"
+VERIFIER = ROOT / ".scratch/period_two_old_new_cut_load_verify.py"
+ARTIFACT_DIR = ROOT / ".scratch/test-artifacts/old-new-load"
 EXPECTED_SOURCE_DIGESTS = {
     ".scratch/period_two_raw_stream_manifest_generator.py": "edd1f21fda1665b092447143b30d25e65f8c9a9cf2753a56ceb5da16db150bb1",
     ".scratch/period_two_raw_stream_manifest.json": "824d17adc0bc9b553d722eb627ee60f363451673237e366f6eb869acc6e058dd",
@@ -89,6 +92,44 @@ def with_manifest(context, name: str, manifest):
 
 def test_generator_file_exists_before_loading() -> None:
     assert GENERATOR.exists(), "grouped-load generator is not implemented"
+
+
+def test_verifier_file_exists_before_loading() -> None:
+    assert VERIFIER.exists(), "independent grouped-load verifier is not implemented"
+
+
+def test_generator_cli_writes_checks_and_summarizes_canonical_json(
+    monkeypatch, capsys
+) -> None:
+    module = load_generator()
+    manifest = {
+        "format": "period-two-old-new-cut-load-v1",
+        "status": "generated-awaiting-independent-replay",
+        "summary": {"active_comparisons": 1491840},
+    }
+    target = ARTIFACT_DIR / "cli-unit.json"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    monkeypatch.setattr(module, "build_manifest", lambda: copy.deepcopy(manifest))
+    try:
+        assert module.main(["--write", str(target)]) == 0
+        assert target.read_bytes() == (
+            module.canonical_json(manifest) + "\n"
+        ).encode("ascii")
+        assert not tuple(target.parent.glob(f".{target.name}.*.tmp"))
+
+        assert module.main(["--check", str(target)]) == 0
+        assert module.main(["--summary"]) == 0
+        assert capsys.readouterr().out.splitlines()[-1] == module.canonical_json(
+            {"status": manifest["status"], "summary": manifest["summary"]}
+        )
+
+        target.write_text("{}\n", encoding="ascii")
+        with pytest.raises(module.CertificateFailure):
+            module.main(["--check", str(target)])
+    finally:
+        target.unlink(missing_ok=True)
+        if target.parent.is_dir() and not tuple(target.parent.iterdir()):
+            target.parent.rmdir()
 
 
 def test_cells_cover_exact_threshold_states_and_p_domain() -> None:
@@ -786,6 +827,15 @@ def test_manifest_census_expands_every_catalog_occurrence_footprint() -> None:
     assert summary["total_occurrence_loads"] == 17760
     assert summary["b_tokens_per_occurrence"] == 84
     assert summary["active_comparisons"] == 1491840
+    assert summary["template_counts"] == {
+        "fixed": 3072,
+        "base": 2048,
+        "singleton": 2064,
+        "P": 11772,
+        "C": 3824,
+        "Q": 25472,
+    }
+    assert summary["total_templates"] == 48252
     b_identity_table = manifest["b_identity_table"]
     assert len(b_identity_table) == 84
     assert [row["token_index"] for row in b_identity_table] == list(range(84))
@@ -794,6 +844,38 @@ def test_manifest_census_expands_every_catalog_occurrence_footprint() -> None:
     assert b_identity_table[-1]["token_id"] == "b0:path:f052:o16"
     assert manifest["b_identity_digest"] == (
         "a8c7f0ad73b9f9b88b758f7983724aa921c6dfa3a2ab7a4eeceb6cfb0f973bbd"
+    )
+    assert manifest["dependency_digests"] == EXPECTED_SOURCE_DIGESTS
+    template_catalogs = [
+        ledger["template_catalog"]
+        for ledger in manifest["family_ledgers"].values()
+    ]
+    assert sum(catalog["template_count"] for catalog in template_catalogs) == 48252
+    assert all(
+        len(catalog["mapping"]) == catalog["template_count"]
+        and len(catalog["records"]) == catalog["record_count"]
+        and set(catalog["mapping"].values()) <= set(catalog["records"])
+        for catalog in template_catalogs
+    )
+    pumping_records = [
+        record
+        for catalog in template_catalogs
+        for record in catalog["records"].values()
+        if record["pumping_witnesses"]
+    ]
+    assert pumping_records
+    assert all(
+        set(record)
+        == {
+            "variables",
+            "tagged_base_word",
+            "base_word",
+            "normalized_blocks",
+            "terminal_full_letter",
+            "terminal_c_deleted",
+            "pumping_witnesses",
+        }
+        for record in pumping_records
     )
     assert manifest["status"] == "generated-awaiting-independent-replay"
     assert "independent_verifier_attestation" not in manifest
@@ -1272,3 +1354,165 @@ def test_family_ledger_rejects_one_flipped_derived_bit(monkeypatch) -> None:
         match=r"family=fixed, cell=age0_n0.*first_odd_load_ids",
     ):
         module.family_ledger(catalog.families["fixed"], catalog)
+
+
+def test_canonical_generator_writes_end_to_end_manifest() -> None:
+    module = load_generator()
+    target = ARTIFACT_DIR / "manifest.json"
+    target.parent.mkdir(parents=True, exist_ok=True)
+
+    assert module.main(["--write", str(target)]) == 0
+
+    manifest = json.loads(target.read_text(encoding="ascii"))
+    assert target.read_bytes() == (
+        module.canonical_json(manifest) + "\n"
+    ).encode("ascii")
+    assert manifest["summary"]["total_load_rows"] == 9408
+    assert manifest["summary"]["total_occurrence_loads"] == 17760
+    assert manifest["summary"]["active_comparisons"] == 1491840
+    assert not tuple(target.parent.glob(f".{target.name}.*.tmp"))
+
+
+def test_canonical_generator_checks_manifest_byte_for_byte() -> None:
+    target = ARTIFACT_DIR / "manifest.json"
+    assert target.is_file(), "run the generator write gate first"
+
+    assert load_generator().main(["--check", str(target)]) == 0
+
+
+def test_independent_verifier_replays_and_rejects_semantic_mutations() -> None:
+    target = ARTIFACT_DIR / "manifest.json"
+    assert target.is_file(), "run the generator write gate first"
+    verifier = load_module("old_new_load_independent_verifier", VERIFIER)
+    manifest = json.loads(target.read_text(encoding="ascii"))
+
+    try:
+        result = verifier.verify_manifest(target)
+        assert result["status"] == "independently-verified"
+        assert result["summary"]["total_load_rows"] == 9408
+        assert result["summary"]["total_occurrence_loads"] == 17760
+        assert result["summary"]["active_comparisons"] == 1491840
+        assert result["family_values"] == {
+            "fixed": [0],
+            "base": [0],
+            "singleton": [1],
+            "P": [0],
+            "C": [0, 1],
+            "Q": [0],
+        }
+
+        mutations = []
+
+        wrong_mask = copy.deepcopy(manifest)
+        bucket = wrong_mask["family_ledgers"]["fixed"]["cells"][0]["loads"][0][
+            "histograms"
+        ][0]["buckets"][0]
+        bucket["mask"] = f"{int(bucket['mask'], 16) ^ 1:021x}"
+        mutations.append(("mask", wrong_mask, verifier.MaskVerificationError))
+
+        wrong_coefficient = copy.deepcopy(manifest)
+        wrong_coefficient["family_ledgers"]["fixed"]["cells"][0]["loads"][0][
+            "coefficient"
+        ] += 2
+        mutations.append(
+            (
+                "coefficient",
+                wrong_coefficient,
+                verifier.RawCoefficientVerificationError,
+            )
+        )
+
+        pumping_family = next(
+            family
+            for family, ledger in manifest["family_ledgers"].items()
+            if any(
+                record["pumping_witnesses"]
+                for record in ledger["template_catalog"]["records"].values()
+            )
+        )
+        pumping_digest = next(
+            digest
+            for digest, record in manifest["family_ledgers"][pumping_family][
+                "template_catalog"
+            ]["records"].items()
+            if record["pumping_witnesses"]
+        )
+        wrong_boundary = copy.deepcopy(manifest)
+        wrong_boundary["family_ledgers"][pumping_family]["template_catalog"][
+            "records"
+        ][pumping_digest]["pumping_witnesses"][0]["left_copy_id"] += 1
+        mutations.append(
+            ("boundary", wrong_boundary, verifier.PumpingVerificationError)
+        )
+
+        wrong_terminal = copy.deepcopy(manifest)
+        terminal_record = wrong_terminal["family_ledgers"][pumping_family][
+            "template_catalog"
+        ]["records"][pumping_digest]
+        terminal_record["terminal_c_deleted"] = not terminal_record[
+            "terminal_c_deleted"
+        ]
+        mutations.append(
+            ("terminal", wrong_terminal, verifier.PumpingVerificationError)
+        )
+
+        wrong_mapping = copy.deepcopy(manifest)
+        mapping = wrong_mapping["family_ledgers"][pumping_family][
+            "template_catalog"
+        ]["mapping"]
+        del mapping[next(iter(mapping))]
+        mutations.append(
+            ("mapping", wrong_mapping, verifier.PumpingVerificationError)
+        )
+
+        wrong_family = copy.deepcopy(manifest)
+        wrong_family["family_ledgers"]["fixed"]["cells"][0]["value"] ^= 1
+        mutations.append(
+            ("family", wrong_family, verifier.FamilyVerificationError)
+        )
+
+        wrong_status = copy.deepcopy(manifest)
+        wrong_status["status"] = "proved-by-generator"
+        mutations.append(
+            ("status", wrong_status, verifier.StatusVerificationError)
+        )
+
+        wrong_identity = copy.deepcopy(manifest)
+        wrong_identity["b_identity_table"][0]["coefficient"] += 2
+        mutations.append(
+            ("identity", wrong_identity, verifier.BIdentityVerificationError)
+        )
+
+        wrong_dependency = copy.deepcopy(manifest)
+        dependency = next(iter(wrong_dependency["dependency_digests"]))
+        digest = wrong_dependency["dependency_digests"][dependency]
+        wrong_dependency["dependency_digests"][dependency] = (
+            ("0" if digest[0] != "0" else "1") + digest[1:]
+        )
+        mutations.append(
+            (
+                "dependency",
+                wrong_dependency,
+                verifier.DependencyVerificationError,
+            )
+        )
+
+        for name, mutated, error_type in mutations:
+            mutation_path = ARTIFACT_DIR / f"mutation-{name}.json"
+            mutation_path.write_text(
+                json.dumps(
+                    mutated,
+                    ensure_ascii=True,
+                    separators=(",", ":"),
+                    sort_keys=True,
+                )
+                + "\n",
+                encoding="ascii",
+            )
+            with pytest.raises(error_type):
+                verifier.verify_manifest(mutation_path)
+    finally:
+        for artifact in ARTIFACT_DIR.glob("*.json"):
+            artifact.unlink()
+        if ARTIFACT_DIR.is_dir() and not tuple(ARTIFACT_DIR.iterdir()):
+            ARTIFACT_DIR.rmdir()
