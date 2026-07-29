@@ -15,11 +15,15 @@ they differ)
    (E,A,B,ν) data under d↔h). NEVER quotient by Aut(F₂). Codex's stored canonical keys use
    a different symbol order — re-canonicalize their 1,000 states with OUR key before
    deduping; a false-duplicate drop loses a real target.
-3. **Independently confirm codex's closure**: their certificate reports node cap 1,000 =
-   pops = component size — the signature of a capped run. Before trusting "already
-   censused", run a post-hoc closure pass ourselves: enumerate all bounded children of all
-   1,000 states, assert each lands in-set or out-of-bounds. If closure fails, the
-   dedup labels flip from "duplicate" to "novel" for the affected states.
+3. **Codex closure CONFIRMED by source inspection (07:58 UTC)**: their
+   `scan_ak3_component.py` raises unless pops == component size == 1,000 with the queue
+   exhausted (exact-size assertion, not a truncation), and then runs a SEPARATE post-hoc
+   closure replay enumerating every bounded child of all 1,000 states, raising
+   "component is not closed" on any unseen in-ceiling child. The recorded JSON carries
+   source-binding hashes. The 1,000/1,000/1,000 coincidence is an asserted exact component
+   size. Remaining dedup care: their states are `canon(·, cyclic=True)` fixed points in
+   THEIR symbol order — re-key their 1,000 states with OUR canonical key before comparison
+   (as item 2 requires).
 4. **Selection key = E descending** (E = 2∏m_uv!/((n_x−1)!(n_y−1)!) for K₄ and the
    support-appropriate spherical counts otherwise), with length ≤ 21 demoted to a cheap
    prefilter. E is non-monotone in length (measured: a length-19 path state beats the best
