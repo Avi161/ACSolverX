@@ -957,6 +957,10 @@ now tracked respectively by
 `experiments/stable_ac/depth4_period_two_subgroup_rewrite_certificate.py`,
 `experiments/stable_ac/depth4_period_two_source_flow_certificate.py`, and
 `experiments/stable_ac/depth4_period_two_depth6_l0_census_certificate.py`.
+Their tracked focused tests are
+`tests/stable_ac/test_ak_depth_four_period_two_subgroup_rewrite.py`,
+`tests/stable_ac/test_ak_depth_four_period_two_source_flow.py`, and
+`tests/stable_ac/test_ak_depth_four_period_two_depth6_l0_census.py`.
 The latter checks 127 reduced quotient source vertices and 4,671
 orbit-balanced unordered pairs through length six.  Its fourteen finite
 bits are ordered as Result 152's five post-\(\Phi_\infty\) bits, Result

@@ -8323,6 +8323,10 @@ The complete-cover rewrite, source classifier, and census are tracked by
 `experiments/stable_ac/depth4_period_two_subgroup_rewrite_certificate.py`,
 `experiments/stable_ac/depth4_period_two_source_flow_certificate.py`, and
 `experiments/stable_ac/depth4_period_two_depth6_l0_census_certificate.py`.
+Their tracked focused tests are
+`tests/stable_ac/test_ak_depth_four_period_two_subgroup_rewrite.py`,
+`tests/stable_ac/test_ak_depth_four_period_two_source_flow.py`, and
+`tests/stable_ac/test_ak_depth_four_period_two_depth6_l0_census.py`.
 The 127 reduced quotient source vertices through word length six yield 4,671
 orbit-balanced unordered source pairs.  The finite order is the five
 post-\(\Phi_\infty\) Result 152 bits, the three Result 153 covectors, then

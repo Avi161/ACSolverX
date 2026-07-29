@@ -31,6 +31,10 @@ homogeneous vector (d) satisfying
 
 The census checker is
 `experiments/stable_ac/depth4_period_two_depth6_l0_census_certificate.py`.
+The tracked focused tests are
+`tests/stable_ac/test_ak_depth_four_period_two_subgroup_rewrite.py`,
+`tests/stable_ac/test_ak_depth_four_period_two_source_flow.py`, and
+`tests/stable_ac/test_ak_depth_four_period_two_depth6_l0_census.py`.
 It streams the following fourteen finite bits, in this exact order (the
 order is `eleven.obstruction_bits(wedge)[1:]`):
 
