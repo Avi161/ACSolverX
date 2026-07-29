@@ -19,6 +19,14 @@ Do **not** default to long wall-clock campaigns or huge node budgets.
 Full note: [`experiments/lessons/scout-then-scale-budgets.md`](experiments/lessons/scout-then-scale-budgets.md).
 Same rule in [`CLAUDE.md`](CLAUDE.md).
 
+### ⛔ Live Colab hotfix = `.py` only (never edit the open notebook)
+
+While the user has Colab sessions running: fix heartbeat / pops/s / ETA / mirror /
+resume bugs only in importable `experiments/**/*.py` on the notebook's `BRANCH`.
+Do **not** edit the `.ipynb`. User Restart → Run All pulls via `UPDATE_REPO` + module
+purge; Drive jsonl resume continues. Touch the notebook only for a new CONFIG knob,
+and say so. Full note: [`experiments/lessons/colab-live-hotfix-py-only.md`](experiments/lessons/colab-live-hotfix-py-only.md).
+
 ### ⛔ MANDATORY before every `git push` (do not skip)
 
 Every push on this branch must be logged. Same-day pushes are frequent (often 100s), so a
