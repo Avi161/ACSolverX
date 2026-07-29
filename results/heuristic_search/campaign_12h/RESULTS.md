@@ -1,6 +1,6 @@
 # Campaign 12h RESULTS — anti-overfit heuristic evaluation
 
-Updated: `2026-07-29T13:21:16.908418+00:00` · branch `cursor/heur-12h-anti-overfit-a42e`
+Updated: `2026-07-29T13:25:17.617919+00:00` · branch `cursor/heur-12h-anti-overfit-a42e`
 
 ## Advisor gate
 
