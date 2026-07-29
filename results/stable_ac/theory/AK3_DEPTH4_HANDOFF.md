@@ -888,6 +888,43 @@ The exact proof and checker are
 \end{gathered}
 \]
 
+### A five-cycle quotient closes the known ten-direction span
+
+A tenth exact homogeneous direction $k$ begins with
+\[
+k_0=e_{cT}+e_{TcTTT}.
+\]
+Six exact Stallings-cover paths reconstruct a 43-entry,
+coefficient-norm-56 edge flow satisfying \(\sum_iL_ik_i=0\).  It raises
+the known rank from nine to ten.  Its residual has free length 1208, kernel
+length 204, wedge support 640, and kills all eleven Result 155 bits.
+
+For
+\[
+c=1,\qquad t=(0\ 1\ 2\ 3\ 4),
+\]
+the operator image in the ten-dimensional wedge space has rank eight over
+\(\mathbb F_2\) and a two-dimensional annihilator.  Both annihilator basis
+vectors detect the tenth residual
+\[
+(-6,9,0,-14,0,-2,12,2,-4,1),
+\]
+so the augmented rank is nine.
+
+The thirteen bits are integer-valued quadratic functions of the ten
+direction coefficients.  Sixty-six exact replays determine the model, 55
+points validate it, and no class in \((\mathbb Z/4)^{10}\) has zero
+syndrome.  Hence every integer combination in the known ten-direction span
+is degree-two obstructed.
+
+The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_TEN\_DIRECTION\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_ten\_direction\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -920,9 +957,11 @@ The exact proof and checker are
    eight-direction span. A ninth balanced $L_0$-source direction escapes all
    ten bits; the inverse-cycle partner of an earlier four-point action adds
    an eleventh covector which separates all 262144 mod-four classes in the
-   resulting nine-direction span. The next exact problem is to classify the
-   full finite-state syndrome of balanced two-source flows, or promote the
-   eleven mod-two functionals to a theorem about the full homogeneous
-   syzygy module.
+   resulting nine-direction span. A tenth balanced $L_0$-source direction
+   escapes all eleven bits; a five-cycle quotient adds two covectors which
+   separate all 1048576 mod-four classes in the resulting ten-direction
+   span. The next exact problem is to classify the full finite-state
+   syndrome of balanced two-source flows, or promote the thirteen mod-two
+   functionals to a theorem about the full homogeneous syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

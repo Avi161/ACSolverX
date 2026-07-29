@@ -8269,6 +8269,34 @@ nonzero obstruction vector.  Therefore the complete known nine-direction
 integer span is degree-two obstructed.  The full homogeneous syzygy module
 remains unclassified.
 
+**Result 156 (a five-cycle quotient closes the known ten-direction span).**
+There is a 43-entry, coefficient-norm-56 homogeneous syzygy $k$ with
+\[
+k_0=e_{cT}+e_{TcTTT}.
+\]
+Six exact Stallings-cover paths prove \(\sum_iL_ik_i=0\).  It raises the
+known direction rank from nine to ten modulo two.  Its residual has free
+length 1208, kernel length 204, wedge support 640, and kills all eleven
+Result 155 mod-two bits.
+
+For the five-point action
+\[
+c=1,\qquad t=(0\ 1\ 2\ 3\ 4),
+\]
+the wedge operator image has rank eight and a two-dimensional annihilator.
+Both basis covectors detect the tenth residual
+\[
+(-6,9,0,-14,0,-2,12,2,-4,1),
+\]
+raising the augmented rank to nine.
+
+The resulting thirteen obstruction bits are integer-valued quadratic
+functions of ten coefficients.  Sixty-six exact replays determine the
+model, 55 further points validate it, and all \(4^{10}=1048576\) mod-four
+classes have nonzero obstruction vector.  Therefore the complete known
+ten-direction integer span is degree-two obstructed.  The full homogeneous
+syzygy module remains unclassified.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
