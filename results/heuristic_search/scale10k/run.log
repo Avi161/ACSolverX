@@ -1214,3 +1214,19 @@ KeyError: 'name'
 === round 35 phase=portfolio remain=5.15h ===
   phase portfolio new=0
 [scale10k] matrix complete; holding wall for analysis
+
+=== round 36 phase=cost remain=5.06h ===
+  phase cost new=0
+
+=== round 36 phase=anytime_L remain=5.06h ===
+  phase anytime_L new=0
+
+=== round 36 phase=anytime_hard remain=5.06h ===
+  phase anytime_hard new=0
+
+=== round 36 phase=unsolved124 remain=5.06h ===
+  phase unsolved124 new=0
+
+=== round 36 phase=portfolio remain=5.06h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
