@@ -1,0 +1,178 @@
+{
+ "record": "spike_census",
+ "base": [
+  "xxxYYYY",
+  "xyxYXY"
+ ],
+ "cap_rotations": 6000000,
+ "requested": 8,
+ "note": "exact minimum over the full compatible family; gamma_N = minimum_defect / 2 (defects are UNHALVED)",
+ "rows": [
+  {
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 3628800,
+   "seconds": 23.7,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1452,
+    "6": 75804,
+    "8": 921444,
+    "10": 2185114,
+    "12": 444984
+   },
+   "enumerated_cases": 3628800
+  },
+  {
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 3628800,
+   "seconds": 22.8,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1238,
+    "6": 75446,
+    "8": 931340,
+    "10": 2184730,
+    "12": 436044
+   },
+   "enumerated_cases": 3628800
+  },
+  {
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 3628800,
+   "seconds": 22.6,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1238,
+    "6": 75446,
+    "8": 931340,
+    "10": 2184730,
+    "12": 436044
+   },
+   "enumerated_cases": 3628800
+  },
+  {
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 3628800,
+   "seconds": 22.8,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1452,
+    "6": 75804,
+    "8": 921444,
+    "10": 2185114,
+    "12": 444984
+   },
+   "enumerated_cases": 3628800
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 3628800,
+   "seconds": 23.4,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1904,
+    "6": 85446,
+    "8": 958758,
+    "10": 2152594,
+    "12": 430096
+   },
+   "enumerated_cases": 3628800
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 3628800,
+   "seconds": 23.2,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1904,
+    "6": 85446,
+    "8": 958758,
+    "10": 2152594,
+    "12": 430096
+   },
+   "enumerated_cases": 3628800
+  },
+  {
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 4838400,
+   "seconds": 32.0,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1858,
+    "6": 96416,
+    "8": 1204916,
+    "10": 2921272,
+    "12": 613936
+   },
+   "enumerated_cases": 4838400
+  },
+  {
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXY"
+   ],
+   "status": "OK",
+   "expected_cases": 4838400,
+   "seconds": 32.1,
+   "minimum_defect": 2,
+   "gamma_N": 1,
+   "defect_histogram": {
+    "2": 2,
+    "4": 1858,
+    "6": 96416,
+    "8": 1204916,
+    "10": 2921272,
+    "12": 613936
+   },
+   "enumerated_cases": 4838400
+  }
+ ],
+ "completed": 8,
+ "THICKENABLE_ALERT": false,
+ "decided": 8,
+ "gamma_histogram": {
+  "1": 8
+ }
+}
