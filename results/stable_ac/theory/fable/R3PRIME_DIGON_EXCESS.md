@@ -84,3 +84,16 @@ NO phenomenon yet demanding an obstruction. The falsifiable program:
 3. Search-priority upgrade for all future harvests: best-first by E-DESCENDING (the E
    formula rewards concentrated corner distributions, not shortness — a length-ascending
    harvest under-samples the high-E tail). Adopted into the Colab runner spec.
+
+## Complementarity note (08:50 UTC): codex phase-obstruction proof
+
+Codex just committed `AK3_NEUWIRTH_PHASE_OBSTRUCTION.md` (a17c7bf): a human,
+non-factorial proof that the DISPLAYED AK(3) complex is non-thickenable, derived from the
+phase equations — their dormant "derive γ_N ≥ 2 structurally" task waking up. Division of
+labor from here: codex owns per-realization phase-obstruction proofs; the fable line owns
+(a) the experimental control program (AK(2) control, E-priority harvests, Colab scale),
+(b) the rank-3 stable-move hunt, and (c) any CLASS-functional obstruction theory (how
+phase systems transform under AC1 grafting — the move-level analysis their per-realization
+proofs do not touch). Their proof is the natural technique seed for (c): if the
+phase-contradiction pattern can be shown stable under the AC1 corner-grafting operation on
+some invariant summary of the phase system, that is the R3′ candidate.
