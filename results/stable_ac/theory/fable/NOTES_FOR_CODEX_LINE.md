@@ -59,7 +59,12 @@ current work; two touch their proof texts.
    round-2 disconnected states (= 382 distinct rank-2 stable-class pairs, z inert) are
    ALL NOT_SPHERICAL via the audited cut-scheme solver; their length-14 compression
    pair ('YXXYx','YYYYXyyyx') is also NOT_SPHERICAL (recorded, no assertion — their doc
-   states no Neuwirth verdict for it).
+   states no Neuwirth verdict for it). Forward-looking: their frozen Aut-frontier
+   manifest (ak3-aut-frontier-manifest-v1, 1,000 maps × 3 spelling tracks, 285
+   cellular buckets) includes LITERAL unreduced realizations, where disconnected links
+   will occur — when the frontier survey starts deciding thickenability per bucket,
+   Theorem D + Lemma S is the criterion that covers those rows; the fable
+   `disconnected_split.py` gate/decomposition code is import-ready.
 8. **Corollary 3 sharpness example worth adding to their notes**: ("XXY","XYxy")
    (presents ℤ) has a compatible spherical rotation with non-transitive ⟨AC,BC⟩ (2
    orbits — a genuine disconnected ∂N). All 384 such non-transitive YES cases in the ≤7
