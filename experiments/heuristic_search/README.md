@@ -12,11 +12,11 @@
 | dir | n | role |
 |---|---|---|
 | `core/` | 7 | The reusable library, and the only subpackage the others import. `hsearch.py` holds `HeuristicSolver` (it subclasses `GreedyBaselineSolver` and replaces **only** the priority expression) plus the `PRIORITIES` registry of 25 orderings; `hlab.py` is the lab harness every experiment imports (benchmark, splits, `phi` features, the `RESULTS`/`LOGS`/`SPLITS` output roots); `hfast.py`, `hsolve.py`, `hcompact.py` are the numba solvers; `lab.py`, `perbin.py` the shared reporting. |
-| `exp/` | 27 | The numbered experiment log, `exp01_mrl` … `exp27_retune_fresh` — one question per file, run once. Read these for *why* a knob is set the way it is. Five of them (`exp02`, `exp03`, `exp04`, `exp05`, `exp26`) are imported by later experiments, so they are library and log at once. |
+| `exp/` | 29 | The numbered experiment log, `exp01_mrl` … `exp29_lkmk_ablation` — one question per file, run once. Read these for *why* a knob is set the way it is. Five of them (`exp02`, `exp03`, `exp04`, `exp05`, `exp26`) are imported by later experiments, so they are library and log at once. **There is no `exp28` file**: EXP-28 was the Colab scale run driven through `runners/run_ab.py` (see [`../notebooks/hsearch_ab.ipynb`](../notebooks/hsearch_ab.ipynb)), written up in [`results/heuristic_search/runs/EXP28_colab_scale.md`](../../results/heuristic_search/runs/EXP28_colab_scale.md); `exp29` reads its rows. |
 | `splits/` | 3 | The split freezers. They write the frozen train/test/reach partitions to `results/heuristic_search/splits/`; re-running one silently invalidates every held-out number reported against the old split. |
 | `verify/` | 4 | Cross-checks that one implementation reproduces another (`verify_fast`, `verify_hcompact`, `verify_hsolve`, `verify_keep_path`) — the correctness net under the fast solvers. |
 | `runners/` | 10 | The entry points you actually invoke: `tune_multi` (**the headline result**), `run_sweep` (the 25-arm sweep at 100/200/500 with the tune / exploratory / confirm protocol), `run_top2_1000`, `run_ab`, `cost_profile` (nodes + path length, because solve rate alone cannot say an ordering is *better*), `three_way_b10k`, `cov_heur_b1k` (the transform × ordering 2×2 at budget 1,000), `measure_memory`, `synthesize`, `gen_page`. |
-| `hsearch_ab.ipynb` | 1 | The Colab notebook for the scaled A/B campaign — CONFIG / SETUP / RUN over `runners/run_ab.py`. |
+| [`../notebooks/hsearch_ab.ipynb`](../notebooks/hsearch_ab.ipynb) | 1 | The Colab notebook for the scaled A/B campaign — CONFIG / SETUP / RUN over `runners/run_ab.py`. |
 
 Outputs: [`results/heuristic_search/`](../../results/heuristic_search/README.md) (`sweep.json`, `top2_1000.json`, `tune_multi.json`, `cost_profile.json`).
 

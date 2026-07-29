@@ -51,7 +51,11 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+REPO = os.path.abspath(__file__)
+while REPO != os.path.dirname(REPO) and not (
+        os.path.isdir(os.path.join(REPO, "experiments"))
+        and os.path.isdir(os.path.join(REPO, "data"))):
+    REPO = os.path.dirname(REPO)
 BINS_CSV = os.path.join(REPO, "benchmark", "difficulty_bins.csv")
 OUT_DIR = os.path.join(REPO, "benchmark", "subsets")
 

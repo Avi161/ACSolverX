@@ -32,7 +32,7 @@ Reservation for 10⁶ at cap 48, measured from the real containers: **6.97 GiB, 
 
 ## How to use it
 
-`hsearch_ab.ipynb` CONFIG: `ENGINE = "hcompact"`. Result-neutral like `KEEP_PATH` and `HIGH_SPEEDUP` — rows are byte-identical across engines (verified end-to-end through `run_ab` at budget 1,000: 16/16 rows equal minus `secs`, certificates present on every solve), so it stays out of the filename identity and files resume across engines. Direct use:
+`experiments/notebooks/hsearch_ab.ipynb` CONFIG: `ENGINE = "hcompact"`. Result-neutral like `KEEP_PATH` and `HIGH_SPEEDUP` — rows are byte-identical across engines (verified end-to-end through `run_ab` at budget 1,000: 16/16 rows equal minus `secs`, certificates present on every solve), so it stays out of the filename identity and files resume across engines. Direct use:
 
 ```python
 from experiments.heuristic_search.core.hcompact import greedy_search_hcompact

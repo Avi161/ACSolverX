@@ -1,15 +1,19 @@
 """Aggregate one budget's CoV sweep into per-presentation records + headline stats.
 
-Library for the week-5 website figures AND a CLI. Per budget B found in ../covsweep_{B}_66_subnc2pxysb_*.jsonl (chunk files excluded), the CLI writes into graphs/:
+Library for the week-5 website figures AND a CLI. Per budget B found in
+`results/stable_ac/cov/covsweep_{B}_66_subnc2pxysb_*.jsonl` (chunk files excluded), the CLI writes
+into `results/stable_ac/cov/graphs/`:
 
     per_presentation_b{B}.csv   one row per presentation, sorted by baseline 1M difficulty
     SUMMARY_b{B}.md             headline tables (landscape / lottery / best-z / aut split)
 
-Run from ACSolverX/:
-    .venv/bin/python3 results/stable_ac/cov/graphs/cov_summary.py             # all budgets found
-    .venv/bin/python3 results/stable_ac/cov/graphs/cov_summary.py --budget 1000
+Run from anywhere:
+    .venv/bin/python3 -m experiments.stable_ac.cov.figures.cov_summary             # all budgets found
+    .venv/bin/python3 -m experiments.stable_ac.cov.figures.cov_summary --budget 1000
 
 Baseline = the sweep's own control row (z_word null). "best z" = the solved CoV row with the fewest nodes (ties: shortest path, then z_word). Class split: relabel = aut_canon_orig == aut_canon_cov (same Aut(F2)-orbit, a rename), moved = different orbit (a genuinely different problem).
+
+⚠ **This script no longer reproduces the committed `per_presentation_b*.csv` / `SUMMARY_b*.md`, and that is a fix, not a regression.** While it lived at `results/stable_ac/cov/graphs/` its `ACS` was built as `join(HERE, "..", "..", "..")`, which is one level short of the repo root — it resolved to `<repo>/results`, so `COMBINED` pointed at a `<repo>/results/benchmark/...` that never existed and `_nodes_1m()` silently took its `return {}` branch on every run ever made. The shipped CSVs therefore carry a **blank `nodes_1M` column** and a row order derived from it. The walk-up above resolves the true repo root, so `_nodes_1m()` now returns real data: a regeneration populates that column and reorders rows (measured: 32/66 rows move at b100 and b1000, 55/66 at b10000). The committed files are deliberately left as they are — they are the record of what was published — so **regenerate only in a separate, clearly-labelled commit**, never as a side effect of another change. `OUT_DIR` and `COV_DIR` are unchanged by the move.
 """
 import argparse
 import collections
@@ -20,9 +24,25 @@ import os
 import re
 import statistics
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-COV_DIR = os.path.normpath(os.path.join(HERE, ".."))
-ACS = os.path.normpath(os.path.join(HERE, "..", "..", ".."))
+
+def _repo_root():
+    """Walk up to the directory holding both `experiments/` and `data/`.
+
+    Never count `os.path.dirname()` levels: a dirname chain encodes this file's depth and
+    silently repoints at the wrong directory the moment the file moves. This module was moved
+    out of `results/stable_ac/cov/graphs/` for exactly that reason.
+    """
+    d = os.path.abspath(os.path.dirname(__file__))
+    while d != "/":
+        if os.path.isdir(os.path.join(d, "experiments")) and os.path.isdir(os.path.join(d, "data")):
+            return d
+        d = os.path.dirname(d)
+    raise RuntimeError("repo root not found")
+
+
+ACS = _repo_root()
+COV_DIR = os.path.join(ACS, "results", "stable_ac", "cov")
+OUT_DIR = os.path.join(COV_DIR, "graphs")
 COMBINED = os.path.join(ACS, "benchmark", "combined", "benchmark_combined_66.csv")
 _CHUNK = re.compile(r"_c\d+of\d+_")
 
@@ -297,8 +317,8 @@ def main():
     for b, path in files.items():
         agg = aggregate(load_rows(path))
         t = agg["totals"]
-        write_csv(agg, os.path.join(HERE, f"per_presentation_b{b}.csv"))
-        write_md(agg, os.path.join(HERE, f"SUMMARY_b{b}.md"), os.path.basename(path))
+        write_csv(agg, os.path.join(OUT_DIR, f"per_presentation_b{b}.csv"))
+        write_md(agg, os.path.join(OUT_DIR, f"SUMMARY_b{b}.md"), os.path.basename(path))
         print(f"budget {b}: {t['n_pres']} pres ({'complete' if t['complete'] else 'PARTIAL'}), "
               f"baseline {t['base_solved']}, best-z {t['best_solved']}, flips {t['flips']}, "
               f"never {t['never']}  ->  per_presentation_b{b}.csv, SUMMARY_b{b}.md")

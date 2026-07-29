@@ -1,6 +1,6 @@
 # [2026-07-22] A results file is somebody's test fixture — grep before you move or delete one [TRAP]
 
-Pruning the w5 restart branch turned `tests/greedy/test_verify_results.py` red: 12 of its 13 tests died on `FileNotFoundError`. The natural read was "the prune broke it". It did not. Running the same file on the parent branch `research/stable-ac-escape` reproduced all 12 failures, so both breaks predate this work by days:
+Pruning the w5 restart branch turned `tests/greedy/test_verify_results.py` red (now `tests/stable_ac/test_verify_results.py`): 12 of its 13 tests died on `FileNotFoundError`. The natural read was "the prune broke it". It did not. Running the same file on the parent branch `research/stable-ac-escape` reproduced all 12 failures, so both breaks predate this work by days:
 
 - `46548c4` (*nocov: archive pre-automorphism-minimisation results to old_benchmark/*) moved `results/stable_ac/nocov/nocov_combined_11_A1_100_mrl64_cyc_07_13_26.jsonl` down one directory. The test's `NOCOV_DIR` constant still pointed at the old level.
 - `4f63f97` (*CoV sweep: no-length-knob subword family…*) deleted `results/stable_ac/cov/cov_100_11_zf1_mrl24_cyc_s10r1_07_13_26.jsonl` outright, superseded by the `covsweep_*` family. The test's `COV_100` constant still named the deleted file.

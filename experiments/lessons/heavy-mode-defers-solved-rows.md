@@ -65,13 +65,13 @@ Two incidental bugs fixed on the way:
 
 ## Verified
 
-Regression tests: `experiments/greedy_tests/test_runner_recovery.py` (5 tests, fast tier,
+Regression tests: `tests/greedy/test_runner_recovery.py` (5 tests, fast tier,
 budget 500). Checked non-vacuous — **3 of the 5 fail against the pre-fix `run_baseline.py`**,
 each with the `MemoryError` escaping `run_dataset`. The other two pin invariants the *fix*
 could break (one row per pres_id; a second resume is a no-op).
 
 `pytest experiments/greedy_tests` → 471 passed / 1 xfailed; `--runslow` → 514 passed.
-`tests/wandb_offline_integration.py heavy` independently reports "4 unique rows,
+`tests/wandb_tracking/wandb_offline_integration.py heavy` independently reports "4 unique rows,
 1 solved+recovered (no duplicate rows from the deferred/recovery loop)".
 
 Ad-hoc, before the suite existed: `ms640_solved[620:640]`, `N_WORKERS=2`, at **10k and 5k**

@@ -60,8 +60,13 @@ DEFAULTS = dict(
 
 
 def _repo_root(start=None):
-    """Walk up to the dir holding experiments/ + data/ (never a dirname chain)."""
-    root = os.path.abspath(start or os.getcwd())
+    """Walk up to the dir holding experiments/ + data/ (never a dirname chain).
+
+    Anchored on this file, not `os.getcwd()`: a cwd anchor makes the result depend on where the
+    process was launched, so running the module from anywhere but the repo root walked up from the
+    wrong place and returned "/" without raising.
+    """
+    root = os.path.abspath(start or os.path.dirname(__file__))
     while root != "/" and not (os.path.isdir(os.path.join(root, "experiments"))
                                and os.path.isdir(os.path.join(root, "data"))):
         root = os.path.dirname(root)

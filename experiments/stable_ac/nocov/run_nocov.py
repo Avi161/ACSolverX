@@ -41,7 +41,7 @@ DEFAULT_CONFIG = {
     "CYCLIC_REDUCE": True,
 
     # search_n_fast: same search, fused numba bookkeeping, ~5x faster, every
-    # row field bit-identical (test_solvern_fast.py pins whole-dict parity).
+    # row field bit-identical (tests/stable_ac/test_solvern_fast.py pins whole-dict parity).
     # Result-neutral, so it stays OUT of the filename identity: files written
     # in either mode resume each other.
     "HIGH_SPEEDUP": False,

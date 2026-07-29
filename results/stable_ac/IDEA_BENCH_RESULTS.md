@@ -78,3 +78,5 @@ So the honest statement is: CoV substitution reaches solve-enabling representati
 ```
 
 *Data: `results/stable_ac/idea_bench/idea_bench_combined_22_final.jsonl` (748 cells = 17 strategies × 22 presentations × 2 budgets). Strategies: 6 hand-written + 10 from a parallel subagent fan-out (each a pure candidate-generator, blocked-ideas list enforced), all measured in one process for comparability. July 2026.*
+
+*The raw jsonl went with the pruned `idea_bench` producer — see [`PRUNED.md`](../../PRUNED.md). The numbers above are self-contained and do not depend on it.*

@@ -40,7 +40,7 @@ anywhere in this pipeline — zero search nodes — so the HIGH_SPEEDUP solver
 knob does not apply.
 
 CLI (local smoke runs only — production runs on Colab via
-``mu_ladder_big.ipynb``):
+``experiments/notebooks/stable_ac/mu_ladder_big.ipynb``):
     .venv/bin/python3 -m experiments.stable_ac.cov.ladder.mu_ladder_big \
         --rungs 2 --beam 4 --time-per-class 30 --chunks 2 --names aca_0 aca_1
 """

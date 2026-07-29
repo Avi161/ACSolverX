@@ -12,12 +12,13 @@ What each directory here *is*: [`README.md`](README.md).
 | dir | role | README |
 |---|---|---|
 | `search/` | the two solvers (heavy + compact) — they pop identically | — |
-| `stable_ac/` | shared core (`solvern.py`, `word_families.py`) + one folder per pipeline: `nocov/` (Branch A) and `cov/` (Branch B). `cov/` keeps `cov.py` at its top and splits the rest into `run/` `ladder/` `escape/` `figures/` `verify/` `notebooks/` `ak3/` (tests in `tests/stable_ac/`) | [→](stable_ac/README.md) |
-| `analysis/` | builds the frozen benchmark at `benchmark/` (ladder + reach + combined) and `benchmark_arms.py`, what each technique costs on it | [→](analysis/README.md) |
+| `stable_ac/` | shared core (`solvern.py`, `word_families.py`) + one folder per pipeline: `nocov/` (Branch A) and `cov/` (Branch B). `cov/` keeps `cov.py` at its top and splits the rest into `run/` `ladder/` `escape/` `figures/` `verify/` `ak3/` (tests in `tests/stable_ac/`) | [→](stable_ac/README.md) |
+| `notebooks/` | every Colab notebook in the repo, consolidated: `greedy_baseline.ipynb`, `hsearch_ab.ipynb`, and `stable_ac/` (`cov_baseline.ipynb`, `mu_ladder_big.ipynb`, `nb2_big_ladder.ipynb`, `stable_ac_nocov.ipynb`) | [→](notebooks/README.md) |
+| `analysis/` | builds the frozen benchmark at `benchmark/` (ladder + reach + combined) and `benchmark_arms.py`, what each technique costs on it (tests in `tests/analysis/`) | [→](analysis/README.md) |
 | `equivalence_classes/` | `lib/` `search/` `pipeline/` `verify/` `phases/` (tests in `tests/equivalence_classes/`) | [→](equivalence_classes/README.md) |
-| `greedy_tests/` | the greedy test SUPPORT code — `spec/` `fixtures/` `adapters.py` `tools/` `golden/` (imported by production too); the tests live in `tests/greedy/` | [→](greedy_tests/README.md) |
+| `greedy_tests/` | the greedy test SUPPORT code — `spec/` `fixtures/` `adapters.py` `tools/` `golden/` (imported by production too); the tests live in `tests/greedy/`, `tests/stable_ac/`, `tests/analysis/` | [→](greedy_tests/README.md) |
 | `clustering/` | unsupervised structure of the 237 minimal automorphic states (tests in `tests/clustering/`) | [→](clustering/README.md) |
-| `heuristic_search/` | block/knot **heap orderings** for the greedy — 17/60 → 30/60 at budget 100. `core/` (the library) `exp/` (EXP-01…27) `runners/` `verify/` `splits/` (tests in `tests/heuristic_search/`) | [→](heuristic_search/README.md) |
+| `heuristic_search/` | block/knot **heap orderings** for the greedy — 17/60 → 30/60 at budget 100. `core/` (the library) `exp/` (EXP-01…29; no `exp28` file — it was the Colab scale run through `runners/run_ab.py`) `runners/` `verify/` `splits/` `figures/` (tests in `tests/heuristic_search/`) | [→](heuristic_search/README.md) |
 | `lessons/` | 68 shipped bugs. Read via the index, not by browsing. | [→](lessons/README.md) |
 
 Results go to `results/<area>/`, never beside the code that made them, and never under `tests/`. The frozen evaluation set is `benchmark/` at the repo root — derived from `results/greedy_baseline/`, but consumed as an *input* by two dozen files, which is why it is not under `results/`.
@@ -63,8 +64,9 @@ wrong *without raising*. Keep the walk-up.
 - numba: cast **both** ternary branches to `int64`; never round-trip a `uint64` through Python.
 
 **`greedy_tests/`** — the greedy test SUPPORT code (`spec/`, `fixtures/`, `adapters.py`, `tools/`, `golden/`);
-the tests themselves are in `tests/greedy/`. **Run them after ANY change to the three files above or to this
-support code** (`pytest tests/greedy -q`; `--runslow` before a push). See its `README.md`.
+the tests themselves are in `tests/greedy/`, `tests/stable_ac/`, and `tests/analysis/`. **Run them after ANY
+change to the three files above or to this support code** (`pytest tests/greedy tests/stable_ac tests/analysis -q`;
+`--runslow` before a push). See its `README.md`.
 - Three layers, so a bug in one can't hide a bug in another: a general-`n` spec, the abelianization
   invariant the solver never computes, and a `SolverAdapter` seam the stable-AC port plugs into.
   [[WORKS]](lessons/greedy-test-suite-three-layers.md)
@@ -92,12 +94,12 @@ support code** (`pytest tests/greedy -q`; `--runslow` before a push). See its `R
 **`stable_ac/solvern.py`** — the general-`n` numba solver. Two symbol orders coexist and must never
 be conflated: canonicalisation/relator-sort uses BOOTH order `(-abs(g), g>0)`; the heap tie-break
 uses ASCII order `(g>0, abs(g))`. Trace equality with `greedy_tests/spec/` at `n_gen≤3` is what
-`test_solvern.py` pins — any change that survives it is safe. Same reduce/Booth lessons as
+`tests/stable_ac/test_solvern.py` pins — any change that survives it is safe. Same reduce/Booth lessons as
 `search/greedy_baseline.py` apply.
 
 **`stable_ac/solvern_fast.py`** — `search_n_fast`, the HIGH_SPEEDUP twin: fused kernel + packed
 bytes as heap-tiebreak-AND-state, parent/move pointers kept, so it owes `search_n` **whole-dict
-equality, paths included** (`test_solvern_fast.py`). Two traps its docstring names: the child
+equality, paths included** (`tests/stable_ac/test_solvern_fast.py`). Two traps its docstring names: the child
 relator sort is length-first (booth-lex alone misorders `x` vs `ZZ`), and unpacking must cast
 uint8→signed before negating. HIGH_SPEEDUP is result-neutral — never in a filename identity.
 
@@ -163,7 +165,7 @@ Tests: `tests/stable_ac/test_orbit_greedy.py`.
 **`stable_ac/verify_results.py`** — the certificate verifier: replays every solved row's path
 through `greedy_tests/spec/` ONLY (never a solver — the independence is the point; a solver bug or
 a gamed test suite cannot self-certify). Treat any edit here with the same suspicion as an edit to
-`spec/`. `test_verify_results.py` tampers with real certificates and requires it to fail. Run it on
+`spec/`. `tests/stable_ac/test_verify_results.py` tampers with real certificates and requires it to fail. Run it on
 any results jsonl before believing the numbers: `-m experiments.stable_ac.verify_results`. Both
 runners stamp `git_commit` into every row (provenance only — NEVER part of the resume identity).
 
@@ -172,7 +174,7 @@ decided by what it *does*, not by what it imports: `core/` the library (`hlab` t
 ordering + harness, `hsearch` the original 25 hand-written orderings, `hfast`/`hsolve`/`hcompact`
 the solver variants, `lab`, `perbin`), `exp/` the numbered EXP-01…27 program, `runners/` the entry
 points that write to `results/`, `verify/` the equivalence checks between solver variants, `splits/`
-the one-shot freezers. Notebook stays at the top.
+the one-shot freezers. Notebook lives at [`notebooks/hsearch_ab.ipynb`](notebooks/hsearch_ab.ipynb).
 - **`core/hlab.py` owns the three output paths, and they have three different lifetimes**: `RESULTS`
   (synthesis documents), `LOGS` = `results/heuristic_search/runs/` (per-experiment rows), `SPLITS`
   (the frozen evaluation splits). A `freeze_*` script writes `SPLITS` once; nothing regenerates it,
@@ -201,8 +203,8 @@ block is the transform × ordering 2×2 at budget 1,000 (`heuristic_search/runne
 the one block whose arms do **not** all solve — an unsolved row there is `nodes = 1,000` + blank path, so
 never take a mean over it.
 
-**`greedy_baseline.ipynb`** — CONFIG / SETUP / RUN. This 3-cell shape is THE pattern for every
-Colab notebook in the repo (cov_baseline.ipynb follows it; extra cells only with a structural
+**[`notebooks/greedy_baseline.ipynb`](notebooks/greedy_baseline.ipynb)** — CONFIG / SETUP / RUN. This 3-cell shape is THE pattern for every
+Colab notebook in the repo (`notebooks/stable_ac/cov_baseline.ipynb` follows it; extra cells only with a structural
 reason; results always jsonl). [[WORKS]](lessons/colab-notebook-pattern.md)
 - [a push does not reach a running Colab](lessons/notebook-push-does-not-reach-colab.md) · [`git pull` is not a module reload](lessons/git-pull-is-not-a-module-reload.md)
 - [`BRANCH` must match git](lessons/notebook-branch-must-match-git.md) · [don't nest the clone](lessons/colab-setup-nested-clone.md) · [Drive mount root isn't writable](lessons/colab-drive-mount-root-not-writable.md)

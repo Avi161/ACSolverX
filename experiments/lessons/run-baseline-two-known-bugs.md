@@ -6,7 +6,7 @@ the **desired** behaviour under `xfail(strict=True)`, so the suite stayed green 
 turn RED the moment someone fixed the bug.
 
 **Both are now fixed.** The markers are gone and the tests live in
-`experiments/greedy_tests/test_crash_resume.py` as ordinary regressions.
+`tests/greedy/test_crash_resume.py` as ordinary regressions.
 
 1. **`todo[0]` before the empty check.** `_w1, _w2 = todo[0][1], todo[0][2]` ran unconditionally
    inside `if high and n_workers > 1`. Re-running a **fully-resumed** heavy sweep (`n_todo == 0`)

@@ -1,5 +1,5 @@
 # Production config for the Branch A No-CoV sweep (experiments/stable_ac/nocov/run_nocov.py).
-# Intended runner: Colab via experiments/stable_ac/nocov/stable_ac_nocov.ipynb (so MOUNT_DRIVE and
+# Intended runner: Colab via experiments/notebooks/stable_ac/stable_ac_nocov.ipynb (so MOUNT_DRIVE and
 # USE_WANDB are ON here). LOCAL runs must keep every budget <= 1000 nodes —
 # run_nocov refuses a bigger budget unless ACSOLVERX_ALLOW_BIG=1 is set (the
 # notebook RUN cell sets it on Colab).
@@ -19,7 +19,7 @@ MAX_RELATOR_LENGTH: 64        # per-relator cap for the 3-relator search (NO tot
 CYCLIC_REDUCE: true           # cyclically reduce after each move (matches the baseline)
 HIGH_SPEEDUP: true            # search_n_fast: same search, fused numba bookkeeping, ~5x
                               # faster; every row field bit-identical (whole-dict parity
-                              # pinned by test_solvern_fast.py). Result-neutral -> NOT in
+                              # pinned by tests/stable_ac/test_solvern_fast.py). Result-neutral -> NOT in
                               # the filename identity; files resume across modes.
 
 A1_WORDS: null                # null -> word_families.A1_DEFAULT_WORDS (~16 curated |w|<=4 words)

@@ -9,14 +9,15 @@ Every artifact any experiment has produced. Each directory has a different job.
 | **`greedy_baseline/`** | the raw baseline runs — 10 `.jsonl`, one per (budget, dataset) | `experiments/run_baseline.py`, on Colab |
 | **`stable_ac/nocov/`** | Branch-A (No-CoV) sweep jsonl, one per `(benchmark, family, budget)` | `experiments/stable_ac/nocov/run_nocov.py` |
 | **`stable_ac/cov/`** | Branch-B (one-shot CoV) jsonl, one per budget, `cov` + `covbase` modes | `experiments/stable_ac/cov/run/run_cov.py` |
-| **`stable_ac/mu_scan/`** | the orbit-floor μ-ladder: depth-2 descent map, the rung ladders, `MU_SCAN_FINDINGS.md` | `experiments/stable_ac/cov/{mu_descent_scan,mu_ladder}.py` |
+| **`stable_ac/cov/graphs/`** | CoV-vs-baseline node comparison: `RESULTS.md`, `SUMMARY_b*.md`, `per_presentation*.csv`, `fig1_composition.png`, `fig2_distribution_correlation.png` | `experiments/stable_ac/cov/figures/{cov_summary,make_figs}.py` |
+| **`stable_ac/mu_scan/`** | the orbit-floor μ-ladder: depth-2 descent map, the rung ladders, `MU_SCAN_FINDINGS.md` | `experiments/stable_ac/cov/ladder/{mu_descent_scan,mu_ladder}.py` |
 | **`stable_ac/mitm/`** | Aut-quotient meet-in-the-middle vs TRIVIAL, one jsonl per length ceiling | `experiments/stable_ac/cov/run/run_mitm_aut.py` |
 | **`stable_ac/cov/allcov_escape/`** | the whole subword-CoV family of the eight b10k-resistant rows, re-run at a higher budget; keyed by output pair, not presentation | `experiments/stable_ac/cov/escape/allcov_escalate.py` |
 | **`comparison/`** | cross-arm tables: greedy vs best-CoV vs tuned heuristic at a matched budget | `experiments/heuristic_search/runners/three_way_b10k.py` |
 | **`stable_ac/theory/`** | proved/refuted notes from the escape push (μ criterion, MS template, orbit floors) | written by hand, ac-advisor reviewed |
 | **`stable_ac/IDEA_BENCH_RESULTS.md`** | the 16-strategy start-transform race on combined_22 — evidence kept, [producer pruned](../PRUNED.md) | ⚠ `experiments/stable_ac/idea_bench/`, removed |
 | **`stable_ac/ak3/`** | the AK(3) universal test: two certificates, the sweep jsonl, `RESULTS.md` | `experiments/stable_ac/cov/ak3/` |
-| **`equivalence_classes/`** | the 261 unsolved reps are really **126 distinct problems** — and the proof | `experiments/equivalence_classes/` |
+| **`equivalence_classes/`** | the 261 unsolved reps are really **124 distinct problems** — and the proof (`verify_proofs.py` asserts that exact count; 125/126/168 answer different questions — see [`data/README.md`](../data/README.md)) | `experiments/equivalence_classes/` |
 | **`superseded/`** | artifacts kept for provenance only, never cited — see `superseded/README.md` | — |
 
 ---

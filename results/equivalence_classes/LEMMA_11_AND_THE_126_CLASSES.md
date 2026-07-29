@@ -265,7 +265,7 @@ presentations of the trivial group), so it applies here.
 > **would be very useful.**
 
 Step 3 proves the decomposition **exists** by a normal-closure argument. It does not construct the
-`wₖ`, and bounds nothing. The repo already records this — `experiments/greedy_tests/test_stable_ac.py:176`:
+`wₖ`, and bounds nothing. The repo already records this — `tests/greedy/test_stable_ac.py:176`:
 *"Lemma 11's removal is proved with an unbounded number of substitutions."*
 
 **Consequence:** Lemma 11 tells you an AC path exists. It does **not** hand you one, and it cannot be
@@ -458,4 +458,4 @@ What the equivalence work changed is only the **shape of the job**:
 | the 4-member class 4 | `results/equivalence_classes/sweep/classes_sweep_seam_28_250.csv` |
 | the 202/260 and 210/235 collisions | `results/greedy_baseline/greedy_1000000_261_mrl48_cyc_all_07_09_26.jsonl` |
 | Branch A = "Lemma-11 form"; pool = the 126 | `plan/week 4/STABLE_AC_PIPELINE_PLAN.md` |
-| "unbounded number of substitutions" | `experiments/greedy_tests/test_stable_ac.py:176` |
+| "unbounded number of substitutions" | `tests/greedy/test_stable_ac.py:176` |

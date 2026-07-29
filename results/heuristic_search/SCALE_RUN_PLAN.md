@@ -8,7 +8,7 @@ The bench66 run at 100k landed. The raw gap metric read "turned over" — a satu
 
 ## What to run
 
-The notebook (`experiments/heuristic_search/hsearch_ab.ipynb`), CONFIG cell only:
+The notebook (`experiments/notebooks/hsearch_ab.ipynb`), CONFIG cell only:
 
 ```python
 DATASET   = "unsolved124",
