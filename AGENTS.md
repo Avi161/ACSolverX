@@ -1,3 +1,12 @@
+# AGENTS.md — ACSolverX
+
+## Hard rules
+
+- **Daily push log (mandatory before any `git push`).** Before pushing this branch, write 1–3
+  sentences into `logs/DD-MM-YYYY.md` (create that day’s file if missing) saying what was done,
+  with simple links to files added or changed; commit the log, then push. Same rule in
+  [`CLAUDE.md`](CLAUDE.md).
+
 # Lessons Learned
 
 ### 2026-07-14 Equivalence tutorial verification environment

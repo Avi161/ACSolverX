@@ -12,6 +12,9 @@ and a bloated CLAUDE.md gets ignored.
 
 - **Never open a PR.** Work lands by merging into the active branch. A worktree merges back
   into the branch it was created from (e.g. `test/stable-ac-moves-w4`), never `main`.
+- **Daily push log (mandatory before any `git push`).** Append 1–3 sentences on what changed
+  to `logs/DD-MM-YYYY.md` (create the day’s file if needed), with simple links to files added
+  or changed; do not push until that entry is committed. Same rule in [`AGENTS.md`](AGENTS.md).
 - **Never run a search above a `node_budget` of 1,000 yourself — no exceptions.** Any search
   Claude launches (local shell, test, repro, scratch script) is capped at **1,000 nodes** and
   ~10-20 presentations. Production budgets are the user's to run, on Colab. A search at budget
