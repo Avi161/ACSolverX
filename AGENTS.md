@@ -1286,3 +1286,13 @@
 
 - [TRAP] Successively evading the cyclic three-point obstruction modulo 3, 5, and 7 looked like a growing family of independent prime constraints, but all came from the single integral covector `(1,-1,1)` and only measured divisibility of one quadratic defect value.
 - [WORKS] When the same finite action reappears at several primes, compute its operator cokernel over the integers before adding another prime. Here the image is exactly `ker(x-y+z)`, so simultaneous vanishing at every prime is the integral equation `x-y+z=0`; changing to inequivalent four-cycle representations supplied the genuinely new obstructions.
+
+### 2026-07-28 Preserve radical translations when intersecting quadrics
+
+- [TRAP] The first eight-direction `F=G=0` search quotient-ed the cyclic quadratic `F` by its three-dimensional radical, then fixed the radical coordinates to one mod-four representative while testing `G`. The resulting 24,584,720-prefix empty search was incomplete because `G` varies along two of those radical directions.
+- [WORKS] After quotienting one quadratic, retain every congruence-preserving radical translate in the remaining equations. Here `G` restricted to the two noncommon radical directions has positive-definite Hessian `((1024,-1520),(-1520,2272))`; solving that binary quadratic exactly found the missed simultaneous zeros without enlarging the quotient-coordinate box.
+
+### 2026-07-28 Name signed integral lifts separately
+
+- [TRAP] Result 154's auxiliary discovery proof called the mod-two four-cycle covector `(1,0,1,1,0,1)` integral, then quoted the value 64 computed with its signed integral lift `(1,0,-1,1,0,1)`. The two agree modulo two but give different integer values.
+- [WORKS] Whenever an odd-characteristic or integral obstruction lifts a mod-two covector, name the lift separately and verify it on every exact operator column. Define `G=<signed covector, defect>` before quoting integral Hessians or values; never infer the integer formula from its mod-two reduction.

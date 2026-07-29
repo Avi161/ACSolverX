@@ -8209,6 +8209,36 @@ exact replays determine the model, 28 further points validate it, and all
 complete known seven-direction integer span is degree-two obstructed.  The
 full homogeneous syzygy module remains unclassified.
 
+**Result 154 (a second twisted four-cycle closes the known eight-direction span).**
+There is a 35-entry, coefficient-norm-44 homogeneous syzygy $h$ whose
+$L_0$-source is
+\[
+h_0=e_T+e_{TTct}.
+\]
+Six exact Stallings-cover paths reconstruct its edge flow and prove
+\(\sum_iL_ih_i=0\).  It raises the known homogeneous-direction rank from
+seven to eight modulo two.  Its residual has free length 1204, kernel
+length 212, wedge support 322, and kills all nine Result 153 mod-two bits.
+
+The new four-point action
+\[
+c=(1\ 2),\qquad t=(0\ 1\ 3)
+\]
+has operator-image rank five over \(\mathbb F_2\).  The all-ones wedge
+covector annihilates the image, while the eighth residual maps to
+\[
+(-8,-7,3,-5,22,-4),
+\]
+whose coordinate sum is one.  Hence adjoining the defect raises the rank
+to six.
+
+Together with the nine preceding bits, this new bit is an integer-valued
+quadratic function of eight coefficients.  Forty-five exact replays
+determine the complete model, 36 further points validate it, and all
+\(4^8=65536\) mod-four classes have nonzero obstruction vector.  Therefore
+the complete known eight-direction integer span is degree-two obstructed.
+The full homogeneous syzygy module remains unclassified.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

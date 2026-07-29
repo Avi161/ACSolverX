@@ -802,6 +802,49 @@ The exact proof and checker are
 \end{gathered}
 \]
 
+### A second twisted four-cycle closes the known eight-direction span
+
+An eighth exact homogeneous direction $h$ starts from
+
+\[
+h_0=e_T+e_{TTct}
+\]
+
+in the $L_0$ component.  Six exact Stallings-cover paths reconstruct a
+35-entry, coefficient-norm-44 edge flow satisfying
+\(\sum_iL_ih_i=0\).  It raises the known direction rank from seven to
+eight.  Its residual has free length 1204, kernel length 212, wedge support
+322, and kills all nine Result 153 mod-two bits.
+
+For the four-point action
+
+\[
+c=(1\ 2),\qquad t=(0\ 1\ 3),
+\]
+
+the induced operator image has rank five over \(\mathbb F_2\), and the
+all-ones wedge covector annihilates it.  The eighth residual maps to
+
+\[
+(-8,-7,3,-5,22,-4),
+\]
+
+whose coordinate sum is one, so the augmented image has rank six.
+
+The ten mod-two bits are integer-valued quadratic functions of the eight
+direction coefficients.  Forty-five exact replays determine the model and
+36 independent points validate it.  No class in \((\mathbb Z/4)^8\) has
+zero obstruction vector.  Hence every integer combination in the known
+eight-direction span is degree-two obstructed.
+
+The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_EIGHT\_DIRECTION\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_eight\_direction\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -828,8 +871,11 @@ The exact proof and checker are
    in the resulting six-direction integer span. A seventh balanced
    $L_0$-source direction escapes all six bits; two four-cycle actions add
    three covectors which separate all 16384 mod-four classes in the resulting
-   seven-direction span. The next exact problem is to classify balanced
-   two-source flows outside that span, or promote the nine mod-two
-   functionals to a theorem about the full homogeneous syzygy module.
+   seven-direction span. An eighth balanced $L_0$-source direction then
+   escapes all nine bits; a second twisted four-cycle action adds a tenth
+   covector which separates all 65536 mod-four classes in the resulting
+   eight-direction span. The next exact problem is to classify the full
+   finite-state syndrome of balanced two-source flows, or promote the ten
+   mod-two functionals to a theorem about the full homogeneous syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.
