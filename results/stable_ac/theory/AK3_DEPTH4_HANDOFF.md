@@ -925,6 +925,31 @@ The exact proof and checker are
 \end{gathered}
 \]
 
+### A double-transposition quotient closes the known eleven-direction span
+
+An eleventh exact direction begins with
+\[
+m_0=e_{TTcttt}+e_{cTcTct}.
+\]
+Its six exact paths reconstruct a 44-entry, coefficient-norm-55 syzygy and
+raise the known direction rank from ten to eleven.  The residual has free
+length 1696, kernel length 228, wedge support 515, and kills all thirteen
+Result 156 bits.
+
+For \(c=(1\ 2)\), \(t=(0\ 1)(2\ 3)\), the four-point wedge image has rank
+four and a two-dimensional annihilator.  The residual vector
+\((-29,-6,-3,20,-14,19)\) has covector values \((1,0)\), raising the rank
+to five.  The resulting fifteen quadratic bits have no zero on any of the
+\(4^{11}=4194304\) coefficient classes.
+
+The proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_ELEVEN\_DIRECTION\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_eleven\_direction\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -960,8 +985,11 @@ The exact proof and checker are
    resulting nine-direction span. A tenth balanced $L_0$-source direction
    escapes all eleven bits; a five-cycle quotient adds two covectors which
    separate all 1048576 mod-four classes in the resulting ten-direction
-   span. The next exact problem is to classify the full finite-state
-   syndrome of balanced two-source flows, or promote the thirteen mod-two
-   functionals to a theorem about the full homogeneous syzygy module.
+   span. An eleventh balanced $L_0$ direction escapes all thirteen bits; a
+   double-transposition quotient adds two covectors which separate all
+   4194304 mod-four classes in the resulting eleven-direction span. The next
+   exact problem is to classify the full finite-state syndrome of balanced
+   two-source flows, or promote the fifteen mod-two functionals to a theorem
+   about the full homogeneous syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

@@ -8297,6 +8297,27 @@ classes have nonzero obstruction vector.  Therefore the complete known
 ten-direction integer span is degree-two obstructed.  The full homogeneous
 syzygy module remains unclassified.
 
+**Result 157 (a double-transposition quotient closes the known eleven-direction span).**
+There is a 44-entry, coefficient-norm-55 homogeneous syzygy $m$ with
+\[
+m_0=e_{TTcttt}+e_{cTcTct}.
+\]
+Six exact paths prove \(\sum_iL_im_i=0\), and the known direction rank rises
+from ten to eleven.  Its residual has lengths 1696 and 228 before and after
+Schreier rewriting, wedge support 515, and kills all thirteen Result 156
+bits.
+
+For \(c=(1\ 2)\) and \(t=(0\ 1)(2\ 3)\), the four-point wedge operator
+image has rank four and a two-dimensional annihilator.  The residual maps
+to \((-29,-6,-3,20,-14,19)\), with covector values \((1,0)\), so the
+augmented rank is five.
+
+The resulting fifteen quadratic bits are determined by 78 exact replays
+and validated at 66 further points.  All \(4^{11}=4194304\) mod-four
+classes have nonzero syndrome.  Therefore the complete known
+eleven-direction span is degree-two obstructed; the full syzygy module
+remains open.
+
 ## Live lead
 
 The direct relation-splitting manufacture of
