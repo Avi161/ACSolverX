@@ -1398,3 +1398,8 @@
 
 - [TRAP] The first raw-stream manifest made its terminal overlap branch require `len(v)=b(q)`. Once the entire cancellable trailing `T/t` run of `q` is consumed, the preceding `c` (or exhaustion of `q`) blocks further free cancellation, so `v` may retain an arbitrary canonical suffix; the live case `q=()`, `v=T` was incorrectly uncovered.
 - [WORKS] In bounded-overlap partitions, distinguish “the overlap bound is exhausted” from “the other operand is exhausted.” Prove symbolic coverage and disjointness for every terminal branch, then replay every fixed action against a bounded canonical-word audit before accepting the general proof; asserted JSON booleans and hashes are integrity evidence, not a derivation.
+
+### 2026-07-29 Redact process arguments before reporting an audit
+
+- [TRAP] Printing full command lines from a broad process scan can expose credentials embedded in unrelated application-worker arguments even when the audit target is only ACSolverX proof/test runtimes.
+- [WORKS] Resolve process identity locally, but redact values following credential-bearing flags (`--api-key`, `--token`, `--secret`, authorization headers, and key-like environment assignments) before any tool output is surfaced. Report only the exact PID/tree/evidence needed for the stale-process decision, and omit unrelated application infrastructure.
