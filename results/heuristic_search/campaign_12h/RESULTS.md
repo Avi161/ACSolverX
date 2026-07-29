@@ -1,61 +1,47 @@
-# Campaign 12h RESULTS — anti-overfit heuristic evaluation
+# Campaign 12h — anti-overfit heuristic evaluation
 
-Updated: `2026-07-29T02:44:59.763806+00:00`
+Updated: `2026-07-29T03:08:09.170584+00:00` · wall end `2026-07-29T14:01:44+00:00` · remaining `10.89 h`
 
-## Advisor gate
-
-`ac-advisor` **BLOCK**ed fitting on the ~1100 automorphic/CoV pool (1043 unsolved-descended; EXP-27/10 already ties; no dynamic range on unsolved @1000).
-This campaign follows the **approved evaluation-only** re-scope on never-read AC1M (MS pairs excluded), budget **1000**, cap **48**.
+Advisor **BLOCK**ed fitting on the CoV/automorphic unsolved-descended pool; this run is **evaluation-only** on never-read AC1M (+ ms640 clean null), budget 1000, cap 48. Negatives mean unsolved within budget 1000.
 
 ## Screen (length-only denominator)
 
-- Screened: **13971**
-- Easy (<100 nodes): 8944
-- Mid (100–999): 2617
-- Hard (unsolved @1000): 2410
-- Solve rate: 11561/13971 (82.7%)
+- Screened rows: **24173**
+- Easy (solved <100 nodes): 15437
+- Mid (solved 100–999 nodes): 4517
+- Hard (unsolved at 1000): 4219
 
-## Go / no-go
+- Solve rate @1000: **19954/24173** (82.5%)
 
-**GO for evaluation.** AC1M has real mid/hard mass. Mid solve-rate cannot separate arms (length solves mid by construction). Read **hard recoveries** and **mid speed**.
+## Go / no-go (dynamic range)
 
-## Hard-band recoveries (490 complete idxs)
+Mid-band size (length-only solved in [100,1000)): **4517**.
 
-| arm | recovered | rate |
-|---|---:|---:|
-| `length` | **0/490** | 0.0% |
-| `recommended` | **93/490** | 19.0% |
-| `mk8` | **70/490** | 14.3% |
-| `k8` | **39/490** | 8.0% |
-| `kms5` | **84/490** | 17.1% |
-| `s24` | **174/490** | 35.5% |
+**GO for evaluation** — mid-band large enough to compare pre-registered arms (still no fitting).
 
-- Any non-length recovery: **215/490** (43.9%)
-- `s24` ∩ `recommended`: 59
-- `s24` not recovered by recommended: 115
+## Pre-registered arms on mid-band
 
-## Mid-band speed (1065 complete idxs)
+| arm | solved | n | mean nodes (solved) |
+|---|---:|---:|---:|
+| `length` | **1372/1372** | 1372 | 157.0 |
+| `recommended` | **1344/1372** | 1372 | 236.4 |
+| `mk8` | **1288/1372** | 1372 | 300.5 |
+| `k8` | **798/1372** | 1372 | 145.0 |
+| `kms5` | **1353/1372** | 1372 | 188.7 |
+| `s24` | **1364/1372** | 1372 | 122.3 |
 
-| arm | still solved | mean nodes | med nodes | faster than length | slower/fail |
-|---|---:|---:|---:|---:|---:|
-| `length` | 1065/1065 | 170.1 | 146 | 0 | 0 |
-| `recommended` | 1041/1065 | 255.8 | 184 | 393 | 670 |
-| `mk8` | 992/1065 | 324.4 | 237 | 281 | 784 |
-| `k8` | 602/1065 | 150.8 | 94 | 419 | 645 |
-| `kms5` | 1047/1065 | 203.4 | 145 | 470 | 588 |
-| `s24` | 1058/1065 | 131.3 | 96 | 816 | 242 |
+## Matched mid-band: vs length-only
 
-## Verdict
+- `recommended` vs length: better 496 / worse 873 / same 3
+- `mk8` vs length: better 344 / worse 1028 / same 0
+- `k8` vs length: better 545 / worse 826 / same 1
+- `kms5` vs length: better 585 / worse 779 / same 8
+- `s24` vs length: better 1060 / worse 297 / same 15
 
-1. **Best pre-registered arm on never-read AC1M hard band: `L + 24·S`** — largest recovery rate and often faster on mid.
-2. **Full RECOMMENDED helps hard somewhat but is slower / loses mid solves** vs length — not a free upgrade off the Miller–Schupp distribution.
-3. **Knot-heavy one-features (`k8`, `mk8`) transfer poorly** here (many mid failures; weaker hard recoveries).
-4. **No new weights were fit.** These are frozen arms from prior subset-60 / shipped configs, scored once on a held-out-style never-read pool.
-5. Unsolved ACA presentations were **not** used for selection (none occurred).
+## Method notes
 
-## Files
-
-- [`PLAN.md`](PLAN.md) — advisor re-scope
-- [`FEATURE_CENSUS.md`](FEATURE_CENSUS.md)
-- `screen_length_ac1m.jsonl`, `arms_on_band.jsonl`, `arms_hard_full.jsonl`
+- Denominator fixed by length-only screen before any other arm.
+- AC1M rows excluding exact string pairs from ms640 / 1190MS / solved-aut / unsolved-124 tables.
+- No unsolved ACA reps used for selection (there is no selection).
+- See [`PLAN.md`](PLAN.md).
 
