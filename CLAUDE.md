@@ -35,6 +35,13 @@ Same rule in [`AGENTS.md`](AGENTS.md). Example day file: [`logs/28-07-2026.md`](
   `B` is exactly the first `B` pops of any longer search, so a bigger budget buys a slower
   repro, never a different behaviour. Prove the pipeline is budget-agnostic instead of
   brute-forcing one budget. [[TRAP]](experiments/lessons/local-run-budget-cap.md)
+- **Scout small, then scale only the winner.** Do **not** start heuristic / ordering
+  experiments as long wall-clock runs or huge node budgets. Compare arms in **short
+  scouts** (small budget, small subset, short wall); pick the best; **only then** raise
+  budget / write a Colab notebook for that winner so the user can run multi-CPU and hand
+  results back. A marathon at one huge `B` wastes time on losers and does not buy a
+  different ranking than the scout prefix. Same rule in [`AGENTS.md`](AGENTS.md).
+  [[WORKS]](experiments/lessons/scout-then-scale-budgets.md)
 - **ac-advisor plan gate.** When the user explicitly asks to call `ac-advisor`, you MUST have the plan (yours or the user's) verified BEFORE any implementation or review work on that task: launch the agent defined at [`.claude/agents/ac-advisor.md`](.claude/agents/ac-advisor.md) — as subagent type `ac-advisor` if registered, otherwise as a general-purpose agent with `model: opus` whose prompt is "Read ACSolverX/.claude/agents/ac-advisor.md in full and adopt it as your operating instructions, then review this plan: <the plan>". Reconcile its verdict — address every REVISE item, or surface any disagreement to the user — before writing code. Never pass `model: fable` to it.
 
 ## Repo context
@@ -111,6 +118,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - The mirror trap: a gap-vs-budget metric reads "turned over" exactly when the TREATMENT saturates — EXP-28's tuned arm finished the benchmark at 62.5k nodes (60/60), so the pre-registered gap verdict inverted a 6/6-vs-0/6 bin-9 win; truncate any Δ metric where either arm runs out of headroom and go row-level beyond it. [[TRAP]](experiments/lessons/gap-metric-saturates-when-the-treatment-wins.md)
 
 ### Heuristic search (heap orderings for the greedy)
+- **Scout small, then scale only the winner** — short ≤1k scouts to rank arms; raise budget / Colab only for the winner; never open with a huge-budget marathon. [[WORKS]](experiments/lessons/scout-then-scale-budgets.md)
 - **A data-derived denominator (a "decidable subset") belongs to the run that computed it — never score one run's arm against another run's denominator.** EXP-10 printed the prior best's count over its own 11-row set against this run's 24-row set and read as a breakthrough; on the same rows it was a dead tie. Gate any "we beat it" on the *measured* best-of-N optimism (1.23 presentations over 7 distinct half-split winners here), in code. [[TRAP]](experiments/lessons/compare-on-the-same-denominator.md)
 - **A good ordering feature is not automatically a good progress proxy — validate the proxy against real solves before ranking anything on it.** Knots-first (`L+8K`) is genuine ordering signal (17/40→23/40, phased 25/40), but knot-count *reached* does NOT predict a solve at the boundary (P(solve|knot drop)=0.10 vs 0.14 without; length-progress fails the same way). Report the never-solving second hump on real solves only. And headline every report on the *decidable* subset — 17/40→23/40 hides 16 saturated easy rows; the honest number is 1/24→7/24. [[TRAP]](experiments/lessons/knot-progress-is-not-a-solve-predictor.md)
 

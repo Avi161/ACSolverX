@@ -2,6 +2,23 @@
 
 ## Hard rules
 
+### ⛔ Scout small, then scale only the winner (heuristic experiments)
+
+Do **not** default to long wall-clock campaigns or huge node budgets.
+
+1. **Scout** — short runs, small node budgets (agent local cap is still ≤1,000),
+   small presentation subsets. Compare candidate arms / weights quickly.
+2. **Pick the winner** on a pre-registered denominator (and check the control has
+   dynamic range before reading a null).
+3. **Scale only that winner** — raise budget or ship a Colab CONFIG/SETUP/RUN
+   notebook so the user can run multi-CPU and hand jsonl results back.
+4. Never burn hours at one huge `B` "to be sure": a search at budget `B` is the
+   first `B` pops of any longer search, so the scout ranking is the prefix of the
+   deep run.
+
+Full note: [`experiments/lessons/scout-then-scale-budgets.md`](experiments/lessons/scout-then-scale-budgets.md).
+Same rule in [`CLAUDE.md`](CLAUDE.md).
+
 ### ⛔ MANDATORY before every `git push` (do not skip)
 
 Every push on this branch must be logged. Same-day pushes are frequent (often 100s), so a
