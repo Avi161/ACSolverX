@@ -585,3 +585,6 @@ KeyError: 'name'
   [u124] +250 last=s20/aca_62 solved=False pops_s=904.8
   [u124] +260 last=s12/aca_64 solved=False pops_s=1046.7
   [u124] +270 last=s20/aca_67 solved=False pops_s=894.4
+  [u124] +280 last=s12/aca_69 solved=False pops_s=1435.5
+  [u124] +290 last=s20/aca_72 solved=False pops_s=1300.3
+  [u124] +300 last=s12/aca_74 solved=False pops_s=1136.0
