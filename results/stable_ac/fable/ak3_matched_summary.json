@@ -1,0 +1,1009 @@
+{
+ "record": "ak3_matched_control_summary",
+ "purpose": "Matched-operator control of the CALIBRATION UPDATE in results/stable_ac/theory/fable/R3PRIME_DIGON_EXCESS.md: AK(3)'s classical class (AC-triviality OPEN) harvested with the IDENTICAL operator the AK(2) battery ran on a provably AC-trivial class.  DATA ONLY -- no mathematical claim.",
+ "root": [
+  "xxxYYYY",
+  "xyxYXY"
+ ],
+ "root_key": [
+  "YXYxyx",
+  "YYYYxxx"
+ ],
+ "design": {
+  "operator": {
+   "seen_set": "cyclically-reduced canonical pairs (ac_words.canon_pair)",
+   "expansion": "every concatenation h-move (h1-h4) on every pair of cyclic rotations of the two canonical relators (ak2_battery._concat_products, imported)",
+   "priority": "best-first on total canonical length, insertion-order ties",
+   "identical_to": "experiments/stable_ac/fable/ak2_battery.py harvest_members",
+   "identity_check": {
+    "checked_against": "ak2_battery.harvest_members (verbatim import, same root/pops/cap)",
+    "pops": 1000,
+    "relator_cap": 17,
+    "members_compared": 124296,
+    "children_generated_equal": true,
+    "identical": true
+   }
+  },
+  "length_cap": {
+   "value": 17,
+   "rule": "per-relator cap = total root length + 4",
+   "ak2_value": 15,
+   "relative_headroom_reasoning": "AK(2) ran at 15 = 11 + 4; AK(3) runs at 17 = 13 + 4.  Both runs give the operator the same additive slack above their root's scale (any relator may grow to root-total + 4 letters), keeping the per-pop expansion geometry comparable; the matched quantities are the operator and the 1,000-pop budget.",
+   "absolute_cap_argument": "An ABSOLUTE match (cap 15 for both) would leave AK(3) only 2 letters of headroom above its 13-letter root versus AK(2)'s 4, mechanically suppressing child generation and biasing the control toward zero hits.  Cap 17 makes the AK(3) box strictly LARGER (per-relator <= 17 vs <= 15) -- the conservative direction: a zero-hit outcome cannot be attributed to a smaller search space."
+  },
+  "decision_stack": "disconnected_split.decide_pair, identical to the AK(2) battery: R1c-v2 cut-scheme solver first, exact factorial census fallback where the family fits the cap, honest UNDECIDED_BUDGET otherwise; disconnected members decided by the census under Theorem D of R1E_DISCONNECTED_LINK.md (general 2L defect; minimum_defect == 0 decisive SPHERICAL at any L).  Decision loop = ak2_battery.decide_members, imported verbatim.",
+  "provenance_semantics": "Each non-root row stores parent_key (the popped canonical class), parent_exact (== parent_key: a canonical pair of cyclically reduced words is itself an exact state), realization (the rotation pair the concatenation acted on), concat_move, and move_composite -- the exact h1-h12 list whose replay from parent_exact arrives byte-identically at first_exact with canon_pair(first_exact) == canonical.  The child-exact -> child-canonical step (and root -> root_key) is the Lemma P AC composite of R1E_DISCONNECTED_LINK.md (rotation = AC3 conjugations, inversion = AC1, swap = the explicit six-move composite), exactly as in the AK(2) battery's provenance convention; so every row is a member of AK(3)'s CLASSICAL class with a fully replayable route from the root.",
+  "hit_protocol": "For every SPHERICAL row: independent L-general witness check (disconnected_split.check_witness_l_general via spherical_hit_protocol), Todd-Coxeter triviality certificate (coset_enum, cap 50000), full move-chain replay from the AK(3) root, re-decision agreement, and the loud summary field SPHERICAL_HITS below."
+ },
+ "budgets": {
+  "harvest_pops": 1000,
+  "harvest_pop_budget": 1000,
+  "relator_cap": 17,
+  "scheme_budget": 200000,
+  "branch_budget": 2000000,
+  "census_cap": 2000000,
+  "tc_hit_cap": 50000,
+  "pinned_from": "rank3_round2 (round-2 values, imported verbatim; identical to the AK(2) battery)"
+ },
+ "harvest": {
+  "pops": 1000,
+  "pop_budget": 1000,
+  "relator_cap": 17,
+  "children_generated": 129952,
+  "distinct_members": 124296,
+  "queue_remaining": 123296
+ },
+ "replay_verification": {
+  "single_steps": {
+   "single_step_composites_verified": 124295,
+   "members_total": 124296
+  },
+  "chain_sample": {
+   "seed": 20260729,
+   "requested": 100,
+   "verified": 100,
+   "max_chain_steps": 31,
+   "max_h_moves_total": 166,
+   "chains": [
+    {
+     "canonical": [
+      "YXYXYXYxx",
+      "YYXYXYYxYXYXYXYxx"
+     ],
+     "chain_steps": 15,
+     "h_moves_total": 69
+    },
+    {
+     "canonical": [
+      "YYXyxyX",
+      "YYYXyxyyxyxYXyx"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 107
+    },
+    {
+     "canonical": [
+      "YYxyXyxyX",
+      "YYYxYXyyxYXYXXyx"
+     ],
+     "chain_steps": 24,
+     "h_moves_total": 107
+    },
+    {
+     "canonical": [
+      "YYxyXX",
+      "YYXyyxyXXYYXXyxxx"
+     ],
+     "chain_steps": 17,
+     "h_moves_total": 88
+    },
+    {
+     "canonical": [
+      "YYxyXXX",
+      "YYXYxYXyxxyxyXXX"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 103
+    },
+    {
+     "canonical": [
+      "YYxxxYXXXyX",
+      "YYXXXyXYYxxxYxyXX"
+     ],
+     "chain_steps": 26,
+     "h_moves_total": 113
+    },
+    {
+     "canonical": [
+      "YYXXyx",
+      "YYxyxyXXYYxxyXXyx"
+     ],
+     "chain_steps": 31,
+     "h_moves_total": 166
+    },
+    {
+     "canonical": [
+      "YXYxxxyX",
+      "YYxyXXYxxxxyXYX"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 100
+    },
+    {
+     "canonical": [
+      "YYXXyx",
+      "YYxYXYXXyxYXyXX"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 84
+    },
+    {
+     "canonical": [
+      "YYXYXyxxyx",
+      "YYXYXYXyxxyxyxx"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 81
+    },
+    {
+     "canonical": [
+      "YYXXyXXYx",
+      "YYXXyXXyyXYxxxYx"
+     ],
+     "chain_steps": 17,
+     "h_moves_total": 84
+    },
+    {
+     "canonical": [
+      "YYYxyyXXX",
+      "YYYxyyXYxYXyyX"
+     ],
+     "chain_steps": 14,
+     "h_moves_total": 57
+    },
+    {
+     "canonical": [
+      "YYxyxYXyx",
+      "YYXyxyxYXyxYYxyX"
+     ],
+     "chain_steps": 14,
+     "h_moves_total": 69
+    },
+    {
+     "canonical": [
+      "YYXXXyx",
+      "YXXXyxYxxYXXXXyx"
+     ],
+     "chain_steps": 15,
+     "h_moves_total": 75
+    },
+    {
+     "canonical": [
+      "YYxyXXX",
+      "YYYxxxyXXXyXXX"
+     ],
+     "chain_steps": 19,
+     "h_moves_total": 76
+    },
+    {
+     "canonical": [
+      "YXYXXyXX",
+      "YYxxYxxyxyXyXyx"
+     ],
+     "chain_steps": 25,
+     "h_moves_total": 126
+    },
+    {
+     "canonical": [
+      "YXyxxYXX",
+      "YYYXyxxyXyxxyXXYx"
+     ],
+     "chain_steps": 14,
+     "h_moves_total": 65
+    },
+    {
+     "canonical": [
+      "YXYxyx",
+      "YYYXYxyxxyyxYYXyX"
+     ],
+     "chain_steps": 8,
+     "h_moves_total": 36
+    },
+    {
+     "canonical": [
+      "YYYXYXyXyyx",
+      "YYXYXyXyyxYYxxyyX"
+     ],
+     "chain_steps": 31,
+     "h_moves_total": 158
+    },
+    {
+     "canonical": [
+      "YYXyxyx",
+      "YYYXyyxyyXYYx"
+     ],
+     "chain_steps": 22,
+     "h_moves_total": 96
+    },
+    {
+     "canonical": [
+      "YYXXyxYXX",
+      "YYXXyxYYXXXYxyX"
+     ],
+     "chain_steps": 15,
+     "h_moves_total": 76
+    },
+    {
+     "canonical": [
+      "YXXyxYx",
+      "YYYXXXyxYxYXyxxyX"
+     ],
+     "chain_steps": 15,
+     "h_moves_total": 67
+    },
+    {
+     "canonical": [
+      "YYXXXyyxxxx",
+      "YYXXXyyxyXYxxyxxx"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 83
+    },
+    {
+     "canonical": [
+      "YYxYXyyx",
+      "YYYxYXyyXYxyXyx"
+     ],
+     "chain_steps": 15,
+     "h_moves_total": 66
+    },
+    {
+     "canonical": [
+      "YYXXyxyxyxx",
+      "YYYxxyyXXYXXX"
+     ],
+     "chain_steps": 29,
+     "h_moves_total": 122
+    },
+    {
+     "canonical": [
+      "YYxyXX",
+      "YYYxyyXyyxxYXyXYX"
+     ],
+     "chain_steps": 29,
+     "h_moves_total": 124
+    },
+    {
+     "canonical": [
+      "YXYXyxx",
+      "YXyxxxyXYxxyXX"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 90
+    },
+    {
+     "canonical": [
+      "YYxyXYxyx",
+      "YYXyyxyXYxyxYYXyx"
+     ],
+     "chain_steps": 13,
+     "h_moves_total": 56
+    },
+    {
+     "canonical": [
+      "YYxyXX",
+      "YYxyXXXyXyxxYxxyX"
+     ],
+     "chain_steps": 26,
+     "h_moves_total": 108
+    },
+    {
+     "canonical": [
+      "YYxyXYXyX",
+      "YYXyXYYxyXXYxyyX"
+     ],
+     "chain_steps": 19,
+     "h_moves_total": 80
+    },
+    {
+     "canonical": [
+      "YXYXyxx",
+      "YXyxxxyxYxYXXX"
+     ],
+     "chain_steps": 23,
+     "h_moves_total": 106
+    },
+    {
+     "canonical": [
+      "YYYXYXyxxxx",
+      "YYYXYXyxxyXYXyxxx"
+     ],
+     "chain_steps": 2,
+     "h_moves_total": 9
+    },
+    {
+     "canonical": [
+      "YYYYxxyXXX",
+      "YYYYxxyXYxxyXYXXX"
+     ],
+     "chain_steps": 25,
+     "h_moves_total": 129
+    },
+    {
+     "canonical": [
+      "YXYxyXyXYx",
+      "YYXyxyXyxYxYxyXXX"
+     ],
+     "chain_steps": 22,
+     "h_moves_total": 111
+    },
+    {
+     "canonical": [
+      "YXyXXyxx",
+      "YYxxYXXyx"
+     ],
+     "chain_steps": 3,
+     "h_moves_total": 12
+    },
+    {
+     "canonical": [
+      "YXyXXyxxx",
+      "YYYxyXYXyXXyxx"
+     ],
+     "chain_steps": 27,
+     "h_moves_total": 137
+    },
+    {
+     "canonical": [
+      "YYYXyxxyX",
+      "YYXyxxyXXYXXYxx"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 73
+    },
+    {
+     "canonical": [
+      "YXyXXyxYx",
+      "YXYxyXyXYxxYxyx"
+     ],
+     "chain_steps": 5,
+     "h_moves_total": 20
+    },
+    {
+     "canonical": [
+      "YXXXYXXXYx",
+      "YYXXXXYXXXYxYXXyx"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 87
+    },
+    {
+     "canonical": [
+      "YYxyXX",
+      "YYxYXyXXYXXYX"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 88
+    },
+    {
+     "canonical": [
+      "YXyXyxxx",
+      "YXYxyXXXyxxxx"
+     ],
+     "chain_steps": 14,
+     "h_moves_total": 60
+    },
+    {
+     "canonical": [
+      "YYXXyx",
+      "YXYXXyxYXXyXyxYxx"
+     ],
+     "chain_steps": 28,
+     "h_moves_total": 144
+    },
+    {
+     "canonical": [
+      "YYxyXXX",
+      "YYXyyxxxYXyxxyyxx"
+     ],
+     "chain_steps": 25,
+     "h_moves_total": 124
+    },
+    {
+     "canonical": [
+      "YXyXXyxxx",
+      "YYxxYXyXXYxx"
+     ],
+     "chain_steps": 12,
+     "h_moves_total": 62
+    },
+    {
+     "canonical": [
+      "YXYXyXYxyX",
+      "YYxyxYXyxYxyXyXyx"
+     ],
+     "chain_steps": 23,
+     "h_moves_total": 117
+    },
+    {
+     "canonical": [
+      "YYXyyXyyxxx",
+      "YYXyyXyXXyxYxxx"
+     ],
+     "chain_steps": 28,
+     "h_moves_total": 150
+    },
+    {
+     "canonical": [
+      "YYYxyXyyX",
+      "YYYxyXyXyxyxYYX"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 86
+    },
+    {
+     "canonical": [
+      "YYXyXyXYx",
+      "YXyXYxYxyX"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 82
+    },
+    {
+     "canonical": [
+      "YYYXXyx",
+      "YYYXyXyxYYYXXXYx"
+     ],
+     "chain_steps": 25,
+     "h_moves_total": 109
+    },
+    {
+     "canonical": [
+      "YYXXXyyxx",
+      "YYXYxxxyXyXXXyyxx"
+     ],
+     "chain_steps": 12,
+     "h_moves_total": 56
+    },
+    {
+     "canonical": [
+      "YYXYXyxYxyX",
+      "YYXYXyxYxxYYXXyyX"
+     ],
+     "chain_steps": 30,
+     "h_moves_total": 158
+    },
+    {
+     "canonical": [
+      "YYXyyxYX",
+      "YYYXyxyXYYxyXyx"
+     ],
+     "chain_steps": 11,
+     "h_moves_total": 54
+    },
+    {
+     "canonical": [
+      "YYXXYXyyxyx",
+      "YYxyXXyyXYXYYxyxx"
+     ],
+     "chain_steps": 17,
+     "h_moves_total": 85
+    },
+    {
+     "canonical": [
+      "YXYXXyxyxxx",
+      "YYXXyxYxxyxyXXXYX"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 84
+    },
+    {
+     "canonical": [
+      "YYYXyxyX",
+      "YYYYYXYYXyyXXyxyX"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 87
+    },
+    {
+     "canonical": [
+      "YYXXyx",
+      "YYXXYxxxYXXyXXXyx"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 84
+    },
+    {
+     "canonical": [
+      "YXYXYxyXyx",
+      "YXYxyXyxYXYxyXXYx"
+     ],
+     "chain_steps": 24,
+     "h_moves_total": 120
+    },
+    {
+     "canonical": [
+      "YYXXYXYxYX",
+      "YYYYXXXYXYXYxYX"
+     ],
+     "chain_steps": 23,
+     "h_moves_total": 97
+    },
+    {
+     "canonical": [
+      "YYXyXYxyX",
+      "YYYXyXyxyXYYXyXYx"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 74
+    },
+    {
+     "canonical": [
+      "YYYxyyXXXX",
+      "YYXYxyyXXXXYxyx"
+     ],
+     "chain_steps": 19,
+     "h_moves_total": 75
+    },
+    {
+     "canonical": [
+      "YXXYxxyX",
+      "YYXXXYxxyXyxxyX"
+     ],
+     "chain_steps": 17,
+     "h_moves_total": 72
+    },
+    {
+     "canonical": [
+      "YXyXyxxxxyx",
+      "YXYxYxyXYXXXYxyXX"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 90
+    },
+    {
+     "canonical": [
+      "YXXyXyxxx",
+      "YYYxxYYxyXXXYx"
+     ],
+     "chain_steps": 13,
+     "h_moves_total": 63
+    },
+    {
+     "canonical": [
+      "YXYxYxxyXXX",
+      "YYYxxyXXXYXYxxyXX"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 100
+    },
+    {
+     "canonical": [
+      "YYXyyxYXX",
+      "YYXyyXyyXYYxYxYXX"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 89
+    },
+    {
+     "canonical": [
+      "YYYXXyx",
+      "YYYxyyXYYXyXyx"
+     ],
+     "chain_steps": 12,
+     "h_moves_total": 60
+    },
+    {
+     "canonical": [
+      "YYYYxyxyyX",
+      "YYYYxyxyXXyyyXXyX"
+     ],
+     "chain_steps": 12,
+     "h_moves_total": 48
+    },
+    {
+     "canonical": [
+      "YYXyyxx",
+      "YYXYXyxxyx"
+     ],
+     "chain_steps": 19,
+     "h_moves_total": 77
+    },
+    {
+     "canonical": [
+      "YYxyXX",
+      "YYXXYYXXYxyXXyyxx"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 89
+    },
+    {
+     "canonical": [
+      "YXyXYxyXyxx",
+      "YXyxxyXXXYx"
+     ],
+     "chain_steps": 4,
+     "h_moves_total": 20
+    },
+    {
+     "canonical": [
+      "YXYxyx",
+      "YYYYxxYxyxYYxyxYX"
+     ],
+     "chain_steps": 2,
+     "h_moves_total": 6
+    },
+    {
+     "canonical": [
+      "YYxyXyX",
+      "YYxyxYxyXYxyxyXyX"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 78
+    },
+    {
+     "canonical": [
+      "YYYXyxyX",
+      "YYYXyxxYXXYxyXyyX"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 88
+    },
+    {
+     "canonical": [
+      "YXYxyx",
+      "YYXyxyXYXYXyxYxxx"
+     ],
+     "chain_steps": 2,
+     "h_moves_total": 8
+    },
+    {
+     "canonical": [
+      "YYYXYxyyyX",
+      "YYYXYxyyyXYYxyyXX"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 80
+    },
+    {
+     "canonical": [
+      "YYXXyx",
+      "YYYxxyXYYXXXX"
+     ],
+     "chain_steps": 28,
+     "h_moves_total": 142
+    },
+    {
+     "canonical": [
+      "YXyxxyX",
+      "YYXXXYXyxxYxxx"
+     ],
+     "chain_steps": 10,
+     "h_moves_total": 48
+    },
+    {
+     "canonical": [
+      "YYxyxyX",
+      "YYXyXyxyXYXyyxYx"
+     ],
+     "chain_steps": 17,
+     "h_moves_total": 81
+    },
+    {
+     "canonical": [
+      "YYXYXyXYX",
+      "YYYXyXyXYYXYXyXYx"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 86
+    },
+    {
+     "canonical": [
+      "YXXyxYx",
+      "YXYXyxxxyXXyxYx"
+     ],
+     "chain_steps": 16,
+     "h_moves_total": 60
+    },
+    {
+     "canonical": [
+      "YYXXYxyXXYx",
+      "YYYXXyxxyXXYxYYXX"
+     ],
+     "chain_steps": 27,
+     "h_moves_total": 139
+    },
+    {
+     "canonical": [
+      "YYXXYYxxx",
+      "YYXXYYxxxYXXYxyx"
+     ],
+     "chain_steps": 10,
+     "h_moves_total": 44
+    },
+    {
+     "canonical": [
+      "YYXyXXXYx",
+      "YYXyXXYxxyyXXYx"
+     ],
+     "chain_steps": 21,
+     "h_moves_total": 85
+    },
+    {
+     "canonical": [
+      "YYxyXyX",
+      "YYYxxYxyyXyxxyXyX"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 83
+    },
+    {
+     "canonical": [
+      "YYxxYxyXyX",
+      "YYxyxYYxxYxyXyXyX"
+     ],
+     "chain_steps": 14,
+     "h_moves_total": 71
+    },
+    {
+     "canonical": [
+      "YYXYxyXXyx",
+      "YYXyXYXYxxyXXyx"
+     ],
+     "chain_steps": 18,
+     "h_moves_total": 71
+    },
+    {
+     "canonical": [
+      "YYYxyyXXXX",
+      "YYYxyyXXYXYxyyXXX"
+     ],
+     "chain_steps": 19,
+     "h_moves_total": 74
+    },
+    {
+     "canonical": [
+      "YXyXYxyXyx",
+      "YYXYxyXYxYXyxyxyX"
+     ],
+     "chain_steps": 15,
+     "h_moves_total": 76
+    },
+    {
+     "canonical": [
+      "YYYXyyXyx",
+      "YYYXyxyXYXyyXyx"
+     ],
+     "chain_steps": 5,
+     "h_moves_total": 24
+    },
+    {
+     "canonical": [
+      "YYXXyx",
+      "YYXXyyxyxYxxyXX"
+     ],
+     "chain_steps": 28,
+     "h_moves_total": 146
+    },
+    {
+     "canonical": [
+      "YYxyXX",
+      "YYxyXXyXYxYXXyxYx"
+     ],
+     "chain_steps": 29,
+     "h_moves_total": 117
+    },
+    {
+     "canonical": [
+      "YYYxyXX",
+      "YYYxyXXyxyxYXX"
+     ],
+     "chain_steps": 24,
+     "h_moves_total": 126
+    },
+    {
+     "canonical": [
+      "YYYxyXX",
+      "YYYxyXXYxyXYYXyx"
+     ],
+     "chain_steps": 15,
+     "h_moves_total": 63
+    },
+    {
+     "canonical": [
+      "YYXyxyXyXYx",
+      "YYYXXyxxYYXyxyXyX"
+     ],
+     "chain_steps": 23,
+     "h_moves_total": 91
+    },
+    {
+     "canonical": [
+      "YYYXyxxyXX",
+      "YYXyxxyXXYXYxYxyX"
+     ],
+     "chain_steps": 19,
+     "h_moves_total": 94
+    },
+    {
+     "canonical": [
+      "YYXYXyXYX",
+      "YYYXyXXYXYYXYXyyx"
+     ],
+     "chain_steps": 20,
+     "h_moves_total": 89
+    },
+    {
+     "canonical": [
+      "YXyXYxyXyxx",
+      "YYXXyXyxYxyXXYxYx"
+     ],
+     "chain_steps": 31,
+     "h_moves_total": 165
+    },
+    {
+     "canonical": [
+      "YYxyXX",
+      "YYxYXXyxYxYXyyX"
+     ],
+     "chain_steps": 25,
+     "h_moves_total": 106
+    },
+    {
+     "canonical": [
+      "YYXyXXXYxxx",
+      "YYXyXXYXXyxYXYxxx"
+     ],
+     "chain_steps": 28,
+     "h_moves_total": 147
+    },
+    {
+     "canonical": [
+      "YXyxxxyXXyx",
+      "YYYxxYXXXYxyyXX"
+     ],
+     "chain_steps": 26,
+     "h_moves_total": 109
+    }
+   ]
+  },
+  "spherical_chains_verified": 0
+ },
+ "member_verdicts": {
+  "NOT_SPHERICAL/r1c_v2_solver": 124296
+ },
+ "undecided_budget_rows": 0,
+ "spherical_rows": 0,
+ "LOUD_SPHERICAL_ALERT": false,
+ "SPHERICAL_HITS": [],
+ "SPHERICAL_HITS_NOTE": "zero SPHERICAL members at matched exploration; see the comparison block -- data only, no claim",
+ "comparison": {
+  "matched": [
+   "seen-set",
+   "expansion operator",
+   "priority",
+   "pop budget (exactly 1,000)",
+   "relative length-cap headroom (root total + 4)",
+   "decision stack + budgets"
+  ],
+  "not_matched": [
+   "absolute per-relator cap (17 vs 15; AK(3)'s box is strictly larger -- see design.length_cap)"
+  ],
+  "ak3": {
+   "distinct_members": 124296,
+   "verdict_method_histogram": {
+    "NOT_SPHERICAL/r1c_v2_solver": 124296
+   },
+   "verdict_histogram": {
+    "NOT_SPHERICAL": 124296
+   },
+   "spherical_rows": 0,
+   "spherical_rate": 0.0,
+   "spherical_by_total_length": {},
+   "non_degenerate_spherical_rows": 0,
+   "undecided_budget_rows": 0,
+   "member_total_length_histogram": {
+    "13": 6,
+    "14": 12,
+    "15": 156,
+    "16": 150,
+    "17": 676,
+    "18": 644,
+    "19": 3072,
+    "20": 2394,
+    "21": 11640,
+    "22": 8214,
+    "23": 27322,
+    "24": 17038,
+    "25": 17874,
+    "26": 12542,
+    "27": 10486,
+    "28": 12070
+   },
+   "root": [
+    "xxxYYYY",
+    "xyxYXY"
+   ],
+   "relator_cap": 17,
+   "harvest_pops": 1000,
+   "children_generated": 129952
+  },
+  "ak2": {
+   "distinct_members": 13040,
+   "verdict_method_histogram": {
+    "NOT_SPHERICAL/r1c_v2_solver": 12643,
+    "SPHERICAL/factorial_census": 1,
+    "SPHERICAL/r1c_v2_solver": 396
+   },
+   "verdict_histogram": {
+    "NOT_SPHERICAL": 12643,
+    "SPHERICAL": 397
+   },
+   "spherical_rows": 397,
+   "spherical_rate": 0.03044478527607362,
+   "spherical_by_total_length": {
+    "2": 1,
+    "3": 4,
+    "4": 4,
+    "5": 8,
+    "6": 8,
+    "7": 28,
+    "8": 24,
+    "9": 48,
+    "10": 32,
+    "11": 85,
+    "12": 16,
+    "13": 72,
+    "14": 16,
+    "15": 10,
+    "16": 16,
+    "17": 20,
+    "19": 5
+   },
+   "non_degenerate_spherical_rows": 227,
+   "undecided_budget_rows": 0,
+   "member_total_length_histogram": {
+    "2": 1,
+    "3": 4,
+    "4": 4,
+    "5": 8,
+    "6": 12,
+    "7": 60,
+    "8": 100,
+    "9": 360,
+    "10": 565,
+    "11": 1841,
+    "12": 543,
+    "13": 1791,
+    "14": 312,
+    "15": 2132,
+    "16": 1225,
+    "17": 2194,
+    "18": 24,
+    "19": 1775,
+    "20": 89
+   },
+   "root": [
+    "xxYYY",
+    "xyxYXY"
+   ],
+   "relator_cap": 15,
+   "harvest_pops": 1000,
+   "children_generated": 20390,
+   "quoted_from": [
+    "results/stable_ac/fable/ak2_battery_summary.json",
+    "results/stable_ac/fable/ak2_members.jsonl"
+   ],
+   "committed_verdict_method_histogram": {
+    "NOT_SPHERICAL/r1c_v2_solver": 12643,
+    "SPHERICAL/factorial_census": 1,
+    "SPHERICAL/r1c_v2_solver": 396
+   }
+  }
+ },
+ "elapsed_seconds": 654.6,
+ "outputs": {
+  "members": "results/stable_ac/fable/ak3_matched_members.jsonl",
+  "summary": "results/stable_ac/fable/ak3_matched_summary.json"
+ }
+}

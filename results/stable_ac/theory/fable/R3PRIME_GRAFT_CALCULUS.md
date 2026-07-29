@@ -1,6 +1,18 @@
 # R3′ step 1 — the non-cancelling AC2 graft calculus (fibration, defect transformation, move-ordering heuristic)
 
-STATUS: DRAFT — time-boxed step-1 deliverable, pending adversarial audit. Claims
+STATUS: AUDITED — adversarial audit 29-07 (~14:4x UTC) returned REPAIRABLE with ONE
+required repair (F1, Lemma G1(iii) looplessness overstated for bystander relators —
+applied in place below); every load-bearing claim verified sound by the auditor's
+independent re-derivation plus 1,574 machine-traced interpolation walks with ZERO
+violations (fibration well-definedness, uniform cyclic fiber formula incl. the
+336·504 anchor, master-formula pointwise exactness along the canonical path, ceiling
+pointwise delta ≥ −2, tightness witness ("yyxYxy","yx") 2→0 with post L = 1 — its
+thickenability reading needs only Theorem 2/D, no Lackenby — and Δ̂'s certified
+lower-bound property proven). Audit notes F2–F4 (over-citation of surjectivity in G6;
+G7 phrasing: only 2 of the 4 floor-attaining rotations land at post defect 0, machine
+histograms {0:2, 2:30, 4:296, 6:392} / delta {−2:4, 0:164, 2:442, 4:110}; V1's census
+ratio is a formula-vs-formula identity, enumeration-level proof rests on the five V2
+grafts) are recorded here rather than edited into the body. Claims
 addressed: MACHINERY only.
 
 This is the time-boxed step-1 deliverable of the R3′ arc plan
@@ -95,7 +107,11 @@ generator g (each unsigned occurrence contributes exactly one dart at each of th
 germs of its generator). The present-germ set is unchanged, so |C′| = |C| = 2n for
 compatible rotations.
 
-(iii) All corners of P′ are loopless, and w_i·w_j is cyclically reduced (§0).
+(iii) All NEW corners of P′ are loopless, and w_i·w_j is cyclically reduced (§0);
+P′ is loopless iff P is (audit repair F1: bystander relators w_k, m ≥ 3, are
+unconstrained exact cyclic words, so a pre-existing loop corner survives the graft
+unchanged — the original phrasing "all corners of P′ are loopless" was false in that
+generality; no downstream use breaks, G2–G6 never need looplessness).
 
 (iv) L′ = L − δ_comp, where δ_comp ∈ {0,1} is 1 iff the Λ(P)-component containing
 r_i's wrap germs {ν(h^i_{N_i}), ν(d^i_1)} differs from the component containing r_j's

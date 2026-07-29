@@ -49,10 +49,19 @@ AK2_MEMBERS_PATH = os.path.join(REPO_ROOT, "results", "stable_ac", "fable",
                                 "ak2_members.jsonl")
 
 
+def _open_members():
+    # The committed artifact is gzipped (the plain file exceeds GitHub's 100 MB
+    # limit); a locally regenerated plain file takes precedence when present.
+    if os.path.exists(MEMBERS_PATH):
+        return open(MEMBERS_PATH, encoding="utf-8")
+    import gzip
+    return gzip.open(MEMBERS_PATH + ".gz", "rt", encoding="utf-8")
+
+
 @pytest.fixture(scope="module")
 def member_rows():
     rows = []
-    with open(MEMBERS_PATH, encoding="utf-8") as fh:
+    with _open_members() as fh:
         for line in fh:
             rows.append(json.loads(line))
     assert rows, "ak3_matched_members.jsonl is empty"
