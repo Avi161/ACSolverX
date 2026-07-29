@@ -15,8 +15,12 @@ source vertices.  For each unordered pair with opposite orbit-boundary
 signature, choose the coefficient in ({1,-1}) which balances both finite
 orbits.  This gives 4,671 balanced source pairs.
 
-For every pair, the complete four-sheet Stallings cover rewrites the six
-boundary pairs into exact forest paths.  The tracked
+Across the 4,671 balanced source pairs, 4,668 yield six boundary pairs, two
+yield five, and one yields four.  The three exceptions are
+`cTT + (-1)cTTct` and `cTT + cTcTTT`, with five boundary pairs, and
+`cTcT + cTTct`, with four.  The generic complete four-sheet Stallings-cover
+certificate rewrites all of their boundary pairs into exact forest paths.
+The tracked
 `experiments/stable_ac/depth4_period_two_subgroup_rewrite_certificate.py`
 realizes the index-four subgroup \(K=\langle A,B,G\rangle\) of
 \(Q=C_2*\mathbb Z\) by its four-state Reidemeister--Schreier transducer;
