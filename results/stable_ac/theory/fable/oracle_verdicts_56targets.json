@@ -1,0 +1,338 @@
+[
+{
+"name": "P25",
+"r1": "XYxYXyxYYxyXy",
+"r2": "YXyyXYxyxYYx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "Q_mms_prop12",
+"r1": "xxxxyXXYxyXXY",
+"r2": "YxxyXXYxxyXXYxxyXXY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_00",
+"r1": "XYxYXyxYYxyXy",
+"r2": "YXyyXYxyxYYx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_01",
+"r1": "XYxYXyxYYxyXy",
+"r2": "xYXyyXYxyxYY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_02",
+"r1": "XYxYXyxYYxyXy",
+"r2": "YxYXyyXYxyxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_03",
+"r1": "XYxxY",
+"r2": "YxYXyyXYxyxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_04",
+"r1": "YxxYX",
+"r2": "YxYXyyXYxyxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_05",
+"r1": "YxxYX",
+"r2": "xYXyyXYxyxYY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_06",
+"r1": "YxxYX",
+"r2": "YXyyXYxyxYYx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_07",
+"r1": "YxxYX",
+"r2": "XyyXYxyxYYxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_08",
+"r1": "YxxYX",
+"r2": "yyXYxyxYYxYX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_09",
+"r1": "YxxYX",
+"r2": "yyXYxyxYYXy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_10",
+"r1": "xxYXY",
+"r2": "yyXYxyxYYXy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_11",
+"r1": "xYXYx",
+"r2": "yyXYxyxYYXy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_12",
+"r1": "xYXYx",
+"r2": "yXYxyxYYXyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_13",
+"r1": "xYXYx",
+"r2": "XYxyxYYXyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_14",
+"r1": "xYXYx",
+"r2": "YxyxYYXyyyX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_15",
+"r1": "xYXYx",
+"r2": "xyxYYXyyyXY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_16",
+"r1": "xYXYx",
+"r2": "yxYYXyyyXYx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_17",
+"r1": "xYXYx",
+"r2": "yxYYXyyyyX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_18",
+"r1": "xYXYx",
+"r2": "XyxYYXyyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_19",
+"r1": "xYYYXyyyy",
+"r2": "XyxYYXyyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_20",
+"r1": "xYYYXyyyy",
+"r2": "XyxyX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_21",
+"r1": "YYYXyyyyx",
+"r2": "XyxyX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_22",
+"r1": "YYYXyyyyx",
+"r2": "XXyxy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_23",
+"r1": "YYYXyyyyx",
+"r2": "XXyxy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_24",
+"r1": "YYYXyyyyx",
+"r2": "XXyxy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_25",
+"r1": "YYYXyyyyx",
+"r2": "YYXXyyyyyx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_26",
+"r1": "YYYXyyyyx",
+"r2": "xYYXXyyyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_27",
+"r1": "YYYXyyyyx",
+"r2": "yxYYXXyyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_28",
+"r1": "xYYYXyyyy",
+"r2": "yxYYXXyyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_29",
+"r1": "xYYYXyyyy",
+"r2": "yxYYXyyyX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_30",
+"r1": "xYYYXyyyy",
+"r2": "XyxYYXyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_31",
+"r1": "yxYYYXyyy",
+"r2": "XyxYYXyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_32",
+"r1": "yxYXYx",
+"r2": "XyxYYXyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_33",
+"r1": "xYXYxy",
+"r2": "XyxYYXyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_34",
+"r1": "YXYxyx",
+"r2": "XyxYYXyyy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_35",
+"r1": "YXYxyx",
+"r2": "yxYYXyyyX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_36",
+"r1": "YXYxyx",
+"r2": "xYYXyyyXy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_37",
+"r1": "YXYxyx",
+"r2": "YYXyyyXyx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_38",
+"r1": "YXYxyx",
+"r2": "YXyyyXyxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_39",
+"r1": "XYxyxY",
+"r2": "YXyyyXyxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_40",
+"r1": "XYxyxY",
+"r2": "YXyyyXXyx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_41",
+"r1": "YxyxYX",
+"r2": "YXyyyXXyx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_42",
+"r1": "YxyxYX",
+"r2": "XyyyXXyxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_43",
+"r1": "YxyxYX",
+"r2": "yyyXXyxYX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_44",
+"r1": "YxxxYYY",
+"r2": "yyyXXyxYX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_45",
+"r1": "xxxYYYY",
+"r2": "yyyXXyxYX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_46",
+"r1": "xxYYYYx",
+"r2": "yyyXXyxYX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_47",
+"r1": "xxYYYYx",
+"r2": "XyyyXXyxY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_48",
+"r1": "xxYYYYx",
+"r2": "YXyyyXXyx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_49",
+"r1": "xxYYYYx",
+"r2": "xYXyyyXXy",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_50",
+"r1": "xxYYYYx",
+"r2": "yxYXyyyXX",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_51",
+"r1": "xxYYYYx",
+"r2": "yxYXYx",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_52",
+"r1": "xxYYYYx",
+"r2": "xyxYXY",
+"verdict": "NOT_SPHERICAL"
+},
+{
+"name": "path_53",
+"r1": "xxxYYYY",
+"r2": "xyxYXY",
+"verdict": "NOT_SPHERICAL"
+}
+]
