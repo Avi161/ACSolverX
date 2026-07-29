@@ -360,7 +360,7 @@ def _loopless_kind(simple_edges: tuple[tuple[int, int], ...]) -> str | None:
     return None
 
 
-def _classify_dispatch_inventory(
+def _classify_support_inventory(
     multiplicities: Mapping[tuple[int, int], int],
 ) -> DispatchSupport:
     """Classify one already-exact occurrence-link inventory."""
@@ -430,7 +430,7 @@ def _classify_dispatch_support(relators: object) -> DispatchSupport:
     if inventory is None:
         return _unsupported_dispatch_support(reason="malformed exact relators")
     _, multiplicities = inventory
-    return _classify_dispatch_inventory(multiplicities)
+    return _classify_support_inventory(multiplicities)
 
 
 def _cyclically_equal(left: tuple[int, ...], right: tuple[int, ...]) -> bool:

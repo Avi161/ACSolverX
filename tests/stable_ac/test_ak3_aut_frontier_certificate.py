@@ -347,7 +347,6 @@ def test_each_proved_envelope_requires_its_solver_exhaustive_negative(
         ("x", "y"),
         ("xX", "yy"),
         ("xXy", "xXy"),
-        ("xX", "y"),
         ("x", ""),
         ("x", "z"),
     ),
@@ -364,21 +363,137 @@ def test_unproved_or_malformed_supports_fail_closed_before_solver_selection(
     assert result.counters is None
 
 
-def test_paw_loop_at_its_articulation_is_an_explicitly_unproved_inventory() -> None:
-    """Catches a paw loop at the cut vertex entering the paw-one-loop solver."""
-    support = certificate._classify_dispatch_inventory(
-        {
-            (0, 0): 1,
-            (0, 1): 1,
-            (0, 2): 1,
-            (0, 3): 1,
-            (1, 2): 1,
-        }
+def test_rank_rejects_literal_c4_plus_one_loop_at_its_loopless_boundary() -> None:
+    """Catches the rank solver being selected after one loop is added to C4."""
+    words = ("xy", "xXyxY")
+    expected_inventory = {
+        (0, 2): 2,
+        (0, 3): 2,
+        (1, 1): 1,
+        (1, 2): 1,
+        (1, 3): 1,
+    }
+
+    assert certificate._exact_dispatch_inventory(words) == (
+        words,
+        expected_inventory,
     )
+    assert tuple(edge for edge in expected_inventory if edge[0] != edge[1]) == (
+        (0, 2),
+        (0, 3),
+        (1, 2),
+        (1, 3),
+    )
+    support = certificate._classify_dispatch_support(words)
+    assert support.kind == UNSUPPORTED
+    assert support.reason == "unproved one-loop core"
+    assert support.solver is None
+    assert dispatch_frontier_support(None, words).category == UNSUPPORTED
+
+
+def test_p4_rejects_literal_p4_plus_one_loop_at_its_loopless_boundary() -> None:
+    """Catches the P4 solver being selected after one loop is added to P4."""
+    words = ("xy", "xXy")
+    expected_inventory = {
+        (0, 2): 1,
+        (0, 3): 2,
+        (1, 1): 1,
+        (1, 2): 1,
+    }
+
+    assert certificate._exact_dispatch_inventory(words) == (
+        words,
+        expected_inventory,
+    )
+    assert tuple(edge for edge in expected_inventory if edge[0] != edge[1]) == (
+        (0, 2),
+        (0, 3),
+        (1, 2),
+    )
+    support = certificate._classify_dispatch_support(words)
+    assert support.kind == UNSUPPORTED
+    assert support.reason == "unproved one-loop core"
+    assert support.solver is None
+    assert dispatch_frontier_support(None, words).category == UNSUPPORTED
+
+
+def test_one_loop_rejects_real_literal_multiplicity_one_loop_over_c4() -> None:
+    """Catches a real one-loop wrong core being mislabeled as a proved core."""
+    words = ("xy", "xXyxY")
+    expected_inventory = {
+        (0, 2): 2,
+        (0, 3): 2,
+        (1, 1): 1,
+        (1, 2): 1,
+        (1, 3): 1,
+    }
+
+    inventory = certificate._exact_dispatch_inventory(words)
+    assert inventory == (words, expected_inventory)
+    assert tuple(
+        (edge, multiplicity)
+        for edge, multiplicity in expected_inventory.items()
+        if edge[0] == edge[1]
+    ) == (((1, 1), 1),)
+    support = certificate._classify_dispatch_support(words)
+    assert support.kind == UNSUPPORTED
+    assert support.reason == "unproved one-loop core"
+    assert support.solver is None
+    result = dispatch_frontier_support(None, words)
+    assert result.category == UNSUPPORTED
+    assert result.support.reason == "unproved one-loop core"
+
+
+def test_paw_articulation_near_miss_is_synthetic_inventory_only() -> None:
+    """Catches the impossible articulation case entering the paw-one-loop solver."""
+    inventory = {
+        (0, 0): 1,
+        (0, 1): 1,
+        (0, 2): 1,
+        (0, 3): 1,
+        (1, 2): 1,
+    }
+    germ_degrees = tuple(
+        sum(
+            multiplicity * (2 if edge == (vertex, vertex) else 1)
+            for edge, multiplicity in inventory.items()
+            if vertex in edge
+        )
+        for vertex in range(4)
+    )
+
+    # Literal occurrence links require paired germ degrees n_0=n_1 and n_2=n_3.
+    assert germ_degrees == (5, 2, 2, 1)
+    assert germ_degrees[0] != germ_degrees[1]
+    assert germ_degrees[2] != germ_degrees[3]
+    support = certificate._classify_support_inventory(inventory)
 
     assert support.kind == UNSUPPORTED
     assert support.solver is None
     assert support.reason == "paw loop is attached at the articulation"
+
+
+def test_paw_one_loop_rejects_closest_realizable_p4_core_near_miss() -> None:
+    """Catches the paw solver being selected for the nearest literal wrong core."""
+    words = ("xy", "xXy")
+    expected_inventory = {
+        (0, 2): 1,
+        (0, 3): 2,
+        (1, 1): 1,
+        (1, 2): 1,
+    }
+
+    assert certificate._exact_dispatch_inventory(words) == (
+        words,
+        expected_inventory,
+    )
+    support = certificate._classify_dispatch_support(words)
+    assert support.kind == UNSUPPORTED
+    assert support.reason == "unproved one-loop core"
+    assert support.solver is None
+    result = dispatch_frontier_support(None, words)
+    assert result.category == UNSUPPORTED
+    assert result.support.reason == "unproved one-loop core"
 
 
 def test_prior_exact_duplicate_returns_provenance_without_a_new_solver_result(
