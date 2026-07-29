@@ -12,11 +12,21 @@ and a bloated CLAUDE.md gets ignored.
 
 - **Never open a PR.** Work lands by merging into the active branch. A worktree merges back
   into the branch it was created from (e.g. `test/stable-ac-moves-w4`), never `main`.
-- **Daily push log (mandatory before any `git push`).** Each push gets its own section in
-  `logs/DD-MM-YYYY.md` headed `## HH:MM:SS UTC · \`<shortsha>\`` (UTC time + tip commit short
-  SHA), then 1–3 sentences with links to files added/changed. Commit that entry as the tip
-  before pushing (amend once on your unpushed HEAD if you need to fill in the short SHA).
-  Same rule in [`AGENTS.md`](AGENTS.md).
+
+### ⛔ MANDATORY before every `git push` (do not skip)
+
+Every push on this branch must be logged. Same-day pushes are frequent (often 100s), so a
+date alone is not enough — each push needs its own **UTC time** and **tip commit short SHA**.
+
+1. Append a new section to `logs/DD-MM-YYYY.md` (create the day file if missing).
+2. Heading format (required): `## HH:MM:SS UTC · \`<shortsha>\``.
+3. Body: 1–3 sentences on what changed, with simple links to files added/changed.
+4. Commit that log entry as the tip; fill `<shortsha>` with `git rev-parse --short HEAD`
+   (amend once on your own unpushed HEAD if the SHA was unknown before commit).
+5. Only then `git push`. Never push without a matching headed log section for that tip.
+
+Same rule in [`AGENTS.md`](AGENTS.md). Example day file: [`logs/28-07-2026.md`](logs/28-07-2026.md).
+
 - **Never run a search above a `node_budget` of 1,000 yourself — no exceptions.** Any search
   Claude launches (local shell, test, repro, scratch script) is capped at **1,000 nodes** and
   ~10-20 presentations. Production budgets are the user's to run, on Colab. A search at budget

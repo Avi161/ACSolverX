@@ -2,12 +2,19 @@
 
 ## Hard rules
 
-- **Daily push log (mandatory before any `git push`).** Before each push, append a new section
-  to `logs/DD-MM-YYYY.md` (create the day file if missing) headed
-  `## HH:MM:SS UTC · \`<shortsha>\`` — UTC time of the push and the tip commit short SHA being
-  pushed — then 1–3 sentences on what changed with links to files added/changed. Commit the
-  log as the tip (fill the short SHA after commit via amend if needed; only on your unpushed
-  HEAD), then push. Same rule in [`CLAUDE.md`](CLAUDE.md).
+### ⛔ MANDATORY before every `git push` (do not skip)
+
+Every push on this branch must be logged. Same-day pushes are frequent (often 100s), so a
+date alone is not enough — each push needs its own **UTC time** and **tip commit short SHA**.
+
+1. Append a new section to `logs/DD-MM-YYYY.md` (create the day file if missing).
+2. Heading format (required): `## HH:MM:SS UTC · \`<shortsha>\``.
+3. Body: 1–3 sentences on what changed, with simple links to files added/changed.
+4. Commit that log entry as the tip; fill `<shortsha>` with `git rev-parse --short HEAD`
+   (amend once on your own unpushed HEAD if the SHA was unknown before commit).
+5. Only then `git push`. Never push without a matching headed log section for that tip.
+
+Same rule in [`CLAUDE.md`](CLAUDE.md). Example day file: [`logs/28-07-2026.md`](logs/28-07-2026.md).
 
 # Lessons Learned
 
