@@ -1,6 +1,6 @@
 # AK(3) proofs-inspired — RESULTS
 
-Updated: `2026-07-29T10:49:47.187060+00:00` · remaining `5.38h` · rows `271`
+Updated: `2026-07-29T10:54:47.216150+00:00` · remaining `5.29h` · rows `271`
 
 Tripwire: any `solved` or `below13` on AK(3) class must be independently certified before any claim.
 
