@@ -18,6 +18,11 @@ from experiments.stable_ac.thickenable.ak3_aut_frontier_manifest import (
 
 PRIOR_INDEX_SCHEMA = "ak3-aut-frontier-prior-index-v1"
 PRIOR_EXACT_DUPLICATE = "PRIOR_EXACT_DUPLICATE"
+NOT_SPHERICAL_EXACT = "NOT_SPHERICAL_EXACT"
+SPHERICAL_REQUIRES_INDEPENDENT_VALIDATION = (
+    "SPHERICAL_REQUIRES_INDEPENDENT_VALIDATION"
+)
+UNSUPPORTED = "UNSUPPORTED"
 FROZEN_PRIOR_CORPUS = (
     "results/stable_ac/theory/ak3_neuwirth_census.json",
     "results/stable_ac/theory/ak3_component_thickenability.json",
@@ -62,6 +67,30 @@ class PriorCertificateIndex:
     corpus_paths: tuple[str, ...]
     rows: tuple[PriorProvenance, ...]
     buckets: Mapping[tuple[str, str], tuple[PriorProvenance, ...]]
+
+
+@dataclass(frozen=True)
+class DispatchSupport:
+    """The exact proved envelope selected from literal occurrence corners."""
+
+    kind: str
+    theorem: str | None
+    solver: str | None
+    simple_edges: tuple[tuple[int, int], ...]
+    loop_class: tuple[int, int] | None = None
+    reason: str | None = None
+
+
+@dataclass(frozen=True)
+class FrontierDispatchResult:
+    """One quarantined finite-sphericity result, never a topology verdict."""
+
+    category: str
+    support: DispatchSupport
+    provenance: tuple[PriorProvenance, ...] | None = None
+    solver_verdict: str | None = None
+    counters: object | None = None
+    witness: object | None = None
 
 
 def _schema_error(path: str, message: str) -> PriorCertificateSchemaError:
@@ -251,3 +280,292 @@ def lookup_prior_exact(
     if provenance is None:
         return None
     return PriorExactDuplicate(PRIOR_EXACT_DUPLICATE, provenance)
+
+
+_DISPATCH_GERMS = (0, 1, 2, 3)
+_DISPATCH_GERM_PAIRS = {
+    "x": (0, 1),
+    "X": (1, 0),
+    "y": (2, 3),
+    "Y": (3, 2),
+}
+_RANK_THEOREM = "AK3_SYNCHRONIZED_PLANARITY.md"
+_P4_THEOREM = "AK3_P4_SYNCHRONIZED_PLANARITY.md"
+_ONE_LOOP_THEOREM = "AK3_ONE_LOOP_SYNCHRONIZED_PLANARITY.md"
+_PAW_ONE_LOOP_THEOREM = "AK3_PAW_ONE_LOOP_PLANARITY.md"
+
+
+def _unsupported_dispatch_support(
+    simple_edges: tuple[tuple[int, int], ...] = (), reason: str | None = None
+) -> DispatchSupport:
+    return DispatchSupport(UNSUPPORTED, None, None, simple_edges, reason=reason)
+
+
+def _exact_dispatch_inventory(
+    relators: object,
+) -> tuple[tuple[str, str], dict[tuple[int, int], int]] | None:
+    if (
+        not isinstance(relators, tuple)
+        or len(relators) != 2
+        or not all(isinstance(word, str) and word for word in relators)
+        or any(set(word) - _WORD_ALPHABET for word in relators)
+    ):
+        return None
+    words = (relators[0], relators[1])
+    multiplicities: dict[tuple[int, int], int] = {}
+    for word in words:
+        for index, letter in enumerate(word):
+            try:
+                arrival = _DISPATCH_GERM_PAIRS[letter][1]
+                departure = _DISPATCH_GERM_PAIRS[word[(index + 1) % len(word)]][0]
+            except KeyError:
+                return None
+            edge = tuple(sorted((arrival, departure)))
+            multiplicities[edge] = multiplicities.get(edge, 0) + 1
+    return words, multiplicities
+
+
+def _is_connected(simple_edges: tuple[tuple[int, int], ...]) -> bool:
+    adjacency = {vertex: set() for vertex in _DISPATCH_GERMS}
+    for left, right in simple_edges:
+        if left == right:
+            return False
+        adjacency[left].add(right)
+        adjacency[right].add(left)
+    reached = {0}
+    frontier = [0]
+    while frontier:
+        vertex = frontier.pop()
+        unseen = adjacency[vertex] - reached
+        reached.update(unseen)
+        frontier.extend(unseen)
+    return reached == set(_DISPATCH_GERMS)
+
+
+def _loopless_kind(simple_edges: tuple[tuple[int, int], ...]) -> str | None:
+    if not _is_connected(simple_edges):
+        return None
+    degrees = sorted(
+        sum(vertex in edge for edge in simple_edges)
+        for vertex in _DISPATCH_GERMS
+    )
+    if len(simple_edges) == 6:
+        return "K4"
+    if len(simple_edges) == 5 and degrees == [2, 2, 3, 3]:
+        return "K4-e"
+    if len(simple_edges) == 4 and degrees == [2, 2, 2, 2]:
+        return "C4"
+    if len(simple_edges) == 3 and degrees == [1, 1, 2, 2]:
+        return "P4"
+    return None
+
+
+def _classify_dispatch_inventory(
+    multiplicities: Mapping[tuple[int, int], int],
+) -> DispatchSupport:
+    """Classify one already-exact occurrence-link inventory."""
+    simple_edges = tuple(sorted(multiplicities))
+    loop_classes = tuple(edge for edge in simple_edges if edge[0] == edge[1])
+    if not loop_classes:
+        kind = _loopless_kind(simple_edges)
+        if kind in {"K4", "K4-e", "C4"}:
+            return DispatchSupport(
+                kind,
+                _RANK_THEOREM,
+                "neuwirth_rank_solver.solve_spherical",
+                simple_edges,
+            )
+        if kind == "P4":
+            return DispatchSupport(
+                kind,
+                _P4_THEOREM,
+                "neuwirth_p4_solver.solve_four_germ_spherical",
+                simple_edges,
+            )
+        return _unsupported_dispatch_support(
+            simple_edges, "unproved loopless support"
+        )
+    if len(loop_classes) != 1:
+        return _unsupported_dispatch_support(simple_edges, "multiple loop classes")
+    loop_class = loop_classes[0]
+    if multiplicities[loop_class] != 1:
+        return _unsupported_dispatch_support(
+            simple_edges, "loop class multiplicity is not one"
+        )
+    core_edges = tuple(edge for edge in simple_edges if edge != loop_class)
+    core_kind = _loopless_kind(core_edges)
+    if core_kind in {"K4", "K4-e"}:
+        return DispatchSupport(
+            f"{core_kind}+1loop",
+            _ONE_LOOP_THEOREM,
+            "neuwirth_one_loop_solver.solve_one_loop_spherical",
+            simple_edges,
+            loop_class,
+        )
+    degrees = {
+        vertex: sum(vertex in edge for edge in core_edges)
+        for vertex in _DISPATCH_GERMS
+    }
+    if _is_connected(core_edges) and sorted(degrees.values()) == [1, 2, 2, 3]:
+        articulation = next(
+            vertex for vertex, degree in degrees.items() if degree == 3
+        )
+        if loop_class[0] == articulation:
+            return _unsupported_dispatch_support(
+                simple_edges, "paw loop is attached at the articulation"
+            )
+        return DispatchSupport(
+            "paw+1loop",
+            _PAW_ONE_LOOP_THEOREM,
+            "neuwirth_paw_one_loop_solver.solve_paw_one_loop_spherical",
+            simple_edges,
+            loop_class,
+        )
+    return _unsupported_dispatch_support(simple_edges, "unproved one-loop core")
+
+
+def _classify_dispatch_support(relators: object) -> DispatchSupport:
+    """Classify literal A-corner support before any proved solver import."""
+    inventory = _exact_dispatch_inventory(relators)
+    if inventory is None:
+        return _unsupported_dispatch_support(reason="malformed exact relators")
+    _, multiplicities = inventory
+    return _classify_dispatch_inventory(multiplicities)
+
+
+def _cyclically_equal(left: tuple[int, ...], right: tuple[int, ...]) -> bool:
+    return len(left) == len(right) and any(
+        left == right[index:] + right[:index] for index in range(len(right))
+    )
+
+
+def _replay_spherical_rotation(decision: object) -> bool:
+    """Independently replay only the returned occurrence rotations."""
+    solver_support = getattr(decision, "support", None)
+    data = getattr(solver_support, "data", None)
+    witness = getattr(decision, "witness", None)
+    rotations = getattr(witness, "rotations", None)
+    if data is None or not isinstance(rotations, tuple) or len(rotations) != 4:
+        return False
+    if not all(isinstance(rotation, tuple) for rotation in rotations):
+        return False
+    sigma = [-1] * len(data.A)
+    for vertex, rotation in enumerate(rotations):
+        if not all(type(dart) is int for dart in rotation):
+            return False
+        if set(rotation) != set(data.vertex_darts[vertex]):
+            return False
+        if len(rotation) != len(data.vertex_darts[vertex]) or not rotation:
+            return False
+        for index, dart in enumerate(rotation):
+            if not 0 <= dart < len(data.A):
+                return False
+            sigma[dart] = rotation[(index + 1) % len(rotation)]
+    for positive, negative in ((0, 1), (2, 3)):
+        expected = tuple(data.B[dart] for dart in reversed(rotations[positive]))
+        if not _cyclically_equal(expected, rotations[negative]):
+            return False
+    if any(successor < 0 for successor in sigma):
+        return False
+    phi = tuple(sigma[data.A[dart]] for dart in range(len(data.A)))
+    faces = 0
+    unseen = set(range(len(phi)))
+    while unseen:
+        faces += 1
+        dart = next(iter(unseen))
+        while dart in unseen:
+            unseen.remove(dart)
+            dart = phi[dart]
+    return len(_DISPATCH_GERMS) - len(data.edge_darts) + faces == 2
+
+
+def _finalize_solver_decision(
+    support: DispatchSupport, decision: object
+) -> FrontierDispatchResult:
+    spherical = getattr(decision, "spherical", None)
+    verdict = getattr(decision, "verdict", None)
+    if spherical is False and verdict == "NOT_SPHERICAL":
+        counters = getattr(decision, "counters", None)
+        if getattr(counters, "exhaustive", None) is True:
+            return FrontierDispatchResult(
+                NOT_SPHERICAL_EXACT,
+                support,
+                solver_verdict=verdict,
+                counters=counters,
+            )
+    elif (
+        spherical is True
+        and verdict == "SPHERICAL"
+        and _replay_spherical_rotation(decision)
+    ):
+        return FrontierDispatchResult(
+            SPHERICAL_REQUIRES_INDEPENDENT_VALIDATION,
+            support,
+            solver_verdict=verdict,
+            counters=getattr(decision, "counters", None),
+            witness=getattr(decision, "witness", None),
+        )
+    return FrontierDispatchResult(UNSUPPORTED, support)
+
+
+def dispatch_frontier_support(
+    index: PriorCertificateIndex | None, relators: object
+) -> FrontierDispatchResult:
+    """Route only the four proved envelopes; never make a topology claim."""
+    inventory = _exact_dispatch_inventory(relators)
+    if inventory is None:
+        return FrontierDispatchResult(
+            UNSUPPORTED,
+            _unsupported_dispatch_support(reason="malformed exact relators"),
+        )
+    words, _ = inventory
+    if index is not None:
+        if not isinstance(index, PriorCertificateIndex):
+            return FrontierDispatchResult(
+                UNSUPPORTED,
+                _unsupported_dispatch_support(reason="ambiguous prior index"),
+            )
+        prior = lookup_prior_exact(index, words)
+        if prior is not None:
+            return FrontierDispatchResult(
+                PRIOR_EXACT_DUPLICATE,
+                DispatchSupport(
+                    PRIOR_EXACT_DUPLICATE,
+                    "frozen prior exact-certificate index",
+                    None,
+                    (),
+                ),
+                provenance=prior.provenance,
+            )
+    support = _classify_dispatch_support(words)
+    if support.kind == UNSUPPORTED:
+        return FrontierDispatchResult(UNSUPPORTED, support)
+    if support.solver == "neuwirth_rank_solver.solve_spherical":
+        from experiments.stable_ac.thickenable.neuwirth_rank_solver import (
+            solve_spherical,
+        )
+
+        return _finalize_solver_decision(support, solve_spherical(words))
+    if support.solver == "neuwirth_p4_solver.solve_four_germ_spherical":
+        from experiments.stable_ac.thickenable.neuwirth_p4_solver import (
+            solve_four_germ_spherical,
+        )
+
+        return _finalize_solver_decision(
+            support, solve_four_germ_spherical(words)
+        )
+    if support.solver == "neuwirth_one_loop_solver.solve_one_loop_spherical":
+        from experiments.stable_ac.thickenable.neuwirth_one_loop_solver import (
+            solve_one_loop_spherical,
+        )
+
+        return _finalize_solver_decision(support, solve_one_loop_spherical(words))
+    if support.solver == "neuwirth_paw_one_loop_solver.solve_paw_one_loop_spherical":
+        from experiments.stable_ac.thickenable.neuwirth_paw_one_loop_solver import (
+            solve_paw_one_loop_spherical,
+        )
+
+        return _finalize_solver_decision(
+            support, solve_paw_one_loop_spherical(words)
+        )
+    return FrontierDispatchResult(UNSUPPORTED, support)
