@@ -1,8 +1,17 @@
 # scale10k mini-research — RESULTS
 
-Updated: `2026-07-29T06:16:11.650968+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `9.99 h`
+Updated: `2026-07-29T06:29:12.440680+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `9.94 h`
 
 Budgets ≤10,000; ≤1h/search; advisor-REVISE'd slices. **Colab handoff only after wall.**
+
+## Slice `fresh_hard`
+
+| arm | n | @1k | @2k | @5k | @10k | mean pops/s |
+|---|---:|---:|---:|---:|---:|---:|
+| `length` | 60 | 0 | 15 | 30 | 36 | 3548 |
+| `s12` | 60 | 24 | 29 | 37 | 43 | 3509 |
+| `s20` | 60 | 21 | 26 | 36 | 43 | 3360 |
+| `recommended` | 60 | 12 | 18 | 25 | 31 | 2701 |
 
 ## Slice `l_stratified`
 

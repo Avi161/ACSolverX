@@ -475,3 +475,74 @@
   [any] fresh_hard/s20/idx=233993 solved=True nodes=230 pops_s=3927.8
   [any] fresh_hard/recommended/idx=233993 solved=True nodes=1960 pops_s=3119.5
   [any] fresh_hard/s12/idx=233993 solved=True nodes=298 pops_s=4205.8
+  [any] fresh_hard/length/idx=234228 solved=True nodes=1377 pops_s=3332.9
+  [any] fresh_hard/s20/idx=234228 solved=True nodes=8626 pops_s=2465.3
+  [any] fresh_hard/recommended/idx=234228 solved=True nodes=294 pops_s=4537.2
+  [any] fresh_hard/s12/idx=234228 solved=True nodes=8611 pops_s=2558.6
+  [any] fresh_hard/length/idx=234510 solved=True nodes=5001 pops_s=5215.0
+  [any] fresh_hard/s20/idx=234510 solved=True nodes=457 pops_s=4916.7
+  [any] fresh_hard/recommended/idx=234510 solved=True nodes=1139 pops_s=4561.6
+  [any] fresh_hard/s12/idx=234510 solved=True nodes=536 pops_s=5675.0
+  [any] fresh_hard/length/idx=234651 solved=True nodes=1689 pops_s=3200.7
+  [any] fresh_hard/s20/idx=234651 solved=True nodes=2614 pops_s=2907.0
+  [any] fresh_hard/recommended/idx=234651 solved=True nodes=7298 pops_s=2058.7
+  [any] fresh_hard/s12/idx=234651 solved=True nodes=1825 pops_s=2932.7
+    [hcompact] reservation exceeded at 1,800,072 states; growing to 3,619,208 (this copies)
+  [any] fresh_hard/s12/idx=234792 solved=False nodes=10000 pops_s=912.6
+  [any] fresh_hard/length/idx=235450 solved=True nodes=1958 pops_s=4156.1
+  [any] fresh_hard/s20/idx=235450 solved=True nodes=6577 pops_s=2905.2
+  [any] fresh_hard/recommended/idx=235450 solved=True nodes=1340 pops_s=3455.9
+  [any] fresh_hard/s12/idx=235450 solved=True nodes=1988 pops_s=3588.7
+  [any] fresh_hard/length/idx=235732 solved=True nodes=3782 pops_s=5458.8
+  [any] fresh_hard/s20/idx=235732 solved=True nodes=160 pops_s=6657.8
+  [any] fresh_hard/s12/idx=235732 solved=True nodes=268 pops_s=6458.5
+  [any] fresh_hard/s20/idx=236061 solved=True nodes=2359 pops_s=3300.2
+  [any] fresh_hard/recommended/idx=236061 solved=True nodes=2376 pops_s=3058.7
+  [any] fresh_hard/s12/idx=236061 solved=True nodes=4339 pops_s=3367.3
+  [any] fresh_hard/length/idx=236578 solved=True nodes=3841 pops_s=1777.3
+  [any] fresh_hard/s20/idx=236578 solved=True nodes=1890 pops_s=1719.8
+  [any] fresh_hard/recommended/idx=236578 solved=False nodes=10000 pops_s=780.1
+  [any] fresh_hard/s12/idx=236578 solved=True nodes=2116 pops_s=1773.5
+  [any] fresh_hard/length/idx=237283 solved=True nodes=1177 pops_s=4406.6
+  [any] fresh_hard/s20/idx=237283 solved=True nodes=760 pops_s=4115.2
+  [any] fresh_hard/s12/idx=237283 solved=True nodes=857 pops_s=3922.6
+  [any] fresh_hard/length/idx=237377 solved=True nodes=7926 pops_s=2569.0
+  [any] fresh_hard/s20/idx=237377 solved=True nodes=3858 pops_s=2535.3
+  [any] fresh_hard/recommended/idx=237377 solved=True nodes=4563 pops_s=1834.5
+  [any] fresh_hard/s12/idx=237377 solved=True nodes=4674 pops_s=2532.9
+  [any] fresh_hard/length/idx=237424 solved=True nodes=1181 pops_s=3222.4
+  [any] fresh_hard/s20/idx=237424 solved=True nodes=341 pops_s=3387.3
+  [any] fresh_hard/recommended/idx=237424 solved=True nodes=685 pops_s=4038.7
+  [any] fresh_hard/s12/idx=237424 solved=True nodes=410 pops_s=3458.9
+  [any] fresh_hard/s20/idx=237471 solved=False nodes=10000 pops_s=1900.7
+  [any] fresh_hard/s20/idx=237753 solved=True nodes=3222 pops_s=3062.2
+  [any] fresh_hard/recommended/idx=237753 solved=True nodes=2398 pops_s=3059.5
+  [any] fresh_hard/s12/idx=237753 solved=True nodes=4773 pops_s=3283.4
+  [any] fresh_hard/length/idx=238129 solved=True nodes=3177 pops_s=3259.5
+  [any] fresh_hard/s20/idx=238129 solved=True nodes=4079 pops_s=2734.3
+  [any] fresh_hard/recommended/idx=238129 solved=True nodes=6762 pops_s=2174.6
+  [any] fresh_hard/s12/idx=238129 solved=True nodes=3342 pops_s=2956.0
+  phase anytime_hard new=240
+
+=== round 1 phase=unsolved124 remain=9.72h ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 583, in <module>
+    main()
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 544, in main
+    n = fn()
+        ^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 529, in <lambda>
+    ("unsolved124", lambda: phase_unsolved124(state)),
+                            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 326, in phase_unsolved124
+    done = _load_done(MAIN_JSONL, ("slice", "arm", "name"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 99, in _load_done
+    seen.add(tuple(r[k] for k in keys))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 99, in <genexpr>
+    seen.add(tuple(r[k] for k in keys))
+                   ~^^^
+KeyError: 'name'

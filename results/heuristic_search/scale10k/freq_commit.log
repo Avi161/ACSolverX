@@ -18,3 +18,13 @@ remote: This repository moved. Please use the new location:
 remote:   https://github.com/Avi161/ACSolverX.git        
 To https://github.com/avi161/acsolverx
    7a67406..c8375ed  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
+[cursor/heur-12h-anti-overfit-a42e 7826769] heur: research checkpoint 06:25:40 UTC (scale10k/ak3)
+ 9 files changed, 622 insertions(+)
+ create mode 100644 results/heuristic_search/ak3_proofs_inspired/RESULTS.md
+ create mode 100644 results/heuristic_search/ak3_proofs_inspired/state.json
+[cursor/heur-12h-anti-overfit-a42e a89ddb3] logs: fill short SHA for research checkpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/Avi161/ACSolverX.git        
+To https://github.com/avi161/acsolverx
+   8699312..a89ddb3  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
