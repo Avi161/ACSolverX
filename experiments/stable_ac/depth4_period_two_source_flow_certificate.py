@@ -112,13 +112,19 @@ def source_entries(source: lift.ModuleVector) -> tuple[tuple[str, int], ...]:
     )
 
 
-def build_l0_direction(source: dict[lift.Word, int]) -> SourceFlowDirection:
+def build_l0_direction_from_pairs(
+    source: dict[lift.Word, int],
+    pairs: tuple[tuple[lift.Word, lift.Word], ...],
+) -> SourceFlowDirection:
     _, _, _, _, operators = escape.recurrence_data()
-    normalized_source = lift.clean_vector(source)
+    normalized_source = lift.add_vectors(source)
     boundary = lift.apply_operator(operators[0], normalized_source)
     assert orbit_sums(boundary) == (0, 0)
-    pairs = paired_boundaries(boundary)
-    assert pairs is not None
+    paired_boundary: dict[lift.Word, int] = defaultdict(int)
+    for start, end in pairs:
+        paired_boundary[start] -= 1
+        paired_boundary[end] += 1
+    assert lift.add_vectors(paired_boundary) == boundary
 
     generators = phi4.forest_generators(operators)
     generators.update({
@@ -153,6 +159,16 @@ def build_l0_direction(source: dict[lift.Word, int]) -> SourceFlowDirection:
     direction = tuple(lift.clean_vector(variable) for variable in variables)
     assert not escape.correction_image(direction, operators)
     return SourceFlowDirection(source_entries(normalized_source), tuple(paths), direction)
+
+
+def build_l0_direction(source: dict[lift.Word, int]) -> SourceFlowDirection:
+    _, _, _, _, operators = escape.recurrence_data()
+    normalized_source = lift.add_vectors(source)
+    boundary = lift.apply_operator(operators[0], normalized_source)
+    assert orbit_sums(boundary) == (0, 0)
+    pairs = paired_boundaries(boundary)
+    assert pairs is not None
+    return build_l0_direction_from_pairs(normalized_source, pairs)
 
 
 KNOWN_SOURCES = (
