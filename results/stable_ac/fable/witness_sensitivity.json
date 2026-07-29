@@ -929,6 +929,83 @@
    "found_at_probe_evals": 2000000,
    "move": "spike",
    "grow_seconds": 30.2
+  },
+  {
+   "chain": "even",
+   "total_length": 22,
+   "words": [
+    "XYYyxXxyyYYXX",
+    "XxXYyxxxy"
+   ],
+   "parent": [
+    "XYYyxXxyyYYXX",
+    "XYyxxxy"
+   ],
+   "degrees": {
+    "x": 12,
+    "y": 10
+   },
+   "predicted_family": 14485008384000,
+   "certified_by": "witness",
+   "census": null,
+   "witness_verified_defect": 0,
+   "witness_orders": {
+    "0": [
+     1,
+     38,
+     25,
+     40,
+     23,
+     8,
+     31,
+     28,
+     11,
+     12,
+     27,
+     36
+    ],
+    "1": [
+     37,
+     26,
+     13,
+     10,
+     29,
+     30,
+     9,
+     22,
+     41,
+     24,
+     39,
+     0
+    ],
+    "2": [
+     3,
+     42,
+     21,
+     14,
+     5,
+     6,
+     33,
+     34,
+     19,
+     16
+    ],
+    "3": [
+     17,
+     18,
+     35,
+     32,
+     7,
+     4,
+     15,
+     20,
+     43,
+     2
+    ]
+   },
+   "found_at_probe_evals": 600000,
+   "move": "spike",
+   "grow_seconds": 22.6
   }
  ],
  "stalls": [],
@@ -1702,10 +1779,80 @@
      "complete": true
     }
    }
+  },
+  "22": {
+   "words": [
+    "XYYyxXxyyYYXX",
+    "XxXYyxxxy"
+   ],
+   "total_length": 22,
+   "certified_by": "witness",
+   "cells": {
+    "10000": {
+     "samples": 10000,
+     "runs": 10,
+     "hits": 0,
+     "rate": 0.0,
+     "run_best_defects": [
+      4,
+      4,
+      2,
+      4,
+      2,
+      6,
+      4,
+      4,
+      2,
+      4
+     ],
+     "mean_seconds": 0.098,
+     "complete": true
+    },
+    "40000": {
+     "samples": 40000,
+     "runs": 10,
+     "hits": 0,
+     "rate": 0.0,
+     "run_best_defects": [
+      4,
+      4,
+      4,
+      2,
+      4,
+      4,
+      4,
+      2,
+      2,
+      4
+     ],
+     "mean_seconds": 0.381,
+     "complete": true
+    },
+    "200000": {
+     "samples": 200000,
+     "runs": 10,
+     "hits": 1,
+     "rate": 0.1,
+     "run_best_defects": [
+      2,
+      2,
+      2,
+      2,
+      0,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "mean_seconds": 1.773,
+     "complete": true
+    }
+   }
   }
  },
  "anomalies": [],
  "truncated": false,
  "summary": null,
- "elapsed_seconds": 140.7
+ "elapsed_seconds": 185.9
 }
