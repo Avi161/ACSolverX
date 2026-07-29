@@ -1,0 +1,1827 @@
+{
+ "record": "spike_space_hunt",
+ "root": [
+  "xxxYYYY",
+  "xyxYXY"
+ ],
+ "samples_per_state": 120000,
+ "seed": 20260729,
+ "group_sizes": {
+  "undecided_loop_bearing": 150
+ },
+ "one_sided": "a defect-0 witness is a complete positive certificate; the ABSENCE of one is silence and is evidence of nothing",
+ "hit_blockers": [
+  "independently re-verify the rotation system",
+  "reconstruct the explicit AC move list from AK(3) to this exact spelling and replay it through the pure-Python spec",
+  "confirm Lackenby Thm 1.3 applies to an unreduced spelling"
+ ],
+ "best_bound": {
+  "undecided_loop_bearing": 1
+ },
+ "rows": [
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYYyxyXYX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYYyxYXYx",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYYYXyxyX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYYyXYXyx",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.13,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYYYxyxYX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxYYYYxyxyXYX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 2,
+   "seconds": 1.04,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxYYYYxYXyxyX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxYYYYxYxyxYX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xYYYYxxyxyXYX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xYYYYxxYXyxyX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.13,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xYYYYxxYxyxYX",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 2,
+   "seconds": 1.06,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYYYxxxxYXYxy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 2,
+   "seconds": 1.02,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYYYxxxxyXYXy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYYxxxYxYXYxy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYYxxxYXYXyxy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.03,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYYxxxYxyXYXy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxxxYYxYXYxy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.07,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxxxYYXYXyxy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxxxYYxyXYXy",
+    "xyxYXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xyxYXYyyyyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.13,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xyxYXYXyyyyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xyxYXYXXyyyyX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xyxYXYyXXXyyy"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xyxYXYyyXXXyy"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xyxYXYyyyXXXy"
+   ],
+   "total_length": 20,
+   "sampler_defect": 6,
+   "seconds": 1.08,
+   "verified_defect": 6,
+   "gamma_upper_bound": 3
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "yxYXYxxxxYYYY"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "yxYXYxYYYxxxY"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "yxYXYxYYxxxYY"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "yxYXYxYxxxYYY"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xYXYxyyyyyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xYXYxyXyyyyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.07,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "xYXYxyXXyyyyX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.14,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "YXYxyxyXXXyyy"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "YXYxyxyyXXXyy"
+   ],
+   "total_length": 20,
+   "sampler_defect": 6,
+   "seconds": 1.1,
+   "verified_defect": 6,
+   "gamma_upper_bound": 3
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "YXYxyxyyyXXXy"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "XYxyxYxxYYYYx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "XYxyxYxYYYYxx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xxxYYYY",
+    "XYxyxYYYYYxxx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxxxxYXyy",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.14,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxyxxxYXy",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxXyyxxxY",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxXXXYYxy",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxXXYYxyX",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxXYYxyXX",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YXXyxYxxxYXyy",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YXXyxYXXXYYxy",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XXyxYYYXyyxxx",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XXyxYYxYXyyxx",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XXyxYYxxYXyyx",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XyxYYXyXXXYYx",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XyxYYXYXyyxxx",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yxYYXXXyyxxxY",
+    "YYxyXXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYxyXXXXYxxyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYxyXXXyXYxxy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.02,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYxyXXXxyyXYx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYxyXXXxxyyXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYxyXXXxYYXXy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.03,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YxyXXXYXYxxyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.03,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YxyXXXYxYYXXy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 2,
+   "seconds": 1.05,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "xyXXXYYXyxYYX"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "xyXXXYYYxxyyX"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.03,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "yXXXYYxYXXyxY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "yXXXYYxxxyyXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "XXXYYxyyyXYxx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "XXXYYxyxyyXYx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "XXYYxyXYYXXyx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxxxYXyyy",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxyxxYXyy",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxyyxxYXy",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 6,
+   "seconds": 1.1,
+   "verified_defect": 6,
+   "gamma_upper_bound": 3
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxXyyyxxY",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxXXYYYxy",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyxXYYYxyX",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YXXyxYxxYXyyy",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YXXyxYXXYYYxy",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XXyxYYYXyyyxx",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XXyxYYxYXyyyx",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XyxYYXyXXYYYx",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XyxYYXYXyyyxx",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.13,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yxYYXXYxyXXYY",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 6,
+   "seconds": 1.26,
+   "verified_defect": 6,
+   "gamma_upper_bound": 3
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yxYYXXXyyyxxY",
+    "YYYxyXX"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYYxyXXXYxxyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYYxyXXyXYxxy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYYxyXXxyyXYx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYYxyXXxxyyXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.14,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYYxyXXxYYXXy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYxyXXYXYxxyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YYxyXXYxYYXXy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YxyXXYYXYxxyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "YxyXXYYxYYXXy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "xyXXYYYXyxYYX"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "xyXXYYYYxxyyX"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "yXXYYYxYXXyxY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "yXXYYYxxxyyXY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYXXyx",
+    "XXYYYxyxyyXYx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.07,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXXYxxyyy",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXyXYxxyy",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXyyXYxxy",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXxyyyXYx",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 6,
+   "seconds": 1.11,
+   "verified_defect": 6,
+   "gamma_upper_bound": 3
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXxxyyyXY",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXxYYYXXy",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.14,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YxyXXYXYxxyyy",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YxyXXYxYYYXXy",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xyXXYYXyxYYYX",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xyXXYYYxxyyyX",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yXXYYxYYXXyxY",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yXXYYxYXXyxYY",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yXXYYxxxyyyXY",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.13,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XXYYxyxyyyXYx",
+    "YYYXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYYXXyxxxYXyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYYXXyxyxxYXy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYYXXyxXyyxxY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYYXXyxXXYYxy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYYXXyxXYYxyX"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.03,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYXXyxYxxYXyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYXXyxYXXYYxy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.07,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YXXyxYYxxYXyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YXXyxYYXXYYxy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XXyxYYYYXyyxx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XXyxYYYxYXyyx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XyxYYYXyXXYYx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.03,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XyxYYYXYXyyxx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "yxYYYXXXyyxxY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXXYxxxyy",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXyXYxxxy",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXxyyXYxx",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXxxyyXYx",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 6,
+   "seconds": 1.12,
+   "verified_defect": 6,
+   "gamma_upper_bound": 3
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXxxxyyXY",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.14,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXXxYYXXXy",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YxyXXYXYxxxyy",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YxyXXYxYYXXXy",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xyXXYYXXyxYYX",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xyXXYYXyxYYXX",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 6,
+   "seconds": 1.09,
+   "verified_defect": 6,
+   "gamma_upper_bound": 3
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "xyXXYYYxxxyyX",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yXXYYxYXXXyxY",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "yXXYYxxxxyyXY",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.1,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "XXYYxyxxyyXYx",
+    "YYXXXyx"
+   ],
+   "total_length": 20,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYXXXyxxxYXyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.06,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYXXXyxyxxYXy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.04,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYXXXyxXyyxxY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYXXXyxXXYYxy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 2,
+   "seconds": 1.05,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YYXXXyxXYYxyX"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YXXXyxYxxYXyy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.05,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "YXXXyxYXXYYxy"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.07,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XXXyxYYYXyyxx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.13,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XXXyxYYxYXyyx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.15,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XXyxYYXyXXYYx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.11,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XXyxYYXYXyyxx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.08,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XyxYYXXyXXYYx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "XyxYYXXYXyyxx"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.12,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  },
+  {
+   "group": "undecided_loop_bearing",
+   "words": [
+    "YYxyXX",
+    "yxYYXXXXyyxxY"
+   ],
+   "total_length": 19,
+   "sampler_defect": 4,
+   "seconds": 1.09,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2
+  }
+ ],
+ "HITS": [],
+ "out_of_scope": [],
+ "states_hunted": 150,
+ "THICKENABLE_FOUND": false
+}

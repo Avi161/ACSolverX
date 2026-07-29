@@ -88,6 +88,27 @@ four length-13 gateways contain no thickenable member
 rows are exactly the loop-bearing unreduced images, which R1f's open question would
 settle).
 
+**Status of those 150, updated — they cannot be closed with any tool this project has.**
+Their censuses run to 1.46e10 - 1.46e11 rotation systems (measured, not estimated), so
+the exhaustive route is out by four orders of magnitude, and the R1c-v2 solver fails
+closed on every one of them because they carry A-loops. That leaves exactly one reachable
+verdict: a defect-0 witness, which would decide a row SPHERICAL outright. All 150 were
+swept for one at 120,000 hill-climb evaluations each
+(`spike_space_hunt_undecided.json`, lengths 19-20): **none found**, so none is closed.
+
+What the sweep did produce is a certified UPPER bound where previously there was no
+information at all — every row now carries an explicit, re-verified compatible rotation
+system, distributed as gamma_N <= 1 for 5 rows, <= 2 for 138, <= 3 for 7, with zero
+sampler/verifier disagreements. Read that histogram with care: at length 19-20 the
+climber's detection power is itself unmeasured, so the distribution is a mixture of true
+gamma_N and climber weakness and must not be reported as a landscape. The honest
+statement is that **the one-move neighbourhood claim is 690/840 decided, and the
+remaining 150 are undecidable by present means** — closing them needs either the
+"spiked thickenable => reduced thickenable" implication (which would settle all 150 at
+once as NOT_SPHERICAL, since every one of their reductions is NOT_SPHERICAL) or a
+lower-bound tool that works on loop-bearing complexes. Neither exists yet; the former is
+the more valuable and is under proof attempt.
+
 **The gap, stated plainly.** The corollary excludes cancelling grafts, and it must:
 `R1F_REDUCTION_AND_SPIKES.md` exhibits a verified case where free reduction — move (0),
 the reduction half of a cancelling graft — takes gamma_N from 1 to 0 by itself. So no
