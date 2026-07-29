@@ -1448,3 +1448,8 @@
 
 - [TRAP] Two mode-`0644` scratch checkers carried Python shebangs and passed an older reviewer lint environment, but the required Ruff 0.16.0 controller gate rejected them with `EXE001` and also exposed import/annotation formatting drift.
 - [WORKS] For checkers invoked explicitly with `python3`, omit the shebang; record `ruff --version`, rerun the exact controller command, and rereview the final hashes after even mechanical byte changes.
+
+### 2026-07-29 Bind quotient witnesses to their exact elimination source
+
+- [TRAP] The first MMS02 finite-quotient scanner hard-coded a reduced one-relator model without importing or certifying its Tietze map from `exchange_quotient()`. Its permutation calculation was true but did not prove a statement about the actual corrected and misprinted `r13` probes. The accompanying report also extended a source's recursive descendant theorem to arbitrary direct-removal words.
+- [WORKS] Make every finite-quotient witness consume the exact relators and probes emitted by the load-bearing elimination checker, and distinguish explicitly replayed ordinary AC-trivial descendants from arbitrary removals known only to lie in the inherited stable class. A quotient separation must state the precise fixed-relator move family it excludes, never general AC or stable AC.
