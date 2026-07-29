@@ -139,6 +139,7 @@ def _raw_residual_tensor(variables):
 
 def test_symbolic_mixed_tensor_matches_the_independent_four_corner_oracle() -> None:
     from experiments.stable_ac.depth4_period_two_phi_infinity_hessian_certificate import (
+        symbolic_mixed_subtotals,
         symbolic_mixed_tensor,
         symbolic_mixed_wedge,
     )
@@ -166,6 +167,17 @@ def test_symbolic_mixed_tensor_matches_the_independent_four_corner_oracle() -> N
         if (len(pair[0]), pair[0]) < (len(pair[1]), pair[1]) and coefficient
     }
     assert symbolic_mixed_wedge(left, right) == expected_wedge
+    subtotals = symbolic_mixed_subtotals(left, right)
+    reconstructed = _combine_tensors(
+        (1, subtotals.positive_internal),
+        (1, subtotals.negative_internal),
+        (1, subtotals.external),
+        (1, subtotals.propagated_diagonal),
+    )
+    assert reconstructed == symbolic
+    assert all(left_vertex == right_vertex for left_vertex, right_vertex in subtotals.propagated_diagonal)
+    assert all(left_vertex != right_vertex for left_vertex, right_vertex in subtotals.positive_internal)
+    assert all(left_vertex != right_vertex for left_vertex, right_vertex in subtotals.negative_internal)
 
 
 def test_mixed_tensor_rejects_nonhomogeneous_directions() -> None:
@@ -221,6 +233,7 @@ def test_symbolic_paths_do_not_call_long_residual_or_raw_oracles(monkeypatch) ->
     monkeypatch.setattr(escape, "corrected_residual", forbidden)
     monkeypatch.setattr(escape, "schreier_word", forbidden)
     monkeypatch.setattr(hessian, "raw_tensor_from_kernel_word", forbidden)
+    monkeypatch.setattr(hessian, "_expand", forbidden)
     assert hessian.symbolic_syndrome(zero) == tuple(int(bit) for bit in "111010110101011")
 
 

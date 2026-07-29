@@ -282,20 +282,44 @@ def _assert_direction(direction: ModuleVariables) -> None:
     )
 
 
-def symbolic_mixed_tensor(
+@dataclass(frozen=True)
+class MixedTensorSubtotals:
+    positive_internal: Tensor
+    negative_internal: Tensor
+    external: Tensor
+    propagated_diagonal: Tensor
+
+
+def symbolic_mixed_subtotals(
     left: ModuleVariables,
     right: ModuleVariables,
-) -> Tensor:
+) -> MixedTensorSubtotals:
     _assert_direction(left)
     _assert_direction(right)
     occurrences = residual_occurrences()
-    contributions: list[Tensor] = []
+    positive_internal: list[Tensor] = []
+    negative_internal: list[Tensor] = []
+    propagated_diagonal: list[Tensor] = []
     for occurrence in occurrences:
         gamma = gamma_positive if occurrence.polarity == 1 else gamma_negative
-        contributions.append(_translate_tensor(
+        translated = _translate_tensor(
             occurrence.quotient_prefix,
             gamma(left[occurrence.slot], right[occurrence.slot]),
-        ))
+        )
+        diagonal = {
+            pair: coefficient
+            for pair, coefficient in translated.items()
+            if pair[0] == pair[1]
+        }
+        off_diagonal = {
+            pair: coefficient
+            for pair, coefficient in translated.items()
+            if pair[0] != pair[1]
+        }
+        propagated_diagonal.append(diagonal)
+        target = positive_internal if occurrence.polarity == 1 else negative_internal
+        target.append(off_diagonal)
+    external: list[Tensor] = []
     for left_index, left_occurrence in enumerate(occurrences):
         left_d = _action(left_occurrence.quotient_prefix, left[left_occurrence.slot])
         left_e = _action(left_occurrence.quotient_prefix, right[left_occurrence.slot])
@@ -303,11 +327,29 @@ def symbolic_mixed_tensor(
             right_d = _action(right_occurrence.quotient_prefix, left[right_occurrence.slot])
             right_e = _action(right_occurrence.quotient_prefix, right[right_occurrence.slot])
             coefficient = left_occurrence.polarity * right_occurrence.polarity
-            contributions.extend((
+            external.extend((
                 _scale_tensor(_outer(left_d, right_e), coefficient),
                 _scale_tensor(_outer(left_e, right_d), coefficient),
             ))
-    return _add_tensors(*contributions)
+    return MixedTensorSubtotals(
+        positive_internal=_add_tensors(*positive_internal),
+        negative_internal=_add_tensors(*negative_internal),
+        external=_add_tensors(*external),
+        propagated_diagonal=_add_tensors(*propagated_diagonal),
+    )
+
+
+def symbolic_mixed_tensor(
+    left: ModuleVariables,
+    right: ModuleVariables,
+) -> Tensor:
+    subtotals = symbolic_mixed_subtotals(left, right)
+    return _add_tensors(
+        subtotals.positive_internal,
+        subtotals.negative_internal,
+        subtotals.external,
+        subtotals.propagated_diagonal,
+    )
 
 
 def _mixed_tensor_to_wedge(value: Tensor) -> WedgeVector:
@@ -356,21 +398,6 @@ class _KernelStream:
                 self._append_kernel_letter(self.quotient_prefix, -1)
             self.quotient_prefix = lift.quotient_append(self.quotient_prefix, letter)
 
-    def append_correction(self, value: lift.ModuleVector, polarity: int) -> None:
-        assert polarity in (-1, 1)
-        items = sorted(
-            lift.add_vectors(value).items(),
-            key=lambda item: (len(item[0]), item[0]),
-        )
-        if polarity == -1:
-            items.reverse()
-        for module_vertex, coefficient in items:
-            exponent = polarity * coefficient
-            relation = lift.relation_generator(module_vertex)
-            signed_relation = relation if exponent >= 0 else lift.inverse(relation)
-            for _ in range(abs(exponent)):
-                self.append_literal(signed_relation)
-
     def result(self) -> tuple[lift.Word, lift.ModuleVector, Tensor]:
         return (
             self.quotient_prefix,
@@ -390,21 +417,155 @@ def _add_variables(*values: ModuleVariables) -> ModuleVariables:
     )
 
 
+@dataclass(frozen=True)
+class _CrossedCoordinate:
+    quotient: lift.Word
+    linear: lift.ModuleVector
+    tensor: Tensor
+
+
+def _kernel_product(
+    *coordinates: tuple[lift.ModuleVector, Tensor],
+) -> tuple[lift.ModuleVector, Tensor]:
+    linear: lift.ModuleVector = {}
+    tensor: Tensor = {}
+    for right_linear, right_tensor in coordinates:
+        tensor = _add_tensors(tensor, right_tensor, _outer(linear, right_linear))
+        linear = lift.add_vectors(linear, right_linear)
+    return linear, tensor
+
+
+def _kernel_inverse(
+    linear: lift.ModuleVector,
+    tensor: Tensor,
+) -> tuple[lift.ModuleVector, Tensor]:
+    return (
+        lift.scale_vector(linear, -1),
+        _add_tensors(_scale_tensor(tensor, -1), _outer(linear, linear)),
+    )
+
+
+@lru_cache(maxsize=None)
+def _literal_coordinate(word: lift.Word) -> _CrossedCoordinate:
+    stream = _KernelStream()
+    stream.append_literal(word)
+    quotient, linear, tensor = stream.result()
+    return _CrossedCoordinate(quotient, linear, tensor)
+
+
+def _canonical_section_coordinate(value: lift.ModuleVector) -> _CrossedCoordinate:
+    canonical = lift.add_vectors(value)
+    vertices = sorted(canonical, key=lambda word: (len(word), word))
+    tensor: dict[TensorKey, int] = defaultdict(int)
+    for index, left_vertex in enumerate(vertices):
+        coefficient = canonical[left_vertex]
+        tensor[left_vertex, left_vertex] += coefficient * (coefficient - 1) // 2
+        for right_vertex in vertices[index + 1:]:
+            tensor[left_vertex, right_vertex] += coefficient * canonical[right_vertex]
+    return _CrossedCoordinate((), canonical, _clean_tensor(tensor))
+
+
+@lru_cache(maxsize=None)
+def _transported_generator_coordinate(
+    quotient: lift.Word,
+    module_vertex: lift.Word,
+) -> _CrossedCoordinate:
+    word = lift.multiply(
+        quotient,
+        lift.relation_generator(module_vertex),
+        lift.inverse(quotient),
+    )
+    coordinate = _literal_coordinate(word)
+    assert coordinate.quotient == ()
+    expected = _action(quotient, {module_vertex: 1})
+    assert coordinate.linear == expected
+    return coordinate
+
+
+def _transport_kernel(
+    quotient: lift.Word,
+    linear: lift.ModuleVector,
+    tensor: Tensor,
+) -> tuple[lift.ModuleVector, Tensor]:
+    transported_linear = _action(quotient, linear)
+    transported_tensor = _translate_tensor(quotient, tensor)
+    one_vertex_terms = tuple(
+        _scale_tensor(
+            _transported_generator_coordinate(quotient, module_vertex).tensor,
+            coefficient,
+        )
+        for module_vertex, coefficient in lift.add_vectors(linear).items()
+    )
+    return transported_linear, _add_tensors(transported_tensor, *one_vertex_terms)
+
+
+@lru_cache(maxsize=None)
+def _omega_coordinate(left: lift.Word, right: lift.Word) -> _CrossedCoordinate:
+    product = lift.quotient_multiply(left, right)
+    word = lift.multiply(left, right, lift.inverse(product))
+    coordinate = _literal_coordinate(word)
+    assert coordinate.quotient == ()
+    return coordinate
+
+
+def _coordinate_product(
+    left: _CrossedCoordinate,
+    right: _CrossedCoordinate,
+) -> _CrossedCoordinate:
+    transported = _transport_kernel(left.quotient, right.linear, right.tensor)
+    omega = _omega_coordinate(left.quotient, right.quotient)
+    linear, tensor = _kernel_product(
+        (left.linear, left.tensor),
+        transported,
+        (omega.linear, omega.tensor),
+    )
+    return _CrossedCoordinate(
+        lift.quotient_multiply(left.quotient, right.quotient),
+        linear,
+        tensor,
+    )
+
+
+def _coordinate_inverse(value: _CrossedCoordinate) -> _CrossedCoordinate:
+    section_inverse = _literal_coordinate(lift.inverse(value.quotient))
+    inverse_linear, inverse_tensor = _kernel_inverse(value.linear, value.tensor)
+    kernel_inverse = _CrossedCoordinate((), inverse_linear, inverse_tensor)
+    return _coordinate_product(section_inverse, kernel_inverse)
+
+
+def _evaluate_ast_coordinate(
+    node: Node,
+    variables: ModuleVariables,
+) -> _CrossedCoordinate:
+    if isinstance(node, Literal):
+        return _literal_coordinate(node.word)
+    if isinstance(node, Correction):
+        return _canonical_section_coordinate(variables[node.slot])
+    if isinstance(node, Product):
+        result = _CrossedCoordinate((), {}, {})
+        for factor in node.factors:
+            result = _coordinate_product(result, _evaluate_ast_coordinate(factor, variables))
+        return result
+    if isinstance(node, Inverse):
+        return _coordinate_inverse(_evaluate_ast_coordinate(node.value, variables))
+    if isinstance(node, Conjugation):
+        conjugator = _evaluate_ast_coordinate(node.conjugator, variables)
+        payload = _evaluate_ast_coordinate(node.payload, variables)
+        return _coordinate_product(
+            _coordinate_product(conjugator, payload),
+            _coordinate_inverse(conjugator),
+        )
+    raise TypeError(f"unknown AST node {node!r}")
+
+
 def _symbolic_residual_coordinate(
     direction: ModuleVariables,
 ) -> tuple[lift.ModuleVector, Tensor]:
     assert len(direction) == 5
     variables = _add_variables(_base_variables(), direction)
-    stream = _KernelStream()
-    for leaf in _expand(_residual_ast()):
-        if leaf.literal is not None:
-            stream.append_literal(leaf.literal)
-        else:
-            assert leaf.slot is not None
-            stream.append_correction(variables[leaf.slot], leaf.polarity)
-    quotient, linear, tensor = stream.result()
-    assert quotient == ()
-    return linear, tensor
+    coordinate = _evaluate_ast_coordinate(_residual_ast(), variables)
+    assert coordinate.quotient == ()
+    return coordinate.linear, coordinate.tensor
 
 
 def symbolic_residual_tensor(direction: ModuleVariables) -> Tensor:

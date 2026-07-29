@@ -14,7 +14,11 @@
   `6bcbefd3aef5107217545a1b21d744cb208bb6b9e7dbb8a57c0b3089c970bbdf`.
 - Verification: direct system-Python certificate replay passed; focused Hessian,
   tree-flow, source-flow, and subgroup-rewrite suite passed `22/22`; local
-  line-by-line formula and scope review found no unresolved defect.
+  line-by-line formula and scope review found no unresolved defect. A hostile
+  review then rejected flattened correction-word streaming; the replacement
+  uses analytic crossed AST node coordinates and exposes reconstructing sparse
+  positive-internal, negative-internal, external, and propagated-diagonal
+  subtotals.
 - Scope boundary: Task 2 equality/order normalization and anchored kernel
   theorem remain unimplemented; no finite-state, period-two lift, stable AC,
   or AC conclusion is claimed.

@@ -1356,3 +1356,8 @@
 
 - [TRAP] `from __future__ import annotations` does not postpone evaluation of a runtime type-alias assignment; `Node = Literal | Correction` still raises `TypeError: unsupported operand type(s) for |` under this worktree's Python 3.9.6.
 - [WORKS] Use `typing.Union[...]` for runtime union aliases in directly replayable certificate modules, while retaining postponed annotations for function and dataclass annotations.
+
+### 2026-07-29 Keep symbolic Hessian evaluation independent of word streaming
+
+- [TRAP] Flattening a typed residual AST and streaming every canonical correction relation word can match a direct four-corner oracle while duplicating its essential computation; that does not independently certify product, inverse, section-transport, or section-multiplication defects.
+- [WORKS] Evaluate AST nodes in the convention `W = n sigma(q)`: use analytic shortlex correction coordinates, transport by the quotient action plus one-vertex tensor defects, include the exact `omega(q,r)` section defect in products, and reserve literal streaming for bounded fixed leaves and oracle fixtures.
