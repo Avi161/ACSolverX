@@ -1301,3 +1301,8 @@
 
 - [WORKS] For the depth-six balanced `L_0` census, compute the projected finite-action wedge bits directly from the Schreier kernel before constructing the full wedge dictionary. Among 4671 balanced pairs, only two passed the fourteen projected bits, and both were then caught by the full wedge-sum bit `Phi_infinity=1`.
 - [WORKS] Treat the 127-source/4671-pair result as bounded evidence only. Before depth-seven work, promote the exact complete-cover rewrite and source-orbit classifier out of `.scratch` so the census is reproducible from tracked certificate code.
+
+### 2026-07-28 Audit detached computation after agent work
+
+- [TRAP] Interrupting or completing an agent does not prove that an older detached child exited: PID `59982`, a stdin-fed Codex Python process in the `codex-proofs` worktree, remained at roughly 67% CPU for 4.5 hours and accumulated 131 CPU-minutes.
+- [WORKS] After long proof runs, interrupted agents, and before handoff, inspect owned processes by executable, parent/process group, elapsed CPU, working directory, open project files, children, and live connections. Terminate only an exact process proven stale, send `SIGTERM` first, and re-scan to prove it exited; do not kill app infrastructure, connected services, or user terminals merely because their working directory is ACSolverX.
