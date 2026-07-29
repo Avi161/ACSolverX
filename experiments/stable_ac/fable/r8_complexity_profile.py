@@ -96,24 +96,44 @@ def check_sharp_profile():
 
 # ---------------------------------------------------------------- B: complexity 1
 
-def check_complexity1_ac_trivial():
-    """<a,b | baaBA, b>  ->  <a,b | a, b>  using only AC1/AC2/AC3 (no stabilisation)."""
-    r = ["baaBA", "b"]
+def _replay_chain(start, chain):
+    """Replay a list of ('left'|'right'|'conj', arg) AC steps on relator 0."""
+    r = list(start)
     trace = [tuple(r)]
-    # 1. AC2 composite: r1 -> r2^-1 . r1   (left multiply = AC1,AC2,AC1 composite)
-    r[0] = free_reduce(inverse(r[1]) + r[0])            # B . baaBA = aaBA
-    trace.append(tuple(r))
-    # 2. AC3 conjugate by a^-1 :  r1 -> A r1 a
-    r[0] = free_reduce("A" + r[0] + "a")                # A aaBA a = aBAa -> free reduce
-    trace.append(tuple(r))
-    # 3. AC3 conjugate by a  (undo an over-rotation is not needed); instead multiply by r2
-    r[0] = free_reduce(r[0] + r[1])                     # aB . b = a  (after reduction)
-    trace.append(tuple(r))
-    ok = sorted(r) == ["a", "b"]
-    for i, st in enumerate(trace):
-        print(f"[B] step {i}: {list(st)}")
-    print(f"[B] {'PASS' if ok else 'FAIL'}  complexity-1 census presentation is "
-          f"AC-trivial (unstably), reached {sorted(r)}")
+    for kind, arg in chain:
+        if kind == "left":                       # r1 -> r_arg^-1 . r1   (AC1+AC2+AC1)
+            r[0] = free_reduce(inverse(r[arg]) + r[0])
+        elif kind == "right":                    # r1 -> r1 . r_arg      (AC2)
+            r[0] = free_reduce(r[0] + r[arg])
+        elif kind == "rightinv":                 # r1 -> r1 . r_arg^-1   (AC1+AC2)
+            r[0] = free_reduce(r[0] + inverse(r[arg]))
+        elif kind == "conj":                     # r1 -> w r1 w^-1       (AC3)
+            r[0] = free_reduce(arg + r[0] + inverse(arg))
+        else:
+            raise ValueError(kind)
+        trace.append(tuple(r))
+    return r, trace
+
+
+def check_complexity1_ac_trivial():
+    """BOTH complexity-1 census presentations are AC-trivial with no stabilisation.
+
+    There are exactly two rows at complexity 1, and a rank-2 census presentation can only
+    come from complexity 1 (rank = V+1), so this settles every rank-2 census target.
+    """
+    cases = [
+        (["baaBA", "b"], [("left", 1), ("conj", "A"), ("right", 1)]),
+        (["bbaBa", "a"], [("rightinv", 1), ("conj", "B"), ("rightinv", 1)]),
+    ]
+    ok = True
+    for start, chain in cases:
+        r, trace = _replay_chain(start, chain)
+        good = sorted(r) == ["a", "b"]
+        ok = ok and good
+        print(f"[B] {list(start)}: " + " -> ".join(str(list(s)) for s in trace)
+              + f"   {'OK' if good else 'BAD'}")
+    print(f"[B] {'PASS' if ok else 'FAIL'}  both complexity-1 census presentations are "
+          f"AC-trivial (unstably, 3 moves each)")
     return ok
 
 
