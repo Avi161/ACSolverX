@@ -741,3 +741,11 @@ fatal: Authentication failed for 'https://github.com/avi161/acsolverx/'
  1 file changed, 1 insertion(+), 1 deletion(-)
 remote: Invalid username or token. Password authentication is not supported for Git operations.
 fatal: Authentication failed for 'https://github.com/avi161/acsolverx/'
+[cursor/heur-12h-anti-overfit-a42e eb51ee0] heur: research checkpoint 13:57:37 UTC
+ 8 files changed, 37 insertions(+), 8 deletions(-)
+[cursor/heur-12h-anti-overfit-a42e eb998e3] logs: fill short SHA for research checkpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/Avi161/ACSolverX.git        
+To https://github.com/avi161/acsolverx
+   fdc72ad..eb998e3  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
