@@ -1418,3 +1418,13 @@
 
 - [TRAP] A later cochain probe again parsed the raw quotient prefix `tc` with `lift.parse_quotient`, which applies `c_vertex` and silently changes it to `t`; the resulting rectangle value was not an evaluation of the theorem and had to be discarded.
 - [WORKS] Before any raw-prefix replay, assert the raw parser round-trips `tc` and its inverse `cT`, forbid the module-vertex parser at transport/action boundaries, and have the hostile referee independently check the parser path. A corrected zero rectangle remains only a semantic pin.
+
+### 2026-07-29 Serialize every predicate used to justify a decision category
+
+- [TRAP] The frontier dispatcher required the solver's exact `spherical is False/True` value before classifying a row, but its result dataclass dropped that field, so the first certificate serialized counters/verdict/witness without the boolean it had relied on.
+- [WORKS] Carry every classification predicate into the certificate with an explicit category contract (`false` for exact negatives, `true` for quarantined positives, `null` for prior/unsupported), reject missing and truthy substitutes during replay, and tamper-test each value independently of the row digest.
+
+### 2026-07-29 Invoke repository drivers through their package entry point
+
+- [TRAP] Running `python3 experiments/stable_ac/thickenable/ak3_aut_frontier_certificate.py --write` failed before manifest ingestion with `ModuleNotFoundError: No module named 'experiments'` because package-qualified imports require the repository root on `sys.path`.
+- [WORKS] Invoke package drivers with `python3 -m experiments.stable_ac.thickenable.<module>`. After an early command failure, verify result artifacts are still absent before retrying the correct entry point.
