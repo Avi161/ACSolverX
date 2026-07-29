@@ -687,3 +687,2681 @@ wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESUL
   [screen] +1350 (13850 total) 11.61/s remain=11.28h
   [screen] +1400 (13900 total) 11.54/s remain=11.28h
   [screen] +1450 (13950 total) 11.40/s remain=11.28h
+  [screen] +1500 (14000 total) 11.36/s remain=11.28h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=8960 mid=2624 hard=2416
+[arms] 580 targets; 6870 cells done
+  [arms] +20 remain=11.28h 15.26/s
+  [arms] +40 remain=11.28h 18.23/s
+  [arms] +60 remain=11.28h 17.53/s
+  [arms] +80 remain=11.28h 16.46/s
+  [arms] +100 remain=11.28h 18.47/s
+  [arms] +120 remain=11.28h 17.44/s
+  [arms] +140 remain=11.28h 15.22/s
+  [arms] +160 remain=11.28h 14.74/s
+  [arms] +180 remain=11.28h 15.99/s
+  [arms] +200 remain=11.27h 15.24/s
+  [arms] +220 remain=11.27h 15.93/s
+  [arms] +240 remain=11.27h 16.40/s
+  [arms] +260 remain=11.27h 16.80/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 9 remain=11.27h ===
+[screen] resume 14000 done; target 15500
+  [screen] +50 (14050 total) 11.25/s remain=11.27h
+  [screen] +100 (14100 total) 10.21/s remain=11.27h
+  [screen] +150 (14150 total) 10.26/s remain=11.27h
+  [screen] +200 (14200 total) 12.11/s remain=11.27h
+  [screen] +250 (14250 total) 12.54/s remain=11.27h
+  [screen] +300 (14300 total) 12.77/s remain=11.27h
+  [screen] +350 (14350 total) 12.91/s remain=11.27h
+  [screen] +400 (14400 total) 12.86/s remain=11.26h
+  [screen] +450 (14450 total) 12.54/s remain=11.26h
+  [screen] +500 (14500 total) 12.07/s remain=11.26h
+  [screen] +550 (14550 total) 11.74/s remain=11.26h
+  [screen] +600 (14600 total) 11.50/s remain=11.26h
+  [screen] +650 (14650 total) 11.36/s remain=11.26h
+  [screen] +700 (14700 total) 11.43/s remain=11.26h
+  [screen] +750 (14750 total) 11.91/s remain=11.26h
+  [screen] +800 (14800 total) 11.99/s remain=11.25h
+  [screen] +850 (14850 total) 11.71/s remain=11.25h
+  [screen] +900 (14900 total) 11.70/s remain=11.25h
+  [screen] +950 (14950 total) 11.66/s remain=11.25h
+  [screen] +1000 (15000 total) 11.74/s remain=11.25h
+  [screen] +1050 (15050 total) 11.84/s remain=11.25h
+  [screen] +1100 (15100 total) 11.66/s remain=11.25h
+  [screen] +1150 (15150 total) 11.69/s remain=11.25h
+  [screen] +1200 (15200 total) 12.01/s remain=11.25h
+  [screen] +1250 (15250 total) 12.08/s remain=11.24h
+  [screen] +1300 (15300 total) 12.02/s remain=11.24h
+  [screen] +1350 (15350 total) 12.07/s remain=11.24h
+  [screen] +1400 (15400 total) 12.17/s remain=11.24h
+  [screen] +1450 (15450 total) 12.14/s remain=11.24h
+  [screen] +1500 (15500 total) 12.00/s remain=11.24h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=9935 mid=2895 hard=2670
+[arms] 580 targets; 7146 cells done
+  [arms] +20 remain=11.24h 27.05/s
+  [arms] +40 remain=11.24h 19.31/s
+  [arms] +60 remain=11.24h 20.24/s
+  [arms] +80 remain=11.24h 22.81/s
+  [arms] +100 remain=11.24h 20.82/s
+  [arms] +120 remain=11.24h 21.75/s
+  [arms] +140 remain=11.24h 22.77/s
+  [arms] +160 remain=11.24h 23.92/s
+  [arms] +180 remain=11.24h 21.60/s
+  [arms] +200 remain=11.24h 22.49/s
+  [arms] +220 remain=11.24h 23.30/s
+  [arms] +240 remain=11.24h 23.52/s
+  [arms] +260 remain=11.24h 21.62/s
+  [arms] +280 remain=11.23h 18.76/s
+  [arms] +300 remain=11.23h 18.50/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 10 remain=11.23h ===
+[screen] resume 15500 done; target 17000
+  [screen] +50 (15550 total) 7.19/s remain=11.23h
+  [screen] +100 (15600 total) 9.54/s remain=11.23h
+  [screen] +150 (15650 total) 10.84/s remain=11.23h
+  [screen] +200 (15700 total) 10.99/s remain=11.23h
+  [screen] +250 (15750 total) 11.30/s remain=11.23h
+  [screen] +300 (15800 total) 11.77/s remain=11.23h
+  [screen] +350 (15850 total) 11.70/s remain=11.23h
+  [screen] +400 (15900 total) 11.49/s remain=11.22h
+  [screen] +450 (15950 total) 11.51/s remain=11.22h
+  [screen] +500 (16000 total) 11.94/s remain=11.22h
+  [screen] +550 (16050 total) 12.22/s remain=11.22h
+  [screen] +600 (16100 total) 11.83/s remain=11.22h
+  [screen] +650 (16150 total) 12.06/s remain=11.22h
+  [screen] +700 (16200 total) 12.19/s remain=11.22h
+  [screen] +750 (16250 total) 12.12/s remain=11.22h
+  [screen] +800 (16300 total) 12.02/s remain=11.22h
+  [screen] +850 (16350 total) 12.27/s remain=11.21h
+  [screen] +900 (16400 total) 12.12/s remain=11.21h
+  [screen] +950 (16450 total) 11.88/s remain=11.21h
+  [screen] +1000 (16500 total) 11.97/s remain=11.21h
+  [screen] +1050 (16550 total) 12.09/s remain=11.21h
+  [screen] +1100 (16600 total) 12.03/s remain=11.21h
+  [screen] +1150 (16650 total) 12.24/s remain=11.21h
+  [screen] +1200 (16700 total) 12.48/s remain=11.21h
+  [screen] +1250 (16750 total) 12.38/s remain=11.21h
+  [screen] +1300 (16800 total) 12.33/s remain=11.20h
+  [screen] +1350 (16850 total) 12.64/s remain=11.20h
+  [screen] +1400 (16900 total) 12.54/s remain=11.20h
+  [screen] +1450 (16950 total) 12.41/s remain=11.20h
+  [screen] +1500 (17000 total) 12.42/s remain=11.20h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=10900 mid=3187 hard=2913
+[arms] 580 targets; 7446 cells done
+  [arms] +20 remain=11.20h 11.66/s
+  [arms] +40 remain=11.20h 6.61/s
+  [arms] +60 remain=11.20h 8.61/s
+  [arms] +80 remain=11.20h 8.11/s
+  [arms] +100 remain=11.20h 9.29/s
+  [arms] +120 remain=11.20h 9.91/s
+  [arms] +140 remain=11.20h 10.76/s
+  [arms] +160 remain=11.20h 11.25/s
+  [arms] +180 remain=11.20h 12.17/s
+  [arms] +200 remain=11.20h 12.52/s
+  [arms] +220 remain=11.20h 12.89/s
+  [arms] +240 remain=11.20h 13.03/s
+  [arms] +260 remain=11.20h 13.82/s
+  [arms] +280 remain=11.19h 13.14/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 11 remain=11.19h ===
+[screen] resume 17000 done; target 18500
+  [screen] +50 (17050 total) 7.45/s remain=11.19h
+  [screen] +100 (17100 total) 9.07/s remain=11.19h
+  [screen] +150 (17150 total) 9.01/s remain=11.19h
+  [screen] +200 (17200 total) 10.33/s remain=11.19h
+  [screen] +250 (17250 total) 9.23/s remain=11.19h
+  [screen] +300 (17300 total) 9.46/s remain=11.19h
+  [screen] +350 (17350 total) 9.35/s remain=11.18h
+  [screen] +400 (17400 total) 9.37/s remain=11.18h
+  [screen] +450 (17450 total) 9.27/s remain=11.18h
+  [screen] +500 (17500 total) 9.53/s remain=11.18h
+  [screen] +550 (17550 total) 9.15/s remain=11.18h
+  [screen] +600 (17600 total) 9.26/s remain=11.18h
+  [screen] +650 (17650 total) 9.47/s remain=11.18h
+  [screen] +700 (17700 total) 9.67/s remain=11.17h
+  [screen] +750 (17750 total) 9.88/s remain=11.17h
+  [screen] +800 (17800 total) 9.97/s remain=11.17h
+  [screen] +850 (17850 total) 9.90/s remain=11.17h
+  [screen] +900 (17900 total) 10.21/s remain=11.17h
+  [screen] +950 (17950 total) 10.51/s remain=11.17h
+  [screen] +1000 (18000 total) 10.56/s remain=11.17h
+  [screen] +1050 (18050 total) 10.64/s remain=11.17h
+  [screen] +1100 (18100 total) 10.79/s remain=11.17h
+  [screen] +1150 (18150 total) 10.86/s remain=11.16h
+  [screen] +1200 (18200 total) 11.03/s remain=11.16h
+  [screen] +1250 (18250 total) 11.06/s remain=11.16h
+  [screen] +1300 (18300 total) 11.13/s remain=11.16h
+  [screen] +1350 (18350 total) 11.25/s remain=11.16h
+  [screen] +1400 (18400 total) 11.24/s remain=11.16h
+  [screen] +1450 (18450 total) 11.31/s remain=11.16h
+  [screen] +1500 (18500 total) 11.27/s remain=11.16h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=11870 mid=3444 hard=3186
+[arms] 580 targets; 7734 cells done
+  [arms] +20 remain=11.16h 17.09/s
+  [arms] +40 remain=11.16h 13.57/s
+  [arms] +60 remain=11.16h 15.63/s
+  [arms] +80 remain=11.16h 16.73/s
+  [arms] +100 remain=11.16h 17.95/s
+  [arms] +120 remain=11.16h 18.71/s
+  [arms] +140 remain=11.16h 19.29/s
+  [arms] +160 remain=11.16h 19.12/s
+  [arms] +180 remain=11.15h 17.79/s
+  [arms] +200 remain=11.15h 17.48/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 12 remain=11.15h ===
+[screen] resume 18500 done; target 20000
+  [screen] +50 (18550 total) 5.61/s remain=11.15h
+  [screen] +100 (18600 total) 8.10/s remain=11.15h
+  [screen] +150 (18650 total) 9.07/s remain=11.15h
+  [screen] +200 (18700 total) 9.53/s remain=11.15h
+  [screen] +250 (18750 total) 9.96/s remain=11.15h
+  [screen] +300 (18800 total) 10.23/s remain=11.15h
+  [screen] +350 (18850 total) 10.02/s remain=11.14h
+  [screen] +400 (18900 total) 9.97/s remain=11.14h
+  [screen] +450 (18950 total) 9.97/s remain=11.14h
+  [screen] +500 (19000 total) 10.44/s remain=11.14h
+  [screen] +550 (19050 total) 10.73/s remain=11.14h
+  [screen] +600 (19100 total) 10.82/s remain=11.14h
+  [screen] +650 (19150 total) 10.91/s remain=11.14h
+  [screen] +700 (19200 total) 10.95/s remain=11.14h
+  [screen] +750 (19250 total) 11.23/s remain=11.14h
+  [screen] +800 (19300 total) 11.06/s remain=11.13h
+  [screen] +850 (19350 total) 11.05/s remain=11.13h
+  [screen] +900 (19400 total) 11.12/s remain=11.13h
+  [screen] +950 (19450 total) 11.19/s remain=11.13h
+  [screen] +1000 (19500 total) 11.35/s remain=11.13h
+  [screen] +1050 (19550 total) 11.43/s remain=11.13h
+  [screen] +1100 (19600 total) 11.54/s remain=11.13h
+  [screen] +1150 (19650 total) 11.64/s remain=11.13h
+  [screen] +1200 (19700 total) 11.44/s remain=11.12h
+  [screen] +1250 (19750 total) 11.43/s remain=11.12h
+  [screen] +1300 (19800 total) 11.40/s remain=11.12h
+  [screen] +1350 (19850 total) 11.31/s remain=11.12h
+  [screen] +1400 (19900 total) 11.37/s remain=11.12h
+  [screen] +1450 (19950 total) 11.34/s remain=11.12h
+  [screen] +1500 (20000 total) 11.42/s remain=11.12h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=12834 mid=3704 hard=3462
+[arms] 580 targets; 7944 cells done
+  [arms] +20 remain=11.12h 14.13/s
+  [arms] +40 remain=11.12h 18.72/s
+  [arms] +60 remain=11.12h 16.11/s
+  [arms] +80 remain=11.12h 17.36/s
+  [arms] +100 remain=11.12h 19.40/s
+  [arms] +120 remain=11.12h 18.79/s
+  [arms] +140 remain=11.12h 19.43/s
+  [arms] +160 remain=11.12h 18.86/s
+  [arms] +180 remain=11.11h 17.85/s
+  [arms] +200 remain=11.11h 15.94/s
+  [arms] +220 remain=11.11h 15.53/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 13 remain=11.11h ===
+[screen] resume 20000 done; target 21500
+  [screen] +50 (20050 total) 8.08/s remain=11.11h
+  [screen] +100 (20100 total) 11.17/s remain=11.11h
+  [screen] +150 (20150 total) 12.11/s remain=11.11h
+  [screen] +200 (20200 total) 11.51/s remain=11.11h
+  [screen] +250 (20250 total) 11.64/s remain=11.11h
+  [screen] +300 (20300 total) 11.55/s remain=11.11h
+  [screen] +350 (20350 total) 11.07/s remain=11.10h
+  [screen] +400 (20400 total) 11.33/s remain=11.10h
+  [screen] +450 (20450 total) 11.45/s remain=11.10h
+  [screen] +500 (20500 total) 11.25/s remain=11.10h
+  [screen] +550 (20550 total) 11.06/s remain=11.10h
+  [screen] +600 (20600 total) 11.35/s remain=11.10h
+  [screen] +650 (20650 total) 11.52/s remain=11.10h
+  [screen] +700 (20700 total) 11.36/s remain=11.10h
+  [screen] +750 (20750 total) 11.45/s remain=11.10h
+  [screen] +800 (20800 total) 11.55/s remain=11.09h
+  [screen] +850 (20850 total) 11.54/s remain=11.09h
+  [screen] +900 (20900 total) 11.32/s remain=11.09h
+  [screen] +950 (20950 total) 11.35/s remain=11.09h
+  [screen] +1000 (21000 total) 11.40/s remain=11.09h
+  [screen] +1050 (21050 total) 11.27/s remain=11.09h
+  [screen] +1100 (21100 total) 11.29/s remain=11.09h
+  [screen] +1150 (21150 total) 11.50/s remain=11.09h
+  [screen] +1200 (21200 total) 11.37/s remain=11.08h
+  [screen] +1250 (21250 total) 11.50/s remain=11.08h
+  [screen] +1300 (21300 total) 11.53/s remain=11.08h
+  [screen] +1350 (21350 total) 11.43/s remain=11.08h
+  [screen] +1400 (21400 total) 11.61/s remain=11.08h
+  [screen] +1450 (21450 total) 11.63/s remain=11.08h
+  [screen] +1500 (21500 total) 11.80/s remain=11.08h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=13766 mid=4006 hard=3728
+[arms] 580 targets; 8172 cells done
+  [arms] +20 remain=11.08h 11.85/s
+  [arms] +40 remain=11.08h 18.32/s
+  [arms] +60 remain=11.08h 9.45/s
+  [arms] +80 remain=11.08h 11.70/s
+  [arms] +100 remain=11.08h 11.77/s
+  [arms] +120 remain=11.08h 12.80/s
+  [arms] +140 remain=11.08h 13.15/s
+  [arms] +160 remain=11.07h 13.48/s
+  [arms] +180 remain=11.07h 14.48/s
+  [arms] +200 remain=11.07h 15.52/s
+  [arms] +220 remain=11.07h 15.91/s
+  [arms] +240 remain=11.07h 15.78/s
+  [arms] +260 remain=11.07h 15.78/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 14 remain=11.07h ===
+[screen] resume 21500 done; target 23000
+  [screen] +50 (21550 total) 8.46/s remain=11.07h
+  [screen] +100 (21600 total) 11.82/s remain=11.07h
+  [screen] +150 (21650 total) 12.58/s remain=11.07h
+  [screen] +200 (21700 total) 12.37/s remain=11.07h
+  [screen] +250 (21750 total) 12.21/s remain=11.07h
+  [screen] +300 (21800 total) 12.20/s remain=11.07h
+  [screen] +350 (21850 total) 11.44/s remain=11.06h
+  [screen] +400 (21900 total) 11.64/s remain=11.06h
+  [screen] +450 (21950 total) 11.97/s remain=11.06h
+  [screen] +500 (22000 total) 11.65/s remain=11.06h
+  [screen] +550 (22050 total) 12.03/s remain=11.06h
+  [screen] +600 (22100 total) 12.18/s remain=11.06h
+  [screen] +650 (22150 total) 12.03/s remain=11.06h
+  [screen] +700 (22200 total) 11.90/s remain=11.06h
+  [screen] +750 (22250 total) 11.72/s remain=11.06h
+  [screen] +800 (22300 total) 11.69/s remain=11.05h
+  [screen] +850 (22350 total) 11.62/s remain=11.05h
+  [screen] +900 (22400 total) 11.49/s remain=11.05h
+  [screen] +950 (22450 total) 11.66/s remain=11.05h
+  [screen] +1000 (22500 total) 11.86/s remain=11.05h
+  [screen] +1050 (22550 total) 11.98/s remain=11.05h
+  [screen] +1100 (22600 total) 11.99/s remain=11.05h
+  [screen] +1150 (22650 total) 11.96/s remain=11.05h
+  [screen] +1200 (22700 total) 11.98/s remain=11.05h
+  [screen] +1250 (22750 total) 11.80/s remain=11.04h
+  [screen] +1300 (22800 total) 11.81/s remain=11.04h
+  [screen] +1350 (22850 total) 11.96/s remain=11.04h
+  [screen] +1400 (22900 total) 12.00/s remain=11.04h
+  [screen] +1450 (22950 total) 12.09/s remain=11.04h
+  [screen] +1500 (23000 total) 11.86/s remain=11.04h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=14714 mid=4293 hard=3993
+[arms] 580 targets; 8436 cells done
+  [arms] +20 remain=11.04h 10.31/s
+  [arms] +40 remain=11.04h 14.10/s
+  [arms] +60 remain=11.04h 16.11/s
+  [arms] +80 remain=11.04h 17.45/s
+  [arms] +100 remain=11.04h 15.68/s
+  [arms] +120 remain=11.04h 16.63/s
+  [arms] +140 remain=11.04h 16.49/s
+  [arms] +160 remain=11.04h 17.86/s
+  [arms] +180 remain=11.03h 16.99/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 15 remain=11.03h ===
+[screen] resume 23000 done; target 24500
+  [screen] +50 (23050 total) 8.12/s remain=11.03h
+  [screen] +100 (23100 total) 9.70/s remain=11.03h
+  [screen] +150 (23150 total) 10.54/s remain=11.03h
+  [screen] +200 (23200 total) 10.64/s remain=11.03h
+  [screen] +250 (23250 total) 10.09/s remain=11.03h
+  [screen] +300 (23300 total) 9.96/s remain=11.03h
+  [screen] +350 (23350 total) 10.04/s remain=11.03h
+  [screen] +400 (23400 total) 10.23/s remain=11.02h
+  [screen] +450 (23450 total) 10.28/s remain=11.02h
+  [screen] +500 (23500 total) 10.34/s remain=11.02h
+  [screen] +550 (23550 total) 10.64/s remain=11.02h
+  [screen] +600 (23600 total) 10.72/s remain=11.02h
+  [screen] +650 (23650 total) 10.73/s remain=11.02h
+  [screen] +700 (23700 total) 11.18/s remain=11.02h
+  [screen] +750 (23750 total) 10.99/s remain=11.02h
+  [screen] +800 (23800 total) 11.08/s remain=11.01h
+  [screen] +850 (23850 total) 10.91/s remain=11.01h
+  [screen] +900 (23900 total) 11.23/s remain=11.01h
+  [screen] +950 (23950 total) 11.28/s remain=11.01h
+  [screen] +1000 (24000 total) 11.12/s remain=11.01h
+  [screen] +1050 (24050 total) 11.02/s remain=11.01h
+  [screen] +1100 (24100 total) 11.17/s remain=11.01h
+  [screen] +1150 (24150 total) 10.98/s remain=11.01h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8622 cells done
+  [arms] +20 remain=11.01h 61.39/s
+  [arms] +40 remain=11.00h 23.23/s
+  [arms] +60 remain=11.00h 23.72/s
+  [arms] +80 remain=11.00h 24.66/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 16 remain=11.00h ===
+[screen] resume 24173 done; target 26000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 17 remain=11.00h ===
+[screen] resume 24173 done; target 27500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 18 remain=11.00h ===
+[screen] resume 24173 done; target 29000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 19 remain=11.00h ===
+[screen] resume 24173 done; target 30500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 20 remain=11.00h ===
+[screen] resume 24173 done; target 32000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 21 remain=11.00h ===
+[screen] resume 24173 done; target 33500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 22 remain=11.00h ===
+[screen] resume 24173 done; target 35000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 23 remain=11.00h ===
+[screen] resume 24173 done; target 36500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 24 remain=11.00h ===
+[screen] resume 24173 done; target 38000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 25 remain=11.00h ===
+[screen] resume 24173 done; target 39500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 26 remain=10.99h ===
+[screen] resume 24173 done; target 41000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 27 remain=10.99h ===
+[screen] resume 24173 done; target 42500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 28 remain=10.99h ===
+[screen] resume 24173 done; target 44000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 29 remain=10.99h ===
+[screen] resume 24173 done; target 45500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 30 remain=10.99h ===
+[screen] resume 24173 done; target 47000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 31 remain=10.99h ===
+[screen] resume 24173 done; target 48500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 32 remain=10.99h ===
+[screen] resume 24173 done; target 50000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 33 remain=10.99h ===
+[screen] resume 24173 done; target 51500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 34 remain=10.99h ===
+[screen] resume 24173 done; target 53000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 35 remain=10.99h ===
+[screen] resume 24173 done; target 54500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 36 remain=10.99h ===
+[screen] resume 24173 done; target 56000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 37 remain=10.98h ===
+[screen] resume 24173 done; target 57500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 38 remain=10.98h ===
+[screen] resume 24173 done; target 59000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 39 remain=10.98h ===
+[screen] resume 24173 done; target 60500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 40 remain=10.98h ===
+[screen] resume 24173 done; target 62000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 41 remain=10.98h ===
+[screen] resume 24173 done; target 63500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 42 remain=10.98h ===
+[screen] resume 24173 done; target 65000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 43 remain=10.98h ===
+[screen] resume 24173 done; target 66500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 44 remain=10.98h ===
+[screen] resume 24173 done; target 68000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 45 remain=10.98h ===
+[screen] resume 24173 done; target 69500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 46 remain=10.98h ===
+[screen] resume 24173 done; target 71000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 47 remain=10.98h ===
+[screen] resume 24173 done; target 72500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 48 remain=10.97h ===
+[screen] resume 24173 done; target 74000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 49 remain=10.97h ===
+[screen] resume 24173 done; target 75500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 50 remain=10.97h ===
+[screen] resume 24173 done; target 77000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 51 remain=10.97h ===
+[screen] resume 24173 done; target 78500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 52 remain=10.97h ===
+[screen] resume 24173 done; target 80000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 53 remain=10.97h ===
+[screen] resume 24173 done; target 81500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 54 remain=10.97h ===
+[screen] resume 24173 done; target 83000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 55 remain=10.97h ===
+[screen] resume 24173 done; target 84500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 56 remain=10.97h ===
+[screen] resume 24173 done; target 86000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 57 remain=10.97h ===
+[screen] resume 24173 done; target 87500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 58 remain=10.97h ===
+[screen] resume 24173 done; target 89000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 59 remain=10.96h ===
+[screen] resume 24173 done; target 90500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 60 remain=10.96h ===
+[screen] resume 24173 done; target 92000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 61 remain=10.96h ===
+[screen] resume 24173 done; target 93500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 62 remain=10.96h ===
+[screen] resume 24173 done; target 95000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 63 remain=10.96h ===
+[screen] resume 24173 done; target 96500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 64 remain=10.96h ===
+[screen] resume 24173 done; target 98000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 65 remain=10.96h ===
+[screen] resume 24173 done; target 99500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 66 remain=10.96h ===
+[screen] resume 24173 done; target 101000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 67 remain=10.96h ===
+[screen] resume 24173 done; target 102500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 68 remain=10.96h ===
+[screen] resume 24173 done; target 104000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 69 remain=10.96h ===
+[screen] resume 24173 done; target 105500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 70 remain=10.95h ===
+[screen] resume 24173 done; target 107000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 71 remain=10.95h ===
+[screen] resume 24173 done; target 108500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 72 remain=10.95h ===
+[screen] resume 24173 done; target 110000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 73 remain=10.95h ===
+[screen] resume 24173 done; target 111500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 74 remain=10.95h ===
+[screen] resume 24173 done; target 113000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 75 remain=10.95h ===
+[screen] resume 24173 done; target 114500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 76 remain=10.95h ===
+[screen] resume 24173 done; target 116000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 77 remain=10.95h ===
+[screen] resume 24173 done; target 117500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 78 remain=10.95h ===
+[screen] resume 24173 done; target 119000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 79 remain=10.95h ===
+[screen] resume 24173 done; target 120500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 80 remain=10.95h ===
+[screen] resume 24173 done; target 122000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 81 remain=10.94h ===
+[screen] resume 24173 done; target 123500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 82 remain=10.94h ===
+[screen] resume 24173 done; target 125000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 83 remain=10.94h ===
+[screen] resume 24173 done; target 126500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 84 remain=10.94h ===
+[screen] resume 24173 done; target 128000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 85 remain=10.94h ===
+[screen] resume 24173 done; target 129500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 86 remain=10.94h ===
+[screen] resume 24173 done; target 131000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 87 remain=10.94h ===
+[screen] resume 24173 done; target 132500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 88 remain=10.94h ===
+[screen] resume 24173 done; target 134000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 89 remain=10.94h ===
+[screen] resume 24173 done; target 135500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 90 remain=10.94h ===
+[screen] resume 24173 done; target 137000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 91 remain=10.94h ===
+[screen] resume 24173 done; target 138500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 92 remain=10.93h ===
+[screen] resume 24173 done; target 140000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 93 remain=10.93h ===
+[screen] resume 24173 done; target 141500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 94 remain=10.93h ===
+[screen] resume 24173 done; target 143000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 95 remain=10.93h ===
+[screen] resume 24173 done; target 144500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 96 remain=10.93h ===
+[screen] resume 24173 done; target 146000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 97 remain=10.93h ===
+[screen] resume 24173 done; target 147500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 98 remain=10.93h ===
+[screen] resume 24173 done; target 149000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 99 remain=10.93h ===
+[screen] resume 24173 done; target 150500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 100 remain=10.93h ===
+[screen] resume 24173 done; target 152000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 101 remain=10.93h ===
+[screen] resume 24173 done; target 153500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 102 remain=10.93h ===
+[screen] resume 24173 done; target 155000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 103 remain=10.92h ===
+[screen] resume 24173 done; target 156500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 104 remain=10.92h ===
+[screen] resume 24173 done; target 158000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 105 remain=10.92h ===
+[screen] resume 24173 done; target 159500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 106 remain=10.92h ===
+[screen] resume 24173 done; target 161000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 107 remain=10.92h ===
+[screen] resume 24173 done; target 162500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 108 remain=10.92h ===
+[screen] resume 24173 done; target 164000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 109 remain=10.92h ===
+[screen] resume 24173 done; target 165500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 110 remain=10.92h ===
+[screen] resume 24173 done; target 167000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 111 remain=10.92h ===
+[screen] resume 24173 done; target 168500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 112 remain=10.92h ===
+[screen] resume 24173 done; target 170000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 113 remain=10.92h ===
+[screen] resume 24173 done; target 171500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 114 remain=10.91h ===
+[screen] resume 24173 done; target 173000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 115 remain=10.91h ===
+[screen] resume 24173 done; target 174500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 116 remain=10.91h ===
+[screen] resume 24173 done; target 176000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 117 remain=10.91h ===
+[screen] resume 24173 done; target 177500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 118 remain=10.91h ===
+[screen] resume 24173 done; target 179000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 119 remain=10.91h ===
+[screen] resume 24173 done; target 180500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 120 remain=10.91h ===
+[screen] resume 24173 done; target 182000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 121 remain=10.91h ===
+[screen] resume 24173 done; target 183500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 122 remain=10.91h ===
+[screen] resume 24173 done; target 185000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 123 remain=10.91h ===
+[screen] resume 24173 done; target 186500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 124 remain=10.90h ===
+[screen] resume 24173 done; target 188000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 125 remain=10.90h ===
+[screen] resume 24173 done; target 189500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 126 remain=10.90h ===
+[screen] resume 24173 done; target 191000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 127 remain=10.90h ===
+[screen] resume 24173 done; target 192500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 128 remain=10.90h ===
+[screen] resume 24173 done; target 194000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 129 remain=10.90h ===
+[screen] resume 24173 done; target 195500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 130 remain=10.90h ===
+[screen] resume 24173 done; target 197000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 131 remain=10.90h ===
+[screen] resume 24173 done; target 198500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 132 remain=10.90h ===
+[screen] resume 24173 done; target 200000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 133 remain=10.90h ===
+[screen] resume 24173 done; target 201500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 134 remain=10.90h ===
+[screen] resume 24173 done; target 203000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 135 remain=10.89h ===
+[screen] resume 24173 done; target 204500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 136 remain=10.89h ===
+[screen] resume 24173 done; target 206000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 137 remain=10.89h ===
+[screen] resume 24173 done; target 207500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 138 remain=10.89h ===
+[screen] resume 24173 done; target 209000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 139 remain=10.89h ===
+[screen] resume 24173 done; target 210500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 140 remain=10.89h ===
+[screen] resume 24173 done; target 212000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 141 remain=10.89h ===
+[screen] resume 24173 done; target 213500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 142 remain=10.89h ===
+[screen] resume 24173 done; target 215000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 143 remain=10.89h ===
+[screen] resume 24173 done; target 216500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 144 remain=10.89h ===
+[screen] resume 24173 done; target 218000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 145 remain=10.89h ===
+[screen] resume 24173 done; target 219500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 146 remain=10.88h ===
+[screen] resume 24173 done; target 221000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 147 remain=10.88h ===
+[screen] resume 24173 done; target 222500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 148 remain=10.88h ===
+[screen] resume 24173 done; target 224000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 149 remain=10.88h ===
+[screen] resume 24173 done; target 225500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 150 remain=10.88h ===
+[screen] resume 24173 done; target 227000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 151 remain=10.88h ===
+[screen] resume 24173 done; target 228500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 152 remain=10.88h ===
+[screen] resume 24173 done; target 230000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 153 remain=10.88h ===
+[screen] resume 24173 done; target 231500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 154 remain=10.88h ===
+[screen] resume 24173 done; target 233000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 155 remain=10.88h ===
+[screen] resume 24173 done; target 234500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 156 remain=10.88h ===
+[screen] resume 24173 done; target 236000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 157 remain=10.87h ===
+[screen] resume 24173 done; target 237500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 158 remain=10.87h ===
+[screen] resume 24173 done; target 239000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 159 remain=10.87h ===
+[screen] resume 24173 done; target 240500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 160 remain=10.87h ===
+[screen] resume 24173 done; target 242000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 161 remain=10.87h ===
+[screen] resume 24173 done; target 243500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 162 remain=10.87h ===
+[screen] resume 24173 done; target 245000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 163 remain=10.87h ===
+[screen] resume 24173 done; target 246500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 164 remain=10.87h ===
+[screen] resume 24173 done; target 248000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 165 remain=10.87h ===
+[screen] resume 24173 done; target 249500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 166 remain=10.87h ===
+[screen] resume 24173 done; target 251000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 167 remain=10.87h ===
+[screen] resume 24173 done; target 252500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 168 remain=10.86h ===
+[screen] resume 24173 done; target 254000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 169 remain=10.86h ===
+[screen] resume 24173 done; target 255500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 170 remain=10.86h ===
+[screen] resume 24173 done; target 257000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 171 remain=10.86h ===
+[screen] resume 24173 done; target 258500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 172 remain=10.86h ===
+[screen] resume 24173 done; target 260000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 173 remain=10.86h ===
+[screen] resume 24173 done; target 261500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 174 remain=10.86h ===
+[screen] resume 24173 done; target 263000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 175 remain=10.86h ===
+[screen] resume 24173 done; target 264500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 176 remain=10.86h ===
+[screen] resume 24173 done; target 266000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 177 remain=10.86h ===
+[screen] resume 24173 done; target 267500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 178 remain=10.86h ===
+[screen] resume 24173 done; target 269000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 179 remain=10.85h ===
+[screen] resume 24173 done; target 270500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 180 remain=10.85h ===
+[screen] resume 24173 done; target 272000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 181 remain=10.85h ===
+[screen] resume 24173 done; target 273500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 182 remain=10.85h ===
+[screen] resume 24173 done; target 275000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 183 remain=10.85h ===
+[screen] resume 24173 done; target 276500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 184 remain=10.85h ===
+[screen] resume 24173 done; target 278000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 185 remain=10.85h ===
+[screen] resume 24173 done; target 279500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 186 remain=10.85h ===
+[screen] resume 24173 done; target 281000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 187 remain=10.85h ===
+[screen] resume 24173 done; target 282500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 188 remain=10.85h ===
+[screen] resume 24173 done; target 284000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 189 remain=10.85h ===
+[screen] resume 24173 done; target 285500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 190 remain=10.84h ===
+[screen] resume 24173 done; target 287000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 191 remain=10.84h ===
+[screen] resume 24173 done; target 288500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 192 remain=10.84h ===
+[screen] resume 24173 done; target 290000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 193 remain=10.84h ===
+[screen] resume 24173 done; target 291500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 194 remain=10.84h ===
+[screen] resume 24173 done; target 293000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 195 remain=10.84h ===
+[screen] resume 24173 done; target 294500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 196 remain=10.84h ===
+[screen] resume 24173 done; target 296000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 197 remain=10.84h ===
+[screen] resume 24173 done; target 297500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 198 remain=10.84h ===
+[screen] resume 24173 done; target 299000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 199 remain=10.84h ===
+[screen] resume 24173 done; target 300500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 200 remain=10.84h ===
+[screen] resume 24173 done; target 302000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 201 remain=10.83h ===
+[screen] resume 24173 done; target 303500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 202 remain=10.83h ===
+[screen] resume 24173 done; target 305000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 203 remain=10.83h ===
+[screen] resume 24173 done; target 306500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 204 remain=10.83h ===
+[screen] resume 24173 done; target 308000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 205 remain=10.83h ===
+[screen] resume 24173 done; target 309500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 206 remain=10.83h ===
+[screen] resume 24173 done; target 311000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 207 remain=10.83h ===
+[screen] resume 24173 done; target 312500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 208 remain=10.83h ===
+[screen] resume 24173 done; target 314000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 209 remain=10.83h ===
+[screen] resume 24173 done; target 315500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 210 remain=10.83h ===
+[screen] resume 24173 done; target 317000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 211 remain=10.83h ===
+[screen] resume 24173 done; target 318500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 212 remain=10.82h ===
+[screen] resume 24173 done; target 320000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 213 remain=10.82h ===
+[screen] resume 24173 done; target 321500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 214 remain=10.82h ===
+[screen] resume 24173 done; target 323000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 215 remain=10.82h ===
+[screen] resume 24173 done; target 324500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 216 remain=10.82h ===
+[screen] resume 24173 done; target 326000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 217 remain=10.82h ===
+[screen] resume 24173 done; target 327500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 218 remain=10.82h ===
+[screen] resume 24173 done; target 329000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 219 remain=10.82h ===
+[screen] resume 24173 done; target 330500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 220 remain=10.82h ===
+[screen] resume 24173 done; target 332000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 221 remain=10.82h ===
+[screen] resume 24173 done; target 333500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 222 remain=10.82h ===
+[screen] resume 24173 done; target 335000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 223 remain=10.81h ===
+[screen] resume 24173 done; target 336500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 224 remain=10.81h ===
+[screen] resume 24173 done; target 338000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 225 remain=10.81h ===
+[screen] resume 24173 done; target 339500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 226 remain=10.81h ===
+[screen] resume 24173 done; target 341000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 227 remain=10.81h ===
+[screen] resume 24173 done; target 342500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 228 remain=10.81h ===
+[screen] resume 24173 done; target 344000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 229 remain=10.81h ===
+[screen] resume 24173 done; target 345500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 230 remain=10.81h ===
+[screen] resume 24173 done; target 347000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 231 remain=10.81h ===
+[screen] resume 24173 done; target 348500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 232 remain=10.81h ===
+[screen] resume 24173 done; target 350000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 233 remain=10.81h ===
+[screen] resume 24173 done; target 351500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 234 remain=10.80h ===
+[screen] resume 24173 done; target 353000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 235 remain=10.80h ===
+[screen] resume 24173 done; target 354500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 236 remain=10.80h ===
+[screen] resume 24173 done; target 356000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 237 remain=10.80h ===
+[screen] resume 24173 done; target 357500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 238 remain=10.80h ===
+[screen] resume 24173 done; target 359000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 239 remain=10.80h ===
+[screen] resume 24173 done; target 360500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 240 remain=10.80h ===
+[screen] resume 24173 done; target 362000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 241 remain=10.80h ===
+[screen] resume 24173 done; target 363500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 242 remain=10.80h ===
+[screen] resume 24173 done; target 365000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 243 remain=10.80h ===
+[screen] resume 24173 done; target 366500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 244 remain=10.80h ===
+[screen] resume 24173 done; target 368000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 245 remain=10.79h ===
+[screen] resume 24173 done; target 369500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 246 remain=10.79h ===
+[screen] resume 24173 done; target 371000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 247 remain=10.79h ===
+[screen] resume 24173 done; target 372500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 248 remain=10.79h ===
+[screen] resume 24173 done; target 374000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 249 remain=10.79h ===
+[screen] resume 24173 done; target 375500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 250 remain=10.79h ===
+[screen] resume 24173 done; target 377000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 251 remain=10.79h ===
+[screen] resume 24173 done; target 378500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 252 remain=10.79h ===
+[screen] resume 24173 done; target 380000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 253 remain=10.79h ===
+[screen] resume 24173 done; target 381500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 254 remain=10.79h ===
+[screen] resume 24173 done; target 383000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 255 remain=10.79h ===
+[screen] resume 24173 done; target 384500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 256 remain=10.78h ===
+[screen] resume 24173 done; target 386000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 257 remain=10.78h ===
+[screen] resume 24173 done; target 387500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 258 remain=10.78h ===
+[screen] resume 24173 done; target 389000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 259 remain=10.78h ===
+[screen] resume 24173 done; target 390500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 260 remain=10.78h ===
+[screen] resume 24173 done; target 392000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 261 remain=10.78h ===
+[screen] resume 24173 done; target 393500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 262 remain=10.78h ===
+[screen] resume 24173 done; target 395000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 263 remain=10.78h ===
+[screen] resume 24173 done; target 396500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 264 remain=10.78h ===
+[screen] resume 24173 done; target 398000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 265 remain=10.78h ===
+[screen] resume 24173 done; target 399500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 266 remain=10.78h ===
+[screen] resume 24173 done; target 401000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 267 remain=10.77h ===
+[screen] resume 24173 done; target 402500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 268 remain=10.77h ===
+[screen] resume 24173 done; target 404000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 269 remain=10.77h ===
+[screen] resume 24173 done; target 405500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 270 remain=10.77h ===
+[screen] resume 24173 done; target 407000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 271 remain=10.77h ===
+[screen] resume 24173 done; target 408500
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 272 remain=10.77h ===
+[screen] resume 24173 done; target 410000
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=15437 mid=4517 hard=4219
+[arms] 580 targets; 8712 cells done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 273 remain=10.77h ===
+[screen] resume 24173 done; target 411500

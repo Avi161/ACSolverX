@@ -3,3 +3,13 @@ screen=703 sol=587 mid=140 hard=116
 [monitor] round 2 02:31:37
 screen=6500 sol=5402 mid=1236 hard=1098
 arms {'length': 762, 'recommended': 761, 'mk8': 761, 'k8': 761, 'kms5': 761, 's24': 761}
+[cursor/heur-12h-anti-overfit-a42e 6f8ebc9] heur: campaign checkpoint screen=6500
+ 10 files changed, 5939 insertions(+), 46 deletions(-)
+ create mode 100644 results/heuristic_search/campaign_12h/arms_hard_full.jsonl
+ create mode 100644 results/heuristic_search/campaign_12h/aut_disjoint_null.jsonl
+ create mode 100644 results/heuristic_search/campaign_12h/hard_expand.log
+ create mode 100644 results/heuristic_search/campaign_12h/monitor.log
+/tmp/heur12h_monitor.sh: line 69: +BODY+: command not found
+Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+NameError: name 'BODY' is not defined

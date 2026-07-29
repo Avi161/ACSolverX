@@ -1,6 +1,6 @@
 # Campaign 12h — anti-overfit heuristic evaluation
 
-Updated: `2026-07-29T03:08:09.170584+00:00` · wall end `2026-07-29T14:01:44+00:00` · remaining `10.89 h`
+Updated: `2026-07-29T03:15:35.925008+00:00` · wall end `2026-07-29T14:01:44+00:00` · remaining `10.77 h`
 
 Advisor **BLOCK**ed fitting on the CoV/automorphic unsolved-descended pool; this run is **evaluation-only** on never-read AC1M (+ ms640 clean null), budget 1000, cap 48. Negatives mean unsolved within budget 1000.
 
