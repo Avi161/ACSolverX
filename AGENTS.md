@@ -1485,3 +1485,8 @@
 
 - [TRAP] The seven-family manifest was correctly regenerated after a Ruff-only checker edit, but the memo's separate reproduction hash block retained the pre-Ruff checker, manifest, and test digests and was committed with stale documentation.
 - [WORKS] After any artifact regeneration, search every staged memo and manifest for old digests, compare each displayed hash to a fresh `shasum -a 256`, and make the cached-diff hash audit a separate pre-commit gate.
+
+### 2026-07-29 Use fixed-string searches for LaTeX commands
+
+- [TRAP] A ripgrep alternation containing the LaTeX fragment `P_\nu` was parsed as the unsupported regex newline escape `\n`, so the audit command stopped before its later checks ran.
+- [WORKS] Search LaTeX commands with `rg -F` in a separate call, or search nearby plain-text tokens; do not mix backslash commands into an extended regular-expression alternation.
