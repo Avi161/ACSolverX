@@ -1,13 +1,33 @@
-# Colab: bench60 ladder @ 1M — 5 arms HIGH_SPEEDUP
+# Colab: bench60 ladder @ 1M — HIGH_SPEEDUP
 
 Branch: **`cursor/heur-12h-anti-overfit-a42e`**
 
-Difficulty-stratified **benchmark_subset_60** (first 60 of `bench66` = ladder only).
-Baseline greedy @1M already lives in `benchmark/`; this run is the 5-arm A/B.
+## HIGH_SPEEDUP (this stack)
 
-## Open these five (one High-RAM Colab each)
+There is **no** `HIGH_SPEEDUP=True` boolean here (that flag is `greedy_baseline` only).
+The same path is:
 
-| session | notebook | chunk |
+```python
+ENGINE    = "hcompact"   # REQUIRED at 1M
+N_WORKERS = "auto"       # min(cores, floor((MemAvailable-2)/GB_per_search))
+```
+
+On ~51 GB / 8-core Colab at budget 1M / mrl48: **~6 workers** (7.6 GB/search) —
+memory-capped from 8 so total stays under ~50 GB. Do not pin `N_WORKERS=8` at 1M.
+
+### Mini verification (budget 1000, hard unsolved124×8 × 5 arms = 40 jobs)
+
+| mode | workers | wall | 
+|---|---:|---:|
+| serial | 1 | 17.22 s |
+| parallel auto | 4 | 6.06 s |
+| **speedup** | | **2.84×** (71% of ideal 4×) |
+
+Result-neutral: 0/40 mismatches. Ideal Colab bound at 1M ≈ **6×** (6 workers).
+
+## Notebooks
+
+| # | file | CHUNK_INDEX |
 |---:|---|---:|
 | 1 | `experiments/heuristic_search/hsearch_colab_bench60_1m_c1.ipynb` | 1 |
 | 2 | `experiments/heuristic_search/hsearch_colab_bench60_1m_c2.ipynb` | 2 |
@@ -15,34 +35,11 @@ Baseline greedy @1M already lives in `benchmark/`; this run is the 5-arm A/B.
 | 4 | `experiments/heuristic_search/hsearch_colab_bench60_1m_c4.ipynb` | 4 |
 | 5 | `experiments/heuristic_search/hsearch_colab_bench60_1m_c5.ipynb` | 5 |
 
-Runtime → Run all. Restart → Run all resumes.
-
-## CONFIG (same in all five; only `CHUNK_INDEX` differs)
-
 ```python
-BRANCH    = "cursor/heur-12h-anti-overfit-a42e"
-DATASET   = "bench66"
-SUBSET    = 60                          # ladder only (6 per log-bin)
-ARMS      = ['baseline', 's12', 's28', 's20_mk2', 's24_k1_mk2']
+DATASET / SUBSET = bench66 / 60
+ARMS = ['baseline', 's12', 's28', 's20_mk2', 's24_k1_mk2']
 NODE_BUDGET = 1_000_000
-MAX_RELATOR_LENGTH = 48
-ENGINE    = "hcompact"
-N_WORKERS = "auto"
-CHUNKS    = 5
-KEEP_PATH = True
-RESUME    = True
+ENGINE = hcompact ; N_WORKERS = auto
 ```
 
-- **baseline** = length-only greedy (mandatory comparison column)
-- **s12 / s28** = pure-S
-- **s20_mk2 / s24_k1_mk2** = interim Aut-tune S+MK and S+K+MK (no xyimb)
-- Drive out: `/content/drive/MyDrive/acsolverx/hsearch_bench60_1m/`
-
-## Merge after all five finish
-
-```bash
-python3 -m experiments.heuristic_search.runners.merge_colab_chunks \
-  --glob 'hsearch_bench60_1m_c*of5_*.jsonl' --out merged_bench60_1m.jsonl
-```
-
-Report every arm as solved/N **and Δ vs baseline** at each checkpoint.
+Drive: `/content/drive/MyDrive/acsolverx/hsearch_bench60_1m/`
