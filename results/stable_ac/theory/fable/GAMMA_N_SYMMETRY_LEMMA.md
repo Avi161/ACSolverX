@@ -39,8 +39,11 @@ other relators: identity).
   (indices mod N). ✓
 Hence A′ = βAβ⁻¹ up to the renaming, and the bijection of compatible systems follows. ∎
 
-**Non-invariances (for contrast, all evidenced in the corpus):** AC1 multiplication (codex
-two-line counterexample: γ_N jumps 0→1), Aut(F₂) images (relabel changes words
+**Non-invariances (for contrast, all evidenced in the corpus):** relator MULTIPLICATION
+rᵢ → rᵢrⱼ — AC2 in the project convention, which fixes AC1 = invert, AC2 = multiply,
+AC3 = conjugate (naming corrected 29-07 during the R1e audit; an earlier revision of this
+line called the move "AC1", the numbering-trap the advisor's ground truth warns about)
+(codex two-line counterexample: γ_N jumps 0→1), Aut(F₂) images (relabel changes words
 arbitrarily), and free/cyclic REDUCTION (the exact complex changes: states 23, 24 of the
 P25 path have A-loops exactly until reduced). The canonical key for censuses is therefore
 the lex-min over rotations × inversions × relator permutations, computed on exact

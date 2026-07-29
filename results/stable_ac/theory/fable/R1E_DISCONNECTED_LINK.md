@@ -1,8 +1,17 @@
 # R1e — Disconnected-link thickenability (Theorem D), decomposition, and the 382-state bucket
 
-STATUS: DRAFT v2 — ac-advisor verdict REVISE received and reconciled (every must-address
-item incorporated; see the reconciliation ledger at the end). Pending adversarial audit.
-Do not cite as proved until the AUDITED header lands.
+STATUS: AUDITED — ac-advisor verdict REVISE reconciled (ledger at the end), then
+independent adversarial audit returned REPAIRABLE with three required repairs (F1
+mis-citation, F2 cross-check construction, F3 novelty/naming) — ALL APPLIED in this
+revision, together with the recommended items F4–F8 (audit ledger at the end). The
+audit's numeric checks confirmed the full Corollary-Z histogram identity on the AK3+z
+root bin-by-bin ({4:724, 6:14882, 8:55438, 10:15356}, rank-3 vs rank-2 censuses equal),
+the standard ("x","y","z") defect 0 with naive-formula illegal value −4, and the
+straddle example. Theorem D, Lemma S, Corollary Z, Corollary D3 may now be cited as
+established MACHINERY of this line (modulo the explicitly flagged external dependency:
+Lackenby Thm 1.3 [unverified this session] wherever the positive-direction consequence
+chain is invoked, and the GAMMA_N_SYMMETRY_LEMMA audit-pending flag noted at Corollary
+Z).
 
 Claims addressed (per FRAMING.md tags): Theorem D, Lemma S, Corollary Z are MACHINERY
 (decision criteria for exact complexes). The application bears on **stable
@@ -15,8 +24,7 @@ R1_THICKENABILITY_TRANSFER.md).
 Dependencies: the occurrence dictionary, involutions A and B, compatible rotations C,
 Lemma 1 (Euler dictionary), Theorem 2 (connected-link criterion) and Corollary 3 of the
 codex re-proof `lit_AK3_NEUWIRTH.md` (scratchpad copy; framework summary committed in
-R1_IMPLEMENTATION_SPEC.md §2); Lemma 2.1 of R1C_V2_CUT_SCHEMES.md (deleting link
-components does not change the remaining rotation data). Notation: |Q| = number of
+R1_IMPLEMENTATION_SPEC.md §2). Notation: |Q| = number of
 cycles of a permutation Q including 1-cycles; products act right-to-left; the UNHALVED
 defect is defect(C) = |A| − |C| + 2L(C) − |AC| and γ_N = min_C defect(C)/2. NOTE ON
 UNITS: `gamma_N_factorial_n` returns `minimum_defect` = 2·γ_N (unhalved); every test
@@ -67,8 +75,9 @@ there is a compatible C with
 equivalently every component of the rotation surface Σ_C is a sphere; i.e. K_P is
 orientably thickenable ⟺ γ_N(P) = 0 with the general (2L-term) defect.
 
-*Proof — necessity.* Suppose K_P is PL embedded in an orientable 3-manifold. Take a
-small regular ball R about the unique vertex, transverse to the incident cells;
+*Proof — necessity.* Suppose K_P is PL embedded in an orientable 3-manifold (if K_P
+meets the boundary, push it into the interior first — audit note F7). Take a small
+regular ball R about the unique vertex, transverse to the incident cells;
 F = K_P ∩ ∂R is a copy of Λ(P) embedded in the single oriented 2-sphere ∂R, its L
 components disjoint. The sphere orientation induces a cyclic order at every germ
 vertex; the derivation that these orders form a compatible C (transport through an
@@ -82,13 +91,22 @@ one-line Euler finish): for L ≥ 2 the complementary regions of the union F ⊂
 not be discs — a component nested inside a region bounded by another turns that region
 into an annulus or worse — so |C| − |A| + #regions = 2 is FALSE in general and the
 union's face count must not be used. Instead, fix a component F_ℓ and DELETE the other
-components from the sphere. Deletion does not change the cyclic orders at the germs of
-F_ℓ, i.e. does not change C|_ℓ (this is exactly Lemma 2.1 of R1C_V2_CUT_SCHEMES.md).
-Now F_ℓ is a CONNECTED compact graph embedded in S². By Alexander duality in S²,
-H̃₁(S² ∖ F_ℓ) ≅ H̃⁰(F_ℓ) = 0, so every complementary component of F_ℓ alone is an open
-subsurface of S² with trivial first homology, hence an open disc. The embedding of F_ℓ
-alone is therefore CELLULAR, so its rotation surface — the ⟨A,C⟩-orbit component
-Σ_{C,ℓ} of Lemma 1 — is S² itself: genus 0. This holds for every ℓ, so
+components from the sphere. Deletion does not change C|_ℓ, for the elementary local
+reason that the cyclic order induced at a germ vertex of F_ℓ involves only the darts of
+F_ℓ itself — no citation needed (audit repair F1: an earlier revision cited R1C_V2
+Lemma 2.1 here, which is a different statement — restriction of a spherical rotation of
+a connected ambient graph — and would be circular in this position; the correct content
+is this one-line locality observation). Now F_ℓ is a CONNECTED nonempty compact graph
+embedded in S². By Alexander duality in S², H̃₁(S² ∖ F_ℓ) ≅ H̃⁰(F_ℓ) = 0, so every
+complementary component U of F_ℓ alone is an open subsurface of S² with trivial first
+homology. Such a U is an open disc (audit item F5, connective steps): U is open in the
+connected S² and proper (F_ℓ ≠ ∅), so U is noncompact (a compact open subset would be
+clopen, forcing U = S²); an open planar surface has free π₁, so H₁(U) = 0 forces
+π₁(U) = 1; and a simply connected noncompact surface is homeomorphic to ℝ². The
+embedding of F_ℓ alone is therefore CELLULAR, so its rotation surface — the
+⟨A,C⟩-orbit component Σ_{C,ℓ} of Lemma 1, by the Heffter–Edmonds correspondence — is S²
+itself: genus 0. (Isolated germs cannot occur: every generator occurs, and every dart
+lies in exactly one A-corner, so every germ has degree ≥ 1.) This holds for every ℓ, so
 defect(C) = 2·Σ_ℓ q_ℓ = 0 by Lemma 1. ∎(necessity)
 
 *Proof — sufficiency.* Let C be compatible with defect(C) = 0, i.e. every component of
@@ -132,7 +150,10 @@ principle enter, and why it does not:
    order and signs of w_j, so the embedded polyhedron is the exact K_P.
 
 W = H⁰ ∪ (1-handles) ∪ (2-handles) is a compact orientable PL 3-manifold with
-K_P ⊂ int(W). For the regular neighbourhood: K_P is a compact polyhedron in the
+K_P ⊂ int(W) — for the interiority, make the standard choice that the 2-handle
+attaching annuli S¹ × [−1,1] cover the partial 2-cells' intersection with the
+handlebody boundary (corner-arc bases and page free-edges), exactly as in the connected
+case (audit note F8). For the regular neighbourhood: K_P is a compact polyhedron in the
 interior of the PL 3-manifold W, so a regular neighbourhood N of K_P in W exists with
 N ↘ K_P by the PL regular-neighbourhood theorem (Rourke–Sanderson, *Introduction to
 Piecewise-Linear Topology*, Ch. 3). No connectivity input, no hand-built retraction. ∎
@@ -199,20 +220,30 @@ of P and P⁺ are in canonical bijection C ↔ C⁺. For corresponding rotations
 So the ENTIRE defect histogram — not just the minimum — is preserved:
 γ_N(P⁺) = γ_N(P), and the full multiset of defects matches bin by bin. The same holds
 for relator z⁻¹ (relator inversion preserves the full defect histogram —
-GAMMA_N_SYMMETRY_LEMMA.md). Consequently γ_N of the EXACT complex is invariant under
-exact stabilization AC4 and destabilization AC5 (legal exactly when the last relator is
-z^{±1} and z occurs nowhere else — precisely the 1-edge-component shape). First
-positive AC-move invariance statement for γ_N in this project (contrast: NOT invariant
-under AC1/AC2/AC3 composites in general). Machinery claim only.
+GAMMA_N_SYMMETRY_LEMMA.md; FLAG inherited per audit item F6: that lemma's own
+adversarial audit is still pending, though the R1e auditor hand-verified the inversion
+bijection including the load-bearing 1-corner case N = 1). Consequently γ_N of the
+EXACT complex is invariant under exact stabilization AC4 and destabilization AC5 (legal
+exactly when the last relator is z^{±1} and z occurs nowhere else — precisely the
+1-edge-component shape). Novelty rescoped (audit repair F3): this is the first
+invariance of γ_N under the STABILIZATION moves AC4/AC5; invariance under relator
+inversion (AC1) is already GAMMA_N_SYMMETRY_LEMMA.md; γ_N is NOT invariant under
+relator multiplication AC2 (the codex 0→1 counterexample) and is not claimed invariant
+under general AC composites. Machinery claim only.
 
-Independent cross-check (thickenability half WITHOUT Theorem D):
-K_{P⁺} = K_P ∨ (a 2-disc attached to the vertex along a loop 1-cell z, i.e. a complex
-collapsing the z-cell data). Concretely: if K_P thickens into N, attach to N a
-3-ball thickening of the z-handle-plus-disc along a ball neighbourhood of the vertex on
-∂N — an unknotted arc with a meridian disc — giving an orientable thickening of K_{P⁺};
-conversely K_P ⊂ K_{P⁺} restricts any thickening. So thickenable(P⁺) ⟺ thickenable(P)
-by elementary means, agreeing with the Theorem-D route — a free consistency check on
-Theorem D itself.
+Independent cross-check (thickenability half WITHOUT Theorem D — rewritten per audit
+repair F2, whose original "ball neighbourhood of the vertex on ∂N / meridian disc"
+phrasing was unsound since the vertex lies in int(N)): suppose K_P thickens, and take a
+regular neighbourhood N, so N ∖ K_P ≅ ∂N × [0,1) (regular-neighbourhood collar of the
+complement). Choose an arc α from the vertex to ∂N with α ∩ K_P = {vertex}: start with
+a short radial arc inside a small vertex ball, missing the 1-dimensional link of the
+vertex in K_P, then follow the collar to ∂N. Attach an external 3-ball to N along a
+disc of ∂N met by α, and realize the fresh z-loop as α · (an arc through the external
+ball) · (a push-off of α)⁻¹, with its spanning 2-disc a thin band along the doubled arc
+capped inside the external ball. N ∪ (band thickening) ∪ (external ball) is an
+orientable thickening of K_{P⁺}; conversely K_P ⊂ K_{P⁺} restricts any thickening. So
+thickenable(P⁺) ⟺ thickenable(P) by elementary means, agreeing with the Theorem-D route
+— a consistency check on Theorem D itself.
 
 ## Corollary D3 (π₁ = 1 balanced consequence, disconnected link allowed)
 
@@ -251,22 +282,40 @@ from P25+z): every bucket state lies in the exact AC-orbit of its harvest root.
   path is a SEPARATE certificate and is cited, not assumed.
 Then AC1-inversion of the third relator (Z → z; unconditional — all 382 have `Z`;
 project convention: AC1 = invert, AC2 = multiply) followed by AC5 destabilization gives
-(u,v). Hence every (u,v) is a **rank-2 member of AK(3)'s STABLE class** — reached
-through rank-3 walks that may have entangled z at intermediate states, so (u,v) need
-not lie in AK(3)'s classical AC-component. Novelty claim (narrowed): these are the
-first rank-2 stable-class members of AK(3) produced by a DIRECT STABLE-MOVE-SPACE
-SEARCH; the codex line's one-stabilization compression corridor
-(AK3_RANK3_COMPRESSION.md, 2026-07-24) produced rank-2 stable-class members earlier by
-a proved corridor — a different, complementary route (cited).
+(u,v).
+
+**Lemma P (canonicalization is an AC composite — audit repair F4).** The canonical
+representative of a state (lex-min over relator rotations × inversions × relator
+permutations, on exact words) is AC-equivalent to every exact realization in its class:
+rotation of a cyclic word is conjugation by its leading letter (AC3), inversion is AC1,
+and a transposition of two relators (a, b) is the explicit 6-move composite
+
+  (a, b) →AC2 (ab, b) →AC1 ((ab)⁻¹, b) = (B A, b) →AC2 (BA, bBA) = (BA, A)
+  →AC1 (BA, a) →AC2 (BAa, a) = (B, a) →AC1 (b, a),
+
+using only inversion and right-multiplication (A = a⁻¹, B = b⁻¹; free reduction is
+Lackenby's move (0)). General permutations are products of transpositions. ∎
+
+Hence membership is UNCONDITIONAL for the whole bucket: every harvest state was
+generated by applying legal rank-3 AC moves (the generator applies `ac_words` moves
+directly; round-1 replay sample 305/305 exact), canonicalization is an AC composite by
+Lemma P, and the destabilization chain above is stable-AC. So every (u,v) is a **rank-2
+member of AK(3)'s STABLE class** — reached through rank-3 walks that may have entangled
+z at intermediate states, so (u,v) need not lie in AK(3)'s classical AC-component.
+Novelty claim (narrowed): these are the first rank-2 stable-class members of AK(3)
+produced by a DIRECT STABLE-MOVE-SPACE SEARCH; the codex line's one-stabilization
+compression corridor (AK3_RANK3_COMPRESSION.md, 2026-07-24) produced rank-2
+stable-class members earlier by a proved corridor — a different, complementary route
+(cited).
 
 Replay caveat (hit protocol): the harvest's `parent`/`move` fields are NOT a replayable
 chain (the round-2 frontier is keyed on exact words while parents are recorded as
 canonical keys, so the recorded parent's exact realization need not be the exact parent
-the move was applied to). Any SPHERICAL hit therefore requires an explicitly
-reconstructed AC1–AC5 move list from AK(3) to (u,v) plus a full replay, and the
-relator-permutation step of canonicalization must be justified as an AC composite or
-the unordered-relator-list convention stated, before any claim is made. Group check per
-hit: TC certificate (index 1) on (u,v); sampled TC on non-hits.
+the move was applied to). This does not weaken membership (previous paragraph), but any
+SPHERICAL hit must additionally produce an explicitly reconstructed AC1–AC5 move list
+from AK(3) to (u,v) plus a full replay — the certificate standard for a headline claim
+— before any claim is made. Group check per hit: TC certificate (index 1) on (u,v);
+sampled TC on non-hits.
 
 Interpretation matrix:
 - ANY (u,v) with γ_N = 0 ⇒ (u,v) thickenable ⇒ [Corollary D3 at rank 2,
@@ -319,7 +368,9 @@ output summary.
 
 ## What this note does NOT claim
 
-No AC1/AC2/AC3-invariance of γ_N; no propagation of any negative along AC paths; no
+No invariance of γ_N under relator multiplication (AC2) or general AC composites
+(inversion AC1 is the symmetry lemma; AC4/AC5 is Corollary Z; nothing more is claimed);
+no propagation of any negative along AC paths; no
 claim that the 382 pairs exhaust the rank-2 shadow of the stable class (they are what a
 budgeted round-2 walk reached); no unconditional use of Lackenby Thm 1.3; no claim
 about non-orientable thickenings; no extension of Corollary 3's transitivity clause to
@@ -345,3 +396,33 @@ L ≥ 2.
    regression, non-degenerate disconnected positive, 10-corpus assertions, codex
    length-14 row added; novelty claim narrowed with codex citation; replay caveat and
    hit protocol added.
+
+## Adversarial audit ledger (REPAIRABLE → repairs applied, this revision)
+
+Auditor: independent adversarial subagent, 29-07-2026 (separate from the ac-advisor).
+Verdict REPAIRABLE; findings F1–F9 with F9 the verified-sound inventory (compatibility
+locality, Heffter–Edmonds identification, chirality handling incl. straddling
+generators, 1-letter-relator dictionary check by machine, Lemma S dictionary
+verification against `neuwirth_rank_n.py:684`, Corollary Z increments by hand and
+machine, transitivity-impossibility and the ("x","y","z") ∂N ≅ S² witness via
+collapsibility, Corollary 3 line-by-line balance/connectivity scan, legality of the
+full move chain, and the cited line numbers).
+
+- F1 (REQUIRED) Lemma 2.1 mis-citation in necessity → replaced by the one-line
+  locality argument; dependency header pruned.
+- F2 (REQUIRED) Corollary Z elementary cross-check was unsound as phrased (vertex is
+  interior; no meridian disc) → rewritten with the regular-neighbourhood collar
+  argument.
+- F3 (REQUIRED) Novelty/naming: rescoped to first AC4/AC5 invariance; AC1 = inversion
+  invariance credited to GAMMA_N_SYMMETRY_LEMMA.md, whose own "AC1 multiplication"
+  naming slip was corrected in place (numbering-trap note added there).
+- F4 (RECOMMENDED) Membership under-scoped → Lemma P added (canonicalization is an AC
+  composite; explicit 6-move relator-swap derivation), membership now unconditional;
+  replay requirement retained for hit certificates only.
+- F5 (RECOMMENDED) "H₁ = 0 ⇒ open disc" connective steps added (noncompactness, free
+  π₁ of open planar surfaces, simply connected noncompact surface ≅ ℝ²).
+- F6 (RECOMMENDED) GAMMA_N_SYMMETRY_LEMMA audit-pending flag now inherited explicitly
+  at Corollary Z's inversion clause (auditor hand-verified the inversion bijection incl.
+  N = 1).
+- F7/F8 (NOTES) interior-push phrasing in necessity; attaching-annuli choice for
+  K_P ⊂ int(W) made explicit.
