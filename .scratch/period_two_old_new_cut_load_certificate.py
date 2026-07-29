@@ -171,6 +171,50 @@ class Template:
     terminal_full_letter: int | None = None
     terminal_c_deleted: bool = False
 
+    def to_record(self) -> dict[str, Any]:
+        return {
+            "schema_id": self.schema_id,
+            "cell_id": self.cell_id,
+            "variables": list(self.variables),
+            "tagged_base_word": [
+                {"letter": letter, "tag": list(tag)}
+                for letter, tag in self.tagged_base_word
+            ],
+            "base_word": list(self.base_word),
+            "normalized_blocks": _serialize_blocks(
+                _normalize_blocks(self.blocks)
+            ),
+            "terminal_full_letter": self.terminal_full_letter,
+            "terminal_c_deleted": self.terminal_c_deleted,
+            "pumping_witnesses": [
+                witness.to_record()
+                for witness in self.pumping_witnesses
+            ],
+        }
+
+
+@dataclass(frozen=True)
+class DecoratedSchemaRef:
+    module_schema: str | None
+    label_schemas: tuple[tuple[int | None, str], ...]
+
+
+@dataclass(frozen=True)
+class Task4FamilyCatalog:
+    family: str
+    variables: tuple[str, ...]
+    cells: tuple[Cell, ...]
+    schemas: Mapping[str, Schema]
+    old_tokens: tuple[TokenRef, ...]
+    b_tokens: tuple[TokenRef, ...]
+    old_schema_refs: Mapping[str, DecoratedSchemaRef]
+    b_schema_refs: Mapping[str, DecoratedSchemaRef]
+
+
+@dataclass(frozen=True)
+class Task4SchemaCatalog:
+    families: Mapping[str, Task4FamilyCatalog]
+
 
 @dataclass(frozen=True)
 class CollisionFiber:
@@ -492,6 +536,21 @@ def build_template(
         terminal_c_deleted=terminal_c_deleted,
     )
     verify_intact_boundaries(schema, cell, template, c_letter=c_letter)
+    return template
+
+
+def verify_template_record(
+    schema: Schema,
+    cell: Cell,
+    record: Mapping[str, Any],
+    *,
+    c_letter: int = 1,
+) -> Template:
+    template = build_template(schema, cell, c_letter=c_letter)
+    if canonical_json(record) != canonical_json(template.to_record()):
+        raise ValueError(
+            f"template proof record differs: {schema.schema_id}, {cell.cell_id}"
+        )
     return template
 
 
@@ -1376,6 +1435,425 @@ def build_old_rows(
         "source_digests": dict(context.source_digests),
     }
     return tuple(old_rows), proof
+
+
+def _fixed_schema(
+    schema_id: str,
+    variables: tuple[str, ...],
+    word: Sequence[int],
+) -> Schema:
+    return Schema(
+        schema_id=schema_id,
+        variables=variables,
+        blocks=(("fixed", tuple(word), None),),
+    )
+
+
+def _prepend_action(
+    schema: Schema,
+    schema_id: str,
+    action: Sequence[int],
+) -> Schema:
+    blocks = list(schema.blocks)
+    if blocks and blocks[0][2] is None:
+        block_name, word, _ = blocks[0]
+        blocks[0] = (block_name, (*tuple(action), *word), None)
+    else:
+        blocks.insert(0, ("fixed", tuple(action), None))
+    return Schema(schema_id, schema.variables, _merge_fixed_blocks(blocks))
+
+
+def _one_power_schema(
+    inverse: Any,
+    raw: Any,
+    schema_id: str,
+    variables: tuple[str, ...],
+    left: Sequence[int],
+    power_word: tuple[int, ...],
+    right: Sequence[int],
+    exponent: tuple[int, ...],
+    reference: tuple[int, ...],
+) -> Schema:
+    power_left, core, multiplier, power_right = (
+        inverse.reference_primitive_decomposition(
+            raw, power_word, reference
+        )
+    )
+    return Schema(
+        schema_id=schema_id,
+        variables=variables,
+        blocks=_merge_fixed_blocks(
+            (
+                ("fixed", (*tuple(left), *power_left), None),
+                (
+                    "p",
+                    core,
+                    tuple(multiplier * value for value in exponent),
+                ),
+                ("fixed", (*power_right, *tuple(right)), None),
+            )
+        ),
+    )
+
+
+def _two_power_schema(
+    inverse: Any,
+    raw: Any,
+    schema_id: str,
+    variables: tuple[str, ...],
+    left: Sequence[int],
+    q_word: tuple[int, ...],
+    middle: Sequence[int],
+    p_word: tuple[int, ...],
+    right: Sequence[int],
+    q_exponent: tuple[int, ...],
+    p_exponent: tuple[int, ...],
+    q_reference: tuple[int, ...],
+    p_reference: tuple[int, ...],
+) -> Schema:
+    q_left, q_core, q_multiplier, q_right = (
+        inverse.reference_primitive_decomposition(
+            raw, q_word, q_reference
+        )
+    )
+    p_left, p_core, p_multiplier, p_right = (
+        inverse.reference_primitive_decomposition(
+            raw, p_word, p_reference
+        )
+    )
+    return Schema(
+        schema_id=schema_id,
+        variables=variables,
+        blocks=_merge_fixed_blocks(
+            (
+                ("fixed", (*tuple(left), *q_left), None),
+                (
+                    "q",
+                    q_core,
+                    tuple(q_multiplier * value for value in q_exponent),
+                ),
+                ("fixed", (*q_right, *tuple(middle), *p_left), None),
+                (
+                    "p",
+                    p_core,
+                    tuple(p_multiplier * value for value in p_exponent),
+                ),
+                ("fixed", (*p_right, *tuple(right)), None),
+            )
+        ),
+    )
+
+
+def _powered_substitution(
+    variables: tuple[str, ...], p_offset: int
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    if variables == ("a", "n"):
+        return (1, 0, 0), (1, 1, p_offset)
+    if variables == ("a", "h", "r"):
+        return (1, 0, 0, 0), (0, 1, 1, p_offset)
+    if variables == ("h", "k", "n"):
+        return (1, 1, 0, 0), (1, 1, 1, p_offset)
+    raise ValueError(f"unsupported Task 4 variable basis: {variables}")
+
+
+def _occurrences_for_slot(
+    context: SourceContext, slot: int
+) -> tuple[int, ...]:
+    return tuple(
+        order
+        for order, occurrence in sorted(context.occurrences.items())
+        if occurrence["slot"] == slot
+    )
+
+
+def _old_path_schema(
+    context: SourceContext,
+    inverse: Any,
+    family: str,
+    variables: tuple[str, ...],
+    source_row: Mapping[str, Any],
+    schema_id: str,
+    action: tuple[int, ...],
+) -> Schema:
+    raw = context.modules["raw"]
+    key = source_row["key"]
+    nu = key["nu"]
+    position = key["position"]
+    p_forest, c_forest, q_forest = raw.BLOCKS[nu - 1]
+    p_word = raw.eval_path(p_forest)
+    c_word = raw.eval_path(c_forest)
+    q_word = raw.eval_path(q_forest)
+    root = raw.parse_raw(raw.W_ROOTS[nu - 1])
+    multiplier = raw.edge_rule(source_row["actual_letter"])[2]
+    gamma = raw.eval_path(raw.BLOCKS[0][2])
+    common_p = raw.eval_path(raw.BLOCKS[0][0])
+    gamma_reference, gamma_multiplier = inverse.primitive_power(gamma)
+    p_reference, p_multiplier = inverse.primitive_power(common_p)
+    if gamma_multiplier != 3 or p_multiplier != 3:
+        raise ValueError("approved primitive multiplier changed")
+
+    if family == "P":
+        return _one_power_schema(
+            inverse,
+            raw,
+            schema_id,
+            variables,
+            (*action, *multiplier, *raw.eval_path(p_forest[:position])),
+            p_word,
+            root,
+            (0, 1, 0, 0),
+            p_reference,
+        )
+    if family == "C":
+        return _one_power_schema(
+            inverse,
+            raw,
+            schema_id,
+            variables,
+            (*action, *multiplier, *raw.eval_path(c_forest[:position])),
+            p_word,
+            root,
+            (1, 1, 1),
+            p_reference,
+        )
+    if family == "Q":
+        return _two_power_schema(
+            inverse,
+            raw,
+            schema_id,
+            variables,
+            (*action, *multiplier, *raw.eval_path(q_forest[:position])),
+            q_word,
+            c_word,
+            p_word,
+            root,
+            (1, 0, 0, 0),
+            (1, 1, 1, 1),
+            gamma_reference,
+            p_reference,
+        )
+    raise ValueError(f"not a path family: {family}")
+
+
+def _build_old_family_schemas(
+    context: SourceContext,
+    family: str,
+    variables: tuple[str, ...],
+    tokens: tuple[TokenRef, ...],
+    powered_sources: Mapping[str, Any],
+) -> tuple[dict[str, Schema], dict[str, DecoratedSchemaRef]]:
+    raw = context.modules["raw"]
+    inverse = context.modules["inverse"]
+    seven = context.modules["seven"]
+    source_rows = {row["id"]: row for row in context.raw_rows}
+    base_rows = {
+        row["id"]: row
+        for row in context.manifests["raw"]["source_schema_manifest"][
+            "base_correction_atoms"
+        ]
+    }
+    fixed_tokens = {token.token_id: token for token in seven.fixed_tokens()}
+    schemas: dict[str, Schema] = {}
+    references: dict[str, DecoratedSchemaRef] = {}
+    for token in tokens:
+        if family == "fixed":
+            source_id = token.source_members[0]
+            schema_id = f"{family}:old:{token.token_id}:label"
+            schemas[schema_id] = _fixed_schema(
+                schema_id, variables, fixed_tokens[source_id].label
+            )
+            references[token.token_id] = DecoratedSchemaRef(
+                module_schema=None,
+                label_schemas=((None, schema_id),),
+            )
+            continue
+
+        module_id = f"{family}:old:{token.token_id}:module"
+        label_ids = []
+        if token.slot is None:
+            raise ValueError(f"old token lacks slot: {token.token_id}")
+        occurrences = _occurrences_for_slot(context, token.slot)
+        if not occurrences:
+            raise ValueError(
+                f"old token slot lacks occurrences: {token.token_id}"
+            )
+
+        if family == "base":
+            source = base_rows[token.source_members[0]]
+            word = raw.parse_raw(source["module_vertex"])
+            schemas[module_id] = _fixed_schema(module_id, variables, word)
+            for occurrence in occurrences:
+                label_id = f"{family}:old:{token.token_id}:label:o{occurrence}"
+                action = raw.parse_raw(
+                    context.occurrences[occurrence]["quotient_prefix"]
+                )
+                schemas[label_id] = _fixed_schema(
+                    label_id, variables, (*action, *word)
+                )
+                label_ids.append((occurrence, label_id))
+        elif family == "singleton":
+            source = powered_sources["g0:00:module"]
+            q_exponent, p_exponent = _powered_substitution(
+                variables, source.p_offset
+            )
+            base_schema = replace(
+                schema_from_powered(
+                    source,
+                    variables=variables,
+                    q_exponent=q_exponent,
+                    p_exponent=p_exponent,
+                ),
+                schema_id=module_id,
+            )
+            schemas[module_id] = base_schema
+            for occurrence in occurrences:
+                label_id = f"{family}:old:{token.token_id}:label:o{occurrence}"
+                action = raw.parse_raw(
+                    context.occurrences[occurrence]["quotient_prefix"]
+                )
+                schemas[label_id] = _prepend_action(
+                    base_schema, label_id, action
+                )
+                label_ids.append((occurrence, label_id))
+        else:
+            representative = source_rows[token.source_members[0]]
+            schemas[module_id] = _old_path_schema(
+                context,
+                inverse,
+                family,
+                variables,
+                representative,
+                module_id,
+                (),
+            )
+            for occurrence in occurrences:
+                label_id = f"{family}:old:{token.token_id}:label:o{occurrence}"
+                action = raw.parse_raw(
+                    context.occurrences[occurrence]["quotient_prefix"]
+                )
+                schemas[label_id] = _old_path_schema(
+                    context,
+                    inverse,
+                    family,
+                    variables,
+                    representative,
+                    label_id,
+                    action,
+                )
+                label_ids.append((occurrence, label_id))
+        references[token.token_id] = DecoratedSchemaRef(
+            module_schema=module_id,
+            label_schemas=tuple(label_ids),
+        )
+    return schemas, references
+
+
+def _build_b_family_schemas(
+    family: str,
+    variables: tuple[str, ...],
+    tokens: tuple[TokenRef, ...],
+    powered_sources: Mapping[str, Any],
+) -> tuple[dict[str, Schema], dict[str, DecoratedSchemaRef]]:
+    schemas: dict[str, Schema] = {}
+    references: dict[str, DecoratedSchemaRef] = {}
+    for token in tokens:
+        if token.occurrence is None:
+            raise ValueError(f"B token lacks occurrence: {token.token_id}")
+        resolved = []
+        for role, source_id in (
+            ("module", token.module_schema),
+            ("label", token.label_schema),
+        ):
+            source = powered_sources[source_id]
+            schema_id = f"{family}:b:{source_id}"
+            q_exponent, p_exponent = _powered_substitution(
+                variables, source.p_offset
+            )
+            schema = replace(
+                schema_from_powered(
+                    source,
+                    variables=variables,
+                    q_exponent=q_exponent,
+                    p_exponent=p_exponent,
+                ),
+                schema_id=schema_id,
+            )
+            prior = schemas.setdefault(schema_id, schema)
+            if prior != schema:
+                raise ValueError(f"inconsistent B {role} schema: {schema_id}")
+            resolved.append(schema_id)
+        references[token.token_id] = DecoratedSchemaRef(
+            module_schema=resolved[0],
+            label_schemas=((token.occurrence, resolved[1]),),
+        )
+    return schemas, references
+
+
+def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
+    b_tokens, _ = build_b_catalog(context)
+    old_tokens, _ = build_old_rows(context)
+    inverse_sources, _ = context.modules["inverse"].schema_words(
+        context.modules["raw"]
+    )
+    zero_sources = context.modules["aggregate"].g_zero_schemas(
+        context.modules["inverse"], context.modules["raw"]
+    )
+    powered_sources = {**inverse_sources, **zero_sources}
+    configurations = {
+        "fixed": ("a", "n"),
+        "base": ("a", "n"),
+        "singleton": ("a", "n"),
+        "P": ("a", "h", "r"),
+        "C": ("a", "n"),
+        "Q": ("h", "k", "n"),
+    }
+    families = {}
+    for family, variables in configurations.items():
+        cells = make_cells(variables)
+        if family == "P":
+            cells = tuple(cell for cell in cells if p_domain_nonempty(cell))
+        family_old_tokens = tuple(
+            token for token in old_tokens if token.family == family
+        )
+        old_schemas, old_references = _build_old_family_schemas(
+            context,
+            family,
+            variables,
+            family_old_tokens,
+            powered_sources,
+        )
+        b_schemas, b_references = _build_b_family_schemas(
+            family, variables, b_tokens, powered_sources
+        )
+        overlap = set(old_schemas) & set(b_schemas)
+        if overlap:
+            raise ValueError(f"old/B schema ID collision: {sorted(overlap)}")
+        families[family] = Task4FamilyCatalog(
+            family=family,
+            variables=variables,
+            cells=cells,
+            schemas={**old_schemas, **b_schemas},
+            old_tokens=family_old_tokens,
+            b_tokens=b_tokens,
+            old_schema_refs=old_references,
+            b_schema_refs=b_references,
+        )
+    return Task4SchemaCatalog(families=families)
+
+
+def build_task4_template_records(
+    catalog: Task4SchemaCatalog,
+) -> dict[str, dict[str, dict[str, Any]]]:
+    return {
+        family: {
+            f"{schema_id}|{cell.cell_id}": build_template(
+                schema, cell
+            ).to_record()
+            for schema_id, schema in item.schemas.items()
+            for cell in item.cells
+        }
+        for family, item in catalog.families.items()
+    }
 
 
 def _state_label(name: str, state: int | None) -> str:

@@ -1552,3 +1552,8 @@
 
 - [TRAP] A Task 3 mismatch mutation changed a source core, but `build_template` correctly retained every base copy in fixed blocks and represented only zero-at-base increments as powered blocks. The resulting mismatch was therefore a stable fixed-prefix mismatch, not a mismatch inside a powered block.
 - [WORKS] To mutation-test the powered-block rejection, alter the serialized template block placement itself so the first differing base letter is covered by a nonconstant affine block; keep both mutated cores reduced and cyclically reduced so core validation does not preempt the intended check.
+
+### 2026-07-29 Drive pumping gates from downstream decorated schemas
+
+- [TRAP] The first Task 3 real-schema gate adapted only the inverse and slot-zero powered source catalogs to `(a,n)`. It did not build the fixed/base/singleton/P/C/Q module and transported-label schemas that Task 4 actually compares, and its boundary records kept terminal data only in memory.
+- [WORKS] Build the pumping gate from `build_old_rows` and `build_b_catalog`, decorate every module/label context with its actual occurrence action and family selector cells, and round-trip one canonical proof record containing the tagged base, terminal branch, normalized blocks, and boundary witnesses before declaring Task 4 schema coverage.

@@ -466,6 +466,132 @@ def test_all_approved_powered_schemas_have_intact_threshold_three_boundaries() -
     } == {CORE_R, CORE_S}
 
 
+def test_task4_catalog_builds_every_decorated_family_schema_and_cell() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+
+    assert set(catalog.families) == {
+        "fixed",
+        "base",
+        "singleton",
+        "P",
+        "C",
+        "Q",
+    }
+    assert {
+        family: len(item.cells)
+        for family, item in catalog.families.items()
+    } == {
+        "fixed": 16,
+        "base": 16,
+        "singleton": 16,
+        "P": 54,
+        "C": 16,
+        "Q": 64,
+    }
+    assert {
+        family: len(item.old_tokens)
+        for family, item in catalog.families.items()
+    } == {
+        "fixed": 70,
+        "base": 2,
+        "singleton": 1,
+        "P": 32,
+        "C": 39,
+        "Q": 92,
+    }
+    assert all(
+        len(item.b_tokens) == 84
+        for item in catalog.families.values()
+    )
+    assert all(
+        token.token_id in item.old_schema_refs
+        and item.old_schema_refs[token.token_id].label_schemas
+        for item in catalog.families.values()
+        for token in item.old_tokens
+    )
+    assert all(
+        token.token_id in item.b_schema_refs
+        and item.b_schema_refs[token.token_id].module_schema is not None
+        and len(item.b_schema_refs[token.token_id].label_schemas) == 1
+        for item in catalog.families.values()
+        for token in item.b_tokens
+    )
+    assert {
+        family: len(item.schemas)
+        for family, item in catalog.families.items()
+    } == {
+        "fixed": 192,
+        "base": 128,
+        "singleton": 129,
+        "P": 218,
+        "C": 239,
+        "Q": 398,
+    }
+    records = module.build_task4_template_records(catalog)
+    assert {
+        family: len(family_records)
+        for family, family_records in records.items()
+    } == {
+        "fixed": 3072,
+        "base": 2048,
+        "singleton": 2064,
+        "P": 11772,
+        "C": 3824,
+        "Q": 25472,
+    }
+    assert sum(map(len, records.values())) == 48252
+    assert all(
+        "terminal_full_letter" in record
+        and "terminal_c_deleted" in record
+        and "pumping_witnesses" in record
+        for family_records in records.values()
+        for record in family_records.values()
+    )
+
+
+def test_template_proof_record_replays_and_rejects_terminal_mutations() -> None:
+    module = load_generator()
+    schema = synthetic_two_power_schema(module)
+    cell = next(
+        item for item in module.make_cells(schema.variables)
+        if item.cell_id == "age3_nge3"
+    )
+    template = module.build_template(schema, cell)
+    record = template.to_record()
+
+    assert set(record) == {
+        "schema_id",
+        "cell_id",
+        "variables",
+        "tagged_base_word",
+        "base_word",
+        "normalized_blocks",
+        "terminal_full_letter",
+        "terminal_c_deleted",
+        "pumping_witnesses",
+    }
+    assert record["terminal_full_letter"] == 1
+    assert record["terminal_c_deleted"] is True
+    assert record["base_word"] == list(literal_schema_word(schema, (3, 3)))
+    assert module.verify_template_record(schema, cell, record) == template
+
+    mutations = []
+    for field in ("terminal_full_letter", "terminal_c_deleted"):
+        mutated = dict(record)
+        del mutated[field]
+        mutations.append(mutated)
+    changed_letter = dict(record)
+    changed_letter["terminal_full_letter"] = 2
+    mutations.append(changed_letter)
+    changed_branch = dict(record)
+    changed_branch["terminal_c_deleted"] = False
+    mutations.append(changed_branch)
+    for mutated in mutations:
+        with pytest.raises(ValueError, match="template proof record differs"):
+            module.verify_template_record(schema, cell, mutated)
+
+
 def test_compare_templates_serializes_exactly_three_all_power_methods() -> None:
     module = load_generator()
     cell = next(
