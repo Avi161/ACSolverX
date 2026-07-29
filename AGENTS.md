@@ -10,9 +10,11 @@ date alone is not enough — each push needs its own **UTC time** and **tip comm
 1. Append a new section to `logs/DD-MM-YYYY.md` (create the day file if missing).
 2. Heading format (required): `## HH:MM:SS UTC · \`<shortsha>\``.
 3. Body: 1–3 sentences on what changed, with simple links to files added/changed.
-4. Commit that log entry as the tip; fill `<shortsha>` with `git rev-parse --short HEAD`
-   (amend once on your own unpushed HEAD if the SHA was unknown before commit).
-5. Only then `git push`. Never push without a matching headed log section for that tip.
+4. Commit the log section together with the work (or immediately after). Then set
+   `<shortsha>` to that commit's `git rev-parse --short HEAD` in a **follow-up commit**
+   (do not chase a self-hash with amend — a commit cannot contain its own SHA).
+5. Push. Never push without a headed log section whose short SHA points at the commit
+   that carries the log body for this push.
 
 Same rule in [`CLAUDE.md`](CLAUDE.md). Example day file: [`logs/28-07-2026.md`](logs/28-07-2026.md).
 
