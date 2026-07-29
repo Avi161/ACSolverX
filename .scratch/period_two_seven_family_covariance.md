@@ -338,7 +338,7 @@ PASS: period-two seven-family covariance checker tests
 SHA-256:
 
 ```text
-checker   740d6c46cbbbeefdc466bcffdb3fd85fc376737cf5627bace1a958d3389b4aa1
-manifest  f6f851841f49606ae32fde4e94d4c3be3eedaac881f359ae64237d3ca02a9b9a
-test      43e2b939db1fe2c64eff4dc72aeb678b07409d78d060f3d681627bd8d46889f4
+checker   e8946bfef79b4f4c267c20bcd0f82a4776fff56e1087df4854f74cbf5004d164
+manifest  a044e99d93ed43e10721c7f3925f0d750f23944f07d4f385f41fe810f1b62894
+test      6d5d70d4a2f1c3156c1833ac39ff00d2f0ff8d1b9c1ea4fb85438f3bb9d4be59
 ```

@@ -1480,3 +1480,8 @@
 
 - [TRAP] `python3 -m py_compile` tried to create its mirrored cache under `/Users/avigyapaudel/Library/Caches/com.apple.python/...` and failed with `PermissionError`, even though both source files and the worktree were writable.
 - [WORKS] For an explicit compilation gate, set `PYTHONPYCACHEPREFIX=.scratch/pycache` so bytecode remains project-relative. For ordinary replay/tests, use `PYTHONDONTWRITEBYTECODE=1` when no cache is needed.
+
+### 2026-07-29 Audit human-readable hash blocks after regeneration
+
+- [TRAP] The seven-family manifest was correctly regenerated after a Ruff-only checker edit, but the memo's separate reproduction hash block retained the pre-Ruff checker, manifest, and test digests and was committed with stale documentation.
+- [WORKS] After any artifact regeneration, search every staged memo and manifest for old digests, compare each displayed hash to a fresh `shasum -a 256`, and make the cached-diff hash audit a separate pre-commit gate.
