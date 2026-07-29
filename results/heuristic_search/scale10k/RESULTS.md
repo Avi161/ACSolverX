@@ -1,8 +1,17 @@
 # scale10k mini-research — RESULTS
 
-Updated: `2026-07-29T06:12:45.926092+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `10.00 h`
+Updated: `2026-07-29T06:16:11.650968+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `9.99 h`
 
 Budgets ≤10,000; ≤1h/search; advisor-REVISE'd slices. **Colab handoff only after wall.**
+
+## Slice `l_stratified`
+
+| arm | n | @1k | @2k | @5k | @10k | mean pops/s |
+|---|---:|---:|---:|---:|---:|---:|
+| `length` | 80 | 62 | 69 | 73 | 75 | 5092 |
+| `s12` | 80 | 69 | 74 | 75 | 76 | 5101 |
+| `s20` | 80 | 71 | 71 | 75 | 76 | 4962 |
+| `recommended` | 80 | 67 | 70 | 73 | 74 | 4809 |
 
 ## Cost profile (local pops/s)
 
