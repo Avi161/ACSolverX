@@ -1,7 +1,12 @@
-# R1c — Synchronized planarity for 3-connected supports at arbitrary rank (DRAFT)
+# R1c — Synchronized planarity for 3-connected supports at arbitrary rank (AUDITED)
 
-Status: theorem DRAFT (fable line, 29-07-2026) — pending adversarial audit; do not build
-on it until audited. Claim addressed: infrastructure for deciding thickenability (γ_N = 0)
+Status: adversarially audited 29-07-2026 — verdict REPAIRABLE, no counterexample found
+(referee ran exhaustive rotation-system enumeration over five 6-germ instances, 750k+
+systems, every predicted count confirmed; plus a 2-cut control confirming (H2) is
+load-bearing). The five required repairs are incorporated below, marked [R1]–[R5].
+Independent calibration point: the T³ presentation (`xyXY`,`yzYZ`,`zxZX`) has octahedral
+(3-connected planar) support, factorial census 216 rotations, minimum genus 0 with
+EXACTLY 2 accepting orders — the two Whitney reflections, matching the count 2·∏m_uv! = 2. Claim addressed: infrastructure for deciding thickenability (γ_N = 0)
 of higher-rank states in AK(3)'s stable class; generalizes the codex 4-germ K₄ theorem
 (their `AK3_SYNCHRONIZED_PLANARITY.md` Thm 3.1/4.3, whose proofs this draft adapts) to
 every rank with 3-connected planar simple support. New content: Claims R1–R4 below; the
@@ -15,9 +20,15 @@ dictionary D/A/B and germ map ν exactly as in `lit_AK3_NEUWIRTH.md`; compatible
 C = one cyclic order C_v per germ with C_{τv} = B C_v⁻¹ B. Link multigraph G_A on the 2n
 germs; S = simple support. Assume:
 
-  (H1) G_A connected;
+  (H1) G_A connected ([R5] redundant given (H2): S connected ⇒ G_A connected; kept for
+       readability);
   (H2) S is 3-connected (so 2n ≥ 4, min degree ≥ 3);
   (H3) S planar.
+
+[R4] Scope note: Theorems R and P below are pure rotation-system statements and need no
+balance. The BRIDGE "γ_N = 0 ⟺ orientably thickenable" (lit_AK3_NEUWIRTH.md Thm 2) is
+proved there for balanced presentations with connected link; use the bridge only on
+balanced states (all intended stable-class targets are balanced).
 
 (For n = 2 this is exactly S = K₄. C₄/K₄−e are NOT 3-connected — they remain covered by
 the codex special theorems; everything else stays fail-closed.)
@@ -36,16 +47,30 @@ The number of labeled spherical rotation systems is 2·∏_{uv ∈ E(S)} m_uv!.
 
 ### Proof of necessity (adapting the K₄ argument; new ingredient = (H2))
 
-Fix a spherical embedding and a support pair {u,v}. The parallel uv-bundle divides S² into
-m_uv regions. By (H2), S − {u,v} is connected; the plane subgraph induced on the other
-2n − 2 germs is connected and disjoint from the bundle arcs, hence lies in ONE
-complementary region R. Any edge from u to a germ w ∉ {u,v} leaves u through an angular
-gap and cannot cross the bundle, so it lies in the region containing w, namely R; likewise
-at v. Hence all non-uv darts at u (resp. v) lie in the single gap adjacent to R: the
-P_uv-darts form one interval at both endpoints — (1). All regions other than R are empty
-digons; reading their boundaries gives the endpoint reversal — (3). Contract each class to
-one representative (independent of representative by (1)): a plane embedding of S; Whitney
-gives (2).
+[R1] **Digon-bijection lemma** (an unproven substep in the K₄ source, now closed): the
+subembedding consisting of u, v and the m = m_uv parallel uv-edges (m ≥ 1, connected) has,
+by Euler, exactly m complementary regions; its boundary walks alternate u, v so each has
+≥ 2 edge-sides, and with 2m sides over m faces each face has EXACTLY 2; a face bordered
+twice by one edge would make that edge a bridge (impossible for m ≥ 2; for m = 1 the
+single region trivially borders one gap at each endpoint). Hence every complementary
+region is a digon whose closure contains exactly one angular gap at u and one at v —
+regions and gaps are in bijection.
+
+Fix a spherical embedding and a support pair {u,v} ∈ E(S). The parallel uv-bundle divides
+S² into m_uv regions. By (H2), S − {u,v} is connected (vertex deletion, incident edges
+removed) and nonempty; the plane subgraph induced on the other 2n − 2 germs is connected,
+disjoint from the closed bundle, hence lies in ONE complementary region R. Any edge from
+u to a germ w ∉ {u,v} has interior avoiding all vertices and the bundle arcs; being
+connected it stays in one region, and it accumulates at w ∈ R, so it lies in R. By the
+digon-bijection lemma, R meets exactly one angular gap at u and one at v; hence all
+non-uv darts at u (resp. v) lie in that single gap: the P_uv-darts form one cyclic
+interval at both endpoints — (1). All regions other than R are empty digons; reading
+their boundaries gives the endpoint reversal — (3). [R5] Delete all but one representative
+of each class (deletion, NOT graph contraction — contraction would merge u and v; the
+macro order is representative-independent by (1)): a spherical embedding of the simple S,
+which is cellular since S is connected; Whitney (Mohar–Thomassen form: a 3-connected
+planar simple graph has exactly two spherical rotation systems, mutual vertex-wise
+reversals) gives (2).
 
 For the count: reflection of a spherical embedding reverses every ρ_u; a macro-rotation of
 S with all degrees ≥ 3 (by (H2)) is never equal to its own reversal, so the two
@@ -62,17 +87,25 @@ sphere. ∎
 
 ## Theorem P (compatible spherical decision, rank n)
 
-Under (H1)–(H3), fixing one of the two macro-reflections loses no compatible solutions
-(reflection preserves (2.1), as in the codex §4 argument, verbatim). With slot maps built
-from the macro-order and per-class ranks exactly as their (4.2), Lemma 4.1 holds per
-generator: compatibility ⟺ existence of one phase s_g ∈ Z/deg(g⁺) per generator with the
-modular equation (4.3) for every B-transposition. Lemma 4.2 holds verbatim: H_{A,B} is
-2-regular with components = the m relator cycles. Theorem 4.3's seed-rank propagation is
-unchanged: enumerate the ∏_g deg(g⁺) joint phase tuples; per phase tuple, per relator
-cycle, try each seed rank and propagate uniquely; retain closed consistent assignments;
-combine across cycles rejecting rank collisions; require union cardinality m_uv in every
-class. Decision cost: O(∏_g n_g · Σ_cycles (max class size) · N) — polynomial for fixed n;
-for n = 3 and N ≤ 40 this is ≪ 10⁶ elementary steps.
+Under (H1)–(H3), fixing one of the two macro-reflections loses no compatible solutions:
+C′_v := C_v⁻¹ gives C′_{τv} = (B C_v⁻¹ B)⁻¹ = B C_v B = B (C′_v)⁻¹ B, preserving (2.1) and
+the genus while flipping the Whitney reflection. [R3] At each germ, fix an ARBITRARY
+linear cut of the cyclic macro-rotation to define the block offsets b_{v,u} (an embedding
+supplies only cyclic orders; changing the cut shifts every slot at that germ by one
+constant, uniform over its darts, and is absorbed by the enumerated phase s_g). With slot
+maps built from the cut macro-order and per-class ranks as in (4.2), Lemma 4.1 holds per
+generator: compatibility ⟺ one phase s_g ∈ Z/deg(g⁺) per generator satisfying (4.3) for
+every B-transposition. Lemma 4.2 holds verbatim: H_{A,B} is 2-regular with components =
+the m relator cycles. Theorem 4.3's seed-rank propagation is unchanged per cycle.
+[R2] Decision cost: enumerate ∏_g n_g joint phase tuples; per tuple and per relator cycle,
+seed-propagate (cost ≤ (max class size)·(cycle length) per cycle); then COMBINE one
+retained assignment per cycle under global per-class all-different — worst case
+∏_cycles (#retained per cycle) ≲ N^m joint checks. Polynomial for BOUNDED m (balanced
+presentations of bounded rank; the intended n = m = 3 targets); the earlier "≪ 10⁶ for
+n = 3, N ≤ 40" claim is withdrawn — the phase product alone is ≈ 2.4·10³ and the honest
+worst-case bound is phases × N^m ≈ 10⁸–10⁹ elementary steps, still trivially machine-
+checkable per instance but not "≪ 10⁶". Practical instances prune far below the bound
+(most seeds fail to close).
 
 Fail-closed boundary (inherits all nine codex conditions, plus): any germ of degree < 3,
 any 2-cut in S, S non-planar (then NO is immediate for sphericity of ANY rotation — but
