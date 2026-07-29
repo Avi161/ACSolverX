@@ -79,3 +79,15 @@ everywhere); 25 small-census states all min genus 2; no spherical state. Amendme
 4. Until the R1c-v2 cut-scheme solver lands, rank-3 decisions come only from the
    factorial fallback (cap 2e6; only ~1% of round-1 states) — budget accordingly or wait
    for v2.
+
+## Amendment 3 (14:25 UTC) — Run D: the matched-operator contrast at scale (TOP PRIORITY)
+
+The local 1,000-pop matched contrast (ak2_battery.py / ak3_matched_control.py, results
+committed) ended at AK(3) ΣE 5.03 with 0 observed vs AK(2) 649/397 — p between 0.7%
+and 5%. Run D scales EXACTLY this pair of harvests with the rotation-expanded operator
+(operator identity member-by-member, as the committed modules already verify):
+AK(2) and AK(3), same pops (start 100k), caps root+4, decisions via the committed
+solver stack, two-sided ΣE accounting per the lesson. Interpretation: AK(3) hits ⇒ hit
+protocol (witness + TC + full replay; Lackenby-flagged chain to AC-triviality); zero
+at ΣE ≳ 300 ⇒ phenomenon-level evidence that AK(3)'s classical class contains no
+thickenable members in reach — R3′'s concrete target. Run D supersedes Run B's priority.

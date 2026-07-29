@@ -102,3 +102,8 @@ much harder than those Erdős problems. Its three keys:
   ~45×, and make the search realization-sensitive); validate E-yield code against two
   independent anchors first.
   [[TRAP]](experiments/lessons/harvest-dedup-on-reduced-forms.md)
+- GitHub bounces files > 100 MB at push (commit big jsonl artifacts gzipped with a .gz
+  test fallback); never compare hit rates across harvests with different operators —
+  contrast experiments need member-by-member operator-identity verification and
+  two-sided ΣE accounting against a trivializable positive control.
+  [[TRAP]](experiments/lessons/large-artifact-commits-and-null-model-contrast.md)
