@@ -102,17 +102,32 @@ for `ge3`.
 - P uses the 54 nonempty `(a,h,r)` cells in the domain `h+r>=a`.
 - Q uses the 64 `(h,k,n)` cells with `a=h+k`.
 
-For each powered schema and cell, the manifest records:
+The manifest binds every one of the 48,252 powered schema/cell identities but
+does not repeat its full tagged word.  Each family catalog stores:
 
-- nonempty, freely reduced, cyclically reduced primitive cores;
-- the exact affine exponent at the base and every nonnegative slope;
-- the tagged fully reduced base word;
-- one surviving adjacent-copy boundary for every changing factor, including
-  copy identifiers and reduced-word offsets;
-- pairwise distinct selected boundaries;
-- the pre- and post-`cvert` terminal-`c` branch; and
-- the comparison discharge: strict affine length, identical normalized block
-  list, or common pumped prefix followed by a fixed mismatch.
+- one ASCII-sorted schema table containing schema IDs, variables, and blocks;
+- one ASCII-sorted cell table containing names, states, and base values;
+- a first-seen-in-identity-order table of distinct compact witnesses;
+- one witness-table index for every schema-major/cell-minor identity; and
+- exact identity, replay, and catalog SHA-256 values with versioned ordering
+  and typed-encoding declarations.
+
+A compact witness contains the full pre-`cvert` terminal letter, the
+terminal-`c` deletion branch, and for every changing block its block index,
+base copy count, slopes, split position, consecutive copy IDs, and boundary
+core offsets.  Schemas and cells are stored once; each of the 48,252
+identities stores only its witness index.
+
+The independent verifier reconstructs, for every identity, the nonempty,
+reduced, cyclically reduced primitive cores, affine exponents and nonnegative
+slopes, tagged fully reduced base word, normalized blocks, intact and distinct
+boundaries, and terminal branch.  It then requires the reconstructed compact
+witness and ordered replay digest to match.  A digest match alone is not a
+proof: reconstruction and every structural check precede digest comparison.
+
+The load histograms separately record each comparison discharge: strict
+affine length, identical normalized block list, or common pumped prefix
+followed by a fixed mismatch.
 
 The only primitive cores expected in the concrete schemas are
 `ctcTTTct` and `cTctttcT`, both of reduced cyclic length eight.  The verifier
@@ -121,6 +136,12 @@ rechecks this fact from letters and does not trust the recorded booleans.
 The verifier also proves that the listed cells are disjoint and cover the
 whole stated orthant.  It checks P-domain nonemptiness algebraically rather
 than by sampling.
+
+The exact family identity counts are 3,072 fixed, 2,048 base, 2,064
+singleton, 11,772 P, 3,824 C, and 25,472 Q, totaling 48,252.  Dropping one
+identity, redirecting it to another valid witness, or changing a schema, cell,
+boundary, or terminal field must be rejected after all enclosing digests are
+recomputed.
 
 ## 6. Load-row representation
 

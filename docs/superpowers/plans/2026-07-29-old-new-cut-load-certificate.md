@@ -354,9 +354,11 @@ Write the generated manifest to `.scratch/test-artifacts/old-new-load/manifest.j
 
 1. one token mask bit;
 2. one raw coefficient;
-3. one pumping boundary copy ID;
-4. one family parity; and
-5. one dependency digest.
+3. one pumping boundary copy ID or terminal field;
+4. one dropped or redirected schema/cell identity mapping;
+5. one schema or cell table entry;
+6. one family parity; and
+7. one dependency digest.
 
 The tests assert exception categories, not exact error prose.
 
@@ -368,9 +370,28 @@ Expected: FAIL because the independent verifier file does not exist.
 
 `--write` writes canonical JSON only after successful build. `--check` rebuilds in memory and requires byte equality with the requested path. `--summary` builds without writing and prints only computed counts/status. All writes use a sibling temporary file under the target's project-local directory followed by `Path.replace`.
 
+The template catalog uses format `task4-template-catalog-v2`.  Per family it
+stores an ASCII-sorted `schema_table`, ASCII-sorted `cell_table`, a compact
+first-seen `witness_table`, and one `identity_witness_ids` integer per
+schema-major/cell-minor identity.  Witness fields are terminal letter,
+terminal deletion, and compact pump tuples `(block_index, base_copies, slopes,
+split, left_copy, right_copy, left_offset, right_offset)`.  Declare all field
+orders and use a Python 3.9 standard-library typed encoder with explicit type
+tags and four-byte big-endian lengths for rolling `identity_sha256` and
+`replay_sha256`.  Compute canonical JSON and `catalog_sha256` once per compact
+family catalog, never once per template.
+
+Before a second full run, benchmark extraction/intering and final compact
+serialization on every eighth sorted schema in every family plus the
+highest-pump-count schemas.  Project by exact family schema ratios and emitted
+byte counts; proceed only when twice the projection is below three seconds.
+The full generator must measure less than six seconds of catalog overhead and
+less than 30 seconds total.  Do not call `Template.to_record`, canonical JSON,
+or SHA-256 separately for all 48,252 identities in the hot ledger pass.
+
 - [ ] **Step 4: Implement the verifier independently**
 
-Do not import the generator. Re-declare the JSON schema, free/cyclic reduction, cell algebra, tagged boundary checks, affine comparison checks, source adapters, collision grouping, chronology rule, bucketization, and family xor. Recompute every value from upstream sources and compare canonical structures to the manifest. A digest match alone is insufficient.
+Do not import the generator. Re-declare the JSON schema, free/cyclic reduction, cell algebra, tagged boundary checks, affine comparison checks, source adapters, collision grouping, chronology rule, bucketization, and family xor. Reconstruct all 48,252 schema/cell templates from the compact schema/cell/witness catalogs, then recompute every load and family value from upstream sources and compare canonical structures to the manifest. A digest match alone is insufficient.
 
 - [ ] **Step 5: Run end-to-end and all mutation tests and verify GREEN**
 

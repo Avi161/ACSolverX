@@ -1,5 +1,15 @@
 # Lessons Learned
 
+### 2026-07-29 Full template record hashing exceeds the proof guard
+
+- [TRAP] Calling `Template.to_record()`, canonical JSON, and SHA-256 for all 48,252 schema/cell templates inside the 24-second grouped-ledger pass pushed the guarded generator beyond the hard 30-second limit.
+- [WORKS] Keep the hot ledger pass on compact immutable template data and build the complete identity binding with a streaming/interner representation whose incremental cost is measured on a slice before the full guarded run; never retry the unchanged full command or raise the cap.
+
+### 2026-07-29 Bind every pumping template identity
+
+- [TRAP] A compact sample of first-active pumping witnesses does not bind the complete Task 4 decorated schema/cell catalog and cannot support independent replay.
+- [WORKS] Serialize an exact mapping for all 48,252 `family|schema_id|cell_id` identities to deduplicated canonical record bodies, record exact family/total counts and a catalog digest, and mutation-test a dropped or redirected mapping.
+
 ### 2026-07-29 Open-ended age cell identifier
 
 - [TRAP] The threshold-state label is normally `ge3`, but the literal certificate cell ID for `a=None` is `age3` (not `agege3`).
