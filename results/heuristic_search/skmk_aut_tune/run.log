@@ -340,3 +340,26 @@
   [train] +7200/36876 10.11/s last=S20_K2_MK10 sol=False
   [train] +7400/36876 10.01/s last=S8_K1_MK2 sol=False
   [train] +7600/36876 9.65/s last=S24_K8_MK6_418 sol=False
+  [train] +7800/36876 9.64/s last=S12_K4_MK10 sol=False
+  [train] +8000/36876 9.74/s last=S0_K2_53_MK2 sol=False
+  [train] +8200/36876 9.76/s last=S20_K1_MK0 sol=False
+  [train] +8400/36876 9.76/s last=S8_K0_MK0 sol=False
+  [train] +8600/36876 9.67/s last=S24_K6_MK2 sol=False
+  [train] +8800/36876 9.69/s last=S12_K2_53_MK6_418 sol=False
+  [train] +9000/36876 9.75/s last=S0_K1_MK10 sol=False
+  [train] +9200/36876 9.66/s last=S20_K0_MK2 sol=False
+  [train] +9400/36876 9.66/s last=S4_K6_MK6_418 sol=False
+  [train] +9600/36876 9.78/s last=S24_K2_53_MK10 sol=False
+  [train] +9800/36876 9.73/s last=S12_K2_MK2 sol=False
+  [train] +10000/36876 9.61/s last=S0_K0_MK2 sol=False
+  [train] +10200/36876 9.75/s last=S16_K6_MK10 sol=True
+  [train] +10400/36876 9.78/s last=S4_K4_MK2 sol=False
+  [train] +10600/36876 9.83/s last=S24_K2_MK4 sol=False
+  [train] +10800/36876 9.85/s last=S12_K0_MK10 sol=False
+  [train] +11000/36876 9.84/s last=S28_K8_MK2 sol=False
+  [train] +11200/36876 9.87/s last=S16_K4_MK4 sol=False
+  [train] +11400/36876 9.97/s last=S4_K2_MK10 sol=False
+  [train] +11600/36876 10.07/s last=S24_K1_MK2 sol=True
+  [train] +11800/36876 10.11/s last=S8_K8_MK6_418 sol=False
+  [train] +12000/36876 10.11/s last=S28_K4_MK10 sol=False
+  [train] +12200/36876 10.20/s last=S16_K2_53_MK4 sol=False
