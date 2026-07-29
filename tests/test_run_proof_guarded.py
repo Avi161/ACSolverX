@@ -756,7 +756,7 @@ def test_monitor_counts_only_exact_group_and_reports_escaped_descendants(
     )
     monitor = proof_guard.SafetyMonitor(
         process_reader=lambda _timeout: processes,
-        thermal_reader=lambda: 0,
+        thermal_reader=lambda _deadline: 0,
     )
 
     sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
@@ -772,7 +772,9 @@ def test_monitor_counts_only_exact_group_and_reports_escaped_descendants(
         processes[0].pid = 0
 
 
-def test_monitor_forwards_bounded_process_sampling_timeout() -> None:
+def test_monitor_shares_one_deadline_across_thermal_and_process_sampling() -> None:
+    clock = _FakeClock()
+    observed_thermal_deadlines: list[float] = []
     observed_timeouts: list[float] = []
     processes = (
         _process_info(100, 1, 100, 0.0),
@@ -781,33 +783,68 @@ def test_monitor_forwards_bounded_process_sampling_timeout() -> None:
 
     def read_processes(timeout_seconds: float) -> tuple[object, ...]:
         observed_timeouts.append(timeout_seconds)
+        clock.now += timeout_seconds
         return processes
+
+    def read_thermal(deadline: float) -> int:
+        observed_thermal_deadlines.append(deadline)
+        clock.now += 0.6
+        return 0
 
     sample = proof_guard.SafetyMonitor(
         process_reader=read_processes,
-        thermal_reader=lambda: 0,
+        thermal_reader=read_thermal,
+        clock=clock.monotonic,
     ).sample(
         child_pid=200,
         process_group_id=200,
         controller_pid=100,
-        process_timeout_seconds=0.75,
+        sample_deadline=1.0,
     )
 
     assert sample.failure_reason is None
-    assert observed_timeouts == [0.75]
+    assert observed_thermal_deadlines == [1.0]
+    assert observed_timeouts == [pytest.approx(0.4)]
+    assert clock.now == pytest.approx(1.0)
+
+
+def test_monitor_skips_process_sampling_when_thermal_consumes_deadline() -> None:
+    clock = _FakeClock()
+    process_calls: list[float] = []
+
+    def read_thermal(deadline: float) -> int:
+        clock.now = deadline
+        return 0
+
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda timeout: process_calls.append(timeout) or (),
+        thermal_reader=read_thermal,
+        clock=clock.monotonic,
+    )
+
+    sample = monitor.sample(
+        child_pid=200,
+        process_group_id=200,
+        controller_pid=100,
+        sample_deadline=1.0,
+    )
+
+    assert sample.failure_reason is not None
+    assert "no time remains" in sample.failure_reason
+    assert process_calls == []
 
 
 def test_monitor_reports_lost_controller_and_reparented_child() -> None:
     lost_controller = proof_guard.SafetyMonitor(
         process_reader=lambda _timeout: (_process_info(200, 100, 200, 1.0),),
-        thermal_reader=lambda: 0,
+        thermal_reader=lambda _deadline: 0,
     ).sample(child_pid=200, process_group_id=200, controller_pid=100)
     reparented_child = proof_guard.SafetyMonitor(
         process_reader=lambda _timeout: (
             _process_info(100, 1, 100, 0.0),
             _process_info(200, 1, 200, 1.0),
         ),
-        thermal_reader=lambda: 0,
+        thermal_reader=lambda _deadline: 0,
     ).sample(child_pid=200, process_group_id=200, controller_pid=100)
 
     assert lost_controller.controller_alive is False
@@ -823,7 +860,7 @@ def test_monitor_accepts_only_nominal_thermal_state(thermal_state: int) -> None:
             _process_info(100, 1, 100, 0.0),
             _process_info(200, 100, 200, 1.0),
         ),
-        thermal_reader=lambda: thermal_state,
+        thermal_reader=lambda _deadline: thermal_state,
     )
 
     sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
@@ -832,7 +869,7 @@ def test_monitor_accepts_only_nominal_thermal_state(thermal_state: int) -> None:
 
 
 def test_monitor_fails_closed_when_thermal_state_is_unreadable() -> None:
-    def unreadable() -> int:
+    def unreadable(_deadline: float) -> int:
         raise RuntimeError("thermal API unavailable")
 
     monitor = proof_guard.SafetyMonitor(
@@ -1007,6 +1044,141 @@ def test_macos_thermal_reader_wraps_objective_c_api_failures(
         proof_guard.read_macos_thermal_state()
 
 
+def test_internal_thermal_probe_bypasses_proof_lock_and_recursion(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    def forbidden(*_args: object, **_kwargs: object) -> None:
+        raise AssertionError("internal thermal probe entered guarded execution")
+
+    monkeypatch.setattr(proof_guard, "_read_macos_thermal_state_enum", lambda: 0)
+    monkeypatch.setattr(proof_guard.ProcessLock, "acquire", forbidden)
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", forbidden)
+
+    status = proof_guard.main(["--internal-thermal-probe"])
+
+    assert status == 0
+    assert capsys.readouterr().out == "0\n"
+
+
+def test_internal_thermal_probe_emits_valid_pressure_enum(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    _install_fake_macos_thermal_api(monkeypatch, thermal_state=2)
+
+    status = proof_guard.main(["--internal-thermal-probe"])
+
+    assert status == 0
+    assert capsys.readouterr().out == "2\n"
+
+
+def test_bounded_thermal_probe_uses_fixed_internal_mode_and_parses_enum(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = _FakeClock()
+    clock.now = 3.0
+    popen_calls: list[tuple[object, object]] = []
+    communicate_timeouts: list[float] = []
+
+    class SyntheticProbe:
+        pid = 910_000
+        returncode = 0
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            communicate_timeouts.append(timeout)
+            return "0\n", ""
+
+    def popen(command: object, **kwargs: object) -> SyntheticProbe:
+        popen_calls.append((command, kwargs))
+        clock.now += 0.5
+        return SyntheticProbe()
+
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+
+    thermal_state = proof_guard.read_bounded_macos_thermal_state(
+        deadline=5.0,
+        clock=clock.monotonic,
+    )
+
+    assert thermal_state == 0
+    assert communicate_timeouts == [1.5]
+    assert popen_calls == [
+        (
+            [
+                sys.executable,
+                str(RUNNER),
+                "--internal-thermal-probe",
+            ],
+            {
+                "cwd": PROJECT_ROOT,
+                "env": proof_guard.limited_environment(),
+                "shell": False,
+                "start_new_session": True,
+                "stdout": subprocess.PIPE,
+                "stderr": subprocess.DEVNULL,
+                "text": True,
+            },
+        )
+    ]
+
+
+def test_thermal_probe_timeout_terminates_then_kills_exact_helper_group(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 910_001
+    group_alive = True
+    killpg_calls: list[tuple[int, int]] = []
+
+    class SyntheticProbe:
+        pid = process_group_id
+        returncode: int | None = None
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            raise subprocess.TimeoutExpired("thermal probe", timeout)
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            self.returncode = -signal.SIGKILL
+            return self.returncode
+
+    def killpg(target_group_id: int, signum: int) -> None:
+        nonlocal group_alive
+        killpg_calls.append((target_group_id, signum))
+        if signum == signal.SIGKILL:
+            group_alive = False
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticProbe(),
+    )
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: group_alive)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+
+    with pytest.raises(RuntimeError, match="thermal probe timed out"):
+        proof_guard.read_bounded_macos_thermal_state(
+            deadline=0.5,
+            clock=clock.monotonic,
+        )
+
+    assert killpg_calls == [
+        (process_group_id, signal.SIGTERM),
+        (process_group_id, signal.SIGKILL),
+    ]
+    assert group_alive is False
+
+
 def test_process_reader_requests_only_non_sensitive_fields(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -1064,7 +1236,8 @@ class _SequenceMonitor:
         self.honor_sample_timeout = honor_sample_timeout
         self.calls: list[tuple[int, int, int]] = []
         self.sample_times: list[float] = []
-        self.sample_timeouts: list[float] = []
+        self.sample_deadlines: list[float] = []
+        self.sample_budgets: list[float] = []
         self.output_before_samples: list[list[str]] = []
 
     def sample(
@@ -1072,11 +1245,15 @@ class _SequenceMonitor:
         child_pid: int,
         process_group_id: int,
         controller_pid: int,
-        process_timeout_seconds: float = 2.0,
+        sample_deadline: float | None = None,
     ) -> object:
+        if sample_deadline is None:
+            sample_deadline = self.clock.monotonic() + 2.0
+        sample_budget = sample_deadline - self.clock.monotonic()
         self.calls.append((child_pid, process_group_id, controller_pid))
         self.sample_times.append(self.clock.monotonic())
-        self.sample_timeouts.append(process_timeout_seconds)
+        self.sample_deadlines.append(sample_deadline)
+        self.sample_budgets.append(sample_budget)
         if self.output_stream is not None:
             self.output_before_samples.append(
                 self.output_stream.getvalue().splitlines()
@@ -1092,12 +1269,12 @@ class _SequenceMonitor:
             sample_advance = self.sample_advances.pop(0)
             if (
                 self.honor_sample_timeout
-                and sample_advance > process_timeout_seconds
+                and sample_advance > sample_budget
             ):
-                self.clock.now += process_timeout_seconds
+                self.clock.now += sample_budget
                 raise subprocess.TimeoutExpired(
                     "synthetic process sample",
-                    process_timeout_seconds,
+                    sample_budget,
                 )
             self.clock.now += sample_advance
         return sample
@@ -1327,7 +1504,7 @@ def test_slow_sample_honors_progress_budget_and_aborts_without_late_write(
     assert status == 126
     assert killpg_calls == [(700_001, signal.SIGTERM)]
     assert monitor.sample_times == [0.0, 0.0, 1.0]
-    assert monitor.sample_timeouts == [2.0, 1.0, 1.0]
+    assert monitor.sample_budgets == [2.0, 1.0, 1.0]
     assert monitor.clock.now == 2.0
     expected_lines = [
         "proof guard progress phase=preflight elapsed=0s "

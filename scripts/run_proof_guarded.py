@@ -33,6 +33,8 @@ PREFLIGHT_EXIT = 125
 SAFETY_EXIT = 126
 SAFETY_SAMPLE_SECONDS = 1.0
 DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS = 2.0
+THERMAL_PROBE_GRACE_SECONDS = 0.1
+INTERNAL_THERMAL_PROBE_FLAG = "--internal-thermal-probe"
 MAX_GROUP_CPU_PERCENT = 125.0
 MAX_CONSECUTIVE_HIGH_CPU_SAMPLES = 3
 MAX_PROGRESS_LINES_PER_LOOP = int(
@@ -139,7 +141,7 @@ def _print_due_progress(
     return max(next_progress_index, last_emitted_index + 1)
 
 
-def read_macos_thermal_state() -> int:
+def _read_macos_thermal_state_enum() -> int:
     if sys.platform != "darwin":
         raise RuntimeError("macOS thermal monitoring requires macOS")
 
@@ -218,9 +220,76 @@ def read_macos_thermal_state() -> int:
         raise RuntimeError(
             f"macOS thermal API returned unexpected state {thermal_state}"
         )
+    return thermal_state
+
+
+def read_macos_thermal_state() -> int:
+    thermal_state = _read_macos_thermal_state_enum()
     if thermal_state != 0:
         raise RuntimeError(f"macOS thermal state {thermal_state} is not nominal")
     return thermal_state
+
+
+def _run_internal_thermal_probe() -> int:
+    try:
+        thermal_state = _read_macos_thermal_state_enum()
+    except (GuardSignal, KeyboardInterrupt):
+        raise
+    except Exception:
+        print("thermal probe failed", file=sys.stderr, flush=True)
+        return 1
+    print(thermal_state, flush=True)
+    return 0
+
+
+def read_bounded_macos_thermal_state(
+    deadline: float,
+    clock: Callable[[], float] | None = None,
+) -> int:
+    if clock is None:
+        clock = time.monotonic
+    remaining_seconds = deadline - clock()
+    if remaining_seconds <= 0:
+        raise RuntimeError("no time remains for thermal sampling")
+
+    try:
+        probe = subprocess.Popen(
+            [sys.executable, str(Path(__file__).resolve()), INTERNAL_THERMAL_PROBE_FLAG],
+            cwd=PROJECT_ROOT,
+            env=limited_environment(),
+            shell=False,
+            start_new_session=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+    except OSError as exc:
+        raise RuntimeError(f"could not start thermal probe: {exc.strerror}") from exc
+
+    try:
+        remaining_seconds = deadline - clock()
+        if remaining_seconds <= 0:
+            raise RuntimeError("thermal probe deadline expired during startup")
+        try:
+            stdout, _stderr = probe.communicate(timeout=remaining_seconds)
+        except subprocess.TimeoutExpired as exc:
+            if not _clean_exact_group(probe, THERMAL_PROBE_GRACE_SECONDS):
+                raise RuntimeError("thermal probe cleanup failed") from exc
+            raise RuntimeError("thermal probe timed out") from exc
+
+        if group_exists(probe.pid):
+            _clean_exact_group(probe, THERMAL_PROBE_GRACE_SECONDS)
+            raise RuntimeError("thermal probe left its process group alive")
+        if probe.returncode != 0:
+            raise RuntimeError("thermal probe failed")
+        value = stdout.strip()
+        if value not in {"0", "1", "2", "3"}:
+            raise RuntimeError("thermal probe returned an invalid state")
+        return int(value)
+    except BaseException:
+        if group_exists(probe.pid):
+            _clean_exact_group(probe, THERMAL_PROBE_GRACE_SECONDS)
+        raise
 
 
 def _read_process_table(timeout_seconds: float) -> tuple[ProcessInfo, ...]:
@@ -273,20 +342,26 @@ class SafetyMonitor:
     def __init__(
         self,
         process_reader: Callable[[float], Sequence[ProcessInfo]] = _read_process_table,
-        thermal_reader: Callable[[], int] = read_macos_thermal_state,
+        thermal_reader: Callable[[float], int] = read_bounded_macos_thermal_state,
+        clock: Callable[[], float] = time.monotonic,
     ) -> None:
         self._process_reader = process_reader
         self._thermal_reader = thermal_reader
+        self._clock = clock
 
     def sample(
         self,
         child_pid: int,
         process_group_id: int,
         controller_pid: int,
-        process_timeout_seconds: float = DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS,
+        sample_deadline: float | None = None,
     ) -> SafetySample:
+        if sample_deadline is None:
+            sample_deadline = (
+                self._clock() + DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS
+            )
         try:
-            thermal_state = self._thermal_reader()
+            thermal_state = self._thermal_reader(sample_deadline)
         except (GuardSignal, KeyboardInterrupt):
             raise
         except Exception as exc:
@@ -310,6 +385,11 @@ class SafetyMonitor:
             )
 
         try:
+            process_timeout_seconds = sample_deadline - self._clock()
+            if process_timeout_seconds <= 0:
+                raise RuntimeError(
+                    "no time remains for process sampling after thermal sampling"
+                )
             processes = tuple(self._process_reader(process_timeout_seconds))
             by_pid = {process.pid: process for process in processes}
             if len(by_pid) != len(processes):
@@ -625,11 +705,11 @@ def _run_long_phase(
                         phase_started_at
                         + next_progress_index * progress_interval,
                     )
-                process_timeout_seconds = min(
-                    DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS,
-                    sampling_deadline - now,
+                sampling_deadline = min(
+                    sampling_deadline,
+                    now + DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS,
                 )
-                if process_timeout_seconds <= 0:
+                if sampling_deadline <= now:
                     safety_failure = "no time remains for process sampling"
                     sample_finished_at = now
                 else:
@@ -638,7 +718,7 @@ def _run_long_phase(
                             child_pid=child.pid,
                             process_group_id=child.pid,
                             controller_pid=os.getpid(),
-                            process_timeout_seconds=process_timeout_seconds,
+                            sample_deadline=sampling_deadline,
                         )
                         if not isinstance(sample, SafetySample):
                             raise RuntimeError(
@@ -858,7 +938,10 @@ def parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    args = parse_args(argv)
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    if arguments == [INTERNAL_THERMAL_PROBE_FLAG]:
+        return _run_internal_thermal_probe()
+    args = parse_args(arguments)
     process_lock = ProcessLock(LOCK_PATH)
     previous_handlers: dict[int, signal.Handlers] = {}
 
