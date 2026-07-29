@@ -1309,5 +1309,5 @@
 
 ### 2026-07-28 Hoist fixed actions out of bounded census hot paths
 
-- [TRAP] Calling `period_two_remote_syzygy_certificate()` inside `projected_fourteen_bits()` rebuilt its residual and wedge once per balanced pair, turning the 4,671-pair depth-six census into a multi-hour run.
-- [WORKS] Keep fixed finite actions as module constants; validate them once at certificate entry, then ensure the per-pair streaming evaluator makes no certificate calls.
+- [TRAP] Calling `period_two_remote_syzygy_certificate()` inside `projected_fourteen_bits()` made 4,671 avoidable uncached calls. The review benchmark measured about 66 seconds for those calls; they do not explain a separate multi-hour leaked process.
+- [WORKS] Keep fixed finite actions as module constants and ensure the per-pair projected evaluator makes no certificate calls.
