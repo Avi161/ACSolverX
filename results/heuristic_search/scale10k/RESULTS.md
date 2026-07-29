@@ -1,6 +1,6 @@
 # scale10k mini-research — RESULTS
 
-Updated: `2026-07-29T11:53:38.419776+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `4.31 h`
+Updated: `2026-07-29T11:58:38.533405+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `4.23 h`
 
 Budgets ≤10,000; ≤1h/search; advisor-REVISE'd slices. **Colab handoff only after wall.**
 
