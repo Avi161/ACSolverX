@@ -41,3 +41,18 @@
   +400 s8/idx=151555 solved=True
   +410 mk8/idx=335372 solved=True
   +420 s20_neg_xy/idx=492070 solved=True
+  +430 s28/idx=839259 solved=True
+  +440 s20_k2/idx=987121 solved=True
+  +450 s16/idx=356 solved=True
+  +460 k8/idx=177311 solved=True
+  +470 s8/idx=507721 solved=True
+  +480 mk8/idx=669542 solved=True
+  +490 s20_neg_xy/idx=823702 solved=False
+  +500 s28/idx=1133338 solved=True
+  +510 s20_k2/idx=1155 solved=True
+  +520 s16/idx=318640 solved=True
+  +530 k8/idx=480414 solved=True
+  +540 s8/idx=802317 solved=True
+  +550 mk8/idx=966958 solved=False
+  +560 s20_neg_xy/idx=1135594 solved=True
+[extra] done new=560
