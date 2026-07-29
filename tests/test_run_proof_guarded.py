@@ -249,10 +249,12 @@ def test_long_run_timeout_outside_bounds_is_rejected_before_launch(
 
 
 @pytest.mark.parametrize("option", ("--preflight-seconds", "--progress-seconds"))
-def test_long_run_preflight_or_progress_above_maximum_is_rejected_before_launch(
-    tmp_path: Path, option: str
+@pytest.mark.parametrize("value", ("0", "-1", "nan", "inf", "61"))
+def test_long_run_invalid_preflight_or_progress_is_rejected_without_disclosure(
+    tmp_path: Path, option: str, value: str
 ) -> None:
-    marker = tmp_path / f"invalid-{option[2:]}"
+    marker = tmp_path / f"invalid-{option[2:]}-{value}"
+    sentinel = "proof-guard-secret-sentinel"
     result = subprocess.run(
         [
             sys.executable,
@@ -261,18 +263,22 @@ def test_long_run_preflight_or_progress_above_maximum_is_rejected_before_launch(
             "--timeout-seconds",
             "61",
             option,
-            "61",
+            value,
             "--",
             sys.executable,
             "-c",
-            f"from pathlib import Path; Path({str(marker)!r}).write_text('bad')",
+            f"from pathlib import Path; Path({str(marker)!r}).write_text({sentinel!r})",
         ],
         cwd=PROJECT_ROOT,
         check=False,
+        capture_output=True,
+        text=True,
         timeout=2,
     )
     assert result.returncode == 2
     assert not marker.exists()
+    assert sentinel not in result.stdout
+    assert sentinel not in result.stderr
 
 
 def test_long_run_parser_preserves_finite_positive_phase_values() -> None:
