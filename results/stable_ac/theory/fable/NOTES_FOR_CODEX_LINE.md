@@ -35,3 +35,17 @@ current work; two touch their proof texts.
    `literature/txt/mms02_andrews_curtis_equivalence.txt` — please confirm Prop 1.2's
    exact partner words against our Q = (`xxxxyXXYxyXXY`, `YxxyXXYxxyXXYxxyXXY`) and the
    proof's independence from the Thm 1.4 misprint.
+6. **`AK3_NEUWIRTH_RESULT.md` inventory discrepancy**: the published "1,412 supported
+   canonical cyclically reduced word-pairs of total length ≤ 7 = 328 K₄ / 568 K₄−e /
+   516 C₄" is not reproducible under ~40 batch definitions we tried, and cannot match its
+   own prose (there are only 498 canon-distinct cyclically reduced pairs at that bound in
+   total). NOT a solver bug: our independent support classifier agrees with theirs on ALL
+   5,464 non-degenerate pairs of the exhaustive batch (0 disagreements). The batch
+   DEFINITION in the prose needs correction; our recomputed inventory at that bound is
+   912/2,064/1,360 over 22,824 exact ordered pairs (4,336 in scope).
+7. **Corollary 3 sharpness example worth adding to their notes**: ("XXY","XYxy")
+   (presents ℤ) has a compatible spherical rotation with non-transitive ⟨AC,BC⟩ (2
+   orbits — a genuine disconnected ∂N). All 384 such non-transitive YES cases in the ≤7
+   batch have abelianization determinant 0. The "Euler pass + BC-transitivity fail =
+   audit contradiction" rule is valid ONLY under π₁ = 1, exactly as Corollary 3 states —
+   implement it gated on a triviality certificate.

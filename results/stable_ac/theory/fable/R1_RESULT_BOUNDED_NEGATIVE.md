@@ -1,5 +1,30 @@
-# R1 result — certified bounded negative on the P25 corridor (DRAFT — pending fable-solver
-confirmation; numbers marked [ORACLE] await independent replication)
+# R1 result — CERTIFIED bounded negative on the P25 corridor (final, 29-07-2026 ~08:35 UTC)
+
+STATUS UPGRADE: every [ORACLE] row below is now CONFIRMED by the independent fable stack
+(`experiments/stable_ac/fable/`, 47 tests; full repo suite 78 passed; calibration gates
+G1–G3 of the reconciled spec all passed, including: exact reproduction of the AK(3)
+86,400-case histogram and orbit-2, exhaustive ≤7 batch with rank≡factorial YES-SET
+equality — 2,352 YES / 1,984 NO — split-cut K₄−e schemes exercised on 144 instances, and
+0 support-classification disagreements with the codex solver on all 5,464 non-degenerate
+pairs). Additional confirmed rows beyond the draft list:
+- the 331 truly-novel R1d harvest states (35 in the ≤17 census-gap stratum): all
+  NOT_SPHERICAL (fable + oracle agree; TC triviality sampled 9/9).
+- the 610 short-Aut images: regenerated and re-decided with the fable solver — 610/610
+  NOT_SPHERICAL, exact count match with the oracle sweep.
+- TC (independent implementation) certifies AK(3), P25, Q, and 5 path intermediates
+  trivial (index 1).
+- path[23], path[24] exact realizations: UNSUPPORTED (one A-loop each — correctly
+  fail-closed), their common reduced form (= path[22]) NOT_SPHERICAL; factorial
+  cross-check at 967,680 cases gives min genus 1, and path[51..53] reproduce genus 2.
+Combined certified corpus this session: 997 fable-confirmed exact complexes (56 core +
+610 images + 331 harvest), all with codex-oracle agreement where run; running field total
+~3,752 with zero positives ever observed.
+
+Mathematical by-product (sharpness): ("XXY","XYxy") — a presentation of ℤ — admits a
+compatible spherical rotation whose ⟨AC,BC⟩ has 2 orbits: a genuine disconnected ∂N.
+All 384 non-transitive YES cases in the ≤7 batch have abelianization determinant 0. So
+Corollary 3's π₁ = 1 hypothesis is load-bearing, and the AuditContradiction gate is
+correct exactly on trivial-group inputs (implemented as a flag, default raising).
 
 Claim addressed: thickenability (γ_N = 0) hunting in AK(3)'s classical class (transfer
 target: AK(3) AC-trivial ⇒ stably AC-trivial) and stable class (Q; transfer conditional on
