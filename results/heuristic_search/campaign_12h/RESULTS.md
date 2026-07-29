@@ -1,57 +1,47 @@
-# Campaign 12h RESULTS — anti-overfit heuristic evaluation
+# Campaign 12h — anti-overfit heuristic evaluation
 
-Advisor **BLOCK**ed fitting weights on the CoV/automorphic unsolved-descended pool.
-This campaign is **evaluation-only**: never-read AC1M rows (MS string pairs excluded),
-budget **1000**, cap **48**. Negatives = unsolved within budget 1000.
+Updated: `2026-07-29T02:31:21.126851+00:00` · wall end `2026-07-29T14:01:44+00:00` · remaining `11.51 h`
 
-## Screen (length-only, pre-registered denominator)
+Advisor **BLOCK**ed fitting on the CoV/automorphic unsolved-descended pool; this run is **evaluation-only** on never-read AC1M (+ ms640 clean null), budget 1000, cap 48. Negatives mean unsolved within budget 1000.
 
-- Screened: **3500**
-- Easy (solved <100 nodes): 2228
-- Mid (solved 100–999): 682
-- Hard (unsolved @1000): 590
-- Solve rate: 2910/3500 (83.1%)
+## Screen (length-only denominator)
 
-## Go / no-go
+- Screened rows: **6500**
+- Easy (solved <100 nodes): 4166
+- Mid (solved 100–999 nodes): 1236
+- Hard (unsolved at 1000): 1098
 
-**Dynamic range exists** on AC1M (unlike the advisor’s 20-row probe): hundreds of mid and hard rows.
-But mid-band **solve rate cannot separate arms** — length solves 100% of mid by construction.
-Separation must be read as (1) **hard-band recoveries** and (2) **mid-band speed**.
+- Solve rate @1000: **5402/6500** (83.1%)
 
-## Mid-band speed (500 complete rows)
+## Go / no-go (dynamic range)
 
-| arm | solved (always ~all) | mean nodes | med nodes | faster than length | slower / failed |
-|---|---:|---:|---:|---:|---:|
-| `length` | 500/500 | 203.9 | 194 | 0 | 0 |
-| `recommended` | 486/500 | 287.2 | 212 | 194 | 306 |
-| `mk8` | 453/500 | 355.3 | 245 | 143 | 357 |
-| `k8` | 265/500 | 170.9 | 96 | 190 | 310 |
-| `kms5` | 487/500 | 227.7 | 168 | 232 | 265 |
-| `s24` | 493/500 | 150.8 | 106 | 380 | 118 |
+Mid-band size (length-only solved in [100,1000)): **1236**.
 
-## Hard-band recoveries (47 complete rows)
+**GO for evaluation** — mid-band large enough to compare pre-registered arms (still no fitting).
 
-| arm | solved |
-|---|---:|
-| `length` | **0/47** |
-| `recommended` | **5/47** |
-| `mk8` | **2/47** |
-| `k8` | **1/47** |
-| `kms5` | **6/47** |
-| `s24` | **13/47** |
+## Pre-registered arms on mid-band
 
-Any non-length arm recovers: **15/47**.
+| arm | solved | n | mean nodes (solved) |
+|---|---:|---:|---:|
+| `length` | **635/635** | 635 | 198.2 |
+| `recommended` | **619/635** | 635 | 288.2 |
+| `mk8` | **580/635** | 635 | 361.2 |
+| `k8` | **332/635** | 635 | 173.0 |
+| `kms5` | **622/635** | 635 | 228.8 |
+| `s24` | **628/635** | 635 | 149.5 |
 
-## Verdict (so far)
+## Matched mid-band: vs length-only
 
-- On never-read AC1M mid-band, **length-only is hard to beat on solve count** (definitionally).
-- Knot-heavy arms (`k8`, `mk8`) are **slower / lose mid solves** vs length — matches EXP-15 “easy stratum: knots irrelevant” and the advisor’s AC-19 probe direction.
-- `s24` is closest to length on mid (few failures, often faster nodes).
-- Hard-band recoveries are the only place a structural arm can prove value at budget 1000; see table above.
-- **Do not fit new weights on this pool without a pre-registered speed or hard-recovery objective** — solve-rate on mid is contaminated by the screen.
+- `recommended` vs length: better 240 / worse 395 / same 0
+- `mk8` vs length: better 178 / worse 457 / same 0
+- `k8` vs length: better 231 / worse 403 / same 1
+- `kms5` vs length: better 291 / worse 339 / same 5
+- `s24` vs length: better 478 / worse 154 / same 3
 
-## Also
+## Method notes
 
-- Feature census: [`FEATURE_CENSUS.md`](FEATURE_CENSUS.md) (S barely differs mid vs hard on AC1M).
-- Plan / advisor re-scope: [`PLAN.md`](PLAN.md).
+- Denominator fixed by length-only screen before any other arm.
+- AC1M rows excluding exact string pairs from ms640 / 1190MS / solved-aut / unsolved-124 tables.
+- No unsolved ACA reps used for selection (there is no selection).
+- See [`PLAN.md`](PLAN.md).
 

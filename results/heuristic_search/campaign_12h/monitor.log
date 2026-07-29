@@ -1,0 +1,5 @@
+[monitor] round 1 02:11:37
+screen=703 sol=587 mid=140 hard=116
+[monitor] round 2 02:31:37
+screen=6500 sol=5402 mid=1236 hard=1098
+arms {'length': 762, 'recommended': 761, 'mk8': 761, 'k8': 761, 'kms5': 761, 's24': 761}
