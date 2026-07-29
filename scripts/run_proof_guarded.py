@@ -155,7 +155,11 @@ def terminate_group(child: subprocess.Popen[bytes], grace_seconds: float) -> Non
         time.sleep(0.01)
 
     if group_exists(process_group_id):
-        os.killpg(process_group_id, signal.SIGKILL)
+        try:
+            os.killpg(process_group_id, signal.SIGKILL)
+        except ProcessLookupError:
+            child.poll()
+            return
     try:
         child.wait(timeout=max(grace_seconds, 0.1))
     except subprocess.TimeoutExpired as exc:

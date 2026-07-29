@@ -11,6 +11,7 @@ from pathlib import Path
 
 import pytest
 
+import scripts.run_proof_guarded as proof_guard
 from scripts.run_proof_guarded import parse_args, run_long_guarded
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -509,6 +510,109 @@ def test_lingering_preflight_group_returns_126_without_starting_experiment(
     records = [json.loads(line) for line in records_file.read_text().splitlines()]
     assert [record["phase"] for record in records] == ["preflight"]
     wait_for_pid_exit(records[0]["grandchild_pid"])
+
+
+@pytest.mark.parametrize(
+    ("phase_modes", "expected_status"),
+    (
+        (("timeout",), 125),
+        (("complete", "timeout"), 124),
+        (("complete", "linger"), 126),
+    ),
+)
+def test_sigkill_disappearance_race_preserves_phase_status_without_group_leak(
+    monkeypatch: pytest.MonkeyPatch,
+    phase_modes: tuple[str, ...],
+    expected_status: int,
+) -> None:
+    class SyntheticChild:
+        def __init__(self, pid: int, mode: str) -> None:
+            self.pid = pid
+            self.mode = mode
+
+        def wait(self, timeout: float | None = None) -> int:
+            if self.mode == "timeout":
+                raise subprocess.TimeoutExpired("synthetic phase", timeout)
+            return 0
+
+        def poll(self) -> None:
+            return None
+
+    children = [
+        SyntheticChild(pid=800_000 + index, mode=mode)
+        for index, mode in enumerate(phase_modes)
+    ]
+    group_alive: dict[int, bool] = {}
+
+    def popen(*_args: object, **_kwargs: object) -> SyntheticChild:
+        child = children.pop(0)
+        group_alive[child.pid] = child.mode in {"timeout", "linger"}
+        return child
+
+    def killpg(process_group_id: int, signum: int) -> None:
+        if not group_alive.get(process_group_id, False):
+            raise ProcessLookupError
+        if signum == signal.SIGKILL:
+            group_alive[process_group_id] = False
+            raise ProcessLookupError
+
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
+    monkeypatch.setattr(
+        proof_guard,
+        "group_exists",
+        lambda process_group_id: group_alive.get(process_group_id, False),
+    )
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+
+    status = run_long_guarded(
+        ["synthetic-command", "unchanged-argument"],
+        preflight_seconds=0.1,
+        experiment_seconds=0.1,
+        progress_seconds=0.1,
+        grace_seconds=0.0,
+        monitor=None,
+    )
+
+    assert status == expected_status
+    assert not any(group_alive.values())
+
+
+def test_lingering_experiment_group_returns_126_and_cleans_exact_group(
+    tmp_path: Path,
+) -> None:
+    records_file = tmp_path / "lingering-experiment.jsonl"
+    child_program = "\n".join(
+        (
+            "import json, os, pathlib, subprocess, sys",
+            f"records_path = pathlib.Path({str(records_file)!r})",
+            "phase = os.environ.get('ACSOLVERX_PROOF_PHASE')",
+            "grandchild = None",
+            "if phase == 'experiment':",
+            "    grandchild = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(10)'])",
+            "record = {'phase': phase, 'pid': os.getpid(), 'grandchild_pid': grandchild.pid if grandchild else None}",
+            "with records_path.open('a', encoding='utf-8') as stream:",
+            "    stream.write(json.dumps(record) + '\\n')",
+        )
+    )
+    result = subprocess.run(
+        long_runner_command(sys.executable, "-c", child_program),
+        cwd=PROJECT_ROOT,
+        check=False,
+        timeout=3,
+    )
+
+    records = [json.loads(line) for line in records_file.read_text().splitlines()]
+    grandchild_pid = records[1]["grandchild_pid"]
+    try:
+        assert result.returncode == 126
+        assert [record["phase"] for record in records] == [
+            "preflight",
+            "experiment",
+        ]
+        assert records[0]["grandchild_pid"] is None
+        wait_for_pid_exit(grandchild_pid)
+    finally:
+        stop_fixture_pid(grandchild_pid)
 
 
 @pytest.mark.parametrize(
