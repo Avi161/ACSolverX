@@ -1033,11 +1033,59 @@ bounded-local data.  This excludes finite-dimensional linear,
 point-action, and local additive summaries in that ambient setting.
 
 It does not exclude an arbitrary finite automaton on the actual anchored
-\(L_0\) two-source geodesic-current language.  The next exact alternative is
-to prove that the equality and inversion kernels pulled back to that
-restricted anchored image are rational finite-state kernels, or exhibit
-infinite Hankel rank inside the same restricted image.  No depth-seven
-census is the next step.
+\(L_0\) two-source geodesic-current language.  The Hessian analysis below
+sharpens, but does not decide, the exact alternative between a finite
+quotient and infinite Hankel rank in the same restricted image.  No
+depth-seven census is the next step.
+
+### Exact \(\Phi_\infty\) Hessian and documented-open rank boundary
+
+The exact follow-up is
+[`literature/proofs/AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md`](../../../literature/proofs/AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md).
+The literal residual AST has sixteen signed correction occurrences, with
+slot counts \((6,4,2,2,2)\), and independently reproduces all five first
+derivatives.  After the four anchored slot-one occurrences vanish, the exact
+normal form has twelve active occurrences, four equality kernels, six
+polarized inversion kernels, and 66 external-order kernels.  Its 76
+components reproduce the direct crossed Hessian through the unique linear
+tree flow.
+
+On the first explicit raw ray, the first slot-zero primitive is proved for
+all indices:
+\[
+P_{ij}=\delta_{ij}.
+\]
+All twelve endpoint paths have exact complete-cover fixed-block formulas, and
+their integral currents obey exact right-deck recurrences.  This does not
+prove the former companion identity.  The claim that the other 75 components
+xor to \(\delta_{ij}\), and hence cancel the primitive universally, is
+withdrawn.  Its attempted induction omitted canonical module-vertex
+normalization and the old--new/new--new order terms.  Universal row-2 and
+row-3 primitive or companion claims are withdrawn too.
+
+The precise cross obligation is now displayed rather than hidden.  Each of
+the 76 canonical component defects must vanish under a two-step move that
+stays in one strict region \(i<j\) or \(i>j\).  At the six
+diagonal-crossing/meeting offsets, exact 76-component defect vectors must be
+computed instead; components are not required to vanish.  The primitive
+defect triples are \((1,0,1)\) in each axis.  The ten representative
+component signatures are exact bounded fixtures, not an induction.
+
+The full mixed kernel is universally an alternating coboundary, but it is
+not zero on the anchored image:
+\[
+\beta_\infty(H(TTT),H(cTTT))=1.
+\]
+The complete rank target also contains base and unary terms.  The exact
+integral unary recurrence retains the doubled anchor, base--direction
+products, one-vertex transport, quotient-section defects, and internal tensor
+diagonals through the literal AST.  The final unary bit has signature
+`0000110000` on ten representative cells, matching \(\delta_{ij}\) there
+only as bounded evidence.
+
+Thus Task 3 closes as an exact documented-open boundary, not a rank decision.
+Finite diagonal-left rank, infinite diagonal-left rank, the period-two lift,
+stable Andrews--Curtis, and Andrews--Curtis all remain open.
 
 Focused replay:
 
@@ -1095,9 +1143,14 @@ The bounded census and universal theorem records are
    4671 balanced pairs, and the tree-flow theorem proves unique linear flow,
    anchored factorization, and alternating affine quadraticity at arbitrary
    finite support. Its exact near-survivor collision refutes the proposed
-   finite summary. The next problem is either rational finite-state
-   recognition of the pulled-back equality and shortlex-inversion kernels,
-   or an infinite-Hankel-rank family inside the actual anchored
-   \(L_0\) geodesic-current image. Do not scan depth seven.
+   finite summary. The exact Hessian normal form then reduces the first raw
+   ray to 76 canonical two-step cross-defect components and a fully typed
+   integral unary recurrence. The first primitive is \(\delta_{ij}\), but
+   the companion all-index claim is withdrawn, the mixed coboundary is
+   nonzero on an anchored fixture, and the unary delta pattern is only a
+   ten-cell diagnostic. The next problem remains either a proved finite
+   quotient for the complete validity-plus-syndrome function or an
+   infinite-Hankel-rank family inside its actual anchored image. Do not scan
+   depth seven.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.

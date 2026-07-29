@@ -55,3 +55,24 @@
   slot-4 primitive term has not been proved to have infinite rank on the
   anchored image; no finite state, period-two lift, stable AC, or AC conclusion
   is claimed.
+
+- Task 3: closed as an exact documented-open boundary, not as a completed
+  finite/infinite rank decision. The new proof records the verified
+  16-occurrence crossed normal form and 12-occurrence anchored normal form;
+  the first-family all-index primitive identity `P_ij = delta_ij`; the exact
+  complete-cover path and right-deck/current recurrences; and the 76 canonical
+  two-step cross-defect obligations with separate regional-zero and
+  diagonal-boundary-vector requirements.
+- Withdrawn claims: the unproved all-index 75-kernel companion identity, the
+  resulting universal first-family cancellation, and every row-2/row-3
+  primitive or companion theorem are explicitly withdrawn. The ten-cell
+  cross signatures remain bounded fixtures only.
+- Universal counterexample and unary boundary: `beta_infinity(H(TTT),
+  H(cTTT)) = 1`, so the alternating coboundary is not pointwise zero on the
+  anchored image. The exact integral unary recurrence retains doubled anchors,
+  base--direction products, one-vertex transport, quotient-section defects,
+  and tensor diagonals. Its ten representative final bits are `0000110000`,
+  matching `delta_ij` only as bounded evidence.
+- Open boundary: finite diagonal-left rank, infinite diagonal-left rank, a
+  finite quotient, an infinite-Hankel-rank family in the complete anchored
+  image, the period-two lift, stable AC, and AC all remain open.

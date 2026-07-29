@@ -16,13 +16,16 @@ The universal part proves:
    homogeneous directions modulo two, and has biadditive alternating
    polarization; and
 5. exact equality and shortlex-order inversion are the data omitted by the
-   previously proposed transition summary.
+   previously proposed transition summary; and
+6. the subsequent exact Hessian analysis sharpens the pulled-back rank
+   problem to a documented-open cross/unary boundary without deciding it.
 
 The bounded part pins the depth-six fixtures and proves that the proposed
-finite summary is not Markov.  It does not prove an all-depth obstruction,
-does not rule out an arbitrary finite automaton on the actual anchored
-\(L_0\) two-source geodesic-current language, and does not settle the
-period-two lift, stable Andrews--Curtis, or Andrews--Curtis.
+finite summary is not Markov.  The later Hessian boundary pins the exact
+sixteen-occurrence and twelve-active-occurrence normal forms, but it does not
+prove an all-depth obstruction, does not decide finite versus infinite rank
+on the actual anchored \(L_0\) two-source geodesic-current language, and does
+not settle the period-two lift, stable Andrews--Curtis, or Andrews--Curtis.
 
 No depth-seven census or search is used.
 
@@ -801,4 +804,71 @@ automaton on that restricted language.  The exact next alternative is:
 Until one side is proved, complete reduced words give an exact
 pushdown/infinite-state transition procedure, but neither finite-state
 closure nor finite-state impossibility is known.  This restricted-kernel
-alternative, not a depth-seven census, is the next theorem.
+alternative, sharpened by the exact Hessian and unary recurrences below, not
+a depth-seven census, is the next theorem.
+
+## 14. Subsequent exact Hessian boundary
+
+The follow-up proof
+[`AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md`](AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md)
+pulls the final full-wedge bit back through the anchored map without using a
+source-depth census.  The literal AST has sixteen signed correction
+occurrences with slot counts
+\[
+(6,4,2,2,2).
+\]
+After deleting only the four slot-one occurrences, which vanish on every
+anchored direction, the exact normal form has twelve active occurrences with
+slot counts
+\[
+(6,0,2,2,2),
+\]
+four equality kernels, six polarized inversion kernels, and 66 external
+order kernels.  Their 76 normalized components reproduce the independent
+crossed Hessian.
+
+For the first explicit raw ray, the first slot-zero inversion component is
+proved all-index:
+\[
+P_{ij}=\delta_{ij}.
+\]
+The complete-cover endpoint paths have exact fixed-block factorizations, and
+their edge currents obey exact right-deck cocycle recurrences.  Those facts do
+not prove the former companion claim.  The claim that the other 75 kernels
+xor to \(\delta_{ij}\), and the resulting all-index cancellation of the full
+mixed bit, is withdrawn: its attempted two-step induction omitted canonical
+`c_vertex` normalization and the old--new/new--new order terms.  Universal
+row-2 and row-3 primitive or companion claims are withdrawn as well.
+
+The surviving cross obligation is exact.  For each of the 76 components,
+the canonical two-step defect must vanish when both endpoints remain in one
+strict region \(i<j\) or \(i>j\).  At the three \(i\)-step and three
+\(j\)-step diagonal offsets, exact 76-component defect vectors must instead
+be computed; constituent defects need not vanish.  The primitive boundary
+defects are \((1,0,1)\) in both directions.  The recorded ten-cell component
+signatures are bounded base data only.
+
+There is no universal vanishing shortcut.  If
+\(q_\infty(D)=s_\infty(D)+s_\infty(0)\), then
+\[
+\beta_\infty(D,E)=\delta q_\infty(D,E)
+\]
+is universally an alternating two-coboundary, but the anchored fixture gives
+\[
+\beta_\infty(H(TTT),H(cTTT))=1.
+\]
+Thus the mixed kernel is nonzero on the anchored image.
+
+The complete validity-plus-syndrome rank question also retains a unary term.
+The exact integral unary recurrence carries the doubled anchor, fixed-base
+products, one-vertex transport defects, quotient-section defects, and tensor
+diagonals through the literal AST.  Its state consists of unbounded sparse
+currents and tensors.  The last unary bit matches \(\delta_{ij}\) on ten
+representative cells, with signature `0000110000`, but this is bounded
+evidence only.
+
+Consequently finite rank, infinite rank, a finite quotient, and an
+infinite-Hankel-rank family in the complete anchored image all remain open.
+The period-two lift, stable Andrews--Curtis, and Andrews--Curtis remain open
+as well.  The follow-up is an exact documented-open boundary, not a completed
+rank theorem.

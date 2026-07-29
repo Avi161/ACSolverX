@@ -8430,6 +8430,67 @@ Focused replay:
 PYTHONPYCACHEPREFIX=.scratch/pycache uv run --with numba --with numpy --with pytest python3 -m pytest -q tests/stable_ac/test_ak_depth_four_period_two_*.py
 ```
 
+**Result 159 (the exact period-two \(\Phi_\infty\) Hessian leaves the rank
+decision open).**  The literal typed residual AST has sixteen signed
+correction occurrences with slot counts \((6,4,2,2,2)\).  Its symbolic raw
+mixed tensor agrees with the independent direct four-corner raw tensor before
+exterior projection, including all transported tensor diagonals.  On anchored
+directions, slot one vanishes and leaves twelve active occurrences with slot
+counts \((6,0,2,2,2)\).  Exact normalization gives four equality kernels,
+six polarized inversion kernels, and 66 external-order kernels, for 76
+canonical components in all.
+
+For the first explicit raw ray, with
+\[
+p=tc,\quad g=ctcTTTct,\quad n_i=5+3i,
+\]
+the first slot-zero primitive component is proved all-index:
+\[
+P_{ij}=\delta_{ij}.
+\]
+The complete four-sheet cover gives exact fixed-block endpoint formulas for
+all six \(h_jv\) paths and all six \(h_jw_i\) paths, and a right-deck cocycle
+gives exact all-index integral current recurrences.  These are infinite-state
+recurrences: their sparse current and tensor supports are unbounded.
+
+The former companion theorem is not proved.  The assertion that the other 75
+components xor to \(\delta_{ij}\), thereby canceling the primitive for every
+\(i,j\), is withdrawn.  The attempted two-step induction omitted mandatory
+canonical module-vertex normalization and did not control the old--new and
+new--new shortlex-order terms.  The corresponding row-2 and row-3 primitive,
+companion, and universal cancellation claims are withdrawn as well.
+
+The exact surviving cross obligation consists of 76 canonical two-step
+defects.  Every component must vanish for a two-step move staying in one
+strict region \(i<j\) or \(i>j\).  At the six diagonal-crossing or
+diagonal-meeting offsets, exact 76-component defect vectors must instead be
+computed; individual components need not vanish.  The primitive defect
+triple is \((1,0,1)\) in each axis.  The recorded ten-cell signatures are
+exact bounded values only.
+
+There is no universal cohomological cancellation.  With
+\(q_\infty(D)=s_\infty(D)+s_\infty(0)\), the complete mixed kernel is the
+alternating coboundary
+\[
+\beta_\infty(D,E)=q_\infty(D+E)+q_\infty(D)+q_\infty(E),
+\]
+but the anchored fixture has
+\[
+\beta_\infty(H(TTT),H(cTTT))=1.
+\]
+
+The complete diagonal-left target also retains base and unary terms.  Its
+exact integral unary recurrence carries the doubled anchor, fixed-base
+products, one-vertex transport defects, quotient-section defects, and tensor
+diagonals through the literal AST before final wedge conversion.  On ten
+comparison/parity representatives, the final unary bit is `0000110000`, the
+identity pattern, but no all-index unary identity is proved.
+
+Therefore Result 159 is an exact documented-open boundary, not a rank
+theorem.  Finite rank, infinite rank, a period-two lift, stable
+Andrews--Curtis, and Andrews--Curtis all remain open.  The detailed proof is
+[`literature/proofs/AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md`](../../../literature/proofs/AK3_DEPTH4_PERIOD_TWO_PHI_INFINITY_HESSIAN.md).
+
 ## Live lead
 
 The direct relation-splitting manufacture of
