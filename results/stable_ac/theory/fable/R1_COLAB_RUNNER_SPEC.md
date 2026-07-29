@@ -61,3 +61,21 @@ chain ⇒ AC-trivial; stable chain ⇒ stably AC-trivial; say which). All-negati
 are bounded negatives about tested realizations at tested caps/budgets — the route
 ceiling (R1 succeeds iff AK(3) is (stably) AC-trivial) means a negative sweep never
 becomes evidence about AK(3) itself.
+
+## Run C amendments (after rank-3 round 1, 09:10 UTC)
+
+Round-1 facts: the canonical-key move closures of AK3+z (5,075 states) and P25+z (93) are
+CLOSED and contain zero 3-connected-planar supports (z-germ degree<3 or 2-cuts
+everywhere); 25 small-census states all min genus 2; no spherical state. Amendments:
+1. Per-relator cap for rank-3 roots grown from length-25 states: >= 26 (cap 15 freezes
+   P25+z after 93 pops).
+2. The seen-set canonical key makes all AC3 (conjugation) children duplicates — the
+   rotation freedom is never explored. Round 2 keeps the canonical seen-set but must
+   expand from EVERY new exact realization (exact-word frontier, canonical dedup for
+   counting only), or add explicit relator-rotation moves.
+3. Plain stabilization (r1, r2, "z") has a structurally disconnected link; grow z into
+   other relators (AC1 with the z-relator) before any support test — a z-entangling move
+   bias is REQUIRED, not an optimization.
+4. Until the R1c-v2 cut-scheme solver lands, rank-3 decisions come only from the
+   factorial fallback (cap 2e6; only ~1% of round-1 states) — budget accordingly or wait
+   for v2.
