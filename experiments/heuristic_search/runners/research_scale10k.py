@@ -96,7 +96,9 @@ def _load_done(path, keys):
                 r = json.loads(line)
             except ValueError:
                 continue
-            seen.add(tuple(r[k] for k in keys))
+            # Mixed slices share one jsonl; missing keys (e.g. AC1M rows
+            # lack ``name``) must not abort resume.
+            seen.add(tuple(r.get(k) for k in keys))
     return seen
 
 
