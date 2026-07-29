@@ -1311,3 +1311,8 @@
 
 - [TRAP] Calling `period_two_remote_syzygy_certificate()` inside `projected_fourteen_bits()` made 4,671 avoidable uncached calls. The review benchmark measured about 66 seconds for those calls; they do not explain a separate multi-hour leaked process.
 - [WORKS] Keep fixed finite actions as module constants and ensure the per-pair projected evaluator makes no certificate calls.
+
+### 2026-07-28 Sum canonical module-vertex collisions
+
+- [TRAP] `depth4_period_two_lift_certificate.clean_vector` uses a dict comprehension and therefore assumes its input keys are already canonical. Raw keys such as `()` and `(C,)` represent the same `c_vertex`; passing both through `clean_vector` overwrites rather than sums their coefficients.
+- [WORKS] Normalize externally supplied source dictionaries with `lift.add_vectors(source)` (or an explicit `defaultdict` aggregation after `c_vertex`) before calling exact source-flow code. Reserve `clean_vector` for maps already known to have one key per canonical vertex, and pin cancellation/multiplicity collisions in a focused test.
