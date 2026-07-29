@@ -69,6 +69,23 @@ G2. One-off cross-check (recorded in the results doc, not a committed dependency
 G3. For the actual targets: my rank solver's verdict on P25/Q/path states; any YES
     additionally passes `witness_check` AND the codex solver cross-check.
 
+## Phase 2 (after the core stack lands): closing the UNSUPPORTED bucket
+
+Port, from the codex proof notes (implement from theory, cross-check against their
+solvers as oracles):
+- **P₄** (`lit_AK3_P4_SYNCHRONIZED_PLANARITY.md`): three block classes P/M/Q on the path
+  a−b−c−d; central class M carries a REVERSED linear order plus a cyclic shift s ∈ Z/m
+  (Lemma 2.2) — enumerate all m central shifts (their lesson: a one-scheme solver creates
+  false negatives); leaf classes have free cyclic origin. Count p!·m!·m·q!.
+- **One-loop** (`lit_AK3_ONE_LOOP_SYNCHRONIZED_PLANARITY.md` Thm 2.1): exactly one loop ℓ
+  at germ v over a K₄/K₄−e core ⇒ spherical iff core spherical AND loop darts consecutive;
+  N(G) = 2d·N(G₀). Needed for exact (unreduced) realizations with one cancellation seam
+  (e.g. path states 23, 24 in exact form).
+- **Paw+loop** (`lit_AK3_PAW_ONE_LOOP_PLANARITY.md`): as needed by harvest bucket contents.
+Tree supports and everything else stay fail-closed (UNSUPPORTED) pending R1c or the
+general Synchronized Planarity algorithm (Bläsius–Fink–Rutter, O(m²)) — the principled
+long-term closer.
+
 ## Verdict semantics (imported hard rules)
 
 - YES on any target ⇒ (Thm 2 sufficiency + Corollary 3 + Lackenby Thm 1.3) that exact
