@@ -1,0 +1,102 @@
+{
+ "record": "ak2_battery_summary",
+ "root": [
+  "xxYYY",
+  "xyxYXY"
+ ],
+ "budgets": {
+  "harvest_pops": 1000,
+  "harvest_pop_budget": 1000,
+  "path_search_pops": 28,
+  "path_search_pop_budget": 1000,
+  "relator_cap": 15,
+  "scheme_budget": 200000,
+  "branch_budget": 2000000,
+  "census_cap": 2000000
+ },
+ "harvest": {
+  "root_key": [
+   "YYYxx",
+   "YXYxyx"
+  ],
+  "pops": 1000,
+  "pop_budget": 1000,
+  "relator_cap": 15,
+  "children_generated": 20390,
+  "distinct_members": 13040,
+  "queue_remaining": 12040
+ },
+ "member_verdicts": {
+  "NOT_SPHERICAL/r1c_v2_solver": 12643,
+  "SPHERICAL/factorial_census": 1,
+  "SPHERICAL/r1c_v2_solver": 396
+ },
+ "undecided_budget_rows": 0,
+ "spherical_rows": 397,
+ "path": {
+  "goal_found": true,
+  "move_count": 27,
+  "final_state": [
+   "y",
+   "X"
+  ],
+  "length_profile": [
+   11,
+   11,
+   11,
+   11,
+   11,
+   11,
+   14,
+   12,
+   17,
+   15,
+   13,
+   13,
+   17,
+   17,
+   15,
+   13,
+   11,
+   16,
+   14,
+   12,
+   10,
+   8,
+   8,
+   8,
+   5,
+   5,
+   3,
+   2
+  ],
+  "max_total_length": 17,
+  "first_zero_defect_index": 18,
+  "zero_defect_indices": [
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "over_cap_states": [
+   8,
+   9,
+   12,
+   13,
+   14,
+   17
+  ]
+ },
+ "elapsed_seconds": 38.6,
+ "outputs": {
+  "members": "results/stable_ac/fable/ak2_members.jsonl",
+  "path": "results/stable_ac/fable/ak2_trivialization_path.json",
+  "summary": "results/stable_ac/fable/ak2_battery_summary.json"
+ }
+}

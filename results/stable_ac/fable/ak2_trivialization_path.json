@@ -1,0 +1,1061 @@
+{
+ "record": "ak2_trivialization_path",
+ "root": [
+  "xxYYY",
+  "xyxYXY"
+ ],
+ "relator_cap": 15,
+ "move_convention": "h1-h12 of ac_words.py (app/ac_paths.tex numbering); free reduction is part of apply_move",
+ "arrival_convention": "canon: the replay from root must arrive byte-identically at final_state; final_state is the standard pair up to relator inversion and order, i.e. canon_pair(final_state) == canon_pair(('x','y')) == ('Y','X').  The twelve moves contain no inversion/swap move, so this is the exact arrival the h-calculus can express; inversion+swap are AC composites by Lemma P of R1E_DISCONNECTED_LINK.md.",
+ "search": {
+  "algorithm": "best-first (total reduced length, insertion-order ties) over rotation-class keys; class edges expanded to exact h-moves deterministically afterwards",
+  "pops": 28,
+  "pop_budget": 1000,
+  "children_generated": 1723,
+  "goal_found": true,
+  "goal_key": [
+   "y",
+   "X"
+  ],
+  "class_edges": 7
+ },
+ "moves": [
+  12,
+  12,
+  5,
+  7,
+  5,
+  3,
+  11,
+  4,
+  10,
+  10,
+  12,
+  3,
+  8,
+  9,
+  11,
+  5,
+  4,
+  10,
+  12,
+  10,
+  12,
+  6,
+  7,
+  3,
+  2,
+  8,
+  3
+ ],
+ "move_count": 27,
+ "states": [
+  [
+   "xxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xYYYx",
+   "xyxYXY"
+  ],
+  [
+   "YYYxx",
+   "xyxYXY"
+  ],
+  [
+   "YYYxx",
+   "yxYXYx"
+  ],
+  [
+   "YYYxx",
+   "xYXYxy"
+  ],
+  [
+   "YYYxx",
+   "YXYxyx"
+  ],
+  [
+   "YYYxx",
+   "YXYxyXyyy"
+  ],
+  [
+   "YYYxx",
+   "XYxyXyy"
+  ],
+  [
+   "YYYxYxyXyy",
+   "XYxyXyy"
+  ],
+  [
+   "YYxYxyXy",
+   "XYxyXyy"
+  ],
+  [
+   "YxYxyX",
+   "XYxyXyy"
+  ],
+  [
+   "XYxYxy",
+   "XYxyXyy"
+  ],
+  [
+   "XYxYxy",
+   "XYxyXyXyXyx"
+  ],
+  [
+   "YxYxyX",
+   "XYxyXyXyXyx"
+  ],
+  [
+   "YxYxyX",
+   "YxyXyXyXy"
+  ],
+  [
+   "YxYxyX",
+   "xyXyXyX"
+  ],
+  [
+   "YxYxyX",
+   "yXyXy"
+  ],
+  [
+   "YxYxyXyXyXy",
+   "yXyXy"
+  ],
+  [
+   "xYxyXyXyX",
+   "yXyXy"
+  ],
+  [
+   "YxyXyXy",
+   "yXyXy"
+  ],
+  [
+   "xyXyX",
+   "yXyXy"
+  ],
+  [
+   "yXy",
+   "yXyXy"
+  ],
+  [
+   "Xyy",
+   "yXyXy"
+  ],
+  [
+   "Xyy",
+   "XyXyy"
+  ],
+  [
+   "Xyy",
+   "Xy"
+  ],
+  [
+   "Xyx",
+   "Xy"
+  ],
+  [
+   "y",
+   "Xy"
+  ],
+  [
+   "y",
+   "X"
+  ]
+ ],
+ "final_state": [
+  "y",
+  "X"
+ ],
+ "replay_verified": true,
+ "length_profile": [
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  14,
+  12,
+  17,
+  15,
+  13,
+  13,
+  17,
+  17,
+  15,
+  13,
+  11,
+  16,
+  14,
+  12,
+  10,
+  8,
+  8,
+  8,
+  5,
+  5,
+  3,
+  2
+ ],
+ "max_total_length": 17,
+ "tail_track": [
+  {
+   "index": 0,
+   "state": [
+    "xxYYY",
+    "xyxYXY"
+   ],
+   "total_length": 11,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2880,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2880,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 2,
+     "4": 372,
+     "6": 1866,
+     "8": 640
+    }
+   }
+  },
+  {
+   "index": 1,
+   "state": [
+    "xYYYx",
+    "xyxYXY"
+   ],
+   "total_length": 11,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2880,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2880,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 2,
+     "4": 372,
+     "6": 1866,
+     "8": 640
+    }
+   }
+  },
+  {
+   "index": 2,
+   "state": [
+    "YYYxx",
+    "xyxYXY"
+   ],
+   "total_length": 11,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2880,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2880,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 2,
+     "4": 372,
+     "6": 1866,
+     "8": 640
+    }
+   }
+  },
+  {
+   "index": 3,
+   "state": [
+    "YYYxx",
+    "yxYXYx"
+   ],
+   "total_length": 11,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2880,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2880,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 2,
+     "4": 372,
+     "6": 1866,
+     "8": 640
+    }
+   }
+  },
+  {
+   "index": 4,
+   "state": [
+    "YYYxx",
+    "xYXYxy"
+   ],
+   "total_length": 11,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2880,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2880,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 2,
+     "4": 372,
+     "6": 1866,
+     "8": 640
+    }
+   }
+  },
+  {
+   "index": 5,
+   "state": [
+    "YYYxx",
+    "YXYxyx"
+   ],
+   "total_length": 11,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2880,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2880,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 2,
+     "4": 372,
+     "6": 1866,
+     "8": 640
+    }
+   }
+  },
+  {
+   "index": 6,
+   "state": [
+    "YYYxx",
+    "YXYxyXyyy"
+   ],
+   "total_length": 14,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 967680,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 967680,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 9
+    },
+    "defect_histogram": {
+     "2": 6,
+     "4": 2216,
+     "6": 70428,
+     "8": 463198,
+     "10": 431832
+    }
+   }
+  },
+  {
+   "index": 7,
+   "state": [
+    "YYYxx",
+    "XYxyXyy"
+   ],
+   "total_length": 12,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 17280,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 17280,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 7
+    },
+    "defect_histogram": {
+     "2": 10,
+     "4": 664,
+     "6": 7012,
+     "8": 9594
+    }
+   }
+  },
+  {
+   "index": 8,
+   "state": [
+    "YYYxYxyXyy",
+    "XYxyXyy"
+   ],
+   "total_length": 17,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "UNKNOWN_SIZE",
+    "expected_cases": 435456000,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 0,
+    "minimum_defect": null,
+    "minimum_genus": null,
+    "link_components": 1,
+    "degrees": {
+     "x": 6,
+     "y": 11
+    },
+    "defect_histogram": {}
+   }
+  },
+  {
+   "index": 9,
+   "state": [
+    "YYxYxyXy",
+    "XYxyXyy"
+   ],
+   "total_length": 15,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "UNKNOWN_SIZE",
+    "expected_cases": 4838400,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 0,
+    "minimum_defect": null,
+    "minimum_genus": null,
+    "link_components": 1,
+    "degrees": {
+     "x": 6,
+     "y": 9
+    },
+    "defect_histogram": {}
+   }
+  },
+  {
+   "index": 10,
+   "state": [
+    "YxYxyX",
+    "XYxyXyy"
+   ],
+   "total_length": 13,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 86400,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 86400,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 6,
+     "y": 7
+    },
+    "defect_histogram": {
+     "2": 26,
+     "4": 1326,
+     "6": 18108,
+     "8": 53228,
+     "10": 13712
+    }
+   }
+  },
+  {
+   "index": 11,
+   "state": [
+    "XYxYxy",
+    "XYxyXyy"
+   ],
+   "total_length": 13,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 86400,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 86400,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 6,
+     "y": 7
+    },
+    "defect_histogram": {
+     "2": 26,
+     "4": 1326,
+     "6": 18108,
+     "8": 53228,
+     "10": 13712
+    }
+   }
+  },
+  {
+   "index": 12,
+   "state": [
+    "XYxYxy",
+    "XYxyXyXyXyx"
+   ],
+   "total_length": 17,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "UNKNOWN_SIZE",
+    "expected_cases": 203212800,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 0,
+    "minimum_defect": null,
+    "minimum_genus": null,
+    "link_components": 1,
+    "degrees": {
+     "x": 9,
+     "y": 8
+    },
+    "defect_histogram": {}
+   }
+  },
+  {
+   "index": 13,
+   "state": [
+    "YxYxyX",
+    "XYxyXyXyXyx"
+   ],
+   "total_length": 17,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "UNKNOWN_SIZE",
+    "expected_cases": 203212800,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 0,
+    "minimum_defect": null,
+    "minimum_genus": null,
+    "link_components": 1,
+    "degrees": {
+     "x": 9,
+     "y": 8
+    },
+    "defect_histogram": {}
+   }
+  },
+  {
+   "index": 14,
+   "state": [
+    "YxYxyX",
+    "YxyXyXyXy"
+   ],
+   "total_length": 15,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "UNKNOWN_SIZE",
+    "expected_cases": 3628800,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 0,
+    "minimum_defect": null,
+    "minimum_genus": null,
+    "link_components": 1,
+    "degrees": {
+     "x": 7,
+     "y": 8
+    },
+    "defect_histogram": {}
+   }
+  },
+  {
+   "index": 15,
+   "state": [
+    "YxYxyX",
+    "xyXyXyX"
+   ],
+   "total_length": 13,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 86400,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 86400,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 7,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 76,
+     "4": 3080,
+     "6": 28044,
+     "8": 47732,
+     "10": 7468
+    }
+   }
+  },
+  {
+   "index": 16,
+   "state": [
+    "YxYxyX",
+    "yXyXy"
+   ],
+   "total_length": 11,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2880,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2880,
+    "minimum_defect": 2,
+    "minimum_genus": 1,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 6
+    },
+    "defect_histogram": {
+     "2": 36,
+     "4": 584,
+     "6": 1824,
+     "8": 436
+    }
+   }
+  },
+  {
+   "index": 17,
+   "state": [
+    "YxYxyXyXyXy",
+    "yXyXy"
+   ],
+   "total_length": 16,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "UNKNOWN_SIZE",
+    "expected_cases": 29030400,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 0,
+    "minimum_defect": null,
+    "minimum_genus": null,
+    "link_components": 1,
+    "degrees": {
+     "x": 7,
+     "y": 9
+    },
+    "defect_histogram": {}
+   }
+  },
+  {
+   "index": 18,
+   "state": [
+    "xYxyXyXyX",
+    "yXyXy"
+   ],
+   "total_length": 14,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 518400,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 518400,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 7,
+     "y": 7
+    },
+    "defect_histogram": {
+     "0": 6,
+     "2": 444,
+     "4": 12724,
+     "6": 110444,
+     "8": 272706,
+     "10": 122076
+    }
+   }
+  },
+  {
+   "index": 19,
+   "state": [
+    "YxyXyXy",
+    "yXyXy"
+   ],
+   "total_length": 12,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 17280,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 17280,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 7
+    },
+    "defect_histogram": {
+     "0": 6,
+     "2": 208,
+     "4": 2866,
+     "6": 8964,
+     "8": 5236
+    }
+   }
+  },
+  {
+   "index": 20,
+   "state": [
+    "xyXyX",
+    "yXyXy"
+   ],
+   "total_length": 10,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 576,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 576,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 5,
+     "y": 5
+    },
+    "defect_histogram": {
+     "0": 4,
+     "2": 70,
+     "4": 306,
+     "6": 196
+    }
+   }
+  },
+  {
+   "index": 21,
+   "state": [
+    "yXy",
+    "yXyXy"
+   ],
+   "total_length": 8,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 48,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 48,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 3,
+     "y": 5
+    },
+    "defect_histogram": {
+     "0": 4,
+     "2": 20,
+     "4": 24
+    }
+   }
+  },
+  {
+   "index": 22,
+   "state": [
+    "Xyy",
+    "yXyXy"
+   ],
+   "total_length": 8,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 48,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 48,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 3,
+     "y": 5
+    },
+    "defect_histogram": {
+     "0": 4,
+     "2": 20,
+     "4": 24
+    }
+   }
+  },
+  {
+   "index": 23,
+   "state": [
+    "Xyy",
+    "XyXyy"
+   ],
+   "total_length": 8,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 48,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 48,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 3,
+     "y": 5
+    },
+    "defect_histogram": {
+     "0": 4,
+     "2": 20,
+     "4": 24
+    }
+   }
+  },
+  {
+   "index": 24,
+   "state": [
+    "Xyy",
+    "Xy"
+   ],
+   "total_length": 5,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 2,
+     "y": 3
+    },
+    "defect_histogram": {
+     "0": 2
+    }
+   }
+  },
+  {
+   "index": 25,
+   "state": [
+    "Xyx",
+    "Xy"
+   ],
+   "total_length": 5,
+   "cyclically_reduced": false,
+   "has_A_loop": true,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 2,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 2,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 3,
+     "y": 2
+    },
+    "defect_histogram": {
+     "0": 2
+    }
+   }
+  },
+  {
+   "index": 26,
+   "state": [
+    "y",
+    "Xy"
+   ],
+   "total_length": 3,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 1,
+   "census": {
+    "status": "OK",
+    "expected_cases": 1,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 1,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 1,
+    "degrees": {
+     "x": 1,
+     "y": 2
+    },
+    "defect_histogram": {
+     "0": 1
+    }
+   }
+  },
+  {
+   "index": 27,
+   "state": [
+    "y",
+    "X"
+   ],
+   "total_length": 2,
+   "cyclically_reduced": true,
+   "has_A_loop": false,
+   "structural_link_components": 2,
+   "census": {
+    "status": "OK",
+    "expected_cases": 1,
+    "cap_rotations": 2000000,
+    "enumerated_cases": 1,
+    "minimum_defect": 0,
+    "minimum_genus": 0,
+    "link_components": 2,
+    "degrees": {
+     "x": 1,
+     "y": 1
+    },
+    "defect_histogram": {
+     "0": 1
+    }
+   }
+  }
+ ],
+ "census_cap_rotations": 2000000,
+ "zero_defect_indices": [
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27
+ ],
+ "first_zero_defect_index": 18,
+ "first_zero_defect_state": [
+  "xYxyXyXyX",
+  "yXyXy"
+ ],
+ "endpoint_censuses": {
+  "ak2": {
+   "status": "OK",
+   "expected_cases": 2880,
+   "cap_rotations": 2000000,
+   "enumerated_cases": 2880,
+   "minimum_defect": 2,
+   "minimum_genus": 1,
+   "link_components": 1,
+   "degrees": {
+    "x": 5,
+    "y": 6
+   },
+   "defect_histogram": {
+    "2": 2,
+    "4": 372,
+    "6": 1866,
+    "8": 640
+   }
+  },
+  "standard_xy": {
+   "status": "OK",
+   "expected_cases": 1,
+   "cap_rotations": 2000000,
+   "enumerated_cases": 1,
+   "minimum_defect": 0,
+   "minimum_genus": 0,
+   "link_components": 2,
+   "degrees": {
+    "x": 1,
+    "y": 1
+   },
+   "defect_histogram": {
+    "0": 1
+   }
+  }
+ }
+}
