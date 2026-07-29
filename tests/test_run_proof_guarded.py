@@ -11,6 +11,8 @@ from pathlib import Path
 
 import pytest
 
+from scripts.run_proof_guarded import parse_args
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RUNNER = PROJECT_ROOT / "scripts" / "run_proof_guarded.py"
 LOCK = PROJECT_ROOT / ".scratch" / "process-guard" / "active.json"
@@ -204,7 +206,7 @@ def test_dead_owner_lock_is_reclaimed() -> None:
     assert result.returncode == 0
 
 
-def test_timeout_above_hard_maximum_is_rejected_before_launch(tmp_path: Path) -> None:
+def test_timeout_61_without_long_run_is_rejected_before_launch(tmp_path: Path) -> None:
     marker = tmp_path / "too-long-started"
     result = subprocess.run(
         runner_command(
@@ -219,6 +221,78 @@ def test_timeout_above_hard_maximum_is_rejected_before_launch(tmp_path: Path) ->
     )
     assert result.returncode == 2
     assert not marker.exists()
+
+
+@pytest.mark.parametrize("timeout", (60, 601))
+def test_long_run_timeout_outside_bounds_is_rejected_before_launch(
+    tmp_path: Path, timeout: int
+) -> None:
+    marker = tmp_path / f"invalid-long-run-timeout-{timeout}"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(RUNNER),
+            "--long-run",
+            "--timeout-seconds",
+            str(timeout),
+            "--",
+            sys.executable,
+            "-c",
+            f"from pathlib import Path; Path({str(marker)!r}).write_text('bad')",
+        ],
+        cwd=PROJECT_ROOT,
+        check=False,
+        timeout=2,
+    )
+    assert result.returncode == 2
+    assert not marker.exists()
+
+
+@pytest.mark.parametrize("option", ("--preflight-seconds", "--progress-seconds"))
+def test_long_run_preflight_or_progress_above_maximum_is_rejected_before_launch(
+    tmp_path: Path, option: str
+) -> None:
+    marker = tmp_path / f"invalid-{option[2:]}"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(RUNNER),
+            "--long-run",
+            "--timeout-seconds",
+            "61",
+            option,
+            "61",
+            "--",
+            sys.executable,
+            "-c",
+            f"from pathlib import Path; Path({str(marker)!r}).write_text('bad')",
+        ],
+        cwd=PROJECT_ROOT,
+        check=False,
+        timeout=2,
+    )
+    assert result.returncode == 2
+    assert not marker.exists()
+
+
+def test_long_run_parser_preserves_finite_positive_phase_values() -> None:
+    args = parse_args(
+        [
+            "--long-run",
+            "--timeout-seconds",
+            "61",
+            "--preflight-seconds",
+            "0.25",
+            "--progress-seconds",
+            "1.5",
+            "--",
+            "proof-command",
+        ]
+    )
+
+    assert args.long_run is True
+    assert args.preflight_seconds == 0.25
+    assert args.progress_seconds == 1.5
 
 
 @pytest.mark.parametrize(

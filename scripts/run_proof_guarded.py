@@ -18,10 +18,15 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LOCK_PATH = PROJECT_ROOT / ".scratch" / "process-guard" / "active.json"
 DEFAULT_TIMEOUT_SECONDS = 30.0
 MAX_TIMEOUT_SECONDS = 60.0
+MAX_LONG_TIMEOUT_SECONDS = 600.0
+DEFAULT_PREFLIGHT_SECONDS = 60.0
+DEFAULT_PROGRESS_SECONDS = 60.0
 DEFAULT_GRACE_SECONDS = 2.0
 MAX_GRACE_SECONDS = 5.0
 DUPLICATE_EXIT = 73
 TIMEOUT_EXIT = 124
+PREFLIGHT_EXIT = 125
+SAFETY_EXIT = 126
 THREAD_ENV = (
     "NUMBA_NUM_THREADS",
     "OMP_NUM_THREADS",
@@ -203,6 +208,13 @@ def parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
     parser.add_argument(
         "--timeout-seconds", type=float, default=DEFAULT_TIMEOUT_SECONDS
     )
+    parser.add_argument("--long-run", action="store_true")
+    parser.add_argument(
+        "--preflight-seconds", type=float, default=DEFAULT_PREFLIGHT_SECONDS
+    )
+    parser.add_argument(
+        "--progress-seconds", type=float, default=DEFAULT_PROGRESS_SECONDS
+    )
     parser.add_argument("--grace-seconds", type=float, default=DEFAULT_GRACE_SECONDS)
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
@@ -212,9 +224,29 @@ def parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
         parser.error("a command is required after --")
     if not math.isfinite(args.timeout_seconds) or args.timeout_seconds <= 0:
         parser.error("--timeout-seconds must be positive")
-    if args.timeout_seconds > MAX_TIMEOUT_SECONDS:
+    if args.long_run and args.timeout_seconds <= MAX_TIMEOUT_SECONDS:
+        parser.error(
+            f"--timeout-seconds must exceed {MAX_TIMEOUT_SECONDS:g} seconds in long mode"
+        )
+    if args.long_run and args.timeout_seconds > MAX_LONG_TIMEOUT_SECONDS:
+        parser.error(
+            f"--timeout-seconds cannot exceed {MAX_LONG_TIMEOUT_SECONDS:g} seconds"
+        )
+    if not args.long_run and args.timeout_seconds > MAX_TIMEOUT_SECONDS:
         parser.error(
             f"--timeout-seconds cannot exceed {MAX_TIMEOUT_SECONDS:g} seconds"
+        )
+    if not math.isfinite(args.preflight_seconds) or args.preflight_seconds <= 0:
+        parser.error("--preflight-seconds must be positive")
+    if args.preflight_seconds > MAX_TIMEOUT_SECONDS:
+        parser.error(
+            f"--preflight-seconds cannot exceed {MAX_TIMEOUT_SECONDS:g} seconds"
+        )
+    if not math.isfinite(args.progress_seconds) or args.progress_seconds <= 0:
+        parser.error("--progress-seconds must be positive")
+    if args.progress_seconds > MAX_TIMEOUT_SECONDS:
+        parser.error(
+            f"--progress-seconds cannot exceed {MAX_TIMEOUT_SECONDS:g} seconds"
         )
     if not math.isfinite(args.grace_seconds) or args.grace_seconds <= 0:
         parser.error("--grace-seconds must be positive")
