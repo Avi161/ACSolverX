@@ -1498,3 +1498,8 @@
 - [WORKS] Before handoff and after any interruption, explicitly interrupt every no-longer-needed subagent and perform a targeted process re-scan. Treat the agent UI's `Working` label as untrusted: reconcile the exact agent lifecycle with the OS process tree. A stale or `pending_init` agent record with no backing process consumes no proof CPU, but it must not be reused as evidence that work is active.
 - [TRAP] The first guard regression invocation used the system Python, which has no pytest, and the sandboxed `uv` retry could not access the existing global dependency cache.
 - [WORKS] Run focused pytest gates through `uv run --with pytest` with scoped cache permission, keep bytecode under `.scratch/pycache`, and ensure fixture cleanup targets every exact synthetic PID even when the assertion intentionally fails.
+
+### 2026-07-29 Avoid LaTeX newline escapes in patch payloads
+
+- [TRAP] A combined `apply_patch` payload containing the LaTeX command `\nu` was interpreted as a newline across the JavaScript/string layer, so the second hunk became malformed and the whole patch was rejected.
+- [WORKS] Split proof-note patches by file and use plain path labels such as `P_1` or double-check every backslash layer before sending a patch. After a rejection, verify that no hunk landed before retrying.
