@@ -1351,3 +1351,8 @@
 
 - [TRAP] Repeated `automation_update` view/create rendering can show multiple identical cards in the conversation even when only one `automation.toml` exists.
 - [WORKS] Verify the registry by the exact automation-file count and avoid repeated view calls; never delete the sole active schedule merely to clear duplicate rendered cards.
+
+### 2026-07-29 Runtime union type aliases under system Python
+
+- [TRAP] `from __future__ import annotations` does not postpone evaluation of a runtime type-alias assignment; `Node = Literal | Correction` still raises `TypeError: unsupported operand type(s) for |` under this worktree's Python 3.9.6.
+- [WORKS] Use `typing.Union[...]` for runtime union aliases in directly replayable certificate modules, while retaining postponed annotations for function and dataclass annotations.
