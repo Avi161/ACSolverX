@@ -107,3 +107,9 @@ much harder than those Erdős problems. Its three keys:
   contrast experiments need member-by-member operator-identity verification and
   two-sided ΣE accounting against a trivializable positive control.
   [[TRAP]](experiments/lessons/large-artifact-commits-and-null-model-contrast.md)
+- A resumed subagent can relaunch its job beside yours: two writers, one output path,
+  corrupt artifact (check `ps` ELAPSED, kill both, rerun one with explicit --out). And
+  record which SIDE each tool bounds a quantity from — a heuristic witness bounds γ_N
+  from ABOVE and can never feed a distance corollary that needs a lower bound; a
+  degrading search and a rising obstruction produce the same histogram shape.
+  [[TRAP]](experiments/lessons/parallel-runs-and-bound-direction.md)

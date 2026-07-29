@@ -664,7 +664,7 @@ def tier3(cap: int = DEFAULT_CAP, members: int = 3, verbose: bool = False) -> di
     """Spike the real targets: AK(3), AK(2) and the cheapest AK(3)-class members."""
     t0 = time.time()
     targets = [("AK3", AK3), ("AK2", AK2)]
-    member_rows = smallest_census_members(count=members, exclude=[AK3])
+    member_rows = smallest_census_members(count=members, exclude=[AK3]) if members else []
     for i, (size, pair, verdict, total) in enumerate(member_rows):
         targets.append((f"AK3_class_member_{i}", tuple(pair)))
     out = []

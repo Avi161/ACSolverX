@@ -90,3 +90,46 @@ creates an A-loop) or tautological. This wall is move-formalism-generated rather
 topological, so it constrains word-combinatorial candidates that walls 1–4 do not
 reach. Recorded as a committed negative regardless of what the grafting calculus
 produces.
+
+## R5 (fake surfaces) — SCOUTED 29-07 ~15:30 UTC: BLOCKED, and it confirms Wall 5 twice
+
+Fagan–Qiu–Wang arXiv:2412.12293, abstract VERBATIM (mirrored primary copy, since arXiv
+itself is proxy-blocked): "The stable Andrews-Curtis conjecture is equivalent to the
+conjecture that every contractible fake surface is 3-deformable to a point. We prove
+that every contractible fake surface of complexity less than 6 is 3-deformable to a
+point by induction." Complexity = number of true vertices (companion paper
+arXiv:2406.09439, definitions corroborated by the authors' own code).
+
+Verdict: **BLOCKED, tautologically.** Complexity is minimised over the 3-deformation
+class, so: if AK(3) is stably AC-trivial its class contains the point, hence a
+complexity-1 surface; if it is not, then by their theorem its class contains nothing
+below complexity 6. Hence **min-complexity(AK(3)) < 6 ⟺ AK(3) is stably AC-trivial** —
+exhibiting a low-complexity surface in the class IS the proof, there is no cheaper
+certificate, and no lower bound on AK(3)'s complexity can exist short of settling the
+question. This is precisely **Wall 5 (the min-realisation tautology) instantiated in a
+second, independent formalism** — complexity in place of γ_N — which is good evidence
+that Wall 5 is a real feature of the problem and not an artefact of our grading.
+
+Secondary blocker: the numeric profile of a cellular fake surface (n generators, n
+relators, total length 3n) is reachable from AK(3) by pure stabilisation bookkeeping —
+4 AC4 moves plus an AC1 give a 6-generator, length-18 presentation, exactly the
+complexity-5 profile. So complexity does not separate AK(3) from standard by arithmetic
+either. Derivation validated against all 5,389 rows of the authors' census (every edge
+carries exactly 3 face-germs; |det| = 1 on 5,389/5,389).
+
+Unverified dependencies if anyone revives this: whether "complexity < 6" is stated for
+all or only cellular fake surfaces; the exact form and direction of the equivalence
+(neither is in the abstract, and the full text is unreachable this session).
+
+## Literature correction to propagate (same scout)
+
+Lisitsa, "Stable Andrews-Curtis trivialization of AK(3) revisited", arXiv:2501.18601,
+PUBLISHED in J. Computational Algebra, asserts in its abstract that Shehper et al.
+"demonstrated that ... AK(3) ... is stably AC-equivalent to the trivial presentation.
+This result eliminates AK(3) as a potential counterexample". That is the RETRACTED
+claim: the current Shehper source (github.com/ammedmar/ac_paper, `app/wirtinger.tex`)
+says "we cannot use Reidemeister moves to show the stable AC-triviality of MMS3 and
+therefore AK(3) as well", and `app/mms.tex` adds that the presentations "are not
+necessarily stably AC-trivial". FRAMING.md trap 1 is correct and should note that the
+published Elsevier abstract propagates the withdrawn claim — anyone searching the
+literature hits it first.
