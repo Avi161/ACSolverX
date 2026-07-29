@@ -1542,3 +1542,8 @@
 - [TRAP] The first Task 2 load binding checked digest shape, row totals, stable-cell count, and upstream parity/label booleans, but did not pin digest values, replay V rows, require the exact inverse cell IDs, or recompute B activity and label equality from member data.
 - [WORKS] Pin every approved source digest literally; replay V/W/anchor rows with unique IDs, exact family counts, coefficients, domains, and `current_equality`; require the exact inverse-Q cell-ID set; and derive each B fiber's parity and transported-label equality from reconstructed member coefficients and action schemas before selecting active tokens.
 - [WORKS] Mutation-test integer-first aggregation with signed member coefficients such as `-1,+1`; counts and mod-two activity alone cannot distinguish summing in integers from reducing each row first.
+
+### 2026-07-29 Sort collision members before coefficient reconstruction
+
+- [TRAP] Task 2 sorted B-fiber member IDs only when serializing them, after reconstructing coefficients in upstream member order. An unsorted fiber could therefore preserve its sum and parity while assigning a signed coefficient to the wrong serialized member.
+- [WORKS] Establish one canonical member tuple first, then reconstruct coefficients and every dependent witness from that tuple. Regression tests must assert literal `(member, coefficient)` pairs with distinguishable signs, not separate lists plus a total.

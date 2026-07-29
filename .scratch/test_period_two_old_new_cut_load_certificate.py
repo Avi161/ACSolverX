@@ -295,3 +295,35 @@ def test_b_catalog_derives_and_rejects_member_label_inequality(monkeypatch) -> N
     monkeypatch.setattr(inverse, "build_templates", tampered_build_templates)
     with pytest.raises(ValueError, match="unequal transported labels"):
         module.build_b_catalog(context)
+
+
+def test_b_fiber_serialization_keeps_member_coefficient_alignment() -> None:
+    module = load_generator()
+    context = module.load_source_context()
+    inverse_manifest = copy.deepcopy(context.manifests["inverse"])
+    sorted_members = [
+        "nu3:k10:delta0",
+        "nu4:k12:delta0",
+        "nu5:k7:delta0",
+    ]
+    changed = 0
+    for fibers in inverse_manifest["collision_fibers"].values():
+        for fiber in fibers:
+            if sorted(fiber["members"]) == sorted_members:
+                fiber["members"] = list(reversed(sorted_members))
+                changed += 1
+    assert changed == 9
+
+    _, proof = module.build_b_catalog(
+        with_manifest(context, "inverse", inverse_manifest)
+    )
+    fiber = next(
+        item
+        for item in proof["collision_fibers"]
+        if item["members"] == sorted_members
+    )
+    assert list(zip(fiber["members"], fiber["coefficients"])) == [
+        ("nu3:k10:delta0", 1),
+        ("nu4:k12:delta0", 1),
+        ("nu5:k7:delta0", -1),
+    ]

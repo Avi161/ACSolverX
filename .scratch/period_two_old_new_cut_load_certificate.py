@@ -320,7 +320,8 @@ def build_b_catalog(
     def integer_fiber_values(
         fiber: Mapping[str, Any],
     ) -> tuple[tuple[int, ...], int, int]:
-        coefficients = tuple(record_coefficients[member] for member in fiber["members"])
+        members = tuple(sorted(fiber["members"]))
+        coefficients = tuple(record_coefficients[member] for member in members)
         integral_sum = sum(coefficients)
         if integral_sum != fiber["integral_coefficient_sum"]:
             raise ValueError(f"integer-first B sum mismatch: {fiber['members']}")
