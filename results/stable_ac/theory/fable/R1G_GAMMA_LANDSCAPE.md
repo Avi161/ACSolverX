@@ -41,12 +41,24 @@ evaluations each (~20 million rotation systems in total).
     gamma_hat:   1 -> 1     2 -> 63     3 -> 316    4 -> 932
                  5 -> 814   6 -> 355    7 -> 19
 
-The class does not hover near thickenability — it sits at **gamma_N ~ 4-5**, with a thin
-tail down to 1, and gamma_hat grows with word length (the sampled population is
-dominated by lengths 21-25). Exact censuses at the bottom of the class agree: of the six
-length-13 members the harvest found, four have gamma_N = 1 and two have gamma_N = 2
-(AK(3) itself is one of the latter). One further gateway was certified at length 14:
-`("YYYXXyx","YXYXyxx")`, gamma_N = 1 exactly.
+**Read the direction of this inequality carefully.** gamma_hat is an UPPER bound:
+gamma_N <= gamma_hat, because a witness proves the minimum is no worse than what was
+found. It is NOT evidence that the class sits high — a member reported at gamma_hat = 5
+could have gamma_N = 1 with the climber simply failing to find the rare minimiser. The
+climber is exact on every calibration target (all six length-13 members, AK(3), and the
+2-in-86,400 needle), but its accuracy at length 20+ — where the compatible family is
+~10^10 and the sample is 8,000 — is UNVERIFIED. Since a weaker search reports higher
+values, the apparent growth of gamma_hat with length is exactly what climber degradation
+would also produce, and the two explanations are not separated by this experiment.
+Calibrating the climber against exact censuses at lengths 14-15 (the largest still
+affordable) is the missing control and is recorded as the next step.
+
+What IS certified: of the six length-13 members the harvest found, exact censuses give
+four at gamma_N = 1 and two at gamma_N = 2 (AK(3) itself is one of the latter); and one
+further gateway at length 14, `("YYYXXyx","YXYXyxx")`, gamma_N = 1 exactly (solver
+NOT_SPHERICAL gives >= 1, verified witness gives <= 1). Gateways are rare in the sample —
+1 in 2,500 — but that rarity is a lower bound on their true density, not a measurement
+of it.
 
 **Corpus cross-validation (free, and worth recording).** Those ~20 million sampled
 rotation systems produced **zero** defect-0 witnesses — no sampled rotation ever
@@ -64,10 +76,17 @@ and destabilisation (AC4/AC5), and NON-CANCELLING AC2 grafts has length at least
 Z); each non-cancelling graft lowers it by at most 1 (Thm G6); the target has
 gamma_N = 0. []
 
-Applied: AK(3) is at distance >= 2, a typical class member at distance >= 4, and the
-one-move neighbourhoods of all four length-13 gateways have been enumerated exhaustively
-and contain no thickenable member (`gateway_neighborhood.json`: 420/420 reduced images
-NOT_SPHERICAL).
+Applying it requires a LOWER bound on gamma_N, which only the exhaustive tools supply:
+the solver's NOT_SPHERICAL gives gamma_N >= 1 for every member (hence distance >= 1
+class-wide), and an exact census gives the exact value. So the certified statements are:
+**AK(3) is at distance >= 2** (census: gamma_N = 2), each length-13 gateway at distance
+>= 1, and no further. The gamma_hat histogram does NOT license "a typical member is at
+distance >= 4" — that would read an upper bound as a lower one. Separately, and
+exhaustively rather than statistically: the one-move neighbourhoods of AK(3) and of all
+four length-13 gateways contain no thickenable member
+(`gateway_neighborhood.json`: 420/420 reduced images NOT_SPHERICAL; the 150 undecided
+rows are exactly the loop-bearing unreduced images, which R1f's open question would
+settle).
 
 **The gap, stated plainly.** The corollary excludes cancelling grafts, and it must:
 `R1F_REDUCTION_AND_SPIKES.md` exhibits a verified case where free reduction — move (0),
@@ -77,14 +96,18 @@ the drop is bounded at all is exactly the open SPIKE MONOTONICITY question of R1
 
 ## Reading, honestly
 
-This sharpens the shape of the negative evidence without proving anything: AK(3)'s
-class is not merely missing thickenable members, it is *far* from them in the only
-graded obstruction we have, and it drifts further as words lengthen. That is the
-opposite of what a class one clever move away from trivialisation would look like — but
-gamma_N is not an AC invariant (the codex 0->1 counterexample; the tight graft witness
-`("yyxYxy","yx")` dropping 1 -> 0), so a distant class can still contain a hit beyond
-the searched region, and the landscape measured here is a sample of one corridor of an
-infinite class.
+Two things are established and one tempting thing is not. Established: the bottom of the
+class (length 13-14) is fully measured and contains gateways at gamma_N = 1 but nothing
+at 0; and the exhaustive one-move neighbourhoods of those gateways are clean. NOT
+established: that the rest of the class is far from thickenable — the gamma_hat
+histogram is an upper-bound landscape and cannot support that reading, however much its
+shape invites it. Anyone continuing this line should resist exactly that inference until
+the climber is calibrated at length 14-15 against exact censuses.
+
+And even a genuinely distant class would not settle anything: gamma_N is not an AC
+invariant (the codex 0->1 counterexample; the tight graft witness `("yyxYxy","yx")`
+dropping 1 -> 0), so a hit can sit beyond any searched corridor, and what is measured
+here is one corridor of an infinite class.
 
 Concrete consequence for the search, which is the actionable part: **rank candidates by
 gamma_hat ascending, not by length or by E**. The gateway states are where a hit can

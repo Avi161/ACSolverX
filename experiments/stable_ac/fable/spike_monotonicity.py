@@ -635,6 +635,10 @@ def tier2(bases, n_bases: int = 150, max_pairs_per_base: int = 200,
         "coverage_ok": measured + skipped == attempted,
         "counterexamples": counterexamples,
         "counterexample_count": len(counterexamples),
+        "strict_counterexample_count": len(
+            [ce for ce in counterexamples
+             if ce["base_profile"]["min_relator_length"] >= 3
+             and ce["base_profile"]["every_relator_uses_both_generators"]]),
         "delta_histogram": {str(k): v for k, v in sorted(delta_hist.items())},
         "seconds": round(time.time() - t0, 2),
     }
@@ -799,23 +803,35 @@ def main(argv=None) -> int:
 
     total_cases = 0
     refuted = []
-    for tier_key in ("tier1", "tier2"):
-        tier = report.get(tier_key)
-        if not tier:
-            continue
-        total_cases += tier.get("spikes_measured", 0) or tier.get(
-            "double_spikes_measured", 0)
-        refuted.extend(tier.get("counterexamples", []))
+    strict = []
+    if report.get("tier1"):
+        total_cases += report["tier1"]["spikes_measured"]
+        refuted.extend(report["tier1"]["counterexamples"])
+        strict.extend(report["tier1"]["strict_counterexamples"])
+    if report.get("tier2"):
+        total_cases += report["tier2"]["double_spikes_measured"]
+        refuted.extend(report["tier2"]["counterexamples"])
     if report.get("tier3"):
         for tgt in report["tier3"]["targets"]:
             total_cases += tgt["spikes_measured"]
             refuted.extend(tgt["drops_below_base"])
+    if refuted:
+        first = strict[0] if strict else refuted[0]
+        line = ("SPIKE MONOTONICITY: REFUTED by "
+                f"{first.get('base', first.get('words'))} gamma_N="
+                f"{first.get('base_gamma_N')} -> "
+                f"{first.get('spiked', first.get('double_spiked'))} gamma_N="
+                f"{first.get('spiked_gamma_N', first.get('double_spiked_gamma_N'))}"
+                f" ({len(refuted)} counterexamples in {total_cases} measured cases,"
+                f" {len(strict)} of them with every relator of length >= 3 over both"
+                " generators)")
+    else:
+        line = f"SPIKE MONOTONICITY: no counterexample in {total_cases} cases"
     report["verdict"] = {
         "measured_cases": total_cases,
         "counterexamples": len(refuted),
-        "line": (f"SPIKE MONOTONICITY: no counterexample in {total_cases} cases"
-                 if not refuted else
-                 f"REFUTED by {refuted[0]}"),
+        "strict_counterexamples": len(strict),
+        "line": line,
     }
     report["seconds_total"] = round(time.time() - t0, 2)
 
