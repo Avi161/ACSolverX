@@ -85,6 +85,44 @@ NO phenomenon yet demanding an obstruction. The falsifiable program:
    formula rewards concentrated corner distributions, not shortness — a length-ascending
    harvest under-samples the high-E tail). Adopted into the Colab runner spec.
 
+## R3′ arc plan (13:1x UTC, drafted post-R1e; advisor vet pending)
+
+Claim addressed: DISPROOF side of the stable claim. If a class-functional obstruction
+were established and positive on AK(3)'s STABLE class, the master equivalence would give
+AK(3) not stably AC-trivial — the stable AC conjecture would be FALSE. (Symmetric
+honesty: no such invariant has ever been found by anyone; the plan below is scoped to
+produce machinery + falsifiable candidates, not to promise the invariant.)
+
+Plan, in gate order:
+1. **Phase-grafting calculus** (pure machinery, provable): formalize how the
+   synchronized-planarity phase system (phases s_g per generator, Lemma 4.1; H_{A,B}
+   relator-cycle propagation, Lemma 4.2/Thm 4.3; cut-scheme shifts of Thm 6.S) of an
+   exact pair TRANSFORMS under each move: AC1 (invert: histogram-safe, symmetry lemma),
+   AC3 (rotate: safe), AC2 graft r_i ← r_i r_j (the real content: guest corner set
+   spliced at the seam, two seam corners replaced by two junction corners), AC4/AC5
+   (Corollary Z: inert). Deliverable: a theorem expressing the post-graft compatible-C
+   family and its defect histogram in terms of pre-graft data + junction terms — even
+   without any invariance, this is the move-level analysis no per-realization proof
+   touches.
+2. **Candidate functionals**: from the calculus, extract aggregate summaries with a
+   chance of controlled behavior (residues/parities of phase-defect systems, min-excess
+   over corner-multiset strata, Kreweras-class aggregates). Each candidate is stated
+   with its intended monotonicity/invariance property under the calculus.
+3. **Falsification battery FIRST** (before any proof attempt): trace every candidate
+   along (a) the 53-move AK(3)↔P25 path (54 exact states, all decided — any claimed
+   invariant must survive all 53 moves), (b) the AK(2) corridor (provably trivializable
+   class: candidates must NOT be invariantly positive there — 1,251 censused members +
+   an explicit trivialization path to standard), (c) the codex 0→1 γ_N jump
+   counterexample pair. Only candidates surviving all three go to proof attempts.
+4. **Proof or negative write-up**: survivors get adversarial-audited proof drafts;
+   failures get committed as negative results steering future sessions (the walls
+   document grows).
+
+Division-of-labor check (scout, 13:04 UTC, ab451ab): codex is in per-realization
+Fox-calculus/Hessian territory (period-two augmented cut covariance, OPEN) and frozen
+Aut-frontier input data; the class-functional seed remains exclusively fable's. No
+collision.
+
 ## Complementarity note (08:50 UTC): codex phase-obstruction proof
 
 Codex just committed `AK3_NEUWIRTH_PHASE_OBSTRUCTION.md` (a17c7bf): a human,
