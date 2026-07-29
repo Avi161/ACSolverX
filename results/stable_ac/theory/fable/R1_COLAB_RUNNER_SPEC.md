@@ -91,3 +91,31 @@ solver stack, two-sided ΣE accounting per the lesson. Interpretation: AK(3) hit
 protocol (witness + TC + full replay; Lackenby-flagged chain to AC-triviality); zero
 at ΣE ≳ 300 ⇒ phenomenon-level evidence that AK(3)'s classical class contains no
 thickenable members in reach — R3′'s concrete target. Run D supersedes Run B's priority.
+
+## Amendment 4 (15:45 UTC) — Run E: meet-in-the-middle at ranks 4-6 (NEW, top priority with Run D)
+
+Instruments committed: `certified_targets.py` (5,389 certified stably-AC-trivial
+targets from the FQW fake-surface census, validated in-session), `target_meet.py`
+(backward closure + corpus intersection), `gateway_scan.py` (gamma_hat priority).
+
+Established locally: the detector fires on both positive controls and scales with depth
+(AK(2) classical 46 -> 276, AK(2)+z stable 72 -> 1,543 from depth 1 to depth 2) while
+AK(3) stays at 0 on both the classical and the stable side. And the binding constraint
+is now identified: AC1/AC2/AC3 preserve rank, no census target is destabilisable (0 of
+5,389), so only the 19 rank-2 and rank-3 targets were ever eligible against our
+corpora. The other 5,370 sit at ranks 4-6.
+
+Run E therefore:
+1. Forward harvests from AK(3) with 2, 3 and 4 plain stabilisations (ranks 4, 5, 6),
+   rotation-expanded operator, caps root+4, at Colab scale (100k+ pops each).
+   Rank 6 is the headline: stabilised AK(3) has 6 generators and total length 17; the
+   514 complexity-5 targets have 6 generators and total length 18.
+2. Backward closure of ALL 5,389 targets to depth 2-3 with the state cap raised well
+   above 400k (depth 2 truncated there locally), matching per rank.
+3. Forward priority by gamma_hat ascending (gateway_scan), not by length or E.
+4. Interpretation: any AK(3)-side match => AK(3) is stably AC-equivalent to a certified
+   stably-trivial presentation => AK(3) STABLY AC-TRIVIAL (the session's headline
+   sub-goal), subject to the hit protocol (explicit AC1-AC5 move list + full replay +
+   TC certificate) and to the flags recorded in R6 (FQW full text unverified; the
+   relabelling match leans on the stable ambient automorphism theorem). Zero matches at
+   this scale, with both controls firing, is the strongest negative the route can give.
