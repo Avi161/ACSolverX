@@ -5,7 +5,7 @@ the terminal pair is two single letters. Start relators come from the freeze
 (``run_ab`` rows do not store r1/r2). Refuse to publish any solve that fails.
 
     python3 -m experiments.heuristic_search.verify.verify_solved1hop_certs \\
-        results/hsearch/hsearch_solved1hop_1m_*.jsonl
+        results/heuristic_search/hsearch_solved1hop_100k/merged_*.jsonl
 """
 from __future__ import annotations
 

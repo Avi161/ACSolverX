@@ -1,0 +1,1269 @@
+{
+  "budget": 100000,
+  "n_unsolved_cells": 140,
+  "n_presentations_any_unsolved": 44,
+  "n_presentations_unsolved_all_arms": 15,
+  "note": "Escalate EVERY residual cell to 1M (not a subsample).",
+  "rows": [
+    {
+      "name": "orb_0337",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 18,
+      "r1": "YXXYx",
+      "r2": "YYYXyyxYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0366",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 18,
+      "r1": "YYXXyxx",
+      "r2": "YYxyXYYxxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0366",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 18,
+      "r1": "YYXXyxx",
+      "r2": "YYxyXYYxxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0366",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 18,
+      "r1": "YYXXyxx",
+      "r2": "YYxyXYYxxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0468",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 19,
+      "r1": "YYXXXyxx",
+      "r2": "YYxxxxyXXXX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0468",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 19,
+      "r1": "YYXXXyxx",
+      "r2": "YYxxxxyXXXX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0470",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 19,
+      "r1": "YYXXYXXyX",
+      "r2": "YYXXXXXyxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0576",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 21,
+      "r1": "YXXYx",
+      "r2": "YYYXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0576",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 21,
+      "r1": "YXXYx",
+      "r2": "YYYXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0627",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 21,
+      "r1": "YYXXYXXyX",
+      "r2": "YYYXXyxxyXXX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0627",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 21,
+      "r1": "YYXXYXXyX",
+      "r2": "YYYXXyxxyXXX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0627",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 21,
+      "r1": "YYXXYXXyX",
+      "r2": "YYYXXyxxyXXX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0678",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 22,
+      "r1": "YXXYx",
+      "r2": "YYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0715",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 23,
+      "r1": "YXXXXXXyXYx",
+      "r2": "YXyxxxxxxxyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0715",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 23,
+      "r1": "YXXXXXXyXYx",
+      "r2": "YXyxxxxxxxyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0715",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 23,
+      "r1": "YXXXXXXyXYx",
+      "r2": "YXyxxxxxxxyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0851",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 24,
+      "r1": "YYXXyxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0851",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 24,
+      "r1": "YYXXyxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0851",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 24,
+      "r1": "YYXXyxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0890",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YXXYx",
+      "r2": "YYYXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0890",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YXXYx",
+      "r2": "YYYXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0890",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YXXYx",
+      "r2": "YYYXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0890",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YXXYx",
+      "r2": "YYYXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0890",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YXXYx",
+      "r2": "YYYXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0914",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXXXXXyX",
+      "r2": "YXXXXXXXyxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0918",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXXXXyxx",
+      "r2": "YXXXyxxYXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0921",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXXXyXXX",
+      "r2": "YXXXXXXyxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0921",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXXXyXXX",
+      "r2": "YXXXXXXyxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0921",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXXXyXXX",
+      "r2": "YXXXXXXyxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0939",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXYx",
+      "r2": "YYYXyyxYYXyyxYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0939",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXYx",
+      "r2": "YYYXyyxYYXyyxYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0939",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXYx",
+      "r2": "YYYXyyxYYXyyxYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0939",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXYx",
+      "r2": "YYYXyyxYYXyyxYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0939",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 25,
+      "r1": "YYXXYx",
+      "r2": "YYYXyyxYYXyyxYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0978",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 26,
+      "r1": "YYXXXXyxxxx",
+      "r2": "YXXXXXXXyxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_0978",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 26,
+      "r1": "YYXXXXyxxxx",
+      "r2": "YXXXXXXXyxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1020",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYXXXXXXyX",
+      "r2": "YXXXXXXXyxxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1020",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYXXXXXXyX",
+      "r2": "YXXXXXXXyxxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1020",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYXXXXXXyX",
+      "r2": "YXXXXXXXyxxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1034",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYXXXyXX",
+      "r2": "YXXXyxxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1034",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYXXXyXX",
+      "r2": "YXXXyxxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1034",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYXXXyXX",
+      "r2": "YXXXyxxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1035",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYXXXyxx",
+      "r2": "YXXyxxYXXyxxYXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1051",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYYXXXYYxyyx",
+      "r2": "YYYXyyyxYYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1051",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYYXXXYYxyyx",
+      "r2": "YYYXyyyxYYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1051",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 27,
+      "r1": "YYYXXXYYxyyx",
+      "r2": "YYYXyyyxYYYXyyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1076",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 28,
+      "r1": "YXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1076",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 28,
+      "r1": "YXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1085",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 28,
+      "r1": "YYXXXXXXXyX",
+      "r2": "YXXXXXXXXyxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1085",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 28,
+      "r1": "YYXXXXXXXyX",
+      "r2": "YXXXXXXXXyxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1085",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 28,
+      "r1": "YYXXXXXXXyX",
+      "r2": "YXXXXXXXXyxxxxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1163",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 30,
+      "r1": "YYXXYxxxyXXXyxx",
+      "r2": "YXXXyxxYXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1163",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 30,
+      "r1": "YYXXYxxxyXXXyxx",
+      "r2": "YXXXyxxYXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1163",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 30,
+      "r1": "YYXXYxxxyXXXyxx",
+      "r2": "YXXXyxxYXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1188",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 31,
+      "r1": "YYXXyxxYXXyX",
+      "r2": "YXXyxxYXXyxxYXXXyxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1226",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 32,
+      "r1": "YYXXYxxyXXyxx",
+      "r2": "YXXyxxYXXyxxYXXXyxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1226",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 32,
+      "r1": "YYXXYxxyXXyxx",
+      "r2": "YXXyxxYXXyxxYXXXyxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1226",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 32,
+      "r1": "YYXXYxxyXXyxx",
+      "r2": "YXXyxxYXXyxxYXXXyxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1275",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 34,
+      "r1": "YXyXXYxyXYxyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1276",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 34,
+      "r1": "YXyXXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1280",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 34,
+      "r1": "YYXXXYxxxyXXXyxxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1280",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 34,
+      "r1": "YYXXXYxxxyXXXyxxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1280",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 34,
+      "r1": "YYXXXYxxxyXXXyxxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1280",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 34,
+      "r1": "YYXXXYxxxyXXXyxxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1280",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 34,
+      "r1": "YYXXXYxxxyXXXyxxx",
+      "r2": "YXXXyxxxYXXXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1305",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 35,
+      "r1": "YYXXYxxyXXYxxyyX",
+      "r2": "YXXyxxYXXyxxYXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1305",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 35,
+      "r1": "YYXXYxxyXXYxxyyX",
+      "r2": "YXXyxxYXXyxxYXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1305",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 35,
+      "r1": "YYXXYxxyXXYxxyyX",
+      "r2": "YXXyxxYXXyxxYXXyxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1339",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 36,
+      "r1": "YXyxYXyxYXyxYXXyx",
+      "r2": "YYYXyxYXyxYXyyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1339",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 36,
+      "r1": "YXyxYXyxYXyxYXXyx",
+      "r2": "YYYXyxYXyxYXyyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1389",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1389",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1389",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1389",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1390",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YXyXXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1390",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YXyXXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1390",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YXyXXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1395",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YYXXXYxxxxyXXXXyxxx",
+      "r2": "YXXXXyxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1395",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YYXXXYxxxxyXXXXyxxx",
+      "r2": "YXXXXyxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1395",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YYXXXYxxxxyXXXXyxxx",
+      "r2": "YXXXXyxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1395",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YYXXXYxxxxyXXXXyxxx",
+      "r2": "YXXXXyxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1395",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 38,
+      "r1": "YYXXXYxxxxyXXXXyxxx",
+      "r2": "YXXXXyxxxYXXXXyxxxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1442",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1442",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1442",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1442",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1442",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1443",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1443",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1443",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1443",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1443",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1444",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1444",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1444",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1444",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1444",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1445",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1445",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1445",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1445",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1445",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 40,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1455",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1455",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1455",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1455",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1455",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyXYxyx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1456",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1456",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1456",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1456",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1456",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 42,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1475",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXXyxxYXXyxxYXXXyxx",
+      "r2": "YYXXyxxYXXyxxyXXYxxyXXYxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1475",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXXyxxYXXyxxYXXXyxx",
+      "r2": "YYXXyxxYXXyxxyXXYxxyXXYxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1475",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXXyxxYXXyxxYXXXyxx",
+      "r2": "YYXXyxxYXXyxxyXXYxxyXXYxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1475",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXXyxxYXXyxxYXXXyxx",
+      "r2": "YYXXyxxYXXyxxyXXYxxyXXYxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1475",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXXyxxYXXyxxYXXXyxx",
+      "r2": "YYXXyxxYXXyxxyXXYxxyXXYxx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1484",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1484",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1484",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 44,
+      "r1": "YXyxYXyxYXXXyxYXyxx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1490",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1490",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1490",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1490",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1490",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1491",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1491",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1491",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1491",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1491",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 46,
+      "r1": "YXyXXYxyXYxyxYXyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1496",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 48,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1496",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 48,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1496",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 48,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1496",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 48,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1496",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 48,
+      "r1": "YXyxYXyxYXyxYXXXyxx",
+      "r2": "YYXyxYXyxYXyxYXyxYXyxYXyxYXyx",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1519",
+      "arm": "baseline",
+      "kind": "moved_cov",
+      "mu": 50,
+      "r1": "YXyXXYxyXYxyXYxyXYxyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1519",
+      "arm": "s12",
+      "kind": "moved_cov",
+      "mu": 50,
+      "r1": "YXyXXYxyXYxyXYxyXYxyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1519",
+      "arm": "s28",
+      "kind": "moved_cov",
+      "mu": 50,
+      "r1": "YXyXXYxyXYxyXYxyXYxyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1519",
+      "arm": "s20_mk2",
+      "kind": "moved_cov",
+      "mu": 50,
+      "r1": "YXyXXYxyXYxyXYxyXYxyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    },
+    {
+      "name": "orb_1519",
+      "arm": "s24_k1_mk2",
+      "kind": "moved_cov",
+      "mu": 50,
+      "r1": "YXyXXYxyXYxyXYxyXYxyx",
+      "r2": "YYxyXYxyXYxyXYxyXYxyXYxyXYxyX",
+      "nodes_explored": 100000
+    }
+  ]
+}
