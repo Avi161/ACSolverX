@@ -1296,3 +1296,8 @@
 
 - [TRAP] Result 154's auxiliary discovery proof called the mod-two four-cycle covector `(1,0,1,1,0,1)` integral, then quoted the value 64 computed with its signed integral lift `(1,0,-1,1,0,1)`. The two agree modulo two but give different integer values.
 - [WORKS] Whenever an odd-characteristic or integral obstruction lifts a mod-two covector, name the lift separately and verify it on every exact operator column. Define `G=<signed covector, defect>` before quoting integral Hessians or values; never infer the integer formula from its mod-two reduction.
+
+### 2026-07-28 Filter balanced-source censuses by finite projections
+
+- [WORKS] For the depth-six balanced `L_0` census, compute the projected finite-action wedge bits directly from the Schreier kernel before constructing the full wedge dictionary. Among 4671 balanced pairs, only two passed the fourteen projected bits, and both were then caught by the full wedge-sum bit `Phi_infinity=1`.
+- [WORKS] Treat the 127-source/4671-pair result as bounded evidence only. Before depth-seven work, promote the exact complete-cover rewrite and source-orbit classifier out of `.scratch` so the census is reproducible from tracked certificate code.

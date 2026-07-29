@@ -8318,6 +8318,17 @@ classes have nonzero syndrome.  Therefore the complete known
 eleven-direction span is degree-two obstructed; the full syzygy module
 remains open.
 
+**Bounded depth-six balanced-(L_0) census after Result 157.**
+The 127 reduced quotient source vertices through word length six yield 4671
+orbit-balanced unordered source pairs.  Exact Stallings-cover rewriting and
+all fifteen Result 157 bits leave no survivor.  Only
+\[
+e_{TT}+e_{TTTct},\qquad e_{Tctt}+e_{Tctct}
+\]
+reach the final check, and both have \(\Phi_\infty=1\).  This is bounded
+evidence, not a theorem beyond depth six.  The next structural task is to
+promote the exact rewrite into a stable finite-state syndrome certificate.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

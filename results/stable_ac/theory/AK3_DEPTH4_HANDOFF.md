@@ -950,6 +950,22 @@ The proof and checker are
 \end{gathered}
 \]
 
+### Depth-six balanced-(L_0) census
+
+After Result 157, all 4,671 orbit-balanced unordered source pairs among the
+127 reduced quotient words through length six were rewritten exactly.  None
+has zero syndrome under the fifteen functionals.  The only pairs reaching
+the final full wedge-sum check are
+\[
+e_{TT}+e_{TTTct},\qquad e_{Tctt}+e_{Tctct},
+\]
+and both have \(\Phi_\infty=1\).  This is bounded evidence only.
+
+The preserved frontier note is
+\[
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_DEPTH6\_BALANCED\_L0\_CENSUS.md}.
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -988,8 +1004,10 @@ The proof and checker are
    span. An eleventh balanced $L_0$ direction escapes all thirteen bits; a
    double-transposition quotient adds two covectors which separate all
    4194304 mod-four classes in the resulting eleven-direction span. The next
-   exact problem is to classify the full finite-state syndrome of balanced
-   two-source flows, or promote the fifteen mod-two functionals to a theorem
-   about the full homogeneous syzygy module.
+   depth-six census has no survivor among 4671 balanced pairs. The next exact
+   problem is to promote the complete Stallings-cover rewrite into a stable
+   finite-state syndrome certificate before scanning depth seven, or promote
+   the fifteen mod-two functionals to a theorem about the full homogeneous
+   syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.
