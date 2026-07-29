@@ -470,3 +470,19 @@ To https://github.com/avi161/acsolverx
    a212371..4fea2cf  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
 [freq-commit] 07:00:26 pushed tip=4fea2cf
 RESULTS refreshed 24173 8712 3540 6400
+[cursor/heur-12h-anti-overfit-a42e 2e0723c] heur: campaign jsonl checkpoint screen=24173 arms=8712 hard=3540 sgrid=6400
+ 5 files changed, 506 insertions(+), 4 deletions(-)
+[cursor/heur-12h-anti-overfit-a42e 730e8e0] logs: fill short SHA for jsonl checkpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/avi161/acsolverx/'
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/avi161/acsolverx/'
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/avi161/acsolverx/'
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/Avi161/ACSolverX.git        
+To https://github.com/avi161/acsolverx
+   4fea2cf..730e8e0  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
+[freq-commit] 07:03:55 pushed tip=730e8e0
+RESULTS refreshed 24173 8712 3540 6400
