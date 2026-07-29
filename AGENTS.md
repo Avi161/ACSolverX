@@ -1306,3 +1306,8 @@
 
 - [TRAP] Interrupting or completing an agent does not prove that an older detached child exited: PID `59982`, a stdin-fed Codex Python process in the `codex-proofs` worktree, remained at roughly 67% CPU for 4.5 hours and accumulated 131 CPU-minutes.
 - [WORKS] After long proof runs, interrupted agents, and before handoff, inspect owned processes by executable, parent/process group, elapsed CPU, working directory, open project files, children, and live connections. Terminate only an exact process proven stale, send `SIGTERM` first, and re-scan to prove it exited; do not kill app infrastructure, connected services, or user terminals merely because their working directory is ACSolverX.
+
+### 2026-07-28 Hoist fixed actions out of bounded census hot paths
+
+- [TRAP] Calling `period_two_remote_syzygy_certificate()` inside `projected_fourteen_bits()` rebuilt its residual and wedge once per balanced pair, turning the 4,671-pair depth-six census into a multi-hour run.
+- [WORKS] Keep fixed finite actions as module constants; validate them once at certificate entry, then ensure the per-pair streaming evaluator makes no certificate calls.
