@@ -214,7 +214,7 @@ non-degenerate thickenable members once properly explored. Consequences:
    certificate; the first zero-defect state on the trivialization path appears at index
    18 of 27 (an A-loop state, census-decided).
 
-## CONTRAST RESULT (matched-operator AK(3) control, ~14:55 UTC) — the program's step 2
+## CONTRAST RESULT (matched-operator AK(3) control, ~14:20 UTC) — the program's step 2
 
 Run: identical operator/budget to the AK(2) battery (verified member-by-member on the
 harvest layer), root AK(3), cap 17 (= root+4, matching relative headroom; recorded
