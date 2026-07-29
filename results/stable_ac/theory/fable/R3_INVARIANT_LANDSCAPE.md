@@ -74,3 +74,19 @@ R1/R2 dead end. Next concrete actions on reactivation: (1) re-read math/0012212'
 proof and check whether it extends to all unimodular ribbon HKR input (if yes → negative
 result write-up; if no → evaluate the Bobtcheva–Messia family on AK(3)); (2) the J₄
 spine-descent question.
+
+## Wall 5 (added ~13:45 UTC, from the R3′ advisor vet): the min-realization tautology
+
+Any realization-level defect functional (γ_N, digon excess, phase-defect aggregates —
+anything computed from an exact word realization) has exactly one canonical
+(0)-invariant class version: Φ_min(class) = min over exact realizations. But
+Φ_min = 0 ⟺ the class contains a thickenable member — i.e. the natural class-functional
+IS the open target, not a tool for it (for AK(3)'s stable class, Φ_min = 0 is literally
+the stable-triviality question via the master equivalence's easy half). Consequence:
+every R3′ candidate must be a genuine RELAXATION — a computable functional PROVABLY
+lower-bounding Φ_min strictly below the per-realization value — or it is either
+ill-posed (realization-dependent, killed by move (0): exact AC3 conjugation always
+creates an A-loop) or tautological. This wall is move-formalism-generated rather than
+topological, so it constrains word-combinatorial candidates that walls 1–4 do not
+reach. Recorded as a committed negative regardless of what the grafting calculus
+produces.

@@ -85,7 +85,63 @@ NO phenomenon yet demanding an obstruction. The falsifiable program:
    formula rewards concentrated corner distributions, not shortness — a length-ascending
    harvest under-samples the high-E tail). Adopted into the Colab runner spec.
 
-## R3′ arc plan (13:1x UTC, drafted post-R1e; advisor vet pending)
+## R3′ arc plan — REVISED per advisor verdict (drafted 13:10, reconciled ~13:45 UTC)
+
+ADVISOR RECONCILIATION (verdict REVISE; every must-address item below):
+1. MOVE FORMALISM: the calculus MUST include Lackenby's move (0) (free/cyclic
+   reduction). Exact AC3 conjugation w r w⁻¹ ALWAYS creates an A-loop (advisor
+   verified: solver UNSUPPORTED); AC3 is "safe" only as (AC3 ∘ (0)). Adopted framing:
+   option (a) — Φ(class) := min over exact realizations, automatically (0)-invariant;
+   consequence stated honestly: Φ_min = 0 ⟺ the class contains a thickenable member,
+   i.e. Φ_min IS the target — so the only meaningful deliverable is a computable STRICT
+   LOWER BOUND on Φ_min. This tautology ceiling is now the FIFTH WALL (filed in
+   R3_INVARIANT_LANDSCAPE.md).
+2. FACTS CORRECTED: the 53-move corridor has 52 decided states + 2 UNSUPPORTED
+   (path[23], path[24] — A-loops until reduced; they sit exactly at the reduction
+   trap); its transitions are (AC ∘ (0)) composites, NOT exact moves (≥7 strictly
+   length-decreasing); it is classical-only (no AC4/AC5 content). The AC2 graft
+   DUPLICATES the guest relator (r_j survives): |A′| = |A| + |r_j| (advisor verified
+   13 → 19 on the AK(3) self-graft), and A′ is NOT a germ-preserving conjugate of A —
+   the structural reason the symmetry-lemma template cannot extend to AC2. The
+   addendum's "AC1 grafts" below should read AC2 (project convention AC1 = invert).
+3. PRE-REGISTERED CEILING for step 1 (time-boxed): the fibration (restriction
+   C′ ↦ C′|_E is well-defined and surjective; fibers = interleavings of the copy's
+   darts) + the edge-insertion dichotomy is expected to yield only
+   γ_N(post) ≥ γ_N(pre) − 1 per graft — VACUOUS at AK(3) (γ_N = 2) — with the junction
+   term a min over factorially large fibers (1.46 × 10¹⁰ for the AK(3) self-graft vs
+   the 200k cap). If the write-up lands there: commit as machinery + as a MOVE-ORDERING
+   HEURISTIC for harvests (rank grafts by predicted cofaciality/defect change), and
+   STOP — no steps 2/4 on that basis.
+4. BATTERY (b) REBUILT AS PRE-CONDITION: commit the AK(2) member set and an explicit
+   ≤1,000-node AK(2)→standard trivialization path; candidates must be evaluable on the
+   length ≤ 2 tail via `gamma_N_factorial_n` (loop- and short-relator-tolerant,
+   advisor-verified on ('xXy','yy')) — the discriminating power is ENTIRELY in the
+   short tail where Φ must hit 0, not in the 1,251 long members (all NOT_SPHERICAL,
+   consistent with any candidate). Run battery (b) BEFORE steps 2/4. Battery (c) is a
+   smoke test, not a battery. New legs: AC4/AC5 inertness check of each CANDIDATE
+   (Corollary Z covers the defect, not arbitrary functionals — test Φ(P) vs Φ(P+z) on
+   the AK3+z root) and a deliberate-mismatch test per the disconnected_split
+   discipline.
+5. TYPE-CHECK REQUIREMENT for step 2: phases live in Z/deg(g⁺) with deg = (6,6,7,7)
+   for AK(3) — no parity map exists (odd y-degree) and every move changes the moduli;
+   each candidate must name a realization-independent target group BEFORE being traced.
+6. PRIORS (advisor, recorded for honesty): step-1 machinery ~0.7 (no-cancellation
+   case) / ~0.2 (with cancellation); genuine invariant ≤ 0.5% — a class functional
+   separating AK(3) from standard IS the disproof of stable ACC. Opportunity cost:
+   the z-inert-biased rank-2-shadow harvest (handoff item) is higher-EV locally and
+   the Δ-defect calculus feeds its move ordering — that synergy is step 1's real value.
+7. DEPENDENCY NOTE (advisor): the disproof-side chain needs only the EASY half of the
+   master equivalence (standard is thickenable) — NO Lackenby Thm 1.3 dependency,
+   unlike the positive direction. A genuine argument for keeping R3′ alive.
+8. Codex overlap re-verified DISJOINT; cite their parallel-K₄ lemma/slot table/phase
+   equations (lit_AK3_NEUWIRTH_PHASE_OBSTRUCTION.md) rather than re-deriving the
+   192-case analysis.
+
+Execution order (revised): battery-(b) artifacts → time-boxed step 1 (no-cancellation
+calculus + heuristic) → biased shadow harvest (with the heuristic) → steps 2/4 ONLY if
+a candidate survives type-checking and the tail battery.
+
+## Original plan sketch (13:10 UTC, superseded by the reconciliation above)
 
 Claim addressed: DISPROOF side of the stable claim. If a class-functional obstruction
 were established and positive on AK(3)'s STABLE class, the master equivalence would give
