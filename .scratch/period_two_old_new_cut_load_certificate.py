@@ -228,6 +228,9 @@ class Task4FamilyCatalog:
     b_tokens: tuple[TokenRef, ...]
     old_schema_refs: Mapping[str, DecoratedSchemaRef]
     b_schema_refs: Mapping[str, DecoratedSchemaRef]
+    old_footprint_bindings: Mapping[
+        str, tuple[Mapping[str, Any], ...]
+    ]
 
 
 @dataclass(frozen=True)
@@ -235,8 +238,11 @@ class Task4SchemaCatalog:
     families: Mapping[str, Task4FamilyCatalog]
     occurrence_leafs: Mapping[int, int]
     occurrence_polarities: Mapping[int, int]
+    occurrence_slots: Mapping[int, int]
     fixed_metadata: Mapping[str, Mapping[str, Any]]
     chronology_digest: str
+    b_identity_table: tuple[Mapping[str, Any], ...]
+    b_identity_digest: str
 
 
 @dataclass(frozen=True)
@@ -2027,7 +2033,12 @@ def _build_b_family_schemas(
 
 def _task4_chronology_metadata(
     context: SourceContext,
-) -> tuple[dict[int, int], dict[int, int], dict[str, dict[str, Any]]]:
+) -> tuple[
+    dict[int, int],
+    dict[int, int],
+    dict[int, int],
+    dict[str, dict[str, Any]],
+]:
     seven = context.modules["seven"]
     occurrence_leafs = {}
     occurrence = 0
@@ -2043,6 +2054,9 @@ def _task4_chronology_metadata(
     occurrence_polarities = {
         order: row["polarity"] for order, row in context.occurrences.items()
     }
+    occurrence_slots = {
+        order: row["slot"] for order, row in context.occurrences.items()
+    }
     fixed_metadata = {
         f"old:{token.token_id}": {
             "leaf": token.leaf,
@@ -2052,27 +2066,118 @@ def _task4_chronology_metadata(
     }
     if len(fixed_metadata) != 70:
         raise ValueError("fixed chronology metadata does not contain 70 tokens")
-    return occurrence_leafs, occurrence_polarities, fixed_metadata
+    return (
+        occurrence_leafs,
+        occurrence_polarities,
+        occurrence_slots,
+        fixed_metadata,
+    )
+
+
+def _old_footprint_bindings(
+    context: SourceContext,
+    tokens: Sequence[TokenRef],
+    references: Mapping[str, DecoratedSchemaRef],
+    occurrence_leafs: Mapping[int, int],
+    occurrence_polarities: Mapping[int, int],
+    fixed_metadata: Mapping[str, Mapping[str, Any]],
+) -> dict[str, tuple[dict[str, Any], ...]]:
+    bindings = {}
+    for token in tokens:
+        reference = references[token.token_id]
+        entries = []
+        for occurrence, label_schema in reference.label_schemas:
+            if occurrence is None:
+                metadata = fixed_metadata.get(token.token_id)
+                if metadata is None or token.slot is not None:
+                    raise CertificateFailure(
+                        f"invalid fixed footprint source: {token.token_id}"
+                    )
+                occurrence_slot = None
+                polarity = None
+                leaf = metadata["leaf"]
+            else:
+                occurrence_row = context.occurrences.get(occurrence)
+                if occurrence_row is None or occurrence_row["slot"] != token.slot:
+                    raise CertificateFailure(
+                        f"old footprint occurrence has wrong slot: {token.token_id}"
+                    )
+                occurrence_slot = occurrence_row["slot"]
+                polarity = occurrence_polarities[occurrence]
+                leaf = occurrence_leafs[occurrence]
+            entries.append(
+                {
+                    "token_id": token.token_id,
+                    "source_slot": token.slot,
+                    "source_members": list(token.source_members),
+                    "module_schema": reference.module_schema,
+                    "occurrence": occurrence,
+                    "occurrence_slot": occurrence_slot,
+                    "polarity": polarity,
+                    "leaf": leaf,
+                    "label_schema": label_schema,
+                }
+            )
+        bindings[token.token_id] = tuple(entries)
+    return bindings
 
 
 def _chronology_digest(
     occurrence_leafs: Mapping[int, int],
     occurrence_polarities: Mapping[int, int],
+    occurrence_slots: Mapping[int, int],
     fixed_metadata: Mapping[str, Mapping[str, Any]],
 ) -> str:
     payload = canonical_json(
         {
             "occurrence_leafs": dict(occurrence_leafs),
             "occurrence_polarities": dict(occurrence_polarities),
+            "occurrence_slots": dict(occurrence_slots),
             "fixed_metadata": dict(fixed_metadata),
         }
     ).encode("ascii")
     return hashlib.sha256(payload).hexdigest()
 
 
+def _b_identity_table(
+    tokens: Sequence[TokenRef],
+) -> tuple[dict[str, Any], ...]:
+    if len(tokens) != TOKEN_COUNT:
+        raise CertificateFailure(f"expected 84 B tokens, got {len(tokens)}")
+    token_ids = [token.token_id for token in tokens]
+    if len(set(token_ids)) != TOKEN_COUNT:
+        raise CertificateFailure("duplicate B token ID")
+    token_indices = [token.token_index for token in tokens]
+    if set(token_indices) != set(range(TOKEN_COUNT)):
+        raise CertificateFailure("B token indices do not cover 0..83 exactly")
+    return tuple(
+        {
+            "token_index": token.token_index,
+            "token_id": token.token_id,
+            "source_class": token.family,
+            "coefficient": token.coefficient,
+            "slot": token.slot,
+            "occurrence": token.occurrence,
+            "polarity": token.polarity,
+            "module_schema": token.module_schema,
+            "label_schema": token.label_schema,
+            "source_members": list(token.source_members),
+        }
+        for token in sorted(tokens, key=lambda item: item.token_index)
+    )
+
+
+def _identity_digest(table: Sequence[Mapping[str, Any]]) -> str:
+    return hashlib.sha256(canonical_json(table).encode("ascii")).hexdigest()
+
+
 def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
     b_tokens, _ = build_b_catalog(context)
+    b_identity_table = _b_identity_table(b_tokens)
     old_tokens, _ = build_old_rows(context)
+    occurrence_leafs, occurrence_polarities, occurrence_slots, fixed_metadata = (
+        _task4_chronology_metadata(context)
+    )
     inverse_sources, _ = context.modules["inverse"].schema_words(
         context.modules["raw"]
     )
@@ -2118,18 +2223,29 @@ def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
             b_tokens=b_tokens,
             old_schema_refs=old_references,
             b_schema_refs=b_references,
+            old_footprint_bindings=_old_footprint_bindings(
+                context,
+                family_old_tokens,
+                old_references,
+                occurrence_leafs,
+                occurrence_polarities,
+                fixed_metadata,
+            ),
         )
-    occurrence_leafs, occurrence_polarities, fixed_metadata = (
-        _task4_chronology_metadata(context)
-    )
     return Task4SchemaCatalog(
         families=families,
         occurrence_leafs=occurrence_leafs,
         occurrence_polarities=occurrence_polarities,
+        occurrence_slots=occurrence_slots,
         fixed_metadata=fixed_metadata,
         chronology_digest=_chronology_digest(
-            occurrence_leafs, occurrence_polarities, fixed_metadata
+            occurrence_leafs,
+            occurrence_polarities,
+            occurrence_slots,
+            fixed_metadata,
         ),
+        b_identity_table=b_identity_table,
+        b_identity_digest=_identity_digest(b_identity_table),
     )
 
 
@@ -2152,6 +2268,13 @@ def _b_occurrence_records(
     item: Task4FamilyCatalog,
     catalog: Task4SchemaCatalog,
 ) -> tuple[dict[str, Any], ...]:
+    live_identity_table = _b_identity_table(item.b_tokens)
+    if canonical_json(live_identity_table) != canonical_json(
+        catalog.b_identity_table
+    ):
+        raise CertificateFailure(
+            f"B token-index identity binding mismatch: {item.family}"
+        )
     records = []
     for token in item.b_tokens:
         reference = item.b_schema_refs[token.token_id]
@@ -2192,6 +2315,7 @@ def _old_occurrence_records(
     catalog: Task4SchemaCatalog,
 ) -> tuple[dict[str, Any], ...]:
     records = []
+    bindings = []
     for occurrence, label_schema in reference.label_schemas:
         if occurrence is None:
             metadata = catalog.fixed_metadata.get(token.token_id)
@@ -2202,6 +2326,7 @@ def _old_occurrence_records(
             leaf = metadata["leaf"]
             polarity = None
             coordinate = metadata["coordinate"]
+            occurrence_slot = None
         else:
             if reference.module_schema is None:
                 raise CertificateFailure(
@@ -2209,7 +2334,21 @@ def _old_occurrence_records(
                 )
             leaf = catalog.occurrence_leafs[occurrence]
             polarity = catalog.occurrence_polarities[occurrence]
+            occurrence_slot = catalog.occurrence_slots[occurrence]
             coordinate = [token.slot, *token.source_members]
+        bindings.append(
+            {
+                "token_id": token.token_id,
+                "source_slot": token.slot,
+                "source_members": list(token.source_members),
+                "module_schema": reference.module_schema,
+                "occurrence": occurrence,
+                "occurrence_slot": occurrence_slot,
+                "polarity": polarity,
+                "leaf": leaf,
+                "label_schema": label_schema,
+            }
+        )
         records.append(
             {
                 "token_id": token.token_id,
@@ -2221,6 +2360,14 @@ def _old_occurrence_records(
                 "module_schema": reference.module_schema,
                 "label_schema": label_schema,
             }
+        )
+    family = catalog.families[token.family]
+    expected_bindings = family.old_footprint_bindings.get(token.token_id)
+    if expected_bindings is None or canonical_json(bindings) != canonical_json(
+        expected_bindings
+    ):
+        raise CertificateFailure(
+            f"old footprint binding mismatch: {token.token_id}"
         )
     if not records:
         raise CertificateFailure(f"empty old footprint: {token.token_id}")
@@ -2241,6 +2388,18 @@ def family_ledger(
     item: Task4FamilyCatalog,
     catalog: Task4SchemaCatalog,
 ) -> dict[str, Any]:
+    old_token_ids = [token.token_id for token in item.old_tokens]
+    if len(set(old_token_ids)) != len(old_token_ids):
+        raise CertificateFailure(f"duplicate old token ID: {item.family}")
+    grouped_load_ids = [
+        f"{item.family}|{cell.cell_id}|{token_id}"
+        for cell in item.cells
+        for token_id in old_token_ids
+    ]
+    if len(set(grouped_load_ids)) != len(grouped_load_ids):
+        raise CertificateFailure(
+            f"duplicate grouped load ID: {item.family}"
+        )
     b_records = _b_occurrence_records(item, catalog)
     cell_records = []
     family_comparisons = 0
@@ -2297,6 +2456,12 @@ def family_ledger(
                     "coefficient": token.coefficient,
                     "source_members": list(token.source_members),
                     "occurrence_footprint": occurrence_count,
+                    "footprint_bindings": [
+                        dict(binding)
+                        for binding in item.old_footprint_bindings[
+                            token.token_id
+                        ]
+                    ],
                     "histograms": histograms,
                     "value": load_value,
                 }
@@ -2431,10 +2596,13 @@ def build_manifest(
     live_chronology_digest = _chronology_digest(
         catalog.occurrence_leafs,
         catalog.occurrence_polarities,
+        catalog.occurrence_slots,
         catalog.fixed_metadata,
     )
     if live_chronology_digest != catalog.chronology_digest:
         raise CertificateFailure("chronology metadata digest mismatch")
+    if _identity_digest(catalog.b_identity_table) != catalog.b_identity_digest:
+        raise CertificateFailure("B identity table digest mismatch")
     summary = _catalog_summary(catalog)
     _validate_catalog_summary(summary)
     manifest = {
@@ -2442,6 +2610,8 @@ def build_manifest(
         "domain": "a=d-1>=0, n>=0; positive chamber d>=1",
         "status": "unverified",
         "summary": summary,
+        "b_identity_table": [dict(row) for row in catalog.b_identity_table],
+        "b_identity_digest": catalog.b_identity_digest,
         "family_ledgers": {},
     }
     ledgers = {
@@ -2457,7 +2627,7 @@ def build_manifest(
             f"{derived_comparisons}"
         )
     manifest["family_ledgers"] = ledgers
-    manifest["status"] = "proved-positive-chamber-old-new-cut"
+    manifest["status"] = "generated-awaiting-independent-replay"
     return manifest
 
 

@@ -786,7 +786,18 @@ def test_manifest_census_expands_every_catalog_occurrence_footprint() -> None:
     assert summary["total_occurrence_loads"] == 17760
     assert summary["b_tokens_per_occurrence"] == 84
     assert summary["active_comparisons"] == 1491840
-    assert manifest["status"] == "proved-positive-chamber-old-new-cut"
+    b_identity_table = manifest["b_identity_table"]
+    assert len(b_identity_table) == 84
+    assert [row["token_index"] for row in b_identity_table] == list(range(84))
+    assert len({row["token_id"] for row in b_identity_table}) == 84
+    assert b_identity_table[0]["token_id"] == "b0:g0:00:o11"
+    assert b_identity_table[-1]["token_id"] == "b0:path:f052:o16"
+    assert manifest["b_identity_digest"] == (
+        "a8c7f0ad73b9f9b88b758f7983724aa921c6dfa3a2ab7a4eeceb6cfb0f973bbd"
+    )
+    assert manifest["status"] == "generated-awaiting-independent-replay"
+    assert "independent_verifier_attestation" not in manifest
+    assert not manifest["status"].startswith("proved")
     assert {
         family: {cell["value"] for cell in ledger["cells"]}
         for family, ledger in manifest["family_ledgers"].items()
@@ -1145,6 +1156,99 @@ def test_manifest_rejects_wrong_catalog_footprint_and_polarity_binding() -> None
         module.build_manifest(
             catalog=replace(catalog, occurrence_polarities=wrong_polarities)
         )
+
+
+def test_old_footprint_rejects_same_length_wrong_slot_occurrence() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+    singleton = catalog.families["singleton"]
+    token = singleton.old_tokens[0]
+    reference = singleton.old_schema_refs[token.token_id]
+    p_family = catalog.families["P"]
+    wrong_occurrence, wrong_label = next(
+        label
+        for p_reference in p_family.old_schema_refs.values()
+        for label in p_reference.label_schemas
+        if label[0] not in {item[0] for item in reference.label_schemas}
+    )
+    mutated = replace(
+        reference,
+        label_schemas=(
+            (wrong_occurrence, wrong_label),
+            *reference.label_schemas[1:],
+        ),
+    )
+
+    with pytest.raises(
+        module.CertificateFailure, match="old footprint binding mismatch"
+    ):
+        module._old_occurrence_records(token, mutated, catalog)
+
+
+def test_b_identity_table_rejects_duplicate_token_with_fresh_index() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+    fixed = catalog.families["fixed"]
+    tokens = list(fixed.b_tokens)
+    tokens[1] = replace(tokens[0], token_index=1)
+    mutated = replace(fixed, b_tokens=tuple(tokens))
+
+    with pytest.raises(
+        module.CertificateFailure, match="duplicate B token ID"
+    ):
+        module._b_occurrence_records(mutated, catalog)
+
+
+def test_family_ledger_rejects_duplicate_old_and_grouped_load_ids() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+    fixed = catalog.families["fixed"]
+    old_tokens = list(fixed.old_tokens)
+    old_tokens[1] = old_tokens[0]
+    with pytest.raises(
+        module.CertificateFailure, match="duplicate old token ID"
+    ):
+        module.family_ledger(
+            replace(fixed, old_tokens=tuple(old_tokens)), catalog
+        )
+
+    cells = list(fixed.cells)
+    cells[1] = cells[0]
+    with pytest.raises(
+        module.CertificateFailure, match="duplicate grouped load ID"
+    ):
+        module.family_ledger(replace(fixed, cells=tuple(cells)), catalog)
+
+
+def test_family_ledger_serializes_each_approved_footprint_binding() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+    singleton = catalog.families["singleton"]
+
+    ledger = module.family_ledger(singleton, catalog)
+
+    first_load = ledger["cells"][0]["loads"][0]
+    token_id = singleton.old_tokens[0].token_id
+    assert first_load["footprint_bindings"] == [
+        dict(binding)
+        for binding in singleton.old_footprint_bindings[token_id]
+    ]
+    assert len(first_load["footprint_bindings"]) == 6
+    assert all(
+        set(binding)
+        == {
+            "token_id",
+            "source_slot",
+            "source_members",
+            "module_schema",
+            "occurrence",
+            "occurrence_slot",
+            "polarity",
+            "leaf",
+            "label_schema",
+        }
+        for binding in first_load["footprint_bindings"]
+    )
 
 
 def test_family_ledger_rejects_one_flipped_derived_bit(monkeypatch) -> None:
