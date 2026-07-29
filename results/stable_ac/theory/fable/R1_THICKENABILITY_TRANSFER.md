@@ -3,6 +3,42 @@
 Status: ACTIVE (fable line). Claim addressed: **stable AC-triviality of AK(3)** (not
 AC-triviality, not group triviality). Created 29-07-2026; see FRAMING.md §6.
 
+## PROVENANCE CORRECTION (29-07-2026, ~08:00 UTC — supersedes parts of the text below)
+
+Source verification (Shehper et al. LaTeX source obtained from github.com/ammedmar/ac_paper
+commit d86984d + AC-Solver code; arXiv itself is proxy-blocked this session) revealed TWO
+distinct partner presentations, and upgraded the route:
+
+- **P25 (verified):** ⟨x,y | x⁻¹y⁻¹xy⁻¹x⁻¹yxy⁻²xyx⁻¹y, y⁻¹x⁻¹y²x⁻¹y⁻¹xyxy⁻²x⟩,
+  words `XYxYXyxYYxyXy` (13) / `YXyyXYxyxYYx` (12). Shehper et al. app/mms.tex: this is
+  stably AC-equivalent to the MMS3 3-generator family member (w = x⁻¹yz) and — crucially —
+  **AC-equivalent to AK(3) by an explicit 53-move sequence**, which our source agent replayed
+  computationally through the authors' own ACMove code, ending at exactly
+  (`x³y⁻⁴`, `xyxy⁻¹x⁻¹y⁻¹`). So P25 is in AK(3)'s CLASSICAL AC class. γ_N(P25) = 0 would
+  give AK(3) **AC-trivial** (hence also stably) — the full jackpot. Its link support is
+  loopless connected **K₄−e** (degrees x:11, y:14; missing edge x⁺x⁻) — in the proved
+  polynomial solver class.
+- **Q (provenance pending):** ⟨x,y | x⁴ = yx²y⁻¹x⁻¹yx²y⁻¹, y = [x²,y]³⟩ — the pair named
+  "MMS02 Prop 1.2, misprint-unaffected" by the codex line's ac-advisor ground truth (they
+  read the MMS02 text directly; it is not in any git-reachable source, and this session's
+  proxy blocks arXiv). Keep as a SECOND target with its provenance flagged: stable-class
+  membership rests on codex's vetted reading of MMS02 Prop 1.2, to be re-verified when
+  access returns. Support K₄ (below).
+- **Shehper et al.'s own stable status text** (app/mms.tex, verbatim): after the misprint,
+  the family "with appropriate w" still presents the trivial group, P25 is reached, but
+  "unlike any presentation AC-equivalent to a correct Wirtinger presentation, these
+  presentations are not necessarily stably AC-trivial." I.e. the stable claim is withdrawn;
+  P25's thickenability was never considered by anyone.
+- **R2 status update:** Shehper's draft thm:unknot (their source, draft-grade) says genuine
+  unknot-Wirtinger-derived presentations are AC-trivial OUTRIGHT — so a corrected-Wirtinger
+  chain to AK(3) would prove full AC-triviality; coauthor Fagan's recorded intuition is that
+  AK(3) "cannot be trivialized through a knot diagram". R2 is parked DORMANT (not blocked:
+  the a-priori argument is heuristic, but no concrete corrected chain exists to test).
+- **53-move path:** every intermediate state of the published 53-move sequence AK(3) ↔ P25
+  is in the classical class and lies (at least partly) outside codex's height-17 censused
+  component — each is a fresh decidable target. Enumerate by replay; test all states whose
+  support lands in the proved classes.
+
 ## The transfer argument (exact logical chain)
 
 1. **MMS02 Prop 1.2** (Myasnikov–Myasnikov–Shpilrain 2002, misprint-unaffected —
