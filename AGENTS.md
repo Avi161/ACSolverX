@@ -1361,3 +1361,8 @@
 
 - [TRAP] Flattening a typed residual AST and streaming every canonical correction relation word can match a direct four-corner oracle while duplicating its essential computation; that does not independently certify product, inverse, section-transport, or section-multiplication defects.
 - [WORKS] Evaluate AST nodes in the convention `W = n sigma(q)`: use analytic shortlex correction coordinates, transport by the quotient action plus one-vertex tensor defects, include the exact `omega(q,r)` section defect in products, and reserve literal streaming for bounded fixed leaves and oracle fixtures.
+
+### 2026-07-29 Guard no-census certificates at the import boundary
+
+- [TRAP] Monkeypatching only `source.source_vertices` did not detect that the Task 2 Hessian fixture path still consumed direction constructors through `depth4_period_two_depth6_l0_census_certificate`; the no-census test passed despite the aggregate dependency.
+- [WORKS] Replace the aggregate package attribute with a fail-closed object, delete any stale subject-module binding, reload the subject, and execute the certificate. Import action/covector modules directly and reconstruct pinned source fixtures through the unique tree flow.

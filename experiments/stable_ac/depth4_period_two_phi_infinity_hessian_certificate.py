@@ -9,16 +9,32 @@ from hashlib import sha256
 from typing import Union
 
 try:
+    from experiments.stable_ac import depth4_period_two_cyclic_degree_two_obstruction_certificate as cyclic
     from experiments.stable_ac import depth4_period_two_degree_two_escape_certificate as escape
-    from experiments.stable_ac import depth4_period_two_depth6_l0_census_certificate as census
+    from experiments.stable_ac import depth4_period_two_eight_direction_obstruction_certificate as eight
+    from experiments.stable_ac import depth4_period_two_eleven_direction_obstruction_certificate as eleven
+    from experiments.stable_ac import depth4_period_two_five_direction_obstruction_certificate as five
     from experiments.stable_ac import depth4_period_two_lift_certificate as lift
+    from experiments.stable_ac import depth4_period_two_nine_direction_obstruction_certificate as nine
+    from experiments.stable_ac import depth4_period_two_remote_syzygy_certificate as remote
+    from experiments.stable_ac import depth4_period_two_seven_direction_obstruction_certificate as seven
+    from experiments.stable_ac import depth4_period_two_six_direction_obstruction_certificate as six
     from experiments.stable_ac import depth4_period_two_source_flow_certificate as source
+    from experiments.stable_ac import depth4_period_two_ten_direction_obstruction_certificate as ten
     from experiments.stable_ac import depth4_period_two_tree_flow_factorization_certificate as tree
 except ModuleNotFoundError:
+    import depth4_period_two_cyclic_degree_two_obstruction_certificate as cyclic
     import depth4_period_two_degree_two_escape_certificate as escape
-    import depth4_period_two_depth6_l0_census_certificate as census
+    import depth4_period_two_eight_direction_obstruction_certificate as eight
+    import depth4_period_two_eleven_direction_obstruction_certificate as eleven
+    import depth4_period_two_five_direction_obstruction_certificate as five
     import depth4_period_two_lift_certificate as lift
+    import depth4_period_two_nine_direction_obstruction_certificate as nine
+    import depth4_period_two_remote_syzygy_certificate as remote
+    import depth4_period_two_seven_direction_obstruction_certificate as seven
+    import depth4_period_two_six_direction_obstruction_certificate as six
     import depth4_period_two_source_flow_certificate as source
+    import depth4_period_two_ten_direction_obstruction_certificate as ten
     import depth4_period_two_tree_flow_factorization_certificate as tree
 
 
@@ -593,11 +609,66 @@ def _residual_tensor_to_wedge(linear: lift.ModuleVector, tensor: Tensor) -> Wedg
     }
 
 
+_REMOTE_FOUR_POINT_ACTION = ((0, 1, 3, 2), (1, 2, 0, 3))
+
+
+def _paired_action_bits(
+    vector: tuple[int, ...],
+    covectors: tuple[tuple[int, ...], ...],
+) -> tuple[int, ...]:
+    return tuple(
+        sum(coefficient * coordinate for coefficient, coordinate in zip(covector, vector)) % 2
+        for covector in covectors
+    )
+
+
+def _direct_fourteen_bits(value: WedgeVector) -> tuple[int, ...]:
+    def projected(action: tuple[tuple[int, ...], tuple[int, ...]]) -> tuple[int, ...]:
+        return remote.finite_wedge_vector(value, *action)
+
+    result_152 = (
+        sum(projected(((0, 2, 1), (1, 2, 0)))) % 2,
+        sum(projected(_REMOTE_FOUR_POINT_ACTION)) % 2,
+        sum(projected(cyclic.CYCLIC_ACTION)) % 2,
+        sum(projected(five.NEW_THREE_POINT_ACTION)) % 2,
+        sum(projected(six.TWO_POINT_ACTION)) % 2,
+    )
+    result_153 = (
+        *_paired_action_bits(
+            projected(seven.IDENTITY_FOUR_POINT_ACTION),
+            seven.IDENTITY_FOUR_POINT_COVECTORS,
+        ),
+        *_paired_action_bits(
+            projected(seven.TWISTED_FOUR_POINT_ACTION),
+            (seven.TWISTED_FOUR_POINT_COVECTOR,),
+        ),
+    )
+    result_154 = _paired_action_bits(
+        projected(eight.NEW_FOUR_POINT_ACTION),
+        (eight.NEW_FOUR_POINT_COVECTOR,),
+    )
+    result_155 = _paired_action_bits(
+        projected(nine.INVERSE_FOUR_POINT_ACTION),
+        (nine.INVERSE_FOUR_POINT_COVECTOR,),
+    )
+    result_156 = _paired_action_bits(
+        projected(ten.FIVE_POINT_ACTION),
+        ten.FIVE_POINT_COVECTORS,
+    )
+    result_157 = _paired_action_bits(
+        projected(eleven.NEW_ACTION),
+        eleven.NEW_COVECTORS,
+    )
+    bits = (*result_152, *result_153, *result_154, *result_155, *result_156, *result_157)
+    assert len(bits) == 14
+    return bits
+
+
 def symbolic_syndrome(direction: ModuleVariables) -> tuple[int, ...]:
     _assert_direction(direction)
     linear, tensor = _symbolic_residual_coordinate(direction)
     wedge = _residual_tensor_to_wedge(linear, tensor)
-    bits = (*census._direct_fourteen_bits(wedge), sum(wedge.values()) % 2)
+    bits = (*_direct_fourteen_bits(wedge), sum(wedge.values()) % 2)
     assert len(bits) == 15 and all(bit in (0, 1) for bit in bits)
     return bits
 
@@ -607,6 +678,320 @@ def phi_infinity_hessian(
     right: ModuleVariables,
 ) -> int:
     return sum(symbolic_mixed_wedge(left, right).values()) % 2
+
+
+@dataclass(frozen=True)
+class ActiveAnchoredOccurrence:
+    active_order: int
+    residual_order: int
+    slot: int
+    polarity: int
+    action: lift.Word
+
+
+@lru_cache(maxsize=1)
+def active_anchored_occurrences() -> tuple[ActiveAnchoredOccurrence, ...]:
+    """Return the exact occurrence theorem after the anchored slot-one deletion."""
+
+    active = tuple(
+        ActiveAnchoredOccurrence(
+            active_order=active_order,
+            residual_order=residual_order,
+            slot=occurrence.slot,
+            polarity=occurrence.polarity,
+            action=lift.quotient_reduce(occurrence.quotient_prefix),
+        )
+        for active_order, (residual_order, occurrence) in enumerate(
+            (
+                (residual_order, occurrence)
+                for residual_order, occurrence in enumerate(residual_occurrences(), start=1)
+                if occurrence.slot != 1
+            ),
+            start=1,
+        )
+    )
+    assert len(active) == 12
+    assert len({(record.slot, record.action) for record in active}) == 12
+    return active
+
+
+@dataclass(frozen=True)
+class EqualityKernel:
+    slot: int
+    negative_active_orders: tuple[int, ...]
+    integral_multiplicity: int
+    mod_two_coefficient: int
+
+
+@lru_cache(maxsize=1)
+def internal_equality_kernels() -> tuple[EqualityKernel, ...]:
+    by_slot: dict[int, list[int]] = defaultdict(list)
+    for record in active_anchored_occurrences():
+        if record.polarity == -1:
+            by_slot[record.slot].append(record.active_order)
+    kernels = tuple(
+        EqualityKernel(
+            slot=slot,
+            negative_active_orders=tuple(by_slot[slot]),
+            integral_multiplicity=len(by_slot[slot]),
+            mod_two_coefficient=len(by_slot[slot]) % 2,
+        )
+        for slot in sorted(by_slot)
+    )
+    assert tuple(record.slot for record in kernels) == (0, 2, 3, 4)
+    assert all(record.mod_two_coefficient == 1 for record in kernels)
+    return kernels
+
+
+@dataclass(frozen=True)
+class InversionKernel:
+    slot: int
+    positive_active_order: int
+    negative_active_order: int
+    base_action: lift.Word
+    paired_action: lift.Word
+    multiplier: lift.Word
+    mod_two_coefficient: int
+
+
+@lru_cache(maxsize=1)
+def internal_inversion_kernels() -> tuple[InversionKernel, ...]:
+    active = active_anchored_occurrences()
+    paired_orders = ((2, 3), (5, 6), (8, 9), (1, 4), (7, 10), (11, 12))
+    kernels = []
+    for positive_order, negative_order in paired_orders:
+        positive = active[positive_order - 1]
+        negative = active[negative_order - 1]
+        assert positive.slot == negative.slot
+        assert positive.polarity == 1 and negative.polarity == -1
+        kernels.append(InversionKernel(
+            slot=positive.slot,
+            positive_active_order=positive_order,
+            negative_active_order=negative_order,
+            base_action=positive.action,
+            paired_action=negative.action,
+            multiplier=lift.quotient_multiply(
+                negative.action,
+                lift.quotient_inverse(positive.action),
+            ),
+            mod_two_coefficient=1,
+        ))
+    return tuple(kernels)
+
+
+@dataclass(frozen=True)
+class ExternalOrderKernel:
+    left_active_order: int
+    right_active_order: int
+    left_slot: int
+    left_action: lift.Word
+    right_slot: int
+    right_action: lift.Word
+    integral_coefficient: int
+    mod_two_coefficient: int
+
+    @property
+    def ordered_type_key(self) -> tuple[int, lift.Word, int, lift.Word]:
+        return self.left_slot, self.left_action, self.right_slot, self.right_action
+
+    @property
+    def transpose_type_key(self) -> tuple[int, lift.Word, int, lift.Word]:
+        return self.right_slot, self.right_action, self.left_slot, self.left_action
+
+
+@lru_cache(maxsize=1)
+def external_order_kernels() -> tuple[ExternalOrderKernel, ...]:
+    active = active_anchored_occurrences()
+    kernels = tuple(
+        ExternalOrderKernel(
+            left_active_order=left.active_order,
+            right_active_order=right.active_order,
+            left_slot=left.slot,
+            left_action=left.action,
+            right_slot=right.slot,
+            right_action=right.action,
+            integral_coefficient=left.polarity * right.polarity,
+            mod_two_coefficient=(left.polarity * right.polarity) % 2,
+        )
+        for left_index, left in enumerate(active)
+        for right in active[left_index + 1:]
+    )
+    keys = {record.ordered_type_key for record in kernels}
+    assert len(kernels) == len(keys) == 66
+    assert not any(record.transpose_type_key in keys for record in kernels)
+    return kernels
+
+
+def _shortlex_key(vertex: lift.Word) -> tuple[int, lift.Word]:
+    canonical = lift.c_vertex(vertex)
+    return len(canonical), canonical
+
+
+def _lt_mod_two(left: lift.ModuleVector, right: lift.ModuleVector) -> int:
+    canonical_left = lift.add_vectors(left)
+    canonical_right = lift.add_vectors(right)
+    return sum(
+        left_coefficient * right_coefficient
+        for left_vertex, left_coefficient in canonical_left.items()
+        for right_vertex, right_coefficient in canonical_right.items()
+        if _shortlex_key(left_vertex) < _shortlex_key(right_vertex)
+    ) % 2
+
+
+def _eq_infinity(left: lift.ModuleVector, right: lift.ModuleVector) -> int:
+    canonical_left = lift.add_vectors(left)
+    canonical_right = lift.add_vectors(right)
+    augmentation = sum(canonical_left.values()) * sum(canonical_right.values())
+    diagonal = sum(
+        coefficient * canonical_right.get(vertex, 0)
+        for vertex, coefficient in canonical_left.items()
+    )
+    return (augmentation + diagonal) % 2
+
+
+def _polarized_inversion(
+    multiplier: lift.Word,
+    left: lift.ModuleVector,
+    right: lift.ModuleVector,
+) -> int:
+    canonical_left = lift.add_vectors(left)
+    canonical_right = lift.add_vectors(right)
+    vertices = sorted(
+        set(canonical_left) | set(canonical_right),
+        key=_shortlex_key,
+    )
+    value = 0
+    for left_index, left_vertex in enumerate(vertices):
+        translated_left = lift.c_vertex(
+            lift.quotient_multiply(multiplier, left_vertex),
+        )
+        for right_vertex in vertices[left_index + 1:]:
+            translated_right = lift.c_vertex(
+                lift.quotient_multiply(multiplier, right_vertex),
+            )
+            if _shortlex_key(translated_left) > _shortlex_key(translated_right):
+                value += (
+                    canonical_left.get(left_vertex, 0)
+                    * canonical_right.get(right_vertex, 0)
+                    + canonical_right.get(left_vertex, 0)
+                    * canonical_left.get(right_vertex, 0)
+                )
+    return value % 2
+
+
+def _active_translated_currents(
+    direction: ModuleVariables,
+) -> tuple[lift.ModuleVector, ...]:
+    _assert_direction(direction)
+    assert not lift.add_vectors(direction[1]), "anchored direction has nonzero slot one"
+    return tuple(
+        _action(record.action, direction[record.slot])
+        for record in active_anchored_occurrences()
+    )
+
+
+@dataclass(frozen=True)
+class AnchoredKernelSubtotals:
+    equality_terms: tuple[int, ...]
+    inversion_terms: tuple[int, ...]
+    external_terms: tuple[int, ...]
+    external_reversed_terms: tuple[int, ...]
+
+    @property
+    def equality(self) -> int:
+        return sum(self.equality_terms) % 2
+
+    @property
+    def inversion(self) -> int:
+        return sum(self.inversion_terms) % 2
+
+    @property
+    def external(self) -> int:
+        return sum(self.external_terms) % 2
+
+    @property
+    def external_reversed(self) -> int:
+        return sum(self.external_reversed_terms) % 2
+
+    @property
+    def total(self) -> int:
+        return (self.equality + self.inversion + self.external) % 2
+
+
+def anchored_direction_kernel_subtotals(
+    left: ModuleVariables,
+    right: ModuleVariables,
+) -> AnchoredKernelSubtotals:
+    """Evaluate E+I+O for any two anchored homogeneous directions.
+
+    The records come from the Task 1 occurrence theorem.  Slot one vanishes
+    by the anchored source construction, while slots two through four are
+    the unique linear finite tree flow.  No bounded-source assumption enters.
+    """
+
+    left_currents = _active_translated_currents(left)
+    right_currents = _active_translated_currents(right)
+    equality_terms = tuple(
+        record.mod_two_coefficient * _eq_infinity(left[record.slot], right[record.slot]) % 2
+        for record in internal_equality_kernels()
+    )
+    inversion_terms = tuple(
+        record.mod_two_coefficient * _polarized_inversion(
+            record.multiplier,
+            _action(record.base_action, left[record.slot]),
+            _action(record.base_action, right[record.slot]),
+        ) % 2
+        for record in internal_inversion_kernels()
+    )
+    external_terms = tuple(
+        record.mod_two_coefficient * (
+            _lt_mod_two(
+                left_currents[record.left_active_order - 1],
+                right_currents[record.right_active_order - 1],
+            )
+            + _lt_mod_two(
+                right_currents[record.left_active_order - 1],
+                left_currents[record.right_active_order - 1],
+            )
+        ) % 2
+        for record in external_order_kernels()
+    )
+    external_reversed_terms = tuple(
+        record.mod_two_coefficient * (
+            _lt_mod_two(
+                left_currents[record.right_active_order - 1],
+                right_currents[record.left_active_order - 1],
+            )
+            + _lt_mod_two(
+                right_currents[record.right_active_order - 1],
+                left_currents[record.left_active_order - 1],
+            )
+        ) % 2
+        for record in external_order_kernels()
+    )
+    subtotals = AnchoredKernelSubtotals(
+        equality_terms=equality_terms,
+        inversion_terms=inversion_terms,
+        external_terms=external_terms,
+        external_reversed_terms=external_reversed_terms,
+    )
+    assert subtotals.external == subtotals.external_reversed
+    assert subtotals.total == phi_infinity_hessian(left, right)
+    return subtotals
+
+
+def anchored_hessian_subtotals(
+    left: lift.Word,
+    right: lift.Word,
+) -> AnchoredKernelSubtotals:
+    return anchored_direction_kernel_subtotals(
+        tree.anchored_direction(lift.c_vertex(left)),
+        tree.anchored_direction(lift.c_vertex(right)),
+    )
+
+
+def beta_infinity(left: lift.Word, right: lift.Word) -> int:
+    return anchored_hessian_subtotals(left, right).total
 
 
 def anchored_pair_value(
@@ -638,6 +1023,105 @@ def diagonal_left_pair_value(
     translated_left = lift.c_vertex(lift.quotient_multiply(quotient_context, left))
     translated_right = lift.c_vertex(lift.quotient_multiply(quotient_context, right))
     return anchored_pair_value(translated_left, translated_right, epsilon)
+
+
+@dataclass(frozen=True)
+class AnchoredKernelNormalForm:
+    active_occurrence_count: int
+    active_slot_counts: tuple[int, int, int, int, int]
+    equality_terms: int
+    inversion_terms: int
+    external_pair_terms: int
+    external_oriented_monomials: int
+    duplicate_external_keys: int
+    generic_transpose_pairs: int
+    slot4_t_inversion_coefficient: int
+    slot_one_zero_on_anchored_directions: bool
+    external_reversal_from_homogeneity: bool
+    pullback_uses_unique_linear_tree_flow: bool
+    coefficient_sha256: str
+
+
+@lru_cache(maxsize=1)
+def anchored_kernel_normal_form() -> AnchoredKernelNormalForm:
+    active = active_anchored_occurrences()
+    equality = internal_equality_kernels()
+    inversion = internal_inversion_kernels()
+    external = external_order_kernels()
+    active_payload = tuple(
+        (
+            record.active_order,
+            record.residual_order,
+            record.slot,
+            record.polarity,
+            lift.literal(record.action),
+        )
+        for record in active
+    )
+    equality_payload = tuple(
+        (
+            record.slot,
+            record.negative_active_orders,
+            record.integral_multiplicity,
+            record.mod_two_coefficient,
+        )
+        for record in equality
+    )
+    inversion_payload = tuple(
+        (
+            record.slot,
+            record.positive_active_order,
+            record.negative_active_order,
+            lift.literal(record.base_action),
+            lift.literal(record.paired_action),
+            lift.literal(record.multiplier),
+            record.mod_two_coefficient,
+        )
+        for record in inversion
+    )
+    external_payload = tuple(
+        (
+            record.left_active_order,
+            record.right_active_order,
+            record.left_slot,
+            lift.literal(record.left_action),
+            record.right_slot,
+            lift.literal(record.right_action),
+            record.integral_coefficient,
+            record.mod_two_coefficient,
+        )
+        for record in external
+    )
+    keys = tuple(record.ordered_type_key for record in external)
+    key_set = set(keys)
+    duplicate_keys = len(keys) - len(key_set)
+    transpose_pairs = sum(record.transpose_type_key in key_set for record in external)
+    slot_counts = tuple(
+        sum(record.slot == slot for record in active)
+        for slot in range(5)
+    )
+    slot4_t = tuple(record for record in inversion if record.slot == 4)
+    assert len(slot4_t) == 1
+    return AnchoredKernelNormalForm(
+        active_occurrence_count=len(active),
+        active_slot_counts=slot_counts,  # type: ignore[arg-type]
+        equality_terms=len(equality),
+        inversion_terms=len(inversion),
+        external_pair_terms=len(external),
+        external_oriented_monomials=2 * len(external),
+        duplicate_external_keys=duplicate_keys,
+        generic_transpose_pairs=transpose_pairs,
+        slot4_t_inversion_coefficient=slot4_t[0].mod_two_coefficient,
+        slot_one_zero_on_anchored_directions=True,
+        external_reversal_from_homogeneity=True,
+        pullback_uses_unique_linear_tree_flow=True,
+        coefficient_sha256=sha256(repr((
+            active_payload,
+            equality_payload,
+            inversion_payload,
+            external_payload,
+        )).encode()).hexdigest(),
+    )
 
 
 @dataclass(frozen=True)
@@ -711,9 +1195,20 @@ def _direct_raw_residual_tensor(variables: ModuleVariables) -> Tensor:
     return raw_tensor_from_kernel_word(escape.schreier_word(residual))
 
 
+def _direct_syndrome(direction: ModuleVariables) -> tuple[int, ...]:
+    _assert_direction(direction)
+    variables = escape.add_variables(_base_variables(), direction)
+    residual = escape.corrected_residual(variables)
+    wedge = escape.degree_two(escape.schreier_word(residual))
+    bits = (*_direct_fourteen_bits(wedge), sum(wedge.values()) % 2)
+    assert len(bits) == 15 and all(bit in (0, 1) for bit in bits)
+    return bits
+
+
 @dataclass(frozen=True)
 class Certificate:
     normal_form: KernelNormalForm
+    anchored_normal_form: AnchoredKernelNormalForm
     operator_matches: tuple[bool, bool, bool, bool, bool]
     raw_commutator_tensor: tuple[tuple[str, str, int], ...]
     raw_commutator_mod_two_diagonal_labels: tuple[str, ...]
@@ -733,11 +1228,21 @@ class Certificate:
     bounded_cross_syndrome: str
     bounded_biadditivity: str
     bounded_zero_self_polarizations: int
+    near_survivor_pair_values: tuple[tuple[str, str, int, int, str], ...]
+    near_survivor_direct_matches: tuple[bool, bool]
+    negative_balanced_pair_value: tuple[str, str, int, int, str]
+    negative_balanced_direct_match: bool
+    unbalanced_pair_value: tuple[str, str, int, int, str]
+    near_survivor_extensions: tuple[tuple[str, str, str], ...]
+    near_survivor_extension_direct_matches: tuple[tuple[bool, bool], ...]
+    tracked_direction_syndromes: tuple[str, ...]
+    tracked_direction_direct_matches: tuple[bool, ...]
 
 
 @lru_cache(maxsize=1)
 def phi_infinity_hessian_certificate() -> Certificate:
     normal_form = kernel_normal_form()
+    anchored_normal_form = anchored_kernel_normal_form()
     _, _, _, _, operators = escape.recurrence_data()
     operator_matches = tuple(
         occurrence_operator(slot) == operator
@@ -792,7 +1297,7 @@ def phi_infinity_hessian_certificate() -> Certificate:
         for direction in (zero, x, y, tree.add_directions(x, y))
     )
     direct_syndromes = tuple(
-        tree.syndrome(direction)
+        _direct_syndrome(direction)
         for direction in (zero, x, y, tree.add_directions(x, y))
     )
     constant, syndrome_x, syndrome_y, syndrome_xy = syndromes
@@ -807,8 +1312,111 @@ def phi_infinity_hessian_certificate() -> Certificate:
     )
     fixed_directions = (x, y, z, tree.add_directions(x, y))
     zero_self = sum(phi_infinity_hessian(direction, direction) == 0 for direction in fixed_directions)
+
+    near_pairs = (
+        ("TT", "TTTct", 1),
+        ("Tctt", "Tctct", 1),
+    )
+    near_pair_values = []
+    near_pair_matches = []
+    for left_label, right_label, epsilon in near_pairs:
+        left_vertex = lift.parse_quotient(left_label)
+        right_vertex = lift.parse_quotient(right_label)
+        value = anchored_pair_value(left_vertex, right_vertex, epsilon)
+        pair_source = lift.add_vectors(
+            {left_vertex: 1},
+            {right_vertex: epsilon},
+        )
+        direct_direction = source.build_l0_direction(pair_source).variables
+        direct_value = (1, _direct_syndrome(direct_direction))
+        near_pair_values.append((
+            left_label,
+            right_label,
+            epsilon,
+            value[0],
+            _bits(value[1]),
+        ))
+        near_pair_matches.append(value == direct_value)
+
+    negative_left_label = "TTT"
+    negative_right_label = "cTTT"
+    negative_epsilon = -1
+    negative_left = lift.parse_quotient(negative_left_label)
+    negative_right = lift.parse_quotient(negative_right_label)
+    negative_value = anchored_pair_value(
+        negative_left,
+        negative_right,
+        negative_epsilon,
+    )
+    negative_source = lift.add_vectors(
+        {negative_left: 1},
+        {negative_right: negative_epsilon},
+    )
+    negative_direct = (
+        1,
+        _direct_syndrome(source.build_l0_direction(negative_source).variables),
+    )
+    negative_pair_record = (
+        negative_left_label,
+        negative_right_label,
+        negative_epsilon,
+        negative_value[0],
+        _bits(negative_value[1]),
+    )
+
+    unbalanced_left_label = ""
+    unbalanced_right_label = "T"
+    unbalanced_epsilon = 1
+    unbalanced_value = anchored_pair_value(
+        lift.parse_quotient(unbalanced_left_label),
+        lift.parse_quotient(unbalanced_right_label),
+        unbalanced_epsilon,
+    )
+    unbalanced_pair_record = (
+        unbalanced_left_label,
+        unbalanced_right_label,
+        unbalanced_epsilon,
+        unbalanced_value[0],
+        _bits(unbalanced_value[1]),
+    )
+
+    extension_records = []
+    extension_matches = []
+    for context_label in ("c", "t", "T"):
+        context = _parse_quotient_word(context_label)
+        values = []
+        matches = []
+        for left_label, right_label, epsilon in near_pairs:
+            left_vertex = lift.parse_quotient(left_label)
+            right_vertex = lift.parse_quotient(right_label)
+            value = diagonal_left_pair_value(context, left_vertex, right_vertex, epsilon)
+            translated_left = lift.c_vertex(lift.quotient_multiply(context, left_vertex))
+            translated_right = lift.c_vertex(lift.quotient_multiply(context, right_vertex))
+            translated_source = lift.add_vectors(
+                {translated_left: 1},
+                {translated_right: epsilon},
+            )
+            direct = (
+                1,
+                _direct_syndrome(source.build_l0_direction(translated_source).variables),
+            )
+            values.append(_bits(value[1]))
+            matches.append(value == direct)
+        extension_records.append((context_label, values[0], values[1]))
+        extension_matches.append((matches[0], matches[1]))
+
+    tracked_directions = (
+        *six.known_directions(base),
+        *(
+            source.build_l0_direction(source.source_from_entries(entries)).variables
+            for entries in source.KNOWN_SOURCES
+        ),
+    )
+    tracked_symbolic = tuple(symbolic_syndrome(direction) for direction in tracked_directions)
+    tracked_direct = tuple(_direct_syndrome(direction) for direction in tracked_directions)
     return Certificate(
         normal_form=normal_form,
+        anchored_normal_form=anchored_normal_form,
         operator_matches=operator_matches,  # type: ignore[arg-type]
         raw_commutator_tensor=_tensor_records(raw_commutator),
         raw_commutator_mod_two_diagonal_labels=odd_diagonal_labels,
@@ -834,6 +1442,18 @@ def phi_infinity_hessian_certificate() -> Certificate:
         bounded_cross_syndrome=_bits(cross),
         bounded_biadditivity=_bits(biadditivity),
         bounded_zero_self_polarizations=zero_self,
+        near_survivor_pair_values=tuple(near_pair_values),
+        near_survivor_direct_matches=tuple(near_pair_matches),  # type: ignore[arg-type]
+        negative_balanced_pair_value=negative_pair_record,
+        negative_balanced_direct_match=negative_value == negative_direct,
+        unbalanced_pair_value=unbalanced_pair_record,
+        near_survivor_extensions=tuple(extension_records),
+        near_survivor_extension_direct_matches=tuple(extension_matches),
+        tracked_direction_syndromes=tuple(_bits(value) for value in tracked_symbolic),
+        tracked_direction_direct_matches=tuple(
+            symbolic == direct
+            for symbolic, direct in zip(tracked_symbolic, tracked_direct)
+        ),
     )
 
 

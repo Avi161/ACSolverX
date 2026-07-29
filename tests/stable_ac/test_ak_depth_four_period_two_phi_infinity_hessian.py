@@ -318,3 +318,228 @@ def test_kernel_normal_form_and_certificate_pin_exact_subtotals() -> None:
     assert certificate.bounded_cross_syndrome == "100000010000100"
     assert certificate.bounded_biadditivity == "100000001000100"
     assert certificate.bounded_zero_self_polarizations == 4
+
+
+def test_anchored_normal_form_pins_every_active_and_internal_kernel() -> None:
+    from experiments.stable_ac.depth4_period_two_phi_infinity_hessian_certificate import (
+        active_anchored_occurrences,
+        anchored_kernel_normal_form,
+        external_order_kernels,
+        internal_equality_kernels,
+        internal_inversion_kernels,
+    )
+
+    active = active_anchored_occurrences()
+    assert tuple(
+        (
+            record.active_order,
+            record.residual_order,
+            record.slot,
+            record.polarity,
+            lift.literal(record.action),
+        )
+        for record in active
+    ) == (
+        (1, 1, 2, 1, ""),
+        (2, 3, 0, 1, "tc"),
+        (3, 4, 0, -1, "ctcTTTcttc"),
+        (4, 6, 2, -1, "ctcTcTctc"),
+        (5, 7, 0, 1, "ctcTcTctc"),
+        (6, 8, 0, -1, "ctcTTTTcttc"),
+        (7, 9, 3, 1, "ctcTTctt"),
+        (8, 11, 0, 1, "ctcTctc"),
+        (9, 12, 0, -1, "cTTcttc"),
+        (10, 14, 3, -1, "t"),
+        (11, 15, 4, 1, "t"),
+        (12, 16, 4, -1, ""),
+    )
+
+    equality = internal_equality_kernels()
+    assert tuple(
+        (
+            record.slot,
+            record.negative_active_orders,
+            record.integral_multiplicity,
+            record.mod_two_coefficient,
+        )
+        for record in equality
+    ) == (
+        (0, (3, 6, 9), 3, 1),
+        (2, (4,), 1, 1),
+        (3, (10,), 1, 1),
+        (4, (12,), 1, 1),
+    )
+
+    inversion = internal_inversion_kernels()
+    assert tuple(
+        (
+            record.slot,
+            record.positive_active_order,
+            record.negative_active_order,
+            lift.literal(record.base_action),
+            lift.literal(record.paired_action),
+            lift.literal(record.multiplier),
+            record.mod_two_coefficient,
+        )
+        for record in inversion
+    ) == (
+        (0, 2, 3, "tc", "ctcTTTcttc", "ctcTTTct", 1),
+        (
+            0,
+            5,
+            6,
+            "ctcTcTctc",
+            "ctcTTTTcttc",
+            "ctcTTTTctctctcTc",
+            1,
+        ),
+        (0, 8, 9, "ctcTctc", "cTTcttc", "cTTctctcTc", 1),
+        (2, 1, 4, "", "ctcTcTctc", "ctcTcTctc", 1),
+        (3, 7, 10, "ctcTTctt", "t", "TcttcTc", 1),
+        (4, 11, 12, "t", "", "T", 1),
+    )
+    assert inversion[-1].slot == 4
+    assert inversion[-1].mod_two_coefficient == 1
+
+    external = external_order_kernels()
+    assert len(external) == 66
+    assert Counter(record.integral_coefficient for record in external) == {
+        -1: 36,
+        1: 30,
+    }
+    assert all(record.mod_two_coefficient == 1 for record in external)
+    keys = tuple(record.ordered_type_key for record in external)
+    assert len(set(keys)) == 66
+    assert not any(record.transpose_type_key in set(keys) for record in external)
+
+    normal_form = anchored_kernel_normal_form()
+    assert normal_form.active_occurrence_count == 12
+    assert normal_form.active_slot_counts == (6, 0, 2, 2, 2)
+    assert normal_form.equality_terms == 4
+    assert normal_form.inversion_terms == 6
+    assert normal_form.external_pair_terms == 66
+    assert normal_form.external_oriented_monomials == 132
+    assert normal_form.duplicate_external_keys == 0
+    assert normal_form.generic_transpose_pairs == 0
+    assert normal_form.slot4_t_inversion_coefficient == 1
+    assert normal_form.slot_one_zero_on_anchored_directions
+    assert normal_form.external_reversal_from_homogeneity
+    assert normal_form.pullback_uses_unique_linear_tree_flow
+    assert normal_form.coefficient_sha256 == (
+        "c044b3d7d3dbeb430f8d27c89f69d85aeedbf058363892e2b19acc4c4aaefdef"
+    )
+
+
+def test_anchored_kernel_subtotals_reconstruct_the_direct_hessian() -> None:
+    from experiments.stable_ac.depth4_period_two_phi_infinity_hessian_certificate import (
+        anchored_hessian_subtotals,
+        beta_infinity,
+        phi_infinity_hessian,
+    )
+
+    fixtures = (
+        (
+            "TT",
+            "TTTct",
+            (1, 1, 1, 1),
+            (0, 0, 0, 1, 0, 0),
+            (0, 1, 1, 1, 0),
+        ),
+        (
+            "Tctt",
+            "Tctct",
+            (1, 1, 1, 1),
+            (0, 0, 0, 0, 1, 1),
+            (0, 0, 0, 0, 0),
+        ),
+    )
+    for left_label, right_label, equality_terms, inversion_terms, totals in fixtures:
+        left = lift.parse_quotient(left_label)
+        right = lift.parse_quotient(right_label)
+        subtotals = anchored_hessian_subtotals(left, right)
+        assert subtotals.equality_terms == equality_terms
+        assert subtotals.inversion_terms == inversion_terms
+        assert len(subtotals.external_terms) == 66
+        assert len(subtotals.external_reversed_terms) == 66
+        assert (
+            subtotals.equality,
+            subtotals.inversion,
+            subtotals.external,
+            subtotals.external_reversed,
+            subtotals.total,
+        ) == totals
+        left_direction = tree.anchored_direction(left)
+        right_direction = tree.anchored_direction(right)
+        assert subtotals.external == subtotals.external_reversed
+        assert beta_infinity(left, right) == subtotals.total
+        assert subtotals.total == phi_infinity_hessian(left_direction, right_direction)
+
+
+def test_task_two_pair_path_and_tracked_fixtures_use_the_universal_formula(
+    monkeypatch,
+) -> None:
+    import importlib
+
+    from experiments import stable_ac
+    from experiments.stable_ac import depth4_period_two_source_flow_certificate as source
+    from experiments.stable_ac import depth4_period_two_phi_infinity_hessian_certificate as hessian
+
+    def forbidden_census(*_args, **_kwargs):
+        raise AssertionError("source-depth census called by Task 2 certificate")
+
+    class ForbiddenCensusModule:
+        def __getattr__(self, name):
+            raise AssertionError(f"census aggregate attribute accessed: {name}")
+
+    monkeypatch.setattr(source, "source_vertices", forbidden_census)
+    monkeypatch.setattr(
+        stable_ac,
+        "depth4_period_two_depth6_l0_census_certificate",
+        ForbiddenCensusModule(),
+        raising=False,
+    )
+    monkeypatch.delattr(hessian, "census", raising=False)
+    hessian = importlib.reload(hessian)
+    assert not hasattr(hessian, "census")
+    hessian.phi_infinity_hessian_certificate.cache_clear()
+    certificate = hessian.phi_infinity_hessian_certificate()
+
+    assert certificate.anchored_normal_form == hessian.anchored_kernel_normal_form()
+    assert certificate.near_survivor_pair_values == (
+        ("TT", "TTTct", 1, 1, "000000000000001"),
+        ("Tctt", "Tctct", 1, 1, "000000000000001"),
+    )
+    assert certificate.near_survivor_direct_matches == (True, True)
+    assert certificate.negative_balanced_pair_value == (
+        "TTT",
+        "cTTT",
+        -1,
+        1,
+        "111100000011001",
+    )
+    assert certificate.negative_balanced_direct_match
+    assert certificate.unbalanced_pair_value == ("", "T", 1, 0, "000000000000000")
+    assert certificate.near_survivor_extensions == (
+        ("c", "000100000000100", "100100011000001"),
+        ("t", "000000001000000", "100100011000100"),
+        ("T", "011110110101110", "011110111101010"),
+    )
+    assert certificate.near_survivor_extension_direct_matches == (
+        (True, True),
+        (True, True),
+        (True, True),
+    )
+    assert certificate.tracked_direction_syndromes == (
+        "100000011000000",
+        "100000001100000",
+        "011000011101100",
+        "001000001011100",
+        "000100000000100",
+        "000010110110110",
+        "000000011110000",
+        "000000001000000",
+        "000000000110000",
+        "000000000011000",
+        "000000000000100",
+    )
+    assert certificate.tracked_direction_direct_matches == (True,) * 11
