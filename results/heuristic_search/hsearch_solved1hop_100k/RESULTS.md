@@ -63,18 +63,30 @@ read the table row-level / stratified below.
 | s20_mk2 | 0.674 | 389 | 62 |
 | s24_k1_mk2 | 0.706 | 389 | 59 |
 
-## Residual for 1M escalation
+## Difficulty bins (benchmark log-edges, length-baseline @100k)
 
-- **140** unsolved cells (presentation, arm)
-- **44** presentations with any unsolved arm
-- **15** unsolved by all five arms
-- Listed in `residual_unsolved_100k.json` — escalate every cell, not a subsample.
+Same `[lo, hi)` node edges as `benchmark/difficulty_bins.csv` (ms640 greedy @1M). Ruler here = this run's **length baseline** `solved_at` (unsolved censored at 100k → bin 8).
 
-## Notes
+| bin | nodes range | n | baseline | s12 | s28 | s20_mk2 | s24_k1_mk2 |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 0 | [3, 10) | 100 | 100/100 | 100/100 | 100/100 | 100/100 | 100/100 |
+| 1 | [10, 34) | 72 | 72/72 | 72/72 | 72/72 | 72/72 | 72/72 |
+| 2 | [34, 115) | 56 | 56/56 | 56/56 | 56/56 | 56/56 | 56/56 |
+| 3 | [115, 389) | 48 | 48/48 | 48/48 | 48/48 | 48/48 | 48/48 |
+| 4 | [389, 1313) | 38 | 38/38 | 38/38 | 38/38 | 38/38 | 38/38 |
+| 5 | [1313, 4432) | 26 | 26/26 | 26/26 | 26/26 | 26/26 | 26/26 |
+| 6 | [4432, 14958) | 33 | 33/33 | 33/33 | 32/33 | 33/33 | 33/33 |
+| 7 | [14958, 50482) | 12 | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 |
+| 8 | [50482, 170367) | 47 | 4/47 | 14/47 | 17/47 | 31/47 | 30/47 |
+| 9 | [170367, 574959] | 0 | — | — | — | — | — |
 
-- Seed stratum: **58/58** for every arm at ≤100k.
-- short_relator (38): free solves for every arm (aut_min reintroduces ≤2-letter relators).
-- Discrimination is almost entirely in non-short `moved_cov`.
-- Best reach at 100k: **s20_mk2 416/432**, then s24_k1_mk2 415; length baseline 389.
-- A solve is about the `aut_min` representative searched, not the Aut orbit.
-- Unsolved = unsolved within budget 100k, not a counterexample.
+Baseline-censored (unsolved @100k): **43** presentations (placed in bin by nodes=100000).
+
+### Figures
+
+- `solved1hop_100k_mean_median.png`
+- `solved1hop_100k_nodes_explored.png`
+- `solved1hop_100k_path_length.png`
+- `solved1hop_100k_difficulty_bins.png`
+
+Per-row table: `difficulty_bins_solved1hop_100k.csv`.
