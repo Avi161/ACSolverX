@@ -553,6 +553,92 @@ def search_collapse(
     }
 
 
+def search_collapse_rollback(
+    cx: Complex,
+    iterations: int = 2000,
+    seed: int = 0,
+    rollback: Tuple[int, int] = (1, 40),
+    strategies: Sequence[str] = ("uniform",),
+    target: str = "point",
+    protected: Iterable[Face] = (),
+    time_budget: Optional[float] = None,
+    restart_after: int = 300,
+    verbose: bool = False,
+) -> Dict[str, object]:
+    """Iterated local search: greedy-to-stuck, then undo a random tail and retry.
+
+    Plain restarts throw away every collapse made so far; on the larger products
+    (Bing's house x I and AK(3) x I) almost all of the work is generic and only the
+    last few dozen steps matter, so undoing a random tail of the stuck sequence and
+    re-randomising from there explores far more of the collapse tree per second.
+    Same guarantee as ``search_collapse``: a success is a certificate, a failure is
+    silence.
+    """
+    protected = frozenset(protected)
+    faces = cx.faces
+    rng = random.Random(seed)
+    t0 = time.time()
+    cur: List[Tuple[Face, Face]] = []
+    best_left = len(faces) + 1
+    best_prefix: List[Tuple[Face, Face]] = []
+    best_f = None
+    stale = 0
+    it = 0
+    while it < iterations:
+        it += 1
+        if time_budget is not None and time.time() - t0 > time_budget:
+            break
+        eng = CollapseEngine(faces, protected)
+        for (tau, _sigma) in cur:
+            eng.collapse(tau)
+        strategy = strategies[it % len(strategies)]
+        seq = list(cur)
+        while True:
+            tau = eng.pick(rng, strategy)
+            if tau is None:
+                break
+            seq.append(eng.collapse(tau))
+        if _residual_ok(eng.present, target, protected):
+            return {
+                "success": True,
+                "sequence": seq,
+                "iterations_used": it,
+                "seed": seed,
+                "search": "rollback",
+                "elapsed_s": time.time() - t0,
+                "n_faces": len(faces),
+                "n_steps": len(seq),
+            }
+        left = len(eng.present) - len(protected)
+        if left < best_left:
+            best_left = left
+            best_f = Complex(eng.present).f_vector()
+            best_prefix = seq
+            stale = 0
+            if verbose:
+                print(f"  it {it}: {left} faces left f={best_f}", flush=True)
+        else:
+            stale += 1
+        base = best_prefix if stale < restart_after else seq
+        if stale >= restart_after:
+            cur = []
+            stale = 0
+            continue
+        lo, hi = rollback
+        drop = rng.randint(lo, hi)
+        cur = base[: max(0, len(base) - drop)]
+    return {
+        "success": False,
+        "iterations_used": it,
+        "best_faces_left": None if best_f is None else best_left,
+        "best_residual_f_vector": best_f,
+        "seed": seed,
+        "search": "rollback",
+        "elapsed_s": time.time() - t0,
+        "n_faces": len(faces),
+    }
+
+
 # =====================================================================================
 # INDEPENDENT replay verifier
 # =====================================================================================
