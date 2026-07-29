@@ -546,3 +546,19 @@ Traceback (most recent call last):
     seen.add(tuple(r[k] for k in keys))
                    ~^^^
 KeyError: 'name'
+[scale10k] wall_end=2026-07-29T16:12:20.673566+00:00 remain=9.12h
+
+=== round 1 phase=cost remain=9.12h ===
+  phase cost new=0
+
+=== round 1 phase=anytime_L remain=9.12h ===
+  phase anytime_L new=0
+
+=== round 1 phase=anytime_hard remain=9.12h ===
+  phase anytime_hard new=0
+
+=== round 1 phase=unsolved124 remain=9.12h ===
+  [u124] +10 last=s20/aca_2 solved=False pops_s=2075.6
+  [u124] +20 last=s12/aca_4 solved=False pops_s=2084.4
+  [u124] +30 last=s20/aca_7 solved=False pops_s=1759.1
+  [u124] +40 last=s12/aca_9 solved=False pops_s=2855.5
