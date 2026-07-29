@@ -1,6 +1,6 @@
 # scale10k mini-research — RESULTS
 
-Updated: `2026-07-29T08:10:38.537697+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `9.12 h`
+Updated: `2026-07-29T08:13:33.300813+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `7.98 h`
 
 Budgets ≤10,000; ≤1h/search; advisor-REVISE'd slices. **Colab handoff only after wall.**
 
@@ -69,6 +69,11 @@ Budgets ≤10,000; ≤1h/search; advisor-REVISE'd slices. **Colab handoff only a
 - `recommended` `H220551` b=1000: 3487.0 pops/s  solved=False
 - `recommended` `H220551` b=5000: 2997.3 pops/s  solved=False
 - `recommended` `H220551` b=10000: 2945.2 pops/s  solved=True
+
+## Portfolio (matched total nodes, fresh hard)
+
+- single s20 @10k: 20/30
+- portfolio {12,20,32} @3333 each: 16/30 (oracle best-of-3; runnable = first-hit order not claimed)
 
 ## Method notes
 
