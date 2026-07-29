@@ -1,0 +1,90 @@
+{
+ "record": "r8_audit_a1_trees",
+ "census_rows": 5389,
+ "census_invariant_failures": 0,
+ "skeleton_reconstruction_failures": 0,
+ "spanning_tree_distribution": {
+  "1": 2,
+  "2": 15,
+  "3": 65,
+  "4": 445,
+  "6": 1171,
+  "7": 62,
+  "8": 629,
+  "10": 451,
+  "12": 722,
+  "14": 344,
+  "20": 712,
+  "21": 1,
+  "24": 62,
+  "28": 4,
+  "32": 36,
+  "33": 17,
+  "36": 170,
+  "40": 4,
+  "41": 5,
+  "49": 1,
+  "52": 9,
+  "57": 26,
+  "60": 102,
+  "68": 1,
+  "96": 32,
+  "105": 167,
+  "125": 134
+ },
+ "trees_by_complexity": {
+  "1": {
+   "1": 2
+  },
+  "2": {
+   "2": 15,
+   "4": 2
+  },
+  "3": {
+   "3": 65,
+   "4": 97,
+   "7": 62,
+   "12": 14
+  },
+  "4": {
+   "4": 346,
+   "6": 1171,
+   "8": 629,
+   "10": 451,
+   "12": 707,
+   "14": 344,
+   "20": 711,
+   "24": 54,
+   "32": 35,
+   "36": 170
+  },
+  "5": {
+   "12": 1,
+   "20": 1,
+   "21": 1,
+   "24": 8,
+   "28": 4,
+   "32": 1,
+   "33": 17,
+   "40": 4,
+   "41": 5,
+   "49": 1,
+   "52": 9,
+   "57": 26,
+   "60": 102,
+   "68": 1,
+   "96": 32,
+   "105": 167,
+   "125": 134
+  }
+ },
+ "surface_tree_pairs": 102092,
+ "raw_profile_failures": 0,
+ "empty_relator_collapses": 0,
+ "freely_reduced_profile_failures": 0,
+ "cyclically_reduced_profile_failures": 0,
+ "reduced_failure_examples": [],
+ "attaching_walk_backtracks": 0,
+ "k4_link_condition_failures": 0,
+ "verdict_A1_all_trees": "CONFIRMED"
+}
