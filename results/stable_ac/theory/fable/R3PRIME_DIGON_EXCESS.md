@@ -213,3 +213,32 @@ non-degenerate thickenable members once properly explored. Consequences:
 3. AK(2)'s exact realization has min defect 2 (γ_N = 1) — one genus unit below AK(3)'s
    certificate; the first zero-defect state on the trivialization path appears at index
    18 of 27 (an A-loop state, census-decided).
+
+## CONTRAST RESULT (matched-operator AK(3) control, ~14:55 UTC) — the program's step 2
+
+Run: identical operator/budget to the AK(2) battery (verified member-by-member on the
+harvest layer), root AK(3), cap 17 (= root+4, matching relative headroom; recorded
+absolute-cap argument in ak3_matched_summary.json). Output: 124,296 distinct
+AK(3)-classical-class members (9.5× AK(2)'s yield from the same 1,000 pops — the class
+barely re-encounters itself), ALL decided NOT_SPHERICAL by the certified R1c-v2 solver,
+0 undecided, replays byte-exact, hit protocol untriggered.
+
+Null-model accounting (validated e_yield formulas; all 124,296 rows E-known):
+- AK(3): ΣE = 5.03, observed 0. Raw Poisson P(0) ≈ 0.65%.
+- AK(2): ΣE = 649.4, observed 397 (factor 0.61; the E-model over-predicts but is
+  order-correct in the trivializable class — the positive control fires and calibrates).
+- Calibrated by AK(2)'s factor: AK(3) expectation ≈ 3.1, P(0) ≈ 4.6%.
+- Like-for-like length ≥ 13 slice: AK(2) shows 139/9,542 = 1.46%; AK(3) 0/124,296.
+
+Honest reading: the first genuine TENSION with the null model in this program —
+between suggestive and significant (p ∈ [0.7%, 5%] depending on calibration), not yet
+a certified phenomenon. Both readings remain live: (i) AK(3)'s classical class simply
+contains no thickenable members (which, per the master equivalence's classical
+analogue, is implied by — but does NOT imply — AK(3) being AC-nontrivial); (ii) its
+thickenable members exist but are inaccessible at this exploration scale/length window
+(AK(2)'s hits at length ≥ 13 argue against pure length-inaccessibility). Decision
+lever: the Colab tier at 100×–1000× pops multiplies ΣE proportionally; zero hits at
+ΣE ≈ 300+ would be decisive phenomenon-level evidence and R3′'s concrete target;
+hits decide AK(3) positively (hit protocol + replay + Lackenby-flagged chain).
+Artifacts: ak3_matched_members.jsonl.gz, ak3_matched_summary.json (both committed);
+ΣE numbers recomputed by the orchestrator from the committed artifacts.
