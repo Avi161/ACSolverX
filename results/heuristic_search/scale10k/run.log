@@ -601,3 +601,8 @@ KeyError: 'name'
     [hcompact] reservation exceeded at 1,800,105 states; growing to 3,633,800 (this copies)
     [hcompact] reservation exceeded at 1,800,005 states; growing to 3,633,800 (this copies)
     [hcompact] reservation exceeded at 1,800,143 states; growing to 3,633,800 (this copies)
+  [u124] +380 last=s12/aca_94 solved=False pops_s=1096.7
+    [hcompact] reservation exceeded at 1,800,125 states; growing to 3,633,800 (this copies)
+  [u124] +390 last=s20/aca_97 solved=False pops_s=902.7
+    [hcompact] reservation exceeded at 1,800,087 states; growing to 3,633,800 (this copies)
+  [u124] +400 last=s12/aca_99 solved=False pops_s=1339.2
