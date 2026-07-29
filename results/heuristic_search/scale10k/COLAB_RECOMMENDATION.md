@@ -1,6 +1,10 @@
 # COLAB_RECOMMENDATION — 5× High-RAM (≈51 GB) sessions
 
-Generated: `2026-07-29T16:12:48.814709+00:00` after 10h mini-research wall.
+Updated: `2026-07-29T17:54:00+00:00` — **no recommended / no xyimb**.
+
+Arm mix finalized after Aut-disjoint `skmk_aut_tune` (in progress — see
+[`../skmk_aut_tune/PROGRESS.md`](../skmk_aut_tune/PROGRESS.md)). Until that
+holdout read lands, notebooks ship the interim S-only shortlist below.
 
 ## What to run
 
@@ -19,7 +23,7 @@ All five share `CHUNKS=5`, same `ARMS` / `NODE_BUDGET`. Stride sharding is resul
 ## Frozen CONFIG (edit only `CHUNK_INDEX` per session — already set)
 
 ```python
-ARMS      = ['baseline', 's12', 's28', 'recommended']
+ARMS      = ['baseline', 's12', 's28']  # + best S+K / S+MK / S+K+MK from skmk_aut_tune
 DATASET   = "unsolved124"   # primary target; also run bench66 if time
 NODE_BUDGET = 200_000
 CHECKPOINTS = [1000, 5000, 10000, 25000, 50000, 100000, 200000]
@@ -31,19 +35,20 @@ CHUNKS    = 5
 RESUME    = True
 ```
 
+**Do not add `recommended` / xyimb** — overfits; weight selection is S+K+MK only
+on Aut-disjoint train/holdout (`results/heuristic_search/splits/splits_ac1m_hard_aut.json`).
+
 ## Why these arms / budget
 
-- Primary S-arm from fresh_hard @10k: **`s12`** (scores={'length': (36, 0, 60), 's12': (43, 24, 60), 's20': (43, 21, 60), 'recommended': (31, 12, 60)}).
-- Extra L-slice @10k: {'k8': (70, 58, 80), 'mk8': (75, 66, 80), 's16': (75, 68, 80), 's20_k2': (75, 67, 80), 's20_neg_xy': (75, 69, 80), 's28': (76, 68, 80), 's8': (75, 69, 80)}.
-- Secondary S (if any): `s28`.
-- `recommended` kept as different-family control (not another S weight).
+- Primary S-arm from fresh_hard @10k: **`s12`** (tied with s20 at 43/60; cheaper).
+- Secondary S: `s28` (L-slice winner among pure-S at 10k).
+- Mix arms: **pending** Aut-disjoint 336-cell @1k (`skmk_aut_tune`) — select on train 120, one holdout read on 60. Contaminated `skmk_tune`/`skmk_mix` (idx-prefix, Aut leakage) are **not** used for selection.
 - `baseline` = length-only control.
 - Budget **200_000**: sized for ~10–20 h wall × 5 sessions × ~6 workers using EXP-28 Colab pops/s (~400–650), not this host's rates.
-- Per search RAM @200k hcompact ≪ 51 GB; workers are core/memory auto-capped.
 
 ## High-speedup checklist (already in the notebooks)
 
-- `ENGINE=hcompact` (~78 B/state)
+- `ENGINE=hcompact` (~78 B/state) — numba
 - spawn workers + parent-only jsonl writes + local stage + Drive whole-file mirror
 - flock on stage (no double-compute on Restart)
 - time-based heartbeat
@@ -63,4 +68,3 @@ Hand the merged file (+ per-chunk files) back into the repo under `results/hsear
 ## AK(3) note
 
 AK3 proofs-inspired mini-runs did **not** produce a solve or minL<13 at ≤10k. Do **not** burn the 5×51GB fleet on AK3 until a scout shows dynamic range; keep this fleet on `unsolved124` / hard AC1M if extended.
-
