@@ -1,4 +1,4 @@
-# Fable line — session handoff (29-07-2026, updated ~13:20 UTC)
+# Fable line — session handoff (29-07-2026, updated ~13:02 UTC)
 
 Entry point for the next session. Read CLAUDE.md first, then this. Branch:
 `claude/ac-stable-ac-conjecture-ijfzgz` (merge → `fable/proof` by the user; never `main`;
