@@ -167,6 +167,34 @@ def hunt(states, samples: int, rng: random.Random, label: str,
                   f"{report['best_bound'].get(label)}", flush=True)
 
 
+def undecided_neighbourhood_rows() -> list:
+    """The loop-bearing exact graft images `gateway_neighborhood.py` could not decide.
+
+    These are the standing gap in R1G's "exhaustive one-move neighbourhood" claim: the
+    R1c-v2 solver fails closed on them (they carry A-loops) and their censuses run to
+    1.5e10 - 1.5e11 rotation systems, so neither existing tool can decide them.  A
+    defect-0 witness is the ONLY verdict currently reachable for these states -- and it
+    would be a decisive one, so they are worth sweeping even though a null closes nothing.
+    """
+    path = os.path.join(REPO_ROOT, "results", "stable_ac", "fable",
+                        "gateway_neighborhood.json")
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8") as handle:
+        payload = json.load(handle)
+    rows = payload["rows"] if isinstance(payload, dict) else payload
+    out = {}
+    for row in rows:
+        if row.get("verdict") in ("SPHERICAL", "NOT_SPHERICAL"):
+            continue
+        words = row.get("exact") or row.get("words") or row.get("state")
+        if not words:
+            continue
+        words = tuple(words)
+        out.setdefault(spelling_key(words), words)
+    return list(out.values())
+
+
 def build_groups(double_spikes: bool = True) -> dict:
     """The states to hunt over, each group labelled by how it was reached."""
     groups = {}
@@ -184,6 +212,10 @@ def build_groups(double_spikes: bool = True) -> dict:
             words = tuple(spike["words"])
             reduced_gateway_spikes.setdefault(spelling_key(words), words)
     groups["reduced_gateway_spikes"] = list(reduced_gateway_spikes.values())
+
+    undecided = undecided_neighbourhood_rows()
+    if undecided:
+        groups["undecided_loop_bearing"] = undecided
 
     if double_spikes:
         doubles = {}

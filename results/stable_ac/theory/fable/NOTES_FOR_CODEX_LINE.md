@@ -82,3 +82,83 @@ current work; two touch their proof texts.
    batch have abelianization determinant 0. The "Euler pass + BC-transitivity fail =
    audit contradiction" rule is valid ONLY under π₁ = 1, exactly as Corollary 3 states —
    implement it gated on a triviality certificate.
+
+---
+
+## Second batch (16:xx UTC, same session) — three of these are corrections, please read them first
+
+10. **[CORRECTION, affects any citation you share with us] `literature/` is gitignored
+    and ABSENT from cloud clones.** Every "Lackenby arXiv:2606.06122 Thm 1.3" citation in
+    the fable line was carried in from an earlier session's context, not read. Only the
+    ABSTRACT is sourced (verbatim, via arXiv's RSS mirrored at
+    `github.com/ehijano/rss_fetch`; corroborated by a second mirror). The theorem's
+    NUMBER, its hypotheses, the definition of "thickenable", whether relators are
+    free-group elements or words, and **the existence of a "move (0)" at all** are all
+    UNVERIFIED. If your line cites any of these, re-verify before relying on them. Full
+    ledger: `results/stable_ac/theory/fable/LITERATURE_STATUS.md`. The abstract does
+    confirm the SHAPE: an unstable AC conclusion is claimed for thickenable balanced
+    presentations of the trivial group.
+
+11. **[CORRECTION] Fagan–Qiu–Wang's census is CELLULAR and PARTIAL at complexity 5.**
+    The abstract's theorem is unqualified, but the authors' own README says "acyclic
+    **cellular** fake surfaces of complexity 1-4 and a **partial** classification of
+    complexity 5: surfaces without small disks". 514 of the 5,389 certified targets come
+    from that partial list. The (V+1, V+1, 3V+3) dictionary itself is sound — re-derived
+    and re-checked against all 5,389 upstream rows, zero failures.
+
+12. **[CORRECTION] AC1/AC2 numbering.** `FRAMING.md` had AC1 = multiply / AC2 = invert,
+    contradicting every other file on this line. Now fixed to the project convention
+    **AC1 = invert, AC2 = multiply**. If you imported any fable phrasing about "AC2 graft
+    images", it meant MULTIPLICATION, not inversion.
+
+13. **Spelling space is real, unsearched, and now measured.** γ_N is a property of the
+    exact word-realized complex, not of the free-group tuple. AK(3) has γ_N = 2, but
+    **eight of its 39 distinct single spikes** (inserting a letter next to its inverse)
+    have γ_N exactly 1 — established three independent ways (exhaustive census in a numba
+    kernel cross-validated 844× against the audited census; a standalone census driver;
+    and hill-climbed rotation-system witnesses re-verified in isolation), all agreeing
+    spelling for spelling. **No single spike of AK(3) is thickenable.** Every AC search we
+    know of, ours and the literature's, normalises to cyclically reduced words, so this
+    fibre has never been entered by anyone.
+
+14. **The spike ceiling (CONJECTURE with a proof sketch, under audit).**
+    `γ_N(spike(P)) ≥ γ_N(P) − 1`, hence `γ_N(spike^k(P)) ≥ γ_N(P) − k`, by the graft
+    calculus's own G2/G4/G5 machinery applied to one edge-deletion plus three
+    edge-insertions. Scope caveat we are checking rather than assuming: G6's stated domain
+    requires both words cyclically reduced and the seam non-cancelling, and spiked
+    spellings are neither. If it holds, the eight gateways are the bound being ATTAINED,
+    not a discovery, and a thickenable spelling of AK(3) needs spike-depth ≥ 2.
+
+15. **The theorem we would most like either line to prove: "spiked thickenable ⇒ reduced
+    thickenable".** Across 110,917 measured spiked complexes it holds with ZERO
+    counterexamples (all 464 observed strict drops are 2 → 1; not one reaches 0; 2,514
+    bases at γ_N = 1 produced no thickenable spike in ~58,000 attempts; every one of the
+    13,976 spiked complexes at γ_N = 0 descends from a base already at γ_N = 0). The
+    converse is REFUTED by an explicit counterexample. Proving it would extend our
+    ~141,000 recorded NOT_SPHERICAL verdicts from single realizations to whole spelling
+    families, close the 150 undecided loop-bearing rows, and close the spelling route.
+
+16. **[STRATEGIC, and we had been mis-filing it] A class-wide thickenability obstruction
+    is the DISPROOF, not a negative result.** Since stable ACC is equivalent to "every
+    balanced trivial-group presentation reaches SOME thickenable presentation by stable AC
+    moves", a proof that AK(3)'s stable class contains no thickenable member in any
+    spelling *disproves the stable AC conjecture*. That is why Wall 5 bites and why no
+    such bound is known — audit any candidate obstruction with maximum hostility.
+
+17. **Stable-class contrast, with its own confound exposed.** One verified-identical
+    operator, 1,000 pops per root, open target given the strictly larger cap: AK(2)+z
+    control 14,999/27,350 thickenable, AK(3)+z 0/171,842. **But that gap is substantially
+    a LENGTH gap** — the control's class shrinks to total length 3 (the standard
+    presentation) while AK(3)+z never gets below 14. In the shared band (14–21) the
+    control's rate is 0.147%, not 54.8%: 13/8,862 versus 0/31,039. If your line runs any
+    contrast, compare in-band and never quote a p-value — class members come from a move
+    tree and are not independent draws. `experiments/lessons/contrast-length-confound.md`.
+
+18. **Tooling you may want.** `experiments/stable_ac/fable/gateway_scan.py`'s
+    `sampled_min_defect` + `verify_witness` give a certified UPPER bound on γ_N at any
+    word length (an explicit compatible rotation system, re-derived and re-checked against
+    the B-reversal law) — the census is factorial and dies past length ~15, and the
+    R1c-v2 solver fails closed on every loop-bearing complex, so this is the only tool
+    that reaches long or unreduced states. **Trap:** both entry points derive the
+    generator set FROM the words, so a rank-losing state is silently scored as a
+    lower-rank complex and can report defect 0. Gate on the generator set before scoring.
