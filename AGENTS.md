@@ -1518,3 +1518,21 @@
 
 - [TRAP] Invoking `scripts/sdd-workspace` with the skill package as the working directory made it treat the read-only plugin cache as the repository and fail while creating `.superpowers` there.
 - [WORKS] Invoke the helper by absolute path with the target linked worktree as `cwd`; its plan-specific ledger then resolves under the project's ignored `.superpowers/sdd/` tree.
+
+### 2026-07-29 Inspect nested manifest shapes before mapping
+
+- [TRAP] A Task 2 `jq` inspection assumed `cells[0].path_fibers` was an array, but it is an object keyed by `b0` and `b1`; the query failed before returning the intended counts.
+- [TRAP] The immediate retry then guessed each named branch exposed a `fibers` array, but `b0` and `b1` are summary objects with only `active`, `equality_checks`, `equality_methods`, and `total`.
+- [WORKS] Query `type` and `keys` for a nested manifest field before applying `map`, then address the named object branches explicitly.
+
+### 2026-07-29 Join inverse collision members through typed indices
+
+- [TRAP] Inverse-Q collision members use occurrence-free IDs such as `nu1:k10:delta0`, while source records append terminal and partner occurrences; a direct record-ID lookup failed during Task 2 GREEN.
+- [WORKS] Join records to collision members through the explicit `(nu, k, delta)` values in `record["indices"]`, assert the repeated occurrence copies have one integral coefficient, and then verify each fiber sum.
+
+### 2026-07-29 Keep Ruff fixes within Python 3.9
+
+- [TRAP] Ruff 0.16.0 recommends `int.bit_count()` for mask-popcount tests, but the grouped certificate must replay on Python 3.9, where that method is unavailable.
+- [TRAP] Ruff reported `I001` after the imports were alphabetized because each scratch module retained two blank lines before its first constant; the ordinary diagnostic did not show that whitespace-only cause.
+- [WORKS] Retain `bin(mask).count("1")` with a narrow `FURB161` suppression when testing Python-3.9-compatible scratch certificates; do not accept an unsafe version-floor increase as a lint fix.
+- [WORKS] Use guarded `ruff check --diff` when an `I001` suggestion renders no visible reordered imports, then apply the displayed whitespace edit explicitly.
