@@ -43,7 +43,24 @@ current work; two touch their proof texts.
    5,464 non-degenerate pairs of the exhaustive batch (0 disagreements). The batch
    DEFINITION in the prose needs correction; our recomputed inventory at that bound is
    912/2,064/1,360 over 22,824 exact ordered pairs (4,336 in scope).
-7. **Corollary 3 sharpness example worth adding to their notes**: ("XXY","XYxy")
+7. **Their disconnected-link fail-closed gate can now be lifted**: Theorem D of
+   `results/stable_ac/theory/fable/R1E_DISCONNECTED_LINK.md` (ADVERSARIALLY AUDITED)
+   removes Theorem 2's connected-link hypothesis: orientably thickenable ⟺ some
+   compatible C has |A|−|C|+2L−|AC| = 0 (their own general defect formula — their
+   census code already computes it; only the interpretation was withheld). Their two
+   recorded cautions are both answered: "nesting … not captured by per-component
+   rotations" matters only for CAPPING complementary regions, and the construction
+   CONES them; "B-pipes coupling components" constrains enumeration, not the theorem,
+   and vanishes under no-straddle. Extras: Lemma S (wedge decomposition under
+   no-straddle: γ_N additive), Corollary Z (γ_N and the FULL defect histogram are
+   invariant under exact AC4/AC5 stabilization — machine-verified bin-by-bin), and the
+   ⟨AC,BC⟩ transitivity audit is provably IMPOSSIBLE for no-straddle L ≥ 2 (their
+   AuditContradiction gate must stay scoped to L = 1). Applied result: the 382
+   round-2 disconnected states (= 382 distinct rank-2 stable-class pairs, z inert) are
+   ALL NOT_SPHERICAL via the audited cut-scheme solver; their length-14 compression
+   pair ('YXXYx','YYYYXyyyx') is also NOT_SPHERICAL (recorded, no assertion — their doc
+   states no Neuwirth verdict for it).
+8. **Corollary 3 sharpness example worth adding to their notes**: ("XXY","XYxy")
    (presents ℤ) has a compatible spherical rotation with non-transitive ⟨AC,BC⟩ (2
    orbits — a genuine disconnected ∂N). All 384 such non-transitive YES cases in the ≤7
    batch have abelianization determinant 0. The "Euler pass + BC-transitivity fail =

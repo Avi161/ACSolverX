@@ -366,6 +366,42 @@ output summary.
   agreement row;
   (g) full bare `pytest` green before any claim.
 
+## RESULT (29-07-2026, decision run under the audited theorem)
+
+Pipeline: `experiments/stable_ac/fable/disconnected_split.py` (1,138 lines; independent
+structural gate by its own union-find, agreement with `build_link_n` on all 382 states);
+tests `tests/fable/test_disconnected_split.py` (15 items); full bare suite **480
+passed** (independently re-run by the orchestrator after the builder's run). Budgets
+pinned verbatim to round 2 and recorded in
+`results/stable_ac/fable/disconnected_split_summary.json`.
+
+- All 382 states pass the clean-shape gate (0 VERIFY_FAIL); 382 distinct pairs (no
+  dedup collapse; provenance machinery exercised but every list has one state).
+- **All 382 pairs: NOT_SPHERICAL**, method `r1c_v2_solver` for every row (census
+  fallback never needed); 0 UNDECIDED_BUDGET. Per-state mirror: 382/382
+  NOT_SPHERICAL.
+- Cross-validation (Corollary Z, live check): both census-affordable states ran the
+  JOINT rank-3 census vs the rank-2 census — full defect-histogram equality; joint
+  size = pair size (computed, not assumed); L_joint = L_pair + 1. Second affordable
+  state ('Z','YXYxx','YYYYxyyyX'): min defect 2 (γ_N = 1) on both sides. A deliberate
+  mismatch test confirms the equality assertion actually fires.
+- Corpus overlap: 10/10 pairs agree with stored `gamma_n_targets.jsonl` verdicts.
+- TC sample (5 pairs, cap 20,000): all COMPLETE, index 1 — consistent with the
+  provenance group check.
+- Support classes: 333 K₄ + 49 K₄−e; ΣE (validated formulas, all 382 rows) =
+  **0.0526** — observing 0 spherical is unremarkable under the E-yield null model.
+- Extra row: codex length-14 stable-class pair ('YXXYx','YYYYXyyyx') → NOT_SPHERICAL
+  (their doc certifies the stable equivalence but records no Neuwirth verdict; recorded
+  without assertion).
+
+Interpretation (per the matrix above): the round-2 bucket is now fully closed — the
+382 formerly structurally-undecided states are certified non-thickenable exact
+realizations, extending the certified corpus to ~17,100 exact complexes across ranks
+2–3 with zero positives ever observed, now including the first rank-2 shadow of the
+direct stable walk. Zero content about AK(3) itself (route ceiling). The round-2
+harvest is now 11,273/11,273 decided: 10,891 by the R1c-v2/non-planar stack + 382 by
+Theorem D + Lemma S through the same solver.
+
 ## What this note does NOT claim
 
 No invariance of γ_N under relator multiplication (AC2) or general AC composites
