@@ -102,33 +102,61 @@ def read_macos_thermal_state() -> int:
         objc.objc_getClass.restype = ctypes.c_void_p
         objc.sel_registerName.argtypes = [ctypes.c_char_p]
         objc.sel_registerName.restype = ctypes.c_void_p
+        objc.class_getClassMethod.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
+        objc.class_getClassMethod.restype = ctypes.c_void_p
+        objc.class_getInstanceMethod.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
+        objc.class_getInstanceMethod.restype = ctypes.c_void_p
+        objc.method_getImplementation.argtypes = [ctypes.c_void_p]
+        objc.method_getImplementation.restype = ctypes.c_void_p
 
         process_info_class = objc.objc_getClass(b"NSProcessInfo")
         process_info_selector = objc.sel_registerName(b"processInfo")
         thermal_state_selector = objc.sel_registerName(b"thermalState")
-        message_send_address = ctypes.cast(
-            objc.objc_msgSend, ctypes.c_void_p
-        ).value
         if not all(
             (
                 process_info_class,
                 process_info_selector,
                 thermal_state_selector,
-                message_send_address,
             )
         ):
             raise RuntimeError("required Objective-C thermal symbols are unavailable")
 
-        send_object = ctypes.CFUNCTYPE(
+        process_info_method = objc.class_getClassMethod(
+            process_info_class, process_info_selector
+        )
+        thermal_state_method = objc.class_getInstanceMethod(
+            process_info_class, thermal_state_selector
+        )
+        if not process_info_method:
+            raise RuntimeError("NSProcessInfo +processInfo is unavailable")
+        if not thermal_state_method:
+            raise RuntimeError("NSProcessInfo -thermalState is unavailable")
+
+        process_info_implementation = objc.method_getImplementation(
+            process_info_method
+        )
+        thermal_state_implementation = objc.method_getImplementation(
+            thermal_state_method
+        )
+        if not process_info_implementation:
+            raise RuntimeError("NSProcessInfo +processInfo has no implementation")
+        if not thermal_state_implementation:
+            raise RuntimeError("NSProcessInfo -thermalState has no implementation")
+
+        call_process_info = ctypes.CFUNCTYPE(
             ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p
-        )(message_send_address)
-        send_integer = ctypes.CFUNCTYPE(
+        )(process_info_implementation)
+        call_thermal_state = ctypes.CFUNCTYPE(
             ctypes.c_long, ctypes.c_void_p, ctypes.c_void_p
-        )(message_send_address)
-        process_info = send_object(process_info_class, process_info_selector)
+        )(thermal_state_implementation)
+        process_info = call_process_info(
+            process_info_class, process_info_selector
+        )
         if not process_info:
             raise RuntimeError("NSProcessInfo.processInfo returned nil")
-        thermal_state = int(send_integer(process_info, thermal_state_selector))
+        thermal_state = int(
+            call_thermal_state(process_info, thermal_state_selector)
+        )
     except (GuardSignal, KeyboardInterrupt):
         raise
     except RuntimeError:

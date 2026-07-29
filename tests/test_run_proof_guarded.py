@@ -744,33 +744,86 @@ def test_monitor_fails_closed_when_thermal_state_is_unreadable() -> None:
 def _install_fake_macos_thermal_api(
     monkeypatch: pytest.MonkeyPatch,
     thermal_state: int,
-) -> list[str]:
+    missing_method: bytes | None = None,
+) -> dict[str, list[object]]:
     import ctypes
 
     selectors = {b"processInfo": 11, b"thermalState": 12}
+    calls: dict[str, list[object]] = {
+        "loaded": [],
+        "method_lookups": [],
+        "implementation_lookups": [],
+        "raw_messages": [],
+        "imp_messages": [],
+    }
     objc_get_class = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p)(
         lambda name: 10 if name == b"NSProcessInfo" else 0
     )
     selector_register = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_char_p)(
         lambda name: selectors.get(name, 0)
     )
+
+    def look_up_class_method(receiver: int, selector: int) -> int:
+        calls["method_lookups"].append(("class", receiver, selector))
+        if missing_method == b"processInfo":
+            return 0
+        return 101
+
+    def look_up_instance_method(receiver: int, selector: int) -> int:
+        calls["method_lookups"].append(("instance", receiver, selector))
+        if missing_method == b"thermalState":
+            return 0
+        return 102
+
+    class_get_class_method = ctypes.CFUNCTYPE(
+        ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p
+    )(look_up_class_method)
+    class_get_instance_method = ctypes.CFUNCTYPE(
+        ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p
+    )(look_up_instance_method)
+
+    def call_process_info(receiver: int, selector: int) -> int:
+        calls["imp_messages"].append((receiver, selector))
+        return 20
+
+    def call_thermal_state(receiver: int, selector: int) -> int:
+        calls["imp_messages"].append((receiver, selector))
+        return thermal_state
+
+    process_info_imp = ctypes.CFUNCTYPE(
+        ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p
+    )(call_process_info)
+    thermal_state_imp = ctypes.CFUNCTYPE(
+        ctypes.c_long, ctypes.c_void_p, ctypes.c_void_p
+    )(call_thermal_state)
+
+    def get_implementation(method: int) -> int:
+        calls["implementation_lookups"].append(method)
+        implementation = process_info_imp if method == 101 else thermal_state_imp
+        return ctypes.cast(implementation, ctypes.c_void_p).value or 0
+
+    method_get_implementation = ctypes.CFUNCTYPE(
+        ctypes.c_void_p, ctypes.c_void_p
+    )(get_implementation)
+
+    def send_raw_message(receiver: int, selector: int) -> int:
+        calls["raw_messages"].append((receiver, selector))
+        return 20 if (receiver, selector) == (10, 11) else thermal_state
+
     message_send = ctypes.CFUNCTYPE(
         ctypes.c_long, ctypes.c_void_p, ctypes.c_void_p
-    )(
-        lambda receiver, selector: (
-            20 if (receiver, selector) == (10, 11) else thermal_state
-        )
-    )
+    )(send_raw_message)
 
     class ObjCLibrary:
         objc_getClass = objc_get_class
         sel_registerName = selector_register
+        class_getClassMethod = class_get_class_method
+        class_getInstanceMethod = class_get_instance_method
+        method_getImplementation = method_get_implementation
         objc_msgSend = message_send
 
-    loaded: list[str] = []
-
     def load_library(path: str) -> object:
-        loaded.append(path)
+        calls["loaded"].append(path)
         if path == "/usr/lib/libobjc.A.dylib":
             return ObjCLibrary()
         if path == "/System/Library/Frameworks/Foundation.framework/Foundation":
@@ -779,19 +832,38 @@ def _install_fake_macos_thermal_api(
 
     monkeypatch.setattr(sys, "platform", "darwin")
     monkeypatch.setattr(ctypes, "CDLL", load_library)
-    return loaded
+    return calls
 
 
 def test_macos_thermal_reader_uses_foundation_and_libobjc(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    loaded = _install_fake_macos_thermal_api(monkeypatch, thermal_state=0)
+    calls = _install_fake_macos_thermal_api(monkeypatch, thermal_state=0)
 
     assert proof_guard.read_macos_thermal_state() == 0
-    assert loaded == [
+    assert calls["loaded"] == [
         "/System/Library/Frameworks/Foundation.framework/Foundation",
         "/usr/lib/libobjc.A.dylib",
     ]
+    assert calls["raw_messages"] == []
+    assert calls["imp_messages"] == [(10, 11), (20, 12)]
+
+
+@pytest.mark.parametrize("missing_method", (b"processInfo", b"thermalState"))
+def test_macos_thermal_reader_rejects_missing_method_before_invocation(
+    monkeypatch: pytest.MonkeyPatch,
+    missing_method: bytes,
+) -> None:
+    calls = _install_fake_macos_thermal_api(
+        monkeypatch,
+        thermal_state=0,
+        missing_method=missing_method,
+    )
+
+    with pytest.raises(RuntimeError, match=missing_method.decode()):
+        proof_guard.read_macos_thermal_state()
+    assert calls["raw_messages"] == []
+    assert calls["imp_messages"] == []
 
 
 @pytest.mark.parametrize("thermal_state", (1, 2, 3))
@@ -871,9 +943,11 @@ class _FakeClock:
 
 
 class _SequenceMonitor:
-    def __init__(self, samples: list[object]) -> None:
+    def __init__(self, samples: list[object], clock: _FakeClock) -> None:
         self.samples = samples
+        self.clock = clock
         self.calls: list[tuple[int, int, int]] = []
+        self.sample_times: list[float] = []
 
     def sample(
         self,
@@ -882,6 +956,7 @@ class _SequenceMonitor:
         controller_pid: int,
     ) -> object:
         self.calls.append((child_pid, process_group_id, controller_pid))
+        self.sample_times.append(self.clock.monotonic())
         if not self.samples:
             raise AssertionError("monitor sampled more often than expected")
         sample = self.samples.pop(0)
@@ -922,16 +997,22 @@ def _run_synthetic_monitored_phases(
     class SyntheticChild:
         def __init__(self, pid: int, complete_after: float) -> None:
             self.pid = pid
-            self.deadline = clock.now + complete_after
-            alive[pid] = True
+            self.complete_after = complete_after
+            self.deadline: float | None = None
+
+        def start(self) -> None:
+            self.deadline = clock.now + self.complete_after
+            alive[self.pid] = True
 
         def poll(self) -> int | None:
+            assert self.deadline is not None
             if clock.now >= self.deadline:
                 alive[self.pid] = False
                 return 0
             return None
 
         def wait(self, timeout: float | None = None) -> int:
+            assert self.deadline is not None
             if timeout is None:
                 clock.now = self.deadline
                 alive[self.pid] = False
@@ -950,7 +1031,9 @@ def _run_synthetic_monitored_phases(
     killpg_calls: list[tuple[int, int]] = []
 
     def popen(*_args: object, **_kwargs: object) -> object:
-        return children.pop(0)
+        child = children.pop(0)
+        child.start()
+        return child
 
     def killpg(process_group_id: int, signum: int) -> None:
         killpg_calls.append((process_group_id, signum))
@@ -959,7 +1042,7 @@ def _run_synthetic_monitored_phases(
         if signum in (signal.SIGTERM, signal.SIGKILL):
             alive[process_group_id] = False
 
-    monitor = _SequenceMonitor(samples)
+    monitor = _SequenceMonitor(samples, clock)
     monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
     monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
     monkeypatch.setattr(
@@ -1027,6 +1110,27 @@ def test_compliant_cpu_sample_resets_high_cpu_streak(
 
     assert status == 0
     assert killpg_calls == []
+
+
+def test_safety_samples_immediately_each_phase_then_once_per_second(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    status, killpg_calls, monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        [_safety_sample() for _ in range(5)],
+        completion_times=(2.5, 1.5),
+    )
+
+    assert status == 0
+    assert killpg_calls == []
+    assert monitor.sample_times == [0.0, 1.0, 2.0, 2.5, 3.5]
+    assert [child_pid for child_pid, _pgid, _controller in monitor.calls] == [
+        700_000,
+        700_000,
+        700_000,
+        700_001,
+        700_001,
+    ]
 
 
 @pytest.mark.parametrize(
