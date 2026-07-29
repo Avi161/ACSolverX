@@ -33,6 +33,8 @@ run_ab.ARMS.update({
     "s12": _cfg(L=1.0, S=12.0),
     "s20": _cfg(L=1.0, S=20.0),   # S-grid holdout peak on 800 hard
     "s24": _cfg(L=1.0, S=24.0),   # campaign hard-recovery leader
+    "s28": _cfg(L=1.0, S=28.0),
+    "s8": _cfg(L=1.0, S=8.0),
     "s20_mk8": _cfg(L=1.0, S=20.0, MK=8.0),
     "recommended": RECOMMENDED,
     "baseline": None,
