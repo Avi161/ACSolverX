@@ -68,8 +68,15 @@ first-listed open problem in the area.
 
 1. **MMS02 Thm 1.4 is void** (misprinted 13th Wirtinger relator, found by Shehper et al.
    v2 App. F); Lisitsa 2501.18601 re-proves only the NON-stable P ~AC AK(3) link. Never cite
-   either as settling AK(3) stable triviality. **MMS02 Prop 1.2 stands**: AK(3) IS stably
-   AC-equivalent to a specific length-~25 presentation — a legitimate stable edge.
+   either as settling AK(3) stable triviality. Two DISTINCT partner presentations (corrected
+   29-07 after ac-advisor audit — an earlier revision of this file conflated them):
+   **P25** = ⟨x,y | XYxYXyxYYxyXy, YXyyXYxyxYYx⟩ (total length 25, Shehper app/mms.tex),
+   AC-equivalent to AK(3) by the doubly-verified 53-move path; and
+   **Q** = ⟨x,y | xxxxyXXYxyXXY, YxxyXXYxxyXXYxxyXXY⟩ (total length **32**, recorded by the
+   codex ac-advisor ground truth as MMS02 Prop 1.2's stable partner — that attribution is
+   [unverified this session]; MMS02 itself is proxy-blocked). Q's GROUP TRIVIALITY is proven
+   locally (Todd–Coxeter over the trivial subgroup completes with index 1, 453 cosets), so
+   only Q's transfer edge to AK(3) awaits the MMS02 source read.
 2. Cite the stable ambient automorphism principle only in its stable form; state the
    triviality hypothesis (it is sharp). Rank-2 proof only — higher rank needs the
    substitution-and-removal re-derivation.
@@ -99,10 +106,13 @@ sources before load-bearing use)
   3-manifold; DECIDABLE, Neuwirth) and presents the trivial group ⇒ P is AC-trivializable
   (Thm 1.3), with an explicit doubly-exponential stable bound (Thm 1.2). Equivalent
   reformulation: stable ACC ⟺ every balanced presentation of 1 reaches SOME thickenable
-  presentation by stable AC moves.
-- **MMS02 Prop 1.2** — AK(3) ~st P25 where P25 = ⟨x,y | x⁴ = yx²y⁻¹·x⁻¹·yx²y⁻¹,
-  y = [x²,y]³⟩ (exact words to be re-verified from the source before use). First stably
-  equivalent pair not known AC-equivalent.
+  presentation by stable AC moves. **Thm 1.3 is [unverified this session]** (cited from two
+  agreeing secondary restatements: ac-advisor ground truth + codex Corollary 3, which
+  independently derives N ≅ B³ so Thm 1.3 supplies exactly the final "ball ⇒ AC-trivial"
+  step); re-read §1/§3.1 from source before any transfer theorem is written.
+- **MMS02 Prop 1.2** — AK(3) ~st Q (see trap 1 for Q's exact words, length 32, and the
+  provenance flag). First stably equivalent pair not known AC-equivalent, per the codex
+  ground truth.
 - **PROOFS.tex Thm 3** (this project) — (R,S) ~st (φR,φS) for φ ∈ Aut(F₂) on balanced
   presentations of 1: the Aut(F₂)-orbit sits in one stable class.
 
