@@ -1265,3 +1265,24 @@
 
 - [TRAP] The proof worktree's system Python has NumPy but not SymPy; importing `sympy` to compute the exact nullspace of the seven-direction obstruction matrix failed with `ModuleNotFoundError`.
 - [WORKS] Keep rational row reduction and congruence solving in small dependency-free certificate helpers using `fractions.Fraction`; use NumPy eigenvalues only as exploratory evidence, never as the exact proof.
+
+### 2026-07-28 Run proof tests in an isolated uv environment
+
+- [TRAP] The worktree's `/Library/Developer/CommandLineTools/usr/bin/python3` does not include pytest; direct `python3 -m pytest` fails with `No module named pytest`.
+- [TRAP] Sandboxed `uv run` cannot initialize its cache at `~/.cache/uv` and fails with `Operation not permitted`; the command needs the approved escalated execution path.
+- [WORKS] Run focused proof-certificate tests with approved `uv run --with numba --with numpy --with pytest python3 -m pytest ...`, keeping `PYTHONPYCACHEPREFIX=.scratch/pycache` inside the project.
+
+### 2026-07-28 Preserve TeX backslashes in scripted patches
+
+- [TRAP] A JavaScript-quoted `apply_patch` context containing TeX delimiters such as `\(` lost its backslashes before patch matching, so a valid ledger insertion was rejected without changing the file.
+- [WORKS] Use backslash-free context lines around Markdown insertions, or double-escape every TeX backslash at the JavaScript transport layer; read the exact insertion neighborhood first.
+
+### 2026-07-28 Keep Markdown QA searches literal
+
+- [TRAP] A hand-written `rg` character class intended to find parenthesized TeX was under-escaped across the JavaScript and shell layers and failed with `regex parse error: unclosed character class`.
+- [WORKS] For proof-note QA, prefer fixed-string `rg -F` queries for known bad fragments, or put reusable regular expressions in a project script where they have one escaping layer.
+
+### 2026-07-28 Collapse prime ladders to integral cokernels
+
+- [TRAP] Successively evading the cyclic three-point obstruction modulo 3, 5, and 7 looked like a growing family of independent prime constraints, but all came from the single integral covector `(1,-1,1)` and only measured divisibility of one quadratic defect value.
+- [WORKS] When the same finite action reappears at several primes, compute its operator cokernel over the integers before adding another prime. Here the image is exactly `ker(x-y+z)`, so simultaneous vanishing at every prime is the integral equation `x-y+z=0`; changing to inequivalent four-cycle representations supplied the genuinely new obstructions.

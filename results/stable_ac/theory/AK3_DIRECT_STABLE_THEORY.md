@@ -8171,6 +8171,44 @@ every integer combination in the known six-dimensional affine family is
 degree-two obstructed.  This still does not classify syzygies outside that
 span.
 
+**Result 153 (four-cycle quotients close the known seven-direction span).**
+There is a 59-entry, coefficient-norm-80 homogeneous syzygy $d$ whose
+$L_0$-source is
+\[
+d_0=e_T+e_{ttttct}.
+\]
+Six exact paths in the complete four-sheet Stallings cover reconstruct its
+remaining edge flow and prove \(\sum_iL_id_i=0\).  Adding \(d\) raises the
+known homogeneous-direction rank from six to seven modulo two.  The
+resulting residual has free length 2012, kernel length 310, wedge support
+1001, and kills all six preceding mod-two functionals.
+
+Two actions on four points are decisive.  For
+\[
+c=1,\qquad t=(0\ 1\ 2\ 3),
+\]
+the operator-image annihilator is spanned over \(\mathbb F_2\) by
+\[
+(0,1,0,0,1,0),\qquad(1,0,1,1,0,1).
+\]
+For
+\[
+c=(1\ 2),\qquad t=(0\ 1\ 2\ 3),
+\]
+the annihilator is spanned by \((1,1,1,1,1,1)\).  The seventh residual maps
+in the twisted action to
+\[
+(17,-8,-22,28,-4,14),
+\]
+whose coordinate sum is odd; the induced rank jumps from five to six.
+
+Together with the six earlier bits, these three new covectors are
+integer-valued quadratic functions of seven coefficients.  Thirty-six
+exact replays determine the model, 28 further points validate it, and all
+\(4^7=16384\) mod-four classes have nonzero obstruction vector.  Hence the
+complete known seven-direction integer span is degree-two obstructed.  The
+full homogeneous syzygy module remains unclassified.
+
 ## Live lead
 
 The direct relation-splitting manufacture of

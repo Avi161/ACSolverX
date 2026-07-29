@@ -751,6 +751,57 @@ The exact proof and checker are
 \end{gathered}
 \]
 
+### Four-cycle quotients close the known seven-direction span
+
+A seventh exact homogeneous direction $d$ starts from the balanced
+
+\[
+L_0\text{-source}\qquad d_0=e_T+e_{ttttct}.
+\]
+
+Six exact paths in the complete four-sheet Stallings cover reconstruct its
+edge flow.  The result has 59 support entries, coefficient norm 80, and
+satisfies \(\sum_iL_id_i=0\).  It raises the known direction rank from six
+to seven modulo two.  Adding it to the canonical lift produces a residual
+of free length 2012, kernel length 310, and wedge support 1001; all six
+previous mod-two bits vanish.
+
+For the action
+
+\[
+c=1,\qquad t=(0\ 1\ 2\ 3),
+\]
+
+two covectors span the operator-image annihilator over \(\mathbb F_2\):
+
+\[
+(0,1,0,0,1,0),\qquad(1,0,1,1,0,1).
+\]
+
+For the twisted action
+
+\[
+c=(1\ 2),\qquad t=(0\ 1\ 2\ 3),
+\]
+
+the annihilator is spanned by \((1,1,1,1,1,1)\).  The seventh residual maps
+to \((17,-8,-22,28,-4,14)\), whose coordinate sum is odd, so the rank jumps
+from five to six.
+
+The six prior bits and these three four-cycle bits form a nine-coordinate
+integer-valued quadratic obstruction.  Thirty-six exact replays determine
+it, 28 independent points validate it, and no class in
+\((\mathbb Z/4)^7\) has zero obstruction vector.  Hence every integer
+combination in the known seven-direction span is degree-two obstructed.
+
+The exact proof and checker are
+\[
+\begin{gathered}
+\texttt{literature/proofs/AK3\_DEPTH4\_PERIOD\_TWO\_SEVEN\_DIRECTION\_OBSTRUCTION.md},\\
+\texttt{experiments/stable\_ac/depth4\_period\_two\_seven\_direction\_obstruction\_certificate.py}.
+\end{gathered}
+\]
+
 ## Exact continuation order
 
 1. The 24 one/two-minority free-product certificates are complete.
@@ -774,8 +825,11 @@ The exact proof and checker are
    action then separates all 1024 mod-four coefficient classes in the known
    five-direction integer span. A sixth direction escapes those five bits,
    but a two-point quotient separates every one of the 4096 mod-four classes
-   in the resulting six-direction integer span. The next exact problem is to
-   construct a compact direction outside that span, or promote the six
-   mod-two functionals to a theorem about the full homogeneous syzygy module.
+   in the resulting six-direction integer span. A seventh balanced
+   $L_0$-source direction escapes all six bits; two four-cycle actions add
+   three covectors which separate all 16384 mod-four classes in the resulting
+   seven-direction span. The next exact problem is to classify balanced
+   two-source flows outside that span, or promote the nine mod-two
+   functionals to a theorem about the full homogeneous syzygy module.
 5. Only after all 54 are closed may the ledger claim original-source
    depth-four closure; then repeat at the first proper image.
