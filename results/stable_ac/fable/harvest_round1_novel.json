@@ -1,0 +1,16226 @@
+{
+"per_root_stats": null,
+"totals": {
+"protocol": "R1d reconciled, one non-iterative local round"
+},
+"truly_novel_le21": [
+{
+"words": [
+"yyyyXyXyXy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XyXyXyyyyy"
+],
+"length": 15,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+4,
+10,
+8
+],
+"reduced": [
+"yyyyXyXyXy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 1,
+"x-|y+": 1,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 6,
+"n_y": 9,
+"E": 0.005714285714285714,
+"E_exact": "1/175",
+"reduced_key": [
+"XXyxy",
+"XyXyXyyyyy"
+],
+"reduced_length": 15,
+"n_exact_realizations": 81
+},
+{
+"words": [
+"yyyXYYYxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYxyyyy"
+],
+"length": 14,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8
+],
+"reduced": [
+"yyyXYYYxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 5,
+"n_y": 9,
+"E": 0.003968253968253968,
+"E_exact": "1/252",
+"reduced_key": [
+"XXyxy",
+"XYYYxyyyy"
+],
+"reduced_length": 14,
+"n_exact_realizations": 108
+},
+{
+"words": [
+"YXyyxYYYYx",
+"yyyyXYYYx"
+],
+"canonical_key": [
+"XYYYxyyyy",
+"XYYxyXyyyy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+9,
+8,
+2,
+9
+],
+"reduced": [
+"YXyyxYYYYx",
+"yyyyXYYYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 9
+},
+"n_x": 5,
+"n_y": 14,
+"E": 0.0034965034965034965,
+"E_exact": "1/286",
+"reduced_key": [
+"XYYYxyyyy",
+"XYYxyXyyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYxYXyyyxY",
+"YYXyyyyxY"
+],
+"canonical_key": [
+"XYYYYxyyy",
+"XYYYxyXyyy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5
+],
+"reduced": [
+"YYxYXyyyxY",
+"YYXyyyyxY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 9
+},
+"n_x": 5,
+"n_y": 14,
+"E": 0.0034965034965034965,
+"E_exact": "1/286",
+"reduced_key": [
+"XYYYYxyyy",
+"XYYYxyXyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyyxYxYYYY",
+"yyyyXYYYx"
+],
+"canonical_key": [
+"XYYYxyyyy",
+"XYYxyyyyyXy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+9,
+8,
+2,
+9,
+2
+],
+"reduced": [
+"YXyyxYxYYYY",
+"yyyyXYYYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 10
+},
+"n_x": 5,
+"n_y": 15,
+"E": 0.0027472527472527475,
+"E_exact": "1/364",
+"reduced_key": [
+"XYYYxyyyy",
+"XYYxyyyyyXy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyyx",
+"YYXYXyyyyyx"
+],
+"canonical_key": [
+"XYXyyyyyxYY",
+"XYYYYxyyy"
+],
+"length": 20,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+7,
+7,
+1
+],
+"reduced": [
+"YYYXyyyyx",
+"YYXYXyyyyyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 10
+},
+"n_x": 5,
+"n_y": 15,
+"E": 0.0027472527472527475,
+"E_exact": "1/364",
+"reduced_key": [
+"XYXyyyyyxYY",
+"XYYYYxyyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyxYxYXyy",
+"XyxYYXyyy"
+],
+"canonical_key": [
+"XYxYYYxyy",
+"XYxYYxyXy"
+],
+"length": 18,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4
+],
+"reduced": [
+"XyxYxYXyy",
+"XyxYYXyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 5,
+"y+|y-": 4
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.0026455026455026454,
+"E_exact": "1/378",
+"reduced_key": [
+"XYxYYYxyy",
+"XYxYYxyXy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyxYxYXyy",
+"XyxYXyXYxy"
+],
+"canonical_key": [
+"XYxYXyxYxy",
+"XYxYYxyXy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+6,
+3,
+10
+],
+"reduced": [
+"XyxYxYXyy",
+"XyxYXyXYxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 6,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 6,
+"y+|y-": 1
+},
+"n_x": 9,
+"n_y": 10,
+"E": 0.002551020408163265,
+"E_exact": "1/392",
+"reduced_key": [
+"XYxYXyxYxy",
+"XYxYYxyXy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYx",
+"yXyxYxYXyXYxYx"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYXyXyxYxyXy"
+],
+"length": 19,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4,
+3,
+7,
+5,
+11,
+11,
+11,
+1,
+2,
+6,
+1,
+10,
+12,
+1,
+8,
+6
+],
+"reduced": [
+"xYXYx",
+"yXyxYxYXyXYxYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 6,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 6
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.002551020408163265,
+"E_exact": "1/392",
+"reduced_key": [
+"XXyxy",
+"XYxYXyXyxYxyXy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YYYXyyyyyxyX",
+"XYYYYxyyy"
+],
+"canonical_key": [
+"XYYYXyyyyyxy",
+"XYYYYxyyy"
+],
+"length": 21,
+"root_index": 21,
+"moves_from_root": [
+4,
+3
+],
+"reduced": [
+"YYYXyyyyyxyX",
+"XYYYYxyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 11
+},
+"n_x": 5,
+"n_y": 16,
+"E": 0.002197802197802198,
+"E_exact": "1/455",
+"reduced_key": [
+"XYYYXyyyyyxy",
+"XYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYYYXyyyy",
+"YYYYXyxyyyyX"
+],
+"canonical_key": [
+"XYYYYXyxyyyy",
+"XYYYYxyyy"
+],
+"length": 21,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+7,
+7,
+7,
+7,
+3
+],
+"reduced": [
+"xYYYXyyyy",
+"YYYYXyxyyyyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 11
+},
+"n_x": 5,
+"n_y": 16,
+"E": 0.002197802197802198,
+"E_exact": "1/455",
+"reduced_key": [
+"XYYYYXyxyyyy",
+"XYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXYYYXyxyy",
+"YXyyyxYYY"
+],
+"canonical_key": [
+"XYYYXyxyyyyy",
+"XYYYxyyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+7,
+4,
+3
+],
+"reduced": [
+"yyyXYYYXyxyy",
+"YXyyyxYYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 11
+},
+"n_x": 5,
+"n_y": 16,
+"E": 0.002197802197802198,
+"E_exact": "1/455",
+"reduced_key": [
+"XYYYXyxyyyyy",
+"XYYYxyyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYYYYXyyyyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYYYXyyyyyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+12,
+4
+],
+"reduced": [
+"XYYYYXyyyyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 7
+},
+"n_x": 6,
+"n_y": 13,
+"E": 0.0016161616161616162,
+"E_exact": "4/2475",
+"reduced_key": [
+"XYXyxy",
+"XYYYYXyyyyyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyyyXYYYxy",
+"XYxYYYxyy"
+],
+"canonical_key": [
+"XYYYxyXyyy",
+"XYxYYYxyy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+3,
+10,
+4,
+10
+],
+"reduced": [
+"XyyyXYYYxy",
+"XYxYYYxyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 7
+},
+"n_x": 6,
+"n_y": 13,
+"E": 0.0016161616161616162,
+"E_exact": "4/2475",
+"reduced_key": [
+"XYYYxyXyyy",
+"XYxYYYxyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXYxx",
+"YYXXyyyyyx"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyxYY"
+],
+"length": 15,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10
+],
+"reduced": [
+"YXYxx",
+"YYXXyyyyyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 6,
+"n_y": 9,
+"E": 0.0015873015873015873,
+"E_exact": "1/630",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyxYY"
+],
+"reduced_length": 15,
+"n_exact_realizations": 63
+},
+{
+"words": [
+"xYYYYXyyyx",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYYxyyyy",
+"XXyxy"
+],
+"length": 15,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2
+],
+"reduced": [
+"xYYYYXyyyx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 6,
+"n_y": 9,
+"E": 0.0015873015873015873,
+"E_exact": "1/630",
+"reduced_key": [
+"XXYYYxyyyy",
+"XXyxy"
+],
+"reduced_length": 15,
+"n_exact_realizations": 143
+},
+{
+"words": [
+"yyyXYYYYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyxYYY"
+],
+"length": 15,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yyyXYYYYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 6,
+"n_y": 9,
+"E": 0.0015873015873015873,
+"E_exact": "1/630",
+"reduced_key": [
+"XXyxy",
+"XXyyyyxYYY"
+],
+"reduced_length": 15,
+"n_exact_realizations": 63
+},
+{
+"words": [
+"yyyyXXYYxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYxyyyyy",
+"XXyxy"
+],
+"length": 15,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8
+],
+"reduced": [
+"yyyyXXYYxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 6,
+"n_y": 9,
+"E": 0.0015873015873015873,
+"E_exact": "1/630",
+"reduced_key": [
+"XXYYxyyyyy",
+"XXyxy"
+],
+"reduced_length": 15,
+"n_exact_realizations": 81
+},
+{
+"words": [
+"YXYxyx",
+"YYYXYXyyyyxyx"
+],
+"canonical_key": [
+"XYXYYYYxyxyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+7,
+1,
+7,
+1,
+7,
+1
+],
+"reduced": [
+"YXYxyx",
+"YYYXYXyyyyxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 12,
+"E": 0.001443001443001443,
+"E_exact": "1/693",
+"reduced_key": [
+"XYXYYYYxyxyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYxYXyyyxY",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYxyXyyy"
+],
+"length": 15,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11
+],
+"reduced": [
+"YYxYXyyyxY",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 6,
+"n_y": 9,
+"E": 0.0014285714285714286,
+"E_exact": "1/700",
+"reduced_key": [
+"XXyxy",
+"XYYYxyXyyy"
+],
+"reduced_length": 15,
+"n_exact_realizations": 63
+},
+{
+"words": [
+"yyXYYxyXyy",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XYYxyXyyyy"
+],
+"length": 15,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+11
+],
+"reduced": [
+"yyXYYxyXyy",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 6,
+"n_y": 9,
+"E": 0.0014285714285714286,
+"E_exact": "1/700",
+"reduced_key": [
+"XXyxy",
+"XYYxyXyyyy"
+],
+"reduced_length": 15,
+"n_exact_realizations": 161
+},
+{
+"words": [
+"xYXYx",
+"yXyxYxYXyyyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYxYYYxyXy"
+],
+"length": 17,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4,
+3,
+7,
+5,
+11,
+11,
+11,
+1,
+2,
+6
+],
+"reduced": [
+"xYXYx",
+"yXyxYxYXyyyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 5,
+"y+|y-": 2
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.0011337868480725624,
+"E_exact": "1/882",
+"reduced_key": [
+"XXyxy",
+"XYxYxYYYxyXy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"XyxYxYXXyxyXy",
+"YXyxyX"
+],
+"canonical_key": [
+"XXyxyXyXyxYxY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+4,
+11
+],
+"reduced": [
+"XyxYxYXXyxyXy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 5
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0011337868480725624,
+"E_exact": "1/882",
+"reduced_key": [
+"XXyxyXyXyxYxY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyxYxYXyXyxyX",
+"YXyxyX"
+],
+"canonical_key": [
+"XXyxYxYXyXyxy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+11,
+4
+],
+"reduced": [
+"XyxYxYXyXyxyX",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 5
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0011337868480725624,
+"E_exact": "1/882",
+"reduced_key": [
+"XXyxYxYXyXyxy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXXyxYxYXyxy",
+"YXyxyX"
+],
+"canonical_key": [
+"XXyxYxYXyxyxY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+11,
+12,
+6,
+8,
+2
+],
+"reduced": [
+"xYXXyxYxYXyxy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0011337868480725624,
+"E_exact": "1/882",
+"reduced_key": [
+"XXyxYxYXyxyxY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYxy",
+"XyxYYXyXyxyXy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYxYxYXYxYxyy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+3,
+10
+],
+"reduced": [
+"xYXYxy",
+"XyxYYXyXyxyXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 9,
+"n_y": 10,
+"E": 0.0011337868480725624,
+"E_exact": "1/882",
+"reduced_key": [
+"XYXyxy",
+"XYxYxYXYxYxyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyyyyXyXyx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYxYYYYxy"
+],
+"length": 16,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10
+],
+"reduced": [
+"YXyyyyXyXyx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0009523809523809524,
+"E_exact": "1/1050",
+"reduced_key": [
+"XXyxy",
+"XYxYxYYYYxy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 21
+},
+{
+"words": [
+"YxxYX",
+"yyXYxyXyXyy"
+],
+"canonical_key": [
+"XXyxy",
+"XYxyXyXyyyy"
+],
+"length": 16,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12
+],
+"reduced": [
+"YxxYX",
+"yyXYxyXyXyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0009523809523809524,
+"E_exact": "1/1050",
+"reduced_key": [
+"XXyxy",
+"XYxyXyXyyyy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 47
+},
+{
+"words": [
+"yxYYxYXyyyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYYYxyXyy"
+],
+"length": 16,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4,
+3,
+7,
+5,
+11,
+11
+],
+"reduced": [
+"yxYYxYXyyyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0009523809523809524,
+"E_exact": "1/1050",
+"reduced_key": [
+"XXyxy",
+"XYxYYYxyXyy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 21
+},
+{
+"words": [
+"YXyyxYYYYx",
+"yyyyXyXYYxy"
+],
+"canonical_key": [
+"XYYxyXyyyy",
+"XYYxyyyyyXy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+9,
+8,
+2,
+9,
+3
+],
+"reduced": [
+"YXyyxYYYYx",
+"yyyyXyXYYxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 9
+},
+"n_x": 6,
+"n_y": 15,
+"E": 0.0007992007992007992,
+"E_exact": "4/5005",
+"reduced_key": [
+"XYYxyXyyyy",
+"XYYxyyyyyXy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"YYYXXyyyyxx"
+],
+"canonical_key": [
+"XXYYYYxxyyy",
+"XXyxy"
+],
+"length": 16,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+7,
+1
+],
+"reduced": [
+"YXYxx",
+"YYYXXyyyyxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0007936507936507937,
+"E_exact": "1/1260",
+"reduced_key": [
+"XXYYYYxxyyy",
+"XXyxy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 21
+},
+{
+"words": [
+"yyyyXXYYYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYYxxyyyy",
+"XXyxy"
+],
+"length": 16,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yyyyXXYYYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0007936507936507937,
+"E_exact": "1/1260",
+"reduced_key": [
+"XXYYYxxyyyy",
+"XXyxy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 21
+},
+{
+"words": [
+"xYYYYXyyyx",
+"yxYYYXyyy"
+],
+"canonical_key": [
+"XXYYYxyyyy",
+"XYYYYxyyy"
+],
+"length": 19,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+1,
+9
+],
+"reduced": [
+"xYYYYXyyyx",
+"yxYYYXyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 10
+},
+"n_x": 5,
+"n_y": 14,
+"E": 0.000777000777000777,
+"E_exact": "1/1287",
+"reduced_key": [
+"XXYYYxyyyy",
+"XYYYYxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 6
+},
+{
+"words": [
+"yyyXYYYxy",
+"XXyyyyxYYY"
+],
+"canonical_key": [
+"XXyyyyxYYY",
+"XYYYxyyyy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+3
+],
+"reduced": [
+"yyyXYYYxy",
+"XXyyyyxYYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 10
+},
+"n_x": 5,
+"n_y": 14,
+"E": 0.000777000777000777,
+"E_exact": "1/1287",
+"reduced_key": [
+"XXyyyyxYYY",
+"XYYYxyyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYx",
+"yXyxYxYXyXYxxyX"
+],
+"canonical_key": [
+"XXyxYxyXyXYxYxY",
+"XXyxy"
+],
+"length": 20,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4,
+3,
+7,
+5,
+11,
+11,
+11,
+1,
+2,
+6,
+1,
+10,
+12,
+1,
+8,
+6,
+3
+],
+"reduced": [
+"xYXYx",
+"yXyxYxYXyXYxxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 6,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 6
+},
+"n_x": 11,
+"n_y": 9,
+"E": 0.0007653061224489796,
+"E_exact": "3/3920",
+"reduced_key": [
+"XXyxYxyXyXYxYxY",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXyxYxyXYx",
+"XyxYYXyyy"
+],
+"canonical_key": [
+"XYxYXyxYxy",
+"XYxYYYxyy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+6,
+2
+],
+"reduced": [
+"YXyxYxyXYx",
+"XyxYYXyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 11,
+"E": 0.0006802721088435374,
+"E_exact": "1/1470",
+"reduced_key": [
+"XYxYXyxYxy",
+"XYxYYYxyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyxyxxYXXXyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxYXyxyxxY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+5,
+2,
+9,
+9,
+4,
+10,
+4,
+10,
+4,
+10
+],
+"reduced": [
+"YXyxyxxYXXXyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3
+},
+"n_x": 11,
+"n_y": 8,
+"E": 0.0006802721088435374,
+"E_exact": "1/1470",
+"reduced_key": [
+"XXXyxYXyxyxxY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYYXyyxyxYXyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXYYxyyyXYxy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+9,
+4,
+10
+],
+"reduced": [
+"YYYXyyxyxYXyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 11,
+"E": 0.0006802721088435374,
+"E_exact": "1/1470",
+"reduced_key": [
+"XYXYYxyyyXYxy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yxyxYYYXyyXYx",
+"XyxyXY"
+],
+"canonical_key": [
+"XYXYXyxYYxyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 31,
+"moves_from_root": [
+3,
+8,
+10,
+2
+],
+"reduced": [
+"yxyxYYYXyyXYx",
+"XyxyXY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 11,
+"E": 0.0006802721088435374,
+"E_exact": "1/1470",
+"reduced_key": [
+"XYXYXyxYYxyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XYxxY",
+"YxYXyyXYxyXyx"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYXyxYYxyXy"
+],
+"length": 18,
+"root_index": 2,
+"moves_from_root": [
+4,
+3
+],
+"reduced": [
+"XYxxY",
+"YxYXyyXYxyXyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.0006377551020408163,
+"E_exact": "1/1568",
+"reduced_key": [
+"XXyxy",
+"XYxYXyxYYxyXy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 17
+},
+{
+"words": [
+"XyyyXXXXyxy",
+"YxxxYYY"
+],
+"canonical_key": [
+"XXXXyxyXyyy",
+"XXXyyyy"
+],
+"length": 18,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+3,
+9
+],
+"reduced": [
+"XyyyXXXXyxy",
+"YxxxYYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 5,
+"x+|y+": 3,
+"x+|y-": 1,
+"x-|y+": 1,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.0006377551020408163,
+"E_exact": "1/1568",
+"reduced_key": [
+"XXXXyxyXyyy",
+"XXXyyyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYx",
+"YxyxYYXyXYxYx"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyXyXyxYxyy"
+],
+"length": 18,
+"root_index": 14,
+"moves_from_root": [
+1,
+10,
+12,
+1,
+8,
+6
+],
+"reduced": [
+"xYXYx",
+"YxyxYYXyXYxYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.0006377551020408163,
+"E_exact": "1/1568",
+"reduced_key": [
+"XXyxy",
+"XYXyXyXyxYxyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 7
+},
+{
+"words": [
+"yxYYxYXyXYxYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyXyxYxyXyy"
+],
+"length": 18,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4,
+3,
+7,
+5,
+11,
+11,
+2,
+11,
+5,
+2,
+9,
+7
+],
+"reduced": [
+"yxYYxYXyXYxYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.0006377551020408163,
+"E_exact": "1/1568",
+"reduced_key": [
+"XXyxy",
+"XYXyXyxYxyXyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XYXYYYXyyyyxyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXYYYXyyyyxyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+12,
+6,
+12,
+4
+],
+"reduced": [
+"XYXYYYXyyyyxyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.0006184291898577613,
+"E_exact": "1/1617",
+"reduced_key": [
+"XYXYYYXyyyyxyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYYYYYXyyxyxyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXYXYYxyyyyyxY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+9,
+6,
+12,
+4
+],
+"reduced": [
+"XYYYYYXyyxyxyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.0006184291898577613,
+"E_exact": "1/1617",
+"reduced_key": [
+"XYXYXYYxyyyyyxY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yxyxxYXXXXXYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXXYxyxyxyxxY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+5,
+2,
+9,
+9,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yxyxxYXXXXXYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 5,
+"x+|y+": 2,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 2
+},
+"n_x": 13,
+"n_y": 8,
+"E": 0.0006184291898577613,
+"E_exact": "1/1617",
+"reduced_key": [
+"XXXXXYxyxyxyxxY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyXYYxyxYXy",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyxYYYxy"
+],
+"length": 16,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+2,
+11
+],
+"reduced": [
+"yyXYYxyxYXy",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0005357142857142857,
+"E_exact": "3/5600",
+"reduced_key": [
+"XXyxy",
+"XYXyyxYYYxy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 41
+},
+{
+"words": [
+"XYYYXyyyXyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYYXyyyXyyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+12,
+4
+],
+"reduced": [
+"XYYYXyyyXyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 12,
+"E": 0.0005194805194805195,
+"E_exact": "1/1925",
+"reduced_key": [
+"XYXyxy",
+"XYYYXyyyXyyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 9
+},
+{
+"words": [
+"XYYYYYXyyyxyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYXYYYxyyyyyxY"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+6,
+12,
+4
+],
+"reduced": [
+"XYYYYYXyyyxyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 7
+},
+"n_x": 7,
+"n_y": 14,
+"E": 0.000518000518000518,
+"E_exact": "2/3861",
+"reduced_key": [
+"XYXyxy",
+"XYYXYYYxyyyyyxY"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"XYYYXYXyyyyyyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYXyyyyyyxyXYYY"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+7,
+1,
+7,
+1,
+7,
+5,
+3
+],
+"reduced": [
+"YXYxyx",
+"XYYYXYXyyyyyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 7
+},
+"n_x": 7,
+"n_y": 14,
+"E": 0.000518000518000518,
+"E_exact": "2/3861",
+"reduced_key": [
+"XYXyxy",
+"XYXyyyyyyxyXYYY"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yxYYxYXyyyX",
+"yxYYXyyyyX"
+],
+"canonical_key": [
+"XYxYYYYxyy",
+"XYxYYYxyXyy"
+],
+"length": 21,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4
+],
+"reduced": [
+"yxYYxYXyyyX",
+"yxYYXyyyyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 5,
+"y+|y-": 7
+},
+"n_x": 7,
+"n_y": 14,
+"E": 0.000518000518000518,
+"E_exact": "2/3861",
+"reduced_key": [
+"XYxYYYYxyy",
+"XYxYYYxyXyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyXYYxyXyy",
+"yyXYxyXyXyy"
+],
+"canonical_key": [
+"XYYxyXyyyy",
+"XYxyXyXyyyy"
+],
+"length": 21,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4
+],
+"reduced": [
+"yyXYYxyXyy",
+"yyXYxyXyXyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 5,
+"y+|y-": 7
+},
+"n_x": 7,
+"n_y": 14,
+"E": 0.000518000518000518,
+"E_exact": "2/3861",
+"reduced_key": [
+"XYYxyXyyyy",
+"XYxyXyXyyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"YXXyyyyyXyx"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyXyxY"
+],
+"length": 16,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+3,
+11
+],
+"reduced": [
+"YXYxx",
+"YXXyyyyyXyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0004761904761904762,
+"E_exact": "1/2100",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyXyxY"
+],
+"reduced_length": 16,
+"n_exact_realizations": 21
+},
+{
+"words": [
+"xYxYYYYXyyx",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYxyyyyXy",
+"XXyxy"
+],
+"length": 16,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+6,
+8,
+2
+],
+"reduced": [
+"xYxYYYYXyyx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0004761904761904762,
+"E_exact": "1/2100",
+"reduced_key": [
+"XXYYxyyyyXy",
+"XXyxy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 21
+},
+{
+"words": [
+"yyyyXXYxyXy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYxyXyyyyy",
+"XXyxy"
+],
+"length": 16,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+8
+],
+"reduced": [
+"yyyyXXYxyXy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0004761904761904762,
+"E_exact": "1/2100",
+"reduced_key": [
+"XXYxyXyyyyy",
+"XXyxy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 33
+},
+{
+"words": [
+"yyyyXyXXYxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYxyyyyyXy",
+"XXyxy"
+],
+"length": 16,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8
+],
+"reduced": [
+"yyyyXyXXYxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 7,
+"n_y": 9,
+"E": 0.0004761904761904762,
+"E_exact": "1/2100",
+"reduced_key": [
+"XXYxyyyyyXy",
+"XXyxy"
+],
+"reduced_length": 16,
+"n_exact_realizations": 21
+},
+{
+"words": [
+"xYXYx",
+"YYXyyyyyxyXY"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYXyyyyyxy"
+],
+"length": 17,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+12,
+5,
+2,
+8,
+10,
+10,
+10,
+12,
+3,
+9,
+8,
+6
+],
+"reduced": [
+"xYXYx",
+"YYXyyyyyxyXY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 6,
+"n_y": 11,
+"E": 0.0004761904761904762,
+"E_exact": "1/2100",
+"reduced_key": [
+"XXyxy",
+"XYYYXyyyyyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 38
+},
+{
+"words": [
+"yyyXYYYXyxyy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYXyxyyyyy"
+],
+"length": 17,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+7,
+4,
+11
+],
+"reduced": [
+"yyyXYYYXyxyy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 6,
+"n_y": 11,
+"E": 0.0004761904761904762,
+"E_exact": "1/2100",
+"reduced_key": [
+"XXyxy",
+"XYYYXyxyyyyy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 18
+},
+{
+"words": [
+"XyxYxYYXYxyyy",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxy",
+"XYxYYYXyxyyXy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+7,
+2,
+11,
+11
+],
+"reduced": [
+"XyxYxYYXYxyyy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 11,
+"E": 0.00043537414965986397,
+"E_exact": "8/18375",
+"reduced_key": [
+"XYXyxy",
+"XYxYYYXyxyyXy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYYYXyyXyxyXy",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxy",
+"XYxYXYxYYxyyy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+3,
+7,
+4,
+11
+],
+"reduced": [
+"xYYYXyyXyxyXy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 11,
+"E": 0.00043537414965986397,
+"E_exact": "8/18375",
+"reduced_key": [
+"XYXyxy",
+"XYxYXYxYYxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YxxYX",
+"yyXYxyXyxYXy"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYXyxYYYxy"
+],
+"length": 17,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+1,
+10
+],
+"reduced": [
+"YxxYX",
+"yyXYxyXyxYXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00040816326530612246,
+"E_exact": "1/2450",
+"reduced_key": [
+"XXyxy",
+"XYxYXyxYYYxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 29
+},
+{
+"words": [
+"xYXYx",
+"YxyxYYXyyXYx"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyXyxYYxyy"
+],
+"length": 17,
+"root_index": 14,
+"moves_from_root": [
+1
+],
+"reduced": [
+"xYXYx",
+"YxyxYYXyyXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00040816326530612246,
+"E_exact": "1/2450",
+"reduced_key": [
+"XXyxy",
+"XYXyXyxYYxyy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 27
+},
+{
+"words": [
+"yyXYYxyxYxYX",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyxYYxyXy"
+],
+"length": 17,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+2,
+11,
+2
+],
+"reduced": [
+"yyXYYxyxYxYX",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00040816326530612246,
+"E_exact": "1/2450",
+"reduced_key": [
+"XXyxy",
+"XYXyyxYYxyXy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"XyxYxYXyxYXYxyy",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxy",
+"XYxYYXyxyXYxyXy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+2,
+11
+],
+"reduced": [
+"XyxYxYXyxYXYxyy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 11,
+"E": 0.0003149407911312673,
+"E_exact": "5/15876",
+"reduced_key": [
+"XYXyxy",
+"XYxYYXyxyXYxyXy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyxYxYXyyxYXYxy",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYxyXyXYxYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+11,
+2
+],
+"reduced": [
+"XyxYxYXyyxYXYxy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 11,
+"E": 0.0003149407911312673,
+"E_exact": "5/15876",
+"reduced_key": [
+"XYXyxy",
+"XYYxyXyXYxYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXyxYxYXyyXyxyX",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxYxYXyyXyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+11,
+6,
+4
+],
+"reduced": [
+"YXyxYxYXyyXyxyX",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 11,
+"E": 0.0003149407911312673,
+"E_exact": "5/15876",
+"reduced_key": [
+"XYXyxYxYXyyXyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXyxYxYXyyXYxy",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxYYxyXyXYxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+11,
+6,
+8,
+2
+],
+"reduced": [
+"xYXyxYxYXyyXYxy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 5,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 11,
+"E": 0.0003149407911312673,
+"E_exact": "5/15876",
+"reduced_key": [
+"XYXyxYYxyXyXYxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYXyyyXyx",
+"YXYXyyyyXyx"
+],
+"canonical_key": [
+"XYXyyyyXyxY",
+"XYxYYYxyy"
+],
+"length": 20,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+7,
+1
+],
+"reduced": [
+"YYXyyyXyx",
+"YXYXyyyyXyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 13,
+"E": 0.00030303030303030303,
+"E_exact": "1/3300",
+"reduced_key": [
+"XYXyyyyXyxY",
+"XYxYYYxyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xxxxYXYXyxY",
+"xxxYXXyxY"
+],
+"canonical_key": [
+"XXXXyXYxyxy",
+"XXXyXYxxy"
+],
+"length": 20,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+5,
+7,
+9,
+1,
+9,
+1,
+9,
+1,
+8,
+8,
+8,
+4
+],
+"reduced": [
+"xxxxYXYXyxY",
+"xxxYXXyxY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 6,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4
+},
+"n_x": 13,
+"n_y": 7,
+"E": 0.00030303030303030303,
+"E_exact": "1/3300",
+"reduced_key": [
+"XXXXyXYxyxy",
+"XXXyXYxxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXXXy",
+"XYXyxxxxYYY"
+],
+"canonical_key": [
+"XXXXYxyxyyy",
+"XXXyyyy"
+],
+"length": 18,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+3
+],
+"reduced": [
+"yyyXXXy",
+"XYXyxxxxYYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 5,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.0002834467120181406,
+"E_exact": "1/3528",
+"reduced_key": [
+"XXXXYxyxyyy",
+"XXXyyyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XYXYYXyyyXyxyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXYYXyyyXyxyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+12,
+6,
+12,
+4
+],
+"reduced": [
+"XYXYYXyyyXyxyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.0002782931354359926,
+"E_exact": "3/10780",
+"reduced_key": [
+"XYXYYXyyyXyxyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"YXYXyxYYXyyyxyx"
+],
+"canonical_key": [
+"XYXYYYxyyXYxyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+2,
+7,
+1
+],
+"reduced": [
+"YXYxyx",
+"YXYXyxYYXyyyxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.0002782931354359926,
+"E_exact": "3/10780",
+"reduced_key": [
+"XYXYYYxyyXYxyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYxYxYYYYXyx",
+"XyxyX"
+],
+"canonical_key": [
+"XXYxyyyyXyXy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+6,
+8,
+2,
+6,
+8,
+2
+],
+"reduced": [
+"xYxYxYYYYXyx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00027210884353741496,
+"E_exact": "1/3675",
+"reduced_key": [
+"XXYxyyyyXyXy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"XYYYYXyyyxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXYYYxyyyyxY"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+6,
+2,
+12,
+4
+],
+"reduced": [
+"XYYYYXyyyxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00021164021164021165,
+"E_exact": "1/4725",
+"reduced_key": [
+"XXyxy",
+"XYXYYYxyyyyxY"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyyyXXyx",
+"XYxYYYxyy"
+],
+"canonical_key": [
+"XXyxYXyyy",
+"XYxYYYxyy"
+],
+"length": 18,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+3,
+10
+],
+"reduced": [
+"YXyyyXXyx",
+"XYxYYYxyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00021164021164021165,
+"E_exact": "1/4725",
+"reduced_key": [
+"XXyxYXyyy",
+"XYxYYYxyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyXYYYYXyxyx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXYxyyyyxYYY"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+5,
+4,
+9
+],
+"reduced": [
+"yyyXYYYYXyxyx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00021164021164021165,
+"E_exact": "1/4725",
+"reduced_key": [
+"XXyxy",
+"XYXYxyyyyxYYY"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyyyXYYYxxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXXyyyxYYYxy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9
+],
+"reduced": [
+"YXyyyXYYYxxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00020408163265306123,
+"E_exact": "1/4900",
+"reduced_key": [
+"XXXyyyxYYYxy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"YYXyyyXYYxxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXXyyxYYYxyy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9
+],
+"reduced": [
+"YYXyyyXYYxxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00020408163265306123,
+"E_exact": "1/4900",
+"reduced_key": [
+"XXXyyxYYYxyy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"xYXYx",
+"XYYXyyyyxxyX"
+],
+"canonical_key": [
+"XXYYXyyyyxxy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+12,
+5,
+2,
+8,
+10,
+10,
+3
+],
+"reduced": [
+"xYXYx",
+"XYYXyyyyxxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00020408163265306123,
+"E_exact": "1/4900",
+"reduced_key": [
+"XXYYXyyyyxxy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"xxYYYXyyyXYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXXyxYYYxyyy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+8,
+2
+],
+"reduced": [
+"xxYYYXyyyXYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00020408163265306123,
+"E_exact": "1/4900",
+"reduced_key": [
+"XXXyxYYYxyyy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 29
+},
+{
+"words": [
+"yyyyXyXXYYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYxxyyyyXy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yyyyXyXXYYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.00020408163265306123,
+"E_exact": "1/4900",
+"reduced_key": [
+"XXYYxxyyyyXy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"YYYxyyXYx",
+"yxYYXXyyyy"
+],
+"canonical_key": [
+"XXyyyyyxYY",
+"XYxYYYxyy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+2,
+9
+],
+"reduced": [
+"YYYxyyXYx",
+"yxYYXXyyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 8
+},
+"n_x": 6,
+"n_y": 13,
+"E": 0.00020202020202020202,
+"E_exact": "1/4950",
+"reduced_key": [
+"XXyyyyyxYY",
+"XYxYYYxyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 7
+},
+{
+"words": [
+"yyyXXXy",
+"XYxxYYYxxxxYYY"
+],
+"canonical_key": [
+"XXXXyyyXXyxyyy",
+"XXXyyyy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+3,
+10,
+8,
+3
+],
+"reduced": [
+"yyyXXXy",
+"XYxxYYYxxxxYYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 6,
+"x+|y+": 3,
+"x+|y-": 1,
+"x-|y+": 1,
+"x-|y-": 3,
+"y+|y-": 7
+},
+"n_x": 10,
+"n_y": 11,
+"E": 0.0001984126984126984,
+"E_exact": "1/5040",
+"reduced_key": [
+"XXXXyyyXXyxyyy",
+"XXXyyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYYYYxyyXY",
+"yxYYXyyyXYx"
+],
+"canonical_key": [
+"XYXyxYYYxyy",
+"XYxYYYYxyy"
+],
+"length": 21,
+"root_index": 16,
+"moves_from_root": [
+2
+],
+"reduced": [
+"xYYYYxyyXY",
+"yxYYXyyyXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 7
+},
+"n_x": 7,
+"n_y": 14,
+"E": 0.00018648018648018648,
+"E_exact": "2/10725",
+"reduced_key": [
+"XYXyxYYYxyy",
+"XYxYYYYxyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyXYYxyXyy",
+"YxyXYXyyxYY"
+],
+"canonical_key": [
+"XYXyyxYYYxy",
+"XYYxyXyyyy"
+],
+"length": 21,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+3
+],
+"reduced": [
+"yyXYYxyXyy",
+"YxyXYXyyxYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 7
+},
+"n_x": 7,
+"n_y": 14,
+"E": 0.00018648018648018648,
+"E_exact": "2/10725",
+"reduced_key": [
+"XYXyyxYYYxy",
+"XYYxyXyyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyyyXyXyXyXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYxYxYxYYYYxY"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+4,
+10,
+4
+],
+"reduced": [
+"XyyyyXyXyXyXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 6,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 6,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 0.00017006802721088434,
+"E_exact": "1/5880",
+"reduced_key": [
+"XXyxy",
+"XYxYxYxYxYYYYxY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"XYYXXyyyyyyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyyxyXYY"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+5,
+3
+],
+"reduced": [
+"YXYxx",
+"XYYXXyyyyyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00015873015873015873,
+"E_exact": "1/6300",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyyxyXYY"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYYYYXyyyxYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyXYYYxyyyyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+6,
+2,
+6,
+2
+],
+"reduced": [
+"YYYYYXyyyxYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00015873015873015873,
+"E_exact": "1/6300",
+"reduced_key": [
+"XXyXYYYxyyyyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYx",
+"XYYXyyyyyxyyX"
+],
+"canonical_key": [
+"XXYYXyyyyyxyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+12,
+5,
+2,
+8,
+10,
+10,
+10,
+12,
+3,
+9,
+8,
+6,
+5,
+3
+],
+"reduced": [
+"xYXYx",
+"XYYXyyyyyxyyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00015873015873015873,
+"E_exact": "1/6300",
+"reduced_key": [
+"XXYYXyyyyyxyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYx",
+"XyyxYYXyyyyyX"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyxYYXyyyyy"
+],
+"length": 18,
+"root_index": 16,
+"moves_from_root": [
+3,
+11,
+5,
+3
+],
+"reduced": [
+"xYXYx",
+"XyyxYYXyyyyyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00015873015873015873,
+"E_exact": "1/6300",
+"reduced_key": [
+"XXyxy",
+"XXyyxYYXyyyyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyXYYxyyXXyyy",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyXYYxyy"
+],
+"length": 18,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+7,
+4,
+11,
+11
+],
+"reduced": [
+"yyXYYxyyXXyyy",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00015873015873015873,
+"E_exact": "1/6300",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyXYYxyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyyXXYYXyxyy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYXyxyyyyyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+7,
+4,
+11
+],
+"reduced": [
+"yyyyXXYYXyxyy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00015873015873015873,
+"E_exact": "1/6300",
+"reduced_key": [
+"XXYYXyxyyyyyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyyXXYYxy",
+"XXyyyxxYYYY"
+],
+"canonical_key": [
+"XXYYYxxyyyy",
+"XXYYxyyyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+3
+],
+"reduced": [
+"yyyyXXYYxy",
+"XXyyyxxYYYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 2,
+"y+|y-": 10
+},
+"n_x": 7,
+"n_y": 14,
+"E": 0.0001554001554001554,
+"E_exact": "1/6435",
+"reduced_key": [
+"XXYYYxxyyyy",
+"XXYYxyyyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYYYXyyyyxYXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYYXyyyyxYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+12,
+4
+],
+"reduced": [
+"XYYYXyyyyxYXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXyxy",
+"XYYYXyyyyxYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyxYYYXyyyyxyXY",
+"XyxyXY"
+],
+"canonical_key": [
+"XYXyxYYYXyyyyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 31,
+"moves_from_root": [
+3,
+12,
+4
+],
+"reduced": [
+"XyxYYYXyyyyxyXY",
+"XyxyXY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXyxYYYXyyyyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyxyxYYYXyyyyXY",
+"XyxyXY"
+],
+"canonical_key": [
+"XYXYxyxYYYYxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 31,
+"moves_from_root": [
+3,
+8,
+10,
+12,
+4
+],
+"reduced": [
+"XyxyxYYYXyyyyXY",
+"XyxyXY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXYxyxYYYYxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyxyxxYXXXXXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXXyxyXyxyxxY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+5,
+2,
+9,
+9,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+10,
+4
+],
+"reduced": [
+"XyxyxxYXXXXXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 5,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3
+},
+"n_x": 13,
+"n_y": 8,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XXXXXyxyXyxyxxY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYYYXyyyyxYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyXYYYYxyyyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYYXyyyyxYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXyXYYYYxyyyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"XYYXYXyyyyXyyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYXyyyyXyyxyXYY"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+7,
+1,
+7,
+5,
+3
+],
+"reduced": [
+"YXYxyx",
+"XYYXYXyyyyXyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXyxy",
+"XYXyyyyXyyxyXYY"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyyxYXYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYXyxyXYYYYxyyy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+2
+],
+"reduced": [
+"YYYXyyyyxYXYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXyxy",
+"XYXyxyXYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYYYXyyxyxYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXYYxyyyyyXYXy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+9,
+6,
+2
+],
+"reduced": [
+"YYYYYXyyxyxYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXYYxyyyyyXYXy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yxYXYx",
+"yxYYXyyyyxYYXYx"
+],
+"canonical_key": [
+"XYXyxy",
+"XYXyxyyXYYYYxyy"
+],
+"length": 21,
+"root_index": 31,
+"moves_from_root": [
+2,
+1,
+9,
+1
+],
+"reduced": [
+"yxYXYx",
+"yxYYXyyyyxYYXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 0.00015460729746444033,
+"E_exact": "1/6468",
+"reduced_key": [
+"XYXyxy",
+"XYXyxyyXYYYYxyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"yyyyXYxyXXYx"
+],
+"canonical_key": [
+"XXYxyyyyXYxy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+3,
+11,
+9,
+1,
+9
+],
+"reduced": [
+"YXYxx",
+"yyyyXYxyXXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.0001530612244897959,
+"E_exact": "3/19600",
+"reduced_key": [
+"XXYxyyyyXYxy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"YXyyyyXXYxyx",
+"XXyxy"
+],
+"canonical_key": [
+"XXYxyxYXyyyy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10
+],
+"reduced": [
+"YXyyyyXXYxyx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.0001530612244897959,
+"E_exact": "3/19600",
+"reduced_key": [
+"XXYxyxYXyyyy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"YxxYX",
+"yyXYxyxYXXyy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyXYxyxY"
+],
+"length": 17,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10
+],
+"reduced": [
+"YxxYX",
+"yyXYxyxYXXyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.0001530612244897959,
+"E_exact": "3/19600",
+"reduced_key": [
+"XXyxy",
+"XXyyyyXYxyxY"
+],
+"reduced_length": 17,
+"n_exact_realizations": 29
+},
+{
+"words": [
+"xYXYx",
+"xYXyxYYYXyyx"
+],
+"canonical_key": [
+"XXYYxyyyXYxy",
+"XXyxy"
+],
+"length": 17,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+1,
+2,
+7,
+9,
+1
+],
+"reduced": [
+"xYXYx",
+"xYXyxYYYXyyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.0001530612244897959,
+"E_exact": "3/19600",
+"reduced_key": [
+"XXYYxyyyXYxy",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 15
+},
+{
+"words": [
+"xYYYXyyXYxxy",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxYYxyyyXY",
+"XXyxy"
+],
+"length": 17,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+8,
+2,
+11,
+5,
+2,
+9,
+7,
+4,
+12
+],
+"reduced": [
+"xYYYXyyXYxxy",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 8,
+"n_y": 9,
+"E": 0.0001530612244897959,
+"E_exact": "3/19600",
+"reduced_key": [
+"XXyxYYxyyyXY",
+"XXyxy"
+],
+"reduced_length": 17,
+"n_exact_realizations": 16
+},
+{
+"words": [
+"YXYxyx",
+"YYYXYXyyyxyxx"
+],
+"canonical_key": [
+"XXYXYYYxyxyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+7,
+1,
+7,
+1,
+7,
+1,
+12,
+1,
+8
+],
+"reduced": [
+"YXYxyx",
+"YYYXYXyyyxyxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 0.0001511715797430083,
+"E_exact": "1/6615",
+"reduced_key": [
+"XXYXYYYxyxyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyyxyxYXXXyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxYXyyxyxY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+4,
+10
+],
+"reduced": [
+"YXyyxyxYXXXyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXXyxYXyyxyxY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYXyxyxxYXXyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYXYxyyXYxxy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+5,
+2,
+9,
+9,
+4,
+10,
+4,
+10
+],
+"reduced": [
+"YYXyxyxxYXXyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXYXYxyyXYxxy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 9
+},
+{
+"words": [
+"YYXyyxyxYXXyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXyxYYXyyxyxY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+9,
+4,
+10,
+4,
+10
+],
+"reduced": [
+"YYXyyxyxYXXyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 9,
+"n_y": 10,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXyxYYXyyxyxY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 9
+},
+{
+"words": [
+"YYYXyxyxxYXyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYXYxyyyXYxy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+5,
+2,
+9,
+9,
+4,
+10
+],
+"reduced": [
+"YYYXyxyxxYXyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 9,
+"n_y": 10,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXYXYxyyyXYxy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YxxYX",
+"xxYXyyXYxyXyXy"
+],
+"canonical_key": [
+"XXYxYxYXyxYYxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 5,
+"moves_from_root": [
+9,
+3,
+8,
+6,
+3,
+10,
+12
+],
+"reduced": [
+"YxxYX",
+"xxYXyyXYxyXyXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXYxYxYXyxYYxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYx",
+"YxyxYYXXYxYxYx"
+],
+"canonical_key": [
+"XXYxYxYxYxyxYY",
+"XXyxy"
+],
+"length": 19,
+"root_index": 14,
+"moves_from_root": [
+1,
+10,
+12,
+1,
+10,
+12,
+1,
+8,
+6,
+8,
+6
+],
+"reduced": [
+"xYXYx",
+"YxyxYYXXYxYxYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXYxYxYxYxyxYY",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"yxYYxYXyXYxxyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxYxyXyyXYxY",
+"XXyxy"
+],
+"length": 19,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4,
+3,
+7,
+5,
+11,
+11,
+2,
+11,
+5,
+2,
+9,
+7,
+4
+],
+"reduced": [
+"yxYYxYXyXYxxyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 9,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXyxYxyXyyXYxY",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"yxyxYYYXyXYxx",
+"XyxyXY"
+],
+"canonical_key": [
+"XXyxYxyyyXYXY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 31,
+"moves_from_root": [
+3,
+8,
+10,
+2,
+5,
+2,
+9
+],
+"reduced": [
+"yxyxYYYXyXYxx",
+"XyxyXY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 9,
+"n_y": 10,
+"E": 0.0001417233560090703,
+"E_exact": "1/7056",
+"reduced_key": [
+"XXyxYxyyyXYXY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XYYXyyyXyxYXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYXyyyXyxYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XYYXyyyXyxYXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XYXyxy",
+"XYYXyyyXyxYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYYXyyyXyxYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyXYxYYYxyyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYXyyyXyxYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XYXyXYxYYYxyyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"XYXyxYYXyyyXyxy"
+],
+"canonical_key": [
+"XYXyxYYXyyyXyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+2,
+3
+],
+"reduced": [
+"YXYxyx",
+"XYXyxYYXyyyXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XYXyxYYXyyyXyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"YXyxYYXyyyXYxyx"
+],
+"canonical_key": [
+"XYXyxYYYxyyXYxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+2,
+9,
+1
+],
+"reduced": [
+"YXYxyx",
+"YXyxYYXyyyXYxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XYXyxYYYxyyXYxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYXyyyXyxYXYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYXyxyXYxYYYxyy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+2
+],
+"reduced": [
+"YYXyyyXyxYXYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XYXyxy",
+"XYXyxyXYxYYYxyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYxy",
+"XyxYYXyyxYXYxyy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYxyyXYxYYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+1,
+10
+],
+"reduced": [
+"xYXYxy",
+"XyxYYXyyxYXYxyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XYXyxy",
+"XYYxyyXYxYYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYxy",
+"XyxYYXyyyxYXYxy"
+],
+"canonical_key": [
+"XYXyxy",
+"XYYYxyyXYxYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+1
+],
+"reduced": [
+"xYXYxy",
+"XyxYYXyyyxYXYxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 12,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XYXyxy",
+"XYYYxyyXYxYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYxy",
+"YXyxxxYXXyxYxyX"
+],
+"canonical_key": [
+"XXXYxyxYXyXYxxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+5,
+7,
+9,
+1,
+9,
+1,
+9,
+1,
+11,
+5,
+7,
+3
+],
+"reduced": [
+"xYXYxy",
+"YXyxxxYXXyxYxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4
+},
+"n_x": 12,
+"n_y": 9,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XXXYxyxYXyXYxxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYxy",
+"xxxYXXyxYxYXYxy"
+],
+"canonical_key": [
+"XXXYXyxyXyXYxxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+5,
+7,
+9,
+1,
+9,
+1,
+9,
+1,
+1
+],
+"reduced": [
+"xYXYxy",
+"xxxYXXyxYxYXYxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4
+},
+"n_x": 12,
+"n_y": 9,
+"E": 0.00012368583797155226,
+"E_exact": "1/8085",
+"reduced_key": [
+"XXXYXyxyXyXYxxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyyXYYYYxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyyyxYYYxY"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+12,
+4
+],
+"reduced": [
+"XyyyXYYYYxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00011904761904761905,
+"E_exact": "1/8400",
+"reduced_key": [
+"XXyxy",
+"XYXyyyyxYYYxY"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYXyyyyXyyxyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYXyyyyXyyxy"
+],
+"length": 18,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+4,
+12,
+7,
+4,
+10,
+11
+],
+"reduced": [
+"YYXyyyyXyyxyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00011904761904761905,
+"E_exact": "1/8400",
+"reduced_key": [
+"XXyxy",
+"XYYXyyyyXyyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 9
+},
+{
+"words": [
+"YYYYXyyyXyxyx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXYxYYYxyyyy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+6,
+2,
+5,
+4,
+9
+],
+"reduced": [
+"YYYYXyyyXyxyx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00011904761904761905,
+"E_exact": "1/8400",
+"reduced_key": [
+"XXyxy",
+"XYXYxYYYxyyyy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYxYXyyyyxyXY",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYYxyXyyyxY"
+],
+"length": 18,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11,
+11,
+4,
+7
+],
+"reduced": [
+"YYxYXyyyyxyXY",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 7,
+"n_y": 11,
+"E": 0.00011904761904761905,
+"E_exact": "1/8400",
+"reduced_key": [
+"XXyxy",
+"XYYYYxyXyyyxY"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyyyXYYYxy",
+"XYxxYYYxy"
+],
+"canonical_key": [
+"XXyxYXyyy",
+"XYYYxyXyyy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+3,
+10,
+4
+],
+"reduced": [
+"XyyyXYYYxy",
+"XYxxYYYxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 12,
+"E": 0.00011544011544011544,
+"E_exact": "2/17325",
+"reduced_key": [
+"XXyxYXyyy",
+"XYYYxyXyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYYYYXyyyxxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYYYxyyyyyXY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+6,
+2
+],
+"reduced": [
+"YYYYYXyyyxxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 7,
+"n_y": 12,
+"E": 0.00011544011544011544,
+"E_exact": "2/17325",
+"reduced_key": [
+"XXYYYxyyyyyXY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XYxxY",
+"YxYXyyXYxxxYY"
+],
+"canonical_key": [
+"XXXyxYYxyXyyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 2,
+"moves_from_root": [
+4,
+10,
+1,
+6
+],
+"reduced": [
+"XYxxY",
+"YxYXyyXYxxxYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXXyxYYxyXyyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyyXYYxxxYYxY",
+"xyXXy"
+],
+"canonical_key": [
+"XXXyyxYYxyXyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 7,
+"moves_from_root": [
+6,
+12,
+10,
+10,
+12,
+4,
+3,
+9,
+7,
+7,
+9,
+11
+],
+"reduced": [
+"XyyXYYxxxYYxY",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXXyyxYYxyXyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXYxx",
+"YXXyyyyXYYxxx"
+],
+"canonical_key": [
+"XXXyyxYYYYxxy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8
+],
+"reduced": [
+"YXYxx",
+"YXXyyyyXYYxxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXXyyxYYYYxxy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXYxx",
+"YYXXyyyyXYxxx"
+],
+"canonical_key": [
+"XXXyxYYYYxxyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8
+],
+"reduced": [
+"YXYxx",
+"YYXXyyyyXYxxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXXyxYYYYxxyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyyyyXXYYxxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXXyyxxYYYYxy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9
+],
+"reduced": [
+"YXyyyyXXYYxxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXXyyxxYYYYxy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYXyyyyXXYxxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXXyxxYYYYxyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9
+],
+"reduced": [
+"YYXyyyyXXYxxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXXyxxYYYYxyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYx",
+"yxYYXyyXYxxyX"
+],
+"canonical_key": [
+"XXyxYYxyyXYxY",
+"XXyxy"
+],
+"length": 18,
+"root_index": 16,
+"moves_from_root": [
+10,
+12,
+1,
+8,
+6,
+3
+],
+"reduced": [
+"xYXYx",
+"yxYYXyyXYxxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXyxYYxyyXYxY",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xxYYYXyyXYxYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXXyXyxYYxyyy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+8,
+2,
+11,
+5,
+2,
+9,
+7
+],
+"reduced": [
+"xxYYYXyyXYxYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXXyXyxYYxyyy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyXYYxyXyxxYX",
+"xyXXy"
+],
+"canonical_key": [
+"XXYxYXyyxYYxy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+11,
+2
+],
+"reduced": [
+"yyXYYxyXyxxYX",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXYxYXyyxYYxy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyyXyXyXXYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXYxxyyyyXyXy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yyyyXyXyXXYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 9,
+"E": 0.00010204081632653062,
+"E_exact": "1/9800",
+"reduced_key": [
+"XXYxxyyyyXyXy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YxYYYXyyyyXyxyX",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxy",
+"XYxYYYXyyyyXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+3,
+6,
+4
+],
+"reduced": [
+"YxYYYXyyyyXyxyX",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 9.894867037724181e-05,
+"E_exact": "4/40425",
+"reduced_key": [
+"XYXyxy",
+"XYxYYYXyyyyXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYxYYYXyyyyXYxy",
+"YXyxyX"
+],
+"canonical_key": [
+"XYXyxYYYYxyyyXy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+3,
+6,
+8,
+2
+],
+"reduced": [
+"xYxYYYXyyyyXYxy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4-e",
+"multiplicities": {
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 13,
+"E": 9.894867037724181e-05,
+"E_exact": "4/40425",
+"reduced_key": [
+"XYXyxYYYYxyyyXy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yxyxYYYXXYxxx",
+"XyxyXY"
+],
+"canonical_key": [
+"XXXyxxyyyXYXY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 31,
+"moves_from_root": [
+3,
+8,
+10,
+2,
+5,
+2,
+5,
+2,
+9,
+9
+],
+"reduced": [
+"yxyxYYYXXYxxx",
+"XyxyXY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 9,
+"E": 9.44822373393802e-05,
+"E_exact": "1/10584",
+"reduced_key": [
+"XXXyxxyyyXYXY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyXXXYXYxyxy",
+"YXYXyxyy"
+],
+"canonical_key": [
+"XXXYXYxyxyyyy",
+"XYXyxyyY"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+7,
+2
+],
+"reduced": [
+"yyyXXXYXYxyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": true,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 9.44822373393802e-05,
+"E_exact": "1/10584",
+"reduced_key": [
+"XXXYXYxyxyyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"xyXYxyxYYXyXYx"
+],
+"canonical_key": [
+"XXyxYxyyXYXyxY",
+"XXyxy"
+],
+"length": 19,
+"root_index": 12,
+"moves_from_root": [
+9,
+1
+],
+"reduced": [
+"xYXYx",
+"xyXYxyxYYXyXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 9,
+"E": 9.070294784580499e-05,
+"E_exact": "1/11025",
+"reduced_key": [
+"XXyxYxyyXYXyxY",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYxy",
+"XyxYYXXyxyXyy"
+],
+"canonical_key": [
+"XXyxyXyyXyxYY",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+6,
+3,
+10,
+10
+],
+"reduced": [
+"xYXYxy",
+"XyxYYXXyxyXyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 9,
+"n_y": 10,
+"E": 9.070294784580499e-05,
+"E_exact": "1/11025",
+"reduced_key": [
+"XXyxyXyyXyxYY",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYxy",
+"XyxYYXyyXyxyX"
+],
+"canonical_key": [
+"XXyxYYXyyXyxy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+3
+],
+"reduced": [
+"xYXYxy",
+"XyxYYXyyXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 9,
+"n_y": 10,
+"E": 9.070294784580499e-05,
+"E_exact": "1/11025",
+"reduced_key": [
+"XXyxYYXyyXyxy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xxYXyXYxyxYYXy",
+"yxyXX"
+],
+"canonical_key": [
+"XXYxyyXYXyxYxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 10,
+"moves_from_root": [
+4,
+3
+],
+"reduced": [
+"xxYXyXYxyxYYXy",
+"yxyXX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 1
+},
+"n_x": 10,
+"n_y": 9,
+"E": 9.070294784580499e-05,
+"E_exact": "1/11025",
+"reduced_key": [
+"XXYxyyXYXyxYxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyxxYYYXyyyyyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXYxxYYYYYxyyy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+8,
+10,
+12,
+4
+],
+"reduced": [
+"XyxxYYYXyyyyyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.802721088435374e-05,
+"E_exact": "1/14700",
+"reduced_key": [
+"XXYxxYYYYYxyyy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYYYYXyyyyxxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXXYYYYxyyyyxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+6,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYYYXyyyyxxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.802721088435374e-05,
+"E_exact": "1/14700",
+"reduced_key": [
+"XXXYYYYxyyyyxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYxx",
+"YYYYXXyyyyxYxx"
+],
+"canonical_key": [
+"XXyXYYYYxxyyyy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+7,
+1,
+7,
+1
+],
+"reduced": [
+"YXYxx",
+"YYYYXXyyyyxYxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.802721088435374e-05,
+"E_exact": "1/14700",
+"reduced_key": [
+"XXyXYYYYxxyyyy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YYYYYXyyyXyxxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXXYxYYYxyyyyy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+6,
+2,
+5,
+4,
+9,
+6,
+2
+],
+"reduced": [
+"YYYYYXyyyXyxxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.802721088435374e-05,
+"E_exact": "1/14700",
+"reduced_key": [
+"XXXYxYYYxyyyyy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"XYYYYYXyxyxxyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYXYxyyyyyxYXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+5,
+2,
+9,
+9,
+6,
+12,
+4
+],
+"reduced": [
+"XYYYYYXyxyxxyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 2,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 6.184291898577613e-05,
+"E_exact": "1/16170",
+"reduced_key": [
+"XXYXYxyyyyyxYXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyxyxYXXXXXYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXXYxyxyyxyxY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yyxyxYXXXXXYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 2,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 2,
+"y+|y-": 1
+},
+"n_x": 12,
+"n_y": 9,
+"E": 6.184291898577613e-05,
+"E_exact": "1/16170",
+"reduced_key": [
+"XXXXXYxyxyyxyxY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYYYXyyyyxyxyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYYXyyyyxyxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 21,
+"moves_from_root": [
+12,
+4
+],
+"reduced": [
+"XYYYXyyyyxyxyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.046863189720332e-05,
+"E_exact": "2/33075",
+"reduced_key": [
+"XXYYYXyyyyxyxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyyxYYxYXyyyyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyxYYxYXyyyy"
+],
+"length": 19,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+6,
+8,
+10,
+4,
+3,
+7,
+5,
+11,
+11,
+10,
+12,
+4
+],
+"reduced": [
+"XyyxYYxYXyyyyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.046863189720332e-05,
+"E_exact": "2/33075",
+"reduced_key": [
+"XXyxy",
+"XXyyxYYxYXyyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYxx",
+"XYYYXXyyyyxyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyxyxyXYYY"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+7,
+1,
+5,
+3
+],
+"reduced": [
+"YXYxx",
+"XYYYXXyyyyxyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.046863189720332e-05,
+"E_exact": "2/33075",
+"reduced_key": [
+"XXyxy",
+"XXyyyyxyxyXYYY"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYxx",
+"YXyyyyXYYYxYxx"
+],
+"canonical_key": [
+"XXyXyyyxYYYYxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+9,
+8,
+7,
+1
+],
+"reduced": [
+"YXYxx",
+"YXyyyyXYYYxYxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.046863189720332e-05,
+"E_exact": "2/33075",
+"reduced_key": [
+"XXyXyyyxYYYYxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YxxYX",
+"yyXYxyXyyXXyyy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyXYxyXyy"
+],
+"length": 19,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+6,
+3,
+10,
+10
+],
+"reduced": [
+"YxxYX",
+"yyXYxyXyyXXyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.046863189720332e-05,
+"E_exact": "2/33075",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyXYxyXyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYxYYYXyyyyXYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxYYYYxyyyXy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+6,
+8,
+2
+],
+"reduced": [
+"xYxYYYXyyyyXYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.046863189720332e-05,
+"E_exact": "2/33075",
+"reduced_key": [
+"XXyxYYYYxyyyXy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"yyyyXXYYYXyxyx",
+"XXXyxyx"
+],
+"canonical_key": [
+"XXXyxyx",
+"XXYYYXyxyxyyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+5,
+4
+],
+"reduced": [
+"yyyyXXYYYXyxyx",
+"XXyxy"
+],
+"cyclic_reduction_needed": true,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 6.046863189720332e-05,
+"E_exact": "2/33075",
+"reduced_key": [
+"XXYYYXyxyxyyyy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYYxYXyyyxxyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYYxyXyyxxY",
+"XXyxy"
+],
+"length": 18,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11,
+12,
+4
+],
+"reduced": [
+"XYYxYXyyyxxyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 9,
+"E": 5.7397959183673466e-05,
+"E_exact": "9/156800",
+"reduced_key": [
+"XXYYYxyXyyxxY",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyXYYxyXXYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXYxxyyyXYYxy",
+"XXyxy"
+],
+"length": 18,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yyyXYYxyXXYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 9,
+"E": 5.7397959183673466e-05,
+"E_exact": "9/156800",
+"reduced_key": [
+"XXYxxyyyXYYxy",
+"XXyxy"
+],
+"reduced_length": 18,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXYxx",
+"YXXyyyyyXXYxxx"
+],
+"canonical_key": [
+"XXXyxxYYYYYxxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+3,
+11,
+12,
+1,
+8
+],
+"reduced": [
+"YXYxx",
+"YXXyyyyyXXYxxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 5,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 10,
+"n_y": 9,
+"E": 5.668934240362812e-05,
+"E_exact": "1/17640",
+"reduced_key": [
+"XXXyxxYYYYYxxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"XYXYXyyyXXyxyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXyxyxyXYXYXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+12,
+6,
+12,
+4
+],
+"reduced": [
+"XYXYXyyyXXyxyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 6,
+"x-|y+": 6,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 11,
+"E": 5.668934240362812e-05,
+"E_exact": "1/17640",
+"reduced_key": [
+"XXyxyxyXYXYXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYXyyyXYYxyyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyyXYYxyyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XYXyyyXYYxyyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYXyyyXYYxyyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"XYXyyyyXyXyyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyyyXyXyyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XYXyyyyXyXyyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYXyyyyXyXyyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"XYYXyyyXXyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXyyxyXYYXyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+12,
+4
+],
+"reduced": [
+"XYYXyyyXXyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyyxyXYYXyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyyyXYYYxyXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYxyXyxyXyyy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+4
+],
+"reduced": [
+"XyyyXYYYxyXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYYYxyXyxyXyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YYYXyyyXYxyxx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYXyxYYYxyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+5,
+2,
+9
+],
+"reduced": [
+"YYYXyyyXYxyxx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXYXyxYYYxyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 9
+},
+{
+"words": [
+"xYXYx",
+"YXyxyXYYXyyyyx"
+],
+"canonical_key": [
+"XXyxy",
+"XYYXyyyyxYXyxy"
+],
+"length": 19,
+"root_index": 21,
+"moves_from_root": [
+7,
+1,
+2,
+10
+],
+"reduced": [
+"xYXYx",
+"YXyxyXYYXyyyyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYYXyyyyxYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYx",
+"YYXyxyXYXyyyyx"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyyyxYYXyxy"
+],
+"length": 19,
+"root_index": 21,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10
+],
+"reduced": [
+"xYXYx",
+"YYXyxyXYXyyyyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYXyyyyxYYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYx",
+"yyXYxyxYYYXYxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyxYYYXyxyyy"
+],
+"length": 19,
+"root_index": 11,
+"moves_from_root": [
+6,
+1,
+10
+],
+"reduced": [
+"xYXYx",
+"yyXYxyxYYYXYxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYXyxYYYXyxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYx",
+"yyXYxyyxyXYYXy"
+],
+"canonical_key": [
+"XXyxy",
+"XYYXyxYYYxyyxY"
+],
+"length": 19,
+"root_index": 11,
+"moves_from_root": [
+10,
+10,
+8,
+6,
+3,
+10,
+12,
+6,
+6
+],
+"reduced": [
+"xYXYx",
+"yyXYxyyxyXYYXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYYXyxYYYxyyxY"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYYYXyyXyxyXyy",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYxYXYxYYxyyy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+7,
+7,
+4,
+11,
+11
+],
+"reduced": [
+"xYYYXyyXyxyXyy",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYYxYXYxYYxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYYYXyyxYXYxyy",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYXyxyXYYxyyy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+7,
+7,
+2,
+11,
+11
+],
+"reduced": [
+"xYYYXyyxYXYxyy",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYYXyxyXYYxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYYYXyyyXyxyXy",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYXYxYYYxyyy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+7,
+4,
+11
+],
+"reduced": [
+"xYYYXyyyXyxyXy",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYxYXYxYYYxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYYYXyyyxYXYxy",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyxyXYYYxyyy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+7,
+2,
+11
+],
+"reduced": [
+"xYYYXyyyxYXYxy",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYXyxyXYYYxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"yyxYXYYxyxYYXy",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyxyXYYYxyy"
+],
+"length": 19,
+"root_index": 11,
+"moves_from_root": [
+10,
+10,
+4,
+3,
+7,
+7
+],
+"reduced": [
+"yyxYXYYxyxYYXy",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 8,
+"n_y": 11,
+"E": 5.4421768707482996e-05,
+"E_exact": "1/18375",
+"reduced_key": [
+"XXyxy",
+"XYXyyxyXYYYxyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YYYXyyyyx",
+"XXXyxYYYxyyy"
+],
+"canonical_key": [
+"XXXyxYYYxyyy",
+"XYYYYxyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+5,
+3
+],
+"reduced": [
+"YYYXyyyyx",
+"XXXyxYYYxyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 9
+},
+"n_x": 7,
+"n_y": 14,
+"E": 4.662004662004662e-05,
+"E_exact": "1/21450",
+"reduced_key": [
+"XXXyxYYYxyyy",
+"XYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYxYYYYXyyx",
+"yxxYYYYXyy"
+],
+"canonical_key": [
+"XXYYYxyyyy",
+"XXYYxyyyyXy"
+],
+"length": 21,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+6,
+8,
+2,
+1,
+9
+],
+"reduced": [
+"xYxYYYYXyyx",
+"yxxYYYYXyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 9
+},
+"n_x": 7,
+"n_y": 14,
+"E": 4.662004662004662e-05,
+"E_exact": "1/21450",
+"reduced_key": [
+"XXYYYxyyyy",
+"XXYYxyyyyXy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXyyyyXyXXYxxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXXyxxYxYYYYxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+5,
+2,
+9
+],
+"reduced": [
+"YXyyyyXyXXYxxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 9,
+"E": 4.5351473922902495e-05,
+"E_exact": "1/22050",
+"reduced_key": [
+"XXXyxxYxYYYYxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"yyyXXXXYXyxyy",
+"YXYXyxyy"
+],
+"canonical_key": [
+"XXXXYXyxyyyyy",
+"XYXyxyyY"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+7,
+4
+],
+"reduced": [
+"yyyXXXXYXyxyy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": true,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 10,
+"E": 4.5351473922902495e-05,
+"E_exact": "1/22050",
+"reduced_key": [
+"XXXXYXyxyyyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXXXXYYxyxx",
+"XXYXyxyx"
+],
+"canonical_key": [
+"XXXXYYxyxxyyy",
+"XXYXyxyx"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+2,
+5,
+2
+],
+"reduced": [
+"yyyXXXXYYxyxx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": true,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 9,
+"E": 4.5351473922902495e-05,
+"E_exact": "1/22050",
+"reduced_key": [
+"XXXXYYxyxxyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyyXYYxyXyXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYYxyXyXyxyXyyy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+4
+],
+"reduced": [
+"XyyyXYYxyXyXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 4.2517006802721085e-05,
+"E_exact": "1/23520",
+"reduced_key": [
+"XXyxy",
+"XYYxyXyXyxyXyyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYxYXyyyxYxYXYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYxyXyyXyxyXy"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11,
+2
+],
+"reduced": [
+"YYxYXyyyxYxYXYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 4.2517006802721085e-05,
+"E_exact": "1/23520",
+"reduced_key": [
+"XXyxy",
+"XYYYxyXyyXyxyXy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"yxYYXyyyXyxyXyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYxYYYxyyXYxYxY"
+],
+"length": 20,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+8,
+3,
+12,
+10
+],
+"reduced": [
+"xYXYx",
+"yxYYXyyyXyxyXyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 5,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 5,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 4.2517006802721085e-05,
+"E_exact": "1/23520",
+"reduced_key": [
+"XXyxy",
+"XYxYYYxyyXYxYxY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXYYYYXyyyyyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYYYYXyyyyyyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+12,
+4,
+12,
+4
+],
+"reduced": [
+"XXYYYYXyyyyyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 8
+},
+"n_x": 7,
+"n_y": 14,
+"E": 4.144004144004144e-05,
+"E_exact": "4/96525",
+"reduced_key": [
+"XXYYYYXyyyyyyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYXyyyyXyx",
+"YXXyyyyyXyx"
+],
+"canonical_key": [
+"XXyyyyyXyxY",
+"XYxYYYYxyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+7,
+1
+],
+"reduced": [
+"YYXyyyyXyx",
+"YXXyyyyyXyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 8
+},
+"n_x": 7,
+"n_y": 14,
+"E": 4.144004144004144e-05,
+"E_exact": "4/96525",
+"reduced_key": [
+"XXyyyyyXyxY",
+"XYxYYYYxyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXyyyyXyXyXyyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyXyXyXyyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XXyyyyXyXyXyyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 5,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 5,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 3.779289493575208e-05,
+"E_exact": "1/26460",
+"reduced_key": [
+"XXyxy",
+"XXyyyyXyXyXyyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"XXyyyyyXyXyXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyXyXyXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+3,
+11,
+3,
+11,
+3
+],
+"reduced": [
+"YXYxx",
+"XXyyyyyXyXyXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 5,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 5,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 3.779289493575208e-05,
+"E_exact": "1/26460",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyXyXyXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyyXyXyXyXXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyyyyyXyXyXy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+4
+],
+"reduced": [
+"yyyyXyXyXyXXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 5,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 5,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 3.779289493575208e-05,
+"E_exact": "1/26460",
+"reduced_key": [
+"XXyxy",
+"XXyxyyyyyXyXyXy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYYYYXyyyyxxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYYYYxyyyyxyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYYYXyyyyxxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 13,
+"E": 3.435717721432007e-05,
+"E_exact": "1/29106",
+"reduced_key": [
+"XXYYYYxyyyyxyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"YYYYXYXyyyyxxyx"
+],
+"canonical_key": [
+"XXYYYYxyxyyyyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+7,
+1,
+7,
+1,
+7,
+1,
+7,
+1
+],
+"reduced": [
+"YXYxyx",
+"YYYYXYXyyyyxxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 2,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 13,
+"E": 3.435717721432007e-05,
+"E_exact": "1/29106",
+"reduced_key": [
+"XXYYYYxyxyyyyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXyyyXYYYxyyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyXYYYxyyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XXyyyXYYYxyyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyyyXYYYxyyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"XYXyyyXXXyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyyxyXYXyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+12,
+4
+],
+"reduced": [
+"XYXyyyXXXyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXyyxyXYXyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XYYxYXyyyyxyyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYxYXyyyyxyy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11,
+11,
+4,
+7,
+12,
+4
+],
+"reduced": [
+"XYYxYXyyyyxyyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYYxYXyyyyxyy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"XyyyyXXYYYxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYYxyxyXyyyy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+12,
+4
+],
+"reduced": [
+"XyyyyXXYYYxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYYYxyxyXyyyy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYxx",
+"XXyyyyXYYYxyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyXYYYxyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3
+],
+"reduced": [
+"YXYxx",
+"XXyyyyXYYYxyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyyyyXYYYxyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYxx",
+"XYXXyyyyyXyyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyXyyxyXY"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+3,
+11,
+5,
+3
+],
+"reduced": [
+"YXYxx",
+"XYXXyyyyyXyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyXyyxyXY"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYxx",
+"YYYXXyyyyXyxyx"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyXyxyxYYY"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+7,
+1,
+12,
+3,
+8
+],
+"reduced": [
+"YXYxx",
+"YYYXXyyyyXyxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyyyyXyxyxYYY"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"YXYxyx",
+"XYXyyyyXXXyxy"
+],
+"canonical_key": [
+"XXXyxyXYXyyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+3
+],
+"reduced": [
+"YXYxyx",
+"XYXyyyyXXXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXyxyXYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXYxyx",
+"YXyyyyXXXYxyx"
+],
+"canonical_key": [
+"XXXYxyxYXyyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+9,
+1
+],
+"reduced": [
+"YXYxyx",
+"YXyyyyXXXYxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXYxyxYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXYxyyyXXXyyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyyxYXYxyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+8,
+6,
+12,
+6,
+2
+],
+"reduced": [
+"YXYxyyyXXXyyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXyyxYXYxyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YXyyyXXXYxyxx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXYxyxxYXyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+5,
+2,
+9
+],
+"reduced": [
+"YXyyyXXXYxyxx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 9,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXYxyxxYXyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYXyyyXXYxyxx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYXyxxYYYxyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+5,
+2,
+9
+],
+"reduced": [
+"YYXyyyXXYxyxx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYXyxxYYYxyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"YYYXyyyyxxYXYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYYYxyyyXyxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 21,
+"moves_from_root": [
+2
+],
+"reduced": [
+"YYYXyyyyxxYXYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYYYYxyyyXyxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYYYXyyyyxYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXyXYYYYxyyyxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 21,
+"moves_from_root": [
+12,
+6,
+8,
+2
+],
+"reduced": [
+"xYXYYYXyyyyxYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyXYYYYxyyyxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xYXYx",
+"XyxYYYXyyyyxyX"
+],
+"canonical_key": [
+"XXyxYYYXyyyyxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+1,
+2,
+3
+],
+"reduced": [
+"xYXYx",
+"XyxYYYXyyyyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxYYYXyyyyxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYx",
+"xYXYYXyyyyxYYx"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyXYYYYxyyxy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+12,
+5,
+2,
+8,
+10,
+10,
+7,
+9,
+1
+],
+"reduced": [
+"xYXYx",
+"xYXYYXyyyyxYYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyyXYYYYxyyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYXYx",
+"xYYXyyyyxYYXYx"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyyXYYYYxyy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+1
+],
+"reduced": [
+"xYXYx",
+"xYYXyyyyxYYXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyxyyXYYYYxyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xYYYXyyyyxYXYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyXYYYYxyyy"
+],
+"length": 19,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+2
+],
+"reduced": [
+"xYYYXyyyyxYXYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyxyXYYYYxyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xxYXY",
+"xxyyXYxyxYYXXY"
+],
+"canonical_key": [
+"XXYxxyyXYxyxYY",
+"XXyxy"
+],
+"length": 19,
+"root_index": 10,
+"moves_from_root": [
+9,
+9,
+1
+],
+"reduced": [
+"xxYXY",
+"xxyyXYxyxYYXXY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 9,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYxxyyXYxyxYY",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"xxYXY",
+"yyXYxyxYxyXXXy"
+],
+"canonical_key": [
+"XXXyyyXYxyxYxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 10,
+"moves_from_root": [
+8,
+6,
+3,
+10,
+12
+],
+"reduced": [
+"xxYXY",
+"yyXYxyxYxyXXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 9,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXyyyXYxyxYxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"xxYXY",
+"yyXYxyxxyXXYXy"
+],
+"canonical_key": [
+"XXYXyxYYYxyxxY",
+"XXyxy"
+],
+"length": 19,
+"root_index": 10,
+"moves_from_root": [
+10,
+8,
+6,
+3,
+10,
+12,
+6
+],
+"reduced": [
+"xxYXY",
+"yyXYxyxxyXXYXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 9,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYXyxYYYxyxxY",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"yxxYXXYxyxYYXy",
+"yxyXX"
+],
+"canonical_key": [
+"XXYYxyyXYXyxxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 10,
+"moves_from_root": [
+10,
+4,
+3,
+7
+],
+"reduced": [
+"yxxYXXYxyxYYXy",
+"yxyXX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 9,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYYxyyXYXyxxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyXXXyXYXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyXYXyxyyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+4
+],
+"reduced": [
+"yyyXXXyXYXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXyXYXyxyyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyXXXyxYXYxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxYXYxyyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+2,
+8
+],
+"reduced": [
+"yyyXXXyxYXYxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 10,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXyxYXYxyyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyXYYYxyXXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyyyyXYYYxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+4
+],
+"reduced": [
+"yyyXYYYxyXXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyxyyyyXYYYxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"yyyXXXy",
+"XYXyxyyyyXXXy"
+],
+"canonical_key": [
+"XXXyXYXyxyyyy",
+"XXXyyyy"
+],
+"length": 20,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+1
+],
+"reduced": [
+"yyyXXXy",
+"XYXyxyyyyXXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 9,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXyXYXyxyyyy",
+"XXXyyyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXXXy",
+"YXYXyxyxxxYYY"
+],
+"canonical_key": [
+"XXXYXYxyxyyyy",
+"XXXyyyy"
+],
+"length": 20,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+7,
+3
+],
+"reduced": [
+"yyyXXXy",
+"YXYXyxyxxxYYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 2,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 2,
+"y+|y-": 6
+},
+"n_x": 9,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXXYXYxyxyyyy",
+"XXXyyyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyyXXyxyx",
+"XXXyxyx"
+],
+"canonical_key": [
+"XXXyxyx",
+"XXyxyxYYYXyyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+5,
+4
+],
+"reduced": [
+"YYYXyyyyXXyxyx",
+"XXyxy"
+],
+"cyclic_reduction_needed": true,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyxyxYYYXyyyy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXYYYxYXYxxy",
+"YXXyxyy"
+],
+"canonical_key": [
+"XXyxyXyyyxYYYY",
+"XXyxyyY"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+7,
+2
+],
+"reduced": [
+"yyyXYYYxYXYxxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": true,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXyxy",
+"XXyxyXyyyxYYYY"
+],
+"reduced_length": 19,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyyXyXXYXyxyy",
+"YXXyxyy"
+],
+"canonical_key": [
+"XXYXyxyyyyyyXy",
+"XXyxyyY"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+7,
+4
+],
+"reduced": [
+"yyyyXyXXYXyxyy",
+"XXyxy"
+],
+"cyclic_reduction_needed": true,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 8,
+"n_y": 11,
+"E": 3.401360544217687e-05,
+"E_exact": "1/29400",
+"reduced_key": [
+"XXYXyxyyyyyyXy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYXyyyXYxyXyyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyyyXYxyXyyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XYXyyyXYxyXyyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXyxy",
+"XYXyyyXYxyXyyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYxYXyyyxYXyxyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYxyXyyxYXYxy"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11,
+4
+],
+"reduced": [
+"YYxYXyyyxYXyxyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXyxy",
+"XYYYxyXyyxYXYxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YxYXXYxxyXYxyxY",
+"yXXyx"
+],
+"canonical_key": [
+"XXYxxyXYxyxYYxY",
+"XXyxy"
+],
+"length": 20,
+"root_index": 2,
+"moves_from_root": [
+4,
+12,
+6,
+8,
+6,
+4,
+3,
+11,
+5,
+11,
+9
+],
+"reduced": [
+"YxYXXYxxyXYxyxY",
+"yXXyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 1
+},
+"n_x": 11,
+"n_y": 9,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXYxxyXYxyxYYxY",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YxxYX",
+"xxYXyyXYxyxYXXy"
+],
+"canonical_key": [
+"XXYxxyXYXyxYYxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 5,
+"moves_from_root": [
+9,
+3
+],
+"reduced": [
+"YxxYX",
+"xxYXyyXYxyxYXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 1
+},
+"n_x": 11,
+"n_y": 9,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXYxxyXYXyxYYxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YxyyXYYxyXyyxYX",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XYYxYXyyxYYXyxy"
+],
+"length": 20,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+11,
+8,
+6,
+2
+],
+"reduced": [
+"YxyyXYYxyXyyxYX",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXyxy",
+"XYYxYXyyxYYXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"YxyxYYXXYxxyXYx"
+],
+"canonical_key": [
+"XXYxxyXYxYxyxYY",
+"XXyxy"
+],
+"length": 20,
+"root_index": 14,
+"moves_from_root": [
+1,
+10,
+12,
+1,
+10,
+12,
+1,
+8,
+6,
+3,
+8,
+6
+],
+"reduced": [
+"xYXYx",
+"YxyxYYXXYxxyXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 1
+},
+"n_x": 11,
+"n_y": 9,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXYxxyXYxYxyxYY",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"xyXYxyxYYXXYxYx"
+],
+"canonical_key": [
+"XXYxYxxyXYxyxYY",
+"XXyxy"
+],
+"length": 20,
+"root_index": 12,
+"moves_from_root": [
+9,
+1,
+10,
+12,
+1,
+8,
+6
+],
+"reduced": [
+"xYXYx",
+"xyXYxyxYYXXYxYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 1
+},
+"n_x": 11,
+"n_y": 9,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXYxYxxyXYxyxYY",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"yxYYXyyyxYXYxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYYYxyyXYxYXyxy"
+],
+"length": 20,
+"root_index": 16,
+"moves_from_root": [
+3,
+6,
+8,
+1,
+12,
+10
+],
+"reduced": [
+"xYXYx",
+"yxYYXyyyxYXYxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXyxy",
+"XYYYxyyXYxYXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYYYXyyXYxyxyXy",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XYXyxYYxyyyXYxY"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+4,
+3,
+8,
+2,
+11,
+5,
+2,
+9,
+7,
+4,
+12,
+7,
+4,
+11
+],
+"reduced": [
+"xYYYXyyXYxyxyXy",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.7210884353741498e-05,
+"E_exact": "1/36750",
+"reduced_key": [
+"XXyxy",
+"XYXyxYYxyyyXYxY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXyyyXXXXyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXyyxyXXyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+12,
+4
+],
+"reduced": [
+"XXyyyXXXXyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 9,
+"E": 2.5510204081632654e-05,
+"E_exact": "1/39200",
+"reduced_key": [
+"XXXXyyxyXXyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"XyyyXXXXXyxyy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXXyxyyXyyy",
+"XYXyxy"
+],
+"length": 19,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+7,
+4,
+11
+],
+"reduced": [
+"XyyyXXXXXyxyy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 9,
+"E": 2.5510204081632654e-05,
+"E_exact": "1/39200",
+"reduced_key": [
+"XXXXXyxyyXyyy",
+"XYXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 5
+},
+{
+"words": [
+"yyyyXXYxyXXYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXYxxyyyyXXYxy",
+"XXyxy"
+],
+"length": 19,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+8,
+2
+],
+"reduced": [
+"yyyyXXYxyXXYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 9,
+"E": 2.5510204081632654e-05,
+"E_exact": "1/39200",
+"reduced_key": [
+"XXYxxyyyyXXYxy",
+"XXyxy"
+],
+"reduced_length": 19,
+"n_exact_realizations": 3
+},
+{
+"words": [
+"XYXyyyXXyxYXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXyxYXyxyXYXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XYXyyyXXyxYXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 11,
+"E": 2.5195263290501386e-05,
+"E_exact": "1/39690",
+"reduced_key": [
+"XXyxYXyxyXYXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyxYxYXyXyyxyXX",
+"YXyxyX"
+],
+"canonical_key": [
+"XXXyxYxYXyXyyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+11,
+4,
+9,
+4,
+5
+],
+"reduced": [
+"XyxYxYXyXyyxyXX",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 5,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 5,
+"y+|y-": 1
+},
+"n_x": 11,
+"n_y": 10,
+"E": 2.5195263290501386e-05,
+"E_exact": "1/39690",
+"reduced_key": [
+"XXXyxYxYXyXyyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXXyxYxYXyyyxyX",
+"YXyxyX"
+],
+"canonical_key": [
+"XXyxYxYXyyyxyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+6,
+8,
+10,
+12,
+4,
+3,
+9,
+7,
+5,
+11,
+12,
+6,
+4
+],
+"reduced": [
+"YXXyxYxYXyyyxyX",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 11,
+"E": 2.5195263290501386e-05,
+"E_exact": "1/39690",
+"reduced_key": [
+"XXyxYxYXyyyxyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYXyyyXXyxYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXyxYxyxYXYXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+12,
+6,
+2
+],
+"reduced": [
+"YXYXyyyXXyxYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 11,
+"E": 2.5195263290501386e-05,
+"E_exact": "1/39690",
+"reduced_key": [
+"XXyxYxyxYXYXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXyyyXXyxYXYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXyxYXYxyxYXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+2
+],
+"reduced": [
+"YXyyyXXyxYXYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 11,
+"E": 2.5195263290501386e-05,
+"E_exact": "1/39690",
+"reduced_key": [
+"XXyxYXYxyxYXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yxYXYx",
+"yxYXyxYYXyXYxxx"
+],
+"canonical_key": [
+"XXXyxYxyyXYxyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 31,
+"moves_from_root": [
+2,
+7,
+9,
+11,
+1,
+12,
+1,
+12,
+1,
+8,
+8
+],
+"reduced": [
+"yxYXYx",
+"yxYXyxYYXyXYxxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 1
+},
+"n_x": 11,
+"n_y": 10,
+"E": 2.5195263290501386e-05,
+"E_exact": "1/39690",
+"reduced_key": [
+"XXXyxYxyyXYxyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yxYXYx",
+"yxYXyxYYXyyXYxx"
+],
+"canonical_key": [
+"XXyxYYxyyXYxyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 31,
+"moves_from_root": [
+2,
+7,
+9,
+11,
+1,
+12,
+1,
+8
+],
+"reduced": [
+"yxYXYx",
+"yxYXyxYYXyyXYxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 10,
+"n_y": 11,
+"E": 2.5195263290501386e-05,
+"E_exact": "1/39690",
+"reduced_key": [
+"XXyxYYxyyXYxyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyyx",
+"XXyxYYXYxyyy"
+],
+"canonical_key": [
+"XXyxYYXYxyyy",
+"XYYYYxyyy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+5,
+3
+],
+"reduced": [
+"YYYXyyyyx",
+"XXyxYYXYxyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 8
+},
+"n_x": 7,
+"n_y": 14,
+"E": 2.331002331002331e-05,
+"E_exact": "1/42900",
+"reduced_key": [
+"XXyxYYXYxyyy",
+"XYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyyx",
+"XYXXyxYYxyyy"
+],
+"canonical_key": [
+"XXyxYYxyyyXY",
+"XYYYYxyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+7,
+5,
+3
+],
+"reduced": [
+"YYYXyyyyx",
+"XYXXyxYYxyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 8
+},
+"n_x": 7,
+"n_y": 14,
+"E": 2.331002331002331e-05,
+"E_exact": "1/42900",
+"reduced_key": [
+"XXyxYYxyyyXY",
+"XYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyyx",
+"XYYXXyxYxyyy"
+],
+"canonical_key": [
+"XXyxYxyyyXYY",
+"XYYYYxyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+5,
+3
+],
+"reduced": [
+"YYYXyyyyx",
+"XYYXXyxYxyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 8
+},
+"n_x": 7,
+"n_y": 14,
+"E": 2.331002331002331e-05,
+"E_exact": "1/42900",
+"reduced_key": [
+"XXyxYxyyyXYY",
+"XYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyyx",
+"YXXyxYXyyyyx"
+],
+"canonical_key": [
+"XXyxYXyyyyxY",
+"XYYYYxyyy"
+],
+"length": 21,
+"root_index": 22,
+"moves_from_root": [
+7,
+1
+],
+"reduced": [
+"YYYXyyyyx",
+"YXXyxYXyyyyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 8
+},
+"n_x": 7,
+"n_y": 14,
+"E": 2.331002331002331e-05,
+"E_exact": "1/42900",
+"reduced_key": [
+"XXyxYXyyyyxY",
+"XYYYYxyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXYYYYXyyyxxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYYYXyyyxxyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+6,
+2,
+12,
+12,
+4
+],
+"reduced": [
+"XXYYYYXyyyxxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXYYYYXyyyxxyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"XXXyyyyyXyXyyxy"
+],
+"canonical_key": [
+"XXXyyyyyXyXyyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+3,
+11,
+3,
+11,
+5,
+3
+],
+"reduced": [
+"YXYxx",
+"XXXyyyyyXyXyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXXyyyyyXyXyyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"XXYYXXyyyyyxyxy"
+],
+"canonical_key": [
+"XXYYXXyyyyyxyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+5,
+5,
+3
+],
+"reduced": [
+"YXYxx",
+"XXYYXXyyyyyxyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXYYXXyyyyyxyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"YXyyyyyXXYYxYxx"
+],
+"canonical_key": [
+"XXYYxYxxYXyyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+9,
+8,
+7,
+1
+],
+"reduced": [
+"YXYxx",
+"YXyyyyyXXYYxYxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXYYxYxxYXyyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXyyyXYYYYxxYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyXXyyyyxYYYxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+12,
+6,
+2
+],
+"reduced": [
+"YXyyyXYYYYxxYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXyXXyyyyxYYYxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYXyyyXYYYxxYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyXXyyyxYYYxyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+6,
+2
+],
+"reduced": [
+"YYXyyyXYYYxxYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXyXXyyyxYYYxyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYXyyyXYYxxYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyXXyyxYYYxyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+6,
+2
+],
+"reduced": [
+"YYYXyyyXYYxxYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXyXXyyxYYYxyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYYXyyyXYxxYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyXXyxYYYxyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+6,
+2
+],
+"reduced": [
+"YYYYXyyyXYxxYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 2.2675736961451248e-05,
+"E_exact": "1/44100",
+"reduced_key": [
+"XXyXXyxYYYxyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXXXy",
+"yXYXyxxxxYXXXy"
+],
+"canonical_key": [
+"XXXXYxyxYYxxxy",
+"XXXyyyy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+3,
+11,
+1
+],
+"reduced": [
+"yyyXXXy",
+"yXYXyxxxxYXXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 7,
+"x+|y+": 3,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 12,
+"n_y": 9,
+"E": 2.1645021645021645e-05,
+"E_exact": "1/46200",
+"reduced_key": [
+"XXXXYxyxYYxxxy",
+"XXXyyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYYYYXyyyxxxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXYYYxyyyyyyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+6,
+2,
+6,
+2
+],
+"reduced": [
+"YYYYYYXyyyxxxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 2,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 2,
+"y+|y-": 7
+},
+"n_x": 8,
+"n_y": 13,
+"E": 1.924001924001924e-05,
+"E_exact": "1/51975",
+"reduced_key": [
+"XXXYYYxyyyyyyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyxyxYXXXXXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXXyxyXyyxyxY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+10,
+4
+],
+"reduced": [
+"XyyxyxYXXXXXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 1
+},
+"n_x": 12,
+"n_y": 9,
+"E": 1.5460729746444033e-05,
+"E_exact": "1/64680",
+"reduced_key": [
+"XXXXXyxyXyyxyxY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYYYXyyyXyxxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYxYYYxyyyxyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYYXyyyXyxxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 1.5460729746444033e-05,
+"E_exact": "1/64680",
+"reduced_key": [
+"XXYxYYYxyyyxyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"XYXYXyyyyXXyyxy"
+],
+"canonical_key": [
+"XXyyxyXYXYXyyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+7,
+5,
+3
+],
+"reduced": [
+"YXYxyx",
+"XYXYXyyyyXXyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 1.5460729746444033e-05,
+"E_exact": "1/64680",
+"reduced_key": [
+"XXyyxyXYXYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"YXYYXyyyyXXyxyx"
+],
+"canonical_key": [
+"XXyxyxYXYYXyyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+9,
+7,
+5,
+7,
+1
+],
+"reduced": [
+"YXYxyx",
+"YXYYXyyyyXXyxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 1.5460729746444033e-05,
+"E_exact": "1/64680",
+"reduced_key": [
+"XXyxyxYXYYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYYYYXyxyxxYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYXYxyyyyyXYXy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+6,
+2,
+5,
+2,
+5,
+2,
+9,
+9,
+6,
+2
+],
+"reduced": [
+"YYYYYXyxyxxYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 1.5460729746444033e-05,
+"E_exact": "1/64680",
+"reduced_key": [
+"XXYXYxyyyyyXYXy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYxy",
+"YXXyxYYXyyyyxyX"
+],
+"canonical_key": [
+"XXyxYYXyyyyxyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+5,
+7,
+3
+],
+"reduced": [
+"xYXYxy",
+"YXXyxYYXyyyyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 1.5460729746444033e-05,
+"E_exact": "1/64680",
+"reduced_key": [
+"XXyxYYXyyyyxyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYxy",
+"xxxxYXXyxYYXYxy"
+],
+"canonical_key": [
+"XXXXYXyxyyXYxxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+2,
+11,
+5,
+7,
+9,
+1,
+9,
+1,
+9,
+1,
+9,
+1
+],
+"reduced": [
+"xYXYxy",
+"xxxxYXXyxYYXYxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 1
+},
+"n_x": 12,
+"n_y": 9,
+"E": 1.5460729746444033e-05,
+"E_exact": "1/64680",
+"reduced_key": [
+"XXXXYXyxyyXYxxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXYYXyyyyXyxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYXyyyyXyxyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+12,
+12,
+4
+],
+"reduced": [
+"XXYYXyyyyXyxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXYYXyyyyXyxyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYXyyyXYYYxxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyxYYYxyxYXY"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+12,
+4
+],
+"reduced": [
+"XYXyyyXYYYxxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyyxYYYxyxYXY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYXyyyyXXYxyyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYxyyxyXYXyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XYXyyyyXXYxyyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXYxyyxyXYXyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYYXyyyXYYxxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyxYYYxyyxYXY"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+12,
+4
+],
+"reduced": [
+"XYYXyyyXYYxxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyxYYYxyyxYXY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYYYXyyyXYxxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxYYYxyyyxYXY",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+12,
+4
+],
+"reduced": [
+"XYYYXyyyXYxxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxYYYxyyyxYXY",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyyyXXYYxyXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYxyXyxyXyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+4
+],
+"reduced": [
+"XyyyyXXYYxyXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXYYxyXyxyXyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyyyXyXXYYxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYxyxyXyyyyXy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+12,
+4
+],
+"reduced": [
+"XyyyyXyXXYYxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXYYxyxyXyyyyXy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYYXyyyyXyxYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyXYxYYYYxyyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYXyyyyXyxYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyXYxYYYYxyyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"XYXXyyyyXYxyyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyXYxyyxyXY"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+5,
+3
+],
+"reduced": [
+"YXYxx",
+"XYXXyyyyXYxyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyyyXYxyyxyXY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"YXyyyyXYYxyXYxx"
+],
+"canonical_key": [
+"XXyxYXyyxYYYYxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+9,
+8,
+7,
+6,
+3,
+10,
+1
+],
+"reduced": [
+"YXYxx",
+"YXyyyyXYYxyXYxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxYXyyxYYYYxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"yyyyXYxyXXYXyxy"
+],
+"canonical_key": [
+"XXYXyxyyyyyXYxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+3,
+11,
+9,
+1,
+9,
+3
+],
+"reduced": [
+"YXYxx",
+"yyyyXYxyXXYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXYXyxyyyyyXYxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYXyyyyXyxYXYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyXYxYYYYxyy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+2
+],
+"reduced": [
+"YYXyyyyXyxYXYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyxyXYxYYYYxyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYxYXyyyxxYXYxY",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYYxyXyyyXyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11,
+11,
+2,
+7
+],
+"reduced": [
+"YYxYXyyyxxYXYxY",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXYYYxyXyyyXyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYxxYYXyyXYxyxY",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyXYXyxYYxyy"
+],
+"length": 20,
+"root_index": 4,
+"moves_from_root": [
+6,
+4,
+3,
+11
+],
+"reduced": [
+"YYxxYYXyyXYxyxY",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyyXYXyxYYxyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YxxYX",
+"yyXYxyxYXyXXyyy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyyXYxyxYXy"
+],
+"length": 20,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+6,
+3,
+10,
+10
+],
+"reduced": [
+"YxxYX",
+"yyXYxyxYXyXXyyy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyyyyXYxyxYXy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"XyxYYXyyyyXyxyX"
+],
+"canonical_key": [
+"XXyxYYXyyyyXyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+3
+],
+"reduced": [
+"xYXYx",
+"XyxYYXyyyyXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxYYXyyyyXyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"xYXyxYYXyyyyXYx"
+],
+"canonical_key": [
+"XXyxYYYYxyyXYxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+7,
+9,
+1
+],
+"reduced": [
+"xYXYx",
+"xYXyxYYXyyyyXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxYYYYxyyXYxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"xyxYYXyyyyXYXYx"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyxYYYYxyyXY"
+],
+"length": 20,
+"root_index": 16,
+"moves_from_root": [
+3,
+9,
+1
+],
+"reduced": [
+"xYXYx",
+"xyxYYXyyyyXYXYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyxyxYYYYxyyXY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"yxYYXyyyyXXyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyXyxYYXyyyy"
+],
+"length": 20,
+"root_index": 16,
+"moves_from_root": [
+3,
+3
+],
+"reduced": [
+"xYXYx",
+"yxYYXyyyyXXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyxyXyxYYXyyyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYYxYXyyyxYYXYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyyXYYYxyXyy"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+1,
+9,
+7,
+6,
+6,
+8,
+4,
+12,
+5,
+3,
+11,
+11,
+8,
+2
+],
+"reduced": [
+"xYYxYXyyyxYYXYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyxyyXYYYxyXyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xxYXY",
+"xxyyXYxyxYYYXYY"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyxyyyXYXyxYY"
+],
+"length": 20,
+"root_index": 10,
+"moves_from_root": [
+9,
+9,
+1,
+10,
+1,
+6
+],
+"reduced": [
+"xxYXY",
+"xxyyXYxyxYYYXYY"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyxyyyXYXyxYY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xxYXY",
+"yyXYxyxxyXyXXXy"
+],
+"canonical_key": [
+"XXXyyyXYxyxxyXy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 10,
+"moves_from_root": [
+10,
+8,
+6,
+3,
+10,
+12,
+6,
+8,
+6,
+3,
+10,
+12
+],
+"reduced": [
+"xxYXY",
+"yyXYxyxxyXyXXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 4,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 9,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXXyyyXYxyxxyXy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xyyXYYxyXyyyXXy",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyyXYYxyXyyy"
+],
+"length": 20,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+11,
+8,
+4
+],
+"reduced": [
+"xyyXYYxyXyyyXXy",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyxyyXYYxyXyyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyXYYxyXyxyXXyy",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyyXYYxyXyxy"
+],
+"length": 20,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+4,
+11
+],
+"reduced": [
+"yyXYYxyXyxyXXyy",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyyyXYYxyXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyXYYxyXyyxyXXy",
+"xyXXy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyXYYxyXyyxy"
+],
+"length": 20,
+"root_index": 8,
+"moves_from_root": [
+3,
+6,
+3,
+10,
+8,
+6,
+6,
+3,
+10,
+10,
+12,
+6,
+12,
+10,
+10,
+4,
+3,
+7,
+7,
+9,
+11,
+4
+],
+"reduced": [
+"yyXYYxyXyyxyXXy",
+"xyXXy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyyyXYYxyXyyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXYYYXyxyXYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxYXYxyyyxYYY",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+7,
+4,
+11,
+2
+],
+"reduced": [
+"yyyXYYYXyxyXYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxYXYxyyyxYYY",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXYYxyXyXXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyyyyXYYxyXy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+4,
+10,
+8,
+4
+],
+"reduced": [
+"yyyXYYxyXyXXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.3605442176870749e-05,
+"E_exact": "1/73500",
+"reduced_key": [
+"XXyxy",
+"XXyxyyyyXYYxyXy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXyyyXYYYYxxyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyyyXYYYYxxyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+12,
+12,
+4
+],
+"reduced": [
+"XXyyyXYYYYxxyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXyxy",
+"XXyyyXYYYYxxyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXyyyyXXYYxyyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYxyyxyXXyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XXyyyyXXYYxyyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXYYxyyxyXXyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyxYYYYXyyyxxyX",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYYxyyyyXYxxY",
+"XXyxy"
+],
+"length": 20,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+10,
+12,
+4
+],
+"reduced": [
+"XyxYYYYXyyyxxyX",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXYYYxyyyyXYxxY",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYYYYXyyyxxYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYYxyyyyxyXXy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+6,
+2,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYYYXyyyxxYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXYYYxyyyyxyXXy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"XXXyyyyXYYxyyxy"
+],
+"canonical_key": [
+"XXXyyyyXYYxyyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+5,
+3
+],
+"reduced": [
+"YXYxx",
+"XXXyyyyXYYxyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXXyyyyXYYxyyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"XXyyyyyXXYYxyxy"
+],
+"canonical_key": [
+"XXYYxyxyXXyyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+3,
+11,
+12,
+1,
+8,
+3,
+11,
+12,
+1,
+8,
+3
+],
+"reduced": [
+"YXYxx",
+"XXyyyyyXXYYxyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXYYxyxyXXyyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"YXYYXXyyyyyxYxx"
+],
+"canonical_key": [
+"XXyXYYYYYxxyyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+5,
+7,
+1
+],
+"reduced": [
+"YXYxx",
+"YXYYXXyyyyyxYxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXyXYYYYYxxyyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxx",
+"YYXXyyyyyxYXYxx"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyXYYYYYxxyy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+7,
+7,
+1,
+2,
+10,
+10,
+1
+],
+"reduced": [
+"YXYxx",
+"YYXXyyyyyxYXYxx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXyxy",
+"XXyxyXYYYYYxxyy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"XXyxYYXyyyyyxyX"
+],
+"canonical_key": [
+"XXXyxYYXyyyyyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 18,
+"moves_from_root": [
+5,
+3
+],
+"reduced": [
+"xYXYx",
+"XXyxYYXyyyyyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXXyxYYXyyyyyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYXYx",
+"XyxxYYYYXyyyxyX"
+],
+"canonical_key": [
+"XXYxxYXYYYxyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+6,
+8,
+2,
+1,
+2,
+3
+],
+"reduced": [
+"xYXYx",
+"XyxxYYYYXyyyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXYxxYXYYYxyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xYYYYXyyyxxYXYx",
+"XyxyX"
+],
+"canonical_key": [
+"XXYYYxyyyyXXyxy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 21,
+"moves_from_root": [
+6,
+8,
+2,
+2
+],
+"reduced": [
+"xYYYYXyyyxxYXYx",
+"XyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXYYYxyyyyXXyxy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXYYYYxxYXYxx",
+"XXyxy"
+],
+"canonical_key": [
+"XXyxy",
+"XXyxyXXyyyyxYYY"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+2,
+2
+],
+"reduced": [
+"yyyXYYYYxxYXYxx",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXyxy",
+"XXyxyXXyyyyxYYY"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyyXXYYxyXXyxy",
+"XXyxy"
+],
+"canonical_key": [
+"XXYYxyXXyxyyyyy",
+"XXyxy"
+],
+"length": 20,
+"root_index": 22,
+"moves_from_root": [
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+5,
+2,
+9,
+4,
+10,
+8,
+4
+],
+"reduced": [
+"yyyyXXYYxyXXyxy",
+"XXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 11,
+"E": 1.2755102040816327e-05,
+"E_exact": "1/78400",
+"reduced_key": [
+"XXYYxyXXyxyyyyy",
+"XXyxy"
+],
+"reduced_length": 20,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXYYYXyyyXyyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYYYXyyyXyyyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+12,
+4,
+12,
+4
+],
+"reduced": [
+"XXYYYXyyyXyyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 13,
+"E": 1.2368583797155226e-05,
+"E_exact": "1/80850",
+"reduced_key": [
+"XXYYYXyyyXyyyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyyXYYYxy",
+"YXYxxxxYYYx"
+],
+"canonical_key": [
+"XXXXyxyXyyy",
+"XYYYxyXyyy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+3,
+10,
+4,
+3,
+7,
+3
+],
+"reduced": [
+"XyyyXYYYxy",
+"YXYxxxxYYYx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 2,
+"x-|y+": 2,
+"x-|y-": 4,
+"y+|y-": 6
+},
+"n_x": 9,
+"n_y": 12,
+"E": 1.2368583797155226e-05,
+"E_exact": "1/80850",
+"reduced_key": [
+"XXXXyxyXyyy",
+"XYYYxyXyyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xxYYYXyxyyXY",
+"yxYYXyyyX"
+],
+"canonical_key": [
+"XXyxYYXYxyyy",
+"XYxYYYxyy"
+],
+"length": 21,
+"root_index": 28,
+"moves_from_root": [
+3,
+8,
+2
+],
+"reduced": [
+"xxYYYXyxyyXY",
+"yxYYXyyyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 4,
+"y+|y-": 6
+},
+"n_x": 8,
+"n_y": 13,
+"E": 1.2368583797155226e-05,
+"E_exact": "1/80850",
+"reduced_key": [
+"XXyxYYXYxyyy",
+"XYxYYYxyy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"XYYXyyyyXXyXyxy"
+],
+"canonical_key": [
+"XXyXyxyXYYXyyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+9,
+7,
+5,
+3
+],
+"reduced": [
+"YXYxyx",
+"XYYXyyyyXXyXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 9.89486703772418e-06,
+"E_exact": "2/202125",
+"reduced_key": [
+"XXyXyxyXYYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"YYXyyyyXXyXYxyx"
+],
+"canonical_key": [
+"XXyXYxyxYYXyyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+9,
+7,
+1
+],
+"reduced": [
+"YXYxyx",
+"YYXyyyyXXyXYxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 1,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 4
+},
+"n_x": 9,
+"n_y": 12,
+"E": 9.89486703772418e-06,
+"E_exact": "2/202125",
+"reduced_key": [
+"XXyXYxyxYYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYXXyyyXXXyxyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxyxyXYXXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+12,
+6,
+12,
+4
+],
+"reduced": [
+"XYXXyyyXXXyxyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXXyxyxyXYXXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYXyyyXXXyxxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxxyxYXYXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+12,
+6,
+2
+],
+"reduced": [
+"YXYXyyyXXXyxxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXXyxxyxYXYXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYYXyyyXXyxxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYxxYYYxyyxyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+12,
+6,
+2
+],
+"reduced": [
+"YXYYXyyyXXyxxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 11,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXYxxYYYxyyxyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"yyyyXXyXYXXYxyx"
+],
+"canonical_key": [
+"XXYxyxyyyyXXyXY",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+9,
+3,
+11,
+9,
+1
+],
+"reduced": [
+"YXYxyx",
+"yyyyXXyXYXXYxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 11,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXYxyxyyyyXXyXY",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YYXYxyyyXXXyxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxyxYYXYxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+8,
+6,
+12,
+6,
+2,
+6,
+2
+],
+"reduced": [
+"YYXYxyyyXXXyxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 11,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXXyxyxYYXYxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xyyyXXXyXXYXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyXXYXyxyxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+8,
+4
+],
+"reduced": [
+"xyyyXXXyXXYXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXXyXXYXyxyxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xyyyXXXyXYXYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyXYXYxyxxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+8,
+2
+],
+"reduced": [
+"xyyyXXXyXYXYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXXyXYXYxyxxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"yyyXXXyxYXYYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxYXYYxyxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+2,
+8,
+2
+],
+"reduced": [
+"yyyXXXyxYXYYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 5,
+"x-|y+": 5,
+"x-|y-": 3,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 11,
+"E": 9.44822373393802e-06,
+"E_exact": "1/105840",
+"reduced_key": [
+"XXXyxYXYYxyxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXYYXyyyXXyyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXYYXyyyXXyyyxy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+12,
+4,
+12,
+4
+],
+"reduced": [
+"XXYYXyyyXXyyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 12,
+"E": 6.184291898577613e-06,
+"E_exact": "1/161700",
+"reduced_key": [
+"XXYYXyyyXXyyyxy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXXyyyXXXXyxxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXyxxyxYXXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+12,
+6,
+2
+],
+"reduced": [
+"YXXyyyXXXXyxxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 5,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 2
+},
+"n_x": 12,
+"n_y": 9,
+"E": 6.184291898577613e-06,
+"E_exact": "1/161700",
+"reduced_key": [
+"XXXXyxxyxYXXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"xxxYYYXyyyXYYxy",
+"YXyxyX"
+],
+"canonical_key": [
+"XXXYXyyxYYYxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 30,
+"moves_from_root": [
+7,
+3,
+8,
+2,
+8,
+2
+],
+"reduced": [
+"xxxYYYXyyyXYYxy",
+"YXyxyX"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 5
+},
+"n_x": 9,
+"n_y": 12,
+"E": 6.184291898577613e-06,
+"E_exact": "1/161700",
+"reduced_key": [
+"XXXYXyyxYYYxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXyyyXXXyxYXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxYXyxyXXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+12,
+4
+],
+"reduced": [
+"XXyyyXXXyxYXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 6.046863189720333e-06,
+"E_exact": "1/165375",
+"reduced_key": [
+"XXXyxYXyxyXXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XYxyyyXXXyXXyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyXXyxyXYxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+8,
+6,
+12,
+4
+],
+"reduced": [
+"XYxyyyXXXyXXyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 6.046863189720333e-06,
+"E_exact": "1/165375",
+"reduced_key": [
+"XXXyXXyxyXYxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XyyyXXXyXYXyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyXYXyyxyXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+4,
+12,
+4
+],
+"reduced": [
+"XyyyXXXyXYXyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 11,
+"E": 6.046863189720333e-06,
+"E_exact": "1/165375",
+"reduced_key": [
+"XXXyXYXyyxyXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXXyyyXXXyxYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyxYxyxYXXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+12,
+6,
+2
+],
+"reduced": [
+"YXXyyyXXXyxYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 6.046863189720333e-06,
+"E_exact": "1/165375",
+"reduced_key": [
+"XXXyxYxyxYXXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"XyyyyXXyXYXXyxy"
+],
+"canonical_key": [
+"XXyXYXXyxyXyyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+9,
+3,
+11,
+3
+],
+"reduced": [
+"YXYxyx",
+"XyyyyXXyXYXXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 2,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 3
+},
+"n_x": 10,
+"n_y": 11,
+"E": 6.046863189720333e-06,
+"E_exact": "1/165375",
+"reduced_key": [
+"XXyXYXXyxyXyyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YxyyyXXXyXXYxyx",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyXXYxyxYxyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+8,
+8,
+6,
+2
+],
+"reduced": [
+"YxyyyXXXyXXYxyx",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 4,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 4,
+"y+|y-": 2
+},
+"n_x": 11,
+"n_y": 10,
+"E": 6.046863189720333e-06,
+"E_exact": "1/165375",
+"reduced_key": [
+"XXXyXXYxyxYxyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXXyyyXXXXyyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXXyyyxyXXXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+10,
+4,
+12,
+4,
+12,
+4
+],
+"reduced": [
+"XXXyyyXXXXyyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 5,
+"x+|y+": 3,
+"x+|y-": 3,
+"x-|y+": 3,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 11,
+"n_y": 10,
+"E": 5.668934240362812e-06,
+"E_exact": "1/176400",
+"reduced_key": [
+"XXXXyyyxyXXXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"XXYXyyyXXXyyyxy",
+"XYXyxy"
+],
+"canonical_key": [
+"XXXyyyxyXXYXyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+4,
+12,
+4,
+12,
+4
+],
+"reduced": [
+"XXYXyyyXXXyyyxy",
+"XYXyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 10,
+"n_y": 11,
+"E": 4.535147392290249e-06,
+"E_exact": "1/220500",
+"reduced_key": [
+"XXXyyyxyXXYXyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"XXYXyyyyXXXyyxy"
+],
+"canonical_key": [
+"XXXyyxyXXYXyyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+3,
+5,
+3
+],
+"reduced": [
+"YXYxyx",
+"XXYXyyyyXXXyyxy"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 10,
+"n_y": 11,
+"E": 4.535147392290249e-06,
+"E_exact": "1/220500",
+"reduced_key": [
+"XXXyyxyXXYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+},
+{
+"words": [
+"YXYxyx",
+"YYXyyyyXXXYxxyx"
+],
+"canonical_key": [
+"XXXYxxyxYYXyyyy",
+"XYXyxy"
+],
+"length": 21,
+"root_index": 27,
+"moves_from_root": [
+5,
+3,
+7,
+5,
+3,
+4,
+10,
+4,
+10,
+1,
+2,
+9,
+1,
+7,
+1
+],
+"reduced": [
+"YXYxyx",
+"YYXyyyyXXXYxxyx"
+],
+"cyclic_reduction_needed": false,
+"support_class": "K4",
+"multiplicities": {
+"x+|x-": 3,
+"x+|y+": 3,
+"x+|y-": 4,
+"x-|y+": 4,
+"x-|y-": 3,
+"y+|y-": 4
+},
+"n_x": 10,
+"n_y": 11,
+"E": 4.535147392290249e-06,
+"E_exact": "1/220500",
+"reduced_key": [
+"XXXYxxyxYYXyyyy",
+"XYXyxy"
+],
+"reduced_length": 21,
+"n_exact_realizations": 1
+}
+]
+}
