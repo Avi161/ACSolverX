@@ -4,6 +4,58 @@ Checked every 30 minutes (an automated monitor fetches `origin/codex/proofs` and
 new commits with the files they touch). Each entry records what the codex line is doing,
 what this line is doing, and where the two could collide.
 
+## 2026-07-29 ~21:50 UTC — codex at `813a6d1` (full analysis: `CODEX_CHECK_813a6d1.md`)
+
+**Their apparatus changed; their scope did not.** New work is a *period-two old–new cut
+load certificate* plus an *intact-boundary pumping lemma*, *endpoint potential* and
+*selector theory* — 6,686 insertions across `.scratch/` and `docs/superpowers/`. Substance:
+
+* the **load certificate** is a verification harness for ONE open lemma inside their
+  existing depth-4/6 AC2 period-two census on AK(3), certifying the mod-2 covariance
+  identity `B(A_{n+1,d}, b_{n+1,d}) = B(A_{n,d}, b_{n,d})`. "Load" = one unit of
+  verification work (source-fibre × cell); it is not a new mathematical object.
+* the **pumping lemma** is word combinatorics, not an AC claim: for powered words indexed
+  by an orthant `x_0 + N^k`, inserting more copies of a periodic block at an "intact"
+  splice point reproduces the true shortlex-reduced form — converting finite spot-checks
+  into all-exponent statements.
+* the **endpoint potential** is **NOT a monotone or bound-producing potential.** It is a
+  discrete-Stokes telescoping identity over F_2: `psi_T(x) = sum omega_T(e)` along tree
+  edges, giving `B(eta([x,y]), T) = psi_T(x) + psi_T(y)` **exactly**. It computes a parity
+  *equality*, so the upper-vs-lower-bound question does not even apply to it.
+
+**Scope, verbatim, and still ansatz-confined:** *"This certificate is not, by itself, an AC
+or stable-AC trivialization of AK(3). It is one lemma in the current proof route."* and
+*"Nothing here proves or refutes Andrews--Curtis or stable Andrews--Curtis."* The
+generalisation is along the `(n,d)` axis **inside** their fixed named construction; it has
+not become class-wide.
+
+**Their three "blocked" commits are ENGINEERING, not a dead route.** Serializing full
+JSON/SHA for 48,252 templates exceeded their own 30-second CPU guard, so they moved to a
+compact schema/witness table. Their log: *"no independent replay or theorem claim has yet
+occurred."* No route was declared mathematically dead — so nothing is freed up for us.
+
+**Collision: NONE**, verified against the full file list of `b617123..813a6d1` — no ribbon
+graphs, no γ_N, no fake surfaces, no collapsibility anywhere in the range.
+
+**Transfer to us: NONE, and the near-miss is worth recording as a trap avoided.** Their
+potential looked, from the commit titles alone, like exactly the tool R7c needs. It is not.
+R7c must EXCLUDE a joint extremal event (`X⁻ = 1 ∧ X⁺ = 0`) in rotation-system
+combinatorics; their machinery ESTABLISHES an exact parity by telescoping. Different
+objects, and — more decisively — different shapes of question: equality versus exclusion.
+The only resemblance is strategy-level (both reduce an infinite family to finite boundary
+cases), which is not reusable tooling. **Do not import it.**
+
+**Transfer to them: still undelivered.** A grep of the whole commit range for
+Lackenby / Fagan / Qiu / Wang / AC1 / AC2 returns zero hits, so `NOTES_FOR_CODEX_LINE.md`
+items 10, 11, 12 and 16 have not reached them. Item 16 is the one that matters most as
+their obstruction program generalises: **a class-wide thickenability obstruction would be a
+DISPROOF of stable ACC, not a negative result.** Relaying it requires the user to merge
+this branch — cloud sessions cannot push to their branch.
+
+**Divergence decision.** Free-product / shortlex / pumping tooling is now unambiguously
+theirs; this line will not build any. Our complementary next step is unchanged and
+independent of everything above: close R7c's single remaining case, `defect(ρ(C')) = 2`.
+
 ## 2026-07-29 ~16:45 UTC — codex at `b617123`
 
 **Their direction: ALGEBRAIC OBSTRUCTION THEORY on the MMS02 Wirtinger corridor.**
