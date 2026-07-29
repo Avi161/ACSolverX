@@ -1,10 +1,36 @@
 # R1c-v2 — Synchronized planarity for NON-3-connected supports, at arbitrary rank
 
-**Status: DRAFT — pending adversarial audit.** Written 29-07-2026 (fable line). Nothing in
-this file has been through the hostile-referee pass that `R1C_RANK_N_THREECONNECTED.md`
-survived. Every claim below is stated so that it can be attacked; §11 tells the referee
-where to aim. Machine cross-checks that *were* run are recorded in §10 and are exhaustive
-only in the small range stated there.
+**Status: AUDITED (29-07-2026, ~10:20 UTC) — hostile referee verdict REPAIRABLE with zero
+mathematical errors; the four presentational repairs are recorded as normative errata
+below and OVERRIDE the body where they touch it.** The referee (independent fable agent,
+own implementations, none of the author's code): Lemma 3.2 survived 35 two-connected
+instances incl. 10 nested-bridge constructions (0 violations; 182 violations on
+non-2-connected controls — the trap is real and correctly scoped); Kreweras/(5.1)
+independently REPROVED on 34 vectors to t = 5, N = 9; Lemma 7.4 probed with
+shift-census-uniformity tests (exactly ∏m! per shift value — no under-count); Thm 6.S
+verified on untested configurations incl. one-pole-cut blocks (no shift, as claimed);
+decomposition-order independence on 425 graphs × 5 strategies (0 discrepancies);
+compatibility layer completeness on all 1,152 (rotation, generator) pairs of a test link +
+both recorded false-negative witnesses end-to-end; master formula on 425 random connected
+planar multigraphs (218 with cut vertices, 35 with t ≥ 3, 263 with nested split depth ≥ 2):
+0 mismatches; K₅/K₃,₃ correctly 0 via non-planar R-nodes.
+
+## NORMATIVE ERRATA (the four required repairs)
+
+E1 (Lemma 3.2 proof): after the Jordan curve J is formed, add — "the two angular sectors
+at a bounded by e(d₁), e(d₂) lie in DIFFERENT components of S² ∖ J, since J = ∂Ω = ∂Ω′
+and J has exactly two branches at a"; and note that |D_i^a| ≤ 1 is trivially an interval.
+E2 ((6.1) and Thm 6.S case 1): the P-node factor list and the parameter c are pinned to
+the CANONICAL decomposition — c = number of components of B − {u,v} inside the block B of
+G containing the class; only the VALUE of the product, not the factor multiset, is
+decomposition-independent.
+E3 (§8.3): the simple-degree-2 dichotomy is scoping prose only and is not exhaustive as
+worded (P-node poles like c, d of K₄−e fall in neither case); nothing downstream depends
+on it.
+E4 (Lemma 7.4): the "bijection by induction" sketch is completed by the anchor-consumption
+bookkeeping: the anchor at the reference pole consumes exactly one rotation-offset factor
+per cut vertex, leaving precisely the net class multiplicity of Theorem 6.S (referee
+reconstructed and verified this bookkeeping).
 
 **Contract.** This is the "cut-scheme extension" promised in the R1c-v2 sketch at the end of
 `R1C_RANK_N_THREECONNECTED.md`: decide compatible sphericity (hence, via the Neuwirth
