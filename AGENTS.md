@@ -1443,3 +1443,8 @@
 
 - [TRAP] A 13-by-13 diagnostic rebuilt and scanned complete long powered raw palindromes, exceeded the 30-second foreground cap, and had to be interrupted even though the target was a bounded-prefix observable.
 - [WORKS] Cache one word per schema, prove raw observables from action-cancellation prefixes and pumped templates, and restrict diagnostic replay to the disjoint cell bases. Interrupt and verify exit whenever a raw powered grid crosses the cap.
+
+### 2026-07-29 Omit shebangs from non-executable certificate scripts
+
+- [TRAP] Two mode-`0644` scratch checkers carried Python shebangs and passed an older reviewer lint environment, but the required Ruff 0.16.0 controller gate rejected them with `EXE001` and also exposed import/annotation formatting drift.
+- [WORKS] For checkers invoked explicitly with `python3`, omit the shebang; record `ruff --version`, rerun the exact controller command, and rereview the final hashes after even mechanical byte changes.
