@@ -734,10 +734,57 @@
    "wall_s": 26.0
   }
  ],
- "targets": [],
+ "targets": [
+  {
+   "target": "ak2",
+   "words": [
+    "xxYYY",
+    "xyxYXY"
+   ],
+   "subdivision": 3,
+   "layers": 1,
+   "base_f_vector": [
+    40,
+    138,
+    99
+   ],
+   "base_free_faces": 0,
+   "prism_n_faces": 1503,
+   "prism_f_vector": [
+    80,
+    454,
+    672,
+    297
+   ],
+   "onto_bottom": {
+    "n_steps": 613,
+    "replay_ok": true,
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ak2_s3_L1_onto_bottom.json"
+   },
+   "hits": 0,
+   "runs": 5749,
+   "rate": 0.0,
+   "search_elapsed_s": 90.0,
+   "guided": {
+    "hits": 0,
+    "runs": 3134
+   },
+   "morse": {
+    "sweeps": 1577,
+    "best_vector": [
+     1,
+     2,
+     2
+    ],
+    "best_total": 5,
+    "euler_check": 1
+   },
+   "wall_s": 165.5
+  }
+ ],
  "certificates": [],
  "notes": [
   "One-sided instrument: a collapse is a replayable certificate, a failure is silence. Read phase C only against phase B's measured hit rates."
  ],
- "updated_utc": "2026-07-29T21:58:56Z"
+ "updated_utc": "2026-07-29T22:01:41Z"
 }

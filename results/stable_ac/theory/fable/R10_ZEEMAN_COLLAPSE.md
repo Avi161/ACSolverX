@@ -197,13 +197,127 @@ Positive rungs, in increasing order of evidential value:
 * **Bing's house x I** — contractible, `K` not collapsible, 0 free faces, prism *larger*
   than AK(3)'s. This is the closest structural analogue of the AK targets available.
 
-RESULTS_LADDER_PLACEHOLDER
+**Measured hit rates (blind search, per restart, strategies `uniform-lifo`/`top-lifo`,
+score partition `copy`).** `basefree` = free faces of `K` itself.
+
+| rung | basefaces | basefree | prism faces | hits / runs | rate | certificate |
+|---|---|---|---|---|---|---|
+| dunce s=3 L=1 | 79 | 0 | 423 | 222 / 6220 | **3.57 %** | replay ok, 211 steps |
+| dunce s=3 L=2 | 79 | 0 | 767 | 208 / 3194 | **6.51 %** | replay ok, 383 steps |
+| dunce s=4 L=1 | 105 | 0 | 563 | 169 / 4634 | **3.65 %** | replay ok, 281 steps |
+| dunce s=5 L=1 | 131 | 0 | 703 | 229 / 3575 | **6.41 %** | replay ok, 351 steps |
+| dunce s=6 L=1 | 157 | 0 | 843 | 96 / 2544 | **3.77 %** | replay ok, 421 steps |
+| dunce+2pad | 139 | 6 | 735 | 132 / 2656 | **4.97 %** | replay ok, 367 steps |
+| dunce+4pad | 199 | 12 | 1047 | 110 / 1791 | **6.14 %** | replay ok, 523 steps |
+| dunce+6pad | 259 | 18 | 1359 | 46 / 1350 | **3.41 %** | replay ok, 679 steps |
+| dunce+8pad | 319 | 24 | 1671 | 52 / 1054 | **4.93 %** | replay ok, 835 steps |
+| dunce+10pad | 379 | 30 | 1983 | 34 / 759 | **4.48 %** | replay ok, 991 steps |
+| **Bing's house L=1** | 475 | **0** | 2563 | 0 / 835 (ladder) | **0 %** | — |
+| **Bing's house L=1** | 475 | **0** | 2563 | hit at restart **313** (anchor phase, different seed) | ~`3e-3` | replay ok, 1281 steps |
+| **Bing's house L=2** | 475 | **0** | 4651 | 1 / 542 | **0.18 %** | replay ok, 2325 steps |
+
+Three readings, and the third is the one that matters:
+
+1. **Raw size is not the difficulty axis.** The dunce ladder holds a flat 3.4–6.5 % hit
+   rate from 423 up to 1,983 prism faces — a 4.7× size increase with no measurable
+   decay. So a null at AK-scale cannot be blamed on size alone.
+2. **The instrument has demonstrated power on a genuinely hard positive.**
+   `(Bing's house) x I` collapses, and we hold a machine-replayed 1,281-step certificate
+   for it (`zeeman_certs/zeeman_cert_anchor_bing_prism_to_point.json`). Bing's house is
+   the closest available structural analogue of the AK complexes: contractible, **zero**
+   free faces, base larger than AK(3)'s, prism larger than AK(3)'s. This is the single
+   most important calibration fact in this document, and it is a hit, not an assumption.
+3. **But the power there is 20–40× weaker.** Two independent measurements put the
+   Bing-house rate at roughly `1e-3` to `3e-3` per restart, against ~`5e-2` on the
+   dunce ladder. **The operative detection rate for AK-shaped inputs is therefore
+   ~`1e-3`, not ~`5e-2`.** Any null below a few thousand restarts is close to
+   uninformative, and every number in §5 must be read against `1e-3`.
+
+Note carefully what AK(2) is and is not. AK(2) is AC-trivial, but *Zeeman is strictly
+stronger than AC*: AC-triviality does **not** imply that `K x I` is collapsible. So
+AK(2) is a **plausibility** control, not a guaranteed positive, and an AK(2) null cannot
+by itself convict the instrument. Bing's house is what certifies the instrument's power.
 
 ---
 
-## 5. The AK results
+## 5. The AK results — PARTIAL
 
-RESULTS_TARGETS_PLACEHOLDER
+**This section is incomplete.** The battery was terminated by the session coordinator
+partway through phase C, after the AK(2) `s=3, L=1` unit and *before any AK(3) unit ran*.
+The AK(3) leg-(b) numbers below therefore come from earlier smaller foreground probes,
+not from the battery, and are labelled as such. Runs are per-restart counts.
+
+### 5.1 Leg (a) — certified for AK(3) and AK(2)
+
+| complex | L | prism faces | deterministic steps | independent replay |
+|---|---|---|---|---|
+| AK(3) s=3 | 1 | 1767 | 721 | **ok** |
+| AK(3) s=3 | 2 | 3209 | 1442 | **ok** |
+| AK(2) s=3 | 1 | 1503 | 613 | **ok** (`zeeman_cert_ak2_s3_L1_onto_bottom.json`) |
+| AK(2) s=3 | 2 | 2729 | 1226 | **ok** |
+
+This is Proposition R10.1 and it is not in doubt. It is also, on its own, of no use
+without leg (b).
+
+**Artifact caveat.** The two AK(2) rows have certificate files on disk
+(`zeeman_cert_ak2_s3_L{1,2}_onto_bottom.json`, both `replay_ok=true`). The two **AK(3)
+rows were verified in-memory in a foreground probe and no certificate file was written**
+before the run was stopped, so a reader should re-derive them rather than take this
+table's word — three lines, seconds to run:
+`cx,_=build_target('ak3',3); pr,bot=prism(cx,L);
+verify_collapse_sequence(sorted(pr.faces), cylinder_collapse_sequence(cx,L),
+target='subcomplex', protected=bot)`. There are **no AK(3) certificates of any kind in
+`zeeman_certs/`**; the directory holds 25 files, all anchors, ladder rungs, and AK(2)
+leg (a).
+
+### 5.2 AK(2) — the mandatory control: **NO COLLAPSE FOUND**
+
+`s = 3, L = 1`, prism 1,503 faces:
+
+* blind search: **0 hits / 5,749 restarts**
+* guided search (structural opening: spend the prism over `k` random 2-cells first,
+  `k` uniform in `1..12`): **0 hits / 3,134 restarts**
+* graded near-miss, best of 1,577 randomized discrete-Morse sweeps: Morse vector
+  **`[1, 2, 2]`** (5 critical cells; Euler check `1 - 2 + 2 = 1` ✓). So the best sweep
+  found was **two critical pairs short** of a collapse.
+
+**Stated plainly: the AK(2) positive control did not collapse.** Consequences, in order:
+
+* Against the operative detection rate of ~`1e-3` (§4, rung 3), 5,749 restarts with zero
+  hits is *suggestive* — one would expect a handful of hits if `AK(2) x I` were
+  collapsible at Bing-house difficulty — but it is **not decisive**, and it is only about
+  the `s=3, L=1` triangulation.
+* It does **not** invalidate the instrument, because AK(2)'s prism was never a guaranteed
+  positive (§4, last paragraph). The instrument's power is certified by Bing's house, and
+  that certification stands.
+* It does mean that **no AK(3) null in this document is backed by a matched positive at
+  AK-exact structure and AK-exact size.** The nearest matched positive is Bing's house,
+  which is a *different* complex, larger, and with a rate 20–40× below the dunce ladder.
+  Read every AK(3) statement below with that gap in mind.
+
+### 5.3 AK(3) — no collapse found; the battery unit never ran
+
+What exists (foreground probes only, `s = 3`, `L = 1`, prism 1,767 faces):
+
+| probe | strategies / score | restarts | result |
+|---|---|---|---|
+| A | `uniform-lifo`, score `none` | 200 | no hit, best 325 faces left, residual `f = [46,162,117]` |
+| B | `top-lifo`, `bottom-lifo`, `uniform-rand`, `top-rand`, score `none` | ~200 each | no hit, best 325 left, same residual |
+| C | same five strategies, score `copy` / `extreme` | ~12–200 each | no hit, best 537–585 left |
+| D | `uniform-lifo`, score `none`, `s = 4` (`L = 1`), `s = 3` (`L = 2`), `s = 4` (`L = 2`) | 200 each | no hit; best 433 / 743 / 1053 left |
+
+**Best AK(3) result: no collapse; `best_faces_left = 325`, residual
+`f-vector = [46, 162, 117]`.** That residual f-vector is *exactly* `K`'s own f-vector
+(§1) — the search collapses `K x I` vertically onto the copy `K x {0}` and dies there,
+because `K` has zero free faces. That is a terminal state no bounded tail-rollback can
+repair, which is why the plateau depth of 325 is worthless as a progress signal (see
+`experiments/lessons/plateau-depth-is-not-progress.md`).
+
+**Total AK(3) effort is of order 10^3 restarts — roughly ONE Bing-house detection time.**
+So the AK(3) null is at present **uncalibrated in the sense that matters**: it is right
+at the threshold where the measured `1e-3` rate begins to bite, so it excludes almost
+nothing. It should not be described as evidence against collapsibility of `AK(3) x I`.
+The one experiment that would change this is §9.
 
 ---
 
@@ -311,14 +425,21 @@ Consequences, both directions:
 **PROVED (this session, machine-certified and independently replayable):**
 
 1. Prop. R10.1: the explicit search-free collapse `K x [0,L] \searrow K x {0}` for the
-   staircase triangulation, with proof, verified by replay for all targets — including
-   AK(3) at `s in {3,4}`, `L in {1,2}`.
+   staircase triangulation, with proof. Verified by independent replay for
+   **AK(3) at `s = 3`, `L in {1,2}`**, AK(2) at `s = 3`, `L in {1,2}`, Bing's house,
+   the dunce hat, and every anchor. (`s = 4` was *not* replayed — only its sizes were
+   measured. The proposition covers it; the machine check does not.)
 2. Cor. R10.2: leg (a) reversed + leg (b) is a 3-deformation of `K'` to a point.
 3. The anchor table of §2, including: Bing's house as built here is contractible
    (`H_* = (Z,0,0)`, `pi_1` Tietze-reduced to `< | >`) and has no free face; the dunce
    hat likewise; `S^2 x I` and `RP^2 x I` are not collapsible and the search correctly
-   returns no hit on them.
-4. RESULTS_PROVED_PLACEHOLDER
+   returns no hit on them (`RP^2 x I`: 0 hits in 40,000 restarts in a direct
+   measurement, 0 in 3,627 in the battery).
+4. **`(Bing's house) x I` is collapsible** for the staircase triangulation used here —
+   a 1,281-step certificate, independently replayed
+   (`zeeman_certs/zeeman_cert_anchor_bing_prism_to_point.json`). Likewise
+   `(dunce hat) x I` (211 steps) and every rung of the §4 ladder. These are the
+   route's only new positive results, and they concern anchors, not AK(3).
 
 **CONJECTURED / measured but not proved:**
 
@@ -340,3 +461,43 @@ Consequences, both directions:
    AC-trivial"**, exactly as R7's Joint A gates its own transfer.
 9. Zeeman's conjecture itself, for the class of 2-complexes this route needs, is open in
    the literature; nothing here changes that.
+10. **Is `AK(2) x I` collapsible for any triangulation?** Open. The `s=3, L=1` null
+    (0/5,749 blind, 0/3,134 guided, best Morse `[1,2,2]`) is the only measurement.
+
+---
+
+## 9. The one experiment that most advances R10
+
+The missing cell is the whole point of the route: **AK(3)'s leg (b) blind search never
+ran under the battery.** It is a single-threaded run under 10 minutes.
+
+Preflight (same code path, same functions, ~35–50 s):
+
+    nice -n 15 timeout 55 python3 -m experiments.stable_ac.fable.zeeman_battery \
+      --phase targets --subdivisions 3 --layers 1 \
+      --target-seconds 8 --morse-seconds 4 \
+      --out /tmp/zeeman_preflight.json --certdir /tmp/zeeman_preflight_certs
+
+Expect: two `[target]` lines (`ak2 s=3 L=1`, `ak3 s=3 L=1`), each reporting
+`onto_bottom replay_ok=true` and a nonzero blind `runs` count. If either line is missing
+or `replay_ok` is false, stop — the code path is broken and the main run is worthless.
+
+Main run (4 units, ~9.5 min: per unit ≈ 80 s blind + 40 s guided + 20 s Morse + ~3 s
+build/verify = 143 s):
+
+    nice -n 15 python3 -m experiments.stable_ac.fable.zeeman_battery \
+      --phase targets --subdivisions 3 --layers 1 2 \
+      --target-seconds 80 --morse-seconds 20 \
+      --out results/stable_ac/fable/zeeman_ak_targets.json \
+      --certdir results/stable_ac/fable/zeeman_certs
+
+Covers AK(2) and AK(3) at `L = 1` and `L = 2` (`L = 2` is where Bing's house hit, and
+where the dunce rate roughly doubled — it is the more promising triangulation, not merely
+a bigger one). Output is flushed after every unit, so a kill at any moment leaves usable
+partial data.
+
+What it decides: at ~5,000 blind restarts per unit against a measured `1e-3` AK-shaped
+detection rate, a hit is a certificate and closes §8.7 affirmatively for that
+triangulation; a null finally puts AK(3) on the same evidential footing as the AK(2)
+control instead of an order of magnitude below it. Either way the Morse vector gives a
+graded near-miss comparable across the two targets.

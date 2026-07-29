@@ -1,9 +1,34 @@
 # R8 — The fake-surface complexity of AK(3)
 
-STATUS: RESULT + CORRECTION. Claims addressed are tagged per lemma; the headline
-quantity `c(AK(3))` is a **stable-AC** invariant, so unless a lemma says otherwise it
-addresses the STABLE claim. No claim about AC-triviality of AK(3) is made in either
-direction.
+STATUS: AUDITED. This document has been through an independent adversarial audit this
+session (all `AUDIT AMENDMENT` blocks below). Most claims are CONFIRMED, several
+strengthened with new independent verification; specific items are REFUTED or downgraded
+— most seriously §6 Conclusion 3's search-rank advice, which had the bound direction of
+Theorem D backwards (Amendment 5), and the A1 converse, which is refuted with an explicit
+witness (Amendment 4). Claims addressed are tagged per lemma; the headline quantity
+`c(AK(3))` is a **stable-AC** invariant, so unless a lemma says otherwise it addresses the
+STABLE claim. No claim about AC-triviality of AK(3) is made in either direction.
+
+**What you may build on (post-audit).** Theorem A1 forward, now verified on all 102,092
+(surface, spanning tree) pairs in *reduced* form with its proof gap closed (Amendments
+2–3); Theorem A2; Theorem C's reverse half and the `c = 1` case (dependency-free);
+Corollary C1; the headline BLOCKED verdict (CONFIRMED, ROBUST, no FQW input needed at its
+core); D1, D2, Theorem D and the formulas `n' = L − 2n`, `V₀ = L − 2n − 1`; `Q₈` as an
+existence witness in AK(3)'s stable class with the complexity-8 profile (no move list);
+D3 correctly labelled CONJECTURED; §6's four filter counts; the JSON targets as faithful
+tree-collapses of the CSV on 5,389/5,389 (Amendments 6–9).
+
+**What you may NOT build on.** The A1 converse (REFUTED with explicit witnesses,
+Amendment 4); §6 Conclusion 3's original "search at rank ≈9, not rank 4-6" advice
+(REFUTED on bound direction — Theorem D is an upper-bound witness, not a lower bound; the
+rank 4-6 programme is restored, Amendment 5); Theorem C's numeral 6 taken as
+unconditional (it is exactly as strong as FQW's real threshold and no stronger —
+Amendment 6); "the chain is explicit and machine-checked" for D1 (D1 is an existence
+claim with no computed move count, Amendment 7); "25 substitutions" (the correct count is
+23, Amendment 7); "c(AK(3)) < ∞" as proved (Amendment 8); "8 is optimal for the method"
+beyond rank 2 (rests on a carried-in citation absent from `LITERATURE_STATUS`, Amendment
+8); "the" tree-collapse presentation in §2.4 as unique (only "some" tree-collapse is
+established — but W3 IS load-bearing in Theorem C's forward half, Amendment 8).
 
 Instrument: `experiments/stable_ac/fable/r8_complexity_profile.py` (new file; four
 self-checking blocks A–D, all PASS). Primary sources retrieved this session are cached
@@ -27,10 +52,10 @@ Then:
 
 | quantity | value | status |
 |---|---|---|
-| c(AK(3)) lower bound | `c(AK(3)) ≥ 1`, and `c(AK(3)) ≥ 6` **iff** AK(3) is not stably AC-trivial | PROVED (Thm C) |
-| c(AK(3)) exact, positive branch | `c(AK(3)) = 1` **iff** AK(3) is stably AC-trivial | PROVED (Thm C) |
+| c(AK(3)) lower bound | `c(AK(3)) ≥ 1`, and `c(AK(3)) ≥ 6` **iff** AK(3) is not stably AC-trivial | **PROVED modulo FQW's body** (Thm C) — the numeral 6 is exactly as strong as FQW's real threshold and no stronger; audited, Amendment 6 |
+| c(AK(3)) exact, positive branch | `c(AK(3)) = 1` **iff** AK(3) is stably AC-trivial | PROVED (Thm C) — dependency-free, audited CONFIRMED |
 | c(AK(3)) upper bound | `c(AK(3)) ≤ 8` | CONJECTURED (Thm D + unproved realizability) |
-| c(AK(3)) finite at all | `c(AK(3)) < ∞` | PROVED modulo one sourced theorem (§3.1) |
+| c(AK(3)) finite at all | `c(AK(3)) < ∞` | **NOT PROVED** — audit downgrade, §3.1; was "PROVED modulo one sourced theorem" |
 
 **So c(AK(3)) ∈ {1} ∪ {6,7,8,…}, and deciding which is *literally* the open problem.**
 Fagan–Qiu–Wang's complexity < 6 theorem therefore **does not settle AK(3)**, and it
@@ -60,7 +85,14 @@ graph `K₄`; "circle with three radii" *is* `K₄`, 4 vertices all of degree 3)
 
 **1.2 Singular graph.** *The union of the singular points (vertices and triple lines) of
 a fake surface P is its singular graph SP. The type-1 singularities form a 4-regular
-multigraph.* [SOURCED-INDIRECT, same]. **Special polyhedron:** *a fake surface with at
+multigraph.* [SOURCED-INDIRECT, same].
+
+> **AUDIT AMENDMENT (mislabel).** "The type-1 singularities form a 4-regular multigraph"
+> mislabels the source synthesis — type-1 points are *surface* points (§1.1), not
+> singularities. What is 4-regular is **the singular graph `SP` itself** (vertices = true
+> vertices, edges = triple lines), consistent with §1.3's convention-PDF confirmation.
+
+**Special polyhedron:** *a fake surface with at
 least one vertex, all of whose 2-components are 2-cells* [SOURCED-INDIRECT: Matveev, via
 the same synthesis]. **Cellular fake surface:** *every edge is a 1-cell and every face is
 a 2-cell* [SOURCED-INDIRECT: arXiv:2406.09439]. Cellular ⊂ special, and the census is of
@@ -103,6 +135,12 @@ and Zeeman Conjecture*, Lucas Fagan, Yang Qiu, Zhenghan Wang; v2 dated 2026-01-0
   completed at index 1, not for all 5,389. The word "certified" in
   `certified_trivial_targets.json` should be read as covering 457 rows; the remaining
   4,932 are *candidate* targets.
+
+> **AUDIT AMENDMENT (CONFIRMED).** Independent of the group-triviality coverage question
+> above, the audit verified that the JSON targets are faithful tree-collapses of the CSV
+> census on **5,389/5,389** rows — i.e. the presentation-construction pipeline itself
+> (surface → spanning tree → presentation) introduces no discrepancy anywhere in the
+> census, regardless of which rows are certified-trivial.
 
 **1.6 3-deformation ↔ stable AC (the dictionary that makes any of this transfer).**
 A 3-deformation is a formal deformation through complexes of dimension ≤ 3. The
@@ -150,13 +188,40 @@ Matches the project's derivation exactly. **Confirmed.**
 > complexity `V`, every generator occurs exactly 3 times** (counting a letter and its
 > inverse alike). Hence `V+1` generators, `V+1` relators, total length `3V+3`.
 
-*Proof.* Generators are exactly the non-tree edges of `SF`; every edge of `SF` carries
-exactly 3 face-germs, and collapsing `T` deletes only tree letters, leaving each non-tree
-edge with its 3 occurrences. ∎ (Class: machinery.)
+*Proof (original).* Generators are exactly the non-tree edges of `SF`; every edge of `SF`
+carries exactly 3 face-germs, and collapsing `T` deletes only tree letters, leaving each
+non-tree edge with its 3 occurrences. ∎ (Class: machinery.) This argument is correct for
+the **raw spelling** of the tree-collapse word only.
+
+> **AUDIT AMENDMENT (a real proof gap, now closed).** The original proof stops at raw
+> spelling, but every downstream use of A1 (the §6 filter, the R3 correction of §4) is
+> applied to **freely reduced** words, and free reduction can take an occurrence count
+> from 3 to 1 while leaving exponent sums — hence homology and `|det|` — untouched. This
+> gap mattered: at complexity 8 no census data exists to check against, and the
+> raw-spelling proof was all there was. **Repair, verified on the data:** a cancellation
+> would require two mutually inverse non-tree letters separated only by tree letters; the
+> intervening letters trace a closed walk in the spanning tree `T`, which must contain a
+> backtrack; a backtrack in an attaching map is a corner joining an edge-germ to itself,
+> i.e. a loop in the vertex link — impossible in `K₄`. Both hypotheses were checked
+> directly against the data: **0/5,389** rows contain a backtrack, and **5,389/5,389**
+> satisfy the `K₄`-corner condition (each vertex's 6 corners are the 6 distinct pairs of
+> its 4 germs, each exactly once). With this sentence added, A1 holds in **reduced** form
+> for all `V` — including complexity 8, where the raw-spelling argument was previously the
+> only thing behind Theorem D's target profile (§5.2).
 
 *Verification:* block A of `r8_complexity_profile.py` checks the full statement — `V+1`
 generators, `V+1` relators, every generator exactly `3×`, length `3V+3` — on
-**5,389/5,389** census rows. PASS.
+**5,389/5,389** census rows (one spanning tree each). PASS.
+
+> **AUDIT AMENDMENT (CONFIRMED, strengthened).** The audit re-parsed the census with its
+> own tokenizer, reconstructed each singular graph **intrinsically** from disk boundary
+> walks (union-find on the `4V` edge-ends, not relying on the upstream convention PDF),
+> and enumerated **every** spanning tree — **102,092** (surface, spanning tree) pairs
+> versus the document's 5,389 (one tree each); tree counts per surface range from **1 to
+> 125**. Results: **0** profile failures on raw spelling, **0** on freely reduced, **0** on
+> cyclically reduced, **0** empty relators; `V` vertices / 4-regular / connected on
+> **5,389/5,389**; `|det| = 1` on all **102,092** pairs. The profile holds for **every**
+> spanning tree, not only the one the script picks.
 
 This is much sharper than the length profile. On the AK(2)+z corpus the length test
 `L = 3n` admits 5,880 members and the occurrence test admits 48 — a 122× tightening (§6).
@@ -164,8 +229,11 @@ This is much sharper than the length profile. On the AK(2)+z corpus the length t
 ### 2.3 Theorem A2 (complexity 1 is AC-trivial, unstably) — removes an FQW dependency
 
 There are exactly two census rows at complexity 1, and by A1 a **rank-2 census
-presentation can only come from complexity 1** (rank = V+1). Both are AC-trivial in three
-moves each, with no stabilization:
+presentation can only come from complexity 1** (rank = V+1). Both are AC-trivial, with no
+stabilization, in the composite chains below — **5 and 7 elementary moves respectively**
+under FRAMING's numbering [AUDIT AMENDMENT: corrected from "three moves each" for both;
+the 3 composite steps shown each expand to several elementary AC1-AC5 moves; the
+correction is cosmetic and does not affect any claim]:
 
 | presentation | chain | result |
 |---|---|---|
@@ -183,6 +251,15 @@ Different spanning trees of the same `F` give different presentations, but all o
 So "the tree-collapse presentation of `F`" is well defined up to stable AC-equivalence and
 `c(P)` does not depend on any tree choice.
 
+> **AUDIT AMENDMENT (downgrade — not load-bearing, weakened to "some").** This section
+> rests on two unread sources, W1 and W3 (§1.6, §7). It is **not load-bearing**: replace
+> "the tree-collapse presentation of `F`" by "**some** tree-collapse presentation of `F`"
+> and every claim in this document survives unchanged — §0's definition of `c(P)` already
+> quantifies over `F`, so uniqueness across spanning trees of one `F` is not needed.
+> **Caution:** this does **not** mean W3 is dispensable in general — W3 **is** load-bearing
+> in Theorem C's forward (⇒) half (§5.1: "by W3 `F ≃₃ K(P_F)`"), which is exactly the step
+> that makes the numeral 6 FQW-conditional (Amendment 6).
+
 ---
 
 ## 3. The reverse dictionary: presentation → surface
@@ -195,6 +272,17 @@ So "the tree-collapse presentation of `F`" is well defined up to stable AC-equiv
 
 This is the reverse direction, and it is what makes `c(P) < ∞` for every `P`. It is also
 the *only* thing about the reverse direction that could be sourced this session.
+
+> **AUDIT AMENDMENT (downgrade — "c(AK(3)) < ∞" is NOT proved).** The §0 table's "PROVED
+> modulo one sourced theorem" status for finiteness does not hold up: finiteness over
+> **cellular** surfaces needs a **cellular** version of "every 2-complex 3-deforms to a
+> fake surface", and that refinement is not what the quoted sentence states — the
+> sentence itself is a search-engine synthesis, not a primary-sourced read (§7), and the
+> census/FQW results in force here are about *cellular* fake surfaces specifically
+> (§1.2). The §0 table's fourth row now reads **NOT PROVED**. Nothing else in this
+> document depends on finiteness; note that "shrinking the candidate class can only raise
+> the minimum" (§0's own framing) cuts **against** this row, not for it — a narrower,
+> unproved existence claim does not become easier to prove by restricting the class.
 
 ### 3.2 What is NOT determined by what could be sourced
 
@@ -243,6 +331,19 @@ profile-admissible trivial-group presentations are the tree-collapse of no compl
 contractible cellular fake surface.** Hence any upper bound obtained by exhibiting a
 profile-correct presentation is a *candidate*, not a theorem.
 
+> **AUDIT AMENDMENT (converse REFUTED, with explicit witness — strengthens the point above
+> 4.5×).** The audit's independent enumeration gives the **exact** figures, replacing the
+> `≥ 11` / `≤ 68` estimates: **79** profile-admissible-and-trivial classes at complexity 2,
+> **29** realized (not merely `≤ 68`), **50** unrealized (not merely `≥ 11`). Explicit
+> witness: `⟨a,b,c | A, AAB, BCBcc⟩` (relators `a⁻¹`, `a⁻²b⁻¹`, `b⁻¹c⁻¹bc²`) — 3
+> generators, 3 relators, every generator exactly 3 times, total length 9, cyclically
+> reduced, Todd–Coxeter index 1 **complete** — and its canonical class is none of the 29
+> realized by the 38 (surface, tree) pairs of the 17 complexity-2 census surfaces. Since
+> the acyclic-cellular census is complete at complexity 2 and contractible ⇒ acyclic, it
+> is the tree-collapse of **no** complexity-2 contractible cellular fake surface. Four
+> further witnesses: `['A','AAB','BCCbc']`, `['A','AABBCCb','C']`, `['A','AABBCbC','C']`,
+> `['A','AABBCbc','C']`.
+
 ---
 
 ## 4. The arithmetic obstruction, resolved
@@ -282,11 +383,19 @@ arithmetic; it is (i) the sharp profile as an admission filter, and (ii) the ran
 AK(3)'s stable class can first meet the profile, which is 9 by the canonical construction,
 far above the ranks R6 searched.
 
+> **AUDIT AMENDMENT (internal cross-reference).** "The rank at which AK(3)'s stable class
+> can first meet the profile, which is 9" repeats the bound-direction error refuted in
+> Amendment 5 (§6, Conclusion 3): rank 9 is where *this construction* lands, an upper
+> bound / witness, not a proven first-meeting rank. Read this sentence with that
+> correction; ranks 4-6 are not excluded.
+
 ---
 
 ## 5. Bounds on c(AK(3))
 
-### 5.1 Theorem C (the dichotomy) — PROVED
+### 5.1 Theorem C (the dichotomy) — PROVED modulo FQW's body
+
+*(The `c = 1` half is dependency-free — see the AUDIT AMENDMENT after Corollary C2 below.)*
 
 > **`c(AK(3)) = 1` if AK(3) is stably AC-trivial; `c(AK(3)) ≥ 6` otherwise.**
 > Equivalently `c(AK(3)) ≤ 5 ⟺ AK(3) is stably AC-trivial`.
@@ -308,11 +417,55 @@ bound `c(AK(3)) ≥ 2` can be proved without *disproving* stable AC-triviality o
 since `c ≥ 2` already implies `c ≥ 6` implies not stably AC-trivial. This is R3's Wall 5
 in its sharpest form: the minimum is `1`, not merely "< 6".
 
+> **AUDIT AMENDMENT (headline BLOCKED verdict — CONFIRMED and ROBUST).** Corollary C1,
+> together with §6 Conclusion 1 below, is this document's headline verdict that the naive
+> low-rank search route for a *lower* bound on `c(AK(3))` is BLOCKED: any such attempt
+> either fails outright or proves stable-AC-non-triviality, and this qualitative
+> conclusion needs **no FQW input at all** — it follows from A1 + A2 alone (the exact
+> numeral it cites, 6, is FQW-conditional per Amendment 6, but the blocking argument
+> itself — "any `c ≥ 2` is already as hard as disproving stable triviality" — does not
+> change if the true FQW threshold turns out to be a different `N₀`; see the degradation
+> table after Corollary C2). CONFIRMED, ROBUST.
+
 **Corollary C2 (what extending the census would and would not do).** Proving FQW's
 induction at complexity `V` for all `V ≤ N` settles AK(3) **iff** `c(AK(3)) ≤ N`. Pushing
 the census from 5 to 6 therefore settles AK(3) only in the lucky case `c(AK(3)) = 6`. The
 right named target is `N ≥` an *independently established* upper bound for `c(AK(3))` —
 which is what §5.2 is for.
+
+> **AUDIT AMENDMENT (Theorem C CONFIRMED as a conditional theorem).** The numeral 6 is
+> exactly as strong as FQW's real threshold and no stronger; the table label "PROVED" in
+> §0 and §8 for this result must read **PROVED modulo FQW's body**. Hard measurement of
+> the complexity-5 gap behind this (§1.5: the census is a "partial classification of
+> complexity 5: surfaces without small disks"): **0 of 514** complexity-5 census rows have
+> a small disk (min face length ≥ 3), while **4,587 of 4,618** complexity-4 rows (99.3%)
+> and **236 of 238** complexity-3 rows do — so if FQW's complexity-5 induction step rests
+> on the enumeration, the missing stratum is, by the complexity-4 pattern, the
+> overwhelming majority of complexity-5 surfaces.
+>
+> **Degradation table** (what happens to Theorem C if FQW's real proven threshold differs
+> from "complexity < 6"):
+>
+> | if the real induction covers | negative branch reads | equivalence becomes |
+> |---|---|---|
+> | complexity < 6, as published | `c(AK(3)) ≥ 6` (this document, unchanged) | `c(AK(3)) ≤ 5 ⟺` stably AC-trivial |
+> | complexity ≤ 4 plus complexity-5-without-small-disks | `c(AK(3)) ≥ 5`; if `c(AK(3)) = 5` the realizing surface must have a small disk | `c(AK(3)) ≤ 4 ⟺` stably AC-trivial |
+> | complexity ≤ N₀ in general | `c(AK(3)) ≥ N₀ + 1` | `c(AK(3)) ≤ N₀ ⟺` stably AC-trivial |
+>
+> Cellularity is the **safe** direction: `c` minimizes over cellular surfaces, so a
+> cellularity hypothesis on FQW's theorem leaves the forward half (⇐, the `c=1` direction)
+> intact in every case above. **In every row, the reverse half (`c=1`), Corollary C1, and
+> the headline BLOCKED verdict are unaffected, because Theorem A2 makes them
+> dependency-free. Only the numeral 6 is at risk.**
+>
+> **Source re-check.** The audit re-sourced FQW's abstract **verbatim** this session from
+> a fresh sparse clone of `github.com/MystenLabs/snowreads` (`data/abs/2412.12293.json`),
+> and this document's §1.4 quote is exact — but that snapshot knows only **v1** (created
+> 16 Dec 2024), corroborating **neither** this document's "v2 dated 2026-01-08" **nor**
+> `LITERATURE_STATUS`'s "2026-01-09" (which differ from each other). **Mark the v2 date as
+> unsourced.** `arXiv:2406.09439` is **not** in the mirror, so the [SOURCED-INDIRECT]
+> definitions in §§1.1/1.2/1.5 remain unsourced this session; §1.3 does **not** need it
+> (`V` vertices / `2V` edges / 4-regular confirmed from the data itself).
 
 ### 5.2 Theorem D (the profile normal form) — PROVED, and the source of the upper bound
 
@@ -330,8 +483,10 @@ satisfied here.)
 **Lemma D2 (substitution).** If `ρ = z⁻¹g` is a relator, replacing one occurrence of `g`
 in another relator `r = u g v` by `z` yields `r·(v⁻¹ρ⁻¹v)`, and replacing one occurrence
 of `g⁻¹` in `r = u g⁻¹ v` by `z⁻¹` yields `(uρu⁻¹)·r`. Both are AC2∘AC3 composites.
-[Block C verifies this identity as an exact free-group equation at every one of the 25
-substitutions performed.]
+[Block C verifies this identity as an exact free-group equation at every one of the
+**23** substitutions performed. AUDIT AMENDMENT: corrected from an original miscount of
+"25"; D2's two identities were re-verified algebraically in general and at every
+substitution.]
 
 **Theorem D.** Let `P` be a balanced presentation of the trivial group with `n`
 generators, total length `L`, in which every generator occurs at least 3 times. Then `P`
@@ -348,7 +503,8 @@ so the invariant `Δ = 3n − L` rises by exactly 1 per step and the process sto
 when `Δ = 0`, after `s = L − 3n` steps. ∎
 
 **For AK(3)** (`n = 2`, `L = 13`, occurrences `a:6, b:7`): `s = 7`, `n' = 9`,
-`V₀ = 8`. The chain is explicit and machine-checked (block C, PASS):
+`V₀ = 8`. The presentation bookkeeping and every D2 identity are machine-checked
+(block C, PASS); the chain reaching `Q₈` below:
 
 ```
 AK(3) = ⟨a,b | aaaBBBB, abaBAB⟩
@@ -361,6 +517,37 @@ Q₈ = ⟨a,b,c,d,e,f,g,h,i |  aacBBDD,  cfeFEH,  Ga, Hb, Gc, Id, Ge, If, Ih ⟩
 `Q₈` is, as far as this project knows, the first presentation ever exhibited in AK(3)'s
 stable class that satisfies the *necessary* profile of a census surface.
 
+> **AUDIT AMENDMENT (Q8 / Lemma D1 CONFIRMED, with two overstatements removed).** The
+> audit's independent rebuild reproduces `Q₈` character-for-character:
+> `['aacBBDD','cfeFEH','Ga','Hb','Gc','Id','Ge','If','Ih']`, 9 generators / 9 relators /
+> length 27, every generator exactly 3 times, all cyclically reduced; Todd–Coxeter index 1
+> **complete** — after validating the project's `coset_enum` on a 6-case ladder: standard,
+> Z, Z/2, AK(3), AK(3)+z. A **second, independent certificate**: eliminating the 7 short
+> relators by hand gives `a=c=e=g` and `b=d=f=h=i` and returns **exactly**
+> `AK(3) = ⟨g,i | g³i⁻⁴, gigi⁻¹g⁻¹i⁻¹⟩` — so `Q₈`'s triviality is **inherited** from AK(3),
+> not new; the Todd–Coxeter run is a **bug-catcher**, not a load-bearing step, and it is
+> **not** evidence of stable AC-equivalence (that rests on D1/D2's algebra, checked
+> separately). Lemma D1 is correct and is exactly the anticipated repair: plain AC4
+> (adjoin `z` with relator `z`), AC1 on it, then right-multiplication by conjugates of the
+> other relators (AC3-AC2-AC3, restoring the conjugated relator), reaching `z⁻¹w`. The
+> trivial-group hypothesis is genuinely used, at exactly one point (`w` lies in the normal
+> closure of `R`), and survives the induction because each iterate still presents the
+> trivial group.
+>
+> **Two overstatements removed:**
+> (i) *"The chain is explicit and machine-checked"* — D1 is an **existence** claim and
+> needs no bounded move count, and it has none; the move count would be the length of an
+> expression of `w` as a product of conjugates, which the script never computes. What
+> **is** machine-checked is the presentation bookkeeping and every D2 identity (reflected
+> in the wording above). Under R6's own rule ("any match requires an explicitly
+> reconstructed AC1-AC5 move list"), `Q₈` does **not** yet have one.
+> (ii) *"25 substitutions"* was wrong; the correct count is **23** (fixed above).
+>
+> **One more step D3 needs, made explicit.** A realization of the profile is
+> automatically **contractible**, not merely a fake surface: `π₁ = 1` (it presents `Q₈`'s
+> trivial group), `χ = 1` so `b₂ = 0` so acyclic, and Hurewicz plus Whitehead give
+> contractible. This closes a gap Corollary D3 otherwise leaves implicit.
+
 **Sharpness of the method at rank 2.** `V₀ = L − 2n − 1` is minimized by short
 presentations. If AK(3) is **not** stably AC-trivial then no rank-2 member of its stable
 class has length < 13: such a member would be a 2-generator balanced presentation of the
@@ -369,6 +556,15 @@ in FRAMING §1]), hence stably AC-trivial, hence so would AK(3) be. So `V₀ ≥
 construction at rank 2 — in the only case where the question is live, 8 is optimal for the
 method. Starting from AK(3)+`z` (`n=3, L=14`) is worse, not better: `z` occurs once, and
 raising it to 3 occurrences costs 2 length, giving `(3,16)` and `V₀ = 9`.
+
+> **AUDIT AMENDMENT (downgrade — "optimal" narrowed to rank 2).** The Havas–Ramsay
+> "length ≤ 12" citation behind the rank-2 argument above is carried in from FRAMING §1
+> and is **absent from `LITERATURE_STATUS`** — it was not independently re-sourced this
+> session. The rank-2 argument itself stands (`V₀ ≥ 8` *for a rank-2 construction*,
+> conditional on that citation), but **"8 is optimal for the method" is not established
+> beyond rank 2**: the audit scanned all 171,842 AK(3)+z members and found **157,979**
+> with every generator occurring at least 3 times and **min `V₀ = 9`** — consistent with 8
+> being unreachable by any other rank, but **not a proof**.
 
 **Corollary D3 (CONJECTURED).** `c(AK(3)) ≤ 8`, provided some presentation in AK(3)'s
 stable class with the complexity-8 profile is realizable as an actual contractible
@@ -406,11 +602,32 @@ Three conclusions:
    AC-trivial; a rank-3 match needs total length 9 against AK(3)+z's 14. Matching at low
    rank is not a shortcut to the answer, it is the answer.
 3. **Use the sharp profile, not the length profile, as the filter** (122× tighter on the
-   AK(2)+z control), and search at **rank ≈ 9**, not rank 4–6: that is where Theorem D
-   says AK(3)'s stable class first meets the profile. Note the census does not reach
-   complexity 8, so the pay-off there is not a match against existing targets but a
-   realizability construction (§3.3) — the local `K₄`-corner condition is the only thing
-   left to satisfy.
+   AK(2)+z control). Note the census does not reach complexity 8, so any pay-off there is
+   not a match against existing targets but a realizability construction (§3.3) — the
+   local `K₄`-corner condition is the only thing left to satisfy.
+
+   > **AUDIT AMENDMENT — REFUTED ON BOUND DIRECTION (the highest-priority correction in
+   > this document).** This conclusion originally continued: *"and search at rank ≈ 9,
+   > not rank 4–6: that is where Theorem D says AK(3)'s stable class first meets the
+   > profile."* **That is refuted.** Theorem D **exhibits** a rank-9 profile-correct
+   > member of AK(3)'s stable class — an **upper** bound on the first rank at which the
+   > class meets the profile, i.e. a witness, not a lower bound. Nothing in R8 forbids a
+   > sharp-profile member at rank 4, 5 or 6: §4's `k = 3.5` argument rules out only *pure
+   > stabilization*, and AC2 changes length freely, so a shorter profile-correct member of
+   > the stable class is not excluded by anything proved here. Worse, the original advice
+   > ran **backwards** relative to this document's own Theorem C: a surface-backed match
+   > at complexity ≤ 5 (rank ≤ 6) gives `c(AK(3)) ≤ 5`, which by Theorem C **proves AK(3)
+   > stably AC-trivial using FQW as published** — no extension needed — whereas a match at
+   > complexity 8 (rank 9) proves **nothing** until FQW's induction is extended to 8
+   > (itself conditional on the unproved D3).
+   >
+   > **Corrected conclusion: rank 9 is where THIS CONSTRUCTION lands; ranks 4-6 remain the
+   > only band where a realized match settles AK(3) outright.** This document's original
+   > §6 advice retired R6's rank 4-6 search programme in error. **That programme is
+   > restored.** The complexity-8 realizability construction (§3.3, the `K₄`-corner
+   > condition) remains worth pursuing as a second, independent route toward Corollary
+   > D3/D4, but it is not a substitute for the rank 4-6 search and must not be advised as
+   > one.
 
 ---
 
@@ -463,38 +680,64 @@ that claim first. FRAMING trap 1 is correct and this document does not rely on i
 
 ## 8. PROVED / CONJECTURED / OPEN
 
-**PROVED (this document, machine-checked where marked).**
+**PROVED (this document, machine-checked where marked; audit status per lemma below).**
 
 * **A1** Sharp profile: tree-collapse presentation of a contractible cellular fake surface
   of complexity `V` has `V+1` generators, `V+1` relators, and *every generator occurs
-  exactly 3 times* (hence length `3V+3`). 5,389/5,389. *Class: machinery.*
+  exactly 3 times* (hence length `3V+3`). 5,389/5,389 (one tree each); audited on
+  **102,092/102,092** (surface, spanning tree) pairs, **in reduced form**, with the raw
+  vs. reduced proof gap closed (Amendments 2–3). *Class: machinery.*
 * **A2** *Both* complexity-1 census presentations — hence every rank-2 census target — are
-  **AC-trivial**, unstably, in 3 moves each. *Class: AC-trivial (of those presentations —
-  nothing about AK(3)).*
+  **AC-trivial**, unstably, in 5 and 7 elementary moves respectively (corrected from
+  "3 moves each" — Amendment 7); both chains independently replayed. *Class: AC-trivial
+  (of those presentations — nothing about AK(3)).* AUDIT: CONFIRMED.
 * **§2.4** `c(·)` is independent of the spanning tree used to collapse. *Class: machinery.*
+  AUDIT: downgraded — not load-bearing, rests on unread W1/W3; read as "some" tree-collapse
+  (Amendment 8). W3 itself remains load-bearing in Theorem C's forward half.
 * **C** `c(AK(3)) = 1` if AK(3) is stably AC-trivial, `≥ 6` otherwise; equivalently
   `c(AK(3)) ≤ 5 ⟺ AK(3) stably AC-trivial`. *Class: stably AC-trivial. Depends on FQW +
-  W2/W3 for the `≥ 6` half only.*
+  W2/W3 for the `≥ 6` half only.* AUDIT: **PROVED modulo FQW's body** — the numeral 6 is
+  exactly as strong as FQW's real threshold and no stronger; the `c = 1` / reverse half is
+  dependency-free and CONFIRMED (Amendment 6).
 * **D1/D2/D** AK(3) is stably AC-equivalent to `Q₈` (9 generators, 9 relators, length 27,
   every generator exactly 3×, trivial group certified by Todd–Coxeter at index 1); general
   formula `n' = L − 2n`, `V₀ = L − 2n − 1`. *Class: stably AC-equivalence (an edge, not a
-  triviality claim).*
-* **§3.4** The census profile is necessary but not sufficient: ≥ 11 profile-admissible
-  trivial-group presentations at the complexity-2 profile are realized by no complexity-2
-  contractible cellular fake surface. *Class: machinery.*
+  triviality claim).* AUDIT: CONFIRMED, independently rebuilt character-for-character, with
+  a second certificate (hand-elimination reduces `Q₈` back to AK(3) exactly); this is
+  **existence only, no explicit move list** — "the chain is explicit and machine-checked"
+  is a removed overstatement (Amendment 7).
+* **§3.4** The census profile is necessary but not sufficient: **79** profile-admissible
+  trivial-group presentations at the complexity-2 profile, **29** realized, **50**
+  unrealized (audited exact figures, superseding "≥ 11" — Amendment 4), with an explicit
+  witness `⟨a,b,c | A, AAB, BCBcc⟩` and four further witnesses. *Class: machinery.* AUDIT:
+  REFUTED as a converse, CONFIRMED as a non-sufficiency result, strengthened 4.5×.
 * **§4** Pure stabilization of AK(3) never meets the profile (`k = 3.5`); R3 §R5's
   "4 AC4 + AC1 ⇒ exactly the complexity-5 profile" is false as written and false in
   substance. *Class: machinery / correction.*
 * **§6** Zero of 296,138 harvested AK(3)-class states meets even the length profile, vs 8
   and 48 sharp-profile states in the two AK(2) controls. *Class: negative search evidence,
-  not a proof of anything about AK(3).*
+  not a proof of anything about AK(3).* AUDIT: the four filter counts (124,296 / 171,842 /
+  13,040 / 27,350 members; 0/0/12/5,880 length-profile; 0/0/8/48 sharp; 122× tightening)
+  reproduced exactly. Conclusion 3's "search at rank ≈9, not rank 4-6" is **REFUTED on
+  bound direction** — see Amendment 5; the rank 4-6 programme is restored.
+
+**CONFIRMED BY INDEPENDENT ADVERSARIAL AUDIT (this session) — consolidated.** So the
+document's remaining strength is legible: A2; Theorem C's reverse half and the `c = 1`
+case (dependency-free); Corollary C1; the headline BLOCKED verdict (CONFIRMED and
+ROBUST — its core needs no FQW input at all); D1, D2, Theorem D and the formulas
+`n' = L − 2n`, `V₀ = L − 2n − 1`; `Q₈` as a member of AK(3)'s stable class with the
+complexity-8 profile (existence only, no move list); Corollary D3 / `c(AK(3)) ≤ 8`
+correctly labelled CONJECTURED; §6's four filter counts, reproduced exactly; and the JSON
+targets verified as faithful tree-collapses of the CSV on 5,389/5,389.
 
 **CONJECTURED.**
 
 * **D3** `c(AK(3)) ≤ 8`. Needs: a complexity-8 contractible cellular fake surface whose
   tree-collapse presentation lies in AK(3)'s stable class — i.e. an un-collapse of `Q₈`
   (or of any profile-correct member of the class) satisfying the `K₄`-corner condition at
-  all 8 vertices.
+  all 8 vertices. AUDIT: correctly labelled CONJECTURED, CONFIRMED; note (Amendment 7)
+  that a realization of the profile is automatically contractible (`π₁ = 1`, `χ = 1` so
+  acyclic, Hurewicz + Whitehead), which closes a step D3 otherwise left implicit.
 * **D4** Extending FQW's induction to complexity ≤ 8 settles AK(3) (conditional on D3).
 
 **OPEN (unchanged by this document).**
