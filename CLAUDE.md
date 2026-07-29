@@ -97,3 +97,8 @@ much harder than those Erdős problems. Its three keys:
   check for paper-source mirrors); a 403 push needs user notification + local commit
   cadence; measure log timestamps with `date -u`, never estimate.
   [[TRAP]](experiments/lessons/cloud-session-network-and-push-constraints.md)
+- Harvest searches with conjugation moves: key the seen-set on cyclically-REDUCED
+  canonical forms (exact-word keys waste ~97% of pops on conjugacy churn, inflate novelty
+  ~45×, and make the search realization-sensitive); validate E-yield code against two
+  independent anchors first.
+  [[TRAP]](experiments/lessons/harvest-dedup-on-reduced-forms.md)
