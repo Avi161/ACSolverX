@@ -1503,3 +1503,8 @@
 
 - [TRAP] A combined `apply_patch` payload containing the LaTeX command `\nu` was interpreted as a newline across the JavaScript/string layer, so the second hunk became malformed and the whole patch was rejected.
 - [WORKS] Split proof-note patches by file and use plain path labels such as `P_1` or double-check every backslash layer before sending a patch. After a rejection, verify that no hunk landed before retrying.
+
+### 2026-07-29 Run the whitespace gate before staging a new document
+
+- [TRAP] The first grouped-certificate design checkpoint staged a Markdown file before `git diff --check`, which then rejected a second blank line at EOF and left a partially staged index.
+- [WORKS] Run `git diff --check` before the first `git add`, repair Markdown EOF whitespace with `apply_patch`, and inspect both working and cached diffs before retrying the exact checkpoint.
