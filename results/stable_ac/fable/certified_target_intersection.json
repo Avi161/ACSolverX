@@ -1,0 +1,121 @@
+{
+ "record": "certified_target_intersection",
+ "targets": {
+  "record": "certified_trivial_targets",
+  "derivation": "Fagan-Qiu-Wang contractible fake-surface census (complexity 1-5), each surface collapsed along a spanning tree of its singular graph to a balanced presentation with V+1 generators, V+1 relators, total length 3V+3",
+  "upstream": "github.com/lucasfagan/Fake-Surfaces (fakesurfaces.csv)",
+  "theorem": "arXiv:2412.12293 abstract (verbatim): every contractible fake surface of complexity less than 6 is 3-deformable to a point; stable ACC is equivalent to every contractible fake surface being 3-deformable to a point",
+  "consequence": "each target below is a STABLY AC-TRIVIAL balanced presentation",
+  "flags": [
+   "full text of arXiv:2412.12293 unreachable this session (abstract sourced verbatim); cellular-vs-general scope of the complexity<6 theorem UNVERIFIED",
+   "validation in-session: 3 face-germs per singular edge on 5389/5389; |det|=1 on 5389/5389; Todd-Coxeter index 1 on 457/457 tested (all of complexity 1-3 plus random samples at 4 and 5)"
+  ],
+  "counts_by_complexity": {
+   "1": 2,
+   "2": 17,
+   "3": 238,
+   "4": 4618,
+   "5": 514
+  },
+  "built_utc": "2026-07-29T15:30:07Z"
+ },
+ "sources": [
+  {
+   "name": "AK(3) classical class",
+   "path": "results/stable_ac/fable/ak3_matched_members.jsonl.gz",
+   "status": "OK",
+   "members_checked": 124296,
+   "matches": {}
+  },
+  {
+   "name": "AK(2) classical class (positive control)",
+   "path": "results/stable_ac/fable/ak2_members.jsonl",
+   "status": "OK",
+   "members_checked": 13040,
+   "matches": {
+    "up_to_generator_relabelling": 4
+   }
+  },
+  {
+   "name": "AK(3)+z stable class",
+   "path": "results/stable_ac/fable/stable_contrast_ak3z_members.jsonl.gz",
+   "status": "PARTIAL (EOFError: file still being written)",
+   "members_checked": 14740,
+   "matches": {}
+  },
+  {
+   "name": "AK(2)+z stable class (positive control)",
+   "path": "results/stable_ac/fable/stable_contrast_ak2z_members.jsonl.gz",
+   "status": "OK",
+   "members_checked": 27350,
+   "matches": {}
+  }
+ ],
+ "hits": [
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "baaBA",
+     "b"
+    ]
+   }
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "baaBA",
+     "b"
+    ]
+   }
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "bbaBa",
+     "a"
+    ]
+   }
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "bbaBa",
+     "a"
+    ]
+   }
+  }
+ ],
+ "total_hits": 4
+}

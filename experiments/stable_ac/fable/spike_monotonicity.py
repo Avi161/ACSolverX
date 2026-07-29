@@ -502,6 +502,12 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
     cross_checked = 0
     cross_failures = []
     per_base = []
+    strata = {
+        "STRICT (every relator length >= 3 and over both generators)":
+            {"bases": 0, "spikes_measured": 0, "counterexamples": 0},
+        "DEGENERATE (some relator of length < 3 or over a single generator)":
+            {"bases": 0, "spikes_measured": 0, "counterexamples": 0},
+    }
     for n, base in enumerate(bases):
         g_base, info_base = gamma_N(base, cap=cap)
         if g_base is None:
@@ -509,6 +515,13 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
         if info_base["minimum_defect"] % 2:
             odd_defects += 1
         _hist_add(base_gamma_hist, g_base)
+        profile = presentation_profile(base)
+        is_strict = (profile["min_relator_length"] >= 3
+                     and profile["every_relator_uses_both_generators"])
+        stratum = strata["STRICT (every relator length >= 3 and over both generators)"] \
+            if is_strict else \
+            strata["DEGENERATE (some relator of length < 3 or over a single generator)"]
+        stratum["bases"] += 1
         variants = spiked_variants(base)
         raw_sites += len(spike_sites(base))
         worst = None
@@ -519,6 +532,7 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
                 skipped += 1
                 continue
             measured += 1
+            stratum["spikes_measured"] += 1
             if info["minimum_defect"] % 2:
                 odd_defects += 1
             _hist_add(spiked_gamma_hist, g_spk)
@@ -526,13 +540,14 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
             if worst is None or g_spk < worst:
                 worst = g_spk
             if g_spk < g_base:
+                stratum["counterexamples"] += 1
                 counterexamples.append({
                     "base": list(base), "base_gamma_N": g_base,
                     "spiked": list(got), "spiked_gamma_N": g_spk,
                     "site": {"relator": site[0], "position": site[1], "letter": site[2]},
                     "base_defect_histogram": info_base["defect_histogram"],
                     "spiked_defect_histogram": info["defect_histogram"],
-                    "base_profile": presentation_profile(base),
+                    "base_profile": profile,
                     "spiked_profile": presentation_profile(got),
                     "base_solver_verdict": _solver_verdict(base),
                     "spiked_solver_verdict": _solver_verdict(got),
@@ -544,6 +559,7 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
                     cross_failures.append(chk)
         per_base.append({"base": list(base), "gamma_N": g_base,
                          "variants": len(variants),
+                         "strict": is_strict,
                          "min_spiked_gamma_N": worst})
         if verbose and (n + 1) % 100 == 0:
             print(f"  tier1 base {n + 1}/{len(bases)} "
@@ -562,6 +578,7 @@ def tier1(max_total: int = 7, cap: int = 2_000_000, cross_check_every: int = 0,
         "counterexamples": counterexamples,
         "counterexample_count": len(counterexamples),
         "counterexample_breakdown": breakdown,
+        "strata": strata,
         "strict_counterexamples": strict,
         "strict_counterexample_count": len(strict),
         "delta_histogram": {str(k): v for k, v in sorted(delta_hist.items())},
@@ -695,11 +712,16 @@ def tier3(cap: int = DEFAULT_CAP, members: int = 3, verbose: bool = False) -> di
                 print(f"  {name} {got} gamma_N={g_spk} "
                       f"({info['expected_cases']} cases, {time.time() - t0:.1f}s)",
                       flush=True)
-        drops = [r for r in rows if r["gamma_N"] is not None and r["gamma_N"] < g_base]
+        drops = [dict(r, base=list(words), base_gamma_N=g_base,
+                      spiked_gamma_N=r["gamma_N"])
+                 for r in rows
+                 if g_base is not None and r["gamma_N"] is not None
+                 and r["gamma_N"] < g_base]
         out.append({
             "target": name,
             "words": list(words),
             "base_gamma_N": g_base,
+            "base_profile": presentation_profile(words),
             "base_census_size": info_base["expected_cases"],
             "base_defect_histogram": {str(k): v
                                       for k, v in sorted(
@@ -730,6 +752,10 @@ def main(argv=None) -> int:
     ap.add_argument("--tier1-cap", type=int, default=2_000_000)
     ap.add_argument("--tier2-bases", type=int, default=150)
     ap.add_argument("--tier2-pairs", type=int, default=200)
+    ap.add_argument("--tier2-max-total", type=int, default=8,
+                    help="tier-2 bases are drawn from the tier-1 bases of at most this "
+                         "total length (a double spike adds 4 letters, so the census "
+                         "family grows fast with the base length)")
     ap.add_argument("--tier3-cap", type=int, default=DEFAULT_CAP)
     ap.add_argument("--tier3-members", type=int, default=3)
     ap.add_argument("--cross-check-every", type=int, default=97)
@@ -782,11 +808,17 @@ def main(argv=None) -> int:
     if not args.skip_tier2:
         if verbose:
             print("TIER 2 ...", flush=True)
-        bases = ([tuple(r["base"]) for r in report["tier1"]["per_base"]]
-                 if report["tier1"] else enumerate_bases(args.tier1_max_total)[0])
+        pool = ([tuple(r["base"]) for r in report["tier1"]["per_base"]]
+                if report["tier1"] else enumerate_bases(args.tier1_max_total)[0])
+        bases = [b for b in pool if len(b[0]) + len(b[1]) <= args.tier2_max_total]
         report["tier2"] = tier2(bases, n_bases=args.tier2_bases,
                                 max_pairs_per_base=args.tier2_pairs,
                                 cap=args.tier1_cap, verbose=verbose)
+        report["tier2"]["base_pool"] = {
+            "drawn_from_tier1": bool(report["tier1"]),
+            "max_total_length": args.tier2_max_total,
+            "pool_size": len(bases),
+        }
         if verbose:
             t = report["tier2"]
             print(f"TIER 2 done in {t['seconds']}s: "
