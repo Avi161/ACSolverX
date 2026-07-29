@@ -8319,15 +8319,48 @@ eleven-direction span is degree-two obstructed; the full syzygy module
 remains open.
 
 **Bounded depth-six balanced-(L_0) census after Result 157.**
-The 127 reduced quotient source vertices through word length six yield 4671
-orbit-balanced unordered source pairs.  Exact Stallings-cover rewriting and
-all fifteen Result 157 bits leave no survivor.  Only
+The complete-cover rewrite, source classifier, and census are tracked by
+`experiments/stable_ac/depth4_period_two_subgroup_rewrite_certificate.py`,
+`experiments/stable_ac/depth4_period_two_source_flow_certificate.py`, and
+`experiments/stable_ac/depth4_period_two_depth6_l0_census_certificate.py`.
+The 127 reduced quotient source vertices through word length six yield 4,671
+orbit-balanced unordered source pairs.  The finite order is the five
+post-\(\Phi_\infty\) Result 152 bits, the three Result 153 covectors, then
+Results 154, 155, the two Result 156 covectors, and the two Result 157
+covectors.  The checker writes sentinel `full_bit = 2` unless those fourteen
+bits all vanish, in which case it evaluates \(\Phi_\infty\bmod2\).  Only
 \[
 e_{TT}+e_{TTTct},\qquad e_{Tctt}+e_{Tctct}
 \]
-reach the final check, and both have \(\Phi_\infty=1\).  This is bounded
-evidence, not a theorem beyond depth six.  The next structural task is to
-promote the exact rewrite into a stable finite-state syndrome certificate.
+reach the final gate, and both have \(\Phi_\infty=1\): two near-survivors,
+no final survivor, and exact digest
+`02a688c2e0bfd1831202c6b76f8d3af9b4340c71e08d9b1e2efeea59d8301ff3`.
+This is bounded depth-six evidence, not a theorem at depth seven or all
+depth, and it does not settle stable AC.
+
+The next theorem target is transition closure under left extension by
+\(c,t,T\) of
+
+```text
+(K-coset/rewrite state, source action class, L0 pairing type,
+ projected fourteen-bit class-two state, Phi_infinity gate).
+```
+
+Task 1 realizes the index-four \(K=\langle A,B,G\rangle\le C_2*\mathbb Z\)
+component by a four-state Reidemeister--Schreier transducer.  The displayed
+tuple is a proposed target, not a proved Markov state: extra prefix/order
+data may be required.  Proposed structural inference: the fourteen finite
+action bits may form a finite product of class-two Magnus states; by contrast
+\(\Phi_\infty\bmod2\) is the parity of interleavings/crossings among
+equal-vertex occurrence chords in the Schreier-kernel word, not simply one
+more finite point-action quotient.  A separate subtarget is to prove finite
+transition data for that parity on the projected-zero source-pair language.
+
+Focused replay:
+
+```bash
+PYTHONPYCACHEPREFIX=.scratch/pycache uv run --with numba --with numpy --with pytest python3 -m pytest -q tests/stable_ac/test_ak_depth_four_period_two_*.py
+```
 
 ## Live lead
 

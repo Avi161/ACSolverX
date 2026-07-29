@@ -952,14 +952,50 @@ The proof and checker are
 
 ### Depth-six balanced-(L_0) census
 
-After Result 157, all 4,671 orbit-balanced unordered source pairs among the
-127 reduced quotient words through length six were rewritten exactly.  None
-has zero syndrome under the fifteen functionals.  The only pairs reaching
-the final full wedge-sum check are
+The complete-cover rewrite, source classifier, and depth-six census are
+now tracked respectively by
+`experiments/stable_ac/depth4_period_two_subgroup_rewrite_certificate.py`,
+`experiments/stable_ac/depth4_period_two_source_flow_certificate.py`, and
+`experiments/stable_ac/depth4_period_two_depth6_l0_census_certificate.py`.
+The latter checks 127 reduced quotient source vertices and 4,671
+orbit-balanced unordered pairs through length six.  Its fourteen finite
+bits are ordered as Result 152's five post-\(\Phi_\infty\) bits, Result
+153's three four-cycle covectors, Result 154, Result 155, Result 156's two
+five-cycle covectors, and Result 157's two double-transposition covectors.
+It records `full_bit = 2` until all fourteen vanish, then evaluates
+\(\Phi_\infty\bmod2\).  The only pairs reaching that final gate are
 \[
 e_{TT}+e_{TTTct},\qquad e_{Tctt}+e_{Tctct},
 \]
-and both have \(\Phi_\infty=1\).  This is bounded evidence only.
+and both have \(\Phi_\infty=1\).  Thus there are two near-survivors and no
+final survivor; the exact record-stream digest is
+`02a688c2e0bfd1831202c6b76f8d3af9b4340c71e08d9b1e2efeea59d8301ff3`.
+This is bounded depth-six evidence only: it makes no depth-seven, all-depth,
+or stable-AC claim.
+
+The next theorem target is proposed transition closure, under left extension
+by \(c,t,T\), of
+
+```text
+(K-coset/rewrite state, source action class, L0 pairing type,
+ projected fourteen-bit class-two state, Phi_infinity gate).
+```
+
+Here Task 1's four-state Reidemeister--Schreier transducer realizes the
+index-four \(K=\langle A,B,G\rangle\le C_2*\mathbb Z\) component.  This
+tuple is a target, not a proved Markov state: additional prefix/order data
+may be needed.  As a proposed structural inference, the fourteen finite
+bits may lie in a finite product of class-two Magnus states, whereas
+\(\Phi_\infty\bmod2\) is crossing parity for equal-vertex occurrence chords
+in the Schreier-kernel word, not merely another finite point-action
+quotient.  Establishing finite transition data for that parity on the
+projected-zero source-pair language is its own subtarget.
+
+Focused replay:
+
+```bash
+PYTHONPYCACHEPREFIX=.scratch/pycache uv run --with numba --with numpy --with pytest python3 -m pytest -q tests/stable_ac/test_ak_depth_four_period_two_*.py
+```
 
 The preserved frontier note is
 \[
