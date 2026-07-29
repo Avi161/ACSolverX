@@ -1453,3 +1453,8 @@
 
 - [TRAP] The first MMS02 finite-quotient scanner hard-coded a reduced one-relator model without importing or certifying its Tietze map from `exchange_quotient()`. Its permutation calculation was true but did not prove a statement about the actual corrected and misprinted `r13` probes. The accompanying report also extended a source's recursive descendant theorem to arbitrary direct-removal words.
 - [WORKS] Make every finite-quotient witness consume the exact relators and probes emitted by the load-bearing elimination checker, and distinguish explicitly replayed ordinary AC-trivial descendants from arbitrary removals known only to lie in the inherited stable class. A quotient separation must state the precise fixed-relator move family it excludes, never general AC or stable AC.
+
+### 2026-07-29 Rebuild joint powered schemas on one phase convention
+
+- [TRAP] Combining separately approved `g^(0)` and `g^(Q)` certificates initially compared a native primitive core `TctttcTc` against the rotated common core `cTctttcT`. Base values agreed while canonical powered keys disagreed, so the old all-pairs refinement did not extend to the new cross-family comparisons.
+- [WORKS] Before forming a joint quadratic aggregate, rebuild every constituent on the same reference primitive and phase convention, then rerun equality/order refinement over every within- and cross-family pair on the full cell partition. Separate approval of the two inputs does not certify their joint collision fibers.
