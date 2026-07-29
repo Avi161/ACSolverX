@@ -28,6 +28,14 @@ face-traced on an explicit torus rotation in
 The support there is a planar abstract \(K_4\); the obstruction is the
 synchronized reversal constraint, not abstract graph nonplanarity.
 
+The AK(3) genus-zero negative now also has a non-factorial human proof in
+[`AK3_NEUWIRTH_PHASE_OBSTRUCTION.md`](../../../literature/proofs/AK3_NEUWIRTH_PHASE_OBSTRUCTION.md).
+It classifies the parallel-\(K_4\) spherical schemes, forces their signed
+ranks, and derives the incompatible phase values \(\sigma_y=5\) and \(6\)
+modulo \(7\). This proves that the displayed exact complex is not
+thickenable; the stronger value \(\gamma_N=2\) remains census-derived, and
+neither statement is an AC or stable-AC obstruction.
+
 The non-factorial decision method is the signed-rank theorem in
 [`AK3_SYNCHRONIZED_PLANARITY.md`](../../../literature/proofs/AK3_SYNCHRONIZED_PLANARITY.md).
 For connected loopless support \(K_4\), \(K_4-e\), or \(C_4\), it classifies
