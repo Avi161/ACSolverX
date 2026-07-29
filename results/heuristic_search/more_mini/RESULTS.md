@@ -1,6 +1,6 @@
 # more_mini RESULTS
 
-Updated `2026-07-29T15:59:24.063989+00:00` rows=610 remain=0.22h
+Updated `2026-07-29T16:04:24.081353+00:00` rows=610 remain=0.13h
 ## fresh_extra: n=360 solved=227 below13=229
 | arm | @1k | @5k | @10k |
 |---|---:|---:|---:|
