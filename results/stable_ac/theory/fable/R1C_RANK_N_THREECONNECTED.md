@@ -138,3 +138,27 @@ first), Lucas's B₃-route 3-generator stages.
 - Lemma 4.1/4.2/4.3 transfers: check no step of their proofs uses n = 2 beyond notation
   (their H_{A,B} components argument is per-relator, rank-free; their slot-map injectivity
   is per-germ, rank-free).
+
+## R1c-v2 (next iteration, sketch — motivated by rank-3 harvest round 1)
+
+Empirical driver: in the first direct stable-move harvest (roots AK(3)+z, P25+z), ~100% of
+harvested states are out of scope — the z-germ pair {z⁺, z⁻} is a 2-cut (or has degree
+< 3) in almost every reachable support, because a freshly adjoined generator appears in
+few relators and a length-priority search avoids z-entangling growth. Two responses:
+
+1. **Theory (the real fix): cut-scheme extension.** Generalize Theorem 5.2's bridge
+   machinery from K₄−e to arbitrary 2-cuts: for a support S with a 2-cut {a,b}, the
+   {a,b}-bridges (each bridge = a 2-connected component of material between the poles)
+   admit a cyclic bridge order at a, reversed at b (Lemma 5.1's argument is
+   bridge-generic); each nontrivial bridge recursively carries its own scheme; trivial
+   bridges (parallel central edges) carry the cut parameter. An SPQR-tree recursion
+   (R-nodes: 3-connected pieces via Theorem R; P-nodes: parallel/dipole schemes with cut
+   choices; S-nodes: cycles via the C₄-style unique scheme) covers ALL connected loopless
+   supports — this is the in-house constructive version of general Synchronized
+   Planarity, with the phase/rank propagation layered on the composed slot schemes.
+   Draft-and-audit as the next theory block; the K₄−e case is the template and the
+   n = 2 regression anchor.
+2. **Search (the cheap fix): z-entangling priorities.** Bias the rank-3 harvest toward
+   states where z occurs ≥ 3 times per sign (substitute-into-both-relators prefixes);
+   raise the per-relator cap for rank-3 roots grown from length-25 states (cap 15 chokes
+   the P25+z root: its queue exhausts at 93 pops).
