@@ -2,10 +2,12 @@
 
 ## Hard rules
 
-- **Daily push log (mandatory before any `git push`).** Before pushing this branch, write 1–3
-  sentences into `logs/DD-MM-YYYY.md` (create that day’s file if missing) saying what was done,
-  with simple links to files added or changed; commit the log, then push. Same rule in
-  [`CLAUDE.md`](CLAUDE.md).
+- **Daily push log (mandatory before any `git push`).** Before each push, append a new section
+  to `logs/DD-MM-YYYY.md` (create the day file if missing) headed
+  `## HH:MM:SS UTC · \`<shortsha>\`` — UTC time of the push and the tip commit short SHA being
+  pushed — then 1–3 sentences on what changed with links to files added/changed. Commit the
+  log as the tip (fill the short SHA after commit via amend if needed; only on your unpushed
+  HEAD), then push. Same rule in [`CLAUDE.md`](CLAUDE.md).
 
 # Lessons Learned
 
