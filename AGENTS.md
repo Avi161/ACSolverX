@@ -1378,3 +1378,8 @@
 
 - [TRAP] `depth4_period_two_lift_certificate.parse_quotient` returns `c_vertex(...)`, not a raw element of `Q`; parsing `p = tc` through it silently returns `t` and changes the anchored ray family before any later multiplication can cancel the terminal `c`.
 - [WORKS] Build group contexts and factors such as `p`, `h_j`, and `w_i` with raw quotient reduction that preserves a terminal `c`. Apply `c_vertex` only to the final module vertex, and print the literal raw factor in every bounded replay whose proof uses cancellation across factor boundaries.
+
+### 2026-07-29 Name every constraint used by a forcing summary
+
+- [TRAP] The status of `.scratch/ak3_neuwirth_rotation_system_theory.md` said three `x`-occurrence equations forced every binary rank, but the proof also needs the later three `x`-occurrence equations and the parallel-class all-different constraints.
+- [WORKS] Before compressing a finite deduction into a summary sentence, trace each forced variable back to the exact equations and global constraints used; do not attribute a full conclusion to only the first stage of the argument.
