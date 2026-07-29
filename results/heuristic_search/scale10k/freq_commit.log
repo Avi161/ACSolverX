@@ -1719,3 +1719,21 @@ remote: This repository moved. Please use the new location:
 remote:   https://github.com/Avi161/ACSolverX.git        
 To https://github.com/avi161/acsolverx
    8b5aae0..d9a8953  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
+[cursor/heur-12h-anti-overfit-a42e 166386d] heur: research checkpoint 23:09:16 UTC
+ 12 files changed, 14 insertions(+)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c1of5_solved_1hop_autclean_b100000_mrl48.jsonl => hsearch_solved1hop_100k/chunks/c1of5_solved_1hop_autclean_b100000_mrl48.jsonl} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c1of5_solved_1hop_autclean_b100000_mrl48.md => hsearch_solved1hop_100k/chunks/c1of5_solved_1hop_autclean_b100000_mrl48.md} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c2of5_solved_1hop_autclean_b100000_mrl48.jsonl => hsearch_solved1hop_100k/chunks/c2of5_solved_1hop_autclean_b100000_mrl48.jsonl} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c2of5_solved_1hop_autclean_b100000_mrl48.md => hsearch_solved1hop_100k/chunks/c2of5_solved_1hop_autclean_b100000_mrl48.md} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c3of5_solved_1hop_autclean_b100000_mrl48.jsonl => hsearch_solved1hop_100k/chunks/c3of5_solved_1hop_autclean_b100000_mrl48.jsonl} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c3of5_solved_1hop_autclean_b100000_mrl48.md => hsearch_solved1hop_100k/chunks/c3of5_solved_1hop_autclean_b100000_mrl48.md} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c4of5_solved_1hop_autclean_b100000_mrl48.jsonl => hsearch_solved1hop_100k/chunks/c4of5_solved_1hop_autclean_b100000_mrl48.jsonl} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c4of5_solved_1hop_autclean_b100000_mrl48.md => hsearch_solved1hop_100k/chunks/c4of5_solved_1hop_autclean_b100000_mrl48.md} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c5of5_solved_1hop_autclean_b100000_mrl48.jsonl => hsearch_solved1hop_100k/chunks/c5of5_solved_1hop_autclean_b100000_mrl48.jsonl} (100%)
+ rename results/heuristic_search/{hsearch_solved1hop_1m/hsearch_solved1hop_1m_c5of5_solved_1hop_autclean_b100000_mrl48.md => hsearch_solved1hop_100k/chunks/c5of5_solved_1hop_autclean_b100000_mrl48.md} (100%)
+[cursor/heur-12h-anti-overfit-a42e 06f0c75] logs: fill short SHA for research checkpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/Avi161/ACSolverX.git        
+To https://github.com/avi161/acsolverx
+   9279591..06f0c75  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
