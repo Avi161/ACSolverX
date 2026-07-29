@@ -1,0 +1,15 @@
+[freeze] excluded orbits from prior selection: 904
+  stamped 500 hard rows → 490 orbits
+  stamped 1000 hard rows → 962 orbits
+  stamped 1500 hard rows → 1423 orbits
+  stamped 2000 hard rows → 1867 orbits
+  stamped 2500 hard rows → 2289 orbits
+  stamped 3000 hard rows → 2714 orbits
+  stamped 3500 hard rows → 3115 orbits
+  stamped 4000 hard rows → 3510 orbits
+[freeze] wrote /workspace/.worktrees/heur-12h/results/heuristic_search/splits/ac1m_hard_orbits.jsonl: 3674 unique hard orbits from 4219 screen rows
+[freeze] pool after exclusion: 2830 orbits
+[freeze] wrote /workspace/.worktrees/heur-12h/results/heuristic_search/splits/splits_ac1m_hard_aut.json
+  train=120 holdout=60 overlap=0
+  train L hist: [(15, 4), (16, 7), (17, 7), (18, 7), (19, 8), (20, 7), (21, 8), (22, 8), (23, 8), (24, 8), (25, 8), (26, 8), (27, 8), (28, 8), (29, 8), (30, 8)]
+  hold  L hist: [(16, 1), (17, 5), (18, 5), (19, 4), (20, 5), (21, 4), (22, 4), (23, 4), (24, 4), (25, 4), (26, 4), (27, 4), (28, 4), (29, 4), (30, 4)]

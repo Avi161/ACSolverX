@@ -1,0 +1,46 @@
+[aut-tune] 336 arms · train=120 holdout=60 · Aut-disjoint
+[aut-tune] train: 120×336 cells=40320
+  [train] +100 1.68/s last=S8_K2_MK6_418 sol=False
+  [train] +200 1.66/s last=S16_K6_MK2 sol=False
+  [train] +300 1.64/s last=S28_K0_MK10 sol=False
+  [train] +400 1.71/s last=S4_K2_53_MK6_418 sol=False
+  [train] +500 1.88/s last=S12_K8_MK2 sol=True
+  [train] +600 2.04/s last=S24_K1_MK10 sol=True
+  [train] +700 2.14/s last=S0_K4_MK6_418 sol=False
+  [train] +800 2.22/s last=S12_K0_MK2 sol=False
+  [train] +900 2.33/s last=S20_K2_MK10 sol=True
+  [train] +1000 2.48/s last=S28_K6_MK6_418 sol=True
+  [train] +1100 2.52/s last=S8_K1_MK2 sol=False
+  [train] +1200 2.58/s last=S16_K2_53_MK10 sol=True
+  [train] +1300 2.67/s last=S24_K8_MK6_418 sol=True
+  [train] +1400 2.76/s last=S4_K2_MK2 sol=False
+  [train] +1500 2.86/s last=S12_K4_MK10 sol=True
+  [train] +1600 2.96/s last=S24_K0_MK6_418 sol=True
+  [train] +1700 3.03/s last=S0_K2_53_MK2 sol=False
+  [train] +1800 2.91/s last=S8_K6_MK10 sol=False
+  [train] +1900 2.82/s last=S20_K1_MK6_418 sol=False
+  [train] +2000 2.73/s last=S28_K4_MK2 sol=False
+  [train] +2100 2.73/s last=S4_K8_MK10 sol=False
+  [train] +2200 2.74/s last=S16_K2_MK6_418 sol=False
+  [train] +2300 2.75/s last=S24_K6_MK2 sol=False
+  [train] +2400 2.75/s last=S4_K0_MK10 sol=False
+  [train] +2500 2.76/s last=S12_K2_53_MK6_418 sol=False
+  [train] +2600 2.76/s last=S20_K8_MK2 sol=False
+  [train] +2700 2.76/s last=S0_K1_MK10 sol=False
+  [train] +2800 2.75/s last=S8_K4_MK6_418 sol=False
+  [train] +2900 2.74/s last=S20_K0_MK2 sol=True
+  [train] +3000 2.73/s last=S28_K2_MK10 sol=False
+  [train] +3100 2.76/s last=S4_K6_MK6_418 sol=False
+  [train] +3200 2.81/s last=S16_K1_MK2 sol=False
+  [train] +3300 2.85/s last=S24_K2_53_MK10 sol=False
+  [train] +3400 2.81/s last=S0_K8_MK6_418 sol=False
+[aut-tune] 336 arms · train=120 holdout=60 · Aut-disjoint
+[aut-tune] train: 120×336 todo=36876 workers=4 engine=hcompact
+  [train] +200/36876 3.90/s last=S24_K6_MK2 sol=False
+  [train] +400/36876 5.01/s last=S12_K2_53_MK6_418 sol=False
+  [train] +600/36876 6.03/s last=S0_K1_MK0 sol=False
+  [train] +800/36876 7.92/s last=S20_K0_MK4 sol=True
+  [train] +1000/36876 9.74/s last=S4_K6_MK6_418 sol=True
+  [train] +1200/36876 11.35/s last=S24_K2_53_MK10 sol=True
+  [train] +1400/36876 11.55/s last=S12_K2_MK2 sol=False
+  [train] +1600/36876 11.32/s last=S0_K0_MK6_418 sol=False
