@@ -110,12 +110,22 @@ question. This is precisely **Wall 5 (the min-realisation tautology) instantiate
 second, independent formalism** — complexity in place of γ_N — which is good evidence
 that Wall 5 is a real feature of the problem and not an artefact of our grading.
 
-Secondary blocker: the numeric profile of a cellular fake surface (n generators, n
-relators, total length 3n) is reachable from AK(3) by pure stabilisation bookkeeping —
-4 AC4 moves plus an AC1 give a 6-generator, length-18 presentation, exactly the
-complexity-5 profile. So complexity does not separate AK(3) from standard by arithmetic
-either. Derivation validated against all 5,389 rows of the authors' census (every edge
-carries exactly 3 face-germs; |det| = 1 on 5,389/5,389).
+Secondary blocker: complexity does not separate AK(3) from standard by arithmetic
+either, since total length is not an AC invariant. Derivation validated against all 5,389
+rows of the authors' census (every edge carries exactly 3 face-germs; |det| = 1 on
+5,389/5,389).
+
+[CORRECTED — the sentence that stood here was wrong twice over, and R8 supplies the
+repair. It read: "4 AC4 moves plus an AC1 give a 6-generator, length-18 presentation,
+exactly the complexity-5 profile." First, under this line's own numbering AC1 is
+INVERSION, which is length-preserving — the move meant was AC2. Second, and fatally, the
+repaired statement is still false in substance: R8's **Theorem A1** shows the census
+profile is sharper than (n generators, n relators, length 3n) — in the tree-collapse
+presentation **every generator occurs exactly 3 times**, verified on 5,389/5,389 rows.
+The (6, 18) presentation reached by stabilisation has occurrence vector (7, 7, 2, 1, 1, 1),
+not (3, 3, 3, 3, 3, 3), so it does not meet the profile at all. What actually reaches the
+sharp profile from AK(3) is 7 Tietze splits landing at rank 9 — the complexity-8 profile,
+not rank 6. See `R8_FAKE_SURFACE_COMPLEXITY.md` §4.]
 
 Unverified dependencies if anyone revives this: whether "complexity < 6" is stated for
 all or only cellular fake surfaces; the exact form and direction of the equivalence

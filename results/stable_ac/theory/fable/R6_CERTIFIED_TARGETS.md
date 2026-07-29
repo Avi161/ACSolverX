@@ -48,6 +48,18 @@ classification of complexity 5: surfaces without small disks". Concretely, **the
 complexity-5 targets come from a partial classification**, and whether the body's theorem
 carries a cellularity hypothesis is unknown. Do not propagate the unqualified form.
 
+**A second, sharper downgrade of the word "certified" (R8, from the primary README).**
+The census is of **ACYCLIC** surfaces; FQW's theorem is about **CONTRACTIBLE** ones, and
+acyclic ⇒ contractible is established only up to complexity 4. Combined with the partial
+complexity-5 classification, the honest scope of "certified" is the **457 rows this
+project verified by independent Todd–Coxeter**, not all 5,389. The remaining 4,932 are
+CANDIDATES. `certified_trivial_targets.json`'s description as a "census of complexity
+1–5" overstates coverage on both counts and should be read against this paragraph.
+
+**And the targets were partly self-defeating.** R8's Theorem A2 shows a rank-2 census
+match would itself be a proof that AK(3) is AC-trivial — so at rank 2 the detector was
+searching for something logically equivalent to the answer, not a stepping stone to it.
+
 Matching "up to generator relabelling" additionally leans on the stable ambient
 automorphism theorem; exact matches are reported separately so the weaker,
 dependency-free reading is always available.
