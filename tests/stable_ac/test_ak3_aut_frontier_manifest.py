@@ -1,5 +1,7 @@
 """Frozen pure-word contract for the AK(3) Aut(F2) frontier manifest."""
 
+from hashlib import sha256
+
 from experiments.stable_ac.thickenable.ak3_aut_frontier_manifest import (
     EDGES,
     IDENTITY_MAP,
@@ -15,6 +17,68 @@ from experiments.stable_ac.thickenable.ak3_aut_frontier_manifest import (
     substitute_free,
     substitute_literal,
 )
+
+
+_ORACLE_INVERSE = {"x": "X", "X": "x", "y": "Y", "Y": "y"}
+_ORACLE_EDGE_IMAGES = (
+    ("y", "x"),
+    ("X", "y"),
+    ("x", "Y"),
+    ("xy", "y"),
+    ("xY", "y"),
+    ("x", "yx"),
+    ("x", "yX"),
+)
+_BFS_PREFIX_DIGEST = "0bca72e8cf793e5ccc4c982342b47d3deefb6a745cfb26c22322867bf742f669"
+
+
+def _oracle_inverse(word: str) -> str:
+    return "".join(_ORACLE_INVERSE[letter] for letter in reversed(word))
+
+
+def _oracle_reduce(word: str) -> str:
+    stack: list[str] = []
+    for letter in word:
+        if stack and stack[-1] == _ORACLE_INVERSE[letter]:
+            stack.pop()
+        else:
+            stack.append(letter)
+    return "".join(stack)
+
+
+def _oracle_substitute(word: str, images: tuple[str, str]) -> str:
+    blocks = {
+        "x": images[0],
+        "X": _oracle_inverse(images[0]),
+        "y": images[1],
+        "Y": _oracle_inverse(images[1]),
+    }
+    return _oracle_reduce("".join(blocks[letter] for letter in word))
+
+
+def _oracle_replay(edge_word: tuple[int, ...]) -> tuple[str, str]:
+    images = ("x", "y")
+    for edge_id in edge_word:
+        edge_images = _ORACLE_EDGE_IMAGES[edge_id]
+        images = (
+            _oracle_substitute(edge_images[0], images),
+            _oracle_substitute(edge_images[1], images),
+        )
+    return images
+
+
+def _has_no_adjacent_inverse(word: str) -> bool:
+    return all(left != _ORACLE_INVERSE[right] for left, right in zip(word, word[1:]))
+
+
+def _bfs_prefix_digest(records: tuple[object, ...]) -> str:
+    payload = "\n".join(
+        f"{record.id}|{'-' if record.parent_id is None else record.parent_id}|"
+        f"{record.depth}|{','.join(map(str, record.edge_word))}|"
+        f"{record.images[0]}|{record.images[1]}"
+        for record in records
+    )
+    return sha256(payload.encode("ascii")).hexdigest()
 
 
 def test_frozen_nielsen_edges_inverse_ids_and_composition_convention() -> None:
@@ -39,6 +103,10 @@ def test_bfs_prefix_is_fifo_first_discovery_with_consistent_records_and_exact_ca
     records = build_bfs_prefix(1_000)
 
     assert len(records) == 1_000
+    # Literal digest derived by a standalone reference BFS with its own edge
+    # table, substitution, reduction, queue, and seen set; it imported no
+    # project module and used the serialization reproduced in this test.
+    assert _bfs_prefix_digest(records) == _BFS_PREFIX_DIGEST
     assert records[0].id == 0
     assert records[0].images == IDENTITY_MAP
     assert records[0].edge_word == ()
@@ -53,10 +121,19 @@ def test_bfs_prefix_is_fifo_first_discovery_with_consistent_records_and_exact_ca
         ((6,), 0, 1),
     ]
     assert len({record.images for record in records}) == len(records)
-    for record in records[1:]:
+    for expected_id, record in enumerate(records):
+        assert record.id == expected_id
+        assert record.images == _oracle_replay(record.edge_word)
+        assert all(_has_no_adjacent_inverse(word) for word in record.images)
+        assert record.depth == len(record.edge_word)
+        if record.id == 0:
+            continue
         assert record.parent_id is not None
         assert record.parent_id < record.id
-        assert record.depth == records[record.parent_id].depth + 1
+        parent = records[record.parent_id]
+        stored_edge = record.edge_word[-1]
+        assert record.edge_word == parent.edge_word + (stored_edge,)
+        assert record.depth == parent.depth + 1
 
 
 def test_inverse_edge_words_rebuild_two_sided_inverse_maps() -> None:
