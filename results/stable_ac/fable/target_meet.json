@@ -1,0 +1,2005 @@
+{
+ "record": "target_meet",
+ "depth": 1,
+ "length_cap": 26,
+ "max_rank": 4,
+ "state_cap": 400000,
+ "backward_states": 31982,
+ "backward_truncated": false,
+ "targets_seeded": 257,
+ "targets_meta": {
+  "record": "certified_trivial_targets",
+  "derivation": "Fagan-Qiu-Wang contractible fake-surface census (complexity 1-5), each surface collapsed along a spanning tree of its singular graph to a balanced presentation with V+1 generators, V+1 relators, total length 3V+3",
+  "upstream": "github.com/lucasfagan/Fake-Surfaces (fakesurfaces.csv)",
+  "theorem": "arXiv:2412.12293 abstract (verbatim): every contractible fake surface of complexity less than 6 is 3-deformable to a point; stable ACC is equivalent to every contractible fake surface being 3-deformable to a point",
+  "consequence": "each target below is a STABLY AC-TRIVIAL balanced presentation",
+  "flags": [
+   "full text of arXiv:2412.12293 unreachable this session (abstract sourced verbatim); cellular-vs-general scope of the complexity<6 theorem UNVERIFIED",
+   "validation in-session: 3 face-germs per singular edge on 5389/5389; |det|=1 on 5389/5389; Todd-Coxeter index 1 on 457/457 tested (all of complexity 1-3 plus random samples at 4 and 5)"
+  ],
+  "counts_by_complexity": {
+   "1": 2,
+   "2": 17,
+   "3": 238,
+   "4": 4618,
+   "5": 514
+  },
+  "built_utc": "2026-07-29T15:30:07Z"
+ },
+ "sources": [
+  {
+   "name": "AK(3) classical class",
+   "status": "OK",
+   "members_checked": 124296,
+   "matches": {}
+  },
+  {
+   "name": "AK(3)+z stable class",
+   "status": "PARTIAL (EOFError: file still being written)",
+   "members_checked": 26166,
+   "matches": {}
+  },
+  {
+   "name": "AK(2) classical class (positive control)",
+   "status": "OK",
+   "members_checked": 13040,
+   "matches": {
+    "up_to_generator_relabelling": 46
+   }
+  },
+  {
+   "name": "AK(2)+z stable class (positive control)",
+   "status": "OK",
+   "members_checked": 27350,
+   "matches": {
+    "up_to_generator_relabelling": 72
+   }
+  }
+ ],
+ "hits": [
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "Yx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "aB",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Yx",
+    "YYXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bA"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "Yx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "aB",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ba",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ba",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Yx",
+    "YXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bA"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YX",
+    "YXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "ba"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YX",
+    "YYXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "ba"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 0,
+   "backward_state": [
+    "baaBA",
+    "b"
+   ],
+   "seed_target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "baaBA",
+     "b"
+    ]
+   },
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YXYXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "aBAbab",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YXyxYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "aBAbaB",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBAb",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AbaaBB",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyx",
+    "YXYXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "baBAba"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyx",
+    "YXyxYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bABabA"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyx",
+    "YYXXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bbaaBA"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyx",
+    "YYXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bAABab"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 0,
+   "backward_state": [
+    "baaBA",
+    "b"
+   ],
+   "seed_target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "baaBA",
+     "b"
+    ]
+   },
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXYxyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "aBAbab",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXyxYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "aBAbaB",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YYXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AbaaBB",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YYxyXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBAb",
+    "b"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXyxx",
+    "YXYxyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "baBAba"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXyxx",
+    "YXyxYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bABabA"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXyxx",
+    "YYXyxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bAABab"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXyxx",
+    "YYxyXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baaBA",
+    "bbaaBA"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YX",
+    "YYXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "AB"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YX",
+    "YXXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "AB"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 0,
+   "backward_state": [
+    "bbaBa",
+    "a"
+   ],
+   "seed_target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "bbaBa",
+     "a"
+    ]
+   },
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YXYXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baBaba",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YXyXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baBabA",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBaa",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "X",
+    "YYXyXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "Babbaa",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyX",
+    "YXYXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "abaBab"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyX",
+    "YXyXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "aBAbAB"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyX",
+    "YYXXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "abbaBa"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YYXyX",
+    "YYXyXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "aBabba"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 0,
+   "backward_state": [
+    "bbaBa",
+    "a"
+   ],
+   "seed_target": {
+    "complexity": 1,
+    "skeleton": 1,
+    "relators": [
+     "bbaBa",
+     "a"
+    ]
+   },
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXYXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baBaba",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YXyXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "baBabA",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YYXXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "Babbaa",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "Y",
+    "YYxYXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBaa",
+    "a"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXXYx",
+    "YXYXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "abaBab"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXXYx",
+    "YXyXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "aBAbAB"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXXYx",
+    "YYXXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "aBabba"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2) classical class (positive control)",
+   "member": [
+    "YXXYx",
+    "YYxYXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bbaBa",
+    "abbaBa"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYxY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CACb",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZyXy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bAcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZyyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccBA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "ZY",
+    "YYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CA",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZXzy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CAba",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYXy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CBcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYZx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CACb",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYxy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CAba",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYzx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "cbCA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZyxY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "cbCA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZyXY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "abAc",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZXyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CACb",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZxYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bAcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZxxY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccBA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "ZX",
+    "Yxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CA",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CAba",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZXzy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "cbCA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZyZX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CACb",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CBcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZYzx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CAba",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZxYX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "abAc",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZxyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "cbCA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZXYX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ABAC",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "YX",
+    "ZXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AAB",
+    "AC",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "abAc",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZYXY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ABAC",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZyXY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CBcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "cbCA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZXyy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccBA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZYXy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "abAc",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZyXy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bAcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZxYX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CBcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZxyX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CAba",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "YX",
+    "ZYY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AAB",
+    "AC",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZYxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccBA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZYxy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "cbCA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZxYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bAcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "ZyxY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CAba",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "Zxyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CACb",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "YX",
+    "Zxx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CA",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "X",
+    "Zyxy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CACb",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "YX",
+    "Zyy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CA",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZXYX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ABAC",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "ZX",
+    "YXX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AAB",
+    "AC",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZXzY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "abAc",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZYZX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ABAC",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZYzX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CBcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZZxy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccBA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "X",
+    "ZyZx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bAcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "ZX",
+    "ZZY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AAB",
+    "AC",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "ZX",
+    "ZZy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CA",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYXY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ABAC",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "ZY",
+    "YYX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AAB",
+    "AC",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZXzY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CBcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYZX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ABAC",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZYzX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "abAc",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZyZx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bAcA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Y",
+    "ZZyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccBA",
+    "c",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "ZY",
+    "ZZX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "AAB",
+    "AC",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "ZY",
+    "ZZx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "CA",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "YYx",
+    "ZXYx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bABC",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "YYx",
+    "ZXyx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccB",
+    "cbAB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Yxx",
+    "ZYxy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccB",
+    "cbAB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "Yxx",
+    "ZYXy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bABC",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "ZXX",
+    "ZYzx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "BcbA",
+    "AAB",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "ZYY",
+    "ZXzy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "BcbA",
+    "AAB",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "Zxx",
+    "ZXzY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bABC",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Y",
+    "Zxx",
+    "ZXzy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccB",
+    "cbAB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "Zyy",
+    "ZYzX"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "bABC",
+    "ccB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "Zyy",
+    "ZYzx"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "ccB",
+    "cbAB",
+    "A"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "Z",
+    "YXX",
+    "ZyxY"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "BcbA",
+    "AAB",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  },
+  {
+   "source": "AK(2)+z stable class (positive control)",
+   "member": [
+    "X",
+    "ZZY",
+    "ZYxy"
+   ],
+   "match_kind": "up_to_generator_relabelling",
+   "backward_depth": 1,
+   "backward_state": [
+    "BcbA",
+    "AAB",
+    "c"
+   ],
+   "seed_target": null,
+   "replay_required": "CANDIDATE: reconstruct and replay the full AC path before any claim"
+  }
+ ],
+ "total_hits": 118,
+ "LOUD_HIT_ALERT": false
+}

@@ -81,6 +81,8 @@ __all__ = [
     "census_defects",
     "gamma_N",
     "cross_check",
+    "presentation_profile",
+    "smallest_census_members",
     "tier1",
     "tier2",
     "tier3",
