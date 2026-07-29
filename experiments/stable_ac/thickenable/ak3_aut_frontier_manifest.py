@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import argparse
+import json
 from collections import deque
 from dataclasses import dataclass
+from hashlib import sha256
 from itertools import product
-
+from pathlib import Path
 
 WordMap = tuple[str, str]
 IDENTITY_MAP: WordMap = ("x", "y")
@@ -153,3 +156,161 @@ def exact_cellular_key(relators: tuple[str, str]) -> tuple[str, str]:
             candidates.append((first, second))
             candidates.append((second, first))
     return min(candidates)
+
+
+MANIFEST_SCHEMA = "ak3-aut-frontier-manifest-v1"
+BFS_CAP = 1_000
+SPELLING_MODES = ("literal", "free", "cyclic")
+_BFS_PREFIX_DIGEST = "0bca72e8cf793e5ccc4c982342b47d3deefb6a745cfb26c22322867bf742f669"
+_ROOT = Path(__file__).resolve().parents[3]
+_DESIGN_PATH = _ROOT / "docs/superpowers/specs/2026-07-29-ak3-aut-thickenability-frontier-design.md"
+DEFAULT_MANIFEST_PATH = _ROOT / "results/stable_ac/theory/ak3_aut_frontier_manifest.json"
+
+
+def _canonical_json_bytes(value: object) -> bytes:
+    return (json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True) + "\n").encode("utf-8")
+
+
+def _source_config() -> dict[str, object]:
+    return {"bfs_cap": BFS_CAP, "source_relators": list(SOURCE_RELATORS)}
+
+
+def _digest_bytes(data: bytes) -> str:
+    return sha256(data).hexdigest()
+
+
+def _bfs_prefix_digest(records: tuple[MapRecord, ...]) -> str:
+    payload = "\n".join(
+        f"{record.id}|{'-' if record.parent_id is None else record.parent_id}|"
+        f"{record.depth}|{','.join(map(str, record.edge_word))}|"
+        f"{record.images[0]}|{record.images[1]}"
+        for record in records
+    )
+    return _digest_bytes(payload.encode("ascii"))
+
+
+def _spelling_tracks(images: WordMap) -> dict[str, dict[str, list[str]]]:
+    literal = tuple(substitute_literal(relator, images) for relator in SOURCE_RELATORS)
+    free = tuple(free_reduce(word) for word in literal)
+    peeled = tuple(cyclic_peel(word) for word in free)
+    prefixes = tuple(item[0] for item in peeled)
+    cyclic = tuple(item[1] for item in peeled)
+    inverse_prefixes = tuple(item[2] for item in peeled)
+    for free_word, prefix, core, inverse_prefix in zip(free, prefixes, cyclic, inverse_prefixes):
+        if free_word != prefix + core + inverse_prefix:
+            raise AssertionError("cyclic peel did not reconstruct the free word")
+    return {
+        "literal": {"raw": list(literal), "cellular_key": list(exact_cellular_key(literal))},
+        "free": {"raw": list(free), "cellular_key": list(exact_cellular_key(free))},
+        "cyclic": {
+            "raw": list(cyclic),
+            "peeled_prefixes": list(prefixes),
+            "peeled_inverse_prefixes": list(inverse_prefixes),
+            "cellular_key": list(exact_cellular_key(cyclic)),
+        },
+    }
+
+
+def _record_payload(record: MapRecord) -> dict[str, object]:
+    inverse_word = inverse_edge_word(record.edge_word)
+    inverse_images = map_from_edge_word(inverse_word)
+    forward_then_inverse = compose_maps(record.images, inverse_images)
+    inverse_then_forward = compose_maps(inverse_images, record.images)
+    if forward_then_inverse != IDENTITY_MAP or inverse_then_forward != IDENTITY_MAP:
+        raise AssertionError("edge-word inverse did not replay to a two-sided inverse")
+    return {
+        "depth": record.depth,
+        "edge_word": list(record.edge_word),
+        "forward_then_inverse": list(forward_then_inverse),
+        "id": record.id,
+        "images": list(record.images),
+        "inverse_edge_word": list(inverse_word),
+        "inverse_images": list(inverse_images),
+        "inverse_then_forward": list(inverse_then_forward),
+        "parent_id": record.parent_id,
+        "spellings": _spelling_tracks(record.images),
+        "terminal_edge": None if record.parent_id is None else record.edge_word[-1],
+    }
+
+
+def _bucket_payload(records: list[dict[str, object]]) -> list[dict[str, object]]:
+    members_by_key: dict[tuple[str, str], list[dict[str, object]]] = {}
+    for record in records:
+        for mode in SPELLING_MODES:
+            track = record["spellings"][mode]  # type: ignore[index]
+            key = tuple(track["cellular_key"])  # type: ignore[index]
+            members_by_key.setdefault(key, []).append({"map_id": record["id"], "mode": mode})
+    return [
+        {"cellular_key": list(key), "members": members_by_key[key]}
+        for key in sorted(members_by_key)
+    ]
+
+
+def build_manifest_payload() -> dict[str, object]:
+    """Rebuild the complete frozen manifest from the map prefix and source tuple."""
+    map_records = build_bfs_prefix(BFS_CAP)
+    if len(map_records) != BFS_CAP or _bfs_prefix_digest(map_records) != _BFS_PREFIX_DIGEST:
+        raise AssertionError("the frozen 1,000-map BFS prefix changed")
+    records = [_record_payload(record) for record in map_records]
+    source_config = _source_config()
+    return {
+        "buckets": _bucket_payload(records),
+        "integrity": {
+            "design_sha256": _digest_bytes(_DESIGN_PATH.read_bytes()),
+            "manifest_module_sha256": _digest_bytes(Path(__file__).read_bytes()),
+            "source_config_sha256": _digest_bytes(_canonical_json_bytes(source_config)),
+        },
+        "ordered_record_digest": _digest_bytes(_canonical_json_bytes(records)),
+        "ordered_record_digest_definition": "sha256 of canonical UTF-8 JSON record-list bytes (sorted keys, compact separators, ASCII escaping, one trailing newline)",
+        "records": records,
+        "schema": MANIFEST_SCHEMA,
+        "source_config": source_config,
+    }
+
+
+def build_manifest_bytes() -> bytes:
+    return _canonical_json_bytes(build_manifest_payload())
+
+
+def verify_manifest_bytes(manifest_bytes: bytes) -> None:
+    """Independently rebuild every manifest field and require canonical byte identity."""
+    try:
+        parsed = json.loads(manifest_bytes)
+    except json.JSONDecodeError as error:
+        raise AssertionError("manifest is not valid JSON") from error
+    expected = build_manifest_payload()
+    if parsed != expected:
+        raise AssertionError("manifest payload differs from its independent replay")
+    if manifest_bytes != _canonical_json_bytes(expected):
+        raise AssertionError("manifest bytes are not canonical or differ from the replay")
+
+
+def check_manifest(path: Path = DEFAULT_MANIFEST_PATH) -> None:
+    verify_manifest_bytes(path.read_bytes())
+
+
+def write_manifest(path: Path = DEFAULT_MANIFEST_PATH) -> None:
+    path.write_bytes(build_manifest_bytes())
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="build or replay the frozen AK(3) Aut(F2) manifest")
+    operation = parser.add_mutually_exclusive_group(required=True)
+    operation.add_argument("--write", action="store_true")
+    operation.add_argument("--check", action="store_true")
+    args = parser.parse_args()
+    try:
+        if args.write:
+            write_manifest()
+            print("manifest write: OK")
+        else:
+            check_manifest()
+            print("manifest check: OK")
+    except (AssertionError, OSError) as error:
+        print(f"manifest check: FAIL: {error}")
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
