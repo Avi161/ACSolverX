@@ -1508,3 +1508,8 @@
 
 - [TRAP] The first grouped-certificate design checkpoint staged a Markdown file before `git diff --check`, which then rejected a second blank line at EOF and left a partially staged index.
 - [WORKS] Run `git diff --check` before the first `git add`, repair Markdown EOF whitespace with `apply_patch`, and inspect both working and cached diffs before retrying the exact checkpoint.
+
+### 2026-07-29 Run SDD helpers from the target worktree
+
+- [TRAP] Invoking `scripts/sdd-workspace` with the skill package as the working directory made it treat the read-only plugin cache as the repository and fail while creating `.superpowers` there.
+- [WORKS] Invoke the helper by absolute path with the target linked worktree as `cwd`; its plan-specific ledger then resolves under the project's ignored `.superpowers/sdd/` tree.
