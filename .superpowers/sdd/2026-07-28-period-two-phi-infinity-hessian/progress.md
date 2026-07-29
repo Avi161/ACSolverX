@@ -91,8 +91,10 @@
   Hessian/tree-flow/source-flow/subgroup-rewrite replay passed `25/25` in
   `8.83s`.
 - Review state: `.scratch/hessian_boundary_task_review.md` reported I1--I5
-  and M1--M2 against `f0c2e18`. Fix round 1 addresses each finding in the
-  tracked proof/ledger or scratch report, and line-by-line self-review finds
-  no unresolved Important finding in the current tree. A subsequent external
-  re-review of the fix commit is not yet recorded. Push and push-log closure
-  remain pending because this dispatch explicitly forbids both.
+  and M1--M2 against `f0c2e18`. Fix round 1 at `0412a04` addresses every
+  finding. Scoped external re-review verdicts are Spec `APPROVE`, Quality
+  `APPROVE`, with no open finding. The append-only push log records the final
+  fix hash, and the controller checkpoint synchronizes the reviewed range.
+- Task 3: complete as a rigorously documented open rank boundary (commits
+  `a17c7bf..0412a04`, review clean). This does not mark the finite/infinite
+  rank decision, period-two lift, stable AC, or AC as solved.

@@ -1383,3 +1383,8 @@
 
 - [TRAP] The status of `.scratch/ak3_neuwirth_rotation_system_theory.md` said three `x`-occurrence equations forced every binary rank, but the proof also needs the later three `x`-occurrence equations and the parallel-class all-different constraints.
 - [WORKS] Before compressing a finite deduction into a summary sentence, trace each forced variable back to the exact equations and global constraints used; do not attribute a full conclusion to only the first stage of the argument.
+
+### 2026-07-29 Promote load-bearing proofs and refresh full-suite evidence
+
+- [TRAP] The first tracked Hessian boundary draft asserted the primitive identity and concrete subgroup rewrite using proofs left only in ignored scratch memos, reused a stale JUnit suite that omitted the new Hessian tests, and said the wedge projection killed diagonals even though the implementation requires them to cancel before its reader.
+- [WORKS] Move every load-bearing argument into a tracked proof, identify concrete certificate maps rather than relying on abstract isomorphisms, run the current wildcard suite and inspect its JUnit case coverage, and match proof wording to executable preconditions such as the diagonal-free wedge gate.
