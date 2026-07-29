@@ -159,7 +159,11 @@ def test_timeout_kills_child_and_grandchild_process_group(tmp_path: Path) -> Non
     wait_for_pid_exit(grandchild_pid)
 
 
-def test_sigterm_cleans_up_child_group_and_lock(tmp_path: Path) -> None:
+@pytest.mark.parametrize("signum", (signal.SIGHUP, signal.SIGTERM))
+def test_sighup_and_sigterm_clean_up_child_group_and_lock(
+    tmp_path: Path,
+    signum: int,
+) -> None:
     pids_file = tmp_path / "signal-pids.json"
     child_program = (
         "import json, os, pathlib, subprocess, sys, time; "
@@ -173,10 +177,52 @@ def test_sigterm_cleans_up_child_group_and_lock(tmp_path: Path) -> None:
     )
     wait_for_path(pids_file)
     child_pid, grandchild_pid = json.loads(pids_file.read_text())
-    runner.send_signal(signal.SIGTERM)
-    assert runner.wait(timeout=2) == 128 + signal.SIGTERM
+    runner.send_signal(signum)
+    assert runner.wait(timeout=2) == 128 + signum
     wait_for_pid_exit(child_pid)
     wait_for_pid_exit(grandchild_pid)
+
+
+def test_cleanup_sends_sigterm_before_sigkill_to_surviving_exact_group(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    process_group_id = 900_000
+    clock = _FakeClock()
+    group_alive = True
+    killpg_calls: list[tuple[int, int]] = []
+
+    class SyntheticChild:
+        pid = process_group_id
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            assert timeout == 0.1
+            return 0
+
+    def killpg(target_group_id: int, signum: int) -> None:
+        nonlocal group_alive
+        killpg_calls.append((target_group_id, signum))
+        if signum == signal.SIGKILL:
+            group_alive = False
+
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: group_alive)
+
+    proof_guard.terminate_group(SyntheticChild(), grace_seconds=0.02)
+
+    assert killpg_calls == [
+        (process_group_id, signal.SIGTERM),
+        (process_group_id, signal.SIGKILL),
+    ]
+    assert group_alive is False
 
 
 def test_normal_parent_exit_does_not_leak_its_grandchild(tmp_path: Path) -> None:
@@ -968,6 +1014,7 @@ class _SequenceMonitor:
 def _safety_sample(
     *,
     cpu_percent: float = 0.0,
+    group_process_count: int = 1,
     thermal_state: int | None = 0,
     controller_alive: bool = True,
     child_reparented: bool = False,
@@ -978,7 +1025,7 @@ def _safety_sample(
         thermal_state=thermal_state,
         controller_alive=controller_alive,
         child_reparented=child_reparented,
-        group_process_count=1,
+        group_process_count=group_process_count,
         group_cpu_percent=cpu_percent,
         escaped_pids=escaped_pids,
         error=error,
@@ -989,6 +1036,9 @@ def _run_synthetic_monitored_phases(
     monkeypatch: pytest.MonkeyPatch,
     samples: list[object],
     completion_times: tuple[float, ...],
+    *,
+    command: tuple[str, ...] = ("synthetic-command",),
+    progress_seconds: float = 10.0,
 ) -> tuple[int, list[tuple[int, int]], _SequenceMonitor]:
     clock = _FakeClock()
     alive: dict[int, bool] = {}
@@ -1044,7 +1094,6 @@ def _run_synthetic_monitored_phases(
 
     monitor = _SequenceMonitor(samples, clock)
     monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
-    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
     monkeypatch.setattr(
         proof_guard,
         "group_exists",
@@ -1053,14 +1102,56 @@ def _run_synthetic_monitored_phases(
     monkeypatch.setattr(proof_guard.os, "killpg", killpg)
 
     status = run_long_guarded(
-        ["synthetic-command"],
+        command,
         preflight_seconds=10.0,
         experiment_seconds=10.0,
-        progress_seconds=10.0,
+        progress_seconds=progress_seconds,
         grace_seconds=0.1,
         monitor=monitor,
+        clock=clock.monotonic,
     )
     return status, killpg_calls, monitor
+
+
+def test_progress_reports_sanitized_phase_starts_and_two_experiment_boundaries(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    command_sentinel = "proof-command-secret-sentinel"
+    environment_sentinel = "proof-environment-secret-sentinel"
+    monkeypatch.setenv("PROOF_GUARD_TEST_SECRET", environment_sentinel)
+
+    status, killpg_calls, monitor = _run_synthetic_monitored_phases(
+        monkeypatch,
+        [
+            _safety_sample(cpu_percent=10.0, group_process_count=1),
+            _safety_sample(cpu_percent=20.0, group_process_count=2),
+            _safety_sample(cpu_percent=30.0, group_process_count=3),
+            _safety_sample(cpu_percent=40.0, group_process_count=4),
+        ],
+        completion_times=(0.5, 2.5),
+        command=("synthetic-command", command_sentinel),
+        progress_seconds=1.0,
+    )
+
+    captured = capsys.readouterr()
+    assert status == 0
+    assert killpg_calls == []
+    assert monitor.sample_times == [0.0, 0.5, 1.5, 2.5]
+    assert captured.out.splitlines() == [
+        "proof guard progress phase=preflight elapsed=0s "
+        "exact_group_process_count=1 aggregate_cpu=10% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=0s "
+        "exact_group_process_count=2 aggregate_cpu=20% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=1s "
+        "exact_group_process_count=3 aggregate_cpu=30% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=2s "
+        "exact_group_process_count=4 aggregate_cpu=40% thermal=nominal",
+    ]
+    assert command_sentinel not in captured.out
+    assert command_sentinel not in captured.err
+    assert environment_sentinel not in captured.out
+    assert environment_sentinel not in captured.err
 
 
 def test_one_high_cpu_sample_does_not_abort(

@@ -89,6 +89,28 @@ class SafetySample:
         return None
 
 
+def _print_progress(
+    phase: str,
+    elapsed_seconds: float,
+    sample: SafetySample,
+) -> None:
+    thermal_labels = {
+        0: "nominal",
+        1: "fair",
+        2: "serious",
+        3: "critical",
+        None: "unavailable",
+    }
+    thermal_label = thermal_labels.get(sample.thermal_state, "unknown")
+    print(
+        f"proof guard progress phase={phase} elapsed={elapsed_seconds:g}s "
+        f"exact_group_process_count={sample.group_process_count} "
+        f"aggregate_cpu={sample.group_cpu_percent:g}% "
+        f"thermal={thermal_label}",
+        flush=True,
+    )
+
+
 def read_macos_thermal_state() -> int:
     if sys.platform != "darwin":
         raise RuntimeError("macOS thermal monitoring requires macOS")
@@ -502,8 +524,8 @@ def _run_long_phase(
     progress_seconds: float,
     grace_seconds: float,
     monitor: object | None,
+    clock: Callable[[], float],
 ) -> tuple[int, bool]:
-    del progress_seconds
     try:
         child = subprocess.Popen(
             list(command),
@@ -517,8 +539,17 @@ def _run_long_phase(
         return 127, False
 
     try:
-        deadline = time.monotonic() + timeout_seconds
-        next_sample_at = time.monotonic()
+        phase_started_at = clock()
+        deadline = phase_started_at + timeout_seconds
+        next_sample_at = phase_started_at
+        progress_interval = min(progress_seconds, MAX_TIMEOUT_SECONDS)
+        next_progress_at = (
+            phase_started_at + progress_interval
+            if phase == "experiment"
+            else None
+        )
+        latest_sample: SafetySample | None = None
+        phase_start_reported = False
         consecutive_high_cpu_samples = 0
         while True:
             return_code = child.poll()
@@ -533,7 +564,7 @@ def _run_long_phase(
                     return SAFETY_EXIT, True
                 return return_code, False
 
-            now = time.monotonic()
+            now = clock()
             safety_failure: str | None = None
             if monitor is not None and now >= next_sample_at:
                 try:
@@ -549,6 +580,7 @@ def _run_long_phase(
                 except Exception as exc:
                     safety_failure = f"sampling failed: {exc}"
                 else:
+                    latest_sample = sample
                     safety_failure = sample.failure_reason
                     if sample.group_cpu_percent > MAX_GROUP_CPU_PERCENT:
                         consecutive_high_cpu_samples += 1
@@ -574,7 +606,25 @@ def _run_long_phase(
                 _clean_exact_group(child, grace_seconds)
                 return SAFETY_EXIT, True
 
-            remaining_seconds = deadline - time.monotonic()
+            if latest_sample is not None:
+                if not phase_start_reported:
+                    _print_progress(phase, 0.0, latest_sample)
+                    phase_start_reported = True
+                elif next_progress_at is not None and now >= next_progress_at:
+                    _print_progress(
+                        phase,
+                        now - phase_started_at,
+                        latest_sample,
+                    )
+                    boundaries_crossed = (
+                        math.floor(
+                            (now - next_progress_at) / progress_interval
+                        )
+                        + 1
+                    )
+                    next_progress_at += boundaries_crossed * progress_interval
+
+            remaining_seconds = deadline - clock()
             if remaining_seconds <= 0:
                 if not _clean_exact_group(child, grace_seconds):
                     return SAFETY_EXIT, True
@@ -589,8 +639,13 @@ def _run_long_phase(
             if monitor is not None:
                 wait_seconds = min(
                     wait_seconds,
-                    max(0.0, next_sample_at - time.monotonic()),
+                    max(0.0, next_sample_at - clock()),
                 )
+                if next_progress_at is not None and phase_start_reported:
+                    wait_seconds = min(
+                        wait_seconds,
+                        max(0.0, next_progress_at - clock()),
+                    )
             if wait_seconds <= 0:
                 continue
             try:
@@ -617,7 +672,10 @@ def run_long_guarded(
     progress_seconds: float,
     grace_seconds: float,
     monitor: object | None,
+    clock: Callable[[], float] | None = None,
 ) -> int:
+    if clock is None:
+        clock = time.monotonic
     preflight_status, cleanup_failed = _run_long_phase(
         command,
         "preflight",
@@ -625,6 +683,7 @@ def run_long_guarded(
         progress_seconds,
         grace_seconds,
         monitor,
+        clock,
     )
     if cleanup_failed:
         return SAFETY_EXIT
@@ -638,6 +697,7 @@ def run_long_guarded(
         progress_seconds,
         grace_seconds,
         monitor,
+        clock,
     )
     if cleanup_failed:
         return SAFETY_EXIT
