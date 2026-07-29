@@ -1,0 +1,529 @@
+{
+ "record": "spike_witness",
+ "base": {
+  "words": [
+   "xxxYYYY",
+   "xyxYXY"
+  ],
+  "witness_defect": 4,
+  "seconds": 0.57,
+  "verified_defect": 4,
+  "gamma_upper_bound": 2
+ },
+ "samples_per_state": 80000,
+ "seed": 20260729,
+ "spikes_measured": 39,
+ "best_spike_gamma_upper_bound": 1,
+ "strict_drop_witnessed": true,
+ "THICKENABLE_SPIKE_ALERT": false,
+ "note": "witness_defect is an UPPER bound certificate (an explicit compatible rotation system, re-verified); no lower bound is claimed here, and a state with no witness found carries no claim at all",
+ "rows": [
+  {
+   "words": [
+    "XxxxxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.6,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 0,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "YyxxxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.6,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 0,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xXxxxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.6,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 0,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "yYxxxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.72,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 0,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xYyxxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.64,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 1,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxXxxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.61,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 1,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.63,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 0,
+   "position": 1,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.61,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 0,
+   "position": 2,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxXxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.59,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 2,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxyYxYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.6,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 2,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xxxYyYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.58,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 3,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxxXYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.59,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 3,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxyYYYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.59,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 3,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.58,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 0,
+   "position": 4,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "xxxYYyYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.59,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 4,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.59,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 0,
+   "position": 4,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYXxYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.59,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 5,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "xxxYYYyYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.6,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 5,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxYYxXYY",
+    "xyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.6,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 0,
+   "position": 5,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.65,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 0,
+   "position": 6,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.63,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 0,
+   "position": 6,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "XxxyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.65,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 0,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "YyxyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.64,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 0,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xXxyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.64,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 0,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "yYxyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.64,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 0,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xYyyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.61,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 1,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.66,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 1,
+   "position": 1,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyYyxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.64,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 1,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXY"
+   ],
+   "witness_defect": 2,
+   "seconds": 0.64,
+   "verified_defect": 2,
+   "gamma_upper_bound": 1,
+   "relator": 1,
+   "position": 2,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxXxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.72,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 2,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyyYxYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.7,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 2,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxYyYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.69,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 3,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxxXYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.68,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 3,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxyYYXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.66,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 3,
+   "spike": "yY"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxYXxXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.63,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 4,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxYYyXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.62,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 4,
+   "spike": "Yy"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxYxXXY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.63,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 4,
+   "spike": "xX"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxYXXxY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.65,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 5,
+   "spike": "Xx"
+  },
+  {
+   "words": [
+    "xxxYYYY",
+    "xyxYXyYY"
+   ],
+   "witness_defect": 4,
+   "seconds": 0.64,
+   "verified_defect": 4,
+   "gamma_upper_bound": 2,
+   "relator": 1,
+   "position": 5,
+   "spike": "yY"
+  }
+ ]
+}

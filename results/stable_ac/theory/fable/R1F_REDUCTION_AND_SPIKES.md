@@ -84,11 +84,53 @@ AK(3) has relators of length 7 and 6, each using both generators — it is squar
 strict stratum, and a single spike drops its gamma_N from 2 to 1. The strict-stratum
 cleanliness of tiers 1-2 is therefore a small-length artefact, not a law.
 
-[VERIFICATION STATUS: the tier-3 row is the experiment's own measurement (census cap
-20,000,000; 39 spikes measured, 0 skipped). An independent orchestrator re-run over all
-39 single spikes of AK(3), at cap 25,000,000, is in progress; this section is written on
-the experiment's data and the specific witness spelling will be named here when the
-re-run returns. Treat the AK(3) row as measured-once until then.]
+### The AK(3) row, independently re-verified — with named witnesses
+
+The tier-3 row was originally a single measurement by the experiment's own exact census
+(cap 20,000,000; 39 spikes, 0 skipped). It has now been re-established by a **different
+tool and a different kind of certificate**, `experiments/stable_ac/fable/spike_witness.py`:
+
+    a single explicit compatible rotation system of defect 2d is a WITNESS for
+    gamma_N <= d, re-derived and re-checked in isolation by
+    gateway_scan.verify_witness (which recomputes the defect from the dart data and
+    re-checks the B-reversal compatibility law C_{tau v} = B C_v^-1 B).
+
+An upper bound is exactly what the claim needs: AK(3) itself has gamma_N = 2 by exact
+census (86,400 systems, pinned as a test fixture), so any spiked spelling with a
+verified defect-2 witness is a STRICT DROP. The tool enumerates the 39 distinct single
+spikes — independently reproducing the experiment's count of 39, having deduplicated on
+a spelling key that quotients only by rotation, inversion and relator permutation, and
+deliberately NOT by free reduction — and hill-climbs each for a witness (80,000
+evaluations per state, seed 20260729).
+
+**Eight of the 39 carry a verified defect-2 rotation system.** They are, verbatim:
+
+| # | spiked spelling | verified defect | bound |
+|---|---|---|---|
+| 7 | ("xyYxxYYYY", "xyxYXY") | 2 | gamma_N <= 1 |
+| 8 | ("xxYyxYYYY", "xyxYXY") | 2 | gamma_N <= 1 |
+| 14 | ("xxxYXxYYY", "xyxYXY") | 2 | gamma_N <= 1 |
+| 16 | ("xxxYxXYYY", "xyxYXY") | 2 | gamma_N <= 1 |
+| 20 | ("xxxYYYXxY", "xyxYXY") | 2 | gamma_N <= 1 |
+| 21 | ("xxxYYYxXY", "xyxYXY") | 2 | gamma_N <= 1 |
+| 27 | ("xxxYYYY", "xxXyxYXY") | 2 | gamma_N <= 1 |
+| 29 | ("xxxYYYY", "xyXxxYXY") | 2 | gamma_N <= 1 |
+
+The other 31 returned defect 4 (bound gamma_N <= 2), which is silence, not a value.
+Full data: `results/stable_ac/fable/spike_witness.json`.
+
+So the strict-stratum break is CONFIRMED, and by eight independent witnesses rather
+than one: AK(3) sits at spelling distance 1 from gateway level in eight different ways,
+six of them in the first relator and two in the second.
+
+[REMAINING GAP, stated precisely: the witnesses bound gamma_N from ABOVE only. They
+establish `gamma_N <= 1 < 2`, which is the whole of the strict-drop claim, but they do
+not distinguish gamma_N = 1 from gamma_N = 0 — and gamma_N = 0 would mean a THICKENABLE
+spelling of AK(3), the outcome that decides the sub-goal. The hill-climber found no
+defect-0 system on any of the 39 at 80,000 evaluations each, which is evidence and not
+proof, since absence of a witness proves nothing in this direction. An exhaustive census
+of the eight (3.6-4.8 million rotation systems apiece) is running to settle it;
+`spike_census.py`, artifact `spike_census_gateways.json`.]
 
 ## What this changes
 

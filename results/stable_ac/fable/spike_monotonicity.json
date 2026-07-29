@@ -56705,7 +56705,7 @@
     "min_spiked_gamma_N": 0
    }
   ],
-  "seconds": 176.58
+  "seconds": 180.16
  },
  "tier2": {
   "seed": 20260729,
@@ -58048,7 +58048,7 @@
    "1": 2664,
    "2": 2
   },
-  "seconds": 298.1,
+  "seconds": 304.37,
   "base_pool": {
    "drawn_from_tier1": true,
    "max_total_length": 8,
@@ -62749,13 +62749,13 @@
     ]
    }
   ],
-  "seconds": 277.01
+  "seconds": 281.08
  },
  "verdict": {
   "measured_cases": 110917,
   "counterexamples": 480,
-  "strict_counterexamples": 0,
-  "line": "SPIKE MONOTONICITY: REFUTED by ['Y', 'YYXyyXX'] gamma_N=2 -> ['Y', 'YYXyXxyXX'] gamma_N=1 (480 counterexamples in 110917 measured cases, 0 of them with every relator of length >= 3 over both generators)"
+  "strict_counterexamples": 16,
+  "line": "SPIKE MONOTONICITY: REFUTED by ['xxxYYYY', 'xyxYXY'] gamma_N=2 -> ['xxxYYYXxY', 'xyxYXY'] gamma_N=1 (480 counterexamples in 110917 measured cases, 16 of them with every relator of length >= 3 over both generators)"
  },
- "seconds_total": 751.84
+ "seconds_total": 766.71
 }
