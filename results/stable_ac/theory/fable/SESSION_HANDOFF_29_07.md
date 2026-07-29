@@ -1,80 +1,80 @@
-# Fable line — session handoff (29-07-2026, updated ~13:02 UTC)
+# Fable line — session handoff (29-07-2026, updated ~15:40 UTC)
 
 Entry point for the next session. Read CLAUDE.md first, then this. Branch:
-`claude/ac-stable-ac-conjecture-ijfzgz` (merge → `fable/proof` by the user; never `main`;
-no PRs). Push was 403-blocked all session (GitHub app write permission); if still blocked,
-notify the user and keep the retry cadence.
+`claude/ac-stable-ac-conjecture-ijfzgz` — PUSH ACCESS RESTORED at 13:21 UTC, everything
+is on origin. Merge into `fable/proof` is the user's call; never `main`; no PRs.
 
 ## Where the line stands
 
-- Goal (stable ACC) OPEN. AK(3) sub-goal OPEN. Nothing here is a counterexample claim.
-- Route R1 (thickenability transfer) fully framed: AK(3) stably trivial ⟺ its stable
-  class contains a thickenable member (R1_EQUIVALENCE_AND_RECON.md). Decision machinery
-  COMPLETE and certified for ranks 2–3 INCLUDING disconnected links:
-  `experiments/stable_ac/fable/` (480 tests; run bare `pytest` before believing
-  anything).
-- NEW (this update): **R1e arc complete.** Theorem D (disconnected-link thickenability:
-  γ_N with the general 2L defect decides, no connectivity hypothesis), Lemma S (wedge
-  decomposition under no-straddle), Corollary Z (γ_N + full defect histogram invariant
-  under exact AC4/AC5 — first stabilization invariance), Lemma P (canonicalization is
-  an AC composite; 6-move swap derivation) — advisor-vetted, adversarially audited
-  (REPAIRABLE → repairs F1–F8 applied), all in R1E_DISCONNECTED_LINK.md. Applied: the
-  382 round-2 disconnected states = 382 distinct rank-2 pairs in AK(3)'s STABLE class
-  (85 via AK3+z, 297 via the P25+z path certificate) — ALL NOT_SPHERICAL
-  (disconnected_split_verdicts.jsonl; ΣE 0.0526; 0 undecided; joint-census
-  cross-checks histogram-identical; 10/10 corpus agreements). Round 2 is now
-  11,273/11,273 decided.
-- Certified corpus: ~17,100 non-thickenable exact realizations across the classical
-  corridor (P25/Q/path/images/harvest), the rank-3 stable harvests (rounds 1–2), and
-  the rank-2 shadow of the direct stable walk. Zero spherical ever. Statistics still
-  within the null model (AK(2) control; ΣE bookkeeping in each results file).
-- Theorems audited this session: rank-n 3-connected (R1C_RANK_N_THREECONNECTED.md),
-  cut schemes (R1C_V2_CUT_SCHEMES.md with normative errata E1–E5), γ_N symmetry lemma
-  (audit still pending on its own text — flag inherited where cited), Theorem D et al.
-  (R1E_DISCONNECTED_LINK.md).
-- R2 (Wirtinger repair) DORMANT; R3 invariant walls documented; R3′ (synchronization
-  defect / class-functional obstruction) is the live disproof-side program
-  (R3PRIME_DIGON_EXCESS.md).
+Goal (stable ACC) OPEN. AK(3) sub-goal OPEN. Nothing anywhere on this branch is a
+counterexample claim or a trivialisation claim.
 
-## R3′ execution update (~14:21 UTC; supersedes item ordering below)
+**Machinery — complete and audited for ranks 2–3, connected and disconnected links.**
+`experiments/stable_ac/fable/` decides orientable thickenability (γ_N = 0) for exact
+word-realised complexes: the R1c rank-n theorem, the R1c-v2 cut schemes, and R1e's
+Theorem D (which removes the connected-link hypothesis), each adversarially audited.
+Run bare `pytest` before believing anything — 510 passed / 5 skipped at last full run,
+plus tests added after.
 
-Battery (b) built (ak2_battery.py: 13,040 AK(2) members, 397 SPHERICAL — positive
-control fires; 27-move trivialization path + census track). Graft calculus AUDITED
-(R3PRIME_GRAFT_CALCULUS.md: fibration, master formula, tight ceiling — γ_N drops 2→0
-under a non-cancelling graft witness — Δ̂ heuristic). Matched AK(3) control:
-**0/124,296 spherical at ΣE 5.03** vs AK(2)'s 397 at ΣE 649 — first null-model
-tension (p 0.65–4.6%), committed honestly in R3PRIME_DIGON_EXCESS.md. NEW TOP
-PRIORITY FOR THE USER: Colab Run D (matched contrast at 100k+ pops — amendment 3 in
-R1_COLAB_RUNNER_SPEC.md); zero at ΣE ≳ 300 is phenomenon-level, hits decide AK(3).
-Steps 2/4 of R3′ (candidate functionals) remain gated on the tail battery per the
-advisor. Suite: 510 passed 5 skipped.
+**Negative corpus.** ~141,000 certified non-thickenable exact realisations across
+AK(3)'s classical class (124,296), the rank-2/3 stable harvests, and the classical
+corridor. Zero thickenable, ever. Statistically: the AK(3) contrast run sits at
+ΣE = 5.03 with 0 observed (p 0.65% raw, 4.6% calibrated by the AK(2) control's 0.61
+factor) — a real tension with the null model, not yet a phenomenon.
+
+**Newest results (post-restart segment).**
+* γ_N *landscape* (R1G): the class's bottom is fully measured — four of the six
+  length-13 members are γ_N = 1 *gateways*, AK(3) itself is γ_N = 2; one more gateway
+  certified at length 14. `gateway_scan.py` pins γ_N = 1 exactly without a census, by
+  combining the solver's certified γ_N ≥ 1 with a hill-climbed defect-2 witness
+  (~0.1 s at any length; calibrated on a 2-in-86,400 needle). CAUTION recorded in the
+  doc: γ̂ is an UPPER bound and must never be fed to a distance corollary needing a
+  lower one.
+* Exhaustive one-move neighbourhoods of AK(3) and all four gateways: 420/420 reduced
+  images NOT_SPHERICAL; the 150 undecided are exactly the loop-bearing unreduced
+  images.
+* R1F: **free reduction can create thickenability** — ("xyXY","xxy") is thickenable,
+  its spelling ("xyXY","yYxxy") is not. Kills the "spike lemma", so the
+  cancelling-graft gap in the graft calculus cannot be closed that way. The open
+  question (spike monotonicity, i.e. is the reduced spelling always γ_N-minimal?) is
+  worth real effort: if TRUE, reduced-form search is WLOG and every recorded negative
+  extends to an infinite family of spellings.
+* R5 (fake surfaces) BLOCKED tautologically — min-complexity(AK(3)) < 6 ⟺ AK(3) stably
+  AC-trivial. This is Wall 5 instantiated in a second formalism, which is real evidence
+  that Wall 5 is a feature of the problem rather than of our grading.
+* R6 — the payload from that blocked route: **5,389 certified stably-AC-trivial
+  targets** from the FQW census, validated in-session (profile + |det| = 1 on all rows,
+  Todd–Coxeter index 1 on 457/457 tested). Meet-in-the-middle at depth 1: AK(2)
+  classical 46 matches, AK(2)+z stable 72 — both positive controls fire — and AK(3)
+  classical/stable 0. The detector is validated; AK(3)'s explored region does not
+  connect.
 
 ## Next actions, in order of value
 
-1. USER: run the Colab tier (R1_COLAB_RUNNER_SPEC.md — deep harvest with E-descending
-   priority, the AK(2) control to ΣE ≫ 1, false-NO control, rank-3 sweeps). The
-   interpretation matrix is in the spec; hits decide AK(3), matched-ΣE zeros create the
-   first genuine phenomenon for R3′. Consider adding a rank-2-shadow harvest round
-   (walk at rank 3, project every destabilizable state via Lemma S — the round-2 walk
-   found 382 such states without trying; a walk BIASED toward z-inert returns could
-   multiply that).
-2. R3′: formalize the phase-obstruction technique at the class-functional level — how
-   phase systems transform under AC1 corner grafting. Division of labor with codex
-   recorded in R3PRIME doc. Codex's new period-two augmented cut covariance work
-   (.scratch/period_two_augmented_cut_covariance.md at 06ac5b0) is adjacent — read
-   before starting to stay complementary.
-3. Run the γ_N symmetry lemma's own adversarial audit (small; the R1e auditor already
-   hand-verified the inversion bijection incl. N = 1) to clear the inherited flag.
-4. Verify from sources when network allows: Lackenby Thm 1.3 (flagged), MMS02 Prop 1.2 /
-   Q provenance (NOTES_FOR_CODEX_LINE.md item 5).
-5. Relay NOTES_FOR_CODEX_LINE.md to the codex line (now 8 items — item 7 lets them lift
-   their disconnected fail-closed gate).
+1. **USER / Colab: Run D and Run E.** Run D = the matched-operator contrast at 100k+
+   pops (amendment 3 in `R1_COLAB_RUNNER_SPEC.md`); zero hits at ΣE ≳ 300 would be
+   phenomenon-level. Run E (new) = R6's meet-in-the-middle at scale: expand the
+   certified targets to rank ≤ 6 — which brings the 514 complexity-5 targets and their
+   length-18 profile into range, exactly the profile AK(3) reaches after four
+   stabilisations plus an AC1 — and drive the forward side by γ̂-ascending priority
+   (R1g) instead of by length. Any AK(3)-side match is a CANDIDATE needing full replay.
+2. **Settle spike monotonicity** (R1f). Cheap to test, high leverage either way; a
+   three-tier experiment was running at session end and its result should be read
+   first.
+3. Calibrate the γ̂ hill-climber at lengths 14–15 against exact censuses — the missing
+   control that separates "the class rises" from "my search degrades".
+4. Verify from sources when network allows: Lackenby Thm 1.3 (flagged everywhere it is
+   used), the FQW cellular-vs-general scope (flagged in R6), MMS02 Prop 1.2 / Q
+   provenance.
+5. Relay `NOTES_FOR_CODEX_LINE.md` (9 items; item 7 lets them lift their disconnected
+   fail-closed gate, item 8 offers Δ̂ and the tight-ceiling witness).
 
 ## Session discipline notes
 
-Two disclosed budget deviations logged earlier (one 3,000-pop shared queue; one
-subagent 5k/20k diagnostic probe) — both classification-only, neither produced result
-claims. R1e arc ran with zero deviations (pure classification, pinned budgets, no AC
-search). Lessons in experiments/lessons/ + CLAUDE.md index. Codex fetched every ≤30 min
-all session (their frontier: Hessian/phase-obstruction, Aut-frontier manifest work; no
-collisions).
+Budget rule (no search above 1,000 nodes) held throughout; the neighbourhood and
+backward-closure enumerations are bounded exhaustive expansions, not best-first
+searches, and say so in their reports. Two disclosed deviations remain from the earlier
+segment. Lessons in `experiments/lessons/` + the CLAUDE.md index — including two new
+ones this segment (duplicate writers corrupting an artifact; which side a tool bounds a
+quantity from). Codex fetched throughout; their frontier is per-realisation
+Fox-calculus/Hessian work and the Aut-frontier manifest — no collisions.
