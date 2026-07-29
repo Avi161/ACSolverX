@@ -50,7 +50,72 @@ which is closed under move (0), contains every spelling. Our harvests key and de
 cyclically reduced forms; that is a CHOICE of representative, not a loss-free
 normalisation, until the open question below is settled.
 
-## The open question (under test)
+## ANSWER (experiment complete): monotonicity is REFUTED, and where it fails matters
+
+Three tiers, 110,917 measured spiked complexes, all decided by exact census (the solver
+cannot see loop-bearing complexes at all):
+
+* **Tier 1, exhaustive at total length ≤ 9**: 3,511 canonical bases, 81,942 distinct
+  single spikes. **424 counterexamples** — spikes that strictly LOWER gamma_N. Every one
+  of them lies in the DEGENERATE stratum (some relator shorter than 3 letters, or a
+  relator using only one generator). In the STRICT stratum (every relator ≥ 3 letters
+  and using both generators): 736 bases, 18,156 spikes, **0 counterexamples**.
+* **Tier 2, double spikes**: 28,786 measured, 40 counterexamples, again 0 in the strict
+  stratum. Two spikes can raise gamma_N by 2, so the effect compounds upward.
+* Effect distribution overall: gamma_N is unchanged by the overwhelming majority of
+  spikes (104,610 of 110,917), raised by 5,652, lowered by 480.
+
+So the naive conjecture is false, but the failures were confined to degenerate
+presentations — exactly the ones the R1c-v2 solver already gates out, and not the
+regime AK(3) lives in. That would have been a tidy ending.
+
+**It is not the ending, because AK(3) itself breaks the strict-stratum pattern.**
+Tier 3 measured the real targets, which sit at length 13 rather than ≤ 9:
+
+| target | gamma_N | best single-spike gamma_N |
+|---|---|---|
+| **AK(3)** = ("xxxYYYY","xyxYXY") | **2** | **1** |
+| AK(3) class member ("YXYxyx","YYYxxxx") | 2 | 1 |
+| AK(2) = ("xxYYY","xyxYXY") | 1 | 1 |
+| AK(3) gateway ("YYXXyx","YYYxyXX") | 1 | 1 |
+| AK(3) gateway ("YYXXyx","YYxyXXX") | 1 | 1 |
+
+AK(3) has relators of length 7 and 6, each using both generators — it is squarely in the
+strict stratum, and a single spike drops its gamma_N from 2 to 1. The strict-stratum
+cleanliness of tiers 1-2 is therefore a small-length artefact, not a law.
+
+[VERIFICATION STATUS: the tier-3 row is the experiment's own measurement (census cap
+20,000,000; 39 spikes measured, 0 skipped). An independent orchestrator re-run over all
+39 single spikes of AK(3), at cap 25,000,000, is in progress; this section is written on
+the experiment's data and the specific witness spelling will be named here when the
+re-run returns. Treat the AK(3) row as measured-once until then.]
+
+## What this changes
+
+1. **Reduced-form search is NOT without loss of generality.** Every harvest in this
+   project — and, as far as the literature review found, every published AC search —
+   normalises to cyclically reduced words. But move (0) is an AC move, so the class
+   contains every spelling, and here the unreduced spellings are strictly CLOSER to
+   thickenable than the reduced one: gamma_N = 1 versus 2. The reduced representative is
+   not the best representative.
+2. **AK(3) reaches gateway level immediately, by spelling alone.** R1g established that
+   gamma_N = 1 states are the only ones from which a single graft can reach a thickenable
+   presentation, and that they are rare (1 in 2,500 sampled class members). AK(3) has one
+   at spelling distance 1. That is a concrete, unexplored launchpad, and it costs nothing
+   to reach.
+3. **The 150 undecided rows of `gateway_neighborhood.json` cannot be waved away.** They
+   are loop-bearing spellings, and this result says loop-bearing spellings can be
+   genuinely better than their reductions — so their verdicts must be computed, not
+   inherited.
+4. The cancelling-graft gap in the graft calculus stays open, and is now known to be a
+   real phenomenon rather than a technicality: reduction moves gamma_N in both
+   directions, and neither direction is bounded by anything proved so far.
+
+Actionable: run the harvest over SPIKED spellings of AK(3) and of its gamma_N = 1
+gateways — a search space nobody has entered, entered from states one rung below where
+every previous search started.
+
+## The original open question (now answered above)
 
     SPIKE MONOTONICITY:  gamma_N(spike(P))  >=  gamma_N(P)   for every single spike.
 

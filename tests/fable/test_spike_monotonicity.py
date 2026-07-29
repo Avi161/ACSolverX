@@ -224,6 +224,32 @@ def test_recorded_counterexample_a_spike_can_lower_gamma_N():
     assert sm.cross_check(base)["agree"] and sm.cross_check(spiked)["agree"]
 
 
+def test_ak3_itself_has_single_spikes_that_lower_gamma_N():
+    """AK(3) has gamma_N = 2, but eight of its 39 distinct single spikes have gamma_N = 1.
+
+    AK(3) is not degenerate in any of the senses that explain the tier-1 counterexamples:
+    both relators are cyclically reduced, of length >= 3, and use both generators.  Both
+    values below were re-verified against the audited ``gamma_N_factorial_n``.
+    """
+    base = ("xxxYYYY", "xyxYXY")
+    g_base, info_base = sm.gamma_N(base)
+    assert g_base == 2
+    assert info_base["expected_cases"] == 86400
+    prof = sm.presentation_profile(base)
+    assert prof["min_relator_length"] >= 3
+    assert prof["every_relator_uses_both_generators"] is True
+    assert prof["has_A_loop"] is False
+
+    spiked = ("xxxYYYY", "xxXyxYXY")
+    assert spiked == sm.apply_site(base, (1, 1, "x"))
+    g_spiked, info_spiked = sm.gamma_N(spiked)
+    assert g_spiked == 1
+    assert info_spiked["minimum_defect"] == 2
+    assert info_spiked["expected_cases"] == 3628800
+    assert info_spiked["defect_histogram"][2] == 2
+    assert g_spiked < g_base
+
+
 def test_tier2_is_deterministic_and_accounts_for_every_case():
     bases, _ = sm.enumerate_bases(5)
     a = sm.tier2(bases, n_bases=6, max_pairs_per_base=25)
