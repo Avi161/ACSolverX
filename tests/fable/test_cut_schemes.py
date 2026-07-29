@@ -418,16 +418,19 @@ def test_the_false_negative_shift_sets_are_exactly_the_recorded_ones():
     for words, expected in ((FALSE_NEGATIVE_1, {1}), (FALSE_NEGATIVE_2, {1, 3})):
         support = CS.classify_cut_support(words, quotient=False)
         decomp = support.decomposition
-        good = set()
-        schemes = list(CS.iter_schemes(decomp))
-        for index, (label, _layout) in enumerate(schemes):
-            single = CS.solve_with_scheme_indices(words, support, {index})
-            if single == CS.SPHERICAL:
-                good.add(index)
-        assert len(good) == len(expected), (words, good, len(schemes))
-        # the *set* of working shifts, read off the enumeration order, must be a proper
-        # non-empty subset -- i.e. the naive zero-shift scheme alone would say NO
-        assert 0 not in good, (words, good)
+        records = list(CS.iter_scheme_records(decomp))
+        # the central class is the bundle block whose BOTH poles are cut vertices; its
+        # shift lives at the cut vertex that is not its anchor pole, i.e. the second one
+        shift_vertex = max(plan.vertex for plan in decomp.cut_plans)
+        shifts = set()
+        for index, record in enumerate(records):
+            if CS.solve_with_scheme_indices(words, support, {index}) != CS.SPHERICAL:
+                continue
+            offsets = record.cut_offsets(shift_vertex)
+            shifts.add(max(offsets))
+        assert shifts == expected, (words, shifts, expected)
+        # the naive zero-shift scheme alone would answer NO: that is the false negative
+        assert 0 not in shifts
 
 
 # =====================================================================================

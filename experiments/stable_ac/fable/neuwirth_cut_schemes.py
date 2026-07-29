@@ -114,6 +114,8 @@ __all__ = [
     "decompose",
     "scheme_count",
     "iter_schemes",
+    "iter_scheme_records",
+    "SchemeRecord",
     "iter_scheme_rotations",
     "nc_partitions",
     "nc_rotation_classes",
@@ -961,15 +963,13 @@ def decompose(graph: MultiGraph, macro_budget: int = DEFAULT_MACRO_BUDGET,
         pinned = tuple(anchor.get(i) == v for i in bs)
         cut_plans.append(CutVertexPlan(v, bs, sizes, total, parts, pinned))
 
+    # |Sigma| = prod_blocks eps(B) * prod_{cut a} A(a), with the bundle blocks' 1/m of
+    # (7.1) realised as the pinned offset above rather than as a fraction (E4).
     space = Fraction(1)
-    raw = Fraction(1)
     for node in nodes:
         space *= node.effective_count()
-        raw *= node.count
     for plan in cut_plans:
         space *= plan.factor()
-        raw *= plan.unpinned_factor()
-    # sanity: the unpinned product is N(G) / prod (m! of non-bundle classes) ...
     if space.denominator != 1:
         raise AuditContradiction(f"scheme space {space} is not an integer (Lemma 7.4)")
     decomp = Decomposition(
@@ -1042,8 +1042,25 @@ def _merge_at_cut(plan: CutVertexPlan, block_layouts):
             yield (labelling, offsets), tuple(slot)
 
 
-def iter_schemes(decomp: Decomposition):
-    """Every scheme of ``Sigma`` as ``(label, {vertex: token tuple})``.
+@dataclass(frozen=True)
+class SchemeRecord:
+    """One element of ``Sigma``: its label, its germ layouts and its parameters."""
+
+    label: str
+    layout: dict
+    block_labels: tuple                    # per block, the block's internal scheme label
+    merge_params: tuple                    # per cut vertex, (vertex, partition, offsets)
+
+    def cut_offsets(self, vertex: int) -> tuple:
+        """The rotation offsets of the blocks at ``vertex`` (Theorem 6.S's shift)."""
+        for v, _partition, offsets in self.merge_params:
+            if v == vertex:
+                return offsets
+        raise KeyError(vertex)
+
+
+def iter_scheme_records(decomp: Decomposition):
+    """Every scheme of ``Sigma`` as a :class:`SchemeRecord`.
 
     The number of items is exactly :attr:`Decomposition.scheme_space`, which the callers
     re-check; each item is a complete set of germ layouts with every virtual token
@@ -1073,7 +1090,18 @@ def iter_schemes(decomp: Decomposition):
                 + [f"@{p.vertex}:{param[0]}/{param[1]}"
                    for p, (param, _s) in zip(plans, merge_choice)]
             )
-            yield label, layout
+            yield SchemeRecord(
+                label, layout,
+                tuple(lab for lab, _ in block_choice),
+                tuple((p.vertex, param[0], param[1])
+                      for p, (param, _s) in zip(plans, merge_choice)),
+            )
+
+
+def iter_schemes(decomp: Decomposition):
+    """Every scheme of ``Sigma`` as ``(label, {vertex: token tuple})``."""
+    for record in iter_scheme_records(decomp):
+        yield record.label, record.layout
 
 
 def _rank_assignments(classes):
