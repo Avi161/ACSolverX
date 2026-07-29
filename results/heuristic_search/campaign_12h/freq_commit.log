@@ -450,3 +450,13 @@ To https://github.com/avi161/acsolverx
    363bd19..d45a725  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
 [freq-commit] 06:54:23 pushed tip=d45a725
 RESULTS refreshed 24173 8712 3540 6400
+[cursor/heur-12h-anti-overfit-a42e d4bbcd3] heur: campaign jsonl checkpoint screen=24173 arms=8712 hard=3540 sgrid=6400
+ 5 files changed, 515 insertions(+), 4 deletions(-)
+[cursor/heur-12h-anti-overfit-a42e 109cc5d] logs: fill short SHA for jsonl checkpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/Avi161/ACSolverX.git        
+To https://github.com/avi161/acsolverx
+   d45a725..109cc5d  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
+[freq-commit] 06:57:24 pushed tip=109cc5d
+RESULTS refreshed 24173 8712 3540 6400
