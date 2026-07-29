@@ -1,0 +1,743 @@
+{
+ "kind": "R10_zeeman_collapse_battery",
+ "started_utc": "2026-07-29T21:53:25Z",
+ "anchors": [
+  {
+   "target": "ball3",
+   "f_vector": [
+    4,
+    6,
+    4,
+    1
+   ],
+   "n_faces": 15,
+   "euler": 1,
+   "downward_closed": true,
+   "n_free_faces": 4,
+   "homology": {
+    "0": {
+     "betti": 1,
+     "torsion": []
+    },
+    "1": {
+     "betti": 0,
+     "torsion": []
+    },
+    "2": {
+     "betti": 0,
+     "torsion": []
+    },
+    "3": {
+     "betti": 0,
+     "torsion": []
+    }
+   },
+   "expected": [
+    "yes",
+    "yes",
+    "yes"
+   ],
+   "base_collapsible_found": true,
+   "prism_f_vector": [
+    8,
+    22,
+    28,
+    17,
+    4
+   ],
+   "prism_n_faces": 79,
+   "onto_bottom_deterministic": {
+    "n_steps": 32,
+    "replay_ok": true
+   },
+   "prism_to_point_found": true,
+   "prism_to_point_restarts": 1,
+   "prism_to_point_cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_anchor_ball3_prism_to_point.json",
+    "replay_ok": true,
+    "n_steps": 39
+   },
+   "elapsed_s": 0.0
+  },
+  {
+   "target": "disc",
+   "f_vector": [
+    7,
+    12,
+    6
+   ],
+   "n_faces": 25,
+   "euler": 1,
+   "downward_closed": true,
+   "n_free_faces": 6,
+   "homology": {
+    "0": {
+     "betti": 1,
+     "torsion": []
+    },
+    "1": {
+     "betti": 0,
+     "torsion": []
+    },
+    "2": {
+     "betti": 0,
+     "torsion": []
+    }
+   },
+   "expected": [
+    "yes",
+    "yes",
+    "yes"
+   ],
+   "base_collapsible_found": true,
+   "prism_f_vector": [
+    14,
+    43,
+    48,
+    18
+   ],
+   "prism_n_faces": 123,
+   "onto_bottom_deterministic": {
+    "n_steps": 49,
+    "replay_ok": true
+   },
+   "prism_to_point_found": true,
+   "prism_to_point_restarts": 1,
+   "prism_to_point_cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_anchor_disc_prism_to_point.json",
+    "replay_ok": true,
+    "n_steps": 61
+   },
+   "elapsed_s": 0.0
+  },
+  {
+   "target": "trivial",
+   "f_vector": [
+    7,
+    15,
+    9
+   ],
+   "n_faces": 31,
+   "euler": 1,
+   "downward_closed": true,
+   "n_free_faces": 3,
+   "homology": {
+    "0": {
+     "betti": 1,
+     "torsion": []
+    },
+    "1": {
+     "betti": 0,
+     "torsion": []
+    },
+    "2": {
+     "betti": 0,
+     "torsion": []
+    }
+   },
+   "expected": [
+    "yes",
+    "yes",
+    "yes"
+   ],
+   "base_collapsible_found": true,
+   "prism_f_vector": [
+    14,
+    52,
+    66,
+    27
+   ],
+   "prism_n_faces": 159,
+   "onto_bottom_deterministic": {
+    "n_steps": 64,
+    "replay_ok": true
+   },
+   "prism_to_point_found": true,
+   "prism_to_point_restarts": 1,
+   "prism_to_point_cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_anchor_trivial_prism_to_point.json",
+    "replay_ok": true,
+    "n_steps": 79
+   },
+   "elapsed_s": 0.0
+  },
+  {
+   "target": "s2",
+   "f_vector": [
+    4,
+    6,
+    4
+   ],
+   "n_faces": 14,
+   "euler": 2,
+   "downward_closed": true,
+   "n_free_faces": 0,
+   "homology": {
+    "0": {
+     "betti": 1,
+     "torsion": []
+    },
+    "1": {
+     "betti": 0,
+     "torsion": []
+    },
+    "2": {
+     "betti": 1,
+     "torsion": []
+    }
+   },
+   "expected": [
+    "no",
+    "no",
+    "no"
+   ],
+   "base_collapsible_found": false,
+   "prism_f_vector": [
+    8,
+    22,
+    28,
+    12
+   ],
+   "prism_n_faces": 70,
+   "onto_bottom_deterministic": {
+    "n_steps": 28,
+    "replay_ok": true
+   },
+   "prism_to_point_found": false,
+   "prism_to_point_restarts": 14729,
+   "prism_to_point_best_left": 14,
+   "elapsed_s": 10.0
+  },
+  {
+   "target": "rp2",
+   "f_vector": [
+    10,
+    27,
+    18
+   ],
+   "n_faces": 55,
+   "euler": 1,
+   "downward_closed": true,
+   "n_free_faces": 0,
+   "homology": {
+    "0": {
+     "betti": 1,
+     "torsion": []
+    },
+    "1": {
+     "betti": 0,
+     "torsion": [
+      2
+     ]
+    },
+    "2": {
+     "betti": 0,
+     "torsion": []
+    }
+   },
+   "expected": [
+    "no",
+    "no",
+    "no"
+   ],
+   "base_collapsible_found": false,
+   "prism_f_vector": [
+    20,
+    91,
+    126,
+    54
+   ],
+   "prism_n_faces": 291,
+   "onto_bottom_deterministic": {
+    "n_steps": 118,
+    "replay_ok": true
+   },
+   "prism_to_point_found": false,
+   "prism_to_point_restarts": 3627,
+   "prism_to_point_best_left": 55,
+   "elapsed_s": 10.0
+  },
+  {
+   "target": "dunce",
+   "f_vector": [
+    13,
+    39,
+    27
+   ],
+   "n_faces": 79,
+   "euler": 1,
+   "downward_closed": true,
+   "n_free_faces": 0,
+   "homology": {
+    "0": {
+     "betti": 1,
+     "torsion": []
+    },
+    "1": {
+     "betti": 0,
+     "torsion": []
+    },
+    "2": {
+     "betti": 0,
+     "torsion": []
+    }
+   },
+   "expected": [
+    "yes",
+    "no",
+    "yes"
+   ],
+   "base_collapsible_found": false,
+   "prism_f_vector": [
+    26,
+    130,
+    186,
+    81
+   ],
+   "prism_n_faces": 423,
+   "onto_bottom_deterministic": {
+    "n_steps": 172,
+    "replay_ok": true
+   },
+   "prism_to_point_found": true,
+   "prism_to_point_restarts": 51,
+   "prism_to_point_cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_anchor_dunce_prism_to_point.json",
+    "replay_ok": true,
+    "n_steps": 211
+   },
+   "elapsed_s": 0.2
+  },
+  {
+   "target": "bing",
+   "f_vector": [
+    72,
+    237,
+    166
+   ],
+   "n_faces": 475,
+   "euler": 1,
+   "downward_closed": true,
+   "n_free_faces": 0,
+   "homology": {
+    "0": {
+     "betti": 1,
+     "torsion": []
+    },
+    "1": {
+     "betti": 0,
+     "torsion": []
+    },
+    "2": {
+     "betti": 0,
+     "torsion": []
+    }
+   },
+   "expected": [
+    "yes",
+    "no",
+    "yes-expected"
+   ],
+   "pi1_tietze": {
+    "gens_before": 166,
+    "rels_before": 166,
+    "gens_after": 0,
+    "rels_after": 0
+   },
+   "pi1_trivial_certified": true,
+   "base_collapsible_found": false,
+   "prism_f_vector": [
+    144,
+    783,
+    1138,
+    498
+   ],
+   "prism_n_faces": 2563,
+   "onto_bottom_deterministic": {
+    "n_steps": 1044,
+    "replay_ok": true
+   },
+   "prism_to_point_found": true,
+   "prism_to_point_restarts": 313,
+   "prism_to_point_cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_anchor_bing_prism_to_point.json",
+    "replay_ok": true,
+    "n_steps": 1281
+   },
+   "elapsed_s": 8.4
+  }
+ ],
+ "ladder": [
+  {
+   "label": "dunce_s3_L1",
+   "base_f_vector": [
+    13,
+    39,
+    27
+   ],
+   "base_n_faces": 79,
+   "base_free_faces": 0,
+   "layers": 1,
+   "prism_n_faces": 423,
+   "prism_f_vector": [
+    26,
+    130,
+    186,
+    81
+   ],
+   "hits": 222,
+   "runs": 6220,
+   "rate": 0.03569131832797428,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce_s3_L1.json",
+    "replay_ok": true,
+    "n_steps": 211
+   },
+   "first_hit_run": 16,
+   "first_hit_strategy": "top-lifo",
+   "wall_s": 25.0
+  },
+  {
+   "label": "dunce_s3_L2",
+   "base_f_vector": [
+    13,
+    39,
+    27
+   ],
+   "base_n_faces": 79,
+   "base_free_faces": 0,
+   "layers": 2,
+   "prism_n_faces": 767,
+   "prism_f_vector": [
+    39,
+    221,
+    345,
+    162
+   ],
+   "hits": 208,
+   "runs": 3194,
+   "rate": 0.06512210394489668,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce_s3_L2.json",
+    "replay_ok": true,
+    "n_steps": 383
+   },
+   "first_hit_run": 11,
+   "first_hit_strategy": "uniform-lifo",
+   "wall_s": 25.0
+  },
+  {
+   "label": "dunce_s4_L1",
+   "base_f_vector": [
+    17,
+    52,
+    36
+   ],
+   "base_n_faces": 105,
+   "base_free_faces": 0,
+   "layers": 1,
+   "prism_n_faces": 563,
+   "prism_f_vector": [
+    34,
+    173,
+    248,
+    108
+   ],
+   "hits": 169,
+   "runs": 4634,
+   "rate": 0.03646957272334916,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce_s4_L1.json",
+    "replay_ok": true,
+    "n_steps": 281
+   },
+   "first_hit_run": 75,
+   "first_hit_strategy": "uniform-lifo",
+   "wall_s": 25.0
+  },
+  {
+   "label": "dunce_s5_L1",
+   "base_f_vector": [
+    21,
+    65,
+    45
+   ],
+   "base_n_faces": 131,
+   "base_free_faces": 0,
+   "layers": 1,
+   "prism_n_faces": 703,
+   "prism_f_vector": [
+    42,
+    216,
+    310,
+    135
+   ],
+   "hits": 229,
+   "runs": 3575,
+   "rate": 0.06405594405594406,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce_s5_L1.json",
+    "replay_ok": true,
+    "n_steps": 351
+   },
+   "first_hit_run": 15,
+   "first_hit_strategy": "uniform-lifo",
+   "wall_s": 25.0
+  },
+  {
+   "label": "dunce_s6_L1",
+   "base_f_vector": [
+    25,
+    78,
+    54
+   ],
+   "base_n_faces": 157,
+   "base_free_faces": 0,
+   "layers": 1,
+   "prism_n_faces": 843,
+   "prism_f_vector": [
+    50,
+    259,
+    372,
+    162
+   ],
+   "hits": 96,
+   "runs": 2544,
+   "rate": 0.03773584905660377,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce_s6_L1.json",
+    "replay_ok": true,
+    "n_steps": 421
+   },
+   "first_hit_run": 82,
+   "first_hit_strategy": "top-lifo",
+   "wall_s": 25.0
+  },
+  {
+   "label": "dunce+2pad_L1",
+   "base_f_vector": [
+    25,
+    69,
+    45
+   ],
+   "base_n_faces": 139,
+   "base_free_faces": 6,
+   "layers": 1,
+   "prism_n_faces": 735,
+   "prism_f_vector": [
+    50,
+    232,
+    318,
+    135
+   ],
+   "hits": 132,
+   "runs": 2656,
+   "rate": 0.04969879518072289,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce+2pad_L1.json",
+    "replay_ok": true,
+    "n_steps": 367
+   },
+   "first_hit_run": 15,
+   "first_hit_strategy": "uniform-lifo",
+   "wall_s": 25.1
+  },
+  {
+   "label": "dunce+4pad_L1",
+   "base_f_vector": [
+    37,
+    99,
+    63
+   ],
+   "base_n_faces": 199,
+   "base_free_faces": 12,
+   "layers": 1,
+   "prism_n_faces": 1047,
+   "prism_f_vector": [
+    74,
+    334,
+    450,
+    189
+   ],
+   "hits": 110,
+   "runs": 1791,
+   "rate": 0.06141820212171971,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce+4pad_L1.json",
+    "replay_ok": true,
+    "n_steps": 523
+   },
+   "first_hit_run": 4,
+   "first_hit_strategy": "top-lifo",
+   "wall_s": 25.1
+  },
+  {
+   "label": "dunce+6pad_L1",
+   "base_f_vector": [
+    49,
+    129,
+    81
+   ],
+   "base_n_faces": 259,
+   "base_free_faces": 18,
+   "layers": 1,
+   "prism_n_faces": 1359,
+   "prism_f_vector": [
+    98,
+    436,
+    582,
+    243
+   ],
+   "hits": 46,
+   "runs": 1350,
+   "rate": 0.034074074074074076,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce+6pad_L1.json",
+    "replay_ok": true,
+    "n_steps": 679
+   },
+   "first_hit_run": 45,
+   "first_hit_strategy": "uniform-lifo",
+   "wall_s": 25.2
+  },
+  {
+   "label": "dunce+8pad_L1",
+   "base_f_vector": [
+    61,
+    159,
+    99
+   ],
+   "base_n_faces": 319,
+   "base_free_faces": 24,
+   "layers": 1,
+   "prism_n_faces": 1671,
+   "prism_f_vector": [
+    122,
+    538,
+    714,
+    297
+   ],
+   "hits": 52,
+   "runs": 1054,
+   "rate": 0.04933586337760911,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce+8pad_L1.json",
+    "replay_ok": true,
+    "n_steps": 835
+   },
+   "first_hit_run": 49,
+   "first_hit_strategy": "uniform-lifo",
+   "wall_s": 25.3
+  },
+  {
+   "label": "dunce+10pad_L1",
+   "base_f_vector": [
+    73,
+    189,
+    117
+   ],
+   "base_n_faces": 379,
+   "base_free_faces": 30,
+   "layers": 1,
+   "prism_n_faces": 1983,
+   "prism_f_vector": [
+    146,
+    640,
+    846,
+    351
+   ],
+   "hits": 34,
+   "runs": 759,
+   "rate": 0.04479578392621871,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": true,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_dunce+10pad_L1.json",
+    "replay_ok": true,
+    "n_steps": 991
+   },
+   "first_hit_run": 50,
+   "first_hit_strategy": "top-lifo",
+   "wall_s": 25.4
+  },
+  {
+   "label": "bing_L1",
+   "base_f_vector": [
+    72,
+    237,
+    166
+   ],
+   "base_n_faces": 475,
+   "base_free_faces": 0,
+   "layers": 1,
+   "prism_n_faces": 2563,
+   "prism_f_vector": [
+    144,
+    783,
+    1138,
+    498
+   ],
+   "hits": 0,
+   "runs": 835,
+   "rate": 0.0,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": false,
+   "wall_s": 25.0
+  },
+  {
+   "label": "bing_L2",
+   "base_f_vector": [
+    72,
+    237,
+    166
+   ],
+   "base_n_faces": 475,
+   "base_free_faces": 0,
+   "layers": 2,
+   "prism_n_faces": 4651,
+   "prism_f_vector": [
+    216,
+    1329,
+    2110,
+    996
+   ],
+   "hits": 1,
+   "runs": 542,
+   "rate": 0.0018450184501845018,
+   "elapsed_s": 25.0,
+   "positive_guaranteed": false,
+   "cert": {
+    "path": "results/stable_ac/fable/zeeman_certs/zeeman_cert_ladder_bing_L2.json",
+    "replay_ok": true,
+    "n_steps": 2325
+   },
+   "first_hit_run": 281,
+   "first_hit_strategy": "uniform-lifo",
+   "wall_s": 26.0
+  }
+ ],
+ "targets": [],
+ "certificates": [],
+ "notes": [
+  "One-sided instrument: a collapse is a replayable certificate, a failure is silence. Read phase C only against phase B's measured hit rates."
+ ],
+ "updated_utc": "2026-07-29T21:58:56Z"
+}

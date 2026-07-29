@@ -359,6 +359,42 @@ def cylinder_collapse_sequence(cx: Complex, layers: int = 1) -> List[Tuple[Face,
     return seq
 
 
+def partial_cylinder_prefix(cx: Complex, removed: Sequence[Face],
+                            layers: int = 1) -> List[Tuple[Face, Face]]:
+    """Collapse ``K x I`` onto ``(K x {0}) union (L x I)`` where ``L = K \\ removed``.
+
+    ``removed`` must be a set of MAXIMAL faces of ``cx`` (so that ``L`` is still a
+    subcomplex).  Same argument as :func:`cylinder_collapse_sequence`, restricted to
+    the simplices outside ``L``: because ``L`` is closed, no simplex outside ``L`` has
+    a coface inside ``L``, so sweeping ``K \\ L`` in decreasing dimension still meets
+    every ``S_i`` while it is maximal.
+
+    This is the search's structural opening move.  The MEASURED plateau of an
+    unguided collapse of ``K x I`` is "residual = a full copy of ``K``", and every
+    ``K`` this route cares about has no free face, so that residual is terminal.  A
+    prefix that spends the prism over a chosen handful of 2-cells forces the search
+    to start from a state where those 2-cells are already gone from one copy.
+    """
+    verts = cx.vertices()
+    n = max(verts) + 1
+    rem = {tuple(sorted(f)) for f in removed}
+    for f in rem:
+        if f not in cx.faces:
+            raise ValueError(f"{f} is not a face of the complex")
+        if any(f != g and set(f) < set(g) for g in cx.faces):
+            raise ValueError(f"{f} is not maximal, so K \\ removed is not a complex")
+    order = sorted(rem, key=lambda f: (-len(f), f))
+    seq: List[Tuple[Face, Face]] = []
+    for j in range(layers - 1, -1, -1):
+        for sigma in order:
+            d = len(sigma) - 1
+            lo = tuple(v + j * n for v in sigma)
+            hi = tuple(v + (j + 1) * n for v in sigma)
+            for i in range(d + 1):
+                seq.append((lo[:i] + hi[i:], lo[: i + 1] + hi[i:]))
+    return seq
+
+
 def simplex_ball(d: int) -> Complex:
     """The full ``d``-simplex (a collapsible ``d``-ball)."""
     return Complex.from_facets([tuple(range(d + 1))], name=f"simplex^{d}")
@@ -591,6 +627,28 @@ class CollapseEngine:
                 self.free_set.discard(f)
                 return f
 
+    def remove_face(self, sigma: Face) -> Face:
+        """Delete a single MAXIMAL face (a "critical cell" removal, not a collapse)."""
+        if self.up.get(sigma):
+            raise ValueError(f"{sigma} is not maximal")
+        if sigma not in self.present:
+            raise ValueError(f"{sigma} is not present")
+        for s in _subfacets(sigma):
+            if s in self.up:
+                self.up[s].discard(sigma)
+        del self.up[sigma]
+        self.present.discard(sigma)
+        self.free_set.discard(sigma)
+        dirty = {s for s in _subfacets(sigma) if s in self.present}
+        recheck = set(dirty)
+        for f in dirty:
+            for s in _subfacets(f):
+                if s in self.present:
+                    recheck.add(s)
+        for f in recheck:
+            self._refresh(f)
+        return sigma
+
     def collapse(self, tau: Face) -> Tuple[Face, Face]:
         """Perform the elementary collapse at the free face ``tau``."""
         for sigma in self.up[tau]:
@@ -621,16 +679,62 @@ def run_collapse(
     protected: Iterable[Face] = (),
     noise: float = 0.0,
     score=None,
+    prefix: Sequence[Tuple[Face, Face]] = (),
 ) -> Tuple[List[Tuple[Face, Face]], Set[Face]]:
-    """Collapse greedily until stuck.  Returns ``(sequence, residual face set)``."""
+    """Collapse greedily until stuck.  Returns ``(sequence, residual face set)``.
+
+    ``prefix`` is a forced opening: a list of ``(tau, sigma)`` pairs replayed before
+    the randomized part starts.  It is how a *structural* opening move is injected --
+    see ``partial_cylinder_prefix``.
+    """
     eng = CollapseEngine(faces, protected, rng, score)
-    seq: List[Tuple[Face, Face]] = []
+    seq: List[Tuple[Face, Face]] = [eng.collapse(tau) for (tau, _s) in prefix]
     while True:
         tau = eng.pick(rng, strategy, noise)
         if tau is None:
             break
         seq.append(eng.collapse(tau))
     return seq, eng.present
+
+
+def random_discrete_morse(
+    faces: Iterable[Face],
+    rng: random.Random,
+    strategy: str = "uniform-lifo",
+    score=None,
+) -> Dict[str, object]:
+    """One Benedetti--Lutz style randomized discrete-Morse sweep.
+
+    Collapse greedily; when stuck, delete one uniformly random maximal face of the
+    current top dimension, counting it as a **critical cell**, and carry on until the
+    complex is empty.  The returned ``morse`` vector counts critical cells per
+    dimension and always satisfies ``sum (-1)^d c_d = chi``.
+
+    Why this exists: a plain yes/no collapse search reports "no" identically for a
+    complex that misses by one critical pair and for one that misses by fifty.  The
+    Morse vector grades the near-miss, and ``morse == [1, 0, ..., 0]`` is exactly
+    collapsibility -- so a hit here is still a certificate.
+
+    DIRECTION OF THE BOUND (this matters): the vector returned is an UPPER bound on
+    the minimum over all sweeps.  Small vectors are evidence of nothing but their own
+    existence; a large minimum over many sweeps is NOT a proof of non-collapsibility.
+    """
+    eng = CollapseEngine(faces, (), rng, score)
+    crit: Dict[int, int] = {}
+    while eng.present:
+        tau = eng.pick(rng, strategy)
+        if tau is not None:
+            eng.collapse(tau)
+            continue
+        d = max(len(f) for f in eng.present) - 1
+        cands = [f for f in eng.present if len(f) - 1 == d]
+        sigma = cands[rng.randrange(len(cands))]
+        crit[d] = crit.get(d, 0) + 1
+        eng.remove_face(sigma)
+    maxd = max(crit) if crit else 0
+    vec = [crit.get(d, 0) for d in range(maxd + 1)]
+    return {"morse": vec, "total_critical": sum(vec),
+            "euler_check": sum((-1) ** d * c for d, c in enumerate(vec))}
 
 
 def _residual_ok(residual: Set[Face], target: str, protected: FrozenSet[Face]) -> bool:
@@ -652,6 +756,7 @@ def search_collapse(
     noise: float = 0.0,
     verbose: bool = False,
     score=None,
+    prefix: Sequence[Tuple[Face, Face]] = (),
 ) -> Dict[str, object]:
     """Restarted randomized free-face collapse search.
 
@@ -670,7 +775,8 @@ def search_collapse(
         used = r + 1
         strategy = strategies[r % len(strategies)]
         rng = random.Random((seed * 1_000_003) ^ (r * 2_654_435_761))
-        seq, residual = run_collapse(faces, rng, strategy, protected, noise, score)
+        seq, residual = run_collapse(faces, rng, strategy, protected, noise, score,
+                                     prefix)
         if _residual_ok(residual, target, protected):
             return {
                 "success": True,
@@ -1154,6 +1260,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     default=["uniform-lifo", "top-lifo", "uniform", "top"])
     ap.add_argument("--noise", type=float, default=0.0)
     ap.add_argument("--search", default="restart", choices=("restart", "rollback"))
+    ap.add_argument("--score", default="copy",
+                    choices=("none", "copy", "interior", "extreme", "dim0"),
+                    help="level-score partition used by the picker (see "
+                         "prism_level_score); only meaningful in product modes")
+    ap.add_argument("--rollback-mode", default="powerlaw",
+                    choices=("uniform", "powerlaw"))
     ap.add_argument("--out", default=None)
     ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args(argv)
@@ -1171,10 +1283,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     protected: Iterable[Face] = ()
     target = "point"
+    score = None
     if args.mode == "base":
         work = cx
     else:
         work, bottom = prism(cx, args.layers)
+        score = prism_level_score(work.stride, work.layers, args.score)
         print(f"[prism] layers={args.layers}  f={work.f_vector()}  "
               f"chi={work.euler_characteristic()}  faces={work.n_faces()}", flush=True)
         if args.mode == "onto-bottom":
@@ -1186,7 +1300,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         res = search_collapse_rollback(
             work, iterations=args.restarts, seed=args.seed,
             strategies=tuple(args.strategies), target=target, protected=protected,
-            time_budget=args.time_budget, noise=args.noise, verbose=args.verbose)
+            time_budget=args.time_budget, noise=args.noise, verbose=args.verbose,
+            score=score, rollback_mode=args.rollback_mode)
         res.setdefault("restarts_used", res.get("iterations_used"))
         res.setdefault("restart_index", None)
         res.setdefault("strategy", ",".join(args.strategies))
@@ -1194,7 +1309,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         res = search_collapse(work, restarts=args.restarts, seed=args.seed,
                               strategies=tuple(args.strategies), target=target,
                               protected=protected, time_budget=args.time_budget,
-                              noise=args.noise, verbose=args.verbose)
+                              noise=args.noise, verbose=args.verbose, score=score)
     res["target"] = label
     res["mode"] = args.mode
     res["layers"] = args.layers
