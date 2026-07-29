@@ -382,3 +382,308 @@ wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESUL
   [arms] +220 remain=11.50h 20.75/s
   [arms] +240 remain=11.50h 21.51/s
   [arms] +260 remain=11.50h 16.33/s
+  [arms] +280 remain=11.50h 15.97/s
+  [arms] +300 remain=11.50h 15.01/s
+  [arms] +320 remain=11.50h 15.06/s
+  [arms] +340 remain=11.50h 14.42/s
+  [arms] +360 remain=11.50h 14.38/s
+  [arms] +380 remain=11.50h 13.31/s
+  [arms] +400 remain=11.50h 13.25/s
+  [arms] +420 remain=11.50h 13.74/s
+  [arms] +440 remain=11.50h 13.45/s
+  [arms] +460 remain=11.50h 13.35/s
+  [arms] +480 remain=11.50h 12.41/s
+  [arms] +500 remain=11.49h 12.24/s
+  [arms] +520 remain=11.49h 11.70/s
+  [arms] +540 remain=11.49h 11.28/s
+  [arms] +560 remain=11.49h 11.51/s
+  [arms] +580 remain=11.49h 11.46/s
+  [arms] +600 remain=11.49h 11.34/s
+  [arms] +620 remain=11.49h 11.47/s
+  [arms] +640 remain=11.49h 11.60/s
+  [arms] +660 remain=11.49h 11.59/s
+  [arms] +680 remain=11.49h 11.49/s
+  [arms] +700 remain=11.49h 11.56/s
+  [arms] +720 remain=11.49h 11.79/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 4 remain=11.49h ===
+[screen] resume 6500 done; target 8000
+  [screen] +50 (6550 total) 10.35/s remain=11.49h
+  [screen] +100 (6600 total) 13.81/s remain=11.49h
+  [screen] +150 (6650 total) 13.86/s remain=11.49h
+  [screen] +200 (6700 total) 14.65/s remain=11.49h
+  [screen] +250 (6750 total) 13.50/s remain=11.48h
+  [screen] +300 (6800 total) 13.45/s remain=11.48h
+  [screen] +350 (6850 total) 12.50/s remain=11.48h
+  [screen] +400 (6900 total) 11.69/s remain=11.48h
+  [screen] +450 (6950 total) 11.66/s remain=11.48h
+  [screen] +500 (7000 total) 12.26/s remain=11.48h
+  [screen] +550 (7050 total) 12.32/s remain=11.48h
+  [screen] +600 (7100 total) 12.81/s remain=11.48h
+  [screen] +650 (7150 total) 12.45/s remain=11.47h
+  [screen] +700 (7200 total) 12.56/s remain=11.47h
+  [screen] +750 (7250 total) 12.50/s remain=11.47h
+  [screen] +800 (7300 total) 12.77/s remain=11.47h
+  [screen] +850 (7350 total) 12.91/s remain=11.47h
+  [screen] +900 (7400 total) 13.02/s remain=11.47h
+  [screen] +950 (7450 total) 12.97/s remain=11.47h
+  [screen] +1000 (7500 total) 13.15/s remain=11.47h
+  [screen] +1050 (7550 total) 13.18/s remain=11.47h
+  [screen] +1100 (7600 total) 12.90/s remain=11.47h
+  [screen] +1150 (7650 total) 12.59/s remain=11.46h
+  [screen] +1200 (7700 total) 12.70/s remain=11.46h
+  [screen] +1250 (7750 total) 12.60/s remain=11.46h
+  [screen] +1300 (7800 total) 12.74/s remain=11.46h
+  [screen] +1350 (7850 total) 12.83/s remain=11.46h
+  [screen] +1400 (7900 total) 12.91/s remain=11.46h
+  [screen] +1450 (7950 total) 12.85/s remain=11.46h
+  [screen] +1500 (8000 total) 12.86/s remain=11.46h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=5133 mid=1526 hard=1341
+[arms] 580 targets; 5022 cells done
+  [arms] +20 remain=11.46h 13.94/s
+  [arms] +40 remain=11.46h 13.45/s
+  [arms] +60 remain=11.46h 17.26/s
+  [arms] +80 remain=11.46h 16.96/s
+  [arms] +100 remain=11.45h 19.18/s
+  [arms] +120 remain=11.45h 15.26/s
+  [arms] +140 remain=11.45h 15.98/s
+  [arms] +160 remain=11.45h 15.83/s
+  [arms] +180 remain=11.45h 17.12/s
+  [arms] +200 remain=11.45h 17.74/s
+  [arms] +220 remain=11.45h 17.45/s
+  [arms] +240 remain=11.45h 17.75/s
+  [arms] +260 remain=11.45h 17.60/s
+  [arms] +280 remain=11.45h 16.53/s
+  [arms] +300 remain=11.45h 16.72/s
+  [arms] +320 remain=11.45h 16.27/s
+  [arms] +340 remain=11.45h 15.52/s
+  [arms] +360 remain=11.45h 15.93/s
+  [arms] +380 remain=11.45h 15.85/s
+  [arms] +400 remain=11.45h 16.28/s
+  [arms] +420 remain=11.45h 15.90/s
+  [arms] +440 remain=11.45h 15.21/s
+  [arms] +460 remain=11.45h 14.68/s
+  [arms] +480 remain=11.45h 14.41/s
+  [arms] +500 remain=11.45h 13.82/s
+  [arms] +520 remain=11.45h 13.31/s
+  [arms] +540 remain=11.44h 12.94/s
+  [arms] +560 remain=11.44h 13.03/s
+  [arms] +580 remain=11.44h 12.95/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 5 remain=11.44h ===
+[screen] resume 8000 done; target 9500
+  [screen] +50 (8050 total) 7.84/s remain=11.44h
+  [screen] +100 (8100 total) 9.10/s remain=11.44h
+  [screen] +150 (8150 total) 9.40/s remain=11.44h
+  [screen] +200 (8200 total) 9.64/s remain=11.44h
+  [screen] +250 (8250 total) 9.92/s remain=11.44h
+  [screen] +300 (8300 total) 10.00/s remain=11.44h
+  [screen] +350 (8350 total) 10.11/s remain=11.43h
+  [screen] +400 (8400 total) 10.43/s remain=11.43h
+  [screen] +450 (8450 total) 11.24/s remain=11.43h
+  [screen] +500 (8500 total) 10.76/s remain=11.43h
+  [screen] +550 (8550 total) 10.76/s remain=11.43h
+  [screen] +600 (8600 total) 11.05/s remain=11.43h
+  [screen] +650 (8650 total) 11.16/s remain=11.43h
+  [screen] +700 (8700 total) 11.17/s remain=11.43h
+  [screen] +750 (8750 total) 11.51/s remain=11.43h
+  [screen] +800 (8800 total) 11.24/s remain=11.42h
+  [screen] +850 (8850 total) 11.38/s remain=11.42h
+  [screen] +900 (8900 total) 11.52/s remain=11.42h
+  [screen] +950 (8950 total) 11.62/s remain=11.42h
+  [screen] +1000 (9000 total) 11.73/s remain=11.42h
+  [screen] +1050 (9050 total) 11.76/s remain=11.42h
+  [screen] +1100 (9100 total) 11.52/s remain=11.42h
+  [screen] +1150 (9150 total) 11.54/s remain=11.42h
+  [screen] +1200 (9200 total) 11.59/s remain=11.42h
+  [screen] +1250 (9250 total) 11.73/s remain=11.41h
+  [screen] +1300 (9300 total) 11.89/s remain=11.41h
+  [screen] +1350 (9350 total) 11.92/s remain=11.41h
+  [screen] +1400 (9400 total) 11.76/s remain=11.41h
+  [screen] +1450 (9450 total) 11.76/s remain=11.41h
+  [screen] +1500 (9500 total) 11.81/s remain=11.41h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=6090 mid=1793 hard=1617
+[arms] 580 targets; 5616 cells done
+  [arms] +20 remain=11.41h 6.67/s
+  [arms] +40 remain=11.41h 7.97/s
+  [arms] +60 remain=11.41h 11.44/s
+  [arms] +80 remain=11.41h 13.34/s
+  [arms] +100 remain=11.41h 13.74/s
+  [arms] +120 remain=11.41h 12.05/s
+  [arms] +140 remain=11.41h 12.63/s
+  [arms] +160 remain=11.41h 13.39/s
+  [arms] +180 remain=11.41h 14.43/s
+  [arms] +200 remain=11.40h 15.49/s
+  [arms] +220 remain=11.40h 15.32/s
+  [arms] +240 remain=11.40h 16.12/s
+  [arms] +260 remain=11.40h 14.45/s
+  [arms] +280 remain=11.40h 14.43/s
+  [arms] +300 remain=11.40h 13.45/s
+  [arms] +320 remain=11.40h 14.03/s
+  [arms] +340 remain=11.40h 13.56/s
+  [arms] +360 remain=11.40h 13.46/s
+  [arms] +380 remain=11.40h 12.63/s
+  [arms] +400 remain=11.40h 12.86/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 6 remain=11.40h ===
+[screen] resume 9500 done; target 11000
+  [screen] +50 (9550 total) 6.84/s remain=11.40h
+  [screen] +100 (9600 total) 9.50/s remain=11.40h
+  [screen] +150 (9650 total) 9.94/s remain=11.40h
+  [screen] +200 (9700 total) 9.24/s remain=11.39h
+  [screen] +250 (9750 total) 9.66/s remain=11.39h
+  [screen] +300 (9800 total) 10.21/s remain=11.39h
+  [screen] +350 (9850 total) 11.05/s remain=11.39h
+  [screen] +400 (9900 total) 10.86/s remain=11.39h
+  [screen] +450 (9950 total) 11.05/s remain=11.39h
+  [screen] +500 (10000 total) 11.34/s remain=11.39h
+  [screen] +550 (10050 total) 11.49/s remain=11.39h
+  [screen] +600 (10100 total) 11.81/s remain=11.39h
+  [screen] +650 (10150 total) 11.69/s remain=11.38h
+  [screen] +700 (10200 total) 11.72/s remain=11.38h
+  [screen] +750 (10250 total) 11.87/s remain=11.38h
+  [screen] +800 (10300 total) 11.61/s remain=11.38h
+  [screen] +850 (10350 total) 11.76/s remain=11.38h
+  [screen] +900 (10400 total) 11.89/s remain=11.38h
+  [screen] +950 (10450 total) 11.67/s remain=11.38h
+  [screen] +1000 (10500 total) 11.42/s remain=11.38h
+  [screen] +1050 (10550 total) 11.49/s remain=11.37h
+  [screen] +1100 (10600 total) 11.58/s remain=11.37h
+  [screen] +1150 (10650 total) 11.76/s remain=11.37h
+  [screen] +1200 (10700 total) 11.86/s remain=11.37h
+  [screen] +1250 (10750 total) 11.87/s remain=11.37h
+  [screen] +1300 (10800 total) 11.85/s remain=11.37h
+  [screen] +1350 (10850 total) 11.79/s remain=11.37h
+  [screen] +1400 (10900 total) 11.72/s remain=11.37h
+  [screen] +1450 (10950 total) 11.79/s remain=11.37h
+  [screen] +1500 (11000 total) 11.60/s remain=11.36h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=7033 mid=2081 hard=1886
+[arms] 580 targets; 6030 cells done
+  [arms] +20 remain=11.36h 20.13/s
+  [arms] +40 remain=11.36h 11.66/s
+  [arms] +60 remain=11.36h 12.73/s
+  [arms] +80 remain=11.36h 15.59/s
+  [arms] +100 remain=11.36h 16.85/s
+  [arms] +120 remain=11.36h 17.57/s
+  [arms] +140 remain=11.36h 18.10/s
+  [arms] +160 remain=11.36h 19.48/s
+  [arms] +180 remain=11.36h 16.98/s
+  [arms] +200 remain=11.36h 16.87/s
+  [arms] +220 remain=11.36h 15.04/s
+  [arms] +240 remain=11.36h 14.99/s
+  [arms] +260 remain=11.36h 15.76/s
+  [arms] +280 remain=11.36h 15.35/s
+  [arms] +300 remain=11.36h 15.92/s
+  [arms] +320 remain=11.36h 15.53/s
+  [arms] +340 remain=11.36h 16.18/s
+  [arms] +360 remain=11.36h 16.47/s
+  [arms] +380 remain=11.36h 15.99/s
+  [arms] +400 remain=11.36h 15.95/s
+  [arms] +420 remain=11.36h 16.10/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 7 remain=11.36h ===
+[screen] resume 11000 done; target 12500
+  [screen] +50 (11050 total) 8.36/s remain=11.35h
+  [screen] +100 (11100 total) 9.29/s remain=11.35h
+  [screen] +150 (11150 total) 10.71/s remain=11.35h
+  [screen] +200 (11200 total) 11.07/s remain=11.35h
+  [screen] +250 (11250 total) 11.88/s remain=11.35h
+  [screen] +300 (11300 total) 11.90/s remain=11.35h
+  [screen] +350 (11350 total) 12.18/s remain=11.35h
+  [screen] +400 (11400 total) 11.95/s remain=11.35h
+  [screen] +450 (11450 total) 12.44/s remain=11.35h
+  [screen] +500 (11500 total) 12.26/s remain=11.34h
+  [screen] +550 (11550 total) 12.11/s remain=11.34h
+  [screen] +600 (11600 total) 11.97/s remain=11.34h
+  [screen] +650 (11650 total) 12.14/s remain=11.34h
+  [screen] +700 (11700 total) 12.11/s remain=11.34h
+  [screen] +750 (11750 total) 12.32/s remain=11.34h
+  [screen] +800 (11800 total) 12.34/s remain=11.34h
+  [screen] +850 (11850 total) 12.46/s remain=11.34h
+  [screen] +900 (11900 total) 12.79/s remain=11.34h
+  [screen] +950 (11950 total) 12.45/s remain=11.34h
+  [screen] +1000 (12000 total) 12.47/s remain=11.33h
+  [screen] +1050 (12050 total) 12.22/s remain=11.33h
+  [screen] +1100 (12100 total) 12.39/s remain=11.33h
+  [screen] +1150 (12150 total) 12.30/s remain=11.33h
+  [screen] +1200 (12200 total) 12.23/s remain=11.33h
+  [screen] +1250 (12250 total) 12.20/s remain=11.33h
+  [screen] +1300 (12300 total) 12.33/s remain=11.33h
+  [screen] +1350 (12350 total) 12.35/s remain=11.33h
+  [screen] +1400 (12400 total) 12.43/s remain=11.32h
+  [screen] +1450 (12450 total) 12.21/s remain=11.32h
+  [screen] +1500 (12500 total) 12.28/s remain=11.32h
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[band] easy=7990 mid=2369 hard=2141
+[arms] 580 targets; 6450 cells done
+  [arms] +20 remain=11.32h 21.90/s
+  [arms] +40 remain=11.32h 13.87/s
+  [arms] +60 remain=11.32h 15.94/s
+  [arms] +80 remain=11.32h 17.60/s
+  [arms] +100 remain=11.32h 18.40/s
+  [arms] +120 remain=11.32h 19.13/s
+  [arms] +140 remain=11.32h 18.59/s
+  [arms] +160 remain=11.32h 20.02/s
+  [arms] +180 remain=11.32h 18.47/s
+  [arms] +200 remain=11.32h 19.30/s
+  [arms] +220 remain=11.32h 18.40/s
+  [arms] +240 remain=11.32h 17.60/s
+  [arms] +260 remain=11.32h 14.84/s
+  [arms] +280 remain=11.32h 15.23/s
+  [arms] +300 remain=11.32h 15.50/s
+  [arms] +320 remain=11.32h 16.01/s
+  [arms] +340 remain=11.32h 16.50/s
+  [arms] +360 remain=11.32h 16.41/s
+  [arms] +380 remain=11.32h 16.83/s
+  [arms] +400 remain=11.32h 16.97/s
+  [arms] +420 remain=11.31h 15.89/s
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+[null] 75 clean ms640 rows; 300 done
+wrote /workspace/.worktrees/heur-12h/results/heuristic_search/campaign_12h/RESULTS.md
+
+=== round 8 remain=11.31h ===
+[screen] resume 12500 done; target 14000
+  [screen] +50 (12550 total) 6.90/s remain=11.31h
+  [screen] +100 (12600 total) 8.62/s remain=11.31h
+  [screen] +150 (12650 total) 8.29/s remain=11.31h
+  [screen] +200 (12700 total) 9.09/s remain=11.31h
+  [screen] +250 (12750 total) 9.24/s remain=11.31h
+  [screen] +300 (12800 total) 9.54/s remain=11.31h
+  [screen] +350 (12850 total) 9.66/s remain=11.30h
+  [screen] +400 (12900 total) 10.12/s remain=11.30h
+  [screen] +450 (12950 total) 10.15/s remain=11.30h
+  [screen] +500 (13000 total) 10.53/s remain=11.30h
+  [screen] +550 (13050 total) 10.72/s remain=11.30h
+  [screen] +600 (13100 total) 10.90/s remain=11.30h
+  [screen] +650 (13150 total) 11.24/s remain=11.30h
+  [screen] +700 (13200 total) 11.58/s remain=11.30h
+  [screen] +750 (13250 total) 11.54/s remain=11.30h
+  [screen] +800 (13300 total) 11.65/s remain=11.30h
+  [screen] +850 (13350 total) 11.57/s remain=11.29h
+  [screen] +900 (13400 total) 11.81/s remain=11.29h
+  [screen] +950 (13450 total) 11.47/s remain=11.29h
+  [screen] +1000 (13500 total) 11.60/s remain=11.29h
+  [screen] +1050 (13550 total) 11.52/s remain=11.29h
+  [screen] +1100 (13600 total) 11.33/s remain=11.29h
+  [screen] +1150 (13650 total) 11.39/s remain=11.29h
+  [screen] +1200 (13700 total) 11.51/s remain=11.29h
+  [screen] +1250 (13750 total) 11.55/s remain=11.28h
+  [screen] +1300 (13800 total) 11.42/s remain=11.28h
+  [screen] +1350 (13850 total) 11.61/s remain=11.28h
+  [screen] +1400 (13900 total) 11.54/s remain=11.28h
+  [screen] +1450 (13950 total) 11.40/s remain=11.28h

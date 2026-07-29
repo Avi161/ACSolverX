@@ -1,8 +1,8 @@
 {
-  "phase": "screen_done",
+  "phase": "null",
   "exclude_n": 1367,
-  "updated": "2026-07-29T02:31:21.098376+00:00",
-  "remaining_h": 11.506361559722222,
-  "screen_n": 6500,
-  "round": 3
+  "updated": "2026-07-29T02:42:50.251184+00:00",
+  "remaining_h": 11.314930224722222,
+  "screen_n": 12500,
+  "round": 7
 }
