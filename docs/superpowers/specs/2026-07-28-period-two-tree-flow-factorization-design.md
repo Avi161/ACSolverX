@@ -121,11 +121,20 @@ Class-two collection proves $B$ is biadditive modulo two and
 S(X+Y) = C + U(X) + U(Y) + B(X,Y).
 ```
 
-Integral coefficients require the period-four self term
-$\binom n2\bmod2$; a parity-only coefficient model is insufficient.  The
-certificate pins the exact near-survivor factorization and a three-direction
-biadditivity fixture, plus coefficient values through one complete mod-four
-period.  The proof note supplies the general polynomial-law argument.
+For the final fifteen mod-two exterior-wedge functionals, the polarization is
+alternating and the syndrome factors through the homogeneous direction modulo
+two.  The only odd $\binom n2$ term in the canonical coordinatewise lift lies
+in the tensor diagonal $e_v\otimes e_v$; the corrected-residual circuit
+preserves that diagonal modulo two, and exterior projection kills it.  Thus
+there is no surviving binomial self term in these fifteen bits.  A genuine
+period-four pattern `0,0,1,1,0` exists one layer lower in the pre-wedge Magnus
+tensor and must be labelled as such rather than used as a syndrome state.
+
+The certificate pins the exact near-survivor factorization, a three-direction
+biadditivity fixture, zero self-polarization, and coefficient replay through
+zero to four showing exact period two.  Bounded checks over the depth-six
+anchored atoms and the eleven tracked directions support, but do not replace,
+the general tensor-diagonal/exterior-wedge proof.
 
 ### 4. Explicit no-Markov layer
 
@@ -189,7 +198,9 @@ Focused tests must establish:
    classes;
 5. the exact near-survivor unary/bilinear factorization and biadditivity
    fixtures hold;
-6. coefficient behavior retains the mod-four self term;
+6. the final syndrome has zero self-polarization and exact coefficient period
+   two, while an optional pre-wedge fixture isolates the killed period-four
+   tensor diagonal;
 7. the two near-survivors have identical finite summaries;
 8. their $c,t,T$ extension syndromes differ exactly as pinned; and
 9. the existing subgroup/source/census tests remain green.

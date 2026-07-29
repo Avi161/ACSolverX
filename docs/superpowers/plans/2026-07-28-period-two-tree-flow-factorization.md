@@ -56,8 +56,13 @@ no claim about the period-two lift, stable AC, or AC.
 - [ ] Implement fifteen-bit `syndrome` using the tracked projected evaluator
   plus the full wedge sum, with `Phi_infinity` last.
 - [ ] Implement `polarization`; pin the exact near-survivor constant/unary/
-  cross bitstrings, a three-direction biadditivity identity, and one complete
-  mod-four coefficient period.
+  cross bitstrings, a three-direction biadditivity identity, alternating
+  self-polarization, and coefficient replay through zero to four with exact
+  period two.
+- [ ] Record the general conclusion that the fifteen-bit syndrome factors
+  through homogeneous directions modulo two.  If a period-four fixture is
+  retained, label it strictly as the pre-wedge tensor diagonal
+  $\binom n2 e_v\otimes e_v$, whose exterior projection is zero.
 - [ ] Implement the explicitly defined finite pair summary.  Assert the two
   near-survivors collide in this summary and their `c,t,T` extensions have the
   six pinned distinct syndromes.
@@ -78,7 +83,9 @@ no claim about the period-two lift, stable AC, or AC.
 - [ ] State flow uniqueness/linearity only for canonical module vectors;
   document the normalization repair and that paths are not invariant.
 - [ ] Prove anchored decomposition and the general class-two affine-quadratic
-  law, including the mod-four diagonal term.
+  law.  Prove that the only odd binomial term is tensor-diagonal, the word
+  circuit preserves that subspace modulo two, and exterior projection kills
+  it; hence the final fifteen-bit polarization is alternating and period two.
 - [ ] State the no-Markov fixture exactly and limit it to the defined summary.
   Do not claim no larger finite automaton exists.
 - [ ] Replace the old transition target in both ledgers with the two open

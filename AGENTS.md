@@ -1316,3 +1316,8 @@
 
 - [TRAP] `depth4_period_two_lift_certificate.clean_vector` uses a dict comprehension and therefore assumes its input keys are already canonical. Raw keys such as `()` and `(C,)` represent the same `c_vertex`; passing both through `clean_vector` overwrites rather than sums their coefficients.
 - [WORKS] Normalize externally supplied source dictionaries with `lift.add_vectors(source)` (or an explicit `defaultdict` aggregation after `c_vertex`) before calling exact source-flow code. Reserve `clean_vector` for maps already known to have one key per canonical vertex, and pin cancellation/multiplicity collisions in a focused test.
+
+### 2026-07-28 Separate Magnus diagonals from exterior-wedge syndromes
+
+- [TRAP] A generic integer-valued class-two model suggested a mod-four $\binom n2$ self term for the fifteen final obstruction bits, but the only odd binomial contribution of the canonical coordinatewise lift lies in the tensor diagonal $e_v\otimes e_v$.
+- [WORKS] On finitely supported homogeneous directions, the corrected-residual circuit preserves that diagonal modulo two and exterior projection kills it. The fourteen projected bits plus `Phi_infinity` therefore factor through direction coefficients modulo two and have alternating polarization. Keep the genuine `0,0,1,1,0` period-four pattern labelled as a pre-wedge Magnus-tensor fixture, never as a surviving wedge syndrome.
