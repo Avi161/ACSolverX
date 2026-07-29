@@ -270,8 +270,93 @@ def prism(cx: Complex, layers: int = 1, name: str = "") -> Tuple[Complex, Set[Fa
             for i in range(d + 1):
                 facets.append(lo[: i + 1] + hi[i:])
     out = Complex.from_facets(facets, name or f"{cx.name} x I")
+    # stride/layers let callers recover the I-coordinate of a vertex: level = v // stride.
+    out.stride = n          # type: ignore[attr-defined]
+    out.layers = layers     # type: ignore[attr-defined]
     bottom = frozenset(cx.faces)
     return out, set(bottom)
+
+
+def prism_level_score(stride: int, layers: int, mode: str):
+    """A per-face integer score for the level structure of ``prism(...)`` output.
+
+    Lower is "more preferred" under the ``-min`` pick suffix.  The modes exist
+    because of a MEASURED attractor: with an unbiased picker, greedy collapse of
+    ``K x I`` almost always eats the interior first and gets stuck with residual
+    exactly ``K x {0}`` -- and for every ``K`` this route cares about, ``K`` itself has
+    no free face at all, so that residual is terminal.  Biasing the picker by where a
+    face sits in the ``I`` direction is the direct lever on that attractor.
+
+    * ``none``     -- every face scores 0 (the original unbiased behaviour).
+    * ``copy``     -- 0 for faces inside a single level (a copy ``K x {j}``), 1 for
+                      faces that straddle levels.  With ``-min`` this eats the flat
+                      copies first, so the 2-faces that survive into the endgame are
+                      the straddling ones rather than a full copy of ``K``.
+    * ``interior`` -- the reverse of ``copy``.
+    * ``extreme``  -- 0 for faces inside the bottom or top copy, 1 for other flat
+                      faces (only possible when ``layers >= 2``), 2 for straddling.
+    * ``dim0``     -- 0 for faces inside the bottom copy only.
+    """
+    if mode not in ("none", "copy", "interior", "extreme", "dim0"):
+        raise ValueError(f"unknown level score mode {mode!r}")
+
+    def score(f: Face) -> int:
+        if mode == "none":
+            return 0
+        lv = {v // stride for v in f}
+        flat = len(lv) == 1
+        if mode == "copy":
+            return 0 if flat else 1
+        if mode == "interior":
+            return 1 if flat else 0
+        if mode == "dim0":
+            return 0 if (flat and next(iter(lv)) == 0) else 1
+        # extreme
+        if not flat:
+            return 2
+        j = next(iter(lv))
+        return 0 if j in (0, layers) else 1
+
+    return score
+
+
+def cylinder_collapse_sequence(cx: Complex, layers: int = 1) -> List[Tuple[Face, Face]]:
+    """An EXPLICIT, search-free collapse ``K x [0, layers]  \\searrow  K x {0}``.
+
+    This is leg (a) of the certificate and it needs no luck: for the staircase
+    triangulation the collapse can be written down.  Over one simplex
+    ``sigma = [v_0 < ... < v_d]`` and one layer the prism has the ``d+1`` top cells
+
+        S_i = [v_0..v_i, v_i', ..., v_d']            (i = 0..d)
+
+    and the ``d+1`` faces that are neither in the bottom copy nor in ``d(sigma) x I``
+
+        tau_i = S_i \\ {v_i} = [v_0..v_{i-1}, v_i', ..., v_d'] .
+
+    ``tau_i`` has exactly the two cofaces ``S_{i-1}`` and ``S_i`` inside the prism, so
+    after ``S_{i-1}`` is gone ``tau_i`` is free; ``tau_0`` is free from the start.
+    Collapsing ``(tau_i, S_i)`` for ``i = 0..d`` therefore removes exactly the faces of
+    ``sigma x I`` that lie in neither ``sigma x {0}`` nor ``d(sigma) x I``.  Sweeping
+    ``sigma`` in order of DECREASING dimension makes every ``S_i`` maximal when it is
+    reached, and sweeping the layers from the top down chains the layers together.
+
+    The output is meant to be handed straight to :func:`verify_collapse_sequence` with
+    ``target="subcomplex"`` and ``protected=K x {0}``.
+    """
+    verts = cx.vertices()
+    if not verts:
+        raise ValueError("empty complex")
+    n = max(verts) + 1
+    order = sorted(cx.faces, key=lambda f: (-len(f), f))
+    seq: List[Tuple[Face, Face]] = []
+    for j in range(layers - 1, -1, -1):
+        for sigma in order:
+            d = len(sigma) - 1
+            lo = tuple(v + j * n for v in sigma)
+            hi = tuple(v + (j + 1) * n for v in sigma)
+            for i in range(d + 1):
+                seq.append((lo[:i] + hi[i:], lo[: i + 1] + hi[i:]))
+    return seq
 
 
 def simplex_ball(d: int) -> Complex:
@@ -374,18 +459,22 @@ class CollapseEngine:
     immediate coface ``sigma`` and ``sigma`` is maximal, which is what is tracked.
     """
 
-    __slots__ = ("present", "up", "buckets", "free_set", "protected", "maxdim")
+    __slots__ = ("present", "up", "buckets", "free_set", "protected", "maxdim", "score")
 
     def __init__(self, faces: Iterable[Face], protected: Iterable[Face] = (),
-                 rng: Optional[random.Random] = None):
+                 rng: Optional[random.Random] = None,
+                 score=None):
         self.present: Set[Face] = set(faces)
         self.protected: FrozenSet[Face] = frozenset(protected)
+        self.score = score
         self.up: Dict[Face, Set[Face]] = {f: set() for f in self.present}
         for f in self.present:
             for s in _subfacets(f):
                 self.up[s].add(f)
         self.maxdim = max((len(f) for f in self.present), default=1) - 1
-        self.buckets: Dict[int, List[Face]] = {d: [] for d in range(self.maxdim + 1)}
+        # buckets are keyed by (dimension, level-score); the score partition is what a
+        # ``-min`` / ``-max`` pick suffix selects on.
+        self.buckets: Dict[Tuple[int, int], List[Face]] = {}
         self.free_set: Set[Face] = set()
         for f in sorted(self.present):
             self._refresh(f)
@@ -408,11 +497,14 @@ class CollapseEngine:
             return False
         return not self.up[sigma]
 
+    def _key(self, f: Face) -> Tuple[int, int]:
+        return (len(f) - 1, 0 if self.score is None else self.score(f))
+
     def _refresh(self, f: Face) -> None:
         if self._is_free(f):
             if f not in self.free_set:
                 self.free_set.add(f)
-                self.buckets[len(f) - 1].append(f)
+                self.buckets.setdefault(self._key(f), []).append(f)
         else:
             self.free_set.discard(f)
 
@@ -421,38 +513,71 @@ class CollapseEngine:
              noise: float = 0.0) -> Optional[Face]:
         """Pop a free face, or ``None`` when the complex is stuck.
 
-        ``strategy`` fixes which dimension bucket is drawn from
-        (``uniform`` / ``top`` / ``bottom``) and, after a ``-lifo`` / ``-fifo``
-        suffix, which end of that bucket is taken.  Because freshly freed faces are
-        appended, ``-lifo`` makes the collapse sweep locally through the complex
-        instead of hopping around at random -- the single change that gets the
-        larger products past their plateau.  ``noise`` is the probability of taking
-        a uniformly random element of the bucket instead.
+        ``strategy`` is ``<dim>[-<order>][-<score>]``:
+
+        * ``<dim>``   -- ``uniform`` (uniform over all free faces), ``top`` (highest
+          dimension available) or ``bottom`` (lowest);
+        * ``<order>`` -- ``lifo`` / ``fifo`` / ``rand`` (default: ``rand``).  Freshly
+          freed faces are appended, so ``-lifo`` makes the collapse sweep *locally*
+          through the complex instead of hopping around at random.  This is the
+          locality fix for the plateau of a purely random picker;
+        * ``<score>`` -- ``min`` / ``max``: within the chosen dimension, restrict to the
+          best level-score class (see :func:`prism_level_score`).  Absent, the score
+          classes are pooled in proportion to their size, which reproduces the
+          unbiased behaviour exactly.
+
+        ``noise`` is the probability of ignoring the order/score preference for one
+        pick and taking a uniformly random free face of the chosen dimension instead.
         """
-        base, _, order_mode = strategy.partition("-")
-        if order_mode not in ("", "lifo", "fifo", "rand"):
-            raise ValueError(f"unknown pick order {order_mode!r}")
+        parts = strategy.split("-")
+        base = parts[0]
+        order_mode = ""
+        score_mode = ""
+        for p in parts[1:]:
+            if p in ("lifo", "fifo", "rand"):
+                order_mode = p
+            elif p in ("min", "max"):
+                score_mode = p
+            elif p == "":
+                continue
+            else:
+                raise ValueError(f"unknown pick token {p!r} in {strategy!r}")
         while True:
-            sizes = [(d, len(b)) for d, b in self.buckets.items() if b]
-            if not sizes:
+            live = [(k, len(b)) for k, b in self.buckets.items() if b]
+            if not live:
                 return None
+            dims = {k[0] for k, _ in live}
             if base == "top":
-                d = max(d for d, _ in sizes)
+                d = max(dims)
             elif base == "bottom":
-                d = min(d for d, _ in sizes)
+                d = min(dims)
             elif base == "uniform":
-                total = sum(n for _, n in sizes)
+                total = sum(n for _, n in live)
                 r = rng.randrange(total)
-                d = sizes[-1][0]
-                for dd, n in sizes:
+                d = live[-1][0][0]
+                for k, n in live:
                     if r < n:
-                        d = dd
+                        d = k[0]
                         break
                     r -= n
             else:
                 raise ValueError(f"unknown strategy {strategy!r}")
-            bucket = self.buckets[d]
+            here = [(k, n) for k, n in live if k[0] == d]
             greedy = noise <= 0.0 or rng.random() >= noise
+            if score_mode == "min" and greedy:
+                key = min(k for k, _ in here)
+            elif score_mode == "max" and greedy:
+                key = max(k for k, _ in here)
+            else:
+                total = sum(n for _, n in here)
+                r = rng.randrange(total)
+                key = here[-1][0]
+                for k, n in here:
+                    if r < n:
+                        key = k
+                        break
+                    r -= n
+            bucket = self.buckets[key]
             if order_mode == "lifo" and greedy:
                 f = bucket.pop()
             elif order_mode == "fifo" and greedy:
@@ -495,9 +620,10 @@ def run_collapse(
     strategy: str = "uniform",
     protected: Iterable[Face] = (),
     noise: float = 0.0,
+    score=None,
 ) -> Tuple[List[Tuple[Face, Face]], Set[Face]]:
     """Collapse greedily until stuck.  Returns ``(sequence, residual face set)``."""
-    eng = CollapseEngine(faces, protected, rng)
+    eng = CollapseEngine(faces, protected, rng, score)
     seq: List[Tuple[Face, Face]] = []
     while True:
         tau = eng.pick(rng, strategy, noise)
@@ -525,6 +651,7 @@ def search_collapse(
     time_budget: Optional[float] = None,
     noise: float = 0.0,
     verbose: bool = False,
+    score=None,
 ) -> Dict[str, object]:
     """Restarted randomized free-face collapse search.
 
@@ -543,7 +670,7 @@ def search_collapse(
         used = r + 1
         strategy = strategies[r % len(strategies)]
         rng = random.Random((seed * 1_000_003) ^ (r * 2_654_435_761))
-        seq, residual = run_collapse(faces, rng, strategy, protected, noise)
+        seq, residual = run_collapse(faces, rng, strategy, protected, noise, score)
         if _residual_ok(residual, target, protected):
             return {
                 "success": True,
@@ -589,6 +716,8 @@ def search_collapse_rollback(
     restart_after: int = 300,
     noise: float = 0.0,
     verbose: bool = False,
+    score=None,
+    rollback_mode: str = "uniform",
 ) -> Dict[str, object]:
     """Iterated local search: greedy-to-stuck, then undo a random tail and retry.
 
@@ -598,6 +727,17 @@ def search_collapse_rollback(
     re-randomising from there explores far more of the collapse tree per second.
     Same guarantee as ``search_collapse``: a success is a certificate, a failure is
     silence.
+
+    ``rollback_mode``:
+
+    * ``uniform``  -- drop a uniform number of steps in ``rollback = (lo, hi)``;
+    * ``powerlaw`` -- drop ``ceil(len(seq) * u**3)`` steps with ``u`` uniform, i.e. a
+      heavy-tailed mixture of short and very long undos, floored at ``lo``.  This is
+      the mode that matters for ``K x I``: the measured plateau is "residual = a full
+      copy of ``K``", and reaching it requires having *preserved* every 2-face of that
+      copy, so the decisive choices are spread over the whole sequence rather than
+      concentrated in its last few dozen steps.  A bounded tail undo provably cannot
+      repair that, which a uniform ``(1, 40)`` rollback keeps trying to do.
     """
     protected = frozenset(protected)
     faces = cx.faces
@@ -613,7 +753,7 @@ def search_collapse_rollback(
         it += 1
         if time_budget is not None and time.time() - t0 > time_budget:
             break
-        eng = CollapseEngine(faces, protected, rng)
+        eng = CollapseEngine(faces, protected, rng, score)
         for (tau, _sigma) in cur:
             eng.collapse(tau)
         strategy = strategies[it % len(strategies)]
@@ -650,7 +790,12 @@ def search_collapse_rollback(
             stale = 0
             continue
         lo, hi = rollback
-        drop = rng.randint(lo, hi)
+        if rollback_mode == "powerlaw":
+            drop = max(lo, int(len(base) * rng.random() ** 3) + 1)
+        elif rollback_mode == "uniform":
+            drop = rng.randint(lo, hi)
+        else:
+            raise ValueError(f"unknown rollback_mode {rollback_mode!r}")
         cur = base[: max(0, len(base) - drop)]
     return {
         "success": False,
