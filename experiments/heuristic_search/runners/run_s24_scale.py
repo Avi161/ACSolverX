@@ -35,7 +35,9 @@ run_ab.ARMS.update({
     "s24": _cfg(L=1.0, S=24.0),   # campaign hard-recovery leader
     "s28": _cfg(L=1.0, S=28.0),
     "s8": _cfg(L=1.0, S=8.0),
+    "s20_mk2": _cfg(L=1.0, S=20.0, MK=2.0),   # Aut-tune interim S+MK leader
     "s20_mk8": _cfg(L=1.0, S=20.0, MK=8.0),
+    "s24_k1_mk2": _cfg(L=1.0, S=24.0, K=1.0, MK=2.0),  # interim S+K+MK
     "recommended": RECOMMENDED,
     "baseline": None,
 })
