@@ -1,0 +1,539 @@
+[
+ {
+  "words": [
+   "xyXY",
+   "yzYZ",
+   "zxZX"
+  ],
+  "degrees": {
+   "x": 4,
+   "y": 4,
+   "z": 4
+  },
+  "support": "octahedron K2,2,2 (3-connected planar)",
+  "expected_cases": 216,
+  "defect_histogram": {
+   "0": 2,
+   "2": 16,
+   "4": 126,
+   "6": 72
+  },
+  "minimum_genus": 0,
+  "n_accepting": 2,
+  "link_components": [
+   1
+  ],
+  "note": "T3 presentation; YES fixture; 2 accepting = Whitney reflections; matches rank-n count 2*prod(m!)=2"
+ },
+ {
+  "words": [
+   "yzXYZy",
+   "zzxzxxx"
+  ],
+  "degrees": {
+   "y": 3,
+   "z": 5,
+   "x": 5
+  },
+  "support_edges": [
+   [
+    "x+",
+    "x-"
+   ],
+   [
+    "x+",
+    "y-"
+   ],
+   [
+    "x+",
+    "z-"
+   ],
+   [
+    "x-",
+    "z+"
+   ],
+   [
+    "x-",
+    "z-"
+   ],
+   [
+    "y+",
+    "y-"
+   ],
+   [
+    "y+",
+    "z+"
+   ],
+   [
+    "y+",
+    "z-"
+   ],
+   [
+    "y-",
+    "z+"
+   ],
+   [
+    "z+",
+    "z-"
+   ]
+  ],
+  "expected_cases": 1152,
+  "defect_histogram": {
+   "2": 2,
+   "4": 132,
+   "6": 778,
+   "8": 240
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ },
+ {
+  "words": [
+   "xZYZZZZ",
+   "yxxxy"
+  ],
+  "degrees": {
+   "x": 4,
+   "z": 5,
+   "y": 3
+  },
+  "support_edges": [
+   [
+    "x+",
+    "x-"
+   ],
+   [
+    "x+",
+    "y-"
+   ],
+   [
+    "x+",
+    "z+"
+   ],
+   [
+    "x-",
+    "y+"
+   ],
+   [
+    "x-",
+    "z-"
+   ],
+   [
+    "y+",
+    "y-"
+   ],
+   [
+    "y+",
+    "z-"
+   ],
+   [
+    "y-",
+    "z+"
+   ],
+   [
+    "z+",
+    "z-"
+   ]
+  ],
+  "expected_cases": 288,
+  "defect_histogram": {
+   "2": 8,
+   "4": 120,
+   "6": 160
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ },
+ {
+  "words": [
+   "xxZYzY",
+   "ZYXYYZ"
+  ],
+  "degrees": {
+   "x": 3,
+   "z": 4,
+   "y": 5
+  },
+  "support_edges": [
+   [
+    "x+",
+    "x-"
+   ],
+   [
+    "x+",
+    "y+"
+   ],
+   [
+    "x+",
+    "y-"
+   ],
+   [
+    "x-",
+    "y+"
+   ],
+   [
+    "x-",
+    "z-"
+   ],
+   [
+    "y+",
+    "y-"
+   ],
+   [
+    "y+",
+    "z+"
+   ],
+   [
+    "y+",
+    "z-"
+   ],
+   [
+    "y-",
+    "z+"
+   ],
+   [
+    "y-",
+    "z-"
+   ],
+   [
+    "z+",
+    "z-"
+   ]
+  ],
+  "expected_cases": 288,
+  "defect_histogram": {
+   "2": 6,
+   "4": 120,
+   "6": 162
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ },
+ {
+  "words": [
+   "ZY",
+   "xzXZxYY"
+  ],
+  "degrees": {
+   "z": 3,
+   "y": 3,
+   "x": 3
+  },
+  "support_edges": [
+   [
+    "x+",
+    "y+"
+   ],
+   [
+    "x+",
+    "z+"
+   ],
+   [
+    "x+",
+    "z-"
+   ],
+   [
+    "x-",
+    "y-"
+   ],
+   [
+    "x-",
+    "z+"
+   ],
+   [
+    "x-",
+    "z-"
+   ],
+   [
+    "y+",
+    "y-"
+   ],
+   [
+    "y+",
+    "z-"
+   ],
+   [
+    "y-",
+    "z+"
+   ]
+  ],
+  "expected_cases": 8,
+  "defect_histogram": {
+   "2": 4,
+   "4": 4
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ },
+ {
+  "words": [
+   "XyZyXY",
+   "xZYxz"
+  ],
+  "degrees": {
+   "x": 4,
+   "y": 4,
+   "z": 3
+  },
+  "support_edges": [
+   [
+    "x+",
+    "y+"
+   ],
+   [
+    "x+",
+    "y-"
+   ],
+   [
+    "x+",
+    "z-"
+   ],
+   [
+    "x-",
+    "y+"
+   ],
+   [
+    "x-",
+    "y-"
+   ],
+   [
+    "x-",
+    "z+"
+   ],
+   [
+    "x-",
+    "z-"
+   ],
+   [
+    "y+",
+    "z+"
+   ],
+   [
+    "y-",
+    "z+"
+   ],
+   [
+    "y-",
+    "z-"
+   ]
+  ],
+  "expected_cases": 72,
+  "defect_histogram": {
+   "2": 10,
+   "4": 42,
+   "6": 20
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ },
+ {
+  "words": [
+   "yXZYZ",
+   "yyZXX"
+  ],
+  "degrees": {
+   "y": 4,
+   "x": 3,
+   "z": 3
+  },
+  "support_edges": [
+   [
+    "x+",
+    "x-"
+   ],
+   [
+    "x+",
+    "y+"
+   ],
+   [
+    "x+",
+    "z-"
+   ],
+   [
+    "x-",
+    "y-"
+   ],
+   [
+    "x-",
+    "z+"
+   ],
+   [
+    "y+",
+    "y-"
+   ],
+   [
+    "y+",
+    "z+"
+   ],
+   [
+    "y+",
+    "z-"
+   ],
+   [
+    "y-",
+    "z+"
+   ],
+   [
+    "y-",
+    "z-"
+   ]
+  ],
+  "expected_cases": 24,
+  "defect_histogram": {
+   "2": 4,
+   "4": 20
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ },
+ {
+  "words": [
+   "yXzy",
+   "ZXXZy"
+  ],
+  "degrees": {
+   "y": 3,
+   "x": 3,
+   "z": 3
+  },
+  "support_edges": [
+   [
+    "x+",
+    "x-"
+   ],
+   [
+    "x+",
+    "z+"
+   ],
+   [
+    "x+",
+    "z-"
+   ],
+   [
+    "x-",
+    "y-"
+   ],
+   [
+    "x-",
+    "z+"
+   ],
+   [
+    "y+",
+    "y-"
+   ],
+   [
+    "y+",
+    "z+"
+   ],
+   [
+    "y+",
+    "z-"
+   ],
+   [
+    "y-",
+    "z-"
+   ]
+  ],
+  "expected_cases": 8,
+  "defect_histogram": {
+   "2": 6,
+   "4": 2
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ },
+ {
+  "words": [
+   "xYYXXy",
+   "ZyzYxZX"
+  ],
+  "degrees": {
+   "x": 5,
+   "y": 5,
+   "z": 3
+  },
+  "support_edges": [
+   [
+    "x+",
+    "x-"
+   ],
+   [
+    "x+",
+    "y+"
+   ],
+   [
+    "x+",
+    "y-"
+   ],
+   [
+    "x+",
+    "z-"
+   ],
+   [
+    "x-",
+    "y+"
+   ],
+   [
+    "x-",
+    "y-"
+   ],
+   [
+    "x-",
+    "z+"
+   ],
+   [
+    "x-",
+    "z-"
+   ],
+   [
+    "y+",
+    "y-"
+   ],
+   [
+    "y+",
+    "z+"
+   ],
+   [
+    "y-",
+    "z+"
+   ],
+   [
+    "y-",
+    "z-"
+   ]
+  ],
+  "expected_cases": 1152,
+  "defect_histogram": {
+   "2": 4,
+   "4": 114,
+   "6": 758,
+   "8": 276
+  },
+  "minimum_genus": 1,
+  "n_accepting": 0,
+  "link_components": [
+   1
+  ]
+ }
+]
