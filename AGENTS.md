@@ -1428,3 +1428,18 @@
 
 - [TRAP] Running `python3 experiments/stable_ac/thickenable/ak3_aut_frontier_certificate.py --write` failed before manifest ingestion with `ModuleNotFoundError: No module named 'experiments'` because package-qualified imports require the repository root on `sys.path`.
 - [WORKS] Invoke package drivers with `python3 -m experiments.stable_ac.thickenable.<module>`. After an early command failure, verify result artifacts are still absent before retrying the correct entry point.
+
+### 2026-07-29 Canonicalize periodic powered schemas at the primitive core
+
+- [TRAP] Using the nonprimitive 24-letter `Gamma`/`U` cyclic cores as collision keys missed equal module-word functions whose common primitive 8-letter cores were phase-shifted. The raw xor happened to survive, but the claimed integral collision fibers were false.
+- [WORKS] Reduce every periodic base to a common primitive cyclic core, retain its exponent multiplier and phase, and prove functional equality if and only if canonical-key equality for every schema pair on every Presburger cell before aggregating integral collision fibers.
+
+### 2026-07-29 Keep scratch certificates compatible with the workspace Python
+
+- [TRAP] The workspace system Python is 3.9.6 and rejects `zip(..., strict=True)` with `TypeError: zip() takes no keyword arguments`.
+- [WORKS] In directly replayable scratch certificates, assert the input lengths explicitly and then use plain `zip`; do not rely on post-3.9 convenience arguments.
+
+### 2026-07-29 Prove raw observables from pumped prefixes, not powered grids
+
+- [TRAP] A 13-by-13 diagnostic rebuilt and scanned complete long powered raw palindromes, exceeded the 30-second foreground cap, and had to be interrupted even though the target was a bounded-prefix observable.
+- [WORKS] Cache one word per schema, prove raw observables from action-cancellation prefixes and pumped templates, and restrict diagnostic replay to the disjoint cell bases. Interrupt and verify exit whenever a raw powered grid crosses the cap.
