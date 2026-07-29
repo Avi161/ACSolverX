@@ -220,9 +220,9 @@ of P and P⁺ are in canonical bijection C ↔ C⁺. For corresponding rotations
 So the ENTIRE defect histogram — not just the minimum — is preserved:
 γ_N(P⁺) = γ_N(P), and the full multiset of defects matches bin by bin. The same holds
 for relator z⁻¹ (relator inversion preserves the full defect histogram —
-GAMMA_N_SYMMETRY_LEMMA.md; FLAG inherited per audit item F6: that lemma's own
-adversarial audit is still pending, though the R1e auditor hand-verified the inversion
-bijection including the load-bearing 1-corner case N = 1). Consequently γ_N of the
+GAMMA_N_SYMMETRY_LEMMA.md; flag CLEARED 29-07 ~13:25 UTC: that lemma's own adversarial
+audit returned SOUND — all clauses verified including N = 1 and N = 2 — and its
+recommended notational repairs are applied in place). Consequently γ_N of the
 EXACT complex is invariant under exact stabilization AC4 and destabilization AC5 (legal
 exactly when the last relator is z^{±1} and z occurs nowhere else — precisely the
 1-edge-component shape). Novelty rescoped (audit repair F3): this is the first

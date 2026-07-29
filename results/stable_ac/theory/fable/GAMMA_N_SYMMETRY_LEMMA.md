@@ -2,9 +2,13 @@
 relator permutation (fable line, 29-07-2026)
 
 Claim addressed: canonicalization soundness for all γ_N censuses/dedup on this line (used
-by R1d). Status: proof below + independent computational confirmation (advisor's
-implementation reproduced both codex histograms and verified invariance on AK(3)/orbit-2);
-adversarial audit still to be run on the written proof.
+by R1d). Status: AUDITED — adversarial audit 29-07 ~13:25 UTC returned SOUND (all three
+clauses verified independently including N = 1 and N = 2 edge cases; every cited
+non-invariance machine-confirmed; recommended notational repairs F1–F3, F5–F6 applied in
+this revision). Machine checks: four presentations × {rotation, inversion, swap,
+composite} all bit-identical histograms; multiplication 0→1 counterexample confirmed
+(("yxx","y") {0:1} → ("yxxy","y") {2:2}); Aut(F₂) x↦xy non-invariance {0:1}→{0:2,2:4};
+reduction non-invariance ("xxX") {0:2} vs ("x") {0:1}.
 
 **Lemma.** Let P = ⟨g₁..gₙ | w₁..w_m⟩ be as in the Neuwirth setting (exact nonempty cyclic
 words). Each of the following operations induces a bijection of compatible rotation
@@ -13,13 +17,17 @@ compatible count, and γ_N are unchanged:
 (i) cyclic rotation of any wⱼ; (ii) replacing any wⱼ by wⱼ⁻¹; (iii) permuting the
 relators.
 
-**Proof.** In each case we exhibit a germ-preserving bijection β of the dart set E
-intertwining the structure: β A β⁻¹ = A′, β B β⁻¹ = B′, ν′∘β = ν. Conjugation by such a β
-maps compatible C′ (for the new data) to compatible β⁻¹C′β... equivalently C ↦ βCβ⁻¹ maps
-the old compatible set bijectively onto the new (compatibility C_{τv} = B C_v⁻¹ B is
-preserved because β intertwines B and preserves germs, and τ acts on germs only), and the
-defect |A| − |C| + 2L − |AC| is preserved because cycle/orbit counts are invariant under
-simultaneous conjugation.
+**Proof.** In each case we exhibit a germ-preserving bijection β : E′ → E from the new
+dart set to the old, intertwining the structure: β A′ β⁻¹ = A, β B′ β⁻¹ = B, ν∘β = ν′
+(audit repair F1: one consistent direction convention throughout; case (ii) below is
+stated in exactly this direction). Then C′ := β⁻¹Cβ satisfies C′_{τv} = β⁻¹C_{τv}β =
+β⁻¹ B C_v⁻¹ B β = B′ C′_v⁻¹ B′, so C ↦ β⁻¹Cβ maps the old compatible set bijectively
+onto the new (audit repair F2: the constraint set is τ-symmetric, so no direction issue
+arises), and the defect |A| − |C| + 2L − |AC| is preserved because cycle counts are
+invariant under conjugation and L is the orbit count of ⟨A,C⟩ ↦ β⁻¹⟨A,C⟩β. Compatibility
+also requires the cycles of C to be exactly the occupied-germ fibers (|C| = #present
+germs); this is preserved because ν∘β = ν′ makes β a bijection of germ fibers (audit
+repair F3).
 
 (i) Rotation renames occurrence indices cyclically within wⱼ; take β = identity on darts
 under the induced renaming: A, B, ν are literally unchanged as permutations of the
@@ -43,8 +51,15 @@ Hence A′ = βAβ⁻¹ up to the renaming, and the bijection of compatible syst
 rᵢ → rᵢrⱼ — AC2 in the project convention, which fixes AC1 = invert, AC2 = multiply,
 AC3 = conjugate (naming corrected 29-07 during the R1e audit; an earlier revision of this
 line called the move "AC1", the numbering-trap the advisor's ground truth warns about)
-(codex two-line counterexample: γ_N jumps 0→1), Aut(F₂) images (relabel changes words
-arbitrarily), and free/cyclic REDUCTION (the exact complex changes: states 23, 24 of the
-P25 path have A-loops exactly until reduced). The canonical key for censuses is therefore
-the lex-min over rotations × inversions × relator permutations, computed on exact
-(unreduced) words — reduction is a separate, recorded step.
+(codex two-line counterexample: γ_N jumps 0→1, machine-confirmed ("yxx","y") → ("yxxy","y")),
+GENERAL Aut(F₂) images (audit repair F5: pure generator relabelings/inversions ARE
+histogram symmetries — machine-confirmed x↔y identity — but general images are not:
+x ↦ xy sends {0:1} to {0:2, 2:4}), and free/cyclic REDUCTION (the exact complex changes:
+states 23, 24 of the P25 path have A-loops exactly until reduced). The canonical key for
+censuses is therefore the lex-min over rotations × inversions × relator permutations,
+computed on exact (unreduced) words — reduction is a separate, recorded step. Deployment
+boundary (audit note F6): the deployed harvest key (`rank3_stable_harvest.canon_relator`)
+composes cyclic reduction BEFORE the lex-min; that is sound only under the R1d convention
+that the census population consists of the reduced states, which R1d records — keep that
+convention documented at every new call site rather than folding reduction into this
+lemma's claim.
