@@ -1403,3 +1403,8 @@
 
 - [TRAP] Printing full command lines from a broad process scan can expose credentials embedded in unrelated application-worker arguments even when the audit target is only ACSolverX proof/test runtimes.
 - [WORKS] Resolve process identity locally, but redact values following credential-bearing flags (`--api-key`, `--token`, `--secret`, authorization headers, and key-like environment assignments) before any tool output is surfaced. Report only the exact PID/tree/evidence needed for the stale-process decision, and omit unrelated application infrastructure.
+
+### 2026-07-29 Run focused tests through the approved uv cache
+
+- [TRAP] The system interpreter has no `pytest`, while a sandboxed `uv run` cannot open the existing cache under `/Users/avigyapaudel/.cache/uv`; both fail before collection and say nothing about the branch.
+- [WORKS] Run focused suites in the foreground with the approved `uv run --with pytest --with numba --with numpy python3 -m pytest ...` environment. Record the exact exit and do not replace a cache-permission failure with an unprovisioned system interpreter.
