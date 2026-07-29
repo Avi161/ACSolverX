@@ -1458,3 +1458,8 @@
 
 - [TRAP] Combining separately approved `g^(0)` and `g^(Q)` certificates initially compared a native primitive core `TctttcTc` against the rotated common core `cTctttcT`. Base values agreed while canonical powered keys disagreed, so the old all-pairs refinement did not extend to the new cross-family comparisons.
 - [WORKS] Before forming a joint quadratic aggregate, rebuild every constituent on the same reference primitive and phase convention, then rerun equality/order refinement over every within- and cross-family pair on the full cell partition. Separate approval of the two inputs does not certify their joint collision fibers.
+
+### 2026-07-29 Preserve case under rank-three generator renaming
+
+- [TRAP] Translating the committed MMS state `ZYx|ZxyX|ZZZyyyy` by `(x,y,z)->(x,z,t)` incorrectly changed the final lowercase `x` of the first row to uppercase `X`, producing the false tuple `TZX|TxzX|TTTzzzz`. That sign error manufactured a triangular AC-trivial presentation and two irrelevant genus-zero Neuwirth neighbors.
+- [WORKS] Every alphabet rename must map each literal letter with case preserved, then round-trip through the inverse map and compare byte-for-byte with the committed source before any AC or topology computation. Bind target tuples by importing the source artifact rather than manually transcribing them.
