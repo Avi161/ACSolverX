@@ -1,140 +1,162 @@
 # R1e — Disconnected-link thickenability (Theorem D), decomposition, and the 382-state bucket
 
-STATUS: DRAFT — pending ac-advisor reconciliation and adversarial audit. Do not cite as
-proved until the AUDITED header lands.
+STATUS: DRAFT v2 — ac-advisor verdict REVISE received and reconciled (every must-address
+item incorporated; see the reconciliation ledger at the end). Pending adversarial audit.
+Do not cite as proved until the AUDITED header lands.
 
-Claims addressed (per FRAMING.md tags): the theorem and lemmas are MACHINERY (decision
-criteria for exact complexes). The application section bears on **stable AC-triviality of
-AK(3)** in the positive direction (via the master equivalence and Lackenby Thm 1.3,
-FLAGGED [unverified this session]); negatives close exact tested realizations only and
-say nothing about AK(3) itself (route ceiling, R1_THICKENABILITY_TRANSFER.md).
+Claims addressed (per FRAMING.md tags): Theorem D, Lemma S, Corollary Z are MACHINERY
+(decision criteria for exact complexes). The application bears on **stable
+AC-triviality of AK(3)** in the positive direction (via the master equivalence and
+Lackenby arXiv:2606.06122 Thm 1.3, FLAGGED [unverified this session — full text
+proxy-blocked; three agreeing secondary sources]); negatives close exact tested
+realizations only and say nothing about AK(3) itself (route ceiling,
+R1_THICKENABILITY_TRANSFER.md).
 
 Dependencies: the occurrence dictionary, involutions A and B, compatible rotations C,
 Lemma 1 (Euler dictionary), Theorem 2 (connected-link criterion) and Corollary 3 of the
-codex re-proof `lit_AK3_NEUWIRTH.md` (scratchpad copy; committed summary of the framework
-in R1_IMPLEMENTATION_SPEC.md §2). Notation: for a permutation Q, |Q| = number of cycles
-including 1-cycles; products act right-to-left; defect(C) = (|A| − |C| + 2L(C) − |AC|)/2.
+codex re-proof `lit_AK3_NEUWIRTH.md` (scratchpad copy; framework summary committed in
+R1_IMPLEMENTATION_SPEC.md §2); Lemma 2.1 of R1C_V2_CUT_SCHEMES.md (deleting link
+components does not change the remaining rotation data). Notation: |Q| = number of
+cycles of a permutation Q including 1-cycles; products act right-to-left; the UNHALVED
+defect is defect(C) = |A| − |C| + 2L(C) − |AC| and γ_N = min_C defect(C)/2. NOTE ON
+UNITS: `gamma_N_factorial_n` returns `minimum_defect` = 2·γ_N (unhalved); every test
+must pin this convention.
 
-## Setting
+## Setting — scope is BALANCE-FREE
 
-P = ⟨g₁,…,gₙ | w₁,…,wₙ⟩ balanced, every wⱼ a nonempty cyclic word, every gₖ occurring in
+P = ⟨g₁,…,gₙ | w₁,…,w_m⟩ with every wⱼ a nonempty cyclic word and every gₖ occurring in
 at least one word; K_P the exact word-realized one-vertex presentation complex (no free
-or cyclic reduction, no identification of repeated occurrences). Darts E (|E| = 2·total
-length), B the tube involution, A the corner involution (fixed-point-free — note a
-1-letter relator z contributes the single legal corner (h₀ d₀), h₀ ≠ d₀), C a compatible
-rotation: one cycle per germ (|C| = 2n), the negative-end cycle the B-reversal of the
-positive-end cycle. The link graph Λ(P) has the 2n germs as vertices and one edge per
-A-corner (endpoints: the germs containing the two darts). Theorem 2 of
-`lit_AK3_NEUWIRTH.md` assumes Λ(P) connected; this note removes that hypothesis.
+or cyclic reduction, no identification of repeated occurrences). Balance (m = n) is NOT
+assumed anywhere in Lemma L0, Theorem D, Lemma S, or Corollary Z: the proofs of Lemma 1
+and of both directions of Theorem 2 in `lit_AK3_NEUWIRTH.md` never use balance (checked
+line by line — balance enters that note only in Corollary 3's χ = 1 computation and the
+balanced-case transitivity remark). This matters because Lemma S applies Theorem D to
+wedge summands P_ℓ that are in general NOT balanced even when P is. ERRATUM
+CROSS-REFERENCE: R1C_V2_CUT_SCHEMES.md §1 Scope note [R4] says the Theorem-2 bridge is
+proved "for balanced presentations with connected link; use it only there" — that
+restriction on BALANCE was conservative packaging, not mathematical necessity; erratum
+E5 appended there points here. The CONNECTIVITY restriction was real and is what
+Theorem D removes.
 
-**Lemma L0 (component count is C-independent).** The orbits of ⟨A, C⟩ on E coincide with
-the dart-preimages of the connected components of Λ(P), for every compatible C. Hence
-L(C) = L(P) := #components of Λ(P), independent of C.
+Darts E (|E| = 2·total length), B the tube involution, A the corner involution
+(fixed-point-free — a 1-letter relator z contributes the single legal corner (h₀ d₀),
+h₀ ≠ d₀; on that component A = B, which breaks nothing below), C a compatible rotation:
+one cycle per germ (|C| = 2n), the negative-end cycle the B-reversal of the positive-end
+cycle. The link graph Λ(P) has the 2n germs as vertices and one edge per A-corner.
+Theorem 2 of `lit_AK3_NEUWIRTH.md` assumes Λ(P) connected; this note removes that
+hypothesis. (The `MIN_RELATOR_LENGTH` gate at `neuwirth_rank_n.py:542` and the
+connected-link gates are SOLVER fail-closed boundaries, not hypotheses of the proofs;
+`classify_cut_support` has no short-relator gate, consistent with R1C_V2 §8.1 item 8.)
+
+**Lemma L0 (component count is C-independent).** The orbits of ⟨A, C⟩ on E coincide
+with the dart-preimages of the connected components of Λ(P), for every compatible C.
+Hence L(C) = L(P) := #components of Λ(P), independent of C.
 
 *Proof.* Each cycle of C permutes exactly the darts at one germ transitively (one cycle
 per germ, by construction). So the ⟨C⟩-orbits are the germ classes, and adjoining A
-merges germ classes exactly along A-edges, i.e., along the edges of Λ(P). ∎
+merges germ classes exactly along the edges of Λ(P). ∎
 
 ## Theorem D (disconnected-link Euler criterion)
 
-**Theorem D.** Let P be as above (link graph Λ(P) with L ≥ 1 components; connectivity
-NOT assumed). Then the exact complex K_P embeds in an orientable PL 3-manifold if and
-only if there is a compatible C with
+**Theorem D.** Let P be as above (Λ(P) with L ≥ 1 components; connectivity NOT assumed;
+balance NOT assumed). Then K_P embeds in an orientable PL 3-manifold if and only if
+there is a compatible C with
 
-  |A| − |C| + 2L − |AC| = 0,
+  defect(C) = |A| − |C| + 2L − |AC| = 0,
 
-equivalently defect(C) = 0, equivalently every component of the rotation surface Σ_C is
-a sphere. In particular K_P is orientably thickenable ⟺ γ_N(P) = 0, where γ_N minimizes
-defect(C) over compatible C (the general form of the potential, with the 2L(C) term).
+equivalently every component of the rotation surface Σ_C is a sphere; i.e. K_P is
+orientably thickenable ⟺ γ_N(P) = 0 with the general (2L-term) defect.
 
-*Proof — necessity.* Suppose K_P is PL embedded in an orientable 3-manifold. Take a small
-regular ball R about the unique vertex, transverse to the incident cells; F = K_P ∩ ∂R
-is a copy of Λ(P) embedded in the single oriented 2-sphere ∂R, its L components disjoint.
-The sphere orientation induces a cyclic order at every germ vertex; the derivation that
-these orders form a compatible C (transport through an oriented neighbourhood of each
-generator 1-cell reverses the transported list, giving the B-reversal) is verbatim the
-per-generator-handle argument in Theorem 2's necessity proof and never uses connectivity
-of F — it is local to one 1-handle at a time, and the orientation used is the single
-global orientation of ∂R.
+*Proof — necessity.* Suppose K_P is PL embedded in an orientable 3-manifold. Take a
+small regular ball R about the unique vertex, transverse to the incident cells;
+F = K_P ∩ ∂R is a copy of Λ(P) embedded in the single oriented 2-sphere ∂R, its L
+components disjoint. The sphere orientation induces a cyclic order at every germ
+vertex; the derivation that these orders form a compatible C (transport through an
+oriented neighbourhood of each generator 1-cell reverses the transported list, giving
+the B-reversal) is verbatim the per-generator-handle argument in Theorem 2's necessity
+proof: it is local to one 1-handle at a time, uses only the single global orientation
+of ∂R, and never uses connectivity of F.
 
 Genus count, per component. CAUTION (this is where connectivity mattered in Theorem 2's
-one-line Euler finish): for L ≥ 2 the complementary regions of the union F ⊂ ∂R need not
-be discs — a component nested inside a face of another turns that region into an annulus
-or worse — so |C| − |A| + #regions = 2 is FALSE in general and the union's Euler count
-must not be used. Instead, fix a component F_ℓ and forget the others: F_ℓ is a connected
-graph embedded in the sphere ∂R with the rotation induced by the global orientation, i.e.
-the restriction C|_ℓ of C to the darts of F_ℓ. For a CONNECTED graph, the ribbon surface
-built from an embedding's rotation system is the surface of the embedding itself; being
-embedded in S² with connected complement-independent data, its ribbon surface Σ_{C,ℓ} is
-a sphere: the classical fact used is that a connected graph embedded in S² has its
-rotation-system genus equal to 0 (Euler for the component alone: its own complementary
-regions IN ITS OWN ribbon surface are the AC-cycles supported on its darts; the
-components of Σ_C are exactly the ⟨A,C⟩-orbit surfaces of Lemma 1). Hence every
-component of Σ_C has genus 0, so Σ q_ℓ = defect(C) = 0 by Lemma 1. [AUDIT POINT 1: the
-claim "connected graph embedded in S² ⇒ induced rotation system has genus 0" is the
-standard rotation-system/embedding correspondence for cellular embeddings; for a
-non-cellular embedding of F_ℓ in S² (which happens exactly when other components sit in
-its faces or when F_ℓ does not fill the sphere), pass to the component alone: an
-embedding of a connected graph in S² is isotopic to a cellular one on its own ribbon
-neighbourhood — concretely, the ribbon surface of the induced rotation embeds in ∂R as a
-regular neighbourhood of F_ℓ, a compact surface with boundary in S², and capping its
-boundary circles with discs gives a closed orientable surface of genus 0 because every
-compact subsurface of S² has planar genus. This is the precise statement used.]
+one-line Euler finish): for L ≥ 2 the complementary regions of the union F ⊂ ∂R need
+not be discs — a component nested inside a region bounded by another turns that region
+into an annulus or worse — so |C| − |A| + #regions = 2 is FALSE in general and the
+union's face count must not be used. Instead, fix a component F_ℓ and DELETE the other
+components from the sphere. Deletion does not change the cyclic orders at the germs of
+F_ℓ, i.e. does not change C|_ℓ (this is exactly Lemma 2.1 of R1C_V2_CUT_SCHEMES.md).
+Now F_ℓ is a CONNECTED compact graph embedded in S². By Alexander duality in S²,
+H̃₁(S² ∖ F_ℓ) ≅ H̃⁰(F_ℓ) = 0, so every complementary component of F_ℓ alone is an open
+subsurface of S² with trivial first homology, hence an open disc. The embedding of F_ℓ
+alone is therefore CELLULAR, so its rotation surface — the ⟨A,C⟩-orbit component
+Σ_{C,ℓ} of Lemma 1 — is S² itself: genus 0. This holds for every ℓ, so
+defect(C) = 2·Σ_ℓ q_ℓ = 0 by Lemma 1. ∎(necessity)
 
-*Proof — sufficiency.* Let C be compatible with defect(C) = 0, i.e., every component of
-Σ_C a sphere. Build the 0-handle H⁰ ≅ B³ with an orientation of ∂H⁰. Embed the
-components F_1,…,F_L of Λ(P) in ∂H⁰ disjointly, as follows: pick pairwise disjoint round
-discs D_1,…,D_L ⊂ ∂H⁰ and embed F_ℓ cellularly in the interior of D_ℓ realizing the
-rotation C|_ℓ with respect to the global orientation of ∂H⁰. This is possible: Σ_{C,ℓ}
-is a sphere, so F_ℓ has a cellular embedding in S² realizing C|_ℓ up to global
-reflection; deleting an open face disc gives an embedding in a disc; if the realized
-rotation is C|_ℓ⁻¹ rather than C|_ℓ, compose with a reflection of D_ℓ. The reflection
-choice is made independently per component, so every component realizes its prescribed
-rotation with respect to the SAME global orientation. Nesting is immaterial: the D_ℓ are
-disjoint, and no step below reads the complementary-region structure of the union.
+*Proof — sufficiency.* Let C be compatible with defect(C) = 0, i.e. every component of
+Σ_C a sphere. Build the 0-handle H⁰ ≅ B³ and orient ∂H⁰. Embed the components
+F_1,…,F_L of Λ(P) in ∂H⁰ disjointly: pick pairwise disjoint round discs
+D_1,…,D_L ⊂ ∂H⁰. The rotation surface Σ_{C,ℓ} is by construction an ORIENTED closed
+genus-0 surface in which F_ℓ sits cellularly realizing C|_ℓ; choose an
+orientation-preserving PL homeomorphism Σ_{C,ℓ} → S²_std, delete an open complementary
+face disc, and shrink the image into int(D_ℓ) ⊂ ∂H⁰ matching orientations. This
+realizes C|_ℓ exactly (no reflection case-split is needed: orientation-preserving
+transport of an oriented realization realizes the same rotation), and every component
+realizes its prescribed rotation with respect to the SAME global orientation of ∂H⁰.
+Nesting is immaterial: the D_ℓ are disjoint, and no step below reads the
+complementary-region structure of the union.
 
-From here Neuwirth's construction, as re-proved in `lit_AK3_NEUWIRTH.md` (sufficiency of
-Theorem 2), applies verbatim; we list the three touch points where disconnectedness
-could in principle enter, and why it does not:
+From here Neuwirth's construction, as re-proved in `lit_AK3_NEUWIRTH.md` (sufficiency
+of Theorem 2), applies verbatim; the three touch points where disconnectedness could in
+principle enter, and why it does not:
 
-1. *Vertex piece.* Cone the corner pieces of F to an interior point of H⁰. The cone over
-   a disconnected graph from one point is connected and is exactly the star of the
+1. *Vertex piece.* Cone the corner pieces of F to an interior point of H⁰. The cone
+   over a disconnected graph from one point is connected and is exactly the star of the
    single vertex of K_P (whose vertex link IS Λ(P), disconnected or not). No face
    structure of the union is used.
 2. *1-handles.* For each generator g, the discs D_g⁺, D_g⁻ around its two germ vertices
-   are disjoint (whether or not the germs lie in different components or in nested
-   discs), and the orientable 1-handle H¹_g is attached ABSTRACTLY along them with the
-   reversed page book. The page-book/orientation agreement is exactly the compatibility
-   condition at g — a per-generator condition independent of components. W is being
-   built abstractly by handle attachment; there is no ambient sphere that nesting could
-   obstruct.
+   are disjoint (whether or not the germs lie in different components — the straddling
+   case is allowed here), and the orientable 1-handle H¹_g is attached ABSTRACTLY along
+   them with the reversed page book. The page-book/orientation agreement is exactly the
+   compatibility condition at g — a per-generator condition independent of components.
+   W is built abstractly by handle attachment; there is no ambient sphere that nesting
+   could obstruct. [Reply to the codex caution "the two B-pipes may also couple
+   rotations belonging to different link components" (lit_AK3_SYNCHRONIZED_PLANARITY
+   fail-closed note): that coupling is a constraint on ENUMERATING compatible C — which
+   Theorem D takes as given — not on this construction; and under the no-straddle
+   hypothesis of Lemma S it cannot occur at all.]
 3. *2-handles.* The attaching curves λ_j are traced through corner arcs (each contained
-   in a small neighbourhood of its A-edge, inside whichever region of ∂H⁰ is adjacent to
-   that corner) and page arcs through the 1-handles. Pairwise disjointness and
+   in a small neighbourhood of its A-edge, inside whichever region of ∂H⁰ is adjacent
+   to that corner) and page arcs through the 1-handles. Pairwise disjointness and
    simplicity are local properties of these arcs (distinct darts, distinct corners,
-   distinct pages) and hold verbatim. Traversing λ_j meets the generator handles in the
-   occurrence order and signs of w_j, so the embedded polyhedron is the exact K_P.
+   distinct pages) and hold verbatim; this includes the 1-letter-relator curve (one
+   corner arc + one page). Traversing λ_j meets the generator handles in the occurrence
+   order and signs of w_j, so the embedded polyhedron is the exact K_P.
 
-W = H⁰ ∪ (1-handles) ∪ (2-handles) is a compact orientable PL 3-manifold containing
-K_P. The regular-neighbourhood refinement (N ⊂ W, N ↘ K_P) also goes through: the
-retraction's 0-handle piece cones each complementary region of F ⊂ ∂H⁰ and projects
-radially; that projection is defined for regions of any topology (an annular region
-radially retracts to the coned graph exactly as a disc does — the cone point is the
-same), and the 1-/2-handle pieces are product projections as before. ∎
+W = H⁰ ∪ (1-handles) ∪ (2-handles) is a compact orientable PL 3-manifold with
+K_P ⊂ int(W). For the regular neighbourhood: K_P is a compact polyhedron in the
+interior of the PL 3-manifold W, so a regular neighbourhood N of K_P in W exists with
+N ↘ K_P by the PL regular-neighbourhood theorem (Rourke–Sanderson, *Introduction to
+Piecewise-Linear Topology*, Ch. 3). No connectivity input, no hand-built retraction. ∎
 
-Remark (why Theorem 2 needed L = 1). Only for the one-line Euler finish |C| − |A| + |AC|
-= 2 in necessity, which reads |AC| off the union's face count — valid only when the
-union is connected and its embedding cellular. The per-component argument above replaces
-it. The handle construction itself never needed connectivity, confirming the codex
-fail-closed note's caution was about the face/region bookkeeping ("nesting … not
-captured by per-component rotations"), which enters no step of the construction: nesting
-changes region topology, and region topology is coned, not capped, in the construction.
+Remark (why Theorem 2 needed L = 1). Only for the one-line Euler finish
+|C| − |A| + |AC| = 2 in necessity, which reads |AC| off the union's face count — valid
+only when the union is connected (and then automatically cellular by the same Alexander
+argument). The per-component argument replaces it; the handle construction never needed
+connectivity. The codex fail-closed caution ("relative nesting in the common sphere is
+not recorded by the component rotations") is about CAPPING complementary regions;
+the construction CONES them, and cones exist for regions of any topology.
 
-Remark (boundary connectivity — where nesting DOES matter). The orbits of ⟨AC, BC⟩ trace
-∂N-components in the connected-link balanced setting; for L ≥ 2 the nesting choices in
-∂H⁰ genuinely change how ∂N assembles, so no per-rotation transitivity audit is claimed
-here. This affects only Corollary-level boundary bookkeeping; for the π₁ = 1 balanced
-consequence, ∂N-connectivity is derived homologically (below), not combinatorially.
+Remark (boundary connectivity — where nesting DOES matter, and the ⟨AC,BC⟩ audit).
+The orbits of ⟨AC,BC⟩ trace ∂N-components in the CONNECTED-link balanced setting. For
+L ≥ 2 with no straddling generator, A, B, C all preserve link components, so
+⟨AC,BC⟩-orbits are confined within components and transitivity is IMPOSSIBLE — yet
+γ_N = 0 states with connected ∂N exist (the standard ("x","y","z") has ∂N ≅ S²: ∂N
+assembly merges component boundaries through the shared 0-handle in a nesting-dependent
+way the per-component combinatorics do not track). Consequence for machinery: the
+transitivity audit (AuditContradiction) is RESCOPED to L = 1; an L ≥ 2 witness checker
+must check compatibility and per-component Euler only. This is an implementation
+CONTRACT, not just prose: `witness_check_n.py` refuses L ≠ 1 and would spuriously
+quarantine every legitimate L ≥ 2 positive; the new module ships its own L-general
+checker (new file, existing code untouched).
 
 ## Lemma S (wedge decomposition under no-straddle)
 
@@ -143,14 +165,12 @@ Say a generator g *straddles* if its two germs g⁺, g⁻ lie in different compo
 straddle.)
 
 **Lemma S.** Suppose no generator of P straddles. Then:
-(i) each relator's corner edges lie in a single component of Λ(P) — consecutive corners
-of a relator share the two germs of one generator (the corner ending at dep-germ(w_i)
-and the corner starting at arr-germ(w_i) meet opposite germs of the same unsigned
-generator), which the no-straddle hypothesis puts in one component;
-(ii) hence relators and generators partition by component: writing Λ_1,…,Λ_L for the
-components, each generator's two germs lie in exactly one Λ_ℓ, and every relator's
-letters use only the generators of its component (a letter of g in w_j puts corner edges
-at both germs of g into w_j's component);
+(i) each relator's corner edges lie in a single component of Λ(P): the corner e_i joins
+ν(h_i) to ν(d_{i+1}); since B(d_i) = h_i and ν(B·) = τν(·), the germ pair
+{ν(d_i), ν(h_i)} = {g⁺, g⁻} for g = |a_i|, so consecutive corners e_{i−1}, e_i meet the
+two germs of one generator — the same component by no-straddle; induct around the
+cyclic word;
+(ii) hence relators and generators partition by component;
 (iii) K_P = K_{P_1} ∨ … ∨ K_{P_L} (wedge at the vertex), where P_ℓ is the presentation
 on the generators and relators of component ℓ, and Λ(P_ℓ) = Λ_ℓ is connected;
 (iv) compatible rotations for P are exactly tuples of compatible rotations for the P_ℓ
@@ -159,87 +179,169 @@ is additive across components (Lemma 1 is a per-component statement), hence
 
   γ_N(P) = Σ_ℓ γ_N(P_ℓ),
 
-and K_P is orientably thickenable ⟺ every K_{P_ℓ} is (by Theorem D applied to P and to
-each P_ℓ — each P_ℓ has connected link, so Theorem 2 also suffices for the parts).
+and K_P is orientably thickenable ⟺ every K_{P_ℓ} is — by Theorem D applied to P and
+to each P_ℓ; each P_ℓ has connected link, but P_ℓ need NOT be balanced, which is why
+Theorem D's balance-free scope is load-bearing here. ∎
 
-*Proof.* (i) is the two-line computation stated; (ii) follows by induction along each
-relator's cyclic letter sequence; (iii) is immediate from (ii) — the exact complex is
-determined by the per-relator letter data, which splits; (iv): the cyclic-order data at
-the germs of component ℓ is exactly the free datum of P_ℓ, compatibility is
-per-generator, and |A|, |C|, |AC|, L all split as sums over ⟨A,C⟩-orbits. Minimizing a
-sum of independent nonnegative terms minimizes each term. ∎
+(For the record, in the 382-state application every summand IS balanced anyway:
+(u,v) on {x,y} and (z) on {z}.)
 
-Note P_ℓ is in general NOT balanced even when P is; Theorem D and Lemma 1 nowhere use
-balance (balance enters only at Corollary-3 level). [AUDIT POINT 2: check that the parts
-of our bucket ARE balanced anyway — they are: (u,v) on {x,y} and (z) on {z}.]
+## Corollary Z (exact defect-HISTOGRAM identity under plain stabilization)
 
-## Corollary Z (γ_N is inert under exact plain stabilization)
+Let P = (w_1,…,w_m) and P⁺ = (w_1,…,w_m, z) with z a fresh generator (exact AC-move
+image; AC4 in the project convention). Both z-germs carry exactly one dart, so the
+z-component's compatible rotation is unique (empty free datum) and the compatible sets
+of P and P⁺ are in canonical bijection C ↔ C⁺. For corresponding rotations:
+|A|⁺ = |A| + 1, |C|⁺ = |C| + 2, L⁺ = L + 1, |AC|⁺ = |AC| + 1, hence
 
-Let P = (w_1,…,w_n) and P⁺ = (w_1,…,w_n, z) with z a fresh generator (exact AC4 image).
-The z-component of Λ(P⁺) is the single A-edge z⁻—z⁺ (corner (h₀ d₀) of the 1-letter
-cyclic word z); both germs have one dart, so the compatible rotation there is unique and
-its component defect is (1 − 2 + 2 − 1)/2 = 0 with |AC|-restriction the single 2-cycle
-(d₀ h₀) — a sphere (the boundary of a regular neighbourhood of an unknotted arc… the
-combinatorics suffice: Lemma 1). No generator straddles between the old link and the new
-component. By Lemma S,
+  defect⁺(C⁺) = defect(C)  identically.
 
-  γ_N(P⁺) = γ_N(P), and K_{P⁺} thickenable ⟺ K_P thickenable.
+So the ENTIRE defect histogram — not just the minimum — is preserved:
+γ_N(P⁺) = γ_N(P), and the full multiset of defects matches bin by bin. The same holds
+for relator z⁻¹ (relator inversion preserves the full defect histogram —
+GAMMA_N_SYMMETRY_LEMMA.md). Consequently γ_N of the EXACT complex is invariant under
+exact stabilization AC4 and destabilization AC5 (legal exactly when the last relator is
+z^{±1} and z occurs nowhere else — precisely the 1-edge-component shape). First
+positive AC-move invariance statement for γ_N in this project (contrast: NOT invariant
+under AC1/AC2/AC3 composites in general). Machinery claim only.
 
-The same holds for relator z⁻¹ (relator inversion leaves the full defect histogram
-invariant — GAMMA_N_SYMMETRY_LEMMA.md). Consequently γ_N of the EXACT complex is
-invariant under exact stabilization AC4 and destabilization AC5 (when legal, i.e., the
-last relator is exactly z^{±1} and z occurs nowhere else — which is precisely the
-disconnected shape with a 1-edge component). This is the first positive AC-move
-invariance statement for γ_N in this project (contrast: NOT invariant under AC1;
-GAMMA_N_SYMMETRY_LEMMA.md records the symmetry group that IS safe). Machinery claim
-only.
+Independent cross-check (thickenability half WITHOUT Theorem D):
+K_{P⁺} = K_P ∨ (a 2-disc attached to the vertex along a loop 1-cell z, i.e. a complex
+collapsing the z-cell data). Concretely: if K_P thickens into N, attach to N a
+3-ball thickening of the z-handle-plus-disc along a ball neighbourhood of the vertex on
+∂N — an unknotted arc with a meridian disc — giving an orientable thickening of K_{P⁺};
+conversely K_P ⊂ K_{P⁺} restricts any thickening. So thickenable(P⁺) ⟺ thickenable(P)
+by elementary means, agreeing with the Theorem-D route — a free consistency check on
+Theorem D itself.
 
 ## Corollary D3 (π₁ = 1 balanced consequence, disconnected link allowed)
 
 Under Theorem D's hypotheses, if additionally P is balanced and π₁(K_P) = 1, and some
-compatible C has defect 0, then the regular neighbourhood N of K_P is a 3-ball, and P is
-classically AC-trivializable. [Chain: Corollary 3 of `lit_AK3_NEUWIRTH.md` used only
+compatible C has defect 0, then the regular neighbourhood N of K_P is a 3-ball, and P
+is classically AC-trivializable. [Chain: Corollary 3 of `lit_AK3_NEUWIRTH.md` used only
 N ↘ K_P, χ(K_P) = 1, π₁ = 1, duality, and surface classification — no link
-connectivity; Theorem D supplies N. Final step is Lackenby arXiv:2606.06122 Thm 1.3,
-FLAGGED [unverified this session — three agreeing secondary sources, full text
-proxy-blocked]. Any positive result quoted from this corollary must carry that flag.]
+connectivity; Theorem D supplies N. The transitivity clause of Corollary 3 is NOT
+extended (see the boundary remark above): ∂N-connectivity here is derived
+homologically, not combinatorially. Final step is Lackenby arXiv:2606.06122 Thm 1.3,
+FLAGGED [unverified this session]. Any positive result quoted from this corollary must
+carry that flag.]
 
-## Application: the round-2 disconnected bucket is 382 rank-2 stable-class members
+## Application: the round-2 disconnected bucket decides through 382 rank-2 pairs
 
-Empirical facts (recomputed independently of the harvest gate; verification script to be
-committed with the implementation): all 382 round-2 states gated "disconnected link"
-have exactly 2 components, no straddling generator, and the clean shape
-(u(x,y), v(x,y), z^{±1}) with z occurring exactly once. By Lemma S + Corollary Z each
-such state decides through the rank-2 pair (u,v):
+Empirical facts (advisor-verified independently, to be re-verified by the committed
+implementation): the round-2 harvest has 11,273 canonical states; the 382 gated
+"disconnected link" ALL have exactly 2 components, NO straddling generator (x±, y± form
+one component in all 382), third relator EXACTLY `Z`, and the clean shape
+(u(x,y), v(x,y), Z) with z occurring exactly once. By Lemma S + Corollary Z each state
+decides through its rank-2 pair:
 
-  γ_N(u, v, z^{±1}) = γ_N(u, v).
+  γ_N(u, v, Z) = γ_N(u, v),
 
-Provenance: each state lies in the exact AC-orbit of AK3+z (round-2 walk = exact AC
-moves), and AC2-inversion (if the relator is Z) followed by AC5 destabilizes it to
+and the joint rank-3 census size EQUALS the rank-2 census size (the z-germs have degree
+1, contributing a factor (1−1)! = 1), so joint-vs-split cross-validation is free
+wherever the rank-2 census runs at all.
+
+Provenance (CORRECTED after advisor measurement — root histogram is 85 from AK3+z, 297
+from P25+z): every bucket state lies in the exact AC-orbit of its harvest root.
+- For the 85 AK3+z-rooted states the chain is: AK(3) →AC4→ AK3+z →round-2 walk (exact
+  rank-3 AC moves)→ state.
+- For the 297 P25+z-rooted states the chain additionally uses the doubly
+  replay-verified 53-move classical AC path AK(3) ↔ P25 (R1_EQUIVALENCE_AND_RECON.md;
+  p25_path_states.json): AK(3) →53 moves→ P25 →AC4→ P25+z →round-2 walk→ state. That
+  path is a SEPARATE certificate and is cited, not assumed.
+Then AC1-inversion of the third relator (Z → z; unconditional — all 382 have `Z`;
+project convention: AC1 = invert, AC2 = multiply) followed by AC5 destabilization gives
 (u,v). Hence every (u,v) is a **rank-2 member of AK(3)'s STABLE class** — reached
-through rank-3 walks that may have entangled z at intermediate states, so (u,v) need not
-lie in AK(3)'s classical AC-component. These are, to our knowledge, the first rank-2
-stable-class members produced by a direct stable-move-space search (382 distinct pairs
-after canon dedup, total lengths 13–38; 10 already in the previously decided classical
-corpus, all NOT_SPHERICAL there).
+through rank-3 walks that may have entangled z at intermediate states, so (u,v) need
+not lie in AK(3)'s classical AC-component. Novelty claim (narrowed): these are the
+first rank-2 stable-class members of AK(3) produced by a DIRECT STABLE-MOVE-SPACE
+SEARCH; the codex line's one-stabilization compression corridor
+(AK3_RANK3_COMPRESSION.md, 2026-07-24) produced rank-2 stable-class members earlier by
+a proved corridor — a different, complementary route (cited).
 
-Group check: rank-3 AC moves preserve the presented group (trivial, from AK3+z), and
-⟨x,y,z | u,v,z⟩ ≅ ⟨x,y | u,v⟩, so each (u,v) is a balanced rank-2 presentation of the
-trivial group (to be TC-certified per hit; sampled otherwise).
+Replay caveat (hit protocol): the harvest's `parent`/`move` fields are NOT a replayable
+chain (the round-2 frontier is keyed on exact words while parents are recorded as
+canonical keys, so the recorded parent's exact realization need not be the exact parent
+the move was applied to). Any SPHERICAL hit therefore requires an explicitly
+reconstructed AC1–AC5 move list from AK(3) to (u,v) plus a full replay, and the
+relator-permutation step of canonicalization must be justified as an AC composite or
+the unordered-relator-list convention stated, before any claim is made. Group check per
+hit: TC certificate (index 1) on (u,v); sampled TC on non-hits.
 
 Interpretation matrix:
-- ANY (u,v) with γ_N = 0 ⇒ (u,v) thickenable ⇒ [Corollary D3, Lackenby-flagged]
-  (u,v) classically AC-trivial ⇒ AK(3) STABLY AC-trivial (it is stably equivalent to
-  (u,v)). This would achieve the session goal's AK(3) sub-goal in the stable form —
-  commit and notify immediately.
+- ANY (u,v) with γ_N = 0 ⇒ (u,v) thickenable ⇒ [Corollary D3 at rank 2,
+  Lackenby-flagged] (u,v) classically AC-trivial ⇒ AK(3) STABLY AC-trivial. This would
+  achieve the session goal's AK(3) sub-goal in the stable form — commit and notify
+  immediately, after the hit protocol above.
 - All 382 NOT_SPHERICAL ⇒ 382 more certified non-thickenable exact realizations
   (extending the corpus into the rank-2 shadow of the stable walk); zero content about
-  AK(3) itself; ΣE bookkeeping to be added to the running total.
+  AK(3) itself; ΣE bookkeeping added for the K4/K4-e/C4-support subset (validated
+  e_yield formulas only).
 - UNDECIDED_BUDGET rows are named and counted, never folded into "all NO".
+
+## Implementation contract (per advisor reconciliation)
+
+New files only; existing code imported, never modified; no `.venv` on this branch —
+plain `python3`. Budgets pinned VERBATIM to round 2 so verdicts join the corpus:
+scheme_budget = 200_000, branch_budget = 2_000_000, fallback census cap = 2_000_000;
+budget exhaustion → UNDECIDED_BUDGET, never NOT_SPHERICAL; all knobs recorded in the
+output summary.
+
+- `experiments/stable_ac/fable/disconnected_split.py`: independent recomputation of
+  components/straddle/shape per state (own union-find, not `build_link_n`); projection
+  to (u,v) + canon dedup; decision via the round-2 stack (R1c-v2 cut-scheme solver
+  first — pre-scan says all 382 pairs are IN_SCOPE — census fallback second); JOINT
+  cross-validation calls `gamma_N_factorial_n` DIRECTLY (it is already L-general:
+  `defect = nA − nC + 2L − nAC` at `neuwirth_rank_n.py:1038`) — no second census
+  implementation that could diverge; an L-general witness checker (compatibility +
+  per-component Euler; transitivity audit ONLY when L = 1); output
+  `results/stable_ac/fable/disconnected_split_verdicts.jsonl` + summary.
+- `tests/fable/test_disconnected_split.py`:
+  (a) standard ("x","y","z"): L = 3, defect 0, SPHERICAL — degenerate positive control;
+  plus the ILLEGAL-NEGATIVE regression: the naive connected formula (2 for 2L) gives −4
+  on this input — proves the 2L term is load-bearing;
+  (b) AK3+z root: joint rank-3 census defect = rank-2 census defect = 4 (γ_N = 2,
+  matching the codex-certified γ_N(AK(3)) = 2) and verdict NOT_SPHERICAL;
+  (c) additivity/histogram identity (Corollary Z: full histogram equality, not just
+  min): on the 2 census-affordable bucket states (sizes 86,400 and 967,680) AND on
+  synthetic small (u,v,z) stabilizations of tiny pairs — "≥ 3 affordable bucket states"
+  is arithmetically impossible at the 2M cap and is not claimed;
+  (d) a NON-degenerate disconnected positive: ⟨x,y,z | u₀,v₀,z⟩ with (u₀,v₀) a rank-2
+  pair certified γ_N = 0 with nontrivial link (constructed via the rank-2 census) —
+  must decide SPHERICAL through the split pipeline AND through the joint census;
+  (e) straddle detection on a 2-letter-relator example correctly excludes Lemma S
+  (fail-closed);
+  (f) clean-shape verification on all 382; the 10 corpus-overlap pairs ASSERTED equal
+  to their stored verdicts; codex's independently-certified length-14 rank-2
+  stable-class target `YXXYx | YYYYXyyyx` (AK3_RANK3_COMPRESSION.md) added as an extra
+  agreement row;
+  (g) full bare `pytest` green before any claim.
 
 ## What this note does NOT claim
 
-No AC1-invariance of γ_N; no propagation of any negative along AC paths; no claim that
-the 382 pairs exhaust the rank-2 shadow of the stable class (they are what a budgeted
-round-2 walk reached); no unconditional use of Lackenby Thm 1.3 (flag propagates through
-every positive-direction statement); no claim about non-orientable thickenings.
+No AC1/AC2/AC3-invariance of γ_N; no propagation of any negative along AC paths; no
+claim that the 382 pairs exhaust the rank-2 shadow of the stable class (they are what a
+budgeted round-2 walk reached); no unconditional use of Lackenby Thm 1.3; no claim
+about non-orientable thickenings; no extension of Corollary 3's transitivity clause to
+L ≥ 2.
+
+## Advisor reconciliation ledger (REVISE → v2)
+
+1. Provenance corrected: 85 AK3+z / 297 P25+z roots; P25 path certificate cited;
+   AC1-naming fixed (project convention AC1 = invert); inversion unconditional (all 382
+   have `Z`). 11,273 states (not 11,274).
+2. Witness-checker blocker recorded as implementation contract: L-general checker in
+   the new module; transitivity audit rescoped to L = 1 (impossibility proof for
+   no-straddle L ≥ 2 in the boundary remark).
+3. Hand-built proof paragraphs replaced by citations: Alexander-duality cellularity
+   (+ R1C_V2 Lemma 2.1) for necessity; Rourke–Sanderson Ch. 3 for N ↘ K_P; sufficiency
+   reflection case-split dropped for oriented transport.
+4. Scope restated balance-free with the line-by-line check recorded; erratum E5
+   cross-filed in R1C_V2_CUT_SCHEMES.md; Corollary Z upgraded to the exact
+   defect-histogram identity + elementary K_P ∨ disc cross-check independent of
+   Theorem D.
+5. Experimental spec fixed: budgets pinned verbatim; `gamma_N_factorial_n` called
+   directly; test (c) scoped to the 2 affordable states + synthetics; illegal-negative
+   regression, non-degenerate disconnected positive, 10-corpus assertions, codex
+   length-14 row added; novelty claim narrowed with codex citation; replay caveat and
+   hit protocol added.

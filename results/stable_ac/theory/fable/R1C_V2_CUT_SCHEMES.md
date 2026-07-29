@@ -31,6 +31,12 @@ E4 (Lemma 7.4): the "bijection by induction" sketch is completed by the anchor-c
 bookkeeping: the anchor at the reference pole consumes exactly one rotation-offset factor
 per cut vertex, leaving precisely the net class multiplicity of Theorem 6.S (referee
 reconstructed and verified this bookkeeping).
+E5 (Scope note [R4], cross-filed 29-07-2026): [R4]'s "use it only there" restriction to
+BALANCED presentations was conservative packaging, not mathematical necessity — the
+Theorem-2 bridge proofs never use balance (verified line by line; balance enters only at
+Corollary-3 level). The CONNECTIVITY restriction was real; it is removed by Theorem D of
+R1E_DISCONNECTED_LINK.md, whose Lemma S needs the balance-free form (wedge summands of a
+balanced presentation need not be balanced).
 
 **Contract.** This is the "cut-scheme extension" promised in the R1c-v2 sketch at the end of
 `R1C_RANK_N_THREECONNECTED.md`: decide compatible sphericity (hence, via the Neuwirth
