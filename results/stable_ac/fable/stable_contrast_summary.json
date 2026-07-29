@@ -1,0 +1,2546 @@
+{
+ "record": "stable_matched_contrast_summary",
+ "purpose": "STABLE-CLASS MATCHED CONTRAST: the rank-3 analogue of the classical matched contrast (R3PRIME_DIGON_EXCESS.md 'CONTRAST RESULT').  One operator, two stabilized roots: AK2+z (class provably trivializable -- positive control) vs AK3+z (AK(3)'s stable class -- open target).  DATA ONLY -- no mathematical claim.",
+ "design": {
+  "operator": {
+   "descriptor": "rank-3 rotation-expanded canonical harvest: seen-set on canon_state (relator permutations x rotations x inversions, cyclically reduced); children = every AC concatenation r_i <- r_i . r_j^{+-1} (ordered i != j, both signs) over every pair of cyclic rotations of the two involved canonical relators, third relator untouched; priority = total canonical length, insertion-order ties; first exact realization wins",
+   "seen_set": "canon_state: relator permutations x rotations x inversions on cyclically reduced relators",
+   "z_policy": "z is a live generator: moves may entangle it (that is the stable-move space); NO z-inertness bias of any kind -- z_occurrences recorded per member instead",
+   "identity_check": {
+    "identical": true,
+    "roots": {
+     "AK2+z": {
+      "relator_cap": 16,
+      "cap_rule": "total root length + 4",
+      "first_pop_children_verified": 104,
+      "sampled_popped_keys": 25,
+      "sampled_edges_verified": 501
+     },
+     "AK3+z": {
+      "relator_cap": 18,
+      "cap_rule": "total root length + 4",
+      "first_pop_children_verified": 136,
+      "sampled_popped_keys": 25,
+      "sampled_edges_verified": 4308
+     }
+    },
+    "shared_operator": "rank-3 rotation-expanded canonical harvest: seen-set on canon_state (relator permutations x rotations x inversions, cyclically reduced); children = every AC concatenation r_i <- r_i . r_j^{+-1} (ordered i != j, both signs) over every pair of cyclic rotations of the two involved canonical relators, third relator untouched; priority = total canonical length, insertion-order ties; first exact realization wins",
+    "note": "both harvests call the single implementation canon_children_rank3/harvest_root_prov; the only per-root inputs are the root state and its rule-derived cap"
+   }
+  },
+  "length_caps": {
+   "rule": "per-relator cap = total root length + 4 (the classical contrast's relative-headroom rule)",
+   "AK3+z": {
+    "root_total": 14,
+    "cap": 18
+   },
+   "AK2+z": {
+    "root_total": 12,
+    "cap": 16
+   },
+   "relative_headroom_reasoning": "both runs give the operator the same additive slack above their root's scale, keeping the per-pop expansion geometry comparable; the matched quantities are the operator and the 1,000-pop-per-root budget -- exactly the classical design (AK(2) 15 = 11 + 4, AK(3) 17 = 13 + 4; here 16 = 12 + 4, 18 = 14 + 4)",
+   "absolute_cap_argument": "an absolute match (16 for both) would leave AK3+z only 2 letters of headroom above its 14-letter root versus AK2+z's 4, mechanically suppressing child generation and biasing the open-target run toward zero hits; cap 18 makes the AK3+z box strictly larger -- the conservative direction: a zero-hit outcome cannot be attributed to a smaller search space"
+  },
+  "decision_stack": "clean R1e shape (z-inert: one relator z^{+-1}, z once, 2 components, no straddle) -> disconnected_split.decide_split_state (Theorem D + Lemma S, audited route, through the rank-2 pair); otherwise rank3_round2.decide_state over (x, y, z) (R1c-v2); fail-closed -> L-general factorial census with the general defect |A| - |C| + 2L - |AC| (minimum_defect == 0 decisive SPHERICAL at any L per Theorem D) within the 2,000,000 cap; absent-generator states fail-closed UNSUPPORTED; budget exhaustion UNDECIDED_BUDGET, never folded into NO",
+  "provenance_semantics": "each non-root row stores parent_key (== parent_exact: a canonical triple of cyclically reduced words is itself an exact state), the realization (i, j, a, b, sign), and move_composite -- AC3 conjugations rotating relator i to a and relator j to b, then the AC2 concatenation -- whose replay from parent_exact arrives byte-identically at first_exact with canon_state(first_exact) == canonical.  The exact -> canonical step is the Lemma P AC composite (rotation = AC3, inversion = AC1, swap = the 6-move composite).  So every AK3+z row is a member of AK(3)'s STABLE class, every AK2+z row of AK2+z's provably trivializable class.",
+  "hit_protocol": "for every SPHERICAL row (either root): full move-chain replay from the root, re-decision agreement, Todd-Coxeter certificate on the triple (cap 50000), L-general witness check (pair-level protocol inside the split row for clean rows; triple rotation witness otherwise, transitivity audit when L == 1 and TC-trivial); joint Corollary-Z cross-check for every AK3+z hit and a 3-row sample of AK2+z clean hits, when the joint family fits the census cap"
+ },
+ "budgets": {
+  "harvest_pops_per_root": 1000,
+  "relator_caps": {
+   "AK3+z": 18,
+   "AK2+z": 16
+  },
+  "scheme_budget": 200000,
+  "branch_budget": 2000000,
+  "census_cap": 2000000,
+  "tc_hit_cap": 50000,
+  "pinned_from": "rank3_round2 (round-2 values, imported verbatim; identical to the audited R1e/battery runs)"
+ },
+ "roots": {
+  "AK2+z": {
+   "root": [
+    "xxYYY",
+    "xyxYXY",
+    "z"
+   ],
+   "root_key": [
+    "Z",
+    "YYYxx",
+    "YXYxyx"
+   ],
+   "relator_cap": 16,
+   "harvest": {
+    "pops": 1000,
+    "pop_budget": 1000,
+    "relator_cap": 16,
+    "children_generated": 40186,
+    "distinct_members": 27350,
+    "queue_remaining": 26350
+   },
+   "verdict_method_histogram": {
+    "NOT_SPHERICAL/factorial_census": 32,
+    "NOT_SPHERICAL/r1c_v2_nonplanar": 104,
+    "NOT_SPHERICAL/r1c_v2_solver": 11268,
+    "NOT_SPHERICAL/split/r1c_v2_solver": 947,
+    "SPHERICAL/factorial_census": 89,
+    "SPHERICAL/r1c_v2_solver": 14860,
+    "SPHERICAL/split/r1c_v2_solver": 50
+   },
+   "verdict_histogram": {
+    "NOT_SPHERICAL": 12351,
+    "SPHERICAL": 14999
+   },
+   "spherical_rows": 14999,
+   "spherical_rate": 0.5484095063985375,
+   "spherical_by_total_length": {
+    "3": 1,
+    "4": 12,
+    "5": 72,
+    "6": 288,
+    "7": 1128,
+    "8": 1944,
+    "9": 4800,
+    "10": 3060,
+    "11": 3672,
+    "12": 8,
+    "13": 1,
+    "14": 12,
+    "20": 1
+   },
+   "destabilizable_rows": 997,
+   "destabilizable_spherical_rows": 50,
+   "z_occurrence_histogram": {
+    "1": 3320,
+    "2": 7520,
+    "3": 10480,
+    "4": 3178,
+    "5": 2216,
+    "6": 600,
+    "7": 36
+   },
+   "member_total_length_histogram": {
+    "3": 1,
+    "4": 12,
+    "5": 72,
+    "6": 288,
+    "7": 1224,
+    "8": 2476,
+    "9": 5880,
+    "10": 3974,
+    "11": 4441,
+    "12": 22,
+    "13": 98,
+    "14": 940,
+    "15": 242,
+    "16": 514,
+    "17": 702,
+    "18": 2128,
+    "19": 2434,
+    "20": 1771,
+    "21": 131
+   },
+   "undecided_budget_rows": 0,
+   "unsupported_rows": 0,
+   "shadow_sigma_E": {
+    "scope": "destabilizable members' rank-2 projections only (E is rank-2-only; validated K4/K4-e/C4 closed forms)",
+    "rows_with_E": 955,
+    "rows_E_unknown": 42,
+    "float": 24.60936545729403,
+    "exact": "65116381/2646000",
+    "pair_support_class_histogram": {
+     "C4": 52,
+     "K4": 603,
+     "K4-e": 300,
+     "P4": 42
+    }
+   },
+   "replay_verification": {
+    "single_steps": {
+     "single_step_composites_verified": 27349,
+     "members_total": 27350
+    },
+    "chain_sample": {
+     "seed": 20260729,
+     "requested": 100,
+     "verified": 100,
+     "max_chain_steps": 11,
+     "max_h_moves_total": 25,
+     "chains": [
+      {
+       "canonical": [
+        "Z",
+        "ZZx",
+        "ZZxzy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "X",
+        "Zxx",
+        "ZXzY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "ZY",
+        "ZZY",
+        "ZYYx"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 19
+      },
+      {
+       "canonical": [
+        "Y",
+        "YX",
+        "ZxyXy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "X",
+        "ZyZX",
+        "ZZXyZX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "X",
+        "ZZY",
+        "ZXYx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxx",
+        "ZXyyyXYxyXyX"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 14
+      },
+      {
+       "canonical": [
+        "X",
+        "YX",
+        "ZXYX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXyxYx",
+        "ZYxxYzY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyyXXy",
+        "ZyyXXYXyXyxy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 9
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXYxyXy",
+        "ZXYYYxxYxyXy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXyyy",
+        "ZXXyXYxyXyyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Y",
+        "Zy",
+        "ZyyX"
+       ],
+       "chain_steps": 8,
+       "h_moves_total": 18
+      },
+      {
+       "canonical": [
+        "Zy",
+        "ZZxy",
+        "ZZxyy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxYx",
+        "ZxYxxY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 20
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxyXYxY",
+        "ZxxYYYxyXYxY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXX",
+        "Zyyxxx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 24
+      },
+      {
+       "canonical": [
+        "Y",
+        "Yx",
+        "ZYYxxY"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 19
+      },
+      {
+       "canonical": [
+        "X",
+        "Zyx",
+        "ZyZxx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Yx",
+        "Yxx",
+        "ZxxYY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "X",
+        "ZXY",
+        "ZXXYY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Z",
+        "Zy",
+        "ZZXyZy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Zy",
+        "ZZy",
+        "ZZxzy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Z",
+        "Zy",
+        "ZYYxy"
+       ],
+       "chain_steps": 8,
+       "h_moves_total": 18
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxx",
+        "ZYYxxYxYxYXy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 14
+      },
+      {
+       "canonical": [
+        "ZY",
+        "ZZY",
+        "ZZZYx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Z",
+        "Y",
+        "ZYYx"
+       ],
+       "chain_steps": 7,
+       "h_moves_total": 16
+      },
+      {
+       "canonical": [
+        "ZY",
+        "Zxx",
+        "ZZYx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "YYYxx",
+        "ZYxxYY",
+        "ZYxyxYX"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 6
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZZXy",
+        "ZZXYzy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "YX",
+        "Zxyy",
+        "ZyZxy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "YYYxx",
+        "ZyyXXy",
+        "YYxYxYx"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "X",
+        "ZXzY",
+        "ZZxzy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "X",
+        "ZYxy",
+        "ZyXYxy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxx",
+        "ZXyxYXyy"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 6
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXy",
+        "ZXXzxy"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "ZY",
+        "Yx",
+        "ZxYxY"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 20
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZZY",
+        "ZYZX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "X",
+        "ZXX",
+        "ZyxxzX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZXzy",
+        "ZZXzyX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Yx",
+        "ZxY",
+        "ZyXzx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZXzy",
+        "ZZXzyy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "X",
+        "ZYx",
+        "ZYXXzx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "ZX",
+        "Yxx",
+        "ZXXy"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 19
+      },
+      {
+       "canonical": [
+        "Z",
+        "Y",
+        "ZZXYY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "ZYX",
+        "YXX",
+        "YXXX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "ZxxYYY",
+        "YXyxYx",
+        "ZXyxYxY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Zy",
+        "Zyy",
+        "ZyxY"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 19
+      },
+      {
+       "canonical": [
+        "ZY",
+        "ZYxY",
+        "ZYxxY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZXYY",
+        "ZYzyyx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "ZZy",
+        "Zxy",
+        "ZZXy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZX",
+        "ZZxyXX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZXYx",
+        "ZZXXYx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "YX",
+        "ZyX",
+        "ZYXy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "X",
+        "ZXYx",
+        "ZXYxyX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 20
+      },
+      {
+       "canonical": [
+        "Zx",
+        "Yx",
+        "ZZxxx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 20
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyXXyy",
+        "ZyXXyXYxyXyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxYYYx",
+        "ZYXyXyx"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 7
+      },
+      {
+       "canonical": [
+        "Yx",
+        "ZyxY",
+        "ZyxxY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "ZY",
+        "ZXy",
+        "ZXyxY"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 19
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxx",
+        "ZyxYXYXXyyyx"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 5
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxx",
+        "ZYxyxyyXXX"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 7
+      },
+      {
+       "canonical": [
+        "ZX",
+        "Zyx",
+        "Zxyyx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYXyxyX",
+        "ZYXyxYYYxxyX"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 5
+      },
+      {
+       "canonical": [
+        "Y",
+        "Zxx",
+        "Zyxy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "ZxxYYY",
+        "YXyXyx",
+        "ZXzyyyX"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Yx",
+        "ZXyy",
+        "ZYXyy"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 20
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXyXyx",
+        "YYxyXYxYxYx"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 15
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZYx",
+        "ZxYYYx"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 20
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXyXyx",
+        "ZXYxYxyyXXyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "X",
+        "Yxx",
+        "ZXXy"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 18
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyxY",
+        "Zyxx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZY",
+        "Zyxzy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "ZX",
+        "ZYX",
+        "ZyxYX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "ZX",
+        "ZYX",
+        "ZXYx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Z",
+        "X",
+        "ZyxZX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxx",
+        "YYYYXyyXyxxx"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "ZXY",
+        "ZXX",
+        "ZXXy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXzY",
+        "ZZyXzY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZYxy",
+        "ZxYxy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYX",
+        "YYYX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "Zx",
+        "ZYxx",
+        "ZYYxx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZXX",
+        "YYx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "X",
+        "Zyx",
+        "Zyyxxx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 24
+      },
+      {
+       "canonical": [
+        "ZY",
+        "ZZY",
+        "ZZZYX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "X",
+        "ZYY",
+        "ZYXyzY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "X",
+        "ZX",
+        "ZZxzyX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXyxYx",
+        "ZyyXyXYxyyXX"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 14
+      },
+      {
+       "canonical": [
+        "Y",
+        "YX",
+        "Zyyxxx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 25
+      },
+      {
+       "canonical": [
+        "X",
+        "ZX",
+        "ZyXZX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "X",
+        "ZXYX",
+        "ZZXXYX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxx",
+        "ZYYYxYXyxy"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 3
+      },
+      {
+       "canonical": [
+        "Y",
+        "ZxYX",
+        "ZXXZxY"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Z",
+        "Yx",
+        "ZZyXX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 22
+      },
+      {
+       "canonical": [
+        "X",
+        "ZXy",
+        "ZxYXy"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 20
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZYxxYYXYxyxY"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 5
+      },
+      {
+       "canonical": [
+        "Y",
+        "Zyy",
+        "Zxyyy"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 21
+      },
+      {
+       "canonical": [
+        "YX",
+        "ZYXX",
+        "ZYZXX"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Z",
+        "Zy",
+        "ZyyZyx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYzx",
+        "ZYzyZx"
+       ],
+       "chain_steps": 11,
+       "h_moves_total": 23
+      }
+     ]
+    },
+    "spherical_chains_verified": 14999
+   },
+   "hit_protocol": {
+    "spherical_rows": 14999,
+    "protocol_failures": 0,
+    "corollary_z_cross_checks_ran": 3,
+    "re_decisions_all_agree": true
+   },
+   "elapsed_seconds": 215.9,
+   "members_out": "results/stable_ac/fable/stable_contrast_ak2z_members.jsonl.gz"
+  },
+  "AK3+z": {
+   "root": [
+    "xxxYYYY",
+    "xyxYXY",
+    "z"
+   ],
+   "root_key": [
+    "Z",
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "relator_cap": 18,
+   "harvest": {
+    "pops": 1000,
+    "pop_budget": 1000,
+    "relator_cap": 18,
+    "children_generated": 190420,
+    "distinct_members": 171842,
+    "queue_remaining": 170842
+   },
+   "verdict_method_histogram": {
+    "NOT_SPHERICAL/r1c_v2_nonplanar": 40680,
+    "NOT_SPHERICAL/r1c_v2_solver": 127367,
+    "NOT_SPHERICAL/split/r1c_v2_solver": 3109,
+    "UNDECIDED_BUDGET/none": 686
+   },
+   "verdict_histogram": {
+    "NOT_SPHERICAL": 171156,
+    "UNDECIDED_BUDGET": 686
+   },
+   "spherical_rows": 0,
+   "spherical_rate": 0.0,
+   "spherical_by_total_length": {},
+   "destabilizable_rows": 3109,
+   "destabilizable_spherical_rows": 0,
+   "z_occurrence_histogram": {
+    "1": 4005,
+    "2": 9858,
+    "3": 37426,
+    "4": 65928,
+    "5": 38287,
+    "6": 9641,
+    "7": 6697
+   },
+   "member_total_length_histogram": {
+    "14": 2,
+    "15": 52,
+    "16": 702,
+    "17": 6671,
+    "18": 3180,
+    "19": 1511,
+    "20": 5843,
+    "21": 13078,
+    "22": 26457,
+    "23": 41827,
+    "24": 40905,
+    "25": 14797,
+    "26": 9368,
+    "27": 7449
+   },
+   "undecided_budget_rows": 686,
+   "unsupported_rows": 0,
+   "shadow_sigma_E": {
+    "scope": "destabilizable members' rank-2 projections only (E is rank-2-only; validated K4/K4-e/C4 closed forms)",
+    "rows_with_E": 3109,
+    "rows_E_unknown": 0,
+    "float": 0.7190794504437361,
+    "exact": "2720838443/3783780000",
+    "pair_support_class_histogram": {
+     "C4": 2,
+     "K4": 1887,
+     "K4-e": 1220
+    }
+   },
+   "replay_verification": {
+    "single_steps": {
+     "single_step_composites_verified": 171841,
+     "members_total": 171842
+    },
+    "chain_sample": {
+     "seed": 20260729,
+     "requested": 100,
+     "verified": 100,
+     "max_chain_steps": 10,
+     "max_h_moves_total": 40,
+     "chains": [
+      {
+       "canonical": [
+        "Z",
+        "ZyxyXYX",
+        "ZyyXXXXyXYzxyxY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 37
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyxYXzYx",
+        "ZyxYXzXXXXyyx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 35
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxxYYYxx",
+        "ZYXXXzXXyyxyx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 37
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXyxyXzY",
+        "ZYxxxYYYXyxyXzY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "ZXYXyxy",
+        "ZyZXYXyx",
+        "ZXXXyyyX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 31
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXyXXyxxx",
+        "YXYxxYxyXXXyxyX"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 25
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyyyXXXy",
+        "ZYxyxYZXyyyXXXy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "ZyXYXyx",
+        "ZyyyyXXX",
+        "ZYYYzxxxY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYYxxx",
+        "ZYYYxxxYxyXYXZy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXyyyXZXX",
+        "ZyxYXyyXZXX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 38
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxyXYxx",
+        "ZyXYxxYYYxYXYxyx"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyyyyXXzX",
+        "ZyyxYXYxyyyXXzX"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxxxx",
+        "ZYzXYXXXXyyyxyx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 34
+      },
+      {
+       "canonical": [
+        "ZxYXYxy",
+        "ZXyyyXXX",
+        "ZXyyyXZXX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 35
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyxyXYX",
+        "ZZXXyyyyZXyxyXYX"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYYYZxxxx",
+        "ZYYYZYXyxyxxx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 36
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXyxyXY",
+        "ZYYxxYZXyxyxY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 36
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYYxxx",
+        "ZYXyyyyyXXyzX"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZyyXZXZXXy"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 35
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXzXyyyyX",
+        "ZXzXyyxYXYxyyyX"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "YXYxyx",
+        "ZYXyxyX",
+        "ZZYYxxxYY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 7
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyXXXXyy",
+        "ZYXXyyZyXyxYX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 38
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZZXXXyyzyy",
+        "ZZXyXYXyXyyzyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYYxxx",
+        "ZYxyxYXXXyyyyX"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 5
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxxYXyx",
+        "ZxyXyXYxyXXyXy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 9
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxxxx",
+        "ZyxYYYxxxxyXYzX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 36
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZyyXXZXXyXyxyXY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 37
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXzXXzyyyy",
+        "ZXyxYXYxzXXzyyyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 14
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxyxYXY",
+        "ZyxYXYZxYxxxxYY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 37
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxyXYXy",
+        "ZyyyxyxYXzYXXXX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 39
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXXyyyX",
+        "ZXXYXYxyyyyX"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 32
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxYXzYxy",
+        "ZxyyXXXXXzYxy"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 37
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXZXXyyyy",
+        "ZYYYxxzxzXYXyx"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 9
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZyZXXZXyZyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyxyXYX",
+        "ZZyxyXYXYxxxzYYY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXYXyxy",
+        "ZXyyyyZXXzXYXyxy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZYYzxxxzYYYxyxYX"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxyXYxxYYY",
+        "ZxyXXyxyXYYxxYYY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 15
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXYXyxy",
+        "ZXYXyxxYYYxxYXyy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 5
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYYxxxxY",
+        "ZYYxxxyXYXyxxY"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 32
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyxyXYX",
+        "ZYYzxyxYxxYYY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 15
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYYxxxzYY",
+        "ZYxyZXYxxzYY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZZyXYXyx",
+        "ZZyXYXyxxxxxYYY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 33
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZZXyyyyXX",
+        "ZZXyXYXyxyyyyXX"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxyXYXy",
+        "ZYYYxxzxY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXYxyxY",
+        "ZZXXXyyyZy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 7
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXzyyyyX",
+        "ZXXzyyyyXXyxyXY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 9
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyyXXXyy",
+        "ZxYXyXXXyyZxy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYxZyxYX",
+        "ZYxxYYYxxxZyxYX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 38
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXYXyxy",
+        "ZXyyyZXXXXYXyxy"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 34
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxyXYXy",
+        "ZyyXyXYXyZXyy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYxyxYX",
+        "ZZXXXyyyX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 33
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZZXXXyyyy",
+        "ZZXXXyyyyxyzXYXy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "YYYxxxx",
+        "ZyxyZXYX",
+        "ZYXZyxyZX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 34
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZYxyxYXYxZxxzYYY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXzXyyyy",
+        "ZXYxyxZXXzXyyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 9
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyxyXYX",
+        "ZYZyxyXYxxxYY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 38
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYXYxyx",
+        "ZYXyyXXXyxyx"
+       ],
+       "chain_steps": 2,
+       "h_moves_total": 7
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYxyxYX",
+        "ZYXzXyyyXyxYX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 40
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYXYxyx",
+        "ZZYXYxyXyyyXX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 32
+      },
+      {
+       "canonical": [
+        "YXYxyx",
+        "ZYYYzxxxzY",
+        "ZZYYYzxxxzY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxZxxYYYx",
+        "ZxZxxyxyXYXYYYx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 39
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxxxx",
+        "ZXYxYxxxxYxY"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 32
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZYxxZxzxyxYXYYYY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 15
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZyyXXXZyxyXYXXy"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 40
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZyZXXXzyyyyxYXYx"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZXZXyxYXyyy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXyxyXY",
+        "ZXyxxZxxzYYYXY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 14
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZxYYYxxx",
+        "ZYXyxxxZxYYYxyX"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 37
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZxYxyxYXzxxxYYY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 37
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYYYYxxx",
+        "ZYYYZYXYxyxYxxx"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 7
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZZXYxyXXXyy"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 33
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYxyxYzX",
+        "ZYxxxzYYY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXXzyyyy",
+        "ZXYXyyZXXXzyyyxy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXYXyxy",
+        "ZyyXYxyxzYXXXyy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 9
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXXzyyyy",
+        "ZXXXzyxyxYXyy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyyXXXyy",
+        "ZyyXXXyXyxyXYzy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZXzyxYYYxxY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYXYxyx",
+        "ZyyyyZXXZX"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 9
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYxyxYX",
+        "ZYxZYxxxYYxYX"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYXYxyx",
+        "ZXYxyXXyyXYxyx"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 4
+      },
+      {
+       "canonical": [
+        "YYYxxxx",
+        "ZYXYZxyx",
+        "ZxxxYYYx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 35
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZYxYXYxZYxxxY"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXYXyxy",
+        "ZXYXyXyyyXXyxYxy"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 14
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXXzXyyyy",
+        "ZXzXyyyyZXYXYxyx"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXyXXyxYx",
+        "YYXYxyxxYXyXXyx"
+       ],
+       "chain_steps": 5,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXyyyyZXX",
+        "ZyxYXYxyyZXXZXyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 13
+      },
+      {
+       "canonical": [
+        "YXYxyx",
+        "ZyXYXyx",
+        "ZZXzXXyyyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZZyxYXYx",
+        "ZYxxxxYYZyxYXYx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 34
+      },
+      {
+       "canonical": [
+        "ZXyxyXY",
+        "ZYxzyxYX",
+        "ZYYYxxxzY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 10
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYYYxxxzY",
+        "ZYYYxxxzXYxZyxYY"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 11
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYXyxyX",
+        "ZXzxYXYxyXXzyyyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZXXXXzyyyXyxyXY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 34
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZXyxyXYYYYxyXYxx"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 12
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZyXYXyx",
+        "ZyXyXXZXXyXyx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 38
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZZXXXyyyy",
+        "ZYXYxyzxZXXXyyyy"
+       ],
+       "chain_steps": 4,
+       "h_moves_total": 8
+      },
+      {
+       "canonical": [
+        "Z",
+        "YYYxyXYxx",
+        "ZyxYYXyyyX"
+       ],
+       "chain_steps": 3,
+       "h_moves_total": 17
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZXyyyXXX",
+        "ZYxzxxxYxYXYx"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 40
+      },
+      {
+       "canonical": [
+        "Z",
+        "YXYxyx",
+        "ZYxYXYxYxxxx"
+       ],
+       "chain_steps": 9,
+       "h_moves_total": 31
+      },
+      {
+       "canonical": [
+        "Z",
+        "ZYzxxxxYY",
+        "ZYzXYXyxyxxxxYY"
+       ],
+       "chain_steps": 10,
+       "h_moves_total": 36
+      }
+     ]
+    },
+    "spherical_chains_verified": 0
+   },
+   "hit_protocol": {
+    "spherical_rows": 0,
+    "protocol_failures": 0,
+    "corollary_z_cross_checks_ran": 0,
+    "re_decisions_all_agree": true
+   },
+   "elapsed_seconds": 2700.7,
+   "members_out": "results/stable_ac/fable/stable_contrast_ak3z_members.jsonl.gz"
+  }
+ },
+ "AK3Z_LOUD_SPHERICAL_ALERT": false,
+ "SPHERICAL_HITS_AK3Z": [],
+ "SPHERICAL_HITS_AK3Z_NOTE": "zero SPHERICAL members in the AK3+z harvest at matched exploration; see the comparison table -- data only, no claim",
+ "SPHERICAL_HITS_AK2Z": {
+  "count": 14999,
+  "note": "EXPECTED: AK2+z's class is provably trivializable; these hits are the positive control validating the pipeline end-to-end",
+  "by_total_length": {
+   "3": 1,
+   "4": 12,
+   "5": 72,
+   "6": 288,
+   "7": 1128,
+   "8": 1944,
+   "9": 4800,
+   "10": 3060,
+   "11": 3672,
+   "12": 8,
+   "13": 1,
+   "14": 12,
+   "20": 1
+  },
+  "clean_spherical_rows": 50,
+  "protocol_failures": 0,
+  "first_briefs": [
+   {
+    "canonical": [
+     "Z",
+     "YYxYxYx",
+     "YYYxYxYxYxYx"
+    ],
+    "total_length": 20,
+    "relator_lengths": [
+     1,
+     7,
+     12
+    ],
+    "order": 3213,
+    "first_seen_pop": 29,
+    "z_occurrences": 1,
+    "destabilizable": true,
+    "pair": [
+     "YYxYxYx",
+     "YYYxYxYxYxYx"
+    ],
+    "verdict": "SPHERICAL",
+    "method": "split/r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 12,
+     "cap": 50000
+    },
+    "chain_steps": 4,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "Z",
+     "YYx",
+     "YYxYx"
+    ],
+    "total_length": 9,
+    "relator_lengths": [
+     1,
+     3,
+     5
+    ],
+    "order": 8897,
+    "first_seen_pop": 80,
+    "z_occurrences": 1,
+    "destabilizable": true,
+    "pair": [
+     "YYx",
+     "YYxYx"
+    ],
+    "verdict": "SPHERICAL",
+    "method": "split/r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 4,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "Z",
+     "YYxYx",
+     "YYxYxYx"
+    ],
+    "total_length": 13,
+    "relator_lengths": [
+     1,
+     5,
+     7
+    ],
+    "order": 8917,
+    "first_seen_pop": 80,
+    "z_occurrences": 1,
+    "destabilizable": true,
+    "pair": [
+     "YYxYx",
+     "YYxYxYx"
+    ],
+    "verdict": "SPHERICAL",
+    "method": "split/r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 5,
+     "cap": 50000
+    },
+    "chain_steps": 4,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "YYx",
+     "YYxYx",
+     "ZXyXyy"
+    ],
+    "total_length": 14,
+    "relator_lengths": [
+     3,
+     5,
+     6
+    ],
+    "order": 8948,
+    "first_seen_pop": 81,
+    "z_occurrences": 1,
+    "destabilizable": false,
+    "pair": null,
+    "verdict": "SPHERICAL",
+    "method": "r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 5,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "YYx",
+     "YYxYx",
+     "ZXyyXy"
+    ],
+    "total_length": 14,
+    "relator_lengths": [
+     3,
+     5,
+     6
+    ],
+    "order": 8949,
+    "first_seen_pop": 81,
+    "z_occurrences": 1,
+    "destabilizable": false,
+    "pair": null,
+    "verdict": "SPHERICAL",
+    "method": "r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 5,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "YYx",
+     "YYxYx",
+     "ZYYxYx"
+    ],
+    "total_length": 14,
+    "relator_lengths": [
+     3,
+     5,
+     6
+    ],
+    "order": 8950,
+    "first_seen_pop": 81,
+    "z_occurrences": 1,
+    "destabilizable": false,
+    "pair": null,
+    "verdict": "SPHERICAL",
+    "method": "r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 5,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "YYx",
+     "YYxYx",
+     "ZYxYYx"
+    ],
+    "total_length": 14,
+    "relator_lengths": [
+     3,
+     5,
+     6
+    ],
+    "order": 8951,
+    "first_seen_pop": 81,
+    "z_occurrences": 1,
+    "destabilizable": false,
+    "pair": null,
+    "verdict": "SPHERICAL",
+    "method": "r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 5,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "YYx",
+     "YYxYx",
+     "ZYxYxY"
+    ],
+    "total_length": 14,
+    "relator_lengths": [
+     3,
+     5,
+     6
+    ],
+    "order": 8952,
+    "first_seen_pop": 81,
+    "z_occurrences": 1,
+    "destabilizable": false,
+    "pair": null,
+    "verdict": "SPHERICAL",
+    "method": "r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 5,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "YYx",
+     "YYxYx",
+     "ZxYYxY"
+    ],
+    "total_length": 14,
+    "relator_lengths": [
+     3,
+     5,
+     6
+    ],
+    "order": 8953,
+    "first_seen_pop": 81,
+    "z_occurrences": 1,
+    "destabilizable": false,
+    "pair": null,
+    "verdict": "SPHERICAL",
+    "method": "r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 5,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   },
+   {
+    "canonical": [
+     "YYx",
+     "YYxYx",
+     "ZxYxYY"
+    ],
+    "total_length": 14,
+    "relator_lengths": [
+     3,
+     5,
+     6
+    ],
+    "order": 8954,
+    "first_seen_pop": 81,
+    "z_occurrences": 1,
+    "destabilizable": false,
+    "pair": null,
+    "verdict": "SPHERICAL",
+    "method": "r1c_v2_solver",
+    "tc_triple": {
+     "status": "COMPLETE",
+     "index": 1,
+     "trivial": true,
+     "cosets_defined": 3,
+     "cap": 50000
+    },
+    "chain_steps": 5,
+    "re_decision_agrees": true,
+    "protocol_clean": true
+   }
+  ]
+ },
+ "cross_root_overlap": {
+  "count": 0,
+  "keys_sample": [],
+  "note": "a nonzero overlap would place a common canonical member in BOTH classes, i.e. AK3+z's class would equal AK2+z's provably trivializable class -- headline-grade; recorded as data only"
+ },
+ "classical_contrast_requote": {
+  "quoted_from": [
+   "results/stable_ac/fable/ak2_battery_summary.json",
+   "results/stable_ac/fable/ak3_matched_summary.json"
+  ],
+  "ak2_classical": {
+   "root": [
+    "xxYYY",
+    "xyxYXY"
+   ],
+   "distinct_members": 13040,
+   "spherical_rows": 397,
+   "relator_cap": 15,
+   "harvest_pops": 1000
+  },
+  "ak3_classical": {
+   "root": [
+    "xxxYYYY",
+    "xyxYXY"
+   ],
+   "distinct_members": 124296,
+   "spherical_rows": 0,
+   "relator_cap": 17,
+   "harvest_pops": 1000
+  }
+ },
+ "comparison_table": {
+  "matched": [
+   "operator (single shared implementation)",
+   "seen-set (canon_state)",
+   "priority (total canonical length, insertion ties)",
+   "pop budget (exactly 1,000 per root)",
+   "relative length-cap headroom (root total + 4)",
+   "decision stack + budgets (audited round-2 values)"
+  ],
+  "not_matched": [
+   "absolute per-relator cap (18 vs 16; AK3+z's box is strictly larger -- see design.length_caps)"
+  ],
+  "stable_AK3z": {
+   "root": [
+    "xxxYYYY",
+    "xyxYXY",
+    "z"
+   ],
+   "relator_cap": 18,
+   "harvest_pops": 1000,
+   "distinct_members": 171842,
+   "verdict_histogram": {
+    "NOT_SPHERICAL": 171156,
+    "UNDECIDED_BUDGET": 686
+   },
+   "spherical_rows": 0,
+   "spherical_rate": 0.0,
+   "destabilizable_rows": 3109,
+   "destabilizable_spherical_rows": 0,
+   "undecided_budget_rows": 686,
+   "unsupported_rows": 0,
+   "shadow_sigma_E": {
+    "rows_with_E": 3109,
+    "rows_E_unknown": 0,
+    "float": 0.7190794504437361,
+    "exact": "2720838443/3783780000"
+   }
+  },
+  "stable_AK2z": {
+   "root": [
+    "xxYYY",
+    "xyxYXY",
+    "z"
+   ],
+   "relator_cap": 16,
+   "harvest_pops": 1000,
+   "distinct_members": 27350,
+   "verdict_histogram": {
+    "NOT_SPHERICAL": 12351,
+    "SPHERICAL": 14999
+   },
+   "spherical_rows": 14999,
+   "spherical_rate": 0.5484095063985375,
+   "destabilizable_rows": 997,
+   "destabilizable_spherical_rows": 50,
+   "undecided_budget_rows": 0,
+   "unsupported_rows": 0,
+   "shadow_sigma_E": {
+    "rows_with_E": 955,
+    "rows_E_unknown": 42,
+    "float": 24.60936545729403,
+    "exact": "65116381/2646000"
+   }
+  },
+  "classical": {
+   "quoted_from": [
+    "results/stable_ac/fable/ak2_battery_summary.json",
+    "results/stable_ac/fable/ak3_matched_summary.json"
+   ],
+   "ak2_classical": {
+    "root": [
+     "xxYYY",
+     "xyxYXY"
+    ],
+    "distinct_members": 13040,
+    "spherical_rows": 397,
+    "relator_cap": 15,
+    "harvest_pops": 1000
+   },
+   "ak3_classical": {
+    "root": [
+     "xxxYYYY",
+     "xyxYXY"
+    ],
+    "distinct_members": 124296,
+    "spherical_rows": 0,
+    "relator_cap": 17,
+    "harvest_pops": 1000
+   }
+  }
+ },
+ "elapsed_seconds": 2917.2,
+ "outputs": {
+  "ak3z_members": "results/stable_ac/fable/stable_contrast_ak3z_members.jsonl.gz",
+  "ak2z_members": "results/stable_ac/fable/stable_contrast_ak2z_members.jsonl.gz",
+  "summary": "results/stable_ac/fable/stable_contrast_summary.json"
+ }
+}

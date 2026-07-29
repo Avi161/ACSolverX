@@ -107,6 +107,17 @@ much harder than those Erdős problems. Its three keys:
   contrast experiments need member-by-member operator-identity verification and
   two-sided ΣE accounting against a trivializable positive control.
   [[TRAP]](experiments/lessons/large-artifact-commits-and-null-model-contrast.md)
+- `literature/` is gitignored, so cloud clones have NO papers: a citation carried in from
+  an earlier session looks identical to a read one and gets bolder each time it is copied.
+  Re-verify in the session that USES it (`ls` the file before writing the sentence), and
+  structure write-ups so an unsourceable theorem costs one inference, not the whole route.
+  arXiv RSS feeds mirrored on GitHub still yield abstracts verbatim when bodies are blocked.
+  [[TRAP]](experiments/lessons/literature-absent-in-cloud-clones.md)
+- Contrast experiments: a raw hit-rate gap can be a LENGTH gap in disguise. A trivializable
+  control's class shrinks and its short members are disproportionately thickenable, so
+  compare only inside the length band the two harvests share — and never quote a p-value,
+  because class members come from a move tree and are not independent draws.
+  [[TRAP]](experiments/lessons/contrast-length-confound.md)
 - A resumed subagent can relaunch its job beside yours: two writers, one output path,
   corrupt artifact (check `ps` ELAPSED, kill both, rerun one with explicit --out). And
   record which SIDE each tool bounds a quantity from — a heuristic witness bounds γ_N

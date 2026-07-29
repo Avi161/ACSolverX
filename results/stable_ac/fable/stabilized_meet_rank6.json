@@ -1,0 +1,59 @@
+{
+ "record": "stabilized_meet",
+ "pops_per_rank": 1000,
+ "targets_by_rank": {
+  "2": 2,
+  "3": 17,
+  "4": 238,
+  "5": 4618,
+  "6": 514
+ },
+ "targets_meta": {
+  "record": "certified_trivial_targets",
+  "derivation": "Fagan-Qiu-Wang contractible fake-surface census (complexity 1-5), each surface collapsed along a spanning tree of its singular graph to a balanced presentation with V+1 generators, V+1 relators, total length 3V+3",
+  "upstream": "github.com/lucasfagan/Fake-Surfaces (fakesurfaces.csv)",
+  "theorem": "arXiv:2412.12293 abstract (verbatim): every contractible fake surface of complexity less than 6 is 3-deformable to a point; stable ACC is equivalent to every contractible fake surface being 3-deformable to a point",
+  "consequence": "each target below is a STABLY AC-TRIVIAL balanced presentation",
+  "flags": [
+   "full text of arXiv:2412.12293 unreachable this session (abstract sourced verbatim); cellular-vs-general scope of the complexity<6 theorem UNVERIFIED",
+   "validation in-session: 3 face-germs per singular edge on 5389/5389; |det|=1 on 5389/5389; Todd-Coxeter index 1 on 457/457 tested (all of complexity 1-3 plus random samples at 4 and 5)"
+  ],
+  "counts_by_complexity": {
+   "1": 2,
+   "2": 17,
+   "3": 238,
+   "4": 4618,
+   "5": 514
+  },
+  "built_utc": "2026-07-29T15:30:07Z"
+ },
+ "runs": [
+  {
+   "root": [
+    "xxxYYYY",
+    "xyxYXY",
+    "z",
+    "w",
+    "v",
+    "u"
+   ],
+   "rank": 6,
+   "length_cap": 21,
+   "pops": 1000,
+   "distinct_states": 84009,
+   "queue_remaining": 83009,
+   "length_histogram": {
+    "18": 128,
+    "19": 8534,
+    "20": 59349,
+    "21": 15997
+   },
+   "hits": [],
+   "elapsed_seconds": 1636.1,
+   "stabilisations": 4,
+   "targets_at_rank": 514
+  }
+ ],
+ "TOTAL_MATCHES": 0,
+ "LOUD_HIT_ALERT": false
+}

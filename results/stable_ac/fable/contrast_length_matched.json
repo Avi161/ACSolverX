@@ -1,0 +1,567 @@
+{
+ "record": "contrast_length_matched",
+ "scans": {
+  "AK2+z": {
+   "path": "results/stable_ac/fable/stable_contrast_ak2z_members.jsonl.gz",
+   "members_total": 27350,
+   "members_by_length": {
+    "3": 1,
+    "4": 12,
+    "5": 72,
+    "6": 288,
+    "7": 1224,
+    "8": 2476,
+    "9": 5880,
+    "10": 3974,
+    "11": 4441,
+    "12": 22,
+    "13": 98,
+    "14": 940,
+    "15": 242,
+    "16": 514,
+    "17": 702,
+    "18": 2128,
+    "19": 2434,
+    "20": 1771,
+    "21": 131
+   },
+   "spherical_by_length": {
+    "3": 1,
+    "4": 12,
+    "5": 72,
+    "6": 288,
+    "7": 1128,
+    "8": 1944,
+    "9": 4800,
+    "10": 3060,
+    "11": 3672,
+    "12": 8,
+    "13": 1,
+    "14": 12,
+    "20": 1
+   },
+   "undecided_by_length": {},
+   "spherical_total": 14999,
+   "distinct_parents_of_hits": 1,
+   "largest_parent_family": 14999,
+   "sample_hits": [
+    {
+     "canonical": [
+      "Z",
+      "YYxYxYx",
+      "YYYxYxYxYxYx"
+     ],
+     "total_length": 20,
+     "first_seen_pop": 29,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "YYxYx"
+     ],
+     "total_length": 9,
+     "first_seen_pop": 80,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYxYx",
+      "YYxYxYx"
+     ],
+     "total_length": 13,
+     "first_seen_pop": 80,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZXyXyy"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZXyyXy"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZYYxYx"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZYxYYx"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZYxYxY"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZxYYxY"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZxYxYY"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZyXyXy"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZyXyyX"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "YYxYx",
+      "ZyyXyX"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "ZXyy",
+      "YYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "ZYYx",
+      "YYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "ZYxY",
+      "YYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "ZxYY",
+      "YYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "ZyXy",
+      "YYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "YYx",
+      "ZyyX",
+      "YYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "YYYxYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "YYxYYxYx"
+     ],
+     "total_length": 12,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZXyXyy"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZXyyXy"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZYYxYx"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZYxYYx"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZYxYxY"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZxYYxY"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZxYxYY"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZyXyXy"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZyXyyX"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYx",
+      "ZyyXyX"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYxYx",
+      "YYYxYxYx"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "YYxYx",
+      "YYxYYxYx"
+     ],
+     "total_length": 14,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "Yx",
+      "YYx"
+     ],
+     "total_length": 6,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "Yx",
+      "YYxYx"
+     ],
+     "total_length": 8,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "ZXyy",
+      "YYxYx"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "ZYYx",
+      "YYxYx"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "ZYxY",
+      "YYxYx"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "ZxYY",
+      "YYxYx"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    },
+    {
+     "canonical": [
+      "Z",
+      "ZyXy",
+      "YYxYx"
+     ],
+     "total_length": 10,
+     "first_seen_pop": 81,
+     "parent_key": null
+    }
+   ]
+  },
+  "AK3+z": {
+   "path": "results/stable_ac/fable/stable_contrast_ak3z_members.jsonl.gz",
+   "members_total": 171842,
+   "members_by_length": {
+    "14": 2,
+    "15": 52,
+    "16": 702,
+    "17": 6671,
+    "18": 3180,
+    "19": 1511,
+    "20": 5843,
+    "21": 13078,
+    "22": 26457,
+    "23": 41827,
+    "24": 40905,
+    "25": 14797,
+    "26": 9368,
+    "27": 7449
+   },
+   "spherical_by_length": {},
+   "undecided_by_length": {
+    "18": 190,
+    "20": 4,
+    "22": 45,
+    "23": 8,
+    "24": 124,
+    "25": 57,
+    "26": 128,
+    "27": 130
+   },
+   "spherical_total": 0,
+   "distinct_parents_of_hits": 0,
+   "largest_parent_family": 0,
+   "sample_hits": []
+  }
+ },
+ "claims_addressed": "none -- measurement and self-audit only",
+ "shared_band": {
+  "lengths": [
+   14,
+   21
+  ],
+  "per_length": [
+   {
+    "total_length": 14,
+    "control_members": 940,
+    "control_spherical": 12,
+    "target_members": 2,
+    "target_spherical": 0
+   },
+   {
+    "total_length": 15,
+    "control_members": 242,
+    "control_spherical": 0,
+    "target_members": 52,
+    "target_spherical": 0
+   },
+   {
+    "total_length": 16,
+    "control_members": 514,
+    "control_spherical": 0,
+    "target_members": 702,
+    "target_spherical": 0
+   },
+   {
+    "total_length": 17,
+    "control_members": 702,
+    "control_spherical": 0,
+    "target_members": 6671,
+    "target_spherical": 0
+   },
+   {
+    "total_length": 18,
+    "control_members": 2128,
+    "control_spherical": 0,
+    "target_members": 3180,
+    "target_spherical": 0
+   },
+   {
+    "total_length": 19,
+    "control_members": 2434,
+    "control_spherical": 0,
+    "target_members": 1511,
+    "target_spherical": 0
+   },
+   {
+    "total_length": 20,
+    "control_members": 1771,
+    "control_spherical": 1,
+    "target_members": 5843,
+    "target_spherical": 0
+   },
+   {
+    "total_length": 21,
+    "control_members": 131,
+    "control_spherical": 0,
+    "target_members": 13078,
+    "target_spherical": 0
+   }
+  ],
+  "control_members": 8862,
+  "control_spherical": 13,
+  "control_rate_in_band": 0.001466937485894832,
+  "target_members": 31039,
+  "target_spherical": 0,
+  "target_expected_at_control_rate": 45.5
+ },
+ "raw_comparison": {
+  "control_rate_all_lengths": 0.5484095063985375,
+  "target_rate_all_lengths": 0.0,
+  "why_unsound": "the two harvests occupy different length bands; the control reaches total length 3 (the standard presentation) while the target never goes below 14, and short states are disproportionately thickenable"
+ },
+ "independence_caveat": {
+  "control_distinct_parents_of_hits": 1,
+  "control_largest_parent_family": 14999,
+  "note": "class members are generated by a move tree and are NOT independent draws; no p-value is quoted, and the expected count above is a descriptive scale, not a test statistic"
+ }
+}
