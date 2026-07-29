@@ -122,10 +122,21 @@ INVERSION, which is length-preserving — the move meant was AC2. Second, and fa
 repaired statement is still false in substance: R8's **Theorem A1** shows the census
 profile is sharper than (n generators, n relators, length 3n) — in the tree-collapse
 presentation **every generator occurs exactly 3 times**, verified on 5,389/5,389 rows.
-The (6, 18) presentation reached by stabilisation has occurrence vector (7, 7, 2, 1, 1, 1),
+The (6, 18) presentation reached by stabilisation has occurrence vector (6, 7, 2, 1, 1, 1),
 not (3, 3, 3, 3, 3, 3), so it does not meet the profile at all. What actually reaches the
 sharp profile from AK(3) is 7 Tietze splits landing at rank 9 — the complexity-8 profile,
-not rank 6. See `R8_FAKE_SURFACE_COMPLEXITY.md` §4.]
+not rank 6. See `R8_FAKE_SURFACE_COMPLEXITY.md` §4.
+
+AUDIT AMENDMENT (independent adversarial audit of R8, this session): the vector printed
+here originally read (7, 7, 2, 1, 1, 1), which **sums to 19 and therefore cannot belong to
+any length-18 state**; the correct vector is (6, 7, 2, 1, 1, 1), recomputed directly. The
+substance of the correction is unaffected — the state still fails the sharp profile — and
+the audit confirmed by direct computation every other assertion in this bracket: that AC1
+is inversion and length-preserving, that 4 AC4 moves give (6, 17), and that 7 Tietze splits
+land at rank 9. A1's FORWARD direction, which is the only direction cited here, is
+CONFIRMED on 102,092 (surface, spanning tree) pairs — every spanning tree of every census
+surface, not merely the one the script picks. A1's CONVERSE is REFUTED, but nothing here
+cites it.]
 
 Unverified dependencies if anyone revives this: whether "complexity < 6" is stated for
 all or only cellular fake surfaces; the exact form and direction of the equivalence

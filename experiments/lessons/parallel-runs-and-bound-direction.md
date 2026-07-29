@@ -18,6 +18,22 @@
   without noticing. Guard: for every reported quantity write down which tool bounds it
   from which side (exhaustive solver: gamma_N >= 1; heuristic witness: gamma_N <= k;
   exact census: equality), and never combine them in the direction neither supports.
+- [TRAP — RECURRENCE, and the expensive kind] The same inversion happened again a few
+  hours later, in prose rather than in code, and it changed the project's search plan.
+  A theorem that CONSTRUCTS a rank-9 presentation meeting a profile is an existence
+  witness: an UPPER bound on the first rank where the profile is met. A write-up read it
+  as "the class FIRST meets the profile at rank 9" — a LOWER bound — and concluded
+  "search at rank ~9, NOT rank 4-6". That retired the only rank band where a hit would
+  settle the question with an already-published theorem, in favour of a band whose
+  theorem does not exist yet. Caught only by an independent adversarial audit, one
+  document downstream. Guards, beyond the code-level one above: (1) any sentence
+  containing "first", "minimum", "at least" or "not below" about a quantity established
+  by CONSTRUCTION is suspect on sight — a construction can only ever bound from the
+  reachable side; (2) when a claim's consequence is "stop searching region X", re-derive
+  the bound direction before acting on it, because the cost of this error is not a wrong
+  number but abandoned work; (3) prefer phrasing that names the mechanism — "rank 9 is
+  where THIS CONSTRUCTION lands" cannot be misread as a floor, while "the class first
+  meets the profile at rank 9" invites it.
 - [TRAP] A weaker search reports HIGHER values, so "the obstruction grows with input
   size" and "my search degrades with input size" produce the identical shape. Any claim
   about a trend in a heuristically-measured quantity needs a calibration control at the

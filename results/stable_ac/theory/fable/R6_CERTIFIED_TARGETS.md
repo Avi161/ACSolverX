@@ -57,8 +57,20 @@ CANDIDATES. `certified_trivial_targets.json`'s description as a "census of compl
 1–5" overstates coverage on both counts and should be read against this paragraph.
 
 **And the targets were partly self-defeating.** R8's Theorem A2 shows a rank-2 census
-match would itself be a proof that AK(3) is AC-trivial — so at rank 2 the detector was
-searching for something logically equivalent to the answer, not a stepping stone to it.
+match **in the classical (unstable) class** would itself be a proof that AK(3) is
+AC-trivial — so at rank 2 the detector was searching for something logically equivalent to
+the answer, not a stepping stone to it.
+
+AUDIT AMENDMENT (independent adversarial audit of R8, this session): the qualifier
+"in the classical (unstable) class" is required and was missing. A match reached *through*
+stabilisation yields only *stably* AC-trivial, which is a different claim. The audit
+verified this is currently harmless in practice — both stable corpora are 100% rank-3
+(171,842 and 27,350 members, all 3 generators / 3 relators), so no rank-2 state exists in
+them to trigger the confusion — and also confirmed that the argument does **not** depend on
+the unstable ambient-automorphism principle: rank = V+1 forces complexity 1, and for a
+signed permutation σ, σ(standard) is AC-equivalent to standard and σ carries AC chains to
+AC chains, so the detector's canonicalisation is benign even unstably. Theorem A2 itself is
+CONFIRMED (both complexity-1 chains replayed with independent algebra).
 
 Matching "up to generator relabelling" additionally leans on the stable ambient
 automorphism theorem; exact matches are reported separately so the weaker,
@@ -130,7 +142,28 @@ at ranks where we have never searched. This is the single most actionable findin
 route: the forward side must be stabilised to rank 4, 5 and 6, where 99.6% of the
 certified targets live and where no published search has gone. AK(3) plus four
 stabilisations has 6 generators and total length 17; the 514 complexity-5 targets have 6
-generators and total length 18 — the profiles nearly coincide.
+generators and total length 18 — the profiles nearly coincide. (That last clause is a
+length-only proximity remark; it does NOT assert the sharp occurrence profile, whose
+converse is refuted.)
+
+**This programme was briefly retired in error, and is hereby RESTORED.** R8 §6 conclusion 3
+advised searching "at rank ≈ 9, **not** rank 4–6 … where Theorem D says the class **first**
+meets the profile". The independent adversarial audit REFUTED that on bound direction:
+Theorem D *exhibits* a rank-9 profile-correct member of AK(3)'s stable class, which is an
+**upper** bound on the first rank meeting the profile — a witness. R8 read it as a **lower**
+bound. Nothing forbids a sharp-profile member at rank 4, 5 or 6; §4's k = 3.5 argument rules
+out only **pure** stabilisation, and AC2 changes length freely.
+
+And the error inverted the strategic priority. A surface-backed match at complexity ≤ 5
+(rank ≤ 6) gives c(AK(3)) ≤ 5, which by R8's Theorem C proves AK(3) stably AC-trivial
+**using FQW as published**. A match at complexity 8 (rank 9) proves nothing until FQW's
+induction is extended to complexity 8 — itself conditional on the unproved conjecture D3.
+So ranks 4–6 remain the **only** band where a realized match settles the question outright,
+which is what this section said before R8 overrode it. Run E stands as written.
+
+(Second occurrence in this line of a bound-direction confusion producing a strategically
+wrong instruction — see `experiments/lessons/parallel-runs-and-bound-direction.md`, updated
+with this recurrence.)
 
 ## Searching at the right rank (first attempt)
 

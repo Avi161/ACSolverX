@@ -127,4 +127,9 @@ much harder than those Erdős problems. Its three keys:
   record which SIDE each tool bounds a quantity from — a heuristic witness bounds γ_N
   from ABOVE and can never feed a distance corollary that needs a lower bound; a
   degrading search and a rising obstruction produce the same histogram shape.
+  RECURRED in prose and cost a search plan: a theorem that CONSTRUCTS a rank-9 witness
+  bounds from ABOVE, so "the class first meets the profile at rank 9" is backwards and
+  retired the one band with a published theorem behind it. Any "first/minimum/at least"
+  claim about something established by construction is suspect on sight; re-derive the
+  direction before acting on "stop searching region X".
   [[TRAP]](experiments/lessons/parallel-runs-and-bound-direction.md)
