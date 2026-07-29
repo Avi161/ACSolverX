@@ -1,0 +1,10 @@
+[cursor/heur-12h-anti-overfit-a42e 8705248] heur: scale10k research checkpoint 06:16:20 UTC
+ 6 files changed, 643 insertions(+), 4 deletions(-)
+ create mode 100644 results/heuristic_search/scale10k/anytime_b10k.jsonl
+ create mode 100644 results/heuristic_search/scale10k/freq_commit.log
+[cursor/heur-12h-anti-overfit-a42e ecf9b10] logs: fill short SHA for scale10k checkpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/Avi161/ACSolverX.git        
+To https://github.com/avi161/acsolverx
+   8b20884..ecf9b10  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
