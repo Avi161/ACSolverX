@@ -80,7 +80,7 @@ everywhere); 25 small-census states all min genus 2; no spherical state. Amendme
    factorial fallback (cap 2e6; only ~1% of round-1 states) — budget accordingly or wait
    for v2.
 
-## Amendment 3 (14:25 UTC) — Run D: the matched-operator contrast at scale (TOP PRIORITY)
+## Amendment 3 (14:21 UTC) — Run D: the matched-operator contrast at scale (TOP PRIORITY)
 
 The local 1,000-pop matched contrast (ak2_battery.py / ak3_matched_control.py, results
 committed) ended at AK(3) ΣE 5.03 with 0 observed vs AK(2) 649/397 — p between 0.7%
