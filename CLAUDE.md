@@ -90,3 +90,10 @@ much harder than those Erdős problems. Its three keys:
   (matches `.github/workflows/tests.yml`).
 - Full training stack: `pip install -r requirements.txt` plus CPU
   `jax==0.6.0` (cloud containers have no GPU; ignore the CUDA/ROCm files).
+
+## Lessons index (fable line)
+
+- Cloud sessions: scholarly hosts are proxy-blocked (WebFetch dead; GitHub clones work —
+  check for paper-source mirrors); a 403 push needs user notification + local commit
+  cadence; measure log timestamps with `date -u`, never estimate.
+  [[TRAP]](experiments/lessons/cloud-session-network-and-push-constraints.md)
