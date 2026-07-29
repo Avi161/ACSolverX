@@ -1,6 +1,67 @@
 # R7c — The drop floor: reducing "spiked thickenable ⇒ reduced thickenable" to one case
 
-STATUS: **REDUCTION, author-derived, machine check IN FLIGHT, NOT AUDITED.** Claim class:
+> ## CORRECTION, added at session end — READ BEFORE THE BODY
+>
+> **The pointwise DROP FLOOR stated below is REFUTED, and the claimed equivalence with (SR)
+> is wrong in one direction. The body is retained unedited as the record of a failed
+> reduction; every statement in it must be read against this box.**
+>
+> **1. The pointwise drop floor is false.** `drop_floor_check.py` swept 522 canonical
+> 2-generator bases (498 examined, 24 skipped by the rank gate), 12,768 spikes and
+> **4,125,888 (base, spike, rotation) triples**, of which **2,540,432 sat at
+> `defect(ρ(C′)) = 2`** — the sole case the reduction left open. It found **1,408 strict
+> drops from base defect 2**, i.e. `defect(C′) = 0` with `defect(ρ(C′)) = 2`.
+> Minimal witness, hand-verified and non-degenerate (both relators of length ≥ 2):
+> base `("xx","xxY")`, spike `(j=0, k=0, u="x")` → `("xXxx","xxY")`, with
+> `defs = [2,0,0,0,0]` and `deltas = [−2,0,0,0]` — exactly the `X⁻ = 1, X⁺ = 0` signature.
+> `min defect(ρ) over all strict drops = 2`.
+>
+> **2. The equivalence claim was the actual error.** The Proposition's forward half
+> (DROP FLOOR ⇒ SR) is correct and survives. Its reverse half does not: **(SR) asserts only
+> that the base has SOME defect-0 rotation, not that the particular rotation reached by
+> restriction has defect 0.** So a base can satisfy (SR) while a different rotation of that
+> same base still strict-drops from defect 2 — which is precisely what all 1,408 witnesses
+> do: **every one of them has `γ_N(base) = 0` already, via another rotation.**
+> Confirmed independently by the R7 auditor, and the repaired statement is theirs: given the
+> ceiling, **(SR) ⟺ no spike of a base with γ_N = 1 is thickenable.** That is the one hard
+> case restated, not progress into it.
+>
+> **3. (SR) itself is NOT refuted.** Zero counterexamples in the corpus:
+> `pair (γ_N(base), γ_N(spike))` histogram `{(0,0): 5724, (0,1): 428, (1,1): 6616}` — no
+> pair with `γ_N(base) > 0 = γ_N(spike)` anywhere.
+>
+> **4. Caveat 1 of the body is withdrawn; my S2 diagnosis was wrong.** The S2 failures I
+> attributed to length-1 relators were a bug in the auditor's own harness (its fibre key
+> compared rotation cycles as raw tuples, while `compatible_orders` pins a distinguished
+> head dart, so equal cyclic orders compared unequal). After canonicalising: **0 failures**,
+> including on `("x","xYY")` alone (all 16 spikes, 96 rotations) and on **all 1,816 spikes of
+> every length-1-relator base up to total length 5**. So `|w_j| ≥ 2` must **NOT** be added to
+> S2/S4/S5 — they hold under hypothesis (H) alone. Two premises of my diagnosis were also
+> wrong: a length-1 relator's corner `{h₀,d₀}` joins `arr(x)` to `dep(x)` and is **not** an
+> A-loop, and `("x","xYY")` is loop-bearing because of the `yY` in relator 1, not relator 0.
+> Correspondingly, the refutation in item 1 is **not** a length-1 artefact: violations occur
+> at spiked-relator lengths 1 through 6 (`{1:2784, 2:3552, 3:6032, 4:8640, 5:13360, 6:12016}`).
+>
+> **5. What survives, and is now stronger than when the body was written.** The pointwise
+> floor `defect(C′) ≥ defect(ρ(C′)) − 2` was never violated: 0 failures in ~277,000
+> independently traced rotation systems, including non-reduced loop-bearing bases, rank 3,
+> length-1 relators, and 12,000 sampled rotations of AK(3)'s own gateway spikes. The
+> **SPIKE CEILING is therefore citable as a THEOREM** (MACHINERY, under (H)), per the
+> independent audit. Identity (★) held in **all** 46,384 strict drops with
+> `(X⁻,X⁺) = (1,0)` in 100% of them, and `δ_comp = 1` **never** co-occurred with a strict
+> drop — `(defect(ρ), δ_comp)` over strict drops is `{(2,0): 1408, (4,0): 44976}`. That
+> 100% correlation is the surviving structural lead: a proof of the repaired statement would
+> be built from it.
+>
+> **6. Non-negativity (Observation 1) stands** — no negative defect in any of the 4,125,888
+> triples, corroborating the 42,632-rotation check in the body.
+>
+> Instruments: `experiments/stable_ac/fable/drop_floor_check.py`,
+> `results/stable_ac/fable/drop_floor_check.json` (1.1 MB, complete).
+
+STATUS: **REDUCTION, author-derived — REFUTED, see the correction box above. Retained as a
+record of a failed route, per the standing rule that negative results are results.**
+Claim class:
 MACHINERY (a property of exact word-realized complexes). Nothing here claims anything
 about AK(3)'s AC-triviality or stable AC-triviality in either direction. What it does is
 replace an open implication by a strictly smaller open statement, and say exactly what
