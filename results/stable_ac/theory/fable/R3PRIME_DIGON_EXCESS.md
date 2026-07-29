@@ -62,3 +62,25 @@ Consequences for R3′:
   of words (one-face constrained surfaces — dual to our unrestricted-faces,
   constrained-vertices setting), and quadratic-word genus theory. [unverified this
   session — proxy blocks the literature; flag for the user's Colab session.]
+
+## The AK(2) control (29-07, ~08:45 UTC) — calibrating what "zero hits" means
+
+Experiment: exact-key best-first harvest (1,000 pops, cap 15) from AK(2) =
+(`xxYYY`,`xyxYXY`) — a TRIVIAL and provably AC-TRIVIAL class — yielding 1,251 canonical
+non-degenerate presentations; fable rank solver: **1,251/1,251 NOT_SPHERICAL** (1
+UNSUPPORTED). Also: an exhaustive sweep of ALL cyclically-reduced pairs with relator
+lengths 3–4 contains NO trivial-group presentations at all, and its 5,872 spherical pairs
+are all non-trivial groups.
+
+Reading: sphericity among non-degenerate class members is ~E-rare in EVERY class,
+trivial or not; a trivialized class's guaranteed-thickenable members are its
+short/degenerate states (standard itself has length-1 relators — below the gate). So
+AK(3)'s accumulated zeros are, so far, indistinguishable from the null model — there is
+NO phenomenon yet demanding an obstruction. The falsifiable program:
+1. Run the AK(2) control at Colab scale until ΣE ≫ 1. Hits at ~E rate ⇒ null model
+   validated end-to-end (and the machinery demonstrably CAN find hits).
+2. Run AK(3)'s class at matched ΣE. Zero hits when AK(2) shows the expected rate ⇒ a
+   genuine class-level phenomenon ⇒ R3′ gets a concrete target.
+3. Search-priority upgrade for all future harvests: best-first by E-DESCENDING (the E
+   formula rewards concentrated corner distributions, not shortness — a length-ascending
+   harvest under-samples the high-E tail). Adopted into the Colab runner spec.

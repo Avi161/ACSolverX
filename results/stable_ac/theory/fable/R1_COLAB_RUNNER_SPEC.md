@@ -25,6 +25,18 @@ resume identity in the filename stem; no dates in resume keys).
   (a computed result reaches disk before anything else is attempted — heavy-mode lesson).
 - Resume: jsonl keyed by canonical key; unique-row-count progress (never line count).
 
+## Run A′ — the AK(2) control (added after the local control experiment)
+
+Identical harvest machinery rooted at AK(2) = (`xxYYY`,`xyxYXY`) (trivial, provably
+AC-trivial class), run until cumulative ΣE ≫ 1. Purpose: end-to-end validation that the
+pipeline finds hits at the E rate in a class where hits are legitimate. Interpretation
+matrix: AK(2) hits at ~E rate + AK(3) zero at matched ΣE ⇒ genuine class-level phenomenon
+(R3′ target); both at ~E rate ⇒ the hunt is a pure scale problem; both zero at ΣE ≫ 1 ⇒
+suspect the model or the solver (cross-check with Run B). Local round 1 (1,000 pops):
+1,251 canonical members, all NOT_SPHERICAL.
+SEARCH-PRIORITY NOTE for Run A and A′: best-first by E-DESCENDING (not length) — E
+rewards concentrated corner distributions; length-ascending under-samples the high-E tail.
+
 ## Run B — false-NO alarm control at scale
 
 Random cyclically-reduced pairs at total lengths {17, 21, 25, 29} with supports in the
