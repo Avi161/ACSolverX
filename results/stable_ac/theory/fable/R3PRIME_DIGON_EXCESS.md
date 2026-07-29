@@ -191,3 +191,25 @@ phase systems transform under AC1 grafting — the move-level analysis their per
 proofs do not touch). Their proof is the natural technique seed for (c): if the
 phase-contradiction pattern can be shown stable under the AC1 corner-grafting operation on
 some invariant summary of the phase system, that is the R3′ candidate.
+
+## CALIBRATION UPDATE (post-battery-(b), ~13:55 UTC) — supersedes the AK(2) reading above
+
+The battery-(b) rebuild (ak2_battery.py, 1,000-pop rotation-expanded harvest per the
+Colab-spec round-1 amendment) found **13,040 distinct AK(2)-class members with 397
+SPHERICAL** (227 with both relators ≥ 3 letters; spread across total lengths 2–19,
+including 85 at length 11 and 5 at 19) — versus the earlier exact-key run's 0/1,251.
+The old reading "sphericity among non-degenerate class members is ~E-rare in EVERY
+class" was an artifact of the exact-key harvest's conjugacy churn (the recorded lesson)
+plus no rotation expansion: a provably AC-trivial class in fact shows abundant
+non-degenerate thickenable members once properly explored. Consequences:
+1. The null model now has a POSITIVE control that actually fires: the machinery finds
+   hits at scale in a trivializable class. (Verdicts by the certified R1c-v2 solver;
+   the standard pair itself decided via Theorem D at L = 2.)
+2. The immediate falsifiable experiment: harvest AK(3)'s classical class with the SAME
+   matched operator and budget, compare SPHERICAL rates. Hits ⇒ (Corollary 3/D3 chain,
+   Lackenby-flagged, full replay protocol) AK(3) AC-trivial — the sub-goal. Zeros at
+   matched exploration where AK(2) shows ~3% ⇒ the first genuine class-level contrast —
+   the phenomenon R3′ has been waiting for.
+3. AK(2)'s exact realization has min defect 2 (γ_N = 1) — one genus unit below AK(3)'s
+   certificate; the first zero-defect state on the trivialization path appears at index
+   18 of 27 (an A-loop state, census-decided).
