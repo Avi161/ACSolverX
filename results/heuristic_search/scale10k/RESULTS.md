@@ -1,6 +1,6 @@
 # scale10k mini-research — RESULTS
 
-Updated: `2026-07-29T07:05:06.217302+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `9.12 h`
+Updated: `2026-07-29T08:10:38.537697+00:00` · wall end `2026-07-29T16:12:20.673566+00:00` · remaining `9.12 h`
 
 Budgets ≤10,000; ≤1h/search; advisor-REVISE'd slices. **Colab handoff only after wall.**
 
@@ -21,6 +21,15 @@ Budgets ≤10,000; ≤1h/search; advisor-REVISE'd slices. **Colab handoff only a
 | `s12` | 80 | 69 | 74 | 75 | 76 | 5101 |
 | `s20` | 80 | 71 | 71 | 75 | 76 | 4962 |
 | `recommended` | 80 | 67 | 70 | 73 | 74 | 4809 |
+
+## Slice `unsolved124`
+
+| arm | n | @1k | @2k | @5k | @10k | mean pops/s |
+|---|---:|---:|---:|---:|---:|---:|
+| `length` | 124 | 0 | 0 | 0 | 0 | 1933 |
+| `s12` | 124 | 0 | 0 | 0 | 0 | 1648 |
+| `s20` | 124 | 0 | 0 | 0 | 0 | 1467 |
+| `recommended` | 124 | 0 | 0 | 0 | 0 | 1065 |
 
 ## Cost profile (local pops/s)
 
