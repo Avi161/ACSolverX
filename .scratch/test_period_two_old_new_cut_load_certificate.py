@@ -5717,6 +5717,7 @@ def _task3_generation_root():
         "schema_profiles": schema_profiles,
         "bucket_class_counts": dict(TASK3_GENERATION_BUCKET_COUNTS),
         "family_witness_counts": dict(TASK3_GENERATION_WITNESS_COUNTS),
+        "expected_oracle": {},
     }
 
 
@@ -5922,7 +5923,9 @@ def _task3_expected_generation_root_oracle(projection, projected_root):
     }
 
 
-def _task3_reseal_generation_projection(projection, projected_root):
+def _task3_reseal_generation_projection(
+    projection, projected_root, module
+):
     for family in projection["families"]:
         family["projected_two_pass_ns"] = _task3_generation_ceil(
             family["sampled_two_pass_ns"],
@@ -5952,17 +5955,14 @@ def _task3_reseal_generation_projection(projection, projected_root):
             family["full_identity_count"],
             family["sampled_identity_count"],
         )
-    root_oracle = _task3_expected_generation_root_oracle(
-        projection, projected_root
+    root_oracle = module._generation_projected_root_oracle(
+        module._generation_projected_root_metadata(projected_root),
+        projection,
+        projection["families"],
     )
-    projection["projected_index_bytes"] = len(
-        json.dumps(
-            root_oracle,
-            ensure_ascii=True,
-            separators=(",", ":"),
-            sort_keys=True,
-        ).encode("ascii")
-    ) + 1
+    projection["projected_index_bytes"] = (
+        module._generation_projected_index_bytes(root_oracle)
+    )
     projection["generation_ns_before_margin"] = (
         projection["source_catalog_precompute_ns"]
         + projection["shared_ns"]
@@ -5993,7 +5993,7 @@ def _task3_reseal_generation_projection(projection, projected_root):
     return projection
 
 
-def _task3_generation_fixture():
+def _task3_generation_fixture(module):
     projected_root = _task3_generation_root()
     projection = {
         "format": "period-two-old-new-cut-generation-projection-v1",
@@ -6017,12 +6017,20 @@ def _task3_generation_fixture():
         "projected_generation_ns": 0,
         "projected_package_bytes": 0,
     }
-    return _task3_reseal_generation_projection(projection, projected_root), projected_root
+    projected_root["expected_oracle"] = (
+        _task3_expected_generation_root_oracle(projection, projected_root)
+    )
+    return (
+        _task3_reseal_generation_projection(
+            projection, projected_root, module
+        ),
+        projected_root,
+    )
 
 
 def test_task3_generation_projection_schema_and_canonical_binding_are_exact() -> None:
     module = load_package_v2_verifier()
-    projection, projected_root = _task3_generation_fixture()
+    projection, projected_root = _task3_generation_fixture(module)
     assert set(projection) == set(TASK3_GENERATION_TOP_FIELDS)
     assert all(
         set(family) == set(TASK3_GENERATION_FAMILY_FIELDS)
@@ -6064,7 +6072,36 @@ def test_task3_generation_projection_schema_and_canonical_binding_are_exact() ->
 
 def test_task3_generation_projection_rejects_recursive_type_mutations() -> None:
     module = load_package_v2_verifier()
-    projection, projected_root = _task3_generation_fixture()
+    projection, projected_root = _task3_generation_fixture(module)
+
+    class HostileString(str):
+        def __eq__(self, _other):
+            return True
+
+        __hash__ = str.__hash__
+
+    exact_string_mutations = []
+    mutated = copy.deepcopy(projection)
+    mutated["format"] = HostileString("wrong-format")
+    exact_string_mutations.append((mutated, projected_root))
+    mutated = copy.deepcopy(projection)
+    mutated["family_order"][0] = HostileString("fixed")
+    exact_string_mutations.append((mutated, projected_root))
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["family"] = HostileString("fixed")
+    exact_string_mutations.append((mutated, projected_root))
+    mutated_root = copy.deepcopy(projected_root)
+    mutated_root["domain"] = HostileString(projected_root["domain"])
+    exact_string_mutations.append((projection, mutated_root))
+    for mutated_projection, mutated_root in exact_string_mutations:
+        with pytest.raises(
+            module.EngineeringVerificationFailure,
+            match="exact (ASCII )?string",
+        ):
+            module._validate_generation_projection(
+                mutated_projection, mutated_root
+            )
+
     mutations = []
     mutated = copy.deepcopy(projection)
     mutated["full_schema_count"] = True
@@ -6103,7 +6140,7 @@ def test_task3_generation_projection_rejects_recursive_type_mutations() -> None:
 
 def test_task3_generation_projection_old_schema_tie_mutations_reach_selection_gate() -> None:
     module = load_package_v2_verifier()
-    projection, projected_root = _task3_generation_fixture()
+    projection, projected_root = _task3_generation_fixture(module)
     mutations = []
     mutated = copy.deepcopy(projection)
     mutated["families"][0]["selected_old_indices"][0] = 1
@@ -6133,7 +6170,7 @@ def test_task3_generation_projection_old_schema_tie_mutations_reach_selection_ga
 
 def test_task3_generation_projection_denominators_reach_independent_census_gate() -> None:
     module = load_package_v2_verifier()
-    projection, projected_root = _task3_generation_fixture()
+    projection, projected_root = _task3_generation_fixture(module)
     for family_index in range(6):
         for field in (
             "full_schema_count",
@@ -6165,7 +6202,7 @@ def test_task3_generation_projection_denominators_reach_independent_census_gate(
 
 def test_task3_generation_projection_recomputes_all_derived_fields_and_index_cost() -> None:
     module = load_package_v2_verifier()
-    projection, projected_root = _task3_generation_fixture()
+    projection, projected_root = _task3_generation_fixture(module)
     normalized_root = module._generation_projected_root_metadata(projected_root)
     observed_root = module._generation_projected_root_oracle(
         normalized_root,
@@ -6183,15 +6220,14 @@ def test_task3_generation_projection_recomputes_all_derived_fields_and_index_cos
     assert observed_root["emitted_summary"]["total_load_rows"] == 9_408
     assert observed_root["emitted_summary"]["total_occurrence_loads"] == 17_760
     assert observed_root["emitted_summary"]["active_comparisons"] == 1_491_840
-    expected_index_bytes = len(
-        json.dumps(
-            expected_root,
-            ensure_ascii=True,
-            separators=(",", ":"),
-            sort_keys=True,
-        ).encode("ascii")
-    ) + 1
-    assert projection["projected_index_bytes"] == expected_index_bytes
+    literal_root = {"shards": []}
+    literal_line = b'{"shards":[]}\n'
+    assert len(literal_line) == 14
+    assert module._generation_projected_index_line(literal_root) == literal_line
+    assert module._generation_projected_index_bytes(literal_root) == 14
+    assert projection["projected_index_bytes"] == (
+        module._generation_projected_index_bytes(observed_root)
+    )
     derived_family_fields = (
         "projected_two_pass_ns",
         "projected_load_bucket_bytes",
@@ -6222,12 +6258,151 @@ def test_task3_generation_projection_recomputes_all_derived_fields_and_index_cos
     with pytest.raises(module.EngineeringVerificationFailure):
         module._validate_generation_projection(projection, bucket_mutation)
 
+    dependency_root = copy.deepcopy(projected_root)
+    dependency_root["shared_dependency_count"] += 1
+    dependency_projection = copy.deepcopy(projection)
+    _task3_reseal_generation_projection(
+        dependency_projection, dependency_root, module
+    )
+    changed_dependency_oracle = module._generation_projected_root_oracle(
+        module._generation_projected_root_metadata(dependency_root),
+        dependency_projection,
+        dependency_projection["families"],
+    )
+    assert changed_dependency_oracle["shards"][0]["record_counts"][
+        "dependency"
+    ] == observed_root["shards"][0]["record_counts"]["dependency"] + 1
+    assert changed_dependency_oracle["shards"][0]["record_count"] == (
+        observed_root["shards"][0]["record_count"] + 1
+    )
+    with pytest.raises(
+        module.EngineeringVerificationFailure,
+        match="projected root oracle differs",
+    ):
+        module._validate_generation_projection(
+            dependency_projection, dependency_root
+        )
+
+    for family_index, family in enumerate(TASK3_FAMILY_ORDER):
+        witness_root = copy.deepcopy(projected_root)
+        witness_root["family_witness_counts"][family] += 1
+        witness_projection = copy.deepcopy(projection)
+        _task3_reseal_generation_projection(
+            witness_projection, witness_root, module
+        )
+        changed_witness_oracle = module._generation_projected_root_oracle(
+            module._generation_projected_root_metadata(witness_root),
+            witness_projection,
+            witness_projection["families"],
+        )
+        descriptor_index = family_index + 1
+        assert changed_witness_oracle["template_catalogs"][family][
+            "witness_count"
+        ] == observed_root["template_catalogs"][family]["witness_count"] + 1
+        assert changed_witness_oracle["shards"][descriptor_index][
+            "record_counts"
+        ]["template_witness"] == (
+            observed_root["shards"][descriptor_index]["record_counts"][
+                "template_witness"
+            ]
+            + 1
+        )
+        assert changed_witness_oracle["shards"][descriptor_index][
+            "record_count"
+        ] == observed_root["shards"][descriptor_index]["record_count"] + 1
+        with pytest.raises(
+            module.EngineeringVerificationFailure,
+            match="projected root oracle differs",
+        ):
+            module._validate_generation_projection(
+                witness_projection, witness_root
+            )
+
+    for missing_or_extra in ("missing", "extra"):
+        witness_families_root = copy.deepcopy(projected_root)
+        if missing_or_extra == "missing":
+            witness_families_root["family_witness_counts"].pop("fixed")
+        else:
+            witness_families_root["family_witness_counts"]["extra"] = 1
+        with pytest.raises(
+            module.EngineeringVerificationFailure,
+            match="family_witness_counts families differ",
+        ):
+            module._validate_generation_projection(
+                projection, witness_families_root
+            )
+
+    domain_root = copy.deepcopy(projected_root)
+    domain_root["domain"] = (
+        "a=d-2>=0, n>=0; positive chamber d>=2 with projection audit"
+    )
+    domain_projection = copy.deepcopy(projection)
+    _task3_reseal_generation_projection(
+        domain_projection, domain_root, module
+    )
+    changed_domain_oracle = module._generation_projected_root_oracle(
+        module._generation_projected_root_metadata(domain_root),
+        domain_projection,
+        domain_projection["families"],
+    )
+    assert changed_domain_oracle["domain"] == domain_root["domain"]
+    assert domain_projection["projected_index_bytes"] != projection[
+        "projected_index_bytes"
+    ]
+    assert domain_projection["package_bytes_before_margin"] == (
+        domain_projection["shared_bytes"]
+        + domain_projection["projected_index_bytes"]
+        + sum(
+            family["fixed_family_bytes"]
+            + family["projected_load_bucket_bytes"]
+            + family["projected_template_bytes"]
+            for family in domain_projection["families"]
+        )
+    )
+    assert domain_projection["projected_package_bytes"] == (
+        2 * domain_projection["package_bytes_before_margin"]
+    )
+    with pytest.raises(
+        module.EngineeringVerificationFailure,
+        match="projected root oracle differs",
+    ):
+        module._validate_generation_projection(domain_projection, domain_root)
+
+    oracle_mutations = []
+    mutated_root = copy.deepcopy(projected_root)
+    mutated_root["expected_oracle"]["shards"][0]["record_counts"][
+        "dependency"
+    ] += 1
+    mutated_root["expected_oracle"]["shards"][0]["record_count"] += 1
+    oracle_mutations.append(mutated_root)
+    for family_index, family in enumerate(TASK3_FAMILY_ORDER):
+        mutated_root = copy.deepcopy(projected_root)
+        mutated_root["expected_oracle"]["template_catalogs"][family][
+            "witness_count"
+        ] += 1
+        descriptor = mutated_root["expected_oracle"]["shards"][
+            family_index + 1
+        ]
+        descriptor["record_counts"]["template_witness"] += 1
+        descriptor["record_count"] += 1
+        oracle_mutations.append(mutated_root)
+    mutated_root = copy.deepcopy(projected_root)
+    mutated_root["expected_oracle"]["shards"][1]["total_bytes"] += 1
+    mutated_root["expected_oracle"]["shard_bytes_total"] += 1
+    oracle_mutations.append(mutated_root)
+    for mutated_root in oracle_mutations:
+        with pytest.raises(
+            module.EngineeringVerificationFailure,
+            match="projected root oracle differs",
+        ):
+            module._validate_generation_projection(projection, mutated_root)
+
 
 def test_task3_generation_projection_complete_ratio_one_and_global_range(
     monkeypatch,
 ) -> None:
     module = load_package_v2_verifier()
-    projection, projected_root = _task3_generation_fixture()
+    projection, projected_root = _task3_generation_fixture(module)
     module._validate_generation_projection(projection, projected_root)
     for family in projection["families"][1:3]:
         assert family["sampled_comparisons"] == family["full_comparisons"]
@@ -6262,7 +6437,14 @@ def test_task3_generation_projection_complete_ratio_one_and_global_range(
             for index in range(full_schema_count)
         ]
         family["sampled_identity_count"] = family["full_identity_count"]
-    _task3_reseal_generation_projection(identity_full, identity_root)
+    _task3_reseal_generation_projection(
+        identity_full, identity_root, module
+    )
+    identity_root["expected_oracle"] = (
+        _task3_expected_generation_root_oracle(
+            identity_full, identity_root
+        )
+    )
     with pytest.raises(
         module.EngineeringVerificationFailure,
         match="identity projection lacks dynamic range",
@@ -6290,12 +6472,20 @@ def test_task3_generation_projection_complete_ratio_one_and_global_range(
             complete_old_ranges[family["family"]]
         )
         family["sampled_comparisons"] = family["full_comparisons"]
-    _task3_reseal_generation_projection(comparison_full, projected_root)
+    _task3_reseal_generation_projection(
+        comparison_full, projected_root, module
+    )
+    comparison_root = copy.deepcopy(projected_root)
+    comparison_root["expected_oracle"] = (
+        _task3_expected_generation_root_oracle(
+            comparison_full, comparison_root
+        )
+    )
     with pytest.raises(
         module.EngineeringVerificationFailure,
         match="comparison projection lacks dynamic range",
     ):
-        module._validate_generation_projection(comparison_full, projected_root)
+        module._validate_generation_projection(comparison_full, comparison_root)
 
 
 def _task3_verification_inputs(module):

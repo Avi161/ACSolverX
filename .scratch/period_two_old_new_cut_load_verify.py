@@ -367,6 +367,7 @@ _GENERATION_PROJECTED_ROOT_FIELDS = (
     "schema_profiles",
     "bucket_class_counts",
     "family_witness_counts",
+    "expected_oracle",
 )
 _GENERATION_SELECTED_OLD_INDICES = {
     "fixed": (0, 8, 15, 23, 31, 38, 46, 54, 61, 69),
@@ -2220,6 +2221,12 @@ def _generation_projection_sequence(value: Any, name: str) -> tuple[Any, ...]:
     return tuple(value)
 
 
+def _generation_projection_ascii_string(value: Any, name: str) -> str:
+    if type(value) is not str or not value or not value.isascii():
+        _generation_projection_failure(f"{name} must be an exact ASCII string")
+    return value
+
+
 def _generation_projection_indices(
     value: Any,
     name: str,
@@ -2262,9 +2269,9 @@ def _generation_projected_root_metadata(value: Any) -> dict[str, Any]:
         _GENERATION_PROJECTED_ROOT_FIELDS,
         "projected root metadata",
     )
-    domain = root["domain"]
-    if type(domain) is not str or not domain or not domain.isascii():
-        _generation_projection_failure("projected root domain is invalid")
+    domain = _generation_projection_ascii_string(
+        root["domain"], "projected root domain"
+    )
     dependency_count = _generation_projection_int(
         root["shared_dependency_count"],
         "shared dependency count",
@@ -2343,6 +2350,11 @@ def _generation_projected_root_metadata(value: Any) -> dict[str, Any]:
         "schema_profiles": profiles,
         "bucket_class_counts": bucket_counts,
         "family_witness_counts": witness_counts,
+        "expected_oracle": _generation_projection_mapping(
+            root["expected_oracle"],
+            ROOT_INDEX_FIELDS,
+            "expected projected root oracle",
+        ),
     }
 
 
@@ -2496,6 +2508,14 @@ def _generation_projected_root_oracle(
     }
 
 
+def _generation_projected_index_line(root: Mapping[str, Any]) -> bytes:
+    return canonical_json_line(root)
+
+
+def _generation_projected_index_bytes(root: Mapping[str, Any]) -> int:
+    return len(_generation_projected_index_line(root))
+
+
 def _validate_generation_projection(
     value: Mapping[str, Any],
     projected_root: Mapping[str, Any],
@@ -2506,11 +2526,18 @@ def _validate_generation_projection(
         GENERATION_PROJECTION_FIELDS,
         "generation projection",
     )
-    if projection["format"] != GENERATION_PROJECTION_FORMAT:
+    projection_format = _generation_projection_ascii_string(
+        projection["format"], "generation projection format"
+    )
+    if projection_format != GENERATION_PROJECTION_FORMAT:
         _generation_projection_failure("generation projection format differs")
     family_order = _generation_projection_sequence(
         projection["family_order"], "generation family order"
     )
+    if any(type(family) is not str for family in family_order):
+        _generation_projection_failure(
+            "generation family order must contain exact strings"
+        )
     if family_order != FAMILY_ORDER:
         _generation_projection_failure("generation family order differs")
     family_rows = _generation_projection_sequence(
@@ -2551,11 +2578,11 @@ def _validate_generation_projection(
             GENERATION_FAMILY_PROJECTION_FIELDS,
             f"{expected_family} generation projection",
         )
-        family = family_projection["family"]
+        family = _generation_projection_ascii_string(
+            family_projection["family"], "generation family"
+        )
         if family != expected_family:
             _generation_projection_failure("generation family order repeats")
-        if type(family) is not str or not family.isascii():
-            _generation_projection_failure("generation family is invalid")
         (
             full_schema_count,
             cell_count,
@@ -2771,7 +2798,7 @@ def _validate_generation_projection(
         normalized,
         normalized_families,
     )
-    projected_index_bytes = len(canonical_json_line(root_oracle))
+    projected_index_bytes = _generation_projected_index_bytes(root_oracle)
     if normalized_top_numbers["projected_index_bytes"] != projected_index_bytes:
         _generation_projection_failure("projected index byte cost differs")
     generation_before_margin = (
@@ -2806,6 +2833,8 @@ def _validate_generation_projection(
         for field, expected in expected_top_derived.items()
     ):
         _generation_projection_failure("derived generation totals differ")
+    if root_oracle != root["expected_oracle"]:
+        _generation_projection_failure("projected root oracle differs")
     normalized_json = _canonical_json(normalized)
     return _GenerationProjectionValidation(
         normalized=normalized_json,
