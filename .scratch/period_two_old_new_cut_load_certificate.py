@@ -2757,6 +2757,155 @@ def _extract_compact_template_catalog(
     return extracted
 
 
+def _validate_compact_schema_rows(schema_table: Sequence[Any]) -> None:
+    for row in schema_table:
+        if not isinstance(row, list) or len(row) != 3:
+            raise CertificateFailure("compact schema row shape differs")
+        _, variables, blocks = row
+        if not isinstance(variables, list) or not all(
+            isinstance(variable, str) for variable in variables
+        ):
+            raise CertificateFailure("compact schema variables are invalid")
+        if not isinstance(blocks, list):
+            raise CertificateFailure("compact schema blocks are invalid")
+        for block in blocks:
+            if not isinstance(block, list) or len(block) != 3:
+                raise CertificateFailure("compact block row shape differs")
+            block_name, word, affine = block
+            if not isinstance(block_name, str):
+                raise CertificateFailure("compact block name is invalid")
+            if not isinstance(word, list) or not all(
+                _is_exact_integer(letter) for letter in word
+            ):
+                raise CertificateFailure("compact block word is invalid")
+            if affine is not None and (
+                not isinstance(affine, list)
+                or not all(_is_exact_integer(value) for value in affine)
+            ):
+                raise CertificateFailure("compact block affine is invalid")
+            if affine is not None and len(affine) != len(variables) + 1:
+                raise CertificateFailure("compact block affine width differs")
+
+
+def _validate_compact_cell_rows(cell_table: Sequence[Any]) -> None:
+    for row in cell_table:
+        if not isinstance(row, list) or len(row) != 4:
+            raise CertificateFailure("compact cell row shape differs")
+        _, names, states, base_values = row
+        if not isinstance(names, list) or not all(
+            isinstance(name, str) for name in names
+        ):
+            raise CertificateFailure("compact cell names are invalid")
+        if not isinstance(states, list) or not all(
+            state is None or _is_exact_integer(state) for state in states
+        ):
+            raise CertificateFailure("compact cell states are invalid")
+        if not isinstance(base_values, list) or not all(
+            _is_exact_integer(value) for value in base_values
+        ):
+            raise CertificateFailure("compact cell base values are invalid")
+        if not (len(names) == len(states) == len(base_values)):
+            raise CertificateFailure("compact cell coordinate widths differ")
+        if any(state not in THRESHOLD_STATES for state in states):
+            raise CertificateFailure("compact cell state is outside threshold")
+        if any(
+            base != (3 if state is None else state)
+            for state, base in zip(states, base_values)
+        ):
+            raise CertificateFailure("compact cell base value differs")
+
+
+def _validate_compact_witness_rows(witness_table: Sequence[Any]) -> None:
+    integer_fields = (0, 1, 3, 4, 5, 6, 7)
+    for witness in witness_table:
+        if not isinstance(witness, list) or len(witness) != 3:
+            raise CertificateFailure("compact witness row shape differs")
+        terminal, terminal_deleted, pumps = witness
+        if terminal is not None and not _is_exact_integer(terminal):
+            raise CertificateFailure("compact witness terminal is invalid")
+        if not isinstance(terminal_deleted, bool):
+            raise CertificateFailure("compact terminal-deletion flag is invalid")
+        if terminal_deleted != (terminal == 1):
+            raise CertificateFailure("compact terminal-deletion branch differs")
+        if not isinstance(pumps, list):
+            raise CertificateFailure("compact witness pumps are invalid")
+        for pump in pumps:
+            if not isinstance(pump, list) or len(pump) != 8:
+                raise CertificateFailure("compact pump row shape differs")
+            if any(not _is_exact_integer(pump[index]) for index in integer_fields):
+                raise CertificateFailure("compact pump integer field is invalid")
+            if not isinstance(pump[2], list) or not all(
+                _is_exact_integer(slope) for slope in pump[2]
+            ):
+                raise CertificateFailure("compact pump slopes are invalid")
+            if any(pump[index] < 0 for index in integer_fields):
+                raise CertificateFailure("compact pump index is negative")
+            if pump[3] == 0:
+                raise CertificateFailure("compact pump split is not internal")
+            if pump[5] != pump[4] + 1:
+                raise CertificateFailure("compact pump copy IDs are not consecutive")
+
+
+def _validate_compact_identity_relationships(
+    schema_table: Sequence[Any],
+    cell_table: Sequence[Any],
+    witness_table: Sequence[Any],
+    identity_witness_ids: Sequence[int],
+) -> None:
+    cell_count = len(cell_table)
+    for identity_index, witness_id in enumerate(identity_witness_ids):
+        schema_index, cell_index = divmod(identity_index, cell_count)
+        _, variables, blocks = schema_table[schema_index]
+        _, names, states, base_values = cell_table[cell_index]
+        if variables != names:
+            raise CertificateFailure("compact schema/cell variables differ")
+        witness = witness_table[witness_id]
+        pumps = witness[2]
+        expected_pumps = {}
+        for block_index, (_, _, affine) in enumerate(blocks):
+            if affine is None:
+                continue
+            slopes = [
+                coefficient if state is None else 0
+                for coefficient, state in zip(affine[:-1], states)
+            ]
+            if any(slopes):
+                expected_pumps[block_index] = (
+                    slopes,
+                    sum(
+                        coefficient * value
+                        for coefficient, value in zip(
+                            affine[:-1], base_values
+                        )
+                    )
+                    + affine[-1],
+                )
+        pump_indices = [pump[0] for pump in pumps]
+        if len(set(pump_indices)) != len(pump_indices):
+            raise CertificateFailure("compact pump block index repeats")
+        if set(pump_indices) != set(expected_pumps):
+            raise CertificateFailure("compact pump block coverage differs")
+        split_positions = [pump[3] for pump in pumps]
+        if len(set(split_positions)) != len(split_positions):
+            raise CertificateFailure("compact pump split position repeats")
+        if split_positions != sorted(split_positions):
+            raise CertificateFailure("compact pump splits are not ordered")
+        for pump in pumps:
+            block_index = pump[0]
+            if block_index >= len(blocks):
+                raise CertificateFailure("compact pump block index is out of range")
+            _, word, _ = blocks[block_index]
+            slopes, base_copies = expected_pumps[block_index]
+            if pump[1] != base_copies or pump[2] != slopes:
+                raise CertificateFailure("compact pump affine data differs")
+            if any(slope < 0 for slope in pump[2]):
+                raise CertificateFailure("compact pump slope is negative")
+            if pump[5] >= pump[1]:
+                raise CertificateFailure("compact pump copy ID is out of range")
+            if not word or pump[6] != len(word) - 1 or pump[7] != 0:
+                raise CertificateFailure("compact pump core offsets differ")
+
+
 def validate_compact_template_catalog(
     catalog: Mapping[str, Any],
 ) -> Mapping[str, Any]:
@@ -2802,8 +2951,7 @@ def validate_compact_template_catalog(
     ):
         raise CertificateFailure("compact template count differs")
 
-    if any(not isinstance(row, list) or len(row) != 3 for row in schema_table):
-        raise CertificateFailure("compact schema row shape differs")
+    _validate_compact_schema_rows(schema_table)
     schema_ids = [row[0] for row in schema_table]
     if any(
         not isinstance(schema_id, str)
@@ -2815,8 +2963,7 @@ def validate_compact_template_catalog(
     if schema_ids != sorted(schema_ids) or len(set(schema_ids)) != len(schema_ids):
         raise CertificateFailure("compact schema table is not strictly sorted")
 
-    if any(not isinstance(row, list) or len(row) != 4 for row in cell_table):
-        raise CertificateFailure("compact cell row shape differs")
+    _validate_compact_cell_rows(cell_table)
     cell_ids = [row[0] for row in cell_table]
     if any(
         not isinstance(cell_id, str) or not cell_id or not cell_id.isascii()
@@ -2835,6 +2982,13 @@ def validate_compact_template_catalog(
         raise CertificateFailure("compact witness mapping is out of range")
     if set(identity_witness_ids) != set(range(len(witness_table))):
         raise CertificateFailure("compact catalog contains an unused witness")
+    _validate_compact_witness_rows(witness_table)
+    _validate_compact_identity_relationships(
+        schema_table,
+        cell_table,
+        witness_table,
+        identity_witness_ids,
+    )
     first_seen: dict[bytes, int] = {}
     for witness_id in identity_witness_ids:
         witness_key = typed_encode(witness_table[witness_id])
@@ -2914,13 +3068,13 @@ def measure_compact_catalog_slice(
             for schema_id in schema_ids
         }
         highest_count = max(pump_counts.values())
-        highest_schema = next(
+        highest_schema_ids = tuple(
             schema_id
             for schema_id in schema_ids
             if pump_counts[schema_id] == highest_count
         )
         selected_ids = tuple(
-            sorted({*schema_ids[::8], highest_schema})
+            sorted({*schema_ids[::8], *highest_schema_ids})
         )
         selected_schemas = {
             schema_id: item.schemas[schema_id]
@@ -2957,7 +3111,7 @@ def measure_compact_catalog_slice(
         family_metrics[family] = {
             "sample_schema_ids": list(selected_ids),
             "highest_pump_count": highest_count,
-            "highest_pump_schema": highest_schema,
+            "highest_pump_schema_ids": list(highest_schema_ids),
             "total_schema_count": len(schema_ids),
             "sample_schema_count": len(selected_ids),
             "schema_ratio_numerator": ratio_numerator,
@@ -2981,7 +3135,7 @@ def measure_compact_catalog_slice(
         projected_total += projected_overhead
     return {
         "selection": (
-            "every-eighth-ascii-schema-plus-first-highest-pump-schema"
+            "every-eighth-ascii-schema-plus-all-maximum-pump-schemas"
         ),
         "families": family_metrics,
         "total_schema_count": total_schema_count,

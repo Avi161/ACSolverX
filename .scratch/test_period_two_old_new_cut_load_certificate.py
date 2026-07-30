@@ -548,6 +548,110 @@ def test_compact_v2_rejects_noncanonical_catalog_mutations() -> None:
             module.validate_compact_template_catalog(mutated)
 
 
+def test_compact_v2_rejects_rehashed_nested_positional_mutations() -> None:
+    module = load_generator()
+    schemas = {
+        "z:pump": module.Schema(
+            "z:pump", ("a",), (("p", CORE_R, (1, 0)),)
+        ),
+        "a:fixed": module.Schema(
+            "a:fixed", ("a",), (("fixed", (2,), None),)
+        ),
+    }
+    cells = module.make_cells(("a",))
+    templates = {
+        (schema_id, cell.cell_id): module.build_template(schema, cell)
+        for schema_id, schema in schemas.items()
+        for cell in cells
+    }
+    catalog = module.build_compact_template_catalog(
+        "unit", schemas, cells, templates
+    )
+    pumping_witness_id = next(
+        witness_id
+        for witness_id, witness in enumerate(catalog["witness_table"])
+        if witness[2]
+    )
+
+    extra_pump_field = copy.deepcopy(catalog)
+    extra_pump_field["witness_table"][pumping_witness_id][2][0].append(99)
+    recompute_template_catalog_digests(extra_pump_field)
+
+    non_bool_terminal_deletion = copy.deepcopy(catalog)
+    non_bool_terminal_deletion["witness_table"][pumping_witness_id][1] = 1
+    recompute_template_catalog_digests(non_bool_terminal_deletion)
+
+    bool_block_letter = copy.deepcopy(catalog)
+    bool_block_letter["schema_table"][0][2][0][1][0] = True
+    recompute_template_catalog_digests(bool_block_letter)
+
+    bool_cell_state = copy.deepcopy(catalog)
+    bool_cell_state["cell_table"][0][2][0] = False
+    recompute_template_catalog_digests(bool_cell_state)
+
+    for mutated in (
+        extra_pump_field,
+        non_bool_terminal_deletion,
+        bool_block_letter,
+        bool_cell_state,
+    ):
+        with pytest.raises(module.CertificateFailure):
+            module.validate_compact_template_catalog(mutated)
+
+
+def test_compact_slice_includes_all_tied_maximum_pump_schemas() -> None:
+    module = load_generator()
+    cells = module.make_cells(("a",))
+    schemas = {
+        f"s{index:02d}": module.Schema(
+            f"s{index:02d}", ("a",), (("fixed", (2,), None),)
+        )
+        for index in range(10)
+    }
+    schemas["s01"] = module.Schema(
+        "s01", ("a",), (("r", CORE_R, (1, 0)),)
+    )
+    schemas["s02"] = module.Schema(
+        "s02",
+        ("a",),
+        (("fixed", (2, -2), None), ("s", CORE_S, (1, 0))),
+    )
+    family = module.Task4FamilyCatalog(
+        family="unit",
+        variables=("a",),
+        cells=cells,
+        schemas=schemas,
+        old_tokens=(),
+        b_tokens=(),
+        old_schema_refs={},
+        b_schema_refs={},
+        old_footprint_bindings={},
+    )
+    catalog = module.Task4SchemaCatalog(
+        families={"unit": family},
+        dependency_digests={},
+        old_source_proof={},
+        b_source_proof={},
+        occurrence_leafs={},
+        occurrence_polarities={},
+        occurrence_slots={},
+        fixed_metadata={},
+        chronology_digest="",
+        b_identity_table=(),
+        b_identity_digest="",
+    )
+
+    metrics = module.measure_compact_catalog_slice(catalog)
+    family_metrics = metrics["families"]["unit"]
+
+    assert metrics["selection"] == (
+        "every-eighth-ascii-schema-plus-all-maximum-pump-schemas"
+    )
+    assert family_metrics["highest_pump_count"] == 1
+    assert family_metrics["highest_pump_schema_ids"] == ["s01", "s02"]
+    assert family_metrics["sample_schema_ids"] == ["s00", "s01", "s02", "s08"]
+
+
 def test_compact_v2_deterministic_slice_clears_projection_gate() -> None:
     module = load_generator()
     measure = module.measure_compact_catalog_slice
@@ -557,7 +661,7 @@ def test_compact_v2_deterministic_slice_clears_projection_gate() -> None:
     print(json.dumps(metrics, sort_keys=True))
 
     assert metrics["selection"] == (
-        "every-eighth-ascii-schema-plus-first-highest-pump-schema"
+        "every-eighth-ascii-schema-plus-all-maximum-pump-schemas"
     )
     assert metrics["total_schema_count"] == 1304
     assert metrics["total_identity_count"] == 48252
@@ -571,9 +675,9 @@ def test_compact_v2_deterministic_slice_clears_projection_gate() -> None:
         item = catalog.families[family]
         schema_ids = sorted(item.schemas)
         assert set(schema_ids[::8]) <= set(family_metrics["sample_schema_ids"])
-        assert family_metrics["highest_pump_schema"] in family_metrics[
-            "sample_schema_ids"
-        ]
+        assert set(family_metrics["highest_pump_schema_ids"]) <= set(
+            family_metrics["sample_schema_ids"]
+        )
         assert family_metrics["total_identity_count"] == (
             len(item.schemas) * len(item.cells)
         )

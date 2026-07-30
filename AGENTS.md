@@ -20,6 +20,11 @@
 - [TRAP] A substring process filter for `uv` falsely classified the unrelated macOS `UVCAssistant` service as a proof-process leak.
 - [WORKS] Strip any executable path and match exact Python, pytest, uv, Numba, or proof-guard basenames; investigate only those exact matches.
 
+### 2026-07-29 Bind benchmark ties and nested positional grammar
+
+- [TRAP] Sampling only the first schema tied for maximum pump count can miss a differently sized witness interning case, and checking only outer table widths lets malformed nested positional records authenticate under recomputed hashes.
+- [WORKS] Sample every schema attaining each family maximum and validate every nested schema, cell, witness, and pump width/type/range before accepting any digest.
+
 ### 2026-07-29 Full template record hashing exceeds the proof guard
 
 - [TRAP] Calling `Template.to_record()`, canonical JSON, and SHA-256 for all 48,252 schema/cell templates inside the 24-second grouped-ledger pass pushed the guarded generator beyond the hard 30-second limit.

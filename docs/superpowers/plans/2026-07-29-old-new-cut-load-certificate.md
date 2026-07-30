@@ -383,8 +383,10 @@ family catalog, never once per template.
 
 Before a second full run, benchmark extraction/intering and final compact
 serialization on every eighth sorted schema in every family plus the
-highest-pump-count schemas.  Project by exact family schema ratios and emitted
-byte counts; proceed only when twice the projection is below three seconds.
+complete sorted set of schemas attaining that family's maximum pump count.
+Report every tied maximum schema ID.  Project by exact family schema ratios
+and emitted byte counts; proceed only when twice the projection is below
+three seconds.
 The full generator must measure less than six seconds of catalog overhead and
 less than 30 seconds total.  Do not call `Template.to_record`, canonical JSON,
 or SHA-256 separately for all 48,252 identities in the hot ledger pass.
@@ -415,6 +417,19 @@ the dereferenced witness after each mapping.  The catalog hash binds every
 catalog field except itself.  Reject unknown/missing fields, non-ASCII or
 unsorted IDs, unused witnesses, and a witness table that is not canonical
 first-seen order.
+
+Before checking hashes, validate the complete positional grammar: schema
+variables and cell names are string lists; every block has exact width three,
+a string name, a non-boolean-integer word list, and `null` or an aligned
+non-boolean-integer affine list; cell states are aligned int-or-null lists with
+booleans rejected and base values are aligned non-boolean integers.  Every
+witness has exact width three, an int-or-null non-boolean terminal, an exact
+boolean deletion flag, and a pump list.  Every pump has exact width eight,
+non-boolean integer scalar fields, and a non-boolean-integer slope list.
+Validate block indices, affine/base/slopes, consecutive in-range copy IDs,
+core offsets, distinct ordered splits, and schema/cell variable alignment
+against each dereferenced identity.  Add fully rehashed mutations for an
+extra pump field and a non-boolean deletion value.
 
 Use strict TDD.  Freeze literal typed-encoding and SHA-256 vectors for `None`,
 both booleans, signed integers, UTF-8 strings, nested lists, and sorted

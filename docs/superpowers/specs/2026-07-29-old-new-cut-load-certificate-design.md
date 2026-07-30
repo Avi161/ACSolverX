@@ -143,6 +143,22 @@ must be used, and `witness_table` must equal the distinct witnesses in their
 first-seen schema-major/cell-minor identity order; a semantic-preserving table
 permutation and reindexing is noncanonical and is rejected.
 
+The validator checks the complete positional grammar before any digest.
+Schema variables are lists of strings.  Each block is exactly
+`[block_name, word, affine]`, with a string name, a list of non-boolean
+integers, and either `null` or an aligned list of non-boolean integers.  Cell
+names are lists of strings; states are aligned lists over `0,1,2,null` with
+booleans rejected; base values are aligned non-boolean integers and equal the
+state, or three for `null`.  Each witness is exactly
+`[terminal, terminal_deleted, pumps]`, where the terminal is a non-boolean
+integer or `null`, the deletion field is an actual boolean, and pumps is a
+list.  Each pump has exactly eight fields in the declared order; every scalar
+is a non-boolean integer and slopes is an aligned list of non-boolean
+integers.  Pump block indices, affine values, slopes, copy IDs, core offsets,
+split ordering, and schema/cell variable alignment are checked against the
+dereferenced schema and cell.  Recomputing all hashes cannot authenticate a
+malformed nested record.
+
 For the typed encoder `E`, `N` encodes `None`; `B` followed by byte `00` or
 `01` encodes a boolean; `I || len4 || payload` encodes a signed integer using
 its canonical ASCII decimal spelling; and `S || len4 || payload` encodes a
@@ -303,3 +319,9 @@ The final gate requires, in order:
    family parity, and dependency digest;
 6. a fresh stale-process scan; and
 7. hostile mathematical review of the produced theorem claim.
+
+The compact overhead scout samples every eighth ASCII-sorted schema plus
+**every** schema attaining that family's maximum pump count.  It reports the
+complete sorted maximum-ID list; selecting only the first tied maximum is not
+an approved projection because tied schemas can intern different witnesses
+and emit different byte counts.
