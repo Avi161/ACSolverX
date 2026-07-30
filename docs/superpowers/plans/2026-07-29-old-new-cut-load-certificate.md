@@ -861,7 +861,8 @@ Add these named tests; the text after each name is its intended gate:
     test_task3_generation_projection_complete_ratio_one_and_global_range
       gate: local equality iff complete exact range; two global strict samples
     test_task3_verification_projection_scales_every_record_domain_and_margin
-      gate: every global/family charge denominators, invariants, final factor two
+      gate: pure non-attestable arithmetic, exact domains, zero invariants,
+            ratio-one/global range, and one final factor two
     test_task3_verification_projection_rejects_invalid_family_inputs
       gate: bool/float/negative/nonpositive/repeated/incomplete/range failures
     test_task3_verification_projection_has_no_bytes_or_generation_restatement
@@ -917,10 +918,16 @@ Implement `ceil_ratio(x,n,d)=(x*n+d-1)//d` for every
 `logical-v1-framing-finalization`; require each family charge domains
 `family-wire-stream-read-hash`, `comparison-replay`, `template-replay`,
 `logical-v1-canonical-fragment`, and `reference-validation`.  Independently
-derive every full/sample record count and scale each charge separately.
-`invariant_ns`/`invariant_family_ns` may contain only named-test-proven
-identical operation schedules.  Sum each charge once, then apply one final
-factor two.  No timed region contributes to two fields.
+derive every full/sample record count inside `verify_v2_package(...)` from the
+authenticated package and validated generation projection, construct all
+charge inputs internally, and scale each charge separately.
+`project_verification(...)` is only a pure non-attestable arithmetic validator;
+direct callers cannot authenticate censuses and no production or attestation
+API accepts their result.  Require `invariant_ns == 0` and every
+`invariant_family_ns == 0`; even ratio-one work uses an explicit named charge
+with equal denominators.  Sum each charge once, then apply one final factor
+two.  No timed region contributes to two fields.  Task 4 may attest only the
+complete `IndependentReplayResult` returned by `verify_v2_package(...)`.
 
 - [ ] **Step 4: Run the projection selector GREEN**
 

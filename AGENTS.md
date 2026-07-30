@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-30 Separate projection arithmetic from authenticated census ownership
+
+- [TRAP] `project_verification(...)` has no package, descriptor, or validated generation-projection input, so treating its caller-supplied charge denominators as independently authenticated made the resource gate appear stronger than its API could establish.
+- [WORKS] Keep `project_verification(...)` a non-attestable arithmetic validator, require zero invariant charges, and let only `verify_v2_package(...)` derive every charge census from authenticated package data and construct the inputs internally. Task 4 may attest only the complete replay result, never a direct arithmetic projection.
+
 ### 2026-07-30 Bound correction-cycle latency across sessions
 
 - [TRAP] A docs-only verifier revision grew to roughly 900 changed lines and repeated optional self-review after the requested corrections were already present; broad Task 2 selectors had likewise been rerun during earlier finding-by-finding fixes. Both patterns made visible progress unnecessarily slow.

@@ -1166,11 +1166,22 @@ fragment grammar, and direct reference indices.  No stream/read/hash,
 canonical-fragment, or reference-validation time is hidden in an unscaled
 charge.
 
-`invariant_ns` and `invariant_family_ns` contain only operations whose exact
-record domain and operation schedule are proved identical between sample and
-full replay by named tests; any charge lacking that proof must use an explicit
-record-domain ratio, even when its observed ratio is one.  Measured regions
-are disjoint and use `time.perf_counter_ns`.  Therefore:
+`project_verification(...)` is only the pure, non-attestable arithmetic
+validator for already constructed charge inputs.  It validates owned record
+types, domain and family order, exact integers, ratio-one selection
+equivalence, global comparison/identity dynamic range, ceiling arithmetic,
+single charge inclusion, and the one final factor two; it does not authenticate
+caller censuses.  Only `verify_v2_package(...)`, after authenticating the
+package and independently validating the generation projection, derives every
+global and family full/sample census, constructs the charge inputs internally
+from disjoint timed regions, and invokes `project_verification(...)`.  No
+production or attestation API accepts a caller-created verification
+projection.
+
+`invariant_ns` and every `invariant_family_ns` are required to be exactly zero.
+Even work with an identical sample/full schedule uses a named charge with
+explicit equal denominators.  Measured regions are disjoint and use
+`time.perf_counter_ns`.  Therefore:
 
     verification_ns_before_margin =
         invariant_ns +
@@ -1191,6 +1202,11 @@ invalid selection/range equality, and nonglobal sampling.  Mutations cover
 every charge name, sample/full record count, sampled time, projected time,
 invariant proof, before-margin total, and final doubled total.  It has no byte
 projection and restates none of Task 2's timing or byte projections.
+
+A direct call to `project_verification(...)` yields only a resource estimate.
+Task 4 may attest only the complete `IndependentReplayResult` returned by
+`verify_v2_package(...)` after production-scope semantic replay; it never
+accepts a direct arithmetic projection.
 
 Task 5 runs the actual 60-second preflight and blocks production unless Task
 2's projected generator time plus Task 3's projected verifier time is at most
