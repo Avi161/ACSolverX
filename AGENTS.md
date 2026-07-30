@@ -1744,3 +1744,8 @@
 
 - [TRAP] Staging from `.claude/worktrees/codex-proofs` failed with `index.lock: Operation not permitted` because the linked worktree's index is stored under the main checkout's restricted `.git/worktrees/codex-proofs/` metadata, even though project files are writable.
 - [WORKS] Keep file edits sandboxed, but request the narrow Git escalation before `git add` or `git commit` in this linked worktree; read-only Git inspection does not need escalation.
+
+### 2026-07-30 Prove each resealed mutation changes the intended field
+
+- [TRAP] Initial Task 2 mutation fixtures treated the `raw_family_rows` family-to-integer census as row lists, reversed coefficient arrays whose equal values made the mutation a no-op, and routed `b-identity-digest` through a broad `b-` source-proof branch.
+- [WORKS] Before invoking a fail-closed gate, assert the targeted value differs from the pristine fixture, mutate census scalars as scalars, make ordering mutations value-distinct, and dispatch exact mutation-ID sets before prefix-based categories.
