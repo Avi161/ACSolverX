@@ -7,15 +7,17 @@ import hashlib
 import importlib.util
 import io
 import json
+import math
 import os
 import re
 import sys
 import tempfile
 import time
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, replace
 from itertools import product
 from pathlib import Path
+from types import MappingProxyType
 from typing import Any
 
 TOKEN_COUNT = 84
@@ -3173,6 +3175,37 @@ def measure_compact_catalog_slice(
     }
 
 
+def preflight_template_selection(
+    family_catalog: Task4FamilyCatalog,
+) -> tuple[tuple[int, ...], tuple[str, ...]]:
+    try:
+        schema_ids = tuple(
+            sorted(family_catalog.schemas, key=lambda value: value.encode("ascii"))
+        )
+    except UnicodeEncodeError as error:
+        raise CertificateFailure("schema ID is not ASCII") from error
+    if not schema_ids or not family_catalog.cells:
+        raise CertificateFailure("preflight template domain is empty")
+    pump_counts = []
+    for schema_id in schema_ids:
+        schema = family_catalog.schemas[schema_id]
+        pump_counts.append(
+            max(
+                len(build_template(schema, cell).pumping_witnesses)
+                for cell in family_catalog.cells
+            )
+        )
+    maximum = max(pump_counts)
+    tied_indices = tuple(
+        index for index, count in enumerate(pump_counts) if count == maximum
+    )
+    selected_indices = tuple(
+        sorted({*range(0, len(schema_ids), 8), *tied_indices})
+    )
+    tied_ids = tuple(schema_ids[index] for index in tied_indices)
+    return selected_indices, tied_ids
+
+
 def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
     b_tokens, b_source_proof = build_b_catalog(context)
     b_identity_table = _b_identity_table(b_tokens)
@@ -3773,6 +3806,17 @@ PRODUCTION_STATUS = "generated-awaiting-independent-replay"
 PREFLIGHT_STATUS = "preflight-sample-not-a-certificate"
 SOURCE_CELL_ORDER = "product-order-with-P-domain-filter"
 IDENTITY_CHUNK_SIZE = 4096
+PREFLIGHT_SELECTED_OLD_INDICES = {
+    "fixed": (0, 8, 15, 23, 31, 38, 46, 54, 61, 69),
+    "base": (0, 1),
+    "singleton": (0,),
+    "P": (0, 3, 5, 8, 10, 13, 16, 18, 21, 23, 26, 28, 31),
+    "C": (0, 19, 38),
+    "Q": (0, 15, 30, 46, 61, 76, 91),
+}
+PREFLIGHT_SOURCE_LOADS = 1_406
+PREFLIGHT_OCCURRENCE_LOADS = 2_716
+PREFLIGHT_COMPARISONS = 228_144
 ROOT_INDEX_FIELDS = (
     "format",
     "scope",
@@ -4045,6 +4089,103 @@ class PublicationResult:
     reused_objects: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class CellFooterMetadata:
+    source_cell_index: int
+    compact_cell_index: int
+    cell_id: str
+    odd_old_indices: tuple[int, ...]
+    value: int
+    load_record_count: int
+
+
+@dataclass(frozen=True)
+class FamilyGenerationDiscovery:
+    family: str
+    variables: tuple[str, ...]
+    selected_old_indices: tuple[int, ...]
+    source_cell_count: int
+    old_load_count: int
+    footprint_count: int
+    bucket_classes: tuple[tuple[Any, ...], ...]
+    cell_footers: tuple[CellFooterMetadata, ...]
+    load_rows: int
+    occurrence_loads: int
+    comparisons: int
+
+
+@dataclass(frozen=True)
+class StreamedObject:
+    path: Path
+    sha256: str
+    total_bytes: int
+    record_count: int
+    record_counts: Mapping[str, int]
+
+
+@dataclass(frozen=True)
+class FamilyProjectionInput:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    tied_max_schema_ids: tuple[str, ...]
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_two_pass_ns: int
+    sampled_load_bucket_bytes: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_ns: int
+    sampled_template_bytes: int
+    fixed_family_ns: int
+    fixed_family_bytes: int
+
+
+@dataclass(frozen=True)
+class FamilyGenerationProjection:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    tied_max_schema_ids: tuple[str, ...]
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_two_pass_ns: int
+    projected_two_pass_ns: int
+    sampled_load_bucket_bytes: int
+    projected_load_bucket_bytes: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_ns: int
+    projected_template_ns: int
+    sampled_template_bytes: int
+    projected_template_bytes: int
+    fixed_family_ns: int
+    fixed_family_bytes: int
+
+
+@dataclass(frozen=True)
+class GenerationProjection:
+    format: str
+    family_order: tuple[str, ...]
+    full_schema_count: int
+    full_identity_count: int
+    sampled_source_loads: int
+    sampled_occurrence_loads: int
+    sampled_comparisons: int
+    source_catalog_precompute_ns: int
+    shared_ns: int
+    shared_bytes: int
+    projected_index_ns: int
+    projected_index_bytes: int
+    families: tuple[FamilyGenerationProjection, ...]
+    generation_ns_before_margin: int
+    package_bytes_before_margin: int
+    projected_generation_ns: int
+    projected_package_bytes: int
+
+
 class PhaseMetrics:
     def __init__(self, *, enabled: bool = False) -> None:
         self.enabled = enabled
@@ -4072,6 +4213,985 @@ class PhaseMetrics:
             "record_counts": dict(self._record_counts),
             "byte_counts": dict(self._byte_counts),
         }
+
+
+def _validated_generation_shared_data(
+    catalog: Task4SchemaCatalog,
+) -> tuple[dict[str, Any], tuple[tuple[str, list[Any]], ...]]:
+    live_chronology_digest = _chronology_digest(
+        catalog.occurrence_leafs,
+        catalog.occurrence_polarities,
+        catalog.occurrence_slots,
+        catalog.fixed_metadata,
+    )
+    if live_chronology_digest != catalog.chronology_digest:
+        raise CertificateFailure("chronology metadata digest mismatch")
+    if _identity_digest(catalog.b_identity_table) != catalog.b_identity_digest:
+        raise CertificateFailure("B identity table digest mismatch")
+    source_bindings = build_source_bindings(catalog)
+    validate_source_bindings(source_bindings, catalog)
+    expected_coordinates: tuple[tuple[str, list[Any]], ...] | None = None
+    for family in FAMILY_ORDER:
+        item = catalog.families.get(family)
+        if item is None:
+            raise CertificateFailure(f"missing generation family: {family}")
+        records = _b_occurrence_records(item, catalog)
+        coordinates = tuple(
+            (record["source_class"], record["coordinate"])
+            for record in records
+        )
+        if expected_coordinates is None:
+            expected_coordinates = coordinates
+        elif coordinates != expected_coordinates:
+            raise CertificateFailure("B coordinates differ across families")
+    if expected_coordinates is None or len(expected_coordinates) != TOKEN_COUNT:
+        raise CertificateFailure("B coordinate table is incomplete")
+    return source_bindings, expected_coordinates
+
+
+def iter_shared_records(
+    catalog: Task4SchemaCatalog,
+    *,
+    scope: str,
+    status: str,
+) -> Iterator[tuple[Any, ...]]:
+    expected_status = {
+        PREFLIGHT_SCOPE: PREFLIGHT_STATUS,
+        PRODUCTION_SCOPE: PRODUCTION_STATUS,
+    }.get(scope)
+    if expected_status is None or status != expected_status:
+        raise CertificateFailure("generation scope/status pair differs")
+    source_bindings, coordinates = _validated_generation_shared_data(catalog)
+    prefix_bytes = 0
+    records_before_footer = 0
+
+    def emit(record: tuple[Any, ...]) -> tuple[Any, ...]:
+        nonlocal prefix_bytes, records_before_footer
+        prefix_bytes += len(canonical_json_line(record))
+        records_before_footer += 1
+        return record
+
+    yield emit(
+        (
+            "shared_header",
+            PACKAGE_V2_FORMAT,
+            scope,
+            LOGICAL_V1_FORMAT,
+            CANONICAL_LINE_ENCODING,
+            MASK_ENCODING,
+            "a=d-1>=0, n>=0; positive chamber d>=1",
+            status,
+            list(SHARD_ORDER),
+        )
+    )
+    for path in sorted(catalog.dependency_digests):
+        yield emit(("dependency", path, catalog.dependency_digests[path]))
+    yield emit(("source_bindings", source_bindings))
+    identity_fields = SHARED_RECORD_FIELDS["b_identity"][1:]
+    for expected_index, identity in enumerate(catalog.b_identity_table):
+        if set(identity) != set(identity_fields):
+            raise CertificateFailure("B identity fields differ")
+        if identity["token_index"] != expected_index:
+            raise CertificateFailure("B identity order differs")
+        yield emit(
+            ("b_identity", *(identity[field] for field in identity_fields))
+        )
+    for token_index, (source_class, coordinate) in enumerate(coordinates):
+        yield emit(("b_coordinate", token_index, source_class, coordinate))
+    yield (
+        "shared_footer",
+        len(coordinates),
+        records_before_footer,
+        prefix_bytes,
+    )
+
+
+def _generation_selected_old_indices(
+    item: Task4FamilyCatalog,
+    selected_old_indices: Sequence[int],
+) -> tuple[int, ...]:
+    selected = tuple(selected_old_indices)
+    if (
+        not selected
+        or any(type(index) is not int for index in selected)
+        or selected != tuple(sorted(set(selected)))
+        or any(index < 0 or index >= len(item.old_tokens) for index in selected)
+    ):
+        raise CertificateFailure("selected old indices are invalid")
+    return selected
+
+
+def _freeze_generation_value(value: Any) -> Any:
+    if isinstance(value, Mapping):
+        return tuple(
+            (key, _freeze_generation_value(item))
+            for key, item in sorted(value.items())
+        )
+    if isinstance(value, (list, tuple)):
+        return tuple(_freeze_generation_value(item) for item in value)
+    return value
+
+
+def _thaw_generation_value(value: Any) -> Any:
+    if isinstance(value, tuple):
+        return [_thaw_generation_value(item) for item in value]
+    return value
+
+
+def _generation_bucket_class(key: Mapping[str, Any]) -> tuple[Any, ...]:
+    return tuple(_freeze_generation_value(value) for value in _bucket_class_values(key))
+
+
+def _generation_histogram(
+    old: Mapping[str, Any],
+    new_tokens: Sequence[Mapping[str, Any]],
+    templates: Mapping[str, Template],
+    cell: Cell,
+    *,
+    comparison_cache: dict[tuple[str, str, str], Mapping[str, Any]],
+) -> tuple[dict[str, Any], tuple[Mapping[str, Any], ...]]:
+    comparisons = tuple(
+        comparison_record(
+            old,
+            new,
+            templates,
+            cell,
+            comparison_cache=comparison_cache,
+        )
+        for new in new_tokens
+    )
+    grouped: dict[Any, list[Any]] = {}
+    for expected_token_index, comparison in enumerate(comparisons):
+        token_index = comparison.get("token_index")
+        if type(token_index) is not int or token_index != expected_token_index:
+            raise CertificateFailure("comparison token orientation differs")
+        key = tuple(comparison[field] for field in HISTOGRAM_KEY_FIELDS)
+        frozen_key = _freeze_generation_value(key)
+        if frozen_key not in grouped:
+            grouped[frozen_key] = [key, 0, 0]
+        grouped[frozen_key][1] += 1
+        grouped[frozen_key][2] |= 1 << token_index
+    buckets = tuple(
+        HistogramBucket(key=key, count=count, mask=mask)
+        for key, count, mask in sorted(
+            grouped.values(), key=lambda row: _sortable_histogram_key(row[0])
+        )
+    )
+    one_count = sum(comparison["contribution_bit"] for comparison in comparisons)
+    histogram = {
+        "old_occurrence": old["occurrence"],
+        "old_leaf": old["leaf"],
+        "old_polarity": old["polarity"],
+        "comparison_count": len(comparisons),
+        "one_count": one_count,
+        "value": one_count % 2,
+        "buckets": [
+            {
+                "key": dict(zip(HISTOGRAM_KEY_FIELDS, bucket.key)),
+                "count": bucket.count,
+                "mask": f"{bucket.mask:021x}",
+            }
+            for bucket in buckets
+        ],
+    }
+    return histogram, comparisons
+
+
+def _validate_generation_histogram(
+    histogram: Mapping[str, Any],
+    comparisons: Sequence[Mapping[str, Any]],
+    old: Mapping[str, Any],
+) -> Mapping[str, Any]:
+    try:
+        validate_histogram(histogram)
+    except (CertificateFailure, KeyError, TypeError, ValueError) as error:
+        raise CertificateFailure("generated footprint partition is invalid") from error
+    if len(comparisons) != TOKEN_COUNT:
+        raise CertificateFailure("generated comparison census differs")
+    expected_by_token = {}
+    for expected_index, comparison in enumerate(comparisons):
+        if comparison.get("token_index") != expected_index:
+            raise CertificateFailure("generated token-bit orientation differs")
+        expected_by_token[expected_index] = tuple(
+            comparison[field] for field in HISTOGRAM_KEY_FIELDS
+        )
+    covered = set()
+    for bucket in histogram["buckets"]:
+        mask = int(bucket["mask"], 16)
+        if mask == 0:
+            raise CertificateFailure("generated footprint has a zero mask")
+        bucket_key = tuple(bucket["key"][field] for field in HISTOGRAM_KEY_FIELDS)
+        for token_index in range(TOKEN_COUNT):
+            if mask & (1 << token_index):
+                if token_index in covered:
+                    raise CertificateFailure("generated token bit overlaps")
+                covered.add(token_index)
+                if _freeze_generation_value(bucket_key) != _freeze_generation_value(
+                    expected_by_token[token_index]
+                ):
+                    raise CertificateFailure("generated token bit has the wrong bucket")
+    if covered != set(range(TOKEN_COUNT)):
+        raise CertificateFailure("generated token bits are incomplete")
+    if (
+        histogram["old_occurrence"] != old["occurrence"]
+        or histogram["old_leaf"] != old["leaf"]
+        or histogram["old_polarity"] != old["polarity"]
+    ):
+        raise CertificateFailure("generated footprint provenance differs")
+    return histogram
+
+
+def _generation_old_and_footprint_rows(
+    item: Task4FamilyCatalog,
+    catalog: Task4SchemaCatalog,
+) -> tuple[tuple[tuple[Any, ...], ...], tuple[tuple[Any, ...], ...]]:
+    old_rows = []
+    footprint_rows = []
+    footprint_cursor = 0
+    for old_index, token in enumerate(item.old_tokens):
+        if token.coefficient % 2 != 1:
+            raise CertificateFailure(f"inactive old fiber reached Task 2: {token.token_id}")
+        reference = item.old_schema_refs.get(token.token_id)
+        if reference is None:
+            raise CertificateFailure("old schema reference is missing")
+        occurrences = _old_occurrence_records(token, reference, catalog)
+        bindings = item.old_footprint_bindings.get(token.token_id)
+        if bindings is None or len(bindings) != len(occurrences):
+            raise CertificateFailure("old footprint table differs")
+        source_slots = {binding["source_slot"] for binding in bindings}
+        if len(source_slots) != 1:
+            raise CertificateFailure("old source slot differs inside load")
+        old_rows.append(
+            (
+                "old_load",
+                old_index,
+                token.token_id,
+                token.coefficient,
+                list(token.source_members),
+                next(iter(source_slots)),
+                footprint_cursor,
+                len(bindings),
+            )
+        )
+        for binding in bindings:
+            footprint_rows.append(
+                (
+                    "footprint",
+                    footprint_cursor,
+                    old_index,
+                    binding["occurrence"],
+                    binding["occurrence_slot"],
+                    binding["polarity"],
+                    binding["leaf"],
+                    binding["module_schema"],
+                    binding["label_schema"],
+                )
+            )
+            footprint_cursor += 1
+    return tuple(old_rows), tuple(footprint_rows)
+
+
+def _generation_cell_metadata(
+    item: Task4FamilyCatalog,
+    catalog: Task4SchemaCatalog,
+    cell: Cell,
+    source_cell_index: int,
+    selected_old_indices: tuple[int, ...],
+    b_records: Sequence[Mapping[str, Any]],
+    bucket_classes: set[tuple[Any, ...]],
+) -> CellFooterMetadata:
+    templates = {
+        schema_id: build_template(schema, cell)
+        for schema_id, schema in item.schemas.items()
+    }
+    comparison_cache: dict[tuple[str, str, str], Mapping[str, Any]] = {}
+    odd_old_indices = []
+    cell_value = 0
+    load_record_count = 0
+    for old_index in selected_old_indices:
+        token = item.old_tokens[old_index]
+        reference = item.old_schema_refs[token.token_id]
+        load_value = 0
+        for old in _old_occurrence_records(token, reference, catalog):
+            histogram, comparisons = _generation_histogram(
+                old,
+                b_records,
+                templates,
+                cell,
+                comparison_cache=comparison_cache,
+            )
+            _validate_generation_histogram(histogram, comparisons, old)
+            load_value ^= histogram["value"]
+            load_record_count += len(histogram["buckets"])
+            bucket_classes.update(
+                _generation_bucket_class(bucket["key"])
+                for bucket in histogram["buckets"]
+            )
+        if load_value:
+            odd_old_indices.append(old_index)
+        cell_value ^= load_value
+    expected_value = _expected_family_value(item.family, cell)
+    if cell_value != expected_value:
+        raise CertificateFailure(
+            f"family parity mismatch: {item.family}, {cell.cell_id}"
+        )
+    compact_cell_indices = {
+        value.cell_id: index
+        for index, value in enumerate(sorted(item.cells, key=lambda value: value.cell_id))
+    }
+    return CellFooterMetadata(
+        source_cell_index=source_cell_index,
+        compact_cell_index=compact_cell_indices[cell.cell_id],
+        cell_id=cell.cell_id,
+        odd_old_indices=tuple(odd_old_indices),
+        value=cell_value,
+        load_record_count=load_record_count,
+    )
+
+
+def discover_family_generation(
+    catalog: Task4SchemaCatalog,
+    family: str,
+    *,
+    selected_old_indices: Sequence[int],
+) -> FamilyGenerationDiscovery:
+    _validated_generation_shared_data(catalog)
+    if family not in FAMILY_ORDER or family not in catalog.families:
+        raise CertificateFailure(f"unknown generation family: {family}")
+    item = catalog.families[family]
+    if item.family != family or tuple(item.variables) != _FAMILY_VARIABLES[family]:
+        raise CertificateFailure("generation family metadata differs")
+    selected = _generation_selected_old_indices(item, selected_old_indices)
+    old_rows, footprint_rows = _generation_old_and_footprint_rows(item, catalog)
+    b_records = _b_occurrence_records(item, catalog)
+    bucket_classes: set[tuple[Any, ...]] = set()
+    cell_footers = tuple(
+        _generation_cell_metadata(
+            item,
+            catalog,
+            cell,
+            source_cell_index,
+            selected,
+            b_records,
+            bucket_classes,
+        )
+        for source_cell_index, cell in enumerate(item.cells)
+    )
+    occurrence_loads_per_cell = sum(
+        old_rows[index][7] for index in selected
+    )
+    load_rows = len(item.cells) * len(selected)
+    occurrence_loads = len(item.cells) * occurrence_loads_per_cell
+    comparisons = occurrence_loads * TOKEN_COUNT
+    canonical_bucket_classes = tuple(
+        sorted(
+            bucket_classes,
+            key=lambda row: canonical_json(list(row)).encode("ascii"),
+        )
+    )
+    return FamilyGenerationDiscovery(
+        family=family,
+        variables=tuple(item.variables),
+        selected_old_indices=selected,
+        source_cell_count=len(item.cells),
+        old_load_count=len(old_rows),
+        footprint_count=len(footprint_rows),
+        bucket_classes=canonical_bucket_classes,
+        cell_footers=cell_footers,
+        load_rows=load_rows,
+        occurrence_loads=occurrence_loads,
+        comparisons=comparisons,
+    )
+
+
+def _validated_generation_discovery(
+    item: Task4FamilyCatalog,
+    discovery: FamilyGenerationDiscovery,
+    scope: str,
+) -> tuple[int, ...]:
+    if discovery.family != item.family or discovery.variables != tuple(item.variables):
+        raise CertificateFailure("generation discovery family differs")
+    selected = _generation_selected_old_indices(item, discovery.selected_old_indices)
+    if scope == PRODUCTION_SCOPE and selected != tuple(range(len(item.old_tokens))):
+        raise CertificateFailure("production old indices are not complete")
+    if scope not in {PREFLIGHT_SCOPE, PRODUCTION_SCOPE}:
+        raise CertificateFailure("unknown generation scope")
+    return selected
+
+
+def _generation_template_catalog(
+    item: Task4FamilyCatalog,
+    selected_schema_indices: Sequence[int] | None,
+) -> Mapping[str, Any]:
+    schema_ids = tuple(sorted(item.schemas, key=lambda value: value.encode("ascii")))
+    if selected_schema_indices is None:
+        selected = tuple(range(len(schema_ids)))
+    else:
+        selected = tuple(selected_schema_indices)
+        if (
+            not selected
+            or any(type(index) is not int for index in selected)
+            or selected != tuple(sorted(set(selected)))
+            or any(index < 0 or index >= len(schema_ids) for index in selected)
+        ):
+            raise CertificateFailure("selected template schema indices are invalid")
+    selected_schemas = {
+        schema_ids[index]: item.schemas[schema_ids[index]] for index in selected
+    }
+    templates = {
+        (schema_id, cell.cell_id): build_template(schema, cell)
+        for schema_id, schema in selected_schemas.items()
+        for cell in item.cells
+    }
+    try:
+        compact = build_compact_template_catalog(
+            item.family, selected_schemas, item.cells, templates
+        )
+        _validate_v2_template_catalog(compact)
+    except (CertificateFailure, WireFormatError, KeyError, TypeError, ValueError) as error:
+        raise CertificateFailure("generation template catalog is invalid") from error
+    return compact
+
+
+def iter_family_records(
+    catalog: Task4SchemaCatalog,
+    discovery: FamilyGenerationDiscovery,
+    *,
+    scope: str,
+    selected_template_schema_indices: Sequence[int] | None = None,
+) -> Iterator[tuple[Any, ...]]:
+    _validated_generation_shared_data(catalog)
+    item = catalog.families.get(discovery.family)
+    if item is None:
+        raise CertificateFailure("generation family is missing")
+    selected = _validated_generation_discovery(item, discovery, scope)
+    old_rows, footprint_rows = _generation_old_and_footprint_rows(item, catalog)
+    if (
+        discovery.source_cell_count != len(item.cells)
+        or discovery.old_load_count != len(old_rows)
+        or discovery.footprint_count != len(footprint_rows)
+        or len(discovery.cell_footers) != len(item.cells)
+    ):
+        raise CertificateFailure("generation discovery table census differs")
+    expected_load_rows = len(item.cells) * len(selected)
+    expected_occurrences = len(item.cells) * sum(old_rows[index][7] for index in selected)
+    expected_comparisons = expected_occurrences * TOKEN_COUNT
+    if (
+        discovery.load_rows != expected_load_rows
+        or discovery.occurrence_loads != expected_occurrences
+        or discovery.comparisons != expected_comparisons
+    ):
+        raise CertificateFailure("generation discovery census differs")
+    bucket_keys = [canonical_json(list(row)) for row in discovery.bucket_classes]
+    if bucket_keys != sorted(set(bucket_keys)):
+        raise CertificateFailure("frozen bucket table is noncanonical")
+    bucket_indices = {
+        _freeze_generation_value(row): index
+        for index, row in enumerate(discovery.bucket_classes)
+    }
+    prefix_bytes = 0
+    records_before_footer = 0
+
+    def emit(record: tuple[Any, ...]) -> tuple[Any, ...]:
+        nonlocal prefix_bytes, records_before_footer
+        prefix_bytes += len(canonical_json_line(record))
+        records_before_footer += 1
+        return record
+
+    yield emit(
+        (
+            "family_header",
+            item.family,
+            list(item.variables),
+            len(item.cells),
+            list(selected),
+            len(old_rows),
+            len(footprint_rows),
+            len(discovery.bucket_classes),
+            TOKEN_COUNT,
+            list(COMPARISON_METHODS),
+            list(CHRONOLOGIES),
+            list(HISTOGRAM_KEY_FIELDS),
+            TEMPLATE_FIELD_ORDERS,
+            SOURCE_CELL_ORDER,
+        )
+    )
+    for row in old_rows:
+        yield emit(row)
+    for row in footprint_rows:
+        yield emit(row)
+    for bucket_class in discovery.bucket_classes:
+        yield emit(
+            ("bucket_class", *(_thaw_generation_value(value) for value in bucket_class))
+        )
+    b_records = _b_occurrence_records(item, catalog)
+    compact_cell_indices = {
+        value.cell_id: index
+        for index, value in enumerate(sorted(item.cells, key=lambda value: value.cell_id))
+    }
+    for source_cell_index, cell in enumerate(item.cells):
+        templates = {
+            schema_id: build_template(schema, cell)
+            for schema_id, schema in item.schemas.items()
+        }
+        comparison_cache: dict[tuple[str, str, str], Mapping[str, Any]] = {}
+        odd_old_indices = []
+        cell_value = 0
+        load_record_count = 0
+        for old_index in selected:
+            token = item.old_tokens[old_index]
+            reference = item.old_schema_refs[token.token_id]
+            load_value = 0
+            footprint_start = old_rows[old_index][6]
+            for local_footprint_index, old in enumerate(
+                _old_occurrence_records(token, reference, catalog)
+            ):
+                histogram, comparisons = _generation_histogram(
+                    old,
+                    b_records,
+                    templates,
+                    cell,
+                    comparison_cache=comparison_cache,
+                )
+                _validate_generation_histogram(histogram, comparisons, old)
+                load_value ^= histogram["value"]
+                footprint_index = footprint_start + local_footprint_index
+                rows = []
+                for bucket in histogram["buckets"]:
+                    bucket_class = _freeze_generation_value(
+                        _generation_bucket_class(bucket["key"])
+                    )
+                    bucket_index = bucket_indices.get(bucket_class)
+                    if bucket_index is None:
+                        raise CertificateFailure("comparison key is absent from frozen bucket table")
+                    rows.append(
+                        (
+                            "load",
+                            old_index,
+                            footprint_index,
+                            bucket_index,
+                            pack_mask(int(bucket["mask"], 16)),
+                        )
+                    )
+                rows.sort(key=lambda row: (row[1], row[2], row[3]))
+                for row in rows:
+                    yield emit(row)
+                    load_record_count += 1
+            if load_value:
+                odd_old_indices.append(old_index)
+            cell_value ^= load_value
+        expected_footer = discovery.cell_footers[source_cell_index]
+        actual_footer = CellFooterMetadata(
+            source_cell_index=source_cell_index,
+            compact_cell_index=compact_cell_indices[cell.cell_id],
+            cell_id=cell.cell_id,
+            odd_old_indices=tuple(odd_old_indices),
+            value=cell_value,
+            load_record_count=load_record_count,
+        )
+        if actual_footer != expected_footer:
+            raise CertificateFailure("recomputed cell footer differs from discovery")
+        if cell_value != _expected_family_value(item.family, cell):
+            raise CertificateFailure("recomputed family parity differs")
+        yield emit(
+            (
+                "cell_footer",
+                actual_footer.source_cell_index,
+                actual_footer.compact_cell_index,
+                actual_footer.cell_id,
+                list(actual_footer.odd_old_indices),
+                actual_footer.value,
+                actual_footer.load_record_count,
+            )
+        )
+    compact = _generation_template_catalog(item, selected_template_schema_indices)
+    yield emit(
+        (
+            "template_header",
+            compact["format"],
+            compact["typed_encoding"],
+            item.family,
+            compact["field_orders"],
+            compact["identity_order"],
+            compact["schema_count"],
+            compact["cell_count"],
+            compact["template_count"],
+            compact["witness_count"],
+        )
+    )
+    for schema_index, row in enumerate(compact["schema_table"]):
+        yield emit(("template_schema", schema_index, *row))
+    for compact_cell_index, row in enumerate(compact["cell_table"]):
+        yield emit(("template_cell", compact_cell_index, *row))
+    for witness_id, row in enumerate(compact["witness_table"]):
+        yield emit(("template_witness", witness_id, *row))
+    identities = compact["identity_witness_ids"]
+    for start in range(0, len(identities), IDENTITY_CHUNK_SIZE):
+        yield emit(
+            (
+                "template_identity_chunk",
+                start,
+                identities[start : start + IDENTITY_CHUNK_SIZE],
+            )
+        )
+    yield emit(
+        (
+            "template_footer",
+            compact["identity_sha256"],
+            compact["replay_sha256"],
+            compact["catalog_sha256"],
+        )
+    )
+    yield (
+        "family_footer",
+        len(item.cells),
+        len(old_rows),
+        expected_load_rows,
+        expected_occurrences,
+        expected_comparisons,
+        records_before_footer,
+        prefix_bytes,
+    )
+
+
+def write_jsonl_stream(
+    records: Iterable[tuple[Any, ...]],
+    destination: Path,
+    *,
+    metrics: PhaseMetrics | None = None,
+) -> StreamedObject:
+    active_metrics = metrics if metrics is not None else PhaseMetrics()
+    target = _project_local_path(destination)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    hasher = hashlib.sha256()
+    total_bytes = 0
+    record_count = 0
+    record_counts: dict[str, int] = {}
+    started = time.perf_counter()
+    with target.open("wb", buffering=0) as stream:
+        for record in records:
+            if not isinstance(record, tuple) or not record or not isinstance(record[0], str):
+                raise CertificateFailure("streamed record is not a tagged tuple")
+            line = canonical_json_line(record)
+            stream.write(line)
+            hasher.update(line)
+            total_bytes += len(line)
+            record_count += 1
+            tag = record[0]
+            record_counts[tag] = record_counts.get(tag, 0) + 1
+            active_metrics.record(tag, len(line))
+        os.fsync(stream.fileno())
+    active_metrics.add_stage("write_objects", time.perf_counter() - started)
+    return StreamedObject(
+        path=target,
+        sha256=hasher.hexdigest(),
+        total_bytes=total_bytes,
+        record_count=record_count,
+        record_counts=MappingProxyType(dict(sorted(record_counts.items()))),
+    )
+
+
+def ceil_ratio(x: int, numerator: int, denominator: int) -> int:
+    for name, value, minimum in (
+        ("scaled value", x, 0),
+        ("scale numerator", numerator, 0),
+        ("scale denominator", denominator, 1),
+    ):
+        if type(value) is not int or value < minimum:
+            raise CertificateFailure(f"{name} is not an exact integer at least {minimum}")
+    return (x * numerator + denominator - 1) // denominator
+
+
+def _generation_projection_int(value: Any, name: str) -> int:
+    if type(value) is not int or value < 0:
+        raise CertificateFailure(f"{name} is not a nonnegative exact integer")
+    return value
+
+
+def _generation_projection_indices(
+    values: Any,
+    name: str,
+    *,
+    upper_bound: int | None = None,
+) -> tuple[int, ...]:
+    if not isinstance(values, tuple) or not values:
+        raise CertificateFailure(f"{name} is empty or mutable")
+    if (
+        any(type(value) is not int or value < 0 for value in values)
+        or values != tuple(sorted(set(values)))
+        or (upper_bound is not None and any(value >= upper_bound for value in values))
+    ):
+        raise CertificateFailure(f"{name} is not a strict in-range index tuple")
+    return values
+
+
+def _generation_projection_schema_ids(values: Any) -> tuple[str, ...]:
+    if (
+        not isinstance(values, tuple)
+        or not values
+        or any(not isinstance(value, str) or not value for value in values)
+    ):
+        raise CertificateFailure("tied maximum schema IDs are incomplete")
+    try:
+        expected = tuple(sorted(set(values), key=lambda value: value.encode("ascii")))
+    except UnicodeEncodeError as error:
+        raise CertificateFailure("tied maximum schema ID is not ASCII") from error
+    if values != expected:
+        raise CertificateFailure("tied maximum schema IDs are noncanonical")
+    return values
+
+
+def _generation_family_projection(
+    value: FamilyProjectionInput,
+) -> FamilyGenerationProjection:
+    if not isinstance(value, FamilyProjectionInput):
+        raise CertificateFailure("family projection input has the wrong record type")
+    if value.family not in FAMILY_ORDER:
+        raise CertificateFailure("family projection input has an unknown family")
+    if value.selected_old_indices != PREFLIGHT_SELECTED_OLD_INDICES[value.family]:
+        raise CertificateFailure("family projection old selection differs")
+    full_schema_count = _generation_projection_int(
+        value.full_schema_count, "full schema count"
+    )
+    if full_schema_count <= 0:
+        raise CertificateFailure("full schema count is zero")
+    selected_schema_indices = _generation_projection_indices(
+        value.selected_schema_indices,
+        "selected schema indices",
+        upper_bound=full_schema_count,
+    )
+    tied_max_schema_ids = _generation_projection_schema_ids(
+        value.tied_max_schema_ids
+    )
+    full_comparisons = _generation_projection_int(
+        value.full_comparisons, "full comparison count"
+    )
+    sampled_comparisons = _generation_projection_int(
+        value.sampled_comparisons, "sampled comparison count"
+    )
+    full_identity_count = _generation_projection_int(
+        value.full_identity_count, "full identity count"
+    )
+    sampled_identity_count = _generation_projection_int(
+        value.sampled_identity_count, "sampled identity count"
+    )
+    if not 0 < sampled_comparisons < full_comparisons:
+        raise CertificateFailure("comparison projection lacks dynamic range")
+    if not 0 < sampled_identity_count < full_identity_count:
+        raise CertificateFailure("identity projection lacks dynamic range")
+    sampled_two_pass_ns = _generation_projection_int(
+        value.sampled_two_pass_ns, "sampled two-pass nanoseconds"
+    )
+    sampled_load_bucket_bytes = _generation_projection_int(
+        value.sampled_load_bucket_bytes, "sampled load/bucket bytes"
+    )
+    sampled_template_ns = _generation_projection_int(
+        value.sampled_template_ns, "sampled template nanoseconds"
+    )
+    sampled_template_bytes = _generation_projection_int(
+        value.sampled_template_bytes, "sampled template bytes"
+    )
+    fixed_family_ns = _generation_projection_int(
+        value.fixed_family_ns, "fixed family nanoseconds"
+    )
+    fixed_family_bytes = _generation_projection_int(
+        value.fixed_family_bytes, "fixed family bytes"
+    )
+    return FamilyGenerationProjection(
+        family=value.family,
+        selected_old_indices=value.selected_old_indices,
+        selected_schema_indices=selected_schema_indices,
+        tied_max_schema_ids=tied_max_schema_ids,
+        full_schema_count=full_schema_count,
+        full_comparisons=full_comparisons,
+        sampled_comparisons=sampled_comparisons,
+        sampled_two_pass_ns=sampled_two_pass_ns,
+        projected_two_pass_ns=ceil_ratio(
+            sampled_two_pass_ns, full_comparisons, sampled_comparisons
+        ),
+        sampled_load_bucket_bytes=sampled_load_bucket_bytes,
+        projected_load_bucket_bytes=ceil_ratio(
+            sampled_load_bucket_bytes, full_comparisons, sampled_comparisons
+        ),
+        full_identity_count=full_identity_count,
+        sampled_identity_count=sampled_identity_count,
+        sampled_template_ns=sampled_template_ns,
+        projected_template_ns=ceil_ratio(
+            sampled_template_ns, full_identity_count, sampled_identity_count
+        ),
+        sampled_template_bytes=sampled_template_bytes,
+        projected_template_bytes=ceil_ratio(
+            sampled_template_bytes, full_identity_count, sampled_identity_count
+        ),
+        fixed_family_ns=fixed_family_ns,
+        fixed_family_bytes=fixed_family_bytes,
+    )
+
+
+def project_generation(
+    *,
+    source_catalog_precompute_ns: int,
+    shared_ns: int,
+    shared_bytes: int,
+    projected_index_ns: int,
+    projected_index_bytes: int,
+    families: Sequence[FamilyProjectionInput],
+) -> GenerationProjection:
+    fixed_values = {
+        "source_catalog_precompute_ns": _generation_projection_int(
+            source_catalog_precompute_ns, "source/catalog precompute nanoseconds"
+        ),
+        "shared_ns": _generation_projection_int(shared_ns, "shared nanoseconds"),
+        "shared_bytes": _generation_projection_int(shared_bytes, "shared bytes"),
+        "projected_index_ns": _generation_projection_int(
+            projected_index_ns, "projected index nanoseconds"
+        ),
+        "projected_index_bytes": _generation_projection_int(
+            projected_index_bytes, "projected index bytes"
+        ),
+    }
+    if isinstance(families, (str, bytes)):
+        raise CertificateFailure("family projection inputs are invalid")
+    family_inputs = tuple(families)
+    by_family = {}
+    for value in family_inputs:
+        if not isinstance(value, FamilyProjectionInput):
+            raise CertificateFailure("family projection input has the wrong type")
+        if value.family in by_family:
+            raise CertificateFailure("family projection input repeats")
+        by_family[value.family] = value
+    if set(by_family) != set(FAMILY_ORDER):
+        raise CertificateFailure("family projection inputs are incomplete")
+    projections = tuple(
+        _generation_family_projection(by_family[family]) for family in FAMILY_ORDER
+    )
+    generation_ns_before_margin = (
+        fixed_values["source_catalog_precompute_ns"]
+        + fixed_values["shared_ns"]
+        + fixed_values["projected_index_ns"]
+        + sum(
+            family.fixed_family_ns
+            + family.projected_two_pass_ns
+            + family.projected_template_ns
+            for family in projections
+        )
+    )
+    package_bytes_before_margin = (
+        fixed_values["shared_bytes"]
+        + fixed_values["projected_index_bytes"]
+        + sum(
+            family.fixed_family_bytes
+            + family.projected_load_bucket_bytes
+            + family.projected_template_bytes
+            for family in projections
+        )
+    )
+    return GenerationProjection(
+        format="period-two-old-new-cut-generation-projection-v1",
+        family_order=FAMILY_ORDER,
+        full_schema_count=sum(family.full_schema_count for family in projections),
+        full_identity_count=sum(
+            family.full_identity_count for family in projections
+        ),
+        sampled_source_loads=PREFLIGHT_SOURCE_LOADS,
+        sampled_occurrence_loads=PREFLIGHT_OCCURRENCE_LOADS,
+        sampled_comparisons=PREFLIGHT_COMPARISONS,
+        source_catalog_precompute_ns=fixed_values["source_catalog_precompute_ns"],
+        shared_ns=fixed_values["shared_ns"],
+        shared_bytes=fixed_values["shared_bytes"],
+        projected_index_ns=fixed_values["projected_index_ns"],
+        projected_index_bytes=fixed_values["projected_index_bytes"],
+        families=projections,
+        generation_ns_before_margin=generation_ns_before_margin,
+        package_bytes_before_margin=package_bytes_before_margin,
+        projected_generation_ns=2 * generation_ns_before_margin,
+        projected_package_bytes=2 * package_bytes_before_margin,
+    )
+
+
+def _validate_receipt_metrics(value: Any) -> None:
+    if value is None or type(value) in (bool, int, str):
+        return
+    if type(value) is float:
+        if not math.isfinite(value):
+            raise CertificateFailure("receipt metrics contain a non-finite float")
+        return
+    if isinstance(value, (list, tuple)):
+        for item in value:
+            _validate_receipt_metrics(item)
+        return
+    if isinstance(value, Mapping):
+        if any(not isinstance(key, str) for key in value):
+            raise CertificateFailure("receipt metrics keys are not strings")
+        for item in value.values():
+            _validate_receipt_metrics(item)
+        return
+    raise CertificateFailure("receipt metrics contain an unsupported value")
+
+
+def _receipt_object_paths(values: Sequence[str], name: str) -> tuple[str, ...]:
+    if isinstance(values, (str, bytes)):
+        raise CertificateFailure(f"{name} is not an object-path sequence")
+    result = tuple(values)
+    if any(not isinstance(value, str) or not value for value in result):
+        raise CertificateFailure(f"{name} contains an invalid object path")
+    if len(set(result)) != len(result):
+        raise CertificateFailure(f"{name} repeats an object path")
+    return result
+
+
+def build_generation_receipt_payload(
+    *,
+    run_id: str,
+    scope: str,
+    index_path: str,
+    index_sha256: str,
+    root_sha256: str,
+    state: str,
+    package_bytes: int,
+    created_objects: Sequence[str],
+    reused_objects: Sequence[str],
+    generator_sha256: str,
+    metrics: Mapping[str, Any],
+) -> dict[str, Any]:
+    for name, value in (
+        ("run ID", run_id),
+        ("index path", index_path),
+        ("publication state", state),
+    ):
+        if not isinstance(value, str) or not value:
+            raise CertificateFailure(f"{name} is empty")
+    if scope not in {PREFLIGHT_SCOPE, PRODUCTION_SCOPE}:
+        raise CertificateFailure("receipt scope is unknown")
+    for name, value in (
+        ("index SHA-256", index_sha256),
+        ("root SHA-256", root_sha256),
+        ("generator SHA-256", generator_sha256),
+    ):
+        if not isinstance(value, str) or _HASH_PATTERN.fullmatch(value) is None:
+            raise CertificateFailure(f"{name} is invalid")
+    package_bytes = _generation_projection_int(package_bytes, "package bytes")
+    created = _receipt_object_paths(created_objects, "created objects")
+    reused = _receipt_object_paths(reused_objects, "reused objects")
+    if set(created) & set(reused):
+        raise CertificateFailure("created and reused objects overlap")
+    if not isinstance(metrics, Mapping):
+        raise CertificateFailure("receipt metrics are not a mapping")
+    _validate_receipt_metrics(metrics)
+    return {
+        "format": "period-two-old-new-cut-generation-receipt-v1",
+        "run_id": run_id,
+        "scope": scope,
+        "index_path": index_path,
+        "index_sha256": index_sha256,
+        "root_sha256": root_sha256,
+        "state": state,
+        "package_bytes": package_bytes,
+        "created_objects": list(created),
+        "reused_objects": list(reused),
+        "generator_sha256": generator_sha256,
+        "metrics": copy.deepcopy(dict(metrics)),
+    }
 
 
 def _exact_int(value: Any, name: str, *, minimum: int | None = None) -> int:
