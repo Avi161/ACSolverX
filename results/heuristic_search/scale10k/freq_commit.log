@@ -2830,3 +2830,11 @@ remote: This repository moved. Please use the new location:
 remote:   https://github.com/Avi161/ACSolverX.git        
 To https://github.com/avi161/acsolverx
    2401f0c0..1edb8d2f  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
+[cursor/heur-12h-anti-overfit-a42e 7420a749] heur: research checkpoint 21:53:50 UTC
+ 2 files changed, 14 insertions(+)
+[cursor/heur-12h-anti-overfit-a42e be89628d] logs: fill short SHA for research checkpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/Avi161/ACSolverX.git        
+To https://github.com/avi161/acsolverx
+   84ab49a8..be89628d  cursor/heur-12h-anti-overfit-a42e -> cursor/heur-12h-anti-overfit-a42e
