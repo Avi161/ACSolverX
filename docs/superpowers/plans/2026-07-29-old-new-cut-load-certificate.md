@@ -389,6 +389,43 @@ The full generator must measure less than six seconds of catalog overhead and
 less than 30 seconds total.  Do not call `Template.to_record`, canonical JSON,
 or SHA-256 separately for all 48,252 identities in the hot ledger pass.
 
+- [ ] **Step 3A: Bind complete sources before implementing the verifier**
+
+Add canonical `source_bindings` with format `task4-source-bindings-v1` and
+exact fields `format`, `old`, `b`, and `sha256`.  Retain the complete proof
+objects returned by `build_old_rows()` and `build_b_catalog()` in
+`Task4SchemaCatalog`, then serialize those exact objects.  The old proof binds
+every active and inactive base/P/C/Q integral fiber, aligned member IDs and
+integer coefficients, integral sum, parity/active state, collision key,
+label-equality witness, and each member's exact domain and
+`current_equality`.  It separately stores complete one-member fixed and
+singleton source records.  Bind all 21 anchor `id`/coefficient rows, their
+computed sum, V/W/A raw provenance counts, raw-ID uniqueness, and the empty
+missing-provenance result.  The B proof binds all 53 active and inactive
+collision fibers, aligned member/coefficient pairs, sum/parity/active state,
+slot/module schema, and complete label-equality witness.
+
+Declare `typed_encoding = task4-typed-sha256-v1`.  Implement the design's
+exact typed encoder and rolling preimage: format, typed-encoding version,
+family, field orders, identity order, the four declared counts, complete
+sorted schema table, complete sorted cell table, complete first-seen witness
+table, and then every schema-major/cell-minor mapping.  The identity hash adds
+`[schema_index, cell_index, witness_id]`; the replay hash additionally adds
+the dereferenced witness after each mapping.  The catalog hash binds every
+catalog field except itself.  Reject unknown/missing fields, non-ASCII or
+unsorted IDs, unused witnesses, and a witness table that is not canonical
+first-seen order.
+
+Use strict TDD.  Freeze literal typed-encoding and SHA-256 vectors for `None`,
+both booleans, signed integers, UTF-8 strings, nested lists, and sorted
+mappings.  Add focused mutations for an inactive old-fiber coefficient, old
+member domain, old member `current_equality`, inactive B-fiber coefficient or
+member alignment, anchor provenance, an appended unused witness, and a
+semantic-preserving witness-table permutation/reindexing with all hashes
+recomputed.  Run only these compact/source-binding tests through the 30-second
+foreground guard with one CPU thread.  Leave the verifier placeholder
+untouched and preserve status `generated-awaiting-independent-replay`.
+
 - [ ] **Step 4: Implement the verifier independently**
 
 Do not import the generator. Re-declare the JSON schema, free/cyclic reduction, cell algebra, tagged boundary checks, affine comparison checks, source adapters, collision grouping, chronology rule, bucketization, and family xor. Reconstruct all 48,252 schema/cell templates from the compact schema/cell/witness catalogs, then recompute every load and family value from upstream sources and compare canonical structures to the manifest. A digest match alone is insufficient.

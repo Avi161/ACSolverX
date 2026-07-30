@@ -1,5 +1,25 @@
 # Lessons Learned
 
+### 2026-07-29 Read skill source locators verbatim
+
+- [TRAP] Synthesizing a plausible skill path instead of using its provided locator caused a failed lookup before the workflow began.
+- [WORKS] Read every selected skill from the exact source locator supplied in the skills catalog; never reconstruct or normalize that path from the skill name.
+
+### 2026-07-29 Preserve proof object types before the JSON boundary
+
+- [TRAP] Round-tripping a retained source proof through JSON to detach it converted tuple collision keys to lists, so the binding was no longer the exact proof object returned by the builder.
+- [WORKS] Use `copy.deepcopy` for in-memory proof bindings and defer tuple-to-JSON-array conversion to canonical serialization at the file boundary.
+
+### 2026-07-29 Process-table audit needs narrow host permission
+
+- [TRAP] A sandboxed `ps` call failed with `operation not permitted`, so an empty filtered output was not evidence that guarded proof children had exited.
+- [WORKS] Re-run only the safe PID, PPID, PGID, CPU, state, and executable-name scan with narrow host permission, and require an actual zero-match result before handoff.
+
+### 2026-07-29 Match audited executable names exactly
+
+- [TRAP] A substring process filter for `uv` falsely classified the unrelated macOS `UVCAssistant` service as a proof-process leak.
+- [WORKS] Strip any executable path and match exact Python, pytest, uv, Numba, or proof-guard basenames; investigate only those exact matches.
+
 ### 2026-07-29 Full template record hashing exceeds the proof guard
 
 - [TRAP] Calling `Template.to_record()`, canonical JSON, and SHA-256 for all 48,252 schema/cell templates inside the 24-second grouped-ledger pass pushed the guarded generator beyond the hard 30-second limit.

@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import importlib.util
 import json
 import sys
 import tempfile
+import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, replace
 from itertools import product
@@ -239,6 +241,8 @@ class Task4FamilyCatalog:
 class Task4SchemaCatalog:
     families: Mapping[str, Task4FamilyCatalog]
     dependency_digests: Mapping[str, str]
+    old_source_proof: Mapping[str, Any]
+    b_source_proof: Mapping[str, Any]
     occurrence_leafs: Mapping[int, int]
     occurrence_polarities: Mapping[int, int]
     occurrence_slots: Mapping[int, int]
@@ -1461,6 +1465,10 @@ def build_b_catalog(
             {
                 "members": list(members),
                 "coefficients": list(coefficients),
+                "member_coefficients": [
+                    [member, coefficient]
+                    for member, coefficient in zip(members, coefficients)
+                ],
                 "integral_sum": integral_sum,
                 "parity": parity,
                 "active": parity != 0,
@@ -1541,6 +1549,15 @@ def _source_collision_fibers(
                 "collision_key": collision_keys[serialized_key],
                 "member_ids": list(member_ids),
                 "coefficients": list(coefficients),
+                "members": [
+                    {
+                        "id": row["id"],
+                        "coefficient": row["coefficient"],
+                        "domain": row["domain"],
+                        "current_equality": row["current_equality"],
+                    }
+                    for row in members
+                ],
                 "integral_sum": integral_sum,
                 "parity": parity,
                 "active": parity != 0,
@@ -1586,6 +1603,17 @@ def _base_collision_fibers(
                 "collision_key": (row["slot"], row["module_vertex"]),
                 "member_ids": [row["id"]],
                 "coefficients": [coefficient],
+                "members": [
+                    {
+                        "id": row["id"],
+                        "coefficient": coefficient,
+                        "domain": row["domain"],
+                        "current_equality": {
+                            "op": "literal_hessian_base_variable",
+                            "source": row["id"],
+                        },
+                    }
+                ],
                 "integral_sum": coefficient,
                 "parity": parity,
                 "active": parity != 0,
@@ -1707,6 +1735,20 @@ def build_old_rows(
         *family_rows["C"],
         *family_rows["Q"],
     )
+
+    def one_member_source_record(token: TokenRef) -> dict[str, Any]:
+        if len(token.source_members) != 1:
+            raise ValueError(
+                f"one-member source has wrong member count: {token.token_id}"
+            )
+        return {
+            "identity": token.token_id,
+            "member_id": token.source_members[0],
+            "coefficient": token.coefficient,
+            "domain": token.domain,
+            "current_equality": token.current_equality,
+        }
+
     proof = {
         "raw_family_rows": {
             family: len(rows) for family, rows in family_sources.items()
@@ -1724,6 +1766,14 @@ def build_old_rows(
             "P": family_fibers["P"],
             "C": family_fibers["C"],
             "Q": family_fibers["Q"],
+        },
+        "one_member_sources": {
+            "fixed": [
+                one_member_source_record(token) for token in fixed_rows
+            ],
+            "singleton": [
+                one_member_source_record(token) for token in singleton_rows
+            ],
         },
         "anchor_rows": len(live_anchor_rows),
         "anchor_integral_sum": sum(
@@ -2233,29 +2283,722 @@ def _identity_digest(table: Sequence[Mapping[str, Any]]) -> str:
     return hashlib.sha256(canonical_json(table).encode("ascii")).hexdigest()
 
 
-def _template_record_body(record: Mapping[str, Any]) -> dict[str, Any]:
-    return {
+SOURCE_BINDINGS_FORMAT = "task4-source-bindings-v1"
+SOURCE_BINDING_FIELDS = {"format", "old", "b", "sha256"}
+OLD_SOURCE_PROOF_FIELDS = {
+    "raw_family_rows",
+    "active_family_fibers",
+    "integral_fibers",
+    "one_member_sources",
+    "anchor_rows",
+    "anchor_integral_sum",
+    "anchor_provenance",
+    "missing_raw_provenance",
+    "raw_provenance_counts",
+    "raw_ids_unique",
+    "source_digests",
+}
+B_SOURCE_PROOF_FIELDS = {
+    "occurrences",
+    "path_fibers",
+    "active_path_fibers",
+    "slot_zero_tokens",
+    "bound_cells",
+    "collision_fibers",
+    "source_digests",
+}
+OLD_FIBER_FIELDS = {
+    "collision_key",
+    "member_ids",
+    "coefficients",
+    "members",
+    "integral_sum",
+    "parity",
+    "active",
+    "label_equality_witness",
+}
+B_FIBER_FIELDS = {
+    "members",
+    "coefficients",
+    "member_coefficients",
+    "integral_sum",
+    "parity",
+    "active",
+    "canonical_module_schema",
+    "slot",
+    "label_equality_witness",
+}
+SOURCE_MEMBER_FIELDS = {
+    "id",
+    "coefficient",
+    "domain",
+    "current_equality",
+}
+ONE_MEMBER_SOURCE_FIELDS = {
+    "identity",
+    "member_id",
+    "coefficient",
+    "domain",
+    "current_equality",
+}
+
+
+def _is_exact_integer(value: Any) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def _validate_source_member(member: Mapping[str, Any]) -> None:
+    if set(member) != SOURCE_MEMBER_FIELDS:
+        raise CertificateFailure("old source member fields differ")
+    if not isinstance(member["id"], str) or not member["id"]:
+        raise CertificateFailure("old source member identity is invalid")
+    if not _is_exact_integer(member["coefficient"]):
+        raise CertificateFailure("old source member coefficient is not integer")
+    if not isinstance(member["domain"], Mapping) or not member["domain"]:
+        raise CertificateFailure("old source member domain is missing")
+    if (
+        not isinstance(member["current_equality"], Mapping)
+        or not member["current_equality"]
+    ):
+        raise CertificateFailure("old source member equality is missing")
+
+
+def _validate_old_source_proof(proof: Mapping[str, Any]) -> None:
+    if set(proof) != OLD_SOURCE_PROOF_FIELDS:
+        raise CertificateFailure("old source proof fields differ")
+    fibers_by_family = proof["integral_fibers"]
+    if set(fibers_by_family) != {"base", "P", "C", "Q"}:
+        raise CertificateFailure("old integral-fiber families differ")
+    for fibers in fibers_by_family.values():
+        for fiber in fibers:
+            if set(fiber) != OLD_FIBER_FIELDS:
+                raise CertificateFailure("old integral-fiber fields differ")
+            members = fiber["members"]
+            for member in members:
+                _validate_source_member(member)
+            member_ids = [member["id"] for member in members]
+            coefficients = [member["coefficient"] for member in members]
+            if fiber["member_ids"] != member_ids:
+                raise CertificateFailure("old member identity alignment differs")
+            if fiber["coefficients"] != coefficients:
+                raise CertificateFailure("old member coefficient alignment differs")
+            if not coefficients or not all(
+                _is_exact_integer(coefficient) for coefficient in coefficients
+            ):
+                raise CertificateFailure("old fiber coefficients are invalid")
+            if fiber["integral_sum"] != sum(coefficients):
+                raise CertificateFailure("old integral fiber sum differs")
+            if fiber["parity"] != fiber["integral_sum"] % 2:
+                raise CertificateFailure("old integral fiber parity differs")
+            if fiber["active"] is not bool(fiber["parity"]):
+                raise CertificateFailure("old integral fiber activity differs")
+            if fiber["label_equality_witness"].get("equal") is not True:
+                raise CertificateFailure("old fiber label equality is missing")
+    one_member_sources = proof["one_member_sources"]
+    if set(one_member_sources) != {"fixed", "singleton"}:
+        raise CertificateFailure("one-member source families differ")
+    expected_counts = {"fixed": 70, "singleton": 1}
+    for family, records in one_member_sources.items():
+        if len(records) != expected_counts[family]:
+            raise CertificateFailure("one-member source count differs")
+        identities = []
+        for record in records:
+            if set(record) != ONE_MEMBER_SOURCE_FIELDS:
+                raise CertificateFailure("one-member source fields differ")
+            identities.append(record["identity"])
+            if not record["identity"] or not record["member_id"]:
+                raise CertificateFailure("one-member source identity is invalid")
+            if not _is_exact_integer(record["coefficient"]):
+                raise CertificateFailure("one-member coefficient is invalid")
+            if not record["domain"] or not record["current_equality"]:
+                raise CertificateFailure("one-member provenance is missing")
+        if len(set(identities)) != len(identities):
+            raise CertificateFailure("one-member source identities repeat")
+    anchor_rows = proof["anchor_provenance"]
+    if proof["anchor_rows"] != 21 or len(anchor_rows) != 21:
+        raise CertificateFailure("anchor provenance count differs")
+    if any(set(row) != {"id", "coefficient"} for row in anchor_rows):
+        raise CertificateFailure("anchor provenance fields differ")
+    if any(
+        not row["id"] or not _is_exact_integer(row["coefficient"])
+        for row in anchor_rows
+    ):
+        raise CertificateFailure("anchor provenance row is invalid")
+    if len({row["id"] for row in anchor_rows}) != len(anchor_rows):
+        raise CertificateFailure("anchor provenance identities repeat")
+    if proof["anchor_integral_sum"] != sum(
+        row["coefficient"] for row in anchor_rows
+    ):
+        raise CertificateFailure("anchor integral sum differs")
+    if proof["raw_provenance_counts"] != {"V": 167, "W": 397, "A": 21}:
+        raise CertificateFailure("raw provenance counts differ")
+    if proof["raw_ids_unique"] is not True:
+        raise CertificateFailure("raw provenance identities are not unique")
+    if proof["missing_raw_provenance"] != []:
+        raise CertificateFailure("raw provenance is missing")
+
+
+def _validate_b_source_proof(proof: Mapping[str, Any]) -> None:
+    if set(proof) != B_SOURCE_PROOF_FIELDS:
+        raise CertificateFailure("B source proof fields differ")
+    fibers = proof["collision_fibers"]
+    if proof["path_fibers"] != 53 or len(fibers) != 53:
+        raise CertificateFailure("B collision-fiber count differs")
+    for fiber in fibers:
+        if set(fiber) != B_FIBER_FIELDS:
+            raise CertificateFailure("B collision-fiber fields differ")
+        members = fiber["members"]
+        coefficients = fiber["coefficients"]
+        if members != sorted(members) or not members:
+            raise CertificateFailure("B collision members are noncanonical")
+        if not all(
+            _is_exact_integer(coefficient) for coefficient in coefficients
+        ):
+            raise CertificateFailure("B collision coefficients are invalid")
+        if fiber["member_coefficients"] != [
+            [member, coefficient]
+            for member, coefficient in zip(members, coefficients)
+        ]:
+            raise CertificateFailure("B member coefficient alignment differs")
+        if len(members) != len(coefficients):
+            raise CertificateFailure("B member coefficient lengths differ")
+        if fiber["integral_sum"] != sum(coefficients):
+            raise CertificateFailure("B integral fiber sum differs")
+        if fiber["parity"] != fiber["integral_sum"] % 2:
+            raise CertificateFailure("B integral fiber parity differs")
+        if fiber["active"] is not bool(fiber["parity"]):
+            raise CertificateFailure("B integral fiber activity differs")
+        if not _is_exact_integer(fiber["slot"]):
+            raise CertificateFailure("B collision slot is invalid")
+        if not fiber["canonical_module_schema"]:
+            raise CertificateFailure("B module schema is missing")
+        if fiber["label_equality_witness"].get("equal") is not True:
+            raise CertificateFailure("B label equality witness is missing")
+
+
+def build_source_bindings(catalog: Task4SchemaCatalog) -> dict[str, Any]:
+    payload = copy.deepcopy(
+        {
+            "format": SOURCE_BINDINGS_FORMAT,
+            "old": catalog.old_source_proof,
+            "b": catalog.b_source_proof,
+        }
+    )
+    payload["sha256"] = hashlib.sha256(
+        canonical_json(payload).encode("ascii")
+    ).hexdigest()
+    return payload
+
+
+def validate_source_bindings(
+    source_bindings: Mapping[str, Any], catalog: Task4SchemaCatalog
+) -> Mapping[str, Any]:
+    if set(source_bindings) != SOURCE_BINDING_FIELDS:
+        raise CertificateFailure("source-binding fields differ")
+    if source_bindings["format"] != SOURCE_BINDINGS_FORMAT:
+        raise CertificateFailure("source-binding format differs")
+    _validate_old_source_proof(source_bindings["old"])
+    _validate_b_source_proof(source_bindings["b"])
+    if canonical_json(source_bindings["old"]["source_digests"]) != canonical_json(
+        catalog.dependency_digests
+    ):
+        raise CertificateFailure("old source digests differ")
+    if canonical_json(source_bindings["b"]["source_digests"]) != canonical_json(
+        catalog.dependency_digests
+    ):
+        raise CertificateFailure("B source digests differ")
+    payload = {
+        key: value for key, value in source_bindings.items() if key != "sha256"
+    }
+    digest = hashlib.sha256(canonical_json(payload).encode("ascii")).hexdigest()
+    if source_bindings["sha256"] != digest:
+        raise CertificateFailure("source-binding digest differs")
+    expected = build_source_bindings(catalog)
+    if canonical_json(source_bindings) != canonical_json(expected):
+        raise CertificateFailure("source bindings differ from bound source proofs")
+    return source_bindings
+
+
+TEMPLATE_CATALOG_FORMAT = "task4-template-catalog-v2"
+TEMPLATE_TYPED_ENCODING = "task4-typed-sha256-v1"
+TEMPLATE_FIELD_ORDERS = {
+    "schema": ["schema_id", "variables", "blocks"],
+    "block": ["block_name", "word", "affine"],
+    "cell": ["cell_id", "names", "states", "base_values"],
+    "witness": [
+        "terminal_full_letter",
+        "terminal_c_deleted",
+        "pumps",
+    ],
+    "pump": [
+        "block_index",
+        "base_copies",
+        "slopes",
+        "split_position",
+        "left_copy_id",
+        "right_copy_id",
+        "left_core_offset",
+        "right_core_offset",
+    ],
+}
+TEMPLATE_CATALOG_FIELDS = {
+    "format",
+    "typed_encoding",
+    "family",
+    "field_orders",
+    "identity_order",
+    "schema_count",
+    "cell_count",
+    "template_count",
+    "witness_count",
+    "schema_table",
+    "cell_table",
+    "witness_table",
+    "identity_witness_ids",
+    "identity_sha256",
+    "replay_sha256",
+    "catalog_sha256",
+}
+
+
+def _typed_encode_into(update: Any, value: Any) -> None:
+    if value is None:
+        update(b"N")
+        return
+    if isinstance(value, bool):
+        update(b"B\x01" if value else b"B\x00")
+        return
+    if isinstance(value, int):
+        payload = str(value).encode("ascii")
+        update(b"I" + len(payload).to_bytes(4, "big") + payload)
+        return
+    if isinstance(value, str):
+        payload = value.encode("utf-8")
+        update(b"S" + len(payload).to_bytes(4, "big") + payload)
+        return
+    if isinstance(value, (list, tuple)):
+        update(b"L" + len(value).to_bytes(4, "big"))
+        for item in value:
+            _typed_encode_into(update, item)
+        return
+    if isinstance(value, Mapping):
+        if not all(isinstance(key, str) for key in value):
+            raise TypeError("typed mappings require string keys")
+        keys = sorted(value, key=lambda key: key.encode("utf-8"))
+        update(b"M" + len(keys).to_bytes(4, "big"))
+        for key in keys:
+            _typed_encode_into(update, key)
+            _typed_encode_into(update, value[key])
+        return
+    raise TypeError(f"unsupported typed hash value: {type(value).__name__}")
+
+
+def typed_encode(value: Any) -> bytes:
+    payload = bytearray()
+    _typed_encode_into(payload.extend, value)
+    return bytes(payload)
+
+
+def typed_sha256(value: Any) -> str:
+    hasher = hashlib.sha256()
+    _typed_encode_into(hasher.update, value)
+    return hasher.hexdigest()
+
+
+def _typed_hash_update(hasher: Any, value: Any) -> None:
+    _typed_encode_into(hasher.update, value)
+
+
+def _compact_template_witness(template: Template) -> tuple[Any, ...]:
+    return (
+        template.terminal_full_letter,
+        template.terminal_c_deleted,
+        tuple(
+            (
+                witness.block_index,
+                witness.base_copies,
+                witness.slopes,
+                witness.split_position,
+                witness.left_copy_id,
+                witness.right_copy_id,
+                witness.left_core_offset,
+                witness.right_core_offset,
+            )
+            for witness in template.pumping_witnesses
+        ),
+    )
+
+
+def _jsonable_compact(value: Any) -> Any:
+    if isinstance(value, tuple):
+        return [_jsonable_compact(item) for item in value]
+    return value
+
+
+def _compact_rolling_hashes(catalog: Mapping[str, Any]) -> tuple[str, str]:
+    identity_hasher = hashlib.sha256()
+    replay_hasher = hashlib.sha256()
+    shared = (
+        catalog["format"],
+        catalog["typed_encoding"],
+        catalog["family"],
+        catalog["field_orders"],
+        catalog["identity_order"],
+        catalog["schema_count"],
+        catalog["cell_count"],
+        catalog["template_count"],
+        catalog["witness_count"],
+        catalog["schema_table"],
+        catalog["cell_table"],
+        catalog["witness_table"],
+    )
+    for value in shared:
+        _typed_hash_update(identity_hasher, value)
+        _typed_hash_update(replay_hasher, value)
+    cell_count = len(catalog["cell_table"])
+    for identity_index, witness_id in enumerate(
+        catalog["identity_witness_ids"]
+    ):
+        schema_index, cell_index = divmod(identity_index, cell_count)
+        _typed_hash_update(
+            identity_hasher, [schema_index, cell_index, witness_id]
+        )
+        _typed_hash_update(
+            replay_hasher,
+            [schema_index, cell_index, witness_id],
+        )
+        _typed_hash_update(
+            replay_hasher, catalog["witness_table"][witness_id]
+        )
+    return identity_hasher.hexdigest(), replay_hasher.hexdigest()
+
+
+def _recompute_compact_rolling_hashes(catalog: dict[str, Any]) -> None:
+    identity_digest, replay_digest = _compact_rolling_hashes(catalog)
+    catalog["identity_sha256"] = identity_digest
+    catalog["replay_sha256"] = replay_digest
+
+
+def _seal_compact_template_catalog(
+    catalog: Mapping[str, Any],
+) -> tuple[dict[str, Any], int]:
+    payload = canonical_json(catalog).encode("ascii")
+    digest = hashlib.sha256(payload).hexdigest()
+    sealed = {**catalog, "catalog_sha256": digest}
+    emitted_bytes = len(payload) + len(',"catalog_sha256":""') + len(digest)
+    return sealed, emitted_bytes
+
+
+def _extract_compact_template_catalog(
+    family: str,
+    schemas: Mapping[str, Schema],
+    cells: Sequence[Cell],
+    templates: Mapping[tuple[str, str], Template | tuple[Any, ...]],
+) -> dict[str, Any]:
+    schema_ids = tuple(sorted(schemas))
+    sorted_cells = tuple(sorted(cells, key=lambda cell: cell.cell_id))
+    schema_table = [
+        [
+            schema_id,
+            list(schemas[schema_id].variables),
+            [
+                [
+                    block_name,
+                    list(word),
+                    None if affine is None else list(affine),
+                ]
+                for block_name, word, affine in schemas[schema_id].blocks
+            ],
+        ]
+        for schema_id in schema_ids
+    ]
+    cell_table = [
+        [
+            cell.cell_id,
+            list(cell.names),
+            list(cell.states),
+            list(cell.base_values),
+        ]
+        for cell in sorted_cells
+    ]
+    witnesses: list[Any] = []
+    witness_ids: dict[tuple[Any, ...], int] = {}
+    identity_witness_ids = []
+    for schema_id in schema_ids:
+        for cell in sorted_cells:
+            source = templates[(schema_id, cell.cell_id)]
+            witness = (
+                _compact_template_witness(source)
+                if isinstance(source, Template)
+                else source
+            )
+            witness_id = witness_ids.get(witness)
+            if witness_id is None:
+                witness_id = len(witnesses)
+                witness_ids[witness] = witness_id
+                witnesses.append(_jsonable_compact(witness))
+            identity_witness_ids.append(witness_id)
+    extracted = {
+        "format": TEMPLATE_CATALOG_FORMAT,
+        "typed_encoding": TEMPLATE_TYPED_ENCODING,
+        "family": family,
+        "field_orders": copy.deepcopy(TEMPLATE_FIELD_ORDERS),
+        "identity_order": "schema-major-cell-minor",
+        "schema_count": len(schema_table),
+        "cell_count": len(cell_table),
+        "template_count": len(identity_witness_ids),
+        "witness_count": len(witnesses),
+        "schema_table": schema_table,
+        "cell_table": cell_table,
+        "witness_table": witnesses,
+        "identity_witness_ids": identity_witness_ids,
+    }
+    _recompute_compact_rolling_hashes(extracted)
+    return extracted
+
+
+def validate_compact_template_catalog(
+    catalog: Mapping[str, Any],
+) -> Mapping[str, Any]:
+    if set(catalog) != TEMPLATE_CATALOG_FIELDS:
+        raise CertificateFailure("compact template catalog fields differ")
+    if catalog["format"] != TEMPLATE_CATALOG_FORMAT:
+        raise CertificateFailure("compact template catalog format differs")
+    if catalog["typed_encoding"] != TEMPLATE_TYPED_ENCODING:
+        raise CertificateFailure("compact typed encoding differs")
+    family = catalog["family"]
+    if not isinstance(family, str) or not family or not family.isascii():
+        raise CertificateFailure("compact catalog family is not ASCII")
+    if catalog["field_orders"] != TEMPLATE_FIELD_ORDERS:
+        raise CertificateFailure("compact catalog field orders differ")
+    if catalog["identity_order"] != "schema-major-cell-minor":
+        raise CertificateFailure("compact catalog identity order differs")
+
+    count_names = (
+        "schema_count",
+        "cell_count",
+        "template_count",
+        "witness_count",
+    )
+    if any(
+        not _is_exact_integer(catalog[name]) or catalog[name] < 0
+        for name in count_names
+    ):
+        raise CertificateFailure("compact catalog count is invalid")
+    schema_table = catalog["schema_table"]
+    cell_table = catalog["cell_table"]
+    witness_table = catalog["witness_table"]
+    identity_witness_ids = catalog["identity_witness_ids"]
+    if catalog["schema_count"] != len(schema_table) or not schema_table:
+        raise CertificateFailure("compact schema count differs")
+    if catalog["cell_count"] != len(cell_table) or not cell_table:
+        raise CertificateFailure("compact cell count differs")
+    if catalog["witness_count"] != len(witness_table) or not witness_table:
+        raise CertificateFailure("compact witness count differs")
+    expected_template_count = len(schema_table) * len(cell_table)
+    if (
+        catalog["template_count"] != expected_template_count
+        or len(identity_witness_ids) != expected_template_count
+    ):
+        raise CertificateFailure("compact template count differs")
+
+    if any(not isinstance(row, list) or len(row) != 3 for row in schema_table):
+        raise CertificateFailure("compact schema row shape differs")
+    schema_ids = [row[0] for row in schema_table]
+    if any(
+        not isinstance(schema_id, str)
+        or not schema_id
+        or not schema_id.isascii()
+        for schema_id in schema_ids
+    ):
+        raise CertificateFailure("compact schema IDs must be ASCII")
+    if schema_ids != sorted(schema_ids) or len(set(schema_ids)) != len(schema_ids):
+        raise CertificateFailure("compact schema table is not strictly sorted")
+
+    if any(not isinstance(row, list) or len(row) != 4 for row in cell_table):
+        raise CertificateFailure("compact cell row shape differs")
+    cell_ids = [row[0] for row in cell_table]
+    if any(
+        not isinstance(cell_id, str) or not cell_id or not cell_id.isascii()
+        for cell_id in cell_ids
+    ):
+        raise CertificateFailure("compact cell IDs must be ASCII")
+    if cell_ids != sorted(cell_ids) or len(set(cell_ids)) != len(cell_ids):
+        raise CertificateFailure("compact cell table is not strictly sorted")
+
+    if any(
+        not _is_exact_integer(witness_id)
+        or witness_id < 0
+        or witness_id >= len(witness_table)
+        for witness_id in identity_witness_ids
+    ):
+        raise CertificateFailure("compact witness mapping is out of range")
+    if set(identity_witness_ids) != set(range(len(witness_table))):
+        raise CertificateFailure("compact catalog contains an unused witness")
+    first_seen: dict[bytes, int] = {}
+    for witness_id in identity_witness_ids:
+        witness_key = typed_encode(witness_table[witness_id])
+        prior_id = first_seen.get(witness_key)
+        if prior_id is None:
+            expected_id = len(first_seen)
+            if witness_id != expected_id:
+                raise CertificateFailure(
+                    "compact witness table is not first-seen canonical"
+                )
+            first_seen[witness_key] = witness_id
+        elif witness_id != prior_id:
+            raise CertificateFailure("compact witness table repeats a witness")
+    if len(first_seen) != len(witness_table):
+        raise CertificateFailure("compact witness table is noncanonical")
+
+    identity_digest, replay_digest = _compact_rolling_hashes(catalog)
+    if catalog["identity_sha256"] != identity_digest:
+        raise CertificateFailure("compact identity digest differs")
+    if catalog["replay_sha256"] != replay_digest:
+        raise CertificateFailure("compact replay digest differs")
+    payload = {
         key: value
-        for key, value in record.items()
-        if key not in {"schema_id", "cell_id"}
+        for key, value in catalog.items()
+        if key != "catalog_sha256"
+    }
+    catalog_digest = hashlib.sha256(
+        canonical_json(payload).encode("ascii")
+    ).hexdigest()
+    if catalog["catalog_sha256"] != catalog_digest:
+        raise CertificateFailure("compact catalog digest differs")
+    return catalog
+
+
+def build_compact_template_catalog(
+    family: str,
+    schemas: Mapping[str, Schema],
+    cells: Sequence[Cell],
+    templates: Mapping[tuple[str, str], Template | tuple[Any, ...]],
+) -> dict[str, Any]:
+    extracted = _extract_compact_template_catalog(
+        family, schemas, cells, templates
+    )
+    sealed = _seal_compact_template_catalog(extracted)[0]
+    validate_compact_template_catalog(sealed)
+    return sealed
+
+
+def _schema_pump_capacity(schema: Schema, cells: Sequence[Cell]) -> int:
+    return max(
+        sum(
+            affine is not None and any(_changing_slopes(affine, cell))
+            for _, _, affine in schema.blocks
+        )
+        for cell in cells
+    )
+
+
+def measure_compact_catalog_slice(
+    catalog: Task4SchemaCatalog,
+) -> dict[str, Any]:
+    family_metrics = {}
+    extraction_total = 0.0
+    serialization_total = 0.0
+    projected_total = 0.0
+    total_schema_count = 0
+    total_identity_count = 0
+    sample_identity_count = 0
+    sample_catalog_bytes = 0
+    for family in sorted(catalog.families):
+        item = catalog.families[family]
+        schema_ids = tuple(sorted(item.schemas))
+        pump_counts = {
+            schema_id: _schema_pump_capacity(
+                item.schemas[schema_id], item.cells
+            )
+            for schema_id in schema_ids
+        }
+        highest_count = max(pump_counts.values())
+        highest_schema = next(
+            schema_id
+            for schema_id in schema_ids
+            if pump_counts[schema_id] == highest_count
+        )
+        selected_ids = tuple(
+            sorted({*schema_ids[::8], highest_schema})
+        )
+        selected_schemas = {
+            schema_id: item.schemas[schema_id]
+            for schema_id in selected_ids
+        }
+        sample_templates = {
+            (schema_id, cell.cell_id): build_template(schema, cell)
+            for schema_id, schema in selected_schemas.items()
+            for cell in item.cells
+        }
+
+        extraction_start = time.perf_counter()
+        extracted = _extract_compact_template_catalog(
+            family, selected_schemas, item.cells, sample_templates
+        )
+        extraction_seconds = time.perf_counter() - extraction_start
+        serialization_start = time.perf_counter()
+        _, emitted_bytes = _seal_compact_template_catalog(extracted)
+        serialization_seconds = time.perf_counter() - serialization_start
+
+        ratio_numerator = len(schema_ids)
+        ratio_denominator = len(selected_ids)
+        schema_ratio = ratio_numerator / ratio_denominator
+        projected_bytes = (
+            emitted_bytes * ratio_numerator + ratio_denominator - 1
+        ) // ratio_denominator
+        projected_extraction = extraction_seconds * schema_ratio
+        projected_serialization = serialization_seconds * (
+            projected_bytes / emitted_bytes
+        )
+        projected_overhead = projected_extraction + projected_serialization
+        identities = len(schema_ids) * len(item.cells)
+        sample_identities = len(selected_ids) * len(item.cells)
+        family_metrics[family] = {
+            "sample_schema_ids": list(selected_ids),
+            "highest_pump_count": highest_count,
+            "highest_pump_schema": highest_schema,
+            "total_schema_count": len(schema_ids),
+            "sample_schema_count": len(selected_ids),
+            "schema_ratio_numerator": ratio_numerator,
+            "schema_ratio_denominator": ratio_denominator,
+            "total_identity_count": identities,
+            "sample_identity_count": sample_identities,
+            "sample_catalog_bytes": emitted_bytes,
+            "projected_catalog_bytes": projected_bytes,
+            "extraction_intern_seconds": extraction_seconds,
+            "canonical_serialization_seconds": serialization_seconds,
+            "projected_extraction_seconds": projected_extraction,
+            "projected_serialization_seconds": projected_serialization,
+            "projected_overhead_seconds": projected_overhead,
+        }
+        total_schema_count += len(schema_ids)
+        total_identity_count += identities
+        sample_identity_count += sample_identities
+        sample_catalog_bytes += emitted_bytes
+        extraction_total += extraction_seconds
+        serialization_total += serialization_seconds
+        projected_total += projected_overhead
+    return {
+        "selection": (
+            "every-eighth-ascii-schema-plus-first-highest-pump-schema"
+        ),
+        "families": family_metrics,
+        "total_schema_count": total_schema_count,
+        "total_identity_count": total_identity_count,
+        "sample_identity_count": sample_identity_count,
+        "sample_catalog_bytes": sample_catalog_bytes,
+        "extraction_intern_seconds": extraction_total,
+        "canonical_serialization_seconds": serialization_total,
+        "projected_full_overhead_seconds": projected_total,
+        "doubled_projected_full_overhead_seconds": 2 * projected_total,
     }
 
 
-def _template_body_digest(body: Mapping[str, Any]) -> str:
-    return hashlib.sha256(canonical_json(body).encode("ascii")).hexdigest()
-
-
-def _template_catalog_digest(
-    mapping: Mapping[str, str], records: Mapping[str, Mapping[str, Any]]
-) -> str:
-    payload = canonical_json({"mapping": mapping, "records": records})
-    return hashlib.sha256(payload.encode("ascii")).hexdigest()
-
-
 def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
-    b_tokens, _ = build_b_catalog(context)
+    b_tokens, b_source_proof = build_b_catalog(context)
     b_identity_table = _b_identity_table(b_tokens)
-    old_tokens, _ = build_old_rows(context)
+    old_tokens, old_source_proof = build_old_rows(context)
     occurrence_leafs, occurrence_polarities, occurrence_slots, fixed_metadata = (
         _task4_chronology_metadata(context)
     )
@@ -2316,6 +3059,8 @@ def build_task4_schema_catalog(context: SourceContext) -> Task4SchemaCatalog:
     return Task4SchemaCatalog(
         families=families,
         dependency_digests=dict(context.source_digests),
+        old_source_proof=old_source_proof,
+        b_source_proof=b_source_proof,
         occurrence_leafs=occurrence_leafs,
         occurrence_polarities=occurrence_polarities,
         occurrence_slots=occurrence_slots,
@@ -2484,8 +3229,7 @@ def family_ledger(
         )
     b_records = _b_occurrence_records(item, catalog)
     cell_records = []
-    template_mapping: dict[str, str] = {}
-    template_records: dict[str, Mapping[str, Any]] = {}
+    template_witnesses: dict[tuple[str, str], tuple[Any, ...]] = {}
     family_comparisons = 0
     family_occurrence_loads = 0
     for cell in item.cells:
@@ -2494,19 +3238,12 @@ def family_ledger(
             for schema_id, schema in item.schemas.items()
         }
         for schema_id, template in templates.items():
-            identity = f"{schema_id}|{cell.cell_id}"
-            if identity in template_mapping:
+            identity = (schema_id, cell.cell_id)
+            if identity in template_witnesses:
                 raise CertificateFailure(
                     f"duplicate template identity: {item.family}, {identity}"
                 )
-            body = _template_record_body(template.to_record())
-            body_digest = _template_body_digest(body)
-            prior = template_records.setdefault(body_digest, body)
-            if canonical_json(prior) != canonical_json(body):
-                raise CertificateFailure(
-                    f"template body digest collision: {body_digest}"
-                )
-            template_mapping[identity] = body_digest
+            template_witnesses[identity] = _compact_template_witness(template)
         comparison_cache: dict[
             tuple[str, str, str], Mapping[str, Any]
         ] = {}
@@ -2596,15 +3333,9 @@ def family_ledger(
     return {
         "family": item.family,
         "cells": cell_records,
-        "template_catalog": {
-            "template_count": len(template_mapping),
-            "record_count": len(template_records),
-            "mapping": template_mapping,
-            "records": template_records,
-            "digest": _template_catalog_digest(
-                template_mapping, template_records
-            ),
-        },
+        "template_catalog": build_compact_template_catalog(
+            item.family, item.schemas, item.cells, template_witnesses
+        ),
         "summary": {
             "load_rows": len(item.old_tokens) * len(item.cells),
             "occurrence_loads": family_occurrence_loads,
@@ -2732,12 +3463,15 @@ def build_manifest(
         raise CertificateFailure("B identity table digest mismatch")
     summary = _catalog_summary(catalog)
     _validate_catalog_summary(summary)
+    source_bindings = build_source_bindings(catalog)
+    validate_source_bindings(source_bindings, catalog)
     manifest = {
         "format": "period-two-old-new-cut-load-v1",
         "domain": "a=d-1>=0, n>=0; positive chamber d>=1",
         "status": "unverified",
         "summary": summary,
         "dependency_digests": dict(catalog.dependency_digests),
+        "source_bindings": source_bindings,
         "b_identity_table": [dict(row) for row in catalog.b_identity_table],
         "b_identity_digest": catalog.b_identity_digest,
         "family_ledgers": {},

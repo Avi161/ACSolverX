@@ -1,5 +1,6 @@
 import copy
 import functools
+import hashlib
 import importlib.util
 import json
 import operator
@@ -40,6 +41,27 @@ EXPECTED_INVERSE_CELL_IDS = {
 }
 CORE_R = (1, 2, 1, -2, -2, -2, 1, 2)
 CORE_S = (1, -2, 1, 2, 2, 2, 1, -2)
+TYPED_ENCODING = "task4-typed-sha256-v1"
+TEMPLATE_FIELD_ORDERS = {
+    "schema": ["schema_id", "variables", "blocks"],
+    "block": ["block_name", "word", "affine"],
+    "cell": ["cell_id", "names", "states", "base_values"],
+    "witness": [
+        "terminal_full_letter",
+        "terminal_c_deleted",
+        "pumps",
+    ],
+    "pump": [
+        "block_index",
+        "base_copies",
+        "slopes",
+        "split_position",
+        "left_copy_id",
+        "right_copy_id",
+        "left_core_offset",
+        "right_core_offset",
+    ],
+}
 
 
 def literal_inverse(letter: int) -> int:
@@ -90,6 +112,100 @@ def with_manifest(context, name: str, manifest):
     return replace(context, manifests=manifests)
 
 
+def typed_hash_update(hasher, value) -> None:
+    if value is None:
+        hasher.update(b"N")
+        return
+    if isinstance(value, bool):
+        hasher.update(b"B\x01" if value else b"B\x00")
+        return
+    if isinstance(value, int):
+        payload = str(value).encode("ascii")
+        hasher.update(b"I" + len(payload).to_bytes(4, "big") + payload)
+        return
+    if isinstance(value, str):
+        payload = value.encode("utf-8")
+        hasher.update(b"S" + len(payload).to_bytes(4, "big") + payload)
+        return
+    if isinstance(value, (list, tuple)):
+        hasher.update(b"L" + len(value).to_bytes(4, "big"))
+        for item in value:
+            typed_hash_update(hasher, item)
+        return
+    if isinstance(value, dict):
+        assert all(isinstance(key, str) for key in value)
+        keys = sorted(value, key=lambda key: key.encode("utf-8"))
+        hasher.update(b"M" + len(keys).to_bytes(4, "big"))
+        for key in keys:
+            typed_hash_update(hasher, key)
+            typed_hash_update(hasher, value[key])
+        return
+    raise TypeError(f"unsupported typed hash value: {type(value).__name__}")
+
+
+def recompute_template_catalog_digests(catalog: dict) -> None:
+    identity_hasher = hashlib.sha256()
+    replay_hasher = hashlib.sha256()
+    shared = (
+        catalog["format"],
+        catalog["typed_encoding"],
+        catalog["family"],
+        catalog["field_orders"],
+        catalog["identity_order"],
+        catalog["schema_count"],
+        catalog["cell_count"],
+        catalog["template_count"],
+        catalog["witness_count"],
+        catalog["schema_table"],
+        catalog["cell_table"],
+        catalog["witness_table"],
+    )
+    for value in shared:
+        typed_hash_update(identity_hasher, value)
+        typed_hash_update(replay_hasher, value)
+    cell_count = len(catalog["cell_table"])
+    for identity_index, witness_id in enumerate(
+        catalog["identity_witness_ids"]
+    ):
+        schema_index, cell_index = divmod(identity_index, cell_count)
+        typed_hash_update(
+            identity_hasher, [schema_index, cell_index, witness_id]
+        )
+        typed_hash_update(
+            replay_hasher, [schema_index, cell_index, witness_id]
+        )
+        typed_hash_update(
+            replay_hasher, catalog["witness_table"][witness_id]
+        )
+    catalog["identity_sha256"] = identity_hasher.hexdigest()
+    catalog["replay_sha256"] = replay_hasher.hexdigest()
+    payload = {key: value for key, value in catalog.items() if key != "catalog_sha256"}
+    catalog["catalog_sha256"] = hashlib.sha256(
+        json.dumps(
+            payload,
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("ascii")
+    ).hexdigest()
+
+
+def reseal_source_bindings(source_bindings: dict) -> None:
+    payload = {
+        key: value
+        for key, value in source_bindings.items()
+        if key != "sha256"
+    }
+    source_bindings["sha256"] = hashlib.sha256(
+        json.dumps(
+            payload,
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("ascii")
+    ).hexdigest()
+
+
 def test_generator_file_exists_before_loading() -> None:
     assert GENERATOR.exists(), "grouped-load generator is not implemented"
 
@@ -130,6 +246,340 @@ def test_generator_cli_writes_checks_and_summarizes_canonical_json(
         target.unlink(missing_ok=True)
         if target.parent.is_dir() and not tuple(target.parent.iterdir()):
             target.parent.rmdir()
+
+
+def test_source_bindings_serialize_complete_old_b_and_anchor_proofs() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+
+    source_bindings = module.build_source_bindings(catalog)
+
+    assert set(source_bindings) == {"format", "old", "b", "sha256"}
+    assert source_bindings["format"] == "task4-source-bindings-v1"
+    assert source_bindings["old"] == catalog.old_source_proof
+    assert source_bindings["b"] == catalog.b_source_proof
+    assert set(source_bindings["old"]["integral_fibers"]) == {
+        "base",
+        "P",
+        "C",
+        "Q",
+    }
+    old_fibers = [
+        fiber
+        for fibers in source_bindings["old"]["integral_fibers"].values()
+        for fiber in fibers
+    ]
+    assert any(not fiber["active"] for fiber in old_fibers)
+    assert all(
+        fiber["member_ids"] == [member["id"] for member in fiber["members"]]
+        and fiber["coefficients"]
+        == [member["coefficient"] for member in fiber["members"]]
+        and sum(fiber["coefficients"]) == fiber["integral_sum"]
+        and fiber["parity"] == fiber["integral_sum"] % 2
+        and fiber["active"] == bool(fiber["parity"])
+        and all(member["domain"] for member in fiber["members"])
+        and all(member["current_equality"] for member in fiber["members"])
+        for fiber in old_fibers
+    )
+    assert {
+        family: len(records)
+        for family, records in source_bindings["old"][
+            "one_member_sources"
+        ].items()
+    } == {"fixed": 70, "singleton": 1}
+    assert all(
+        set(record)
+        == {
+            "identity",
+            "member_id",
+            "coefficient",
+            "domain",
+            "current_equality",
+        }
+        for records in source_bindings["old"]["one_member_sources"].values()
+        for record in records
+    )
+    assert source_bindings["old"]["anchor_rows"] == 21
+    assert len(source_bindings["old"]["anchor_provenance"]) == 21
+    assert source_bindings["old"]["anchor_integral_sum"] == sum(
+        row["coefficient"]
+        for row in source_bindings["old"]["anchor_provenance"]
+    )
+    assert source_bindings["old"]["raw_provenance_counts"] == {
+        "V": 167,
+        "W": 397,
+        "A": 21,
+    }
+    assert source_bindings["old"]["raw_ids_unique"] is True
+    assert source_bindings["old"]["missing_raw_provenance"] == []
+
+    b_fibers = source_bindings["b"]["collision_fibers"]
+    assert len(b_fibers) == 53
+    assert any(not fiber["active"] for fiber in b_fibers)
+    assert all(
+        fiber["member_coefficients"]
+        == [list(pair) for pair in zip(fiber["members"], fiber["coefficients"])]
+        and sum(fiber["coefficients"]) == fiber["integral_sum"]
+        and fiber["parity"] == fiber["integral_sum"] % 2
+        and fiber["active"] == bool(fiber["parity"])
+        and fiber["label_equality_witness"]["equal"] is True
+        for fiber in b_fibers
+    )
+    module.validate_source_bindings(source_bindings, catalog)
+
+
+def test_source_binding_validation_rejects_resealed_semantic_mutations() -> None:
+    module = load_generator()
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+    source_bindings = module.build_source_bindings(catalog)
+    inactive_old = next(
+        (family, index, fiber)
+        for family, fibers in source_bindings["old"]["integral_fibers"].items()
+        for index, fiber in enumerate(fibers)
+        if not fiber["active"]
+    )
+    inactive_b_index = next(
+        index
+        for index, fiber in enumerate(source_bindings["b"]["collision_fibers"])
+        if not fiber["active"]
+    )
+
+    mutations = []
+    family, fiber_index, _ = inactive_old
+
+    wrong_old_coefficient = copy.deepcopy(source_bindings)
+    wrong_old_coefficient["old"]["integral_fibers"][family][fiber_index][
+        "members"
+    ][0]["coefficient"] += 2
+    mutations.append(wrong_old_coefficient)
+
+    wrong_old_domain = copy.deepcopy(source_bindings)
+    wrong_old_domain["old"]["integral_fibers"][family][fiber_index]["members"][
+        0
+    ]["domain"] = {"op": "false"}
+    mutations.append(wrong_old_domain)
+
+    wrong_old_equality = copy.deepcopy(source_bindings)
+    wrong_old_equality["old"]["integral_fibers"][family][fiber_index][
+        "members"
+    ][0]["current_equality"] = {"op": "false"}
+    mutations.append(wrong_old_equality)
+
+    wrong_b_alignment = copy.deepcopy(source_bindings)
+    wrong_b_alignment["b"]["collision_fibers"][inactive_b_index][
+        "member_coefficients"
+    ][0][1] += 2
+    mutations.append(wrong_b_alignment)
+
+    wrong_anchor = copy.deepcopy(source_bindings)
+    wrong_anchor["old"]["anchor_provenance"][0]["coefficient"] += 2
+    mutations.append(wrong_anchor)
+
+    for mutated in mutations:
+        reseal_source_bindings(mutated)
+        with pytest.raises(module.CertificateFailure):
+            module.validate_source_bindings(mutated, catalog)
+
+
+def test_typed_sha256_v1_has_frozen_literal_encoding_and_hash_vectors() -> None:
+    module = load_generator()
+    vectors = (
+        (
+            None,
+            "4e",
+            "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+        ),
+        (
+            False,
+            "4200",
+            "f6c6e57cc3dac1d6a2349701056ff5a3e48134efe4496a8c0f5cb9fc9e6dfc12",
+        ),
+        (
+            True,
+            "4201",
+            "4cb1fd840b329ec808f95c7a17d95ccc8848275c382ab11e4dfabd290c068070",
+        ),
+        (
+            -42,
+            "49000000032d3432",
+            "e784f3ee909bd36a20a1b8744709944fa744303294c4a30d7db1d781018338b4",
+        ),
+        (
+            "π",
+            "5300000002cf80",
+            "7c7ce74baef2b17651aa994a54f2a843ee4db132694817069a2cea9bd497ac97",
+        ),
+        (
+            [None, True, -7, "π"],
+            "4c000000044e420149000000022d375300000002cf80",
+            "d7eafd067331b065d8f491697eec5c3c5ed6a6cf947534d9d21c979d245833b9",
+        ),
+        (
+            {"β": False, "a": [1, None]},
+            (
+                "4d000000025300000001614c000000024900000001314e"
+                "5300000002ceb24200"
+            ),
+            "84036cd670c5990f2f714a3f5407856268284749d99d4170db43b651cc5aa125",
+        ),
+    )
+
+    for value, expected_hex, expected_sha256 in vectors:
+        assert module.typed_encode(value).hex() == expected_hex
+        assert module.typed_sha256(value) == expected_sha256
+
+
+def test_compact_v2_catalog_binds_every_schema_major_cell_identity(
+    monkeypatch,
+) -> None:
+    module = load_generator()
+    schemas = {
+        "z:pump": module.Schema(
+            "z:pump", ("a",), (("p", CORE_R, (1, 0)),)
+        ),
+        "a:fixed": module.Schema(
+            "a:fixed", ("a",), (("fixed", (2,), None),)
+        ),
+    }
+    cells = tuple(reversed(module.make_cells(("a",))))
+    templates = {
+        (schema_id, cell.cell_id): module.build_template(schema, cell)
+        for schema_id, schema in schemas.items()
+        for cell in cells
+    }
+    monkeypatch.setattr(
+        module.Template,
+        "to_record",
+        lambda _self: pytest.fail("compact-v2 must not call Template.to_record"),
+    )
+
+    catalog = module.build_compact_template_catalog(
+        "unit", schemas, cells, templates
+    )
+
+    assert catalog["format"] == "task4-template-catalog-v2"
+    assert catalog["typed_encoding"] == TYPED_ENCODING
+    assert catalog["family"] == "unit"
+    assert catalog["field_orders"] == TEMPLATE_FIELD_ORDERS
+    assert [row[0] for row in catalog["schema_table"]] == [
+        "a:fixed",
+        "z:pump",
+    ]
+    assert [row[0] for row in catalog["cell_table"]] == [
+        "age0",
+        "age1",
+        "age2",
+        "age3",
+    ]
+    assert catalog["template_count"] == 8
+    assert len(catalog["identity_witness_ids"]) == 8
+    assert set(catalog["identity_witness_ids"]) == set(
+        range(len(catalog["witness_table"]))
+    )
+    assert catalog["identity_order"] == "schema-major-cell-minor"
+    independently_rehashed = copy.deepcopy(catalog)
+    recompute_template_catalog_digests(independently_rehashed)
+    assert independently_rehashed == catalog
+    module.validate_compact_template_catalog(catalog)
+
+
+def test_compact_v2_rejects_noncanonical_catalog_mutations() -> None:
+    module = load_generator()
+    schemas = {
+        "z:pump": module.Schema(
+            "z:pump", ("a",), (("p", CORE_R, (1, 0)),)
+        ),
+        "a:fixed": module.Schema(
+            "a:fixed", ("a",), (("fixed", (2,), None),)
+        ),
+    }
+    cells = module.make_cells(("a",))
+    templates = {
+        (schema_id, cell.cell_id): module.build_template(schema, cell)
+        for schema_id, schema in schemas.items()
+        for cell in cells
+    }
+    catalog = module.build_compact_template_catalog(
+        "unit", schemas, cells, templates
+    )
+    assert len(catalog["witness_table"]) >= 2
+
+    unknown_field = copy.deepcopy(catalog)
+    unknown_field["extra"] = None
+
+    missing_field = copy.deepcopy(catalog)
+    missing_field.pop("typed_encoding")
+
+    unused_witness = copy.deepcopy(catalog)
+    unused_witness["witness_table"].append(
+        copy.deepcopy(unused_witness["witness_table"][0])
+    )
+    unused_witness["witness_count"] += 1
+    recompute_template_catalog_digests(unused_witness)
+
+    non_ascii_schema = copy.deepcopy(catalog)
+    non_ascii_schema["schema_table"][0][0] = "á:fixed"
+    recompute_template_catalog_digests(non_ascii_schema)
+
+    reindexed = copy.deepcopy(catalog)
+    reindexed["witness_table"][0], reindexed["witness_table"][1] = (
+        reindexed["witness_table"][1],
+        reindexed["witness_table"][0],
+    )
+    reindexed["identity_witness_ids"] = [
+        1 if witness_id == 0 else 0 if witness_id == 1 else witness_id
+        for witness_id in reindexed["identity_witness_ids"]
+    ]
+    recompute_template_catalog_digests(reindexed)
+
+    aliased_field_order = catalog
+    aliased_field_order["field_orders"]["schema"].reverse()
+    recompute_template_catalog_digests(aliased_field_order)
+
+    for mutated in (
+        unknown_field,
+        missing_field,
+        unused_witness,
+        non_ascii_schema,
+        reindexed,
+        aliased_field_order,
+    ):
+        with pytest.raises(module.CertificateFailure):
+            module.validate_compact_template_catalog(mutated)
+
+
+def test_compact_v2_deterministic_slice_clears_projection_gate() -> None:
+    module = load_generator()
+    measure = module.measure_compact_catalog_slice
+    catalog = module.build_task4_schema_catalog(module.load_source_context())
+
+    metrics = measure(catalog)
+    print(json.dumps(metrics, sort_keys=True))
+
+    assert metrics["selection"] == (
+        "every-eighth-ascii-schema-plus-first-highest-pump-schema"
+    )
+    assert metrics["total_schema_count"] == 1304
+    assert metrics["total_identity_count"] == 48252
+    assert metrics["sample_identity_count"] > 0
+    assert metrics["sample_catalog_bytes"] > 0
+    assert metrics["extraction_intern_seconds"] >= 0
+    assert metrics["canonical_serialization_seconds"] >= 0
+    assert metrics["projected_full_overhead_seconds"] >= 0
+    assert metrics["doubled_projected_full_overhead_seconds"] < 3.0
+    for family, family_metrics in metrics["families"].items():
+        item = catalog.families[family]
+        schema_ids = sorted(item.schemas)
+        assert set(schema_ids[::8]) <= set(family_metrics["sample_schema_ids"])
+        assert family_metrics["highest_pump_schema"] in family_metrics[
+            "sample_schema_ids"
+        ]
+        assert family_metrics["total_identity_count"] == (
+            len(item.schemas) * len(item.cells)
+        )
+        assert family_metrics["sample_identity_count"] == (
+            len(family_metrics["sample_schema_ids"]) * len(item.cells)
+        )
 
 
 def test_cells_cover_exact_threshold_states_and_p_domain() -> None:
@@ -852,31 +1302,38 @@ def test_manifest_census_expands_every_catalog_occurrence_footprint() -> None:
     ]
     assert sum(catalog["template_count"] for catalog in template_catalogs) == 48252
     assert all(
-        len(catalog["mapping"]) == catalog["template_count"]
-        and len(catalog["records"]) == catalog["record_count"]
-        and set(catalog["mapping"].values()) <= set(catalog["records"])
+        catalog["format"] == "task4-template-catalog-v2"
+        and catalog["field_orders"] == TEMPLATE_FIELD_ORDERS
+        and catalog["identity_order"] == "schema-major-cell-minor"
+        and len(catalog["schema_table"]) == catalog["schema_count"]
+        and len(catalog["cell_table"]) == catalog["cell_count"]
+        and len(catalog["identity_witness_ids"])
+        == catalog["template_count"]
+        and len(catalog["witness_table"]) == catalog["witness_count"]
+        and set(catalog["identity_witness_ids"])
+        == set(range(catalog["witness_count"]))
+        and [row[0] for row in catalog["schema_table"]]
+        == sorted(row[0] for row in catalog["schema_table"])
+        and [row[0] for row in catalog["cell_table"]]
+        == sorted(row[0] for row in catalog["cell_table"])
         for catalog in template_catalogs
     )
     pumping_records = [
         record
         for catalog in template_catalogs
-        for record in catalog["records"].values()
-        if record["pumping_witnesses"]
+        for record in catalog["witness_table"]
+        if record[2]
     ]
     assert pumping_records
     assert all(
-        set(record)
-        == {
-            "variables",
-            "tagged_base_word",
-            "base_word",
-            "normalized_blocks",
-            "terminal_full_letter",
-            "terminal_c_deleted",
-            "pumping_witnesses",
-        }
+        len(record) == 3
+        and all(len(pump) == 8 for pump in record[2])
         for record in pumping_records
     )
+    for template_catalog in template_catalogs:
+        independently_rehashed = copy.deepcopy(template_catalog)
+        recompute_template_catalog_digests(independently_rehashed)
+        assert independently_rehashed == template_catalog
     assert manifest["status"] == "generated-awaiting-independent-replay"
     assert "independent_verifier_attestation" not in manifest
     assert not manifest["status"].startswith("proved")
@@ -1426,43 +1883,83 @@ def test_independent_verifier_replays_and_rejects_semantic_mutations() -> None:
             family
             for family, ledger in manifest["family_ledgers"].items()
             if any(
-                record["pumping_witnesses"]
-                for record in ledger["template_catalog"]["records"].values()
+                record[2]
+                for record in ledger["template_catalog"]["witness_table"]
             )
         )
-        pumping_digest = next(
-            digest
-            for digest, record in manifest["family_ledgers"][pumping_family][
-                "template_catalog"
-            ]["records"].items()
-            if record["pumping_witnesses"]
+        pumping_witness_id = next(
+            witness_id
+            for witness_id, record in enumerate(
+                manifest["family_ledgers"][pumping_family]["template_catalog"]
+                ["witness_table"]
+            )
+            if record[2]
         )
         wrong_boundary = copy.deepcopy(manifest)
-        wrong_boundary["family_ledgers"][pumping_family]["template_catalog"][
-            "records"
-        ][pumping_digest]["pumping_witnesses"][0]["left_copy_id"] += 1
+        boundary_catalog = wrong_boundary["family_ledgers"][pumping_family][
+            "template_catalog"
+        ]
+        boundary_catalog["witness_table"][pumping_witness_id][2][0][4] += 1
+        recompute_template_catalog_digests(boundary_catalog)
         mutations.append(
             ("boundary", wrong_boundary, verifier.PumpingVerificationError)
         )
 
         wrong_terminal = copy.deepcopy(manifest)
-        terminal_record = wrong_terminal["family_ledgers"][pumping_family][
+        terminal_catalog = wrong_terminal["family_ledgers"][pumping_family][
             "template_catalog"
-        ]["records"][pumping_digest]
-        terminal_record["terminal_c_deleted"] = not terminal_record[
-            "terminal_c_deleted"
         ]
+        terminal_record = terminal_catalog["witness_table"][pumping_witness_id]
+        terminal_record[1] = not terminal_record[1]
+        recompute_template_catalog_digests(terminal_catalog)
         mutations.append(
             ("terminal", wrong_terminal, verifier.PumpingVerificationError)
         )
 
         wrong_mapping = copy.deepcopy(manifest)
-        mapping = wrong_mapping["family_ledgers"][pumping_family][
+        mapping_catalog = wrong_mapping["family_ledgers"][pumping_family][
             "template_catalog"
-        ]["mapping"]
-        del mapping[next(iter(mapping))]
+        ]
+        mapping_catalog["identity_witness_ids"].pop()
+        mapping_catalog["template_count"] -= 1
+        recompute_template_catalog_digests(mapping_catalog)
         mutations.append(
             ("mapping", wrong_mapping, verifier.PumpingVerificationError)
+        )
+
+        wrong_redirect = copy.deepcopy(manifest)
+        redirect_catalog = wrong_redirect["family_ledgers"][pumping_family][
+            "template_catalog"
+        ]
+        original_id = redirect_catalog["identity_witness_ids"][0]
+        redirect_catalog["identity_witness_ids"][0] = next(
+            witness_id
+            for witness_id in range(redirect_catalog["witness_count"])
+            if witness_id != original_id
+        )
+        recompute_template_catalog_digests(redirect_catalog)
+        mutations.append(
+            ("redirect", wrong_redirect, verifier.PumpingVerificationError)
+        )
+
+        wrong_schema = copy.deepcopy(manifest)
+        schema_catalog = wrong_schema["family_ledgers"][pumping_family][
+            "template_catalog"
+        ]
+        schema_catalog["schema_table"][0][2][0][1][0] *= -1
+        recompute_template_catalog_digests(schema_catalog)
+        mutations.append(
+            ("schema", wrong_schema, verifier.PumpingVerificationError)
+        )
+
+        wrong_cell = copy.deepcopy(manifest)
+        cell_catalog = wrong_cell["family_ledgers"][pumping_family][
+            "template_catalog"
+        ]
+        cell_catalog["cell_table"][0][3][0] += 1
+        recompute_template_catalog_digests(cell_catalog)
+        mutations.append(
+            ("cell", wrong_cell, verifier.PumpingVerificationError)
         )
 
         wrong_family = copy.deepcopy(manifest)
@@ -1479,6 +1976,14 @@ def test_independent_verifier_replays_and_rejects_semantic_mutations() -> None:
 
         wrong_identity = copy.deepcopy(manifest)
         wrong_identity["b_identity_table"][0]["coefficient"] += 2
+        wrong_identity["b_identity_digest"] = hashlib.sha256(
+            json.dumps(
+                wrong_identity["b_identity_table"],
+                ensure_ascii=True,
+                separators=(",", ":"),
+                sort_keys=True,
+            ).encode("ascii")
+        ).hexdigest()
         mutations.append(
             ("identity", wrong_identity, verifier.BIdentityVerificationError)
         )

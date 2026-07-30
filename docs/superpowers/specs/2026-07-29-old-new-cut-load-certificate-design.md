@@ -79,19 +79,39 @@ counter, claimed family value, or `d=0` assertion may be copied as evidence.
 The manifest starts with SHA-256 bindings for every executable source and
 upstream data artifact used to reconstruct a row.  Loading fails if any
 required path is missing or any expected source theorem status is not
-verified.
+verified.  The canonical top-level section is `source_bindings`, with exact
+fields `format`, `old`, `b`, and `sha256`.  Its format is
+`task4-source-bindings-v1`; `sha256` is the SHA-256 of canonical JSON for the
+other three fields.
 
-Every old row records:
+The `old` object is the complete proof object returned by `build_old_rows()`.
+It contains `raw_family_rows`, `active_family_fibers`, `integral_fibers`,
+`one_member_sources`, `anchor_rows`, `anchor_integral_sum`,
+`anchor_provenance`, `missing_raw_provenance`, `raw_provenance_counts`,
+`raw_ids_unique`, and `source_digests`.  `integral_fibers` has the exact
+families `base`, `P`, `C`, and `Q`, including inactive fibers.  Every fiber
+stores `collision_key`, aligned `member_ids` and `coefficients`, a `members`
+table whose rows contain `id`, integer `coefficient`, exact `domain`, and exact
+`current_equality`, then `integral_sum`, `parity`, `active`, and the
+`label_equality_witness`.  The redundant aligned arrays and member table must
+agree exactly.  `one_member_sources` has the exact families `fixed` and
+`singleton`; every record contains its stable `identity`, one `member_id`,
+integer `coefficient`, exact `domain`, and exact `current_equality`.  Active
+load rows alone are not a source certificate.
 
-1. its stable row identifier and family;
-2. the approved raw-manifest row or rows in its integral collision fiber;
-3. every integer coefficient before reduction modulo two;
-4. the computed integral fiber sum;
-5. its exact parameter domain and `current_equality` flag; and
-6. whether it survives or is absorbed, with the partner fiber when absorbed.
+The `b` object is the complete proof object returned by `build_b_catalog()`.
+It contains `occurrences`, `path_fibers`, `active_path_fibers`,
+`slot_zero_tokens`, `bound_cells`, `collision_fibers`, and `source_digests`.
+All 53 B collision fibers are present, including inactive fibers.  Every one
+stores sorted `members`, aligned integer `coefficients`, explicit
+`member_coefficients` pairs, `integral_sum`, `parity`, `active`, `slot`,
+`canonical_module_schema`, and the complete `label_equality_witness`.
 
-The doubled slot-zero anchor is bound to its 21 approved provenance rows.
-Evenness is computed from those rows rather than asserted in prose.
+The doubled slot-zero anchor binds all 21 approved provenance rows as exact
+`id`/integer-`coefficient` pairs, their computed integral sum, the raw V/W/A
+provenance counts, raw-ID uniqueness, and the exact empty
+missing-provenance result.  Evenness and completeness are computed from those
+rows rather than asserted in prose.
 
 ## 5. Cell decomposition and pumping witnesses
 
@@ -111,6 +131,47 @@ does not repeat its full tagged word.  Each family catalog stores:
 - one witness-table index for every schema-major/cell-minor identity; and
 - exact identity, replay, and catalog SHA-256 values with versioned ordering
   and typed-encoding declarations.
+
+The exact catalog fields are `format`, `typed_encoding`, `family`,
+`field_orders`, `identity_order`, `schema_count`, `cell_count`,
+`template_count`, `witness_count`, `schema_table`, `cell_table`,
+`witness_table`, `identity_witness_ids`, `identity_sha256`, `replay_sha256`,
+and `catalog_sha256`.  `typed_encoding` is
+`task4-typed-sha256-v1`.  Unknown or missing fields fail closed.  Schema and
+cell IDs must be nonempty ASCII strings in strict ASCII order.  Every witness
+must be used, and `witness_table` must equal the distinct witnesses in their
+first-seen schema-major/cell-minor identity order; a semantic-preserving table
+permutation and reindexing is noncanonical and is rejected.
+
+For the typed encoder `E`, `N` encodes `None`; `B` followed by byte `00` or
+`01` encodes a boolean; `I || len4 || payload` encodes a signed integer using
+its canonical ASCII decimal spelling; and `S || len4 || payload` encodes a
+UTF-8 string.  `L || count4 || E(item)...` encodes a list.  A mapping has only
+string keys and is encoded as `M || count4 || E(key) || E(value)...`, with
+keys ordered by their UTF-8 bytes.  Every `len4` and `count4` is an unsigned
+four-byte big-endian integer.  Tuples are encoded as lists.  No other Python
+type is accepted.
+
+Let `||` denote byte concatenation.  Both rolling hashes begin with this exact
+ordered prefix:
+
+```text
+E(format) || E(typed_encoding) || E(family) || E(field_orders) ||
+E(identity_order) || E(schema_count) || E(cell_count) ||
+E(template_count) || E(witness_count) || E(schema_table) ||
+E(cell_table) || E(witness_table)
+```
+
+For identity position `i`, let
+`schema_index,cell_index = divmod(i, cell_count)`, let `witness_id` be
+`identity_witness_ids[i]`, let
+`M_i = E([schema_index, cell_index, witness_id])`, and let
+`D_i = E(witness_table[witness_id])`.  Then `identity_sha256` is SHA-256 of
+the prefix followed by `M_0 || ... || M_(template_count-1)`, while
+`replay_sha256` is SHA-256 of the prefix followed by
+`M_0 || D_0 || ... || M_(template_count-1) || D_(template_count-1)`.
+`catalog_sha256` is SHA-256 of canonical JSON for every catalog field except
+`catalog_sha256` itself.
 
 A compact witness contains the full pre-`cvert` terminal letter, the
 terminal-`c` deletion branch, and for every changing block its block index,
