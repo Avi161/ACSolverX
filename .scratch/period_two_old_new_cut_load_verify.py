@@ -318,64 +318,6 @@ FAMILY_VERIFICATION_CHARGE_DOMAINS = (
     "logical-v1-canonical-fragment",
     "reference-validation",
 )
-PREFLIGHT_SELECTED_OLD_INDICES = {
-    "fixed": (0, 8, 15, 23, 31, 38, 46, 54, 61, 69),
-    "base": (0, 1),
-    "singleton": (0,),
-    "P": (0, 3, 5, 8, 10, 13, 16, 18, 21, 23, 26, 28, 31),
-    "C": (0, 19, 38),
-    "Q": (0, 15, 30, 46, 61, 76, 91),
-}
-GENERATION_FAMILY_CENSUS = {
-    "fixed": {
-        "full_old_load_count": 70,
-        "full_schema_count": 192,
-        "cell_count": 16,
-        "full_identity_count": 3_072,
-        "full_comparisons": 94_080,
-        "sampled_comparisons": 13_440,
-    },
-    "base": {
-        "full_old_load_count": 2,
-        "full_schema_count": 128,
-        "cell_count": 16,
-        "full_identity_count": 2_048,
-        "full_comparisons": 5_376,
-        "sampled_comparisons": 5_376,
-    },
-    "singleton": {
-        "full_old_load_count": 1,
-        "full_schema_count": 129,
-        "cell_count": 16,
-        "full_identity_count": 2_064,
-        "full_comparisons": 8_064,
-        "sampled_comparisons": 8_064,
-    },
-    "P": {
-        "full_old_load_count": 32,
-        "full_schema_count": 218,
-        "cell_count": 54,
-        "full_identity_count": 11_772,
-        "full_comparisons": 290_304,
-        "sampled_comparisons": 117_936,
-    },
-    "C": {
-        "full_old_load_count": 39,
-        "full_schema_count": 239,
-        "cell_count": 16,
-        "full_identity_count": 3_824,
-        "full_comparisons": 104_832,
-        "sampled_comparisons": 8_064,
-    },
-    "Q": {
-        "full_old_load_count": 92,
-        "full_schema_count": 398,
-        "cell_count": 64,
-        "full_identity_count": 25_472,
-        "full_comparisons": 989_184,
-        "sampled_comparisons": 75_264,
-    },
-}
 
 
 @dataclass(frozen=True)
@@ -2204,7 +2146,7 @@ def _projection_indices(
 def _project_verification_charge(
     charge: VerificationChargeInput,
 ) -> VerificationChargeProjection:
-    if not isinstance(charge, VerificationChargeInput):
+    if type(charge) is not VerificationChargeInput:
         raise EngineeringVerificationFailure(
             "verification-projection", "charge input type differs"
         )
@@ -2242,7 +2184,7 @@ def _ordered_verification_charges(
         )
     values = tuple(charges)
     if tuple(
-        charge.domain if isinstance(charge, VerificationChargeInput) else None
+        charge.domain if type(charge) is VerificationChargeInput else None
         for charge in values
     ) != expected_domains:
         raise EngineeringVerificationFailure(
@@ -2259,6 +2201,11 @@ def project_verification(
     families: Sequence[FamilyVerificationProjectionInput],
 ) -> VerificationProjection:
     invariant = _projection_int(invariant_ns, "global invariant nanoseconds")
+    if invariant != 0:
+        raise EngineeringVerificationFailure(
+            "verification-projection",
+            "global invariant nanoseconds must be zero; use a named charge",
+        )
     projected_global = _ordered_verification_charges(
         global_charges, GLOBAL_VERIFICATION_CHARGE_DOMAINS
     )
@@ -2269,7 +2216,7 @@ def project_verification(
     values = tuple(families)
     if tuple(
         value.family
-        if isinstance(value, FamilyVerificationProjectionInput)
+        if type(value) is FamilyVerificationProjectionInput
         else None
         for value in values
     ) != FAMILY_ORDER:
@@ -2282,7 +2229,6 @@ def project_verification(
     identity_dynamic_range = False
     projected_families = []
     for value in values:
-        census = GENERATION_FAMILY_CENSUS[value.family]
         full_old_count = _projection_int(
             value.full_old_load_count,
             f"{value.family} full old-load count",
@@ -2293,24 +2239,11 @@ def project_verification(
             f"{value.family} full schema count",
             positive=True,
         )
-        if (
-            full_old_count != census["full_old_load_count"]
-            or full_schema_count != census["full_schema_count"]
-        ):
-            raise EngineeringVerificationFailure(
-                "verification-projection",
-                f"{value.family} full selection denominator differs",
-            )
         old_indices = _projection_indices(
             value.selected_old_indices,
             f"{value.family} selected old indices",
             upper_bound=full_old_count,
         )
-        if old_indices != PREFLIGHT_SELECTED_OLD_INDICES[value.family]:
-            raise EngineeringVerificationFailure(
-                "verification-projection",
-                f"{value.family} selected old indices differ",
-            )
         schema_indices = _projection_indices(
             value.selected_schema_indices,
             f"{value.family} selected schema indices",
@@ -2321,15 +2254,6 @@ def project_verification(
         )
         by_domain = {charge.domain: charge for charge in projected_charges}
         comparison = by_domain["comparison-replay"]
-        expected_comparison_sample = census["sampled_comparisons"]
-        if (
-            comparison.full_record_count != census["full_comparisons"]
-            or comparison.sampled_record_count != expected_comparison_sample
-        ):
-            raise EngineeringVerificationFailure(
-                "verification-projection",
-                f"{value.family} comparison charge census differs",
-            )
         complete_old_range = old_indices == tuple(range(full_old_count))
         if (
             comparison.sampled_record_count == comparison.full_record_count
@@ -2343,17 +2267,6 @@ def project_verification(
         )
 
         template = by_domain["template-replay"]
-        expected_identity_sample = (
-            len(schema_indices) * census["cell_count"]
-        )
-        if (
-            template.full_record_count != census["full_identity_count"]
-            or template.sampled_record_count != expected_identity_sample
-        ):
-            raise EngineeringVerificationFailure(
-                "verification-projection",
-                f"{value.family} template charge census differs",
-            )
         complete_schema_range = schema_indices == tuple(
             range(full_schema_count)
         )
@@ -2372,6 +2285,12 @@ def project_verification(
             value.invariant_family_ns,
             f"{value.family} invariant nanoseconds",
         )
+        if family_invariant != 0:
+            raise EngineeringVerificationFailure(
+                "verification-projection",
+                f"{value.family} invariant nanoseconds must be zero; "
+                "use a named charge",
+            )
         family_total = family_invariant + sum(
             charge.projected_ns for charge in projected_charges
         )
@@ -2447,6 +2366,12 @@ def build_attestation_payload(
     verifier_sha256: str,
     metrics: Mapping[str, Any],
 ) -> dict[str, Any]:
+    if isinstance(result, VerificationProjection):
+        raise EngineeringVerificationFailure(
+            "attestation",
+            "a direct verification projection is arithmetic only and "
+            "non-attestable",
+        )
     raise EngineeringVerificationFailure(
         "attestation", "attestation construction is not part of this slice"
     )
