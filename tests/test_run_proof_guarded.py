@@ -10,6 +10,7 @@ import sys
 import time
 from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import FrozenInstanceError
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -20,6 +21,7 @@ from scripts.run_proof_guarded import parse_args, run_long_guarded
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RUNNER = PROJECT_ROOT / "scripts" / "run_proof_guarded.py"
 LOCK = PROJECT_ROOT / ".scratch" / "process-guard" / "active.json"
+LAST_RUN = LOCK.with_name("last-run.json")
 THREAD_ENV = (
     "NUMBA_NUM_THREADS",
     "OMP_NUM_THREADS",
@@ -90,6 +92,183 @@ def long_runner_command(
     ]
 
 
+def run_immediate_synthetic_long_main(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    phase_statuses: tuple[int, ...],
+    *,
+    command_sentinel: str = "audit-command-secret-sentinel",
+    environment_sentinel: str = "audit-environment-secret-sentinel",
+) -> tuple[int, Path, Path, list[tuple[int, bool]]]:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    phase_pids = iter(720_000 + index for index in range(len(phase_statuses)))
+    statuses = iter(phase_statuses)
+    group_checks: list[tuple[int, bool]] = []
+
+    class SyntheticChild:
+        def __init__(self, pid: int, status: int) -> None:
+            self.pid = pid
+            self.status = status
+
+        def poll(self) -> int:
+            return self.status
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(
+        proof_guard,
+        "LAST_RUN_PATH",
+        last_run_path,
+        raising=False,
+    )
+    monkeypatch.setattr(proof_guard, "SafetyMonitor", lambda: None)
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticChild(next(phase_pids), next(statuses)),
+    )
+    monkeypatch.setattr(proof_guard.os, "getppid", lambda: 620_000)
+    monkeypatch.setenv("PROOF_GUARD_AUDIT_SECRET", environment_sentinel)
+
+    def group_absent(process_group_id: int) -> bool:
+        group_checks.append((process_group_id, lock_path.exists()))
+        return False
+
+    monkeypatch.setattr(proof_guard, "group_exists", group_absent)
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--preflight-seconds",
+            "0.1",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+            command_sentinel,
+        ]
+    )
+    return status, lock_path, last_run_path, group_checks
+
+
+def run_mode_synthetic_long_main(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    phase_modes: tuple[str, ...],
+    *,
+    samples: tuple[object, ...] = (),
+    fail_final_recheck: tuple[int, ...] = (),
+) -> tuple[int, Path, Path, list[tuple[int, int]], list[tuple[int, bool]]]:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    clock = _FakeClock()
+    pending_modes = list(phase_modes)
+    pending_samples = list(samples)
+    alive: dict[int, bool] = {}
+    killpg_calls: list[tuple[int, int]] = []
+    group_checks: list[tuple[int, bool]] = []
+    next_pid = 730_000
+
+    class SyntheticChild:
+        def __init__(self, pid: int, mode: str) -> None:
+            self.pid = pid
+            self.mode = mode
+
+        def poll(self) -> int | None:
+            if self.mode == "complete":
+                alive[self.pid] = False
+                return 0
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            if self.mode == "timeout":
+                assert timeout is not None
+                clock.now += timeout
+                raise subprocess.TimeoutExpired("synthetic phase", timeout)
+            raise AssertionError(f"unexpected wait for synthetic mode {self.mode}")
+
+    class SyntheticMonitor:
+        def verify_launcher_coordinator(
+            self,
+            launcher_pid: int,
+            coordinator_pid: int,
+            sample_deadline: float | None = None,
+        ) -> None:
+            del launcher_pid, coordinator_pid, sample_deadline
+            return None
+
+        def sample(self, **_kwargs: object) -> object:
+            if not pending_samples:
+                raise AssertionError("synthetic monitor sampled too often")
+            sample = pending_samples.pop(0)
+            if isinstance(sample, BaseException):
+                raise sample
+            return sample
+
+    def popen(*_args: object, **_kwargs: object) -> object:
+        nonlocal next_pid
+        mode = pending_modes.pop(0)
+        if mode == "start_error":
+            raise OSError(errno.ENOENT, "synthetic start failure")
+        child = SyntheticChild(next_pid, mode)
+        next_pid += 1
+        alive[child.pid] = True
+        return child
+
+    def group_exists(process_group_id: int) -> bool:
+        lock_present = lock_path.exists()
+        prior_checks = sum(
+            checked_pgid == process_group_id
+            for checked_pgid, _lock_present in group_checks
+        )
+        group_checks.append((process_group_id, lock_present))
+        if (
+            lock_present
+            and process_group_id in fail_final_recheck
+            and prior_checks >= 1
+        ):
+            return True
+        return alive.get(process_group_id, False)
+
+    def killpg(process_group_id: int, signum: int) -> None:
+        killpg_calls.append((process_group_id, signum))
+        if not alive.get(process_group_id, False):
+            raise ProcessLookupError
+        alive[process_group_id] = False
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(
+        proof_guard,
+        "SafetyMonitor",
+        (lambda: SyntheticMonitor()) if samples else (lambda: None),
+    )
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
+    monkeypatch.setattr(proof_guard, "group_exists", group_exists)
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard.os, "getppid", lambda: 630_000)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--preflight-seconds",
+            "0.1",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+        ]
+    )
+    return status, lock_path, last_run_path, killpg_calls, group_checks
+
+
 def wait_for_path(path: Path, timeout: float = 1.0) -> None:
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
@@ -138,8 +317,11 @@ def stop_fixture_pid(pid: int) -> None:
 def no_guard_leak() -> None:
     if LOCK.exists():
         pytest.fail(f"proof-process guard already active at {LOCK}")
+    if LAST_RUN.exists():
+        pytest.fail(f"unexpected proof-process audit already present at {LAST_RUN}")
     yield
     assert not LOCK.exists(), f"proof-process guard leaked at {LOCK}"
+    LAST_RUN.unlink(missing_ok=True)
 
 
 def test_second_runner_never_starts_its_child(tmp_path: Path) -> None:
@@ -301,6 +483,96 @@ def test_dead_owner_lock_is_reclaimed() -> None:
         timeout=2,
     )
     assert result.returncode == 0
+
+
+def test_lock_creation_base_exception_closes_fd_and_unlinks_exact_inode(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    lock_path = tmp_path / "process-guard" / "active.json"
+    opened_fds: list[int] = []
+    real_open = proof_guard.os.open
+    real_fstat = proof_guard.os.fstat
+    fstat_calls = 0
+
+    def record_open(*args: object, **kwargs: object) -> int:
+        fd = real_open(*args, **kwargs)
+        opened_fds.append(fd)
+        return fd
+
+    def interrupt_first_fstat(fd: int) -> os.stat_result:
+        nonlocal fstat_calls
+        fstat_calls += 1
+        if fstat_calls == 1:
+            raise KeyboardInterrupt
+        return real_fstat(fd)
+
+    monkeypatch.setattr(proof_guard.os, "open", record_open)
+    monkeypatch.setattr(proof_guard.os, "fstat", interrupt_first_fstat)
+
+    with pytest.raises(KeyboardInterrupt):
+        proof_guard.ProcessLock(lock_path, run_id="d" * 32).acquire()
+
+    assert not lock_path.exists()
+    assert len(opened_fds) == 1
+    with pytest.raises(OSError) as exc_info:
+        real_fstat(opened_fds[0])
+    assert exc_info.value.errno == errno.EBADF
+
+
+def test_signal_after_exclusive_open_is_deferred_until_exact_inode_cleanup(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    lock_path = tmp_path / "process-guard" / "active.json"
+    opened_fds: list[int] = []
+    real_open = proof_guard.os.open
+    real_fstat = proof_guard.os.fstat
+    previous_handler = signal.signal(
+        signal.SIGTERM,
+        lambda signum, _frame: (_ for _ in ()).throw(
+            proof_guard.GuardSignal(signum)
+        ),
+    )
+
+    def signal_after_open(*args: object, **kwargs: object) -> int:
+        fd = real_open(*args, **kwargs)
+        opened_fds.append(fd)
+        os.kill(os.getpid(), signal.SIGTERM)
+        return fd
+
+    monkeypatch.setattr(proof_guard.os, "open", signal_after_open)
+    try:
+        with pytest.raises(proof_guard.GuardSignal):
+            proof_guard.ProcessLock(lock_path, run_id="d" * 32).acquire()
+    finally:
+        signal.signal(signal.SIGTERM, previous_handler)
+
+    assert not lock_path.exists()
+    assert len(opened_fds) == 1
+    with pytest.raises(OSError) as exc_info:
+        real_fstat(opened_fds[0])
+    assert exc_info.value.errno == errno.EBADF
+
+
+def test_lock_cleanup_never_unlinks_replacement_inode(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    lock_path = tmp_path / "process-guard" / "active.json"
+    replacement = b"replacement-lock\n"
+
+    def replace_then_interrupt(*_args: object, **_kwargs: object) -> None:
+        lock_path.unlink()
+        lock_path.write_bytes(replacement)
+        raise proof_guard.GuardSignal(signal.SIGTERM)
+
+    monkeypatch.setattr(proof_guard.json, "dump", replace_then_interrupt)
+
+    with pytest.raises(proof_guard.GuardSignal):
+        proof_guard.ProcessLock(lock_path, run_id="e" * 32).acquire()
+
+    assert lock_path.read_bytes() == replacement
 
 
 def test_timeout_61_without_long_run_is_rejected_before_launch(tmp_path: Path) -> None:
@@ -560,6 +832,701 @@ def test_long_run_returns_experiment_nonzero_status(tmp_path: Path) -> None:
     assert [record["phase"] for record in records] == ["preflight", "experiment"]
 
 
+def test_clean_long_run_writes_private_locked_audit_and_rechecks_both_groups(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    command_sentinel = "clean-audit-command-secret"
+    environment_sentinel = "clean-audit-environment-secret"
+    status, lock_path, last_run_path, group_checks = (
+        run_immediate_synthetic_long_main(
+            monkeypatch,
+            tmp_path,
+            (0, 0),
+            command_sentinel=command_sentinel,
+            environment_sentinel=environment_sentinel,
+        )
+    )
+
+    raw_record = last_run_path.read_text(encoding="utf-8")
+    record = json.loads(raw_record)
+    assert status == 0
+    assert not lock_path.exists()
+    assert last_run_path.stat().st_mode & 0o777 == 0o600
+    assert command_sentinel not in raw_record
+    assert environment_sentinel not in raw_record
+    assert set(record) == {
+        "schema",
+        "version",
+        "run_id",
+        "state",
+        "started_at",
+        "finished_at",
+        "launcher_pid",
+        "coordinator_pid",
+        "phases",
+        "classification",
+        "guard_status",
+        "return_status",
+        "lock_release_pending",
+    }
+    assert record["schema"] == "acsolverx.proof-process-guard.last-run"
+    assert record["version"] == 1
+    assert record["state"] == "finalized"
+    assert len(record["run_id"]) == 32
+    assert datetime.fromisoformat(record["started_at"]).tzinfo is not None
+    assert datetime.fromisoformat(record["finished_at"]).tzinfo is not None
+    assert record["launcher_pid"] == 620_000
+    assert record["coordinator_pid"] == os.getpid()
+    assert record["phases"] == {
+        "preflight": {
+            "pgid": 720_000,
+            "outcome": "child_exit",
+            "guard_status": 0,
+            "child_exit_status": 0,
+            "exact_group_absent": True,
+        },
+        "experiment": {
+            "pgid": 720_001,
+            "outcome": "child_exit",
+            "guard_status": 0,
+            "child_exit_status": 0,
+            "exact_group_absent": True,
+        },
+    }
+    assert record["classification"] == "experiment_child_exit"
+    assert record["guard_status"] == 0
+    assert record["return_status"] == 0
+    assert record["lock_release_pending"] is True
+    assert group_checks.count((720_000, True)) == 2
+    assert group_checks.count((720_001, True)) == 2
+
+
+def test_audit_write_precedes_release_and_blocks_another_guard_acquisition(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    events: list[str] = []
+    blocked_acquisitions: list[bool] = []
+    atomic_write = proof_guard._atomic_write_long_run_audit
+    release = proof_guard.ProcessLock.release
+
+    def observed_atomic_write(audit: object) -> None:
+        events.append("write")
+        competing_lock = proof_guard.ProcessLock(proof_guard.LOCK_PATH)
+        try:
+            competing_lock.acquire()
+        except proof_guard.LockHeldError:
+            blocked_acquisitions.append(True)
+        else:
+            blocked_acquisitions.append(False)
+            release(competing_lock)
+        atomic_write(audit)
+
+    def observed_release(process_lock: object) -> None:
+        events.append("release")
+        release(process_lock)
+
+    monkeypatch.setattr(
+        proof_guard,
+        "_atomic_write_long_run_audit",
+        observed_atomic_write,
+    )
+    monkeypatch.setattr(proof_guard.ProcessLock, "release", observed_release)
+
+    status, lock_path, _last_run_path, _group_checks = (
+        run_immediate_synthetic_long_main(monkeypatch, tmp_path, (0, 0))
+    )
+
+    assert status == 0
+    assert blocked_acquisitions == [True, True]
+    assert events == ["write", "write", "release"]
+    assert not lock_path.exists()
+
+
+def test_run_id_binds_active_lock_in_progress_and_finalized_audit(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    run_id = "a" * 32
+    observations: list[tuple[dict[str, object], dict[str, object]]] = []
+    phase_pids = iter((740_000, 740_001))
+
+    class SyntheticChild:
+        def __init__(self, pid: int) -> None:
+            self.pid = pid
+
+        def poll(self) -> int:
+            return 0
+
+    def popen(*_args: object, **_kwargs: object) -> object:
+        observations.append(
+            (
+                json.loads(lock_path.read_text(encoding="utf-8")),
+                json.loads(last_run_path.read_text(encoding="utf-8")),
+            )
+        )
+        return SyntheticChild(next(phase_pids))
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(proof_guard, "_new_run_id", lambda: run_id, raising=False)
+    monkeypatch.setattr(proof_guard, "SafetyMonitor", lambda: None)
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--preflight-seconds",
+            "0.1",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+        ]
+    )
+
+    final_record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == 0
+    assert len(observations) == 2
+    assert all(lock["run_id"] == run_id for lock, _audit in observations)
+    assert all(audit["run_id"] == run_id for _lock, audit in observations)
+    assert all(audit["state"] == "in_progress" for _lock, audit in observations)
+    assert final_record["run_id"] == run_id
+    assert final_record["state"] == "finalized"
+
+
+def test_permanent_final_replace_failure_preserves_fresh_in_progress_audit(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    process_guard_dir.mkdir(parents=True)
+    last_run_path = process_guard_dir / "last-run.json"
+    stale_sentinel = "stale-audit-sensitive-sentinel"
+    last_run_path.write_text(
+        json.dumps(
+            {
+                "run_id": "stale-run",
+                "state": "finalized",
+                "forbidden": stale_sentinel,
+            }
+        ),
+        encoding="utf-8",
+    )
+    run_id = "b" * 32
+    real_replace = proof_guard.os.replace
+    replace_calls = 0
+
+    def fail_final_replace(source: object, destination: object) -> None:
+        nonlocal replace_calls
+        replace_calls += 1
+        if replace_calls == 1:
+            real_replace(source, destination)
+            return
+        raise OSError("synthetic permanent final replace failure")
+
+    monkeypatch.setattr(proof_guard, "_new_run_id", lambda: run_id, raising=False)
+    monkeypatch.setattr(proof_guard.os, "replace", fail_final_replace)
+    status, lock_path, observed_last_run_path, _group_checks = (
+        run_immediate_synthetic_long_main(monkeypatch, tmp_path, (0, 0))
+    )
+
+    record = json.loads(observed_last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.SAFETY_EXIT
+    assert not lock_path.exists()
+    assert replace_calls == 2
+    assert record["run_id"] == run_id
+    assert record["state"] == "in_progress"
+    assert stale_sentinel not in observed_last_run_path.read_text(encoding="utf-8")
+    assert observed_last_run_path.stat().st_mode & 0o777 == 0o600
+
+
+def test_duplicate_long_run_never_touches_active_run_audit(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    process_guard_dir.mkdir(parents=True)
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    active_run_id = "c" * 32
+    lock_path.write_text(
+        json.dumps(
+            {
+                "pid": os.getpid(),
+                "started_at": "active",
+                "worktree": "synthetic",
+                "run_id": active_run_id,
+            }
+        ),
+        encoding="utf-8",
+    )
+    original_audit = (
+        json.dumps({"run_id": active_run_id, "state": "in_progress"}) + "\n"
+    ).encode()
+    last_run_path.write_bytes(original_audit)
+    launches: list[bool] = []
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: launches.append(True),
+    )
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+        ]
+    )
+
+    assert status == proof_guard.DUPLICATE_EXIT
+    assert launches == []
+    assert last_run_path.read_bytes() == original_audit
+
+
+def test_signal_raised_after_lock_acquisition_still_releases_owned_inode(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    acquire = proof_guard.ProcessLock.acquire
+
+    def acquire_then_interrupt(process_lock: object) -> None:
+        acquire(process_lock)
+        raise proof_guard.GuardSignal(signal.SIGTERM)
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(proof_guard.ProcessLock, "acquire", acquire_then_interrupt)
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+        ]
+    )
+
+    assert status == proof_guard.SAFETY_EXIT
+    assert not lock_path.exists()
+
+
+def test_signal_during_finalization_is_mapped_before_lock_release(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    finalize = proof_guard._finalize_long_run_audit
+    finalize_calls = 0
+
+    def interrupt_first_finalization(*args: object, **kwargs: object) -> int:
+        nonlocal finalize_calls
+        finalize_calls += 1
+        if finalize_calls == 1:
+            raise proof_guard.GuardSignal(signal.SIGTERM)
+        return finalize(*args, **kwargs)
+
+    monkeypatch.setattr(
+        proof_guard,
+        "_finalize_long_run_audit",
+        interrupt_first_finalization,
+    )
+    status, lock_path, last_run_path, _group_checks = (
+        run_immediate_synthetic_long_main(monkeypatch, tmp_path, (0, 0))
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    expected_status = 128 + signal.SIGTERM
+    assert status == expected_status
+    assert finalize_calls == 2
+    assert not lock_path.exists()
+    assert record["classification"] == "interruption"
+    assert record["guard_status"] == expected_status
+    assert record["return_status"] == expected_status
+
+
+def test_launcher_pid_is_captured_before_argument_parsing(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    parent_pid = [660_000]
+    parse_args = proof_guard.parse_args
+    phase_pids = iter((760_000, 760_001))
+
+    class SyntheticChild:
+        def __init__(self, pid: int) -> None:
+            self.pid = pid
+
+        def poll(self) -> int:
+            return 0
+
+    def parse_then_reparent(argv: object) -> object:
+        parsed = parse_args(argv)
+        parent_pid[0] = 660_001
+        return parsed
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(proof_guard, "parse_args", parse_then_reparent)
+    monkeypatch.setattr(proof_guard.os, "getppid", lambda: parent_pid[0])
+    monkeypatch.setattr(proof_guard, "SafetyMonitor", lambda: None)
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticChild(next(phase_pids)),
+    )
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--preflight-seconds",
+            "0.1",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+        ]
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == 0
+    assert record["launcher_pid"] == 660_000
+
+
+def test_failed_preflight_audit_has_no_experiment_pgid(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    status, _lock_path, last_run_path, _group_checks = (
+        run_immediate_synthetic_long_main(monkeypatch, tmp_path, (9,))
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.PREFLIGHT_EXIT
+    assert record["classification"] == "preflight_child_exit"
+    assert record["guard_status"] == proof_guard.PREFLIGHT_EXIT
+    assert record["return_status"] == proof_guard.PREFLIGHT_EXIT
+    assert record["phases"]["preflight"] == {
+        "pgid": 720_000,
+        "outcome": "child_exit",
+        "guard_status": 0,
+        "child_exit_status": 9,
+        "exact_group_absent": True,
+    }
+    assert record["phases"]["experiment"] == {
+        "pgid": None,
+        "outcome": "not_started",
+        "guard_status": None,
+        "child_exit_status": None,
+        "exact_group_absent": None,
+    }
+
+
+@pytest.mark.parametrize(
+    "experiment_status",
+    (
+        proof_guard.DUPLICATE_EXIT,
+        proof_guard.TIMEOUT_EXIT,
+        proof_guard.PREFLIGHT_EXIT,
+        proof_guard.SAFETY_EXIT,
+    ),
+)
+def test_reserved_experiment_status_is_classified_as_completion(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    experiment_status: int,
+) -> None:
+    status, _lock_path, last_run_path, _group_checks = (
+        run_immediate_synthetic_long_main(
+            monkeypatch,
+            tmp_path,
+            (0, experiment_status),
+        )
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == experiment_status
+    assert record["classification"] == "experiment_child_exit"
+    assert record["guard_status"] == 0
+    assert record["return_status"] == experiment_status
+    assert record["phases"]["experiment"]["outcome"] == "child_exit"
+    assert (
+        record["phases"]["experiment"]["child_exit_status"]
+        == experiment_status
+    )
+
+
+def test_atomic_audit_replace_failure_changes_final_status_to_safety(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    replace_calls: list[tuple[object, object]] = []
+
+    def fail_replace(source: object, destination: object) -> None:
+        replace_calls.append((source, destination))
+        raise OSError("synthetic atomic replace failure")
+
+    monkeypatch.setattr(proof_guard.os, "replace", fail_replace)
+    status, _lock_path, last_run_path, _group_checks = (
+        run_immediate_synthetic_long_main(monkeypatch, tmp_path, (0, 0))
+    )
+
+    assert status == proof_guard.SAFETY_EXIT
+    assert replace_calls
+    assert not last_run_path.exists()
+
+
+@pytest.mark.parametrize(
+    ("phase_modes", "expected_status", "expected_classification", "phase"),
+    (
+        (("timeout",), 125, "preflight_timeout", "preflight"),
+        (("complete", "timeout"), 124, "experiment_timeout", "experiment"),
+    ),
+)
+def test_phase_timeout_audit_is_not_confused_with_completed_status_124(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    phase_modes: tuple[str, ...],
+    expected_status: int,
+    expected_classification: str,
+    phase: str,
+) -> None:
+    status, _lock_path, last_run_path, killpg_calls, _group_checks = (
+        run_mode_synthetic_long_main(monkeypatch, tmp_path, phase_modes)
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    expected_pgid = 730_000 if phase == "preflight" else 730_001
+    assert status == expected_status
+    assert record["classification"] == expected_classification
+    assert record["guard_status"] == expected_status
+    assert record["return_status"] == expected_status
+    assert record["phases"][phase] == {
+        "pgid": expected_pgid,
+        "outcome": "timeout",
+        "guard_status": proof_guard.TIMEOUT_EXIT,
+        "child_exit_status": None,
+        "exact_group_absent": True,
+    }
+    assert killpg_calls == [(expected_pgid, signal.SIGTERM)]
+
+
+def test_safety_stop_audit_records_exact_group_cleanup(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    status, _lock_path, last_run_path, killpg_calls, _group_checks = (
+        run_mode_synthetic_long_main(
+            monkeypatch,
+            tmp_path,
+            ("complete", "running"),
+            samples=(_safety_sample(), _safety_sample(thermal_state=1)),
+        )
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.SAFETY_EXIT
+    assert record["classification"] == "safety_cleanup_stop"
+    assert record["phases"]["experiment"] == {
+        "pgid": 730_001,
+        "outcome": "safety_stop",
+        "guard_status": proof_guard.SAFETY_EXIT,
+        "child_exit_status": None,
+        "exact_group_absent": True,
+    }
+    assert killpg_calls == [(730_001, signal.SIGTERM)]
+
+
+def test_safety_stop_preserves_already_observed_child_exit_status(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    status, _lock_path, last_run_path, killpg_calls, _group_checks = (
+        run_mode_synthetic_long_main(
+            monkeypatch,
+            tmp_path,
+            ("complete",),
+            samples=(_safety_sample(thermal_state=1),),
+        )
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.SAFETY_EXIT
+    assert record["classification"] == "safety_cleanup_stop"
+    assert record["phases"]["preflight"] == {
+        "pgid": 730_000,
+        "outcome": "safety_stop",
+        "guard_status": proof_guard.SAFETY_EXIT,
+        "child_exit_status": 0,
+        "exact_group_absent": True,
+    }
+    assert killpg_calls == []
+
+
+def test_sample_deadline_preserves_already_observed_child_exit_status(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 731_000
+
+    class FastExitChild:
+        pid = process_group_id
+
+        def poll(self) -> int:
+            return 0
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: FastExitChild(),
+    )
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+    monkeypatch.setattr(
+        proof_guard.os,
+        "killpg",
+        lambda _pgid, _signum: (_ for _ in ()).throw(ProcessLookupError),
+    )
+    monitor = _SequenceMonitor(
+        [_safety_sample()],
+        clock,
+        sample_advances=[1.1],
+    )
+    audit = proof_guard.LongRunAudit(
+        run_id="f" * 32,
+        started_at="synthetic",
+        launcher_pid=670_000,
+        coordinator_pid=os.getpid(),
+    )
+
+    status = run_long_guarded(
+        ("synthetic-command",),
+        preflight_seconds=1.0,
+        experiment_seconds=1.0,
+        progress_seconds=1.0,
+        grace_seconds=0.1,
+        monitor=monitor,
+        clock=clock.monotonic,
+        launcher_pid=670_000,
+        audit=audit,
+    )
+
+    assert status == proof_guard.PREFLIGHT_EXIT
+    assert audit.phases["preflight"].outcome == "timeout"
+    assert audit.phases["preflight"].guard_status == proof_guard.TIMEOUT_EXIT
+    assert audit.phases["preflight"].child_exit_status == 0
+
+
+def test_interruption_audit_records_status_and_exact_group_cleanup(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    status, _lock_path, last_run_path, killpg_calls, _group_checks = (
+        run_mode_synthetic_long_main(
+            monkeypatch,
+            tmp_path,
+            ("complete", "running"),
+            samples=(
+                _safety_sample(),
+                proof_guard.GuardSignal(signal.SIGTERM),
+            ),
+        )
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    expected_status = 128 + signal.SIGTERM
+    assert status == expected_status
+    assert record["classification"] == "interruption"
+    assert record["guard_status"] == expected_status
+    assert record["return_status"] == expected_status
+    assert record["phases"]["experiment"] == {
+        "pgid": 730_001,
+        "outcome": "interrupted",
+        "guard_status": expected_status,
+        "child_exit_status": None,
+        "exact_group_absent": True,
+    }
+    assert killpg_calls == [(730_001, signal.SIGTERM)]
+
+
+def test_start_error_audit_has_no_phase_pgid_and_stays_distinguishable(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    status, _lock_path, last_run_path, killpg_calls, _group_checks = (
+        run_mode_synthetic_long_main(monkeypatch, tmp_path, ("start_error",))
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.PREFLIGHT_EXIT
+    assert record["classification"] == "start_guard_error"
+    assert record["phases"]["preflight"] == {
+        "pgid": None,
+        "outcome": "start_error",
+        "guard_status": 127,
+        "child_exit_status": None,
+        "exact_group_absent": None,
+    }
+    assert killpg_calls == []
+
+
+def test_failed_final_group_recheck_changes_status_and_is_recorded(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    status, _lock_path, last_run_path, _killpg_calls, group_checks = (
+        run_mode_synthetic_long_main(
+            monkeypatch,
+            tmp_path,
+            ("complete", "complete"),
+            fail_final_recheck=(730_001,),
+        )
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.SAFETY_EXIT
+    assert record["classification"] == "safety_cleanup_stop"
+    assert record["phases"]["preflight"]["exact_group_absent"] is True
+    assert record["phases"]["experiment"]["exact_group_absent"] is False
+    assert group_checks.count((730_000, True)) == 2
+    assert group_checks.count((730_001, True)) == 2
+
+
+def test_failed_lock_absence_recheck_changes_status_and_is_recorded(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    monkeypatch.setattr(proof_guard.ProcessLock, "release", lambda _self: None)
+    status, lock_path, last_run_path, _group_checks = (
+        run_immediate_synthetic_long_main(monkeypatch, tmp_path, (0, 0))
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.SAFETY_EXIT
+    assert lock_path.exists()
+    assert record["classification"] == "experiment_child_exit"
+    assert record["guard_status"] == 0
+    assert record["return_status"] == 0
+    assert record["lock_release_pending"] is True
+
+
 def test_timed_out_experiment_returns_124_and_cleans_its_exact_group(
     tmp_path: Path,
 ) -> None:
@@ -773,7 +1740,8 @@ def test_monitor_counts_only_exact_group_and_reports_escaped_descendants(
     expected_cpu: float,
 ) -> None:
     processes = (
-        _process_info(100, 1, 100, 0.0, ucomm="guard"),
+        _process_info(50, 1, 50, 0.0, ucomm="launcher"),
+        _process_info(100, 50, 100, 0.0, ucomm="guard"),
         _process_info(200, 100, 200, 50.0, ucomm="phase"),
         _process_info(201, 200, 200, child_cpu, ucomm="worker"),
         _process_info(202, 201, 202, 99.0, ucomm="escaped"),
@@ -785,10 +1753,15 @@ def test_monitor_counts_only_exact_group_and_reports_escaped_descendants(
         thermal_reader=lambda _deadline: 0,
     )
 
-    sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
+    sample = monitor.sample(
+        child_pid=200,
+        process_group_id=200,
+        launcher_pid=50,
+        coordinator_pid=100,
+    )
 
-    assert sample.controller_alive is True
-    assert sample.child_reparented is False
+    assert sample.coordinator_alive is True
+    assert sample.phase_leader_reparented is False
     assert sample.group_process_count == 3
     assert sample.group_cpu_percent == pytest.approx(expected_cpu)
     assert sample.escaped_pids == (202,)
@@ -803,7 +1776,8 @@ def test_monitor_shares_one_deadline_across_thermal_and_process_sampling() -> No
     observed_thermal_deadlines: list[float] = []
     observed_timeouts: list[float] = []
     processes = (
-        _process_info(100, 1, 100, 0.0),
+        _process_info(50, 1, 50, 0.0),
+        _process_info(100, 50, 100, 0.0),
         _process_info(200, 100, 200, 1.0),
     )
 
@@ -824,7 +1798,8 @@ def test_monitor_shares_one_deadline_across_thermal_and_process_sampling() -> No
     ).sample(
         child_pid=200,
         process_group_id=200,
-        controller_pid=100,
+        launcher_pid=50,
+        coordinator_pid=100,
         sample_deadline=1.0,
     )
 
@@ -851,7 +1826,8 @@ def test_monitor_skips_process_sampling_when_thermal_consumes_deadline() -> None
     sample = monitor.sample(
         child_pid=200,
         process_group_id=200,
-        controller_pid=100,
+        launcher_pid=50,
+        coordinator_pid=100,
         sample_deadline=1.0,
     )
 
@@ -860,36 +1836,423 @@ def test_monitor_skips_process_sampling_when_thermal_consumes_deadline() -> None
     assert process_calls == []
 
 
-def test_monitor_reports_lost_controller_and_reparented_child() -> None:
-    lost_controller = proof_guard.SafetyMonitor(
-        process_reader=lambda _timeout: (_process_info(200, 100, 200, 1.0),),
-        thermal_reader=lambda _deadline: 0,
-    ).sample(child_pid=200, process_group_id=200, controller_pid=100)
-    reparented_child = proof_guard.SafetyMonitor(
-        process_reader=lambda _timeout: (
-            _process_info(100, 1, 100, 0.0),
-            _process_info(200, 1, 200, 1.0),
+@pytest.mark.parametrize(
+    ("processes", "failure_fragment"),
+    (
+        (
+            (
+                _process_info(200, 100, 200, 0.0),
+                _process_info(300, 200, 300, 1.0),
+            ),
+            "launcher process is no longer alive",
         ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0, state="Z"),
+                _process_info(200, 100, 200, 0.0),
+                _process_info(300, 200, 300, 1.0),
+            ),
+            "launcher process is no longer alive",
+        ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0),
+                _process_info(300, 200, 300, 1.0),
+            ),
+            "guard coordinator process is no longer alive",
+        ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0),
+                _process_info(200, 100, 200, 0.0, state="Z"),
+                _process_info(300, 200, 300, 1.0),
+            ),
+            "guard coordinator process is no longer alive",
+        ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0),
+                _process_info(200, 1, 200, 0.0),
+                _process_info(300, 200, 300, 1.0),
+            ),
+            "guard coordinator was reparented away from the launcher",
+        ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0),
+                _process_info(200, 100, 200, 0.0),
+                _process_info(300, 1, 300, 1.0),
+            ),
+            "phase leader was reparented away from the guard coordinator",
+        ),
+    ),
+)
+def test_monitor_fails_closed_for_launcher_coordinator_and_leader_ancestry(
+    processes: tuple[object, ...],
+    failure_fragment: str,
+) -> None:
+    sample = proof_guard.SafetyMonitor(
+        process_reader=lambda _timeout: processes,
         thermal_reader=lambda _deadline: 0,
-    ).sample(child_pid=200, process_group_id=200, controller_pid=100)
+    ).sample(
+        child_pid=300,
+        process_group_id=300,
+        launcher_pid=100,
+        coordinator_pid=200,
+    )
 
-    assert lost_controller.controller_alive is False
-    assert lost_controller.failure_reason is not None
-    assert reparented_child.child_reparented is True
-    assert reparented_child.failure_reason is not None
+    assert sample.failure_reason is not None
+    assert failure_fragment in sample.failure_reason
+
+
+@pytest.mark.parametrize(
+    ("processes", "expected_failure"),
+    (
+        (
+            (
+                _process_info(100, 1, 100, 0.0),
+                _process_info(200, 100, 200, 0.0),
+            ),
+            None,
+        ),
+        (
+            (_process_info(200, 100, 200, 0.0),),
+            "launcher process is no longer alive",
+        ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0, state="Z"),
+                _process_info(200, 100, 200, 0.0),
+            ),
+            "launcher process is no longer alive",
+        ),
+        (
+            (_process_info(100, 1, 100, 0.0),),
+            "guard coordinator process is no longer alive",
+        ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0),
+                _process_info(200, 100, 200, 0.0, state="Z"),
+            ),
+            "guard coordinator process is no longer alive",
+        ),
+        (
+            (
+                _process_info(100, 1, 100, 0.0),
+                _process_info(200, 1, 200, 0.0),
+            ),
+            "guard coordinator was reparented away from the launcher",
+        ),
+    ),
+)
+def test_preflight_verifies_launcher_to_coordinator_chain(
+    processes: tuple[object, ...],
+    expected_failure: str | None,
+) -> None:
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda _timeout: processes,
+        thermal_reader=lambda _deadline: 0,
+    )
+
+    failure = monitor.verify_launcher_coordinator(
+        launcher_pid=100,
+        coordinator_pid=200,
+        sample_deadline=time.monotonic() + 1.0,
+    )
+
+    assert failure == expected_failure
+
+
+def test_failed_preflight_chain_check_never_launches_a_phase(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    chain_calls: list[tuple[int, int]] = []
+    launches: list[bool] = []
+
+    class FailingChainMonitor:
+        def verify_launcher_coordinator(
+            self,
+            launcher_pid: int,
+            coordinator_pid: int,
+            sample_deadline: float | None = None,
+        ) -> str:
+            assert sample_deadline is not None
+            chain_calls.append((launcher_pid, coordinator_pid))
+            return "launcher process is no longer alive"
+
+        def sample(self, **_kwargs: object) -> object:
+            raise AssertionError("phase monitor ran after failed chain check")
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(proof_guard.os, "getppid", lambda: 640_000)
+    monkeypatch.setattr(proof_guard, "SafetyMonitor", FailingChainMonitor)
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: launches.append(True),
+    )
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+        ]
+    )
+
+    record = json.loads(last_run_path.read_text(encoding="utf-8"))
+    assert status == proof_guard.SAFETY_EXIT
+    assert chain_calls == [(640_000, os.getpid())]
+    assert launches == []
+    assert record["state"] == "finalized"
+    assert record["classification"] == "start_guard_error"
+    assert record["phases"]["preflight"]["outcome"] == "not_started"
+
+
+def test_long_phase_monitor_receives_launcher_and_guard_coordinator(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    children = iter((710_000, 710_001))
+    calls: list[dict[str, object]] = []
+
+    class SyntheticChild:
+        def __init__(self, pid: int) -> None:
+            self.pid = pid
+
+        def poll(self) -> int:
+            return 0
+
+    class RecordingMonitor:
+        def sample(self, **kwargs: object) -> object:
+            calls.append(kwargs)
+            return _safety_sample()
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticChild(next(children)),
+    )
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+
+    status = run_long_guarded(
+        ["synthetic-command"],
+        preflight_seconds=1.0,
+        experiment_seconds=1.0,
+        progress_seconds=1.0,
+        grace_seconds=0.1,
+        monitor=RecordingMonitor(),
+        launcher_pid=610_000,
+    )
+
+    assert status == 0
+    assert [call["launcher_pid"] for call in calls] == [610_000, 610_000]
+    assert [call["coordinator_pid"] for call in calls] == [
+        os.getpid(),
+        os.getpid(),
+    ]
+
+
+def test_fast_clean_exit_allows_missing_leader_but_still_samples_safety(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    command_sentinel = "fast-exit-command-secret"
+    launcher_pid = 650_000
+    coordinator_pid = os.getpid()
+    processes = (
+        _process_info(launcher_pid, 1, launcher_pid, 0.0),
+        _process_info(coordinator_pid, launcher_pid, coordinator_pid, 0.0),
+    )
+    phase_pids = iter((750_000, 750_001))
+    killpg_calls: list[tuple[int, int]] = []
+
+    class FastExitChild:
+        def __init__(self, pid: int) -> None:
+            self.pid = pid
+
+        def poll(self) -> int:
+            return 0
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: FastExitChild(next(phase_pids)),
+    )
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+    monkeypatch.setattr(
+        proof_guard.os,
+        "killpg",
+        lambda pgid, signum: killpg_calls.append((pgid, signum)),
+    )
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda _timeout: processes,
+        thermal_reader=lambda _deadline: 0,
+    )
+
+    status = run_long_guarded(
+        ("synthetic-command", command_sentinel),
+        preflight_seconds=1.0,
+        experiment_seconds=1.0,
+        progress_seconds=1.0,
+        grace_seconds=0.1,
+        monitor=monitor,
+        launcher_pid=launcher_pid,
+    )
+
+    captured = capsys.readouterr()
+    assert status == 0
+    assert killpg_calls == []
+    assert captured.out.splitlines() == [
+        "proof guard progress phase=preflight elapsed=0s "
+        "exact_group_process_count=0 aggregate_cpu=0% thermal=nominal",
+        "proof guard progress phase=experiment elapsed=0s "
+        "exact_group_process_count=0 aggregate_cpu=0% thermal=nominal",
+    ]
+    assert command_sentinel not in captured.out
+    assert command_sentinel not in captured.err
+
+
+def test_exit_during_sampling_repolls_before_missing_leader_abort(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    launcher_pid = 650_100
+    coordinator_pid = os.getpid()
+    processes = (
+        _process_info(launcher_pid, 1, launcher_pid, 0.0),
+        _process_info(coordinator_pid, launcher_pid, coordinator_pid, 0.0),
+    )
+    phase_pids = iter((750_100, 750_101))
+    children: list[object] = []
+    killpg_calls: list[tuple[int, int]] = []
+
+    class ExitDuringSampleChild:
+        def __init__(self, pid: int) -> None:
+            self.pid = pid
+            self.poll_calls = 0
+
+        def poll(self) -> int | None:
+            self.poll_calls += 1
+            return None if self.poll_calls == 1 else 0
+
+    def popen(*_args: object, **_kwargs: object) -> object:
+        child = ExitDuringSampleChild(next(phase_pids))
+        children.append(child)
+        return child
+
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+    monkeypatch.setattr(
+        proof_guard.os,
+        "killpg",
+        lambda pgid, signum: (
+            killpg_calls.append((pgid, signum)),
+            (_ for _ in ()).throw(ProcessLookupError),
+        )[-1],
+    )
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda _timeout: processes,
+        thermal_reader=lambda _deadline: 0,
+    )
+
+    status = run_long_guarded(
+        ("synthetic-command",),
+        preflight_seconds=1.0,
+        experiment_seconds=1.0,
+        progress_seconds=1.0,
+        grace_seconds=0.1,
+        monitor=monitor,
+        launcher_pid=launcher_pid,
+    )
+
+    assert status == 0
+    assert [child.poll_calls for child in children] == [2, 2]
+    assert killpg_calls == []
+
+
+def test_live_child_with_missing_leader_aborts_its_exact_group(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    launcher_pid = 651_000
+    coordinator_pid = os.getpid()
+    process_group_id = 751_000
+    processes = (
+        _process_info(launcher_pid, 1, launcher_pid, 0.0),
+        _process_info(coordinator_pid, launcher_pid, coordinator_pid, 0.0),
+    )
+    group_alive = True
+    killpg_calls: list[tuple[int, int]] = []
+
+    class LiveChild:
+        pid = process_group_id
+
+        def poll(self) -> None:
+            return None
+
+    def killpg(target_group_id: int, signum: int) -> None:
+        nonlocal group_alive
+        killpg_calls.append((target_group_id, signum))
+        group_alive = False
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: LiveChild(),
+    )
+    monkeypatch.setattr(
+        proof_guard,
+        "group_exists",
+        lambda _pgid: group_alive,
+    )
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monitor = proof_guard.SafetyMonitor(
+        process_reader=lambda _timeout: processes,
+        thermal_reader=lambda _deadline: 0,
+    )
+
+    status = run_long_guarded(
+        ("synthetic-command",),
+        preflight_seconds=1.0,
+        experiment_seconds=1.0,
+        progress_seconds=1.0,
+        grace_seconds=0.1,
+        monitor=monitor,
+        launcher_pid=launcher_pid,
+    )
+
+    assert status == proof_guard.SAFETY_EXIT
+    assert killpg_calls == [(process_group_id, signal.SIGTERM)]
+    assert (
+        "phase leader is missing from the process table"
+        in capsys.readouterr().err
+    )
 
 
 @pytest.mark.parametrize("thermal_state", (0, 1, 2, 3))
 def test_monitor_accepts_only_nominal_thermal_state(thermal_state: int) -> None:
     monitor = proof_guard.SafetyMonitor(
         process_reader=lambda _timeout: (
-            _process_info(100, 1, 100, 0.0),
+            _process_info(50, 1, 50, 0.0),
+            _process_info(100, 50, 100, 0.0),
             _process_info(200, 100, 200, 1.0),
         ),
         thermal_reader=lambda _deadline: thermal_state,
     )
 
-    sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
+    sample = monitor.sample(
+        child_pid=200,
+        process_group_id=200,
+        launcher_pid=50,
+        coordinator_pid=100,
+    )
 
     assert (sample.failure_reason is None) is (thermal_state == 0)
 
@@ -903,7 +2266,12 @@ def test_monitor_fails_closed_when_thermal_state_is_unreadable() -> None:
         thermal_reader=unreadable,
     )
 
-    sample = monitor.sample(child_pid=200, process_group_id=200, controller_pid=100)
+    sample = monitor.sample(
+        child_pid=200,
+        process_group_id=200,
+        launcher_pid=50,
+        coordinator_pid=100,
+    )
 
     assert sample.failure_reason is not None
     assert "thermal API unavailable" in sample.failure_reason
@@ -1526,7 +2894,7 @@ class _SequenceMonitor:
         self.sample_advances = sample_advances
         self.output_stream = output_stream
         self.honor_sample_timeout = honor_sample_timeout
-        self.calls: list[tuple[int, int, int]] = []
+        self.calls: list[tuple[int, int, int, int]] = []
         self.sample_times: list[float] = []
         self.sample_deadlines: list[float] = []
         self.sample_budgets: list[float] = []
@@ -1536,13 +2904,18 @@ class _SequenceMonitor:
         self,
         child_pid: int,
         process_group_id: int,
-        controller_pid: int,
+        launcher_pid: int,
+        coordinator_pid: int,
         sample_deadline: float | None = None,
+        allow_missing_leader: bool = False,
     ) -> object:
+        del allow_missing_leader
         if sample_deadline is None:
             sample_deadline = self.clock.monotonic() + 2.0
         sample_budget = sample_deadline - self.clock.monotonic()
-        self.calls.append((child_pid, process_group_id, controller_pid))
+        self.calls.append(
+            (child_pid, process_group_id, launcher_pid, coordinator_pid)
+        )
         self.sample_times.append(self.clock.monotonic())
         self.sample_deadlines.append(sample_deadline)
         self.sample_budgets.append(sample_budget)
@@ -1577,15 +2950,18 @@ def _safety_sample(
     cpu_percent: float = 0.0,
     group_process_count: int = 1,
     thermal_state: int | None = 0,
-    controller_alive: bool = True,
-    child_reparented: bool = False,
+    coordinator_alive: bool = True,
+    phase_leader_reparented: bool = False,
     escaped_pids: tuple[int, ...] = (),
     error: str | None = None,
 ) -> object:
     return proof_guard.SafetySample(
         thermal_state=thermal_state,
-        controller_alive=controller_alive,
-        child_reparented=child_reparented,
+        launcher_alive=True,
+        coordinator_alive=coordinator_alive,
+        coordinator_reparented=False,
+        phase_leader_missing=False,
+        phase_leader_reparented=phase_leader_reparented,
         group_process_count=group_process_count,
         group_cpu_percent=cpu_percent,
         escaped_pids=escaped_pids,
@@ -1856,7 +3232,10 @@ def test_post_sample_timeout_precedes_progress_and_child_state(
     assert status == expected_status
     assert killpg_calls == [(target_pid, signal.SIGTERM)]
     target_events = [event for event in events if event[1] == target_pid]
-    assert target_events[0] == ("killpg", target_pid, 1.1)
+    assert target_events[:2] == [
+        ("poll", target_pid, 0.0),
+        ("killpg", target_pid, 1.1),
+    ]
     assert capsys.readouterr().out.splitlines() == expected_lines
 
 
@@ -1958,7 +3337,10 @@ def test_safety_samples_immediately_each_phase_then_once_per_second(
     assert status == 0
     assert killpg_calls == []
     assert monitor.sample_times == [0.0, 1.0, 2.0, 2.5, 3.5]
-    assert [child_pid for child_pid, _pgid, _controller in monitor.calls] == [
+    assert [
+        child_pid
+        for child_pid, _pgid, _launcher, _coordinator in monitor.calls
+    ] == [
         700_000,
         700_000,
         700_000,
@@ -1991,8 +3373,8 @@ def test_immediate_safety_failure_aborts_only_exact_group(
     )
     samples = {
         "thermal": lambda: _safety_sample(thermal_state=1),
-        "controller": lambda: _safety_sample(controller_alive=False),
-        "reparented": lambda: _safety_sample(child_reparented=True),
+        "controller": lambda: _safety_sample(coordinator_alive=False),
+        "reparented": lambda: _safety_sample(phase_leader_reparented=True),
         "escaped": lambda: _safety_sample(escaped_pids=(812_345,)),
         "sampling": lambda: RuntimeError("ps sampling failed"),
     }
