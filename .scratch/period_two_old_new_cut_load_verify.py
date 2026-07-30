@@ -348,15 +348,19 @@ def _validate_canonical_json_value(value: Any) -> None:
 def canonical_json_line(value: Any) -> bytes:
     try:
         _validate_canonical_json_value(value)
-        return json.dumps(
+        payload = json.dumps(
             value,
             allow_nan=False,
             ensure_ascii=True,
             separators=(",", ":"),
             sort_keys=True,
-        ).encode("ascii") + b"\n"
+        ).encode("ascii")
     except (TypeError, UnicodeError, ValueError) as error:
         raise WireFormatError("value is not canonical JSON") from error
+    line = payload + b"\n"
+    if len(line) > MAX_CANONICAL_LINE_BYTES:
+        raise WireFormatError("canonical JSON line exceeds byte limit")
+    return line
 
 
 def _reject_json_float(token: str) -> Any:
@@ -1002,6 +1006,11 @@ def _validate_template_cell_rows(rows: Sequence[Any]) -> None:
             state is None or type(state) is int for state in states
         ):
             raise WireFormatError("template cell states are invalid")
+        if any(
+            state is not None and state not in (0, 1, 2)
+            for state in states
+        ):
+            raise WireFormatError("template cell state is outside threshold")
         if not isinstance(base_values, list) or not all(
             type(value) is int for value in base_values
         ):

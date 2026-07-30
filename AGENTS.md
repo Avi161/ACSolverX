@@ -1698,6 +1698,13 @@
 - [TRAP] macOS `ps` rejects `sid` as an output keyword; that diagnostic failure is not evidence that proof processes are absent.
 - [WORKS] Safe process audits should request only supported fields such as PID, PPID, PGID, CPU percentage, state, and executable name, omit full arguments and SID, and require a successful scan before drawing a process conclusion.
 
+### 2026-07-30 Enforce package-v2 invariants at author-side boundaries
+
+- [TRAP] Hash- and byte-consistent publication views still admitted a caller-raised package cap and an oversized canonical object line, while generator/verifier family validators drifted on load ordering, duplicate buckets, and threshold-state domains.
+- [WORKS] Enforce frozen ceilings in the encoder and publisher, stream-decode every candidate object before replacement, and mutation-test every independently duplicated structural invariant in both directions.
+- [TRAP] A new object destination was added to PREPARED cleanup tracking only after `os.replace`; an exception that occurred after the filesystem move but before bookkeeping leaked the unindexed object.
+- [WORKS] Register a not-yet-existing destination for cleanup before its atomic replace, then remove the vanished temporary path from tracking only after the replace returns.
+
 ### 2026-07-30 Never print process arguments during safety audits
 
 - [TRAP] A project-cwd audit requested full command arguments and exposed credentials embedded in unrelated editor infrastructure, even though no proof process was stale.

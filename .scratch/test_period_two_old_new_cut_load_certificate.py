@@ -2551,6 +2551,52 @@ def literal_package_v2_logical_fixture(*, two_cells=False, production=False):
     }
 
 
+def encoded_package_v2_with_two_fixed_buckets():
+    generator = load_generator()
+    logical = literal_package_v2_logical_fixture()
+    histogram = logical["family_ledgers"]["fixed"]["cells"][0]["loads"][0][
+        "histograms"
+    ][0]
+    first = copy.deepcopy(histogram["buckets"][0])
+    first["count"] = 1
+    first["mask"] = f"{1:021x}"
+    second = copy.deepcopy(histogram["buckets"][0])
+    second["key"]["b_coordinate"] = ["fixture", 1]
+    second["count"] = 83
+    second["mask"] = f"{((1 << 84) - 2):021x}"
+    histogram["buckets"] = [first, second]
+    return generator, generator.encode_tiny_v2_package(logical)
+
+
+def reseal_package_v2_object(generator, encoded, descriptor_index, payload):
+    root = copy.deepcopy(encoded.index)
+    descriptor = root["shards"][descriptor_index]
+    old_path = descriptor["path"]
+    digest = hashlib.sha256(payload).hexdigest()
+    new_path = f"objects/{digest}.jsonl"
+    descriptor["path"] = new_path
+    descriptor["sha256"] = digest
+    descriptor["total_bytes"] = len(payload)
+    root["shard_bytes_total"] = sum(
+        item["total_bytes"] for item in root["shards"]
+    )
+    root_without_hash = {
+        key: value for key, value in root.items() if key != "root_sha256"
+    }
+    root["root_sha256"] = hashlib.sha256(
+        generator.canonical_json_line(root_without_hash)
+    ).hexdigest()
+    objects = dict(encoded.objects)
+    objects.pop(old_path)
+    objects[new_path] = payload
+    return replace(
+        encoded,
+        index=root,
+        index_bytes=generator.canonical_json_line(root),
+        objects=objects,
+    )
+
+
 def test_package_v2_constants_and_tag_grammars_are_exact() -> None:
     module = load_generator()
 
@@ -2761,6 +2807,18 @@ def test_package_v2_canonical_encoder_rejects_values_outside_wire_domain(
     module = module_loader()
     with pytest.raises(module.WireFormatError):
         module.canonical_json_line(value)
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_canonical_encoder_rejects_oversized_lines(
+    module_loader,
+    monkeypatch,
+) -> None:
+    module = module_loader()
+    monkeypatch.setattr(module, "MAX_CANONICAL_LINE_BYTES", 32)
+
+    with pytest.raises(module.WireFormatError, match="line"):
+        module.canonical_json_line({"value": "x" * 32})
 
 
 @pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
@@ -3004,6 +3062,49 @@ def test_package_v2_family_header_variables_bind_catalog_domain(
         )
 
 
+def test_package_v2_generator_rejects_out_of_order_load_rows() -> None:
+    generator, encoded = encoded_package_v2_with_two_fixed_buckets()
+    records = [list(row) for row in copy.deepcopy(encoded.shard_records["fixed"])]
+    load_positions = [
+        index for index, row in enumerate(records) if row[0] == "load"
+    ]
+    assert len(load_positions) == 2
+    first, second = load_positions
+    records[first], records[second] = records[second], records[first]
+    records[-1][7] = sum(
+        len(generator.canonical_json_line(row)) for row in records[:-1]
+    )
+
+    with pytest.raises(generator.WireFormatError, match="ordered"):
+        generator.decode_family_records(
+            io.BytesIO(
+                b"".join(generator.canonical_json_line(row) for row in records)
+            ),
+            expected_family="fixed",
+            scope="preflight-sample",
+        )
+
+
+def test_package_v2_generator_rejects_duplicate_bucket_per_footprint() -> None:
+    generator, encoded = encoded_package_v2_with_two_fixed_buckets()
+    records = [list(row) for row in copy.deepcopy(encoded.shard_records["fixed"])]
+    loads = [row for row in records if row[0] == "load"]
+    assert len(loads) == 2
+    loads[1][3] = loads[0][3]
+    records[-1][7] = sum(
+        len(generator.canonical_json_line(row)) for row in records[:-1]
+    )
+
+    with pytest.raises(generator.WireFormatError, match="repeats"):
+        generator.decode_family_records(
+            io.BytesIO(
+                b"".join(generator.canonical_json_line(row) for row in records)
+            ),
+            expected_family="fixed",
+            scope="preflight-sample",
+        )
+
+
 @pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
 def test_package_v2_empty_family_header_variables_are_frozen(
     module_loader,
@@ -3094,6 +3195,39 @@ def test_package_v2_template_validator_rejects_rehashed_pump_dereference(
 
     with pytest.raises(module.WireFormatError, match="catalog"):
         module._validate_v2_template_catalog(mutated)
+
+
+def test_package_v2_verifier_rejects_rehashed_out_of_domain_cell_state() -> None:
+    generator = load_generator()
+    verifier = load_package_v2_verifier()
+    logical = literal_package_v2_logical_fixture()
+    encoded = generator.encode_tiny_v2_package(logical)
+    records = [list(row) for row in copy.deepcopy(encoded.shard_records["fixed"])]
+    catalog = copy.deepcopy(logical["family_ledgers"]["fixed"]["template_catalog"])
+    catalog["cell_table"][0][2] = [7]
+    catalog["cell_table"][0][3] = [7]
+    recompute_template_catalog_digests(catalog)
+    cell_row = next(row for row in records if row[0] == "template_cell")
+    cell_row[4] = [7]
+    cell_row[5] = [7]
+    footer = next(row for row in records if row[0] == "template_footer")
+    footer[1:] = [
+        catalog["identity_sha256"],
+        catalog["replay_sha256"],
+        catalog["catalog_sha256"],
+    ]
+    records[-1][7] = sum(
+        len(verifier.canonical_json_line(row)) for row in records[:-1]
+    )
+
+    with pytest.raises(verifier.WireFormatError, match="state"):
+        verifier.decode_family_records(
+            io.BytesIO(
+                b"".join(verifier.canonical_json_line(row) for row in records)
+            ),
+            expected_family="fixed",
+            scope="preflight-sample",
+        )
 
 
 @pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
@@ -3242,6 +3376,48 @@ def test_package_v2_publish_rejects_divergent_index_views(tmp_path) -> None:
     assert not tuple((tmp_path / "objects").glob("*.jsonl"))
 
 
+def test_package_v2_publish_rejects_cap_above_frozen_ceiling(tmp_path) -> None:
+    generator = load_generator()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture(production=True),
+        scope="production-full",
+    )
+    index_path = tmp_path / "index.json"
+
+    with pytest.raises(generator.WireFormatError, match="cap"):
+        generator.publish_v2_package(
+            encoded,
+            index_path,
+            package_cap=generator.PACKAGE_BYTE_CAP + 1,
+        )
+
+    assert not index_path.exists()
+    assert not (tmp_path / "objects").exists()
+
+
+def test_package_v2_publish_rejects_rehashed_oversized_object_line(
+    tmp_path,
+) -> None:
+    generator = load_generator()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    oversized = b'["' + b"x" * generator.MAX_CANONICAL_LINE_BYTES + b'"]\n'
+    mutated = reseal_package_v2_object(generator, encoded, 0, oversized)
+    index_path = tmp_path / "index.json"
+    prior = b"prior-index\n"
+    index_path.write_bytes(prior)
+
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(mutated, index_path)
+
+    assert error.value.state == "PREPARED"
+    assert isinstance(error.value.cause, generator.WireFormatError)
+    assert "line" in str(error.value.cause)
+    assert index_path.read_bytes() == prior
+    assert not tuple((tmp_path / "objects").glob("*.jsonl"))
+
+
 def test_package_v2_commit_state_precedes_index_temp_bookkeeping() -> None:
     source = GENERATOR.read_text(encoding="utf-8")
     replace_offset = source.index("os.replace(index_temporary, target)")
@@ -3283,6 +3459,39 @@ def test_package_v2_prepared_temp_cleanup_fsyncs_objects_directory(
         )
 
     assert (objects_dir, ()) in fsynced
+
+
+def test_package_v2_prepared_cleanup_tracks_object_replace_before_return(
+    monkeypatch,
+    tmp_path,
+) -> None:
+    generator = load_generator()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    index_path = tmp_path / "index.json"
+    prior = b"prior-index\n"
+    index_path.write_bytes(prior)
+    real_replace = generator.os.replace
+    raised = False
+
+    def replace_then_raise(source, destination):
+        nonlocal raised
+        real_replace(source, destination)
+        if not raised and Path(destination).parent == tmp_path / "objects":
+            raised = True
+            raise OSError("injected after object replacement")
+
+    monkeypatch.setattr(generator.os, "replace", replace_then_raise)
+
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(encoded, index_path)
+
+    assert error.value.state == "PREPARED"
+    assert index_path.read_bytes() == prior
+    objects = tmp_path / "objects"
+    assert not objects.exists() or not tuple(objects.iterdir())
+    assert not tuple(tmp_path.rglob("*.tmp"))
 
 
 @pytest.mark.parametrize(

@@ -4118,7 +4118,10 @@ def canonical_json_line(value: Any) -> bytes:
         ).encode("ascii")
     except (TypeError, UnicodeError, ValueError) as error:
         raise WireFormatError("value is not canonical JSON") from error
-    return payload + b"\n"
+    line = payload + b"\n"
+    if len(line) > MAX_CANONICAL_LINE_BYTES:
+        raise WireFormatError("canonical JSON line exceeds byte limit")
+    return line
 
 
 def _reject_json_float(token: str) -> Any:
@@ -5149,9 +5152,19 @@ def decode_family_records(
     total_occurrences = 0
     total_comparisons = 0
     for load_records, footer in cell_groups:
+        if load_records != sorted(
+            load_records, key=lambda row: (row[1], row[2], row[3])
+        ):
+            raise WireFormatError("cell load rows are not ordered")
         by_footprint: dict[tuple[int, int], list[Sequence[Any]]] = {}
         for row in load_records:
-            by_footprint.setdefault((row[1], row[2]), []).append(row)
+            key = (row[1], row[2])
+            if any(
+                existing[3] == row[3]
+                for existing in by_footprint.get(key, [])
+            ):
+                raise WireFormatError("bucket class repeats in a footprint")
+            by_footprint.setdefault(key, []).append(row)
         logical_loads = []
         derived_odd = []
         cell_value = 0
@@ -5905,6 +5918,13 @@ def _validate_publication_views(
             raise WireFormatError("publication object byte count differs")
         if hashlib.sha256(payload).hexdigest() != descriptor["sha256"]:
             raise WireFormatError("publication object digest differs")
+        try:
+            for _record in iter_canonical_json_lines(io.BytesIO(payload)):
+                pass
+        except WireFormatError as error:
+            raise WireFormatError(
+                f"publication object line is invalid: {descriptor['path']}"
+            ) from error
         shard_bytes_total += len(payload)
     if shard_bytes_total != root["shard_bytes_total"]:
         raise WireFormatError("publication shard byte total differs")
@@ -5922,6 +5942,8 @@ def publish_v2_package(
     active_metrics = metrics if metrics is not None else PhaseMetrics()
     target = _project_local_path(Path(index_path))
     _exact_int(package_cap, "package cap", minimum=1)
+    if package_cap > PACKAGE_BYTE_CAP:
+        raise WireFormatError("package cap exceeds frozen ceiling")
     target.parent.mkdir(parents=True, exist_ok=True)
     objects_dir = target.parent / "objects"
     objects_dir.mkdir(parents=True, exist_ok=True)
@@ -5969,9 +5991,9 @@ def publish_v2_package(
                 _fsync_directory(objects_dir)
                 reused.append(relative_path)
                 continue
+            created.append(relative_path)
             os.replace(temporary, destination)
             temporary_paths.remove(temporary)
-            created.append(relative_path)
             stage = "object_replaced"
             _inject_publication_failure(
                 failure_injector, stage, relative_path
