@@ -6,6 +6,7 @@ import io
 import json
 import re
 from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -298,6 +299,207 @@ PACKAGE_V2_SUMMARY_FIELDS = (
 )
 _HASH_PATTERN = re.compile(r"[0-9a-f]{64}")
 _MASK_PATTERN = re.compile(r"[A-Za-z0-9_-]{15}")
+GENERATION_PROJECTION_FORMAT = (
+    "period-two-old-new-cut-generation-projection-v1"
+)
+VERIFICATION_PROJECTION_FORMAT = (
+    "period-two-old-new-cut-verification-projection-v1"
+)
+GLOBAL_VERIFICATION_CHARGE_DOMAINS = (
+    "root-index-descriptor-authentication",
+    "shared-wire-stream-read-hash",
+    "shared-source-reference-validation",
+    "logical-v1-framing-finalization",
+)
+FAMILY_VERIFICATION_CHARGE_DOMAINS = (
+    "family-wire-stream-read-hash",
+    "comparison-replay",
+    "template-replay",
+    "logical-v1-canonical-fragment",
+    "reference-validation",
+)
+PREFLIGHT_SELECTED_OLD_INDICES = {
+    "fixed": (0, 8, 15, 23, 31, 38, 46, 54, 61, 69),
+    "base": (0, 1),
+    "singleton": (0,),
+    "P": (0, 3, 5, 8, 10, 13, 16, 18, 21, 23, 26, 28, 31),
+    "C": (0, 19, 38),
+    "Q": (0, 15, 30, 46, 61, 76, 91),
+}
+GENERATION_FAMILY_CENSUS = {
+    "fixed": {
+        "full_old_load_count": 70,
+        "full_schema_count": 192,
+        "cell_count": 16,
+        "full_identity_count": 3_072,
+        "full_comparisons": 94_080,
+        "sampled_comparisons": 13_440,
+    },
+    "base": {
+        "full_old_load_count": 2,
+        "full_schema_count": 128,
+        "cell_count": 16,
+        "full_identity_count": 2_048,
+        "full_comparisons": 5_376,
+        "sampled_comparisons": 5_376,
+    },
+    "singleton": {
+        "full_old_load_count": 1,
+        "full_schema_count": 129,
+        "cell_count": 16,
+        "full_identity_count": 2_064,
+        "full_comparisons": 8_064,
+        "sampled_comparisons": 8_064,
+    },
+    "P": {
+        "full_old_load_count": 32,
+        "full_schema_count": 218,
+        "cell_count": 54,
+        "full_identity_count": 11_772,
+        "full_comparisons": 290_304,
+        "sampled_comparisons": 117_936,
+    },
+    "C": {
+        "full_old_load_count": 39,
+        "full_schema_count": 239,
+        "cell_count": 16,
+        "full_identity_count": 3_824,
+        "full_comparisons": 104_832,
+        "sampled_comparisons": 8_064,
+    },
+    "Q": {
+        "full_old_load_count": 92,
+        "full_schema_count": 398,
+        "cell_count": 64,
+        "full_identity_count": 25_472,
+        "full_comparisons": 989_184,
+        "sampled_comparisons": 75_264,
+    },
+}
+
+
+@dataclass(frozen=True)
+class EngineeringVerificationFailure(RuntimeError):
+    stage: str
+    detail: str
+
+
+@dataclass(frozen=True)
+class ProofAttemptFailure(RuntimeError):
+    stage: str
+    detail: str
+
+
+@dataclass(frozen=True)
+class VerificationChargeInput:
+    domain: str
+    sampled_ns: int
+    full_record_count: int
+    sampled_record_count: int
+
+
+@dataclass(frozen=True)
+class VerificationChargeProjection:
+    domain: str
+    sampled_ns: int
+    full_record_count: int
+    sampled_record_count: int
+    projected_ns: int
+
+
+@dataclass(frozen=True)
+class FamilyVerificationProjectionInput:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    full_old_load_count: int
+    full_schema_count: int
+    charges: tuple[VerificationChargeInput, ...]
+    invariant_family_ns: int
+
+
+@dataclass(frozen=True)
+class FamilyVerificationProjection:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    full_old_load_count: int
+    full_schema_count: int
+    charges: tuple[VerificationChargeProjection, ...]
+    invariant_family_ns: int
+    verification_ns_before_margin: int
+
+
+@dataclass(frozen=True)
+class VerificationProjection:
+    format: str
+    family_order: tuple[str, ...]
+    global_charges: tuple[VerificationChargeProjection, ...]
+    invariant_ns: int
+    families: tuple[FamilyVerificationProjection, ...]
+    verification_ns_before_margin: int
+    projected_verification_ns: int
+
+
+@dataclass(frozen=True)
+class IndependentReplayResult:
+    run_id: str
+    scope: str
+    package_status: str
+    status: str
+    semantic_replay_complete: bool
+    attestable: bool
+    index_path: str
+    index_sha256: str
+    root_sha256: str
+    logical_v1_sha256: str | None
+    generation_projection_sha256: str
+    verification_projection: VerificationProjection
+
+
+class PhaseMetrics:
+    def __init__(self, *, enabled: bool = False) -> None:
+        if type(enabled) is not bool:
+            raise ValueError("metrics enabled flag must be boolean")
+        self.enabled = enabled
+        self._stages = {
+            stage: 0.0
+            for stage in (
+                "encode_shared",
+                "encode_family",
+                "write_objects",
+                "publish_index",
+                "verify_package",
+            )
+        }
+        tags = (*SHARED_RECORD_FIELDS, *FAMILY_RECORD_FIELDS, "root_index")
+        self._record_counts = {tag: 0 for tag in tags}
+        self._byte_counts = {tag: 0 for tag in tags}
+
+    def add_stage(self, stage: str, elapsed: float) -> None:
+        if stage not in self._stages:
+            raise ValueError(f"unknown metrics stage: {stage}")
+        if type(elapsed) not in (int, float) or elapsed < 0:
+            raise ValueError("metrics elapsed value is invalid")
+        if self.enabled:
+            self._stages[stage] += elapsed
+
+    def record(self, tag: str, byte_count: int) -> None:
+        if tag not in self._record_counts:
+            raise ValueError(f"unknown metrics tag: {tag}")
+        if type(byte_count) is not int or byte_count < 0:
+            raise ValueError("metrics byte count is invalid")
+        if self.enabled:
+            self._record_counts[tag] += 1
+            self._byte_counts[tag] += byte_count
+
+    def snapshot(self) -> dict[str, Any]:
+        return {
+            "format": "period-two-old-new-cut-phase-metrics-v1",
+            "stages": dict(self._stages),
+            "record_counts": dict(self._record_counts),
+            "byte_counts": dict(self._byte_counts),
+        }
 
 
 class WireFormatError(ValueError):
@@ -1943,7 +2145,7 @@ def decode_v2_package(
     return _decode_package_from_root(root, supply)
 
 
-def verify_v2_package(index_path: Path) -> dict[str, Any]:
+def _decode_v2_package_path(index_path: Path) -> dict[str, Any]:
     target = Path(index_path).resolve()
     with target.open("rb") as handle:
         root = decode_root_index(handle)
@@ -1963,3 +2165,288 @@ def verify_v2_package(index_path: Path) -> dict[str, Any]:
         return path.open("rb")
 
     return _decode_package_from_root(root, supply)
+
+
+def _projection_int(value: Any, name: str, *, positive: bool = False) -> int:
+    if type(value) is not int or value < (1 if positive else 0):
+        qualifier = "positive" if positive else "nonnegative"
+        raise EngineeringVerificationFailure(
+            "verification-projection",
+            f"{name} must be an exact {qualifier} integer",
+        )
+    return value
+
+
+def _projection_indices(
+    value: Any,
+    name: str,
+    *,
+    upper_bound: int,
+) -> tuple[int, ...]:
+    if not isinstance(value, (list, tuple)):
+        raise EngineeringVerificationFailure(
+            "verification-projection", f"{name} must be a list or tuple"
+        )
+    indices = tuple(value)
+    if (
+        not indices
+        or any(type(index) is not int for index in indices)
+        or indices != tuple(sorted(set(indices)))
+        or indices[0] < 0
+        or indices[-1] >= upper_bound
+    ):
+        raise EngineeringVerificationFailure(
+            "verification-projection", f"{name} is not a strict valid range"
+        )
+    return indices
+
+
+def _project_verification_charge(
+    charge: VerificationChargeInput,
+) -> VerificationChargeProjection:
+    if not isinstance(charge, VerificationChargeInput):
+        raise EngineeringVerificationFailure(
+            "verification-projection", "charge input type differs"
+        )
+    sampled_ns = _projection_int(charge.sampled_ns, "sampled nanoseconds")
+    full_count = _projection_int(
+        charge.full_record_count, "full record count", positive=True
+    )
+    sampled_count = _projection_int(
+        charge.sampled_record_count, "sampled record count", positive=True
+    )
+    if sampled_count > full_count:
+        raise EngineeringVerificationFailure(
+            "verification-projection",
+            "sampled record count exceeds the full record count",
+        )
+    return VerificationChargeProjection(
+        domain=charge.domain,
+        sampled_ns=sampled_ns,
+        full_record_count=full_count,
+        sampled_record_count=sampled_count,
+        projected_ns=(
+            sampled_ns * full_count + sampled_count - 1
+        )
+        // sampled_count,
+    )
+
+
+def _ordered_verification_charges(
+    charges: Any,
+    expected_domains: tuple[str, ...],
+) -> tuple[VerificationChargeProjection, ...]:
+    if not isinstance(charges, (list, tuple)):
+        raise EngineeringVerificationFailure(
+            "verification-projection", "charges must be a list or tuple"
+        )
+    values = tuple(charges)
+    if tuple(
+        charge.domain if isinstance(charge, VerificationChargeInput) else None
+        for charge in values
+    ) != expected_domains:
+        raise EngineeringVerificationFailure(
+            "verification-projection",
+            "charge domains are incomplete, repeated, or out of order",
+        )
+    return tuple(_project_verification_charge(charge) for charge in values)
+
+
+def project_verification(
+    *,
+    global_charges: Sequence[VerificationChargeInput],
+    invariant_ns: int,
+    families: Sequence[FamilyVerificationProjectionInput],
+) -> VerificationProjection:
+    invariant = _projection_int(invariant_ns, "global invariant nanoseconds")
+    projected_global = _ordered_verification_charges(
+        global_charges, GLOBAL_VERIFICATION_CHARGE_DOMAINS
+    )
+    if not isinstance(families, (list, tuple)):
+        raise EngineeringVerificationFailure(
+            "verification-projection", "families must be a list or tuple"
+        )
+    values = tuple(families)
+    if tuple(
+        value.family
+        if isinstance(value, FamilyVerificationProjectionInput)
+        else None
+        for value in values
+    ) != FAMILY_ORDER:
+        raise EngineeringVerificationFailure(
+            "verification-projection",
+            "verification families are incomplete, repeated, or out of order",
+        )
+
+    comparison_dynamic_range = False
+    identity_dynamic_range = False
+    projected_families = []
+    for value in values:
+        census = GENERATION_FAMILY_CENSUS[value.family]
+        full_old_count = _projection_int(
+            value.full_old_load_count,
+            f"{value.family} full old-load count",
+            positive=True,
+        )
+        full_schema_count = _projection_int(
+            value.full_schema_count,
+            f"{value.family} full schema count",
+            positive=True,
+        )
+        if (
+            full_old_count != census["full_old_load_count"]
+            or full_schema_count != census["full_schema_count"]
+        ):
+            raise EngineeringVerificationFailure(
+                "verification-projection",
+                f"{value.family} full selection denominator differs",
+            )
+        old_indices = _projection_indices(
+            value.selected_old_indices,
+            f"{value.family} selected old indices",
+            upper_bound=full_old_count,
+        )
+        if old_indices != PREFLIGHT_SELECTED_OLD_INDICES[value.family]:
+            raise EngineeringVerificationFailure(
+                "verification-projection",
+                f"{value.family} selected old indices differ",
+            )
+        schema_indices = _projection_indices(
+            value.selected_schema_indices,
+            f"{value.family} selected schema indices",
+            upper_bound=full_schema_count,
+        )
+        projected_charges = _ordered_verification_charges(
+            value.charges, FAMILY_VERIFICATION_CHARGE_DOMAINS
+        )
+        by_domain = {charge.domain: charge for charge in projected_charges}
+        comparison = by_domain["comparison-replay"]
+        expected_comparison_sample = census["sampled_comparisons"]
+        if (
+            comparison.full_record_count != census["full_comparisons"]
+            or comparison.sampled_record_count != expected_comparison_sample
+        ):
+            raise EngineeringVerificationFailure(
+                "verification-projection",
+                f"{value.family} comparison charge census differs",
+            )
+        complete_old_range = old_indices == tuple(range(full_old_count))
+        if (
+            comparison.sampled_record_count == comparison.full_record_count
+        ) != complete_old_range:
+            raise EngineeringVerificationFailure(
+                "verification-projection",
+                f"{value.family} comparison ratio-one selection differs",
+            )
+        comparison_dynamic_range |= (
+            comparison.sampled_record_count < comparison.full_record_count
+        )
+
+        template = by_domain["template-replay"]
+        expected_identity_sample = (
+            len(schema_indices) * census["cell_count"]
+        )
+        if (
+            template.full_record_count != census["full_identity_count"]
+            or template.sampled_record_count != expected_identity_sample
+        ):
+            raise EngineeringVerificationFailure(
+                "verification-projection",
+                f"{value.family} template charge census differs",
+            )
+        complete_schema_range = schema_indices == tuple(
+            range(full_schema_count)
+        )
+        if (
+            template.sampled_record_count == template.full_record_count
+        ) != complete_schema_range:
+            raise EngineeringVerificationFailure(
+                "verification-projection",
+                f"{value.family} identity ratio-one selection differs",
+            )
+        identity_dynamic_range |= (
+            template.sampled_record_count < template.full_record_count
+        )
+
+        family_invariant = _projection_int(
+            value.invariant_family_ns,
+            f"{value.family} invariant nanoseconds",
+        )
+        family_total = family_invariant + sum(
+            charge.projected_ns for charge in projected_charges
+        )
+        projected_families.append(
+            FamilyVerificationProjection(
+                family=value.family,
+                selected_old_indices=old_indices,
+                selected_schema_indices=schema_indices,
+                full_old_load_count=full_old_count,
+                full_schema_count=full_schema_count,
+                charges=projected_charges,
+                invariant_family_ns=family_invariant,
+                verification_ns_before_margin=family_total,
+            )
+        )
+    if not comparison_dynamic_range or not identity_dynamic_range:
+        dimension = "comparison" if not comparison_dynamic_range else "identity"
+        raise EngineeringVerificationFailure(
+            "verification-projection",
+            f"global {dimension} projection lacks dynamic range",
+        )
+
+    before_margin = (
+        invariant
+        + sum(charge.projected_ns for charge in projected_global)
+        + sum(
+            family.verification_ns_before_margin
+            for family in projected_families
+        )
+    )
+    return VerificationProjection(
+        format=VERIFICATION_PROJECTION_FORMAT,
+        family_order=FAMILY_ORDER,
+        global_charges=projected_global,
+        invariant_ns=invariant,
+        families=tuple(projected_families),
+        verification_ns_before_margin=before_margin,
+        projected_verification_ns=2 * before_margin,
+    )
+
+
+def verify_v2_package(
+    index_path: Path,
+    run_id: str,
+    generation_projection: Mapping[str, Any],
+    *,
+    metrics: PhaseMetrics | None = None,
+) -> IndependentReplayResult:
+    if not isinstance(index_path, Path):
+        raise EngineeringVerificationFailure(
+            "api", "index_path must be a pathlib.Path"
+        )
+    if not isinstance(run_id, str) or not run_id or not run_id.isascii():
+        raise EngineeringVerificationFailure(
+            "api", "run_id must be a nonempty ASCII string"
+        )
+    if not isinstance(generation_projection, Mapping):
+        raise EngineeringVerificationFailure(
+            "generation-projection", "projection must be a mapping"
+        )
+    if metrics is not None and not isinstance(metrics, PhaseMetrics):
+        raise EngineeringVerificationFailure(
+            "api", "metrics must be verifier-owned PhaseMetrics"
+        )
+    raise EngineeringVerificationFailure(
+        "generation-projection",
+        "generation projection semantic binding is not yet complete",
+    )
+
+
+def build_attestation_payload(
+    result: IndependentReplayResult,
+    verifier_sha256: str,
+    metrics: Mapping[str, Any],
+) -> dict[str, Any]:
+    raise EngineeringVerificationFailure(
+        "attestation", "attestation construction is not part of this slice"
+    )

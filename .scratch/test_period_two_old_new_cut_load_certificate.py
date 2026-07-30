@@ -3,6 +3,7 @@ import functools
 import gc
 import hashlib
 import importlib.util
+import inspect
 import io
 import json
 import operator
@@ -5488,3 +5489,331 @@ def test_task2_fix2_every_coordinate_row_reaches_fixed_coordinate_binding(
             mutated_table,
             mutable_digest,
         )
+
+
+TASK3_RECORD_FIELDS = {
+    "EngineeringVerificationFailure": ("stage", "detail"),
+    "ProofAttemptFailure": ("stage", "detail"),
+    "VerificationChargeInput": (
+        "domain",
+        "sampled_ns",
+        "full_record_count",
+        "sampled_record_count",
+    ),
+    "VerificationChargeProjection": (
+        "domain",
+        "sampled_ns",
+        "full_record_count",
+        "sampled_record_count",
+        "projected_ns",
+    ),
+    "FamilyVerificationProjectionInput": (
+        "family",
+        "selected_old_indices",
+        "selected_schema_indices",
+        "full_old_load_count",
+        "full_schema_count",
+        "charges",
+        "invariant_family_ns",
+    ),
+    "FamilyVerificationProjection": (
+        "family",
+        "selected_old_indices",
+        "selected_schema_indices",
+        "full_old_load_count",
+        "full_schema_count",
+        "charges",
+        "invariant_family_ns",
+        "verification_ns_before_margin",
+    ),
+    "VerificationProjection": (
+        "format",
+        "family_order",
+        "global_charges",
+        "invariant_ns",
+        "families",
+        "verification_ns_before_margin",
+        "projected_verification_ns",
+    ),
+    "IndependentReplayResult": (
+        "run_id",
+        "scope",
+        "package_status",
+        "status",
+        "semantic_replay_complete",
+        "attestable",
+        "index_path",
+        "index_sha256",
+        "root_sha256",
+        "logical_v1_sha256",
+        "generation_projection_sha256",
+        "verification_projection",
+    ),
+}
+
+
+def _task3_verification_inputs(module):
+    global_charges = tuple(
+        module.VerificationChargeInput(
+            domain=domain,
+            sampled_ns=11 + index,
+            full_record_count=17 + 2 * index,
+            sampled_record_count=5 + index,
+        )
+        for index, domain in enumerate(
+            module.GLOBAL_VERIFICATION_CHARGE_DOMAINS
+        )
+    )
+    families = []
+    for family_index, family in enumerate(module.FAMILY_ORDER):
+        census = module.GENERATION_FAMILY_CENSUS[family]
+        schema_indices = tuple(range(0, census["full_schema_count"], 8))
+        charges = []
+        for domain_index, domain in enumerate(
+            module.FAMILY_VERIFICATION_CHARGE_DOMAINS
+        ):
+            full_count = 101 + 10 * family_index + domain_index
+            sampled_count = 13 + family_index + domain_index
+            if domain == "comparison-replay":
+                full_count = census["full_comparisons"]
+                sampled_count = census["sampled_comparisons"]
+            elif domain == "template-replay":
+                full_count = census["full_identity_count"]
+                sampled_count = len(schema_indices) * census["cell_count"]
+            charges.append(
+                module.VerificationChargeInput(
+                    domain=domain,
+                    sampled_ns=23 + 5 * family_index + domain_index,
+                    full_record_count=full_count,
+                    sampled_record_count=sampled_count,
+                )
+            )
+        families.append(
+            module.FamilyVerificationProjectionInput(
+                family=family,
+                selected_old_indices=module.PREFLIGHT_SELECTED_OLD_INDICES[
+                    family
+                ],
+                selected_schema_indices=schema_indices,
+                full_old_load_count=census["full_old_load_count"],
+                full_schema_count=census["full_schema_count"],
+                charges=tuple(charges),
+                invariant_family_ns=31 + family_index,
+            )
+        )
+    return global_charges, tuple(families)
+
+
+def test_task3_api_records_and_python39_signatures_are_exact() -> None:
+    module = load_package_v2_verifier()
+    for name, expected_fields in TASK3_RECORD_FIELDS.items():
+        record_type = getattr(module, name)
+        assert tuple(field.name for field in fields(record_type)) == expected_fields
+        assert record_type.__dataclass_params__.frozen is True
+
+    failure = module.EngineeringVerificationFailure("stage", "detail")
+    with pytest.raises(AttributeError):
+        failure.stage = "mutated"
+
+    verify = inspect.signature(module.verify_v2_package)
+    assert tuple(verify.parameters) == (
+        "index_path",
+        "run_id",
+        "generation_projection",
+        "metrics",
+    )
+    assert verify.parameters["index_path"].default is inspect.Parameter.empty
+    assert verify.parameters["run_id"].default is inspect.Parameter.empty
+    assert (
+        verify.parameters["generation_projection"].default
+        is inspect.Parameter.empty
+    )
+    assert verify.parameters["metrics"].kind is inspect.Parameter.KEYWORD_ONLY
+    assert verify.parameters["metrics"].default is None
+
+    projection = inspect.signature(module.project_verification)
+    assert tuple(projection.parameters) == (
+        "global_charges",
+        "invariant_ns",
+        "families",
+    )
+    assert all(
+        parameter.kind is inspect.Parameter.KEYWORD_ONLY
+        for parameter in projection.parameters.values()
+    )
+    attestation = inspect.signature(module.build_attestation_payload)
+    assert tuple(attestation.parameters) == (
+        "result",
+        "verifier_sha256",
+        "metrics",
+    )
+    metrics = inspect.signature(module.PhaseMetrics)
+    assert tuple(metrics.parameters) == ("enabled",)
+    assert metrics.parameters["enabled"].kind is inspect.Parameter.KEYWORD_ONLY
+    assert metrics.parameters["enabled"].default is False
+
+
+def test_task3_verification_projection_scales_every_record_domain_and_margin() -> None:
+    module = load_package_v2_verifier()
+    global_charges, families = _task3_verification_inputs(module)
+    projection = module.project_verification(
+        global_charges=global_charges,
+        invariant_ns=7,
+        families=families,
+    )
+    assert projection.format == (
+        "period-two-old-new-cut-verification-projection-v1"
+    )
+    assert projection.family_order == module.FAMILY_ORDER
+    for charge in projection.global_charges:
+        assert charge.projected_ns == (
+            charge.sampled_ns * charge.full_record_count
+            + charge.sampled_record_count
+            - 1
+        ) // charge.sampled_record_count
+    for family in projection.families:
+        for charge in family.charges:
+            assert charge.projected_ns == (
+                charge.sampled_ns * charge.full_record_count
+                + charge.sampled_record_count
+                - 1
+            ) // charge.sampled_record_count
+        assert family.verification_ns_before_margin == (
+            family.invariant_family_ns
+            + sum(charge.projected_ns for charge in family.charges)
+        )
+    expected_before_margin = (
+        7
+        + sum(charge.projected_ns for charge in projection.global_charges)
+        + sum(
+            family.verification_ns_before_margin
+            for family in projection.families
+        )
+    )
+    assert projection.verification_ns_before_margin == expected_before_margin
+    assert projection.projected_verification_ns == 2 * expected_before_margin
+
+
+def test_task3_verification_projection_rejects_invalid_family_inputs() -> None:
+    module = load_package_v2_verifier()
+    global_charges, families = _task3_verification_inputs(module)
+
+    invalid_global = (
+        replace(global_charges[0], sampled_ns=True),
+        *global_charges[1:],
+    )
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=invalid_global,
+            invariant_ns=7,
+            families=families,
+        )
+
+    invalid_global = (
+        replace(global_charges[0], full_record_count=1.0),
+        *global_charges[1:],
+    )
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=invalid_global,
+            invariant_ns=7,
+            families=families,
+        )
+
+    invalid_global = (
+        replace(global_charges[0], sampled_record_count=0),
+        *global_charges[1:],
+    )
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=invalid_global,
+            invariant_ns=7,
+            families=families,
+        )
+
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=global_charges,
+            invariant_ns=-1,
+            families=families,
+        )
+
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=global_charges[:-1],
+            invariant_ns=7,
+            families=families,
+        )
+
+    repeated_families = (families[0], families[0], *families[2:])
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=global_charges,
+            invariant_ns=7,
+            families=repeated_families,
+        )
+
+    invalid_old = (
+        replace(families[0], selected_old_indices=(0,)),
+        *families[1:],
+    )
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=global_charges,
+            invariant_ns=7,
+            families=invalid_old,
+        )
+
+    invalid_schema = (
+        replace(families[0], selected_schema_indices=(0, 0)),
+        *families[1:],
+    )
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=global_charges,
+            invariant_ns=7,
+            families=invalid_schema,
+        )
+
+    invalid_charge = replace(
+        families[0],
+        charges=(families[0].charges[0], *families[0].charges[:-1]),
+    )
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module.project_verification(
+            global_charges=global_charges,
+            invariant_ns=7,
+            families=(invalid_charge, *families[1:]),
+        )
+
+
+def test_task3_verification_projection_has_no_bytes_or_generation_restatement() -> None:
+    module = load_package_v2_verifier()
+    global_charges, families = _task3_verification_inputs(module)
+    projection = module.project_verification(
+        global_charges=global_charges,
+        invariant_ns=7,
+        families=families,
+    )
+    field_names = {
+        field.name for record in (projection, *projection.families)
+        for field in fields(record)
+    }
+    assert not any("byte" in name for name in field_names)
+    assert not any("generation" in name for name in field_names)
+    assert not any("package" in name for name in field_names)
+    assert all(
+        charge.domain
+        in {
+            *module.GLOBAL_VERIFICATION_CHARGE_DOMAINS,
+            *module.FAMILY_VERIFICATION_CHARGE_DOMAINS,
+        }
+        for charge in (
+            *projection.global_charges,
+            *(
+                charge
+                for family in projection.families
+                for charge in family.charges
+            ),
+        )
+    )
