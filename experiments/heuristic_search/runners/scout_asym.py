@@ -12,8 +12,10 @@ Advisor:
 """
 from __future__ import annotations
 
+import concurrent.futures
 import json
 import math
+import multiprocessing as mp
 import os
 import sys
 import time
@@ -32,7 +34,7 @@ from experiments.heuristic_search.core.search_asym import search_asym  # noqa: E
 from experiments.heuristic_search.core.abel_gram_feats import (  # noqa: E402
     pair_abel_gram_words,
 )
-from experiments.heuristic_search.core.hlab import FEATURES, phi  # noqa: E402
+from experiments.heuristic_search.core.hlab import phi  # noqa: E402
 
 ROOT = _d
 SPLIT = os.path.join(ROOT, "results", "heuristic_search", "splits",
@@ -112,34 +114,56 @@ def _done():
     return s
 
 
+def _worker(job):
+    half_name, arm, cfg, wA, mode, rec = job
+    res = search_asym(rec["r1"], rec["r2"], BUDGET, cfg, CAP,
+                      wA=wA, mode=mode)
+    return {
+        "half": half_name, "arm": arm,
+        "wA": wA, "mode": mode,
+        "idx": rec["idx"], "L": rec.get("L"),
+        "budget": BUDGET, "cap": CAP,
+        "solved": bool(res["solved"]),
+        "nodes": int(res["nodes_explored"]),
+        "solved_at": (int(res["nodes_explored"]) if res["solved"]
+                      else None),
+        "min_L": int(res["min_relator_length"]),
+        "goal_hidden": bool(res["goal_hidden"]),
+        "ts": datetime.now(timezone.utc).isoformat(),
+    }
+
+
 def _run_half(half_name, rows, arms, done):
-    n_ok = 0
-    t0 = time.perf_counter()
+    jobs = []
     for arm, cfg, wA, mode in arms:
         for rec in rows:
             key = (half_name, arm, rec["idx"])
             if key in done:
                 continue
-            res = search_asym(rec["r1"], rec["r2"], BUDGET, cfg, CAP,
-                              wA=wA, mode=mode)
-            row = {
-                "half": half_name, "arm": arm,
-                "wA": wA, "mode": mode,
-                "idx": rec["idx"], "L": rec.get("L"),
-                "budget": BUDGET, "cap": CAP,
-                "solved": bool(res["solved"]),
-                "nodes": int(res["nodes_explored"]),
-                "solved_at": (int(res["nodes_explored"]) if res["solved"]
-                              else None),
-                "min_L": int(res["min_relator_length"]),
-                "goal_hidden": bool(res["goal_hidden"]),
-                "ts": datetime.now(timezone.utc).isoformat(),
-            }
-            _append(row)
-            n_ok += 1
-            if n_ok % 20 == 0:
-                print(f"  [{half_name}] {n_ok} new rows  "
-                      f"{(time.perf_counter()-t0)/60:.1f} min", flush=True)
+            jobs.append((half_name, arm, cfg, wA, mode, rec))
+    if not jobs:
+        return 0
+    nw = max(1, os.cpu_count() or 1)
+    t0 = time.perf_counter()
+    n_ok = 0
+    ctx = mp.get_context("fork")
+    with concurrent.futures.ProcessPoolExecutor(
+            max_workers=nw, mp_context=ctx) as ex:
+        CHUNK = 256
+        for i0 in range(0, len(jobs), CHUNK):
+            batch = jobs[i0:i0 + CHUNK]
+            futs = [ex.submit(_worker, j) for j in batch]
+            for fut in concurrent.futures.as_completed(futs):
+                row = fut.result()
+                _append(row)
+                n_ok += 1
+                if n_ok % 100 == 0 or n_ok == len(jobs):
+                    rate = n_ok / max(time.perf_counter() - t0, 1e-9)
+                    eta = (len(jobs) - n_ok) / max(rate, 1e-9)
+                    print(f"  [{half_name}] +{n_ok}/{len(jobs)} "
+                          f"{rate:.2f}/s ETA {eta/60:.1f} min "
+                          f"last={row['arm']} sol={row['solved']}",
+                          flush=True)
     return n_ok
 
 

@@ -34,14 +34,18 @@ Dead as primary (EXP-14/19): `Bmaxrun Bspread ratio density`; solo `B1 Bmin`.
 
 ## Surviving next experiments (advisor)
 
-1. **`mobility / L²`** — exact seam-valid AC substitution count from letter counts
-   (verified = child count on 60/60). O(L), not in the 17, cross-relator mechanism.
-   Must prove ρ with the 17-dim vector is not ~1.
+1. ~~**`mobility / L²`**~~ — **BLOCKED + null-tested** (`results/heuristic_search/asym_scout/ASYM.md`).
+   R²=0.922 vs the 17; `s20_mk2_Amob±8` = 54/120 = control on train. Dead.
 2. **O(L) cross-relator cancellation / overlap** (suffix-automaton), *if* built —
-   with **wall-clock-matched** arm, not only node-matched.
+   with **wall-clock-matched** arm, not only node-matched. (Needs positional
+   info — bin-only features collapse to abel+generator counts.)
 3. **`mK` add-on** — already defined, never swept in Aut-disjoint S×K×MK tune.
 4. **Kill-first filter:** solution-child percentile rank across ≥2 independent
    certificate sources (baseline paths *and* S paths); never promote from it.
+
+Also null-tested here: abelianization Gram / “sign asymmetry”
+(`|⟨ab(r1),ab(r2)⟩|/T` = IDEAS.md idea 8). Train-selected `s20_Arawm3` overfits
+(virgin +2 / fft −2 / spent −7). Do not promote.
 
 ## Anti-overfit protocol for any follow-up
 
