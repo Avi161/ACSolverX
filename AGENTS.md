@@ -1714,3 +1714,8 @@
 
 - [TRAP] Task 1 artifacts were written under a hand-named `.superpowers/sdd/2026-07-30-old-new-cut-package-v2/` directory and no `progress.md` was created, while `scripts/sdd-workspace` maps the plan to `.superpowers/sdd/2026-07-29-old-new-cut-load-certificate/`. Compaction therefore had no authoritative recovery ledger.
 - [WORKS] Before dispatching any plan task, run `scripts/sdd-workspace <plan>` from the target worktree, put the plan-identity `progress.md` in the returned directory, and record every task commit/review transition there before continuing.
+
+### 2026-07-30 Treat an empty TCP query as data, not audit failure
+
+- [TRAP] With pipe failure propagation enabled, `lsof -iTCP` returns status 1 for a process with no matching sockets, so a safe project-process audit stopped before its final lock predicate even though the empty connection result was expected.
+- [WORKS] Keep pipe failure propagation for the audit, but normalize only the per-PID no-match `lsof` result before filtering connection states; require the enclosing scan and final lock predicate to reach an explicit zero exit before accepting absence evidence.
