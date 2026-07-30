@@ -5,7 +5,8 @@ Updated `2026-07-30T03:17:44.910580+00:00`
 Grid: |S|=8 × |MK|=6 × |F|=5 = 240 arms. No K.
 Fsign = mean_|A_sign[d]| for d=3..5 (FFT-equivalent sign-channel lags).
 
-**selected_on / evaluated_on** = ac1m_hard_aut train 120 (this run is the selection sweep; holdout not read).
+**selected_on** = ac1m_hard_aut train 120 (this run is the selection sweep).
+**Holdout read:** see [`HOLDOUT.md`](HOLDOUT.md) — winner `S28_MK2_F8` is **28/60** spent / **22/60** fresh (loses to `S20_MK2` 33/60 and 27/60).
 
 ## Winner: `S28_MK2_F8`
 
@@ -72,6 +73,6 @@ Length control: **0/120**
 ## Notes
 
 - Headline Δ is vs length on the same 120 (length is 0 here).
-- Do not promote from train alone — need a virgin holdout read next.
+- Holdout read done: F does **not** promote — train +3 over S+MK reverses on both 60s (see HOLDOUT.md).
 - Unsolved = unsolved within budget 1000.
 
