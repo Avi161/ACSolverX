@@ -5530,6 +5530,112 @@ TASK3_EXPECTED_FAMILY_PROJECTED_NS = {
     "C": (48, 442, 351, 162, 128),
     "Q": (50, 460, 359, 165, 130),
 }
+TASK3_GENERATION_TOP_FIELDS = (
+    "format",
+    "family_order",
+    "full_schema_count",
+    "full_identity_count",
+    "sampled_source_loads",
+    "sampled_occurrence_loads",
+    "sampled_comparisons",
+    "source_catalog_precompute_ns",
+    "shared_ns",
+    "shared_bytes",
+    "projected_index_ns",
+    "projected_index_bytes",
+    "families",
+    "generation_ns_before_margin",
+    "package_bytes_before_margin",
+    "projected_generation_ns",
+    "projected_package_bytes",
+)
+TASK3_GENERATION_FAMILY_FIELDS = (
+    "family",
+    "selected_old_indices",
+    "selected_schema_indices",
+    "tied_max_schema_ids",
+    "full_schema_count",
+    "full_comparisons",
+    "sampled_comparisons",
+    "sampled_two_pass_ns",
+    "projected_two_pass_ns",
+    "sampled_load_bucket_bytes",
+    "projected_load_bucket_bytes",
+    "sampled_load_record_count",
+    "projected_load_record_count",
+    "projected_bucket_class_count",
+    "full_identity_count",
+    "sampled_identity_count",
+    "sampled_template_ns",
+    "projected_template_ns",
+    "sampled_template_bytes",
+    "projected_template_bytes",
+    "fixed_family_ns",
+    "fixed_family_bytes",
+)
+TASK3_GENERATION_CENSUS = {
+    "fixed": (192, 16, 3_072, 1_120, 160, 1_120, 160, 94_080, 13_440),
+    "base": (128, 16, 2_048, 32, 32, 64, 64, 5_376, 5_376),
+    "singleton": (129, 16, 2_064, 16, 16, 96, 96, 8_064, 8_064),
+    "P": (218, 54, 11_772, 1_728, 702, 3_456, 1_404, 290_304, 117_936),
+    "C": (239, 16, 3_824, 624, 48, 1_248, 96, 104_832, 8_064),
+    "Q": (398, 64, 25_472, 5_888, 448, 11_776, 896, 989_184, 75_264),
+}
+TASK3_GENERATION_TIE_INDICES = {
+    "fixed": (5, 191),
+    "base": (7, 127),
+    "singleton": (3, 128),
+    "P": (9, 217),
+    "C": (11, 238),
+    "Q": (13, 397),
+}
+TASK3_GENERATION_SELECTED_SCHEMA_INDICES = {
+    "fixed": (
+        0, 5, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104,
+        112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 191,
+    ),
+    "base": (
+        0, 7, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104,
+        112, 120, 127,
+    ),
+    "singleton": (
+        0, 3, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104,
+        112, 120, 128,
+    ),
+    "P": (
+        0, 8, 9, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104,
+        112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200,
+        208, 216, 217,
+    ),
+    "C": (
+        0, 8, 11, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104,
+        112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200,
+        208, 216, 224, 232, 238,
+    ),
+    "Q": (
+        0, 8, 13, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104,
+        112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200,
+        208, 216, 224, 232, 240, 248, 256, 264, 272, 280, 288, 296,
+        304, 312, 320, 328, 336, 344, 352, 360, 368, 376, 384, 392,
+        397,
+    ),
+}
+TASK3_GENERATION_BUCKET_COUNTS = {
+    "fixed": 17,
+    "base": 19,
+    "singleton": 23,
+    "P": 29,
+    "C": 31,
+    "Q": 37,
+}
+TASK3_GENERATION_WITNESS_COUNTS = {
+    "fixed": 2,
+    "base": 3,
+    "singleton": 5,
+    "P": 7,
+    "C": 11,
+    "Q": 13,
+}
 
 
 TASK3_RECORD_FIELDS = {
@@ -5591,6 +5697,605 @@ TASK3_RECORD_FIELDS = {
         "verification_projection",
     ),
 }
+
+
+def _task3_generation_root():
+    schema_profiles = {}
+    for family in TASK3_FAMILY_ORDER:
+        full_schema_count = TASK3_GENERATION_CENSUS[family][0]
+        tied = set(TASK3_GENERATION_TIE_INDICES[family])
+        schema_profiles[family] = [
+            [
+                f"{family}-schema-{index:03d}",
+                2 if index in tied else 1,
+            ]
+            for index in reversed(range(full_schema_count))
+        ]
+    return {
+        "domain": "a=d-1>=0, n>=0; positive chamber d>=1",
+        "shared_dependency_count": 11,
+        "schema_profiles": schema_profiles,
+        "bucket_class_counts": dict(TASK3_GENERATION_BUCKET_COUNTS),
+        "family_witness_counts": dict(TASK3_GENERATION_WITNESS_COUNTS),
+    }
+
+
+def _task3_generation_tied_ids(family):
+    return [
+        f"{family}-schema-{index:03d}"
+        for index in TASK3_GENERATION_TIE_INDICES[family]
+    ]
+
+
+def _task3_generation_ceil(sampled, full_count, sampled_count):
+    return (sampled * full_count + sampled_count - 1) // sampled_count
+
+
+def _task3_generation_family(family, family_index, root):
+    (
+        full_schema_count,
+        cell_count,
+        full_identity_count,
+        _full_loads,
+        _sampled_loads,
+        _full_occurrences,
+        _sampled_occurrences,
+        full_comparisons,
+        sampled_comparisons,
+    ) = TASK3_GENERATION_CENSUS[family]
+    selected_schema_indices = TASK3_GENERATION_SELECTED_SCHEMA_INDICES[family]
+    sampled_identity_count = len(selected_schema_indices) * cell_count
+    sampled_two_pass_ns = 10 + family_index
+    sampled_load_bucket_bytes = 20 + family_index
+    sampled_load_record_count = 30 + family_index
+    sampled_template_ns = 40 + family_index
+    sampled_template_bytes = 50 + family_index
+    return {
+        "family": family,
+        "selected_old_indices": list(TASK3_SELECTED_OLD_INDICES[family]),
+        "selected_schema_indices": list(selected_schema_indices),
+        "tied_max_schema_ids": _task3_generation_tied_ids(family),
+        "full_schema_count": full_schema_count,
+        "full_comparisons": full_comparisons,
+        "sampled_comparisons": sampled_comparisons,
+        "sampled_two_pass_ns": sampled_two_pass_ns,
+        "projected_two_pass_ns": _task3_generation_ceil(
+            sampled_two_pass_ns, full_comparisons, sampled_comparisons
+        ),
+        "sampled_load_bucket_bytes": sampled_load_bucket_bytes,
+        "projected_load_bucket_bytes": _task3_generation_ceil(
+            sampled_load_bucket_bytes,
+            full_comparisons,
+            sampled_comparisons,
+        ),
+        "sampled_load_record_count": sampled_load_record_count,
+        "projected_load_record_count": _task3_generation_ceil(
+            sampled_load_record_count,
+            full_comparisons,
+            sampled_comparisons,
+        ),
+        "projected_bucket_class_count": root["bucket_class_counts"][family],
+        "full_identity_count": full_identity_count,
+        "sampled_identity_count": sampled_identity_count,
+        "sampled_template_ns": sampled_template_ns,
+        "projected_template_ns": _task3_generation_ceil(
+            sampled_template_ns,
+            full_identity_count,
+            sampled_identity_count,
+        ),
+        "sampled_template_bytes": sampled_template_bytes,
+        "projected_template_bytes": _task3_generation_ceil(
+            sampled_template_bytes,
+            full_identity_count,
+            sampled_identity_count,
+        ),
+        "fixed_family_ns": 60 + family_index,
+        "fixed_family_bytes": 70 + family_index,
+    }
+
+
+def _task3_expected_generation_root_oracle(projection, projected_root):
+    zero_digest = "0" * 64
+    family_values = {
+        family["family"]: family for family in projection["families"]
+    }
+    load_rows = {}
+    footprint_sizes = {}
+    occurrence_loads = {}
+    template_counts = {}
+    template_catalogs = {}
+    descriptors = []
+    shared_counts = {
+        "shared_header": 1,
+        "dependency": projected_root["shared_dependency_count"],
+        "source_bindings": 1,
+        "b_identity": 84,
+        "b_coordinate": 84,
+        "shared_footer": 1,
+    }
+    descriptors.append(
+        {
+            "role": "shared",
+            "family": None,
+            "path": f"objects/{zero_digest}.jsonl",
+            "sha256": zero_digest,
+            "total_bytes": projection["shared_bytes"],
+            "record_count": sum(shared_counts.values()),
+            "record_counts": shared_counts,
+        }
+    )
+    for family in TASK3_FAMILY_ORDER:
+        (
+            full_schema_count,
+            cell_count,
+            full_identity_count,
+            full_loads,
+            _sampled_loads,
+            full_occurrences,
+            _sampled_occurrences,
+            _full_comparisons,
+            _sampled_comparisons,
+        ) = TASK3_GENERATION_CENSUS[family]
+        old_load_count = full_loads // cell_count
+        footprint_count = full_occurrences // cell_count
+        footprint_size = footprint_count // old_load_count
+        family_projection = family_values[family]
+        witness_count = projected_root["family_witness_counts"][family]
+        load_rows[family] = full_loads
+        footprint_sizes[family] = {str(footprint_size): old_load_count}
+        occurrence_loads[family] = full_occurrences
+        template_counts[family] = full_identity_count
+        template_catalogs[family] = {
+            "format": "task4-template-catalog-v2",
+            "typed_encoding": "task4-typed-sha256-v1",
+            "identity_order": "schema-major-cell-minor",
+            "schema_count": full_schema_count,
+            "cell_count": cell_count,
+            "template_count": full_identity_count,
+            "witness_count": witness_count,
+            "identity_sha256": zero_digest,
+            "replay_sha256": zero_digest,
+            "catalog_sha256": zero_digest,
+        }
+        record_counts = {
+            "family_header": 1,
+            "old_load": old_load_count,
+            "footprint": footprint_count,
+            "bucket_class": family_projection[
+                "projected_bucket_class_count"
+            ],
+            "load": family_projection["projected_load_record_count"],
+            "cell_footer": cell_count,
+            "template_header": 1,
+            "template_schema": full_schema_count,
+            "template_cell": cell_count,
+            "template_witness": witness_count,
+            "template_identity_chunk": (full_identity_count + 4_095) // 4_096,
+            "template_footer": 1,
+            "family_footer": 1,
+        }
+        descriptors.append(
+            {
+                "role": "family",
+                "family": family,
+                "path": f"objects/{zero_digest}.jsonl",
+                "sha256": zero_digest,
+                "total_bytes": (
+                    family_projection["fixed_family_bytes"]
+                    + family_projection["projected_load_bucket_bytes"]
+                    + family_projection["projected_template_bytes"]
+                ),
+                "record_count": sum(record_counts.values()),
+                "record_counts": record_counts,
+            }
+        )
+    summary = {
+        "load_rows": load_rows,
+        "total_load_rows": sum(load_rows.values()),
+        "footprint_sizes": footprint_sizes,
+        "occurrence_loads": occurrence_loads,
+        "total_occurrence_loads": sum(occurrence_loads.values()),
+        "b_tokens_per_occurrence": 84,
+        "active_comparisons": sum(occurrence_loads.values()) * 84,
+        "template_counts": template_counts,
+        "total_templates": sum(template_counts.values()),
+    }
+    return {
+        "format": "period-two-old-new-cut-package-v2",
+        "scope": "production-full",
+        "logical_v1_format": "period-two-old-new-cut-load-v1",
+        "canonical_encoding": "canonical-json-ascii-lines-v1",
+        "mask_encoding": "uint84-be11-base64url-nopad-v1",
+        "domain": projected_root["domain"],
+        "status": "generated-awaiting-independent-replay",
+        "shard_order": ["shared", *TASK3_FAMILY_ORDER],
+        "shards": descriptors,
+        "shard_bytes_total": sum(
+            descriptor["total_bytes"] for descriptor in descriptors
+        ),
+        "emitted_summary": summary,
+        "full_summary": summary,
+        "source_bindings_sha256": zero_digest,
+        "b_identity_digest": zero_digest,
+        "template_catalogs": template_catalogs,
+        "root_sha256": zero_digest,
+    }
+
+
+def _task3_reseal_generation_projection(projection, projected_root):
+    for family in projection["families"]:
+        family["projected_two_pass_ns"] = _task3_generation_ceil(
+            family["sampled_two_pass_ns"],
+            family["full_comparisons"],
+            family["sampled_comparisons"],
+        )
+        family["projected_load_bucket_bytes"] = _task3_generation_ceil(
+            family["sampled_load_bucket_bytes"],
+            family["full_comparisons"],
+            family["sampled_comparisons"],
+        )
+        family["projected_load_record_count"] = _task3_generation_ceil(
+            family["sampled_load_record_count"],
+            family["full_comparisons"],
+            family["sampled_comparisons"],
+        )
+        family["projected_bucket_class_count"] = projected_root[
+            "bucket_class_counts"
+        ][family["family"]]
+        family["projected_template_ns"] = _task3_generation_ceil(
+            family["sampled_template_ns"],
+            family["full_identity_count"],
+            family["sampled_identity_count"],
+        )
+        family["projected_template_bytes"] = _task3_generation_ceil(
+            family["sampled_template_bytes"],
+            family["full_identity_count"],
+            family["sampled_identity_count"],
+        )
+    root_oracle = _task3_expected_generation_root_oracle(
+        projection, projected_root
+    )
+    projection["projected_index_bytes"] = len(
+        json.dumps(
+            root_oracle,
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("ascii")
+    ) + 1
+    projection["generation_ns_before_margin"] = (
+        projection["source_catalog_precompute_ns"]
+        + projection["shared_ns"]
+        + projection["projected_index_ns"]
+        + sum(
+            family["fixed_family_ns"]
+            + family["projected_two_pass_ns"]
+            + family["projected_template_ns"]
+            for family in projection["families"]
+        )
+    )
+    projection["package_bytes_before_margin"] = (
+        projection["shared_bytes"]
+        + projection["projected_index_bytes"]
+        + sum(
+            family["fixed_family_bytes"]
+            + family["projected_load_bucket_bytes"]
+            + family["projected_template_bytes"]
+            for family in projection["families"]
+        )
+    )
+    projection["projected_generation_ns"] = (
+        2 * projection["generation_ns_before_margin"]
+    )
+    projection["projected_package_bytes"] = (
+        2 * projection["package_bytes_before_margin"]
+    )
+    return projection
+
+
+def _task3_generation_fixture():
+    projected_root = _task3_generation_root()
+    projection = {
+        "format": "period-two-old-new-cut-generation-projection-v1",
+        "family_order": list(TASK3_FAMILY_ORDER),
+        "full_schema_count": 1_304,
+        "full_identity_count": 48_252,
+        "sampled_source_loads": 1_406,
+        "sampled_occurrence_loads": 2_716,
+        "sampled_comparisons": 228_144,
+        "source_catalog_precompute_ns": 101,
+        "shared_ns": 103,
+        "shared_bytes": 107,
+        "projected_index_ns": 109,
+        "projected_index_bytes": 0,
+        "families": [
+            _task3_generation_family(family, index, projected_root)
+            for index, family in enumerate(TASK3_FAMILY_ORDER)
+        ],
+        "generation_ns_before_margin": 0,
+        "package_bytes_before_margin": 0,
+        "projected_generation_ns": 0,
+        "projected_package_bytes": 0,
+    }
+    return _task3_reseal_generation_projection(projection, projected_root), projected_root
+
+
+def test_task3_generation_projection_schema_and_canonical_binding_are_exact() -> None:
+    module = load_package_v2_verifier()
+    projection, projected_root = _task3_generation_fixture()
+    assert set(projection) == set(TASK3_GENERATION_TOP_FIELDS)
+    assert all(
+        set(family) == set(TASK3_GENERATION_FAMILY_FIELDS)
+        for family in projection["families"]
+    )
+    binding = module._validate_generation_projection(projection, projected_root)
+    expected_json = json.dumps(
+        projection,
+        ensure_ascii=True,
+        separators=(",", ":"),
+        sort_keys=True,
+    )
+    assert binding.normalized == expected_json
+    assert binding.sha256 == hashlib.sha256(
+        expected_json.encode("ascii")
+    ).hexdigest()
+    assert tuple(field.name for field in fields(binding)) == (
+        "normalized",
+        "sha256",
+    )
+    with pytest.raises(AttributeError):
+        binding.sha256 = "0" * 64
+
+    tuple_projection = copy.deepcopy(projection)
+    tuple_projection["family_order"] = tuple(tuple_projection["family_order"])
+    tuple_projection["families"] = tuple(tuple_projection["families"])
+    for family in tuple_projection["families"]:
+        family["selected_old_indices"] = tuple(family["selected_old_indices"])
+        family["selected_schema_indices"] = tuple(
+            family["selected_schema_indices"]
+        )
+        family["tied_max_schema_ids"] = tuple(family["tied_max_schema_ids"])
+    assert (
+        module._validate_generation_projection(tuple_projection, projected_root)
+        == binding
+    )
+    assert not hasattr(binding, "attestable")
+
+
+def test_task3_generation_projection_rejects_recursive_type_mutations() -> None:
+    module = load_package_v2_verifier()
+    projection, projected_root = _task3_generation_fixture()
+    mutations = []
+    mutated = copy.deepcopy(projection)
+    mutated["full_schema_count"] = True
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["shared_ns"] = 1.0
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["shared_bytes"] = -1
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["extra"] = 0
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated.pop("shared_ns")
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["extra"] = 0
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0].pop("fixed_family_bytes")
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["tied_max_schema_ids"][0] = "schéma"
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["sampled_template_ns"] = False
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["selected_old_indices"] = {0, 8}
+    mutations.append(mutated)
+    for mutated in mutations:
+        with pytest.raises(module.EngineeringVerificationFailure):
+            module._validate_generation_projection(mutated, projected_root)
+
+
+def test_task3_generation_projection_old_schema_tie_mutations_reach_selection_gate() -> None:
+    module = load_package_v2_verifier()
+    projection, projected_root = _task3_generation_fixture()
+    mutations = []
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["selected_old_indices"][0] = 1
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["selected_schema_indices"].remove(5)
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["selected_schema_indices"].append(6)
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["tied_max_schema_ids"].reverse()
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][0]["tied_max_schema_ids"].pop()
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["family_order"] = list(reversed(TASK3_FAMILY_ORDER))
+    mutations.append(mutated)
+    mutated = copy.deepcopy(projection)
+    mutated["families"][1] = copy.deepcopy(mutated["families"][0])
+    mutations.append(mutated)
+    for mutated in mutations:
+        with pytest.raises(module.EngineeringVerificationFailure):
+            module._validate_generation_projection(mutated, projected_root)
+
+
+def test_task3_generation_projection_denominators_reach_independent_census_gate() -> None:
+    module = load_package_v2_verifier()
+    projection, projected_root = _task3_generation_fixture()
+    for family_index in range(6):
+        for field in (
+            "full_schema_count",
+            "full_comparisons",
+            "sampled_comparisons",
+            "full_identity_count",
+            "sampled_identity_count",
+        ):
+            mutated = copy.deepcopy(projection)
+            mutated["families"][family_index][field] += 1
+            with pytest.raises(module.EngineeringVerificationFailure):
+                module._validate_generation_projection(mutated, projected_root)
+    for field in (
+        "full_schema_count",
+        "full_identity_count",
+        "sampled_source_loads",
+        "sampled_occurrence_loads",
+        "sampled_comparisons",
+    ):
+        mutated = copy.deepcopy(projection)
+        mutated[field] += 1
+        with pytest.raises(module.EngineeringVerificationFailure):
+            module._validate_generation_projection(mutated, projected_root)
+    shortened_root = copy.deepcopy(projected_root)
+    shortened_root["schema_profiles"]["fixed"].pop()
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module._validate_generation_projection(projection, shortened_root)
+
+
+def test_task3_generation_projection_recomputes_all_derived_fields_and_index_cost() -> None:
+    module = load_package_v2_verifier()
+    projection, projected_root = _task3_generation_fixture()
+    normalized_root = module._generation_projected_root_metadata(projected_root)
+    observed_root = module._generation_projected_root_oracle(
+        normalized_root,
+        projection,
+        projection["families"],
+    )
+    expected_root = _task3_expected_generation_root_oracle(
+        projection, projected_root
+    )
+    assert observed_root == expected_root
+    assert observed_root["root_sha256"] == "0" * 64
+    assert observed_root["source_bindings_sha256"] == "0" * 64
+    assert observed_root["b_identity_digest"] == "0" * 64
+    assert observed_root["emitted_summary"] == observed_root["full_summary"]
+    assert observed_root["emitted_summary"]["total_load_rows"] == 9_408
+    assert observed_root["emitted_summary"]["total_occurrence_loads"] == 17_760
+    assert observed_root["emitted_summary"]["active_comparisons"] == 1_491_840
+    expected_index_bytes = len(
+        json.dumps(
+            expected_root,
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("ascii")
+    ) + 1
+    assert projection["projected_index_bytes"] == expected_index_bytes
+    derived_family_fields = (
+        "projected_two_pass_ns",
+        "projected_load_bucket_bytes",
+        "projected_load_record_count",
+        "projected_bucket_class_count",
+        "projected_template_ns",
+        "projected_template_bytes",
+    )
+    for family_index in range(6):
+        for field in derived_family_fields:
+            mutated = copy.deepcopy(projection)
+            mutated["families"][family_index][field] += 1
+            with pytest.raises(module.EngineeringVerificationFailure):
+                module._validate_generation_projection(mutated, projected_root)
+    for field in (
+        "projected_index_bytes",
+        "generation_ns_before_margin",
+        "package_bytes_before_margin",
+        "projected_generation_ns",
+        "projected_package_bytes",
+    ):
+        mutated = copy.deepcopy(projection)
+        mutated[field] += 1
+        with pytest.raises(module.EngineeringVerificationFailure):
+            module._validate_generation_projection(mutated, projected_root)
+    bucket_mutation = copy.deepcopy(projected_root)
+    bucket_mutation["bucket_class_counts"]["fixed"] += 1
+    with pytest.raises(module.EngineeringVerificationFailure):
+        module._validate_generation_projection(projection, bucket_mutation)
+
+
+def test_task3_generation_projection_complete_ratio_one_and_global_range(
+    monkeypatch,
+) -> None:
+    module = load_package_v2_verifier()
+    projection, projected_root = _task3_generation_fixture()
+    module._validate_generation_projection(projection, projected_root)
+    for family in projection["families"][1:3]:
+        assert family["sampled_comparisons"] == family["full_comparisons"]
+        assert family["projected_two_pass_ns"] == family["sampled_two_pass_ns"]
+        assert (
+            family["projected_load_bucket_bytes"]
+            == family["sampled_load_bucket_bytes"]
+        )
+        assert (
+            family["projected_load_record_count"]
+            == family["sampled_load_record_count"]
+        )
+    assert any(
+        family["sampled_comparisons"] < family["full_comparisons"]
+        for family in projection["families"]
+    )
+    assert any(
+        family["sampled_identity_count"] < family["full_identity_count"]
+        for family in projection["families"]
+    )
+
+    identity_full = copy.deepcopy(projection)
+    identity_root = copy.deepcopy(projected_root)
+    for family in TASK3_FAMILY_ORDER:
+        for profile in identity_root["schema_profiles"][family]:
+            profile[1] = 2
+    for family in identity_full["families"]:
+        full_schema_count = family["full_schema_count"]
+        family["selected_schema_indices"] = list(range(full_schema_count))
+        family["tied_max_schema_ids"] = [
+            f"{family['family']}-schema-{index:03d}"
+            for index in range(full_schema_count)
+        ]
+        family["sampled_identity_count"] = family["full_identity_count"]
+    _task3_reseal_generation_projection(identity_full, identity_root)
+    with pytest.raises(
+        module.EngineeringVerificationFailure,
+        match="identity projection lacks dynamic range",
+    ):
+        module._validate_generation_projection(identity_full, identity_root)
+
+    comparison_census = {
+        family: (*values[:-1], values[-2])
+        for family, values in TASK3_GENERATION_CENSUS.items()
+    }
+    complete_old_ranges = {
+        family: tuple(range(values[3] // values[1]))
+        for family, values in TASK3_GENERATION_CENSUS.items()
+    }
+    monkeypatch.setattr(module, "_GENERATION_CENSUS", comparison_census)
+    monkeypatch.setattr(
+        module,
+        "_GENERATION_SELECTED_OLD_INDICES",
+        complete_old_ranges,
+    )
+    comparison_full = copy.deepcopy(projection)
+    comparison_full["sampled_comparisons"] = 1_491_840
+    for family in comparison_full["families"]:
+        family["selected_old_indices"] = list(
+            complete_old_ranges[family["family"]]
+        )
+        family["sampled_comparisons"] = family["full_comparisons"]
+    _task3_reseal_generation_projection(comparison_full, projected_root)
+    with pytest.raises(
+        module.EngineeringVerificationFailure,
+        match="comparison projection lacks dynamic range",
+    ):
+        module._validate_generation_projection(comparison_full, projected_root)
 
 
 def _task3_verification_inputs(module):

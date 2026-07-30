@@ -318,6 +318,72 @@ FAMILY_VERIFICATION_CHARGE_DOMAINS = (
     "logical-v1-canonical-fragment",
     "reference-validation",
 )
+GENERATION_PROJECTION_FIELDS = (
+    "format",
+    "family_order",
+    "full_schema_count",
+    "full_identity_count",
+    "sampled_source_loads",
+    "sampled_occurrence_loads",
+    "sampled_comparisons",
+    "source_catalog_precompute_ns",
+    "shared_ns",
+    "shared_bytes",
+    "projected_index_ns",
+    "projected_index_bytes",
+    "families",
+    "generation_ns_before_margin",
+    "package_bytes_before_margin",
+    "projected_generation_ns",
+    "projected_package_bytes",
+)
+GENERATION_FAMILY_PROJECTION_FIELDS = (
+    "family",
+    "selected_old_indices",
+    "selected_schema_indices",
+    "tied_max_schema_ids",
+    "full_schema_count",
+    "full_comparisons",
+    "sampled_comparisons",
+    "sampled_two_pass_ns",
+    "projected_two_pass_ns",
+    "sampled_load_bucket_bytes",
+    "projected_load_bucket_bytes",
+    "sampled_load_record_count",
+    "projected_load_record_count",
+    "projected_bucket_class_count",
+    "full_identity_count",
+    "sampled_identity_count",
+    "sampled_template_ns",
+    "projected_template_ns",
+    "sampled_template_bytes",
+    "projected_template_bytes",
+    "fixed_family_ns",
+    "fixed_family_bytes",
+)
+_GENERATION_PROJECTED_ROOT_FIELDS = (
+    "domain",
+    "shared_dependency_count",
+    "schema_profiles",
+    "bucket_class_counts",
+    "family_witness_counts",
+)
+_GENERATION_SELECTED_OLD_INDICES = {
+    "fixed": (0, 8, 15, 23, 31, 38, 46, 54, 61, 69),
+    "base": (0, 1),
+    "singleton": (0,),
+    "P": (0, 3, 5, 8, 10, 13, 16, 18, 21, 23, 26, 28, 31),
+    "C": (0, 19, 38),
+    "Q": (0, 15, 30, 46, 61, 76, 91),
+}
+_GENERATION_CENSUS = {
+    "fixed": (192, 16, 3_072, 1_120, 160, 1_120, 160, 94_080, 13_440),
+    "base": (128, 16, 2_048, 32, 32, 64, 64, 5_376, 5_376),
+    "singleton": (129, 16, 2_064, 16, 16, 96, 96, 8_064, 8_064),
+    "P": (218, 54, 11_772, 1_728, 702, 3_456, 1_404, 290_304, 117_936),
+    "C": (239, 16, 3_824, 624, 48, 1_248, 96, 104_832, 8_064),
+    "Q": (398, 64, 25_472, 5_888, 448, 11_776, 896, 989_184, 75_264),
+}
 
 
 @dataclass(frozen=True)
@@ -397,6 +463,12 @@ class IndependentReplayResult:
     logical_v1_sha256: str | None
     generation_projection_sha256: str
     verification_projection: VerificationProjection
+
+
+@dataclass(frozen=True)
+class _GenerationProjectionValidation:
+    normalized: str
+    sha256: str
 
 
 class PhaseMetrics:
@@ -2107,6 +2179,638 @@ def decode_v2_package_path(index_path: Path) -> dict[str, Any]:
         return path.open("rb")
 
     return _decode_package_from_root(root, supply)
+
+
+def _generation_projection_failure(detail: str) -> None:
+    raise EngineeringVerificationFailure("generation-projection", detail)
+
+
+def _generation_projection_mapping(
+    value: Any,
+    fields: Sequence[str],
+    name: str,
+) -> Mapping[str, Any]:
+    if (
+        not isinstance(value, Mapping)
+        or any(type(key) is not str for key in value)
+        or set(value) != set(fields)
+    ):
+        _generation_projection_failure(f"{name} fields differ")
+    return value
+
+
+def _generation_projection_int(
+    value: Any,
+    name: str,
+    *,
+    positive: bool = False,
+) -> int:
+    minimum = 1 if positive else 0
+    if type(value) is not int or value < minimum:
+        qualifier = "positive" if positive else "nonnegative"
+        _generation_projection_failure(
+            f"{name} must be an exact {qualifier} integer"
+        )
+    return value
+
+
+def _generation_projection_sequence(value: Any, name: str) -> tuple[Any, ...]:
+    if not isinstance(value, (list, tuple)):
+        _generation_projection_failure(f"{name} must be a list or tuple")
+    return tuple(value)
+
+
+def _generation_projection_indices(
+    value: Any,
+    name: str,
+    *,
+    upper_bound: int,
+) -> tuple[int, ...]:
+    indices = _generation_projection_sequence(value, name)
+    if (
+        not indices
+        or any(type(index) is not int for index in indices)
+        or indices != tuple(sorted(set(indices)))
+        or indices[0] < 0
+        or indices[-1] >= upper_bound
+    ):
+        _generation_projection_failure(f"{name} is not a strict valid range")
+    return indices
+
+
+def _generation_projection_ascii_ids(value: Any, name: str) -> tuple[str, ...]:
+    identifiers = _generation_projection_sequence(value, name)
+    if (
+        not identifiers
+        or any(
+            type(identifier) is not str
+            or not identifier
+            or not identifier.isascii()
+            for identifier in identifiers
+        )
+        or identifiers != tuple(sorted(set(identifiers)))
+    ):
+        _generation_projection_failure(
+            f"{name} must be strict ASCII-sorted identifiers"
+        )
+    return identifiers
+
+
+def _generation_projected_root_metadata(value: Any) -> dict[str, Any]:
+    root = _generation_projection_mapping(
+        value,
+        _GENERATION_PROJECTED_ROOT_FIELDS,
+        "projected root metadata",
+    )
+    domain = root["domain"]
+    if type(domain) is not str or not domain or not domain.isascii():
+        _generation_projection_failure("projected root domain is invalid")
+    dependency_count = _generation_projection_int(
+        root["shared_dependency_count"],
+        "shared dependency count",
+    )
+    normalized_maps = {}
+    for field in (
+        "schema_profiles",
+        "bucket_class_counts",
+        "family_witness_counts",
+    ):
+        family_map = root[field]
+        if (
+            not isinstance(family_map, Mapping)
+            or any(type(key) is not str for key in family_map)
+            or set(family_map) != set(FAMILY_ORDER)
+        ):
+            _generation_projection_failure(
+                f"projected root {field} families differ"
+            )
+        normalized_maps[field] = family_map
+
+    profiles = {}
+    for family in FAMILY_ORDER:
+        rows = _generation_projection_sequence(
+            normalized_maps["schema_profiles"][family],
+            f"{family} schema profiles",
+        )
+        normalized_rows = []
+        for row in rows:
+            values = _generation_projection_sequence(
+                row, f"{family} schema profile"
+            )
+            if len(values) != 2:
+                _generation_projection_failure(
+                    f"{family} schema profile width differs"
+                )
+            schema_id, pump_count = values
+            if (
+                type(schema_id) is not str
+                or not schema_id
+                or not schema_id.isascii()
+            ):
+                _generation_projection_failure(
+                    f"{family} schema profile ID is invalid"
+                )
+            normalized_rows.append(
+                (
+                    schema_id,
+                    _generation_projection_int(
+                        pump_count,
+                        f"{family} schema pump count",
+                    ),
+                )
+            )
+        normalized_rows.sort(key=lambda row: row[0].encode("ascii"))
+        if len({row[0] for row in normalized_rows}) != len(normalized_rows):
+            _generation_projection_failure(f"{family} schema IDs repeat")
+        profiles[family] = tuple(normalized_rows)
+
+    bucket_counts = {}
+    witness_counts = {}
+    for family in FAMILY_ORDER:
+        bucket_counts[family] = _generation_projection_int(
+            normalized_maps["bucket_class_counts"][family],
+            f"{family} bucket-class count",
+            positive=True,
+        )
+        witness_counts[family] = _generation_projection_int(
+            normalized_maps["family_witness_counts"][family],
+            f"{family} witness count",
+            positive=True,
+        )
+    return {
+        "domain": domain,
+        "shared_dependency_count": dependency_count,
+        "schema_profiles": profiles,
+        "bucket_class_counts": bucket_counts,
+        "family_witness_counts": witness_counts,
+    }
+
+
+def _generation_projection_ceil(
+    sampled: int,
+    full_count: int,
+    sampled_count: int,
+) -> int:
+    return (sampled * full_count + sampled_count - 1) // sampled_count
+
+
+def _generation_projected_root_oracle(
+    projected_root: Mapping[str, Any],
+    projection: Mapping[str, Any],
+    families: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    zero_digest = "0" * 64
+    family_values = {value["family"]: value for value in families}
+    load_rows = {}
+    footprint_sizes = {}
+    occurrence_loads = {}
+    template_counts = {}
+    template_catalogs = {}
+    family_descriptors = []
+    for family in FAMILY_ORDER:
+        (
+            full_schema_count,
+            cell_count,
+            full_identity_count,
+            full_loads,
+            _sampled_loads,
+            full_occurrences,
+            _sampled_occurrences,
+            _full_comparisons,
+            _sampled_comparisons,
+        ) = _GENERATION_CENSUS[family]
+        family_projection = family_values[family]
+        old_load_count, old_remainder = divmod(full_loads, cell_count)
+        footprint_count, footprint_remainder = divmod(
+            full_occurrences, cell_count
+        )
+        footprint_size, footprint_size_remainder = divmod(
+            footprint_count, old_load_count
+        )
+        if old_remainder or footprint_remainder or footprint_size_remainder:
+            _generation_projection_failure(
+                f"{family} root census is not integral"
+            )
+        load_rows[family] = full_loads
+        footprint_sizes[family] = {str(footprint_size): old_load_count}
+        occurrence_loads[family] = full_occurrences
+        template_counts[family] = full_identity_count
+        witness_count = projected_root["family_witness_counts"][family]
+        template_catalogs[family] = {
+            "format": TEMPLATE_CATALOG_FORMAT,
+            "typed_encoding": TEMPLATE_TYPED_ENCODING,
+            "identity_order": "schema-major-cell-minor",
+            "schema_count": full_schema_count,
+            "cell_count": cell_count,
+            "template_count": full_identity_count,
+            "witness_count": witness_count,
+            "identity_sha256": zero_digest,
+            "replay_sha256": zero_digest,
+            "catalog_sha256": zero_digest,
+        }
+        record_counts = {
+            "family_header": 1,
+            "old_load": old_load_count,
+            "footprint": footprint_count,
+            "bucket_class": family_projection[
+                "projected_bucket_class_count"
+            ],
+            "load": family_projection["projected_load_record_count"],
+            "cell_footer": cell_count,
+            "template_header": 1,
+            "template_schema": full_schema_count,
+            "template_cell": cell_count,
+            "template_witness": witness_count,
+            "template_identity_chunk": (
+                full_identity_count + IDENTITY_CHUNK_SIZE - 1
+            )
+            // IDENTITY_CHUNK_SIZE,
+            "template_footer": 1,
+            "family_footer": 1,
+        }
+        total_bytes = (
+            family_projection["fixed_family_bytes"]
+            + family_projection["projected_load_bucket_bytes"]
+            + family_projection["projected_template_bytes"]
+        )
+        family_descriptors.append(
+            {
+                "role": "family",
+                "family": family,
+                "path": f"objects/{zero_digest}.jsonl",
+                "sha256": zero_digest,
+                "total_bytes": total_bytes,
+                "record_count": sum(record_counts.values()),
+                "record_counts": record_counts,
+            }
+        )
+
+    summary = {
+        "load_rows": load_rows,
+        "total_load_rows": sum(load_rows.values()),
+        "footprint_sizes": footprint_sizes,
+        "occurrence_loads": occurrence_loads,
+        "total_occurrence_loads": sum(occurrence_loads.values()),
+        "b_tokens_per_occurrence": TOKEN_COUNT,
+        "active_comparisons": sum(occurrence_loads.values()) * TOKEN_COUNT,
+        "template_counts": template_counts,
+        "total_templates": sum(template_counts.values()),
+    }
+    shared_record_counts = {
+        "shared_header": 1,
+        "dependency": projected_root["shared_dependency_count"],
+        "source_bindings": 1,
+        "b_identity": TOKEN_COUNT,
+        "b_coordinate": TOKEN_COUNT,
+        "shared_footer": 1,
+    }
+    shared_descriptor = {
+        "role": "shared",
+        "family": None,
+        "path": f"objects/{zero_digest}.jsonl",
+        "sha256": zero_digest,
+        "total_bytes": projection["shared_bytes"],
+        "record_count": sum(shared_record_counts.values()),
+        "record_counts": shared_record_counts,
+    }
+    descriptors = [shared_descriptor, *family_descriptors]
+    return {
+        "format": PACKAGE_V2_FORMAT,
+        "scope": PRODUCTION_SCOPE,
+        "logical_v1_format": LOGICAL_V1_FORMAT,
+        "canonical_encoding": CANONICAL_LINE_ENCODING,
+        "mask_encoding": MASK_ENCODING,
+        "domain": projected_root["domain"],
+        "status": PRODUCTION_STATUS,
+        "shard_order": list(SHARD_ORDER),
+        "shards": descriptors,
+        "shard_bytes_total": sum(
+            descriptor["total_bytes"] for descriptor in descriptors
+        ),
+        "emitted_summary": summary,
+        "full_summary": summary,
+        "source_bindings_sha256": zero_digest,
+        "b_identity_digest": zero_digest,
+        "template_catalogs": template_catalogs,
+        "root_sha256": zero_digest,
+    }
+
+
+def _validate_generation_projection(
+    value: Mapping[str, Any],
+    projected_root: Mapping[str, Any],
+) -> _GenerationProjectionValidation:
+    root = _generation_projected_root_metadata(projected_root)
+    projection = _generation_projection_mapping(
+        value,
+        GENERATION_PROJECTION_FIELDS,
+        "generation projection",
+    )
+    if projection["format"] != GENERATION_PROJECTION_FORMAT:
+        _generation_projection_failure("generation projection format differs")
+    family_order = _generation_projection_sequence(
+        projection["family_order"], "generation family order"
+    )
+    if family_order != FAMILY_ORDER:
+        _generation_projection_failure("generation family order differs")
+    family_rows = _generation_projection_sequence(
+        projection["families"], "generation families"
+    )
+    if len(family_rows) != len(FAMILY_ORDER):
+        _generation_projection_failure("generation family count differs")
+
+    top_numeric_fields = (
+        "full_schema_count",
+        "full_identity_count",
+        "sampled_source_loads",
+        "sampled_occurrence_loads",
+        "sampled_comparisons",
+        "source_catalog_precompute_ns",
+        "shared_ns",
+        "shared_bytes",
+        "projected_index_ns",
+        "projected_index_bytes",
+        "generation_ns_before_margin",
+        "package_bytes_before_margin",
+        "projected_generation_ns",
+        "projected_package_bytes",
+    )
+    normalized_top_numbers = {
+        field: _generation_projection_int(
+            projection[field], f"generation {field}"
+        )
+        for field in top_numeric_fields
+    }
+
+    normalized_families = []
+    comparison_dynamic_range = False
+    identity_dynamic_range = False
+    for expected_family, raw_family in zip(FAMILY_ORDER, family_rows):
+        family_projection = _generation_projection_mapping(
+            raw_family,
+            GENERATION_FAMILY_PROJECTION_FIELDS,
+            f"{expected_family} generation projection",
+        )
+        family = family_projection["family"]
+        if family != expected_family:
+            _generation_projection_failure("generation family order repeats")
+        if type(family) is not str or not family.isascii():
+            _generation_projection_failure("generation family is invalid")
+        (
+            full_schema_count,
+            cell_count,
+            full_identity_count,
+            full_loads,
+            _sampled_loads,
+            _full_occurrences,
+            _sampled_occurrences,
+            full_comparisons,
+            sampled_comparisons,
+        ) = _GENERATION_CENSUS[family]
+        profiles = root["schema_profiles"][family]
+        if len(profiles) != full_schema_count:
+            _generation_projection_failure(
+                f"{family} full schema census differs"
+            )
+        maximum_pumps = max(pump_count for _, pump_count in profiles)
+        tied_ids = tuple(
+            schema_id
+            for schema_id, pump_count in profiles
+            if pump_count == maximum_pumps
+        )
+        tied_indices = {
+            index
+            for index, (_, pump_count) in enumerate(profiles)
+            if pump_count == maximum_pumps
+        }
+        selected_schema_indices = tuple(
+            sorted({*range(0, full_schema_count, 8), *tied_indices})
+        )
+        old_load_count, old_remainder = divmod(full_loads, cell_count)
+        if old_remainder:
+            _generation_projection_failure(
+                f"{family} old-load denominator is not integral"
+            )
+        selected_old_indices = _generation_projection_indices(
+            family_projection["selected_old_indices"],
+            f"{family} selected old indices",
+            upper_bound=old_load_count,
+        )
+        if selected_old_indices != _GENERATION_SELECTED_OLD_INDICES[family]:
+            _generation_projection_failure(
+                f"{family} selected old indices differ"
+            )
+        supplied_schema_indices = _generation_projection_indices(
+            family_projection["selected_schema_indices"],
+            f"{family} selected schema indices",
+            upper_bound=full_schema_count,
+        )
+        if supplied_schema_indices != selected_schema_indices:
+            _generation_projection_failure(
+                f"{family} selected schema indices differ"
+            )
+        supplied_tied_ids = _generation_projection_ascii_ids(
+            family_projection["tied_max_schema_ids"],
+            f"{family} tied maximum schema IDs",
+        )
+        if supplied_tied_ids != tied_ids:
+            _generation_projection_failure(
+                f"{family} tied maximum schema IDs differ"
+            )
+
+        numeric_fields = GENERATION_FAMILY_PROJECTION_FIELDS[4:]
+        family_numbers = {
+            field: _generation_projection_int(
+                family_projection[field], f"{family} {field}"
+            )
+            for field in numeric_fields
+        }
+        for field in (
+            "full_schema_count",
+            "full_comparisons",
+            "sampled_comparisons",
+            "sampled_load_record_count",
+            "projected_load_record_count",
+            "projected_bucket_class_count",
+            "full_identity_count",
+            "sampled_identity_count",
+        ):
+            if family_numbers[field] == 0:
+                _generation_projection_failure(f"{family} {field} is zero")
+        sampled_identity_count = len(selected_schema_indices) * cell_count
+        expected_denominators = {
+            "full_schema_count": full_schema_count,
+            "full_comparisons": full_comparisons,
+            "sampled_comparisons": sampled_comparisons,
+            "full_identity_count": full_identity_count,
+            "sampled_identity_count": sampled_identity_count,
+        }
+        if any(
+            family_numbers[field] != expected
+            for field, expected in expected_denominators.items()
+        ):
+            _generation_projection_failure(
+                f"{family} generation denominator census differs"
+            )
+        comparison_ratio_one = sampled_comparisons == full_comparisons
+        identity_ratio_one = sampled_identity_count == full_identity_count
+        if comparison_ratio_one != (
+            selected_old_indices == tuple(range(old_load_count))
+        ):
+            _generation_projection_failure(
+                f"{family} comparison ratio-one range differs"
+            )
+        if identity_ratio_one != (
+            selected_schema_indices == tuple(range(full_schema_count))
+        ):
+            _generation_projection_failure(
+                f"{family} identity ratio-one range differs"
+            )
+        comparison_dynamic_range |= not comparison_ratio_one
+        identity_dynamic_range |= not identity_ratio_one
+
+        expected_derived = {
+            "projected_two_pass_ns": _generation_projection_ceil(
+                family_numbers["sampled_two_pass_ns"],
+                full_comparisons,
+                sampled_comparisons,
+            ),
+            "projected_load_bucket_bytes": _generation_projection_ceil(
+                family_numbers["sampled_load_bucket_bytes"],
+                full_comparisons,
+                sampled_comparisons,
+            ),
+            "projected_load_record_count": _generation_projection_ceil(
+                family_numbers["sampled_load_record_count"],
+                full_comparisons,
+                sampled_comparisons,
+            ),
+            "projected_bucket_class_count": root["bucket_class_counts"][
+                family
+            ],
+            "projected_template_ns": _generation_projection_ceil(
+                family_numbers["sampled_template_ns"],
+                full_identity_count,
+                sampled_identity_count,
+            ),
+            "projected_template_bytes": _generation_projection_ceil(
+                family_numbers["sampled_template_bytes"],
+                full_identity_count,
+                sampled_identity_count,
+            ),
+        }
+        if any(
+            family_numbers[field] != expected
+            for field, expected in expected_derived.items()
+        ):
+            _generation_projection_failure(
+                f"{family} derived generation projection differs"
+            )
+        normalized_families.append(
+            {
+                "family": family,
+                "selected_old_indices": list(selected_old_indices),
+                "selected_schema_indices": list(selected_schema_indices),
+                "tied_max_schema_ids": list(supplied_tied_ids),
+                **family_numbers,
+            }
+        )
+
+    if not comparison_dynamic_range or not identity_dynamic_range:
+        dimension = "comparison" if not comparison_dynamic_range else "identity"
+        _generation_projection_failure(
+            f"global generation {dimension} projection lacks dynamic range"
+        )
+    expected_top_census = {
+        "full_schema_count": sum(row[0] for row in _GENERATION_CENSUS.values()),
+        "full_identity_count": sum(row[2] for row in _GENERATION_CENSUS.values()),
+        "sampled_source_loads": sum(row[4] for row in _GENERATION_CENSUS.values()),
+        "sampled_occurrence_loads": sum(
+            row[6] for row in _GENERATION_CENSUS.values()
+        ),
+        "sampled_comparisons": sum(
+            row[8] for row in _GENERATION_CENSUS.values()
+        ),
+    }
+    if any(
+        normalized_top_numbers[field] != expected
+        for field, expected in expected_top_census.items()
+    ):
+        _generation_projection_failure("top generation census differs")
+
+    normalized = {
+        "format": GENERATION_PROJECTION_FORMAT,
+        "family_order": list(FAMILY_ORDER),
+        **{
+            field: normalized_top_numbers[field]
+            for field in top_numeric_fields
+            if field
+            not in {
+                "generation_ns_before_margin",
+                "package_bytes_before_margin",
+                "projected_generation_ns",
+                "projected_package_bytes",
+            }
+        },
+        "families": normalized_families,
+        "generation_ns_before_margin": normalized_top_numbers[
+            "generation_ns_before_margin"
+        ],
+        "package_bytes_before_margin": normalized_top_numbers[
+            "package_bytes_before_margin"
+        ],
+        "projected_generation_ns": normalized_top_numbers[
+            "projected_generation_ns"
+        ],
+        "projected_package_bytes": normalized_top_numbers[
+            "projected_package_bytes"
+        ],
+    }
+    root_oracle = _generation_projected_root_oracle(
+        root,
+        normalized,
+        normalized_families,
+    )
+    projected_index_bytes = len(canonical_json_line(root_oracle))
+    if normalized_top_numbers["projected_index_bytes"] != projected_index_bytes:
+        _generation_projection_failure("projected index byte cost differs")
+    generation_before_margin = (
+        normalized_top_numbers["source_catalog_precompute_ns"]
+        + normalized_top_numbers["shared_ns"]
+        + normalized_top_numbers["projected_index_ns"]
+        + sum(
+            family["fixed_family_ns"]
+            + family["projected_two_pass_ns"]
+            + family["projected_template_ns"]
+            for family in normalized_families
+        )
+    )
+    package_before_margin = (
+        normalized_top_numbers["shared_bytes"]
+        + projected_index_bytes
+        + sum(
+            family["fixed_family_bytes"]
+            + family["projected_load_bucket_bytes"]
+            + family["projected_template_bytes"]
+            for family in normalized_families
+        )
+    )
+    expected_top_derived = {
+        "generation_ns_before_margin": generation_before_margin,
+        "package_bytes_before_margin": package_before_margin,
+        "projected_generation_ns": 2 * generation_before_margin,
+        "projected_package_bytes": 2 * package_before_margin,
+    }
+    if any(
+        normalized_top_numbers[field] != expected
+        for field, expected in expected_top_derived.items()
+    ):
+        _generation_projection_failure("derived generation totals differ")
+    normalized_json = _canonical_json(normalized)
+    return _GenerationProjectionValidation(
+        normalized=normalized_json,
+        sha256=hashlib.sha256(normalized_json.encode("ascii")).hexdigest(),
+    )
 
 
 def _projection_int(value: Any, name: str, *, positive: bool = False) -> int:
