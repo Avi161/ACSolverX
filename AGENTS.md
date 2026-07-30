@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-29 Validate orchestration object syntax before execution
+
+- [TRAP] A malformed JavaScript object property in a compound tool call caused the module to fail at parse time, so neither the planned status update nor the read-only repository check executed.
+- [WORKS] Use explicit `key: value` syntax for every nested tool argument and, after any orchestration parse failure, rerun and verify every intended action rather than assuming an earlier expression partially ran.
+
 ### 2026-07-29 Read skill source locators verbatim
 
 - [TRAP] Synthesizing a plausible skill path instead of using its provided locator caused a failed lookup before the workflow began.
