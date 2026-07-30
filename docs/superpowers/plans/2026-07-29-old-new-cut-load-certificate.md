@@ -210,7 +210,7 @@ Do not push and do not commit the ignored report.
   witnesses without calling `build_manifest`.
 - Produces these exact immutable records:
 
-```python
+```text
 @dataclass(frozen=True)
 class CellFooterMetadata:
     source_cell_index: int
@@ -706,43 +706,558 @@ push.
 **Files:**
 - Modify: `.scratch/period_two_old_new_cut_load_verify.py`
 - Modify: `.scratch/test_period_two_old_new_cut_load_certificate.py`
+- Do not modify: generator, design, this plan, promise ledger, logs, proof
+  guard, solver, notebook, theorem memo, production/preflight package,
+  receipt, or attestation during Task 3 implementation.
 
 **Interfaces:**
-- Consumes: package-v2 index and seven content-addressed shards plus approved
-  upstream dependencies.
-- Produces: `verify_v2_package(index_path, run_id)`,
-  `IndependentReplayResult`, deterministic `VerificationProjection`, and the
-  frozen attestation payload builder.
+- Consumes: one bounded package-v2 index path, explicit run ID, canonical Task
+  2 generation-projection mapping, seven content-addressed shards, and the
+  eleven approved upstream source/data artifacts frozen in the generator's
+  current `EXPECTED_SOURCE_DIGESTS`; it imports neither generator nor retired
+  covariance checker.
+- Produces these exact independently declared Python 3.9-compatible records
+  after `from __future__ import annotations`:
 
-- [ ] **Step 1: Add RED package and semantic mutations**
+```text
+@dataclass(frozen=True)
+class EngineeringVerificationFailure(RuntimeError):
+    stage: str
+    detail: str
 
-Mutate one dependency, source row, coefficient, cell map, footprint, mask,
-comparison class, family value, compact schema/cell/witness/identity, footer,
-descriptor, and root field at a time.  Reseal all enclosing hashes so each
-test reaches the intended independent semantic check.
 
-- [ ] **Step 2: Implement independent source adapters and replay**
+@dataclass(frozen=True)
+class ProofAttemptFailure(RuntimeError):
+    stage: str
+    detail: str
 
-Without generator imports, reconstruct source rows, B identities/coordinates,
-compact templates, comparison methods, chronologies, histograms, load/cell
-parities, six family ledgers, summaries, and exact logical-v1 bytes.  Digest
-matches never replace semantic reconstruction.
 
-- [ ] **Step 3: Implement bounded verifier projection**
+@dataclass(frozen=True)
+class FamilyVerificationProjectionInput:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    full_old_load_count: int
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_comparison_replay_ns: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_replay_ns: int
+    fixed_family_ns: int
 
-Verify the registered preflight subset with independently computed exact
-integer denominators and fixed charges.  Produce verifier-only
-`VerificationProjection` time; do not overwrite, fold into, or restate Task
-2's generator-only `GenerationProjection`.  Reject a generator projection
-whose selected-old, selected-schema, tied-max-ID, full-count, or sampled-count
-denominators differ from independently observed values.
 
-- [ ] **Step 4: Verify and commit**
+@dataclass(frozen=True)
+class FamilyVerificationProjection:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    full_old_load_count: int
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_comparison_replay_ns: int
+    projected_comparison_replay_ns: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_replay_ns: int
+    projected_template_replay_ns: int
+    fixed_family_ns: int
+    verification_ns_before_margin: int
 
-Run focused verifier/mutation tests, generator regressions, Ruff 0.16.0,
-compile, diff/lock/process audits under 30 seconds.  Commit as
-`Independently replay old-new package v2`.  Do not create an attestation for a
-preflight package.
+
+@dataclass(frozen=True)
+class VerificationProjection:
+    format: str
+    family_order: tuple[str, ...]
+    root_index_descriptor_authentication_ns: int
+    shared_source_replay_ns: int
+    logical_v1_framing_finalization_ns: int
+    families: tuple[FamilyVerificationProjection, ...]
+    verification_ns_before_margin: int
+    projected_verification_ns: int
+
+
+@dataclass(frozen=True)
+class IndependentReplayResult:
+    run_id: str
+    scope: str
+    package_status: str
+    status: str
+    semantic_replay_complete: bool
+    attestable: bool
+    index_path: str
+    index_sha256: str
+    root_sha256: str
+    logical_v1_sha256: str | None
+    generation_projection_sha256: str
+    verification_projection: VerificationProjection
+
+
+class PhaseMetrics:
+    __init__(self, *, enabled: bool = False) -> None
+    add_stage(self, stage: str, elapsed: float) -> None
+    record(self, tag: str, byte_count: int) -> None
+    snapshot(self) -> dict[str, Any]
+```
+
+- Produces these exact APIs:
+
+```text
+def verify_v2_package(
+    index_path: Path,
+    run_id: str,
+    generation_projection: Mapping[str, Any],
+    *,
+    metrics: PhaseMetrics | None = None,
+) -> IndependentReplayResult
+
+
+def project_verification(
+    *,
+    root_index_descriptor_authentication_ns: int,
+    shared_source_replay_ns: int,
+    logical_v1_framing_finalization_ns: int,
+    families: Sequence[FamilyVerificationProjectionInput],
+) -> VerificationProjection
+
+
+def build_attestation_payload(
+    result: IndependentReplayResult,
+    verifier_sha256: str,
+    metrics: Mapping[str, Any],
+) -> dict[str, Any]
+```
+
+**Prerequisite defect gate:** current Task 2 `_generation_family_projection`
+requires strict per-family `sampled < full`, but the frozen base and singleton
+old selections are complete and have comparison denominators `5,376/5,376`
+and `8,064/8,064`.  Before Task 3 implementation, land a separate focused
+Task 2 RED/GREEN follow-up that permits `0 < sampled <= full`, permits equality
+only for the complete exact selected range with ratio-one exact output, and
+requires at least one strict family globally for comparisons and identities.
+Do not fold that generator/test repair into the Task 3 commit.
+
+- [ ] **Step 1: Write RED API, generation-binding, and projection tests**
+
+Add these named tests; the text after each name is its intended gate:
+
+    test_task3_api_records_and_python39_signatures_are_exact
+      gate: verifier-owned immutable types and exact callable signatures
+    test_task3_generation_projection_schema_and_canonical_binding_are_exact
+      gate: exact top/nested fields, normalized canonical JSON, retained SHA
+    test_task3_generation_projection_rejects_recursive_type_mutations
+      gate: bool-as-int, float, negative, non-ASCII, extra/missing nested field
+    test_task3_generation_projection_old_schema_tie_mutations_reach_selection_gate
+      gate: six literal old arrays and every-eighth union all tied maxima
+    test_task3_generation_projection_denominators_reach_independent_census_gate
+      gate: six family schema/identity/load/occurrence/comparison denominators
+    test_task3_generation_projection_complete_ratio_one_and_global_range
+      gate: local equality iff complete exact range; two global strict samples
+    test_task3_verification_projection_ceil_fixed_charges_and_margin_are_exact
+      gate: separate ceilings, each fixed charge once, one final factor two
+    test_task3_verification_projection_rejects_invalid_family_inputs
+      gate: bool/float/negative/nonpositive/repeated/incomplete/range failures
+    test_task3_verification_projection_has_no_bytes_or_generation_restatement
+      gate: verifier-only fields and no generator timing/byte copies
+
+The generation schema is copied literally from current Task 2.  Top fields
+are `format, family_order, full_schema_count, full_identity_count,
+sampled_source_loads, sampled_occurrence_loads, sampled_comparisons,
+source_catalog_precompute_ns, shared_ns, shared_bytes, projected_index_ns,
+projected_index_bytes, families, generation_ns_before_margin,
+package_bytes_before_margin, projected_generation_ns,
+projected_package_bytes`.  Each family has the exact 22 fields frozen in
+design Section 18, including sampled/projected load-record counts and bucket
+class count.  Every numeric scalar uses `type(value) is int`.
+
+Use the six literal old arrays from design Section 18 and the exact denominator
+table there.  Selected schemas are the zero-based ASCII indices `0,8,16,...`
+union every maximum-pump tie; sampled identities equal selected schema count
+times cell count.  Base and singleton exercise the allowed complete ratio-one
+comparison case.  At least one family remains strict in comparisons and one
+in identities.
+
+- [ ] **Step 2: Run the first guarded selector and record intended RED**
+
+Run:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task3_api_records or task3_generation_projection or task3_verification_projection'
+
+Expected: collection succeeds.  Failures identify the old two-argument
+`verify_v2_package`, missing immutable records, generation-projection decoder,
+canonical binding, and `project_verification`; no fixture opens a package.
+
+- [ ] **Step 3: Implement immutable records and exact projection boundaries**
+
+Declare the records and APIs above independently.  Normalize only list/tuple
+sequences to JSON arrays, validate every nested mapping field and exact scalar
+type, and hash canonical ASCII JSON without a terminal LF.  Retain only that
+generation-projection digest in `IndependentReplayResult`; never copy Task 2
+time or byte projections into `VerificationProjection`.
+
+Implement `ceil_ratio(x,n,d)=(x*n+d-1)//d`.  For each family compute separate
+projected comparison and template replay nanoseconds, then add the exact
+family charge.  Sum the three global fixed charges and all six family values
+once, then set `projected_verification_ns = 2 *
+verification_ns_before_margin`.  Enforce `0 < sampled <= full`; equality is
+valid only with the complete exact selected-old/schema range and must return
+the sampled component unchanged.  Enforce global strict range in both
+dimensions.
+
+Measure disjoint integer-nanosecond regions with `time.perf_counter_ns`:
+selected-old comparison replay, selected-schema template replay, and the
+remaining exact fixed family stream/direct-gate/footer work.  Measure root
+index plus descriptor authentication, shared/source replay, and logical-v1
+framing/finalization as three separate global charges.  No region contributes
+to two fields.
+
+- [ ] **Step 4: Run the projection selector GREEN**
+
+Run the exact guarded command from Step 2.  Expected: all selected tests pass
+below 30 seconds and no index or object is opened.
+
+- [ ] **Step 5: Write RED seven-descriptor and logical-fragment tests**
+
+Add:
+
+    test_task3_root_line_and_descriptor_authentication_are_bounded
+      gate: one capped root line, bounded EOF proof, fixed seven descriptors
+    test_task3_shared_then_ascii_family_open_order_is_exact
+      gate: shared first; C,P,Q,base,fixed,singleton after descriptor validation
+    test_task3_object_counters_authenticate_bytes_sha_tags_and_footer_prefix
+      gate: incremental bytes/hash/record/tag/footer agreement for every object
+    test_task3_production_stream_forbids_whole_object_materialization
+      gate: no read_text/read_bytes/global json.loads/deepcopy/list-or-tuple stream
+    test_task3_logical_v1_fragment_writer_matches_hand_built_literal_bytes
+      gate: exact literal tiny bytes, separators, escaping, keys, arrays, scalars
+    test_task3_logical_v1_fragment_sha_matches_hand_built_oracle
+      gate: incremental SHA-256 of those literal bytes
+    test_task3_logical_v1_key_and_family_orders_are_exact
+      gate: Section 13 sorted key lists and family keys C,P,Q,base,fixed,singleton
+    test_task3_family_stream_retains_only_reference_tables_and_current_cell
+      gate: no package, family ledger, all loads/cells/identity chunks in memory
+
+The hand-built oracle is a literal byte string, not output from either codec.
+It covers the exact top, family, cell, load, footprint, histogram, bucket/key,
+family summary, top summary, and template-catalog sorted-key orders in design
+Section 13.  Instrumented fake streams fail if the verifier reads beyond the
+line cap, opens a family before all descriptors validate, opens two objects at
+once, or accumulates all rows.
+
+- [ ] **Step 6: Run the streaming selector and record intended RED**
+
+Run:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task3_root_line or task3_shared_then_ascii or task3_object_counters or task3_production_stream or task3_logical_v1 or task3_family_stream'
+
+Expected: fixture construction succeeds.  Failures show that the foundation
+verifier defers production and materializes record tuples/family ledgers and
+that the independent fragment writer does not yet exist.
+
+- [ ] **Step 7: Implement the bounded production state machine and writer**
+
+Boundedly decode/hash the root's one canonical line and bounded EOF probe.
+Validate all descriptors in package order
+`shared,fixed,base,singleton,P,C,Q`.  Open shared first, retain only bounded
+dependency/source/84-token reference tables, then open family descriptors in
+canonical logical key order `C,P,Q,base,fixed,singleton`.  Wrap each binary
+iterator with incremental SHA, bytes, total/tag counts, and footer prefix
+counters; close and authenticate it before opening the next.
+
+Replace production `records` arrays and complete ledgers by explicit tag-state
+parsers.  A family retains only old-load, footprint, bucket-class, compact
+schema/cell/witness reference tables, the bounded per-family
+`identity_witness_ids` vector, one current cell, and rolling identity hashes;
+raw identity chunks are discarded.  Send reconstructed load, histogram, cell,
+summary, and template fragments as soon as canonical key order permits to a
+callback-based canonical writer.
+The production callback updates SHA-256 only; only the bounded oracle test may
+collect bytes.
+
+- [ ] **Step 8: Run the streaming selector GREEN and foundation regression**
+
+Run Step 6, then this separate bounded foundation selector:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'package_v2_root_decoder or package_v2_canonical_decoder or package_v2_masks or package_v2_tag_decoders'
+
+Expected: both selectors pass below 30 seconds without generating a package.
+
+- [ ] **Step 9: Write RED independent-source and exhaustive direct-gate tests**
+
+Add these tests and stated intended gates:
+
+    test_task3_reloads_all_approved_sources_without_generator_or_retired_checker
+      gate: exact eleven paths/digests/status checks and direct upstream imports
+    test_task3_shared_dependency_source_and_footer_mutations_reach_named_gate
+      gate: dependency/source/footer wire and live-source binding
+    test_task3_every_source_binding_obligation_reaches_independent_gate
+      gate: every Section 4 old/B proof field after resealing nested hashes
+    test_task3_all_21_anchor_rows_reach_direct_anchor_gate
+      gate: exhaustive ID/coefficient/provenance/index/integral-sum checks
+    test_task3_all_53_b_fibers_reach_direct_fiber_gate
+      gate: exhaustive active/inactive/alignment/sum/parity/witness checks
+    test_task3_all_84_identity_coordinate_rows_reach_direct_bijection_gate
+      gate: exhaustive token identity, coordinate, schema, source, digest checks
+    test_task3_family_header_old_footprint_bucket_and_footer_mutations
+      gate: every family reference/type/order/census/footer field
+    test_task3_all_48252_identity_positions_reach_direct_index_gate
+      gate: exhaustive schema-major/cell-minor/index/witness/rolling-hash coverage
+    test_task3_representative_template_semantic_mutations_cover_all_families
+      gate: schema/cell/core/affine/boundary/terminal/witness/pump replay
+    test_task3_comparison_method_order_chronology_key_and_bit_mutations
+      gate: independently recomputed comparison classification/contribution
+    test_task3_mask_zero_overlap_gap_reversal_and_popcount_mutations
+      gate: uint84 nonzero/disjoint/full-union/orientation/count invariants
+    test_task3_parity_census_summary_and_logical_hash_mutations
+      gate: load/cell/family xor, all censuses, completed logical-v1 equality
+
+Parameter IDs are exact and include `root-field`, `root-hash`,
+`descriptor-role`, `descriptor-family`, `descriptor-path`, `descriptor-hash`,
+`descriptor-bytes`, `descriptor-record-count`, `descriptor-tag-map`,
+`descriptor-order`, `shared-dependency`, `shared-source`, `shared-footer`,
+all source IDs `anchor-00..anchor-20`, `b-fiber-00..b-fiber-52`, and
+`b-token-00..b-token-83`; `family-header`, `old-load`, `footprint`,
+`bucket-class`, `load`, `cell-footer`, `template-header`, `template-schema`,
+`template-cell`, `template-witness`, `template-identity-chunk`,
+`template-footer`, `family-footer`; `schema`, `cell`, `primitive-core`,
+`affine`, `boundary`, `terminal`, `witness`, `pump`, `identity-index`;
+`module-method`, `module-order`, `chronology`, `chronology-order`, `bucket-key`,
+`contribution-bit`; `mask-zero`, `mask-overlap`, `mask-gap`, `mask-reversal`,
+`mask-popcount`; and `load-parity`, `cell-parity`, `family-parity`, `census`,
+`summary`, `logical-v1`.
+
+Every mutation reseals all enclosing object, descriptor, root, source, and
+catalog hashes required to reach its named gate.  Exhaustive 21/53/84/48,252
+coverage uses direct validators and rolling hashes; only one representative
+semantic mutation per family/gate invokes expensive replay.  Never run a full
+replay once per row or identity.
+
+- [ ] **Step 10: Run three bounded semantic RED selectors**
+
+Run the following separately:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task3_reloads_all or task3_shared_dependency or task3_every_source_binding or task3_all_21 or task3_all_53 or task3_all_84'
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task3_family_header or task3_all_48252 or task3_representative_template'
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task3_comparison_method or task3_mask_zero or task3_parity_census'
+
+Expected: collection and mutation resealing succeed; failures name missing
+independent source/semantic gates rather than an earlier hash or fixture gate.
+
+- [ ] **Step 11: Implement independent semantic replay in bounded slices**
+
+Independently declare the approved source paths/digests and directly reload
+the four upstream Python modules and four JSON manifests plus three proof
+notes.  Reconstruct complete source bindings, all inactive/active integral
+fibers, 21 anchors, 53 B fibers, 84 identity/coordinate rows, source digests,
+chronology, cells, compact schemas/witnesses/identities/pumps, comparisons,
+all token orientations and masks, histograms, load/cell/family parity, and
+all censuses/summaries.  Recompute integer sums before parity.
+
+Use cheap complete direct gates for every fixed-size row/index array.  Retain
+only the bounded reference tables and one current family/cell; stream both the
+wire-derived and source-derived logical-v1 fragments to independent hashers.
+After every semantic gate finishes for all six families, compare the frozen
+family table and the two logical-v1 hashes.  Digest equality supplements, and
+never replaces, the direct semantic checks.
+
+- [ ] **Step 12: Run the three semantic selectors GREEN**
+
+Run each Step 10 command once.  Expected: every selected test passes below 30
+seconds.  If a selector times out, reduce the fixture/direct-gate allocation;
+never rerun it unchanged or widen the deadline.
+
+- [ ] **Step 13: Write RED result, failure-taxonomy, and attestation tests**
+
+Add:
+
+    test_task3_failure_taxonomy_separates_engineering_and_proof_attempt
+      gate: malformed/dependency/projection versus completed semantic conflict
+    test_task3_preflight_returns_unattestable_projection_evidence_only
+      gate: preflight status, null logical hash, incomplete/unattestable flags
+    test_task3_production_result_requires_complete_replay_and_run_binding
+      gate: production scope/status, exact run/digests, every check passed
+    test_task3_attestation_payload_is_exact_pure_and_production_only
+      gate: exact nine fields/format and zero filesystem operations
+    test_task3_attestation_rejects_unattestable_preflight_incomplete_and_types
+      gate: status/scope/completeness/hash/string/metrics validation
+    test_task3_writes_no_package_receipt_attestation_or_theorem_artifact
+      gate: Task 3 has no durable or theorem side effect
+
+Patch `Path.open`, `Path.read_text`, `Path.read_bytes`, `Path.write_text`,
+`Path.write_bytes`, `Path.resolve`, `Path.stat`, builtin `open`, `os.replace`,
+and every module filesystem helper to raise while calling
+`build_attestation_payload`; the exact payload must still be returned.  Patch
+durable evidence helpers to raise during preflight and production result
+construction.
+
+- [ ] **Step 14: Run the taxonomy/attestation selector and record RED**
+
+Run:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task3_failure_taxonomy or task3_preflight_returns or task3_production_result or task3_attestation or task3_writes_no'
+
+Expected: semantic fixtures reach missing result classification and payload
+validation; no test creates an attestation file.
+
+- [ ] **Step 15: Implement bounded results and the pure payload constructor**
+
+Wrap malformed I/O/wire/dependency/projection/runtime failures as immutable
+`EngineeringVerificationFailure(stage, detail)`.  The proof guard owns
+timeouts.  Defer frozen family-table and logical-v1 equality decisions until
+the complete semantic replay; contradictions there raise immutable
+`ProofAttemptFailure(stage, detail)`.  Neither failure attests or implies a
+mathematical negative.
+
+Return `attestable=True`, `semantic_replay_complete=True`, and
+`status='independently-replayed'` only for complete `production-full /
+generated-awaiting-independent-replay` with the exact run binding.  Preflight
+returns only `status='preflight-projection-verified'`, null logical-v1 digest,
+and false completeness/attestability.
+
+Implement pure `build_attestation_payload` with format
+`period-two-old-new-cut-independent-attestation-v1` and exact fields
+`format,run_id,index_path,index_sha256,root_sha256,logical_v1_sha256,status,
+verifier_sha256,metrics`.  Reject invalid/unattestable inputs without any
+filesystem operation.  Task 4, not Task 3, will serialize it durably.
+
+- [ ] **Step 16: Run focused Task 3 GREEN selectors**
+
+Run Step 14, then run this Task 3-only selector once:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py -k 'task3_'
+
+Expected: every selected Task 3 test passes below 30 seconds.  No command runs
+an actual preflight or production package and no artifact is written.
+
+- [ ] **Step 17: Run Ruff, Python 3.9 compile, and document/scope audits**
+
+Run Ruff and compile separately:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with ruff==0.16.0 ruff check \
+    .scratch/period_two_old_new_cut_load_verify.py \
+    .scratch/test_period_two_old_new_cut_load_certificate.py
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 PYTHONPYCACHEPREFIX=.scratch/pycache \
+    PYTHONDONTWRITEBYTECODE=1 python3 scripts/run_proof_guarded.py \
+    --timeout-seconds 30 -- python3 -m py_compile \
+    .scratch/period_two_old_new_cut_load_verify.py \
+    .scratch/test_period_two_old_new_cut_load_certificate.py
+
+Then run these read-only checks:
+
+    awk '/^### Task 3:/{task=1} /^### Task 4:/{task=0} \
+      task && $0 !~ /rg -n.*TODO/ {print}' \
+      docs/superpowers/plans/2026-07-29-old-new-cut-load-certificate.md |
+      rg -n 'TODO|TBD|implement later|test(s)? above|Similar to Task|: \.\.\.'
+    rg -n 'read_text|read_bytes|global json.loads|deepcopy|complete family ledger|top-level bytes|write.*attestation|strict per-family' \
+      docs/superpowers/specs/2026-07-29-old-new-cut-load-certificate-design.md \
+      docs/superpowers/plans/2026-07-29-old-new-cut-load-certificate.md
+    rg -n 'period_two_old_new_cut_load_certificate|period_two_old_new_cut_covariance_checker' \
+      .scratch/period_two_old_new_cut_load_verify.py
+    git diff --check
+    git status --short
+    git diff --name-only
+    test ! -e .scratch/process-guard/active.json
+    test ! -e .scratch/period-two-old-new-cut-package-v2/index.json
+    test ! -e .scratch/period-two-old-new-cut-package-v2/attestation.json
+    ps -axo pid=,ppid=,pgid=,%cpu=,state=,comm=
+
+The placeholder scan has no match.  Inspect every contradiction hit: only
+explicit prohibitions, purity monkeypatches, and the recorded Task 2 defect may
+remain.  During Task 3 implementation `git diff --name-only` lists exactly the
+verifier and focused test.  The import scan has no match.  Lock and production
+absence predicates pass.  The safe process scan checks exact basenames only.
+
+- [ ] **Step 18: Run the broad focused-file suite once at the final gate**
+
+The focused file contains 300+ tests; do not run it broadly during earlier
+slices.  Run it exactly once here:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py
+
+Expected: the whole file passes below 30 seconds.  Do not rerun an unchanged
+timeout; reduce the implementation or test allocation and restart the final
+gate only after a material change.  Confirm again that no production/preflight
+package, receipt, attestation, theorem memo, or claim was created.
+
+- [ ] **Step 19: Stage the exact Task 3 implementation and commit**
+
+Run:
+
+    git add -f \
+      .scratch/period_two_old_new_cut_load_verify.py \
+      .scratch/test_period_two_old_new_cut_load_certificate.py
+    git diff --cached --check
+    git diff --cached --name-only
+    git commit -m "Independently replay old-new package v2"
+    git show --stat --oneline --decorate=short HEAD
+    git status --short
+
+The cached name list must contain exactly the verifier and focused test.  Do
+not stage a production/preflight package, projection file, receipt,
+attestation, theorem memo/claim, promise-ledger edit, log, guard, solver,
+notebook, design/plan edit, or ignored implementer report.  Do not push.
 
 ---
 

@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-30 Freeze verifier inputs and bounded canonical replay
+
+- [TRAP] Task 3 had no generation-projection input and promised complete logical-v1 family ledgers; its strict per-family sample rule also rejects the literal fully sampled base (`5,376/5,376`) and singleton (`8,064/8,064`) comparison families.
+- [WORKS] Before verifier code, freeze the canonical projection digest, seven-descriptor/one-family-at-a-time state machine, incremental logical-v1 writer, and `0 < sampled <= full` rule with complete-range equality plus global comparison/identity dynamic range.
+
 ### 2026-07-29 MMS02 proof artifacts under ignored `.scratch/`
 
 - [TRAP] `git add .scratch/mms02_sequential_donor_factorization*.py` refuses the new proof artifacts because `.scratch/` is ignored, even though the task explicitly requires canonical proof code and JSON there.

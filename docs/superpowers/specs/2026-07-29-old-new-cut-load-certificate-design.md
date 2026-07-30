@@ -625,8 +625,131 @@ thirteen keys and no others.
 
 ## 13. Logical-v1 reconstruction
 
-Decoding is a pure, exact inverse of encoding.  It does not run the proof
-ledger.
+Decoding is a pure, exact inverse of encoding, but production never
+materializes that inverse as a top-level dictionary, a complete family
+ledger, or a top-level `bytes` value.  The verifier has two independent
+streams: the package decoder emits logical-v1 fragments from authenticated
+wire rows, while semantic replay emits the same fragments from independently
+reloaded approved sources.  Every semantic obligation is checked directly;
+only after both streams finish are their exact logical-v1 SHA-256 values
+compared.  Digest equality never replaces any semantic check.
+
+The verifier starts with `from __future__ import annotations` and independently
+declares these Python 3.9-compatible records and APIs; it imports neither the
+generator nor the retired covariance checker:
+
+```text
+@dataclass(frozen=True)
+class EngineeringVerificationFailure(RuntimeError):
+    stage: str
+    detail: str
+
+
+@dataclass(frozen=True)
+class ProofAttemptFailure(RuntimeError):
+    stage: str
+    detail: str
+
+
+@dataclass(frozen=True)
+class FamilyVerificationProjectionInput:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    full_old_load_count: int
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_comparison_replay_ns: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_replay_ns: int
+    fixed_family_ns: int
+
+
+@dataclass(frozen=True)
+class FamilyVerificationProjection:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    full_old_load_count: int
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_comparison_replay_ns: int
+    projected_comparison_replay_ns: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_replay_ns: int
+    projected_template_replay_ns: int
+    fixed_family_ns: int
+    verification_ns_before_margin: int
+
+
+@dataclass(frozen=True)
+class VerificationProjection:
+    format: str
+    family_order: tuple[str, ...]
+    root_index_descriptor_authentication_ns: int
+    shared_source_replay_ns: int
+    logical_v1_framing_finalization_ns: int
+    families: tuple[FamilyVerificationProjection, ...]
+    verification_ns_before_margin: int
+    projected_verification_ns: int
+
+
+@dataclass(frozen=True)
+class IndependentReplayResult:
+    run_id: str
+    scope: str
+    package_status: str
+    status: str
+    semantic_replay_complete: bool
+    attestable: bool
+    index_path: str
+    index_sha256: str
+    root_sha256: str
+    logical_v1_sha256: str | None
+    generation_projection_sha256: str
+    verification_projection: VerificationProjection
+
+
+class PhaseMetrics:
+    __init__(self, *, enabled: bool = False) -> None
+    add_stage(self, stage: str, elapsed: float) -> None
+    record(self, tag: str, byte_count: int) -> None
+    snapshot(self) -> dict[str, Any]
+
+
+def verify_v2_package(
+    index_path: Path,
+    run_id: str,
+    generation_projection: Mapping[str, Any],
+    *,
+    metrics: PhaseMetrics | None = None,
+) -> IndependentReplayResult
+
+
+def project_verification(
+    *,
+    root_index_descriptor_authentication_ns: int,
+    shared_source_replay_ns: int,
+    logical_v1_framing_finalization_ns: int,
+    families: Sequence[FamilyVerificationProjectionInput],
+) -> VerificationProjection
+
+
+def build_attestation_payload(
+    result: IndependentReplayResult,
+    verifier_sha256: str,
+    metrics: Mapping[str, Any],
+) -> dict[str, Any]
+```
+
+`PhaseMetrics` is separately declared in the verifier.  Its elapsed values
+are out-of-band observations; they never enter package bytes.  The six frozen
+records above contain only the run/digest/status/projection values needed by
+the Task 4 coordinator.
 
 For one cell and one old load, combine the old-load row with each row in its
 footprint interval.  Expand each `load` record through its bucket class and
@@ -657,26 +780,53 @@ The logical cell counts are derived:
     comparison_count = occurrence_load_count * 84
 
 The template catalog is reconstructed by dropping positional tags and indices
-from schema, cell, witness, and identity-chunk rows, concatenating identity
-chunks, and restoring the three footer digests.  The family summary is the
-three count fields from the family footer.  The top-level logical-v1 object is:
+from schema, cell, witness, and identity-chunk rows and restoring the three
+footer digests.  Identity chunks are consumed in order by the direct identity
+validator and appended only to the bounded per-family
+`identity_witness_ids` reference vector required by logical-v1; raw chunks and
+complete wire records are never retained.  The family summary is the three
+count fields from the family footer.  The logical-v1 mapping shapes and
+canonical sorted-key orders are frozen as follows:
 
-    format = logical_v1_format
-    domain = root domain
-    status = root status
-    summary = emitted_summary
-    dependency_digests = shared dependency rows
-    source_bindings = shared source-binding value
-    b_identity_table = shared B identities
-    b_identity_digest = root b_identity_digest
-    family_ledgers = six reconstructed family ledgers
+    top = b_identity_digest, b_identity_table, dependency_digests, domain,
+          family_ledgers, format, source_bindings, status, summary
+    family_ledgers keys = C, P, Q, base, fixed, singleton
+    family ledger = cells, family, summary, template_catalog
+    cell = cell_id, comparison_count, load_count, loads,
+           occurrence_load_count, odd_load_ids, value
+    load = coefficient, footprint_bindings, histograms, load_id,
+           occurrence_footprint, old_token_id, source_members, value
+    footprint binding = label_schema, leaf, module_schema, occurrence,
+                        occurrence_slot, polarity, source_members,
+                        source_slot, token_id
+    histogram = buckets, comparison_count, old_leaf, old_occurrence,
+                old_polarity, one_count, value
+    bucket = count, key, mask
+    bucket key = b_coordinate, b_source_class, chronology, chronology_order,
+                 contribution_bit, equality_exclusion, label_method,
+                 label_order, module_method, module_order, old_leaf,
+                 old_occurrence, old_polarity
+    family summary = comparisons, load_rows, occurrence_loads
+    top summary = active_comparisons, b_tokens_per_occurrence,
+                  footprint_sizes, load_rows, occurrence_loads,
+                  template_counts, total_load_rows,
+                  total_occurrence_loads, total_templates
+    template catalog = catalog_sha256, cell_count, cell_table, family,
+                       field_orders, format, identity_order, identity_sha256,
+                       identity_witness_ids, replay_sha256, schema_count,
+                       schema_table, template_count, typed_encoding,
+                       witness_count, witness_table
 
-Only the independent Task 3 verifier reconstructs this top-level object and
-the six complete family ledgers.  Task 2 generation computes the exact values
-needed by the wire records but never builds either object in memory.
+Every other mapping, including dependency, source-binding, identity,
+`field_orders`, footprint-size, and family-count maps, uses the same canonical
+UTF-8/ASCII key ordering as `sort_keys=True`.  Arrays preserve their declared
+logical order.  A canonical fragment writer emits `{`, `}`, `[`, `]`, commas,
+colons, sorted encoded keys, and canonical scalar spellings directly into an
+update callback.  Production supplies SHA-256 callbacks only; the tiny
+literal oracle test may supply a bounded bytearray callback.  There is no
+production call to `json.dumps` on a family ledger or top-level value.
 
-The generator's tiny fixture encoder and the verifier's independent decoder
-must satisfy:
+The generator's tiny fixture encoder and verifier decoder must still satisfy:
 
     logical_v1(v2_encode(v1_fixture)) == v1_fixture
 
@@ -702,6 +852,28 @@ domains, and all cross-record references are validated before use.
 No v2 API performs a whole production `read_text`, `read_bytes`, global
 `json.loads`, `deepcopy`, or top-level canonical serialization.  Per-line JSON
 decoding and bounded chunk comparisons are permitted.
+
+Production verification is one seven-descriptor state machine.  It boundedly
+decodes and hashes the single root line, proves EOF with a bounded second
+read, validates all seven descriptors in the fixed package order
+`shared, fixed, base, singleton, P, C, Q`, and only then opens an object.  It
+opens the shared shard first.  Because logical-v1 object keys are canonical
+ASCII order, it may then open family shards in
+`C, P, Q, base, fixed, singleton` order by using the already authenticated
+descriptors; descriptor order itself never changes.
+
+Each object is a bounded binary line iterator wrapped by incremental byte,
+SHA-256, total-record, per-tag-record, records-before-footer, and
+bytes-before-footer counters.  The footer is checked before the stream is
+closed, then descriptor bytes/hash/record count/tag map are checked.  Only one
+object and one current family/cell are live.  The shared dependency rows,
+source-binding value, and 84 identity/coordinate references are bounded
+retained tables.  A family may retain its complete small old-load, footprint,
+bucket-class, schema, cell, witness, and identity-witness-ID reference tables,
+but it may not retain all load rows, all cell ledgers, raw identity chunks, a
+complete family ledger, the seven-shard package, or a top-level byte string.  Reconstructed
+load, cell, histogram, identity, and template fragments are checked and sent
+to the logical-v1 writer as soon as their references are available.
 
 ## 15. Mask encoding
 
@@ -782,17 +954,46 @@ serialization, coordinator sequencing, and the rule that a receipt may be
 written only after a fully fsynced commit.  The receipt format is
 `period-two-old-new-cut-generation-receipt-v1`.
 
-The independent verifier receives the same run ID and, only after semantic
-replay, may write an attestation with exact fields:
+The independent verifier receives the same nonempty run ID and returns an
+`IndependentReplayResult`; it never writes an attestation.  Only a complete
+`production-full` replay of package status
+`generated-awaiting-independent-replay`, with the exact run binding and every
+wire, dependency, projection, semantic, census, parity, and logical-v1 check
+passed, returns `semantic_replay_complete=True`, `attestable=True`, and status
+`independently-replayed`.  A preflight may return status
+`preflight-projection-verified` only after its projection evidence passes; its
+logical-v1 digest is null and it remains semantically incomplete and
+unattestable.
+
+`build_attestation_payload(result, verifier_sha256, metrics)` is pure.  It
+rejects an unattestable, preflight, semantically incomplete, wrong-status, or
+wrong-scope result; empty strings; a noncanonical index path; a missing or
+non-lowercase 64-hex digest; and metrics outside the fixed schema.  It returns
+exactly these fields and format value, without opening, reading, statting,
+resolving, creating, replacing, or writing any path:
 
     format, run_id, index_path, index_sha256, root_sha256, logical_v1_sha256,
     status, verifier_sha256, metrics
 
+    format = period-two-old-new-cut-independent-attestation-v1
+
 The integrated coordinator owns the fixed run ID, production paths, receipt,
-and attestation.  It rejects a stale or mismatched receipt, a preflight status,
-an index/root mismatch, or any verifier output not bound to the same run.
-Task 1 implements none of these production artifacts beyond the frozen
-interfaces.
+and durable attestation serialization.  It rejects a stale or mismatched
+receipt, a preflight status, an index/root mismatch, or any verifier output
+not bound to the same run.  A purity test monkeypatches every filesystem
+primitive reachable from the verifier module to raise and still requires the
+exact payload.  Task 1 implements none of these production artifacts beyond
+the frozen interfaces.
+
+Malformed I/O, noncanonical wire data, dependency/source loading failure,
+descriptor mismatch, projection-schema/binding/denominator mismatch, and
+runtime instrumentation failure raise immutable
+`EngineeringVerificationFailure` records.  Timeout remains a guard-owned
+engineering failure.  Expected family-table comparison and logical-v1
+equality are deferred until the complete semantic replay finishes; a
+contradiction there raises `ProofAttemptFailure`.  Both are bounded failures.
+Neither is evidence against AC or stable AC, and neither may produce an
+attestable result.
 
 ## 18. Projection and execution gates
 
@@ -802,6 +1003,71 @@ literal selections, and projected totals.  It reports generator-only time and
 package bytes.  Its format is
 `period-two-old-new-cut-generation-projection-v1`.  It does not report or
 estimate verifier time.
+
+Task 3 accepts that value only through the explicit `generation_projection`
+mapping in `verify_v2_package`.  The verifier independently declares this
+canonical schema.  The top-level fields are exactly:
+
+    format, family_order, full_schema_count, full_identity_count,
+    sampled_source_loads, sampled_occurrence_loads, sampled_comparisons,
+    source_catalog_precompute_ns, shared_ns, shared_bytes,
+    projected_index_ns, projected_index_bytes, families,
+    generation_ns_before_margin, package_bytes_before_margin,
+    projected_generation_ns, projected_package_bytes
+
+Each of the six `families` entries has exactly:
+
+    family, selected_old_indices, selected_schema_indices,
+    tied_max_schema_ids, full_schema_count, full_comparisons,
+    sampled_comparisons, sampled_two_pass_ns, projected_two_pass_ns,
+    sampled_load_bucket_bytes, projected_load_bucket_bytes,
+    sampled_load_record_count, projected_load_record_count,
+    projected_bucket_class_count, full_identity_count,
+    sampled_identity_count, sampled_template_ns, projected_template_ns,
+    sampled_template_bytes, projected_template_bytes, fixed_family_ns,
+    fixed_family_bytes
+
+Mappings require exact string-key sets.  Sequence fields accept only list or
+tuple, are normalized to JSON arrays, and otherwise retain exact order.
+Every integer field uses `type(value) is int`; booleans, floats, negative
+counts, non-string IDs, non-ASCII IDs, duplicate indices, and unknown nested
+values fail before any projection arithmetic.  The normalized mapping is
+encoded with ASCII canonical JSON, sorted keys, and compact separators but no
+terminal LF.  Its SHA-256 is retained as
+`generation_projection_sha256`.  No Task 2 time or byte field is copied into
+`VerificationProjection`.
+
+Task 3 independently rederives the exact old selections rather than importing
+them:
+
+    fixed     [0,8,15,23,31,38,46,54,61,69]
+    base      [0,1]
+    singleton [0]
+    P         [0,3,5,8,10,13,16,18,21,23,26,28,31]
+    C         [0,19,38]
+    Q         [0,15,30,46,61,76,91]
+
+It also independently ASCII-sorts each full schema table and requires
+`selected_schema_indices` to be the exact union of zero-based indices
+`0,8,16,...` and every index tied for the maximum pump count; the complete
+ASCII-sorted tied ID tuple must match `tied_max_schema_ids`.  The exact
+source-derived denominators are:
+
+| family | full schemas | cells | full identities | full/sample loads | full/sample occurrences | full/sample comparisons |
+|---|---:|---:|---:|---:|---:|---:|
+| fixed | 192 | 16 | 3,072 | 1,120 / 160 | 1,120 / 160 | 94,080 / 13,440 |
+| base | 128 | 16 | 2,048 | 32 / 32 | 64 / 64 | 5,376 / 5,376 |
+| singleton | 129 | 16 | 2,064 | 16 / 16 | 96 / 96 | 8,064 / 8,064 |
+| P | 218 | 54 | 11,772 | 1,728 / 702 | 3,456 / 1,404 | 290,304 / 117,936 |
+| C | 239 | 16 | 3,824 | 624 / 48 | 1,248 / 96 | 104,832 / 8,064 |
+| Q | 398 | 64 | 25,472 | 5,888 / 448 | 11,776 / 896 | 989,184 / 75,264 |
+| total | 1,304 |  | 48,252 | 9,408 / 1,406 | 17,760 / 2,716 | 1,491,840 / 228,144 |
+
+For each family the sampled schema count is the length of its independently
+reconstructed selected-schema set and sampled identities equal that count
+times the family cell count.  The verifier rejects any selected-old,
+selected-schema, tied-ID, schema, identity, load, occurrence, or comparison
+denominator mismatch before trusting the projection digest.
 
 For nonnegative integers `x`, `n`, and positive `d`, the only scaling
 operation is exact ceiling division:
@@ -822,9 +1088,17 @@ projections are exactly:
     template_ns_f = ceil_ratio(T_f, I_f, i_f)
     template_bytes_f = ceil_ratio(S_f, I_f, i_f)
 
-All denominators must be positive and have dynamic range:
-`0 < c_f < C_f` and `0 < i_f < I_f`.  Counts and bytes are never derived
-through floating-point arithmetic.
+All denominators satisfy `0 < c_f <= C_f` and `0 < i_f <= I_f`.  Equality is
+allowed only when the corresponding selected-old or selected-schema indices
+are the complete exact range; that component has ratio one and its projected
+time/count/bytes must equal the sampled exact component.  At least one family
+must satisfy `c_f < C_f` and at least one family must satisfy `i_f < I_f`, so
+the complete preflight has global dynamic range in both dimensions.  Counts
+and bytes are never derived through floating-point arithmetic.  The current
+Task 2 implementation's strict per-family inequality rejects the legitimate
+fully sampled base and singleton comparison families; that is a focused code
+defect to repair before Task 3 implementation, not a reason to change these
+literal selections.
 
 The following are measured or encoded at their full size and are fixed
 charges, never ratio-scaled: cold source loading and complete catalog
@@ -852,9 +1126,44 @@ Let `F_ns` and `F_bytes` be the sums of those fixed charges.  Task 2 computes:
 The factor two is applied once, after every fixed and upward-rounded variable
 component has been summed.  No component is doubled separately.
 
-Task 3 supplies an independent verifier-time projection.  Task 5 runs the
-actual 60-second preflight and blocks production unless Task 2's projected
-generator time plus Task 3's projected verifier time is at most
+Task 3 supplies an independent verifier-time projection with format
+`period-two-old-new-cut-verification-projection-v1`.  For family `f`, let
+`R_f` be sampled comparison-replay nanoseconds, `T_f` sampled
+template-replay nanoseconds, and `K_f` exact fixed-family nanoseconds.  It
+computes separately:
+
+The verifier measures those three disjoint regions with `time.perf_counter_ns`
+while replaying the independently reconstructed selected-old and
+selected-schema domains.  `K_f` covers that family's authenticated stream,
+reference-table validation, direct exhaustive index gates, footer/census
+checks, and other work not already timed in `R_f` or `T_f`; logical-v1
+framing/finalization remains global.  No elapsed region is charged twice.
+
+    comparison_replay_ns_f = ceil_ratio(R_f, C_f, c_f)
+    template_replay_ns_f = ceil_ratio(T_f, I_f, i_f)
+    family_verification_ns_f =
+        K_f + comparison_replay_ns_f + template_replay_ns_f
+
+The three exact nonnegative global fixed charges are
+`root_index_descriptor_authentication_ns`, `shared_source_replay_ns`, and
+`logical_v1_framing_finalization_ns`.  Therefore:
+
+    verification_ns_before_margin =
+        root_index_descriptor_authentication_ns +
+        shared_source_replay_ns +
+        logical_v1_framing_finalization_ns +
+        sum(family_verification_ns_f for every family f)
+    projected_verification_ns = 2 * verification_ns_before_margin
+
+Each fixed charge is added once and the final factor two is applied once.
+Task 3 uses the same per-family full-sample exception and two global
+dynamic-range requirements stated above.  It rejects booleans, floats,
+negative measurements, nonpositive denominators, incomplete/repeated family
+inputs, invalid selection/range equality, and nonglobal sampling.  It has no
+byte projection and restates none of Task 2's timing or byte projections.
+
+Task 5 runs the actual 60-second preflight and blocks production unless Task
+2's projected generator time plus Task 3's projected verifier time is at most
 `600_000_000_000` integer nanoseconds and Task 2's projected package bytes,
 including the exact projected index, are at most 100,000,000.  No
 floating-point conversion participates in either gate.  The immutable actual
@@ -910,10 +1219,46 @@ parity.  A bounded test monkeypatches `build_manifest` to raise and requires
 every Task 2 adapter, iterator, projection path, and receipt-payload
 constructor to continue to pass.
 
-Independent verification repeats semantic reconstruction without generator
-imports.  Whole-package review checks source binding, integer-before-parity
-aggregation, all-power pumping, mask completeness, family arithmetic,
-resource projections, receipt binding, and theorem scope.
+Independent verification repeats semantic reconstruction without generator or
+retired-checker imports.  Task 3 mutations reseal the object digest,
+descriptor metadata, root hash, and any nested catalog/source digest needed
+to reach the named semantic gate.  The complete matrix is:
+
+- every root field and root hash; every descriptor role/family/path/hash/byte
+  count/record count/complete tag-count map/order; and missing, repeated, or
+  reordered descriptors;
+- shared dependency rows, source-binding row, all 84 identity rows, all 84
+  coordinate rows, the shared footer, and every source-binding obligation in
+  Section 4;
+- each of the 21 anchor rows and each of the 53 B fibers through exhaustive
+  cheap direct index gates, including inactive/active status, aligned
+  coefficients/members, integral sum before parity, witnesses, slots,
+  schemas, provenance, and digests;
+- every family header field; every old-load, footprint, and bucket reference;
+  every load/cell/template/footer field; and truncated, repeated, skipped, or
+  reordered records;
+- schema, cell, witness, pump, and identity-chunk changes in every family.
+  All 48,252 identity positions pass an exhaustive direct index/reference and
+  rolling-hash gate; representative semantic mutations in each family cover
+  the more expensive primitive-core, affine, boundary, terminal, witness,
+  and pumping replay gates.  The suite never launches one expensive complete
+  replay per identity;
+- comparison method/order, chronology/key/order, equality exclusion, and
+  contribution bit; mask zero, overlap, gap, bit reversal, out-of-range bit,
+  and count/popcount mismatch; load/cell/family parity; every census and root
+  summary; and final logical-v1 equality; and
+- generation-projection root/nested fields, canonical digest, literal old
+  selections, every-eighth-plus-all-tied-max schema selection, tied IDs,
+  every full/sample denominator, full-sample exception, and both global
+  dynamic-range requirements; verifier projection fixed charges, family
+  order, exact ceiling arithmetic, and single final margin.
+
+Every named test states the wire, dependency, direct semantic, completed
+proof-attempt, projection, or purity gate it intends to reach.  A mutation
+that is rejected earlier than that gate is repaired before GREEN.  Whole-
+package review checks source binding, integer-before-parity aggregation,
+all-power pumping, mask completeness, family arithmetic, projection binding,
+pure attestation construction, and theorem scope.
 
 ## 20. Preserved nonclaims
 
@@ -922,6 +1267,10 @@ fixture proves only codec and publication mechanics.  A preflight package is
 not a certificate.  A production package with status
 `generated-awaiting-independent-replay` is not independently verified.  A
 receipt is not an attestation, and an attestation is not an AC move sequence.
+Task 3 code, its projection evidence, and an unattestable preflight result do
+not prove the positive-chamber lemma.  An engineering failure, timeout, or
+completed proof-attempt contradiction is a bounded outcome only and does not
+refute any AC or stable-AC statement.
 
 Nothing here proves `Q(A_(n,d))=[d=0]`, closes the `d=0` endpoint, extends the
 cut outside `n>=0,d>=1`, proves full covariance without integration, or proves
