@@ -1,5 +1,6 @@
 import copy
 import functools
+import gc
 import hashlib
 import importlib.util
 import io
@@ -8,6 +9,7 @@ import operator
 import re
 import sys
 import tracemalloc
+import weakref
 from dataclasses import fields, replace
 from pathlib import Path
 from types import SimpleNamespace
@@ -3816,7 +3818,7 @@ def test_task2_adapters_pass_when_build_manifest_is_monkeypatched_to_raise(
         shared_ns=1,
         shared_bytes=1,
         projected_index_ns=1,
-        projected_index_bytes=1,
+        projected_index_input=_task2_fix1_projected_index_input(module),
         families=projection_inputs,
     )
     assert projection.format == "period-two-old-new-cut-generation-projection-v1"
@@ -4320,8 +4322,22 @@ def _task2_mutate_histogram(histogram, mutation):
     elif mutation == "token-bit-reversal":
         for bucket in buckets:
             bucket["mask"] = f"{_task2_reverse_84_bits(int(bucket['mask'], 16)):021x}"
-    elif mutation in {"stored-count", "mask-popcount"}:
+    elif mutation == "stored-count":
         buckets[0]["count"] += 1
+    elif mutation == "mask-popcount":
+        donor_index = next(
+            index
+            for index, bucket in enumerate(buckets)
+            if bin(int(bucket["mask"], 16)).count("1") > 1  # noqa: FURB161
+        )
+        receiver_index = next(
+            index for index in range(len(buckets)) if index != donor_index
+        )
+        donor_mask = int(buckets[donor_index]["mask"], 16)
+        receiver_mask = int(buckets[receiver_index]["mask"], 16)
+        moved_bit = donor_mask & -donor_mask
+        buckets[donor_index]["mask"] = f"{donor_mask ^ moved_bit:021x}"
+        buckets[receiver_index]["mask"] = f"{receiver_mask | moved_bit:021x}"
     elif mutation == "bucket-key":
         buckets[0]["key"]["b_source_class"] += "-mutated"
     elif mutation == "contribution-bit":
@@ -4366,10 +4382,22 @@ def test_task2_every_footprint_partition_mutation_fails_closed(
         "occurrence-load-census",
         "comparison-census",
     }:
-        if mutation in {"cell-parity", "family-parity"}:
+        if mutation == "cell-parity":
             footers = list(discovery.cell_footers)
             footers[0] = replace(footers[0], value=footers[0].value ^ 1)
             discovery = replace(discovery, cell_footers=tuple(footers))
+        elif mutation == "family-parity":
+            original_expected = module._expected_family_value
+
+            def mutated_family_value(family, cell):
+                value = original_expected(family, cell)
+                return (
+                    value ^ 1
+                    if cell == catalog.families[family].cells[0]
+                    else value
+                )
+
+            monkeypatch.setattr(module, "_expected_family_value", mutated_family_value)
         elif mutation == "source-load-census":
             discovery = replace(discovery, load_rows=discovery.load_rows + 1)
         elif mutation == "occurrence-load-census":
@@ -4378,12 +4406,21 @@ def test_task2_every_footprint_partition_mutation_fails_closed(
             )
         else:
             discovery = replace(discovery, comparisons=discovery.comparisons + 1)
+    elif mutation == "token-bit-reversal":
+        original_comparison = module.comparison_record
+
+        def reversed_token_bit(*args, **kwargs):
+            comparison = dict(original_comparison(*args, **kwargs))
+            comparison["token_index"] = 83 - comparison["token_index"]
+            return comparison
+
+        monkeypatch.setattr(module, "comparison_record", reversed_token_bit)
     else:
         original = module._generation_histogram
 
         def mutated_histogram(*args, **kwargs):
-            histogram, comparisons = original(*args, **kwargs)
-            return _task2_mutate_histogram(histogram, mutation), comparisons
+            histogram = original(*args, **kwargs)
+            return _task2_mutate_histogram(histogram, mutation)
 
         monkeypatch.setattr(module, "_generation_histogram", mutated_histogram)
     with pytest.raises(module.CertificateFailure):
@@ -4480,7 +4517,7 @@ def _task2_arithmetic_projection():
         shared_ns=20,
         shared_bytes=100,
         projected_index_ns=40,
-        projected_index_bytes=200,
+        projected_index_input=_task2_fix1_projected_index_input(module),
         families=inputs,
     )
 
@@ -4493,8 +4530,12 @@ def test_task2_projection_uses_integer_ceiling_and_separate_denominators() -> No
     assert module.ceil_ratio(19, 13, 4) == 62
     assert projection.generation_ns_before_margin == 142
     assert projection.projected_generation_ns == 284
-    assert projection.package_bytes_before_margin == 725
-    assert projection.projected_package_bytes == 1_450
+    assert projection.package_bytes_before_margin == (
+        100 + projection.projected_index_bytes + 300 + 63 + 62
+    )
+    assert projection.projected_package_bytes == 2 * (
+        100 + projection.projected_index_bytes + 300 + 63 + 62
+    )
     target = projection.families[0]
     assert target.projected_two_pass_ns == 19
     assert target.projected_template_ns == 23
@@ -4505,37 +4546,25 @@ def test_task2_projection_uses_integer_ceiling_and_separate_denominators() -> No
 def test_task2_projection_charges_full_precompute_shared_and_family_tables() -> None:
     module, inputs, projection = _task2_arithmetic_projection()
     assert projection.generation_ns_before_margin == 10 + 20 + 30 + 40 + 19 + 23
-    assert projection.package_bytes_before_margin == 100 + 200 + 300 + 63 + 62
+    assert projection.package_bytes_before_margin == (
+        100 + projection.projected_index_bytes + 300 + 63 + 62
+    )
     changed = module.project_generation(
         source_catalog_precompute_ns=11,
         shared_ns=22,
         shared_bytes=103,
         projected_index_ns=44,
-        projected_index_bytes=205,
+        projected_index_input=_task2_fix1_projected_index_input(module),
         families=(replace(inputs[0], fixed_family_ns=37, fixed_family_bytes=311), *inputs[1:]),
     )
     assert changed.generation_ns_before_margin - projection.generation_ns_before_margin == 1 + 2 + 4 + 7
-    assert changed.package_bytes_before_margin - projection.package_bytes_before_margin == 19
-
-
-def _task2_zero_digest_oracle(value):
-    if isinstance(value, dict):
-        return {key: _task2_zero_digest_oracle(item) for key, item in value.items()}
-    if isinstance(value, list):
-        return [_task2_zero_digest_oracle(item) for item in value]
-    if isinstance(value, str):
-        if re.fullmatch(r"[0-9a-f]{64}", value):
-            return "0" * 64
-        match = re.fullmatch(r"objects/[0-9a-f]{64}\.jsonl", value)
-        if match:
-            return f"objects/{'0' * 64}.jsonl"
-    return value
+    assert changed.package_bytes_before_margin - projection.package_bytes_before_margin == 3 + 11
 
 
 def test_task2_projected_index_oracle_uses_actual_root_and_64_hex_fields() -> None:
     module, inputs = _task2_projection_inputs()
-    encoded = module.encode_tiny_v2_package(literal_package_v2_logical_fixture())
-    oracle = _task2_zero_digest_oracle(copy.deepcopy(encoded.index))
+    index_input = _task2_fix1_projected_index_input(module)
+    oracle = module.build_projected_index_oracle(index_input)
     assert set(oracle) == set(module.ROOT_INDEX_FIELDS)
     assert all(
         len(descriptor["sha256"]) == 64 and descriptor["sha256"] == "0" * 64
@@ -4547,7 +4576,7 @@ def test_task2_projected_index_oracle_uses_actual_root_and_64_hex_fields() -> No
         shared_ns=1,
         shared_bytes=1,
         projected_index_ns=1,
-        projected_index_bytes=projected_index_bytes,
+        projected_index_input=index_input,
         families=inputs,
     )
     assert projection.projected_index_bytes == projected_index_bytes
@@ -4580,7 +4609,7 @@ def test_task2_generation_projection_is_deterministic_and_has_no_floats() -> Non
         shared_ns=20,
         shared_bytes=100,
         projected_index_ns=40,
-        projected_index_bytes=200,
+        projected_index_input=_task2_fix1_projected_index_input(module),
         families=tuple(reversed(inputs)),
     )
     assert repeated == projection
@@ -4605,7 +4634,7 @@ def test_task2_generation_projection_is_deterministic_and_has_no_floats() -> Non
                 shared_ns=20,
                 shared_bytes=100,
                 projected_index_ns=40,
-                projected_index_bytes=200,
+                projected_index_input=_task2_fix1_projected_index_input(module),
                 families=(invalid, *inputs[1:]),
             )
     with pytest.raises(module.CertificateFailure):
@@ -4614,7 +4643,7 @@ def test_task2_generation_projection_is_deterministic_and_has_no_floats() -> Non
             shared_ns=20,
             shared_bytes=100,
             projected_index_ns=40,
-            projected_index_bytes=200,
+            projected_index_input=_task2_fix1_projected_index_input(module),
             families=inputs[:-1],
         )
 
@@ -4690,3 +4719,414 @@ def test_task2_writes_no_production_package_or_durable_evidence() -> None:
         for path in protected
     }
     assert after == before
+
+
+def _task2_fix1_mutated_catalog(module, catalog, mutation):
+    families = dict(catalog.families)
+    family = families["Q"]
+    if mutation == "missing-schema":
+        schemas = dict(family.schemas)
+        schemas.pop(max(schemas))
+        families["Q"] = replace(family, schemas=schemas)
+        return replace(catalog, families=families)
+    if mutation == "replaced-schema":
+        schemas = dict(family.schemas)
+        schema_id = max(schemas)
+        schema = schemas[schema_id]
+        schemas[schema_id] = replace(
+            schema,
+            blocks=(*schema.blocks, ("mutated", (1,), None)),
+        )
+        families["Q"] = replace(family, schemas=schemas)
+        return replace(catalog, families=families)
+    if mutation == "missing-cell":
+        families["Q"] = replace(family, cells=family.cells[:-1])
+        return replace(catalog, families=families)
+    if mutation == "replaced-cell":
+        cells = list(family.cells)
+        cells[-1] = replace(
+            cells[-1],
+            base_values=tuple(value + 1 for value in cells[-1].base_values),
+        )
+        families["Q"] = replace(family, cells=tuple(cells))
+        return replace(catalog, families=families)
+    if mutation == "replaced-identity":
+        rows = [dict(row) for row in catalog.b_identity_table]
+        rows[-1]["token_id"] += "-mutated"
+        table = tuple(rows)
+        return replace(
+            catalog,
+            b_identity_table=table,
+            b_identity_digest=module._identity_digest(table),
+        )
+    raise AssertionError(f"unknown catalog mutation: {mutation}")
+
+
+@pytest.mark.parametrize(
+    "entry",
+    ("sample-census", "shared", "discover", "family"),
+)
+@pytest.mark.parametrize(
+    "mutation",
+    (
+        "missing-schema",
+        "replaced-schema",
+        "missing-cell",
+        "replaced-cell",
+        "replaced-identity",
+    ),
+)
+def test_task2_fix1_every_entry_rejects_incomplete_or_replaced_full_catalog(
+    task2_catalog_fixture,
+    task2_singleton_discovery,
+    entry,
+    mutation,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    mutated = _task2_fix1_mutated_catalog(module, catalog, mutation)
+    with pytest.raises(module.CertificateFailure, match="full generation catalog"):
+        if entry == "sample-census":
+            module.preflight_sample_census(mutated)
+        elif entry == "shared":
+            next(
+                module.iter_shared_records(
+                    mutated,
+                    scope=module.PREFLIGHT_SCOPE,
+                    status=module.PREFLIGHT_STATUS,
+                )
+            )
+        elif entry == "discover":
+            module.discover_family_generation(
+                mutated,
+                "singleton",
+                selected_old_indices=(0,),
+            )
+        else:
+            next(
+                module.iter_family_records(
+                    mutated,
+                    task2_singleton_discovery,
+                    scope=module.PREFLIGHT_SCOPE,
+                    selected_template_schema_indices=(0,),
+                )
+            )
+
+
+def test_task2_fix1_production_requires_complete_template_schema_range(
+    task2_catalog_fixture,
+    task2_singleton_discovery,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    with pytest.raises(
+        module.CertificateFailure,
+        match="production template schema indices are not complete",
+    ):
+        next(
+            module.iter_family_records(
+                catalog,
+                task2_singleton_discovery,
+                scope=module.PRODUCTION_SCOPE,
+                selected_template_schema_indices=(0,),
+            )
+        )
+
+
+def test_task2_fix1_six_family_preflight_census_is_catalog_derived(
+    task2_catalog_fixture,
+    monkeypatch,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    assert module.preflight_sample_census(catalog) == (1_406, 2_716, 228_144)
+    selections = dict(module.PREFLIGHT_SELECTED_OLD_INDICES)
+    selections["Q"] = selections["Q"][:-1]
+    monkeypatch.setattr(module, "PREFLIGHT_SELECTED_OLD_INDICES", selections)
+    with pytest.raises(module.CertificateFailure, match="preflight sample census"):
+        module.preflight_sample_census(catalog)
+
+
+def test_task2_fix1_phase_a_derives_tables_without_materializing_rows(
+    task2_catalog_fixture,
+    monkeypatch,
+) -> None:
+    module, catalog = task2_catalog_fixture
+
+    def forbidden_tables(*_args, **_kwargs):
+        raise AssertionError("Phase A materialized complete row tables")
+
+    monkeypatch.setattr(
+        module,
+        "_generation_old_and_footprint_rows",
+        forbidden_tables,
+        raising=False,
+    )
+    discovery = module.discover_family_generation(
+        catalog,
+        "singleton",
+        selected_old_indices=(0,),
+    )
+    assert discovery.old_load_count == 1
+    assert discovery.footprint_count == 6
+
+
+def test_task2_fix1_phase_a_runtime_retention_is_per_footprint(
+    task2_catalog_fixture,
+    monkeypatch,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    original = module.comparison_record
+    active_comparisons = 0
+    peak_comparisons = 0
+    template_scopes = {}
+
+    class TrackedComparison(dict):
+        def __init__(self, value):
+            nonlocal active_comparisons, peak_comparisons
+            super().__init__(value)
+            active_comparisons += 1
+            peak_comparisons = max(peak_comparisons, active_comparisons)
+
+        def __del__(self):
+            nonlocal active_comparisons
+            active_comparisons -= 1
+
+    def tracked_comparison(*args, **kwargs):
+        templates = args[2]
+        scope_id = templates.generation_scope_id
+        template_scopes.setdefault(scope_id, weakref.ref(templates))
+        return TrackedComparison(original(*args, **kwargs))
+
+    monkeypatch.setattr(module, "comparison_record", tracked_comparison)
+    discovery = module.discover_family_generation(
+        catalog,
+        "singleton",
+        selected_old_indices=(0,),
+    )
+    gc.collect()
+    assert peak_comparisons <= 3
+    assert len(template_scopes) == discovery.occurrence_loads
+    assert all(reference() is None for reference in template_scopes.values())
+
+
+def test_task2_fix1_phase_b_yields_first_bucket_row_without_buffering_footprint(
+    task2_catalog_fixture,
+    task2_singleton_discovery,
+    monkeypatch,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    original = module.pack_mask
+    pack_calls = 0
+
+    def observed_pack(mask):
+        nonlocal pack_calls
+        pack_calls += 1
+        return original(mask)
+
+    monkeypatch.setattr(module, "pack_mask", observed_pack)
+    records = module.iter_family_records(
+        catalog,
+        task2_singleton_discovery,
+        scope=module.PREFLIGHT_SCOPE,
+        selected_template_schema_indices=(0,),
+    )
+    first_load = next(record for record in records if record[0] == "load")
+    assert first_load[0] == "load"
+    assert pack_calls == 1
+
+
+def test_task2_fix1_template_serialization_does_not_retain_identity_map(
+    task2_catalog_fixture,
+    monkeypatch,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    item = catalog.families["singleton"]
+    original = module.build_template
+    live_templates = 0
+    peak_templates = 0
+
+    def release_template():
+        nonlocal live_templates
+        live_templates -= 1
+
+    def tracked_template(*args, **kwargs):
+        nonlocal live_templates, peak_templates
+        template = original(*args, **kwargs)
+        live_templates += 1
+        peak_templates = max(peak_templates, live_templates)
+        weakref.finalize(template, release_template)
+        return template
+
+    monkeypatch.setattr(module, "build_template", tracked_template)
+    compact = module._generation_template_catalog(item, (0,))
+    gc.collect()
+    assert compact["template_count"] == len(item.cells)
+    assert peak_templates <= 2
+    assert live_templates == 0
+
+
+def _task2_fix1_projected_index_input(module):
+    encoded = module.encode_tiny_v2_package(literal_package_v2_logical_fixture())
+    root = encoded.index
+    return {
+        "scope": root["scope"],
+        "status": root["status"],
+        "shards": tuple(
+            {
+                "role": descriptor["role"],
+                "family": descriptor["family"],
+                "total_bytes": descriptor["total_bytes"],
+                "record_count": descriptor["record_count"],
+                "record_counts": dict(descriptor["record_counts"]),
+            }
+            for descriptor in root["shards"]
+        ),
+        "emitted_summary": copy.deepcopy(root["emitted_summary"]),
+        "full_summary": copy.deepcopy(root["full_summary"]),
+        "template_catalogs": copy.deepcopy(root["template_catalogs"]),
+    }
+
+
+def test_task2_fix1_projected_index_oracle_is_constructed_internally() -> None:
+    module, family_inputs = _task2_projection_inputs()
+    index_input = _task2_fix1_projected_index_input(module)
+    oracle = module.build_projected_index_oracle(index_input)
+    assert set(oracle) == set(module.ROOT_INDEX_FIELDS)
+    assert oracle["root_sha256"] == "0" * 64
+    assert oracle["source_bindings_sha256"] == "0" * 64
+    assert oracle["b_identity_digest"] == "0" * 64
+    assert all(descriptor["sha256"] == "0" * 64 for descriptor in oracle["shards"])
+    assert all(
+        descriptor["path"] == f"objects/{'0' * 64}.jsonl"
+        for descriptor in oracle["shards"]
+    )
+    assert all(
+        summary[field] == "0" * 64
+        for summary in oracle["template_catalogs"].values()
+        for field in ("identity_sha256", "replay_sha256", "catalog_sha256")
+    )
+    expected_bytes = len(module.canonical_json_line(oracle))
+    projection = module.project_generation(
+        source_catalog_precompute_ns=10,
+        shared_ns=20,
+        shared_bytes=100,
+        projected_index_ns=40,
+        projected_index_input=index_input,
+        families=family_inputs,
+    )
+    assert projection.projected_index_bytes == expected_bytes
+
+
+def test_task2_fix1_projected_index_oracle_binds_descriptor_digit_widths() -> None:
+    module = load_generator()
+    baseline = _task2_fix1_projected_index_input(module)
+    shards = [dict(shard) for shard in baseline["shards"]]
+    shared_counts = {tag: 0 for tag in shards[0]["record_counts"]}
+    shared_counts["shared_header"] = 9
+    shards[0] = {
+        **shards[0],
+        "record_count": 9,
+        "record_counts": shared_counts,
+        "total_bytes": 99,
+    }
+    baseline = {**baseline, "shards": tuple(shards)}
+    count_wider = copy.deepcopy(baseline)
+    count_wider["shards"] = tuple(
+        {
+            **shard,
+            "record_count": 10,
+            "record_counts": {**shard["record_counts"], "shared_header": 10},
+        }
+        if index == 0
+        else shard
+        for index, shard in enumerate(count_wider["shards"])
+    )
+    bytes_wider = copy.deepcopy(baseline)
+    bytes_wider["shards"] = tuple(
+        {**shard, "total_bytes": 100} if index == 0 else shard
+        for index, shard in enumerate(bytes_wider["shards"])
+    )
+    baseline_bytes = len(
+        module.canonical_json_line(module.build_projected_index_oracle(baseline))
+    )
+    assert len(
+        module.canonical_json_line(module.build_projected_index_oracle(count_wider))
+    ) > baseline_bytes
+    assert len(
+        module.canonical_json_line(module.build_projected_index_oracle(bytes_wider))
+    ) > baseline_bytes
+
+
+@pytest.mark.parametrize("anchor_index", range(21))
+def test_task2_fix1_every_anchor_row_is_targeted(
+    task2_catalog_fixture,
+    anchor_index,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    source = module.build_source_bindings(catalog)
+    rows = source["old"]["anchor_provenance"]
+    rows[anchor_index]["id"] = rows[(anchor_index + 1) % len(rows)]["id"]
+    _task2_reseal_source_bindings(module, source)
+    with pytest.raises(module.CertificateFailure, match="anchor provenance identities repeat"):
+        module.validate_source_bindings(source, catalog)
+
+
+@pytest.mark.parametrize("fiber_index", range(53))
+def test_task2_fix1_every_b_fiber_row_is_targeted(
+    task2_catalog_fixture,
+    fiber_index,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    source = module.build_source_bindings(catalog)
+    source["b"]["collision_fibers"][fiber_index]["label_equality_witness"] = {
+        "equal": False
+    }
+    _task2_reseal_source_bindings(module, source)
+    with pytest.raises(module.CertificateFailure, match="B label equality witness is missing"):
+        module.validate_source_bindings(source, catalog)
+
+
+@pytest.mark.parametrize("identity_index", range(84))
+def test_task2_fix1_every_identity_row_is_targeted(
+    task2_catalog_fixture,
+    identity_index,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    rows = [dict(row) for row in catalog.b_identity_table]
+    rows[identity_index]["token_id"] += "-mutated"
+    table = tuple(rows)
+    mutated = replace(
+        catalog,
+        b_identity_table=table,
+        b_identity_digest=module._identity_digest(table),
+    )
+    with pytest.raises(module.CertificateFailure, match="full generation catalog"):
+        module._validate_generation_identity_coordinates(mutated)
+
+
+@pytest.mark.parametrize("coordinate_index", range(84))
+def test_task2_fix1_every_coordinate_row_is_targeted(
+    task2_catalog_fixture,
+    coordinate_index,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    families = {}
+    for family, item in catalog.families.items():
+        tokens = list(item.b_tokens)
+        tokens[coordinate_index] = replace(
+            tokens[coordinate_index],
+            source_members=(*tokens[coordinate_index].source_members, "mutated"),
+        )
+        families[family] = replace(item, b_tokens=tuple(tokens))
+    rows = [dict(row) for row in catalog.b_identity_table]
+    rows[coordinate_index]["source_members"] = [
+        *rows[coordinate_index]["source_members"],
+        "mutated",
+    ]
+    table = tuple(rows)
+    mutated = replace(
+        catalog,
+        families=families,
+        b_identity_table=table,
+        b_identity_digest=module._identity_digest(table),
+    )
+    with pytest.raises(module.CertificateFailure, match="full generation catalog"):
+        module._validate_generation_identity_coordinates(mutated)
