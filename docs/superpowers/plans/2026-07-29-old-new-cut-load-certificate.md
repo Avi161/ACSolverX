@@ -733,19 +733,31 @@ class ProofAttemptFailure(RuntimeError):
 
 
 @dataclass(frozen=True)
+class VerificationChargeInput:
+    domain: str
+    sampled_ns: int
+    full_record_count: int
+    sampled_record_count: int
+
+
+@dataclass(frozen=True)
+class VerificationChargeProjection:
+    domain: str
+    sampled_ns: int
+    full_record_count: int
+    sampled_record_count: int
+    projected_ns: int
+
+
+@dataclass(frozen=True)
 class FamilyVerificationProjectionInput:
     family: str
     selected_old_indices: tuple[int, ...]
     selected_schema_indices: tuple[int, ...]
     full_old_load_count: int
     full_schema_count: int
-    full_comparisons: int
-    sampled_comparisons: int
-    sampled_comparison_replay_ns: int
-    full_identity_count: int
-    sampled_identity_count: int
-    sampled_template_replay_ns: int
-    fixed_family_ns: int
+    charges: tuple[VerificationChargeInput, ...]
+    invariant_family_ns: int
 
 
 @dataclass(frozen=True)
@@ -755,15 +767,8 @@ class FamilyVerificationProjection:
     selected_schema_indices: tuple[int, ...]
     full_old_load_count: int
     full_schema_count: int
-    full_comparisons: int
-    sampled_comparisons: int
-    sampled_comparison_replay_ns: int
-    projected_comparison_replay_ns: int
-    full_identity_count: int
-    sampled_identity_count: int
-    sampled_template_replay_ns: int
-    projected_template_replay_ns: int
-    fixed_family_ns: int
+    charges: tuple[VerificationChargeProjection, ...]
+    invariant_family_ns: int
     verification_ns_before_margin: int
 
 
@@ -771,9 +776,8 @@ class FamilyVerificationProjection:
 class VerificationProjection:
     format: str
     family_order: tuple[str, ...]
-    root_index_descriptor_authentication_ns: int
-    shared_source_replay_ns: int
-    logical_v1_framing_finalization_ns: int
+    global_charges: tuple[VerificationChargeProjection, ...]
+    invariant_ns: int
     families: tuple[FamilyVerificationProjection, ...]
     verification_ns_before_margin: int
     projected_verification_ns: int
@@ -816,9 +820,8 @@ def verify_v2_package(
 
 def project_verification(
     *,
-    root_index_descriptor_authentication_ns: int,
-    shared_source_replay_ns: int,
-    logical_v1_framing_finalization_ns: int,
+    global_charges: Sequence[VerificationChargeInput],
+    invariant_ns: int,
     families: Sequence[FamilyVerificationProjectionInput],
 ) -> VerificationProjection
 
@@ -853,10 +856,12 @@ Add these named tests; the text after each name is its intended gate:
       gate: six literal old arrays and every-eighth union all tied maxima
     test_task3_generation_projection_denominators_reach_independent_census_gate
       gate: six family schema/identity/load/occurrence/comparison denominators
+    test_task3_generation_projection_recomputes_all_derived_fields_and_index_cost
+      gate: all family projections, tag/bucket census, totals, index oracle
     test_task3_generation_projection_complete_ratio_one_and_global_range
       gate: local equality iff complete exact range; two global strict samples
-    test_task3_verification_projection_ceil_fixed_charges_and_margin_are_exact
-      gate: separate ceilings, each fixed charge once, one final factor two
+    test_task3_verification_projection_scales_every_record_domain_and_margin
+      gate: every global/family charge denominators, invariants, final factor two
     test_task3_verification_projection_rejects_invalid_family_inputs
       gate: bool/float/negative/nonpositive/repeated/incomplete/range failures
     test_task3_verification_projection_has_no_bytes_or_generation_restatement
@@ -898,26 +903,24 @@ canonical binding, and `project_verification`; no fixture opens a package.
 - [ ] **Step 3: Implement immutable records and exact projection boundaries**
 
 Declare the records and APIs above independently.  Normalize only list/tuple
-sequences to JSON arrays, validate every nested mapping field and exact scalar
-type, and hash canonical ASCII JSON without a terminal LF.  Retain only that
-generation-projection digest in `IndependentReplayResult`; never copy Task 2
-time or byte projections into `VerificationProjection`.
+sequences to JSON arrays and validate every nested field/type, but do not bind
+the canonical digest yet.  Independently recompute every per-family projected
+time/byte/record/bucket field, both before-margin totals, both doubled totals,
+all global censuses, and the exact projected-index canonical line length.
+Reject any mismatch; only then retain the canonical SHA-256 in
+`IndependentReplayResult`.
 
-Implement `ceil_ratio(x,n,d)=(x*n+d-1)//d`.  For each family compute separate
-projected comparison and template replay nanoseconds, then add the exact
-family charge.  Sum the three global fixed charges and all six family values
-once, then set `projected_verification_ns = 2 *
-verification_ns_before_margin`.  Enforce `0 < sampled <= full`; equality is
-valid only with the complete exact selected-old/schema range and must return
-the sampled component unchanged.  Enforce global strict range in both
-dimensions.
-
-Measure disjoint integer-nanosecond regions with `time.perf_counter_ns`:
-selected-old comparison replay, selected-schema template replay, and the
-remaining exact fixed family stream/direct-gate/footer work.  Measure root
-index plus descriptor authentication, shared/source replay, and logical-v1
-framing/finalization as three separate global charges.  No region contributes
-to two fields.
+Implement `ceil_ratio(x,n,d)=(x*n+d-1)//d` for every
+`VerificationChargeInput`.  Require exact global charge domains
+`root-index-descriptor-authentication`, `shared-wire-stream-read-hash`,
+`shared-source-reference-validation`, and
+`logical-v1-framing-finalization`; require each family charge domains
+`family-wire-stream-read-hash`, `comparison-replay`, `template-replay`,
+`logical-v1-canonical-fragment`, and `reference-validation`.  Independently
+derive every full/sample record count and scale each charge separately.
+`invariant_ns`/`invariant_family_ns` may contain only named-test-proven
+identical operation schedules.  Sum each charge once, then apply one final
+factor two.  No timed region contributes to two fields.
 
 - [ ] **Step 4: Run the projection selector GREEN**
 
@@ -1029,7 +1032,7 @@ Add these tests and stated intended gates:
     test_task3_mask_zero_overlap_gap_reversal_and_popcount_mutations
       gate: uint84 nonzero/disjoint/full-union/orientation/count invariants
     test_task3_parity_census_summary_and_logical_hash_mutations
-      gate: load/cell/family xor, all censuses, completed logical-v1 equality
+      gate: family-table proof gate versus package/replay engineering mismatch
 
 Parameter IDs are exact and include `root-field`, `root-hash`,
 `descriptor-role`, `descriptor-family`, `descriptor-path`, `descriptor-hash`,
@@ -1111,7 +1114,7 @@ never rerun it unchanged or widen the deadline.
 Add:
 
     test_task3_failure_taxonomy_separates_engineering_and_proof_attempt
-      gate: malformed/dependency/projection versus completed semantic conflict
+      gate: package/replay logical mismatch versus expected-family contradiction
     test_task3_preflight_returns_unattestable_projection_evidence_only
       gate: preflight status, null logical hash, incomplete/unattestable flags
     test_task3_production_result_requires_complete_replay_and_run_binding
@@ -1149,10 +1152,11 @@ validation; no test creates an attestation file.
 
 Wrap malformed I/O/wire/dependency/projection/runtime failures as immutable
 `EngineeringVerificationFailure(stage, detail)`.  The proof guard owns
-timeouts.  Defer frozen family-table and logical-v1 equality decisions until
-the complete semantic replay; contradictions there raise immutable
-`ProofAttemptFailure(stage, detail)`.  Neither failure attests or implies a
-mathematical negative.
+timeouts.  Classify package-derived versus independently replayed logical-v1
+mismatch as `EngineeringVerificationFailure(stage, detail)`.  Only a completed
+source-derived semantic replay contradicting the frozen expected family table
+raises `ProofAttemptFailure(stage, detail)`.  Neither failure attests or
+implies a mathematical negative.
 
 Return `attestable=True`, `semantic_replay_complete=True`, and
 `status='independently-replayed'` only for complete `production-full /

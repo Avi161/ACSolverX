@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-30 Validate projection semantics before hash binding
+
+- [TRAP] A canonical projection digest can bind internally consistent but wrongly derived totals, and treating sampled stream/hash/fragment/reference work as fixed hides unscaled verifier cost; a package/replay logical mismatch is an implementation disagreement, not a mathematical contradiction.
+- [WORKS] Recompute every derived generation field and index cost before accepting its digest, give every sample-dependent verifier charge explicit record denominators, and reserve `ProofAttemptFailure` only for a completed source replay contradicting the frozen family table.
+
 ### 2026-07-30 Freeze verifier inputs and bounded canonical replay
 
 - [TRAP] Task 3 had no generation-projection input and promised complete logical-v1 family ledgers; its strict per-family sample rule also rejects the literal fully sampled base (`5,376/5,376`) and singleton (`8,064/8,064`) comparison families.

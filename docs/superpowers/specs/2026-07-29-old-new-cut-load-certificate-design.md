@@ -652,19 +652,31 @@ class ProofAttemptFailure(RuntimeError):
 
 
 @dataclass(frozen=True)
+class VerificationChargeInput:
+    domain: str
+    sampled_ns: int
+    full_record_count: int
+    sampled_record_count: int
+
+
+@dataclass(frozen=True)
+class VerificationChargeProjection:
+    domain: str
+    sampled_ns: int
+    full_record_count: int
+    sampled_record_count: int
+    projected_ns: int
+
+
+@dataclass(frozen=True)
 class FamilyVerificationProjectionInput:
     family: str
     selected_old_indices: tuple[int, ...]
     selected_schema_indices: tuple[int, ...]
     full_old_load_count: int
     full_schema_count: int
-    full_comparisons: int
-    sampled_comparisons: int
-    sampled_comparison_replay_ns: int
-    full_identity_count: int
-    sampled_identity_count: int
-    sampled_template_replay_ns: int
-    fixed_family_ns: int
+    charges: tuple[VerificationChargeInput, ...]
+    invariant_family_ns: int
 
 
 @dataclass(frozen=True)
@@ -674,15 +686,8 @@ class FamilyVerificationProjection:
     selected_schema_indices: tuple[int, ...]
     full_old_load_count: int
     full_schema_count: int
-    full_comparisons: int
-    sampled_comparisons: int
-    sampled_comparison_replay_ns: int
-    projected_comparison_replay_ns: int
-    full_identity_count: int
-    sampled_identity_count: int
-    sampled_template_replay_ns: int
-    projected_template_replay_ns: int
-    fixed_family_ns: int
+    charges: tuple[VerificationChargeProjection, ...]
+    invariant_family_ns: int
     verification_ns_before_margin: int
 
 
@@ -690,9 +695,8 @@ class FamilyVerificationProjection:
 class VerificationProjection:
     format: str
     family_order: tuple[str, ...]
-    root_index_descriptor_authentication_ns: int
-    shared_source_replay_ns: int
-    logical_v1_framing_finalization_ns: int
+    global_charges: tuple[VerificationChargeProjection, ...]
+    invariant_ns: int
     families: tuple[FamilyVerificationProjection, ...]
     verification_ns_before_margin: int
     projected_verification_ns: int
@@ -732,9 +736,8 @@ def verify_v2_package(
 
 def project_verification(
     *,
-    root_index_descriptor_authentication_ns: int,
-    shared_source_replay_ns: int,
-    logical_v1_framing_finalization_ns: int,
+    global_charges: Sequence[VerificationChargeInput],
+    invariant_ns: int,
     families: Sequence[FamilyVerificationProjectionInput],
 ) -> VerificationProjection
 
@@ -747,9 +750,9 @@ def build_attestation_payload(
 ```
 
 `PhaseMetrics` is separately declared in the verifier.  Its elapsed values
-are out-of-band observations; they never enter package bytes.  The six frozen
-records above contain only the run/digest/status/projection values needed by
-the Task 4 coordinator.
+are out-of-band observations; they never enter package bytes.  The eight
+frozen records above contain only the run/digest/status/projection values
+needed by the Task 4 coordinator.
 
 For one cell and one old load, combine the old-load row with each row in its
 footprint interval.  Expand each `load` record through its bucket class and
@@ -989,11 +992,13 @@ Malformed I/O, noncanonical wire data, dependency/source loading failure,
 descriptor mismatch, projection-schema/binding/denominator mismatch, and
 runtime instrumentation failure raise immutable
 `EngineeringVerificationFailure` records.  Timeout remains a guard-owned
-engineering failure.  Expected family-table comparison and logical-v1
-equality are deferred until the complete semantic replay finishes; a
-contradiction there raises `ProofAttemptFailure`.  Both are bounded failures.
-Neither is evidence against AC or stable AC, and neither may produce an
-attestable result.
+engineering failure.  A mismatch between the package-derived and independently
+replayed logical-v1 streams is also an engineering verification failure: the
+transport/replay implementations disagree.  Only after the source-derived
+semantic replay completes can a contradiction with the frozen expected
+family table raise `ProofAttemptFailure`.  Both are bounded failures.  Neither
+is evidence against AC or stable AC, and neither may produce an attestable
+result.
 
 ## 18. Projection and execution gates
 
@@ -1031,11 +1036,12 @@ Mappings require exact string-key sets.  Sequence fields accept only list or
 tuple, are normalized to JSON arrays, and otherwise retain exact order.
 Every integer field uses `type(value) is int`; booleans, floats, negative
 counts, non-string IDs, non-ASCII IDs, duplicate indices, and unknown nested
-values fail before any projection arithmetic.  The normalized mapping is
-encoded with ASCII canonical JSON, sorted keys, and compact separators but no
-terminal LF.  Its SHA-256 is retained as
-`generation_projection_sha256`.  No Task 2 time or byte field is copied into
-`VerificationProjection`.
+values fail before any projection arithmetic.  Canonical bytes alone do not
+authenticate the projection.  Task 3 first performs every independent
+semantic and arithmetic check below; only then does it hash ASCII canonical
+JSON with sorted keys, compact separators, and no terminal LF and retain that
+value as `generation_projection_sha256`.  No Task 2 time or byte field is
+copied into `VerificationProjection`.
 
 Task 3 independently rederives the exact old selections rather than importing
 them:
@@ -1068,6 +1074,19 @@ reconstructed selected-schema set and sampled identities equal that count
 times the family cell count.  The verifier rejects any selected-old,
 selected-schema, tied-ID, schema, identity, load, occurrence, or comparison
 denominator mismatch before trusting the projection digest.
+
+Before binding that digest, Task 3 independently recomputes every derived
+Task 2 field.  Per family it checks `projected_two_pass_ns`,
+`projected_load_bucket_bytes`, `projected_load_record_count`,
+`projected_bucket_class_count`, `projected_template_ns`, and
+`projected_template_bytes`, including an independently rebuilt full tag census
+and bucket-class domain.  It recomputes the top-level full/sample censuses,
+schema/identity totals, both before-margin totals, and both final doubled
+totals.  It also independently builds the projected full root-index oracle
+from authenticated root/shared data, projected descriptor bytes/tag counts,
+exact summaries, and 64-hex digest placeholders; its canonical line length
+must equal `projected_index_bytes`.  Every derived field and index-cost input
+has a resealed mutation before the canonical digest becomes a binding.
 
 For nonnegative integers `x`, `n`, and positive `d`, the only scaling
 operation is exact ceiling division:
@@ -1127,40 +1146,51 @@ The factor two is applied once, after every fixed and upward-rounded variable
 component has been summed.  No component is doubled separately.
 
 Task 3 supplies an independent verifier-time projection with format
-`period-two-old-new-cut-verification-projection-v1`.  For family `f`, let
-`R_f` be sampled comparison-replay nanoseconds, `T_f` sampled
-template-replay nanoseconds, and `K_f` exact fixed-family nanoseconds.  It
-computes separately:
+`period-two-old-new-cut-verification-projection-v1`.  Every measured charge is
+a `VerificationChargeInput(domain, sampled_ns, full_record_count,
+sampled_record_count)`, and every projection records those same denominators
+plus:
 
-The verifier measures those three disjoint regions with `time.perf_counter_ns`
-while replaying the independently reconstructed selected-old and
-selected-schema domains.  `K_f` covers that family's authenticated stream,
-reference-table validation, direct exhaustive index gates, footer/census
-checks, and other work not already timed in `R_f` or `T_f`; logical-v1
-framing/finalization remains global.  No elapsed region is charged twice.
+    projected_ns = ceil_ratio(
+        sampled_ns, full_record_count, sampled_record_count
+    )
 
-    comparison_replay_ns_f = ceil_ratio(R_f, C_f, c_f)
-    template_replay_ns_f = ceil_ratio(T_f, I_f, i_f)
-    family_verification_ns_f =
-        K_f + comparison_replay_ns_f + template_replay_ns_f
+The exact global domains are `root-index-descriptor-authentication`,
+`shared-wire-stream-read-hash`, `shared-source-reference-validation`, and
+`logical-v1-framing-finalization`.  Each family has the exact domains
+`family-wire-stream-read-hash`, `comparison-replay`, `template-replay`,
+`logical-v1-canonical-fragment`, and `reference-validation`.  Task 3
+independently derives each domain's full and sampled record census from the
+authenticated descriptors, tag grammar, selected old/schema sets, logical
+fragment grammar, and direct reference indices.  No stream/read/hash,
+canonical-fragment, or reference-validation time is hidden in an unscaled
+charge.
 
-The three exact nonnegative global fixed charges are
-`root_index_descriptor_authentication_ns`, `shared_source_replay_ns`, and
-`logical_v1_framing_finalization_ns`.  Therefore:
+`invariant_ns` and `invariant_family_ns` contain only operations whose exact
+record domain and operation schedule are proved identical between sample and
+full replay by named tests; any charge lacking that proof must use an explicit
+record-domain ratio, even when its observed ratio is one.  Measured regions
+are disjoint and use `time.perf_counter_ns`.  Therefore:
 
     verification_ns_before_margin =
-        root_index_descriptor_authentication_ns +
-        shared_source_replay_ns +
-        logical_v1_framing_finalization_ns +
-        sum(family_verification_ns_f for every family f)
+        invariant_ns +
+        sum(global_charge.projected_ns) +
+        sum(
+            family.invariant_family_ns +
+            sum(family_charge.projected_ns)
+            for every family
+        )
     projected_verification_ns = 2 * verification_ns_before_margin
 
-Each fixed charge is added once and the final factor two is applied once.
-Task 3 uses the same per-family full-sample exception and two global
+Each charge is added once and the final factor two is applied once.  Task 3
+uses the same per-family full-sample exception and two global
 dynamic-range requirements stated above.  It rejects booleans, floats,
 negative measurements, nonpositive denominators, incomplete/repeated family
-inputs, invalid selection/range equality, and nonglobal sampling.  It has no
-byte projection and restates none of Task 2's timing or byte projections.
+or charge domains, denominator/census mismatches, unproved invariant charges,
+invalid selection/range equality, and nonglobal sampling.  Mutations cover
+every charge name, sample/full record count, sampled time, projected time,
+invariant proof, before-margin total, and final doubled total.  It has no byte
+projection and restates none of Task 2's timing or byte projections.
 
 Task 5 runs the actual 60-second preflight and blocks production unless Task
 2's projected generator time plus Task 3's projected verifier time is at most
@@ -1249,9 +1279,13 @@ to reach the named semantic gate.  The complete matrix is:
   summary; and final logical-v1 equality; and
 - generation-projection root/nested fields, canonical digest, literal old
   selections, every-eighth-plus-all-tied-max schema selection, tied IDs,
-  every full/sample denominator, full-sample exception, and both global
-  dynamic-range requirements; verifier projection fixed charges, family
-  order, exact ceiling arithmetic, and single final margin.
+  every full/sample denominator and derived family field, both before-margin
+  totals, both doubled totals, projected tag/bucket censuses, exact projected
+  index cost, full-sample exception, and both global dynamic-range
+  requirements; canonical digest acceptance is tested only after those gates;
+  verifier charge names, every full/sample record denominator, sampled and
+  projected nanoseconds, invariant-charge proof, family/global order, exact
+  ceiling arithmetic, before-margin total, and single final margin.
 
 Every named test states the wire, dependency, direct semantic, completed
 proof-attempt, projection, or purity gate it intends to reach.  A mutation
