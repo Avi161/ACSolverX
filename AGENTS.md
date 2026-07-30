@@ -1734,3 +1734,8 @@
 
 - [TRAP] A direct Task 2 placeholder search matched the literal `TODO|TBD|...` pattern inside the plan's own audit command and exited nonzero even though the executable plan contained no placeholder.
 - [WORKS] Run the plan's scoped `awk` exclusion before the placeholder regex, and accept absence only when that filtered search exits exactly one; never treat a self-matching audit command as a design defect.
+
+### 2026-07-30 Inspect source-proof census fields before traversing them
+
+- [TRAP] A bounded Task 2 schema inspection treated `Task4SchemaCatalog.b_source_proof["occurrences"]` as a mapping and failed with `AttributeError: 'int' object has no attribute 'items'`; the field is an integer census, while detailed B rows live in `collision_fibers` and the catalog identity table.
+- [WORKS] Read the source-proof field contract before exploratory traversal, and distinguish integer census fields from row/table fields instead of inferring shape from the field name.
