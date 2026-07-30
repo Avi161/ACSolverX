@@ -1764,3 +1764,8 @@
 
 - [TRAP] The required macOS `ps -axo pid=,ppid=,pgid=,%cpu=,state=,comm=` audit used only approved non-argument fields but still failed with `operation not permitted` inside the restricted workspace sandbox.
 - [WORKS] Keep the safe field list unchanged and request narrow escalation for the read-only `ps` audit; never substitute full command arguments or treat the sandbox denial as process-absence evidence.
+
+### 2026-07-30 Keep projected descriptor totals internally consistent
+
+- [TRAP] A Task 2 projected-index digit-width test changed a shard's `record_count` without changing its per-tag `record_counts`; the oracle correctly rejected the inconsistent census before the intended encoded-length assertion.
+- [WORKS] When mutating projected descriptor digit widths, update one literal tag count so `sum(record_counts.values()) == record_count` remains true and the test reaches only the length-sensitive boundary.
