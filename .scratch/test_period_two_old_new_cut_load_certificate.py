@@ -2774,6 +2774,50 @@ def test_package_v2_source_and_compact_cell_indices_are_distinct_strict_ints(
         )
 
 
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_preflight_selected_old_subset_is_a_distinct_domain(
+    module_loader,
+) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    records = [
+        list(record)
+        for record in encoded.shard_records["fixed"]
+        if record[0] != "load"
+    ]
+    records[0][4] = []
+    cell_footer = next(row for row in records if row[0] == "cell_footer")
+    cell_footer[4:] = [[], 0, 0]
+    family_footer = records[-1]
+    family_footer[3:6] = [0, 0, 0]
+    family_footer[6] = len(records) - 1
+    family_footer[7] = sum(
+        len(module.canonical_json_line(row)) for row in records[:-1]
+    )
+    payload = b"".join(module.canonical_json_line(row) for row in records)
+
+    decoded = module.decode_family_records(
+        io.BytesIO(payload),
+        expected_family="fixed",
+        scope="preflight-sample",
+    )
+    assert decoded["ledger"]["cells"][0]["loads"] == []
+    assert decoded["ledger"]["cells"][0]["load_count"] == 0
+    assert decoded["ledger"]["summary"] == {
+        "load_rows": 0,
+        "occurrence_loads": 0,
+        "comparisons": 0,
+    }
+    with pytest.raises(module.WireFormatError):
+        module.decode_family_records(
+            io.BytesIO(payload),
+            expected_family="fixed",
+            scope="production-full",
+        )
+
+
 def test_package_v2_tiny_logical_v1_round_trip() -> None:
     generator = load_generator()
     verifier = load_package_v2_verifier()

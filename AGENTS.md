@@ -1662,3 +1662,8 @@
 
 - [TRAP] Copying the package-v2 codec import scaffold into the independent verifier also copied `os`, although only the generator owns publication/fsync operations; Ruff 0.16.0 rejected the verifier with `F401`.
 - [WORKS] The verifier independently duplicates wire logic, not generator-only publication dependencies. Audit each module's final import use before the exact three-file Ruff gate.
+
+### 2026-07-30 Keep preflight selection separate from the old-load table
+
+- [TRAP] The first package-v2 family decoders required `selected_old_indices == range(old_load_count)` for every scope. That collapses the preflight subset domain into the complete production domain and rejected a grammar-valid empty selected subset in both independent codecs.
+- [WORKS] Always parse and validate the complete old-load/footprint tables, but reconstruct load, occurrence, comparison, odd-index, and parity summaries only over the strict selected-index list. Require the complete range only for `production-full`.

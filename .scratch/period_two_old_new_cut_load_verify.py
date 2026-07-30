@@ -1029,8 +1029,8 @@ def _validate_family_header(header: Sequence[Any], family: str) -> None:
         or selected != sorted(set(selected))
     ):
         raise WireFormatError("selected old indices are invalid")
-    if selected != list(range(header[5])):
-        raise WireFormatError("fixture old indices are not the complete range")
+    if any(index >= header[5] for index in selected):
+        raise WireFormatError("selected old index is out of range")
     if header[9] != list(COMPARISON_METHODS):
         raise WireFormatError("comparison method declaration differs")
     if header[10] != list(CHRONOLOGIES):
@@ -1055,6 +1055,13 @@ def decode_family_records(
         raise WireFormatError("family shard is incomplete")
     header = records[0]
     _validate_family_header(header, expected_family)
+    selected_old_indices = header[4]
+    selected_old_set = set(selected_old_indices)
+    if (
+        scope == PRODUCTION_SCOPE
+        and selected_old_indices != list(range(header[5]))
+    ):
+        raise WireFormatError("production old indices are not complete")
     cursor = 1
 
     old_rows = []
@@ -1175,6 +1182,8 @@ def decode_family_records(
             )
             if old_index >= len(old_rows):
                 raise WireFormatError("load old reference is out of range")
+            if old_index not in selected_old_set:
+                raise WireFormatError("load references an unselected old index")
             if footprint_index >= len(footprint_rows):
                 raise WireFormatError("load footprint reference is out of range")
             if footprint_rows[footprint_index][2] != old_index:
@@ -1356,7 +1365,8 @@ def decode_family_records(
         logical_loads = []
         derived_odd = []
         cell_value = 0
-        for old_index, old_row in enumerate(old_rows):
+        for old_index in selected_old_indices:
+            old_row = old_rows[old_index]
             histograms = []
             footprint_bindings = []
             load_value = 0
@@ -1426,14 +1436,16 @@ def decode_family_records(
             )
         if footer[4] != derived_odd or footer[5] != cell_value:
             raise WireFormatError("cell parity footer differs")
-        occurrence_count = sum(old_row[7] for old_row in old_rows)
+        occurrence_count = sum(
+            old_rows[index][7] for index in selected_old_indices
+        )
         comparison_count = occurrence_count * TOKEN_COUNT
         total_occurrences += occurrence_count
         total_comparisons += comparison_count
         logical_cells.append(
             {
                 "cell_id": footer[3],
-                "load_count": len(old_rows),
+                "load_count": len(selected_old_indices),
                 "occurrence_load_count": occurrence_count,
                 "comparison_count": comparison_count,
                 "odd_load_ids": [
@@ -1445,7 +1457,7 @@ def decode_family_records(
             }
         )
     expected_summary = [
-        len(old_rows) * len(cell_groups),
+        len(selected_old_indices) * len(cell_groups),
         total_occurrences,
         total_comparisons,
     ]
