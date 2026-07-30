@@ -265,14 +265,26 @@ def _raise_thermal_probe_failure(
     *,
     deadline_transition: bool = False,
 ) -> None:
-    if deadline_transition:
-        print(
-            THERMAL_PROBE_DEADLINE_TRANSITION,
-            file=sys.stderr,
-            flush=True,
-        )
-    if not _clean_thermal_probe_group_silently(probe):
+    transition_failed = False
+    cleanup_succeeded = False
+    try:
+        if deadline_transition:
+            try:
+                print(
+                    THERMAL_PROBE_DEADLINE_TRANSITION,
+                    file=sys.stderr,
+                    flush=True,
+                )
+            except (GuardSignal, KeyboardInterrupt):
+                raise
+            except Exception:
+                transition_failed = True
+    finally:
+        cleanup_succeeded = _clean_thermal_probe_group_silently(probe)
+    if not cleanup_succeeded:
         raise RuntimeError("thermal probe cleanup failed") from None
+    if transition_failed:
+        raise RuntimeError("thermal probe safety transition failed") from None
     raise RuntimeError(message) from None
 
 
@@ -312,19 +324,22 @@ def read_bounded_macos_thermal_state(
             "thermal probe deadline exceeded",
             deadline_transition=True,
         )
+    probe_timed_out = False
     try:
         stdout, _stderr = probe.communicate(timeout=remaining_seconds)
     except subprocess.TimeoutExpired:
-        _raise_thermal_probe_failure(
-            probe,
-            "thermal probe timed out",
-            deadline_transition=True,
-        )
+        probe_timed_out = True
     except (GuardSignal, KeyboardInterrupt):
         _clean_thermal_probe_group_silently(probe)
         raise
     except BaseException:
         _raise_thermal_probe_failure(probe, "thermal probe failed")
+    if probe_timed_out:
+        _raise_thermal_probe_failure(
+            probe,
+            "thermal probe timed out",
+            deadline_transition=True,
+        )
 
     if clock() >= deadline:
         _raise_thermal_probe_failure(

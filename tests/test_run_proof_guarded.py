@@ -40,6 +40,22 @@ class _FlushRecordingStream(io.StringIO):
         super().flush()
 
 
+def _exception_chain(exception: BaseException) -> tuple[BaseException, ...]:
+    seen: set[int] = set()
+
+    def visit(current: BaseException | None) -> tuple[BaseException, ...]:
+        if current is None or id(current) in seen:
+            return ()
+        seen.add(id(current))
+        return (
+            current,
+            *visit(current.__cause__),
+            *visit(current.__context__),
+        )
+
+    return visit(exception)
+
+
 def runner_command(*command: str, timeout: float = 2.0, grace: float = 0.1) -> list[str]:
     return [
         sys.executable,
@@ -1179,6 +1195,7 @@ def test_thermal_probe_timeout_terminates_then_kills_exact_helper_group(
 ) -> None:
     clock = _FakeClock()
     process_group_id = 910_002
+    command_sentinel = "thermal-probe-command-secret"
     group_alive = True
     killpg_calls: list[tuple[int, int]] = []
     transition_before_cleanup: list[tuple[str, int]] = []
@@ -1192,7 +1209,7 @@ def test_thermal_probe_timeout_terminates_then_kills_exact_helper_group(
         def communicate(self, timeout: float) -> tuple[str, str]:
             clock.now += timeout
             raise subprocess.TimeoutExpired(
-                f"thermal-probe-{process_group_id}",
+                f"{command_sentinel}-{process_group_id}",
                 timeout,
             )
 
@@ -1245,7 +1262,143 @@ def test_thermal_probe_timeout_terminates_then_kills_exact_helper_group(
     assert standard_error.getvalue() == transition
     assert str(process_group_id) not in standard_output.getvalue()
     assert str(process_group_id) not in standard_error.getvalue()
-    assert str(process_group_id) not in str(exc_info.value)
+    exception_chain = _exception_chain(exc_info.value)
+    exception_chain_text = " ".join(
+        f"{current!r} {current.args!r} {vars(current)!r}"
+        for current in exception_chain
+    )
+    assert exception_chain == (exc_info.value,)
+    assert exc_info.value.__context__ is None
+    assert exc_info.value.__cause__ is None
+    assert str(process_group_id) not in exception_chain_text
+    assert command_sentinel not in exception_chain_text
+
+
+@pytest.mark.parametrize(
+    ("failure_point", "survives_sigterm", "expected_signals"),
+    (
+        ("write", False, (signal.SIGTERM,)),
+        ("flush", True, (signal.SIGTERM, signal.SIGKILL)),
+    ),
+)
+def test_thermal_probe_transition_io_failure_still_cleans_exact_helper_group(
+    monkeypatch: pytest.MonkeyPatch,
+    failure_point: str,
+    survives_sigterm: bool,
+    expected_signals: tuple[int, ...],
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 987_654_320
+    command_sentinel = "thermal-probe-timeout-command-secret"
+    io_sentinel = "thermal-probe-transition-io-secret"
+    events: list[str] = []
+    group_checks: list[bool] = []
+    group_alive = True
+    standard_output = io.StringIO()
+
+    class FailingTransitionStream:
+        def __init__(self) -> None:
+            self.parts: list[str] = []
+            self.transition_attempted = False
+
+        def write(self, value: str) -> int:
+            if not self.transition_attempted:
+                self.transition_attempted = True
+                events.append("transition-attempt")
+            if failure_point == "write":
+                raise OSError(f"{io_sentinel}-{process_group_id}")
+            self.parts.append(value)
+            return len(value)
+
+        def flush(self) -> None:
+            events.append("transition-flush")
+            if failure_point == "flush":
+                raise OSError(f"{io_sentinel}-{process_group_id}")
+
+        def getvalue(self) -> str:
+            return "".join(self.parts)
+
+    standard_error = FailingTransitionStream()
+
+    class SyntheticProbe:
+        pid = process_group_id
+        returncode: int | None = None
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            clock.now += timeout
+            raise subprocess.TimeoutExpired(
+                f"{command_sentinel}-{process_group_id}",
+                timeout,
+            )
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            self.returncode = -signal.SIGKILL
+            return self.returncode
+
+    def group_exists(_process_group_id: int) -> bool:
+        group_checks.append(group_alive)
+        return group_alive
+
+    def killpg(target_group_id: int, signum: int) -> None:
+        nonlocal group_alive
+        assert target_group_id == process_group_id
+        events.append(signal.Signals(signum).name)
+        if signum == signal.SIGTERM and not survives_sigterm:
+            group_alive = False
+        if signum == signal.SIGKILL:
+            group_alive = False
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticProbe(),
+    )
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard, "group_exists", group_exists)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+
+    with redirect_stdout(standard_output), redirect_stderr(standard_error):
+        with pytest.raises(
+            RuntimeError,
+            match="^thermal probe safety transition failed$",
+        ) as exc_info:
+            proof_guard.read_bounded_macos_thermal_state(
+                deadline=0.5,
+                clock=clock.monotonic,
+            )
+
+    signal_events = [
+        signal.Signals(signum).name
+        for signum in expected_signals
+    ]
+    assert events[0] == "transition-attempt"
+    assert events.index("SIGTERM") > events.index("transition-attempt")
+    if failure_point == "flush":
+        assert events.index("SIGTERM") > events.index("transition-flush")
+    assert [event for event in events if event.startswith("SIG")] == signal_events
+    assert group_alive is False
+    assert group_checks[-1] is False
+    assert standard_output.getvalue() == ""
+    stream_text = standard_output.getvalue() + standard_error.getvalue()
+    exception_chain = _exception_chain(exc_info.value)
+    exception_chain_text = " ".join(
+        f"{current!r} {current.args!r} {vars(current)!r}"
+        for current in exception_chain
+    )
+    assert exception_chain == (exc_info.value,)
+    assert exc_info.value.__context__ is None
+    assert exc_info.value.__cause__ is None
+    for sentinel in (str(process_group_id), command_sentinel, io_sentinel):
+        assert sentinel not in stream_text
+        assert sentinel not in exception_chain_text
 
 
 def test_thermal_probe_cleanup_failure_is_silent_and_pid_free(
