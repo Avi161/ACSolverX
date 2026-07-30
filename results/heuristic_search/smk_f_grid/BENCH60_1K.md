@@ -35,3 +35,12 @@ Updated `2026-07-30T03:52:54.708624+00:00`
 - Do not re-rank from this set alone — selection stayed on Aut train.
 - Unsolved = unsolved within budget 1000.
 
+
+### Extra portfolio arms (added 2026-07-30)
+
+| arm | bench60 @1k | mean nodes |
+|---|---:|---:|
+| `S12` | **35/60** | 143 |
+| `S28` | **37/60** | 195 |
+| `S24_K1_MK2` | **37/60** | 181 |
+
