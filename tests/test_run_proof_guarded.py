@@ -313,6 +313,32 @@ def stop_fixture_pid(pid: int) -> None:
         pass
 
 
+def exact_group_exists(process_group_id: int) -> bool:
+    try:
+        os.killpg(process_group_id, 0)
+    except OSError as exc:
+        if exc.errno == errno.ESRCH:
+            return False
+        if exc.errno == errno.EPERM:
+            return True
+        raise
+    return True
+
+
+def stop_fixture_group(child: subprocess.Popen[object]) -> None:
+    child.poll()
+    if not exact_group_exists(child.pid):
+        return
+    try:
+        os.killpg(child.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    try:
+        child.wait(timeout=1.0)
+    except subprocess.TimeoutExpired:
+        pass
+
+
 @pytest.fixture(autouse=True)
 def no_guard_leak() -> None:
     if LOCK.exists():
@@ -369,8 +395,11 @@ def test_timeout_kills_child_and_grandchild_process_group(tmp_path: Path) -> Non
     wait_for_pid_exit(grandchild_pid)
 
 
-@pytest.mark.parametrize("signum", (signal.SIGHUP, signal.SIGTERM))
-def test_sighup_and_sigterm_clean_up_child_group_and_lock(
+@pytest.mark.parametrize(
+    "signum",
+    (signal.SIGHUP, signal.SIGTERM, signal.SIGINT),
+)
+def test_guard_signals_clean_up_child_group_and_lock(
     tmp_path: Path,
     signum: int,
 ) -> None:
@@ -391,6 +420,193 @@ def test_sighup_and_sigterm_clean_up_child_group_and_lock(
     assert runner.wait(timeout=2) == 128 + signum
     wait_for_pid_exit(child_pid)
     wait_for_pid_exit(grandchild_pid)
+
+
+@pytest.mark.parametrize(
+    "signum",
+    (signal.SIGHUP, signal.SIGTERM, signal.SIGINT),
+)
+@pytest.mark.parametrize("launch_role", ("short", "phase", "helper"))
+def test_signal_at_post_spawn_boundary_cleans_registered_exact_group(
+    monkeypatch: pytest.MonkeyPatch,
+    signum: int,
+    launch_role: str,
+) -> None:
+    real_popen = proof_guard.subprocess.Popen
+    launched: list[subprocess.Popen[object]] = []
+    audit = proof_guard.PhaseAudit()
+    delivered_audit_states: list[tuple[int | None, str]] = []
+
+    def spawn_then_signal(
+        _command: object,
+        **kwargs: object,
+    ) -> subprocess.Popen[object]:
+        child = real_popen(
+            [sys.executable, "-c", "import time; time.sleep(10)"],
+            **kwargs,
+        )
+        launched.append(child)
+        os.kill(os.getpid(), signum)
+        return child
+
+    def interrupt(delivered_signum: int, _frame: object) -> None:
+        delivered_audit_states.append((audit.pgid, audit.outcome))
+        if delivered_signum == signal.SIGINT:
+            raise KeyboardInterrupt
+        raise proof_guard.GuardSignal(delivered_signum)
+
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", spawn_then_signal)
+    previous_handler = signal.signal(signum, interrupt)
+    expected_exception = (
+        KeyboardInterrupt if signum == signal.SIGINT else proof_guard.GuardSignal
+    )
+    try:
+        with pytest.raises(expected_exception) as exc_info:
+            if launch_role == "short":
+                proof_guard.run_guarded(
+                    ("synthetic-command",),
+                    timeout_seconds=5.0,
+                    grace_seconds=0.05,
+                )
+            elif launch_role == "phase":
+                proof_guard._run_long_phase(
+                    ("synthetic-command",),
+                    "preflight",
+                    timeout_seconds=5.0,
+                    progress_seconds=1.0,
+                    grace_seconds=0.05,
+                    monitor=None,
+                    clock=time.monotonic,
+                    launcher_pid=os.getppid(),
+                    coordinator_pid=os.getpid(),
+                    phase_audit=audit,
+                )
+            else:
+                proof_guard.read_bounded_macos_thermal_state(
+                    deadline=time.monotonic() + 5.0,
+                )
+    finally:
+        signal.signal(signum, previous_handler)
+
+    assert len(launched) == 1
+    child = launched[0]
+    child.poll()
+    group_absent_before_fixture_cleanup = not exact_group_exists(child.pid)
+    stop_fixture_group(child)
+    assert group_absent_before_fixture_cleanup is True
+    if signum != signal.SIGINT:
+        assert exc_info.value.signum == signum
+    if launch_role == "phase":
+        assert delivered_audit_states == [(child.pid, "running")]
+        assert audit == proof_guard.PhaseAudit(
+            pgid=child.pid,
+            outcome="interrupted",
+            guard_status=None,
+            child_exit_status=None,
+            exact_group_absent=True,
+        )
+
+
+@pytest.mark.parametrize("launch_role", ("short", "phase", "helper"))
+def test_launch_cleanup_failure_supersedes_pending_signal_with_fixed_error(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    launch_role: str,
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 988_200_001
+    secret = "launch-cleanup-secret-sentinel"
+    audit = proof_guard.PhaseAudit()
+    killpg_calls: list[tuple[int, int]] = []
+
+    class SyntheticChild:
+        pid = process_group_id
+        returncode: int | None = None
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            raise subprocess.TimeoutExpired(
+                f"{secret}-{process_group_id}",
+                timeout,
+            )
+
+    def spawn_then_signal(*_args: object, **_kwargs: object) -> SyntheticChild:
+        os.kill(os.getpid(), signal.SIGTERM)
+        return SyntheticChild()
+
+    def interrupt(delivered_signum: int, _frame: object) -> None:
+        raise proof_guard.GuardSignal(delivered_signum)
+
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", spawn_then_signal)
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: True)
+    monkeypatch.setattr(
+        proof_guard.os,
+        "killpg",
+        lambda pgid, signum: killpg_calls.append((pgid, signum)),
+    )
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+    previous_handler = signal.signal(signal.SIGTERM, interrupt)
+    try:
+        with pytest.raises(
+            RuntimeError,
+            match="^proof guard safety cleanup failed$",
+        ) as exc_info:
+            if launch_role == "short":
+                proof_guard.run_guarded(
+                    ("synthetic-command", secret),
+                    timeout_seconds=5.0,
+                    grace_seconds=0.05,
+                )
+            elif launch_role == "phase":
+                proof_guard._run_long_phase(
+                    ("synthetic-command", secret),
+                    "preflight",
+                    timeout_seconds=5.0,
+                    progress_seconds=1.0,
+                    grace_seconds=0.05,
+                    monitor=None,
+                    clock=clock.monotonic,
+                    launcher_pid=os.getppid(),
+                    coordinator_pid=os.getpid(),
+                    phase_audit=audit,
+                )
+            else:
+                proof_guard.read_bounded_macos_thermal_state(
+                    deadline=1.0,
+                    clock=clock.monotonic,
+                )
+    finally:
+        signal.signal(signal.SIGTERM, previous_handler)
+
+    captured = capsys.readouterr()
+    exception_chain = _exception_chain(exc_info.value)
+    exception_chain_text = " ".join(
+        f"{current!r} {current.args!r} {vars(current)!r}"
+        for current in exception_chain
+    )
+    assert exception_chain == (exc_info.value,)
+    assert killpg_calls == [
+        (process_group_id, signal.SIGTERM),
+        (process_group_id, signal.SIGKILL),
+    ]
+    combined_text = captured.out + captured.err + exception_chain_text
+    assert str(process_group_id) not in combined_text
+    assert secret not in combined_text
+    if launch_role == "phase":
+        assert audit == proof_guard.PhaseAudit(
+            pgid=process_group_id,
+            outcome="cleanup_stop",
+            guard_status=proof_guard.SAFETY_EXIT,
+            child_exit_status=None,
+            exact_group_absent=False,
+        )
 
 
 def test_cleanup_sends_sigterm_before_sigkill_to_surviving_exact_group(
@@ -471,6 +687,56 @@ def test_child_receives_one_thread_numerical_environment(tmp_path: Path) -> None
     )
     assert result.returncode == 0
     assert json.loads(env_file.read_text()) == {key: "1" for key in THREAD_ENV}
+
+
+def test_exec_trampoline_unblocks_all_guard_signals_before_target(
+    tmp_path: Path,
+) -> None:
+    mask_file = tmp_path / "target-signal-mask.json"
+    child_program = "\n".join(
+        (
+            "import json, pathlib, signal",
+            "blocked = signal.pthread_sigmask(signal.SIG_BLOCK, set())",
+            f"guarded = {tuple(int(item) for item in (signal.SIGHUP, signal.SIGTERM, signal.SIGINT))!r}",
+            f"pathlib.Path({str(mask_file)!r}).write_text(json.dumps(sorted(int(item) for item in blocked if int(item) in guarded)))",
+        )
+    )
+    guarded_signals = {signal.SIGHUP, signal.SIGTERM, signal.SIGINT}
+    previous_mask = signal.pthread_sigmask(signal.SIG_BLOCK, guarded_signals)
+    try:
+        status = proof_guard.run_guarded(
+            (sys.executable, "-c", child_program),
+            timeout_seconds=2.0,
+            grace_seconds=0.1,
+        )
+    finally:
+        signal.pthread_sigmask(signal.SIG_SETMASK, previous_mask)
+
+    assert status == 0
+    assert json.loads(mask_file.read_text()) == []
+
+
+def test_exec_trampoline_roundtrips_surrogate_escaped_posix_argv(
+    tmp_path: Path,
+) -> None:
+    argv_file = tmp_path / "surrogate-argv.bin"
+    raw_argument = b"\xffpipe-argv-byte-sentinel"
+    surrogate_argument = os.fsdecode(raw_argument)
+    child_program = "\n".join(
+        (
+            "import os, pathlib, sys",
+            f"pathlib.Path({str(argv_file)!r}).write_bytes(os.fsencode(sys.argv[1]))",
+        )
+    )
+
+    status = proof_guard.run_guarded(
+        (sys.executable, "-c", child_program, surrogate_argument),
+        timeout_seconds=2.0,
+        grace_seconds=0.1,
+    )
+
+    assert status == 0
+    assert argv_file.read_bytes() == raw_argument
 
 
 def test_dead_owner_lock_is_reclaimed() -> None:
@@ -749,6 +1015,118 @@ def test_long_run_replays_exact_command_in_two_phases_under_one_lock(
     assert all(record["lock_owner"] == record["parent_pid"] for record in records)
     assert records[0]["lock_owner"] == records[1]["lock_owner"]
     assert records[0]["lock_identity"] == records[1]["lock_identity"]
+
+
+def test_real_argv_roundtrip_is_absent_from_wrapper_argv_audit_and_errors(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    records_path = tmp_path / "argv-roundtrip.jsonl"
+    sentinel = "pipe-only-real-argv-secret-sentinel"
+    wrapper_calls: list[tuple[object, dict[str, object]]] = []
+    real_popen = proof_guard.subprocess.Popen
+    child_program = "\n".join(
+        (
+            "import json, pathlib, sys",
+            f"path = pathlib.Path({str(records_path)!r})",
+            "with path.open('a', encoding='utf-8') as stream:",
+            "    stream.write(json.dumps(sys.argv[1:]) + '\\n')",
+        )
+    )
+
+    def record_wrapper(
+        command: object,
+        **kwargs: object,
+    ) -> subprocess.Popen[object]:
+        wrapper_calls.append((command, kwargs))
+        return real_popen(command, **kwargs)
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(proof_guard, "SafetyMonitor", lambda: None)
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", record_wrapper)
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--preflight-seconds",
+            "0.5",
+            "--timeout-seconds",
+            "61",
+            "--",
+            sys.executable,
+            "-c",
+            child_program,
+            sentinel,
+        ]
+    )
+
+    captured = capsys.readouterr()
+    audit_text = last_run_path.read_text(encoding="utf-8")
+    records = [json.loads(line) for line in records_path.read_text().splitlines()]
+    assert status == 0
+    assert records == [[sentinel], [sentinel]]
+    assert len(wrapper_calls) == 2
+    for wrapper_argv, wrapper_kwargs in wrapper_calls:
+        wrapper_text = repr((wrapper_argv, wrapper_kwargs))
+        assert sentinel not in wrapper_text
+        assert wrapper_kwargs["shell"] is False
+        assert wrapper_kwargs["start_new_session"] is True
+        assert wrapper_kwargs["cwd"] == PROJECT_ROOT
+        assert "pass_fds" in wrapper_kwargs
+    assert sentinel not in audit_text
+    assert sentinel not in captured.out
+    assert sentinel not in captured.err
+
+
+def test_start_failure_keeps_real_argv_out_of_wrapper_audit_and_error(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    sentinel = "failed-launch-real-argv-secret-sentinel"
+    wrapper_calls: list[tuple[object, dict[str, object]]] = []
+
+    def fail_wrapper(command: object, **kwargs: object) -> None:
+        wrapper_calls.append((command, kwargs))
+        raise OSError(errno.ENOENT, "synthetic fixed launch failure")
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(proof_guard, "SafetyMonitor", lambda: None)
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", fail_wrapper)
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--preflight-seconds",
+            "0.5",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+            sentinel,
+        ]
+    )
+
+    captured = capsys.readouterr()
+    audit_text = last_run_path.read_text(encoding="utf-8")
+    audit = json.loads(audit_text)
+    assert status == proof_guard.PREFLIGHT_EXIT
+    assert audit["classification"] == "start_guard_error"
+    assert audit["phases"]["preflight"]["outcome"] == "start_error"
+    assert len(wrapper_calls) == 1
+    assert sentinel not in repr(wrapper_calls[0])
+    assert sentinel not in audit_text
+    assert sentinel not in captured.out
+    assert sentinel not in captured.err
 
 
 def test_nonzero_preflight_returns_125_without_starting_experiment(
@@ -1464,6 +1842,139 @@ def test_interruption_audit_records_status_and_exact_group_cleanup(
         "exact_group_absent": True,
     }
     assert killpg_calls == [(730_001, signal.SIGTERM)]
+
+
+def test_helper_cleanup_failure_is_a_sanitized_safety_cleanup_stop(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    process_guard_dir = tmp_path / "process-guard"
+    lock_path = process_guard_dir / "active.json"
+    last_run_path = process_guard_dir / "last-run.json"
+    clock = _FakeClock()
+    phase_group_id = 988_100_001
+    helper_group_id = 988_100_002
+    helper_secret = "helper-audit-cleanup-secret-sentinel"
+    phase_alive = True
+    popen_calls = 0
+    killpg_calls: list[tuple[int, int]] = []
+    real_safety_monitor = proof_guard.SafetyMonitor
+
+    class SyntheticPhase:
+        pid = phase_group_id
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            raise AssertionError("phase wait ran after immediate helper failure")
+
+    class SyntheticProbe:
+        pid = helper_group_id
+        returncode: int | None = None
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            assert timeout > 0
+            raise proof_guard.GuardSignal(signal.SIGTERM)
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            raise subprocess.TimeoutExpired(
+                f"{helper_secret}-{helper_group_id}",
+                timeout,
+            )
+
+    def popen(*_args: object, **_kwargs: object) -> object:
+        nonlocal popen_calls
+        popen_calls += 1
+        return SyntheticPhase() if popen_calls == 1 else SyntheticProbe()
+
+    def group_exists(process_group_id: int) -> bool:
+        if process_group_id == helper_group_id:
+            return True
+        if process_group_id == phase_group_id:
+            return phase_alive
+        return False
+
+    def killpg(process_group_id: int, signum: int) -> None:
+        nonlocal phase_alive
+        killpg_calls.append((process_group_id, signum))
+        if process_group_id == phase_group_id:
+            phase_alive = False
+
+    class HelperFailureMonitor:
+        def verify_launcher_coordinator(
+            self,
+            launcher_pid: int,
+            coordinator_pid: int,
+            sample_deadline: float | None = None,
+        ) -> None:
+            del launcher_pid, coordinator_pid, sample_deadline
+            return None
+
+        def sample(self, **kwargs: object) -> object:
+            return real_safety_monitor(
+                process_reader=lambda _timeout: (),
+                thermal_reader=lambda deadline: (
+                    proof_guard.read_bounded_macos_thermal_state(
+                        deadline,
+                        clock=clock.monotonic,
+                    )
+                ),
+                clock=clock.monotonic,
+            ).sample(**kwargs)
+
+    monkeypatch.setattr(proof_guard, "LOCK_PATH", lock_path)
+    monkeypatch.setattr(proof_guard, "LAST_RUN_PATH", last_run_path)
+    monkeypatch.setattr(proof_guard, "SafetyMonitor", HelperFailureMonitor)
+    monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
+    monkeypatch.setattr(proof_guard, "group_exists", group_exists)
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+
+    status = proof_guard.main(
+        [
+            "--long-run",
+            "--preflight-seconds",
+            "1",
+            "--timeout-seconds",
+            "61",
+            "--",
+            "synthetic-command",
+            helper_secret,
+        ]
+    )
+
+    captured = capsys.readouterr()
+    audit_text = last_run_path.read_text(encoding="utf-8")
+    audit = json.loads(audit_text)
+    assert status == proof_guard.SAFETY_EXIT
+    assert audit["classification"] == "safety_cleanup_stop"
+    assert audit["guard_status"] == proof_guard.SAFETY_EXIT
+    assert audit["return_status"] == proof_guard.SAFETY_EXIT
+    assert audit["phases"]["preflight"] == {
+        "pgid": phase_group_id,
+        "outcome": "safety_stop",
+        "guard_status": proof_guard.SAFETY_EXIT,
+        "child_exit_status": None,
+        "exact_group_absent": True,
+    }
+    assert killpg_calls == [
+        (helper_group_id, signal.SIGTERM),
+        (helper_group_id, signal.SIGKILL),
+        (phase_group_id, signal.SIGTERM),
+    ]
+    combined_text = captured.out + captured.err + audit_text
+    assert str(helper_group_id) not in combined_text
+    assert helper_secret not in combined_text
 
 
 def test_start_error_audit_has_no_phase_pgid_and_stays_distinguishable(
@@ -2474,19 +2985,27 @@ def test_bounded_thermal_probe_uses_fixed_internal_mode_and_parses_enum(
     clock.now = 3.0
     popen_calls: list[tuple[object, object]] = []
     communicate_timeouts: list[float] = []
+    pipe_payloads: list[object] = []
 
     class SyntheticProbe:
         pid = 910_000
         returncode = 0
 
+        def __init__(self, argv_read_fd: int) -> None:
+            self.argv_read_fd = argv_read_fd
+
         def communicate(self, timeout: float) -> tuple[str, str]:
             communicate_timeouts.append(timeout)
+            with os.fdopen(self.argv_read_fd, "rb", closefd=True) as stream:
+                pipe_payloads.append(json.loads(stream.read().decode("utf-8")))
             return "0\n", ""
 
     def popen(command: object, **kwargs: object) -> SyntheticProbe:
         popen_calls.append((command, kwargs))
         clock.now += 0.5
-        return SyntheticProbe()
+        pass_fds = kwargs["pass_fds"]
+        assert isinstance(pass_fds, tuple) and len(pass_fds) == 1
+        return SyntheticProbe(os.dup(pass_fds[0]))
 
     monkeypatch.setattr(proof_guard.subprocess, "Popen", popen)
     monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
@@ -2498,24 +3017,29 @@ def test_bounded_thermal_probe_uses_fixed_internal_mode_and_parses_enum(
 
     assert thermal_state == 0
     assert communicate_timeouts == [1.5]
-    assert popen_calls == [
-        (
-            [
-                sys.executable,
-                str(RUNNER),
-                "--internal-thermal-probe",
-            ],
-            {
-                "cwd": PROJECT_ROOT,
-                "env": proof_guard.limited_environment(),
-                "shell": False,
-                "start_new_session": True,
-                "stdout": subprocess.PIPE,
-                "stderr": subprocess.DEVNULL,
-                "text": True,
-            },
-        )
+    assert pipe_payloads == [
+        [sys.executable, str(RUNNER), "--internal-thermal-probe"]
     ]
+    assert len(popen_calls) == 1
+    wrapper_argv, wrapper_kwargs = popen_calls[0]
+    assert isinstance(wrapper_argv, list)
+    assert wrapper_argv[:3] == [
+        sys.executable,
+        str(RUNNER),
+        "--internal-exec-trampoline",
+    ]
+    assert len(wrapper_argv) == 4
+    read_fd = int(wrapper_argv[3])
+    assert wrapper_kwargs == {
+        "cwd": PROJECT_ROOT,
+        "env": proof_guard.limited_environment(),
+        "shell": False,
+        "start_new_session": True,
+        "pass_fds": (read_fd,),
+        "stdout": subprocess.PIPE,
+        "stderr": subprocess.DEVNULL,
+        "text": True,
+    }
 
 
 def test_thermal_probe_rejects_success_exactly_at_deadline(
@@ -2534,6 +3058,9 @@ def test_thermal_probe_rejects_success_exactly_at_deadline(
             communicate_timeouts.append(timeout)
             clock.now += timeout
             return "0\n", ""
+
+        def poll(self) -> int:
+            return 0
 
     monkeypatch.setattr(
         proof_guard.subprocess,
@@ -2837,6 +3364,227 @@ def test_thermal_probe_cleanup_failure_is_silent_and_pid_free(
     assert str(process_group_id) not in standard_output.getvalue()
     assert str(process_group_id) not in standard_error.getvalue()
     assert str(process_group_id) not in str(exc_info.value)
+
+
+@pytest.mark.parametrize("interruption_site", ("communicate", "group_probe"))
+@pytest.mark.parametrize("interruption_kind", ("guard_signal", "keyboard"))
+def test_helper_cleanup_success_preserves_original_interruption(
+    monkeypatch: pytest.MonkeyPatch,
+    interruption_site: str,
+    interruption_kind: str,
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 988_000_001
+    group_alive = True
+    group_probe_calls = 0
+    killpg_calls: list[tuple[int, int]] = []
+    interruption: BaseException = (
+        proof_guard.GuardSignal(signal.SIGTERM)
+        if interruption_kind == "guard_signal"
+        else KeyboardInterrupt()
+    )
+
+    class SyntheticProbe:
+        pid = process_group_id
+        returncode = 0
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            assert timeout > 0
+            if interruption_site == "communicate":
+                raise interruption
+            return "0\n", ""
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            return 0
+
+    def group_exists(_process_group_id: int) -> bool:
+        nonlocal group_probe_calls
+        group_probe_calls += 1
+        if interruption_site == "group_probe" and group_probe_calls == 1:
+            raise interruption
+        return group_alive
+
+    def killpg(target_group_id: int, signum: int) -> None:
+        nonlocal group_alive
+        killpg_calls.append((target_group_id, signum))
+        group_alive = False
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticProbe(),
+    )
+    monkeypatch.setattr(proof_guard, "group_exists", group_exists)
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+
+    with pytest.raises(type(interruption)) as exc_info:
+        proof_guard.read_bounded_macos_thermal_state(
+            deadline=1.0,
+            clock=clock.monotonic,
+        )
+
+    assert exc_info.value is interruption
+    assert killpg_calls == [(process_group_id, signal.SIGTERM)]
+    assert group_alive is False
+
+
+def test_helper_cleanup_defers_second_signal_until_final_absence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 988_000_003
+    group_alive = True
+    events: list[str] = []
+    original_interruption = proof_guard.GuardSignal(signal.SIGHUP)
+
+    class SyntheticProbe:
+        pid = process_group_id
+        returncode: int | None = None
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            assert timeout > 0
+            raise original_interruption
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            return 0
+
+    def group_exists(_process_group_id: int) -> bool:
+        events.append("final-absence" if not group_alive else "group-alive")
+        return group_alive
+
+    def killpg(target_group_id: int, signum: int) -> None:
+        nonlocal group_alive
+        assert target_group_id == process_group_id
+        assert signum == signal.SIGTERM
+        events.append("term")
+        os.kill(os.getpid(), signal.SIGINT)
+        events.append("second-signal-pending")
+        group_alive = False
+
+    def second_signal_handler(_signum: int, _frame: object) -> None:
+        events.append("second-signal-delivered")
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticProbe(),
+    )
+    monkeypatch.setattr(proof_guard, "group_exists", group_exists)
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+    previous_handler = signal.signal(signal.SIGINT, second_signal_handler)
+    try:
+        with pytest.raises(proof_guard.GuardSignal) as exc_info:
+            proof_guard.read_bounded_macos_thermal_state(
+                deadline=1.0,
+                clock=clock.monotonic,
+            )
+    finally:
+        signal.signal(signal.SIGINT, previous_handler)
+
+    assert exc_info.value is original_interruption
+    assert events == [
+        "term",
+        "second-signal-pending",
+        "final-absence",
+        "second-signal-delivered",
+    ]
+
+
+@pytest.mark.parametrize("interruption_site", ("communicate", "group_probe"))
+def test_helper_cleanup_failure_supersedes_interruption_without_chain_or_pid(
+    monkeypatch: pytest.MonkeyPatch,
+    interruption_site: str,
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 988_000_002
+    secret = "helper-cleanup-secret-sentinel"
+    killpg_calls: list[tuple[int, int]] = []
+    group_probe_calls = 0
+
+    class SyntheticProbe:
+        pid = process_group_id
+        returncode: int | None = None
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            assert timeout > 0
+            if interruption_site == "communicate":
+                raise proof_guard.GuardSignal(signal.SIGTERM)
+            return "0\n", ""
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            raise subprocess.TimeoutExpired(
+                f"{secret}-{process_group_id}",
+                timeout,
+            )
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticProbe(),
+    )
+    def group_exists(_process_group_id: int) -> bool:
+        nonlocal group_probe_calls
+        group_probe_calls += 1
+        if interruption_site == "group_probe" and group_probe_calls == 1:
+            raise proof_guard.GuardSignal(signal.SIGTERM)
+        return True
+
+    monkeypatch.setattr(proof_guard, "group_exists", group_exists)
+    monkeypatch.setattr(
+        proof_guard.os,
+        "killpg",
+        lambda pgid, signum: killpg_calls.append((pgid, signum)),
+    )
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+
+    with pytest.raises(
+        RuntimeError,
+        match="^proof guard safety cleanup failed$",
+    ) as exc_info:
+        proof_guard.read_bounded_macos_thermal_state(
+            deadline=1.0,
+            clock=clock.monotonic,
+        )
+
+    exception_chain = _exception_chain(exc_info.value)
+    exception_chain_text = " ".join(
+        f"{current!r} {current.args!r} {vars(current)!r}"
+        for current in exception_chain
+    )
+    assert exception_chain == (exc_info.value,)
+    assert killpg_calls == [
+        (process_group_id, signal.SIGTERM),
+        (process_group_id, signal.SIGKILL),
+    ]
+    assert str(process_group_id) not in exception_chain_text
+    assert secret not in exception_chain_text
 
 
 def test_process_reader_requests_only_non_sensitive_fields(

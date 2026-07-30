@@ -39,6 +39,11 @@ SAFETY_SAMPLE_SECONDS = 1.0
 DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS = 2.0
 THERMAL_PROBE_GRACE_SECONDS = 0.1
 INTERNAL_THERMAL_PROBE_FLAG = "--internal-thermal-probe"
+INTERNAL_EXEC_TRAMPOLINE_FLAG = "--internal-exec-trampoline"
+SAFETY_CLEANUP_FAILURE = "proof guard safety cleanup failed"
+GUARD_SIGNALS = frozenset(
+    (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
+)
 THERMAL_PROBE_DEADLINE_TRANSITION = (
     "proof guard safety transition: thermal probe deadline reached"
 )
@@ -65,6 +70,10 @@ class GuardSignal(Exception):
     def __init__(self, signum: int) -> None:
         super().__init__(signum)
         self.signum = signum
+
+
+class SafetyCleanupError(RuntimeError):
+    pass
 
 
 @dataclass(frozen=True)
@@ -125,6 +134,12 @@ class PhaseAudit:
     guard_status: int | None = None
     child_exit_status: int | None = None
     exact_group_absent: bool | None = None
+
+
+@dataclass(frozen=True)
+class ExactGroupProcess:
+    process: subprocess.Popen[bytes] | subprocess.Popen[str]
+    process_group_id: int
 
 
 @dataclass
@@ -328,22 +343,74 @@ def _run_internal_thermal_probe() -> int:
     return 0
 
 
+def _run_internal_exec_trampoline(arguments: Sequence[str]) -> int:
+    read_fd = -1
+    try:
+        if len(arguments) != 1:
+            raise ValueError
+        read_fd = int(arguments[0])
+        if read_fd < 0:
+            raise ValueError
+        with os.fdopen(read_fd, "rb", closefd=True) as stream:
+            read_fd = -1
+            payload = stream.read()
+        command = json.loads(payload.decode("ascii"))
+        if (
+            not isinstance(command, list)
+            or not command
+            or not command[0]
+            or any(not isinstance(item, str) for item in command)
+        ):
+            raise ValueError
+    except BaseException:
+        if read_fd >= 0:
+            try:
+                os.close(read_fd)
+            except OSError:
+                pass
+        print("proof guard exec trampoline rejected launch", file=sys.stderr)
+        return 127
+
+    signal.pthread_sigmask(signal.SIG_UNBLOCK, GUARD_SIGNALS)
+    try:
+        os.execvpe(command[0], command, os.environ)
+    except BaseException:
+        print("proof guard exec trampoline could not start target", file=sys.stderr)
+        return 127
+
+
 def _clean_thermal_probe_group_silently(
-    probe: subprocess.Popen[str],
+    launched: ExactGroupProcess,
+    *,
+    preserve_interruption: bool = False,
 ) -> bool:
     try:
-        if not group_exists(probe.pid):
-            return True
-        terminate_group(probe, THERMAL_PROBE_GRACE_SECONDS)
-        return not group_exists(probe.pid)
-    except (GuardSignal, KeyboardInterrupt):
-        raise
+        _terminate_group_with_mask(
+            launched.process,
+            launched.process_group_id,
+            THERMAL_PROBE_GRACE_SECONDS,
+            preserve_interruption=preserve_interruption,
+        )
     except BaseException:
         return False
+    return True
+
+
+def _rethrow_thermal_probe_interruption(
+    launched: ExactGroupProcess,
+    interruption: BaseException,
+) -> None:
+    cleanup_succeeded = _clean_thermal_probe_group_silently(
+        launched,
+        preserve_interruption=True,
+    )
+    if not cleanup_succeeded:
+        raise SafetyCleanupError(SAFETY_CLEANUP_FAILURE) from None
+    raise interruption
 
 
 def _raise_thermal_probe_failure(
-    probe: subprocess.Popen[str],
+    launched: ExactGroupProcess,
     message: str,
     *,
     deadline_transition: bool = False,
@@ -363,7 +430,7 @@ def _raise_thermal_probe_failure(
             except Exception:
                 transition_failed = True
     finally:
-        cleanup_succeeded = _clean_thermal_probe_group_silently(probe)
+        cleanup_succeeded = _clean_thermal_probe_group_silently(launched)
     if not cleanup_succeeded:
         raise RuntimeError("thermal probe cleanup failed") from None
     if transition_failed:
@@ -387,60 +454,63 @@ def read_bounded_macos_thermal_state(
         raise RuntimeError("thermal probe deadline exceeded")
 
     try:
-        probe = subprocess.Popen(
+        launched = _launch_exact_group(
             [sys.executable, str(Path(__file__).resolve()), INTERNAL_THERMAL_PROBE_FLAG],
-            cwd=PROJECT_ROOT,
-            env=limited_environment(),
-            shell=False,
-            start_new_session=True,
+            environment=limited_environment(),
+            grace_seconds=THERMAL_PROBE_GRACE_SECONDS,
             stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL,
             text=True,
         )
     except OSError as exc:
         raise RuntimeError(f"could not start thermal probe: {exc.strerror}") from exc
+    probe = launched.process
 
     remaining_seconds = deadline - clock()
     if remaining_seconds <= 0:
         _raise_thermal_probe_failure(
-            probe,
+            launched,
             "thermal probe deadline exceeded",
             deadline_transition=True,
         )
     probe_timed_out = False
+    interruption: BaseException | None = None
     try:
         stdout, _stderr = probe.communicate(timeout=remaining_seconds)
     except subprocess.TimeoutExpired:
         probe_timed_out = True
-    except (GuardSignal, KeyboardInterrupt):
-        _clean_thermal_probe_group_silently(probe)
-        raise
+    except (GuardSignal, KeyboardInterrupt) as exc:
+        interruption = exc
     except BaseException:
-        _raise_thermal_probe_failure(probe, "thermal probe failed")
+        _raise_thermal_probe_failure(launched, "thermal probe failed")
+    if interruption is not None:
+        _rethrow_thermal_probe_interruption(launched, interruption)
     if probe_timed_out:
         _raise_thermal_probe_failure(
-            probe,
+            launched,
             "thermal probe timed out",
             deadline_transition=True,
         )
 
     if clock() >= deadline:
         _raise_thermal_probe_failure(
-            probe,
+            launched,
             "thermal probe deadline exceeded",
             deadline_transition=True,
         )
 
+    interruption = None
     try:
-        group_alive = group_exists(probe.pid)
-    except (GuardSignal, KeyboardInterrupt):
-        _clean_thermal_probe_group_silently(probe)
-        raise
+        group_alive = group_exists(launched.process_group_id)
+    except (GuardSignal, KeyboardInterrupt) as exc:
+        interruption = exc
     except BaseException:
-        _raise_thermal_probe_failure(probe, "thermal probe failed")
+        _raise_thermal_probe_failure(launched, "thermal probe failed")
+    if interruption is not None:
+        _rethrow_thermal_probe_interruption(launched, interruption)
     if group_alive:
-        if not _clean_thermal_probe_group_silently(probe):
-            raise RuntimeError("thermal probe cleanup failed") from None
+        if not _clean_thermal_probe_group_silently(launched):
+            raise SafetyCleanupError(SAFETY_CLEANUP_FAILURE) from None
         raise RuntimeError("thermal probe left its process group alive")
     if probe.returncode != 0:
         raise RuntimeError("thermal probe failed")
@@ -903,13 +973,15 @@ def group_exists(process_group_id: int) -> bool:
     return True
 
 
-def terminate_group(child: subprocess.Popen[bytes], grace_seconds: float) -> None:
-    process_group_id = child.pid
+def _terminate_group_while_blocked(
+    child: subprocess.Popen[bytes] | subprocess.Popen[str],
+    process_group_id: int,
+    grace_seconds: float,
+) -> None:
     try:
         os.killpg(process_group_id, signal.SIGTERM)
     except ProcessLookupError:
-        child.poll()
-        return
+        pass
 
     deadline = time.monotonic() + grace_seconds
     while time.monotonic() < deadline:
@@ -923,11 +995,63 @@ def terminate_group(child: subprocess.Popen[bytes], grace_seconds: float) -> Non
             os.killpg(process_group_id, signal.SIGKILL)
         except ProcessLookupError:
             child.poll()
-            return
+        else:
+            child.poll()
+        if group_exists(process_group_id):
+            try:
+                child.wait(timeout=max(grace_seconds, 0.1))
+            except subprocess.TimeoutExpired as exc:
+                raise RuntimeError(
+                    f"process group {process_group_id} survived SIGKILL"
+                ) from exc
+    child.poll()
+    if group_exists(process_group_id):
+        raise RuntimeError(
+            f"process group {process_group_id} survived SIGKILL"
+        )
+
+
+def _terminate_group_with_mask(
+    child: subprocess.Popen[bytes] | subprocess.Popen[str],
+    process_group_id: int,
+    grace_seconds: float,
+    *,
+    preserve_interruption: bool,
+) -> None:
+    previous_mask = signal.pthread_sigmask(signal.SIG_BLOCK, GUARD_SIGNALS)
+    cleanup_error: BaseException | None = None
     try:
-        child.wait(timeout=max(grace_seconds, 0.1))
-    except subprocess.TimeoutExpired as exc:
-        raise RuntimeError(f"process group {process_group_id} survived SIGKILL") from exc
+        _terminate_group_while_blocked(
+            child,
+            process_group_id,
+            grace_seconds,
+        )
+    except BaseException as exc:
+        cleanup_error = exc
+    restoration_error: BaseException | None = None
+    try:
+        signal.pthread_sigmask(signal.SIG_SETMASK, previous_mask)
+    except BaseException as exc:
+        restoration_error = exc
+    if cleanup_error is not None:
+        raise cleanup_error
+    if restoration_error is not None and not preserve_interruption:
+        raise restoration_error
+
+
+def terminate_group(
+    child: subprocess.Popen[bytes] | subprocess.Popen[str],
+    grace_seconds: float,
+    process_group_id: int | None = None,
+) -> None:
+    if process_group_id is None:
+        process_group_id = child.pid
+    _terminate_group_with_mask(
+        child,
+        process_group_id,
+        grace_seconds,
+        preserve_interruption=False,
+    )
 
 
 def limited_environment(phase: str | None = None) -> dict[str, str]:
@@ -939,65 +1063,223 @@ def limited_environment(phase: str | None = None) -> dict[str, str]:
     return environment
 
 
+def _validated_exec_argv(command: Sequence[str]) -> list[str]:
+    argv = list(command)
+    if (
+        not argv
+        or not argv[0]
+        or any(not isinstance(item, str) for item in argv)
+    ):
+        raise ValueError("proof guard command argv must be nonempty strings")
+    return argv
+
+
+def _clean_launch_group_silently(
+    launched: ExactGroupProcess,
+    grace_seconds: float,
+) -> bool:
+    try:
+        _terminate_group_with_mask(
+            launched.process,
+            launched.process_group_id,
+            grace_seconds,
+            preserve_interruption=True,
+        )
+    except BaseException:
+        return False
+    return True
+
+
+def _launch_exact_group(
+    command: Sequence[str],
+    *,
+    environment: dict[str, str],
+    grace_seconds: float,
+    phase_audit: PhaseAudit | None = None,
+    stdout: int | None = None,
+    stderr: int | None = None,
+    text: bool | None = None,
+) -> ExactGroupProcess:
+    argv = _validated_exec_argv(command)
+    payload = json.dumps(
+        argv,
+        ensure_ascii=True,
+        separators=(",", ":"),
+    ).encode("ascii")
+    read_fd, write_fd = os.pipe()
+    launched: ExactGroupProcess | None = None
+    primary_error: BaseException | None = None
+    previous_mask = signal.pthread_sigmask(signal.SIG_BLOCK, GUARD_SIGNALS)
+    try:
+        popen_kwargs: dict[str, object] = {
+            "cwd": PROJECT_ROOT,
+            "env": environment,
+            "shell": False,
+            "start_new_session": True,
+            "pass_fds": (read_fd,),
+        }
+        if stdout is not None:
+            popen_kwargs["stdout"] = stdout
+        if stderr is not None:
+            popen_kwargs["stderr"] = stderr
+        if text is not None:
+            popen_kwargs["text"] = text
+        child = subprocess.Popen(
+            [
+                sys.executable,
+                str(Path(__file__).resolve()),
+                INTERNAL_EXEC_TRAMPOLINE_FLAG,
+                str(read_fd),
+            ],
+            **popen_kwargs,
+        )
+        launched = ExactGroupProcess(
+            process=child,
+            process_group_id=child.pid,
+        )
+        if phase_audit is not None:
+            phase_audit.pgid = launched.process_group_id
+            phase_audit.outcome = "running"
+        stream = os.fdopen(write_fd, "wb", closefd=True)
+        write_fd = -1
+        with stream:
+            stream.write(payload)
+            stream.flush()
+    except BaseException as exc:
+        primary_error = exc
+    finally:
+        if write_fd >= 0:
+            os.close(write_fd)
+        os.close(read_fd)
+
+    if primary_error is None:
+        try:
+            signal.pthread_sigmask(signal.SIG_SETMASK, previous_mask)
+        except BaseException as exc:
+            primary_error = exc
+        else:
+            if launched is None:
+                raise RuntimeError("proof guard launch lost its process handle")
+            return launched
+
+    cleanup_succeeded = True
+    if launched is not None:
+        try:
+            signal.pthread_sigmask(signal.SIG_BLOCK, GUARD_SIGNALS)
+        except BaseException:
+            cleanup_succeeded = False
+        else:
+            cleanup_succeeded = _clean_launch_group_silently(
+                launched,
+                grace_seconds,
+            )
+        if phase_audit is not None:
+            interrupted = isinstance(
+                primary_error,
+                (GuardSignal, KeyboardInterrupt),
+            )
+            _record_phase_result(
+                phase_audit,
+                outcome=(
+                    "interrupted"
+                    if cleanup_succeeded and interrupted
+                    else "guard_error"
+                    if cleanup_succeeded
+                    else "cleanup_stop"
+                ),
+                guard_status=(
+                    None
+                    if cleanup_succeeded and interrupted
+                    else SAFETY_EXIT
+                ),
+                child_exit_status=None,
+                exact_group_absent=cleanup_succeeded,
+            )
+
+    restoration_error: BaseException | None = None
+    try:
+        signal.pthread_sigmask(signal.SIG_SETMASK, previous_mask)
+    except BaseException as exc:
+        restoration_error = exc
+    if not cleanup_succeeded:
+        raise SafetyCleanupError(SAFETY_CLEANUP_FAILURE) from None
+    if primary_error is not None:
+        raise primary_error
+    if restoration_error is not None:
+        raise restoration_error
+    raise RuntimeError("proof guard launch failed without an exception")
+
+
 def run_guarded(
     command: Sequence[str], timeout_seconds: float, grace_seconds: float
 ) -> int:
     try:
-        child = subprocess.Popen(
-            list(command),
-            cwd=PROJECT_ROOT,
-            env=limited_environment(),
-            shell=False,
-            start_new_session=True,
+        launched = _launch_exact_group(
+            command,
+            environment=limited_environment(),
+            grace_seconds=grace_seconds,
         )
     except OSError as exc:
         print(f"proof guard could not start the command: {exc.strerror}", file=sys.stderr)
         return 127
 
+    child = launched.process
+    process_group_id = launched.process_group_id
+    interruption: BaseException | None = None
     try:
         return_code = child.wait(timeout=timeout_seconds)
-        if group_exists(child.pid):
-            terminate_group(child, grace_seconds)
+        if group_exists(process_group_id):
+            if not _clean_exact_group(launched, grace_seconds):
+                return SAFETY_EXIT
         return return_code
     except subprocess.TimeoutExpired:
-        terminate_group(child, grace_seconds)
+        if not _clean_exact_group(launched, grace_seconds):
+            return SAFETY_EXIT
         print(
-            f"proof guard stopped process group {child.pid} after {timeout_seconds:g} seconds",
+            f"proof guard stopped process group {process_group_id} after {timeout_seconds:g} seconds",
             file=sys.stderr,
         )
         return TIMEOUT_EXIT
-    except BaseException:
-        terminate_group(child, grace_seconds)
-        raise
+    except BaseException as exc:
+        interruption = exc
+    if interruption is not None:
+        if not _clean_launch_group_silently(launched, grace_seconds):
+            raise SafetyCleanupError(SAFETY_CLEANUP_FAILURE) from None
+        raise interruption
+    raise RuntimeError("proof guard short run lost its result")
 
 
 def _clean_exact_group(
-    child: subprocess.Popen[bytes], grace_seconds: float
+    launched: ExactGroupProcess,
+    grace_seconds: float,
+    *,
+    preserve_interruption: bool = False,
 ) -> bool:
     try:
-        terminate_group(child, grace_seconds)
+        _terminate_group_with_mask(
+            launched.process,
+            launched.process_group_id,
+            grace_seconds,
+            preserve_interruption=preserve_interruption,
+        )
     except RuntimeError as exc:
         print(f"proof guard cleanup failed: {exc}", file=sys.stderr)
         return False
-    if group_exists(child.pid):
-        print(
-            f"proof guard cleanup left process group {child.pid} alive",
-            file=sys.stderr,
-        )
+    except BaseException:
         return False
     return True
 
 
 def _stop_timed_out_phase(
-    child: subprocess.Popen[bytes],
+    launched: ExactGroupProcess,
     phase: str,
     timeout_seconds: float,
     grace_seconds: float,
 ) -> tuple[int, bool]:
-    if not _clean_exact_group(child, grace_seconds):
+    if not _clean_exact_group(launched, grace_seconds):
         return SAFETY_EXIT, True
     print(
-        f"proof guard stopped {phase} process group {child.pid} "
+        f"proof guard stopped {phase} process group {launched.process_group_id} "
         f"after {timeout_seconds:g} seconds",
         file=sys.stderr,
     )
@@ -1033,12 +1315,11 @@ def _run_long_phase(
     phase_audit: PhaseAudit | None = None,
 ) -> tuple[int, bool]:
     try:
-        child = subprocess.Popen(
-            list(command),
-            cwd=PROJECT_ROOT,
-            env=limited_environment(phase),
-            shell=False,
-            start_new_session=True,
+        launched = _launch_exact_group(
+            command,
+            environment=limited_environment(phase),
+            grace_seconds=grace_seconds,
+            phase_audit=phase_audit,
         )
     except OSError as exc:
         print(f"proof guard could not start the command: {exc.strerror}", file=sys.stderr)
@@ -1051,9 +1332,8 @@ def _run_long_phase(
         )
         return 127, False
 
-    if phase_audit is not None:
-        phase_audit.pgid = child.pid
-        phase_audit.outcome = "running"
+    child = launched.process
+    process_group_id = launched.process_group_id
 
     observed_child_exit_status: int | None = None
     try:
@@ -1086,11 +1366,11 @@ def _run_long_phase(
                 observed_child_exit_status = return_code
             terminal_group_absent = False
             if return_code is not None:
-                if group_exists(child.pid):
-                    cleaned = _clean_exact_group(child, grace_seconds)
+                if group_exists(process_group_id):
+                    cleaned = _clean_exact_group(launched, grace_seconds)
                     print(
                         f"proof guard found a lingering {phase} process group "
-                        f"{child.pid}",
+                        f"{process_group_id}",
                         file=sys.stderr,
                     )
                     _record_phase_result(
@@ -1104,7 +1384,7 @@ def _run_long_phase(
                 terminal_group_absent = True
             elif now >= deadline:
                 result = _stop_timed_out_phase(
-                    child,
+                    launched,
                     phase,
                     timeout_seconds,
                     grace_seconds,
@@ -1137,8 +1417,8 @@ def _run_long_phase(
                 else:
                     try:
                         sample = monitor.sample(
-                            child_pid=child.pid,
-                            process_group_id=child.pid,
+                            child_pid=process_group_id,
+                            process_group_id=process_group_id,
                             launcher_pid=launcher_pid,
                             coordinator_pid=coordinator_pid,
                             sample_deadline=sampling_deadline,
@@ -1162,7 +1442,7 @@ def _run_long_phase(
                                 observed_child_exit_status = repolled_status
                                 try:
                                     terminal_group_absent = not group_exists(
-                                        child.pid
+                                        process_group_id
                                     )
                                 except (GuardSignal, KeyboardInterrupt):
                                     raise
@@ -1195,7 +1475,7 @@ def _run_long_phase(
 
                 if sample_finished_at >= deadline:
                     result = _stop_timed_out_phase(
-                        child,
+                        launched,
                         phase,
                         timeout_seconds,
                         grace_seconds,
@@ -1226,7 +1506,7 @@ def _run_long_phase(
                 cleaned = (
                     True
                     if terminal_group_absent
-                    else _clean_exact_group(child, grace_seconds)
+                    else _clean_exact_group(launched, grace_seconds)
                 )
                 _record_phase_result(
                     phase_audit,
@@ -1264,7 +1544,7 @@ def _run_long_phase(
             remaining_seconds = deadline - clock()
             if remaining_seconds <= 0:
                 result = _stop_timed_out_phase(
-                    child,
+                    launched,
                     phase,
                     timeout_seconds,
                     grace_seconds,
@@ -1301,10 +1581,10 @@ def _run_long_phase(
             except subprocess.TimeoutExpired:
                 continue
             observed_child_exit_status = return_code
-            if group_exists(child.pid):
-                cleaned = _clean_exact_group(child, grace_seconds)
+            if group_exists(process_group_id):
+                cleaned = _clean_exact_group(launched, grace_seconds)
                 print(
-                    f"proof guard found a lingering {phase} process group {child.pid}",
+                    f"proof guard found a lingering {phase} process group {process_group_id}",
                     file=sys.stderr,
                 )
                 _record_phase_result(
@@ -1324,29 +1604,25 @@ def _run_long_phase(
             )
             return return_code, False
     except BaseException as exc:
-        try:
-            cleaned = _clean_exact_group(child, grace_seconds)
-        except BaseException:
-            _record_phase_result(
-                phase_audit,
-                outcome="guard_error",
-                guard_status=SAFETY_EXIT,
-                child_exit_status=observed_child_exit_status,
-                exact_group_absent=False,
-            )
-            raise
-        _record_phase_result(
-            phase_audit,
-            outcome=(
-                "interrupted"
-                if isinstance(exc, (GuardSignal, KeyboardInterrupt))
-                else "guard_error"
-            ),
-            guard_status=None,
-            child_exit_status=observed_child_exit_status,
-            exact_group_absent=cleaned,
-        )
-        raise
+        phase_error = exc
+    interrupted = isinstance(phase_error, (GuardSignal, KeyboardInterrupt))
+    cleaned = _clean_launch_group_silently(launched, grace_seconds)
+    _record_phase_result(
+        phase_audit,
+        outcome=(
+            "interrupted"
+            if cleaned and interrupted
+            else "guard_error"
+            if cleaned
+            else "cleanup_stop"
+        ),
+        guard_status=None if cleaned and interrupted else SAFETY_EXIT,
+        child_exit_status=observed_child_exit_status,
+        exact_group_absent=cleaned,
+    )
+    if not cleaned:
+        raise SafetyCleanupError(SAFETY_CLEANUP_FAILURE) from None
+    raise phase_error
 
 
 def run_long_guarded(
@@ -1470,6 +1746,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
     if arguments == [INTERNAL_THERMAL_PROBE_FLAG]:
         return _run_internal_thermal_probe()
+    if arguments and arguments[0] == INTERNAL_EXEC_TRAMPOLINE_FLAG:
+        return _run_internal_exec_trampoline(arguments[1:])
     args = parse_args(arguments)
     launcher_pid = initial_parent_pid if args.long_run else None
     run_id = _new_run_id() if args.long_run else None
@@ -1516,6 +1794,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                         return 128 + exc.signum
                     except KeyboardInterrupt:
                         return 128 + signal.SIGINT
+                    except SafetyCleanupError:
+                        return SAFETY_EXIT
 
                 if launcher_pid is not None and audit is not None:
                     in_progress_written = False
@@ -1577,6 +1857,17 @@ def main(argv: Sequence[str] | None = None) -> int:
                                     audit,
                                     status,
                                     "interruption",
+                                )
+                            except BaseException:
+                                status = SAFETY_EXIT
+                    except SafetyCleanupError:
+                        status = SAFETY_EXIT
+                        if in_progress_written:
+                            try:
+                                status = _finalize_long_run_audit(
+                                    audit,
+                                    status,
+                                    "safety_cleanup_stop",
                                 )
                             except BaseException:
                                 status = SAFETY_EXIT
