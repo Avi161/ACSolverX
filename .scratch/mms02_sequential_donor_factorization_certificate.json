@@ -1,0 +1,1241 @@
+{
+  "branches": {
+    "S1": {
+      "endpoint": [
+        "xzYXyxZXYxyZ",
+        "Xy",
+        "Xyz"
+      ],
+      "macro_count": 8,
+      "macros": [
+        {
+          "after": [
+            "xyxZXX",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "xyxZXY",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "x",
+          "donor_after": "Xy",
+          "donor_before": "Xy",
+          "donor_index": 2,
+          "donor_restored": true,
+          "donor_sign": 1,
+          "factor": "yX",
+          "ordinal": 1,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xyxZXY",
+                "yX",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXY",
+                "Xy",
+                "Xyz"
+              ],
+              "conjugator": "x",
+              "kind": "conjugate",
+              "label": "S1.1.1",
+              "ordinal": 1,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xyxZXX",
+                "yX",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXY",
+                "yX",
+                "Xyz"
+              ],
+              "donor_index": 2,
+              "kind": "multiply",
+              "label": "S1.1.2",
+              "ordinal": 2,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xyxZXX",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXX",
+                "yX",
+                "Xyz"
+              ],
+              "conjugator": "X",
+              "kind": "conjugate",
+              "label": "S1.1.3",
+              "ordinal": 3,
+              "target_index": 2
+            }
+          ],
+          "target_index": 1
+        },
+        {
+          "after": [
+            "xyxZYX",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "xyxZXX",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "xx",
+          "donor_after": "Xy",
+          "donor_before": "Xy",
+          "donor_index": 2,
+          "donor_restored": true,
+          "donor_sign": -1,
+          "factor": "xxYX",
+          "ordinal": 2,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xyxZXX",
+                "Yx",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXX",
+                "Xy",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S1.2.1",
+              "ordinal": 1,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xyxZXX",
+                "xxYX",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXX",
+                "Yx",
+                "Xyz"
+              ],
+              "conjugator": "xx",
+              "kind": "conjugate",
+              "label": "S1.2.2",
+              "ordinal": 2,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xyxZYX",
+                "xxYX",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXX",
+                "xxYX",
+                "Xyz"
+              ],
+              "donor_index": 2,
+              "kind": "multiply",
+              "label": "S1.2.3",
+              "ordinal": 3,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xyxZYX",
+                "Yx",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZYX",
+                "xxYX",
+                "Xyz"
+              ],
+              "conjugator": "XX",
+              "kind": "conjugate",
+              "label": "S1.2.4",
+              "ordinal": 4,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xyxZYX",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZYX",
+                "Yx",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S1.2.5",
+              "ordinal": 5,
+              "target_index": 2
+            }
+          ],
+          "target_index": 1
+        },
+        {
+          "after": [
+            "xyX",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "xyxZYX",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "xx",
+          "donor_after": "Xyz",
+          "donor_before": "Xyz",
+          "donor_index": 3,
+          "donor_restored": true,
+          "donor_sign": 1,
+          "factor": "xyzXX",
+          "ordinal": 3,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xyxZYX",
+                "Xy",
+                "xyzXX"
+              ],
+              "before": [
+                "xyxZYX",
+                "Xy",
+                "Xyz"
+              ],
+              "conjugator": "xx",
+              "kind": "conjugate",
+              "label": "S1.3.1",
+              "ordinal": 1,
+              "target_index": 3
+            },
+            {
+              "after": [
+                "xyX",
+                "Xy",
+                "xyzXX"
+              ],
+              "before": [
+                "xyxZYX",
+                "Xy",
+                "xyzXX"
+              ],
+              "donor_index": 3,
+              "kind": "multiply",
+              "label": "S1.3.2",
+              "ordinal": 2,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xyX",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xyX",
+                "Xy",
+                "xyzXX"
+              ],
+              "conjugator": "XX",
+              "kind": "conjugate",
+              "label": "S1.3.3",
+              "ordinal": 3,
+              "target_index": 3
+            }
+          ],
+          "target_index": 1
+        },
+        {
+          "after": [
+            "x",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "xyX",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "x",
+          "donor_after": "Xy",
+          "donor_before": "Xy",
+          "donor_index": 2,
+          "donor_restored": true,
+          "donor_sign": -1,
+          "factor": "xY",
+          "ordinal": 4,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xyX",
+                "Yx",
+                "Xyz"
+              ],
+              "before": [
+                "xyX",
+                "Xy",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S1.4.1",
+              "ordinal": 1,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xyX",
+                "xY",
+                "Xyz"
+              ],
+              "before": [
+                "xyX",
+                "Yx",
+                "Xyz"
+              ],
+              "conjugator": "x",
+              "kind": "conjugate",
+              "label": "S1.4.2",
+              "ordinal": 2,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "x",
+                "xY",
+                "Xyz"
+              ],
+              "before": [
+                "xyX",
+                "xY",
+                "Xyz"
+              ],
+              "donor_index": 2,
+              "kind": "multiply",
+              "label": "S1.4.3",
+              "ordinal": 3,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "x",
+                "Yx",
+                "Xyz"
+              ],
+              "before": [
+                "x",
+                "xY",
+                "Xyz"
+              ],
+              "conjugator": "X",
+              "kind": "conjugate",
+              "label": "S1.4.4",
+              "ordinal": 4,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "x",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "x",
+                "Yx",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S1.4.5",
+              "ordinal": 5,
+              "target_index": 2
+            }
+          ],
+          "target_index": 1
+        },
+        {
+          "after": [
+            "xzYXyyZ",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "x",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "zY",
+          "donor_after": "Xy",
+          "donor_before": "Xy",
+          "donor_index": 2,
+          "donor_restored": true,
+          "donor_sign": 1,
+          "factor": "zYXyyZ",
+          "ordinal": 5,
+          "primitive_expansion": [
+            {
+              "after": [
+                "x",
+                "zYXyyZ",
+                "Xyz"
+              ],
+              "before": [
+                "x",
+                "Xy",
+                "Xyz"
+              ],
+              "conjugator": "zY",
+              "kind": "conjugate",
+              "label": "S1.5.1",
+              "ordinal": 1,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xzYXyyZ",
+                "zYXyyZ",
+                "Xyz"
+              ],
+              "before": [
+                "x",
+                "zYXyyZ",
+                "Xyz"
+              ],
+              "donor_index": 2,
+              "kind": "multiply",
+              "label": "S1.5.2",
+              "ordinal": 2,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xzYXyyZ",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyyZ",
+                "zYXyyZ",
+                "Xyz"
+              ],
+              "conjugator": "yZ",
+              "kind": "conjugate",
+              "label": "S1.5.3",
+              "ordinal": 3,
+              "target_index": 2
+            }
+          ],
+          "target_index": 1
+        },
+        {
+          "after": [
+            "xzYXyxZZ",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "xzYXyyZ",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "zYx",
+          "donor_after": "Xyz",
+          "donor_before": "Xyz",
+          "donor_index": 3,
+          "donor_restored": true,
+          "donor_sign": -1,
+          "factor": "zYxZZ",
+          "ordinal": 6,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xzYXyyZ",
+                "Xy",
+                "ZYx"
+              ],
+              "before": [
+                "xzYXyyZ",
+                "Xy",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S1.6.1",
+              "ordinal": 1,
+              "target_index": 3
+            },
+            {
+              "after": [
+                "xzYXyyZ",
+                "Xy",
+                "zYxZZ"
+              ],
+              "before": [
+                "xzYXyyZ",
+                "Xy",
+                "ZYx"
+              ],
+              "conjugator": "zYx",
+              "kind": "conjugate",
+              "label": "S1.6.2",
+              "ordinal": 2,
+              "target_index": 3
+            },
+            {
+              "after": [
+                "xzYXyxZZ",
+                "Xy",
+                "zYxZZ"
+              ],
+              "before": [
+                "xzYXyyZ",
+                "Xy",
+                "zYxZZ"
+              ],
+              "donor_index": 3,
+              "kind": "multiply",
+              "label": "S1.6.3",
+              "ordinal": 3,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xzYXyxZZ",
+                "Xy",
+                "ZYx"
+              ],
+              "before": [
+                "xzYXyxZZ",
+                "Xy",
+                "zYxZZ"
+              ],
+              "conjugator": "XyZ",
+              "kind": "conjugate",
+              "label": "S1.6.4",
+              "ordinal": 4,
+              "target_index": 3
+            },
+            {
+              "after": [
+                "xzYXyxZZ",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZZ",
+                "Xy",
+                "ZYx"
+              ],
+              "kind": "invert",
+              "label": "S1.6.5",
+              "ordinal": 5,
+              "target_index": 3
+            }
+          ],
+          "target_index": 1
+        },
+        {
+          "after": [
+            "xzYXyxZXyZ",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "xzYXyxZZ",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "zYx",
+          "donor_after": "Xy",
+          "donor_before": "Xy",
+          "donor_index": 2,
+          "donor_restored": true,
+          "donor_sign": 1,
+          "factor": "zXyZ",
+          "ordinal": 7,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xzYXyxZZ",
+                "zXyZ",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZZ",
+                "Xy",
+                "Xyz"
+              ],
+              "conjugator": "zYx",
+              "kind": "conjugate",
+              "label": "S1.7.1",
+              "ordinal": 1,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xzYXyxZXyZ",
+                "zXyZ",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZZ",
+                "zXyZ",
+                "Xyz"
+              ],
+              "donor_index": 2,
+              "kind": "multiply",
+              "label": "S1.7.2",
+              "ordinal": 2,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xzYXyxZXyZ",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZXyZ",
+                "zXyZ",
+                "Xyz"
+              ],
+              "conjugator": "XyZ",
+              "kind": "conjugate",
+              "label": "S1.7.3",
+              "ordinal": 3,
+              "target_index": 2
+            }
+          ],
+          "target_index": 1
+        },
+        {
+          "after": [
+            "xzYXyxZXYxyZ",
+            "Xy",
+            "Xyz"
+          ],
+          "before": [
+            "xzYXyxZXyZ",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "zY",
+          "donor_after": "Xy",
+          "donor_before": "Xy",
+          "donor_index": 2,
+          "donor_restored": true,
+          "donor_sign": -1,
+          "factor": "zYYxyZ",
+          "ordinal": 8,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xzYXyxZXyZ",
+                "Yx",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZXyZ",
+                "Xy",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S1.8.1",
+              "ordinal": 1,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xzYXyxZXyZ",
+                "zYYxyZ",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZXyZ",
+                "Yx",
+                "Xyz"
+              ],
+              "conjugator": "zY",
+              "kind": "conjugate",
+              "label": "S1.8.2",
+              "ordinal": 2,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xzYXyxZXYxyZ",
+                "zYYxyZ",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZXyZ",
+                "zYYxyZ",
+                "Xyz"
+              ],
+              "donor_index": 2,
+              "kind": "multiply",
+              "label": "S1.8.3",
+              "ordinal": 3,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xzYXyxZXYxyZ",
+                "Yx",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZXYxyZ",
+                "zYYxyZ",
+                "Xyz"
+              ],
+              "conjugator": "yZ",
+              "kind": "conjugate",
+              "label": "S1.8.4",
+              "ordinal": 4,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xzYXyxZXYxyZ",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xzYXyxZXYxyZ",
+                "Yx",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S1.8.5",
+              "ordinal": 5,
+              "target_index": 2
+            }
+          ],
+          "target_index": 1
+        }
+      ],
+      "primitive_count": 32,
+      "primitive_kind_counts": {
+        "conjugate": 16,
+        "invert": 8,
+        "multiply": 8
+      },
+      "start": [
+        "xyxZXY",
+        "Xy",
+        "Xyz"
+      ]
+    },
+    "S2": {
+      "endpoint": [
+        "xyxZXY",
+        "XyxZXYXyxzXYxy",
+        "Xyz"
+      ],
+      "macro_count": 2,
+      "macros": [
+        {
+          "after": [
+            "xyxZXY",
+            "XyxZXYxy",
+            "Xyz"
+          ],
+          "before": [
+            "xyxZXY",
+            "Xy",
+            "Xyz"
+          ],
+          "conjugator": "YX",
+          "donor_after": "xyxZXY",
+          "donor_before": "xyxZXY",
+          "donor_index": 1,
+          "donor_restored": true,
+          "donor_sign": 1,
+          "factor": "xZXYxy",
+          "ordinal": 1,
+          "primitive_expansion": [
+            {
+              "after": [
+                "xZXYxy",
+                "Xy",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXY",
+                "Xy",
+                "Xyz"
+              ],
+              "conjugator": "YX",
+              "kind": "conjugate",
+              "label": "S2.1.1",
+              "ordinal": 1,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xZXYxy",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "before": [
+                "xZXYxy",
+                "Xy",
+                "Xyz"
+              ],
+              "donor_index": 1,
+              "kind": "multiply",
+              "label": "S2.1.2",
+              "ordinal": 2,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "xyxZXY",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "before": [
+                "xZXYxy",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "conjugator": "xy",
+              "kind": "conjugate",
+              "label": "S2.1.3",
+              "ordinal": 3,
+              "target_index": 1
+            }
+          ],
+          "target_index": 2
+        },
+        {
+          "after": [
+            "xyxZXY",
+            "XyxZXYXyxzXYxy",
+            "Xyz"
+          ],
+          "before": [
+            "xyxZXY",
+            "XyxZXYxy",
+            "Xyz"
+          ],
+          "conjugator": "YXX",
+          "donor_after": "xyxZXY",
+          "donor_before": "xyxZXY",
+          "donor_index": 1,
+          "donor_restored": true,
+          "donor_sign": -1,
+          "factor": "YXXyxzXYxy",
+          "ordinal": 2,
+          "primitive_expansion": [
+            {
+              "after": [
+                "yxzXYX",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "before": [
+                "xyxZXY",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S2.2.1",
+              "ordinal": 1,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "YXXyxzXYxy",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "before": [
+                "yxzXYX",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "conjugator": "YXX",
+              "kind": "conjugate",
+              "label": "S2.2.2",
+              "ordinal": 2,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "YXXyxzXYxy",
+                "XyxZXYXyxzXYxy",
+                "Xyz"
+              ],
+              "before": [
+                "YXXyxzXYxy",
+                "XyxZXYxy",
+                "Xyz"
+              ],
+              "donor_index": 1,
+              "kind": "multiply",
+              "label": "S2.2.3",
+              "ordinal": 3,
+              "target_index": 2
+            },
+            {
+              "after": [
+                "yxzXYX",
+                "XyxZXYXyxzXYxy",
+                "Xyz"
+              ],
+              "before": [
+                "YXXyxzXYxy",
+                "XyxZXYXyxzXYxy",
+                "Xyz"
+              ],
+              "conjugator": "xxy",
+              "kind": "conjugate",
+              "label": "S2.2.4",
+              "ordinal": 4,
+              "target_index": 1
+            },
+            {
+              "after": [
+                "xyxZXY",
+                "XyxZXYXyxzXYxy",
+                "Xyz"
+              ],
+              "before": [
+                "yxzXYX",
+                "XyxZXYXyxzXYxy",
+                "Xyz"
+              ],
+              "kind": "invert",
+              "label": "S2.2.5",
+              "ordinal": 5,
+              "target_index": 1
+            }
+          ],
+          "target_index": 2
+        }
+      ],
+      "primitive_count": 8,
+      "primitive_kind_counts": {
+        "conjugate": 4,
+        "invert": 2,
+        "multiply": 2
+      },
+      "start": [
+        "xyxZXY",
+        "Xy",
+        "Xyz"
+      ]
+    }
+  },
+  "convention": {
+    "commutator": "[s,t]=s t s^-1 t^-1",
+    "conjugation": "target := free_reduce(w target w^-1)",
+    "multiplication": "target := free_reduce(target donor)",
+    "reduction": "free only; no cyclic rotation or cyclic reduction",
+    "row_indices": "1-based",
+    "uppercase": "inverse"
+  },
+  "counts": {
+    "branch_macros": 10,
+    "conjugations": 24,
+    "inversions": 12,
+    "multiplications": 13,
+    "total_primitives": 49,
+    "transcript_actions": 9
+  },
+  "identities": {
+    "A_from_r_K_inverse": {
+      "expected": "xzYXyxZXYxyZ",
+      "product": "xzYXyxZXYxyZ"
+    },
+    "B_from_q_D_inverse": {
+      "expected": "XyxZXYXyxzXYxy",
+      "product": "XyxZXYXyxzXYxy"
+    },
+    "C_factorization": {
+      "expected": "yxzXY",
+      "factors": [
+        "yX",
+        "xxYX",
+        "xyzXX",
+        "xY"
+      ],
+      "product": "yxzXY"
+    },
+    "C_inverse_of_c": {
+      "expected": "yxzXY",
+      "product": "yxzXY"
+    },
+    "D_inverse_factorization": {
+      "expected": "xZXYXyxzXYxy",
+      "factors": [
+        "xZXYxy",
+        "YXXyxzXYxy"
+      ],
+      "product": "xZXYXyxzXYxy"
+    },
+    "K_inverse_factorization": {
+      "expected": "yxzXYzYXyxZXYxyZ",
+      "factors": [
+        "yX",
+        "xxYX",
+        "xyzXX",
+        "xY",
+        "zYXyyZ",
+        "zYxZZ",
+        "zXyZ",
+        "zYYxyZ"
+      ],
+      "product": "yxzXYzYXyxZXYxyZ"
+    }
+  },
+  "nonclaims": [
+    "S1 and S2 are separate branches from (r,q,v) and do not concatenate.",
+    "The full sequential donor factorization is equivalent to the open MMS02 bridge and is not supplied here.",
+    "The nine-action triangular transcript is separate from both donor branches.",
+    "No normal-closure factorization or membership decision is claimed for D modulo <<A,v>>.",
+    "No normal-closure factorization or membership decision is claimed for K modulo <<B,v>>.",
+    "No finite quotient, finite-group enumeration, or search result is claimed."
+  ],
+  "quotient_gates": {
+    "D_mod_A_v": {
+      "defect": "YXyyXYxyxY",
+      "normal_closure_generators": [
+        "A",
+        "v"
+      ],
+      "presentation": {
+        "generators": [
+          "x",
+          "y"
+        ],
+        "name": "Q_A",
+        "relator": "xYxYXyyXYxyXy"
+      },
+      "status": "undecided"
+    },
+    "K_mod_B_v": {
+      "defect": "YxYXyxYYxyXyyyXY",
+      "normal_closure_generators": [
+        "B",
+        "v"
+      ],
+      "presentation": {
+        "generators": [
+          "x",
+          "y"
+        ],
+        "name": "Q_B",
+        "relator": "XyyXYXyxYYxy"
+      },
+      "status": "undecided"
+    },
+    "substitution": {
+      "Z": "Xy",
+      "relation": "v=1",
+      "z": "Yx"
+    }
+  },
+  "schema": "acsolverx.mms02.sequential-donor-factorization",
+  "triangular_transcript": {
+    "action_count": 9,
+    "actions": [
+      {
+        "after": [
+          "xyxZXY",
+          "Xy",
+          "ZYx"
+        ],
+        "before": [
+          "xyxZXY",
+          "Xy",
+          "Xyz"
+        ],
+        "kind": "invert",
+        "label": "I3",
+        "ordinal": 1,
+        "target_index": 3
+      },
+      {
+        "after": [
+          "xyxZXY",
+          "Xy",
+          "Z"
+        ],
+        "before": [
+          "xyxZXY",
+          "Xy",
+          "ZYx"
+        ],
+        "donor_index": 2,
+        "kind": "multiply",
+        "label": "M32",
+        "ordinal": 2,
+        "target_index": 3
+      },
+      {
+        "after": [
+          "xyxZXY",
+          "Xy",
+          "z"
+        ],
+        "before": [
+          "xyxZXY",
+          "Xy",
+          "Z"
+        ],
+        "kind": "invert",
+        "label": "I3",
+        "ordinal": 3,
+        "target_index": 3
+      },
+      {
+        "after": [
+          "xyxZXY",
+          "Xy",
+          "yxzXY"
+        ],
+        "before": [
+          "xyxZXY",
+          "Xy",
+          "z"
+        ],
+        "conjugator": "yx",
+        "kind": "conjugate",
+        "label": "C_yx(3)",
+        "ordinal": 4,
+        "target_index": 3
+      },
+      {
+        "after": [
+          "x",
+          "Xy",
+          "yxzXY"
+        ],
+        "before": [
+          "xyxZXY",
+          "Xy",
+          "yxzXY"
+        ],
+        "donor_index": 3,
+        "kind": "multiply",
+        "label": "M13",
+        "ordinal": 5,
+        "target_index": 1
+      },
+      {
+        "after": [
+          "x",
+          "Xy",
+          "z"
+        ],
+        "before": [
+          "x",
+          "Xy",
+          "yxzXY"
+        ],
+        "conjugator": "XY",
+        "kind": "conjugate",
+        "label": "C_XY(3)",
+        "ordinal": 6,
+        "target_index": 3
+      },
+      {
+        "after": [
+          "Yxy",
+          "Xy",
+          "z"
+        ],
+        "before": [
+          "x",
+          "Xy",
+          "z"
+        ],
+        "conjugator": "Yx",
+        "kind": "conjugate",
+        "label": "C_Yx(1)",
+        "ordinal": 7,
+        "target_index": 1
+      },
+      {
+        "after": [
+          "Yxy",
+          "y",
+          "z"
+        ],
+        "before": [
+          "Yxy",
+          "Xy",
+          "z"
+        ],
+        "donor_index": 1,
+        "kind": "multiply",
+        "label": "M21",
+        "ordinal": 8,
+        "target_index": 2
+      },
+      {
+        "after": [
+          "x",
+          "y",
+          "z"
+        ],
+        "before": [
+          "Yxy",
+          "y",
+          "z"
+        ],
+        "conjugator": "Xy",
+        "kind": "conjugate",
+        "label": "C_Xy(1)",
+        "ordinal": 9,
+        "target_index": 1
+      }
+    ],
+    "endpoint": [
+      "x",
+      "y",
+      "z"
+    ],
+    "kind_counts": {
+      "conjugate": 4,
+      "invert": 2,
+      "multiply": 3
+    },
+    "start": [
+      "xyxZXY",
+      "Xy",
+      "Xyz"
+    ]
+  },
+  "version": 1,
+  "words": {
+    "A": "xzYXyxZXYxyZ",
+    "B": "XyxZXYXyxzXYxy",
+    "C": "yxzXY",
+    "D": "YXyxZXYxyxzX",
+    "K": "zYXyxzXYxyZyxZXY",
+    "c": "yxZXY",
+    "h": "YX",
+    "q": "Xy",
+    "r": "xyxZXY",
+    "u": "zYX",
+    "v": "Xyz"
+  }
+}

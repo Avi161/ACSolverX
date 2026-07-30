@@ -9,7 +9,6 @@ from types import ModuleType
 
 import pytest
 
-
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR_PATH = ROOT / ".scratch/mms02_sequential_donor_factorization_certificate.py"
 VERIFIER_PATH = ROOT / ".scratch/verify_mms02_sequential_donor_factorization.py"
