@@ -1739,3 +1739,8 @@
 
 - [TRAP] A bounded Task 2 schema inspection treated `Task4SchemaCatalog.b_source_proof["occurrences"]` as a mapping and failed with `AttributeError: 'int' object has no attribute 'items'`; the field is an integer census, while detailed B rows live in `collision_fibers` and the catalog identity table.
 - [WORKS] Read the source-proof field contract before exploratory traversal, and distinguish integer census fields from row/table fields instead of inferring shape from the field name.
+
+### 2026-07-30 Escalate linked-worktree Git metadata writes
+
+- [TRAP] Staging from `.claude/worktrees/codex-proofs` failed with `index.lock: Operation not permitted` because the linked worktree's index is stored under the main checkout's restricted `.git/worktrees/codex-proofs/` metadata, even though project files are writable.
+- [WORKS] Keep file edits sandboxed, but request the narrow Git escalation before `git add` or `git commit` in this linked worktree; read-only Git inspection does not need escalation.
