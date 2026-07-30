@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-29 MMS02 proof artifacts under ignored `.scratch/`
+
+- [TRAP] `git add .scratch/mms02_sequential_donor_factorization*.py` refuses the new proof artifacts because `.scratch/` is ignored, even though the task explicitly requires canonical proof code and JSON there.
+- [WORKS] Inspect each authorized artifact by exact path, then use `git add -f -- <exact-path>` for only those named `.scratch/` files; never force-add `.scratch/` broadly.
+
 ### 2026-07-29 Measure the complete certificate path, not only compact catalogs
 
 - [TRAP] The compact template slice cleared its three-second projection, but the first changed full generator write still hit the 30-second guard after emitting a 371,878,372-byte test manifest; catalog overhead alone did not predict load-ledger serialization and file-write cost.
