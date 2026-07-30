@@ -1697,3 +1697,13 @@
 
 - [TRAP] macOS `ps` rejects `sid` as an output keyword; that diagnostic failure is not evidence that proof processes are absent.
 - [WORKS] Safe process audits should request only supported fields such as PID, PPID, PGID, CPU percentage, state, and executable name, omit full arguments and SID, and require a successful scan before drawing a process conclusion.
+
+### 2026-07-30 Never print process arguments during safety audits
+
+- [TRAP] A project-cwd audit requested full command arguments and exposed credentials embedded in unrelated editor infrastructure, even though no proof process was stale.
+- [WORKS] Inspect candidate ownership and activity with PID, PPID, PGID, state, CPU, elapsed time, TTY, executable basename, cwd, open project paths, child relationships, and connection state only. Never emit full argument vectors; if exact arguments become essential for a proven compute candidate, redact credential values before any output.
+
+### 2026-07-30 Derive the SDD recovery workspace from the plan
+
+- [TRAP] Task 1 artifacts were written under a hand-named `.superpowers/sdd/2026-07-30-old-new-cut-package-v2/` directory and no `progress.md` was created, while `scripts/sdd-workspace` maps the plan to `.superpowers/sdd/2026-07-29-old-new-cut-load-certificate/`. Compaction therefore had no authoritative recovery ledger.
+- [WORKS] Before dispatching any plan task, run `scripts/sdd-workspace <plan>` from the target worktree, put the plan-identity `progress.md` in the returned directory, and record every task commit/review transition there before continuing.
