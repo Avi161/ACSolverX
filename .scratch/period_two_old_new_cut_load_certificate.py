@@ -4145,6 +4145,8 @@ class FamilyProjectionInput:
     sampled_comparisons: int
     sampled_two_pass_ns: int
     sampled_load_bucket_bytes: int
+    sampled_load_record_count: int
+    projected_bucket_class_count: int
     full_identity_count: int
     sampled_identity_count: int
     sampled_template_ns: int
@@ -4166,6 +4168,9 @@ class FamilyGenerationProjection:
     projected_two_pass_ns: int
     sampled_load_bucket_bytes: int
     projected_load_bucket_bytes: int
+    sampled_load_record_count: int
+    projected_load_record_count: int
+    projected_bucket_class_count: int
     full_identity_count: int
     sampled_identity_count: int
     sampled_template_ns: int
@@ -4379,26 +4384,48 @@ def _validate_generation_identity_coordinates(
         live_identity = _b_identity_table(item.b_tokens)
         if canonical_json(live_identity) != canonical_json(catalog.b_identity_table):
             raise CertificateFailure("full generation catalog B identity row differs")
-        coordinates = tuple(
-            (
-                token.token_index,
-                token.family,
-                (token.slot, *token.source_members),
-            )
-            for token in item.b_tokens
-        )
+        coordinates = _generation_coordinate_table(item.b_tokens)
         if expected_coordinates is None:
             expected_coordinates = coordinates
         elif coordinates != expected_coordinates:
             raise CertificateFailure(
                 "full generation catalog B coordinate rows differ"
             )
+    if expected_coordinates is None:
+        raise CertificateFailure("full generation catalog B coordinate table is missing")
+    _validate_generation_coordinate_table(
+        expected_coordinates,
+        typed_sha256(expected_coordinates),
+    )
+
+
+def _generation_coordinate_table(
+    tokens: Sequence[TokenRef],
+) -> tuple[tuple[Any, ...], ...]:
+    return tuple(
+        (
+            token.token_index,
+            token.family,
+            (token.slot, *token.source_members),
+        )
+        for token in tokens
+    )
+
+
+def _validate_generation_coordinate_table(
+    coordinates: Any,
+    coordinate_digest: Any,
+) -> None:
     if (
-        expected_coordinates is None
-        or typed_sha256(expected_coordinates)
-        != FULL_GENERATION_B_COORDINATE_SHA256
+        not isinstance(coordinates, tuple)
+        or len(coordinates) != TOKEN_COUNT
+        or any(not isinstance(row, tuple) or len(row) != 3 for row in coordinates)
     ):
-        raise CertificateFailure("full generation catalog B coordinate digest differs")
+        raise CertificateFailure("generation B coordinate table is incomplete")
+    if not isinstance(coordinate_digest, str) or typed_sha256(coordinates) != coordinate_digest:
+        raise CertificateFailure("generation B coordinate digest differs")
+    if coordinate_digest != FULL_GENERATION_B_COORDINATE_SHA256:
+        raise CertificateFailure("fixed generation B coordinate binding differs")
 
 
 def preflight_sample_census(
@@ -4562,6 +4589,7 @@ def _generation_histogram(
 ) -> dict[str, Any]:
     templates = _CurrentFootprintTemplates(schemas, cell)
     grouped: dict[Any, list[Any]] = {}
+    expected_bucket_keys = []
     one_count = 0
     comparison_count = 0
     for expected_token_index, new in enumerate(new_tokens):
@@ -4571,6 +4599,7 @@ def _generation_histogram(
             raise CertificateFailure("comparison token orientation differs")
         key = tuple(comparison[field] for field in HISTOGRAM_KEY_FIELDS)
         frozen_key = _freeze_generation_value(key)
+        expected_bucket_keys.append(frozen_key)
         if frozen_key not in grouped:
             grouped[frozen_key] = [key, 0, 0]
         grouped[frozen_key][1] += 1
@@ -4603,6 +4632,7 @@ def _generation_histogram(
             }
             for bucket in buckets
         ],
+        "_expected_bucket_keys": tuple(expected_bucket_keys),
     }
     return histogram
 
@@ -4619,12 +4649,33 @@ def _validate_generation_histogram(
         mask = int(bucket["mask"], 16)
         if mask == 0:
             raise CertificateFailure("generated footprint has a zero mask")
+    expected_bucket_keys = histogram.get("_expected_bucket_keys")
+    if (
+        not isinstance(expected_bucket_keys, tuple)
+        or len(expected_bucket_keys) != TOKEN_COUNT
+    ):
+        raise CertificateFailure("generated footprint token orientation is missing")
+    for bucket in histogram["buckets"]:
+        frozen_key = _freeze_generation_value(
+            tuple(bucket["key"][field] for field in HISTOGRAM_KEY_FIELDS)
+        )
+        remaining = int(bucket["mask"], 16)
+        while remaining:
+            token_bit = remaining & -remaining
+            token_index = token_bit.bit_length() - 1
+            if expected_bucket_keys[token_index] != frozen_key:
+                raise CertificateFailure(
+                    "generated footprint token-to-bucket orientation differs"
+                )
+            remaining ^= token_bit
     if (
         histogram["old_occurrence"] != old["occurrence"]
         or histogram["old_leaf"] != old["leaf"]
         or histogram["old_polarity"] != old["polarity"]
     ):
         raise CertificateFailure("generated footprint provenance differs")
+    if isinstance(histogram, dict):
+        del histogram["_expected_bucket_keys"]
     return histogram
 
 
@@ -5253,6 +5304,14 @@ def _generation_family_projection(
     sampled_load_bucket_bytes = _generation_projection_int(
         value.sampled_load_bucket_bytes, "sampled load/bucket bytes"
     )
+    sampled_load_record_count = _generation_projection_int(
+        value.sampled_load_record_count, "sampled load record count"
+    )
+    projected_bucket_class_count = _generation_projection_int(
+        value.projected_bucket_class_count, "projected bucket class count"
+    )
+    if sampled_load_record_count == 0 or projected_bucket_class_count == 0:
+        raise CertificateFailure("projected family record census is empty")
     sampled_template_ns = _generation_projection_int(
         value.sampled_template_ns, "sampled template nanoseconds"
     )
@@ -5281,6 +5340,11 @@ def _generation_family_projection(
         projected_load_bucket_bytes=ceil_ratio(
             sampled_load_bucket_bytes, full_comparisons, sampled_comparisons
         ),
+        sampled_load_record_count=sampled_load_record_count,
+        projected_load_record_count=ceil_ratio(
+            sampled_load_record_count, full_comparisons, sampled_comparisons
+        ),
+        projected_bucket_class_count=projected_bucket_class_count,
         full_identity_count=full_identity_count,
         sampled_identity_count=sampled_identity_count,
         sampled_template_ns=sampled_template_ns,
@@ -5296,12 +5360,75 @@ def _generation_family_projection(
     )
 
 
+def _projected_family_record_counts(
+    projection: FamilyGenerationProjection,
+    full_summary: Mapping[str, Any],
+    template_summary: Mapping[str, Any],
+) -> dict[str, int]:
+    if projection.full_identity_count % projection.full_schema_count:
+        raise CertificateFailure("projected family identity census is not rectangular")
+    cell_count = projection.full_identity_count // projection.full_schema_count
+    if cell_count == 0:
+        raise CertificateFailure("projected family cell census is empty")
+    expected_template_counts = {
+        "schema_count": projection.full_schema_count,
+        "cell_count": cell_count,
+        "template_count": projection.full_identity_count,
+    }
+    if any(
+        template_summary[field] != expected
+        for field, expected in expected_template_counts.items()
+    ):
+        raise CertificateFailure("projected template census differs")
+    footprint_sizes = full_summary["footprint_sizes"][projection.family]
+    old_load_count = sum(footprint_sizes.values())
+    footprint_count = sum(
+        int(size) * count for size, count in footprint_sizes.items()
+    )
+    if (
+        full_summary["load_rows"][projection.family]
+        != old_load_count * cell_count
+        or full_summary["occurrence_loads"][projection.family]
+        != footprint_count * cell_count
+        or full_summary["template_counts"][projection.family]
+        != projection.full_identity_count
+        or projection.full_comparisons
+        != full_summary["occurrence_loads"][projection.family] * TOKEN_COUNT
+    ):
+        raise CertificateFailure("projected family summary denominators differ")
+    expected = {
+        "family_header": 1,
+        "old_load": old_load_count,
+        "footprint": footprint_count,
+        "bucket_class": projection.projected_bucket_class_count,
+        "load": projection.projected_load_record_count,
+        "cell_footer": cell_count,
+        "template_header": 1,
+        "template_schema": projection.full_schema_count,
+        "template_cell": cell_count,
+        "template_witness": template_summary["witness_count"],
+        "template_identity_chunk": (
+            projection.full_identity_count + IDENTITY_CHUNK_SIZE - 1
+        )
+        // IDENTITY_CHUNK_SIZE,
+        "template_footer": 1,
+        "family_footer": 1,
+    }
+    if set(expected) != set(FAMILY_RECORD_FIELDS):
+        raise CertificateFailure("projected family tag domain differs")
+    return expected
+
+
 def build_projected_index_oracle(
     projected_index_input: Mapping[str, Any],
+    *,
+    shared_bytes: int,
+    families: tuple[FamilyGenerationProjection, ...],
 ) -> dict[str, Any]:
     expected_fields = {
         "scope",
         "status",
+        "shared_dependency_count",
         "shards",
         "emitted_summary",
         "full_summary",
@@ -5319,6 +5446,62 @@ def build_projected_index_oracle(
         PRODUCTION_SCOPE: PRODUCTION_STATUS,
     }.get(scope) != status:
         raise CertificateFailure("projected index scope/status pair differs")
+    shared_bytes = _generation_projection_int(shared_bytes, "shared bytes")
+    shared_dependency_count = _generation_projection_int(
+        projected_index_input["shared_dependency_count"],
+        "shared dependency count",
+    )
+    if (
+        not isinstance(families, tuple)
+        or tuple(family.family for family in families) != FAMILY_ORDER
+        or any(
+            not isinstance(family, FamilyGenerationProjection)
+            for family in families
+        )
+    ):
+        raise CertificateFailure("projected family descriptor inputs differ")
+    emitted_summary = copy.deepcopy(projected_index_input["emitted_summary"])
+    full_summary = copy.deepcopy(projected_index_input["full_summary"])
+    try:
+        _validate_root_summary(emitted_summary, "projected emitted summary")
+        _validate_root_summary(full_summary, "projected full summary")
+    except WireFormatError as error:
+        raise CertificateFailure("projected index summary is invalid") from error
+    if scope == PRODUCTION_SCOPE and emitted_summary != full_summary:
+        raise CertificateFailure("projected production summaries differ")
+    template_inputs = projected_index_input["template_catalogs"]
+    if not isinstance(template_inputs, Mapping) or set(template_inputs) != set(
+        FAMILY_ORDER
+    ):
+        raise CertificateFailure("projected template summaries are incomplete")
+    template_catalogs = {}
+    expected_family_counts = {}
+    for family, projection in zip(FAMILY_ORDER, families):
+        summary = copy.deepcopy(template_inputs[family])
+        try:
+            _validate_root_template_summary(summary, family)
+        except WireFormatError as error:
+            raise CertificateFailure(
+                "projected template summary is invalid"
+            ) from error
+        expected_family_counts[family] = _projected_family_record_counts(
+            projection,
+            full_summary,
+            summary,
+        )
+        for field in ("identity_sha256", "replay_sha256", "catalog_sha256"):
+            summary[field] = "0" * 64
+        template_catalogs[family] = summary
+    expected_shared_counts = {
+        "shared_header": 1,
+        "dependency": shared_dependency_count,
+        "source_bindings": 1,
+        "b_identity": TOKEN_COUNT,
+        "b_coordinate": TOKEN_COUNT,
+        "shared_footer": 1,
+    }
+    if set(expected_shared_counts) != set(SHARED_RECORD_FIELDS):
+        raise CertificateFailure("projected shared tag domain differs")
     input_descriptors = projected_index_input["shards"]
     if (
         not isinstance(input_descriptors, (list, tuple))
@@ -5326,7 +5509,9 @@ def build_projected_index_oracle(
     ):
         raise CertificateFailure("projected index shard domain differs")
     descriptors = []
-    for shard_name, descriptor in zip(SHARD_ORDER, input_descriptors):
+    for shard_index, (shard_name, descriptor) in enumerate(
+        zip(SHARD_ORDER, input_descriptors)
+    ):
         if not isinstance(descriptor, Mapping) or set(descriptor) != {
             "role",
             "family",
@@ -5342,10 +5527,10 @@ def build_projected_index_oracle(
             or descriptor["family"] != expected_family
         ):
             raise CertificateFailure("projected shard order differs")
-        total_bytes = _generation_projection_int(
+        supplied_total_bytes = _generation_projection_int(
             descriptor["total_bytes"], "projected shard bytes"
         )
-        record_count = _generation_projection_int(
+        supplied_record_count = _generation_projection_int(
             descriptor["record_count"], "projected shard record count"
         )
         record_counts = descriptor["record_counts"]
@@ -5357,48 +5542,40 @@ def build_projected_index_oracle(
             or set(record_counts) != set(declarations)
         ):
             raise CertificateFailure("projected shard tag counts differ")
-        canonical_counts = {}
+        supplied_counts = {}
         for tag in declarations:
-            canonical_counts[tag] = _generation_projection_int(
+            supplied_counts[tag] = _generation_projection_int(
                 record_counts[tag], f"projected {tag} count"
             )
-        if sum(canonical_counts.values()) != record_count:
-            raise CertificateFailure("projected shard record census differs")
+        if shard_index == 0:
+            expected_total_bytes = shared_bytes
+            expected_counts = expected_shared_counts
+        else:
+            projection = families[shard_index - 1]
+            expected_total_bytes = (
+                projection.fixed_family_bytes
+                + projection.projected_load_bucket_bytes
+                + projection.projected_template_bytes
+            )
+            expected_counts = expected_family_counts[shard_name]
+        expected_record_count = sum(expected_counts.values())
+        if supplied_total_bytes != expected_total_bytes:
+            raise CertificateFailure("projected shard bytes differ")
+        if supplied_counts != expected_counts:
+            raise CertificateFailure("projected shard tag counts differ")
+        if supplied_record_count != expected_record_count:
+            raise CertificateFailure("projected shard record count differs")
         descriptors.append(
             {
                 "role": expected_role,
                 "family": expected_family,
                 "path": f"objects/{'0' * 64}.jsonl",
                 "sha256": "0" * 64,
-                "total_bytes": total_bytes,
-                "record_count": record_count,
-                "record_counts": canonical_counts,
+                "total_bytes": expected_total_bytes,
+                "record_count": expected_record_count,
+                "record_counts": expected_counts,
             }
         )
-    emitted_summary = copy.deepcopy(projected_index_input["emitted_summary"])
-    full_summary = copy.deepcopy(projected_index_input["full_summary"])
-    try:
-        _validate_root_summary(emitted_summary, "projected emitted summary")
-        _validate_root_summary(full_summary, "projected full summary")
-    except WireFormatError as error:
-        raise CertificateFailure("projected index summary is invalid") from error
-    template_inputs = projected_index_input["template_catalogs"]
-    if not isinstance(template_inputs, Mapping) or set(template_inputs) != set(
-        FAMILY_ORDER
-    ):
-        raise CertificateFailure("projected template summaries are incomplete")
-    template_catalogs = {}
-    for family in FAMILY_ORDER:
-        summary = copy.deepcopy(template_inputs[family])
-        try:
-            _validate_root_template_summary(summary, family)
-        except WireFormatError as error:
-            raise CertificateFailure(
-                "projected template summary is invalid"
-            ) from error
-        for field in ("identity_sha256", "replay_sha256", "catalog_sha256"):
-            summary[field] = "0" * 64
-        template_catalogs[family] = summary
     return {
         "format": PACKAGE_V2_FORMAT,
         "scope": scope,
@@ -5430,9 +5607,6 @@ def project_generation(
     projected_index_input: Mapping[str, Any],
     families: Sequence[FamilyProjectionInput],
 ) -> GenerationProjection:
-    projected_index_bytes = len(
-        canonical_json_line(build_projected_index_oracle(projected_index_input))
-    )
     fixed_values = {
         "source_catalog_precompute_ns": _generation_projection_int(
             source_catalog_precompute_ns, "source/catalog precompute nanoseconds"
@@ -5441,9 +5615,6 @@ def project_generation(
         "shared_bytes": _generation_projection_int(shared_bytes, "shared bytes"),
         "projected_index_ns": _generation_projection_int(
             projected_index_ns, "projected index nanoseconds"
-        ),
-        "projected_index_bytes": _generation_projection_int(
-            projected_index_bytes, "projected index bytes"
         ),
     }
     if isinstance(families, (str, bytes)):
@@ -5460,6 +5631,18 @@ def project_generation(
         raise CertificateFailure("family projection inputs are incomplete")
     projections = tuple(
         _generation_family_projection(by_family[family]) for family in FAMILY_ORDER
+    )
+    projected_index_bytes = len(
+        canonical_json_line(
+            build_projected_index_oracle(
+                projected_index_input,
+                shared_bytes=fixed_values["shared_bytes"],
+                families=projections,
+            )
+        )
+    )
+    fixed_values["projected_index_bytes"] = _generation_projection_int(
+        projected_index_bytes, "projected index bytes"
     )
     generation_ns_before_margin = (
         fixed_values["source_catalog_precompute_ns"]

@@ -3800,10 +3800,12 @@ def test_task2_adapters_pass_when_build_manifest_is_monkeypatched_to_raise(
             selected_schema_indices=(0,),
             tied_max_schema_ids=(f"{family}-max",),
             full_schema_count=2,
-            full_comparisons=2,
-            sampled_comparisons=1,
+            full_comparisons=168,
+            sampled_comparisons=84,
             sampled_two_pass_ns=1,
             sampled_load_bucket_bytes=1,
+            sampled_load_record_count=1,
+            projected_bucket_class_count=3,
             full_identity_count=2,
             sampled_identity_count=1,
             sampled_template_ns=1,
@@ -3818,7 +3820,11 @@ def test_task2_adapters_pass_when_build_manifest_is_monkeypatched_to_raise(
         shared_ns=1,
         shared_bytes=1,
         projected_index_ns=1,
-        projected_index_input=_task2_fix1_projected_index_input(module),
+        projected_index_input=_task2_fix2_projected_index_input(
+            module,
+            projection_inputs,
+            shared_bytes=1,
+        ),
         families=projection_inputs,
     )
     assert projection.format == "period-two-old-new-cut-generation-projection-v1"
@@ -4434,6 +4440,64 @@ def test_task2_every_footprint_partition_mutation_fails_closed(
         )
 
 
+def test_task2_fix2_reversed_masks_reach_token_bucket_orientation_gate(
+    task2_catalog_fixture, task2_singleton_discovery, monkeypatch
+) -> None:
+    module, catalog = task2_catalog_fixture
+    original_comparison = module.comparison_record
+    original_histogram = module._generation_histogram
+    observed_token_indices = []
+
+    def observed_comparison(*args, **kwargs):
+        comparison = original_comparison(*args, **kwargs)
+        observed_token_indices.append(comparison["token_index"])
+        return comparison
+
+    def reversed_masks(*args, **kwargs):
+        histogram = original_histogram(*args, **kwargs)
+        return _task2_mutate_histogram(histogram, "token-bit-reversal")
+
+    monkeypatch.setattr(module, "comparison_record", observed_comparison)
+    monkeypatch.setattr(module, "_generation_histogram", reversed_masks)
+    with pytest.raises(
+        module.CertificateFailure,
+        match="token-to-bucket orientation",
+    ):
+        tuple(
+            module.iter_family_records(
+                catalog,
+                task2_singleton_discovery,
+                scope=module.PREFLIGHT_SCOPE,
+                selected_template_schema_indices=(0,),
+            )
+        )
+    assert observed_token_indices == list(range(module.TOKEN_COUNT))
+
+
+def test_task2_fix2_valid_masks_pass_token_bucket_orientation_gate(
+    task2_catalog_fixture,
+) -> None:
+    module, catalog = task2_catalog_fixture
+    item = catalog.families["singleton"]
+    token = item.old_tokens[0]
+    old = next(
+        iter(
+            module._old_occurrence_records(
+                token,
+                item.old_schema_refs[token.token_id],
+                catalog,
+            )
+        )
+    )
+    histogram = module._generation_histogram(
+        old,
+        module._b_occurrence_records(item, catalog),
+        item.schemas,
+        item.cells[0],
+    )
+    assert module._validate_generation_histogram(histogram, old) is histogram
+
+
 @pytest.mark.parametrize(
     "field",
     ("load_rows", "occurrence_loads", "comparisons"),
@@ -4494,11 +4558,13 @@ def _task2_projection_inputs():
                 selected_old_indices=module.PREFLIGHT_SELECTED_OLD_INDICES[family],
                 selected_schema_indices=(0,),
                 tied_max_schema_ids=(f"{family}-max",),
-                full_schema_count=17 if is_target else 2,
-                full_comparisons=11 if is_target else 2,
-                sampled_comparisons=3 if is_target else 1,
+                full_schema_count=13 if is_target else 2,
+                full_comparisons=924 if is_target else 168,
+                sampled_comparisons=252 if is_target else 84,
                 sampled_two_pass_ns=5 if is_target else 0,
                 sampled_load_bucket_bytes=17 if is_target else 0,
+                sampled_load_record_count=2 if is_target else 1,
+                projected_bucket_class_count=9 if is_target else 3,
                 full_identity_count=13 if is_target else 2,
                 sampled_identity_count=4 if is_target else 1,
                 sampled_template_ns=7 if is_target else 0,
@@ -4517,7 +4583,11 @@ def _task2_arithmetic_projection():
         shared_ns=20,
         shared_bytes=100,
         projected_index_ns=40,
-        projected_index_input=_task2_fix1_projected_index_input(module),
+        projected_index_input=_task2_fix2_projected_index_input(
+            module,
+            inputs,
+            shared_bytes=100,
+        ),
         families=inputs,
     )
 
@@ -4549,13 +4619,21 @@ def test_task2_projection_charges_full_precompute_shared_and_family_tables() -> 
     assert projection.package_bytes_before_margin == (
         100 + projection.projected_index_bytes + 300 + 63 + 62
     )
+    changed_inputs = (
+        replace(inputs[0], fixed_family_ns=37, fixed_family_bytes=311),
+        *inputs[1:],
+    )
     changed = module.project_generation(
         source_catalog_precompute_ns=11,
         shared_ns=22,
         shared_bytes=103,
         projected_index_ns=44,
-        projected_index_input=_task2_fix1_projected_index_input(module),
-        families=(replace(inputs[0], fixed_family_ns=37, fixed_family_bytes=311), *inputs[1:]),
+        projected_index_input=_task2_fix2_projected_index_input(
+            module,
+            changed_inputs,
+            shared_bytes=103,
+        ),
+        families=changed_inputs,
     )
     assert changed.generation_ns_before_margin - projection.generation_ns_before_margin == 1 + 2 + 4 + 7
     assert changed.package_bytes_before_margin - projection.package_bytes_before_margin == 3 + 11
@@ -4563,8 +4641,19 @@ def test_task2_projection_charges_full_precompute_shared_and_family_tables() -> 
 
 def test_task2_projected_index_oracle_uses_actual_root_and_64_hex_fields() -> None:
     module, inputs = _task2_projection_inputs()
-    index_input = _task2_fix1_projected_index_input(module)
-    oracle = module.build_projected_index_oracle(index_input)
+    index_input = _task2_fix2_projected_index_input(
+        module,
+        inputs,
+        shared_bytes=1,
+    )
+    family_projections = tuple(
+        module._generation_family_projection(value) for value in inputs
+    )
+    oracle = module.build_projected_index_oracle(
+        index_input,
+        shared_bytes=1,
+        families=family_projections,
+    )
     assert set(oracle) == set(module.ROOT_INDEX_FIELDS)
     assert all(
         len(descriptor["sha256"]) == 64 and descriptor["sha256"] == "0" * 64
@@ -4609,7 +4698,11 @@ def test_task2_generation_projection_is_deterministic_and_has_no_floats() -> Non
         shared_ns=20,
         shared_bytes=100,
         projected_index_ns=40,
-        projected_index_input=_task2_fix1_projected_index_input(module),
+        projected_index_input=_task2_fix2_projected_index_input(
+            module,
+            inputs,
+            shared_bytes=100,
+        ),
         families=tuple(reversed(inputs)),
     )
     assert repeated == projection
@@ -4627,6 +4720,11 @@ def test_task2_generation_projection_is_deterministic_and_has_no_floats() -> Non
         replace(inputs[0], tied_max_schema_ids=()),
         replace(inputs[0], selected_old_indices=(0,)),
     )
+    index_input = _task2_fix2_projected_index_input(
+        module,
+        inputs,
+        shared_bytes=100,
+    )
     for invalid in invalid_inputs:
         with pytest.raises(module.CertificateFailure):
             module.project_generation(
@@ -4634,7 +4732,7 @@ def test_task2_generation_projection_is_deterministic_and_has_no_floats() -> Non
                 shared_ns=20,
                 shared_bytes=100,
                 projected_index_ns=40,
-                projected_index_input=_task2_fix1_projected_index_input(module),
+                projected_index_input=index_input,
                 families=(invalid, *inputs[1:]),
             )
     with pytest.raises(module.CertificateFailure):
@@ -4643,7 +4741,7 @@ def test_task2_generation_projection_is_deterministic_and_has_no_floats() -> Non
             shared_ns=20,
             shared_bytes=100,
             projected_index_ns=40,
-            projected_index_input=_task2_fix1_projected_index_input(module),
+            projected_index_input=index_input,
             families=inputs[:-1],
         )
 
@@ -4963,32 +5061,143 @@ def test_task2_fix1_template_serialization_does_not_retain_identity_map(
     assert live_templates == 0
 
 
-def _task2_fix1_projected_index_input(module):
-    encoded = module.encode_tiny_v2_package(literal_package_v2_logical_fixture())
-    root = encoded.index
-    return {
-        "scope": root["scope"],
-        "status": root["status"],
-        "shards": tuple(
+def _task2_fix2_projected_index_input(module, family_inputs, *, shared_bytes):
+    by_family = {value.family: value for value in family_inputs}
+    load_rows = {}
+    footprint_sizes = {}
+    occurrence_loads = {}
+    template_counts = {}
+    template_catalogs = {}
+    family_record_counts = {}
+    family_bytes = {}
+    for family_index, family in enumerate(module.FAMILY_ORDER):
+        value = by_family[family]
+        assert value.full_identity_count % value.full_schema_count == 0
+        cell_count = value.full_identity_count // value.full_schema_count
+        assert value.full_comparisons % module.TOKEN_COUNT == 0
+        occurrences = value.full_comparisons // module.TOKEN_COUNT
+        assert occurrences % cell_count == 0
+        footprints = occurrences // cell_count
+        load_rows[family] = cell_count
+        footprint_sizes[family] = {str(footprints): 1}
+        occurrence_loads[family] = occurrences
+        template_counts[family] = value.full_identity_count
+        witness_count = family_index + 1
+        template_catalogs[family] = {
+            "format": module.TEMPLATE_CATALOG_FORMAT,
+            "typed_encoding": module.TEMPLATE_TYPED_ENCODING,
+            "identity_order": "schema-major-cell-minor",
+            "schema_count": value.full_schema_count,
+            "cell_count": cell_count,
+            "template_count": value.full_identity_count,
+            "witness_count": witness_count,
+            "identity_sha256": "1" * 64,
+            "replay_sha256": "2" * 64,
+            "catalog_sha256": "3" * 64,
+        }
+        projected_load_records = (
+            value.sampled_load_record_count * value.full_comparisons
+            + value.sampled_comparisons
+            - 1
+        ) // value.sampled_comparisons
+        family_record_counts[family] = {
+            "family_header": 1,
+            "old_load": 1,
+            "footprint": footprints,
+            "bucket_class": value.projected_bucket_class_count,
+            "load": projected_load_records,
+            "cell_footer": cell_count,
+            "template_header": 1,
+            "template_schema": value.full_schema_count,
+            "template_cell": cell_count,
+            "template_witness": witness_count,
+            "template_identity_chunk": (
+                value.full_identity_count + module.IDENTITY_CHUNK_SIZE - 1
+            )
+            // module.IDENTITY_CHUNK_SIZE,
+            "template_footer": 1,
+            "family_footer": 1,
+        }
+        projected_load_bytes = (
+            value.sampled_load_bucket_bytes * value.full_comparisons
+            + value.sampled_comparisons
+            - 1
+        ) // value.sampled_comparisons
+        projected_template_bytes = (
+            value.sampled_template_bytes * value.full_identity_count
+            + value.sampled_identity_count
+            - 1
+        ) // value.sampled_identity_count
+        family_bytes[family] = (
+            value.fixed_family_bytes
+            + projected_load_bytes
+            + projected_template_bytes
+        )
+    summary = {
+        "load_rows": load_rows,
+        "total_load_rows": sum(load_rows.values()),
+        "footprint_sizes": footprint_sizes,
+        "occurrence_loads": occurrence_loads,
+        "total_occurrence_loads": sum(occurrence_loads.values()),
+        "b_tokens_per_occurrence": module.TOKEN_COUNT,
+        "active_comparisons": sum(occurrence_loads.values()) * module.TOKEN_COUNT,
+        "template_counts": template_counts,
+        "total_templates": sum(template_counts.values()),
+    }
+    shared_record_counts = {
+        "shared_header": 1,
+        "dependency": 2,
+        "source_bindings": 1,
+        "b_identity": module.TOKEN_COUNT,
+        "b_coordinate": module.TOKEN_COUNT,
+        "shared_footer": 1,
+    }
+    shards = [
+        {
+            "role": "shared",
+            "family": None,
+            "total_bytes": shared_bytes,
+            "record_count": sum(shared_record_counts.values()),
+            "record_counts": shared_record_counts,
+        }
+    ]
+    for family in module.FAMILY_ORDER:
+        counts = family_record_counts[family]
+        shards.append(
             {
-                "role": descriptor["role"],
-                "family": descriptor["family"],
-                "total_bytes": descriptor["total_bytes"],
-                "record_count": descriptor["record_count"],
-                "record_counts": dict(descriptor["record_counts"]),
+                "role": "family",
+                "family": family,
+                "total_bytes": family_bytes[family],
+                "record_count": sum(counts.values()),
+                "record_counts": counts,
             }
-            for descriptor in root["shards"]
-        ),
-        "emitted_summary": copy.deepcopy(root["emitted_summary"]),
-        "full_summary": copy.deepcopy(root["full_summary"]),
-        "template_catalogs": copy.deepcopy(root["template_catalogs"]),
+        )
+    return {
+        "scope": module.PRODUCTION_SCOPE,
+        "status": module.PRODUCTION_STATUS,
+        "shared_dependency_count": 2,
+        "shards": tuple(shards),
+        "emitted_summary": copy.deepcopy(summary),
+        "full_summary": summary,
+        "template_catalogs": template_catalogs,
     }
 
 
 def test_task2_fix1_projected_index_oracle_is_constructed_internally() -> None:
     module, family_inputs = _task2_projection_inputs()
-    index_input = _task2_fix1_projected_index_input(module)
-    oracle = module.build_projected_index_oracle(index_input)
+    index_input = _task2_fix2_projected_index_input(
+        module,
+        family_inputs,
+        shared_bytes=100,
+    )
+    family_projections = tuple(
+        module._generation_family_projection(value) for value in family_inputs
+    )
+    oracle = module.build_projected_index_oracle(
+        index_input,
+        shared_bytes=100,
+        families=family_projections,
+    )
     assert set(oracle) == set(module.ROOT_INDEX_FIELDS)
     assert oracle["root_sha256"] == "0" * 64
     assert oracle["source_bindings_sha256"] == "0" * 64
@@ -5015,44 +5224,58 @@ def test_task2_fix1_projected_index_oracle_is_constructed_internally() -> None:
     assert projection.projected_index_bytes == expected_bytes
 
 
-def test_task2_fix1_projected_index_oracle_binds_descriptor_digit_widths() -> None:
-    module = load_generator()
-    baseline = _task2_fix1_projected_index_input(module)
-    shards = [dict(shard) for shard in baseline["shards"]]
-    shared_counts = {tag: 0 for tag in shards[0]["record_counts"]}
-    shared_counts["shared_header"] = 9
-    shards[0] = {
-        **shards[0],
-        "record_count": 9,
-        "record_counts": shared_counts,
-        "total_bytes": 99,
-    }
-    baseline = {**baseline, "shards": tuple(shards)}
-    count_wider = copy.deepcopy(baseline)
-    count_wider["shards"] = tuple(
-        {
-            **shard,
-            "record_count": 10,
-            "record_counts": {**shard["record_counts"], "shared_header": 10},
-        }
-        if index == 0
-        else shard
-        for index, shard in enumerate(count_wider["shards"])
+def test_task2_fix2_projected_index_oracle_binds_derived_digit_widths() -> None:
+    module, baseline_inputs = _task2_projection_inputs()
+    count_wider_inputs = (
+        replace(baseline_inputs[0], sampled_load_record_count=3),
+        *baseline_inputs[1:],
     )
-    bytes_wider = copy.deepcopy(baseline)
-    bytes_wider["shards"] = tuple(
-        {**shard, "total_bytes": 100} if index == 0 else shard
-        for index, shard in enumerate(bytes_wider["shards"])
+
+    def project(values, shared_bytes):
+        return module.project_generation(
+            source_catalog_precompute_ns=10,
+            shared_ns=20,
+            shared_bytes=shared_bytes,
+            projected_index_ns=40,
+            projected_index_input=_task2_fix2_projected_index_input(
+                module,
+                values,
+                shared_bytes=shared_bytes,
+            ),
+            families=values,
+        )
+
+    baseline = project(baseline_inputs, 99)
+    count_wider = project(count_wider_inputs, 99)
+    bytes_wider = project(baseline_inputs, 100)
+    assert count_wider.projected_index_bytes > baseline.projected_index_bytes
+    assert bytes_wider.projected_index_bytes > baseline.projected_index_bytes
+
+
+@pytest.mark.parametrize("mutation", ("shared-bytes", "family-count"))
+def test_task2_fix2_projection_rejects_unbound_descriptor_census(mutation) -> None:
+    module, family_inputs = _task2_projection_inputs()
+    index_input = _task2_fix2_projected_index_input(
+        module,
+        family_inputs,
+        shared_bytes=100,
     )
-    baseline_bytes = len(
-        module.canonical_json_line(module.build_projected_index_oracle(baseline))
-    )
-    assert len(
-        module.canonical_json_line(module.build_projected_index_oracle(count_wider))
-    ) > baseline_bytes
-    assert len(
-        module.canonical_json_line(module.build_projected_index_oracle(bytes_wider))
-    ) > baseline_bytes
+    shards = [copy.deepcopy(shard) for shard in index_input["shards"]]
+    if mutation == "shared-bytes":
+        shards[0]["total_bytes"] = 101
+    else:
+        shards[1]["record_count"] += 1
+        shards[1]["record_counts"]["family_header"] += 1
+    index_input = {**index_input, "shards": tuple(shards)}
+    with pytest.raises(module.CertificateFailure, match="projected shard"):
+        module.project_generation(
+            source_catalog_precompute_ns=10,
+            shared_ns=20,
+            shared_bytes=100,
+            projected_index_ns=40,
+            projected_index_input=index_input,
+            families=family_inputs,
+        )
 
 
 @pytest.mark.parametrize("anchor_index", range(21))
@@ -5103,30 +5326,37 @@ def test_task2_fix1_every_identity_row_is_targeted(
 
 
 @pytest.mark.parametrize("coordinate_index", range(84))
-def test_task2_fix1_every_coordinate_row_is_targeted(
+def test_task2_fix2_every_coordinate_row_reaches_fixed_coordinate_binding(
     task2_catalog_fixture,
     coordinate_index,
 ) -> None:
     module, catalog = task2_catalog_fixture
-    families = {}
-    for family, item in catalog.families.items():
-        tokens = list(item.b_tokens)
-        tokens[coordinate_index] = replace(
-            tokens[coordinate_index],
-            source_members=(*tokens[coordinate_index].source_members, "mutated"),
-        )
-        families[family] = replace(item, b_tokens=tuple(tokens))
-    rows = [dict(row) for row in catalog.b_identity_table]
-    rows[coordinate_index]["source_members"] = [
-        *rows[coordinate_index]["source_members"],
-        "mutated",
-    ]
-    table = tuple(rows)
-    mutated = replace(
-        catalog,
-        families=families,
-        b_identity_table=table,
-        b_identity_digest=module._identity_digest(table),
+    assert module._identity_digest(catalog.b_identity_table) == (
+        module.FULL_GENERATION_B_IDENTITY_SHA256
     )
-    with pytest.raises(module.CertificateFailure, match="full generation catalog"):
-        module._validate_generation_identity_coordinates(mutated)
+    item = catalog.families["fixed"]
+    coordinates = tuple(
+        (
+            token.token_index,
+            token.family,
+            (token.slot, *token.source_members),
+        )
+        for token in item.b_tokens
+    )
+    mutated = list(coordinates)
+    row = mutated[coordinate_index]
+    mutated[coordinate_index] = (
+        row[0],
+        row[1],
+        (*row[2], "mutated"),
+    )
+    mutated_table = tuple(mutated)
+    mutable_digest = module.typed_sha256(mutated_table)
+    with pytest.raises(
+        module.CertificateFailure,
+        match="fixed generation B coordinate binding differs",
+    ):
+        module._validate_generation_coordinate_table(
+            mutated_table,
+            mutable_digest,
+        )
