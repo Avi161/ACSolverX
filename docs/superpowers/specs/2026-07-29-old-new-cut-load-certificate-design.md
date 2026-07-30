@@ -325,3 +325,445 @@ The compact overhead scout samples every eighth ASCII-sorted schema plus
 complete sorted maximum-ID list; selecting only the first tied maximum is not
 an approved projection because tied schemas can intern different witnesses
 and emit different byte counts.
+
+## 9. Package-v2 replacement boundary
+
+The monolithic logical-v1 JSON object is retired as a production transport.
+Its computation completed all 1,491,840 comparisons and atomically wrote
+371,878,372 bytes, but the enclosing guarded test timed out.  It must not be
+run again.  Package v2 preserves the logical-v1 value while replacing only its
+wire layout and publication protocol.
+
+The wire format is `period-two-old-new-cut-package-v2`.  A package consists of
+one canonical root-index JSON line and seven content-addressed canonical JSONL
+objects.  The shard order is exactly:
+
+    shared, fixed, base, singleton, P, C, Q
+
+The family order is exactly:
+
+    fixed, base, singleton, P, C, Q
+
+Production uses scope `production-full` and status
+`generated-awaiting-independent-replay`.  Preflight uses scope
+`preflight-sample` and status `preflight-sample-not-a-certificate`.  A
+preflight package is never a proof artifact, even if all of its local checks
+pass.
+
+The canonical line encoding is `canonical-json-ascii-lines-v1`: JSON is
+serialized with `ensure_ascii=True`, sorted object keys, separators
+`(",", ":")`, and exactly one terminal LF.  The maximum canonical line is
+16,777,216 bytes including LF.  Package size is the sum of all seven actual
+shard byte lengths and the actual root-index byte length.  Production
+publication is forbidden above 100,000,000 bytes.
+
+Objects live beside the index under `objects/<sha256>.jsonl`, where the name is
+64 lowercase hexadecimal digits and the digest covers the complete object,
+including every LF.  Production uses
+`.scratch/period-two-old-new-cut-package-v2/index.json`.  Preflight and tests
+use project-local sibling directories and never `/tmp`.
+
+## 10. Root index and descriptor grammar
+
+The root object has exactly these fields:
+
+    format
+    scope
+    logical_v1_format
+    canonical_encoding
+    mask_encoding
+    domain
+    status
+    shard_order
+    shards
+    shard_bytes_total
+    emitted_summary
+    full_summary
+    source_bindings_sha256
+    b_identity_digest
+    template_catalogs
+    root_sha256
+
+Their fixed values include logical format
+`period-two-old-new-cut-load-v1` and mask format
+`uint84-be11-base64url-nopad-v1`.  `shards` is a seven-entry array in
+`shard_order`.  A shared descriptor has role `shared` and family `null`; a
+family descriptor has role `family` and its exact family name.  Each
+descriptor has exactly:
+
+    role, family, path, sha256, total_bytes, record_count, record_counts
+
+`path` is exactly `objects/<descriptor sha256>.jsonl`.  `total_bytes` includes
+all LFs.  `record_counts` contains every allowed tag for that shard, including
+zero counts, no other key, and sums to `record_count`.
+`shard_bytes_total` is the descriptor-byte sum.  `source_bindings_sha256` is
+the digest inside the exact source-binding object and `b_identity_digest` is
+the logical-v1 digest.  `template_catalogs` maps every family to an exact
+ten-field catalog summary:
+
+    format, typed_encoding, identity_order, schema_count, cell_count,
+    template_count, witness_count, identity_sha256, replay_sha256,
+    catalog_sha256
+
+The summary schema for both `emitted_summary` and `full_summary` is exactly:
+
+    load_rows, total_load_rows, footprint_sizes, occurrence_loads,
+    total_occurrence_loads, b_tokens_per_occurrence, active_comparisons,
+    template_counts, total_templates
+
+Every family-valued subobject has all six family keys.  Production requires
+`emitted_summary == full_summary`.  Preflight records the actually emitted
+subset in the former and the deterministic full projection in the latter.
+
+`root_sha256` is SHA-256 of the canonical root-index line with that one field
+omitted.  The SHA-256 of the actual index file is separately computed over the
+complete canonical line with `root_sha256` present.  Neither digest is a
+self-hash.
+
+## 11. Shared-shard positional grammar
+
+The six shared tags, exact field orders, and total widths are:
+
+    shared_header 9 =
+      tag, format, scope, logical_v1_format, canonical_encoding,
+      mask_encoding, domain, status, shard_order
+    dependency 3 =
+      tag, path, sha256
+    source_bindings 2 =
+      tag, value
+    b_identity 11 =
+      tag, token_index, token_id, source_class, coefficient, slot,
+      occurrence, polarity, module_schema, label_schema, source_members
+    b_coordinate 4 =
+      tag, token_index, source_class, coordinate
+    shared_footer 4 =
+      tag, coordinate_count, records_before_footer, bytes_before_footer
+
+The header is first and the footer is last.  Dependencies are in strict ASCII
+path order.  The source-binding row contains the exact existing
+`task4-source-bindings-v1` object, not a projection.  B identities are in
+complete token-index order and retain the current ten logical fields after
+the tag.  B coordinates follow token-index order and bind the source class and
+coordinate used when token masks are expanded.  `coordinate_count` is the
+number of coordinate rows.  `records_before_footer` and
+`bytes_before_footer` count the complete prefix before encoding the footer.
+
+The descriptor's `record_counts` has exactly all six shared tag keys.  Token
+indices are exact integers, not booleans, cover `0..83` in production, and
+match the identity/coordinate bijection.
+
+## 12. Family-shard positional grammar
+
+There are exactly thirteen family tags.  Their field orders and widths are:
+
+    family_header 14 =
+      tag, family, variables, source_cell_count, selected_old_indices,
+      old_load_count, footprint_count, bucket_class_count, b_token_count,
+      comparison_methods, chronologies, histogram_key_fields,
+      template_field_orders, source_cell_order
+    old_load 8 =
+      tag, old_index, old_token_id, coefficient, source_members,
+      source_slot, footprint_start, footprint_count
+    footprint 9 =
+      tag, footprint_index, old_index, occurrence, occurrence_slot,
+      polarity, leaf, module_schema, label_schema
+    bucket_class 11 =
+      tag, b_source_class, b_coordinate, equality_exclusion,
+      module_method, module_order, chronology, chronology_order,
+      label_method, label_order, contribution_bit
+    load 5 =
+      tag, old_index, footprint_index, bucket_class_index, mask
+    cell_footer 7 =
+      tag, source_cell_index, compact_cell_index, cell_id,
+      odd_old_indices, value, load_record_count
+    template_header 10 =
+      tag, format, typed_encoding, family, field_orders, identity_order,
+      schema_count, cell_count, template_count, witness_count
+    template_schema 5 =
+      tag, schema_index, schema_id, variables, blocks
+    template_cell 6 =
+      tag, compact_cell_index, cell_id, names, states, base_values
+    template_witness 5 =
+      tag, witness_id, terminal_full_letter, terminal_c_deleted, pumps
+    template_identity_chunk 3 =
+      tag, start_identity_index, witness_id_list
+    template_footer 4 =
+      tag, identity_sha256, replay_sha256, catalog_sha256
+    family_footer 8 =
+      tag, source_cell_count, old_load_count, load_rows, occurrence_loads,
+      comparisons, records_before_footer, bytes_before_footer
+
+`comparison_methods` is exactly:
+
+    null
+    strict_affine_length
+    identical_pumped_blocks
+    fixed_mismatch_after_pumped_prefix
+
+`chronologies` is exactly:
+
+    fixed_vs_correction_literal_leaf_order
+    distinct_occurrences_literal_AST_order
+    equal_coordinate_excluded
+    same_occurrence_increasing
+    same_occurrence_decreasing
+
+`histogram_key_fields` is exactly the current logical-v1 order:
+
+    old_occurrence, old_leaf, b_source_class, b_coordinate,
+    equality_exclusion, old_polarity, module_method, module_order,
+    chronology, chronology_order, label_method, label_order,
+    contribution_bit
+
+`template_field_orders` is exactly:
+
+    schema = schema_id, variables, blocks
+    block = block_name, word, affine
+    cell = cell_id, names, states, base_values
+    witness = terminal_full_letter, terminal_c_deleted, pumps
+    pump = block_index, base_copies, slopes, split_position, left_copy_id,
+           right_copy_id, left_core_offset, right_core_offset
+
+The source-cell order declaration is
+`product-order-with-P-domain-filter`.  `source_cell_index` is that ledger
+order.  `compact_cell_index` is ASCII catalog order.  They are distinct
+domains; the checked cell-ID bijection is the only conversion.  Treating one
+index as the other is invalid even when they happen to agree.
+
+Old loads are ordered by `old_index`.  Their footprint intervals are
+contiguous, disjoint, start at zero, and cover the complete footprint table.
+`source_slot` is null if and only if the family is `fixed`.  In a footprint,
+`occurrence`, `occurrence_slot`, `polarity`, and `module_schema` are all null
+if and only if the family is `fixed`.  `leaf` and `label_schema` are always
+present.  Production `selected_old_indices` is exactly
+`[0, 1, ..., old_load_count-1]`; preflight may use a strict increasing subset.
+
+Bucket classes are unique and sorted by their canonical JSON encoding.
+`bucket_class_index` indexes that table.  Within each source cell, load rows
+are ordered by old index, footprint index, then bucket-class index.  Every
+load mask is nonzero.  A cell footer closes the preceding load rows and is the
+only cell boundary.  Source-cell indices are consecutive from zero in a full
+package.  `odd_old_indices` and `value` are recomputed, never trusted.
+
+Template schemas and cells are in strict ASCII ID order with consecutive
+indices.  Witnesses are in first-seen schema-major/cell-minor order.  Identity
+chunks contain 4,096 IDs except for one final nonempty shorter chunk; empty
+catalogs contain no chunks.  Chunk starts are exact, consecutive identity
+indices.  Blocks and pumps use the compact nested positional grammar already
+specified in Sections 5 and 10.  The descriptor `record_counts` has all
+thirteen keys and no others.
+
+## 13. Logical-v1 reconstruction
+
+Decoding is a pure, exact inverse of encoding.  It does not run the proof
+ledger.
+
+For one cell and one old load, combine the old-load row with each row in its
+footprint interval.  Expand each `load` record through its bucket class and
+decode its 84-bit mask.  The reconstructed logical-v1 bucket key inserts
+`old_occurrence`, `old_leaf`, and `old_polarity` from the footprint and the
+remaining ten fields from the bucket class.  Its logical-v1 `count` is the
+mask population count and its logical-v1 `mask` is the 21-digit lowercase
+hexadecimal spelling.
+
+For every footprint:
+
+    comparison_count = 84
+    one_count = sum(popcount(mask) for contribution_bit == 1)
+    histogram.value = one_count mod 2
+
+Its nonzero masks must be disjoint and their union must be `(1 << 84) - 1`.
+The load value is xor of its footprint histogram values.  The cell value is
+xor of its selected load values.  Logical IDs are reconstructed as
+`family|cell_id|old_token_id`.  The logical footprint binding is:
+
+    token_id, source_slot, source_members, module_schema, occurrence,
+    occurrence_slot, polarity, leaf, label_schema
+
+The logical cell counts are derived:
+
+    load_count = number of selected old loads
+    occurrence_load_count = sum of selected footprint counts
+    comparison_count = occurrence_load_count * 84
+
+The template catalog is reconstructed by dropping positional tags and indices
+from schema, cell, witness, and identity-chunk rows, concatenating identity
+chunks, and restoring the three footer digests.  The family summary is the
+three count fields from the family footer.  The top-level logical-v1 object is:
+
+    format = logical_v1_format
+    domain = root domain
+    status = root status
+    summary = emitted_summary
+    dependency_digests = shared dependency rows
+    source_bindings = shared source-binding value
+    b_identity_table = shared B identities
+    b_identity_digest = root b_identity_digest
+    family_ledgers = six reconstructed family ledgers
+
+The generator's tiny fixture encoder and the verifier's independent decoder
+must satisfy:
+
+    logical_v1(v2_encode(v1_fixture)) == v1_fixture
+
+Production additionally requires emitted and full summaries to agree.
+
+## 14. Strict canonical decoders
+
+The generator and verifier separately implement the codecs; neither imports
+the other.  Each canonical line is read incrementally in binary mode.  A
+decoder rejects non-ASCII bytes, CR, blank lines, missing final LF, bytes
+after a terminal footer or root record, a line above the cap, duplicate object
+keys, floating-point numbers, NaN, Infinity, negative zero, and any spelling
+whose re-encoding is not byte-identical.
+
+Root decoding accepts exactly one canonical line and the exact root fields.
+Shard decoding validates the tag state machine while streaming, so an unknown
+tag, wrong array width, misplaced tag, record after the footer, or missing
+footer fails before reconstruction.  Nested object fields are exact wherever
+the schema declares them.  All integer fields use `type(value) is int`;
+booleans are never accepted as integers.  Hashes, paths, IDs, enums, null
+domains, and all cross-record references are validated before use.
+
+No v2 API performs a whole production `read_text`, `read_bytes`, global
+`json.loads`, `deepcopy`, or top-level canonical serialization.  Per-line JSON
+decoding and bounded chunk comparisons are permitted.
+
+## 15. Mask encoding
+
+The wire mask is exactly fifteen characters matching
+`[A-Za-z0-9_-]{15}`, with no padding.  Decode by appending exactly one `=`,
+using strict URL-safe base64 validation, and requiring exactly eleven bytes.
+The high four bits of the first byte are zero.  Decode/re-encode equality is
+mandatory, which also rejects noncanonical unused base64 bits.  The integer is
+unsigned big-endian and less than `2^84`.  Token index `i` is bit `1 << i`.
+Packing is the inverse.
+
+For every histogram fixture and production footprint, masks are nonzero,
+pairwise disjoint, and cover `(1 << 84) - 1`.  The logical count is the
+population count.  Reversing token-bit orientation is a mutation, not another
+encoding.
+
+## 16. Publication state machine
+
+Publication has two explicit states.
+
+`PREPARED` lasts until the root-index replacement.  Each shard is first
+encoded to a project-local temporary object while its byte count, SHA-256,
+record counts, footer prefix count, and footer prefix bytes are computed
+incrementally.  A new object is flushed and fsynced, renamed to its content
+address, and followed by an objects-directory fsync.  If the target object
+already exists, its size and SHA-256 are verified and its bytes are compared
+with the temporary object in bounded chunks.  A disagreement fails closed.
+An identical object is marked reused and only the temporary is removed.
+
+The index temporary is flushed and fsynced.  Production's actual package size
+is checked before replacement.  `os.replace(temp_index, index)` is the sole
+`PREPARED -> COMMITTED` transition.
+
+Any failure before that transition preserves the prior index, removes every
+temporary and only the content-addressed objects created by the current
+attempt, then fsyncs each affected directory.  Reused or unrelated objects
+are never removed.  Any failure after replacement leaves every object and the
+new complete index in place; no object is deleted.  A post-replace directory
+fsync failure returns nonzero and writes no receipt or attestation.  This is a
+committed-but-unacknowledged package, not a prepared rollback.
+
+Failure injection is defined at every boundary:
+
+    object_temp_fsynced
+    object_replaced
+    objects_dir_fsynced
+    index_temp_fsynced
+    before_index_replace
+    index_replaced
+    index_dir_fsynced
+
+Tests require prior-index survival and cleanup for every pre-replace failure,
+and a complete new package with no dangling descriptor for every post-replace
+failure.
+
+## 17. Metrics, receipts, and coordinator
+
+Metrics are opt-in and never enter package bytes.  The fixed stages are:
+
+    encode_shared, encode_family, write_objects, publish_index, verify_package
+
+The fixed record tags are the six shared tags, thirteen family tags, and
+`root_index`.  The metrics schema contains only its format, elapsed duration
+per fixed stage, and deterministic record-count and byte-count maps per fixed
+tag.  It contains no command, PID, timestamp, environment value, secret, path
+payload, or proof payload.  Instrumented and uninstrumented packages must be
+byte- and hash-identical.
+
+The later production CLI requires an explicit `--run-id`; it never invents
+one from time or process state.  After a fully fsynced commit the generator may
+write a canonical receipt with exact fields:
+
+    format, run_id, scope, index_path, index_sha256, root_sha256, state,
+    package_bytes, created_objects, reused_objects, generator_sha256, metrics
+
+The independent verifier receives the same run ID and, only after semantic
+replay, may write an attestation with exact fields:
+
+    format, run_id, index_path, index_sha256, root_sha256, logical_v1_sha256,
+    status, verifier_sha256, metrics
+
+The integrated coordinator owns the fixed run ID, production paths, receipt,
+and attestation.  It rejects a stale or mismatched receipt, a preflight status,
+an index/root mismatch, or any verifier output not bound to the same run.
+Task 1 implements none of these production artifacts beyond the frozen
+interfaces.
+
+## 18. Projection and execution gates
+
+A 60-second preflight emits deterministic per-family counts and bytes for a
+registered subset.  Full generation, verification, and byte projections are
+the sum of per-family linear ratios, rounded upward, with a factor-two safety
+margin; fixed shared/index costs are charged in full.  Tied maximum-pump
+schemas are all included.  Production is blocked unless projected generator
+plus verifier time is at most 600 seconds and projected package bytes,
+including the projected actual index, are at most 100,000,000.
+
+Only the procedural root launcher may run the later long gate.  Before any
+production experiment, the implementation, tests, design, plan, and bounded
+preflight result must be committed, entered in the UTC push log, and pushed.
+The 600-second run uses the proof guard's authorized long mode after the exact
+preflight succeeds.  A timeout or nonzero result is a bounded failure, not a
+mathematical negative.
+
+Cleanup removes preflight indexes, their current-created unreferenced objects,
+test directories, and stale temporary files by exact path.  It never
+garbage-collects the production object store or donor artifacts.
+
+## 19. Required mutations and reviews
+
+Foundation mutations cover every declared field/tag/width/order, zero-count
+descriptor keys, bool-as-int, source/compact index confusion, selected-index
+gaps, footprint overlap/gaps, reference ranges, identity chunk sizes, root and
+object hashes, descriptor paths/counts/bytes, duplicate JSON keys, floats,
+constants, negative zero, whitespace, CR, blank/missing/trailing bytes, line
+caps, every mask malformation, token-bit reversal, object reuse mismatch,
+every publication boundary, cap enforcement, and metrics byte identity.
+
+Streaming-generation mutations additionally cover the existing source
+bindings, inactive fiber coefficients and alignment, raw domains and current
+equalities, anchor provenance, B identity/coordinates, catalog ordering,
+terminal/pump fields, cell coverage, family parity, and all logical-v1 census
+fields.  Independent verification repeats semantic reconstruction without
+generator imports.  Whole-package review checks source binding,
+integer-before-parity aggregation, all-power pumping, mask completeness,
+family arithmetic, resource projections, receipt binding, and theorem scope.
+
+## 20. Preserved nonclaims
+
+Package v2 is a transport and replay boundary, not new mathematics.  The tiny
+fixture proves only codec and publication mechanics.  A preflight package is
+not a certificate.  A production package with status
+`generated-awaiting-independent-replay` is not independently verified.  A
+receipt is not an attestation, and an attestation is not an AC move sequence.
+
+Nothing here proves `Q(A_(n,d))=[d=0]`, closes the `d=0` endpoint, extends the
+cut outside `n>=0,d>=1`, proves full covariance without integration, or proves
+AC or stable-AC triviality of AK(3).  Donor artifacts and the proof guard are
+outside this package and remain unchanged.

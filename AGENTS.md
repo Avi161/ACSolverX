@@ -1647,3 +1647,8 @@
 
 - [TRAP] A double-quoted `rg` pattern containing Markdown backticks executed `0600` and `73` as shell substitutions, and a second mixed-quote pattern ended with an unmatched quote; neither search provided a valid coverage result.
 - [WORKS] Pass Markdown tokens to shell searches as separate single-quoted `rg -e` patterns, especially when they contain backticks, and record the search exit before treating absence as evidence.
+
+### 2026-07-30 Replace Markdown backticks before parsing patch scripts
+
+- [TRAP] A `String.raw` JavaScript patch for the package-v2 plan still contained literal Markdown backticks, so the orchestration source failed with `SyntaxError: Unexpected identifier 'AGENTS'` before `apply_patch` ran; no plan hunk landed.
+- [WORKS] Replace Markdown backticks with a sentinel throughout raw patch payloads and restore them only in the string passed to `apply_patch`. After a parse failure, inspect the diff and rerun every intended hunk.
