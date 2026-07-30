@@ -1719,3 +1719,13 @@
 
 - [TRAP] With pipe failure propagation enabled, `lsof -iTCP` returns status 1 for a process with no matching sockets, so a safe project-process audit stopped before its final lock predicate even though the empty connection result was expected.
 - [WORKS] Keep pipe failure propagation for the audit, but normalize only the per-PID no-match `lsof` result before filtering connection states; require the enclosing scan and final lock predicate to reach an explicit zero exit before accepting absence evidence.
+
+### 2026-07-30 Freeze canonical tables before streaming dependent records
+
+- [TRAP] The first package-v2 Task 2 plan required one-pass family generation to intern bucket classes while emitting load rows, but the frozen wire grammar places the complete canonical `bucket_class` table before every dependent `load` record. A class first seen late cannot be inserted without rewriting or violating canonical order.
+- [WORKS] When an ordered wire table precedes records that reference it, use bounded two-phase generation: traverse the exact domain once to freeze only metadata, parity, and the canonical unique table without retaining dependent rows or masks, then deterministically recompute and stream those rows against the frozen indices.
+
+### 2026-07-30 Route advisor effort by decision risk
+
+- [TRAP] A bounded Task 2 plan-slice review was dispatched at `gpt-5.6-sol` ultra, spending theorem-grade review effort on a narrow design check.
+- [WORKS] Use a narrow `gpt-5.6-sol` xhigh APPROVE/REVISE/BLOCK review for one lemma or substantive plan slice; reserve ultra for final theorem claims, long-proof authorization, or unresolved xhigh soundness disagreements. Use `gpt-5.6-terra` high for mechanical/document checks, and cap independent theory at one constructor plus one falsifier.

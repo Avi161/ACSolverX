@@ -56,31 +56,43 @@ involution ansatz; they do not rule out a future deeper theorem.
 
 ## 3. Artifacts and isolation
 
-All implementation is new-file-only.
+All implementation remains isolated to the existing new scratch files and
+package-v2 output boundary.
 
-- `.scratch/period_two_old_new_cut_load_certificate.py` generates the
-  canonical manifest from approved source artifacts.
+- `.scratch/period_two_old_new_cut_load_certificate.py` streams the canonical
+  root index and seven content-addressed shards from approved source
+  artifacts.
 - `.scratch/period_two_old_new_cut_load_verify.py` independently reconstructs
-  and verifies the manifest.  It must not import the generator.
+  and verifies package v2.  It must not import the generator.
 - `.scratch/test_period_two_old_new_cut_load_certificate.py` contains literal,
-  hand-derived fixtures and end-to-end generator/verifier tests.
-- `.scratch/period_two_old_new_cut_load_manifest.json` is the canonical
-  certificate payload.
-- `.scratch/period_two_old_new_cut_load_certificate.md` states the proved
-  theorem, dependency hashes, replay command, and explicit non-claims.
+  hand-derived fixtures and bounded generator/verifier tests.
+- `.scratch/period-two-old-new-cut-package-v2/index.json` is the production
+  package root.  Its seven shards live under its sibling `objects/` directory.
+- `.scratch/period_two_old_new_cut_load_certificate.md` may state the proved
+  theorem, dependency hashes, replay command, and explicit nonclaims only
+  after independent production replay in Task 6.
 
 The interrupted
 `.scratch/period_two_old_new_cut_covariance_checker.py` is not a trusted
 dependency.  It may be consulted for schema notation, but no zero failure
 counter, claimed family value, or `d=0` assertion may be copied as evidence.
 
+Task 2 implements only generator-side iterators, bounded two-phase family
+generation, the JSONL stream writer, a deterministic generator-only resource
+projection, and a pure generation-receipt payload constructor.  Task 2 tests
+write no production package, receipt file, attestation, theorem memo, or
+promise-ledger entry.  Independent semantic replay belongs to Task 3,
+coordinator-owned durable receipt writing belongs to Task 4, the actual
+preflight and combined gate belong to Task 5, and the production run belongs
+to Task 6.
+
 ## 4. Source binding
 
-The manifest starts with SHA-256 bindings for every executable source and
+The shared shard carries SHA-256 bindings for every executable source and
 upstream data artifact used to reconstruct a row.  Loading fails if any
 required path is missing or any expected source theorem status is not
-verified.  The canonical top-level section is `source_bindings`, with exact
-fields `format`, `old`, `b`, and `sha256`.  Its format is
+verified.  The canonical `source_bindings` value has exact fields `format`,
+`old`, `b`, and `sha256`.  Its format is
 `task4-source-bindings-v1`; `sha256` is the SHA-256 of canonical JSON for the
 other three fields.
 
@@ -122,7 +134,7 @@ for `ge3`.
 - P uses the 54 nonempty `(a,h,r)` cells in the domain `h+r>=a`.
 - Q uses the 64 `(h,k,n)` cells with `a=h+k`.
 
-The manifest binds every one of the 48,252 powered schema/cell identities but
+The package binds every one of the 48,252 powered schema/cell identities but
 does not repeat its full tagged word.  Each family catalog stores:
 
 - one ASCII-sorted schema table containing schema IDs, variables, and blocks;
@@ -287,7 +299,8 @@ binding, pumping witness, histogram partition, comparison replay, row count,
 cell coverage, or family value fails.  There are no hard-coded zero failure
 counters.
 
-If every check passes, the manifest proves
+If every generator check passes and Task 3 independently reconstructs the
+same values, the replayed package proves
 
 \[
   \mathbb B(A_{n,d},b_{n,d})=1+[d=1]=[d>1]
@@ -312,9 +325,9 @@ is permitted.
 The final gate requires, in order:
 
 1. focused unit tests;
-2. canonical manifest generation;
+2. canonical package generation;
 3. byte-for-byte regeneration;
-4. independent manifest replay;
+4. independent package replay;
 5. mutation checks for a changed token mask, coefficient, boundary tag,
    family parity, and dependency digest;
 6. a fresh stale-process scan; and
@@ -538,6 +551,63 @@ if and only if the family is `fixed`.  `leaf` and `label_schema` are always
 present.  Production `selected_old_indices` is exactly
 `[0, 1, ..., old_load_count-1]`; preflight may use a strict increasing subset.
 
+Family generation is bounded and two-phase because the canonical
+`bucket_class` table precedes every `load` record on the wire.
+
+1. In production, Phase A traverses the exact full family domain in
+   source-cell, old-index, footprint-index, and B-token order.  It derives only
+   the final family-header fields, complete source/occurrence/comparison
+   censuses, per-cell footer parity metadata, and the unique bucket-class
+   keys.  It then freezes the bucket-class table in canonical-JSON byte order.
+   It retains no load record, token mask, comparison row, logical-v1 object,
+   or complete family ledger.  The registered preflight runs the same phase
+   over only its literal selected-old subdomain for projection and is never a
+   production certificate.
+2. Phase B deterministically repeats the same comparisons, resolves each
+   bucket key through the frozen table, streams nonzero load masks and cell
+   footers, then streams template records and the family footer.  A missing or
+   newly discovered bucket key is fatal.
+
+There is no spool file, external sort, whole-family JSON object, or top-level
+canonical JSON serialization in either phase.
+
+Production selected-old indices are the complete ranges.  Preflight selected
+old indices are the following literal arrays and no others:
+
+    fixed     [0,8,15,23,31,38,46,54,61,69]
+    base      [0,1]
+    singleton [0]
+    P         [0,3,5,8,10,13,16,18,21,23,26,28,31]
+    C         [0,19,38]
+    Q         [0,15,30,46,61,76,91]
+
+Across the full family cell domains the sampled arithmetic is:
+
+| family | sampled source-load/cell rows | sampled occurrence histograms | sampled comparisons |
+|---|---:|---:|---:|
+| fixed | 160 | 160 | 13,440 |
+| base | 32 | 64 | 5,376 |
+| singleton | 16 | 96 | 8,064 |
+| P | 702 | 1,404 | 117,936 |
+| C | 48 | 96 | 8,064 |
+| Q | 448 | 896 | 75,264 |
+| total | **1,406** | **2,716** | **228,144** |
+
+Thus the selected old indices produce exactly 1,406 source-load/cell rows,
+2,716 occurrence histograms, and `2,716 * 84 = 228,144` comparisons.  The
+shared shard is always complete:
+preflight includes every dependency, the complete source-binding object, all
+84 B identities, and all 84 B coordinates.
+
+Template serialization samples zero-based indices in each ASCII-sorted schema
+table: `0,8,16,...` below that family's schema count, union every schema that
+attains the family's maximum pump count.  The selection record contains the
+strictly increasing selected indices and the complete sorted list of tied
+maximum-pump schema IDs; selecting only one tied maximum is invalid.  Before
+this filter is applied, each cold preflight fully loads sources and constructs
+the complete catalog of 1,304 schemas and 48,252 schema/cell identities.  That
+full fixed-cost precompute is not a serialization sample.
+
 Bucket classes are unique and sorted by their canonical JSON encoding.
 `bucket_class_index` indexes that table.  Within each source cell, load rows
 are ordered by old index, footprint index, then bucket-class index.  Every
@@ -600,6 +670,10 @@ three count fields from the family footer.  The top-level logical-v1 object is:
     b_identity_table = shared B identities
     b_identity_digest = root b_identity_digest
     family_ledgers = six reconstructed family ledgers
+
+Only the independent Task 3 verifier reconstructs this top-level object and
+the six complete family ledgers.  Task 2 generation computes the exact values
+needed by the wire records but never builds either object in memory.
 
 The generator's tiny fixture encoder and the verifier's independent decoder
 must satisfy:
@@ -697,11 +771,16 @@ payload, or proof payload.  Instrumented and uninstrumented packages must be
 byte- and hash-identical.
 
 The later production CLI requires an explicit `--run-id`; it never invents
-one from time or process state.  After a fully fsynced commit the generator may
-write a canonical receipt with exact fields:
+one from time or process state.  Task 2 provides a pure constructor for a
+canonical generation-receipt payload with exact fields:
 
     format, run_id, scope, index_path, index_sha256, root_sha256, state,
     package_bytes, created_objects, reused_objects, generator_sha256, metrics
+
+The constructor performs no filesystem operation.  Task 4 owns atomic receipt
+serialization, coordinator sequencing, and the rule that a receipt may be
+written only after a fully fsynced commit.  The receipt format is
+`period-two-old-new-cut-generation-receipt-v1`.
 
 The independent verifier receives the same run ID and, only after semantic
 replay, may write an attestation with exact fields:
@@ -717,13 +796,69 @@ interfaces.
 
 ## 18. Projection and execution gates
 
-A 60-second preflight emits deterministic per-family counts and bytes for a
-registered subset.  Full generation, verification, and byte projections are
-the sum of per-family linear ratios, rounded upward, with a factor-two safety
-margin; fixed shared/index costs are charged in full.  Tied maximum-pump
-schemas are all included.  Production is blocked unless projected generator
-plus verifier time is at most 600 seconds and projected package bytes,
-including the projected actual index, are at most 100,000,000.
+Task 2 defines a deterministic `GenerationProjection` containing exact
+integer nanoseconds, byte counts, schema/identity/comparison denominators,
+literal selections, and projected totals.  It reports generator-only time and
+package bytes.  Its format is
+`period-two-old-new-cut-generation-projection-v1`.  It does not report or
+estimate verifier time.
+
+For nonnegative integers `x`, `n`, and positive `d`, the only scaling
+operation is exact ceiling division:
+
+    ceil_ratio(x, n, d) = (x * n + d - 1) // d
+
+For each family `f`, the preflight records separate sample measurements for
+the two complete comparison/generation passes and for template
+serialization.  Let `C_f` and `c_f` be full and sampled comparison counts,
+`I_f` and `i_f` full and sampled identity counts,
+`G_f` the sampled two-pass comparison/generation nanoseconds,
+`L_f` the sampled variable bucket/load bytes, `T_f` the sampled template
+serialization nanoseconds, and `S_f` the sampled template bytes.  The variable
+projections are exactly:
+
+    generation_ns_f = ceil_ratio(G_f, C_f, c_f)
+    load_bucket_bytes_f = ceil_ratio(L_f, C_f, c_f)
+    template_ns_f = ceil_ratio(T_f, I_f, i_f)
+    template_bytes_f = ceil_ratio(S_f, I_f, i_f)
+
+All denominators must be positive and have dynamic range:
+`0 < c_f < C_f` and `0 < i_f < I_f`.  Counts and bytes are never derived
+through floating-point arithmetic.
+
+The following are measured or encoded at their full size and are fixed
+charges, never ratio-scaled: cold source loading and complete catalog
+construction for all 1,304 schemas and 48,252 identities; the complete shared
+shard time and bytes; every family header, complete old-load table, complete
+footprint table, cell footers, and family footer; and the projected root-index
+encoding time and bytes.  After every per-shard variable component has been
+upward-rounded and added to that shard's fixed bytes, but before the final
+factor-two margin, the projected index-size oracle uses the actual root
+schema, those undoubled projected record counts and shard byte totals, and
+valid fixed-length 64-lowercase-hex placeholders for every content digest,
+object path digest, catalog digest, and `root_sha256`.  Because canonical
+digest spellings have fixed length, its encoded canonical line length is the
+exact projected index cost rather than an estimate.
+
+Let `F_ns` and `F_bytes` be the sums of those fixed charges.  Task 2 computes:
+
+    generation_ns_before_margin =
+        F_ns + sum(generation_ns_f + template_ns_f for every family f)
+    package_bytes_before_margin =
+        F_bytes + sum(load_bucket_bytes_f + template_bytes_f for every family f)
+    projected_generation_ns = 2 * generation_ns_before_margin
+    projected_package_bytes = 2 * package_bytes_before_margin
+
+The factor two is applied once, after every fixed and upward-rounded variable
+component has been summed.  No component is doubled separately.
+
+Task 3 supplies an independent verifier-time projection.  Task 5 runs the
+actual 60-second preflight and blocks production unless Task 2's projected
+generator time plus Task 3's projected verifier time is at most
+`600_000_000_000` integer nanoseconds and Task 2's projected package bytes,
+including the exact projected index, are at most 100,000,000.  No
+floating-point conversion participates in either gate.  The immutable actual
+package cap remains separately enforced at publication.
 
 Only the procedural root launcher may run the later long gate.  Before any
 production experiment, the implementation, tests, design, plan, and bounded
@@ -746,14 +881,39 @@ constants, negative zero, whitespace, CR, blank/missing/trailing bytes, line
 caps, every mask malformation, token-bit reversal, object reuse mismatch,
 every publication boundary, cap enforcement, and metrics byte identity.
 
-Streaming-generation mutations additionally cover the existing source
-bindings, inactive fiber coefficients and alignment, raw domains and current
-equalities, anchor provenance, B identity/coordinates, catalog ordering,
-terminal/pump fields, cell coverage, family parity, and all logical-v1 census
-fields.  Independent verification repeats semantic reconstruction without
-generator imports.  Whole-package review checks source binding,
-integer-before-parity aggregation, all-power pumping, mask completeness,
-family arithmetic, resource projections, receipt binding, and theorem scope.
+Streaming-generation mutations fail closed after resealing enclosing digests
+for every Section 4 source-binding obligation:
+
+- raw family rows, exact raw provenance and counts, raw-ID uniqueness, and the
+  exact empty missing-provenance result;
+- every inactive and active old integral fiber; aligned member IDs,
+  coefficients, and member tables; integer sums before parity; parity and
+  activity; exact domains and `current_equality` values; complete label
+  witnesses; and every fixed/singleton one-member record;
+- all 21 anchor ID/coefficient pairs, their integral sum, and their exact
+  V/W/A provenance;
+- all 53 B collision fibers including inactive fibers; aligned members,
+  coefficients, and member-coefficient pairs; integer sums, parity, activity,
+  slot, canonical module schema, and complete label witness;
+- the complete 84-token identity/coordinate bijection, including token
+  indices, IDs, source classes, coefficients, slots, occurrences, polarities,
+  module schemas, label schemas, source members, coordinates, and all source,
+  chronology, identity, and catalog digests; and
+- every exact domain, cell coverage relation, current equality, family
+  census, and derived parity.
+
+Every generated footprint is independently mutation-tested for exactly 84
+token comparisons, nonzero masks, pairwise disjointness, full union
+`(1<<84)-1`, count/popcount equality, bit-`i` orientation as `1<<i`,
+recomputed bucket key and contribution bit, and the derived family/census
+parity.  A bounded test monkeypatches `build_manifest` to raise and requires
+every Task 2 adapter, iterator, projection path, and receipt-payload
+constructor to continue to pass.
+
+Independent verification repeats semantic reconstruction without generator
+imports.  Whole-package review checks source binding, integer-before-parity
+aggregation, all-power pumping, mask completeness, family arithmetic,
+resource projections, receipt binding, and theorem scope.
 
 ## 20. Preserved nonclaims
 
@@ -766,4 +926,5 @@ receipt is not an attestation, and an attestation is not an AC move sequence.
 Nothing here proves `Q(A_(n,d))=[d=0]`, closes the `d=0` endpoint, extends the
 cut outside `n>=0,d>=1`, proves full covariance without integration, or proves
 AC or stable-AC triviality of AK(3).  Donor artifacts and the proof guard are
-outside this package and remain unchanged.
+outside this package and remain unchanged.  The MMS02 donor route remains
+separate and untouched.

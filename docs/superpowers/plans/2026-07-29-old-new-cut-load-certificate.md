@@ -33,7 +33,8 @@
 
 - Modify `.scratch/period_two_old_new_cut_load_certificate.py`: independent
   generator-side wire constants/codecs, streaming generator, publication, and
-  generation receipt.
+  pure generation-receipt payload construction. Durable receipt writing is
+  Task 4.
 - Modify `.scratch/period_two_old_new_cut_load_verify.py`: independently
   declared wire constants/codecs, package reconstruction, semantic replay, and
   verifier attestation. It never imports the generator.
@@ -43,8 +44,9 @@
 - Modify `docs/superpowers/specs/2026-07-29-old-new-cut-load-certificate-design.md`:
   frozen package-v2 architecture and preserved nonclaims.
 - Modify this plan: executable seven-checkpoint v2 sequence.
-- Modify only the old--new section of `docs/AK3_PROMISE_LEDGER.md` after each
-  verified checkpoint; preserve the MMS02 section byte-for-byte.
+- Task 2 does not modify `docs/AK3_PROMISE_LEDGER.md`. Later durable-evidence
+  and theorem checkpoints may modify only its old--new section; preserve the
+  MMS02 section byte-for-byte.
 - Create during later checkpoints:
   `.scratch/period-two-old-new-cut-package-v2/index.json`,
   its `objects/*.jsonl` shards, one generation receipt, one independent
@@ -193,49 +195,502 @@ Do not push and do not commit the ignored report.
 **Files:**
 - Modify: `.scratch/period_two_old_new_cut_load_certificate.py`
 - Modify: `.scratch/test_period_two_old_new_cut_load_certificate.py`
-- Modify: design/plan only for evidence-backed corrections
+- Modify before implementation only: this plan and
+  `docs/superpowers/specs/2026-07-29-old-new-cut-load-certificate-design.md`
+  for the advisor-approved two-phase correction
+- Do not modify: verifier, promise ledger, proof guard, solver, notebook,
+  theorem memo, production package path, receipt file, attestation file, or
+  any `.superpowers` artifact during implementation
 
 **Interfaces:**
 - Consumes: `load_source_context`, `build_task4_schema_catalog`, existing
   source bindings, old/B token identities, compact templates, and comparison
   witnesses without calling `build_manifest`.
-- Produces: `iter_shared_records`, `iter_family_records`,
-  `stream_production_package`, deterministic `GenerationProjection`, and the
-  frozen generation-receipt payload builder.
+- Produces these exact immutable records:
 
-- [ ] **Step 1: Add RED tests for literal small production adapters**
+```python
+@dataclass(frozen=True)
+class CellFooterMetadata:
+    source_cell_index: int
+    compact_cell_index: int
+    cell_id: str
+    odd_old_indices: tuple[int, ...]
+    value: int
+    load_record_count: int
 
-Use a bounded synthetic catalog to require exact record order, footer prefix
-counts/bytes, selected-old completeness, source/compact cell bijection,
-first-seen bucket classes, 4,096-entry identity chunks, and streaming summary
-parity with a hand-built logical-v1 oracle.
 
-- [ ] **Step 2: Implement one-pass shared and family iterators**
+@dataclass(frozen=True)
+class FamilyGenerationDiscovery:
+    family: str
+    variables: tuple[str, ...]
+    selected_old_indices: tuple[int, ...]
+    source_cell_count: int
+    old_load_count: int
+    footprint_count: int
+    bucket_classes: tuple[tuple[Any, ...], ...]
+    cell_footers: tuple[CellFooterMetadata, ...]
+    load_rows: int
+    occurrence_loads: int
+    comparisons: int
 
-Yield positional rows in grammar order.  Intern bucket classes per family,
-encode masks directly from comparisons, emit template identities in chunks,
-and update SHA/bytes/counts incrementally.  Do not materialize complete family
-ledgers or top-level canonical JSON.
 
-- [ ] **Step 3: Add production source and census mutations**
+@dataclass(frozen=True)
+class StreamedObject:
+    path: Path
+    sha256: str
+    total_bytes: int
+    record_count: int
+    record_counts: Mapping[str, int]
 
-Reject changed/inactive source coefficients, member alignment, domains,
-current equalities, anchor provenance, B coordinates/identity, compact
-terminal/pump fields, cell coverage, family parity, and every frozen summary
-count after recomputed enclosing hashes.
 
-- [ ] **Step 4: Implement deterministic preflight projection**
+@dataclass(frozen=True)
+class FamilyProjectionInput:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    tied_max_schema_ids: tuple[str, ...]
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_two_pass_ns: int
+    sampled_load_bucket_bytes: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_ns: int
+    sampled_template_bytes: int
+    fixed_family_ns: int
+    fixed_family_bytes: int
 
-Register the exact subset: every eighth ASCII schema plus every tied
-maximum-pump schema, selected old indices, and required shared data.  Project
-per family with upward rounding and factor-two safety, charging shared/index
-costs in full.  Produce no production package.
 
-- [ ] **Step 5: Verify and commit**
+@dataclass(frozen=True)
+class FamilyGenerationProjection:
+    family: str
+    selected_old_indices: tuple[int, ...]
+    selected_schema_indices: tuple[int, ...]
+    tied_max_schema_ids: tuple[str, ...]
+    full_schema_count: int
+    full_comparisons: int
+    sampled_comparisons: int
+    sampled_two_pass_ns: int
+    projected_two_pass_ns: int
+    sampled_load_bucket_bytes: int
+    projected_load_bucket_bytes: int
+    full_identity_count: int
+    sampled_identity_count: int
+    sampled_template_ns: int
+    projected_template_ns: int
+    sampled_template_bytes: int
+    projected_template_bytes: int
+    fixed_family_ns: int
+    fixed_family_bytes: int
 
-Run only bounded generator tests, Ruff 0.16.0, compile, diff/lock/process
-audits through the 30-second guard.  Commit as
-`Stream old-new package v2 generation`.  Do not run the full generator.
+
+@dataclass(frozen=True)
+class GenerationProjection:
+    format: str
+    family_order: tuple[str, ...]
+    full_schema_count: int
+    full_identity_count: int
+    sampled_source_loads: int
+    sampled_occurrence_loads: int
+    sampled_comparisons: int
+    source_catalog_precompute_ns: int
+    shared_ns: int
+    shared_bytes: int
+    projected_index_ns: int
+    projected_index_bytes: int
+    families: tuple[FamilyGenerationProjection, ...]
+    generation_ns_before_margin: int
+    package_bytes_before_margin: int
+    projected_generation_ns: int
+    projected_package_bytes: int
+```
+
+- Produces these exact APIs:
+
+```text
+def discover_family_generation(
+    catalog: Task4SchemaCatalog,
+    family: str,
+    *,
+    selected_old_indices: Sequence[int],
+) -> FamilyGenerationDiscovery
+
+def iter_shared_records(
+    catalog: Task4SchemaCatalog,
+    *,
+    scope: str,
+    status: str,
+) -> Iterator[tuple[Any, ...]]
+
+def iter_family_records(
+    catalog: Task4SchemaCatalog,
+    discovery: FamilyGenerationDiscovery,
+    *,
+    scope: str,
+    selected_template_schema_indices: Sequence[int] | None = None,
+) -> Iterator[tuple[Any, ...]]
+
+def write_jsonl_stream(
+    records: Iterable[tuple[Any, ...]],
+    destination: Path,
+    *,
+    metrics: PhaseMetrics | None = None,
+) -> StreamedObject
+
+def preflight_template_selection(
+    family_catalog: Task4FamilyCatalog,
+) -> tuple[tuple[int, ...], tuple[str, ...]]
+
+def project_generation(
+    *,
+    source_catalog_precompute_ns: int,
+    shared_ns: int,
+    shared_bytes: int,
+    projected_index_ns: int,
+    projected_index_bytes: int,
+    families: Sequence[FamilyProjectionInput],
+) -> GenerationProjection
+
+def build_generation_receipt_payload(
+    *,
+    run_id: str,
+    scope: str,
+    index_path: str,
+    index_sha256: str,
+    root_sha256: str,
+    state: str,
+    package_bytes: int,
+    created_objects: Sequence[str],
+    reused_objects: Sequence[str],
+    generator_sha256: str,
+    metrics: Mapping[str, Any],
+) -> dict[str, Any]
+```
+
+`discover_family_generation` is Phase A. `iter_family_records` is Phase B:
+it recomputes comparisons, emits records against the frozen bucket table, and
+fails if it sees a new key. `write_jsonl_stream` streams one object and returns
+metadata; it never constructs a complete object `bytes` value.
+
+- [ ] **Step 1: Write RED selection, cold-precompute, and boundary tests**
+
+Add these named tests:
+
+    test_task2_preflight_old_selection_and_sample_censuses_are_literal
+    test_task2_production_selected_old_indices_are_complete_ranges
+    test_task2_template_selection_is_zero_based_every_eighth_union_all_tied_maxima
+    test_task2_cold_full_catalog_precompute_precedes_template_filter
+    test_task2_shared_iterator_emits_complete_source_and_84_token_tables
+    test_task2_adapters_pass_when_build_manifest_is_monkeypatched_to_raise
+
+The first test contains these literal fixtures:
+
+```python
+expected = {
+    "fixed": (0, 8, 15, 23, 31, 38, 46, 54, 61, 69),
+    "base": (0, 1),
+    "singleton": (0,),
+    "P": (0, 3, 5, 8, 10, 13, 16, 18, 21, 23, 26, 28, 31),
+    "C": (0, 19, 38),
+    "Q": (0, 15, 30, 46, 61, 76, 91),
+}
+assert module.PREFLIGHT_SELECTED_OLD_INDICES == expected
+assert module.PREFLIGHT_SOURCE_LOADS == 1_406
+assert module.PREFLIGHT_OCCURRENCE_LOADS == 2_716
+assert module.PREFLIGHT_COMPARISONS == 228_144
+assert 2_716 * 84 == 228_144
+```
+
+Use a literal synthetic schema table with maxima tied at non-eighth indices to
+require `(0, 2, 5, 8, 16)` and the complete sorted tied-max ID tuple.  The
+cold-precompute test spies on `load_source_context` and
+`build_task4_schema_catalog` and requires the observed full counts
+`1_304` schemas and `48_252` identities before
+`preflight_template_selection` is called.  The shared test requires all
+dependency rows, the full `task4-source-bindings-v1` value, token indices
+`0..83`, and 84 aligned coordinates.  The monkeypatch test replaces
+`build_manifest` with a function that raises `AssertionError`, then exercises
+every Task 2 adapter, iterator, projection calculation, stream writer, and
+receipt-payload constructor on bounded fixtures.
+
+- [ ] **Step 2: Run the first selector and record intended RED**
+
+Run:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task2_preflight_old_selection or task2_production_selected_old or task2_template_selection or task2_cold_full_catalog or task2_shared_iterator or task2_adapters_pass'
+
+Expected: collection succeeds; failures name missing
+`PREFLIGHT_SELECTED_OLD_INDICES`, `preflight_template_selection`,
+`iter_shared_records`, production-range validation, and the remaining Task 2
+APIs.  Repair collection errors before accepting RED.
+
+- [ ] **Step 3: Implement the immutable selection and adapter boundary**
+
+Add the six literal selected-old tuples; do not generate them from spacing
+rules.  Reject a production selection unless it is exactly
+`tuple(range(old_load_count))` for that family.  For a schema at zero-based
+ASCII index `j`, define its pump count as the maximum `len(witness[2])` across
+all of that schema's cells.  Return every `j % 8 == 0` index union every
+schema whose pump count equals the family-wide maximum.  Return the selected
+indices strictly increasing and every tied maximum schema ID in complete
+ASCII order.
+
+`load_source_context` and `build_task4_schema_catalog` run once, cold, before
+selection.  Validate the full `1_304`/`48_252` counts before filtering.  Build
+the shared iterator from the complete catalog and `build_source_bindings`;
+never route through `build_manifest`.
+
+- [ ] **Step 4: Write RED two-phase, source-binding, and footprint mutations**
+
+Add these named tests:
+
+    test_task2_phase_a_freezes_canonical_bucket_table_before_any_load
+    test_task2_phase_a_retains_no_rows_masks_or_family_ledger
+    test_task2_phase_b_recomputes_and_rejects_bucket_not_in_frozen_table
+    test_task2_family_iterator_order_and_footer_prefixes_are_exact
+    test_task2_old_raw_rows_and_provenance_mutations_fail_closed
+    test_task2_old_integral_fiber_mutations_fail_closed
+    test_task2_old_member_alignment_domain_and_equality_mutations_fail_closed
+    test_task2_one_member_and_anchor_mutations_fail_closed
+    test_task2_b_all_fiber_and_activity_mutations_fail_closed
+    test_task2_b_identity_coordinate_and_schema_mutations_fail_closed
+    test_task2_every_footprint_partition_mutation_fails_closed
+    test_task2_derived_family_census_and_parity_mutations_fail_closed
+    test_task2_stream_writer_is_incremental_and_bounded
+
+The source tests are parametrized with these explicit mutation IDs, reseal
+every enclosing digest, and require `CertificateFailure`:
+
+    raw-row, raw-provenance, raw-provenance-count, raw-id-duplicate,
+    missing-provenance, inactive-old-fiber, active-old-fiber,
+    member-id-order, coefficient-order, member-table-row, integral-sum,
+    parity, activity, domain, current-equality, label-witness,
+    fixed-one-member, singleton-one-member, anchor-pair, anchor-sum,
+    anchor-provenance, inactive-b-fiber, active-b-fiber, b-member-order,
+    b-coefficient-order, b-member-coefficient-pair, b-integral-sum, b-parity,
+    b-activity, b-slot, b-module-schema, b-label-witness, token-index,
+    token-id, source-class, token-coefficient, token-slot, occurrence,
+    polarity, module-schema, label-schema, source-members, coordinate,
+    source-digest, chronology-digest, b-identity-digest, catalog-digest
+
+The fixture covers all 21 anchor pairs, all 53 B fibers including inactive
+ones, and all 84 identity/coordinate pairs.  The footprint test mutates, one
+at a time: comparison count `83`/`85`, zero mask, overlapping masks, missing
+union bit, token-bit reversal, stored count, mask popcount, bucket key,
+contribution bit, occurrence parity, cell parity, family parity, and every
+source/occurrence/comparison census.  Each untouched footprint must have
+exactly 84 comparisons, nonzero disjoint masks, union `(1<<84)-1`, count equal
+to popcount, and token `i` encoded by `1<<i`.
+
+- [ ] **Step 5: Run the two-phase and mutation selector and record RED**
+
+Run:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task2_phase_a or task2_phase_b or task2_family_iterator or task2_old_ or task2_one_member or task2_b_ or task2_every_footprint or task2_derived_family or task2_stream_writer'
+
+Expected: fixture construction succeeds; tests fail because
+`discover_family_generation`, `iter_family_records`, and
+`write_jsonl_stream` are absent.  A mutation that fails before the intended
+semantic check is repaired before implementation.
+
+- [ ] **Step 6: Implement bounded Phase A, Phase B, and the stream writer**
+
+Phase A traverses every source cell, and in `production-full` every old index,
+footprint, and token in the frozen order.  The bounded preflight fixture uses
+only its literal selected-old indices and cannot enter production status.
+Keep only a set of hashable bucket keys, exact integer censuses, xor/parity
+accumulators, and one `CellFooterMetadata` per cell.  Freeze
+`bucket_classes` by canonical-JSON bytes.  Assert that
+`FamilyGenerationDiscovery` has no field capable of storing a comparison,
+load row, mask, logical-v1 object, or family ledger.
+
+Phase B emits exactly: family header; complete old-load and footprint tables;
+the frozen bucket-class table; recomputed load masks and cell footers;
+template records; and the family footer.  Recompute every comparison through
+`comparison_record`, rebuild each footprint partition, require all 84 token
+indices and every mask invariant, and look up every bucket key in the frozen
+table.  Do not append a new class in Phase B.
+
+`write_jsonl_stream` accepts an iterator, writes each
+`canonical_json_line(record)` immediately, and incrementally updates SHA-256,
+bytes, tag counts, record count, and `PhaseMetrics`.  It never calls
+`tuple(records)`, `list(records)`, `read_text`, `read_bytes`, `deepcopy`, or a
+whole-object serializer.  Tests write only bounded synthetic/preflight
+objects under `.scratch/test-artifacts/old-new-load/`.
+
+- [ ] **Step 7: Write RED exact-projection and receipt-boundary tests**
+
+Add these named tests:
+
+    test_task2_projection_uses_integer_ceiling_and_separate_denominators
+    test_task2_projection_charges_full_precompute_shared_and_family_tables
+    test_task2_projected_index_oracle_uses_actual_root_and_64_hex_fields
+    test_task2_projection_applies_one_final_factor_two
+    test_task2_generation_projection_is_deterministic_and_has_no_floats
+    test_task2_generation_receipt_payload_constructor_is_pure
+    test_task2_writes_no_production_package_or_durable_evidence
+
+The arithmetic fixture requires:
+
+```python
+assert module.ceil_ratio(5, 11, 3) == 19
+assert module.ceil_ratio(7, 13, 4) == 23
+assert module.ceil_ratio(17, 11, 3) == 63
+assert module.ceil_ratio(19, 13, 4) == 62
+assert projection.generation_ns_before_margin == 142
+assert projection.projected_generation_ns == 284
+assert projection.package_bytes_before_margin == 725
+assert projection.projected_package_bytes == 1_450
+```
+
+Those totals use fixed time charges `10 + 20 + 30 + 40` and fixed byte
+charges `100 + 200 + 300`.  Assert separately that source/catalog precompute,
+complete shared data, full family header/old/footprint/cell/footer records,
+and projected index are never multiplied by either ratio.  Build the index
+oracle with the actual root fields, projected descriptor counts/bytes, and
+`"0" * 64` in every digest position; require its canonical encoded length to
+equal `projected_index_bytes`.  Reject zero/equal/oversized denominators,
+booleans, floats, negative counts, missing families, incomplete tied-max IDs,
+and non-literal selected-old arrays.
+
+Patch `Path.write_text`, `Path.write_bytes`, `open`, `os.replace`, and receipt/
+attestation helpers to raise while calling
+`build_generation_receipt_payload`.  Require the exact payload dictionary and
+no filesystem call.  Record `git status --short` before and after the bounded
+Task 2 suite and require no production index, receipt, attestation, theorem
+memo, or promise-ledger change.
+
+- [ ] **Step 8: Run the projection selector and record intended RED**
+
+Run:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'task2_projection or task2_projected_index or task2_generation_projection or task2_generation_receipt or task2_writes_no_production'
+
+Expected: collection succeeds; failures are missing `ceil_ratio`,
+`project_generation`, projected-index oracle behavior, and
+`build_generation_receipt_payload`.  No RED command creates a package.
+
+- [ ] **Step 9: Implement exact generator-only projection and pure payload**
+
+Implement `ceil_ratio(x, numerator, denominator)` as
+`(x * numerator + denominator - 1) // denominator` after exact non-boolean
+integer validation.  For every family, independently scale sampled two-pass
+nanoseconds and variable bucket/load bytes by full/sample comparisons, and
+sampled template nanoseconds/bytes by full/sample identities.  Add the full
+cold source/catalog precompute, complete shared shard, complete fixed family
+records, and exactly encoded projected index once.  Sum all fixed and
+upward-rounded variable components, then multiply final generation
+nanoseconds and package bytes by two.
+
+Keep all `GenerationProjection` fields as exact integers or immutable string/
+tuple records; reject any float recursively.  Task 2 reports no verifier
+projection.  Set `format` to
+`period-two-old-new-cut-generation-projection-v1`.  The receipt constructor
+validates and returns only the fields frozen in design Section 17, with format
+`period-two-old-new-cut-generation-receipt-v1`; it does not serialize or
+publish them.
+
+- [ ] **Step 10: Run bounded GREEN and foundation regressions**
+
+Run these as separate foreground guarded commands:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py -k 'task2_'
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with pytest python3 -m pytest -q \
+    .scratch/test_period_two_old_new_cut_load_certificate.py \
+    -k 'package_v2 or compact_v2 or typed_sha256'
+
+Expected: every selected test passes below 30 seconds.  No command calls
+`build_manifest`, writes the production path, performs independent replay, or
+runs an actual preflight.
+
+- [ ] **Step 11: Run lint, compile, document self-review, and scope audits**
+
+Run Ruff 0.16.0 and Python 3.9 compilation as separate guarded commands:
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 UV_CACHE_DIR=.scratch/uv-cache \
+    PYTHONPYCACHEPREFIX=.scratch/pycache PYTHONDONTWRITEBYTECODE=1 \
+    python3 scripts/run_proof_guarded.py --timeout-seconds 30 -- \
+    uv run --offline --with ruff==0.16.0 ruff check \
+    .scratch/period_two_old_new_cut_load_certificate.py \
+    .scratch/test_period_two_old_new_cut_load_certificate.py
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+    NUMBA_NUM_THREADS=1 PYTHONPYCACHEPREFIX=.scratch/pycache \
+    PYTHONDONTWRITEBYTECODE=1 python3 scripts/run_proof_guarded.py \
+    --timeout-seconds 30 -- python3 -m py_compile \
+    .scratch/period_two_old_new_cut_load_certificate.py \
+    .scratch/test_period_two_old_new_cut_load_certificate.py
+
+Then perform these read-only checks:
+
+    awk '/^### Task 2:/{task=1} /^### Task 3:/{task=0} \
+      task && $0 !~ /rg -n.*TODO/ {print}' \
+      docs/superpowers/plans/2026-07-29-old-new-cut-load-certificate.md |
+      rg -n 'TODO|TBD|implement later|test(s)? above|Similar to Task|: \.\.\.'
+    rg -n 'one-pass|spool|external sort|build_manifest|logical-v1 object|receipt file|attestation|promise-ledger' \
+      docs/superpowers/specs/2026-07-29-old-new-cut-load-certificate-design.md \
+      docs/superpowers/plans/2026-07-29-old-new-cut-load-certificate.md
+    git diff --check
+    git status --short
+    git diff --name-only
+    test ! -e .scratch/process-guard/active.json
+    test ! -e .scratch/period-two-old-new-cut-package-v2/index.json
+    ps -axo pid=,ppid=,pgid=,%cpu=,state=,comm=
+
+The placeholder scan must have no match.  Inspect every contradiction-scan
+hit in context: only explicit prohibitions and the monkeypatch regression may
+remain.  `git diff --name-only` must list only the generator and focused test.
+The lock and production-index predicates must exit zero.  Review the safe
+`ps` fields only for stale project Python, pytest, uv, Numba, or proof-guard
+processes; never request or print process arguments.
+
+- [ ] **Step 12: Stage the exact implementation and commit**
+
+Run:
+
+    git add -f \
+      .scratch/period_two_old_new_cut_load_certificate.py \
+      .scratch/test_period_two_old_new_cut_load_certificate.py
+    git diff --cached --check
+    git diff --cached --name-only
+    git commit -m "Stream old-new package v2 generation"
+    git show --stat --oneline --decorate=short HEAD
+    git status --short
+
+The cached name list must contain exactly the two files above.  Do not stage a
+production object, receipt, attestation, theorem memo, promise ledger,
+verifier, guard, solver, notebook, report, or `.superpowers` artifact.  Do not
+push.
 
 ---
 
@@ -268,9 +723,12 @@ matches never replace semantic reconstruction.
 
 - [ ] **Step 3: Implement bounded verifier projection**
 
-Verify the registered preflight subset with the same full-cost/safety rules
-but independently computed counts and bytes.  Reject a generator projection
-that does not match verifier-observed denominators.
+Verify the registered preflight subset with independently computed exact
+integer denominators and fixed charges.  Produce verifier-only
+`VerificationProjection` time; do not overwrite, fold into, or restate Task
+2's generator-only `GenerationProjection`.  Reject a generator projection
+whose selected-old, selected-schema, tied-max-ID, full-count, or sampled-count
+denominators differ from independently observed values.
 
 - [ ] **Step 4: Verify and commit**
 
@@ -302,9 +760,10 @@ no attestation before independent semantic replay.
 
 - [ ] **Step 2: Implement generator receipt and verifier attestation**
 
-Serialize only the exact design fields.  Write each atomically after its
-own success boundary.  Post-index fsync failure is committed but produces
-neither artifact.
+Consume Task 2's pure generation-receipt payload constructor and Task 3's
+pure attestation payload constructor.  Serialize only the exact design
+fields and write each atomically after its own success boundary.  Post-index
+fsync failure is committed but produces neither artifact.
 
 - [ ] **Step 3: Implement coordinator**
 
@@ -334,9 +793,15 @@ verifier suites, lint, compile, diff/lock/process audits.  Commit as
 - [ ] **Step 1: Run the 60-second preflight under the proof guard**
 
 The procedural root launcher runs the exact preflight.  Require all tied
-maximum schemas, fixed denominators with dynamic range, seven shard roles,
-independent projection agreement, projected total at most 600 seconds, and
-projected package at most 100 MB.
+maximum schemas, the literal Task 2 selected-old arrays, full shared data, the
+cold 1,304-schema/48,252-identity precompute, fixed denominators with dynamic
+range, and seven shard roles.  Require independent denominator agreement,
+Task 2 `projected_generation_ns` plus Task 3
+`projected_verification_ns` at most `600_000_000_000`, and Task 2
+`projected_package_bytes` at most `100_000_000`.  Use exact integer
+comparisons, not converted floating-point seconds or megabytes.  This is the
+first actual preflight; Task 2 tests only bounded adapters and synthetic
+streams.
 
 - [ ] **Step 2: Perform independent code and mathematical reviews**
 
