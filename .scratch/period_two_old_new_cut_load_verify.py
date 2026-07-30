@@ -23,6 +23,7 @@ PREFLIGHT_SCOPE = "preflight-sample"
 PRODUCTION_STATUS = "generated-awaiting-independent-replay"
 PREFLIGHT_STATUS = "preflight-sample-not-a-certificate"
 SOURCE_CELL_ORDER = "product-order-with-P-domain-filter"
+SOURCE_BINDINGS_FORMAT = "task4-source-bindings-v1"
 IDENTITY_CHUNK_SIZE = 4096
 TEMPLATE_CATALOG_FORMAT = "task4-template-catalog-v2"
 TEMPLATE_TYPED_ENCODING = "task4-typed-sha256-v1"
@@ -264,6 +265,14 @@ CHRONOLOGIES = (
     "same_occurrence_increasing",
     "same_occurrence_decreasing",
 )
+_FAMILY_VARIABLES = {
+    "fixed": ("a", "n"),
+    "base": ("a", "n"),
+    "singleton": ("a", "n"),
+    "P": ("a", "h", "r"),
+    "C": ("a", "n"),
+    "Q": ("h", "k", "n"),
+}
 PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS = (
     "format",
     "typed_encoding",
@@ -275,6 +284,17 @@ PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS = (
     "identity_sha256",
     "replay_sha256",
     "catalog_sha256",
+)
+PACKAGE_V2_SUMMARY_FIELDS = (
+    "load_rows",
+    "total_load_rows",
+    "footprint_sizes",
+    "occurrence_loads",
+    "total_occurrence_loads",
+    "b_tokens_per_occurrence",
+    "active_comparisons",
+    "template_counts",
+    "total_templates",
 )
 _HASH_PATTERN = re.compile(r"[0-9a-f]{64}")
 _MASK_PATTERN = re.compile(r"[A-Za-z0-9_-]{15}")
@@ -307,9 +327,34 @@ def _canonical_json(value: Any) -> str:
     )
 
 
+def _validate_canonical_json_value(value: Any) -> None:
+    if value is None or type(value) in (bool, int, str):
+        return
+    if isinstance(value, (list, tuple)):
+        for item in value:
+            _validate_canonical_json_value(item)
+        return
+    if isinstance(value, Mapping):
+        if not all(isinstance(key, str) for key in value):
+            raise WireFormatError("canonical JSON mappings require string keys")
+        for item in value.values():
+            _validate_canonical_json_value(item)
+        return
+    raise WireFormatError(
+        f"unsupported canonical JSON value: {type(value).__name__}"
+    )
+
+
 def canonical_json_line(value: Any) -> bytes:
     try:
-        return _canonical_json(value).encode("ascii") + b"\n"
+        _validate_canonical_json_value(value)
+        return json.dumps(
+            value,
+            allow_nan=False,
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("ascii") + b"\n"
     except (TypeError, UnicodeError, ValueError) as error:
         raise WireFormatError("value is not canonical JSON") from error
 
@@ -512,21 +557,13 @@ def _source_stream(source: Any) -> tuple[Any, bool]:
     raise WireFormatError("canonical source must be bytes or a binary stream")
 
 
-def _tagged_records(source: Any) -> tuple[list[Any], ...]:
-    stream, owned = _source_stream(source)
-    try:
-        records = tuple(iter_canonical_json_lines(stream))
-    finally:
-        if owned:
-            stream.close()
-    for record in records:
-        if (
-            not isinstance(record, list)
-            or not record
-            or not isinstance(record[0], str)
-        ):
-            raise WireFormatError("tagged record is not a nonempty array")
-    return records
+def _validate_tagged_record(record: Any) -> None:
+    if (
+        not isinstance(record, list)
+        or not record
+        or not isinstance(record[0], str)
+    ):
+        raise WireFormatError("tagged record is not a nonempty array")
 
 
 def _require_tag_width(
@@ -541,16 +578,107 @@ def _require_tag_width(
         raise WireFormatError(f"{tag} width differs")
 
 
+def _validate_root_summary(summary: Any, name: str) -> None:
+    if not isinstance(summary, Mapping) or set(summary) != set(
+        PACKAGE_V2_SUMMARY_FIELDS
+    ):
+        raise WireFormatError(f"{name} summary fields differ")
+    family_maps = (
+        "load_rows",
+        "footprint_sizes",
+        "occurrence_loads",
+        "template_counts",
+    )
+    for field in family_maps:
+        values = summary[field]
+        if not isinstance(values, Mapping) or set(values) != set(FAMILY_ORDER):
+            raise WireFormatError(f"{name} summary {field} families differ")
+    for field in ("load_rows", "occurrence_loads", "template_counts"):
+        for family, value in summary[field].items():
+            _exact_int(value, f"{name} {field} {family}", minimum=0)
+    for family, histogram in summary["footprint_sizes"].items():
+        if not isinstance(histogram, Mapping):
+            raise WireFormatError(
+                f"{name} footprint histogram is invalid: {family}"
+            )
+        for footprint_size, count in histogram.items():
+            if (
+                not isinstance(footprint_size, str)
+                or re.fullmatch(r"[1-9][0-9]*", footprint_size) is None
+            ):
+                raise WireFormatError(
+                    f"{name} footprint-size key is invalid: {family}"
+                )
+            _exact_int(
+                count,
+                f"{name} footprint-size count {family}",
+                minimum=1,
+            )
+    totals = {
+        "total_load_rows": sum(summary["load_rows"].values()),
+        "total_occurrence_loads": sum(summary["occurrence_loads"].values()),
+        "total_templates": sum(summary["template_counts"].values()),
+    }
+    for field, expected in totals.items():
+        if _exact_int(summary[field], f"{name} {field}", minimum=0) != expected:
+            raise WireFormatError(f"{name} {field} differs")
+    if summary["b_tokens_per_occurrence"] != TOKEN_COUNT:
+        raise WireFormatError(f"{name} B token count differs")
+    comparisons = _exact_int(
+        summary["active_comparisons"],
+        f"{name} active comparisons",
+        minimum=0,
+    )
+    if comparisons != summary["total_occurrence_loads"] * TOKEN_COUNT:
+        raise WireFormatError(f"{name} active comparison total differs")
+
+
+def _validate_root_template_summary(summary: Any, family: str) -> None:
+    if not isinstance(summary, Mapping) or set(summary) != set(
+        PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS
+    ):
+        raise WireFormatError(f"root template summary fields differ: {family}")
+    if (
+        summary["format"] != TEMPLATE_CATALOG_FORMAT
+        or summary["typed_encoding"] != TEMPLATE_TYPED_ENCODING
+        or summary["identity_order"] != "schema-major-cell-minor"
+    ):
+        raise WireFormatError(f"root template declarations differ: {family}")
+    for field in (
+        "schema_count",
+        "cell_count",
+        "template_count",
+        "witness_count",
+    ):
+        _exact_int(summary[field], f"root {family} {field}", minimum=0)
+    for field in ("identity_sha256", "replay_sha256", "catalog_sha256"):
+        _exact_hash(summary[field], f"root {family} {field}")
+
+
 def decode_root_index(source: Any) -> dict[str, Any]:
     stream, owned = _source_stream(source)
+    iterator = iter_canonical_json_lines(stream)
     try:
-        values = tuple(iter_canonical_json_lines(stream))
+        try:
+            value = next(iterator)
+        except StopIteration as error:
+            raise WireFormatError(
+                "root index must contain exactly one object line"
+            ) from error
+        try:
+            next(iterator)
+        except StopIteration:
+            pass
+        else:
+            raise WireFormatError(
+                "root index must contain exactly one object line"
+            )
     finally:
         if owned:
             stream.close()
-    if len(values) != 1 or not isinstance(values[0], Mapping):
+    if not isinstance(value, Mapping):
         raise WireFormatError("root index must contain exactly one object line")
-    root = dict(values[0])
+    root = dict(value)
     if set(root) != set(ROOT_INDEX_FIELDS):
         raise WireFormatError("root index fields differ")
     if root["format"] != PACKAGE_V2_FORMAT:
@@ -615,12 +743,9 @@ def decode_root_index(source: Any) -> dict[str, Any]:
     if not isinstance(catalogs, Mapping) or set(catalogs) != set(FAMILY_ORDER):
         raise WireFormatError("root template catalog families differ")
     for family, summary in catalogs.items():
-        if not isinstance(summary, Mapping) or set(summary) != set(
-            PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS
-        ):
-            raise WireFormatError(
-                f"root template summary fields differ: {family}"
-            )
+        _validate_root_template_summary(summary, family)
+    _validate_root_summary(root["emitted_summary"], "emitted")
+    _validate_root_summary(root["full_summary"], "full")
     if root["scope"] == PRODUCTION_SCOPE and (
         root["emitted_summary"] != root["full_summary"]
     ):
@@ -635,27 +760,44 @@ def decode_root_index(source: Any) -> dict[str, Any]:
 
 
 def decode_shared_records(source: Any) -> dict[str, Any]:
-    records = _tagged_records(source)
+    stream, owned = _source_stream(source)
+    iterator = iter_canonical_json_lines(stream)
+    try:
+        try:
+            header = next(iterator)
+        except StopIteration as error:
+            raise WireFormatError("shared shard is empty") from error
+        _validate_tagged_record(header)
+        _require_tag_width(header, "shared_header", SHARED_RECORD_FIELDS)
+        expected_status = {
+            PRODUCTION_SCOPE: PRODUCTION_STATUS,
+            PREFLIGHT_SCOPE: PREFLIGHT_STATUS,
+        }.get(header[2])
+        if (
+            header[1] != PACKAGE_V2_FORMAT
+            or header[3] != LOGICAL_V1_FORMAT
+            or header[4] != CANONICAL_LINE_ENCODING
+            or header[5] != MASK_ENCODING
+            or expected_status is None
+            or header[7] != expected_status
+            or header[8] != list(SHARD_ORDER)
+        ):
+            raise WireFormatError("shared header payload differs")
+        if not isinstance(header[6], str) or not header[6]:
+            raise WireFormatError("shared domain is invalid")
+        if header[2] == PRODUCTION_SCOPE:
+            raise WireFormatError(
+                "production streaming replay is deferred to Task 3"
+            )
+        records = [header]
+        for record in iterator:
+            _validate_tagged_record(record)
+            records.append(record)
+    finally:
+        if owned:
+            stream.close()
     if len(records) < 3:
         raise WireFormatError("shared shard is incomplete")
-    header = records[0]
-    _require_tag_width(header, "shared_header", SHARED_RECORD_FIELDS)
-    expected_status = {
-        PRODUCTION_SCOPE: PRODUCTION_STATUS,
-        PREFLIGHT_SCOPE: PREFLIGHT_STATUS,
-    }.get(header[2])
-    if (
-        header[1] != PACKAGE_V2_FORMAT
-        or header[3] != LOGICAL_V1_FORMAT
-        or header[4] != CANONICAL_LINE_ENCODING
-        or header[5] != MASK_ENCODING
-        or expected_status is None
-        or header[7] != expected_status
-        or header[8] != list(SHARD_ORDER)
-    ):
-        raise WireFormatError("shared header payload differs")
-    if not isinstance(header[6], str) or not header[6]:
-        raise WireFormatError("shared domain is invalid")
     cursor = 1
     dependencies = {}
     dependency_paths = []
@@ -682,6 +824,8 @@ def decode_shared_records(source: Any) -> dict[str, Any]:
         "sha256",
     }:
         raise WireFormatError("source-binding fields differ")
+    if source_bindings["format"] != SOURCE_BINDINGS_FORMAT:
+        raise WireFormatError("source-binding format differs")
     source_payload = {
         key: value
         for key, value in source_bindings.items()
@@ -733,6 +877,8 @@ def decode_shared_records(source: Any) -> dict[str, Any]:
         cursor += 1
     if len(coordinates) != len(identities):
         raise WireFormatError("B identity/coordinate counts differ")
+    if len(identities) != TOKEN_COUNT:
+        raise WireFormatError("shared B token count differs")
     if cursor != len(records) - 1:
         raise WireFormatError("shared records are out of order")
     footer = records[cursor]
@@ -959,6 +1105,16 @@ def _validate_v2_template_catalog(catalog: Mapping[str, Any]) -> None:
         raise WireFormatError("template witness reference is invalid")
     if set(identities) != set(range(catalog["witness_count"])):
         raise WireFormatError("template witness table has unused rows")
+    if expected_templates == 0 and any(
+        catalog[name]
+        for name in (
+            "schema_table",
+            "cell_table",
+            "witness_table",
+            "identity_witness_ids",
+        )
+    ):
+        raise WireFormatError("empty template catalog has table rows")
     first_seen = {}
     for witness_id in identities:
         key = _typed_encode(catalog["witness_table"][witness_id])
@@ -969,6 +1125,59 @@ def _validate_v2_template_catalog(catalog: Mapping[str, Any]) -> None:
             first_seen[key] = witness_id
         elif witness_id != prior:
             raise WireFormatError("template witness value repeats")
+    cell_count = catalog["cell_count"]
+    for identity_index, witness_id in enumerate(identities):
+        schema_index, cell_index = divmod(identity_index, cell_count)
+        _, variables, blocks = catalog["schema_table"][schema_index]
+        _, names, states, base_values = catalog["cell_table"][cell_index]
+        if variables != names:
+            raise WireFormatError("template catalog variable domains differ")
+        expected_pumps = {}
+        for block_index, (_, _, affine) in enumerate(blocks):
+            if affine is None:
+                continue
+            slopes = [
+                coefficient if state is None else 0
+                for coefficient, state in zip(affine[:-1], states)
+            ]
+            if any(slopes):
+                expected_pumps[block_index] = (
+                    slopes,
+                    sum(
+                        coefficient * value
+                        for coefficient, value in zip(
+                            affine[:-1], base_values
+                        )
+                    )
+                    + affine[-1],
+                )
+        pumps = catalog["witness_table"][witness_id][2]
+        pump_indices = [pump[0] for pump in pumps]
+        if (
+            len(set(pump_indices)) != len(pump_indices)
+            or set(pump_indices) != set(expected_pumps)
+        ):
+            raise WireFormatError("template catalog pump coverage differs")
+        split_positions = [pump[3] for pump in pumps]
+        if (
+            len(set(split_positions)) != len(split_positions)
+            or split_positions != sorted(split_positions)
+        ):
+            raise WireFormatError("template catalog pump splits differ")
+        for pump in pumps:
+            block_index = pump[0]
+            if block_index >= len(blocks):
+                raise WireFormatError(
+                    "template catalog pump block reference is out of range"
+                )
+            _, word, _ = blocks[block_index]
+            slopes, base_copies = expected_pumps[block_index]
+            if pump[1] != base_copies or pump[2] != slopes:
+                raise WireFormatError("template catalog pump affine data differs")
+            if pump[5] >= pump[1]:
+                raise WireFormatError("template catalog pump copy is out of range")
+            if not word or pump[6] != len(word) - 1 or pump[7] != 0:
+                raise WireFormatError("template catalog pump offsets differ")
     identity_digest, replay_digest = _compact_rolling_hashes(catalog)
     if catalog["identity_sha256"] != identity_digest:
         raise WireFormatError("template identity digest differs")
@@ -1022,6 +1231,8 @@ def _validate_family_header(header: Sequence[Any], family: str) -> None:
         (8, "B token count"),
     ):
         _exact_int(header[index], name, minimum=0)
+    if header[8] != TOKEN_COUNT:
+        raise WireFormatError("family B token count differs")
     selected = header[4]
     if (
         not isinstance(selected, list)
@@ -1050,10 +1261,33 @@ def decode_family_records(
         raise WireFormatError("unknown family shard")
     if scope not in {PREFLIGHT_SCOPE, PRODUCTION_SCOPE}:
         raise WireFormatError("unknown package scope")
-    records = _tagged_records(source)
+    stream, owned = _source_stream(source)
+    iterator = iter_canonical_json_lines(stream)
+    try:
+        try:
+            header = next(iterator)
+        except StopIteration as error:
+            raise WireFormatError("family shard is empty") from error
+        _validate_tagged_record(header)
+        _validate_family_header(header, expected_family)
+        if (
+            scope == PRODUCTION_SCOPE
+            and header[4] != list(range(header[5]))
+        ):
+            raise WireFormatError("production old indices are not complete")
+        if scope == PRODUCTION_SCOPE:
+            raise WireFormatError(
+                "production streaming replay is deferred to Task 3"
+            )
+        records = [header]
+        for record in iterator:
+            _validate_tagged_record(record)
+            records.append(record)
+    finally:
+        if owned:
+            stream.close()
     if len(records) < 4:
         raise WireFormatError("family shard is incomplete")
-    header = records[0]
     _validate_family_header(header, expected_family)
     selected_old_indices = header[4]
     selected_old_set = set(selected_old_indices)
@@ -1336,6 +1570,20 @@ def decode_family_records(
         template_footer,
     )
     _validate_v2_template_catalog(catalog)
+    expected_variables = (
+        catalog["schema_table"][0][1]
+        if catalog["schema_table"]
+        else list(_FAMILY_VARIABLES[expected_family])
+    )
+    catalog_variables = [
+        row[1]
+        for table in (catalog["schema_table"], catalog["cell_table"])
+        for row in table
+    ]
+    if header[2] != expected_variables or any(
+        variables != expected_variables for variables in catalog_variables
+    ):
+        raise WireFormatError("family header variables differ from catalog")
     compact_cells = {row[1]: row[2] for row in cell_rows}
     if len(compact_cells) != len(cell_rows):
         raise WireFormatError("compact cell index repeats")

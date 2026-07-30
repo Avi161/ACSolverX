@@ -4000,6 +4000,17 @@ PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS = (
     "replay_sha256",
     "catalog_sha256",
 )
+PACKAGE_V2_SUMMARY_FIELDS = (
+    "load_rows",
+    "total_load_rows",
+    "footprint_sizes",
+    "occurrence_loads",
+    "total_occurrence_loads",
+    "b_tokens_per_occurrence",
+    "active_comparisons",
+    "template_counts",
+    "total_templates",
+)
 _HASH_PATTERN = re.compile(r"[0-9a-f]{64}")
 _MASK_PATTERN = re.compile(r"[A-Za-z0-9_-]{15}")
 
@@ -4077,10 +4088,30 @@ def _exact_hash(value: Any, name: str) -> str:
     return value
 
 
+def _validate_canonical_json_value(value: Any) -> None:
+    if value is None or type(value) in (bool, int, str):
+        return
+    if isinstance(value, (list, tuple)):
+        for item in value:
+            _validate_canonical_json_value(item)
+        return
+    if isinstance(value, Mapping):
+        if not all(isinstance(key, str) for key in value):
+            raise WireFormatError("canonical JSON mappings require string keys")
+        for item in value.values():
+            _validate_canonical_json_value(item)
+        return
+    raise WireFormatError(
+        f"unsupported canonical JSON value: {type(value).__name__}"
+    )
+
+
 def canonical_json_line(value: Any) -> bytes:
     try:
+        _validate_canonical_json_value(value)
         payload = json.dumps(
             value,
+            allow_nan=False,
             ensure_ascii=True,
             separators=(",", ":"),
             sort_keys=True,
@@ -4212,21 +4243,13 @@ def _source_stream(source: Any) -> tuple[Any, bool]:
     raise WireFormatError("canonical source must be bytes or a binary stream")
 
 
-def _tagged_records(source: Any) -> tuple[list[Any], ...]:
-    stream, owned = _source_stream(source)
-    try:
-        records = tuple(iter_canonical_json_lines(stream))
-    finally:
-        if owned:
-            stream.close()
-    for record in records:
-        if (
-            not isinstance(record, list)
-            or not record
-            or not isinstance(record[0], str)
-        ):
-            raise WireFormatError("tagged record is not a nonempty array")
-    return records
+def _validate_tagged_record(record: Any) -> None:
+    if (
+        not isinstance(record, list)
+        or not record
+        or not isinstance(record[0], str)
+    ):
+        raise WireFormatError("tagged record is not a nonempty array")
 
 
 def _require_tag_width(
@@ -4245,16 +4268,107 @@ def _root_without_hash(root: Mapping[str, Any]) -> dict[str, Any]:
     return {key: value for key, value in root.items() if key != "root_sha256"}
 
 
+def _validate_root_summary(summary: Any, name: str) -> None:
+    if not isinstance(summary, Mapping) or set(summary) != set(
+        PACKAGE_V2_SUMMARY_FIELDS
+    ):
+        raise WireFormatError(f"{name} summary fields differ")
+    family_maps = (
+        "load_rows",
+        "footprint_sizes",
+        "occurrence_loads",
+        "template_counts",
+    )
+    for field in family_maps:
+        values = summary[field]
+        if not isinstance(values, Mapping) or set(values) != set(FAMILY_ORDER):
+            raise WireFormatError(f"{name} summary {field} families differ")
+    for field in ("load_rows", "occurrence_loads", "template_counts"):
+        for family, value in summary[field].items():
+            _exact_int(value, f"{name} {field} {family}", minimum=0)
+    for family, histogram in summary["footprint_sizes"].items():
+        if not isinstance(histogram, Mapping):
+            raise WireFormatError(
+                f"{name} footprint histogram is invalid: {family}"
+            )
+        for footprint_size, count in histogram.items():
+            if (
+                not isinstance(footprint_size, str)
+                or re.fullmatch(r"[1-9][0-9]*", footprint_size) is None
+            ):
+                raise WireFormatError(
+                    f"{name} footprint-size key is invalid: {family}"
+                )
+            _exact_int(
+                count,
+                f"{name} footprint-size count {family}",
+                minimum=1,
+            )
+    totals = {
+        "total_load_rows": sum(summary["load_rows"].values()),
+        "total_occurrence_loads": sum(summary["occurrence_loads"].values()),
+        "total_templates": sum(summary["template_counts"].values()),
+    }
+    for field, expected in totals.items():
+        if _exact_int(summary[field], f"{name} {field}", minimum=0) != expected:
+            raise WireFormatError(f"{name} {field} differs")
+    if summary["b_tokens_per_occurrence"] != TOKEN_COUNT:
+        raise WireFormatError(f"{name} B token count differs")
+    comparisons = _exact_int(
+        summary["active_comparisons"],
+        f"{name} active comparisons",
+        minimum=0,
+    )
+    if comparisons != summary["total_occurrence_loads"] * TOKEN_COUNT:
+        raise WireFormatError(f"{name} active comparison total differs")
+
+
+def _validate_root_template_summary(summary: Any, family: str) -> None:
+    if not isinstance(summary, Mapping) or set(summary) != set(
+        PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS
+    ):
+        raise WireFormatError(f"root template summary fields differ: {family}")
+    if (
+        summary["format"] != TEMPLATE_CATALOG_FORMAT
+        or summary["typed_encoding"] != TEMPLATE_TYPED_ENCODING
+        or summary["identity_order"] != "schema-major-cell-minor"
+    ):
+        raise WireFormatError(f"root template declarations differ: {family}")
+    for field in (
+        "schema_count",
+        "cell_count",
+        "template_count",
+        "witness_count",
+    ):
+        _exact_int(summary[field], f"root {family} {field}", minimum=0)
+    for field in ("identity_sha256", "replay_sha256", "catalog_sha256"):
+        _exact_hash(summary[field], f"root {family} {field}")
+
+
 def decode_root_index(source: Any) -> dict[str, Any]:
     stream, owned = _source_stream(source)
+    iterator = iter_canonical_json_lines(stream)
     try:
-        values = tuple(iter_canonical_json_lines(stream))
+        try:
+            value = next(iterator)
+        except StopIteration as error:
+            raise WireFormatError(
+                "root index must contain exactly one object line"
+            ) from error
+        try:
+            next(iterator)
+        except StopIteration:
+            pass
+        else:
+            raise WireFormatError(
+                "root index must contain exactly one object line"
+            )
     finally:
         if owned:
             stream.close()
-    if len(values) != 1 or not isinstance(values[0], Mapping):
+    if not isinstance(value, Mapping):
         raise WireFormatError("root index must contain exactly one object line")
-    root = dict(values[0])
+    root = dict(value)
     if set(root) != set(ROOT_INDEX_FIELDS):
         raise WireFormatError("root index fields differ")
     if root["format"] != PACKAGE_V2_FORMAT:
@@ -4328,12 +4442,9 @@ def decode_root_index(source: Any) -> dict[str, Any]:
     ) != set(FAMILY_ORDER):
         raise WireFormatError("root template catalog families differ")
     for family, summary in template_catalogs.items():
-        if not isinstance(summary, Mapping) or set(summary) != set(
-            PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS
-        ):
-            raise WireFormatError(
-                f"root template summary fields differ: {family}"
-            )
+        _validate_root_template_summary(summary, family)
+    _validate_root_summary(root["emitted_summary"], "emitted")
+    _validate_root_summary(root["full_summary"], "full")
     if scope == PRODUCTION_SCOPE and (
         root["emitted_summary"] != root["full_summary"]
     ):
@@ -4350,11 +4461,47 @@ def decode_root_index(source: Any) -> dict[str, Any]:
 
 
 def decode_shared_records(source: Any) -> dict[str, Any]:
-    records = _tagged_records(source)
+    stream, owned = _source_stream(source)
+    iterator = iter_canonical_json_lines(stream)
+    try:
+        try:
+            header = next(iterator)
+        except StopIteration as error:
+            raise WireFormatError("shared shard is empty") from error
+        _validate_tagged_record(header)
+        _require_tag_width(header, "shared_header", SHARED_RECORD_FIELDS)
+        if header[1:] != [
+            PACKAGE_V2_FORMAT,
+            header[2],
+            LOGICAL_V1_FORMAT,
+            CANONICAL_LINE_ENCODING,
+            MASK_ENCODING,
+            header[6],
+            header[7],
+            list(SHARD_ORDER),
+        ]:
+            raise WireFormatError("shared header payload differs")
+        expected_status = {
+            PRODUCTION_SCOPE: PRODUCTION_STATUS,
+            PREFLIGHT_SCOPE: PREFLIGHT_STATUS,
+        }.get(header[2])
+        if expected_status is None or header[7] != expected_status:
+            raise WireFormatError("shared scope/status pair differs")
+        if not isinstance(header[6], str) or not header[6]:
+            raise WireFormatError("shared domain is invalid")
+        if header[2] == PRODUCTION_SCOPE:
+            raise WireFormatError(
+                "production streaming replay is deferred to Task 3"
+            )
+        records = [header]
+        for record in iterator:
+            _validate_tagged_record(record)
+            records.append(record)
+    finally:
+        if owned:
+            stream.close()
     if len(records) < 3:
         raise WireFormatError("shared shard is incomplete")
-    _require_tag_width(records[0], "shared_header", SHARED_RECORD_FIELDS)
-    header = records[0]
     if header[1:] != [
         PACKAGE_V2_FORMAT,
         header[2],
@@ -4366,12 +4513,6 @@ def decode_shared_records(source: Any) -> dict[str, Any]:
         list(SHARD_ORDER),
     ]:
         raise WireFormatError("shared header payload differs")
-    expected_status = {
-        PRODUCTION_SCOPE: PRODUCTION_STATUS,
-        PREFLIGHT_SCOPE: PREFLIGHT_STATUS,
-    }.get(header[2])
-    if expected_status is None or header[7] != expected_status:
-        raise WireFormatError("shared scope/status pair differs")
     cursor = 1
     dependencies = {}
     dependency_paths = []
@@ -4398,6 +4539,8 @@ def decode_shared_records(source: Any) -> dict[str, Any]:
     required_source_fields = {"format", "old", "b", "sha256"}
     if set(source_bindings) != required_source_fields:
         raise WireFormatError("source-binding fields differ")
+    if source_bindings["format"] != SOURCE_BINDINGS_FORMAT:
+        raise WireFormatError("source-binding format differs")
     source_payload = {
         key: value
         for key, value in source_bindings.items()
@@ -4455,6 +4598,8 @@ def decode_shared_records(source: Any) -> dict[str, Any]:
         cursor += 1
     if len(coordinates) != len(identities):
         raise WireFormatError("B identity/coordinate counts differ")
+    if len(identities) != TOKEN_COUNT:
+        raise WireFormatError("shared B token count differs")
     if cursor != len(records) - 1:
         raise WireFormatError("shared records are out of order")
     footer = records[cursor]
@@ -4602,6 +4747,16 @@ def _bucket_key_from_rows(
     }
 
 
+_FAMILY_VARIABLES = {
+    "fixed": ("a", "n"),
+    "base": ("a", "n"),
+    "singleton": ("a", "n"),
+    "P": ("a", "h", "r"),
+    "C": ("a", "n"),
+    "Q": ("h", "k", "n"),
+}
+
+
 def _validate_family_header(header: Sequence[Any], family: str) -> None:
     _require_tag_width(header, "family_header", FAMILY_RECORD_FIELDS)
     if header[1] != family:
@@ -4618,6 +4773,8 @@ def _validate_family_header(header: Sequence[Any], family: str) -> None:
         (8, "B token count"),
     ):
         _exact_int(header[index], name, minimum=0)
+    if header[8] != TOKEN_COUNT:
+        raise WireFormatError("family B token count differs")
     selected = header[4]
     if (
         not isinstance(selected, list)
@@ -4646,10 +4803,33 @@ def decode_family_records(
         raise WireFormatError("unknown family shard")
     if scope not in {PREFLIGHT_SCOPE, PRODUCTION_SCOPE}:
         raise WireFormatError("unknown package scope")
-    records = _tagged_records(source)
+    stream, owned = _source_stream(source)
+    iterator = iter_canonical_json_lines(stream)
+    try:
+        try:
+            header = next(iterator)
+        except StopIteration as error:
+            raise WireFormatError("family shard is empty") from error
+        _validate_tagged_record(header)
+        _validate_family_header(header, expected_family)
+        if (
+            scope == PRODUCTION_SCOPE
+            and header[4] != list(range(header[5]))
+        ):
+            raise WireFormatError("production old indices are not complete")
+        if scope == PRODUCTION_SCOPE:
+            raise WireFormatError(
+                "production streaming replay is deferred to Task 3"
+            )
+        records = [header]
+        for record in iterator:
+            _validate_tagged_record(record)
+            records.append(record)
+    finally:
+        if owned:
+            stream.close()
     if len(records) < 4:
         raise WireFormatError("family shard is incomplete")
-    header = records[0]
     _validate_family_header(header, expected_family)
     selected_old_indices = header[4]
     selected_old_set = set(selected_old_indices)
@@ -4936,6 +5116,20 @@ def decode_family_records(
         template_footer,
     )
     _validate_v2_template_catalog(catalog)
+    expected_variables = (
+        catalog["schema_table"][0][1]
+        if catalog["schema_table"]
+        else list(_FAMILY_VARIABLES[expected_family])
+    )
+    catalog_variables = [
+        row[1]
+        for table in (catalog["schema_table"], catalog["cell_table"])
+        for row in table
+    ]
+    if header[2] != expected_variables or any(
+        variables != expected_variables for variables in catalog_variables
+    ):
+        raise WireFormatError("family header variables differ from catalog")
     compact_cells = {
         row[1]: row[2] for row in cell_rows
     }
@@ -5084,16 +5278,6 @@ def decode_family_records(
     }
 
 
-_FAMILY_VARIABLES = {
-    "fixed": ("a", "n"),
-    "base": ("a", "n"),
-    "singleton": ("a", "n"),
-    "P": ("a", "h", "r"),
-    "C": ("a", "n"),
-    "Q": ("h", "k", "n"),
-}
-
-
 def _logical_hex_mask(value: Any) -> int:
     if (
         not isinstance(value, str)
@@ -5216,7 +5400,9 @@ def _bucket_class_values(key: Mapping[str, Any]) -> list[Any]:
     ]
 
 
-def _catalog_summary(catalog: Mapping[str, Any]) -> dict[str, Any]:
+def _package_v2_catalog_summary(
+    catalog: Mapping[str, Any],
+) -> dict[str, Any]:
     return {
         field: catalog[field]
         for field in PACKAGE_V2_TEMPLATE_SUMMARY_FIELDS
@@ -5610,7 +5796,7 @@ def encode_tiny_v2_package(
             }
         )
     template_catalogs = {
-        family: _catalog_summary(
+        family: _package_v2_catalog_summary(
             logical_v1["family_ledgers"][family]["template_catalog"]
         )
         for family in FAMILY_ORDER
@@ -5692,6 +5878,39 @@ def _inject_publication_failure(
         injector(stage, detail)
 
 
+def _validate_publication_views(
+    encoded: EncodedV2Package,
+) -> tuple[dict[str, Any], int]:
+    if type(encoded.index_bytes) is not bytes:
+        raise WireFormatError("publication index bytes are not exact bytes")
+    root = decode_root_index(encoded.index_bytes)
+    if (
+        not isinstance(encoded.index, Mapping)
+        or dict(encoded.index) != root
+        or canonical_json_line(encoded.index) != encoded.index_bytes
+    ):
+        raise WireFormatError("publication index views differ")
+    expected_paths = [descriptor["path"] for descriptor in root["shards"]]
+    if (
+        not isinstance(encoded.objects, Mapping)
+        or set(encoded.objects) != set(expected_paths)
+    ):
+        raise WireFormatError("publication object paths differ")
+    shard_bytes_total = 0
+    for descriptor in root["shards"]:
+        payload = encoded.objects[descriptor["path"]]
+        if type(payload) is not bytes:
+            raise WireFormatError("publication object is not exact bytes")
+        if len(payload) != descriptor["total_bytes"]:
+            raise WireFormatError("publication object byte count differs")
+        if hashlib.sha256(payload).hexdigest() != descriptor["sha256"]:
+            raise WireFormatError("publication object digest differs")
+        shard_bytes_total += len(payload)
+    if shard_bytes_total != root["shard_bytes_total"]:
+        raise WireFormatError("publication shard byte total differs")
+    return root, shard_bytes_total + len(encoded.index_bytes)
+
+
 def publish_v2_package(
     encoded: EncodedV2Package,
     index_path: Path,
@@ -5713,7 +5932,9 @@ def publish_v2_package(
     stage = "object_temp_fsynced"
     write_started = time.perf_counter()
     try:
-        for descriptor in encoded.index["shards"]:
+        stage = "validate_package"
+        root, package_bytes = _validate_publication_views(encoded)
+        for descriptor in root["shards"]:
             relative_path = descriptor["path"]
             payload = encoded.objects[relative_path]
             destination = target.parent / relative_path
@@ -5745,6 +5966,7 @@ def publish_v2_package(
                     )
                 temporary.unlink()
                 temporary_paths.remove(temporary)
+                _fsync_directory(objects_dir)
                 reused.append(relative_path)
                 continue
             os.replace(temporary, destination)
@@ -5779,12 +6001,9 @@ def publish_v2_package(
         _inject_publication_failure(
             failure_injector, stage, target.name
         )
-        package_bytes = (
-            encoded.index["shard_bytes_total"] + len(encoded.index_bytes)
-        )
         stage = "before_index_replace"
         if (
-            encoded.index["scope"] == PRODUCTION_SCOPE
+            root["scope"] == PRODUCTION_SCOPE
             and package_bytes > package_cap
         ):
             raise WireFormatError(
@@ -5794,8 +6013,8 @@ def publish_v2_package(
             failure_injector, stage, target.name
         )
         os.replace(index_temporary, target)
-        temporary_paths.remove(index_temporary)
         state = "COMMITTED"
+        temporary_paths.remove(index_temporary)
         stage = "index_replaced"
         _inject_publication_failure(
             failure_injector, stage, target.name
@@ -5811,27 +6030,28 @@ def publish_v2_package(
         return PublicationResult(
             state=state,
             index_sha256=hashlib.sha256(encoded.index_bytes).hexdigest(),
-            root_sha256=encoded.index["root_sha256"],
+            root_sha256=root["root_sha256"],
             package_bytes=package_bytes,
             created_objects=tuple(created),
             reused_objects=tuple(reused),
         )
     except BaseException as cause:
+        affected_directories = set()
         for temporary in tuple(temporary_paths):
             try:
                 temporary.unlink(missing_ok=True)
+                affected_directories.add(temporary.parent)
             except OSError:
                 pass
         if state == "PREPARED":
-            changed_objects = False
             for relative_path in reversed(created):
                 destination = target.parent / relative_path
                 if destination.exists():
                     destination.unlink()
-                    changed_objects = True
-            if changed_objects:
-                _fsync_directory(objects_dir)
-            _fsync_directory(target.parent)
+                    affected_directories.add(destination.parent)
+            affected_directories.add(target.parent)
+        for directory in sorted(affected_directories, key=str):
+            _fsync_directory(directory)
         raise PublicationFailure(state, stage, cause) from cause
 
 

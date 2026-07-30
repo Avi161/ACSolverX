@@ -1667,3 +1667,33 @@
 
 - [TRAP] The first package-v2 family decoders required `selected_old_indices == range(old_load_count)` for every scope. That collapses the preflight subset domain into the complete production domain and rejected a grammar-valid empty selected subset in both independent codecs.
 - [WORKS] Always parse and validate the complete old-load/footprint tables, but reconstruct load, occurrence, comparison, odd-index, and parity summaries only over the strict selected-index list. Require the complete range only for `production-full`.
+
+### 2026-07-30 Audit late foundation helpers for legacy name collisions
+
+- [TRAP] The package-v2 foundation appended a second `_catalog_summary` definition after the logical-v1 implementation. Python's late global lookup silently redirected legacy `build_manifest` to the new mapping-only helper; a tiny legacy-catalog regression reproduced `TypeError: 'Task4SchemaCatalog' object is not subscriptable` without running the retired generator.
+- [WORKS] Prefix package-v2-only helpers when a large legacy module is extended, scan duplicate top-level definitions before lint, and pin one bounded legacy behavior for every intentional coexistence boundary.
+
+### 2026-07-30 Stop foundation decoders at the production header
+
+- [TRAP] Both initial package-v2 codecs implemented a streaming line iterator but immediately wrapped it in `tuple(...)` inside the tagged-shard decoder. A header-only stream proved that production decoding attempted a second read, violating the frozen no-whole-production-materialization boundary.
+- [WORKS] Task 1 may materialize only the bounded tiny/preflight fixture. Inspect the first canonical header incrementally and fail closed on `production-full` without reading another line; the later independent streaming verifier owns production semantic replay.
+
+### 2026-07-30 Convert frozen fixture rows before mutation tests
+
+- [TRAP] Package-v2 encoded fixture rows are tuples. Two resealing regressions used `copy.deepcopy` and then tried item assignment, causing `TypeError: 'tuple' object does not support item assignment` before reaching either decoder.
+- [WORKS] For positional-wire mutation tests, convert each outer record explicitly with `[list(row) for row in copy.deepcopy(records)]`; a deep copy does not change immutable container types.
+
+### 2026-07-30 Run exact Ruff after hostile semantic fixes
+
+- [TRAP] The verifier pump-dereference fix left a nested empty-catalog guard that was behaviorally correct but failed Ruff 0.16.0 with `SIM102`.
+- [WORKS] After each hostile semantic patch, run the exact three-file Ruff gate before the final verification batch and collapse nested guards when their conjunction preserves the same fail-closed branch.
+
+### 2026-07-30 Audit expected path absence without noisy discovery errors
+
+- [TRAP] Running `find` directly on the intentionally absent package-v2 production directory printed `No such file or directory` and exited one, obscuring an otherwise successful absence audit.
+- [WORKS] For a frozen path that must not exist, use an exact `test ! -e <path>` predicate; reserve `find` for a parent directory known to exist.
+
+### 2026-07-30 Use supported safe fields in macOS process audits
+
+- [TRAP] macOS `ps` rejects `sid` as an output keyword; that diagnostic failure is not evidence that proof processes are absent.
+- [WORKS] Safe process audits should request only supported fields such as PID, PPID, PGID, CPU percentage, state, and executable name, omit full arguments and SID, and require a successful scan before drawing a process conclusion.

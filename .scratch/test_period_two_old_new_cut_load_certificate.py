@@ -2613,6 +2613,35 @@ def test_package_v2_constants_and_tag_grammars_are_exact() -> None:
     assert module.MAX_CANONICAL_LINE_BYTES == 16_777_216
 
 
+def test_package_v2_foundation_preserves_logical_v1_catalog_summary() -> None:
+    module = load_generator()
+    empty_catalog = module.Task4SchemaCatalog(
+        families={},
+        dependency_digests={},
+        old_source_proof={},
+        b_source_proof={},
+        occurrence_leafs={},
+        occurrence_polarities={},
+        occurrence_slots={},
+        fixed_metadata={},
+        chronology_digest="",
+        b_identity_table=(),
+        b_identity_digest="",
+    )
+
+    assert module._catalog_summary(empty_catalog) == {
+        "load_rows": {},
+        "total_load_rows": 0,
+        "footprint_sizes": {},
+        "occurrence_loads": {},
+        "total_occurrence_loads": 0,
+        "b_tokens_per_occurrence": 84,
+        "active_comparisons": 0,
+        "template_counts": {},
+        "total_templates": 0,
+    }
+
+
 def test_package_v2_generator_and_verifier_literals_agree() -> None:
     generator = load_generator()
     verifier = load_package_v2_verifier()
@@ -2716,6 +2745,25 @@ def test_package_v2_canonical_decoder_rejects_noncanonical_lines(
 
 
 @pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+@pytest.mark.parametrize(
+    "value",
+    (
+        {"x": 1.5},
+        {"x": float("nan")},
+        {1: "coerced-key"},
+        {"x": object()},
+    ),
+)
+def test_package_v2_canonical_encoder_rejects_values_outside_wire_domain(
+    module_loader,
+    value,
+) -> None:
+    module = module_loader()
+    with pytest.raises(module.WireFormatError):
+        module.canonical_json_line(value)
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
 def test_package_v2_tag_decoders_reject_width_field_and_order_mutations(
     module_loader,
 ) -> None:
@@ -2747,6 +2795,26 @@ def test_package_v2_tag_decoders_reject_width_field_and_order_mutations(
                     b"".join(module.canonical_json_line(row) for row in rows)
                 )
             )
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_shared_rejects_resealed_source_binding_format(
+    module_loader,
+) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    records = [list(row) for row in copy.deepcopy(encoded.shard_records["shared"])]
+    source_row = next(row for row in records if row[0] == "source_bindings")
+    source_row[1]["format"] = "wrong-source-bindings-format"
+    reseal_source_bindings(source_row[1])
+    records[-1][3] = sum(
+        len(module.canonical_json_line(row)) for row in records[:-1]
+    )
+    payload = b"".join(module.canonical_json_line(row) for row in records)
+    with pytest.raises(module.WireFormatError, match="source-binding format"):
+        module.decode_shared_records(io.BytesIO(payload))
 
 
 @pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
@@ -2810,12 +2878,247 @@ def test_package_v2_preflight_selected_old_subset_is_a_distinct_domain(
         "occurrence_loads": 0,
         "comparisons": 0,
     }
-    with pytest.raises(module.WireFormatError):
+    with pytest.raises(
+        module.WireFormatError, match="production old indices"
+    ):
         module.decode_family_records(
             io.BytesIO(payload),
             expected_family="fixed",
             scope="production-full",
         )
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_foundation_never_materializes_production_shards(
+    module_loader,
+) -> None:
+    module = module_loader()
+
+    class HeaderOnlyStream:
+        def __init__(self, header):
+            self.header = header
+            self.calls = 0
+
+        def readline(self, _limit):
+            self.calls += 1
+            if self.calls == 1:
+                return module.canonical_json_line(self.header)
+            raise AssertionError("foundation attempted to materialize production")
+
+    shared = HeaderOnlyStream(
+        [
+            "shared_header",
+            "period-two-old-new-cut-package-v2",
+            "production-full",
+            "period-two-old-new-cut-load-v1",
+            "canonical-json-ascii-lines-v1",
+            "uint84-be11-base64url-nopad-v1",
+            "fixture a>=0",
+            "generated-awaiting-independent-replay",
+            ["shared", "fixed", "base", "singleton", "P", "C", "Q"],
+        ]
+    )
+    with pytest.raises(module.WireFormatError, match="production"):
+        module.decode_shared_records(shared)
+    assert shared.calls == 1
+
+    family = HeaderOnlyStream(
+        [
+            "family_header",
+            "fixed",
+            ["a"],
+            1,
+            [0],
+            1,
+            1,
+            1,
+            84,
+            [
+                None,
+                "strict_affine_length",
+                "identical_pumped_blocks",
+                "fixed_mismatch_after_pumped_prefix",
+            ],
+            [
+                "fixed_vs_correction_literal_leaf_order",
+                "distinct_occurrences_literal_AST_order",
+                "equal_coordinate_excluded",
+                "same_occurrence_increasing",
+                "same_occurrence_decreasing",
+            ],
+            list(module.HISTOGRAM_KEY_FIELDS),
+            copy.deepcopy(module.TEMPLATE_FIELD_ORDERS),
+            "product-order-with-P-domain-filter",
+        ]
+    )
+    with pytest.raises(module.WireFormatError, match="production"):
+        module.decode_family_records(
+            family,
+            expected_family="fixed",
+            scope="production-full",
+        )
+    assert family.calls == 1
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_family_header_rejects_resealed_b_token_count(
+    module_loader,
+) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    records = [list(record) for record in encoded.shard_records["fixed"]]
+    records[0][8] = 83
+    records[-1][7] = sum(
+        len(module.canonical_json_line(row)) for row in records[:-1]
+    )
+    payload = b"".join(module.canonical_json_line(row) for row in records)
+    with pytest.raises(module.WireFormatError, match="B token count"):
+        module.decode_family_records(
+            io.BytesIO(payload),
+            expected_family="fixed",
+            scope="preflight-sample",
+        )
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_family_header_variables_bind_catalog_domain(
+    module_loader,
+) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    records = [list(row) for row in copy.deepcopy(encoded.shard_records["fixed"])]
+    records[0][2] = ["wrong"]
+    records[-1][7] = sum(
+        len(module.canonical_json_line(row)) for row in records[:-1]
+    )
+    payload = b"".join(module.canonical_json_line(row) for row in records)
+    with pytest.raises(module.WireFormatError, match="variables"):
+        module.decode_family_records(
+            io.BytesIO(payload),
+            expected_family="fixed",
+            scope="preflight-sample",
+        )
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_empty_family_header_variables_are_frozen(
+    module_loader,
+) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    records = [list(row) for row in copy.deepcopy(encoded.shard_records["base"])]
+    records[0][2] = ["wrong"]
+    records[-1][7] = sum(
+        len(module.canonical_json_line(row)) for row in records[:-1]
+    )
+    payload = b"".join(module.canonical_json_line(row) for row in records)
+
+    with pytest.raises(module.WireFormatError, match="variables"):
+        module.decode_family_records(
+            io.BytesIO(payload),
+            expected_family="base",
+            scope="preflight-sample",
+        )
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+@pytest.mark.parametrize("summary_field", ("emitted_summary", "full_summary"))
+def test_package_v2_root_rejects_rehashed_malformed_summary_schema(
+    module_loader,
+    summary_field,
+) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    root = copy.deepcopy(encoded.index)
+    root[summary_field] = {"bogus": 1}
+    root["root_sha256"] = hashlib.sha256(
+        module.canonical_json_line(
+            {key: value for key, value in root.items() if key != "root_sha256"}
+        )
+    ).hexdigest()
+    with pytest.raises(module.WireFormatError, match="summary"):
+        module.decode_root_index(module.canonical_json_line(root))
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_root_keeps_footprint_and_cell_load_domains_distinct(
+    module_loader,
+) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture(two_cells=True)
+    )
+
+    assert module.decode_root_index(encoded.index_bytes) == encoded.index
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_template_validator_rejects_rehashed_pump_dereference(
+    module_loader,
+) -> None:
+    generator = load_generator()
+    module = module_loader()
+    schema = generator.Schema(
+        "fixture:pump",
+        ("a",),
+        (("r", CORE_R, (1, 0)),),
+    )
+    cells = generator.make_cells(schema.variables)
+    catalog = generator.build_compact_template_catalog(
+        "fixed",
+        {schema.schema_id: schema},
+        cells,
+        {
+            (schema.schema_id, cell.cell_id): generator.build_template(
+                schema, cell
+            )
+            for cell in cells
+        },
+    )
+    pumping_witness_id = next(
+        witness_id
+        for witness_id, witness in enumerate(catalog["witness_table"])
+        if witness[2]
+    )
+    mutated = copy.deepcopy(catalog)
+    mutated["witness_table"][pumping_witness_id][2][0][0] = 99
+    recompute_template_catalog_digests(mutated)
+
+    with pytest.raises(module.WireFormatError, match="catalog"):
+        module._validate_v2_template_catalog(mutated)
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_root_decoder_stops_after_second_line(module_loader) -> None:
+    module = module_loader()
+    encoded = load_generator().encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+
+    class TwoLineRootStream:
+        def __init__(self):
+            self.calls = 0
+
+        def readline(self, _limit):
+            self.calls += 1
+            if self.calls == 1:
+                return encoded.index_bytes
+            if self.calls == 2:
+                return b"{}\n"
+            raise AssertionError("root decoder read beyond the second line")
+
+    stream = TwoLineRootStream()
+    with pytest.raises(module.WireFormatError, match="exactly one"):
+        module.decode_root_index(stream)
+    assert stream.calls == 2
 
 
 def test_package_v2_tiny_logical_v1_round_trip() -> None:
@@ -2885,6 +3188,101 @@ def test_package_v2_content_addresses_and_rejects_reuse_mismatch(
     assert error.value.state == "PREPARED"
     assert mismatch_object.read_bytes() == b"not-the-content-addressed-object\n"
     assert not mismatch_index.exists()
+
+
+def test_package_v2_publish_rejects_mutated_new_object_before_replace(
+    tmp_path,
+) -> None:
+    generator = load_generator()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    relative_path = encoded.index["shards"][-1]["path"]
+    payload = encoded.objects[relative_path]
+    objects = dict(encoded.objects)
+    objects[relative_path] = bytes([payload[0] ^ 1]) + payload[1:]
+    mutated = replace(encoded, objects=objects)
+    index_path = tmp_path / "index.json"
+    prior = b"prior-index\n"
+    index_path.write_bytes(prior)
+    publication_events = []
+
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(
+            mutated,
+            index_path,
+            failure_injector=lambda stage, detail: publication_events.append(
+                (stage, detail)
+            ),
+        )
+
+    assert error.value.state == "PREPARED"
+    assert isinstance(error.value.cause, generator.WireFormatError)
+    assert not publication_events
+    assert index_path.read_bytes() == prior
+    assert not tuple((tmp_path / "objects").glob("*.jsonl"))
+
+
+def test_package_v2_publish_rejects_divergent_index_views(tmp_path) -> None:
+    generator = load_generator()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    mutated = replace(encoded, index_bytes=b"{}\n")
+    index_path = tmp_path / "index.json"
+    prior = b"prior-index\n"
+    index_path.write_bytes(prior)
+
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(mutated, index_path)
+
+    assert error.value.state == "PREPARED"
+    assert isinstance(error.value.cause, generator.WireFormatError)
+    assert index_path.read_bytes() == prior
+    assert not tuple((tmp_path / "objects").glob("*.jsonl"))
+
+
+def test_package_v2_commit_state_precedes_index_temp_bookkeeping() -> None:
+    source = GENERATOR.read_text(encoding="utf-8")
+    replace_offset = source.index("os.replace(index_temporary, target)")
+    committed_offset = source.index('state = "COMMITTED"', replace_offset)
+    bookkeeping_offset = source.index(
+        "temporary_paths.remove(index_temporary)", replace_offset
+    )
+
+    assert replace_offset < committed_offset < bookkeeping_offset
+
+
+def test_package_v2_prepared_temp_cleanup_fsyncs_objects_directory(
+    monkeypatch,
+    tmp_path,
+) -> None:
+    generator = load_generator()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    objects_dir = tmp_path / "objects"
+    fsynced = []
+    monkeypatch.setattr(
+        generator,
+        "_fsync_directory",
+        lambda path: fsynced.append(
+            (Path(path), tuple(objects_dir.glob(".object.*.tmp")))
+        ),
+    )
+
+    def inject(stage, _detail):
+        if stage == "object_temp_fsynced":
+            raise OSError("injected temp-boundary failure")
+
+    with pytest.raises(generator.PublicationFailure):
+        generator.publish_v2_package(
+            encoded,
+            tmp_path / "index.json",
+            failure_injector=inject,
+        )
+
+    assert (objects_dir, ()) in fsynced
 
 
 @pytest.mark.parametrize(
