@@ -48,6 +48,14 @@ ARM_SPECS = {
     "s28": (_cfg(L=1.0, S=28.0), 0.0),
     "s28_mk2": (_cfg(L=1.0, S=28.0, MK=2.0), 0.0),
     "s28_mk2_f8": (_cfg(L=1.0, S=28.0, MK=2.0), 8.0),
+    # extras (radical / ablation) — register before using in Colab CONFIG
+    "k8": (_cfg(L=1.0, K=8.0), 0.0),
+    "s20_mk2_mK2": (_cfg(L=1.0, S=20.0, MK=2.0, mK=2.0), 0.0),
+    "mk6": (_cfg(L=1.0, MK=6.418), 0.0),
+    "s20_f4": (_cfg(L=1.0, S=20.0), 4.0),
+    "s24_mk2": (_cfg(L=1.0, S=24.0, MK=2.0), 0.0),
+    "s12": (_cfg(L=1.0, S=12.0), 0.0),
+    "s24_k1_mk2": (_cfg(L=1.0, S=24.0, K=1.0, MK=2.0), 0.0),
 }
 
 # Keep run_ab.ARMS in sync for non-F arms (resolve_workers / warm imports).
