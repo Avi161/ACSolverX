@@ -1759,3 +1759,8 @@
 
 - [TRAP] Ruff 0.16.0 rejected a receipt-metrics NaN self-comparison with `PLR0124` and a deliberately unused template-selection result with `RUF059`.
 - [WORKS] Use `math.isfinite` for finite-float validation and prefix intentionally unused unpacked values with `_` before the pinned lint gate.
+
+### 2026-07-30 Escalate safe-field process listings when sandboxed
+
+- [TRAP] The required macOS `ps -axo pid=,ppid=,pgid=,%cpu=,state=,comm=` audit used only approved non-argument fields but still failed with `operation not permitted` inside the restricted workspace sandbox.
+- [WORKS] Keep the safe field list unchanged and request narrow escalation for the read-only `ps` audit; never substitute full command arguments or treat the sandbox denial as process-absence evidence.
