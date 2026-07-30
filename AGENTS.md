@@ -1754,3 +1754,8 @@
 
 - [TRAP] A Task 2 fixed-charge regression changed precompute, shared, index, and family time by `+1`, `+2`, `+4`, and `+7` but asserted a `+10` total instead of the exact `+14` sum.
 - [WORKS] For projection delta tests, write the literal per-component difference beside the assertion and sum every changed fixed term independently; do not reuse an unstated mental subtotal.
+
+### 2026-07-30 Use explicit finite-float and unused-unpack idioms
+
+- [TRAP] Ruff 0.16.0 rejected a receipt-metrics NaN self-comparison with `PLR0124` and a deliberately unused template-selection result with `RUF059`.
+- [WORKS] Use `math.isfinite` for finite-float validation and prefix intentionally unused unpacked values with `_` before the pinned lint gate.
