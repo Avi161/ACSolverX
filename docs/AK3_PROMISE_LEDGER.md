@@ -38,16 +38,23 @@ finite quotient do not close a route.
   371,878,372-byte temporary manifest before the enclosing 30-second test timed
   out. Exact process group 54916, the guard lock, artifact, and all proof
   runtimes were verified gone. The unchanged command is permanently retired.
-- **Resume point:** the candidate v2 architecture is a content-addressed JSONL
-  root index, one shared shard, six fixed-order family shards, positional
-  tables/references, family-local first-seen bucket interning, and packed
-  84-bit masks. It awaits ultra advisor review. Preserve exact source,
-  template, load, mask, and mutation replay; commit/log/push the changed
-  implementation before one same-code-path preflight and one guarded foreground
+- **Verified package-v2 foundation:** the advisor-approved architecture is
+  frozen as one canonical root index plus one shared and six fixed-order
+  content-addressed JSONL shards. Independent generator/verifier codecs now
+  reject noncanonical JSON and malformed 84-bit masks, round-trip a tiny
+  logical-v1 fixture, and verify PREPARED/COMMITTED publication failures,
+  object reuse, the production cap, and metrics byte identity. This checkpoint
+  did not run the retired generator or create a production package.
+- **Resume point:** implement the streaming production adapter without calling
+  the monolithic logical-v1 builder, then add full independent semantic replay,
+  fixed-run receipt/attestation coordination, a 60-second preflight, hostile
+  whole review, and only afterward the guarded production experiment. Commit,
+  log, and push the reviewed same-code-path implementation before that
   experiment.
 - **Nonclaim:** a generated or sharded payload is not a theorem until an
   independent verifier reconstructs every source, template, load, family xor,
-  and semantic mutation.
+  and semantic mutation. The fixture and preflight are not certificates and
+  do not close `d=0`, the unary `Q(A)` law, AC, or stable AC.
 
 ## 3. Thickenability frontier — preserved
 

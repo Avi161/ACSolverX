@@ -1652,3 +1652,13 @@
 
 - [TRAP] A `String.raw` JavaScript patch for the package-v2 plan still contained literal Markdown backticks, so the orchestration source failed with `SyntaxError: Unexpected identifier 'AGENTS'` before `apply_patch` ran; no plan hunk landed.
 - [WORKS] Replace Markdown backticks with a sentinel throughout raw patch payloads and restore them only in the string passed to `apply_patch`. After a parse failure, inspect the diff and rerun every intended hunk.
+
+### 2026-07-30 Provision exact Ruff through the guarded network path
+
+- [TRAP] The first guarded `uv run --with ruff==0.16.0` package-v2 lint gate found no project-local cached Ruff and failed after three PyPI DNS retries; exit 2 was an environment fetch failure, not lint evidence.
+- [WORKS] Keep the exact Ruff version and guarded command unchanged, then rerun that narrowly scoped dependency fetch with approved network access. Record the later Ruff diagnostics separately from the failed fetch.
+
+### 2026-07-30 Keep independent verifier imports minimal
+
+- [TRAP] Copying the package-v2 codec import scaffold into the independent verifier also copied `os`, although only the generator owns publication/fsync operations; Ruff 0.16.0 rejected the verifier with `F401`.
+- [WORKS] The verifier independently duplicates wire logic, not generator-only publication dependencies. Audit each module's final import use before the exact three-file Ruff gate.

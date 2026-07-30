@@ -2,6 +2,7 @@ import copy
 import functools
 import hashlib
 import importlib.util
+import io
 import json
 import operator
 import re
@@ -2152,3 +2153,800 @@ def test_independent_verifier_replays_and_rejects_semantic_mutations() -> None:
             artifact.unlink()
         if ARTIFACT_DIR.is_dir() and not tuple(ARTIFACT_DIR.iterdir()):
             ARTIFACT_DIR.rmdir()
+
+
+PACKAGE_V2_ROOT_FIELDS = (
+    "format",
+    "scope",
+    "logical_v1_format",
+    "canonical_encoding",
+    "mask_encoding",
+    "domain",
+    "status",
+    "shard_order",
+    "shards",
+    "shard_bytes_total",
+    "emitted_summary",
+    "full_summary",
+    "source_bindings_sha256",
+    "b_identity_digest",
+    "template_catalogs",
+    "root_sha256",
+)
+PACKAGE_V2_DESCRIPTOR_FIELDS = (
+    "role",
+    "family",
+    "path",
+    "sha256",
+    "total_bytes",
+    "record_count",
+    "record_counts",
+)
+PACKAGE_V2_SHARED_FIELDS = {
+    "shared_header": (
+        "tag",
+        "format",
+        "scope",
+        "logical_v1_format",
+        "canonical_encoding",
+        "mask_encoding",
+        "domain",
+        "status",
+        "shard_order",
+    ),
+    "dependency": ("tag", "path", "sha256"),
+    "source_bindings": ("tag", "value"),
+    "b_identity": (
+        "tag",
+        "token_index",
+        "token_id",
+        "source_class",
+        "coefficient",
+        "slot",
+        "occurrence",
+        "polarity",
+        "module_schema",
+        "label_schema",
+        "source_members",
+    ),
+    "b_coordinate": ("tag", "token_index", "source_class", "coordinate"),
+    "shared_footer": (
+        "tag",
+        "coordinate_count",
+        "records_before_footer",
+        "bytes_before_footer",
+    ),
+}
+PACKAGE_V2_FAMILY_FIELDS = {
+    "family_header": (
+        "tag",
+        "family",
+        "variables",
+        "source_cell_count",
+        "selected_old_indices",
+        "old_load_count",
+        "footprint_count",
+        "bucket_class_count",
+        "b_token_count",
+        "comparison_methods",
+        "chronologies",
+        "histogram_key_fields",
+        "template_field_orders",
+        "source_cell_order",
+    ),
+    "old_load": (
+        "tag",
+        "old_index",
+        "old_token_id",
+        "coefficient",
+        "source_members",
+        "source_slot",
+        "footprint_start",
+        "footprint_count",
+    ),
+    "footprint": (
+        "tag",
+        "footprint_index",
+        "old_index",
+        "occurrence",
+        "occurrence_slot",
+        "polarity",
+        "leaf",
+        "module_schema",
+        "label_schema",
+    ),
+    "bucket_class": (
+        "tag",
+        "b_source_class",
+        "b_coordinate",
+        "equality_exclusion",
+        "module_method",
+        "module_order",
+        "chronology",
+        "chronology_order",
+        "label_method",
+        "label_order",
+        "contribution_bit",
+    ),
+    "load": (
+        "tag",
+        "old_index",
+        "footprint_index",
+        "bucket_class_index",
+        "mask",
+    ),
+    "cell_footer": (
+        "tag",
+        "source_cell_index",
+        "compact_cell_index",
+        "cell_id",
+        "odd_old_indices",
+        "value",
+        "load_record_count",
+    ),
+    "template_header": (
+        "tag",
+        "format",
+        "typed_encoding",
+        "family",
+        "field_orders",
+        "identity_order",
+        "schema_count",
+        "cell_count",
+        "template_count",
+        "witness_count",
+    ),
+    "template_schema": (
+        "tag",
+        "schema_index",
+        "schema_id",
+        "variables",
+        "blocks",
+    ),
+    "template_cell": (
+        "tag",
+        "compact_cell_index",
+        "cell_id",
+        "names",
+        "states",
+        "base_values",
+    ),
+    "template_witness": (
+        "tag",
+        "witness_id",
+        "terminal_full_letter",
+        "terminal_c_deleted",
+        "pumps",
+    ),
+    "template_identity_chunk": (
+        "tag",
+        "start_identity_index",
+        "witness_id_list",
+    ),
+    "template_footer": (
+        "tag",
+        "identity_sha256",
+        "replay_sha256",
+        "catalog_sha256",
+    ),
+    "family_footer": (
+        "tag",
+        "source_cell_count",
+        "old_load_count",
+        "load_rows",
+        "occurrence_loads",
+        "comparisons",
+        "records_before_footer",
+        "bytes_before_footer",
+    ),
+}
+
+
+def load_package_v2_verifier():
+    return load_module("old_new_load_package_v2_verifier", VERIFIER)
+
+
+def literal_package_v2_template_catalog(family, cell_ids):
+    if family == "fixed":
+        catalog = {
+            "format": "task4-template-catalog-v2",
+            "typed_encoding": TYPED_ENCODING,
+            "family": family,
+            "field_orders": copy.deepcopy(TEMPLATE_FIELD_ORDERS),
+            "identity_order": "schema-major-cell-minor",
+            "schema_count": 1,
+            "cell_count": len(cell_ids),
+            "template_count": len(cell_ids),
+            "witness_count": 1,
+            "schema_table": [
+                ["fixture-schema", ["a"], [["fixed", [2], None]]]
+            ],
+            "cell_table": [
+                [cell_id, ["a"], [index], [index]]
+                for index, cell_id in enumerate(sorted(cell_ids))
+            ],
+            "witness_table": [[2, False, []]],
+            "identity_witness_ids": [0] * len(cell_ids),
+        }
+    else:
+        catalog = {
+            "format": "task4-template-catalog-v2",
+            "typed_encoding": TYPED_ENCODING,
+            "family": family,
+            "field_orders": copy.deepcopy(TEMPLATE_FIELD_ORDERS),
+            "identity_order": "schema-major-cell-minor",
+            "schema_count": 0,
+            "cell_count": 0,
+            "template_count": 0,
+            "witness_count": 0,
+            "schema_table": [],
+            "cell_table": [],
+            "witness_table": [],
+            "identity_witness_ids": [],
+        }
+    recompute_template_catalog_digests(catalog)
+    return catalog
+
+
+def literal_package_v2_histogram():
+    return {
+        "old_occurrence": None,
+        "old_leaf": 1,
+        "old_polarity": None,
+        "comparison_count": 84,
+        "one_count": 0,
+        "value": 0,
+        "buckets": [
+            {
+                "key": {
+                    "old_occurrence": None,
+                    "old_leaf": 1,
+                    "b_source_class": "fixture-b",
+                    "b_coordinate": ["fixture", 0],
+                    "equality_exclusion": False,
+                    "old_polarity": None,
+                    "module_method": None,
+                    "module_order": None,
+                    "chronology": "fixed_vs_correction_literal_leaf_order",
+                    "chronology_order": -1,
+                    "label_method": "identical_pumped_blocks",
+                    "label_order": 0,
+                    "contribution_bit": 0,
+                },
+                "count": 84,
+                "mask": "fffffffffffffffffffff",
+            }
+        ],
+    }
+
+
+def literal_package_v2_logical_fixture(*, two_cells=False, production=False):
+    families = ("fixed", "base", "singleton", "P", "C", "Q")
+    cell_ids = ("z-cell", "a-cell") if two_cells else ("fixture-cell",)
+    fixed_catalog = literal_package_v2_template_catalog("fixed", cell_ids)
+    template_catalogs = {
+        family: (
+            fixed_catalog
+            if family == "fixed"
+            else literal_package_v2_template_catalog(family, ())
+        )
+        for family in families
+    }
+    footprint_binding = {
+        "token_id": "old:fixed:0",
+        "source_slot": None,
+        "source_members": ["fixture-source"],
+        "module_schema": None,
+        "occurrence": None,
+        "occurrence_slot": None,
+        "polarity": None,
+        "leaf": 1,
+        "label_schema": "fixture-label",
+    }
+    fixed_cells = []
+    for cell_id in cell_ids:
+        load_id = f"fixed|{cell_id}|old:fixed:0"
+        fixed_cells.append(
+            {
+                "cell_id": cell_id,
+                "load_count": 1,
+                "occurrence_load_count": 1,
+                "comparison_count": 84,
+                "odd_load_ids": [],
+                "value": 0,
+                "loads": [
+                    {
+                        "load_id": load_id,
+                        "old_token_id": "old:fixed:0",
+                        "coefficient": 1,
+                        "source_members": ["fixture-source"],
+                        "occurrence_footprint": 1,
+                        "footprint_bindings": [
+                            copy.deepcopy(footprint_binding)
+                        ],
+                        "histograms": [literal_package_v2_histogram()],
+                        "value": 0,
+                    }
+                ],
+            }
+        )
+    family_ledgers = {
+        family: {
+            "family": family,
+            "cells": fixed_cells if family == "fixed" else [],
+            "template_catalog": copy.deepcopy(template_catalogs[family]),
+            "summary": {
+                "load_rows": len(cell_ids) if family == "fixed" else 0,
+                "occurrence_loads": (
+                    len(cell_ids) if family == "fixed" else 0
+                ),
+                "comparisons": 84 * len(cell_ids) if family == "fixed" else 0,
+            },
+        }
+        for family in families
+    }
+    source_bindings = {
+        "format": "task4-source-bindings-v1",
+        "old": {"fixture": "old"},
+        "b": {"fixture": "b"},
+    }
+    reseal_source_bindings(source_bindings)
+    b_identity_table = [
+        {
+            "token_index": token_index,
+            "token_id": f"b:{token_index:02d}",
+            "source_class": "fixture-b",
+            "coefficient": 1,
+            "slot": 0,
+            "occurrence": 1,
+            "polarity": 1,
+            "module_schema": "fixture-module",
+            "label_schema": "fixture-label",
+            "source_members": [],
+        }
+        for token_index in range(84)
+    ]
+    b_identity_digest = hashlib.sha256(
+        json.dumps(
+            b_identity_table,
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("ascii")
+    ).hexdigest()
+    load_rows = {
+        family: len(cell_ids) if family == "fixed" else 0
+        for family in families
+    }
+    occurrence_loads = dict(load_rows)
+    template_counts = dict(load_rows)
+    summary = {
+        "load_rows": load_rows,
+        "total_load_rows": len(cell_ids),
+        "footprint_sizes": {
+            family: {"1": 1} if family == "fixed" else {}
+            for family in families
+        },
+        "occurrence_loads": occurrence_loads,
+        "total_occurrence_loads": len(cell_ids),
+        "b_tokens_per_occurrence": 84,
+        "active_comparisons": 84 * len(cell_ids),
+        "template_counts": template_counts,
+        "total_templates": len(cell_ids),
+    }
+    return {
+        "format": "period-two-old-new-cut-load-v1",
+        "domain": "fixture a>=0",
+        "status": (
+            "generated-awaiting-independent-replay"
+            if production
+            else "preflight-sample-not-a-certificate"
+        ),
+        "summary": summary,
+        "dependency_digests": {"fixture/source.json": "0" * 64},
+        "source_bindings": source_bindings,
+        "b_identity_table": b_identity_table,
+        "b_identity_digest": b_identity_digest,
+        "family_ledgers": family_ledgers,
+    }
+
+
+def test_package_v2_constants_and_tag_grammars_are_exact() -> None:
+    module = load_generator()
+
+    assert module.PACKAGE_V2_FORMAT == "period-two-old-new-cut-package-v2"
+    assert module.LOGICAL_V1_FORMAT == "period-two-old-new-cut-load-v1"
+    assert module.CANONICAL_LINE_ENCODING == "canonical-json-ascii-lines-v1"
+    assert module.MASK_ENCODING == "uint84-be11-base64url-nopad-v1"
+    assert module.FAMILY_ORDER == ("fixed", "base", "singleton", "P", "C", "Q")
+    assert module.SHARD_ORDER == (
+        "shared",
+        "fixed",
+        "base",
+        "singleton",
+        "P",
+        "C",
+        "Q",
+    )
+    assert module.ROOT_INDEX_FIELDS == PACKAGE_V2_ROOT_FIELDS
+    assert module.SHARD_DESCRIPTOR_FIELDS == PACKAGE_V2_DESCRIPTOR_FIELDS
+    assert module.SHARED_RECORD_FIELDS == PACKAGE_V2_SHARED_FIELDS
+    assert module.FAMILY_RECORD_FIELDS == PACKAGE_V2_FAMILY_FIELDS
+    assert {tag: len(fields) for tag, fields in module.SHARED_RECORD_FIELDS.items()} == {
+        "shared_header": 9,
+        "dependency": 3,
+        "source_bindings": 2,
+        "b_identity": 11,
+        "b_coordinate": 4,
+        "shared_footer": 4,
+    }
+    assert {tag: len(fields) for tag, fields in module.FAMILY_RECORD_FIELDS.items()} == {
+        "family_header": 14,
+        "old_load": 8,
+        "footprint": 9,
+        "bucket_class": 11,
+        "load": 5,
+        "cell_footer": 7,
+        "template_header": 10,
+        "template_schema": 5,
+        "template_cell": 6,
+        "template_witness": 5,
+        "template_identity_chunk": 3,
+        "template_footer": 4,
+        "family_footer": 8,
+    }
+    assert module.COMPARISON_METHODS == (
+        None,
+        "strict_affine_length",
+        "identical_pumped_blocks",
+        "fixed_mismatch_after_pumped_prefix",
+    )
+    assert module.CHRONOLOGIES == (
+        "fixed_vs_correction_literal_leaf_order",
+        "distinct_occurrences_literal_AST_order",
+        "equal_coordinate_excluded",
+        "same_occurrence_increasing",
+        "same_occurrence_decreasing",
+    )
+    assert module.TEMPLATE_FIELD_ORDERS == TEMPLATE_FIELD_ORDERS
+    assert module.PACKAGE_BYTE_CAP == 100_000_000
+    assert module.MAX_CANONICAL_LINE_BYTES == 16_777_216
+
+
+def test_package_v2_generator_and_verifier_literals_agree() -> None:
+    generator = load_generator()
+    verifier = load_package_v2_verifier()
+
+    for name, expected in {
+        "PACKAGE_V2_FORMAT": "period-two-old-new-cut-package-v2",
+        "LOGICAL_V1_FORMAT": "period-two-old-new-cut-load-v1",
+        "CANONICAL_LINE_ENCODING": "canonical-json-ascii-lines-v1",
+        "MASK_ENCODING": "uint84-be11-base64url-nopad-v1",
+        "FAMILY_ORDER": ("fixed", "base", "singleton", "P", "C", "Q"),
+        "SHARD_ORDER": (
+            "shared",
+            "fixed",
+            "base",
+            "singleton",
+            "P",
+            "C",
+            "Q",
+        ),
+        "ROOT_INDEX_FIELDS": PACKAGE_V2_ROOT_FIELDS,
+        "SHARD_DESCRIPTOR_FIELDS": PACKAGE_V2_DESCRIPTOR_FIELDS,
+        "SHARED_RECORD_FIELDS": PACKAGE_V2_SHARED_FIELDS,
+        "FAMILY_RECORD_FIELDS": PACKAGE_V2_FAMILY_FIELDS,
+    }.items():
+        assert getattr(generator, name) == expected
+        assert getattr(verifier, name) == expected
+    assert generator.pack_mask is not verifier.pack_mask
+    assert generator.iter_canonical_json_lines is not verifier.iter_canonical_json_lines
+    assert "period_two_old_new_cut_load_certificate" not in verifier.__dict__
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_masks_round_trip_and_reject_malformed_tokens(
+    module_loader,
+) -> None:
+    module = module_loader()
+    assert module.pack_mask(0) == "AAAAAAAAAAAAAAA"
+    assert module.pack_mask(1) == "AAAAAAAAAAAAAAE"
+    assert module.pack_mask(1 << 83) == "CAAAAAAAAAAAAAA"
+    assert module.pack_mask((1 << 84) - 1) == "D_____________8"
+    for mask in (0, 1, 2, 1 << 83, (1 << 84) - 1):
+        assert module.unpack_mask(module.pack_mask(mask)) == mask
+    for invalid in (
+        "AAAAAAAAAAAAAA",
+        "AAAAAAAAAAAAAA=",
+        "AAAAAAAAAAAAAA!",
+        "EAAAAAAAAAAAAAA",
+        "AAAAAAAAAAAAAAB",
+    ):
+        with pytest.raises(module.WireFormatError):
+            module.unpack_mask(invalid)
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_histogram_masks_cover_token_bits_without_reversal(
+    module_loader,
+) -> None:
+    module = module_loader()
+    low = module.pack_mask(1)
+    rest = module.pack_mask(((1 << 84) - 1) ^ 1)
+    assert module.validate_mask_partition((low, rest)) == (1 << 84) - 1
+    assert module.unpack_mask(low) == 1
+    assert module.unpack_mask(module.pack_mask(1 << 83)) == 1 << 83
+    with pytest.raises(module.WireFormatError):
+        module.validate_mask_partition((low, low, rest))
+    with pytest.raises(module.WireFormatError):
+        module.validate_mask_partition((rest,))
+    with pytest.raises(module.WireFormatError):
+        module.validate_mask_partition((module.pack_mask(0), module.pack_mask((1 << 84) - 1)))
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_canonical_decoder_rejects_noncanonical_lines(
+    module_loader,
+) -> None:
+    module = module_loader()
+    record = ["dependency", "fixture/source.json", "0" * 64]
+    encoded = module.canonical_json_line(record)
+    assert list(module.iter_canonical_json_lines(io.BytesIO(encoded))) == [record]
+    invalid_lines = (
+        b'["source_bindings",{"a":1,"a":2}]\n',
+        b"[1.0]\n",
+        b"[NaN]\n",
+        b"[Infinity]\n",
+        b"[-0]\n",
+        b"[1, 2]\n",
+        b"[1]\r\n",
+        b"\n",
+        b"[1]",
+        b"\xff\n",
+    )
+    for payload in invalid_lines:
+        with pytest.raises(module.WireFormatError):
+            tuple(module.iter_canonical_json_lines(io.BytesIO(payload)))
+    with pytest.raises(module.WireFormatError):
+        tuple(
+            module.iter_canonical_json_lines(
+                io.BytesIO(b'["123456789"]\n'), max_line_bytes=8
+            )
+        )
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_tag_decoders_reject_width_field_and_order_mutations(
+    module_loader,
+) -> None:
+    module = module_loader()
+    logical = literal_package_v2_logical_fixture()
+    encoded = load_generator().encode_tiny_v2_package(logical)
+    shared = [list(record) for record in encoded.shard_records["shared"]]
+    assert module.decode_shared_records(
+        io.BytesIO(b"".join(module.canonical_json_line(row) for row in shared))
+    )["records"] == tuple(tuple(row) for row in shared)
+
+    mutations = []
+    unknown = copy.deepcopy(shared)
+    unknown[1][0] = "unknown"
+    mutations.append(unknown)
+    wrong_width = copy.deepcopy(shared)
+    wrong_width[0].pop()
+    mutations.append(wrong_width)
+    wrong_order = copy.deepcopy(shared)
+    wrong_order[0], wrong_order[1] = wrong_order[1], wrong_order[0]
+    mutations.append(wrong_order)
+    trailing = copy.deepcopy(shared)
+    trailing.append(["dependency", "later", "0" * 64])
+    mutations.append(trailing)
+    for rows in mutations:
+        with pytest.raises(module.WireFormatError):
+            module.decode_shared_records(
+                io.BytesIO(
+                    b"".join(module.canonical_json_line(row) for row in rows)
+                )
+            )
+
+
+@pytest.mark.parametrize("module_loader", (load_generator, load_package_v2_verifier))
+def test_package_v2_source_and_compact_cell_indices_are_distinct_strict_ints(
+    module_loader,
+) -> None:
+    module = module_loader()
+    logical = literal_package_v2_logical_fixture(two_cells=True)
+    encoded = load_generator().encode_tiny_v2_package(logical)
+    fixed = [list(record) for record in encoded.shard_records["fixed"]]
+    footers = [record for record in fixed if record[0] == "cell_footer"]
+    assert [(row[1], row[2], row[3]) for row in footers] == [
+        (0, 1, "z-cell"),
+        (1, 0, "a-cell"),
+    ]
+    mutated = copy.deepcopy(fixed)
+    next(row for row in mutated if row[0] == "cell_footer")[1] = True
+    with pytest.raises(module.WireFormatError):
+        module.decode_family_records(
+            io.BytesIO(
+                b"".join(module.canonical_json_line(row) for row in mutated)
+            ),
+            expected_family="fixed",
+            scope="preflight-sample",
+        )
+
+
+def test_package_v2_tiny_logical_v1_round_trip() -> None:
+    generator = load_generator()
+    verifier = load_package_v2_verifier()
+    logical = literal_package_v2_logical_fixture()
+
+    encoded = generator.encode_tiny_v2_package(logical)
+    assert verifier.decode_v2_package(
+        encoded.index_bytes, encoded.objects
+    ) == logical
+    assert len(encoded.index["shards"]) == 7
+    assert [descriptor["family"] for descriptor in encoded.index["shards"]] == [
+        None,
+        "fixed",
+        "base",
+        "singleton",
+        "P",
+        "C",
+        "Q",
+    ]
+    for descriptor in encoded.index["shards"]:
+        expected_tags = (
+            PACKAGE_V2_SHARED_FIELDS
+            if descriptor["family"] is None
+            else PACKAGE_V2_FAMILY_FIELDS
+        )
+        assert set(descriptor["record_counts"]) == set(expected_tags)
+        assert sum(descriptor["record_counts"].values()) == descriptor["record_count"]
+
+
+def test_package_v2_content_addresses_and_rejects_reuse_mismatch(
+    tmp_path,
+) -> None:
+    generator = load_generator()
+    verifier = load_package_v2_verifier()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    index_path = tmp_path / "index.json"
+    result = generator.publish_v2_package(encoded, index_path)
+    assert result.state == "COMMITTED"
+    assert len(result.created_objects) == 7
+    assert result.reused_objects == ()
+    assert verifier.verify_v2_package(index_path) == (
+        literal_package_v2_logical_fixture()
+    )
+    for descriptor in encoded.index["shards"]:
+        object_path = tmp_path / descriptor["path"]
+        payload = object_path.read_bytes()
+        assert len(payload) == descriptor["total_bytes"]
+        assert hashlib.sha256(payload).hexdigest() == descriptor["sha256"]
+        assert descriptor["path"] == f"objects/{descriptor['sha256']}.jsonl"
+
+    replay = generator.publish_v2_package(encoded, index_path)
+    assert replay.created_objects == ()
+    assert len(replay.reused_objects) == 7
+
+    mismatch_root = tmp_path / "mismatch"
+    mismatch_index = mismatch_root / "index.json"
+    descriptor = encoded.index["shards"][0]
+    mismatch_object = mismatch_root / descriptor["path"]
+    mismatch_object.parent.mkdir(parents=True)
+    mismatch_object.write_bytes(b"not-the-content-addressed-object\n")
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(encoded, mismatch_index)
+    assert error.value.state == "PREPARED"
+    assert mismatch_object.read_bytes() == b"not-the-content-addressed-object\n"
+    assert not mismatch_index.exists()
+
+
+@pytest.mark.parametrize(
+    "failure_stage",
+    (
+        "object_temp_fsynced",
+        "object_replaced",
+        "objects_dir_fsynced",
+        "index_temp_fsynced",
+        "before_index_replace",
+    ),
+)
+def test_package_v2_prepared_failures_preserve_prior_index_and_clean(
+    tmp_path, failure_stage
+) -> None:
+    generator = load_generator()
+    encoded = generator.encode_tiny_v2_package(
+        literal_package_v2_logical_fixture()
+    )
+    attempt_root = tmp_path / failure_stage
+    index_path = attempt_root / "index.json"
+    index_path.parent.mkdir(parents=True)
+    prior = b'{"prior":true}\n'
+    index_path.write_bytes(prior)
+
+    def fail(stage, _detail):
+        if stage == failure_stage:
+            raise RuntimeError(failure_stage)
+
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(
+            encoded, index_path, failure_injector=fail
+        )
+    assert error.value.state == "PREPARED"
+    assert error.value.stage == failure_stage
+    assert index_path.read_bytes() == prior
+    objects = attempt_root / "objects"
+    assert not objects.exists() or not tuple(objects.iterdir())
+    assert not tuple(attempt_root.rglob("*.tmp"))
+
+
+@pytest.mark.parametrize(
+    "failure_stage", ("index_replaced", "index_dir_fsynced")
+)
+def test_package_v2_committed_failures_leave_complete_package(
+    tmp_path, failure_stage
+) -> None:
+    generator = load_generator()
+    verifier = load_package_v2_verifier()
+    logical = literal_package_v2_logical_fixture()
+    encoded = generator.encode_tiny_v2_package(logical)
+    attempt_root = tmp_path / failure_stage
+    index_path = attempt_root / "index.json"
+
+    def fail(stage, _detail):
+        if stage == failure_stage:
+            raise RuntimeError(failure_stage)
+
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(
+            encoded, index_path, failure_injector=fail
+        )
+    assert error.value.state == "COMMITTED"
+    assert error.value.stage == failure_stage
+    assert verifier.verify_v2_package(index_path) == logical
+    assert not tuple(attempt_root.rglob("*.tmp"))
+    assert not (attempt_root / "attestation.json").exists()
+    assert not (attempt_root / "receipt.json").exists()
+
+
+def test_package_v2_cap_blocks_production_index_replacement(tmp_path) -> None:
+    generator = load_generator()
+    logical = literal_package_v2_logical_fixture(production=True)
+    encoded = generator.encode_tiny_v2_package(
+        logical, scope="production-full"
+    )
+    index_path = tmp_path / "index.json"
+    prior = b'{"prior":true}\n'
+    index_path.write_bytes(prior)
+    with pytest.raises(generator.PublicationFailure) as error:
+        generator.publish_v2_package(encoded, index_path, package_cap=1)
+    assert error.value.state == "PREPARED"
+    assert error.value.stage == "before_index_replace"
+    assert index_path.read_bytes() == prior
+    objects = tmp_path / "objects"
+    assert not objects.exists() or not tuple(objects.iterdir())
+
+
+def test_package_v2_metrics_do_not_change_package_bytes() -> None:
+    generator = load_generator()
+    logical = literal_package_v2_logical_fixture()
+    plain = generator.encode_tiny_v2_package(logical)
+    metrics = generator.PhaseMetrics(enabled=True)
+    instrumented = generator.encode_tiny_v2_package(
+        logical, metrics=metrics
+    )
+
+    assert instrumented.index_bytes == plain.index_bytes
+    assert instrumented.objects == plain.objects
+    snapshot = metrics.snapshot()
+    assert set(snapshot) == {"format", "stages", "record_counts", "byte_counts"}
+    assert set(snapshot["stages"]) == set(generator.METRIC_STAGES)
+    assert set(snapshot["record_counts"]) == set(generator.METRIC_TAGS)
+    assert set(snapshot["byte_counts"]) == set(generator.METRIC_TAGS)
+    assert all(isinstance(value, float) and value >= 0 for value in snapshot["stages"].values())
+    assert all(isinstance(value, int) and value >= 0 for value in snapshot["record_counts"].values())
+    assert all(isinstance(value, int) and value >= 0 for value in snapshot["byte_counts"].values())
+    forbidden = {"command", "pid", "timestamp", "secret", "payload"}
+    assert forbidden.isdisjoint(snapshot)
