@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-30 Preserve legacy decoding when reserving a verifier API
+
+- [TRAP] Task 3 correctly changed `verify_v2_package` to require a run ID and generation projection, but three package-foundation regressions still used its retired one-argument decoding behavior; the focused Task 3 selector did not expose that cross-task break.
+- [WORKS] Keep path-only logical decoding under the explicit `decode_v2_package_path` name and reserve `verify_v2_package` for independent replay. At every API transition, run the relevant legacy caller selector once before checkpointing.
+
 ### 2026-07-30 Separate projection arithmetic from authenticated census ownership
 
 - [TRAP] `project_verification(...)` has no package, descriptor, or validated generation-projection input, so treating its caller-supplied charge denominators as independently authenticated made the resource gate appear stronger than its API could establish.

@@ -2087,7 +2087,7 @@ def decode_v2_package(
     return _decode_package_from_root(root, supply)
 
 
-def _decode_v2_package_path(index_path: Path) -> dict[str, Any]:
+def decode_v2_package_path(index_path: Path) -> dict[str, Any]:
     target = Path(index_path).resolve()
     with target.open("rb") as handle:
         root = decode_root_index(handle)

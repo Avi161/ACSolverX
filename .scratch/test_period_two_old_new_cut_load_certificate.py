@@ -3302,7 +3302,7 @@ def test_package_v2_content_addresses_and_rejects_reuse_mismatch(
     assert result.state == "COMMITTED"
     assert len(result.created_objects) == 7
     assert result.reused_objects == ()
-    assert verifier.verify_v2_package(index_path) == (
+    assert verifier.decode_v2_package_path(index_path) == (
         literal_package_v2_logical_fixture()
     )
     for descriptor in encoded.index["shards"]:
@@ -3561,7 +3561,7 @@ def test_package_v2_committed_failures_leave_complete_package(
         )
     assert error.value.state == "COMMITTED"
     assert error.value.stage == failure_stage
-    assert verifier.verify_v2_package(index_path) == logical
+    assert verifier.decode_v2_package_path(index_path) == logical
     assert not tuple(attempt_root.rglob("*.tmp"))
     assert not (attempt_root / "attestation.json").exists()
     assert not (attempt_root / "receipt.json").exists()
