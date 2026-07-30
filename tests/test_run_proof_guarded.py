@@ -8,7 +8,7 @@ import signal
 import subprocess
 import sys
 import time
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import FrozenInstanceError
 from pathlib import Path
 
@@ -28,6 +28,16 @@ THREAD_ENV = (
     "VECLIB_MAXIMUM_THREADS",
     "NUMEXPR_NUM_THREADS",
 )
+
+
+class _FlushRecordingStream(io.StringIO):
+    def __init__(self) -> None:
+        super().__init__()
+        self.flush_count = 0
+
+    def flush(self) -> None:
+        self.flush_count += 1
+        super().flush()
 
 
 def runner_command(*command: str, timeout: float = 2.0, grace: float = 0.1) -> list[str]:
@@ -1124,20 +1134,67 @@ def test_bounded_thermal_probe_uses_fixed_internal_mode_and_parses_enum(
     ]
 
 
+def test_thermal_probe_rejects_success_exactly_at_deadline(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = _FakeClock()
+    standard_output = io.StringIO()
+    standard_error = _FlushRecordingStream()
+    communicate_timeouts: list[float] = []
+
+    class SyntheticProbe:
+        pid = 910_001
+        returncode = 0
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            communicate_timeouts.append(timeout)
+            clock.now += timeout
+            return "0\n", ""
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticProbe(),
+    )
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: False)
+
+    with redirect_stdout(standard_output), redirect_stderr(standard_error):
+        with pytest.raises(RuntimeError, match="thermal probe deadline exceeded"):
+            proof_guard.read_bounded_macos_thermal_state(
+                deadline=0.5,
+                clock=clock.monotonic,
+            )
+
+    assert communicate_timeouts == [0.5]
+    assert clock.now == 0.5
+    assert standard_output.getvalue() == ""
+    assert standard_error.getvalue() == (
+        "proof guard safety transition: thermal probe deadline reached\n"
+    )
+    assert standard_error.flush_count == 1
+
+
 def test_thermal_probe_timeout_terminates_then_kills_exact_helper_group(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     clock = _FakeClock()
-    process_group_id = 910_001
+    process_group_id = 910_002
     group_alive = True
     killpg_calls: list[tuple[int, int]] = []
+    transition_before_cleanup: list[tuple[str, int]] = []
+    standard_output = io.StringIO()
+    standard_error = _FlushRecordingStream()
 
     class SyntheticProbe:
         pid = process_group_id
         returncode: int | None = None
 
         def communicate(self, timeout: float) -> tuple[str, str]:
-            raise subprocess.TimeoutExpired("thermal probe", timeout)
+            clock.now += timeout
+            raise subprocess.TimeoutExpired(
+                f"thermal-probe-{process_group_id}",
+                timeout,
+            )
 
         def poll(self) -> None:
             return None
@@ -1149,6 +1206,9 @@ def test_thermal_probe_timeout_terminates_then_kills_exact_helper_group(
     def killpg(target_group_id: int, signum: int) -> None:
         nonlocal group_alive
         killpg_calls.append((target_group_id, signum))
+        transition_before_cleanup.append(
+            (standard_error.getvalue(), standard_error.flush_count)
+        )
         if signum == signal.SIGKILL:
             group_alive = False
 
@@ -1166,17 +1226,96 @@ def test_thermal_probe_timeout_terminates_then_kills_exact_helper_group(
         lambda seconds: setattr(clock, "now", clock.now + seconds),
     )
 
-    with pytest.raises(RuntimeError, match="thermal probe timed out"):
-        proof_guard.read_bounded_macos_thermal_state(
-            deadline=0.5,
-            clock=clock.monotonic,
-        )
+    with redirect_stdout(standard_output), redirect_stderr(standard_error):
+        with pytest.raises(RuntimeError, match="thermal probe timed out") as exc_info:
+            proof_guard.read_bounded_macos_thermal_state(
+                deadline=0.5,
+                clock=clock.monotonic,
+            )
 
+    transition = "proof guard safety transition: thermal probe deadline reached\n"
     assert killpg_calls == [
         (process_group_id, signal.SIGTERM),
         (process_group_id, signal.SIGKILL),
     ]
+    assert transition_before_cleanup == [(transition, 1), (transition, 1)]
+    assert clock.now >= 0.5
     assert group_alive is False
+    assert standard_output.getvalue() == ""
+    assert standard_error.getvalue() == transition
+    assert str(process_group_id) not in standard_output.getvalue()
+    assert str(process_group_id) not in standard_error.getvalue()
+    assert str(process_group_id) not in str(exc_info.value)
+
+
+def test_thermal_probe_cleanup_failure_is_silent_and_pid_free(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = _FakeClock()
+    process_group_id = 987_654_321
+    killpg_calls: list[tuple[int, int]] = []
+    transition_before_cleanup: list[tuple[str, int]] = []
+    standard_output = io.StringIO()
+    standard_error = _FlushRecordingStream()
+
+    class SyntheticProbe:
+        pid = process_group_id
+        returncode: int | None = None
+
+        def communicate(self, timeout: float) -> tuple[str, str]:
+            clock.now += timeout
+            raise subprocess.TimeoutExpired(
+                f"thermal-probe-{process_group_id}",
+                timeout,
+            )
+
+        def poll(self) -> None:
+            return None
+
+        def wait(self, timeout: float | None = None) -> int:
+            raise subprocess.TimeoutExpired(
+                f"thermal-cleanup-{process_group_id}",
+                timeout,
+            )
+
+    def killpg(target_group_id: int, signum: int) -> None:
+        killpg_calls.append((target_group_id, signum))
+        transition_before_cleanup.append(
+            (standard_error.getvalue(), standard_error.flush_count)
+        )
+
+    monkeypatch.setattr(
+        proof_guard.subprocess,
+        "Popen",
+        lambda *_args, **_kwargs: SyntheticProbe(),
+    )
+    monkeypatch.setattr(proof_guard.os, "killpg", killpg)
+    monkeypatch.setattr(proof_guard, "group_exists", lambda _pgid: True)
+    monkeypatch.setattr(proof_guard.time, "monotonic", clock.monotonic)
+    monkeypatch.setattr(
+        proof_guard.time,
+        "sleep",
+        lambda seconds: setattr(clock, "now", clock.now + seconds),
+    )
+
+    with redirect_stdout(standard_output), redirect_stderr(standard_error):
+        with pytest.raises(RuntimeError, match="thermal probe cleanup failed") as exc_info:
+            proof_guard.read_bounded_macos_thermal_state(
+                deadline=0.5,
+                clock=clock.monotonic,
+            )
+
+    transition = "proof guard safety transition: thermal probe deadline reached\n"
+    assert killpg_calls == [
+        (process_group_id, signal.SIGTERM),
+        (process_group_id, signal.SIGKILL),
+    ]
+    assert transition_before_cleanup == [(transition, 1), (transition, 1)]
+    assert standard_output.getvalue() == ""
+    assert standard_error.getvalue() == transition
+    assert str(process_group_id) not in standard_output.getvalue()
+    assert str(process_group_id) not in standard_error.getvalue()
+    assert str(process_group_id) not in str(exc_info.value)
 
 
 def test_process_reader_requests_only_non_sensitive_fields(

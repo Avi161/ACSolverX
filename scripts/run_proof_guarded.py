@@ -35,6 +35,9 @@ SAFETY_SAMPLE_SECONDS = 1.0
 DEFAULT_PROCESS_SAMPLE_TIMEOUT_SECONDS = 2.0
 THERMAL_PROBE_GRACE_SECONDS = 0.1
 INTERNAL_THERMAL_PROBE_FLAG = "--internal-thermal-probe"
+THERMAL_PROBE_DEADLINE_TRANSITION = (
+    "proof guard safety transition: thermal probe deadline reached"
+)
 MAX_GROUP_CPU_PERCENT = 125.0
 MAX_CONSECUTIVE_HIGH_CPU_SAMPLES = 3
 MAX_PROGRESS_LINES_PER_LOOP = int(
@@ -242,6 +245,37 @@ def _run_internal_thermal_probe() -> int:
     return 0
 
 
+def _clean_thermal_probe_group_silently(
+    probe: subprocess.Popen[str],
+) -> bool:
+    try:
+        if not group_exists(probe.pid):
+            return True
+        terminate_group(probe, THERMAL_PROBE_GRACE_SECONDS)
+        return not group_exists(probe.pid)
+    except (GuardSignal, KeyboardInterrupt):
+        raise
+    except BaseException:
+        return False
+
+
+def _raise_thermal_probe_failure(
+    probe: subprocess.Popen[str],
+    message: str,
+    *,
+    deadline_transition: bool = False,
+) -> None:
+    if deadline_transition:
+        print(
+            THERMAL_PROBE_DEADLINE_TRANSITION,
+            file=sys.stderr,
+            flush=True,
+        )
+    if not _clean_thermal_probe_group_silently(probe):
+        raise RuntimeError("thermal probe cleanup failed") from None
+    raise RuntimeError(message) from None
+
+
 def read_bounded_macos_thermal_state(
     deadline: float,
     clock: Callable[[], float] | None = None,
@@ -250,7 +284,12 @@ def read_bounded_macos_thermal_state(
         clock = time.monotonic
     remaining_seconds = deadline - clock()
     if remaining_seconds <= 0:
-        raise RuntimeError("no time remains for thermal sampling")
+        print(
+            THERMAL_PROBE_DEADLINE_TRANSITION,
+            file=sys.stderr,
+            flush=True,
+        )
+        raise RuntimeError("thermal probe deadline exceeded")
 
     try:
         probe = subprocess.Popen(
@@ -266,30 +305,51 @@ def read_bounded_macos_thermal_state(
     except OSError as exc:
         raise RuntimeError(f"could not start thermal probe: {exc.strerror}") from exc
 
+    remaining_seconds = deadline - clock()
+    if remaining_seconds <= 0:
+        _raise_thermal_probe_failure(
+            probe,
+            "thermal probe deadline exceeded",
+            deadline_transition=True,
+        )
     try:
-        remaining_seconds = deadline - clock()
-        if remaining_seconds <= 0:
-            raise RuntimeError("thermal probe deadline expired during startup")
-        try:
-            stdout, _stderr = probe.communicate(timeout=remaining_seconds)
-        except subprocess.TimeoutExpired as exc:
-            if not _clean_exact_group(probe, THERMAL_PROBE_GRACE_SECONDS):
-                raise RuntimeError("thermal probe cleanup failed") from exc
-            raise RuntimeError("thermal probe timed out") from exc
-
-        if group_exists(probe.pid):
-            _clean_exact_group(probe, THERMAL_PROBE_GRACE_SECONDS)
-            raise RuntimeError("thermal probe left its process group alive")
-        if probe.returncode != 0:
-            raise RuntimeError("thermal probe failed")
-        value = stdout.strip()
-        if value not in {"0", "1", "2", "3"}:
-            raise RuntimeError("thermal probe returned an invalid state")
-        return int(value)
-    except BaseException:
-        if group_exists(probe.pid):
-            _clean_exact_group(probe, THERMAL_PROBE_GRACE_SECONDS)
+        stdout, _stderr = probe.communicate(timeout=remaining_seconds)
+    except subprocess.TimeoutExpired:
+        _raise_thermal_probe_failure(
+            probe,
+            "thermal probe timed out",
+            deadline_transition=True,
+        )
+    except (GuardSignal, KeyboardInterrupt):
+        _clean_thermal_probe_group_silently(probe)
         raise
+    except BaseException:
+        _raise_thermal_probe_failure(probe, "thermal probe failed")
+
+    if clock() >= deadline:
+        _raise_thermal_probe_failure(
+            probe,
+            "thermal probe deadline exceeded",
+            deadline_transition=True,
+        )
+
+    try:
+        group_alive = group_exists(probe.pid)
+    except (GuardSignal, KeyboardInterrupt):
+        _clean_thermal_probe_group_silently(probe)
+        raise
+    except BaseException:
+        _raise_thermal_probe_failure(probe, "thermal probe failed")
+    if group_alive:
+        if not _clean_thermal_probe_group_silently(probe):
+            raise RuntimeError("thermal probe cleanup failed") from None
+        raise RuntimeError("thermal probe left its process group alive")
+    if probe.returncode != 0:
+        raise RuntimeError("thermal probe failed")
+    value = stdout.strip()
+    if value not in {"0", "1", "2", "3"}:
+        raise RuntimeError("thermal probe returned an invalid state")
+    return int(value)
 
 
 def _read_process_table(timeout_seconds: float) -> tuple[ProcessInfo, ...]:
