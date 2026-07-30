@@ -5294,10 +5294,17 @@ def _generation_family_projection(
     sampled_identity_count = _generation_projection_int(
         value.sampled_identity_count, "sampled identity count"
     )
-    if not 0 < sampled_comparisons < full_comparisons:
-        raise CertificateFailure("comparison projection lacks dynamic range")
-    if not 0 < sampled_identity_count < full_identity_count:
-        raise CertificateFailure("identity projection lacks dynamic range")
+    if not 0 < sampled_comparisons <= full_comparisons:
+        raise CertificateFailure("comparison projection bounds differ")
+    if not 0 < sampled_identity_count <= full_identity_count:
+        raise CertificateFailure("identity projection bounds differ")
+    if (
+        sampled_identity_count == full_identity_count
+        and selected_schema_indices != tuple(range(full_schema_count))
+    ):
+        raise CertificateFailure(
+            "identity projection schema range is incomplete at ratio one"
+        )
     sampled_two_pass_ns = _generation_projection_int(
         value.sampled_two_pass_ns, "sampled two-pass nanoseconds"
     )
@@ -5382,6 +5389,13 @@ def _projected_family_record_counts(
         raise CertificateFailure("projected template census differs")
     footprint_sizes = full_summary["footprint_sizes"][projection.family]
     old_load_count = sum(footprint_sizes.values())
+    if (
+        projection.sampled_comparisons == projection.full_comparisons
+        and projection.selected_old_indices != tuple(range(old_load_count))
+    ):
+        raise CertificateFailure(
+            "comparison projection old range is incomplete at ratio one"
+        )
     footprint_count = sum(
         int(size) * count for size, count in footprint_sizes.items()
     )
@@ -5632,6 +5646,18 @@ def project_generation(
     projections = tuple(
         _generation_family_projection(by_family[family]) for family in FAMILY_ORDER
     )
+    if not any(
+        family.sampled_comparisons < family.full_comparisons
+        for family in projections
+    ):
+        raise CertificateFailure(
+            "global comparison projection lacks dynamic range"
+        )
+    if not any(
+        family.sampled_identity_count < family.full_identity_count
+        for family in projections
+    ):
+        raise CertificateFailure("global identity projection lacks dynamic range")
     projected_index_bytes = len(
         canonical_json_line(
             build_projected_index_oracle(

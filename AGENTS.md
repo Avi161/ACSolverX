@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-30 Bound correction-cycle latency across sessions
+
+- [TRAP] A docs-only verifier revision grew to roughly 900 changed lines and repeated optional self-review after the requested corrections were already present; broad Task 2 selectors had likewise been rerun during earlier finding-by-finding fixes. Both patterns made visible progress unnecessarily slow.
+- [WORKS] For each correction cycle, freeze one narrow advisor slice, run only tests that reproduce the open findings and immediate regressions, stop the reviser once the requested commit lands, and run the broad task/cross-task suites exactly once at the coherent checkpoint. If a second review repeats a resolved finding without new evidence, stop and re-plan instead of iterating mechanically.
+
 ### 2026-07-30 Validate projection semantics before hash binding
 
 - [TRAP] A canonical projection digest can bind internally consistent but wrongly derived totals, and treating sampled stream/hash/fragment/reference work as fixed hides unscaled verifier cost; a package/replay logical mismatch is an implementation disagreement, not a mathematical contradiction.

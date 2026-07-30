@@ -5078,8 +5078,25 @@ def _task2_fix2_projected_index_input(module, family_inputs, *, shared_bytes):
         occurrences = value.full_comparisons // module.TOKEN_COUNT
         assert occurrences % cell_count == 0
         footprints = occurrences // cell_count
-        load_rows[family] = cell_count
-        footprint_sizes[family] = {str(footprints): 1}
+        old_load_count = (
+            len(value.selected_old_indices)
+            if value.sampled_comparisons == value.full_comparisons
+            else 1
+        )
+        minimum_footprint, larger_footprint_count = divmod(
+            footprints, old_load_count
+        )
+        assert minimum_footprint > 0
+        load_rows[family] = old_load_count * cell_count
+        footprint_sizes[family] = {}
+        if old_load_count > larger_footprint_count:
+            footprint_sizes[family][str(minimum_footprint)] = (
+                old_load_count - larger_footprint_count
+            )
+        if larger_footprint_count:
+            footprint_sizes[family][str(minimum_footprint + 1)] = (
+                larger_footprint_count
+            )
         occurrence_loads[family] = occurrences
         template_counts[family] = value.full_identity_count
         witness_count = family_index + 1
@@ -5102,7 +5119,7 @@ def _task2_fix2_projected_index_input(module, family_inputs, *, shared_bytes):
         ) // value.sampled_comparisons
         family_record_counts[family] = {
             "family_header": 1,
-            "old_load": 1,
+            "old_load": old_load_count,
             "footprint": footprints,
             "bucket_class": value.projected_bucket_class_count,
             "load": projected_load_records,
@@ -5222,6 +5239,117 @@ def test_task2_fix1_projected_index_oracle_is_constructed_internally() -> None:
         families=family_inputs,
     )
     assert projection.projected_index_bytes == expected_bytes
+
+
+def test_task2_projection_allows_exact_fully_sampled_comparison_families() -> None:
+    module, baseline = _task2_projection_inputs()
+    values = tuple(
+        replace(value, sampled_comparisons=value.full_comparisons)
+        if value.family in {"base", "singleton"}
+        else value
+        for value in baseline
+    )
+    projection = module.project_generation(
+        source_catalog_precompute_ns=10,
+        shared_ns=20,
+        shared_bytes=100,
+        projected_index_ns=40,
+        projected_index_input=_task2_fix2_projected_index_input(
+            module,
+            values,
+            shared_bytes=100,
+        ),
+        families=values,
+    )
+    by_family = {value.family: value for value in projection.families}
+    for family in ("base", "singleton"):
+        assert by_family[family].projected_two_pass_ns == 0
+        assert by_family[family].projected_load_bucket_bytes == 0
+        assert by_family[family].projected_load_record_count == 1
+
+
+def test_task2_projection_rejects_incomplete_comparison_range_at_ratio_one() -> None:
+    module, baseline = _task2_projection_inputs()
+    values = (
+        replace(
+            baseline[0],
+            sampled_comparisons=baseline[0].full_comparisons,
+        ),
+        *baseline[1:],
+    )
+    with pytest.raises(module.CertificateFailure, match="old range is incomplete"):
+        module.project_generation(
+            source_catalog_precompute_ns=10,
+            shared_ns=20,
+            shared_bytes=100,
+            projected_index_ns=40,
+            projected_index_input=_task2_fix2_projected_index_input(
+                module,
+                baseline,
+                shared_bytes=100,
+            ),
+            families=values,
+        )
+
+
+def test_task2_projection_rejects_incomplete_identity_range_at_ratio_one() -> None:
+    module, baseline = _task2_projection_inputs()
+    values = (
+        replace(
+            baseline[0],
+            sampled_identity_count=baseline[0].full_identity_count,
+        ),
+        *baseline[1:],
+    )
+    with pytest.raises(module.CertificateFailure, match="schema range is incomplete"):
+        module.project_generation(
+            source_catalog_precompute_ns=10,
+            shared_ns=20,
+            shared_bytes=100,
+            projected_index_ns=40,
+            projected_index_input=_task2_fix2_projected_index_input(
+                module,
+                values,
+                shared_bytes=100,
+            ),
+            families=values,
+        )
+
+
+@pytest.mark.parametrize("dimension", ("comparison", "identity"))
+def test_task2_projection_requires_global_dynamic_range(dimension) -> None:
+    module, baseline = _task2_projection_inputs()
+    index_input = _task2_fix2_projected_index_input(
+        module,
+        baseline,
+        shared_bytes=100,
+    )
+    if dimension == "comparison":
+        values = tuple(
+            replace(value, sampled_comparisons=value.full_comparisons)
+            for value in baseline
+        )
+    else:
+        values = tuple(
+            replace(
+                value,
+                selected_schema_indices=tuple(range(value.full_schema_count)),
+                sampled_identity_count=value.full_identity_count,
+            )
+            for value in baseline
+        )
+    with pytest.raises(
+        module.CertificateFailure,
+        match=f"global {dimension} projection lacks dynamic range",
+    ):
+        module.project_generation(
+            source_catalog_precompute_ns=10,
+            shared_ns=20,
+            shared_bytes=100,
+            projected_index_ns=40,
+            projected_index_input=index_input,
+            families=values,
+        )
 
 
 def test_task2_fix2_projected_index_oracle_binds_derived_digit_widths() -> None:
