@@ -1779,3 +1779,8 @@
 
 - [TRAP] Ruff 0.16.0 suggested `int.bit_count()` for a Task 2 mutation fixture even though the generator/test contract remains Python 3.9-compatible.
 - [WORKS] Keep `bin(value).count("1")` at Python 3.9 popcount sites and add the narrow `# noqa: FURB161` suppression; accept unrelated safe Ruff simplifications such as `max(mapping)`.
+
+### 2026-07-30 Keep review fix rounds on focused selectors
+
+- [TRAP] Task 2 grew to 363 focused tests and its complete selector took about 25 seconds under a 30-second guard; repeatedly running that full gate during review fixes made progress slow and left little timeout margin.
+- [WORKS] During a review fix round, run only selectors that reproduce the open findings and their immediate regressions. Run the complete task selector once after the scoped re-review is clean, then run cross-task regressions once before checkpointing.
