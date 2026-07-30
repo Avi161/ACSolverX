@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-29 Measure the complete certificate path, not only compact catalogs
+
+- [TRAP] The compact template slice cleared its three-second projection, but the first changed full generator write still hit the 30-second guard after emitting a 371,878,372-byte test manifest; catalog overhead alone did not predict load-ledger serialization and file-write cost.
+- [WORKS] Treat slice timing as a catalog-only gate. After a full-path timeout, never rerun unchanged; add bounded phase/byte instrumentation on a materially changed code path, identify the dominant stage, and optimize that stage before another authoritative write.
+
 ### 2026-07-29 Validate orchestration object syntax before execution
 
 - [TRAP] A malformed JavaScript object property in a compound tool call caused the module to fail at parse time, so neither the planned status update nor the read-only repository check executed.
