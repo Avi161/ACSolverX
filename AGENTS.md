@@ -1729,3 +1729,8 @@
 
 - [TRAP] A bounded Task 2 plan-slice review was dispatched at `gpt-5.6-sol` ultra, spending theorem-grade review effort on a narrow design check.
 - [WORKS] Use a narrow `gpt-5.6-sol` xhigh APPROVE/REVISE/BLOCK review for one lemma or substantive plan slice; reserve ultra for final theorem claims, long-proof authorization, or unresolved xhigh soundness disagreements. Use `gpt-5.6-terra` high for mechanical/document checks, and cap independent theory at one constructor plus one falsifier.
+
+### 2026-07-30 Exclude a plan's own placeholder scan from its gate
+
+- [TRAP] A direct Task 2 placeholder search matched the literal `TODO|TBD|...` pattern inside the plan's own audit command and exited nonzero even though the executable plan contained no placeholder.
+- [WORKS] Run the plan's scoped `awk` exclusion before the placeholder regex, and accept absence only when that filtered search exits exactly one; never treat a self-matching audit command as a design defect.
