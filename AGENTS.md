@@ -1774,3 +1774,8 @@
 
 - [TRAP] After adding 84 identity and 84 coordinate mutations, the combined Task 2 selector repeatedly hashed the complete 1,304-schema catalog and hit the 30-second proof guard at 79%.
 - [WORKS] Bind exhaustive identity/coordinate rows with their own fixed digests and test those direct validators; reserve the full-catalog digest for entry-path enforcement, and never rerun an unchanged timed-out selector.
+
+### 2026-07-30 Preserve Python 3.9 popcount under modern Ruff
+
+- [TRAP] Ruff 0.16.0 suggested `int.bit_count()` for a Task 2 mutation fixture even though the generator/test contract remains Python 3.9-compatible.
+- [WORKS] Keep `bin(value).count("1")` at Python 3.9 popcount sites and add the narrow `# noqa: FURB161` suppression; accept unrelated safe Ruff simplifications such as `max(mapping)`.
