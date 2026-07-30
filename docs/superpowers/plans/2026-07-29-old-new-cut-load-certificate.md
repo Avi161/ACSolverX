@@ -199,8 +199,10 @@ Do not push and do not commit the ignored report.
   `docs/superpowers/specs/2026-07-29-old-new-cut-load-certificate-design.md`
   for the advisor-approved two-phase correction
 - Do not modify: verifier, promise ledger, proof guard, solver, notebook,
-  theorem memo, production package path, receipt file, attestation file, or
-  any `.superpowers` artifact during implementation
+  theorem memo, production package path, receipt file, attestation file,
+  or any `.superpowers` artifact other than the required ignored Task 2
+  implementer report and SDD ledger; update those artifacts but do not stage
+  or commit them.
 
 **Interfaces:**
 - Consumes: `load_source_context`, `build_task4_schema_catalog`, existing
@@ -342,6 +344,8 @@ def preflight_template_selection(
     family_catalog: Task4FamilyCatalog,
 ) -> tuple[tuple[int, ...], tuple[str, ...]]
 
+def ceil_ratio(x: int, numerator: int, denominator: int) -> int
+
 def project_generation(
     *,
     source_catalog_precompute_ns: int,
@@ -411,8 +415,10 @@ cold-precompute test spies on `load_source_context` and
 dependency rows, the full `task4-source-bindings-v1` value, token indices
 `0..83`, and 84 aligned coordinates.  The monkeypatch test replaces
 `build_manifest` with a function that raises `AssertionError`, then exercises
-every Task 2 adapter, iterator, projection calculation, stream writer, and
-receipt-payload constructor on bounded fixtures.
+`discover_family_generation`, `iter_shared_records`, `iter_family_records`,
+`write_jsonl_stream`, `preflight_template_selection`, `ceil_ratio`,
+`project_generation`, and `build_generation_receipt_payload` on bounded
+fixtures.
 
 - [ ] **Step 2: Run the first selector and record intended RED**
 
@@ -564,7 +570,8 @@ oracle with the actual root fields, projected descriptor counts/bytes, and
 `"0" * 64` in every digest position; require its canonical encoded length to
 equal `projected_index_bytes`.  Reject zero/equal/oversized denominators,
 booleans, floats, negative counts, missing families, incomplete tied-max IDs,
-and non-literal selected-old arrays.
+and `selected_old_indices` that do not exactly equal the prescribed tuple for
+their family.
 
 Patch `Path.write_text`, `Path.write_bytes`, `open`, `os.replace`, and receipt/
 attestation helpers to raise while calling
