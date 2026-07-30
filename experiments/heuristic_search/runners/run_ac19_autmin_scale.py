@@ -157,7 +157,9 @@ def run_ac19_autmin_scale(cfg, out_dir="results/hsearch", heartbeat_secs=60,
         cfg, budget, mrl, engine, keep_path)
     print(f"  {len(arms)} arms x {len(rows)} presentations, budget {budget:,}, "
           f"cap {mrl}  [JOB_ORDER=presentation]"
-          + ("  [low-memory: KEEP_PATH=False]" if not keep_path else "")
+          + ("  [KEEP_PATH=False; inert under hcompact — certs still recovered]"
+             if (not keep_path and engine == "hcompact") else
+             ("  [low-memory: KEEP_PATH=False]" if not keep_path else ""))
           + ("  [engine: hcompact]" if engine == "hcompact" else "")
           + (f"  [{n_workers} workers, ~{per_gb:.1f} GB/search]"
              if n_workers > 1 else ""), flush=True)
