@@ -1749,3 +1749,8 @@
 
 - [TRAP] Initial Task 2 mutation fixtures treated the `raw_family_rows` family-to-integer census as row lists, reversed coefficient arrays whose equal values made the mutation a no-op, and routed `b-identity-digest` through a broad `b-` source-proof branch.
 - [WORKS] Before invoking a fail-closed gate, assert the targeted value differs from the pristine fixture, mutate census scalars as scalars, make ordering mutations value-distinct, and dispatch exact mutation-ID sets before prefix-based categories.
+
+### 2026-07-30 Derive projection delta assertions term by term
+
+- [TRAP] A Task 2 fixed-charge regression changed precompute, shared, index, and family time by `+1`, `+2`, `+4`, and `+7` but asserted a `+10` total instead of the exact `+14` sum.
+- [WORKS] For projection delta tests, write the literal per-component difference beside the assertion and sum every changed fixed term independently; do not reuse an unstated mental subtotal.
