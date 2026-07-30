@@ -1769,3 +1769,8 @@
 
 - [TRAP] A Task 2 projected-index digit-width test changed a shard's `record_count` without changing its per-tag `record_counts`; the oracle correctly rejected the inconsistent census before the intended encoded-length assertion.
 - [WORKS] When mutating projected descriptor digit widths, update one literal tag count so `sum(record_counts.values()) == record_count` remains true and the test reaches only the length-sensitive boundary.
+
+### 2026-07-30 Route exhaustive row mutations through the cheapest digest gate
+
+- [TRAP] After adding 84 identity and 84 coordinate mutations, the combined Task 2 selector repeatedly hashed the complete 1,304-schema catalog and hit the 30-second proof guard at 79%.
+- [WORKS] Bind exhaustive identity/coordinate rows with their own fixed digests and test those direct validators; reserve the full-catalog digest for entry-path enforcement, and never rerun an unchanged timed-out selector.
