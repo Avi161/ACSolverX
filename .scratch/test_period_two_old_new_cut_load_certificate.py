@@ -599,6 +599,33 @@ def test_compact_v2_rejects_rehashed_nested_positional_mutations() -> None:
             module.validate_compact_template_catalog(mutated)
 
 
+def test_compact_v2_rejects_rehashed_wrong_terminal_value() -> None:
+    module = load_generator()
+    schema = module.Schema(
+        "fixed", ("a",), (("fixed", (2,), None),)
+    )
+    cells = module.make_cells(("a",))
+    catalog = module.build_compact_template_catalog(
+        "unit",
+        {schema.schema_id: schema},
+        cells,
+        {
+            (schema.schema_id, cell.cell_id): module.build_template(
+                schema, cell
+            )
+            for cell in cells
+        },
+    )
+    mutated = copy.deepcopy(catalog)
+    assert mutated["witness_table"] == [[2, False, []]]
+    mutated["witness_table"][0][0] = -2
+    mutated["witness_table"][0][1] = False
+    recompute_template_catalog_digests(mutated)
+
+    with pytest.raises(module.CertificateFailure):
+        module.validate_compact_template_catalog(mutated)
+
+
 def test_compact_slice_includes_all_tied_maximum_pump_schemas() -> None:
     module = load_generator()
     cells = module.make_cells(("a",))

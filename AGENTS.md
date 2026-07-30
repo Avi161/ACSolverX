@@ -25,6 +25,11 @@
 - [TRAP] Sampling only the first schema tied for maximum pump count can miss a differently sized witness interning case, and checking only outer table widths lets malformed nested positional records authenticate under recomputed hashes.
 - [WORKS] Sample every schema attaining each family maximum and validate every nested schema, cell, witness, and pump width/type/range before accepting any digest.
 
+### 2026-07-29 Recompute compact terminals from each identity
+
+- [TRAP] Type-checking a compact terminal and requiring only `deleted == (terminal == 1)` lets a fully rehashed but source-inconsistent terminal such as `-2` authenticate.
+- [WORKS] For every schema/cell identity, reuse `_tagged_reduced_word` and `_retained_word` to recompute the exact full terminal and deletion branch before accepting hashes.
+
 ### 2026-07-29 Full template record hashing exceeds the proof guard
 
 - [TRAP] Calling `Template.to_record()`, canonical JSON, and SHA-256 for all 48,252 schema/cell templates inside the 24-second grouped-ledger pass pushed the guarded generator beyond the hard 30-second limit.

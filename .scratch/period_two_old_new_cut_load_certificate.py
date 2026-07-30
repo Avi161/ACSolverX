@@ -2855,11 +2855,31 @@ def _validate_compact_identity_relationships(
     cell_count = len(cell_table)
     for identity_index, witness_id in enumerate(identity_witness_ids):
         schema_index, cell_index = divmod(identity_index, cell_count)
-        _, variables, blocks = schema_table[schema_index]
+        schema_id, variables, blocks = schema_table[schema_index]
         _, names, states, base_values = cell_table[cell_index]
         if variables != names:
             raise CertificateFailure("compact schema/cell variables differ")
         witness = witness_table[witness_id]
+        schema = Schema(
+            schema_id=schema_id,
+            variables=tuple(variables),
+            blocks=tuple(
+                (
+                    block_name,
+                    tuple(word),
+                    None if affine is None else tuple(affine),
+                )
+                for block_name, word, affine in blocks
+            ),
+        )
+        _, expected_terminal, expected_deleted = _retained_word(
+            _tagged_reduced_word(schema, tuple(base_values), 1), 1
+        )
+        if (
+            witness[0] != expected_terminal
+            or witness[1] is not expected_deleted
+        ):
+            raise CertificateFailure("compact witness terminal differs")
         pumps = witness[2]
         expected_pumps = {}
         for block_index, (_, _, affine) in enumerate(blocks):
