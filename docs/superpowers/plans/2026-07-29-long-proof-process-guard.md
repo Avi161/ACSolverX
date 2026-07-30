@@ -4,7 +4,7 @@
 
 **Goal:** Add a fail-closed, opt-in two-phase guard for one foreground AK(3) proof experiment lasting at most ten minutes.
 
-**Architecture:** Preserve the existing short runner and singleton lock, then add one long-run coordinator that executes an identical command first as a short preflight and then as the bounded experiment under the same lock. A standard-library safety monitor checks the controller, descendant escapes, and whole exact-group CPU from a safe-field process table; a bounded internal helper reads macOS thermal state. Every failure cleans only the exact active phase group, with separate exact-group cleanup for the helper itself.
+**Architecture:** Preserve the existing short runner and singleton lock, then add one long-run coordinator that executes an identical command first as a short preflight and then as the bounded experiment under the same lock. A standard-library safety monitor checks the captured direct OS launcher, guard coordinator, phase leader, descendant escapes, and whole exact-group CPU from a safe-field process table; a bounded internal helper reads macOS thermal state. Every failure cleans only the exact active phase group, with separate exact-group cleanup for the helper itself.
 
 **Tech Stack:** Python 3.9 standard library, pytest, POSIX process groups, macOS Foundation through `ctypes`.
 
@@ -12,17 +12,39 @@
 
 - Work only in `/Users/avigyapaudel/Documents/Obsidian Vault/surf/ACSolverX/.claude/worktrees/codex-proofs`.
 - Do not stage or modify the paused Task 5 files `.scratch/period_two_old_new_cut_load_certificate.py` and `.scratch/test_period_two_old_new_cut_load_certificate.py`.
-- Short mode stays at a 30-second default and a 60-second maximum.
+- Every computational proof, checker, census, test, or search uses the guard as
+  the single foreground computation. Short mode stays at a 30-second default
+  and a 60-second maximum, and an unchanged timed-out command is never rerun.
 - Long mode requires `60 < --timeout-seconds <= 600` and a successful identical-command preflight with `0 < --preflight-seconds <= 60`.
 - Execute the exact same command arguments in both phases under one lock.
-- Permit exactly one experiment, foreground only, with one numerical CPU thread; only the root/controller may launch it.
+- Permit exactly one experiment, foreground only, with one numerical CPU thread;
+  only the procedural root Codex launcher may launch it. Distinguish that
+  authorization from the captured direct OS launcher PID, guard coordinator,
+  and current phase leader. Verify their direct OS parent chain before preflight
+  and during phases without claiming that it cryptographically proves Codex
+  identity.
 - Send `SIGTERM` first; use `SIGKILL` only if the exact child group survives the grace period.
 - Never signal the controlling shell, Codex/ChatGPT, terminal, application infrastructure, or an escaped ambiguous PID.
-- Require `1 <= --progress-seconds <= 60` and emit flushed progress without exposing commands, arguments, or environment values; the controller must update the user within every 60-second window.
-- Request only PID, PPID, PGID, CPU percentage, state, and executable name from `ps`; evaluate CPU across the whole exact PGID and detect controller loss, phase-leader reparenting, and descendant escapes.
-- Run Foundation only in a fixed-argument internal helper under one absolute thermal-plus-`ps` deadline; emit a sanitized deadline transition and clean the helper's exact group with `SIGTERM` then `SIGKILL` only if needed.
-- Never interpret timeout or nonzero completion as evidence against AC or stable AC.
-- Never rerun an unchanged timed-out experiment; perform the post-run group, lock, and stale-process audit, then commit, bind the push log, and push the bounded result.
+- Require `1 <= --progress-seconds <= 60` and emit flushed progress without exposing commands, arguments, or environment values; the procedural root Codex launcher must update the user within every 60-second window.
+- Request only PID, PPID, PGID, CPU percentage, state, and executable name from `ps`; evaluate CPU across the whole exact PGID and detect captured-launcher/coordinator loss or reparenting, phase-leader loss or reparenting, and descendant escapes.
+- Run Foundation only in a fixed-argument internal helper under one absolute thermal-plus-`ps` deadline; emit the fixed, PID-free deadline transition and clean the helper's exact group with `SIGTERM` then `SIGKILL` only if needed.
+- Treat numeric exit status as non-authoritative because completed child statuses
+  can collide with guard codes. For every completed long invocation require a
+  fresh mode-`0600` `.scratch/process-guard/last-run.json` with matching
+  provenance, `state=finalized`, semantic `classification`, top-level
+  `guard_status`/`return_status`, and per-phase outcome, PGID, `guard_status`,
+  `child_exit_status`, and `exact_group_absent`. A duplicate `73` creates no new
+  audit and must not be confused with the active owner's record.
+- Finalize the exact audit while the singleton is held, recheck all observed
+  phase PGIDs, record `lock_release_pending: true`, and only then release. The
+  procedural root independently verifies the active lock is absent and scans
+  externally for stale project Python, pytest, uv, or Numba processes because
+  one-second sampling cannot exclude an unobserved double fork.
+- Treat every failed or timed-out preflight, experiment timeout, nonzero child
+  exit, interruption, thermal or process stop, safety or cleanup failure, audit
+  or write stop, and every other unsuccessful bounded result only as a bounded
+  failure, never as evidence against AC or stable AC. Never rerun an unchanged
+  timed-out experiment; commit, bind the push log, and push the bounded result.
 - The guard's focused synthetic test suite is the sole direct-run exception.
 
 ---
@@ -118,13 +140,14 @@ pass.
 **Interfaces:**
 - Produces: immutable `ProcessInfo` and `SafetySample` records;
   `read_bounded_macos_thermal_state(deadline: float) -> int`;
-  `SafetyMonitor.sample(child_pid: int, process_group_id: int, controller_pid: int, sample_deadline: float | None = None) -> SafetySample`.
+  `SafetyMonitor.sample(child_pid: int, process_group_id: int, launcher_pid: int, coordinator_pid: int, sample_deadline: float | None = None) -> SafetySample`.
 - Consumes: injected monitor samples in the phase loop.
 
 - [ ] **Step 1: Write failing pure monitor tests**
 
 Construct process tables with an exact-group leader and child, an escaped
-descendant, a lost controller, and aggregate CPU values above and below 125.
+descendant, lost or reparented captured-launcher/coordinator links, and aggregate
+CPU values above and below 125.
 Assert escaped PID reporting, group process count, and CPU sum. Mock thermal
 states nominal, fair, serious, critical, and unreadable; assert every nonzero or
 unreadable value is a safety failure.
@@ -133,9 +156,10 @@ unreadable value is a safety failure.
 
 Inject deterministic monitor samples into `run_long_guarded`. Prove that one
 high-CPU sample does not abort, three consecutive high samples do; thermal
-pressure, controller loss, and an escaped descendant each return 126; and each
-case sends cleanup only to the phase's exact process group. Verify the escaped
-PID is reported but never passed to `os.kill` or `os.killpg`.
+pressure, captured-launcher/coordinator loss or reparenting, and an escaped
+descendant each return 126; and each case sends cleanup only to the phase's exact
+process group. Verify the escaped PID is reported but never passed to `os.kill`
+or `os.killpg`.
 
 - [ ] **Step 3: Implement the macOS thermal reader**
 
@@ -159,7 +183,7 @@ PGID differs. Never request or print command arguments or environment data.
 
 - [ ] **Step 5: Implement monitor policy**
 
-Sample immediately and then once per second. Abort immediately for controller loss or zombie state, phase-leader reparenting,
+Sample immediately and then once per second. Abort immediately for captured-launcher/coordinator loss, zombie state, or reparenting, phase-leader loss or reparenting,
 thermal state other than nominal, sampling failure, or escaped descendants.
 Count consecutive exact-group CPU samples above 125 percent and abort on the
 third; reset the count after a compliant sample.
@@ -203,17 +227,20 @@ and lock removal on every path.
 **Files:**
 - Modify: `AGENTS.md`
 - Read back: `AGENTS.md`
+- Verify/modify: `docs/superpowers/specs/2026-07-29-long-proof-process-guard-design.md`
+- Verify/modify: `docs/superpowers/plans/2026-07-29-long-proof-process-guard.md`
 
 **Interfaces:**
 - Consumes: the new long-run CLI.
-- Produces: one root-controller-only rule for preflight, launch, reporting,
+- Produces: one procedural-root-only rule for preflight, launch, reporting,
   post-run audit, bounded-failure language, and unchanged-timeout prohibition.
 
 - [ ] **Step 1: Supersede the old sixty-second lesson without deleting it**
 
 Mark the earlier maximum-60 rule `[SUPERSEDED]`. Append a dated `[WORKS]`
 entry requiring `--long-run`, exact-command preflight, one foreground thread,
-root/controller launch only, user progress within sixty seconds, thermal and
+procedural-root launch only, distinct captured-launcher/coordinator/phase-leader
+roles, user progress within sixty seconds, thermal and
 process anomaly stops, exact-group termination, post-run audit, and immediate
 commit/log/push of the bounded result.
 
@@ -222,14 +249,23 @@ commit/log/push of the bounded result.
 Read the changed section and verify every listed rule is present and the old
 rule remains visible as superseded history.
 
+- [ ] **Step 3: Align and read back the design and plan**
+
+Verify and modify both guard documents in this Task 5 scope. Require active
+short-mode policy, fixed PID-free deadline wording, the four distinct actors and
+limited ancestry claim, non-authoritative numeric statuses, the private fresh
+final audit contract and duplicate isolation, exact under-lock finalization,
+independent lock/process checks, exhaustive bounded-failure language, and the
+sole focused-suite exception. Read both documents back against this checklist.
+
 ### Task 6: Verify and publish the safety checkpoint
 
 **Files:**
 - Verify: `scripts/run_proof_guarded.py`
 - Verify: `tests/test_run_proof_guarded.py`
 - Verify: `AGENTS.md`
-- Add: `docs/superpowers/specs/2026-07-29-long-proof-process-guard-design.md`
-- Add: `docs/superpowers/plans/2026-07-29-long-proof-process-guard.md`
+- Verify: `docs/superpowers/specs/2026-07-29-long-proof-process-guard-design.md`
+- Verify: `docs/superpowers/plans/2026-07-29-long-proof-process-guard.md`
 - Modify: `logs/29-07-2026.md`
 
 **Interfaces:**
@@ -260,5 +296,6 @@ commit. Do not amend in pursuit of a self-hash.
 - [ ] **Step 4: Push before any long experiment**
 
 Push `codex/proofs`, verify the remote tip, and re-run the targeted process and
-lock audit. Only then may the root controller resume Task 5 and consider one
-preflight-gated long experiment.
+lock audit. Only then may the procedural root Codex launcher resume the compact
+proof-certificate generator/replay task and consider one preflight-gated long
+experiment.
