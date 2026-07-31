@@ -127,3 +127,8 @@ Common presentations: **65,731**.
 - Anytime 10k: `anytime_b10000.png`
 - Nodes / path — own solved & all-solved: `nodes_*`, `path_*`.
 
+
+## Next: hard residual @ 100k
+
+See [`HARD_RESIDUAL_100k.md`](HARD_RESIDUAL_100k.md) — **1183** presentations (union of any-arm failures @10k).
+Colab: `experiments/heuristic_search/hsearch_colab_ac19_hard100k.ipynb`.
