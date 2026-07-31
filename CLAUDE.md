@@ -42,7 +42,7 @@ Same rule in [`AGENTS.md`](AGENTS.md). Example day file: [`logs/28-07-2026.md`](
   results back. A marathon at one huge `B` wastes time on losers and does not buy a
   different ranking than the scout prefix. Same rule in [`AGENTS.md`](AGENTS.md).
   [[WORKS]](experiments/lessons/scout-then-scale-budgets.md)
-- **ac-advisor plan gate.** When the user explicitly asks to call `ac-advisor`, you MUST have the plan (yours or the user's) verified BEFORE any implementation or review work on that task: launch the agent defined at [`.claude/agents/ac-advisor.md`](.claude/agents/ac-advisor.md) — as subagent type `ac-advisor` if registered, otherwise as a general-purpose agent with `model: opus` whose prompt is "Read ACSolverX/.claude/agents/ac-advisor.md in full and adopt it as your operating instructions, then review this plan: <the plan>". Reconcile its verdict — address every REVISE item, or surface any disagreement to the user — before writing code. Never pass `model: fable` to it.
+- **ac-advisor plan gate.** When the user explicitly asks to call `ac-advisor`, you MUST have the plan (yours or the user's) verified BEFORE any implementation or review work on that task: launch the agent defined at [`.claude/agents/ac-advisor.md`](.claude/agents/ac-advisor.md) — as subagent type `ac-advisor` if registered, with **`model: gpt-5.6-sol-xhigh`**, otherwise as a general-purpose agent with `model: gpt-5.6-sol-xhigh` whose prompt is "Read ACSolverX/.claude/agents/ac-advisor.md in full and adopt it as your operating instructions, then review this plan: <the plan>". Reconcile its verdict — address every REVISE item, or surface any disagreement to the user — before writing code. Never pass `model: fable` to it.
 
 ## Repo context
 
