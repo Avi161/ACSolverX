@@ -66,18 +66,22 @@ def run_hard_residual_100k(cfg, out_dir="results/hsearch", heartbeat_secs=60,
     rows, tag = base._stride_chunk(rows, chunks, chunk_index)
 
     cfg = dict(cfg)
-    cfg["DATASET"] = DATASET_NAME
+    # allow per-arm notebooks to set a distinct dataset tag in the jsonl name
+    cfg["DATASET"] = cfg.get("DATASET") or DATASET_NAME
+    dataset_tag = cfg["DATASET"]
     if not cfg.get("ARMS"):
         cfg["ARMS"] = list(DEFAULT_ARMS)
     for a in cfg["ARMS"]:
         if a not in base.ARM_SPECS:
             raise KeyError(f"unknown arm {a!r}; known={sorted(base.ARM_SPECS)}")
 
-    # force the four 10k arms unless user overrides carefully
     missing = [a for a in DEFAULT_ARMS if a not in cfg["ARMS"]]
-    if missing:
+    if missing and len(cfg["ARMS"]) > 1:
         print(f"  [warn] ARMS omit {missing} — hard-tail compare will be incomplete",
               flush=True)
+    elif len(cfg["ARMS"]) == 1:
+        print(f"  [single-arm] {cfg['ARMS'][0]} on its own 10k-unsolved list "
+              f"(not a cross-arm hard-tail A/B)", flush=True)
 
     stem = cfg.get("OUT_STEM", "hsearch_ac19_hard100k")
     if tag:
@@ -94,7 +98,7 @@ def run_hard_residual_100k(cfg, out_dir="results/hsearch", heartbeat_secs=60,
 
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(
-        out_dir, f"{stem}_{DATASET_NAME}_b{budget}_mrl{mrl}.jsonl")
+        out_dir, f"{stem}_{dataset_tag}_b{budget}_mrl{mrl}.jsonl")
 
     stage_probe = (os.path.join(
         cfg.get("STAGE_DIR") or os.path.join(os.path.expanduser("~"),
