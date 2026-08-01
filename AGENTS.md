@@ -1,5 +1,10 @@
 # Lessons Learned
 
+### 2026-07-31 Keep oracle expectations out of verifier premises
+
+- [TRAP] Adding `expected_oracle` to the generation-projection helper input made an apparently independent index check circular: the caller supplied both authenticated metadata and the expected derived answer. The canonical root alone was also insufficient because it contains no per-schema pump profiles.
+- [WORKS] Production constructs a private premises record only from authenticated root and shard replay: domain, dependency count, schema pump profiles, bucket counts, and witness counts. The helper derives the complete zero-digest oracle and checks only its canonical byte length against the projection; tests freeze the full six-family oracle line as literal external evidence and never pass an expected oracle into production code.
+
 ### 2026-07-30 Preserve legacy decoding when reserving a verifier API
 
 - [TRAP] Task 3 correctly changed `verify_v2_package` to require a run ID and generation projection, but three package-foundation regressions still used its retired one-argument decoding behavior; the focused Task 3 selector did not expose that cross-task break.

@@ -1133,6 +1133,20 @@ object path digest, catalog digest, and `root_sha256`.  Because canonical
 digest spellings have fixed length, its encoded canonical line length is the
 exact projected index cost rather than an estimate.
 
+Task 3 never accepts an expected oracle from the caller.  After authenticating
+the canonical root and all seven shards, `verify_v2_package(...)` constructs a
+private immutable premises record containing only the authenticated domain,
+shared dependency count, per-family ASCII schema ID/pump-count profiles,
+bucket-class counts, and template-witness counts.  The private generation
+projection validator independently derives selections, censuses, descriptors,
+catalog summaries, zero-digest content paths, shard totals, and the complete
+canonical projected-index line from those premises.  It compares only the
+derived line length with `projected_index_bytes`; the projection schema carries
+no oracle commitment, so a self-consistent authenticated metadata change that
+preserves decimal widths may correctly preserve the length.  Contradictory
+root/descriptor/catalog mutations are rejected by authenticated streaming
+checks, not by invented oracle equality.
+
 Let `F_ns` and `F_bytes` be the sums of those fixed charges.  Task 2 computes:
 
     generation_ns_before_margin =

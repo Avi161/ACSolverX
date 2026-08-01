@@ -911,6 +911,25 @@ all global censuses, and the exact projected-index canonical line length.
 Reject any mismatch; only then retain the canonical SHA-256 in
 `IndependentReplayResult`.
 
+The private generation validator has the internal boundary
+`_validate_generation_projection(value, premises)`, where verifier-owned
+immutable `premises` contains only authenticated `domain`,
+`shared_dependency_count`, six ASCII schema ID/pump-count profiles,
+`bucket_class_counts`, and `family_witness_counts`.  Production constructs it
+inside `verify_v2_package(...)` only after root and shard authentication; no
+public API accepts premises or an expected oracle.  Drop any
+`expected_oracle` field.  Derive the complete zero-digest projected root and
+compare only its canonical line length with `projected_index_bytes`.
+
+File-free tests freeze the complete six-family projected-oracle line and its
+decimal length as literal external constants authored from the approved
+schema, without importing generator/verifier constants or calling verifier
+helpers to create expected answers.  Mutations patch named literal paths and
+outer projection totals by explicit deltas.  Self-consistent authenticated
+metadata changes that preserve decimal widths are accepted as equal-length
+cases; later streaming tests reject contradictory root/descriptor/catalog
+bindings.
+
 Implement `ceil_ratio(x,n,d)=(x*n+d-1)//d` for every
 `VerificationChargeInput`.  Require exact global charge domains
 `root-index-descriptor-authentication`, `shared-wire-stream-read-hash`,
