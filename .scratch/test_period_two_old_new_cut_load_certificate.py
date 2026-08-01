@@ -5917,6 +5917,11 @@ def test_task3_generation_projection_accepts_equal_width_premise_and_projection_
                 assert witness_oracle["shards"][
                     TASK3_FAMILY_ORDER.index(other_family) + 1
                 ]["record_counts"]["template_witness"] == expected_descriptor_count
+                assert witness_oracle["shards"][
+                    TASK3_FAMILY_ORDER.index(other_family) + 1
+                ]["record_count"] == baseline_oracle["shards"][
+                    TASK3_FAMILY_ORDER.index(other_family) + 1
+                ]["record_count"]
         assert len(module._generation_projected_index_line(witness_oracle)) == (
             TASK3_PROJECTED_ORACLE_LENGTH
         )
