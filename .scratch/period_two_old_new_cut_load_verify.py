@@ -384,6 +384,15 @@ _GENERATION_CENSUS = {
     "C": (239, 16, 3_824, 624, 48, 1_248, 96, 104_832, 8_064),
     "Q": (398, 64, 25_472, 5_888, 448, 11_776, 896, 989_184, 75_264),
 }
+_SHARED_DEPENDENCY_MAX = 11
+_FAMILY_STREAM_RECORD_CAPS = {
+    "fixed": {"bucket_class": 17, "load": 210, "template_witness": 2},
+    "base": {"bucket_class": 19, "load": 31, "template_witness": 3},
+    "singleton": {"bucket_class": 23, "load": 32, "template_witness": 5},
+    "P": {"bucket_class": 29, "load": 82, "template_witness": 7},
+    "C": {"bucket_class": 31, "load": 442, "template_witness": 11},
+    "Q": {"bucket_class": 37, "load": 460, "template_witness": 13},
+}
 
 
 @dataclass(frozen=True)
@@ -974,6 +983,8 @@ def decode_root_index(source: Any) -> dict[str, Any]:
     )
     if shard_total != sum(item["total_bytes"] for item in shards):
         raise WireFormatError("root shard byte total differs")
+    if shard_total > PACKAGE_BYTE_CAP:
+        raise WireFormatError("root shard bytes exceed package cap")
     _exact_hash(root["source_bindings_sha256"], "source bindings sha256")
     _exact_hash(root["b_identity_digest"], "B identity digest")
     catalogs = root["template_catalogs"]
@@ -3106,6 +3117,39 @@ def _authenticate_footer(
         raise WireFormatError(f"{tag} prefix byte count differs")
 
 
+def _family_stream_caps(family: str) -> dict[str, int]:
+    (
+        schema_count,
+        cell_count,
+        identity_count,
+        load_count,
+        _sampled_load_count,
+        occurrence_count,
+        _sampled_occurrence_count,
+        _comparison_count,
+        _sampled_comparison_count,
+    ) = _GENERATION_CENSUS[family]
+    caps = {
+        "family_header": 1,
+        "old_load": load_count // cell_count,
+        "footprint": occurrence_count // cell_count,
+        "bucket_class": 0,
+        "load": 0,
+        "cell_footer": cell_count,
+        "template_header": 1,
+        "template_schema": schema_count,
+        "template_cell": cell_count,
+        "template_witness": 0,
+        "template_identity_chunk": (
+            identity_count + IDENTITY_CHUNK_SIZE - 1
+        ) // IDENTITY_CHUNK_SIZE,
+        "template_footer": 1,
+        "family_footer": 1,
+    }
+    caps.update(_FAMILY_STREAM_RECORD_CAPS[family])
+    return caps
+
+
 def _authenticate_descriptor_stream(
     descriptor: Mapping[str, Any],
     stream: Any,
@@ -3119,7 +3163,6 @@ def _authenticate_descriptor_stream(
     counts = {tag: 0 for tag in declarations}
     retained: dict[str, Any] = {}
     records_before_footer = 0
-    footer_seen = False
     try:
         if family is None:
             phase = 0
@@ -3128,18 +3171,19 @@ def _authenticate_descriptor_stream(
             header = None
             source_bindings = None
             while True:
-                try:
-                    record, line_bytes = _stream_record(iterator, reader)
-                except WireFormatError:
-                    if footer_seen:
-                        break
-                    raise
+                record, line_bytes = _stream_record(iterator, reader)
                 tag = record[0]
                 if tag not in counts:
                     raise WireFormatError("shared shard has an unknown record tag")
+                if tag in {"shared_header", "source_bindings"} and counts[tag]:
+                    raise WireFormatError("shared singleton record repeats")
                 if tag == "dependency":
                     if phase > 1:
                         raise WireFormatError("shared records are out of order")
+                    if counts[tag] >= _SHARED_DEPENDENCY_MAX:
+                        raise WireFormatError(
+                            "shared dependency census exceeds cap"
+                        )
                     phase = 1
                 elif tag == "source_bindings":
                     if phase > 2:
@@ -3154,7 +3198,7 @@ def _authenticate_descriptor_stream(
                         raise WireFormatError("shared records are out of order")
                     phase = 4
                 elif tag == "shared_footer":
-                    if phase != 4 or footer_seen:
+                    if phase != 4 or counts[tag]:
                         raise WireFormatError("shared records are out of order")
                     _authenticate_footer(
                         record,
@@ -3164,8 +3208,11 @@ def _authenticate_descriptor_stream(
                         bytes_before_footer=reader.total_bytes - line_bytes,
                     )
                     counts[tag] += 1
-                    footer_seen = True
-                    continue
+                    try:
+                        next(iterator)
+                    except StopIteration:
+                        break
+                    raise WireFormatError("records follow the shared footer")
                 elif tag != "shared_header" or phase != 0 or counts[tag]:
                     raise WireFormatError("shared records are out of order")
                 _require_tag_width(record, tag, declarations)
@@ -3174,19 +3221,27 @@ def _authenticate_descriptor_stream(
                 elif tag == "source_bindings":
                     source_bindings = record[1]
                 elif tag == "b_identity":
+                    if len(identities) >= TOKEN_COUNT:
+                        raise WireFormatError("B identity census exceeds cap")
                     index = _exact_int(record[1], "B token index", minimum=0)
                     if index != len(identities):
                         raise WireFormatError("B identity indices are not consecutive")
                     identities[index] = tuple(record)
                 elif tag == "b_coordinate":
+                    if len(coordinates) >= TOKEN_COUNT:
+                        raise WireFormatError("B coordinate census exceeds cap")
                     index = _exact_int(record[1], "B coordinate index", minimum=0)
                     if index != len(coordinates) or index not in identities:
                         raise WireFormatError("B coordinate identity reference differs")
                     coordinates[index] = tuple(record)
                 counts[tag] += 1
                 records_before_footer += 1
-            if not footer_seen:
-                raise WireFormatError("shared shard is missing its terminal footer")
+            if (
+                counts["shared_header"] != 1
+                or counts["source_bindings"] != 1
+                or counts["shared_footer"] != 1
+            ):
+                raise WireFormatError("shared singleton record count differs")
             if len(identities) != TOKEN_COUNT or len(coordinates) != TOKEN_COUNT:
                 raise WireFormatError("shared B reference count differs")
             retained = {
@@ -3223,16 +3278,18 @@ def _authenticate_descriptor_stream(
             identity_witness_ids: list[int] = []
             cell_count = 0
             template_header = None
+            caps = _family_stream_caps(family)
             while True:
-                try:
-                    record, line_bytes = _stream_record(iterator, reader)
-                except WireFormatError:
-                    if footer_seen:
-                        break
-                    raise
+                record, line_bytes = _stream_record(iterator, reader)
                 tag = record[0]
                 if tag not in counts:
                     raise WireFormatError("family shard has an unknown record tag")
+                if tag in {
+                    "family_header",
+                    "template_header",
+                    "template_footer",
+                } and counts[tag]:
+                    raise WireFormatError("family singleton record repeats")
                 position = required.index(tag)
                 if tag == "load":
                     if phase != position:
@@ -3241,7 +3298,7 @@ def _authenticate_descriptor_stream(
                     if phase not in (4, position):
                         raise WireFormatError("family records are out of order")
                 elif tag == "family_footer":
-                    if phase != position - 1 or footer_seen:
+                    if phase != position - 1 or counts[tag]:
                         raise WireFormatError("family records are out of order")
                     _authenticate_footer(
                         record,
@@ -3251,8 +3308,11 @@ def _authenticate_descriptor_stream(
                         bytes_before_footer=reader.total_bytes - line_bytes,
                     )
                     counts[tag] += 1
-                    footer_seen = True
-                    continue
+                    try:
+                        next(iterator)
+                    except StopIteration:
+                        break
+                    raise WireFormatError("records follow the family footer")
                 else:
                     if position < phase:
                         raise WireFormatError("family records are out of order")
@@ -3264,8 +3324,20 @@ def _authenticate_descriptor_stream(
                             )
                         phase += 1
                 _require_tag_width(record, tag, declarations)
+                if counts[tag] >= caps[tag]:
+                    raise WireFormatError("family record census exceeds cap")
                 if tag == "family_header":
                     _validate_family_header(record, family)
+                    if any(
+                        record[index] > caps[name]
+                        for index, name in (
+                            (3, "cell_footer"),
+                            (5, "old_load"),
+                            (6, "footprint"),
+                            (7, "bucket_class"),
+                        )
+                    ):
+                        raise WireFormatError("family census exceeds cap")
                 elif tag == "old_load":
                     old_loads.append(tuple(record))
                 elif tag == "footprint":
@@ -3277,10 +3349,29 @@ def _authenticate_descriptor_stream(
                 elif tag == "template_header":
                     if record[3] != family:
                         raise WireFormatError("template header family differs")
-                    template_header = tuple(record)
-                    cell_count = _exact_int(
+                    schema_count = _exact_int(
+                        record[6], "template schema count", minimum=0
+                    )
+                    declared_cell_count = _exact_int(
                         record[7], "template cell count", minimum=0
                     )
+                    template_count = _exact_int(
+                        record[8], "template identity count", minimum=0
+                    )
+                    witness_count = _exact_int(
+                        record[9], "template witness count", minimum=0
+                    )
+                    if (
+                        schema_count > caps["template_schema"]
+                        or declared_cell_count > caps["template_cell"]
+                        or template_count > _GENERATION_CENSUS[family][2]
+                        or witness_count > caps["template_witness"]
+                    ):
+                        raise WireFormatError(
+                            "template header census exceeds cap"
+                        )
+                    template_header = tuple(record)
+                    cell_count = declared_cell_count
                 elif tag == "template_schema":
                     index = _exact_int(record[1], "template schema index", minimum=0)
                     if index != len(schema_ids) or not isinstance(record[2], str):
@@ -3296,14 +3387,31 @@ def _authenticate_descriptor_stream(
                     start = _exact_int(record[1], "identity chunk start", minimum=0)
                     if (
                         start != len(identity_witness_ids)
-                        or not isinstance(record[2], list)
+                        or type(record[2]) is not list
+                        or not record[2]
                     ):
                         raise WireFormatError("template identity profiles differ")
+                    if (
+                        len(record[2]) > IDENTITY_CHUNK_SIZE
+                        or len(identity_witness_ids) + len(record[2])
+                        > _GENERATION_CENSUS[family][2]
+                    ):
+                        raise WireFormatError(
+                            "template identity census exceeds cap"
+                        )
                     identity_witness_ids.extend(record[2])
                 counts[tag] += 1
                 records_before_footer += 1
-            if not footer_seen:
-                raise WireFormatError("family shard is missing its terminal footer")
+            if any(
+                counts[tag] != 1
+                for tag in (
+                    "family_header",
+                    "template_header",
+                    "template_footer",
+                    "family_footer",
+                )
+            ):
+                raise WireFormatError("family singleton record count differs")
             if not schema_ids or cell_count < 1:
                 raise WireFormatError("template schema profiles are incomplete")
             if schema_ids != sorted(set(schema_ids)):
@@ -3369,7 +3477,8 @@ def _authenticate_v2_streams(
     }
     shared_descriptor = descriptors[None]
     _, shared = _authenticate_descriptor_stream(
-        shared_descriptor, supplier(shared_descriptor)
+        shared_descriptor,
+        supplier(shared_descriptor),
     )
     header = shared["header"]
     if header is None or (
@@ -3387,7 +3496,8 @@ def _authenticate_v2_streams(
     for family in ("C", "P", "Q", "base", "fixed", "singleton"):
         descriptor = descriptors[family]
         _, family_retained[family] = _authenticate_descriptor_stream(
-            descriptor, supplier(descriptor)
+            descriptor,
+            supplier(descriptor),
         )
         template_header = family_retained[family]["template_header"]
         catalog = root["template_catalogs"][family]

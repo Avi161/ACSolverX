@@ -6425,209 +6425,377 @@ def _task3_stream_footer(records, tag):
     return [tag, 0, 0, 0, 0, 0, len(records), len(prefix)]
 
 
+TASK3_LITERAL_ROOT_BYTES = b'{"b_identity_digest":"0000000000000000000000000000000000000000000000000000000000000000","canonical_encoding":"canonical-json-ascii-lines-v1","domain":"fixture domain","emitted_summary":{"active_comparisons":0,"b_tokens_per_occurrence":84,"footprint_sizes":{"C":{},"P":{},"Q":{},"base":{},"fixed":{},"singleton":{}},"load_rows":{"C":0,"P":0,"Q":0,"base":0,"fixed":0,"singleton":0},"occurrence_loads":{"C":0,"P":0,"Q":0,"base":0,"fixed":0,"singleton":0},"template_counts":{"C":1,"P":1,"Q":1,"base":1,"fixed":1,"singleton":1},"total_load_rows":0,"total_occurrence_loads":0,"total_templates":6},"format":"period-two-old-new-cut-package-v2","full_summary":{"active_comparisons":0,"b_tokens_per_occurrence":84,"footprint_sizes":{"C":{},"P":{},"Q":{},"base":{},"fixed":{},"singleton":{}},"load_rows":{"C":0,"P":0,"Q":0,"base":0,"fixed":0,"singleton":0},"occurrence_loads":{"C":0,"P":0,"Q":0,"base":0,"fixed":0,"singleton":0},"template_counts":{"C":1,"P":1,"Q":1,"base":1,"fixed":1,"singleton":1},"total_load_rows":0,"total_occurrence_loads":0,"total_templates":6},"logical_v1_format":"period-two-old-new-cut-load-v1","mask_encoding":"uint84-be11-base64url-nopad-v1","root_sha256":"9933d96c1d29fc80e39f2e5826890ee8ad05940baeb67778dc3ec2337ca7d99a","scope":"production-full","shard_bytes_total":21240,"shard_order":["shared","fixed","base","singleton","P","C","Q"],"shards":[{"family":null,"path":"objects/39524cc677c1e090de17974b6b554f8cbc15def0ca38ba6a0b24f002d5812e11.jsonl","record_count":171,"record_counts":{"b_coordinate":84,"b_identity":84,"dependency":0,"shared_footer":1,"shared_header":1,"source_bindings":1},"role":"shared","sha256":"39524cc677c1e090de17974b6b554f8cbc15def0ca38ba6a0b24f002d5812e11","total_bytes":10641},{"family":"fixed","path":"objects/e0714c791705bef4029f0c64a6b4cafec9c5f2d3d925761f91bf00ad0a021e87.jsonl","record_count":8,"record_counts":{"bucket_class":0,"cell_footer":0,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"e0714c791705bef4029f0c64a6b4cafec9c5f2d3d925761f91bf00ad0a021e87","total_bytes":1771},{"family":"base","path":"objects/f372c8a7acdd59df233422ee5aeba99f0f8b2e3c1f7b0e7454b3aa3c239fe859.jsonl","record_count":8,"record_counts":{"bucket_class":0,"cell_footer":0,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"f372c8a7acdd59df233422ee5aeba99f0f8b2e3c1f7b0e7454b3aa3c239fe859","total_bytes":1768},{"family":"singleton","path":"objects/aa7c586e05fc8d7822f60c4f104dba5e326f95639d9737fb6f3eb9ff7dd810f4.jsonl","record_count":8,"record_counts":{"bucket_class":0,"cell_footer":0,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"aa7c586e05fc8d7822f60c4f104dba5e326f95639d9737fb6f3eb9ff7dd810f4","total_bytes":1783},{"family":"P","path":"objects/c63701c5ee8aba275c05f9e95e8e7016a5893c9bf34da784ffd9c1caa6928a92.jsonl","record_count":8,"record_counts":{"bucket_class":0,"cell_footer":0,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"c63701c5ee8aba275c05f9e95e8e7016a5893c9bf34da784ffd9c1caa6928a92","total_bytes":1759},{"family":"C","path":"objects/3af6e34f907867bf746f5216cbe8831916f9382c93a368fc9a7b55c0ef1f0e6e.jsonl","record_count":8,"record_counts":{"bucket_class":0,"cell_footer":0,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"3af6e34f907867bf746f5216cbe8831916f9382c93a368fc9a7b55c0ef1f0e6e","total_bytes":1759},{"family":"Q","path":"objects/4d91438c173861deec589926a10291feef00dcac3e8558343766d7eeeaa5d800.jsonl","record_count":8,"record_counts":{"bucket_class":0,"cell_footer":0,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"4d91438c173861deec589926a10291feef00dcac3e8558343766d7eeeaa5d800","total_bytes":1759}],"source_bindings_sha256":"0000000000000000000000000000000000000000000000000000000000000000","status":"generated-awaiting-independent-replay","template_catalogs":{"C":{"catalog_sha256":"0000000000000000000000000000000000000000000000000000000000000000","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"0000000000000000000000000000000000000000000000000000000000000000","replay_sha256":"0000000000000000000000000000000000000000000000000000000000000000","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"P":{"catalog_sha256":"0000000000000000000000000000000000000000000000000000000000000000","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"0000000000000000000000000000000000000000000000000000000000000000","replay_sha256":"0000000000000000000000000000000000000000000000000000000000000000","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"Q":{"catalog_sha256":"0000000000000000000000000000000000000000000000000000000000000000","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"0000000000000000000000000000000000000000000000000000000000000000","replay_sha256":"0000000000000000000000000000000000000000000000000000000000000000","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"base":{"catalog_sha256":"0000000000000000000000000000000000000000000000000000000000000000","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"0000000000000000000000000000000000000000000000000000000000000000","replay_sha256":"0000000000000000000000000000000000000000000000000000000000000000","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"fixed":{"catalog_sha256":"0000000000000000000000000000000000000000000000000000000000000000","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"0000000000000000000000000000000000000000000000000000000000000000","replay_sha256":"0000000000000000000000000000000000000000000000000000000000000000","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"singleton":{"catalog_sha256":"0000000000000000000000000000000000000000000000000000000000000000","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"0000000000000000000000000000000000000000000000000000000000000000","replay_sha256":"0000000000000000000000000000000000000000000000000000000000000000","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1}}}\n'
+TASK3_LITERAL_OBJECTS = {
+    'objects/39524cc677c1e090de17974b6b554f8cbc15def0ca38ba6a0b24f002d5812e11.jsonl': b'["shared_header","period-two-old-new-cut-package-v2","production-full","period-two-old-new-cut-load-v1","canonical-json-ascii-lines-v1","uint84-be11-base64url-nopad-v1","fixture domain","generated-awaiting-independent-replay",["shared","fixed","base","singleton","P","C","Q"]]\n["source_bindings",{"fixture":"source"}]\n["b_identity",0,"token-0","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",1,"token-1","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",2,"token-2","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",3,"token-3","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",4,"token-4","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",5,"token-5","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",6,"token-6","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",7,"token-7","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",8,"token-8","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",9,"token-9","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",10,"token-10","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",11,"token-11","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",12,"token-12","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",13,"token-13","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",14,"token-14","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",15,"token-15","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",16,"token-16","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",17,"token-17","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",18,"token-18","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",19,"token-19","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",20,"token-20","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",21,"token-21","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",22,"token-22","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",23,"token-23","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",24,"token-24","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",25,"token-25","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",26,"token-26","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",27,"token-27","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",28,"token-28","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",29,"token-29","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",30,"token-30","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",31,"token-31","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",32,"token-32","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",33,"token-33","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",34,"token-34","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",35,"token-35","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",36,"token-36","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",37,"token-37","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",38,"token-38","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",39,"token-39","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",40,"token-40","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",41,"token-41","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",42,"token-42","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",43,"token-43","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",44,"token-44","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",45,"token-45","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",46,"token-46","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",47,"token-47","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",48,"token-48","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",49,"token-49","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",50,"token-50","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",51,"token-51","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",52,"token-52","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",53,"token-53","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",54,"token-54","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",55,"token-55","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",56,"token-56","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",57,"token-57","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",58,"token-58","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",59,"token-59","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",60,"token-60","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",61,"token-61","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",62,"token-62","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",63,"token-63","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",64,"token-64","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",65,"token-65","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",66,"token-66","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",67,"token-67","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",68,"token-68","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",69,"token-69","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",70,"token-70","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",71,"token-71","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",72,"token-72","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",73,"token-73","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",74,"token-74","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",75,"token-75","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",76,"token-76","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",77,"token-77","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",78,"token-78","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",79,"token-79","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",80,"token-80","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",81,"token-81","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",82,"token-82","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",83,"token-83","fixture-class",0,null,null,null,"module","label",[]]\n["b_coordinate",0,"fixture-class",[0]]\n["b_coordinate",1,"fixture-class",[1]]\n["b_coordinate",2,"fixture-class",[2]]\n["b_coordinate",3,"fixture-class",[3]]\n["b_coordinate",4,"fixture-class",[4]]\n["b_coordinate",5,"fixture-class",[5]]\n["b_coordinate",6,"fixture-class",[6]]\n["b_coordinate",7,"fixture-class",[7]]\n["b_coordinate",8,"fixture-class",[8]]\n["b_coordinate",9,"fixture-class",[9]]\n["b_coordinate",10,"fixture-class",[10]]\n["b_coordinate",11,"fixture-class",[11]]\n["b_coordinate",12,"fixture-class",[12]]\n["b_coordinate",13,"fixture-class",[13]]\n["b_coordinate",14,"fixture-class",[14]]\n["b_coordinate",15,"fixture-class",[15]]\n["b_coordinate",16,"fixture-class",[16]]\n["b_coordinate",17,"fixture-class",[17]]\n["b_coordinate",18,"fixture-class",[18]]\n["b_coordinate",19,"fixture-class",[19]]\n["b_coordinate",20,"fixture-class",[20]]\n["b_coordinate",21,"fixture-class",[21]]\n["b_coordinate",22,"fixture-class",[22]]\n["b_coordinate",23,"fixture-class",[23]]\n["b_coordinate",24,"fixture-class",[24]]\n["b_coordinate",25,"fixture-class",[25]]\n["b_coordinate",26,"fixture-class",[26]]\n["b_coordinate",27,"fixture-class",[27]]\n["b_coordinate",28,"fixture-class",[28]]\n["b_coordinate",29,"fixture-class",[29]]\n["b_coordinate",30,"fixture-class",[30]]\n["b_coordinate",31,"fixture-class",[31]]\n["b_coordinate",32,"fixture-class",[32]]\n["b_coordinate",33,"fixture-class",[33]]\n["b_coordinate",34,"fixture-class",[34]]\n["b_coordinate",35,"fixture-class",[35]]\n["b_coordinate",36,"fixture-class",[36]]\n["b_coordinate",37,"fixture-class",[37]]\n["b_coordinate",38,"fixture-class",[38]]\n["b_coordinate",39,"fixture-class",[39]]\n["b_coordinate",40,"fixture-class",[40]]\n["b_coordinate",41,"fixture-class",[41]]\n["b_coordinate",42,"fixture-class",[42]]\n["b_coordinate",43,"fixture-class",[43]]\n["b_coordinate",44,"fixture-class",[44]]\n["b_coordinate",45,"fixture-class",[45]]\n["b_coordinate",46,"fixture-class",[46]]\n["b_coordinate",47,"fixture-class",[47]]\n["b_coordinate",48,"fixture-class",[48]]\n["b_coordinate",49,"fixture-class",[49]]\n["b_coordinate",50,"fixture-class",[50]]\n["b_coordinate",51,"fixture-class",[51]]\n["b_coordinate",52,"fixture-class",[52]]\n["b_coordinate",53,"fixture-class",[53]]\n["b_coordinate",54,"fixture-class",[54]]\n["b_coordinate",55,"fixture-class",[55]]\n["b_coordinate",56,"fixture-class",[56]]\n["b_coordinate",57,"fixture-class",[57]]\n["b_coordinate",58,"fixture-class",[58]]\n["b_coordinate",59,"fixture-class",[59]]\n["b_coordinate",60,"fixture-class",[60]]\n["b_coordinate",61,"fixture-class",[61]]\n["b_coordinate",62,"fixture-class",[62]]\n["b_coordinate",63,"fixture-class",[63]]\n["b_coordinate",64,"fixture-class",[64]]\n["b_coordinate",65,"fixture-class",[65]]\n["b_coordinate",66,"fixture-class",[66]]\n["b_coordinate",67,"fixture-class",[67]]\n["b_coordinate",68,"fixture-class",[68]]\n["b_coordinate",69,"fixture-class",[69]]\n["b_coordinate",70,"fixture-class",[70]]\n["b_coordinate",71,"fixture-class",[71]]\n["b_coordinate",72,"fixture-class",[72]]\n["b_coordinate",73,"fixture-class",[73]]\n["b_coordinate",74,"fixture-class",[74]]\n["b_coordinate",75,"fixture-class",[75]]\n["b_coordinate",76,"fixture-class",[76]]\n["b_coordinate",77,"fixture-class",[77]]\n["b_coordinate",78,"fixture-class",[78]]\n["b_coordinate",79,"fixture-class",[79]]\n["b_coordinate",80,"fixture-class",[80]]\n["b_coordinate",81,"fixture-class",[81]]\n["b_coordinate",82,"fixture-class",[82]]\n["b_coordinate",83,"fixture-class",[83]]\n["shared_footer",84,170,10610]\n',
+    'objects/e0714c791705bef4029f0c64a6b4cafec9c5f2d3d925761f91bf00ad0a021e87.jsonl': b'["family_header","fixed",["a"],0,[],0,0,0,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","fixed",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,1,1,1]\n["template_schema",0,"fixed-schema",["a"],[]]\n["template_cell",0,"fixture-cell",["a"],[0],[0]]\n["template_witness",0,1,false,[[0,1,[1],1,0,1,0,0]]]\n["template_identity_chunk",0,[0]]\n["template_footer","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000"]\n["family_footer",0,0,0,0,0,7,1736]\n',
+    'objects/f372c8a7acdd59df233422ee5aeba99f0f8b2e3c1f7b0e7454b3aa3c239fe859.jsonl': b'["family_header","base",["a"],0,[],0,0,0,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","base",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,1,1,1]\n["template_schema",0,"base-schema",["a"],[]]\n["template_cell",0,"fixture-cell",["a"],[0],[0]]\n["template_witness",0,1,false,[[0,1,[1],1,0,1,0,0]]]\n["template_identity_chunk",0,[0]]\n["template_footer","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000"]\n["family_footer",0,0,0,0,0,7,1733]\n',
+    'objects/aa7c586e05fc8d7822f60c4f104dba5e326f95639d9737fb6f3eb9ff7dd810f4.jsonl': b'["family_header","singleton",["a"],0,[],0,0,0,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","singleton",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,1,1,1]\n["template_schema",0,"singleton-schema",["a"],[]]\n["template_cell",0,"fixture-cell",["a"],[0],[0]]\n["template_witness",0,1,false,[[0,1,[1],1,0,1,0,0]]]\n["template_identity_chunk",0,[0]]\n["template_footer","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000"]\n["family_footer",0,0,0,0,0,7,1748]\n',
+    'objects/c63701c5ee8aba275c05f9e95e8e7016a5893c9bf34da784ffd9c1caa6928a92.jsonl': b'["family_header","P",["a"],0,[],0,0,0,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","P",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,1,1,1]\n["template_schema",0,"P-schema",["a"],[]]\n["template_cell",0,"fixture-cell",["a"],[0],[0]]\n["template_witness",0,1,false,[[0,1,[1],1,0,1,0,0]]]\n["template_identity_chunk",0,[0]]\n["template_footer","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000"]\n["family_footer",0,0,0,0,0,7,1724]\n',
+    'objects/3af6e34f907867bf746f5216cbe8831916f9382c93a368fc9a7b55c0ef1f0e6e.jsonl': b'["family_header","C",["a"],0,[],0,0,0,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","C",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,1,1,1]\n["template_schema",0,"C-schema",["a"],[]]\n["template_cell",0,"fixture-cell",["a"],[0],[0]]\n["template_witness",0,1,false,[[0,1,[1],1,0,1,0,0]]]\n["template_identity_chunk",0,[0]]\n["template_footer","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000"]\n["family_footer",0,0,0,0,0,7,1724]\n',
+    'objects/4d91438c173861deec589926a10291feef00dcac3e8558343766d7eeeaa5d800.jsonl': b'["family_header","Q",["a"],0,[],0,0,0,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","Q",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,1,1,1]\n["template_schema",0,"Q-schema",["a"],[]]\n["template_cell",0,"fixture-cell",["a"],[0],[0]]\n["template_witness",0,1,false,[[0,1,[1],1,0,1,0,0]]]\n["template_identity_chunk",0,[0]]\n["template_footer","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000","0000000000000000000000000000000000000000000000000000000000000000"]\n["family_footer",0,0,0,0,0,7,1724]\n',
+}
+TASK3_LITERAL_DESCRIPTORS = (
+    {'role': 'shared', 'family': None, 'path': 'objects/39524cc677c1e090de17974b6b554f8cbc15def0ca38ba6a0b24f002d5812e11.jsonl', 'sha256': '39524cc677c1e090de17974b6b554f8cbc15def0ca38ba6a0b24f002d5812e11', 'total_bytes': 10641, 'record_count': 171, 'record_counts': {'shared_header': 1, 'dependency': 0, 'source_bindings': 1, 'b_identity': 84, 'b_coordinate': 84, 'shared_footer': 1}},
+    {'role': 'family', 'family': 'fixed', 'path': 'objects/e0714c791705bef4029f0c64a6b4cafec9c5f2d3d925761f91bf00ad0a021e87.jsonl', 'sha256': 'e0714c791705bef4029f0c64a6b4cafec9c5f2d3d925761f91bf00ad0a021e87', 'total_bytes': 1771, 'record_count': 8, 'record_counts': {'family_header': 1, 'old_load': 0, 'footprint': 0, 'bucket_class': 0, 'load': 0, 'cell_footer': 0, 'template_header': 1, 'template_schema': 1, 'template_cell': 1, 'template_witness': 1, 'template_identity_chunk': 1, 'template_footer': 1, 'family_footer': 1}},
+    {'role': 'family', 'family': 'base', 'path': 'objects/f372c8a7acdd59df233422ee5aeba99f0f8b2e3c1f7b0e7454b3aa3c239fe859.jsonl', 'sha256': 'f372c8a7acdd59df233422ee5aeba99f0f8b2e3c1f7b0e7454b3aa3c239fe859', 'total_bytes': 1768, 'record_count': 8, 'record_counts': {'family_header': 1, 'old_load': 0, 'footprint': 0, 'bucket_class': 0, 'load': 0, 'cell_footer': 0, 'template_header': 1, 'template_schema': 1, 'template_cell': 1, 'template_witness': 1, 'template_identity_chunk': 1, 'template_footer': 1, 'family_footer': 1}},
+    {'role': 'family', 'family': 'singleton', 'path': 'objects/aa7c586e05fc8d7822f60c4f104dba5e326f95639d9737fb6f3eb9ff7dd810f4.jsonl', 'sha256': 'aa7c586e05fc8d7822f60c4f104dba5e326f95639d9737fb6f3eb9ff7dd810f4', 'total_bytes': 1783, 'record_count': 8, 'record_counts': {'family_header': 1, 'old_load': 0, 'footprint': 0, 'bucket_class': 0, 'load': 0, 'cell_footer': 0, 'template_header': 1, 'template_schema': 1, 'template_cell': 1, 'template_witness': 1, 'template_identity_chunk': 1, 'template_footer': 1, 'family_footer': 1}},
+    {'role': 'family', 'family': 'P', 'path': 'objects/c63701c5ee8aba275c05f9e95e8e7016a5893c9bf34da784ffd9c1caa6928a92.jsonl', 'sha256': 'c63701c5ee8aba275c05f9e95e8e7016a5893c9bf34da784ffd9c1caa6928a92', 'total_bytes': 1759, 'record_count': 8, 'record_counts': {'family_header': 1, 'old_load': 0, 'footprint': 0, 'bucket_class': 0, 'load': 0, 'cell_footer': 0, 'template_header': 1, 'template_schema': 1, 'template_cell': 1, 'template_witness': 1, 'template_identity_chunk': 1, 'template_footer': 1, 'family_footer': 1}},
+    {'role': 'family', 'family': 'C', 'path': 'objects/3af6e34f907867bf746f5216cbe8831916f9382c93a368fc9a7b55c0ef1f0e6e.jsonl', 'sha256': '3af6e34f907867bf746f5216cbe8831916f9382c93a368fc9a7b55c0ef1f0e6e', 'total_bytes': 1759, 'record_count': 8, 'record_counts': {'family_header': 1, 'old_load': 0, 'footprint': 0, 'bucket_class': 0, 'load': 0, 'cell_footer': 0, 'template_header': 1, 'template_schema': 1, 'template_cell': 1, 'template_witness': 1, 'template_identity_chunk': 1, 'template_footer': 1, 'family_footer': 1}},
+    {'role': 'family', 'family': 'Q', 'path': 'objects/4d91438c173861deec589926a10291feef00dcac3e8558343766d7eeeaa5d800.jsonl', 'sha256': '4d91438c173861deec589926a10291feef00dcac3e8558343766d7eeeaa5d800', 'total_bytes': 1759, 'record_count': 8, 'record_counts': {'family_header': 1, 'old_load': 0, 'footprint': 0, 'bucket_class': 0, 'load': 0, 'cell_footer': 0, 'template_header': 1, 'template_schema': 1, 'template_cell': 1, 'template_witness': 1, 'template_identity_chunk': 1, 'template_footer': 1, 'family_footer': 1}},
+)
+TASK3_LITERAL_ROOT_SHA256 = '9933d96c1d29fc80e39f2e5826890ee8ad05940baeb67778dc3ec2337ca7d99a'
+
 def _task3_literal_authenticated_streams():
-    families = ("fixed", "base", "singleton", "P", "C", "Q")
-    shared = [
-        [
-            "shared_header",
-            "period-two-old-new-cut-package-v2",
-            "production-full",
-            "period-two-old-new-cut-load-v1",
-            "canonical-json-ascii-lines-v1",
-            "uint84-be11-base64url-nopad-v1",
-            "fixture domain",
-            "generated-awaiting-independent-replay",
-            ["shared", "fixed", "base", "singleton", "P", "C", "Q"],
-        ],
-        ["source_bindings", {"fixture": "source"}],
-    ]
-    shared.extend(
-        [
-            "b_identity",
-            index,
-            f"token-{index}",
-            "fixture-class",
-            0,
-            None,
-            None,
-            None,
-            "module",
-            "label",
-            [],
-        ]
-        for index in range(84)
+    return (
+        TASK3_LITERAL_ROOT_BYTES,
+        dict(TASK3_LITERAL_OBJECTS),
+        {"root_sha256": TASK3_LITERAL_ROOT_SHA256, "shards": [dict(item) for item in TASK3_LITERAL_DESCRIPTORS]},
     )
-    shared.extend(
-        ["b_coordinate", index, "fixture-class", [index]]
-        for index in range(84)
-    )
-    shared.append(_task3_stream_footer(shared, "shared_footer"))
-    streams = {"shared": b"".join(_task3_stream_line(row) for row in shared)}
-    for family in families:
-        records = [
-            [
-                "family_header",
-                family,
-                ["a"],
-                0,
-                [],
-                0,
-                0,
-                0,
-                84,
-                [
-                    None,
-                    "strict_affine_length",
-                    "identical_pumped_blocks",
-                    "fixed_mismatch_after_pumped_prefix",
-                ],
-                [
-                    "fixed_vs_correction_literal_leaf_order",
-                    "distinct_occurrences_literal_AST_order",
-                    "equal_coordinate_excluded",
-                    "same_occurrence_increasing",
-                    "same_occurrence_decreasing",
-                ],
-                [
-                    "old_occurrence",
-                    "old_leaf",
-                    "b_source_class",
-                    "b_coordinate",
-                    "equality_exclusion",
-                    "old_polarity",
-                    "module_method",
-                    "module_order",
-                    "chronology",
-                    "chronology_order",
-                    "label_method",
-                    "label_order",
-                    "contribution_bit",
-                ],
-                TEMPLATE_FIELD_ORDERS,
-                "product-order-with-P-domain-filter",
-            ],
-            [
-                "template_header",
-                "task4-template-catalog-v2",
-                "task4-typed-sha256-v1",
-                family,
-                TEMPLATE_FIELD_ORDERS,
-                "schema-major-cell-minor",
-                1,
-                1,
-                1,
-                1,
-            ],
-            ["template_schema", 0, f"{family}-schema", ["a"], []],
-            ["template_cell", 0, "fixture-cell", ["a"], [0], [0]],
-            [
-                "template_witness",
-                0,
-                1,
-                False,
-                [[0, 1, [1], 1, 0, 1, 0, 0]],
-            ],
-            ["template_identity_chunk", 0, [0]],
-            ["template_footer", "0" * 64, "0" * 64, "0" * 64],
-        ]
-        records.append(_task3_stream_footer(records, "family_footer"))
-        streams[family] = b"".join(_task3_stream_line(row) for row in records)
-    declarations = {
-        "shared": (
-            "shared_header",
-            "dependency",
-            "source_bindings",
-            "b_identity",
-            "b_coordinate",
-            "shared_footer",
-        ),
-        "family": (
-            "family_header",
-            "old_load",
-            "footprint",
-            "bucket_class",
-            "load",
-            "cell_footer",
-            "template_header",
-            "template_schema",
-            "template_cell",
-            "template_witness",
-            "template_identity_chunk",
-            "template_footer",
-            "family_footer",
-        ),
-    }
-    descriptors = []
-    for family in (None, *families):
-        key = "shared" if family is None else family
-        payload = streams[key]
-        tags = declarations["shared" if family is None else "family"]
-        counts = {tag: 0 for tag in tags}
-        for line in payload.splitlines():
-            counts[json.loads(line.decode("ascii"))[0]] += 1
+
+
+def _task3_resealed_root(mutator):
+    root = json.loads(TASK3_LITERAL_ROOT_BYTES)
+    mutator(root)
+    payload = {key: value for key, value in root.items() if key != "root_sha256"}
+    root["root_sha256"] = hashlib.sha256(_task3_stream_line(payload)).hexdigest()
+    return _task3_stream_line(root)
+
+
+def _task3_resealed_package(
+    descriptor_index,
+    *,
+    mutate_descriptor=None,
+    mutate_object=None,
+):
+    root = json.loads(TASK3_LITERAL_ROOT_BYTES)
+    objects = dict(TASK3_LITERAL_OBJECTS)
+    descriptor = root["shards"][descriptor_index]
+    if mutate_object is not None:
+        old_path = descriptor["path"]
+        old_size = len(objects[old_path])
+        payload = mutate_object(objects.pop(old_path))
         digest = hashlib.sha256(payload).hexdigest()
-        descriptors.append(
-            {
-                "role": "shared" if family is None else "family",
-                "family": family,
-                "path": f"objects/{digest}.jsonl",
-                "sha256": digest,
-                "total_bytes": len(payload),
-                "record_count": sum(counts.values()),
-                "record_counts": counts,
-            }
+        descriptor["path"] = f"objects/{digest}.jsonl"
+        descriptor["sha256"] = digest
+        descriptor["total_bytes"] = len(payload)
+        root["shard_bytes_total"] += len(payload) - old_size
+        objects[descriptor["path"]] = payload
+    if mutate_descriptor is not None:
+        mutate_descriptor(descriptor, objects, root)
+    payload = {key: value for key, value in root.items() if key != "root_sha256"}
+    root["root_sha256"] = hashlib.sha256(_task3_stream_line(payload)).hexdigest()
+    return _task3_stream_line(root), objects
+
+
+def _task3_mutate_footer(payload, index, delta):
+    lines = payload.splitlines()
+    footer = json.loads(lines[-1])
+    footer[index] += delta
+    lines[-1] = _task3_stream_line(footer).rstrip(b"\n")
+    return b"\n".join(lines) + b"\n"
+
+
+def _task3_mutated_records(payload, mutator):
+    records = [json.loads(line) for line in payload.splitlines()]
+    mutator(records)
+    footer = records[-1]
+    footer[-2] = len(records) - 1
+    footer[-1] = sum(len(_task3_stream_line(record)) for record in records[:-1])
+    return b"".join(_task3_stream_line(record) for record in records)
+
+
+def test_task3_object_counters_literal_oracle_is_frozen(monkeypatch) -> None:
+    def forbidden(*_args, **_kwargs):
+        raise AssertionError("literal Task 3 fixture called a forbidden producer")
+
+    module = load_package_v2_verifier()
+    forbidden_test_helpers = (
+        "load_generator",
+        "literal_package_v2_template_catalog",
+        "literal_package_v2_histogram",
+        "literal_package_v2_logical_fixture",
+        "encoded_package_v2_with_two_fixed_buckets",
+        "reseal_package_v2_object",
+        "task2_catalog_fixture",
+        "task2_singleton_discovery",
+        "_task2_projection_inputs",
+        "_task2_arithmetic_projection",
+        "_task2_fix2_projected_index_input",
+        "_task3_stream_line",
+        "_task3_stream_footer",
+    )
+    forbidden_verifier_helpers = (
+        "decode_shared_records",
+        "decode_family_records",
+        "_decode_package_from_root",
+        "decode_v2_package",
+        "decode_v2_package_path",
+    )
+    assert all(name in globals() for name in forbidden_test_helpers)
+    assert all(hasattr(module, name) for name in forbidden_verifier_helpers)
+    installed = set()
+    for name in forbidden_test_helpers:
+        monkeypatch.setitem(globals(), name, forbidden)
+        installed.add(("test", name))
+    for name in forbidden_verifier_helpers:
+        monkeypatch.setattr(module, name, forbidden)
+        installed.add(("verifier", name))
+    assert installed == {
+        *(("test", name) for name in forbidden_test_helpers),
+        *(("verifier", name) for name in forbidden_verifier_helpers),
+    }
+    root_bytes, objects, root = _task3_literal_authenticated_streams()
+    assert root_bytes is TASK3_LITERAL_ROOT_BYTES
+    assert root["root_sha256"] == TASK3_LITERAL_ROOT_SHA256
+    for descriptor in TASK3_LITERAL_DESCRIPTORS:
+        payload = objects[descriptor["path"]]
+        assert len(payload) == descriptor["total_bytes"]
+        assert hashlib.sha256(payload).hexdigest() == descriptor["sha256"]
+    module._authenticate_v2_streams(
+        io.BytesIO(root_bytes),
+        lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+    )
+
+
+@pytest.mark.parametrize(
+    "descriptor_index",
+    range(len(TASK3_LITERAL_DESCRIPTORS)),
+    ids=("shared", "fixed", "base", "singleton", "P", "C", "Q"),
+)
+def test_task3_object_counters_descriptor_bytes_sha_and_records_fail_closed(
+    descriptor_index,
+) -> None:
+    module = load_package_v2_verifier()
+
+    def wrong_bytes(descriptor, _objects, root):
+        descriptor["total_bytes"] += 1
+        root["shard_bytes_total"] += 1
+
+    root_bytes, objects = _task3_resealed_package(
+        descriptor_index, mutate_descriptor=wrong_bytes
+    )
+    with pytest.raises(module.WireFormatError, match="object byte count"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
         )
-    summary = {
-        "load_rows": {family: 0 for family in families},
-        "total_load_rows": 0,
-        "footprint_sizes": {family: {} for family in families},
-        "occurrence_loads": {family: 0 for family in families},
-        "total_occurrence_loads": 0,
-        "b_tokens_per_occurrence": 84,
-        "active_comparisons": 0,
-        "template_counts": {family: 1 for family in families},
-        "total_templates": 6,
-    }
-    catalogs = {
-        family: {
-            "format": "task4-template-catalog-v2",
-            "typed_encoding": "task4-typed-sha256-v1",
-            "identity_order": "schema-major-cell-minor",
-            "schema_count": 1,
-            "cell_count": 1,
-            "template_count": 1,
-            "witness_count": 1,
-            "identity_sha256": "0" * 64,
-            "replay_sha256": "0" * 64,
-            "catalog_sha256": "0" * 64,
-        }
-        for family in families
-    }
-    root = {
-        "format": "period-two-old-new-cut-package-v2",
-        "scope": "production-full",
-        "logical_v1_format": "period-two-old-new-cut-load-v1",
-        "canonical_encoding": "canonical-json-ascii-lines-v1",
-        "mask_encoding": "uint84-be11-base64url-nopad-v1",
-        "domain": "fixture domain",
-        "status": "generated-awaiting-independent-replay",
-        "shard_order": ["shared", "fixed", "base", "singleton", "P", "C", "Q"],
-        "shards": descriptors,
-        "shard_bytes_total": sum(item["total_bytes"] for item in descriptors),
-        "emitted_summary": summary,
-        "full_summary": summary,
-        "source_bindings_sha256": "0" * 64,
-        "b_identity_digest": "0" * 64,
-        "template_catalogs": catalogs,
-    }
-    root["root_sha256"] = hashlib.sha256(_task3_stream_line(root)).hexdigest()
-    by_path = {}
-    for descriptor in descriptors:
-        family = descriptor["family"]
-        by_path[descriptor["path"]] = streams[
-            "shared" if family is None else family
-        ]
-    return _task3_stream_line(root), by_path, root
+
+    def wrong_sha(descriptor, objects, _root):
+        old_path = descriptor["path"]
+        digest = "f" * 64
+        descriptor["sha256"] = digest
+        descriptor["path"] = f"objects/{digest}.jsonl"
+        objects[descriptor["path"]] = objects.pop(old_path)
+
+    root_bytes, objects = _task3_resealed_package(
+        descriptor_index, mutate_descriptor=wrong_sha
+    )
+    with pytest.raises(module.WireFormatError, match="object digest"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        )
+
+    def wrong_records(descriptor, _objects, _root):
+        footer_tag = (
+            "shared_footer"
+            if descriptor["family"] is None
+            else "family_footer"
+        )
+        descriptor["record_counts"][footer_tag] += 1
+        descriptor["record_count"] += 1
+
+    root_bytes, objects = _task3_resealed_package(
+        descriptor_index, mutate_descriptor=wrong_records
+    )
+    with pytest.raises(module.WireFormatError, match="object record count"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        )
+
+
+@pytest.mark.parametrize(
+    ("descriptor_index", "tag"),
+    tuple(
+        (descriptor_index, tag)
+        for descriptor_index in range(len(TASK3_LITERAL_DESCRIPTORS))
+        for tag in TASK3_LITERAL_DESCRIPTORS[descriptor_index]["record_counts"]
+    ),
+)
+def test_task3_object_counters_every_descriptor_tag_count_fails_closed(
+    descriptor_index,
+    tag,
+) -> None:
+    module = load_package_v2_verifier()
+
+    def wrong_tag_count(descriptor, _objects, _root):
+        balancing_tag = (
+            "shared_footer"
+            if descriptor["family"] is None
+            else "family_footer"
+        )
+        if tag == balancing_tag:
+            balancing_tag = (
+                "shared_header"
+                if descriptor["family"] is None
+                else "family_header"
+            )
+        descriptor["record_counts"][tag] += 1
+        descriptor["record_counts"][balancing_tag] -= 1
+
+    root_bytes, objects = _task3_resealed_package(
+        descriptor_index, mutate_descriptor=wrong_tag_count
+    )
+    with pytest.raises(module.WireFormatError, match="tag counts"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        )
+
+
+@pytest.mark.parametrize(
+    ("descriptor_index", "footer_index", "message"),
+    (
+        (0, 2, "prefix record count"),
+        (0, 3, "prefix byte count"),
+        *((index, 6, "prefix record count") for index in range(1, 7)),
+        *((index, 7, "prefix byte count") for index in range(1, 7)),
+    ),
+)
+def test_task3_object_counters_resealed_footer_prefixes_fail_closed(
+    descriptor_index,
+    footer_index,
+    message,
+) -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects = _task3_resealed_package(
+        descriptor_index,
+        mutate_object=lambda payload: _task3_mutate_footer(
+            payload, footer_index, -1
+        ),
+    )
+    with pytest.raises(module.WireFormatError, match=message):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        )
+
+
+@pytest.mark.parametrize(
+    ("descriptor_index", "case", "message"),
+    (
+        (0, "duplicate", "singleton record repeats"),
+        (0, "reorder", "records are out of order"),
+        (1, "duplicate", "singleton record repeats"),
+        (1, "reorder", "tag counts"),
+    ),
+)
+def test_task3_object_counters_resealed_singletons_and_order_fail_closed(
+    descriptor_index,
+    case,
+    message,
+) -> None:
+    module = load_package_v2_verifier()
+
+    def mutate(records):
+        if descriptor_index == 0 and case == "duplicate":
+            records.insert(2, copy.deepcopy(records[1]))
+        elif descriptor_index == 0:
+            source = records.pop(1)
+            records.insert(2, source)
+        elif case == "duplicate":
+            records.insert(2, copy.deepcopy(records[1]))
+        else:
+            template_header = records.pop(1)
+            records.insert(2, template_header)
+
+    def reseal_counts(descriptor, _objects, _root):
+        if case == "duplicate":
+            tag = "source_bindings" if descriptor_index == 0 else "template_header"
+            descriptor["record_counts"][tag] += 1
+            descriptor["record_count"] += 1
+
+    root_bytes, objects = _task3_resealed_package(
+        descriptor_index,
+        mutate_object=lambda payload: _task3_mutated_records(payload, mutate),
+        mutate_descriptor=reseal_counts,
+    )
+    with pytest.raises(module.WireFormatError, match=message):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        )
+
+
+@pytest.mark.parametrize("kind", ("identity", "coordinate", "chunk", "header"))
+def test_task3_object_counters_cap_plus_one_fails_before_retention(kind) -> None:
+    module = load_package_v2_verifier()
+    descriptor_index = 0 if kind in {"identity", "coordinate"} else 1
+
+    def mutate(records):
+        if kind == "identity":
+            row = copy.deepcopy(next(row for row in records if row[0] == "b_identity"))
+            row[1] = 84
+            insert_at = next(
+                index for index, record in enumerate(records) if record[0] == "b_coordinate"
+            )
+            records.insert(insert_at, row)
+        elif kind == "coordinate":
+            row = copy.deepcopy(next(row for row in records if row[0] == "b_coordinate"))
+            row[1] = 84
+            records.insert(-1, row)
+        elif kind == "chunk":
+            row = next(
+                row for row in records if row[0] == "template_identity_chunk"
+            )
+            row[2] = [0] * 3_073
+        else:
+            row = next(row for row in records if row[0] == "template_header")
+            row[6] = 193
+
+    def reseal_counts(descriptor, _objects, _root):
+        if kind in {"identity", "coordinate"}:
+            tag = "b_identity" if kind == "identity" else "b_coordinate"
+            descriptor["record_counts"][tag] += 1
+            descriptor["record_count"] += 1
+
+    root_bytes, objects = _task3_resealed_package(
+        descriptor_index,
+        mutate_object=lambda payload: _task3_mutated_records(payload, mutate),
+        mutate_descriptor=reseal_counts,
+    )
+    with pytest.raises(module.WireFormatError, match="exceeds cap"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        )
+
+
+def test_task3_production_stream_accepts_smaller_preflight_under_same_caps() -> None:
+    module = load_package_v2_verifier()
+
+    def mutate_shared(records):
+        records[0][2] = "preflight-sample"
+        records[0][7] = "preflight-sample-not-a-certificate"
+
+    def mutate_root(_descriptor, _objects, root):
+        root["scope"] = "preflight-sample"
+        root["status"] = "preflight-sample-not-a-certificate"
+
+    root_bytes, objects = _task3_resealed_package(
+        0,
+        mutate_object=lambda payload: _task3_mutated_records(
+            payload, mutate_shared
+        ),
+        mutate_descriptor=mutate_root,
+    )
+    state = module._authenticate_v2_streams(
+        io.BytesIO(root_bytes),
+        lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+    )
+    assert state.root["scope"] == "preflight-sample"
 
 
 def test_task3_root_line_and_descriptor_authentication_are_bounded() -> None:
@@ -6656,17 +6824,14 @@ def test_task3_root_line_and_descriptor_authentication_are_bounded() -> None:
     assert stream.calls == 2
     assert state.root_sha256 == root["root_sha256"]
     assert opened
-    malformed = dict(root)
-    malformed["shards"] = list(reversed(root["shards"]))
-    malformed_payload = {
-        key: value for key, value in malformed.items() if key != "root_sha256"
-    }
-    malformed["root_sha256"] = hashlib.sha256(
-        _task3_stream_line(malformed_payload)
-    ).hexdigest()
+    malformed = _task3_resealed_root(
+        lambda value: value.__setitem__(
+            "shards", list(reversed(value["shards"]))
+        )
+    )
     with pytest.raises(module.WireFormatError, match="shard role"):
         module._authenticate_v2_streams(
-            io.BytesIO(_task3_stream_line(malformed)),
+            io.BytesIO(malformed),
             lambda _descriptor: pytest.fail(
                 "supplier called before descriptors authenticated"
             ),
@@ -6718,21 +6883,30 @@ def test_task3_object_counters_authenticate_bytes_sha_tags_and_footer_prefix() -
             io.BytesIO(root_bytes),
             lambda descriptor: io.BytesIO(bad_footer[descriptor["path"]]),
         )
-    bad_counts = dict(root)
-    bad_descriptors = [dict(item) for item in root["shards"]]
-    bad_descriptors[1]["record_counts"] = dict(bad_descriptors[1]["record_counts"])
-    bad_descriptors[1]["record_counts"]["template_schema"] = 2
-    bad_descriptors[1]["record_count"] += 1
-    bad_counts["shards"] = bad_descriptors
-    bad_counts_payload = {
-        key: value for key, value in bad_counts.items() if key != "root_sha256"
-    }
-    bad_counts["root_sha256"] = hashlib.sha256(
-        _task3_stream_line(bad_counts_payload)
-    ).hexdigest()
+    for trailing, message in (
+        (b"[]\n", "records follow"),
+        (b"\xff\n", "not ASCII"),
+        (b"[" * (module.MAX_CANONICAL_LINE_BYTES + 1), "exceeds byte cap"),
+        (b"[]", "missing final LF"),
+    ):
+        for object_path in (shared_path, root["shards"][1]["path"]):
+            mutated = dict(objects)
+            mutated[object_path] += trailing
+            with pytest.raises(module.WireFormatError, match=message):
+                module._authenticate_v2_streams(
+                    io.BytesIO(root_bytes),
+                    lambda descriptor, payloads=mutated: io.BytesIO(
+                        payloads[descriptor["path"]]
+                    ),
+                )
+    def mutate_counts(value):
+        value["shards"][1]["record_counts"]["template_schema"] = 2
+        value["shards"][1]["record_count"] += 1
+
+    bad_counts = _task3_resealed_root(mutate_counts)
     with pytest.raises(module.WireFormatError, match="tag counts"):
         module._authenticate_v2_streams(
-            io.BytesIO(_task3_stream_line(bad_counts)),
+            io.BytesIO(bad_counts),
             lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
         )
     state = module._authenticate_v2_streams(
@@ -6802,3 +6976,42 @@ def test_task3_production_stream_forbids_whole_object_materialization() -> None:
     assert not active
     assert not hasattr(state, "attestable")
     assert not hasattr(state, "logical_v1_sha256")
+
+    failure_active = []
+    failure_opened = []
+    failure_closed = []
+
+    class FailureStream(io.BytesIO):
+        def __init__(self, payload, label):
+            super().__init__(payload)
+            self.label = label
+
+        def close(self):
+            assert failure_active == [self]
+            failure_active.pop()
+            failure_closed.append(self.label)
+            super().close()
+
+    def failing_supply(descriptor):
+        assert not failure_active
+        label = (
+            "shared"
+            if descriptor["family"] is None
+            else descriptor["family"]
+        )
+        payload = objects[descriptor["path"]]
+        if label == "P":
+            payload += b"[]\n"
+        stream = FailureStream(payload, label)
+        failure_active.append(stream)
+        failure_opened.append(label)
+        return stream
+
+    with pytest.raises(module.WireFormatError, match="records follow"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            failing_supply,
+        )
+    assert not failure_active
+    assert failure_opened == ["shared", "C", "P"]
+    assert failure_closed == failure_opened
