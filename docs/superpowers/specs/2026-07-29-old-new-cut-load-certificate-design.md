@@ -865,6 +865,13 @@ ASCII order, it may then open family shards in
 `C, P, Q, base, fixed, singleton` order by using the already authenticated
 descriptors; descriptor order itself never changes.
 
+Steps 5--8 authenticate wire transport only.  They compute the
+package-derived logical-v1 hash but do not perform independent source-semantic
+replay and may not return an `IndependentReplayResult` with
+`status="independently-replayed"` or `attestable=True`.
+`verify_v2_package(...)` remains fail-closed until the semantic gates in Steps
+9--11 finish.
+
 Each object is a bounded binary line iterator wrapped by incremental byte,
 SHA-256, total-record, per-tag-record, records-before-footer, and
 bytes-before-footer counters.  The footer is checked before the stream is
@@ -877,6 +884,19 @@ but it may not retain all load rows, all cell ledgers, raw identity chunks, a
 complete family ledger, the seven-shard package, or a top-level byte string.  Reconstructed
 load, cell, histogram, identity, and template fragments are checked and sent
 to the logical-v1 writer as soon as their references are available.
+
+Only after all seven objects pass byte, SHA-256, tag, record, and footer
+authentication does the verifier construct `_GenerationProjectionPremises`.
+It retains the authenticated domain and dependency count, bucket and witness
+counts, and six compact ASCII schema profiles.  A schema profile entry is
+`(schema_id, pump_count)`, where `pump_count` is independently computed as
+`max(len(witness[2]))` across that schema's cells.  Missing, reordered, or
+mutated family profiles fail before generation-projection validation.  No
+premises validation occurs while any shard remains unauthenticated.
+
+All bounded state-machine tests use literal in-memory root and shard streams
+plus hand-authored fragment bytes.  They import no generator, encoder,
+publisher, legacy decoder, or Task 2 fixture.
 
 ## 15. Mask encoding
 

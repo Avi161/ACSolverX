@@ -981,6 +981,13 @@ Section 13.  Instrumented fake streams fail if the verifier reads beyond the
 line cap, opens a family before all descriptors validate, opens two objects at
 once, or accumulates all rows.
 
+All eight tests use literal in-memory root/shard streams and hand-authored
+expected fragments.  They import or call no generator, encoder, publisher,
+legacy decoder, Task 2 fixture, or package writer.  Extend the descriptor/order
+tests so projection validation is rejected before the seventh shard
+authenticates and missing, reordered, or mutated family schema profiles reach
+their named premise gate.
+
 - [ ] **Step 6: Run the streaming selector and record intended RED**
 
 Run:
@@ -1016,6 +1023,22 @@ summary, and template fragments as soon as canonical key order permits to a
 callback-based canonical writer.
 The production callback updates SHA-256 only; only the bounded oracle test may
 collect bytes.
+
+After and only after all seven objects authenticate, construct the private
+`_GenerationProjectionPremises` from authenticated data: root domain, shared
+dependency count cross-checked with the shared descriptor, family bucket and
+witness counts cross-checked with headers/tag maps/catalog summaries, and six
+ASCII schema profiles.  Derive each schema's pump count independently as
+`max(len(witness[2]))` across that schema's cells.  Retain the 1,304 compact
+profile entries, then call `_validate_generation_projection`; omitted,
+reordered, or mutated profiles fail closed.  Never call it while a shard is
+unauthenticated.
+
+This slice authenticates wire transport and computes only the package-derived
+logical-v1 hash.  It performs no independent source-semantic replay and
+`verify_v2_package(...)` remains fail-closed/nonattestable: it may not emit an
+`IndependentReplayResult` with `status="independently-replayed"` until Steps
+9--11 complete.
 
 - [ ] **Step 8: Run the streaming selector GREEN and foundation regression**
 
