@@ -6455,6 +6455,14 @@ TASK3_NONZERO_SHARED_BYTES = b'["shared_header","period-two-old-new-cut-package-
 TASK3_NONZERO_FIXED_PATH = 'objects/b17319786cbe32dbc200869807e72530b1151071323b9f1b1c10b54002bc8514.jsonl'
 TASK3_NONZERO_FIXED_BYTES = b'["family_header","fixed",["a"],2,[0],1,1,2,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["old_load",0,"old-0",1,[],null,0,1]\n["footprint",0,0,null,null,null,0,null,"label"]\n["bucket_class","fixture-class",[0],false,null,null,"fixed_vs_correction_literal_leaf_order",0,null,null,0]\n["bucket_class","fixture-class",[0],false,null,null,"fixed_vs_correction_literal_leaf_order",0,null,null,1]\n["load",0,0,0,"AAAAAAAAAAAAAAE"]\n["load",0,0,1,"AAAAAAAAAAAAAAI"]\n["cell_footer",0,0,"cell-0",[],0,2]\n["load",0,0,0,"AAAAAAAAAAAAAAE"]\n["load",0,0,1,"AAAAAAAAAAAAAAI"]\n["cell_footer",1,1,"cell-1",[],0,2]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","fixed",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,2,2,1]\n["template_schema",0,"fixed-nonzero",["a"],[]]\n["template_cell",0,"cell-0",["a"],[0],[0]]\n["template_cell",1,"cell-1",["a"],[1],[1]]\n["template_witness",0,null,false,[]]\n["template_identity_chunk",0,[0,0]]\n["template_footer","f9b7ccf0260a684409f51082711f9ec7bcd26b572b70ed142a6a0a2c8c443ab2","8a6ac9630b46c20c0685168b4211625f959a6e185cd933a4700ecefaa421ca99","973991cd4ec5f3699938eab04a2df049fe8b02b935610ec8c3e962380e9a5d47"]\n["family_footer",2,1,2,2,168,18,2266]\n'
 
+TASK3_LOGICAL_ROOT_BYTES = b'{"b_identity_digest":"9b0e8579df0aae110071e8fcb8250809203afb94a92f8cc2961df0e66301df73","canonical_encoding":"canonical-json-ascii-lines-v1","domain":"fixture domain","emitted_summary":{"active_comparisons":168,"b_tokens_per_occurrence":84,"footprint_sizes":{"C":{},"P":{},"Q":{},"base":{},"fixed":{"1":1},"singleton":{}},"load_rows":{"C":0,"P":0,"Q":0,"base":0,"fixed":2,"singleton":0},"occurrence_loads":{"C":0,"P":0,"Q":0,"base":0,"fixed":2,"singleton":0},"template_counts":{"C":1,"P":1,"Q":1,"base":1,"fixed":2,"singleton":1},"total_load_rows":2,"total_occurrence_loads":2,"total_templates":7},"format":"period-two-old-new-cut-package-v2","full_summary":{"active_comparisons":168,"b_tokens_per_occurrence":84,"footprint_sizes":{"C":{},"P":{},"Q":{},"base":{},"fixed":{"1":1},"singleton":{}},"load_rows":{"C":0,"P":0,"Q":0,"base":0,"fixed":2,"singleton":0},"occurrence_loads":{"C":0,"P":0,"Q":0,"base":0,"fixed":2,"singleton":0},"template_counts":{"C":1,"P":1,"Q":1,"base":1,"fixed":2,"singleton":1},"total_load_rows":2,"total_occurrence_loads":2,"total_templates":7},"logical_v1_format":"period-two-old-new-cut-load-v1","mask_encoding":"uint84-be11-base64url-nopad-v1","root_sha256":"e532eff48c0ee5b4960d6d973e4f7356b2a80f8ed7be5ba39b41cbf4b40f4f60","scope":"production-full","shard_bytes_total":22120,"shard_order":["shared","fixed","base","singleton","P","C","Q"],"shards":[{"family":null,"path":"objects/b7978903e3624e1d39695efdb0fc4f440bab677a7c63bfbb4850f650282ab93d.jsonl","record_count":173,"record_counts":{"b_coordinate":84,"b_identity":84,"dependency":2,"shared_footer":1,"shared_header":1,"source_bindings":1},"role":"shared","sha256":"b7978903e3624e1d39695efdb0fc4f440bab677a7c63bfbb4850f650282ab93d","total_bytes":10856},{"family":"fixed","path":"objects/02fb89bcb9593d0610a62bce32eeccbb3f33d56b872d035ffdd3466ea71161a9.jsonl","record_count":19,"record_counts":{"bucket_class":2,"cell_footer":2,"family_footer":1,"family_header":1,"footprint":1,"load":4,"old_load":1,"template_cell":2,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"02fb89bcb9593d0610a62bce32eeccbb3f33d56b872d035ffdd3466ea71161a9","total_bytes":2306},{"family":"base","path":"objects/905b233eefedf17a3bcd338fd9d26de8a57b4efeebbf84a8715337ab5a953a14.jsonl","record_count":9,"record_counts":{"bucket_class":0,"cell_footer":1,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"905b233eefedf17a3bcd338fd9d26de8a57b4efeebbf84a8715337ab5a953a14","total_bytes":1794},{"family":"singleton","path":"objects/c4d7b12df6f425db8d14ec1a347147f2cd59316cd8fe2ca279e5e989eb759aaa.jsonl","record_count":9,"record_counts":{"bucket_class":0,"cell_footer":1,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"c4d7b12df6f425db8d14ec1a347147f2cd59316cd8fe2ca279e5e989eb759aaa","total_bytes":1809},{"family":"P","path":"objects/62a556bc7fc6528ae3a59dd1b99850860a406be70b3dbe377f7cd1e3b93203aa.jsonl","record_count":9,"record_counts":{"bucket_class":0,"cell_footer":1,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"62a556bc7fc6528ae3a59dd1b99850860a406be70b3dbe377f7cd1e3b93203aa","total_bytes":1785},{"family":"C","path":"objects/4a4573416035fd9cda251356e6795eb2c745b1396d40e7ff2dae234dac990106.jsonl","record_count":9,"record_counts":{"bucket_class":0,"cell_footer":1,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"4a4573416035fd9cda251356e6795eb2c745b1396d40e7ff2dae234dac990106","total_bytes":1785},{"family":"Q","path":"objects/9a4ba35b0469e7717b677f1cb1e1bca324219c29c89fc761169f17443ba24024.jsonl","record_count":9,"record_counts":{"bucket_class":0,"cell_footer":1,"family_footer":1,"family_header":1,"footprint":0,"load":0,"old_load":0,"template_cell":1,"template_footer":1,"template_header":1,"template_identity_chunk":1,"template_schema":1,"template_witness":1},"role":"family","sha256":"9a4ba35b0469e7717b677f1cb1e1bca324219c29c89fc761169f17443ba24024","total_bytes":1785}],"source_bindings_sha256":"41a783bb30a89b9ab9920496b7da6d70da427f390c18eec10e0ee80df9fcd9e1","status":"generated-awaiting-independent-replay","template_catalogs":{"C":{"catalog_sha256":"2dd72f4a3b70e3ad8550cd3cb98bb1c82afe80368089ad451cad49c9a4fc7295","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"1efce2ce7e544816d63e9a16e724220fdf8f878c726ff00488107db4f246643c","replay_sha256":"d826ad05c59aca761f25994090829740a99b6501231a69999be90c531be7f5dd","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"P":{"catalog_sha256":"721c211b836767f2b4f28c05807974575cb298ff73dfe0b8fa9fc69e1eb49623","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"c47e0562c494cbf5b9d55bf28a876f5060c45f4f8b341e79ebaae0e9afe8d08f","replay_sha256":"1a4f27e0c740b2173013bfa54070e253c7cb697a88b3682669f6f09cdf1fa91a","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"Q":{"catalog_sha256":"e81cab653e4f280fa22cd9bea46abb55524e137965385f8011ca58bb20a7d62b","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"e67a8709a03f4618b6b7c84ee35a7a70c84c3b79af97521545953f997c0acfd0","replay_sha256":"b78cb562f86d599a8ff4f5f57d9c85a2a906fb4fd32742add48bed664ff017e3","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"base":{"catalog_sha256":"6f33f74ff2162e4dd9fcc44c17be701034d3f12acdd59a86bb95fdd791a8b0bc","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"a22e003713e112f50dbbb9c7f89efd5bff7b14a78250c1005125ac77fc6444ad","replay_sha256":"62e460d959bb9e07670721d34a278416af4f92512243ef19de4bdad3a3ac9ebd","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"fixed":{"catalog_sha256":"973991cd4ec5f3699938eab04a2df049fe8b02b935610ec8c3e962380e9a5d47","cell_count":2,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"f9b7ccf0260a684409f51082711f9ec7bcd26b572b70ed142a6a0a2c8c443ab2","replay_sha256":"8a6ac9630b46c20c0685168b4211625f959a6e185cd933a4700ecefaa421ca99","schema_count":1,"template_count":2,"typed_encoding":"task4-typed-sha256-v1","witness_count":1},"singleton":{"catalog_sha256":"d09b1d3054abd3282811cc253176d742d5a6fcf18a51af8fc2327ec74bff7c03","cell_count":1,"format":"task4-template-catalog-v2","identity_order":"schema-major-cell-minor","identity_sha256":"442e7dace7846c78e19b18b1dc604da86b4c57b94b0c251f2542e322600ed156","replay_sha256":"4bf88de1c1263fdca8c3889c312011b4bb690261db8d924a48dcb06a383e157f","schema_count":1,"template_count":1,"typed_encoding":"task4-typed-sha256-v1","witness_count":1}}}\n'
+TASK3_LOGICAL_SHARED_PATH = 'objects/b7978903e3624e1d39695efdb0fc4f440bab677a7c63bfbb4850f650282ab93d.jsonl'
+TASK3_LOGICAL_SHARED_BYTES = b'["shared_header","period-two-old-new-cut-package-v2","production-full","period-two-old-new-cut-load-v1","canonical-json-ascii-lines-v1","uint84-be11-base64url-nopad-v1","fixture domain","generated-awaiting-independent-replay",["shared","fixed","base","singleton","P","C","Q"]]\n["dependency","a.dep","0000000000000000000000000000000000000000000000000000000000000000"]\n["dependency","b.dep","1111111111111111111111111111111111111111111111111111111111111111"]\n["source_bindings",{"b":{},"format":"task4-source-bindings-v1","old":{},"sha256":"41a783bb30a89b9ab9920496b7da6d70da427f390c18eec10e0ee80df9fcd9e1"}]\n["b_identity",0,"token-0","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",1,"token-1","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",2,"token-2","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",3,"token-3","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",4,"token-4","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",5,"token-5","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",6,"token-6","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",7,"token-7","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",8,"token-8","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",9,"token-9","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",10,"token-10","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",11,"token-11","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",12,"token-12","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",13,"token-13","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",14,"token-14","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",15,"token-15","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",16,"token-16","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",17,"token-17","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",18,"token-18","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",19,"token-19","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",20,"token-20","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",21,"token-21","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",22,"token-22","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",23,"token-23","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",24,"token-24","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",25,"token-25","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",26,"token-26","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",27,"token-27","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",28,"token-28","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",29,"token-29","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",30,"token-30","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",31,"token-31","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",32,"token-32","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",33,"token-33","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",34,"token-34","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",35,"token-35","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",36,"token-36","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",37,"token-37","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",38,"token-38","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",39,"token-39","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",40,"token-40","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",41,"token-41","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",42,"token-42","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",43,"token-43","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",44,"token-44","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",45,"token-45","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",46,"token-46","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",47,"token-47","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",48,"token-48","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",49,"token-49","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",50,"token-50","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",51,"token-51","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",52,"token-52","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",53,"token-53","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",54,"token-54","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",55,"token-55","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",56,"token-56","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",57,"token-57","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",58,"token-58","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",59,"token-59","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",60,"token-60","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",61,"token-61","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",62,"token-62","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",63,"token-63","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",64,"token-64","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",65,"token-65","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",66,"token-66","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",67,"token-67","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",68,"token-68","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",69,"token-69","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",70,"token-70","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",71,"token-71","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",72,"token-72","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",73,"token-73","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",74,"token-74","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",75,"token-75","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",76,"token-76","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",77,"token-77","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",78,"token-78","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",79,"token-79","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",80,"token-80","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",81,"token-81","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",82,"token-82","fixture-class",0,null,null,null,"module","label",[]]\n["b_identity",83,"token-83","fixture-class",0,null,null,null,"module","label",[]]\n["b_coordinate",0,"fixture-class",[0]]\n["b_coordinate",1,"fixture-class",[0]]\n["b_coordinate",2,"fixture-class",[0]]\n["b_coordinate",3,"fixture-class",[0]]\n["b_coordinate",4,"fixture-class",[0]]\n["b_coordinate",5,"fixture-class",[0]]\n["b_coordinate",6,"fixture-class",[0]]\n["b_coordinate",7,"fixture-class",[0]]\n["b_coordinate",8,"fixture-class",[0]]\n["b_coordinate",9,"fixture-class",[0]]\n["b_coordinate",10,"fixture-class",[0]]\n["b_coordinate",11,"fixture-class",[0]]\n["b_coordinate",12,"fixture-class",[0]]\n["b_coordinate",13,"fixture-class",[0]]\n["b_coordinate",14,"fixture-class",[0]]\n["b_coordinate",15,"fixture-class",[0]]\n["b_coordinate",16,"fixture-class",[0]]\n["b_coordinate",17,"fixture-class",[0]]\n["b_coordinate",18,"fixture-class",[0]]\n["b_coordinate",19,"fixture-class",[0]]\n["b_coordinate",20,"fixture-class",[0]]\n["b_coordinate",21,"fixture-class",[0]]\n["b_coordinate",22,"fixture-class",[0]]\n["b_coordinate",23,"fixture-class",[0]]\n["b_coordinate",24,"fixture-class",[0]]\n["b_coordinate",25,"fixture-class",[0]]\n["b_coordinate",26,"fixture-class",[0]]\n["b_coordinate",27,"fixture-class",[0]]\n["b_coordinate",28,"fixture-class",[0]]\n["b_coordinate",29,"fixture-class",[0]]\n["b_coordinate",30,"fixture-class",[0]]\n["b_coordinate",31,"fixture-class",[0]]\n["b_coordinate",32,"fixture-class",[0]]\n["b_coordinate",33,"fixture-class",[0]]\n["b_coordinate",34,"fixture-class",[0]]\n["b_coordinate",35,"fixture-class",[0]]\n["b_coordinate",36,"fixture-class",[0]]\n["b_coordinate",37,"fixture-class",[0]]\n["b_coordinate",38,"fixture-class",[0]]\n["b_coordinate",39,"fixture-class",[0]]\n["b_coordinate",40,"fixture-class",[0]]\n["b_coordinate",41,"fixture-class",[0]]\n["b_coordinate",42,"fixture-class",[0]]\n["b_coordinate",43,"fixture-class",[0]]\n["b_coordinate",44,"fixture-class",[0]]\n["b_coordinate",45,"fixture-class",[0]]\n["b_coordinate",46,"fixture-class",[0]]\n["b_coordinate",47,"fixture-class",[0]]\n["b_coordinate",48,"fixture-class",[0]]\n["b_coordinate",49,"fixture-class",[0]]\n["b_coordinate",50,"fixture-class",[0]]\n["b_coordinate",51,"fixture-class",[0]]\n["b_coordinate",52,"fixture-class",[0]]\n["b_coordinate",53,"fixture-class",[0]]\n["b_coordinate",54,"fixture-class",[0]]\n["b_coordinate",55,"fixture-class",[0]]\n["b_coordinate",56,"fixture-class",[0]]\n["b_coordinate",57,"fixture-class",[0]]\n["b_coordinate",58,"fixture-class",[0]]\n["b_coordinate",59,"fixture-class",[0]]\n["b_coordinate",60,"fixture-class",[0]]\n["b_coordinate",61,"fixture-class",[0]]\n["b_coordinate",62,"fixture-class",[0]]\n["b_coordinate",63,"fixture-class",[0]]\n["b_coordinate",64,"fixture-class",[0]]\n["b_coordinate",65,"fixture-class",[0]]\n["b_coordinate",66,"fixture-class",[0]]\n["b_coordinate",67,"fixture-class",[0]]\n["b_coordinate",68,"fixture-class",[0]]\n["b_coordinate",69,"fixture-class",[0]]\n["b_coordinate",70,"fixture-class",[0]]\n["b_coordinate",71,"fixture-class",[0]]\n["b_coordinate",72,"fixture-class",[0]]\n["b_coordinate",73,"fixture-class",[0]]\n["b_coordinate",74,"fixture-class",[0]]\n["b_coordinate",75,"fixture-class",[0]]\n["b_coordinate",76,"fixture-class",[0]]\n["b_coordinate",77,"fixture-class",[0]]\n["b_coordinate",78,"fixture-class",[0]]\n["b_coordinate",79,"fixture-class",[0]]\n["b_coordinate",80,"fixture-class",[0]]\n["b_coordinate",81,"fixture-class",[0]]\n["b_coordinate",82,"fixture-class",[0]]\n["b_coordinate",83,"fixture-class",[0]]\n["shared_footer",84,172,10825]\n'
+TASK3_LOGICAL_FIXED_PATH = 'objects/02fb89bcb9593d0610a62bce32eeccbb3f33d56b872d035ffdd3466ea71161a9.jsonl'
+TASK3_LOGICAL_FIXED_BYTES = b'["family_header","fixed",["a"],2,[0],1,1,2,84,[null,"strict_affine_length","identical_pumped_blocks","fixed_mismatch_after_pumped_prefix"],["fixed_vs_correction_literal_leaf_order","distinct_occurrences_literal_AST_order","equal_coordinate_excluded","same_occurrence_increasing","same_occurrence_decreasing"],["old_occurrence","old_leaf","b_source_class","b_coordinate","equality_exclusion","old_polarity","module_method","module_order","chronology","chronology_order","label_method","label_order","contribution_bit"],{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"product-order-with-P-domain-filter"]\n["old_load",0,"old-0",1,[],null,0,1]\n["footprint",0,0,null,null,null,0,null,"label"]\n["bucket_class","fixture-class",[0],false,null,null,"fixed_vs_correction_literal_leaf_order",0,null,null,0]\n["bucket_class","fixture-class",[0],false,null,null,"fixed_vs_correction_literal_leaf_order",0,null,null,1]\n["load",0,0,0,"AAAAAAAAAAAAAAE"]\n["load",0,0,1,"D_____________4"]\n["cell_footer",0,0,"cell-0",[0],1,2]\n["load",0,0,0,"AAAAAAAAAAAAAAE"]\n["load",0,0,1,"D_____________4"]\n["cell_footer",1,1,"cell-1",[0],1,2]\n["template_header","task4-template-catalog-v2","task4-typed-sha256-v1","fixed",{"block":["block_name","word","affine"],"cell":["cell_id","names","states","base_values"],"pump":["block_index","base_copies","slopes","split_position","left_copy_id","right_copy_id","left_core_offset","right_core_offset"],"schema":["schema_id","variables","blocks"],"witness":["terminal_full_letter","terminal_c_deleted","pumps"]},"schema-major-cell-minor",1,2,2,1]\n["template_schema",0,"fixed-nonzero",["a"],[]]\n["template_cell",0,"cell-0",["a"],[0],[0]]\n["template_cell",1,"cell-1",["a"],[1],[1]]\n["template_witness",0,null,false,[]]\n["template_identity_chunk",0,[0,0]]\n["template_footer","f9b7ccf0260a684409f51082711f9ec7bcd26b572b70ed142a6a0a2c8c443ab2","8a6ac9630b46c20c0685168b4211625f959a6e185cd933a4700ecefaa421ca99","973991cd4ec5f3699938eab04a2df049fe8b02b935610ec8c3e962380e9a5d47"]\n["family_footer",2,1,2,2,168,18,2268]\n'
+TASK3_LOGICAL_V1_LENGTH = 27659
+TASK3_LOGICAL_V1_SHA256 = 'f2ed39a960c7bd2c5b2d4e4581b33ae7449f159ba024064bc17d1b0d6fccfd37'
+
 def _task3_literal_authenticated_streams():
     return (
         TASK3_LITERAL_ROOT_BYTES,
@@ -6500,12 +6508,16 @@ def _task3_resealed_package(
 
 
 def _task3_nonzero_authenticated_streams():
+    return _task3_logical_authenticated_streams()
+
+
+def _task3_logical_authenticated_streams():
     objects = dict(TASK3_LITERAL_OBJECTS)
     objects.pop(TASK3_LITERAL_DESCRIPTORS[0]["path"])
     objects.pop(TASK3_LITERAL_DESCRIPTORS[1]["path"])
-    objects[TASK3_NONZERO_SHARED_PATH] = TASK3_NONZERO_SHARED_BYTES
-    objects[TASK3_NONZERO_FIXED_PATH] = TASK3_NONZERO_FIXED_BYTES
-    return TASK3_NONZERO_ROOT_BYTES, objects
+    objects[TASK3_LOGICAL_SHARED_PATH] = TASK3_LOGICAL_SHARED_BYTES
+    objects[TASK3_LOGICAL_FIXED_PATH] = TASK3_LOGICAL_FIXED_BYTES
+    return TASK3_LOGICAL_ROOT_BYTES, objects
 
 
 def _task3_mutate_footer(payload, index, delta):
@@ -7088,8 +7100,8 @@ def test_task3_object_counters_nonzero_literal_exercises_shared_and_family() -> 
         ("load_order", "cell load rows are not ordered"),
         ("load_duplicate", "cell load rows are not ordered"),
         ("orphan_load", "orphan load rows"),
-        ("compact_repeat", "source/compact cell bijection differs"),
-        ("cell_id_repeat", "source/compact cell bijection differs"),
+        ("compact_repeat", "compact cell index repeats"),
+        ("cell_id_repeat", "cell ID is invalid"),
         ("variables", "family header variables differ"),
     ),
 )
@@ -7151,7 +7163,7 @@ def test_task3_object_counters_nonzero_resealed_mutations_fail_closed(
         descriptor_index,
         mutate_object=lambda payload: _task3_mutated_records(payload, mutate),
         mutate_descriptor=mutate_descriptor,
-        base_root_bytes=TASK3_NONZERO_ROOT_BYTES,
+        base_root_bytes=TASK3_LOGICAL_ROOT_BYTES,
         base_objects=base_objects,
     )
     with pytest.raises(module.WireFormatError, match=message):
@@ -7178,7 +7190,7 @@ def test_task3_object_counters_nonzero_root_family_maps_fail_closed(field) -> No
             else:
                 summary["total_templates"] += 1
 
-    root = json.loads(TASK3_NONZERO_ROOT_BYTES)
+    root = json.loads(TASK3_LOGICAL_ROOT_BYTES)
     mutate(root)
     payload = {key: value for key, value in root.items() if key != "root_sha256"}
     root["root_sha256"] = hashlib.sha256(_task3_stream_line(payload)).hexdigest()
@@ -7397,7 +7409,7 @@ def test_task3_production_stream_forbids_whole_object_materialization() -> None:
     )
     assert not active
     assert not hasattr(state, "attestable")
-    assert not hasattr(state, "logical_v1_sha256")
+    assert state.logical_v1_sha256
 
     failure_active = []
     failure_opened = []
@@ -7437,3 +7449,135 @@ def test_task3_production_stream_forbids_whole_object_materialization() -> None:
     assert not failure_active
     assert failure_opened == ["shared", "C", "P"]
     assert failure_closed == failure_opened
+
+
+def test_task3_logical_v1_fragment_writer_matches_hand_built_literal_bytes() -> None:
+    module = load_package_v2_verifier()
+    fragments = []
+    writer = module._CanonicalFragmentWriter(fragments.append)
+
+    writer.mapping(
+        {
+            "z": lambda: writer.scalar(7),
+            "a": lambda: writer.array(
+                (
+                    lambda: writer.scalar(True),
+                    lambda: writer.mapping(
+                        {
+                            "load_id": lambda: writer.scalar("fixed|c|o"),
+                            "buckets": lambda: writer.array(
+                                (
+                                    lambda: writer.mapping(
+                                        {
+                                            "mask": lambda: writer.scalar("001"),
+                                            "count": lambda: writer.scalar(1),
+                                        }
+                                    ),
+                                )
+                            ),
+                        }
+                    ),
+                    lambda: writer.scalar(None),
+                )
+            ),
+        }
+    )
+
+    assert b"".join(fragments) == (
+        b'{"a":[true,{"buckets":[{"count":1,"mask":"001"}],'
+        b'"load_id":"fixed|c|o"},null],"z":7}'
+    )
+    assert max(map(len, fragments)) < 32
+
+
+def test_task3_logical_v1_stream_matches_frozen_independent_oracle() -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects = _task3_logical_authenticated_streams()
+    fragments = []
+
+    state = module._authenticate_v2_streams(
+        io.BytesIO(root_bytes),
+        lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        logical_update=fragments.append,
+    )
+
+    logical_bytes = b"".join(fragments)
+    assert len(logical_bytes) == TASK3_LOGICAL_V1_LENGTH
+    assert hashlib.sha256(logical_bytes).hexdigest() == TASK3_LOGICAL_V1_SHA256
+    assert state.logical_v1_sha256 == TASK3_LOGICAL_V1_SHA256
+    assert max(map(len, fragments)) < 1024
+
+
+def test_task3_logical_v1_key_and_family_orders_are_exact() -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects = _task3_logical_authenticated_streams()
+    fragments = []
+
+    module._authenticate_v2_streams(
+        io.BytesIO(root_bytes),
+        lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        logical_update=fragments.append,
+    )
+    logical = json.loads(b"".join(fragments))
+
+    assert list(logical) == [
+        "b_identity_digest",
+        "b_identity_table",
+        "dependency_digests",
+        "domain",
+        "family_ledgers",
+        "format",
+        "source_bindings",
+        "status",
+        "summary",
+    ]
+    assert list(logical["family_ledgers"]) == [
+        "C",
+        "P",
+        "Q",
+        "base",
+        "fixed",
+        "singleton",
+    ]
+    assert list(logical["family_ledgers"]["fixed"]) == [
+        "cells",
+        "family",
+        "summary",
+        "template_catalog",
+    ]
+    assert list(logical["family_ledgers"]["fixed"]["cells"][0]) == [
+        "cell_id",
+        "comparison_count",
+        "load_count",
+        "loads",
+        "occurrence_load_count",
+        "odd_load_ids",
+        "value",
+    ]
+
+
+def test_task3_logical_v1_public_verifier_remains_fail_closed(
+    tmp_path, monkeypatch
+) -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects = _task3_logical_authenticated_streams()
+    package = tmp_path / "package"
+    object_dir = package / "objects"
+    object_dir.mkdir(parents=True)
+    index_path = package / "index.json"
+    index_path.write_bytes(root_bytes)
+    for relative, payload in objects.items():
+        (package / relative).write_bytes(payload)
+    monkeypatch.setattr(
+        module,
+        "_validate_generation_projection",
+        lambda _projection, _premises: module._GenerationProjectionValidation(
+            normalized="{}", sha256="0" * 64
+        ),
+    )
+
+    with pytest.raises(
+        module.EngineeringVerificationFailure,
+        match="semantic binding is not yet complete",
+    ):
+        module.verify_v2_package(index_path, "task3-logical", {})

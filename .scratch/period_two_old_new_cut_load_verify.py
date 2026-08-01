@@ -5,7 +5,7 @@ import hashlib
 import io
 import json
 import re
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -495,6 +495,95 @@ class _AuthenticatedWireState:
     root_sha256: str
     premises: _GenerationProjectionPremises
     generation_projection_sha256: str | None
+    logical_v1_sha256: str | None
+
+
+class _CanonicalFragmentWriter:
+    def __init__(self, update: Any) -> None:
+        self._update = update
+
+    def scalar(self, value: Any) -> None:
+        if value is None:
+            self._update(b"null")
+        elif value is True:
+            self._update(b"true")
+        elif value is False:
+            self._update(b"false")
+        elif type(value) is int:
+            self._update(str(value).encode("ascii"))
+        elif type(value) is str:
+            self._update(
+                json.dumps(value, ensure_ascii=True, separators=(",", ":")).encode(
+                    "ascii"
+                )
+            )
+        else:
+            raise WireFormatError("canonical fragment scalar is invalid")
+
+    def array(self, items: Iterable[Any]) -> None:
+        self._update(b"[")
+        for index, item in enumerate(items):
+            if index:
+                self._update(b",")
+            if not callable(item):
+                raise WireFormatError("canonical fragment array item is invalid")
+            item()
+        self._update(b"]")
+
+    def array_from(self, emit_items: Callable[[Callable[[Any], None]], None]) -> None:
+        if not callable(emit_items):
+            raise WireFormatError("canonical fragment array producer is invalid")
+        self._update(b"[")
+        item_count = 0
+
+        def emit_item(item: Any) -> None:
+            nonlocal item_count
+            if not callable(item):
+                raise WireFormatError("canonical fragment array item is invalid")
+            if item_count:
+                self._update(b",")
+            item()
+            item_count += 1
+
+        emit_items(emit_item)
+        self._update(b"]")
+
+    def mapping(self, items: Mapping[str, Any]) -> None:
+        if any(type(key) is not str for key in items):
+            raise WireFormatError("canonical fragment mapping key is invalid")
+        self._update(b"{")
+        for index, key in enumerate(sorted(items)):
+            if index:
+                self._update(b",")
+            self.scalar(key)
+            self._update(b":")
+            items[key]()
+        self._update(b"}")
+
+
+def _write_canonical_fragment(
+    writer: _CanonicalFragmentWriter, value: Any
+) -> None:
+    if value is None or type(value) in (bool, int, str):
+        writer.scalar(value)
+    elif isinstance(value, Mapping):
+        writer.mapping(
+            {
+                key: (
+                    lambda nested=value[key]: _write_canonical_fragment(
+                        writer, nested
+                    )
+                )
+                for key in value
+            }
+        )
+    elif type(value) in (list, tuple):
+        writer.array(
+            lambda nested=nested: _write_canonical_fragment(writer, nested)
+            for nested in value
+        )
+    else:
+        raise WireFormatError("canonical fragment value is invalid")
 
 
 class PhaseMetrics:
@@ -3237,17 +3326,14 @@ def _validate_authenticated_shared(
         raise WireFormatError("shared coordinate count differs")
 
 
-def _validate_authenticated_family(
+def _validate_family_reference_tables(
     family: str,
-    retained: Mapping[str, Any],
-    root: Mapping[str, Any],
+    header: Sequence[Any],
+    old_rows: Sequence[Sequence[Any]],
+    footprints: Sequence[Sequence[Any]],
+    buckets: Sequence[Sequence[Any]],
 ) -> None:
-    header = retained["header"]
     _validate_family_header(header, family)
-    old_rows = retained["old_loads"]
-    footprints = retained["footprints"]
-    buckets = retained["bucket_classes"]
-    cells = retained["cells"]
     if (
         len(old_rows) != header[5]
         or len(footprints) != header[6]
@@ -3332,24 +3418,23 @@ def _validate_authenticated_family(
             buckets[index - 1][1:]
         ):
             raise WireFormatError("bucket classes are not canonical")
-    if len(cells) != header[3]:
+
+
+def _validate_authenticated_family(
+    family: str,
+    retained: Mapping[str, Any],
+    root: Mapping[str, Any],
+) -> None:
+    header = retained["header"]
+    old_rows = retained["old_loads"]
+    footprints = retained["footprints"]
+    buckets = retained["bucket_classes"]
+    source_cell_bindings = retained["source_cell_bindings"]
+    _validate_family_reference_tables(
+        family, header, old_rows, footprints, buckets
+    )
+    if len(source_cell_bindings) != header[3]:
         raise WireFormatError("family cell footer census differs")
-    for index, (footer, load_count) in enumerate(cells):
-        if _exact_int(footer[1], "source cell index", minimum=0) != index:
-            raise WireFormatError("source cell indices are not consecutive")
-        _exact_int(footer[2], "compact cell index", minimum=0)
-        if not isinstance(footer[3], str) or not footer[3]:
-            raise WireFormatError("cell ID is invalid")
-        if (
-            type(footer[4]) is not list
-            or any(type(value) is not int for value in footer[4])
-            or footer[4] != sorted(set(footer[4]))
-        ):
-            raise WireFormatError("odd old indices are invalid")
-        if type(footer[5]) is not int or footer[5] not in (0, 1):
-            raise WireFormatError("cell value is invalid")
-        if _exact_int(footer[6], "cell load-record count", minimum=0) != load_count:
-            raise WireFormatError("cell load-record count differs")
     family_footer = retained["footer"]
     for index, name in (
         (1, "footer source cell count"),
@@ -3359,12 +3444,17 @@ def _validate_authenticated_family(
         (5, "footer comparisons"),
     ):
         _exact_int(family_footer[index], name, minimum=0)
-    expected_loads = len(header[4]) * len(cells)
-    expected_occurrences = len(cells) * sum(
+    expected_loads = len(header[4]) * len(source_cell_bindings)
+    expected_occurrences = len(source_cell_bindings) * sum(
         old_rows[index][7] for index in header[4]
     )
-    expected = (len(cells), len(old_rows), expected_loads, expected_occurrences,
-                expected_occurrences * TOKEN_COUNT)
+    expected = (
+        len(source_cell_bindings),
+        len(old_rows),
+        expected_loads,
+        expected_occurrences,
+        expected_occurrences * TOKEN_COUNT,
+    )
     if tuple(family_footer[1:6]) != expected:
         raise WireFormatError("family footer summary differs")
     summary = root["emitted_summary"]
@@ -3385,12 +3475,12 @@ def _validate_authenticated_family(
     compact_cells = {index: row for index, row in enumerate(catalog["cell_table"])}
     if len(compact_cells) != len(catalog["cell_table"]):
         raise WireFormatError("compact cell index repeats")
-    source_pairs = {(footer[2], footer[3]) for footer, _ in cells}
+    source_pairs = set(source_cell_bindings.items())
     catalog_pairs = {
         (index, row[0]) for index, row in enumerate(catalog["cell_table"])
     }
     if (
-        len(source_pairs) != len(cells)
+        len(source_pairs) != len(source_cell_bindings)
         or source_pairs != catalog_pairs
     ):
         raise WireFormatError("source/compact cell bijection differs")
@@ -3482,6 +3572,8 @@ def _authenticate_descriptor_stream(
     stream: Any,
     *,
     scope: str,
+    logical_cell_emitter: Callable[[Mapping[str, Any]], None] | None = None,
+    b_coordinates: Mapping[int, Sequence[Any]] | None = None,
 ) -> tuple[dict[str, int], dict[str, Any]]:
     family = descriptor["family"]
     declarations = (
@@ -3494,6 +3586,8 @@ def _authenticate_descriptor_stream(
     records_before_footer = 0
     try:
         if family is None:
+            if logical_cell_emitter is not None or b_coordinates is not None:
+                raise WireFormatError("shared shard cannot emit logical cells")
             phase = 0
             identities: dict[int, tuple[Any, ...]] = {}
             coordinates: dict[int, tuple[Any, ...]] = {}
@@ -3616,14 +3710,26 @@ def _authenticate_descriptor_stream(
             old_loads: list[tuple[Any, ...]] = []
             footprints: list[tuple[Any, ...]] = []
             bucket_classes: list[tuple[Any, ...]] = []
-            cells: list[tuple[tuple[Any, ...], int]] = []
             witnesses: list[int] = []
             witness_rows: list[tuple[Any, ...]] = []
             identity_witness_ids: list[int] = []
             identity_chunk_widths: list[int] = []
             cell_count = 0
-            current_cell_loads = 0
+            source_cell_bindings: dict[int, str] = {}
+            source_cell_ids: set[str] = set()
+            source_cell_count = 0
+            physical_load_count = 0
+            selected_position = 0
+            selected_occurrence_count = 0
+            current_cell_loads: list[dict[str, Any]] = []
+            current_old_index: int | None = None
+            current_footprint_index: int | None = None
+            current_footprint_buckets: list[tuple[Any, ...]] = []
+            current_histograms: list[dict[str, Any]] = []
+            current_footprint_bindings: list[dict[str, Any]] = []
+            current_load_value = 0
             previous_load_key = None
+            reference_tables_validated = False
             header = None
             template_header = None
             schema_rows: list[list[Any]] = []
@@ -3631,6 +3737,163 @@ def _authenticate_descriptor_stream(
             template_footer = None
             family_footer = None
             caps = _family_stream_caps(family)
+
+            def finish_footprint() -> None:
+                nonlocal current_footprint_buckets, current_footprint_index
+                nonlocal current_load_value
+                if current_old_index is None or current_footprint_index is None:
+                    raise WireFormatError("load footprint grouping is incomplete")
+                old_row = old_loads[current_old_index]
+                footprint = footprints[current_footprint_index]
+                validate_mask_partition(
+                    [row[4] for row in current_footprint_buckets]
+                )
+                buckets = []
+                one_count = 0
+                for row in current_footprint_buckets:
+                    mask = unpack_mask(row[4])
+                    bucket_class = bucket_classes[row[3]]
+                    count = mask.bit_count()
+                    one_count += count * bucket_class[10]
+                    buckets.append(
+                        {
+                            "key": _bucket_key_from_rows(
+                                footprint, bucket_class
+                            ),
+                            "count": count,
+                            "mask": f"{mask:021x}",
+                        }
+                    )
+                histogram_value = one_count % 2
+                current_load_value ^= histogram_value
+                current_histograms.append(
+                    {
+                        "buckets": buckets,
+                        "comparison_count": TOKEN_COUNT,
+                        "old_leaf": footprint[6],
+                        "old_occurrence": footprint[3],
+                        "old_polarity": footprint[5],
+                        "one_count": one_count,
+                        "value": histogram_value,
+                    }
+                )
+                current_footprint_bindings.append(
+                    {
+                        "label_schema": footprint[8],
+                        "leaf": footprint[6],
+                        "module_schema": footprint[7],
+                        "occurrence": footprint[3],
+                        "occurrence_slot": footprint[4],
+                        "polarity": footprint[5],
+                        "source_members": old_row[4],
+                        "source_slot": old_row[5],
+                        "token_id": old_row[2],
+                    }
+                )
+                current_footprint_buckets = []
+                current_footprint_index = None
+
+            def finish_old() -> None:
+                nonlocal current_old_index, current_load_value
+                nonlocal current_histograms, current_footprint_bindings
+                nonlocal selected_position
+                if current_old_index is None:
+                    return
+                finish_footprint()
+                old_row = old_loads[current_old_index]
+                if len(current_histograms) != old_row[7]:
+                    raise WireFormatError("load footprint count differs")
+                current_cell_loads.append(
+                    {
+                        "coefficient": old_row[3],
+                        "footprint_bindings": current_footprint_bindings,
+                        "histograms": current_histograms,
+                        "old_token_id": old_row[2],
+                        "occurrence_footprint": old_row[7],
+                        "source_members": old_row[4],
+                        "value": current_load_value,
+                    }
+                )
+                current_old_index = None
+                current_load_value = 0
+                current_histograms = []
+                current_footprint_bindings = []
+                selected_position += 1
+
+            def finish_cell(footer: Sequence[Any]) -> None:
+                nonlocal physical_load_count, previous_load_key, selected_position
+                nonlocal current_cell_loads, source_cell_count
+                finish_old()
+                if selected_position != len(header[4]):
+                    raise WireFormatError("cell load rows omit a selected old index")
+                source_index = _exact_int(
+                    footer[1], "source cell index", minimum=0
+                )
+                compact_index = _exact_int(
+                    footer[2], "compact cell index", minimum=0
+                )
+                cell_id = footer[3]
+                if source_index != source_cell_count:
+                    raise WireFormatError("source cell indices are not consecutive")
+                if compact_index in source_cell_bindings:
+                    raise WireFormatError("compact cell index repeats")
+                if (
+                    not isinstance(cell_id, str)
+                    or not cell_id
+                    or cell_id in source_cell_ids
+                ):
+                    raise WireFormatError("cell ID is invalid")
+                if (
+                    type(footer[4]) is not list
+                    or any(type(index) is not int for index in footer[4])
+                    or footer[4] != sorted(set(footer[4]))
+                ):
+                    raise WireFormatError("odd old indices are invalid")
+                if type(footer[5]) is not int or footer[5] not in (0, 1):
+                    raise WireFormatError("cell value is invalid")
+                if _exact_int(
+                    footer[6], "cell load-record count", minimum=0
+                ) != physical_load_count:
+                    raise WireFormatError("cell load-record count differs")
+                derived_odd = [
+                    old_index
+                    for old_index, logical_load in zip(
+                        header[4], current_cell_loads
+                    )
+                    if logical_load["value"]
+                ]
+                cell_value = 0
+                for logical_load in current_cell_loads:
+                    logical_load["load_id"] = (
+                        f"{family}|{cell_id}|{logical_load['old_token_id']}"
+                    )
+                    cell_value ^= logical_load["value"]
+                if footer[4] != derived_odd or footer[5] != cell_value:
+                    raise WireFormatError("cell parity footer differs")
+                source_cell_bindings[compact_index] = cell_id
+                source_cell_ids.add(cell_id)
+                source_cell_count += 1
+                if logical_cell_emitter is not None:
+                    logical_cell_emitter(
+                        {
+                            "cell_id": cell_id,
+                            "comparison_count": selected_occurrence_count
+                            * TOKEN_COUNT,
+                            "load_count": len(current_cell_loads),
+                            "loads": current_cell_loads,
+                            "occurrence_load_count": selected_occurrence_count,
+                            "odd_load_ids": [
+                                f"{family}|{cell_id}|{old_loads[index][2]}"
+                                for index in derived_odd
+                            ],
+                            "value": cell_value,
+                        }
+                    )
+                current_cell_loads = []
+                physical_load_count = 0
+                previous_load_key = None
+                selected_position = 0
+
             while True:
                 record, line_bytes = _stream_record(iterator, reader)
                 tag = record[0]
@@ -3653,6 +3916,20 @@ def _authenticate_descriptor_stream(
                         phase += 1
                     if phase != 4:
                         raise WireFormatError("family records are out of order")
+                    if not reference_tables_validated:
+                        if header is None:
+                            raise WireFormatError("family header is missing")
+                        _validate_family_reference_tables(
+                            family,
+                            header,
+                            old_loads,
+                            footprints,
+                            bucket_classes,
+                        )
+                        selected_occurrence_count = sum(
+                            old_loads[index][7] for index in header[4]
+                        )
+                        reference_tables_validated = True
                 elif tag == "family_footer":
                     if phase != position - 1 or counts[tag]:
                         raise WireFormatError("family records are out of order")
@@ -3732,15 +4009,71 @@ def _authenticate_descriptor_stream(
                     load_key = (old_index, footprint_index, bucket_index)
                     if previous_load_key is not None and load_key <= previous_load_key:
                         raise WireFormatError("cell load rows are not ordered")
+                    if current_old_index is None:
+                        if (
+                            selected_position >= len(header[4])
+                            or old_index != header[4][selected_position]
+                            or footprint_index != old_loads[old_index][6]
+                        ):
+                            raise WireFormatError(
+                                "cell selected old order differs"
+                            )
+                        current_old_index = old_index
+                        current_footprint_index = footprint_index
+                    elif old_index != current_old_index:
+                        finish_old()
+                        if (
+                            selected_position >= len(header[4])
+                            or old_index != header[4][selected_position]
+                            or footprint_index != old_loads[old_index][6]
+                        ):
+                            raise WireFormatError(
+                                "cell selected old order differs"
+                            )
+                        current_old_index = old_index
+                        current_footprint_index = footprint_index
+                    elif footprint_index != current_footprint_index:
+                        if footprint_index != current_footprint_index + 1:
+                            raise WireFormatError(
+                                "cell footprint order differs"
+                            )
+                        finish_footprint()
+                        current_footprint_index = footprint_index
+                    if b_coordinates is not None:
+                        bucket_class = bucket_classes[bucket_index]
+                        mask = unpack_mask(record[4])
+                        for token_index in range(TOKEN_COUNT):
+                            if mask & (1 << token_index):
+                                coordinate = b_coordinates[token_index]
+                                if (
+                                    coordinate[2],
+                                    coordinate[3],
+                                ) != (bucket_class[1], bucket_class[2]):
+                                    raise WireFormatError(
+                                        "shared/logical token coordinate differs"
+                                    )
                     previous_load_key = load_key
-                    current_cell_loads += 1
+                    current_footprint_buckets.append(tuple(record))
+                    physical_load_count += 1
                 elif tag == "cell_footer":
-                    cells.append((tuple(record), current_cell_loads))
-                    current_cell_loads = 0
-                    previous_load_key = None
+                    finish_cell(record)
                 elif tag == "template_header":
-                    if current_cell_loads:
+                    if physical_load_count or current_old_index is not None:
                         raise WireFormatError("orphan load rows precede template header")
+                    if not reference_tables_validated:
+                        if header is None:
+                            raise WireFormatError("family header is missing")
+                        _validate_family_reference_tables(
+                            family,
+                            header,
+                            old_loads,
+                            footprints,
+                            bucket_classes,
+                        )
+                        selected_occurrence_count = sum(
+                            old_loads[index][7] for index in header[4]
+                        )
+                        reference_tables_validated = True
                     if record[3] != family:
                         raise WireFormatError("template header family differs")
                     schema_count = _exact_int(
@@ -3817,8 +4150,8 @@ def _authenticate_descriptor_stream(
                 )
             ):
                 raise WireFormatError("family singleton record count differs")
-            if sum(load_count for _, load_count in cells) != counts["load"]:
-                raise WireFormatError("family load rows are not closed by cells")
+            if source_cell_count != header[3]:
+                raise WireFormatError("family cell footer census differs")
             if not schema_ids or cell_count < 1:
                 raise WireFormatError("template schema profiles are incomplete")
             if schema_ids != sorted(set(schema_ids)):
@@ -3867,13 +4200,10 @@ def _authenticate_descriptor_stream(
                 "old_loads": tuple(old_loads),
                 "footprints": tuple(footprints),
                 "bucket_classes": tuple(bucket_classes),
-                "cells": tuple(cells),
+                "source_cell_bindings": source_cell_bindings,
                 "header": header,
-                "template_header": template_header,
-                "witnesses": tuple(witness_rows),
                 "bucket_class_count": counts["bucket_class"],
                 "witness_count": len(witnesses),
-                "identity_witness_ids": tuple(identity_witness_ids),
                 "footer": family_footer,
                 "catalog": catalog,
             }
@@ -3894,10 +4224,14 @@ def _authenticate_v2_streams(
     root_source: Any,
     supplier: Any,
     generation_projection: Mapping[str, Any] | None = None,
+    *,
+    logical_update: Callable[[bytes], None] | None = None,
 ) -> _AuthenticatedWireState:
     root = decode_root_index(root_source)
     if not callable(supplier):
         raise WireFormatError("object supplier must be callable")
+    if logical_update is not None and not callable(logical_update):
+        raise WireFormatError("logical fragment callback must be callable")
     descriptors = {
         descriptor["family"]: descriptor for descriptor in root["shards"]
     }
@@ -3908,15 +4242,113 @@ def _authenticate_v2_streams(
         scope=root["scope"],
     )
     _validate_authenticated_shared(shared, root)
-    family_retained = {}
-    for family in ("C", "P", "Q", "base", "fixed", "singleton"):
-        descriptor = descriptors[family]
-        _, family_retained[family] = _authenticate_descriptor_stream(
-            descriptor,
-            supplier(descriptor),
-            scope=root["scope"],
+    logical_hasher = hashlib.sha256()
+
+    def update_logical(fragment: bytes) -> None:
+        if type(fragment) is not bytes:
+            raise WireFormatError("logical fragment writer must emit bytes")
+        logical_hasher.update(fragment)
+        if logical_update is not None:
+            logical_update(fragment)
+
+    writer = _CanonicalFragmentWriter(update_logical)
+    family_retained: dict[str, dict[str, Any]] = {}
+
+    def emit_b_identity_table() -> None:
+        fields = SHARED_RECORD_FIELDS["b_identity"][1:]
+        writer.array(
+            lambda row=row: _write_canonical_fragment(
+                writer,
+                {
+                    field: value
+                    for field, value in zip(fields, row[1:])
+                },
+            )
+            for row in (
+                shared["identities"][index]
+                for index in range(TOKEN_COUNT)
+            )
         )
-        _validate_authenticated_family(family, family_retained[family], root)
+
+    def emit_family_ledger(family: str) -> None:
+        state: dict[str, Any] = {}
+
+        def emit_cells() -> None:
+            def authenticate_cells(emit_item: Callable[[Any], None]) -> None:
+                def emit_cell(cell: Mapping[str, Any]) -> None:
+                    emit_item(
+                        lambda cell=cell: _write_canonical_fragment(writer, cell)
+                    )
+
+                descriptor = descriptors[family]
+                _, retained = _authenticate_descriptor_stream(
+                    descriptor,
+                    supplier(descriptor),
+                    scope=root["scope"],
+                    logical_cell_emitter=emit_cell,
+                    b_coordinates=shared["coordinates"],
+                )
+                state["retained"] = retained
+
+            writer.array_from(authenticate_cells)
+
+        def retained_value(name: str) -> Any:
+            if "retained" not in state:
+                raise WireFormatError("family logical fragment is incomplete")
+            return state["retained"][name]
+
+        writer.mapping(
+            {
+                "cells": emit_cells,
+                "family": lambda: writer.scalar(family),
+                "summary": lambda: _write_canonical_fragment(
+                    writer,
+                    {
+                        "comparisons": retained_value("footer")[5],
+                        "load_rows": retained_value("footer")[3],
+                        "occurrence_loads": retained_value("footer")[4],
+                    },
+                ),
+                "template_catalog": lambda: _write_canonical_fragment(
+                    writer, retained_value("catalog")
+                ),
+            }
+        )
+        retained = state.get("retained")
+        if retained is None:
+            raise WireFormatError("family logical fragment is incomplete")
+        _validate_authenticated_family(family, retained, root)
+        family_retained[family] = retained
+
+    def emit_family_ledgers() -> None:
+        writer.mapping(
+            {
+                family: (
+                    lambda family=family: emit_family_ledger(family)
+                )
+                for family in ("C", "P", "Q", "base", "fixed", "singleton")
+            }
+        )
+
+    writer.mapping(
+        {
+            "b_identity_digest": lambda: writer.scalar(root["b_identity_digest"]),
+            "b_identity_table": emit_b_identity_table,
+            "dependency_digests": lambda: _write_canonical_fragment(
+                writer, shared["dependencies"]
+            ),
+            "domain": lambda: writer.scalar(root["domain"]),
+            "family_ledgers": emit_family_ledgers,
+            "format": lambda: writer.scalar(root["logical_v1_format"]),
+            "source_bindings": lambda: _write_canonical_fragment(
+                writer, shared["source_bindings"]
+            ),
+            "status": lambda: writer.scalar(root["status"]),
+            "summary": lambda: _write_canonical_fragment(
+                writer, root["emitted_summary"]
+            ),
+        }
+    )
     _validate_authenticated_root_summaries(family_retained, root)
     premises = _GenerationProjectionPremises(
         domain=root["domain"],
@@ -3944,6 +4376,7 @@ def _authenticate_v2_streams(
         root_sha256=root["root_sha256"],
         premises=premises,
         generation_projection_sha256=projection_sha256,
+        logical_v1_sha256=logical_hasher.hexdigest(),
     )
 
 
