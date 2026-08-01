@@ -5847,13 +5847,106 @@ def test_task3_generation_projection_literals_cover_selections_censuses_and_gate
 def test_task3_generation_projection_accepts_equal_width_premise_and_projection_deltas() -> None:
     module = load_package_v2_verifier()
     projection, premises = _task3_generation_fixture(module)
-    dependency = replace(premises, shared_dependency_count=premises.shared_dependency_count + 1)
+    baseline_oracle = module._generation_projected_root_oracle(
+        premises, projection, projection["families"]
+    )
+    baseline_line = module._generation_projected_index_line(baseline_oracle)
+    assert len(baseline_line) == TASK3_PROJECTED_ORACLE_LENGTH
+    baseline_shared = baseline_oracle["shards"][0]
+    dependency = replace(
+        premises,
+        shared_dependency_count=premises.shared_dependency_count + 1,
+    )
+    dependency_oracle = module._generation_projected_root_oracle(
+        dependency, projection, projection["families"]
+    )
+    dependency_shared = dependency_oracle["shards"][0]
+    assert dependency_shared["record_counts"]["dependency"] == (
+        baseline_shared["record_counts"]["dependency"] + 1
+    )
+    assert dependency_shared["record_count"] == (
+        baseline_shared["record_count"] + 1
+    )
+    for tag in (
+        "shared_header",
+        "source_bindings",
+        "b_identity",
+        "b_coordinate",
+        "shared_footer",
+    ):
+        assert dependency_shared["record_counts"][tag] == (
+            baseline_shared["record_counts"][tag]
+        )
+    assert len(module._generation_projected_index_line(dependency_oracle)) == (
+        TASK3_PROJECTED_ORACLE_LENGTH
+    )
     module._validate_generation_projection(projection, dependency)
     for family in TASK3_FAMILY_ORDER:
         witnesses = dict(premises.family_witness_counts)
         witnesses[family] += 1
-        module._validate_generation_projection(projection, replace(premises, family_witness_counts=witnesses))
-    module._validate_generation_projection(projection, replace(premises, domain=premises.domain.replace("d-1", "e-1")))
+        witness_premises = replace(
+            premises, family_witness_counts=witnesses
+        )
+        witness_oracle = module._generation_projected_root_oracle(
+            witness_premises, projection, projection["families"]
+        )
+        descriptor_index = TASK3_FAMILY_ORDER.index(family) + 1
+        baseline_descriptor = baseline_oracle["shards"][descriptor_index]
+        witness_descriptor = witness_oracle["shards"][descriptor_index]
+        assert witness_oracle["template_catalogs"][family]["witness_count"] == (
+            baseline_oracle["template_catalogs"][family]["witness_count"]
+            + 1
+        )
+        assert witness_descriptor["record_counts"]["template_witness"] == (
+            baseline_descriptor["record_counts"]["template_witness"] + 1
+        )
+        assert witness_descriptor["record_count"] == (
+            baseline_descriptor["record_count"] + 1
+        )
+        for other_family in TASK3_FAMILY_ORDER:
+            expected_witness_count = baseline_oracle["template_catalogs"][
+                other_family
+            ]["witness_count"]
+            expected_descriptor_count = baseline_oracle["shards"][
+                TASK3_FAMILY_ORDER.index(other_family) + 1
+            ]["record_counts"]["template_witness"]
+            if other_family != family:
+                assert witness_oracle["template_catalogs"][other_family][
+                    "witness_count"
+                ] == expected_witness_count
+                assert witness_oracle["shards"][
+                    TASK3_FAMILY_ORDER.index(other_family) + 1
+                ]["record_counts"]["template_witness"] == expected_descriptor_count
+        assert len(module._generation_projected_index_line(witness_oracle)) == (
+            TASK3_PROJECTED_ORACLE_LENGTH
+        )
+        module._validate_generation_projection(projection, witness_premises)
+    domain_premises = replace(
+        premises, domain=premises.domain.replace("d-1", "e-1")
+    )
+    domain_oracle = module._generation_projected_root_oracle(
+        domain_premises, projection, projection["families"]
+    )
+    assert domain_oracle["domain"] == domain_premises.domain
+    assert domain_oracle["domain"] != baseline_oracle["domain"]
+    assert len(module._generation_projected_index_line(domain_oracle)) == (
+        TASK3_PROJECTED_ORACLE_LENGTH
+    )
+    module._validate_generation_projection(projection, domain_premises)
+    longer_domain_premises = replace(premises, domain=premises.domain + "x")
+    longer_domain_oracle = module._generation_projected_root_oracle(
+        longer_domain_premises, projection, projection["families"]
+    )
+    assert len(module._generation_projected_index_line(longer_domain_oracle)) == (
+        TASK3_PROJECTED_ORACLE_LENGTH + 1
+    )
+    longer_domain_projection = copy.deepcopy(projection)
+    longer_domain_projection["projected_index_bytes"] += 1
+    longer_domain_projection["package_bytes_before_margin"] += 1
+    longer_domain_projection["projected_package_bytes"] += 2
+    module._validate_generation_projection(
+        longer_domain_projection, longer_domain_premises
+    )
     shared = copy.deepcopy(projection)
     shared["shared_bytes"] += 1
     shared["package_bytes_before_margin"] += 1
