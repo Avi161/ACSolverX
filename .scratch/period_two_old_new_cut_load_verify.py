@@ -2,12 +2,16 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import importlib.abc
+import importlib.machinery
 import io
 import json
 import re
+import sys
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+from types import ModuleType
 from typing import Any
 
 TOKEN_COUNT = 84
@@ -28,6 +32,75 @@ SOURCE_BINDINGS_FORMAT = "task4-source-bindings-v1"
 IDENTITY_CHUNK_SIZE = 4096
 TEMPLATE_CATALOG_FORMAT = "task4-template-catalog-v2"
 TEMPLATE_TYPED_ENCODING = "task4-typed-sha256-v1"
+_TASK3_APPROVED_SOURCE_SPECS = (
+    (
+        ".scratch/period_two_raw_stream_manifest_generator.py",
+        49_611,
+        "edd1f21fda1665b092447143b30d25e65f8c9a9cf2753a56ceb5da16db150bb1",
+    ),
+    (
+        ".scratch/period_two_raw_stream_manifest.json",
+        3_892_349,
+        "824d17adc0bc9b553d722eb627ee60f363451673237e366f6eb869acc6e058dd",
+    ),
+    (
+        ".scratch/period_two_inverse_q_companion_checker.py",
+        50_715,
+        "37bfcd326951848f2a721e3dabbaa6d65220b5b1109fafb21e4aa403db94d980",
+    ),
+    (
+        ".scratch/period_two_inverse_q_companion_manifest.json",
+        13_046_872,
+        "616c7eaa570f0be87a42c1dae17d0301cbe0b0280f52777f926c6504172225d3",
+    ),
+    (
+        ".scratch/period_two_new_new_aggregate_checker.py",
+        33_267,
+        "e1f8b9f748ca5a6cfeed9f7db7243892bc888a92ab0e096e754fb0d06b9ec650",
+    ),
+    (
+        ".scratch/period_two_new_new_aggregate_manifest.json",
+        729_539,
+        "39183f77a56915b6f1e135b23b26d1067c1b56f0a4af8b6c09057d9fc477d640",
+    ),
+    (
+        ".scratch/period_two_seven_family_covariance_checker.py",
+        28_633,
+        "e8946bfef79b4f4c267c20bcd0f82a4776fff56e1087df4854f74cbf5004d164",
+    ),
+    (
+        ".scratch/period_two_seven_family_covariance_manifest.json",
+        50_344,
+        "a044e99d93ed43e10721c7f3925f0d750f23944f07d4f385f41fe810f1b62894",
+    ),
+    (
+        ".scratch/period_two_old_new_cut_selector_theory.md",
+        8_484,
+        "8c5cb9898068e34b34ac2871f6ab82fb9db7bad5da4c5df2cacc2c24fd14baa0",
+    ),
+    (
+        ".scratch/period_two_old_new_cut_endpoint_potential.md",
+        6_895,
+        "856fba47ee4d4dece0698e10a27a916db533c8a119f3ab3f510a74cc143b6911",
+    ),
+    (
+        ".scratch/period_two_intact_boundary_pumping_lemma.md",
+        6_393,
+        "7833a0d68b8d088a355db0e4cf659291325d05b0ddbac81cb6d410106f361f94",
+    ),
+)
+_TASK3_MANIFEST_PATHS = {
+    "raw": ".scratch/period_two_raw_stream_manifest.json",
+    "inverse": ".scratch/period_two_inverse_q_companion_manifest.json",
+    "aggregate": ".scratch/period_two_new_new_aggregate_manifest.json",
+    "seven": ".scratch/period_two_seven_family_covariance_manifest.json",
+}
+_TASK3_WRAPPER_PATHS = {
+    "raw": ".scratch/period_two_raw_stream_manifest_generator.py",
+    "inverse": ".scratch/period_two_inverse_q_companion_checker.py",
+    "aggregate": ".scratch/period_two_new_new_aggregate_checker.py",
+    "seven": ".scratch/period_two_seven_family_covariance_checker.py",
+}
 TEMPLATE_FIELD_ORDERS = {
     "schema": ["schema_id", "variables", "blocks"],
     "block": ["block_name", "word", "affine"],
@@ -496,6 +569,8 @@ class _AuthenticatedWireState:
     premises: _GenerationProjectionPremises
     generation_projection_sha256: str | None
     logical_v1_sha256: str | None
+    source_bindings: Mapping[str, Any]
+    dependency_digests: Mapping[str, str]
 
 
 class _CanonicalFragmentWriter:
@@ -656,6 +731,470 @@ def _canonical_json(value: Any) -> str:
         separators=(",", ":"),
         sort_keys=True,
     )
+
+
+@dataclass(frozen=True)
+class _AuthenticatedSourceContext:
+    source_digests: Mapping[str, str]
+    manifests: Mapping[str, Mapping[str, Any]]
+    modules: Mapping[str, Any]
+
+
+def _task3_project_root() -> Path:
+    return Path(__file__).resolve().parents[1]
+
+
+def _read_task3_project_source(relative_path: str, exact_size: int) -> bytes:
+    normalized = _task3_normalized_relative_path(relative_path)
+    if type(exact_size) is not int or exact_size < 1:
+        raise WireFormatError("Task 3 source byte count is invalid")
+    project_root = _task3_project_root().resolve()
+    target = (project_root / normalized).resolve()
+    if project_root not in target.parents:
+        raise WireFormatError("Task 3 source path escapes project")
+    try:
+        with target.open("rb") as stream:
+            payload = stream.read(exact_size + 1)
+    except OSError as error:
+        raise WireFormatError(
+            f"Task 3 source read failed: {relative_path}"
+        ) from error
+    if len(payload) != exact_size:
+        raise WireFormatError("Task 3 source byte count differs")
+    return payload
+
+
+def _task3_normalized_relative_path(value: Any) -> str:
+    if not isinstance(value, str) or not value or not value.isascii():
+        raise WireFormatError("Task 3 source path is invalid")
+    path = PurePosixPath(value)
+    if (
+        path.is_absolute()
+        or any(part in {"", ".", ".."} for part in path.parts)
+        or path.as_posix() != value
+    ):
+        raise WireFormatError("Task 3 source path is not project relative")
+    return value
+
+
+def _task3_checked_source_bytes(
+    read_source: Callable[[str, int], bytes],
+    relative_path: str,
+    exact_size: int,
+    expected_digest: str,
+) -> bytes:
+    if type(exact_size) is not int or exact_size < 1:
+        raise WireFormatError("Task 3 source byte count is invalid")
+    _exact_hash(expected_digest, "Task 3 source digest")
+    try:
+        payload = read_source(relative_path, exact_size)
+    except Exception as error:
+        raise WireFormatError(
+            f"Task 3 source read failed: {relative_path}"
+        ) from error
+    if type(payload) is not bytes:
+        raise WireFormatError("Task 3 source reader must return bytes")
+    if len(payload) != exact_size:
+        raise WireFormatError("Task 3 source byte count differs")
+    if hashlib.sha256(payload).hexdigest() != expected_digest:
+        raise WireFormatError("Task 3 source digest differs")
+    return payload
+
+
+def _task3_parse_manifest(
+    relative_path: str, payload: bytes
+) -> Mapping[str, Any]:
+    try:
+        value = json.loads(payload)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise WireFormatError(
+            f"Task 3 manifest is not JSON: {relative_path}"
+        ) from error
+    if not isinstance(value, Mapping):
+        raise WireFormatError(f"Task 3 manifest is not an object: {relative_path}")
+    return dict(value)
+
+
+def _task3_read_raw_provenance_closure(
+    raw_manifest: Mapping[str, Any],
+    read_source: Callable[[str, int], bytes],
+    retained_bytes: dict[str, bytes],
+) -> None:
+    provenance = raw_manifest.get("provenance")
+    section_digests = raw_manifest.get("section_sha256")
+    if (
+        not isinstance(provenance, Mapping)
+        or set(provenance) != {"files", "method"}
+        or not isinstance(provenance["method"], str)
+        or not provenance["method"]
+        or not isinstance(section_digests, Mapping)
+    ):
+        raise WireFormatError("raw provenance section is invalid")
+    provenance_digest = _exact_hash(
+        section_digests.get("provenance"), "raw provenance digest"
+    )
+    if hashlib.sha256(_canonical_json(provenance).encode("ascii")).hexdigest() != (
+        provenance_digest
+    ):
+        raise WireFormatError("raw provenance digest differs")
+    files = provenance["files"]
+    if not isinstance(files, Mapping) or not all(
+        isinstance(path, str) for path in files
+    ):
+        raise WireFormatError("raw provenance files are invalid")
+    for relative_path in sorted(files):
+        _task3_normalized_relative_path(relative_path)
+        metadata = files[relative_path]
+        if not isinstance(metadata, Mapping) or set(metadata) != {"bytes", "sha256"}:
+            raise WireFormatError("raw provenance file metadata differs")
+        exact_size = _exact_int(
+            metadata["bytes"], "raw provenance source bytes", minimum=1
+        )
+        expected_digest = _exact_hash(
+            metadata["sha256"], "raw provenance source digest"
+        )
+        payload = retained_bytes.get(relative_path)
+        if payload is None:
+            payload = _task3_checked_source_bytes(
+                read_source, relative_path, exact_size, expected_digest
+            )
+            retained_bytes[relative_path] = payload
+        elif (
+            len(payload) != exact_size
+            or hashlib.sha256(payload).hexdigest() != expected_digest
+        ):
+            raise WireFormatError("raw provenance cached source differs")
+
+
+class _Task3SyntheticPackageLoader(importlib.abc.Loader):
+    def create_module(self, spec: Any) -> None:
+        return None
+
+    def exec_module(self, module: ModuleType) -> None:
+        module.__path__ = []
+
+
+class _Task3AuthenticatedImportLoader(importlib.abc.Loader):
+    def __init__(self, source: bytes, filename: Path) -> None:
+        self._source = source
+        self._filename = filename
+
+    def create_module(self, spec: Any) -> None:
+        return None
+
+    def exec_module(self, module: ModuleType) -> None:
+        module.__file__ = str(self._filename)
+        code = compile(
+            self._source, str(self._filename), "exec", dont_inherit=True
+        )
+        exec(code, module.__dict__)  # noqa: S102 - execute authenticated bytes
+
+
+class _Task3AuthenticatedFinder(importlib.abc.MetaPathFinder):
+    def __init__(self, source_bytes: Mapping[str, bytes]) -> None:
+        self._source_modules = {
+            relative_path[:-3].replace("/", "."): (relative_path, payload)
+            for relative_path, payload in source_bytes.items()
+            if (
+                relative_path.startswith("experiments/stable_ac/")
+                and relative_path.endswith(".py")
+            )
+        }
+        self._root = _task3_project_root()
+
+    def find_spec(
+        self, fullname: str, path: Any = None, target: Any = None
+    ) -> Any:
+        if fullname in {"experiments", "experiments.stable_ac"}:
+            spec = importlib.machinery.ModuleSpec(
+                fullname, _Task3SyntheticPackageLoader(), is_package=True
+            )
+            spec.submodule_search_locations = []
+            return spec
+        source = self._source_modules.get(fullname)
+        if source is not None:
+            relative_path, payload = source
+            spec = importlib.machinery.ModuleSpec(
+                fullname,
+                _Task3AuthenticatedImportLoader(
+                    payload, self._root / relative_path
+                ),
+                is_package=False,
+            )
+            spec.origin = str(self._root / relative_path)
+            return spec
+        if fullname.startswith("experiments."):
+            raise ModuleNotFoundError(
+                f"unauthenticated Task 3 transitive import: {fullname}"
+            )
+        return None
+
+
+def _task3_execute_authenticated_wrappers(
+    retained_bytes: Mapping[str, bytes],
+) -> Mapping[str, Any]:
+    wrapper_package = "_task3_authenticated_sources"
+    wrapper_names = {
+        name: f"{wrapper_package}.{name}" for name in _TASK3_WRAPPER_PATHS
+    }
+    affected_names = {
+        name
+        for name in sys.modules
+        if name == "experiments" or name.startswith("experiments.")
+    }
+    affected_names.update({wrapper_package, *wrapper_names.values()})
+    previous_modules = {
+        name: sys.modules[name]
+        for name in affected_names
+        if name in sys.modules
+    }
+    previous_path = list(sys.path)
+    previous_meta_path = list(sys.meta_path)
+    modules: dict[str, Any] = {}
+    failure = None
+    try:
+        for name in affected_names:
+            sys.modules.pop(name, None)
+        sys.meta_path.insert(0, _Task3AuthenticatedFinder(retained_bytes))
+        package = ModuleType(wrapper_package)
+        package.__package__ = wrapper_package
+        package.__path__ = []
+        package.__spec__ = importlib.machinery.ModuleSpec(
+            wrapper_package, loader=None, is_package=True
+        )
+        sys.modules[wrapper_package] = package
+        for name, relative_path in _TASK3_WRAPPER_PATHS.items():
+            source = retained_bytes.get(relative_path)
+            if type(source) is not bytes:
+                raise WireFormatError("authenticated wrapper bytes are missing")
+            fullname = wrapper_names[name]
+            module = ModuleType(fullname)
+            module.__file__ = str(_task3_project_root() / relative_path)
+            module.__package__ = wrapper_package
+            module.__spec__ = importlib.machinery.ModuleSpec(
+                fullname, loader=None, is_package=False
+            )
+            sys.modules[fullname] = module
+            setattr(package, name, module)
+            code = compile(source, module.__file__, "exec", dont_inherit=True)
+            exec(code, module.__dict__)  # noqa: S102 - execute authenticated bytes
+            modules[name] = module
+    except Exception as error:  # noqa: BLE001 - authenticated source can fail arbitrarily
+        failure = error
+    finally:
+        sys.meta_path[:] = previous_meta_path
+        sys.path[:] = previous_path
+        for name in tuple(sys.modules):
+            if (
+                name == wrapper_package
+                or name == "experiments"
+                or name.startswith(
+                    (f"{wrapper_package}.", "experiments.")
+                )
+            ):
+                sys.modules.pop(name, None)
+        sys.modules.update(previous_modules)
+    if failure is not None:
+        if isinstance(failure, WireFormatError):
+            raise failure
+        raise WireFormatError(
+            "authenticated Task 3 wrapper execution failed"
+        ) from failure
+    return modules
+
+
+def _task3_validate_source_manifests(
+    manifests: Mapping[str, Mapping[str, Any]]
+) -> None:
+    try:
+        raw_bridge = manifests["raw"]["verdict"]["bridge_A_to_C"]
+        inverse_failures = manifests["inverse"]["collision_partition_proof"][
+            "failures"
+        ]
+        aggregate_checks = manifests["aggregate"]["checks"]
+        seven_checks = manifests["seven"]["checks"]
+    except (KeyError, TypeError) as error:
+        raise WireFormatError("Task 3 source manifest status is missing") from error
+    if raw_bridge != "proved" or _exact_int(
+        inverse_failures, "inverse source failures", minimum=0
+    ) != 0:
+        raise WireFormatError("Task 3 source manifest has failed checks")
+    for checks in (aggregate_checks, seven_checks):
+        if not isinstance(checks, Mapping):
+            raise WireFormatError("Task 3 source checks are invalid")
+        failures = [
+            value for key, value in checks.items() if key.endswith("failures")
+        ]
+        if not failures or any(
+            _exact_int(value, "source check failures", minimum=0) != 0
+            for value in failures
+        ):
+            raise WireFormatError("Task 3 source manifest has failed checks")
+
+
+def _load_authenticated_source_context(
+    read_source: Callable[[str, int], bytes],
+) -> _AuthenticatedSourceContext:
+    if not callable(read_source):
+        raise WireFormatError("Task 3 source reader must be callable")
+    retained_bytes: dict[str, bytes] = {}
+    source_digests: dict[str, str] = {}
+    for relative_path, exact_size, expected_digest in _TASK3_APPROVED_SOURCE_SPECS:
+        retained_bytes[relative_path] = _task3_checked_source_bytes(
+            read_source, relative_path, exact_size, expected_digest
+        )
+        source_digests[relative_path] = expected_digest
+    raw_manifest = _task3_parse_manifest(
+        _TASK3_MANIFEST_PATHS["raw"],
+        retained_bytes[_TASK3_MANIFEST_PATHS["raw"]],
+    )
+    _task3_read_raw_provenance_closure(
+        raw_manifest, read_source, retained_bytes
+    )
+    manifests = {
+        name: _task3_parse_manifest(relative_path, retained_bytes[relative_path])
+        for name, relative_path in _TASK3_MANIFEST_PATHS.items()
+    }
+    _task3_validate_source_manifests(manifests)
+    modules = _task3_execute_authenticated_wrappers(retained_bytes)
+    return _AuthenticatedSourceContext(
+        source_digests=dict(source_digests),
+        manifests=manifests,
+        modules=modules,
+    )
+
+
+def _rebuild_authenticated_anchor_rows(
+    context: _AuthenticatedSourceContext,
+) -> list[Mapping[str, Any]]:
+    if not isinstance(context, _AuthenticatedSourceContext):
+        raise WireFormatError("authenticated source context is invalid")
+    raw = context.modules.get("raw")
+    source_schema = context.manifests.get("raw", {}).get(
+        "source_schema_manifest"
+    )
+    if raw is None or not isinstance(source_schema, Mapping):
+        raise WireFormatError("authenticated raw source is unavailable")
+    try:
+        result = raw.build_anchor_rows()
+    except Exception as error:
+        raise WireFormatError("authenticated anchor replay failed") from error
+    if not isinstance(result, tuple) or len(result) != 2:
+        raise WireFormatError("authenticated anchor replay result is invalid")
+    rows = result[1]
+    bound_rows = source_schema.get("anchor_rows")
+    _validate_authenticated_anchor_rows(rows, bound_rows)
+    return rows
+
+
+def _validate_authenticated_anchor_rows(
+    rows: Any, bound_rows: Any
+) -> None:
+    if not isinstance(rows, list) or not isinstance(bound_rows, list):
+        raise WireFormatError("authenticated anchor rows are invalid")
+    if len(rows) != 21 or _canonical_json(rows) != _canonical_json(bound_rows):
+        raise WireFormatError("live anchor rows differ from bound raw manifest")
+    row_fields = {
+        "actual_letter",
+        "coefficient",
+        "current_equality",
+        "domain",
+        "family",
+        "id",
+        "incidence_sign",
+        "key",
+        "module_vertex",
+        "raw_prefix",
+        "right_deck_pre",
+        "root",
+        "source_scale",
+        "stored_letter",
+        "traversal_position",
+        "vertex_side",
+    }
+    identifiers = []
+    for source_index, row in enumerate(rows):
+        if not isinstance(row, Mapping) or set(row) != row_fields:
+            raise WireFormatError("authenticated anchor row fields differ")
+        if _canonical_json(row) != _canonical_json(bound_rows[source_index]):
+            raise WireFormatError("authenticated anchor row order differs")
+        identifier = row["id"]
+        if (
+            not isinstance(identifier, str)
+            or not identifier
+            or not identifier.isascii()
+        ):
+            raise WireFormatError("authenticated anchor ID is invalid")
+        identifiers.append(identifier)
+        _exact_int(row["coefficient"], "authenticated anchor coefficient")
+        if row["family"] != "A":
+            raise WireFormatError("authenticated anchor family differs")
+        key = row["key"]
+        if not isinstance(key, Mapping) or set(key) != {
+            "block", "nu", "orientation", "position", "slot"
+        }:
+            raise WireFormatError("authenticated anchor key differs")
+        if (
+            key["block"] != "anchor_path"
+            or any(
+                type(key[name]) is not int
+                for name in ("nu", "orientation", "position", "slot")
+            )
+            or key["orientation"] != 1
+            or key["position"] < 0
+        ):
+            raise WireFormatError("authenticated anchor key is not typed")
+        if row["domain"] != {"op": "true"}:
+            raise WireFormatError("authenticated anchor domain is invalid")
+        equality = row["current_equality"]
+        if not isinstance(equality, Mapping) or set(equality) != {
+            "op", "left", "right", "theorems"
+        } or equality["op"] != "equal_module_term":
+            raise WireFormatError("authenticated anchor equality is invalid")
+    if len(set(identifiers)) != len(identifiers):
+        raise WireFormatError("authenticated anchor IDs repeat")
+    if sum(row["coefficient"] for row in rows) != 2:
+        raise WireFormatError("authenticated anchor coefficient sum differs")
+
+
+def _validate_direct_anchor_gate(
+    state: Any, context: _AuthenticatedSourceContext
+) -> None:
+    source_digests = dict(context.source_digests)
+    expected_digests = {
+        relative_path: expected_digest
+        for relative_path, _exact_size, expected_digest
+        in _TASK3_APPROVED_SOURCE_SPECS
+    }
+    if source_digests != expected_digests:
+        raise WireFormatError("authenticated Task 3 source digests differ")
+    dependencies = getattr(state, "dependency_digests", None)
+    source_bindings = getattr(state, "source_bindings", None)
+    if (
+        not isinstance(dependencies, Mapping)
+        or dict(dependencies) != expected_digests
+        or not isinstance(source_bindings, Mapping)
+        or not isinstance(source_bindings.get("old"), Mapping)
+    ):
+        raise WireFormatError("authenticated direct-anchor bindings differ")
+    old = source_bindings["old"]
+    if old.get("source_digests") != expected_digests:
+        raise WireFormatError("old source digests differ from authenticated inputs")
+    rows = _rebuild_authenticated_anchor_rows(context)
+    bound_rows = context.manifests["raw"]["source_schema_manifest"][
+        "anchor_rows"
+    ]
+    _validate_authenticated_anchor_rows(rows, bound_rows)
+    provenance = [
+        {"id": row["id"], "coefficient": row["coefficient"]}
+        for row in rows
+    ]
+    if (
+        _exact_int(old.get("anchor_rows"), "old anchor row count") != 21
+        or _exact_int(old.get("anchor_integral_sum"), "old anchor sum") != 2
+        or old.get("anchor_provenance") != provenance
+    ):
+        raise WireFormatError("old anchor provenance differs from direct replay")
 
 
 def _validate_canonical_json_value(value: Any) -> None:
@@ -4377,6 +4916,8 @@ def _authenticate_v2_streams(
         premises=premises,
         generation_projection_sha256=projection_sha256,
         logical_v1_sha256=logical_hasher.hexdigest(),
+        source_bindings=dict(shared["source_bindings"]),
+        dependency_digests=dict(shared["dependencies"]),
     )
 
 
@@ -4421,11 +4962,16 @@ def verify_v2_package(
 
     try:
         with target.open("rb") as root_stream:
-            _authenticate_v2_streams(
+            state = _authenticate_v2_streams(
                 root_stream,
                 supply,
                 generation_projection,
             )
+        if state.root["scope"] == PRODUCTION_SCOPE:
+            source_context = _load_authenticated_source_context(
+                _read_task3_project_source
+            )
+            _validate_direct_anchor_gate(state, source_context)
     except (OSError, WireFormatError, EngineeringVerificationFailure) as error:
         if isinstance(error, EngineeringVerificationFailure):
             raise

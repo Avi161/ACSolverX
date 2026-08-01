@@ -7575,9 +7575,348 @@ def test_task3_logical_v1_public_verifier_remains_fail_closed(
             normalized="{}", sha256="0" * 64
         ),
     )
+    source_context = object()
+    direct_anchor_calls = []
+    monkeypatch.setattr(
+        module,
+        "_load_authenticated_source_context",
+        lambda reader: (reader, source_context)[1],
+    )
+    monkeypatch.setattr(
+        module,
+        "_validate_direct_anchor_gate",
+        lambda state, context: direct_anchor_calls.append((state, context)),
+    )
 
     with pytest.raises(
         module.EngineeringVerificationFailure,
         match="semantic binding is not yet complete",
     ):
         module.verify_v2_package(index_path, "task3-logical", {})
+    assert len(direct_anchor_calls) == 1
+    state, context = direct_anchor_calls[0]
+    assert context is source_context
+    assert state.root["scope"] == "production-full"
+
+
+# These values deliberately do not share a producer with the verifier or the
+# retired grouped-load generator.  Slice D1 must freeze this closure itself.
+TASK3_APPROVED_SOURCE_SPECS = (
+    (
+        ".scratch/period_two_raw_stream_manifest_generator.py",
+        49_611,
+        "edd1f21fda1665b092447143b30d25e65f8c9a9cf2753a56ceb5da16db150bb1",
+    ),
+    (
+        ".scratch/period_two_raw_stream_manifest.json",
+        3_892_349,
+        "824d17adc0bc9b553d722eb627ee60f363451673237e366f6eb869acc6e058dd",
+    ),
+    (
+        ".scratch/period_two_inverse_q_companion_checker.py",
+        50_715,
+        "37bfcd326951848f2a721e3dabbaa6d65220b5b1109fafb21e4aa403db94d980",
+    ),
+    (
+        ".scratch/period_two_inverse_q_companion_manifest.json",
+        13_046_872,
+        "616c7eaa570f0be87a42c1dae17d0301cbe0b0280f52777f926c6504172225d3",
+    ),
+    (
+        ".scratch/period_two_new_new_aggregate_checker.py",
+        33_267,
+        "e1f8b9f748ca5a6cfeed9f7db7243892bc888a92ab0e096e754fb0d06b9ec650",
+    ),
+    (
+        ".scratch/period_two_new_new_aggregate_manifest.json",
+        729_539,
+        "39183f77a56915b6f1e135b23b26d1067c1b56f0a4af8b6c09057d9fc477d640",
+    ),
+    (
+        ".scratch/period_two_seven_family_covariance_checker.py",
+        28_633,
+        "e8946bfef79b4f4c267c20bcd0f82a4776fff56e1087df4854f74cbf5004d164",
+    ),
+    (
+        ".scratch/period_two_seven_family_covariance_manifest.json",
+        50_344,
+        "a044e99d93ed43e10721c7f3925f0d750f23944f07d4f385f41fe810f1b62894",
+    ),
+    (
+        ".scratch/period_two_old_new_cut_selector_theory.md",
+        8_484,
+        "8c5cb9898068e34b34ac2871f6ab82fb9db7bad5da4c5df2cacc2c24fd14baa0",
+    ),
+    (
+        ".scratch/period_two_old_new_cut_endpoint_potential.md",
+        6_895,
+        "856fba47ee4d4dece0698e10a27a916db533c8a119f3ab3f510a74cc143b6911",
+    ),
+    (
+        ".scratch/period_two_intact_boundary_pumping_lemma.md",
+        6_393,
+        "7833a0d68b8d088a355db0e4cf659291325d05b0ddbac81cb6d410106f361f94",
+    ),
+)
+
+_TASK3_DIRECT_SOURCE_CACHE = None
+
+
+def _task3_direct_source_context():
+    """Load the approved closure once; later direct-gate tests stay in memory."""
+    global _TASK3_DIRECT_SOURCE_CACHE
+    if _TASK3_DIRECT_SOURCE_CACHE is not None:
+        return _TASK3_DIRECT_SOURCE_CACHE
+
+    module = load_package_v2_verifier()
+    assert hasattr(module, "_TASK3_APPROVED_SOURCE_SPECS")
+    assert module._TASK3_APPROVED_SOURCE_SPECS == TASK3_APPROVED_SOURCE_SPECS
+    assert hasattr(module, "_load_authenticated_source_context")
+    assert hasattr(module, "_rebuild_authenticated_anchor_rows")
+    assert hasattr(module, "_validate_direct_anchor_gate")
+    assert {"source_bindings", "dependency_digests"} <= set(
+        module._AuthenticatedWireState.__dataclass_fields__
+    )
+
+    payloads = {}
+    for relative_path, exact_size, expected_digest in TASK3_APPROVED_SOURCE_SPECS:
+        payload = (ROOT / relative_path).read_bytes()
+        assert len(payload) == exact_size
+        assert hashlib.sha256(payload).hexdigest() == expected_digest
+        payloads[relative_path] = payload
+    raw_manifest = json.loads(
+        payloads[".scratch/period_two_raw_stream_manifest.json"]
+    )
+    closure_specs = []
+    for relative_path, metadata in sorted(
+        raw_manifest["provenance"]["files"].items()
+    ):
+        exact_size = metadata["bytes"]
+        expected_digest = metadata["sha256"]
+        if relative_path in payloads:
+            assert len(payloads[relative_path]) == exact_size
+            assert (
+                hashlib.sha256(payloads[relative_path]).hexdigest()
+                == expected_digest
+            )
+            continue
+        payload = (ROOT / relative_path).read_bytes()
+        assert len(payload) == exact_size
+        assert hashlib.sha256(payload).hexdigest() == expected_digest
+        payloads[relative_path] = payload
+        closure_specs.append((relative_path, exact_size))
+
+    calls = []
+
+    def read_source(relative_path, exact_size):
+        assert type(relative_path) is str
+        assert type(exact_size) is int and not isinstance(exact_size, bool)
+        assert relative_path in payloads
+        assert len(payloads[relative_path]) == exact_size
+        assert relative_path not in {path for path, _size in calls}
+        calls.append((relative_path, exact_size))
+        return payloads[relative_path]
+
+    sentinel_name = (
+        "experiments.stable_ac.depth4_period_two_lift_certificate"
+    )
+    sentinel = SimpleNamespace(hostile=True)
+    previous_sentinel = sys.modules.get(sentinel_name)
+    previous_path = tuple(sys.path)
+    original_read_bytes = Path.read_bytes
+
+    def forbid_approved_source_reopen(path, *args, **kwargs):
+        try:
+            relative_path = path.resolve().relative_to(ROOT).as_posix()
+        except ValueError:
+            relative_path = None
+        if relative_path in payloads:
+            raise AssertionError(
+                "authenticated approved source bytes were reopened"
+            )
+        return original_read_bytes(path, *args, **kwargs)
+
+    sys.modules[sentinel_name] = sentinel
+    Path.read_bytes = forbid_approved_source_reopen
+    try:
+        context = module._load_authenticated_source_context(read_source)
+        assert sys.modules[sentinel_name] is sentinel
+        assert tuple(sys.path) == previous_path
+    finally:
+        Path.read_bytes = original_read_bytes
+        if previous_sentinel is None:
+            sys.modules.pop(sentinel_name, None)
+        else:
+            sys.modules[sentinel_name] = previous_sentinel
+
+    assert calls == [
+        (relative_path, exact_size)
+        for relative_path, exact_size, _digest in TASK3_APPROVED_SOURCE_SPECS
+    ] + closure_specs
+    assert context.source_digests == {
+        relative_path: expected_digest
+        for relative_path, _exact_size, expected_digest in TASK3_APPROVED_SOURCE_SPECS
+    }
+    assert set(context.modules) == {"raw", "inverse", "aggregate", "seven"}
+    for name, relative_path in {
+        "raw": ".scratch/period_two_raw_stream_manifest_generator.py",
+        "inverse": ".scratch/period_two_inverse_q_companion_checker.py",
+        "aggregate": ".scratch/period_two_new_new_aggregate_checker.py",
+        "seven": ".scratch/period_two_seven_family_covariance_checker.py",
+    }.items():
+        assert Path(context.modules[name].__file__).resolve() == (
+            ROOT / relative_path
+        )
+        assert context.modules[name] is not sentinel
+
+    _TASK3_DIRECT_SOURCE_CACHE = module, context
+    return _TASK3_DIRECT_SOURCE_CACHE
+
+
+def _task3_direct_anchor_wire_state(context):
+    anchor_rows = context.manifests["raw"]["source_schema_manifest"][
+        "anchor_rows"
+    ]
+    source_digests = dict(context.source_digests)
+    return SimpleNamespace(
+        dependency_digests=source_digests,
+        source_bindings={
+            "old": {
+                "anchor_rows": len(anchor_rows),
+                "anchor_integral_sum": sum(
+                    row["coefficient"] for row in anchor_rows
+                ),
+                "anchor_provenance": [
+                    {"id": row["id"], "coefficient": row["coefficient"]}
+                    for row in anchor_rows
+                ],
+                "source_digests": dict(source_digests),
+            }
+        },
+    )
+
+
+def test_task3_reloads_all_approved_sources_without_generator_or_retired_checker():
+    module, context = _task3_direct_source_context()
+
+    assert module._rebuild_authenticated_anchor_rows(context) == context.manifests[
+        "raw"
+    ]["source_schema_manifest"]["anchor_rows"]
+
+
+def test_task3_real_capped_reader_replays_the_approved_anchor_boundary():
+    module = load_package_v2_verifier()
+    context = module._load_authenticated_source_context(
+        module._read_task3_project_source
+    )
+    state = _task3_direct_anchor_wire_state(context)
+
+    module._validate_direct_anchor_gate(state, context)
+
+
+def test_task3_all_21_anchor_rows_reach_direct_anchor_gate(monkeypatch):
+    module, context = _task3_direct_source_context()
+    expected_rows = context.manifests["raw"]["source_schema_manifest"][
+        "anchor_rows"
+    ]
+    live_rows = module._rebuild_authenticated_anchor_rows(context)
+    assert live_rows == expected_rows
+    assert len(live_rows) == 21
+    assert sum(row["coefficient"] for row in live_rows) == 2
+
+    state = _task3_direct_anchor_wire_state(context)
+    module._validate_direct_anchor_gate(state, context)
+
+    def reject(mutated_rows):
+        monkeypatch.setattr(
+            module,
+            "_rebuild_authenticated_anchor_rows",
+            lambda _context: mutated_rows,
+        )
+        with pytest.raises(module.WireFormatError):
+            module._validate_direct_anchor_gate(state, context)
+
+    for anchor_index in range(21):
+        for field, value in (
+            ("id", f"task3-mutated-id-{anchor_index}"),
+            ("coefficient", live_rows[anchor_index]["coefficient"] + 2),
+            ("family", "V"),
+            ("key", {}),
+            ("domain", {"op": "task3-mutated-domain"}),
+            ("current_equality", {"op": "task3-mutated-equality"}),
+            ("coefficient", True),
+        ):
+            mutated = copy.deepcopy(live_rows)
+            mutated[anchor_index][field] = value
+            reject(mutated)
+
+        reordered = copy.deepcopy(live_rows)
+        peer_index = (anchor_index + 1) % len(reordered)
+        reordered[anchor_index], reordered[peer_index] = (
+            reordered[peer_index],
+            reordered[anchor_index],
+        )
+        reject(reordered)
+
+
+def test_task3_direct_anchor_gate_rejects_mutated_authenticated_wire_old_binding():
+    module, context = _task3_direct_source_context()
+
+    mutations = {
+        "anchor-provenance": lambda state: state.source_bindings["old"][
+            "anchor_provenance"
+        ][0].update(id="task3-wire-mutated-anchor"),
+        "anchor-count": lambda state: state.source_bindings["old"].update(
+            anchor_rows=20
+        ),
+        "anchor-sum": lambda state: state.source_bindings["old"].update(
+            anchor_integral_sum=3
+        ),
+        "old-source-digests": lambda state: state.source_bindings["old"][
+            "source_digests"
+        ].update(
+            {
+                ".scratch/period_two_raw_stream_manifest_generator.py": "0"
+                * 64
+            }
+        ),
+        "authenticated-dependencies": lambda state: state.dependency_digests.update(
+            {
+                ".scratch/period_two_raw_stream_manifest_generator.py": "0"
+                * 64
+            }
+        ),
+    }
+    for mutate in mutations.values():
+        state = _task3_direct_anchor_wire_state(context)
+        mutate(state)
+        with pytest.raises(module.WireFormatError):
+            module._validate_direct_anchor_gate(state, context)
+
+
+def test_task3_approved_source_reader_is_exact_size_capped(
+    tmp_path, monkeypatch
+):
+    module = load_package_v2_verifier()
+    payload = b"abc"
+    calls = []
+
+    class SourceStream(io.BytesIO):
+        def read(self, size=-1):
+            calls.append(size)
+            return super().read(size)
+
+    monkeypatch.setattr(module, "_task3_project_root", lambda: tmp_path)
+    monkeypatch.setattr(
+        Path,
+        "open",
+        lambda path, mode: SourceStream(payload),
+    )
+    assert module._read_task3_project_source("approved/source", 3) == payload
+    assert calls == [4]
+
+    calls.clear()
+    payload = b"abcd"
+    with pytest.raises(module.WireFormatError, match="byte count"):
+        module._read_task3_project_source("approved/source", 3)
+    assert calls == [4]
