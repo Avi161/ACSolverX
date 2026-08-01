@@ -3150,9 +3150,338 @@ def _family_stream_caps(family: str) -> dict[str, int]:
     return caps
 
 
+def _validate_authenticated_shared(
+    retained: Mapping[str, Any], root: Mapping[str, Any]
+) -> None:
+    header = retained["header"]
+    if header is None or tuple(header[1:]) != (
+        root["format"],
+        root["scope"],
+        root["logical_v1_format"],
+        root["canonical_encoding"],
+        root["mask_encoding"],
+        root["domain"],
+        root["status"],
+        root["shard_order"],
+    ):
+        raise WireFormatError("shared header/root binding differs")
+    dependencies = retained["dependencies"]
+    if tuple(dependencies) != tuple(sorted(dependencies)):
+        raise WireFormatError("dependencies are not in ASCII order")
+    for path, digest in dependencies.items():
+        if not isinstance(path, str) or not path or not path.isascii():
+            raise WireFormatError("dependency path is invalid")
+        _exact_hash(digest, "dependency sha256")
+    source_bindings = retained["source_bindings"]
+    if not isinstance(source_bindings, Mapping) or set(source_bindings) != {
+        "format", "old", "b", "sha256"
+    }:
+        raise WireFormatError("source-binding fields differ")
+    if source_bindings["format"] != SOURCE_BINDINGS_FORMAT:
+        raise WireFormatError("source-binding format differs")
+    source_payload = {
+        key: value for key, value in source_bindings.items() if key != "sha256"
+    }
+    source_digest = hashlib.sha256(
+        _canonical_json(source_payload).encode("ascii")
+    ).hexdigest()
+    if source_bindings["sha256"] != source_digest:
+        raise WireFormatError("source-binding digest differs")
+    if source_digest != root["source_bindings_sha256"]:
+        raise WireFormatError("root source-binding digest differs")
+    identities = retained["identities"]
+    coordinates = retained["coordinates"]
+    identity_table = []
+    for index in range(TOKEN_COUNT):
+        row = identities[index]
+        if _exact_int(row[1], "B token index", minimum=0) != index:
+            raise WireFormatError("B identity indices are not consecutive")
+        if not isinstance(row[2], str) or not isinstance(row[3], str):
+            raise WireFormatError("B identity string field is invalid")
+        _exact_int(row[4], "B coefficient")
+        for name, value in (
+            ("B slot", row[5]),
+            ("B occurrence", row[6]),
+            ("B polarity", row[7]),
+        ):
+            if value is not None:
+                _exact_int(value, name)
+        if not isinstance(row[8], str) or not isinstance(row[9], str):
+            raise WireFormatError("B schema reference is invalid")
+        if type(row[10]) is not list or not all(
+            isinstance(member, str) for member in row[10]
+        ):
+            raise WireFormatError("B source members are invalid")
+        identity_table.append(
+            {
+                field: value
+                for field, value in zip(
+                    SHARED_RECORD_FIELDS["b_identity"][1:], row[1:]
+                )
+            }
+        )
+        coordinate = coordinates[index]
+        if (
+            _exact_int(coordinate[1], "B coordinate index", minimum=0) != index
+            or coordinate[2] != row[3]
+            or type(coordinate[3]) is not list
+        ):
+            raise WireFormatError("B coordinate identity reference differs")
+    identity_digest = hashlib.sha256(
+        _canonical_json(identity_table).encode("ascii")
+    ).hexdigest()
+    if identity_digest != root["b_identity_digest"]:
+        raise WireFormatError("root B identity digest differs")
+    footer = retained["footer"]
+    if _exact_int(footer[1], "coordinate count", minimum=0) != TOKEN_COUNT:
+        raise WireFormatError("shared coordinate count differs")
+
+
+def _validate_authenticated_family(
+    family: str,
+    retained: Mapping[str, Any],
+    root: Mapping[str, Any],
+) -> None:
+    header = retained["header"]
+    _validate_family_header(header, family)
+    old_rows = retained["old_loads"]
+    footprints = retained["footprints"]
+    buckets = retained["bucket_classes"]
+    cells = retained["cells"]
+    if (
+        len(old_rows) != header[5]
+        or len(footprints) != header[6]
+        or len(buckets) != header[7]
+    ):
+        raise WireFormatError("family header table census differs")
+    for index, row in enumerate(old_rows):
+        if _exact_int(row[1], "old index", minimum=0) != index:
+            raise WireFormatError("old-load indices are not consecutive")
+        if not isinstance(row[2], str) or not row[2]:
+            raise WireFormatError("old token ID is invalid")
+        _exact_int(row[3], "old coefficient")
+        if type(row[4]) is not list or not all(
+            isinstance(member, str) for member in row[4]
+        ):
+            raise WireFormatError("old source members are invalid")
+        if family == "fixed":
+            if row[5] is not None:
+                raise WireFormatError("fixed old source slot is not null")
+        else:
+            _exact_int(row[5], "old source slot")
+        _exact_int(row[6], "footprint start", minimum=0)
+        _exact_int(row[7], "old footprint count", minimum=1)
+    for index, row in enumerate(footprints):
+        if _exact_int(row[1], "footprint index", minimum=0) != index:
+            raise WireFormatError("footprint indices are not consecutive")
+        old_index = _exact_int(row[2], "footprint old index", minimum=0)
+        if old_index >= len(old_rows):
+            raise WireFormatError("footprint old reference is out of range")
+        if family == "fixed":
+            if (row[3], row[4], row[5], row[7]) != (
+                None,
+                None,
+                None,
+                None,
+            ):
+                raise WireFormatError("fixed footprint null domain differs")
+        else:
+            _exact_int(row[3], "footprint occurrence")
+            _exact_int(row[4], "footprint occurrence slot")
+            _exact_int(row[5], "footprint polarity")
+            if not isinstance(row[7], str):
+                raise WireFormatError("footprint module schema is invalid")
+        _exact_int(row[6], "footprint leaf", minimum=0)
+        if not isinstance(row[8], str) or not row[8]:
+            raise WireFormatError("footprint label schema is invalid")
+    expected_footprint = 0
+    for old_index, row in enumerate(old_rows):
+        if row[6] != expected_footprint:
+            raise WireFormatError("footprint intervals are not contiguous")
+        stop = row[6] + row[7]
+        if any(
+            footprints[index][2] != old_index
+            for index in range(row[6], stop)
+        ):
+            raise WireFormatError("footprint interval owner differs")
+        expected_footprint = stop
+    if expected_footprint != len(footprints):
+        raise WireFormatError("footprint intervals do not cover the table")
+    for index, row in enumerate(buckets):
+        if type(row[1]) is not str or type(row[2]) is not list:
+            raise WireFormatError("bucket B coordinate is invalid")
+        if type(row[3]) is not bool:
+            raise WireFormatError("bucket equality exclusion is invalid")
+        for method, order, label in (
+            (row[4], row[5], "module"),
+            (row[8], row[9], "label"),
+        ):
+            if method not in COMPARISON_METHODS:
+                raise WireFormatError(f"bucket {label} method differs")
+            if method is None:
+                if order is not None:
+                    raise WireFormatError(f"bucket {label} null order differs")
+            else:
+                _exact_int(order, f"bucket {label} order")
+        if row[6] not in CHRONOLOGIES:
+            raise WireFormatError("bucket chronology differs")
+        _exact_int(row[7], "bucket chronology order")
+        if type(row[10]) is not int or row[10] not in (0, 1):
+            raise WireFormatError("bucket contribution bit differs")
+        if index and _canonical_json(row[1:]) <= _canonical_json(
+            buckets[index - 1][1:]
+        ):
+            raise WireFormatError("bucket classes are not canonical")
+    if len(cells) != header[3]:
+        raise WireFormatError("family cell footer census differs")
+    for index, (footer, load_count) in enumerate(cells):
+        if _exact_int(footer[1], "source cell index", minimum=0) != index:
+            raise WireFormatError("source cell indices are not consecutive")
+        _exact_int(footer[2], "compact cell index", minimum=0)
+        if not isinstance(footer[3], str) or not footer[3]:
+            raise WireFormatError("cell ID is invalid")
+        if (
+            type(footer[4]) is not list
+            or any(type(value) is not int for value in footer[4])
+            or footer[4] != sorted(set(footer[4]))
+        ):
+            raise WireFormatError("odd old indices are invalid")
+        if type(footer[5]) is not int or footer[5] not in (0, 1):
+            raise WireFormatError("cell value is invalid")
+        if _exact_int(footer[6], "cell load-record count", minimum=0) != load_count:
+            raise WireFormatError("cell load-record count differs")
+    family_footer = retained["footer"]
+    for index, name in (
+        (1, "footer source cell count"),
+        (2, "footer old load count"),
+        (3, "footer load rows"),
+        (4, "footer occurrence loads"),
+        (5, "footer comparisons"),
+    ):
+        _exact_int(family_footer[index], name, minimum=0)
+    expected_loads = len(header[4]) * len(cells)
+    expected_occurrences = len(cells) * sum(
+        old_rows[index][7] for index in header[4]
+    )
+    expected = (len(cells), len(old_rows), expected_loads, expected_occurrences,
+                expected_occurrences * TOKEN_COUNT)
+    if tuple(family_footer[1:6]) != expected:
+        raise WireFormatError("family footer summary differs")
+    summary = root["emitted_summary"]
+    if (
+        summary["load_rows"][family] != family_footer[3]
+        or summary["occurrence_loads"][family] != family_footer[4]
+    ):
+        raise WireFormatError("root emitted family summary differs")
+    if root["scope"] == PRODUCTION_SCOPE and (
+        root["full_summary"]["load_rows"][family] != family_footer[3]
+        or root["full_summary"]["occurrence_loads"][family] != family_footer[4]
+    ):
+        raise WireFormatError("root full family summary differs")
+    catalog = retained["catalog"]
+    _validate_v2_template_catalog(catalog)
+    if _template_summary(catalog) != root["template_catalogs"][family]:
+        raise WireFormatError("root template catalog summary differs")
+    compact_cells = {index: row for index, row in enumerate(catalog["cell_table"])}
+    if len(compact_cells) != len(catalog["cell_table"]):
+        raise WireFormatError("compact cell index repeats")
+    source_pairs = {(footer[2], footer[3]) for footer, _ in cells}
+    catalog_pairs = {
+        (index, row[0]) for index, row in enumerate(catalog["cell_table"])
+    }
+    if (
+        len(source_pairs) != len(cells)
+        or source_pairs != catalog_pairs
+    ):
+        raise WireFormatError("source/compact cell bijection differs")
+    if any(schema[1] != header[2] for schema in catalog["schema_table"]):
+        raise WireFormatError("family header variables differ from schemas")
+    if any(cell[1] != header[2] for cell in catalog["cell_table"]):
+        raise WireFormatError("family header variables differ from cells")
+    profiles = []
+    for schema_index, schema in enumerate(catalog["schema_table"]):
+        start = schema_index * catalog["cell_count"]
+        witness_ids = catalog["identity_witness_ids"][
+            start:start + catalog["cell_count"]
+        ]
+        profiles.append(
+            (
+                schema[0],
+                max(len(catalog["witness_table"][index][2]) for index in witness_ids),
+            )
+        )
+    retained["schema_profiles"] = tuple(profiles)
+
+
+def _validate_authenticated_root_summaries(
+    families: Mapping[str, Mapping[str, Any]], root: Mapping[str, Any]
+) -> None:
+    load_rows = {
+        family: families[family]["footer"][3] for family in FAMILY_ORDER
+    }
+    occurrence_loads = {
+        family: families[family]["footer"][4] for family in FAMILY_ORDER
+    }
+    template_counts = {
+        family: families[family]["catalog"]["template_count"]
+        for family in FAMILY_ORDER
+    }
+    footprint_sizes = {}
+    comparisons = {}
+    for family in FAMILY_ORDER:
+        header = families[family]["header"]
+        old_rows = families[family]["old_loads"]
+        sizes = [old_rows[index][7] for index in header[4]]
+        footprint_sizes[family] = {
+            str(size): sizes.count(size) for size in sorted(set(sizes))
+        }
+        comparisons[family] = families[family]["footer"][5]
+    summary_names = ["emitted_summary"]
+    if root["scope"] == PRODUCTION_SCOPE:
+        summary_names.append("full_summary")
+    for summary_name in summary_names:
+        summary = root[summary_name]
+        if summary["load_rows"] != load_rows:
+            raise WireFormatError(f"root {summary_name} load rows differ")
+        if summary["occurrence_loads"] != occurrence_loads:
+            raise WireFormatError(
+                f"root {summary_name} occurrence loads differ"
+            )
+        if summary["template_counts"] != template_counts:
+            raise WireFormatError(
+                f"root {summary_name} template counts differ"
+            )
+        if summary["footprint_sizes"] != footprint_sizes:
+            raise WireFormatError(
+                f"root {summary_name} footprint sizes differ"
+            )
+        if summary["total_load_rows"] != sum(load_rows.values()):
+            raise WireFormatError(
+                f"root {summary_name} total load rows differ"
+            )
+        if summary["total_occurrence_loads"] != sum(occurrence_loads.values()):
+            raise WireFormatError(
+                f"root {summary_name} total occurrence loads differ"
+            )
+        if summary["total_templates"] != sum(template_counts.values()):
+            raise WireFormatError(
+                f"root {summary_name} total templates differ"
+            )
+        if summary["b_tokens_per_occurrence"] != TOKEN_COUNT:
+            raise WireFormatError(
+                f"root {summary_name} B token count differs"
+            )
+        if summary["active_comparisons"] != sum(comparisons.values()):
+            raise WireFormatError(
+                f"root {summary_name} active comparisons differ"
+            )
+
+
 def _authenticate_descriptor_stream(
     descriptor: Mapping[str, Any],
     stream: Any,
+    *,
+    scope: str,
 ) -> tuple[dict[str, int], dict[str, Any]]:
     family = descriptor["family"]
     declarations = (
@@ -3168,8 +3497,10 @@ def _authenticate_descriptor_stream(
             phase = 0
             identities: dict[int, tuple[Any, ...]] = {}
             coordinates: dict[int, tuple[Any, ...]] = {}
+            dependencies: dict[str, str] = {}
             header = None
             source_bindings = None
+            footer = None
             while True:
                 record, line_bytes = _stream_record(iterator, reader)
                 tag = record[0]
@@ -3207,6 +3538,7 @@ def _authenticate_descriptor_stream(
                         records_before_footer=records_before_footer,
                         bytes_before_footer=reader.total_bytes - line_bytes,
                     )
+                    footer = tuple(record)
                     counts[tag] += 1
                     try:
                         next(iterator)
@@ -3218,6 +3550,16 @@ def _authenticate_descriptor_stream(
                 _require_tag_width(record, tag, declarations)
                 if tag == "shared_header":
                     header = tuple(record)
+                elif tag == "dependency":
+                    path, digest = record[1:]
+                    if (
+                        not isinstance(path, str)
+                        or not path
+                        or not path.isascii()
+                        or path in dependencies
+                    ):
+                        raise WireFormatError("dependency path is invalid")
+                    dependencies[path] = _exact_hash(digest, "dependency sha256")
                 elif tag == "source_bindings":
                     source_bindings = record[1]
                 elif tag == "b_identity":
@@ -3246,10 +3588,12 @@ def _authenticate_descriptor_stream(
                 raise WireFormatError("shared B reference count differs")
             retained = {
                 "dependency_count": counts["dependency"],
+                "dependencies": dependencies,
                 "header": header,
                 "source_bindings": source_bindings,
                 "identities": identities,
                 "coordinates": coordinates,
+                "footer": footer,
             }
         else:
             required = (
@@ -3272,12 +3616,20 @@ def _authenticate_descriptor_stream(
             old_loads: list[tuple[Any, ...]] = []
             footprints: list[tuple[Any, ...]] = []
             bucket_classes: list[tuple[Any, ...]] = []
-            cells: list[tuple[Any, ...]] = []
+            cells: list[tuple[tuple[Any, ...], int]] = []
             witnesses: list[int] = []
             witness_rows: list[tuple[Any, ...]] = []
             identity_witness_ids: list[int] = []
+            identity_chunk_widths: list[int] = []
             cell_count = 0
+            current_cell_loads = 0
+            previous_load_key = None
+            header = None
             template_header = None
+            schema_rows: list[list[Any]] = []
+            cell_rows: list[list[Any]] = []
+            template_footer = None
+            family_footer = None
             caps = _family_stream_caps(family)
             while True:
                 record, line_bytes = _stream_record(iterator, reader)
@@ -3291,11 +3643,15 @@ def _authenticate_descriptor_stream(
                 } and counts[tag]:
                     raise WireFormatError("family singleton record repeats")
                 position = required.index(tag)
-                if tag == "load":
-                    if phase != position:
-                        raise WireFormatError("family records are out of order")
-                elif tag == "cell_footer":
-                    if phase not in (4, position):
+                if tag in {"load", "cell_footer"}:
+                    while phase < 4:
+                        current = required[phase]
+                        if counts[current] != descriptor["record_counts"][current]:
+                            raise WireFormatError(
+                                "family descriptor tag counts differ"
+                            )
+                        phase += 1
+                    if phase != 4:
                         raise WireFormatError("family records are out of order")
                 elif tag == "family_footer":
                     if phase != position - 1 or counts[tag]:
@@ -3307,6 +3663,7 @@ def _authenticate_descriptor_stream(
                         records_before_footer=records_before_footer,
                         bytes_before_footer=reader.total_bytes - line_bytes,
                     )
+                    family_footer = tuple(record)
                     counts[tag] += 1
                     try:
                         next(iterator)
@@ -3328,6 +3685,14 @@ def _authenticate_descriptor_stream(
                     raise WireFormatError("family record census exceeds cap")
                 if tag == "family_header":
                     _validate_family_header(record, family)
+                    header = tuple(record)
+                    if (
+                        scope == PRODUCTION_SCOPE
+                        and record[4] != list(range(record[5]))
+                    ):
+                        raise WireFormatError(
+                            "production old indices are not complete"
+                        )
                     if any(
                         record[index] > caps[name]
                         for index, name in (
@@ -3344,9 +3709,38 @@ def _authenticate_descriptor_stream(
                     footprints.append(tuple(record))
                 elif tag == "bucket_class":
                     bucket_classes.append(tuple(record))
+                elif tag == "load":
+                    old_index = _exact_int(
+                        record[1], "load old index", minimum=0
+                    )
+                    footprint_index = _exact_int(
+                        record[2], "load footprint index", minimum=0
+                    )
+                    bucket_index = _exact_int(
+                        record[3], "load bucket index", minimum=0
+                    )
+                    if (
+                        header is None
+                        or old_index >= len(old_loads)
+                        or old_index not in header[4]
+                        or footprint_index >= len(footprints)
+                        or footprints[footprint_index][2] != old_index
+                        or bucket_index >= len(bucket_classes)
+                        or unpack_mask(record[4]) == 0
+                    ):
+                        raise WireFormatError("load reference differs")
+                    load_key = (old_index, footprint_index, bucket_index)
+                    if previous_load_key is not None and load_key <= previous_load_key:
+                        raise WireFormatError("cell load rows are not ordered")
+                    previous_load_key = load_key
+                    current_cell_loads += 1
                 elif tag == "cell_footer":
-                    cells.append(tuple(record))
+                    cells.append((tuple(record), current_cell_loads))
+                    current_cell_loads = 0
+                    previous_load_key = None
                 elif tag == "template_header":
+                    if current_cell_loads:
+                        raise WireFormatError("orphan load rows precede template header")
                     if record[3] != family:
                         raise WireFormatError("template header family differs")
                     schema_count = _exact_int(
@@ -3377,6 +3771,14 @@ def _authenticate_descriptor_stream(
                     if index != len(schema_ids) or not isinstance(record[2], str):
                         raise WireFormatError("template schema profiles differ")
                     schema_ids.append(record[2])
+                    schema_rows.append([record[2], record[3], record[4]])
+                elif tag == "template_cell":
+                    index = _exact_int(
+                        record[1], "template cell index", minimum=0
+                    )
+                    if index != len(cell_rows):
+                        raise WireFormatError("template cell indices are not consecutive")
+                    cell_rows.append([record[2], record[3], record[4], record[5]])
                 elif tag == "template_witness":
                     index = _exact_int(record[1], "template witness index", minimum=0)
                     if index != len(witnesses) or not isinstance(record[4], list):
@@ -3399,7 +3801,10 @@ def _authenticate_descriptor_stream(
                         raise WireFormatError(
                             "template identity census exceeds cap"
                         )
+                    identity_chunk_widths.append(len(record[2]))
                     identity_witness_ids.extend(record[2])
+                elif tag == "template_footer":
+                    template_footer = tuple(record)
                 counts[tag] += 1
                 records_before_footer += 1
             if any(
@@ -3412,6 +3817,8 @@ def _authenticate_descriptor_stream(
                 )
             ):
                 raise WireFormatError("family singleton record count differs")
+            if sum(load_count for _, load_count in cells) != counts["load"]:
+                raise WireFormatError("family load rows are not closed by cells")
             if not schema_ids or cell_count < 1:
                 raise WireFormatError("template schema profiles are incomplete")
             if schema_ids != sorted(set(schema_ids)):
@@ -3420,36 +3827,55 @@ def _authenticate_descriptor_stream(
             if len(identity_witness_ids) != expected_identities:
                 raise WireFormatError("template identity profiles do not cover cells")
             if any(
+                width != IDENTITY_CHUNK_SIZE
+                for width in identity_chunk_widths[:-1]
+            ):
+                raise WireFormatError("nonfinal identity chunk is not full")
+            if any(
                 type(witness_id) is not int
                 or not 0 <= witness_id < len(witnesses)
                 for witness_id in identity_witness_ids
             ):
                 raise WireFormatError("template identity witness reference differs")
-            profiles = []
-            for schema_index, schema_id in enumerate(schema_ids):
-                start = schema_index * cell_count
-                profiles.append(
-                    (
-                        schema_id,
-                        max(
-                            witnesses[item]
-                            for item in identity_witness_ids[
-                                start:start + cell_count
-                            ]
-                        ),
-                    )
-                )
+            if (
+                header is None
+                or template_header is None
+                or template_footer is None
+                or family_footer is None
+            ):
+                raise WireFormatError("family singleton records are incomplete")
+            catalog = {
+                "format": template_header[1],
+                "typed_encoding": template_header[2],
+                "family": template_header[3],
+                "field_orders": template_header[4],
+                "identity_order": template_header[5],
+                "schema_count": template_header[6],
+                "cell_count": template_header[7],
+                "template_count": template_header[8],
+                "witness_count": template_header[9],
+                "schema_table": schema_rows,
+                "cell_table": cell_rows,
+                "witness_table": [list(row[2:]) for row in witness_rows],
+                "identity_witness_ids": identity_witness_ids,
+                "identity_sha256": template_footer[1],
+                "replay_sha256": template_footer[2],
+                "catalog_sha256": template_footer[3],
+            }
             retained = {
-                "schema_profiles": tuple(profiles),
+                "schema_profiles": (),
                 "old_loads": tuple(old_loads),
                 "footprints": tuple(footprints),
                 "bucket_classes": tuple(bucket_classes),
                 "cells": tuple(cells),
+                "header": header,
                 "template_header": template_header,
                 "witnesses": tuple(witness_rows),
                 "bucket_class_count": counts["bucket_class"],
                 "witness_count": len(witnesses),
                 "identity_witness_ids": tuple(identity_witness_ids),
+                "footer": family_footer,
+                "catalog": catalog,
             }
     finally:
         stream.close()
@@ -3479,35 +3905,19 @@ def _authenticate_v2_streams(
     _, shared = _authenticate_descriptor_stream(
         shared_descriptor,
         supplier(shared_descriptor),
+        scope=root["scope"],
     )
-    header = shared["header"]
-    if header is None or (
-        header[1] != root["format"]
-        or header[2] != root["scope"]
-        or header[3] != root["logical_v1_format"]
-        or header[4] != root["canonical_encoding"]
-        or header[5] != root["mask_encoding"]
-        or header[6] != root["domain"]
-        or header[7] != root["status"]
-        or header[8] != root["shard_order"]
-    ):
-        raise WireFormatError("shared header/root binding differs")
+    _validate_authenticated_shared(shared, root)
     family_retained = {}
     for family in ("C", "P", "Q", "base", "fixed", "singleton"):
         descriptor = descriptors[family]
         _, family_retained[family] = _authenticate_descriptor_stream(
             descriptor,
             supplier(descriptor),
+            scope=root["scope"],
         )
-        template_header = family_retained[family]["template_header"]
-        catalog = root["template_catalogs"][family]
-        if template_header is None or (
-            template_header[6] != catalog["schema_count"]
-            or template_header[7] != catalog["cell_count"]
-            or template_header[8] != catalog["template_count"]
-            or template_header[9] != catalog["witness_count"]
-        ):
-            raise WireFormatError("template catalog/root binding differs")
+        _validate_authenticated_family(family, family_retained[family], root)
+    _validate_authenticated_root_summaries(family_retained, root)
     premises = _GenerationProjectionPremises(
         domain=root["domain"],
         shared_dependency_count=shared["dependency_count"],
