@@ -480,6 +480,14 @@ class _GenerationProjectionPremises:
     family_witness_counts: Mapping[str, int]
 
 
+@dataclass(frozen=True)
+class _AuthenticatedWireState:
+    root: Mapping[str, Any]
+    root_sha256: str
+    premises: _GenerationProjectionPremises
+    generation_projection_sha256: str | None
+
+
 class PhaseMetrics:
     def __init__(self, *, enabled: bool = False) -> None:
         if type(enabled) is not bool:
@@ -1968,11 +1976,13 @@ class _HashingReader:
         self._stream = stream
         self.hasher = hashlib.sha256()
         self.total_bytes = 0
+        self.last_line = b""
 
     def readline(self, limit: int = -1) -> bytes:
         line = self._stream.readline(limit)
         if not isinstance(line, bytes):
             raise WireFormatError("package object stream must be binary")
+        self.last_line = line
         self.hasher.update(line)
         self.total_bytes += len(line)
         return line
@@ -3061,6 +3071,360 @@ def project_verification(
     )
 
 
+def _stream_record(
+    iterator: Iterable[Any],
+    reader: _HashingReader,
+) -> tuple[Any, int]:
+    try:
+        record = next(iterator)
+    except StopIteration as error:
+        raise WireFormatError("shard is missing its terminal footer") from error
+    _validate_tagged_record(record)
+    return record, len(reader.last_line)
+
+
+def _authenticate_footer(
+    record: Sequence[Any],
+    *,
+    tag: str,
+    declarations: Mapping[str, Sequence[str]],
+    records_before_footer: int,
+    bytes_before_footer: int,
+) -> None:
+    _require_tag_width(record, tag, declarations)
+    if tag == "shared_footer":
+        record_index, byte_index = 2, 3
+    else:
+        record_index, byte_index = 6, 7
+    if _exact_int(record[record_index], f"{tag} prefix records", minimum=0) != (
+        records_before_footer
+    ):
+        raise WireFormatError(f"{tag} prefix record count differs")
+    if _exact_int(record[byte_index], f"{tag} prefix bytes", minimum=0) != (
+        bytes_before_footer
+    ):
+        raise WireFormatError(f"{tag} prefix byte count differs")
+
+
+def _authenticate_descriptor_stream(
+    descriptor: Mapping[str, Any],
+    stream: Any,
+) -> tuple[dict[str, int], dict[str, Any]]:
+    family = descriptor["family"]
+    declarations = (
+        SHARED_RECORD_FIELDS if family is None else FAMILY_RECORD_FIELDS
+    )
+    reader = _HashingReader(stream)
+    iterator = iter_canonical_json_lines(reader)
+    counts = {tag: 0 for tag in declarations}
+    retained: dict[str, Any] = {}
+    records_before_footer = 0
+    footer_seen = False
+    try:
+        if family is None:
+            phase = 0
+            identities: dict[int, tuple[Any, ...]] = {}
+            coordinates: dict[int, tuple[Any, ...]] = {}
+            header = None
+            source_bindings = None
+            while True:
+                try:
+                    record, line_bytes = _stream_record(iterator, reader)
+                except WireFormatError:
+                    if footer_seen:
+                        break
+                    raise
+                tag = record[0]
+                if tag not in counts:
+                    raise WireFormatError("shared shard has an unknown record tag")
+                if tag == "dependency":
+                    if phase > 1:
+                        raise WireFormatError("shared records are out of order")
+                    phase = 1
+                elif tag == "source_bindings":
+                    if phase > 2:
+                        raise WireFormatError("shared records are out of order")
+                    phase = 2
+                elif tag == "b_identity":
+                    if phase != 2:
+                        raise WireFormatError("shared records are out of order")
+                    phase = 3
+                elif tag == "b_coordinate":
+                    if phase != 3:
+                        raise WireFormatError("shared records are out of order")
+                    phase = 4
+                elif tag == "shared_footer":
+                    if phase != 4 or footer_seen:
+                        raise WireFormatError("shared records are out of order")
+                    _authenticate_footer(
+                        record,
+                        tag=tag,
+                        declarations=declarations,
+                        records_before_footer=records_before_footer,
+                        bytes_before_footer=reader.total_bytes - line_bytes,
+                    )
+                    counts[tag] += 1
+                    footer_seen = True
+                    continue
+                elif tag != "shared_header" or phase != 0 or counts[tag]:
+                    raise WireFormatError("shared records are out of order")
+                _require_tag_width(record, tag, declarations)
+                if tag == "shared_header":
+                    header = tuple(record)
+                elif tag == "source_bindings":
+                    source_bindings = record[1]
+                elif tag == "b_identity":
+                    index = _exact_int(record[1], "B token index", minimum=0)
+                    if index != len(identities):
+                        raise WireFormatError("B identity indices are not consecutive")
+                    identities[index] = tuple(record)
+                elif tag == "b_coordinate":
+                    index = _exact_int(record[1], "B coordinate index", minimum=0)
+                    if index != len(coordinates) or index not in identities:
+                        raise WireFormatError("B coordinate identity reference differs")
+                    coordinates[index] = tuple(record)
+                counts[tag] += 1
+                records_before_footer += 1
+            if not footer_seen:
+                raise WireFormatError("shared shard is missing its terminal footer")
+            if len(identities) != TOKEN_COUNT or len(coordinates) != TOKEN_COUNT:
+                raise WireFormatError("shared B reference count differs")
+            retained = {
+                "dependency_count": counts["dependency"],
+                "header": header,
+                "source_bindings": source_bindings,
+                "identities": identities,
+                "coordinates": coordinates,
+            }
+        else:
+            required = (
+                "family_header",
+                "old_load",
+                "footprint",
+                "bucket_class",
+                "load",
+                "cell_footer",
+                "template_header",
+                "template_schema",
+                "template_cell",
+                "template_witness",
+                "template_identity_chunk",
+                "template_footer",
+                "family_footer",
+            )
+            phase = 0
+            schema_ids: list[str] = []
+            old_loads: list[tuple[Any, ...]] = []
+            footprints: list[tuple[Any, ...]] = []
+            bucket_classes: list[tuple[Any, ...]] = []
+            cells: list[tuple[Any, ...]] = []
+            witnesses: list[int] = []
+            witness_rows: list[tuple[Any, ...]] = []
+            identity_witness_ids: list[int] = []
+            cell_count = 0
+            template_header = None
+            while True:
+                try:
+                    record, line_bytes = _stream_record(iterator, reader)
+                except WireFormatError:
+                    if footer_seen:
+                        break
+                    raise
+                tag = record[0]
+                if tag not in counts:
+                    raise WireFormatError("family shard has an unknown record tag")
+                position = required.index(tag)
+                if tag == "load":
+                    if phase != position:
+                        raise WireFormatError("family records are out of order")
+                elif tag == "cell_footer":
+                    if phase not in (4, position):
+                        raise WireFormatError("family records are out of order")
+                elif tag == "family_footer":
+                    if phase != position - 1 or footer_seen:
+                        raise WireFormatError("family records are out of order")
+                    _authenticate_footer(
+                        record,
+                        tag=tag,
+                        declarations=declarations,
+                        records_before_footer=records_before_footer,
+                        bytes_before_footer=reader.total_bytes - line_bytes,
+                    )
+                    counts[tag] += 1
+                    footer_seen = True
+                    continue
+                else:
+                    if position < phase:
+                        raise WireFormatError("family records are out of order")
+                    while phase < position:
+                        current = required[phase]
+                        if counts[current] != descriptor["record_counts"][current]:
+                            raise WireFormatError("family records are out of order")
+                        phase += 1
+                _require_tag_width(record, tag, declarations)
+                if tag == "family_header":
+                    _validate_family_header(record, family)
+                elif tag == "old_load":
+                    old_loads.append(tuple(record))
+                elif tag == "footprint":
+                    footprints.append(tuple(record))
+                elif tag == "bucket_class":
+                    bucket_classes.append(tuple(record))
+                elif tag == "cell_footer":
+                    cells.append(tuple(record))
+                elif tag == "template_header":
+                    if record[3] != family:
+                        raise WireFormatError("template header family differs")
+                    template_header = tuple(record)
+                    cell_count = _exact_int(
+                        record[7], "template cell count", minimum=0
+                    )
+                elif tag == "template_schema":
+                    index = _exact_int(record[1], "template schema index", minimum=0)
+                    if index != len(schema_ids) or not isinstance(record[2], str):
+                        raise WireFormatError("template schema profiles differ")
+                    schema_ids.append(record[2])
+                elif tag == "template_witness":
+                    index = _exact_int(record[1], "template witness index", minimum=0)
+                    if index != len(witnesses) or not isinstance(record[4], list):
+                        raise WireFormatError("template witness profiles differ")
+                    witnesses.append(len(record[4]))
+                    witness_rows.append(tuple(record))
+                elif tag == "template_identity_chunk":
+                    start = _exact_int(record[1], "identity chunk start", minimum=0)
+                    if (
+                        start != len(identity_witness_ids)
+                        or not isinstance(record[2], list)
+                    ):
+                        raise WireFormatError("template identity profiles differ")
+                    identity_witness_ids.extend(record[2])
+                counts[tag] += 1
+                records_before_footer += 1
+            if not footer_seen:
+                raise WireFormatError("family shard is missing its terminal footer")
+            if not schema_ids or cell_count < 1:
+                raise WireFormatError("template schema profiles are incomplete")
+            if schema_ids != sorted(set(schema_ids)):
+                raise WireFormatError("template schema profiles are not ASCII ordered")
+            expected_identities = len(schema_ids) * cell_count
+            if len(identity_witness_ids) != expected_identities:
+                raise WireFormatError("template identity profiles do not cover cells")
+            if any(
+                type(witness_id) is not int
+                or not 0 <= witness_id < len(witnesses)
+                for witness_id in identity_witness_ids
+            ):
+                raise WireFormatError("template identity witness reference differs")
+            profiles = []
+            for schema_index, schema_id in enumerate(schema_ids):
+                start = schema_index * cell_count
+                profiles.append(
+                    (
+                        schema_id,
+                        max(
+                            witnesses[item]
+                            for item in identity_witness_ids[
+                                start:start + cell_count
+                            ]
+                        ),
+                    )
+                )
+            retained = {
+                "schema_profiles": tuple(profiles),
+                "old_loads": tuple(old_loads),
+                "footprints": tuple(footprints),
+                "bucket_classes": tuple(bucket_classes),
+                "cells": tuple(cells),
+                "template_header": template_header,
+                "witnesses": tuple(witness_rows),
+                "bucket_class_count": counts["bucket_class"],
+                "witness_count": len(witnesses),
+                "identity_witness_ids": tuple(identity_witness_ids),
+            }
+    finally:
+        stream.close()
+    if reader.total_bytes != descriptor["total_bytes"]:
+        raise WireFormatError("descriptor object byte count differs")
+    if reader.hasher.hexdigest() != descriptor["sha256"]:
+        raise WireFormatError("descriptor object digest differs")
+    if sum(counts.values()) != descriptor["record_count"]:
+        raise WireFormatError("descriptor object record count differs")
+    if counts != descriptor["record_counts"]:
+        raise WireFormatError("descriptor object tag counts differ")
+    return counts, retained
+
+
+def _authenticate_v2_streams(
+    root_source: Any,
+    supplier: Any,
+    generation_projection: Mapping[str, Any] | None = None,
+) -> _AuthenticatedWireState:
+    root = decode_root_index(root_source)
+    if not callable(supplier):
+        raise WireFormatError("object supplier must be callable")
+    descriptors = {
+        descriptor["family"]: descriptor for descriptor in root["shards"]
+    }
+    shared_descriptor = descriptors[None]
+    _, shared = _authenticate_descriptor_stream(
+        shared_descriptor, supplier(shared_descriptor)
+    )
+    header = shared["header"]
+    if header is None or (
+        header[1] != root["format"]
+        or header[2] != root["scope"]
+        or header[3] != root["logical_v1_format"]
+        or header[4] != root["canonical_encoding"]
+        or header[5] != root["mask_encoding"]
+        or header[6] != root["domain"]
+        or header[7] != root["status"]
+        or header[8] != root["shard_order"]
+    ):
+        raise WireFormatError("shared header/root binding differs")
+    family_retained = {}
+    for family in ("C", "P", "Q", "base", "fixed", "singleton"):
+        descriptor = descriptors[family]
+        _, family_retained[family] = _authenticate_descriptor_stream(
+            descriptor, supplier(descriptor)
+        )
+        template_header = family_retained[family]["template_header"]
+        catalog = root["template_catalogs"][family]
+        if template_header is None or (
+            template_header[6] != catalog["schema_count"]
+            or template_header[7] != catalog["cell_count"]
+            or template_header[8] != catalog["template_count"]
+            or template_header[9] != catalog["witness_count"]
+        ):
+            raise WireFormatError("template catalog/root binding differs")
+    premises = _GenerationProjectionPremises(
+        domain=root["domain"],
+        shared_dependency_count=shared["dependency_count"],
+        schema_profiles={
+            family: family_retained[family]["schema_profiles"]
+            for family in FAMILY_ORDER
+        },
+        bucket_class_counts={
+            family: family_retained[family]["bucket_class_count"]
+            for family in FAMILY_ORDER
+        },
+        family_witness_counts={
+            family: family_retained[family]["witness_count"]
+            for family in FAMILY_ORDER
+        },
+    )
+    projection_sha256 = None
+    if generation_projection is not None:
+        projection_sha256 = _validate_generation_projection(
+            generation_projection, premises
+        ).sha256
+    return _AuthenticatedWireState(
+        root=root,
+        root_sha256=root["root_sha256"],
+        premises=premises,
+        generation_projection_sha256=projection_sha256,
+    )
+
+
 def verify_v2_package(
     index_path: Path,
     run_id: str,
@@ -3084,6 +3448,35 @@ def verify_v2_package(
         raise EngineeringVerificationFailure(
             "api", "metrics must be verifier-owned PhaseMetrics"
         )
+    target = index_path.resolve()
+    object_root = target.parent.resolve()
+
+    def supply(descriptor: Mapping[str, Any]) -> Any:
+        relative = Path(descriptor["path"])
+        if (
+            relative.is_absolute()
+            or len(relative.parts) != 2
+            or relative.parts[0] != "objects"
+        ):
+            raise WireFormatError("descriptor object path is invalid")
+        candidate = (object_root / relative).resolve()
+        if candidate.parent != object_root / "objects":
+            raise WireFormatError("descriptor object path escapes package")
+        return candidate.open("rb")
+
+    try:
+        with target.open("rb") as root_stream:
+            _authenticate_v2_streams(
+                root_stream,
+                supply,
+                generation_projection,
+            )
+    except (OSError, WireFormatError, EngineeringVerificationFailure) as error:
+        if isinstance(error, EngineeringVerificationFailure):
+            raise
+        raise EngineeringVerificationFailure(
+            "wire-authentication", str(error)
+        ) from error
     raise EngineeringVerificationFailure(
         "generation-projection",
         "generation projection semantic binding is not yet complete",

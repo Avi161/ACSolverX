@@ -6407,3 +6407,398 @@ def test_task3_direct_verification_projection_is_pure_arithmetic_and_non_attesta
             "0" * 64,
             {},
         )
+
+
+def _task3_stream_line(value):
+    return json.dumps(
+        value,
+        ensure_ascii=True,
+        separators=(",", ":"),
+        sort_keys=True,
+    ).encode("ascii") + b"\n"
+
+
+def _task3_stream_footer(records, tag):
+    prefix = b"".join(_task3_stream_line(record) for record in records)
+    if tag == "shared_footer":
+        return [tag, 84, len(records), len(prefix)]
+    return [tag, 0, 0, 0, 0, 0, len(records), len(prefix)]
+
+
+def _task3_literal_authenticated_streams():
+    families = ("fixed", "base", "singleton", "P", "C", "Q")
+    shared = [
+        [
+            "shared_header",
+            "period-two-old-new-cut-package-v2",
+            "production-full",
+            "period-two-old-new-cut-load-v1",
+            "canonical-json-ascii-lines-v1",
+            "uint84-be11-base64url-nopad-v1",
+            "fixture domain",
+            "generated-awaiting-independent-replay",
+            ["shared", "fixed", "base", "singleton", "P", "C", "Q"],
+        ],
+        ["source_bindings", {"fixture": "source"}],
+    ]
+    shared.extend(
+        [
+            "b_identity",
+            index,
+            f"token-{index}",
+            "fixture-class",
+            0,
+            None,
+            None,
+            None,
+            "module",
+            "label",
+            [],
+        ]
+        for index in range(84)
+    )
+    shared.extend(
+        ["b_coordinate", index, "fixture-class", [index]]
+        for index in range(84)
+    )
+    shared.append(_task3_stream_footer(shared, "shared_footer"))
+    streams = {"shared": b"".join(_task3_stream_line(row) for row in shared)}
+    for family in families:
+        records = [
+            [
+                "family_header",
+                family,
+                ["a"],
+                0,
+                [],
+                0,
+                0,
+                0,
+                84,
+                [
+                    None,
+                    "strict_affine_length",
+                    "identical_pumped_blocks",
+                    "fixed_mismatch_after_pumped_prefix",
+                ],
+                [
+                    "fixed_vs_correction_literal_leaf_order",
+                    "distinct_occurrences_literal_AST_order",
+                    "equal_coordinate_excluded",
+                    "same_occurrence_increasing",
+                    "same_occurrence_decreasing",
+                ],
+                [
+                    "old_occurrence",
+                    "old_leaf",
+                    "b_source_class",
+                    "b_coordinate",
+                    "equality_exclusion",
+                    "old_polarity",
+                    "module_method",
+                    "module_order",
+                    "chronology",
+                    "chronology_order",
+                    "label_method",
+                    "label_order",
+                    "contribution_bit",
+                ],
+                TEMPLATE_FIELD_ORDERS,
+                "product-order-with-P-domain-filter",
+            ],
+            [
+                "template_header",
+                "task4-template-catalog-v2",
+                "task4-typed-sha256-v1",
+                family,
+                TEMPLATE_FIELD_ORDERS,
+                "schema-major-cell-minor",
+                1,
+                1,
+                1,
+                1,
+            ],
+            ["template_schema", 0, f"{family}-schema", ["a"], []],
+            ["template_cell", 0, "fixture-cell", ["a"], [0], [0]],
+            [
+                "template_witness",
+                0,
+                1,
+                False,
+                [[0, 1, [1], 1, 0, 1, 0, 0]],
+            ],
+            ["template_identity_chunk", 0, [0]],
+            ["template_footer", "0" * 64, "0" * 64, "0" * 64],
+        ]
+        records.append(_task3_stream_footer(records, "family_footer"))
+        streams[family] = b"".join(_task3_stream_line(row) for row in records)
+    declarations = {
+        "shared": (
+            "shared_header",
+            "dependency",
+            "source_bindings",
+            "b_identity",
+            "b_coordinate",
+            "shared_footer",
+        ),
+        "family": (
+            "family_header",
+            "old_load",
+            "footprint",
+            "bucket_class",
+            "load",
+            "cell_footer",
+            "template_header",
+            "template_schema",
+            "template_cell",
+            "template_witness",
+            "template_identity_chunk",
+            "template_footer",
+            "family_footer",
+        ),
+    }
+    descriptors = []
+    for family in (None, *families):
+        key = "shared" if family is None else family
+        payload = streams[key]
+        tags = declarations["shared" if family is None else "family"]
+        counts = {tag: 0 for tag in tags}
+        for line in payload.splitlines():
+            counts[json.loads(line.decode("ascii"))[0]] += 1
+        digest = hashlib.sha256(payload).hexdigest()
+        descriptors.append(
+            {
+                "role": "shared" if family is None else "family",
+                "family": family,
+                "path": f"objects/{digest}.jsonl",
+                "sha256": digest,
+                "total_bytes": len(payload),
+                "record_count": sum(counts.values()),
+                "record_counts": counts,
+            }
+        )
+    summary = {
+        "load_rows": {family: 0 for family in families},
+        "total_load_rows": 0,
+        "footprint_sizes": {family: {} for family in families},
+        "occurrence_loads": {family: 0 for family in families},
+        "total_occurrence_loads": 0,
+        "b_tokens_per_occurrence": 84,
+        "active_comparisons": 0,
+        "template_counts": {family: 1 for family in families},
+        "total_templates": 6,
+    }
+    catalogs = {
+        family: {
+            "format": "task4-template-catalog-v2",
+            "typed_encoding": "task4-typed-sha256-v1",
+            "identity_order": "schema-major-cell-minor",
+            "schema_count": 1,
+            "cell_count": 1,
+            "template_count": 1,
+            "witness_count": 1,
+            "identity_sha256": "0" * 64,
+            "replay_sha256": "0" * 64,
+            "catalog_sha256": "0" * 64,
+        }
+        for family in families
+    }
+    root = {
+        "format": "period-two-old-new-cut-package-v2",
+        "scope": "production-full",
+        "logical_v1_format": "period-two-old-new-cut-load-v1",
+        "canonical_encoding": "canonical-json-ascii-lines-v1",
+        "mask_encoding": "uint84-be11-base64url-nopad-v1",
+        "domain": "fixture domain",
+        "status": "generated-awaiting-independent-replay",
+        "shard_order": ["shared", "fixed", "base", "singleton", "P", "C", "Q"],
+        "shards": descriptors,
+        "shard_bytes_total": sum(item["total_bytes"] for item in descriptors),
+        "emitted_summary": summary,
+        "full_summary": summary,
+        "source_bindings_sha256": "0" * 64,
+        "b_identity_digest": "0" * 64,
+        "template_catalogs": catalogs,
+    }
+    root["root_sha256"] = hashlib.sha256(_task3_stream_line(root)).hexdigest()
+    by_path = {}
+    for descriptor in descriptors:
+        family = descriptor["family"]
+        by_path[descriptor["path"]] = streams[
+            "shared" if family is None else family
+        ]
+    return _task3_stream_line(root), by_path, root
+
+
+def test_task3_root_line_and_descriptor_authentication_are_bounded() -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects, root = _task3_literal_authenticated_streams()
+
+    class RootStream(io.BytesIO):
+        def __init__(self, payload):
+            super().__init__(payload)
+            self.calls = 0
+
+        def readline(self, limit=-1):
+            self.calls += 1
+            assert limit == module.MAX_CANONICAL_LINE_BYTES + 1
+            return super().readline(limit)
+
+    opened = []
+    stream = RootStream(root_bytes)
+    state = module._authenticate_v2_streams(
+        stream,
+        lambda descriptor: (
+            opened.append(descriptor["family"]),
+            io.BytesIO(objects[descriptor["path"]]),
+        )[1],
+    )
+    assert stream.calls == 2
+    assert state.root_sha256 == root["root_sha256"]
+    assert opened
+    malformed = dict(root)
+    malformed["shards"] = list(reversed(root["shards"]))
+    malformed_payload = {
+        key: value for key, value in malformed.items() if key != "root_sha256"
+    }
+    malformed["root_sha256"] = hashlib.sha256(
+        _task3_stream_line(malformed_payload)
+    ).hexdigest()
+    with pytest.raises(module.WireFormatError, match="shard role"):
+        module._authenticate_v2_streams(
+            io.BytesIO(_task3_stream_line(malformed)),
+            lambda _descriptor: pytest.fail(
+                "supplier called before descriptors authenticated"
+            ),
+        )
+
+
+def test_task3_shared_then_ascii_family_open_order_is_exact() -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects, _root = _task3_literal_authenticated_streams()
+    opened = []
+    state = module._authenticate_v2_streams(
+        io.BytesIO(root_bytes),
+        lambda descriptor: (
+            opened.append(
+                "shared"
+                if descriptor["family"] is None
+                else descriptor["family"]
+            ),
+            io.BytesIO(objects[descriptor["path"]]),
+        )[1],
+    )
+    assert opened == ["shared", "C", "P", "Q", "base", "fixed", "singleton"]
+    assert tuple(state.premises.schema_profiles) == (
+        "fixed", "base", "singleton", "P", "C", "Q"
+    )
+
+
+def test_task3_object_counters_authenticate_bytes_sha_tags_and_footer_prefix() -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects, root = _task3_literal_authenticated_streams()
+    module._authenticate_v2_streams(
+        io.BytesIO(root_bytes),
+        lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+    )
+    shared_path = root["shards"][0]["path"]
+    bad_digest = dict(objects)
+    bad_digest[shared_path] = bad_digest[shared_path] + b" "
+    with pytest.raises(module.WireFormatError, match="missing final LF"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(bad_digest[descriptor["path"]]),
+        )
+    bad_footer = dict(objects)
+    bad_footer[shared_path] = bad_footer[shared_path].replace(
+        b'"shared_footer",84,170,', b'"shared_footer",84,169,'
+    )
+    with pytest.raises(module.WireFormatError, match="prefix record count"):
+        module._authenticate_v2_streams(
+            io.BytesIO(root_bytes),
+            lambda descriptor: io.BytesIO(bad_footer[descriptor["path"]]),
+        )
+    bad_counts = dict(root)
+    bad_descriptors = [dict(item) for item in root["shards"]]
+    bad_descriptors[1]["record_counts"] = dict(bad_descriptors[1]["record_counts"])
+    bad_descriptors[1]["record_counts"]["template_schema"] = 2
+    bad_descriptors[1]["record_count"] += 1
+    bad_counts["shards"] = bad_descriptors
+    bad_counts_payload = {
+        key: value for key, value in bad_counts.items() if key != "root_sha256"
+    }
+    bad_counts["root_sha256"] = hashlib.sha256(
+        _task3_stream_line(bad_counts_payload)
+    ).hexdigest()
+    with pytest.raises(module.WireFormatError, match="tag counts"):
+        module._authenticate_v2_streams(
+            io.BytesIO(_task3_stream_line(bad_counts)),
+            lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+        )
+    state = module._authenticate_v2_streams(
+        io.BytesIO(root_bytes),
+        lambda descriptor: io.BytesIO(objects[descriptor["path"]]),
+    )
+    profiles = dict(state.premises.schema_profiles)
+    profiles["fixed"] = ()
+    with pytest.raises(
+        module.EngineeringVerificationFailure,
+        match="schema profiles differ",
+    ):
+        module._validated_generation_projection_premises(
+            replace(state.premises, schema_profiles=profiles)
+        )
+    profiles = dict(state.premises.schema_profiles)
+    profiles["fixed"] = (("fixed-z", 1), ("fixed-a", 1))
+    with pytest.raises(
+        module.EngineeringVerificationFailure,
+        match="schema profile order differs",
+    ):
+        module._validated_generation_projection_premises(
+            replace(state.premises, schema_profiles=profiles)
+        )
+    profiles = dict(state.premises.schema_profiles)
+    profiles["fixed"] = (("fixed-schema", 0),)
+    with pytest.raises(module.EngineeringVerificationFailure, match="pump count"):
+        module._validated_generation_projection_premises(
+            replace(state.premises, schema_profiles=profiles)
+        )
+
+
+def test_task3_production_stream_forbids_whole_object_materialization() -> None:
+    module = load_package_v2_verifier()
+    root_bytes, objects, _root = _task3_literal_authenticated_streams()
+    active = []
+
+    class OneLineStream:
+        def __init__(self, payload):
+            self.lines = iter(payload.splitlines(keepends=True))
+            self.closed = False
+
+        def readline(self, _limit=-1):
+            return next(self.lines, b"")
+
+        def read(self, *_args):
+            raise AssertionError("production stream attempted whole-object read")
+
+        def read_bytes(self):
+            raise AssertionError("production stream attempted read_bytes")
+
+        def close(self):
+            assert not self.closed
+            self.closed = True
+            active.pop()
+
+    def supply(descriptor):
+        assert not active
+        stream = OneLineStream(objects[descriptor["path"]])
+        active.append(stream)
+        return stream
+
+    state = module._authenticate_v2_streams(
+        OneLineStream(root_bytes),
+        supply,
+    )
+    assert not active
+    assert not hasattr(state, "attestable")
+    assert not hasattr(state, "logical_v1_sha256")
