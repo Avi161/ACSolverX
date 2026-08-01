@@ -984,9 +984,22 @@ once, or accumulates all rows.
 All eight tests use literal in-memory root/shard streams and hand-authored
 expected fragments.  They import or call no generator, encoder, publisher,
 legacy decoder, Task 2 fixture, or package writer.  Extend the descriptor/order
-tests so projection validation is rejected before the seventh shard
-authenticates and missing, reordered, or mutated family schema profiles reach
-their named premise gate.
+tests so both `_GenerationProjectionPremises` construction and projection
+validation are rejected before the seventh shard authenticates; spying only on
+the validator is insufficient.  Missing, reordered, or mutated family schema
+profiles must reach their named premise gate.  Each literal helper installs
+fail-on-call sentinels for every forbidden generator, encoder, publisher,
+legacy decoder, package writer, and Task 2 fixture entry point, so hand-written
+bytes alone are not treated as proof of oracle independence.
+
+The authentication hostile matrix reseals one mutation at a time and covers
+descriptor total bytes, descriptor SHA-256, descriptor total records, every
+per-tag count, and both footer-prefix counters for both shared and family
+streams.  It separately covers valid trailing records, malformed trailing
+bytes, an over-cap line, and an unterminated line after each footer.  Instrument
+stream ownership so success and every failure close the current object before
+returning, never leave two objects open, and never open a later shard after the
+current shard fails.
 
 - [ ] **Step 6: Run the streaming selector and record intended RED**
 
@@ -1032,7 +1045,18 @@ ASCII schema profiles.  Derive each schema's pump count independently as
 `max(len(witness[2]))` across that schema's cells.  Retain the 1,304 compact
 profile entries, then call `_validate_generation_projection`; omitted,
 reordered, or mutated profiles fail closed.  Never call it while a shard is
-unauthenticated.
+unauthenticated.  The premises constructor itself is behind the seven-shard
+authentication gate, not merely the later validator call.
+
+Implement Steps 5--8 in three reviewable slices without weakening the final
+contract: (A) strict footer/EOF closure, singleton ordering, canonical caps,
+and the resealed transport/closure matrix; (B) authenticated footer censuses,
+source/B/template digests, root catalog/declaration/summary bindings, exact
+schema/cell/witness/identity grouping, the multi-schema/multi-cell pump maximum,
+and the seventh-shard construction gate; (C) the callback logical-v1 fragment
+writer/hash, exact key/family order, and retained-state instrumentation.  A
+slice may be committed as a bounded nonclaim, but Steps 5--8 are incomplete
+until slice C passes the full selector and hostile review.
 
 This slice authenticates wire transport and computes only the package-derived
 logical-v1 hash.  It performs no independent source-semantic replay and
