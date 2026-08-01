@@ -5809,8 +5809,20 @@ def test_task3_generation_projection_literals_cover_selections_censuses_and_gate
     projection, premises = _task3_generation_fixture(module)
     for family_index, family in enumerate(TASK3_FAMILY_ORDER):
         bad = copy.deepcopy(projection)
-        bad["families"][family_index]["selected_old_indices"][0] += 1
-        with pytest.raises(module.EngineeringVerificationFailure, match="selected old indices differ"):
+        selected_old = bad["families"][family_index]["selected_old_indices"]
+        if family == "base":
+            selected_old.pop()
+            expected_old_gate = "selected old indices differ"
+        elif family == "singleton":
+            selected_old.clear()
+            expected_old_gate = "not a strict valid range"
+        else:
+            selected_old[0] += 1
+            expected_old_gate = "selected old indices differ"
+        with pytest.raises(
+            module.EngineeringVerificationFailure,
+            match=expected_old_gate,
+        ):
             module._validate_generation_projection(bad, premises)
         bad = copy.deepcopy(projection)
         bad["families"][family_index]["selected_schema_indices"].pop()
