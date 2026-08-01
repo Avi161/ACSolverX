@@ -6703,7 +6703,7 @@ def test_task3_object_counters_authenticate_bytes_sha_tags_and_footer_prefix() -
     )
     shared_path = root["shards"][0]["path"]
     bad_digest = dict(objects)
-    bad_digest[shared_path] = bad_digest[shared_path] + b" "
+    bad_digest[shared_path] = bad_digest[shared_path][:-1] + b" "
     with pytest.raises(module.WireFormatError, match="missing final LF"):
         module._authenticate_v2_streams(
             io.BytesIO(root_bytes),
@@ -6758,7 +6758,7 @@ def test_task3_object_counters_authenticate_bytes_sha_tags_and_footer_prefix() -
             replace(state.premises, schema_profiles=profiles)
         )
     profiles = dict(state.premises.schema_profiles)
-    profiles["fixed"] = (("fixed-schema", 0),)
+    profiles["fixed"] = (("fixed-schema", -1),)
     with pytest.raises(module.EngineeringVerificationFailure, match="pump count"):
         module._validated_generation_projection_premises(
             replace(state.premises, schema_profiles=profiles)

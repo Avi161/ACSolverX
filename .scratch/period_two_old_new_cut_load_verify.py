@@ -3146,11 +3146,11 @@ def _authenticate_descriptor_stream(
                         raise WireFormatError("shared records are out of order")
                     phase = 2
                 elif tag == "b_identity":
-                    if phase != 2:
+                    if phase not in (2, 3):
                         raise WireFormatError("shared records are out of order")
                     phase = 3
                 elif tag == "b_coordinate":
-                    if phase != 3:
+                    if phase not in (3, 4):
                         raise WireFormatError("shared records are out of order")
                     phase = 4
                 elif tag == "shared_footer":
@@ -3259,7 +3259,9 @@ def _authenticate_descriptor_stream(
                     while phase < position:
                         current = required[phase]
                         if counts[current] != descriptor["record_counts"][current]:
-                            raise WireFormatError("family records are out of order")
+                            raise WireFormatError(
+                                "family descriptor tag counts differ"
+                            )
                         phase += 1
                 _require_tag_width(record, tag, declarations)
                 if tag == "family_header":
