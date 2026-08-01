@@ -367,7 +367,6 @@ _GENERATION_PROJECTED_ROOT_FIELDS = (
     "schema_profiles",
     "bucket_class_counts",
     "family_witness_counts",
-    "expected_oracle",
 )
 _GENERATION_SELECTED_OLD_INDICES = {
     "fixed": (0, 8, 15, 23, 31, 38, 46, 54, 61, 69),
@@ -470,6 +469,15 @@ class IndependentReplayResult:
 class _GenerationProjectionValidation:
     normalized: str
     sha256: str
+
+
+@dataclass(frozen=True)
+class _GenerationProjectionPremises:
+    domain: str
+    shared_dependency_count: int
+    schema_profiles: Mapping[str, tuple[tuple[str, int], ...]]
+    bucket_class_counts: Mapping[str, int]
+    family_witness_counts: Mapping[str, int]
 
 
 class PhaseMetrics:
@@ -2216,7 +2224,7 @@ def _generation_projection_int(
 
 
 def _generation_projection_sequence(value: Any, name: str) -> tuple[Any, ...]:
-    if not isinstance(value, (list, tuple)):
+    if type(value) not in (list, tuple):
         _generation_projection_failure(f"{name} must be a list or tuple")
     return tuple(value)
 
@@ -2263,26 +2271,23 @@ def _generation_projection_ascii_ids(value: Any, name: str) -> tuple[str, ...]:
     return identifiers
 
 
-def _generation_projected_root_metadata(value: Any) -> dict[str, Any]:
-    root = _generation_projection_mapping(
-        value,
-        _GENERATION_PROJECTED_ROOT_FIELDS,
-        "projected root metadata",
-    )
+def _validated_generation_projection_premises(
+    premises: _GenerationProjectionPremises,
+) -> _GenerationProjectionPremises:
+    if type(premises) is not _GenerationProjectionPremises:
+        _generation_projection_failure("generation projection premises differ")
     domain = _generation_projection_ascii_string(
-        root["domain"], "projected root domain"
+        premises.domain, "projected root domain"
     )
     dependency_count = _generation_projection_int(
-        root["shared_dependency_count"],
-        "shared dependency count",
+        premises.shared_dependency_count, "shared dependency count"
     )
-    normalized_maps = {}
-    for field in (
-        "schema_profiles",
-        "bucket_class_counts",
-        "family_witness_counts",
-    ):
-        family_map = root[field]
+    maps = {
+        "schema_profiles": premises.schema_profiles,
+        "bucket_class_counts": premises.bucket_class_counts,
+        "family_witness_counts": premises.family_witness_counts,
+    }
+    for field, family_map in maps.items():
         if (
             not isinstance(family_map, Mapping)
             or any(type(key) is not str for key in family_map)
@@ -2291,24 +2296,21 @@ def _generation_projected_root_metadata(value: Any) -> dict[str, Any]:
             _generation_projection_failure(
                 f"projected root {field} families differ"
             )
-        normalized_maps[field] = family_map
 
     profiles = {}
+    bucket_counts = {}
+    witness_counts = {}
     for family in FAMILY_ORDER:
-        rows = _generation_projection_sequence(
-            normalized_maps["schema_profiles"][family],
-            f"{family} schema profiles",
-        )
+        rows = maps["schema_profiles"][family]
+        if type(rows) is not tuple or not rows:
+            _generation_projection_failure(f"{family} schema profiles differ")
         normalized_rows = []
         for row in rows:
-            values = _generation_projection_sequence(
-                row, f"{family} schema profile"
-            )
-            if len(values) != 2:
+            if type(row) is not tuple or len(row) != 2:
                 _generation_projection_failure(
                     f"{family} schema profile width differs"
                 )
-            schema_id, pump_count = values
+            schema_id, pump_count = row
             if (
                 type(schema_id) is not str
                 or not schema_id
@@ -2326,36 +2328,32 @@ def _generation_projected_root_metadata(value: Any) -> dict[str, Any]:
                     ),
                 )
             )
-        normalized_rows.sort(key=lambda row: row[0].encode("ascii"))
+        if tuple(normalized_rows) != tuple(
+            sorted(normalized_rows, key=lambda row: row[0].encode("ascii"))
+        ):
+            _generation_projection_failure(
+                f"{family} schema profile order differs"
+            )
         if len({row[0] for row in normalized_rows}) != len(normalized_rows):
             _generation_projection_failure(f"{family} schema IDs repeat")
         profiles[family] = tuple(normalized_rows)
-
-    bucket_counts = {}
-    witness_counts = {}
-    for family in FAMILY_ORDER:
         bucket_counts[family] = _generation_projection_int(
-            normalized_maps["bucket_class_counts"][family],
+            maps["bucket_class_counts"][family],
             f"{family} bucket-class count",
             positive=True,
         )
         witness_counts[family] = _generation_projection_int(
-            normalized_maps["family_witness_counts"][family],
+            maps["family_witness_counts"][family],
             f"{family} witness count",
             positive=True,
         )
-    return {
-        "domain": domain,
-        "shared_dependency_count": dependency_count,
-        "schema_profiles": profiles,
-        "bucket_class_counts": bucket_counts,
-        "family_witness_counts": witness_counts,
-        "expected_oracle": _generation_projection_mapping(
-            root["expected_oracle"],
-            ROOT_INDEX_FIELDS,
-            "expected projected root oracle",
-        ),
-    }
+    return _GenerationProjectionPremises(
+        domain=domain,
+        shared_dependency_count=dependency_count,
+        schema_profiles=profiles,
+        bucket_class_counts=bucket_counts,
+        family_witness_counts=witness_counts,
+    )
 
 
 def _generation_projection_ceil(
@@ -2367,7 +2365,7 @@ def _generation_projection_ceil(
 
 
 def _generation_projected_root_oracle(
-    projected_root: Mapping[str, Any],
+    premises: _GenerationProjectionPremises,
     projection: Mapping[str, Any],
     families: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
@@ -2407,7 +2405,7 @@ def _generation_projected_root_oracle(
         footprint_sizes[family] = {str(footprint_size): old_load_count}
         occurrence_loads[family] = full_occurrences
         template_counts[family] = full_identity_count
-        witness_count = projected_root["family_witness_counts"][family]
+        witness_count = premises.family_witness_counts[family]
         template_catalogs[family] = {
             "format": TEMPLATE_CATALOG_FORMAT,
             "typed_encoding": TEMPLATE_TYPED_ENCODING,
@@ -2470,7 +2468,7 @@ def _generation_projected_root_oracle(
     }
     shared_record_counts = {
         "shared_header": 1,
-        "dependency": projected_root["shared_dependency_count"],
+        "dependency": premises.shared_dependency_count,
         "source_bindings": 1,
         "b_identity": TOKEN_COUNT,
         "b_coordinate": TOKEN_COUNT,
@@ -2492,7 +2490,7 @@ def _generation_projected_root_oracle(
         "logical_v1_format": LOGICAL_V1_FORMAT,
         "canonical_encoding": CANONICAL_LINE_ENCODING,
         "mask_encoding": MASK_ENCODING,
-        "domain": projected_root["domain"],
+        "domain": premises.domain,
         "status": PRODUCTION_STATUS,
         "shard_order": list(SHARD_ORDER),
         "shards": descriptors,
@@ -2518,9 +2516,9 @@ def _generation_projected_index_bytes(root: Mapping[str, Any]) -> int:
 
 def _validate_generation_projection(
     value: Mapping[str, Any],
-    projected_root: Mapping[str, Any],
+    premises: _GenerationProjectionPremises,
 ) -> _GenerationProjectionValidation:
-    root = _generation_projected_root_metadata(projected_root)
+    premises = _validated_generation_projection_premises(premises)
     projection = _generation_projection_mapping(
         value,
         GENERATION_PROJECTION_FIELDS,
@@ -2594,7 +2592,7 @@ def _validate_generation_projection(
             full_comparisons,
             sampled_comparisons,
         ) = _GENERATION_CENSUS[family]
-        profiles = root["schema_profiles"][family]
+        profiles = premises.schema_profiles[family]
         if len(profiles) != full_schema_count:
             _generation_projection_failure(
                 f"{family} full schema census differs"
@@ -2712,7 +2710,7 @@ def _validate_generation_projection(
                 full_comparisons,
                 sampled_comparisons,
             ),
-            "projected_bucket_class_count": root["bucket_class_counts"][
+            "projected_bucket_class_count": premises.bucket_class_counts[
                 family
             ],
             "projected_template_ns": _generation_projection_ceil(
@@ -2794,7 +2792,7 @@ def _validate_generation_projection(
         ],
     }
     root_oracle = _generation_projected_root_oracle(
-        root,
+        premises,
         normalized,
         normalized_families,
     )
@@ -2833,8 +2831,6 @@ def _validate_generation_projection(
         for field, expected in expected_top_derived.items()
     ):
         _generation_projection_failure("derived generation totals differ")
-    if root_oracle != root["expected_oracle"]:
-        _generation_projection_failure("projected root oracle differs")
     normalized_json = _canonical_json(normalized)
     return _GenerationProjectionValidation(
         normalized=normalized_json,
