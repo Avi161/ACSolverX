@@ -56,6 +56,36 @@ provably does not change the answer**.
 - **The density trend is a length effect** (A12 audit): holding *per-relator* length fixed,
   the thickenable fraction is 0.868 / 0.868 / 0.834 / 0.780 at ranks 2/3/4/5 — flat, then
   slightly decreasing.
+- **The 124 unsolved classes are all non-thickenable, and this one is CERTIFIED, not a
+  null** (A9). All 124 representatives plus **67,864 distinct AC-class members** decided
+  `NOT_SPHERICAL` by an exact procedure (`disconnected_split.decide_pair`, every row
+  `exhaustive = true`, `IN_SCOPE`, `L = 1`), with an **independent second solver** agreeing
+  on 123/124 and failing closed on 1 — zero disagreements — and Todd–Coxeter confirming all
+  124 present the trivial group. The instrument's positive ladder is 54/55 with **zero false
+  negatives and no length degradation**, which is exactly why this null is informative where
+  a sampler's would not be.
+
+### 3a. The one concretely actionable find: six γ_N = 1 gateways
+
+Closing the bracket (exhaustive `NOT_SPHERICAL` ⇒ γ_N ≥ 1, plus a re-verified defect-2
+witness ⇒ γ_N ≤ 1) gives **exact** γ_N without a census:
+
+| row | pair | length | γ_N |
+|---|---|---|---|
+| `aca_117` | `YYYXyyx, YXXXyxx` | 14 | **1** |
+| `aca_11` | `YXXXyxx, YYYXyxyx` | 15 | **1** |
+| `aca_121` | `YXXXyxx, YYYYXyyyx` | 16 | **1** |
+| `aca_17` | `YXXXYxYx, YYYYXyyyx` | 17 | **1** |
+| `aca_30` | `YYXXyx, YYYYYxyXXyX` | 17 | **1** |
+| `aca_122` | `YXXXyxx, YYYYYXyyyyx` | 18 | **1** |
+| `aca_115` = **AK(3)** | `YXYxyx, YYYYxxx` | 13 | **2** |
+
+By the project's audited graft ceiling (a graft lowers γ_N by at most 1), a thickenable
+member is only reachable from a γ_N = 1 state. **Six of AK(3)'s 123 unsolved siblings sit
+one unit closer to Lackenby's hypothesis than AK(3) itself does** — and 39,108 states inside
+their classes have already been swept without a hit. They are the sharpest targets this
+session produced, and they are targets *at rank 2*, which is the final irony of the S-line:
+the best lead is not at high rank at all.
 
 ## 4. What the session got wrong, and how it was caught
 

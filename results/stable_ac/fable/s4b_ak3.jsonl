@@ -1,0 +1,2 @@
+{"status": "TIMEOUT", "best_cost": [2, 0], "nodes": 50598, "depth_reached": 4, "source": ["xyxYXY", "xxxYYYY"], "root": ["YXD", "YYG", "axY", "byx", "cYx", "dCB", "eaX", "fyE", "gxf"], "provenance": "ak3|src0|root0", "mode": "tiebreak", "rank_root": 9}
+{"status": "TIMEOUT", "best_cost": [4, 0], "nodes": 50980, "depth_reached": 4, "source": ["xyxYXY", "xxxYYYY"], "root": ["Yxf", "Gxx", "ayy", "bYX", "cyx", "dyy", "exd", "fbc", "gEa"], "provenance": "ak3|src0|root1", "mode": "tiebreak", "rank_root": 9}

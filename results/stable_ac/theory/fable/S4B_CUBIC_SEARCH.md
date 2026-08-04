@@ -125,11 +125,51 @@ pair `(γ_N(P) = 0, γ_N(P') = 0)`. *Created* = `False → True`; *destroyed* = 
 
 ### 3.2 Result
 
-<!--FLIPTABLE-->
+81 parents measured inside the budget; 2,430 `SPLIT` pairs and 2,423 control pairs decided
+by exact census. **The two arms share the same parents, so the denominators are matched.**
+
+| arm | pairs | parents thickenable | parents NOT thickenable | **created** | **destroyed** |
+|---|---|---|---|---|---|
+| **`SPLIT`** | 2,430 | 960 | 1,470 | **0 / 1,470 = 0.00 %** | 643 / 960 = **67.0 %** |
+| **control: general AC2** | 2,423 | 953 | 1,470 | **14 / 1,470 = 0.95 %** | 410 / 953 = 43.0 % |
+
+Full defect transitions (defect = `2·γ_N`):
+
+| arm | `0→0` | `0→2` | `2→0` | `2→2` | `2→4` |
+|---|---|---|---|---|---|
+| `SPLIT` | 317 | 643 | **0** | 1,403 | 67 |
+| AC2 control | 543 | 410 | **14** | 1,444 | 12 |
+
+By rewrite count `k` (`SPLIT` only): `k=1` 8 destroy / 0 create of 118; `k=2` 360 destroy /
+0 create of 1,560; `k=3` 275 destroy / 0 create of 752.
 
 ### 3.3 Reading it
 
-<!--FLIPREAD-->
+1. **`SPLIT` never created `γ_N = 0`, in 1,470 opportunities.** The control had the *same*
+   1,470 opportunities and created 14 times. If `SPLIT` created at the control's rate one
+   would expect ≈ 14 creations; 0 were seen.
+2. **Stronger than "never creates": `SPLIT` never lowered the defect at all.** Every one of
+   the 2,430 transitions is `0→0`, `0→2`, `2→2` or `2→4` — the `2→0` cell is empty, and no
+   `4→2` occurred either. The control's `2→0` cell is not empty. This is the evidence for
+   Conjecture S4B-M (§3.4) and it is a *directional* asymmetry of exactly the kind `S6`
+   records for AC3 (315 destroy / 0 create).
+3. **Destruction is the norm, not the exception**: two thirds of thickenable parents lose
+   `γ_N = 0` to a single `SPLIT`, at every `k`. So the calculus actively moves *away* from
+   the certificate while it moves toward the normal form.
+
+**Honesty caveats, all mandatory.**
+* The 2,430 pairs come from only **81 parents** (≈ 30 children each) and the parents come
+  from a random-AC-walk generator, so the pairs are **not independent draws**. **No p-value
+  is quotable** (`experiments/lessons/contrast-length-confound.md`). The right reading is the
+  matched-denominator contrast in the table, nothing more.
+* The corpus is length-9 rank-2 sources triangulated to rank 5, plus AK(3)'s rank-9
+  triangulation. It is a *small-instance* corpus; a creation mechanism that only switches on
+  at higher rank would be invisible here. The control's rate is also low (0.95 %), so the
+  instrument's sensitivity on this corpus is modest — a `SPLIT` creation rate below roughly
+  0.2 % would not have been resolved.
+* This measures **orientable** thickenability (`γ_N = 0`, `R1E` Thm D). Per `S6` §0
+  `[GAP-O]`, the orientable/general gap is open — but it encumbers only nulls, and this *is*
+  a null, so it is a second reason S4B-M must stay a conjecture.
 
 ### 3.4 Conjecture S4B-M, and why it is only a conjecture
 

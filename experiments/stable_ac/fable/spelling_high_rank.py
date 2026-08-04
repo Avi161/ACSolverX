@@ -1,14 +1,26 @@
 """S11 -- spelling space AT HIGH RANK: calibration ladder + the refutation of Conjecture SR.
 
 HEADLINE, so it is not buried: ``sr_hunt_spelled`` found a **verified counterexample to
-R7's Conjecture SR**.  ``("YyXYYyxY","XyX")`` has minimum defect 0 over its full 4,320-system
-census while ``("XYYyxY","XyX")`` -- the same word with the leading ``Yy`` spike deleted --
-has minimum defect 2 over its full 144-system census.  So
-``gamma_N(spike(P)) = 0 => gamma_N(P) = 0`` is FALSE.  Every prior SR test spiked a
-*cyclically reduced* base once, i.e. tested only the step ``depth 1 -> depth 0``; this
-breaks at ``depth 2 -> depth 1``.  Pinned in
-``tests/fable/test_spelling_high_rank.py::test_CONJECTURE_SR_IS_FALSE_the_pinned_counterexample``
-and written up in ``results/stable_ac/theory/fable/S11_SPELLING_AT_HIGH_RANK.md`` section 4.3.
+R7's Conjecture SR in its general form**.  ``("YyXYYyxY","XyX")`` has minimum defect 0 over
+its full 4,320-system census while ``("XYYyxY","XyX")`` -- the same word with the leading
+``Yy`` spike deleted -- has minimum defect 2 over its full 144-system census, and the fully
+reduced ``("XYxY","XyX")`` is back at 0.  So along one reduction chain the defect goes
+**0 -> 2 -> 0** and ``gamma_N(spike(P)) = 0 => gamma_N(P) = 0`` is FALSE.  Every prior SR
+test spiked a *cyclically reduced* base once, i.e. tested only ``depth 1 -> depth 0``; this
+breaks at ``depth 2 -> depth 1``.
+
+**SCOPE, which decides what it is worth.**  Todd-Coxeter completes on this family with
+**index 4**: it presents Z/4, NOT the trivial group.  The AC programme only ever uses SR
+restricted to balanced presentations of the trivial group (that is Lackenby Thm 1.3's
+hypothesis), and a counterexample outside that class does not transfer into it.  So:
+
+* **SR-general: REFUTED** (this counterexample);
+* **SR-trivial: NOT refuted** -- see ``trivial_bases`` + ``sr_hunt_spelled`` and
+  ``results/stable_ac/fable/s11_sr_trivial.json`` for the hunt against it.
+
+Pinned in ``tests/fable/test_spelling_high_rank.py``
+``::test_conjecture_SR_is_false_for_GENERAL_presentations`` and written up in
+``results/stable_ac/theory/fable/S11_SPELLING_AT_HIGH_RANK.md`` section 4.3.
 
 
 Task A10 of the fable S-line.  Two things live here, in this order, because the second is
@@ -24,16 +36,15 @@ worthless without the first:
     ``prod_g (deg(g+) - 1)!`` is driven by germ DEGREE, and at fixed total length degree
     falls as rank rises.
 
-2.  **The one spelling question still pointed the right way.**  The spike-INSERTION hunt
-    on cyclically reduced bases (AK(3) and its refinements) is CLOSED for the positive
-    direction by task A8's measurement (`S6_MOVE_CLASSIFICATION.md` section 1): free/cyclic
+2.  **Spelling space, with the conjecture that used to close it now known false in
+    general.**  A8 measured (``S6_MOVE_CLASSIFICATION.md`` section 1) that free/cyclic
     reduction created ``gamma_N = 0`` in 315 of 2,510 non-thickenable spellings and
-    destroyed it in **0 of 997** thickenable ones, so -- read contrapositively --
-    inserting a spike can only preserve or destroy thickenability, never create it.  The
-    hunt is retained in this module only as the *negative-control* instrument it now is.
-    What is left open is the destroying direction, R7's **Conjecture SR**: is there a
-    thickenable spelling whose free/cyclic reduction is NOT thickenable?  ``sr_hunt``
-    looks for exactly that, and a hit would reopen the whole spelling route.
+    destroyed it in 0 of 997 thickenable ones -- but every base in those corpora was
+    cyclically reduced, so they only ever measured the induction step at depth 1.  The
+    headline above breaks it at depth 2.  ``sr_hunt`` (walk bases), ``sr_hunt_spelled``
+    (unreduced bases, the one that found it) and ``ak3_depth2`` (AK(3)'s own frontier) are
+    the three hunts; ``trivial_bases`` restricts any of them to the trivial-group class,
+    which is the only class the AC programme can use.
 
 Bound direction, recorded per the standing lesson
 (``experiments/lessons/parallel-runs-and-bound-direction.md``):
