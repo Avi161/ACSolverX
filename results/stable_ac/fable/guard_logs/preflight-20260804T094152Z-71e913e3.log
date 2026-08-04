@@ -1,0 +1,35 @@
+  ak3       gamma0  n=     0 planar=     0 nonplanar=     0 uncert=0 VIOLATIONS=0
+  ak3       sample  n=    60 planar=     2 nonplanar=    58 uncert=0 VIOLATIONS=0
+  control0  gamma0  n=   759 planar=   759 nonplanar=     0 uncert=0 VIOLATIONS=0
+  control0  sample  n=    60 planar=    30 nonplanar=    30 uncert=0 VIOLATIONS=0
+  control2  gamma0  n=     0 planar=     0 nonplanar=     0 uncert=0 VIOLATIONS=0
+  control2  sample  n=    60 planar=     6 nonplanar=    54 uncert=0 VIOLATIONS=0
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/user/ACSolverX/experiments/stable_ac/fable/s20_planarity_probe.py", line 869, in <module>
+    main()
+  File "/home/user/ACSolverX/experiments/stable_ac/fable/s20_planarity_probe.py", line 865, in main
+    raise SystemExit(args.func(args))
+                     ^^^^^^^^^^^^^^^
+  File "/home/user/ACSolverX/experiments/stable_ac/fable/s20_planarity_probe.py", line 840, in cmd_sweep
+    out.write_text(json.dumps(report, indent=1))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.11/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type function is not JSON serializable

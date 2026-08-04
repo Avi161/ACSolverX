@@ -1,0 +1,7 @@
+  ak3       gamma0  n=     0 planar=     0 nonplanar=     0 uncert=0 VIOLATIONS=0
+  ak3       sample  n=    40 planar=     1 nonplanar=    39 uncert=0 VIOLATIONS=0
+  control0  gamma0  n=   759 planar=   759 nonplanar=     0 uncert=0 VIOLATIONS=0
+  control0  sample  n=    40 planar=    23 nonplanar=    17 uncert=0 VIOLATIONS=0
+  control2  gamma0  n=     0 planar=     0 nonplanar=     0 uncert=0 VIOLATIONS=0
+  control2  sample  n=    40 planar=     4 nonplanar=    36 uncert=0 VIOLATIONS=0
+wrote /home/user/ACSolverX/results/stable_ac/fable/s20_planarity_preflight.json  (4.1s)

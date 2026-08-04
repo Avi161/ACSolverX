@@ -1,0 +1,408 @@
+{
+ "record": "s20_planarity_sweep",
+ "args": {
+  "cmd": "sweep",
+  "sample": 40,
+  "seed": 20260804,
+  "out": "s20_planarity_preflight.json"
+ },
+ "sources": {
+  "ak3": {
+   "file": "s4b_decided.jsonl.gz",
+   "rows_total": 45111,
+   "gamma0_rows": 0,
+   "sampled_rows": 40,
+   "gamma0": {
+    "n": 0,
+    "planar": 0,
+    "nonplanar": 0,
+    "uncertified": 0,
+    "errors": 0,
+    "kuratowski": {},
+    "defect_by_planarity": {},
+    "nonplanar_examples": [],
+    "violations": []
+   },
+   "sample": {
+    "n": 40,
+    "planar": 1,
+    "nonplanar": 39,
+    "uncertified": 0,
+    "errors": 0,
+    "kuratowski": {
+     "K33": 39
+    },
+    "defect_by_planarity": {
+     "N|d4": 32,
+     "P|d2": 1,
+     "N|d6": 7
+    },
+    "nonplanar_examples": [
+     {
+      "words": [
+       "XHg",
+       "yBD",
+       "aXX",
+       "bhI",
+       "Yac",
+       "djc",
+       "eYj",
+       "fix",
+       "gEF",
+       "hBD",
+       "iac",
+       "jHg"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "ak3|src0|root4|d3"
+     },
+     {
+      "words": [
+       "CBi",
+       "jgf",
+       "aIx",
+       "XBa",
+       "chj",
+       "YDY",
+       "eXX",
+       "fDE",
+       "ghJ",
+       "hBa",
+       "igf",
+       "jDY"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "ak3|src0|root40|d3"
+     },
+     {
+      "words": [
+       "GjE",
+       "YfA",
+       "aYI",
+       "bHX",
+       "cxI",
+       "XdX",
+       "ehJ",
+       "fcD",
+       "ybg",
+       "hfA",
+       "ibg",
+       "jdX"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "ak3|src0|root3|d3"
+     },
+     {
+      "words": [
+       "FXY",
+       "hGC",
+       "aHX",
+       "xBa",
+       "cII",
+       "dyI",
+       "yDe",
+       "fbY",
+       "gjE",
+       "jDe",
+       "iBa",
+       "jGC"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "ak3|src0|root25|d3"
+     },
+     {
+      "words": [
+       "cAY",
+       "iGf",
+       "aYX",
+       "bJh",
+       "Xbc",
+       "dyi",
+       "yDe",
+       "fxe",
+       "ghh",
+       "hDe",
+       "jbc",
+       "jGf"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "ak3|src0|root10|d3"
+     }
+    ],
+    "violations": []
+   }
+  },
+  "control0": {
+   "file": "s4b_control_decided.jsonl.gz",
+   "rows_total": 50320,
+   "gamma0_rows": 759,
+   "sampled_rows": 40,
+   "gamma0": {
+    "n": 759,
+    "planar": 759,
+    "nonplanar": 0,
+    "uncertified": 0,
+    "errors": 0,
+    "kuratowski": {},
+    "defect_by_planarity": {
+     "P|d0": 759
+    },
+    "nonplanar_examples": [],
+    "violations": []
+   },
+   "sample": {
+    "n": 40,
+    "planar": 23,
+    "nonplanar": 17,
+    "uncertified": 0,
+    "errors": 0,
+    "kuratowski": {
+     "K33": 17
+    },
+    "defect_by_planarity": {
+     "N|d4": 12,
+     "P|d4": 9,
+     "P|d2": 14,
+     "N|d2": 5
+    },
+    "nonplanar_examples": [
+     {
+      "words": [
+       "YhD",
+       "FYg",
+       "aJX",
+       "bHI",
+       "cXJ",
+       "YCd",
+       "xIe",
+       "Xbf",
+       "gEa",
+       "hbf",
+       "iCd",
+       "jIe"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control0|src0|root21|d3"
+     },
+     {
+      "words": [
+       "HJC",
+       "fYG",
+       "aII",
+       "byh",
+       "yAC",
+       "dJX",
+       "eXD",
+       "IBf",
+       "XEg",
+       "hBf",
+       "iEg",
+       "jAC"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control0|src0|root3|d3"
+     },
+     {
+      "words": [
+       "xCD",
+       "EfG",
+       "aXY",
+       "bhY",
+       "cji",
+       "djH",
+       "eAX",
+       "yxf",
+       "IgB",
+       "hgB",
+       "iCD",
+       "jxf"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control0|src0|root23|d3"
+     },
+     {
+      "words": [
+       "YhD",
+       "fcG",
+       "aHH",
+       "biJ",
+       "cJi",
+       "Xbd",
+       "eaY",
+       "xef",
+       "YgX",
+       "hbd",
+       "ief",
+       "jgX"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control0|src0|root26|d3"
+     },
+     {
+      "words": [
+       "Yeb",
+       "Gaf",
+       "XAY",
+       "bHy",
+       "cih",
+       "XDC",
+       "eJx",
+       "fIx",
+       "gjd",
+       "hDC",
+       "ieb",
+       "jAY"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control0|src0|root18|d3"
+     }
+    ],
+    "violations": []
+   }
+  },
+  "control2": {
+   "file": "s4b_ctrl2_decided.jsonl.gz",
+   "rows_total": 46298,
+   "gamma0_rows": 0,
+   "sampled_rows": 40,
+   "gamma0": {
+    "n": 0,
+    "planar": 0,
+    "nonplanar": 0,
+    "uncertified": 0,
+    "errors": 0,
+    "kuratowski": {},
+    "defect_by_planarity": {},
+    "nonplanar_examples": [],
+    "violations": []
+   },
+   "sample": {
+    "n": 40,
+    "planar": 4,
+    "nonplanar": 36,
+    "uncertified": 0,
+    "errors": 0,
+    "kuratowski": {
+     "K33": 36
+    },
+    "defect_by_planarity": {
+     "N|d4": 33,
+     "N|d2": 3,
+     "P|d4": 3,
+     "P|d2": 1
+    },
+    "nonplanar_examples": [
+     {
+      "words": [
+       "GHH",
+       "ICb",
+       "aHj",
+       "bYX",
+       "cIJ",
+       "YAD",
+       "eXY",
+       "XdF",
+       "gEf",
+       "hCb",
+       "iAD",
+       "jdF"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control2|src2|root1|d3"
+     },
+     {
+      "words": [
+       "Dxj",
+       "ygE",
+       "aiY",
+       "bjH",
+       "cHj",
+       "XaD",
+       "eii",
+       "xfc",
+       "gFB",
+       "hfc",
+       "iaD",
+       "jgE"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control2|src1|root4|d3"
+     },
+     {
+      "words": [
+       "YCA",
+       "Fbg",
+       "aJH",
+       "bXJ",
+       "ckh",
+       "dyi",
+       "eIy",
+       "XfE",
+       "xGd",
+       "hGd",
+       "ifE",
+       "jCA",
+       "kGd"
+      ],
+      "minimum_defect": 2,
+      "kuratowski": "K33",
+      "provenance": "control2|src1|root1|d4"
+     },
+     {
+      "words": [
+       "hjD",
+       "ygE",
+       "aXY",
+       "bji",
+       "ciy",
+       "XaD",
+       "eKH",
+       "xfc",
+       "gFB",
+       "hfc",
+       "iaD",
+       "jgE",
+       "kjD"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control2|src1|root4|d4"
+     },
+     {
+      "words": [
+       "DhJ",
+       "YeG",
+       "aXY",
+       "byX",
+       "ciJ",
+       "IdA",
+       "eHH",
+       "XCF",
+       "gFB",
+       "hdA",
+       "iCF",
+       "jeG"
+      ],
+      "minimum_defect": 4,
+      "kuratowski": "K33",
+      "provenance": "control2|src1|root4|d3"
+     }
+    ],
+    "violations": []
+   }
+  }
+ },
+ "elapsed_s": 4.1
+}

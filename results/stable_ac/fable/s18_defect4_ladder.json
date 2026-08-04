@@ -1,0 +1,3471 @@
+{
+ "record": "s18_chains",
+ "summary": {
+  "runs": 40,
+  "hits": 8,
+  "replay_faithful": 0,
+  "chains_reconstructed": 8,
+  "chains_not_reconstructed": 0,
+  "created": 8,
+  "inherited": 0,
+  "created_and_in_band(min chain total_length >= 13)": 0,
+  "in_band_rate_over_runs": 0.0,
+  "rank_breakdown_all_created": {
+   "2": 8
+  },
+  "rank_breakdown_created_in_band": {},
+  "max_chain_rank_created_in_band": {},
+  "witness_length_hist_created": {
+   "12": 2,
+   "16": 1,
+   "5": 1,
+   "7": 2,
+   "9": 2
+  },
+  "min_chain_length_hist_created": {
+   "11": 3,
+   "5": 1,
+   "7": 2,
+   "9": 2
+  },
+  "distinct_chain_defect_sequences": {
+   "(4, 4, None, 2, None, None, None, None, None, 2, 2, 2, 2, 0)": 1,
+   "(4, None, 2, 2, 0)": 1,
+   "(4, None, 2, 2, 0, 0)": 1,
+   "(4, None, 2, 2, None, None, 2, 2, 2, 0)": 1,
+   "(4, None, 2, 2, None, None, 2, 2, 2, None, None, 2, 0)": 1,
+   "(4, None, None, 2, 2, 2, 2, 2, 0)": 1,
+   "(4, None, None, None, 2, None, 2, 2, 2, 0)": 1,
+   "(4, None, None, None, None, 2, None, None, 2, 2, 2, 2, None, None, 2, 0, 0)": 1
+  },
+  "elapsed_s": 259.7
+ },
+ "rows": [
+  {
+   "label": "depth_ak2ctl_k0_r0",
+   "depth_k": 0,
+   "rep": 0,
+   "seed": 20260804,
+   "hit": true,
+   "nodes_used": 338,
+   "generations": 40,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "Yxxxxx",
+     "x"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 7,
+   "chain_reconstructed": true,
+   "chain_len": 17,
+   "chain_moves": [
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     1
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "y",
+     -1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     1
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "y",
+     -1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     1,
+     "x",
+     -1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "x",
+     1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YxYYXyx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 15,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XYxyyXy",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 15,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XYxyyXy",
+      "YXYxyxyyX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 16,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XYYXyxyy",
+      "YXYxyxyyX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 17,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XYYXyxyy",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XYYXyXyxy",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YXYxYxyyx",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YxYxyx",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYxxx",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 10,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYxYxxyx",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XYXXyXyX",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XYXXyXXXy",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YxxxYxxyx",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "Yxxxxx",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "Yxxxxx",
+      "Yxxxxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "Yxxxxx",
+      "x"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 7,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    4,
+    null,
+    null,
+    null,
+    null,
+    2,
+    null,
+    null,
+    2,
+    2,
+    2,
+    2,
+    null,
+    null,
+    2,
+    0,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    15,
+    15,
+    16,
+    17,
+    13,
+    14,
+    14,
+    11,
+    10,
+    13,
+    13,
+    14,
+    14,
+    11,
+    13,
+    7
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 7,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r1",
+   "depth_k": 0,
+   "rep": 1,
+   "seed": 20268723,
+   "hit": true,
+   "nodes_used": 123,
+   "generations": 9,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "xYYxY",
+     "YxYxYxY"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 10,
+   "chain_moves": [
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "x",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     1,
+     "x",
+     1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "y",
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "x",
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YxYxYYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 15,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XyXyyXyXy",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 15,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XyXyyyX",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYxY",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYxY",
+      "YxYxYxY"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 12,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    4,
+    null,
+    2,
+    2,
+    null,
+    null,
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    14,
+    11,
+    13,
+    15,
+    15,
+    13,
+    13,
+    11,
+    12
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r2",
+   "depth_k": 0,
+   "rep": 2,
+   "seed": 20276642,
+   "hit": true,
+   "nodes_used": 253,
+   "generations": 28,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "XXXyX",
+     "XyXX"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 9,
+   "chain_reconstructed": true,
+   "chain_len": 10,
+   "chain_moves": [
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "ac1",
+     1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "y",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     1
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     1,
+     "x",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "x",
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYYYYXyxyyx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 19,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYYYYXyxyyx",
+      "XYYXyxyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 19,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYYXyyx",
+      "XYYXyxyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 15,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YXXyx",
+      "XYYXyxyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YXXyx",
+      "XYYXyXyxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YXXyx",
+      "YXyXyX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XXXyX",
+      "YXyXyX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XXXyX",
+      "YXyxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 10,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XXXyX",
+      "XyXX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 9,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    4,
+    null,
+    null,
+    null,
+    2,
+    null,
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    19,
+    19,
+    15,
+    13,
+    14,
+    11,
+    11,
+    10,
+    9
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 9,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r3",
+   "depth_k": 0,
+   "rep": 3,
+   "seed": 20284561,
+   "hit": true,
+   "nodes_used": 267,
+   "generations": 36,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "XXyX",
+     "Yxx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 7,
+   "chain_reconstructed": true,
+   "chain_len": 14,
+   "chain_moves": [
+    [
+     "ac3",
+     0,
+     "x",
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "ac3",
+     0,
+     "x",
+     1
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     1,
+     "x",
+     1
+    ],
+    [
+     "ac1",
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "y",
+     -1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "y",
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYYx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYYx",
+      "YYXYxyyXyyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 16,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "UNDECIDED",
+     "method": "decide:census_over_cap"
+    },
+    {
+     "rels": [
+      "xxYYY",
+      "XYxyyXy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 12,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYYYxyyXy",
+      "XYxyyXy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 17,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "xYYYYxyyXy",
+      "YxYYXyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 17,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "xYYYYxyyXy",
+      "xYYYYXyyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 19,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YxYYXyyyyX",
+      "xYYYYXyyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 19,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "xYYXXyy",
+      "xYYYYXyyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 16,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "xYYXXyy",
+      "YYXyxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYXXyy",
+      "yxYYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 12,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XXyX",
+      "yxYYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 9,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XXyX",
+      "YxyXX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 9,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XXyX",
+      "Yxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 7,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    4,
+    4,
+    null,
+    2,
+    null,
+    null,
+    null,
+    null,
+    null,
+    2,
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    13,
+    16,
+    12,
+    17,
+    17,
+    19,
+    19,
+    16,
+    13,
+    12,
+    9,
+    9,
+    7
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 7,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r4",
+   "depth_k": 0,
+   "rep": 4,
+   "seed": 20292480,
+   "hit": true,
+   "nodes_used": 60,
+   "generations": 4,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxYxYx",
+     "YxYxYxYxY"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 16,
+   "chain_reconstructed": true,
+   "chain_len": 5,
+   "chain_moves": [
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "x",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxYxYx",
+      "YxYxYxYxY"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 16,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    }
+   ],
+   "chain_defects": [
+    4,
+    null,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    14,
+    11,
+    13,
+    16
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r5",
+   "depth_k": 0,
+   "rep": 5,
+   "seed": 20300399,
+   "hit": true,
+   "nodes_used": 324,
+   "generations": 27,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "x",
+     "xxxY"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 5,
+   "chain_reconstructed": true,
+   "chain_len": 9,
+   "chain_moves": [
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "y",
+     -1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     1,
+     "y",
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYYYYXyxyyx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 19,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYYYYXyxyyx",
+      "XYYxyyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 18,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYXyxx",
+      "XYYxyyy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYXyxx",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XXYxyy",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XYxyXXy",
+      "XYxxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 12,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XYxyXXy",
+      "xxxY"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "x",
+      "xxxY"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 5,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    4,
+    null,
+    null,
+    2,
+    2,
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    19,
+    18,
+    13,
+    11,
+    11,
+    12,
+    11,
+    5
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 5,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r6",
+   "depth_k": 0,
+   "rep": 6,
+   "seed": 20308318,
+   "hit": true,
+   "nodes_used": 156,
+   "generations": 12,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "yXyyX",
+     "YxYxYxY"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 13,
+   "chain_moves": [
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "x",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     1,
+     "x",
+     1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "y",
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "ac1",
+     0
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YxYxYYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 15,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XyXyyXyXy",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 15,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XyXyyyX",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYxY",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "xYYxY",
+      "XYxYxyyXyyX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 16,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "yXyyX",
+      "XYxYxyyXyyX"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 16,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "yXyyX",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "yXyyX",
+      "YxYxYxY"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 12,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    4,
+    null,
+    2,
+    2,
+    null,
+    null,
+    2,
+    2,
+    2,
+    null,
+    null,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    14,
+    11,
+    13,
+    15,
+    15,
+    13,
+    13,
+    11,
+    16,
+    16,
+    11,
+    12
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r7",
+   "depth_k": 0,
+   "rep": 7,
+   "seed": 20316237,
+   "hit": true,
+   "nodes_used": 62,
+   "generations": 5,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxYxYx",
+     "Yx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 9,
+   "chain_reconstructed": true,
+   "chain_len": 6,
+   "chain_moves": [
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "x",
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "y",
+     1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxyyx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 4,
+     "gamma_N": 2,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "YYXYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 14,
+     "rank": 2,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYYxx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxYxYx",
+      "XYxYxy"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxYxYx",
+      "YxYxYxYxY"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 16,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYxYxYx",
+      "Yx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 9,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    4,
+    null,
+    2,
+    2,
+    0,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    14,
+    11,
+    13,
+    16,
+    9
+   ],
+   "chain_ranks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "root_defect": 4,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 9,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r0",
+   "depth_k": 1,
+   "rep": 0,
+   "seed": 20261813,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYYxxa",
+     "XYxyyXy",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k1_r1",
+   "depth_k": 1,
+   "rep": 1,
+   "seed": 20269732,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "XXyyy",
+     "YxyyAXyX",
+     "A"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k1_r2",
+   "depth_k": 1,
+   "rep": 2,
+   "seed": 20277651,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYYxax",
+     "YYXyxYx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k1_r3",
+   "depth_k": 1,
+   "rep": 3,
+   "seed": 20285570,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "XyyyX",
+     "xaYYXyxY",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k1_r4",
+   "depth_k": 1,
+   "rep": 4,
+   "seed": 20293489,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 13,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k1_r5",
+   "depth_k": 1,
+   "rep": 5,
+   "seed": 20301408,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 12,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k1_r6",
+   "depth_k": 1,
+   "rep": 6,
+   "seed": 20309327,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYYxx",
+     "YYXYxyyx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 13,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k1_r7",
+   "depth_k": 1,
+   "rep": 7,
+   "seed": 20317246,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 13,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r0",
+   "depth_k": 2,
+   "rep": 0,
+   "seed": 20262822,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYYxxA",
+     "XYxyyXy",
+     "a",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r1",
+   "depth_k": 2,
+   "rep": 1,
+   "seed": 20270741,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "yXAXyy",
+     "YxyyAXyXA",
+     "A"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 16,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r2",
+   "depth_k": 2,
+   "rep": 2,
+   "seed": 20278660,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "AXXyyy",
+     "YYXyxYx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r3",
+   "depth_k": 2,
+   "rep": 3,
+   "seed": 20286579,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy",
+     "a",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r4",
+   "depth_k": 2,
+   "rep": 4,
+   "seed": 20294498,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "XyyyaX",
+     "YYXyxYx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r5",
+   "depth_k": 2,
+   "rep": 5,
+   "seed": 20302417,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXya",
+     "A"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r6",
+   "depth_k": 2,
+   "rep": 6,
+   "seed": 20310336,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYYxx",
+     "YYXYxyyx",
+     "a",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k2_r7",
+   "depth_k": 2,
+   "rep": 7,
+   "seed": 20318255,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b"
+    ],
+    "rels": [
+     "YYYxx",
+     "YYXYxyyx",
+     "b"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r0",
+   "depth_k": 3,
+   "rep": 0,
+   "seed": 20263831,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b"
+    ],
+    "rels": [
+     "yXXyy",
+     "YxyyBXyX",
+     "b"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r1",
+   "depth_k": 3,
+   "rep": 1,
+   "seed": 20271750,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "c"
+    ],
+    "rels": [
+     "YYxxY",
+     "yXYxyyCX",
+     "c"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r2",
+   "depth_k": 3,
+   "rep": 2,
+   "seed": 20279669,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy",
+     "c",
+     "BC"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r3",
+   "depth_k": 3,
+   "rep": 3,
+   "seed": 20287588,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b"
+    ],
+    "rels": [
+     "YYYxx",
+     "BXyyxYYXy",
+     "b"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r4",
+   "depth_k": 3,
+   "rep": 4,
+   "seed": 20295507,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYYxx",
+     "YYXyxYxA",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r5",
+   "depth_k": 3,
+   "rep": 5,
+   "seed": 20303426,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "c"
+    ],
+    "rels": [
+     "YYYxx",
+     "YYXYxyyx",
+     "a",
+     "c"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r6",
+   "depth_k": 3,
+   "rep": 6,
+   "seed": 20311345,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b"
+    ],
+    "rels": [
+     "YYYxxB",
+     "XYxyybXy",
+     "b"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r7",
+   "depth_k": 3,
+   "rep": 7,
+   "seed": 20319264,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "XXyyy",
+     "XYxyyXy",
+     "a",
+     "bAA"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 16,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r0",
+   "depth_k": 4,
+   "rep": 0,
+   "seed": 20264840,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "d"
+    ],
+    "rels": [
+     "YYxxY",
+     "XYxyyDXy",
+     "d"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r1",
+   "depth_k": 4,
+   "rep": 1,
+   "seed": 20272759,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b",
+     "d"
+    ],
+    "rels": [
+     "XXyyy",
+     "XYxyyXyd",
+     "bd",
+     "D"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 16,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r2",
+   "depth_k": 4,
+   "rep": 2,
+   "seed": 20280678,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy",
+     "a",
+     "c",
+     "d"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r3",
+   "depth_k": 4,
+   "rep": 3,
+   "seed": 20288597,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy",
+     "a",
+     "b",
+     "c",
+     "d"
+    ]
+   },
+   "best_rank": 6,
+   "best_total_length": 16,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r4",
+   "depth_k": 4,
+   "rep": 4,
+   "seed": 20296516,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "d"
+    ],
+    "rels": [
+     "XXyyy",
+     "YYXYxyyxD",
+     "d"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r5",
+   "depth_k": 4,
+   "rep": 5,
+   "seed": 20304435,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b",
+     "d"
+    ],
+    "rels": [
+     "XXyyy",
+     "XYxyyXy",
+     "DB",
+     "D"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r6",
+   "depth_k": 4,
+   "rep": 6,
+   "seed": 20312354,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b"
+    ],
+    "rels": [
+     "YYYxBxB",
+     "BYYXyxYx",
+     "B"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 16,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k4_r7",
+   "depth_k": 4,
+   "rep": 7,
+   "seed": 20320273,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": null,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "d"
+    ],
+    "rels": [
+     "YYYxx",
+     "XYxyyXy",
+     "a",
+     "d"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 14,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  }
+ ]
+}

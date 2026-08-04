@@ -1,0 +1,94 @@
+{
+ "record": "s12_target_hunt",
+ "args": {
+  "nodes": 8000,
+  "kstab": 1,
+  "limit": 124,
+  "ladder": 15,
+  "seed": 991,
+  "census_cap": 200000,
+  "headroom": 4,
+  "out": "results/stable_ac/fable/s12_d4ctl_YYXyx_YYxxyXXX.json",
+  "target": "YYXyx,YYxxyXXX",
+  "trials": 8,
+  "controls": 2,
+  "control_trials": 3,
+  "kmax": 0
+ },
+ "target": [
+  "YYXyx",
+  "YYxxyXXX"
+ ],
+ "target_length": 13,
+ "by_depth": {
+  "0": {
+   "control_hits": 6,
+   "control_trials": 6,
+   "control_rate": 1.0,
+   "target_hits": 4,
+   "target_trials": 8,
+   "target_rows": [
+    {
+     "trial": 1,
+     "hit": true,
+     "state": [
+      "yyyyyxy",
+      "YYXXYYYYYYYYYYY"
+     ],
+     "stats": {
+      "pops": 4425,
+      "decided": 1944,
+      "undecided": 0,
+      "spherical": 1,
+      "restarts": 629
+     }
+    },
+    {
+     "trial": 4,
+     "hit": true,
+     "state": [
+      "yyyyyxy",
+      "YXYYYYYY"
+     ],
+     "stats": {
+      "pops": 7625,
+      "decided": 3102,
+      "undecided": 0,
+      "spherical": 1,
+      "restarts": 1132
+     }
+    },
+    {
+     "trial": 5,
+     "hit": true,
+     "state": [
+      "yxyyyxyyyyyyyyy",
+      "YYYXYYYY"
+     ],
+     "stats": {
+      "pops": 1062,
+      "decided": 620,
+      "undecided": 0,
+      "spherical": 1,
+      "restarts": 111
+     }
+    },
+    {
+     "trial": 6,
+     "hit": true,
+     "state": [
+      "yyyx",
+      "yyyxyyx"
+     ],
+     "stats": {
+      "pops": 4807,
+      "decided": 1787,
+      "undecided": 0,
+      "spherical": 1,
+      "restarts": 756
+     }
+    }
+   ]
+  }
+ }
+}

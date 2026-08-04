@@ -1,0 +1,47 @@
+{
+ "record": "s18_scan4",
+ "scanned": 260,
+ "defect_hist": {
+  "2": 258,
+  "4": 2
+ },
+ "found_defect4": [
+  {
+   "words": [
+    "YYYxx",
+    "YYXYxyyx"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "total_length": 13,
+   "rank": 2,
+   "census_size": 120960,
+   "defect": 4,
+   "gamma_N": 2,
+   "method": "exact_census",
+   "enumerated": 120960,
+   "verdict": "NOT_SPHERICAL"
+  },
+  {
+   "words": [
+    "YYYxx",
+    "YYXyyxyX"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "total_length": 13,
+   "rank": 2,
+   "census_size": 120960,
+   "defect": 4,
+   "gamma_N": 2,
+   "method": "exact_census",
+   "enumerated": 120960,
+   "verdict": "NOT_SPHERICAL"
+  }
+ ],
+ "elapsed_s": 200.1
+}

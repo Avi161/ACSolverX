@@ -1,0 +1,7 @@
+  ak3       gamma0  n=     0 planar=     0 nonplanar=     0 uncert=0 VIOLATIONS=0
+  ak3       sample  n=  3000 planar=    76 nonplanar=  2924 uncert=0 VIOLATIONS=0
+  control0  gamma0  n=   759 planar=   759 nonplanar=     0 uncert=0 VIOLATIONS=0
+  control0  sample  n=  3000 planar=  1628 nonplanar=  1372 uncert=0 VIOLATIONS=0
+  control2  gamma0  n=     0 planar=     0 nonplanar=     0 uncert=0 VIOLATIONS=0
+  control2  sample  n=  3000 planar=   338 nonplanar=  2662 uncert=0 VIOLATIONS=0
+wrote /home/user/ACSolverX/results/stable_ac/fable/s20_planarity_sweep.json  (99.6s)
