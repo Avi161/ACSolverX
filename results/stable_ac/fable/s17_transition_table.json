@@ -1,0 +1,388 @@
+{
+ "kind": "s17_transition_table",
+ "deep_cap": 400000,
+ "decided_rows_loaded": 141729,
+ "decided_sources": [
+  "results/stable_ac/fable/s4b_decided.jsonl.gz",
+  "results/stable_ac/fable/s4b_control_decided.jsonl.gz",
+  "results/stable_ac/fable/s4b_ctrl2_decided.jsonl.gz"
+ ],
+ "pool_rows_read": {
+  "ak3": 45264,
+  "control0_thickenable": 50320,
+  "control2_nonthickenable": 75095
+ },
+ "chains_reconstruct_failed": 0,
+ "chains_terminal_mismatch": 0,
+ "chains_machine_verified_by_verify_split": 400,
+ "distinct_split_edges": 176484,
+ "states_needing_decision": 34860,
+ "states_newly_decided_here": 24108,
+ "states_over_census_cap": 0,
+ "states_left_undecided_budget": 10752,
+ "decide_seconds": 194.5,
+ "decide_budget_exhausted": true,
+ "transition_matrix_gamma_N": {
+  "0": {
+   "0": 734,
+   "1": 843,
+   "2": 571
+  },
+  "1": {
+   "1": 29184,
+   "2": 24267,
+   "3": 129
+  },
+  "2": {
+   "1": 949,
+   "2": 94582,
+   "3": 7139
+  },
+  "3": {
+   "2": 184,
+   "3": 2002
+  }
+ },
+ "transition_matrix_by_family": {
+  "ak3": {
+   "1": {
+    "1": 458,
+    "2": 580
+   },
+   "2": {
+    "1": 62,
+    "2": 39672,
+    "3": 4169
+   },
+   "3": {
+    "2": 24,
+    "3": 262
+   }
+  },
+  "control0_thickenable": {
+   "0": {
+    "0": 734,
+    "1": 843,
+    "2": 571
+   },
+   "1": {
+    "1": 21623,
+    "2": 14636,
+    "3": 23
+   },
+   "2": {
+    "1": 697,
+    "2": 11155,
+    "3": 16
+   }
+  },
+  "control2_nonthickenable": {
+   "1": {
+    "1": 7103,
+    "2": 9051,
+    "3": 106
+   },
+   "2": {
+    "1": 190,
+    "2": 43755,
+    "3": 2954
+   },
+   "3": {
+    "2": 160,
+    "3": 1740
+   }
+  }
+ },
+ "transition_matrix_by_layer": {
+  "rank10->rank11": {
+   "0": {
+    "0": 9,
+    "1": 12,
+    "2": 3
+   },
+   "1": {
+    "1": 324,
+    "2": 227
+   },
+   "2": {
+    "1": 2,
+    "2": 592,
+    "3": 6
+   }
+  },
+  "rank11->rank12": {
+   "0": {
+    "0": 725,
+    "1": 831,
+    "2": 568
+   },
+   "1": {
+    "1": 27554,
+    "2": 23672,
+    "3": 129
+   },
+   "2": {
+    "1": 811,
+    "2": 80614,
+    "3": 6241
+   },
+   "3": {
+    "2": 20,
+    "3": 332
+   }
+  },
+  "rank12->rank13": {
+   "1": {
+    "1": 1306,
+    "2": 368
+   },
+   "2": {
+    "1": 136,
+    "2": 13376,
+    "3": 892
+   },
+   "3": {
+    "2": 164,
+    "3": 1670
+   }
+  }
+ },
+ "transition_matrix_by_family_layer": {
+  "ak3|rank10->rank11": {
+   "1": {
+    "1": 2,
+    "2": 8
+   },
+   "2": {
+    "1": 2,
+    "2": 427,
+    "3": 3
+   }
+  },
+  "ak3|rank11->rank12": {
+   "1": {
+    "1": 456,
+    "2": 572
+   },
+   "2": {
+    "1": 60,
+    "2": 37843,
+    "3": 4008
+   },
+   "3": {
+    "3": 52
+   }
+  },
+  "ak3|rank12->rank13": {
+   "2": {
+    "2": 1402,
+    "3": 158
+   },
+   "3": {
+    "2": 24,
+    "3": 210
+   }
+  },
+  "control0_thickenable|rank10->rank11": {
+   "0": {
+    "0": 9,
+    "1": 12,
+    "2": 3
+   },
+   "1": {
+    "1": 235,
+    "2": 77
+   }
+  },
+  "control0_thickenable|rank11->rank12": {
+   "0": {
+    "0": 725,
+    "1": 831,
+    "2": 568
+   },
+   "1": {
+    "1": 21164,
+    "2": 14503,
+    "3": 23
+   },
+   "2": {
+    "1": 673,
+    "2": 10495,
+    "3": 12
+   }
+  },
+  "control0_thickenable|rank12->rank13": {
+   "1": {
+    "1": 224,
+    "2": 56
+   },
+   "2": {
+    "1": 24,
+    "2": 660,
+    "3": 4
+   }
+  },
+  "control2_nonthickenable|rank10->rank11": {
+   "1": {
+    "1": 87,
+    "2": 142
+   },
+   "2": {
+    "2": 165,
+    "3": 3
+   }
+  },
+  "control2_nonthickenable|rank11->rank12": {
+   "1": {
+    "1": 5934,
+    "2": 8597,
+    "3": 106
+   },
+   "2": {
+    "1": 78,
+    "2": 32276,
+    "3": 2221
+   },
+   "3": {
+    "2": 20,
+    "3": 280
+   }
+  },
+  "control2_nonthickenable|rank12->rank13": {
+   "1": {
+    "1": 1082,
+    "2": 312
+   },
+   "2": {
+    "1": 112,
+    "2": 11314,
+    "3": 730
+   },
+   "3": {
+    "2": 140,
+    "3": 1460
+   }
+  }
+ },
+ "edges_dropped_unknown_defect": {
+  "parent_unknown": 6804,
+  "child_unknown": 9096
+ },
+ "pairs_in_matrix": 160584,
+ "cell_1_to_0": {
+  "count": 0,
+  "opportunities_pairs_with_parent_gamma1": 53580,
+  "distinct_parent_states_at_gamma1_with_an_outgoing_split": 1356,
+  "row": {
+   "1": 29184,
+   "2": 24267,
+   "3": 129
+  },
+  "by_family": {
+   "ak3": {
+    "1": 458,
+    "2": 580
+   },
+   "control0_thickenable": {
+    "1": 21623,
+    "2": 14636,
+    "3": 23
+   },
+   "control2_nonthickenable": {
+    "1": 7103,
+    "2": 9051,
+    "3": 106
+   }
+  }
+ },
+ "creations_positive_to_zero": [],
+ "n_creations_positive_to_zero": 0,
+ "control0_certificate_fate": {
+  "pairs_with_parent_gamma0": 2148,
+  "row": {
+   "0": 734,
+   "1": 843,
+   "2": 571
+  },
+  "preserved_0_to_0": 734,
+  "destroyed_0_to_positive": 1414,
+  "destruction_rate": 0.6583
+ },
+ "pooled_certificate_fate": {
+  "pairs_with_parent_gamma0": 2148,
+  "row": {
+   "0": 734,
+   "1": 843,
+   "2": 571
+  },
+  "destroyed_0_to_positive": 1414,
+  "destruction_rate": 0.6583
+ },
+ "depth1_flip_census_rank5": {
+  "note": "already on disk (s4b_flips.jsonl); one SPLIT from a triangulated rank-2 source of total length 9; DEPTH 1 ONLY",
+  "sources": 401,
+  "parents_measured": 81,
+  "split_matrix_gamma_N": {
+   "0": {
+    "0": 317,
+    "1": 643
+   },
+   "1": {
+    "1": 1403,
+    "2": 67
+   }
+  },
+  "ac2_control_matrix_gamma_N": {
+   "0": {
+    "0": 543,
+    "1": 410
+   },
+   "1": {
+    "0": 14,
+    "1": 1444,
+    "2": 12
+   }
+  },
+  "split_pairs": 2430,
+  "ac2_pairs": 2423
+ },
+ "traced_terminal_chains": [
+  {
+   "file": "s4b_ak3.jsonl",
+   "depth": 4,
+   "provenance": "ak3|src0|root12",
+   "final_minimum_defect": 2
+  },
+  {
+   "file": "s4b_ak3.jsonl",
+   "depth": 4,
+   "provenance": "ak3|src0|root13",
+   "final_minimum_defect": 4
+  },
+  {
+   "file": "s4b_ctrl2.jsonl",
+   "depth": 4,
+   "provenance": "control2|src0|root1",
+   "final_minimum_defect": 4
+  },
+  {
+   "file": "s4b_ctrl2.jsonl",
+   "depth": 4,
+   "provenance": "control2|src0|root4",
+   "final_minimum_defect": 6
+  },
+  {
+   "file": "s4b_ctrl2.jsonl",
+   "depth": 4,
+   "provenance": "control2|src0|root5",
+   "final_minimum_defect": 4
+  },
+  {
+   "file": "s4b_ctrl2.jsonl",
+   "depth": 4,
+   "provenance": "control2|src4|root1",
+   "final_minimum_defect": 4
+  }
+ ],
+ "elapsed_s": 223.6
+}

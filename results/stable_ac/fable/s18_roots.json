@@ -1,0 +1,245 @@
+{
+ "record": "s18_roots",
+ "rows": [
+  {
+   "words": [
+    "xyxYXY",
+    "xxxYYYY"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "total_length": 13,
+   "rank": 2,
+   "census_size": 86400,
+   "defect": 4,
+   "gamma_N": 2,
+   "method": "exact_census",
+   "enumerated": 86400,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak3",
+   "depth_k": 0
+  },
+  {
+   "words": [
+    "xyxYXY",
+    "xxxYYYY",
+    "a"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a"
+   ],
+   "total_length": 14,
+   "rank": 3,
+   "census_size": 86400,
+   "defect": 4,
+   "gamma_N": 2,
+   "method": "exact_census",
+   "enumerated": 86400,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak3",
+   "depth_k": 1
+  },
+  {
+   "words": [
+    "xyxYXY",
+    "xxxYYYY",
+    "a",
+    "b"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a",
+    "b"
+   ],
+   "total_length": 15,
+   "rank": 4,
+   "census_size": 86400,
+   "defect": 4,
+   "gamma_N": 2,
+   "method": "exact_census",
+   "enumerated": 86400,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak3",
+   "depth_k": 2
+  },
+  {
+   "words": [
+    "xyxYXY",
+    "xxxYYYY",
+    "a",
+    "b",
+    "c"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a",
+    "b",
+    "c"
+   ],
+   "total_length": 16,
+   "rank": 5,
+   "census_size": 86400,
+   "defect": 4,
+   "gamma_N": 2,
+   "method": "exact_census",
+   "enumerated": 86400,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak3",
+   "depth_k": 3
+  },
+  {
+   "words": [
+    "xyxYXY",
+    "xxxYYYY",
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "total_length": 17,
+   "rank": 6,
+   "census_size": 86400,
+   "defect": 4,
+   "gamma_N": 2,
+   "method": "exact_census",
+   "enumerated": 86400,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak3",
+   "depth_k": 4
+  },
+  {
+   "words": [
+    "YYxxx",
+    "YxYxYxxx"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "total_length": 13,
+   "rank": 2,
+   "census_size": 120960,
+   "defect": 2,
+   "gamma_N": 1,
+   "method": "exact_census",
+   "enumerated": 120960,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak2ctl",
+   "depth_k": 0
+  },
+  {
+   "words": [
+    "YYxxx",
+    "YxYxYxxx",
+    "a"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a"
+   ],
+   "total_length": 14,
+   "rank": 3,
+   "census_size": 120960,
+   "defect": 2,
+   "gamma_N": 1,
+   "method": "exact_census",
+   "enumerated": 120960,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak2ctl",
+   "depth_k": 1
+  },
+  {
+   "words": [
+    "YYxxx",
+    "YxYxYxxx",
+    "a",
+    "b"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a",
+    "b"
+   ],
+   "total_length": 15,
+   "rank": 4,
+   "census_size": 120960,
+   "defect": 2,
+   "gamma_N": 1,
+   "method": "exact_census",
+   "enumerated": 120960,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak2ctl",
+   "depth_k": 2
+  },
+  {
+   "words": [
+    "YYxxx",
+    "YxYxYxxx",
+    "a",
+    "b",
+    "c"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a",
+    "b",
+    "c"
+   ],
+   "total_length": 16,
+   "rank": 5,
+   "census_size": 120960,
+   "defect": 2,
+   "gamma_N": 1,
+   "method": "exact_census",
+   "enumerated": 120960,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak2ctl",
+   "depth_k": 3
+  },
+  {
+   "words": [
+    "YYxxx",
+    "YxYxYxxx",
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "gens": [
+    "x",
+    "y",
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "total_length": 17,
+   "rank": 6,
+   "census_size": 120960,
+   "defect": 2,
+   "gamma_N": 1,
+   "method": "exact_census",
+   "enumerated": 120960,
+   "verdict": "NOT_SPHERICAL",
+   "family": "ak2ctl",
+   "depth_k": 4
+  }
+ ]
+}

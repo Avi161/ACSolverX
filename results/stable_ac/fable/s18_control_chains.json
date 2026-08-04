@@ -1,0 +1,5413 @@
+{
+ "record": "s18_chains",
+ "summary": {
+  "runs": 40,
+  "hits": 39,
+  "replay_faithful": 40,
+  "chains_reconstructed": 39,
+  "chains_not_reconstructed": 0,
+  "created": 39,
+  "inherited": 0,
+  "created_and_in_band(min chain total_length >= 13)": 14,
+  "in_band_rate_over_runs": 0.35,
+  "rank_breakdown_all_created": {
+   "2": 10,
+   "3": 7,
+   "4": 9,
+   "5": 9,
+   "6": 4
+  },
+  "rank_breakdown_created_in_band": {
+   "3": 1,
+   "4": 3,
+   "5": 7,
+   "6": 3
+  },
+  "max_chain_rank_created_in_band": {
+   "4": 3,
+   "5": 4,
+   "6": 7
+  },
+  "witness_length_hist_created": {
+   "10": 3,
+   "11": 4,
+   "12": 7,
+   "13": 3,
+   "14": 5,
+   "15": 3,
+   "16": 1,
+   "17": 1,
+   "21": 1,
+   "8": 9,
+   "9": 2
+  },
+  "min_chain_length_hist_created": {
+   "10": 3,
+   "11": 5,
+   "12": 6,
+   "13": 3,
+   "14": 6,
+   "15": 2,
+   "16": 1,
+   "17": 2,
+   "8": 9,
+   "9": 2
+  },
+  "distinct_chain_defect_sequences": {
+   "(2, 0)": 20,
+   "(2, 2, 0)": 5,
+   "(2, 2, 2, 0)": 7,
+   "(2, 2, 2, 0, 0)": 1,
+   "(2, 2, 2, 2, 0)": 1,
+   "(2, 2, 2, 2, 2, None, 2, 2, 0)": 1,
+   "(2, 2, 2, 2, None, 0)": 1,
+   "(2, 2, 2, None, None, 0)": 1,
+   "(2, 2, None, 0)": 1,
+   "(2, None, None, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0)": 1
+  },
+  "elapsed_s": 144.2
+ },
+ "rows": [
+  {
+   "label": "depth_ak2ctl_k0_r0",
+   "depth_k": 0,
+   "rep": 0,
+   "seed": 20260804,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r1",
+   "depth_k": 0,
+   "rep": 1,
+   "seed": 20268723,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r2",
+   "depth_k": 0,
+   "rep": 2,
+   "seed": 20276642,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r3",
+   "depth_k": 0,
+   "rep": 3,
+   "seed": 20284561,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r4",
+   "depth_k": 0,
+   "rep": 4,
+   "seed": 20292480,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r5",
+   "depth_k": 0,
+   "rep": 5,
+   "seed": 20300399,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r6",
+   "depth_k": 0,
+   "rep": 6,
+   "seed": 20308318,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k0_r7",
+   "depth_k": 0,
+   "rep": 7,
+   "seed": 20316237,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    13,
+    8
+   ],
+   "chain_ranks": [
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 2,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r0",
+   "depth_k": 1,
+   "rep": 0,
+   "seed": 20261813,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 9,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 9,
+     "rank": 3,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    9
+   ],
+   "chain_ranks": [
+    3,
+    3
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 9,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r1",
+   "depth_k": 1,
+   "rep": 1,
+   "seed": 20269732,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 9,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 9,
+     "rank": 3,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    9
+   ],
+   "chain_ranks": [
+    3,
+    3
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 9,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r2",
+   "depth_k": 1,
+   "rep": 2,
+   "seed": 20277651,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 12,
+     "rank": 3,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    12
+   ],
+   "chain_ranks": [
+    3,
+    3
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 12,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r3",
+   "depth_k": 1,
+   "rep": 3,
+   "seed": 20285570,
+   "hit": true,
+   "nodes_used": 26,
+   "generations": 2,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 8,
+   "chain_reconstructed": true,
+   "chain_len": 3,
+   "chain_moves": [
+    [
+     "ac5",
+     2
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 8,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    13,
+    8
+   ],
+   "chain_ranks": [
+    3,
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 8,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r4",
+   "depth_k": 1,
+   "rep": 4,
+   "seed": 20293489,
+   "hit": true,
+   "nodes_used": 211,
+   "generations": 13,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "A",
+     "XXayA",
+     "aYYxxx"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 14,
+   "chain_moves": [
+    [
+     "ac2",
+     2,
+     0,
+     1
+    ],
+    [
+     "ac2",
+     1,
+     2,
+     -1
+    ],
+    [
+     "cmul",
+     0,
+     2,
+     -1,
+     "a",
+     -1
+    ],
+    [
+     "ac2",
+     2,
+     0,
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "cmul",
+     2,
+     0,
+     -1,
+     "a",
+     -1
+    ],
+    [
+     "ac1",
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "x",
+     -1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     -1,
+     "a",
+     1
+    ],
+    [
+     "ac2",
+     2,
+     0,
+     1
+    ],
+    [
+     "cmul",
+     1,
+     0,
+     1,
+     "y",
+     1
+    ],
+    [
+     "ac2",
+     2,
+     0,
+     1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "aYYxxx"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 19,
+     "rank": 3,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxyA",
+      "aYYxxx"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 17,
+     "rank": 3,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "A",
+      "YxYxyA",
+      "aYYxxx"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 13,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "YxYxyA",
+      "aYYxxxa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "xYx",
+      "aYYxxxa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 11,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "xYax",
+      "aYYxxxa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 12,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "xYax",
+      "aYYxxxaa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 13,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "XAyX",
+      "aYYxxxaa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 13,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "yXX",
+      "aYYxxxaa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 12,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "yXXa",
+      "aYYxxxaa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 13,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "yXXa",
+      "aYYxxxa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 12,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "XXayA",
+      "aYYxxxa"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 13,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "A",
+      "XXayA",
+      "aYYxxx"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 12,
+     "rank": 3,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    null,
+    null,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    19,
+    17,
+    13,
+    14,
+    11,
+    12,
+    13,
+    13,
+    12,
+    13,
+    12,
+    13,
+    12
+   ],
+   "chain_ranks": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r5",
+   "depth_k": 1,
+   "rep": 5,
+   "seed": 20301408,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 12,
+     "rank": 3,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    12
+   ],
+   "chain_ranks": [
+    3,
+    3
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 12,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r6",
+   "depth_k": 1,
+   "rep": 6,
+   "seed": 20309327,
+   "hit": true,
+   "nodes_used": 24,
+   "generations": 2,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx"
+    ]
+   },
+   "best_rank": 2,
+   "best_total_length": 11,
+   "chain_reconstructed": true,
+   "chain_len": 3,
+   "chain_moves": [
+    [
+     "ac5",
+     2
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 13,
+     "rank": 2,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx"
+     ],
+     "gens": [
+      "x",
+      "y"
+     ],
+     "total_length": 11,
+     "rank": 2,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    13,
+    11
+   ],
+   "chain_ranks": [
+    3,
+    2,
+    2
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k1_r7",
+   "depth_k": 1,
+   "rep": 7,
+   "seed": 20317246,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a"
+     ],
+     "total_length": 12,
+     "rank": 3,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    14,
+    12
+   ],
+   "chain_ranks": [
+    3,
+    3
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 12,
+   "max_chain_rank": 3,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k2_r0",
+   "depth_k": 2,
+   "rep": 0,
+   "seed": 20262822,
+   "hit": true,
+   "nodes_used": 40,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYxxxb",
+     "xYx",
+     "a",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 11,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "ac2",
+     0,
+     3,
+     1
+    ],
+    [
+     "ac2",
+     1,
+     3,
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxxb",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 16,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxxb",
+      "YxYxYxxxb",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 17,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxxb",
+      "xYx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 11,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    16,
+    17,
+    11
+   ],
+   "chain_ranks": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 4,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k2_r1",
+   "depth_k": 2,
+   "rep": 1,
+   "seed": 20270741,
+   "hit": true,
+   "nodes_used": 122,
+   "generations": 8,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b"
+    ],
+    "rels": [
+     "XybX",
+     "bXXXyXyXy",
+     "b"
+    ]
+   },
+   "best_rank": 3,
+   "best_total_length": 14,
+   "chain_reconstructed": true,
+   "chain_len": 9,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     3,
+     -1
+    ],
+    [
+     "ac5",
+     2
+    ],
+    [
+     "cmul",
+     0,
+     1,
+     -1,
+     "b",
+     -1
+    ],
+    [
+     "ac1",
+     1
+    ],
+    [
+     "ac2",
+     1,
+     2,
+     1
+    ],
+    [
+     "cmul",
+     0,
+     2,
+     -1,
+     "b",
+     1
+    ],
+    [
+     "cmul",
+     0,
+     2,
+     1,
+     "x",
+     1
+    ],
+    [
+     "ac2",
+     1,
+     2,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxxB",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 16,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxxB",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YXyXyb",
+      "YxYxYxxxB",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b"
+     ],
+     "total_length": 16,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YXyXyb",
+      "bXXXyXyXy",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b"
+     ],
+     "total_length": 16,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YXyXyb",
+      "bXXXyXyXyb",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b"
+     ],
+     "total_length": 17,
+     "rank": 3,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "XyX",
+      "bXXXyXyXyb",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XybX",
+      "bXXXyXyXyb",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 3,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XybX",
+      "bXXXyXyXy",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b"
+     ],
+     "total_length": 14,
+     "rank": 3,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    null,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    16,
+    15,
+    16,
+    16,
+    17,
+    14,
+    15,
+    14
+   ],
+   "chain_ranks": [
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 14,
+   "max_chain_rank": 4,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k2_r2",
+   "depth_k": 2,
+   "rep": 2,
+   "seed": 20278660,
+   "hit": true,
+   "nodes_used": 31,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a",
+     "aba"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "cmul",
+     3,
+     2,
+     1,
+     "b",
+     -1
+    ],
+    [
+     "ac2",
+     3,
+     2,
+     1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "ab"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 16,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "aba"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 17,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a",
+      "aba"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    16,
+    17,
+    15
+   ],
+   "chain_ranks": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 15,
+   "max_chain_rank": 4,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k2_r3",
+   "depth_k": 2,
+   "rep": 3,
+   "seed": 20286579,
+   "hit": true,
+   "nodes_used": 29,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "BaB",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "cmul",
+     2,
+     3,
+     -1,
+     "a",
+     -1
+    ],
+    [
+     "ac2",
+     2,
+     3,
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "Ba",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 16,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "BaB",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 17,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "BaB",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 12,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    16,
+    17,
+    12
+   ],
+   "chain_ranks": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 12,
+   "max_chain_rank": 4,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k2_r4",
+   "depth_k": 2,
+   "rep": 4,
+   "seed": 20294498,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 13,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 13,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    13
+   ],
+   "chain_ranks": [
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 13,
+   "max_chain_rank": 4,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k2_r5",
+   "depth_k": 2,
+   "rep": 5,
+   "seed": 20302417,
+   "hit": true,
+   "nodes_used": 31,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "AbA"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "cmul",
+     3,
+     2,
+     -1,
+     "b",
+     -1
+    ],
+    [
+     "ac2",
+     3,
+     2,
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "Ab"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 16,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "AbA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 17,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "AbA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 12,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    16,
+    17,
+    12
+   ],
+   "chain_ranks": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 12,
+   "max_chain_rank": 4,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k2_r6",
+   "depth_k": 2,
+   "rep": 6,
+   "seed": 20310336,
+   "hit": true,
+   "nodes_used": 2,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 10,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 10,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    10
+   ],
+   "chain_ranks": [
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 10,
+   "max_chain_rank": 4,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k2_r7",
+   "depth_k": 2,
+   "rep": 7,
+   "seed": 20318255,
+   "hit": true,
+   "nodes_used": 5,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "b"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 10,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "b"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b"
+     ],
+     "total_length": 10,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    15,
+    10
+   ],
+   "chain_ranks": [
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 10,
+   "max_chain_rank": 4,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k3_r0",
+   "depth_k": 3,
+   "rep": 0,
+   "seed": 20263831,
+   "hit": true,
+   "nodes_used": 48,
+   "generations": 4,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "c"
+    ],
+    "rels": [
+     "XyXa",
+     "YxYxYxxx",
+     "a",
+     "cA"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": true,
+   "chain_len": 5,
+   "chain_moves": [
+    [
+     "ac5",
+     3
+    ],
+    [
+     "ac2",
+     3,
+     2,
+     -1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ],
+    [
+     "cmul",
+     0,
+     2,
+     1,
+     "a",
+     1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "cA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a",
+      "cA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c"
+     ],
+     "total_length": 14,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyXa",
+      "YxYxYxxx",
+      "a",
+      "cA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0,
+    0
+   ],
+   "chain_lengths": [
+    16,
+    15,
+    16,
+    14,
+    15
+   ],
+   "chain_ranks": [
+    5,
+    4,
+    4,
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 14,
+   "max_chain_rank": 5,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k3_r1",
+   "depth_k": 3,
+   "rep": 1,
+   "seed": 20271750,
+   "hit": true,
+   "nodes_used": 3,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 11,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 11,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    16,
+    11
+   ],
+   "chain_ranks": [
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 5,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k3_r2",
+   "depth_k": 3,
+   "rep": 2,
+   "seed": 20279669,
+   "hit": true,
+   "nodes_used": 3,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 11,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 11,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    16,
+    11
+   ],
+   "chain_ranks": [
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 11,
+   "max_chain_rank": 5,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k3_r3",
+   "depth_k": 3,
+   "rep": 3,
+   "seed": 20287588,
+   "hit": true,
+   "nodes_used": 6,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 14,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 14,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    16,
+    14
+   ],
+   "chain_ranks": [
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 14,
+   "max_chain_rank": 5,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k3_r4",
+   "depth_k": 3,
+   "rep": 4,
+   "seed": 20295507,
+   "hit": true,
+   "nodes_used": 29,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "acc",
+     "b",
+     "c"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 13,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "ac2",
+     2,
+     4,
+     1
+    ],
+    [
+     "ac2",
+     2,
+     4,
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "ac",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 17,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "acc",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 18,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "acc",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 13,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    16,
+    17,
+    18,
+    13
+   ],
+   "chain_ranks": [
+    5,
+    5,
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 13,
+   "max_chain_rank": 5,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k3_r5",
+   "depth_k": 3,
+   "rep": 5,
+   "seed": 20303426,
+   "hit": false,
+   "nodes_used": 600,
+   "generations": 34,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "c"
+    ],
+    "rels": [
+     "YYxxx",
+     "YxYxYxxx",
+     "a",
+     "c"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 15,
+   "chain_reconstructed": false,
+   "chain_len": 0,
+   "chain_moves": [],
+   "chain": [],
+   "chain_defects": [],
+   "chain_lengths": [],
+   "chain_ranks": []
+  },
+  {
+   "label": "depth_ak2ctl_k3_r6",
+   "depth_k": 3,
+   "rep": 6,
+   "seed": 20311345,
+   "hit": true,
+   "nodes_used": 22,
+   "generations": 2,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "b",
+     "c"
+    ]
+   },
+   "best_rank": 4,
+   "best_total_length": 10,
+   "chain_reconstructed": true,
+   "chain_len": 3,
+   "chain_moves": [
+    [
+     "ac5",
+     2
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b",
+      "c"
+     ],
+     "total_length": 15,
+     "rank": 4,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "b",
+      "c"
+     ],
+     "total_length": 10,
+     "rank": 4,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    16,
+    15,
+    10
+   ],
+   "chain_ranks": [
+    5,
+    4,
+    4
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 10,
+   "max_chain_rank": 5,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k3_r7",
+   "depth_k": 3,
+   "rep": 7,
+   "seed": 20319264,
+   "hit": true,
+   "nodes_used": 31,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "ba",
+     "cyABY"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 16,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "ac2",
+     3,
+     2,
+     1
+    ],
+    [
+     "cmul",
+     4,
+     3,
+     -1,
+     "y",
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "ba",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 17,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "ba",
+      "cyABY"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 21,
+     "rank": 5,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:r1c_v2_solver"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "ba",
+      "cyABY"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    null,
+    0
+   ],
+   "chain_lengths": [
+    16,
+    17,
+    21,
+    16
+   ],
+   "chain_ranks": [
+    5,
+    5,
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 16,
+   "max_chain_rank": 5,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k4_r0",
+   "depth_k": 4,
+   "rep": 0,
+   "seed": 20264840,
+   "hit": true,
+   "nodes_used": 67,
+   "generations": 5,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "YYxxxd",
+     "xYx",
+     "a",
+     "cd",
+     "d"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 13,
+   "chain_reconstructed": true,
+   "chain_len": 6,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     5,
+     1
+    ],
+    [
+     "ac2",
+     4,
+     5,
+     1
+    ],
+    [
+     "cmul",
+     0,
+     5,
+     1,
+     "d",
+     -1
+    ],
+    [
+     "ac5",
+     3
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxxd",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 18,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxxd",
+      "a",
+      "b",
+      "cd",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 19,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxxd",
+      "YxYxYxxxd",
+      "a",
+      "b",
+      "cd",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 20,
+     "rank": 6,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "UNDECIDED",
+     "method": "decide:census_over_cap"
+    },
+    {
+     "rels": [
+      "YYxxxd",
+      "YxYxYxxxd",
+      "a",
+      "cd",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c",
+      "d"
+     ],
+     "total_length": 19,
+     "rank": 5,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "UNDECIDED",
+     "method": "decide:census_over_cap"
+    },
+    {
+     "rels": [
+      "YYxxxd",
+      "xYx",
+      "a",
+      "cd",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c",
+      "d"
+     ],
+     "total_length": 13,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    null,
+    null,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    18,
+    19,
+    20,
+    19,
+    13
+   ],
+   "chain_ranks": [
+    6,
+    6,
+    6,
+    6,
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 13,
+   "max_chain_rank": 6,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k4_r1",
+   "depth_k": 4,
+   "rep": 1,
+   "seed": 20272759,
+   "hit": true,
+   "nodes_used": 28,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "aB",
+     "b",
+     "c",
+     "dB"
+    ]
+   },
+   "best_rank": 6,
+   "best_total_length": 14,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "ac2",
+     5,
+     3,
+     -1
+    ],
+    [
+     "cmul",
+     2,
+     3,
+     -1,
+     "b",
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "dB"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 18,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "aB",
+      "b",
+      "c",
+      "dB"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 19,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "aB",
+      "b",
+      "c",
+      "dB"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 14,
+     "rank": 6,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    18,
+    19,
+    14
+   ],
+   "chain_ranks": [
+    6,
+    6,
+    6,
+    6
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 14,
+   "max_chain_rank": 6,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k4_r2",
+   "depth_k": 4,
+   "rep": 2,
+   "seed": 20280678,
+   "hit": true,
+   "nodes_used": 29,
+   "generations": 3,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a",
+     "c",
+     "daCA"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 17,
+   "chain_reconstructed": true,
+   "chain_len": 4,
+   "chain_moves": [
+    [
+     "cmul",
+     5,
+     4,
+     -1,
+     "a",
+     1
+    ],
+    [
+     "ac5",
+     3
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "daCA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 20,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "c",
+      "daCA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c",
+      "d"
+     ],
+     "total_length": 19,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a",
+      "c",
+      "daCA"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    20,
+    19,
+    17
+   ],
+   "chain_ranks": [
+    6,
+    6,
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 17,
+   "max_chain_rank": 6,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k4_r3",
+   "depth_k": 4,
+   "rep": 3,
+   "seed": 20288597,
+   "hit": true,
+   "nodes_used": 4,
+   "generations": 1,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "b",
+     "c",
+     "d"
+    ]
+   },
+   "best_rank": 6,
+   "best_total_length": 12,
+   "chain_reconstructed": true,
+   "chain_len": 2,
+   "chain_moves": [
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 12,
+     "rank": 6,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    12
+   ],
+   "chain_ranks": [
+    6,
+    6
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 12,
+   "max_chain_rank": 6,
+   "in_band": false
+  },
+  {
+   "label": "depth_ak2ctl_k4_r4",
+   "depth_k": 4,
+   "rep": 4,
+   "seed": 20296516,
+   "hit": true,
+   "nodes_used": 12,
+   "generations": 2,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "a",
+     "b",
+     "caDA",
+     "d"
+    ]
+   },
+   "best_rank": 6,
+   "best_total_length": 15,
+   "chain_reconstructed": true,
+   "chain_len": 3,
+   "chain_moves": [
+    [
+     "cmul",
+     4,
+     5,
+     -1,
+     "a",
+     1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "caDA",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 20,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "a",
+      "b",
+      "caDA",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 15,
+     "rank": 6,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    20,
+    15
+   ],
+   "chain_ranks": [
+    6,
+    6,
+    6
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 15,
+   "max_chain_rank": 6,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k4_r5",
+   "depth_k": 4,
+   "rep": 5,
+   "seed": 20304435,
+   "hit": true,
+   "nodes_used": 46,
+   "generations": 4,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "YYxxx",
+     "xYx",
+     "acD",
+     "c",
+     "dC"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 14,
+   "chain_reconstructed": true,
+   "chain_len": 5,
+   "chain_moves": [
+    [
+     "ac2",
+     5,
+     4,
+     -1
+    ],
+    [
+     "ac5",
+     3
+    ],
+    [
+     "ac2",
+     2,
+     4,
+     -1
+    ],
+    [
+     "ac2",
+     1,
+     0,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "dC"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 18,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "c",
+      "dC"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "acD",
+      "c",
+      "dC"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c",
+      "d"
+     ],
+     "total_length": 19,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "xYx",
+      "acD",
+      "c",
+      "dC"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "c",
+      "d"
+     ],
+     "total_length": 14,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    18,
+    17,
+    19,
+    14
+   ],
+   "chain_ranks": [
+    6,
+    6,
+    5,
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 14,
+   "max_chain_rank": 6,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k4_r6",
+   "depth_k": 4,
+   "rep": 6,
+   "seed": 20312354,
+   "hit": true,
+   "nodes_used": 24,
+   "generations": 2,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   "best_rank": 5,
+   "best_total_length": 14,
+   "chain_reconstructed": true,
+   "chain_len": 3,
+   "chain_moves": [
+    [
+     "ac5",
+     5
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 16,
+     "rank": 5,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c"
+     ],
+     "total_length": 14,
+     "rank": 5,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    16,
+    14
+   ],
+   "chain_ranks": [
+    6,
+    5,
+    5
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 14,
+   "max_chain_rank": 6,
+   "in_band": true
+  },
+  {
+   "label": "depth_ak2ctl_k4_r7",
+   "depth_k": 4,
+   "rep": 7,
+   "seed": 20320273,
+   "hit": true,
+   "nodes_used": 70,
+   "generations": 5,
+   "replay_faithful": true,
+   "best_state": {
+    "gens": [
+     "x",
+     "y",
+     "a",
+     "b",
+     "c",
+     "d"
+    ],
+    "rels": [
+     "XyX",
+     "YxYxYxxx",
+     "a",
+     "bCDc",
+     "dac",
+     "AD"
+    ]
+   },
+   "best_rank": 6,
+   "best_total_length": 21,
+   "chain_reconstructed": true,
+   "chain_len": 6,
+   "chain_moves": [
+    [
+     "cmul",
+     3,
+     5,
+     -1,
+     "c",
+     -1
+    ],
+    [
+     "ac1",
+     5
+    ],
+    [
+     "cmul",
+     5,
+     2,
+     -1,
+     "d",
+     1
+    ],
+    [
+     "cmul",
+     4,
+     5,
+     -1,
+     "c",
+     -1
+    ],
+    [
+     "ac2",
+     0,
+     1,
+     -1
+    ]
+   ],
+   "chain": [
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 17,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "exact_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "bCDc",
+      "c",
+      "d"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 20,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "bCDc",
+      "c",
+      "D"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 20,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "bCDc",
+      "c",
+      "AD"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 21,
+     "rank": 6,
+     "defect": 2,
+     "gamma_N": 1,
+     "verdict": "NOT_SPHERICAL",
+     "method": "decide:factorial_census"
+    },
+    {
+     "rels": [
+      "YYxxx",
+      "YxYxYxxx",
+      "a",
+      "bCDc",
+      "dac",
+      "AD"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 23,
+     "rank": 6,
+     "defect": null,
+     "gamma_N": null,
+     "verdict": "UNDECIDED",
+     "method": "decide:census_over_cap"
+    },
+    {
+     "rels": [
+      "XyX",
+      "YxYxYxxx",
+      "a",
+      "bCDc",
+      "dac",
+      "AD"
+     ],
+     "gens": [
+      "x",
+      "y",
+      "a",
+      "b",
+      "c",
+      "d"
+     ],
+     "total_length": 21,
+     "rank": 6,
+     "defect": 0,
+     "gamma_N": 0,
+     "verdict": "SPHERICAL",
+     "method": "exact_census"
+    }
+   ],
+   "chain_defects": [
+    2,
+    2,
+    2,
+    2,
+    null,
+    0
+   ],
+   "chain_lengths": [
+    17,
+    20,
+    20,
+    21,
+    23,
+    21
+   ],
+   "chain_ranks": [
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "root_defect": 2,
+   "leaf_defect": 0,
+   "created": true,
+   "min_chain_length": 17,
+   "max_chain_rank": 6,
+   "in_band": true
+  }
+ ]
+}
