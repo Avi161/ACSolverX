@@ -1,0 +1,14 @@
+[calib] 1/16 ak2_L12_Yxx_YXyXXyXyX rank 8 len 24 -> best defect 0 hit=True nodes=609 11.57s
+[calib] 2/16 ak2_L12_YYX_YYXyyxxYX rank 8 len 24 -> best defect 2 hit=False nodes=1000 17.83s
+[calib] 3/16 ak2_L12_YXX_YXyxYXyxx rank 8 len 24 -> best defect 2 hit=False nodes=1000 17.56s
+[calib] 4/16 ak2_L12_YYx_YYXyxyXYx rank 8 len 24 -> best defect 2 hit=False nodes=1000 17.35s
+[calib] 5/16 ak2_L12_YYx_YYxYxYxyX rank 8 len 24 -> best defect 0 hit=True nodes=158 3.01s
+[calib] 6/16 ak2_L12_YYYxx_YYYxxYx rank 8 len 24 -> best defect 2 hit=False nodes=1000 17.19s
+[calib] 7/16 ak2_L13_YYx_YYYYxxYYYx rank 9 len 27 -> best defect 0 hit=True nodes=12 0.45s
+[calib] 8/16 ak2_L13_YYXyx_YYYYXyxx rank 9 len 27 -> best defect 2 hit=False nodes=1000 18.46s
+[calib] 9/16 ak2_L13_YYXyx_YYYxyXyx rank 9 len 27 -> best defect 2 hit=False nodes=1000 17.99s
+[calib] 10/16 ak2_L13_Yxxx_YYxxxYxyx rank 9 len 27 -> best defect 2 hit=False nodes=1000 19.41s
+[calib] 11/16 ak2_L13_YXyxx_YXyXXyXX rank 9 len 27 -> best defect 2 hit=False nodes=1000 19.08s
+[calib] 12/16 ak2_L13_YYXyx_YYYXXyyx rank 9 len 27 -> best defect 2 hit=False nodes=1000 18.8s
+[calib] 13/16 std9_scramble6_r0 rank 9 len 20 -> best defect 0 hit=True nodes=122 1.68s
+[calib] 14/16 std9_scramble10_r0 rank 9 len 37 -> best defect 0 hit=True nodes=265 5.42s

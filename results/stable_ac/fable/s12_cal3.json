@@ -1,0 +1,463 @@
+{
+ "record": "s12_certificate_hunt",
+ "args": {
+  "nodes": 1200,
+  "kstab": 0,
+  "limit": 0,
+  "ladder": 24,
+  "seed": 20260804,
+  "census_cap": 200000,
+  "out": "results/stable_ac/fable/s12_cal3.json"
+ },
+ "rows": [
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYxyyx"
+   ],
+   "length": 15,
+   "hit": true,
+   "state": [
+    "XXXXy",
+    "X"
+   ],
+   "stats": {
+    "pops": 523,
+    "decided": 350,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 45
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYX",
+    "YYYYYXyyyyx"
+   ],
+   "length": 17,
+   "hit": true,
+   "state": [
+    "YYYYYX",
+    "YYYYYXY"
+   ],
+   "stats": {
+    "pops": 3,
+    "decided": 4,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 1
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYYx"
+   ],
+   "length": 19,
+   "hit": true,
+   "state": [
+    "yXyy",
+    "YYYYxyXyXyx"
+   ],
+   "stats": {
+    "pops": 304,
+    "decided": 449,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 1
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYxxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 430,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 193
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyXyx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "yyXYXyy",
+    "Xy"
+   ],
+   "stats": {
+    "pops": 74,
+    "decided": 98,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 6
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXYxyx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "yyyyyXyyyy",
+    "YYYYYxYYY"
+   ],
+   "stats": {
+    "pops": 629,
+    "decided": 252,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 95
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXYxyX",
+    "YYYXyyx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 422,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 195
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYXYxx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 368,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 208
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYXyx",
+    "YXYXyxxx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "xy",
+    "X"
+   ],
+   "stats": {
+    "pops": 173,
+    "decided": 112,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 18
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYxyx"
+   ],
+   "length": 14,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 367,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 209
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXXYYx",
+    "YYYXyyx"
+   ],
+   "length": 15,
+   "hit": true,
+   "state": [
+    "XYYYY",
+    "yyxyyxyyy"
+   ],
+   "stats": {
+    "pops": 14,
+    "decided": 29,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYYXYxyX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 265,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 234
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYXyx",
+    "YXXYxyxx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "Xyyy",
+    "YxYYY"
+   ],
+   "stats": {
+    "pops": 244,
+    "decided": 178,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 21
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYXyxYx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 539,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 165
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYXyxYX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 249,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 238
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYYYxxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 331,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 217
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXXYx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "YYYYXYY",
+    "yxyyyxyyyyyyy"
+   ],
+   "stats": {
+    "pops": 148,
+    "decided": 89,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 16
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYXyyXyx"
+   ],
+   "length": 17,
+   "hit": true,
+   "state": [
+    "XyyXyXy",
+    "Yx"
+   ],
+   "stats": {
+    "pops": 401,
+    "decided": 216,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 51
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYYXyXYx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 317,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 221
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYxyXYx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 211,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 247
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YXyxYx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 169,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 258
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXYxYx",
+    "YYYXyyx"
+   ],
+   "length": 15,
+   "hit": true,
+   "state": [
+    "y",
+    "YxYYY"
+   ],
+   "stats": {
+    "pops": 171,
+    "decided": 61,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 29
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYYxYXYx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 295,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 226
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYYxyxYX"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 359,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 210
+   }
+  }
+ ],
+ "summary": {
+  "ladder_detection_rate": 0.4583333333333333,
+  "ladder_hits": 11,
+  "ladder_n": 24,
+  "u124_hits": 0,
+  "u124_n": 0,
+  "elapsed_s": 48.9
+ }
+}

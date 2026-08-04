@@ -153,8 +153,16 @@ def slides(words, gens, rng, max_rel, max_tot, k):
     return out
 
 
-def hunt(base, kstab, nodes, rng, *, beam=6, branch=10, max_rel=16, max_tot=34,
-         census_cap=200_000):
+def hunt(base, kstab, nodes, rng, *, beam=6, branch=10, max_rel=None, max_tot=None,
+         headroom=8, census_cap=200_000):
+    """Length caps are RELATIVE to the root (the project's relative-headroom rule), not
+    absolute: an absolute cap gives a length-21 base far less room to move than a length-13
+    one and mechanically suppresses its child generation."""
+    base_tot = sum(len(w) for w in base)
+    if max_tot is None:
+        max_tot = base_tot + headroom + kstab
+    if max_rel is None:
+        max_rel = max(len(w) for w in base) + headroom
     gens = sorted(set("".join(base).lower()))
     words = list(base)
     for _ in range(kstab):
@@ -166,19 +174,22 @@ def hunt(base, kstab, nodes, rng, *, beam=6, branch=10, max_rel=16, max_tot=34,
     seen = {canon(start)}
     frontier = [start]
     stats = {"pops": 0, "decided": 0, "undecided": 0, "spherical": 0, "restarts": 0}
-    # Keep a large pool ordered by total length (the classical AC search priority) and pop
-    # uniformly from its shortest `beam` states, so the search descends without collapsing
-    # onto a handful of nodes.  Restart from the root when the pool is exhausted.
-    pool_cap = 600
+    # Pool ordered by total length (the classical AC search priority).  Two departures from
+    # a plain length descent, both needed: reseed from a random VISITED state rather than
+    # the root when the pool empties (reseeding from the root just re-derives `seen` states
+    # and the hunt stalls at a few dozen pops), and take a uniformly random state a quarter
+    # of the time so the search can climb out of a local length minimum.
+    pool_cap = 4000
+    visited = [start]
     while stats["pops"] < nodes:
         if not frontier:
             stats["restarts"] += 1
-            frontier = [start]
-            if stats["restarts"] > 8:
-                break
+            frontier = [visited[rng.randrange(len(visited))] for _ in range(4)]
         frontier.sort(key=lambda w: sum(len(x) for x in w))
         del frontier[pool_cap:]
-        cur = frontier.pop(rng.randrange(min(beam, len(frontier))))
+        idx = (rng.randrange(len(frontier)) if rng.random() < 0.25
+               else rng.randrange(min(beam, len(frontier))))
+        cur = frontier.pop(idx)
         stats["pops"] += 1
         for nb in slides(cur, gens, rng, max_rel, max_tot, branch):
             k = canon(nb)
@@ -194,6 +205,8 @@ def hunt(base, kstab, nodes, rng, *, beam=6, branch=10, max_rel=16, max_tot=34,
                 stats["spherical"] += 1
                 return nb, d, stats
             frontier.append(nb)
+            if len(visited) < 20_000:
+                visited.append(nb)
     return None, None, stats
 
 

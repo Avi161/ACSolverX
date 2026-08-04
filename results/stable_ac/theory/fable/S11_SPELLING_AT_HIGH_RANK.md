@@ -252,7 +252,40 @@ Rank-2 seeds are the 15 rungs of the earlier session's ladder
 census+witness, the top rungs at 2,000,000 evaluations); every column is then grown by
 spikes whose children are re-certified by the same witness route.
 
-<!-- LADDER-TABLE -->
+`results/stable_ac/fable/s11_ladder.json` — **163 certified rungs**, 246 s, cap 2·10⁵.
+
+**Detection rate = (rungs returned defect 0) / (rungs in the cell)**, with `SKIPPED`
+counted as a non-detection:
+
+| total length | rank 2 | rank 4 | rank 6 | rank 8 |
+|---|---|---|---|---|
+| 13 | 0.90 (9/10) | 1.00 (10/10) | 1.00 (10/10) | 1.00 (10/10) |
+| 16 | **0.00** (0/10) | 0.90 (9/10) | 1.00 (10/10) | 1.00 (10/10) |
+| 19 | 0.00 (0/10) | 0.30 (3/10) | 1.00 (10/10) | 1.00 (10/10) |
+| 22 | 0.00 (0/2) † | 0.00 (0/1) † | 0.30 (3/10) | 1.00 (10/10) |
+| 25 | — ‡ | — ‡ | 0.00 (0/10) | **0.40** (4/10) |
+
+Median census in the same cells: `3.0·10⁴ / 288 / 24 / 4` at length 13, rising to
+`1.4·10¹³ / 1.2·10⁷ / 1.0·10⁶ / 1.9·10³` at length 22.
+
+† **thin cells, and the thinness is itself the R7b finding.** The ladder could not be
+grown to 10 rungs at (22, rank 2) or (22, rank 4): the certifying climber is the same
+instrument R7b measured at 0–10 % detection above total length 20, so the ladder stalls
+exactly where the earlier one did. Those two cells are reported at their true `n`.
+‡ **no rungs at all** at (25, rank 2) and (25, rank 4) — the ladder itself cannot be
+extended there at this budget, so by the standing rule *no* hunt at ≤ this budget in those
+cells can support any conclusion. Recorded as a gap, not as a rate.
+
+**The cross-check that matters, and it is clean: `missed = 0` in every cell.** Not one
+rung that the census decided came back with `defect > 0`. So across 163 states, two
+structurally independent instruments — a randomised climber whose witness is re-verified
+by `check_witness_n` (which rebuilds `D, A, B` from the words), and the exhaustive census —
+never disagreed. Every cell's shortfall from 1.00 is *entirely* `SKIPPED`, i.e.
+affordability, exactly as §3.1 predicts for an exact method.
+
+**Result.** The claim under test holds on certified positives as well as on the
+unconditional sample: the collapse edge sits between length 13 and 16 at rank 2, and
+between 22 and 25 at rank 8.
 
 **Bias directions, recorded (both push the same way).**
 

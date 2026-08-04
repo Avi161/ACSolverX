@@ -1,0 +1,5789 @@
+{
+ "record": "S11 calibration ladder: exact-census detection by (length, rank)",
+ "bound_direction": "census returns EQUALITY inside the cap and SKIPPED above it; the ladder bounds sensitivity from ABOVE",
+ "cap": 200000,
+ "n_rungs": 163,
+ "table": {
+  "13|2": {
+   "band": 13,
+   "rank": 2,
+   "n": 10,
+   "detected": 9,
+   "skipped": 1,
+   "missed": 0,
+   "detection_rate": 0.9,
+   "median_census": 30240
+  },
+  "13|4": {
+   "band": 13,
+   "rank": 4,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 288
+  },
+  "13|6": {
+   "band": 13,
+   "rank": 6,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 24
+  },
+  "13|8": {
+   "band": 13,
+   "rank": 8,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 4
+  },
+  "16|2": {
+   "band": 16,
+   "rank": 2,
+   "n": 10,
+   "detected": 0,
+   "skipped": 10,
+   "missed": 0,
+   "detection_rate": 0.0,
+   "median_census": 8709120
+  },
+  "16|4": {
+   "band": 16,
+   "rank": 4,
+   "n": 10,
+   "detected": 9,
+   "skipped": 1,
+   "missed": 0,
+   "detection_rate": 0.9,
+   "median_census": 17280
+  },
+  "16|6": {
+   "band": 16,
+   "rank": 6,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 192
+  },
+  "16|8": {
+   "band": 16,
+   "rank": 8,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 24
+  },
+  "19|2": {
+   "band": 19,
+   "rank": 2,
+   "n": 10,
+   "detected": 0,
+   "skipped": 10,
+   "missed": 0,
+   "detection_rate": 0.0,
+   "median_census": 1828915200
+  },
+  "19|4": {
+   "band": 19,
+   "rank": 4,
+   "n": 10,
+   "detected": 3,
+   "skipped": 7,
+   "missed": 0,
+   "detection_rate": 0.3,
+   "median_census": 518400
+  },
+  "19|6": {
+   "band": 19,
+   "rank": 6,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 6912
+  },
+  "19|8": {
+   "band": 19,
+   "rank": 8,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 432
+  },
+  "22|2": {
+   "band": 22,
+   "rank": 2,
+   "n": 2,
+   "detected": 0,
+   "skipped": 2,
+   "missed": 0,
+   "detection_rate": 0.0,
+   "median_census": 14485008384000
+  },
+  "22|4": {
+   "band": 22,
+   "rank": 4,
+   "n": 1,
+   "detected": 0,
+   "skipped": 1,
+   "missed": 0,
+   "detection_rate": 0.0,
+   "median_census": 12441600
+  },
+  "22|6": {
+   "band": 22,
+   "rank": 6,
+   "n": 10,
+   "detected": 3,
+   "skipped": 7,
+   "missed": 0,
+   "detection_rate": 0.3,
+   "median_census": 1036800
+  },
+  "22|8": {
+   "band": 22,
+   "rank": 8,
+   "n": 10,
+   "detected": 10,
+   "skipped": 0,
+   "missed": 0,
+   "detection_rate": 1.0,
+   "median_census": 1920
+  },
+  "25|6": {
+   "band": 25,
+   "rank": 6,
+   "n": 10,
+   "detected": 0,
+   "skipped": 10,
+   "missed": 0,
+   "detection_rate": 0.0,
+   "median_census": 24883200
+  },
+  "25|8": {
+   "band": 25,
+   "rank": 8,
+   "n": 10,
+   "detected": 4,
+   "skipped": 6,
+   "missed": 0,
+   "detection_rate": 0.4,
+   "median_census": 311040
+  }
+ },
+ "rows": [
+  {
+   "words": [
+    "XYYyxyYXX",
+    "xxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 14400,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 6,
+    "y": 6
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "census+witness"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXYyxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 13,
+   "census": 120960,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 5
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "census+witness"
+  },
+  {
+   "words": [
+    "XYYyxyYXX",
+    "Xxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 14,
+   "census": 604800,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 6
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "census+witness"
+  },
+  {
+   "words": [
+    "XYxxXyYXX",
+    "xxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 30240,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 4
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYxyYXxXX",
+    "xxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 30240,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 4
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYxyYXX",
+    "xXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 30240,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 4
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYxYyyYXX",
+    "xxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 14400,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 6,
+    "y": 6
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYXxxyYXX",
+    "xxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 30240,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 4
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "yYXYxyYXX",
+    "xxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 14400,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 6,
+    "y": 6
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYxXxyYXX",
+    "xxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 12,
+   "census": 30240,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 4
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXYyxXxyYxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 3628800,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 7
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "census+witness"
+  },
+  {
+   "words": [
+    "XYYyxyYXX",
+    "XYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 16,
+   "census": 25401600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 8
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "witness"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXYyXxxXxyYxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 17,
+   "census": 261273600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 7
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "witness"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xxXXYyxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 8709120,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 5
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXxXYyxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 8709120,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 5
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXYyxxXXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 8709120,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 5
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXYXxyxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 8709120,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 5
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "xyXY",
+    "XxxXYyxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 8709120,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 5
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xYyXYyxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 3628800,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 7
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXYyYyxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 15,
+   "census": 3628800,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 7
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYYyxXxyYXX",
+    "XYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 8
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "witness"
+  },
+  {
+   "words": [
+    "xyXY",
+    "xXYyXxxXyYxyYxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 19,
+   "census": 14631321600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 9
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "witness"
+  },
+  {
+   "words": [
+    "XYYyxXxyyYYXX",
+    "XYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 20,
+   "census": 131681894400,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 10
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "witness"
+  },
+  {
+   "words": [
+    "XYYyxyYXX",
+    "XYXxyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 8
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYYyxyYXX",
+    "XYyYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 10
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYYyxyYXX",
+    "XYyxxXxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 8
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYYyxyxXYXX",
+    "XYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 8
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYYyYyxyYXX",
+    "XYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 10
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYYyxyYyYXX",
+    "XYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 8,
+    "y": 10
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "XYYyxyYXX",
+    "XYyxxxXxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 18,
+   "census": 1828915200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 8
+   },
+   "source": "spike growth from witness_sensitivity ladder (census+witness)",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "YyxyXY",
+    "xXYyXxxXyYxyYxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 21,
+   "census": 1316818944000,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 10,
+    "y": 11
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "witness"
+  },
+  {
+   "words": [
+    "XYYyxXxyyYYXX",
+    "XxXYyxxxy"
+   ],
+   "generators": [
+    "x",
+    "y"
+   ],
+   "rank": 2,
+   "total_length": 22,
+   "census": 14485008384000,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "x": 12,
+    "y": 10
+   },
+   "source": "witness_sensitivity ladder (census+witness)",
+   "certified_by": "witness"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "ccAC",
+    "ccACdCbc"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 14,
+   "census": 10080,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 2,
+    "c": 8,
+    "d": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "add",
+    "C",
+    "BCD",
+    "dBCDC"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 12,
+   "census": 144,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 4,
+    "d": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aaCA",
+    "bDAd",
+    "c",
+    "daCb"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 13,
+   "census": 96,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 2,
+    "c": 3,
+    "d": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aC",
+    "Bd",
+    "cbD",
+    "ddaCD"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 12,
+   "census": 48,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 2,
+    "c": 3,
+    "d": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "CADbd",
+    "bcDB",
+    "c",
+    "bdC"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 13,
+   "census": 216,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 4,
+    "c": 4,
+    "d": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aDcB",
+    "bCbDB",
+    "cbC",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 13,
+   "census": 288,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 5,
+    "c": 4,
+    "d": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "caCbdBB",
+    "bdBB",
+    "cD",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 14,
+   "census": 1440,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 6,
+    "c": 3,
+    "d": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "CdcBD",
+    "Dc",
+    "dBab"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 12,
+   "census": 24,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 3,
+    "d": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "dCdcBCA",
+    "bCDc",
+    "c",
+    "dC"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 14,
+   "census": 4320,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 7,
+    "d": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aC",
+    "bbDB",
+    "aCbbDBC",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 14,
+   "census": 480,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 6,
+    "c": 3,
+    "d": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aBaBDb",
+    "dbAbA",
+    "c",
+    "dbA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 15,
+   "census": 5760,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 5,
+    "b": 6,
+    "c": 1,
+    "d": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "dAAbDaaD",
+    "bDaaDA",
+    "c",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 16,
+   "census": 86400,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 7,
+    "b": 2,
+    "c": 1,
+    "d": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "Da",
+    "CBBdb",
+    "CBDbDAdd",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 16,
+   "census": 17280,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 5,
+    "c": 2,
+    "d": 7
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "A",
+    "bdC",
+    "bcDBBC",
+    "BabbdCB"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 17,
+   "census": 60480,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 8,
+    "c": 4,
+    "d": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "Abad",
+    "c",
+    "adCDABAbadC"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 17,
+   "census": 17280,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 7,
+    "b": 3,
+    "c": 3,
+    "d": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "daD",
+    "bAADa",
+    "caBAdaaB",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 17,
+   "census": 241920,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 8,
+    "b": 3,
+    "c": 1,
+    "d": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "caBdc",
+    "bbACDC",
+    "cbA",
+    "cdc"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 17,
+   "census": 17280,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 4,
+    "c": 7,
+    "d": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "abDB",
+    "DCdbd",
+    "C",
+    "dbdBA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 15,
+   "census": 2880,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 5,
+    "c": 2,
+    "d": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aDbdb",
+    "bbcaDAB",
+    "caDA",
+    "D"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 17,
+   "census": 13824,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 5,
+    "c": 2,
+    "d": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "caCbd",
+    "ba",
+    "cab",
+    "daaCb"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 15,
+   "census": 864,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 4,
+    "c": 4,
+    "d": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "aBACAbdB",
+    "dbDBacabA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 19,
+   "census": 1036800,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 7,
+    "b": 7,
+    "c": 2,
+    "d": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "adaDBc",
+    "CbdAD",
+    "cbdADC",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 18,
+   "census": 51840,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 4,
+    "b": 3,
+    "c": 4,
+    "d": 7
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "dBDA",
+    "b",
+    "c",
+    "dacAbadbDBaBA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 19,
+   "census": 345600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 6,
+    "c": 2,
+    "d": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "bbAAbc",
+    "bA",
+    "c",
+    "aBDCBaaBB"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 18,
+   "census": 1209600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 8,
+    "c": 3,
+    "d": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "Cad",
+    "bcdCadC",
+    "ccdC",
+    "DAcD"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 18,
+   "census": 1209600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 1,
+    "c": 8,
+    "d": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "CdBCAc",
+    "acbDc",
+    "DACdBac"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 19,
+   "census": 207360,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 3,
+    "c": 7,
+    "d": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aDDAcBDAb",
+    "B",
+    "baDAcBDA",
+    "da"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 20,
+   "census": 2073600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 7,
+    "b": 5,
+    "c": 2,
+    "d": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "dAAbDaaD",
+    "cCbDaaDA",
+    "c",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 18,
+   "census": 172800,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 7,
+    "b": 2,
+    "c": 3,
+    "d": 6
+   },
+   "source": "spike growth from AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "dAAbDaaD",
+    "bBbDaaDA",
+    "c",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 18,
+   "census": 518400,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 2,
+   "degrees": {
+    "a": 7,
+    "b": 4,
+    "c": 1,
+    "d": 6
+   },
+   "source": "spike growth from AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "CcdAAbDaaD",
+    "bDaaDA",
+    "c",
+    "d"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 18,
+   "census": 172800,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 7,
+    "b": 2,
+    "c": 3,
+    "d": 6
+   },
+   "source": "spike growth from AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "Ab",
+    "bAb",
+    "dcBadcBaCCD",
+    "dcBaaB"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "rank": 4,
+   "total_length": 22,
+   "census": 12441600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 7,
+    "c": 5,
+    "d": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 4",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "Efedc",
+    "DEFe",
+    "e",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 13,
+   "census": 48,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 5,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "caa",
+    "dB",
+    "eBfAF",
+    "fA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 14,
+   "census": 96,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 3,
+    "c": 1,
+    "d": 1,
+    "e": 1,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "cfeFdeD",
+    "AD",
+    "e",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 13,
+   "census": 8,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 1,
+    "d": 3,
+    "e": 3,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "AAFa",
+    "bc",
+    "c",
+    "d",
+    "ecdC",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 13,
+   "census": 12,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 3,
+    "b": 1,
+    "c": 4,
+    "d": 2,
+    "e": 1,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "FabE",
+    "b",
+    "ccBC",
+    "dFB",
+    "e",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 14,
+   "census": 24,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 4,
+    "c": 3,
+    "d": 1,
+    "e": 2,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "EAEBe",
+    "fae"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 12,
+   "census": 12,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 3,
+    "b": 2,
+    "c": 1,
+    "d": 1,
+    "e": 4,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "dcEBeDE",
+    "Ed",
+    "e",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 13,
+   "census": 48,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 1,
+    "d": 3,
+    "e": 5,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "abCB",
+    "bFdf",
+    "cf",
+    "d",
+    "E",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 13,
+   "census": 12,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 2,
+    "d": 2,
+    "e": 1,
+    "f": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aeBEf",
+    "b",
+    "c",
+    "dA",
+    "e",
+    "eBEf"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 14,
+   "census": 48,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 1,
+    "d": 1,
+    "e": 5,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aF",
+    "b",
+    "c",
+    "deFE",
+    "AfabE",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 14,
+   "census": 24,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 3,
+    "b": 2,
+    "c": 1,
+    "d": 1,
+    "e": 3,
+    "f": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aD",
+    "bdA",
+    "cfBab",
+    "d",
+    "eAd",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 15,
+   "census": 72,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 4,
+    "b": 3,
+    "c": 1,
+    "d": 4,
+    "e": 1,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "Da",
+    "eDEbeFEC",
+    "C",
+    "d",
+    "ebfB",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 17,
+   "census": 192,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 2,
+    "d": 3,
+    "e": 5,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aCEcADa",
+    "b",
+    "c",
+    "dB",
+    "e",
+    "ECeF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 16,
+   "census": 72,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 2,
+    "c": 4,
+    "d": 2,
+    "e": 4,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aEFe",
+    "b",
+    "ecAfaEaDA",
+    "D",
+    "e",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 17,
+   "census": 1152,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 5,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 5,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bfEDF",
+    "c",
+    "deaC",
+    "eafA",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 16,
+   "census": 72,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 4,
+    "b": 1,
+    "c": 2,
+    "d": 2,
+    "e": 3,
+    "f": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "acFC",
+    "bFef",
+    "c",
+    "dBfb",
+    "e",
+    "F"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 15,
+   "census": 96,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 3,
+    "d": 1,
+    "e": 2,
+    "f": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aEcbC",
+    "cFDB",
+    "c",
+    "cFD",
+    "E",
+    "fC"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 16,
+   "census": 240,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 6,
+    "d": 2,
+    "e": 2,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "ebEA",
+    "b",
+    "cEaeB",
+    "dc",
+    "eF",
+    "fA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 16,
+   "census": 96,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 3,
+    "c": 2,
+    "d": 1,
+    "e": 5,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bFceC",
+    "cdEae",
+    "dEae",
+    "e",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 17,
+   "census": 480,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 1,
+    "c": 3,
+    "d": 2,
+    "e": 6,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "A",
+    "b",
+    "cceC",
+    "dBcbF",
+    "e",
+    "BcbF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 16,
+   "census": 576,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 5,
+    "c": 5,
+    "d": 1,
+    "e": 2,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bcaCD",
+    "cBdcAC",
+    "caCD",
+    "E",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 18,
+   "census": 8640,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 4,
+    "b": 2,
+    "c": 7,
+    "d": 3,
+    "e": 1,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "acBC",
+    "b",
+    "cDfecDF",
+    "BBd",
+    "ecD",
+    "fB"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 20,
+   "census": 6912,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 5,
+    "c": 5,
+    "d": 4,
+    "e": 2,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "ad",
+    "bCaadAE",
+    "ceaDAA",
+    "d",
+    "E",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 18,
+   "census": 8640,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 7,
+    "b": 1,
+    "c": 2,
+    "d": 4,
+    "e": 3,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "afDFbF",
+    "bF",
+    "ce",
+    "d",
+    "eceFafD",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 19,
+   "census": 2880,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 2,
+    "c": 2,
+    "d": 3,
+    "e": 3,
+    "f": 7
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "caDedbeCE",
+    "b",
+    "cEBe",
+    "d",
+    "fe",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 18,
+   "census": 960,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 3,
+    "d": 3,
+    "e": 6,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bA",
+    "Fcaf",
+    "dafA",
+    "EFBcaf",
+    "F"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 18,
+   "census": 14400,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 2,
+    "c": 2,
+    "d": 1,
+    "e": 1,
+    "f": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "abeBa",
+    "bFcfadA",
+    "c",
+    "d",
+    "beBa",
+    "F"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 19,
+   "census": 1152,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 5,
+    "c": 2,
+    "d": 2,
+    "e": 2,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "dfBaceC",
+    "bFe",
+    "c",
+    "dfB",
+    "e",
+    "FaCA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 19,
+   "census": 288,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 3,
+    "c": 4,
+    "d": 2,
+    "e": 3,
+    "f": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "fa",
+    "b",
+    "cDedefdF",
+    "d",
+    "efdF",
+    "ffa"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 19,
+   "census": 34560,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 1,
+    "d": 5,
+    "e": 3,
+    "f": 7
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "ab",
+    "bfDF",
+    "cBF",
+    "daefA",
+    "ef",
+    "fA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 18,
+   "census": 1440,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 4,
+    "b": 3,
+    "c": 1,
+    "d": 2,
+    "e": 2,
+    "f": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bAbfB",
+    "cB",
+    "ddaDacBA",
+    "bFBcE",
+    "FA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 23,
+   "census": 691200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 7,
+    "c": 3,
+    "d": 3,
+    "e": 1,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "afDF",
+    "bd",
+    "cBDbFafdFAA",
+    "D",
+    "e",
+    "fBdb"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 23,
+   "census": 2073600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 2,
+   "degrees": {
+    "a": 4,
+    "b": 5,
+    "c": 1,
+    "d": 6,
+    "e": 1,
+    "f": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bceCfC",
+    "CAcFcECBa",
+    "ed",
+    "eDE",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 22,
+   "census": 69120,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 2,
+    "c": 7,
+    "d": 2,
+    "e": 5,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "acdCaFA",
+    "beBeb",
+    "AEaC",
+    "dCEc",
+    "e",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 22,
+   "census": 27648,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 3,
+    "c": 5,
+    "d": 2,
+    "e": 5,
+    "f": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "Da",
+    "e",
+    "acE",
+    "dCA",
+    "bebdCAB",
+    "fedCAE"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 22,
+   "census": 41472,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 3,
+    "c": 4,
+    "d": 4,
+    "e": 5,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "eA",
+    "be",
+    "bc",
+    "dEaFAB",
+    "e",
+    "fEdEaFABe"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 22,
+   "census": 207360,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 4,
+    "c": 1,
+    "d": 2,
+    "e": 7,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aDEDe",
+    "b",
+    "caD",
+    "d",
+    "e",
+    "FCDcEBeaDEDe"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 23,
+   "census": 2073600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 2,
+    "c": 3,
+    "d": 7,
+    "e": 7,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "adC",
+    "bdcDA",
+    "c",
+    "dbDBDE",
+    "edbdB",
+    "fD"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 22,
+   "census": 1935360,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 5,
+    "c": 3,
+    "d": 9,
+    "e": 2,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "baEACaEACE",
+    "caeA",
+    "aDEA",
+    "e",
+    "cF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 22,
+   "census": 29030400,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 9,
+    "b": 1,
+    "c": 4,
+    "d": 1,
+    "e": 6,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "abdB",
+    "b",
+    "cdbD",
+    "d",
+    "fdFecdBDCC",
+    "Bf"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 22,
+   "census": 1036800,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 6,
+    "c": 4,
+    "d": 7,
+    "e": 1,
+    "f": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "CbcfEFCBc",
+    "c",
+    "dfa",
+    "eFCBccaC",
+    "Cbc"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 25,
+   "census": 261273600,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 4,
+    "c": 11,
+    "d": 1,
+    "e": 2,
+    "f": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "be",
+    "cDbedbe",
+    "deDEBd",
+    "eA",
+    "ecfdED"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 24,
+   "census": 21772800,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 4,
+    "c": 2,
+    "d": 7,
+    "e": 8,
+    "f": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "A",
+    "bfcaFAeDF",
+    "caFAfE",
+    "dEafAC",
+    "e",
+    "fE"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 25,
+   "census": 24883200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 7,
+    "b": 1,
+    "c": 3,
+    "d": 2,
+    "e": 5,
+    "f": 7
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "fadeD",
+    "edECFcB",
+    "c",
+    "d",
+    "ebdEDAFB",
+    "Df"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 24,
+   "census": 414720,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 3,
+    "d": 7,
+    "e": 5,
+    "f": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "cEbfB",
+    "dbeFFBBDb",
+    "BdbbffE",
+    "f"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 24,
+   "census": 174182400,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 10,
+    "c": 1,
+    "d": 3,
+    "e": 3,
+    "f": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "AfBFD",
+    "b",
+    "cAfBFD",
+    "Fdfb",
+    "ef",
+    "afdfbF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 24,
+   "census": 104509440,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 5,
+    "c": 1,
+    "d": 4,
+    "e": 1,
+    "f": 10
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "bAbEfeC",
+    "b",
+    "cEFeB",
+    "dA",
+    "e",
+    "fdcEFeBD"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 24,
+   "census": 414720,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 5,
+    "c": 3,
+    "d": 3,
+    "e": 7,
+    "f": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bAbfB",
+    "cB",
+    "ddaDDdacBA",
+    "bFBcE",
+    "FA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 25,
+   "census": 8294400,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 7,
+    "c": 3,
+    "d": 5,
+    "e": 1,
+    "f": 3
+   },
+   "source": "spike growth from AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bAbfB",
+    "cB",
+    "ddaDacBA",
+    "bFBcE",
+    "EeFA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 25,
+   "census": 1382400,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 7,
+    "c": 3,
+    "d": 3,
+    "e": 3,
+    "f": 3
+   },
+   "source": "spike growth from AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bAbBbfB",
+    "cB",
+    "ddaDacBA",
+    "bFBcE",
+    "FA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "rank": 6,
+   "total_length": 25,
+   "census": 38707200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 6,
+    "b": 9,
+    "c": 3,
+    "d": 3,
+    "e": 1,
+    "f": 3
+   },
+   "source": "spike growth from AC1-AC3 walk from standard rank 6",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "af",
+    "b",
+    "c",
+    "d",
+    "eHfh",
+    "f",
+    "gC",
+    "H"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 13,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 4,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 2,
+    "d": 1,
+    "e": 1,
+    "f": 3,
+    "g": 1,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "AC",
+    "b",
+    "c",
+    "d",
+    "e",
+    "fGCg",
+    "g",
+    "H"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 12,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 5,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 3,
+    "d": 1,
+    "e": 1,
+    "f": 1,
+    "g": 3,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "AcBC",
+    "B",
+    "c",
+    "d",
+    "e",
+    "fd",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 12,
+   "census": 2,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 5,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 3,
+    "d": 2,
+    "e": 1,
+    "f": 1,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "agEG",
+    "bg",
+    "cF",
+    "d",
+    "e",
+    "f",
+    "gC",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 14,
+   "census": 6,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 2,
+    "d": 1,
+    "e": 2,
+    "f": 2,
+    "g": 4,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "ba",
+    "b",
+    "c",
+    "dEce",
+    "e",
+    "f",
+    "g",
+    "cH"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 13,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 4,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 3,
+    "d": 1,
+    "e": 3,
+    "f": 1,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aFgf",
+    "b",
+    "cH",
+    "d",
+    "e",
+    "f",
+    "Dg",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 13,
+   "census": 2,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 4,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 1,
+    "f": 3,
+    "g": 2,
+    "h": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "BabE",
+    "f",
+    "gC",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 12,
+   "census": 2,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 5,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 2,
+    "d": 1,
+    "e": 1,
+    "f": 1,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bd",
+    "DBBDC",
+    "d",
+    "e",
+    "f",
+    "gA",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 14,
+   "census": 12,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 5,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 1,
+    "d": 4,
+    "e": 1,
+    "f": 1,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "BA",
+    "c",
+    "Cdcb",
+    "e",
+    "f",
+    "g",
+    "ha"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 13,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 4,
+   "degrees": {
+    "a": 3,
+    "b": 2,
+    "c": 3,
+    "d": 1,
+    "e": 1,
+    "f": 1,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "c",
+    "da",
+    "eBdab",
+    "F",
+    "g",
+    "he"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 14,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 4,
+   "degrees": {
+    "a": 3,
+    "b": 3,
+    "c": 1,
+    "d": 2,
+    "e": 2,
+    "f": 1,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aF",
+    "B",
+    "cfEF",
+    "d",
+    "e",
+    "f",
+    "g",
+    "hfBF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 15,
+   "census": 120,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 1,
+    "d": 1,
+    "e": 2,
+    "f": 6,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "cAg",
+    "d",
+    "e",
+    "fcECG",
+    "G",
+    "hB"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 15,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 2,
+    "b": 2,
+    "c": 3,
+    "d": 1,
+    "e": 2,
+    "f": 1,
+    "g": 3,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "Ca",
+    "b",
+    "c",
+    "D",
+    "e",
+    "ffGFHAc",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 15,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 4,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 3,
+    "d": 1,
+    "e": 1,
+    "f": 3,
+    "g": 2,
+    "h": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aF",
+    "bcdCGDg",
+    "c",
+    "D",
+    "e",
+    "f",
+    "g",
+    "ChE"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 17,
+   "census": 24,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 4,
+    "d": 3,
+    "e": 2,
+    "f": 2,
+    "g": 3,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "Da",
+    "b",
+    "cGEgFe",
+    "d",
+    "e",
+    "fE",
+    "gH",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 16,
+   "census": 12,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 4,
+    "f": 2,
+    "g": 3,
+    "h": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "Cf",
+    "D",
+    "e",
+    "fe",
+    "gdCDDbd",
+    "ha"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 17,
+   "census": 24,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 2,
+    "b": 2,
+    "c": 2,
+    "d": 5,
+    "e": 2,
+    "f": 2,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bG",
+    "c",
+    "d",
+    "GeH",
+    "fe",
+    "gBcb",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 15,
+   "census": 4,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 2,
+    "d": 1,
+    "e": 2,
+    "f": 1,
+    "g": 3,
+    "h": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "ae",
+    "b",
+    "c",
+    "d",
+    "ebDB",
+    "fae",
+    "g",
+    "hhDH"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 17,
+   "census": 16,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 1,
+    "d": 3,
+    "e": 3,
+    "f": 1,
+    "g": 1,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "B",
+    "c",
+    "Ehed",
+    "e",
+    "f",
+    "g",
+    "hDEHe"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 15,
+   "census": 48,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 6,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 5,
+    "f": 1,
+    "g": 1,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "ba",
+    "B",
+    "cgbG",
+    "d",
+    "e",
+    "fGEce",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 16,
+   "census": 24,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 2,
+    "d": 1,
+    "e": 3,
+    "f": 1,
+    "g": 4,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "cfEF",
+    "d",
+    "e",
+    "fhaH",
+    "gd",
+    "hhAHF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 19,
+   "census": 288,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 3,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 2,
+    "f": 4,
+    "g": 1,
+    "h": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aedc",
+    "b",
+    "c",
+    "dc",
+    "e",
+    "fE",
+    "g",
+    "hdCDEAD"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 19,
+   "census": 864,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 4,
+    "d": 5,
+    "e": 4,
+    "f": 1,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bg",
+    "c",
+    "d",
+    "eFbgf",
+    "Efebg",
+    "g",
+    "hGdg"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 20,
+   "census": 960,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 1,
+    "d": 2,
+    "e": 3,
+    "f": 3,
+    "g": 6,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "dfA",
+    "b",
+    "ccGC",
+    "dfGF",
+    "e",
+    "df",
+    "g",
+    "hDaF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 20,
+   "census": 576,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 3,
+    "d": 4,
+    "e": 1,
+    "f": 5,
+    "g": 3,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bFaf",
+    "cDfd",
+    "d",
+    "eDAd",
+    "f",
+    "g",
+    "hGfg"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 20,
+   "census": 2304,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 1,
+    "c": 1,
+    "d": 5,
+    "e": 1,
+    "f": 5,
+    "g": 3,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bbFB",
+    "cAea",
+    "d",
+    "E",
+    "fc",
+    "g",
+    "hfEF"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 18,
+   "census": 48,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 3,
+    "b": 3,
+    "c": 2,
+    "d": 1,
+    "e": 3,
+    "f": 4,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aCbdGc",
+    "B",
+    "c",
+    "d",
+    "GbgdE",
+    "f",
+    "gDB",
+    "H"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 19,
+   "census": 432,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 4,
+    "c": 3,
+    "d": 4,
+    "e": 1,
+    "f": 1,
+    "g": 4,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aDgbd",
+    "b",
+    "caGdg",
+    "d",
+    "e",
+    "fG",
+    "gb",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 18,
+   "census": 288,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 1,
+    "d": 4,
+    "e": 1,
+    "f": 1,
+    "g": 5,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aGC",
+    "bChc",
+    "c",
+    "dBefcF",
+    "E",
+    "f",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 18,
+   "census": 48,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 5,
+    "d": 1,
+    "e": 2,
+    "f": 3,
+    "g": 2,
+    "h": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aeFE",
+    "bDGHg",
+    "c",
+    "d",
+    "e",
+    "fhEH",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 18,
+   "census": 72,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 2,
+    "e": 4,
+    "f": 2,
+    "g": 3,
+    "h": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "dbDh",
+    "cHcECfEF",
+    "d",
+    "e",
+    "ffaF",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 21,
+   "census": 384,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 3,
+    "d": 3,
+    "e": 3,
+    "f": 5,
+    "g": 1,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aG",
+    "begE",
+    "cFFbegEf",
+    "d",
+    "e",
+    "f",
+    "g",
+    "hfC"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 21,
+   "census": 3456,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 2,
+    "d": 1,
+    "e": 5,
+    "f": 5,
+    "g": 4,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "BCgc",
+    "cG",
+    "dBfbggeAG",
+    "aE",
+    "f",
+    "gA",
+    "H"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 22,
+   "census": 2880,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 4,
+    "b": 3,
+    "c": 3,
+    "d": 1,
+    "e": 2,
+    "f": 2,
+    "g": 6,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aeHEGHg",
+    "bF",
+    "c",
+    "d",
+    "e",
+    "fdeCE",
+    "ADag",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 22,
+   "census": 384,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 1,
+    "c": 2,
+    "d": 3,
+    "e": 5,
+    "f": 2,
+    "g": 3,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bFhf",
+    "Cb",
+    "D",
+    "ebCD",
+    "fd",
+    "gBhbcBE",
+    "H"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 22,
+   "census": 1920,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 6,
+    "c": 3,
+    "d": 3,
+    "e": 2,
+    "f": 3,
+    "g": 1,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aChGHC",
+    "gCGb",
+    "cGDg",
+    "d",
+    "egAG",
+    "f",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 22,
+   "census": 60480,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 4,
+    "d": 2,
+    "e": 1,
+    "f": 1,
+    "g": 8,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aeFcfGbFCfEg",
+    "b",
+    "c",
+    "d",
+    "eFcf",
+    "f",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 22,
+   "census": 17280,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 4,
+    "d": 1,
+    "e": 3,
+    "f": 7,
+    "g": 3,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "BFHfhCfbAB",
+    "cHFh",
+    "dg",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 21,
+   "census": 1152,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 3,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 2,
+    "d": 1,
+    "e": 1,
+    "f": 5,
+    "g": 2,
+    "h": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aEf",
+    "CHcaeAbG",
+    "cF",
+    "dE",
+    "e",
+    "fcF",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 21,
+   "census": 432,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 3,
+    "b": 1,
+    "c": 4,
+    "d": 1,
+    "e": 4,
+    "f": 4,
+    "g": 2,
+    "h": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "fA",
+    "eb",
+    "c",
+    "aFd",
+    "e",
+    "F",
+    "gCebcFc",
+    "BEhd"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 21,
+   "census": 432,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 3,
+    "c": 4,
+    "d": 2,
+    "e": 4,
+    "f": 4,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "agaHG",
+    "aDABaaFdA",
+    "Ch",
+    "d",
+    "e",
+    "aFd",
+    "G",
+    "hA"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 24,
+   "census": 967680,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 2,
+   "degrees": {
+    "a": 9,
+    "b": 1,
+    "c": 1,
+    "d": 4,
+    "e": 1,
+    "f": 2,
+    "g": 3,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "cFacAGf",
+    "DAgaC",
+    "e",
+    "Bfbe",
+    "AgaC",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 24,
+   "census": 34560,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 7,
+    "b": 3,
+    "c": 4,
+    "d": 1,
+    "e": 2,
+    "f": 3,
+    "g": 3,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aBGb",
+    "baHAAFa",
+    "c",
+    "ad",
+    "e",
+    "f",
+    "g",
+    "HHbaHAh"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 24,
+   "census": 725760,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 3,
+   "degrees": {
+    "a": 8,
+    "b": 4,
+    "c": 1,
+    "d": 1,
+    "e": 1,
+    "f": 2,
+    "g": 2,
+    "h": 5
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "b",
+    "c",
+    "cbCDC",
+    "e",
+    "fgHah",
+    "gHahBHAhGFb",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 26,
+   "census": 311040,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 2,
+   "degrees": {
+    "a": 4,
+    "b": 4,
+    "c": 4,
+    "d": 1,
+    "e": 1,
+    "f": 2,
+    "g": 3,
+    "h": 7
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "aggeBEG",
+    "B",
+    "c",
+    "d",
+    "e",
+    "f",
+    "eBEheAEg",
+    "heAE"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 24,
+   "census": 967680,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 4,
+   "degrees": {
+    "a": 3,
+    "b": 3,
+    "c": 1,
+    "d": 1,
+    "e": 9,
+    "f": 1,
+    "g": 4,
+    "h": 2
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "CfeFB",
+    "cDed",
+    "deFE",
+    "e",
+    "f",
+    "gc",
+    "HAefED"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 24,
+   "census": 207360,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 1,
+   "degrees": {
+    "a": 2,
+    "b": 1,
+    "c": 3,
+    "d": 4,
+    "e": 7,
+    "f": 5,
+    "g": 1,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "a",
+    "bhfH",
+    "ccDC",
+    "d",
+    "ehD",
+    "f",
+    "ghFHccDCB",
+    "hD"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 25,
+   "census": 691200,
+   "cap": 200000,
+   "status": "UNKNOWN_SIZE",
+   "verdict": "SKIPPED",
+   "minimum_defect": null,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 2,
+    "c": 6,
+    "d": 5,
+    "e": 1,
+    "f": 3,
+    "g": 1,
+    "h": 6
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "daeGE",
+    "bfhF",
+    "ch",
+    "eGEd",
+    "e",
+    "f",
+    "cgf",
+    "HeGEd"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 25,
+   "census": 103680,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 1,
+    "b": 1,
+    "c": 2,
+    "d": 3,
+    "e": 7,
+    "f": 4,
+    "g": 4,
+    "h": 3
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "adGDhAbadH",
+    "b",
+    "cF",
+    "Abad",
+    "FefgH",
+    "f",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 25,
+   "census": 20736,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 1,
+   "degrees": {
+    "a": 5,
+    "b": 3,
+    "c": 1,
+    "d": 4,
+    "e": 1,
+    "f": 4,
+    "g": 3,
+    "h": 4
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  },
+  {
+   "words": [
+    "ebEdFDCDCfca",
+    "b",
+    "cdf",
+    "DFBG",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "generators": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h"
+   ],
+   "rank": 8,
+   "total_length": 24,
+   "census": 13824,
+   "cap": 200000,
+   "status": "OK",
+   "verdict": "THICKENABLE",
+   "minimum_defect": 0,
+   "link_components": 2,
+   "degrees": {
+    "a": 1,
+    "b": 3,
+    "c": 4,
+    "d": 5,
+    "e": 3,
+    "f": 5,
+    "g": 2,
+    "h": 1
+   },
+   "source": "AC1-AC3 walk from standard rank 8",
+   "certified_by": "defect-0 witness (check_witness_n)"
+  }
+ ],
+ "seconds": 246.3
+}

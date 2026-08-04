@@ -217,6 +217,30 @@ them:
 * **no p-values are quoted** — class members come from a move tree and are not
   independent draws (same lesson, rule 3).
 
+### 4.2 AK(3) at rank 9–11, from three different triangulations
+
+`results/stable_ac/fable/rank_n_ac_search_ladderA_ak3.json`. Budget per run: 1,000 nodes,
+beam 6, branch 12, 800 evaluations, rank window [2, 11], 19 s each.
+
+| start | scheme | best defect (γ_N ≤) | best rank / length | γ_N = 0 found |
+|---|---|---|---|---|
+| AK(3) rank-9 triangulation | left-prefix (`S1` §4.4) | 2 (γ_N ≤ 1) | 9 / 30 | **no** |
+| AK(3) rank-9 triangulation | rotated start (`S1` §4.5 item 2) | 4 (γ_N ≤ 2) | 9 / 27 | **no** |
+| AK(3) rank-9 triangulation | inverted `r₁` (`S1` §4.5 item 4) | 2 (γ_N ≤ 1) | 10 / 32 | **no** |
+
+The three starts are the *same* presentation up to the triangulation choice family of
+`S1` §4.5, and by Theorem S3 all three have exactly AK(3)'s own `minimum_defect` of 4 —
+that is a theorem, quoted here only to say what the search started from, never as a
+measurement. **Do not read "4 → 2" as progress**: trap T-S6 — the *value* of γ_N is not
+comparable across cell structures, and the three rows above are three different complexes.
+The only topologically meaningful entry is the last column, and it is "no" in every row.
+
+`entangled_scored` is 997–999 out of 1,000 on these runs, i.e. essentially every state the
+objective was spent on had a stabilized generator occurring more than twice in at least
+two relators. The search is genuinely working outside the subdivision regime that
+Theorems S3 and T4′ prove inert — which is the whole point of doing this at rank 9 rather
+than triangulating and testing.
+
 <!--RESULTS-->
 
 ---
