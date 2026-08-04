@@ -1,2 +1,3 @@
   FALSIFICATION: gamma_N=0 states n=945 planar=945 NONPLANAR=0 uncertified=0
   gamma_N=1 parents n=1956 planar=1626 NONPLANAR=330 kuratowski={'K33': 330}
+  edges out of gamma_N=1 parents: 56388  planar children=26761  non-planar children=29627
