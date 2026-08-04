@@ -39,6 +39,39 @@ Is there a simple general method?*
 **Nothing here proves or disproves the AC or stable AC conjecture.** Three headline claims
 were retracted during the session; §4 is the record.
 
+### 0a. The last experiment, and the sharpest form of the answer (`S23_INBAND_RATE.md`)
+
+After three retractions the only version of the brief's question still worth asking was: **is
+the creation rate ever nonzero *in band* — without the escape into short presentations that
+AK(3) is denied — and does rank help it?** Both halves are now answered.
+
+**In-band creation is possible.** One control did it cleanly:
+`⟨x,y | YxYXXyyxx, XXXY⟩` (exact defect 4) reached `γ_N = 0` in 8 moves, every move
+independently re-verified, chain lengths `13,22,17,19,15,17,21,21,15` — never below 13. So
+the strong claim "no one can create a certificate in band" is **false**, and it is worth
+having that on record rather than assumed.
+
+**But it is rare, and AK(3)'s null is exactly what it predicts.** 26 of the other 27 hits
+leave the band, so the control rate collapses **27/40 = 0.68 raw → 1/40 = 0.025 in band**.
+AK(3)'s 0/8 is what a rate of 0.025 predicts.
+
+**Rank does not help — at matched detection power it falls**, 4/10 at ceiling 2 to 0/10 at
+ceiling 3, on five controls from two unrelated sources. Ceilings 4 and 5 are **starved, not
+negative** (median 32 and 88 decided states per run against 250 at ceilings 2–3, every run
+cut by the wall clock) and bound nothing.
+
+**And T-S20 recurs one level finer, which is the real result.** The single in-band hit carries
+the length-4 relator `XXXY = x⁻³y⁻¹`, a **primitive** element of `F(x,y)`. Across all 27 hits,
+**27 of 27 chains reach a relator of length ≤ 5, and 0 of 27 keep every relator at length ≥ 6**
+— AK(3)'s minimum relator length. Under that finer criterion the control rate is **0/40,
+identical to AK(3)**. The escape is not total length; it is **minimum relator length**, and
+controlling for it removes the entire gap.
+
+*A lead, explicitly not a result at `n = 8`:* `⟨x,y | xYXXXYx, yxYXyx⟩` is the only control
+matched to AK(3) on relator shape `[6,7]` *and* free of a unit abelianisation row, and it is
+the only control that scored **0/8** — like AK(3) — while the four differing on those axes
+scored 5/8, 6/8, 8/8, 8/8.
+
 ---
 
 ## 1. What was proved
