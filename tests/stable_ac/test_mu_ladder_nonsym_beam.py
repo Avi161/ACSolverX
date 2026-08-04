@@ -35,3 +35,18 @@ def test_already_below_stop():
     out = climb_beam("Yx", "Xy", beam_k=4, rungs=2, stop_mu=12)
     assert out["best_mu"] <= 12
     assert out["hits_stop"] is True
+
+
+def test_global_visited_blocks_return_to_start():
+    """Aut-min start stays in ``seen`` for the whole climb — multi-hop
+    cannot re-admit the initial orbit (not just one-hop parent≠child)."""
+    out = climb_beam("YYYXyyx", "YYXyyXyx", beam_k=4, rungs=8, cap=24,
+                     stop_mu=12, max_aut_canon=400)
+    start = tuple(out["start_autmin"])
+    # Every hop in every recorded chain lands on a *new* Aut-min vs parent,
+    # and the start orbit itself is never a later hop target.
+    for h in out["best_chain_hops"]:
+        assert tuple(h["rep"]) != start
+        assert tuple(h["rep"]) != tuple(h["parent_pair"])
+    # n_orbits_seen counts start + every newly admitted Aut-min.
+    assert out["n_orbits_seen"] >= 1 + len(out["best_chain_hops"])
