@@ -80,9 +80,19 @@ witness ⇒ γ_N ≤ 1) gives **exact** γ_N without a census:
 | `aca_122` | `YXXXyxx, YYYYYXyyyyx` | 18 | **1** |
 | `aca_115` = **AK(3)** | `YXYxyx, YYYYxxx` | 13 | **2** |
 
-(`aca_117` re-verified independently by the orchestrator: exhaustive census over 518,400
-rotations gives `minimum_defect` 2, and Todd–Coxeter gives index 1. AK(3) reproduces at
-defect 4, index 1.)
+**What the orchestrator re-verified independently, and what he did not.** All six were
+re-run through the cut-scheme solver and Todd–Coxeter: **6/6 `NOT_SPHERICAL`, 6/6 trivial
+group**, so the *lower* half of every bracket (γ_N ≥ 1) is independently confirmed. The
+*upper* half is not, for five of them: only `aca_117`'s census fits an exact enumeration
+(518,400 rotations → `minimum_defect` 2 → γ_N = 1 exactly). The others are far beyond it —
+3.6 · 10⁶, 2.9 · 10⁷, 2.6 · 10⁸, 2.6 · 10⁸ and 2.6 · 10⁹ rotations — so their γ_N = 1 rests
+on A9's defect-2 **witnesses**, which A9 reports as re-verified by two independent checkers
+but which were not re-checked here. AK(3) reproduces at defect 4, index 1.
+
+That asymmetry is the right way round for the purpose: a witness bounds γ_N from **above**,
+which is the direction that makes "closer to a certificate" meaningful, and a bad witness
+would only make a row look *better* than it is — so the ranking is the claim to treat with
+care, not the underlying `NOT_SPHERICAL` verdicts.
 
 By the project's audited graft ceiling (a graft lowers γ_N by at most 1), a thickenable
 member is only reachable from a γ_N = 1 state. **Six of AK(3)'s 123 unsolved siblings sit
