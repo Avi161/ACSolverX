@@ -122,7 +122,7 @@ and contradicts the trap it cites. T-S6 should be struck per `S3_AUDIT.md` repai
 
 ---
 
-## 3. The SPLIT flip census — the decisive measurement
+## 3. The SPLIT flip census — a small-instance measurement, and the conjecture it wrongly suggested
 
 ### 3.1 Design
 

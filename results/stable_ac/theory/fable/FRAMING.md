@@ -174,5 +174,18 @@ sources before load-bearing use)
   stabilization schedules (where Lemma-11/CoV proposes the stabilizing word) — design +
   soundness proofs here; production budgets are the user's.
 
+- **S — high-rank stabilization (rank ≫ 3). STATUS: the mechanisms are CLOSED; see
+  `S13_SYNTHESIS.md` for the whole line and start there.** Summary of what is now settled,
+  so this route is not re-opened by accident: abbreviation-style stabilization is a **CW
+  subdivision** and cannot change γ_N (S3, audited); generator splitting is **monotone**
+  (S8); change of variables is entirely **depth-1** (S1 Cor. F1); AC4/AC5 and the first
+  slide over a fresh stabilizer are inert (S6 T4/T4′); and the one measurement suggesting
+  certificates get commoner with rank was measuring **relator length** (S10, retracted after
+  audit). Live remnants: **Q(F2)** — is `~^{(1)} = ~^{(k)}` for `k ≥ 2`? (level 1 is BLOCKED,
+  it reduces to Panteleev–Ushakov); the **six certified γ_N = 1 gateways** among the 124
+  unsolved MS classes (S9/S13 §3a), which are rank-2 targets; and the **split-bracket
+  instrument** (S8 read forwards gives cheap γ_N upper bounds where the direct sampler is
+  blind).
+
 Route-selection rule: at least two live routes with incompatible mechanisms at all times;
 a route that reduces stable ACC to another open problem is BLOCKED and written up.
