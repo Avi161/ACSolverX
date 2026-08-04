@@ -29,6 +29,20 @@ length** (S10, retracted). Hunted at rank ceilings 2–6 on AK(3) (A7: 0/40 agai
 length-matched control's 39/40) and at depths 0–1 on all 124 unsolved classes, the extra
 generators produced **no certificate for any open case**.
 
+**(0) Read (i) and (ii) through this, added last and overriding both.** The session's nulls
+were originally presented as evidence about AK(3). They are not — see §3z-bis, **retracted**,
+and `S16_CONTROL_RETRACTION.md`. The calibration control was itself already thickenable, so
+it measured *survival* of a certificate, not *creation* of one; all 759 of its hits have
+defect chain `(0,0,0,0)`. Against three AC-trivial, length-matched, **non**-thickenable
+sources the pipeline scores 0 in 46,298 — exactly AK(3)'s score. **The real finding is
+about the instrument, not the target:** the chord + SPLIT pipeline created `γ_N = 0`
+**0 times in 93,638 opportunities** across three ranks while remaining demonstrably able to
+*find* certificates that already existed. It is certificate-preserving and
+certificate-non-creating, so it can only settle a presentation that already has a thickenable
+member at rank 2 — which AK(3) does not. **The cubic route cannot settle AK(3), and this
+retires it with a mechanism rather than with silence.** Nothing here bounds `Γ(AK(3))` from
+below; see `S15_ONE_SIDEDNESS.md` for why no instrument on this route ever can.
+
 **(ii) But high rank buys decidability, and the size of the effect is now measured.** The
 compatible census is `∏(deg−1)!`, so what matters is the *ratio* ℓ/n of total length to
 rank. A10's certified ladder, 163 rungs, two instruments agreeing with `missed = 0` in every

@@ -169,10 +169,14 @@ of such a construction after seven hours is not a surprise and is not a defect o
 approach; and, by FRAMING's own rule, any future candidate must be checked for a hidden
 reduction to the open problem before it is believed.
 
-The corollary also relocates the difficulty usefully. It is **not** that thickenable
-presentations are rare — the matched AC-trivial control produced 759 of them in 50,320
-states at rank 12–13. It is that no *construction* is known, only search; and search is on
-the upper-bound side, where silence is cheap.
+The corollary also relocates the difficulty usefully, and `S16` sharpens where. It is **not**
+that thickenable states are rare in the abstract — 759 were exhibited at rank 12–13. But
+every one of those descended from a root that was *already* thickenable (chain `(0,0,0,0)`,
+759 times), and across four non-thickenable roots the same pipeline created `γ_N = 0` **0
+times in 93,638 opportunities**. So the difficulty is not that certificates are scarce; it
+is that no known move **manufactures** one. Search is on the upper-bound side, where silence
+is cheap — and the instrument that produced the silence turns out to be incapable, by
+mechanism, of producing anything else on a non-thickenable input.
 
 ---
 
