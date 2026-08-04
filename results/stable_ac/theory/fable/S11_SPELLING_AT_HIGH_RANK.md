@@ -522,7 +522,49 @@ So it is **not a freak**: ~0.9 % of decided depth-2 spellings over these bases b
 and the search found the first one in under a second. It was invisible for ≈120,000
 measurements purely because every one of those measurements started from a reduced base.
 
-**The one thing still worth hunting**, and it is now sharply defined: a counterexample
+### 4.4 The mechanism — creating spikes come in SAME-LETTER pairs
+
+All 16 counterexamples were inspected for what distinguishes the creating spike:
+
+| feature | count |
+|---|---|
+| creating spike uses the **same signed letter** as the spike already in the base | **16 / 16** |
+| …in the same relator as it | 6 / 16 |
+| chain shape `defect(reduced) → defect(depth 1) → defect(depth 2)` | **`0 → 2 → 0` in 16/16** |
+
+At rank 2 there are four signed letters, so "same signed letter" is roughly a quarter of the
+candidate spikes and 100 % of the hits. (No p-value: spike images of one base are a move
+tree, not independent draws — `contrast-length-confound.md`.)
+
+**The reading, stated as a conjecture so it can be attacked.** A spike with letter `u`
+plants an A-loop at the germ pair `(dep u, arr u)` — R7 §0's `ℓ = {h_p, d_q}`. One such
+loop costs `+2` in defect. A **second** spike on the *same signed letter* plants a second
+loop on the same germ pair, and the two can be threaded through one another so that the
+cost cancels. Spikes on a letter pair up; it is the *parity* of same-letter spikes at a
+germ, not their number, that the defect sees. That the two spikes are usually in
+**different relators** (10/16) is the evidence that this is a statement about the germ,
+not about the word.
+
+**This is the "create" direction for AC3 conjugation that A8 asked about.** S6's Theorem T2
+proves a bare AC3 conjugation *is* a single spike up to cyclic rotation. A8 measured
+conjugation at **315 destroy / 0 create in 3,507** and read it as a law. Every one of those
+bases was cyclically reduced, i.e. carried no spike to pair with — so the corpus was
+structurally unable to see creation. Translated through T2, §4.3 says: **conjugating a
+second time by the same generator can restore what conjugating once destroyed.** A8's
+"0 create" is a sampling limit, not a law, and the same fix applies (test at conjugation
+depth ≥ 2).
+
+**The sober half, and it is the half that matters for AK(3).** In all 16 chains the
+*reduced* form already had defect 0. **Not one counterexample exhibits a spelling that
+beats its own reduced form.** `γ*(P) = γ_N(P_red)` held every time. What AK(3) needs is
+exactly the thing not observed: `γ_N(P_red) = 2` with some spelling at 0. So §4.3 removes
+a *proof* that this is impossible; it supplies no evidence that it is possible.
+
+### 4.5 The trivial-group hunt — the version the AC programme can actually use
+
+<!-- SRTRIV -->
+
+**The other thing still worth hunting**, sharply defined: a counterexample
 where **SR′ also fails** — a thickenable spelling *none* of whose one-step reductions is
 thickenable. That, and not this, would break the Corollary itself and put `γ*(AK(3)) = 0`
 genuinely back on the table. 0 of 16 here; the next session should widen this hunt (more

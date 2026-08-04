@@ -18,8 +18,8 @@ Artifacts (all new, under `results/stable_ac/fable/`):
 | `u124_gateway_neighbourhood.jsonl.gz` / `..._summary.json` | deeper harvest from the six γ_N = 1 gateways |
 
 Code: `experiments/stable_ac/fable/u124_thickenability.py`; tests
-`tests/test_u124_thickenability.py` (24 tests, all passing; the pre-existing suite
-`tests/fable` still passes 641/7-skipped).
+`tests/test_u124_thickenability.py` (24 tests, all passing). Combined run of the new file plus
+the pre-existing `tests/fable` suite: **695 passed, 8 skipped, 0 failed**.
 
 ---
 

@@ -49,3 +49,17 @@ A starved search does not crash and does not produce a suspicious number. It pro
 *exactly the null the experiment was designed to detect*, on both the target and the
 control, which makes the control look like it is doing its job. The comparison stays
 internally consistent all the way to the write-up.
+
+## Postscript, same session: a killed run that was not killed
+
+`pkill -f "s12_hunt --nodes"` reported success and the shell moved on, but the loop it was
+meant to stop was still alive 14 minutes later, three rungs further along, competing for the
+same 4 cores as its replacement — and running the *pre-fix* code semantics, so its rungs
+were not comparable with the new ones. The two runs wrote to different output paths, which
+is the only reason this was a wasted-CPU incident and not a corrupted artifact (contrast
+`parallel-runs-and-bound-direction.md`, where two writers shared one path).
+
+> After killing a long run, **verify by PID**: `ps -eo pid,etime,args | grep '[p]attern'`.
+> A pattern kill that matches the wrapper but not the child, or that races the shell, leaves
+> the child orphaned and running. And check `etime` — a process older than your last edit is
+> running code you no longer have.
