@@ -238,6 +238,23 @@ Recorded because the corrections are the most transferable part of the work.
    T-S9 — nulls about **orientable** thickenability only. They point at the disproof side of
    `FRAMING` §2 without being evidence of one.
 
+### 5b. The cheapest unexploited speed-up: planarity as a pre-filter
+
+In the cubic regime the link is **3-regular on 2N germs with 3N edges** (C1: 26 germs, 39
+edges, connected), and the compatible census is exactly `2^N` — 8,192 at N = 13, still under
+10⁶ at N = 20. Planarity of the link is **necessary** for thickenability, and `C1`'s link is
+in fact certified NONPLANAR, which is *why* its γ_N exceeds 0.
+
+So a linear-time planarity test would reject most candidates before any census runs. The
+repo has no fast path for this: `classify_cut_support` decides planarity but takes **3.9 s**
+on `C1` — 25× the census it is meant to avoid — and `networkx` is not installed in this
+container. The Euler bound cannot help either: a cubic link has `3N ≤ 6N − 6` edges for all
+`N ≥ 2`, so the sparsity certificate provably never fires in this regime.
+
+> **Implementing (or vendoring) a linear-time planarity test is the single cheapest way to
+> make cubic-regime sweeps 10–100× larger.** Until then, budget `0.155 s` per state and
+> report coverage as a fraction of the pool, not as an exhaustion.
+
 ### 5a. An instrument note for the cubic regime
 
 Measured on `C1` (rank 13, 13 relators of length 3): the exact factorial census takes
