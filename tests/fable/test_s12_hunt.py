@@ -129,8 +129,9 @@ def test_hunt_can_fire_from_a_non_thickenable_root():
     that is AC-trivial, some seed must reach a certificate."""
     assert H.decide(("xxYYY", "xyxYXY"))["verdict"] == "NOT_SPHERICAL"     # AK(2), a root
     hits = 0
-    for seed in range(6):
-        state, dec, _ = H.hunt(("xxYYY", "xyxYXY"), 0, 600, random.Random(seed))
+    for seed in range(8):
+        state, dec, _ = H.hunt(("xxYYY", "xyxYXY"), 0, 900, random.Random(seed),
+                               headroom=4)
         if state is not None:
             assert dec["verdict"] == "SPHERICAL"
             assert H.decide(state)["verdict"] == "SPHERICAL"     # independent re-check

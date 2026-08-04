@@ -421,19 +421,29 @@ immediately.
 
 **What is broken.**
 
-1. **Conjecture SR (R7 §3.1) is refuted.** It must be struck from R7 and from anything
-   downstream of it.
-2. **R7's "Corollary (conditional on SR)" loses its hypothesis.** The claims
-   *"`γ*(AK(3)) = 1` exactly"*, *"no spelling of AK(3) is thickenable"* and *"the entire
-   spelling-space route to a thickenable AK(3) is closed"* were derived from SR. They are
-   now **unsupported** — not disproved, but no longer proved. **The spelling route to
-   AK(3) is reopened**, in the exact sense that the argument which closed it is gone.
-3. **Conjecture U (unnesting) falls with it** — *if* R7's Theorem S10 (`U ⇒ SR`) is correct
-   as stated. Contrapositive: `¬SR ⇒ ¬U`. S10 was **not** re-derived here, so this is
-   reported as a consequence to check, not as an established refutation.
-4. **R7's "retroactive strengthening" is withdrawn.** The ≈17,100 `NOT_SPHERICAL` verdicts
-   in this project's corpus were to be upgraded from single-realization statements to
-   whole-spelling-family statements *under SR*. That upgrade is no longer available.
+1. **Conjecture SR (R7 §3.1) is refuted as stated.** SR quantifies over `(P, spike)` pairs;
+   here is a pair. It must be struck from R7 and nothing may be proved from it — anyone
+   attempting a proof of SR would be attempting to prove something false.
+2. **Conjecture U (unnesting) falls with it, and this one is a clean corollary.** R7's
+   **Theorem S10 is a theorem, not a conjecture** (proof written out in R7 §3, plus 502,976
+   machine verifications): a defect-0 system that is *unnested* at the spike pushes down to
+   `defect(ρ(C′)) = 0`. Contrapositive on the counterexample: `γ_N(P) = 1 ≠ 0`, so **no**
+   defect-0 rotation system of `spike(P)` is unnested at that spike — while
+   `γ_N(spike(P)) = 0`. That is exactly the negation of U. (Direct confirmation is cheap
+   and is the obvious next check: `spike(P)` has only **2** defect-0 systems; inspect both
+   for nesting at the leading `Yy`.)
+3. **R7's "Corollary (conditional on SR)" is not dead, but it now hangs on a different
+   conjecture.** *"`γ*(AK(3)) = 1` exactly"*, *"no spelling of AK(3) is thickenable"* and
+   *"the entire spelling-space route is closed"* were proved by iterating SR down the spike
+   chain. With SR false that proof is gone; with **SR′** (below) the induction goes through
+   again, because the induction only ever needs *one* good reduction per step. So the
+   honest status is: **the spelling route to AK(3) is no longer closed by a proof — it is
+   closed by a conjecture that has been weakened and never proved**, and the weakening is
+   not cosmetic, because the strong form is now known false.
+4. **R7's "retroactive strengthening" is withdrawn as stated.** The ≈17,100 `NOT_SPHERICAL`
+   verdicts were to be upgraded from single-realization to whole-spelling-family statements
+   *under SR*. Under SR′ the upgrade still follows, so this is a re-derivation to do, not a
+   loss — but until it is redone the upgrade must not be cited.
 
 **What is NOT broken, and this is the important half.**
 
@@ -447,6 +457,19 @@ immediately.
 
   SR′ still yields the Corollary by induction (each step takes the good reduction), and it
   held in **every** counterexample found here. It is unproved and is now the right target.
+
+  Through R7's Theorem S10 it has a concrete equivalent worth writing down, since it turns
+  the retarget into an ordinary combinatorial question:
+
+  > **U′.** Every thickenable spelled complex admits a defect-0 rotation system that is
+  > unnested at **at least one** of its spikes.
+  >
+  > `U′ ⇒ SR′ ⇒` R7's Corollary. U (unnested at *every* spike) is false; U′ is open.
+
+  The gap between U and U′ is exactly the gap between "the finger can always be pulled out"
+  and "some finger can always be pulled out", and R7 §3's own structural analysis of the
+  nested case — the loop `ℓ` at `t` being a separating curve in the sphere — is the right
+  tool for it, now pointed at a statement that is not already refuted.
 * **A8's "0 destroy of 997" is not contradicted.** Their reduction step is free *and
   cyclic* reduction, i.e. reduction to the reduced form, and full reduction of `spike(P)`
   lands on `("XYxY","XyX")` with defect 0. The correct reconciliation: *full reduction*

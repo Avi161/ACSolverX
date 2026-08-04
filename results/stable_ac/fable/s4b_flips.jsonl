@@ -1,0 +1,6 @@
+{"kind": "create", "arm": "ac2", "parent": ["xxY", "cBy", "aXY", "bXX", "cyA"], "child": ["xxY", "cBy", "aXY", "bY", "cyA"], "record": {"arm": "ac2", "i": 3, "j": 0, "eps": 1}, "parent_defect": 2}
+{"kind": "create", "arm": "ac2", "parent": ["xxy", "xxc", "ayX", "bAY", "cbY"], "child": ["xxy", "cY", "ayX", "bAY", "cbY"], "record": {"arm": "ac2", "i": 1, "j": 0, "eps": -1}, "parent_defect": 2}
+{"kind": "create", "arm": "ac2", "parent": ["xxy", "xxc", "ayX", "bAY", "cbY"], "child": ["xxy", "xxc", "ayxy", "bAY", "cbY"], "record": {"arm": "ac2", "i": 2, "j": 0, "eps": 1}, "parent_defect": 2}
+{"kind": "create", "arm": "ac2", "parent": ["cbX", "yxy", "aYX", "bAy", "cxy"], "child": ["cbX", "yxy", "aYXYXY", "bAy", "cxy"], "record": {"arm": "ac2", "i": 2, "j": 1, "eps": -1}, "parent_defect": 2}
+{"kind": "create", "arm": "ac2", "parent": ["cbX", "yxy", "aYX", "bAy", "cxy"], "child": ["cbX", "yxy", "aYX", "bAy", "cY"], "record": {"arm": "ac2", "i": 4, "j": 1, "eps": -1}, "parent_defect": 2}
+{"kind": "create", "arm": "ac2", "parent": ["cbX", "yxy", "aYX", "bAy", "cxy"], "child": ["cbXyxy", "yxy", "aYX", "bAy", "cxy"], "record": {"arm": "ac2", "i": 0, "j": 1, "eps": 1}, "parent_defect": 2}

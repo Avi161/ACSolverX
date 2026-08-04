@@ -1,1 +1,9 @@
   [sweep] 20/124 rows (19s)
+  [sweep] 40/124 rows (39s)
+  [sweep] 60/124 rows (62s)
+  [sweep] 80/124 rows (85s)
+  [sweep] 100/124 rows (117s)
+  [sweep] 120/124 rows (148s)
+  [sweep] 124/124 rows (152s)
+[sweep] 124 rows, verdicts {'NOT_SPHERICAL': 124}
+[sweep] no thickenable representative.

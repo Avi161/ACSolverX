@@ -1,6 +1,6 @@
 {
  "record": "u124_sweep_summary",
- "generated_at": "2026-08-04T07:40:13Z",
+ "generated_at": "2026-08-04T07:52:56Z",
  "claims": "MACHINERY + a decidable test of Lackenby's thickenability hypothesis on the 124 unsolved Miller-Schupp AC classes.  A SPHERICAL row would settle that open case; a NOT_SPHERICAL row says only that this presentation is not thickenable, which is NOT a statement about its AC class.",
  "units": "defects are UNHALVED; gamma_N = defect // 2; defect 0 == SPHERICAL",
  "source_csv": "results/stable_ac/fable/aca_124.csv",
@@ -143,6 +143,97 @@
   "aca_112",
   "aca_113",
   "aca_114"
+ ],
+ "sample_calibrated_meaning": "sample_calibrated = False means the ABSENCE of a lower witness at this length is uninformative -- the sampler's measured detection rate there is 0 or was never measured, so gamma_N_upper may be far above the truth.  It does NOT weaken a witness that WAS found: every recorded witness was re-verified by an independent recomputation of the defect, so gamma_N <= gamma_N_upper is a certificate at every length.",
+ "certified_gamma_N_rows": [
+  {
+   "name": "aca_117",
+   "pair": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "total_length": 14,
+   "gamma_N": 1,
+   "source": "exact_census"
+  },
+  {
+   "name": "aca_11",
+   "pair": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "total_length": 15,
+   "gamma_N": 1,
+   "source": "sample_upper + decision_lower"
+  },
+  {
+   "name": "aca_121",
+   "pair": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 16,
+   "gamma_N": 1,
+   "source": "sample_upper + decision_lower"
+  },
+  {
+   "name": "aca_17",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N": 1,
+   "source": "sample_upper + decision_lower"
+  },
+  {
+   "name": "aca_30",
+   "pair": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "total_length": 17,
+   "gamma_N": 1,
+   "source": "sample_upper + decision_lower"
+  },
+  {
+   "name": "aca_122",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 18,
+   "gamma_N": 1,
+   "source": "sample_upper + decision_lower"
+  },
+  {
+   "name": "aca_115",
+   "pair": [
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "total_length": 13,
+   "gamma_N": 2,
+   "source": "exact_census"
+  },
+  {
+   "name": "aca_116",
+   "pair": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "total_length": 14,
+   "gamma_N": 2,
+   "source": "exact_census"
+  }
+ ],
+ "gateways_gamma_N_1": [
+  "aca_117",
+  "aca_11",
+  "aca_121",
+  "aca_17",
+  "aca_30",
+  "aca_122"
  ],
  "fail_closed_rows": [],
  "exact_census_rows": [
@@ -297,6 +388,7 @@
    "gamma_N_exact": 1,
    "source": "exact_census",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": null
   },
   {
@@ -313,6 +405,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": true
   },
   {
@@ -329,6 +422,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": true
   },
   {
@@ -345,6 +439,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": true
   },
   {
@@ -361,6 +456,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": true
   },
   {
@@ -377,6 +473,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": false
   },
   {
@@ -393,6 +490,7 @@
    "gamma_N_exact": 2,
    "source": "exact_census",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": null
   },
   {
@@ -409,6 +507,7 @@
    "gamma_N_exact": 2,
    "source": "exact_census",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": true,
    "sample_calibrated": null
   },
   {
@@ -425,6 +524,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -441,6 +541,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -457,6 +558,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -473,6 +575,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -489,6 +592,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -505,6 +609,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -521,6 +626,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -537,6 +643,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -553,6 +660,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -569,6 +677,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -585,6 +694,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -601,6 +711,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -617,6 +728,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -633,6 +745,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -649,6 +762,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -665,6 +779,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -681,6 +796,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -697,6 +813,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -713,6 +830,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -729,6 +847,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -745,6 +864,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -761,6 +881,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -777,6 +898,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -793,6 +915,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -809,6 +932,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -825,6 +949,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -841,6 +966,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -857,6 +983,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -873,6 +1000,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -889,6 +1017,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": true
   },
   {
@@ -905,6 +1034,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -921,6 +1051,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -937,6 +1068,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -953,6 +1085,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -969,6 +1102,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -985,6 +1119,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1001,6 +1136,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1017,6 +1153,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1033,6 +1170,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1049,6 +1187,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1065,6 +1204,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1081,6 +1221,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1097,6 +1238,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1113,6 +1255,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1129,6 +1272,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1145,6 +1289,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1161,6 +1306,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1177,6 +1323,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1193,6 +1340,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1209,6 +1357,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1225,6 +1374,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1241,6 +1391,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1257,6 +1408,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1273,6 +1425,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1289,6 +1442,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1305,6 +1459,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1321,6 +1476,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1337,6 +1493,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1353,6 +1510,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1369,6 +1527,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1385,6 +1544,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1401,6 +1561,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1417,6 +1578,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1433,6 +1595,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1449,6 +1612,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1465,6 +1629,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1481,6 +1646,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1497,6 +1663,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1513,6 +1680,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1529,6 +1697,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1545,6 +1714,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1561,6 +1731,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1577,6 +1748,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1593,6 +1765,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1609,6 +1782,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1625,6 +1799,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1641,6 +1816,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1657,6 +1833,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1673,6 +1850,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1689,6 +1867,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1705,6 +1884,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1721,6 +1901,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1737,6 +1918,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1753,6 +1935,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1769,6 +1952,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1785,6 +1969,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1801,6 +1986,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1817,6 +2003,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1833,6 +2020,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1849,6 +2037,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1865,6 +2054,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1881,6 +2071,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1897,6 +2088,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1913,6 +2105,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1929,6 +2122,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1945,6 +2139,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1961,6 +2156,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1977,6 +2173,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -1993,6 +2190,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2009,6 +2207,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2025,6 +2224,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2041,6 +2241,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2057,6 +2258,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2073,6 +2275,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2089,6 +2292,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2105,6 +2309,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2121,6 +2326,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2137,6 +2343,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2153,6 +2360,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2169,6 +2377,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2185,6 +2394,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2201,6 +2411,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2217,6 +2428,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2233,6 +2445,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2249,6 +2462,7 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   },
   {
@@ -2265,11 +2479,12 @@
    "gamma_N_exact": null,
    "source": "sample_upper + decision_lower",
    "verdict": "NOT_SPHERICAL",
+   "gamma_N_certified": false,
    "sample_calibrated": false
   }
  ],
  "length_confound_warning": "The ranking key is an upper bound from a one-sided instrument whose tightness degrades with total length, and the rows span lengths 13-25.  Rows of different length are NOT comparable (experiments/lessons/contrast-length-confound.md).  Read stage 'calibration' before using any row's upper bound as a measurement.",
- "elapsed_seconds": 155.7,
+ "elapsed_seconds": 152.0,
  "outputs": {
   "rows": "results/stable_ac/fable/u124_sweep.jsonl",
   "summary": "results/stable_ac/fable/u124_sweep_summary.json"

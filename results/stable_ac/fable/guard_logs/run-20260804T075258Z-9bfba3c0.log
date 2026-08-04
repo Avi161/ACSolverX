@@ -1,0 +1,7 @@
+flip census: 401 sources (length 9, + AK(3))
+  *** AC2 CREATED gamma_N=0: ['xxY', 'cBy', 'aXY', 'bY', 'cyA'] from ['xxY', 'cBy', 'aXY', 'bXX', 'cyA']
+  *** AC2 CREATED gamma_N=0: ['xxy', 'cY', 'ayX', 'bAY', 'cbY'] from ['xxy', 'xxc', 'ayX', 'bAY', 'cbY']
+  *** AC2 CREATED gamma_N=0: ['xxy', 'xxc', 'ayxy', 'bAY', 'cbY'] from ['xxy', 'xxc', 'ayX', 'bAY', 'cbY']
+  *** AC2 CREATED gamma_N=0: ['cbX', 'yxy', 'aYXYXY', 'bAy', 'cxy'] from ['cbX', 'yxy', 'aYX', 'bAy', 'cxy']
+  *** AC2 CREATED gamma_N=0: ['cbX', 'yxy', 'aYX', 'bAy', 'cY'] from ['cbX', 'yxy', 'aYX', 'bAy', 'cxy']
+  *** AC2 CREATED gamma_N=0: ['cbXyxy', 'yxy', 'aYX', 'bAy', 'cxy'] from ['cbX', 'yxy', 'aYX', 'bAy', 'cxy']

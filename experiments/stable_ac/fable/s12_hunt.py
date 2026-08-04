@@ -255,12 +255,13 @@ def load_ladder(n, rng, lo=13, hi=25):
 
 # --------------------------------------------------------------------------- main
 
-def repeat_hunt(base, kstab, nodes, trials, seed, census_cap):
+def repeat_hunt(base, kstab, nodes, trials, seed, census_cap, headroom=4):
     """`trials` independent hunts on one presentation; returns (hits, rows)."""
     hits, rows = 0, []
     for t in range(trials):
         rng = random.Random(seed + 7919 * t + 104729 * kstab)
-        st, d, s = hunt(base, kstab, nodes, rng, census_cap=census_cap)
+        st, d, s = hunt(base, kstab, nodes, rng, headroom=headroom,
+                        census_cap=census_cap)
         rows.append({"trial": t, "hit": st is not None,
                      "state": list(st) if st else None, "stats": s})
         hits += st is not None
@@ -287,11 +288,11 @@ def cmd_target(args):
         c_hits = c_n = 0
         for w in controls:
             h, _ = repeat_hunt(w, k, args.nodes, args.control_trials, args.seed,
-                               args.census_cap)
+                               args.census_cap, args.headroom)
             c_hits += h
             c_n += args.control_trials
         t_hits, t_rows = repeat_hunt(target, k, args.nodes, args.trials, args.seed,
-                                     args.census_cap)
+                                     args.census_cap, args.headroom)
         rate = c_hits / c_n if c_n else float("nan")
         report["by_depth"][k] = {
             "control_hits": c_hits, "control_trials": c_n, "control_rate": rate,
@@ -318,6 +319,9 @@ def main():
     ap.add_argument("--ladder", type=int, default=15)
     ap.add_argument("--seed", type=int, default=20260804)
     ap.add_argument("--census-cap", type=int, default=200_000)
+    ap.add_argument("--headroom", type=int, default=4,
+                    help="per-relator cap = root total length + headroom "
+                         "(the project harvest operator uses +4)")
     ap.add_argument("--out", default="results/stable_ac/fable/s12_hunt.json")
     ap.add_argument("--target", default=None,
                     help="comma-separated relators, e.g. xyxYXY,xxxYYYY for AK(3); "
@@ -337,7 +341,8 @@ def main():
     ladder = load_ladder(args.ladder, random.Random(args.seed))
     lad_hits = 0
     for w in ladder:
-        st, d, s = hunt(w, args.kstab, args.nodes, rng, census_cap=args.census_cap)
+        st, d, s = hunt(w, args.kstab, args.nodes, rng, headroom=args.headroom,
+                        census_cap=args.census_cap)
         hit = st is not None
         lad_hits += hit
         report["rows"].append({"set": "ladder", "base": list(w),
@@ -351,7 +356,8 @@ def main():
 
     hits = []
     for name, w in load_u124()[:args.limit]:
-        st, d, s = hunt(w, args.kstab, args.nodes, rng, census_cap=args.census_cap)
+        st, d, s = hunt(w, args.kstab, args.nodes, rng, headroom=args.headroom,
+                        census_cap=args.census_cap)
         row = {"set": "u124", "name": name, "base": list(w),
                "length": sum(len(x) for x in w), "hit": st is not None,
                "state": list(st) if st else None, "stats": s}
