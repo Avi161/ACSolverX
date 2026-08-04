@@ -1,0 +1,2277 @@
+{
+ "record": "u124_sweep_summary",
+ "generated_at": "2026-08-04T07:40:13Z",
+ "claims": "MACHINERY + a decidable test of Lackenby's thickenability hypothesis on the 124 unsolved Miller-Schupp AC classes.  A SPHERICAL row would settle that open case; a NOT_SPHERICAL row says only that this presentation is not thickenable, which is NOT a statement about its AC class.",
+ "units": "defects are UNHALVED; gamma_N = defect // 2; defect 0 == SPHERICAL",
+ "source_csv": "results/stable_ac/fable/aca_124.csv",
+ "rows": 124,
+ "budgets": {
+  "census_cap": 2000000,
+  "sample_budget_per_seed": 40000,
+  "sample_seeds": 3,
+  "scheme_budget": 200000,
+  "branch_budget": 2000000,
+  "tc_cap": 2000000,
+  "master_seed": 20260804
+ },
+ "LOUD_THICKENABLE_ALERT": false,
+ "thickenable_rows": [],
+ "decision_verdict_histogram": {
+  "NOT_SPHERICAL": 124
+ },
+ "decision_method_histogram": {
+  "r1c_v2_solver": 124
+ },
+ "two_sided_rows": 124,
+ "informative_rows": 124,
+ "uninformative_rows": [],
+ "sample_calibration": {
+  "available": true,
+  "path": "results/stable_ac/fable/u124_calibration.json",
+  "rate_by_length": {
+   "13": 1.0,
+   "14": 0.9167,
+   "15": 0.8333,
+   "16": 0.9167,
+   "17": 0.5,
+   "19": 0.0
+  },
+  "a_rate_by_length": {
+   "13": 1.0,
+   "14": 0.9167,
+   "15": 1.0,
+   "16": 1.0,
+   "17": 1.0,
+   "19": 1.0
+  },
+  "blind_from_length": 19,
+  "lengths_with_no_positive_control": [
+   18,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25
+  ]
+ },
+ "rows_with_uncalibrated_sampled_bound": [
+  "aca_122",
+  "aca_0",
+  "aca_34",
+  "aca_35",
+  "aca_36",
+  "aca_4",
+  "aca_53",
+  "aca_37",
+  "aca_38",
+  "aca_39",
+  "aca_40",
+  "aca_41",
+  "aca_43",
+  "aca_44",
+  "aca_45",
+  "aca_46",
+  "aca_47",
+  "aca_48",
+  "aca_5",
+  "aca_50",
+  "aca_51",
+  "aca_52",
+  "aca_54",
+  "aca_55",
+  "aca_57",
+  "aca_123",
+  "aca_59",
+  "aca_60",
+  "aca_61",
+  "aca_72",
+  "aca_75",
+  "aca_76",
+  "aca_77",
+  "aca_78",
+  "aca_42",
+  "aca_49",
+  "aca_56",
+  "aca_6",
+  "aca_58",
+  "aca_71",
+  "aca_62",
+  "aca_63",
+  "aca_64",
+  "aca_65",
+  "aca_66",
+  "aca_67",
+  "aca_68",
+  "aca_69",
+  "aca_70",
+  "aca_73",
+  "aca_74",
+  "aca_79",
+  "aca_80",
+  "aca_95",
+  "aca_81",
+  "aca_82",
+  "aca_83",
+  "aca_84",
+  "aca_85",
+  "aca_86",
+  "aca_87",
+  "aca_88",
+  "aca_89",
+  "aca_92",
+  "aca_97",
+  "aca_99",
+  "aca_90",
+  "aca_91",
+  "aca_93",
+  "aca_94",
+  "aca_96",
+  "aca_98",
+  "aca_100",
+  "aca_101",
+  "aca_102",
+  "aca_103",
+  "aca_104",
+  "aca_105",
+  "aca_106",
+  "aca_107",
+  "aca_108",
+  "aca_109",
+  "aca_110",
+  "aca_111",
+  "aca_112",
+  "aca_113",
+  "aca_114"
+ ],
+ "fail_closed_rows": [],
+ "exact_census_rows": [
+  {
+   "name": "aca_117",
+   "expected_cases": 518400,
+   "minimum_defect": 2,
+   "gamma_N": 1
+  },
+  {
+   "name": "aca_115",
+   "expected_cases": 86400,
+   "minimum_defect": 4,
+   "gamma_N": 2
+  },
+  {
+   "name": "aca_116",
+   "expected_cases": 518400,
+   "minimum_defect": 4,
+   "gamma_N": 2
+  }
+ ],
+ "ak3_anchor": {
+  "row": "aca_115",
+  "pair": [
+   "YXYxyx",
+   "YYYYxxx"
+  ],
+  "pinned_minimum_defect": 4,
+  "reproduced": true,
+  "decision": "NOT_SPHERICAL",
+  "rank": 7
+ },
+ "todd_coxeter": {
+  "trivial": 124,
+  "not_trivial": 0,
+  "incomplete": 0
+ },
+ "gamma_upper_histogram": {
+  "1": 6,
+  "2": 65,
+  "3": 32,
+  "4": 21
+ },
+ "gamma_upper_by_length": {
+  "13": {
+   "n": 1,
+   "min": 2,
+   "median": 2,
+   "max": 2
+  },
+  "14": {
+   "n": 2,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "15": {
+   "n": 8,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "16": {
+   "n": 6,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "17": {
+   "n": 20,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "18": {
+   "n": 7,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "19": {
+   "n": 22,
+   "min": 2,
+   "median": 2,
+   "max": 3
+  },
+  "20": {
+   "n": 7,
+   "min": 2,
+   "median": 2,
+   "max": 3
+  },
+  "21": {
+   "n": 18,
+   "min": 2,
+   "median": 3,
+   "max": 3
+  },
+  "22": {
+   "n": 6,
+   "min": 3,
+   "median": 3,
+   "max": 3
+  },
+  "23": {
+   "n": 9,
+   "min": 3,
+   "median": 4,
+   "max": 4
+  },
+  "24": {
+   "n": 2,
+   "min": 3,
+   "median": 4,
+   "max": 4
+  },
+  "25": {
+   "n": 16,
+   "min": 3,
+   "median": 4,
+   "max": 4
+  }
+ },
+ "length_histogram": {
+  "13": 1,
+  "14": 2,
+  "15": 8,
+  "16": 6,
+  "17": 20,
+  "18": 7,
+  "19": 22,
+  "20": 7,
+  "21": 18,
+  "22": 6,
+  "23": 9,
+  "24": 2,
+  "25": 16
+ },
+ "ranking": [
+  {
+   "rank": 1,
+   "name": "aca_117",
+   "pair": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "total_length": 14,
+   "census_family_size": 518400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "gamma_N_exact": 1,
+   "source": "exact_census",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": null
+  },
+  {
+   "rank": 2,
+   "name": "aca_11",
+   "pair": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 3,
+   "name": "aca_121",
+   "pair": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 16,
+   "census_family_size": 29030400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 4,
+   "name": "aca_17",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 5,
+   "name": "aca_30",
+   "pair": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 6,
+   "name": "aca_122",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 18,
+   "census_family_size": 2612736000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 7,
+   "name": "aca_115",
+   "pair": [
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "total_length": 13,
+   "census_family_size": 86400,
+   "gamma_N_lower": 2,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": 2,
+   "source": "exact_census",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": null
+  },
+  {
+   "rank": 8,
+   "name": "aca_116",
+   "pair": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "total_length": 14,
+   "census_family_size": 518400,
+   "gamma_N_lower": 2,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": 2,
+   "source": "exact_census",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": null
+  },
+  {
+   "rank": 9,
+   "name": "aca_1",
+   "pair": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 10,
+   "name": "aca_10",
+   "pair": [
+    "YXXXyxx",
+    "YYXYXyyX"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 11,
+   "name": "aca_118",
+   "pair": [
+    "YXXyxYx",
+    "YYYYXyxx"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 12,
+   "name": "aca_12",
+   "pair": [
+    "YXXXyxx",
+    "YYXYxyyX"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 13,
+   "name": "aca_14",
+   "pair": [
+    "YXXyXyx",
+    "YYYXyyxx"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 14,
+   "name": "aca_8",
+   "pair": [
+    "YXyXYxx",
+    "YYXYXyyx"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 15,
+   "name": "aca_9",
+   "pair": [
+    "YXXXyxx",
+    "YYYXXyyX"
+   ],
+   "total_length": 15,
+   "census_family_size": 3628800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 16,
+   "name": "aca_119",
+   "pair": [
+    "YXXyxYx",
+    "YYYYYXyxx"
+   ],
+   "total_length": 16,
+   "census_family_size": 29030400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 17,
+   "name": "aca_120",
+   "pair": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 16,
+   "census_family_size": 29030400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 18,
+   "name": "aca_13",
+   "pair": [
+    "YYXXYYx",
+    "YXXXyxxYx"
+   ],
+   "total_length": 16,
+   "census_family_size": 29030400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 19,
+   "name": "aca_2",
+   "pair": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "total_length": 16,
+   "census_family_size": 29030400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 20,
+   "name": "aca_7",
+   "pair": [
+    "YYXXyxx",
+    "YYYYxYXYX"
+   ],
+   "total_length": 16,
+   "census_family_size": 29030400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 21,
+   "name": "aca_15",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 22,
+   "name": "aca_16",
+   "pair": [
+    "YYXXXyxx",
+    "YXyxxyXYx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 23,
+   "name": "aca_18",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 24,
+   "name": "aca_19",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 25,
+   "name": "aca_20",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 26,
+   "name": "aca_21",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 27,
+   "name": "aca_22",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 28,
+   "name": "aca_23",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 29,
+   "name": "aca_24",
+   "pair": [
+    "YYXXXYxx",
+    "YYYXXYXYx"
+   ],
+   "total_length": 17,
+   "census_family_size": 203212800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 30,
+   "name": "aca_25",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 31,
+   "name": "aca_26",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 32,
+   "name": "aca_27",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 33,
+   "name": "aca_28",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 34,
+   "name": "aca_29",
+   "pair": [
+    "YYXXXyx",
+    "YYxxyxyXyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 203212800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 35,
+   "name": "aca_3",
+   "pair": [
+    "YXXyxYx",
+    "YYYYYxyxyX"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 36,
+   "name": "aca_31",
+   "pair": [
+    "YYXXyxx",
+    "YYYYYXyXyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 261273600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 37,
+   "name": "aca_32",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYXyxyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 203212800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 38,
+   "name": "aca_33",
+   "pair": [
+    "YXXXyxYx",
+    "YYXyXyxyx"
+   ],
+   "total_length": 17,
+   "census_family_size": 203212800,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": true
+  },
+  {
+   "rank": 39,
+   "name": "aca_0",
+   "pair": [
+    "YXXyxYx",
+    "YYYYYYXyxyX"
+   ],
+   "total_length": 18,
+   "census_family_size": 2612736000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 40,
+   "name": "aca_34",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 18,
+   "census_family_size": 2612736000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 41,
+   "name": "aca_35",
+   "pair": [
+    "YYXXXyx",
+    "YYYxxyxyXyX"
+   ],
+   "total_length": 18,
+   "census_family_size": 1625702400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 42,
+   "name": "aca_36",
+   "pair": [
+    "YYXYYXXyX",
+    "YYXyxYXXX"
+   ],
+   "total_length": 18,
+   "census_family_size": 1625702400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 43,
+   "name": "aca_4",
+   "pair": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "total_length": 18,
+   "census_family_size": 1625702400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 44,
+   "name": "aca_53",
+   "pair": [
+    "YXXyxYx",
+    "YYXyyXyxyxx"
+   ],
+   "total_length": 18,
+   "census_family_size": 1625702400,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 45,
+   "name": "aca_37",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 46,
+   "name": "aca_38",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 47,
+   "name": "aca_39",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 48,
+   "name": "aca_40",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYxyyyyX"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 49,
+   "name": "aca_41",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 50,
+   "name": "aca_43",
+   "pair": [
+    "YXXYxYxxx",
+    "YYXyyXXyxx"
+   ],
+   "total_length": 19,
+   "census_family_size": 18289152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 51,
+   "name": "aca_44",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYXXyXyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 14631321600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 52,
+   "name": "aca_45",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYXXXYxx"
+   ],
+   "total_length": 19,
+   "census_family_size": 18289152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 53,
+   "name": "aca_46",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 54,
+   "name": "aca_47",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYxyyyyX"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 55,
+   "name": "aca_48",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYXXyxxx"
+   ],
+   "total_length": 19,
+   "census_family_size": 18289152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 56,
+   "name": "aca_5",
+   "pair": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 14631321600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 57,
+   "name": "aca_50",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 58,
+   "name": "aca_51",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 59,
+   "name": "aca_52",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 60,
+   "name": "aca_54",
+   "pair": [
+    "YYXXXXyxx",
+    "YYxxyXXXXX"
+   ],
+   "total_length": 19,
+   "census_family_size": 57480192000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 61,
+   "name": "aca_55",
+   "pair": [
+    "YXXXyXYx",
+    "YYxyxYXXyyX"
+   ],
+   "total_length": 19,
+   "census_family_size": 14631321600,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 62,
+   "name": "aca_57",
+   "pair": [
+    "YYXXXyxx",
+    "YYXYYxyXXXX"
+   ],
+   "total_length": 19,
+   "census_family_size": 18289152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 63,
+   "name": "aca_123",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 20,
+   "census_family_size": 344881152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 64,
+   "name": "aca_59",
+   "pair": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+   ],
+   "total_length": 20,
+   "census_family_size": 344881152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 65,
+   "name": "aca_60",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYXXyxxx"
+   ],
+   "total_length": 20,
+   "census_family_size": 146313216000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 66,
+   "name": "aca_61",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYYXXXYxx"
+   ],
+   "total_length": 20,
+   "census_family_size": 146313216000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 67,
+   "name": "aca_72",
+   "pair": [
+    "YXXYxYxxx",
+    "YYYxyyXXYxx"
+   ],
+   "total_length": 20,
+   "census_family_size": 146313216000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 68,
+   "name": "aca_75",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYYXXXYxx"
+   ],
+   "total_length": 21,
+   "census_family_size": 1316818944000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 69,
+   "name": "aca_76",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYYXXyxxx"
+   ],
+   "total_length": 21,
+   "census_family_size": 1316818944000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 70,
+   "name": "aca_77",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYYYXXXYxx"
+   ],
+   "total_length": 21,
+   "census_family_size": 1316818944000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 71,
+   "name": "aca_78",
+   "pair": [
+    "YYXXyx",
+    "YYYYYYYXyXyxyXX"
+   ],
+   "total_length": 21,
+   "census_family_size": 2414168064000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 72,
+   "name": "aca_42",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 73,
+   "name": "aca_49",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYxyyyyX"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 74,
+   "name": "aca_56",
+   "pair": [
+    "YYXXXyxx",
+    "YYXYYxxyXXX"
+   ],
+   "total_length": 19,
+   "census_family_size": 18289152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 75,
+   "name": "aca_6",
+   "pair": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "total_length": 19,
+   "census_family_size": 28740096000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 76,
+   "name": "aca_58",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 20,
+   "census_family_size": 344881152000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 77,
+   "name": "aca_71",
+   "pair": [
+    "YXXXyXyxx",
+    "YYYxyyXXXyx"
+   ],
+   "total_length": 20,
+   "census_family_size": 146313216000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 78,
+   "name": "aca_62",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 79,
+   "name": "aca_63",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 80,
+   "name": "aca_64",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 81,
+   "name": "aca_65",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 82,
+   "name": "aca_66",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 83,
+   "name": "aca_67",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 84,
+   "name": "aca_68",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 85,
+   "name": "aca_69",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 86,
+   "name": "aca_70",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 87,
+   "name": "aca_73",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 88,
+   "name": "aca_74",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 89,
+   "name": "aca_79",
+   "pair": [
+    "YYXXXyyxx",
+    "YXXXXXyxxYxx"
+   ],
+   "total_length": 21,
+   "census_family_size": 4483454976000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 90,
+   "name": "aca_80",
+   "pair": [
+    "YXXXXyxxYx",
+    "YXYxYXyxyXX"
+   ],
+   "total_length": 21,
+   "census_family_size": 2414168064000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 91,
+   "name": "aca_95",
+   "pair": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+   ],
+   "total_length": 21,
+   "census_family_size": 1316818944000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 92,
+   "name": "aca_81",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 22,
+   "census_family_size": 62768369664000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 93,
+   "name": "aca_82",
+   "pair": [
+    "YYYXXXXXyyx",
+    "YYXyxxyyxYX"
+   ],
+   "total_length": 22,
+   "census_family_size": 13168189440000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 94,
+   "name": "aca_83",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "total_length": 22,
+   "census_family_size": 13168189440000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 95,
+   "name": "aca_84",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "total_length": 22,
+   "census_family_size": 13168189440000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 96,
+   "name": "aca_85",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 22,
+   "census_family_size": 62768369664000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 97,
+   "name": "aca_86",
+   "pair": [
+    "YYYXXXXXyyX",
+    "YYXyxxyyXYx"
+   ],
+   "total_length": 22,
+   "census_family_size": 13168189440000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 98,
+   "name": "aca_87",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 99,
+   "name": "aca_88",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYXXYxyXyXyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 144850083840000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 100,
+   "name": "aca_89",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 101,
+   "name": "aca_92",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 102,
+   "name": "aca_97",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 24,
+   "census_family_size": 15064408719360000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 103,
+   "name": "aca_99",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 104,
+   "name": "aca_90",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 105,
+   "name": "aca_91",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 106,
+   "name": "aca_93",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYxyyyyyyX"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 107,
+   "name": "aca_94",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 108,
+   "name": "aca_96",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "census_family_size": 941525544960000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 109,
+   "name": "aca_98",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 24,
+   "census_family_size": 15064408719360000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 110,
+   "name": "aca_100",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYYXXyXyXyXyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 22596613079040000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 111,
+   "name": "aca_101",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 112,
+   "name": "aca_102",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 113,
+   "name": "aca_103",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 114,
+   "name": "aca_104",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 115,
+   "name": "aca_105",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 116,
+   "name": "aca_106",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 117,
+   "name": "aca_107",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 118,
+   "name": "aca_108",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 119,
+   "name": "aca_109",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 120,
+   "name": "aca_110",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 121,
+   "name": "aca_111",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 122,
+   "name": "aca_112",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 123,
+   "name": "aca_113",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  },
+  {
+   "rank": 124,
+   "name": "aca_114",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "census_family_size": 256094948229120000,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "gamma_N_exact": null,
+   "source": "sample_upper + decision_lower",
+   "verdict": "NOT_SPHERICAL",
+   "sample_calibrated": false
+  }
+ ],
+ "length_confound_warning": "The ranking key is an upper bound from a one-sided instrument whose tightness degrades with total length, and the rows span lengths 13-25.  Rows of different length are NOT comparable (experiments/lessons/contrast-length-confound.md).  Read stage 'calibration' before using any row's upper bound as a measurement.",
+ "elapsed_seconds": 155.7,
+ "outputs": {
+  "rows": "results/stable_ac/fable/u124_sweep.jsonl",
+  "summary": "results/stable_ac/fable/u124_sweep_summary.json"
+ }
+}

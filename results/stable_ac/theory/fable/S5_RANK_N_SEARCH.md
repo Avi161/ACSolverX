@@ -9,7 +9,15 @@ Branch `claude/stable-ac-conjecture-stabilization-rwo9as`; **must be merged into
 Code: `experiments/stable_ac/fable/rank_n_ac_search.py`.
 Tests: `tests/test_rank_n_ac_search.py` (36 tests). Full suite at the time of writing:
 **702 passed, 7 skipped** (before the six S6-driven tests were added; 708 after).
-Artifacts: `results/stable_ac/fable/rank_n_ac_search_*.json` + `*_rows.jsonl`.
+Artifacts, all under `results/stable_ac/fable/`:
+
+| file | what it backs |
+|---|---|
+| `rank_n_ac_search_depth_ladder.json` (+ `_rows.jsonl`) | §4.1, the depth / rank-filtration ladder, 80 runs |
+| `rank_n_ac_search_ladderA_ak3.json` (+ `_rows.jsonl`) | §4.2, the three AK(3) rank-9 triangulation runs (plus a 6-member ladder-A subset) |
+| `rank_n_ac_search_ladderAB.json` (+ `_rows.jsonl`) | §4.3 (ladder A, 12 runs) and §4.4 (ladder B, 4 runs) |
+| `rank_n_ac_search_ladderB_preS6weights.json` (+ `_rows.jsonl`) | §4.4's three-seed shape, run under the pre-S6 move distribution; carries a `provenance_note` saying so |
+| `rank_n_ac_search_best_state_audit.json` | §4.5, exact re-decision of all 105 recorded best states |
 
 ---
 
@@ -19,7 +27,9 @@ Artifacts: `results/stable_ac/fable/rank_n_ac_search_*.json` + `*_rows.jsonl`.
 |---|---|
 | A rank-N AC1–AC5 move generator + a thickenability objective now exist and are tested | **build**, machine-checked |
 | The instrument's detection rate is measured on positive ladders before any null is read | **measurement** |
-| The AK(3) depth ladder is FLAT and the control ladder is NOT | **measurement**, bounded budget |
+| The AK(3) depth ladder is 0/40 while the length-matched control ladder is 39/40 | **measurement**, bounded budget |
+| A verified `γ_N = 0` state at rank 8 and at rank 9, connected link, in an AC-trivial class | **measurement**, triple-verified (§4.3) |
+| The AK(3) rank-9 triangulation null | **uninformative** at n = 3 against a measured 1-in-6 detection rate (§5.1) |
 | AK(3) is stably AC-trivial | **NOT claimed.** Nothing here decides it. |
 | γ_N(AK(3)-class) > 0 | **NOT claimed and NOT claimable by this instrument** — see §2 |
 | Any statement about AC from a budget outcome | **NOT claimed** (FRAMING §3) |
@@ -27,6 +37,10 @@ Artifacts: `results/stable_ac/fable/rank_n_ac_search_*.json` + `*_rows.jsonl`.
 FRAMING §3 is binding: a bounded-budget search outcome is never a resolution, in either
 direction. What follows is an instrument, its calibration, and two nulls whose worth is
 exactly the measured detection rate that precedes them.
+
+**Headline, in one line.** No verified `γ_N = 0` state was found anywhere in AK(3)'s stable
+class, at any rank from 2 to 11, in 43 searches; three were found in a length-matched
+AC-trivial control class at ranks 8 and 9, and 39 more at ranks 2–6.
 
 ---
 
@@ -202,13 +216,16 @@ This is the one cell of the whole task where the null is *not* vacuous — see �
 Confound checks, run because `experiments/lessons/contrast-length-confound.md` requires
 them:
 
-* **length.** AK(3)'s best states live at total length 13–17 (13 is its minimum, so it
-  cannot go lower). Control hits are spread over lengths 8–21, and **14 of the 39 hits are
-  at total length ≥ 13**, i.e. inside the band AK(3) actually occupies. The contrast is
-  therefore not purely a length artefact, though the control's ability to shrink below 13
-  — which is itself a consequence of its being AC-trivial — accounts for the majority of
-  its hits. Per that lesson's rule 2 the honest statement is the direct one: *the control
-  can walk to short thickenable presentations and AK(3) cannot leave length 13*.
+* **length.** AK(3)'s best states live at total length 13–17 and never below 13. That
+  floor is not an accident of the search: by Havas–Ramsay (`FRAMING.md` §1) every
+  balanced 2-generator presentation of total length ≤ 12 is AC-trivial, so a rank-2
+  member of AK(3)'s class below length 13 would settle the open problem. Control hits are
+  spread over lengths 8–21, and **14 of the 39 hits are at total length ≥ 13**, i.e.
+  inside the band AK(3) actually occupies. The contrast is therefore not purely a length
+  artefact, but the control's ability to shrink below 13 — itself a consequence of its
+  being AC-trivial — accounts for the majority of its hits. Per that lesson's rule 2 the
+  honest statement is the direct one: *the control can walk to short thickenable
+  presentations and AK(3) cannot get below length 13 at all*.
 * **rank actually used.** Control hits occur at best-rank 2 (10), 3 (7), 4 (9), 5 (9),
   6 (4), and **14 of the 39 hit witnesses have a genuinely entangled stabilizer** (a
   non-base generator occurring more than twice and in at least two distinct relators),
@@ -243,10 +260,12 @@ than triangulating and testing.
 
 ### 4.3 Ladder A — the realistic positive control at rank 8 and 9
 
-`results/stable_ac/fable/rank_n_ac_search_ladderAB.json` (the earlier
-`..._ladderA_ak3.json` run is a 6-member subset with identical settings and identical
-outcomes on the shared members). Same budget as §4.2: 1,000 nodes, beam 6, branch 12,
-800 evaluations, rank window [2, 11].
+`results/stable_ac/fable/rank_n_ac_search_ladderAB.json`. Same budget as §4.2: 1,000
+nodes, beam 6, branch 12, 800 evaluations, rank window [2, 11]. (The earlier
+`..._ladderA_ak3.json` run drew 3 members per length instead of 6 from the same seeded
+shuffle, so its three length-12 rows share seeds with this run and reproduce it exactly —
+hit, miss, miss; its length-13 rows sit at different job indices and therefore different
+seeds, and are *not* a subset. The 12 rows below are the ladder-A record.)
 
 | start rank | source | runs | verified γ_N = 0 found | **detection rate** | best defect when missed |
 |---|---|---|---|---|---|
@@ -258,7 +277,7 @@ The three hits, each independently re-verified by all three routes
 (`check_witness_n` + `independent_defect` + exact census), all with **connected link**
 `L = 1`:
 
-| start | witness | rank | length | census enumerated | exact `minimum_defect` |
+| rank-2 base (start of the triangulation) | verified witness | witness rank | witness length | census enumerated | exact `minimum_defect` |
 |---|---|---|---|---|---|
 | `⟨x,y \| Yxx, YXyXXyXyX⟩` | `XXyH, h, XyaxFH, ayB, xCeY, eYD, cxB, E, fx` | 9 | 27 | 69,120 | **0** |
 | `⟨x,y \| YYx, YYxYxYxyX⟩` | `YYx, fY, YYA, bXA, cyB, dXC, cxYE, fXE` | 8 | 24 | 34,560 | **0** |
@@ -282,7 +301,7 @@ distribution has not been measured is worth even less than its detection rate su
 Standard rank-9 presentation scrambled by `k` AC1–AC3 moves, scrambles that were already
 defect-0 rejected, same 1,000-node budget (one seed per depth in the final run; the
 earlier pre-S6 run used three seeds per depth and is kept in
-`..._ladderB.json`, flagged there as the old distribution):
+`..._ladderB_preS6weights.json`, flagged in that file's `provenance_note`):
 
 | scramble depth `k` | start defect | best defect reached | verified γ_N = 0 | nodes to hit |
 |---|---|---|---|---|
@@ -321,7 +340,84 @@ is what licenses it, and only where it fits.
 
 ## 5. What the nulls are worth
 
-<!--WORTH-->
+There are two AK(3) nulls and they are worth **very different** amounts. Both are stated
+against their measured detection rate, as
+`experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md` requires.
+
+### 5.1 The rank-9 triangulation null (§4.2) is worth almost nothing
+
+Three AK(3) runs at rank 9–11, 1,000 nodes each, no verified `γ_N = 0`. The measured
+detection rate of the identical search on a **realistic** positive control at rank 9 is
+**1 in 6**. Three runs against a 1-in-6 rate have an expected yield of **0.5 hits**, so
+observing zero is exactly what a positive would look like too. Concretely:
+
+> **The AK(3) rank-9 triangulation null is uninformative.** It is consistent with AK(3)'s
+> stable class containing a thickenable rank-9 member and consistent with it containing
+> none, and this search cannot tell the two apart at this budget.
+
+Note what it is *not*: it is not a zero-detection cell. Had ladder A come back 0/12 the
+correct sentence would have been "the AK(3) null means NOTHING", and that is exactly what
+the first, pre-S6 round of this task would have had to say. It does not say that now — the
+cell is weakly informative rather than vacuous — but three runs is far too few to read.
+
+### 5.2 The depth ladder null (§4.1) IS informative, within its budget
+
+Forty AK(3) runs across rank ceilings 2–6, versus a length-matched AC-trivial control at
+**39 hits in 40 runs (97.5%)** across exactly the same rungs, the same seeds, the same move
+set and the same 600-node budget. At the control's rate, 40 AK(3) runs would be expected to
+produce ≈ 39 hits; they produced 0. Stating that in the form the
+`contrast-length-confound.md` lesson demands, without a p-value and without laundering it
+through a rate:
+
+> **The control's stable class contains thickenable members that this search reaches
+> almost every time, at every rank ceiling from 2 to 6. AK(3)'s does not contain one that
+> this search reaches even once, at any of those ceilings.**
+
+And the honest qualifications, all of them:
+
+1. **Budget.** 600 nodes and 800 hill-climb evaluations. `FRAMING.md` §3: a bounded-budget
+   search outcome is never a resolution. This says nothing about AK(3)'s stable class as a
+   whole — only about what is reachable inside this box.
+2. **Length.** 14 of the control's 39 hits are inside AK(3)'s length band (≥ 13); the
+   other 25 are below AK(3)'s floor of 13, which AK(3) cannot get under without settling
+   the open problem (Havas–Ramsay, §4.1). The in-band part of the contrast is real but is
+   a little over a third of it.
+3. **Rank was largely not the mechanism.** 25 of the 39 control hits are rank-2 or rank-3
+   thickenable cores carrying inert stabilizers — exactly the wedge-with-a-disc situation
+   that S6 Theorem T4 proves changes nothing. Only 14 have a genuinely entangled
+   stabilizer. So the depth ladder does **not** show that extra rank helps the control; it
+   shows the control is easy at every ceiling, mostly for rank-2 reasons.
+4. **The AK(3) ladder is flat in the only sense that matters.** Its best-defect values move
+   (2 at `k` = 0,1; 4 at `k` = 2,3,4), but by trap T-S6 those values are not comparable
+   across cell structures and the movement is far more likely to be search efficiency than
+   topology. The topological reading is the last column of §4.1: **zero, at every rung.**
+5. **One-sidedness, restated.** None of this is evidence that `γ_N > 0` on AK(3)'s stable
+   class. Only an exhaustive census can say that, and only for a single spelling.
+
+### 5.3 What the S-line should take from this
+
+The S0 §2 hope was "more stabilization thins the link graph and makes the decidable test
+cheap, so high rank should be *easier*". After S3 (triangulation is inert), S6 (T4′: the
+first slide over a stabilizer is inert too) and this task, the operational picture is:
+
+* extra rank is not free progress — 25 of 39 control positives ignored it entirely;
+* extra rank is not an obstacle either — the search produced verified rank-8 and rank-9
+  `γ_N = 0` witnesses with connected links (§4.3), so the objective, the move generator and
+  the three-route verification stack all work at that rank. (No claim is made here about
+  whether any earlier note on this line exhibited one; "first" claims about things
+  established by construction are exactly what
+  `experiments/lessons/parallel-runs-and-bound-direction.md` warns about.)
+* what actually moved the needle was **which moves the search proposes**, measured rather
+  than guessed (§4.3: 0/6 → 3/12 from re-weighting alone).
+
+The concrete next experiment this suggests is not "more nodes" and not "more rank". It is:
+run the depth ladder at ceilings 2–6 with the **length band pinned to AK(3)'s** (control
+runs forbidden below total length 13), which converts qualification 2 above into a
+measurement. Ladder A at rank 8–9 needs its detection rate pushed above ~0.25 before any
+AK(3) run there is worth spending nodes on; §4.3 shows the way to do that is the move
+distribution, not the budget.
+
+
 
 ---
 

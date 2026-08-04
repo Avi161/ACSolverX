@@ -249,6 +249,61 @@ def load_ladder(n, rng, lo=13, hi=25):
 
 # --------------------------------------------------------------------------- main
 
+def repeat_hunt(base, kstab, nodes, trials, seed, census_cap):
+    """`trials` independent hunts on one presentation; returns (hits, rows)."""
+    hits, rows = 0, []
+    for t in range(trials):
+        rng = random.Random(seed + 7919 * t + 104729 * kstab)
+        st, d, s = hunt(base, kstab, nodes, rng, census_cap=census_cap)
+        rows.append({"trial": t, "hit": st is not None,
+                     "state": list(st) if st else None, "stats": s})
+        hits += st is not None
+    return hits, rows
+
+
+def cmd_target(args):
+    """Deep, repeated hunt on ONE presentation, with a length-matched positive control.
+
+    The control is the whole point: `trials` independent failures on AK(3) are worth
+    exactly the detection rate the identical protocol achieves on presentations that are
+    AC-trivial and of the same length.
+    """
+    target = tuple(args.target.split(","))
+    L = sum(len(w) for w in target)
+    rng = random.Random(args.seed)
+    controls = [w for w in load_ladder(400, rng, lo=L, hi=L)][:args.controls]
+    if len(controls) < args.controls:
+        controls = load_ladder(args.controls, random.Random(args.seed),
+                               lo=max(6, L - 2), hi=L + 2)[:args.controls]
+    report = {"record": "s12_target_hunt", "args": vars(args), "target": list(target),
+              "target_length": L, "by_depth": {}}
+    for k in range(args.kmax + 1):
+        c_hits = c_n = 0
+        for w in controls:
+            h, _ = repeat_hunt(w, k, args.nodes, args.control_trials, args.seed,
+                               args.census_cap)
+            c_hits += h
+            c_n += args.control_trials
+        t_hits, t_rows = repeat_hunt(target, k, args.nodes, args.trials, args.seed,
+                                     args.census_cap)
+        rate = c_hits / c_n if c_n else float("nan")
+        report["by_depth"][k] = {
+            "control_hits": c_hits, "control_trials": c_n, "control_rate": rate,
+            "target_hits": t_hits, "target_trials": args.trials,
+            "target_rows": [r for r in t_rows if r["hit"]],
+        }
+        print(f"  depth k={k}: control {c_hits}/{c_n} = {rate:.2f}   "
+              f"TARGET {t_hits}/{args.trials}"
+              + ("   *** HIT ***" if t_hits else ""))
+        for r in t_rows:
+            if r["hit"]:
+                print(f"    HIT STATE: {r['state']}")
+    out = REPO / args.out
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(report, indent=1))
+    print(f"wrote {out}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--nodes", type=int, default=40)
@@ -258,7 +313,16 @@ def main():
     ap.add_argument("--seed", type=int, default=20260804)
     ap.add_argument("--census-cap", type=int, default=200_000)
     ap.add_argument("--out", default="results/stable_ac/fable/s12_hunt.json")
+    ap.add_argument("--target", default=None,
+                    help="comma-separated relators, e.g. xyxYXY,xxxYYYY for AK(3); "
+                         "switches to the repeated deep-hunt mode with a matched control")
+    ap.add_argument("--trials", type=int, default=30)
+    ap.add_argument("--controls", type=int, default=4)
+    ap.add_argument("--control-trials", type=int, default=8)
+    ap.add_argument("--kmax", type=int, default=3)
     args = ap.parse_args()
+    if args.target:
+        return cmd_target(args)
 
     rng = random.Random(args.seed + 1000 * args.kstab)
     t0 = time.time()

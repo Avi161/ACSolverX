@@ -1,0 +1,31 @@
+{
+ "record": "SR counterexample hunt (does free/cyclic reduction ever DESTROY gamma_N = 0?)",
+ "conjecture": "SR: gamma_N(spike(P)) = 0  =>  gamma_N(P) = 0",
+ "counterexample_shape": "a spelling with defect 0 whose reduction has defect > 0",
+ "spellings_tested": 8565,
+ "skipped_over_cap": 204,
+ "counterexamples": [],
+ "n_counterexamples": 0,
+ "per_rank": {
+  "4": {
+   "bases": 8,
+   "non_thickenable_bases": 3,
+   "tested_so_far": 5136,
+   "skipped_so_far": 190
+  },
+  "6": {
+   "bases": 8,
+   "non_thickenable_bases": 1,
+   "tested_so_far": 5396,
+   "skipped_so_far": 204
+  },
+  "8": {
+   "bases": 129,
+   "non_thickenable_bases": 1,
+   "tested_so_far": 8565,
+   "skipped_so_far": 204
+  }
+ },
+ "cap": 200000,
+ "seconds": 225.0
+}

@@ -144,10 +144,8 @@ cross-tabulation: base `γ_N = 1` → min over its spikes = 1 in 2,514 of 2,514 
 > cannot beat the base it started from.
 
 **This retires the spike-insertion hunt on AK(3) for the positive direction**, together
-with the depth-2/3 exhaustive census at rank 9 that this task was scoped to run. It is a
-negative result and it is worth what it costs: the hunt was going to be affordable at high
-rank (§3 shows exactly how affordable), so the only thing that stopped it was the
-mathematics.
+with the depth-2/3 exhaustive census at rank 9 that this task was scoped to run. (§6 shows
+that census would not have been affordable anyway, for a second and independent reason.)
 
 Two honest qualifications, both of which keep the route from being *proved* closed:
 
@@ -315,7 +313,59 @@ of the standard presentation, so every one is AC-trivial and presents the trivia
 only the **non-thickenable** bases can host a counterexample, and the spikes are piled on
 those.
 
-<!-- SR-TABLE -->
+### 4.1 The rank-2 attempt, and why it is nearly vacuous — a live demonstration of §3
+
+`results/stable_ac/fable/s11_sr_hunt_rank2.json`. Ranks 2–4 requested, base length ≤ 12,
+spike depth 2, 210 s, cap 2·10⁵:
+
+| | |
+|---|---|
+| spellings decided | **960** |
+| spellings **skipped** (census over cap) | **7,849** — 89 % |
+| counterexamples | **0** |
+| ranks actually reached | rank 2 only (27 bases, 13 of them non-thickenable); the whole budget went on rank 2 |
+
+Nine spellings in ten were *not decided*. This is §3's table happening in real time: a
+length-12 rank-2 base plus two spikes is a length-16 rank-2 complex, and §3.2 measures
+rank-2 length-16 decidability at **0.00**. The run is reported because it is the cleanest
+demonstration on this line of what the blind band costs — not because its null is worth
+much.
+
+### 4.2 The same hunt at rank 4–8, where the instrument works
+
+`results/stable_ac/fable/s11_sr_hunt.json`. Ranks 4, 6, 8; base length ≤ 17; spike depth 2;
+225 s split evenly across the three ranks; cap 2·10⁵.
+
+| | rank-2 run (§4.1) | rank 4–8 run |
+|---|---|---|
+| wall clock | 210 s | 225 s |
+| spellings **decided** | 960 | **8,565** |
+| spellings skipped over cap | 7,849 (**89 %**) | 204 (**2.4 %**) |
+| counterexamples to SR | 0 | **0** |
+| non-thickenable bases reached | 13 (rank 2 only) | 5 (3 at rank 4, 1 at rank 6, 1 at rank 8) |
+
+**8.9× the spellings decided, at a 37× lower skip rate, in the same wall clock** — the
+§3 table cashed out on a real experiment rather than a sample.
+
+**What the null is worth, stated with its limits.** This is a *two-sided* instrument, not
+a one-sided one: every one of the 8,565 rows is an exact `γ_N`, so the lesson about
+one-sided silence does not apply and no detection-rate discount is needed. What *does*
+limit it:
+
+* only **5 distinct non-thickenable bases** were reached, because at rank 4–8 most
+  AC1–AC3 walk states are *already* thickenable (exactly S10's density result), and only a
+  non-thickenable reduction can host a counterexample. The 8,565 spellings are the spike
+  tree over those 5 bases and are **not independent draws**
+  (`experiments/lessons/contrast-length-confound.md`) — no p-value is quoted, and the
+  correct summary is "5 bases, exhaustively spiked to depth 2, no counterexample";
+* it is nonetheless the **first test of Conjecture SR above rank 3**. R7's ≈114,000
+  complexes and A8's 997 are rank 2 (A8 reaching rank 3). Every previous SR datum lives in
+  the one regime where the census is cheapest and the germ degrees highest; these 8,565
+  live in the opposite corner.
+
+**Verdict: Conjecture SR survives, now in a rank regime it had never been tested in.**
+The spelling route stays closed for the positive direction, and the reason it stays closed
+is still a measurement rather than a theorem.
 
 ---
 
@@ -381,7 +431,35 @@ slide search can reach `ℓ/n ≲ 3` states of AK(3)'s stable class at all.
 
 ---
 
-## 6. Traps this note adds
+## 6. The one AK(3) experiment that is still exactly at the frontier, sized but not run
+
+Recorded so a future session does not have to re-derive the cost.
+
+R7's **Corollary S5** (the spike ceiling, `γ_N(spike(P)) ≥ γ_N(P) − 1`) is a *proof*, and
+with `γ_N(AK(3)) = 2` it forces every thickenable spelling of AK(3) to sit at **spike-depth
+≥ 2** (Corollary S6). Depth 1 is exhaustively decided (R1F: histogram `{1: 8, 2: 31}`).
+Depth 2 is closed only by the *conjecture* SR and by A8's 997 measurements, not by any
+theorem. So a **complete exact census of AK(3)'s depth-2 spelling space** is the single
+sharpest open computation in this corner: a hit settles AK(3) and refutes SR; a clean sweep
+is the strongest possible confirmation of SR at the one place it matters.
+
+**It is not affordable, and the reason is §5.1.** AK(3)'s census is 86,400 and every chord
+refinement of it has *the same* 86,400 (Lemma S3′). A depth-2 spike raises two germ degrees
+by one each on each of two spikes, so a typical depth-2 spelling costs ≈ 3.5·10⁵ rotation
+systems, and there are ≈ 2.5·10⁵ distinct depth-2 spellings at rank 9 — about **10¹¹
+rotation systems**, or ~three weeks of the single-thread rate measured here
+(1.8·10⁵ systems/s at rank 2, ~5·10⁴/s at rank 9). Refining to rank 9 does not help; only a
+transform that genuinely lowers `deg(x⁺) = 6` and `deg(y⁺) = 7` would.
+
+**The one transform that does that is generator SPLITTING** (`high_rank_refine.split_generator`),
+which is a vertex split rather than a subdivision and so is *not* covered by Theorem S3 —
+splitting `x` and `y` three ways each would take the census from 86,400 to ~4·10¹ and make
+depth-2, even depth-3, exhaustive. That is `high_rank_gamma_sweep.py`'s territory (another
+agent owns it) and is flagged here rather than duplicated. Caveat before anyone runs it:
+splitting produces **length-2 relators**, which trip the fail-closed gate of the fast
+solver (`neuwirth_rank_n.py` `MIN_RELATOR_LENGTH`); only `gamma_N_factorial_n` stays valid.
+
+## 7. Traps this note adds
 
 * **T-S11a.** The **element-tuple argument does not transfer a thickenability hypothesis.**
   "The AC moves act on free-group elements, so all spellings are one presentation" is

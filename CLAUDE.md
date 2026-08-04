@@ -133,3 +133,17 @@ much harder than those Erdős problems. Its three keys:
   claim about something established by construction is suspect on sight; re-derive the
   direction before acting on "stop searching region X".
   [[TRAP]](experiments/lessons/parallel-runs-and-bound-direction.md)
+- Extra generators buy NOTHING while they only re-describe the same relators: abbreviation
+  is a subdivision (same space, whole defect histogram identical, census size unchanged) and
+  splitting is monotone (link(P) is a minor of link(P')). State how many 2-cell germs a new
+  edge carries before proposing any high-rank mechanism — exactly two, from two distinct
+  2-cells, means provably inert. And γ_N = `minimum_defect // 2`: comparing the two
+  manufactures a factor-2 anomaly and a wrong theory to explain it.
+  [[TRAP]](experiments/lessons/stabilization-that-only-rebookkeeps-is-inert.md)
+- A search that silently starves yields exactly the null it was built to detect, on target
+  AND control, so the contrast stays internally consistent to the write-up. Print
+  `pops`/`decided` beside every verdict, check `pops` reached `nodes`, and treat "a 10×
+  budget change did not move the detection rate" as a bug report. Reseed from a visited
+  state not the root; make length caps relative to the root; and decide the START state, not
+  only its children.
+  [[TRAP]](experiments/lessons/instrument-the-search-before-reading-its-null.md)

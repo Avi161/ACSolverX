@@ -1,0 +1,40 @@
+{
+ "record": "s12_target_hunt",
+ "args": {
+  "nodes": 800,
+  "kstab": 1,
+  "limit": 124,
+  "ladder": 15,
+  "seed": 20260804,
+  "census_cap": 200000,
+  "out": "results/stable_ac/fable/s12_target_smoke.json",
+  "target": "xyxYXY,xxxYYYY",
+  "trials": 4,
+  "controls": 2,
+  "control_trials": 3,
+  "kmax": 1
+ },
+ "target": [
+  "xyxYXY",
+  "xxxYYYY"
+ ],
+ "target_length": 13,
+ "by_depth": {
+  "0": {
+   "control_hits": 6,
+   "control_trials": 6,
+   "control_rate": 1.0,
+   "target_hits": 0,
+   "target_trials": 4,
+   "target_rows": []
+  },
+  "1": {
+   "control_hits": 2,
+   "control_trials": 6,
+   "control_rate": 0.3333333333333333,
+   "target_hits": 0,
+   "target_trials": 4,
+   "target_rows": []
+  }
+ }
+}

@@ -1,0 +1,1258 @@
+{
+ "record": "u124_neighbourhood_summary",
+ "generated_at": "2026-08-04T07:43:51Z",
+ "claims": "MACHINERY: bounded AC-neighbourhood test of the same Lackenby hypothesis.  A SPHERICAL neighbour settles the class it belongs to (after an explicit move-chain replay); nothing else here is a statement about the AC conjecture.",
+ "operator": "depth 1 = every one-move AC image (AC1 invert; AC2 multiply over all cyclic rotations of both relators, both signs; AC3 conjugation by a single generator), dropped if a relator empties or exceeds the per-root cap.  Deeper = best-first canonical harvest with ak2_battery.canon_class_children (the operator the 13,040-member AK(2) battery and the 124,296-member AK(3) matched control used).  Seen-set on ac_words.canon_pair, the cyclically REDUCED canonical form (harvest-dedup-on-reduced-forms.md).",
+ "budgets": {
+  "top_n": 10,
+  "harvest_pops": 60,
+  "state_cap": 36000,
+  "depth1_all": true,
+  "scheme_budget": 200000,
+  "branch_budget": 2000000,
+  "census_fallback_size_cap": 50000,
+  "census_fallback_budget": 400
+ },
+ "states_decided": 34666,
+ "census_fallbacks_used": 0,
+ "state_cap_reached": false,
+ "uninformative_states": 0,
+ "verdict_histogram": {
+  "NOT_SPHERICAL": 34666
+ },
+ "verdict_by_total_length": {
+  "13": {
+   "NOT_SPHERICAL": 1
+  },
+  "14": {
+   "NOT_SPHERICAL": 2
+  },
+  "15": {
+   "NOT_SPHERICAL": 18
+  },
+  "16": {
+   "NOT_SPHERICAL": 12
+  },
+  "17": {
+   "NOT_SPHERICAL": 70
+  },
+  "18": {
+   "NOT_SPHERICAL": 107
+  },
+  "19": {
+   "NOT_SPHERICAL": 369
+  },
+  "20": {
+   "NOT_SPHERICAL": 245
+  },
+  "21": {
+   "NOT_SPHERICAL": 1055
+  },
+  "22": {
+   "NOT_SPHERICAL": 886
+  },
+  "23": {
+   "NOT_SPHERICAL": 2056
+  },
+  "24": {
+   "NOT_SPHERICAL": 1715
+  },
+  "25": {
+   "NOT_SPHERICAL": 3526
+  },
+  "26": {
+   "NOT_SPHERICAL": 1612
+  },
+  "27": {
+   "NOT_SPHERICAL": 3598
+  },
+  "28": {
+   "NOT_SPHERICAL": 1382
+  },
+  "29": {
+   "NOT_SPHERICAL": 3846
+  },
+  "30": {
+   "NOT_SPHERICAL": 1614
+  },
+  "31": {
+   "NOT_SPHERICAL": 2972
+  },
+  "32": {
+   "NOT_SPHERICAL": 566
+  },
+  "33": {
+   "NOT_SPHERICAL": 2880
+  },
+  "34": {
+   "NOT_SPHERICAL": 1287
+  },
+  "35": {
+   "NOT_SPHERICAL": 489
+  },
+  "36": {
+   "NOT_SPHERICAL": 376
+  },
+  "37": {
+   "NOT_SPHERICAL": 220
+  },
+  "38": {
+   "NOT_SPHERICAL": 1001
+  },
+  "39": {
+   "NOT_SPHERICAL": 64
+  },
+  "40": {
+   "NOT_SPHERICAL": 623
+  },
+  "41": {
+   "NOT_SPHERICAL": 244
+  },
+  "42": {
+   "NOT_SPHERICAL": 1830
+  }
+ },
+ "LOUD_THICKENABLE_ALERT": false,
+ "thickenable_neighbours": [],
+ "per_root_depth1": [
+  {
+   "name": "aca_117",
+   "rank": 1,
+   "total_length": 14,
+   "relator_cap": 18,
+   "one_move_images": 116,
+   "newly_decided": 116
+  },
+  {
+   "name": "aca_11",
+   "rank": 2,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 124,
+   "newly_decided": 124
+  },
+  {
+   "name": "aca_121",
+   "rank": 3,
+   "total_length": 16,
+   "relator_cap": 20,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_17",
+   "rank": 4,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_30",
+   "rank": 5,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 132,
+   "newly_decided": 132
+  },
+  {
+   "name": "aca_122",
+   "rank": 6,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 196,
+   "newly_decided": 196
+  },
+  {
+   "name": "aca_115",
+   "rank": 7,
+   "total_length": 13,
+   "relator_cap": 17,
+   "one_move_images": 84,
+   "newly_decided": 84
+  },
+  {
+   "name": "aca_116",
+   "rank": 8,
+   "total_length": 14,
+   "relator_cap": 18,
+   "one_move_images": 116,
+   "newly_decided": 116
+  },
+  {
+   "name": "aca_1",
+   "rank": 9,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 116,
+   "newly_decided": 116
+  },
+  {
+   "name": "aca_10",
+   "rank": 10,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 124,
+   "newly_decided": 124
+  },
+  {
+   "name": "aca_118",
+   "rank": 11,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 116,
+   "newly_decided": 116
+  },
+  {
+   "name": "aca_12",
+   "rank": 12,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 124,
+   "newly_decided": 124
+  },
+  {
+   "name": "aca_14",
+   "rank": 13,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 116,
+   "newly_decided": 116
+  },
+  {
+   "name": "aca_8",
+   "rank": 14,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 116,
+   "newly_decided": 116
+  },
+  {
+   "name": "aca_9",
+   "rank": 15,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 124,
+   "newly_decided": 124
+  },
+  {
+   "name": "aca_119",
+   "rank": 16,
+   "total_length": 16,
+   "relator_cap": 20,
+   "one_move_images": 132,
+   "newly_decided": 132
+  },
+  {
+   "name": "aca_120",
+   "rank": 17,
+   "total_length": 16,
+   "relator_cap": 20,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_13",
+   "rank": 18,
+   "total_length": 16,
+   "relator_cap": 20,
+   "one_move_images": 132,
+   "newly_decided": 132
+  },
+  {
+   "name": "aca_2",
+   "rank": 19,
+   "total_length": 16,
+   "relator_cap": 20,
+   "one_move_images": 132,
+   "newly_decided": 132
+  },
+  {
+   "name": "aca_7",
+   "rank": 20,
+   "total_length": 16,
+   "relator_cap": 20,
+   "one_move_images": 132,
+   "newly_decided": 132
+  },
+  {
+   "name": "aca_15",
+   "rank": 21,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_16",
+   "rank": 22,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 140,
+   "newly_decided": 140
+  },
+  {
+   "name": "aca_18",
+   "rank": 23,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_19",
+   "rank": 24,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_20",
+   "rank": 25,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_21",
+   "rank": 26,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_22",
+   "rank": 27,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_23",
+   "rank": 28,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_24",
+   "rank": 29,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 148,
+   "newly_decided": 148
+  },
+  {
+   "name": "aca_25",
+   "rank": 30,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_26",
+   "rank": 31,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_27",
+   "rank": 32,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_28",
+   "rank": 33,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_29",
+   "rank": 34,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 140,
+   "newly_decided": 140
+  },
+  {
+   "name": "aca_3",
+   "rank": 35,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 148,
+   "newly_decided": 148
+  },
+  {
+   "name": "aca_31",
+   "rank": 36,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 148,
+   "newly_decided": 148
+  },
+  {
+   "name": "aca_32",
+   "rank": 37,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_33",
+   "rank": 38,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 148,
+   "newly_decided": 148
+  },
+  {
+   "name": "aca_0",
+   "rank": 39,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_34",
+   "rank": 40,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 196,
+   "newly_decided": 196
+  },
+  {
+   "name": "aca_35",
+   "rank": 41,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_36",
+   "rank": 42,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_4",
+   "rank": 43,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_53",
+   "rank": 44,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_37",
+   "rank": 45,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_38",
+   "rank": 46,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_39",
+   "rank": 47,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_40",
+   "rank": 48,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_41",
+   "rank": 49,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_43",
+   "rank": 50,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 180,
+   "newly_decided": 180
+  },
+  {
+   "name": "aca_44",
+   "rank": 51,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 188,
+   "newly_decided": 188
+  },
+  {
+   "name": "aca_45",
+   "rank": 52,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 180,
+   "newly_decided": 180
+  },
+  {
+   "name": "aca_46",
+   "rank": 53,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_47",
+   "rank": 54,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_48",
+   "rank": 55,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 180,
+   "newly_decided": 180
+  },
+  {
+   "name": "aca_5",
+   "rank": 56,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 172,
+   "newly_decided": 172
+  },
+  {
+   "name": "aca_50",
+   "rank": 57,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_51",
+   "rank": 58,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_52",
+   "rank": 59,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_54",
+   "rank": 60,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_55",
+   "rank": 61,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 180,
+   "newly_decided": 180
+  },
+  {
+   "name": "aca_57",
+   "rank": 62,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 172,
+   "newly_decided": 172
+  },
+  {
+   "name": "aca_123",
+   "rank": 63,
+   "total_length": 20,
+   "relator_cap": 24,
+   "one_move_images": 236,
+   "newly_decided": 236
+  },
+  {
+   "name": "aca_59",
+   "rank": 64,
+   "total_length": 20,
+   "relator_cap": 24,
+   "one_move_images": 180,
+   "newly_decided": 180
+  },
+  {
+   "name": "aca_60",
+   "rank": 65,
+   "total_length": 20,
+   "relator_cap": 24,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_61",
+   "rank": 66,
+   "total_length": 20,
+   "relator_cap": 24,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_72",
+   "rank": 67,
+   "total_length": 20,
+   "relator_cap": 24,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_75",
+   "rank": 68,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 228,
+   "newly_decided": 228
+  },
+  {
+   "name": "aca_76",
+   "rank": 69,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 228,
+   "newly_decided": 228
+  },
+  {
+   "name": "aca_77",
+   "rank": 70,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 228,
+   "newly_decided": 228
+  },
+  {
+   "name": "aca_78",
+   "rank": 71,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 180,
+   "newly_decided": 180
+  },
+  {
+   "name": "aca_42",
+   "rank": 72,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_49",
+   "rank": 73,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_56",
+   "rank": 74,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 172,
+   "newly_decided": 172
+  },
+  {
+   "name": "aca_6",
+   "rank": 75,
+   "total_length": 19,
+   "relator_cap": 23,
+   "one_move_images": 172,
+   "newly_decided": 172
+  },
+  {
+   "name": "aca_58",
+   "rank": 76,
+   "total_length": 20,
+   "relator_cap": 24,
+   "one_move_images": 236,
+   "newly_decided": 236
+  },
+  {
+   "name": "aca_71",
+   "rank": 77,
+   "total_length": 20,
+   "relator_cap": 24,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_62",
+   "rank": 78,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_63",
+   "rank": 79,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_64",
+   "rank": 80,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_65",
+   "rank": 81,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_66",
+   "rank": 82,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_67",
+   "rank": 83,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_68",
+   "rank": 84,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_69",
+   "rank": 85,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_70",
+   "rank": 86,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_73",
+   "rank": 87,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_74",
+   "rank": 88,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_79",
+   "rank": 89,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 204,
+   "newly_decided": 204
+  },
+  {
+   "name": "aca_80",
+   "rank": 90,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 212,
+   "newly_decided": 212
+  },
+  {
+   "name": "aca_95",
+   "rank": 91,
+   "total_length": 21,
+   "relator_cap": 25,
+   "one_move_images": 228,
+   "newly_decided": 228
+  },
+  {
+   "name": "aca_81",
+   "rank": 92,
+   "total_length": 22,
+   "relator_cap": 26,
+   "one_move_images": 276,
+   "newly_decided": 276
+  },
+  {
+   "name": "aca_82",
+   "rank": 93,
+   "total_length": 22,
+   "relator_cap": 26,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_83",
+   "rank": 94,
+   "total_length": 22,
+   "relator_cap": 26,
+   "one_move_images": 252,
+   "newly_decided": 252
+  },
+  {
+   "name": "aca_84",
+   "rank": 95,
+   "total_length": 22,
+   "relator_cap": 26,
+   "one_move_images": 252,
+   "newly_decided": 252
+  },
+  {
+   "name": "aca_85",
+   "rank": 96,
+   "total_length": 22,
+   "relator_cap": 26,
+   "one_move_images": 276,
+   "newly_decided": 276
+  },
+  {
+   "name": "aca_86",
+   "rank": 97,
+   "total_length": 22,
+   "relator_cap": 26,
+   "one_move_images": 244,
+   "newly_decided": 244
+  },
+  {
+   "name": "aca_87",
+   "rank": 98,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_88",
+   "rank": 99,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 252,
+   "newly_decided": 252
+  },
+  {
+   "name": "aca_89",
+   "rank": 100,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_92",
+   "rank": 101,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_97",
+   "rank": 102,
+   "total_length": 24,
+   "relator_cap": 28,
+   "one_move_images": 316,
+   "newly_decided": 316
+  },
+  {
+   "name": "aca_99",
+   "rank": 103,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_90",
+   "rank": 104,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_91",
+   "rank": 105,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_93",
+   "rank": 106,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_94",
+   "rank": 107,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_96",
+   "rank": 108,
+   "total_length": 23,
+   "relator_cap": 27,
+   "one_move_images": 284,
+   "newly_decided": 284
+  },
+  {
+   "name": "aca_98",
+   "rank": 109,
+   "total_length": 24,
+   "relator_cap": 28,
+   "one_move_images": 316,
+   "newly_decided": 316
+  },
+  {
+   "name": "aca_100",
+   "rank": 110,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 292,
+   "newly_decided": 292
+  },
+  {
+   "name": "aca_101",
+   "rank": 111,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_102",
+   "rank": 112,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_103",
+   "rank": 113,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_104",
+   "rank": 114,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_105",
+   "rank": 115,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_106",
+   "rank": 116,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_107",
+   "rank": 117,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_108",
+   "rank": 118,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_109",
+   "rank": 119,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_110",
+   "rank": 120,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_111",
+   "rank": 121,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_112",
+   "rank": 122,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_113",
+   "rank": 123,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  },
+  {
+   "name": "aca_114",
+   "rank": 124,
+   "total_length": 25,
+   "relator_cap": 29,
+   "one_move_images": 324,
+   "newly_decided": 324
+  }
+ ],
+ "harvests": [
+  {
+   "name": "aca_117",
+   "rank": 1,
+   "root": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "relator_cap": 18,
+   "pops": 8,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 977,
+   "newly_decided": 869
+  },
+  {
+   "name": "aca_11",
+   "rank": 2,
+   "root": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "relator_cap": 19,
+   "pops": 8,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 977,
+   "newly_decided": 861
+  },
+  {
+   "name": "aca_121",
+   "rank": 3,
+   "root": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "relator_cap": 20,
+   "pops": 6,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 979,
+   "newly_decided": 829
+  },
+  {
+   "name": "aca_17",
+   "rank": 4,
+   "root": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "relator_cap": 21,
+   "pops": 5,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 980,
+   "newly_decided": 821
+  },
+  {
+   "name": "aca_30",
+   "rank": 5,
+   "root": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "relator_cap": 21,
+   "pops": 8,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 977,
+   "newly_decided": 853
+  },
+  {
+   "name": "aca_122",
+   "rank": 6,
+   "root": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "relator_cap": 22,
+   "pops": 5,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 980,
+   "newly_decided": 789
+  },
+  {
+   "name": "aca_115",
+   "rank": 7,
+   "root": [
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "relator_cap": 17,
+   "pops": 10,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 975,
+   "newly_decided": 901
+  },
+  {
+   "name": "aca_116",
+   "rank": 8,
+   "root": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "relator_cap": 18,
+   "pops": 8,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 977,
+   "newly_decided": 869
+  },
+  {
+   "name": "aca_1",
+   "rank": 9,
+   "root": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "relator_cap": 19,
+   "pops": 7,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 978,
+   "newly_decided": 869
+  },
+  {
+   "name": "aca_10",
+   "rank": 10,
+   "root": [
+    "YXXXyxx",
+    "YYXYXyyX"
+   ],
+   "relator_cap": 19,
+   "pops": 8,
+   "pop_budget": 60,
+   "distinct_members": 985,
+   "queue_remaining": 977,
+   "newly_decided": 861
+  }
+ ],
+ "elapsed_seconds": 185.2,
+ "outputs": {
+  "rows": "results/stable_ac/fable/u124_neighbourhood.jsonl",
+  "summary": "results/stable_ac/fable/u124_neighbourhood_summary.json"
+ }
+}

@@ -271,6 +271,18 @@ def decide(words, generators=None, cap: int = DEFAULT_CAP,
     return out
 
 
+def todd_coxeter_check(words, generators, cap: int = 200_000) -> dict:
+    """Todd-Coxeter over the trivial subgroup: is the presented group still trivial?
+
+    Required on any defect-0 hit before it is called a Lackenby certificate -- Thm 1.3's
+    hypothesis is "thickenable AND presents the trivial group".  Returns ``trivial = None``
+    when the enumeration hits the cap; that is undetermined, never guessed.  Spikes and
+    chord refinements both preserve the group by construction, so this is a *check*, not a
+    derivation -- which is exactly why it is worth running.
+    """
+    return is_trivial_group(tuple(words), tuple(generators), cap=cap)
+
+
 def certify_zero(words, generators, *, evals: int = 60_000, seed: int = 0) -> dict:
     """Independent (non-census) certificate that ``gamma_N = 0``: a defect-0 witness.
 
