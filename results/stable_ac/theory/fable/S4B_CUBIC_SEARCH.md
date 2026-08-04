@@ -256,7 +256,8 @@ beam. That is why S4 saw 0/48 and this run sees 2/28.
 
 | run | roots | **cubic forms found** | nodes | near-cubic states collected (`Σ|δ| ≤ 4`) | deep `γ_N` scan (cap) | deep defect histogram |
 |---|---|---|---|---|---|---|
-| **AK(3)** (28 distinct triangulations of AK(3), 9 s each) | 28 | **2** (7.1 %) | 1,298,733 | 66,756 | 500 tested (900,000) | `{4: 402, 6: 94, **2: 4**}` — **no 0** |
+| **AK(3)** run 1 (28 distinct triangulations, 9 s each, seed 11) | 28 | **2** (7.1 %) | 1,298,733 | 66,756 (lost — not persisted) | 500 tested (900,000) | `{4: 402, 6: 94, **2: 4**}` — **no 0** |
+| **AK(3)** run 2 (47 triangulations, 9 s each, seed 2026) | 47 | 0 | — | **45,264 (persisted, §4.5)** | **45,111 tested exactly** | `{2: 527, 4: 40,100, 6: 4,484}` — **no 0** |
 | **matched-difficulty ladder** (35 AC-trivial rank-2 sources, `L = 13`, triangulated to rank 9, `Σ|δ| = 14` — the same numbers AK(3) has; 6 s each) | 35 | **0** | 930,647 | 29,678 | 200 tested (400,000) | `{4: 149, **2: 51**}` — **no 0** |
 
 ### 4.2 The two cubic forms, verified end to end
@@ -327,9 +328,63 @@ triangulations, §2), and that was not controlled for.
   detection rate for a `γ_N = 0` state is **unmeasured**
   (`experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md`).
 
-**The right next experiment is obvious and cheap**: 66,756 near-cubic AK(3) states are
-already on disk-reachable provenance and 99.25 % of them have never been tested. At
-`2^13 = 8,192` per census that is minutes of CPU, not hours.
+That gap is now closed — see §4.5, where the pool is persisted and **exhaustively**
+decided.
+
+### 4.5 The exhaustive decision of the near-cubic pool — 45,111 states, no `γ_N = 0`
+
+The first run's pool was never written to disk and was lost. It has been regenerated with
+**every near-cubic state persisted as it is found** (gzipped JSONL with its rank, `Σ|δ|`,
+census, provenance and the **full `SPLIT` trace back to its root**), and then decided.
+
+* **Instrument.** A numba kernel (`fast_min_defect`) that enumerates the *entire* compatible
+  rotation family by mixed-radix over the per-germ cyclic orders and returns the exact
+  minimum defect. **No sampling anywhere.** It is validated in `selftest` against the audited
+  oracle `gamma_N_factorial_n` on 44 states — cubic, near-cubic, AK(3) and its rank-9
+  triangulation — with **exact agreement on every one**. Throughput 8.25 ms/state at census
+  8,192 (~110 states/s), versus 0.12 s/state for the pure-Python oracle.
+* **Pool.** Search seed 2026, 47 roots, 430 s: **45,264 states**, all distinct as ordered
+  multisets of canonical cyclic words, distributed
+  `(rank, Σ|δ|) → {(12,2): 912, (12,4): 42,534, (13,2): 332, (13,4): 1,486}`.
+* **Decision.** 470 s; **45,111 of 45,264 decided exactly** (153 left by the budget cut).
+
+> ### Exact defect histogram over 45,111 states of AK(3)'s stable class, ranks 12–13
+>
+> | `γ_N` | defect | count | share |
+> |---|---|---|---|
+> | **0 (thickenable)** | 0 | **0** | **0.000 %** |
+> | 1 | 2 | **527** | 1.17 % |
+> | 2 | 4 | 40,100 | 88.89 % |
+> | 3 | 6 | 4,484 | 9.94 % |
+>
+> Split by distance to cubic form:
+>
+> | `Σ|δ|` | states decided | `γ_N = 1` | `γ_N = 2` | `γ_N = 3` |
+> |---|---|---|---|---|
+> | 2 (one SPLIT from cubic) | 1,232 | **0** | 1,028 | 204 |
+> | 4 (two SPLITs from cubic) | 43,879 | 527 | 39,072 | 4,280 |
+
+**Three things this settles, and one it does not.**
+
+1. **No thickenable member was found in 45,111 exactly-decided states.** This is the largest
+   exhaustively decided region of AK(3)'s stable class measured on this line, and unlike
+   every previous null on it, **nothing here is sampled** — each state's whole compatible
+   census was enumerated, so each individual verdict is a certificate, not a bound.
+2. **527 members at `γ_N = 1`.** Before this run, `γ_N = 1` was known for AK(3)'s class at
+   exactly two places: the single rank-2 gateway of `gateway_scan.json` and the four states
+   the first (sampled) deep scan happened to hit. There are now 527 explicit ones, with
+   replayable chains.
+3. **Proximity to cubic form is ANTI-correlated with low defect here.** The states one
+   `SPLIT` from cubic (`Σ|δ| = 2`) are **0/1,232** at `γ_N = 1`, while the states two SPLITs
+   away are 527/43,879 = 1.2 %. Whatever drives the defect down, it is not "get closer to
+   cubic". This directly undercuts the route's own premise and is recorded as **T-S17**.
+4. **What it does not settle**: the pool is the near-cubic frontier of *one* 430-second
+   search from 47 roots — a vanishing fraction of the stable class — and the dedup is on the
+   multiset of canonical cyclic words, **not** up to generator relabelling, so 45,264 is an
+   upper bound on the number of genuinely distinct complexes. And there is still no positive
+   control: no `γ_N = 0` state at rank 12–13 is known to exist anywhere, so the *detection
+   rate* of this hunt for such a state remains unmeasured. The null is exact per state and
+   uncalibrated as a claim about the class.
 
 ---
 

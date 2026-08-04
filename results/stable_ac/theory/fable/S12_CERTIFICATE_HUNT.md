@@ -20,12 +20,18 @@ tasks A7/A9/A10/A11.**
 >      (A14 audit §1.5; the unrestricted control reproduces S6's 4.8 % / 47.3 %, so the
 >      difference is the restriction, not the instrument). This is the engine; spend the
 >      budget here.
->    - **move (0)** free/cyclic reduction: 315 creates in 2,510, **0 destroys in 997**.
->      Always reduce. Never search un-reduced spellings — by the same measurement, spiking
->      can only preserve or destroy (this closes the spelling route for the positive
->      direction; see S11).
->    - **AC3 bare conjugation is counterproductive**: 315 destroys in 3,507, **0 creates in
->      2,195**. Downweight or drop it.
+>    - **move (0)** free/cyclic reduction: creates in 315 of 2,510. The "0 destroys in 997"
+>      that once accompanied it — Conjecture SR — is **FALSE**: `S11` (A10) exhibits a
+>      balanced trivial-group chain with defects 0 → 2 → 0, so reduction can destroy and
+>      spiking can create. Reduce by default, but the spelling route is **not** closed. Its
+>      practical standing is that in all 28 counterexamples the fully reduced form already
+>      had defect 0, so no spelling has yet beaten its own reduction — the case a hard
+>      presentation would need is unrefuted and unexhibited.
+>    - **AC3 bare conjugation is counterproductive, though less so than first reported**:
+>      restricted to the trivial group, 4/76 = 5.3 % destroys and **0 creates in 422**
+>      (unrestricted: 21.8 % / 0). It has never been observed to create the certificate in
+>      either corpus, so downweight or drop it — but it is not the wrecking ball S6's
+>      unrestricted 24 % suggested.
 >    - AC1, cyclic rotation, AC4/AC5, chord refinement, and — by Theorem T4′ — the *first*
 >      slide over a fresh stabilizer `r_i → r_i z^{±1}` are all provably inert. Budget spent
 >      on them cannot move γ_N, so a stabilized generator must be pushed past the
@@ -100,7 +106,7 @@ this fills.
 | claim | verdict |
 |---|---|
 | **(a)** More generators give more *moves*, so the search reaches more states | true but vacuous — it is just the definition of stable equivalence |
-| **(b)** More generators let you *abbreviate* long relators into a tractable form | **REFUTED.** S3: abbreviation is a subdivision, γ_N and the whole defect histogram are invariant (1,525/1,525). S8: splitting is monotone, never decreases γ_N (632/632). Bookkeeping buys nothing |
+| **(b)** More generators let you *abbreviate* long relators into a tractable form | **MOSTLY REFUTED, one real exception.** S3: chord refinement is a subdivision, γ_N and the whole defect histogram invariant (1,525/1,525). S8 (audited, gaps discharged): bigon splitting is monotone (1,600+ splits, none below base). **But** A6's SPLIT — a fresh generator with a *length-3* definition `tuv`, so three or more 2-cell germs — took AK(3) from γ_N = 2 to a rank-13 cubic form at γ_N = 1. The germ count is the criterion, not "is it bookkeeping" |
 | **(c)** More generators make the *certificate more common* | **REFUTED** (`S10_S12_AUDIT.md`). S10's rank axis was a relator-length axis in disguise: at fixed **total** length, `mean relator length = total / rank`. Holding **per-relator** length fixed instead, the thickenable fraction is 0.868 / 0.868 / 0.834 / 0.780 at ranks 2/3/4/5 — flat, then slightly decreasing |
 | **(d)** More generators make the *test computable* where it was not | **TRUE BUT NOT ABOUT RANK.** The census is `∏(deg−1)!` and a germ's degree is its letter's occurrence count, so this is the statement that *short relators are cheap to decide*. Rank enters only because, at fixed total length, more generators means shorter relators — the same confound as (c), read as a feature |
 
