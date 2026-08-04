@@ -529,9 +529,15 @@ def _harvest_canonical(root_key, pops: int, cap: int, state_cap: int) -> dict:
 # --------------------------------------------------------------------------------------
 
 
+def _min_degree(pair) -> int:
+    joined = "".join(pair).lower()
+    return min(joined.count("x"), joined.count("y"))
+
+
 def positive_ladder(ak2_path: str = AK2_MEMBERS,
                     sensitivity_path: str = WITNESS_SENSITIVITY,
-                    min_length: int = 13, max_length: int = 25) -> list:
+                    min_length: int = 13, max_length: int = 25,
+                    min_degree: int = 3) -> list:
     """States KNOWN to have gamma_N = 0, with the provenance of that knowledge.
 
     Two independent sources:
@@ -550,6 +556,14 @@ def positive_ladder(ak2_path: str = AK2_MEMBERS,
     it).  Both biases push measured detection rates UP.  A LOW cell is therefore
     conclusive -- the instrument is blind there -- while a HIGH cell is optimistic and
     never licenses reading a null as absence.
+
+    COMPOSITION MISMATCH, recorded for the same reason.  ``min_degree`` filters out the
+    degenerate tail (a ladder state whose alphabet is essentially one generator), but no
+    filter can fix the deeper mismatch: the 124 targets all have ``min_degree >= 6``
+    while AK(2)'s thickenable members top out far below that.  A ladder state with a
+    small germ degree has a much smaller compatible family in that direction, which makes
+    it EASIER for the sampler than a target of the same total length.  This bias also
+    points UP, so it can only make a null look better than it is.
     """
     ladder = []
     seen = set()
@@ -563,11 +577,15 @@ def positive_ladder(ak2_path: str = AK2_MEMBERS,
                 length = len(pair[0]) + len(pair[1])
                 if not (min_length <= length <= max_length):
                     continue
+                if _min_degree(pair) < min_degree:
+                    continue
                 key = W.canon_pair(*pair)
                 if key in seen:
                     continue
                 seen.add(key)
                 ladder.append({"pair": list(pair), "total_length": length,
+                               "min_degree": _min_degree(pair),
+                               "census_family_size": census_size(pair),
                                "source": "ak2_members.jsonl",
                                "certified_by": row.get("method")})
     if os.path.exists(sensitivity_path):
@@ -578,11 +596,15 @@ def positive_ladder(ak2_path: str = AK2_MEMBERS,
             length = len(pair[0]) + len(pair[1])
             if not (min_length <= length <= max_length):
                 continue
+            if _min_degree(pair) < min_degree:
+                continue
             key = W.canon_pair(*pair)
             if key in seen:
                 continue
             seen.add(key)
             ladder.append({"pair": list(pair), "total_length": length,
+                           "min_degree": _min_degree(pair),
+                           "census_family_size": census_size(pair),
                            "source": "witness_sensitivity.json ladder",
                            "certified_by": rung.get("certified_by")})
     ladder.sort(key=lambda r: (r["total_length"], r["pair"]))
@@ -943,10 +965,11 @@ def run_neighbourhood(sweep_path: str = SWEEP_OUT, out_path: str = NEIGHBOUR_OUT
 def run_calibration(out_path: str = CALIBRATION_OUT, budget: int = SAMPLE_BUDGET,
                     seeds: int = SAMPLE_SEEDS, per_length_cap: int = 12,
                     min_length: int = 13, max_length: int = 25,
-                    verbose: bool = True) -> dict:
+                    min_degree: int = 3, verbose: bool = True) -> dict:
     """Stage 3: the mandatory positive ladder, BOTH instruments, rates BY LENGTH."""
     started = time.time()
-    ladder = positive_ladder(min_length=min_length, max_length=max_length)
+    ladder = positive_ladder(min_length=min_length, max_length=max_length,
+                             min_degree=min_degree)
     by_length = defaultdict(list)
     for entry in ladder:
         by_length[entry["total_length"]].append(entry)
@@ -956,10 +979,13 @@ def run_calibration(out_path: str = CALIBRATION_OUT, budget: int = SAMPLE_BUDGET
     rows = []
     for length in sorted(by_length):
         pool = by_length[length]
-        chosen = pool if len(pool) <= per_length_cap else rng.sample(pool,
-                                                                    per_length_cap)
+        chosen = (pool if len(pool) <= per_length_cap
+                  else sorted(rng.sample(range(len(pool)), per_length_cap)))
+        if chosen is not pool:
+            chosen = [pool[i] for i in chosen]
         a_hits = 0
         a_fail_closed = 0
+        a_fail_reasons = []
         b_hits = 0
         b_best = []
         for entry in chosen:
@@ -970,10 +996,13 @@ def run_calibration(out_path: str = CALIBRATION_OUT, budget: int = SAMPLE_BUDGET
                 a_hits += 1
             elif decision["verdict"] != NOT_SPHERICAL:
                 a_fail_closed += 1
+                a_fail_reasons.append(decision["reason"])
             if sample["best_defect"] == 0:
                 b_hits += 1
             b_best.append(sample["best_defect"])
             rows.append({"pair": entry["pair"], "total_length": length,
+                         "min_degree": entry["min_degree"],
+                         "census_family_size": entry["census_family_size"],
                          "source": entry["source"],
                          "instrument_A_verdict": decision["verdict"],
                          "instrument_A_method": decision["method"],
@@ -986,9 +1015,13 @@ def run_calibration(out_path: str = CALIBRATION_OUT, budget: int = SAMPLE_BUDGET
         cells[str(length)] = {
             "ladder_states_available": len(pool),
             "states_measured": len(chosen),
+            "min_degree_range": [min(e["min_degree"] for e in chosen),
+                                 max(e["min_degree"] for e in chosen)],
+            "sources": dict(sorted(Counter(e["source"] for e in chosen).items())),
             "instrument_A_detection_rate": round(a_hits / len(chosen), 4),
             "instrument_A_hits": a_hits,
             "instrument_A_fail_closed": a_fail_closed,
+            "instrument_A_fail_closed_reasons": a_fail_reasons[:4],
             "instrument_B_detection_rate": round(b_hits / len(chosen), 4),
             "instrument_B_hits": b_hits,
             "instrument_B_best_defects": b_best,
@@ -1015,6 +1048,7 @@ def run_calibration(out_path: str = CALIBRATION_OUT, budget: int = SAMPLE_BUDGET
         "units": "defects are UNHALVED; gamma_N = defect // 2",
         "budgets": {"sample_budget_per_seed": budget, "sample_seeds": seeds,
                     "per_length_cap": per_length_cap, "master_seed": MASTER_SEED,
+                    "min_degree_filter": min_degree,
                     "scheme_budget": SCHEME_BUDGET, "branch_budget": BRANCH_BUDGET},
         "ladder_sources": ["results/stable_ac/fable/ak2_members.jsonl (verdict "
                            "SPHERICAL)",
@@ -1047,6 +1081,13 @@ def run_calibration(out_path: str = CALIBRATION_OUT, budget: int = SAMPLE_BUDGET
             "Both ladder sources are biased toward detectable states, which pushes "
             "measured rates UP.  A low cell is conclusive (the instrument is blind); a "
             "high cell is optimistic and never licenses reading a null as absence."),
+        "composition_mismatch": (
+            "Every one of the 124 targets has min generator degree >= 6; the ladder's "
+            "thickenable states are much sparser in one generator (see min_degree_range "
+            "per cell).  A sparse state has a smaller compatible family in that "
+            "direction and is therefore EASIER for instrument B than a target of the "
+            "same total length.  This bias also points UP: the measured rates bound the "
+            "instrument's sensitivity on the actual targets from ABOVE."),
         "rows": rows,
         "elapsed_seconds": round(time.time() - started, 1),
     }
@@ -1082,6 +1123,7 @@ def main(argv=None) -> int:
     parser.add_argument("--state-cap", type=int, default=NEIGHBOUR_STATE_CAP)
     parser.add_argument("--depth1-top-only", action="store_true")
     parser.add_argument("--per-length-cap", type=int, default=12)
+    parser.add_argument("--min-degree", type=int, default=3)
     args = parser.parse_args(argv)
 
     if args.stage == "sweep":
@@ -1095,7 +1137,8 @@ def main(argv=None) -> int:
                           depth1_all=not args.depth1_top_only)
     else:
         run_calibration(args.calibration_out, budget=args.samples, seeds=args.seeds,
-                        per_length_cap=args.per_length_cap)
+                        per_length_cap=args.per_length_cap,
+                        min_degree=args.min_degree)
     return 0
 
 

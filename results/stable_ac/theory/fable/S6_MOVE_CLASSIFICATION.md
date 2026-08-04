@@ -201,10 +201,12 @@ cap 2·10⁶):
 | `("xyXY","xxy")` (reduced) | 12 | `{0:2, 2:6, 4:4}` | **0** | 4, 3 |
 | `("xyXY","yYxxy")` (spiked) | 144 | `{2:26, 4:94, 6:24}` | **1** | 4, 5 |
 
-Two independent certificates that the spaces differ: the multiplicity multiset
-`{4,3}` vs `{4,5}` (T0), and — decisively — the verdicts themselves, since orientable
-thickenability is a property of the underlying space (Theorem D). **Free reduction created
-thickenability here.**
+Two independent certificates that the spaces differ. (i) By T0, the reduced complex has
+local `H_2`-rank 3 along the `x`-edge and 2 along the `y`-edge, while the spiked one has 3
+and **4**; local homology rank at a point is a homeomorphism invariant, and the spiked
+complex has an arc of rank-4 points where the reduced one has none. (ii) Decisively, the
+verdicts themselves: orientable thickenability is a property of the underlying space
+(Theorem D), and they differ. **Free reduction created thickenability here.**
 
 **Direction.** Whether move (0) can ever *destroy* thickenability is exactly the negation
 of `R7`'s **Conjecture SR** (`γ_N(spike(P)) = 0 ⇒ γ_N(P) = 0`) and is **[OPEN]**. What is
@@ -217,7 +219,8 @@ known:
   the spike is **unnested**, the reduced complex is thickenable. Only *nested* defect-0
   systems could witness a counterexample.
 * Empirically 0 counterexamples: `R1F`'s 110,917 measured spiked complexes, plus this
-  session's 2,195 reduction-pairs (§7).
+  session's **997** pairs whose spiked spelling is thickenable (§7), in every one of which
+  the reduction was thickenable too.
 
 ---
 
@@ -225,16 +228,20 @@ known:
 
 This is the interesting move and the answer is sharp.
 
-**Theorem T2 (identification).** Let `r` be a cyclic word and `c` a letter (generator or
-inverse generator). As **cyclic** words,
+**Theorem T2 (identification).** Let `r = a_0 … a_{N−1}` be a cyclic word and `c` a letter
+(a generator or an inverse generator).
 
-    c · r · c^{-1}   =   rot_1( r · c^{-1} · c )   =   SPIKE(r; k = 0, u = c^{-1}),
+*(a)* `c · r · c^{-1}` and `r · c^{-1} · c` are **the same cyclic word** (move the last
+letter to the front). The second is `SPIKE(r; k = 0, u = c^{-1})` in `R7` §0's notation —
+insert `u u^{-1}` at position `k` of the cyclic word.
 
-and conversely `SPIKE(r; k, u)` with `|u| = 1` equals `u^{-1} · rot_k(r) · u`, the AC3
-image by `u^{-1}` of a cyclic rotation of `r`. Since cyclic rotation of a relator induces a
-homeomorphism of the presentation complex (T1/ROT) and preserves the full defect histogram
-(`GAMMA_N_SYMMETRY_LEMMA` (i), AUDITED), **single-generator AC3 and single spikes are the
-same operation up to homeomorphism.** ∎
+*(b)* Conversely `SPIKE(r; k, u)` with `|u| = 1` is, as a cyclic word,
+`u^{-1} · rot_k(r) · u` — the AC3 image by `u^{-1}` of the cyclic rotation of `r` starting
+at position `k`.
+
+Since cyclic rotation of a relator induces a homeomorphism of the presentation complex
+(T1/ROT) and preserves the full defect histogram (`GAMMA_N_SYMMETRY_LEMMA` (i), AUDITED),
+**single-generator AC3 and single spikes are the same operation up to homeomorphism.** ∎
 
 *(`SPIKE` is `R7` §0's notation: insert `u u^{-1}` at position `k` of the cyclic word.)*
 
