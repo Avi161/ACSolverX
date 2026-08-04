@@ -239,7 +239,17 @@ invert it if `ε_k = −1` (1 AC1), left-multiply the target relator by it (1 AC
 the inversion and the conjugation (`1 + |u_k|` moves) so `P'`'s relators are restored. After
 all `A` factors the target relator is `(∏_k u_k(r'_{i_k})^{ε_k}u_k⁻¹)·w⁻¹y = w·w⁻¹y = y`.
 Since `r₁',…,rₙ'` contain no `y`, AC5 removes `y`, leaving `P'`. Total beyond `C_sub`:
-`1 + Σ_k (2|u_k| + 3) ≤ 3A + 2A(AL + ℓ)` (absorbing the leading 1). ∎
+`1 + Σ_k (2|u_k| + 3) ≤ 3A + 2A(AL + ℓ)` for `A ≥ 1` (absorbing the leading 1; `A = 0` means
+`w = 1` and the supermove is `C_sub + 1 + `AC5). ∎
+
+*Move-convention note.* The count above charges `|u_k|` moves for conjugating a relator by
+`u_k`, i.e. it uses the **generator-only** conjugation move (Lackenby's (3), and the
+conservative reading). Under `FRAMING.md`'s AC3, which conjugates by an arbitrary word in
+one move, the same route costs `≤ 4A` moves beyond `C_sub` and Lemma 2.1 is not needed for
+the upper bound at all. The bound as stated is therefore valid in both conventions; only the
+lower bound of part (b), which is convention-independent, is used elsewhere.
+`FRAMING.md` trap 5 (papers permute the move numbers) applies — check any paper's own
+definitions before transporting these counts.
 
 *Proof of (b).* Two ingredients.
 
@@ -463,7 +473,7 @@ nodes popped, matching the abelianization lower bound exactly. [MEASURED, agrees
 
 `P' = ⟨x, y | x, y⟩` (balanced, presents the trivial group; Todd–Coxeter completes at index
 1). `w = [x,y] = xyx⁻¹y⁻¹`, i.e. the Lemma-11 datum
-`P = ⟨x, y, z | x, y, z⁻¹xyx⁻¹y⁻¹⟩` (balanced, trivial, total length 6).
+`P = ⟨x, y, z | x, y, z⁻¹xyx⁻¹y⁻¹⟩` (balanced, presents the trivial group, total length `1 + 1 + 5 = 7`).
 
 > **`Area_{⟨x,y|x,y⟩}([x,y]) = 2`, exactly.**
 > *Upper:* `[x,y] = x · (y x⁻¹ y⁻¹)` — two conjugate factors (`u₁ = 1, ε₁ = +1` on `x`;
@@ -492,7 +502,7 @@ Finite-quotient lower bound (the method, and its direction): for **any** homomor
 | quotient | sweep | result | method's detection ceiling |
 |---|---|---|---|
 | `S₄` | exhaustive, 576 homs, 5,547 BFS nodes | `Area_{AK(2)}(x) ≥ 3` | **3** |
-| `S₅` | exhaustive, 14,400 homs, 709,260 BFS nodes, 52 s | `Area_{AK(2)}(x) ≥ 4` | **4** (on the 800-hom sample used in the recorded artifact) |
+| `S₅` | exhaustive, 14,400 homs, 709,260 BFS nodes, 52 s | `Area_{AK(2)}(x) ≥ 4` | **4** (measured on the 800-hom sample recorded in the artifact; the exhaustive sweep also returns 4) |
 | `S₆` | 60-hom sample, 14,193 nodes | `≥ 2` (undersampled) | — |
 | calibration: `⟨x,y|x,y⟩`, `w=[x,y]` | `S₄` exhaustive | `≥ 2` = the true value | 3 |
 
@@ -576,7 +586,7 @@ triviality problem for balanced finite presentations. Two consequences, in oppos
 
 | # | Claim | Status |
 |---|---|---|
-| 1 | Lemma 11's statement, proof, and the authors' open-problem paragraph, as quoted | **RELAYED→VERIFIED**: read from `ammedmar/ac_paper` @ `d86984d`, `sec/stable.tex:28–38`, this session |
+| 1 | Lemma 11's statement, proof, and the authors' open-problem paragraph, as quoted | **VERIFIED-FROM-SOURCE**: read from `ammedmar/ac_paper` @ `d86984d`, `sec/stable.tex:28–38`, this session |
 | 2 | Lemma 1.1: `P` trivial ⇒ `P'` trivial ⇒ `w ∈ N'` (via the retraction `π`) | **PROVED** |
 | 3 | Theorem 1(a): `min M(P,w) = Area_{R'}(w)` | **PROVED** (self-contained) |
 | 4 | Theorem 1(b,c): `Area_{R'} = Area^{vK}_{R'}` | **PROVED modulo van Kampen's lemma**, which is CLASSICAL and not re-verified in this clone; both constructions are given |

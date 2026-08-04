@@ -1,0 +1,10 @@
+{
+ "record": "s20_split_escape_probe",
+ "stat": {
+  "parents_tried": 3,
+  "nonplanar_parents": 3,
+  "children": 60,
+  "planar_children": 0,
+  "escapes": []
+ }
+}

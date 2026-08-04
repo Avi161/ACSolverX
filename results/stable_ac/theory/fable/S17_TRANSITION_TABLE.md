@@ -35,6 +35,7 @@ method: no new search was run, no move tree was explored, **zero search nodes we
 | a sampled 400 chains re-checked with the repo's own `verify_split` | **measured**: 400 / 400 passed |
 | defect of a state already in a persisted `*_decided.jsonl.gz` | **read from disk** (measured earlier by `cmd_decide`) |
 | defect of a state not previously persisted (the roots and the depth‑1/2 intermediates, plus depth‑3 parents of depth‑4 rows) | **measured here** with `cubic_split_search.fast_min_defect`, `deep_cap = 400,000` — the same function and cap `cmd_decide` used to write the persisted rows |
+| a 4-state spot check against the *independent* decider `s12_hunt.decide` (cut-scheme solver, a different code path) | **measured**: 2 states stored at `γ_N = 1` returned `NOT_SPHERICAL`; 2 states stored at `γ_N = 0` returned the solver's inconclusive `UNSUPPORTED` (it never returns a false NO, so this is consistent, not corroborating). No contradiction found; the check is weak on the `γ_N = 0` side and is recorded as such |
 
 Artifacts read (all pre-existing): `s4b_pool.jsonl.gz`, `s4b_decided.jsonl.gz`,
 `s4b_control_pool.jsonl.gz`, `s4b_control_decided.jsonl.gz`, `s4b_ctrl2_pool.jsonl.gz`,
@@ -179,8 +180,8 @@ depth 1), from 2,039 distinct `γ_N = 1` parents.
 (`experiments/lessons/conjectures-tested-only-at-depth-one.md`): the parents in this table
 sit at chain depths 0, 1, 2 and 3 — 1,755 edges out of depth 0, 3,923 out of depth 1,
 143,356 out of depth 2 and 27,450 out of depth 3 (measured). The `γ_N = 1` row is populated
-at depths 0 (505 edges), 1 (1,680), 2 (51,885 incl. other rows) and 3. This is **not** a
-depth‑1 corpus.
+at every one of those depths: 505 edges out of depth 0, 1,680 out of depth 1, 51,885 out of
+depth 2 and 2,318 out of depth 3 (measured). This is **not** a depth‑1 corpus.
 
 ---
 
@@ -286,6 +287,7 @@ descendants.
 | §4 | destruction rate 2,101 / 3,017 = 69.6 % | **measured** |
 | §4 | rank‑5 destruction 643 / 960 = 67.0 % | **read from disk** |
 | §5 | unconditioned sub-table, `1→0` = 0 / 2,185, `2→1` = 67 / 2,768 | **measured** |
+| §1 | independent-decider spot check, 4 states | **measured**, and weak: only 4 states, and the `γ_N = 0` side came back inconclusive from the cut-scheme solver |
 | §6 | verdict (a) | **inference** from the measurements above; an instrument fact, not a theorem |
 | §6 | "bounds `Γ` from ABOVE" | **established** in `S15_ONE_SIDEDNESS.md` §4, cited |
 
