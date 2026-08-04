@@ -80,19 +80,22 @@ witness ⇒ γ_N ≤ 1) gives **exact** γ_N without a census:
 | `aca_122` | `YXXXyxx, YYYYYXyyyyx` | 18 | **1** |
 | `aca_115` = **AK(3)** | `YXYxyx, YYYYxxx` | 13 | **2** |
 
-**What the orchestrator re-verified independently, and what he did not.** All six were
-re-run through the cut-scheme solver and Todd–Coxeter: **6/6 `NOT_SPHERICAL`, 6/6 trivial
-group**, so the *lower* half of every bracket (γ_N ≥ 1) is independently confirmed. The
-*upper* half is not, for five of them: only `aca_117`'s census fits an exact enumeration
-(518,400 rotations → `minimum_defect` 2 → γ_N = 1 exactly). The others are far beyond it —
-3.6 · 10⁶, 2.9 · 10⁷, 2.6 · 10⁸, 2.6 · 10⁸ and 2.6 · 10⁹ rotations — so their γ_N = 1 rests
-on A9's defect-2 **witnesses**, which A9 reports as re-verified by two independent checkers
-but which were not re-checked here. AK(3) reproduces at defect 4, index 1.
+**Both halves of every bracket were re-verified independently by the orchestrator.**
 
-That asymmetry is the right way round for the purpose: a witness bounds γ_N from **above**,
-which is the direction that makes "closer to a certificate" meaningful, and a bad witness
-would only make a row look *better* than it is — so the ranking is the claim to treat with
-care, not the underlying `NOT_SPHERICAL` verdicts.
+- *Lower half* (γ_N ≥ 1): all six re-run through the cut-scheme solver and Todd–Coxeter —
+  **6/6 `NOT_SPHERICAL`, 6/6 trivial group**. AK(3) reproduces at defect 4, index 1.
+- *Upper half* (γ_N ≤ 1): only `aca_117`'s census is small enough to enumerate exactly
+  (518,400 rotations → `minimum_defect` 2). The other five need 3.6 · 10⁶, 2.9 · 10⁷,
+  2.6 · 10⁸, 2.6 · 10⁸ and 2.6 · 10⁹ rotations, so instead their **stored rotation-system
+  witnesses** were fed to `witness_check_n`, which recomputes the defect from the words and
+  the rotation, independently of the sampler that found it. It returned **defect 2 on all
+  five** (as a refusal to certify sphericity — its message is literally "defect 2 != 0" —
+  which is the computation we wanted). Compatibility passed in every case, so each is a
+  genuine compatible rotation system of defect 2, giving γ_N ≤ 1.
+
+So the six γ_N = 1 values are bracketed from both sides by instruments independent of the
+one that produced them. The witnesses are stored per row in
+`results/stable_ac/fable/u124_sweep.jsonl` under `sample.witness` and are replayable.
 
 By the project's audited graft ceiling (a graft lowers γ_N by at most 1), a thickenable
 member is only reachable from a γ_N = 1 state. **Six of AK(3)'s 123 unsolved siblings sit

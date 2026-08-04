@@ -225,9 +225,93 @@ calculus's *bias*; it is not an obstruction.
 
 ---
 
-## 4. The scaled search for the cubic form, and its calibration
+## 4. The scaled search: two cubic forms of AK(3), and the calibration
 
-<!--SEARCHTABLE-->
+### 4.1 The runs
+
+Beam search over `SPLIT`, cost `(Σ|δ|, −#Lemma-S4.6-exits)`, beam 60, depth 20, ≤ 300
+children per node. **The one change that mattered** is the `diversity` parameter: 30 % of
+each beam is filled by a *uniform random sample* of the non-best children instead of by the
+cost ranking. Leaving the T-S11 parity plateau at `Σ|δ| = 2` provably requires a temporarily
+cost-increasing move, so a pure ranking beam — S4's — can never do it, however large the
+beam. That is why S4 saw 0/48 and this run sees 2/28.
+
+| run | roots | **cubic forms found** | nodes | near-cubic states collected (`Σ|δ| ≤ 4`) | deep `γ_N` scan (cap) | deep defect histogram |
+|---|---|---|---|---|---|---|
+| **AK(3)** (28 distinct triangulations of AK(3), 9 s each) | 28 | **2** (7.1 %) | 1,298,733 | 66,756 | 500 tested (900,000) | `{4: 402, 6: 94, **2: 4**}` — **no 0** |
+| **matched-difficulty ladder** (35 AC-trivial rank-2 sources, `L = 13`, triangulated to rank 9, `Σ|δ| = 14` — the same numbers AK(3) has; 6 s each) | 35 | **0** | 930,647 | 29,678 | 200 tested (400,000) | `{4: 149, **2: 51**}` — **no 0** |
+
+### 4.2 The two cubic forms, verified end to end
+
+```
+root12 = (EaY, GxB, aXY, bxY, cYY, dXy, eXd, fCx, gYF)        rank 9,  Σ|δ| = 14
+   --4 SPLITs-->
+C1     = (kAe, Xgb, aXH, bxH, cYY, ydJ, eid, IfC, gKF, hAe, igb, jfC, kdJ)
+         rank 13 · cubic · non-degenerate · trivial group (index 1) · defect 2, γ_N = 1
+         census 8,192 · histogram {2:2, 4:60, 6:510, 8:2338, 10:3766, 12:1516}
+
+root13 = (Xbc, gxE, aYX, bAy, cyX, dYx, eYY, fDx, gfy)        rank 9,  Σ|δ| = 14
+   --4 SPLITs-->
+C2     = (Xbc, hEg, aYX, JbA, YCk, dIk, eYj, xfD, gfi, hfD, ibA, jCh, kEg)
+         rank 13 · cubic · non-degenerate · trivial group (index 1) · defect 4, γ_N = 2
+         census 8,192 · histogram {4:6, 6:158, 8:1620, 10:4124, 12:2124, 14:160}
+```
+
+Four independent checks, all passed:
+
+1. **The `SPLIT` chain replays** from the root with the retraction certificate verified at
+   every step (`verify_chain`, §1.1) — `chain_verified: true` for both.
+2. **The root really is a triangulation of AK(3)**, checked *independently of the code that
+   built it*: repeatedly AC2-merge a generator occurring exactly twice in two distinct
+   relators and destabilise it (the inverse chord refinement of `S3_AUDIT` §6.2). Both roots
+   collapse in exactly **7** un-merges to `("XyxyXY","yyXXXyy")` resp. `("yXYXyx","YxxxYYY")`,
+   which are AK(3)'s two relators up to rotation and inversion.
+3. **Trivial group**: Todd–Coxeter over the trivial subgroup completes at index 1 for both.
+4. **Cubic + triangular + non-degenerate + balanced**: 13 generators, 13 relators, every
+   relator length 3 and cyclically reduced, every multiplicity exactly 3.
+
+Rank 13 is the **minimum possible** (§5.1: `Σ|δ| = 14` and no `SPLIT` reduces `Σ|δ|` by more
+than 4, so rank `≥ 9 + ⌈14/4⌉ = 13`). Both witnesses are extremal.
+
+### 4.3 Reading the calibration — it reverses S4's
+
+S4 reported AK(3) 0/48 against a matched ladder at 4/12 = 33 % and called the AK(3) null
+"suggestive of a real obstruction". This run has AK(3) at **2/28** and the matched ladder at
+**0/35**. So on the improved search **AK(3) is not harder than matched-difficulty AC-trivial
+inputs — it is, if anything, easier.** Whatever S4's 0/48 measured, it was the ranking beam's
+plateau, not a property of AK(3).
+
+Two confounds, stated rather than buried: the ladder got 6 s per root against AK(3)'s 9 s,
+and the AK(3) roots are 28 triangulations of **one** source while the ladder is 35 **distinct**
+sources with one triangulation each. Neither difference is in AK(3)'s favour on the axis that
+matters (AK(3) had less source diversity), but the two rates are not interchangeable and no
+p-value is quotable — these are move-tree samples, not independent draws.
+
+The one contrast that *is* like-for-like is the deep `γ_N` scan, which ran on both:
+**AK(3)'s near-cubic descendants reach defect 2 in 4/500 = 0.8 % of tested states, the
+ladder's in 51/200 = 25 %.** AK(3)'s stable class sits measurably higher in the defect
+landscape than matched AC-trivial inputs — which is consistent with AK(3) being hard, and is
+the first quantitative version of that on this line. It is **not** evidence of an
+obstruction: the ladder sources have varied `γ_N` at rank 2 (inherited exactly by their
+triangulations, §2), and that was not controlled for.
+
+### 4.4 What the `γ_N = 0` null is worth here
+
+**Zero `γ_N = 0` states were found**, and the null is weak by construction:
+
+* only **500 of 66,756** collected near-cubic AK(3) states were tested (0.75 %), and
+  200 of 29,678 on the ladder — the deep scan is budget-bound, not exhausted;
+* the in-search scan tested **nothing** (`gamma_tested: 0` in both runs): a near-cubic state
+  at rank `N` has census `2^N ≥ 2^10`, above the in-search cap. Every `γ_N` number here comes
+  from the post-hoc deep scan;
+* the ladder shows the scan *can* see low defects (51 states at defect 2), so the instrument
+  works — but it has no positive control for defect **0** anywhere in this file, so the
+  detection rate for a `γ_N = 0` state is **unmeasured**
+  (`experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md`).
+
+**The right next experiment is obvious and cheap**: 66,756 near-cubic AK(3) states are
+already on disk-reachable provenance and 99.25 % of them have never been tested. At
+`2^13 = 8,192` per census that is minutes of CPU, not hours.
 
 ---
 
@@ -281,19 +365,26 @@ the route's prior, and the flip census is the first direct measurement of it.
 
 | question | status |
 |---|---|
-| Q-red for AK(3) (cubic form, all relators cyclically reduced) | **OPEN**; scaled search found none; null calibrated in §4 |
-| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **measured NO** (§3), conjectured no (S4B-M), **not proved** |
-| is the cubic regime cheap to decide at AK(3)'s scale? | **NO** — census `2^N` (§5.1) |
-| does the 64 % rank-4 fraction transfer to AK(3)? | **NO** — base rate, not conditional (§5.2) |
-| is the route BLOCKED (FRAMING §3)? | **not blocked, but re-scoped**: it does not reduce to another open problem, and its value is now the normal-form question and Conjecture S4B-M, not the certificate |
+| **Q-red for AK(3)** (cubic form, all relators cyclically reduced) | **ANSWERED YES** — two explicit rank-13 witnesses, verified four ways (§4.2). This closes S4 §0 item 6 and S4 §7.3's first branch **for AK(3)** |
+| Q-red in general (every balanced presentation of 1) | **still OPEN** — Lemma S4.6 / Observation S4.5 unproved; two witnesses are not a theorem |
+| can `SPLIT` lower `γ_N`? | **YES, measured** — `γ_N = 2 → 1` from AK(3)'s triangulation (§3.4). My own monotonicity conjecture is refuted |
+| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **OPEN.** No hit; but only 0.75 % of the collected near-cubic states were tested, and the detection rate for a `γ_N = 0` state is unmeasured (§4.4) |
+| is AK(3) harder than matched AC-trivial inputs for this search? | **NO** on the cubic-form axis (2/28 vs 0/35, §4.3), **YES** on the defect axis (0.8 % vs 25 % of tested near-cubic states reach defect 2) |
+| is the cubic regime cheap to decide at AK(3)'s scale? | partly — `2^13 = 8,192` at the minimum rank, inverting against AK(3)'s own 86,400 at rank 17 (§5.1) |
+| does the 64 % rank-4 thickenable fraction transfer to AK(3)? | **NO** — and the two forms actually found are 0/2 thickenable (§5.2) |
+| is the route BLOCKED (FRAMING §3)? | **NO — it is the most alive it has been.** It delivered a normal form for AK(3) and the first stable-class member below `γ_N = 2` |
 
 **Next concrete step**, in priority order:
-1. Prove or refute **Conjecture S4B-M** (§3.4). A proof closes the certificate half of the
-   route with a theorem and is the first genuine obstruction on the S-line.
-2. If S4B-M holds, the certificate hunt must move to move classes `S6` measures as
-   *creators* — general AC2 slides and spelling choice — which is what `S12` already does.
-3. Q-red itself (Lemma S4.6 / Observation S4.5) remains open and is now a pure normal-form
-   question with no certificate payoff attached.
+
+1. **Exhaust the deep scan.** 66,756 near-cubic AK(3) states are already reachable from
+   `s4b_ak3.jsonl` provenance and 99.25 % are untested, at ~8,192 census each. This is the
+   cheapest possible shot at the prize and it is minutes of CPU.
+2. **Push from `γ_N = 1`.** `C1` and the four defect-2 states are the lowest any member of
+   AK(3)'s stable class has been driven on this line. Re-root the search at them and apply
+   the moves `S6` classifies as *creators* (general AC2, spelling choice) rather than `SPLIT`.
+3. **Build a positive control for a `γ_N = 0` state at rank ≈ 13** so §4.4's null acquires a
+   measured detection rate. Without it the null bounds nothing.
+4. Q-red in general (Lemma S4.6) — now with two worked instances to generalise from.
 
 ## 7. Traps added to the line
 
@@ -302,10 +393,17 @@ the route's prior, and the flip census is the first direct measurement of it.
   family as `S0` §2 (see `S3_AUDIT.md` §2).
 * **T-S13.** *A base rate over an exhaustively enumerated tiny class is not a prior for a
   hard instance's descendants.* The 64.29 % of S4 §4 is measured over rank-4 AC-trivial
-  presentations; the route's actual population is the `SPLIT`-descendants of one pinned root.
+  presentations; the two cubic forms this route actually produced are 0/2 thickenable.
 * **T-S14.** *Every triangulation of AK(3) has `γ_N = 2` exactly* (`S3_AUDIT` Lemma S3′).
   Enlarging the set of triangulation roots can only diversify a *search*; it can never move
   the starting `γ_N`.
+* **T-S15.** *A move's flip census is a statement about the corpus's rank, not about the
+  move* — §3.4. `SPLIT`: 0 creations in 1,470 rank-5 opportunities, and a demonstrated
+  `γ_N` drop at rank 9.
+* **T-S16.** *A ranking beam cannot cross a plateau whose exit is cost-increasing.* S4's
+  0/48 on AK(3) was an artefact of exactly that (T-S11's `Σ|δ| = 2` plateau); adding 30 %
+  random beam fill turned it into 2/28. Before reading any search null on this line, check
+  that the search can take a cost-increasing move at all.
 
 ---
 
