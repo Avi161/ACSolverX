@@ -41,6 +41,59 @@ HOUR. The control design failed for a FOURTH reason, and this one is the deepest
 > **What survives:** §3 (stabilization is inert for `γ_N`, exact census at ranks 2–5 — an
 > independent result that never depended on the comparison); the observation that matched
 > defect-4 controls exist at all; and the negative lesson itself, filed as **T-S20**.
+>
+> ### Post-retraction: the independent audit (A21), which concurs from the opposite direction
+>
+> A21 was told to hunt for a *structural* fourth confound. It found four real differences —
+> all five controls share `YYXyx`; the controls are 5+8 or 5+7 where AK(3) is 6+7; every
+> control has a relator abelianising to a **generator** (and all 640 members of
+> `data/ms640_solved.txt` do, so the instrument's only control source *cannot* match AK(3)
+> here); and S21 never printed the rank-2 defect (A21 measured it: all six are defect 4, so
+> the match itself is sound).
+>
+> **None of them is the confound.** A21 built three AC-trivial defect-4 controls by AC walk
+> from `⟨x,y|x,y⟩` — no shared relator, no unit row, all `NOT_SPHERICAL` at root, one matched
+> to AK(3) on the **6+7 shape** as well (`('xyXXXyx','XyxyyX')`) — and the rate did **not**
+> collapse: **8/8, 8/8, 8/8**, pooled 59/64 over eight presentations from two unrelated
+> sources. So there is no structural fourth costume, and **that makes T-S20 stronger, not
+> weaker**: matching was pushed to every axis the instrument can see, and comparability still
+> did not follow.
+>
+> What *does* replicate on that fresh control family is the in-band collapse — witness
+> `≥` root length gives **3/16 = 0.19**. And A21 supplied the chain-level evidence this
+> retraction was missing, by replaying one hit end to end:
+>
+> ```
+> length trace: 13,12,15,18,17,11,14,17,10,11,15,17,14,9,8,7
+>               certificate created at length 7
+> ```
+>
+> all 15 steps independently re-verified as AC moves, the hit `minimum_defect = 0` by exact
+> census, root defect 4. **The hit is real, is a genuine creation, and is out of band** —
+> exactly T-S20.
+>
+> ### Two errors in §4/§5 that the audit caught, and that were mine
+>
+> 1. **`0/34` is not artifact-backed; `0/16` is.** `s12_hunt` writes its JSON only after its
+>    last depth, so at audit time `s12_ak3_hi_k1.json` and `s12_ak3_depth_ladder.json` did not
+>    yet exist — both runs were still executing. **18 of the 34 AK(3) trials were console
+>    readings**, and §7 wrongly classed them "measured". The artifact-backed AK(3) null is
+>    **0/16** with controls 15/16.
+> 2. **The 40 control trials are not 40 independent restarts.** All five runs used
+>    `--seed 991`, so trial `t` draws `Random(991 + 7919·t)` on *every* control: eight streams
+>    reused five times. §5.4's "40 independent randomized restarts" is false, and the 19/24
+>    and 8/24 figures above inherit the same dependence.
+>
+> Minor: §1's "78 with a defect number, five at defect 4" is shuffle-dependent (A21's own
+> 240-sample gave 96 and a *different* five).
+>
+> **Two checks came out in S21's favour** and are recorded as defences. The AK(3) searches did
+> **not** starve — `pops = 8000/8000`, `decided` 2557/2408, `undecided = 0` — which matters
+> because `experiments/lessons/instrument-the-search-before-reading-its-null.md` exists
+> precisely for that failure, and S21's artifacts store `stats` only for trials that *hit*, so
+> this was not checkable from the repo without A21's replay. And every internal control of
+> every cited run is `NOT_SPHERICAL` at defect 2 — **no survival control anywhere**, so T-S19
+> did not recur.
 
 It is a *measurement*, not a theorem, and it bounds `Γ(AK(3))` from **above** only. It is not
 a proof that AK(3) lacks a thickenable member.

@@ -81,6 +81,38 @@ is stated but not allowed to change the conclusion is decoration. **If a limitat
 void the result when taken seriously, take it seriously before publishing the number — or
 report the result at the strength the limitation leaves it.**
 
+## The independent audit made this stronger, not weaker
+
+An adversarial auditor was set on the retracted file specifically to find a *structural*
+fourth confound — a shared relator, a shape mismatch, an abelianisation difference. It found
+four such differences, then **built controls without any of them** (fresh AC walks from the
+trivial presentation: no shared relator, no unit abelianisation row, one matched even on the
+target's relator-length shape) and the rate did **not** collapse: 8/8, 8/8, 8/8, pooled 59/64
+across eight presentations from two unrelated sources.
+
+So there is no structural fix hiding here. Matching was pushed to every axis the instrument
+can see, and comparability still did not follow — because the incomparability is not an
+attribute of the control, it is the *route* the control is allowed to take. The auditor also
+replayed one hit end to end and produced the cleanest possible statement of the trap:
+
+    length trace: 13,12,15,18,17,11,14,17,10,11,15,17,14,9,8,7
+                  certificate created at length 7
+
+Every step verified as a legal move, the certificate real and exactly checked. A perfect hit,
+obtained by an exit the target cannot use.
+
+## A separate lesson from the same audit: do not report a number before its artifact exists
+
+The retracted file quoted the target's null as `0/34`, pooling three runs. Two of those runs
+were **still executing** — the search writes its JSON only after its final depth — so 18 of
+the 34 trials were console readings transcribed into a table whose status column said
+*measured*. The artifact-backed figure was `0/16`.
+
+Console output is a progress report, not an artifact. **A number is measured when a file on
+disk contains it**; until then it is a preliminary reading and must be labelled one. Related:
+the same audit found all five runs shared one `--seed`, so "40 independent restarts" was
+really 8 streams reused 5 times — check the seeds before claiming independence.
+
 ## The consolation
 
 The corrected reading is again more useful than the retracted one. "The target resists where
