@@ -19,9 +19,34 @@ def test_autmin_freeze_r1_equals_rep():
     assert ru.assert_autmin_freeze() is True
 
 
-def test_load_rows_start_total():
+def test_load_mu_ladder_36_descenders():
+    floors = ru.load_mu_ladder_best_reps()
+    assert len(floors) == 124
+    desc = [k for k, v in floors.items() if v["cov_reduced"]]
+    assert len(desc) == 36
+    # Spot-check a known descender: aca_34 18→16
+    a34 = floors["aca_34"]
+    assert a34["mu_in"] == 18 and a34["best_mu"] == 16
+    assert a34["r1"] == "YXXyxYx" and a34["r2"] == "YYYYXyyxx"
+
+
+def test_load_rows_uses_cov_best_rep():
     rows = ru.load_rows()
     assert len(rows) == 124
+    n_cov = sum(1 for r in rows if r["cov_reduced"])
+    assert n_cov == 36
+    by = {r["name"]: r for r in rows}
+    # Descender starts at best_rep, not Aut-min.
+    r = by["aca_34"]
+    assert r["r1"] == "YXXyxYx" and r["r2"] == "YYYYXyyxx"
+    assert r["r1_autmin"] == "YXXXYxx"
+    assert r["start_total"] == 16
+    assert r["start_source"] == "mu_ladder_best_rep"
+    # Non-descender keeps Aut-min (== best_rep).
+    a0 = by["aca_0"]
+    assert a0["cov_reduced"] is False
+    assert a0["r1"] == a0["r1_autmin"]
+    assert a0["start_source"] == "autmin_freeze"
     for r in rows[:5]:
         assert r["start_total"] == len(r["r1"]) + len(r["r2"])
 
@@ -36,6 +61,28 @@ def test_stride_four_covers_all():
         seen.extend(r["name"] for r in chunk)
     assert len(seen) == 124
     assert len(set(seen)) == 124
+
+
+def test_stem_always_stamps_covstart(tmp_path):
+    """Stale CONFIG OUT_STEM without covstart must still write a new jsonl."""
+    cfg = dict(
+        ARMS=["s20_mk2"],
+        CHUNKS=4,
+        CHUNK_INDEX=1,
+        ENGINE="hcompact",
+        N_WORKERS=1,
+        KEEP_PATH=False,
+        NODE_BUDGET=MAX_BUDGET,
+        CHECKPOINTS=[MAX_BUDGET],
+        MAX_RELATOR_LENGTH=64,
+        RESUME=False,
+        OUT_STEM="hsearch_u124_s20mk2",  # pre-fix stem (no covstart)
+        SUBSET=None,
+    )
+    out = ru.run_unsolved124_s20mk2(cfg, out_dir=str(tmp_path),
+                                    heartbeat_secs=3600, progress_secs=3600)
+    assert ru.START_TAG in os.path.basename(out)
+    assert "_dpos_" in os.path.basename(out) or "_dpos" in os.path.basename(out)
 
 
 def test_smoke_s20mk2_enriched_keys(tmp_path):
@@ -56,13 +103,14 @@ def test_smoke_s20mk2_enriched_keys(tmp_path):
     out = ru.run_unsolved124_s20mk2(cfg, out_dir=str(tmp_path),
                                     heartbeat_secs=3600, progress_secs=3600)
     assert os.path.exists(out)
-    assert "_dpos_" in os.path.basename(out)
+    assert ru.START_TAG in os.path.basename(out)
     rows = [json.loads(l) for l in open(out) if l.strip()]
     assert len(rows) == 31
     for r in rows:
         for k in ("arm", "name", "r1", "r2", "start_total",
                   "min_relator_length", "min_relator", "min_delta", "improved",
-                  "nodes_explored", "depth_tie", "path_pending"):
+                  "nodes_explored", "depth_tie", "path_pending",
+                  "start_source", "cov_reduced"):
             assert k in r, k
         assert r["arm"] == "s20_mk2"
         assert r["depth_tie"] == "+depth"
@@ -72,6 +120,10 @@ def test_smoke_s20mk2_enriched_keys(tmp_path):
         mr = r["min_relator"]
         assert isinstance(mr, list) and len(mr) == 2
         assert len(mr[0]) + len(mr[1]) == r["min_relator_length"]
+        if r["cov_reduced"]:
+            assert r["start_source"] == "mu_ladder_best_rep"
+            assert r["r1_autmin"] and (r["r1"], r["r2"]) != (
+                r["r1_autmin"], r["r2_autmin"])
         if r["solved"]:
             assert r["path_pending"] is False
             assert r.get("path_moves")

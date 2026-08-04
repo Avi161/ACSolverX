@@ -1,9 +1,12 @@
-"""Colab-scale ``s20_mk2`` census on the Aut-min 124 unsolved class reps.
+"""Colab-scale ``s20_mk2`` census on aca124 with CoV-reduced starts.
 
-Non-comparative single-arm census (not an A/B vs baseline). Starts are the
-Aut-min reps in ``unsolved_124_aca_classes.csv`` (unchanged — not μ-ladder
-floors). Arm is only ``s20_mk2 = L+20S+2MK``. Heap depth tie-break is the
-shipped ``+depth`` (``hcompact`` / ``run_ab`` default).
+Non-comparative single-arm census (not an A/B vs baseline). The 124 class
+ids come from ``unsolved_124_aca_classes.csv``. Search starts are the
+μ-ladder ``best_rep`` from
+``mu_ladder_big_aca124_r256_b64_mrl24.jsonl``: for the 36 CoV descenders
+that is the shorter Aut-orbit floor witness; for the other 88 it equals
+the Aut-min freeze. Arm is only ``s20_mk2 = L+20S+2MK``. Heap depth
+tie-break is the shipped ``+depth`` (``hcompact`` / ``run_ab`` default).
 
 New-files only: registers the arm, stride-chunks, own parallel write loop
 (reuses ``run_ab`` worker helpers) so every row carries start + minimizing
@@ -41,6 +44,13 @@ from experiments.heuristic_search.core.hsolve import greedy_search_h  # noqa: E4
 ROOT = _d
 DATASET_NAME = "unsolved124"
 UNSOLVED_CSV = run_ab.UNSOLVED_CSV
+MU_LADDER_JSONL = os.path.join(
+    ROOT, "results", "stable_ac", "mu_scan",
+    "mu_ladder_big_aca124_r256_b64_mrl24.jsonl",
+)
+# Result-changing start identity — must appear in OUT_STEM / jsonl name.
+START_TAG = "covstart"
+N_COV_DESCENDERS = 36
 
 
 def _cfg(**w):
@@ -54,7 +64,7 @@ run_ab.ARMS.update({
 
 
 def assert_autmin_freeze(path=UNSOLVED_CSV):
-    """Advisor: load_rows uses r1/r2 — assert they equal Aut-min reps."""
+    """Freeze CSV r1/r2 must equal Aut-min reps (provenance baseline)."""
     bad = []
     with open(path) as f:
         for r in csv.DictReader(f):
@@ -66,11 +76,83 @@ def assert_autmin_freeze(path=UNSOLVED_CSV):
     return True
 
 
+def load_mu_ladder_best_reps(path=MU_LADDER_JSONL):
+    """Map ``aca_*`` → μ-ladder row fields used as search starts.
+
+    ``best_rep`` is the CoV-reduced Aut-orbit floor witness when
+    ``best_mu < mu_in``; otherwise it equals ``(r1_orig, r2_orig)``.
+    """
+    if not os.path.isfile(path):
+        raise FileNotFoundError(path)
+    out = {}
+    with open(path) as f:
+        for line in f:
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            pid = row["pres_id"]
+            br = row["best_rep"]
+            if not (isinstance(br, (list, tuple)) and len(br) == 2):
+                raise ValueError(f"{pid}: best_rep not a pair: {br!r}")
+            r1, r2 = str(br[0]), str(br[1])
+            mu_in = int(row["mu_in"])
+            best_mu = int(row["best_mu"])
+            if len(r1) + len(r2) != best_mu:
+                raise ValueError(
+                    f"{pid}: |best_rep|={len(r1)+len(r2)} != best_mu={best_mu}")
+            if row["r1_orig"] is None or row["r2_orig"] is None:
+                raise ValueError(f"{pid}: missing r*_orig")
+            out[pid] = {
+                "r1": r1,
+                "r2": r2,
+                "r1_orig": str(row["r1_orig"]),
+                "r2_orig": str(row["r2_orig"]),
+                "mu_in": mu_in,
+                "best_mu": best_mu,
+                "cov_reduced": best_mu < mu_in,
+                "best_chain": row.get("best_chain"),
+            }
+    if len(out) != 124:
+        raise AssertionError(
+            f"mu-ladder jsonl has {len(out)} rows, expected 124")
+    n_desc = sum(1 for v in out.values() if v["cov_reduced"])
+    if n_desc != N_COV_DESCENDERS:
+        raise AssertionError(
+            f"expected {N_COV_DESCENDERS} CoV descenders, got {n_desc}")
+    return out
+
+
 def load_rows(subset=None):
+    """aca124 ids from the freeze; search starts = μ-ladder ``best_rep``."""
     assert_autmin_freeze()
+    floors = load_mu_ladder_best_reps()
     rows = run_ab.load_rows(DATASET_NAME, subset)
     for r in rows:
+        name = r["name"]
+        if name not in floors:
+            raise KeyError(f"{name} missing from mu-ladder jsonl")
+        fl = floors[name]
+        # Provenance: freeze Aut-min (must match ladder orig).
+        if r["r1"] != fl["r1_orig"] or r["r2"] != fl["r2_orig"]:
+            raise AssertionError(
+                f"{name}: freeze Aut-min != ladder r*_orig "
+                f"({r['r1']!r},{r['r2']!r}) vs "
+                f"({fl['r1_orig']!r},{fl['r2_orig']!r})")
+        r["r1_autmin"] = r["r1"]
+        r["r2_autmin"] = r["r2"]
+        r["r1"] = fl["r1"]
+        r["r2"] = fl["r2"]
+        r["mu_in"] = fl["mu_in"]
+        r["best_mu"] = fl["best_mu"]
+        r["cov_reduced"] = fl["cov_reduced"]
+        r["start_source"] = (
+            "mu_ladder_best_rep" if fl["cov_reduced"] else "autmin_freeze")
+        r["best_chain"] = fl["best_chain"]
         r["start_total"] = len(r["r1"]) + len(r["r2"])
+        if r["start_total"] != fl["best_mu"]:
+            raise AssertionError(
+                f"{name}: start_total {r['start_total']} != best_mu "
+                f"{fl['best_mu']}")
     return rows
 
 
@@ -103,6 +185,12 @@ def _row_record(arm, name, dataset, budget, mrl, res, secs, start):
         "mrl": mrl,
         "engine": "hcompact",
         "depth_tie": "+depth",
+        "start_source": start.get("start_source", "mu_ladder_best_rep"),
+        "cov_reduced": bool(start.get("cov_reduced", False)),
+        "mu_in": start.get("mu_in"),
+        "best_mu": start.get("best_mu"),
+        "r1_autmin": start.get("r1_autmin"),
+        "r2_autmin": start.get("r2_autmin"),
         "r1": r1,
         "r2": r2,
         "start_total": start_total,
@@ -374,13 +462,16 @@ def _report(out, cfg):
         "",
         "**Non-comparative** single-arm census (no baseline A/B). "
         f"Rows: {n}. Arm(s): {arms}. depth_tie=`+depth`. "
-        "Starts = Aut-min class reps (asserted `r1/r2 == rep_*`).",
+        "Starts = μ-ladder `best_rep` (CoV-reduced for the 36 descenders; "
+        "Aut-min for the rest).",
         "",
         "Cap 64 is per-relator ⇒ search is incomplete at the length ceiling. "
         "Unsolved means unsolved within 1M / cap 64 — never a counterexample.",
         "",
         "## Length-floor progress (primary)",
         "",
+        f"- CoV-reduced starts in this file: "
+        f"**{sum(1 for r in data if r.get('cov_reduced'))}/{n}**",
         f"- improved (`min_relator_length` < `start_total`): "
         f"**{len(improved)}/{n}**",
         f"- solved: **{len(solved)}/{n}**"
@@ -433,8 +524,9 @@ def _report(out, cfg):
 
     lines += [
         "",
-        "Note: μ-ladder “36/124 descenders” uses Aut-orbit floor μ — a different "
-        "ruler from greedy `min_relator_length`. Compare like with like.",
+        "Note: CoV starts come from μ-ladder `best_rep` (36 descenders). "
+        "`improved` compares greedy `min_relator_length` to that start "
+        "(pair-total), not to Aut-min μ.",
         "",
     ]
     md = out.replace(".jsonl", ".md")
@@ -465,12 +557,16 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
             raise ValueError(f"unknown arm {a!r}")
     cfg["ARMS"] = arms
 
-    stem = cfg.get("OUT_STEM", "hsearch_u124_s20mk2")
+    stem = cfg.get("OUT_STEM", f"hsearch_u124_s20mk2_{START_TAG}")
     if tag:
         stem = f"{stem}{tag}"
     # Filename encodes result-changing identity (depth tie is fixed +depth here).
     if "dpos" not in stem:
         stem = f"{stem}_dpos"
+    # Always stamp covstart so Restart→Run All with a stale CONFIG cell still
+    # writes a new jsonl (does not RESUME Aut-min-start files from before).
+    if START_TAG not in stem:
+        stem = f"{stem}_{START_TAG}"
     cfg["OUT_STEM"] = stem
 
     budget = int(cfg["NODE_BUDGET"])
@@ -478,6 +574,36 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
     engine = cfg.get("ENGINE", "hcompact")
     if engine != "hcompact":
         raise ValueError("ENGINE must be hcompact for this census")
+
+    n_cov = sum(1 for r in rows if r.get("cov_reduced"))
+    n_aut = len(rows) - n_cov
+    print(
+        f"  starts: μ-ladder best_rep  "
+        f"({n_cov} CoV-reduced, {n_aut} Aut-min unchanged)  "
+        f"[tag={START_TAG}]",
+        flush=True,
+    )
+    # Spot-check a known descender whenever it is in this chunk/subset —
+    # catches a stale Aut-min-only runner after Restart→Run All.
+    by_name = {r["name"]: r for r in rows}
+    if "aca_34" in by_name:
+        a34 = by_name["aca_34"]
+        if (a34["r1"], a34["r2"]) != ("YXXyxYx", "YYYYXyyxx"):
+            raise AssertionError(
+                "aca_34 is not starting from μ-ladder best_rep "
+                f"(got {a34['r1']!r}, {a34['r2']!r}). "
+                "SETUP must git reset --hard to pick up CoV-start code.")
+        if int(a34["start_total"]) != 16:
+            raise AssertionError(
+                f"aca_34 start_total={a34['start_total']} (want 16)")
+    # Full 124 (no subset, no stride) must carry all 36 descenders.
+    if (cfg.get("SUBSET") is None
+            and (not chunks or int(chunks) <= 1 or chunk_index is None)
+            and len(rows) == 124
+            and n_cov != N_COV_DESCENDERS):
+        raise AssertionError(
+            f"expected {N_COV_DESCENDERS} CoV-reduced starts on full 124, "
+            f"got {n_cov}")
 
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, f"{stem}_{DATASET_NAME}_b{budget}_mrl{mrl}.jsonl")

@@ -1,8 +1,9 @@
 """Independent checks for the unsolved124 × s20_mk2 census jsonl.
 
 1. Every row has start_total / min_relator / min_delta consistent.
-2. Every solved row with path_moves replays to a trivial pair (Def 2.1).
-3. Optional: exact 124 unique names when merging all chunks.
+2. ``r1``/``r2`` match μ-ladder ``best_rep`` for that ``aca_*`` id.
+3. Every solved row with path_moves replays to a trivial pair (Def 2.1).
+4. Optional: exact 124 unique names when merging all chunks.
 
     PYTHONPATH=. python3 -m experiments.heuristic_search.verify.verify_u124_s20mk2 \\
         results/heuristic_search/u124_s20mk2_1m/merged_*.jsonl
@@ -23,11 +24,16 @@ sys.path.insert(0, _d)
 from experiments.search.greedy_baseline import (  # noqa: E402
     moves_to_states, str_to_move,
 )
+from experiments.heuristic_search.runners.run_unsolved124_s20mk2 import (  # noqa: E402
+    load_mu_ladder_best_reps,
+)
 
 
-def verify_file(path, expect_n=None, expect_names=None):
+def verify_file(path, expect_n=None, expect_names=None, floors=None):
+    if floors is None:
+        floors = load_mu_ladder_best_reps()
     fails = []
-    n = n_solved = n_replay = 0
+    n = n_solved = n_replay = n_cov = 0
     names = set()
     with open(path) as f:
         for i, line in enumerate(f, 1):
@@ -40,8 +46,6 @@ def verify_file(path, expect_n=None, expect_names=None):
                 fails.append(f"{path}:{i} arm != s20_mk2")
             if r.get("depth_tie") != "+depth":
                 fails.append(f"{path}:{i} depth_tie != +depth")
-            if int(r.get("budget", -1)) not in (-1, r.get("budget", -1)):
-                pass
             st = r.get("start_total")
             mrl = r.get("min_relator_length")
             mr = r.get("min_relator")
@@ -54,6 +58,19 @@ def verify_file(path, expect_n=None, expect_names=None):
                 fails.append(f"{path}:{i} min_delta mismatch")
             if bool(r.get("improved")) != (int(st) - int(mrl) > 0):
                 fails.append(f"{path}:{i} improved flag mismatch")
+            name = r.get("name")
+            if name in floors:
+                fl = floors[name]
+                if r.get("r1") != fl["r1"] or r.get("r2") != fl["r2"]:
+                    fails.append(
+                        f"{path}:{i} {name}: r1/r2 != mu-ladder best_rep")
+                if bool(r.get("cov_reduced")) != bool(fl["cov_reduced"]):
+                    fails.append(
+                        f"{path}:{i} {name}: cov_reduced flag != ladder")
+                if r.get("cov_reduced"):
+                    n_cov += 1
+            else:
+                fails.append(f"{path}:{i} unknown name {name}")
             if mr is not None:
                 if not (isinstance(mr, (list, tuple)) and len(mr) == 2):
                     fails.append(f"{path}:{i} min_relator not a pair")
@@ -64,11 +81,13 @@ def verify_file(path, expect_n=None, expect_names=None):
             if r.get("solved"):
                 n_solved += 1
                 if r.get("path_pending"):
-                    fails.append(f"{path}:{i} {r.get('name')}: path_pending still set")
+                    fails.append(
+                        f"{path}:{i} {r.get('name')}: path_pending still set")
                     continue
                 moves_raw = r.get("path_moves") or []
                 if not moves_raw:
-                    fails.append(f"{path}:{i} {r.get('name')}: solved, empty path_moves")
+                    fails.append(
+                        f"{path}:{i} {r.get('name')}: solved, empty path_moves")
                     continue
                 try:
                     moves = [str_to_move(m) if isinstance(m, str) else tuple(m)
@@ -81,19 +100,22 @@ def verify_file(path, expect_n=None, expect_names=None):
                 end = states[-1]
                 if not (len(end[0]) == 1 and len(end[1]) == 1):
                     fails.append(f"{path}:{i} terminal not trivial: {end}")
-                elif r.get("path_length") is not None and int(r["path_length"]) != len(moves):
+                elif (r.get("path_length") is not None
+                      and int(r["path_length"]) != len(moves)):
                     fails.append(f"{path}:{i} path_length != len(moves)")
                 else:
                     n_replay += 1
     if expect_n is not None and len(names) != expect_n:
         fails.append(f"unique names {len(names)} != expect_n {expect_n}")
+    if expect_n == 124 and n_cov != 36:
+        fails.append(f"cov_reduced rows {n_cov} != 36 on full merge")
     if expect_names is not None and names != set(expect_names):
         missing = sorted(set(expect_names) - names)
         extra = sorted(names - set(expect_names))
         fails.append(f"name set drift missing={missing[:5]} extra={extra[:5]}")
     return {
         "n": n, "names": len(names), "solved": n_solved,
-        "replay_ok": n_replay, "fails": fails,
+        "replay_ok": n_replay, "cov_reduced": n_cov, "fails": fails,
     }
 
 
@@ -103,14 +125,18 @@ def main():
     ap.add_argument("--expect-n", type=int, default=None,
                     help="expected unique presentation count (124 after merge)")
     args = ap.parse_args()
+    floors = load_mu_ladder_best_reps()
     all_fails = []
     for p in args.jsonl:
         if not os.path.exists(p):
             print(f"MISSING {p}")
             sys.exit(2)
-        s = verify_file(p, expect_n=args.expect_n if len(args.jsonl) == 1 else None)
+        s = verify_file(
+            p, expect_n=args.expect_n if len(args.jsonl) == 1 else None,
+            floors=floors)
         print(f"{p}: rows={s['n']} names={s['names']} solved={s['solved']} "
-              f"replay_ok={s['replay_ok']} fails={len(s['fails'])}")
+              f"cov_reduced={s['cov_reduced']} replay_ok={s['replay_ok']} "
+              f"fails={len(s['fails'])}")
         all_fails.extend(s["fails"])
     for x in all_fails[:30]:
         print("  FAIL", x)
