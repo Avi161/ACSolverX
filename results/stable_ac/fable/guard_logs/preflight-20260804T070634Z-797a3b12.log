@@ -1,0 +1,12 @@
+[sweep] input pos_a ('xxxxY', 'yXXX') rank 2 census 720 status OK min_defect 0
+[sweep]   triangulate-balanced {'bracket': 'balanced', 'end': None, 'rot': [3, 0], 'order': [0, 1], 'share': False} rank 5 census 720 status OK min_defect 0 delta 0 (0.029s)
+[sweep]   triangulate-balanced {'bracket': 'balanced', 'end': None, 'rot': [2, 0], 'order': [0, 1], 'share': True} rank 5 census 720 status OK min_defect 0 delta 0 (0.105s)
+[sweep]   split-generator {'gen': 'x', 'buckets': [0, 0, 1, 1, 0, 0, 0], 'fresh': ['a'], 'n_occurrences': 7} rank 3 census 240 status OK min_defect 0 delta 0 (0.002s)
+[sweep]   split-generator {'gen': 'x', 'buckets': [0, 1, 2, 0, 1, 2, 0], 'fresh': ['a', 'b'], 'n_occurrences': 7} rank 4 census 96 status OK min_defect 2 delta 2 (0.015s)
+[sweep] input pos_b ('xxxyx', 'xxyx') rank 2 census 720 status OK min_defect 0
+[sweep]   triangulate-balanced {'bracket': 'balanced', 'end': None, 'rot': [3, 0], 'order': [0, 1], 'share': False} rank 5 census 720 status OK min_defect 0 delta 0 (0.028s)
+[sweep]   triangulate-balanced {'bracket': 'balanced', 'end': None, 'rot': [2, 0], 'order': [0, 1], 'share': True} rank 4 census 48 status OK min_defect 2 delta 2 (0.015s)
+[sweep]   split-generator {'gen': 'x', 'buckets': [0, 0, 1, 1, 0, 0, 0], 'fresh': ['a'], 'n_occurrences': 7} rank 3 census 240 status OK min_defect 0 delta 0 (0.003s)
+[sweep]   split-generator {'gen': 'x', 'buckets': [0, 1, 2, 0, 1, 2, 0], 'fresh': ['a', 'b'], 'n_occurrences': 7} rank 4 census 96 status OK min_defect 0 delta 0 (0.001s)
+[sweep] wrote /tmp/claude-0/-home-user-ACSolverX/a600ea41-5b32-5f3e-9b89-e57692197aea/scratchpad/preflight.json and /tmp/claude-0/-home-user-ACSolverX/a600ea41-5b32-5f3e-9b89-e57692197aea/scratchpad/preflight.jsonl
+[sweep] 8 rows, 8 decided, 6 thickenable, delta histogram {'0': 6, '2': 2}

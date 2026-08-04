@@ -90,9 +90,12 @@ from experiments.stable_ac.fable.witness_check_n import (                # noqa:
 __all__ = [
     "ALPHABET",
     "Pres",
+    "make",
+    "Limits",
     "inverse",
     "free_reduce",
     "cyclic_reduce",
+    "is_freely_reduced",
     "canonical_key",
     "abelian_invariant",
     "enumerate_moves",
@@ -104,10 +107,14 @@ __all__ = [
     "scramble",
     "LinkCache",
     "hunt_defect",
+    "independent_defect",
     "verify_defect_zero",
     "SearchResult",
     "search",
+    "stabilize_k",
     "run_calibration",
+    "load_ak2_ladder",
+    "summarise",
     "AK3",
     "DEFAULT_CENSUS_CAP",
 ]
@@ -235,8 +242,7 @@ def _necklace(w: str) -> str:
     if not w:
         return ""
     best = None
-    for word in (w, inverse(word_or_empty := w)):
-        del word_or_empty
+    for word in (w, inverse(w)):
         n = len(word)
         doubled = word + word
         for i in range(n):
@@ -355,6 +361,14 @@ def abelian_invariant(pres: Pres) -> int:
 
 @dataclass(frozen=True)
 class Limits:
+    """Search budget knobs.
+
+    ``max_relator_length`` caps the relator a move *rewrites* (a growth cap, matching the
+    AC-Solver convention in ``ac_words.apply_move``, so a start state that already
+    exceeds it is not frozen); ``max_total_length`` and the rank window ``[min_rank,
+    max_rank]`` are checked against the whole child.
+    """
+
     max_relator_length: int = 12
     max_total_length: int = 40
     min_rank: int = 2
@@ -854,6 +868,94 @@ def hunt_defect(pres: Pres, evals: int, rng: random.Random,
     return best, (cache.orders_of(best_state) if best_state is not None else None), cache
 
 
+def independent_defect(pres: Pres, orders: dict) -> dict:
+    """Recompute a rotation system's Neuwirth numbers from scratch.
+
+    Deliberately shares **no** code with ``neuwirth_rank_n`` or with :class:`LinkCache`:
+    the dart dictionary is rebuilt here from the words.  This is the check that keeps a
+    defect-0 hit honest when ``check_witness_n`` refuses the state because the link is
+    disconnected (it requires ``L = 1``); ``gamma_N_factorial_n`` alone would share the
+    link builder with the hunter and so would not be an independent opinion.
+    """
+    words = tuple(pres.rels)
+    gens = tuple(pres.gens)
+    table = {}
+    for k, g in enumerate(gens):
+        table[g] = (2 * k, 2 * k + 1)
+        table[g.upper()] = (2 * k + 1, 2 * k)
+    letters = []
+    spans = []
+    for w in words:
+        spans.append((len(letters), len(letters) + len(w)))
+        letters.extend(w)
+    n = len(letters)
+    size = 2 * n
+    A = [None] * size
+    for lo, hi in spans:
+        span = hi - lo
+        for k in range(span):
+            i, j = lo + k, lo + (k + 1) % span
+            A[2 * i + 1] = 2 * j
+            A[2 * j] = 2 * i + 1
+    B = list(range(size))
+    for i in range(n):
+        B[2 * i], B[2 * i + 1] = 2 * i + 1, 2 * i
+    germ = [0] * size
+    for i, c in enumerate(letters):
+        germ[2 * i], germ[2 * i + 1] = table[c]
+
+    C = [None] * size
+    for v, seq in orders.items():
+        v = int(v)
+        seq = [int(d) for d in seq]
+        if sorted(seq) != sorted(d for d in range(size) if germ[d] == v):
+            raise ValueError(f"rotation at germ {v} is not a permutation of its darts")
+        m = len(seq)
+        for k in range(m):
+            C[seq[k]] = seq[(k + 1) % m]
+    if any(c is None for c in C):
+        raise ValueError("rotation does not cover every dart")
+    for e in range(size):                        # Neuwirth compatibility B C B = C^-1
+        if C[B[C[B[e]]]] != e:
+            raise ValueError("rotation is not Neuwirth-compatible")
+
+    def cycles(perm):
+        seen = bytearray(size)
+        total = 0
+        for start in range(size):
+            if seen[start]:
+                continue
+            total += 1
+            cur = start
+            while not seen[cur]:
+                seen[cur] = 1
+                cur = perm[cur]
+        return total
+
+    AC = [A[C[e]] for e in range(size)]
+    seen = bytearray(size)
+    L = 0
+    for start in range(size):
+        if seen[start]:
+            continue
+        L += 1
+        stack = [start]
+        seen[start] = 1
+        while stack:
+            d = stack.pop()
+            for nxt in (A[d], C[d]):
+                if not seen[nxt]:
+                    seen[nxt] = 1
+                    stack.append(nxt)
+    n_C, n_A, n_AC = cycles(C), cycles(A), cycles(AC)
+    return {
+        "cycles_C": n_C, "cycles_A": n_A, "cycles_AC": n_AC,
+        "link_components": L,
+        "defect": n_A - n_C + 2 * L - n_AC,
+        "darts": size,
+    }
+
+
 def verify_defect_zero(pres: Pres, orders: dict,
                        census_cap: int = DEFAULT_CENSUS_CAP) -> dict:
     """Independently re-verify a claimed defect-0 rotation system.
@@ -872,9 +974,15 @@ def verify_defect_zero(pres: Pres, orders: dict,
     report = {
         "check_witness_n": None,
         "check_witness_n_error": None,
+        "independent_defect": None,
+        "independent_defect_error": None,
         "exact_census": None,
         "verified": False,
     }
+    try:
+        report["independent_defect"] = independent_defect(pres, orders)
+    except Exception as exc:                                       # noqa: BLE001
+        report["independent_defect_error"] = f"{type(exc).__name__}: {exc}"
     try:
         got = check_witness_n(pres.rels, {int(k): list(v) for k, v in orders.items()},
                               generators=pres.gens, trivial_group=True)
@@ -900,13 +1008,22 @@ def verify_defect_zero(pres: Pres, orders: dict,
     }
     witness_ok = (report["check_witness_n"] is not None
                   and report["check_witness_n"]["defect"] == 0)
+    independent_ok = (report["independent_defect"] is not None
+                      and report["independent_defect"]["defect"] == 0)
     census_ok = (census["status"] == "OK" and census.get("minimum_defect") == 0)
-    report["verified"] = bool(witness_ok or census_ok)
-    report["verified_by"] = (
-        ("check_witness_n" if witness_ok else "")
-        + ("+" if witness_ok and census_ok else "")
-        + ("gamma_N_factorial_n" if census_ok else "")
-    ) or None
+    routes = []
+    if witness_ok:
+        routes.append("check_witness_n")
+    if independent_ok:
+        routes.append("independent_defect")
+    if census_ok:
+        routes.append("gamma_N_factorial_n")
+    report["verified"] = bool(witness_ok or independent_ok or census_ok)
+    report["verified_by"] = "+".join(routes) or None
+    report["note"] = ("check_witness_n requires a connected link (L = 1); a defect-0 "
+                      "rotation on a disconnected link is verified here by "
+                      "independent_defect (a from-scratch dart dictionary) and, when "
+                      "the family fits the cap, by the exact census.")
     return report
 
 
@@ -936,9 +1053,17 @@ class SearchResult:
     stopped: str
     distinct_states: int
     rank_histogram: dict
+    anomalies: list
+
+    @property
+    def best_gamma_N(self):
+        """``gamma_N = minimum_defect // 2`` -- the project's halved convention."""
+        return None if self.best_defect is None else self.best_defect // 2
 
     def as_json(self) -> dict:
-        return dict(self.__dict__)
+        out = dict(self.__dict__)
+        out["best_gamma_N_upper_bound"] = self.best_gamma_N
+        return out
 
 
 def _sparsity_prunes(cache: LinkCache) -> bool:
@@ -954,7 +1079,7 @@ def _sparsity_prunes(cache: LinkCache) -> bool:
     return v_count >= 3 and e_count > 3 * v_count - 6
 
 
-def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 8,
+def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
            evals: int = 900, seed: int = 0, limits: Limits = Limits(),
            time_budget: float = 240.0, restart_after: int = 6,
            label: str = "", scheme: str = "", census_cap: int = DEFAULT_CENSUS_CAP,
@@ -972,6 +1097,7 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 8,
 
     seen = {canonical_key(start)}
     rank_hist: dict = {}
+    anomalies: list = []
 
     def score(state: Pres):
         cache = LinkCache(state)
@@ -1002,26 +1128,48 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 8,
         hit = bool(verification["verified"])
 
     stale_generations = 0
+    exhausted = 0
     best_seen_defect = best[0] if best is not None else None
 
     while not hit and nodes_used < nodes and (time.time() - t0) < time_budget:
         generations += 1
         candidates = []
+        local: set = set()
         for _d, _l, state in frontier:
             for _move, child in sample_moves(state, branch, rng, limits):
                 if not child.all_generators_occur():
                     continue
                 key = canonical_key(child)
-                if key in seen:
+                if key in seen or key in local:
                     continue
-                seen.add(key)
-                candidates.append(child)
+                local.add(key)
+                candidates.append((key, child))
         if not candidates:
-            stopped = "frontier_exhausted"
-            break
-        # cheap prescreen keeps the objective budget on the shortest candidates
-        candidates.sort(key=lambda p: (p.total_length, p.rank))
-        keep = candidates[: max(beam * 3, beam + 4)]
+            # a beam can walk into a pocket whose whole move neighbourhood is already
+            # scored; restart from a fresh scramble of the start rather than stop.
+            exhausted += 1
+            if exhausted > 12:
+                stopped = "frontier_exhausted"
+                break
+            restart, _hist = scramble(start, rng.randrange(3, 13), rng, limits)
+            frontier = [(10 ** 6, restart.total_length, restart)]
+            continue
+        exhausted = 0
+        # Cheap prescreen: the objective is ~1000x the cost of generating a child, so
+        # only a slice of the candidates can be scored.  Take most of the slice by total
+        # length (shortening is the direction of the standard presentation) but reserve
+        # a random share so the beam cannot collapse onto one shortening motif.
+        width = max(beam * 3, beam + 4)
+        candidates.sort(key=lambda kc: (kc[1].total_length, kc[1].rank))
+        cut = (width * 3) // 5
+        by_length = candidates[:cut]
+        rest = candidates[cut:]
+        rng.shuffle(rest)
+        keep_pairs = by_length + rest[: max(0, width - len(by_length))]
+        keep = []
+        for key, child in keep_pairs:
+            seen.add(key)                     # only SCORED states enter the seen set
+            keep.append(child)
         scored_children = []
         for child in keep:
             if nodes_used >= nodes or (time.time() - t0) >= time_budget:
@@ -1036,12 +1184,16 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 8,
             if best is None or (defect, child.total_length) < (best[0], best[1]):
                 best = (defect, child.total_length, child, orders)
             if defect == 0:
-                verification = verify_defect_zero(child, orders, census_cap)
-                if verification["verified"]:
+                report = verify_defect_zero(child, orders, census_cap)
+                if report["verified"]:
+                    verification = report
                     hit = True
                     best = (0, child.total_length, child, orders)
                     stopped = "verified_hit"
                     break
+                # a hunted defect 0 that no independent check confirms is an ANOMALY
+                # (a bug in the hunter, not a mathematical outcome) and is recorded.
+                anomalies.append({"state": child.as_json(), "verification": report})
         if hit:
             break
         if not scored_children:
@@ -1049,11 +1201,13 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 8,
             break
         scored_children.sort(key=lambda t: (t[0], t[1], t[2].rank))
         frontier = scored_children[:beam]
-        if best_seen_defect is not None and best[0] >= best_seen_defect:
+        current_best = None if best is None else best[0]
+        if (best_seen_defect is not None and current_best is not None
+                and current_best >= best_seen_defect):
             stale_generations += 1
         else:
             stale_generations = 0
-        best_seen_defect = best[0]
+        best_seen_defect = current_best
         if restart_after and stale_generations >= restart_after:
             stale_generations = 0
             restart, _hist = scramble(start, rng.randrange(2, 6), rng, limits)
@@ -1061,7 +1215,7 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 8,
             if key not in seen:
                 seen.add(key)
                 frontier = [(10 ** 6, restart.total_length, restart)] + frontier[:beam - 1]
-        if verbose:
+        if verbose and best is not None:
             print(f"[search] gen {generations} nodes {nodes_used} "
                   f"best {best[0]} len {best[1]} rank {best[2].rank}", flush=True)
 
@@ -1092,6 +1246,7 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 8,
         stopped=stopped,
         distinct_states=len(seen),
         rank_histogram={str(k): v for k, v in sorted(rank_hist.items())},
+        anomalies=anomalies,
     )
 
 
@@ -1160,23 +1315,115 @@ def _ladder_a_states(lengths, per_length, seed):
     return rows
 
 
-def _ladder_b_states(rank, scramble_depths, per_depth, seed):
+def _ladder_b_states(rank, scramble_depths, per_depth, seed, screen_evals: int = 4000,
+                     attempts: int = 40):
+    """Standard rank-``rank`` presentation scrambled by ``k`` AC1-AC3 moves.
+
+    Only scrambles whose OWN hunted defect is > 0 are kept.  A scramble that is already
+    defect-0 would let the search "win" at node 1 without moving, which measures nothing;
+    rejecting those makes the depth-``k`` cell a genuine test of reach: a ``gamma_N = 0``
+    state (the standard presentation) is known to sit within ``k`` moves, and the search
+    must travel to find one.
+    """
     rows = []
     rng = random.Random(seed)
     limits = Limits(max_relator_length=8, max_total_length=4 * rank + 8,
                     min_rank=2, max_rank=rank + 2)
     for k in scramble_depths:
-        for rep in range(per_depth):
+        kept = 0
+        tried = 0
+        while kept < per_depth and tried < attempts:
+            tried += 1
             std = standard_presentation(rank)
             scrambled, history = scramble(std, k, rng, limits)
+            if not scrambled.all_generators_occur():
+                continue
+            defect, _o, _c = hunt_defect(scrambled, screen_evals, rng)
+            if defect is None or defect <= 0:
+                continue                       # already thickenable: measures nothing
             rows.append({
-                "label": f"std{rank}_scramble{k}_r{rep}",
+                "label": f"std{rank}_scramble{k}_r{kept}",
                 "scheme": f"ladder_B:scrambled_standard(k={k})",
                 "base": std,
                 "state": scrambled,
                 "certificate": {"ok": True, "scramble_history": history,
+                                "start_defect_upper_bound": defect,
+                                "screen_evals": screen_evals,
+                                "scrambles_rejected_as_already_thickenable": tried - kept - 1,
                                 "abelian_invariant": abelian_invariant(scrambled)},
             })
+            kept += 1
+        if kept == 0:
+            rows.append({
+                "label": f"std{rank}_scramble{k}_EMPTY",
+                "scheme": f"ladder_B:scrambled_standard(k={k})",
+                "base": standard_presentation(rank),
+                "state": None,
+                "certificate": {"ok": False,
+                                "reason": f"no scramble at depth {k} in {attempts} "
+                                          "attempts had a positive start defect"},
+            })
+    return [r for r in rows if r["state"] is not None]
+
+
+def stabilize_k(pres: Pres, k: int) -> Pres:
+    """``AC4`` applied ``k`` times: adjoin ``k`` fresh generators and their relators."""
+    cur = pres
+    for _ in range(k):
+        z = _fresh_generator(cur)
+        if z is None:
+            raise ValueError("alphabet exhausted")
+        cur = Pres(cur.gens + (z,), cur.rels + (z,))
+    cur.validate()
+    return cur
+
+
+#: The depth-ladder control: an AK(2)-class rank-2 base that is AC-trivial (AK(2) is
+#: AC-trivial, so every member of its AC class is) and NOT_SPHERICAL at rank 2, taken
+#: verbatim from ``results/stable_ac/fable/ak2_members.jsonl``.  Total length 13, the
+#: same as AK(3), so the two ladders are length-matched
+#: (``experiments/lessons/contrast-length-confound.md``: a raw gap between two families
+#: can be a LENGTH gap in disguise).
+DEPTH_LADDER_CONTROL = ("YYxxx", "YxYxYxxx")
+
+
+def _depth_ladder_states(depths=(0, 1, 2, 3, 4), control=DEPTH_LADDER_CONTROL,
+                         reps: int = 1):
+    """The rank-filtration ladder: the SAME base searched under rank ceilings 2 + k.
+
+    This is the S0 section 4 filtration ``~^{(k)}`` made operational: rung ``k`` starts
+    from the base stabilized ``k`` times and the search may never exceed rank ``2 + k``
+    (it may destabilize back down to rank 2 -- otherwise it would not be a stable
+    search).  The mechanism under test is the S3 section 4 / S0 section 2 observation
+    that at rank 2 four germs carry all 13 letter occurrences, and each extra generator
+    adds two germs, i.e. room for the rotation system.
+
+    Two families, identical move sets, identical budgets and identical per-rung seeds:
+    AK(3), and a length-matched AC-trivial NOT_SPHERICAL control.  A FLAT ladder on the
+    control means the instrument is blind and the AK(3) ladder says nothing.
+    """
+    families = [
+        ("ak3", make(*AK3)),
+        ("ak2ctl", make(("x", "y"), control)),
+    ]
+    rows = []
+    for name, base in families:
+        for k in depths:
+            state = stabilize_k(base, k)
+            for rep in range(reps):
+                rows.append({
+                    "label": f"depth_{name}_k{k}_r{rep}",
+                    "scheme": f"ladder_D:rank_ceiling(k={k})",
+                    "family": name,
+                    "depth_k": k,
+                    "rep": rep,
+                    "base": base,
+                    "state": state,
+                    "rank_ceiling": 2 + k,
+                    "certificate": {"ok": True,
+                                    "abelian_invariant": abelian_invariant(state),
+                                    "stabilizations": k},
+                })
     return rows
 
 
@@ -1214,10 +1461,11 @@ def _ak3_states():
     return rows
 
 
-def run_calibration(out_path: str, nodes: int = 1000, beam: int = 6, branch: int = 8,
+def run_calibration(out_path: str, nodes: int = 1000, beam: int = 6, branch: int = 12,
                     evals: int = 900, seed: int = 20260804, per_length: int = 4,
-                    per_depth: int = 3, time_budget: float = 240.0,
-                    ladders=("A", "B", "AK3"), max_relator_length: int = 12,
+                    per_depth: int = 3, depth_reps: int = 3,
+                    time_budget: float = 240.0,
+                    ladders=("A", "B", "D", "AK3"), max_relator_length: int = 12,
                     max_total_length: int = 40, rank_slack: int = 2,
                     verbose: bool = True) -> dict:
     """Run the identical search on the positive ladders and then on AK(3)."""
@@ -1227,23 +1475,34 @@ def run_calibration(out_path: str, nodes: int = 1000, beam: int = 6, branch: int
     if "A" in ladders:
         jobs.extend(_ladder_a_states((12, 13), per_length, seed))
     if "B" in ladders:
-        jobs.extend(_ladder_b_states(9, (2, 4, 6, 8), per_depth, seed + 1))
+        jobs.extend(_ladder_b_states(9, (6, 10, 14, 18), per_depth, seed + 1))
+    if "D" in ladders:
+        jobs.extend(_depth_ladder_states(reps=depth_reps))
     if "AK3" in ladders:
         jobs.extend(_ak3_states())
 
     for k, job in enumerate(jobs):
         state: Pres = job["state"]
+        # rung seed: the depth ladder pairs AK(3) with its control at identical seeds
+        run_seed = (seed + 1009 * job["depth_k"] + 7919 * job.get("rep", 0)
+                    if "depth_k" in job else seed + 1009 * k)
+        max_rank = (job["rank_ceiling"] if "rank_ceiling" in job
+                    else state.rank + rank_slack)
         limits = Limits(max_relator_length=max_relator_length,
                         max_total_length=max(max_total_length, state.total_length + 6),
-                        min_rank=2, max_rank=state.rank + rank_slack)
+                        min_rank=2, max_rank=max_rank)
         result = search(state, nodes=nodes, beam=beam, branch=branch, evals=evals,
-                        seed=seed + 1009 * k, limits=limits,
+                        seed=run_seed, limits=limits,
                         time_budget=time_budget, label=job["label"],
                         scheme=job["scheme"], verbose=False)
         row = result.as_json()
         row["certificate"] = job["certificate"]
         row["base"] = job["base"].as_json()
         row["ladder"] = job["scheme"].split(":")[0]
+        if "depth_k" in job:
+            row["depth_k"] = job["depth_k"]
+            row["family"] = job["family"]
+            row["rank_ceiling"] = job["rank_ceiling"]
         rows.append(row)
         if verbose:
             print(f"[calib] {k + 1}/{len(jobs)} {job['label']} rank {state.rank} "
@@ -1313,6 +1572,41 @@ def summarise(rows) -> dict:
                 "mean_nodes": round(sum(cell["nodes"]) / len(cell["nodes"]), 1)
                 if cell["nodes"] else None,
             }
+    depth: dict = {}
+    for row in rows:
+        if "depth_k" not in row:
+            continue
+        fam = depth.setdefault(row["family"], {})
+        cell = fam.setdefault(str(row["depth_k"]), {
+            "rank_ceiling": row["rank_ceiling"], "runs": 0, "hits": 0,
+            "best_defects": [], "nodes": [], "seeds": [], "best_states": [],
+        })
+        cell["runs"] += 1
+        cell["hits"] += int(bool(row.get("hit")))
+        cell["best_defects"].append(row.get("best_defect"))
+        cell["nodes"].append(row.get("nodes_used"))
+        cell["seeds"].append(row.get("seed"))
+        if row.get("hit"):
+            cell["best_states"].append(row.get("best_state"))
+    for fam, cells in depth.items():
+        for _k, cell in cells.items():
+            vals = [d for d in cell["best_defects"] if d is not None]
+            cell["min_best_defect"] = min(vals) if vals else None
+            cell["min_best_gamma_N_upper_bound"] = (min(vals) // 2) if vals else None
+            cell["detection_rate"] = round(cell["hits"] / cell["runs"], 3) if cell["runs"] else None
+    if depth:
+        out["_depth_ladder"] = depth
+        flat = {}
+        for fam, cells in depth.items():
+            vals = [c["min_best_defect"] for c in cells.values()
+                    if c["min_best_defect"] is not None]
+            flat[fam] = {
+                "distinct_min_best_defects_over_rungs": sorted(set(vals)),
+                "flat": len(set(vals)) <= 1,
+                "hits": sum(c["hits"] for c in cells.values()),
+                "runs": sum(c["runs"] for c in cells.values()),
+            }
+        out["_depth_ladder_shape"] = flat
     total_runs = len(rows)
     total_hits = sum(1 for r in rows if r.get("hit"))
     out["_overall"] = {"runs": total_runs, "hits": total_hits,
@@ -1327,21 +1621,23 @@ def main(argv=None):
                                                       "rank_n_ac_search.json"))
     parser.add_argument("--nodes", type=int, default=1000)
     parser.add_argument("--beam", type=int, default=6)
-    parser.add_argument("--branch", type=int, default=8)
+    parser.add_argument("--branch", type=int, default=12)
     parser.add_argument("--evals", type=int, default=900)
     parser.add_argument("--seed", type=int, default=20260804)
     parser.add_argument("--per-length", type=int, default=4)
     parser.add_argument("--per-depth", type=int, default=3)
+    parser.add_argument("--depth-reps", type=int, default=3)
     parser.add_argument("--max-relator-length", type=int, default=12)
     parser.add_argument("--max-total-length", type=int, default=40)
     parser.add_argument("--rank-slack", type=int, default=2)
     parser.add_argument("--time-budget", type=float, default=240.0,
                         help="wall-clock seconds per individual search")
-    parser.add_argument("--ladders", default="A,B,AK3")
+    parser.add_argument("--ladders", default="A,B,D,AK3")
     args = parser.parse_args(argv)
     run_calibration(args.out, nodes=args.nodes, beam=args.beam, branch=args.branch,
                     evals=args.evals, seed=args.seed, per_length=args.per_length,
-                    per_depth=args.per_depth, time_budget=args.time_budget,
+                    per_depth=args.per_depth, depth_reps=args.depth_reps,
+                    time_budget=args.time_budget,
                     ladders=tuple(x.strip() for x in args.ladders.split(",") if x.strip()),
                     max_relator_length=args.max_relator_length,
                     max_total_length=args.max_total_length,

@@ -48,11 +48,17 @@ and swept in ``high_rank_gamma_sweep.py``)
    invariant** -- plan section 2's hope that triangulation thins the link graph is false
    for the census.  What triangulation buys is short *relators*, not cheap *germs*.
 
-2. **The link of ``P`` is a subdivision-minor of the link of any triangulation of ``P``.**
-   Each fresh ``z`` puts a degree-2 germ ``z+`` in the middle of the original corner
-   ``(a_m, a_1)`` and a degree-2 germ ``z-`` in the middle of the corner ``(a_2, a_3)``;
-   every other corner is carried across unchanged.  ``link_smoothing_certificate`` checks
-   this on the labelled link multigraph.
+2. **The link of ``P`` is a SUBDIVISION of the link of any triangulation of ``P`` with
+   ``share`` off.**  Each fresh ``z`` puts a degree-2 germ ``z+`` in the middle of the
+   original corner ``(a_m, a_1)`` and a degree-2 germ ``z-`` in the middle of the corner
+   ``(a_2, a_3)``; every other corner is carried across unchanged.
+   ``link_smoothing_certificate`` checks this on the labelled link multigraph, and returns
+   ``is_subdivision = False`` for the ``share`` variant, whose reused definition leaves a
+   fresh germ of degree 3 or more.  Subdividing an edge of a ribbon graph changes ``V``
+   and ``E`` by one each and leaves the faces alone, and the rotation at a degree-2 germ
+   is forced, so the whole compatible census -- histogram and all -- is carried across
+   unchanged.  The ``share`` variant is the one member of the triangulation family that
+   escapes this and is therefore the one worth pointing a search at.
 
 3. **Generator splitting is a vertex split**, in the exact graph-theoretic sense: ``g+``
    is split into ``g+, u+`` and ``g-`` into ``g-, u-``, and the definition relator
@@ -73,7 +79,7 @@ import itertools
 import os
 import random
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(_HERE)))
@@ -741,7 +747,7 @@ def _expand(word: str, expansions: dict) -> str:
     return free_reduce("".join(out))
 
 
-def _topological_order(definition_of: dict, old: set):
+def _topological_order(definition_of: dict):
     """A legal definition order for ``gen -> word``, or ``None`` if it is cyclic."""
     fresh = set(definition_of)
     deps = {z: {c.lower() for c in w if c.lower() in fresh} for z, w in definition_of.items()}
@@ -781,8 +787,7 @@ def _declared_layering_ok(Pprime: Presentation, fresh: set, declared) -> bool:
         if relator not in relators:
             return False
         relators.remove(relator)
-    old = set(Pprime.generators) - fresh
-    return _topological_order(seen, old) is not None
+    return _topological_order(seen) is not None
 
 
 def certify_refinement(P, Pprime, trace=None, max_layerings: int = 20_000) -> Certificate:
@@ -880,7 +885,7 @@ def certify_refinement(P, Pprime, trace=None, max_layerings: int = 20_000) -> Ce
         if len(set(combo)) != len(combo):             # two generators, one relator
             continue
         definition_of = {z: inverse(Pprime.words[idx][1:]) for z, idx in zip(keys, combo)}
-        order = _topological_order(definition_of, old)
+        order = _topological_order(definition_of)
         if order is None:
             continue
         expansions: dict = {}

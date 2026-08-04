@@ -155,7 +155,8 @@ def _structure(refinement: HR.Refinement) -> dict:
 
 
 def sweep(names, limit: int, seed: int, cap_rotations: int, item_timeout: int,
-          max_seconds: float, schemes, out_path: str) -> dict:
+          max_seconds: float, schemes, out_path: str,
+          planarity_budget: int = 50_000) -> dict:
     t0 = time.time()
     rows: list = []
     inputs_report: list = []
@@ -173,7 +174,9 @@ def sweep(names, limit: int, seed: int, cap_rotations: int, item_timeout: int,
         base = census(words, generators, cap_rotations, item_timeout)
         entry = {"name": name, "words": list(words), "generators": list(generators),
                  "rank": len(generators), "note": spec.get("note"),
-                 "moves_from_xy": spec.get("moves"), "census": base}
+                 "moves_from_xy": spec.get("moves"), "census": base,
+                 "support_planarity": HR.support_planarity(words, generators,
+                                                           budget=planarity_budget)}
         inputs_report.append(entry)
         print(f"[sweep] input {name} {words} rank {len(generators)} "
               f"census {base['expected_cases']} status {base['status']} "
@@ -211,6 +214,8 @@ def sweep(names, limit: int, seed: int, cap_rotations: int, item_timeout: int,
                 "germ_degrees": HR.germ_degrees(ref.words, ref.generators),
                 "germ_degree_multiset": sorted(
                     HR.germ_degrees(ref.words, ref.generators).values()),
+                "support_planarity": HR.support_planarity(ref.words, ref.generators,
+                                                          budget=planarity_budget),
                 "census_size": report["expected_cases"],
                 "status": report["status"],
                 "minimum_defect": report["minimum_defect"],
@@ -266,6 +271,7 @@ def sweep(names, limit: int, seed: int, cap_rotations: int, item_timeout: int,
             1 for r in subdivisions if r["histogram_equal_to_input"]),
         "minor_certified_rows": sum(1 for r in rows
                                     if r["structure"]["input_link_is_minor"]),
+        "support_planarity_by_scheme": _planarity_tally(rows),
         "positive_ladder_detection": _ladder(rows, inputs_report),
         "stopped_early": stopped_early,
         "elapsed_seconds": round(time.time() - t0, 1),
@@ -286,6 +292,20 @@ def sweep(names, limit: int, seed: int, cap_rotations: int, item_timeout: int,
     print(f"[sweep] {len(rows)} rows, {len(decided)} decided, "
           f"{len(thickenable)} thickenable, delta histogram {deltas}", flush=True)
     return summary
+
+
+def _planarity_tally(rows) -> dict:
+    """Simple-support planarity of the refinements, split by scheme.
+
+    ``UNDETERMINED`` means the macro budget was too small for that support, not that the
+    graph is hard: it is a process outcome, never a mathematical one.
+    """
+    out: dict = {}
+    for row in rows:
+        cell = out.setdefault(row["scheme"], {})
+        key = row["support_planarity"]
+        cell[key] = cell.get(key, 0) + 1
+    return out
 
 
 def _ladder(rows, inputs_report) -> dict:
@@ -314,10 +334,11 @@ def main(argv=None):
     parser.add_argument("--cap-rotations", type=int, default=DEFAULT_CAP)
     parser.add_argument("--item-timeout", type=int, default=60)
     parser.add_argument("--max-seconds", type=float, default=480.0)
+    parser.add_argument("--planarity-budget", type=int, default=50_000)
     parser.add_argument("--out", default=DEFAULT_OUT)
     args = parser.parse_args(argv)
     sweep(args.inputs, args.limit, args.seed, args.cap_rotations, args.item_timeout,
-          args.max_seconds, tuple(args.schemes), args.out)
+          args.max_seconds, tuple(args.schemes), args.out, args.planarity_budget)
 
 
 if __name__ == "__main__":
