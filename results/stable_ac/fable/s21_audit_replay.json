@@ -1,0 +1,205 @@
+{
+ "record": "s21_audit_replay",
+ "args": {
+  "mode": "replay",
+  "seed": 991,
+  "walks": 400,
+  "steps": 400,
+  "max_rel": 9,
+  "total": 13,
+  "shape": [
+   6,
+   7
+  ],
+  "defect": 4,
+  "no_unit_row": false,
+  "want": 3,
+  "cap": 2000000,
+  "target": "YYXyx,YXYXXyxx",
+  "trial": 5,
+  "nodes": 8000,
+  "kstab": 0,
+  "headroom": 4,
+  "census_cap": 200000,
+  "out": "results/stable_ac/fable/s21_audit_replay.json"
+ },
+ "root": [
+  "YYXyx",
+  "YXYXXyxx"
+ ],
+ "hit": [
+  "xxYx",
+  "Yxx"
+ ],
+ "chain": [
+  {
+   "i": 0,
+   "words": [
+    "YYXyx",
+    "YXYXXyxx"
+   ],
+   "total": 13,
+   "defect": 4
+  },
+  {
+   "i": 1,
+   "words": [
+    "YYXyx",
+    "YXYXyyx"
+   ],
+   "total": 12,
+   "defect": 2
+  },
+  {
+   "i": 2,
+   "words": [
+    "XyxxYXYX",
+    "YXYXyyx"
+   ],
+   "total": 15,
+   "defect": null
+  },
+  {
+   "i": 3,
+   "words": [
+    "xYXYXXYxyxy",
+    "YXYXyyx"
+   ],
+   "total": 18,
+   "defect": null
+  },
+  {
+   "i": 4,
+   "words": [
+    "xYXYXXYxyxy",
+    "yXYXyx"
+   ],
+   "total": 17,
+   "defect": null
+  },
+  {
+   "i": 5,
+   "words": [
+    "XXYxy",
+    "yXYXyx"
+   ],
+   "total": 11,
+   "defect": 2
+  },
+  {
+   "i": 6,
+   "words": [
+    "XXYxy",
+    "XYXyxxyXX"
+   ],
+   "total": 14,
+   "defect": 2
+  },
+  {
+   "i": 7,
+   "words": [
+    "XXYxy",
+    "YXyxxyXXyXXY"
+   ],
+   "total": 17,
+   "defect": null
+  },
+  {
+   "i": 8,
+   "words": [
+    "XXYxy",
+    "XXyXX"
+   ],
+   "total": 10,
+   "defect": 2
+  },
+  {
+   "i": 9,
+   "words": [
+    "XXYxy",
+    "yXXYXy"
+   ],
+   "total": 11,
+   "defect": 2
+  },
+  {
+   "i": 10,
+   "words": [
+    "XYxyyxxYY",
+    "yXXYXy"
+   ],
+   "total": 15,
+   "defect": null
+  },
+  {
+   "i": 11,
+   "words": [
+    "xyyxxYYxYYx",
+    "yXXYXy"
+   ],
+   "total": 17,
+   "defect": null
+  },
+  {
+   "i": 12,
+   "words": [
+    "xyyxxYYxYYx",
+    "Yxx"
+   ],
+   "total": 14,
+   "defect": 2
+  },
+  {
+   "i": 13,
+   "words": [
+    "yxxYYx",
+    "Yxx"
+   ],
+   "total": 9,
+   "defect": 2
+  },
+  {
+   "i": 14,
+   "words": [
+    "yxxYX",
+    "Yxx"
+   ],
+   "total": 8,
+   "defect": 2
+  },
+  {
+   "i": 15,
+   "words": [
+    "xxYx",
+    "Yxx"
+   ],
+   "total": 7,
+   "defect": 0
+  }
+ ],
+ "steps_verified": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "all_steps_ac": true,
+ "stats": {
+  "pops": 183,
+  "decided": 254,
+  "undecided": 0,
+  "spherical": 1,
+  "restarts": 5
+ }
+}
