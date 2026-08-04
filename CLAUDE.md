@@ -145,5 +145,14 @@ much harder than those Erdős problems. Its three keys:
   `pops`/`decided` beside every verdict, check `pops` reached `nodes`, and treat "a 10×
   budget change did not move the detection rate" as a bug report. Reseed from a visited
   state not the root; make length caps relative to the root; and decide the START state, not
-  only its children.
+  only its children. SECOND POSTSCRIPT: if leaving a plateau in the search's cost function
+  requires a cost-INCREASING move, a purely cost-ranked beam has probability zero of success
+  at any budget — the cubic-form null went 0/48 → 2/28 on a 30 % random beam fill alone.
   [[TRAP]](experiments/lessons/instrument-the-search-before-reading-its-null.md)
+- A corpus of "canonical base + ONE move" can never falsify an induction step. Conjecture SR
+  carried ≈120,000 confirming instances from three tools, several exhaustive over a whole
+  length class — and every one of them sampled depth 1. It is false at depth 2, on balanced
+  presentations of the TRIVIAL group (defect 0 → 2 → 0 along one reduction chain, all rows
+  Todd–Coxeter index 1). When a conjecture is an induction step `k → k−1`, the corpus must
+  vary `k`, and the write-up must state which depths were actually sampled.
+  [[TRAP]](experiments/lessons/conjectures-tested-only-at-depth-one.md)
