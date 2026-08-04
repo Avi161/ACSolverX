@@ -161,7 +161,22 @@ Recorded because the corrections are the most transferable part of the work.
    question in a state-dependent move set, and it has only had a small search.
 4. **Bound `m` in Lemma 11** (the authors' own open problem). A bound turns Cor. F1 from an
    existence statement into an algorithm and makes depth-1 excursions searchable.
-5. **The disproof side.** AK(3)'s depth-1 stable class is 0 thickenable in 171,842 against
+5. **Close the remaining γ_N brackets with splitting** (task A13, in flight). S8's
+   monotonicity, read forwards, is a *tool*: a witness found for a **split** of `P` is a
+   valid **upper** bound for `P` itself, and splitting shrinks the census `∏(deg−1)!` — so
+   it buys back exactly the long-length regime where A9's direct witness sampler is blind
+   (detection 1.00 at L13 falling to 0.00 at L19, with 87 of 124 rows carrying an
+   uninformative upper bound). This is the one place the S-line's negative result becomes a
+   positive instrument, and it is the cheapest way to find more gateways.
+6. **The one untested high-rank mechanism: entangled AC2 slides.** S7 §4 isolated what depth
+   `k ≥ 2` can buy that depth 1 cannot — a slide by a conjugate of a relator that already
+   involves *several* new generators, with no depth-1 serialization, because Lemma 11
+   removal substitutes a definition back and undoes exactly the entanglement that made the
+   slide interesting. Nobody has isolated and measured that class of move. The experiment is
+   well posed: at rank `n+2`, classify states by whether a relator involves both `y₁` and
+   `y₂` irreducibly, and compare γ_N flip rates against the non-entangled slides. It is the
+   last mechanism this session did not test.
+7. **The disproof side.** AK(3)'s depth-1 stable class is 0 thickenable in 171,842 against
    an AC-trivial class's 54.8 % under the same operator, and A7's length-matched ladder is
    0/40 against 39/40. Both are bounded, confounded by length, and — per S3's corrected trap
    T-S9 — nulls about **orientable** thickenability only. They point at the disproof side of

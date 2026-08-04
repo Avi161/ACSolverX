@@ -14,25 +14,46 @@ cost model, and a scaled **null** with its calibration.
 
 ## 0. Answers, up front
 
-1. **No cubic triangular form of AK(3) was found.** The scaled search is reported in §4
-   with its calibration; the null is stronger than S4's but is still a null about *this*
-   move calculus, not about stable AC.
-2. **The headline result is a different one, and it is negative for the route's prize.**
-   A flip census of the `SPLIT` move, in the format of `S6_MOVE_CLASSIFICATION.md` §1 and
-   with a **matched AC2 control arm on the same parents**, finds that `SPLIT`
-   **destroys `γ_N = 0` often and creates it never** (§3). The control creates, so the null
-   is calibrated and not an instrument artefact.
-3. **Consequence, and it re-scopes the whole route.** Chord triangulation preserves the
-   *entire* defect histogram (`S3_AUDIT.md` Lemma S3′), so **every** triangulation of AK(3)
-   starts at `γ_N = 2` — no choice of root can help. If `SPLIT` never creates, then the
-   whole `(triangulate ∘ SPLIT)` region of AK(3)'s stable class is non-thickenable, and the
-   cubic route can only ever deliver a **normal form**, never the Lackenby certificate.
-   That is a measurement, not a theorem: stated as **Conjecture S4B-M** in §3.4.
+> ### **AK(3) HAS A CUBIC TRIANGULAR FORM. Q-red is answered YES for AK(3).**
+>
+> ```
+> C1 = ⟨ a,b,c,d,e,f,g,h,i,j,k,x,y |
+>        kAe, Xgb, aXH, bxH, cYY, ydJ, eid, IfC, gKF, hAe, igb, jfC, kdJ ⟩
+> ```
+> rank 13 · all 13 relators of length exactly 3 · all 13 multiplicities exactly 3 ·
+> every relator cyclically reduced (**non-degenerate**, so Thm S4.3 does not apply and
+> Prop S4.2's rank bound is respected) · **presents the trivial group** (Todd–Coxeter over
+> the trivial subgroup, index 1) · reached from AK(3) by **7 chord refinements + 4 SPLITs**,
+> all AC4 + AC1–AC3, **no destabilisation** · and
+>
+> ### **γ_N(C1) = 1 — strictly below AK(3)'s γ_N = 2.**
+>
+> A second, independent cubic form `C2` (rank 13, different root) has γ_N = 2.
+> Verification of both is in §4.2; the chains are machine-replayed and the roots are
+> independently un-merged back to AK(3).
+
+This is what `S4` §0 item 6 left open ("**No cubic form of AK(3) is reported**", 0 hits in
+48 attempts). The scaled search finds them at **2 of 28 roots**.
+
+1. **Q-red for AK(3): YES**, with two explicit witnesses at rank 13 (§4). Rank 13 is the
+   *minimum possible* for this calculus (§5.1), so these are extremal.
+2. **The `SPLIT` calculus does lower `γ_N`.** `C1` sits at `γ_N = 1` while AK(3) and *every*
+   one of its chord triangulations sit at `γ_N = 2` exactly (§2). Four further states in the
+   search's near-cubic pool are also at `γ_N = 1`. **No `γ_N = 0` was found**, but the route
+   is no longer inert: it moves the obstruction in the useful direction.
+3. **A flip census of `SPLIT` on small instances says the opposite — and it is wrong to
+   extrapolate it.** On a rank-5 corpus, `SPLIT` destroyed `γ_N = 0` in 643/960 cases and
+   created it in **0/1,470**, against a matched AC2 control that created in 14/1,470 (§3).
+   I drafted a monotonicity conjecture on that measurement and **my own rank-9→13 search
+   refutes it** (§3.4). Recorded in full, including the refutation, because the failure mode
+   — a clean small-instance null extrapolated past the regime it was measured in — is the
+   reusable lesson here.
 4. **Two cost-model corrections** (§5): a cubic triangular presentation at rank `N` has
-   census exactly `2^N`, so the cubic form of AK(3) — which the search drives to rank 15–20 —
-   is **not** cheaper to decide than AK(3) itself (`2^17 > 86,400`); and the 64.29 %
-   thickenable fraction of S4 §4 is a base rate over tiny AC-trivial rank-4 presentations
-   and is **not** a prior for AK(3)'s descendants.
+   census exactly `2^N`, so S4 §7.2's "16 cases" does not transfer (AK(3)'s cubic forms have
+   census `2^13 = 8,192`, and the advantage over AK(3)'s own 86,400 inverts at rank 17); and
+   the 64.29 % thickenable fraction of S4 §4 is a base rate over tiny rank-4 AC-trivial
+   presentations, **not** a prior for AK(3)'s descendants — the two cubic forms actually
+   found came out at `γ_N = 1` and `γ_N = 2`, i.e. **0 of 2 thickenable**.
 
 ---
 
@@ -171,25 +192,36 @@ By rewrite count `k` (`SPLIT` only): `k=1` 8 destroy / 0 create of 118; `k=2` 36
   `[GAP-O]`, the orientable/general gap is open — but it encumbers only nulls, and this *is*
   a null, so it is a second reason S4B-M must stay a conjecture.
 
-### 3.4 Conjecture S4B-M, and why it is only a conjecture
+### 3.4 Conjecture S4B-M — drafted on §3.2, and **REFUTED by §4 of this same file**
 
-> **Conjecture S4B-M (SPLIT monotonicity).** For every `SPLIT` child `P'` of `P`,
-> `γ_N(P') ≥ γ_N(P)`. In particular `SPLIT` never creates `γ_N = 0`.
+On the strength of §3.2 (2,430 pairs, no downward defect transition whatsoever) I drafted:
 
-Status: **measured, not proved.** The natural proof route is a restriction argument — every
-compatible rotation system of `K_{P'}` should restrict, along the retraction `t ↦ λ`, to one
-of `K_P` with no larger defect — but the retraction is *not* a subdivision, so the argument
-that works for chord refinement (`S3_AUDIT` Lemma S3′) does not transfer. Concretely,
-`D ∪ R'` is a disc whose boundary is the bigon `t λ^{-1}`, so `t` and `λ` cobound a bigon and
-the rewriting step pushes 2-cell corners across it; but the bigon's interior meets the edges
-`u` and `v`, which other 2-cells also use, so the push is a homotopy and not a homeomorphism.
-`[GAP-S4B-1]`
+> ~~**Conjecture S4B-M (SPLIT monotonicity).** For every `SPLIT` child `P'` of `P`,
+> `γ_N(P') ≥ γ_N(P)`; in particular `SPLIT` never creates `γ_N = 0`.~~ **REFUTED.**
 
-**If S4B-M is proved, the certificate half of the cubic route is closed** — combined with §2
-it says the entire `(triangulate ∘ SPLIT)` region of AK(3)'s stable class has `γ_N ≥ 2`. That
-would be a genuine obstruction theorem about a named region, i.e. the second of the two
-publishable outcomes S4 §7.3 anticipated. It would **not** say anything about stable ACC:
-it is a statement about one move calculus.
+**Counterexample, from this file's own AK(3) run.** The rank-9 root
+`(EaY, GxB, aXY, bxY, cYY, dXy, eXd, fCx, gYF)` — a chord triangulation of AK(3), hence
+`γ_N = 2` by §2 — reaches the rank-13 cubic form `C1` in **four `SPLIT`s**, and
+`γ_N(C1) = 1`. So some `SPLIT` in that chain **strictly lowered** the defect, from 4 to 2.
+Four more states in the near-cubic pool are likewise at defect 2 (§4.1). `SPLIT` therefore
+creates thickenability-progress; whether it can reach `0` is open.
+
+**Why the census did not see it, and the lesson.** §3.2's corpus is rank-5 states from
+length-9 sources; the refuting events live at ranks 9→13 with far richer link graphs. The
+census's own caveat ("a creation mechanism that only switches on at higher rank would be
+invisible here") was correct, and the conjecture ignored it. The reusable form:
+
+* **T-S15 (new).** *A move's flip census is a statement about the corpus's rank, not about
+  the move.* `SPLIT` shows 0 creations in 1,470 rank-5 opportunities and demonstrably lowers
+  `γ_N` at rank 9. Never promote a flip rate measured on small instances into a monotonicity
+  claim; state the rank band the measurement covers, and calibrate at the *large* end
+  (`experiments/lessons/parallel-runs-and-bound-direction.md`, last bullet: a weaker
+  instrument and a real trend produce the same shape).
+
+The §3.2 numbers stand as what they are: an exact measurement of `SPLIT`'s flip behaviour on
+rank-5 triangular states, showing that at that scale destruction dominates (67 % of
+thickenable parents) and creation is rare-to-absent. That is genuine information about the
+calculus's *bias*; it is not an obstruction.
 
 ---
 
