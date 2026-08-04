@@ -1,0 +1,33 @@
+{
+ "record": "s12_target_hunt",
+ "args": {
+  "nodes": 8000,
+  "kstab": 1,
+  "limit": 124,
+  "ladder": 15,
+  "seed": 517,
+  "census_cap": 200000,
+  "headroom": 4,
+  "out": "results/stable_ac/fable/s12_gateway_hi_aca_122.json",
+  "target": "YXXXyxx,YYYYYXyyyyx",
+  "trials": 8,
+  "controls": 3,
+  "control_trials": 4,
+  "kmax": 0
+ },
+ "target": [
+  "YXXXyxx",
+  "YYYYYXyyyyx"
+ ],
+ "target_length": 18,
+ "by_depth": {
+  "0": {
+   "control_hits": 0,
+   "control_trials": 12,
+   "control_rate": 0.0,
+   "target_hits": 0,
+   "target_trials": 8,
+   "target_rows": []
+  }
+ }
+}

@@ -7,3 +7,7 @@ control: 5 AC-trivial rank-2 sources with defect 2, L=13, -> rank-9 roots with s
   *** CUBIC control2|src0|root1: ['dij', 'GEF', 'aij', 'bxk', 'cyX', 'yDb', 'XEC', 'yFA', 'HHg', 'KDb', 'iFA', 'jEC', 'kHg'] verified=True gamma={'status': 'OK', 'minimum_defect': 4, 'census': 8192}
   *** CUBIC control2|src0|root4: ['jhd', 'FcG', 'axY', 'bji', 'iBc', 'HAd', 'eYx', 'XFK', 'yGe', 'KBc', 'iGe', 'jFh', 'kAd'] verified=True gamma={'status': 'OK', 'minimum_defect': 6, 'census': 8192}
   *** CUBIC control2|src0|root5: ['YCe', 'GIx', 'ayh', 'JJb', 'cYH', 'kAd', 'eXi', 'fbd', 'XGf', 'hGf', 'iAd', 'KCe', 'kJb'] verified=True gamma={'status': 'OK', 'minimum_defect': 4, 'census': 8192}
+  *** CUBIC control2|src4|root1: ['HAd', 'ygb', 'XAy', 'bXX', 'cih', 'jcD', 'eJy', 'KFe', 'gfi', 'hFe', 'icD', 'jAk', 'kgb'] verified=True gamma={'status': 'OK', 'minimum_defect': 4, 'census': 8192}
+pool persisted: 75095 near-cubic rows -> results/stable_ac/fable/s4b_ctrl2_pool.jsonl.gz
+{"kind": "summary", "tag": "control2", "attempts": 35, "solved": 4, "mode": "tiebreak", "beam": 60, "depth": 20, "diversity": 0.3, "gamma_tested": 0, "gamma_skipped": 1276930, "gamma_hist": {}, "deep_pool_unique": 75095, "deep_tested": 1, "deep_hist": {"4": 1}, "deep_cap": 1500000, "best_costs": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "min_sum_delta_reached": 2, "pool_written": 75095, "pool_out": "results/stable_ac/fable/s4b_ctrl2_pool.jsonl.gz", "seed": 909}
+GAMMA0 HITS: 0
