@@ -779,7 +779,8 @@ solver (`neuwirth_rank_n.py` `MIN_RELATOR_LENGTH`); only `gamma_N_factorial_n` s
   refine first and spike second (spike-then-refine raises `RefinementError`), or bring its
   own refiner — which then does not carry the audited replay certificate.
 * **T-S11e — the one worth promoting to `experiments/lessons/`.**
-  **Conjecture SR is FALSE; never cite it, and re-check anything conditional on it.**
+  **Conjecture SR is FALSE, in general AND on balanced presentations of the trivial group;
+  never cite it, and re-check anything conditional on it.**
   More useful than the fact is *why ~120,000 measurements missed it*: SR is an induction
   step `depth k → depth k−1`, and every corpus that "confirmed" it generated its states by
   applying **one** operation to a **normal-form** base — so it only ever measured `k = 1`.
@@ -794,6 +795,13 @@ solver (`neuwirth_rank_n.py` `MIN_RELATOR_LENGTH`); only `gamma_N_factorial_n` s
   Corollary for reading this repo: any claim of the form "0 counterexamples in N complexes"
   should be read together with *how the N were generated*, and specifically whether the
   generator can produce the shape a counterexample would have.
+
+  Second half of the same trap, and it cost a mid-task reversal here: **a counterexample
+  outside the trivial-group class does not refute the trivial-group restriction.**
+  `CLAUDE.md`'s "distinguish the statements" applies to conjectures as well as to
+  AC-trivial / stably AC-trivial. Run `coset_enum` on the base and quote the index before
+  claiming a refutation transfers — the first counterexample found here had index 4, and
+  the one that matters had to be hunted for separately.
 * **T-S11f.** A `γ_N = 0` calibration state need not present the trivial group — R1F's own
   fixture `("xyXY","xxy")` presents **ℤ** (relators `[x,y]` and `x²y`), and
   `witness_check_n.check_witness_n` correctly raises `AuditContradiction` on its witness

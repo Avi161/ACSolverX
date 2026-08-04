@@ -141,6 +141,29 @@ Recorded now so that the experiments cannot be read after the fact:
 - **P3.** Run on the 124 unsolved Miller–Schupp classes, any hit settles that class outright
   (Lackenby, §2). This is the cheapest available shot at a new result and is task A11.
 
+## 6a. Yield so far: zero
+
+Stated plainly so the method is not oversold by the fact that it is well-founded. Run this
+session against every target available, the Stable Certificate Hunt has produced **no
+certificate for any open case**:
+
+- all 124 unsolved Miller–Schupp AC-classes, plus 67,864 members of their classes, decided
+  NOT_SPHERICAL by an exact procedure (A9) — and all six of the closest, the certified
+  γ_N = 1 gateways, swept over 39,108 states without a hit;
+- AK(3) at rank ceilings 2–6, 0 hits in 40 runs against a length-matched control's 39/40
+  (A7);
+- AK(3) at rank 9–11 from three triangulations, 0 hits in 3 runs — a null worth almost
+  nothing at a measured 1-in-6 detection rate;
+- this file's own hunt over the 124 at depth 0, 0 hits, against a positive-ladder detection
+  rate of 0.54.
+
+The hunter demonstrably fires — three verified γ_N = 0 states were found at ranks 8 and 9,
+each triple-checked (`check_witness_n`, an independent defect recomputation, and the exact
+census), all of them in AK(2)'s class, none in AK(3)'s. So the instrument works and the
+targets are simply not yielding. That is a bounded negative, not a resolution
+(`FRAMING` §3), and the detection rates above are what any future null on this line is
+worth.
+
 ## 7. Honest limitations
 
 1. The whole chain rests on Lackenby Thm 1.3, which `S2` could only relay from an abstract
