@@ -1,0 +1,175 @@
+# S5 — The first genuine high-rank stable-AC search (task A7)
+
+Branch `claude/stable-ac-conjecture-stabilization-rwo9as`; **must be merged into
+`fable/proof` by the user.** Date 2026-08-04. Standing frame: `FRAMING.md`
+(statements, traps, what does NOT count). Direct companions: `S0_HIGH_RANK_PLAN.md`
+(the S-line question), `S1_TRIANGULATION_LEMMA.md` (the rank-9 triangulation of AK(3)),
+`S3_SUBDIVISION_INVARIANCE.md` (why triangulation alone is a no-op).
+
+Code: `experiments/stable_ac/fable/rank_n_ac_search.py`.
+Tests: `tests/test_rank_n_ac_search.py` (30 tests). Full suite at the time of writing:
+**702 passed, 7 skipped.**
+Artifacts: `results/stable_ac/fable/rank_n_ac_search_*.json` + `*_rows.jsonl`.
+
+---
+
+## 0. What this document claims, and what it does not
+
+| claim | strength |
+|---|---|
+| A rank-N AC1–AC5 move generator + a thickenability objective now exist and are tested | **build**, machine-checked |
+| The instrument's detection rate is measured on positive ladders before any null is read | **measurement** |
+| The AK(3) depth ladder is FLAT and the control ladder is NOT | **measurement**, bounded budget |
+| AK(3) is stably AC-trivial | **NOT claimed.** Nothing here decides it. |
+| γ_N(AK(3)-class) > 0 | **NOT claimed and NOT claimable by this instrument** — see §2 |
+| Any statement about AC from a budget outcome | **NOT claimed** (FRAMING §3) |
+
+FRAMING §3 is binding: a bounded-budget search outcome is never a resolution, in either
+direction. What follows is an instrument, its calibration, and two nulls whose worth is
+exactly the measured detection rate that precedes them.
+
+---
+
+## 1. What was built
+
+`rank_n_ac_search.py`, a self-contained rank-N implementation over string words
+(lowercase = generator, uppercase = inverse). The repo's environment code is rank-2 only;
+this is the first module on the line that moves in AC4/AC5 space directly
+(`FRAMING.md` §6 route R4: *"No computational method has ever searched AC4/AC5 space
+directly"*).
+
+**Moves** (project numbering, `FRAMING.md` §1):
+
+| move | implementation | note |
+|---|---|---|
+| AC1 invert | `("ac1", i)` | |
+| AC2 multiply | `("ac2", i, j, ±1)` | the `-1` sign is the composite AC1;AC2;AC1 |
+| AC3 conjugate | `("ac3", i, g, ±1)` | one generator, both signs |
+| **conjugated multiply** | `("cmul", i, j, ±1, g, ±1)` | `r_i ← r_i · g r_j^{±1} g^{-1}`, the composite AC3;AC2;AC3-back — **the move that matters**, see §2 |
+| AC4 stabilize | `("ac4",)` | fresh generator + fresh relator |
+| AC5 destabilize | `("ac5", i)` | legal **only** when `r_i` is a single generator (or its inverse) occurring in no other relator; guarded and tested |
+
+Free reduction is applied to every rewritten relator, including the seam
+(`FRAMING.md` trap 3); an empty relator is refused as an illegal state. The state key is
+the multiset of **cyclically-reduced** relators up to inversion, generator renaming and
+per-generator sign flip (`experiments/lessons/harvest-dedup-on-reduced-forms.md`:
+exact-word keys waste ~97% of pops on conjugacy churn). The renaming is derived from a
+relabel-invariant signature with ties broken by incoming order, i.e. the key is **sound
+but incomplete** — it can fail to merge two isomorphic states, which costs dedup
+efficiency and can never merge two distinct ones.
+
+**Triangulation helper** (independent reimplementation, deliberately not shared with the
+other agent's `high_rank_refine.py`): the left-prefix chord peel of `S1` §4.2, plus a
+replay certifier that back-substitutes every definition and checks that the descendants
+free-reduce to the original relators, that every definition relator vanishes, that the
+rank arithmetic holds and that the abelianisation is preserved. On AK(3) it reproduces
+`S1` §4.4 **letter for letter** (nine relators `aYX bXA cyB cXY dXX eXD fyE gyF gYY`,
+closed forms `a=xy, b=xyx, c=xyxY, d=xx, e=xxx, f=xxxY, g=xxxYY`); this is asserted in
+the tests.
+
+**Objective — the thickenability hunter.** For a state, the question is whether
+`γ_N = 0`. The exact census `gamma_N_factorial_n` is right when
+`Π_g (deg(g) − 1)!` is small but far too slow per node, so the search objective is a
+randomised hill-climb over compatible rotation systems (plateau walking, random
+restarts, transposition + re-insertion neighbourhoods) built on the audited
+`neuwirth_rank_n.build_link_n` dictionary. Units: `defect` throughout is the **unhalved**
+Neuwirth defect `|A| − |C| + 2L − |AC|`, the same convention as
+`gamma_N_factorial_n`'s `minimum_defect`; `γ_N = defect / 2`.
+
+**Verification of every hit — three routes, at least one of them independent.**
+
+1. `witness_check_n.check_witness_n` — a structurally different verifier that rebuilds
+   `D, A, B` from the words and shares no scheme code with the hunter. It **requires a
+   connected link** (`L = 1`) and refuses otherwise;
+2. `independent_defect` — written from scratch inside this module, sharing no code with
+   `neuwirth_rank_n` or with the hunter's cache, so that a defect-0 rotation on a
+   *disconnected* link (which route 1 refuses, and which is exactly the case of the
+   standard presentation, `L = N`) still gets a second opinion;
+3. the exact census `gamma_N_factorial_n` when the family fits under 200,000 — the only
+   route that returns **equality** rather than a bound.
+
+A hunted defect 0 that no route confirms is recorded as an **anomaly** (a bug in the
+hunter, never a mathematical outcome). Across every run reported below the anomaly count
+is **0**.
+
+---
+
+## 2. Direction of every bound (the filed trap, restated because it governs §5)
+
+`experiments/lessons/parallel-runs-and-bound-direction.md`; `S0` trap T-S2.
+
+* the hill-climb **exhibits** a rotation system, so it bounds `γ_N` from **ABOVE**. An
+  upper bound of 0 is a *proof* of thickenability once re-verified. That is the right
+  direction here: we are hunting for zero.
+* **Silence bounds nothing.** "No defect-0 rotation found" is never evidence that
+  `γ_N > 0`, at any budget, for any state. Every null below is reported only against a
+  measured detection rate.
+* the Euler sparsity certificate `|E| > 3|V| − 6` is the only lower-bound tool in the
+  module and is used only to prune. Per `S3` §4 item 2 it can never fire in the
+  triangular regime, so it does no work at rank 9 — it is retained for the
+  short-relator/high-multiplicity states the search drifts into.
+
+**Why the search must move at all** (`S3_SUBDIVISION_INVARIANCE.md`). A chord refinement
+is a CW **subdivision**: `|K_{P_Δ}| ≅ |K_P|`, so `γ_N(P_Δ) = 0 ⟺ γ_N(P) = 0`. The rank-9
+triangulation of AK(3) therefore has the same `minimum_defect` as AK(3) itself — **4, a
+theorem, not a measurement** (it is asserted as a regression test here, not reported as a
+finding). The escape hatch S3 §4 identifies is a stabilized generator used **three or
+more times**. That is precisely what `cmul` does and what no triangulation can do: it
+copies letters of `r_j` (stabilized letters included) into `r_i`, pushing occurrence
+multiplicities past 2 and leaving the subdivision regime. So the triangulated starts are
+a legitimate entry point, and progress begins only once the walk leaves the subdivision
+family.
+
+---
+
+## 3. CALIBRATION FIRST
+
+`experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md`: a one-sided
+hunt's silence is worth exactly its MEASURED detection rate. Three ladders, all run with
+the same code, the same move set and the same budget knobs as the AK(3) runs.
+
+**Ladder A (realistic).** Members of AK(2)'s AC class taken from
+`results/stable_ac/fable/ak2_members.jsonl` with verdict `NOT_SPHERICAL` (so `γ_N ≥ 1`
+at rank 2 — the member itself is *not* thickenable), triangulated by the helper to rank 8
+(total length 12) and rank 9 (total length 13). Provenance of the positivity: the same
+battery records a machine-replayed 27-move AC path from AK(2) to the standard pair
+(`ak2_trivialization_path.json`, `replay_verified: true`), so AK(2) is AC-trivial and
+every member of its AC class is AC-trivial, hence stably AC-trivial, hence its stable
+class contains a thickenable member. The battery also records that 397 of the 13,040
+harvested members are themselves `SPHERICAL`, i.e. thickenable members exist inside the
+class at rank 2 at a density of ≈3%.
+
+**Ladder B (distance-calibrated).** The standard rank-9 presentation `⟨a₁..a₉ | a₁..a₉⟩`
+scrambled by `k` random AC1–AC3 moves. Scrambles whose own hunted defect is already 0 are
+**rejected**, because a search that "wins" at node 1 without moving measures nothing.
+On the survivors a `γ_N = 0` state (the standard presentation) is known to sit within `k`
+moves, so the hit rate as a function of `k` measures the search's reach in AC-move
+distance directly.
+
+**Ladder D (depth / rank filtration).** The orchestrator's addition and the S-line's
+actual question, an operational form of `S0` §4's filtration `~^{(k)}`: the same base is
+searched under a rank **ceiling** `2 + k`, starting from the base stabilized `k` times.
+The search may destabilize back to rank 2 (otherwise it would not be a stable search).
+Two families with identical move sets, identical budgets and identical per-rung seeds:
+AK(3), and a **length-matched** AC-trivial `NOT_SPHERICAL` AK(2)-class control
+`⟨x,y | YYxxx, YxYxYxxx⟩` (total length 13, the same as AK(3) —
+`experiments/lessons/contrast-length-confound.md`: a raw gap between two families can be
+a LENGTH gap in disguise).
+
+---
+
+## 4. Results
+
+<!--RESULTS-->
+
+---
+
+## 5. What the nulls are worth
+
+<!--WORTH-->
+
+---
+
+## 6. Traps carried forward
+
+<!--TRAPS-->

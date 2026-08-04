@@ -229,6 +229,18 @@ the combination **high rank × unreduced spellings** is where this line should n
   exactly two 2-cell germs from two distinct 2-cells*: that case is provably inert. Any
   future proposal must state, up front, how many 2-cell germs its new edges carry and
   whether the pipeline free-reduces.
-- **T-S9 (new, from R3).** γ_N = 0 in this repo means **orientably** thickenable. Lackenby
-  Thm 1.3 needs "some 3-manifold". Never let a γ_N = 0 hit be reported as discharging
-  Lackenby without flagging Joint-A.
+- **T-S9 (new, from R3 — but restated; the audit's version had the gap on the wrong side).**
+  γ_N = 0 in this repo means **orientably PL** thickenable, and the repo's bridge (`R1E`
+  Thm D) is a biconditional against *that* predicate. Now note which way the implication
+  runs against Lackenby's weaker hypothesis ("embeds in **some** 3-manifold"):
+  - **Positive direction — SOUND, no gap.** An orientable PL 3-manifold *is* a 3-manifold,
+    so γ_N = 0 ⇒ Lackenby's hypothesis holds ⇒ the presentation is AC-trivializable. Every
+    certificate this line hunts for is therefore valid as it stands. Joint-A does **not**
+    encumber a hit.
+  - **Negative direction — this is where the gap bites.** γ_N > 0 rules out only
+    *orientable* thickenings. A presentation could embed in a non-orientable 3-manifold and
+    still be scored `NOT_SPHERICAL`. So every null on this line — including the
+    0/171,842 of the depth-1 AK(3) harvest — is a null about **orientable** thickenability
+    only, and any disproof-side argument built on such nulls must either extend to the
+    non-orientable case or state the restriction. This weakens the negative evidence and
+    strengthens nothing on the positive side.

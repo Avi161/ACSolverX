@@ -64,16 +64,34 @@ decided in seconds.
    large as measured.
 2. **Median length drifts up with rank** (13 → 14 → 15 inside the band). Longer is
    generally less thickenable, so this too understates the trend.
-3. **[OPEN CONTROL] Distance from the standard presentation.** All samples come from short
-   walks, so they are *near* standard. AK(3)'s stable class is not. If the density falls
-   steeply with walk length, this baseline does not transfer to AK(3) and §5 must be
-   discounted. **This control has not been run and the section below is conditional on
-   it.** (Filed-lesson discipline: `contrast-length-confound.md` — a gap in a rate can be a
-   gap in a covariate in disguise.)
+3. **Distance from the standard presentation — CONTROL RUN, and it partly bites.** All
+   samples come from walks, so they sit at a controllable distance from standard, while
+   AK(3)'s stable class does not. Rerunning the sweep with the walk length as the variable
+   (band 12–18, same cap):
+
+   | rank | walk 6–15 | walk 25–45 | walk 70–120 |
+   |---|---|---|---|
+   | 2 | 0.500 (n=58) | 0.485 (n=33) | **0.214** (n=14) |
+   | 3 | 0.870 (n=69) | 0.766 (n=47) | 0.500 (n=2 — useless) |
+   | 4 | 0.910 (n=78) | 0.675 (n=77) | — (n=0) |
+
+   Two readings, and both must be carried:
+   - **The absolute density DOES fall with distance** (rank 2: 0.50 → 0.485 → 0.214).
+     So the headline fractions of §3 are *near-standard* rates and must not be quoted as
+     the rate a search would see deep in a class.
+   - **The rank ordering survives** where the samples are large enough to read: at walk
+     25–45, rank 3 (0.766) and rank 4 (0.675) are both far above rank 2 (0.485), and the
+     rank-2 skip rate climbs with distance (32 → 57 → 76 of 90) so even 0.214 is an upper
+     bound. At walk 70–120 the samples are too small to read at rank ≥ 3 and nothing is
+     claimed there.
+
+   **Consequence for §5:** the ordering claim ("certificates are commoner at higher rank")
+   survives the control; the *rate* claim does not extrapolate to AK(3)'s class, which is
+   far from standard. §5 is rewritten accordingly.
 4. **No p-values.** Walk-generated states are not independent draws
    (`contrast-length-confound.md`), so only the raw fractions are quoted.
 
-## 5. What it implies for AK(3) — conditional on the §4.3 control
+## 5. What it implies for AK(3) — SOFTENED after the §4.3 control
 
 The repo's own rank-3 (depth-1) contrast, re-read with this baseline, becomes sharper than
 it looked:
@@ -91,11 +109,22 @@ though not absolute length caps (18 vs 16), and AK(3)+z's members are longer (mo
 than AK(2)+z's (mode 9–11) — **the length confound is real and is why this is stated as a
 tension, not a result.**
 
-Read in the direction the S-line cares about: *if* AK(3) were stably AC-trivial, the
-density measurement says its stable class should be thick with Lackenby certificates —
-more so, not less, as the rank climbs. That it is empty at depth 1 across 171,842 members
-is the strongest single piece of evidence on this line, and it points at the **disproof**
-side of `FRAMING` §2, not the proof side.
+Read in the direction the S-line cares about, **with the §4.3 control applied**: the
+control shows the density falls with distance from the standard presentation, so the
+0.726 rank-3 figure is *not* the rate one should expect deep inside a class, and the naive
+inference "AK(3) should have been thick with certificates" is **not supported at that
+strength**. What survives is weaker and still worth something:
+
+- the *ordering* (certificates commoner at higher rank) survives the control;
+- AK(2)+z, an AC-trivial class at the same depth under the same operator, returns 54.8 %;
+- AK(3)+z returns 0 in 171,842.
+
+The honest statement is therefore: **AK(3)'s depth-1 class is anomalously empty relative to
+the one AC-trivial class measured the same way**, with two live confounds — the length
+distributions differ (AK(3)+z mode 22–24 vs AK(2)+z mode 9–11) and class members are not
+independent draws, so no p-value is quotable. It is a tension pointing at the **disproof**
+side of `FRAMING` §2; it is not evidence of a disproof, and per S3's corrected trap T-S9 it
+is a null about **orientable** thickenability only.
 
 ## 6. What this changes about the session's plan
 

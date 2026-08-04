@@ -26,3 +26,465 @@
 [calib] 26/30 depth_ak2ctl_k3_r1 rank 5 len 16 -> best defect 0 hit=True nodes=11 1.05s
 [calib] 27/30 depth_ak2ctl_k3_r2 rank 5 len 16 -> best defect 0 hit=True nodes=47 1.19s
 [calib] 28/30 depth_ak2ctl_k4_r0 rank 6 len 17 -> best defect 0 hit=True nodes=17 1.46s
+[calib] 29/30 depth_ak2ctl_k4_r1 rank 6 len 17 -> best defect 0 hit=True nodes=89 3.23s
+[calib] 30/30 depth_ak2ctl_k4_r2 rank 6 len 17 -> best defect 2 hit=False nodes=600 8.13s
+{
+ "ladder_D": {
+  "ladder_D:rank_ceiling(k=0)": {
+   "runs": 6,
+   "hits": 3,
+   "detection_rate": 0.5,
+   "start_ranks": [
+    2
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 4,
+   "mean_nodes": 79.0
+  },
+  "ladder_D:rank_ceiling(k=1)": {
+   "runs": 6,
+   "hits": 2,
+   "detection_rate": 0.333,
+   "start_ranks": [
+    3
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 4,
+   "mean_nodes": 402.8
+  },
+  "ladder_D:rank_ceiling(k=2)": {
+   "runs": 6,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    4
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 4,
+   "mean_nodes": 600.0
+  },
+  "ladder_D:rank_ceiling(k=3)": {
+   "runs": 6,
+   "hits": 3,
+   "detection_rate": 0.5,
+   "start_ranks": [
+    5
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 4,
+   "mean_nodes": 335.5
+  },
+  "ladder_D:rank_ceiling(k=4)": {
+   "runs": 6,
+   "hits": 2,
+   "detection_rate": 0.333,
+   "start_ranks": [
+    6
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 4,
+   "mean_nodes": 417.7
+  }
+ },
+ "_depth_ladder": {
+  "ak3": {
+   "0": {
+    "rank_ceiling": 2,
+    "runs": 3,
+    "hits": 0,
+    "best_defects": [
+     4,
+     4,
+     4
+    ],
+    "nodes": [
+     67,
+     95,
+     137
+    ],
+    "seeds": [
+     20260804,
+     20268723,
+     20276642
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "1": {
+    "rank_ceiling": 3,
+    "runs": 3,
+    "hits": 0,
+    "best_defects": [
+     4,
+     4,
+     4
+    ],
+    "nodes": [
+     600,
+     600,
+     600
+    ],
+    "seeds": [
+     20261813,
+     20269732,
+     20277651
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "2": {
+    "rank_ceiling": 4,
+    "runs": 3,
+    "hits": 0,
+    "best_defects": [
+     4,
+     4,
+     4
+    ],
+    "nodes": [
+     600,
+     600,
+     600
+    ],
+    "seeds": [
+     20262822,
+     20270741,
+     20278660
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "3": {
+    "rank_ceiling": 5,
+    "runs": 3,
+    "hits": 0,
+    "best_defects": [
+     4,
+     4,
+     4
+    ],
+    "nodes": [
+     600,
+     600,
+     600
+    ],
+    "seeds": [
+     20263831,
+     20271750,
+     20279669
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "4": {
+    "rank_ceiling": 6,
+    "runs": 3,
+    "hits": 0,
+    "best_defects": [
+     4,
+     4,
+     4
+    ],
+    "nodes": [
+     600,
+     600,
+     600
+    ],
+    "seeds": [
+     20264840,
+     20272759,
+     20280678
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   }
+  },
+  "ak2ctl": {
+   "0": {
+    "rank_ceiling": 2,
+    "runs": 3,
+    "hits": 3,
+    "best_defects": [
+     0,
+     0,
+     0
+    ],
+    "nodes": [
+     78,
+     57,
+     40
+    ],
+    "seeds": [
+     20260804,
+     20268723,
+     20276642
+    ],
+    "best_states": [
+     {
+      "gens": [
+       "x",
+       "y"
+      ],
+      "rels": [
+       "XyX",
+       "XXXXXyyy"
+      ]
+     },
+     {
+      "gens": [
+       "x",
+       "y"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxxx"
+      ]
+     },
+     {
+      "gens": [
+       "x",
+       "y"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxy"
+      ]
+     }
+    ],
+    "min_best_defect": 0,
+    "min_best_gamma_N_upper_bound": 0,
+    "detection_rate": 1.0
+   },
+   "1": {
+    "rank_ceiling": 3,
+    "runs": 3,
+    "hits": 2,
+    "best_defects": [
+     2,
+     0,
+     0
+    ],
+    "nodes": [
+     600,
+     15,
+     2
+    ],
+    "seeds": [
+     20261813,
+     20269732,
+     20277651
+    ],
+    "best_states": [
+     {
+      "gens": [
+       "x",
+       "y",
+       "a"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxxxa",
+       "a"
+      ]
+     },
+     {
+      "gens": [
+       "x",
+       "y",
+       "a"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxxx",
+       "a"
+      ]
+     }
+    ],
+    "min_best_defect": 0,
+    "min_best_gamma_N_upper_bound": 0,
+    "detection_rate": 0.667
+   },
+   "2": {
+    "rank_ceiling": 4,
+    "runs": 3,
+    "hits": 0,
+    "best_defects": [
+     2,
+     2,
+     2
+    ],
+    "nodes": [
+     600,
+     600,
+     600
+    ],
+    "seeds": [
+     20262822,
+     20270741,
+     20278660
+    ],
+    "best_states": [],
+    "min_best_defect": 2,
+    "min_best_gamma_N_upper_bound": 1,
+    "detection_rate": 0.0
+   },
+   "3": {
+    "rank_ceiling": 5,
+    "runs": 3,
+    "hits": 3,
+    "best_defects": [
+     0,
+     0,
+     0
+    ],
+    "nodes": [
+     155,
+     11,
+     47
+    ],
+    "seeds": [
+     20263831,
+     20271750,
+     20279669
+    ],
+    "best_states": [
+     {
+      "gens": [
+       "x",
+       "y",
+       "a",
+       "c"
+      ],
+      "rels": [
+       "YXyXyc",
+       "XXXyXyXy",
+       "CA",
+       "A"
+      ]
+     },
+     {
+      "gens": [
+       "x",
+       "y",
+       "a",
+       "b"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxxx",
+       "a",
+       "b"
+      ]
+     },
+     {
+      "gens": [
+       "x",
+       "y"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxxx"
+      ]
+     }
+    ],
+    "min_best_defect": 0,
+    "min_best_gamma_N_upper_bound": 0,
+    "detection_rate": 1.0
+   },
+   "4": {
+    "rank_ceiling": 6,
+    "runs": 3,
+    "hits": 2,
+    "best_defects": [
+     0,
+     0,
+     2
+    ],
+    "nodes": [
+     17,
+     89,
+     600
+    ],
+    "seeds": [
+     20264840,
+     20272759,
+     20280678
+    ],
+    "best_states": [
+     {
+      "gens": [
+       "x",
+       "y",
+       "a",
+       "b",
+       "c",
+       "d"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxxx",
+       "a",
+       "b",
+       "c",
+       "Cd"
+      ]
+     },
+     {
+      "gens": [
+       "x",
+       "y",
+       "a",
+       "b",
+       "c"
+      ],
+      "rels": [
+       "YXyXy",
+       "YxYxYxxxa",
+       "a",
+       "bA",
+       "c"
+      ]
+     }
+    ],
+    "min_best_defect": 0,
+    "min_best_gamma_N_upper_bound": 0,
+    "detection_rate": 0.667
+   }
+  }
+ },
+ "_depth_ladder_shape": {
+  "ak3": {
+   "distinct_min_best_defects_over_rungs": [
+    4
+   ],
+   "flat": true,
+   "hits": 0,
+   "runs": 15
+  },
+  "ak2ctl": {
+   "distinct_min_best_defects_over_rungs": [
+    0,
+    2
+   ],
+   "flat": false,
+   "hits": 10,
+   "runs": 15
+  }
+ },
+ "_overall": {
+  "runs": 30,
+  "hits": 10,
+  "detection_rate": 0.333
+ }
+}
+[calib] wrote results/stable_ac/fable/rank_n_ac_search_depth_ladder.json and results/stable_ac/fable/rank_n_ac_search_depth_ladder_rows.jsonl

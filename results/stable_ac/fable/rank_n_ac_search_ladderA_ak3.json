@@ -1,0 +1,76 @@
+{
+ "record": "rank_n_ac_search",
+ "generated": "2026-08-04T07:17:13Z",
+ "budget": {
+  "nodes": 1000,
+  "beam": 6,
+  "branch": 12,
+  "evals": 800,
+  "seed": 20260804,
+  "max_relator_length": 12,
+  "max_total_length": 40,
+  "rank_slack": 2
+ },
+ "summary": {
+  "AK(3) inverted-r1 left-prefix triangulation (S1 section 4.5 item 4)": {
+   "AK(3) inverted-r1 left-prefix triangulation (S1 section 4.5 item 4)": {
+    "runs": 1,
+    "hits": 0,
+    "detection_rate": 0.0,
+    "start_ranks": [
+     9
+    ],
+    "min_best_defect": 2,
+    "median_best_defect": 2,
+    "mean_nodes": 1000.0
+   }
+  },
+  "AK(3) left-prefix triangulation (S1 section 4.4)": {
+   "AK(3) left-prefix triangulation (S1 section 4.4)": {
+    "runs": 1,
+    "hits": 0,
+    "detection_rate": 0.0,
+    "start_ranks": [
+     9
+    ],
+    "min_best_defect": 2,
+    "median_best_defect": 2,
+    "mean_nodes": 1000.0
+   }
+  },
+  "AK(3) rotated-start left-prefix triangulation (S1 section 4.5 item 2)": {
+   "AK(3) rotated-start left-prefix triangulation (S1 section 4.5 item 2)": {
+    "runs": 1,
+    "hits": 0,
+    "detection_rate": 0.0,
+    "start_ranks": [
+     9
+    ],
+    "min_best_defect": 4,
+    "median_best_defect": 4,
+    "mean_nodes": 1000.0
+   }
+  },
+  "ladder_A": {
+   "ladder_A:ak2_class_left_prefix_triangulation": {
+    "runs": 6,
+    "hits": 0,
+    "detection_rate": 0.0,
+    "start_ranks": [
+     8,
+     9
+    ],
+    "min_best_defect": 2,
+    "median_best_defect": 2,
+    "mean_nodes": 1000.0
+   }
+  },
+  "_overall": {
+   "runs": 9,
+   "hits": 0,
+   "detection_rate": 0.0
+  }
+ },
+ "note": "defect is the UNHALVED Neuwirth defect; gamma_N = defect/2.  The hunter bounds gamma_N from ABOVE only: a null says nothing about gamma_N > 0 and must be read against the measured detection rate on the ladders.",
+ "elapsed_seconds": 168.7
+}
