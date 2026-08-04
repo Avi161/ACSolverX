@@ -29,6 +29,12 @@ Owner files: `experiments/stable_ac/fable/spelling_high_rank.py`,
    containment backwards — `γ_N = 0` is the *stronger* predicate and discharges Lackenby's
    for free; the orientable gap costs recall, not soundness.
 
+Plus one mechanism and one calibrated null: creating spikes come in **same-signed-letter
+pairs** (16/16, §4.4), which also supplies the "create" direction for AC3 conjugation that
+`S6`'s 315-destroy/0-create measurement could not see; and all **330** depth-2 spellings of
+AK(3) were scored with an in-session detection rate of **0.65**, returning no hit but
+leaving **72** candidates at `γ_N ≤ 1` for a bigger budget (§4.6).
+
 STATUS. §1 is an inference-chain audit — a draft for adversarial audit, not a result.
 §§3–5 are **measurements** by exact census, each with its cap, skip count and bias
 direction. §4.3/§4.3′'s counterexamples are **finite, exhaustively verified facts** and are as
@@ -151,7 +157,15 @@ orientability.
 
 ---
 
-## 2. Route closure — the spike hunt on reduced bases cannot win (task A8's measurement)
+## 2. The route closure this task was redirected by — **now retracted by §4.3′**
+
+**Read this section as a record of a wrong turn, not as a live claim.** Mid-task the S-line
+concluded from A8's measurement that spike insertion "can only preserve or destroy
+thickenability, never create it", and the AK(3) spike hunt was dropped on that basis.
+§4.3′ refutes it: spike insertion **can** create thickenability, on balanced presentations
+of the trivial group. The measurement below is correct; the generalisation drawn from it
+was not, for the reason in trap T-S11e — every base in those corpora was cyclically
+reduced, so the corpus was structurally unable to exhibit the counterexample.
 
 Task A8 (`S6_MOVE_CLASSIFICATION.md` §1) measured, by exact census, what move (0) does:
 
@@ -165,15 +179,15 @@ trials, and R7's own corpus adds ≈114,000 complexes with the same verdict (R1F
 cross-tabulation: base `γ_N = 1` → min over its spikes = 1 in 2,514 of 2,514 bases; base
 `γ_N = 2` → min = 1 or 2, never 0). Therefore:
 
-> **The reduced spelling of a state is, empirically, always at least as good a certificate
-> candidate as any spelling of it.** A hunt that adds spikes to a *cyclically reduced*
-> base — AK(3) is cyclically reduced, and so is every chord refinement of it, since
-> `high_rank_refine._check_input` refuses anything else — is searching a region that
-> cannot beat the base it started from.
+> ~~**The reduced spelling of a state is, empirically, always at least as good a
+> certificate candidate as any spelling of it.**~~ **[RETRACTED — §4.3′.]** What survives
+> is the much narrower measured statement: no spelling has yet been found that beats its
+> own FULLY REDUCED form. Creation relative to the *immediately preceding* spelling is
+> real and now has 28 verified instances.
 
-**This retires the spike-insertion hunt on AK(3) for the positive direction**, together
-with the depth-2/3 exhaustive census at rank 9 that this task was scoped to run. (§6 shows
-that census would not have been affordable anyway, for a second and independent reason.)
+**~~This retires the spike-insertion hunt on AK(3) for the positive direction.~~
+[RETRACTED — §4.3′; the hunt is live again and §4.6 runs it.]** §6 still holds for a
+second and independent reason: the depth-2 exhaustive census at rank 9 is not affordable.
 
 Two honest qualifications, both of which keep the route from being *proved* closed:
 
@@ -419,7 +433,7 @@ immediately.
 > creates thickenability, in the same chain. `γ_N` is not monotone in the spelling in
 > either direction.
 
-### SCOPE — and it decides what this is worth
+#### SCOPE — and it decides what this is worth
 
 **This family presents ℤ/4, not the trivial group.** Todd–Coxeter completes with **index 4**
 on all three spellings (`coset_enum.is_trivial_group` → `trivial: False`), verified in this
@@ -435,45 +449,7 @@ A counterexample outside the trivial-group class does not transfer into it witho
 so the ℤ/4 example above settles only the first row. The hunt for the second row was run
 and it succeeded.
 
-### 4.3′ SR-TRIVIAL IS ALSO FALSE — the counterexample that does transfer
-
-Bases: cyclically reduced balanced rank-2 presentations produced by AC1–AC3 walks out of
-the standard presentation (**trivial by construction**) and then re-verified one by one by
-Todd–Coxeter, keeping only `index = 1` (`trivial_bases`; a capped enumeration is dropped,
-never guessed). 40 such bases; the hunt reached 4 of them in its 230 s budget.
-
-> **Counterexample (trivial group).** Generators `a, b`. One reduction chain, three
-> spellings of the same free-group element pair:
->
-> | spelling | census | min defect | `γ_N` | Todd–Coxeter |
-> |---|---|---|---|---|
-> | `("ABbbabAAaB","baB")` | 86,400 | **0** | 0 | COMPLETE, index **1** — trivial |
-> | `("AbabAAaB","baB")` = `P` | 2,880 | **2** | 1 | COMPLETE, index **1** — trivial |
-> | `("AbabAB","baB")` fully reduced | 144 | **0** | 0 | COMPLETE, index **1** — trivial |
->
-> All three free-reduce to `("AbabAB","baB")`; each step is one move (0); the spike is
-> `u = "B"` inserted after the leading `A` of the first relator. Balanced, rank 2, total
-> length 13 at the top of the chain.
-> `γ_N(spike(P)) = 0` while `γ_N(P) = 1`. **SR-trivial is false.**
-
-**Verification of the defect-0 side, three independent ways.**
-
-* exact census, 86,400 systems, no cap hit;
-* **`check_witness_n` ACCEPTS the witness with `trivial_group=True`** — `defect 0`,
-  `L = 1`, `|C|−|A|+|AC| = 4−13+11 = 2`, `⟨AC,BC⟩` transitive. This is a genuinely
-  independent structural check *and* a consistency check on the triviality claim: the
-  verifier raises `AuditContradiction` when Corollary 3's transitivity fails for a state
-  asserted trivial, and it did **not** raise here (contrast the ℤ/4 family of §4.3, where
-  the same call *does* raise — see `test_certify_zero_agrees_with_the_census_on_a_known_positive`);
-* `rank_n_ac_search.independent_defect`, which rebuilds the dart dictionary from the words,
-  returns `defect 0`.
-
-**Yield.** `results/stable_ac/fable/s11_sr_trivial.json`: 4 trivial-group bases reached, 15
-depth-1 spellings with positive defect, **384 depth-2 spellings decided** (99 skipped over
-the 2·10⁵ cap), **12 counterexamples** — a 3.1 % rate. Every one at total length 13, every
-base Todd–Coxeter index 1, and the existential repair SR′ survives in **12 of 12**.
-
-**Verification, on both sides, by tools that do not share code.**
+**Verification of the ℤ/4 counterexample, on both sides, by tools that do not share code.**
 
 * `spike(P)`'s defect 0: exact census (4,320 systems, 2 accepting); `check_witness_n`
   accepts the witness outright (`defect 0`, `L = 1`, `|C|−|A|+|AC| = 4−11+9 = 2`,
@@ -488,7 +464,8 @@ base Todd–Coxeter index 1, and the existential repair SR′ survives in **12 o
 
 **What is broken.**
 
-*(All four items below are about **SR-general**. What survives for **SR-trivial** is §4.4.)*
+*(The four items below are stated for **SR-general**; §4.3′ shows each of them holds for
+**SR-trivial** too, which is the version AK(3) lives in.)*
 
 1. **SR-general is refuted as stated.** SR quantifies over `(P, spike)` pairs; here is a
    pair. Nothing may be proved from it in that generality — anyone attempting a proof of
@@ -568,6 +545,46 @@ So it is **not a freak**: ~0.9 % of decided depth-2 spellings over these bases b
 and the search found the first one in under a second. It was invisible for ≈120,000
 measurements purely because every one of those measurements started from a reduced base.
 
+### 4.3′ SR-TRIVIAL IS ALSO FALSE — the counterexample that does transfer
+
+Bases: cyclically reduced balanced rank-2 presentations produced by AC1–AC3 walks out of
+the standard presentation (**trivial by construction**) and then re-verified one by one by
+Todd–Coxeter, keeping only `index = 1` (`trivial_bases`; a capped enumeration is dropped,
+never guessed). 40 such bases; the hunt reached 4 of them in its 230 s budget.
+
+> **Counterexample (trivial group).** Generators `a, b`. One reduction chain, three
+> spellings of the same free-group element pair:
+>
+> | spelling | census | min defect | `γ_N` | Todd–Coxeter |
+> |---|---|---|---|---|
+> | `("ABbbabAAaB","baB")` | 86,400 | **0** | 0 | COMPLETE, index **1** — trivial |
+> | `("AbabAAaB","baB")` = `P` | 2,880 | **2** | 1 | COMPLETE, index **1** — trivial |
+> | `("AbabAB","baB")` fully reduced | 144 | **0** | 0 | COMPLETE, index **1** — trivial |
+>
+> All three free-reduce to `("AbabAB","baB")`; each step is one move (0); the spike is
+> `u = "B"` inserted after the leading `A` of the first relator. Balanced, rank 2, total
+> length 13 at the top of the chain.
+> `γ_N(spike(P)) = 0` while `γ_N(P) = 1`. **SR-trivial is false.**
+
+**Verification of the defect-0 side, three independent ways.**
+
+* exact census, 86,400 systems, no cap hit;
+* **`check_witness_n` ACCEPTS the witness with `trivial_group=True`** — `defect 0`,
+  `L = 1`, `|C|−|A|+|AC| = 4−13+11 = 2`, `⟨AC,BC⟩` transitive. This is a genuinely
+  independent structural check *and* a consistency check on the triviality claim: the
+  verifier raises `AuditContradiction` when Corollary 3's transitivity fails for a state
+  asserted trivial, and it did **not** raise here (contrast the ℤ/4 family of §4.3, where
+  the same call *does* raise — see `test_certify_zero_agrees_with_the_census_on_a_known_positive`);
+* `rank_n_ac_search.independent_defect`, which rebuilds the dart dictionary from the words,
+  returns `defect 0`.
+
+**Yield.** `results/stable_ac/fable/s11_sr_trivial.json`: 4 trivial-group bases reached, 15
+depth-1 spellings with positive defect, **384 depth-2 spellings decided** (99 skipped over
+the 2·10⁵ cap), **12 counterexamples** — a 3.1 % rate. Every one at total length 13, every
+base Todd–Coxeter index 1, and the existential repair SR′ survives in **12 of 12**.
+
+---
+
 ### 4.4 The mechanism — creating spikes come in SAME-LETTER pairs
 
 All 16 counterexamples were inspected for what distinguishes the creating spike:
@@ -625,28 +642,39 @@ Two facts keep it from being wide open: Corollary S5 (the spike ceiling,
 `γ_N(spike(P)) ≥ γ_N(P) − 1`) is a **proof** and still forces spike-depth ≥ 2 for AK(3);
 and R1F decided depth 1 exhaustively (`γ_N` histogram `{1: 8, 2: 31}`).
 
-### 4.6 AK(3)'s own depth-2 frontier — run, and honestly inconclusive
+### 4.6 AK(3)'s own depth-2 frontier — complete coverage, calibrated, still no hit
 
-`ak3_depth2`, bases = R1F's eight gateway spellings (the only depth-1 spellings of AK(3)
-with `γ_N = 1`), instrument = the climber (an **upper** bound; a 0 is conclusive, silence is
-not), candidates ordered same-signed-letter-first per §4.4's mechanism.
+`results/stable_ac/fable/s11_ak3_depth2.json`. Bases = R1F's eight gateway spellings (the
+only depth-1 spellings of AK(3) with `γ_N = 1`, hence by Corollary S5 the only possible
+parents of a thickenable depth-2 spelling). Instrument = the climber (an **upper** bound; a
+0 is conclusive, silence is not), candidates ordered same-signed-letter-first per §4.4.
 
 | | |
 |---|---|
-| states scored | 197 of ~330 (deadline-bounded) |
-| of which same-letter | 51 |
-| evaluations per state | 20,000 |
-| climber defect histogram | `{2: 11, 4: 186}` |
-| defect-0 hits | **0** |
+| states scored | **330 — every distinct depth-2 spelling of AK(3)**, none skipped |
+| of which same-signed-letter as the gateway's own spike | 81 |
+| evaluations per state | 60,000 |
+| climber defect histogram | `{2: 72, 4: 258}` |
+| **defect-0 hits** | **0** |
+| runtime | 193 s |
 
-**This null is weak and is reported as weak.** R7b's calibration says 20,000 evaluations
-detect a known `γ_N = 0` state at total length 17 in roughly 4 cases in 10; 200,000 was the
-budget that reached 10/10 there. So this run is worth about 40 % detection over 197 states
-and rules out very little. It is recorded because the *ordering* result is reusable — the
-same-letter candidates are the ones to spend a real budget on — and because a proper run
-(200k–2M evaluations over all ~330, ≈ 15–90 min single-threaded) is now a well-defined,
-sized, and genuinely worthwhile experiment rather than a shot in the dark. **Next session
-should run it.**
+**Calibration, measured in this session rather than cited.** The identical climber at the
+identical 60,000 evaluations, run on rank-2 ladder rungs of total length ~17 that are
+**certified** `γ_N = 0` by defect-0 witness, 5 seeds each: **13 of 20 = 0.65**. (Consistent
+with R7b's independent 7/10 at 40,000 evaluations and 10/10 at 200,000.)
+
+**What the null is worth.** At 65 % per-state detection over 330 states, the probability of
+missing a lone thickenable spelling is ≈ 0.35 — this rules out roughly two thirds of the
+frontier, not all of it. The bias runs the usual way (`calibrate-one-sided-hunts…`): rungs
+are climbable by construction, so 0.65 is an **over**-estimate and the true coverage is
+lower. It is a real but partial null, and it is the first one on this line that comes with
+its own in-session detection rate attached.
+
+**Also worth recording: 72 of the 330 come back at defect 2**, i.e. `γ_N ≤ 1`, so the
+gateway level is not lost by a second spike — depth 2 keeps 72 live candidates at exactly
+one genus above the target. Those 72 are the set to re-run at 200,000–2,000,000
+evaluations (≈ 10–100 min single-threaded), where R7b measured detection at 100 % for this
+length. **That run is the single highest-value follow-up in this note.**
 
 ### 4.7 The remaining open questions, in priority order
 
@@ -657,7 +685,10 @@ should run it.**
    complex admits a defect-0 rotation unnested at *at least one* of its spikes.
 2. **A spelling that beats its own reduced form** — `γ_N(K) = 0 < γ_N(K_red)`. 0 of ~120,000
    in the whole project. This is the actual AK(3) question.
-3. **AK(3) depth-2 at a defensible budget** (§4.6).
+3. **The 72 depth-2 spellings of AK(3) that came back at `γ_N ≤ 1`** (§4.6), re-run at
+   200k–2M evaluations where detection is measured at ~100 % for their length. This is a
+   bounded, sized, calibrated experiment and it sits exactly on the frontier that
+   Corollary S5 leaves open.
 
 **The other thing still worth hunting**, sharply defined: a counterexample
 where **SR′ also fails** — a thickenable spelling *none* of whose one-step reductions is

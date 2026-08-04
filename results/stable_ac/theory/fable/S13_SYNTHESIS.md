@@ -8,18 +8,48 @@ Session brief: does the stable AC conjecture get easier for hard presentations �
 124 unsolved Miller–Schupp AC-classes — once the rank is allowed to grow well past 3, say to
 9 or 10 generators? Use change of variables and Lemma 11. Is there a simple general method?
 
-## 1. The answer, in one paragraph
+## 1. The answer
 
-**No — not by any mechanism, and not by any population effect this session could measure.**
-Every way of using extra generators that we could isolate is either provably inert or
-measurably counterproductive: abbreviation is a *subdivision* of the presentation complex,
-splitting is *monotone*, change of variables is entirely a *depth-1* phenomenon, and
-stabilization itself plus the first slide over a fresh stabilizer are inert. The one
-measurement that looked positive — certificates getting commoner with rank — turned out
-under adversarial audit to be measuring **relator length**, not rank. What is real is much
-narrower and worth keeping: *short relators are cheap to decide and long ones are not*, and
-raising the rank is one way to buy short relators — but it buys them **by re-spelling, which
-provably does not change the answer**.
+**Not by any mechanism — but yes, decisively, for decidability.** Two halves, and they must
+be kept apart.
+
+**(i) No mechanism.** Every way of using extra generators that we could isolate is provably
+inert or measurably counterproductive: abbreviation is a *CW subdivision* of the
+presentation complex (S3, audited), change of variables is entirely a *depth-1* phenomenon
+(F1), stabilization itself and the first slide over a fresh stabilizer are inert
+(T4, T4′), and bare AC3 conjugation only destroys. The one measurement suggesting
+certificates get *commoner* with rank was, under adversarial audit, measuring **relator
+length** (S10, retracted). Hunted at every depth from 0 to 6 across AK(3) and all 124
+unsolved classes, the extra generators produced **no certificate for any open case**.
+
+**(ii) But high rank buys decidability, and the size of the effect is now measured.** The
+compatible census is `∏(deg−1)!`, so what matters is the *ratio* ℓ/n of total length to
+rank. A10's certified ladder, 163 rungs, two instruments agreeing with `missed = 0` in every
+cell:
+
+| total length | rank 2 | rank 4 | rank 6 | rank 8 |
+|---|---|---|---|---|
+| 13 | 0.90 | 1.00 | 1.00 | 1.00 |
+| 16 | **0.00** | 0.90 | 1.00 | 1.00 |
+| 19 | 0.00 | 0.30 | 1.00 | 1.00 |
+| 22 | 0.00 | 0.00 | 0.30 | **1.00** |
+| 25 | — | — | 0.00 | **0.40** |
+
+Median census at length 22: **1.3 · 10¹³ at rank 2 against 5,760 at rank 8**. The decidable
+region is ℓ/n ≲ 3 — exactly the cubic regime. **Hard limitation:** this helps
+*natively* high-rank states only. Lifting a rank-2 state to rank 9 by chord refinement
+changes the census not at all (Lemma S3′), so it does **not** buy back the 1,312 states an
+earlier session retired as undecidable.
+
+**And the sharpest single demonstration of (i) and (ii) together:** AK(3) *does* have a
+**cubic triangular form at rank 13** — all 13 relators of length 3, all 13 multiplicities
+exactly 3, reached by 7 chord refinements and 4 SPLITs with no destabilization
+(A6/`S4B`; re-verified here: trivial group at Todd–Coxeter index 1, 481 cosets). Its entire
+compatible census is **8,192**, against 86,400 for AK(3) at rank 2 — so at rank 13 the
+question becomes trivially cheap to ask. Its answer is `minimum_defect` 2, i.e. **γ_N = 1**:
+better than AK(3)'s own γ_N = 2, and **exactly tying** the best previously reached anywhere
+in AK(3)'s class (a γ_N = 1 gateway found at rank 2 and length 14, `gateway_scan.json`).
+So the extra nine generators bought a much cheaper question and *no better answer*.
 
 ## 2. What was proved
 
@@ -32,7 +62,8 @@ provably does not change the answer**.
 | **T1, T4, T4′** | AC1, cyclic rotation and relator permutation are homeomorphisms; AC4/AC5 wedge on a 2-disc; and the **first slide over a fresh stabilizer is a subdivision** | proved (A8), unaudited |
 | **T2** | A bare AC3 conjugation **is a single spike** up to cyclic rotation, so the whole spike calculus transfers to AC3 | proved (A8), unaudited |
 | **S4.1/S4.2/S4.3** | Sign rigidity forces a cubic triangular presentation's abelianised matrix to be nonnegative with all row and column sums 3; hence `|det| = 1` is **impossible below rank 4**; and a degenerate length-3 relator collapses the rank | proved (A6), unaudited |
-| **S8** | Generator splitting never decreases γ_N (`link(P)` is a **minor** of `link(P′)`) | conjecture + proof sketch + machine certificate; 632 states, none below base |
+| **S8** | Generator splitting never decreases γ_N (`link(P)` is a **minor** of `link(P′)`) | conjecture + proof sketch + machine certificate; 632 states, none below base. **Under audit (A14) and under pressure**: A6's *different* SPLIT move (a length-3 definition `tuv`, not S8's length-2 bigon `uG`) demonstrably lowered γ_N from 2 to 1 along the AK(3) → C1 chain. The two moves must not be conflated, but S8 should be treated as doubtful until the audit lands |
+| **SR refuted** | Free reduction can **destroy** thickenability, on a balanced presentation of the **trivial group** | proved by exhaustive census (A10), re-verified here — see §3c |
 
 ## 3. What was measured
 
@@ -228,3 +259,28 @@ Recorded because the corrections are the most transferable part of the work.
 and **must be merged into `fable/proof` by the user**; a cloud session cannot push there
 itself. No PR was opened (`FRAMING` trap 10). Full suite at the time of writing:
 **762 passed, 8 skipped, 0 failed**.
+
+## 3c. Conjecture SR is false — including on the trivial group
+
+R7's Conjecture SR ("free reduction never destroys thickenability") stood on roughly
+114,000 confirming complexes, and A8 re-measured it this session as 0 destroys in 997. It is
+false. A10's counterexample chain, all three rows balanced presentations of the **trivial
+group** (Todd–Coxeter index 1 at every step), re-verified independently by the orchestrator:
+
+| spelling | census | `minimum_defect` | index |
+|---|---|---|---|
+| `("ABbbabAAaB","baB")` | 86,400 | **0** | 1 |
+| `("AbabAAaB","baB")` | 2,880 | **2** | 1 |
+| `("AbabAB","baB")` (fully reduced) | 144 | **0** | 1 |
+
+One free-reduction step takes defect 0 to defect 2. **Why ~120,000 measurements missed it:**
+SR is an induction step `depth k → k−1`, and every prior corpus was built as "cyclically
+reduced base **plus one move**" — i.e. it only ever sampled `k = 1`. The conjecture breaks
+at `k = 2`, and no amount of growth at `k = 1` could have found it. Filed as a lesson.
+
+**The caveat that must travel with this.** In all 28 counterexamples the *fully reduced*
+form already had defect 0 — no spelling ever beat its own reduction. That is precisely the
+case AK(3) needs, and it remains unrefuted. What SR's fall removes is a **proof of
+impossibility**; nothing was put in its place. Reading "SR is false" as "the spelling route
+is open for AK(3)" is an over-reading — one the orchestrator made once this session, on the
+earlier ℤ/4 version of the counterexample, and had to retract.

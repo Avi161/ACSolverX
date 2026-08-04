@@ -39,8 +39,16 @@ This is what `S4` §0 item 6 left open ("**No cubic form of AK(3) is reported**"
    *minimum possible* for this calculus (§5.1), so these are extremal.
 2. **The `SPLIT` calculus does lower `γ_N`.** `C1` sits at `γ_N = 1` while AK(3) and *every*
    one of its chord triangulations sit at `γ_N = 2` exactly (§2). Four further states in the
-   search's near-cubic pool are also at `γ_N = 1`. **No `γ_N = 0` was found**, but the route
-   is no longer inert: it moves the obstruction in the useful direction.
+   search's near-cubic pool are also at `γ_N = 1`. **No `γ_N = 0` was found.**
+   **`γ_N = 1` TIES the best previously reached for AK(3)'s class; it does not beat it.**
+   `results/stable_ac/fable/gateway_scan.json` already records a `γ_N = 1` **gateway at rank
+   2**, total length 14, inside AK(3)'s classical class: the pair
+   `("YYYXXyx","YXYXyxx")`, 1 gateway in 2,500 members scanned
+   (`gamma_hat_histogram {1:1, 2:63, 3:316, 4:932, 5:814, 6:355, 7:19}`), pinned exactly by
+   combining the sampler's defect-2 witness (upper bound) with the solver's certified
+   `NOT_SPHERICAL` (lower bound `γ_N ≥ 1`). Verified in this session by reading that file.
+   What is new is *where* `γ_N = 1` now sits — in the cubic regime, where the decision is
+   cheap — not the value itself.
 3. **A flip census of `SPLIT` on small instances says the opposite — and it is wrong to
    extrapolate it.** On a rank-5 corpus, `SPLIT` destroyed `γ_N = 0` in 643/960 cases and
    created it in **0/1,470**, against a matched AC2 control that created in 14/1,470 (§3).
@@ -205,6 +213,16 @@ On the strength of §3.2 (2,430 pairs, no downward defect transition whatsoever)
 `γ_N(C1) = 1`. So some `SPLIT` in that chain **strictly lowered** the defect, from 4 to 2.
 Four more states in the near-cubic pool are likewise at defect 2 (§4.1). `SPLIT` therefore
 creates thickenability-progress; whether it can reach `0` is open.
+
+> **This refutes MY conjecture, not `S8`'s.** `S8_SPLITTING_MONOTONICITY.md`'s *generator
+> splitting* introduces a **length-2** definition relator `u g^{-1}` — a bigon — so
+> `link(P)` is a **minor** of `link(P')` (contract the bigon's two link edges) and its
+> proof sketch goes through. My `SPLIT` (S4 Lemma S4.4) introduces a **length-3** definition
+> relator `D = t u v`; there is no bigon and no minor relation, which is exactly why the
+> contraction argument does not transfer and why S4B-M was never more than a guess.
+> **Conjecture S8 is untouched by anything in this file** — including S8 §2's observation
+> that AK(3)'s 236 split states at ranks 4 and 6 all sat at defect 4, which is consistent
+> with a *different* move reaching defect 2 at rank 13.
 
 **Why the census did not see it, and the lesson.** §3.2's corpus is rank-5 states from
 length-9 sources; the refuting events live at ranks 9→13 with far richer link graphs. The
