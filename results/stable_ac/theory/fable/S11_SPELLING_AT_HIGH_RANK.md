@@ -121,33 +121,36 @@ refuted, and the framework-scope channel is the only one left. So:
 > **Justification in force for any spelling-space hit on this line: the framework-scope
 > channel (§1.1), source-relayed and flagged. Not the element-tuple argument.**
 
-### 1.3 (iii) Trap T-S9 and the Joint-A gap — the direction is backwards in `S3_SUBDIVISION_INVARIANCE.md`
+### 1.3 (iii) Trap T-S9 and the Joint-A gap — **agreed with `S3_SUBDIVISION_INVARIANCE.md`**
 
-S3 repair R3 and trap T-S9 say:
+*(No conflict between the two files. This task's audit and S3's own repair reached the same
+verdict independently and S3's **T-S9 has already been restated** — see
+`S3_SUBDIVISION_INVARIANCE.md` §6 T-S9, "the audit's version had the gap on the wrong
+side", and its repair R3. What follows is the same conclusion in this note's words, so the
+two can be read together.)*
 
-> "a `γ_N = 0` hit discharges the *orientable* hypothesis, whereas Lackenby Thm 1.3's
-> hypothesis is the weaker 'some 3-manifold'. Whether the first discharges the second is
-> the open **Joint-A** question."
+The audited-but-since-corrected version of T-S9 said a `γ_N = 0` hit discharges only the
+*orientable* hypothesis while Lackenby Thm 1.3 needs the weaker "some 3-manifold", and that
+whether the first discharges the second was the open **Joint-A** question. The containment
+runs the other way, and the consequence splits by direction:
 
-**Two corrections.**
-
-1. **The implication is free, not open.** The repo's bridge is `γ_N = 0 ⟺ K` embeds in an
-   *orientable* PL 3-manifold (`R1E` Theorem D, AUDITED; Neuwirth's own framing is *closed
-   orientable*). An orientable 3-manifold **is** a 3-manifold. So the repo's predicate is
-   strictly **stronger** than Lackenby's hypothesis and a `γ_N = 0` hit discharges it
-   immediately. The standing lesson
-   `experiments/lessons/parallel-runs-and-bound-direction.md` is the relevant one: this is
-   a containment read in the wrong direction, and it is the third recurrence of that
-   failure family on this line.
-2. **What the orientable/general gap actually costs is RECALL, not soundness.** A state
-   that embeds in a non-orientable 3-manifold but no orientable one has `γ_N > 0` and is
-   invisible to every instrument in this repo, while still satisfying Lackenby's
-   hypothesis. So `γ_N > 0` is **not** "not thickenable in Lackenby's sense", and no
-   census null on this line may be read as one. Call this **[GAP-O]**, matching
-   `S6_MOVE_CLASSIFICATION.md` §0.1, which states it correctly.
-3. **The real Joint-A gap is §1.1's**, and it must be flagged on every payoff claim:
-   *does an unreduced spelling lie in the theorem's scope?* Two channels say yes; no
-   source read in this clone says so.
+1. **The positive direction is sound — the gap costs RECALL, not soundness.** The repo's
+   bridge is `γ_N = 0 ⟺ K` embeds in an *orientable* PL 3-manifold (`R1E` Theorem D,
+   AUDITED; Neuwirth's own framing is *closed orientable*). An orientable PL 3-manifold
+   **is** a 3-manifold, so `γ_N = 0` is the **stronger** predicate and discharges Lackenby's
+   hypothesis immediately. **A hit is not encumbered by Joint-A.** This matters concretely
+   for §4.6: a defect-0 witness on any depth-2 spelling of AK(3) would settle AK(3)'s stable
+   AC-triviality with no orientability cost to pay.
+2. **The negative direction is where the loss sits.** A presentation could embed in a
+   non-orientable 3-manifold and still score `NOT_SPHERICAL`, so `γ_N > 0` is **not** "not
+   thickenable in Lackenby's sense". Every null on this line — the 0/171,842 depth-1 AK(3)
+   harvest, §4.6's 330, all of §3's tables — is a null about **orientable** thickenability
+   only. Call it **[GAP-O]** (`S6_MOVE_CLASSIFICATION.md` §0.1 states it correctly too).
+   It weakens the disproof side and strengthens nothing on the proof side.
+3. **The real Joint-A gap is §1.1's**, and it is the one to flag on every payoff claim:
+   *does an unreduced spelling lie in the theorem's scope?* Two channels say yes; no source
+   read in this clone says so. Note this one **does** bite on a hit, because §4.6's targets
+   are unreduced spellings — unlike orientability, which does not.
 
 **Corrected reporting rule for this line.** A defect-0 census on a spelling is to be
 reported as *"a thickenable spelling exists in this class"*, and the step to
@@ -409,6 +412,17 @@ limit it:
 But that is not where the counterexample was — see §4.3.
 
 ### 4.3 **CONJECTURE SR IS FALSE.** A verified counterexample, and what it does and does not break
+
+> **READ THIS BEFORE THE RESULT.** SR is false, in general and on the trivial group. It is
+> tempting — and wrong — to read that as "the spelling route to AK(3) is open". In **all 28**
+> counterexamples found here the **fully reduced form already had defect 0**. Every chain is
+> `0 → 2 → 0`. **Not one exhibits a spelling that beats its own reduced form**, and that is
+> precisely the case AK(3) needs: `γ_N(AK(3)_red) = 2` with some spelling at 0. It remains
+> **unrefuted, and unexhibited**. What §4.3/§4.3′ do is remove a *proof* that it cannot
+> happen; nothing has been put in its place. The over-reading is not hypothetical — this
+> note already made the mirror-image mistake once (§2, retracted) and it is what trap
+> T-S11e exists to prevent.
+
 
 Every SR test ever run on this line — R1F's 110,917 complexes, R7's 5,241, A8's 997 —
 takes a **cyclically reduced** base and applies **one** spike. That tests the induction step
@@ -774,13 +788,23 @@ theorem. So a **complete exact census of AK(3)'s depth-2 spelling space** is the
 sharpest open computation in this corner: a hit settles AK(3) and refutes SR; a clean sweep
 is the strongest possible confirmation of SR at the one place it matters.
 
-**It is not affordable, and the reason is §5.1.** AK(3)'s census is 86,400 and every chord
-refinement of it has *the same* 86,400 (Lemma S3′). A depth-2 spike raises two germ degrees
-by one each on each of two spikes, so a typical depth-2 spelling costs ≈ 3.5·10⁵ rotation
-systems, and there are ≈ 2.5·10⁵ distinct depth-2 spellings at rank 9 — about **10¹¹
-rotation systems**, or ~three weeks of the single-thread rate measured here
-(1.8·10⁵ systems/s at rank 2, ~5·10⁴/s at rank 9). Refining to rank 9 does not help; only a
-transform that genuinely lowers `deg(x⁺) = 6` and `deg(y⁺) = 7` would.
+**It is not affordable, and the arithmetic is worth pinning because it is easy to get wrong
+by three orders of magnitude.** A spike `u u^{-1}` inserts **two** occurrences of the
+generator `|u|`, so it raises `deg(|u|⁺)` by **2**, not by 1. AK(3) has `deg(x⁺) = 6`,
+`deg(y⁺) = 7`, census `5!·6! = 86,400`. Its 330 depth-2 spellings therefore carry, measured
+directly:
+
+| the two spikes | degrees | census | how many of the 330 |
+|---|---|---|---|
+| one on `x`, one on `y` | 8, 9 | `7!·8!` = **2.03·10⁸** | 174 |
+| both on `x` | 10, 7 | `9!·6!` = **2.61·10⁸** | 115 |
+| both on `y` | 6, 11 | `5!·10!` = **4.35·10⁸** | 41 |
+
+That is **8.3·10¹⁰ rotation systems** for all 330, or ≈ 2·10⁹ for a *single* state — about
+**30 minutes per state** at the measured single-thread rate, ~190 days for the sweep.
+Chord refinement does not help: it is census-invariant (Lemma S3′, §5.1). Exact enumeration
+is off the table, which is why §4.6 climbs instead and prices its null with a calibration.
+Only a transform that genuinely lowers `deg(x⁺)` and `deg(y⁺)` would change this.
 
 **The one transform that does that is generator SPLITTING** (`high_rank_refine.split_generator`),
 which is a vertex split rather than a subdivision and so is *not* covered by Theorem S3 —

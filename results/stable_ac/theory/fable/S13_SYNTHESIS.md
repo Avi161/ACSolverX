@@ -232,6 +232,18 @@ Recorded because the corrections are the most transferable part of the work.
    T-S9 — nulls about **orientable** thickenability only. They point at the disproof side of
    `FRAMING` §2 without being evidence of one.
 
+### 5a. An instrument note for the cubic regime
+
+Measured on `C1` (rank 13, 13 relators of length 3): the exact factorial census takes
+**0.155 s** (8,192 cases) while `classify_cut_support` — the R1c-v2 fast path that is the
+right choice at rank 2 — takes **3.9 s** on the same state. The fast path is fast only when
+the link is *small and dense*; in the cubic regime the link is large and sparse and the
+brute-force census wins by a factor of 25.
+
+> **Use `gamma_N_factorial_n` in the cubic regime and the cut-scheme solver at low rank.**
+> Picking the wrong one costs an order of magnitude, in the direction that makes a sweep
+> look infeasible when it is not.
+
 ## 6. Standing deliverables
 
 - **Method**: `S12_CERTIFICATE_HUNT.md` + `experiments/stable_ac/fable/s12_hunt.py` (14
