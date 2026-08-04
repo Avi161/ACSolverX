@@ -19,8 +19,9 @@ presentation complex (S3, audited), change of variables is entirely a *depth-1* 
 (F1), stabilization itself and the first slide over a fresh stabilizer are inert
 (T4, T4′), and bare AC3 conjugation only destroys. The one measurement suggesting
 certificates get *commoner* with rank was, under adversarial audit, measuring **relator
-length** (S10, retracted). Hunted at every depth from 0 to 6 across AK(3) and all 124
-unsolved classes, the extra generators produced **no certificate for any open case**.
+length** (S10, retracted). Hunted at rank ceilings 2–6 on AK(3) (A7: 0/40 against a
+length-matched control's 39/40) and at depths 0–1 on all 124 unsolved classes, the extra
+generators produced **no certificate for any open case**.
 
 **(ii) But high rank buys decidability, and the size of the effect is now measured.** The
 compatible census is `∏(deg−1)!`, so what matters is the *ratio* ℓ/n of total length to
