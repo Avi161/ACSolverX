@@ -489,12 +489,13 @@ def test_ac3_sampler_prefers_a_cancelling_conjugation():
 def test_cyclically_reduce_pres_is_move_zero():
     """S6 row M0: reduction creates gamma_N = 0 in 315 of 2,510 and destroys it in 0 of
     997, so the search applies it to every child."""
-    p = Pres(("x", "y"), ("xyxYXYX", "xxxYYYY"))   # r1 = x . (xyxYXY) . x^-1
+    p = Pres(("x", "y"), ("xxyxYXYX", "xxxYYYY"))  # r1 = x . (xyxYXY) . x^-1
     got = cyclically_reduce_pres(p)
     assert got.rels == ("xyxYXY", "xxxYYYY")
     assert got.gens == p.gens
+    # an already cyclically reduced state is returned unchanged
+    assert cyclically_reduce_pres(AK3_PRES).rels == AK3_PRES.rels
     # a relator that reduces away entirely makes the state illegal
-    assert cyclically_reduce_pres(Pres(("x", "y"), ("xX" and "xyXY", "xY"))) is not None
     assert cyclically_reduce_pres(Pres(("x", "y"), ("xyxXYX", "xy"))) is None
 
 
@@ -505,8 +506,10 @@ def test_stabilizer_entanglement_gate_matches_theorem_T4_prime():
     # z occurs twice, in two relators: still a chord
     chordal = make(("x", "y", "z"), ("xyxYXYz", "xxxYYYY", "Z"))
     assert stabilizer_entangled(chordal, base) is False
-    # z occurs three times but only in one relator plus its own: not yet entangled
-    one_relator = make(("x", "y", "z"), ("xyzxzYXY", "xxxYYYY", "Z"))
+    # z occurs three times but all inside ONE relator: the conservative gate says no
+    # (the criterion is "more than twice AND in at least two distinct relators")
+    one_relator = make(("x", "y", "z"), ("xyxYXY", "xxxYYYY", "zxzXzy"))
+    assert one_relator.occurrences("z") == 3
     assert stabilizer_entangled(one_relator, base) is False
     # three occurrences spread over two relators: entangled
     entangled = make(("x", "y", "z"), ("xyzxzYXY", "xxxYYYYz", "xxyyz"))

@@ -372,10 +372,70 @@ def _walk_rungs(rank: int, targets, *, per_cell: int, seed: int, evals: int,
     return out
 
 
+def _grow_rungs(seeds, lengths, *, per_cell: int, evals: int, seed: int,
+                width: int = 1, deadline: float = 60.0, max_children: int = 40) -> list:
+    """Grow certified rungs by SPIKES, certifying every child with the climber.
+
+    This is the method the earlier session's ladder used, and it is the only one that
+    reaches the long rank-2 cells at all: a random walk almost never lands on a
+    climber-certifiable rank-2 state above total length ~18, whereas a spike of an
+    already-certified state usually keeps ``gamma_N = 0`` (R1F: 821 of 821 bases with
+    ``gamma_N = 0`` had a spike with ``gamma_N = 0``).  The bias this introduces is
+    recorded: rungs are by construction states the climber COULD certify, so the cells
+    are OPTIMISTIC upper bounds on sensitivity.
+    """
+    t0 = time.time()
+    rng = random.Random(seed)
+    want = {int(t): [] for t in lengths}
+    frontier = [dict(r) for r in seeds]
+    seen = {spelling_key(r["words"]) for r in frontier}
+    for r in frontier:
+        for t in want:
+            if abs(r["total_length"] - t) <= width and len(want[t]) < per_cell:
+                want[t].append(r)
+                break
+    while frontier and time.time() - t0 < deadline:
+        if all(len(v) >= per_cell for v in want.values()):
+            break
+        nxt = []
+        for parent in frontier:
+            if time.time() - t0 > deadline:
+                break
+            imgs = spike_images(parent["words"], parent["generators"])
+            rng.shuffle(imgs)
+            for key, img, params in imgs[:max_children]:
+                if time.time() - t0 > deadline:
+                    break
+                if key in seen:
+                    continue
+                L = sum(len(w) for w in img)
+                if L > max(lengths) + width:
+                    continue
+                seen.add(key)
+                cert = certify_zero(img, parent["generators"], evals=evals,
+                                    seed=rng.randrange(10 ** 9))
+                if not cert["certified"]:
+                    continue
+                child = {"words": img, "generators": parent["generators"],
+                         "total_length": L, "rank": len(parent["generators"]),
+                         "source": f"spike growth from {parent['source']}",
+                         "certified_by": "defect-0 witness (check_witness_n)"}
+                nxt.append(child)
+                for t in want:
+                    if abs(L - t) <= width and len(want[t]) < per_cell:
+                        want[t].append(child)
+                        break
+        frontier = nxt
+    out = []
+    for t in sorted(want):
+        out.extend(want[t])
+    return out
+
+
 def build_ladder(*, ranks=(2, 4, 6, 8), lengths=(13, 16, 19, 22, 25), per_cell: int = 8,
                  seed: int = 20260804, evals: int = 40_000, tries: int = 4000,
                  rank2_path: str = None, rank2_evals: int = 200_000,
-                 deadline: float = None) -> list:
+                 deadline: float = None, grow_deadline: float = None) -> list:
     """Rungs = presentations KNOWN thickenable, certified without touching the census.
 
     Rank 2 gets a larger climber budget because R7b measured its detection collapsing
@@ -384,14 +444,28 @@ def build_ladder(*, ranks=(2, 4, 6, 8), lengths=(13, 16, 19, 22, 25), per_cell: 
     """
     t0 = time.time()
     rungs = []
+    seeds2 = []
     if rank2_path and os.path.exists(rank2_path):
-        rungs.extend(_rank2_rungs(rank2_path))
+        seeds2 = _rank2_rungs(rank2_path)
     for k, rank in enumerate(ranks):
         if deadline is not None and time.time() - t0 > deadline:
             break
         budget = rank2_evals if rank == 2 else evals
-        rungs.extend(_walk_rungs(rank, lengths, per_cell=per_cell, seed=seed + 7 * k,
-                                 evals=budget, tries=tries))
+        if rank == 2 and seeds2:
+            # A random rank-2 walk almost never lands on a climber-certifiable state
+            # above total length ~18 (R7b), so the rank-2 column is grown from the
+            # already-certified rungs instead of searched for from scratch.
+            walked = []
+        else:
+            walked = _walk_rungs(rank, lengths, per_cell=per_cell, seed=seed + 7 * k,
+                                 evals=budget, tries=tries)
+        grow_seeds = (seeds2 + walked) if rank == 2 else walked
+        if grow_seeds:
+            rungs.extend(_grow_rungs(grow_seeds, lengths, per_cell=per_cell,
+                                     evals=budget, seed=seed + 101 * k,
+                                     deadline=(grow_deadline or 45.0)))
+        else:
+            rungs.extend(walked)
     return rungs
 
 
@@ -736,7 +810,8 @@ def cmd_ladder(args):
                          lengths=tuple(int(x) for x in args.lengths.split(",")),
                          per_cell=args.per_cell, seed=args.seed, evals=args.evals,
                          tries=args.tries, rank2_path=args.rank2,
-                         rank2_evals=args.rank2_evals, deadline=args.deadline)
+                         rank2_evals=args.rank2_evals, deadline=args.deadline,
+                         grow_deadline=args.grow_deadline)
     rows = []
     for r in rungs:
         row = decide(r["words"], r["generators"], cap=args.cap)
@@ -757,6 +832,34 @@ def cmd_ladder(args):
     }
     print(json.dumps(table, indent=1))
     print("wrote", _emit(args.out, blob), blob["seconds"], "s")
+    return blob
+
+
+def cmd_scan(args):
+    t0 = time.time()
+    cells = decidability_scan(ranks=tuple(int(r) for r in args.ranks.split(",")),
+                              lengths=tuple(int(x) for x in args.lengths.split(",")),
+                              per_cell=args.per_cell, seed=args.seed, tries=args.tries,
+                              cap=args.cap, width=args.width)
+    blob = {"record": "S11 decidability of the exact census by (length, rank)",
+            "note": ("on a state that IS thickenable the exact census returns defect 0 "
+                     "iff its family fits inside the cap, so this is the bias-free "
+                     "estimator of the detection rate"),
+            "cap": args.cap, "cells": cells, "seconds": round(time.time() - t0, 2)}
+    print(json.dumps(cells, indent=1))
+    print("wrote", _emit(args.out, blob), blob["seconds"], "s")
+    return blob
+
+
+def cmd_sr(args):
+    blob = sr_hunt(ranks=tuple(int(r) for r in args.ranks.split(",")),
+                   max_base_length=args.max_base_length,
+                   spike_depth=args.spike_depth, per_rank=args.per_rank,
+                   seed=args.seed, cap=args.cap, deadline=args.deadline)
+    print(json.dumps({k: v for k, v in blob.items() if k != "counterexamples"}, indent=1))
+    if blob["counterexamples"]:
+        print("COUNTEREXAMPLES:", json.dumps(blob["counterexamples"][:5], indent=1))
+    print("wrote", _emit(args.out, blob))
     return blob
 
 
@@ -824,17 +927,42 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     p = sub.add_parser("ladder")
-    p.add_argument("--ranks", default="4,6,8")
+    p.add_argument("--ranks", default="2,4,6,8")
     p.add_argument("--lengths", default="13,16,19,22,25")
-    p.add_argument("--per-cell", type=int, default=6)
+    p.add_argument("--per-cell", type=int, default=8)
     p.add_argument("--seed", type=int, default=20260804)
     p.add_argument("--evals", type=int, default=40_000)
+    p.add_argument("--rank2-evals", type=int, default=200_000)
     p.add_argument("--tries", type=int, default=4000)
     p.add_argument("--width", type=int, default=1)
     p.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    p.add_argument("--deadline", type=float, default=None)
+    p.add_argument("--grow-deadline", type=float, default=45.0)
     p.add_argument("--rank2", default="results/stable_ac/fable/witness_sensitivity.json")
     p.add_argument("--out", default="results/stable_ac/fable/s11_ladder.json")
     p.set_defaults(func=cmd_ladder)
+
+    p = sub.add_parser("scan")
+    p.add_argument("--ranks", default="2,3,4,6,8")
+    p.add_argument("--lengths", default="13,16,19,22,25")
+    p.add_argument("--per-cell", type=int, default=50)
+    p.add_argument("--tries", type=int, default=20_000)
+    p.add_argument("--seed", type=int, default=20260804)
+    p.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    p.add_argument("--width", type=int, default=1)
+    p.add_argument("--out", default="results/stable_ac/fable/s11_decidability.json")
+    p.set_defaults(func=cmd_scan)
+
+    p = sub.add_parser("sr")
+    p.add_argument("--ranks", default="2,3,4")
+    p.add_argument("--max-base-length", type=int, default=12)
+    p.add_argument("--spike-depth", type=int, default=2)
+    p.add_argument("--per-rank", type=int, default=400)
+    p.add_argument("--seed", type=int, default=20260804)
+    p.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    p.add_argument("--deadline", type=float, default=120.0)
+    p.add_argument("--out", default="results/stable_ac/fable/s11_sr_hunt.json")
+    p.set_defaults(func=cmd_sr)
 
     p = sub.add_parser("hunt")
     p.add_argument("--words", default=None, help="comma-separated relators")

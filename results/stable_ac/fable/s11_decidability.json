@@ -1,0 +1,233 @@
+{
+ "record": "S11 decidability of the exact census by (length, rank)",
+ "note": "on a state that IS thickenable the exact census returns defect 0 iff its family fits inside the cap, so this is the bias-free estimator of the detection rate",
+ "cap": 200000,
+ "cells": {
+  "13|2": {
+   "band": 13,
+   "rank": 2,
+   "n": 60,
+   "decidable": 37,
+   "decidable_rate": 0.6166666666666667,
+   "median_census": 120960,
+   "max_census": 967680
+  },
+  "16|2": {
+   "band": 16,
+   "rank": 2,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 203212800,
+   "max_census": 435456000
+  },
+  "19|2": {
+   "band": 19,
+   "rank": 2,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 28740096000,
+   "max_census": 344881152000
+  },
+  "22|2": {
+   "band": 22,
+   "rank": 2,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 13168189440000,
+   "max_census": 941525544960000
+  },
+  "25|2": {
+   "band": 25,
+   "rank": 2,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 22596613079040000,
+   "max_census": 4609709068124160000
+  },
+  "13|3": {
+   "band": 13,
+   "rank": 3,
+   "n": 60,
+   "decidable": 60,
+   "decidable_rate": 1.0,
+   "median_census": 2880,
+   "max_census": 120960
+  },
+  "16|3": {
+   "band": 16,
+   "rank": 3,
+   "n": 60,
+   "decidable": 21,
+   "decidable_rate": 0.35,
+   "median_census": 518400,
+   "max_census": 87091200
+  },
+  "19|3": {
+   "band": 19,
+   "rank": 3,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 58060800,
+   "max_census": 18289152000
+  },
+  "22|3": {
+   "band": 22,
+   "rank": 3,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 36578304000,
+   "max_census": 31384184832000
+  },
+  "25|3": {
+   "band": 25,
+   "rank": 3,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 10534551552000,
+   "max_census": 22596613079040000
+  },
+  "13|4": {
+   "band": 13,
+   "rank": 4,
+   "n": 60,
+   "decidable": 60,
+   "decidable_rate": 1.0,
+   "median_census": 288,
+   "max_census": 14400
+  },
+  "16|4": {
+   "band": 16,
+   "rank": 4,
+   "n": 60,
+   "decidable": 56,
+   "decidable_rate": 0.9333333333333333,
+   "median_census": 17280,
+   "max_census": 967680
+  },
+  "19|4": {
+   "band": 19,
+   "rank": 4,
+   "n": 60,
+   "decidable": 10,
+   "decidable_rate": 0.16666666666666666,
+   "median_census": 1451520,
+   "max_census": 479001600
+  },
+  "22|4": {
+   "band": 22,
+   "rank": 4,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 116121600,
+   "max_census": 114960384000
+  },
+  "25|4": {
+   "band": 25,
+   "rank": 4,
+   "n": 60,
+   "decidable": 0,
+   "decidable_rate": 0.0,
+   "median_census": 36578304000,
+   "max_census": 188305108992000
+  },
+  "13|6": {
+   "band": 13,
+   "rank": 6,
+   "n": 60,
+   "decidable": 60,
+   "decidable_rate": 1.0,
+   "median_census": 12,
+   "max_census": 240
+  },
+  "16|6": {
+   "band": 16,
+   "rank": 6,
+   "n": 60,
+   "decidable": 60,
+   "decidable_rate": 1.0,
+   "median_census": 144,
+   "max_census": 17280
+  },
+  "19|6": {
+   "band": 19,
+   "rank": 6,
+   "n": 60,
+   "decidable": 58,
+   "decidable_rate": 0.9666666666666667,
+   "median_census": 8640,
+   "max_census": 1209600
+  },
+  "22|6": {
+   "band": 22,
+   "rank": 6,
+   "n": 60,
+   "decidable": 31,
+   "decidable_rate": 0.5166666666666667,
+   "median_census": 172800,
+   "max_census": 116121600
+  },
+  "25|6": {
+   "band": 25,
+   "rank": 6,
+   "n": 60,
+   "decidable": 2,
+   "decidable_rate": 0.03333333333333333,
+   "median_census": 17418240,
+   "max_census": 19160064000
+  },
+  "13|8": {
+   "band": 13,
+   "rank": 8,
+   "n": 60,
+   "decidable": 60,
+   "decidable_rate": 1.0,
+   "median_census": 4,
+   "max_census": 48
+  },
+  "16|8": {
+   "band": 16,
+   "rank": 8,
+   "n": 60,
+   "decidable": 60,
+   "decidable_rate": 1.0,
+   "median_census": 24,
+   "max_census": 288
+  },
+  "19|8": {
+   "band": 19,
+   "rank": 8,
+   "n": 60,
+   "decidable": 60,
+   "decidable_rate": 1.0,
+   "median_census": 192,
+   "max_census": 8640
+  },
+  "22|8": {
+   "band": 22,
+   "rank": 8,
+   "n": 60,
+   "decidable": 57,
+   "decidable_rate": 0.95,
+   "median_census": 5760,
+   "max_census": 17418240
+  },
+  "25|8": {
+   "band": 25,
+   "rank": 8,
+   "n": 60,
+   "decidable": 34,
+   "decidable_rate": 0.5666666666666667,
+   "median_census": 138240,
+   "max_census": 23224320
+  }
+ },
+ "seconds": 5.91
+}

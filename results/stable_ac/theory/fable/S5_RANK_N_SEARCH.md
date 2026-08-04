@@ -7,8 +7,8 @@ Branch `claude/stable-ac-conjecture-stabilization-rwo9as`; **must be merged into
 `S3_SUBDIVISION_INVARIANCE.md` (why triangulation alone is a no-op).
 
 Code: `experiments/stable_ac/fable/rank_n_ac_search.py`.
-Tests: `tests/test_rank_n_ac_search.py` (30 tests). Full suite at the time of writing:
-**702 passed, 7 skipped.**
+Tests: `tests/test_rank_n_ac_search.py` (36 tests). Full suite at the time of writing:
+**702 passed, 7 skipped** (before the six S6-driven tests were added; 708 after).
 Artifacts: `results/stable_ac/fable/rank_n_ac_search_*.json` + `*_rows.jsonl`.
 
 ---
@@ -48,6 +48,20 @@ directly"*).
 | **conjugated multiply** | `("cmul", i, j, ±1, g, ±1)` | `r_i ← r_i · g r_j^{±1} g^{-1}`, the composite AC3;AC2;AC3-back — **the move that matters**, see §2 |
 | AC4 stabilize | `("ac4",)` | fresh generator + fresh relator |
 | AC5 destabilize | `("ac5", i)` | legal **only** when `r_i` is a single generator (or its inverse) occurring in no other relator; guarded and tested |
+
+**The move proposal distribution is set by measurement, not intuition.** After the first
+round of runs, task A8's `S6_MOVE_CLASSIFICATION.md` §1 supplied exact-census flip counts
+for each move, and the sampler was re-weighted to match them:
+
+| S6 row | measured | consequence here |
+|---|---|---|
+| M3 AC2 slide | **425 destroy / 73 create of 1,863** — the only slide measured to *create* `γ_N = 0` (7.0% of non-thickenable bases) | `ac2` + `cmul` carry ≈ 90% of the sampling weight |
+| M0 move (0), free/cyclic reduction | **315 create / 0 destroy of 2,510** | not a sampled move at all — applied to **every** child unconditionally (`reduce_children`), which also makes the visited space coincide with the space the canonical key quotients to |
+| M2 bare AC3 conjugation | **315 destroy / 0 create of 3,507** (destroys in 24% of thickenable bases) | token weight 0.4, and when it does fire the sampler prefers the **cancelling** variant |
+| M2c AC3 with cancellation | 0 flips of 3,413 | inert but moves the state in the graph — this is the variant that is sampled |
+| M1 AC1, ROT | provably inert (S6 Thm T1) | token weight |
+| M4 AC4/AC5 | provably inert alone (S6 Thm T4, wedge with a disc) | kept — they are what makes this a *stable* search |
+| **M4′** first slide over a fresh stabilizer | **a CW subdivision**, 0 flips of 3,332 | the `entangle_first` prescreen: a child whose stabilized generators are all still chords is scored *after* one whose stabilizer has escaped (occurs > 2 times **and** in ≥ 2 distinct relators). It is a **priority, not a gate** — when no candidate in a generation is entangled the whole slice is scored anyway, so the search cannot starve; a test pins that |
 
 Free reduction is applied to every rewritten relator, including the seam
 (`FRAMING.md` trap 3); an empty relator is refused as an illegal state. The state key is
@@ -146,7 +160,8 @@ On the survivors a `γ_N = 0` state (the standard presentation) is known to sit 
 moves, so the hit rate as a function of `k` measures the search's reach in AC-move
 distance directly.
 
-**Ladder D (depth / rank filtration).** The orchestrator's addition and the S-line's
+**Ladder D (depth / rank filtration), 8 seeds per rung.** The orchestrator's addition and
+the S-line's
 actual question, an operational form of `S0` §4's filtration `~^{(k)}`: the same base is
 searched under a rank **ceiling** `2 + k`, starting from the base stabilized `k` times.
 The search may destabilize back to rank 2 (otherwise it would not be a stable search).
@@ -160,6 +175,48 @@ a LENGTH gap in disguise).
 
 ## 4. Results
 
+All runs below use the S6-driven move distribution, `reduce_children = True`,
+`entangle_first = True`, one CPU thread, under `guarded_run` (ledger
+`results/stable_ac/fable/guard_ledger.jsonl`, child logs in `guard_logs/`).
+**Anomaly count across every run reported here: 0** — no hunted defect-0 ever failed
+independent re-verification.
+
+### 4.1 Ladder D — the depth / rank-filtration ladder
+
+`results/stable_ac/fable/rank_n_ac_search_depth_ladder.json`. Budget per run: 600 nodes,
+beam 6, branch 12, 800 hill-climb evaluations, rank ceiling `2 + k`, rank floor 2,
+8 seeds per rung, identical seeds across the two families. 80 runs, 228 s total.
+
+| k | rank ceiling | AK(3) hits / runs | AK(3) best defect (γ_N ≤) | control hits / runs | control detection |
+|---|---|---|---|---|---|
+| 0 | 2 | **0 / 8** | 2 (γ_N ≤ 1) | 8 / 8 | **1.000** |
+| 1 | 3 | **0 / 8** | 2 (γ_N ≤ 1) | 8 / 8 | **1.000** |
+| 2 | 4 | **0 / 8** | 4 (γ_N ≤ 2) | 8 / 8 | **1.000** |
+| 3 | 5 | **0 / 8** | 4 (γ_N ≤ 2) | 7 / 8 | 0.875 |
+| 4 | 6 | **0 / 8** | 4 (γ_N ≤ 2) | 8 / 8 | **1.000** |
+| **total** | | **0 / 40** | | **39 / 40** | **0.975** |
+
+So: **the control ladder is flat at detection ≈ 1 and the AK(3) ladder is flat at zero.**
+This is the one cell of the whole task where the null is *not* vacuous — see §5.
+
+Confound checks, run because `experiments/lessons/contrast-length-confound.md` requires
+them:
+
+* **length.** AK(3)'s best states live at total length 13–17 (13 is its minimum, so it
+  cannot go lower). Control hits are spread over lengths 8–21, and **14 of the 39 hits are
+  at total length ≥ 13**, i.e. inside the band AK(3) actually occupies. The contrast is
+  therefore not purely a length artefact, though the control's ability to shrink below 13
+  — which is itself a consequence of its being AC-trivial — accounts for the majority of
+  its hits. Per that lesson's rule 2 the honest statement is the direct one: *the control
+  can walk to short thickenable presentations and AK(3) cannot leave length 13*.
+* **rank actually used.** Control hits occur at best-rank 2 (10), 3 (7), 4 (9), 5 (9),
+  6 (4), and **14 of the 39 hit witnesses have a genuinely entangled stabilizer** (a
+  non-base generator occurring more than twice and in at least two distinct relators),
+  i.e. they are outside the subdivision regime that Theorems S3 and T4′ prove inert. The
+  other 25 are rank-2/3 thickenable cores carrying inert stabilizers.
+* **no p-values are quoted** — class members come from a move tree and are not
+  independent draws (same lesson, rule 3).
+
 <!--RESULTS-->
 
 ---
@@ -170,6 +227,35 @@ a LENGTH gap in disguise).
 
 ---
 
-## 6. Traps carried forward
+## 6. Traps and design lessons this task produced
 
-<!--TRAPS-->
+- **T-A7.1 — the objective's length tiebreak fights the S3 escape hatch.** The beam is
+  scored on `(defect upper bound, total length)`. Escaping the subdivision regime means
+  raising a stabilized generator's multiplicity past 2, and *every* move that does so
+  lengthens a relator. So the tiebreak systematically pushes the beam back into the
+  abbreviation regime that Theorem S3 proves inert. This was visible in the data before
+  the `entangle_first` prescreen was added (§4.3) and is the reason it was added. Any
+  future scorer on this line must state how it stops length from vetoing entanglement.
+- **T-A7.2 — dedup on cyclically-reduced forms is only safe once reduction is applied to
+  the states themselves.** `γ_N` is a function of the *spelling*
+  (`S6_MOVE_CLASSIFICATION.md` §0.2), so keying the seen-set on cyclically-reduced forms
+  (the `harvest-dedup-on-reduced-forms.md` lesson) silently identifies states with
+  *different* `γ_N`. The two are only compatible if move (0) is applied to every child, so
+  that the visited space *is* the reduced space. That is now the default and is tested.
+  Anyone who turns `reduce_children` off must also change the key.
+- **T-A7.3 — `check_witness_n` cannot verify a disconnected-link witness.** It requires
+  `L = 1` and refuses otherwise, which includes the standard presentation itself
+  (`L = N`). A defect-0 hit on a disconnected link is not a failure; it needs
+  `R1E_DISCONNECTED_LINK.md` Theorem D's `2L` bookkeeping. This module verifies those with
+  a from-scratch `independent_defect` plus the exact census, and records which routes
+  fired in `verified_by` — never the bare word "verified".
+- **T-A7.4 — the "one experiment at a time" guard lock is not the only contention.** The
+  container ran several agents' CPU-bound jobs concurrently throughout; a `--preflight`
+  can also be invalidated mid-session by *another* agent editing any `.py` under
+  `experiments/stable_ac/fable` (the fingerprint is a directory-wide hash), which is what
+  the one `REFUSED` row in `guard_ledger.jsonl` for this task is. Re-preflight and rerun;
+  it is not a failure of the experiment.
+- Restated because they bound everything above: **T-S6** (γ_N's *value* is not comparable
+  across cell structures — only `γ_N = 0` is topological) and **T-S2 / the
+  bound-direction lesson** (a hill-climbed witness bounds from ABOVE; silence bounds
+  nothing).

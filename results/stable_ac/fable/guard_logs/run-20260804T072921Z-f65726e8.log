@@ -1,0 +1,66 @@
+[calib] 1/9 ak2_L12_Yxx_YXyXXyXyX rank 8 len 24 -> best defect 0 hit=True nodes=609 11.66s
+[calib] 2/9 ak2_L12_YYX_YYXyyxxYX rank 8 len 24 -> best defect 2 hit=False nodes=1000 17.47s
+[calib] 3/9 ak2_L12_YXX_YXyxYXyxx rank 8 len 24 -> best defect 2 hit=False nodes=1000 17.47s
+[calib] 4/9 ak2_L13_YYx_YYYYxxYYYx rank 9 len 27 -> best defect 2 hit=False nodes=1000 18.54s
+[calib] 5/9 ak2_L13_YYXyx_YYYYXyxx rank 9 len 27 -> best defect 2 hit=False nodes=1000 18.55s
+[calib] 6/9 ak2_L13_YYXyx_YYYxyXyx rank 9 len 27 -> best defect 2 hit=False nodes=1000 18.19s
+[calib] 7/9 ak3_left_prefix rank 9 len 27 -> best defect 2 hit=False nodes=1000 18.55s
+[calib] 8/9 ak3_rotated rank 9 len 27 -> best defect 4 hit=False nodes=1000 18.34s
+[calib] 9/9 ak3_inverted_r1 rank 9 len 27 -> best defect 2 hit=False nodes=1000 19.22s
+{
+ "ladder_A": {
+  "ladder_A:ak2_class_left_prefix_triangulation": {
+   "runs": 6,
+   "hits": 1,
+   "detection_rate": 0.167,
+   "start_ranks": [
+    8,
+    9
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 2,
+   "mean_nodes": 934.8
+  }
+ },
+ "ladder_AK3": {
+  "ladder_AK3:inverted_r1_triangulation (S1 section 4.5 item 4)": {
+   "runs": 1,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 2,
+   "mean_nodes": 1000.0
+  },
+  "ladder_AK3:left_prefix_triangulation (S1 section 4.4)": {
+   "runs": 1,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 2,
+   "mean_nodes": 1000.0
+  },
+  "ladder_AK3:rotated_start_triangulation (S1 section 4.5 item 2)": {
+   "runs": 1,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 4,
+   "median_best_defect": 4,
+   "mean_nodes": 1000.0
+  }
+ },
+ "_overall": {
+  "runs": 9,
+  "hits": 1,
+  "detection_rate": 0.111
+ }
+}
+[calib] wrote results/stable_ac/fable/rank_n_ac_search_ladderA_ak3.json and results/stable_ac/fable/rank_n_ac_search_ladderA_ak3_rows.jsonl

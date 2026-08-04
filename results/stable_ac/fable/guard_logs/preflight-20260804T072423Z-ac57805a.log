@@ -1,0 +1,323 @@
+[calib] 1/10 depth_ak3_k0_r0 rank 2 len 13 -> best defect 4 hit=False nodes=60 0.2s
+[calib] 2/10 depth_ak3_k1_r0 rank 3 len 14 -> best defect 4 hit=False nodes=60 0.22s
+[calib] 3/10 depth_ak3_k2_r0 rank 4 len 15 -> best defect 4 hit=False nodes=60 0.24s
+[calib] 4/10 depth_ak3_k3_r0 rank 5 len 16 -> best defect 4 hit=False nodes=60 0.25s
+[calib] 5/10 depth_ak3_k4_r0 rank 6 len 17 -> best defect 4 hit=False nodes=60 0.27s
+[calib] 6/10 depth_ak2ctl_k0_r0 rank 2 len 13 -> best defect 0 hit=True nodes=2 0.0s
+[calib] 7/10 depth_ak2ctl_k1_r0 rank 3 len 14 -> best defect 0 hit=True nodes=2 0.04s
+[calib] 8/10 depth_ak2ctl_k2_r0 rank 4 len 15 -> best defect 2 hit=False nodes=60 0.24s
+[calib] 9/10 depth_ak2ctl_k3_r0 rank 5 len 16 -> best defect 2 hit=False nodes=60 0.27s
+[calib] 10/10 depth_ak2ctl_k4_r0 rank 6 len 17 -> best defect 0 hit=True nodes=3 0.01s
+{
+ "ladder_D": {
+  "ladder_D:rank_ceiling(k=0)": {
+   "runs": 2,
+   "hits": 1,
+   "detection_rate": 0.5,
+   "start_ranks": [
+    2
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 4,
+   "mean_nodes": 31.0
+  },
+  "ladder_D:rank_ceiling(k=1)": {
+   "runs": 2,
+   "hits": 1,
+   "detection_rate": 0.5,
+   "start_ranks": [
+    3
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 4,
+   "mean_nodes": 31.0
+  },
+  "ladder_D:rank_ceiling(k=2)": {
+   "runs": 2,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    4
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 4,
+   "mean_nodes": 60.0
+  },
+  "ladder_D:rank_ceiling(k=3)": {
+   "runs": 2,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    5
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 4,
+   "mean_nodes": 60.0
+  },
+  "ladder_D:rank_ceiling(k=4)": {
+   "runs": 2,
+   "hits": 1,
+   "detection_rate": 0.5,
+   "start_ranks": [
+    6
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 4,
+   "mean_nodes": 31.5
+  }
+ },
+ "_depth_ladder": {
+  "ak3": {
+   "0": {
+    "rank_ceiling": 2,
+    "runs": 1,
+    "hits": 0,
+    "best_defects": [
+     4
+    ],
+    "nodes": [
+     60
+    ],
+    "seeds": [
+     20260804
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "1": {
+    "rank_ceiling": 3,
+    "runs": 1,
+    "hits": 0,
+    "best_defects": [
+     4
+    ],
+    "nodes": [
+     60
+    ],
+    "seeds": [
+     20261813
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "2": {
+    "rank_ceiling": 4,
+    "runs": 1,
+    "hits": 0,
+    "best_defects": [
+     4
+    ],
+    "nodes": [
+     60
+    ],
+    "seeds": [
+     20262822
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "3": {
+    "rank_ceiling": 5,
+    "runs": 1,
+    "hits": 0,
+    "best_defects": [
+     4
+    ],
+    "nodes": [
+     60
+    ],
+    "seeds": [
+     20263831
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   },
+   "4": {
+    "rank_ceiling": 6,
+    "runs": 1,
+    "hits": 0,
+    "best_defects": [
+     4
+    ],
+    "nodes": [
+     60
+    ],
+    "seeds": [
+     20264840
+    ],
+    "best_states": [],
+    "min_best_defect": 4,
+    "min_best_gamma_N_upper_bound": 2,
+    "detection_rate": 0.0
+   }
+  },
+  "ak2ctl": {
+   "0": {
+    "rank_ceiling": 2,
+    "runs": 1,
+    "hits": 1,
+    "best_defects": [
+     0
+    ],
+    "nodes": [
+     2
+    ],
+    "seeds": [
+     20260804
+    ],
+    "best_states": [
+     {
+      "gens": [
+       "x",
+       "y"
+      ],
+      "rels": [
+       "YYxxx",
+       "xYx"
+      ]
+     }
+    ],
+    "min_best_defect": 0,
+    "min_best_gamma_N_upper_bound": 0,
+    "detection_rate": 1.0
+   },
+   "1": {
+    "rank_ceiling": 3,
+    "runs": 1,
+    "hits": 1,
+    "best_defects": [
+     0
+    ],
+    "nodes": [
+     2
+    ],
+    "seeds": [
+     20261813
+    ],
+    "best_states": [
+     {
+      "gens": [
+       "x",
+       "y",
+       "a"
+      ],
+      "rels": [
+       "XyX",
+       "YxYxYxxx",
+       "a"
+      ]
+     }
+    ],
+    "min_best_defect": 0,
+    "min_best_gamma_N_upper_bound": 0,
+    "detection_rate": 1.0
+   },
+   "2": {
+    "rank_ceiling": 4,
+    "runs": 1,
+    "hits": 0,
+    "best_defects": [
+     2
+    ],
+    "nodes": [
+     60
+    ],
+    "seeds": [
+     20262822
+    ],
+    "best_states": [],
+    "min_best_defect": 2,
+    "min_best_gamma_N_upper_bound": 1,
+    "detection_rate": 0.0
+   },
+   "3": {
+    "rank_ceiling": 5,
+    "runs": 1,
+    "hits": 0,
+    "best_defects": [
+     2
+    ],
+    "nodes": [
+     60
+    ],
+    "seeds": [
+     20263831
+    ],
+    "best_states": [],
+    "min_best_defect": 2,
+    "min_best_gamma_N_upper_bound": 1,
+    "detection_rate": 0.0
+   },
+   "4": {
+    "rank_ceiling": 6,
+    "runs": 1,
+    "hits": 1,
+    "best_defects": [
+     0
+    ],
+    "nodes": [
+     3
+    ],
+    "seeds": [
+     20264840
+    ],
+    "best_states": [
+     {
+      "gens": [
+       "x",
+       "y",
+       "a",
+       "b",
+       "c",
+       "d"
+      ],
+      "rels": [
+       "YYxxx",
+       "xYx",
+       "a",
+       "b",
+       "c",
+       "d"
+      ]
+     }
+    ],
+    "min_best_defect": 0,
+    "min_best_gamma_N_upper_bound": 0,
+    "detection_rate": 1.0
+   }
+  }
+ },
+ "_depth_ladder_shape": {
+  "ak3": {
+   "distinct_min_best_defects_over_rungs": [
+    4
+   ],
+   "flat": true,
+   "hits": 0,
+   "runs": 5
+  },
+  "ak2ctl": {
+   "distinct_min_best_defects_over_rungs": [
+    0,
+    2
+   ],
+   "flat": false,
+   "hits": 3,
+   "runs": 5
+  }
+ },
+ "_overall": {
+  "runs": 10,
+  "hits": 3,
+  "detection_rate": 0.3
+ }
+}
+[calib] wrote results/stable_ac/fable/rank_n_ac_search_preflight.json and results/stable_ac/fable/rank_n_ac_search_preflight_rows.jsonl

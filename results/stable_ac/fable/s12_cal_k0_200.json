@@ -1,0 +1,345 @@
+{
+ "record": "s12_certificate_hunt",
+ "args": {
+  "nodes": 200,
+  "kstab": 0,
+  "limit": 0,
+  "ladder": 20,
+  "seed": 20260804,
+  "census_cap": 200000,
+  "out": "results/stable_ac/fable/s12_cal_k0_200.json"
+ },
+ "rows": [
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYxyyx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 10,
+    "decided": 10,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYX",
+    "YYYYYXyyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 13,
+    "decided": 12,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYYx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1,
+    "decided": 0,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYxxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 5,
+    "decided": 4,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyXyx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "YYXyX",
+    "x"
+   ],
+   "stats": {
+    "pops": 3,
+    "decided": 8,
+    "undecided": 0,
+    "spherical": 1
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXYxyx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 14,
+    "decided": 16,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXYxyX",
+    "YYYXyyx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 14,
+    "decided": 15,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYXYxx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 8,
+    "decided": 7,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYXyx",
+    "YXYXyxxx"
+   ],
+   "length": 13,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 10,
+    "decided": 9,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYxyx"
+   ],
+   "length": 14,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 8,
+    "decided": 7,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXXYYx",
+    "YYYXyyx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 9,
+    "decided": 8,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYYXYxyX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 4,
+    "decided": 3,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYXyx",
+    "YXXYxyxx"
+   ],
+   "length": 13,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 7,
+    "decided": 6,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYXyxYx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1,
+    "decided": 0,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYXyxYX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3,
+    "decided": 2,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYYYxxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 4,
+    "decided": 3,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXXYx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 48,
+    "decided": 67,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYXyyXyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 4,
+    "decided": 3,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYYXyXYx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1,
+    "decided": 0,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYxyXYx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3,
+    "decided": 2,
+    "undecided": 0,
+    "spherical": 0
+   }
+  }
+ ],
+ "summary": {
+  "ladder_detection_rate": 0.05,
+  "ladder_hits": 1,
+  "ladder_n": 20,
+  "u124_hits": 0,
+  "u124_n": 0,
+  "elapsed_s": 1.3
+ }
+}

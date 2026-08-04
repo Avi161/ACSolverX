@@ -1,0 +1,310 @@
+# S11 — Spelling space at high rank: the soundness verdict, and a decision instrument restored in the blind band
+
+Task A10, S-line, branch `claude/stable-ac-conjecture-stabilization-rwo9as`
+(**must be merged into `fable/proof` by the user**). Date 2026-08-04.
+Owner files: `experiments/stable_ac/fable/spelling_high_rank.py`,
+`tests/fable/test_spelling_high_rank.py`, `results/stable_ac/fable/s11_*.json`.
+`high_rank_refine.py` and `rank_n_ac_search.py` are **imported, never edited**.
+
+STATUS. Section 1 is a soundness analysis of an inference chain — it corrects two
+statements currently in the line's own notes and is offered as a draft for adversarial
+audit, not as a result. Sections 3–5 are **measurements** by exact census, each reported
+with its cap, its skip count and its bias direction. Section 2 records a route closure
+that belongs to task A8, not to this note; it is repeated here because it is what
+redirected this task mid-flight.
+
+Claims addressed (FRAMING.md taxonomy): everything here is **MACHINERY** plus one
+inference-chain audit. **Nothing here claims anything about AK(3)'s AC-triviality or
+stable AC-triviality in either direction.**
+
+---
+
+## 1. FIRST TASK — is the spelling argument sound?
+
+The chain under audit, as handed to this task:
+
+> If ANY spelling of ANY member of AK(3)'s stable class is thickenable, then by Lackenby
+> Thm 1.3 that presentation is AC-trivializable, and **AK(3) is stably AC-trivial**.
+
+### 1.1 (i) Does Lackenby's framework admit non-freely-reduced relator words?
+
+**Verdict: yes in §§1–5, on a two-channel relay, and this is the ONLY channel that makes
+the chain sound.**
+
+`S2_LITERATURE_HIGH_RANK.md` records the move list as relayed from the source:
+
+> "(0) remove or introduce `xᵢxᵢ⁻¹` or `xᵢ⁻¹xᵢ` in some relation `rⱼ`; (1) replace some
+> `rᵢ` by `rᵢ⁻¹`; (2) … (3) …"
+
+Three things follow, and S2 states each of them explicitly:
+
+* relations in §§1–5 are **free-semigroup words**, not free-group elements (§6 switches to
+  free-group elements and *drops* move (0), which is why FRAMING trap 7 forbids importing
+  §6 statements into §§1–5);
+* an unreduced spelling is therefore a **bona fide presentation of the framework**, and is
+  joined to its reduction by (0)-moves;
+* so if a thickenable unreduced spelling `P′` exists, Thm 1.3 applies **to `P′`**, and the
+  (0)-moves carry the conclusion back to `P`.
+
+**Flag, per `experiments/lessons/literature-absent-in-cloud-clones.md`.** `literature/` is
+gitignored and this clone holds only `literature/fake_surfaces/`; `ls literature/` was run
+in *this* session and confirms it. The move list above is **SOURCE-RELAYED, not read from
+source here.** It costs exactly one inference: if the relay is wrong and the framework
+requires reduced attaching words, §1.2's fallback does not save the chain, and the whole
+spelling route to a *transfer theorem* is void (the existence question it decides is
+unaffected — that is machine-checked and owes the literature nothing).
+
+### 1.2 (ii) Is move (0) available in both directions — and does the element-tuple argument rescue the hunt if not?
+
+**Verdict on the direction: both directions, per the same relay** — the verb is "remove or
+introduce", so spike INSERTION is a legal move (0), not merely its inverse. Two corrections
+to the line's own files fall out:
+
+* `FRAMING.md` §1 glosses move (0) as "free and cyclic reduction (Lackenby's move (0);
+  harmless normalization)". Both halves of that gloss are wrong on the relayed text: it is
+  free insertion **or** deletion (not a one-way normalization), and it is **free**, not
+  cyclic — the cyclic part is this repo's own extension. S2 already flagged this; it is
+  repeated here because this task's operating contract depended on it.
+* The project's operating move set does include (0) (FRAMING §1, "AC1–AC3 (+(0))"), so a
+  trivialization of `P′` that uses (0)-moves is a trivialization in this line's sense.
+
+**Verdict on the fallback: the element-tuple argument does NOT rescue the hunt, and the
+brief that proposed it was wrong on this point.** The argument runs "the AC moves act on
+elements of the free group, so two spellings of the same tuple are the same presentation
+for AC purposes". That is true of the *conclusion* side and false of the *hypothesis*
+side. Lackenby Thm 1.3's hypothesis is a property of the presentation **2-complex**, and
+the 2-complex of a spelling is a different complex from the 2-complex of its reduction —
+that is the entire content of `R1F_REDUCTION_AND_SPIKES.md`. If unreduced words are out of
+the framework's scope, a thickenable spelling never enters the theorem at all and there is
+nothing for the element-tuple identification to transfer. This is exactly **Joint A** of
+`LITERATURE_STATUS.md` §4 ("the hypothesis side; THIS IS THE RISK"), whose Joint B ("the
+conclusion side; probably safe") is the element-tuple argument — it is the *other* joint,
+and it was never the one at risk.
+
+The only fallback that would work is a theorem *"γ_N(spelling) = 0 ⇒ γ_N(reduction) = 0"*,
+which is R7's **Conjecture SR** — **open**. So:
+
+> **Justification in force for any spelling-space hit on this line: the framework-scope
+> channel (§1.1), source-relayed and flagged. Not the element-tuple argument.**
+
+### 1.3 (iii) Trap T-S9 and the Joint-A gap — the direction is backwards in `S3_SUBDIVISION_INVARIANCE.md`
+
+S3 repair R3 and trap T-S9 say:
+
+> "a `γ_N = 0` hit discharges the *orientable* hypothesis, whereas Lackenby Thm 1.3's
+> hypothesis is the weaker 'some 3-manifold'. Whether the first discharges the second is
+> the open **Joint-A** question."
+
+**Two corrections.**
+
+1. **The implication is free, not open.** The repo's bridge is `γ_N = 0 ⟺ K` embeds in an
+   *orientable* PL 3-manifold (`R1E` Theorem D, AUDITED; Neuwirth's own framing is *closed
+   orientable*). An orientable 3-manifold **is** a 3-manifold. So the repo's predicate is
+   strictly **stronger** than Lackenby's hypothesis and a `γ_N = 0` hit discharges it
+   immediately. The standing lesson
+   `experiments/lessons/parallel-runs-and-bound-direction.md` is the relevant one: this is
+   a containment read in the wrong direction, and it is the third recurrence of that
+   failure family on this line.
+2. **What the orientable/general gap actually costs is RECALL, not soundness.** A state
+   that embeds in a non-orientable 3-manifold but no orientable one has `γ_N > 0` and is
+   invisible to every instrument in this repo, while still satisfying Lackenby's
+   hypothesis. So `γ_N > 0` is **not** "not thickenable in Lackenby's sense", and no
+   census null on this line may be read as one. Call this **[GAP-O]**, matching
+   `S6_MOVE_CLASSIFICATION.md` §0.1, which states it correctly.
+3. **The real Joint-A gap is §1.1's**, and it must be flagged on every payoff claim:
+   *does an unreduced spelling lie in the theorem's scope?* Two channels say yes; no
+   source read in this clone says so.
+
+**Corrected reporting rule for this line.** A defect-0 census on a spelling is to be
+reported as *"a thickenable spelling exists in this class"*, and the step to
+*"…is stably AC-trivial"* must carry: (a) the Joint-A scope flag of §1.1, and (b) the
+`[UNVERIFIED]` flag on Thm 1.3 itself (`FRAMING.md` §5). It is **not** gated on
+orientability.
+
+---
+
+## 2. Route closure — the spike hunt on reduced bases cannot win (task A8's measurement)
+
+Task A8 (`S6_MOVE_CLASSIFICATION.md` §1) measured, by exact census, what move (0) does:
+
+| direction | measured |
+|---|---|
+| free/cyclic reduction **creates** `γ_N = 0` | **315 of 2,510** non-thickenable spellings |
+| free/cyclic reduction **destroys** `γ_N = 0` | **0 of 997** thickenable spellings |
+
+Read contrapositively, spike insertion **never created** thickenability in any of 997
+trials, and R7's own corpus adds ≈114,000 complexes with the same verdict (R1F tier-1
+cross-tabulation: base `γ_N = 1` → min over its spikes = 1 in 2,514 of 2,514 bases; base
+`γ_N = 2` → min = 1 or 2, never 0). Therefore:
+
+> **The reduced spelling of a state is, empirically, always at least as good a certificate
+> candidate as any spelling of it.** A hunt that adds spikes to a *cyclically reduced*
+> base — AK(3) is cyclically reduced, and so is every chord refinement of it, since
+> `high_rank_refine._check_input` refuses anything else — is searching a region that
+> cannot beat the base it started from.
+
+**This retires the spike-insertion hunt on AK(3) for the positive direction**, together
+with the depth-2/3 exhaustive census at rank 9 that this task was scoped to run. It is a
+negative result and it is worth what it costs: the hunt was going to be affordable at high
+rank (§3 shows exactly how affordable), so the only thing that stopped it was the
+mathematics.
+
+Two honest qualifications, both of which keep the route from being *proved* closed:
+
+* **This is a measurement, not a theorem.** Conjecture SR is open. R7's Corollary S5 (the
+  spike ceiling, `γ_N(spike(P)) ≥ γ_N(P) − 1`) is a *proof*, and it only rules out
+  spike-depth ≤ 1 for a base at `γ_N = 2`. Depth ≥ 2 is unrefuted by any theorem.
+* **The S3_AUDIT §3.2 lead is not a counterexample to it, and the brief that sent this task
+  chasing it over-read the rows.** Those five `defect 2 → 0` rows have bases that were
+  already NOT cyclically reduced (`('XYYyxY','XyX')` and friends). What moved the defect
+  was the free reduction *at the end* of the pipeline, i.e. the creating direction of move
+  (0) — the same direction A8 measured at 315/2,510. It is not a mechanism that beats a
+  reduced base. Reproduced here as a regression fixture
+  (`test_peel_and_reduce_reproduces_the_S3_AUDIT_row`), with the full row
+  `('XYYyxY','XyX')` d=2 → `('axYXY','XyX','aYy')` d=2 → `('axYXY','XyX','a')` d=**0**.
+
+**One structural fact worth keeping from the wreck.** The §3.2 mechanism, once the free
+reduction is done, is *exactly* `AC4` followed by `AC2`:
+`P → (r_1, …, r_j·z, …, r_n, z)` at rank `n+1` — the definition relator `z(a_1a_1^{-1})^{-1}`
+reduces to the single letter `z`, and the residual `z a_3…a_m` is the same **cyclic** word
+as `a_3…a_m z`. So its legality never needed the spelling framework at all. Pinned in
+`test_degenerate_peel_equals_stabilize_and_graft_as_a_cyclic_word`, and it is the same
+move as `S6`'s row **M4′**, which is proved (T4′) to be a *subdivision* on the first slide —
+hence inert. Any use of it as a mechanism must therefore be at the second slide or later,
+where `z` has three or more germs and T4′ no longer applies.
+
+---
+
+## 3. THE DELIVERABLE — where the exact census can and cannot decide, by (length, rank)
+
+### 3.1 Why this is the right instrument to calibrate
+
+`experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md` is the standing
+constraint: the project's earlier spelling hunt used a randomised defect-0 climber whose
+**measured** detection fell from 100 % at total length 16 to 0 % at 21, retiring 1,312 of
+1,909 swept states as uninformative (R7b). The blind band is total length ≈ 19–27, which is
+precisely where AK(3)'s stable class lives (S10 §5: the AK(3)+z rank-3 harvest has mode
+22–24).
+
+The instrument calibrated here is a **different** one: the exact census
+`gamma_N_factorial_n`, which never guesses. On any state it returns either an *equality*
+for `γ_N` or `UNKNOWN_SIZE`, and it returns the latter exactly when
+`∏_g (deg(g⁺) − 1)! > cap`. So on a state that really is thickenable,
+
+> **detection ⟺ the compatible family fits inside the cap** — a function of the DEGREE
+> PROFILE alone.
+
+And the degree profile is what rank controls: at fixed total length `ℓ` and rank `n`, the
+average germ degree is `ℓ/n`. That is the mechanism, and §3.2 measures it.
+
+Cap used throughout: **200,000 rotation systems** (≈ 1 s per state; the user asked for
+modest node budgets). Every state above the cap is recorded `SKIPPED`, never given a
+verdict.
+
+### 3.2 Decidability by (length, rank) — the bias-free estimator
+
+`results/stable_ac/fable/s11_decidability.json`. Sampling: independent AC1–AC3 walks out of
+the standard presentation `⟨x_1..x_n | x_1,…,x_n⟩` (the S10 design), so **every state is
+AC-trivial and presents the trivial group by construction**; 60 states per cell, band
+half-width 1, no `γ_N` filter at all — hence no selection by any climber and no
+circularity with the instrument under test.
+
+**Fraction of states the census decides at cap 2·10⁵** (n = 60 per cell):
+
+| total length | rank 2 | rank 3 | rank 4 | rank 6 | rank 8 |
+|---|---|---|---|---|---|
+| 13 | 0.62 | 1.00 | 1.00 | 1.00 | 1.00 |
+| 16 | **0.00** | 0.35 | 0.93 | 1.00 | 1.00 |
+| 19 | 0.00 | **0.00** | 0.17 | 0.97 | 1.00 |
+| 22 | 0.00 | 0.00 | **0.00** | 0.52 | 0.95 |
+| 25 | 0.00 | 0.00 | 0.00 | 0.03 | **0.57** |
+
+**Median census size — the same table in the units that explain it:**
+
+| total length | rank 2 | rank 3 | rank 4 | rank 6 | rank 8 |
+|---|---|---|---|---|---|
+| 13 | 1.2·10⁵ | 2.9·10³ | 288 | 12 | 4 |
+| 16 | 2.0·10⁸ | 5.2·10⁵ | 1.7·10⁴ | 144 | 24 |
+| 19 | 2.9·10¹⁰ | 5.8·10⁷ | 1.5·10⁶ | 8.6·10³ | 192 |
+| 22 | 1.3·10¹³ | 3.7·10¹⁰ | 1.2·10⁸ | 1.7·10⁵ | 5.8·10³ |
+| 25 | 2.3·10¹⁶ | 1.1·10¹³ | 3.7·10¹⁰ | 1.7·10⁷ | 1.4·10⁵ |
+
+At total length 22 the median rank-2 state costs **2.3 billion times** more to decide than
+the median rank-8 state of the same length. The claim under test — *detection collapses
+with length at rank 2 and does not collapse at rank 6–8* — **holds**, with the collapse
+edge moving from length 13→16 at rank 2 to length 22→25 at rank 8.
+
+### 3.3 The positive ladder — direct confirmation on states KNOWN to be thickenable
+
+§3.2 is an argument plus a degree measurement. This is the direct version demanded by the
+lesson: presentations that ARE thickenable, with the fact hidden from the instrument, run
+through the identical decide step.
+
+**Certification is independent of the census.** Every rung carries a defect-0 rotation
+system found by `rank_n_ac_search.hunt_defect` (bounds `γ_N` from ABOVE, so a defect-0
+return is a *complete positive certificate*) and re-verified by
+`witness_check_n.check_witness_n`, which rebuilds `D, A, B` from the words and shares no
+scheme code with the hunter. `verify_defect_zero` is called with `census_cap = 0` so the
+census plays **no part** in building the ladder.
+
+Rank-2 seeds are the 15 rungs of the earlier session's ladder
+(`results/stable_ac/fable/witness_sensitivity.json`, total lengths 7–22, certified
+census+witness, the top rungs at 2,000,000 evaluations); every column is then grown by
+spikes whose children are re-certified by the same witness route.
+
+<!-- LADDER-TABLE -->
+
+**Bias directions, recorded (both push the same way).**
+
+1. The census bounds `γ_N` by **equality** inside the cap and says nothing above it — a
+   `SKIPPED` is counted here as a non-detection, which is the honest reading of an
+   instrument that returned silence.
+2. The ladder bounds sensitivity from **ABOVE**: rungs are by construction states some
+   climber could certify, so real states at the same (length, rank) can only be harder. A
+   **low** cell is conclusive (the null it licenses is vacuous); a **high** cell is
+   optimistic and is never a licence to read a null as absence.
+3. No p-values. Rungs come from a spike/move tree and are not independent draws
+   (`experiments/lessons/contrast-length-confound.md`).
+
+---
+
+## 4. The one spelling question still pointed the right way — a hunt for a counterexample to Conjecture SR
+
+If reduction can **destroy** thickenability, R7's Conjecture SR is false, `γ*` is not
+computable from the reduced spelling, and the entire spelling route reopens — including
+for AK(3). That is the only direction in spelling space that the A8 measurement has *not*
+foreclosed, so the remaining budget went there.
+
+Shape of a counterexample: a spelling `K` with `γ_N(K) = 0` whose free/cyclic reduction
+has `γ_N > 0`. Both sides decided by exact census inside the cap; a pair where either side
+skips is counted and discarded, never converted into a verdict.
+
+<!-- SR-TABLE -->
+
+---
+
+## 5. How much of the previously-blind band was bought back
+
+<!-- PAYBACK -->
+
+---
+
+## 6. Traps this note adds
+
+* **T-S11a.** The **element-tuple argument does not transfer a thickenability hypothesis.**
+  "The AC moves act on free-group elements, so all spellings are one presentation" is
+  Joint B (the conclusion side, safe). Joint A (the hypothesis side) needs the spelling to
+  be a presentation *of the framework*; nothing about free-group elements supplies that.
+* **T-S11b.** **T-S9 has the containment backwards.** `γ_N = 0` (orientable, indeed closed
+  orientable) is STRONGER than Lackenby's "some 3-manifold", so a hit discharges his
+  hypothesis for free. The orientable/general gap costs **recall**: `γ_N > 0` does not mean
+  "not thickenable in Lackenby's sense", and no census null on this line may be read as
+  one. Flag the real Joint A — the unreduced-spelling scope question — instead.
+* **T-S11c.** **Never quote a detection rate without its cap and its skip count.** For an
+  exact census, "detection" and "affordability" are the same event, so a detection table
+  is a degree-profile table in disguise; quoting it as a property of the *search* would
+  hide that the fix is to change the cell structure, not the budget.
+* **T-S11d.** `high_rank_refine._check_input` and `certify_refinement` both **refuse
+  non-cyclically-reduced input**. Any future spelling × high-rank pipeline must therefore
+  refine first and spike second (spike-then-refine raises `RefinementError`), or bring its
+  own refiner — which then does not carry the audited replay certificate.

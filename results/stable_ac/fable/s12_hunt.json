@@ -1,0 +1,257 @@
+{
+ "record": "s12_certificate_hunt",
+ "args": {
+  "nodes": 15,
+  "kstab": 0,
+  "limit": 8,
+  "ladder": 6,
+  "seed": 20260804,
+  "census_cap": 200000,
+  "out": "results/stable_ac/fable/s12_hunt.json"
+ },
+ "rows": [
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYxyyx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 10,
+    "decided": 10,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYX",
+    "YYYYYXyyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 13,
+    "decided": 12,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYYx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1,
+    "decided": 0,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYxxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 5,
+    "decided": 4,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyXyx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "YYXyX",
+    "x"
+   ],
+   "stats": {
+    "pops": 3,
+    "decided": 8,
+    "undecided": 0,
+    "spherical": 1
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXYxyx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 14,
+    "decided": 16,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_0",
+   "base": [
+    "YXXyxYx",
+    "YYYYYYXyxyX"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 2,
+    "decided": 1,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_1",
+   "base": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 11,
+    "decided": 10,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_2",
+   "base": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 7,
+    "decided": 6,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_3",
+   "base": [
+    "YXXyxYx",
+    "YYYYYxyxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 6,
+    "decided": 5,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_4",
+   "base": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 4,
+    "decided": 3,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_5",
+   "base": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 2,
+    "decided": 1,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_6",
+   "base": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3,
+    "decided": 2,
+    "undecided": 0,
+    "spherical": 0
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_7",
+   "base": [
+    "YYXXyxx",
+    "YYYYxYXYX"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 6,
+    "decided": 5,
+    "undecided": 0,
+    "spherical": 0
+   }
+  }
+ ],
+ "summary": {
+  "ladder_detection_rate": 0.16666666666666666,
+  "ladder_hits": 1,
+  "ladder_n": 6,
+  "u124_hits": 0,
+  "u124_n": 8,
+  "elapsed_s": 0.6
+ }
+}
