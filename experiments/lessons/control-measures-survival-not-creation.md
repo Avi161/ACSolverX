@@ -22,8 +22,8 @@ chains that left 0 and came back. The pipeline had never *created* a certificate
 the rate at which it *failed to destroy* one.
 
 Widening the control to sources that are AC-trivial, same rank, same total length, but **not**
-already `Φ` gave 0 hits in 46,298 — the same score as the target. Across four independent
-non-`Φ` roots the pipeline created `Φ` **0 times in 91,409 decided states**, while remaining
+already `Φ` gave 0 hits in 61,157 — the same score as the target. Across five independent
+non-`Φ` roots the pipeline created `Φ` **0 times in 106,268 decided states**, while remaining
 demonstrably non-blind (759 exhibited certificates whenever the root already had one).
 (The 759 replayed chains are **not** part of that denominator — they start at `Φ`, so they
 are not opportunities to create it. Counting them gave an inflated 93,638 in the first
@@ -71,7 +71,7 @@ Operationally, for any calibration control on a one-sided search:
 
 The corrected reading is *more* useful than the retracted one. "The target resists" is a
 statement about one instance and it was false. "This pipeline is `Φ`-preserving and
-`Φ`-non-creating, 0 in 91,409" is a statement about the **instrument**, it is true, and it
+`Φ`-non-creating, 0 in 106,268" is a statement about the **instrument**, it is true, and it
 retires the whole route with a mechanism instead of with silence — including for every
 future target, not just this one.
 

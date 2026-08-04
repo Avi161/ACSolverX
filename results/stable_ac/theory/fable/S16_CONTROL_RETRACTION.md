@@ -36,12 +36,13 @@ end-of-run summary:
 | original control `src0` | `('XYXXY','XXYXYXXY')` | **0 — SPHERICAL** | 50,320 | **759** | 1.51% |
 | ctrl2 `src0` | `('XyyXy','YxYYYxxY')` | ≥ 1 — NOT_SPHERICAL | 19,132 | **0** | 0 |
 | ctrl2 `src1` | `('yXYxx','YxxyXYxx')` | ≥ 1 — NOT_SPHERICAL | 12,012 | **0** | 0 |
-| ctrl2 `src2` | `('XYYXYYXY','yxxyy')` | ≥ 1 — NOT_SPHERICAL | 15,154 | **0** | 0 |
+| ctrl2 `src2` | `('XYYXYYXY','yxxyy')` | ≥ 1 — NOT_SPHERICAL | 16,330 | **0** | 0 |
+| ctrl2 `src3` | `('xYYxYxx','YYXyxx')` | ≥ 1 — NOT_SPHERICAL | 13,683 | **0** | 0 |
 | **AK(3)** | `('xyxYXY','xxxYYYY')` | **2** — NOT_SPHERICAL | 45,111 | **0** | 0 |
 
-(ctrl2 `src3`, `src4` are also NOT_SPHERICAL; their rows were not reached inside the 380 s
-decide budget and a full-pool rerun is in flight. They cannot change the conclusion — three
-independent non-thickenable sources at 0/46,298 already establish it.)
+(A full-pool rerun at a 560 s budget added `src3`, bringing the control total to **61,157
+decided, 0 hits**. `src4` is also NOT_SPHERICAL; its rows were still not reached and cannot
+change the conclusion — four independent non-thickenable sources at 0/61,157 establish it.)
 
 Source `γ_N` values were recomputed here, in this clone, with
 `experiments/stable_ac/fable/s12_hunt.decide(words, 400000)`. The one source that yields
@@ -51,8 +52,8 @@ yields nothing — **and AK(3) is simply one of them.**
 ## 3. Therefore
 
 **The 1.51% was not a property of "being AC-trivial". It was a property of that one root
-being `SPHERICAL`.** The between-source variance inside the control family — 1.51% versus
-three independent zeros — completely swamps the target-versus-control gap that §3z-bis was
+being `SPHERICAL`.** The between-source variance inside the control family — 1.51 % versus
+four independent zeros — completely swamps the target-versus-control gap that §3z-bis was
 reading. AK(3) behaves exactly like every other non-thickenable length-13 AC-trivial source
 tested. Its zero is **not** a fact about AK(3).
 
@@ -92,13 +93,13 @@ Four independent measurements, three ranks, one conclusion:
 
 | measurement | rank | creations | opportunities |
 |---|---|---|---|
-| sharp control (3 non-thickenable sources) | 12/13 | **0** | 46,298 |
+| sharp control, 4 non-thickenable sources (`src0`–`src3`) | 12/13 | **0** | 61,157 |
 | AK(3) pool | 12/13 | **0** | 45,111 |
-| **total, decided states from non-thickenable roots** | | **0** | **91,409** |
+| **total, decided states from 5 non-thickenable roots** | | **0** | **106,268** |
 | flip census (separate experiment) | 5 | **0** | 1,470 |
 
 > The chord + SPLIT pipeline is certificate-**preserving** and certificate-**non-creating**
-> — 0 creations in **91,409** decided states from four non-thickenable roots, plus 0 in
+> — 0 creations in **106,268** decided states from five non-thickenable roots, plus 0 in
 > 1,470 rank-5 flip-census opportunities — while the instrument is demonstrably not
 > blind: it exhibited 759 certificates, one verified six ways, whenever the root already
 > had one.
@@ -121,7 +122,7 @@ thickenable member of its class has been found in the 124,296-member rank-2 matc
 the 171,842-member depth-1 stable class — those are **bounded nulls, not an absence proof**,
 and their class-wide negation would *be* the disproof. So: **on the evidence, the cubic route
 did not settle AK(3)** — the pipeline lowered `γ_N` (527 measured descents 4 → 2, plus `C1` at
-`γ_N = 1`) but never reached 0 in 91,409 decided states. That is a **measured instrument
+`γ_N = 1`) but never reached 0 in 106,268 decided states. That is a **measured instrument
 limitation, not a proved obstruction**; no monotonicity theorem forbids reaching 0 (`S15` §6).
 Its 0/45,111 says nothing about AK(3) beyond its rank-2 defect.
 
@@ -134,7 +135,7 @@ exactly what the proved structure predicts: S3 shows a chord refinement is a *CW
 subdivision* that preserves the entire defect histogram by a dart-level bijection, so it
 cannot change `γ_N` at all; T4/T4′ show stabilization and the first slide over a fresh
 stabilizer are inert. The one move known to lower `γ_N` is A6's length-3 SPLIT
-(`AK(3)` at `γ_N = 2` → `C1` at `γ_N = 1`, `S4B`), and in 91,409 states it never carried
+(`AK(3)` at `γ_N = 2` → `C1` at `γ_N = 1`, `S4B`), and in 106,268 states it never carried
 anything to 0.
 
 **The design consequence, stated plainly: pointing this search at AK(3) was never going to
@@ -155,7 +156,7 @@ can manufacture one*.
 
 The correct calibration question for a one-sided search is **"has this instrument ever
 produced the thing it is looking for, starting from a state that did not already have
-it?"** For this instrument the answer is no, 0 for 91,409.
+it?"** For this instrument the answer is no, 0 for 106,268.
 
 ## 6. Status of every claim in this file
 
@@ -164,7 +165,7 @@ it?"** For this instrument the answer is no, 0 for 91,409.
 | §2 table, source `γ_N` column | recomputed in this clone with the repo decider | **measured** |
 | §2 table, hit counts | read from `s4b_control_decided_summary.json` and from `s4b_ctrl2_decided.jsonl.gz` row by row | **measured** |
 | §3 retraction of §3z-bis | follows from §2 | **established** |
-| §4 "inherited, not generated" | 0 creations in 91,409 decided states from 4 non-thickenable roots | **measured**; it is an instrument fact about this move set and budget, **not** a theorem that `γ_N = 0` is unreachable |
+| §4 "inherited, not generated" | 0 creations in 106,268 decided states from 5 non-thickenable roots | **measured**; it is an instrument fact about this move set and budget, **not** a theorem that `γ_N = 0` is unreachable |
 | §4 "S3/T4/T4′ predict it" | those results are proved (S3 audited; T4/T4′ unaudited) | **proved elsewhere**, cited |
 
 Nothing here is a proof or disproof of the AC or stable AC conjecture. §4 in particular must

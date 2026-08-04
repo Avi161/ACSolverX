@@ -33,10 +33,10 @@ generators produced **no certificate for any open case**.
 were originally presented as evidence about AK(3). They are not — see §3z-bis, **retracted**,
 and `S16_CONTROL_RETRACTION.md`. The calibration control was itself already thickenable, so
 it measured *survival* of a certificate, not *creation* of one; all 759 of its hits have
-defect chain `(0,0,0,0)`. Against three AC-trivial, length-matched, **non**-thickenable
-sources the pipeline scores 0 in 46,298 — exactly AK(3)'s score. **The real finding is
+defect chain `(0,0,0,0)`. Against four AC-trivial, length-matched, **non**-thickenable
+sources the pipeline scores 0 in 61,157 — exactly AK(3)'s score. **The real finding is
 about the instrument, not the target:** the chord + SPLIT pipeline created `γ_N = 0`
-**0 times in 91,409 decided states** from four non-thickenable roots (plus 0 in 1,470 rank-5
+**0 times in 106,268 decided states** from five non-thickenable roots (plus 0 in 1,470 rank-5
 flip-census opportunities) while remaining demonstrably able to *find* certificates that
 already existed. It is certificate-preserving and certificate-non-creating, so it can only
 settle a presentation whose rank-2 root is already thickenable.
@@ -204,7 +204,7 @@ instrument for a certificate hunt.
 > | source | γ_N of the source | decided | γ_N = 0 hits |
 > |---|---|---|---|
 > | the control used below, `("XYXXY","XXYXYXXY")` | **0 — SPHERICAL** | 50,320 | **759** |
-> | ctrl2 `src0`, `src1`, `src2` (all NOT_SPHERICAL) | ≥ 1 | 46,298 | **0** |
+> | ctrl2 `src0`–`src3` (all NOT_SPHERICAL) | ≥ 1 | 61,157 | **0** |
 > | **AK(3)** (NOT_SPHERICAL) | 2 | 45,111 | **0** |
 >
 > The 1.51 % was **not** a property of being AC-trivial. It was a property of that one root
@@ -216,8 +216,8 @@ instrument for a certificate hunt.
 > The tell was in this section's own line below — *"only the source's rank-2 defect
 > differs"*. That was the whole effect, named and then attributed elsewhere.
 >
-> What survives, and is worth more, is the instrument fact (S16 §4): across **91,409**
-> decided states from **four** independent non-thickenable roots, the cubic split search
+> What survives, and is worth more, is the instrument fact (S16 §4): across **106,268**
+> decided states from **five** independent non-thickenable roots, the cubic split search
 > created γ_N = 0 **zero** times. In this move set thickenability is **inherited, not
 > generated** — exactly as S3 (chord refinement = CW subdivision, defect histogram preserved)
 > and T4/T4′ (stabilization inert) predict. So this search could never have certified AK(3);

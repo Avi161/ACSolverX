@@ -172,8 +172,8 @@ reduction to the open problem before it is believed.
 The corollary also relocates the difficulty usefully, and `S16` sharpens where. It is **not**
 that thickenable states are rare in the abstract — 759 were exhibited at rank 12–13. But
 every one of those descended from a root that was *already* thickenable (chain `(0,0,0,0)`,
-759 times), and across four non-thickenable roots the same pipeline created `γ_N = 0` **0
-times in 91,409 decided states**.
+759 times), and across five non-thickenable roots the same pipeline created `γ_N = 0` **0
+times in 106,268 decided states**.
 
 **But that is a fact about one move set, not about moves in general** — an earlier draft of
 this paragraph said "no known move manufactures one", and the session's own artifact refutes
