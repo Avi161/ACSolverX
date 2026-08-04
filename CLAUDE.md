@@ -172,6 +172,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - Promptless auth *requires* a Colab Secret; sanitize and format-validate a pasted key before hitting the server. [[TRAP]](experiments/lessons/wandb-auto-auth-colab-secret.md)
 
 ### Testing
+- **Never push Colab/runner files until the related tests are green — re-run after the last edit, then push, and report the pass count.** [[WORKS]](experiments/lessons/tests-green-before-push.md)
 - Test the search against a general-`n` spec **and** against an invariant it never computes (`abs(det)` of the exponent-sum matrix); never build an oracle that must reproduce `nodes_explored` — it becomes a near-copy of the implementation and would reject a correct stable-AC solver. [[WORKS]](experiments/lessons/greedy-test-suite-three-layers.md)
 - Node budgets are capped at 1,000: a search at budget `B` is the first `B` pops of any longer search, so a bigger budget buys slower tests, not different behaviour. Want a deeper anchor? Find a presentation that solves in *fewer* nodes. [[WORKS]](experiments/lessons/test-budget-ceiling.md)
 - A green default tier proves nothing about what it skipped — check the skip count, never push behind one, and when a new test fails on an already-documented bug the *test* is wrong, not the bug. [[WORKS]](experiments/lessons/slow-tier-caught-broken-path-test.md)
