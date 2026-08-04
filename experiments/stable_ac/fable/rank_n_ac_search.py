@@ -1441,7 +1441,7 @@ def _ak3_states():
     tri, trace = triangulate(base)
     rows.append({
         "label": "ak3_left_prefix",
-        "scheme": "AK(3) left-prefix triangulation (S1 section 4.4)",
+        "scheme": "ladder_AK3:left_prefix_triangulation (S1 section 4.4)",
         "base": base,
         "state": tri,
         "certificate": triangulation_certificate(base, tri, trace),
@@ -1451,7 +1451,7 @@ def _ak3_states():
     tri2, trace2 = triangulate(rot)
     rows.append({
         "label": "ak3_rotated",
-        "scheme": "AK(3) rotated-start left-prefix triangulation (S1 section 4.5 item 2)",
+        "scheme": "ladder_AK3:rotated_start_triangulation (S1 section 4.5 item 2)",
         "base": rot,
         "state": tri2,
         "certificate": triangulation_certificate(rot, tri2, trace2),
@@ -1460,7 +1460,7 @@ def _ak3_states():
     tri3, trace3 = triangulate(inv)
     rows.append({
         "label": "ak3_inverted_r1",
-        "scheme": "AK(3) inverted-r1 left-prefix triangulation (S1 section 4.5 item 4)",
+        "scheme": "ladder_AK3:inverted_r1_triangulation (S1 section 4.5 item 4)",
         "base": inv,
         "state": tri3,
         "certificate": triangulation_certificate(inv, tri3, trace3),

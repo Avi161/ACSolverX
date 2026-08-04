@@ -612,18 +612,59 @@ def _write_json(path: str, doc) -> None:
         fh.write("\n")
 
 
+def _calibration_bands(calibration_path: str = CALIBRATION_OUT) -> dict:
+    """``{length: instrument-B detection rate}`` plus the blind threshold, if measured.
+
+    Read BEFORE any null is reported, per
+    ``experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md``: a sampled
+    upper bound at a length where the instrument's measured detection rate is 0 (or
+    where no positive control exists at all) is not a measurement and is marked so.
+    """
+    if not os.path.exists(calibration_path):
+        return {"available": False}
+    with open(calibration_path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    cells = doc.get("cells_by_total_length", {})
+    return {
+        "available": True,
+        "path": os.path.relpath(calibration_path, REPO_ROOT),
+        "rate_by_length": {int(k): v["instrument_B_detection_rate"]
+                           for k, v in cells.items()},
+        "a_rate_by_length": {int(k): v["instrument_A_detection_rate"]
+                             for k, v in cells.items()},
+        "blind_from_length": doc.get("instrument_B", {}).get("blind_from_length"),
+        "lengths_with_no_positive_control":
+            doc.get("lengths_with_no_positive_control", []),
+    }
+
+
 def run_sweep(csv_path: str = DEFAULT_CSV, out_path: str = SWEEP_OUT,
               summary_path: str = SWEEP_SUMMARY, census_cap: int = CENSUS_CAP,
               budget: int = SAMPLE_BUDGET, seeds: int = SAMPLE_SEEDS,
-              limit: int | None = None, verbose: bool = True) -> dict:
+              limit: int | None = None, calibration_path: str = CALIBRATION_OUT,
+              verbose: bool = True) -> dict:
     """Stage 1: decide and measure all 124 representatives."""
     started = time.time()
     reps = load_reps(csv_path)
     if limit is not None:
         reps = reps[:limit]
+    bands = _calibration_bands(calibration_path)
     rows = []
     for i, rec in enumerate(reps, 1):
-        rows.append(sweep_row(rec, census_cap=census_cap, budget=budget, seeds=seeds))
+        row = sweep_row(rec, census_cap=census_cap, budget=budget, seeds=seeds)
+        length = row["total_length"]
+        if row["census"]["ran"]:
+            row["sample_calibrated"] = None       # irrelevant: the value is exact
+        elif not bands.get("available"):
+            row["sample_calibrated"] = None
+        else:
+            rate = bands["rate_by_length"].get(length)
+            blind = bands.get("blind_from_length")
+            row["sample_calibrated"] = bool(
+                rate is not None and rate > 0.0
+                and (blind is None or length < blind))
+            row["sample_detection_rate_at_this_length"] = rate
+        rows.append(row)
         if verbose and (i % 20 == 0 or i == len(reps)):
             print(f"  [sweep] {i}/{len(reps)} rows ({time.time() - started:.0f}s)",
                   flush=True)
@@ -672,6 +713,14 @@ def run_sweep(csv_path: str = DEFAULT_CSV, out_path: str = SWEEP_OUT,
         "decision_verdict_histogram": dict(sorted(verdicts.items())),
         "decision_method_histogram": dict(sorted(methods.items())),
         "two_sided_rows": sum(1 for r in ranked if r["decision_is_two_sided"]),
+        "informative_rows": sum(1 for r in ranked if r["informative"]),
+        "uninformative_rows": [
+            {"name": r["name"], "total_length": r["total_length"],
+             "reason": r["informative_reason"]}
+            for r in ranked if not r["informative"]],
+        "sample_calibration": bands,
+        "rows_with_uncalibrated_sampled_bound": [
+            r["name"] for r in ranked if r.get("sample_calibrated") is False],
         "fail_closed_rows": [
             {"name": r["name"], "verdict": r["decision"]["verdict"],
              "reason": r["decision"]["reason"]}
@@ -710,7 +759,8 @@ def run_sweep(csv_path: str = DEFAULT_CSV, out_path: str = SWEEP_OUT,
              "census_family_size": r["census_family_size"],
              "gamma_N_lower": r["gamma_N_lower"], "gamma_N_upper": r["gamma_N_upper"],
              "gamma_N_exact": r["gamma_N_exact"], "source": r["gamma_source"],
-             "verdict": r["decision"]["verdict"]}
+             "verdict": r["decision"]["verdict"],
+             "sample_calibrated": r.get("sample_calibrated")}
             for r in ranked],
         "length_confound_warning": (
             "The ranking key is an upper bound from a one-sided instrument whose "
@@ -754,11 +804,27 @@ def run_neighbourhood(sweep_path: str = SWEEP_OUT, out_path: str = NEIGHBOUR_OUT
     out_rows = []
     hits = []
     per_root = []
+    census_used = [0]
 
     def decide(key, exact, origin, move, depth):
         if key in decided or len(decided) >= state_cap:
             return None
         result = exact_decision(tuple(key), cross_check=False)
+        # bounded census fallback: a fail-closed neighbour whose compatible family is
+        # small is still decided exactly, never silently folded into the negatives.
+        if (result["verdict"] not in (SPHERICAL, NOT_SPHERICAL)
+                and census_used[0] < NEIGHBOUR_CENSUS_BUDGET
+                and census_size(tuple(key)) <= NEIGHBOUR_CENSUS_CAP):
+            census = exact_census(tuple(key), cap=NEIGHBOUR_CENSUS_CAP)
+            census_used[0] += 1
+            if census["ran"]:
+                result = dict(result)
+                result["verdict"] = (SPHERICAL if census["minimum_defect"] == 0
+                                     else NOT_SPHERICAL)
+                result["method"] = "factorial_census"
+                result["reason"] = (f"R1c-v2 fail-closed; exact census minimum defect "
+                                    f"{census['minimum_defect']}")
+                result["exhaustive"] = True
         decided[key] = result["verdict"]
         record = {"record": "u124_neighbour", "canonical": list(key),
                   "exact": list(exact), "origin": origin, "move": move,
@@ -802,7 +868,7 @@ def run_neighbourhood(sweep_path: str = SWEEP_OUT, out_path: str = NEIGHBOUR_OUT
         root_key = tuple(W.canon_pair(*row["pair"]))
         cap = row["total_length"] + 4          # the batteries' relative-headroom rule
         harvest = _harvest_canonical(root_key, harvest_pops, cap,
-                                     state_cap - len(decided) + len(harvests) + 1)
+                                     max(1, state_cap - len(decided)))
         n_new = 0
         for member in sorted(harvest["members"]):
             if decide(member, member, row["name"], "harvest", None) is not None:
@@ -838,9 +904,14 @@ def run_neighbourhood(sweep_path: str = SWEEP_OUT, out_path: str = NEIGHBOUR_OUT
             "REDUCED canonical form (harvest-dedup-on-reduced-forms.md)."),
         "budgets": {"top_n": top_n, "harvest_pops": harvest_pops,
                     "state_cap": state_cap, "depth1_all": depth1_all,
-                    "scheme_budget": SCHEME_BUDGET, "branch_budget": BRANCH_BUDGET},
+                    "scheme_budget": SCHEME_BUDGET, "branch_budget": BRANCH_BUDGET,
+                    "census_fallback_size_cap": NEIGHBOUR_CENSUS_CAP,
+                    "census_fallback_budget": NEIGHBOUR_CENSUS_BUDGET},
         "states_decided": len(decided),
+        "census_fallbacks_used": census_used[0],
         "state_cap_reached": len(decided) >= state_cap,
+        "uninformative_states": sum(1 for r in out_rows
+                                    if r["verdict"] not in (SPHERICAL, NOT_SPHERICAL)),
         "verdict_histogram": dict(sorted(verdicts.items())),
         "verdict_by_total_length": {str(k): dict(sorted(v.items()))
                                     for k, v in sorted(by_length.items())},
@@ -1016,7 +1087,7 @@ def main(argv=None) -> int:
     if args.stage == "sweep":
         run_sweep(args.csv, args.sweep_out, args.sweep_summary,
                   census_cap=args.census_cap, budget=args.samples, seeds=args.seeds,
-                  limit=args.limit)
+                  limit=args.limit, calibration_path=args.calibration_out)
     elif args.stage == "neighbourhood":
         run_neighbourhood(args.sweep_out, args.neighbour_out, args.neighbour_summary,
                           top_n=args.top_n, harvest_pops=args.harvest_pops,

@@ -1,0 +1,6 @@
+[calib] 1/12 std9_scramble6_r0 rank 9 len 27 -> best defect 0 hit=True nodes=13 0.21s
+[calib] 2/12 std9_scramble6_r1 rank 9 len 19 -> best defect 0 hit=True nodes=7 0.12s
+[calib] 3/12 std9_scramble6_r2 rank 9 len 27 -> best defect 0 hit=True nodes=517 8.5s
+[calib] 4/12 std9_scramble10_r0 rank 9 len 33 -> best defect 0 hit=True nodes=137 2.47s
+[calib] 5/12 std9_scramble10_r1 rank 9 len 28 -> best defect 0 hit=True nodes=173 3.68s
+[calib] 6/12 std9_scramble10_r2 rank 9 len 30 -> best defect 2 hit=False nodes=1000 18.76s

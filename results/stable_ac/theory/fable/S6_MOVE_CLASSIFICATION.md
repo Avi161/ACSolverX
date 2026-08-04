@@ -53,20 +53,22 @@ AC4/AC5 = (de)stabilize.
 
 ## 1. The table
 
-| move | changes `|K|`? | preserves `γ_N = 0`? | direction | proof / counterexample | empirical flips (destroy / create out of measured) |
+| move | changes the space? | preserves `γ_N = 0`? | direction | proof / counterexample | empirical flips (destroy / create, out of measured) |
 |---|---|---|---|---|---|
-| **M1** AC1 `r → r^{-1}` | no — homeomorphic | **yes** | both | **T1** below: a cellular homeomorphism, identity on the 1-skeleton. Stronger: whole defect histogram preserved (`GAMMA_N_SYMMETRY_LEMMA`, AUDITED) | 0 / 0 of 2,236 |
+| **M1** AC1 `r → r^{-1}` | no — homeomorphic | **yes** | both | **T1** (§2): a cellular homeomorphism, identity on the 1-skeleton. Stronger: whole defect histogram preserved — `GAMMA_N_SYMMETRY_LEMMA`, AUDITED | 0 / 0 of 2,236 |
 | *(ROT)* cyclic rotation of a relator | no — homeomorphic | **yes** | both | rotation of the polygon; `GAMMA_N_SYMMETRY_LEMMA` (i), AUDITED | 0 / 0 of 4,472 |
-| **M4** AC4/AC5 `⟨…,z | …, z⟩` | yes, but only by a wedge | **yes** | both | **T4** below: `|K_{P⁺}| ≅ |K_P| ∨ D²` glued at a *boundary* point of the disc. Stronger: whole histogram (`R1E` Corollary Z, AUDITED) | 0 / 0 of 1,118 |
-| **M4′** first AC2 slide over a fresh stabilizer, `r_i → r_i z^{±1}` | **no — subdivision** | **yes** | both | **T4′** below (new): the loop `z` is a chord of `K_P`'s 2-cell cutting off a monogon; `K_G` is a CW subdivision of `K_P` | 0 / 0 of 3,332 (`G1`) and 3,332 (`G1i`); `γ_N` equal exactly in all |
-| *(S3)* chord refinement / triangulation | **no — subdivision** | **yes** | both | Theorem S3, `S3_SUBDIVISION_INVARIANCE.md` (pending audit A5) | 63/63 positive ladder, ranks 3–9 (S3 §3) |
-| **M0** move (0), free/cyclic reduction | **YES** | **NO — reduction can CREATE it** | one-way in practice | `("xyXY","yYxxy")` `γ_N = 1` reduces to `("xyXY","xxy")` `γ_N = 0` (`R1F`, re-verified this session). Mechanism: **T0** below. Destroying direction = ¬Conjecture SR, `R7` — **[OPEN]**, 0 counterexamples in ≈114,000 measured complexes | creates: 315 of 2,195 reduction-pairs; destroys: **0 of 1,312** |
-| **M2** AC3 `r → c r c^{-1}`, `c` a generator, product freely reduced | **YES** | **NO — conjugation can DESTROY it** | one-way in practice | **T2** below: this move IS a single spike (up to cyclic rotation), so `R1F`'s counterexample is an AC3 counterexample verbatim: `("xyXY","xxy")` `γ_N = 0` → conjugate `r_2` by `Y` → `("xyXY","Yxxyy")` `γ_N = 1` | **315 destroy / 0 create of 3,507** (24.0 % of thickenable bases; 0 of 2,195 non-thickenable bases) |
-| **M2c** AC3 with cancellation (`r` starts with `c^{-1}` or ends with `c`) | yes | **yes, empirically** | — | no proof; measured only. Structural difference: the fin is planted beside an existing strand of the same 1-handle | **0 destroy / 0 create of 3,413** |
-| **M3** AC2 `r_i → freered(r_i r_j^{±1})` | **YES** | **NO — both directions** | neither | explicit pairs in §6; a genuine 2-handle slide | **425 destroy / 73 create of 1,863** (51.5 % of thickenable bases lose it; 7.0 % of non-thickenable bases gain it) |
+| **M4** AC4/AC5 stabilize / destabilize | yes, but only by a wedge | **yes** | both | **T4** (§3): the space becomes the one-point union with a 2-disc, glued at a *boundary* point of that disc. Stronger: whole histogram — `R1E` Corollary Z, AUDITED | 0 / 0 of 1,118 |
+| **M4′** first AC2 slide over a fresh stabilizer, `r_i → r_i z^{±1}` | **no — subdivision** | **yes** | both | **T4′** (§3, NEW): the loop `z` is a chord of the `r_i`-cell cutting off a monogon, so `K_G` is a CW subdivision of `K_P` | 0 / 0 of 3,332 (`G1`) and 3,332 (`G1i`); `γ_N` equal exactly in all |
+| *(S3)* chord refinement / triangulation | **no — subdivision** | **yes** | both | Theorem S3, `S3_SUBDIVISION_INVARIANCE.md` (audit A5 pending) | 63/63 positive ladder, ranks 3–9 (S3 §3) |
+| **M0** move (0), free / cyclic reduction | **YES** | **NO — reduction can CREATE it** | one-way in practice | `("xyXY","yYxxy")` `γ_N = 1` reduces to `("xyXY","xxy")` `γ_N = 0` (`R1F`, re-verified this session); mechanism **T0** (§4). The destroying direction is ¬Conjecture SR of `R7` — **[OPEN]**, 0 counterexamples in ≈114,000 measured complexes | creates in 315 of 2,510 non-thickenable spellings; destroys in **0 of 997** thickenable spellings |
+| **M2** AC3 `r → c r c^{-1}`, `c` a single generator, product freely reduced | **YES** | **NO — conjugation can DESTROY it** | one-way in practice | **T2** (§5): this move *is* a single spike up to cyclic rotation, so `R1F`'s counterexample is an AC3 counterexample verbatim — `("xyXY","xxy")` `γ_N = 0`, conjugate `r_2` by `Y`, `("xyXY","Yxxyy")` `γ_N = 1` | **315 destroy / 0 create of 3,507** — 24.0 % of thickenable bases; 0 of 2,195 non-thickenable bases |
+| **M2c** AC3 with cancellation (`r` starts with `c^{-1}` or ends with `c`) | yes | **yes, empirically** | — | no proof; measured only (Conjecture S6-C, §5). The fin is planted beside an existing strand of the same 1-handle | **0 destroy / 0 create of 3,413**; `γ_N` preserved exactly in 2,230 / 2,230 |
+| **M3** AC2 `r_i → freered(r_i r_j^{±1})` | **YES** | **NO — in both directions** | neither | explicit pairs in §6; a genuine 2-handle slide | **425 destroy / 73 create of 1,863** — 51.5 % of thickenable bases lose it, 7.0 % of non-thickenable bases gain it |
 
 "Measured" = pairs decided by exact census within the rotation cap; skipped pairs are
-counted in §7 and never converted into a verdict.
+counted in §7 and never converted into a verdict. For M0 the denominators are read in the
+reduction direction: the 315 events are pairs whose spiked spelling has `γ_N > 0` and whose
+reduction has `γ_N = 0`.
 
 ---
 
