@@ -63,6 +63,19 @@ def test_stride_four_covers_all():
     assert len(set(seen)) == 124
 
 
+def test_coerce_legacy_drive_dir():
+    assert ru.coerce_out_dir(ru.LEGACY_DRIVE_DIRS[0]) == ru.DRIVE_DIR_COLAB
+    assert ru.coerce_out_dir(ru.DRIVE_DIR_COLAB) == ru.DRIVE_DIR_COLAB
+    assert ru.coerce_out_dir("/tmp/other") == "/tmp/other"
+
+
+def test_chunk_cov_counts():
+    rows = ru.load_rows()
+    for i, expect in ru.CHUNK_COV_COUNTS.items():
+        chunk, _ = ru._stride_chunk(rows, 4, i)
+        assert sum(1 for r in chunk if r["cov_reduced"]) == expect
+
+
 def test_stem_always_stamps_covstart(tmp_path):
     """Stale CONFIG OUT_STEM without covstart must still write a new jsonl."""
     cfg = dict(
@@ -82,7 +95,7 @@ def test_stem_always_stamps_covstart(tmp_path):
     out = ru.run_unsolved124_s20mk2(cfg, out_dir=str(tmp_path),
                                     heartbeat_secs=3600, progress_secs=3600)
     assert ru.START_TAG in os.path.basename(out)
-    assert "_dpos_" in os.path.basename(out) or "_dpos" in os.path.basename(out)
+    assert "r256b64m24" in os.path.basename(out)
 
 
 def test_smoke_s20mk2_enriched_keys(tmp_path):
@@ -110,16 +123,18 @@ def test_smoke_s20mk2_enriched_keys(tmp_path):
         for k in ("arm", "name", "r1", "r2", "start_total",
                   "min_relator_length", "min_relator", "min_delta", "improved",
                   "nodes_explored", "depth_tie", "path_pending",
-                  "start_source", "cov_reduced"):
+                  "start_source", "cov_reduced", "mu_min", "ladder_id"):
             assert k in r, k
         assert r["arm"] == "s20_mk2"
         assert r["depth_tie"] == "+depth"
+        assert r["ladder_id"] == ru.LADDER_ID
         assert r["start_total"] == len(r["r1"]) + len(r["r2"])
         assert r["min_delta"] == r["start_total"] - r["min_relator_length"]
         assert r["improved"] == (r["min_delta"] > 0)
         mr = r["min_relator"]
         assert isinstance(mr, list) and len(mr) == 2
         assert len(mr[0]) + len(mr[1]) == r["min_relator_length"]
+        assert r["mu_min"] is not None and int(r["mu_min"]) <= int(r["min_relator_length"])
         if r["cov_reduced"]:
             assert r["start_source"] == "mu_ladder_best_rep"
             assert r["r1_autmin"] and (r["r1"], r["r2"]) != (
@@ -127,6 +142,22 @@ def test_smoke_s20mk2_enriched_keys(tmp_path):
         if r["solved"]:
             assert r["path_pending"] is False
             assert r.get("path_moves")
+
+
+def test_replay_two_descender_chains():
+    """Fast pin: aca_34 and aca_87 (r256-only) best_rep chains replay."""
+    from experiments.heuristic_search.verify.verify_cov_best_rep_chains import (
+        verify_all_descenders)
+    n, fails = verify_all_descenders(names={"aca_34", "aca_87"})
+    assert n == 2 and fails == []
+
+
+@pytest.mark.slow
+def test_replay_all_36_descender_chains():
+    from experiments.heuristic_search.verify.verify_cov_best_rep_chains import (
+        verify_all_descenders)
+    n, fails = verify_all_descenders()
+    assert n == 36 and fails == []
 
 
 def test_progress_callback_receives_min_total(monkeypatch):

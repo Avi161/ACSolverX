@@ -48,9 +48,23 @@ MU_LADDER_JSONL = os.path.join(
     ROOT, "results", "stable_ac", "mu_scan",
     "mu_ladder_big_aca124_r256_b64_mrl24.jsonl",
 )
-# Result-changing start identity — must appear in OUT_STEM / jsonl name.
-START_TAG = "covstart"
+# Ladder identity in the filename so a future ladder cannot resume into these rows.
+LADDER_ID = "r256b64m24"
+START_TAG = f"covstart_{LADDER_ID}"
 N_COV_DESCENDERS = 36
+# Deterministic stride CoV counts for CHUNKS=4 (pins all chunks, not only aca_34).
+CHUNK_COV_COUNTS = {1: 9, 2: 7, 3: 10, 4: 10}
+# Colab Drive dirs — stale CONFIG may still point at the Aut-min path.
+DRIVE_DIR_COLAB = (
+    "/content/drive/MyDrive/acsolverx/hsearch_u124_s20mk2_covstart_1m")
+LEGACY_DRIVE_DIRS = (
+    "/content/drive/MyDrive/acsolverx/hsearch_u124_s20mk2_1m",
+)
+# Skip in-parent keep_path recovery above this solved_at (Colab OOM risk).
+RECOVER_MAX_SOLVED_AT = 250_000
+# MU_CRITERION.md: μ ≤ 12 is the stable-triviality tripwire (aca_115 = bug until reproduced).
+MU_SOLVE_THRESHOLD = 12
+AK3_CLASS = "aca_115"
 
 
 def _cfg(**w):
@@ -167,6 +181,32 @@ def _stride_chunk(rows, chunks, chunk_index):
     return picked, f"_c{chunk_index}of{chunks}"
 
 
+def coerce_out_dir(out_dir):
+    """Redirect stale Aut-min Drive paths to the covstart directory.
+
+    Restart→Run All updates the pulled ``.py`` but not an already-open CONFIG
+    cell's ``DRIVE_DIR``. Without this, chunks write correct ``covstart``
+    jsonls into the old folder and the README merge (new folder only) silently
+    drops them.
+    """
+    if not out_dir:
+        return out_dir
+    norm = os.path.abspath(out_dir) if not out_dir.startswith("/content/") else out_dir
+    for legacy in LEGACY_DRIVE_DIRS:
+        if out_dir.rstrip("/") == legacy.rstrip("/") or norm.rstrip("/") == legacy.rstrip("/"):
+            print(f"  NOTE: redirecting stale DRIVE_DIR {out_dir} -> {DRIVE_DIR_COLAB}",
+                  flush=True)
+            return DRIVE_DIR_COLAB
+    return out_dir
+
+
+def _mu_of_pair(pair):
+    """Aut(F₂)-orbit floor of a concrete pair via slow ``aut_canon``."""
+    from experiments.equivalence_classes.lib.autcanon import aut_canon
+    mu, rep, _ = aut_canon((str(pair[0]), str(pair[1])))
+    return int(mu), [str(rep[0]), str(rep[1])]
+
+
 def _row_record(arm, name, dataset, budget, mrl, res, secs, start):
     """Full jsonl row: search fields + start + min pair + length-floor flags."""
     r1, r2 = start["r1"], start["r2"]
@@ -177,6 +217,13 @@ def _row_record(arm, name, dataset, budget, mrl, res, secs, start):
     solved = bool(res.get("solved"))
     # path_pending: solved but certificate not yet recovered (persist-first).
     path_pending = bool(res.get("path_pending", False))
+    mr = res.get("min_relator")
+    mu_min = mu_min_rep = None
+    if isinstance(mr, (list, tuple)) and len(mr) == 2:
+        try:
+            mu_min, mu_min_rep = _mu_of_pair(mr)
+        except Exception as e:  # noqa: BLE001
+            print(f"    aut_canon(min_relator) failed [{name}]: {e!r}", flush=True)
     return {
         "arm": arm,
         "name": name,
@@ -185,6 +232,7 @@ def _row_record(arm, name, dataset, budget, mrl, res, secs, start):
         "mrl": mrl,
         "engine": "hcompact",
         "depth_tie": "+depth",
+        "ladder_id": LADDER_ID,
         "start_source": start.get("start_source", "mu_ladder_best_rep"),
         "cov_reduced": bool(start.get("cov_reduced", False)),
         "mu_in": start.get("mu_in"),
@@ -199,9 +247,11 @@ def _row_record(arm, name, dataset, budget, mrl, res, secs, start):
         "nodes_explored": int(res["nodes_explored"]),
         "path_length": res.get("path_length"),
         "min_relator_length": min_len,
-        "min_relator": res.get("min_relator"),
+        "min_relator": mr,
         "min_delta": min_delta,
         "improved": bool(min_delta is not None and min_delta > 0),
+        "mu_min": mu_min,
+        "mu_min_rep": mu_min_rep,
         "max_relator_length_expanded": res.get("max_relator_length_expanded"),
         "path_moves": path_moves,
         "path_pending": path_pending,
@@ -298,7 +348,13 @@ def _update_jsonl_row(path, arm, name, updates):
 
 
 def _recover_pending(path, cfg, budget, mrl):
-    """Finalize path_pending solves with keep_path=True recovery (parent-side)."""
+    """Finalize path_pending solves with keep_path=True recovery (parent-side).
+
+    Late solves (large ``solved_at``) skip in-parent recovery: ``keep_path``
+    memory scales with path length and can OOM-kill a Colab runtime after the
+    search already finished. Those rows stay ``path_pending`` for an offline
+    recovery pass.
+    """
     if not os.path.exists(path):
         return 0
     pending = []
@@ -312,9 +368,17 @@ def _recover_pending(path, cfg, budget, mrl):
     n_ok = 0
     for r in pending:
         arm = r["arm"]
+        solved_at = int(r.get("solved_at") or r.get("nodes_explored") or 0)
+        if solved_at > RECOVER_MAX_SOLVED_AT:
+            print(f"    recovery deferred [{arm}/{r['name']}] "
+                  f"solved_at={solved_at:,} > {RECOVER_MAX_SOLVED_AT:,} "
+                  "(path_pending; avoid Colab OOM)", flush=True)
+            continue
+        # Replay only as far as the recorded solve — not the full census budget.
+        rec_budget = max(solved_at, 1)
         try:
             rec = greedy_search_h(
-                r["r1"], r["r2"], budget,
+                r["r1"], r["r2"], rec_budget,
                 max_relator_length=mrl, config=run_ab.ARMS[arm],
                 keep_path=True)
             if ((rec["solved"], rec["nodes_explored"], rec["path_length"])
@@ -463,7 +527,9 @@ def _report(out, cfg):
         "**Non-comparative** single-arm census (no baseline A/B). "
         f"Rows: {n}. Arm(s): {arms}. depth_tie=`+depth`. "
         "Starts = μ-ladder `best_rep` (CoV-reduced for the 36 descenders; "
-        "Aut-min for the rest).",
+        "Aut-min for the rest). A solve certifies the class **stably** "
+        "AC-trivial (Prop A CoV chain + Thm 3 aut_canon + replayed AC path) "
+        "— never AC-trivial unqualified.",
         "",
         "Cap 64 is per-relator ⇒ search is incomplete at the length ceiling. "
         "Unsolved means unsolved within 1M / cap 64 — never a counterexample.",
@@ -477,6 +543,24 @@ def _report(out, cfg):
         f"- solved: **{len(solved)}/{n}**"
         + (f" ({len(pending)} path_pending)" if pending else ""),
     ]
+    mu_hits = [r for r in data
+               if r.get("mu_min") is not None
+               and int(r["mu_min"]) <= MU_SOLVE_THRESHOLD]
+    if mu_hits:
+        lines += [
+            "",
+            f"### μ ≤ {MU_SOLVE_THRESHOLD} tripwire "
+            f"({len(mu_hits)} row(s) — MU_CRITERION.md)",
+            "",
+        ]
+        for r in mu_hits:
+            flag = (" **aca_115 PRESUMED BUG until independently reproduced**"
+                    if r.get("name") == AK3_CLASS else "")
+            lines.append(
+                f"- `{r['name']}`: mu_min={r['mu_min']} "
+                f"raw_min={r.get('min_relator_length')} "
+                f"start={r.get('start_total')}{flag}"
+            )
     if deltas:
         lines += [
             f"- min_delta among improvers: median {median(deltas):.0f}, "
@@ -540,6 +624,7 @@ def _report(out, cfg):
 
 def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
                            progress_secs=300):
+    out_dir = coerce_out_dir(out_dir)
     rows = load_rows(cfg.get("SUBSET"))
     chunks = cfg.get("CHUNKS") or 1
     chunk_index = cfg.get("CHUNK_INDEX")
@@ -563,10 +648,14 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
     # Filename encodes result-changing identity (depth tie is fixed +depth here).
     if "dpos" not in stem:
         stem = f"{stem}_dpos"
-    # Always stamp covstart so Restart→Run All with a stale CONFIG cell still
-    # writes a new jsonl (does not RESUME Aut-min-start files from before).
+    # Always stamp ladder-tagged covstart so Restart→Run All with a stale
+    # CONFIG cell still writes a new jsonl (does not RESUME Aut-min files).
     if START_TAG not in stem:
-        stem = f"{stem}_{START_TAG}"
+        # Also rewrite a bare legacy "covstart" tag into the ladder-tagged one.
+        if "_covstart" in stem and START_TAG not in stem:
+            stem = stem.replace("_covstart", f"_{START_TAG}", 1)
+        else:
+            stem = f"{stem}_{START_TAG}"
     cfg["OUT_STEM"] = stem
 
     budget = int(cfg["NODE_BUDGET"])
@@ -596,6 +685,14 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
         if int(a34["start_total"]) != 16:
             raise AssertionError(
                 f"aca_34 start_total={a34['start_total']} (want 16)")
+    # Pin deterministic per-chunk CoV counts (all four chunks, not only c3).
+    if (cfg.get("SUBSET") is None and int(chunks) == 4
+            and chunk_index is not None
+            and int(chunk_index) in CHUNK_COV_COUNTS
+            and n_cov != CHUNK_COV_COUNTS[int(chunk_index)]):
+        raise AssertionError(
+            f"chunk {chunk_index} CoV-reduced count {n_cov} != "
+            f"{CHUNK_COV_COUNTS[int(chunk_index)]}")
     # Full 124 (no subset, no stride) must carry all 36 descenders.
     if (cfg.get("SUBSET") is None
             and (not chunks or int(chunks) <= 1 or chunk_index is None)

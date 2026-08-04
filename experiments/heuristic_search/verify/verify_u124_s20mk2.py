@@ -3,10 +3,12 @@
 1. Every row has start_total / min_relator / min_delta consistent.
 2. ``r1``/``r2`` match μ-ladder ``best_rep`` for that ``aca_*`` id.
 3. Every solved row with path_moves replays to a trivial pair (Def 2.1).
-4. Optional: exact 124 unique names when merging all chunks.
+4. Optional: exact 124 unique names when merging all chunks; ``n == names``.
+5. A solve certifies **stable** AC-triviality of the class (wording only here;
+   certificate = Prop A CoV chain + Thm 3 + AC path) — never AC-trivial.
 
     PYTHONPATH=. python3 -m experiments.heuristic_search.verify.verify_u124_s20mk2 \\
-        results/heuristic_search/u124_s20mk2_1m/merged_*.jsonl
+        --expect-n 124 merged.jsonl
 """
 from __future__ import annotations
 
@@ -25,7 +27,7 @@ from experiments.search.greedy_baseline import (  # noqa: E402
     moves_to_states, str_to_move,
 )
 from experiments.heuristic_search.runners.run_unsolved124_s20mk2 import (  # noqa: E402
-    load_mu_ladder_best_reps,
+    MU_SOLVE_THRESHOLD, load_mu_ladder_best_reps,
 )
 
 
@@ -78,6 +80,13 @@ def verify_file(path, expect_n=None, expect_names=None, floors=None):
                     fails.append(
                         f"{path}:{i} min_relator lengths "
                         f"{len(mr[0])+len(mr[1])} != min_relator_length {mrl}")
+            if (r.get("mu_min") is not None
+                    and int(r["mu_min"]) <= MU_SOLVE_THRESHOLD
+                    and name == "aca_115"):
+                fails.append(
+                    f"{path}:{i} aca_115 mu_min={r['mu_min']} ≤ "
+                    f"{MU_SOLVE_THRESHOLD}: presumed bug until reproduced "
+                    "(MU_CRITERION.md)")
             if r.get("solved"):
                 n_solved += 1
                 if r.get("path_pending"):
@@ -107,6 +116,9 @@ def verify_file(path, expect_n=None, expect_names=None, floors=None):
                     n_replay += 1
     if expect_n is not None and len(names) != expect_n:
         fails.append(f"unique names {len(names)} != expect_n {expect_n}")
+    if expect_n is not None and n != len(names):
+        fails.append(
+            f"row count {n} != unique names {len(names)} (duplicates?)")
     if expect_n == 124 and n_cov != 36:
         fails.append(f"cov_reduced rows {n_cov} != 36 on full merge")
     if expect_names is not None and names != set(expect_names):
@@ -123,7 +135,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("jsonl", nargs="+")
     ap.add_argument("--expect-n", type=int, default=None,
-                    help="expected unique presentation count (124 after merge)")
+                    help="required unique presentation count (use 124 after merge)")
     args = ap.parse_args()
     floors = load_mu_ladder_best_reps()
     all_fails = []
@@ -143,6 +155,8 @@ def main():
     if all_fails:
         sys.exit(1)
     print("ALL CHECKS PASSED")
+    print("Note: a solve certifies the class stably AC-trivial "
+          "(Prop A + Thm 3 + AC path), never AC-trivial unqualified.")
 
 
 if __name__ == "__main__":
