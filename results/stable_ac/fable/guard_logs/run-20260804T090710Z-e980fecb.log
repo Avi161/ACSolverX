@@ -1,0 +1,9 @@
+control: 5 AC-trivial rank-2 sources with defect 2, L=13, -> rank-9 roots with sum|delta|=14
+   source ('XyyXy', 'YxYYYxxY')
+   source ('yXYxx', 'YxxyXYxx')
+   source ('XYYXYYXY', 'yxxyy')
+   source ('xYYxYxx', 'YYXyxx')
+   source ('YXyxyx', 'xyxyxyx')
+  *** CUBIC control2|src0|root1: ['dij', 'GEF', 'aij', 'bxk', 'cyX', 'yDb', 'XEC', 'yFA', 'HHg', 'KDb', 'iFA', 'jEC', 'kHg'] verified=True gamma={'status': 'OK', 'minimum_defect': 4, 'census': 8192}
+  *** CUBIC control2|src0|root4: ['jhd', 'FcG', 'axY', 'bji', 'iBc', 'HAd', 'eYx', 'XFK', 'yGe', 'KBc', 'iGe', 'jFh', 'kAd'] verified=True gamma={'status': 'OK', 'minimum_defect': 6, 'census': 8192}
+  *** CUBIC control2|src0|root5: ['YCe', 'GIx', 'ayh', 'JJb', 'cYH', 'kAd', 'eXi', 'fbd', 'XGf', 'hGf', 'iAd', 'KCe', 'kJb'] verified=True gamma={'status': 'OK', 'minimum_defect': 4, 'census': 8192}

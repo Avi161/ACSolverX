@@ -407,6 +407,33 @@ exists. Given they are the presentations *closest* to a Lackenby
 certificate anywhere in the 124, that is the most obvious unfinished experiment on this line
 and it is cheap — it is item 3 of §5.
 
+### 4b. The entangled-slide census: attempted four times, never completed
+
+`S7` §4 isolated the one thing depth `k ≥ 2` can offer that depth 1 cannot — an AC2 slide by
+a conjugate of a relator that already involves **several** fresh generators, which no
+Lemma-11 removal can serialize because removal substitutes a definition back and undoes the
+entanglement. Measuring whether such slides flip γ_N any better than plain ones would close
+the last hole in §1(i). It was attempted four times and **produced no data**. The causes,
+recorded because three of them are process lessons rather than mathematics:
+
+1. **Output only at the end.** The first run printed its tally after the loop, so its
+   10-minute timeout erased the whole measurement — precisely the failure
+   `instrument-the-search-before-reading-its-null.md` was filed about, committed by the
+   author of that lesson.
+2. **`nohup` runs were reaped.** Two attempts launched with `nohup … &` were killed with the
+   shell that spawned them; only harness-tracked background tasks survive here.
+3. **The inner loop never checked the clock.** With a per-base loop of 15 `decide()` calls
+   and no time check inside it, a single slow decision blocked the outer cap indefinitely.
+4. The final, fixed attempt exited without printing for reasons not diagnosed.
+
+**Cost of the diagnosis, which is the part worth keeping:** at rank 4 with these relator
+lengths a large fraction of states come back `UNDECIDED` — the cut-scheme solver is out of
+scope and the exact census exceeds any reasonable cap — so the census is both slow *and*
+sparse in usable pairs. Anyone repeating this should decide with the factorial census under
+a tight relator-length cap (≤ 10) and treat `UNDECIDED` rates as a design parameter, not an
+afterthought. **The claim in §1(i) is therefore complete for every mechanism except this
+one, which remains untested rather than tested-and-null.**
+
 ### 5a. An instrument note for the cubic regime
 
 Measured on `C1` (rank 13, 13 relators of length 3): the exact factorial census takes

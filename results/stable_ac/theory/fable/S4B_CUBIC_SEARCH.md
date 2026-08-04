@@ -446,6 +446,46 @@ source ("XYXXY","XXYXYXXY")   rank 2, gamma_N = 0, AC-trivial
 6. **chain replays**: `verify_chain` from the root passes, and the root **un-merges in
    exactly 7 steps** to `("xxyxy","XYXXYXYX")` = the source up to rotation and inversion.
 
+### 4.6b **THE CONTROL IS A SURVIVAL CONTROL, NOT A CREATION CONTROL** — read §4.7 through this
+
+Before drawing anything from §4.6 I replayed **every one of the 759 hits' chains**, computing
+the exact defect at the root and after each `SPLIT`:
+
+```
+distinct defect sequences (root -> ... -> hit) over all 759 hits:
+        (0, 0, 0, 0)  x 759          <-- every single one
+chains that left 0 and came back (i.e. SPLIT CREATED gamma_N = 0):   0
+```
+
+**Not one hit was created. All 759 are `γ_N = 0` inherited from the root and never lost.**
+The root is thickenable by construction (`S3_AUDIT` Lemma S3′ + a `γ_N = 0` rank-2 source),
+so what §4.6 measures is the rate at which `SPLIT` chains **fail to destroy** an existing
+certificate — a *survival* rate — not the rate at which the region *produces* certificates.
+
+This matters because **AK(3) has nothing to survive**: every one of its chord triangulations
+is `γ_N = 2` exactly (§2), so reaching `γ_N = 0` from an AK(3) root requires `SPLIT` to
+**create**. Three independent measurements now say it never does:
+
+| measurement | creations | opportunities |
+|---|---|---|
+| flip census, rank-5 corpus (§3.2) | **0** | 1,470 non-thickenable parents |
+| control hit chains, rank 9→12/13 (this section) | **0** | 759 chains |
+| AK(3) pool, rank 12/13 (§4.5) | **0** | 45,111 states |
+
+**So the §4.7 contrast below must NOT be read as "AK(3) is special".** The honest reading is
+the weaker one: `SPLIT` appears unable to create `γ_N = 0` at any rank tested, and AK(3)'s
+`0/45,111` is explained by its root's defect, not by any property of AK(3) beyond that
+defect. I had this backwards in the first draft of §4.7 and in the report that produced it;
+the correction is recorded rather than quietly applied, because the failure mode — reading a
+survival control as a creation control — is the reusable lesson (**T-S19**).
+
+**The sharper control, and why it could not be built as specified.** The right matched
+control is an AC-trivial rank-2 source with the **same positive defect as AK(3)** (defect 4,
+`γ_N = 2`). Over 33 random AC-trivial `L = 13` rank-2 presentations the rank-2 defect
+distribution was **`{0: 20, 2: 13}` — defect 4 never occurred**. AK(3) sits at a defect that
+is *rare* among AC-trivial presentations of its length, which is itself worth recording. The
+closest constructible matched control is therefore defect 2 (`γ_N = 1`), reported in §4.9.
+
 ### 4.7 What the calibration does to AK(3)'s null
 
 | | states decided exactly | `γ_N = 0` | rate |
@@ -454,14 +494,21 @@ source ("XYXXY","XXYXYXXY")   rank 2, gamma_N = 0, AC-trivial
 | **AK(3)** | 45,111 | **0** | **0.00 %** |
 
 Under the control's rate one would expect ≈ **681** thickenable states among AK(3)'s 45,111.
-**Zero were found.** So:
+**Zero were found.** What that does and does not license, given §4.6b:
 
-* the rank-12/13 near-cubic region is **not** structurally `γ_N ≥ 1` — it contains
-  certificates in quantity, and this pipeline reaches them and this kernel decides them;
-* therefore **AK(3)'s 0/45,111 is a genuinely informative null**, not an instrument artefact
-  and not a statement about the region;
-* it is the first calibrated negative this line has produced about AK(3)'s stable class at
-  high rank.
+* ✔ **the rank-12/13 near-cubic region is NOT structurally `γ_N ≥ 1`** — it contains
+  certificates in quantity, this pipeline reaches them and this kernel decides them. The
+  "maybe the region is simply empty" doubt is dead, which was the point of building the
+  control;
+* ✔ **the instrument is sound**: 759 exhibited certificates, one verified six ways;
+* ✘ **it does NOT show AK(3) is special.** The 1.51 % is a *survival* rate from a
+  `γ_N = 0` root, and AK(3) has no `γ_N = 0` root to start from (§2). The expected-681
+  arithmetic silently assumes `SPLIT` creates at the same rate it preserves, and §4.6b
+  measures that creation rate at **0 in 759 + 1,470 + 45,111 opportunities**;
+* → the defensible statement is: **the pipeline preserves certificates and does not create
+  them, so it can only settle a presentation that already has a thickenable member at
+  rank 2 — which AK(3) does not.** That retires the route for AK(3) *with a reason*, which
+  is the outcome S4 §7.3 called the second publishable one.
 
 **Four caveats, all binding.**
 1. **The control is ONE source.** The 300 s search budget was consumed by source 0 (33 roots
