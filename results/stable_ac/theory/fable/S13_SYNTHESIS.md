@@ -170,7 +170,38 @@ for "drive toward a certificate", because the chain's γ_N is destroyed by the S
 preserved by the refinements, so a cost-greedy march to the normal form is the wrong
 instrument for a certificate hunt.
 
-### 3z-bis. THE CALIBRATED NEGATIVE — the strongest result of the session
+### 3z-bis. ~~THE CALIBRATED NEGATIVE — the strongest result of the session~~ **RETRACTED**
+
+> ## ⛔ RETRACTED IN FULL — see `S16_CONTROL_RETRACTION.md`
+>
+> The control family was widened to five AC-trivial rank-2 sources **all of total length 13**
+> (so no length confound). The source `γ_N` values were then recomputed in this clone with the
+> repo's own decider:
+>
+> | source | γ_N of the source | decided | γ_N = 0 hits |
+> |---|---|---|---|
+> | the control used below, `("XYXXY","XXYXYXXY")` | **0 — SPHERICAL** | 50,320 | **759** |
+> | ctrl2 `src0`, `src1`, `src2` (all NOT_SPHERICAL) | ≥ 1 | 46,298 | **0** |
+> | **AK(3)** (NOT_SPHERICAL) | 2 | 45,111 | **0** |
+>
+> The 1.51 % was **not** a property of being AC-trivial. It was a property of that one root
+> already being thickenable. Three independent non-thickenable sources score exactly what
+> AK(3) scores: zero. The between-source variance inside the control family swamps the
+> target-vs-control gap this section was reading, so **AK(3)'s 0/45,111 is not a fact about
+> AK(3)**, and the "expected ≈ 681" is void with the rate that produced it.
+>
+> The tell was in this section's own line below — *"only the source's rank-2 defect
+> differs"*. That was the whole effect, named and then attributed elsewhere.
+>
+> What survives, and is worth more, is the instrument fact (S16 §4): across **91,409**
+> decided states from **four** independent non-thickenable roots, the cubic split search
+> created γ_N = 0 **zero** times. In this move set thickenability is **inherited, not
+> generated** — exactly as S3 (chord refinement = CW subdivision, defect histogram preserved)
+> and T4/T4′ (stabilization inert) predict. So this search could never have certified AK(3);
+> it can only confirm roots that were already done.
+
+*Everything from here to the end of §3z-bis is the retracted text, kept verbatim for the
+record.*
 
 The 3z null above was uncalibrated: with no γ_N = 0 state known to exist at rank 12–13, "AK(3)
 has none" and "the region has none" were indistinguishable. Building the control settles it.

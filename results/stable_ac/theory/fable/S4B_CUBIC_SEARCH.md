@@ -62,15 +62,20 @@ This is what `S4` §0 item 6 left open ("**No cubic form of AK(3) is reported**"
    The pool is persisted with full replayable chains. **And proximity to cubic form turns out
    to be anti-correlated with low defect**: 0/1,232 of the states one `SPLIT` from cubic are
    at `γ_N = 1`, against 527/43,879 two SPLITs away (T-S17).
-5. **THE NULL IS NOW CALIBRATED, and it survives** (§4.6–4.8). Running the *identical*
-   pipeline on a rank-2 source that is AC-trivial **and thickenable** produced **759
-   `γ_N = 0` states in 50,320** (1.51 %) in the same rank-12/13 region — one of them verified
-   six ways, including `witness_check_n`, Todd–Coxeter and a full chain replay back to the
-   rank-2 source. So the region **does** contain certificates and this instrument **does**
-   find them. Under the control's rate, AK(3)'s 45,111 states should have contained ≈ **681**
-   thickenable members; **0** were found. AK(3)'s null is informative, not an artefact.
-   Per-step tracing shows why: chord refinement holds `γ_N` **exactly constant** (a live
-   check on Theorem S3), and it is the `SPLIT`s that destroy it.
+5. **THE CALIBRATION IS BUILT — AND IT OVERTURNS THE READING I FIRST GAVE IT** (§4.6–4.10).
+   A matched thickenable (`γ_N = 0`) rank-2 source produced **759 `γ_N = 0` states in 50,320**
+   at rank 12–13, one verified six ways. So the region **does** contain certificates and the
+   instrument **does** find them. **But replaying all 759 chains shows every one has defect
+   sequence `(0,0,0,0)`: not one was created — all are inherited from a root that was already
+   thickenable.** The sharp control settles it: five AC-trivial sources at *positive* rank-2
+   defect, matched to AK(3) on every other axis, give **0 thickenable states in 46,298
+   decided**. Across four experiments at three ranks, `SPLIT` has created `γ_N = 0`
+   **0 times in 93,638 opportunities**.
+   → **The pipeline is certificate-preserving and certificate-non-creating, so it can only
+   settle a presentation that already has a thickenable member at rank 2. AK(3) does not.
+   The cubic route cannot settle AK(3), and its 0/45,111 says nothing about AK(3) beyond its
+   rank-2 defect.** The route is retired *with a mechanism*, not with silence. What survives
+   untouched is item 1: the rank-13 cubic form itself.
 6. **Two cost-model corrections** (§5): a cubic triangular presentation at rank `N` has
    census exactly `2^N`, so S4 §7.2's "16 cases" does not transfer (AK(3)'s cubic forms have
    census `2^13 = 8,192`, and the advantage over AK(3)'s own 86,400 inverts at rank 17); and
@@ -526,6 +531,74 @@ Under the control's rate one would expect ≈ **681** thickenable states among A
    anti-correlation is an **AK(3)-specific** observation, not a property of the region. T-S17
    is rewritten accordingly in §7.
 
+### 4.9 THE SHARP CONTROL — a positive-defect AC-trivial source yields **zero** certificates
+
+§4.6's control started from `γ_N = 0`; AK(3) starts from `γ_N = 2`. That is the one axis the
+control did not match, and §4.6b showed it is the axis that decides everything. The sharp
+control fixes it as far as it can be fixed.
+
+**Sourcing note.** The exactly-matched source (AC-trivial, rank 2, `L = 13`, defect **4**)
+could not be constructed: over 33 random AC-trivial `L = 13` rank-2 presentations the defect
+distribution was **`{0: 20, 2: 13}` — defect 4 never appeared**. AK(3) sits at a defect that
+is *rare* for its length among AC-trivial presentations, which is a small finding in its own
+right. The closest constructible control is defect **2** (`γ_N = 1`), still a *positive*
+defect and therefore still requiring `SPLIT` to **create** in order to reach `γ_N = 0`.
+
+**Design.** Five AC-trivial rank-2 sources at defect 2, `L = 13`, each triangulating to rank
+9 with `Σ|δ| = 14` — matched to AK(3) on rank, length, root rank, `Σ|δ|`, kernel and budgets,
+and differing from it only in having defect 2 rather than 4. Each source got **its own**
+wall-clock slice (`--per-source-budget`), fixing §4.6's single-source defect.
+
+```
+sources: ("XyyXy","YxYYYxxY")  ("yXYxx","YxxyXYxx")  ("XYYXYYXY","yxxyy")
+         ("xYYxYxx","YYXyxx")  ("YXyxyx","xyxyxyx")
+```
+
+> ### Result: **0 thickenable states in 46,298 decided**
+>
+> | `γ_N` | defect | count | share |
+> |---|---|---|---|
+> | **0 (thickenable)** | 0 | **0** | **0.00 %** |
+> | 1 | 2 | 4,986 | 10.77 % |
+> | 2 | 4 | 38,113 | 82.32 % |
+> | 3 | 6 | 3,199 | 6.91 % |
+>
+> Per source (the three reached inside the decide budget), **all zero at defect 0**:
+> `src0 {2: 1998, 4: 16578, 6: 556}`, `src1 {2: 906, 4: 9028, 6: 2078}`,
+> `src2 {2: 2082, 4: 12507, 6: 565}`.
+> The pipeline *does* reach cubic form for these sources (three rank-13 cubic forms found,
+> at defects 4, 6, 4) — it simply never reaches defect 0.
+
+### 4.10 The corrected conclusion — the route is retired, with a reason
+
+Four independent measurements, all pointing the same way:
+
+| measurement | region | creations of `γ_N = 0` | opportunities |
+|---|---|---|---|
+| flip census (§3.2) | rank 5 | **0** | 1,470 |
+| control hit chains (§4.6b) | rank 9→12/13 | **0** | 759 |
+| **sharp control, defect-2 sources (§4.9)** | **rank 12/13** | **0** | **46,298** |
+| AK(3) pool (§4.5) | rank 12/13 | **0** | 45,111 |
+
+and one showing the instrument is not blind: 759 exhibited `γ_N = 0` states, one verified six
+ways, whenever the root **already had** `γ_N = 0` (§4.6).
+
+> **The chord-refinement + `SPLIT` pipeline is, as measured, certificate-PRESERVING and
+> certificate-NON-CREATING.** Chord refinement preserves `γ_N` exactly (proved —
+> `S3_AUDIT` Lemma S3′, re-confirmed live 8/8 in §4.8); `SPLIT` destroys often (67 %, §3.2)
+> and has never once been observed to create, in 93,638 opportunities across four
+> independent experiments at three different ranks.
+>
+> **Consequence.** The route can only ever settle a presentation that already has a
+> thickenable member at rank 2. AK(3) does not — it is `γ_N = 2` at rank 2 and *every* one of
+> its chord triangulations is `γ_N = 2` exactly. **So the cubic route cannot settle AK(3),
+> and its 0/45,111 says nothing about AK(3) beyond its rank-2 defect.**
+
+This **retires the certificate half of the route with a mechanism rather than with silence**,
+which is the outcome S4 §7.3 named as the second publishable one, and it supersedes the
+reading in the first draft of §4.7. What survives untouched is §0/§4.2: **AK(3) has a cubic
+triangular form at rank 13** — a normal-form result that never depended on `γ_N`.
+
 ### 4.8 The mechanism, traced step by step
 
 `chaintrace` records `γ_N` at the rank-2 base, after **every** chord refinement, and after
@@ -602,8 +675,10 @@ the route's prior, and the flip census is the first direct measurement of it.
 | **Q-red for AK(3)** (cubic form, all relators cyclically reduced) | **ANSWERED YES** — two explicit rank-13 witnesses, verified four ways (§4.2). This closes S4 §0 item 6 and S4 §7.3's first branch **for AK(3)** |
 | Q-red in general (every balanced presentation of 1) | **still OPEN** — Lemma S4.6 / Observation S4.5 unproved; two witnesses are not a theorem |
 | can `SPLIT` lower `γ_N`? | **YES, measured** — `γ_N = 2 → 1` from AK(3)'s triangulation (§3.4). My own monotonicity conjecture is refuted |
-| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **OPEN, with a large CALIBRATED exact null against it**: 45,111 states decided exactly, **0 thickenable**, against a matched control that yields 1.51 % (§4.6–4.7). Expected ≈ 681, observed 0 |
-| does the rank-12/13 region contain `γ_N = 0` states at all? | **YES — 759 exhibited** (§4.6). The AK(3) null is a fact about AK(3), not about the region |
+| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **NO, as measured — route retired with a mechanism** (§4.10). `SPLIT` created `γ_N = 0` in 0 of 93,638 opportunities across four experiments; it only ever *preserves* one already present at the root, and AK(3) has none |
+| does the rank-12/13 region contain `γ_N = 0` states at all? | **YES — 759 exhibited** (§4.6), all inherited from thickenable roots (§4.6b) |
+| does a POSITIVE-defect AC-trivial source reach `γ_N = 0` here? | **NO** — 0 in 46,298 decided over 5 matched sources (§4.9). This is what makes AK(3)'s zero uninformative about AK(3) |
+| is AK(3)'s rank-2 defect unusual? | **yes, for its length**: 33 random AC-trivial `L = 13` sources gave defect `{0: 20, 2: 13}`; defect 4 never appeared (§4.9) |
 | which step destroys thickenability? | **the `SPLIT`s.** Chord refinement holds `γ_N` exactly constant on every traced chain (§4.8, live check on Thm S3) |
 | does driving toward cubic form drive toward thickenability? | **NO, measured**: `Σ|δ| = 2` states are 0/1,232 at `γ_N = 1`; `Σ|δ| = 4` states are 527/43,879 (§4.5, T-S17) |
 | is AK(3) harder than matched AC-trivial inputs for this search? | **NO** on the cubic-form axis (2/28 vs 0/35, §4.3), **YES** on the defect axis (0.8 % vs 25 % of tested near-cubic states reach defect 2) |
@@ -623,9 +698,10 @@ the route's prior, and the flip census is the first direct measurement of it.
    — but it is now a large, cheap, structured population instead of a lone point. Re-root the
    search at them and apply the moves `S6` classifies as *creators* (general AC2, spelling
    choice) rather than `SPLIT`, which §4.5 shows does not get there.
-3. **Done — §4.6.** The control yields 1.51 %. What remains is *breadth*: only one control
-   source was actually searched (§4.6 caveat 1), so run the remaining five to see how much
-   the rate varies across thickenable sources before treating 1.51 % as a reference.
+3. **Done, and it changed the answer — §4.6b/§4.9/§4.10.** The route's certificate half is
+   retired: the pipeline cannot create `γ_N = 0`. The remaining live questions are (a) whether
+   *some* move set can create it (S6 says general AC2 and spelling choice do — that is S12's
+   territory, not this one), and (b) Q-red in general, which never depended on `γ_N`.
 4. Q-red in general (Lemma S4.6) — now with two worked instances to generalise from.
 
 ## 7. Traps added to the line
@@ -649,6 +725,13 @@ the route's prior, and the flip census is the first direct measurement of it.
   §4.6). So the anti-correlation is an observation about AK(3), not about the cubic regime.
   The transferable half is the weaker statement: *a normal-form target and a thickenability
   target need not point the same way — check, do not assume.*
+* **T-S19.** *A control built from inputs that already HAVE the property measures survival,
+  not creation — and the two answer different questions.* All 759 hits of the §4.6 control
+  were `γ_N = 0` at the root and never lost it; none was created. Reading that 1.51 % as a
+  rate the region *produces* certificates, and comparing AK(3)'s 0 against it, inflated a
+  pipeline artefact into a claim about AK(3). **Before comparing a hard instance's null to a
+  control rate, replay the control's own chains and check whether the property was created or
+  merely carried.** The fix is a control whose inputs *lack* the property (§4.9).
 * **T-S18.** *A "the region may simply be empty" doubt is a reachability question and is
   fixable by construction.* Do not report an exact-per-state null over a region until a
   matched input with a **known** positive has been pushed through the same pipeline. Here it
@@ -705,6 +788,9 @@ python3 experiments/stable_ac/fable/cubic_split_search.py decide --by-source \
 python3 experiments/stable_ac/fable/cubic_split_search.py chaintrace --ladder 2 \
     --split-steps 4 --deep-cap 400000
 ```
+
+Sharp control (§4.9): same two commands with `--want-defect 2 --per-source-budget 50
+--ladder 5 --seed 909`, artefacts `s4b_ctrl2_pool.jsonl.gz` / `s4b_ctrl2_decided.jsonl.gz`.
 
 Artefacts: `results/stable_ac/fable/s4b_flips.jsonl`, `s4b_ak3.jsonl`, `s4b_ak3_run2.jsonl`,
 `s4b_ladder.jsonl`, **`s4b_pool.jsonl.gz`** (45,264 near-cubic states with full chains),

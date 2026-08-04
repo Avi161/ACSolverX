@@ -133,6 +133,13 @@ much harder than those Erdős problems. Its three keys:
   claim about something established by construction is suspect on sight; re-derive the
   direction before acting on "stop searching region X".
   [[TRAP]](experiments/lessons/parallel-runs-and-bound-direction.md)
+- A control built from inputs that ALREADY have the property measures survival, not
+  creation. Ours was length-, rank- and pipeline-matched — and already γ_N = 0, so all 759
+  "hits" had chain `(0,0,0,0)` and the instrument had never once created a certificate
+  (0 in 93,638 from four non-thickenable roots). Retracted "the strongest result of the
+  session". Replay the control's own chains, put Φ(source) in its own column, and use ≥ 3
+  sources — one source cannot show you its between-source variance.
+  [[TRAP]](experiments/lessons/control-measures-survival-not-creation.md)
 - The GERM COUNT is the criterion for whether extra generators can do anything; "it only
   re-describes the relators" is NOT, and stating it that way cost this line a wrong lesson.
   A new edge with exactly two 2-cell germs from two DISTINCT 2-cells is a chord: provably
