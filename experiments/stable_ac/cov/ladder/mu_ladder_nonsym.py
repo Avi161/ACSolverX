@@ -1,173 +1,180 @@
-"""Non-automorphic (n_subs>1) CoV beam ladder with cost accounting.
+"""Non-automorphic CoV best-first ladder (advisor-REVISE form).
 
-Operationalisation of "only non-automorphic CoVs":
-  1. Keep hops with ``n_subs > 1`` (PROOFS.tex Thm 1: every n_subs=1
-     transformed-relator CoV is an automorphic image).
-  2. Verify ``aut_canon(out) != aut_canon(in)`` (orbit-moving).
+Gates (PROOFS.tex Thm 1 + orbit check; Thm 3 Aut-min after every hop):
+  * ``n_subs > 1`` pre-screen (Thm 1: n_subs=1 ⇒ automorphic under
+    transformed-relator isolation; ``allow_defining_iso=False`` so Thm 1
+    applies — the orbit check is what *proves* non-automorphy).
+  * ``aut_canon(out) ≠ aut_canon(in)`` (orbit-moving).
+  * Every accepted hop is replaced by its Aut-min immediately; expansion
+    is only from Aut-min pairs; visited = Aut-min orbits.
 
-After every accepted CoV hop the concrete output is replaced **immediately**
-by its Aut-min representative; the beam expands only from Aut-min pairs; the
-visited set stores Aut-min orbits so the same orbit is never re-expanded.
+Search over the open set is **global best-first by μ** (not a rung-local
+beam — lesson: rung-local-beam-abandons-the-low-shell). Canonicalisation
+uses ``autcanon_fast.aut_min`` for the climb; slow ``aut_canon`` stays in
+the verifier for cross-check.
 
-    from experiments.stable_ac.cov.ladder.mu_ladder_nonsym import (
-        climb_nonsym, calibrate_node_eq_ms)
+Cost is charged in ``n_aut_canon`` calls (deterministic), never wall-clock.
+
+    from experiments.stable_ac.cov.ladder.mu_ladder_nonsym import climb_nonsym
 """
 from __future__ import annotations
 
-import time
+import heapq
 
-from experiments.equivalence_classes.lib.autcanon import aut_canon
 from experiments.greedy_tests.spec.words import str_to_word, word_to_str
 from experiments.stable_ac.cov import cov
+from experiments.stable_ac.cov.ladder.autcanon_fast import aut_min
 
 
-def orbit(pair):
-    """Return ``(mu, aut_min_pair)`` — always the Aut-min representative."""
-    mu, rep, _ = aut_canon((str(pair[0]), str(pair[1])))
+def orbit_fast(pair):
+    """``(mu, aut_min_pair)`` via numba twin — identical rows to ``aut_canon``[:2]."""
+    mu, rep = aut_min((str(pair[0]), str(pair[1])))
     return int(mu), (str(rep[0]), str(rep[1]))
 
 
 def hop_nonsym(r1s, r2s, cap, cost=None):
-    """CoV hops from an Aut-min pair: n_subs>1 and orbit-moving only.
+    """n_subs>1 + orbit-moving hops from an Aut-min parent.
 
-    Parent ``(r1s, r2s)`` is assumed Aut-min (caller enforces). Each kept child
-    is returned as its **Aut-min** ``rep`` (not the concrete CoV strings).
-
-    Returns ``{orbit_rep: (mu, aut_min_pair, z, iso_gen, iso_index, n_subs)}``.
+    Returns list of hop dicts with full provenance:
+    ``parent_pair, z, iso_gen, iso_index, n_subs, concrete_pair, mu, rep``.
     """
-    t0 = time.perf_counter()
+    parent = (str(r1s), str(r2s))
     res = cov.enumerate_cov(
-        str_to_word(r1s), str_to_word(r2s),
+        str_to_word(parent[0]), str_to_word(parent[1]),
         default_cap=cap, cap_headroom=cov.CAP_HEADROOM,
-        reject_len=cov.REJECT_LEN)
-    enum_ms = (time.perf_counter() - t0) * 1000.0
-    t1 = time.perf_counter()
-    _, rep_in = orbit((r1s, r2s))
-    n_canon = 1
-    out = {}
-    n_subs1_skipped = 0
+        reject_len=cov.REJECT_LEN,
+        allow_defining_iso=False,  # Thm 1 hypothesis; do not flip casually
+    )
+    if cost is not None:
+        cost["n_enum"] = cost.get("n_enum", 0) + 1
+    _, rep_in = orbit_fast(parent)
+    if cost is not None:
+        cost["n_aut_canon"] = cost.get("n_aut_canon", 0) + 1
+    out = []
+    seen_child = set()
+    n_subs1 = 0
     for c in res:
         if int(c.n_subs) <= 1:
-            n_subs1_skipped += 1
+            n_subs1 += 1
             continue
-        # Concrete CoV output → Aut-min immediately.
-        o1, o2 = word_to_str(c.r1), word_to_str(c.r2)
-        mu, rep = orbit((o1, o2))
-        n_canon += 1
-        if rep == rep_in or rep in out:
+        concrete = (word_to_str(c.r1), word_to_str(c.r2))
+        mu, rep = orbit_fast(concrete)
+        if cost is not None:
+            cost["n_aut_canon"] = cost.get("n_aut_canon", 0) + 1
+        if rep == rep_in or rep in seen_child:
             continue
-        # Store Aut-min pair only — next rung expands from this.
-        out[rep] = (mu, rep, word_to_str(c.z_word),
-                    c.iso_gen, c.iso_index, int(c.n_subs))
-    canon_ms = (time.perf_counter() - t1) * 1000.0
+        seen_child.add(rep)
+        out.append({
+            "parent_pair": list(parent),
+            "z": word_to_str(c.z_word),
+            "iso_gen": c.iso_gen,
+            "iso_index": int(c.iso_index),
+            "n_subs": int(c.n_subs),
+            "concrete_pair": list(concrete),
+            "mu": mu,
+            "rep": list(rep),
+        })
     if cost is not None:
-        cost["enum_ms"] = cost.get("enum_ms", 0.0) + enum_ms
-        cost["canon_ms"] = cost.get("canon_ms", 0.0) + canon_ms
-        cost["n_aut_canon"] = cost.get("n_aut_canon", 0) + n_canon
-        cost["n_subs1_skipped"] = cost.get("n_subs1_skipped", 0) + n_subs1_skipped
+        cost["n_subs1_skipped"] = cost.get("n_subs1_skipped", 0) + n_subs1
         cost["n_hops_kept"] = cost.get("n_hops_kept", 0) + len(out)
-        cost["wall_ms"] = cost.get("wall_ms", 0.0) + enum_ms + canon_ms
     return out
 
 
-def climb_nonsym(r1, r2, *, rungs=6, beam_k=10, cap=24, stop_mu=12,
-                 cost_budget_ms=None):
-    """Beam climb: n_subs>1, Aut-min after every hop, visited = Aut-min orbits.
+def climb_nonsym(r1, r2, *, max_expand=64, cap=24, stop_mu=12,
+                 max_aut_canon=None):
+    """Global best-first (by μ) over Aut-min orbits under the n_subs>1 gate.
 
-    Start is Aut-min of the input. Beam entries are always Aut-min pairs.
-    ``seen`` holds Aut-min orbit reps — never re-expand a visited orbit.
+    ``max_expand`` = max Aut-min states popped for expansion.
+    ``max_aut_canon`` optional hard stop on canonicalisation count.
     """
-    cost = {"enum_ms": 0.0, "canon_ms": 0.0, "wall_ms": 0.0,
-            "n_aut_canon": 0, "n_subs1_skipped": 0, "n_hops_kept": 0}
-    # Immediate Aut-min of the input.
-    mu_in, rep_in = orbit((r1, r2))
+    cost = {"n_aut_canon": 0, "n_enum": 0, "n_subs1_skipped": 0,
+            "n_hops_kept": 0, "n_expanded": 0}
+    mu_in, rep_in = orbit_fast((r1, r2))
     cost["n_aut_canon"] += 1
-    seen = {rep_in}  # visited Aut-min orbits
-    # Beam stores Aut-min pairs only.
-    beam = [(mu_in, rep_in, [], [])]  # mu, aut_min_pair, z_chain, nsubs_chain
-    best_mu, best_chain, best_rep = mu_in, [], rep_in
-    best_nsubs = []
-    rung_log = []
-    stopped_reason = "rungs_exhausted"
+    start = list(rep_in)
+    seen = {rep_in}
+    # heap entries: (mu, tie_pair, rep, hop_from_root_index)
+    # hop provenance stored in `hops` list; parent links via hop index.
+    hops = []  # list of hop dicts (empty for root)
+    parent_hop = {rep_in: None}  # rep -> hop index that produced it, or None
+    heap = [(mu_in, rep_in, rep_in)]
+    best_mu, best_rep = mu_in, rep_in
+    stopped = "expand_exhausted"
 
-    for rung in range(1, rungs + 1):
-        if cost_budget_ms is not None and cost["wall_ms"] >= cost_budget_ms:
-            stopped_reason = "cost_budget"
+    while heap and cost["n_expanded"] < max_expand:
+        if max_aut_canon is not None and cost["n_aut_canon"] >= max_aut_canon:
+            stopped = "max_aut_canon"
             break
-        cand = []
-        for _mu_b, pair, chain, nsubs_chain in beam:
-            if cost_budget_ms is not None and cost["wall_ms"] >= cost_budget_ms:
-                stopped_reason = "cost_budget"
-                break
-            # Expand CoV from Aut-min state only.
-            hops = hop_nonsym(pair[0], pair[1], cap, cost=cost)
-            for rep, (mu, aut_min_pair, z, _ig, _ii, ns) in hops.items():
-                if rep in seen:
-                    continue  # never revisit an Aut-min orbit
-                seen.add(rep)  # mark visited immediately
-                cand.append(
-                    (mu, aut_min_pair, chain + [z], nsubs_chain + [ns], rep))
-        if not cand:
-            rung_log.append({"rung": rung, "new_orbits": 0, "best": best_mu})
-            stopped_reason = "no_candidates"
-            break
-        cand.sort(key=lambda t: (t[0], t[1]))
-        for mu, aut_min_pair, chain, nsubs_chain, rep in cand:
-            if mu < best_mu:
-                best_mu, best_chain, best_rep = mu, chain, rep
-                best_nsubs = nsubs_chain
-        # Beam = Aut-min pairs of this rung's top-K.
-        beam = [(mu, p, c, ns) for mu, p, c, ns, _ in cand[:beam_k]]
-        rung_log.append({"rung": rung, "new_orbits": len(cand),
-                         "best": best_mu})
+        mu_b, _tie, rep_b = heapq.heappop(heap)
+        if mu_b > best_mu:
+            # heap may hold dominated entries; still expand for closure under
+            # the popped-μ ball, but best_mu only updates on improvement.
+            pass
+        cost["n_expanded"] += 1
         if best_mu <= stop_mu:
-            stopped_reason = "stop_mu"
+            stopped = "stop_mu"
             break
+        for h in hop_nonsym(rep_b[0], rep_b[1], cap, cost=cost):
+            if max_aut_canon is not None and cost["n_aut_canon"] >= max_aut_canon:
+                stopped = "max_aut_canon"
+                break
+            rep = tuple(h["rep"])
+            if rep in seen:
+                continue
+            seen.add(rep)
+            hops.append(h)
+            parent_hop[rep] = len(hops) - 1
+            heapq.heappush(heap, (h["mu"], rep, rep))
+            if h["mu"] < best_mu:
+                best_mu, best_rep = h["mu"], rep
+        if stopped == "max_aut_canon":
+            break
+    else:
+        if not heap:
+            stopped = "closed" if cost["n_expanded"] > 0 else "no_candidates"
+
+    # Reconstruct hop chain from start to best_rep.
+    chain_hops = []
+    cur = best_rep
+    guard = 0
+    while parent_hop.get(cur) is not None:
+        hi = parent_hop[cur]
+        chain_hops.append(hops[hi])
+        cur = (str(hops[hi]["parent_pair"][0]),
+               str(hops[hi]["parent_pair"][1]))
+        guard += 1
+        if guard > len(hops) + 2:
+            raise RuntimeError("parent walk cycle in climb_nonsym")
+    chain_hops.reverse()
 
     return {
         "r1_orig": r1, "r2_orig": r2,
         "mu_in": mu_in,
-        "start_autmin": list(rep_in),
+        "start_autmin": start,
         "best_mu": best_mu,
-        "best_chain": best_chain,
-        "best_nsubs": best_nsubs,
         "best_rep": list(best_rep),
+        "best_chain_hops": chain_hops,  # full provenance per hop
+        "best_chain": [h["z"] for h in chain_hops],
+        "best_nsubs": [h["n_subs"] for h in chain_hops],
         "descended": best_mu < mu_in,
         "n_orbits_seen": len(seen),
-        "rungs": rung_log,
-        "stopped_reason": stopped_reason,
+        "stopped_reason": stopped,
         "cost": cost,
+        "all_hops": hops,
     }
 
 
-def calibrate_node_eq_ms(pairs, budget=200, cap=24, n_warm=1):
-    """Mean wall ms per length-greedy pop (calib only — not the shipped 1k baseline)."""
-    from experiments.search.greedy_baseline import greedy_search
-
-    for _ in range(n_warm):
-        r1, r2 = pairs[0]
-        greedy_search(r1, r2, max(50, budget // 4), max_relator_length=cap)
-
-    samples = []
-    for r1, r2 in pairs:
-        t0 = time.perf_counter()
-        res = greedy_search(r1, r2, budget, max_relator_length=cap)
-        dt_ms = (time.perf_counter() - t0) * 1000.0
-        n = max(int(res["nodes_explored"]), 1)
-        samples.append(dt_ms / n)
-    return {
-        "node_eq_ms": float(sum(samples) / len(samples)),
-        "n_samples": len(samples),
-        "per_row_ms_per_node": samples,
-        "calib_budget": budget,
-        "calib_cap": cap,
-    }
-
-
-def remaining_budget(cov_wall_ms, node_eq_ms, total_nodes=1000):
-    """Nodes left for greedy after charging CoV wall time as node-equivalents."""
-    if node_eq_ms <= 0:
-        raise ValueError("node_eq_ms must be positive")
-    spent = int(round(float(cov_wall_ms) / float(node_eq_ms)))
+def remaining_budget_alpha(n_aut_canon, alpha, total_nodes=1000):
+    """Nodes left after charging ``alpha`` nodes per ``aut_canon`` call."""
+    spent = int(round(float(alpha) * int(n_aut_canon)))
     spent = max(0, min(int(total_nodes), spent))
     return max(0, int(total_nodes) - spent), spent
+
+
+def solved_at_alpha(treat_solved, treat_nodes, n_aut_canon, alpha,
+                    total_nodes=1000):
+    """Rescore a full-budget-1000 run at charge α (zero extra search)."""
+    b_rem, spent = remaining_budget_alpha(n_aut_canon, alpha, total_nodes)
+    if not treat_solved:
+        return False, b_rem, spent
+    return int(treat_nodes) <= b_rem, b_rem, spent
