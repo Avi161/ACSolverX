@@ -1,0 +1,1348 @@
+{
+ "record": "s18_cores",
+ "summary": {
+  "hits": 39,
+  "in_band": 14,
+  "carries_sub13_base_pair_all": 34,
+  "carries_sub13_base_pair_in_band": 11,
+  "elim_core_rank_hist_in_band": {
+   "2": 11,
+   "3": 3
+  },
+  "elim_core_length_hist_in_band": {
+   "10": 1,
+   "11": 6,
+   "13": 1,
+   "14": 1,
+   "8": 5
+  },
+  "tietze_core_rank_hist_all": {
+   "2": 39
+  },
+  "tietze_core_length_hist_all": {
+   "11": 12,
+   "8": 27
+  },
+  "tietze_core_length_hist_in_band": {
+   "11": 8,
+   "8": 6
+  },
+  "in_band_with_tietze_core_length_ge_13": 0,
+  "all_with_tietze_core_length_ge_13": 0,
+  "in_band_with_elim_core_length_ge_13": 2
+ },
+ "rows": [
+  {
+   "label": "depth_ak2ctl_k0_r0",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k0_r1",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k0_r2",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k0_r3",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k0_r4",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k0_r5",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k0_r6",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k0_r7",
+   "depth_k": 0,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r0",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a"
+   ],
+   "witness_rank": 3,
+   "witness_length": 9,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r1",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a"
+   ],
+   "witness_rank": 3,
+   "witness_length": 9,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r2",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a"
+   ],
+   "witness_rank": 3,
+   "witness_length": 12,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r3",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 8,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r4",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "A",
+    "XXayA",
+    "aYYxxx"
+   ],
+   "witness_rank": 3,
+   "witness_length": 12,
+   "elim_core_rank": 3,
+   "elim_core_length": 12,
+   "elim_core": [
+    "A",
+    "XXayA",
+    "aYYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "XXy",
+    "YYxxx"
+   ],
+   "base_only_relators": [],
+   "base_only_count": 0,
+   "base_only_length": 0,
+   "carries_sub13_base_pair": false,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r5",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a"
+   ],
+   "witness_rank": 3,
+   "witness_length": 12,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r6",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "witness_rank": 2,
+   "witness_length": 11,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k1_r7",
+   "depth_k": 1,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a"
+   ],
+   "witness_rank": 3,
+   "witness_length": 12,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r0",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxxb",
+    "xYx",
+    "a",
+    "b"
+   ],
+   "witness_rank": 4,
+   "witness_length": 11,
+   "elim_core_rank": 3,
+   "elim_core_length": 10,
+   "elim_core": [
+    "YYxxxb",
+    "xYx",
+    "b"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "xYx"
+   ],
+   "base_only_count": 1,
+   "base_only_length": 3,
+   "carries_sub13_base_pair": false,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r1",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XybX",
+    "bXXXyXyXy",
+    "b"
+   ],
+   "witness_rank": 3,
+   "witness_length": 14,
+   "elim_core_rank": 3,
+   "elim_core_length": 14,
+   "elim_core": [
+    "XybX",
+    "bXXXyXyXy",
+    "b"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "XXXyXyXy"
+   ],
+   "base_only_relators": [],
+   "base_only_count": 0,
+   "base_only_length": 0,
+   "carries_sub13_base_pair": false,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r2",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a",
+    "aba"
+   ],
+   "witness_rank": 4,
+   "witness_length": 15,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r3",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "BaB",
+    "b"
+   ],
+   "witness_rank": 4,
+   "witness_length": 12,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r4",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a",
+    "b"
+   ],
+   "witness_rank": 4,
+   "witness_length": 13,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r5",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "AbA"
+   ],
+   "witness_rank": 4,
+   "witness_length": 12,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r6",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "b"
+   ],
+   "witness_rank": 4,
+   "witness_length": 10,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k2_r7",
+   "depth_k": 2,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "b"
+   ],
+   "witness_rank": 4,
+   "witness_length": 10,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k3_r0",
+   "depth_k": 3,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XyXa",
+    "YxYxYxxx",
+    "a",
+    "cA"
+   ],
+   "witness_rank": 4,
+   "witness_length": 15,
+   "elim_core_rank": 3,
+   "elim_core_length": 13,
+   "elim_core": [
+    "XyXa",
+    "YxYxYxxx",
+    "a"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "YxYxYxxx"
+   ],
+   "base_only_count": 1,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": false,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k3_r1",
+   "depth_k": 3,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "b",
+    "c"
+   ],
+   "witness_rank": 5,
+   "witness_length": 11,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k3_r2",
+   "depth_k": 3,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "b",
+    "c"
+   ],
+   "witness_rank": 5,
+   "witness_length": 11,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k3_r3",
+   "depth_k": 3,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a",
+    "b",
+    "c"
+   ],
+   "witness_rank": 5,
+   "witness_length": 14,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k3_r4",
+   "depth_k": 3,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "acc",
+    "b",
+    "c"
+   ],
+   "witness_rank": 5,
+   "witness_length": 13,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k3_r6",
+   "depth_k": 3,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "b",
+    "c"
+   ],
+   "witness_rank": 4,
+   "witness_length": 10,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k3_r7",
+   "depth_k": 3,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "ba",
+    "cyABY"
+   ],
+   "witness_rank": 5,
+   "witness_length": 16,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r0",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "YYxxxd",
+    "xYx",
+    "a",
+    "cd",
+    "d"
+   ],
+   "witness_rank": 5,
+   "witness_length": 13,
+   "elim_core_rank": 3,
+   "elim_core_length": 10,
+   "elim_core": [
+    "YYxxxd",
+    "xYx",
+    "d"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "xYx"
+   ],
+   "base_only_count": 1,
+   "base_only_length": 3,
+   "carries_sub13_base_pair": false,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r1",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "aB",
+    "b",
+    "c",
+    "dB"
+   ],
+   "witness_rank": 6,
+   "witness_length": 14,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r2",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a",
+    "c",
+    "daCA"
+   ],
+   "witness_rank": 5,
+   "witness_length": 17,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r3",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": false,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "witness_rank": 6,
+   "witness_length": 12,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r4",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "a",
+    "b",
+    "caDA",
+    "d"
+   ],
+   "witness_rank": 6,
+   "witness_length": 15,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r5",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "YYxxx",
+    "xYx",
+    "acD",
+    "c",
+    "dC"
+   ],
+   "witness_rank": 5,
+   "witness_length": 14,
+   "elim_core_rank": 2,
+   "elim_core_length": 8,
+   "elim_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 8,
+   "tietze_core": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_relators": [
+    "YYxxx",
+    "xYx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 8,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r6",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a",
+    "b",
+    "c"
+   ],
+   "witness_rank": 5,
+   "witness_length": 14,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  },
+  {
+   "label": "depth_ak2ctl_k4_r7",
+   "depth_k": 4,
+   "in_band(min chain len >= 13)": true,
+   "witness": [
+    "XyX",
+    "YxYxYxxx",
+    "a",
+    "bCDc",
+    "dac",
+    "AD"
+   ],
+   "witness_rank": 6,
+   "witness_length": 21,
+   "elim_core_rank": 2,
+   "elim_core_length": 11,
+   "elim_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "tietze_core_rank": 2,
+   "tietze_core_length": 11,
+   "tietze_core": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_relators": [
+    "XyX",
+    "YxYxYxxx"
+   ],
+   "base_only_count": 2,
+   "base_only_length": 11,
+   "carries_sub13_base_pair": true,
+   "elim_core_defect": 0,
+   "tietze_core_defect": 0
+  }
+ ]
+}
