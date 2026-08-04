@@ -126,19 +126,38 @@ def _worker_u124(job):
 
     Parent writes the row first (persist-before-enrich). Certificate recovery
     is a separate parent-side step that in-place updates ``path_pending`` rows.
+
+    Heartbeat (every ``hb_secs``): nodes/s **and** current ``min_relator_length``,
+    flagging a DROP when the floor fell since the previous beat.
     """
     arm, cfg_arm, row, budget, mrl, engine, _keep_path, hb_secs = job
-    state = {"last": 0.0, "prev": 0, "t_prev": time.perf_counter()}
+    start_total = int(row.get("start_total", len(row["r1"]) + len(row["r2"])))
+    state = {
+        "last": 0.0, "prev": 0, "t_prev": time.perf_counter(),
+        "min_len": start_total, "min_at_beat": start_total,
+        "first": True,
+    }
 
-    def progress(n):
+    def progress(n, min_total=None):
         now = time.perf_counter()
-        if now < state["last"]:
+        if min_total is not None and int(min_total) < state["min_len"]:
+            state["min_len"] = int(min_total)
+        # Time-based gate: first tick emits immediately, then every hb_secs.
+        if not state["first"] and now < state["last"]:
             return
         rate = (n - state["prev"]) / max(now - state["t_prev"], 1e-9)
-        state["last"], state["prev"], state["t_prev"] = now + hb_secs, n, now
+        cur_min = state["min_len"]
+        drop = state["min_at_beat"] - cur_min  # >0 ⇒ floor fell since last beat
+        state["last"] = now + hb_secs
+        state["prev"], state["t_prev"] = n, now
+        state["min_at_beat"] = cur_min
+        state["first"] = False
         if run_ab._HB_Q is not None:
             try:
-                run_ab._HB_Q.put_nowait((arm, row["name"], n, budget, rate))
+                run_ab._HB_Q.put_nowait((
+                    arm, row["name"], n, budget, rate,
+                    cur_min, start_total, int(drop),
+                ))
             except Exception:
                 pass
 
@@ -276,11 +295,24 @@ def _run_parallel_u124(cfg, out, todo, starts, n_workers, budget, mrl,
         while pending:
             try:
                 while True:
-                    arm, name, n, b, rate = hb_q.get(
+                    msg = hb_q.get(
                         timeout=1.0 if not any(p.ready() for p in pending)
                         else 0.0)
-                    print(f"      [{arm}/{name}] {n:,}/{b:,} nodes  "
-                          f"{rate:,.0f} nodes/s", flush=True)
+                    # New: (arm, name, n, budget, rate, min_len, start_total, drop)
+                    # Old 5-tuple still printable if a stray producer appears.
+                    if len(msg) >= 8:
+                        arm, name, n, b, rate, min_len, start_tot, drop = msg[:8]
+                        delta = int(start_tot) - int(min_len)
+                        drop_s = (f"  DROP -{int(drop)}" if int(drop) > 0
+                                  else "  (no drop)")
+                        print(f"      [{arm}/{name}] {n:,}/{b:,} nodes  "
+                              f"{rate:,.0f} nodes/s  "
+                              f"min_len={min_len} (start={start_tot}, Δ={delta})"
+                              f"{drop_s}", flush=True)
+                    else:
+                        arm, name, n, b, rate = msg[:5]
+                        print(f"      [{arm}/{name}] {n:,}/{b:,} nodes  "
+                              f"{rate:,.0f} nodes/s", flush=True)
             except queue_mod.Empty:
                 pass
 

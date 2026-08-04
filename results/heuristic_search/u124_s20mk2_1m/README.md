@@ -62,6 +62,15 @@ PYTHONPATH=. python3 -m experiments.heuristic_search.verify.verify_u124_s20mk2 \
 μ-ladder “36/124 descenders” uses Aut-orbit floor μ — different ruler from
 greedy `min_relator_length`.
 
+## Heartbeat (60 s)
+
+Each in-search beat prints nodes/s **and** the presentation's current
+`min_relator_length` vs start. If the floor fell since the previous beat the
+line ends with `DROP -k`; otherwise `(no drop)`.
+
+Example:
+`[s20_mk2/aca_0] 12,000/1,000,000 nodes  8,500 nodes/s  min_len=16 (start=18, Δ=2) DROP -1`
+
 ## Runner
 
 `experiments/heuristic_search/runners/run_unsolved124_s20mk2.py`
