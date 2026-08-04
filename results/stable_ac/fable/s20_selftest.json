@@ -1,0 +1,129 @@
+{
+ "record": "s20_selftest",
+ "named": [
+  {
+   "graph": "C5",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "K33",
+   "expected": false,
+   "demoucron": false,
+   "certified": true,
+   "kuratowski": "K33",
+   "macro": false
+  },
+  {
+   "graph": "K33+sub",
+   "expected": false,
+   "demoucron": false,
+   "certified": true,
+   "kuratowski": "K33",
+   "macro": false
+  },
+  {
+   "graph": "K33-e",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "K4",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "K5",
+   "expected": false,
+   "demoucron": false,
+   "certified": true,
+   "kuratowski": "K5",
+   "macro": false
+  },
+  {
+   "graph": "K5-e",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "K6",
+   "expected": false,
+   "demoucron": false,
+   "certified": true,
+   "kuratowski": "K5",
+   "macro": null
+  },
+  {
+   "graph": "Q3",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "octahedron",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "petersen",
+   "expected": false,
+   "demoucron": false,
+   "certified": true,
+   "kuratowski": "K33",
+   "macro": false
+  },
+  {
+   "graph": "prism",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "tree",
+   "expected": true,
+   "demoucron": true,
+   "certified": true,
+   "kuratowski": null,
+   "macro": true
+  },
+  {
+   "graph": "two_K5_blocks",
+   "expected": false,
+   "demoucron": false,
+   "certified": true,
+   "kuratowski": "K5",
+   "macro": null
+  },
+  {
+   "graph": "wagner_V8",
+   "expected": false,
+   "demoucron": false,
+   "certified": true,
+   "kuratowski": "K33",
+   "macro": false
+  }
+ ],
+ "random_checked": 105,
+ "random_skipped": 94,
+ "random_disagreements": 0,
+ "failures": []
+}
