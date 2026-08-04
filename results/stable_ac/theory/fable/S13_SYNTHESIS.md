@@ -318,13 +318,23 @@ Recorded because the corrections are the most transferable part of the work.
    question in a state-dependent move set, and it has only had a small search.
 4. **Bound `m` in Lemma 11** (the authors' own open problem). A bound turns Cor. F1 from an
    existence statement into an algorithm and makes depth-1 excursions searchable.
-5. **Close the remaining γ_N brackets with splitting** (task A13, in flight). S8's
-   monotonicity, read forwards, is a *tool*: a witness found for a **split** of `P` is a
-   valid **upper** bound for `P` itself, and splitting shrinks the census `∏(deg−1)!` — so
-   it buys back exactly the long-length regime where A9's direct witness sampler is blind
-   (detection 1.00 at L13 falling to 0.00 at L19, with 87 of 124 rows carrying an
-   uninformative upper bound). This is the one place the S-line's negative result becomes a
-   positive instrument, and it is the cheapest way to find more gateways.
+5. **Split-based brackets: BUILT, TESTED, and TOO LOOSE** (A13, complete). S8's
+   monotonicity read forwards *is* a valid tool — a witness for a split of `P` upper-bounds
+   `P` — and the instrument is sound (24 tests on bound direction; every witness verified
+   twice, the second time by a from-scratch defect rebuild). It simply is not tight enough:
+   splitting shrinks the census by **paying in defect**, and at the exchange rate the long
+   rows need, the payment exceeds the quantity being measured. Forced to the reductions the
+   targets actually require (10³–10⁶), it recovered the true γ_N in **0 of 30** calibration
+   cells; on the six known gateways, 2 of 6 exact at no reduction and **0 of 6** at any
+   useful one. Result on the targets: **0 brackets closed, 0 new gateways, nothing reached
+   0**, and 40 rows came out worse than A9's. Certified brackets across the 124: 8 → 8.
+   Two by-products are worth keeping: **Conjecture S8 survived again** (0 violations in 65
+   two-sided cells at split depths up to rank 14, far beyond S8's own evidence), and the
+   γ_N ≤ 4 tail collapses from 21 rows to 3 — though at reductions of 10⁸–10⁹, far past the
+   calibrated band, so that "3" is a ceiling with unmeasured slack. **Do not reach for this
+   instrument again without first forcing its calibration ladder to make the same reduction
+   the targets need** (trap T-S14b: a ladder allowed to skip the hard part measures nothing —
+   the first calibration scored a fake 100 % exactly that way).
 6. **The one untested high-rank mechanism: entangled AC2 slides.** S7 §4 isolated what depth
    `k ≥ 2` can buy that depth 1 cannot — a slide by a conjugate of a relator that already
    involves *several* new generators, with no depth-1 serialization, because Lemma 11
