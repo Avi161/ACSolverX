@@ -112,10 +112,21 @@ def test_stabilize_and_graft_is_balanced_and_rank_raising():
 
 
 def test_certify_zero_agrees_with_the_census_on_a_known_positive():
+    """R1F's ("xyXY","xxy") has gamma_N = 0 and the climber certifies it.
+
+    Note the second-order fact this pins: ``check_witness_n`` REFUSES this witness with an
+    ``AuditContradiction``, because it is called with ``trivial_group=True`` while
+    ("xyXY","xxy") presents **Z**, not 1 (relators [x,y] and x^2 y).  The certificate then
+    rests on ``independent_defect``, the from-scratch recomputation.  A gamma_N = 0
+    calibration state need not be a trivial-group presentation -- but a *Lackenby
+    certificate* must be, which is what ``todd_coxeter_check`` is for.
+    """
     cert = S.certify_zero(("xyXY", "xxy"), ("x", "y"), evals=20_000, seed=7)
     assert cert["climber_defect"] == 0
     assert cert["certified"] is True
-    assert cert["verify"]["check_witness_n"]["defect"] == 0
+    assert cert["verify"]["independent_defect"]["defect"] == 0
+    assert "AuditContradiction" in cert["verify"]["check_witness_n_error"]
+    assert S.todd_coxeter_check(("xyXY", "xxy"), ("x", "y"))["trivial"] is not True
 
 
 def test_certify_zero_is_silent_not_wrong_on_a_known_negative():
@@ -167,16 +178,11 @@ def test_decidability_scan_shape():
 
 
 @pytest.mark.parametrize("words,gens", [
-    (("xyXY", "xxy"), ("x", "y")),
-    (("XYYyxY", "XyX"), ("x", "y")),
-    (("xxy", "xyx"), ("x", "y")),
+    (("xxxYYYY", "xyxYXY"), ("x", "y")),          # AK(3), cyclically reduced
+    (("xxy", "xyx"), ("x", "y")),                 # cyclically reduced
 ])
-def test_spiking_never_creates_thickenability_on_these_bases(words, gens):
-    """S6 section 1 / R7 Conjecture SR, in the direction the A8 census measured.
-
-    A failure here is not a bug -- it is a **counterexample to Conjecture SR** and would
-    reopen the spelling route.  The assertion message says so.
-    """
+def test_spiking_never_creates_thickenability_on_a_REDUCED_base(words, gens):
+    """S6 section 1 / R7 Conjecture SR at spike depth 1 -> 0.  Holds here."""
     base = S.decide(words, gens, cap=10 ** 6)
     if base["verdict"] != "NOT_THICKENABLE":
         pytest.skip("only a non-thickenable base can witness the creating direction")
@@ -185,5 +191,40 @@ def test_spiking_never_creates_thickenability_on_these_bases(words, gens):
         if row["verdict"] == "SKIPPED":
             continue
         assert row["minimum_defect"] > 0, (
-            f"CONJECTURE SR COUNTEREXAMPLE: spelling {img} has defect 0 while its "
-            f"reduction {words} has defect {base['minimum_defect']}")
+            f"SR counterexample at depth 1: {img} has defect 0 while its reduction "
+            f"{words} has defect {base['minimum_defect']}")
+
+
+def test_CONJECTURE_SR_IS_FALSE_the_pinned_counterexample():
+    """**Conjecture SR (R7 section 3.1) is FALSE.**  Pinned, exact, exhaustive.
+
+    ``gamma_N(spike(P)) = 0  =>  gamma_N(P) = 0`` fails at ``P = ("XYYyxY","XyX")``:
+
+        P        = ("XYYyxY","XyX")     census   144, minimum defect 2  (gamma_N = 1)
+        spike(P) = ("YyXYYyxY","XyX")   census 4,320, minimum defect 0  (gamma_N = 0)
+
+    Both censuses are EXHAUSTIVE (no cap hit, no sampling).  The spike is `u = "Y"` at
+    position 0 of relator 0.  Prior SR evidence never covered this because every previous
+    test spiked a *cyclically reduced* base once; ``P`` here is itself one spike out.
+
+    The EXISTENTIAL repair survives on this example: the other one-step reduction of
+    spike(P), deleting the interior ``Yy``, is ("YyXYxY","XyX") with defect 0, and the full
+    reduction ("XYxY","XyX") also has defect 0.
+    """
+    P = ("XYYyxY", "XyX")
+    sp = ("YyXYYyxY", "XyX")
+    rP = S.decide(P, ("x", "y"), cap=10 ** 6)
+    rS = S.decide(sp, ("x", "y"), cap=10 ** 6, keep_accepting=True)
+    assert (rP["census"], rP["minimum_defect"]) == (144, 2)
+    assert (rS["census"], rS["minimum_defect"]) == (4320, 0)
+    assert free_reduce(sp[0]) == free_reduce(P[0]) == "XYxY"
+    assert sp == S.spike(P, 0, 0, "Y")
+    # the defect-0 rotation re-verified by the independent from-scratch recomputation
+    from experiments.stable_ac.fable import rank_n_ac_search as RN
+    rot = rS["accepting_orders"][0]
+    names = {"x+": 0, "x-": 1, "y+": 2, "y-": 3}
+    orders = {names[k]: list(v) for k, v in rot.items()}
+    assert RN.independent_defect(RN.Pres(("x", "y"), sp), orders)["defect"] == 0
+    # the existential repair: SOME one-step reduction keeps defect 0
+    assert S.decide(("YyXYxY", "XyX"), ("x", "y"), cap=10 ** 6)["minimum_defect"] == 0
+    assert S.decide(("XYxY", "XyX"), ("x", "y"), cap=10 ** 6)["minimum_defect"] == 0

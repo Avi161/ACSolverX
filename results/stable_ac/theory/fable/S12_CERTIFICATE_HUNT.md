@@ -41,14 +41,24 @@ Suppose the hunt returns `Q` at rank `N` with γ_N(Q) = 0.
 2. γ_N(Q) = 0 ⟺ `|K_Q|` PL-embeds in an **orientable** 3-manifold (`R1E` Thm D, the repo's
    bridge; `[UNVERIFIED against Neuwirth's paper — lit_AK3_NEUWIRTH.md is absent from this
    clone]`).
-3. An orientable PL 3-manifold is a 3-manifold, so `Q` satisfies the hypothesis of
-   **Lackenby Thm 1.3** — *balanced + presents the trivial group + presentation 2-complex
-   embeds in some 3-manifold ⇒ AC-trivializable*, with no stabilization and no rank
-   restriction found in any channel (`S2_LITERATURE_HIGH_RANK.md` Q1; the theorem itself is
-   SOURCE-RELAYED, not read in full from the LaTeX, and that is the method's single
-   load-bearing import).
-   **Note the direction:** the orientability mismatch flagged in S3's trap T-S9 obstructs
-   *negative* readings only. A hit is not encumbered by it.
+3. `Q` satisfies the hypothesis of **Lackenby Thm 1.3** — *balanced + presents the trivial
+   group + presentation 2-complex thickenable ⇒ AC-trivializable*, with no stabilization
+   and no rank restriction found in any channel (`S2_LITERATURE_HIGH_RANK.md` Q1; the
+   theorem is SOURCE-RELAYED, not read in full from the LaTeX, and it is the method's
+   single load-bearing import).
+
+   **[REPAIRED after audit A12 — this was the weak step.]** The first draft argued only
+   "an orientable PL 3-manifold is a 3-manifold", which silently picks the *weakest* of the
+   three inequivalent definitions of "thickenable" that `S2` explicitly flags (some
+   3-manifold / some orientable / closed orientable) — and `S2` only *relayed* the weakest
+   reading; the abstract, its one source-verified text, does not define the word. The repair
+   discharges all three at once: Theorem D's sufficiency builds a global PL embedding into a
+   **compact** orientable 3-manifold `W`; the double of `W` is **closed** orientable; and
+   `N(K_Q) ≅ B³ ⊂ S³` exhibits `K_Q` as a spine. So whichever of the three Lackenby means,
+   the hypothesis is met.
+
+   **Note the direction:** the orientability mismatch of S3's trap T-S9 obstructs *negative*
+   readings only. A hit is not encumbered by it.
 4. So `Q ~AC standard_N`, and `P ~st P^{+k} ~AC Q ~AC standard_N ~st standard_n`. ∎
 
 Two things the method does **not** give: any statement when it finds nothing (silence is
@@ -87,17 +97,26 @@ this fills.
 |---|---|
 | **(a)** More generators give more *moves*, so the search reaches more states | true but vacuous — it is just the definition of stable equivalence |
 | **(b)** More generators let you *abbreviate* long relators into a tractable form | **REFUTED.** S3: abbreviation is a subdivision, γ_N and the whole defect histogram are invariant (1,525/1,525). S8: splitting is monotone, never decreases γ_N (632/632). Bookkeeping buys nothing |
-| **(c)** More generators make the *certificate more common* | **SUPPORTED.** S10: at matched total length 12–16, the thickenable fraction among AC-trivial presentations is 0.411 (rank 2), 0.726 (rank 3), 0.867 (rank 4) |
-| **(d)** More generators make the *test computable* where it was not | **SUPPORTED.** At total length 15–24 every rank-2 sample blew the census cap; ranks 3–6 decided in seconds. The census size is `∏(deg−1)!` and rank spreads the degrees |
+| **(c)** More generators make the *certificate more common* | **REFUTED** (`S10_S12_AUDIT.md`). S10's rank axis was a relator-length axis in disguise: at fixed **total** length, `mean relator length = total / rank`. Holding **per-relator** length fixed instead, the thickenable fraction is 0.868 / 0.868 / 0.834 / 0.780 at ranks 2/3/4/5 — flat, then slightly decreasing |
+| **(d)** More generators make the *test computable* where it was not | **TRUE BUT NOT ABOUT RANK.** The census is `∏(deg−1)!` and a germ's degree is its letter's occurrence count, so this is the statement that *short relators are cheap to decide*. Rank enters only because, at fixed total length, more generators means shorter relators — the same confound as (c), read as a feature |
 
 So the honest answer to "does going to 9 or 10 generators make AK(3) easier" is:
 
-> **Not by any mechanism — by a population effect and a computability effect.** No high-rank
-> *move* creates a certificate that a low-rank move could not. But at higher rank the
-> certificates are commoner among AC-trivial presentations, and the test for them is
-> affordable at lengths where rank 2 is simply not computable. The hunt should therefore be
-> run at rank 4–6, not at rank 2 and not at rank 9 (where nothing is gained over 6 and the
-> state space is larger).
+> **No — not by any mechanism, and not by any population effect this session could
+> measure.** Abbreviation is provably inert (S3), splitting is monotone (S8), change of
+> variables is depth-1 (S7/F1), AC4/AC5 and the first slide over a fresh stabilizer are
+> provably inert (S6 T4/T4′), and the one measurement that looked positive turned out to be
+> measuring relator length. What is real, and worth keeping, is that **short relators are
+> cheap to decide and long ones are not** — which is a reason to prefer presentations with
+> short relators, reachable by raising the rank, but it is a statement about *length*, and
+> raising the rank is merely one way to buy it.
+>
+> Two experimental readings of the same conclusion, both from length-matched controls:
+> A7's depth ladder returns 39/40 hits on an AC-trivial control across rank ceilings 2–6 and
+> **0/40 on AK(3)** on the same rungs and seeds; and this file's own `--target` mode shows
+> control detection *falling* from 6/6 at depth 0 to 2/6 at depth 1 at fixed budget —
+> exactly what Theorem T4′ predicts, since budget spent on the inert first slide cannot move
+> γ_N.
 
 ## 5. The depth to choose
 

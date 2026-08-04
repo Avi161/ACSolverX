@@ -393,6 +393,15 @@ def sweep_row(rec: dict, census_cap: int = CENSUS_CAP, budget: int = SAMPLE_BUDG
             row["gamma_N_lower"] = None
         row["gamma_N_upper"] = row["sample"]["gamma_N_upper"]
 
+    lower, upper = row["gamma_N_lower"], row["gamma_N_upper"]
+    # A bracket that closes is an EXACT gamma_N even without a census: instrument A's
+    # exhaustive NOT_SPHERICAL certifies gamma_N >= 1 and a re-verified defect-2 witness
+    # certifies gamma_N <= 1, so gamma_N = 1 exactly (gateway_scan.py's two-sided
+    # argument).  This is a certificate, not a sample: it does not depend on the
+    # sampler's detection rate, only on the witness being valid.
+    row["gamma_N_certified"] = (lower is not None and upper is not None
+                                and lower == upper)
+    row["gamma_N_certified_value"] = lower if row["gamma_N_certified"] else None
     row["thickenable"] = (verdict == SPHERICAL) or (
         census["ran"] and census["minimum_defect"] == 0)
     row["decision_is_two_sided"] = verdict in (SPHERICAL, NOT_SPHERICAL)
@@ -746,6 +755,20 @@ def run_sweep(csv_path: str = DEFAULT_CSV, out_path: str = SWEEP_OUT,
         "sample_calibration": bands,
         "rows_with_uncalibrated_sampled_bound": [
             r["name"] for r in ranked if r.get("sample_calibrated") is False],
+        "sample_calibrated_meaning": (
+            "sample_calibrated = False means the ABSENCE of a lower witness at this "
+            "length is uninformative -- the sampler's measured detection rate there is "
+            "0 or was never measured, so gamma_N_upper may be far above the truth.  It "
+            "does NOT weaken a witness that WAS found: every recorded witness was "
+            "re-verified by an independent recomputation of the defect, so "
+            "gamma_N <= gamma_N_upper is a certificate at every length."),
+        "certified_gamma_N_rows": [
+            {"name": r["name"], "pair": r["pair"], "total_length": r["total_length"],
+             "gamma_N": r["gamma_N_certified_value"], "source": r["gamma_source"]}
+            for r in ranked if r["gamma_N_certified"]],
+        "gateways_gamma_N_1": [
+            r["name"] for r in ranked
+            if r["gamma_N_certified"] and r["gamma_N_certified_value"] == 1],
         "fail_closed_rows": [
             {"name": r["name"], "verdict": r["decision"]["verdict"],
              "reason": r["decision"]["reason"]}
@@ -785,6 +808,7 @@ def run_sweep(csv_path: str = DEFAULT_CSV, out_path: str = SWEEP_OUT,
              "gamma_N_lower": r["gamma_N_lower"], "gamma_N_upper": r["gamma_N_upper"],
              "gamma_N_exact": r["gamma_N_exact"], "source": r["gamma_source"],
              "verdict": r["decision"]["verdict"],
+             "gamma_N_certified": r["gamma_N_certified"],
              "sample_calibrated": r.get("sample_calibrated")}
             for r in ranked],
         "length_confound_warning": (

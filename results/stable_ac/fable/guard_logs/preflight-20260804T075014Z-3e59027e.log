@@ -1,0 +1,5 @@
+flip census: 20 sources (length 8)
+  *** AC2 CREATED gamma_N=0: ['YXY', 'YxB', 'axY', 'baxy'] from ['YXY', 'YxB', 'axY', 'baY']
+  *** AC2 CREATED gamma_N=0: ['xYb', 'XYY', 'aXy', 'bYaXYY'] from ['xYb', 'XYY', 'aXy', 'bYa']
+  *** AC2 CREATED gamma_N=0: ['bYX', 'xxy', 'ay', 'bAY'] from ['bYX', 'xxy', 'aXX', 'bAY']
+{"kind": "flip_summary", "sources": 20, "parents_measured": 20, "split": {"pairs": 400, "thickenable_parent_pairs": 340, "nonthickenable_parent_pairs": 60, "created": 0, "destroyed": 164, "preserved_0": 176, "preserved_pos": 60, "defect_pairs": {"0->0": 176, "0->2": 162, "0->4": 2, "2->2": 60}}, "ac2_control": {"pairs": 400, "thickenable_parent_pairs": 340, "nonthickenable_parent_pairs": 60, "created": 3, "destroyed": 128, "preserved_0": 212, "preserved_pos": 57, "defect_pairs": {"0->0": 212, "0->2": 128, "2->0": 3, "2->2": 57}}, "split_per_k": {"k=1,True->False": 3, "k=1,True->True": 13, "k=2,False->False": 58, "k=2,True->False": 154, "k=2,True->True": 134, "k=3,False->False": 2, "k=3,True->False": 7, "k=3,True->True": 29}, "source_length": 8, "seed": 20260804}

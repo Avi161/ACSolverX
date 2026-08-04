@@ -155,14 +155,20 @@ def slides(words, gens, rng, max_rel, max_tot, k):
 
 def hunt(base, kstab, nodes, rng, *, beam=6, branch=10, max_rel=None, max_tot=None,
          headroom=8, census_cap=200_000):
-    """Length caps are RELATIVE to the root (the project's relative-headroom rule), not
-    absolute: an absolute cap gives a length-21 base far less room to move than a length-13
-    one and mechanically suppresses its child generation."""
+    """Length caps follow the project's harvest operator: a **per-relator** cap of
+    ``root total + headroom``, and NO binding total cap.
+
+    Two earlier revisions got this wrong in the same direction. An *absolute* cap gives a
+    length-21 base far less room than a length-13 one. A *total* cap is worse still: with
+    ``max_tot = root + 8`` almost every AC2 product overshoots and is rejected, so 372,000
+    pops over the 124 classes produced only 17,698 distinct states — the search was
+    revisiting 99.5% of the time. `stable_matched_contrast` caps per relator (root total
+    + 4) and harvested 171,842 members from 1,000 pops; that is the operator to match."""
     base_tot = sum(len(w) for w in base)
-    if max_tot is None:
-        max_tot = base_tot + headroom + kstab
     if max_rel is None:
-        max_rel = max(len(w) for w in base) + headroom
+        max_rel = base_tot + headroom
+    if max_tot is None:
+        max_tot = (len(base) + kstab) * max_rel
     gens = sorted(set("".join(base).lower()))
     words = list(base)
     for _ in range(kstab):

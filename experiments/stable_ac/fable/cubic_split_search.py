@@ -419,8 +419,19 @@ def verify_chain(root, trace) -> bool:
 
 
 def beam_search(root, rng, scanner, mode="tiebreak", beam=40, depth=18,
-                max_children=260, deadline=None, provenance="?"):
-    """Stochastic beam search with a plateau-aware cost.  Returns a result dict."""
+                max_children=260, deadline=None, provenance="?", diversity=0.25,
+                deep_pool=None, deep_threshold=4):
+    """Stochastic beam search with a plateau-aware cost.
+
+    ``diversity`` is the fraction of each beam filled by a uniform random sample of the
+    non-best children rather than by the cost ranking.  That is the escape from the T-S11
+    parity plateau: leaving ``sum|delta| = 2`` provably requires a temporarily
+    cost-increasing move, so a pure ranking beam can never do it.
+
+    ``deep_pool`` collects near-cubic states (``sum|delta| <= deep_threshold``) for the
+    post-hoc high-cap gamma_N scan; the in-search scan uses ``scanner``'s own small cap,
+    because a near-cubic state at rank N has census 2^N and cannot be tested at every node.
+    """
     frontier = [(cost(root, mode), root, [])]
     seen = {canon_state(root)}
     best = (cost(root, mode), root, [])
@@ -445,7 +456,13 @@ def beam_search(root, rng, scanner, mode="tiebreak", beam=40, depth=18,
                 if is_cubic(child):
                     return {"status": "CUBIC", "words": list(child),
                             "trace": tr + [rec], "nodes": nodes, "depth_reached": d + 1}
-                pool.append((cost(child, mode), child, tr + [rec]))
+                c = cost(child, mode)
+                if deep_pool is not None:
+                    sd = sum(abs(x) for x in delta(child).values())
+                    if sd <= deep_threshold:
+                        deep_pool.append((sd, len(child), child,
+                                          f"{provenance}|d{d + 1}"))
+                pool.append((c, child, tr + [rec]))
             if deadline is not None and time.time() > deadline:
                 break
         if not pool:
@@ -454,7 +471,12 @@ def beam_search(root, rng, scanner, mode="tiebreak", beam=40, depth=18,
         pool.sort(key=lambda e: (e[0], rng.random()))
         if pool[0][0] < best[0]:
             best = pool[0]
-        frontier = pool[:beam]
+        n_rank = max(1, int(beam * (1.0 - diversity)))
+        chosen = pool[:n_rank]
+        rest = pool[n_rank:]
+        if rest and len(chosen) < beam:
+            chosen += rng.sample(rest, min(beam - len(chosen), len(rest)))
+        frontier = chosen
     return {"status": "EXHAUSTED_DEPTH", "best_cost": list(best[0]), "nodes": nodes,
             "depth_reached": depth}
 
@@ -512,9 +534,11 @@ def run_roots(sources, args, tag):
     """Run the search over triangulations of each source presentation."""
     rng = random.Random(args.seed)
     scanner = GammaScanner(cap=args.gamma_cap)
-    deadline = time.time() + args.budget
+    search_deadline = time.time() + args.budget
+    deadline = search_deadline
     out = args.out
     results = []
+    deep_pool = []
     solved = 0
     attempts = 0
     for si, src in enumerate(sources):
@@ -529,7 +553,8 @@ def run_roots(sources, args, tag):
             res = beam_search(root, rng, scanner, mode=args.mode, beam=args.beam,
                               depth=args.depth, max_children=args.max_children,
                               deadline=min(deadline, time.time() + args.per_root),
-                              provenance=prov)
+                              provenance=prov, diversity=args.diversity,
+                              deep_pool=deep_pool, deep_threshold=args.deep_threshold)
             res.update(source=list(src), root=list(root), provenance=prov,
                        mode=args.mode, rank_root=len(root))
             if res["status"] == "CUBIC":
@@ -550,15 +575,49 @@ def run_roots(sources, args, tag):
                 res["chain_verified"] = ok
                 print(f"  *** GAMMA_N=0 HIT {prov}: {res['hit']['words']} "
                       f"verified={ok}", flush=True)
+            res.pop("trace", None) if res["status"] not in ("CUBIC", "GAMMA0") else None
             results.append(res)
             _emit(out, res)
         if time.time() > deadline:
             break
+
+    # --- post-hoc deep gamma_N scan on the near-cubic states reached -------------------
+    deep = {}
+    for sd, rank, st, prov in deep_pool:
+        key = canon_state(st)
+        if key not in deep:
+            deep[key] = (sd, rank, st, prov)
+    ordered = sorted(deep.values(), key=lambda e: (e[0], census_size(e[2])))
+    deep_deadline = time.time() + args.deep_budget
+    deep_tested = 0
+    deep_hist = Counter()
+    for sd, rank, st, prov in ordered:
+        if time.time() > deep_deadline or deep_tested >= args.deep_max:
+            break
+        if census_size(st) > args.deep_cap:
+            continue
+        r = gamma_N_factorial_n(st, cap_rotations=args.deep_cap, keep_accepting=False)
+        if r["status"] != "OK":
+            continue
+        deep_tested += 1
+        deep_hist[r["minimum_defect"]] += 1
+        if r["minimum_defect"] == 0:
+            hit = {"words": list(st), "minimum_defect": 0,
+                   "census": r["expected_cases"], "provenance": prov + "|deep",
+                   "sum_delta": sd, "rank": rank}
+            scanner.hits.append(hit)
+            print(f"  *** GAMMA_N=0 DEEP HIT: {hit}", flush=True)
+            _emit(out, {"kind": "deep_hit", **hit})
+
     summary = {"kind": "summary", "tag": tag, "attempts": attempts, "solved": solved,
                "mode": args.mode, "beam": args.beam, "depth": args.depth,
+               "diversity": args.diversity,
                "gamma_tested": scanner.tested, "gamma_skipped": scanner.skipped,
                "gamma_hist": dict(scanner.hist), "gamma_hits": scanner.hits,
-               "best_costs": sorted(r.get("best_cost", [0])[0] for r in results)[:10],
+               "deep_pool_unique": len(deep), "deep_tested": deep_tested,
+               "deep_hist": dict(deep_hist), "deep_cap": args.deep_cap,
+               "best_costs": sorted(r.get("best_cost", [99])[0] for r in results)[:10],
+               "min_sum_delta_reached": min([e[0] for e in ordered], default=None),
                "seed": args.seed}
     _emit(out, summary)
     print(json.dumps({k: v for k, v in summary.items() if k != "gamma_hits"}), flush=True)
@@ -663,9 +722,143 @@ def cmd_ladder(args):
     return run_roots(srcs, args, "ladder")
 
 
+def cmd_flips(args):
+    """SPLIT flip census, in the format of `S6_MOVE_CLASSIFICATION.md` Sec 1.
+
+    For a corpus of triangular states (triangulations of short rank-2 presentations, plus
+    triangulations of AK(3) itself), apply single SPLITs and record whether `gamma_N = 0`
+    is created or destroyed.  This decides whether the SPLIT route can carry a certificate
+    at all: if SPLIT never creates, the whole cubic route is a gamma_N no-op and the search
+    can only ever be about the normal form, never about settling AK(3).
+    """
+    rng = random.Random(args.seed)
+    deadline = time.time() + args.budget
+    table = Counter()          # (parent_gamma0, child_gamma0) -> count
+    per_k = Counter()
+    parents_done = 0
+    creates, destroys = [], []
+    hist_pairs = Counter()
+
+    def gam(st, cap):
+        r = gamma_N_factorial_n(st, cap_rotations=cap, keep_accepting=False)
+        return r["minimum_defect"] if r["status"] == "OK" else None
+
+    def ac2_children(state, rng, limit):
+        """CONTROL ARM: a general AC2 slide r_i <- freered(r_i r_j^{+-1}).
+
+        Leaves the triangular world (lengths become 6-2k), which is exactly the point:
+        S6 measures AC2 as the only creator of thickenability, so this arm calibrates
+        whether the instrument can see a creation at all on THIS corpus.  Without it a
+        'SPLIT never creates' null bounds nothing (lesson
+        `calibrate-one-sided-hunts-on-a-positive-ladder.md`).
+        """
+        out = []
+        n = len(state)
+        for i in range(n):
+            for j in range(n):
+                if i == j:
+                    continue
+                for eps in (1, -1):
+                    other = state[j] if eps == 1 else inv_word(state[j])
+                    w = cyc_reduce(free_reduce(state[i] + other))
+                    if not w:
+                        continue
+                    child = tuple(list(state[:i]) + [w] + list(state[i + 1:]))
+                    if any(not x for x in child):
+                        continue
+                    out.append((child, {"arm": "ac2", "i": i, "j": j, "eps": eps}))
+        rng.shuffle(out)
+        return out[:limit]
+
+    # corpus of short rank-2 sources, triangulated (cheap census), both gamma classes
+    sources = []
+    seen = set()
+    tries = 0
+    while len(sources) < args.corpus and tries < 400_000 and time.time() < deadline:
+        tries += 1
+        p = random_ac_trivial(rng, total_length=args.source_length, min_len=3)
+        if p is None or p in seen:
+            continue
+        seen.add(p)
+        sources.append(p)
+    if args.include_ak3:
+        sources.append(AK3)
+    print(f"flip census: {len(sources)} sources (length {args.source_length}"
+          f"{', + AK(3)' if args.include_ak3 else ''})", flush=True)
+
+    arms = {"split": Counter(), "ac2": Counter()}
+    arm_pairs = {"split": Counter(), "ac2": Counter()}
+    for src in sources:
+        if time.time() > deadline:
+            break
+        root = triangulate(src, rng)
+        if root is None or census_size(root) > args.deep_cap:
+            continue
+        d0 = gam(root, args.deep_cap)
+        if d0 is None:
+            continue
+        parents_done += 1
+        batches = [("split", split_children(root, rng, max_children=args.flip_children)),
+                   ("ac2", ac2_children(root, rng, args.flip_children))]
+        for arm, kids in batches:
+            for child, rec in kids:
+                if time.time() > deadline:
+                    break
+                if census_size(child) > args.deep_cap:
+                    continue
+                d1 = gam(child, args.deep_cap)
+                if d1 is None:
+                    continue
+                arms[arm][(d0 == 0, d1 == 0)] += 1
+                arm_pairs[arm][(d0, d1)] += 1
+                if arm == "split":
+                    table[(d0 == 0, d1 == 0)] += 1
+                    hist_pairs[(d0, d1)] += 1
+                    per_k[(rec.get("k"), d0 == 0, d1 == 0)] += 1
+                if d0 != 0 and d1 == 0:
+                    row = {"arm": arm, "parent": list(root), "child": list(child),
+                           "record": rec, "parent_defect": d0}
+                    (creates if arm == "split" else creates).append(row)
+                    print(f"  *** {arm.upper()} CREATED gamma_N=0: {list(child)} "
+                          f"from {list(root)}", flush=True)
+                    _emit(args.out, {"kind": "create", **row})
+                if d0 == 0 and d1 != 0 and arm == "split":
+                    destroys.append({"parent": list(root), "child": list(child),
+                                     "child_defect": d1})
+
+    def arm_summary(a):
+        t = arms[a]
+        return {
+            "pairs": sum(t.values()),
+            "thickenable_parent_pairs": sum(v for (p, _c), v in t.items() if p),
+            "nonthickenable_parent_pairs": sum(v for (p, _c), v in t.items() if not p),
+            "created": sum(v for (p, c), v in t.items() if (not p) and c),
+            "destroyed": sum(v for (p, c), v in t.items() if p and (not c)),
+            "preserved_0": t[(True, True)], "preserved_pos": t[(False, False)],
+            "defect_pairs": {f"{p}->{c}": v for (p, c), v in sorted(arm_pairs[a].items())},
+        }
+
+    summary = {
+        "kind": "flip_summary",
+        "sources": len(sources), "parents_measured": parents_done,
+        "split": arm_summary("split"),
+        "ac2_control": arm_summary("ac2"),
+        "split_per_k": {f"k={k},{p}->{c}": v for (k, p, c), v in sorted(
+            per_k.items(), key=lambda e: str(e[0]))},
+        "source_length": args.source_length, "seed": args.seed,
+    }
+    _emit(args.out, summary)
+    print(json.dumps(summary), flush=True)
+    return summary
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("cmd", choices=["selftest", "ak3", "ladder"])
+    ap.add_argument("cmd", choices=["selftest", "ak3", "ladder", "flips"])
+    ap.add_argument("--corpus", type=int, default=120)
+    ap.add_argument("--source-length", type=int, default=8)
+    ap.add_argument("--flip-children", type=int, default=40)
+    ap.add_argument("--include-ak3", action="store_true")
     ap.add_argument("--budget", type=float, default=60.0, help="wall-clock seconds")
     ap.add_argument("--per-root", type=float, default=25.0)
     ap.add_argument("--roots-per-source", type=int, default=40)
@@ -675,13 +868,25 @@ def main(argv=None):
     ap.add_argument("--beam", type=int, default=40)
     ap.add_argument("--depth", type=int, default=18)
     ap.add_argument("--max-children", type=int, default=260)
-    ap.add_argument("--gamma-cap", type=int, default=30_000)
+    ap.add_argument("--diversity", type=float, default=0.25,
+                    help="fraction of the beam filled at random (T-S11 plateau escape)")
+    ap.add_argument("--gamma-cap", type=int, default=2_000,
+                    help="in-search gamma_N census cap (kept small: cubic states have "
+                         "census 2^N, so a full scan is unaffordable)")
+    ap.add_argument("--deep-threshold", type=int, default=4,
+                    help="collect states with sum|delta| <= this for the deep scan")
+    ap.add_argument("--deep-cap", type=int, default=1_500_000)
+    ap.add_argument("--deep-budget", type=float, default=120.0)
+    ap.add_argument("--deep-max", type=int, default=4000)
     ap.add_argument("--seed", type=int, default=20260804)
     ap.add_argument("--out", default=None)
     args = ap.parse_args(argv)
     if args.out:
         os.makedirs(os.path.dirname(args.out), exist_ok=True)
-    return {"selftest": cmd_selftest, "ak3": cmd_ak3, "ladder": cmd_ladder}[args.cmd](args) and 0
+    fns = {"selftest": cmd_selftest, "ak3": cmd_ak3, "ladder": cmd_ladder,
+           "flips": cmd_flips}
+    fns[args.cmd](args)
+    return 0
 
 
 if __name__ == "__main__":

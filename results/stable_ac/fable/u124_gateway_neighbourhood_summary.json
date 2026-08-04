@@ -1,0 +1,243 @@
+{
+ "record": "u124_neighbourhood_summary",
+ "generated_at": "2026-08-04T07:48:34Z",
+ "claims": "MACHINERY: bounded AC-neighbourhood test of the same Lackenby hypothesis.  A SPHERICAL neighbour settles the class it belongs to (after an explicit move-chain replay); nothing else here is a statement about the AC conjecture.",
+ "operator": "depth 1 = every one-move AC image (AC1 invert; AC2 multiply over all cyclic rotations of both relators, both signs; AC3 conjugation by a single generator), dropped if a relator empties or exceeds the per-root cap.  Deeper = best-first canonical harvest with ak2_battery.canon_class_children (the operator the 13,040-member AK(2) battery and the 124,296-member AK(3) matched control used).  Seen-set on ac_words.canon_pair, the cyclically REDUCED canonical form (harvest-dedup-on-reduced-forms.md).",
+ "budgets": {
+  "top_n": 6,
+  "harvest_pops": 400,
+  "state_cap": 40000,
+  "depth1_all": false,
+  "scheme_budget": 200000,
+  "branch_budget": 2000000,
+  "census_fallback_size_cap": 50000,
+  "census_fallback_budget": 400
+ },
+ "states_decided": 39108,
+ "census_fallbacks_used": 0,
+ "state_cap_reached": false,
+ "uninformative_states": 0,
+ "verdict_histogram": {
+  "NOT_SPHERICAL": 39108
+ },
+ "verdict_by_total_length": {
+  "14": {
+   "NOT_SPHERICAL": 1
+  },
+  "15": {
+   "NOT_SPHERICAL": 1
+  },
+  "16": {
+   "NOT_SPHERICAL": 6
+  },
+  "17": {
+   "NOT_SPHERICAL": 39
+  },
+  "18": {
+   "NOT_SPHERICAL": 46
+  },
+  "19": {
+   "NOT_SPHERICAL": 156
+  },
+  "20": {
+   "NOT_SPHERICAL": 141
+  },
+  "21": {
+   "NOT_SPHERICAL": 652
+  },
+  "22": {
+   "NOT_SPHERICAL": 658
+  },
+  "23": {
+   "NOT_SPHERICAL": 2418
+  },
+  "24": {
+   "NOT_SPHERICAL": 1890
+  },
+  "25": {
+   "NOT_SPHERICAL": 5725
+  },
+  "26": {
+   "NOT_SPHERICAL": 1827
+  },
+  "27": {
+   "NOT_SPHERICAL": 4788
+  },
+  "28": {
+   "NOT_SPHERICAL": 1934
+  },
+  "29": {
+   "NOT_SPHERICAL": 5561
+  },
+  "30": {
+   "NOT_SPHERICAL": 1570
+  },
+  "31": {
+   "NOT_SPHERICAL": 1666
+  },
+  "32": {
+   "NOT_SPHERICAL": 2229
+  },
+  "33": {
+   "NOT_SPHERICAL": 2152
+  },
+  "34": {
+   "NOT_SPHERICAL": 710
+  },
+  "35": {
+   "NOT_SPHERICAL": 1761
+  },
+  "36": {
+   "NOT_SPHERICAL": 809
+  },
+  "37": {
+   "NOT_SPHERICAL": 1548
+  },
+  "39": {
+   "NOT_SPHERICAL": 820
+  }
+ },
+ "LOUD_THICKENABLE_ALERT": false,
+ "thickenable_neighbours": [],
+ "per_root_depth1": [
+  {
+   "name": "aca_117",
+   "rank": 1,
+   "total_length": 14,
+   "relator_cap": 18,
+   "one_move_images": 116,
+   "newly_decided": 116
+  },
+  {
+   "name": "aca_11",
+   "rank": 2,
+   "total_length": 15,
+   "relator_cap": 19,
+   "one_move_images": 124,
+   "newly_decided": 124
+  },
+  {
+   "name": "aca_121",
+   "rank": 3,
+   "total_length": 16,
+   "relator_cap": 20,
+   "one_move_images": 156,
+   "newly_decided": 156
+  },
+  {
+   "name": "aca_17",
+   "rank": 4,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 164,
+   "newly_decided": 164
+  },
+  {
+   "name": "aca_30",
+   "rank": 5,
+   "total_length": 17,
+   "relator_cap": 21,
+   "one_move_images": 132,
+   "newly_decided": 132
+  },
+  {
+   "name": "aca_122",
+   "rank": 6,
+   "total_length": 18,
+   "relator_cap": 22,
+   "one_move_images": 196,
+   "newly_decided": 196
+  }
+ ],
+ "harvests": [
+  {
+   "name": "aca_117",
+   "rank": 1,
+   "root": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "relator_cap": 18,
+   "pops": 47,
+   "pop_budget": 400,
+   "distinct_members": 6518,
+   "queue_remaining": 6471,
+   "newly_decided": 6402
+  },
+  {
+   "name": "aca_11",
+   "rank": 2,
+   "root": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "relator_cap": 19,
+   "pops": 45,
+   "pop_budget": 400,
+   "distinct_members": 6518,
+   "queue_remaining": 6473,
+   "newly_decided": 6394
+  },
+  {
+   "name": "aca_121",
+   "rank": 3,
+   "root": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "relator_cap": 20,
+   "pops": 80,
+   "pop_budget": 400,
+   "distinct_members": 6518,
+   "queue_remaining": 6438,
+   "newly_decided": 6362
+  },
+  {
+   "name": "aca_17",
+   "rank": 4,
+   "root": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "relator_cap": 21,
+   "pops": 70,
+   "pop_budget": 400,
+   "distinct_members": 6518,
+   "queue_remaining": 6448,
+   "newly_decided": 6354
+  },
+  {
+   "name": "aca_30",
+   "rank": 5,
+   "root": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "relator_cap": 21,
+   "pops": 45,
+   "pop_budget": 400,
+   "distinct_members": 6518,
+   "queue_remaining": 6473,
+   "newly_decided": 6386
+  },
+  {
+   "name": "aca_122",
+   "rank": 6,
+   "root": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "relator_cap": 22,
+   "pops": 72,
+   "pop_budget": 400,
+   "distinct_members": 6518,
+   "queue_remaining": 6446,
+   "newly_decided": 6322
+  }
+ ],
+ "elapsed_seconds": 249.2,
+ "outputs": {
+  "rows": "results/stable_ac/fable/u124_gateway_neighbourhood.jsonl",
+  "summary": "results/stable_ac/fable/u124_gateway_neighbourhood_summary.json"
+ }
+}

@@ -7,8 +7,15 @@ Branch `claude/stable-ac-conjecture-stabilization-rwo9as`; **must be merged into
 `S3_SUBDIVISION_INVARIANCE.md` (why triangulation alone is a no-op).
 
 Code: `experiments/stable_ac/fable/rank_n_ac_search.py`.
-Tests: `tests/test_rank_n_ac_search.py` (36 tests). Full suite at the time of writing:
-**702 passed, 7 skipped** (before the six S6-driven tests were added; 708 after).
+Tests: `tests/test_rank_n_ac_search.py` — **36 tests, all passing** (5 s).
+Full suite at the end of the task: **759 passed, 9 skipped, 2 failed**. Neither failure is
+in this task's files: both are in `tests/fable/test_spelling_high_rank.py` (task A8's, added
+during this session). One of them,
+`test_spiking_never_creates_thickenability_on_these_bases[words1-gens1]`, is a *reproducible*
+assertion failure that its own message calls a Conjecture SR counterexample; it is
+re-verified by exact census in §5.2 qualification 6 below and flagged to that task's owner.
+`tests/test_rank_n_ac_search.py` and `tests/fable/test_spelling_high_rank.py` pass together
+(52 passed, 1 skipped), so there is no interaction between them.
 Artifacts, all under `results/stable_ac/fable/`:
 
 | file | what it backs |
@@ -393,6 +400,17 @@ And the honest qualifications, all of them:
    topology. The topological reading is the last column of §4.1: **zero, at every rung.**
 5. **One-sidedness, restated.** None of this is evidence that `γ_N > 0` on AK(3)'s stable
    class. Only an exhaustive census can say that, and only for a single spelling.
+6. **Spelling scope.** With `reduce_children = True` the search only ever *visits* fully
+   cyclically reduced spellings. `S6_MOVE_CLASSIFICATION.md` row M0 measures full
+   reduction as one-directionally productive (315 creates / 0 destroys of 2,510), which is
+   why this is the right default — but S6 itself flags the destroying direction as
+   ¬Conjecture SR, **[OPEN]**. Concretely, and verified here by exact census:
+   `("YyXYYyxY","XyX")` has `minimum_defect` **0**, its partial reduction
+   `("XYYyxY","XyX")` has **2**, and its full reduction `("XYxY","XyX")` has **0** again
+   (censuses 4,320 / 144 / 12). Full reduction is fine in that example, but the family is
+   not monotone, so: *if a thickenable member of AK(3)'s stable class exists only as a
+   non-reduced spelling, this search cannot see it.* That is the spelling route
+   (`R7_SPELLING_SPACE.md`, task A8's `S11`), not this one.
 
 ### 5.3 What the S-line should take from this
 
@@ -449,6 +467,12 @@ distribution, not the budget.
   `experiments/stable_ac/fable` (the fingerprint is a directory-wide hash), which is what
   the one `REFUSED` row in `guard_ledger.jsonl` for this task is. Re-preflight and rerun;
   it is not a failure of the experiment.
+- **T-A7.5 — `reduce_children` buys productivity at the cost of a spelling restriction.**
+  Turning it on took ladder A from 0/6 to 3/12, and it is what makes the cyclically-reduced
+  dedup key sound (T-A7.2). It also means the search never visits an unreduced spelling,
+  and the reduction family is *not* monotone in `γ_N` — the exact censuses in §5.2
+  qualification 6 exhibit 0 → 2 → 0 along one reduction chain. Any future null from this
+  module is a null **about reduced spellings**.
 - Restated because they bound everything above: **T-S6** (γ_N's *value* is not comparable
   across cell structures — only `γ_N = 0` is topological) and **T-S2 / the
   bound-direction lesson** (a hill-climbed witness bounds from ABOVE; silence bounds

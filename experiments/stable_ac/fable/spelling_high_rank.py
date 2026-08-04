@@ -1,4 +1,15 @@
-"""S11 -- spelling space AT HIGH RANK: calibration ladder + the AK(3) spike hunt.
+"""S11 -- spelling space AT HIGH RANK: calibration ladder + the refutation of Conjecture SR.
+
+HEADLINE, so it is not buried: ``sr_hunt_spelled`` found a **verified counterexample to
+R7's Conjecture SR**.  ``("YyXYYyxY","XyX")`` has minimum defect 0 over its full 4,320-system
+census while ``("XYYyxY","XyX")`` -- the same word with the leading ``Yy`` spike deleted --
+has minimum defect 2 over its full 144-system census.  So
+``gamma_N(spike(P)) = 0 => gamma_N(P) = 0`` is FALSE.  Every prior SR test spiked a
+*cyclically reduced* base once, i.e. tested only the step ``depth 1 -> depth 0``; this
+breaks at ``depth 2 -> depth 1``.  Pinned in
+``tests/fable/test_spelling_high_rank.py::test_CONJECTURE_SR_IS_FALSE_the_pinned_counterexample``
+and written up in ``results/stable_ac/theory/fable/S11_SPELLING_AT_HIGH_RANK.md`` section 4.3.
+
 
 Task A10 of the fable S-line.  Two things live here, in this order, because the second is
 worthless without the first:

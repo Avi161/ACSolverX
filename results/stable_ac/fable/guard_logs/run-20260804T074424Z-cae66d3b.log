@@ -1,3 +1,8 @@
   [nbhd d1] 6/6 roots, 888 states (3s)
   [nbhd deep] aca_117: 6518 members, 6402 new (53s)
   [nbhd deep] aca_11: 6518 members, 6394 new (85s)
+  [nbhd deep] aca_121: 6518 members, 6362 new (110s)
+  [nbhd deep] aca_17: 6518 members, 6354 new (187s)
+  [nbhd deep] aca_30: 6518 members, 6386 new (218s)
+  [nbhd deep] aca_122: 6518 members, 6322 new (249s)
+[nbhd] 39108 states, verdicts {'NOT_SPHERICAL': 39108}

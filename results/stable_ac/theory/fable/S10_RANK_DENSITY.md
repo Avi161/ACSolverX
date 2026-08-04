@@ -1,4 +1,49 @@
-# S10 — Thickenability gets DENSER with rank: the first positive result for high-rank stabilization
+# S10 — RETRACTED as a rank effect. The "rank" axis was a relator-length axis in disguise
+
+> **VERDICT: REFUTED by the adversarial audit `S10_S12_AUDIT.md` (task A12).** The title
+> below and the trend it reports are **wrong**, and are kept only because the retraction is
+> more useful than a deleted file. Read §0 first; everything after it is the refuted claim
+> preserved verbatim so the error is legible.
+>
+> **What the audit did.** It re-implemented the sampler from scratch and reproduced my
+> numbers under my own rule (0.381 / 0.750 / 0.894 against my 0.411 / 0.726 / 0.867) — so
+> this is not a coding dispute, the *design* fails. Under a fixed **total**-length band,
+> rank and mean relator length are the same axis: median mean relator length is 6.5, 4.67,
+> 3.75 at ranks 2, 3, 4. Changing only the acceptance variable to **mean relator length in
+> [3.0, 4.5]**, holding move set, walk, cap, census budget and fail-closed skip fixed:
+>
+> | rank | scored | defect 0 | fraction |
+> |---|---|---|---|
+> | 2 | 220 | 191 | **0.868** |
+> | 3 | 220 | 191 | **0.868** |
+> | 4 | 181 | 151 | **0.834** |
+> | 5 | 91 | 71 | **0.780** |
+>
+> Flat, then slightly **decreasing**. A pooled 2-D table over 1,657 states shows the
+> thickenable fraction is a function of relator length alone: down a column (rank varying,
+> length fixed) nothing happens; across a row (length varying) it falls from 1.00 to 0.41.
+> **My three headline numbers are the diagonal of that matrix.**
+>
+> The audit also killed both of my confound arguments. The skip-bias claim (§4.1) is
+> unverified and, worse, the skip asymmetry **reverses** under proper matching (0/220
+> skipped at rank 2 versus 129/220 at rank 5), so it would bias the *high* ranks upward.
+> The "standard-like states inflate high rank" check (§4.2) fails too: excluding states with
+> a generator occurring once moves 0.894 to 0.910. And the distance control of §4.3 kept the
+> total-length band, so it varied distance *inside* the confound.
+>
+> **Consequence for the session.** S12 §4 row (c) — "more generators make the certificate
+> commoner" — is the only row that was ever on the positive side of this session's central
+> question, and it rested on this. It is now **REFUTED**. Row (b) was already refuted by
+> S3/S8 and row (a) was admitted vacuous, which leaves row (d), and the audit correctly
+> notes that row (d) is just the identity `census = ∏(deg−1)!` — a statement about relator
+> *length*, not about rank.
+>
+> **This is the filed `contrast-length-confound.md` lesson recurring**, in the same shape
+> and in a file that cites that lesson twice. Filed again, sharper, in §7 below.
+
+---
+
+## (REFUTED, PRESERVED FOR THE RECORD) S10 — Thickenability gets DENSER with rank: the first positive result for high-rank stabilization
 
 S-line, branch `claude/stable-ac-conjecture-stabilization-rwo9as` (merge into
 `fable/proof`). Status: **measurement, with its confounds listed and one control still
@@ -140,3 +185,21 @@ is a null about **orientable** thickenability only.
   At length 15–24 not one rank-2 sample was decidable inside the cap; every rank-3-to-6
   sample was. Whatever else high rank does, it restores the instrument in the length regime
   where AK(3)'s stable class actually lives.
+
+---
+
+## 7. The lesson, filed again
+
+`experiments/lessons/contrast-length-confound.md` says, in its own words, that *a raw
+hit-rate gap can be a LENGTH gap in disguise* and that one must *compare only inside the
+length band the two harvests share*. This file cites that lesson twice — in §4.2 and §4.4 —
+and still walked into it, because it matched the wrong length.
+
+> **Matching TOTAL length across ranks does not match length at all.** At fixed total
+> length, rank and mean relator length are the same variable: `mean = total / rank`. Any
+> "effect of rank" measured at fixed total length is an effect of relator length wearing a
+> different label. To vary rank, hold **per-relator** length fixed and let the total grow.
+
+Recorded as **T-S10**. The general form, which is what makes it recur: when a design holds
+quantity `A` fixed and varies `B`, check every quantity that is a *function of A and B* —
+here `A/B` — because that is what actually moved.

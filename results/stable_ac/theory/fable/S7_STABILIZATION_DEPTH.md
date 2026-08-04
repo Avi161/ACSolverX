@@ -128,10 +128,17 @@ in the normal closure of the *other* relators **at the moment the redefinition i
   now accounted for — depth-1 and topologically inert respectively. Its γ_N is 2 at every
   rank reachable by abbreviation. Any high-rank progress must come from entangled AC2
   slides, which is what task A7's rank-`N` search is built to look for.
-- **The 124 unsolved MS classes**: the same applies class-wide. Note the class structure is
-  `Aut(F₂)`-orbit based (`unsolved_124_aca_classes.csv`), so by (a) each class is a single
-  depth-1 object: **there are not 261 unsolved presentations to attack at depth ≥ 1, there
-  are 124 — and that reduction is a theorem, not a heuristic.**
+- **The 124 unsolved MS classes**: the same applies class-wide, but the arithmetic below was
+  wrong and is corrected here after audit A12.
+  **[CORRECTED.]** The `aca_*` classes are **not** `Aut(F₂)` orbits. The source branch's own
+  README defines ACA as "AC moves *together with* change of variables", and says explicitly
+  that **124 is an upper bound**; the Aut-orbit table is a different file
+  (`solved_640_aut_orbits.csv`). Its `PROOFS.md` records 137 identification edges = 93
+  change-of-variables edges + 44 AC edges. So Cor. F1 does real work but less of it than
+  claimed: deleting only the 93 cv edges leaves `261 − 44 = 217` components, so **F1
+  collapses at most 217 objects to at most 124**. The correct sentence is "*at most* 124",
+  and it depends on 137 certificates computed on another branch (3 spot-checked this
+  session), so it is not purely a theorem of this line. AK(3) = `aca_115` is verified.
 
 ## 6. Open items this note hands on
 

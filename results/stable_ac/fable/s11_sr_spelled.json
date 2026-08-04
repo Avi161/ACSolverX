@@ -1,0 +1,1118 @@
+{
+ "record": "Conjecture SR counterexample hunt at spike depth 1 -> 2",
+ "conjecture": "SR: gamma_N(spike(P)) = 0 => gamma_N(P) = 0, for EVERY P and spike",
+ "gap_attacked": "all prior SR evidence takes a cyclically reduced base and one spike, i.e. it tests depth 1 -> 0 only",
+ "bases_examined": 5,
+ "depth1_spellings_with_positive_defect": 64,
+ "depth2_spellings_decided": 1856,
+ "depth2_skipped_over_cap": 0,
+ "n_counterexamples": 16,
+ "counterexamples": [
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "XxxYY",
+    "xYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "XxxYXxY",
+    "xYYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 4,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "XxxYY",
+    "xYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "XxxYY",
+    "xYYXxYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 3,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "xYYXxYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "XxxYY",
+      "xYYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "XxxYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "XxxyXY",
+    "XxxYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "XxxYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "XxxyXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  },
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "xYY",
+    "XxxYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xYXxY",
+    "XxxYYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 2,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "XxxYYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "xYXxY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "xYY",
+    "XxxYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xYY",
+    "XxxYYXxYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 5,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "xYY",
+    "xxXYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xYY",
+    "xxXYYxXYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 5,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "xYY",
+    "xxXYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xYxXY",
+    "xxXYYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "xxXYYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "xYxXY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "xxXYY",
+    "xYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xxXYY",
+    "xYYxXYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 3,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "xYYxXYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "xxXYY",
+      "xYYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xYY",
+    "xYYYY"
+   ],
+   "depth1": [
+    "xxXYY",
+    "xYYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xxXYxXY",
+    "xYYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 4,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 14400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "xYY",
+      "xYYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 2,
+    "live_cosets": 2,
+    "cosets_defined": 3,
+    "max_table_size": 3,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xYY",
+     "xYYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": false
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "xYxXYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xxXyXY",
+    "xYxXYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "xYxXYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "xxXyXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "xxXYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xxXyXY",
+    "xxXYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "xxXYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "xxXyXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "XxxYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xyXXxY",
+    "XxxYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 3,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "XxxYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "xyXXxY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "xYYXxY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xyXXxY",
+    "xYYXxY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 3,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 3,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "xYYXxY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "xyXXxY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "xYYXxY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xyXY",
+    "xYXxYXxY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 3,
+    "letter": "X"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "xyXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "xYxXYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xyXY",
+    "xYxXYxXY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 5,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "xyXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  },
+  {
+   "base_reduced": [
+    "xyXY",
+    "xYYY"
+   ],
+   "depth1": [
+    "xyXY",
+    "xxXYYY"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "xyxXXY",
+    "xxXYYY"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "generators": [
+    "x",
+    "y"
+   ],
+   "total_length": 12,
+   "census_depth2": 17280,
+   "one_step_reductions": [
+    {
+     "words": [
+      "xyXY",
+      "xxXYYY"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "xyxXXY",
+      "xYYY"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "CAP_EXCEEDED",
+    "index": null,
+    "live_cosets": 17501,
+    "cosets_defined": 20000,
+    "max_table_size": 20000,
+    "cap": 20000,
+    "generators": [
+     "x",
+     "y"
+    ],
+    "relators": [
+     "xyXY",
+     "xYYY"
+    ],
+    "subgroup_generators": [],
+    "trivial": null
+   }
+  }
+ ],
+ "cap": 200000,
+ "seconds": 200.14
+}

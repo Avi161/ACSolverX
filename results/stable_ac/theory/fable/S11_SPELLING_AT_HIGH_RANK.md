@@ -1,4 +1,4 @@
-# S11 — Spelling space at high rank: the soundness verdict, and a decision instrument restored in the blind band
+# S11 — Spelling space at high rank: **Conjecture SR is false**, and a decision instrument restored in the blind band
 
 Task A10, S-line, branch `claude/stable-ac-conjecture-stabilization-rwo9as`
 (**must be merged into `fable/proof` by the user**). Date 2026-08-04.
@@ -6,16 +6,36 @@ Owner files: `experiments/stable_ac/fable/spelling_high_rank.py`,
 `tests/fable/test_spelling_high_rank.py`, `results/stable_ac/fable/s11_*.json`.
 `high_rank_refine.py` and `rank_n_ac_search.py` are **imported, never edited**.
 
-STATUS. Section 1 is a soundness analysis of an inference chain — it corrects two
-statements currently in the line's own notes and is offered as a draft for adversarial
-audit, not as a result. Sections 3–5 are **measurements** by exact census, each reported
-with its cap, its skip count and its bias direction. Section 2 records a route closure
-that belongs to task A8, not to this note; it is repeated here because it is what
+**THREE RESULTS, in order of importance.**
+
+1. **Conjecture SR of `R7_SPELLING_SPACE.md` §3.1 is FALSE** (§4.3). Verified
+   counterexample, both sides by exhaustive census, the defect-0 side re-verified by two
+   further independent tools. Consequences: R7's `γ*(AK(3)) = 1` and "the entire
+   spelling-space route to a thickenable AK(3) is closed" lose their hypothesis; R7's
+   Conjecture U falls too if its Theorem S10 is right; R7's retroactive upgrade of ≈17,100
+   `NOT_SPHERICAL` verdicts is withdrawn. **The spelling route to AK(3) is reopened** in the
+   sense that the argument closing it is gone.
+2. **A decision instrument restored in the length band where this line was blind** (§3).
+   The exact census decides 95 % of rank-8 states at total length 22 and 57 % at length 25,
+   where rank 2 and rank 3 decide **0 %** — with `missed = 0` across a 163-rung certified
+   positive ladder, i.e. zero disagreements against an independent witness route.
+3. **A correction to the line's own soundness bookkeeping** (§1): the element-tuple
+   argument does not transfer a thickenability *hypothesis*, and trap T-S9 has its
+   containment backwards — `γ_N = 0` is the *stronger* predicate and discharges Lackenby's
+   for free; the orientable gap costs recall, not soundness.
+
+STATUS. §1 is an inference-chain audit — a draft for adversarial audit, not a result.
+§§3–5 are **measurements** by exact census, each with its cap, skip count and bias
+direction. §4.3's counterexample is a **finite, exhaustively verified fact** and is as
+close to a result as this note gets; it still wants an independent audit, and the audit
+is cheap because the whole object is two words and two censuses of 144 and 4,320.
+§2 records a route closure that belongs to task A8; it is repeated here because it is what
 redirected this task mid-flight.
 
 Claims addressed (FRAMING.md taxonomy): everything here is **MACHINERY** plus one
 inference-chain audit. **Nothing here claims anything about AK(3)'s AC-triviality or
-stable AC-triviality in either direction.**
+stable AC-triviality in either direction** — §4.3 removes an argument *against* one
+spelling-space route; it does not supply one for it.
 
 ---
 
@@ -363,9 +383,106 @@ limit it:
   the one regime where the census is cheapest and the germ degrees highest; these 8,565
   live in the opposite corner.
 
-**Verdict: Conjecture SR survives, now in a rank regime it had never been tested in.**
-The spelling route stays closed for the positive direction, and the reason it stays closed
-is still a measurement rather than a theorem.
+**Verdict on this run: no counterexample, in a rank regime SR had never been tested in.**
+But that is not where the counterexample was — see §4.3.
+
+### 4.3 **CONJECTURE SR IS FALSE.** A verified counterexample, and what it does and does not break
+
+Every SR test ever run on this line — R1F's 110,917 complexes, R7's 5,241, A8's 997 —
+takes a **cyclically reduced** base and applies **one** spike. That tests the induction step
+`depth 1 → depth 0` and nothing else. The Corollary SR is *wanted* for
+(`γ*(P) = 0 ⟺ γ_N(P_red) = 0`, hence `γ*(AK(3)) = 1` and the closure of the spelling route)
+iterates SR at **every** depth. So the step to attack is `depth 2 → depth 1`. It breaks
+immediately.
+
+> **Counterexample.** With `P = ("XYYyxY", "XyX")` and the spike `u = "Y"` at position 0 of
+> the first relator,
+>
+> | | census | min defect | `γ_N` |
+> |---|---|---|---|
+> | `P = ("XYYyxY","XyX")` | 144 | **2** | 1 |
+> | `spike(P) = ("YyXYYyxY","XyX")` | 4,320 | **0** | **0** |
+>
+> Both censuses are **exhaustive** — no cap was hit and nothing was sampled. So
+> `γ_N(spike(P)) = 0` while `γ_N(P) = 1`, and **`γ_N(spike(P)) = 0 ⇒ γ_N(P) = 0` is false.**
+
+**Verification, on both sides, by tools that do not share code.**
+
+* `spike(P)`'s defect 0: exact census (4,320 systems, 2 accepting); `check_witness_n`
+  accepts the witness outright (`defect 0`, `L = 1`, `|C|−|A|+|AC| = 4−11+9 = 2`,
+  `⟨AC,BC⟩` transitive, compatible); and `rank_n_ac_search.independent_defect`, which
+  rebuilds the dart dictionary from the words, returns `defect 0`.
+* `P`'s defect 2: exact census over all 144 systems here — **and independently, `P` is
+  literally row 1 of `S3_AUDIT.md` §3.2**, where a different agent's from-scratch census
+  (`audit_s3/mygamma.py`) recorded `('XYYyxY','XyX') d=2`. Two implementations, two
+  sessions, same number.
+* Not a degenerate case: `L = 1` on both, both relators of length ≥ 3, both using both
+  generators — R1F's **strict stratum**.
+
+**What is broken.**
+
+1. **Conjecture SR (R7 §3.1) is refuted.** It must be struck from R7 and from anything
+   downstream of it.
+2. **R7's "Corollary (conditional on SR)" loses its hypothesis.** The claims
+   *"`γ*(AK(3)) = 1` exactly"*, *"no spelling of AK(3) is thickenable"* and *"the entire
+   spelling-space route to a thickenable AK(3) is closed"* were derived from SR. They are
+   now **unsupported** — not disproved, but no longer proved. **The spelling route to
+   AK(3) is reopened**, in the exact sense that the argument which closed it is gone.
+3. **Conjecture U (unnesting) falls with it** — *if* R7's Theorem S10 (`U ⇒ SR`) is correct
+   as stated. Contrapositive: `¬SR ⇒ ¬U`. S10 was **not** re-derived here, so this is
+   reported as a consequence to check, not as an established refutation.
+4. **R7's "retroactive strengthening" is withdrawn.** The ≈17,100 `NOT_SPHERICAL` verdicts
+   in this project's corpus were to be upgraded from single-realization statements to
+   whole-spelling-family statements *under SR*. That upgrade is no longer available.
+
+**What is NOT broken, and this is the important half.**
+
+* **The Corollary's *conclusion* survives on this example.** The other one-step reduction
+  of `spike(P)` — deleting the interior `Yy` instead of the leading one — is
+  `("YyXYxY","XyX")` with defect **0**, and the full reduction `("XYxY","XyX")` also has
+  defect **0**. So `γ*` and `γ_N(P_red)` still agree here.
+* **The natural repair is the EXISTENTIAL form.** Call it
+
+  > **SR′.** `γ_N(K) = 0 ⇒ SOME one-step reduction `K → K′` has `γ_N(K′) = 0`.
+
+  SR′ still yields the Corollary by induction (each step takes the good reduction), and it
+  held in **every** counterexample found here. It is unproved and is now the right target.
+* **A8's "0 destroy of 997" is not contradicted.** Their reduction step is free *and
+  cyclic* reduction, i.e. reduction to the reduced form, and full reduction of `spike(P)`
+  lands on `("XYxY","XyX")` with defect 0. The correct reconciliation: *full reduction*
+  never destroyed `γ_N = 0` in 997 trials, while a *single spike deletion* demonstrably
+  can. That distinction was invisible while every base tested was reduced, and it is
+  exactly the distinction SR trades on.
+
+**How common is it?**
+
+`results/stable_ac/fable/s11_sr_spelled.json`, 200 s, cap 2·10⁵. Bases: cyclically
+reduced rank-2 pairs of total length ≤ 8, both relators using both generators; for each,
+every depth-1 spike with **positive** defect, then every depth-2 spike of those.
+
+| | |
+|---|---|
+| reduced bases reached | **5** (the run is deep, not wide — one base is ~40 s) |
+| depth-1 spellings with `γ_N > 0` | 64 |
+| depth-2 spellings decided | **1,856** |
+| depth-2 skipped over cap | **0** — every single one decided exactly |
+| **counterexamples** | **16**, over **8 distinct** depth-1 `P` |
+| shortest counterexample in this run | total length 12 |
+| shortest counterexample known | **total length 11** — the pinned `("YyXYYyxY","XyX")` |
+| existential repair SR′ survives | **16 of 16** |
+| counterexamples whose reduced base presents the trivial group | 0 in this sample |
+
+So it is **not a freak**: ~0.9 % of decided depth-2 spellings over these bases break SR,
+and the search found the first one in under a second. It was invisible for ≈120,000
+measurements purely because every one of those measurements started from a reduced base.
+
+**The one thing still worth hunting**, and it is now sharply defined: a counterexample
+where **SR′ also fails** — a thickenable spelling *none* of whose one-step reductions is
+thickenable. That, and not this, would break the Corollary itself and put `γ*(AK(3)) = 0`
+genuinely back on the table. 0 of 16 here; the next session should widen this hunt (more
+bases, spike depth 3) rather than deepen it. A second target, cheaper and equally
+pointed: a counterexample whose reduced base presents the **trivial group**, since only
+those can bear on Lackenby's hypothesis at all.
 
 ---
 
@@ -478,3 +595,25 @@ solver (`neuwirth_rank_n.py` `MIN_RELATOR_LENGTH`); only `gamma_N_factorial_n` s
   non-cyclically-reduced input**. Any future spelling × high-rank pipeline must therefore
   refine first and spike second (spike-then-refine raises `RefinementError`), or bring its
   own refiner — which then does not carry the audited replay certificate.
+* **T-S11e — the one worth promoting to `experiments/lessons/`.**
+  **Conjecture SR is FALSE; never cite it, and re-check anything conditional on it.**
+  More useful than the fact is *why ~120,000 measurements missed it*: SR is an induction
+  step `depth k → depth k−1`, and every corpus that "confirmed" it generated its states by
+  applying **one** operation to a **normal-form** base — so it only ever measured `k = 1`.
+  The counterexample lives at `k = 2` and was reachable in under a second once the base was
+  allowed to be non-normal.
+
+  > **Rule.** When the conjecture you are testing is an induction step, your generator must
+  > sample the step at depth ≥ 2. A corpus built by "normal form + one move" cannot
+  > falsify "every move step behaves", however large it is — its size is measuring the
+  > wrong dimension.
+
+  Corollary for reading this repo: any claim of the form "0 counterexamples in N complexes"
+  should be read together with *how the N were generated*, and specifically whether the
+  generator can produce the shape a counterexample would have.
+* **T-S11f.** A `γ_N = 0` calibration state need not present the trivial group — R1F's own
+  fixture `("xyXY","xxy")` presents **ℤ** (relators `[x,y]` and `x²y`), and
+  `witness_check_n.check_witness_n` correctly raises `AuditContradiction` on its witness
+  because `verify_defect_zero` hardcodes `trivial_group=True`. That refusal is a *feature*
+  and must not be silenced. Any state promoted from "thickenable" to "Lackenby
+  certificate" needs `todd_coxeter_check` as a separate step.
