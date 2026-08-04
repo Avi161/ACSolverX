@@ -1,5 +1,35 @@
 # S6 — Which AC moves can change thickenability, and what stabilization actually buys
 
+> ## CORRECTIONS APPLIED AFTER AUDIT (`S6_S8_S4_AUDIT.md`, task A14)
+>
+> The theorems survive; the *headline* and the *flip table* do not, and this banner is
+> deliberately placed above them.
+>
+> 1. **§8's collapse — "stable ACC becomes a statement purely about AC2" — is WITHDRAWN.**
+>    It is conditional on Conjecture SR, which `S11` (A10) **refuted**, including on balanced
+>    presentations of the **trivial group** (a chain with defects 0 → 2 → 0, all three rows
+>    Todd–Coxeter index 1, re-verified independently twice). Worse, §8's own support for SR
+>    ("0 counterexamples in 997") is a **depth-1** corpus, while SR first fails at depth 2 —
+>    detection rate zero by construction, the exact error
+>    `calibrate-one-sided-hunts-on-a-positive-ladder.md` warns about. SR must be recorded as
+>    FALSE, not `[OPEN]`.
+> 2. **The flip table has three defects.** The `M0` row is the `M2nc` row *re-partitioned*,
+>    not an independent census (2,510 + 997 = 3,507 exactly), so §8's "73 + 315 events"
+>    double-counts; the `M3` denominators are 14 pairs short; and §0.3 cites S3's trap
+>    **T-S6, which S3 §5 repair R5 retracted**.
+> 3. **The rates do not survive the trivial-group restriction, and they get BETTER.** The
+>    published rates come from an unrestricted rank-2 corpus, but the AC programme only ever
+>    acts on presentations of the trivial group. Re-measured (control reproduces the
+>    published rates, so the shift is the restriction): AC2 destroys **21.1 %** of
+>    thickenable bases and **creates on 18.5 %** of non-thickenable ones (published: 51.5 % /
+>    7.0 %), and bare AC3 destroys **5.8 %** (published: 24.0 %). AC2 is net-positive in
+>    absolute terms on the corpus that matters.
+>
+> CONFIRMED unchanged: **T1, T4, T4′, T2, T0**. T4′ is in fact *stronger* than stated — the
+> whole defect histogram is preserved, 144/144 — and survives the monogon degeneracy.
+
+
+
 Task A8, branch `claude/stable-ac-conjecture-stabilization-rwo9as` (merge into
 `fable/proof`). Date 2026-08-04.
 
