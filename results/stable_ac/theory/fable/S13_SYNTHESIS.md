@@ -82,8 +82,14 @@ So the extra nine generators bought a much cheaper question and *no better answe
   the inert first slide cannot move γ_N.
 - **The cubic regime is rich** (A6, exhaustive): of the 43,008 non-degenerate cubic
   triangular presentations of the trivial group at rank 4, **27,648 (64.29 %) are
-  thickenable**. No cubic form for AK(3) was found; that null is 48 correlated attempts at a
-  measured 33 % detection rate, i.e. suggestive at best.
+  thickenable**.
+- **AK(3) has a cubic form, and the first search's null was a search artefact** (A6, second
+  pass). The first attempt reported 0 hits in 48 roots; the scaled search found **2 in 28**.
+  What changed was not the budget but the *beam*: a pure cost ranking cannot leave the
+  Σ|δ| = 2 parity plateau, because leaving it provably requires a cost-*increasing* move, so
+  filling 30 % of each beam at random turned 0/48 into 2/28 — and the calibration reverses
+  with it (AK(3) 2/28 against a matched ladder's 0/35). A textbook case of a null that was
+  measuring the searcher, not the target.
 - **The density trend is a length effect** (A12 audit): holding *per-relator* length fixed,
   the thickenable fraction is 0.868 / 0.868 / 0.834 / 0.780 at ranks 2/3/4/5 — flat, then
   slightly decreasing.
