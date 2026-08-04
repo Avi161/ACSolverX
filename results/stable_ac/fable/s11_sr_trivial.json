@@ -1,0 +1,875 @@
+{
+ "record": "Conjecture SR counterexample hunt at spike depth 1 -> 2",
+ "conjecture": "SR: gamma_N(spike(P)) = 0 => gamma_N(P) = 0, for EVERY P and spike",
+ "gap_attacked": "all prior SR evidence takes a cyclically reduced base and one spike, i.e. it tests depth 1 -> 0 only",
+ "bases_examined": 4,
+ "depth1_spellings_with_positive_defect": 15,
+ "depth2_spellings_decided": 384,
+ "depth2_skipped_over_cap": 99,
+ "n_counterexamples": 12,
+ "counterexamples": [
+  {
+   "base_reduced": [
+    "AbabAB",
+    "baB"
+   ],
+   "depth1": [
+    "AbabAAaB",
+    "baB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "ABbbabAAaB",
+    "baB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 5,
+    "letter": "A"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 1,
+    "letter": "B"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 86400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "AbabAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "AbabAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "ABbbabAAaB",
+      "a"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 10,
+    "max_table_size": 10,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "AbabAB",
+     "baB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "AbabAB",
+    "baB"
+   ],
+   "depth1": [
+    "AbabAAaB",
+    "baB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "AbAaabAAaB",
+    "baB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 5,
+    "letter": "A"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 2,
+    "letter": "A"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "AbabAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "AbabAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "AbAaabAAaB",
+      "a"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 10,
+    "max_table_size": 10,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "AbabAB",
+     "baB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "AbabAB",
+    "baB"
+   ],
+   "depth1": [
+    "AbabAB",
+    "aAbaB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "AbaaAbAB",
+    "aAbaB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 0,
+    "letter": "a"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 3,
+    "letter": "a"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "AbabAB",
+      "aAbaB"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "AbaaAbAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 10,
+    "max_table_size": 10,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "AbabAB",
+     "baB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "AbabAB",
+    "baB"
+   ],
+   "depth1": [
+    "AbabAAaB",
+    "baB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "AbabAAaB",
+    "bAaaB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 5,
+    "letter": "A"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 1,
+    "letter": "A"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "AbabAB",
+      "bAaaB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "AbabAAaB",
+      "baB"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "AbabAAaB",
+      "a"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 10,
+    "max_table_size": 10,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "AbabAB",
+     "baB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "AbabAB",
+    "baB"
+   ],
+   "depth1": [
+    "AbabAAaB",
+    "baB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "AbabABbAaB",
+    "baB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 5,
+    "letter": "A"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 5,
+    "letter": "B"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 86400,
+   "one_step_reductions": [
+    {
+     "words": [
+      "AbabAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "AbabAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "AbabABbAaB",
+      "a"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 10,
+    "max_table_size": 10,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "AbabAB",
+     "baB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "babaBa",
+    "AAB"
+   ],
+   "depth1": [
+    "babaBa",
+    "BbAAB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "BbbabaBa",
+    "BbAAB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 0,
+    "letter": "B"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 0,
+    "letter": "B"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "babaBa",
+      "BbAAB"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "BbbabaBa",
+      "AAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 14,
+    "max_table_size": 14,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "babaBa",
+     "AAB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "AbabAB",
+    "baB"
+   ],
+   "depth1": [
+    "AbabAB",
+    "aAbaB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "aAAbabAB",
+    "aAbaB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 0,
+    "letter": "a"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 0,
+    "letter": "a"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "AbabAB",
+      "aAbaB"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "aAAbabAB",
+      "baB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 10,
+    "max_table_size": 10,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "AbabAB",
+     "baB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "babaBa",
+    "AAB"
+   ],
+   "depth1": [
+    "baBbbaBa",
+    "AAB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "baBbbaBBba",
+    "AAB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 2,
+    "letter": "B"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 7,
+    "letter": "B"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "babaBa",
+      "AAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "babaBa",
+      "AAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 14,
+    "max_table_size": 14,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "babaBa",
+     "AAB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "babaBa",
+    "AAB"
+   ],
+   "depth1": [
+    "baBbbaBa",
+    "AAB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "baBbbaBa",
+    "ABbAB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 2,
+    "letter": "B"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 1,
+    "letter": "B"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "babaBa",
+      "ABbAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "baBbbaBa",
+      "AAB"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 14,
+    "max_table_size": 14,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "babaBa",
+     "AAB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "babaBa",
+    "AAB"
+   ],
+   "depth1": [
+    "babaBa",
+    "AAbBB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "babbBaBa",
+    "AAbBB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 1,
+    "position": 2,
+    "letter": "b"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 3,
+    "letter": "b"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "babaBa",
+      "AAbBB"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    },
+    {
+     "words": [
+      "babbBaBa",
+      "AAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 14,
+    "max_table_size": 14,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "babaBa",
+     "AAB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "babaBa",
+    "AAB"
+   ],
+   "depth1": [
+    "bbBabaBa",
+    "AAB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "bbBabaBa",
+    "AbBAB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 1,
+    "letter": "b"
+   },
+   "spike2": {
+    "relator": 1,
+    "position": 1,
+    "letter": "b"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "babaBa",
+      "AbBAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "bbBabaBa",
+      "AAB"
+     ],
+     "verdict": "NOT_THICKENABLE",
+     "minimum_defect": 2
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 14,
+    "max_table_size": 14,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "babaBa",
+     "AAB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  },
+  {
+   "base_reduced": [
+    "babaBa",
+    "AAB"
+   ],
+   "depth1": [
+    "bbBabaBa",
+    "AAB"
+   ],
+   "depth1_defect": 2,
+   "depth2": [
+    "bbBababBBa",
+    "AAB"
+   ],
+   "depth2_defect": 0,
+   "spike1": {
+    "relator": 0,
+    "position": 1,
+    "letter": "b"
+   },
+   "spike2": {
+    "relator": 0,
+    "position": 6,
+    "letter": "b"
+   },
+   "generators": [
+    "a",
+    "b"
+   ],
+   "total_length": 13,
+   "census_depth2": 120960,
+   "one_step_reductions": [
+    {
+     "words": [
+      "babaBa",
+      "AAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    },
+    {
+     "words": [
+      "babaBa",
+      "AAB"
+     ],
+     "verdict": "THICKENABLE",
+     "minimum_defect": 0
+    }
+   ],
+   "existential_SR_survives": true,
+   "group_of_reduced_base": {
+    "status": "COMPLETE",
+    "index": 1,
+    "live_cosets": 1,
+    "cosets_defined": 14,
+    "max_table_size": 14,
+    "cap": 20000,
+    "generators": [
+     "a",
+     "b"
+    ],
+    "relators": [
+     "babaBa",
+     "AAB"
+    ],
+    "subgroup_generators": [],
+    "trivial": true
+   }
+  }
+ ],
+ "cap": 200000,
+ "seconds": 230.08,
+ "bases_restricted_to_trivial_group": true
+}

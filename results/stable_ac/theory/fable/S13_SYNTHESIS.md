@@ -80,12 +80,40 @@ witness ⇒ γ_N ≤ 1) gives **exact** γ_N without a census:
 | `aca_122` | `YXXXyxx, YYYYYXyyyyx` | 18 | **1** |
 | `aca_115` = **AK(3)** | `YXYxyx, YYYYxxx` | 13 | **2** |
 
+(`aca_117` re-verified independently by the orchestrator: exhaustive census over 518,400
+rotations gives `minimum_defect` 2, and Todd–Coxeter gives index 1. AK(3) reproduces at
+defect 4, index 1.)
+
 By the project's audited graft ceiling (a graft lowers γ_N by at most 1), a thickenable
 member is only reachable from a γ_N = 1 state. **Six of AK(3)'s 123 unsolved siblings sit
 one unit closer to Lackenby's hypothesis than AK(3) itself does** — and 39,108 states inside
 their classes have already been swept without a hit. They are the sharpest targets this
 session produced, and they are targets *at rank 2*, which is the final irony of the S-line:
 the best lead is not at high rank at all.
+
+### 3b. The gateways cluster on one relator — a lead, not a result
+
+Four of the six carry the **same** relator, `YXXXyxx` = `y⁻¹x⁻³yx²`, i.e. the
+Baumslag–Solitar relation `y⁻¹x³y = x²`. That relator appears in only 11 of the 124 classes:
+
+| population | rows | certified γ_N = 1 |
+|---|---|---|
+| contains `YXXXyxx` | 11 | **4** |
+| all others | 113 | 2 |
+| contains `YXXXyxx`, **length ≤ 18** | 8 | **4** |
+| all others, **length ≤ 18** | 36 | 2 |
+
+The length control matters and is applied above, because the witness sampler's detection
+rate falls with length (A9: 1.00 at L13 down to 0.00 at L19), so a "γ_N = 1" label is easier
+to earn on a short row. Inside the band where witnesses are findable the enrichment is
+50 % against 5.6 %.
+
+**What this is not.** The six are the rows where a defect-2 witness was *found*; the others
+carry γ_N ∈ {1, 2} brackets that are merely unresolved, so some of the 113 may be gateways
+too. Eight versus thirty-six is a small sample, the classes are a structured family rather
+than independent draws, and **no p-value is quotable** (`contrast-length-confound.md`). Read
+it as: *if you are looking for the class closest to a Lackenby certificate, start with the
+Baumslag–Solitar-relator rows and close their brackets first.*
 
 ## 4. What the session got wrong, and how it was caught
 

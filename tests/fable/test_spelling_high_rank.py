@@ -177,6 +177,43 @@ def test_decidability_scan_shape():
     assert cells["13|6"]["median_census"] <= cells["13|2"]["median_census"]
 
 
+def test_conjecture_SR_is_false_for_TRIVIAL_GROUP_presentations():
+    """**Conjecture SR is false in the class the AC programme uses.**
+
+    Balanced, rank 2, Todd-Coxeter index 1 (the trivial group) at every step of one
+    reduction chain over generators ``a, b``:
+
+        ("ABbbabAAaB","baB")   census 86,400   minimum defect 0   <- spike, u = "B"
+        ("AbabAAaB","baB")     census  2,880   minimum defect 2
+        ("AbabAB","baB")       census    144   minimum defect 0   (fully reduced)
+
+    All three free-reduce to ("AbabAB","baB"), so they are spellings of one element pair,
+    and each step is a single move (0).  ``gamma_N(spike(P)) = 0`` with ``gamma_N(P) = 1``.
+
+    Unlike the Z/4 family of the previous test this DOES transfer: it is exactly Lackenby
+    Thm 1.3's class, and AK(3)'s.  Note also what it does NOT show -- the fully reduced
+    form is itself defect 0, so no spelling here beats its own reduction, which is the
+    thing AK(3) would need.
+    """
+    gens = ("a", "b")
+    chain = [("ABbbabAAaB", "baB"), ("AbabAAaB", "baB"), ("AbabAB", "baB")]
+    expect = [(86_400, 0), (2_880, 2), (144, 0)]
+    for w, (cases, defect) in zip(chain, expect):
+        row = S.decide(w, gens, cap=10 ** 6, keep_accepting=True)
+        assert (row["census"], row["minimum_defect"]) == (cases, defect), w
+        assert row["link_components"] == 1
+        tc = S.todd_coxeter_check(w, gens)
+        assert tc["status"] == "COMPLETE" and tc["index"] == 1 and tc["trivial"] is True
+    assert all(tuple(free_reduce(x) for x in w) == ("AbabAB", "baB") for w in chain)
+    assert chain[0] == S.spike(chain[1], 0, 1, "B")     # insert "Bb" after the leading "A"
+    # the defect-0 witness passes the independent verifier WITH trivial_group=True
+    from experiments.stable_ac.fable.witness_check_n import check_witness_n
+    rot = S.decide(chain[0], gens, cap=10 ** 6, keep_accepting=True)["accepting_orders"][0]
+    rep = check_witness_n(chain[0], {k: list(v) for k, v in rot.items()},
+                          generators=gens, trivial_group=True)
+    assert rep["defect"] == 0 and rep["link_components"] == 1 and rep["ac_bc_orbits"] == 1
+
+
 @pytest.mark.parametrize("words,gens", [
     (("xxxYYYY", "xyxYXY"), ("x", "y")),          # AK(3), cyclically reduced
     (("xxy", "xyx"), ("x", "y")),                 # cyclically reduced

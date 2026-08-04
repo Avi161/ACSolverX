@@ -209,17 +209,29 @@ For a cubic triangular presentation every `m_g = 3`, so the compatible-rotation 
     prod_g (m_g - 1)!  =  prod_g 2  =  2^N          (N = rank)
 ```
 
-exactly — which reproduces S4 §1's own measured sizes 4, 8, 16 at `N = 2, 3, 4`. AK(3)'s
-rank-2 census is `5!·6! = 86,400`, and `2^16 = 65,536 < 86,400 < 131,072 = 2^17`. The search
-drives AK(3)'s triangulations to `Σ|δ| = 2` at ranks in the high teens, so a cubic form of
-AK(3), if one exists in this calculus, would sit at a rank where **its census is comparable
-to or larger than AK(3)'s own**.
+exactly — which reproduces S4 §1's own measured sizes 4, 8, 16 at `N = 2, 3, 4`.
 
-So S4 §7.2's "the cubic census is 16 cases where AK(3)'s rank-2 census is astronomically
-larger" is a rank-4 number that does not transfer to AK(3). This is the same error family the
-S3 audit found in `S0` §2 ("more stabilization … makes the test cheaper"): rank growth adds
-letters, and the census is exponential in the rank. **The cubic route's motivation is the
-normal form and the 3-regular link, not decision cost.**
+Now bound the rank a cubic form of AK(3) could have. One `SPLIT` changes the cost by
+`ΔΣ|δ| = −k − 2 + |k − 2|`, which is `−4` for every `k ≥ 2` and `−2` for `k = 1`: **no
+`SPLIT` reduces `Σ|δ|` by more than 4.** AK(3)'s triangulations start at `Σ|δ| = 14` and
+rank 9, and each `SPLIT` adds exactly one to the rank, so
+
+```
+    a cubic form of AK(3) in this calculus has rank >= 9 + ceil(14/4) = 13,
+    hence census >= 2^13 = 8,192 ;   AK(3)'s own census is 5!*6! = 86,400 = between 2^16 and 2^17.
+```
+
+So the cheapness claim survives *only* for ranks 13–16 and **inverts at rank 17**
+(`2^17 = 131,072 > 86,400`). S4 §7.2's "the cubic census is 16 cases where AK(3)'s rank-2
+census is astronomically larger" is a rank-4 number that is off by roughly three orders of
+magnitude at the rank AK(3) would actually land on, and it reverses outright a little beyond
+it. This is the same error family the S3 audit found in `S0` §2 ("more stabilization … makes
+the test cheaper"): rank growth adds letters, and the census is exponential in the rank.
+**The cubic route's motivation is the normal form and the 3-regular link, not decision cost.**
+
+*(The `Σ|δ|` bound above is also the reason no cubic form of AK(3) can be shallow: at least
+four `SPLIT`s are needed, and — see §4 — the searches reach `Σ|δ| = 2` in three and then
+stall on the T-S11 parity plateau, exactly one unit short.)*
 
 ### 5.2 The 64.29 % thickenable fraction is a base rate, not a prior for AK(3)
 

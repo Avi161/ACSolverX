@@ -8,13 +8,18 @@ Owner files: `experiments/stable_ac/fable/spelling_high_rank.py`,
 
 **THREE RESULTS, in order of importance.**
 
-1. **Conjecture SR of `R7_SPELLING_SPACE.md` §3.1 is FALSE** (§4.3). Verified
-   counterexample, both sides by exhaustive census, the defect-0 side re-verified by two
-   further independent tools. Consequences: R7's `γ*(AK(3)) = 1` and "the entire
-   spelling-space route to a thickenable AK(3) is closed" lose their hypothesis; R7's
-   Conjecture U falls too if its Theorem S10 is right; R7's retroactive upgrade of ≈17,100
-   `NOT_SPHERICAL` verdicts is withdrawn. **The spelling route to AK(3) is reopened** in the
-   sense that the argument closing it is gone.
+1. **Conjecture SR of `R7_SPELLING_SPACE.md` §3.1 is FALSE — and false in the class that
+   matters** (§4.3, §4.3′). Two verified counterexamples: one on a ℤ/4 family, and one on
+   **balanced presentations of the trivial group with Todd–Coxeter index 1**, which is
+   AK(3)'s own class and Lackenby Thm 1.3's hypothesis. Both sides by exhaustive census,
+   the defect-0 sides re-verified by `check_witness_n` and by an independent from-scratch
+   recomputation. 28 counterexamples in total. Consequences: R7's `γ*(AK(3)) = 1` and "the
+   entire spelling-space route to a thickenable AK(3) is closed" must be **withdrawn**;
+   Conjecture U falls with it via R7's Theorem S10; the retroactive upgrade of ≈17,100
+   `NOT_SPHERICAL` verdicts is withdrawn. The defect is **not monotone in the spelling in
+   either direction** — along one chain it runs `0 → 2 → 0`.
+   *Caveat that must travel with it:* in all 28, the reduced form already had defect 0.
+   No spelling was found that beats its own reduced form, which is what AK(3) needs.
 2. **A decision instrument restored in the length band where this line was blind** (§3).
    The exact census decides 95 % of rank-8 states at total length 22 and 57 % at length 25,
    where rank 2 and rank 3 decide **0 %** — with `missed = 0` across a 163-rung certified
@@ -26,9 +31,10 @@ Owner files: `experiments/stable_ac/fable/spelling_high_rank.py`,
 
 STATUS. §1 is an inference-chain audit — a draft for adversarial audit, not a result.
 §§3–5 are **measurements** by exact census, each with its cap, skip count and bias
-direction. §4.3's counterexample is a **finite, exhaustively verified fact** and is as
-close to a result as this note gets; it still wants an independent audit, and the audit
-is cheap because the whole object is two words and two censuses of 144 and 4,320.
+direction. §4.3/§4.3′'s counterexamples are **finite, exhaustively verified facts** and are as
+close to results as this note gets; they still want an independent audit, and the audit is
+cheap because each object is two words plus two censuses (144/4,320 for the ℤ/4 example,
+2,880/86,400 for the trivial-group one) and one Todd–Coxeter run.
 §2 records a route closure that belongs to task A8; it is repeated here because it is what
 redirected this task mid-flight.
 
@@ -102,7 +108,9 @@ conclusion side; probably safe") is the element-tuple argument — it is the *ot
 and it was never the one at risk.
 
 The only fallback that would work is a theorem *"γ_N(spelling) = 0 ⇒ γ_N(reduction) = 0"*,
-which is R7's **Conjecture SR** — **open**. So:
+which is R7's **Conjecture SR** — and §4.3′ shows it is **FALSE**, on balanced
+presentations of the trivial group. So the fallback is not merely unavailable, it is
+refuted, and the framework-scope channel is the only one left. So:
 
 > **Justification in force for any spelling-space hit on this line: the framework-scope
 > channel (§1.1), source-relayed and flagged. Not the element-tuple argument.**
@@ -420,12 +428,50 @@ session and asserted in the test. Two statements must therefore be kept apart, e
 
 | statement | status |
 |---|---|
-| **SR-general** — `γ_N(spike(P)) = 0 ⇒ γ_N(P) = 0` for presentations in general (this is R7's literal wording, tagged MACHINERY, with no triviality hypothesis) | **REFUTED**, by the table above |
-| **SR-trivial** — the same restricted to balanced presentations of the **trivial group** | **NOT refuted.** This is the only version the AC programme can use: Lackenby Thm 1.3, the certificate hunt, and the whole spelling route for AK(3) live inside it |
+| **SR-general** — `γ_N(spike(P)) = 0 ⇒ γ_N(P) = 0` for presentations in general (R7's literal wording, tagged MACHINERY, no triviality hypothesis) | **REFUTED**, by the table above |
+| **SR-trivial** — the same restricted to balanced presentations of the **trivial group**, the only version the AC programme can use (it is Lackenby Thm 1.3's hypothesis) | **ALSO REFUTED** — §4.3′ |
 
-A counterexample outside the trivial-group class does not transfer into it without proof.
-So the AK(3) spelling route is reopened **only if a trivial-group counterexample exists**;
-§4.4 is the hunt for one.
+A counterexample outside the trivial-group class does not transfer into it without proof,
+so the ℤ/4 example above settles only the first row. The hunt for the second row was run
+and it succeeded.
+
+### 4.3′ SR-TRIVIAL IS ALSO FALSE — the counterexample that does transfer
+
+Bases: cyclically reduced balanced rank-2 presentations produced by AC1–AC3 walks out of
+the standard presentation (**trivial by construction**) and then re-verified one by one by
+Todd–Coxeter, keeping only `index = 1` (`trivial_bases`; a capped enumeration is dropped,
+never guessed). 40 such bases; the hunt reached 4 of them in its 230 s budget.
+
+> **Counterexample (trivial group).** Generators `a, b`. One reduction chain, three
+> spellings of the same free-group element pair:
+>
+> | spelling | census | min defect | `γ_N` | Todd–Coxeter |
+> |---|---|---|---|---|
+> | `("ABbbabAAaB","baB")` | 86,400 | **0** | 0 | COMPLETE, index **1** — trivial |
+> | `("AbabAAaB","baB")` = `P` | 2,880 | **2** | 1 | COMPLETE, index **1** — trivial |
+> | `("AbabAB","baB")` fully reduced | 144 | **0** | 0 | COMPLETE, index **1** — trivial |
+>
+> All three free-reduce to `("AbabAB","baB")`; each step is one move (0); the spike is
+> `u = "B"` inserted after the leading `A` of the first relator. Balanced, rank 2, total
+> length 13 at the top of the chain.
+> `γ_N(spike(P)) = 0` while `γ_N(P) = 1`. **SR-trivial is false.**
+
+**Verification of the defect-0 side, three independent ways.**
+
+* exact census, 86,400 systems, no cap hit;
+* **`check_witness_n` ACCEPTS the witness with `trivial_group=True`** — `defect 0`,
+  `L = 1`, `|C|−|A|+|AC| = 4−13+11 = 2`, `⟨AC,BC⟩` transitive. This is a genuinely
+  independent structural check *and* a consistency check on the triviality claim: the
+  verifier raises `AuditContradiction` when Corollary 3's transitivity fails for a state
+  asserted trivial, and it did **not** raise here (contrast the ℤ/4 family of §4.3, where
+  the same call *does* raise — see `test_certify_zero_agrees_with_the_census_on_a_known_positive`);
+* `rank_n_ac_search.independent_defect`, which rebuilds the dart dictionary from the words,
+  returns `defect 0`.
+
+**Yield.** `results/stable_ac/fable/s11_sr_trivial.json`: 4 trivial-group bases reached, 15
+depth-1 spellings with positive defect, **384 depth-2 spellings decided** (99 skipped over
+the 2·10⁵ cap), **12 counterexamples** — a 3.1 % rate. Every one at total length 13, every
+base Todd–Coxeter index 1, and the existential repair SR′ survives in **12 of 12**.
 
 **Verification, on both sides, by tools that do not share code.**
 
@@ -560,9 +606,58 @@ beats its own reduced form.** `γ*(P) = γ_N(P_red)` held every time. What AK(3)
 exactly the thing not observed: `γ_N(P_red) = 2` with some spelling at 0. So §4.3 removes
 a *proof* that this is impossible; it supplies no evidence that it is possible.
 
-### 4.5 The trivial-group hunt — the version the AC programme can actually use
+### 4.5 What the two refutations do and do not buy for AK(3)
 
-<!-- SRTRIV -->
+**Do:** the *proof* that AK(3)'s spelling space is closed is gone, in the class where it
+mattered. R7's "Corollary (conditional on SR)" — `γ*(AK(3)) = 1` exactly, no spelling of
+AK(3) is thickenable, the whole spelling route closed — rested on SR, and SR is false for
+balanced presentations of the trivial group, which is exactly AK(3)'s class. Those claims
+must be withdrawn until re-derived from SR′.
+
+**Do not:** supply any evidence that a thickenable spelling of AK(3) exists. In **all 28**
+counterexamples found (16 general + 12 trivial-group) the *reduced* form already had
+defect 0; the chains are `0 → 2 → 0`. **Not one exhibits a spelling that beats its own
+reduced form.** AK(3) needs precisely that: `γ_N(AK(3)_red) = 2` with some spelling at 0.
+So the honest summary is that a proof of impossibility has been removed and nothing has
+been put in its place — the question is genuinely open again rather than answered.
+
+Two facts keep it from being wide open: Corollary S5 (the spike ceiling,
+`γ_N(spike(P)) ≥ γ_N(P) − 1`) is a **proof** and still forces spike-depth ≥ 2 for AK(3);
+and R1F decided depth 1 exhaustively (`γ_N` histogram `{1: 8, 2: 31}`).
+
+### 4.6 AK(3)'s own depth-2 frontier — run, and honestly inconclusive
+
+`ak3_depth2`, bases = R1F's eight gateway spellings (the only depth-1 spellings of AK(3)
+with `γ_N = 1`), instrument = the climber (an **upper** bound; a 0 is conclusive, silence is
+not), candidates ordered same-signed-letter-first per §4.4's mechanism.
+
+| | |
+|---|---|
+| states scored | 197 of ~330 (deadline-bounded) |
+| of which same-letter | 51 |
+| evaluations per state | 20,000 |
+| climber defect histogram | `{2: 11, 4: 186}` |
+| defect-0 hits | **0** |
+
+**This null is weak and is reported as weak.** R7b's calibration says 20,000 evaluations
+detect a known `γ_N = 0` state at total length 17 in roughly 4 cases in 10; 200,000 was the
+budget that reached 10/10 there. So this run is worth about 40 % detection over 197 states
+and rules out very little. It is recorded because the *ordering* result is reusable — the
+same-letter candidates are the ones to spend a real budget on — and because a proper run
+(200k–2M evaluations over all ~330, ≈ 15–90 min single-threaded) is now a well-defined,
+sized, and genuinely worthwhile experiment rather than a shot in the dark. **Next session
+should run it.**
+
+### 4.7 The remaining open questions, in priority order
+
+1. **SR′** (existential): `γ_N(K) = 0 ⇒ SOME one-step reduction of `K` has `γ_N = 0`.
+   Unrefuted in 28 of 28 counterexamples. It suffices for R7's Corollary, so proving it
+   restores everything that was lost — and refuting it would put `γ*(AK(3)) = 0` genuinely
+   on the table. Equivalent through R7's Theorem S10 to **U′**: every thickenable spelled
+   complex admits a defect-0 rotation unnested at *at least one* of its spikes.
+2. **A spelling that beats its own reduced form** — `γ_N(K) = 0 < γ_N(K_red)`. 0 of ~120,000
+   in the whole project. This is the actual AK(3) question.
+3. **AK(3) depth-2 at a defensible budget** (§4.6).
 
 **The other thing still worth hunting**, sharply defined: a counterexample
 where **SR′ also fails** — a thickenable spelling *none* of whose one-step reductions is
