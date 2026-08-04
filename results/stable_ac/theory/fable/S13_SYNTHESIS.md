@@ -192,3 +192,26 @@ Recorded because the corrections are the most transferable part of the work.
   `u124_thickenability.py`, `spelling_high_rank.py`, `cubic_split_search.py`.
 - **Lessons filed**: `stabilization-that-only-rebookkeeps-is-inert.md`,
   `instrument-the-search-before-reading-its-null.md`, and T-S10 inside `S10`.
+
+## 7. If you are a fresh session, start here
+
+1. Read `FRAMING.md` (statements, traps, what does not count), then this file, then
+   `S3_SUBDIVISION_INVARIANCE.md` §4–§6 and `S6_MOVE_CLASSIFICATION.md` §1. Those three
+   between them tell you which moves can possibly change anything, and will stop you
+   re-running the S-line's dead ends.
+2. **Do not propose a high-rank mechanism without first stating how many 2-cell germs its
+   new edges carry.** Two germs from two distinct 2-cells ⇒ provably inert (S3). If the
+   answer is "the same relators, re-spelled", the proposal is already refuted (T-S8).
+3. The sharpest open targets are **at rank 2**: the six certified γ_N = 1 gateways of §3a,
+   preferentially the ones carrying the Baumslag–Solitar relator `YXXXyxx` (§3b). Closing
+   more brackets with the split-based upper bound (§5.5) is the cheapest way to find more.
+4. The sharpest open *theory* question is **Q(F2) at k ≥ 2** (`S7` §4). Level 1 is blocked —
+   it reduces to the Panteleev–Ushakov conjecture — so do not attack it.
+5. Every null on this line is worth exactly its measured detection rate, and every
+   `NOT_SPHERICAL` is a statement about **orientable** thickenability only (T-S9). Both of
+   those have already cost this project real work; they are not boilerplate.
+
+**Branch discipline reminder.** This branch is `claude/stable-ac-conjecture-stabilization-rwo9as`
+and **must be merged into `fable/proof` by the user**; a cloud session cannot push there
+itself. No PR was opened (`FRAMING` trap 10). Full suite at the time of writing:
+**762 passed, 8 skipped, 0 failed**.
