@@ -148,11 +148,13 @@ injective. Choose an embedded arc `c ⊂ D²` with both endpoints at `p_0` and
 `int(c) ⊂ int(D²)`. Then `c ∪ {p_0}` is a simple closed curve in `D²` meeting `∂D²` only at
 `p_0`, so by Schoenflies it separates `D²` into a disc `E` with `∂E = c ∪ {p_0}` and a disc
 `F` with `∂F = c ∪ ∂D²`. Since `Φ(p_0) = v` and `Φ` is injective on the interior, `Φ(c)` is
-an embedded **loop at `v`**: declare it a new 1-cell `z`. Reading boundaries,
-`∂E ↦ z^{-ε}` (a monogon) and `∂F ↦ r_1 z^{ε}`. Hence the CW complex obtained from `K_P` by
-adding the 1-cell `Φ(c)` and cutting the `r_1`-cell along it is precisely `K_G`. Adding a
-cell inside a cell and cutting along it is a CW subdivision, so `|K_G| = |K_P|` as sets and
-the identity is a homeomorphism; embeddability is a property of the underlying space. ∎
+an embedded **loop at `v`**: declare it a new 1-cell `z`, oriented so that `∂E` reads the
+monogon `z^{-ε}` and `∂F` reads `r_1 z^{ε}` (the two orientations of `c` realize both signs;
+and in any case relator inversion is a homeomorphism by T1, so all four sign combinations
+give homeomorphic complexes). Hence the CW complex obtained from `K_P` by adding the 1-cell
+`Φ(c)` and cutting the `r_1`-cell along it is precisely `K_G`. Adding a cell inside a cell
+and cutting along it is a CW subdivision, so `|K_G| = |K_P|` as sets and the identity is a
+homeomorphism; embeddability is a property of the underlying space. ∎
 
 T4′ is the exact analogue of Theorem S3 for the *stabilizer* relator: S3's chord runs
 between two **distinct** boundary vertices and cuts off a polygon; T4′'s chord runs from a
@@ -458,11 +460,28 @@ base's `γ_N` exactly in 3,332/3,332 each — the inert rows are inert to the la
 `Gc` (conjugated slide) changed it in 144 of 3,321 and flipped 135 times. Directions, from
 the companion run `stab_dir.py` (seed 8888):
 
-<!--STAB_DIR-->
+| exact `γ_N` transition | `0→0` | `0→1` | `1→1` | `1→2` | `2→1` | `2→2` | `2→3` | `→0` from above |
+|---|---|---|---|---|---|---|---|---|
+| `G2 = (r_1 z z, r_2, z)` | 29 | **1,248** | 1,060 | 722 | 0 | 49 | 1 | **0** |
+| `Gc = (r_1 w z w^{-1}, r_2, z)` | 1,146 | **126** | 1,779 | 1 | 8 | 42 | 0 | **0** |
 
-The qualitative split is exactly the one T4′ predicts, and it is a clean line, not a
-gradient: the inert uses of `z` are inert with zero exceptions, and the first non-inert use
-is non-inert about 40 % of the time.
+(3,109 bases, seed 8888, cap 3·10⁵.) The split T4′ predicts is a clean line, not a
+gradient: the inert uses of `z` are inert with zero exceptions, and `G2` — the first use in
+which `z` becomes a triple line — destroys thickenability in 1,248 of the 1,277 thickenable
+bases it was applied to.
+
+**And in one step it never bought anything.** Neither `G2` nor `Gc` produced a single
+`γ_N > 0 → 0` transition in 3,109 + 3,109 measurements. That is a genuine, and
+uncomfortable, null: the *only* moves in the whole classification that created
+thickenability anywhere in this session were plain rank-2 AC2 slides (73 events) and move
+(0) reductions (315 events). **[GAP-1STEP]** Read it for exactly what it is: two specific
+one-step families, in one length band, at rank 3, with `z` used in one specific arrangement.
+It is *not* evidence that `m_z ≥ 3` states are useless — S3 §4's cubic regime is a large
+region of `m_z ≥ 3` space that no one-step schedule reaches, and a null on a one-step
+neighbourhood says nothing about a many-step one (the same bound-direction discipline as
+`parallel-runs-and-bound-direction.md`). What it does say is that *stabilization pays, if at
+all, over a schedule and not at the first non-inert step* — so search budgets should not be
+spent on one-step rank-3 neighbourhoods of rank-2 states.
 
 This sharpens `S3_SUBDIVISION_INVARIANCE.md`'s escape hatch (its §4: "extra generators buy
 nothing while they are used as abbreviations") into a move-level statement:
