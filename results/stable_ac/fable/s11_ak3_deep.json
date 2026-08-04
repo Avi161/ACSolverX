@@ -334,113 +334,18 @@
  ],
  "survivors_same_letter": 20,
  "calibration": {
-  "evals": 200000,
-  "detected": 30,
-  "cells": 30,
-  "detection_rate": 1.0,
-  "states": [
-   {
-    "words": [
-     "XYYyxyYXX",
-     "XYyxxxy"
-    ],
-    "census": 25401600,
-    "total_length": 16,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "xyXY",
-     "xXYyXxxXxyYxy"
-    ],
-    "census": 261273600,
-    "total_length": 17,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyxXxyYXX",
-     "XYyxxxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyxyYXX",
-     "XYXxyxxxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyxyYXX",
-     "XYyYyxxxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyxyYXX",
-     "XYyxxXxxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyxyxXYXX",
-     "XYyxxxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyYyxyYXX",
-     "XYyxxxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyxyYyYXX",
-     "XYyxxxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   },
-   {
-    "words": [
-     "XYYyxyYXX",
-     "XYyxxxXxy"
-    ],
-    "census": 1828915200,
-    "total_length": 18,
-    "detected": 3,
-    "seeds": 3
-   }
-  ],
-  "note": "certified gamma_N = 0 rank-2 states at total length 16-18 whose censuses (2.5e7-1.8e9) are at or ABOVE the targets 2.0-4.4e8, so the calibration is not kinder than the hunt on search-space size; the rungs are still climber-certified by construction, so the rate remains an UPPER bound on sensitivity"
+  "note": "detection measured at EACH budget actually used, on the same 10 certified gamma_N=0 rank-2 states at total length 16-18 whose censuses (2.5e7-1.8e9) are at or above the targets (2.0-4.4e8); 3 seeds each",
+  "200000": {
+   "detected": 30,
+   "cells": 30,
+   "detection_rate": 1.0
+  },
+  "2000000": {
+   "detected": 30,
+   "cells": 30,
+   "detection_rate": 1.0
+  },
+  "bias": "rungs are climber-certified by construction, so 1.00 is an UPPER bound on sensitivity"
  },
  "checkpoint": "results/stable_ac/fable/s11_ak3_deep_checkpoint.jsonl",
  "prior_pass": {
@@ -1229,6 +1134,78 @@
     "detected": 3,
     "seeds": 3
    }
+  ]
+ },
+ "phase_C_survivors_at_2000000": {
+  "evals": 2000000,
+  "scored": 15,
+  "of": 164,
+  "selection": "same-signed-letter first (S11 4.4 mechanism), then ascending census",
+  "histogram": {
+   "2": 15
+  },
+  "n_hits": 0,
+  "still_at_defect_2": [
+   [
+    "xxxYXxXxYYY",
+    "xyxYXY"
+   ],
+   [
+    "xxxYXxYXxYY",
+    "xyxYXY"
+   ],
+   [
+    "xxxYXxYYY",
+    "xyXxxYXY"
+   ],
+   [
+    "xxxYXxYYY",
+    "xyxYXxXY"
+   ],
+   [
+    "xxXxxYxXYYY",
+    "xyxYXY"
+   ],
+   [
+    "xxxXxYxXYYY",
+    "xyxYXY"
+   ],
+   [
+    "xxxYxxXXYYY",
+    "xyxYXY"
+   ],
+   [
+    "xxxYxXYxXYY",
+    "xyxYXY"
+   ],
+   [
+    "xxxYxXYYY",
+    "xXxyxYXY"
+   ],
+   [
+    "xxxYxXYYY",
+    "xyxXxYXY"
+   ],
+   [
+    "xxxYxXYYY",
+    "xyxYxXXY"
+   ],
+   [
+    "XxxxxYYYXxY",
+    "xyxYXY"
+   ],
+   [
+    "xxxYYYXxXxY",
+    "xyxYXY"
+   ],
+   [
+    "xXxxxYYYxXY",
+    "xyxYXY"
+   ],
+   [
+    "xxxXxYYYxXY",
+    "xyxYXY"
+   ]
   ]
  }
 }

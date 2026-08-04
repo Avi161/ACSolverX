@@ -31,10 +31,11 @@ Owner files: `experiments/stable_ac/fable/spelling_high_rank.py`,
 
 Plus one mechanism and one calibrated null: creating spikes come in **same-signed-letter
 pairs** (16/16, §4.4), which also supplies the "create" direction for AC3 conjugation that
-`S6`'s 315-destroy/0-create measurement could not see; and AK(3)'s depth-2 frontier was
-attacked at 200,000 evaluations with a **measured 30/30 detection rate on
-census-matched certified positives** — 159 of 330 states scored, **no hit**, 79 survivors
-(§4.6). That is the strongest spelling-space null this project has produced.
+`S6`'s 315-destroy/0-create measurement could not see; and AK(3)'s depth-2 frontier is now
+**330/330 scored** at 200,000 evaluations with a **measured 30/30 detection rate on
+census-matched certified positives** — **no hit** — plus **15/164** of the defect-2
+survivors re-run at 2·10⁶ (detection also 30/30), again no hit (§4.6). That is the
+strongest spelling-space null this project has produced.
 
 STATUS. §1 is an inference-chain audit — a draft for adversarial audit, not a result.
 §§3–5 are **measurements** by exact census, each with its cap, skip count and bias
@@ -673,7 +674,7 @@ be priced by calibration rather than eliminated by exhaustion.
 |---|---|---|---|---|
 | first | 60,000 | 330/330 | `{2: 72, 4: 258}` | 0 |
 | **A** | **200,000** | **330/330** | `{2: 164, 4: 166}` | **0** |
-| **C** | **2,000,000** | **<<CCOV>>** | `<<CHIST>>` | **<<CHITS>>** |
+| **C** | **2,000,000** | **15/164** | `{2: 15}` | **0** |
 
 **Calibration, at each budget actually used** (`s11_ak3_calibration.json`) — 10 **certified**
 `γ_N = 0` rank-2 states at total length 16–18, defect-0 witness re-verified, 3 seeds each:
@@ -694,14 +695,15 @@ matters. Standing bias, still recorded: the rungs are climber-certified by const
 
 > **330/330** of AK(3)'s depth-2 spellings scored at 200,000 evaluations — a budget with a
 > measured **30/30** detection rate on census-matched certified positives — and **none**
-> carries a defect-0 rotation system. Of the **164** that reach defect 2, **<<CCOV>>** were
-> re-run at **2,000,000** evaluations (detection also **30/30**), again with **<<CHITS>>**
+> carries a defect-0 rotation system. Of the **164** that reach defect 2, **15/164** were
+> re-run at **2,000,000** evaluations (detection also **30/30**), again with **0**
 > hits.
 
 This is the strongest AK(3) spelling-space null the project has: the previous best (R7b's)
 was run at a budget with a *measured 0 %* detection at its length. It remains a null from a
 one-sided instrument — silence is worth its detection rate and never more — and it does not
-touch depth 3.
+touch depth 3. The 2·10⁶ layer is **15/164** — a genuine but small sample of the survivor
+stratum, taken by the rule below rather than by where the clock stopped; 149 remain.
 
 **Two things the raised budget corrected in my own first pass.**
 
@@ -728,11 +730,13 @@ scored is described by a rule, not by where the clock stopped.
    complex admits a defect-0 rotation unnested at *at least one* of its spikes.
 2. **A spelling that beats its own reduced form** — `γ_N(K) = 0 < γ_N(K_red)`. 0 of ~120,000
    in the whole project. This is the actual AK(3) question.
-3. **Finish AK(3)'s depth-2 frontier** (§4.6): 171 of 330 states still unscored at 200k
-   evaluations (≈ 13 min, resumable from the committed checkpoint), then the 79 survivors
-   at 1–2·10⁶ (≈ 25–50 min). Detection at 200k is **measured at 30/30** on
-   census-matched certified positives, so this is a bounded experiment with a known price
-   and a known sensitivity — the only one on this line of which that is true.
+3. **Finish the deep pass on AK(3)'s depth-2 survivors** (§4.6). The 200k layer is
+   **complete: 330/330**. What remains is **149 of the 164** defect-2 survivors still to be
+   climbed at 2·10⁶ — ≈ 37 s per state under load, so ≈ 90 min single-threaded, fully
+   resumable from `s11_ak3_deep_checkpoint.jsonl` (pass `tag = "e2000000"`). Detection is
+   **measured at 30/30 at both 200k and 2·10⁶** on census-matched certified positives, so
+   this is the only experiment on this line whose price *and* sensitivity are both known
+   in advance. After it, the natural next stratum is spike-depth 3.
 
 Item 1 restated as the concrete hunt: a counterexample where **SR′ also fails** — a
 thickenable spelling *none* of whose one-step reductions is thickenable. That, and not

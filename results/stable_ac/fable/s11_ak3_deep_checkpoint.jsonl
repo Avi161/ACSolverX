@@ -339,3 +339,7 @@
 {"key": "e2000000|xxxYxXYYY|xXxyxYXY", "tag": "e2000000", "words": ["xxxYxXYYY", "xXxyxYXY"], "evals": 2000000, "seeds_used": 1, "best": 2, "census": 261273600, "total_length": 17, "seconds": 240.0}
 {"key": "e2000000|xxxYxXYYY|xyxXxYXY", "tag": "e2000000", "words": ["xxxYxXYYY", "xyxXxYXY"], "evals": 2000000, "seeds_used": 1, "best": 2, "census": 261273600, "total_length": 17, "seconds": 269.5}
 {"key": "e2000000|xxxYxXYYY|xyxYxXXY", "tag": "e2000000", "words": ["xxxYxXYYY", "xyxYxXXY"], "evals": 2000000, "seeds_used": 1, "best": 2, "census": 261273600, "total_length": 17, "seconds": 300.8}
+{"key": "e2000000|XxxxxYYYXxY|xyxYXY", "tag": "e2000000", "words": ["XxxxxYYYXxY", "xyxYXY"], "evals": 2000000, "seeds_used": 1, "best": 2, "census": 261273600, "total_length": 17, "seconds": 331.0}
+{"key": "e2000000|xxxYYYXxXxY|xyxYXY", "tag": "e2000000", "words": ["xxxYYYXxXxY", "xyxYXY"], "evals": 2000000, "seeds_used": 1, "best": 2, "census": 261273600, "total_length": 17, "seconds": 358.8}
+{"key": "e2000000|xXxxxYYYxXY|xyxYXY", "tag": "e2000000", "words": ["xXxxxYYYxXY", "xyxYXY"], "evals": 2000000, "seeds_used": 1, "best": 2, "census": 261273600, "total_length": 17, "seconds": 390.4}
+{"key": "e2000000|xxxXxYYYxXY|xyxYXY", "tag": "e2000000", "words": ["xxxXxYYYxXY", "xyxYXY"], "evals": 2000000, "seeds_used": 1, "best": 2, "census": 261273600, "total_length": 17, "seconds": 419.9}

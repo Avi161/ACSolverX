@@ -1,0 +1,968 @@
+pool: 50320 distinct near-cubic states (deduped on canonical cyclic form)
+  (rank, sum|delta|) -> {(12, 2): 6192, (12, 4): 43160, (13, 2): 108, (13, 4): 860}
+  decided 2000/50320  21s  hist={2: 811, 4: 1189}
+  decided 4000/50320  38s  hist={2: 1818, 4: 2182}
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IjC", "YGf", "aii", "xby", "caj", "dYH", "xEd", "fhB", "gXE", "hEd", "iby", "jGf"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 1, "invert": false, "rot": 1, "lam": "Y", "u": "G", "v": "f", "t": "j", "k": 2, "positions": [[0, 1], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IYC", "YGf", "aii", "xbJ", "caY", "djH", "xEd", "fhB", "gXE", "hEd", "iby", "jGf"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 1, "invert": false, "rot": 1, "lam": "Y", "u": "G", "v": "f", "t": "j", "k": 2, "positions": [[3, 2], [5, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IYC", "YGf", "aii", "xbJ", "caY", "djH", "xEd", "fhB", "gXE", "hEd", "ibJ", "jGf"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 1, "invert": false, "rot": 1, "lam": "Y", "u": "G", "v": "f", "t": "j", "k": 3, "positions": [[3, 2], [5, 1], [10, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IJC", "yFg", "aii", "xby", "caJ", "dYH", "xEd", "fhB", "gXE", "hEd", "iby", "jFg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 1, "invert": true, "rot": 1, "lam": "y", "u": "F", "v": "g", "t": "j", "k": 2, "positions": [[0, 1], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IYC", "yFg", "aii", "xbj", "caY", "dJH", "xEd", "fhB", "gXE", "hEd", "ibj", "jFg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 1, "invert": true, "rot": 1, "lam": "y", "u": "F", "v": "g", "t": "j", "k": 3, "positions": [[3, 2], [5, 1], [10, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IYC", "fYG", "aii", "xbJ", "Yca", "dYH", "xEd", "fhB", "gXE", "hEd", "ibJ", "jca"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 4, "invert": false, "rot": 2, "lam": "Y", "u": "c", "v": "a", "t": "j", "k": 2, "positions": [[3, 2], [10, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IjC", "fjG", "aii", "xby", "Yca", "dYH", "xEd", "fhB", "gXE", "hEd", "iby", "jca"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 4, "invert": false, "rot": 2, "lam": "Y", "u": "c", "v": "a", "t": "j", "k": 2, "positions": [[0, 1], [1, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IJC", "fJG", "aii", "xby", "yAC", "dYH", "xEd", "fhB", "gXE", "hEd", "iby", "jAC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "j", "k": 2, "positions": [[0, 1], [1, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IYC", "fYG", "aii", "xbj", "yAC", "dYH", "xEd", "fhB", "gXE", "hEd", "ibj", "jAC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "j", "k": 2, "positions": [[3, 2], [10, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["IYC", "fYG", "aii", "xbj", "yAC", "dJH", "xEd", "fhB", "gXE", "hEd", "ibj", "jAC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[5, 2], [7, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "y", "t": "i", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}, {"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "j", "k": 3, "positions": [[3, 2], [5, 1], [10, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["HYC", "YGf", "XAX", "bJI", "caj", "dYH", "xEd", "fIB", "gXE", "hEd", "iAX", "jGf"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[0, 0], [5, 2]]}, {"relator": 2, "invert": true, "rot": 1, "lam": "X", "u": "A", "v": "X", "t": "i", "k": 2, "positions": [[3, 2], [7, 1]]}, {"relator": 1, "invert": false, "rot": 1, "lam": "Y", "u": "G", "v": "f", "t": "j", "k": 2, "positions": [[3, 1], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["HjC", "YGf", "XAX", "byI", "caY", "djH", "xEd", "fIB", "gXE", "hEd", "iAX", "jGf"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[0, 0], [5, 2]]}, {"relator": 2, "invert": true, "rot": 1, "lam": "X", "u": "A", "v": "X", "t": "i", "k": 2, "positions": [[3, 2], [7, 1]]}, {"relator": 1, "invert": false, "rot": 1, "lam": "Y", "u": "G", "v": "f", "t": "j", "k": 2, "positions": [[0, 1], [5, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["HJC", "yFg", "XAX", "byI", "caY", "dJH", "xEd", "fIB", "gXE", "hEd", "iAX", "jFg"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[0, 0], [5, 2]]}, {"relator": 2, "invert": true, "rot": 1, "lam": "X", "u": "A", "v": "X", "t": "i", "k": 2, "positions": [[3, 2], [7, 1]]}, {"relator": 1, "invert": true, "rot": 1, "lam": "y", "u": "F", "v": "g", "t": "j", "k": 2, "positions": [[0, 1], [5, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["HYC", "yFg", "XAX", "bjI", "caJ", "dYH", "xEd", "fIB", "gXE", "hEd", "iAX", "jFg"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "h", "k": 2, "positions": [[0, 0], [5, 2]]}, {"relator": 2, "invert": true, "rot": 1, "lam": "X", "u": "A", "v": "X", "t": "i", "k": 2, "positions": [[3, 2], [7, 1]]}, {"relator": 1, "invert": true, "rot": 1, "lam": "y", "u": "F", "v": "g", "t": "j", "k": 2, "positions": [[3, 1], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XHC", "fHG", "axx", "byx", "yAC", "dYi", "XDe", "jFb", "gjE", "hAC", "iFb", "jDe"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "X", "u": "D", "v": "e", "t": "j", "k": 2, "positions": [[7, 0], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XHC", "fHG", "aJx", "byJ", "yAC", "dYi", "XDe", "XFb", "gXE", "hAC", "iFb", "jDe"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "X", "u": "D", "v": "e", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XHC", "fHG", "ajx", "byj", "yAC", "dYi", "xEd", "XFb", "gXE", "hAC", "iFb", "jEd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XHC", "fHG", "axx", "byx", "yAC", "dYi", "xEd", "JFb", "gJE", "hAC", "iFb", "jEd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "d", "t": "j", "k": 2, "positions": [[7, 0], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XHC", "fHG", "axx", "byx", "yAC", "dYi", "ejD", "jFb", "XEg", "hAC", "iFb", "jEg"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 8, "invert": false, "rot": 1, "lam": "X", "u": "E", "v": "g", "t": "j", "k": 2, "positions": [[6, 1], [7, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jHC", "fHG", "aJJ", "byx", "yAC", "dYi", "eXD", "XFb", "XEg", "hAC", "iFb", "jEg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 8, "invert": false, "rot": 1, "lam": "X", "u": "E", "v": "g", "t": "j", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XHC", "fHG", "axx", "byJ", "yAC", "dYi", "ejD", "jFb", "XEg", "hAC", "iFb", "jEg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 8, "invert": false, "rot": 1, "lam": "X", "u": "E", "v": "g", "t": "j", "k": 3, "positions": [[3, 2], [6, 1], [7, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XHC", "fHG", "axx", "byx", "yAC", "dYi", "eJD", "JFb", "xGe", "hAC", "iFb", "jGe"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "x", "u": "G", "v": "e", "t": "j", "k": 2, "positions": [[6, 1], [7, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JHC", "fHG", "ajj", "byx", "yAC", "dYi", "eXD", "XFb", "xGe", "hAC", "iFb", "jGe"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root3|d3", "root": ["XYC", "fYG", "axx", "byx", "caY", "dYX", "eXD", "fxB", "gXE"], "trace": [{"relator": 4, "invert": true, "rot": 0, "lam": "y", "u": "A", "v": "C", "t": "h", "k": 2, "positions": [[0, 1], [1, 1]]}, {"relator": 7, "invert": true, "rot": 1, "lam": "X", "u": "F", "v": "b", "t": "i", "k": 1, "positions": [[5, 2]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "x", "u": "G", "v": "e", "t": "j", "k": 3, "positions": [[0, 0], [2, 1], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aIY", "bIY", "cHj", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jBD"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHY", "aIj", "bIj", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jBD"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 2, "positions": [[2, 2], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHY", "aIJ", "bIJ", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jdb"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 2, "positions": [[2, 2], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHJ", "aIY", "bIY", "cHJ", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jdb"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHY", "aIj", "bIY", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 1, "positions": [[2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aIY", "bIY", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 1, "positions": [[1, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHY", "aIj", "bIj", "cHj", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 3, "positions": [[2, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aIY", "bIj", "cHj", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 3, "positions": [[1, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHY", "aIJ", "bIY", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 1, "positions": [[2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHJ", "aIY", "bIY", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 1, "positions": [[1, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHY", "aIJ", "bIJ", "cHJ", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 3, "positions": [[2, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHJ", "aIY", "bIJ", "cHJ", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 3, "positions": [[1, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "YGH", "aIY", "bIj", "cHj", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jGH"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "G", "v": "H", "t": "j", "k": 2, "positions": [[3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jBD", "YGH", "aIj", "bIY", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jGH"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "G", "v": "H", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JBD", "yhg", "aIJ", "bIY", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jhg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": true, "rot": 0, "lam": "y", "u": "h", "v": "g", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "yhg", "aIY", "bIJ", "cHJ", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jhg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": true, "rot": 0, "lam": "y", "u": "h", "v": "g", "t": "j", "k": 2, "positions": [[3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jBD", "GHY", "aIj", "YbI", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jbI"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "Y", "u": "b", "v": "I", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aIY", "YbI", "cHj", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jbI"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "Y", "u": "b", "v": "I", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHJ", "aIY", "yiB", "cHJ", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jiB"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": true, "rot": 0, "lam": "y", "u": "i", "v": "B", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JBD", "GHY", "aIJ", "yiB", "cHY", "dXX", "xaE", "xcF", "gFE", "hcF", "iaE", "jiB"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": true, "rot": 0, "lam": "x", "u": "a", "v": "E", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": true, "rot": 0, "lam": "y", "u": "i", "v": "B", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+  decided 6000/50320  57s  hist={0: 43, 2: 2622, 4: 3335}
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHY", "aij", "bij", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jBD"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 2, "positions": [[2, 2], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aiY", "biY", "cHj", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jBD"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHY", "aiJ", "biJ", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jdb"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 2, "positions": [[2, 2], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHJ", "aiY", "biY", "cHJ", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jdb"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHY", "aij", "biY", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 1, "positions": [[2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aiY", "biY", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 1, "positions": [[1, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHY", "aij", "bij", "cHj", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 3, "positions": [[2, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aiY", "bij", "cHj", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jBD"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": false, "rot": 0, "lam": "Y", "u": "B", "v": "D", "t": "j", "k": 3, "positions": [[1, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHJ", "aiY", "biY", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 1, "positions": [[1, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHY", "aiJ", "biY", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 1, "positions": [[2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHY", "aiJ", "biJ", "cHJ", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 3, "positions": [[2, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["ydb", "GHJ", "aiY", "biJ", "cHJ", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jdb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 0, "invert": true, "rot": 2, "lam": "y", "u": "d", "v": "b", "t": "j", "k": 3, "positions": [[1, 2], [3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "YGH", "aiY", "bij", "cHj", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jGH"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "G", "v": "H", "t": "j", "k": 2, "positions": [[3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jBD", "YGH", "aij", "biY", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jGH"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "G", "v": "H", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JBD", "yhg", "aiJ", "biY", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jhg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": true, "rot": 0, "lam": "y", "u": "h", "v": "g", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "yhg", "aiY", "biJ", "cHJ", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jhg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 1, "invert": true, "rot": 0, "lam": "y", "u": "h", "v": "g", "t": "j", "k": 2, "positions": [[3, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jBD", "GHY", "aij", "Ybi", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jbi"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "Y", "u": "b", "v": "i", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHj", "aiY", "Ybi", "cHj", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jbi"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "Y", "u": "b", "v": "i", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["YBD", "GHJ", "aiY", "yIB", "cHJ", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jIB"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": true, "rot": 0, "lam": "y", "u": "I", "v": "B", "t": "j", "k": 2, "positions": [[1, 2], [4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JBD", "GHY", "aiJ", "yIB", "cHY", "dXX", "XeA", "xcF", "gFE", "hcF", "ieA", "jIB"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root4|d3", "root": ["YBD", "GXY", "aXY", "bXY", "cXY", "dXX", "eAX", "fCX", "gFE"], "trace": [{"relator": 7, "invert": true, "rot": 0, "lam": "x", "u": "c", "v": "F", "t": "h", "k": 2, "positions": [[1, 1], [4, 1]]}, {"relator": 6, "invert": false, "rot": 2, "lam": "X", "u": "e", "v": "A", "t": "i", "k": 2, "positions": [[2, 1], [3, 1]]}, {"relator": 3, "invert": true, "rot": 0, "lam": "y", "u": "I", "v": "B", "t": "j", "k": 2, "positions": [[0, 0], [2, 2]]}]}
+======================================================================
+
+  decided 8000/50320  78s  hist={0: 63, 2: 3240, 4: 4697}
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "xxb", "cjI", "dYh", "eJi", "fbc", "geH", "haD", "igF", "jxb"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 3, "invert": false, "rot": 1, "lam": "x", "u": "x", "v": "b", "t": "j", "k": 2, "positions": [[4, 1], [6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "xbx", "cjI", "dYh", "eJi", "fbc", "geH", "haD", "igF", "jbx"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 3, "invert": false, "rot": 2, "lam": "x", "u": "b", "v": "x", "t": "j", "k": 2, "positions": [[4, 1], [6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "XXB", "cJI", "dYh", "eji", "fbc", "geH", "haD", "igF", "jXB"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 3, "invert": true, "rot": 0, "lam": "X", "u": "X", "v": "B", "t": "j", "k": 2, "positions": [[4, 1], [6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "XBX", "cJI", "dYh", "eji", "fbc", "geH", "haD", "igF", "jBX"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 3, "invert": true, "rot": 1, "lam": "X", "u": "B", "v": "X", "t": "j", "k": 2, "positions": [[4, 1], [6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "bjx", "xIc", "dYh", "eJi", "fbc", "geH", "haD", "igF", "jIc"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 4, "invert": false, "rot": 1, "lam": "x", "u": "I", "v": "c", "t": "j", "k": 2, "positions": [[3, 1], [6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JaD", "YgF", "aHy", "bxj", "xIc", "dYh", "eXi", "fbc", "geH", "haD", "igF", "jIc"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 4, "invert": false, "rot": 1, "lam": "x", "u": "I", "v": "c", "t": "j", "k": 2, "positions": [[0, 0], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "bJx", "XCi", "dYh", "eji", "fbc", "geH", "haD", "igF", "jCi"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 4, "invert": true, "rot": 1, "lam": "X", "u": "C", "v": "i", "t": "j", "k": 2, "positions": [[3, 1], [6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jaD", "YgF", "aHy", "bxJ", "XCi", "dYh", "eXi", "fbc", "geH", "haD", "igF", "jCi"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 4, "invert": true, "rot": 1, "lam": "X", "u": "C", "v": "i", "t": "j", "k": 2, "positions": [[0, 0], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "bxJ", "cJI", "dYh", "Xie", "fbc", "geH", "haD", "igF", "jie"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "X", "u": "i", "v": "e", "t": "j", "k": 2, "positions": [[3, 2], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jaD", "YgF", "aHy", "bJx", "cxI", "dYh", "Xie", "fbc", "geH", "haD", "igF", "jie"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "X", "u": "i", "v": "e", "t": "j", "k": 2, "positions": [[0, 0], [3, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JaD", "YgF", "aHy", "bjx", "cxI", "dYh", "xEI", "fbc", "geH", "haD", "igF", "jEI"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "I", "t": "j", "k": 2, "positions": [[0, 0], [3, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XaD", "YgF", "aHy", "bxj", "cjI", "dYh", "xEI", "fbc", "geH", "haD", "igF", "jEI"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root5|d3", "root": ["DXa", "gFY", "axy", "bxx", "cxy", "dYX", "eXY", "fbc", "gex"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "a", "v": "D", "t": "h", "k": 3, "positions": [[2, 1], [5, 2], [8, 2]]}, {"relator": 1, "invert": false, "rot": 2, "lam": "Y", "u": "g", "v": "F", "t": "i", "k": 2, "positions": [[4, 2], [6, 2]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "x", "u": "E", "v": "I", "t": "j", "k": 2, "positions": [[3, 2], [4, 1]]}]}
+======================================================================
+
+  decided 10000/50320  96s  hist={0: 75, 2: 4081, 4: 5840, 6: 4}
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHJ", "cyI", "Xcd", "eId", "fHJ", "gIF", "hcd", "iAb", "jeg"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 2, "positions": [[3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "ajX", "bHy", "cJI", "Xcd", "eId", "fHy", "gIF", "hcd", "iAb", "jeg"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 2, "positions": [[2, 1], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aYX", "bHj", "cyI", "Xcd", "eId", "fHj", "gIF", "hcd", "iAb", "jGE"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 2, "positions": [[3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aJX", "bHy", "cjI", "Xcd", "eId", "fHy", "gIF", "hcd", "iAb", "jGE"], "sum_delta": 2, "rank": 12, "census": 6144, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 2, "positions": [[2, 1], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cJI", "Xcd", "eId", "fHy", "gIF", "hcd", "iAb", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 1, "positions": [[4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyI", "Xcd", "eId", "fHJ", "gIF", "hcd", "iAb", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 1, "positions": [[7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "ajX", "bHJ", "cJI", "Xcd", "eId", "fHy", "gIF", "hcd", "iAb", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 3, "positions": [[2, 1], [3, 2], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "ajX", "bHJ", "cyI", "Xcd", "eId", "fHJ", "gIF", "hcd", "iAb", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aYX", "bHy", "cjI", "Xcd", "eId", "fHy", "gIF", "hcd", "iAb", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 1, "positions": [[4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aYX", "bHy", "cyI", "Xcd", "eId", "fHj", "gIF", "hcd", "iAb", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 1, "positions": [[7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aJX", "bHj", "cjI", "Xcd", "eId", "fHy", "gIF", "hcd", "iAb", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 3, "positions": [[2, 1], [3, 2], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aJX", "bHj", "cyI", "Xcd", "eId", "fHj", "gIF", "hcd", "iAb", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Jeg", "aYX", "bHy", "cjI", "Xcd", "eId", "yfH", "gIF", "hcd", "iAb", "jfH"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 7, "invert": false, "rot": 2, "lam": "y", "u": "f", "v": "H", "t": "j", "k": 2, "positions": [[1, 0], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aJX", "bHj", "cyI", "Xcd", "eId", "yfH", "gIF", "hcd", "iAb", "jfH"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 7, "invert": false, "rot": 2, "lam": "y", "u": "f", "v": "H", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "jeg", "aYX", "bHy", "cJI", "Xcd", "eId", "YhF", "gIF", "hcd", "iAb", "jhF"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 7, "invert": true, "rot": 0, "lam": "Y", "u": "h", "v": "F", "t": "j", "k": 2, "positions": [[1, 0], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "ajX", "bHJ", "cyI", "Xcd", "eId", "YhF", "gIF", "hcd", "iAb", "jhF"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 7, "invert": true, "rot": 0, "lam": "Y", "u": "h", "v": "F", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyj", "Xcd", "eId", "fHy", "IFg", "hcd", "iAb", "jFg"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": false, "rot": 1, "lam": "I", "u": "F", "v": "g", "t": "j", "k": 1, "positions": [[4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyI", "Xcd", "ejd", "fHy", "IFg", "hcd", "iAb", "jFg"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": false, "rot": 1, "lam": "I", "u": "F", "v": "g", "t": "j", "k": 1, "positions": [[6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyI", "Xcd", "ejd", "fHy", "IFg", "hcd", "JAb", "jFg"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": false, "rot": 1, "lam": "I", "u": "F", "v": "g", "t": "j", "k": 2, "positions": [[6, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyj", "Xcd", "eId", "fHy", "IFg", "hcd", "JAb", "jFg"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": false, "rot": 1, "lam": "I", "u": "F", "v": "g", "t": "j", "k": 2, "positions": [[4, 2], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyJ", "Xcd", "eId", "fHy", "iGf", "hcd", "iAb", "jGf"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "i", "u": "G", "v": "f", "t": "j", "k": 1, "positions": [[4, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyI", "Xcd", "eJd", "fHy", "iGf", "hcd", "iAb", "jGf"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "i", "u": "G", "v": "f", "t": "j", "k": 1, "positions": [[6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyI", "Xcd", "eJd", "fHy", "iGf", "hcd", "jAb", "jGf"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "i", "u": "G", "v": "f", "t": "j", "k": 2, "positions": [[6, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYX", "bHy", "cyJ", "Xcd", "eId", "fHy", "iGf", "hcd", "jAb", "jGf"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "h", "k": 2, "positions": [[3, 1], [7, 1]]}, {"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "i", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "i", "u": "G", "v": "f", "t": "j", "k": 2, "positions": [[4, 2], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "ajh", "bHy", "cJx", "dic", "eId", "fIy", "XGf", "hAb", "iGf", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 2, "positions": [[2, 1], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHJ", "cyx", "dic", "eId", "fIJ", "XGf", "hAb", "iGf", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 2, "positions": [[3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aJh", "bHy", "cjx", "dic", "eId", "fIy", "XGf", "hAb", "iGf", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 2, "positions": [[2, 1], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aYh", "bHj", "cyx", "dic", "eId", "fIj", "XGf", "hAb", "iGf", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 2, "positions": [[3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aJh", "bHj", "yxc", "dic", "eId", "fIy", "XGf", "hAb", "iGf", "jxc"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 4, "invert": false, "rot": 1, "lam": "y", "u": "x", "v": "c", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Jeg", "aYh", "bHy", "yxc", "dic", "eId", "fIj", "XGf", "hAb", "iGf", "jxc"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 4, "invert": false, "rot": 1, "lam": "y", "u": "x", "v": "c", "t": "j", "k": 2, "positions": [[1, 0], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "jeg", "aYh", "bHy", "YCX", "dic", "eId", "fIJ", "XGf", "hAb", "iGf", "jCX"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 4, "invert": true, "rot": 1, "lam": "Y", "u": "C", "v": "X", "t": "j", "k": 2, "positions": [[1, 0], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "ajh", "bHJ", "YCX", "dic", "eId", "fIy", "XGf", "hAb", "iGf", "jCX"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 4, "invert": true, "rot": 1, "lam": "Y", "u": "C", "v": "X", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "icd", "eJd", "fIy", "XGf", "hAb", "iGf", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "i", "u": "c", "v": "d", "t": "j", "k": 1, "positions": [[6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "icd", "eId", "fJy", "XGf", "hAb", "iGf", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "i", "u": "c", "v": "d", "t": "j", "k": 1, "positions": [[7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "icd", "eJd", "fIy", "XGf", "hAb", "jGf", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "i", "u": "c", "v": "d", "t": "j", "k": 2, "positions": [[6, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "icd", "eId", "fJy", "XGf", "hAb", "jGf", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "i", "u": "c", "v": "d", "t": "j", "k": 2, "positions": [[7, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "IDC", "eId", "fjy", "XGf", "hAb", "iGf", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "I", "u": "D", "v": "C", "t": "j", "k": 1, "positions": [[7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "IDC", "ejd", "fIy", "XGf", "hAb", "iGf", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "I", "u": "D", "v": "C", "t": "j", "k": 1, "positions": [[6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "IDC", "eId", "fjy", "XGf", "hAb", "JGf", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "I", "u": "D", "v": "C", "t": "j", "k": 2, "positions": [[7, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "IDC", "ejd", "fIy", "XGf", "hAb", "JGf", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "I", "u": "D", "v": "C", "t": "j", "k": 2, "positions": [[6, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "dJc", "Ide", "fIy", "XGf", "hAb", "iGf", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "I", "u": "d", "v": "e", "t": "j", "k": 1, "positions": [[5, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "dic", "Ide", "fIy", "XGf", "hAb", "JGf", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "I", "u": "d", "v": "e", "t": "j", "k": 1, "positions": [[10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "dJc", "Ide", "fjy", "XGf", "hAb", "iGf", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "I", "u": "d", "v": "e", "t": "j", "k": 2, "positions": [[5, 1], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "dic", "Ide", "fjy", "XGf", "hAb", "JGf", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "I", "u": "d", "v": "e", "t": "j", "k": 2, "positions": [[7, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "djc", "iED", "fIy", "XGf", "hAb", "iGf", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "i", "u": "E", "v": "D", "t": "j", "k": 1, "positions": [[5, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "dic", "iED", "fIy", "XGf", "hAb", "jGf", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "i", "u": "E", "v": "D", "t": "j", "k": 1, "positions": [[10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "djc", "iED", "fJy", "XGf", "hAb", "iGf", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "i", "u": "E", "v": "D", "t": "j", "k": 2, "positions": [[5, 1], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "Yeg", "aYh", "bHy", "cyx", "dic", "iED", "fJy", "XGf", "hAb", "jGf", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "i", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "i", "u": "E", "v": "D", "t": "j", "k": 2, "positions": [[7, 1], [10, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "ajI", "biy", "cJx", "dhc", "eHd", "fHy", "XGf", "hGf", "iBa", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 2, "positions": [[2, 1], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biJ", "cyx", "dhc", "eHd", "fHJ", "XGf", "hGf", "iBa", "jeg"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": false, "rot": 0, "lam": "Y", "u": "e", "v": "g", "t": "j", "k": 2, "positions": [[3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "yGE", "aYI", "bij", "cyx", "dhc", "eHd", "fHj", "XGf", "hGf", "iBa", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 2, "positions": [[3, 2], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "yGE", "aJI", "biy", "cjx", "dhc", "eHd", "fHy", "XGf", "hGf", "iBa", "jGE"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "j", "k": 2, "positions": [[2, 1], [4, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aJI", "bij", "yxc", "dhc", "eHd", "fHy", "XGf", "hGf", "iBa", "jxc"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 4, "invert": false, "rot": 1, "lam": "y", "u": "x", "v": "c", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Jeg", "aYI", "biy", "yxc", "dhc", "eHd", "fHj", "XGf", "hGf", "iBa", "jxc"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 4, "invert": false, "rot": 1, "lam": "y", "u": "x", "v": "c", "t": "j", "k": 2, "positions": [[1, 0], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "ajI", "biJ", "YCX", "dhc", "eHd", "fHy", "XGf", "hGf", "iBa", "jCX"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 4, "invert": true, "rot": 1, "lam": "Y", "u": "C", "v": "X", "t": "j", "k": 2, "positions": [[2, 1], [3, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "jeg", "aYI", "biy", "YCX", "dhc", "eHd", "fHJ", "XGf", "hGf", "iBa", "jCX"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 4, "invert": true, "rot": 1, "lam": "Y", "u": "C", "v": "X", "t": "j", "k": 2, "positions": [[1, 0], [7, 2]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "hcd", "eHd", "fJy", "XGf", "hGf", "iBa", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "h", "u": "c", "v": "d", "t": "j", "k": 1, "positions": [[7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "hcd", "eJd", "fHy", "XGf", "hGf", "iBa", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "h", "u": "c", "v": "d", "t": "j", "k": 1, "positions": [[6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "hcd", "eHd", "fJy", "XGf", "jGf", "iBa", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "h", "u": "c", "v": "d", "t": "j", "k": 2, "positions": [[7, 1], [9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "hcd", "eJd", "fHy", "XGf", "jGf", "iBa", "jcd"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "h", "u": "c", "v": "d", "t": "j", "k": 2, "positions": [[6, 1], [9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "HDC", "ejd", "fHy", "XGf", "hGf", "iBa", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "H", "u": "D", "v": "C", "t": "j", "k": 1, "positions": [[6, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "HDC", "eHd", "fjy", "XGf", "hGf", "iBa", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "H", "u": "D", "v": "C", "t": "j", "k": 1, "positions": [[7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "HDC", "eHd", "fjy", "XGf", "JGf", "iBa", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "H", "u": "D", "v": "C", "t": "j", "k": 2, "positions": [[7, 1], [9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "HDC", "ejd", "fHy", "XGf", "JGf", "iBa", "jDC"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "H", "u": "D", "v": "C", "t": "j", "k": 2, "positions": [[6, 1], [9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "dhc", "Hde", "fHy", "XGf", "JGf", "iBa", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "H", "u": "d", "v": "e", "t": "j", "k": 1, "positions": [[9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "dJc", "Hde", "fHy", "XGf", "hGf", "iBa", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "H", "u": "d", "v": "e", "t": "j", "k": 1, "positions": [[5, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "dJc", "Hde", "fjy", "XGf", "hGf", "iBa", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "H", "u": "d", "v": "e", "t": "j", "k": 2, "positions": [[5, 1], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "dhc", "Hde", "fjy", "XGf", "JGf", "iBa", "jde"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": false, "rot": 1, "lam": "H", "u": "d", "v": "e", "t": "j", "k": 2, "positions": [[7, 1], [9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "dhc", "hED", "fHy", "XGf", "jGf", "iBa", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "h", "u": "E", "v": "D", "t": "j", "k": 1, "positions": [[9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "djc", "hED", "fHy", "XGf", "hGf", "iBa", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "h", "u": "E", "v": "D", "t": "j", "k": 1, "positions": [[5, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "dhc", "hED", "fJy", "XGf", "jGf", "iBa", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "h", "u": "E", "v": "D", "t": "j", "k": 2, "positions": [[7, 1], [9, 0]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["xBa", "Yeg", "aYI", "biy", "cyx", "djc", "hED", "fJy", "XGf", "hGf", "iBa", "jED"], "sum_delta": 4, "rank": 12, "census": 12288, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 8, "invert": true, "rot": 1, "lam": "X", "u": "G", "v": "f", "t": "h", "k": 3, "positions": [[5, 1], [6, 1], [7, 1]]}, {"relator": 0, "invert": true, "rot": 1, "lam": "x", "u": "B", "v": "a", "t": "i", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 6, "invert": true, "rot": 1, "lam": "h", "u": "E", "v": "D", "t": "j", "k": 2, "positions": [[5, 1], [7, 1]]}]}
+======================================================================
+
+  decided 12000/50320  112s  hist={0: 147, 2: 5358, 4: 6491, 6: 4}
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JAb", "yGE", "aIh", "bHi", "xcy", "dXc", "exd", "fji", "gxF", "hAb", "iGE", "jcy"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 4, "invert": false, "rot": 2, "lam": "x", "u": "c", "v": "y", "t": "j", "k": 2, "positions": [[0, 0], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JAb", "yGE", "aIh", "bHi", "xcy", "dJc", "exd", "fji", "gxF", "hAb", "iGE", "jcy"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 4, "invert": false, "rot": 2, "lam": "x", "u": "c", "v": "y", "t": "j", "k": 3, "positions": [[0, 0], [5, 1], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aIh", "bHi", "XYC", "dXc", "eJd", "fxi", "gJF", "hAb", "iGE", "jYC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 4, "invert": true, "rot": 0, "lam": "X", "u": "Y", "v": "C", "t": "j", "k": 2, "positions": [[6, 1], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jAb", "yGE", "aIh", "bHi", "XYC", "dXc", "exd", "fJi", "gxF", "hAb", "iGE", "jYC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 4, "invert": true, "rot": 0, "lam": "X", "u": "Y", "v": "C", "t": "j", "k": 2, "positions": [[0, 0], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jAb", "yGE", "aIh", "bHi", "XYC", "djc", "exd", "fJi", "gxF", "hAb", "iGE", "jYC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 4, "invert": true, "rot": 0, "lam": "X", "u": "Y", "v": "C", "t": "j", "k": 3, "positions": [[0, 0], [5, 1], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aIh", "bHi", "XYC", "djc", "eJd", "fxi", "gJF", "hAb", "iGE", "jYC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 4, "invert": true, "rot": 0, "lam": "X", "u": "Y", "v": "C", "t": "j", "k": 3, "positions": [[5, 1], [6, 1], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aIh", "bHi", "cyx", "Xcd", "eJd", "fxi", "gJF", "hAb", "iGE", "jcd"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "j", "k": 2, "positions": [[6, 1], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["jAb", "yGE", "aIh", "bHi", "cyx", "Xcd", "exd", "fJi", "gxF", "hAb", "iGE", "jcd"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "j", "k": 2, "positions": [[0, 0], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aIh", "bHi", "cyJ", "Xcd", "eJd", "fxi", "gJF", "hAb", "iGE", "jcd"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 5, "invert": false, "rot": 1, "lam": "X", "u": "c", "v": "d", "t": "j", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aIh", "bHi", "cyx", "xDC", "ejd", "fxi", "gjF", "hAb", "iGE", "jDC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "x", "u": "D", "v": "C", "t": "j", "k": 2, "positions": [[6, 1], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JAb", "yGE", "aIh", "bHi", "cyx", "xDC", "exd", "fji", "gxF", "hAb", "iGE", "jDC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "x", "u": "D", "v": "C", "t": "j", "k": 2, "positions": [[0, 0], [7, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["XAb", "yGE", "aIh", "bHi", "cyj", "xDC", "ejd", "fxi", "gjF", "hAb", "iGE", "jDC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "x", "u": "D", "v": "C", "t": "j", "k": 3, "positions": [[4, 2], [6, 1], [8, 1]]}]}
+======================================================================
+
+
+======================================================================
+*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***
+{"words": ["JAb", "yGE", "aIh", "bHi", "cyj", "xDC", "exd", "fji", "gxF", "hAb", "iGE", "jDC"], "sum_delta": 4, "rank": 12, "census": 9216, "provenance": "control0|src0|root6|d3", "root": ["bXA", "Yeg", "aYX", "bxy", "cyx", "dXc", "exd", "fxy", "gxF"], "trace": [{"relator": 0, "invert": false, "rot": 1, "lam": "X", "u": "A", "v": "b", "t": "h", "k": 2, "positions": [[2, 2], [3, 1]]}, {"relator": 1, "invert": true, "rot": 2, "lam": "y", "u": "G", "v": "E", "t": "i", "k": 3, "positions": [[2, 1], [3, 2], [7, 2]]}, {"relator": 5, "invert": true, "rot": 1, "lam": "x", "u": "D", "v": "C", "t": "j", "k": 3, "positions": [[0, 0], [4, 2], [7, 1]]}]}
+======================================================================
+

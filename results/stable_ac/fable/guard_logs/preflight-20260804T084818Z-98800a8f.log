@@ -1,0 +1,3 @@
+pool: 50320 distinct near-cubic states (deduped on canonical cyclic form)
+  (rank, sum|delta|) -> {(12, 2): 6192, (12, 4): 43160, (13, 2): 108, (13, 4): 860}
+{"kind": "decide_summary", "pool_rows": 50320, "decided": 884, "skipped_over_cap": 0, "elapsed_s": 10.0, "defect_histogram": {"2": 348, "4": 536}, "by_sum_delta": {"4": {"2": 348, "4": 536}}, "by_source": {"src0": {"2": 348, "4": 536}}, "gamma0_hits": 0, "deep_cap": 400000}

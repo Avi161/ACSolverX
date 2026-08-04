@@ -5,3 +5,6 @@ control: 6 AC-trivial rank-2 sources with defect 0, L=13, -> rank-9 roots with s
    source ('YYXYX', 'XYYYXYXY')
    source ('yyxyyxyx', 'xyyxy')
    source ('xyxxy', 'xxyxyxxy')
+pool persisted: 50320 near-cubic rows -> results/stable_ac/fable/s4b_control_pool.jsonl.gz
+{"kind": "summary", "tag": "control0", "attempts": 33, "solved": 0, "mode": "tiebreak", "beam": 60, "depth": 20, "diversity": 0.3, "gamma_tested": 0, "gamma_skipped": 1028816, "gamma_hist": {}, "deep_pool_unique": 50320, "deep_tested": 1, "deep_hist": {"4": 1}, "deep_cap": 1500000, "best_costs": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "min_sum_delta_reached": 2, "pool_written": 50320, "pool_out": "results/stable_ac/fable/s4b_control_pool.jsonl.gz", "seed": 5150}
+GAMMA0 HITS: 0
