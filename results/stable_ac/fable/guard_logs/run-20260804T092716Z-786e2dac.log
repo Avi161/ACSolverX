@@ -1,0 +1,6 @@
+pool: 75095 distinct near-cubic states (deduped on canonical cyclic form)
+  (rank, sum|delta|) -> {(12, 2): 4956, (12, 4): 45475, (13, 2): 5272, (13, 4): 19392}
+  decided 2000/75095  14s  hist={2: 223, 4: 1718, 6: 59}
+  decided 4000/75095  30s  hist={2: 416, 4: 3490, 6: 94}
+  decided 6000/75095  43s  hist={2: 662, 4: 5194, 6: 144}
+  decided 8000/75095  56s  hist={2: 1011, 4: 6792, 6: 197}

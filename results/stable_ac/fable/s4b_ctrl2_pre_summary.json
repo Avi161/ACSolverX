@@ -1,0 +1,32 @@
+{
+ "kind": "decide_summary",
+ "pool_rows": 75095,
+ "decided": 3377,
+ "skipped_over_cap": 0,
+ "elapsed_s": 25.0,
+ "defect_histogram": {
+  "2": 343,
+  "4": 2946,
+  "6": 88
+ },
+ "by_sum_delta": {
+  "2": {
+   "2": 60,
+   "4": 532
+  },
+  "4": {
+   "2": 283,
+   "4": 2414,
+   "6": 88
+  }
+ },
+ "by_source": {
+  "src0": {
+   "2": 343,
+   "4": 2946,
+   "6": 88
+  }
+ },
+ "gamma0_hits": 0,
+ "deep_cap": 400000
+}
