@@ -29,6 +29,7 @@ The presentations the baseline greedy does *not* solve, plus the derived structu
 | `ms_reps_unsolved.txt` / `.csv` | the 261 unsolved representatives |
 | `ms_reps_126.txt` | 126 lines — the 261 collapsed under the equivalence search. The class count is not a single number to quote loosely: 126 here, 125 once a raised length ceiling exposed a further merge, 168 up to change of variables. Read [the finding](../results/equivalence_classes/EQUIVALENCE_FINDING.md) and [the proofs](../results/equivalence_classes/PROOFS.md) before citing any of them |
 | `aca_124.csv` | the 124 distinct classes under AC moves — the residual every escape experiment is pointed at |
+| `aca_124_reduced.csv` | `aca_124.csv` + the μ-ladder verdict per class: `reduced` yes/no, `mu_in`, and for the **36** that descended, the Aut-minimal pair of the descended orbit (`mu_out`, `new_r1`, `new_r2`, `n_hops`). The 88 undescended carry `none`. Written by `experiments/stable_ac/cov/ladder/export_aca124_reduced.py` from the big-ladder summary; every reduced row re-verified against the pure-Python `aut_canon`. A solve from a `new_r*` start certifies **stable** AC-triviality only |
 | `ak3_only.csv` | AK(3) alone. Its stable triviality is **OPEN**; nothing in this repo treats it as settled |
 | `ms_solved_grid.csv` | which (budget, config) solved which presentation |
 | `mu_descents_d2.csv` / `mu_descents_d4.csv` | the depth-2 and depth-4 μ-descent maps from the orbit-floor scan |

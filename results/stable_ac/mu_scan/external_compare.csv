@@ -1,0 +1,23 @@
+label,class,in_our_36,ext_start_mu,ext_finish_mu,ext_d_mu,ext_finish_r1,ext_finish_r2,our_mu_in,our_mu_out,our_new_r1,our_new_r2,verdict,same_orbit,label_pair_verified
+21_2,aca_72,yes,21,20,1,YXXYxYxxx,YYYXYxxxyyX,20,18,YYXXyxx,YYxyXyxyXyX,ours lower by 2,no,yes
+21_9,aca_71,yes,21,20,1,YXXXyXyxx,YYYxyyXXXyx,20,19,YYXXXyxx,YYXyxyXYxyX,ours lower by 1,no,yes
+19_33,aca_53,no,19,18,1,YXXyxYx,YYXyyXyxyxx,18,none,none,none,class not in our 36,none,yes
+16_7,aca_14,no,15,15,0,YXXyXyx,YYYXyyxx,15,none,none,none,class not in our 36,none,yes
+23_9,aca_95,yes,21,21,0,YXXYxYxxx,YYYXyyyXXyxx,21,19,YYXXXyxx,YYxyxyXYxyX,ours lower by 2,no,yes
+23_10,aca_88,yes,23,21,2,YXXXyXyxx,YYYXyyyXYxxx,23,19,YYXXXyXX,YYxyXyxYXyx,ours lower by 2,no,yes
+18_4,aca_36,yes,18,16,2,YXXyxYx,YYYxYYXYX,18,16,YXXyxYx,YYYxYYXYX,tie,yes,yes
+21_35,aca_78,yes,21,19,2,YXXyXyx,YYYXYXyxyyxx,21,19,YXXyXyx,YYYXYXyxyyxx,tie,yes,yes
+19_39,aca_55,yes,19,18,1,YYXXXyxyx,YYxYXXyyX,19,18,YYXXXyxyx,YYxYXXyyX,tie,yes,yes
+17_41,aca_2,no,16,16,0,YXXyXyx,YYYXyyyxx,16,none,none,none,class not in our 36,none,yes
+25_1,aca_99,yes,25,22,3,YXXYxYxxx,YYYYXYxxxyyyX,25,19,YYXXyxx,YYYxyXyxyXyX,ours lower by 3,no,yes
+25_2,aca_110,yes,25,22,3,YXXXyxYxx,YYYYYYYXXyxxx,25,22,YXXXyxYxx,YYYYYYYXXyxxx,tie,yes,yes
+25_3,aca_113,yes,25,23,2,YXXXyxYxx,YYYYYYYYXXXYxx,25,23,YXXXyxYxx,YYYYYYYYXXXYxx,tie,yes,yes
+25_4,aca_111,yes,25,24,1,YXYXYxxyXyx,YYYYYYYxyXyyx,25,24,YXYXYxxyXyx,YYYYYYYxyXyyx,tie,yes,yes
+25_5,aca_108,yes,25,24,1,YXYXyxxyXYx,YYYYYYYxyXyyx,25,24,YXYXyxyXYxx,YYYYYYYxYYXYx,tie,no,yes
+25_6,aca_112,yes,25,24,1,YXYxxyXYXyx,YYYYYYYxyyXYx,25,24,YXYxxyXYXyx,YYYYYYYxyyXYx,tie,yes,yes
+25_7,aca_114,yes,25,23,2,YXXyXYxxx,YYYYYYYYXXyxxx,25,23,YXXyXYxxx,YYYYYYYYXXyxxx,tie,yes,yes
+25_8,aca_109,yes,25,24,1,YXYXyxxyXYx,YYYYYYYxyXYYx,25,23,YYXXyxYxxyX,YYYYYYXXXYxx,ours lower by 1,no,yes
+25_9,aca_107,yes,25,22,3,YXXyXYxxx,YYYYYYYXXXYxx,25,22,YXXyXYxxx,YYYYYYYXXXYxx,tie,yes,yes
+25_10,aca_100,yes,25,22,3,YXXXyXyxx,YYYYXXyxxyyyX,25,20,YYXXXXyxx,YYXyxyXYxyX,ours lower by 2,no,yes
+25_15,aca_105,yes,25,24,1,YXXYxYxxx,YYYYXyXXYxxxyyx,25,21,YYXXXXyxxx,YYXyXyxYXyx,ours lower by 3,no,yes
+25_16,aca_106,yes,25,24,1,YXXXyXyxx,YYYYXyXXXyxxyyx,25,21,YYXXXXyXXX,YYXyxyXYxyX,ours lower by 3,no,yes
