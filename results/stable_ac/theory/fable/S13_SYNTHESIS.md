@@ -313,6 +313,20 @@ container. The Euler bound cannot help either: a cubic link has `3N ≤ 6N − 6
 > make cubic-regime sweeps 10–100× larger.** Until then, budget `0.155 s` per state and
 > report coverage as a fraction of the pool, not as an exhaustion.
 
+### 4a. One experiment was attempted and abandoned — recorded so it is not assumed done
+
+A depth-0/1 certificate hunt on the **six γ_N = 1 gateways** was launched twice and produced
+**no results**. Both runs were lost to process management rather than to the mathematics: the
+first loop's shell was reaped while its children kept running on stale code, and the second
+was killed deliberately to free CPU for the exhaustive rank-12/13 sweep, which had a chance
+of settling AK(3) and which the gateway hunt did not. Contributing factor: a `pkill -f`
+whose pattern matched the very command issuing it.
+
+So **the six gateways have never been hunted above depth 0**, and A9's 39,108-state sweep of
+their classes is all that exists. Given they are the presentations *closest* to a Lackenby
+certificate anywhere in the 124, that is the most obvious unfinished experiment on this line
+and it is cheap — it is item 3 of §5.
+
 ### 5a. An instrument note for the cubic regime
 
 Measured on `C1` (rank 13, 13 relators of length 3): the exact factorial census takes
