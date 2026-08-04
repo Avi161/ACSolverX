@@ -122,11 +122,12 @@ def _row_record(arm, name, dataset, budget, mrl, res, secs, start):
 
 
 def _worker_u124(job):
-    """Like ``run_ab._worker_solve_ab``, but persist min pair always and mark
-    ``path_pending`` if certificate recovery fails (never drop the solve row).
+    """``hcompact`` search only — never recover the path here.
+
+    Parent writes the row first (persist-before-enrich). Certificate recovery
+    is a separate parent-side step that in-place updates ``path_pending`` rows.
     """
-    arm, cfg_arm, row, budget, mrl, engine, keep_path, hb_secs = job
-    # Heartbeat via run_ab's worker init (_HB_Q).
+    arm, cfg_arm, row, budget, mrl, engine, _keep_path, hb_secs = job
     state = {"last": 0.0, "prev": 0, "t_prev": time.perf_counter()}
 
     def progress(n):
@@ -142,38 +143,94 @@ def _worker_u124(job):
                 pass
 
     try:
-        t = time.perf_counter()
         if engine != "hcompact":
             raise ValueError("u124 census requires ENGINE=hcompact")
+        t = time.perf_counter()
         res = greedy_search_hcompact(
             row["r1"], row["r2"], budget,
             max_relator_length=mrl, config=cfg_arm, progress=progress)
         res = dict(res)
-        res["path_pending"] = False
+        # Solves land as path_pending until the parent recovers the certificate.
         if res["solved"]:
-            # Persist-first: we already have solved+min_relator in `res`. Recovery
-            # is enrichment; on failure keep the row with path_pending=True.
-            try:
-                rec = greedy_search_h(
-                    row["r1"], row["r2"], budget,
-                    max_relator_length=mrl, config=cfg_arm,
-                    progress=progress, keep_path=True)
-                if ((rec["solved"], rec["nodes_explored"], rec["path_length"])
-                        != (True, res["nodes_explored"], res["path_length"])):
-                    res["path_pending"] = True
-                    res["path_moves"] = []
-                else:
-                    res = dict(rec)
-                    res["path_pending"] = False
-            except Exception:
-                res["path_pending"] = True
-                res["path_moves"] = []
+            res["path_pending"] = True
+            res["path_moves"] = []
+        else:
+            res["path_pending"] = False
         dt = time.perf_counter() - t
         return {"arm": arm, "name": row["name"], "row": row,
                 "res": res, "secs": round(dt, 2)}
     except Exception as e:  # noqa: BLE001
         return {"arm": arm, "name": row["name"], "row": row,
                 "__error__": repr(e)}
+
+
+def _update_jsonl_row(path, arm, name, updates):
+    """In-place replace the (arm, name) row; raise if missing."""
+    if not os.path.exists(path):
+        raise FileNotFoundError(path)
+    rows = []
+    found = False
+    with open(path) as f:
+        for line in f:
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            if r.get("arm") == arm and r.get("name") == name:
+                r.update(updates)
+                found = True
+            rows.append(r)
+    if not found:
+        raise KeyError(f"no row ({arm}, {name}) in {path}")
+    tmp = path + ".upd_tmp"
+    with open(tmp, "w") as f:
+        for r in rows:
+            f.write(json.dumps(r) + "\n")
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, path)
+
+
+def _recover_pending(path, cfg, budget, mrl):
+    """Finalize path_pending solves with keep_path=True recovery (parent-side)."""
+    if not os.path.exists(path):
+        return 0
+    pending = []
+    with open(path) as f:
+        for line in f:
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            if r.get("solved") and r.get("path_pending"):
+                pending.append(r)
+    n_ok = 0
+    for r in pending:
+        arm = r["arm"]
+        try:
+            rec = greedy_search_h(
+                r["r1"], r["r2"], budget,
+                max_relator_length=mrl, config=run_ab.ARMS[arm],
+                keep_path=True)
+            if ((rec["solved"], rec["nodes_explored"], rec["path_length"])
+                    != (True, r["nodes_explored"], r.get("path_length"))):
+                print(f"    recovery diverge [{arm}/{r['name']}] — "
+                      "leaving path_pending", flush=True)
+                continue
+            moves = rec.get("path_moves") or []
+            # path_moves may be tuples; jsonl wants lists/strings
+            if moves and not isinstance(moves[0], str):
+                from experiments.search.greedy_baseline import move_to_str
+                moves = [move_to_str(m) for m in moves]
+            _update_jsonl_row(path, arm, r["name"], {
+                "path_moves": moves,
+                "path_length": rec.get("path_length"),
+                "path_pending": False,
+                # keep already-persisted min_relator / min_delta from first pass
+            })
+            n_ok += 1
+        except Exception as e:  # noqa: BLE001
+            print(f"    recovery failed [{arm}/{r['name']}]: {e!r} — "
+                  "leaving path_pending", flush=True)
+    return n_ok
 
 
 def _run_parallel_u124(cfg, out, todo, starts, n_workers, budget, mrl,
@@ -379,6 +436,9 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
     stem = cfg.get("OUT_STEM", "hsearch_u124_s20mk2")
     if tag:
         stem = f"{stem}{tag}"
+    # Filename encodes result-changing identity (depth tie is fixed +depth here).
+    if "dpos" not in stem:
+        stem = f"{stem}_dpos"
     cfg["OUT_STEM"] = stem
 
     budget = int(cfg["NODE_BUDGET"])
@@ -397,6 +457,13 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
             os.path.basename(out))
         if out.startswith(run_ab._REMOTE_PREFIX) else out)
 
+    # Finalize any leftover path_pending from a prior crash before counting done.
+    for p in (out, stage_probe):
+        if os.path.exists(p):
+            n_rec = _recover_pending(p, cfg, budget, mrl)
+            if n_rec:
+                print(f"  recovered {n_rec} path_pending rows in {p}", flush=True)
+
     seen = ((run_ab._done(out) | run_ab._done(stage_probe))
             if cfg.get("RESUME", True) else set())
     todo = [(a, {"name": r["name"], "r1": r["r1"], "r2": r["r2"],
@@ -414,9 +481,19 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
     print(f"  -> {out}", flush=True)
 
     n_workers = max(int(n_workers), 1)
+    stage = stage_probe
     if todo:
-        _run_parallel_u124(cfg, out, todo, starts, n_workers, budget, mrl,
-                           heartbeat_secs, progress_secs)
+        stage = _run_parallel_u124(
+            cfg, out, todo, starts, n_workers, budget, mrl,
+            heartbeat_secs, progress_secs)
+    for p in {out, stage}:
+        if os.path.exists(p):
+            n_rec = _recover_pending(p, cfg, budget, mrl)
+            if n_rec:
+                print(f"  recovered {n_rec} certificates in {p}", flush=True)
+    if (out.startswith(run_ab._REMOTE_PREFIX)
+            and os.path.exists(stage) and stage != out):
+        run_ab._mirror(stage, out)
 
     report_path = out if os.path.exists(out) else stage_probe
     if os.path.exists(report_path):

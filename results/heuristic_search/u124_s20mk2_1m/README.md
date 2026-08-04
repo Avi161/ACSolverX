@@ -21,7 +21,7 @@ tie-break = shipped **`+depth`** (shallowest-first). Cap 64 is per-relator
 `/content/drive/MyDrive/acsolverx/hsearch_u124_s20mk2_1m/`
 
 **Per-chunk jsonl:**  
-`hsearch_u124_s20mk2_c{K}of4_unsolved124_b1000000_mrl64.jsonl`
+`hsearch_u124_s20mk2_c{K}of4_dpos_unsolved124_b1000000_mrl64.jsonl`
 
 ## How to run
 
@@ -34,7 +34,7 @@ tie-break = shipped **`+depth`** (shallowest-first). Cap 64 is per-relator
 ```bash
 PYTHONPATH=. python3 -m experiments.heuristic_search.runners.merge_colab_chunks \
   --dir /content/drive/MyDrive/acsolverx/hsearch_u124_s20mk2_1m \
-  --glob 'hsearch_u124_s20mk2_c*of4_unsolved124_b1000000_mrl64.jsonl' \
+  --glob 'hsearch_u124_s20mk2_c*of4_dpos_unsolved124_b1000000_mrl64.jsonl' \
   --out /content/drive/MyDrive/acsolverx/hsearch_u124_s20mk2_1m/merged_u124_s20mk2_b1m_mrl64.jsonl
 
 PYTHONPATH=. python3 -m experiments.heuristic_search.verify.verify_u124_s20mk2 \
@@ -51,10 +51,13 @@ PYTHONPATH=. python3 -m experiments.heuristic_search.verify.verify_u124_s20mk2 \
 `max_relator_length_expanded`, `path_moves`, `path_pending`, `secs`
 
 - `start_total = |r1|+|r2|` of the Aut-min start
-- `min_relator` = concrete pair achieving `min_relator_length`
+- `min_relator` = concrete pair achieving `min_relator_length` (solver-reported
+  discovery witness; **no move path to that pair is stored** — treat length
+  drops as descriptive until a path is separately recovered)
 - `min_delta = start_total - min_relator_length`
 - `improved = min_delta > 0` ← primary interest
-- `path_pending` = solved but certificate recovery failed (row still kept)
+- `path_pending` = solved row written **before** certificate recovery; parent
+  finalizes in place afterward
 
 μ-ladder “36/124 descenders” uses Aut-orbit floor μ — different ruler from
 greedy `min_relator_length`.

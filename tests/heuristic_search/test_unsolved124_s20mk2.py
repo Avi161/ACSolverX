@@ -56,6 +56,7 @@ def test_smoke_s20mk2_enriched_keys(tmp_path):
     out = ru.run_unsolved124_s20mk2(cfg, out_dir=str(tmp_path),
                                     heartbeat_secs=3600, progress_secs=3600)
     assert os.path.exists(out)
+    assert "_dpos_" in os.path.basename(out)
     rows = [json.loads(l) for l in open(out) if l.strip()]
     assert len(rows) == 31
     for r in rows:
@@ -71,6 +72,9 @@ def test_smoke_s20mk2_enriched_keys(tmp_path):
         mr = r["min_relator"]
         assert isinstance(mr, list) and len(mr) == 2
         assert len(mr[0]) + len(mr[1]) == r["min_relator_length"]
+        if r["solved"]:
+            assert r["path_pending"] is False
+            assert r.get("path_moves")
 
 
 def test_rejects_non_s20mk2_arms(tmp_path):

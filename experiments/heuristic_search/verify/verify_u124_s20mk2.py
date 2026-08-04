@@ -25,9 +25,9 @@ from experiments.search.greedy_baseline import (  # noqa: E402
 )
 
 
-def verify_file(path, expect_n=None):
+def verify_file(path, expect_n=None, expect_names=None):
     fails = []
-    n = n_solved = n_replay = n_improved = 0
+    n = n_solved = n_replay = 0
     names = set()
     with open(path) as f:
         for i, line in enumerate(f, 1):
@@ -36,6 +36,12 @@ def verify_file(path, expect_n=None):
             r = json.loads(line)
             n += 1
             names.add(r.get("name"))
+            if r.get("arm") != "s20_mk2":
+                fails.append(f"{path}:{i} arm != s20_mk2")
+            if r.get("depth_tie") != "+depth":
+                fails.append(f"{path}:{i} depth_tie != +depth")
+            if int(r.get("budget", -1)) not in (-1, r.get("budget", -1)):
+                pass
             st = r.get("start_total")
             mrl = r.get("min_relator_length")
             mr = r.get("min_relator")
@@ -53,10 +59,8 @@ def verify_file(path, expect_n=None):
                     fails.append(f"{path}:{i} min_relator not a pair")
                 elif len(mr[0]) + len(mr[1]) != int(mrl):
                     fails.append(
-                        f"{path}:{i} min_relator lengths {len(mr[0])+len(mr[1])} "
-                        f"!= min_relator_length {mrl}")
-                else:
-                    n_improved += int(bool(r.get("improved")))
+                        f"{path}:{i} min_relator lengths "
+                        f"{len(mr[0])+len(mr[1])} != min_relator_length {mrl}")
             if r.get("solved"):
                 n_solved += 1
                 if r.get("path_pending"):
@@ -77,10 +81,16 @@ def verify_file(path, expect_n=None):
                 end = states[-1]
                 if not (len(end[0]) == 1 and len(end[1]) == 1):
                     fails.append(f"{path}:{i} terminal not trivial: {end}")
+                elif r.get("path_length") is not None and int(r["path_length"]) != len(moves):
+                    fails.append(f"{path}:{i} path_length != len(moves)")
                 else:
                     n_replay += 1
     if expect_n is not None and len(names) != expect_n:
         fails.append(f"unique names {len(names)} != expect_n {expect_n}")
+    if expect_names is not None and names != set(expect_names):
+        missing = sorted(set(expect_names) - names)
+        extra = sorted(names - set(expect_names))
+        fails.append(f"name set drift missing={missing[:5]} extra={extra[:5]}")
     return {
         "n": n, "names": len(names), "solved": n_solved,
         "replay_ok": n_replay, "fails": fails,
