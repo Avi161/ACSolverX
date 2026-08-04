@@ -1,0 +1,547 @@
+{
+ "record": "s23_controls",
+ "args": {
+  "cmd": "controls",
+  "out": "results/stable_ac/fable/s23_controls_b.json",
+  "seed": 777,
+  "defect": 4,
+  "want_ms": 0,
+  "want_walk": 3,
+  "walks": 3000,
+  "steps": 500,
+  "max_rel": 9,
+  "time_budget": 200.0,
+  "func": "<function cmd_controls at 0x7f70f5c5a7a0>"
+ },
+ "target": {
+  "label": "ak3",
+  "source": "target",
+  "words": [
+   "xyxYXY",
+   "xxxYYYY"
+  ],
+  "defect": 4,
+  "gamma_N": 2,
+  "total_length": 13,
+  "rank": 2,
+  "census_enumerated": 86400,
+  "verdict": "NOT_SPHERICAL",
+  "method": "exact_census"
+ },
+ "controls": [
+  {
+   "label": "msA0",
+   "source": "ms",
+   "words": [
+    "YYXyx",
+    "YYxxyXXX"
+   ],
+   "defect": 4,
+   "gamma_N": 2,
+   "total_length": 13,
+   "rank": 2,
+   "census_enumerated": 86400,
+   "verdict": "NOT_SPHERICAL",
+   "method": "exact_census",
+   "ac_trivial_evidence": "member of data/ms640_solved.txt (solved Miller-Schupp instance)"
+  },
+  {
+   "label": "walkB0",
+   "source": "walk",
+   "words": [
+    "YxYXXyyxx",
+    "XXXY"
+   ],
+   "defect": 4,
+   "gamma_N": 2,
+   "total_length": 13,
+   "rank": 2,
+   "census_enumerated": 120960,
+   "verdict": "NOT_SPHERICAL",
+   "method": "exact_census",
+   "ac_trivial_evidence": "explicit AC walk from <x,y|x,y>",
+   "walk_chain": [
+    [
+     "x",
+     "y"
+    ],
+    [
+     "xy",
+     "y"
+    ],
+    [
+     "xy",
+     "yyx"
+    ],
+    [
+     "YX",
+     "yyx"
+    ],
+    [
+     "xy",
+     "yyx"
+    ],
+    [
+     "YX",
+     "yyx"
+    ],
+    [
+     "YXyyx",
+     "yyx"
+    ],
+    [
+     "YXyyx",
+     "yXyyxx"
+    ],
+    [
+     "YXyyXYYxY",
+     "yXyyxx"
+    ],
+    [
+     "yXyyxYYxy",
+     "yXyyxx"
+    ],
+    [
+     "yXyyxYYxy",
+     "xYXyy"
+    ],
+    [
+     "yXyyxYYxy",
+     "YYxyX"
+    ],
+    [
+     "yXyyxYYxy",
+     "xYXyy"
+    ],
+    [
+     "YXyyXYYxY",
+     "xYXyy"
+    ],
+    [
+     "YXyyXYYxY",
+     "YYxyX"
+    ],
+    [
+     "XYYxYX",
+     "YYxyX"
+    ],
+    [
+     "XYYxYX",
+     "xYXyy"
+    ],
+    [
+     "xyXyyx",
+     "xYXyy"
+    ],
+    [
+     "yXyyxYYxy",
+     "xYXyy"
+    ],
+    [
+     "YXyyXYYxY",
+     "xYXyy"
+    ],
+    [
+     "XYYxYX",
+     "xYXyy"
+    ],
+    [
+     "XYYxYX",
+     "YYxyX"
+    ],
+    [
+     "xyXyyx",
+     "YYxyX"
+    ],
+    [
+     "XYYxYX",
+     "YYxyX"
+    ],
+    [
+     "YXY",
+     "YYxyX"
+    ],
+    [
+     "YXY",
+     "YxyXyx"
+    ],
+    [
+     "XYxYxyX",
+     "YxyXyx"
+    ],
+    [
+     "XYxYxyX",
+     "YxxyX"
+    ],
+    [
+     "XYxYXy",
+     "YxxyX"
+    ],
+    [
+     "YXX",
+     "YxxyX"
+    ],
+    [
+     "YXX",
+     "xYXXy"
+    ],
+    [
+     "YXYxxyXX",
+     "xYXXy"
+    ],
+    [
+     "XYxxyXYXX",
+     "xYXXy"
+    ],
+    [
+     "XYxxyXYXX",
+     "YxxyX"
+    ],
+    [
+     "xxyxYXXyx",
+     "YxxyX"
+    ],
+    [
+     "XYxxyXYXX",
+     "YxxyX"
+    ],
+    [
+     "XYxxyXYXX",
+     "xxyx"
+    ],
+    [
+     "xxyxYXXyx",
+     "xxyx"
+    ],
+    [
+     "yxYXX",
+     "xxyx"
+    ],
+    [
+     "yxYXXXYXX",
+     "xxyx"
+    ],
+    [
+     "yxYXXXYXX",
+     "XYXX"
+    ],
+    [
+     "yxYXXXYXX",
+     "xxyXY"
+    ],
+    [
+     "yxYXXXYXX",
+     "XYXX"
+    ],
+    [
+     "yxYXXXYXX",
+     "xxyx"
+    ],
+    [
+     "xxyxxxyXY",
+     "xxyx"
+    ],
+    [
+     "yxYXXXYXX",
+     "xxyx"
+    ],
+    [
+     "xxyxxxyXY",
+     "xxyx"
+    ],
+    [
+     "xxyxxxyXY",
+     "XYXX"
+    ],
+    [
+     "yxYXXXYXX",
+     "XYXX"
+    ],
+    [
+     "xxyxxxyXY",
+     "XYXX"
+    ],
+    [
+     "xxyxxxyXY",
+     "xxyx"
+    ],
+    [
+     "xxyXY",
+     "xxyx"
+    ],
+    [
+     "xxyXYxxyx",
+     "xxyx"
+    ],
+    [
+     "xxyXY",
+     "xxyx"
+    ],
+    [
+     "yXYYX",
+     "xxyx"
+    ],
+    [
+     "yXYYX",
+     "XYXX"
+    ],
+    [
+     "yXYxx",
+     "XYXX"
+    ],
+    [
+     "yXYxYXX",
+     "XYXX"
+    ],
+    [
+     "yXYxYXX",
+     "xxyx"
+    ],
+    [
+     "yXYxYXX",
+     "xyXYx"
+    ],
+    [
+     "yXYxYXX",
+     "xxxy"
+    ],
+    [
+     "XYxYXXXXX",
+     "xxxy"
+    ],
+    [
+     "XYxYXXXXX",
+     "yXYxYXX"
+    ],
+    [
+     "XYxYXXXXX",
+     "yxxx"
+    ],
+    [
+     "xxxxxyXyx",
+     "yxxx"
+    ],
+    [
+     "xxxxxyXyx",
+     "yxYxYXXXX"
+    ],
+    [
+     "XYxYXXXXX",
+     "yxYxYXXXX"
+    ],
+    [
+     "XYxYXXXXX",
+     "yxxx"
+    ],
+    [
+     "XYxYXXXXX",
+     "XXXY"
+    ],
+    [
+     "XYxYXXy",
+     "XXXY"
+    ],
+    [
+     "YxYXXyyxx",
+     "XXXY"
+    ]
+   ]
+  },
+  {
+   "label": "walkB1",
+   "source": "walk",
+   "words": [
+    "YYXyyxyX",
+    "XyxyX"
+   ],
+   "defect": 4,
+   "gamma_N": 2,
+   "total_length": 13,
+   "rank": 2,
+   "census_enumerated": 86400,
+   "verdict": "NOT_SPHERICAL",
+   "method": "exact_census",
+   "ac_trivial_evidence": "explicit AC walk from <x,y|x,y>",
+   "walk_chain": [
+    [
+     "x",
+     "y"
+    ],
+    [
+     "Yx",
+     "y"
+    ],
+    [
+     "Yx",
+     "x"
+    ],
+    [
+     "Y",
+     "x"
+    ],
+    [
+     "Y",
+     "xY"
+    ],
+    [
+     "Y",
+     "xYY"
+    ],
+    [
+     "Y",
+     "YYxY"
+    ],
+    [
+     "YxYYxYX",
+     "YYxY"
+    ],
+    [
+     "YxYYxYX",
+     "YxYxyXyyX"
+    ],
+    [
+     "xyXyyXy",
+     "YxYxyXyyX"
+    ],
+    [
+     "xyXyyXy",
+     "YxYY"
+    ],
+    [
+     "y",
+     "YxYY"
+    ],
+    [
+     "y",
+     "YxY"
+    ],
+    [
+     "yyyX",
+     "YxY"
+    ],
+    [
+     "yyyX",
+     "yXy"
+    ],
+    [
+     "yyyX",
+     "XyyxYYY"
+    ],
+    [
+     "xYYY",
+     "XyyxYYY"
+    ],
+    [
+     "xYYY",
+     "yyyXYYx"
+    ],
+    [
+     "xYYY",
+     "XYYxyxY"
+    ],
+    [
+     "xYXYXyyxY",
+     "XYYxyxY"
+    ],
+    [
+     "yXYYxyxyX",
+     "XYYxyxY"
+    ],
+    [
+     "yXYYxyxyX",
+     "YYxY"
+    ],
+    [
+     "YYxyxyXYY",
+     "YYxY"
+    ],
+    [
+     "y",
+     "YYxY"
+    ],
+    [
+     "yxYYxYX",
+     "YYxY"
+    ],
+    [
+     "xyXyyXY",
+     "YYxY"
+    ],
+    [
+     "xyXyyXyXy",
+     "YYxY"
+    ],
+    [
+     "YxYxYYxYX",
+     "YYxY"
+    ],
+    [
+     "YxYxYYxYX",
+     "YxyXyyX"
+    ],
+    [
+     "xyXyyXyXy",
+     "YxyXyyX"
+    ],
+    [
+     "xyXyyXyXy",
+     "xYYxYXy"
+    ],
+    [
+     "YxYxYYxYX",
+     "xYYxYXy"
+    ],
+    [
+     "YxYY",
+     "xYYxYXy"
+    ],
+    [
+     "YxYY",
+     "xYYxYXYxY"
+    ],
+    [
+     "YxYY",
+     "yXyxyXyyX"
+    ],
+    [
+     "YxYY",
+     "XyxyX"
+    ],
+    [
+     "YxYYXyxyX",
+     "XyxyX"
+    ],
+    [
+     "xYXYxyyXy",
+     "XyxyX"
+    ],
+    [
+     "xYXYxyyXy",
+     "yyXy"
+    ],
+    [
+     "xYXYxyyXy",
+     "XyxyX"
+    ],
+    [
+     "YxYYXyxyX",
+     "XyxyX"
+    ],
+    [
+     "YxYY",
+     "XyxyX"
+    ],
+    [
+     "YYXyx",
+     "XyxyX"
+    ],
+    [
+     "YYXyyxyX",
+     "XyxyX"
+    ]
+   ]
+  }
+ ],
+ "walks_done": 315,
+ "elapsed_s": 200.8
+}

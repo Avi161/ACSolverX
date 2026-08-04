@@ -1,0 +1,554 @@
+{
+ "record": "s23_table",
+ "files": [
+  "s23_rows_C1ms.jsonl",
+  "s23_rows_C2walk.jsonl",
+  "s23_rows_C3walk.jsonl",
+  "s23_rows_C4walk.jsonl",
+  "s23_rows_C5walk.jsonl",
+  "s23_rows_ak3.jsonl"
+ ],
+ "headers": {
+  "C1ms": {
+   "kind": "header",
+   "label": "C1ms",
+   "source": "control",
+   "root": [
+    "YYXyx",
+    "YXYXXyxx"
+   ],
+   "root_defect": 4,
+   "root_gamma_N": 2,
+   "root_verdict": "NOT_SPHERICAL",
+   "root_method": "exact_census",
+   "root_length": 13,
+   "ceilings": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "trials": 2,
+   "nodes": 2000,
+   "seed": 20260804,
+   "headroom": 4,
+   "started_utc": "2026-08-04T10:56:23Z"
+  },
+  "C2walk": {
+   "kind": "header",
+   "label": "C2walk",
+   "source": "control",
+   "root": [
+    "xYXyx",
+    "YxyyXYXY"
+   ],
+   "root_defect": 4,
+   "root_gamma_N": 2,
+   "root_verdict": "NOT_SPHERICAL",
+   "root_method": "exact_census",
+   "root_length": 13,
+   "ceilings": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "trials": 2,
+   "nodes": 2000,
+   "seed": 20260804,
+   "headroom": 4,
+   "started_utc": "2026-08-04T10:56:20Z"
+  },
+  "C3walk": {
+   "kind": "header",
+   "label": "C3walk",
+   "source": "control",
+   "root": [
+    "xYXXXYx",
+    "yxYXyx"
+   ],
+   "root_defect": 4,
+   "root_gamma_N": 2,
+   "root_verdict": "NOT_SPHERICAL",
+   "root_method": "exact_census",
+   "root_length": 13,
+   "ceilings": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "trials": 2,
+   "nodes": 2000,
+   "seed": 20260804,
+   "headroom": 4,
+   "started_utc": "2026-08-04T10:56:40Z"
+  },
+  "C4walk": {
+   "kind": "header",
+   "label": "C4walk",
+   "source": "control",
+   "root": [
+    "YxYXXyyxx",
+    "XXXY"
+   ],
+   "root_defect": 4,
+   "root_gamma_N": 2,
+   "root_verdict": "NOT_SPHERICAL",
+   "root_method": "exact_census",
+   "root_length": 13,
+   "ceilings": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "trials": 2,
+   "nodes": 2000,
+   "seed": 20260804,
+   "headroom": 4,
+   "started_utc": "2026-08-04T10:56:09Z"
+  },
+  "C5walk": {
+   "kind": "header",
+   "label": "C5walk",
+   "source": "control",
+   "root": [
+    "YYXyyxyX",
+    "XyxyX"
+   ],
+   "root_defect": 4,
+   "root_gamma_N": 2,
+   "root_verdict": "NOT_SPHERICAL",
+   "root_method": "exact_census",
+   "root_length": 13,
+   "ceilings": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "trials": 2,
+   "nodes": 2000,
+   "seed": 20260804,
+   "headroom": 4,
+   "started_utc": "2026-08-04T10:56:41Z"
+  },
+  "ak3": {
+   "kind": "header",
+   "label": "ak3",
+   "source": "target",
+   "root": [
+    "xyxYXY",
+    "xxxYYYY"
+   ],
+   "root_defect": 4,
+   "root_gamma_N": 2,
+   "root_verdict": "NOT_SPHERICAL",
+   "root_method": "exact_census",
+   "root_length": 13,
+   "ceilings": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "trials": 2,
+   "nodes": 2000,
+   "seed": 20260804,
+   "headroom": 4,
+   "started_utc": "2026-08-04T10:56:12Z"
+  }
+ },
+ "n_runs": 40,
+ "pooled_controls": {
+  "2": {
+   "raw": 4,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 10
+  },
+  "3": {
+   "raw": 0,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 10
+  },
+  "4": {
+   "raw": 0,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 9
+  },
+  "5": {
+   "raw": 0,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 4
+  }
+ },
+ "target": {
+  "2": {
+   "raw": 0,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 2
+  },
+  "3": {
+   "raw": 0,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 2
+  },
+  "4": {
+   "raw": 0,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 2
+  },
+  "5": {
+   "raw": 0,
+   "weak_in_band": 0,
+   "strong_in_band_elim": 0,
+   "strong_in_band_tietze": 0,
+   "strong_in_band_elim_chainwide": 0,
+   "strong_in_band_tietze_chainwide": 0,
+   "trials": 1
+  }
+ },
+ "by_source": {
+  "control": {
+   "2": {
+    "raw": 4,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 10
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 10
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 9
+   },
+   "5": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 4
+   }
+  },
+  "target": {
+   "2": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "5": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 1
+   }
+  }
+ },
+ "per_label": {
+  "C1ms": {
+   "2": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "5": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   }
+  },
+  "C2walk": {
+   "2": {
+    "raw": 1,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   }
+  },
+  "C3walk": {
+   "2": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 1
+   }
+  },
+  "C4walk": {
+   "2": {
+    "raw": 2,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "5": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 1
+   }
+  },
+  "C5walk": {
+   "2": {
+    "raw": 1,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "5": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 1
+   }
+  },
+  "ak3": {
+   "2": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "3": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "4": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 2
+   },
+   "5": {
+    "raw": 0,
+    "weak_in_band": 0,
+    "strong_in_band_elim": 0,
+    "strong_in_band_tietze": 0,
+    "strong_in_band_elim_chainwide": 0,
+    "strong_in_band_tietze_chainwide": 0,
+    "trials": 1
+   }
+  }
+ },
+ "hit_witness_length_hist": {
+  "12": 1,
+  "24": 1,
+  "7": 1,
+  "9": 1
+ },
+ "hit_min_chain_length_hist": {
+  "11": 1,
+  "7": 1,
+  "8": 2
+ },
+ "hit_witness_elim_core_length_hist": {
+  "12": 1,
+  "24": 1,
+  "7": 1,
+  "9": 1
+ },
+ "hit_witness_tietze_core_length_hist": {
+  "12": 1,
+  "24": 1,
+  "7": 1,
+  "9": 1
+ },
+ "starved_runs(pops<budget and no hit)": 36
+}

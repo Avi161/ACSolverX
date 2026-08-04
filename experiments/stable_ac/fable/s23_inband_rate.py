@@ -221,6 +221,86 @@ def cmd_controls(args):
 
 # ------------------------------------------------------------------ hunt
 
+def hunt_budgeted(base, kstab, nodes, rng, *, beam=6, branch=6, headroom=4,
+                  census_cap=200_000, decide_budget=0, wall_budget=0.0):
+    """Faithful clone of ``s21_audit_gen_replay.hunt_tracked`` (itself a verbatim clone of
+    ``s12_hunt.hunt`` with parent tracking) with TWO added stopping criteria and nothing
+    else changed -- same move family (``s12_hunt.slides``), same decider
+    (``s12_hunt.decide``), same canonical seen-set, same RNG call order.
+
+    WHY.  A rank-2 state is decided by the R1c-v2 cut-scheme solver in ~1 ms; at rank >= 3
+    the solver reports UNSUPPORTED and every state falls through to the factorial census,
+    which costs ~0.5-1.5 s.  Budgeting by POPS therefore gives the rank-2 arm ~500x more
+    decided states per second than the rank-5 arm, and "extra rank hurts" would then be a
+    statement about the decider's speed.  ``decide_budget`` equalises the arms on the
+    quantity that actually carries detection power -- the number of DECIDED states -- and
+    ``wall_budget`` is a safety net.  Both are recorded per run.
+    """
+    base_tot = sum(len(w) for w in base)
+    max_rel = base_tot + headroom
+    max_tot = (len(base) + kstab) * max_rel
+    gens = sorted(set("".join(base).lower()))
+    words = list(base)
+    for _ in range(kstab):
+        z = next(c for c in H.ALPHA if c not in gens)
+        gens.append(z)
+        words.append(z)
+    gens = tuple(sorted(gens))
+    start = tuple(words)
+    seen = {H.canon(start)}
+    frontier = [start]
+    parent = {start: None}
+    stats = {"pops": 0, "decided": 0, "undecided": 0, "spherical": 0, "restarts": 0,
+             "stop": "nodes"}
+    t0 = time.time()
+    d0 = H.decide(start, census_cap)
+    if d0["verdict"] == H.UNDECIDED:
+        stats["undecided"] += 1
+    else:
+        stats["decided"] += 1
+    if d0["verdict"] == "SPHERICAL":
+        stats["spherical"] += 1
+        stats["stop"] = "root_hit"
+        return start, d0, stats, parent
+    pool_cap = 4000
+    visited = [start]
+    while stats["pops"] < nodes:
+        if decide_budget and stats["decided"] + stats["undecided"] >= decide_budget:
+            stats["stop"] = "decide_budget"
+            break
+        if wall_budget and time.time() - t0 > wall_budget:
+            stats["stop"] = "wall_budget"
+            break
+        if not frontier:
+            stats["restarts"] += 1
+            frontier = [visited[rng.randrange(len(visited))] for _ in range(4)]
+        frontier.sort(key=lambda w: sum(len(x) for x in w))
+        del frontier[pool_cap:]
+        idx = (rng.randrange(len(frontier)) if rng.random() < 0.25
+               else rng.randrange(min(beam, len(frontier))))
+        cur = frontier.pop(idx)
+        stats["pops"] += 1
+        for nb in H.slides(cur, gens, rng, max_rel, max_tot, branch):
+            k = H.canon(nb)
+            if k in seen:
+                continue
+            seen.add(k)
+            parent.setdefault(nb, cur)
+            d = H.decide(nb, census_cap)
+            if d["verdict"] == H.UNDECIDED:
+                stats["undecided"] += 1
+            else:
+                stats["decided"] += 1
+            if d["verdict"] == "SPHERICAL":
+                stats["spherical"] += 1
+                stats["stop"] = "hit"
+                return nb, d, stats, parent
+            frontier.append(nb)
+            if len(visited) < 20_000:
+                visited.append(nb)
+    return None, None, stats, parent
+
+
 def cmd_hunt(args):
     """One root, rank ceilings ``2 + kstab``, ``trials`` seeds each; FULL chain per hit.
 
@@ -255,12 +335,18 @@ def cmd_hunt(args):
             seed = args.seed + 7919 * trial + 104729 * kstab
             rng = random.Random(seed)
             ts = time.time()
-            st, d, stats, parent = G.hunt_tracked(
+            st, d, stats, parent = hunt_budgeted(
                 base, kstab, args.nodes, rng, headroom=args.headroom,
-                census_cap=args.census_cap)
+                beam=args.beam, branch=args.branch, census_cap=args.census_cap,
+                decide_budget=args.decide_budget, wall_budget=args.wall_budget)
             row = {"kind": "run", "label": args.label, "source": args.source,
                    "rank_ceiling": ceiling, "kstab": kstab, "trial": trial,
-                   "seed": seed, "nodes_budget": args.nodes, "hit": st is not None,
+                   "seed": seed, "nodes_budget": args.nodes,
+                   "beam": args.beam, "branch": args.branch,
+                   "decide_budget": args.decide_budget,
+                   "wall_budget": args.wall_budget,
+                   "decides": stats["decided"] + stats["undecided"],
+                   "hit": st is not None,
                    "stats": stats, "wall_s": round(time.time() - ts, 1)}
             if st is not None:
                 chain = []
@@ -418,8 +504,16 @@ def main(argv=None):
     p.add_argument("--nodes", type=int, default=500)
     p.add_argument("--seed", type=int, default=20260804)
     p.add_argument("--headroom", type=int, default=4)
+    p.add_argument("--beam", type=int, default=6)
+    p.add_argument("--branch", type=int, default=6)
     p.add_argument("--census-cap", type=int, default=200_000)
-    p.add_argument("--time-budget", type=float, default=0.0)
+    p.add_argument("--decide-budget", type=int, default=0,
+                   help="stop a run after this many DECIDED+UNDECIDED states "
+                        "(equalises detection power across rank ceilings)")
+    p.add_argument("--wall-budget", type=float, default=0.0,
+                   help="per-run wall-clock safety net, seconds")
+    p.add_argument("--time-budget", type=float, default=0.0,
+                   help="whole-command wall-clock budget, seconds")
     p.add_argument("--out", required=True)
     p.set_defaults(func=cmd_hunt)
 

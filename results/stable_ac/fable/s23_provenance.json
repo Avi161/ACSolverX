@@ -1,0 +1,85 @@
+{
+ "record": "s23_provenance",
+ "ms_length13_defect_hist": {
+  "2": 108,
+  "4": 4,
+  "None": 6
+ },
+ "ms_length13_defect4": [
+  [
+   "YYXyx",
+   "YXYXXyxx"
+  ],
+  [
+   "YYXyx",
+   "YYxxxyXX"
+  ],
+  [
+   "YYXyx",
+   "YXXyxxYx"
+  ],
+  [
+   "YYXyx",
+   "YYxxyXXX"
+  ]
+ ],
+ "ms_length13_scanned": 118,
+ "walk_chain_verification": [
+  {
+   "file": "results/stable_ac/fable/s23_controls.json",
+   "words": [
+    "xYXyx",
+    "YxyyXYXY"
+   ],
+   "start": [
+    "x",
+    "y"
+   ],
+   "steps": 74,
+   "steps_all_legal": true,
+   "n_bad": 0
+  },
+  {
+   "file": "results/stable_ac/fable/s23_controls.json",
+   "words": [
+    "xYXXXYx",
+    "yxYXyx"
+   ],
+   "start": [
+    "x",
+    "y"
+   ],
+   "steps": 59,
+   "steps_all_legal": true,
+   "n_bad": 0
+  },
+  {
+   "file": "results/stable_ac/fable/s23_controls_b.json",
+   "words": [
+    "YxYXXyyxx",
+    "XXXY"
+   ],
+   "start": [
+    "x",
+    "y"
+   ],
+   "steps": 70,
+   "steps_all_legal": true,
+   "n_bad": 0
+  },
+  {
+   "file": "results/stable_ac/fable/s23_controls_b.json",
+   "words": [
+    "YYXyyxyX",
+    "XyxyX"
+   ],
+   "start": [
+    "x",
+    "y"
+   ],
+   "steps": 43,
+   "steps_all_legal": true,
+   "n_bad": 0
+  }
+ ]
+}
