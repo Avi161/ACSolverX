@@ -539,13 +539,15 @@ def sr_hunt(*, ranks=(2, 3, 4), max_base_length: int = 12, spike_depth: int = 2,
     zero_spellings = 0
     counterexamples = []
     per_rank_stats = {}
-    for rank in ranks:
+    slice_s = deadline / max(1, len(ranks))
+    for r_i, rank in enumerate(ranks):
+        stop_at = min(deadline, slice_s * (r_i + 1))
         limits = RN.Limits(max_relator_length=12, max_total_length=max_base_length + 4,
                            min_rank=rank, max_rank=rank)
         base = RN.standard_presentation(rank)
         n_bases = 0
         n_bad = 0
-        while n_bases < per_rank and time.time() - t0 < deadline:
+        while n_bases < per_rank and time.time() - t0 < stop_at:
             cur, _h = RN.scramble(base, rng.randrange(3, 26), rng, limits)
             if len(cur.gens) != rank or not cur.all_generators_occur():
                 continue
@@ -561,7 +563,7 @@ def sr_hunt(*, ranks=(2, 3, 4), max_base_length: int = 12, spike_depth: int = 2,
                 nxt = []
                 for words in frontier:
                     for _k, img, _p in spike_images(words, cur.gens):
-                        if time.time() - t0 > deadline:
+                        if time.time() - t0 > stop_at:
                             break
                         row = decide(img, cur.gens, cap=cap)
                         if row["verdict"] == "SKIPPED":
@@ -578,12 +580,13 @@ def sr_hunt(*, ranks=(2, 3, 4), max_base_length: int = 12, spike_depth: int = 2,
                                 "spelling_defect": row["minimum_defect"],
                                 "reduced_defect": red["minimum_defect"],
                             })
-                    if time.time() - t0 > deadline:
+                    if time.time() - t0 > stop_at:
                         break
                 frontier = nxt[:60]
-                if time.time() - t0 > deadline:
+                if time.time() - t0 > stop_at:
                     break
-        per_rank_stats[str(rank)] = {"bases": n_bases, "non_thickenable_bases": n_bad}
+        per_rank_stats[str(rank)] = {"bases": n_bases, "non_thickenable_bases": n_bad,
+                                     "tested_so_far": tested, "skipped_so_far": skipped}
     return {
         "record": "SR counterexample hunt (does free/cyclic reduction ever DESTROY "
                   "gamma_N = 0?)",

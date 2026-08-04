@@ -60,12 +60,15 @@ def test_spike_inserts_and_reduces_back():
 
 
 def test_spike_images_are_deduped_on_cyclic_words():
-    imgs = S.spike_images(("xyXY", "xxy"))
+    base = ("xyXY", "xxy")
+    imgs = S.spike_images(base)
     keys = [k for k, _w, _p in imgs]
     assert len(keys) == len(set(keys))
+    assert imgs, "a spike is always available"
     for _k, words, _p in imgs:
-        assert tuple(free_reduce(w) for w in words) in (("xyXY", "xxy"), ("yXYx", "xxy"))\
-            or sum(len(w) for w in words) == 9
+        # a spike adds exactly two letters and never changes the free-group element
+        assert sum(len(w) for w in words) == sum(len(w) for w in base) + 2
+        assert [free_reduce(w) for w in words] == [free_reduce(w) for w in base]
 
 
 def test_spelling_key_ignores_rotation_and_inversion_only():
@@ -165,14 +168,22 @@ def test_decidability_scan_shape():
 
 @pytest.mark.parametrize("words,gens", [
     (("xyXY", "xxy"), ("x", "y")),
-    (("xxxYYYY", "xyxYXY"), ("x", "y")),
+    (("XYYyxY", "XyX"), ("x", "y")),
+    (("xxy", "xyx"), ("x", "y")),
 ])
-def test_sr_direction_holds_on_the_pinned_pairs(words, gens):
-    """Spiking never CREATES thickenability on these bases (S6 section 1 / R7 Conj SR)."""
-    base = S.decide(words, gens, cap=10 ** 7)
-    for _k, img, _p in S.spike_images(words, gens)[:12]:
-        row = S.decide(img, gens, cap=10 ** 7)
+def test_spiking_never_creates_thickenability_on_these_bases(words, gens):
+    """S6 section 1 / R7 Conjecture SR, in the direction the A8 census measured.
+
+    A failure here is not a bug -- it is a **counterexample to Conjecture SR** and would
+    reopen the spelling route.  The assertion message says so.
+    """
+    base = S.decide(words, gens, cap=10 ** 6)
+    if base["verdict"] != "NOT_THICKENABLE":
+        pytest.skip("only a non-thickenable base can witness the creating direction")
+    for _k, img, _p in S.spike_images(words, gens):
+        row = S.decide(img, gens, cap=2 * 10 ** 5)
         if row["verdict"] == "SKIPPED":
             continue
-        if base["minimum_defect"] > 0:
-            assert row["minimum_defect"] > 0, f"SR counterexample: {img}"
+        assert row["minimum_defect"] > 0, (
+            f"CONJECTURE SR COUNTEREXAMPLE: spelling {img} has defect 0 while its "
+            f"reduction {words} has defect {base['minimum_defect']}")

@@ -310,7 +310,10 @@ foreclosed, so the remaining budget went there.
 
 Shape of a counterexample: a spelling `K` with `γ_N(K) = 0` whose free/cyclic reduction
 has `γ_N > 0`. Both sides decided by exact census inside the cap; a pair where either side
-skips is counted and discarded, never converted into a verdict.
+skips is counted and discarded, never converted into a verdict. Bases are AC1–AC3 walks out
+of the standard presentation, so every one is AC-trivial and presents the trivial group;
+only the **non-thickenable** bases can host a counterexample, and the spikes are piled on
+those.
 
 <!-- SR-TABLE -->
 
@@ -318,7 +321,63 @@ skips is counted and discarded, never converted into a verdict.
 
 ## 5. How much of the previously-blind band was bought back
 
-<!-- PAYBACK -->
+### 5.1 The honest accounting, and it has a hard negative in it
+
+The band R7b retired: **1,312 of 1,909 swept states**, the graft images of AK(3)'s eight
+gateway spikes, total length 21–24, run at a budget with a *measured* 0 % detection above
+length 20.
+
+**Those 1,312 states are NOT bought back, and the reason is a theorem this line already
+owns.** They are rank-2 and rank-3 states. The obvious move — refine them to rank 8 or 9
+so the census becomes affordable — **does not work**, because a share-free chord
+refinement gives every fresh germ degree exactly 2, `(2−1)! = 1`, and leaves the degrees of
+the original generators untouched: the compatible census size is a **triangulation
+invariant** (`high_rank_refine` structural fact 1; Lemma S3′, measured at 1,525/1,525
+bit-identical histograms). Pinned as a regression test here
+(`test_rank_lowers_the_census_at_fixed_total_length`): the rank-9 refinement of AK(3) has
+census 86,400 and minimum defect 4 — the *same numbers* as AK(3) itself.
+
+> **High rank does not make a low-rank state cheap. It makes a genuinely high-rank state
+> cheap.** Raising the rank by abbreviation buys nothing (S3); raising it by moves that
+> spread the letters over many generators with low multiplicity buys everything.
+
+### 5.2 What IS bought back
+
+At fixed total length, the census is affordable exactly when the average germ degree
+`ℓ/n` is small. Reading the two tables of §3 together gives the rule of thumb
+
+> **decidable at cap 2·10⁵ ⟺ `ℓ/n ≲ 3`**
+
+— length 22 at rank 8 is `ℓ/n = 2.75` and 95 % decidable; length 25 at rank 8 is `3.1` and
+57 %; length 19 at rank 4 is `4.75` and 17 %. That is precisely the **cubic regime** S3 §4
+identified on theoretical grounds ("every generator occurring exactly 3 times … the whole
+compatible census is ≤ 2^{2N} — cheap and exhaustive at rank 9 and well beyond") — now with
+a measured boundary rather than an asymptotic.
+
+So the band bought back, stated as a region rather than a length:
+
+| region | rank-2/3 instrument | this instrument |
+|---|---|---|
+| total length 19, `ℓ/n ≤ 3` (rank ≥ 7) | 0 % decidable; climber 20–40 % | **100 %**, exact |
+| total length 22, `ℓ/n ≤ 3` (rank ≥ 8) | 0 % decidable; climber 0–10 % at 40k–120k | **95 %**, exact |
+| total length 25, `ℓ/n ≈ 3` (rank 8) | 0 %; climber ladder STALLED at 23–24 | **57 %**, exact |
+| total length 19–25 at rank 2–4 | 0 % | **0 %** — unchanged |
+
+The instrumental gain is real and it is large — the exact census decides, at length 22–25,
+states that no instrument on this line could previously decide *at all*, and it decides
+them with an equality rather than a one-sided bound, with **zero** disagreements against
+the independent witness route across 163 certified positives. But it is only available
+where the state is *natively* high rank, which is the regime `rank_n_ac_search`'s
+stabilize-and-slide search produces and the regime a refinement of AK(3) does **not**.
+
+### 5.3 What this means for the S-line's plan
+
+S10 §6 proposed "stabilize to rank 5–6, slide, test, with the detection rate measured on
+an AC-trivial positive ladder at the same rank and length". §3.3 **is** that measurement,
+extended to rank 8, and it says the test half of that plan is sound: at rank 6–8 and
+length ≤ 22 the tester is exact and essentially never abstains. The binding constraint on
+that programme is therefore **not** the thickenability decision any more; it is whether the
+slide search can reach `ℓ/n ≲ 3` states of AK(3)'s stable class at all.
 
 ---
 

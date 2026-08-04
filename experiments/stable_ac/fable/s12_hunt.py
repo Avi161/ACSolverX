@@ -174,6 +174,17 @@ def hunt(base, kstab, nodes, rng, *, beam=6, branch=10, max_rel=None, max_tot=No
     seen = {canon(start)}
     frontier = [start]
     stats = {"pops": 0, "decided": 0, "undecided": 0, "spherical": 0, "restarts": 0}
+    # Decide the START state too.  Omitting it meant a root that already carries the
+    # certificate was never reported — a silent false negative at every kstab, and at
+    # kstab = 0 the root IS the input presentation.
+    d0 = decide(start, census_cap)
+    if d0["verdict"] == UNDECIDED:
+        stats["undecided"] += 1
+    else:
+        stats["decided"] += 1
+    if d0["verdict"] == "SPHERICAL":
+        stats["spherical"] += 1
+        return start, d0, stats
     # Pool ordered by total length (the classical AC search priority).  Two departures from
     # a plain length descent, both needed: reseed from a random VISITED state rather than
     # the root when the pool empties (reseeding from the root just re-derives `seen` states

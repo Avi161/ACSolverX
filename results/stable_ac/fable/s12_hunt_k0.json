@@ -1,11 +1,11 @@
 {
  "record": "s12_certificate_hunt",
  "args": {
-  "nodes": 2500,
+  "nodes": 3000,
   "kstab": 0,
   "limit": 124,
   "ladder": 24,
-  "seed": 20260804,
+  "seed": 40826,
   "census_cap": 200000,
   "out": "results/stable_ac/fable/s12_hunt_k0.json"
  },
@@ -13,58 +13,21 @@
   {
    "set": "ladder",
    "base": [
-    "YYYXyyx",
-    "YYXYxyyx"
-   ],
-   "length": 15,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 94,
-    "decided": 85,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYYX",
-    "YYYYYXyyyyx"
-   ],
-   "length": 17,
-   "hit": true,
-   "state": [
-    "YYYYYX",
-    "yyyyxyxyyyy"
-   ],
-   "stats": {
-    "pops": 2,
-    "decided": 3,
-    "undecided": 0,
-    "spherical": 1,
-    "restarts": 0
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYYYYXyyyyyyx",
-    "YYYx"
+    "YYYYYXyyyyx",
+    "YYXyyxYX"
    ],
    "length": 19,
    "hit": true,
    "state": [
-    "Xyy",
-    "YYYx"
+    "xxyxxx",
+    "YXXXX"
    ],
    "stats": {
-    "pops": 34,
-    "decided": 26,
+    "pops": 527,
+    "decided": 177,
     "undecided": 0,
     "spherical": 1,
-    "restarts": 8
+    "restarts": 89
    }
   },
   {
@@ -77,99 +40,45 @@
    "hit": false,
    "state": null,
    "stats": {
+    "pops": 3000,
+    "decided": 1197,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 451
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYYxxyX"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3000,
+    "decided": 1279,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 430
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYYXyyyyyyyx",
+    "YYx"
+   ],
+   "length": 20,
+   "hit": true,
+   "state": [
+    "Xy",
+    "YYx"
+   ],
+   "stats": {
     "pops": 23,
-    "decided": 14,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYXyXyx",
-    "YYXyx"
-   ],
-   "length": 13,
-   "hit": true,
-   "state": [
-    "YYXyX",
-    "x"
-   ],
-   "stats": {
-    "pops": 3,
-    "decided": 8,
-    "undecided": 0,
-    "spherical": 1,
-    "restarts": 0
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYXYxyx",
-    "YYXyx"
-   ],
-   "length": 13,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 276,
-    "decided": 267,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYXYxyX",
-    "YYYXyyx"
-   ],
-   "length": 15,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 95,
-    "decided": 86,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYXyyyx",
-    "YYXYxx"
-   ],
-   "length": 15,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 55,
-    "decided": 46,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYXyx",
-    "YXYXyxxx"
-   ],
-   "length": 13,
-   "hit": true,
-   "state": [
-    "yXX",
-    "xxYYx"
-   ],
-   "stats": {
-    "pops": 42,
-    "decided": 72,
+    "decided": 21,
     "undecided": 0,
     "spherical": 1,
     "restarts": 2
@@ -178,262 +87,374 @@
   {
    "set": "ladder",
    "base": [
-    "YYYXyyx",
-    "YYXYxyx"
+    "YYXYYxyx",
+    "YYXyx"
    ],
-   "length": 14,
-   "hit": false,
-   "state": null,
+   "length": 13,
+   "hit": true,
+   "state": [
+    "YYxY",
+    "yXy"
+   ],
    "stats": {
-    "pops": 110,
-    "decided": 101,
+    "pops": 25,
+    "decided": 37,
     "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
+    "spherical": 1,
+    "restarts": 1
    }
   },
   {
    "set": "ladder",
    "base": [
-    "YYYXXYYx",
-    "YYYXyyx"
+    "YYYYYYX",
+    "YYYYYXyyyyx"
    ],
-   "length": 15,
+   "length": 18,
    "hit": true,
    "state": [
-    "XYYYY",
-    "YYYXYY"
+    "YYYYYYX",
+    "yyyyxy"
    ],
    "stats": {
-    "pops": 2,
-    "decided": 5,
+    "pops": 1,
+    "decided": 1,
     "undecided": 0,
     "spherical": 1,
     "restarts": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYxYXyX"
+   ],
+   "length": 14,
+   "hit": true,
+   "state": [
+    "YYYX",
+    "XYY"
+   ],
+   "stats": {
+    "pops": 108,
+    "decided": 38,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 18
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYYXyyyyyyyx",
+    "YYYxyXYx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3000,
+    "decided": 289,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 678
    }
   },
   {
    "set": "ladder",
    "base": [
     "YYYYYXyyyyx",
-    "YYYXYxyX"
+    "YYXyxYX"
    ],
-   "length": 19,
+   "length": 18,
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 17,
-    "decided": 8,
+    "pops": 3000,
+    "decided": 499,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 625
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYxyxYX"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3000,
+    "decided": 762,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 560
    }
   },
   {
    "set": "ladder",
    "base": [
     "YYXyx",
-    "YXXYxyxx"
-   ],
-   "length": 13,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 113,
-    "decided": 104,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYYYXyyyyyx",
-    "YYYXyxYx"
-   ],
-   "length": 21,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 15,
-    "decided": 6,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYYYXyyyyyx",
-    "YYYXyxYX"
-   ],
-   "length": 21,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 14,
-    "decided": 5,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYXyyyx",
-    "YYYYxxyX"
-   ],
-   "length": 17,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 35,
-    "decided": 26,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYXXYx",
-    "YYXyx"
+    "YYxYXyyX"
    ],
    "length": 13,
    "hit": true,
    "state": [
-    "y",
-    "YXYYY"
+    "YYYXY",
+    "XYYY"
    ],
    "stats": {
-    "pops": 20,
-    "decided": 54,
+    "pops": 80,
+    "decided": 44,
     "undecided": 0,
     "spherical": 1,
-    "restarts": 0
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYYXyyyx",
-    "YYXyyXyx"
-   ],
-   "length": 17,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 23,
-    "decided": 14,
-    "undecided": 0,
-    "spherical": 0,
     "restarts": 9
    }
   },
   {
    "set": "ladder",
    "base": [
-    "YYYYXyyyx",
-    "YYYXyXYx"
+    "YYYYxxYX",
+    "YYXyx"
    ],
-   "length": 17,
+   "length": 13,
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 57,
-    "decided": 48,
+    "pops": 3000,
+    "decided": 972,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 507
    }
   },
   {
    "set": "ladder",
    "base": [
-    "YYYYYYXyyyyyx",
-    "YYxyXYx"
+    "YYYYYXyyyyx",
+    "YYYYxyXX"
    ],
-   "length": 20,
-   "hit": false,
-   "state": null,
+   "length": 19,
+   "hit": true,
+   "state": [
+    "yxyyy",
+    "Y"
+   ],
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 74,
+    "decided": 73,
     "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
+    "spherical": 1,
+    "restarts": 1
    }
   },
   {
    "set": "ladder",
    "base": [
     "YYYYYYYXyyyyyyx",
-    "YXyxYx"
+    "YYYxYXYX"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3000,
+    "decided": 426,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 644
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYYX"
+   ],
+   "length": 18,
+   "hit": true,
+   "state": [
+    "yyyyyyyyxYYYxyy",
+    "YYYYX"
+   ],
+   "stats": {
+    "pops": 27,
+    "decided": 25,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 1
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYYxyXyX"
+   ],
+   "length": 17,
+   "hit": true,
+   "state": [
+    "YYX",
+    "y"
+   ],
+   "stats": {
+    "pops": 32,
+    "decided": 19,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 4
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYXYxYYx"
+   ],
+   "length": 17,
+   "hit": true,
+   "state": [
+    "Y",
+    "YYYYYYxY"
+   ],
+   "stats": {
+    "pops": 1454,
+    "decided": 436,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 255
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYXXyyx"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 3000,
+    "decided": 433,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 642
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYXyx"
+   ],
+   "length": 14,
+   "hit": true,
+   "state": [
+    "Y",
+    "XYY"
+   ],
+   "stats": {
+    "pops": 191,
+    "decided": 134,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 15
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYYxYx"
+   ],
+   "length": 15,
+   "hit": true,
+   "state": [
+    "YYYYxY",
+    "YYxYYYxYYYY"
+   ],
+   "stats": {
+    "pops": 126,
+    "decided": 85,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 11
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYxyXyx"
+   ],
+   "length": 14,
+   "hit": true,
+   "state": [
+    "XYXXYXY",
+    "xyxyx"
+   ],
+   "stats": {
+    "pops": 698,
+    "decided": 298,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 102
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYxYYXX"
    ],
    "length": 21,
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 354,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 662
    }
   },
   {
    "set": "ladder",
    "base": [
-    "YYYXYxYx",
-    "YYYXyyx"
+    "YYYYYXyyyyx",
+    "YYXYYxyX"
    ],
-   "length": 15,
+   "length": 19,
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 88,
-    "decided": 79,
+    "pops": 3000,
+    "decided": 694,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 577
    }
   },
   {
    "set": "ladder",
    "base": [
-    "YYYXyyx",
-    "YYYxYXYx"
+    "YYYYYYYXyyyyyyx",
+    "YYXyxYX"
    ],
-   "length": 15,
+   "length": 22,
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 70,
-    "decided": 61,
+    "pops": 3000,
+    "decided": 235,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
-   }
-  },
-  {
-   "set": "ladder",
-   "base": [
-    "YYYXyyx",
-    "YYYxyxYX"
-   ],
-   "length": 15,
-   "hit": false,
-   "state": null,
-   "stats": {
-    "pops": 74,
-    "decided": 65,
-    "undecided": 0,
-    "spherical": 0,
-    "restarts": 9
+    "restarts": 691
    }
   },
   {
@@ -447,11 +468,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 22,
-    "decided": 13,
+    "pops": 3000,
+    "decided": 154,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 712
    }
   },
   {
@@ -465,11 +486,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 43,
-    "decided": 34,
+    "pops": 3000,
+    "decided": 213,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 697
    }
   },
   {
@@ -483,11 +504,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 40,
-    "decided": 31,
+    "pops": 3000,
+    "decided": 157,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 711
    }
   },
   {
@@ -501,11 +522,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 20,
-    "decided": 11,
+    "pops": 3000,
+    "decided": 196,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 701
    }
   },
   {
@@ -519,11 +540,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 17,
-    "decided": 8,
+    "pops": 3000,
+    "decided": 236,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 691
    }
   },
   {
@@ -537,11 +558,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 16,
-    "decided": 7,
+    "pops": 3000,
+    "decided": 205,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 699
    }
   },
   {
@@ -555,11 +576,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 135,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 716
    }
   },
   {
@@ -573,11 +594,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 44,
-    "decided": 35,
+    "pops": 3000,
+    "decided": 183,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 704
    }
   },
   {
@@ -591,11 +612,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 47,
-    "decided": 38,
+    "pops": 3000,
+    "decided": 275,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 681
    }
   },
   {
@@ -609,11 +630,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 52,
-    "decided": 43,
+    "pops": 3000,
+    "decided": 295,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 676
    }
   },
   {
@@ -627,11 +648,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 35,
-    "decided": 26,
+    "pops": 3000,
+    "decided": 290,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 678
    }
   },
   {
@@ -645,11 +666,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 52,
-    "decided": 43,
+    "pops": 3000,
+    "decided": 268,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 683
    }
   },
   {
@@ -663,11 +684,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 39,
-    "decided": 30,
+    "pops": 3000,
+    "decided": 278,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 681
    }
   },
   {
@@ -681,11 +702,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 33,
-    "decided": 24,
+    "pops": 3000,
+    "decided": 344,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 664
    }
   },
   {
@@ -699,11 +720,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 35,
-    "decided": 26,
+    "pops": 3000,
+    "decided": 235,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 691
    }
   },
   {
@@ -717,11 +738,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 3000,
+    "decided": 130,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 718
    }
   },
   {
@@ -735,11 +756,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 27,
-    "decided": 18,
+    "pops": 3000,
+    "decided": 247,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 688
    }
   },
   {
@@ -753,11 +774,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 3000,
+    "decided": 146,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 714
    }
   },
   {
@@ -771,11 +792,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 22,
-    "decided": 13,
+    "pops": 3000,
+    "decided": 152,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 712
    }
   },
   {
@@ -789,11 +810,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 3000,
+    "decided": 147,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 713
    }
   },
   {
@@ -807,11 +828,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 23,
-    "decided": 14,
+    "pops": 3000,
+    "decided": 135,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 716
    }
   },
   {
@@ -825,11 +846,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 27,
-    "decided": 18,
+    "pops": 3000,
+    "decided": 113,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 722
    }
   },
   {
@@ -843,11 +864,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 21,
-    "decided": 12,
+    "pops": 3000,
+    "decided": 97,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 726
    }
   },
   {
@@ -861,11 +882,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 3000,
+    "decided": 131,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 717
    }
   },
   {
@@ -879,11 +900,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 23,
-    "decided": 14,
+    "pops": 3000,
+    "decided": 250,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 688
    }
   },
   {
@@ -897,11 +918,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 28,
-    "decided": 19,
+    "pops": 3000,
+    "decided": 134,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 717
    }
   },
   {
@@ -915,11 +936,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 16,
-    "decided": 7,
+    "pops": 3000,
+    "decided": 127,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 718
    }
   },
   {
@@ -933,11 +954,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 3000,
+    "decided": 122,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 720
    }
   },
   {
@@ -951,11 +972,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 19,
-    "decided": 10,
+    "pops": 3000,
+    "decided": 117,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 721
    }
   },
   {
@@ -969,11 +990,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 21,
-    "decided": 12,
+    "pops": 3000,
+    "decided": 321,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 670
    }
   },
   {
@@ -987,11 +1008,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 22,
-    "decided": 13,
+    "pops": 3000,
+    "decided": 564,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 609
    }
   },
   {
@@ -1005,11 +1026,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 25,
-    "decided": 16,
+    "pops": 3000,
+    "decided": 299,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 675
    }
   },
   {
@@ -1023,11 +1044,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 30,
-    "decided": 21,
+    "pops": 3000,
+    "decided": 214,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 697
    }
   },
   {
@@ -1041,11 +1062,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 19,
-    "decided": 10,
+    "pops": 3000,
+    "decided": 166,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 709
    }
   },
   {
@@ -1059,11 +1080,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 15,
-    "decided": 6,
+    "pops": 3000,
+    "decided": 103,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 724
    }
   },
   {
@@ -1077,11 +1098,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 21,
-    "decided": 12,
+    "pops": 3000,
+    "decided": 265,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 684
    }
   },
   {
@@ -1095,11 +1116,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 3000,
+    "decided": 214,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 697
    }
   },
   {
@@ -1113,11 +1134,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 14,
-    "decided": 5,
+    "pops": 3000,
+    "decided": 165,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 709
    }
   },
   {
@@ -1131,11 +1152,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 16,
-    "decided": 7,
+    "pops": 3000,
+    "decided": 167,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 708
    }
   },
   {
@@ -1149,11 +1170,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 78,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 731
    }
   },
   {
@@ -1167,11 +1188,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 79,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 730
    }
   },
   {
@@ -1185,11 +1206,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 72,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 732
    }
   },
   {
@@ -1203,11 +1224,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 91,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 727
    }
   },
   {
@@ -1221,11 +1242,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 18,
-    "decided": 9,
+    "pops": 3000,
+    "decided": 149,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 713
    }
   },
   {
@@ -1239,11 +1260,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 16,
-    "decided": 7,
+    "pops": 3000,
+    "decided": 228,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 693
    }
   },
   {
@@ -1257,11 +1278,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 144,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 714
    }
   },
   {
@@ -1275,11 +1296,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 82,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 730
    }
   },
   {
@@ -1293,11 +1314,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 105,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 724
    }
   },
   {
@@ -1311,11 +1332,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 16,
-    "decided": 7,
+    "pops": 3000,
+    "decided": 154,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 712
    }
   },
   {
@@ -1329,11 +1350,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 86,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 729
    }
   },
   {
@@ -1347,11 +1368,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 86,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 729
    }
   },
   {
@@ -1365,11 +1386,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 65,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 734
    }
   },
   {
@@ -1383,11 +1404,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 51,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 737
    }
   },
   {
@@ -1401,11 +1422,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 22,
-    "decided": 13,
+    "pops": 3000,
+    "decided": 184,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 704
    }
   },
   {
@@ -1419,11 +1440,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 20,
-    "decided": 11,
+    "pops": 3000,
+    "decided": 166,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 709
    }
   },
   {
@@ -1437,11 +1458,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 195,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 701
    }
   },
   {
@@ -1455,11 +1476,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 168,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 708
    }
   },
   {
@@ -1473,11 +1494,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 15,
-    "decided": 6,
+    "pops": 3000,
+    "decided": 172,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 707
    }
   },
   {
@@ -1491,11 +1512,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 71,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 732
    }
   },
   {
@@ -1509,11 +1530,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 17,
-    "decided": 8,
+    "pops": 3000,
+    "decided": 153,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 712
    }
   },
   {
@@ -1527,11 +1548,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 15,
-    "decided": 6,
+    "pops": 3000,
+    "decided": 102,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 725
    }
   },
   {
@@ -1545,11 +1566,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 14,
-    "decided": 5,
+    "pops": 3000,
+    "decided": 89,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 728
    }
   },
   {
@@ -1563,11 +1584,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 46,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -1581,11 +1602,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 10,
-    "decided": 1,
+    "pops": 3000,
+    "decided": 45,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -1599,11 +1620,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 66,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 734
    }
   },
   {
@@ -1617,11 +1638,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 10,
-    "decided": 1,
+    "pops": 3000,
+    "decided": 51,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 737
    }
   },
   {
@@ -1635,11 +1656,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 138,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 716
    }
   },
   {
@@ -1653,11 +1674,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 10,
-    "decided": 1,
+    "pops": 3000,
+    "decided": 150,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 713
    }
   },
   {
@@ -1671,11 +1692,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 75,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 731
    }
   },
   {
@@ -1689,11 +1710,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 91,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 727
    }
   },
   {
@@ -1707,11 +1728,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 74,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 732
    }
   },
   {
@@ -1725,11 +1746,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 14,
-    "decided": 5,
+    "pops": 3000,
+    "decided": 114,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 722
    }
   },
   {
@@ -1743,11 +1764,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 84,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 729
    }
   },
   {
@@ -1761,11 +1782,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 10,
-    "decided": 1,
+    "pops": 3000,
+    "decided": 64,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 734
    }
   },
   {
@@ -1779,11 +1800,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 41,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 740
    }
   },
   {
@@ -1797,11 +1818,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 114,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 722
    }
   },
   {
@@ -1815,11 +1836,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 93,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 727
    }
   },
   {
@@ -1833,11 +1854,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 13,
-    "decided": 4,
+    "pops": 3000,
+    "decided": 89,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 728
    }
   },
   {
@@ -1851,11 +1872,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 423,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 644
    }
   },
   {
@@ -1869,11 +1890,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 150,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 713
    }
   },
   {
@@ -1887,11 +1908,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 114,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 722
    }
   },
   {
@@ -1905,11 +1926,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 85,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 729
    }
   },
   {
@@ -1923,11 +1944,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 11,
-    "decided": 2,
+    "pops": 3000,
+    "decided": 61,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 735
    }
   },
   {
@@ -1941,11 +1962,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 10,
-    "decided": 1,
+    "pops": 3000,
+    "decided": 98,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 726
    }
   },
   {
@@ -1959,11 +1980,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 10,
-    "decided": 1,
+    "pops": 3000,
+    "decided": 81,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 730
    }
   },
   {
@@ -1977,11 +1998,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 70,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 733
    }
   },
   {
@@ -1995,11 +2016,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 55,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 736
    }
   },
   {
@@ -2013,11 +2034,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 109,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 723
    }
   },
   {
@@ -2031,11 +2052,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 193,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 702
    }
   },
   {
@@ -2049,11 +2070,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 73,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 732
    }
   },
   {
@@ -2067,11 +2088,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 128,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 718
    }
   },
   {
@@ -2085,11 +2106,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 46,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -2103,11 +2124,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 48,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 738
    }
   },
   {
@@ -2121,11 +2142,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 46,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -2139,11 +2160,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 47,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 738
    }
   },
   {
@@ -2157,11 +2178,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 14,
-    "decided": 5,
+    "pops": 3000,
+    "decided": 76,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 731
    }
   },
   {
@@ -2175,11 +2196,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 80,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 730
    }
   },
   {
@@ -2193,11 +2214,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 75,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 731
    }
   },
   {
@@ -2211,11 +2232,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 67,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 733
    }
   },
   {
@@ -2229,11 +2250,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 127,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 718
    }
   },
   {
@@ -2247,11 +2268,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 160,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 710
    }
   },
   {
@@ -2265,11 +2286,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 58,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 736
    }
   },
   {
@@ -2283,11 +2304,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 43,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -2301,11 +2322,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 47,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 738
    }
   },
   {
@@ -2319,11 +2340,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 45,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -2337,11 +2358,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 93,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 727
    }
   },
   {
@@ -2355,11 +2376,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 137,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 716
    }
   },
   {
@@ -2373,11 +2394,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 44,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -2391,11 +2412,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 76,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 731
    }
   },
   {
@@ -2409,11 +2430,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 89,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 728
    }
   },
   {
@@ -2427,11 +2448,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 43,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 739
    }
   },
   {
@@ -2445,11 +2466,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 85,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 729
    }
   },
   {
@@ -2463,11 +2484,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 71,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 732
    }
   },
   {
@@ -2481,11 +2502,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 40,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 740
    }
   },
   {
@@ -2499,11 +2520,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 9,
-    "decided": 0,
+    "pops": 3000,
+    "decided": 42,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 740
    }
   },
   {
@@ -2517,11 +2538,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 83,
-    "decided": 74,
+    "pops": 3000,
+    "decided": 577,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 606
    }
   },
   {
@@ -2535,11 +2556,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 48,
-    "decided": 39,
+    "pops": 3000,
+    "decided": 273,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 682
    }
   },
   {
@@ -2553,11 +2574,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 43,
-    "decided": 34,
+    "pops": 3000,
+    "decided": 261,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 685
    }
   },
   {
@@ -2571,11 +2592,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 40,
-    "decided": 31,
+    "pops": 3000,
+    "decided": 371,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 657
    }
   },
   {
@@ -2589,11 +2610,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 39,
-    "decided": 30,
+    "pops": 3000,
+    "decided": 285,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 679
    }
   },
   {
@@ -2607,11 +2628,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 39,
-    "decided": 30,
+    "pops": 3000,
+    "decided": 142,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 715
    }
   },
   {
@@ -2625,11 +2646,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 41,
-    "decided": 32,
+    "pops": 3000,
+    "decided": 179,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 705
    }
   },
   {
@@ -2643,11 +2664,11 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 21,
-    "decided": 12,
+    "pops": 3000,
+    "decided": 119,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 720
    }
   },
   {
@@ -2661,20 +2682,20 @@
    "hit": false,
    "state": null,
    "stats": {
-    "pops": 12,
-    "decided": 3,
+    "pops": 3000,
+    "decided": 71,
     "undecided": 0,
     "spherical": 0,
-    "restarts": 9
+    "restarts": 732
    }
   }
  ],
  "summary": {
-  "ladder_detection_rate": 0.25,
-  "ladder_hits": 6,
+  "ladder_detection_rate": 0.5416666666666666,
+  "ladder_hits": 13,
   "ladder_n": 24,
   "u124_hits": 0,
   "u124_n": 124,
-  "elapsed_s": 12.3
+  "elapsed_s": 174.9
  }
 }

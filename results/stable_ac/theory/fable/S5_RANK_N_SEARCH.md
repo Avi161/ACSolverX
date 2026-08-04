@@ -241,7 +241,81 @@ two relators. The search is genuinely working outside the subdivision regime tha
 Theorems S3 and T4′ prove inert — which is the whole point of doing this at rank 9 rather
 than triangulating and testing.
 
-<!--RESULTS-->
+### 4.3 Ladder A — the realistic positive control at rank 8 and 9
+
+`results/stable_ac/fable/rank_n_ac_search_ladderAB.json` (the earlier
+`..._ladderA_ak3.json` run is a 6-member subset with identical settings and identical
+outcomes on the shared members). Same budget as §4.2: 1,000 nodes, beam 6, branch 12,
+800 evaluations, rank window [2, 11].
+
+| start rank | source | runs | verified γ_N = 0 found | **detection rate** | best defect when missed |
+|---|---|---|---|---|---|
+| 8 | AK(2)-class, total length 12, triangulated | 6 | 2 | **0.333** | 2 (γ_N ≤ 1) in all 4 |
+| 9 | AK(2)-class, total length 13, triangulated | 6 | 1 | **0.167** | 2 (γ_N ≤ 1) in all 5 |
+| **both** | | **12** | **3** | **0.250** | |
+
+The three hits, each independently re-verified by all three routes
+(`check_witness_n` + `independent_defect` + exact census), all with **connected link**
+`L = 1`:
+
+| start | witness | rank | length | census enumerated | exact `minimum_defect` |
+|---|---|---|---|---|---|
+| `⟨x,y \| Yxx, YXyXXyXyX⟩` | `XXyH, h, XyaxFH, ayB, xCeY, eYD, cxB, E, fx` | 9 | 27 | 69,120 | **0** |
+| `⟨x,y \| YYx, YYxYxYxyX⟩` | `YYx, fY, YYA, bXA, cyB, dXC, cxYE, fXE` | 8 | 24 | 34,560 | **0** |
+| `⟨x,y \| YYx, YYYYxxYYYx⟩` | `YYx, gYx, ax, byA, cyB, dXC, eXD, fyE, gyF` | 9 | 26 | 17,280 | **0** |
+
+So the instrument **is** capable of finding a verified thickenable member at rank 8–9,
+starting from a triangulated non-thickenable base, inside 1,000 nodes — but only about a
+quarter of the time.
+
+**This number moved a long way during the task, and the reason is worth recording.** The
+first ladder-A run, with a hand-guessed move distribution and no move (0), returned
+**0 / 6**. Re-weighting to `S6_MOVE_CLASSIFICATION.md`'s measured table — up-weighting AC2
+slides, applying reduction to every child, cutting bare AC3 conjugation, and adding the
+T4′ entanglement prescreen — took it to **3 / 12** with no change to the node budget. One
+of the new hits (`ak2_L13_YYx_YYYYxxYYYx`) was found in **12 nodes** where the old
+distribution spent all 1,000 and finished at defect 2. A null from a search whose move
+distribution has not been measured is worth even less than its detection rate suggests.
+
+### 4.4 Ladder B — distance calibration at rank 9
+
+Standard rank-9 presentation scrambled by `k` AC1–AC3 moves, scrambles that were already
+defect-0 rejected, same 1,000-node budget (one seed per depth in the final run; the
+earlier pre-S6 run used three seeds per depth and is kept in
+`..._ladderB.json`, flagged there as the old distribution):
+
+| scramble depth `k` | start defect | best defect reached | verified γ_N = 0 | nodes to hit |
+|---|---|---|---|---|
+| 6 | 2 | **0** | **yes** | 122 |
+| 10 | 8 | **0** | **yes** | 265 |
+| 14 | 4 | 2 | no | — |
+| 18 | 12 | 4 | no | — |
+
+The pre-S6 run at three seeds per depth gave the same shape: `k = 6` → 3/3,
+`k = 10` → 2/3, `k = 14` → 0/3, `k = 18` → 0/3. So the search's **reach at rank 9 is
+roughly 10 random AC moves and falls off a cliff by 14** — the same shape as the filed
+length cliff in `calibrate-one-sided-hunts-on-a-positive-ladder.md`. Read this ladder as an
+*optimistic* bound on sensitivity (that lesson's bias direction 2): its rungs are
+scrambles of the standard presentation, whose neighbourhood is unusually rich in
+defect-0 states.
+
+### 4.5 The objective itself is exact wherever it can be checked
+
+`results/stable_ac/fable/rank_n_ac_search_best_state_audit.json`. Every `best_state`
+recorded by every run (105 states) was re-hunted from a fresh seed at 6,000 evaluations
+and, where `Π_g (deg − 1)! ≤ 120,000`, decided exactly by `gamma_N_factorial_n`:
+
+* **82 of 82** states with an affordable census: the hunter's recorded value **equals** the
+  exact minimum;
+* **0** states where the recorded value is *below* the exact minimum — which would be an
+  outright bug, since an upper bound cannot beat the true minimum;
+* **0** states improved by the larger re-hunt.
+
+So on this state population the objective is not merely an upper bound, it is tight. That
+does not license reading a positive value as a lower bound anywhere (§2) — the exact census
+is what licenses it, and only where it fits.
+
+
 
 ---
 

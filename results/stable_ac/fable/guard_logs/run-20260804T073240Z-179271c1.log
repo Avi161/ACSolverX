@@ -12,3 +12,73 @@
 [calib] 12/16 ak2_L13_YYXyx_YYYXXyyx rank 9 len 27 -> best defect 2 hit=False nodes=1000 18.8s
 [calib] 13/16 std9_scramble6_r0 rank 9 len 20 -> best defect 0 hit=True nodes=122 1.68s
 [calib] 14/16 std9_scramble10_r0 rank 9 len 37 -> best defect 0 hit=True nodes=265 5.42s
+[calib] 15/16 std9_scramble14_r0 rank 9 len 33 -> best defect 2 hit=False nodes=1000 21.07s
+[calib] 16/16 std9_scramble18_r0 rank 9 len 42 -> best defect 4 hit=False nodes=1000 20.85s
+{
+ "ladder_A": {
+  "ladder_A:ak2_class_left_prefix_triangulation": {
+   "runs": 12,
+   "hits": 3,
+   "detection_rate": 0.25,
+   "start_ranks": [
+    8,
+    9
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 2,
+   "mean_nodes": 814.9
+  }
+ },
+ "ladder_B": {
+  "ladder_B:scrambled_standard(k=10)": {
+   "runs": 1,
+   "hits": 1,
+   "detection_rate": 1.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 0,
+   "mean_nodes": 265.0
+  },
+  "ladder_B:scrambled_standard(k=14)": {
+   "runs": 1,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 2,
+   "mean_nodes": 1000.0
+  },
+  "ladder_B:scrambled_standard(k=18)": {
+   "runs": 1,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 4,
+   "median_best_defect": 4,
+   "mean_nodes": 1000.0
+  },
+  "ladder_B:scrambled_standard(k=6)": {
+   "runs": 1,
+   "hits": 1,
+   "detection_rate": 1.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 0,
+   "mean_nodes": 122.0
+  }
+ },
+ "_overall": {
+  "runs": 16,
+  "hits": 5,
+  "detection_rate": 0.312
+ }
+}
+[calib] wrote results/stable_ac/fable/rank_n_ac_search_ladderAB.json and results/stable_ac/fable/rank_n_ac_search_ladderAB_rows.jsonl

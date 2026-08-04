@@ -1,0 +1,1217 @@
+{
+ "record": "u124_calibration",
+ "generated_at": "2026-08-04T07:37:14Z",
+ "claims": "MACHINERY measurement: detection rate BY LENGTH of the two instruments used by the u124 sweep, on states independently known to have gamma_N = 0.  No statement about any AC class.",
+ "units": "defects are UNHALVED; gamma_N = defect // 2",
+ "budgets": {
+  "sample_budget_per_seed": 40000,
+  "sample_seeds": 3,
+  "per_length_cap": 12,
+  "master_seed": 20260804,
+  "min_degree_filter": 3,
+  "scheme_budget": 200000,
+  "branch_budget": 2000000
+ },
+ "ladder_sources": [
+  "results/stable_ac/fable/ak2_members.jsonl (verdict SPHERICAL)",
+  "results/stable_ac/fable/witness_sensitivity.json (census-certified rungs)"
+ ],
+ "ladder_size": 125,
+ "cells_by_total_length": {
+  "13": {
+   "ladder_states_available": 69,
+   "states_measured": 12,
+   "min_degree_range": [
+    3,
+    6
+   ],
+   "sources": {
+    "ak2_members.jsonl": 12
+   },
+   "instrument_A_detection_rate": 1.0,
+   "instrument_A_hits": 12,
+   "instrument_A_fail_closed": 0,
+   "instrument_A_fail_closed_reasons": [],
+   "instrument_B_detection_rate": 1.0,
+   "instrument_B_hits": 12,
+   "instrument_B_best_defects": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "14": {
+   "ladder_states_available": 17,
+   "states_measured": 12,
+   "min_degree_range": [
+    3,
+    6
+   ],
+   "sources": {
+    "ak2_members.jsonl": 11,
+    "witness_sensitivity.json ladder": 1
+   },
+   "instrument_A_detection_rate": 0.9167,
+   "instrument_A_hits": 11,
+   "instrument_A_fail_closed": 1,
+   "instrument_A_fail_closed_reasons": [
+    "R1c-v2 fail-closed (A-link has 3 loop edge(s); (H4) fails and every lemma of Sec. 3/5 assumes nu(d) != nu(A d) (Sec. 8.2)); census family 604800 exceeds the per-state cap 0"
+   ],
+   "instrument_B_detection_rate": 0.9167,
+   "instrument_B_hits": 11,
+   "instrument_B_best_defects": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0
+   ]
+  },
+  "15": {
+   "ladder_states_available": 6,
+   "states_measured": 6,
+   "min_degree_range": [
+    4,
+    7
+   ],
+   "sources": {
+    "ak2_members.jsonl": 6
+   },
+   "instrument_A_detection_rate": 1.0,
+   "instrument_A_hits": 6,
+   "instrument_A_fail_closed": 0,
+   "instrument_A_fail_closed_reasons": [],
+   "instrument_B_detection_rate": 0.8333,
+   "instrument_B_hits": 5,
+   "instrument_B_best_defects": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ]
+  },
+  "16": {
+   "ladder_states_available": 16,
+   "states_measured": 12,
+   "min_degree_range": [
+    7,
+    7
+   ],
+   "sources": {
+    "ak2_members.jsonl": 12
+   },
+   "instrument_A_detection_rate": 1.0,
+   "instrument_A_hits": 12,
+   "instrument_A_fail_closed": 0,
+   "instrument_A_fail_closed_reasons": [],
+   "instrument_B_detection_rate": 0.9167,
+   "instrument_B_hits": 11,
+   "instrument_B_best_defects": [
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "17": {
+   "ladder_states_available": 16,
+   "states_measured": 12,
+   "min_degree_range": [
+    5,
+    5
+   ],
+   "sources": {
+    "ak2_members.jsonl": 12
+   },
+   "instrument_A_detection_rate": 1.0,
+   "instrument_A_hits": 12,
+   "instrument_A_fail_closed": 0,
+   "instrument_A_fail_closed_reasons": [],
+   "instrument_B_detection_rate": 0.5,
+   "instrument_B_hits": 6,
+   "instrument_B_best_defects": [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0
+   ]
+  },
+  "19": {
+   "ladder_states_available": 1,
+   "states_measured": 1,
+   "min_degree_range": [
+    8,
+    8
+   ],
+   "sources": {
+    "ak2_members.jsonl": 1
+   },
+   "instrument_A_detection_rate": 1.0,
+   "instrument_A_hits": 1,
+   "instrument_A_fail_closed": 0,
+   "instrument_A_fail_closed_reasons": [],
+   "instrument_B_detection_rate": 0.0,
+   "instrument_B_hits": 0,
+   "instrument_B_best_defects": [
+    2
+   ]
+  }
+ },
+ "lengths_measured": [
+  13,
+  14,
+  15,
+  16,
+  17,
+  19
+ ],
+ "lengths_with_no_positive_control": [
+  18,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25
+ ],
+ "instrument_A": {
+  "kind": "exact decision procedure (R1c-v2 + exact census fallback)",
+  "one_sided": false,
+  "reading": "A NOT_SPHERICAL carrying exhaustive = true is a certified negative, not a null: the whole product schemes x phases x seeds x cross-cycle combinations was enumerated, or the support was certified non-planar.  Its detection rate on the ladder is reported so the certificate is checked empirically as well as read off the code."
+ },
+ "instrument_B": {
+  "kind": "one-sided sampled hill-climb (upper bound on gamma_N only)",
+  "one_sided": true,
+  "blind_from_length": 19,
+  "reading": "Above the first length with detection rate 0 the instrument is blind: a sampled bound there is worth nothing as evidence of non-thickenability and the corresponding gamma_N_upper values are UNINFORMATIVE as measurements of distance."
+ },
+ "selection_bias": "Both ladder sources are biased toward detectable states, which pushes measured rates UP.  A low cell is conclusive (the instrument is blind); a high cell is optimistic and never licenses reading a null as absence.",
+ "composition_mismatch": "Every one of the 124 targets has min generator degree >= 6; the ladder's thickenable states are much sparser in one generator (see min_degree_range per cell).  A sparse state has a smaller compatible family in that direction and is therefore EASIER for instrument B than a target of the same total length.  This bias also points UP: the measured rates bound the instrument's sensitivity on the actual targets from ABOVE.",
+ "rows": [
+  {
+   "pair": [
+    "YXX",
+    "YXYXXXYXXX"
+   ],
+   "total_length": 13,
+   "min_degree": 4,
+   "census_family_size": 241920,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YXX",
+    "YYYXXXXXXX"
+   ],
+   "total_length": 13,
+   "min_degree": 4,
+   "census_family_size": 241920,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YXXX",
+    "YXYXXXXXX"
+   ],
+   "total_length": 13,
+   "min_degree": 3,
+   "census_family_size": 725760,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YXXYx",
+    "YXXXYxYx"
+   ],
+   "total_length": 13,
+   "min_degree": 5,
+   "census_family_size": 120960,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYX",
+    "YXYXYXYxyx"
+   ],
+   "total_length": 13,
+   "min_degree": 6,
+   "census_family_size": 86400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYX",
+    "YYYXYYYXyX"
+   ],
+   "total_length": 13,
+   "min_degree": 4,
+   "census_family_size": 241920,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYYX",
+    "YYYYYXYYX"
+   ],
+   "total_length": 13,
+   "min_degree": 3,
+   "census_family_size": 725760,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYx",
+    "YXyXYxYxYx"
+   ],
+   "total_length": 13,
+   "min_degree": 6,
+   "census_family_size": 86400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYx",
+    "YYYxYYYxyx"
+   ],
+   "total_length": 13,
+   "min_degree": 4,
+   "census_family_size": 241920,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "Yxx",
+    "YxYxYxxxxx"
+   ],
+   "total_length": 13,
+   "min_degree": 4,
+   "census_family_size": 241920,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "Yxxx",
+    "YXyXYxxxx"
+   ],
+   "total_length": 13,
+   "min_degree": 4,
+   "census_family_size": 241920,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "Yxxx",
+    "YxYxxxxxx"
+   ],
+   "total_length": 13,
+   "min_degree": 3,
+   "census_family_size": 725760,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "XYYyxyYXX",
+    "Xxxxy"
+   ],
+   "total_length": 14,
+   "min_degree": 6,
+   "census_family_size": 604800,
+   "source": "witness_sensitivity.json ladder",
+   "instrument_A_verdict": "UNDECIDED_BUDGET",
+   "instrument_A_method": "none",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YXXXX",
+    "YXXXYXXXX"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YXXXX",
+    "YXXYXXXXX"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YXXXX",
+    "YXYXXXXXX"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YXXXX",
+    "YYXXXXXXX"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYYX",
+    "YYYYYXYYX"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYYYX",
+    "YYYYYYXYX"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYYx",
+    "YYYYYYYxx"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYYx",
+    "YYYYYYxYx"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYYYx",
+    "YYYYxYYYx"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "Yxxxx",
+    "YYxxxxxxx"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "Yxxxx",
+    "YxxYxxxxx"
+   ],
+   "total_length": 14,
+   "min_degree": 3,
+   "census_family_size": 7257600,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YXXXXX",
+    "YXyXYXXXX"
+   ],
+   "total_length": 15,
+   "min_degree": 4,
+   "census_family_size": 21772800,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YXyXyX",
+    "YYXyXyXyX"
+   ],
+   "total_length": 15,
+   "min_degree": 7,
+   "census_family_size": 3628800,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYYYYX",
+    "YYYYXYxYX"
+   ],
+   "total_length": 15,
+   "min_degree": 4,
+   "census_family_size": 21772800,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYYYYx",
+    "YYYYxYXYx"
+   ],
+   "total_length": 15,
+   "min_degree": 4,
+   "census_family_size": 21772800,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYxYx",
+    "YXYxYxYxYx"
+   ],
+   "total_length": 15,
+   "min_degree": 7,
+   "census_family_size": 3628800,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "Yxxxxx",
+    "YXyXXXXyX"
+   ],
+   "total_length": 15,
+   "min_degree": 4,
+   "census_family_size": 21772800,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YXYXYXX",
+    "YYXXYXYXX"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYXXYXX",
+    "YYXXYYXXX"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYXYXYX",
+    "YYXYXYXYX"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYXYXYX",
+    "YYXYXYYXX"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYXXXX",
+    "YYYYXXXXX"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYYXXX",
+    "YYYYYXXXX"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYYxxxx",
+    "YYYYxxxxx"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYxYYxx",
+    "YYYxxYYxx"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYxYxYx",
+    "YYxYxYYxx"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYxYxYx",
+    "YYxYxYxYx"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYxxYxx",
+    "YYxxYYxxx"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YxYxYxx",
+    "YYxxYxYxx"
+   ],
+   "total_length": 16,
+   "min_degree": 7,
+   "census_family_size": 29030400,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YXXYXXX",
+    "YXXYXXYXXX"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YXYXXXX",
+    "YXYXYXXXXX"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYXXXXX",
+    "YYYXXXXXXX"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYXYYX",
+    "YYYXYYYXYX"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYYXYX",
+    "YYYYYXYXYX"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYYYxx",
+    "YYYYYYYxxx"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYYxYx",
+    "YYYYYxYxYx"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYxYYx",
+    "YYYxYYYxYx"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYYxYYx",
+    "YYYxYYxYYx"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    0,
+    0,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YYxxxxx",
+    "YYYxxxxxxx"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "pair": [
+    "YxYxxxx",
+    "YxYxYxxxxx"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YxxYxxx",
+    "YxYxxxYxxx"
+   ],
+   "total_length": 17,
+   "min_degree": 5,
+   "census_family_size": 958003200,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 0,
+   "instrument_B_per_seed": [
+    2,
+    2,
+    0
+   ]
+  },
+  {
+   "pair": [
+    "YYxYxYx",
+    "YYYxYxYxYxYx"
+   ],
+   "total_length": 19,
+   "min_degree": 8,
+   "census_family_size": 18289152000,
+   "source": "ak2_members.jsonl",
+   "instrument_A_verdict": "SPHERICAL",
+   "instrument_A_method": "r1c_v2_solver",
+   "instrument_B_best_defect": 2,
+   "instrument_B_per_seed": [
+    4,
+    4,
+    2
+   ]
+  }
+ ],
+ "elapsed_seconds": 35.1
+}
