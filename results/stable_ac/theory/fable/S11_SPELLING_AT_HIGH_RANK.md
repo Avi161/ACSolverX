@@ -396,15 +396,36 @@ iterates SR at **every** depth. So the step to attack is `depth 2 → depth 1`. 
 immediately.
 
 > **Counterexample.** With `P = ("XYYyxY", "XyX")` and the spike `u = "Y"` at position 0 of
-> the first relator,
+> the first relator — one reduction chain, three spellings of the same free-group element
+> pair, each step a single move (0):
 >
-> | | census | min defect | `γ_N` |
-> |---|---|---|---|
-> | `P = ("XYYyxY","XyX")` | 144 | **2** | 1 |
-> | `spike(P) = ("YyXYYyxY","XyX")` | 4,320 | **0** | **0** |
+> | spelling | census | min defect | `γ_N` | Todd–Coxeter |
+> |---|---|---|---|---|
+> | `("YyXYYyxY","XyX")` | 4,320 | **0** | 0 | COMPLETE, index **4** |
+> | `("XYYyxY","XyX")` = `P` | 144 | **2** | 1 | COMPLETE, index **4** |
+> | `("XYxY","XyX")` fully reduced | 12 | **0** | 0 | COMPLETE, index **4** |
 >
-> Both censuses are **exhaustive** — no cap was hit and nothing was sampled. So
-> `γ_N(spike(P)) = 0` while `γ_N(P) = 1`, and **`γ_N(spike(P)) = 0 ⇒ γ_N(P) = 0` is false.**
+> All three free-reduce to `("XYxY","XyX")`. Both censuses on the first two rows are
+> **exhaustive** — no cap hit, nothing sampled. So `γ_N(spike(P)) = 0` while `γ_N(P) = 1`.
+> The defect along one reduction chain is **0 → 2 → 0**: free reduction both destroys and
+> creates thickenability, in the same chain. `γ_N` is not monotone in the spelling in
+> either direction.
+
+### SCOPE — and it decides what this is worth
+
+**This family presents ℤ/4, not the trivial group.** Todd–Coxeter completes with **index 4**
+on all three spellings (`coset_enum.is_trivial_group` → `trivial: False`), verified in this
+session and asserted in the test. Two statements must therefore be kept apart, exactly as
+`CLAUDE.md`'s standing rule demands:
+
+| statement | status |
+|---|---|
+| **SR-general** — `γ_N(spike(P)) = 0 ⇒ γ_N(P) = 0` for presentations in general (this is R7's literal wording, tagged MACHINERY, with no triviality hypothesis) | **REFUTED**, by the table above |
+| **SR-trivial** — the same restricted to balanced presentations of the **trivial group** | **NOT refuted.** This is the only version the AC programme can use: Lackenby Thm 1.3, the certificate hunt, and the whole spelling route for AK(3) live inside it |
+
+A counterexample outside the trivial-group class does not transfer into it without proof.
+So the AK(3) spelling route is reopened **only if a trivial-group counterexample exists**;
+§4.4 is the hunt for one.
 
 **Verification, on both sides, by tools that do not share code.**
 
@@ -421,10 +442,12 @@ immediately.
 
 **What is broken.**
 
-1. **Conjecture SR (R7 §3.1) is refuted as stated.** SR quantifies over `(P, spike)` pairs;
-   here is a pair. It must be struck from R7 and nothing may be proved from it — anyone
-   attempting a proof of SR would be attempting to prove something false.
-2. **Conjecture U (unnesting) falls with it, and this one is a clean corollary.** R7's
+*(All four items below are about **SR-general**. What survives for **SR-trivial** is §4.4.)*
+
+1. **SR-general is refuted as stated.** SR quantifies over `(P, spike)` pairs; here is a
+   pair. Nothing may be proved from it in that generality — anyone attempting a proof of
+   SR-general would be attempting to prove something false.
+2. **Conjecture U (unnesting) falls with it in the same generality — a clean corollary.** R7's
    **Theorem S10 is a theorem, not a conjecture** (proof written out in R7 §3, plus 502,976
    machine verifications): a defect-0 system that is *unnested* at the spike pushes down to
    `defect(ρ(C′)) = 0`. Contrapositive on the counterexample: `γ_N(P) = 1 ≠ 0`, so **no**

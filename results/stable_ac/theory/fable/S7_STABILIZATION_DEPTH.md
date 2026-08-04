@@ -98,7 +98,28 @@ single Lemma-11 round trip). A NO, with an explicit witness pair, would be the f
 strictness result for the AC stabilization hierarchy and would justify high-rank search
 outright.
 
-Neither direction is settled here. What can be said now:
+**First, the level below it is BLOCKED, and that is worth recording because it says where
+the untouched territory actually starts.** Ask instead whether `~^{(0)} ⊊ ~^{(1)}` — does the
+*first* stabilization already buy something? By Cor. F1, `P ~^{(1)} φ(P)` for every
+`φ ∈ Aut(Fₙ)`. So if the **unstable pairwise automorphism principle fails** — i.e. if some
+balanced presentation `P` of the trivial group has `P ≁_AC φ(P)` — then `~^{(0)} ⊊ ~^{(1)}`
+immediately. That principle is open and is **conjectured FALSE by Panteleev–Ushakov**
+(`FRAMING` §3, which forbids using it as if proven). Therefore:
+
+> Proving `~^{(0)} ⊊ ~^{(1)}` is at least as hard as refuting the unstable pairwise
+> automorphism principle. By the route-selection rule of `FRAMING` §6 that is a reduction to
+> another open problem, so **strictness at level 1 is BLOCKED** and should not be attacked
+> on this line.
+
+(The converse is not available: `~^{(0)} = ~^{(1)}` would give the unstable principle, but
+nothing shows `~^{(1)}` is *generated* by automorphism moves — a rank-`n+1` excursion may do
+more than realize an `Aut(Fₙ)` element. So this is a one-way implication and is used only in
+the blocking direction.)
+
+That is exactly why **Q(F2) is posed at `k ≥ 2`**: level 1 collapses onto a known open
+problem, while levels 2 and above are untouched by anything in the literature (A2, Q4).
+
+Neither direction of Q(F2) is settled here. What can be said now:
 
 - **Not obviously YES.** The naive serialization argument fails: to simulate a rank-`n+2`
   slide `rᵢ ← rᵢ · u (rⱼ involving y₁ and y₂) u⁻¹` at depth 1, one would have to remove

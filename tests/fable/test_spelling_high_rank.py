@@ -235,3 +235,7 @@ def test_conjecture_SR_is_false_for_GENERAL_presentations():
     # the existential repair: SOME one-step reduction keeps defect 0
     assert S.decide(("YyXYxY", "XyX"), ("x", "y"), cap=10 ** 6)["minimum_defect"] == 0
     assert S.decide(("XYxY", "XyX"), ("x", "y"), cap=10 ** 6)["minimum_defect"] == 0
+    # SCOPE: this family is Z/4, so it does NOT refute SR restricted to the trivial group
+    for w in (("XYxY", "XyX"), P, sp):
+        tc = S.todd_coxeter_check(w, ("x", "y"))
+        assert tc["status"] == "COMPLETE" and tc["index"] == 4 and tc["trivial"] is False
