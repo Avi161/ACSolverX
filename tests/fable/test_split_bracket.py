@@ -205,7 +205,7 @@ def test_bracket_row_reports_an_upper_bound_never_a_lower_one():
                          time_cap=30.0)
     assert row["split_gamma_N_upper"] is not None
     assert row["split_gamma_N_upper"] >= row["gamma_N_lower"]
-    assert "UPPER" in row["bound_direction"]
+    assert "ABOVE only" in row["bound_direction"]
     assert "Conjecture S8" in row["conditional_on"]
     # nothing in the row claims a lower bound derived from a split
     assert row["gamma_N_lower"] == 1

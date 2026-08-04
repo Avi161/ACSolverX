@@ -899,6 +899,7 @@ def cmd_decide(args):
     fh = gzip.open(out, "wt") if out else None
     hist = Counter()
     hist_by_sd = {}
+    hist_by_src = {}
     hits = []
     decided = 0
     skipped = 0
@@ -915,6 +916,10 @@ def cmd_decide(args):
         decided += 1
         hist[d] += 1
         hist_by_sd.setdefault(r["sum_delta"], Counter())[d] += 1
+        if args.by_source:
+            prov = r.get("provenance", "")
+            src = next((t for t in prov.split("|") if t.startswith("src")), "src?")
+            hist_by_src.setdefault(src, Counter())[d] += 1
         if fh is not None:
             fh.write(json.dumps({"words": r["words"], "rank": r["rank"],
                                  "sum_delta": r["sum_delta"], "census": r["census"],
@@ -942,11 +947,158 @@ def cmd_decide(args):
                "defect_histogram": dict(sorted(hist.items())),
                "by_sum_delta": {k: dict(sorted(v.items()))
                                 for k, v in sorted(hist_by_sd.items())},
+               "by_source": {k: dict(sorted(v.items()))
+                             for k, v in sorted(hist_by_src.items())},
                "gamma0_hits": len(hits), "deep_cap": args.deep_cap}
     print(json.dumps(summary), flush=True)
     if out:
         with open(out.replace(".jsonl.gz", "_summary.json"), "w") as sf:
             json.dump(summary, sf, indent=1)
+    return summary
+
+
+def triangulate_traced(words, rng, max_rank: int = 26):
+    """As ``triangulate`` but returns every intermediate presentation."""
+    words = tuple(words)
+    used = {c.lower() for w in words for c in w}
+    fresh = [c for c in ALPHABET if c not in used]
+    steps = [words]
+    while any(len(w) >= 4 for w in words):
+        if not fresh or len(words) >= max_rank:
+            return None
+        cand = [i for i, w in enumerate(words) if len(w) >= 4]
+        i = rng.choice(cand)
+        k = rng.randrange(len(words[i]))
+        words = chord_refine(words, i, k, fresh.pop(0),
+                             rng.choice(["pos", "neg"]),
+                             rng.choice(["prefix", "suffix"]))
+        steps.append(words)
+    if not (is_triangular(words) and is_nondegenerate(words) and is_balanced(words)):
+        return None
+    return steps
+
+
+def thickenable_sources(rng, n, total_length=13, min_len=4, cap=200_000,
+                        want_defect=0, tries_max=400_000, deadline=None):
+    """Random AC-trivial rank-2 presentations with a PRESCRIBED rank-2 defect.
+
+    ``want_defect = 0`` gives the positive control: presentations that provably HAVE a
+    thickenable member (themselves).  By `S3_AUDIT` Lemma S3' every chord triangulation of
+    such a source is still gamma_N = 0, so the rank-9 root of the pipeline is thickenable
+    by construction -- which is exactly what makes this a positive control for the
+    rank-12/13 region.
+    """
+    out, seen, tries = [], set(), 0
+    while len(out) < n and tries < tries_max:
+        tries += 1
+        if deadline is not None and time.time() > deadline:
+            break
+        p = random_ac_trivial(rng, total_length=total_length, min_len=min_len)
+        if p is None or p in seen:
+            continue
+        seen.add(p)
+        g = gamma_N_factorial_n(p, cap_rotations=cap, keep_accepting=False)
+        if g["status"] != "OK" or g["minimum_defect"] != want_defect:
+            continue
+        r = triangulate(p, rng)
+        if r is None or len(r) != 9:
+            continue
+        if sum(abs(v - 3) for v in multiplicities(r).values()) != 14:
+            continue
+        out.append(p)
+    return out
+
+
+def cmd_control(args):
+    """POSITIVE CONTROL: run the identical pipeline on rank-2 sources with gamma_N = 0.
+
+    Matched to AK(3) on every axis the pipeline sees: AC-trivial, rank 2, total length 13,
+    both relators >= 4 so the chord triangulation lands at rank 9 with sum|delta| = 14.
+    The only difference is the rank-2 defect (0 instead of 4).
+    """
+    rng = random.Random(args.seed)
+    srcs = thickenable_sources(rng, args.ladder, want_defect=args.want_defect,
+                               deadline=time.time() + args.source_budget)
+    print(f"control: {len(srcs)} AC-trivial rank-2 sources with defect "
+          f"{args.want_defect}, L=13, -> rank-9 roots with sum|delta|=14", flush=True)
+    for p in srcs:
+        print("   source", p, flush=True)
+    if not srcs:
+        print("NO SOURCES FOUND", flush=True)
+        return {}
+    return run_roots(srcs, args, f"control{args.want_defect}")
+
+
+def cmd_chaintrace(args):
+    """Track gamma_N along the whole chain: base -> chord refinements -> SPLITs.
+
+    Two live checks in one: (a) S3/`S3_AUDIT` Lemma S3' predicts the defect is CONSTANT
+    across every chord refinement; (b) any change along the SPLIT tail is attributable to
+    SPLIT alone.
+    """
+    rng = random.Random(args.seed)
+    rows = []
+    deadline = time.time() + args.budget
+    bases = [("AK3", AK3)]
+    for i, p in enumerate(thickenable_sources(rng, args.ladder, want_defect=0,
+                                              deadline=time.time() + args.source_budget)):
+        bases.append((f"thick{i}", p))
+    for name, base in bases:
+        for rep in range(args.roots_per_source):
+            if time.time() > deadline:
+                break
+            steps = triangulate_traced(base, rng)
+            if steps is None or len(steps[-1]) != 9:
+                continue
+            tri_defects = []
+            ok_tri = True
+            for st in steps:
+                if census_size(st) > args.deep_cap:
+                    ok_tri = False
+                    tri_defects.append(None)
+                    continue
+                tri_defects.append(fast_min_defect(st))
+            state = steps[-1]
+            split_defects = []
+            trace = []
+            for d in range(args.split_steps):
+                kids = split_children(state, rng, max_children=args.max_children)
+                if not kids:
+                    break
+                # follow the cost-guided child, as the real search does
+                kids.sort(key=lambda e: (cost(e[0], args.mode), rng.random()))
+                state, rec = kids[0]
+                trace.append(rec)
+                split_defects.append(fast_min_defect(state)
+                                     if census_size(state) <= args.deep_cap else None)
+            row = {"base_name": name, "base": list(base), "rank2_defect": tri_defects[0],
+                   "chord_defects": tri_defects,
+                   "chord_constant": (ok_tri and len(set(tri_defects)) == 1),
+                   "root": list(steps[-1]), "split_defects": split_defects,
+                   "final_rank": len(state),
+                   "final_sum_delta": sum(abs(v - 3)
+                                          for v in multiplicities(state).values())}
+            rows.append(row)
+            _emit(args.out, row)
+            print(f"  {name} rep{rep}: chord {tri_defects} constant="
+                  f"{row['chord_constant']} | SPLIT {split_defects}", flush=True)
+    n_const = sum(1 for r in rows if r["chord_constant"])
+    drops = [r for r in rows if r["split_defects"] and r["rank2_defect"] is not None
+             and min([d for d in r["split_defects"] if d is not None],
+                     default=99) < r["rank2_defect"]]
+    rises = [r for r in rows if r["split_defects"] and r["rank2_defect"] is not None
+             and max([d for d in r["split_defects"] if d is not None],
+                     default=-1) > r["rank2_defect"]]
+    summary = {"kind": "chaintrace_summary", "chains": len(rows),
+               "chord_defect_constant": f"{n_const}/{len(rows)}",
+               "split_chains_that_lowered": len(drops),
+               "split_chains_that_raised": len(rises),
+               "by_base": {n: [r["split_defects"] for r in rows if r["base_name"] == n]
+                           for n in {r["base_name"] for r in rows}}}
+    _emit(args.out, summary)
+    print(json.dumps({k: v for k, v in summary.items() if k != "by_base"}), flush=True)
+    for n, v in summary["by_base"].items():
+        print(f"  {n}: {v}", flush=True)
     return summary
 
 
@@ -1082,7 +1234,8 @@ def cmd_flips(args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("cmd", choices=["selftest", "ak3", "ladder", "flips", "decide"])
+    ap.add_argument("cmd", choices=["selftest", "ak3", "ladder", "flips", "decide",
+                                    "control", "chaintrace"])
     ap.add_argument("--corpus", type=int, default=120)
     ap.add_argument("--source-length", type=int, default=8)
     ap.add_argument("--flip-children", type=int, default=40)
@@ -1111,13 +1264,20 @@ def main(argv=None):
     ap.add_argument("--pool-in", default=None)
     ap.add_argument("--decide-out", default=None)
     ap.add_argument("--decide-budget", type=float, default=480.0)
+    ap.add_argument("--want-defect", type=int, default=0,
+                    help="rank-2 defect the control sources must have (0 = thickenable)")
+    ap.add_argument("--source-budget", type=float, default=90.0)
+    ap.add_argument("--split-steps", type=int, default=5)
+    ap.add_argument("--by-source", action="store_true",
+                    help="decide: break the histogram down per source presentation")
     ap.add_argument("--seed", type=int, default=20260804)
     ap.add_argument("--out", default=None)
     args = ap.parse_args(argv)
     if args.out:
         os.makedirs(os.path.dirname(args.out), exist_ok=True)
     fns = {"selftest": cmd_selftest, "ak3": cmd_ak3, "ladder": cmd_ladder,
-           "flips": cmd_flips, "decide": cmd_decide}
+           "flips": cmd_flips, "decide": cmd_decide,
+           "control": cmd_control, "chaintrace": cmd_chaintrace}
     fns[args.cmd](args)
     return 0
 

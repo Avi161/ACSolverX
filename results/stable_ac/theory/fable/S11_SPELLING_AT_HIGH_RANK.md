@@ -657,53 +657,67 @@ Two facts keep it from being wide open: Corollary S5 (the spike ceiling,
 `γ_N(spike(P)) ≥ γ_N(P) − 1`) is a **proof** and still forces spike-depth ≥ 2 for AK(3);
 and R1F decided depth 1 exhaustively (`γ_N` histogram `{1: 8, 2: 31}`).
 
-### 4.6 AK(3)'s own depth-2 frontier — raised budget, calibrated at the SAME budget
+### 4.6 AK(3)'s own depth-2 frontier — **330/330 scored**, calibrated at the same budget
 
-`results/stable_ac/fable/s11_ak3_deep.json`, checkpoint
-`s11_ak3_deep_checkpoint.jsonl` (append-only, fsync'd per state, resumable — a container
-restart loses at most one state; it survived three restarts during this run).
+`results/stable_ac/fable/s11_ak3_deep.json`, checkpoint `s11_ak3_deep_checkpoint.jsonl`
+(append-only, fsync'd per state, resumable). The checkpoint earned its keep: this run was
+interrupted and resumed six times under container load ~7 on 4 cores, and lost nothing.
 
-Bases = R1F's eight gateway spellings, the only depth-1 spellings of AK(3) with
-`γ_N = 1` and therefore, by Corollary S5, the only possible parents of a thickenable
-depth-2 spelling. Instrument = the climber; **exact enumeration is impossible here**
-(§6: 2.0–4.4·10⁸ systems per state, ≈ 30 min each, ≈ 190 days for the sweep).
+Bases = R1F's eight gateway spellings, the only depth-1 spellings of AK(3) with `γ_N = 1`
+and therefore, by Corollary S5, the only possible parents of a thickenable depth-2
+spelling. Instrument = the climber. **Exact enumeration is impossible here** (§6:
+2.0–4.4·10⁸ systems per state, ≈ 30 min each, ≈ 190 days for the sweep), so the null has to
+be priced by calibration rather than eliminated by exhaustion.
 
-| pass | evals/state | states scored | defect histogram | defect-0 hits |
+| pass | evals/state | coverage | defect histogram | defect-0 hits |
 |---|---|---|---|---|
-| first (§4.6 v1) | 60,000 | 330 of 330 | `{2: 72, 4: 258}` | 0 |
-| **this pass** | **200,000** | **159 of 330** | `{2: 79, 4: 80}` | **0** |
+| first | 60,000 | 330/330 | `{2: 72, 4: 258}` | 0 |
+| **A** | **200,000** | **330/330** | `{2: 164, 4: 166}` | **0** |
+| **C** | **2,000,000** | **<<CCOV>>** | `<<CHIST>>` | **<<CHITS>>** |
 
-**Calibration at the SAME 200,000 evaluations** — `s11_ak3_calibration.json`. Ten
-**certified** `γ_N = 0` rank-2 states at total length 16–18 (defect-0 witness, re-verified),
-3 seeds each:
+**Calibration, at each budget actually used** (`s11_ak3_calibration.json`) — 10 **certified**
+`γ_N = 0` rank-2 states at total length 16–18, defect-0 witness re-verified, 3 seeds each:
 
-> **30 / 30 = 1.00**
+| budget | detection |
+|---|---|
+| 200,000 | **30/30 = 1.00** |
+| 2,000,000 | **30/30 = 1.00** |
 
-and — this is the part that makes it usable — those calibration states carry censuses of
-**2.5·10⁷ to 1.8·10⁹**, i.e. at or **above** the targets' 2.0–4.4·10⁸. A climber's
-difficulty tracks the size of the space it searches, not the word length, so this
-calibration is **not kinder than the hunt** on the dimension that matters. (Standing bias,
-still recorded: the rungs are climber-certified by construction, so 1.00 remains an
-**upper** bound on sensitivity — `calibrate-one-sided-hunts-on-a-positive-ladder.md`.)
+Those calibration states carry censuses of **2.5·10⁷ – 1.8·10⁹**, at or **above** the
+targets' 2.0–4.4·10⁸. A climber's difficulty tracks the size of the space it searches, not
+the word length, so the calibration is **not kinder than the hunt** on the dimension that
+matters. Standing bias, still recorded: the rungs are climber-certified by construction, so
+1.00 is an **upper** bound on sensitivity
+(`calibrate-one-sided-hunts-on-a-positive-ladder.md`).
 
-**What the null is now worth.** 159 of AK(3)'s 330 depth-2 spellings carry **no defect-0
-rotation system findable at a budget that finds one in 30/30 matched positives**. That is
-the strongest AK(3) spelling-space null this project has produced — the previous best
-(R7b's) was run at a budget with a *measured 0 %* detection at its length. It is still a
-null from a one-sided instrument and it covers **48 %** of the frontier.
+**The statement, with denominators visible.**
 
-**The raised budget also corrects a claim I made in the first pass.** At 60k evals only
-**22 %** of states reached defect 2; at 200k it is **50 %**. The "72 survivors" figure was
-therefore an artefact of an under-powered climber, not a property of the states, and any
-plan resting on "only 72 candidates remain" was reading the instrument, not the
-mathematics. Same failure family as T-S11e, one level down: **a filter is only as
-meaningful as the budget that produced it.** Current survivor set: **79 at defect 2**, of
-which 20 are same-signed-letter (§4.4's mechanism).
+> **330/330** of AK(3)'s depth-2 spellings scored at 200,000 evaluations — a budget with a
+> measured **30/30** detection rate on census-matched certified positives — and **none**
+> carries a defect-0 rotation system. Of the **164** that reach defect 2, **<<CCOV>>** were
+> re-run at **2,000,000** evaluations (detection also **30/30**), again with **<<CHITS>>**
+> hits.
 
-**To finish it:** 171 states remain unscored at 200k (≈ 13 min single-threaded, resumable
-from the checkpoint), after which the 79+ survivors want 1–2·10⁶ evaluations (≈ 25–50 min).
-Nothing in that plan is speculative any more — the cost, the ordering and the detection
-rate are all measured.
+This is the strongest AK(3) spelling-space null the project has: the previous best (R7b's)
+was run at a budget with a *measured 0 %* detection at its length. It remains a null from a
+one-sided instrument — silence is worth its detection rate and never more — and it does not
+touch depth 3.
+
+**Two things the raised budget corrected in my own first pass.**
+
+1. **"72 survivors" was an artefact of the budget, not a property of the states.** At 60k
+   evaluations 22 % of states reached defect 2; at 200k it is **50 %** (164/330). Any plan
+   resting on "only 72 candidates remain" was reading the instrument. Same failure family
+   as T-S11e one level down: **a filter is only as meaningful as the budget that produced
+   it.**
+2. **The cost model was wrong by three orders of magnitude** until it was measured — a
+   spike inserts *two* occurrences, so germ degree goes **+2** (§6). This is why phase C
+   climbs rather than enumerates.
+
+**Phase C's subset rule** (stated because it is not all 164): survivors were ordered
+**same-signed-letter first** — §4.4's mechanism, the feature shared by 16/16 SR
+counterexamples — then by **ascending census**, cheapest first. So the subset actually
+scored is described by a rule, not by where the clock stopped.
 
 ### 4.7 The remaining open questions, in priority order
 

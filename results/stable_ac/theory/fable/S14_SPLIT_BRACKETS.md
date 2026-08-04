@@ -85,9 +85,10 @@ bound.
 
 **S8 test.** A certified split scoring strictly BELOW its base's exact γ_N would refute
 monotonicity; `bracket_row` raises `MonotonicityViolation` and never records it as a better
-bound. **0 violations in 65 measured cells** (36 cells on γ_N = 0 rungs, 56 on γ_N = 1, 8 on
-γ_N = 2 — counted per cell). That is not a proof of GAP‑S8‑1, but it is 65 more instances on top
-of S8's 632.
+bound. **0 violations in 65 measured cells** (27 on γ_N = 0 rungs, 34 on γ_N = 1, 4 on γ_N = 2).
+That is not a proof of GAP‑S8‑1, but it is 65 more instances on top of S8's 632 — and unlike
+those, these were produced at split depths up to 12 fresh generators, where the sketch's bigon
+contraction has to be iterated.
 
 **Why the rungs had to be forced to split (T‑S9b, applied).** A length-13 rung has a compatible
 family of ~10⁴ and needs *no* split at all; every one of the 124 targets has a family between
@@ -141,6 +142,14 @@ long rows need, the payment exceeds the whole quantity being measured.
 
 Run at exactly the calibration's budget (census cap 200,000, 10 plans, 8 s per row) so the
 calibration applies to it — `experiments/lessons/instrument-the-search-before-reading-its-null.md`.
+
+**Caveat on the budget, recorded because it is the kind of thing that quietly invalidates a
+calibration.** The per-row budget is *wall clock*, and this container was shared with three other
+lines' experiments throughout, so the number of plans a row actually got varies with load. Both
+stages ran under comparable load, and every row records `plans_built`, `plans_evaluated`,
+`plans_failed_certification` and `defects_by_plan`, so the realised budget is auditable per row
+rather than assumed. Nothing here should be compared against a future run made on an idle box
+without re-reading those counters.
 
 <!--TARGETS-->
 
