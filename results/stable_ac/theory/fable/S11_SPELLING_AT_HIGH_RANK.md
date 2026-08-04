@@ -704,13 +704,11 @@ length. **That run is the single highest-value follow-up in this note.**
    bounded, sized, calibrated experiment and it sits exactly on the frontier that
    Corollary S5 leaves open.
 
-**The other thing still worth hunting**, sharply defined: a counterexample
-where **SR′ also fails** — a thickenable spelling *none* of whose one-step reductions is
-thickenable. That, and not this, would break the Corollary itself and put `γ*(AK(3)) = 0`
-genuinely back on the table. 0 of 16 here; the next session should widen this hunt (more
-bases, spike depth 3) rather than deepen it. A second target, cheaper and equally
-pointed: a counterexample whose reduced base presents the **trivial group**, since only
-those can bear on Lackenby's hypothesis at all.
+Item 1 restated as the concrete hunt: a counterexample where **SR′ also fails** — a
+thickenable spelling *none* of whose one-step reductions is thickenable. That, and not
+§4.3, would break R7's Corollary itself and put `γ*(AK(3)) = 0` genuinely back on the
+table. **0 of 28** so far. The next session should widen that hunt (more bases, spike
+depth 3) rather than deepen it — the trivial-group half of it is already done (§4.3′).
 
 ---
 

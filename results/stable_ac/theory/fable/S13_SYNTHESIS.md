@@ -44,7 +44,13 @@ earlier session retired as undecidable.
 **And the sharpest single demonstration of (i) and (ii) together:** AK(3) *does* have a
 **cubic triangular form at rank 13** — all 13 relators of length 3, all 13 multiplicities
 exactly 3, reached by 7 chord refinements and 4 SPLITs with no destabilization
-(A6/`S4B`; re-verified here: trivial group at Todd–Coxeter index 1, 481 cosets). Its entire
+(A6/`S4B`). **The whole chain was re-verified here with independent code**: un-SPLITting C1
+four times (substitute each fresh `t ↦ λ`, drop its definition relator `tuv`) returns the
+rank-9 root exactly, and un-merging that root seven times (each chord is a generator
+occurring twice in two distinct relators; merge the two relators across it) returns
+`('XyxyXY','xxYYYYx')` — cyclically **equal to AK(3)**. Plus trivial group at Todd–Coxeter
+index 1, 481 cosets. So C1 is in AK(3)'s stable class, established without trusting the
+search that produced it. Its entire
 compatible census is **8,192**, against 86,400 for AK(3) at rank 2 — so at rank 13 the
 question becomes trivially cheap to ask. Its answer is `minimum_defect` 2, i.e. **γ_N = 1**:
 better than AK(3)'s own γ_N = 2, and **exactly tying** the best previously reached anywhere
