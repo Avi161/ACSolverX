@@ -14,8 +14,12 @@ tasks A7/A9/A10/A11.**
 > 2. Search the AC1–AC3 move graph at rank `N` (beam / random restarts / greedy), keeping
 >    total length under a cap. **Weight the moves by their measured flip rates (S6 §1):**
 >    - **AC2** `r_i → freered(r_i r_j^{±1})` is the *only* slide measured to create the
->      certificate — 73 creates in 1,863 pairs, i.e. **7.0 % of non-thickenable bases gain
->      it**. This is the engine; spend the budget here.
+>      certificate, and on the corpus that matters it is far better than first reported:
+>      restricted to **presentations of the trivial group** it creates in **34/177 = 19.2 %**
+>      of non-thickenable bases and destroys in only 8/59 = 13.6 % of thickenable ones
+>      (A14 audit §1.5; the unrestricted control reproduces S6's 4.8 % / 47.3 %, so the
+>      difference is the restriction, not the instrument). This is the engine; spend the
+>      budget here.
 >    - **move (0)** free/cyclic reduction: 315 creates in 2,510, **0 destroys in 997**.
 >      Always reduce. Never search un-reduced spellings — by the same measurement, spiking
 >      can only preserve or destroy (this closes the spelling route for the positive

@@ -84,10 +84,24 @@ So the extra nine generators bought a much cheaper question and *no better answe
   AK(3) is `minimum_defect` 4 (γ_N = 2) at rank 2 **and** at rank 9, with the same census
   size 86,400 — a peel never changes an original germ's degree.
 - **Splitting is monotone**: 632 states at ranks 4 and 6, none below base.
-- **Move flip rates** (exact censuses, A8): AC2 destroys 425 / creates 73 of 1,863 — the
-  only slide measured to create the certificate; move (0) creates 315 / destroys 0 of 2,510;
-  **bare AC3 destroys 315 / creates 0 of 3,507**, and destroys on 16.3 % of trivial-group
-  bases. AC1, rotation, AC4/AC5 and T4′ slides: 0 flips in 2,236 + 4,472 + 1,118 + 3,332.
+- **Move flip rates, and they are much better on the trivial group than S6 first reported**
+  (A14 audit §1.5). S6's published rates came from an *unrestricted* rank-2 corpus; the AC
+  programme only ever acts on presentations of the trivial group. Re-measured on two corpora
+  built and processed identically in the same length band, the control reproducing S6's
+  numbers to sampling noise so the shift is attributable to the restriction alone:
+
+  | corpus | AC2 destroys (of thickenable bases) | AC2 **creates** (of non-thickenable bases) | bare AC3 destroys | bare AC3 creates |
+  |---|---|---|---|---|
+  | **trivial group** | 8/59 = **13.6 %** | 34/177 = **19.2 %** | 4/76 = 5.3 % | 0/422 |
+  | unrestricted (control) | 116/245 = 47.3 % | 17/353 = 4.8 % | 72/331 = 21.8 % | 0/651 |
+
+  So on the presentations that actually matter, **an AC2 slide creates the Lackenby
+  certificate about one time in five** — four times S6's headline figure — while destroying
+  it only half as often as it creates it. AC3 with cancellation: 0 flips either way in both
+  corpora. AC1, rotation, AC4/AC5 and T4′ slides: 0 flips in 2,236 + 4,472 + 1,118 + 3,332.
+  **This is the strongest single reason to believe the certificate hunt is a viable method
+  rather than a long shot**, and it is the one number in the session that moved decisively
+  in the favourable direction under audit.
 - **Depth ladder, length-matched** (A7): an AC-trivial control returns **39/40** hits across
   rank ceilings 2–6; **AK(3) returns 0/40** on the same rungs, seeds, move set and budget.
 - **Depth costs detection at fixed budget** (this line's `--target` mode): control detection
