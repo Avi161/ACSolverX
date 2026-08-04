@@ -63,3 +63,26 @@ is the only reason this was a wasted-CPU incident and not a corrupted artifact (
 > A pattern kill that matches the wrapper but not the child, or that races the shell, leaves
 > the child orphaned and running. And check `etime` — a process older than your last edit is
 > running code you no longer have.
+
+## Second postscript: a null that was measuring the beam, not the target
+
+The cubic-form search for AK(3) reported **0 hits in 48 roots** and was written up as
+"no cubic form of AK(3) is reported", with a matched-ladder calibration of 33 % attached to
+price the null. Re-run with one change — **30 % of each beam filled at random** instead of
+purely by cost — it found **2 cubic forms in 28 roots**, and the calibration reversed
+(AK(3) 2/28 against the matched ladder's 0/35).
+
+The cause is structural, not statistical. The cost function `Σ|δ|` has a **parity plateau at
+cost 2**, and leaving that plateau *provably requires a cost-increasing move*. A beam ordered
+purely by cost can therefore never leave it, at any budget. More nodes would not have helped;
+a hundred times more nodes would not have helped.
+
+> When a search is guided by a cost function, ask whether the goal region is reachable by a
+> monotone descent in that cost. If leaving a plateau requires a cost-increasing move, a
+> greedy or purely cost-ranked beam has **probability zero** of success and its null carries
+> no information at all — however large the budget and however carefully the detection rate
+> was calibrated, because the calibration ladder may not sit on the plateau.
+
+The tell is the same as in the main lesson: a null that does not move when the budget moves.
+Here it was worse than flat — it was structurally impossible, and only a change to the
+*search policy* revealed it.
