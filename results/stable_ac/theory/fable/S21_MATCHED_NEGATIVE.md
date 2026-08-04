@@ -4,10 +4,64 @@ Branch `claude/stable-ac-conjecture-stabilization-rwo9as`. **This branch must be
 `fable/proof` by the user** — a cloud session can only push to its own `claude/*` branch, so
 nothing here reaches `fable/proof` on its own. No PR opened (`FRAMING` trap 10).
 
-STATUS: **the session's strongest negative measurement, and the one whose control design
-survives the trap that killed the previous two.** It is a *measurement*, not a theorem, and
-it bounds `Γ(AK(3))` from **above** only. It is not a proof that AK(3) lacks a thickenable
-member, and §4 says exactly what it cannot rule out.
+STATUS: ~~the session's strongest negative measurement~~ — **HEADLINE RETRACTED WITHIN THE
+HOUR. The control design failed for a FOURTH reason, and this one is the deepest.**
+
+> ## ⛔ THE 35/40 IS NOT A COMPARABLE RATE — see §0 below and `S18_S5_RECHECK.md`
+>
+> **The controls escape through a region AK(3) provably cannot enter.** Every control hit is
+> a walk *down* in length: the witness lengths are 3, 3, 4, 4, 4, 5, 7, 7, 8, 9, 9, 9, 9, 10,
+> 11, 11, 11, … against a starting length of 13. But **any member of AK(3)'s class below
+> length 13 would settle the open problem outright** (Havas–Ramsay exhausted that region), so
+> AK(3) cannot use the exit that produced essentially every control hit.
+>
+> Restricting to the three targets at AK(3)'s own length 13, and requiring only the weak
+> condition that the *witness itself* be back in band (`length ≥ 13`):
+>
+> | | trials | hits | rate |
+> |---|---|---|---|
+> | raw, as reported in §4 | 24 | 19 | 0.79 |
+> | **witness length ≥ 13** | 24 | **8** | **0.33** |
+>
+> And 0.33 is still an over-estimate, for two reasons. The witness being back in band does
+> not mean the *chain* stayed in band — it may dip and return. And total length is inflatable
+> by inert AC4 discs, so a long witness can be a short core in disguise: A18 applied the core
+> test to the S5 ladder's 39 witnesses and **39 of 39** reduced to a rank-2 core of length 8
+> or 11, with only **2** surviving an AC-legal-only reduction.
+>
+> The decisive datum is A18's, on a freshly built defect-matched control (`γ_N = 2`,
+> AC-trivial, length 13): **8/40 hits, all genuinely created (`4→2→0`), and 0 of the 8 stay
+> in band** — minimum chain lengths 5, 7, 7, 9, 9, 11, 11, 11. Also **0/32 at rank ceilings
+> 3–6**: extra rank actively *hurt* at fixed budget.
+>
+> **Therefore AK(3)'s 0/34 is consistent with the matched control's in-band rate, which may
+> well be 0.** §6's reachability claim does not survive, and the "leans toward the disproof
+> side" remark in §6 is withdrawn outright.
+>
+> **What survives:** §3 (stabilization is inert for `γ_N`, exact census at ranks 2–5 — an
+> independent result that never depended on the comparison); the observation that matched
+> defect-4 controls exist at all; and the negative lesson itself, filed as **T-S20**.
+
+It is a *measurement*, not a theorem, and it bounds `Γ(AK(3))` from **above** only. It is not
+a proof that AK(3) lacks a thickenable member.
+
+## 0. Why this failed, and why it is a different failure from the first three
+
+This comparison has now failed four times, each time because the control was unmatched on a
+variable that only became visible after the result was read:
+
+| # | the control was matched on | the variable that broke it |
+|---|---|---|
+| 1 | AC-triviality, rank, length | it was **already `γ_N = 0`** — survival, not creation (T-S19) |
+| 2 | + verified non-thickenable | it sat at **defect 2**, a one-unit descent; AK(3) needs two |
+| 3 | + **defect 4**, a two-unit descent | it can **exit the length band**; AK(3) cannot (**T-S20**, this file) |
+
+The fourth costume is the deepest because the escape is closed to the target *by the very
+openness of the problem*: AK(3) cannot reach length ≤ 12 precisely because reaching it would
+be a solution. Any control that is known AC-trivial can walk down; the target cannot be
+allowed to, or there would be nothing to measure. **This is not a fixable control design —
+it is a structural limit on target-versus-control comparisons for this problem**, and it
+subsumes the §5.2 caveat, which said the same thing less sharply and was not acted on.
 
 ---
 

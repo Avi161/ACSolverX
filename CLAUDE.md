@@ -140,6 +140,14 @@ much harder than those Erdős problems. Its three keys:
   session". Replay the control's own chains, put Φ(source) in its own column, and use ≥ 3
   sources — one source cannot show you its between-source variance.
   [[TRAP]](experiments/lessons/control-measures-survival-not-creation.md)
+- ...and the FOURTH costume, same session: the control solves the task through an exit the
+  target provably cannot use. Every control hit walked DOWN in length (witnesses at 3,4,5,…
+  from a start of 13) — but any member of AK(3)'s class below length 13 would settle the open
+  problem, so that exit is closed to the target BY the problem being open. Rate fell 0.79 →
+  0.33 → ~0 once in-band. Look at the WITNESS CHAINS before quoting a rate, and when three
+  successive control redesigns each fail on a new variable, suspect the method, not the
+  control.
+  [[TRAP]](experiments/lessons/control-escapes-through-a-region-the-target-cannot-enter.md)
 - The GERM COUNT is the criterion for whether extra generators can do anything; "it only
   re-describes the relators" is NOT, and stating it that way cost this line a wrong lesson.
   A new edge with exactly two 2-cell germs from two DISTINCT 2-cells is a chord: provably

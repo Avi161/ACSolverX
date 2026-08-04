@@ -1,0 +1,126 @@
+{
+ "record": "s20_s17_planarity",
+ "edges_file": "s17_transition_edges.jsonl.gz",
+ "gamma0_states": {
+  "n": 0,
+  "planar": 0,
+  "nonplanar": 0,
+  "uncertified": 0,
+  "violations": []
+ },
+ "gamma1_parents": {
+  "n": 11,
+  "planar": 5,
+  "nonplanar": 6,
+  "uncertified": 0,
+  "kuratowski": {
+   "K33": 6
+  },
+  "planar_examples": [
+   [
+    "Fxg",
+    "DhY",
+    "aYY",
+    "bXX",
+    "cAb",
+    "dCx",
+    "eyx",
+    "fxH",
+    "YeG",
+    "heG"
+   ],
+   [
+    "Fxg",
+    "DhY",
+    "ahY",
+    "bXX",
+    "cAb",
+    "dCx",
+    "YEX",
+    "fxy",
+    "gEy",
+    "hEX"
+   ],
+   [
+    "XId",
+    "FaG",
+    "ahX",
+    "bXH",
+    "cBX",
+    "iCd",
+    "eyy",
+    "fxx",
+    "yEG",
+    "hCd",
+    "iEG"
+   ],
+   [
+    "XYd",
+    "FaG",
+    "ahX",
+    "bXH",
+    "cBX",
+    "yCd",
+    "eyy",
+    "fxx",
+    "geY",
+    "hCd"
+   ],
+   [
+    "cYg",
+    "DYF",
+    "xYA",
+    "bhY",
+    "chA",
+    "dYY",
+    "ebX",
+    "fhe",
+    "gYX",
+    "hYA"
+   ]
+  ]
+ },
+ "gamma1_edges": {
+  "edges": 154,
+  "children": {
+   "planar": 15,
+   "nonplanar": 139,
+   "unknown": 0
+  },
+  "table": {
+   "parentP->childN|gc2": 86,
+   "parentN->childN|gc2": 12,
+   "parentN->childN|gc1": 23,
+   "parentN->childP|gc1": 2,
+   "parentP->childP|gc1": 13,
+   "parentP->childN|gc1": 18
+  }
+ },
+ "global": {
+  "parent|gamma1": {
+   "n": 11,
+   "planar": 5,
+   "nonplanar": 6
+  },
+  "parent|gamma2": {
+   "n": 190,
+   "planar": 29,
+   "nonplanar": 161
+  },
+  "child|gamma1": {
+   "n": 65,
+   "planar": 19,
+   "nonplanar": 46
+  },
+  "child|gamma2": {
+   "n": 3682,
+   "planar": 87,
+   "nonplanar": 3595
+  },
+  "child|gamma3": {
+   "n": 253,
+   "planar": 0,
+   "nonplanar": 253
+  }
+ }
+}

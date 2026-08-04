@@ -987,7 +987,9 @@ def cmd_s17(args):
     by_gamma_child = {}
     edges = []
     with gzip.open(path, "rt") as fh:
-        for line in fh:
+        for k, line in enumerate(fh):
+            if args.max_edges and k >= args.max_edges:
+                break
             r = json.loads(line)
             gp, gc = r["gamma_parent"], r["gamma_child"]
             p, c = tuple(r["parent"]), tuple(r["child"])
@@ -1106,6 +1108,7 @@ def main():
     q = sub.add_parser("s17")
     q.add_argument("--edges", default="s17_transition_edges.jsonl.gz")
     q.add_argument("--out", default="s20_s17_planarity.json")
+    q.add_argument("--max-edges", type=int, default=0)
     q.set_defaults(func=cmd_s17)
 
     c = sub.add_parser("chains")

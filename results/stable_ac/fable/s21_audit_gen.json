@@ -1,0 +1,27 @@
+{
+ "record": "s21_audit_ctlgen",
+ "args": {
+  "mode": "gen",
+  "seed": 4242,
+  "walks": 600,
+  "steps": 500,
+  "max_rel": 9,
+  "total": 13,
+  "shape": [
+   6,
+   7
+  ],
+  "defect": 4,
+  "no_unit_row": true,
+  "want": 4,
+  "cap": 2000000,
+  "target": "YYXyx,YXYXXyxx",
+  "trial": 5,
+  "nodes": 8000,
+  "kstab": 0,
+  "headroom": 4,
+  "census_cap": 200000,
+  "out": "results/stable_ac/fable/s21_audit_gen.json"
+ },
+ "found": []
+}

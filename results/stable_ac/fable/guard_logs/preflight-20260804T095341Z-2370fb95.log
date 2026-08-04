@@ -1,0 +1,9 @@
+  FALSIFICATION: gamma_N=0 states n=0 planar=0 NONPLANAR=0 uncertified=0
+  gamma_N=1 parents n=11 planar=5 NONPLANAR=6 kuratowski={'K33': 6}
+  edges out of gamma_N=1 parents: 154  planar children=15  non-planar children=139
+    child|gamma1   n=    65 planar=    19 nonplanar=    46
+    child|gamma2   n=  3682 planar=    87 nonplanar=  3595
+    child|gamma3   n=   253 planar=     0 nonplanar=   253
+    parent|gamma1  n=    11 planar=     5 nonplanar=     6
+    parent|gamma2  n=   190 planar=    29 nonplanar=   161
+wrote /home/user/ACSolverX/results/stable_ac/fable/s20_s17_pre.json

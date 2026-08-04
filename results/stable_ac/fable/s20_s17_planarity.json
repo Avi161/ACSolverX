@@ -1,0 +1,207 @@
+{
+ "record": "s20_s17_planarity",
+ "edges_file": "s17_transition_edges.jsonl.gz",
+ "gamma0_states": {
+  "n": 945,
+  "planar": 945,
+  "nonplanar": 0,
+  "uncertified": 0,
+  "violations": []
+ },
+ "gamma1_parents": {
+  "n": 1956,
+  "planar": 1626,
+  "nonplanar": 330,
+  "uncertified": 0,
+  "kuratowski": {
+   "K33": 330
+  },
+  "planar_examples": [
+   [
+    "BHY",
+    "gxx",
+    "axy",
+    "xAb",
+    "cXy",
+    "dxy",
+    "edC",
+    "fHY",
+    "gfE",
+    "hAb"
+   ],
+   [
+    "BHi",
+    "gxx",
+    "axy",
+    "xAb",
+    "cXy",
+    "YXD",
+    "edC",
+    "fHi",
+    "gfE",
+    "hAb",
+    "iXD"
+   ],
+   [
+    "BXH",
+    "gxx",
+    "axy",
+    "bxA",
+    "cXh",
+    "ydx",
+    "edC",
+    "fXY",
+    "gfE",
+    "hdx"
+   ],
+   [
+    "BXI",
+    "gxx",
+    "ahy",
+    "xAb",
+    "cXi",
+    "dhy",
+    "edC",
+    "yxF",
+    "gfE",
+    "hAb",
+    "ixF"
+   ],
+   [
+    "BXY",
+    "gxx",
+    "ahy",
+    "iAb",
+    "cIy",
+    "dhy",
+    "edC",
+    "xFy",
+    "gfE",
+    "hAb",
+    "iFy"
+   ],
+   [
+    "BXY",
+    "gxx",
+    "ahy",
+    "xAb",
+    "cXy",
+    "dhy",
+    "edC",
+    "fXY",
+    "gfE",
+    "hAb"
+   ],
+   [
+    "BXY",
+    "gxx",
+    "axh",
+    "bxA",
+    "cXh",
+    "ydx",
+    "edC",
+    "fXY",
+    "gfE",
+    "hdx"
+   ],
+   [
+    "BXY",
+    "gxx",
+    "axy",
+    "bxA",
+    "cXy",
+    "dxy",
+    "edC",
+    "fXY",
+    "gfE"
+   ],
+   [
+    "BXi",
+    "gHH",
+    "axy",
+    "XBa",
+    "cXI",
+    "dxy",
+    "edC",
+    "Yfh",
+    "gfE",
+    "hBa",
+    "ifh"
+   ],
+   [
+    "BYC",
+    "xAg",
+    "ayx",
+    "bHH",
+    "cHY",
+    "dYX",
+    "eYX",
+    "fxe",
+    "gfD",
+    "hAg"
+   ]
+  ]
+ },
+ "gamma1_edges": {
+  "edges": 56388,
+  "children": {
+   "planar": 26761,
+   "nonplanar": 29627,
+   "unknown": 0
+  },
+  "table": {
+   "parentP->childN|gc2": 12161,
+   "parentN->childN|gc2": 5586,
+   "parentN->childN|gc1": 5015,
+   "parentN->childP|gc1": 153,
+   "parentP->childP|gc1": 18922,
+   "parentP->childN|gc1": 6731,
+   "parentP->childP|gc2": 7613,
+   "parentP->childN|gc3": 80,
+   "parentN->childP|gc2": 73,
+   "parentN->childN|gc3": 54
+  }
+ },
+ "global": {
+  "parent|gamma0": {
+   "n": 186,
+   "planar": 186,
+   "nonplanar": 0
+  },
+  "parent|gamma1": {
+   "n": 1958,
+   "planar": 1627,
+   "nonplanar": 331
+  },
+  "parent|gamma2": {
+   "n": 4222,
+   "planar": 988,
+   "nonplanar": 3234
+  },
+  "parent|gamma3": {
+   "n": 81,
+   "planar": 0,
+   "nonplanar": 81
+  },
+  "child|gamma0": {
+   "n": 916,
+   "planar": 916,
+   "nonplanar": 0
+  },
+  "child|gamma1": {
+   "n": 33321,
+   "planar": 20902,
+   "nonplanar": 12419
+  },
+  "child|gamma2": {
+   "n": 129198,
+   "planar": 18678,
+   "nonplanar": 110520
+  },
+  "child|gamma3": {
+   "n": 10743,
+   "planar": 20,
+   "nonplanar": 10723
+  }
+ }
+}
