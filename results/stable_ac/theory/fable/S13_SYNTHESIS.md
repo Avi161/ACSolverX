@@ -90,15 +90,19 @@ So the extra nine generators bought a much cheaper question and *no better answe
   built and processed identically in the same length band, the control reproducing S6's
   numbers to sampling noise so the shift is attributable to the restriction alone:
 
-  | corpus | AC2 destroys (of thickenable bases) | AC2 **creates** (of non-thickenable bases) | bare AC3 destroys | bare AC3 creates |
+  | corpus | AC2 destroys / thickenable base | AC2 **creates** / non-thickenable base | bare AC3 destroys | AC3 cancelling |
   |---|---|---|---|---|
-  | **trivial group** | 8/59 = **13.6 %** | 34/177 = **19.2 %** | 4/76 = 5.3 % | 0/422 |
-  | unrestricted (control) | 116/245 = 47.3 % | 17/353 = 4.8 % | 72/331 = 21.8 % | 0/651 |
+  | **trivial group** | 28/133 = **21.1 %** | 58/313 = **18.5 %** | 9/156 = **5.8 %** | 0/1,432 |
+  | unrestricted (control) | 236/481 = 49.1 % | 30/568 = 5.3 % | 175/789 = 22.2 % | 0/1,432 |
+  | S6 as published | 51.5 % | 7.0 % | 24.0 % | 0/3,413 |
 
-  So on the presentations that actually matter, **an AC2 slide creates the Lackenby
-  certificate about one time in five** — four times S6's headline figure — while destroying
-  it only half as often as it creates it. AC3 with cancellation: 0 flips either way in both
-  corpora. AC1, rotation, AC4/AC5 and T4′ slides: 0 flips in 2,236 + 4,472 + 1,118 + 3,332.
+  The control reproduces S6's published rates, so the shift is the restriction and not the
+  instrument, and it survives length stratification (checked per total length 7–10). On the
+  presentations that actually matter, **an AC2 slide creates the Lackenby certificate 18.5 %
+  of the time** — 3.5× S6's headline — and because non-thickenable bases are the common
+  case, AC2 is **net-positive in absolute terms** (58 creates against 28 destroys). AC3's
+  alarming "24 % destroys" is 5.8 % where it matters. AC1, rotation, AC4/AC5 and T4′ slides:
+  0 flips in 2,236 + 4,472 + 1,118 + 3,332.
   **This is the strongest single reason to believe the certificate hunt is a viable method
   rather than a long shot**, and it is the one number in the session that moved decisively
   in the favourable direction under audit.
@@ -128,6 +132,39 @@ So the extra nine generators bought a much cheaper question and *no better answe
   124 present the trivial group. The instrument's positive ladder is 54/55 with **zero false
   negatives and no length degradation**, which is exactly why this null is informative where
   a sampler's would not be.
+
+### 3z. The largest exhaustively decided region of AK(3)'s stable class
+
+45,264 states at ranks 12–13, reached from AK(3) by chord refinements and SPLITs and
+persisted with the full move chain back to their root; **45,111 decided exactly** by a numba
+kernel that enumerates the whole compatible rotation family (no sampling), validated against
+the audited oracle on 44 states with exact agreement:
+
+| γ_N | defect | count | share |
+|---|---|---|---|
+| **0 — thickenable** | 0 | **0** | **0.000 %** |
+| 1 | 2 | 527 | 1.17 % |
+| 2 | 4 | 40,100 | 88.89 % |
+| 3 | 6 | 4,484 | 9.94 % |
+
+Every row is a certificate, not a bound. **Limits, which matter:** this is one search's
+frontier from 47 roots — a vanishing fraction of the class; dedup is on canonical cyclic
+words, *not* up to generator relabelling, so 45,264 upper-bounds the distinct complexes; and
+there is **no positive control** — no γ_N = 0 state at rank 12–13 is known to exist anywhere,
+so the hunt's detection rate is unmeasured. The verdicts are exact; the *null about the
+class* is not calibrated.
+
+**T-S17 — and it cuts against the cubic route's own premise.** Proximity to cubic form is
+**anti-correlated** with low defect:
+
+| Σ\|δ\| from cubic | decided | γ_N = 1 | γ_N = 2 | γ_N = 3 |
+|---|---|---|---|---|
+| 2 (one SPLIT away) | 1,232 | **0** | 1,028 | 204 |
+| 4 (two SPLITs away) | 43,879 | **527** | 39,072 | 4,280 |
+
+The states *closest* to cubic form contain **no** γ_N = 1 members at all. The normal-form
+target and the thickenability target point in opposite directions in this region, so
+"drive toward cubic form" is not a good proxy for "drive toward a certificate".
 
 ### 3a. The one concretely actionable find: six γ_N = 1 gateways
 
