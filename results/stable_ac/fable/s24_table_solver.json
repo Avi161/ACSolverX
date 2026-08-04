@@ -1,0 +1,49 @@
+{
+ "record": "s24_table",
+ "inputs": [
+  "results/stable_ac/fable/s24_ak3.jsonl",
+  "results/stable_ac/fable/s24_control0.jsonl"
+ ],
+ "families": {
+  "ak3": {
+   "trials": 2,
+   "hits_raw": 0,
+   "hits_inband_total": 0,
+   "hits_inband_minrel": 0,
+   "hits_no_escape": 0,
+   "pops": 800,
+   "decided": 4,
+   "undecided": 25,
+   "planar_rejects": 934,
+   "planar_pass": 29,
+   "generated": 961,
+   "restarts": 17,
+   "solver_calls": 6,
+   "decided_by_solver": 3,
+   "undecided_solver_budget": 22,
+   "trials_reached_budget": 2,
+   "distinct_states": 2,
+   "hit_rows": []
+  },
+  "control0": {
+   "trials": 1,
+   "hits_raw": 0,
+   "hits_inband_total": 0,
+   "hits_inband_minrel": 0,
+   "hits_no_escape": 0,
+   "pops": 400,
+   "decided": 3,
+   "undecided": 52,
+   "planar_rejects": 660,
+   "planar_pass": 55,
+   "generated": 714,
+   "restarts": 0,
+   "solver_calls": 3,
+   "decided_by_solver": 3,
+   "undecided_solver_budget": 52,
+   "trials_reached_budget": 1,
+   "distinct_states": 1,
+   "hit_rows": []
+  }
+ }
+}

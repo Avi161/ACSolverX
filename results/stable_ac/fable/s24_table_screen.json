@@ -1,0 +1,70 @@
+{
+ "record": "s24_table",
+ "inputs": [
+  "results/stable_ac/fable/s24_screen_ak3.jsonl",
+  "results/stable_ac/fable/s24_screen_control0.jsonl",
+  "results/stable_ac/fable/s24_screen_control2.jsonl"
+ ],
+ "families": {
+  "ak3": {
+   "trials": 20,
+   "hits_raw": 0,
+   "hits_inband_total": 0,
+   "hits_inband_minrel": 0,
+   "hits_no_escape": 0,
+   "pops": 8000,
+   "decided": 8,
+   "undecided": 498,
+   "planar_rejects": 10977,
+   "planar_pass": 506,
+   "generated": 11463,
+   "restarts": 25,
+   "solver_calls": 0,
+   "decided_by_solver": 0,
+   "undecided_solver_budget": 498,
+   "trials_reached_budget": 20,
+   "distinct_states": 20,
+   "hit_rows": []
+  },
+  "control0": {
+   "trials": 17,
+   "hits_raw": 0,
+   "hits_inband_total": 0,
+   "hits_inband_minrel": 0,
+   "hits_no_escape": 0,
+   "pops": 6800,
+   "decided": 31,
+   "undecided": 1354,
+   "planar_rejects": 8722,
+   "planar_pass": 1385,
+   "generated": 10090,
+   "restarts": 22,
+   "solver_calls": 0,
+   "decided_by_solver": 0,
+   "undecided_solver_budget": 1354,
+   "trials_reached_budget": 17,
+   "distinct_states": 17,
+   "hit_rows": []
+  },
+  "control2": {
+   "trials": 20,
+   "hits_raw": 0,
+   "hits_inband_total": 0,
+   "hits_inband_minrel": 0,
+   "hits_no_escape": 0,
+   "pops": 8000,
+   "decided": 6,
+   "undecided": 560,
+   "planar_rejects": 11014,
+   "planar_pass": 566,
+   "generated": 11560,
+   "restarts": 36,
+   "solver_calls": 0,
+   "decided_by_solver": 0,
+   "undecided_solver_budget": 560,
+   "trials_reached_budget": 20,
+   "distinct_states": 20,
+   "hit_rows": []
+  }
+ }
+}

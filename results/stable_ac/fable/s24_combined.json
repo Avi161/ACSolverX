@@ -1,0 +1,68 @@
+{
+ "record": "s24_combined",
+ "families": {
+  "ak3": {
+   "trials": 22,
+   "pops": 8800,
+   "generated": 12424,
+   "decided": 12,
+   "undecided": 523,
+   "planar_rejects": 11911,
+   "planar_pass": 535,
+   "restarts": 42,
+   "solver_calls": 6,
+   "decided_by_solver": 3,
+   "spherical": 0,
+   "budget_reached": 22,
+   "hits": 0,
+   "min_start_len": 36,
+   "max_start_len": 36,
+   "start_minrel": [
+    3
+   ],
+   "distinct_states": 22
+  },
+  "control0": {
+   "trials": 18,
+   "pops": 7200,
+   "generated": 10804,
+   "decided": 34,
+   "undecided": 1406,
+   "planar_rejects": 9382,
+   "planar_pass": 1440,
+   "restarts": 22,
+   "solver_calls": 3,
+   "decided_by_solver": 3,
+   "spherical": 0,
+   "budget_reached": 18,
+   "hits": 0,
+   "min_start_len": 36,
+   "max_start_len": 36,
+   "start_minrel": [
+    3
+   ],
+   "distinct_states": 18
+  },
+  "control2": {
+   "trials": 20,
+   "pops": 8000,
+   "generated": 11560,
+   "decided": 6,
+   "undecided": 560,
+   "planar_rejects": 11014,
+   "planar_pass": 566,
+   "restarts": 36,
+   "solver_calls": 0,
+   "decided_by_solver": 0,
+   "spherical": 0,
+   "budget_reached": 20,
+   "hits": 0,
+   "min_start_len": 36,
+   "max_start_len": 39,
+   "start_minrel": [
+    3
+   ],
+   "distinct_states": 20
+  }
+ }
+}

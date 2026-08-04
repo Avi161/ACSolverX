@@ -1,0 +1,23 @@
+{
+ "record": "s24_launch_planarity",
+ "families": {
+  "ak3": {
+   "sampled": 150,
+   "planar": 24,
+   "nonplanar": 126,
+   "nonplanar_certified": 126
+  },
+  "control0": {
+   "sampled": 150,
+   "planar": 111,
+   "nonplanar": 39,
+   "nonplanar_certified": 39
+  },
+  "control2": {
+   "sampled": 150,
+   "planar": 21,
+   "nonplanar": 129,
+   "nonplanar_certified": 129
+  }
+ }
+}

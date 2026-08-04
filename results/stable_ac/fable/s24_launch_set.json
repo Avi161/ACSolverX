@@ -1,0 +1,865 @@
+{
+ "record": "s24_launch_set",
+ "args": {
+  "cmd": "launch",
+  "verify": 12,
+  "seed": 20260804,
+  "func": "<function cmd_launch at 0x7fc1ddbd1580>"
+ },
+ "families": {
+  "ak3": {
+   "pool_file": "s4b_decided.jsonl.gz",
+   "rows_at_defect2": 527,
+   "distinct_states": 527,
+   "by_rank": {
+    "12": 527
+   },
+   "total_length_hist": {
+    "36": 527
+   },
+   "min_relator_length_hist": {
+    "3": 527
+   },
+   "verify_sample": 12,
+   "verify_agree": 12,
+   "verify_rows": [
+    {
+     "words": [
+      "FIH",
+      "xxG",
+      "aIH",
+      "xBa",
+      "ycy",
+      "dcJ",
+      "jdE",
+      "fJb",
+      "gEx",
+      "hBa",
+      "idE",
+      "jcy"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "cAY",
+      "hGf",
+      "aiX",
+      "bHy",
+      "Xbc",
+      "dIX",
+      "YEd",
+      "fJe",
+      "gyy",
+      "hbc",
+      "iEd",
+      "jGf"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "gAi",
+      "fbJ",
+      "aJx",
+      "yby",
+      "cxx",
+      "dHc",
+      "eIH",
+      "jDf",
+      "xEG",
+      "hEG",
+      "iDf",
+      "jby"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "XHd",
+      "FaG",
+      "ayJ",
+      "bXY",
+      "xbC",
+      "dyC",
+      "ehh",
+      "ifi",
+      "yEG",
+      "hEG",
+      "jbC",
+      "jfi"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "XcA",
+      "YJG",
+      "aXh",
+      "biJ",
+      "yCb",
+      "dXX",
+      "eHD",
+      "YFe",
+      "gIf",
+      "hFe",
+      "icA",
+      "jCb"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "YED",
+      "gCF",
+      "aYY",
+      "bhX",
+      "cij",
+      "xBd",
+      "ejH",
+      "fjx",
+      "iAG",
+      "hAG",
+      "iED",
+      "jBd"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "cAY",
+      "hGf",
+      "aiX",
+      "bHy",
+      "Xbc",
+      "dIX",
+      "YEd",
+      "fJe",
+      "gyy",
+      "jbc",
+      "iEd",
+      "jGf"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "XcA",
+      "iGi",
+      "aXY",
+      "bhj",
+      "cYB",
+      "dXX",
+      "eyD",
+      "YFe",
+      "gHf",
+      "hcA",
+      "jFe",
+      "jGi"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "XcA",
+      "ygy",
+      "aXh",
+      "biY",
+      "cJB",
+      "dXX",
+      "eHD",
+      "JFe",
+      "gIf",
+      "hFe",
+      "icA",
+      "jgy"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "xaC",
+      "JJG",
+      "aXh",
+      "yiB",
+      "cYB",
+      "dXX",
+      "eHD",
+      "YFe",
+      "gif",
+      "hFe",
+      "iaC",
+      "jiB"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "gAI",
+      "Yfb",
+      "aih",
+      "byy",
+      "cxx",
+      "dXc",
+      "ejH",
+      "jFd",
+      "xEG",
+      "hEG",
+      "iFd",
+      "jfb"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "FIH",
+      "xxG",
+      "aIH",
+      "xBa",
+      "ycy",
+      "dcY",
+      "jdE",
+      "fJb",
+      "gEx",
+      "hBa",
+      "idE",
+      "jcy"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    }
+   ]
+  },
+  "control0": {
+   "pool_file": "s4b_control_decided.jsonl.gz",
+   "rows_at_defect2": 23083,
+   "distinct_states": 23083,
+   "by_rank": {
+    "13": 248,
+    "12": 22835
+   },
+   "total_length_hist": {
+    "36": 22835,
+    "39": 248
+   },
+   "min_relator_length_hist": {
+    "3": 23083
+   },
+   "verify_sample": 12,
+   "verify_agree": 12,
+   "verify_rows": [
+    {
+     "words": [
+      "YCi",
+      "fjG",
+      "aHH",
+      "bJx",
+      "caY",
+      "dYi",
+      "XDe",
+      "XFb",
+      "ghE",
+      "hFb",
+      "iDe",
+      "jCi"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "IYC",
+      "fYG",
+      "aHH",
+      "bJi",
+      "caj",
+      "Yhd",
+      "eXD",
+      "xBf",
+      "XEg",
+      "hEg",
+      "iBf",
+      "jhd"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "YBD",
+      "GIY",
+      "aXY",
+      "bhj",
+      "chY",
+      "dXX",
+      "IeA",
+      "xcF",
+      "gFE",
+      "heA",
+      "icF",
+      "jBD"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "hBE",
+      "IGc",
+      "ajY",
+      "bjY",
+      "cyx",
+      "xad",
+      "eIY",
+      "fyx",
+      "gfd",
+      "hGc",
+      "iad",
+      "jBE"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "iAB",
+      "YEg",
+      "xAy",
+      "bJX",
+      "cHH",
+      "dYJ",
+      "eci",
+      "XFD",
+      "gFH",
+      "hFD",
+      "iEg",
+      "jAy"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "XCA",
+      "gfd",
+      "ahY",
+      "bii",
+      "ciJ",
+      "yHd",
+      "eYB",
+      "fxj",
+      "XEG",
+      "hEG",
+      "iCA",
+      "jHd"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "Ieb",
+      "XGc",
+      "aHY",
+      "biY",
+      "cyJ",
+      "XDA",
+      "eHY",
+      "fyJ",
+      "gfd",
+      "heb",
+      "iGc",
+      "jDA"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "hXC",
+      "XgF",
+      "aIY",
+      "bhX",
+      "JaC",
+      "YdB",
+      "ejj",
+      "fYI",
+      "ged",
+      "hdB",
+      "iaC",
+      "jgF"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "xdA",
+      "yfG",
+      "axh",
+      "XBX",
+      "cJy",
+      "dYI",
+      "ejH",
+      "fbc",
+      "gei",
+      "hfG",
+      "idA",
+      "jBX"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "YAB",
+      "YEg",
+      "ahi",
+      "bXX",
+      "xcx",
+      "dYh",
+      "eci",
+      "JFD",
+      "gFj",
+      "hFD",
+      "iEg",
+      "jcx"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "IAB",
+      "yGe",
+      "aHY",
+      "xBx",
+      "chh",
+      "dYJ",
+      "ecI",
+      "xdf",
+      "gFj",
+      "hdf",
+      "iGe",
+      "jBx"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "hIb",
+      "GFI",
+      "aXJ",
+      "YAB",
+      "cJY",
+      "xHd",
+      "eyx",
+      "jEF",
+      "gdC",
+      "hAB",
+      "iEF",
+      "jHd"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    }
+   ]
+  },
+  "control2": {
+   "pool_file": "s4b_ctrl2_decided.jsonl.gz",
+   "rows_at_defect2": 4986,
+   "distinct_states": 4986,
+   "by_rank": {
+    "12": 3920,
+    "13": 1066
+   },
+   "total_length_hist": {
+    "36": 3920,
+    "39": 1066
+   },
+   "min_relator_length_hist": {
+    "3": 4986
+   },
+   "verify_sample": 12,
+   "verify_agree": 12,
+   "verify_rows": [
+    {
+     "words": [
+      "yfG",
+      "cBi",
+      "aJX",
+      "hhb",
+      "cXX",
+      "dXA",
+      "yde",
+      "fIe",
+      "gyx",
+      "jfG",
+      "ide",
+      "jhb"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "YBC",
+      "XeG",
+      "aJh",
+      "bKi",
+      "cJY",
+      "YdA",
+      "ehh",
+      "XFI",
+      "gfd",
+      "hBC",
+      "idA",
+      "jeG",
+      "kFI"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "ifG",
+      "cBy",
+      "aHX",
+      "bhh",
+      "XXc",
+      "djA",
+      "yde",
+      "fYe",
+      "giJ",
+      "hfG",
+      "ide",
+      "jXc"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "xAC",
+      "GFx",
+      "ayj",
+      "byJ",
+      "cYh",
+      "dHy",
+      "IDE",
+      "xfb",
+      "gEy",
+      "hfb",
+      "iAC",
+      "jDE"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "ydg",
+      "xhC",
+      "aji",
+      "bYY",
+      "cbj",
+      "dYa",
+      "eXH",
+      "ife",
+      "gfX",
+      "hfe",
+      "idg",
+      "jhC"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "xAC",
+      "GFx",
+      "ayh",
+      "yHb",
+      "cYi",
+      "dIj",
+      "XDE",
+      "fbx",
+      "gEj",
+      "hDE",
+      "iAC",
+      "jHb"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "ycb",
+      "xgE",
+      "axh",
+      "bxh",
+      "ckI",
+      "YdA",
+      "eYY",
+      "jIf",
+      "gfd",
+      "hdA",
+      "icb",
+      "kgE",
+      "kIf"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "Diy",
+      "ygE",
+      "aXJ",
+      "byh",
+      "cIy",
+      "XaD",
+      "ehh",
+      "xfc",
+      "gFB",
+      "haD",
+      "ifc",
+      "jgE"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "ycb",
+      "xgE",
+      "axh",
+      "bxh",
+      "cjI",
+      "YdA",
+      "eYY",
+      "fjI",
+      "GDF",
+      "hdA",
+      "icb",
+      "jKE",
+      "kDF"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "aHB",
+      "JfG",
+      "aYx",
+      "YBY",
+      "cYI",
+      "xCd",
+      "eJH",
+      "fDe",
+      "gXi",
+      "hCd",
+      "ifG",
+      "jBY"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "ycb",
+      "xgE",
+      "ajY",
+      "bxI",
+      "cxH",
+      "iaD",
+      "eYY",
+      "fxH",
+      "gfd",
+      "haD",
+      "icb",
+      "jgE"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    },
+    {
+     "words": [
+      "dyh",
+      "GEF",
+      "aIX",
+      "bxi",
+      "cyh",
+      "YBd",
+      "XEC",
+      "yFA",
+      "gJJ",
+      "hEC",
+      "iBd",
+      "jFA"
+     ],
+     "persisted_defect": 2,
+     "recomputed_defect": 2,
+     "recomputed_gamma_N": 1,
+     "method": "exact_census",
+     "verdict": "NOT_SPHERICAL",
+     "agree": true
+    }
+   ]
+  }
+ },
+ "elapsed_s": 19.2
+}
