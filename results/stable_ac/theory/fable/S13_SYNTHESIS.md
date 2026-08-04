@@ -331,12 +331,12 @@ runs and 8 length-matched AC-trivial control runs each:
 | `aca_121` | 16 | 0/8 = 0.00 | 0/8 | **uninformative** |
 | `aca_17` | 17 | 4/8 = 0.50 | 0/8 | weakly informative |
 | `aca_30` | 17 | 4/8 = 0.50 | 0/8 | weakly informative |
-| `aca_122` | 18 | *(pending)* | | |
+| `aca_122` | 18 | 0/8 = 0.00 | 0/8 | **uninformative** |
 
-**Read it row by row, never pooled.** Three of the five carry control rates of 0.00 or 0.50,
+**Read it row by row, never pooled.** Five of the six carry control rates of 0.00 or 0.50,
 so their identical `0/8` targets are worth little or nothing — the instrument prints that
-warning itself. And with only 8 control runs per row, `8/8` versus `0/8` versus `4/8` is not
-a clean length trend; it is four noisy estimates. Only `aca_117` supports a confident null,
+warning itself. And with only 8 control runs per row, `8/8` / `0/8` / `0/8` / `4/8` / `4/8` /
+`0/8` is not a clean length trend; it is six noisy estimates. Only `aca_117` supports a confident null,
 and it supports exactly one: at 1,000 nodes and depth 0, a search that finds a certificate on
 every one of eight length-matched AC-trivial controls finds none on the gateway closest to
 Lackenby's hypothesis.
