@@ -1,74 +1,74 @@
 {
  "words": [
-  "bhh",
-  "xFg",
-  "ajH",
-  "bAj",
-  "cYI",
-  "dIY",
-  "XDe",
-  "fxe",
-  "ycG",
-  "hDe",
-  "iFg",
-  "jcG"
+  "Ica",
+  "XEG",
+  "aJX",
+  "bIy",
+  "cHJ",
+  "dHJ",
+  "XeD",
+  "fHb",
+  "yfG",
+  "hca",
+  "ieD",
+  "jfG"
  ],
  "sum_delta": 4,
  "rank": 12,
  "census": 9216,
- "provenance": "control0|src0|root14|d3",
+ "provenance": "control0|src0|root30|d3",
  "root": [
-  "bXX",
-  "GfX",
-  "ayx",
-  "bAy",
-  "cYX",
+  "CXA",
+  "XEG",
+  "aYX",
+  "bxy",
+  "cXY",
   "dXY",
-  "eXD",
-  "fxe",
-  "gCY"
+  "eDX",
+  "fXb",
+  "gFY"
  ],
  "trace": [
   {
-   "relator": 6,
-   "invert": false,
+   "relator": 0,
+   "invert": true,
    "rot": 1,
-   "lam": "X",
-   "u": "D",
-   "v": "e",
+   "lam": "x",
+   "u": "c",
+   "v": "a",
    "t": "h",
    "k": 3,
    "positions": [
     [
-     0,
+     4,
      1
     ],
     [
-     0,
-     2
+     5,
+     1
     ],
     [
-     2,
-     2
+     7,
+     1
     ]
    ]
   },
   {
-   "relator": 1,
-   "invert": true,
-   "rot": 0,
-   "lam": "x",
-   "u": "F",
-   "v": "g",
+   "relator": 6,
+   "invert": false,
+   "rot": 2,
+   "lam": "X",
+   "u": "e",
+   "v": "D",
    "t": "i",
    "k": 2,
    "positions": [
     [
-     4,
-     2
+     0,
+     0
     ],
     [
-     5,
+     3,
      1
     ]
    ]
@@ -78,17 +78,21 @@
    "invert": true,
    "rot": 0,
    "lam": "y",
-   "u": "c",
+   "u": "f",
    "v": "G",
    "t": "j",
-   "k": 2,
+   "k": 3,
    "positions": [
     [
      2,
      1
     ],
     [
-     3,
+     4,
+     2
+    ],
+    [
+     5,
      2
     ]
    ]

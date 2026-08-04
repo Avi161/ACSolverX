@@ -62,7 +62,16 @@ This is what `S4` §0 item 6 left open ("**No cubic form of AK(3) is reported**"
    The pool is persisted with full replayable chains. **And proximity to cubic form turns out
    to be anti-correlated with low defect**: 0/1,232 of the states one `SPLIT` from cubic are
    at `γ_N = 1`, against 527/43,879 two SPLITs away (T-S17).
-5. **Two cost-model corrections** (§5): a cubic triangular presentation at rank `N` has
+5. **THE NULL IS NOW CALIBRATED, and it survives** (§4.6–4.8). Running the *identical*
+   pipeline on a rank-2 source that is AC-trivial **and thickenable** produced **759
+   `γ_N = 0` states in 50,320** (1.51 %) in the same rank-12/13 region — one of them verified
+   six ways, including `witness_check_n`, Todd–Coxeter and a full chain replay back to the
+   rank-2 source. So the region **does** contain certificates and this instrument **does**
+   find them. Under the control's rate, AK(3)'s 45,111 states should have contained ≈ **681**
+   thickenable members; **0** were found. AK(3)'s null is informative, not an artefact.
+   Per-step tracing shows why: chord refinement holds `γ_N` **exactly constant** (a live
+   check on Theorem S3), and it is the `SPLIT`s that destroy it.
+6. **Two cost-model corrections** (§5): a cubic triangular presentation at rank `N` has
    census exactly `2^N`, so S4 §7.2's "16 cases" does not transfer (AK(3)'s cubic forms have
    census `2^13 = 8,192`, and the advantage over AK(3)'s own 86,400 inverts at rank 17); and
    the 64.29 % thickenable fraction of S4 §4 is a base rate over tiny rank-4 AC-trivial
@@ -331,8 +340,8 @@ triangulations, §2), and that was not controlled for.
   at rank `N` has census `2^N ≥ 2^10`, above the in-search cap. Every `γ_N` number here comes
   from the post-hoc deep scan;
 * the ladder shows the scan *can* see low defects (51 states at defect 2), so the instrument
-  works — but it has no positive control for defect **0** anywhere in this file, so the
-  detection rate for a `γ_N = 0` state is **unmeasured**
+  works — and the detection rate for a `γ_N = 0` state is **now measured**: 1.51 % on a
+  matched thickenable control (§4.6), which is what makes §4.5's null readable
   (`experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md`).
 
 That gap is now closed — see §4.5, where the pool is persisted and **exhaustively**
@@ -388,12 +397,110 @@ census, provenance and the **full `SPLIT` trace back to its root**), and then de
 4. **What it does not settle**: the pool is the near-cubic frontier of *one* 430-second
    search from 47 roots — a vanishing fraction of the stable class — and the dedup is on the
    multiset of canonical cyclic words, **not** up to generator relabelling, so 45,264 is an
-   upper bound on the number of genuinely distinct complexes. And there is still no positive
-   control: no `γ_N = 0` state at rank 12–13 is known to exist anywhere, so the *detection
-   rate* of this hunt for such a state remains unmeasured. The null is exact per state and
-   uncalibrated as a claim about the class.
+   upper bound on the number of genuinely distinct complexes. **The missing positive control
+   is supplied in §4.6** — 759 `γ_N = 0` states at rank 12–13 from a matched thickenable
+   source — so the null below is exact per state *and* calibrated as a claim about the
+   region, though still bounded by the pool's coverage of the class.
 
 ---
+
+### 4.6 THE POSITIVE CONTROL — the region does contain certificates, and the instrument finds them
+
+§4.5's null was uncalibrated: with no `γ_N = 0` state known to exist anywhere at rank 12–13,
+"AK(3) has none" and "the region has none, for anybody" were indistinguishable. That is a
+**reachability** question, not a search-sensitivity one, and it is settled by construction.
+
+**Design.** Identical pipeline, identical kernel, identical budgets — only the rank-2 defect
+of the source changes. Sources are AC-trivial rank-2 presentations of total length 13 with
+both relators ≥ 4 and **`γ_N = 0` at rank 2**, so their rank-9 chord triangulations are
+thickenable *by construction* (`S3_AUDIT` Lemma S3′: chord refinement preserves the whole
+defect histogram). Matched to AK(3) on rank, length, root rank and `Σ|δ| = 14`.
+
+> ### The control fires: **759 `γ_N = 0` states in 50,320**
+>
+> Source `("XYXXY","XXYXYXXY")` (`γ_N = 0` at rank 2), 33 roots, all 50,320 pooled states
+> decided exactly:
+>
+> | `γ_N` | defect | count | share |
+> |---|---|---|---|
+> | **0 (thickenable)** | 0 | **759** | **1.51 %** |
+> | 1 | 2 | 23,083 | 45.87 % |
+> | 2 | 4 | 26,439 | 52.54 % |
+> | 3 | 6 | 39 | 0.08 % |
+>
+> by distance to cubic: `Σ|δ| = 2` → **103/6,300 = 1.63 %**; `Σ|δ| = 4` → **656/44,020 = 1.49 %**.
+
+**One control hit, verified six ways** (the protocol reserved for an AK(3) hit, run here to
+validate the instrument):
+
+```
+source ("XYXXY","XXYXYXXY")   rank 2, gamma_N = 0, AC-trivial
+  --7 chord refinements-->    root (XYC,fYG,axx,byx,caY,dYX,eXD,fxB,gXE)   rank 9
+  --3 SPLITs-->               (IjC,YGf,aii,xby,caj,dYH,xEd,fhB,gXE,hEd,iby,jGf)   rank 12
+```
+1. structural: triangular, non-degenerate, balanced, multiplicities `{2,3,4}`;
+2. **oracle** `gamma_N_factorial_n`: defect **0**, genus **0**, census 9,216, 2 accepting orders;
+3. fast numba kernel agrees exactly;
+4. **Todd–Coxeter**: trivial group, index 1;
+5. **`witness_check_n`** on the accepting rotation: `defect 0, genus 0, compatible True`;
+6. **chain replays**: `verify_chain` from the root passes, and the root **un-merges in
+   exactly 7 steps** to `("xxyxy","XYXXYXYX")` = the source up to rotation and inversion.
+
+### 4.7 What the calibration does to AK(3)'s null
+
+| | states decided exactly | `γ_N = 0` | rate |
+|---|---|---|---|
+| **control** (thickenable rank-2 source) | 50,320 | **759** | **1.51 %** |
+| **AK(3)** | 45,111 | **0** | **0.00 %** |
+
+Under the control's rate one would expect ≈ **681** thickenable states among AK(3)'s 45,111.
+**Zero were found.** So:
+
+* the rank-12/13 near-cubic region is **not** structurally `γ_N ≥ 1` — it contains
+  certificates in quantity, and this pipeline reaches them and this kernel decides them;
+* therefore **AK(3)'s 0/45,111 is a genuinely informative null**, not an instrument artefact
+  and not a statement about the region;
+* it is the first calibrated negative this line has produced about AK(3)'s stable class at
+  high rank.
+
+**Four caveats, all binding.**
+1. **The control is ONE source.** The 300 s search budget was consumed by source 0 (33 roots
+   × 9 s), so sources 1–5 were never searched — `by_source` in the summary has a single key.
+   The 1.51 % is that source's descendant rate, not a cross-source constant, and it must not
+   be treated as a universal prior.
+2. **No p-value.** Both pools are move-tree frontiers, not independent draws
+   (`contrast-length-confound.md`).
+3. The two pools come from different searches (seeds 2026 / 5150) and differ slightly in
+   size and `(rank, Σ|δ|)` mix; the comparison is like-for-like in construction, not
+   randomised.
+4. **T-S17 does not reproduce in the control** and must be narrowed. AK(3)'s `Σ|δ| = 2`
+   states were 0/1,232 at `γ_N = 1` against 527/43,879 further out; the control's rates are
+   essentially flat and if anything favour *closer* to cubic (1.63 % vs 1.49 %). So the
+   anti-correlation is an **AK(3)-specific** observation, not a property of the region. T-S17
+   is rewritten accordingly in §7.
+
+### 4.8 The mechanism, traced step by step
+
+`chaintrace` records `γ_N` at the rank-2 base, after **every** chord refinement, and after
+every `SPLIT`:
+
+| base | `γ_N` across the 8 chord refinements | then per SPLIT |
+|---|---|---|
+| AK(3) | `4,4,4,4,4,4,4,4` — **constant** | `4, 4, 4, 4` |
+| thickenable control 0 | `0,0,0,0,0,0,0,0` — **constant** | `2, 2, 4, 4` |
+| thickenable control 1 | `0,0,0,0,0,0,0,0` — **constant** | `2, 2, 4, 4` |
+
+(defects, i.e. `2·γ_N`; chord-defect constancy 3/3 chains.)
+
+Two things at once. **(a) A live check on Theorem S3 / `S3_AUDIT` Lemma S3′**: the defect is
+constant across every chord refinement, on every chain, exactly as the lemma predicts —
+independent confirmation on a fresh corpus. **(b) The destruction is entirely the `SPLIT`s'
+doing**: the greedy cost-guided chain from a thickenable base loses `γ_N = 0` at the *first*
+`SPLIT` and never recovers, consistent with the 67 % destruction rate of §3.2. That the
+broader beam search nonetheless retains 759 thickenable states shows destruction is the
+*typical* behaviour of `SPLIT`, not the inevitable one — which is precisely why a
+cost-greedy search is the wrong instrument for a certificate hunt, and why S6's advice to
+propose creator-moves rather than `SPLIT` is the right next step.
 
 ## 5. Two corrections to the route's cost model
 
@@ -448,7 +555,9 @@ the route's prior, and the flip census is the first direct measurement of it.
 | **Q-red for AK(3)** (cubic form, all relators cyclically reduced) | **ANSWERED YES** — two explicit rank-13 witnesses, verified four ways (§4.2). This closes S4 §0 item 6 and S4 §7.3's first branch **for AK(3)** |
 | Q-red in general (every balanced presentation of 1) | **still OPEN** — Lemma S4.6 / Observation S4.5 unproved; two witnesses are not a theorem |
 | can `SPLIT` lower `γ_N`? | **YES, measured** — `γ_N = 2 → 1` from AK(3)'s triangulation (§3.4). My own monotonicity conjecture is refuted |
-| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **OPEN, and now with a large exact null against it**: 45,111 near-cubic states decided exactly, **0 thickenable** (§4.5). Still no positive control, so the detection rate is unmeasured |
+| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **OPEN, with a large CALIBRATED exact null against it**: 45,111 states decided exactly, **0 thickenable**, against a matched control that yields 1.51 % (§4.6–4.7). Expected ≈ 681, observed 0 |
+| does the rank-12/13 region contain `γ_N = 0` states at all? | **YES — 759 exhibited** (§4.6). The AK(3) null is a fact about AK(3), not about the region |
+| which step destroys thickenability? | **the `SPLIT`s.** Chord refinement holds `γ_N` exactly constant on every traced chain (§4.8, live check on Thm S3) |
 | does driving toward cubic form drive toward thickenability? | **NO, measured**: `Σ|δ| = 2` states are 0/1,232 at `γ_N = 1`; `Σ|δ| = 4` states are 527/43,879 (§4.5, T-S17) |
 | is AK(3) harder than matched AC-trivial inputs for this search? | **NO** on the cubic-form axis (2/28 vs 0/35, §4.3), **YES** on the defect axis (0.8 % vs 25 % of tested near-cubic states reach defect 2) |
 | is the cubic regime cheap to decide at AK(3)'s scale? | partly — `2^13 = 8,192` at the minimum rank, inverting against AK(3)'s own 86,400 at rank 17 (§5.1) |
@@ -467,8 +576,9 @@ the route's prior, and the flip census is the first direct measurement of it.
    — but it is now a large, cheap, structured population instead of a lone point. Re-root the
    search at them and apply the moves `S6` classifies as *creators* (general AC2, spelling
    choice) rather than `SPLIT`, which §4.5 shows does not get there.
-3. **Build a positive control for a `γ_N = 0` state at rank ≈ 13** so §4.4's null acquires a
-   measured detection rate. Without it the null bounds nothing.
+3. **Done — §4.6.** The control yields 1.51 %. What remains is *breadth*: only one control
+   source was actually searched (§4.6 caveat 1), so run the remaining five to see how much
+   the rate varies across thickenable sources before treating 1.51 % as a reference.
 4. Q-red in general (Lemma S4.6) — now with two worked instances to generalise from.
 
 ## 7. Traps added to the line
@@ -485,10 +595,18 @@ the route's prior, and the flip census is the first direct measurement of it.
 * **T-S15.** *A move's flip census is a statement about the corpus's rank, not about the
   move* — §3.4. `SPLIT`: 0 creations in 1,470 rank-5 opportunities, and a demonstrated
   `γ_N` drop at rank 9.
-* **T-S17.** *Near-cubic is not near-thickenable.* Over 45,111 exactly decided states of
-  AK(3)'s stable class, the ones **closest** to cubic form (`Σ|δ| = 2`) had **zero** members
-  at `γ_N = 1`, while the ones further away (`Σ|δ| = 4`) had 527. Do not assume a normal-form
-  target and a thickenability target point the same way — here they point opposite ways.
+* **T-S17 (NARROWED by the control — do not quote the original form).** Over 45,111 exactly
+  decided states of **AK(3)**'s stable class, the ones closest to cubic (`Σ|δ| = 2`) had
+  **zero** members at `γ_N = 1` while those further out had 527. **This does NOT generalise**:
+  the matched thickenable control's rates are flat (`Σ|δ| = 2`: 1.63 %, `Σ|δ| = 4`: 1.49 %,
+  §4.6). So the anti-correlation is an observation about AK(3), not about the cubic regime.
+  The transferable half is the weaker statement: *a normal-form target and a thickenability
+  target need not point the same way — check, do not assume.*
+* **T-S18.** *A "the region may simply be empty" doubt is a reachability question and is
+  fixable by construction.* Do not report an exact-per-state null over a region until a
+  matched input with a **known** positive has been pushed through the same pipeline. Here it
+  took one extra run and converted 0/45,111 from uninterpretable into the line's first
+  calibrated high-rank negative.
 * **T-S16.** *A ranking beam cannot cross a plateau whose exit is cost-increasing.* S4's
   0/48 on AK(3) was an artefact of exactly that (T-S11's `Σ|δ| = 2` plateau); adding 30 %
   random beam fill turned it into 2/28. Before reading any search null on this line, check
@@ -528,8 +646,24 @@ python3 -m experiments.stable_ac.fable.guarded_run --timeout 540 -- \
       --decide-out results/stable_ac/fable/s4b_decided.jsonl.gz --decide-budget 470
 ```
 
+Positive control (§4.6) and the chain trace (§4.8):
+
+```bash
+python3 experiments/stable_ac/fable/cubic_split_search.py control --budget 300 \
+    --per-root 9 --roots-per-source 60 --ladder 6 --want-defect 0 --diversity 0.30 \
+    --pool-out results/stable_ac/fable/s4b_control_pool.jsonl.gz --seed 5150
+python3 experiments/stable_ac/fable/cubic_split_search.py decide --by-source \
+    --pool-in results/stable_ac/fable/s4b_control_pool.jsonl.gz \
+    --decide-out results/stable_ac/fable/s4b_control_decided.jsonl.gz
+python3 experiments/stable_ac/fable/cubic_split_search.py chaintrace --ladder 2 \
+    --split-steps 4 --deep-cap 400000
+```
+
 Artefacts: `results/stable_ac/fable/s4b_flips.jsonl`, `s4b_ak3.jsonl`, `s4b_ak3_run2.jsonl`,
 `s4b_ladder.jsonl`, **`s4b_pool.jsonl.gz`** (45,264 near-cubic states with full chains),
-**`s4b_decided.jsonl.gz`** + `s4b_decided_summary.json` (45,111 exact verdicts);
+**`s4b_decided.jsonl.gz`** + `s4b_decided_summary.json` (45,111 exact verdicts),
+**`s4b_control_pool.jsonl.gz`** (50,320 control states) and
+**`s4b_control_decided.jsonl.gz`** + `s4b_control_decided_summary.json` (50,320 exact
+verdicts, 759 thickenable), `s4b_control.jsonl`;
 guard ledger `results/stable_ac/fable/guard_ledger.jsonl`; child logs
 `results/stable_ac/fable/guard_logs/`.
