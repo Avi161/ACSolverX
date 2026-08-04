@@ -1,0 +1,421 @@
+pres_id,bin,beam_k,mu_in,best_mu,hits_stop,descended,best_rep,best_chain,chain_len,n_orbits_seen,stopped_reason,n_aut_canon,n_expanded,n_rungs,treat_cap,greedy_budget,greedy_solved,greedy_nodes,greedy_path,greedy_min_relator_length,b1k_greedy_solved,b1k_heur_solved,b1k_covgreedy_solved
+0,0,1,6,6,True,False,"[""X"", ""YYXyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,3,2,2,True,True,True
+496,0,1,16,16,False,False,"[""X"", ""YYYYYYYXyyyyyyx""]",[],0,4,closed,12,2,2,31,1000,True,3,2,2,True,True,True
+521,0,1,18,18,False,False,"[""X"", ""YYYYYYYYXyyyyyyyx""]",[],0,4,closed,14,3,3,33,1000,True,3,2,2,True,True,True
+323,0,1,10,10,True,False,"[""X"", ""YYYYXyyyx""]",[],0,1,stop_mu,1,0,0,25,1000,True,3,2,2,True,True,True
+228,0,1,14,8,True,True,"[""X"", ""YYYXyyx""]","[""yX""]",1,6,stop_mu,12,1,1,24,1000,True,3,2,2,True,True,True
+455,0,1,19,12,True,True,"[""X"", ""YYYYYXyyyyx""]","[""Xy""]",1,9,stop_mu,20,1,1,27,1000,True,3,2,2,True,True,True
+77,1,1,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yX""]",1,9,stop_mu,14,1,1,24,1000,True,7,6,2,True,True,True
+43,1,1,11,11,True,False,"[""YXXyx"", ""YYXyXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,9,8,2,True,True,True
+141,1,1,13,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""yx""]",1,8,stop_mu,11,1,1,24,1000,True,9,8,2,True,True,True
+48,1,1,12,12,True,False,"[""YXXyx"", ""YYXyXXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,17,11,2,True,True,True
+155,1,1,13,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""Xy""]",1,6,stop_mu,10,1,1,24,1000,True,17,11,2,True,True,True
+505,1,1,22,19,False,True,"[""YYXXyxx"", ""YYxxxxxyXXXX""]","[""XXyx""]",1,92,rungs_exhausted,275,32,32,28,1000,True,32,20,2,True,True,True
+247,2,1,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""XXy""]",1,8,stop_mu,15,1,1,24,1000,True,7,6,2,True,True,True
+217,2,1,14,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,13,1,1,24,1000,True,8,7,2,True,True,True
+201,2,1,13,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,9,stop_mu,12,1,1,24,1000,True,8,7,2,True,True,True
+288,2,1,15,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,12,1,1,24,1000,True,55,10,2,True,True,True
+367,2,1,16,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yx"", ""XXy"", ""yy""]",3,15,stop_mu,36,3,3,24,1000,True,7,6,2,True,True,True
+331,2,1,15,10,True,True,"[""YYXyX"", ""YXXyx""]","[""yy"", ""yx""]",2,17,stop_mu,26,2,2,24,1000,True,6,5,2,True,True,True
+203,3,1,12,12,True,False,"[""YXXYx"", ""YYYXyyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,55,10,2,True,True,True
+265,3,1,14,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,10,1,1,24,1000,True,55,10,2,True,True,True
+579,3,1,21,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,21,stop_mu,61,4,4,24,1000,True,8,7,2,True,True,True
+327,3,1,15,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""xy"", ""xy"", ""Xy"", ""yX"", ""yX"", ""xy""]",8,45,stop_mu,83,8,8,24,1000,True,17,11,2,True,True,True
+333,3,1,14,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""yX"", ""xy"", ""xy"", ""Xy"", ""yX"", ""yX"", ""xy""]",7,39,stop_mu,71,7,7,24,1000,True,17,11,2,True,True,True
+380,3,1,17,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""xy"", ""xy"", ""Xy"", ""yX"", ""yX"", ""xy""]",8,46,stop_mu,88,8,8,24,1000,True,17,11,2,True,True,True
+546,4,1,18,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""yy"", ""yx"", ""Xyx"", ""Xy""]",4,18,stop_mu,50,4,4,24,1000,True,8,7,2,True,True,True
+548,4,1,17,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xx"", ""yxY"", ""xx"", ""xy""]",4,24,stop_mu,42,4,4,24,1000,True,10,9,2,True,True,True
+533,4,1,16,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""xy"", ""xy"", ""Xy"", ""yX"", ""yX"", ""xy""]",8,45,stop_mu,85,8,8,24,1000,True,17,11,2,True,True,True
+589,4,1,20,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xxx"", ""yXy"", ""xy""]",3,17,stop_mu,31,3,3,24,1000,True,10,9,2,True,True,True
+580,4,1,21,19,False,True,"[""YYXXXXyx"", ""YYXyXYYXyXX""]","[""xx""]",1,15,closed,40,5,5,27,1000,True,543,55,2,True,True,True
+609,4,1,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxx"", ""yxY"", ""yy"", ""xy"", ""yX"", ""xy"", ""yX"", ""yX""]",8,40,stop_mu,87,8,8,24,1000,True,17,11,2,False,True,True
+538,5,1,17,15,False,True,"[""YXYXXYx"", ""YYYXXyyx""]","[""yy""]",1,24,closed,43,6,6,24,1000,False,1000,,14,False,True,True
+606,5,1,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""XXyxx"", ""yx"", ""xx""]",6,30,stop_mu,78,6,6,24,1000,True,9,8,2,False,True,True
+544,5,1,16,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""Xy"", ""xx"", ""yX"", ""xy"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx""]",18,84,stop_mu,158,18,18,24,1000,True,17,11,2,False,True,True
+549,5,1,18,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""Xy"", ""xx"", ""yX"", ""xy"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx""]",19,90,stop_mu,172,19,19,24,1000,True,17,11,2,False,True,True
+543,5,1,19,15,False,True,"[""YXyXYxx"", ""YYYYXXYx""]","[""xxxx""]",1,34,closed,104,12,12,24,1000,False,1000,,15,False,True,True
+565,5,1,18,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""yX""]",1,124,closed,230,26,26,28,1000,True,592,98,2,False,True,True
+602,6,1,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxx"", ""yxY"", ""yXy"", ""xy"", ""yX"", ""xy"", ""yX"", ""yX""]",8,41,stop_mu,83,8,8,24,1000,True,17,11,2,False,True,True
+632,6,1,25,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxx"", ""yXy"", ""xy"", ""yX"", ""xy"", ""yX"", ""yX""]",7,37,stop_mu,78,7,7,24,1000,True,17,11,2,False,True,True
+573,6,1,21,14,False,True,"[""YYXXyxx"", ""YYxYxyX""]","[""xxxxy"", ""xx""]",2,53,closed,115,16,16,24,1000,False,1000,,14,False,False,False
+586,6,1,21,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""xy"", ""yX""]",2,131,closed,247,27,27,28,1000,True,592,98,2,False,True,True
+581,6,1,21,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""xy"", ""yX""]",2,131,closed,247,27,27,28,1000,True,592,98,2,False,True,True
+575,6,1,18,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""yX""]",1,124,closed,230,26,26,28,1000,True,592,98,2,False,True,True
+568,7,1,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xx"", ""yxY"", ""yxY"", ""xx"", ""Xy"", ""xyy"", ""xxyX"", ""Xyx"", ""yx"", ""xy""]",10,42,stop_mu,73,10,10,24,1000,True,10,9,2,False,False,False
+578,7,1,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xx"", ""yxY"", ""yxY"", ""xx"", ""Xy"", ""xyy"", ""xxyX"", ""Xyx"", ""yx"", ""xy""]",10,42,stop_mu,73,10,10,24,1000,True,10,9,2,False,False,False
+583,7,1,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xx"", ""yxY"", ""yxY"", ""xx"", ""Xy"", ""xyy"", ""xxyX"", ""Xyx"", ""yx"", ""xy""]",10,42,stop_mu,73,10,10,24,1000,True,10,9,2,False,False,False
+628,7,1,24,21,False,True,"[""YYXXyxx"", ""YYxxxxxxyXXXXX""]","[""XXyx""]",1,87,closed,700,29,29,30,1000,True,435,48,2,False,True,True
+633,7,1,24,21,False,True,"[""YYXXyxx"", ""YYxxxxxxyXXXXX""]","[""XXyx""]",1,87,closed,700,29,29,30,1000,True,435,48,2,False,True,True
+596,7,1,20,18,False,True,"[""YXyXXyx"", ""YYYXXyyxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""yxy"", ""xyx""]",21,145,rungs_exhausted,276,32,32,27,1000,False,1000,,18,False,False,False
+605,8,1,20,18,False,True,"[""YXyXXyx"", ""YYYXXyyxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""yxy"", ""xyx""]",21,145,rungs_exhausted,276,32,32,27,1000,False,1000,,18,False,False,False
+610,8,1,20,18,False,True,"[""YXyXXyx"", ""YYYXXyyxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""yxy"", ""xyx""]",21,145,rungs_exhausted,276,32,32,27,1000,False,1000,,18,False,False,False
+625,8,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+622,8,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+624,8,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+623,8,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+634,9,1,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,44,closed,147,17,17,25,1000,False,1000,,16,False,False,True
+635,9,1,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,44,closed,147,17,17,25,1000,False,1000,,16,False,False,True
+637,9,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+639,9,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+638,9,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+636,9,1,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""xy"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""yx"", ""Xyx"", ""Xy"", ""xxy"", ""yX"", ""yX"", ""XXy"", ""xy"", ""yx"", ""xx"", ""Yxy"", ""Yxy"", ""xyx"", ""yxy"", ""Yxy"", ""Yxy""]",25,148,rungs_exhausted,275,32,32,29,1000,False,1000,,19,False,False,False
+0,0,2,6,6,True,False,"[""X"", ""YYXyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,3,2,2,True,True,True
+496,0,2,16,16,False,False,"[""X"", ""YYYYYYYXyyyyyyx""]",[],0,4,closed,18,3,2,31,1000,True,3,2,2,True,True,True
+521,0,2,18,18,False,False,"[""X"", ""YYYYYYYYXyyyyyyyx""]",[],0,4,closed,19,4,3,33,1000,True,3,2,2,True,True,True
+323,0,2,10,10,True,False,"[""X"", ""YYYYXyyyx""]",[],0,1,stop_mu,1,0,0,25,1000,True,3,2,2,True,True,True
+228,0,2,14,8,True,True,"[""X"", ""YYYXyyx""]","[""yX""]",1,6,stop_mu,12,1,1,24,1000,True,3,2,2,True,True,True
+455,0,2,19,12,True,True,"[""X"", ""YYYYYXyyyyx""]","[""Xy""]",1,9,stop_mu,20,1,1,27,1000,True,3,2,2,True,True,True
+77,1,2,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yX""]",1,9,stop_mu,14,1,1,24,1000,True,7,6,2,True,True,True
+43,1,2,11,11,True,False,"[""YXXyx"", ""YYXyXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,9,8,2,True,True,True
+141,1,2,13,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""yx""]",1,8,stop_mu,11,1,1,24,1000,True,9,8,2,True,True,True
+48,1,2,12,12,True,False,"[""YXXyx"", ""YYXyXXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,17,11,2,True,True,True
+155,1,2,13,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""Xy""]",1,6,stop_mu,10,1,1,24,1000,True,17,11,2,True,True,True
+505,1,2,22,6,True,True,"[""X"", ""YYXyx""]","[""XXyx"", ""xx"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""xx""]",8,66,stop_mu,167,15,8,24,1000,True,3,2,2,True,True,True
+247,2,2,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""XXy""]",1,8,stop_mu,15,1,1,24,1000,True,7,6,2,True,True,True
+217,2,2,14,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,13,1,1,24,1000,True,8,7,2,True,True,True
+201,2,2,13,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,9,stop_mu,12,1,1,24,1000,True,8,7,2,True,True,True
+288,2,2,15,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,12,1,1,24,1000,True,55,10,2,True,True,True
+367,2,2,16,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yx"", ""XXy"", ""yy""]",3,23,stop_mu,58,5,3,24,1000,True,7,6,2,True,True,True
+331,2,2,15,10,True,True,"[""YYXyX"", ""YXXyx""]","[""yy"", ""yx""]",2,20,stop_mu,42,3,2,24,1000,True,6,5,2,True,True,True
+203,3,2,12,12,True,False,"[""YXXYx"", ""YYYXyyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,55,10,2,True,True,True
+265,3,2,14,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,10,1,1,24,1000,True,55,10,2,True,True,True
+579,3,2,21,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,28,stop_mu,121,7,4,24,1000,True,8,7,2,True,True,True
+327,3,2,15,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,33,stop_mu,73,7,4,24,1000,True,10,9,2,True,True,True
+333,3,2,14,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""yX"", ""yX"", ""yX""]",3,23,stop_mu,47,5,3,24,1000,True,10,9,2,True,True,True
+380,3,2,17,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,32,stop_mu,71,7,4,24,1000,True,10,9,2,True,True,True
+546,4,2,18,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""yx"", ""XXyx"", ""yxxY"", ""Xy""]",4,26,stop_mu,92,7,4,24,1000,True,8,7,2,True,True,True
+548,4,2,17,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xy""]",3,26,stop_mu,51,5,3,24,1000,True,10,9,2,True,True,True
+533,4,2,16,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,31,stop_mu,66,7,4,24,1000,True,10,9,2,True,True,True
+589,4,2,20,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xxxy"", ""xy"", ""yx""]",3,27,stop_mu,59,5,3,24,1000,True,9,8,2,True,True,True
+580,4,2,21,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""XXyx"", ""xx"", ""xyX"", ""yx"", ""yX""]",6,48,stop_mu,121,11,6,24,1000,True,17,11,2,True,True,True
+609,4,2,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""XXXy"", ""XXXy"", ""xy"", ""yX"", ""yx"", ""yX""]",6,49,stop_mu,117,11,6,24,1000,True,17,11,2,False,True,True
+538,5,2,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xyy"", ""xy"", ""yX""]",3,30,stop_mu,58,5,3,24,1000,True,7,6,2,False,True,True
+606,5,2,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""XXyxx"", ""yx"", ""xx""]",6,42,stop_mu,135,11,6,24,1000,True,9,8,2,False,True,True
+544,5,2,16,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""yX"", ""yX"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""yx"", ""yx""]",9,75,stop_mu,140,17,9,24,1000,True,17,11,2,False,True,True
+549,5,2,18,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""yX"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""yx"", ""yx""]",10,86,stop_mu,170,19,10,24,1000,True,17,11,2,False,True,True
+543,5,2,19,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""yX"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""yx"", ""yx""]",10,84,stop_mu,163,19,10,24,1000,True,17,11,2,False,True,True
+565,5,2,18,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""yX""]",1,239,rungs_exhausted,524,63,32,28,1000,True,592,98,2,False,True,True
+602,6,2,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,46,stop_mu,95,9,5,24,1000,True,17,11,2,False,True,True
+632,6,2,25,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxx"", ""yXy"", ""xy"", ""yX"", ""yx"", ""yX""]",6,51,stop_mu,116,11,6,24,1000,True,17,11,2,False,True,True
+573,6,2,21,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xxxxy"", ""xx"", ""Xy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",8,56,stop_mu,107,15,8,24,1000,True,10,9,2,False,False,False
+586,6,2,21,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""xy"", ""yX""]",2,244,rungs_exhausted,545,63,32,28,1000,True,592,98,2,False,True,True
+581,6,2,21,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""xy"", ""yX""]",2,244,rungs_exhausted,545,63,32,28,1000,True,592,98,2,False,True,True
+575,6,2,18,17,False,True,"[""YXXyx"", ""YYYYYXyyyyxx""]","[""yX""]",1,239,rungs_exhausted,524,63,32,28,1000,True,592,98,2,False,True,True
+568,7,2,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xx"", ""yxY"", ""yxY"", ""XXy"", ""xx"", ""Xyx"", ""yx"", ""xy""]",8,54,stop_mu,101,15,8,24,1000,True,10,9,2,False,False,False
+578,7,2,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xx"", ""yxY"", ""yxY"", ""XXy"", ""xx"", ""Xyx"", ""yx"", ""xy""]",8,54,stop_mu,101,15,8,24,1000,True,10,9,2,False,False,False
+583,7,2,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xx"", ""yxY"", ""yxY"", ""XXy"", ""xx"", ""Xyx"", ""yx"", ""xy""]",8,54,stop_mu,101,15,8,24,1000,True,10,9,2,False,False,False
+628,7,2,24,21,False,True,"[""YYXXyxx"", ""YYxxxxxxyXXXXX""]","[""XXyx""]",1,151,rungs_exhausted,614,61,32,30,1000,True,435,48,2,False,True,True
+633,7,2,24,21,False,True,"[""YYXXyxx"", ""YYxxxxxxyXXXXX""]","[""XXyx""]",1,151,rungs_exhausted,614,61,32,30,1000,True,435,48,2,False,True,True
+596,7,2,20,19,False,True,"[""YXXyx"", ""YYYYYYXyyyyyxx""]","[""yX""]",1,219,rungs_exhausted,551,63,32,30,1000,False,1000,,19,False,False,False
+605,8,2,20,19,False,True,"[""YXXyx"", ""YYYYYYXyyyyyxx""]","[""yX""]",1,219,rungs_exhausted,551,63,32,30,1000,False,1000,,19,False,False,False
+610,8,2,20,19,False,True,"[""YXXyx"", ""YYYYYYXyyyyyxx""]","[""yX""]",1,219,rungs_exhausted,551,63,32,30,1000,False,1000,,19,False,False,False
+625,8,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+622,8,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+624,8,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+623,8,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+634,9,2,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,51,closed,144,19,11,25,1000,False,1000,,16,False,False,True
+635,9,2,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,51,closed,144,19,11,25,1000,False,1000,,16,False,False,True
+637,9,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+639,9,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+638,9,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+636,9,2,22,20,False,True,"[""YXyXXyx"", ""YYXYXXyyxxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""Xyx"", ""xy"", ""xx"", ""Xyx"", ""Xy"", ""yx"", ""Xyx"", ""yx"", ""Xy"", ""xy"", ""xyX"", ""xx"", ""xx"", ""xyx"", ""yxy"", ""Xy"", ""xy"", ""xyx""]",25,232,rungs_exhausted,553,63,32,29,1000,False,1000,,19,False,False,False
+0,0,4,6,6,True,False,"[""X"", ""YYXyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,3,2,2,True,True,True
+496,0,4,16,16,False,False,"[""X"", ""YYYYYYYXyyyyyyx""]",[],0,4,closed,28,4,2,31,1000,True,3,2,2,True,True,True
+521,0,4,18,18,False,False,"[""X"", ""YYYYYYYYXyyyyyyyx""]",[],0,4,closed,19,4,3,33,1000,True,3,2,2,True,True,True
+323,0,4,10,10,True,False,"[""X"", ""YYYYXyyyx""]",[],0,1,stop_mu,1,0,0,25,1000,True,3,2,2,True,True,True
+228,0,4,14,8,True,True,"[""X"", ""YYYXyyx""]","[""yX""]",1,6,stop_mu,12,1,1,24,1000,True,3,2,2,True,True,True
+455,0,4,19,12,True,True,"[""X"", ""YYYYYXyyyyx""]","[""Xy""]",1,9,stop_mu,20,1,1,27,1000,True,3,2,2,True,True,True
+77,1,4,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yX""]",1,9,stop_mu,14,1,1,24,1000,True,7,6,2,True,True,True
+43,1,4,11,11,True,False,"[""YXXyx"", ""YYXyXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,9,8,2,True,True,True
+141,1,4,13,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""yx""]",1,8,stop_mu,11,1,1,24,1000,True,9,8,2,True,True,True
+48,1,4,12,12,True,False,"[""YXXyx"", ""YYXyXXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,17,11,2,True,True,True
+155,1,4,13,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""Xy""]",1,6,stop_mu,10,1,1,24,1000,True,17,11,2,True,True,True
+505,1,4,22,6,True,True,"[""X"", ""YYXyx""]","[""XXyx"", ""xx"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""xx""]",8,116,stop_mu,336,29,8,24,1000,True,3,2,2,True,True,True
+247,2,4,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""XXy""]",1,8,stop_mu,15,1,1,24,1000,True,7,6,2,True,True,True
+217,2,4,14,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,13,1,1,24,1000,True,8,7,2,True,True,True
+201,2,4,13,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,9,stop_mu,12,1,1,24,1000,True,8,7,2,True,True,True
+288,2,4,15,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,12,1,1,24,1000,True,55,10,2,True,True,True
+367,2,4,16,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yx"", ""XXy"", ""yy""]",3,40,stop_mu,120,9,3,24,1000,True,7,6,2,True,True,True
+331,2,4,15,10,True,True,"[""YYXyX"", ""YXXyx""]","[""yy"", ""yx""]",2,26,stop_mu,68,5,2,24,1000,True,6,5,2,True,True,True
+203,3,4,12,12,True,False,"[""YXXYx"", ""YYYXyyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,55,10,2,True,True,True
+265,3,4,14,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,10,1,1,24,1000,True,55,10,2,True,True,True
+579,3,4,21,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,48,stop_mu,209,13,4,24,1000,True,8,7,2,True,True,True
+327,3,4,15,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,47,stop_mu,122,13,4,24,1000,True,10,9,2,True,True,True
+333,3,4,14,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""yX"", ""yX"", ""yX""]",3,36,stop_mu,93,9,3,24,1000,True,10,9,2,True,True,True
+380,3,4,17,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,50,stop_mu,137,13,4,24,1000,True,10,9,2,True,True,True
+546,4,4,18,6,True,True,"[""X"", ""YYXyx""]","[""xy"", ""xx"", ""Xy"", ""yX""]",4,41,stop_mu,185,13,4,24,1000,True,3,2,2,True,True,True
+548,4,4,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xxy"", ""xy"", ""yX""]",3,41,stop_mu,98,9,3,24,1000,True,7,6,2,True,True,True
+533,4,4,16,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,54,stop_mu,133,13,4,24,1000,True,10,9,2,True,True,True
+589,4,4,20,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xxxy"", ""xy"", ""yx""]",3,40,stop_mu,109,9,3,24,1000,True,9,8,2,True,True,True
+580,4,4,21,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""XXyx"", ""xx"", ""yX"", ""yX""]",5,56,stop_mu,194,17,5,24,1000,True,17,11,2,True,True,True
+609,4,4,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,68,stop_mu,186,17,5,24,1000,True,17,11,2,False,True,True
+538,5,4,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xyy"", ""xy"", ""yX""]",3,40,stop_mu,96,9,3,24,1000,True,7,6,2,False,True,True
+606,5,4,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""XXyxx"", ""yx"", ""xx""]",6,73,stop_mu,280,21,6,24,1000,True,9,8,2,False,True,True
+544,5,4,16,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""yX"", ""yX"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""yx"", ""yx""]",9,130,stop_mu,290,33,9,24,1000,True,17,11,2,False,True,True
+549,5,4,18,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""yX"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""yx"", ""yx""]",10,144,stop_mu,318,37,10,24,1000,True,17,11,2,False,True,True
+543,5,4,19,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""yX"", ""yX"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""yx"", ""yx""]",10,134,stop_mu,321,37,10,24,1000,True,17,11,2,False,True,True
+565,5,4,18,16,False,True,"[""YXXyx"", ""YYYYXyyyxxx""]","[""yX"", ""yX"", ""yx"", ""Xy"", ""xy"", ""yX"", ""xy"", ""xx"", ""yX"", ""xyX"", ""xx"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""yX"", ""yx"", ""xyX"", ""Xy"", ""Xy"", ""Xy"", ""Xy"", ""Xy""]",24,439,max_aut_canon,1002,120,31,27,1000,True,298,67,2,False,True,True
+602,6,4,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,68,stop_mu,183,17,5,24,1000,True,17,11,2,False,True,True
+632,6,4,25,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,70,stop_mu,184,17,5,24,1000,True,17,11,2,False,True,True
+573,6,4,21,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xxxxy"", ""xx"", ""Xy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",8,88,stop_mu,218,29,8,24,1000,True,10,9,2,False,False,False
+586,6,4,21,16,False,True,"[""YXXyx"", ""YYYYXyyyxxx""]","[""xy"", ""yX"", ""yX"", ""yx"", ""Xy"", ""xy"", ""yX"", ""xy"", ""xx"", ""yX"", ""xyX"", ""xx"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""yX"", ""yx"", ""xyX"", ""Xy"", ""Xy"", ""Xy"", ""Xy"", ""Xy""]",25,429,max_aut_canon,1000,120,31,27,1000,True,298,67,2,False,True,True
+581,6,4,21,16,False,True,"[""YXXyx"", ""YYYYXyyyxxx""]","[""xy"", ""yX"", ""yX"", ""yx"", ""Xy"", ""xy"", ""yX"", ""xy"", ""xx"", ""yX"", ""xyX"", ""xx"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""yX"", ""yx"", ""xyX"", ""Xy"", ""Xy"", ""Xy"", ""Xy"", ""Xy""]",25,429,max_aut_canon,1000,120,31,27,1000,True,298,67,2,False,True,True
+575,6,4,18,16,False,True,"[""YXXyx"", ""YYYYXyyyxxx""]","[""yX"", ""yX"", ""yx"", ""Xy"", ""xy"", ""yX"", ""xy"", ""xx"", ""yX"", ""xyX"", ""xx"", ""yx"", ""xy"", ""xy"", ""yx"", ""xx"", ""yX"", ""yx"", ""xyX"", ""Xy"", ""Xy"", ""Xy"", ""Xy"", ""Xy""]",24,439,max_aut_canon,1002,120,31,27,1000,True,298,67,2,False,True,True
+568,7,4,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,86,stop_mu,208,25,7,24,1000,True,10,9,2,False,False,False
+578,7,4,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,86,stop_mu,208,25,7,24,1000,True,10,9,2,False,False,False
+583,7,4,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,86,stop_mu,208,25,7,24,1000,True,10,9,2,False,False,False
+628,7,4,24,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""XXyx"", ""xx"", ""yx"", ""yx"", ""Xy"", ""yx"", ""yx"", ""yX"", ""xy"", ""yx"", ""yx"", ""yx""]",12,174,stop_mu,455,45,12,24,1000,True,17,11,2,False,True,True
+633,7,4,24,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""XXyx"", ""xx"", ""yx"", ""yx"", ""Xy"", ""yx"", ""yx"", ""yX"", ""xy"", ""yx"", ""yx"", ""yx""]",12,174,stop_mu,455,45,12,24,1000,True,17,11,2,False,True,True
+596,7,4,20,18,False,True,"[""YXyXXyx"", ""YYYXXyyxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xy"", ""xy"", ""yx"", ""xx"", ""yxy"", ""xyx""]",13,407,closed,1005,122,32,27,1000,False,1000,,18,False,False,False
+605,8,4,20,18,False,True,"[""YXyXXyx"", ""YYYXXyyxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xy"", ""xy"", ""yx"", ""xx"", ""yxy"", ""xyx""]",13,407,closed,1005,122,32,27,1000,False,1000,,18,False,False,False
+610,8,4,20,18,False,True,"[""YXyXXyx"", ""YYYXXyyxyxx""]","[""yX"", ""yX"", ""yx"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xy"", ""xy"", ""yx"", ""xx"", ""yxy"", ""xyx""]",13,407,closed,1005,122,32,27,1000,False,1000,,18,False,False,False
+625,8,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+622,8,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+624,8,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+623,8,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+634,9,4,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""xx"", ""xyy"", ""xyX"", ""xx"", ""Xyx"", ""yyx"", ""xyy"", ""xx"", ""yxx"", ""Xy"", ""yx"", ""yxY"", ""Xy"", ""Yxxy"", ""xyy"", ""Xyx"", ""xy"", ""xx"", ""yx""]",20,229,stop_mu,729,77,20,24,1000,True,9,8,2,False,False,True
+635,9,4,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""xx"", ""xyy"", ""xyX"", ""xx"", ""Xyx"", ""yyx"", ""xyy"", ""xx"", ""yxx"", ""Xy"", ""yx"", ""yxY"", ""Xy"", ""Yxxy"", ""xyy"", ""Xyx"", ""xy"", ""xx"", ""yx""]",20,229,stop_mu,729,77,20,24,1000,True,9,8,2,False,False,True
+637,9,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+639,9,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+638,9,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+636,9,4,22,19,False,True,"[""YXyXXyx"", ""YYYXYxyyxyxx""]","[""yX"", ""xy"", ""xy"", ""xyX"", ""xy"", ""Xyx"", ""yX"", ""yx"", ""xy"", ""xx"", ""Yxy"", ""yxy"", ""yx"", ""xyX"", ""Xy"", ""xy"", ""yXXy"", ""Xy"", ""yX"", ""yX"", ""Xy"", ""Xyx"", ""yX"", ""xx"", ""xyx"", ""yxy"", ""yx"", ""xyX"", ""XXyx""]",29,386,max_aut_canon,1000,121,31,28,1000,False,1000,,19,False,False,False
+0,0,8,6,6,True,False,"[""X"", ""YYXyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,3,2,2,True,True,True
+496,0,8,16,16,False,False,"[""X"", ""YYYYYYYXyyyyyyx""]",[],0,4,closed,28,4,2,31,1000,True,3,2,2,True,True,True
+521,0,8,18,18,False,False,"[""X"", ""YYYYYYYYXyyyyyyyx""]",[],0,4,closed,19,4,3,33,1000,True,3,2,2,True,True,True
+323,0,8,10,10,True,False,"[""X"", ""YYYYXyyyx""]",[],0,1,stop_mu,1,0,0,25,1000,True,3,2,2,True,True,True
+228,0,8,14,8,True,True,"[""X"", ""YYYXyyx""]","[""yX""]",1,6,stop_mu,12,1,1,24,1000,True,3,2,2,True,True,True
+455,0,8,19,12,True,True,"[""X"", ""YYYYYXyyyyx""]","[""Xy""]",1,9,stop_mu,20,1,1,27,1000,True,3,2,2,True,True,True
+77,1,8,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yX""]",1,9,stop_mu,14,1,1,24,1000,True,7,6,2,True,True,True
+43,1,8,11,11,True,False,"[""YXXyx"", ""YYXyXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,9,8,2,True,True,True
+141,1,8,13,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""yx""]",1,8,stop_mu,11,1,1,24,1000,True,9,8,2,True,True,True
+48,1,8,12,12,True,False,"[""YXXyx"", ""YYXyXXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,17,11,2,True,True,True
+155,1,8,13,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""Xy""]",1,6,stop_mu,10,1,1,24,1000,True,17,11,2,True,True,True
+505,1,8,22,6,True,True,"[""X"", ""YYXyx""]","[""XXyx"", ""xx"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""xx""]",8,171,stop_mu,652,56,8,24,1000,True,3,2,2,True,True,True
+247,2,8,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""XXy""]",1,8,stop_mu,15,1,1,24,1000,True,7,6,2,True,True,True
+217,2,8,14,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,13,1,1,24,1000,True,8,7,2,True,True,True
+201,2,8,13,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,9,stop_mu,12,1,1,24,1000,True,8,7,2,True,True,True
+288,2,8,15,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,12,1,1,24,1000,True,55,10,2,True,True,True
+367,2,8,16,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yx"", ""XXy"", ""yy""]",3,56,stop_mu,198,15,3,24,1000,True,7,6,2,True,True,True
+331,2,8,15,10,True,True,"[""YYXyX"", ""YXXyx""]","[""yy"", ""yx""]",2,35,stop_mu,141,9,2,24,1000,True,6,5,2,True,True,True
+203,3,8,12,12,True,False,"[""YXXYx"", ""YYYXyyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,55,10,2,True,True,True
+265,3,8,14,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,10,1,1,24,1000,True,55,10,2,True,True,True
+579,3,8,21,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,81,stop_mu,411,24,4,24,1000,True,8,7,2,True,True,True
+327,3,8,15,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xyy"", ""xy"", ""yX"", ""yX""]",4,82,stop_mu,261,25,4,24,1000,True,9,8,2,True,True,True
+333,3,8,14,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""yX"", ""yX"", ""yX""]",3,58,stop_mu,164,17,3,24,1000,True,10,9,2,True,True,True
+380,3,8,17,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,86,stop_mu,225,25,4,24,1000,True,10,9,2,True,True,True
+546,4,8,18,6,True,True,"[""X"", ""YYXyx""]","[""xy"", ""xx"", ""Xy"", ""yX""]",4,77,stop_mu,319,23,4,24,1000,True,3,2,2,True,True,True
+548,4,8,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xxy"", ""xy"", ""yX""]",3,60,stop_mu,194,17,3,24,1000,True,7,6,2,True,True,True
+533,4,8,16,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,87,stop_mu,266,25,4,24,1000,True,10,9,2,True,True,True
+589,4,8,20,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xxxy"", ""xy"", ""yx""]",3,64,stop_mu,268,17,3,24,1000,True,9,8,2,True,True,True
+580,4,8,21,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""XXyx"", ""xx"", ""yX"", ""yX""]",5,97,stop_mu,392,32,5,24,1000,True,17,11,2,True,True,True
+609,4,8,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,119,stop_mu,370,33,5,24,1000,True,17,11,2,False,True,True
+538,5,8,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xyy"", ""xy"", ""yX""]",3,61,stop_mu,234,17,3,24,1000,True,7,6,2,False,True,True
+606,5,8,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""XXyxx"", ""yx"", ""xx""]",6,127,stop_mu,591,41,6,24,1000,True,9,8,2,False,True,True
+544,5,8,16,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""yX"", ""yX"", ""yX"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx""]",8,197,stop_mu,519,57,8,24,1000,True,17,11,2,False,True,True
+549,5,8,18,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yX"", ""xy"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx""]",9,216,stop_mu,639,65,9,24,1000,True,17,11,2,False,True,True
+543,5,8,19,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxxy"", ""yX"", ""yX"", ""yX"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx""]",9,218,stop_mu,598,65,9,24,1000,True,17,11,2,False,True,True
+565,5,8,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,362,closed,1005,114,16,25,1000,False,1000,,16,False,True,True
+602,6,8,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,121,stop_mu,401,33,5,24,1000,True,17,11,2,False,True,True
+632,6,8,25,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,112,stop_mu,427,33,5,24,1000,True,17,11,2,False,True,True
+573,6,8,21,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xxxxy"", ""xy"", ""Yxxy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,144,stop_mu,450,49,7,24,1000,True,10,9,2,False,False,False
+586,6,8,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,348,max_aut_canon,1004,113,15,25,1000,False,1000,,16,False,True,True
+581,6,8,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,348,max_aut_canon,1004,113,15,25,1000,False,1000,,16,False,True,True
+575,6,8,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,362,closed,1005,114,16,25,1000,False,1000,,16,False,True,True
+568,7,8,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,147,stop_mu,437,49,7,24,1000,True,10,9,2,False,False,False
+578,7,8,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,147,stop_mu,437,49,7,24,1000,True,10,9,2,False,False,False
+583,7,8,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,147,stop_mu,437,49,7,24,1000,True,10,9,2,False,False,False
+628,7,8,24,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""XXyx"", ""xx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx""]",11,273,stop_mu,862,79,11,24,1000,True,17,11,2,False,True,True
+633,7,8,24,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""XXyx"", ""xx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx""]",11,273,stop_mu,862,79,11,24,1000,True,17,11,2,False,True,True
+596,7,8,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,366,max_aut_canon,1006,115,16,26,1000,False,1000,,17,False,False,False
+605,8,8,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,366,max_aut_canon,1006,115,16,26,1000,False,1000,,17,False,False,False
+610,8,8,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,366,max_aut_canon,1006,115,16,26,1000,False,1000,,17,False,False,False
+625,8,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+622,8,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+624,8,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+623,8,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+634,9,8,23,14,False,True,"[""YYXXYYx"", ""YXXyxYx""]","[""xxx"", ""XXyxx"", ""xx"", ""Xyx"", ""yX"", ""XXXyx"", ""yyx"", ""xyy"", ""xyy"", ""yx"", ""xyy"", ""yxxY"", ""Xy"", ""yxx"", ""XXyx""]",15,302,max_aut_canon,1004,111,15,24,1000,True,181,21,2,False,False,True
+635,9,8,23,14,False,True,"[""YYXXYYx"", ""YXXyxYx""]","[""xxx"", ""XXyxx"", ""xx"", ""Xyx"", ""yX"", ""XXXyx"", ""yyx"", ""xyy"", ""xyy"", ""yx"", ""xyy"", ""yxxY"", ""Xy"", ""yxx"", ""XXyx""]",15,302,max_aut_canon,1004,111,15,24,1000,True,181,21,2,False,False,True
+637,9,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+639,9,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+638,9,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+636,9,8,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,344,max_aut_canon,1006,111,15,27,1000,False,1000,,18,False,False,False
+0,0,10,6,6,True,False,"[""X"", ""YYXyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,3,2,2,True,True,True
+496,0,10,16,16,False,False,"[""X"", ""YYYYYYYXyyyyyyx""]",[],0,4,closed,28,4,2,31,1000,True,3,2,2,True,True,True
+521,0,10,18,18,False,False,"[""X"", ""YYYYYYYYXyyyyyyyx""]",[],0,4,closed,19,4,3,33,1000,True,3,2,2,True,True,True
+323,0,10,10,10,True,False,"[""X"", ""YYYYXyyyx""]",[],0,1,stop_mu,1,0,0,25,1000,True,3,2,2,True,True,True
+228,0,10,14,8,True,True,"[""X"", ""YYYXyyx""]","[""yX""]",1,6,stop_mu,12,1,1,24,1000,True,3,2,2,True,True,True
+455,0,10,19,12,True,True,"[""X"", ""YYYYYXyyyyx""]","[""Xy""]",1,9,stop_mu,20,1,1,27,1000,True,3,2,2,True,True,True
+77,1,10,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yX""]",1,9,stop_mu,14,1,1,24,1000,True,7,6,2,True,True,True
+43,1,10,11,11,True,False,"[""YXXyx"", ""YYXyXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,9,8,2,True,True,True
+141,1,10,13,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""yx""]",1,8,stop_mu,11,1,1,24,1000,True,9,8,2,True,True,True
+48,1,10,12,12,True,False,"[""YXXyx"", ""YYXyXXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,17,11,2,True,True,True
+155,1,10,13,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""Xy""]",1,6,stop_mu,10,1,1,24,1000,True,17,11,2,True,True,True
+505,1,10,22,6,True,True,"[""X"", ""YYXyx""]","[""XXyx"", ""xx"", ""yX"", ""yX"", ""Xyx"", ""yx"", ""yx"", ""xx""]",8,212,stop_mu,821,68,8,24,1000,True,3,2,2,True,True,True
+247,2,10,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""XXy""]",1,8,stop_mu,15,1,1,24,1000,True,7,6,2,True,True,True
+217,2,10,14,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,13,1,1,24,1000,True,8,7,2,True,True,True
+201,2,10,13,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,9,stop_mu,12,1,1,24,1000,True,8,7,2,True,True,True
+288,2,10,15,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,12,1,1,24,1000,True,55,10,2,True,True,True
+367,2,10,16,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yx"", ""XXy"", ""yy""]",3,60,stop_mu,221,17,3,24,1000,True,7,6,2,True,True,True
+331,2,10,15,10,True,True,"[""YYXyX"", ""YXXyx""]","[""yy"", ""yx""]",2,38,stop_mu,147,10,2,24,1000,True,6,5,2,True,True,True
+203,3,10,12,12,True,False,"[""YXXYx"", ""YYYXyyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,55,10,2,True,True,True
+265,3,10,14,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,10,1,1,24,1000,True,55,10,2,True,True,True
+579,3,10,21,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,90,stop_mu,439,28,4,24,1000,True,8,7,2,True,True,True
+327,3,10,15,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xyy"", ""xy"", ""yX"", ""yX""]",4,93,stop_mu,299,30,4,24,1000,True,9,8,2,True,True,True
+333,3,10,14,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""yX"", ""yX"", ""yX""]",3,60,stop_mu,176,19,3,24,1000,True,10,9,2,True,True,True
+380,3,10,17,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,99,stop_mu,274,29,4,24,1000,True,10,9,2,True,True,True
+546,4,10,18,6,True,True,"[""X"", ""YYXyx""]","[""xy"", ""xx"", ""Xy"", ""yX""]",4,85,stop_mu,370,27,4,24,1000,True,3,2,2,True,True,True
+548,4,10,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xxy"", ""xy"", ""yX""]",3,65,stop_mu,208,19,3,24,1000,True,7,6,2,True,True,True
+533,4,10,16,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,101,stop_mu,305,30,4,24,1000,True,10,9,2,True,True,True
+589,4,10,20,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xxxy"", ""xy"", ""yx""]",3,77,stop_mu,300,20,3,24,1000,True,9,8,2,True,True,True
+580,4,10,21,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""XXyx"", ""xx"", ""yX"", ""yX""]",5,113,stop_mu,445,38,5,24,1000,True,17,11,2,True,True,True
+609,4,10,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,142,stop_mu,467,40,5,24,1000,True,17,11,2,False,True,True
+538,5,10,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xyy"", ""xy"", ""yX""]",3,72,stop_mu,265,20,3,24,1000,True,7,6,2,False,True,True
+606,5,10,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""XXyxx"", ""yx"", ""xx""]",6,150,stop_mu,668,49,6,24,1000,True,9,8,2,False,True,True
+544,5,10,16,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""yX"", ""yX"", ""yX"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx""]",8,217,stop_mu,620,69,8,24,1000,True,17,11,2,False,True,True
+549,5,10,18,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yX"", ""xy"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx""]",9,244,stop_mu,771,80,9,24,1000,True,17,11,2,False,True,True
+543,5,10,19,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxxy"", ""yX"", ""yX"", ""yX"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx""]",9,241,stop_mu,754,81,9,24,1000,True,17,11,2,False,True,True
+565,5,10,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,347,max_aut_canon,1001,114,13,25,1000,False,1000,,16,False,True,True
+602,6,10,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,144,stop_mu,558,41,5,24,1000,True,17,11,2,False,True,True
+632,6,10,25,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,135,stop_mu,575,41,5,24,1000,True,17,11,2,False,True,True
+573,6,10,21,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xxxxy"", ""xy"", ""Yxxy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,175,stop_mu,598,61,7,24,1000,True,10,9,2,False,False,False
+586,6,10,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,332,max_aut_canon,1001,108,12,25,1000,False,1000,,16,False,True,True
+581,6,10,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,332,max_aut_canon,1001,108,12,25,1000,False,1000,,16,False,True,True
+575,6,10,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,347,max_aut_canon,1001,114,13,25,1000,False,1000,,16,False,True,True
+568,7,10,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,172,stop_mu,523,59,7,24,1000,True,10,9,2,False,False,False
+578,7,10,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,172,stop_mu,523,59,7,24,1000,True,10,9,2,False,False,False
+583,7,10,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,172,stop_mu,523,59,7,24,1000,True,10,9,2,False,False,False
+628,7,10,24,13,False,True,"[""YXXyx"", ""YYXyXXXX""]","[""XXyx"", ""xx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx""]",10,269,max_aut_canon,1010,85,10,24,1000,True,28,16,2,False,True,True
+633,7,10,24,13,False,True,"[""YXXyx"", ""YYXyXXXX""]","[""XXyx"", ""xx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx"", ""yx""]",10,269,max_aut_canon,1010,85,10,24,1000,True,28,16,2,False,True,True
+596,7,10,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,368,max_aut_canon,1000,113,13,26,1000,False,1000,,17,False,False,False
+605,8,10,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,368,max_aut_canon,1000,113,13,26,1000,False,1000,,17,False,False,False
+610,8,10,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,368,max_aut_canon,1000,113,13,26,1000,False,1000,,17,False,False,False
+625,8,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+622,8,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+624,8,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+623,8,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+634,9,10,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,279,max_aut_canon,1006,107,12,25,1000,False,1000,,16,False,False,True
+635,9,10,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,279,max_aut_canon,1006,107,12,25,1000,False,1000,,16,False,False,True
+637,9,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+639,9,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+638,9,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+636,9,10,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,346,max_aut_canon,1000,108,12,27,1000,False,1000,,18,False,False,False
+0,0,16,6,6,True,False,"[""X"", ""YYXyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,3,2,2,True,True,True
+496,0,16,16,16,False,False,"[""X"", ""YYYYYYYXyyyyyyx""]",[],0,4,closed,28,4,2,31,1000,True,3,2,2,True,True,True
+521,0,16,18,18,False,False,"[""X"", ""YYYYYYYYXyyyyyyyx""]",[],0,4,closed,19,4,3,33,1000,True,3,2,2,True,True,True
+323,0,16,10,10,True,False,"[""X"", ""YYYYXyyyx""]",[],0,1,stop_mu,1,0,0,25,1000,True,3,2,2,True,True,True
+228,0,16,14,8,True,True,"[""X"", ""YYYXyyx""]","[""yX""]",1,6,stop_mu,12,1,1,24,1000,True,3,2,2,True,True,True
+455,0,16,19,12,True,True,"[""X"", ""YYYYYXyyyyx""]","[""Xy""]",1,9,stop_mu,20,1,1,27,1000,True,3,2,2,True,True,True
+77,1,16,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yX""]",1,9,stop_mu,14,1,1,24,1000,True,7,6,2,True,True,True
+43,1,16,11,11,True,False,"[""YXXyx"", ""YYXyXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,9,8,2,True,True,True
+141,1,16,13,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""yx""]",1,8,stop_mu,11,1,1,24,1000,True,9,8,2,True,True,True
+48,1,16,12,12,True,False,"[""YXXyx"", ""YYXyXXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,17,11,2,True,True,True
+155,1,16,13,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""Xy""]",1,6,stop_mu,10,1,1,24,1000,True,17,11,2,True,True,True
+505,1,16,22,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xx"", ""Xy"", ""yX"", ""yxY"", ""Xyx"", ""yx"", ""yx""]",7,259,stop_mu,1002,80,7,24,1000,True,9,8,2,True,True,True
+247,2,16,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""XXy""]",1,8,stop_mu,15,1,1,24,1000,True,7,6,2,True,True,True
+217,2,16,14,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,13,1,1,24,1000,True,8,7,2,True,True,True
+201,2,16,13,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,9,stop_mu,12,1,1,24,1000,True,8,7,2,True,True,True
+288,2,16,15,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,12,1,1,24,1000,True,55,10,2,True,True,True
+367,2,16,16,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yx"", ""XXy"", ""yy""]",3,79,stop_mu,290,23,3,24,1000,True,7,6,2,True,True,True
+331,2,16,15,10,True,True,"[""YYXyX"", ""YXXyx""]","[""yy"", ""yx""]",2,38,stop_mu,147,10,2,24,1000,True,6,5,2,True,True,True
+203,3,16,12,12,True,False,"[""YXXYx"", ""YYYXyyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,55,10,2,True,True,True
+265,3,16,14,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,10,1,1,24,1000,True,55,10,2,True,True,True
+579,3,16,21,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,122,stop_mu,573,40,4,24,1000,True,8,7,2,True,True,True
+327,3,16,15,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xyy"", ""xy"", ""yX"", ""yX""]",4,128,stop_mu,429,42,4,24,1000,True,9,8,2,True,True,True
+333,3,16,14,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""yX"", ""yX"", ""yX""]",3,81,stop_mu,258,25,3,24,1000,True,10,9,2,True,True,True
+380,3,16,17,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,137,stop_mu,418,41,4,24,1000,True,10,9,2,True,True,True
+546,4,16,18,6,True,True,"[""X"", ""YYXyx""]","[""xy"", ""xx"", ""Xy"", ""yX""]",4,123,stop_mu,563,39,4,24,1000,True,3,2,2,True,True,True
+548,4,16,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xxy"", ""xy"", ""yX""]",3,78,stop_mu,263,25,3,24,1000,True,7,6,2,True,True,True
+533,4,16,16,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,137,stop_mu,450,42,4,24,1000,True,10,9,2,True,True,True
+589,4,16,20,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xxxy"", ""xy"", ""yx""]",3,95,stop_mu,379,26,3,24,1000,True,9,8,2,True,True,True
+580,4,16,21,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""XXyx"", ""xx"", ""yX"", ""yX""]",5,164,stop_mu,690,56,5,24,1000,True,17,11,2,True,True,True
+609,4,16,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,183,stop_mu,628,58,5,24,1000,True,17,11,2,False,True,True
+538,5,16,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xyy"", ""xy"", ""yX""]",3,88,stop_mu,346,26,3,24,1000,True,7,6,2,False,True,True
+606,5,16,23,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""XXyxx"", ""yx"", ""xx""]",6,195,stop_mu,879,73,6,24,1000,True,9,8,2,False,True,True
+544,5,16,16,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""yX"", ""yX"", ""yX"", ""yX"", ""yx"", ""yx"", ""yx"", ""yx""]",8,284,stop_mu,973,105,8,24,1000,True,17,11,2,False,True,True
+549,5,16,18,13,False,True,"[""YXXyx"", ""YYXyXXXX""]","[""xxxy"", ""xy"", ""yX"", ""xy"", ""yX"", ""yx"", ""yx"", ""yx""]",8,283,max_aut_canon,1004,104,8,24,1000,True,28,16,2,False,True,True
+543,5,16,19,13,False,True,"[""YXXyx"", ""YYXyXXXX""]","[""xxxxy"", ""yX"", ""yX"", ""yX"", ""yX"", ""yx"", ""yx"", ""yx""]",8,301,max_aut_canon,1006,107,8,24,1000,True,28,16,2,False,True,True
+565,5,16,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,341,max_aut_canon,1009,112,9,25,1000,False,1000,,16,False,True,True
+602,6,16,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,185,stop_mu,728,59,5,24,1000,True,17,11,2,False,True,True
+632,6,16,25,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,191,stop_mu,747,59,5,24,1000,True,17,11,2,False,True,True
+573,6,16,21,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""xxxxy"", ""xy"", ""Yxxy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,238,stop_mu,876,91,7,24,1000,True,10,9,2,False,False,False
+586,6,16,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,318,max_aut_canon,1000,104,8,25,1000,False,1000,,16,False,True,True
+581,6,16,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,318,max_aut_canon,1000,104,8,25,1000,False,1000,,16,False,True,True
+575,6,16,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,341,max_aut_canon,1009,112,9,25,1000,False,1000,,16,False,True,True
+568,7,16,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,244,stop_mu,806,89,7,24,1000,True,10,9,2,False,False,False
+578,7,16,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,244,stop_mu,806,89,7,24,1000,True,10,9,2,False,False,False
+583,7,16,19,12,True,True,"[""YXXyx"", ""YYYXyyX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx"", ""yx"", ""xy""]",7,244,stop_mu,806,89,7,24,1000,True,10,9,2,False,False,False
+628,7,16,24,19,False,True,"[""YYXXyxx"", ""YYYYxxxxyXXX""]","[""XXyx"", ""xx"", ""yx"", ""yX"", ""YXyy""]",5,212,max_aut_canon,1003,74,7,28,1000,True,435,46,2,False,True,True
+633,7,16,24,19,False,True,"[""YYXXyxx"", ""YYYYxxxxyXXX""]","[""XXyx"", ""xx"", ""yx"", ""yX"", ""YXyy""]",5,212,max_aut_canon,1003,74,7,28,1000,True,435,46,2,False,True,True
+596,7,16,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,336,max_aut_canon,1005,111,9,26,1000,False,1000,,17,False,False,False
+605,8,16,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,336,max_aut_canon,1005,111,9,26,1000,False,1000,,17,False,False,False
+610,8,16,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,336,max_aut_canon,1005,111,9,26,1000,False,1000,,17,False,False,False
+625,8,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+622,8,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+624,8,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+623,8,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+634,9,16,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,239,max_aut_canon,1007,97,8,25,1000,False,1000,,16,False,False,True
+635,9,16,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,239,max_aut_canon,1007,97,8,25,1000,False,1000,,16,False,False,True
+637,9,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+639,9,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+638,9,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+636,9,16,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,315,max_aut_canon,1004,103,8,27,1000,False,1000,,18,False,False,False
+0,0,32,6,6,True,False,"[""X"", ""YYXyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,3,2,2,True,True,True
+496,0,32,16,16,False,False,"[""X"", ""YYYYYYYXyyyyyyx""]",[],0,4,closed,28,4,2,31,1000,True,3,2,2,True,True,True
+521,0,32,18,18,False,False,"[""X"", ""YYYYYYYYXyyyyyyyx""]",[],0,4,closed,19,4,3,33,1000,True,3,2,2,True,True,True
+323,0,32,10,10,True,False,"[""X"", ""YYYYXyyyx""]",[],0,1,stop_mu,1,0,0,25,1000,True,3,2,2,True,True,True
+228,0,32,14,8,True,True,"[""X"", ""YYYXyyx""]","[""yX""]",1,6,stop_mu,12,1,1,24,1000,True,3,2,2,True,True,True
+455,0,32,19,12,True,True,"[""X"", ""YYYYYXyyyyx""]","[""Xy""]",1,9,stop_mu,20,1,1,27,1000,True,3,2,2,True,True,True
+77,1,32,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yX""]",1,9,stop_mu,14,1,1,24,1000,True,7,6,2,True,True,True
+43,1,32,11,11,True,False,"[""YXXyx"", ""YYXyXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,9,8,2,True,True,True
+141,1,32,13,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""yx""]",1,8,stop_mu,11,1,1,24,1000,True,9,8,2,True,True,True
+48,1,32,12,12,True,False,"[""YXXyx"", ""YYXyXXX""]",[],0,1,stop_mu,1,0,0,24,1000,True,17,11,2,True,True,True
+155,1,32,13,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""Xy""]",1,6,stop_mu,10,1,1,24,1000,True,17,11,2,True,True,True
+505,1,32,22,16,False,True,"[""YYXXyxx"", ""YYYxxYXXX""]","[""XXyx"", ""xx"", ""yx"", ""yx"", ""Yxy""]",5,225,max_aut_canon,1005,64,5,25,1000,True,29,17,2,True,True,True
+247,2,32,13,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""XXy""]",1,8,stop_mu,15,1,1,24,1000,True,7,6,2,True,True,True
+217,2,32,14,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,13,1,1,24,1000,True,8,7,2,True,True,True
+201,2,32,13,12,True,True,"[""YXXyx"", ""YYYXyyx""]","[""xy""]",1,9,stop_mu,12,1,1,24,1000,True,8,7,2,True,True,True
+288,2,32,15,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,12,1,1,24,1000,True,55,10,2,True,True,True
+367,2,32,16,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""yx"", ""XXy"", ""yy""]",3,88,stop_mu,358,29,3,24,1000,True,7,6,2,True,True,True
+331,2,32,15,10,True,True,"[""YYXyX"", ""YXXyx""]","[""yy"", ""yx""]",2,38,stop_mu,147,10,2,24,1000,True,6,5,2,True,True,True
+203,3,32,12,12,True,False,"[""YXXYx"", ""YYYXyyx""]",[],0,1,stop_mu,1,0,0,24,1000,True,55,10,2,True,True,True
+265,3,32,14,12,True,True,"[""YXXYx"", ""YYYXyyx""]","[""xy""]",1,7,stop_mu,10,1,1,24,1000,True,55,10,2,True,True,True
+579,3,32,21,11,True,True,"[""YXXX"", ""YYYXyyX""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,179,stop_mu,983,59,4,24,1000,True,8,7,2,True,True,True
+327,3,32,15,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xyy"", ""xy"", ""yX"", ""yX""]",4,202,stop_mu,669,67,4,24,1000,True,9,8,2,True,True,True
+333,3,32,14,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""yX"", ""yX"", ""yX""]",3,132,stop_mu,439,41,3,24,1000,True,10,9,2,True,True,True
+380,3,32,17,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,233,stop_mu,817,73,4,24,1000,True,10,9,2,True,True,True
+546,4,32,18,6,True,True,"[""X"", ""YYXyx""]","[""xy"", ""xx"", ""Xy"", ""yX""]",4,155,stop_mu,818,57,4,24,1000,True,3,2,2,True,True,True
+548,4,32,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xxy"", ""xy"", ""yX""]",3,136,stop_mu,583,39,3,24,1000,True,7,6,2,True,True,True
+533,4,32,16,12,True,True,"[""YXXyx"", ""YYXyxxx""]","[""xy"", ""yX"", ""yX"", ""yX""]",4,231,stop_mu,770,74,4,24,1000,True,10,9,2,True,True,True
+589,4,32,20,11,True,True,"[""YXXyx"", ""YYXyXX""]","[""xxxy"", ""xy"", ""yx""]",3,129,stop_mu,544,42,3,24,1000,True,9,8,2,True,True,True
+580,4,32,21,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xy"", ""XXyx"", ""xx"", ""yX"", ""yX""]",5,205,stop_mu,1006,67,5,24,1000,True,17,11,2,True,True,True
+609,4,32,22,12,True,True,"[""YXXyx"", ""YYXyXXX""]","[""xxxy"", ""xy"", ""yx"", ""yx"", ""yX""]",5,237,stop_mu,1007,78,5,24,1000,True,17,11,2,False,True,True
+538,5,32,17,11,True,True,"[""YXXyx"", ""YYXyxx""]","[""xyy"", ""xy"", ""yX""]",3,142,stop_mu,541,39,3,24,1000,True,7,6,2,False,True,True
+606,5,32,23,15,False,True,"[""YYXXYx"", ""YXXXXYxxx""]","[""xy"", ""XXXyx"", ""Yxxxy"", ""Xy""]",4,204,max_aut_canon,1003,70,4,25,1000,True,14,11,2,False,True,True
+544,5,32,16,15,False,True,"[""YXXyx"", ""YYYYXyyyxx""]","[""yX""]",1,263,max_aut_canon,1003,93,5,26,1000,True,109,40,2,False,True,True
+549,5,32,18,15,False,True,"[""YXXyx"", ""YYYYXyyyxx""]","[""xy"", ""yX""]",2,284,max_aut_canon,1002,97,5,26,1000,True,109,40,2,False,True,True
+543,5,32,19,15,False,True,"[""YXyXYxx"", ""YYYYXXYx""]","[""xxxx""]",1,268,max_aut_canon,1008,94,5,24,1000,False,1000,,15,False,True,True
+565,5,32,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,255,max_aut_canon,1006,90,5,25,1000,False,1000,,16,False,True,True
+602,6,32,22,13,False,True,"[""YXXyx"", ""YYYXyyXX""]","[""xxxy"", ""xy"", ""yx""]",3,228,max_aut_canon,1006,77,5,24,1000,True,31,18,2,False,True,True
+632,6,32,25,13,False,True,"[""YXXyx"", ""YYYXyyXX""]","[""xxxxy"", ""xy"", ""yx""]",3,231,max_aut_canon,1008,77,5,24,1000,True,31,18,2,False,True,True
+573,6,32,21,13,False,True,"[""YYXXyx"", ""YXYxyXX""]","[""xxxxy"", ""xy"", ""Yxxy"", ""Xyx"", ""Xyx""]",5,267,max_aut_canon,1002,107,6,24,1000,True,274,26,2,False,False,False
+586,6,32,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,246,max_aut_canon,1004,83,5,25,1000,False,1000,,16,False,True,True
+581,6,32,21,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xy"", ""xxxxx""]",3,246,max_aut_canon,1004,83,5,25,1000,False,1000,,16,False,True,True
+575,6,32,18,16,False,True,"[""YXyXYxx"", ""YYYYYXXYx""]","[""xy"", ""xxxxx""]",2,255,max_aut_canon,1006,90,5,25,1000,False,1000,,16,False,True,True
+568,7,32,19,13,False,True,"[""YYXXyx"", ""YXYxyXX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx""]",5,276,max_aut_canon,1003,106,6,24,1000,True,274,26,2,False,False,False
+578,7,32,19,13,False,True,"[""YYXXyx"", ""YXYxyXX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx""]",5,276,max_aut_canon,1003,106,6,24,1000,True,274,26,2,False,False,False
+583,7,32,19,13,False,True,"[""YYXXyx"", ""YXYxyXX""]","[""XXy"", ""xyy"", ""xyy"", ""Xyx"", ""Xyx""]",5,276,max_aut_canon,1003,106,6,24,1000,True,274,26,2,False,False,False
+628,7,32,24,21,False,True,"[""YYXXyxx"", ""YYxxxxxxyXXXXX""]","[""XXyx""]",1,165,max_aut_canon,1004,56,4,30,1000,True,435,48,2,False,True,True
+633,7,32,24,21,False,True,"[""YYXXyxx"", ""YYxxxxxxyXXXXX""]","[""XXyx""]",1,165,max_aut_canon,1004,56,4,30,1000,True,435,48,2,False,True,True
+596,7,32,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,262,max_aut_canon,1000,91,5,26,1000,False,1000,,17,False,False,False
+605,8,32,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,262,max_aut_canon,1000,91,5,26,1000,False,1000,,17,False,False,False
+610,8,32,20,17,False,True,"[""YXyXYxx"", ""YYYYYYXXYx""]","[""xy"", ""xxxxxx""]",2,262,max_aut_canon,1000,91,5,26,1000,False,1000,,17,False,False,False
+625,8,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
+622,8,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
+624,8,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
+623,8,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
+634,9,32,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,213,max_aut_canon,1007,75,5,25,1000,False,1000,,16,False,False,True
+635,9,32,23,16,False,True,"[""YYXXyxx"", ""YYYXYYxyx""]","[""xx"", ""Yxxy"", ""Xyxx""]",3,213,max_aut_canon,1007,75,5,25,1000,False,1000,,16,False,False,True
+637,9,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
+639,9,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
+638,9,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
+636,9,32,22,18,False,True,"[""YXyXYxx"", ""YYYYYYYXXYx""]","[""xy"", ""xxxxxxx""]",2,241,max_aut_canon,1008,81,5,27,1000,False,1000,,18,False,False,False
