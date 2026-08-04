@@ -55,6 +55,23 @@ Two things the method does **not** give: any statement when it finds nothing (si
 worth exactly its measured detection rate — `calibrate-one-sided-hunts-on-a-positive-ladder.md`),
 and any bound on `k` or on the search length.
 
+## 2a. Why the hunt beats plain AC search — the target is enormously bigger
+
+A plain AC search must reach **one** state: the standard presentation. The certificate hunt
+may stop at **any** thickenable state, and S10 measures how many of those there are. Among
+presentations that are AC-trivial by construction, the thickenable fraction is 0.87 at
+rank 4 near standard, 0.41 at rank 2 near standard, and still 0.21 at rank 2 far from
+standard (walk length 70–120). So the goal region is not one state out of the whole class —
+it is a **constant fraction** of it, and a large one.
+
+That is the method's actual edge, and it is worth stating because the same measurement
+carries the matching caveat: the density **falls with distance from standard**, which has an
+obvious explanation — the standard presentation is itself thickenable (its complex is a
+wedge of discs, which embeds in `R³`), so certificates cluster around it. The hunt's
+advantage therefore shrinks as one moves away from standard, and it shrinks exactly in the
+region where the hard presentations live. Both halves of that are measurements, not
+intuitions, and both belong in any assessment of the method.
+
 ## 3. Why this is not merely a restatement
 
 `FRAMING` §3 rules out "reduction of stable ACC to a different open problem". This is not

@@ -530,6 +530,129 @@ def decidability_scan(*, ranks=(2, 3, 4, 6, 8), lengths=(13, 16, 19, 22, 25),
 # --------------------------------------------------------------------------------------
 
 
+def sr_hunt_spelled(*, bases=None, max_base_length: int = 8, cap: int = DEFAULT_CAP,
+                    deadline: float = 180.0, seed: int = 20260804,
+                    max_bases: int = 400) -> dict:
+    """Counterexample hunt for Conjecture SR **at spike depth 1 -> 2**.
+
+    This is the gap in every previous SR test.  R1F/R7's 110,917 complexes and A8's 997 all
+    take a **cyclically reduced** base and apply ONE spike, so they test the induction step
+    ``depth 1 -> depth 0`` only.  The Corollary that SR is wanted for
+    (``gamma*(P) = 0 <=> gamma_N(P_red) = 0``, hence ``gamma*(AK(3)) = 1`` and the closure of
+    the spelling route) iterates SR at EVERY depth.  So the step to attack is
+    ``depth 2 -> depth 1``: a spelling two spikes out that is thickenable, sitting over a
+    spelling one spike out that is not.
+
+    For each hit the report also records whether the **existential** repair survives, i.e.
+    whether SOME one-step reduction of the hit is still thickenable.  That distinction is
+    the whole difference between "SR is false" and "the Corollary is false".
+    """
+    t0 = time.time()
+    rng = random.Random(seed)
+    if bases is None:
+        bases = []
+        gens = ("x", "y")
+        letters = "xXyY"
+        for total in range(4, max_base_length + 1):
+            for l1 in range(2, total - 1):
+                l2 = total - l1
+                if l2 < 2:
+                    continue
+                for w1 in itertools.product(letters, repeat=l1):
+                    s1 = "".join(w1)
+                    if not is_cyclically_reduced(s1) or len({c.lower() for c in s1}) < 2:
+                        continue
+                    for w2 in itertools.product(letters, repeat=l2):
+                        s2 = "".join(w2)
+                        if (not is_cyclically_reduced(s2)
+                                or len({c.lower() for c in s2}) < 2):
+                            continue
+                        bases.append((s1, s2))
+            if len(bases) > 40_000:
+                break
+        seen = set()
+        uniq = []
+        for b in bases:
+            k = spelling_key(b)
+            if k in seen:
+                continue
+            seen.add(k)
+            uniq.append(b)
+        bases = uniq
+        rng.shuffle(bases)
+    bases = list(bases)[:max_bases]
+
+    hits = []
+    n_bases = 0
+    n_depth1 = 0
+    n_depth2 = 0
+    skipped = 0
+    for base in bases:
+        if time.time() - t0 > deadline:
+            break
+        gens = generators_of(base)
+        n_bases += 1
+        for _k1, p1, prm1 in spike_images(base, gens):
+            if time.time() - t0 > deadline:
+                break
+            r1 = decide(p1, gens, cap=cap)
+            if r1["verdict"] != "NOT_THICKENABLE":
+                continue                        # only a POSITIVE-defect depth-1 can break SR
+            n_depth1 += 1
+            for _k2, p2, prm2 in spike_images(p1, gens):
+                if time.time() - t0 > deadline:
+                    break
+                r2 = decide(p2, gens, cap=cap)
+                if r2["verdict"] == "SKIPPED":
+                    skipped += 1
+                    continue
+                n_depth2 += 1
+                if r2["minimum_defect"] != 0:
+                    continue
+                # a hit: gamma_N(p2) = 0 while gamma_N(p1) > 0 and p2 = spike(p1)
+                sibs = []
+                for j, w in enumerate(p2):
+                    for i in range(len(w)):
+                        if w[(i + 1) % len(w)] != inverse_letter(w[i]):
+                            continue
+                        red = w[:i] + w[i + 2:] if i + 2 <= len(w) else w[1:-1]
+                        red = free_reduce(red)
+                        if not red:
+                            continue
+                        sib = tuple(p2[:j]) + (red,) + tuple(p2[j + 1:])
+                        rs = decide(sib, gens, cap=cap)
+                        sibs.append({"words": list(sib), "verdict": rs["verdict"],
+                                     "minimum_defect": rs["minimum_defect"]})
+                hits.append({
+                    "base_reduced": list(base),
+                    "depth1": list(p1), "depth1_defect": r1["minimum_defect"],
+                    "depth2": list(p2), "depth2_defect": 0,
+                    "spike1": prm1, "spike2": prm2,
+                    "generators": list(gens),
+                    "total_length": sum(len(w) for w in p2),
+                    "census_depth2": r2["census"],
+                    "one_step_reductions": sibs,
+                    "existential_SR_survives": any(
+                        s["minimum_defect"] == 0 for s in sibs),
+                    "group_of_reduced_base": todd_coxeter_check(base, gens, cap=20_000),
+                })
+    hits.sort(key=lambda h: (h["total_length"], h["depth2"]))
+    return {
+        "record": "Conjecture SR counterexample hunt at spike depth 1 -> 2",
+        "conjecture": "SR: gamma_N(spike(P)) = 0 => gamma_N(P) = 0, for EVERY P and spike",
+        "gap_attacked": ("all prior SR evidence takes a cyclically reduced base and one "
+                         "spike, i.e. it tests depth 1 -> 0 only"),
+        "bases_examined": n_bases,
+        "depth1_spellings_with_positive_defect": n_depth1,
+        "depth2_spellings_decided": n_depth2,
+        "depth2_skipped_over_cap": skipped,
+        "n_counterexamples": len(hits),
+        "counterexamples": hits[:200],
+        "cap": cap,
+        "seconds": round(time.time() - t0, 2),
+    }
+
+
 def sr_hunt(*, ranks=(2, 3, 4), max_base_length: int = 12, spike_depth: int = 2,
             per_rank: int = 400, seed: int = 20260804, cap: int = DEFAULT_CAP,
             deadline: float = 120.0) -> dict:
@@ -866,6 +989,19 @@ def cmd_scan(args):
     return blob
 
 
+def cmd_sr_spelled(args):
+    blob = sr_hunt_spelled(max_base_length=args.max_base_length, cap=args.cap,
+                           deadline=args.deadline, seed=args.seed,
+                           max_bases=args.max_bases)
+    print(json.dumps({k: v for k, v in blob.items() if k != "counterexamples"}, indent=1))
+    for h in blob["counterexamples"][:6]:
+        print(" CE:", h["depth2"], "d=0  <-  spike of", h["depth1"],
+              "d=%s" % h["depth1_defect"], "| L=%d" % h["total_length"],
+              "| existential SR survives:", h["existential_SR_survives"])
+    print("wrote", _emit(args.out, blob))
+    return blob
+
+
 def cmd_sr(args):
     blob = sr_hunt(ranks=tuple(int(r) for r in args.ranks.split(",")),
                    max_base_length=args.max_base_length,
@@ -978,6 +1114,15 @@ def main(argv=None):
     p.add_argument("--deadline", type=float, default=120.0)
     p.add_argument("--out", default="results/stable_ac/fable/s11_sr_hunt.json")
     p.set_defaults(func=cmd_sr)
+
+    p = sub.add_parser("sr-spelled")
+    p.add_argument("--max-base-length", type=int, default=8)
+    p.add_argument("--max-bases", type=int, default=400)
+    p.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    p.add_argument("--seed", type=int, default=20260804)
+    p.add_argument("--deadline", type=float, default=180.0)
+    p.add_argument("--out", default="results/stable_ac/fable/s11_sr_spelled.json")
+    p.set_defaults(func=cmd_sr_spelled)
 
     p = sub.add_parser("hunt")
     p.add_argument("--words", default=None, help="comma-separated relators")
