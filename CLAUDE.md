@@ -133,12 +133,13 @@ much harder than those Erdős problems. Its three keys:
   claim about something established by construction is suspect on sight; re-derive the
   direction before acting on "stop searching region X".
   [[TRAP]](experiments/lessons/parallel-runs-and-bound-direction.md)
-- Extra generators buy NOTHING while they only re-describe the same relators: abbreviation
-  is a subdivision (same space, whole defect histogram identical, census size unchanged) and
-  splitting is monotone (link(P) is a minor of link(P')). State how many 2-cell germs a new
-  edge carries before proposing any high-rank mechanism — exactly two, from two distinct
-  2-cells, means provably inert. And γ_N = `minimum_defect // 2`: comparing the two
-  manufactures a factor-2 anomaly and a wrong theory to explain it.
+- The GERM COUNT is the criterion for whether extra generators can do anything; "it only
+  re-describes the relators" is NOT, and stating it that way cost this line a wrong lesson.
+  A new edge with exactly two 2-cell germs from two DISTINCT 2-cells is a chord: provably
+  inert (whole defect histogram identical, census size unchanged). Three or more germs and
+  the space genuinely changes — AK(3)'s rank-13 cubic form re-describes AK(3)'s relators and
+  has γ_N = 1 < 2. Also: γ_N = `minimum_defect // 2`; comparing the two manufactures a
+  factor-2 anomaly and a wrong theory to explain it.
   [[TRAP]](experiments/lessons/stabilization-that-only-rebookkeeps-is-inert.md)
 - A search that silently starves yields exactly the null it was built to detect, on target
   AND control, so the contrast stays internally consistent to the write-up. Print

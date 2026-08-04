@@ -35,7 +35,7 @@ Todd–Coxeter validated on `⟨x,y\|x²,y³,(xy)⁵⟩ = 60`, `(xy)⁴ = 24`, `
 | **S6 T0** (move (0) changes the space) | **CONFIRMED** | local-homology argument correct; both certificates reproduce |
 | **S6 flip table** | **AMEND — three defects, one of them serious** | the rates do **not** survive the trivial-group restriction (§1.5); the `M0` row is the `M2nc` row re-partitioned, not an independent census (§1.3); the `M3` denominators are 14 pairs short (§1.4) |
 | **S6 §8 headline collapse** | **AMEND (antecedent already refuted in-session)** | "stable ACC becomes a statement purely about AC2" is conditional on Conjecture SR, which `S11` (A10) refuted **on the trivial group**. S6 still records SR as `[OPEN]`, "0 counterexamples" |
-| **S8 Conjecture + [GAP-S8-1]** | **AMEND — gaps dischargeable, conjecture survives** | the bookkeeping closes exactly (§2.1) and the sketch upgrades to a proof; 1,000+ new splits, none below base |
+| **S8 Conjecture + [GAP-S8-1]** | **AMEND — gaps dischargeable, conjecture survives** | the bookkeeping closes exactly (§2.1) and the sketch upgrades to a proof; **379,364** new split states, none below base |
 | **S8 [GAP-S8-2]** | **AMEND — the stated worry is vacuous** | the bigon's two link edges are `u⁻—g⁻` and `u⁺—g⁺`; they are **never** loops and are always vertex-disjoint; the degenerate "re-route every occurrence" split is fine |
 | **S8 §4 headline negative** | **REFUTED by this session's own S4B** | "adding generators is worth nothing as long as they only re-describe the existing relators" is false: `C1` re-describes AK(3) and has `γ_N = 1 < 2` |
 | **S4 Thm S4.1** (sign rigidity) | **CONFIRMED** | brute force over every cyclically reduced length-3 word at `N ≤ 4`: 0 violations |
@@ -248,7 +248,23 @@ construction** — the null is not weak evidence, it is *zero* evidence.
 
 *(stratified table — §1.7a below)*
 
-### 1.8 What S6 gets right and should keep
+### 1.8 A one-step stabilization family S6 never measured
+
+S6 §8's `[GAP-1STEP]` null covers `G2 = (r_1 z z, r_2, z)` and `Gc = (r_1 w z w^{-1}, r_2, z)`.
+It does **not** cover *slides onto two different relators*, which the §8 table lists in the
+same `m_z ≥ 3` row. That family is not uniformly destructive:
+
+| base | `(r_1 z, r_2 z, z)` | `(r_1 z, r_2 Z, z)` | `(r_1 z z, r_2, z)` |
+|---|---|---|---|
+| `("xYY","xYx")` defect 0 | **0** (inert) | 2 | 2 |
+| `("xyXY","xxy")` defect 0 | 2 | 2 | 2 |
+| `("xy","xy")` defect 0 | **0** (inert) | 2 | 2 |
+
+So the §8 table's "`m_z ≥ 3` ⇒ not inert" row is correct as "not *provably* inert" but is
+read too strongly in the practical advice; and the `[GAP-1STEP]` null is narrower than §8
+implies.
+
+### 1.9 What S6 gets right and should keep
 
 The classification's **structure** is sound and is the file's real contribution: AC1, cyclic
 rotation, relator permutation, AC4/AC5, the first plain slide over a fresh stabilizer, and
@@ -257,3 +273,190 @@ so the predicate can only move under AC2 and under the choice of spelling. Nothi
 audit touches that. What must not survive is (a) the conditional collapse to "AC2 only"
 (§1.6) and (b) the rates as stated (§1.5).
 
+
+---
+
+## 2. S8 — splitting monotonicity
+
+### 2.1 [GAP-S8-1] is DISCHARGEABLE — here is the missing bookkeeping
+
+The bigon relator `u g^{-1}` (my own link builder, letters `u` then `G`) contributes exactly
+two link edges — the corner `(u, G)` gives `u⁻—g⁻` and the wrap-around corner `(G, u)` gives
+`g⁺—u⁺`. Measured over 322 random splits, the deltas are **constant**:
+
+| quantity | delta under one split |
+|---|---|
+| `nA` (link edges = occurrences) | **+2** |
+| `nC` (present germs) | **+2** |
+| `L` (link components) | **0** |
+
+`(dnA, dnC, dL) = (2, 2, 0)` in **322 of 322** splits, with no other triple occurring. So
+`nA' − nC' = nA − nC` and `L' = L`, and the defect identity collapses to
+
+```
+defect(P') − defect(P)  =  nAC(P) − nAC(P')      for corresponding rotation systems.
+```
+
+That is the whole content of `[GAP-S8-1]`, and it is a standard fact, not an open one:
+**contracting a non-loop edge of a graph embedded by a rotation system leaves the face
+permutation's cycle count unchanged** (`V−1, E−1, F+0`, so `χ` and the genus of every
+component are unchanged). Hence the contracted system has defect **equal**, not merely `≤`,
+and `min` over `link(P)` `≤` `min` over `link(P')`, which is Conjecture S8.
+
+**Compatibility survives the splice — the explicit check the sketch waves at.** Write the
+bigon's two occurrences as `p` (letter `u`) and `q` (letter `g^{-1}`). In the dart model,
+`2p` sits at `u⁺`, `2p+1` at `u⁻`, `2q` at `g⁻`, `2q+1` at `g⁺`; `A` pairs `(2p+1, 2q)` and
+`(2q+1, 2p)`; `B` pairs `2p ↔ 2p+1` and `2q ↔ 2q+1`. The dart of the first contracted edge
+at `g⁻` is `2q`, and of the second at `g⁺` is `2q+1`, and `B(2q+1) = 2q`; likewise
+`B(2p) = 2p+1` on the `u` side. So the two splice positions are exactly `B`-mirror
+positions. Given `C_{g⁻} = B·rev(C_{g⁺})` and `C_{u⁻} = B·rev(C_{u⁺})` before contraction,
+the two merged orders satisfy the same relation afterwards. ∎
+
+> **Repair R-G.** `[GAP-S8-1]` can be closed and Conjecture S8 promoted to a **theorem**,
+> with the argument above written out (edge contraction preserves faces; the two splices are
+> at `B`-mirror positions).
+
+### 2.2 [GAP-S8-2] — the stated worry is vacuous
+
+The gap says the argument "assumes the bigon's two link edges are not loops and that
+`link(P')` stays connected". Neither assumption can fail:
+
+* the two edges are `u⁻—g⁻` and `g⁺—u⁺` with `u ≠ g` fresh, so **neither is ever a loop**,
+  and they are **vertex-disjoint**, so the two contractions cannot interfere;
+* contracting an edge cannot change the number of connected components, so `L` cannot jump
+  (measured: `dL = 0` in 322/322);
+* the **degenerate split** — re-route *every* occurrence of `g` — leaves `deg(g⁺) = deg(g⁻) = 1`
+  and the contractions become pendant-edge contractions, still `V−1, E−1, F+0`. It was
+  included explicitly in every base of the hunt below and produced no anomaly.
+
+### 2.3 The hunt: 379,364 split states, none below its base
+
+Bases: AK(3); five AK(2)-class / worked S6 bases; **length-1 and length-2 relators**
+(`("x","y")`, `("x","yy")`, `("xy","y")`, `("xx","yy")`, `("xy","xy")`); a
+non-cyclically-reduced spelling (`("xyXY","yYxxy")`); then 28,877 trivial-group bases (random
+AC walks from `("x","y")`) and 10,890 unrestricted bases. Every subset of `g`'s occurrences
+was enumerated exhaustively when `g` occurs `≤ 4` times, and sampled plus the full re-route
+otherwise.
+
+| corpus | bases | split states measured | strictly below base |
+|---|---|---|---|
+| hand-picked (incl. AK(3), length-1/2 relators, unreduced spellings) | 13 | 282 | **0** |
+| trivial-group (AC walks) | 28,877 | 237,036 | **0** |
+| unrestricted | 10,890 | 142,046 | **0** |
+| **total** | **39,780** | **379,364** | **0** |
+
+That is ~600× S8's own 632 states, and it includes exactly the degenerate regimes
+`[GAP-S8-2]` worried about.
+
+**Verdict: AMEND — Conjecture S8 is CONFIRMED and should be upgraded to a theorem** via §2.1.
+
+### 2.4 REFUTED: S8 §4's headline negative
+
+S8 §4 states the S-line's headline negative as
+
+> "**Adding generators is worth nothing as long as the added generators only re-describe the
+> existing relators.**"
+
+and trap T-S8 as "if the answer is 'none, it is the same words re-spelled', the proposal is
+already refuted". **This is false**, and the counterexample is from this same session and
+branch: `S4B_CUBIC_SEARCH.md`'s `C1` is reached from AK(3) by 7 chord refinements and 4 of
+S4's `SPLIT`s — every one of them a *definitional* stabilization that only re-describes the
+existing relators, with no relator content mixed — and
+
+```
+AK(3)  gamma_N = 2        C1 (rank 13, cubic triangular)  gamma_N = 1
+```
+
+so the re-describing moves strictly **lowered** `γ_N`. The reconciliation is that S8's
+mechanism and S4's `SPLIT` are different moves — S8's definition relator is the **length-2
+bigon** `u g^{-1}`, S4's is the **length-3** `t u v` — and the contraction argument of §2.1
+uses the length-2 shape essentially (a length-3 definition relator contributes *three* link
+edges, and contracting them is not a face-preserving operation in general).
+
+> **Repair R-H.** Restrict S8 §4's headline and trap T-S8 to *bigon* splits. As stated they
+> are contradicted by `C1`. The correct statement is: *a length-2 definitional split is
+> monotone; a length-3 definitional split is not, and is the only known re-describing move
+> that lowers `γ_N`.* This is the single most useful thing S8 could say to a search designer,
+> and it currently says the opposite.
+
+---
+
+## 3. S4 — the cubic normal form
+
+### 3.1 Theorem S4.1 (sign rigidity) — CONFIRMED
+
+Brute force over **every** cyclically reduced length-3 word at `N = 2, 3, 4`: no word
+contains both `x` and `x^{-1}` for any generator. 0 violations. The proof as written is
+correct (all three position pairs of a length-3 cyclic word are cyclically adjacent).
+
+### 3.2 Proposition S4.2 (no non-degenerate cubic triangular presentation of 1 below rank 4) — CONFIRMED
+
+Independent enumeration (my own cyclic-word generator, my own Bareiss determinant):
+
+| `N` | cyclically reduced length-3 cyclic words | cubic triangular presentations | `\|det\| = 1` |
+|---|---|---|---|
+| 2 | 12 | 20 | **0** |
+| 3 | 46 | 1,816 | **0** |
+| 4 | 120 | 264,208 | **43,008** |
+
+Every count matches S4 §4a exactly. The cyclic-word counts are also confirmable in closed
+form: the number of cyclically reduced length-3 words over `F_N` is `tr((J−P)^3)` on the
+`2N` signed letters, i.e. `28, 126, 344` for `N = 2, 3, 4`, giving `12, 46, 120` rotation
+classes.
+
+**One convention discrepancy, worth a line in S4.** §4's protocol says "ordered tuples up to
+rotation". The published counts are **not** ordered tuples — they are **multisets** of cyclic
+words (presentations up to relator reordering). My ordered counts are 40 and 10,096 at
+`N = 2, 3`; the multiset counts are 20 and 1,816, and Burnside reconciles them exactly
+(`(10096 + 3·256 + 2·16)/6 = 1816`). Since `γ_N`, `|det|` and triviality are all invariant
+under relator reordering this is the *right* quotient — but "ordered tuples" is the wrong
+word for it.
+
+> **Repair R-I.** §4: "ordered tuples up to rotation" → "multisets of cyclic words, i.e.
+> presentations up to relator reordering".
+
+### 3.3 The rank-4 headline census — CONFIRMED IN FULL, including the triviality test
+
+The task asks whether the trivial-group test was applied to all 43,008 or sampled. I applied
+**my own** Todd–Coxeter to **all 43,008**, cap 3,000 cosets:
+
+| | count |
+|---|---|
+| certified trivial group (index 1) | **43,008** |
+| non-trivial | **0** |
+| undetermined at cap | **0** |
+| defect histogram over all 43,008 | **`{0: 27,648, 2: 15,360}`** |
+| defect histogram over the certified-trivial subset | **`{0: 27,648, 2: 15,360}`** (same set) |
+| compatible census size | **16 for every one of the 43,008** |
+
+So S4's `43 008 (all)` is not a number carried over from the `|det| = 1` column: at rank 4,
+`|det| = 1` really does imply the trivial group for this family, and the 64.29 % / 35.71 %
+split is exactly reproduced. "Non-degenerate" means the same thing in the enumeration as in
+Thm S4.1/S4.2 (every relator cyclically reduced) — my enumeration used that definition and
+got S4's numbers.
+
+The `|det|` spectrum at `N = 4` (new, not in S4): `{0: 49,024, 1: 43,008, 2: 30,720,
+3: 32,768, 4: 3,072, 5: 18,432, …}`.
+
+### 3.4 Lemma S4.4 (`SPLIT`) — CONFIRMED, with two scope notes
+
+The algebra is correct: `D R'^{-1} = (t u v)(λ u v)^{-1} = t λ^{-1}` freely, and
+`(α (tλ^{-1}) α^{-1})·(α λ β) = α t β`. Freshness of `t` does preserve free **and** cyclic
+reducedness in every position of a length-3 relator (checked case by case: `λ b c`, `a b λ`,
+`λ b λ`). Two things the statement should say and does not:
+
+1. `t λ^{-1} = D R'^{-1}` is a product of **two** relators, so step 4 is two AC2's (the note
+   says "AC3+AC2 (twice)" only parenthetically) and the **intermediate states leave the
+   triangular world** — "every relator still has length exactly 3" holds at the endpoint,
+   not along the way.
+2. `SPLIT` is *not* S8's split. §2.4 above: S8's monotonicity does not apply to it, and
+   `S4B`'s `C1` shows `SPLIT` can lower `γ_N`. S4 and S8 must cross-reference each other on
+   this, or a future session will apply S8's "never decreases" to S4's move.
+
+### 3.5 One stale claim
+
+S4 §0 item 6 and §6 say "**No cubic form of AK(3) is reported**". `S4B_CUBIC_SEARCH.md`
+(same session) reports two, `C1` and `C2`, at rank 13. S4 is not wrong — it is superseded —
+but as written it is the first thing a fresh session reads about the route.
+
+> **Repair R-J.** Add a one-line pointer from S4 §0/§6 to `S4B`.

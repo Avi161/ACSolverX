@@ -13,8 +13,14 @@ Session brief: does the stable AC conjecture get easier for hard presentations �
 **Not by any mechanism — but yes, decisively, for decidability.** Two halves, and they must
 be kept apart.
 
-**(i) No mechanism.** Every way of using extra generators that we could isolate is provably
-inert or measurably counterproductive: abbreviation is a *CW subdivision* of the
+**(i) Almost no mechanism — with one exception found late, and it matters.** The exception
+first: A6's **SPLIT** move (a fresh generator with a *length-3* definition `tuv`, used in
+further positions, so its edge carries three or more 2-cell germs) **does** lower γ_N — it
+is what took AK(3) from γ_N = 2 to the rank-13 cubic form `C1` at γ_N = 1. That refutes this
+file's earlier blanket claim that re-describing the relators is worthless, and it is the
+only high-rank mechanism this session found that moves γ_N in the right direction. With that
+said, every *other* way of using extra generators that we could isolate is provably inert or
+measurably counterproductive: abbreviation is a *CW subdivision* of the
 presentation complex (S3, audited), change of variables is entirely a *depth-1* phenomenon
 (F1), stabilization itself and the first slide over a fresh stabilizer are inert
 (T4, T4′), and bare AC3 conjugation only destroys. The one measurement suggesting
