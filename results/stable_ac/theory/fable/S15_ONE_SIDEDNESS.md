@@ -200,10 +200,41 @@ dead:
 | `γ_N` itself | not invariant — `AK(3) ~_st C1` with `γ_N` 2 vs 1 (S15.3) |
 | anything a CW subdivision preserves but a length-3 SPLIT can lower | S3 gives the first, the `AK(3) → C1` chain gives the second |
 | "splitting never decreases `γ_N`" (S8) as a monotonicity engine | S8 is about the length-2 bigon `uG`; A6's length-3 definition `tuv` demonstrably lowered `γ_N`. The two moves must not be conflated, and S8 is under audit |
+| **non-planarity of the link** (added after `S20`) | **the implication is proved and is a genuine lower bound — but on the wrong quantity.** See below |
 
-No monotone quantity is currently known on this line. That is the honest state of the
-disproof side, and it is a *negative result about the route*, filed so the next session does
-not mistake the abundance of search instruments for the existence of an obstruction.
+### 6a. The one real lower bound found this session, and why it still does not help
+
+`S20_PLANARITY_OBSTRUCTION.md` **proves**: `defect = Σ 2gᵢ` over the rotation surface, and
+compatible rotation systems are a *subset* of all rotation systems, so `γ_N(P) = 0` forces a
+genus-0 embedding of the link graph. Contrapositive:
+
+> **non-planar link ⇒ `γ_N(P) ≥ 1`.**
+
+That is a real, certified, computable **lower** bound — the first this line has produced, and
+the falsification test passed cleanly: of 945 distinct `γ_N = 0` states, **945 are planar,
+0 non-planar**.
+
+It nevertheless leaves the table above intact, for two independent reasons:
+
+1. **It bounds a *state's* `γ_N`, not `Γ`.** `Γ` is a minimum over the whole stable class,
+   and `T_n`'s link is planar, so no non-planarity argument can ever push `Γ` off 0. Turning
+   it into a `Γ` bound would need non-planarity to be preserved by every stable AC move —
+   and `S20` **refutes** that for the very move in play: an explicit rank-11 state with a
+   certified `K3,3` SPLITs to a rank-12 state with a machine-verified sphere embedding, both
+   at `γ_N = 2`.
+2. **It cannot fire on AK(3) at all.** AK(3)'s link is planar — it is exactly `K4`. At rank 2
+   there are only 4 germs, and every graph on ≤ 4 vertices is planar, so the obstruction is
+   *identically vacuous* at rank 2 (0/300 random rank-2 presentations non-planar).
+
+So the honest state of the disproof side is unchanged: **no quantity monotone under all
+stable AC moves is known**, and the one certified lower bound found is vacuous exactly where
+it would be needed. Filed so the next session does not mistake the abundance of search
+instruments — or this one genuine theorem — for an obstruction.
+
+It also disposes of the hypothesis that motivated the search: planarity is **not** the
+mechanism behind S17's empty `1 → 0` cell. Only 331 of the 1,958 `γ_N = 1` parents are
+non-planar, and 26,761 of the 56,388 edges (47.5 %) have a *planar* child — every one an
+unblocked chance at `γ_N = 0`, none taken. Planarity explains at most 52.5 % of that cell.
 
 ---
 
