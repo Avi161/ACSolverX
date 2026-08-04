@@ -136,8 +136,11 @@ def load_mu_ladder_best_reps(path=MU_LADDER_JSONL):
     return out
 
 
-def load_rows(subset=None):
-    """aca124 ids from the freeze; search starts = μ-ladder ``best_rep``."""
+def load_rows(subset=None, cov_only=False):
+    """aca124 ids from the freeze; search starts = μ-ladder ``best_rep``.
+
+    ``cov_only=True`` keeps only the 36 μ-ladder descenders (CoV-reduced starts).
+    """
     assert_autmin_freeze()
     floors = load_mu_ladder_best_reps()
     rows = run_ab.load_rows(DATASET_NAME, subset)
@@ -167,6 +170,11 @@ def load_rows(subset=None):
             raise AssertionError(
                 f"{name}: start_total {r['start_total']} != best_mu "
                 f"{fl['best_mu']}")
+    if cov_only:
+        rows = [r for r in rows if r["cov_reduced"]]
+        if len(rows) != N_COV_DESCENDERS:
+            raise AssertionError(
+                f"COV_ONLY expected {N_COV_DESCENDERS} rows, got {len(rows)}")
     return rows
 
 
@@ -625,7 +633,8 @@ def _report(out, cfg):
 def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
                            progress_secs=300):
     out_dir = coerce_out_dir(out_dir)
-    rows = load_rows(cfg.get("SUBSET"))
+    cov_only = bool(cfg.get("COV_ONLY"))
+    rows = load_rows(cfg.get("SUBSET"), cov_only=cov_only)
     chunks = cfg.get("CHUNKS") or 1
     chunk_index = cfg.get("CHUNK_INDEX")
     rows, tag = _stride_chunk(rows, chunks, chunk_index)
@@ -643,6 +652,8 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
     cfg["ARMS"] = arms
 
     stem = cfg.get("OUT_STEM", f"hsearch_u124_s20mk2_{START_TAG}")
+    if cov_only and "cov36" not in stem:
+        stem = f"{stem}_cov36"
     if tag:
         stem = f"{stem}{tag}"
     # Filename encodes result-changing identity (depth tie is fixed +depth here).
@@ -669,9 +680,14 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
     print(
         f"  starts: μ-ladder best_rep  "
         f"({n_cov} CoV-reduced, {n_aut} Aut-min unchanged)  "
-        f"[tag={START_TAG}]",
+        f"[tag={START_TAG}]"
+        + ("  [COV_ONLY]" if cov_only else ""),
         flush=True,
     )
+    if cov_only and len(rows) != N_COV_DESCENDERS and (
+            not chunks or int(chunks) <= 1 or chunk_index is None):
+        raise AssertionError(
+            f"COV_ONLY expected {N_COV_DESCENDERS} rows, got {len(rows)}")
     # Spot-check a known descender whenever it is in this chunk/subset —
     # catches a stale Aut-min-only runner after Restart→Run All.
     by_name = {r["name"]: r for r in rows}
@@ -686,7 +702,7 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
             raise AssertionError(
                 f"aca_34 start_total={a34['start_total']} (want 16)")
     # Pin deterministic per-chunk CoV counts (all four chunks, not only c3).
-    if (cfg.get("SUBSET") is None and int(chunks) == 4
+    if (not cov_only and cfg.get("SUBSET") is None and int(chunks) == 4
             and chunk_index is not None
             and int(chunk_index) in CHUNK_COV_COUNTS
             and n_cov != CHUNK_COV_COUNTS[int(chunk_index)]):
@@ -694,7 +710,7 @@ def run_unsolved124_s20mk2(cfg, out_dir="results/hsearch", heartbeat_secs=60,
             f"chunk {chunk_index} CoV-reduced count {n_cov} != "
             f"{CHUNK_COV_COUNTS[int(chunk_index)]}")
     # Full 124 (no subset, no stride) must carry all 36 descenders.
-    if (cfg.get("SUBSET") is None
+    if (not cov_only and cfg.get("SUBSET") is None
             and (not chunks or int(chunks) <= 1 or chunk_index is None)
             and len(rows) == 124
             and n_cov != N_COV_DESCENDERS):

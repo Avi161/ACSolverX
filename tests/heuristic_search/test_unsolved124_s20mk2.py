@@ -15,6 +15,13 @@ from experiments.heuristic_search.runners import run_unsolved124_s20mk2 as ru  #
 MAX_BUDGET = 200
 
 
+def test_load_rows_cov_only():
+    rows = ru.load_rows(cov_only=True)
+    assert len(rows) == 36
+    assert all(r["cov_reduced"] for r in rows)
+    assert {r["name"] for r in rows} >= {"aca_34", "aca_87", "aca_123"}
+
+
 def test_autmin_freeze_r1_equals_rep():
     assert ru.assert_autmin_freeze() is True
 
