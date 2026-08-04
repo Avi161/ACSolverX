@@ -1,0 +1,3 @@
+ladder: 40 matched-difficulty AC-trivial sources (rank-2, L=13, triangulate to rank 9, sum|delta|=14)
+{"kind": "summary", "tag": "ladder", "attempts": 35, "solved": 0, "mode": "tiebreak", "beam": 60, "depth": 20, "diversity": 0.3, "gamma_tested": 0, "gamma_skipped": 930647, "gamma_hist": {}, "deep_pool_unique": 29678, "deep_tested": 200, "deep_hist": {"4": 149, "2": 51}, "deep_cap": 400000, "best_costs": [2, 2, 2, 2, 2, 2, 2, 4, 4, 4], "min_sum_delta_reached": 2, "seed": 12}
+GAMMA0 HITS: 0

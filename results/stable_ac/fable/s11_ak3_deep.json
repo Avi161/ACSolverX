@@ -1,0 +1,456 @@
+{
+ "record": "AK(3) depth-2 spelling hunt at a raised budget, with calibration at the SAME budget",
+ "bound_direction": "the climber bounds gamma_N from ABOVE; a defect-0 return is a complete positive certificate, a positive return is worth exactly the measured detection rate and is never a lower bound",
+ "why_not_exact": "each depth-2 spelling has 2.0-4.4e8 compatible rotation systems (a spike adds TWO occurrences, so deg goes +2); ~30 min per state, ~190 days for all 330",
+ "bases": "R1F eight gateway spellings (the only depth-1 spellings of AK(3) with gamma_N = 1; by Corollary S5 the only possible parents of a thickenable depth-2 spelling)",
+ "evals_per_state": 200000,
+ "seeds_per_state": 1,
+ "states_scored": 159,
+ "states_total": 330,
+ "coverage": 0.482,
+ "defect_histogram": {
+  "2": 79,
+  "4": 80
+ },
+ "n_hits": 0,
+ "hits": [],
+ "survivors_at_defect_2": [
+  [
+   "yYxyYxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyyYYxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xyYyxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xyxYXyYY"
+  ],
+  [
+   "xXxyYxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "YyxyYxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyxXYxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxXxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYXxxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxXxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxYyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYyYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYYyYYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYYYyYY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYYYxXY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYYYXxY",
+   "xyxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xXxyxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xxXyxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xYyyxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xyxXxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xyXxxYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xyxxXYXY"
+  ],
+  [
+   "xyYxxYYYY",
+   "xyxYXxXY"
+  ],
+  [
+   "xxYyYyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYyxYyYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYyxYYyYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xYyyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyxYYyXY"
+  ],
+  [
+   "xXxxYyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxXxYyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxXYyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYxXyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYXxyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYyxXxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYyxYYYxXY",
+   "xyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xXxyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "XxxyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xxXyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyYyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyxXxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyXxxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyxYxXXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyxYXxXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyxYXyYY"
+  ],
+  [
+   "xxxYXxXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxYXxYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyXxxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyxYXxXY"
+  ],
+  [
+   "xXxxxYXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "yYxxxYXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxXxxYXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxXxYXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYyYXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXyYxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXYyxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxyYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxYxXYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxYYyYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxYYxXY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xXxyxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "yYxyxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "YyxyxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyYyxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyxXxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyyYxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyxYyYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyxYXyYY"
+  ],
+  [
+   "xxXxxYxXYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxXxYxXYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYxxXXYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYxXYxXYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYxXYYY",
+   "xXxyxYXY"
+  ],
+  [
+   "xxxYxXYYY",
+   "xyxXxYXY"
+  ],
+  [
+   "xxxYxXYYY",
+   "xyxYxXXY"
+  ],
+  [
+   "XxxxxYxXYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYyYxXYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYxXYyYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYxXYYyYY",
+   "xyxYXY"
+  ]
+ ],
+ "survivors_same_letter": 20,
+ "calibration": {
+  "evals": 200000,
+  "detected": 30,
+  "cells": 30,
+  "detection_rate": 1.0,
+  "states": [
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyxxxy"
+    ],
+    "census": 25401600,
+    "total_length": 16,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "xyXY",
+     "xXYyXxxXxyYxy"
+    ],
+    "census": 261273600,
+    "total_length": 17,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxXxyYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYXxyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyxxXxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyxXYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyYyxyYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYyYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyxxxXxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   }
+  ],
+  "note": "certified gamma_N = 0 rank-2 states at total length 16-18 whose censuses (2.5e7-1.8e9) are at or ABOVE the targets 2.0-4.4e8, so the calibration is not kinder than the hunt on search-space size; the rungs are still climber-certified by construction, so the rate remains an UPPER bound on sensitivity"
+ },
+ "checkpoint": "results/stable_ac/fable/s11_ak3_deep_checkpoint.jsonl",
+ "prior_pass": {
+  "evals": 60000,
+  "states": 330,
+  "histogram": {
+   "2": 72,
+   "4": 258
+  },
+  "hits": 0,
+  "note": "the 60k pass reached defect 2 on only 22% of states; at 200k it is 50%, so the earlier survivor count was an artefact of the budget, not a property of the states"
+ }
+}

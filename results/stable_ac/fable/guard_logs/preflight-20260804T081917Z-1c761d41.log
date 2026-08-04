@@ -1,0 +1,3 @@
+selftest search: EXHAUSTED_DEPTH nodes 390 gamma tested 0 hist {}
+fast kernel agrees with the oracle on 44 states (numba=True)
+SELFTEST OK

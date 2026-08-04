@@ -24,6 +24,7 @@ restart cannot lose a hit.
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import os
 import random
@@ -32,6 +33,8 @@ import time
 from collections import Counter
 from itertools import combinations
 from math import factorial
+
+import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))))))
@@ -420,7 +423,7 @@ def verify_chain(root, trace) -> bool:
 
 def beam_search(root, rng, scanner, mode="tiebreak", beam=40, depth=18,
                 max_children=260, deadline=None, provenance="?", diversity=0.25,
-                deep_pool=None, deep_threshold=4):
+                deep_pool=None, deep_threshold=4, pool_sink=None):
     """Stochastic beam search with a plateau-aware cost.
 
     ``diversity`` is the fraction of each beam filled by a uniform random sample of the
@@ -457,11 +460,16 @@ def beam_search(root, rng, scanner, mode="tiebreak", beam=40, depth=18,
                     return {"status": "CUBIC", "words": list(child),
                             "trace": tr + [rec], "nodes": nodes, "depth_reached": d + 1}
                 c = cost(child, mode)
-                if deep_pool is not None:
-                    sd = sum(abs(x) for x in delta(child).values())
-                    if sd <= deep_threshold:
+                sd = sum(abs(x) for x in delta(child).values())
+                if sd <= deep_threshold:
+                    if deep_pool is not None:
                         deep_pool.append((sd, len(child), child,
                                           f"{provenance}|d{d + 1}"))
+                    if pool_sink is not None:
+                        pool_sink({"words": list(child), "sum_delta": sd,
+                                   "rank": len(child), "census": census_size(child),
+                                   "provenance": f"{provenance}|d{d + 1}",
+                                   "root": list(root), "trace": tr + [rec]})
                 pool.append((c, child, tr + [rec]))
             if deadline is not None and time.time() > deadline:
                 break
@@ -541,6 +549,20 @@ def run_roots(sources, args, tag):
     deep_pool = []
     solved = 0
     attempts = 0
+    pool_fh = None
+    pool_written = 0
+    if args.pool_out:
+        os.makedirs(os.path.dirname(args.pool_out), exist_ok=True)
+        pool_fh = gzip.open(args.pool_out, "at")
+
+    def pool_sink(row):
+        nonlocal pool_written
+        if pool_fh is None:
+            return
+        pool_fh.write(json.dumps(row) + "\n")
+        pool_written += 1
+        if pool_written % 2000 == 0:
+            pool_fh.flush()
     for si, src in enumerate(sources):
         for ri in range(args.roots_per_source):
             if time.time() > deadline:
@@ -554,7 +576,8 @@ def run_roots(sources, args, tag):
                               depth=args.depth, max_children=args.max_children,
                               deadline=min(deadline, time.time() + args.per_root),
                               provenance=prov, diversity=args.diversity,
-                              deep_pool=deep_pool, deep_threshold=args.deep_threshold)
+                              deep_pool=deep_pool, deep_threshold=args.deep_threshold,
+                              pool_sink=pool_sink if pool_fh is not None else None)
             res.update(source=list(src), root=list(root), provenance=prov,
                        mode=args.mode, rank_root=len(root))
             if res["status"] == "CUBIC":
@@ -580,6 +603,11 @@ def run_roots(sources, args, tag):
             _emit(out, res)
         if time.time() > deadline:
             break
+    if pool_fh is not None:
+        pool_fh.flush()
+        pool_fh.close()
+        print(f"pool persisted: {pool_written} near-cubic rows -> {args.pool_out}",
+              flush=True)
 
     # --- post-hoc deep gamma_N scan on the near-cubic states reached -------------------
     deep = {}
@@ -618,6 +646,7 @@ def run_roots(sources, args, tag):
                "deep_hist": dict(deep_hist), "deep_cap": args.deep_cap,
                "best_costs": sorted(r.get("best_cost", [99])[0] for r in results)[:10],
                "min_sum_delta_reached": min([e[0] for e in ordered], default=None),
+               "pool_written": pool_written, "pool_out": args.pool_out,
                "seed": args.seed}
     _emit(out, summary)
     print(json.dumps({k: v for k, v in summary.items() if k != "gamma_hits"}), flush=True)
@@ -692,6 +721,30 @@ def cmd_selftest(args):
                       max_children=30, deadline=time.time() + 20, provenance="selftest")
     print("selftest search:", res["status"], "nodes", res["nodes"],
           "gamma tested", sc.tested, "hist", dict(sc.hist))
+    # fast kernel must agree with the audited oracle EXACTLY, on cubic and near-cubic
+    probes = [("kAe", "Xgb", "aXH", "bxH", "cYY", "ydJ", "eid", "IfC", "gKF", "hAe",
+               "igb", "jfC", "kdJ"),
+              ("Xbc", "hEg", "aYX", "JbA", "YCk", "dIk", "eYj", "xfD", "gfi", "hfD",
+               "ibA", "jCh", "kEg"),
+              pub, AK3]
+    rngp = random.Random(7)
+    st = triangulate(AK3, rngp)
+    for child, _rec in split_children(st, rngp, max_children=8):
+        probes.append(child)
+        for gc, _r2 in split_children(child, rngp, max_children=4):
+            probes.append(gc)
+    nchk = 0
+    for w in probes:
+        if census_size(w) > 300_000:
+            continue
+        o = gamma_N_factorial_n(w, cap_rotations=300_000, keep_accepting=False)
+        if o["status"] != "OK":
+            continue
+        f = fast_min_defect(w)
+        assert f == o["minimum_defect"], (w, f, o["minimum_defect"])
+        nchk += 1
+    assert nchk >= 8, nchk
+    print(f"fast kernel agrees with the oracle on {nchk} states (numba={_HAVE_NUMBA})")
     print("SELFTEST OK")
     return 0
 
@@ -720,6 +773,181 @@ def cmd_ladder(args):
     print(f"ladder: {len(srcs)} matched-difficulty AC-trivial sources "
           f"(rank-2, L=13, triangulate to rank 9, sum|delta|=14)", flush=True)
     return run_roots(srcs, args, "ladder")
+
+
+# ----------------------------------------------------------------------------------------
+# fast EXACT census for the near-cubic regime (numba), validated against the oracle
+# ----------------------------------------------------------------------------------------
+
+try:
+    from numba import njit
+    _HAVE_NUMBA = True
+except Exception:                                             # pragma: no cover
+    _HAVE_NUMBA = False
+
+    def njit(*a, **k):
+        def deco(f):
+            return f
+        return deco
+
+
+@njit(cache=True)
+def _census_kernel(A, cand_pos, cand_neg, germ_off, germ_ncand, germ_k,
+                   n_darts, nA, nC, twoL):
+    """Exact minimum defect over every compatible rotation system.
+
+    Mixed-radix enumeration over the per-germ cyclic orders.  ``cand_pos``/``cand_neg``
+    hold, for positive germ ``i`` and candidate ``j``, the ``germ_k[i]`` darts of the
+    positive resp. negative end, flattened at ``germ_off[i] + j * germ_k[i]``.
+    Returns ``(min_defect, argmin_encoded, n_enumerated)``.
+    """
+    ng = germ_ncand.shape[0]
+    total = 1
+    for i in range(ng):
+        total *= germ_ncand[i]
+    C = np.empty(n_darts, dtype=np.int64)
+    seen = np.empty(n_darts, dtype=np.uint8)
+    best = 1 << 60
+    best_idx = -1
+    for combo in range(total):
+        rem = combo
+        for i in range(ng):
+            nc = germ_ncand[i]
+            j = rem % nc
+            rem //= nc
+            k = germ_k[i]
+            base = germ_off[i] + j * k
+            for t in range(k):
+                C[cand_pos[base + t]] = cand_pos[base + (t + 1) % k]
+                C[cand_neg[base + t]] = cand_neg[base + (t + 1) % k]
+        for d in range(n_darts):
+            seen[d] = 0
+        nAC = 0
+        for start in range(n_darts):
+            if seen[start] == 1:
+                continue
+            nAC += 1
+            cur = start
+            while seen[cur] == 0:
+                seen[cur] = 1
+                cur = A[C[cur]]
+        defect = nA - nC + twoL - nAC
+        if defect < best:
+            best = defect
+            best_idx = combo
+            if best == 0:
+                return best, best_idx, combo + 1
+    return best, best_idx, total
+
+
+def fast_min_defect(state):
+    """Exact ``min_C defect(C)`` via the numba kernel.  Same value as
+    ``gamma_N_factorial_n(...)['minimum_defect']`` — asserted in ``selftest``."""
+    from experiments.stable_ac.fable.neuwirth_rank_n import build_link_n
+    gens = gens_of(state)
+    data = build_link_n(state, gens)
+    B = data.B
+    pos_germs = [2 * k for k in range(len(gens)) if data.vertex_darts[2 * k]]
+    cand_pos, cand_neg, germ_off, germ_ncand, germ_k = [], [], [], [], []
+    from itertools import permutations as _perm
+    for g in pos_germs:
+        darts = data.vertex_darts[g]
+        k = len(darts)
+        orders = [(darts[0],) + p for p in _perm(darts[1:])]
+        germ_off.append(len(cand_pos))
+        germ_ncand.append(len(orders))
+        germ_k.append(k)
+        for o in orders:
+            neg = tuple(B[p] for p in reversed(o))
+            cand_pos.extend(o)
+            cand_neg.extend(neg)
+    best, idx, enumerated = _census_kernel(
+        np.asarray(data.A, dtype=np.int64),
+        np.asarray(cand_pos, dtype=np.int64), np.asarray(cand_neg, dtype=np.int64),
+        np.asarray(germ_off, dtype=np.int64), np.asarray(germ_ncand, dtype=np.int64),
+        np.asarray(germ_k, dtype=np.int64),
+        data.n_darts, data.n_occurrences, len(data.present_germs),
+        2 * data.link_components)
+    return int(best)
+
+
+def cmd_decide(args):
+    """Decide EVERY persisted near-cubic state by exact census; report the histogram."""
+    seen = set()
+    rows = []
+    for path in args.pool_in.split(","):
+        opener = gzip.open if path.endswith(".gz") else open
+        with opener(path, "rt") as fh:
+            for line in fh:
+                if not line.strip():
+                    continue
+                d = json.loads(line)
+                st = tuple(d["words"])
+                key = canon_state(st)
+                if key in seen:
+                    continue
+                seen.add(key)
+                rows.append(d)
+    print(f"pool: {len(rows)} distinct near-cubic states (deduped on canonical cyclic form)",
+          flush=True)
+    by_rank = Counter((r["rank"], r["sum_delta"]) for r in rows)
+    print("  (rank, sum|delta|) ->", dict(sorted(by_rank.items())), flush=True)
+
+    out = args.decide_out
+    if out:
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+    fh = gzip.open(out, "wt") if out else None
+    hist = Counter()
+    hist_by_sd = {}
+    hits = []
+    decided = 0
+    skipped = 0
+    t0 = time.time()
+    deadline = t0 + args.decide_budget
+    for r in rows:
+        if time.time() > deadline:
+            break
+        st = tuple(r["words"])
+        if census_size(st) > args.deep_cap:
+            skipped += 1
+            continue
+        d = fast_min_defect(st)
+        decided += 1
+        hist[d] += 1
+        hist_by_sd.setdefault(r["sum_delta"], Counter())[d] += 1
+        if fh is not None:
+            fh.write(json.dumps({"words": r["words"], "rank": r["rank"],
+                                 "sum_delta": r["sum_delta"], "census": r["census"],
+                                 "minimum_defect": d,
+                                 "provenance": r.get("provenance")}) + "\n")
+        if d == 0:
+            print("\n" + "=" * 70, flush=True)
+            print("*** GAMMA_N = 0 HIT — THICKENABLE MEMBER OF AK(3)'s STABLE CLASS ***",
+                  flush=True)
+            print(json.dumps(r), flush=True)
+            print("=" * 70 + "\n", flush=True)
+            hits.append(r)
+            if fh is not None:
+                fh.flush()
+            if out:
+                with open(out.replace(".jsonl.gz", "_HIT.json"), "w") as hf:
+                    json.dump(r, hf, indent=1)
+        if decided % 2000 == 0:
+            print(f"  decided {decided}/{len(rows)}  {time.time() - t0:.0f}s  "
+                  f"hist={dict(sorted(hist.items()))}", flush=True)
+    if fh is not None:
+        fh.close()
+    summary = {"kind": "decide_summary", "pool_rows": len(rows), "decided": decided,
+               "skipped_over_cap": skipped, "elapsed_s": round(time.time() - t0, 1),
+               "defect_histogram": dict(sorted(hist.items())),
+               "by_sum_delta": {k: dict(sorted(v.items()))
+                                for k, v in sorted(hist_by_sd.items())},
+               "gamma0_hits": len(hits), "deep_cap": args.deep_cap}
+    print(json.dumps(summary), flush=True)
+    if out:
+        with open(out.replace(".jsonl.gz", "_summary.json"), "w") as sf:
+            json.dump(summary, sf, indent=1)
+    return summary
 
 
 def cmd_flips(args):
@@ -854,7 +1082,7 @@ def cmd_flips(args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("cmd", choices=["selftest", "ak3", "ladder", "flips"])
+    ap.add_argument("cmd", choices=["selftest", "ak3", "ladder", "flips", "decide"])
     ap.add_argument("--corpus", type=int, default=120)
     ap.add_argument("--source-length", type=int, default=8)
     ap.add_argument("--flip-children", type=int, default=40)
@@ -878,13 +1106,18 @@ def main(argv=None):
     ap.add_argument("--deep-cap", type=int, default=1_500_000)
     ap.add_argument("--deep-budget", type=float, default=120.0)
     ap.add_argument("--deep-max", type=int, default=4000)
+    ap.add_argument("--pool-out", default=None,
+                    help="gzipped jsonl: persist EVERY near-cubic state as it is found")
+    ap.add_argument("--pool-in", default=None)
+    ap.add_argument("--decide-out", default=None)
+    ap.add_argument("--decide-budget", type=float, default=480.0)
     ap.add_argument("--seed", type=int, default=20260804)
     ap.add_argument("--out", default=None)
     args = ap.parse_args(argv)
     if args.out:
         os.makedirs(os.path.dirname(args.out), exist_ok=True)
     fns = {"selftest": cmd_selftest, "ak3": cmd_ak3, "ladder": cmd_ladder,
-           "flips": cmd_flips}
+           "flips": cmd_flips, "decide": cmd_decide}
     fns[args.cmd](args)
     return 0
 

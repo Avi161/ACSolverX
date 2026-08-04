@@ -1,2 +1,4 @@
   *** CUBIC ak3|src0|root12: ['kAe', 'Xgb', 'aXH', 'bxH', 'cYY', 'ydJ', 'eid', 'IfC', 'gKF', 'hAe', 'igb', 'jfC', 'kdJ'] verified=True gamma={'status': 'OK', 'minimum_defect': 2, 'census': 8192}
   *** CUBIC ak3|src0|root13: ['Xbc', 'hEg', 'aYX', 'JbA', 'YCk', 'dIk', 'eYj', 'xfD', 'gfi', 'hfD', 'ibA', 'jCh', 'kEg'] verified=True gamma={'status': 'OK', 'minimum_defect': 4, 'census': 8192}
+{"kind": "summary", "tag": "ak3", "attempts": 28, "solved": 2, "mode": "tiebreak", "beam": 60, "depth": 20, "diversity": 0.3, "gamma_tested": 0, "gamma_skipped": 1298733, "gamma_hist": {}, "deep_pool_unique": 66756, "deep_tested": 500, "deep_hist": {"4": 402, "6": 94, "2": 4}, "deep_cap": 900000, "best_costs": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "min_sum_delta_reached": 2, "seed": 11}
+GAMMA0 HITS: 0

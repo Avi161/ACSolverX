@@ -1,0 +1,110 @@
+{
+ "200000": {
+  "evals": 200000,
+  "cells": 30,
+  "detected": 30,
+  "detection_rate": 1.0,
+  "rows": [
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyxxxy"
+    ],
+    "census": 25401600,
+    "total_length": 16,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "xyXY",
+     "xXYyXxxXxyYxy"
+    ],
+    "census": 261273600,
+    "total_length": 17,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxXxyYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYXxyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyxxXxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyxXYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyYyxyYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYyYXX",
+     "XYyxxxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyxxxXxy"
+    ],
+    "census": 1828915200,
+    "total_length": 18,
+    "detected": 3,
+    "seeds": 3
+   }
+  ]
+ }
+}

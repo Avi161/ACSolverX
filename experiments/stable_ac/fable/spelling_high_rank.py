@@ -9,18 +9,32 @@ reduced ``("XYxY","XyX")`` is back at 0.  So along one reduction chain the defec
 test spiked a *cyclically reduced* base once, i.e. tested only ``depth 1 -> depth 0``; this
 breaks at ``depth 2 -> depth 1``.
 
-**SCOPE, which decides what it is worth.**  Todd-Coxeter completes on this family with
-**index 4**: it presents Z/4, NOT the trivial group.  The AC programme only ever uses SR
-restricted to balanced presentations of the trivial group (that is Lackenby Thm 1.3's
-hypothesis), and a counterexample outside that class does not transfer into it.  So:
+**SCOPE, which decides what it is worth.**  Todd-Coxeter completes on that first family
+with **index 4**: it presents Z/4, NOT the trivial group, and a counterexample outside the
+trivial-group class does not transfer into it (CLAUDE.md, "distinguish the statements").
+So the hunt was rerun with bases restricted by ``trivial_bases`` to Todd-Coxeter-verified
+index-1 presentations, and it **also succeeded**:
 
-* **SR-general: REFUTED** (this counterexample);
-* **SR-trivial: NOT refuted** -- see ``trivial_bases`` + ``sr_hunt_spelled`` and
-  ``results/stable_ac/fable/s11_sr_trivial.json`` for the hunt against it.
+    ("ABbbabAAaB","baB")   census 86,400   min defect 0   <- spike, u = "B"
+    ("AbabAAaB","baB")     census  2,880   min defect 2
+    ("AbabAB","baB")       census    144   min defect 0   (fully reduced)
+
+balanced, rank 2, Todd-Coxeter **index 1 at every step**, the defect-0 witness accepted by
+``check_witness_n`` with ``trivial_group=True`` and re-derived by
+``rank_n_ac_search.independent_defect``.  So:
+
+* **SR-general: REFUTED**;
+* **SR-trivial: REFUTED** -- 12 counterexamples over 4 trivial-group bases,
+  ``results/stable_ac/fable/s11_sr_trivial.json``.
+
+CAVEAT that must travel with both: in all 28 counterexamples the FULLY REDUCED form already
+had defect 0.  No spelling was found that beats its own reduced form, which is the thing
+AK(3) would need.  What falls is the *proof* that it cannot happen, not the question.
 
 Pinned in ``tests/fable/test_spelling_high_rank.py``
-``::test_conjecture_SR_is_false_for_GENERAL_presentations`` and written up in
-``results/stable_ac/theory/fable/S11_SPELLING_AT_HIGH_RANK.md`` section 4.3.
+``::test_conjecture_SR_is_false_for_GENERAL_presentations`` and
+``::test_conjecture_SR_is_false_for_TRIVIAL_GROUP_presentations``; written up in
+``results/stable_ac/theory/fable/S11_SPELLING_AT_HIGH_RANK.md`` sections 4.3 and 4.3'.
 
 
 Task A10 of the fable S-line.  Two things live here, in this order, because the second is
@@ -708,6 +722,224 @@ def trivial_bases(rank: int = 2, *, count: int = 60, max_length: int = 10,
     return out
 
 
+def _jsonl_append(path, row):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "a") as fh:
+        fh.write(json.dumps(row) + "\n")
+        fh.flush()
+        os.fsync(fh.fileno())
+
+
+def _jsonl_keys(path, field="key"):
+    done = {}
+    if not os.path.exists(path):
+        return done
+    with open(path) as fh:
+        for line in fh:
+            try:
+                row = json.loads(line)
+            except Exception:                                        # noqa: BLE001
+                continue
+            if field in row:
+                done[row[field]] = row
+    return done
+
+
+def deep_climb_pass(states, *, evals: int, seeds: int, checkpoint: str, tag: str,
+                    deadline: float, seed: int = 20260804, log=None) -> dict:
+    """Climb every state at ``evals`` x ``seeds``, appending each result to ``checkpoint``.
+
+    Crash-safe and resumable: a state already present in the checkpoint with the same
+    ``tag`` is skipped.  The climber bounds ``gamma_N`` from ABOVE, so a 0 is a complete
+    positive certificate and a positive return is worth exactly the calibrated detection
+    rate at this ``evals`` -- never a lower bound.
+    """
+    t0 = time.time()
+    done = {k: r for k, r in _jsonl_keys(checkpoint).items()
+            if r.get("tag") == tag}
+    hits = []
+    scored = 0
+    for st in states:
+        words = tuple(st["words"]) if isinstance(st, dict) else tuple(st)
+        gens = generators_of(words)
+        key = f"{tag}|" + "|".join(words)
+        if key in done:
+            if done[key].get("best") == 0:
+                hits.append(done[key])
+            continue
+        if time.time() - t0 > deadline:
+            break
+        best = None
+        witness = None
+        for s in range(seeds):
+            b, orders = climb(words, gens, evals=evals, seed=seed + 7919 * s)
+            if best is None or b < best:
+                best, witness = b, orders
+            if best == 0:
+                break
+        row = {"key": key, "tag": tag, "words": list(words), "evals": evals,
+               "seeds_used": seeds, "best": best,
+               "census": census_cost(words, gens),
+               "total_length": sum(len(w) for w in words),
+               "seconds": round(time.time() - t0, 1)}
+        if best == 0 and witness is not None:
+            row["witness"] = {str(k): list(v) for k, v in witness.items()}
+        _jsonl_append(checkpoint, row)
+        scored += 1
+        if best == 0:
+            hits.append(row)
+            if log:
+                log(f"  *** DEFECT-0 HIT {words} tag={tag}")
+        done[key] = row
+    hist: dict = {}
+    for r in done.values():
+        hist[str(r["best"])] = hist.get(str(r["best"]), 0) + 1
+    return {"tag": tag, "evals": evals, "seeds": seeds, "scored_now": scored,
+            "in_checkpoint": len(done), "histogram": hist, "hits": hits,
+            "survivors": [r["words"] for r in done.values() if r["best"] == 2],
+            "seconds": round(time.time() - t0, 2)}
+
+
+def verify_hit(words, generators=None, *, base=AK3, witness=None,
+               census_cap: int = 10 ** 9, coset_cap: int = 500_000) -> dict:
+    """Four-way verification of a claimed defect-0 spelling, per the standing rule.
+
+    1. ``check_witness_n`` with ``trivial_group=True`` -- rebuilds ``D, A, B`` from the
+       words and shares no code with the climber; it also cross-checks Corollary 3's
+       transitivity, which only holds for the trivial group;
+    2. the exact census (expensive at these degrees -- 2-4 x 10^8 systems, ~30 min each --
+       so it is attempted only under ``census_cap`` and reported as SKIPPED otherwise);
+    3. Todd-Coxeter over the trivial subgroup: the presented group must still be trivial;
+    4. **replay**: free-reduce back to ``base`` and exhibit the explicit chain of spike
+       insertions, so the claim "this is a spelling of AK(3)" is checked rather than
+       asserted.
+    """
+    words = tuple(words)
+    if generators is None:
+        generators = generators_of(words)
+    generators = tuple(generators)
+    out = {"words": list(words), "generators": list(generators)}
+
+    # (4) replay first: cheapest, and it decides whether the rest is even relevant
+    reduced = tuple(cyclic_reduce(free_reduce(w)) for w in words)
+    out["free_reduction"] = list(reduced)
+    out["replays_to_base"] = spelling_key(reduced) == spelling_key(
+        tuple(cyclic_reduce(w) for w in base))
+    out["base"] = list(base)
+    out["spikes_removed"] = sum(len(w) for w in words) - sum(len(w) for w in reduced)
+
+    # (3) Todd-Coxeter
+    out["todd_coxeter"] = todd_coxeter_check(words, generators, cap=coset_cap)
+
+    # (1) independent witness verification
+    if witness is not None:
+        pres = RN.Pres(generators, words)
+        orders = {int(k): list(v) for k, v in witness.items()}
+        rep = RN.verify_defect_zero(pres, orders, census_cap=0)
+        out["check_witness_n"] = rep.get("check_witness_n")
+        out["check_witness_n_error"] = rep.get("check_witness_n_error")
+        out["independent_defect"] = rep.get("independent_defect")
+
+    # (2) exact census, only if it is remotely affordable
+    cost = census_cost(words, generators)
+    out["census_size"] = cost
+    if cost <= census_cap:
+        out["exact_census"] = decide(words, generators, cap=census_cap)
+    else:
+        out["exact_census"] = {"verdict": "SKIPPED", "census": cost,
+                               "note": "above census_cap; not a mathematical verdict"}
+    return out
+
+
+def matched_positive_ladder(*, target_length: int = 17, min_census: int = 10 ** 8,
+                            want: int = 5, certify_evals: int = 3_000_000,
+                            seed: int = 20260804, deadline: float = 600.0,
+                            seeds_from=None, log=None) -> list:
+    """Certified ``gamma_N = 0`` rank-2 states MATCHED on length AND census size.
+
+    Calibrating the AK(3) depth-2 hunt on generic length-17 rungs would be too kind: the
+    targets have compatible families of 2-4 x 10^8, while a generic length-17 ladder rung
+    has 10^4-10^6.  A climber's difficulty tracks the search space, not the word length, so
+    the calibration states are grown until their census is at least ``min_census``.
+    """
+    t0 = time.time()
+    rng = random.Random(seed)
+    if seeds_from is None:
+        seeds_from = [("xyXY", "xxy"), ("xyXY", "Yyxxy"), ("xxy", "xyXY")]
+    frontier = [tuple(w) for w in seeds_from]
+    found = []
+    seen = {spelling_key(w) for w in frontier}
+    while frontier and time.time() - t0 < deadline and len(found) < want:
+        nxt = []
+        for parent in frontier:
+            gens = generators_of(parent)
+            imgs = spike_images(parent, gens)
+            rng.shuffle(imgs)
+            for key, img, _p in imgs[:24]:
+                if time.time() - t0 > deadline or len(found) >= want:
+                    break
+                if key in seen:
+                    continue
+                L = sum(len(w) for w in img)
+                if L > target_length:
+                    continue
+                seen.add(key)
+                cost = census_cost(img, gens)
+                # cheap gate first: only climb states that are still on a useful trajectory
+                if L == target_length and cost < min_census:
+                    continue
+                cert = certify_zero(img, gens,
+                                    evals=certify_evals if L == target_length else 200_000,
+                                    seed=rng.randrange(10 ** 9))
+                if not cert["certified"]:
+                    continue
+                row = {"words": img, "generators": gens, "total_length": L,
+                       "census": cost, "certified_by": "defect-0 witness",
+                       "certify_evals": certify_evals if L == target_length else 200_000}
+                if L == target_length and cost >= min_census:
+                    found.append(row)
+                    if log:
+                        log(f"  matched rung {img} census={cost:,}")
+                else:
+                    nxt.append(img)
+        frontier = nxt[:40]
+    return found
+
+
+def calibrate_at(states, budgets, *, seeds: int = 5, seed: int = 0,
+                 checkpoint: str = None, deadline: float = 900.0) -> dict:
+    """Detection rate of the climber at each budget in ``budgets``, on certified positives."""
+    t0 = time.time()
+    out = {}
+    for evals in budgets:
+        hits = 0
+        cells = 0
+        rows = []
+        for st in states:
+            words = tuple(st["words"]) if isinstance(st, dict) else tuple(st)
+            gens = generators_of(words)
+            got = 0
+            for s in range(seeds):
+                if time.time() - t0 > deadline:
+                    break
+                b, _o = climb(words, gens, evals=evals, seed=seed + 104729 * s)
+                cells += 1
+                if b == 0:
+                    hits += 1
+                    got += 1
+            rows.append({"words": list(words), "census": census_cost(words, gens),
+                         "total_length": sum(len(w) for w in words),
+                         "detected": got, "seeds": seeds})
+            if checkpoint:
+                _jsonl_append(checkpoint, {"key": f"cal{evals}|" + "|".join(words),
+                                           "tag": f"cal{evals}", "detected": got,
+                                           "seeds": seeds, "words": list(words)})
+        out[str(evals)] = {"evals": evals, "cells": cells, "detected": hits,
+                           "detection_rate": hits / cells if cells else None,
+                           "rows": rows}
+    return out
+
+
 def sr_hunt_spelled(*, bases=None, max_base_length: int = 8, cap: int = DEFAULT_CAP,
                     deadline: float = 180.0, seed: int = 20260804,
                     max_bases: int = 400) -> dict:
@@ -1172,9 +1404,11 @@ def cmd_ak3(args):
     cal = None
     if args.calibrate:
         ladder = json.load(open(args.ladder))["rows"] if os.path.exists(args.ladder) else []
+        # every ladder rung is a CERTIFIED gamma_N = 0 state (defect-0 witness,
+        # re-verified by check_witness_n); the census verdict must NOT be used as the
+        # filter, since the cells being calibrated are exactly the ones the census SKIPS.
         pos = [tuple(r["words"]) for r in ladder
-               if r.get("verdict") == "THICKENABLE"
-               and abs(r["total_length"] - args.calibrate_length) <= 1
+               if abs(r["total_length"] - args.calibrate_length) <= 1
                and r["rank"] == 2]
         pos = pos[:args.calibrate_states]
         if pos:

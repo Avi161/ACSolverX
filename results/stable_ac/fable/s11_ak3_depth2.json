@@ -1,0 +1,5045 @@
+{
+ "record": "AK(3) depth-2 spelling hunt (re-opened after Conjecture SR fell)",
+ "bound_direction": "the climber bounds gamma_N from ABOVE; a 0 is conclusive, silence is worth exactly the measured detection rate",
+ "gateways": [
+  [
+   "xyYxxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxYyxYYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYXxYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYxXYYY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYYYXxY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYYYxXY",
+   "xyxYXY"
+  ],
+  [
+   "xxxYYYY",
+   "xxXyxYXY"
+  ],
+  [
+   "xxxYYYY",
+   "xyXxxYXY"
+  ]
+ ],
+ "evals_per_state": 60000,
+ "states_scored": 330,
+ "same_letter_states": 81,
+ "climber_defect_histogram": {
+  "2": 72,
+  "4": 258
+ },
+ "n_hits": 0,
+ "hits": [],
+ "seconds": 193.42,
+ "rows": [
+  {
+   "gateway": 0,
+   "words": [
+    "yYxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYyYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyyYYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxyYxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxyYYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "yYxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xXxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "XxxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "YyxyYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xxXyYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xYyyYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyxXYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyXxYxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxXxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYXxxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYYyxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxXxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxxXYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYyYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYyYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYxXYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYXxYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYyYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xXxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "XxxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "YyxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xYyyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 0,
+   "words": [
+    "xyYxxYYYY",
+    "xyxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "YyxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xYyxYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYYyyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYyYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYyYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYyYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "YyxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xYyyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xXxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "XxxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "yYxxYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxXxYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxxXYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxyYYyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYxXyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYXxyxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxXxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyXxxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyyYxYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxxXYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxyYYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYxXYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYXxYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xXxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "XxxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "yYxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 1,
+   "words": [
+    "xxYyxYYYY",
+    "xyxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "XxxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXXxxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYXxYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "XxxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xXxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "yYxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "YyxxxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxXxxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xYyxxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxXxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxyYxYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxxXYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxyYYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYyYXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYxXXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYYyXxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXyYxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXYyxYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxyYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYyYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYxXYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYyYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xXxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "yYxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "YyxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xYyyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 2,
+   "words": [
+    "xxxYXxYYY",
+    "xyxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xXxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxXxxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxXxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxxXYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxxXXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYxXYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xXxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "XxxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "yYxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "YyxxxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xYyxxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxyYxYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxyYYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYyYxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYYyxXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxyYXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxYyXYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXyYYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYyYYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYXxYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYyYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "XxxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "yYxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "YyxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xYyyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 3,
+   "words": [
+    "xxxYxXYYY",
+    "xyxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "XxxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYXxYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXXxxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "XxxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xXxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "yYxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "YyxxxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxXxxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xYyxxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxXxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxyYxYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxxXYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxyYYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYyYYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYyYYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYxXYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYyYXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYxXXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYYyXxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXyYxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXYyxY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxyYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xXxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "yYxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "YyxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xYyyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 4,
+   "words": [
+    "xxxYYYXxY",
+    "xyxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xXxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxXxxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxXxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxxXYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYxXYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxxXXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xXxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "XxxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "yYxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "YyxxxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xYyxxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxyYxYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxyYYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYyYYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYyYYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYXxYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYyYxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYYyxXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxyYXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxYyXY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 7,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXyYY",
+    "xyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 8,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "XxxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "yYxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "YyxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xYyyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 5,
+   "words": [
+    "xxxYYYxXY",
+    "xyxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xXxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxXxxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxXxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxxXYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYxXYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xXxxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxxXXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 6,
+    "letter": "x"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "XxxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "yYxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "YyxxxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xYyxxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxyYxYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxyYYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYyYYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYyYYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYXxYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYyYY",
+    "xxXyxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "XxxxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "yYxxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "YyxxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xyYxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xYyxXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxyYXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxYyXyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXXxyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXYyyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 6,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 7,
+    "letter": "X"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 6,
+   "words": [
+    "xxxYYYY",
+    "xxXyxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 7,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "XxxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYXxYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "XxxyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXXxxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXxXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 6,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXXxY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 7,
+    "letter": "X"
+   },
+   "same_letter": true,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xXxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "yYxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "YyxxxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxXxxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xYyxxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxXxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxyYxYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxxXYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxyYYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYyYYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYyYYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYxXYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYyYY",
+    "xyXxxYXY"
+   ],
+   "spike": {
+    "relator": 0,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xXxyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "yYxyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "YyxyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 0,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyYyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xYyyXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 1,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyxXXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyyYXxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 2,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXyYxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXYyxxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 3,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxXxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 2,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxyYxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxYyxYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 4,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxxXYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxyYYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxYyYXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 5,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxYxXXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 6,
+    "letter": "x"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxYYyXY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 6,
+    "letter": "Y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  },
+  {
+   "gateway": 7,
+   "words": [
+    "xxxYYYY",
+    "xyXxxYXyYY"
+   ],
+   "spike": {
+    "relator": 1,
+    "position": 7,
+    "letter": "y"
+   },
+   "same_letter": false,
+   "climber_defect": 4,
+   "total_length": 17
+  }
+ ],
+ "climber_calibration": {
+  "evals": 60000,
+  "cells": 20,
+  "detected": 13,
+  "detection_rate": 0.65,
+  "rows": [
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYyxxxy"
+    ],
+    "total_length": 16,
+    "detected": 5,
+    "seeds": 5
+   },
+   {
+    "words": [
+     "xyXY",
+     "xXYyXxxXxyYxy"
+    ],
+    "total_length": 17,
+    "detected": 5,
+    "seeds": 5
+   },
+   {
+    "words": [
+     "XYYyxXxyYXX",
+     "XYyxxxy"
+    ],
+    "total_length": 18,
+    "detected": 1,
+    "seeds": 5
+   },
+   {
+    "words": [
+     "XYYyxyYXX",
+     "XYXxyxxxy"
+    ],
+    "total_length": 18,
+    "detected": 2,
+    "seeds": 5
+   }
+  ]
+ },
+ "total_seconds": 199.62
+}

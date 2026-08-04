@@ -1,0 +1,2698 @@
+{
+ "record": "s12_certificate_hunt",
+ "args": {
+  "nodes": 1200,
+  "kstab": 0,
+  "limit": 124,
+  "ladder": 24,
+  "seed": 40826,
+  "census_cap": 200000,
+  "headroom": 4,
+  "out": "results/stable_ac/fable/s12_hunt_pr_k0.json",
+  "target": null,
+  "trials": 30,
+  "controls": 4,
+  "control_trials": 8,
+  "kmax": 3
+ },
+ "rows": [
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYXyyxYX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 430,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 193
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYxxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 836,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 93
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYYxxyX"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 543,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 165
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYYXyyyyyyyx",
+    "YYx"
+   ],
+   "length": 20,
+   "hit": true,
+   "state": [
+    "YYx",
+    "yyyyyXyXyX"
+   ],
+   "stats": {
+    "pops": 55,
+    "decided": 133,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYXYYxyx",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "YYx",
+    "YxYY"
+   ],
+   "stats": {
+    "pops": 148,
+    "decided": 259,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 7
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYX",
+    "YYYYYXyyyyx"
+   ],
+   "length": 18,
+   "hit": true,
+   "state": [
+    "YYYYYYX",
+    "YYYYYXYY"
+   ],
+   "stats": {
+    "pops": 1,
+    "decided": 4,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 0
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYxYXyX"
+   ],
+   "length": 14,
+   "hit": true,
+   "state": [
+    "YYYXY",
+    "YXYY"
+   ],
+   "stats": {
+    "pops": 13,
+    "decided": 19,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 2
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYYXyyyyyyyx",
+    "YYYxyXYx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 428,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 193
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYXyxYX"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 597,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 151
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYxyxYX"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 489,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 178
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYXyx",
+    "YYxYXyyX"
+   ],
+   "length": 13,
+   "hit": true,
+   "state": [
+    "xxxy",
+    "XXY"
+   ],
+   "stats": {
+    "pops": 245,
+    "decided": 262,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 14
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYxxYX",
+    "YYXyx"
+   ],
+   "length": 13,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 530,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 168
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYYYxyXX"
+   ],
+   "length": 19,
+   "hit": true,
+   "state": [
+    "XY",
+    "y"
+   ],
+   "stats": {
+    "pops": 704,
+    "decided": 438,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 80
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYYxYXYX"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 403,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 200
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYYX"
+   ],
+   "length": 18,
+   "hit": true,
+   "state": [
+    "xyyy",
+    "YYYYX"
+   ],
+   "stats": {
+    "pops": 202,
+    "decided": 217,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 2
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYYxyXyX"
+   ],
+   "length": 17,
+   "hit": true,
+   "state": [
+    "XYY",
+    "YX"
+   ],
+   "stats": {
+    "pops": 220,
+    "decided": 620,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 4
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYXyyyx",
+    "YYXYxYYx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 465,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 184
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYXXyyx"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 421,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 195
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYXyx"
+   ],
+   "length": 14,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 776,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 106
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYXYYxYx"
+   ],
+   "length": 15,
+   "hit": true,
+   "state": [
+    "yXyy",
+    "YYxYY"
+   ],
+   "stats": {
+    "pops": 475,
+    "decided": 360,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 56
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYXyyx",
+    "YYxyXyx"
+   ],
+   "length": 14,
+   "hit": true,
+   "state": [
+    "x",
+    "xyx"
+   ],
+   "stats": {
+    "pops": 246,
+    "decided": 221,
+    "undecided": 0,
+    "spherical": 1,
+    "restarts": 11
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYXyyyyyx",
+    "YYYxYYXX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 380,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 207
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYXyyyyx",
+    "YYXYYxyX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 452,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 187
+   }
+  },
+  {
+   "set": "ladder",
+   "base": [
+    "YYYYYYYXyyyyyyx",
+    "YYXyxYX"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 335,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 217
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_0",
+   "base": [
+    "YXXyxYx",
+    "YYYYYYXyxyX"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 353,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 212
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_1",
+   "base": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 341,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 215
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_2",
+   "base": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 283,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 230
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_3",
+   "base": [
+    "YXXyxYx",
+    "YYYYYxyxyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 366,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 209
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_4",
+   "base": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 345,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 214
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_5",
+   "base": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 357,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 212
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_6",
+   "base": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 323,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 220
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_7",
+   "base": [
+    "YYXXyxx",
+    "YYYYxYXYX"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 319,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 221
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_8",
+   "base": [
+    "YXyXYxx",
+    "YYXYXyyx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 314,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 222
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_9",
+   "base": [
+    "YXXXyxx",
+    "YYYXXyyX"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 396,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 201
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_10",
+   "base": [
+    "YXXXyxx",
+    "YYXYXyyX"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 396,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 201
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_11",
+   "base": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 298,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 226
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_12",
+   "base": [
+    "YXXXyxx",
+    "YYXYxyyX"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 367,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 209
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_13",
+   "base": [
+    "YYXXYYx",
+    "YXXXyxxYx"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 363,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 210
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_14",
+   "base": [
+    "YXXyXyx",
+    "YYYXyyxx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 413,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 198
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_15",
+   "base": [
+    "YXXyXyxx",
+    "YYYYxyyyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 259,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 236
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_16",
+   "base": [
+    "YYXXXyxx",
+    "YXyxxyXYx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 438,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 191
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_17",
+   "base": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 238,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 242
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_18",
+   "base": [
+    "YXXXyxYx",
+    "YYYYxyyyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 319,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 221
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_19",
+   "base": [
+    "YXyXYxxx",
+    "YYYYXyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 322,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 220
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_20",
+   "base": [
+    "YXXXyxYx",
+    "YYYYXyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 267,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 234
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_21",
+   "base": [
+    "YXXYxxyX",
+    "YYYYxyyyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 372,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 207
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_22",
+   "base": [
+    "YXXYxxyx",
+    "YYYYxyyyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 303,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 225
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_23",
+   "base": [
+    "YXXYxxyx",
+    "YYYYXyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 291,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 228
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_24",
+   "base": [
+    "YYXXXYxx",
+    "YYYXXYXYx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 385,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 205
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_25",
+   "base": [
+    "YXXYxxyX",
+    "YYYYXyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 284,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 229
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_26",
+   "base": [
+    "YXXYxYxx",
+    "YYYYxyyyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 261,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 235
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_27",
+   "base": [
+    "YXXyXyxx",
+    "YYYYXyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 316,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 221
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_28",
+   "base": [
+    "YXXYxYxx",
+    "YYYYXyyyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 274,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 232
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_29",
+   "base": [
+    "YYXXXyx",
+    "YYxxyxyXyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 412,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 198
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_30",
+   "base": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 432,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 192
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_31",
+   "base": [
+    "YYXXyxx",
+    "YYYYYXyXyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 407,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 199
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_32",
+   "base": [
+    "YXXYxxyx",
+    "YYYYXyxyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 313,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 223
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_33",
+   "base": [
+    "YXXXyxYx",
+    "YYXyXyxyx"
+   ],
+   "length": 17,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 296,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 226
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_34",
+   "base": [
+    "YXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 277,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_35",
+   "base": [
+    "YYXXXyx",
+    "YYYxxyxyXyX"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 358,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 211
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_36",
+   "base": [
+    "YYXYYXXyX",
+    "YYXyxYXXX"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 410,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 198
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_37",
+   "base": [
+    "YYXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 335,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 217
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_38",
+   "base": [
+    "YYXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 299,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 226
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_39",
+   "base": [
+    "YXXXYxYx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 274,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 232
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_40",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYxyyyyX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 248,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 238
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_41",
+   "base": [
+    "YXyXYxxx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 282,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 230
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_42",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 277,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_43",
+   "base": [
+    "YXXYxYxxx",
+    "YYXyyXXyxx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 339,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 216
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_44",
+   "base": [
+    "YYXXXyxx",
+    "YYYYYXXyXyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 470,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 183
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_45",
+   "base": [
+    "YXXyXYxxx",
+    "YYYYXXXYxx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 379,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 206
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_46",
+   "base": [
+    "YXXYxxyx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 282,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 230
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_47",
+   "base": [
+    "YXXYxxyX",
+    "YYYYYxyyyyX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 284,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 229
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_48",
+   "base": [
+    "YXXXyxYxx",
+    "YYYYXXyxxx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 322,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 220
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_49",
+   "base": [
+    "YXXYxxyx",
+    "YYYYYxyyyyX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 289,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 228
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_50",
+   "base": [
+    "YXXYxxyX",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 295,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 227
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_51",
+   "base": [
+    "YXXYxYxx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 299,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 226
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_52",
+   "base": [
+    "YXXyXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 231,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 243
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_53",
+   "base": [
+    "YXXyxYx",
+    "YYXyyXyxyxx"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 387,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 204
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_54",
+   "base": [
+    "YYXXXXyxx",
+    "YYxxyXXXXX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 358,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 211
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_55",
+   "base": [
+    "YXXXyXYx",
+    "YYxyxYXXyyX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 265,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 234
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_56",
+   "base": [
+    "YYXXXyxx",
+    "YYXYYxxyXXX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 365,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 209
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_57",
+   "base": [
+    "YYXXXyxx",
+    "YYXYYxyXXXX"
+   ],
+   "length": 19,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 341,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 215
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_58",
+   "base": [
+    "YXXXYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 220,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 245
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_59",
+   "base": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 329,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 219
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_60",
+   "base": [
+    "YXXXyxYxx",
+    "YYYYYXXyxxx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 344,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 214
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_61",
+   "base": [
+    "YXXyXYxxx",
+    "YYYYYXXXYxx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 328,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 218
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_62",
+   "base": [
+    "YXXXYxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 261,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 235
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_63",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYYxyyyyyX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 271,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 233
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_64",
+   "base": [
+    "YXyXYxxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 300,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 225
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_65",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 277,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_66",
+   "base": [
+    "YYXXXYxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 353,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 212
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_67",
+   "base": [
+    "YYXXXyxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 356,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 211
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_68",
+   "base": [
+    "YXXYxxyx",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 291,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 228
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_69",
+   "base": [
+    "YXXYxxyX",
+    "YYYYYYxyyyyyX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 248,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 239
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_70",
+   "base": [
+    "YXXYxxyx",
+    "YYYYYYxyyyyyX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 252,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 237
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_71",
+   "base": [
+    "YXXXyXyxx",
+    "YYYxyyXXXyx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 276,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_72",
+   "base": [
+    "YXXYxYxxx",
+    "YYYxyyXXYxx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 269,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 234
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_73",
+   "base": [
+    "YXXYxxyX",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 230,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 243
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_74",
+   "base": [
+    "YXXyXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 285,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 229
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_75",
+   "base": [
+    "YXXXyxYxx",
+    "YYYYYYXXXYxx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 312,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 222
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_76",
+   "base": [
+    "YXXXyxYxx",
+    "YYYYYYXXyxxx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 287,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 229
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_77",
+   "base": [
+    "YXXyXYxxx",
+    "YYYYYYXXXYxx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 287,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 229
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_78",
+   "base": [
+    "YYXXyx",
+    "YYYYYYYXyXyxyXX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 411,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 198
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_79",
+   "base": [
+    "YYXXXyyxx",
+    "YXXXXXyxxYxx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 369,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 208
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_80",
+   "base": [
+    "YXXXXyxxYx",
+    "YXYxYXyxyXX"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 341,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 215
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_81",
+   "base": [
+    "YXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 278,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_82",
+   "base": [
+    "YYYXXXXXyyx",
+    "YYXyxxyyxYX"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 258,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 236
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_83",
+   "base": [
+    "YXXyXYxxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 257,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 236
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_84",
+   "base": [
+    "YXXXyxYxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 277,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_85",
+   "base": [
+    "YXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 266,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 234
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_86",
+   "base": [
+    "YYYXXXXXyyX",
+    "YYXyxxyyXYx"
+   ],
+   "length": 22,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 220,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 245
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_87",
+   "base": [
+    "YYXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 353,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 212
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_88",
+   "base": [
+    "YYXXXyxx",
+    "YYYYYXXYxyXyXyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 302,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 225
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_89",
+   "base": [
+    "YXXYxxyx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 245,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 239
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_90",
+   "base": [
+    "YYXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 297,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 226
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_91",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 187,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 254
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_92",
+   "base": [
+    "YXyXYxxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 226,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 244
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_93",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYYYxyyyyyyX"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 293,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 227
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_94",
+   "base": [
+    "YXXXYxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 277,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_95",
+   "base": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+   ],
+   "length": 21,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 232,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 242
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_96",
+   "base": [
+    "YXXYxxyX",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "length": 23,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 289,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 228
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_97",
+   "base": [
+    "YXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 24,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 248,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 238
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_98",
+   "base": [
+    "YXXXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 24,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 263,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 235
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_99",
+   "base": [
+    "YYXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 264,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 234
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_100",
+   "base": [
+    "YYXXXyxx",
+    "YYYYYYYXXyXyXyXyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 315,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 222
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_101",
+   "base": [
+    "YXXXYxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 263,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 235
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_102",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 243,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 240
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_103",
+   "base": [
+    "YXyXYxxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 238,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 241
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_104",
+   "base": [
+    "YXXXyxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 229,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 243
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_105",
+   "base": [
+    "YYXXXYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 256,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 236
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_106",
+   "base": [
+    "YYXXXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 338,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 216
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_107",
+   "base": [
+    "YXXyXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 243,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 240
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_108",
+   "base": [
+    "YXXYxxyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 263,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 235
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_109",
+   "base": [
+    "YXXYxxyX",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 300,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 225
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_110",
+   "base": [
+    "YXXYxYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 276,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 231
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_111",
+   "base": [
+    "YXXYxxyx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 234,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 242
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_112",
+   "base": [
+    "YXXYxxyX",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 281,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 230
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_113",
+   "base": [
+    "YXXYxYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 264,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 234
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_114",
+   "base": [
+    "YXXyXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "length": 25,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 258,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 236
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_115",
+   "base": [
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "length": 13,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 449,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 188
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_116",
+   "base": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "length": 14,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 345,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 214
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_117",
+   "base": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "length": 14,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 423,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 195
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_118",
+   "base": [
+    "YXXyxYx",
+    "YYYYXyxx"
+   ],
+   "length": 15,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 417,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 198
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_119",
+   "base": [
+    "YXXyxYx",
+    "YYYYYXyxx"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 396,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 201
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_120",
+   "base": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 301,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 225
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_121",
+   "base": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "length": 16,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 272,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 232
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_122",
+   "base": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "length": 18,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 354,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 212
+   }
+  },
+  {
+   "set": "u124",
+   "name": "aca_123",
+   "base": [
+    "YXXXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "length": 20,
+   "hit": false,
+   "state": null,
+   "stats": {
+    "pops": 1200,
+    "decided": 322,
+    "undecided": 0,
+    "spherical": 0,
+    "restarts": 220
+   }
+  }
+ ],
+ "summary": {
+  "ladder_detection_rate": 0.4166666666666667,
+  "ladder_hits": 10,
+  "ladder_n": 24,
+  "u124_hits": 0,
+  "u124_n": 124,
+  "elapsed_s": 654.4
+ }
+}

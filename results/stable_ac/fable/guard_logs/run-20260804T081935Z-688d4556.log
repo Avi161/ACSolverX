@@ -1,0 +1,3 @@
+pool persisted: 45264 near-cubic rows -> results/stable_ac/fable/s4b_pool.jsonl.gz
+{"kind": "summary", "tag": "ak3", "attempts": 47, "solved": 0, "mode": "tiebreak", "beam": 60, "depth": 20, "diversity": 0.3, "gamma_tested": 0, "gamma_skipped": 1448525, "gamma_hist": {}, "deep_pool_unique": 45264, "deep_tested": 1, "deep_hist": {"4": 1}, "deep_cap": 1500000, "best_costs": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "min_sum_delta_reached": 2, "pool_written": 45264, "pool_out": "results/stable_ac/fable/s4b_pool.jsonl.gz", "seed": 2026}
+GAMMA0 HITS: 0

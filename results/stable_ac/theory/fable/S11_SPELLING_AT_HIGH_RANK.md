@@ -31,9 +31,10 @@ Owner files: `experiments/stable_ac/fable/spelling_high_rank.py`,
 
 Plus one mechanism and one calibrated null: creating spikes come in **same-signed-letter
 pairs** (16/16, §4.4), which also supplies the "create" direction for AC3 conjugation that
-`S6`'s 315-destroy/0-create measurement could not see; and all **330** depth-2 spellings of
-AK(3) were scored with an in-session detection rate of **0.65**, returning no hit but
-leaving **72** candidates at `γ_N ≤ 1` for a bigger budget (§4.6).
+`S6`'s 315-destroy/0-create measurement could not see; and AK(3)'s depth-2 frontier was
+attacked at 200,000 evaluations with a **measured 30/30 detection rate on
+census-matched certified positives** — 159 of 330 states scored, **no hit**, 79 survivors
+(§4.6). That is the strongest spelling-space null this project has produced.
 
 STATUS. §1 is an inference-chain audit — a draft for adversarial audit, not a result.
 §§3–5 are **measurements** by exact census, each with its cap, skip count and bias
@@ -656,39 +657,53 @@ Two facts keep it from being wide open: Corollary S5 (the spike ceiling,
 `γ_N(spike(P)) ≥ γ_N(P) − 1`) is a **proof** and still forces spike-depth ≥ 2 for AK(3);
 and R1F decided depth 1 exhaustively (`γ_N` histogram `{1: 8, 2: 31}`).
 
-### 4.6 AK(3)'s own depth-2 frontier — complete coverage, calibrated, still no hit
+### 4.6 AK(3)'s own depth-2 frontier — raised budget, calibrated at the SAME budget
 
-`results/stable_ac/fable/s11_ak3_depth2.json`. Bases = R1F's eight gateway spellings (the
-only depth-1 spellings of AK(3) with `γ_N = 1`, hence by Corollary S5 the only possible
-parents of a thickenable depth-2 spelling). Instrument = the climber (an **upper** bound; a
-0 is conclusive, silence is not), candidates ordered same-signed-letter-first per §4.4.
+`results/stable_ac/fable/s11_ak3_deep.json`, checkpoint
+`s11_ak3_deep_checkpoint.jsonl` (append-only, fsync'd per state, resumable — a container
+restart loses at most one state; it survived three restarts during this run).
 
-| | |
-|---|---|
-| states scored | **330 — every distinct depth-2 spelling of AK(3)**, none skipped |
-| of which same-signed-letter as the gateway's own spike | 81 |
-| evaluations per state | 60,000 |
-| climber defect histogram | `{2: 72, 4: 258}` |
-| **defect-0 hits** | **0** |
-| runtime | 193 s |
+Bases = R1F's eight gateway spellings, the only depth-1 spellings of AK(3) with
+`γ_N = 1` and therefore, by Corollary S5, the only possible parents of a thickenable
+depth-2 spelling. Instrument = the climber; **exact enumeration is impossible here**
+(§6: 2.0–4.4·10⁸ systems per state, ≈ 30 min each, ≈ 190 days for the sweep).
 
-**Calibration, measured in this session rather than cited.** The identical climber at the
-identical 60,000 evaluations, run on rank-2 ladder rungs of total length ~17 that are
-**certified** `γ_N = 0` by defect-0 witness, 5 seeds each: **13 of 20 = 0.65**. (Consistent
-with R7b's independent 7/10 at 40,000 evaluations and 10/10 at 200,000.)
+| pass | evals/state | states scored | defect histogram | defect-0 hits |
+|---|---|---|---|---|
+| first (§4.6 v1) | 60,000 | 330 of 330 | `{2: 72, 4: 258}` | 0 |
+| **this pass** | **200,000** | **159 of 330** | `{2: 79, 4: 80}` | **0** |
 
-**What the null is worth.** At 65 % per-state detection over 330 states, the probability of
-missing a lone thickenable spelling is ≈ 0.35 — this rules out roughly two thirds of the
-frontier, not all of it. The bias runs the usual way (`calibrate-one-sided-hunts…`): rungs
-are climbable by construction, so 0.65 is an **over**-estimate and the true coverage is
-lower. It is a real but partial null, and it is the first one on this line that comes with
-its own in-session detection rate attached.
+**Calibration at the SAME 200,000 evaluations** — `s11_ak3_calibration.json`. Ten
+**certified** `γ_N = 0` rank-2 states at total length 16–18 (defect-0 witness, re-verified),
+3 seeds each:
 
-**Also worth recording: 72 of the 330 come back at defect 2**, i.e. `γ_N ≤ 1`, so the
-gateway level is not lost by a second spike — depth 2 keeps 72 live candidates at exactly
-one genus above the target. Those 72 are the set to re-run at 200,000–2,000,000
-evaluations (≈ 10–100 min single-threaded), where R7b measured detection at 100 % for this
-length. **That run is the single highest-value follow-up in this note.**
+> **30 / 30 = 1.00**
+
+and — this is the part that makes it usable — those calibration states carry censuses of
+**2.5·10⁷ to 1.8·10⁹**, i.e. at or **above** the targets' 2.0–4.4·10⁸. A climber's
+difficulty tracks the size of the space it searches, not the word length, so this
+calibration is **not kinder than the hunt** on the dimension that matters. (Standing bias,
+still recorded: the rungs are climber-certified by construction, so 1.00 remains an
+**upper** bound on sensitivity — `calibrate-one-sided-hunts-on-a-positive-ladder.md`.)
+
+**What the null is now worth.** 159 of AK(3)'s 330 depth-2 spellings carry **no defect-0
+rotation system findable at a budget that finds one in 30/30 matched positives**. That is
+the strongest AK(3) spelling-space null this project has produced — the previous best
+(R7b's) was run at a budget with a *measured 0 %* detection at its length. It is still a
+null from a one-sided instrument and it covers **48 %** of the frontier.
+
+**The raised budget also corrects a claim I made in the first pass.** At 60k evals only
+**22 %** of states reached defect 2; at 200k it is **50 %**. The "72 survivors" figure was
+therefore an artefact of an under-powered climber, not a property of the states, and any
+plan resting on "only 72 candidates remain" was reading the instrument, not the
+mathematics. Same failure family as T-S11e, one level down: **a filter is only as
+meaningful as the budget that produced it.** Current survivor set: **79 at defect 2**, of
+which 20 are same-signed-letter (§4.4's mechanism).
+
+**To finish it:** 171 states remain unscored at 200k (≈ 13 min single-threaded, resumable
+from the checkpoint), after which the 79+ survivors want 1–2·10⁶ evaluations (≈ 25–50 min).
+Nothing in that plan is speculative any more — the cost, the ordering and the detection
+rate are all measured.
 
 ### 4.7 The remaining open questions, in priority order
 
@@ -699,10 +714,11 @@ length. **That run is the single highest-value follow-up in this note.**
    complex admits a defect-0 rotation unnested at *at least one* of its spikes.
 2. **A spelling that beats its own reduced form** — `γ_N(K) = 0 < γ_N(K_red)`. 0 of ~120,000
    in the whole project. This is the actual AK(3) question.
-3. **The 72 depth-2 spellings of AK(3) that came back at `γ_N ≤ 1`** (§4.6), re-run at
-   200k–2M evaluations where detection is measured at ~100 % for their length. This is a
-   bounded, sized, calibrated experiment and it sits exactly on the frontier that
-   Corollary S5 leaves open.
+3. **Finish AK(3)'s depth-2 frontier** (§4.6): 171 of 330 states still unscored at 200k
+   evaluations (≈ 13 min, resumable from the committed checkpoint), then the 79 survivors
+   at 1–2·10⁶ (≈ 25–50 min). Detection at 200k is **measured at 30/30** on
+   census-matched certified positives, so this is a bounded experiment with a known price
+   and a known sensitivity — the only one on this line of which that is true.
 
 Item 1 restated as the concrete hunt: a counterexample where **SR′ also fails** — a
 thickenable spelling *none* of whose one-step reductions is thickenable. That, and not
