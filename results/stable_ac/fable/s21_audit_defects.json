@@ -1,0 +1,293 @@
+{
+ "record": "s21_audit_defects",
+ "rows": [
+  {
+   "name": "AK3",
+   "words": [
+    "xyxYXY",
+    "xxxYYYY"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "abelian_rows": [
+    [
+     1,
+     -1
+    ],
+    [
+     3,
+     -4
+    ]
+   ],
+   "abelian_det": -1,
+   "unit_row": false,
+   "letters": [
+    {
+     "x": 3,
+     "y": 3
+    },
+    {
+     "x": 3,
+     "y": 4
+    }
+   ],
+   "rank2_defect": 4,
+   "rank2_census": 86400,
+   "rank2_decide": {
+    "verdict": "NOT_SPHERICAL",
+    "method": "r1c_v2_solver"
+   },
+   "rank3_defect": 4,
+   "rank3_census": 86400,
+   "rank4_defect": 4,
+   "rank4_census": 86400
+  },
+  {
+   "name": "ctl0",
+   "words": [
+    "YYXyx",
+    "YYxxxyXX"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "abelian_rows": [
+    [
+     0,
+     -1
+    ],
+    [
+     1,
+     -1
+    ]
+   ],
+   "abelian_det": 1,
+   "unit_row": true,
+   "letters": [
+    {
+     "x": 2,
+     "y": 3
+    },
+    {
+     "x": 5,
+     "y": 3
+    }
+   ],
+   "rank2_defect": 4,
+   "rank2_census": 86400,
+   "rank2_decide": {
+    "verdict": "NOT_SPHERICAL",
+    "method": "r1c_v2_solver"
+   },
+   "rank3_defect": 4,
+   "rank3_census": 86400,
+   "rank4_defect": 4,
+   "rank4_census": 86400
+  },
+  {
+   "name": "ctl1",
+   "words": [
+    "YYXyx",
+    "YYxxyXXX"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "abelian_rows": [
+    [
+     0,
+     -1
+    ],
+    [
+     -1,
+     -1
+    ]
+   ],
+   "abelian_det": -1,
+   "unit_row": true,
+   "letters": [
+    {
+     "x": 2,
+     "y": 3
+    },
+    {
+     "x": 5,
+     "y": 3
+    }
+   ],
+   "rank2_defect": 4,
+   "rank2_census": 86400,
+   "rank2_decide": {
+    "verdict": "NOT_SPHERICAL",
+    "method": "r1c_v2_solver"
+   },
+   "rank3_defect": 4,
+   "rank3_census": 86400,
+   "rank4_defect": 4,
+   "rank4_census": 86400
+  },
+  {
+   "name": "ctl2",
+   "words": [
+    "YYXyx",
+    "YXYXXyxx"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "abelian_rows": [
+    [
+     0,
+     -1
+    ],
+    [
+     -1,
+     -1
+    ]
+   ],
+   "abelian_det": -1,
+   "unit_row": true,
+   "letters": [
+    {
+     "x": 2,
+     "y": 3
+    },
+    {
+     "x": 5,
+     "y": 3
+    }
+   ],
+   "rank2_defect": 4,
+   "rank2_census": 86400,
+   "rank2_decide": {
+    "verdict": "NOT_SPHERICAL",
+    "method": "r1c_v2_solver"
+   },
+   "rank3_defect": 4,
+   "rank3_census": 86400,
+   "rank4_defect": 4,
+   "rank4_census": 86400
+  },
+  {
+   "name": "ctl3",
+   "words": [
+    "YYXyx",
+    "YXXYxxx"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "abelian_rows": [
+    [
+     0,
+     -1
+    ],
+    [
+     1,
+     -2
+    ]
+   ],
+   "abelian_det": 1,
+   "unit_row": true,
+   "letters": [
+    {
+     "x": 2,
+     "y": 3
+    },
+    {
+     "x": 5,
+     "y": 2
+    }
+   ],
+   "rank2_defect": 4,
+   "rank2_census": 17280,
+   "rank2_decide": {
+    "verdict": "NOT_SPHERICAL",
+    "method": "r1c_v2_solver"
+   },
+   "rank3_defect": 4,
+   "rank3_census": 17280,
+   "rank4_defect": 4,
+   "rank4_census": 17280
+  },
+  {
+   "name": "ctl4",
+   "words": [
+    "YYXyx",
+    "YXXXYxx"
+   ],
+   "gens": [
+    "x",
+    "y"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "abelian_rows": [
+    [
+     0,
+     -1
+    ],
+    [
+     -1,
+     -2
+    ]
+   ],
+   "abelian_det": -1,
+   "unit_row": true,
+   "letters": [
+    {
+     "x": 2,
+     "y": 3
+    },
+    {
+     "x": 5,
+     "y": 2
+    }
+   ],
+   "rank2_defect": 4,
+   "rank2_census": 17280,
+   "rank2_decide": {
+    "verdict": "NOT_SPHERICAL",
+    "method": "r1c_v2_solver"
+   },
+   "rank3_defect": 4,
+   "rank3_census": 17280,
+   "rank4_defect": 4,
+   "rank4_census": 17280
+  }
+ ]
+}

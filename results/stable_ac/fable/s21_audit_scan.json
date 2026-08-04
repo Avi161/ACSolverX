@@ -1,0 +1,12736 @@
+{
+ "record": "s21_audit_scan",
+ "args": {
+  "mode": "scan",
+  "cap": 200000,
+  "rank4": false,
+  "n": 240,
+  "lo": 11,
+  "hi": 18,
+  "seed": 20260804,
+  "all_rank2": false,
+  "out": "results/stable_ac/fable/s21_audit_scan.json"
+ },
+ "rows": [
+  {
+   "words": [
+    "YYYXyxyX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxyX",
+   "profile": {
+    "words": [
+     "YYYXyxyX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxyXYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxyXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxYXX"
+   ],
+   "shape": [
+    6,
+    11
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     11
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXYYxx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXYYxx",
+   "profile": {
+    "words": [
+     "YYYXYYxx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYxyxyX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYxyxyX",
+   "profile": {
+    "words": [
+     "YYYxyxyX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYXyyxYX"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYXyyxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyyxYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyyxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYX"
+   ],
+   "shape": [
+    3,
+    11
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 7257600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     3,
+     11
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 1,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YXYXYx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YXYXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXyXYxxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXyXYxxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYxYxYX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYxYxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -4
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxxyXXX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 3628800,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxxyXXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYxYXyyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYxYXyyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYXXyxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 4,
+   "r3census": 86400,
+   "r2def": 4,
+   "r2census": 86400,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYXXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYxyxYX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYxyxYX",
+   "profile": {
+    "words": [
+     "YYYxyxYX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYYXYx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYYXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -5
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXYXyx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXYXyx",
+   "profile": {
+    "words": [
+     "YYYXYXyx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYxYx"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXYxYxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXYxYxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyxx"
+   ],
+   "shape": [
+    6,
+    9
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     9
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyxyX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxyX",
+   "profile": {
+    "words": [
+     "YYYXyxyX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyxYX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYXYxyX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYXYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": null,
+   "r3census": 725760,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYx",
+   "profile": {
+    "words": [
+     "YYYYYYYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -7
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 7
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXXYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXXYx",
+   "profile": {
+    "words": [
+     "YYXXYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 3
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXXYx"
+   ],
+   "shape": [
+    6,
+    9
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     9
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxYXyX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxYXyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxYxyX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYYXYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYYXYx",
+   "profile": {
+    "words": [
+     "YYXYYXYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYxyX"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYxyx"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYxyX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYxx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YXXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YXXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyyxyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyyxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyXyx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyxYx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxYx",
+   "profile": {
+    "words": [
+     "YYYXyxYx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYYxYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYYxYx",
+   "profile": {
+    "words": [
+     "YYXYYxYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXYXyxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXYXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyxYx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYxyx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxYXYYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxYXYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXXYxyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXXYxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYxxYX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYxxYX",
+   "profile": {
+    "words": [
+     "YYYYxxYX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYxyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYxyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYXyx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYXyx",
+   "profile": {
+    "words": [
+     "YYXYXyx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      -1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YXyxYx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YXyxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxYXX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YXYxyX"
+   ],
+   "shape": [
+    6,
+    11
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YXYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     11
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXXyx",
+    "YYYYXyyyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXXyx",
+   "profile": {
+    "words": [
+     "YYYYXXyx",
+     "YYYYXyyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 7
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxYxyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYxYXyx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYxYXyx",
+   "profile": {
+    "words": [
+     "YYYxYXyx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxyXyX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxyXyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXyxxYx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 4,
+   "r3census": 86400,
+   "r2def": 4,
+   "r2census": 86400,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXyxxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYYxYX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYYxYX",
+   "profile": {
+    "words": [
+     "YYXYYxYX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YXYxyx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YXYxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXXYYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXXYYx",
+   "profile": {
+    "words": [
+     "YYXXYYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      -1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxyxYX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxyxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYx"
+   ],
+   "shape": [
+    4,
+    7
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 10080,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     4,
+     7
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 1,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyxYX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxYX",
+   "profile": {
+    "words": [
+     "YYYXyxYX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYx"
+   ],
+   "shape": [
+    3,
+    11
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 7257600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     3,
+     11
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 1,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXyXYxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXyXYxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYxxYXX"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYxxYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyxYYx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyxYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYxYXYYx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYxYXYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxyXX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YXyxx"
+   ],
+   "shape": [
+    5,
+    9
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     9
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXXYxYx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXXYxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXXyxxx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXXyxxx",
+   "profile": {
+    "words": [
+     "YYXXyxxx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 5,
+      "y": 3
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYxyyx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYxyyx",
+   "profile": {
+    "words": [
+     "YYXYxyyx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 79833600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYX",
+   "profile": {
+    "words": [
+     "YYYYYYYX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -7
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 7
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYXyyxx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYXyyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXyxYx"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXyxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YXyxYx"
+   ],
+   "shape": [
+    6,
+    11
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YXyxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     11
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyXyx"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYXYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYXYx",
+   "profile": {
+    "words": [
+     "YYXYXYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      -1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxxyX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYXyyx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYXyyx",
+   "profile": {
+    "words": [
+     "YYXYXyyx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXyXXyxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXyXXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYXXyyx"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYXXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYXXYYx"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYXXYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYxxYX"
+   ],
+   "shape": [
+    6,
+    9
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYxxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     9
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYYxx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYYxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -4
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYX",
+    "YYYYXyyyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 12454041600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYX",
+   "profile": {
+    "words": [
+     "YYYYYYYX",
+     "YYYYXyyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      -1,
+      -7
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 7
+     },
+     {
+      "x": 2,
+      "y": 7
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxyXX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxyXYx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxyXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxxyX"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYXyyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYxyyX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYxyyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxyXyX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxyXyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYxYYXX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYxYYXX",
+   "profile": {
+    "words": [
+     "YYYxYYXX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxYXyyX"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxYXyyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxYXyx"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXXYYx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXXYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYxYYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYxYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYXyxyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYXyxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXXYx",
+    "YYYYXyyyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXXYx",
+   "profile": {
+    "words": [
+     "YYYYXXYx",
+     "YYYYXyyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 7
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXXYxx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 4,
+   "r3census": 17280,
+   "r2def": 4,
+   "r2census": 17280,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXXYxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxyXX"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxYXYX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxYXYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYYXYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYYXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -5
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYX",
+    "YYYYXyyyx"
+   ],
+   "shape": [
+    6,
+    9
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 79833600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYX",
+   "profile": {
+    "words": [
+     "YYYYYX",
+     "YYYYXyyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     9
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 7
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYX"
+   ],
+   "shape": [
+    4,
+    9
+   ],
+   "total": 13,
+   "r3def": null,
+   "r3census": 725760,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     4,
+     9
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 1,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYYxyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYYxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": null,
+   "r3census": 725760,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYX",
+   "profile": {
+    "words": [
+     "YYYYYYYX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -7
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 7
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXXyyx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyxYX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxYX",
+   "profile": {
+    "words": [
+     "YYYXyxYX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYYxYXX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYYxYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYXYx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXXXyxx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXXXyxx",
+   "profile": {
+    "words": [
+     "YYXXXyxx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 5,
+      "y": 3
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXyXyxxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXyXyxxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYXYYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYXYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -5
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxYXyX"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxYXyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYxxYYX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYxxYYX",
+   "profile": {
+    "words": [
+     "YYYxxYYX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYXyxx"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYxxxyX"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYxxxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyyXYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyyXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyxyX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYXyyxYx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYXyyxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxYxYX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxYxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -4
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 80640,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYX",
+   "profile": {
+    "words": [
+     "YYYYX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      -1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxxYXXX"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxxYXXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxxYX"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXYYxx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXYYxx",
+   "profile": {
+    "words": [
+     "YYYXYYxx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 7257600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYx",
+   "profile": {
+    "words": [
+     "YYYYYYx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      1,
+      -6
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 6
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYxYXyX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYxYXyX",
+   "profile": {
+    "words": [
+     "YYYxYXyX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYxxYX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYxxYX",
+   "profile": {
+    "words": [
+     "YYYYxxYX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyxx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYxyxYX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYxyxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYxyyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYxyyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 10080,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYx",
+   "profile": {
+    "words": [
+     "YYYYYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYXYxYx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYXYxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyyxyX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyyxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYYxxyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYYxxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXXyx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXXyx",
+   "profile": {
+    "words": [
+     "YYYXXyx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      -1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxyXyX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxyXyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYXyyyyyyx",
+    "YYX"
+   ],
+   "shape": [
+    3,
+    15
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 174356582400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYXyyyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYYYXyyyyyyx",
+     "YYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     3,
+     15
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 13
+     },
+     {
+      "x": 1,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxyxYX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxyxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxYXX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYXyyyyyyx",
+    "YYx"
+   ],
+   "shape": [
+    3,
+    15
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 174356582400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYXyyyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYYYXyyyyyyx",
+     "YYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     3,
+     15
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 13
+     },
+     {
+      "x": 1,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXXYxxx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXXYxxx",
+   "profile": {
+    "words": [
+     "YYXXYxxx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 5,
+      "y": 3
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyXYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyXYx",
+   "profile": {
+    "words": [
+     "YYXyXYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      -1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXXYYx"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXXYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXYxx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXYxx",
+   "profile": {
+    "words": [
+     "YYYYXYxx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxYXYX"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxYXYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxyxYX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxyxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxYxyX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYXYxyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYXYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyyXYx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyyXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyXYx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXXYx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXXYx",
+   "profile": {
+    "words": [
+     "YYYYXXYx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxxYX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -4
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 79833600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYx",
+   "profile": {
+    "words": [
+     "YYYYYYYx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -7
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 7
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYx"
+   ],
+   "shape": [
+    3,
+    9
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 80640,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     3,
+     9
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 1,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyxYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxYx",
+   "profile": {
+    "words": [
+     "YYYXyxYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXyXXYxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXyXXYxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXYxx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXYxx",
+   "profile": {
+    "words": [
+     "YYYXYxx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYxyx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYxyx",
+   "profile": {
+    "words": [
+     "YYXYxyx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxyyXX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxyyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYYxyX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYYxyX",
+   "profile": {
+    "words": [
+     "YYXYYxyX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxYYXX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxYYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -5
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxYXYX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxYXYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -5
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXXyx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXXyx",
+   "profile": {
+    "words": [
+     "YYYYXXyx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxYYXX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxYYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -5
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYxYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYxYx",
+   "profile": {
+    "words": [
+     "YYXYxYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YXXyx"
+   ],
+   "shape": [
+    5,
+    9
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YXXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     9
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyxYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyxYx",
+   "profile": {
+    "words": [
+     "YYXyxYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYXyx"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxxyX"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYX",
+    "YYYYXyyyx"
+   ],
+   "shape": [
+    5,
+    9
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 7257600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYX",
+   "profile": {
+    "words": [
+     "YYYYX",
+     "YYYYXyyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     9
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      -1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 7
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyyxyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyyxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXXYYx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXXYYx",
+   "profile": {
+    "words": [
+     "YYYXXYYx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYXXYxx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYXXYxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxyXYx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxyXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYxyyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYxyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXYXYx"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXYXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyxx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyxx",
+   "profile": {
+    "words": [
+     "YYYXyyxx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxyxyX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxyxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYYxyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYYxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxyXYX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxyXYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyxYx"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYxyXX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYxyXX",
+   "profile": {
+    "words": [
+     "YYYYxyXX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYXyyyyyx",
+    "YYYYx"
+   ],
+   "shape": [
+    5,
+    13
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 174356582400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYXyyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYYXyyyyyx",
+     "YYYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     13
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -4
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 11
+     },
+     {
+      "x": 1,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxYXyX"
+   ],
+   "shape": [
+    7,
+    11
+   ],
+   "total": 18,
+   "r3def": null,
+   "r3census": 11496038400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxYXyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     11
+    ],
+    "total": 18,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxYXX"
+   ],
+   "shape": [
+    5,
+    6
+   ],
+   "total": 11,
+   "r3def": 2,
+   "r3census": 2880,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     6
+    ],
+    "total": 11,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXXYx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 80640,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYx",
+   "profile": {
+    "words": [
+     "YYYYYYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      1,
+      -6
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 6
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYYx",
+    "YYYYXyyyx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 12454041600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYYx",
+   "profile": {
+    "words": [
+     "YYYYYYYx",
+     "YYYYXyyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      1,
+      -7
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 7
+     },
+     {
+      "x": 2,
+      "y": 7
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxyxyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxyxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YXYXyx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YXYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXYxxx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 4,
+   "r3census": 17280,
+   "r2def": 4,
+   "r2census": 17280,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXYxxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxyXX"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYXyyyyyx",
+    "YYYx"
+   ],
+   "shape": [
+    4,
+    13
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 12454041600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYXyyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYYXyyyyyx",
+     "YYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     4,
+     13
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 11
+     },
+     {
+      "x": 1,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxyxyX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxyxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYXyyyyyx",
+    "YYX"
+   ],
+   "shape": [
+    3,
+    13
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYXyyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYYXyyyyyx",
+     "YYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     3,
+     13
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -2
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 11
+     },
+     {
+      "x": 1,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxYXyyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXXyx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXXyx",
+   "profile": {
+    "words": [
+     "YYYXXyx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      -1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxxyXXX"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 4,
+   "r3census": 86400,
+   "r2def": 4,
+   "r2census": 86400,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxxyXXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYxxyX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYxxyX",
+   "profile": {
+    "words": [
+     "YYYYxxyX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxxxyXX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 3628800,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxxxyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxyXYx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxyXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    6,
+    7
+   ],
+   "total": 13,
+   "r3def": null,
+   "r3census": 725760,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYx",
+   "profile": {
+    "words": [
+     "YYYYYx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     7
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 1,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyxx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxx",
+   "profile": {
+    "words": [
+     "YYYXyxx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxxYX"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -4
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxYXyyX"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxYXyyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YXyXyx"
+   ],
+   "shape": [
+    6,
+    11
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YXyXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     11
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYYXyyyyyx",
+    "YYx"
+   ],
+   "shape": [
+    3,
+    13
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYYXyyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYYXyyyyyx",
+     "YYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     3,
+     13
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 11
+     },
+     {
+      "x": 1,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyyxx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXyyxx"
+   ],
+   "shape": [
+    7,
+    9
+   ],
+   "total": 16,
+   "r3def": null,
+   "r3census": 87091200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXyyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     9
+    ],
+    "total": 16,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYxyXX"
+   ],
+   "shape": [
+    6,
+    11
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYxyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     11
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyxYYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyxYYx",
+   "profile": {
+    "words": [
+     "YYXyxYYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YXyxx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYYxYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYYxYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXyyxyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXyyxyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXYxx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXYxx",
+   "profile": {
+    "words": [
+     "YYYXYxx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyxx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyxx",
+   "profile": {
+    "words": [
+     "YYYYXyxx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyXYYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyXYYx",
+   "profile": {
+    "words": [
+     "YYXyXYYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYxxyX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYxxyX",
+   "profile": {
+    "words": [
+     "YYYxxyX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YXXXyxx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YXXXyxx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 2
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyxyx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyxyx",
+   "profile": {
+    "words": [
+     "YYYXyxyx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXXyx"
+   ],
+   "shape": [
+    6,
+    9
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     9
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYxyyX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYxyyX",
+   "profile": {
+    "words": [
+     "YYXYxyyX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -1
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYYXyyyyx",
+    "YYYYYx"
+   ],
+   "shape": [
+    6,
+    11
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 12454041600,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYYXyyyyx",
+   "profile": {
+    "words": [
+     "YYYYYXyyyyx",
+     "YYYYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     6,
+     11
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 1,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxyXyX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxyXyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXYxyX",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXYxyX",
+   "profile": {
+    "words": [
+     "YYXYxyX",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      -1,
+      -2
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYXyyXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYXyyXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      1
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYxYxYX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYxYxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYXYxYYx"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYXYxYYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxYxyX"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYxYxyX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYxYxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -2
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXyyyx",
+    "YYYYxyXX"
+   ],
+   "shape": [
+    8,
+    9
+   ],
+   "total": 17,
+   "r3def": null,
+   "r3census": 958003200,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXyyyx",
+   "profile": {
+    "words": [
+     "YYYYXyyyx",
+     "YYYYxyXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     8,
+     9
+    ],
+    "total": 17,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -3
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 7
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYXyxyX"
+   ],
+   "shape": [
+    5,
+    7
+   ],
+   "total": 12,
+   "r3def": 2,
+   "r3census": 17280,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYXyxyX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     7
+    ],
+    "total": 12,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      0
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYXyx",
+    "YYxxxYXX"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 86400,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYXyx",
+   "profile": {
+    "words": [
+     "YYXyx",
+     "YYxxxYXX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -3
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 3
+     },
+     {
+      "x": 5,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXYxyX",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXYxyX",
+   "profile": {
+    "words": [
+     "YYYXYxyX",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      -1,
+      -3
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYXYxYX"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYXYxYX"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      -1,
+      -4
+     ]
+    ],
+    "abelian_det": -1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 4
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYYXXYx",
+    "YYXyx"
+   ],
+   "shape": [
+    5,
+    8
+   ],
+   "total": 13,
+   "r3def": 2,
+   "r3census": 120960,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYYXXYx",
+   "profile": {
+    "words": [
+     "YYYYXXYx",
+     "YYXyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     5,
+     8
+    ],
+    "total": 13,
+    "abelian_rows": [
+     [
+      -1,
+      -5
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 3
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXXYx",
+    "YYYXyyx"
+   ],
+   "shape": [
+    7,
+    7
+   ],
+   "total": 14,
+   "r3def": null,
+   "r3census": 967680,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXXYx",
+   "profile": {
+    "words": [
+     "YYYXXYx",
+     "YYYXyyx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     7
+    ],
+    "total": 14,
+    "abelian_rows": [
+     [
+      -1,
+      -4
+     ],
+     [
+      0,
+      -1
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 3,
+      "y": 4
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ]
+   }
+  },
+  {
+   "words": [
+    "YYYXyyx",
+    "YYYxYXYx"
+   ],
+   "shape": [
+    7,
+    8
+   ],
+   "total": 15,
+   "r3def": null,
+   "r3census": 8709120,
+   "r2def": null,
+   "r2census": null,
+   "first": "YYYXyyx",
+   "profile": {
+    "words": [
+     "YYYXyyx",
+     "YYYxYXYx"
+    ],
+    "gens": [
+     "x",
+     "y"
+    ],
+    "shape": [
+     7,
+     8
+    ],
+    "total": 15,
+    "abelian_rows": [
+     [
+      0,
+      -1
+     ],
+     [
+      1,
+      -5
+     ]
+    ],
+    "abelian_det": 1,
+    "unit_row": true,
+    "letters": [
+     {
+      "x": 2,
+      "y": 5
+     },
+     {
+      "x": 3,
+      "y": 5
+     }
+    ]
+   }
+  }
+ ]
+}

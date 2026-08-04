@@ -172,9 +172,20 @@ opportunity count is adequate, each with its own number:
    gap, and it is why reason 1 (the instrument does emit `γ_N = 0` at ranks 10–12) is
    carrying the calibration in the high-rank band rather than an external control.
 
+   A second, *multi-step* positive control landed in a parallel line this session:
+   `S21_MATCHED_NEGATIVE.md` reports the `s12_hunt` slide instrument reaching `γ_N = 0`
+   on 35 of 40 runs from AC-trivial rank‑2 roots matched to AK(3) at `γ_N = 2`. That is a
+   **different move family and a whole search, not one step**, so it is not a `1 → 0`
+   single-step control; what it does show is that `γ_N = 0` is reachable from `γ_N = 2` by
+   *some* move sequence, which is exactly what makes SPLIT's 0 creations in 174,178 single
+   steps a statement about SPLIT rather than about the target value being unreachable.
+   [Read from a parallel agent's write-up; **not re-verified here**.]
+
 Pooling the two SPLIT measurements: **`1 → 0` is 0 in 57,858 opportunities** (56,388
 reconstructed here at ranks 9–13 and depths 0–3, plus 1,470 already on disk at rank 5,
-depth 1), from 2,039 distinct `γ_N = 1` parents.
+depth 1), from 1,958 distinct `γ_N = 1` parents in the reconstructed part plus however many
+of the flip census's 81 measured parents sat at `γ_N = 1` — that split is not persisted in
+`s4b_flips.jsonl`, so it is **not reconstructible** and is not imputed here.
 
 **Depth coverage, stated because the repo has been burned by depth‑1-only corpora**
 (`experiments/lessons/conjectures-tested-only-at-depth-one.md`): the parents in this table
@@ -242,7 +253,7 @@ an artifact of the near-cubic filter.
 **(a) — supported, with adequate opportunities.** "SPLIT can lower `γ_N` but never to 0" is
 supported by 174,178 reconstructed single-step pairs: 1,325 descents observed, 0 of them into
 `γ_N = 0`, with 56,388 opportunities at `γ_N = 1` from 1,958 distinct parents at four ranks
-and three source families (57,858 / 2,039 pooling in the rank‑5 depth‑1 census). It is not
+and three source families (57,858 opportunities pooling in the rank‑5 depth‑1 census). It is not
 (b): the emptiness is not for want of opportunities — the instrument emits `γ_N = 0` states
 at ranks 10–12 (916 of them), descends `γ_N` by one 1,325 times, and a sibling move (AC2)
 achieves `1 → 0` on the same parents at rank 5 at 0.95 %. It is not (c): **no transition in
@@ -288,6 +299,7 @@ descendants.
 | §4 | rank‑5 destruction 643 / 960 = 67.0 % | **read from disk** |
 | §5 | unconditioned sub-table, `1→0` = 0 / 2,185, `2→1` = 67 / 2,768 | **measured** |
 | §1 | independent-decider spot check, 4 states | **measured**, and weak: only 4 states, and the `γ_N = 0` side came back inconclusive from the cut-scheme solver |
+| §3 | `s12_hunt` reaching `γ_N = 0` 35/40 from matched `γ_N = 2` rank‑2 roots | **read from a parallel agent's `S21_MATCHED_NEGATIVE.md`**, not re-verified here; it is a multi-step search rate, not a single-step transition |
 | §6 | verdict (a) | **inference** from the measurements above; an instrument fact, not a theorem |
 | §6 | "bounds `Γ` from ABOVE" | **established** in `S15_ONE_SIDEDNESS.md` §4, cited |
 

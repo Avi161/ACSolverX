@@ -972,9 +972,141 @@ def cmd_splitprobe(args):
     return 0
 
 
+def cmd_s17(args):
+    """Planarity of every state in the S17 single-SPLIT transition edge list.
+
+    Answers the crux question: the `1 -> 0` cell of the S17 matrix is empty in 56,388
+    tries; a `gamma_N = 0` child must have a PLANAR link, so how many of those 56,388
+    children were planar at all?  That count is the number of *unblocked* chances, and it
+    is the difference between "consistent with a planarity obstruction" and "the planarity
+    obstruction is the mechanism".
+    """
+    path = OUT_DIR / args.edges
+    g1_parents, g1_children, zeros = set(), set(), set()
+    by_gamma_parent = {}
+    by_gamma_child = {}
+    edges = []
+    with gzip.open(path, "rt") as fh:
+        for line in fh:
+            r = json.loads(line)
+            gp, gc = r["gamma_parent"], r["gamma_child"]
+            p, c = tuple(r["parent"]), tuple(r["child"])
+            if gp is not None:
+                by_gamma_parent.setdefault(gp, set()).add(p)
+            if gc is not None:
+                by_gamma_child.setdefault(gc, set()).add(c)
+            if gp == 0:
+                zeros.add(p)
+            if gc == 0:
+                zeros.add(c)
+            if gp == 1 and gc is not None:
+                g1_parents.add(p)
+                g1_children.add(c)
+                edges.append((p, c, gc))
+
+    cache = {}
+
+    def fast(words):
+        if words in cache:
+            return cache[words]
+        try:
+            V, E, _n, _s = link_support(words)
+            val = is_planar(V, E)
+        except NeuwirthInputError:
+            val = None
+        cache[words] = val
+        return val
+
+    report = {"record": "s20_s17_planarity", "edges_file": args.edges}
+
+    # ---- 1. THE FALSIFICATION TEST: every gamma_N = 0 state must be planar -------------
+    z = {"n": 0, "planar": 0, "nonplanar": 0, "uncertified": 0, "violations": []}
+    for w in sorted(zeros):
+        out = probe_words(w)
+        if out["status"] != "OK":
+            continue
+        z["n"] += 1
+        if not out["certified"]:
+            z["uncertified"] += 1
+        if out["planar"]:
+            z["planar"] += 1
+        else:
+            z["nonplanar"] += 1
+            z["violations"].append({"words": list(w),
+                                    "kuratowski": out.get("kuratowski")})
+    report["gamma0_states"] = z
+    print(f"  FALSIFICATION: gamma_N=0 states n={z['n']} planar={z['planar']} "
+          f"NONPLANAR={z['nonplanar']} uncertified={z['uncertified']}")
+
+    # ---- 2. the 1,958 distinct gamma_N = 1 parents, certified --------------------------
+    p1 = {"n": 0, "planar": 0, "nonplanar": 0, "uncertified": 0,
+          "kuratowski": {}, "planar_examples": []}
+    planar_g1 = set()
+    for w in sorted(g1_parents):
+        out = probe_words(w)
+        if out["status"] != "OK":
+            continue
+        p1["n"] += 1
+        if not out["certified"]:
+            p1["uncertified"] += 1
+        if out["planar"]:
+            p1["planar"] += 1
+            planar_g1.add(w)
+            if len(p1["planar_examples"]) < 10:
+                p1["planar_examples"].append(list(w))
+        else:
+            p1["nonplanar"] += 1
+            k = out.get("kuratowski") or "UNCERTIFIED"
+            p1["kuratowski"][k] = p1["kuratowski"].get(k, 0) + 1
+        cache[w] = out["planar"]
+    report["gamma1_parents"] = p1
+    print(f"  gamma_N=1 parents n={p1['n']} planar={p1['planar']} "
+          f"NONPLANAR={p1['nonplanar']} kuratowski={p1['kuratowski']}")
+
+    # ---- 3. the 56,388 children of gamma_N = 1 parents: how many were planar? ----------
+    tab = {}
+    kids = {"planar": 0, "nonplanar": 0, "unknown": 0}
+    for p, c, gc in edges:
+        pp = fast(p)
+        cp = fast(c)
+        key = f"parent{'P' if pp else 'N'}->child{'P' if cp else 'N'}|gc{gc}"
+        tab[key] = tab.get(key, 0) + 1
+        if cp is None:
+            kids["unknown"] += 1
+        elif cp:
+            kids["planar"] += 1
+        else:
+            kids["nonplanar"] += 1
+    report["gamma1_edges"] = {"edges": len(edges), "children": kids, "table": tab}
+    print(f"  edges out of gamma_N=1 parents: {len(edges)}  planar children="
+          f"{kids['planar']}  non-planar children={kids['nonplanar']}")
+
+    # ---- 4. global gamma_N x planarity over every distinct state ----------------------
+    glob = {}
+    for role, mapping in (("parent", by_gamma_parent), ("child", by_gamma_child)):
+        for g, states in sorted(mapping.items()):
+            pl = sum(1 for w in states if fast(w))
+            glob[f"{role}|gamma{g}"] = {"n": len(states), "planar": pl,
+                                        "nonplanar": len(states) - pl}
+    report["global"] = glob
+    for k, v in sorted(glob.items()):
+        print(f"    {k:14s} n={v['n']:6d} planar={v['planar']:6d} "
+              f"nonplanar={v['nonplanar']:6d}")
+
+    out = OUT_DIR / args.out
+    out.write_text(json.dumps(report, indent=1))
+    print(f"wrote {out}")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest="cmd", required=True)
+
+    q = sub.add_parser("s17")
+    q.add_argument("--edges", default="s17_transition_edges.jsonl.gz")
+    q.add_argument("--out", default="s20_s17_planarity.json")
+    q.set_defaults(func=cmd_s17)
 
     c = sub.add_parser("chains")
     c.add_argument("--chains", type=int, default=200)
