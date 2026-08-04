@@ -36,12 +36,21 @@ it measured *survival* of a certificate, not *creation* of one; all 759 of its h
 defect chain `(0,0,0,0)`. Against three AC-trivial, length-matched, **non**-thickenable
 sources the pipeline scores 0 in 46,298 — exactly AK(3)'s score. **The real finding is
 about the instrument, not the target:** the chord + SPLIT pipeline created `γ_N = 0`
-**0 times in 93,638 opportunities** across three ranks while remaining demonstrably able to
-*find* certificates that already existed. It is certificate-preserving and
-certificate-non-creating, so it can only settle a presentation that already has a thickenable
-member at rank 2 — which AK(3) does not. **The cubic route cannot settle AK(3), and this
-retires it with a mechanism rather than with silence.** Nothing here bounds `Γ(AK(3))` from
-below; see `S15_ONE_SIDEDNESS.md` for why no instrument on this route ever can.
+**0 times in 91,409 decided states** from four non-thickenable roots (plus 0 in 1,470 rank-5
+flip-census opportunities) while remaining demonstrably able to *find* certificates that
+already existed. It is certificate-preserving and certificate-non-creating, so it can only
+settle a presentation whose rank-2 root is already thickenable.
+
+**At the strength the evidence supports:** AK(3)'s own rank-2 spelling has `γ_N = 2` (exact
+census, 86,400 rotations), and no thickenable member of its class has been found in the
+124,296-member rank-2 matched harvest or the 171,842-member depth-1 stable class — **bounded
+nulls, not an absence proof**; their class-wide negation would *be* the disproof. So *on the
+evidence* the cubic route **did not** settle AK(3): the pipeline lowered `γ_N` (527 descents
+4 → 2, plus `C1` at `γ_N = 1`) but never reached 0. That is a **measured instrument
+limitation, not a proved obstruction** — no monotonicity theorem forbids reaching 0
+(`S15` §6). And this is one move set only: on the A7 ladder a plain AC1–AC5 search created
+`γ_N = 0` from a non-thickenable length-13 base in **39 of 40** runs. Nothing here bounds
+`Γ(AK(3))` from below; see `S15_ONE_SIDEDNESS.md` for why no instrument on this route can.
 
 **(ii) But high rank buys decidability, and the size of the effect is now measured.** The
 compatible census is `∏(deg−1)!`, so what matters is the *ratio* ℓ/n of total length to

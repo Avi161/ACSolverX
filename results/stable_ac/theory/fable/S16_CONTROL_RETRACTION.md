@@ -92,24 +92,42 @@ Four independent measurements, three ranks, one conclusion:
 
 | measurement | rank | creations | opportunities |
 |---|---|---|---|
-| flip census | 5 | **0** | 1,470 |
-| control hit chains (replayed) | 9 → 12/13 | **0** | 759 |
 | sharp control (3 non-thickenable sources) | 12/13 | **0** | 46,298 |
 | AK(3) pool | 12/13 | **0** | 45,111 |
-| **total** | | **0** | **93,638** |
+| **total, decided states from non-thickenable roots** | | **0** | **91,409** |
+| flip census (separate experiment) | 5 | **0** | 1,470 |
 
 > The chord + SPLIT pipeline is certificate-**preserving** and certificate-**non-creating**
-> — 0 creations in **93,638** opportunities — while the instrument is demonstrably not
+> — 0 creations in **91,409** decided states from four non-thickenable roots, plus 0 in
+> 1,470 rank-5 flip-census opportunities — while the instrument is demonstrably not
 > blind: it exhibited 759 certificates, one verified six ways, whenever the root already
 > had one.
 
+**A correction to an earlier draft of this table** (caught by the S13 audit, A15): the 759
+replayed control chains were originally pooled into this total, giving 93,638. That was
+wrong — those chains **start** at defect 0, so they are not opportunities to *create*
+anything. They belong in §3b as evidence of inheritance, not here as denominators. The
+denominator for a creation rate may only count states descended from a root with
+`γ_N > 0`. Note also that these states come from a move tree and are **not** independent
+draws, so no p-value may be quoted from them
+(`experiments/lessons/contrast-length-confound.md`).
+
 In this move set and search regime, **thickenability is inherited, not generated.** It can
-therefore only settle a presentation that already has a thickenable member at rank 2. AK(3)
-does not. **The cubic route cannot settle AK(3)**, and its 0/45,111 says nothing about AK(3)
-beyond its rank-2 defect. This retires the route's certificate half **with a mechanism
-rather than with silence** — the second publishable outcome `S4` §7.3 named. What survives
-untouched is the rank-13 cubic form itself: a normal-form result that never depended on
-`γ_N`.
+therefore only settle a presentation whose rank-2 root is already thickenable.
+
+**Stated at the strength the evidence actually supports** (the audit caught two overstatements
+here): AK(3)'s own rank-2 spelling has `γ_N = 2` by exact census over 86,400 rotations, and no
+thickenable member of its class has been found in the 124,296-member rank-2 matched harvest or
+the 171,842-member depth-1 stable class — those are **bounded nulls, not an absence proof**,
+and their class-wide negation would *be* the disproof. So: **on the evidence, the cubic route
+did not settle AK(3)** — the pipeline lowered `γ_N` (527 measured descents 4 → 2, plus `C1` at
+`γ_N = 1`) but never reached 0 in 91,409 decided states. That is a **measured instrument
+limitation, not a proved obstruction**; no monotonicity theorem forbids reaching 0 (`S15` §6).
+Its 0/45,111 says nothing about AK(3) beyond its rank-2 defect.
+
+This retires the route's certificate half **with a mechanism rather than with silence** — the
+second publishable outcome `S4` §7.3 named. What survives untouched is the rank-13 cubic form
+itself: a normal-form result that never depended on `γ_N`.
 
 The mechanism is exactly what the proved structure predicts. That is
 exactly what the proved structure predicts: S3 shows a chord refinement is a *CW

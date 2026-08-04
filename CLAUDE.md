@@ -136,7 +136,7 @@ much harder than those Erdős problems. Its three keys:
 - A control built from inputs that ALREADY have the property measures survival, not
   creation. Ours was length-, rank- and pipeline-matched — and already γ_N = 0, so all 759
   "hits" had chain `(0,0,0,0)` and the instrument had never once created a certificate
-  (0 in 93,638 from four non-thickenable roots). Retracted "the strongest result of the
+  (0 in 91,409 from four non-thickenable roots). Retracted "the strongest result of the
   session". Replay the control's own chains, put Φ(source) in its own column, and use ≥ 3
   sources — one source cannot show you its between-source variance.
   [[TRAP]](experiments/lessons/control-measures-survival-not-creation.md)

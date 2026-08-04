@@ -173,10 +173,18 @@ The corollary also relocates the difficulty usefully, and `S16` sharpens where. 
 that thickenable states are rare in the abstract — 759 were exhibited at rank 12–13. But
 every one of those descended from a root that was *already* thickenable (chain `(0,0,0,0)`,
 759 times), and across four non-thickenable roots the same pipeline created `γ_N = 0` **0
-times in 93,638 opportunities**. So the difficulty is not that certificates are scarce; it
-is that no known move **manufactures** one. Search is on the upper-bound side, where silence
-is cheap — and the instrument that produced the silence turns out to be incapable, by
-mechanism, of producing anything else on a non-thickenable input.
+times in 91,409 decided states**.
+
+**But that is a fact about one move set, not about moves in general** — an earlier draft of
+this paragraph said "no known move manufactures one", and the session's own artifact refutes
+it. On the A7 depth ladder a plain AC1–AC5 search created `γ_N = 0` from the base
+`("YYxxx","YxYxYxxx")` — length 13, Todd–Coxeter index 1, `minimum_defect` 2, i.e. **not**
+thickenable — in **39 of 40 runs**, 8/8 of them at rank ceiling 2. So certificates *are*
+manufacturable, routinely, by a richer move set; it is the **chord + SPLIT cubic pipeline**
+specifically that never manufactures one. That is why the cubic route's silence is weak
+evidence and the AC-move hunt's silence is not.
+
+Search remains on the upper-bound side, where silence is cheap.
 
 ---
 
