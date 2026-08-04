@@ -1197,8 +1197,15 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
         if hit:
             break
         if not scored_children:
-            stopped = "no_scored_children"
-            break
+            # everything in this slice was pruned by the sparsity certificate; restart
+            # rather than stop, so a single non-planar pocket cannot end the search
+            exhausted += 1
+            if exhausted > 12 or nodes_used >= nodes:
+                stopped = "no_scored_children"
+                break
+            restart, _hist = scramble(start, rng.randrange(3, 13), rng, limits)
+            frontier = [(10 ** 6, restart.total_length, restart)]
+            continue
         scored_children.sort(key=lambda t: (t[0], t[1], t[2].rank))
         frontier = scored_children[:beam]
         current_best = None if best is None else best[0]

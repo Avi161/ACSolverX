@@ -1,6 +1,10 @@
 # S3 — Triangulation is a SUBDIVISION: the naive "go to rank 9 and test thickenability" route is a provable no-op
 
-Status: **proved by the orchestrator, pending adversarial audit (task A5).**
+Status: **AUDITED — verdict AMEND (`S3_AUDIT.md`), repairs R1–R7 applied below.**
+The audit ran 1,525 independent triangulations with its own from-scratch census and found
+**zero counterexamples**; it also proved a strictly stronger statement (Lemma S3′: the
+*whole defect histogram* is preserved by a dart-level bijection, not merely γ_N), and it
+found two missing hypotheses and one live escape route, all folded in here.
 Date 2026-08-04. Branch `claude/stable-ac-conjecture-stabilization-rwo9as` (merge into
 `fable/proof`). Companion to `S0_HIGH_RANK_PLAN.md` §2–§3, which this result *corrects*.
 
@@ -169,12 +173,62 @@ Three consequences, which redirect the session:
    becomes a question about which cubic link graphs are planar-with-compatible-rotation —
    a finite, cheap, and completely different battlefield. This is task A6.
 
-## 5. Trap added to the line
+## 5. Audit repairs (R1–R7 of `S3_AUDIT.md`), applied
 
-- **T-S6.** γ_N's *value* is not comparable across cell structures; only the predicate
-  γ_N = 0 is topological. Never read a change in defect under a refinement as progress or
-  regress. (Cf. `parallel-runs-and-bound-direction.md`: this is the same failure family —
-  a quantity read in a direction it does not support.)
-- **T-S7.** "More generators" is not a mechanism. Abbreviation-style stabilization
-  (new generator used twice) is provably inert for thickenability. Any future proposal on
-  this line must say, up front, how many times its new generators are used.
+**R1/R4 — two missing hypotheses.** Theorem S3 as proved requires **(a)** the peeled corner
+`a_1a_2` is freely reduced (equivalently: `r` is cyclically reduced and the corner is not
+the wrap-around of a spike), and **(b)** the two new relators are taken **literally, with no
+free reduction** — a deliberate suspension of FRAMING trap 3. Both are live: `S1` §4.5
+licenses peeling *any* cyclic corner, and at a degenerate corner `a_2 = a_1^{-1}` the
+definition relator is the literal `z a_1 a_1^{-1}`, whose free reduction is the length-1
+word `z` — a different complex.
+
+**R2 — the theorem is stronger than stated.** Lemma S3′ (audit §2): a chord refinement
+subdivides exactly two link edges by two degree-2 germs, inducing a defect-preserving
+**bijection** of the compatible-rotation censuses. So the census size, the *entire* defect
+histogram, γ_N, and the accepting-order count are all invariant — with no dependence on the
+`γ_N = 0 ⟺ thickenable` bridge at all. Measured: 1,525/1,525 bit-identical histograms
+(AK(3): `{4:724, 6:14882, 8:55438, 10:15356}`, census 86,400, at rank 2 **and** rank 9).
+
+**R3 — the predicate is ORIENTABLE thickenability.** §1 above said "embeds in some
+3-manifold". The repo's bridge (`R1E` Thm D, `R1C`:29, `R7_SPELLING_SPACE`:508/719) and the
+code (`is_compatible` enforces `BCB = C⁻¹`; the defect is `Σ2gᵢ` over orientable rotation
+surfaces) are **orientable PL**. That does not break the theorem — a CW subdivision is a PL
+homeomorphism — but it is load-bearing downstream: a γ_N = 0 hit discharges the
+*orientable* hypothesis, whereas Lackenby Thm 1.3's hypothesis is the weaker "some
+3-manifold". Whether the first discharges the second is the open **Joint-A** question of
+`LITERATURE_STATUS.md`. **Any payoff claim in this line must cite Joint-A as an open link,
+not assume it.**
+
+**R5 — T-S6 is RETRACTED.** It was founded on the defect-vs-γ_N unit error and is false:
+the value of γ_N *is* invariant under chord refinement, and so is the whole histogram.
+
+**R6 — T-S7's dividing line is wrong.** It is not the occurrence count. The correct line is
+*"the new edge carries exactly two 2-cell germs coming from two **distinct** 2-cells"*.
+Counterexample to the count version: `("zxZy","xxy")` has defect 2 while `("xy","xxy")` has
+defect 0.
+
+**R7 — the escape route is REAL and is now the line's most promising lead.** Over 98
+non-cyclically-reduced rank-2 bases, a degenerate-corner refinement *followed by the free
+reduction FRAMING trap 3 mandates* changed the defect in 6 cases, **5 of them from defect 2
+(γ_N = 1) to defect 0 (γ_N = 0)** — e.g.
+`('XYYyxY','XyX') → ('axYXY','XyX','aYy') → ('axYXY','XyX','a')`, defect 2 → 2 → **0**.
+The refinement step itself preserved the histogram every time; it is the *reduction
+afterwards* that moves the value. So §0's unqualified sentence "no amount of triangulation
+can ever produce a thickenable member" is **false as soon as the pipeline free-reduces or
+the input spelling is not cyclically reduced** — which is exactly the regime of this
+project's live spelling/spike routes (`R7_SPELLING_SPACE.md`,
+`R1F_REDUCTION_AND_SPIKES.md`). Corrected scope: *triangulation of a cyclically reduced
+presentation, taken literally, is a no-op.* Everything outside that hypothesis is open, and
+the combination **high rank × unreduced spellings** is where this line should now push.
+
+## 6. Traps, as corrected
+
+- **T-S6 — RETRACTED** (see R5).
+- **T-S7 (amended).** "More generators" is not a mechanism *when the new edge carries
+  exactly two 2-cell germs from two distinct 2-cells*: that case is provably inert. Any
+  future proposal must state, up front, how many 2-cell germs its new edges carry and
+  whether the pipeline free-reduces.
+- **T-S9 (new, from R3).** γ_N = 0 in this repo means **orientably** thickenable. Lackenby
+  Thm 1.3 needs "some 3-manifold". Never let a γ_N = 0 hit be reported as discharging
+  Lackenby without flagging Joint-A.
