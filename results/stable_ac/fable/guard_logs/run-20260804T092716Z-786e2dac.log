@@ -4,3 +4,10 @@ pool: 75095 distinct near-cubic states (deduped on canonical cyclic form)
   decided 4000/75095  30s  hist={2: 416, 4: 3490, 6: 94}
   decided 6000/75095  43s  hist={2: 662, 4: 5194, 6: 144}
   decided 8000/75095  56s  hist={2: 1011, 4: 6792, 6: 197}
+  decided 10000/75095  79s  hist={2: 1183, 4: 8532, 6: 285}
+  decided 12000/75095  98s  hist={2: 1431, 4: 10240, 6: 329}
+  decided 14000/75095  118s  hist={2: 1531, 4: 12090, 6: 379}
+  decided 16000/75095  132s  hist={2: 1704, 4: 13835, 6: 461}
+  decided 18000/75095  144s  hist={2: 1902, 4: 15600, 6: 498}
+  decided 20000/75095  158s  hist={2: 2062, 4: 17240, 6: 698}
+  decided 22000/75095  171s  hist={2: 2180, 4: 18697, 6: 1123}
