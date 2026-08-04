@@ -154,17 +154,60 @@ there is **no positive control** — no γ_N = 0 state at rank 12–13 is known 
 so the hunt's detection rate is unmeasured. The verdicts are exact; the *null about the
 class* is not calibrated.
 
-**T-S17 — and it cuts against the cubic route's own premise.** Proximity to cubic form is
-**anti-correlated** with low defect:
+**T-S17 — AK(3)-SPECIFIC, not a property of the region (narrowed after the control ran).**
+Proximity to cubic form is **anti-correlated** with low defect *for AK(3)*:
 
 | Σ\|δ\| from cubic | decided | γ_N = 1 | γ_N = 2 | γ_N = 3 |
 |---|---|---|---|---|
 | 2 (one SPLIT away) | 1,232 | **0** | 1,028 | 204 |
 | 4 (two SPLITs away) | 43,879 | **527** | 39,072 | 4,280 |
 
-The states *closest* to cubic form contain **no** γ_N = 1 members at all. The normal-form
-target and the thickenability target point in opposite directions in this region, so
-"drive toward cubic form" is not a good proxy for "drive toward a certificate".
+The states *closest* to cubic form contain **no** γ_N = 1 members at all. But the matched
+control's rates are flat across the same axis (1.63 % at Σ|δ| = 2 against 1.49 % at
+Σ|δ| = 4), so this is **not** a property of the rank-12/13 region — it is something about
+AK(3). The transferable half of the trap survives: "drive toward cubic form" is not a proxy
+for "drive toward a certificate", because the chain's γ_N is destroyed by the SPLITs and
+preserved by the refinements, so a cost-greedy march to the normal form is the wrong
+instrument for a certificate hunt.
+
+### 3z-bis. THE CALIBRATED NEGATIVE — the strongest result of the session
+
+The 3z null above was uncalibrated: with no γ_N = 0 state known to exist at rank 12–13, "AK(3)
+has none" and "the region has none" were indistinguishable. Building the control settles it.
+
+Control source `("XYXXY","XXYXYXXY")`: AC-trivial, rank 2, total length 13, γ_N = 0,
+triangulating to rank-9 roots with Σ|δ| = 14 — **matched to AK(3) on every axis the pipeline
+sees**. Identical pipeline, kernel and budgets; only the source's rank-2 defect differs.
+
+| | decided exactly | γ_N = 0 | rate |
+|---|---|---|---|
+| **control** | 50,320 | **759** | **1.51 %** |
+| **AK(3)** | 45,111 | **0** | **0.00 %** |
+
+At the control's rate AK(3)'s pool should have contained ≈ **681** thickenable members. It
+contained **none**. So the rank-12/13 region is *not* structurally γ_N ≥ 1, and **AK(3)'s
+0/45,111 is a fact about AK(3), not about the region.** This is the first calibrated
+high-rank negative on this line; every earlier one was a reachability null with no way to
+separate "absent here" from "absent everywhere".
+
+One control hit was verified **six ways** — the protocol reserved for an AK(3) hit, run to
+validate the instrument: structural check; the oracle `gamma_N_factorial_n` (defect 0,
+genus 0, census 9,216, two accepting orders); the fast kernel agreeing; Todd–Coxeter trivial
+at index 1; `witness_check_n` (defect 0, compatible); and a chain replay whose root un-merges
+in exactly seven steps back to the source.
+
+**Mechanism, traced per step — and it confirms Theorem S3 live on a fresh corpus.** γ_N is
+*constant* across all eight chord refinements for all three bases traced (AK(3):
+`4,4,4,4,4,4,4,4`; two thickenable controls: `0,0,0,0,0,0,0,0`), and the loss happens
+entirely at the SPLITs: the greedy chain loses γ_N = 0 at the **first** SPLIT.
+
+**Caveats, all binding.** The control is **one source** — the search budget was consumed by
+source 0, so 1.51 % is that source's descendant rate, not a cross-source constant. No
+p-value: both pools are move-tree frontiers, not independent draws. Seeds and pool sizes
+differ. The comparison is like-for-like by construction, not randomised. What it supports is
+therefore: *AK(3)'s stable class is anomalously devoid of certificates in this region
+relative to the one matched AC-trivial class measured the same way* — pointing at the
+disproof side of `FRAMING` §2, and still not evidence of a disproof.
 
 ### 3a. The one concretely actionable find: six γ_N = 1 gateways
 
