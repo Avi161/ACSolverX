@@ -246,7 +246,39 @@ construction** — the null is not weak evidence, it is *zero* evidence.
   My stratified re-measure by total length (both corpora, per-length denominators) shows the
   trivial/unrestricted gap of §1.5 is **not** a length artefact:
 
-*(stratified table — §1.7a below)*
+**§1.7a — stratified re-measure, second corpus pair, independent seeds.** Rates are shown
+per *total relator length*, with thickenable bases deliberately oversampled (the destroy rate
+is conditional on a thickenable base, so its denominator is unaffected by how bases were
+picked). Cap 2·10⁵.
+
+| total length | M2nc destroy, trivial group | M2nc destroy, unrestricted | M3 destroy, trivial | M3 destroy, unrestricted | M3 create, trivial | M3 create, unrestricted |
+|---|---|---|---|---|---|---|
+| 7 | 0/16 = 0 % | 12/120 = 10.0 % | 2/16 = 12.5 % | 48/119 = 40.3 % | — | 7/120 = 5.8 % |
+| 8 | 3/32 = 9.4 % | 28/120 = 23.3 % | 12/32 = 37.5 % | 67/107 = 62.6 % | **5/32 = 15.6 %** | **6/95 = 6.3 %** |
+| 9 | 2/32 = 6.2 % | 20/119 = 16.8 % | 6/19 = 31.6 % | 5/10 = 50.0 % | 12/66 = 18.2 % | — |
+| 10 | — | 43/99 = 43.4 % | — | — | 7/37 = 18.9 % | — |
+| **all** | **5/80 = 6.2 %** | **103/458 = 22.5 %** | **20/74 = 27.0 %** | **120/236 = 50.8 %** | **24/136 = 17.6 %** | **13/215 = 6.0 %** |
+
+`M2nc` create was **0** on both corpora (0/268 trivial, 0/487 unrestricted), as in S6.
+
+At **every length where both corpora were measured**, the trivial-group AC3 destroy rate is
+2–3× lower and the trivial-group AC2 create rate is ~2.5× higher. The gap is therefore not
+the length artefact `contrast-length-confound.md` warns about. The honest limitation: the
+`M3 create` comparison overlaps at total length 8 only, because the unrestricted run spent
+its budget on shorter bases; the direction there (15.6 % vs 6.3 %) agrees with the
+unstratified pair in §1.5 (19.2 % vs 4.8 %).
+
+**Pooled over both runs** (independent seeds, same protocol, same band):
+
+| rate | trivial group | unrestricted | S6 published |
+|---|---|---|---|
+| AC3 (non-cancelling) destroys, per thickenable base | **9/156 = 5.8 %** | 175/789 = 22.2 % | 24.0 % |
+| AC2 destroys, per thickenable base | **28/133 = 21.1 %** | 236/481 = 49.1 % | 51.5 % |
+| AC2 creates, per non-thickenable base | **58/313 = 18.5 %** | 30/568 = 5.3 % | 7.0 % |
+| AC3 (cancelling) flips, either direction | **0/1,432** | 0/1,432 | 0/3,413 |
+
+No p-values are quoted: the derived states of one base are not independent draws
+(`contrast-length-confound.md`).
 
 ### 1.8 A one-step stabilization family S6 never measured
 
@@ -460,3 +492,65 @@ S4 §0 item 6 and §6 say "**No cubic form of AK(3) is reported**". `S4B_CUBIC_S
 but as written it is the first thing a fresh session reads about the route.
 
 > **Repair R-J.** Add a one-line pointer from S4 §0/§6 to `S4B`.
+
+---
+
+## 4. Independent re-verification of two claims the audit leans on
+
+Both were re-computed with my own census and my own Todd–Coxeter, from the words as printed:
+
+| claim | source | my measurement |
+|---|---|---|
+| `C1` is a rank-13 cubic triangular presentation of 1 with `γ_N = 1` | `S4B` §0 | census **8,192**, defect **2** ⇒ `γ_N = 1`, histogram `{2:2, 4:60, 6:510, 8:2338, 10:3766, 12:1516}`, Todd–Coxeter index **1** — **confirmed** |
+| AK(3) has `γ_N = 2` | S3, R1F | defect 4 ⇒ `γ_N = 2` — confirmed |
+| Conjecture SR is false on the trivial group | `S11` §4.3′, `S13` §3c | `("ABbbabAAaB","baB")` census 86,400 defect **0**; `("AbabAAaB","baB")` census 2,880 defect **2**; `("AbabAB","baB")` census 144 defect **0**; **all three Todd–Coxeter index 1** — **confirmed**, one free-reduction step takes defect 0 to defect 2 on presentations of the trivial group |
+
+The third row is what kills S6 §8's conditional collapse (§1.6).
+
+---
+
+## 5. Summary of repairs for the orchestrator
+
+| id | file | repair |
+|---|---|---|
+| **R-A** | S6 §3 | strengthen T4′ to a dart-level bijection claim (histogram evidence, 144/144) |
+| **R-B** | S6 §3 | add hypotheses `\|r_1\| ≥ 1` and "`z` occurs in no `r_i`" to T4′ |
+| **R-C** | S6 §1, §7, §8 | merge/label the `M0` row: it is the `M2nc` row re-partitioned, not a second census; §8's "73 + 315 events" double-counts |
+| **R-D** | S6 §7 | account for the 14 missing `M3` pairs; state the `M3` exclusion rule |
+| **R-E** | S6 §1, §5, §7, §8, T-S8 | label every published rate "unrestricted corpus"; add the trivial-group rates of §1.5/§1.7a; T-S8's "24 %" → "≈ 6 % on trivial-group bases, ≈ 22 % unrestricted" |
+| **R-F** | S6 §4, §8, §9 | **Conjecture SR is FALSE (`S11`)**; withdraw "stable ACC becomes a statement purely about AC2"; note that S6's 997-pair null is depth-1 and therefore structurally blind to SR |
+| **R-F′** | S6 §0.3 | stop citing S3's trap T-S6 — S3 §5 R5 retracted it. Separately, **S3 §3 lines 121–130 still assert the retracted claim** and should be repaired in the audited file |
+| **R-G** | S8 §3 | close `[GAP-S8-1]` with the contraction bookkeeping of §2.1 and promote Conjecture S8 to a theorem |
+| **R-G′** | S8 §3 | `[GAP-S8-2]` is vacuous: the bigon edges are never loops, are vertex-disjoint, and contraction preserves components |
+| **R-H** | S8 §4, T-S8 | **restrict the headline negative to bigon (length-2) splits** — `S4B`'s `C1` refutes it for length-3 definitional splits |
+| **R-I** | S4 §4 | "ordered tuples up to rotation" → "multisets of cyclic words" |
+| **R-J** | S4 §0.6, §6 | point to `S4B`: AK(3) *does* have a cubic triangular form (rank 13) |
+
+## 6. The single most serious problem found
+
+**S6 §8's headline — "stable ACC becomes a statement purely about AC2" — rests on a
+conjecture that this same session refuted, and S6's own evidence for that conjecture is
+structurally incapable of testing it.** Conjecture SR was refuted in `S11` (task A10) with 28
+counterexamples, one family on balanced presentations of the trivial group at Todd–Coxeter
+index 1; I re-verified the chain independently (§4). S6's supporting null — "0 of 997
+thickenable spellings" — is a *depth-1* corpus ("cyclically reduced base plus one move"), and
+SR first fails at depth 2, so those 997 measurements could not have found a counterexample at
+any sample size. Reading them as evidence is the same error the line already filed under
+`calibrate-one-sided-hunts-on-a-positive-ladder.md`: a one-sided null is worth exactly its
+measured detection rate, and here the detection rate for the thing being hunted is **zero by
+construction**.
+
+Second most serious, and the one with the most downstream cost: **the flip rates are rates
+over arbitrary balanced rank-2 presentations, and every one of them moves substantially —
+some by a factor of 3 or 4, and AC2's create rate in the *opposite* direction to the note's
+narrative — once the corpus is restricted to the trivial group, which is the only corpus the
+AC programme can use** (§1.5, §1.7a).
+
+## 7. Artefacts
+
+Scratch, not committed: `aud.py` (independent link/census/defect), `tc.py` (independent HLT
+Todd–Coxeter), `t4p.py` (T1/T2/T4/T4′ structural tests), `flip.py` + `flip2.py` (trivial-group
+vs unrestricted flip tables, unstratified and length-stratified), `s8.py` (splitting hunt +
+bookkeeping deltas), `s4.py` (cubic census + determinant scan + triviality on all 43,008).
+Every number in this file is reproducible from those six scripts with
+`PYTHONPATH=/home/user/ACSolverX`.

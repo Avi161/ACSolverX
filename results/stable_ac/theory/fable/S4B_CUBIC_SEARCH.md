@@ -56,7 +56,13 @@ This is what `S4` §0 item 6 left open ("**No cubic form of AK(3) is reported**"
    refutes it** (§3.4). Recorded in full, including the refutation, because the failure mode
    — a clean small-instance null extrapolated past the regime it was measured in — is the
    reusable lesson here.
-4. **Two cost-model corrections** (§5): a cubic triangular presentation at rank `N` has
+4. **45,111 states of AK(3)'s stable class decided EXACTLY, and none is thickenable**
+   (§4.5). Ranks 12–13, every state's whole compatible-rotation census enumerated — no
+   sampling — with the histogram `{γ_N = 0: 0, γ_N = 1: 527, γ_N = 2: 40,100, γ_N = 3: 4,484}`.
+   The pool is persisted with full replayable chains. **And proximity to cubic form turns out
+   to be anti-correlated with low defect**: 0/1,232 of the states one `SPLIT` from cubic are
+   at `γ_N = 1`, against 527/43,879 two SPLITs away (T-S17).
+5. **Two cost-model corrections** (§5): a cubic triangular presentation at rank `N` has
    census exactly `2^N`, so S4 §7.2's "16 cases" does not transfer (AK(3)'s cubic forms have
    census `2^13 = 8,192`, and the advantage over AK(3)'s own 86,400 inverts at rank 17); and
    the 64.29 % thickenable fraction of S4 §4 is a base rate over tiny rank-4 AC-trivial
@@ -318,8 +324,9 @@ triangulations, §2), and that was not controlled for.
 
 **Zero `γ_N = 0` states were found**, and the null is weak by construction:
 
-* only **500 of 66,756** collected near-cubic AK(3) states were tested (0.75 %), and
-  200 of 29,678 on the ladder — the deep scan is budget-bound, not exhausted;
+* in run 1 only **500 of 66,756** collected states were tested (0.75 %) and the pool was
+  then lost, and 200 of 29,678 on the ladder — those deep scans were budget-bound. **This is
+  fixed in §4.5**, where the pool is persisted and 45,111 of 45,264 are decided exactly;
 * the in-search scan tested **nothing** (`gamma_tested: 0` in both runs): a near-cubic state
   at rank `N` has census `2^N ≥ 2^10`, above the in-search cap. Every `γ_N` number here comes
   from the post-hoc deep scan;
@@ -441,7 +448,8 @@ the route's prior, and the flip census is the first direct measurement of it.
 | **Q-red for AK(3)** (cubic form, all relators cyclically reduced) | **ANSWERED YES** — two explicit rank-13 witnesses, verified four ways (§4.2). This closes S4 §0 item 6 and S4 §7.3's first branch **for AK(3)** |
 | Q-red in general (every balanced presentation of 1) | **still OPEN** — Lemma S4.6 / Observation S4.5 unproved; two witnesses are not a theorem |
 | can `SPLIT` lower `γ_N`? | **YES, measured** — `γ_N = 2 → 1` from AK(3)'s triangulation (§3.4). My own monotonicity conjecture is refuted |
-| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **OPEN.** No hit; but only 0.75 % of the collected near-cubic states were tested, and the detection rate for a `γ_N = 0` state is unmeasured (§4.4) |
+| can `SPLIT` deliver a `γ_N = 0` certificate for AK(3)? | **OPEN, and now with a large exact null against it**: 45,111 near-cubic states decided exactly, **0 thickenable** (§4.5). Still no positive control, so the detection rate is unmeasured |
+| does driving toward cubic form drive toward thickenability? | **NO, measured**: `Σ|δ| = 2` states are 0/1,232 at `γ_N = 1`; `Σ|δ| = 4` states are 527/43,879 (§4.5, T-S17) |
 | is AK(3) harder than matched AC-trivial inputs for this search? | **NO** on the cubic-form axis (2/28 vs 0/35, §4.3), **YES** on the defect axis (0.8 % vs 25 % of tested near-cubic states reach defect 2) |
 | is the cubic regime cheap to decide at AK(3)'s scale? | partly — `2^13 = 8,192` at the minimum rank, inverting against AK(3)'s own 86,400 at rank 17 (§5.1) |
 | does the 64 % rank-4 thickenable fraction transfer to AK(3)? | **NO** — and the two forms actually found are 0/2 thickenable (§5.2) |
@@ -449,12 +457,16 @@ the route's prior, and the flip census is the first direct measurement of it.
 
 **Next concrete step**, in priority order:
 
-1. **Exhaust the deep scan.** 66,756 near-cubic AK(3) states are already reachable from
-   `s4b_ak3.jsonl` provenance and 99.25 % are untested, at ~8,192 census each. This is the
-   cheapest possible shot at the prize and it is minutes of CPU.
-2. **Push from `γ_N = 1`.** `C1` and the four defect-2 states are the lowest any member of
-   AK(3)'s stable class has been driven on this line. Re-root the search at them and apply
-   the moves `S6` classifies as *creators* (general AC2, spelling choice) rather than `SPLIT`.
+1. **Done — see §4.5.** The pool is persisted and 45,111 of 45,264 states are decided
+   exactly. Zero thickenable. The next version of this step is *width*, not depth: the pool
+   is one search's frontier, and the anti-correlation in §4.5 says the near-cubic frontier
+   is the wrong place to look.
+2. **Push from `γ_N = 1`.** There are now **528+ explicit `γ_N = 1` members** of AK(3)'s
+   stable class (527 from §4.5 plus `C1`), all with replayable chains, against the single
+   rank-2 gateway previously known. `γ_N = 1` is a *tie* with that gateway, not a new record
+   — but it is now a large, cheap, structured population instead of a lone point. Re-root the
+   search at them and apply the moves `S6` classifies as *creators* (general AC2, spelling
+   choice) rather than `SPLIT`, which §4.5 shows does not get there.
 3. **Build a positive control for a `γ_N = 0` state at rank ≈ 13** so §4.4's null acquires a
    measured detection rate. Without it the null bounds nothing.
 4. Q-red in general (Lemma S4.6) — now with two worked instances to generalise from.
@@ -473,6 +485,10 @@ the route's prior, and the flip census is the first direct measurement of it.
 * **T-S15.** *A move's flip census is a statement about the corpus's rank, not about the
   move* — §3.4. `SPLIT`: 0 creations in 1,470 rank-5 opportunities, and a demonstrated
   `γ_N` drop at rank 9.
+* **T-S17.** *Near-cubic is not near-thickenable.* Over 45,111 exactly decided states of
+  AK(3)'s stable class, the ones **closest** to cubic form (`Σ|δ| = 2`) had **zero** members
+  at `γ_N = 1`, while the ones further away (`Σ|δ| = 4`) had 527. Do not assume a normal-form
+  target and a thickenability target point the same way — here they point opposite ways.
 * **T-S16.** *A ranking beam cannot cross a plateau whose exit is cost-increasing.* S4's
   0/48 on AK(3) was an artefact of exactly that (T-S11's `Σ|δ| = 2` plateau); adding 30 %
   random beam fill turned it into 2/28. Before reading any search null on this line, check
@@ -497,6 +513,23 @@ python3 -m experiments.stable_ac.fable.guarded_run --timeout 500 -- \
     python3 experiments/stable_ac/fable/cubic_split_search.py ladder ...
 ```
 
-Artefacts: `results/stable_ac/fable/s4b_flips.jsonl`, `s4b_ak3.jsonl`, `s4b_ladder.jsonl`;
+Exhaustive decision of the persisted pool (§4.5):
+
+```bash
+python3 -m experiments.stable_ac.fable.guarded_run --timeout 520 -- \
+    python3 experiments/stable_ac/fable/cubic_split_search.py ak3 --budget 430 \
+      --per-root 9 --roots-per-source 400 --mode tiebreak --beam 60 --depth 20 \
+      --max-children 300 --diversity 0.30 --deep-threshold 4 --seed 2026 \
+      --pool-out results/stable_ac/fable/s4b_pool.jsonl.gz \
+      --out results/stable_ac/fable/s4b_ak3_run2.jsonl
+python3 -m experiments.stable_ac.fable.guarded_run --timeout 540 -- \
+    python3 experiments/stable_ac/fable/cubic_split_search.py decide \
+      --pool-in results/stable_ac/fable/s4b_pool.jsonl.gz \
+      --decide-out results/stable_ac/fable/s4b_decided.jsonl.gz --decide-budget 470
+```
+
+Artefacts: `results/stable_ac/fable/s4b_flips.jsonl`, `s4b_ak3.jsonl`, `s4b_ak3_run2.jsonl`,
+`s4b_ladder.jsonl`, **`s4b_pool.jsonl.gz`** (45,264 near-cubic states with full chains),
+**`s4b_decided.jsonl.gz`** + `s4b_decided_summary.json` (45,111 exact verdicts);
 guard ledger `results/stable_ac/fable/guard_ledger.jsonl`; child logs
 `results/stable_ac/fable/guard_logs/`.

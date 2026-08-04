@@ -15,3 +15,11 @@ pool: 45264 distinct near-cubic states (deduped on canonical cyclic form)
   decided 26000/45264  260s  hist={2: 239, 4: 23172, 6: 2589}
   decided 28000/45264  275s  hist={2: 290, 4: 24966, 6: 2744}
   decided 30000/45264  290s  hist={2: 314, 4: 26755, 6: 2931}
+  decided 32000/45264  308s  hist={2: 426, 4: 28524, 6: 3050}
+  decided 34000/45264  327s  hist={2: 454, 4: 30165, 6: 3381}
+  decided 36000/45264  346s  hist={2: 463, 4: 31950, 6: 3587}
+  decided 38000/45264  367s  hist={2: 467, 4: 33795, 6: 3738}
+  decided 40000/45264  396s  hist={2: 483, 4: 35590, 6: 3927}
+  decided 42000/45264  422s  hist={2: 503, 4: 37380, 6: 4117}
+  decided 44000/45264  449s  hist={2: 523, 4: 39178, 6: 4299}
+{"kind": "decide_summary", "pool_rows": 45264, "decided": 45111, "skipped_over_cap": 0, "elapsed_s": 470.0, "defect_histogram": {"2": 527, "4": 40100, "6": 4484}, "by_sum_delta": {"2": {"4": 1028, "6": 204}, "4": {"2": 527, "4": 39072, "6": 4280}}, "gamma0_hits": 0, "deep_cap": 400000}

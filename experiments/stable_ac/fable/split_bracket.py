@@ -769,9 +769,13 @@ def bracket_row(pair, generators=("x", "y"), lower_bound: int | None = None,
             evaluated.append({"plan": plan.as_row(), "certified": False,
                               "error": f"{type(exc).__name__}: {exc}"})
             continue
+        # want_witness is False inside the loop: fetching an explicit rotation costs a
+        # sampler pass and only the WINNING plan's witness is worth recording.  The bound
+        # itself never depends on it -- an exact census is a certificate on its own, and
+        # a sampled score already carries the rotation that produced it.
         score = evaluate_split(built["words"], built["generators"], census_cap,
                                budget, seeds, master_seed + 13 * i,
-                               want_witness=True)
+                               want_witness=False)
         entry = {"plan": plan.as_row(), "certified": True, "split": built,
                  "score": score}
         evaluated.append(entry)
@@ -800,6 +804,16 @@ def bracket_row(pair, generators=("x", "y"), lower_bound: int | None = None,
         if known_gamma is not None and best is not None and best // 2 <= known_gamma:
             break
     upper = None if best is None else best // 2
+    # one witness fetch, for the winning plan only, re-verified two independent ways
+    if (best_entry is not None and best_entry["score"].get("witness") is None
+            and best_entry["score"].get("method") == "exact_census"):
+        best_entry["score"] = evaluate_split(
+            best_entry["split"]["words"], best_entry["split"]["generators"], census_cap,
+            budget, seeds, master_seed, want_witness=True)
+        if best_entry["score"]["min_defect"] != best:
+            raise SplitContradiction(
+                f"re-running the winning plan's census gave "
+                f"{best_entry['score']['min_defect']} instead of {best} for {pair}")
     row = {
         "pair": list(pair),
         "generators": list(generators),
@@ -1150,6 +1164,9 @@ def run_targets(sweep_path: str = SWEEP_PATH, out_path: str = TARGETS_OUT,
                           census_cap=census_cap, max_fresh=max_fresh, n_plans=n_plans,
                           budget=budget, seeds=seeds, time_cap=time_cap)
         row["name"] = rec["name"]
+        row["achieved_reduction"] = (
+            None if not row.get("best_split_census")
+            else round(row["base_census"] / row["best_split_census"], 1))
         row["a9_gamma_N_upper"] = rec.get("gamma_N_upper")
         row["a9_sample_calibrated"] = rec.get("sample_calibrated")
         row["a9_gamma_N_certified"] = rec.get("gamma_N_certified")
