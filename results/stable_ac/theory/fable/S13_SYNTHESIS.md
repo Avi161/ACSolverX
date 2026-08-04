@@ -321,12 +321,28 @@ A depth-0/1 certificate hunt on the **six γ_N = 1 gateways** was launched twice
 > `aca_117` (`YYYXyyx, YXXXyxx`, the shortest gateway at length 14), depth 0, 1,000 nodes:
 > **length-matched AC-trivial control 8/8 = 1.00, target 0/8.**
 
-A perfect detection rate on the control makes that null informative at its budget: the
-instrument finds a certificate in every one of eight control runs and in none of eight runs
-on the gateway closest to Lackenby's hypothesis. It is eight runs, at one depth, on one of
-six — small, but calibrated, which is more than most nulls on this line start out being.
+The sweep was then relaunched at depth 0 for the rest. Full table, 1,000 nodes, 8 target
+runs and 8 length-matched AC-trivial control runs each:
 
-Everything else was lost to process management rather than to the mathematics: the
+| gateway | length | control detection | target | null is |
+|---|---|---|---|---|
+| `aca_117` | 14 | **8/8 = 1.00** | 0/8 | **informative** |
+| `aca_11` | 15 | 0/8 = 0.00 | 0/8 | **uninformative** |
+| `aca_121` | 16 | 0/8 = 0.00 | 0/8 | **uninformative** |
+| `aca_17` | 17 | 4/8 = 0.50 | 0/8 | weakly informative |
+| `aca_30` | 17 | 4/8 = 0.50 | 0/8 | weakly informative |
+| `aca_122` | 18 | *(pending)* | | |
+
+**Read it row by row, never pooled.** Three of the five carry control rates of 0.00 or 0.50,
+so their identical `0/8` targets are worth little or nothing — the instrument prints that
+warning itself. And with only 8 control runs per row, `8/8` versus `0/8` versus `4/8` is not
+a clean length trend; it is four noisy estimates. Only `aca_117` supports a confident null,
+and it supports exactly one: at 1,000 nodes and depth 0, a search that finds a certificate on
+every one of eight length-matched AC-trivial controls finds none on the gateway closest to
+Lackenby's hypothesis.
+
+The rest of the original sweep was lost to process management rather than to the mathematics:
+the
 first loop's shell was reaped while its children kept running on stale code, and the second
 was killed deliberately to free CPU for the exhaustive rank-12/13 sweep, which had a chance
 of settling AK(3) and which the gateway hunt did not. Contributing factor: a `pkill -f`
