@@ -179,7 +179,8 @@ sources before load-bearing use)
   working record and contains three retracted sections kept verbatim. Added 2026-08-04:
   **stabilization is exactly inert for γ_N** (exact census: AK(3) holds `minimum_defect` 4 at
   ranks 2, 3, 4 and 5), so extra generators alone move nothing; where extra rank was measured
-  against a fixed budget it **hurt** (0/32 at ceilings 3–6 vs 8/40 at ceiling 2). The one
+  against a fixed budget it **hurt** (8/8 at ceiling 2 vs **0/32** at ceilings 3–6 — and all
+  eight ceiling-2 hits are out of band, so even the positive arm does not transfer). The one
   move that exploits new generators — A6's length-3 SPLIT — **destroys** certificates at
   69.6 % and has created one 0 times in 57,858, while plain **AC2** creates them 14 times in
   1,470 on *identical* parents: build future high-rank searches on AC2-rich move sets, not on

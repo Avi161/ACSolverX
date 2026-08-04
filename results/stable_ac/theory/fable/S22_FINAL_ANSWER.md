@@ -17,16 +17,24 @@ record, including its retracted sections, which are kept verbatim.
 Miller–Schupp classes — once rank grows well past 3? Use change of variables and Lemma 11.
 Is there a simple general method?*
 
-1. **No, and now with a mechanism rather than a null: adding generators is exactly inert.**
-   `γ_N` does not move under stabilization at any rank (exact census, ranks 2–5), change of
-   variables is a depth-1 phenomenon, and where extra rank was measured against a fixed
-   budget it *hurt* — 0/32 at rank ceilings 3–6 against 8/40 at ceiling 2.
+1. **No — adding generators is inert, and one leg of that is proved.** Stabilization did not
+   move `γ_N` in any case measured (exact census, **ranks 2–5**; the general statement is
+   T4, proved but unaudited — this file does *not* claim it for all ranks from a ranks-2–5
+   census). Change of variables is a depth-1 phenomenon (F1, proved). And where extra rank
+   was measured against a fixed budget it *hurt*: **8/8 at rank ceiling 2 against 0/32 at
+   ceilings 3–6** — though **all eight ceiling-2 hits are out of band**, so by T-S20 even the
+   positive arm does not transfer to AK(3), and the honest reading is that rank did not help
+   anywhere it could be checked.
 2. **A simple general method would be the conjecture itself, not a route to it** — stable AC
    is *equivalent* to "every balanced trivial-group presentation has a thickenable member in
    its stable class" (§2, conditional on Lackenby Thm 1.3).
-3. **The one move that does exploit extra generators (SPLIT) is structurally the wrong
-   tool**: it destroys thickenability certificates 7 times in 10 and has never created one in
-   57,858 attempts, while plain AC2 creates them 14 times in 1,470 on *identical* parents.
+3. **The one move that does exploit extra generators (SPLIT) is measurably the wrong tool**:
+   it destroys thickenability certificates about 7 times in 10 and never created one in
+   57,858 SPLIT applications, while on *identical* rank-5 parents plain AC2 created them 14
+   times in 1,470. **This is an instrument fact, not a theorem** — S17 says so in terms, and
+   S20 *refuted* the one obstruction proposed to explain it. The only proved mechanism on
+   this line is S3 (chord refinement is a CW subdivision, so it cannot change `γ_N` at
+   all).
 
 **Nothing here proves or disproves the AC or stable AC conjecture.** Three headline claims
 were retracted during the session; §4 is the record.
@@ -51,9 +59,25 @@ were retracted during the session; §4 is the record.
 
 **And the one that matters most for the brief**, measured rather than proved:
 
-> **Stabilization is inert for `γ_N`.** Exact census: AK(3) holds `minimum_defect` 4 at ranks
-> 2, 3, 4 **and** 5; two controls hold defect 2 across the same. Adding generators alone does
-> not move `γ_N` at any rank. Only moves that *use* the new generators can.
+> **Stabilization is inert for `γ_N` at every rank measured.** Exact census: AK(3) holds
+> `minimum_defect` 4 at ranks 3, 4 **and** 5 (its rank-2 cell is the verdict `NOT_SPHERICAL`,
+> decided by the cut-scheme solver, which returns no defect number); two controls hold defect
+> 2 across the same ranks. **Adding generators alone did not move `γ_N` in any case tested.**
+> The general statement — AC4/AC5 wedge on a 2-disc, hence inert — is **T4**, proved (A8) but
+> unaudited; it is not established here by extrapolating a ranks-2–5 census, and this file
+> does not claim it for all ranks on that basis. Only moves that *use* the new generators can
+> move `γ_N`.
+
+**What S13 §1(ii) established and this file must not drop** (it was never retracted): **high
+rank buys *decidability*.** The compatible census is `∏(deg−1)!`, so what matters is the ratio
+`ℓ/n` of total length to rank. A10's certified ladder, 163 rungs, two instruments agreeing
+with `missed = 0` in every cell, gives median census at length 22 of **1.3 · 10¹³ at rank 2
+against 5,760 at rank 8** — the decidable region is `ℓ/n ≲ 3`, exactly the cubic regime.
+**Hard limitation:** this helps *natively* high-rank states only. Lifting a rank-2 state to
+rank 9 by chord refinement changes the census not at all (Lemma S3′), so it does **not** buy
+back the states an earlier session retired as undecidable. So the honest two-part answer to
+the brief is: extra rank does not make hard presentations *easier*, but it does make the
+thickenability question *cheaper to ask* of presentations that are natively high-rank.
 
 ## 2. What the brief asked for specifically
 
@@ -67,26 +91,30 @@ authors ask for is **equivalent to a named open problem** (S19.4, route BLOCKED)
 suggested alternative route is closed too (S19.2b). Family-specific bounds — AK(n), the
 Miller–Schupp series — are untouched by this and remain legitimate targets.
 
-**"A simple general way"** — by S15.5c such a construction *is* the stable AC conjecture on
-balanced trivial-group presentations. Its absence after seven hours is not a defect of the
+**"A simple general way"** — by S15.5c **[conditional on Lackenby Thm 1.3, which this clone
+does not contain — see §5]** such a construction *is* the stable AC conjecture on balanced
+trivial-group presentations. Its absence after seven hours is not a defect of the
 approach; any future candidate must be checked for a hidden reduction to the open problem
 before it is believed.
 
 ## 3. The mechanism results — the session's real yield
 
-**The cubic chord+SPLIT pipeline is certificate-preserving and certificate-non-creating.**
+**In the cubic chord+SPLIT pipeline, certificates are inherited, never created, and usually
+destroyed.**
 
 | | edges / states | creations |
 |---|---|---|
 | SPLIT `γ_N` transition table, all families | 174,178 edges | `1→0` **0** in 56,388 opportunities, from 1,958 distinct `γ_N=1` parents at ranks 9–12, chain depths 0–3 |
 | states from five non-thickenable roots | 106,268 decided | **0** |
-| **paired same-parent control, rank 5** | 1,470 | **AC2: 14. SPLIT: 0.** |
+| **paired same-parent control, rank 5 only** | 1,470 | **AC2: 14. SPLIT: 0.** (pooled SPLIT across experiments: 0 in 57,858) |
 
-Shape facts (measured): every descent is by exactly 1 (`2→0`, `3→1`, `1→0` all empty) while
-ascents jump by 2 (`0→2` = 650), so no `\|Δγ_N\| ≤ 1` law explains it; the descent rate
-collapses 8.60 % → 0.94 % → **0 %** as the parent falls 3 → 2 → 1; and SPLIT **destroys**
-certificates at 69.6 %, crossing the thickenability boundary 2,101 times downward and **zero**
-times upward in 174,178 tries.
+Shape facts (measured): every descent is by exactly 1 (`2→0`, `3→1`, `1→0` all empty), while
+ascents are *not* so limited — ascents by 1 dominate (1,451 / 25,433 / 7,675) but ascents by 2
+do occur (`0→2` = 650, `1→3` = 134), so no `\|Δγ_N\| ≤ 1` law explains the empty cell. The
+descent rate collapses 8.60 % → 0.94 % → **0 %** as the parent falls 3 → 2 → 1. And SPLIT
+**destroys** certificates in **2,101 of 3,017** edges out of `γ_N = 0` (69.6 %), crossing the
+thickenability boundary 2,101 times downward and **zero** times upward in the 171,161 edges
+that start off 0.
 
 **The planarity obstruction is real but is not the explanation.** S20.1 is proved, but
 (i) it bounds a *state's* `γ_N`, not `Γ` — `T_n` is planar, so no disproof route opens;
@@ -108,7 +136,7 @@ them because a future session that does not read this will make the fourth versi
 |---|---|---|
 | **S10** | certificates get commoner with rank | matched *total* length across ranks, so mean relator length fell with rank — it measured **length** (T-S10) |
 | **S13 §3z-bis** | "the strongest result of the session": control 759/50,320 vs AK(3) 0/45,111 | the control was **already `γ_N = 0`** — it measured *survival*, not creation. All 759 hits have defect chain `(0,0,0,0)` (**T-S19**) |
-| **S21** | matched defect-4 control 35/40 vs AK(3) 0/34 | the controls **exit the length band** — every hit walks *down* (witnesses at 3,4,5,…7) into a region AK(3) provably cannot enter, since any member of its class below length 13 would settle the problem (**T-S20**) |
+| **S21** | matched defect-4 control 35/40 vs AK(3) 0/34 | the controls **can exit the length band** and mostly do — 16 of 24 length-13 trials ended below length 13, witnesses as short as 3 (off-ladder controls reach 20 at the other end) — entering a region AK(3) cannot, since any member of its class below length 13 would settle the problem (**T-S20**). Also: `0/34` was console-read; the artifact-backed figure is `0/16` |
 
 Two further errors of mine caught by audit and worth carrying: a creation-rate denominator
 that pooled 759 chains which *start* at the property (so are not creation opportunities); and
@@ -121,7 +149,9 @@ controls matched on every axis the instrument can see — no shared relator, no 
 abelianisation row, even matched on relator-length shape — and the rate did not collapse
 (59/64). The incomparability is not an attribute of the control but the *route* it is allowed
 to take: **any control you can verify is solvable is, by that verification, close to a
-solution in a way an open target is not.** Target-versus-control cannot settle this question.
+solution in a way an open target is not *known* to be.** (The hedge is load-bearing: dropping
+it would assert that AK(3) is genuinely far from a solution, which is the disproof.)
+Target-versus-control cannot settle this question.
 
 ## 5. Sourcing, stated plainly
 
@@ -135,13 +165,15 @@ is load-bearing only for S19.4's BLOCKED verdict.
 ## 6. Open leads, in the order I would take them
 
 1. **A quantity monotone under *all* stable AC moves** remains unknown and is the whole
-   disproof program. S15 §6 tabulates why every candidate so far is dead. Note S20.1 shows
-   such a quantity need not be a homotopy invariant — it just has to survive SPLIT, which
-   planarity does not.
+   disproof program. S15 §6 tabulates why every candidate so far is dead. Note S15.2a proves
+   it **cannot** be a homotopy invariant (all these complexes are contractible), and it must
+   survive **every** stable AC move AC1–AC5, not merely SPLIT — planarity fails even the
+   weaker SPLIT test.
 2. **Family-specific bounds on Lemma 11's `m`** for AK(n) or the Miller–Schupp series —
    untouched by S19.4's blocking result, and S19.2a converts any such bound into an explicit
    AC move count. `Area_{AK(2)}(x) ≥ 4` is measured but the instrument **saturated**, so the
    true value is unknown.
+   (`m*(L) ≥ L − 2` holds for `L ≥ 3`.)
 3. **AC2, not SPLIT.** The paired control says plainly which move creates certificates.
    Any future high-rank search should be built on AC2-rich move sets.
 4. **Instrument limits are now the binding constraint at depth ≥ 1.** Both depth ladders spent
