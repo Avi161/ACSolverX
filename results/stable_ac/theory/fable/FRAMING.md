@@ -174,8 +174,31 @@ sources before load-bearing use)
   stabilization schedules (where Lemma-11/CoV proposes the stabilizing word) — design +
   soundness proofs here; production budgets are the user's.
 
-- **S — high-rank stabilization (rank ≫ 3). STATUS: the mechanisms are CLOSED; see
-  `S13_SYNTHESIS.md` for the whole line and start there.** Summary of what is now settled,
+- **S — high-rank stabilization (rank ≫ 3). STATUS: CLOSED, and the closure is now
+  mechanistic rather than a null. START AT `S22_FINAL_ANSWER.md`**, not at S13 — S13 is the
+  working record and contains three retracted sections kept verbatim. Added 2026-08-04:
+  **stabilization is exactly inert for γ_N** (exact census: AK(3) holds `minimum_defect` 4 at
+  ranks 2, 3, 4 and 5), so extra generators alone move nothing; where extra rank was measured
+  against a fixed budget it **hurt** (0/32 at ceilings 3–6 vs 8/40 at ceiling 2). The one
+  move that exploits new generators — A6's length-3 SPLIT — **destroys** certificates at
+  69.6 % and has created one 0 times in 57,858, while plain **AC2** creates them 14 times in
+  1,470 on *identical* parents: build future high-rank searches on AC2-rich move sets, not on
+  SPLIT. **Lemma 11 is answered** (S19): its `m` *is* an algebraic/van Kampen area, and the
+  uniform effective bound the authors pose is *equivalent* to Magnus's problem, so that
+  sub-route is **BLOCKED**; family-specific bounds are untouched and remain open.
+  **`γ_N` is not a stable-AC invariant** (S15.3, explicit witness) — the cleanest disproof
+  idea on this line is dead. **`non-planar link ⇒ γ_N ≥ 1` is proved** (S20) — the line's
+  first certified lower bound — but it bounds a *state's* γ_N not `Γ`, is not preserved by
+  SPLIT, and is vacuous on AK(3) (whose link is exactly `K4`), so no disproof route opens.
+  **METHODOLOGICAL WARNING, the session's most transferable finding (T-S20):**
+  target-versus-control **cannot** settle this question. Three successive control designs
+  were retracted, and an auditor matched controls on every axis the instrument can see —
+  including relator shape and abelianisation — without the rate collapsing (59/64). Any
+  control you can *verify* is solvable is, by that verification, close to a solution in a way
+  an open target is not, and its hits escape through a length region the target is denied.
+  Do not build a fourth version.
+
+  *(Superseded text kept for continuity:)* Summary of what is now settled,
   so this route is not re-opened by accident: abbreviation-style stabilization is a **CW
   subdivision** and cannot change γ_N (S3, audited); generator splitting is **monotone**
   (S8); change of variables is entirely **depth-1** (S1 Cor. F1); AC4/AC5 and the first
