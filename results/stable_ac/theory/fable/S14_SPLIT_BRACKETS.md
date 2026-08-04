@@ -11,7 +11,21 @@ Status: **instrument built, calibrated two-sidedly, and run. The calibration is 
 |---|---|
 | `results/stable_ac/fable/split_bracket_calibration.json` | the two-sided overshoot measurement, indexed by forced census reduction |
 | `results/stable_ac/fable/split_bracket_targets.jsonl` | per-target rows (checkpointed as they finish) |
-| `results/stable_ac/fable/split_bracket_summary.json` | closures, merged ranking, Baumslag–Solitar test |
+| `results/stable_ac/fable/split_bracket_summary.json` | closures, merged ranking of all 124, Baumslag–Solitar test |
+
+Tests: `tests/fable/test_split_bracket.py`, **24 tests, all passing**. They test the *bound
+direction* rather than the numbers: that `split_shapes` never emits a degenerate shape, that a
+tampered split fails the replay certificate, that `independent_defect` agrees with
+`gateway_scan.verify_witness` and rejects a broken rotation, that every certified split of a
+known state lands at or above it, and that `bracket_row` **raises** rather than record a value
+below a certified lower bound or a known exact γ_N.
+
+**Process note.** `guarded_run`'s `GuardLock` was held continuously by other lines' experiments
+for the whole session, with a second line already queued behind it, so taking it would have
+stalled two other agents. Every run here was therefore made directly under the same discipline
+the guard enforces — foreground, one at a time, `OMP/OPENBLAS/MKL/NUMBA` pinned to 1 thread, a
+hard `timeout`, per-census and per-row caps so no stage can hang, and checkpointing to disk after
+every row. Total: 355 s calibration + 900 s + 304 s targets ≈ **26 minutes** of compute.
 
 ---
 
@@ -151,13 +165,105 @@ stages ran under comparable load, and every row records `plans_built`, `plans_ev
 rather than assumed. Nothing here should be compared against a future run made on an idle box
 without re-reading those counters.
 
-<!--TARGETS-->
+**Scope run: all 116 rows of the 124 whose bracket was still open**, which contains 86 of A9's
+87 `sample_calibrated = false` rows (the 87th, `aca_122`, already had a certified γ_N = 1 and is
+therefore not open). Rows were processed shortest-first and checkpointed to
+`split_bracket_targets.jsonl` as they finished; the run took two passes because of the wall-clock
+cap, and the resume path deduplicates by row name.
+
+### Headline
+
+| question | answer |
+|---|---|
+| brackets closed (upper = lower = 1) | **0 of 116** |
+| new certified γ_N = 1 gateways | **0** |
+| rows reaching defect 0 | **0** — no `LOUD_ZERO_ALERT` |
+| rows where the split bound beat A9's sampler | **18**, every one by exactly 1 |
+| rows where the split bound was worse than A9's | 40 |
+| certified brackets over all 124, before → after | **8 → 8** |
+
+So the answer to A13's question is **no**: splitting closed nothing. It did not produce a single
+new gateway, and the six certified γ_N = 1 rows are still A9's six.
+
+### Where the instrument sits relative to A9's sampler, by length
+
+`red~` is the median achieved census reduction `base census / split census`; `fresh~` is the
+median number of fresh generators the winning plan used.
+
+| L | rows | split upper | A9 upper | red~ | fresh~ |
+|---|---|---|---|---|---|
+| 15 | 7 | 2×7 | 2×7 | 21 | 2 |
+| 16 | 5 | 2×5 | 2×5 | 1.8·10² | 3 |
+| 17 | 18 | 2×10, **3×8** | 2×18 | 1.4·10³ | 4 |
+| 18 | 6 | 2×1, **3×5** | 2×6 | 8.7·10³ | 6 |
+| 19 | 22 | **3×21, 4×1** | 2×18, 3×4 | 2.6·10⁵ | 10 |
+| 20 | 7 | 3×3, 4×4 | 2×5, 3×2 | 9.9·10⁵ | 12 |
+| 21 | 18 | 3×12, 4×6 | 2×4, 3×14 | 1.0·10⁷ | 12 |
+| 22 | 6 | 3×3, 4×3 | 3×6 | 7.4·10⁶ | 12 |
+| 23 | 9 | **3×7**, 4×2 | 3×4, 4×5 | 2.4·10⁸ | 12 |
+| 24 | 2 | **3×2** | 3×1, 4×1 | 1.3·10⁹ | 12 |
+| 25 | 16 | **3×14**, 4×2 | 3×1, 4×15 | 7.1·10⁹ | 12 |
+
+This is the calibration playing out exactly as measured. Below L18 the required reduction is
+10¹–10³ and the split bound ties A9 (both say 2, neither closing the bracket at 1); from L17
+upward it starts *losing* to A9; and it only wins at L23–25, where A9's sampler is completely
+blind and answers 4 while the split — via a 12-fresh-generator, rank-14 presentation scored by
+the sampler, not a census — produces a verified defect-6 witness and answers 3.
+
+**The 18 improvements are real certificates.** Each is an explicit rotation system on an
+explicitly recorded certified split, re-verified by `gateway_scan.verify_witness` and by
+`split_bracket.independent_defect`. They move the merged upper-bound histogram over all 124 rows
+from A9's `{1:6, 2:65, 3:32, 4:21}` to `{1:6, 2:65, 3:50, 4:3}` — the whole γ_N ≤ 4 tail
+collapses to γ_N ≤ 3. That is the instrument's entire yield: **a one-unit improvement on 18 of
+the longest rows, and nothing else.**
+
+**Two honesty notes on those 18.** (i) Their achieved reductions (2·10⁸–7·10⁹) are two to four
+orders of magnitude beyond the top calibrated band, so "3" there is a sound ceiling with an
+*unmeasured* slack — it is emphatically not evidence that those rows sit at γ_N = 3. (ii) All 18
+came from the sampled path, so they are one-sided in the same way A9's numbers were; what makes
+them usable is that a *found* witness is a certificate at any length (T‑S9d).
+
+**Certifier fail-closures**: 45 plan-level `CertificationError`s across the run, concentrated at
+L20–L22 where plans reach 12 fresh generators. No row lost all its plans, so every one of the 116
+still carries a bound.
 
 ---
 
 ## 4. The §3b Baumslag–Solitar lead
 
-<!--BS-->
+S13 §3b flagged that four of the six certified γ_N = 1 gateways carry the same relator
+`YXXXyxx` = `y⁻¹x⁻³yx²` (Baumslag–Solitar `y⁻¹x³y = x²`), against 11 occurrences of that relator
+among the 124, and asked whether that is real or an artifact of which rows were short enough for
+A9's sampler.
+
+**The test was run and it returned no new information, because the instrument closed no new
+brackets.** The enrichment table is *bit-for-bit A9's*:
+
+| population | rows | certified γ_N = 1 |
+|---|---|---|
+| contains `YXXXyxx` | 11 | 4 |
+| all others | 113 | 2 |
+
+**Verdict: the lead is neither confirmed nor refuted — it remains untested.** Reporting it as
+"still there" would be reporting A9's own numbers a second time and calling the repetition
+evidence.
+
+The one *new* thing that can be said uses the split upper bound as an independent ranking key,
+compared **inside each length band** (`contrast-length-confound.md`): only 5 of the 11
+Baumslag–Solitar rows are among the 116 open rows at all, and their split bounds are
+indistinguishable from their length-mates —
+
+| L | `YXXXyxx` rows | everything else |
+|---|---|---|
+| 15 | 2, 2, 2 | 2, 2, 2, 2 |
+| 20 | 4 | 3, 3, 3, 4, 4, 4 |
+| 22 | 3 | 3, 3, 4, 4, 4 |
+| 24 | 3 | 3 |
+
+Five rows, one per cell or so; that is a sample from which nothing may be concluded in either
+direction, and per the filed lesson no p-value is quotable for a family drawn from a move tree.
+What *would* settle §3b is closing more brackets, and this instrument cannot do that — so the
+question passes to whatever tool comes next, unchanged.
 
 ---
 
@@ -200,6 +306,14 @@ without re-reading those counters.
   generators, rank 14) far beyond S8's own 632 states at ranks 4 and 6.
 * A measured exchange rate: census reduction is bought at ~1 unit of γ_N per ~10³ of reduction on
   this corpus.
+* A **one-unit improvement, certified by explicit twice-verified witnesses, on 18 of the 124** —
+  the rows at total length 23–25 where A9's sampler was blind. The merged γ_N ≤ 4 tail collapses
+  from 21 rows to 3.
+* A live, positive-controlled **zero detector**: `verify_zero` was exercised on a known
+  thickenable state (`('YXX','YXYXXXYXXX')`) and all three checks fired correctly —
+  `witness_check_n` defect 0 with `L = 1` and `⟨AC,BC⟩` transitive, exact census over 241,920
+  rotations with `minimum_defect = 0`, Todd–Coxeter index 1. The `0 of 116` above is therefore a
+  measured null from a detector known to work, not silence from dead code.
 
 **Does not:**
 
@@ -208,4 +322,22 @@ without re-reading those counters.
   bound on a *presentation's* γ_N is not a statement about its AC class (`FRAMING.md` §2, S9 §6).
 * A high split bound is **not** evidence that a row's γ_N is high. Per §2 the instrument overshoots
   by 1–3 at these reductions, so the long rows' split bounds are uninformative in exactly the same
-  way A9's sampler nulls were — and they are marked so.
+  way A9's sampler nulls were — and they are marked so. In particular the 40 rows where the split
+  bound is *worse* than A9's say nothing about those rows; they say the instrument was made to
+  split too hard.
+* It does not settle §3b. It could not: settling §3b needs closed brackets, and none were closed.
+
+## 7. Operational recommendation
+
+Do **not** spend more budget widening this instrument at the census cap — the exchange rate in §2
+is the reason it cannot close a bracket at these degrees, and it is a property of splitting, not
+of the search budget. Two things would change the picture, in this order:
+
+1. **Discharge GAP‑S8‑1.** Everything here is conditional; a proved monotonicity would at least
+   make the 18 improvements unconditional.
+2. **Find a census-shrinking transform that is *tight*, not merely monotone.** The requirement is
+   now quantitative and testable with this same harness: a transform is useful here only if its
+   overshoot stays 0 at achieved reductions of 10⁴ and beyond. Splitting fails that test by a
+   wide margin; abbreviation (S3) passes it trivially but achieves reduction 1, which is why it is
+   inert. The gap between those two is where a usable instrument would live, and this note gives
+   the measurement that any candidate has to beat.

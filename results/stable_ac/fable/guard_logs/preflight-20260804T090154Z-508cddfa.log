@@ -1,0 +1,5 @@
+  AK3 rep0: chord [4, 4, 4, 4, 4, 4, 4, 4] constant=True | SPLIT [4, 4]
+  thick0 rep0: chord [0, 0, 0, 0, 0, 0, 0, 0] constant=True | SPLIT [2, 2]
+{"kind": "chaintrace_summary", "chains": 2, "chord_defect_constant": "2/2", "split_chains_that_lowered": 0, "split_chains_that_raised": 1}
+  thick0: [[2, 2]]
+  AK3: [[4, 4]]

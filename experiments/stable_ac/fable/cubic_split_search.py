@@ -564,8 +564,11 @@ def run_roots(sources, args, tag):
         if pool_written % 2000 == 0:
             pool_fh.flush()
     for si, src in enumerate(sources):
+        src_deadline = deadline
+        if getattr(args, "per_source_budget", 0):
+            src_deadline = min(deadline, time.time() + args.per_source_budget)
         for ri in range(args.roots_per_source):
-            if time.time() > deadline:
+            if time.time() > src_deadline:
                 break
             root = triangulate(src, rng)
             if root is None:
@@ -574,7 +577,7 @@ def run_roots(sources, args, tag):
             prov = f"{tag}|src{si}|root{ri}"
             res = beam_search(root, rng, scanner, mode=args.mode, beam=args.beam,
                               depth=args.depth, max_children=args.max_children,
-                              deadline=min(deadline, time.time() + args.per_root),
+                              deadline=min(src_deadline, time.time() + args.per_root),
                               provenance=prov, diversity=args.diversity,
                               deep_pool=deep_pool, deep_threshold=args.deep_threshold,
                               pool_sink=pool_sink if pool_fh is not None else None)
@@ -1267,6 +1270,8 @@ def main(argv=None):
     ap.add_argument("--want-defect", type=int, default=0,
                     help="rank-2 defect the control sources must have (0 = thickenable)")
     ap.add_argument("--source-budget", type=float, default=90.0)
+    ap.add_argument("--per-source-budget", type=float, default=0.0,
+                    help="give EACH source its own wall-clock slice (0 = share one pool)")
     ap.add_argument("--split-steps", type=int, default=5)
     ap.add_argument("--by-source", action="store_true",
                     help="decide: break the histogram down per source presentation")

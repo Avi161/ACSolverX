@@ -1,0 +1,2009 @@
+{
+ "record": "split_bracket_summary",
+ "generated_at": "2026-08-04T09:00:15Z",
+ "claims": "MACHINERY: split-based UPPER bounds on gamma_N for the unsolved Miller-Schupp representatives.  An upper bound is not a statement about AC-triviality; a closed bracket is an exact gamma_N for the PRESENTATION, not for its AC class.",
+ "units": "defects are UNHALVED; gamma_N = defect // 2",
+ "conditional_on": "Conjecture S8 (generator splitting is monotone: link(P) is a minor of link(P'), hence gamma_N(P) <= gamma_N(P')).  S8_SPLITTING_MONOTONICITY.md section 3 gives a proof SKETCH with two open gaps (GAP-S8-1 defect bookkeeping, GAP-S8-2 degenerate splits).  Every upper bound in this artifact is conditional on that conjecture.",
+ "bound_direction": "splits bound gamma_N from ABOVE only; a failure to find a low-defect split says nothing about the base",
+ "which_rows": "open",
+ "budgets": {
+  "census_cap": 200000,
+  "max_fresh": 12,
+  "plans_per_row": 10,
+  "sample_budget": 20000,
+  "sample_seeds": 2,
+  "master_seed": 20260804
+ },
+ "rows_run": 116,
+ "brackets_closed": 0,
+ "closed_rows": [],
+ "new_gamma_N_1_gateways": 0,
+ "new_gateway_rows": [],
+ "rows_improved_over_A9": 18,
+ "improvement_histogram": {
+  "1": 18
+ },
+ "LOUD_ZERO_ALERT": false,
+ "zero_rows": [],
+ "merged_ranking": [
+  {
+   "name": "aca_117",
+   "pair": [
+    "YYYXyyx",
+    "YXXXyxx"
+   ],
+   "total_length": 14,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 1,
+   "split_upper": null,
+   "rank": 1
+  },
+  {
+   "name": "aca_11",
+   "pair": [
+    "YXXXyxx",
+    "YYYXyxyx"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 1,
+   "split_upper": null,
+   "rank": 2
+  },
+  {
+   "name": "aca_121",
+   "pair": [
+    "YXXXyxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 16,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 1,
+   "split_upper": null,
+   "rank": 3
+  },
+  {
+   "name": "aca_17",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 1,
+   "split_upper": null,
+   "rank": 4
+  },
+  {
+   "name": "aca_30",
+   "pair": [
+    "YYXXyx",
+    "YYYYYxyXXyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 1,
+   "split_upper": null,
+   "rank": 5
+  },
+  {
+   "name": "aca_122",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 18,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 1,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 1,
+   "split_upper": null,
+   "rank": 6
+  },
+  {
+   "name": "aca_115",
+   "pair": [
+    "YXYxyx",
+    "YYYYxxx"
+   ],
+   "total_length": 13,
+   "gamma_N_lower": 2,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 2,
+   "split_upper": null,
+   "rank": 7
+  },
+  {
+   "name": "aca_116",
+   "pair": [
+    "YYYXyyX",
+    "YXXXyxx"
+   ],
+   "total_length": 14,
+   "gamma_N_lower": 2,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": true,
+   "a9_upper": 2,
+   "split_upper": null,
+   "rank": 8
+  },
+  {
+   "name": "aca_1",
+   "pair": [
+    "YYXXyxx",
+    "YYYxyXyX"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 9
+  },
+  {
+   "name": "aca_10",
+   "pair": [
+    "YXXXyxx",
+    "YYXYXyyX"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 10
+  },
+  {
+   "name": "aca_118",
+   "pair": [
+    "YXXyxYx",
+    "YYYYXyxx"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 11
+  },
+  {
+   "name": "aca_12",
+   "pair": [
+    "YXXXyxx",
+    "YYXYxyyX"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 12
+  },
+  {
+   "name": "aca_14",
+   "pair": [
+    "YXXyXyx",
+    "YYYXyyxx"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 13
+  },
+  {
+   "name": "aca_8",
+   "pair": [
+    "YXyXYxx",
+    "YYXYXyyx"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 14
+  },
+  {
+   "name": "aca_9",
+   "pair": [
+    "YXXXyxx",
+    "YYYXXyyX"
+   ],
+   "total_length": 15,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 15
+  },
+  {
+   "name": "aca_119",
+   "pair": [
+    "YXXyxYx",
+    "YYYYYXyxx"
+   ],
+   "total_length": 16,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 16
+  },
+  {
+   "name": "aca_120",
+   "pair": [
+    "YXXXYxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 16,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 17
+  },
+  {
+   "name": "aca_13",
+   "pair": [
+    "YYXXYYx",
+    "YXXXyxxYx"
+   ],
+   "total_length": 16,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 18
+  },
+  {
+   "name": "aca_2",
+   "pair": [
+    "YXXyXyx",
+    "YYYXyyyxx"
+   ],
+   "total_length": 16,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 19
+  },
+  {
+   "name": "aca_7",
+   "pair": [
+    "YYXXyxx",
+    "YYYYxYXYX"
+   ],
+   "total_length": 16,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 20
+  },
+  {
+   "name": "aca_15",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 21
+  },
+  {
+   "name": "aca_16",
+   "pair": [
+    "YYXXXyxx",
+    "YXyxxyXYx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 22
+  },
+  {
+   "name": "aca_18",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 23
+  },
+  {
+   "name": "aca_19",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 24
+  },
+  {
+   "name": "aca_20",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 25
+  },
+  {
+   "name": "aca_21",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 26
+  },
+  {
+   "name": "aca_22",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 27
+  },
+  {
+   "name": "aca_23",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 28
+  },
+  {
+   "name": "aca_24",
+   "pair": [
+    "YYXXXYxx",
+    "YYYXXYXYx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 29
+  },
+  {
+   "name": "aca_25",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 30
+  },
+  {
+   "name": "aca_26",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYxyyyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 31
+  },
+  {
+   "name": "aca_27",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 32
+  },
+  {
+   "name": "aca_28",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYXyyyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 33
+  },
+  {
+   "name": "aca_29",
+   "pair": [
+    "YYXXXyx",
+    "YYxxyxyXyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 34
+  },
+  {
+   "name": "aca_3",
+   "pair": [
+    "YXXyxYx",
+    "YYYYYxyxyX"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 35
+  },
+  {
+   "name": "aca_31",
+   "pair": [
+    "YYXXyxx",
+    "YYYYYXyXyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 36
+  },
+  {
+   "name": "aca_32",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYXyxyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 37
+  },
+  {
+   "name": "aca_33",
+   "pair": [
+    "YXXXyxYx",
+    "YYXyXyxyx"
+   ],
+   "total_length": 17,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 38
+  },
+  {
+   "name": "aca_0",
+   "pair": [
+    "YXXyxYx",
+    "YYYYYYXyxyX"
+   ],
+   "total_length": 18,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 39
+  },
+  {
+   "name": "aca_34",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 18,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 2,
+   "rank": 40
+  },
+  {
+   "name": "aca_35",
+   "pair": [
+    "YYXXXyx",
+    "YYYxxyxyXyX"
+   ],
+   "total_length": 18,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 41
+  },
+  {
+   "name": "aca_36",
+   "pair": [
+    "YYXYYXXyX",
+    "YYXyxYXXX"
+   ],
+   "total_length": 18,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 42
+  },
+  {
+   "name": "aca_4",
+   "pair": [
+    "YYXXXyx",
+    "YYxyxyXyXYX"
+   ],
+   "total_length": 18,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 43
+  },
+  {
+   "name": "aca_53",
+   "pair": [
+    "YXXyxYx",
+    "YYXyyXyxyxx"
+   ],
+   "total_length": 18,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 44
+  },
+  {
+   "name": "aca_37",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 45
+  },
+  {
+   "name": "aca_38",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 46
+  },
+  {
+   "name": "aca_39",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 47
+  },
+  {
+   "name": "aca_40",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYxyyyyX"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 48
+  },
+  {
+   "name": "aca_41",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 49
+  },
+  {
+   "name": "aca_43",
+   "pair": [
+    "YXXYxYxxx",
+    "YYXyyXXyxx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 50
+  },
+  {
+   "name": "aca_44",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYXXyXyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 51
+  },
+  {
+   "name": "aca_45",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYXXXYxx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 52
+  },
+  {
+   "name": "aca_46",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 53
+  },
+  {
+   "name": "aca_47",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYxyyyyX"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 54
+  },
+  {
+   "name": "aca_48",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYXXyxxx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 4,
+   "rank": 55
+  },
+  {
+   "name": "aca_5",
+   "pair": [
+    "YYXXXyX",
+    "YYYxyXyxyxyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 56
+  },
+  {
+   "name": "aca_50",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 57
+  },
+  {
+   "name": "aca_51",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 58
+  },
+  {
+   "name": "aca_52",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 59
+  },
+  {
+   "name": "aca_54",
+   "pair": [
+    "YYXXXXyxx",
+    "YYxxyXXXXX"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 60
+  },
+  {
+   "name": "aca_55",
+   "pair": [
+    "YXXXyXYx",
+    "YYxyxYXXyyX"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 61
+  },
+  {
+   "name": "aca_57",
+   "pair": [
+    "YYXXXyxx",
+    "YYXYYxyXXXX"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 62
+  },
+  {
+   "name": "aca_123",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 20,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 4,
+   "rank": 63
+  },
+  {
+   "name": "aca_59",
+   "pair": [
+    "YXXYxxyxx",
+    "YYYYxxxxxxx"
+   ],
+   "total_length": 20,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 64
+  },
+  {
+   "name": "aca_60",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYXXyxxx"
+   ],
+   "total_length": 20,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 65
+  },
+  {
+   "name": "aca_61",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYYXXXYxx"
+   ],
+   "total_length": 20,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 66
+  },
+  {
+   "name": "aca_72",
+   "pair": [
+    "YXXYxYxxx",
+    "YYYxyyXXYxx"
+   ],
+   "total_length": 20,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 4,
+   "rank": 67
+  },
+  {
+   "name": "aca_75",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYYXXXYxx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 4,
+   "rank": 68
+  },
+  {
+   "name": "aca_76",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYYXXyxxx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 69
+  },
+  {
+   "name": "aca_77",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYYYXXXYxx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 4,
+   "rank": 70
+  },
+  {
+   "name": "aca_78",
+   "pair": [
+    "YYXXyx",
+    "YYYYYYYXyXyxyXX"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 2,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 2,
+   "split_upper": 3,
+   "rank": 71
+  },
+  {
+   "name": "aca_42",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYXyyyyx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 72
+  },
+  {
+   "name": "aca_49",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYxyyyyX"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 73
+  },
+  {
+   "name": "aca_56",
+   "pair": [
+    "YYXXXyxx",
+    "YYXYYxxyXXX"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 74
+  },
+  {
+   "name": "aca_6",
+   "pair": [
+    "YYXXyxxyx",
+    "YXXXXXyxYx"
+   ],
+   "total_length": 19,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 75
+  },
+  {
+   "name": "aca_58",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 20,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 76
+  },
+  {
+   "name": "aca_71",
+   "pair": [
+    "YXXXyXyxx",
+    "YYYxyyXXXyx"
+   ],
+   "total_length": 20,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 77
+  },
+  {
+   "name": "aca_62",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 78
+  },
+  {
+   "name": "aca_63",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 79
+  },
+  {
+   "name": "aca_64",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 80
+  },
+  {
+   "name": "aca_65",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 81
+  },
+  {
+   "name": "aca_66",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 82
+  },
+  {
+   "name": "aca_67",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 83
+  },
+  {
+   "name": "aca_68",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 84
+  },
+  {
+   "name": "aca_69",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 85
+  },
+  {
+   "name": "aca_70",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYxyyyyyX"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 86
+  },
+  {
+   "name": "aca_73",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 87
+  },
+  {
+   "name": "aca_74",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYYXyyyyyx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 88
+  },
+  {
+   "name": "aca_79",
+   "pair": [
+    "YYXXXyyxx",
+    "YXXXXXyxxYxx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 89
+  },
+  {
+   "name": "aca_80",
+   "pair": [
+    "YXXXXyxxYx",
+    "YXYxYXyxyXX"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 90
+  },
+  {
+   "name": "aca_95",
+   "pair": [
+    "YXXYxYxxx",
+    "YYYXyyyXXyxx"
+   ],
+   "total_length": 21,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 91
+  },
+  {
+   "name": "aca_81",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 22,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 92
+  },
+  {
+   "name": "aca_82",
+   "pair": [
+    "YYYXXXXXyyx",
+    "YYXyxxyyxYX"
+   ],
+   "total_length": 22,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 93
+  },
+  {
+   "name": "aca_83",
+   "pair": [
+    "YXXyXYxxx",
+    "YYYYYYYXXyxxx"
+   ],
+   "total_length": 22,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 94
+  },
+  {
+   "name": "aca_84",
+   "pair": [
+    "YXXXyxYxx",
+    "YYYYYYYXXXYxx"
+   ],
+   "total_length": 22,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 95
+  },
+  {
+   "name": "aca_85",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 22,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 96
+  },
+  {
+   "name": "aca_86",
+   "pair": [
+    "YYYXXXXXyyX",
+    "YYXyxxyyXYx"
+   ],
+   "total_length": 22,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 97
+  },
+  {
+   "name": "aca_87",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 98
+  },
+  {
+   "name": "aca_88",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYXXYxyXyXyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 4,
+   "rank": 99
+  },
+  {
+   "name": "aca_89",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 100
+  },
+  {
+   "name": "aca_91",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 101
+  },
+  {
+   "name": "aca_92",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 102
+  },
+  {
+   "name": "aca_93",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYxyyyyyyX"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 103
+  },
+  {
+   "name": "aca_94",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 104
+  },
+  {
+   "name": "aca_96",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 105
+  },
+  {
+   "name": "aca_97",
+   "pair": [
+    "YXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 24,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 106
+  },
+  {
+   "name": "aca_98",
+   "pair": [
+    "YXXXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 24,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 107
+  },
+  {
+   "name": "aca_101",
+   "pair": [
+    "YXXXYxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 108
+  },
+  {
+   "name": "aca_102",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 109
+  },
+  {
+   "name": "aca_103",
+   "pair": [
+    "YXyXYxxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 110
+  },
+  {
+   "name": "aca_104",
+   "pair": [
+    "YXXXyxYx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 111
+  },
+  {
+   "name": "aca_105",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 112
+  },
+  {
+   "name": "aca_107",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 113
+  },
+  {
+   "name": "aca_108",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 114
+  },
+  {
+   "name": "aca_109",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 115
+  },
+  {
+   "name": "aca_110",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 116
+  },
+  {
+   "name": "aca_111",
+   "pair": [
+    "YXXYxxyx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 117
+  },
+  {
+   "name": "aca_112",
+   "pair": [
+    "YXXYxxyX",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 118
+  },
+  {
+   "name": "aca_113",
+   "pair": [
+    "YXXYxYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 119
+  },
+  {
+   "name": "aca_114",
+   "pair": [
+    "YXXyXyxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "split",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 3,
+   "rank": 120
+  },
+  {
+   "name": "aca_99",
+   "pair": [
+    "YYXXXYxx",
+    "YYYYYYYYXyyyyyyyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 3,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 3,
+   "split_upper": 3,
+   "rank": 121
+  },
+  {
+   "name": "aca_90",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYYXyyyyyyx"
+   ],
+   "total_length": 23,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 4,
+   "rank": 122
+  },
+  {
+   "name": "aca_100",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYYXXyXyXyXyx"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 4,
+   "rank": 123
+  },
+  {
+   "name": "aca_106",
+   "pair": [
+    "YYXXXyxx",
+    "YYYYYYYYxyyyyyyyX"
+   ],
+   "total_length": 25,
+   "gamma_N_lower": 1,
+   "gamma_N_upper": 4,
+   "upper_source": "A9 sampler",
+   "certified": false,
+   "a9_upper": 4,
+   "split_upper": 4,
+   "rank": 124
+  }
+ ],
+ "merged_certified_rows": [
+  "aca_117",
+  "aca_11",
+  "aca_121",
+  "aca_17",
+  "aca_30",
+  "aca_122",
+  "aca_115",
+  "aca_116"
+ ],
+ "merged_certified_count": 8,
+ "merged_upper_histogram": {
+  "1": 6,
+  "2": 65,
+  "3": 50,
+  "4": 3
+ },
+ "merged_upper_by_length": {
+  "13": {
+   "n": 1,
+   "min": 2,
+   "median": 2,
+   "max": 2
+  },
+  "14": {
+   "n": 2,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "15": {
+   "n": 8,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "16": {
+   "n": 6,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "17": {
+   "n": 20,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "18": {
+   "n": 7,
+   "min": 1,
+   "median": 2,
+   "max": 2
+  },
+  "19": {
+   "n": 22,
+   "min": 2,
+   "median": 2,
+   "max": 3
+  },
+  "20": {
+   "n": 7,
+   "min": 2,
+   "median": 2,
+   "max": 3
+  },
+  "21": {
+   "n": 18,
+   "min": 2,
+   "median": 3,
+   "max": 3
+  },
+  "22": {
+   "n": 6,
+   "min": 3,
+   "median": 3,
+   "max": 3
+  },
+  "23": {
+   "n": 9,
+   "min": 3,
+   "median": 3,
+   "max": 4
+  },
+  "24": {
+   "n": 2,
+   "min": 3,
+   "median": 3,
+   "max": 3
+  },
+  "25": {
+   "n": 16,
+   "min": 3,
+   "median": 3,
+   "max": 4
+  }
+ },
+ "baumslag_solitar_enrichment": {
+  "relator": "YXXXyxx",
+  "meaning": "y^-1 x^3 y = x^2, the Baumslag-Solitar relation",
+  "rows_with_relator": 11,
+  "rows_without_relator": 113,
+  "certified_gamma_1_with_relator": 4,
+  "certified_gamma_1_without_relator": 2,
+  "certified_gamma_1_rows": [
+   "aca_117",
+   "aca_11",
+   "aca_121",
+   "aca_17",
+   "aca_30",
+   "aca_122"
+  ],
+  "no_p_value": "The 124 come from a move tree and are not independent draws; no p-value is quotable (contrast-length-confound.md)."
+ },
+ "elapsed_seconds": 0.0,
+ "rows_attempted_of_open": 116,
+ "open_rows_total": 116,
+ "uncalibrated_rows_run": 86,
+ "uncalibrated_rows_total": 87
+}
