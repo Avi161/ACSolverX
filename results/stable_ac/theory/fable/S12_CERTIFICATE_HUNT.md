@@ -12,7 +12,20 @@ tasks A7/A9/A10/A11.**
 > rank `n`. Choose a depth `k`.
 > 1. Stabilize `k` times (AC4) to `P^{+k}`, rank `N = n+k`.
 > 2. Search the AC1–AC3 move graph at rank `N` (beam / random restarts / greedy), keeping
->    total length under a cap.
+>    total length under a cap. **Weight the moves by their measured flip rates (S6 §1):**
+>    - **AC2** `r_i → freered(r_i r_j^{±1})` is the *only* slide measured to create the
+>      certificate — 73 creates in 1,863 pairs, i.e. **7.0 % of non-thickenable bases gain
+>      it**. This is the engine; spend the budget here.
+>    - **move (0)** free/cyclic reduction: 315 creates in 2,510, **0 destroys in 997**.
+>      Always reduce. Never search un-reduced spellings — by the same measurement, spiking
+>      can only preserve or destroy (this closes the spelling route for the positive
+>      direction; see S11).
+>    - **AC3 bare conjugation is counterproductive**: 315 destroys in 3,507, **0 creates in
+>      2,195**. Downweight or drop it.
+>    - AC1, cyclic rotation, AC4/AC5, chord refinement, and — by Theorem T4′ — the *first*
+>      slide over a fresh stabilizer `r_i → r_i z^{±1}` are all provably inert. Budget spent
+>      on them cannot move γ_N, so a stabilized generator must be pushed past the
+>      subdivision regime (three or more 2-cell germs) before a state is worth scoring.
 > 3. For each state `Q` reached, decide **orientable thickenability** — γ_N(Q) = 0 — by the
 >    Neuwirth compatible-rotation census.
 > 4. On a hit: stop. `P` is stably AC-trivial, and the hit is a finite, checkable

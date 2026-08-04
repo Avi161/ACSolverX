@@ -164,7 +164,16 @@ inert. The consequence is stated in §8.
 Measured (`stab_graft.py`, 3,332 rank-2 bases, cap 3·10⁵): `P⁺ = (r_1, r_2, z)`,
 `G1 = (r_1 z, r_2, z)` and `G1i = (r_1 Z, r_2, z)` each matched the base's `γ_N`
 **exactly — not merely the predicate — in 3,332 of 3,332 triples, three times over**.
-That is the strongest form of T4 and T4′ the census can express.
+That is the strongest form of T4 and T4′ the census can express. A worked instance
+(verified inline, §10):
+
+| presentation | census size | `γ_N` | |
+|---|---|---|---|
+| `("xYY","xYx")` | 4 | 0 | base |
+| `("xYY","xYx","z")` | 4 | 0 | AC4 — T4 |
+| `("xYYz","xYx","z")` | 4 | 0 | one slide — T4′ |
+| `("xYYZ","xYx","z")` | 4 | 0 | one slide, other sign — T4′ |
+| `("xYYzz","xYx","z")` | 8 | **1** | `m_z = 3`: no longer a chord, and thickenability is gone |
 
 ---
 
@@ -335,19 +344,21 @@ stated only to record a very clean measured regularity.
 
 AC2 `r_i → freered(r_i r_j^{±1})` is a 2-handle slide: the `i`-th 2-cell is re-attached
 along a different loop, of a different length, and the multiplicity vector `m` changes for
-several generators at once. It is the only move in the list that changes the presentation
-*modulo (0)*, and it is the only one that can create thickenability. Explicit pairs from the
-sweep (all exact censuses, both relators of length ≥ 3, both generators used):
+several generators at once. It is the **only move in the list that changes the presentation
+modulo (0)**, and — together with move (0) itself — the only one observed to create
+thickenability. Explicit pairs from the sweep (all exact censuses, both relators of length
+≥ 3, both generators used):
 
-    DESTROY   ("xYY","xYx")        γ_N = 0   →   ("xYYxYx","xYx")     γ_N = 1
-    DESTROY   ("yyXy","XXXY")      γ_N = 0   →   ("yyXyXXXY","XXXY")  γ_N = 1
-    CREATE    ("xyy","XYXYXX")     γ_N = 1   →   ("xyy","XYXYXyy")    γ_N = 0
-    CREATE    ("yxxx","yXYX")      γ_N = 1   →   ("yxxx","yXYXXXXY")  γ_N = 0
+    DESTROY   ("xYY","xYx")     γ_N = 0  →  r_1 · r_2         ("xYYxYx","xYx")      γ_N = 1
+    DESTROY   ("yyXy","XXXY")   γ_N = 0  →  r_1 · r_2         ("yyXyXXXY","XXXY")   γ_N = 1
+    CREATE    ("yxxx","yXYX")   γ_N = 1  →  r_2 · r_1^{-1}    ("yxxx","yXYXXXXY")   γ_N = 0   [non-cancelling]
+    CREATE    ("xyy","XYXYXX")  γ_N = 1  →  r_2 · r_1         ("xyy","XYXYXyy")     γ_N = 0   [cancelling seam]
 
-Consistent with `R3PRIME_GRAFT_CALCULUS.md` Corollary G6 (AUDITED): a non-cancelling graft
-lowers `γ_N` by at most 1 and that is tight — so every "create" we saw comes from a base
-with `γ_N = 1` exactly, which is what the data show (all 73 creates had base `γ_N = 1`;
-none from `γ_N = 2`).
+All 73 create events in the sweep came from a base with `γ_N = 1` exactly; none from
+`γ_N = 2` (20 such pairs were measured). For the **non-cancelling** grafts that is what
+`R3PRIME_GRAFT_CALCULUS.md` Corollary G6 (AUDITED) predicts — a non-cancelling graft lowers
+`γ_N` by at most 1, tightly. The cancelling-graft case is still outside G6's stated domain
+(`R1F` records that gap explicitly), so for those rows the observation is data, not theory.
 
 ---
 
@@ -493,19 +504,27 @@ spent on one-step rank-3 neighbourhoods of rank-2 states.
 This sharpens `S3_SUBDIVISION_INVARIANCE.md`'s escape hatch (its §4: "extra generators buy
 nothing while they are used as abbreviations") into a move-level statement:
 
-> **Stabilization buys exactly two things, and nothing else.** (a) It supplies a *new
-> relator* `z` that can be grafted, and the resulting conjugated grafts
-> `r_i → r_i · w z^{±1} w^{-1}` are AC2 moves that were not available at lower rank. (b) It
-> supplies a *new edge* which, once it carries three or more germs, changes the local
-> topology of `|K|` in a way no rank-`n` move can. The extra generator itself is worth
-> nothing: as a bare stabilizer (T4), as an abbreviation (S3), and as the target of one
-> plain slide (T4′), it is provably inert.
+> **Stabilization can buy at most two things.** (a) A *new relator* `z` that can be
+> grafted, so that conjugated grafts `r_i → r_i · w z^{±1} w^{-1}` become available which
+> were not available at lower rank. (b) A *new edge* which, once it carries three or more
+> germs, changes the local topology of the space in a way no rank-`n` move can. The extra
+> generator itself is worth nothing: as a bare stabilizer (T4), as an abbreviation (S3), and
+> as the target of one plain slide (T4′), it is **provably inert**.
 
-The practical reading for the route portfolio: a stabilization schedule that adds `z` and
-then uses it once is a guaranteed no-op and should never be searched. Search budgets belong
-on schedules that reach `m_z ≥ 3` (the cubic regime of S3 §4) or that use `z` inside a
-*conjugated* graft — and the latter, by T2, pays for its conjugation in spikes, at up to
-one unit of `γ_N` per letter of `w` in the wrong direction.
+The inert half of that statement is proved; the useful half is only an opening, and
+[GAP-1STEP] says the opening was not cashed in one step anywhere we looked. The practical
+reading for the route portfolio:
+
+* a stabilization schedule that adds `z` and then uses it once is a **guaranteed no-op** and
+  should never be searched — that is a proof (T4, T4′), not a heuristic;
+* budgets belong on schedules that reach `m_z ≥ 3` in a *structured* way — the cubic regime
+  of S3 §4 — rather than on the naive `r_i → r_i z z`, which measured at 1,248 destructions
+  and 0 gains;
+* conjugated grafts with `z` pay for their conjugation in spikes. By `R7` S5, each letter of
+  `w` can raise `γ_N` by up to 2 (proved; empirically at most 1) and can lower it by at most
+  1. **Note the asymmetry and its direction**: conjugation is cheap to lose by and expensive
+  to gain by, so long conjugators are a bad bet unless the graft they enable is worth more
+  than the spikes they cost.
 
 ---
 

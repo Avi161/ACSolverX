@@ -9,3 +9,58 @@
 [calib] 9/12 std9_scramble14_r2 rank 9 len 40 -> best defect 2 hit=False nodes=1000 20.17s
 [calib] 10/12 std9_scramble18_r0 rank 9 len 42 -> best defect 6 hit=False nodes=1000 21.57s
 [calib] 11/12 std9_scramble18_r1 rank 9 len 39 -> best defect 2 hit=False nodes=1000 21.42s
+[calib] 12/12 std9_scramble18_r2 rank 9 len 41 -> best defect 4 hit=False nodes=1000 21.31s
+{
+ "ladder_B": {
+  "ladder_B:scrambled_standard(k=10)": {
+   "runs": 3,
+   "hits": 2,
+   "detection_rate": 0.667,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 0,
+   "mean_nodes": 436.7
+  },
+  "ladder_B:scrambled_standard(k=14)": {
+   "runs": 3,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 4,
+   "mean_nodes": 1000.0
+  },
+  "ladder_B:scrambled_standard(k=18)": {
+   "runs": 3,
+   "hits": 0,
+   "detection_rate": 0.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 2,
+   "median_best_defect": 4,
+   "mean_nodes": 1000.0
+  },
+  "ladder_B:scrambled_standard(k=6)": {
+   "runs": 3,
+   "hits": 3,
+   "detection_rate": 1.0,
+   "start_ranks": [
+    9
+   ],
+   "min_best_defect": 0,
+   "median_best_defect": 0,
+   "mean_nodes": 179.0
+  }
+ },
+ "_overall": {
+  "runs": 12,
+  "hits": 5,
+  "detection_rate": 0.417
+ }
+}
+[calib] wrote results/stable_ac/fable/rank_n_ac_search_ladderB.json and results/stable_ac/fable/rank_n_ac_search_ladderB_rows.jsonl

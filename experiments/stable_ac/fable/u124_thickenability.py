@@ -131,8 +131,8 @@ TC_CAP = 200_000                              # Todd-Coxeter coset cap per row
 
 # neighbourhood budgets (bounded so no single stage can hang)
 NEIGHBOUR_TOP_N = 10                          # rows given the deeper harvest
-NEIGHBOUR_HARVEST_POPS = 120                  # best-first pops per top row
-NEIGHBOUR_STATE_CAP = 60_000                  # hard cap on decided neighbourhood states
+NEIGHBOUR_HARVEST_POPS = 60                   # best-first pops per top row
+NEIGHBOUR_STATE_CAP = 42_000                  # hard cap on decided neighbourhood states
 NEIGHBOUR_CENSUS_CAP = 50_000                 # census fallback size cap for a neighbour
 NEIGHBOUR_CENSUS_BUDGET = 400                 # how many neighbours may get that fallback
 
@@ -867,7 +867,7 @@ def run_neighbourhood(sweep_path: str = SWEEP_OUT, out_path: str = NEIGHBOUR_OUT
     targets = rows if depth1_all else rows[:top_n]
     for i, row in enumerate(targets, 1):
         pair = tuple(row["pair"])
-        cap = max(len(pair[0]), len(pair[1])) + row["total_length"]
+        cap = row["total_length"] + 4          # the batteries' relative-headroom rule
         images = one_move_images(pair, cap)
         n_new = 0
         for key, (exact, move) in sorted(images.items()):
@@ -884,13 +884,14 @@ def run_neighbourhood(sweep_path: str = SWEEP_OUT, out_path: str = NEIGHBOUR_OUT
 
     # -- deeper: bounded best-first canonical harvest from the top-ranked rows ----------
     harvests = []
+    share = max(200, (state_cap - len(decided)) // max(1, top_n))
     for row in rows[:top_n]:
         if len(decided) >= state_cap:
             break
         root_key = tuple(W.canon_pair(*row["pair"]))
         cap = row["total_length"] + 4          # the batteries' relative-headroom rule
         harvest = _harvest_canonical(root_key, harvest_pops, cap,
-                                     max(1, state_cap - len(decided)))
+                                     min(share, max(1, state_cap - len(decided))))
         n_new = 0
         for member in sorted(harvest["members"]):
             if decide(member, member, row["name"], "harvest", None) is not None:

@@ -1,0 +1,729 @@
+"""S11 -- spelling space AT HIGH RANK: calibration ladder + the AK(3) spike hunt.
+
+Task A10 of the fable S-line.  Two things live here, in this order, because the second is
+worthless without the first:
+
+1.  **A calibration ladder for the exact-census instrument, indexed by (total length,
+    rank).**  ``experiments/lessons/calibrate-one-sided-hunts-on-a-positive-ladder.md``
+    is mandatory reading: the project's earlier spelling hunt used a randomised defect-0
+    climber whose measured detection fell from 100 % at total length 16 to 0 % at 21,
+    which retired 1,312 of 1,909 swept states as uninformative.  The claim tested here is
+    that the *exact census* -- a different instrument, which never guesses -- collapses in
+    the same band at rank 2 but does **not** collapse at rank 6-8, because the census cost
+    ``prod_g (deg(g+) - 1)!`` is driven by germ DEGREE, and at fixed total length degree
+    falls as rank rises.
+
+2.  **The hunt.**  gamma_N is a property of the exact word-realized complex, i.e. of the
+    SPELLING, while the AC moves act on elements of the free group.  So a defect-0 census
+    on *any* spelling of *any* member of AK(3)'s stable class would be a Lackenby
+    certificate for AK(3) (subject to the Joint-A gap, flagged everywhere below).  The
+    hunt inserts spikes -- including on stabilized generators, which only exist at high
+    rank -- into high-rank refinements of AK(3) and decides each by exact census.
+
+Bound direction, recorded per the standing lesson
+(``experiments/lessons/parallel-runs-and-bound-direction.md``):
+
+* the exact census returns an **equality** for gamma_N when it completes inside the cap,
+  and ``UNKNOWN_SIZE`` otherwise.  A skip is never a verdict (fail-closed);
+* the randomised climber ``rank_n_ac_search.hunt_defect`` bounds gamma_N from **ABOVE**;
+  it is used here only to CERTIFY ladder rungs (a defect-0 witness is a complete positive
+  certificate) and never to conclude anything from silence;
+* the ladder bounds the instrument's sensitivity from **ABOVE**: rungs are states some
+  construction could certify, so real states of the same (length, rank) can only be
+  harder.  A low cell is conclusive; a high cell is optimistic.
+
+Nothing here is edited into another agent's files.  ``high_rank_refine`` and
+``rank_n_ac_search`` are imported, never modified.
+"""
+
+from __future__ import annotations
+
+import argparse
+import gzip
+import itertools
+import json
+import os
+import random
+import sys
+import time
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(_HERE)))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+
+from experiments.stable_ac.fable.ac_words import (              # noqa: E402
+    cyclic_reduce,
+    free_reduce,
+    inverse,
+    inverse_letter,
+    is_cyclically_reduced,
+)
+from experiments.stable_ac.fable.neuwirth_rank_n import (       # noqa: E402
+    build_link_n,
+    census_size,
+    gamma_N_factorial_n,
+    generators_of,
+)
+from experiments.stable_ac.fable import high_rank_refine as HR  # noqa: E402
+from experiments.stable_ac.fable import rank_n_ac_search as RN  # noqa: E402
+from experiments.stable_ac.fable.coset_enum import is_trivial_group  # noqa: E402
+
+__all__ = [
+    "DEFAULT_CAP",
+    "AK3",
+    "spelling_key",
+    "spike",
+    "spike_images",
+    "peel_and_reduce",
+    "stabilize_and_graft",
+    "census_cost",
+    "decide",
+    "certify_zero",
+    "build_ladder",
+    "detection_table",
+    "hunt",
+]
+
+#: modest per-state census cap (the user asked for modest node budgets).  A state whose
+#: compatible family exceeds it is recorded ``SKIPPED``, never given a verdict.
+DEFAULT_CAP = 200_000
+
+AK3 = ("xxxYYYY", "xyxYXY")
+
+
+# ======================================================================================
+# 1.  spelling moves
+# ======================================================================================
+
+
+def _min_rot(w: str) -> str:
+    return min(w[i:] + w[:i] for i in range(len(w))) if w else w
+
+
+def spelling_key(words) -> tuple:
+    """Dedup key for an EXACT word-realized complex.
+
+    The complex sees each relator as a cyclic word only, and gamma_N is invariant under
+    relator inversion (``GAMMA_N_SYMMETRY_LEMMA.md``, AUDITED) and relator permutation.
+    It is deliberately **not** quotiented by free reduction -- that is the whole point of
+    working in spelling space (``R1F_REDUCTION_AND_SPIKES.md``).
+    """
+    return tuple(sorted(min(_min_rot(w), _min_rot(inverse(w))) for w in words))
+
+
+def spike(words, j: int, k: int, letter: str) -> tuple:
+    """``SPIKE(P; j, k, u)``: insert ``u u^{-1}`` before position ``k`` of relator ``j``.
+
+    ``letter`` is a signed letter (``'x'`` or ``'X'``).  Positions are taken cyclically,
+    so ``k`` ranges over ``range(len(w))``; ``k = len(w)`` would give the same cyclic word
+    as ``k = 0``.  This is the inverse of one step of Lackenby's move (0) (see the
+    soundness section of ``S11_SPELLING_AT_HIGH_RANK.md`` for why insertion is legal).
+    """
+    w = words[j]
+    k %= max(1, len(w))
+    new = w[:k] + letter + inverse_letter(letter) + w[k:]
+    return tuple(words[:j]) + (new,) + tuple(words[j + 1:])
+
+
+def spike_images(words, generators=None, *, letters=None, relators=None) -> list:
+    """Every distinct single-spike image of ``words``, as ``(key, words, params)``."""
+    words = tuple(words)
+    if generators is None:
+        generators = generators_of(words)
+    if letters is None:
+        letters = [c for g in generators for c in (g, g.upper())]
+    if relators is None:
+        relators = range(len(words))
+    seen: set = set()
+    out = []
+    for j in relators:
+        for k in range(len(words[j])):
+            for u in letters:
+                img = spike(words, j, k, u)
+                key = spelling_key(img)
+                if key in seen:
+                    continue
+                seen.add(key)
+                out.append((key, img, {"relator": j, "position": k, "letter": u}))
+    return out
+
+
+def peel_and_reduce(words, generators, j: int, rot: int, fresh: str = None) -> dict:
+    """The `S3_AUDIT` section 3.2 mechanism: chord-refine a corner, THEN free-reduce.
+
+    Peel the corner ``a1 a2`` off the ``rot``-th rotation of relator ``j``, introduce a
+    fresh generator ``z`` with definition relator ``z (a1 a2)^{-1}``, shorten the relator
+    to ``z a3 ... am``, and then apply the free/cyclic reduction that ``FRAMING.md`` trap 3
+    mandates.  At a DEGENERATE corner (``a2 = a1^{-1}``) the definition relator reduces
+    from length 3 to the single letter ``z`` and the complex genuinely changes -- that is
+    the one measured mechanism in this project that moved a defect from 2 to 0.
+
+    Returns a dict with the literal (unreduced) refinement and the reduced one, so the
+    caller can see which of the two the value came from.
+    """
+    words = tuple(words)
+    generators = tuple(generators)
+    w = words[j]
+    if len(w) < 2:
+        raise ValueError(f"relator {w!r} is too short to peel")
+    rot %= len(w)
+    w = w[rot:] + w[:rot]
+    if fresh is None:
+        pool = HR.fresh_pool(generators)
+        if not pool:
+            raise ValueError("alphabet exhausted")
+        fresh = pool[0]
+    corner, rest = w[:2], w[2:]
+    literal_def = fresh + inverse(corner)
+    literal_res = fresh + rest
+    literal = tuple(words[:j]) + (literal_res,) + tuple(words[j + 1:]) + (literal_def,)
+    reduced = tuple(cyclic_reduce(free_reduce(x)) for x in literal)
+    return {
+        "fresh": fresh,
+        "corner": corner,
+        "degenerate": len(corner) == 2 and corner[1] == inverse_letter(corner[0]),
+        "literal": literal,
+        "reduced": tuple(x for x in reduced if x),
+        "generators": tuple(sorted(set(generators) | {fresh})),
+        "dropped_empty": any(x == "" for x in reduced),
+    }
+
+
+def stabilize_and_graft(words, generators, j: int, *, sign: int = 1,
+                        fresh: str = None) -> dict:
+    """``AC4`` then ``AC2``: adjoin ``(z | z)`` and replace ``r_j`` by ``r_j z^{sign}``.
+
+    This is exactly what ``peel_and_reduce`` at a degenerate corner amounts to once the
+    free reduction is done (``z (a1 a1^{-1})^{-1}`` reduces to ``z``, and the residual
+    ``z a3...am`` is, as a CYCLIC word, ``a3...am z``).  Stating it this way removes every
+    question about spelling legality: it is a bona-fide AC4 + AC2 composite on freely
+    reduced words, valid because the presented group is trivial (FRAMING trap 2, the
+    triviality hypothesis is sharp).
+    """
+    words = tuple(words)
+    generators = tuple(generators)
+    if fresh is None:
+        pool = HR.fresh_pool(generators)
+        if not pool:
+            raise ValueError("alphabet exhausted")
+        fresh = pool[0]
+    z = fresh if sign > 0 else fresh.upper()
+    grafted = free_reduce(words[j] + z)
+    out = tuple(words[:j]) + (grafted,) + tuple(words[j + 1:]) + (fresh,)
+    return {"fresh": fresh, "words": out,
+            "generators": tuple(sorted(set(generators) | {fresh}))}
+
+
+# ======================================================================================
+# 2.  the instrument under test
+# ======================================================================================
+
+
+def census_cost(words, generators=None) -> int:
+    """``prod_g (deg(g+) - 1)!`` -- the exact cost of deciding this complex."""
+    words = tuple(words)
+    if generators is None:
+        generators = generators_of(words)
+    generators = tuple(generators)
+    return census_size(build_link_n(words, generators), generators)
+
+
+def decide(words, generators=None, cap: int = DEFAULT_CAP,
+           keep_accepting: bool = False) -> dict:
+    """THE PIPELINE.  Exact census, fail-closed above ``cap``.
+
+    ``verdict`` is one of ``THICKENABLE`` (minimum defect 0 -- ORIENTABLY thickenable, see
+    trap T-S9 and the Joint-A gap), ``NOT_THICKENABLE`` (decided, minimum defect > 0) or
+    ``SKIPPED`` (census above the cap; **not** a mathematical verdict).
+    """
+    words = tuple(words)
+    if generators is None:
+        generators = generators_of(words)
+    generators = tuple(generators)
+    res = gamma_N_factorial_n(words, generators, cap_rotations=cap,
+                              keep_accepting=keep_accepting)
+    if res["status"] != "OK":
+        verdict = "SKIPPED"
+    elif res["minimum_defect"] == 0:
+        verdict = "THICKENABLE"
+    else:
+        verdict = "NOT_THICKENABLE"
+    out = {
+        "words": list(words),
+        "generators": list(generators),
+        "rank": len(generators),
+        "total_length": sum(len(w) for w in words),
+        "census": res["expected_cases"],
+        "cap": cap,
+        "status": res["status"],
+        "verdict": verdict,
+        "minimum_defect": res["minimum_defect"],
+        "link_components": res["link_components"],
+        "degrees": res["degrees"],
+    }
+    if keep_accepting and res.get("accepting_orders"):
+        out["accepting_orders"] = res["accepting_orders"][:1]
+    return out
+
+
+def certify_zero(words, generators, *, evals: int = 60_000, seed: int = 0) -> dict:
+    """Independent (non-census) certificate that ``gamma_N = 0``: a defect-0 witness.
+
+    Uses the imported climber ``rank_n_ac_search.hunt_defect`` (bounds gamma_N from ABOVE)
+    and re-verifies any hit with ``witness_check_n.check_witness_n`` through
+    ``rank_n_ac_search.verify_defect_zero``, which shares no scheme code with the hunter.
+    """
+    pres = RN.Pres(tuple(generators), tuple(words))
+    rng = random.Random(seed)
+    best, orders, _cache = RN.hunt_defect(pres, evals, rng)
+    row = {"climber_defect": best, "certified": False, "witness": None,
+           "verify": None}
+    if best == 0 and orders is not None:
+        rep = RN.verify_defect_zero(pres, orders, census_cap=0)
+        row["verify"] = {
+            "check_witness_n": rep.get("check_witness_n"),
+            "check_witness_n_error": rep.get("check_witness_n_error"),
+            "independent_defect": rep.get("independent_defect"),
+        }
+        cw = rep.get("check_witness_n")
+        ind = rep.get("independent_defect")
+        ok_cw = bool(cw) and cw.get("defect") == 0
+        ok_ind = bool(ind) and ind.get("defect") == 0
+        row["certified"] = bool(ok_cw or ok_ind)
+        row["witness"] = {str(k): list(v) for k, v in orders.items()}
+    return row
+
+
+# ======================================================================================
+# 3.  the calibration ladder
+# ======================================================================================
+
+
+def _rank2_rungs(path: str) -> list:
+    """Certified gamma_N = 0 rank-2 states from the earlier session's ladder."""
+    with open(path) as fh:
+        blob = json.load(fh)
+    out = []
+    for rung in blob.get("ladder", ()):
+        words = tuple(rung["words"])
+        out.append({
+            "words": words,
+            "generators": generators_of(words),
+            "total_length": sum(len(w) for w in words),
+            "rank": 2,
+            "source": "witness_sensitivity ladder (census+witness)",
+            "certified_by": rung.get("certified_by", "unknown"),
+        })
+    return out
+
+
+def _walk_rungs(rank: int, targets, *, per_cell: int, seed: int, evals: int,
+                tries: int, band: int = 1) -> list:
+    """Rungs at ``rank`` and each total length in ``targets``, certified by witness.
+
+    Every state comes from a random AC1-AC3 walk out of the standard presentation, so it
+    is **AC-trivial and presents the trivial group by construction** -- no triviality test
+    needed and no bias toward hard instances (the S10 sampling design).  A state is kept
+    only if the independent defect-0 witness certifies it, so the census plays no part in
+    the ladder's construction.
+    """
+    rng = random.Random(seed)
+    limits = RN.Limits(max_relator_length=14, max_total_length=max(targets) + 6,
+                       min_rank=rank, max_rank=rank)
+    want = {int(t): [] for t in targets}
+    base = RN.standard_presentation(rank)
+    for _ in range(tries):
+        if all(len(v) >= per_cell for v in want.values()):
+            break
+        moves = rng.randrange(4, 34)
+        cur, _hist = RN.scramble(base, moves, rng, limits)
+        if len(cur.gens) != rank or not cur.all_generators_occur():
+            continue
+        L = cur.total_length
+        hit = [t for t in want if abs(t - L) <= band and len(want[t]) < per_cell]
+        if not hit:
+            continue
+        t = hit[0]
+        key = RN.canonical_key(cur)
+        if any(r["key"] == key for r in want[t]):
+            continue
+        cert = certify_zero(cur.rels, cur.gens, evals=evals, seed=rng.randrange(10 ** 9))
+        if not cert["certified"]:
+            continue
+        want[t].append({
+            "words": tuple(cur.rels),
+            "generators": tuple(cur.gens),
+            "total_length": L,
+            "rank": rank,
+            "key": key,
+            "source": f"AC1-AC3 walk from standard rank {rank}",
+            "certified_by": "defect-0 witness (check_witness_n)",
+        })
+    out = []
+    for t in sorted(want):
+        out.extend(want[t])
+    for r in out:
+        r.pop("key", None)
+    return out
+
+
+def build_ladder(*, ranks=(4, 6, 8), lengths=(13, 16, 19, 22, 25), per_cell: int = 6,
+                 seed: int = 20260804, evals: int = 40_000, tries: int = 4000,
+                 rank2_path: str = None) -> list:
+    rungs = []
+    if rank2_path and os.path.exists(rank2_path):
+        rungs.extend(_rank2_rungs(rank2_path))
+    for k, rank in enumerate(ranks):
+        rungs.extend(_walk_rungs(rank, lengths, per_cell=per_cell, seed=seed + 7 * k,
+                                 evals=evals, tries=tries))
+    return rungs
+
+
+def _band(L: int, edges=(13, 16, 19, 22, 25), width: int = 1):
+    for e in edges:
+        if abs(L - e) <= width:
+            return e
+    return None
+
+
+def detection_table(rows, edges=(13, 16, 19, 22, 25), width: int = 1) -> dict:
+    """``{(band, rank): {...}}`` -- the headline table."""
+    cells: dict = {}
+    for r in rows:
+        b = _band(r["total_length"], edges, width)
+        if b is None:
+            continue
+        cell = cells.setdefault((b, r["rank"]), {"n": 0, "detected": 0, "skipped": 0,
+                                                 "missed": 0, "census": []})
+        cell["n"] += 1
+        cell["census"].append(r["census"])
+        if r["verdict"] == "THICKENABLE":
+            cell["detected"] += 1
+        elif r["verdict"] == "SKIPPED":
+            cell["skipped"] += 1
+        else:
+            cell["missed"] += 1
+    out = {}
+    for (b, rank), c in sorted(cells.items()):
+        cen = sorted(c["census"])
+        out[f"{b}|{rank}"] = {
+            "band": b, "rank": rank, "n": c["n"],
+            "detected": c["detected"], "skipped": c["skipped"], "missed": c["missed"],
+            "detection_rate": c["detected"] / c["n"] if c["n"] else None,
+            "median_census": cen[len(cen) // 2] if cen else None,
+        }
+    return out
+
+
+# ======================================================================================
+# 4.  the hunt
+# ======================================================================================
+
+
+def high_rank_forms(words, generators=None, *, limit: int = 4, seed: int = 0) -> list:
+    """Certified chord refinements of ``words`` (rank up, relators down to length 3).
+
+    Uses ``high_rank_refine.enumerate_triangulations`` unmodified, so every form carries
+    the module's own replay certificate.  Theorem S3 / Lemma S3' say the whole defect
+    histogram is preserved by these, which is exactly why they are used here as a
+    COST-REDUCING change of cell structure and never as a mechanism.
+    """
+    words = tuple(words)
+    if generators is None:
+        generators = generators_of(words)
+    out = []
+    for ref in HR.enumerate_triangulations(words, limit=limit, seed=seed,
+                                           generators=tuple(generators), certify=True):
+        out.append({
+            "words": tuple(ref.words),
+            "generators": tuple(ref.generators),
+            "scheme": ref.scheme,
+            "params": ref.params,
+            "certified": ref.certificate is not None,
+            "share": bool(ref.params.get("share")),
+        })
+    return out
+
+
+def hunt(base_words, base_generators=None, *, depth: int = 2, cap: int = DEFAULT_CAP,
+         max_states: int = 4000, refine_limit: int = 3, seed: int = 0,
+         include_peel: bool = True, deadline: float = None, log=None) -> dict:
+    """Spike-space hunt at high rank.  Exhaustive by depth, capped by ``max_states``."""
+    t0 = time.time()
+    base_words = tuple(base_words)
+    if base_generators is None:
+        base_generators = generators_of(base_words)
+    base_generators = tuple(base_generators)
+
+    forms = [{"words": base_words, "generators": base_generators, "scheme": "base",
+              "params": {}, "certified": True, "share": False}]
+    if refine_limit:
+        try:
+            forms.extend(high_rank_forms(base_words, base_generators,
+                                         limit=refine_limit, seed=seed))
+        except Exception as exc:                                    # noqa: BLE001
+            forms[0]["refine_error"] = f"{type(exc).__name__}: {exc}"
+
+    rows = []
+    hits = []
+    seen: set = set()
+    skipped = 0
+    scored = 0
+    stopped = None
+
+    def score(words, gens, prov):
+        nonlocal skipped, scored, stopped
+        if stopped:
+            return None
+        if deadline is not None and time.time() - t0 > deadline:
+            stopped = "deadline"
+            return None
+        if len(rows) >= max_states:
+            stopped = "max_states"
+            return None
+        key = (spelling_key(words), tuple(gens))
+        if key in seen:
+            return None
+        seen.add(key)
+        cost = census_cost(words, gens)
+        if cost > cap:
+            skipped += 1
+            row = {"verdict": "SKIPPED", "census": cost, "words": list(words),
+                   "generators": list(gens), "rank": len(gens),
+                   "total_length": sum(len(w) for w in words), "provenance": prov,
+                   "minimum_defect": None}
+            rows.append(row)
+            return row
+        row = decide(words, gens, cap=cap)
+        row["provenance"] = prov
+        scored += 1
+        rows.append(row)
+        if row["verdict"] == "THICKENABLE":
+            hits.append(row)
+            if log:
+                log(f"  !! HIT {row['words']} rank {row['rank']} prov={prov}")
+        return row
+
+    for form in forms:
+        fw, fg = form["words"], form["generators"]
+        prov0 = {"form": form["scheme"], "spikes": [], "peel": None}
+        score(fw, fg, dict(prov0))
+        # depth-1 .. depth-`depth` spike frontier over this form
+        frontier = [(fw, [])]
+        for d in range(depth):
+            nxt = []
+            for words, hist in frontier:
+                for _key, img, params in spike_images(words, fg):
+                    prov = {"form": form["scheme"], "spikes": hist + [params],
+                            "peel": None}
+                    r = score(img, fg, prov)
+                    if stopped:
+                        break
+                    if r is not None:
+                        nxt.append((img, hist + [params]))
+                    if include_peel:
+                        for j in range(len(img)):
+                            for rot in range(len(img[j])):
+                                if len(img[j]) < 2:
+                                    continue
+                                a1, a2 = img[j][rot], img[j][(rot + 1) % len(img[j])]
+                                if a2 != inverse_letter(a1):
+                                    continue
+                                try:
+                                    pr = peel_and_reduce(img, fg, j, rot)
+                                except ValueError:
+                                    continue
+                                if pr["dropped_empty"]:
+                                    continue
+                                score(pr["reduced"], pr["generators"],
+                                      {"form": form["scheme"],
+                                       "spikes": hist + [params],
+                                       "peel": {"relator": j, "rot": rot,
+                                                "corner": pr["corner"],
+                                                "fresh": pr["fresh"]}})
+                                if stopped:
+                                    break
+                            if stopped:
+                                break
+                    if stopped:
+                        break
+                if stopped:
+                    break
+            if stopped:
+                break
+            frontier = nxt
+        if stopped:
+            break
+
+    return {
+        "base_words": list(base_words),
+        "base_generators": list(base_generators),
+        "depth": depth,
+        "cap": cap,
+        "forms": [{k: (list(v) if isinstance(v, tuple) else v)
+                   for k, v in f.items()} for f in forms],
+        "n_states": len(rows),
+        "scored": scored,
+        "skipped": skipped,
+        "hits": hits,
+        "stopped": stopped,
+        "seconds": round(time.time() - t0, 2),
+        "rows": rows,
+    }
+
+
+# ======================================================================================
+# 5.  CLI
+# ======================================================================================
+
+
+def _emit(path, blob):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as fh:
+        json.dump(blob, fh, indent=1, sort_keys=False)
+    return path
+
+
+def cmd_ladder(args):
+    t0 = time.time()
+    rungs = build_ladder(ranks=tuple(int(r) for r in args.ranks.split(",")),
+                         lengths=tuple(int(x) for x in args.lengths.split(",")),
+                         per_cell=args.per_cell, seed=args.seed, evals=args.evals,
+                         tries=args.tries, rank2_path=args.rank2)
+    rows = []
+    for r in rungs:
+        row = decide(r["words"], r["generators"], cap=args.cap)
+        row["source"] = r["source"]
+        row["certified_by"] = r["certified_by"]
+        rows.append(row)
+    table = detection_table(rows, edges=tuple(int(x) for x in args.lengths.split(",")),
+                            width=args.width)
+    blob = {
+        "record": "S11 calibration ladder: exact-census detection by (length, rank)",
+        "bound_direction": ("census returns EQUALITY inside the cap and SKIPPED above it; "
+                            "the ladder bounds sensitivity from ABOVE"),
+        "cap": args.cap,
+        "n_rungs": len(rows),
+        "table": table,
+        "rows": rows,
+        "seconds": round(time.time() - t0, 2),
+    }
+    print(json.dumps(table, indent=1))
+    print("wrote", _emit(args.out, blob), blob["seconds"], "s")
+    return blob
+
+
+def cmd_hunt(args):
+    words = tuple(args.words.split(",")) if args.words else AK3
+    gens = tuple(args.generators.split(",")) if args.generators else None
+    res = hunt(words, gens, depth=args.depth, cap=args.cap, max_states=args.max_states,
+               refine_limit=args.refine_limit, seed=args.seed,
+               include_peel=not args.no_peel, deadline=args.deadline,
+               log=print if args.verbose else None)
+    summary = {k: v for k, v in res.items() if k != "rows"}
+    print(json.dumps(summary, indent=1)[:4000])
+    _emit(args.out, res)
+    print("wrote", args.out)
+    return res
+
+
+def cmd_harvest(args):
+    """Sample long members of AK(3)'s rank-3 stable harvest, refine, spike, decide."""
+    t0 = time.time()
+    rng = random.Random(args.seed)
+    members = []
+    opener = gzip.open if args.path.endswith(".gz") else open
+    with opener(args.path, "rt") as fh:
+        for line in fh:
+            try:
+                row = json.loads(line)
+            except Exception:                                        # noqa: BLE001
+                continue
+            w = row.get("words") or row.get("relators") or row.get("state")
+            if not w:
+                continue
+            w = tuple(w)
+            L = sum(len(x) for x in w)
+            if not (args.min_length <= L <= args.max_length):
+                continue
+            if rng.random() < args.sample_rate:
+                members.append(w)
+            if len(members) >= args.limit:
+                break
+    out_rows = []
+    hits = []
+    for w in members:
+        if time.time() - t0 > args.deadline:
+            break
+        gens = generators_of(w)
+        res = hunt(w, gens, depth=args.depth, cap=args.cap,
+                   max_states=args.max_states, refine_limit=args.refine_limit,
+                   seed=args.seed, include_peel=False,
+                   deadline=max(1.0, args.per_member))
+        out_rows.append({k: v for k, v in res.items() if k != "rows"})
+        hits.extend(res["hits"])
+    blob = {"record": "S11 harvest sample hunt", "n_members": len(members),
+            "hits": hits, "members": out_rows,
+            "seconds": round(time.time() - t0, 2)}
+    print(json.dumps({"n_members": len(members), "n_hits": len(hits),
+                      "seconds": blob["seconds"]}, indent=1))
+    _emit(args.out, blob)
+    print("wrote", args.out)
+    return blob
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    p = sub.add_parser("ladder")
+    p.add_argument("--ranks", default="4,6,8")
+    p.add_argument("--lengths", default="13,16,19,22,25")
+    p.add_argument("--per-cell", type=int, default=6)
+    p.add_argument("--seed", type=int, default=20260804)
+    p.add_argument("--evals", type=int, default=40_000)
+    p.add_argument("--tries", type=int, default=4000)
+    p.add_argument("--width", type=int, default=1)
+    p.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    p.add_argument("--rank2", default="results/stable_ac/fable/witness_sensitivity.json")
+    p.add_argument("--out", default="results/stable_ac/fable/s11_ladder.json")
+    p.set_defaults(func=cmd_ladder)
+
+    p = sub.add_parser("hunt")
+    p.add_argument("--words", default=None, help="comma-separated relators")
+    p.add_argument("--generators", default=None)
+    p.add_argument("--depth", type=int, default=2)
+    p.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    p.add_argument("--max-states", type=int, default=4000)
+    p.add_argument("--refine-limit", type=int, default=3)
+    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--no-peel", action="store_true")
+    p.add_argument("--deadline", type=float, default=None)
+    p.add_argument("--verbose", action="store_true")
+    p.add_argument("--out", default="results/stable_ac/fable/s11_hunt.json")
+    p.set_defaults(func=cmd_hunt)
+
+    p = sub.add_parser("harvest")
+    p.add_argument("--path",
+                   default="results/stable_ac/fable/stable_contrast_ak3z_members.jsonl.gz")
+    p.add_argument("--min-length", type=int, default=21)
+    p.add_argument("--max-length", type=int, default=27)
+    p.add_argument("--limit", type=int, default=60)
+    p.add_argument("--sample-rate", type=float, default=0.02)
+    p.add_argument("--depth", type=int, default=1)
+    p.add_argument("--cap", type=int, default=DEFAULT_CAP)
+    p.add_argument("--max-states", type=int, default=400)
+    p.add_argument("--refine-limit", type=int, default=2)
+    p.add_argument("--per-member", type=float, default=6.0)
+    p.add_argument("--deadline", type=float, default=240.0)
+    p.add_argument("--seed", type=int, default=20260804)
+    p.add_argument("--out", default="results/stable_ac/fable/s11_harvest.json")
+    p.set_defaults(func=cmd_harvest)
+
+    args = ap.parse_args(argv)
+    return args.func(args)
+
+
+if __name__ == "__main__":                                          # pragma: no cover
+    main()
