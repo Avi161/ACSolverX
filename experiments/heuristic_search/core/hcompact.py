@@ -358,7 +358,12 @@ class HCompactSolver:
                 min(_HB_CHECK_EVERY, remaining), self.states_cap)
 
             if progress is not None and int(st[0]) >= next_tick:
-                progress(int(st[0]))
+                # Optional 2nd arg = current min pair-total (st[5]). One-arg
+                # callbacks stay valid via TypeError fallback.
+                try:
+                    progress(int(st[0]), int(st[5]))
+                except TypeError:
+                    progress(int(st[0]))
                 next_tick = (int(st[0]) // _HB_CHECK_EVERY + 1) * _HB_CHECK_EVERY
 
             if status == _SOLVED:
