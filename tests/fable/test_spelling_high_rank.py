@@ -195,8 +195,8 @@ def test_spiking_never_creates_thickenability_on_a_REDUCED_base(words, gens):
             f"{words} has defect {base['minimum_defect']}")
 
 
-def test_CONJECTURE_SR_IS_FALSE_the_pinned_counterexample():
-    """**Conjecture SR (R7 section 3.1) is FALSE.**  Pinned, exact, exhaustive.
+def test_conjecture_SR_is_false_for_GENERAL_presentations():
+    """**Conjecture SR (R7 section 3.1) is FALSE as a statement about presentations.**
 
     ``gamma_N(spike(P)) = 0  =>  gamma_N(P) = 0`` fails at ``P = ("XYYyxY","XyX")``:
 
@@ -207,9 +207,16 @@ def test_CONJECTURE_SR_IS_FALSE_the_pinned_counterexample():
     position 0 of relator 0.  Prior SR evidence never covered this because every previous
     test spiked a *cyclically reduced* base once; ``P`` here is itself one spike out.
 
-    The EXISTENTIAL repair survives on this example: the other one-step reduction of
-    spike(P), deleting the interior ``Yy``, is ("YyXYxY","XyX") with defect 0, and the full
-    reduction ("XYxY","XyX") also has defect 0.
+    **SCOPE, and it is load-bearing.**  This family presents **Z/4, not the trivial
+    group** -- Todd-Coxeter completes with index 4, asserted below.  The AC programme only
+    ever uses SR restricted to balanced presentations of the trivial group, and a
+    counterexample outside that class does not transfer (CLAUDE.md, "distinguish the
+    statements").  The trivial-group restriction of SR is **not** refuted by this test; see
+    ``results/stable_ac/fable/s11_sr_trivial.json`` for the hunt against it.
+
+    The EXISTENTIAL repair also survives here: the other one-step reduction of spike(P),
+    deleting the interior ``Yy``, is ("YyXYxY","XyX") with defect 0, and the full reduction
+    ("XYxY","XyX") also has defect 0.
     """
     P = ("XYYyxY", "XyX")
     sp = ("YyXYYyxY", "XyX")

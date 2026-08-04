@@ -541,6 +541,162 @@ def decidability_scan(*, ranks=(2, 3, 4, 6, 8), lengths=(13, 16, 19, 22, 25),
 # --------------------------------------------------------------------------------------
 
 
+#: R1F's eight single spikes of AK(3) with gamma_N exactly 1 (exhaustive census, 3.6M/4.8M
+#: systems each; `R1F_REDUCTION_AND_SPIKES.md`).  These are the only depth-1 spellings that
+#: Corollary S5's ceiling leaves as possible ancestors of a thickenable depth-2 spelling.
+AK3_GATEWAYS = (
+    ("xyYxxYYYY", "xyxYXY"),
+    ("xxYyxYYYY", "xyxYXY"),
+    ("xxxYXxYYY", "xyxYXY"),
+    ("xxxYxXYYY", "xyxYXY"),
+    ("xxxYYYXxY", "xyxYXY"),
+    ("xxxYYYxXY", "xyxYXY"),
+    ("xxxYYYY", "xxXyxYXY"),
+    ("xxxYYYY", "xyXxxYXY"),
+)
+
+
+def climb(words, generators, *, evals: int, seed: int = 0):
+    """Upper bound on ``gamma_N`` by the imported hill-climber.  0 is a complete positive."""
+    pres = RN.Pres(tuple(generators), tuple(words))
+    best, orders, _c = RN.hunt_defect(pres, evals, random.Random(seed))
+    return best, orders
+
+
+def calibrate_climber(states, *, evals: int, seeds: int = 5, seed: int = 0) -> dict:
+    """Detection rate of the climber on states KNOWN to have ``gamma_N = 0``.
+
+    The states must be certified positives; the fraction of (state, seed) cells in which
+    the climber returns defect 0 is the number any null from the same budget is worth.
+    """
+    hits = 0
+    cells = 0
+    rows = []
+    for w in states:
+        gens = generators_of(w)
+        got = 0
+        for s in range(seeds):
+            best, _o = climb(w, gens, evals=evals, seed=seed + 997 * s)
+            cells += 1
+            if best == 0:
+                hits += 1
+                got += 1
+        rows.append({"words": list(w), "total_length": sum(len(x) for x in w),
+                     "detected": got, "seeds": seeds})
+    return {"evals": evals, "cells": cells, "detected": hits,
+            "detection_rate": hits / cells if cells else None, "rows": rows}
+
+
+def ak3_depth2(*, evals: int = 300_000, seed: int = 20260804, cap: int = 6_000_000,
+               deadline: float = 600.0, same_letter_first: bool = True,
+               gateways=AK3_GATEWAYS) -> dict:
+    """The AK(3) depth-2 spelling hunt, re-opened after Conjecture SR fell.
+
+    Corollary S6 (a *proof*, from the spike ceiling S5) says a thickenable spelling of
+    AK(3) has spike-depth >= 2, and depth 1 is exhaustively decided.  So depth 2 is the
+    frontier.  Bases are R1F's eight gateway spellings (the only depth-1 spellings with
+    ``gamma_N = 1``); every distinct single spike of each is scored.
+
+    Ordering: the 16 SR counterexamples found by ``sr_hunt_spelled`` all used the **same
+    signed letter** as the spike already present, so those candidates are scored first.
+    The instrument is the climber (an UPPER bound -- a 0 is conclusive, a positive is not),
+    with the exact census used to confirm any hit; ``calibrate_climber`` supplies the
+    detection rate that the null is worth.
+    """
+    t0 = time.time()
+    rows = []
+    hits = []
+    seen: set = set()
+    for gi, gw in enumerate(gateways):
+        gens = generators_of(gw)
+        base_letter = None
+        for j, w in enumerate(gw):
+            for i in range(len(w) - 1):
+                if w[i + 1] == inverse_letter(w[i]):
+                    base_letter = w[i]
+                    break
+            if base_letter:
+                break
+        imgs = spike_images(gw, gens)
+        if same_letter_first and base_letter:
+            imgs.sort(key=lambda t: 0 if t[2]["letter"] == base_letter else 1)
+        for key, img, params in imgs:
+            if time.time() - t0 > deadline:
+                break
+            if key in seen:
+                continue
+            seen.add(key)
+            best, orders = climb(img, gens, evals=evals, seed=seed + 31 * gi)
+            row = {"gateway": gi, "words": list(img), "spike": params,
+                   "same_letter": params["letter"] == base_letter,
+                   "climber_defect": best,
+                   "total_length": sum(len(w) for w in img)}
+            if best == 0 and orders is not None:
+                exact = decide(img, gens, cap=cap, keep_accepting=True)
+                row["exact"] = {k: exact[k] for k in
+                                ("census", "status", "minimum_defect", "verdict")}
+                row["todd_coxeter"] = todd_coxeter_check(img, gens, cap=200_000)
+                row["verify"] = RN.verify_defect_zero(RN.Pres(gens, img), orders,
+                                                      census_cap=0).get("check_witness_n")
+                hits.append(row)
+            rows.append(row)
+        if time.time() - t0 > deadline:
+            break
+    by_defect: dict = {}
+    for r in rows:
+        by_defect[r["climber_defect"]] = by_defect.get(r["climber_defect"], 0) + 1
+    return {
+        "record": "AK(3) depth-2 spelling hunt (re-opened after Conjecture SR fell)",
+        "bound_direction": "the climber bounds gamma_N from ABOVE; a 0 is conclusive, "
+                           "silence is worth exactly the measured detection rate",
+        "gateways": [list(g) for g in gateways],
+        "evals_per_state": evals,
+        "states_scored": len(rows),
+        "same_letter_states": sum(1 for r in rows if r["same_letter"]),
+        "climber_defect_histogram": {str(k): v for k, v in sorted(by_defect.items())},
+        "n_hits": len(hits),
+        "hits": hits,
+        "seconds": round(time.time() - t0, 2),
+        "rows": rows,
+    }
+
+
+def trivial_bases(rank: int = 2, *, count: int = 60, max_length: int = 10,
+                  seed: int = 20260804, tries: int = 6000, coset_cap: int = 200_000):
+    """Cyclically reduced balanced presentations of the **trivial group**, with the index.
+
+    AC1-AC3 walks out of the standard presentation are trivial *by construction*; every one
+    is nevertheless re-checked by Todd-Coxeter and the index is recorded, because the
+    trivial-group restriction is the only version of Conjecture SR the AC programme can use
+    (a general-presentation counterexample does not transfer -- CLAUDE.md, "distinguish the
+    statements").
+    """
+    rng = random.Random(seed)
+    limits = RN.Limits(max_relator_length=max_length, max_total_length=max_length,
+                       min_rank=rank, max_rank=rank)
+    base = RN.standard_presentation(rank)
+    out = []
+    seen: set = set()
+    for _ in range(tries):
+        if len(out) >= count:
+            break
+        cur, _h = RN.scramble(base, rng.randrange(3, 24), rng, limits)
+        if len(cur.gens) != rank or not cur.all_generators_occur():
+            continue
+        if any(len(w) < 2 for w in cur.rels):
+            continue
+        key = spelling_key(cur.rels)
+        if key in seen:
+            continue
+        seen.add(key)
+        tc = todd_coxeter_check(cur.rels, cur.gens, cap=coset_cap)
+        if tc.get("trivial") is not True:
+            continue                       # never guessed: a capped enumeration is dropped
+        out.append({"words": tuple(cur.rels), "generators": tuple(cur.gens),
+                    "coset_index": tc.get("index"), "trivial": True})
+    return out
+
+
 def sr_hunt_spelled(*, bases=None, max_base_length: int = 8, cap: int = DEFAULT_CAP,
                     deadline: float = 180.0, seed: int = 20260804,
                     max_bases: int = 400) -> dict:
@@ -1000,10 +1156,51 @@ def cmd_scan(args):
     return blob
 
 
+def cmd_ak3(args):
+    t0 = time.time()
+    cal = None
+    if args.calibrate:
+        ladder = json.load(open(args.ladder))["rows"] if os.path.exists(args.ladder) else []
+        pos = [tuple(r["words"]) for r in ladder
+               if r.get("verdict") == "THICKENABLE"
+               and abs(r["total_length"] - args.calibrate_length) <= 1
+               and r["rank"] == 2]
+        pos = pos[:args.calibrate_states]
+        if pos:
+            cal = calibrate_climber(pos, evals=args.evals, seeds=args.calibrate_seeds,
+                                    seed=args.seed)
+            print("climber calibration at %d evals, length ~%d, rank 2: %d/%d = %.2f"
+                  % (args.evals, args.calibrate_length, cal["detected"], cal["cells"],
+                     cal["detection_rate"]))
+        else:
+            print("no rank-2 positive ladder rungs near length", args.calibrate_length)
+    blob = ak3_depth2(evals=args.evals, seed=args.seed, cap=args.cap,
+                      deadline=args.deadline)
+    blob["climber_calibration"] = cal
+    blob["total_seconds"] = round(time.time() - t0, 2)
+    print(json.dumps({k: v for k, v in blob.items()
+                      if k not in ("rows", "hits", "gateways")}, indent=1))
+    if blob["hits"]:
+        print("HITS:", json.dumps(blob["hits"][:3], indent=1))
+    print("wrote", _emit(args.out, blob))
+    return blob
+
+
 def cmd_sr_spelled(args):
-    blob = sr_hunt_spelled(max_base_length=args.max_base_length, cap=args.cap,
+    bases = None
+    index_of = {}
+    if getattr(args, "trivial_only", False):
+        rows = trivial_bases(2, count=args.max_bases, max_length=args.max_base_length,
+                             seed=args.seed)
+        bases = [r["words"] for r in rows]
+        index_of = {r["words"]: r["coset_index"] for r in rows}
+        print("trivial-group bases:", len(bases),
+              "(all Todd-Coxeter index 1)" if all(v == 1 for v in index_of.values())
+              else "(INDEX MISMATCH)")
+    blob = sr_hunt_spelled(bases=bases, max_base_length=args.max_base_length, cap=args.cap,
                            deadline=args.deadline, seed=args.seed,
                            max_bases=args.max_bases)
+    blob["bases_restricted_to_trivial_group"] = bool(getattr(args, "trivial_only", False))
     print(json.dumps({k: v for k, v in blob.items() if k != "counterexamples"}, indent=1))
     for h in blob["counterexamples"][:6]:
         print(" CE:", h["depth2"], "d=0  <-  spike of", h["depth1"],
@@ -1127,6 +1324,8 @@ def main(argv=None):
     p.set_defaults(func=cmd_sr)
 
     p = sub.add_parser("sr-spelled")
+    p.add_argument("--trivial-only", action="store_true",
+                   help="bases = Todd-Coxeter-verified trivial-group presentations")
     p.add_argument("--max-base-length", type=int, default=8)
     p.add_argument("--max-bases", type=int, default=400)
     p.add_argument("--cap", type=int, default=DEFAULT_CAP)
@@ -1134,6 +1333,19 @@ def main(argv=None):
     p.add_argument("--deadline", type=float, default=180.0)
     p.add_argument("--out", default="results/stable_ac/fable/s11_sr_spelled.json")
     p.set_defaults(func=cmd_sr_spelled)
+
+    p = sub.add_parser("ak3")
+    p.add_argument("--evals", type=int, default=300_000)
+    p.add_argument("--seed", type=int, default=20260804)
+    p.add_argument("--cap", type=int, default=6_000_000)
+    p.add_argument("--deadline", type=float, default=600.0)
+    p.add_argument("--calibrate", action="store_true")
+    p.add_argument("--calibrate-length", type=int, default=17)
+    p.add_argument("--calibrate-states", type=int, default=4)
+    p.add_argument("--calibrate-seeds", type=int, default=5)
+    p.add_argument("--ladder", default="results/stable_ac/fable/s11_ladder.json")
+    p.add_argument("--out", default="results/stable_ac/fable/s11_ak3_depth2.json")
+    p.set_defaults(func=cmd_ak3)
 
     p = sub.add_parser("hunt")
     p.add_argument("--words", default=None, help="comma-separated relators")
