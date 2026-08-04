@@ -6,11 +6,20 @@ Date 2026-08-04. Branch `claude/stable-ac-conjecture-stabilization-rwo9as` (merg
 
 ## 0. What this kills, and what it opens
 
+**Units, fixed before anything else.** `gamma_N_factorial_n` returns `minimum_defect`, and
+this project's γ_N is `minimum_defect // 2` (see `minimum_genus` in
+`neuwirth_rank_n.py`). An earlier revision of this file compared a repo γ_N against a raw
+defect and reported AK(3) as going "2 → 4" under triangulation. That was a unit error:
+AK(3) has `minimum_defect` 4 at rank 2 and `minimum_defect` 4 at rank 9, i.e. **γ_N = 2
+both times — unchanged**, which is what the theorem below actually predicts. All numbers
+in this file are now raw `minimum_defect`, labelled as such.
+
 `S0_HIGH_RANK_PLAN.md` proposed: triangulate a hard presentation up to rank ≈ 9 (Lemma
 S-b), test the rank-9 form for thickenability, and cash a positive in through Lackenby
-Thm 1.3. The measurement came back γ_N = 4 on the hand-built rank-9 triangulation of
-AK(3) (versus γ_N = 2 for AK(3) itself), and a 63-member positive ladder came back with
-γ_N = 0 preserved at every rank from 3 to 9, 63/63.
+Thm 1.3. The measurements came back: `minimum_defect` unchanged by triangulation on every
+base tested — a 63-member γ_N = 0 positive ladder stayed at 0 through ranks 3–9, and 480
+random triangulations of 13 positive-defect bases (including 120 of AK(3)) reproduced the
+base's defect **exactly, every time, with zero deviations**.
 
 Both observations have the same one-line explanation, and it is a theorem, not a
 coincidence:
@@ -18,7 +27,9 @@ coincidence:
 > **A triangulation does not change the underlying topological space at all.** It draws a
 > chord across a 2-cell and calls the two halves separate cells. `K_{P_Δ}` is a
 > *subdivision* of `K_P`, so `|K_{P_Δ}| ≅ |K_P|`, so `K_{P_Δ}` embeds in a 3-manifold
-> **iff** `K_P` does.
+> **iff** `K_P` does — and, since γ_N is the minimal genus over thickenings of `|K|` and
+> so is a topological invariant, not merely the predicate but **the whole value of γ_N is
+> unchanged**.
 
 So no amount of triangulation can ever produce a thickenable member of AK(3)'s stable
 class. The route as stated in S0 §3 is **BLOCKED**, and it is blocked for a reason that
@@ -54,9 +65,18 @@ terminating when every relator has length ≤ 3.
 > **Theorem S3 (chord refinements are subdivisions).** Let `P'` be an elementary chord
 > refinement of `P` at `(r, a_1a_2)`. Then `|K_{P'}|` is homeomorphic to `|K_P|`; indeed
 > `K_{P'}` is a subdivision of `K_P` obtained by adding one 1-cell drawn inside the 2-cell
-> of `r`. Consequently `K_{P'}` embeds in a 3-manifold **iff** `K_P` does, i.e.
-> **γ_N(P') = 0 ⟺ γ_N(P) = 0**, and the same holds for any composite — in particular for
-> every triangulation `P_Δ` of `P`.
+> of `r`. Consequently `K_{P'}` embeds in a 3-manifold **iff** `K_P` does, and more:
+> since γ_N(Q) is the minimum genus over thickenings of `|K_Q|`, a quantity depending only
+> on the homeomorphism type of `|K_Q|`, **γ_N(P') = γ_N(P)** — the value, not just the
+> predicate. The same holds for any composite, in particular for every triangulation
+> `P_Δ` of `P`.
+>
+> [The reading "γ_N = minimum genus over thickenings, hence a topological invariant" is
+> this repo's interpretation of the Neuwirth machinery and is **[UNVERIFIED against
+> Neuwirth's paper]**; task A5 is auditing exactly what `gamma_N_factorial_n` decides. The
+> *predicate* form of the theorem needs only "embeds in a 3-manifold", which is
+> unambiguous. The *value* form needs the invariance reading — it was suggested by, and is
+> so far only supported by, the 480-triangulation measurement in §3.]
 
 **Proof.** Let `D` be the 2-cell of `K_P` attached along the loop `a_1a_2a_3…a_m`, and let
 `χ: ∂D → K_P^{(1)}` be its attaching map. Write `∂D` as the concatenation of `m` arcs
