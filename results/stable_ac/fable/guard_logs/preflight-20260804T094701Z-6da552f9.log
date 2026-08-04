@@ -1,0 +1,4 @@
+  ak3       chains=12 replay_ok=12 failed=0 transitions={'P->N': 12, 'N->N': 21, 'P->P': 3} N->P chains=0
+  control0  chains=12 replay_ok=12 failed=0 transitions={'P->P': 29, 'P->N': 6, 'N->N': 1} N->P chains=0
+  control2  chains=12 replay_ok=12 failed=0 transitions={'P->P': 16, 'P->N': 9, 'N->N': 14} N->P chains=0
+wrote /home/user/ACSolverX/results/stable_ac/fable/s20_chain_preflight.json

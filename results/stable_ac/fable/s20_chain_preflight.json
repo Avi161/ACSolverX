@@ -1,0 +1,55 @@
+{
+ "record": "s20_chain_planarity",
+ "sources": {
+  "ak3": {
+   "chains": 12,
+   "replay_ok": 12,
+   "replay_failed": 0,
+   "transitions": {
+    "P->N": 12,
+    "N->N": 21,
+    "P->P": 3
+   },
+   "sequences": {
+    "PNNN": 9,
+    "PPNN": 3
+   },
+   "N_to_P": []
+  },
+  "control0": {
+   "chains": 12,
+   "replay_ok": 12,
+   "replay_failed": 0,
+   "transitions": {
+    "P->P": 29,
+    "P->N": 6,
+    "N->N": 1
+   },
+   "sequences": {
+    "PPPP": 6,
+    "PPPN": 5,
+    "PPNN": 1
+   },
+   "N_to_P": []
+  },
+  "control2": {
+   "chains": 12,
+   "replay_ok": 12,
+   "replay_failed": 0,
+   "transitions": {
+    "P->P": 16,
+    "P->N": 9,
+    "N->N": 14
+   },
+   "sequences": {
+    "PPNN": 2,
+    "PNNNN": 2,
+    "PPPP": 3,
+    "PNNN": 2,
+    "PPPN": 2,
+    "PPNNN": 1
+   },
+   "N_to_P": []
+  }
+ }
+}

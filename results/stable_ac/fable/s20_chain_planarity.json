@@ -1,0 +1,97 @@
+{
+ "record": "s20_chain_planarity",
+ "sources": {
+  "ak3": {
+   "chains": 300,
+   "replay_ok": 300,
+   "replay_failed": 0,
+   "transitions": {
+    "P->N": 294,
+    "N->N": 473,
+    "P->P": 142,
+    "N->P": 1
+   },
+   "sequences": {
+    "PNNN": 186,
+    "PPNN": 79,
+    "PNNP": 1,
+    "PPPN": 19,
+    "PPPP": 5,
+    "PNNNN": 4,
+    "PPNNN": 4,
+    "PPPPP": 1,
+    "PPPNN": 1
+   },
+   "N_to_P": [
+    {
+     "root": [
+      "dCx",
+      "YFG",
+      "ayx",
+      "bXX",
+      "cYa",
+      "dXY",
+      "eXy",
+      "feb",
+      "gYY"
+     ],
+     "seq": "PNNP",
+     "words": [
+      "xdC",
+      "ygf",
+      "aji",
+      "bXX",
+      "cHa",
+      "dXH",
+      "yeI",
+      "feb",
+      "gYJ",
+      "hgf",
+      "idC",
+      "jeI"
+     ]
+    }
+   ]
+  },
+  "control0": {
+   "chains": 300,
+   "replay_ok": 300,
+   "replay_failed": 0,
+   "transitions": {
+    "P->P": 767,
+    "P->N": 130,
+    "N->N": 6
+   },
+   "sequences": {
+    "PPPN": 124,
+    "PPPP": 169,
+    "PPNN": 4,
+    "PPPNN": 2,
+    "PPPPP": 1
+   },
+   "N_to_P": []
+  },
+  "control2": {
+   "chains": 300,
+   "replay_ok": 300,
+   "replay_failed": 0,
+   "transitions": {
+    "P->P": 346,
+    "P->N": 271,
+    "N->N": 371
+   },
+   "sequences": {
+    "PPNN": 91,
+    "PNNN": 59,
+    "PPPN": 39,
+    "PPPP": 23,
+    "PPNNN": 42,
+    "PNNNN": 21,
+    "PPPNN": 15,
+    "PPPPN": 4,
+    "PPPPP": 6
+   },
+   "N_to_P": []
+  }
+ }
+}

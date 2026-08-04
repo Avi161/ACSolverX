@@ -1,0 +1,4 @@
+  ak3       chains=300 replay_ok=300 failed=0 transitions={'P->N': 294, 'N->N': 473, 'P->P': 142, 'N->P': 1} N->P chains=1
+  control0  chains=300 replay_ok=300 failed=0 transitions={'P->P': 767, 'P->N': 130, 'N->N': 6} N->P chains=0
+  control2  chains=300 replay_ok=300 failed=0 transitions={'P->P': 346, 'P->N': 271, 'N->N': 371} N->P chains=0
+wrote /home/user/ACSolverX/results/stable_ac/fable/s20_chain_planarity.json

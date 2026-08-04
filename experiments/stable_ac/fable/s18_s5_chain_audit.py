@@ -166,13 +166,16 @@ class ParentTracker:
 
 def cmd_chains(args) -> dict:
     seed = 20260804
-    base = R.make(("x", "y"), R.DEPTH_LADDER_CONTROL)
+    control = (tuple(args.control.split(","))
+               if getattr(args, "control", None) else R.DEPTH_LADDER_CONTROL)
+    base = R.make(("x", "y"), control)
     recorded = {}
     src = os.path.join(OUT_DIR, "rank_n_ac_search_depth_ladder_rows.jsonl")
-    with open(src, encoding="utf-8") as fh:
-        for line in fh:
-            row = json.loads(line)
-            recorded[row["label"]] = row
+    if control == R.DEPTH_LADDER_CONTROL:
+        with open(src, encoding="utf-8") as fh:
+            for line in fh:
+                row = json.loads(line)
+                recorded[row["label"]] = row
 
     rows = []
     t0 = time.time()
@@ -194,10 +197,11 @@ def cmd_chains(args) -> dict:
                 if res.hit:
                     leaf = R.make(res.best_state["gens"], res.best_state["rels"])
                     chain_sigs, chain_moves, ok = tracker.chain(_sig(leaf), root_sig)
-            ref = recorded.get(label, {})
-            faithful = (ref.get("hit") == res.hit
-                        and ref.get("nodes_used") == res.nodes_used
-                        and ref.get("best_state") == res.best_state)
+            ref = recorded.get(label)
+            faithful = None if ref is None else (
+                ref.get("hit") == res.hit
+                and ref.get("nodes_used") == res.nodes_used
+                and ref.get("best_state") == res.best_state)
             nodes = []
             for sig in chain_sigs:
                 rec = defect_of(sig[1], sig[0])
@@ -448,6 +452,8 @@ def main(argv=None):
     p.add_argument("--out", default=os.path.join(OUT_DIR, "s18_control_chains.json"))
     p.add_argument("--reps", type=int, default=8)
     p.add_argument("--nodes", type=int, default=600)
+    p.add_argument("--control", default=None,
+                   help="comma-separated rank-2 root; default = S5's ladder-D control")
     p.set_defaults(func=cmd_chains)
 
     p = sub.add_parser("cores")
