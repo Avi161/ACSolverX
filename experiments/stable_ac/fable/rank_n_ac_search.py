@@ -105,6 +105,8 @@ __all__ = [
     "triangulation_certificate",
     "standard_presentation",
     "scramble",
+    "cyclically_reduce_pres",
+    "stabilizer_entangled",
     "LinkCache",
     "hunt_defect",
     "independent_defect",
@@ -510,15 +512,29 @@ def enumerate_moves(pres: Pres, include_composite: bool = True):
     return out
 
 
-#: relative weights of the move kinds when sampling.  ``cmul`` dominates deliberately:
-#: it is the only move that raises occurrence multiplicities of stabilized generators
-#: past 2, i.e. the only one that leaves the subdivision regime of Theorem S3.
+#: Relative weights of the move kinds when sampling.  These are set by the MEASURED
+#: flip table of ``S6_MOVE_CLASSIFICATION.md`` section 1, not by intuition:
+#:
+#: * ``ac2`` / ``cmul`` (2-handle slides) are the only moves measured to CREATE
+#:   ``gamma_N = 0`` by a slide (73 creates in 1,863 measured AC2 pairs, 7.0% of
+#:   non-thickenable bases), so they carry almost all the weight;
+#: * bare ``ac3`` conjugation is measured at **315 destroys / 0 creates of 3,507** --
+#:   it destroyed thickenability in 24% of thickenable bases and created it in none.
+#:   It is kept at a token weight purely for mobility in the state graph, and the
+#:   sampler prefers the CANCELLING variant (S6 row M2c: 0 flips of 3,413, inert);
+#: * ``ac1`` is provably inert (S6 Theorem T1, a homeomorphism) -- token weight only;
+#: * ``ac4``/``ac5`` are provably inert on their own (S6 Theorem T4, a wedge with a
+#:   disc) but they are what makes this a *stable* search, so they stay.
+#:
+#: Move (0), free/cyclic reduction, is measured **315 creates / 0 destroys of 2,510**
+#: and is therefore not a sampled move at all: it is applied to every child
+#: unconditionally (``reduce_children`` in :func:`search`).
 DEFAULT_KIND_WEIGHTS = {
-    "ac1": 1.0,
-    "ac2": 3.0,
-    "ac3": 2.0,
-    "cmul": 8.0,
-    "ac4": 0.6,
+    "ac1": 0.5,
+    "ac2": 6.0,
+    "ac3": 0.4,
+    "cmul": 9.0,
+    "ac4": 0.5,
     "ac5": 1.5,
 }
 
@@ -553,7 +569,8 @@ def sample_moves(pres: Pres, count: int, rng: random.Random,
             j = j if j < i else j + 1
             move = ("ac2", i, j, rng.choice((1, -1)))
         elif kind == "ac3":
-            move = ("ac3", rng.randrange(n), rng.choice(pres.gens), rng.choice((1, -1)))
+            i = rng.randrange(n)
+            move = _cancelling_ac3(pres, i, rng)
         elif kind == "cmul":
             i = rng.randrange(n)
             j = rng.randrange(n - 1)
@@ -574,6 +591,69 @@ def sample_moves(pres: Pres, count: int, rng: random.Random,
             continue
         out.append((move, child))
     return out
+
+
+
+def _cancelling_ac3(pres: Pres, i: int, rng: random.Random) -> tuple:
+    """An AC3 conjugation of ``r_i`` that CANCELS at a seam if one exists.
+
+    ``S6_MOVE_CLASSIFICATION.md`` row M2 measures bare conjugation (no cancellation) at
+    315 destroys / 0 creates of 3,507, and row M2c measures conjugation *with*
+    cancellation at 0 flips of 3,413.  So when this module conjugates at all it prefers
+    the inert variant, which still moves the state in the search graph without the
+    measured downside.
+    """
+    r = pres.rels[i]
+    options = []
+    for g in pres.gens:
+        for eps in (1, -1):
+            u = _signed(g, eps)
+            new = free_reduce(u + r + inverse(u))
+            if len(new) < len(r) + 2:                # some cancellation happened
+                options.append(("ac3", i, g, eps))
+    if options:
+        return options[rng.randrange(len(options))]
+    return ("ac3", i, rng.choice(pres.gens), rng.choice((1, -1)))
+
+
+def cyclically_reduce_pres(pres: Pres):
+    """Move (0) applied to every relator; ``None`` if a relator would become empty.
+
+    Measured **315 creates / 0 destroys of 2,510** (``S6_MOVE_CLASSIFICATION.md`` row
+    M0): reduction is the one move known to be one-directionally productive for the
+    ``gamma_N = 0`` predicate.  It is therefore applied to every child of the search
+    rather than being offered as a sampled move -- which also makes the search space
+    coincide with the space the canonical key already quotients to.
+    """
+    out = []
+    for r in pres.rels:
+        red = cyclic_reduce(r)
+        if not red:
+            return None
+        out.append(red)
+    return Pres(pres.gens, tuple(out))
+
+
+def stabilizer_entangled(pres: Pres, base_gens) -> bool:
+    """Is at least one non-base generator genuinely entangled?
+
+    ``S6_MOVE_CLASSIFICATION.md`` Theorem T4' : the FIRST AC2 slide over a fresh
+    stabilizer is a CW **subdivision** of the presentation complex, so ``gamma_N``
+    cannot move there (0 flips of 3,332 measured).  A stabilized generator only starts
+    to matter once it stops being a chord -- operationally, once it occurs **more than
+    twice** and in **at least two distinct relators** (cf. ``S3`` section 4, trap T-S7).
+    States failing this test for every stabilized generator are in a subdivision class
+    of the start and are scored last.
+    """
+    base = set(base_gens)
+    for g in pres.gens:
+        if g in base:
+            continue
+        count = pres.occurrences(g)
+        spread = sum(1 for r in pres.rels if g in r or g.upper() in r)
+        if count > 2 and spread >= 2:
+            return True
+    return False
 
 
 # ======================================================================================
@@ -1054,6 +1134,7 @@ class SearchResult:
     distinct_states: int
     rank_histogram: dict
     anomalies: list
+    entangled_scored: int = 0
 
     @property
     def best_gamma_N(self):
@@ -1083,18 +1164,40 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
            evals: int = 900, seed: int = 0, limits: Limits = Limits(),
            time_budget: float = 240.0, restart_after: int = 6,
            label: str = "", scheme: str = "", census_cap: int = DEFAULT_CENSUS_CAP,
-           verbose: bool = False) -> SearchResult:
+           reduce_children: bool = True, entangle_first: bool = True,
+           base_gens=None, verbose: bool = False) -> SearchResult:
     """Beam search over rank-N AC space, scored by (defect upper bound, total length).
 
     ``nodes`` counts *objective evaluations* (hunter calls), which dominate the cost.
     The search stops at the first verified ``gamma_N = 0`` state, at the node budget, or
     at the wall-clock budget -- whichever comes first.  All three stop reasons are
     recorded; none of them is evidence about AC (PROCESS_GUARD.md).
+
+    Two knobs come straight out of the measured move table of
+    ``S6_MOVE_CLASSIFICATION.md`` and are on by default:
+
+    * ``reduce_children`` applies move (0) to every child (315 creates / 0 destroys of
+      2,510 measured), which also makes the visited space coincide with the space the
+      canonical key quotients to;
+    * ``entangle_first`` scores states whose stabilized generators have escaped the
+      chord regime BEFORE states that have not (Theorem T4': a fresh stabilizer's first
+      slide is a subdivision, so ``gamma_N`` provably cannot move there).  It is a
+      priority, not a gate: when no candidate in a generation is entangled the whole
+      slice is scored anyway, so the search can never starve.  ``base_gens`` names the
+      generators that are NOT stabilizers (default: the start's own generators).
     """
     t0 = time.time()
     rng = random.Random(seed)
     start.validate()
+    if base_gens is None:
+        base_gens = start.gens
 
+    def normalise(state: Pres):
+        if not reduce_children:
+            return state
+        return cyclically_reduce_pres(state)
+
+    entangled_seen = 0
     seen = {canonical_key(start)}
     rank_hist: dict = {}
     anomalies: list = []
@@ -1136,8 +1239,11 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
         candidates = []
         local: set = set()
         for _d, _l, state in frontier:
-            for _move, child in sample_moves(state, branch, rng, limits):
-                if not child.all_generators_occur():
+            for _move, raw in sample_moves(state, branch, rng, limits):
+                child = normalise(raw)
+                if child is None or not child.all_generators_occur():
+                    continue
+                if child.total_length > limits.max_total_length:
                     continue
                 key = canonical_key(child)
                 if key in seen or key in local:
@@ -1152,6 +1258,7 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
                 stopped = "frontier_exhausted"
                 break
             restart, _hist = scramble(start, rng.randrange(3, 13), rng, limits)
+            restart = normalise(restart) or start
             frontier = [(10 ** 6, restart.total_length, restart)]
             continue
         exhausted = 0
@@ -1160,7 +1267,16 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
         # length (shortening is the direction of the standard presentation) but reserve
         # a random share so the beam cannot collapse onto one shortening motif.
         width = max(beam * 3, beam + 4)
-        candidates.sort(key=lambda kc: (kc[1].total_length, kc[1].rank))
+        if entangle_first:
+            marked = [(0 if stabilizer_entangled(c, base_gens) else 1, k, c)
+                      for k, c in candidates]
+            if any(m == 0 for m, _k, _c in marked):
+                marked.sort(key=lambda t: (t[0], t[2].total_length, t[2].rank))
+                candidates = [(k, c) for _m, k, c in marked]
+            else:
+                candidates.sort(key=lambda kc: (kc[1].total_length, kc[1].rank))
+        else:
+            candidates.sort(key=lambda kc: (kc[1].total_length, kc[1].rank))
         cut = (width * 3) // 5
         by_length = candidates[:cut]
         rest = candidates[cut:]
@@ -1176,6 +1292,8 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
                 break
             got, _c = score(child)
             nodes_used += 1
+            if stabilizer_entangled(child, base_gens):
+                entangled_seen += 1
             rank_hist[child.rank] = rank_hist.get(child.rank, 0) + 1
             if got is None:
                 continue
@@ -1204,6 +1322,7 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
                 stopped = "no_scored_children"
                 break
             restart, _hist = scramble(start, rng.randrange(3, 13), rng, limits)
+            restart = normalise(restart) or start
             frontier = [(10 ** 6, restart.total_length, restart)]
             continue
         scored_children.sort(key=lambda t: (t[0], t[1], t[2].rank))
@@ -1218,6 +1337,7 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
         if restart_after and stale_generations >= restart_after:
             stale_generations = 0
             restart, _hist = scramble(start, rng.randrange(2, 6), rng, limits)
+            restart = normalise(restart) or start
             key = canonical_key(restart)
             if key not in seen:
                 seen.add(key)
@@ -1249,11 +1369,14 @@ def search(start: Pres, nodes: int = 1000, beam: int = 6, branch: int = 12,
                 "max_relator_length": limits.max_relator_length,
                 "max_total_length": limits.max_total_length,
                 "min_rank": limits.min_rank, "max_rank": limits.max_rank,
-                "time_budget": time_budget},
+                "time_budget": time_budget, "reduce_children": reduce_children,
+                "entangle_first": entangle_first,
+                "kind_weights": dict(DEFAULT_KIND_WEIGHTS)},
         stopped=stopped,
         distinct_states=len(seen),
         rank_histogram={str(k): v for k, v in sorted(rank_hist.items())},
         anomalies=anomalies,
+        entangled_scored=entangled_seen,
     )
 
 
@@ -1501,7 +1624,8 @@ def run_calibration(out_path: str, nodes: int = 1000, beam: int = 6, branch: int
         result = search(state, nodes=nodes, beam=beam, branch=branch, evals=evals,
                         seed=run_seed, limits=limits,
                         time_budget=time_budget, label=job["label"],
-                        scheme=job["scheme"], verbose=False)
+                        scheme=job["scheme"], base_gens=job["base"].gens,
+                        verbose=False)
         row = result.as_json()
         row["certificate"] = job["certificate"]
         row["base"] = job["base"].as_json()

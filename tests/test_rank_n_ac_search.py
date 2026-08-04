@@ -20,11 +20,15 @@ import pytest
 
 from experiments.stable_ac.fable import neuwirth_rank_n as RN
 from experiments.stable_ac.fable.coset_enum import is_trivial_group
+import experiments.stable_ac.fable.rank_n_ac_search as RNS
 from experiments.stable_ac.fable.rank_n_ac_search import (
     AK3,
+    DEFAULT_KIND_WEIGHTS,
     Limits,
     Pres,
     abelian_invariant,
+    cyclically_reduce_pres,
+    stabilizer_entangled,
     apply_move,
     canonical_key,
     cyclic_reduce,
@@ -448,3 +452,87 @@ def test_search_on_ak3_at_rank_two_cannot_report_a_hit_it_has_not_verified():
         assert result.verification["verified"] is True
     else:
         assert result.best_defect is None or result.best_defect > 0
+
+
+# --------------------------------------------------------------------------------------
+# the S6 measured move table (S6_MOVE_CLASSIFICATION.md section 1) drives these
+# --------------------------------------------------------------------------------------
+
+
+def test_move_weights_follow_the_measured_flip_table():
+    """S6 row M2: bare AC3 conjugation is 315 destroys / 0 creates of 3,507; rows M3
+    (AC2) are the only slides measured to CREATE gamma_N = 0.  The sampler must not be
+    spending its budget on the counterproductive move."""
+    w = DEFAULT_KIND_WEIGHTS
+    assert w["ac3"] < w["ac2"]
+    assert w["ac3"] < w["cmul"]
+    assert w["ac3"] <= 0.5
+    assert w["ac2"] + w["cmul"] > 3 * sum(v for k, v in w.items()
+                                          if k not in ("ac2", "cmul"))
+
+
+def test_ac3_sampler_prefers_a_cancelling_conjugation():
+    """S6 row M2c: conjugation WITH cancellation is inert (0 flips of 3,413)."""
+    p = make(("x", "y"), ("Xyyx", "xyxYXY"))       # r1 starts with X and ends with x
+    rng = random.Random(0)
+    for _ in range(20):
+        move = RNS._cancelling_ac3(p, 0, rng)
+        child = apply_move(p, move, Limits())
+        assert child is not None
+        assert len(child.rels[0]) < len(p.rels[0]) + 2, move
+    # a cyclically reduced relator with no repeated end letters has no cancelling option
+    q = make(("x", "y"), ("xy", "yx"))
+    move = RNS._cancelling_ac3(q, 0, rng)
+    assert move[0] == "ac3"
+
+
+def test_cyclically_reduce_pres_is_move_zero():
+    """S6 row M0: reduction creates gamma_N = 0 in 315 of 2,510 and destroys it in 0 of
+    997, so the search applies it to every child."""
+    p = Pres(("x", "y"), ("xyxYXYX", "xxxYYYY"))   # r1 = x . (xyxYXY) . x^-1
+    got = cyclically_reduce_pres(p)
+    assert got.rels == ("xyxYXY", "xxxYYYY")
+    assert got.gens == p.gens
+    # a relator that reduces away entirely makes the state illegal
+    assert cyclically_reduce_pres(Pres(("x", "y"), ("xX" and "xyXY", "xY"))) is not None
+    assert cyclically_reduce_pres(Pres(("x", "y"), ("xyxXYX", "xy"))) is None
+
+
+def test_stabilizer_entanglement_gate_matches_theorem_T4_prime():
+    """T4': a fresh stabilizer's first slide is a subdivision, so gamma_N cannot move
+    while the new generator is still a chord."""
+    base = ("x", "y")
+    # z occurs twice, in two relators: still a chord
+    chordal = make(("x", "y", "z"), ("xyxYXYz", "xxxYYYY", "Z"))
+    assert stabilizer_entangled(chordal, base) is False
+    # z occurs three times but only in one relator plus its own: not yet entangled
+    one_relator = make(("x", "y", "z"), ("xyzxzYXY", "xxxYYYY", "Z"))
+    assert stabilizer_entangled(one_relator, base) is False
+    # three occurrences spread over two relators: entangled
+    entangled = make(("x", "y", "z"), ("xyzxzYXY", "xxxYYYYz", "xxyyz"))
+    assert stabilizer_entangled(entangled, base) is True
+    # a state with no stabilizers at all is never entangled
+    assert stabilizer_entangled(AK3_PRES, base) is False
+
+
+def test_search_scores_only_cyclically_reduced_states_by_default():
+    limits = Limits(max_relator_length=10, max_total_length=30, min_rank=2, max_rank=4)
+    result = search(AK2_MEMBER, nodes=60, beam=3, branch=8, evals=300, seed=9,
+                    limits=limits, time_budget=60.0)
+    best = Pres(tuple(result.best_state["gens"]), tuple(result.best_state["rels"]))
+    for r in best.rels:
+        assert cyclic_reduce(r) == r, best
+    assert result.budget["reduce_children"] is True
+    assert result.budget["entangle_first"] is True
+    assert result.entangled_scored >= 0
+
+
+def test_entangle_first_never_starves_the_search():
+    """The T4' priority is a priority, not a gate: a start with no entangled child at
+    all must still get its full node budget."""
+    limits = Limits(max_relator_length=10, max_total_length=30, min_rank=2, max_rank=3)
+    a = search(AK3_PRES, nodes=50, beam=3, branch=8, evals=200, seed=13, limits=limits,
+               time_budget=60.0, entangle_first=True)
+    b = search(AK3_PRES, nodes=50, beam=3, branch=8, evals=200, seed=13, limits=limits,
+               time_budget=60.0, entangle_first=False)
+    assert a.nodes_used >= 40 and b.nodes_used >= 40

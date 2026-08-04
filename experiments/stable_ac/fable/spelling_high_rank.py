@@ -13,12 +13,16 @@ worthless without the first:
     ``prod_g (deg(g+) - 1)!`` is driven by germ DEGREE, and at fixed total length degree
     falls as rank rises.
 
-2.  **The hunt.**  gamma_N is a property of the exact word-realized complex, i.e. of the
-    SPELLING, while the AC moves act on elements of the free group.  So a defect-0 census
-    on *any* spelling of *any* member of AK(3)'s stable class would be a Lackenby
-    certificate for AK(3) (subject to the Joint-A gap, flagged everywhere below).  The
-    hunt inserts spikes -- including on stabilized generators, which only exist at high
-    rank -- into high-rank refinements of AK(3) and decides each by exact census.
+2.  **The one spelling question still pointed the right way.**  The spike-INSERTION hunt
+    on cyclically reduced bases (AK(3) and its refinements) is CLOSED for the positive
+    direction by task A8's measurement (`S6_MOVE_CLASSIFICATION.md` section 1): free/cyclic
+    reduction created ``gamma_N = 0`` in 315 of 2,510 non-thickenable spellings and
+    destroyed it in **0 of 997** thickenable ones, so -- read contrapositively --
+    inserting a spike can only preserve or destroy thickenability, never create it.  The
+    hunt is retained in this module only as the *negative-control* instrument it now is.
+    What is left open is the destroying direction, R7's **Conjecture SR**: is there a
+    thickenable spelling whose free/cyclic reduction is NOT thickenable?  ``sr_hunt``
+    looks for exactly that, and a hit would reopen the whole spelling route.
 
 Bound direction, recorded per the standing lesson
 (``experiments/lessons/parallel-runs-and-bound-direction.md``):
@@ -368,16 +372,157 @@ def _walk_rungs(rank: int, targets, *, per_cell: int, seed: int, evals: int,
     return out
 
 
-def build_ladder(*, ranks=(4, 6, 8), lengths=(13, 16, 19, 22, 25), per_cell: int = 6,
+def build_ladder(*, ranks=(2, 4, 6, 8), lengths=(13, 16, 19, 22, 25), per_cell: int = 8,
                  seed: int = 20260804, evals: int = 40_000, tries: int = 4000,
-                 rank2_path: str = None) -> list:
+                 rank2_path: str = None, rank2_evals: int = 200_000,
+                 deadline: float = None) -> list:
+    """Rungs = presentations KNOWN thickenable, certified without touching the census.
+
+    Rank 2 gets a larger climber budget because R7b measured its detection collapsing
+    above total length ~20; the existing ``witness_sensitivity`` ladder is folded in for
+    the same reason (its top rungs cost 2,000,000 evaluations each).
+    """
+    t0 = time.time()
     rungs = []
     if rank2_path and os.path.exists(rank2_path):
         rungs.extend(_rank2_rungs(rank2_path))
     for k, rank in enumerate(ranks):
+        if deadline is not None and time.time() - t0 > deadline:
+            break
+        budget = rank2_evals if rank == 2 else evals
         rungs.extend(_walk_rungs(rank, lengths, per_cell=per_cell, seed=seed + 7 * k,
-                                 evals=evals, tries=tries))
+                                 evals=budget, tries=tries))
     return rungs
+
+
+def decidability_scan(*, ranks=(2, 3, 4, 6, 8), lengths=(13, 16, 19, 22, 25),
+                      per_cell: int = 50, seed: int = 20260804, tries: int = 20_000,
+                      cap: int = DEFAULT_CAP, width: int = 1) -> dict:
+    """The bias-free companion to the ladder.
+
+    The pipeline is an EXACT census, so on a state that really is thickenable it returns
+    defect 0 **iff** its compatible family fits inside the cap.  Detection rate is
+    therefore a function of the DEGREE PROFILE alone, and can be estimated on an
+    unconditional sample -- no ``gamma_N = 0`` filter, hence no selection by the climber
+    whose own sensitivity varies with rank.  States are AC1-AC3 walks out of the standard
+    presentation, so every one is AC-trivial and presents the trivial group.
+    """
+    rng = random.Random(seed)
+    cells: dict = {}
+    for rank in ranks:
+        limits = RN.Limits(max_relator_length=16, max_total_length=max(lengths) + 6,
+                           min_rank=rank, max_rank=rank)
+        base = RN.standard_presentation(rank)
+        want = {int(t): [] for t in lengths}
+        for _ in range(tries):
+            if all(len(v) >= per_cell for v in want.values()):
+                break
+            cur, _h = RN.scramble(base, rng.randrange(4, 40), rng, limits)
+            if len(cur.gens) != rank or not cur.all_generators_occur():
+                continue
+            L = cur.total_length
+            hit = [t for t in want if abs(t - L) <= width and len(want[t]) < per_cell]
+            if not hit:
+                continue
+            want[hit[0]].append(census_cost(cur.rels, cur.gens))
+        for t, costs in want.items():
+            if not costs:
+                continue
+            costs.sort()
+            cells[f"{t}|{rank}"] = {
+                "band": t, "rank": rank, "n": len(costs),
+                "decidable": sum(1 for c in costs if c <= cap),
+                "decidable_rate": sum(1 for c in costs if c <= cap) / len(costs),
+                "median_census": costs[len(costs) // 2],
+                "max_census": costs[-1],
+            }
+    return cells
+
+
+# --------------------------------------------------------------------------------------
+# the one open spelling question: can free/cyclic REDUCTION destroy thickenability?
+# --------------------------------------------------------------------------------------
+
+
+def sr_hunt(*, ranks=(2, 3, 4), max_base_length: int = 12, spike_depth: int = 2,
+            per_rank: int = 400, seed: int = 20260804, cap: int = DEFAULT_CAP,
+            deadline: float = 120.0) -> dict:
+    """Counterexample hunt for R7's **Conjecture SR**.
+
+    SR says ``gamma_N(spike(P)) = 0  =>  gamma_N(P) = 0``.  A counterexample is a spelling
+    ``K`` with ``gamma_N(K) = 0`` whose free/cyclic reduction has ``gamma_N > 0``.  Both
+    sides are decided by EXACT census inside ``cap``; a pair where either side is skipped
+    is counted and discarded, never converted into a verdict.
+
+    Bases are AC1-AC3 walks out of the standard presentation (AC-trivial by construction);
+    the interesting bases are the NON-thickenable ones, since a counterexample needs
+    ``gamma_N(reduced) > 0``, and the spikes are then piled on those.
+    """
+    t0 = time.time()
+    rng = random.Random(seed)
+    tested = 0
+    skipped = 0
+    zero_spellings = 0
+    counterexamples = []
+    per_rank_stats = {}
+    for rank in ranks:
+        limits = RN.Limits(max_relator_length=12, max_total_length=max_base_length + 4,
+                           min_rank=rank, max_rank=rank)
+        base = RN.standard_presentation(rank)
+        n_bases = 0
+        n_bad = 0
+        while n_bases < per_rank and time.time() - t0 < deadline:
+            cur, _h = RN.scramble(base, rng.randrange(3, 26), rng, limits)
+            if len(cur.gens) != rank or not cur.all_generators_occur():
+                continue
+            if cur.total_length > max_base_length:
+                continue
+            red = decide(cur.rels, cur.gens, cap=cap)
+            n_bases += 1
+            if red["verdict"] != "NOT_THICKENABLE":
+                continue                       # only non-thickenable reductions can break SR
+            n_bad += 1
+            frontier = [tuple(cur.rels)]
+            for _d in range(spike_depth):
+                nxt = []
+                for words in frontier:
+                    for _k, img, _p in spike_images(words, cur.gens):
+                        if time.time() - t0 > deadline:
+                            break
+                        row = decide(img, cur.gens, cap=cap)
+                        if row["verdict"] == "SKIPPED":
+                            skipped += 1
+                            continue
+                        tested += 1
+                        nxt.append(img)
+                        if row["verdict"] == "THICKENABLE":
+                            zero_spellings += 1
+                            counterexamples.append({
+                                "spelling": list(img),
+                                "reduced": list(cur.rels),
+                                "generators": list(cur.gens),
+                                "spelling_defect": row["minimum_defect"],
+                                "reduced_defect": red["minimum_defect"],
+                            })
+                    if time.time() - t0 > deadline:
+                        break
+                frontier = nxt[:60]
+                if time.time() - t0 > deadline:
+                    break
+        per_rank_stats[str(rank)] = {"bases": n_bases, "non_thickenable_bases": n_bad}
+    return {
+        "record": "SR counterexample hunt (does free/cyclic reduction ever DESTROY "
+                  "gamma_N = 0?)",
+        "conjecture": "SR: gamma_N(spike(P)) = 0  =>  gamma_N(P) = 0",
+        "counterexample_shape": "a spelling with defect 0 whose reduction has defect > 0",
+        "spellings_tested": tested,
+        "skipped_over_cap": skipped,
+        "counterexamples": counterexamples,
+        "n_counterexamples": len(counterexamples),
+        "per_rank": per_rank_stats,
+        "cap": cap,
+        "seconds": round(time.time() - t0, 2),
+    }
 
 
 def _band(L: int, edges=(13, 16, 19, 22, 25), width: int = 1):
@@ -590,7 +735,8 @@ def cmd_ladder(args):
     rungs = build_ladder(ranks=tuple(int(r) for r in args.ranks.split(",")),
                          lengths=tuple(int(x) for x in args.lengths.split(",")),
                          per_cell=args.per_cell, seed=args.seed, evals=args.evals,
-                         tries=args.tries, rank2_path=args.rank2)
+                         tries=args.tries, rank2_path=args.rank2,
+                         rank2_evals=args.rank2_evals, deadline=args.deadline)
     rows = []
     for r in rungs:
         row = decide(r["words"], r["generators"], cap=args.cap)

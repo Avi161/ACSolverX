@@ -127,7 +127,10 @@ CENSUS_CAP = FALLBACK_CAP                     # 2,000,000 compatible rotation sy
 SAMPLE_BUDGET = 40_000                        # instrument-B evaluations per seed
 SAMPLE_SEEDS = 3                              # independent seeds per state
 MASTER_SEED = 20260804
-TC_CAP = 200_000                              # Todd-Coxeter coset cap per row
+TC_CAP = 2_000_000                            # Todd-Coxeter coset cap per row
+# (200,000 is not enough: aca_82 and aca_86 need ~2.4e5 and ~2.3e5 cosets before the
+#  enumeration collapses to index 1.  A CAP_EXCEEDED is recorded as "unknown", never
+#  as "not trivial".)
 
 # neighbourhood budgets (bounded so no single stage can hang)
 NEIGHBOUR_TOP_N = 10                          # rows given the deeper harvest

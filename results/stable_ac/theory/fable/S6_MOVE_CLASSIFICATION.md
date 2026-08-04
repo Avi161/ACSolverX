@@ -95,8 +95,7 @@ new information.
 
 ---
 
-## 3. T4 — stabilization wedges on a disc; T4′ — the first slide over the stabilizer is a
-subdivision
+## 3. T4 — stabilization wedges on a disc; T4′ — the first slide over it is a subdivision
 
 **Theorem T4 (AC4/AC5).** Let `P⁺ = ⟨x_1..x_n, z | r_1..r_m, z^{±1}⟩` be an AC4 image of
 `P = ⟨x_1..x_n | r_1..r_m⟩`. Then
@@ -582,10 +581,26 @@ for w in [("xyXY","xxy"), ("xyXY","yYxxy"), ("xyXY","Yxxyy")]:
 PY
 ```
 
-expected output:
+expected output (run verbatim this session):
 
 ```
-('xyXY', 'xxy')    12  {0: 2, 4: 4, 2: 6}       gamma_N = 0
-('xyXY', 'yYxxy')  144 {2: 26, 4: 94, 6: 24}    gamma_N = 1
-('xyXY', 'Yxxyy')  144 {4: 94, 2: 26, 6: 24}    gamma_N = 1
+('xyXY', 'xxy') 12 {0: 2, 4: 4, 2: 6} gamma_N = 0
+('xyXY', 'yYxxy') 144 {2: 26, 4: 94, 6: 24} gamma_N = 1
+('xyXY', 'Yxxyy') 144 {4: 94, 2: 26, 6: 24} gamma_N = 1
 ```
+
+Every other example quoted in this note, verified the same way (`generators=("x","y","z")`
+for the rank-3 rows):
+
+| presentation | `γ_N` | role |
+|---|---|---|
+| `("xYY","xYxYY")` | 0 | AC-trivial base (trivial group: `r_1` gives `x = y²`, then `r_2` gives `y = 1`) |
+| `("xxYYX","xYxYY")` | **1** | its AC3 image, `r_1` conjugated by `x` — T2.d |
+| `("xYY","xYx")` | 0 | M3 destroy, base |
+| `("xYYxYx","xYx")` | **1** | `r_1 · r_2` |
+| `("yxxx","yXYX")` | 1 | M3 create, base |
+| `("yxxx","yXYXXXXY")` | **0** | `r_2 · r_1^{-1}`, non-cancelling |
+| `("xyy","XYXYXX")` | 1 | M3 create, base |
+| `("xyy","XYXYXyy")` | **0** | `r_2 · r_1`, cancelling seam |
+| `("xYY","xYx","z")` / `("xYYz","xYx","z")` / `("xYYZ","xYx","z")` | 0 / 0 / 0 | T4, T4′ |
+| `("xYYzz","xYx","z")` | **1** | `m_z = 3` |
