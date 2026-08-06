@@ -4,6 +4,15 @@ Fixed row lists for scoring a search technique, so two techniques are compared o
 
 All rows come from [`data/ms640_solved.txt`](../data/ms640_solved.txt); `pres_id` is the **line index** into that file (0-based, verified). Every row is solved by the baseline greedy at a 10⁶-node budget, so a technique that fails one has failed a solvable problem.
 
+That 10⁶-node run — 640/640, the bins, and the per-row costs everything here is scored against — is documented in [`BASELINE.md`](BASELINE.md).
+
+## The tables
+
+| file | what |
+|---|---|
+| [`BASELINE.md`](BASELINE.md) | the reference run: settings, distribution, the expensive rows, and what it does not contain |
+| [`difficulty_bins.csv`](difficulty_bins.csv) | all 640 rows — cost, path length, bin, `Aut(F₂)` class, and the 50k-budget comparison |
+
 ## `subsets/` — the efficiency ladder
 
 | file | what |
@@ -16,6 +25,8 @@ All rows come from [`data/ms640_solved.txt`](../data/ms640_solved.txt); `pres_id
 ## How the rows were picked
 
 Difficulty is `log10(nodes_explored)` at the 1M budget, cut into ten equal-width bins — each bin costs **3.37×** the one below, spanning 3 nodes to ~575,000. Each subset takes an equal number per bin, so subset-60 is 6 per bin. The bin edges travel inside each `.json` (the `bins` key), so a file is readable without any other table.
+
+Equal-per-bin is doing real work: bins 0–3 hold 529 of the 640 rows but **0.69%** of all nodes the baseline spends, so a uniformly sampled subset measures bin 0 and little else. [`BASELINE.md`](BASELINE.md) has the full per-bin counts.
 
 Within a bin, picks first **minimise `Aut(F₂)`-equivalent pairs**: two presentations in the same class are one problem in two coordinate systems, and sampling both over-weights it. Subset-60 spans 45 distinct classes of the 640's 113; the residual duplicates are forced by bins 7–9, which do not contain enough classes. Subject to that, picks spread evenly over path length.
 

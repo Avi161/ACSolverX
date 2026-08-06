@@ -108,6 +108,11 @@ beam/
   beam_search.py     beam search that loads a trained checkpoint
 scripts/
   check_checkpoint_paths.py  validate stored paths in a checkpoint's solve_data
+experiments/
+  search/            GS-Sub as a module (greedy_baseline.py) + the heap ordering (heuristics.py)
+  equivalence_classes/  Whitehead canonical form: are two presentations the same up to Aut(F2)?
+  analysis/          whitehead.py, the independent cross-check on that canonical form
+benchmark/           the frozen evaluation set: the 640-row reference run and its subsets
 data/                initial-state datasets (one Python-literal presentation per line)
 ```
 
@@ -187,6 +192,16 @@ path, nodes, seen = solver.solve()
 Key knobs are `max_nodes` (search budget) and `max_len` (the largest relator
 length the search will consider, smaller is faster). Relators are written as
 strings over `x, X, y, Y` (where `X = x⁻¹`, `Y = y⁻¹`).
+
+`experiments/search/greedy_baseline.py` is the same search as an importable
+module, and it is what the frozen evaluation set is scored against. At a
+10⁶-node budget it solves **640 / 640** Miller–Schupp presentations, with a
+median cost of 11 nodes and a maximum of 574,959 — the Two-Hump distribution
+measured directly. See [`benchmark/BASELINE.md`](benchmark/BASELINE.md) for
+that run, [`benchmark/README.md`](benchmark/README.md) for the subsets built
+on it, and
+[`experiments/search/HEURISTICS.md`](experiments/search/HEURISTICS.md) for the
+alternative heap ordering.
 
 ## Training
 
