@@ -165,6 +165,17 @@ def stage_parity(cfg, log=print):
     jax_report = _jax_parity(cfg, model, obs, device, log)
     out.update(jax_report)
 
+    # Persisted because the gate is worth more than the cell that printed it: a
+    # Colab session that scrolls away or dies still has to be able to answer
+    # "did parity pass", and `stage_report` reads this rather than re-running it.
+    out["device"] = str(device)
+    if cfg.get("OUT_DIR"):
+        os.makedirs(cfg["OUT_DIR"], exist_ok=True)
+        parity_path = os.path.join(cfg["OUT_DIR"], "parity.json")
+        with open(parity_path, "w") as fh:
+            json.dump(out, fh, indent=2, default=float)
+        _mirror(parity_path, cfg.get("MIRROR_DIR"))
+
     log(json.dumps(out, indent=2, default=float))
     return out
 
@@ -448,15 +459,144 @@ def stage_beam(cfg, log=print):
         temperature=float(cfg.get("BEAM_TEMPERATURE", 0.0)),
         temp_end=float(cfg.get("BEAM_TEMP_END", 0.0)), max_length=L,
         seed=int(cfg.get("SEED", 0)), heartbeat_s=cfg.get("HEARTBEAT_EVERY_S", 60.0),
-        progress=log)
+        time_budget_s=cfg.get("BEAM_TIME_BUDGET_S"), progress=log)
     _mirror(out_path, mirror)
     result.update(summarise(out_path))
     log(json.dumps(result, indent=2))
     return result
 
 
+def _environment():
+    """What the numbers were produced on. A timing is meaningless without it."""
+    env = {"torch": torch.__version__, "python": sys.version.split()[0],
+           "cuda_available": torch.cuda.is_available(),
+           "allow_tf32": bool(torch.backends.cuda.matmul.allow_tf32)}
+    if torch.cuda.is_available():
+        props = torch.cuda.get_device_properties(0)
+        env.update(gpu=props.name, gpu_memory_gb=round(props.total_memory / 2 ** 30, 1),
+                   compute_capability=f"{props.major}.{props.minor}",
+                   cuda=torch.version.cuda)
+    try:
+        import subprocess
+        env["git_commit"] = subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"], cwd=ROOT,
+            stderr=subprocess.DEVNULL).decode().strip()
+    except Exception:                                  # not a clone, or no git
+        env["git_commit"] = None
+    return env
+
+
+def stage_report(cfg, log=print):
+    """Everything needed to judge a run from its artefacts alone.
+
+    Built for the smoke round trip: run a few presentations at *production*
+    beam settings, then hand this one file back. It answers the three questions
+    a partial run has to answer before the full one is worth starting -- did the
+    cross-framework gate pass, do the rows it wrote certify, and what does the
+    measured per-presentation cost imply for all 1190 -- without needing the
+    Colab scrollback, which is the first thing a disconnect destroys.
+
+    Extrapolation is deliberately from *this* run's own mean seconds/row. It is
+    an over-estimate whenever the slice is the easy head of the file (fast
+    solves) and an under-estimate whenever it is the hard tail (150 full steps),
+    so `seconds_per_row_min/max` ship alongside it rather than a bare ETA.
+    """
+    from experiments.ppo import verify_beam
+
+    out_dir = cfg["OUT_DIR"]
+    mirror = cfg.get("MIRROR_DIR")
+    eval_stem = cfg.get("EVAL_DATASET", "1190MS")
+    denom = len(acs_data.read_raw(eval_stem))
+
+    report = {"environment": _environment(),
+              "config": {k: cfg.get(k) for k in (
+                  "SMOKE_RUN", "EVAL_DATASET", "EVAL_START", "EVAL_END", "BEAM_WIDTH",
+                  "BEAM_MAX_STEPS", "BEAM_ALPHA", "BEAM_TIME_BUDGET_S", "ALLOW_TF32",
+                  "MAX_RELATOR_LENGTH", "DATASET", "SEED", "MAX_UPDATES")},
+              "eval_denominator": denom, "beam_runs": [], "training_runs": []}
+
+    parity_path = os.path.join(out_dir, "parity.json")
+    _seed_from_mirror(parity_path, mirror)
+    if os.path.exists(parity_path):
+        with open(parity_path) as fh:
+            report["parity"] = json.load(fh)
+    else:
+        report["parity"] = None
+
+    import glob
+    for path in sorted(glob.glob(os.path.join(out_dir, "beam-*.jsonl"))):
+        rows = []
+        with open(path) as fh:
+            for line in fh:
+                line = line.strip()
+                if line:
+                    try:
+                        rows.append(json.loads(line))
+                    except ValueError:
+                        pass
+        if not rows:
+            continue
+        secs = [r["seconds"] for r in rows if "seconds" in r]
+        solved = [r for r in rows if r.get("solved")]
+        entry = {
+            "file": os.path.basename(path), "rows": len(rows), "solved": len(solved),
+            "solve_rate": round(len(solved) / len(rows), 4),
+            "mean_path_length": round(float(np.mean([r["path_length"] for r in solved])), 2)
+            if solved else None,
+            "max_path_length": max((r["path_length"] for r in solved), default=None),
+        }
+        if secs:
+            mean_s = float(np.mean(secs))
+            entry.update(seconds_per_row_mean=round(mean_s, 3),
+                         seconds_per_row_min=round(float(np.min(secs)), 3),
+                         seconds_per_row_max=round(float(np.max(secs)), 3),
+                         measured_wall_s=round(float(np.sum(secs)), 1),
+                         projected_full_run_hours=round(mean_s * denom / 3600, 2))
+        # The certificate check, on the rows this run actually produced.
+        try:
+            v = verify_beam.verify_file(path, log=lambda *_: None)
+            entry["verified"] = v["verified"]
+            entry["verify_failures"] = [f"line {ln} idx {i}: {why}"
+                                        for ln, i, why in v["failures"][:10]]
+        except ValueError as exc:                      # non-standard filename
+            entry["verify_failures"] = [str(exc)]
+        report["beam_runs"].append(entry)
+
+    for path in sorted(glob.glob(os.path.join(out_dir, "ppo-drt-*.jsonl"))):
+        if path.endswith("_solved.jsonl"):
+            continue
+        last = None
+        with open(path) as fh:
+            for line in fh:
+                line = line.strip()
+                if line:
+                    try:
+                        last = json.loads(line)
+                    except ValueError:
+                        pass
+        if last:
+            report["training_runs"].append({
+                "file": os.path.basename(path), "update": last.get("update"),
+                "sps": round(last.get("sps", 0)), "num_solved": last.get("num_solved"),
+                "num_solved_pinned": last.get("num_solved_pinned"),
+                "seconds_per_update": round(last.get("collect_s", 0) + last.get("learn_s", 0), 2)})
+
+    os.makedirs(out_dir, exist_ok=True)
+    report_path = os.path.join(out_dir, "smoke_report.json")
+    with open(report_path, "w") as fh:
+        json.dump(report, fh, indent=2, default=float)
+    _mirror(report_path, mirror)
+
+    log("=" * 72)
+    log(json.dumps(report, indent=2, default=float))
+    log("=" * 72)
+    log(f"written to {report_path}" + (f" and mirrored to {mirror}" if mirror else ""))
+    log("Paste the block between the ==== lines back into the chat.")
+    return report
+
+
 STAGES = {"convert": stage_convert, "parity": stage_parity,
-          "train": stage_train, "beam_eval": stage_beam}
+          "train": stage_train, "beam_eval": stage_beam, "report": stage_report}
 
 
 def main(cfg, log=print):

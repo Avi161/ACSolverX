@@ -14,7 +14,7 @@ A notebook's location on disk does **not** affect what it runs: every one of the
 | [`stable_ac/cov_baseline.ipynb`](stable_ac/cov_baseline.ipynb) | `experiments.stable_ac.cov.run.run_cov` — Branch B (one-shot change of variables), knobs in `cov/run/config_cov.yaml` | `results/stable_ac/cov/` |
 | [`stable_ac/nb2_big_ladder.ipynb`](stable_ac/nb2_big_ladder.ipynb) | `experiments.stable_ac.cov.ladder.mu_ladder` — the original iterated orbit-floor ladder (rungs 20, beam 32) | `results/stable_ac/mu_scan/` |
 | [`stable_ac/mu_ladder_big.ipynb`](stable_ac/mu_ladder_big.ipynb) | `experiments.stable_ac.cov.ladder.mu_ladder_big` — the scaled chunked ladder + `verify.verify_mu_ladder` | `results/stable_ac/mu_scan/` |
-| [`ppo/ppo_baseline.ipynb`](ppo/ppo_baseline.ipynb) | `experiments.ppo.run_ppo` — the Two-Hump PPO replication on an **A100 GPU** (`convert → parity → beam_upstream → train → beam_trained`), then `experiments.ppo.results_table` | `results/ppo/` |
+| [`ppo/ppo_baseline.ipynb`](ppo/ppo_baseline.ipynb) | `experiments.ppo.run_ppo` — the Two-Hump PPO replication on an **A100 GPU** (`convert → parity → beam_upstream → train → beam_trained → report`), then `experiments.ppo.results_table`. Ships with `SMOKE_RUN = True`: a 5-minute production-width check ending in a pasteable `smoke_report.json` | `results/ppo/` |
 
 The root-level [`greedy_search.ipynb`](../../greedy_search.ipynb) is **not** one of these. It is the upstream AC-SolverX prototype kept as a read-only reference for the numba solver, never run as a pipeline.
 

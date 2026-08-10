@@ -219,3 +219,36 @@ def test_summarise_reports_mean_path_length_over_solves_only(tmp_path):
     got = summarise(str(out))
     assert got["rows"] == 3 and got["solved"] == 2
     assert np.isclose(got["mean_path_length"], 7.0)
+
+
+def test_a_time_budget_stops_between_presentations_and_resumes(model, presentations, tmp_path):
+    """The smoke contract: bounded in wall-clock, but every row it wrote is real.
+
+    A budget that truncated a search would make the smoke a different experiment
+    from the full run. This one only decides whether to start the NEXT
+    presentation, so the rows are full-width decodes and the next call continues
+    from the first index missing off the file.
+    """
+    out = tmp_path / "budget.jsonl"
+    first = run_beam(model, presentations, str(out), start=0, end=40, beam_width=8,
+                     max_steps=30, time_budget_s=1e-9, progress=lambda *_: None)
+    assert first["attempted"] == 1, "the budget is checked after a row, never mid-row"
+    assert first["stopped_early"] is True
+    assert first["remaining"] == 39
+
+    rows = [json.loads(l) for l in open(out) if l.strip()]
+    assert [r["presentation_idx"] for r in rows] == [0]
+    assert rows[0]["beam_width"] == 8 and rows[0]["max_steps"] == 30
+
+    rest = run_beam(model, presentations, str(out), start=0, end=4, beam_width=8,
+                    max_steps=30, progress=lambda *_: None)
+    assert rest["attempted"] == 3 and rest["stopped_early"] is False
+    assert [json.loads(l)["presentation_idx"] for l in open(out) if l.strip()] == [0, 1, 2, 3]
+
+
+def test_no_budget_means_no_early_stop(model, presentations, tmp_path):
+    out = tmp_path / "nobudget.jsonl"
+    got = run_beam(model, presentations, str(out), start=0, end=5, beam_width=8,
+                   max_steps=30, progress=lambda *_: None)
+    assert got["attempted"] == 5 and got["remaining"] == 0
+    assert got["stopped_early"] is False

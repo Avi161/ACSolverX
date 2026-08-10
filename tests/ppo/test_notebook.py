@@ -73,7 +73,7 @@ def test_drive_output_lands_under_mydrive(cells):
     assert '"/content/drive/MyDrive/' in cells[0]
 
 
-def _exec_notebook(cells, tmp_path, monkeypatch):
+def _exec_notebook(cells, tmp_path, monkeypatch, smoke=False, **over):
     """CONFIG -> SETUP -> stub -> RUN, in one namespace, like Colab does."""
     ns = {"__name__": "__main__"}
     exec(cells[0], ns)
@@ -91,27 +91,33 @@ def _exec_notebook(cells, tmp_path, monkeypatch):
 
     monkeypatch.setattr(run_ppo, "main", fake_main)
 
+    ns["SMOKE_RUN"] = smoke
     ns["STAGES"] = ["convert", "parity", "beam_upstream", "train", "beam_trained"]
     ns["ARMS"] = ["1190MS", "AC19_extended"]
     ns["SEEDS"] = [142, 7]
     ns["LOCAL_OUT_DIR"] = str(tmp_path)       # absolute -> join() keeps it
+    ns.update(over)
     exec(cells[2], ns)
     return ns, calls
 
 
-def test_the_run_cell_walks_the_ladder_and_beams_what_it_trained(cells, tmp_path, monkeypatch):
+def _run_isolated(cells, tmp_path, monkeypatch, **kw):
     cwd = os.getcwd()
     saved = dict(sys.modules)
     try:
-        # every arm/seed already has a checkpoint, so beam_trained is not skipped
-        for name in ["ppo-drt-1190MS-s142", "ppo-drt-1190MS-s7",
-                     "ppo-drt-AC19_extended-s142", "ppo-drt-AC19_extended-s7"]:
-            (tmp_path / f"{name}.pt").write_bytes(b"")
-        ns, calls = _exec_notebook(cells, tmp_path, monkeypatch)
+        return _exec_notebook(cells, tmp_path, monkeypatch, **kw)
     finally:
         os.chdir(cwd)
         sys.modules.clear()
         sys.modules.update(saved)
+
+
+def test_the_run_cell_walks_the_ladder_and_beams_what_it_trained(cells, tmp_path, monkeypatch):
+    # every arm/seed already has a checkpoint, so beam_trained is not skipped
+    for name in ["ppo-drt-1190MS-s142", "ppo-drt-1190MS-s7",
+                 "ppo-drt-AC19_extended-s142", "ppo-drt-AC19_extended-s7"]:
+        (tmp_path / f"{name}.pt").write_bytes(b"")
+    ns, calls = _run_isolated(cells, tmp_path, monkeypatch)
 
     stages = [c["STAGE"] for c in calls]
     assert stages == ["convert", "parity", "beam_eval",
@@ -139,12 +145,42 @@ def test_the_run_cell_walks_the_ladder_and_beams_what_it_trained(cells, tmp_path
 
 
 def test_a_missing_checkpoint_skips_its_beam_instead_of_crashing(cells, tmp_path, monkeypatch):
-    cwd = os.getcwd()
-    saved = dict(sys.modules)
-    try:
-        _, calls = _exec_notebook(cells, tmp_path, monkeypatch)
-    finally:
-        os.chdir(cwd)
-        sys.modules.clear()
-        sys.modules.update(saved)
+    _, calls = _run_isolated(cells, tmp_path, monkeypatch)
     assert [c["STAGE"] for c in calls].count("beam_eval") == 1   # only the upstream one
+
+
+def test_the_smoke_runs_the_gates_at_production_beam_settings(cells, tmp_path, monkeypatch):
+    """A shrunken beam would measure a proxy. The smoke must not shrink it.
+
+    Its whole value is that seconds/presentation extrapolates to all 1190 and
+    its rows land in the SAME jsonl the full run resumes -- both of which fail
+    the moment the width or step count differs from production.
+    """
+    ns, calls = _run_isolated(cells, tmp_path, monkeypatch, smoke=True)
+
+    assert [c["STAGE"] for c in calls] == ["convert", "parity", "beam_eval", "report"]
+    beam = calls[2]
+    full = json.loads(json.dumps(ns["BASE"]))
+    assert beam["BEAM_WIDTH"] == 1024 and beam["BEAM_MAX_STEPS"] == 150
+    assert beam["BEAM_TIME_BUDGET_S"] == ns["SMOKE_SECONDS"]
+    assert beam["EVAL_END"] is None, "the budget stops it, not a truncated slice"
+    assert beam["EVAL_DATASET"] == "1190MS"
+    assert full["USE_WANDB"] is False
+    assert calls[-1]["SMOKE_RUN"] is True
+
+
+def test_the_smoke_can_include_two_training_updates(cells, tmp_path, monkeypatch):
+    _, calls = _run_isolated(cells, tmp_path, monkeypatch, smoke=True, SMOKE_TRAIN=True)
+    stages = [c["STAGE"] for c in calls]
+    assert stages == ["convert", "parity", "beam_eval", "train", "report"]
+    train = next(c for c in calls if c["STAGE"] == "train")
+    assert train["MAX_UPDATES"] == 2          # meaningless numbers, real code path
+    assert train["SAVE_EVERY"] == 1           # so the checkpoint + mirror are exercised
+    assert train["DATASET"] == "1190MS"
+
+
+def test_the_smoke_boolean_is_on_by_default_and_documented(cells):
+    """It ships on: the first thing to do with a fresh A100 is the 5-minute check."""
+    assert "SMOKE_RUN     = True" in cells[0]
+    assert "SMOKE_SECONDS = 300" in cells[0]
+    assert "smoke_report.json" in cells[0]
