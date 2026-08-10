@@ -122,7 +122,8 @@ def test_the_run_cell_walks_the_ladder_and_beams_what_it_trained(cells, tmp_path
     stages = [c["STAGE"] for c in calls]
     assert stages == ["convert", "parity", "beam_eval",
                       "train", "beam_eval", "train", "beam_eval",
-                      "train", "beam_eval", "train", "beam_eval"]
+                      "train", "beam_eval", "train", "beam_eval",
+                      "report"]
 
     # the upstream beam decodes the transplanted weights, not a .pt
     assert calls[2]["BEAM_CHECKPOINT"] is None
@@ -184,3 +185,41 @@ def test_the_smoke_boolean_is_on_by_default_and_documented(cells):
     assert "SMOKE_RUN     = True" in cells[0]
     assert "SMOKE_SECONDS = 300" in cells[0]
     assert "smoke_report.json" in cells[0]
+
+
+def test_flipping_the_smoke_boolean_off_is_the_whole_full_run_edit(cells, tmp_path,
+                                                                   monkeypatch):
+    """The user's stated action: change one boolean, change nothing else.
+
+    `STAGES += ["report"]` used to live inside the `if SMOKE_RUN:` branch, so
+    the flag that turns the smoke into the real run also removed the only stage
+    that prints a table -- the full eval would decode all 1190 presentations and
+    end with nothing to read. The report touches no GPU and only reads disk, so
+    it belongs to every ladder.
+    """
+    ns, calls = _run_isolated(cells, tmp_path, monkeypatch, smoke=False)
+    stages = [c["STAGE"] for c in calls]
+
+    assert stages[-1] == "report", "a full run must still print a table"
+    assert stages.count("report") == 1
+    assert calls[-1]["SMOKE_RUN"] is False
+
+    beam = calls[2]
+    assert beam["STAGE"] == "beam_eval"
+    assert beam["BEAM_TIME_BUDGET_S"] is None, "no wall-clock stop on the real run"
+    assert beam["EVAL_END"] is None, "all 1190, not a slice"
+    assert beam["BEAM_WIDTH"] == 1024 and beam["BEAM_MAX_STEPS"] == 150
+    assert beam["EVAL_DATASET"] == "1190MS"
+
+
+def test_the_full_run_report_does_not_overwrite_the_smoke_report(tmp_path):
+    """Two artefacts, two names -- they get read side by side when a number moves."""
+    from experiments.ppo.run_ppo import stage_report
+
+    base = {"OUT_DIR": str(tmp_path), "MIRROR_DIR": None, "EVAL_DATASET": "1190MS",
+            "EVAL_DENOMINATOR": 1190}
+    stage_report({**base, "SMOKE_RUN": True}, log=lambda *_: None)
+    stage_report({**base, "SMOKE_RUN": False}, log=lambda *_: None)
+
+    assert (tmp_path / "smoke_report.json").exists()
+    assert (tmp_path / "report.json").exists()

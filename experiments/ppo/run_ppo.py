@@ -687,7 +687,10 @@ def stage_report(cfg, log=print):
                 "seconds_per_update": round(last.get("collect_s", 0) + last.get("learn_s", 0), 2)})
 
     os.makedirs(out_dir, exist_ok=True)
-    report_path = os.path.join(out_dir, "smoke_report.json")
+    # Distinct names so the full run does not overwrite the smoke report that
+    # justified starting it -- the two are read side by side when a number moves.
+    report_path = os.path.join(
+        out_dir, "smoke_report.json" if cfg.get("SMOKE_RUN") else "report.json")
     with open(report_path, "w") as fh:
         json.dump(report, fh, indent=2, default=float)
     _mirror(report_path, mirror)

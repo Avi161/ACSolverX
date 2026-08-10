@@ -285,3 +285,53 @@ def test_a_beam_without_a_mirror_still_runs(model, presentations, tmp_path):
     got = run_beam(model, presentations, str(out), start=0, end=3, beam_width=8,
                    max_steps=30, heartbeat_s=0.0, progress=lambda *_: None)
     assert got["attempted"] == 3
+
+
+def test_a_restart_on_a_fresh_vm_resumes_from_the_drive_mirror(
+        model, presentations, tmp_path):
+    """The other half of the mirror contract: read it back.
+
+    Mirroring during the beam protects the *rows*; it does not protect the
+    *resume*. A Colab restart wipes `/content` entirely, so unless the mirror is
+    copied back before `_done_indices` looks, a two-hour eval begins again at
+    presentation zero with a full Drive sitting next to it.
+    """
+    drive = tmp_path / "drive"
+    drive.mkdir()
+    local = tmp_path / "content" / "results"          # nothing here: fresh VM
+    out = local / "beam.jsonl"
+
+    first = tmp_path / "seed.jsonl"
+    run_beam(model, presentations, str(first), start=0, end=3, beam_width=8,
+             max_steps=30, heartbeat_s=0.0, progress=lambda *_: None)
+    (drive / "beam.jsonl").write_bytes(first.read_bytes())
+
+    assert not local.exists(), "the point of the test is that local is gone"
+    assert run_ppo._seed_from_mirror(str(out), str(drive)) is True
+    got = run_beam(model, presentations, str(out), start=0, end=5, beam_width=8,
+                   max_steps=30, heartbeat_s=0.0, progress=lambda *_: None)
+    assert got["attempted"] == 2, "the 3 mirrored rows must not be decoded again"
+    assert len(summarise(str(out))["rows"] * [0]) == 5
+
+
+def test_a_torn_mirror_copy_loses_one_row_and_not_the_file(
+        model, presentations, tmp_path):
+    """A disconnect mid-copy leaves Drive holding half a final line.
+
+    `repair_jsonl` already runs before every append, so the seeded file only has
+    to be *parseable after repair*, not intact -- the torn row is re-decoded.
+    """
+    drive = tmp_path / "drive"
+    drive.mkdir()
+    first = tmp_path / "seed.jsonl"
+    run_beam(model, presentations, str(first), start=0, end=3, beam_width=8,
+             max_steps=30, heartbeat_s=0.0, progress=lambda *_: None)
+    raw = first.read_bytes()
+    (drive / "beam.jsonl").write_bytes(raw[:len(raw) - 30])       # torn tail
+
+    out = tmp_path / "content" / "beam.jsonl"
+    run_ppo._seed_from_mirror(str(out), str(drive))
+    got = run_beam(model, presentations, str(out), start=0, end=3, beam_width=8,
+                   max_steps=30, heartbeat_s=0.0, progress=lambda *_: None)
+    assert got["attempted"] == 1, "only the torn row is redone"
+    assert summarise(str(out))["rows"] == 3
