@@ -461,23 +461,37 @@ def _save(trainer, path, mirror):
 
 
 def _wandb_init(cfg, config, tag, log):
+    """Tracking mirrors the jsonl; it is never the source of truth.
+
+    So nothing in here may end a training run. `wandb.init` goes to the network,
+    resolves an entity and a project and can fail for reasons that have nothing
+    to do with this machine -- an outage, a quota, a permission on the team
+    entity. Losing hours of training to that would repeat the distrax mistake
+    exactly: a stage that only *describes* the work taking down the work.
+
+    Catching only ImportError was not enough, and the smoke could not have found
+    it -- SMOKE_RUN forces USE_WANDB off, so the first init ever executed would
+    have been the real multi-hour run.
+    """
     if not cfg.get("USE_WANDB"):
         return None
     try:
         import wandb
-    except ImportError:
-        log("wandb not installed -- continuing without it")
+        return wandb.init(
+            entity=cfg.get("WANDB_ENTITY") or None,
+            project=cfg.get("WANDB_PROJECT") or None,
+            group=cfg.get("WANDB_GROUP") or None,
+            job_type=cfg.get("WANDB_JOB_TYPE") or "ppo-train",
+            name=tag, id=tag, resume="allow",
+            tags=cfg.get("WANDB_TAGS") or None,
+            notes=cfg.get("WANDB_NOTES") or None,
+            config=config,
+        )
+    except Exception as exc:                        # noqa: BLE001 - see docstring
+        log(f"W&B unavailable -- {type(exc).__name__}: {exc}")
+        log("  training continues; per-update metrics still go to the jsonl, "
+            "which is what the report reads.")
         return None
-    return wandb.init(
-        entity=cfg.get("WANDB_ENTITY") or None,
-        project=cfg.get("WANDB_PROJECT") or None,
-        group=cfg.get("WANDB_GROUP") or None,
-        job_type=cfg.get("WANDB_JOB_TYPE") or "ppo-train",
-        name=tag, id=tag, resume="allow",
-        tags=cfg.get("WANDB_TAGS") or None,
-        notes=cfg.get("WANDB_NOTES") or None,
-        config=config,
-    )
 
 
 def checkpoint_tag(cfg, src, update=None):

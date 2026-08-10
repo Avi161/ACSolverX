@@ -312,3 +312,44 @@ def test_the_parity_gate_is_diagnostic_and_cannot_stop_the_ladder():
         assert type(boom).__name__ in got["jax_error"]
         assert "parity_ok" not in got, "a gate that did not run is not a pass"
         assert any("NOT closed" in ln for ln in lines), "the failure must be loud"
+
+
+def test_a_wandb_failure_cannot_end_a_training_run(monkeypatch, tmp_path):
+    """Tracking describes the work; it must never be able to destroy it.
+
+    `wandb.init` reaches the network and can fail on things unrelated to this
+    machine -- an outage, a quota, a permission on the team entity. Only
+    ImportError was caught, so any of those would have propagated out of
+    stage_train and ended hours of training. The smoke could not have caught it
+    either: SMOKE_RUN forces USE_WANDB off, so the first init ever executed
+    would have been the real run.
+    """
+    import types
+    from experiments.ppo import run_ppo
+
+    for exc in (RuntimeError("entity 'x' not found"),
+                OSError("connection reset"),
+                ValueError("quota exceeded")):
+        fake = types.ModuleType("wandb")
+
+        def _boom(*_a, _e=exc, **_k):
+            raise _e
+
+        fake.init = _boom
+        monkeypatch.setitem(sys.modules, "wandb", fake)
+
+        lines = []
+        got = run_ppo._wandb_init({"USE_WANDB": True}, {}, "tag", lines.append)
+        assert got is None, f"{type(exc).__name__} must degrade, not propagate"
+        assert any("W&B unavailable" in ln for ln in lines)
+        assert any("training continues" in ln for ln in lines)
+
+
+def test_wandb_off_does_not_even_import_it(monkeypatch):
+    """The smoke path sets USE_WANDB False; that must stay a zero-cost path."""
+    from experiments.ppo import run_ppo
+
+    # None in sys.modules makes `import wandb` raise -- so if the guard ever
+    # stops short-circuiting, this test fails instead of silently passing.
+    monkeypatch.setitem(sys.modules, "wandb", None)
+    assert run_ppo._wandb_init({"USE_WANDB": False}, {}, "tag", print) is None
