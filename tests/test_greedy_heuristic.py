@@ -22,11 +22,20 @@ import pytest
 
 from experiments.search.greedy_baseline import greedy_search, moves_to_states, str_to_move
 from experiments.search.heuristics import (
-    BASELINE_CONFIG, FEATURES, RECOMMENDED, greedy_search_h, make_priority, phi, word_stats,
+    BASELINE_CONFIG, FEATURES, greedy_search_h, make_priority, phi, word_stats,
 )
 
 MAX_BUDGET = 1000          # the ceiling; never raise it in a test
 MAX_RELATOR_LENGTH = 24    # the layout of data/ms640_solved.txt (48 ints per line)
+
+# An arbitrary non-baseline ordering, unit weights, used ONLY to exercise the machinery on a config
+# that is not the control: the drop-in contract and the certificate replay have to hold for some
+# config other than pure length, or they would only ever test the baseline path.
+#
+# It is deliberately NOT tuned and NOT a recommendation. No test in this file asserts that it beats
+# the baseline on anything, because this module no longer ships a weight vector to make that claim
+# for — see the note in heuristics.py on why the previous RECOMMENDED was withdrawn.
+PROBE_CONFIG = {"segments": [{"upto": None, "w": {"L": 1.0, "K": 1.0}}]}
 
 # These twenty ids are `benchmark/subsets/benchmark_subset_20.json`, verbatim and in file order —
 # inlined rather than loaded so that what CI measures cannot change when that file does, and pinned
@@ -108,7 +117,7 @@ def test_returns_exactly_the_baseline_dict(bench):
     for pid, r1, r2 in [bench[0], bench[-1]]:
         a = greedy_search(r1, r2, 100, max_relator_length=MAX_RELATOR_LENGTH)
         b = greedy_search_h(r1, r2, 100, max_relator_length=MAX_RELATOR_LENGTH,
-                            config=RECOMMENDED)
+                            config=PROBE_CONFIG)
         assert list(a.keys()) == list(b.keys()), f"pres {pid}"
         for k in a:
             assert type(a[k]) is type(b[k]), f"pres {pid}, key {k}"
@@ -118,7 +127,7 @@ def test_unsolved_row_reports_no_certificate(bench):
     """An unsolved search must not claim a path; ``nodes_explored`` is the full budget."""
     pid, r1, r2 = bench[-1]                      # bin 9: unsolved far above this budget
     st = greedy_search_h(r1, r2, MAX_BUDGET, max_relator_length=MAX_RELATOR_LENGTH,
-                         config=RECOMMENDED)
+                         config=PROBE_CONFIG)
     assert st["solved"] is False and st["nodes_explored"] == MAX_BUDGET
     assert st["path"] == [] and st["path_moves"] == [] and st["path_length"] is None
 
@@ -127,7 +136,7 @@ def test_unsolved_row_reports_no_certificate(bench):
 
 def test_every_solved_path_replays_to_a_trivial_state(bench):
     """Replay the stored moves from the start presentation; never diff consecutive states."""
-    runs = _run(bench, RECOMMENDED, MAX_BUDGET, "rec")
+    runs = _run(bench, PROBE_CONFIG, MAX_BUDGET, "probe")
     solved = [(pid, r1, r2) for pid, r1, r2 in bench if runs[pid]["solved"]]
     assert solved, "no solved row to verify — the benchmark or the budget changed"
     for pid, r1, r2 in solved:
@@ -140,39 +149,16 @@ def test_every_solved_path_replays_to_a_trivial_state(bench):
         assert len(end[0]) == 1 and len(end[1]) == 1, f"pres {pid}: path does not end trivial"
 
 
-# ------------------------------------------------------------------- the result the PR claims
-
-def test_recommended_solves_a_superset_of_the_baseline(bench):
-    """Strictly more presentations, and not one traded away.
-
-    "More solved" alone would permit an ordering that wins two rows and loses two others; the
-    superset assertion is what makes the headline a monotone improvement rather than a reshuffle.
-
-    This is a **regression pin, not held-out validation**. Fourteen of these twenty rows are in the
-    slice the shipped weights were selected on, so a green run says they still do what they did — it
-    does not say they generalise. See HEURISTICS.md for the four-row held-out reading (1 -> 3).
-    """
-    base = _run(bench, None, MAX_BUDGET, "base")
-    arm = _run(bench, RECOMMENDED, MAX_BUDGET, "rec")
-    lost = [p for p in base if base[p]["solved"] and not arm[p]["solved"]]
-    assert not lost, f"RECOMMENDED lost presentations the baseline solved: {lost}"
-    assert sum(r["solved"] for r in arm.values()) > sum(r["solved"] for r in base.values())
-
-
-def test_recommended_costs_no_more_nodes_where_both_solve(bench):
-    """Compare nodes as a MEAN over the both-solved set, never as a sum.
-
-    Each arm's both-solved set has its own size, so a sum ranks an arm that solves fewer
-    presentations as the cheaper one.
-    """
-    base = _run(bench, None, MAX_BUDGET, "base")
-    arm = _run(bench, RECOMMENDED, MAX_BUDGET, "rec")
-    both = [p for p in base if base[p]["solved"] and arm[p]["solved"]]
-    assert len(both) >= 5
-    mean_base = sum(base[p]["nodes_explored"] for p in both) / len(both)
-    mean_arm = sum(arm[p]["nodes_explored"] for p in both) / len(both)
-    assert mean_arm <= mean_base
-
+# ----------------------------------------------------------------------------------------------
+#
+# There is deliberately no "the shipped ordering beats the baseline" test here any more. The two
+# that used to sit at this point asserted that RECOMMENDED solved a superset of the baseline's rows
+# and cost no more nodes where both solved — both green, and both uninformative: fourteen of these
+# twenty rows were in the slice those weights were selected on, so the assertions restated the
+# tuning objective rather than testing it. A margin measured on the tuning set is not a margin.
+#
+# Anything that replaces them has to run on rows disjoint from its own tuning slice. Until such a
+# vector exists, this file tests the mechanism only.
 
 # ----------------------------------------------------------------------------------- 4. features
 
@@ -208,14 +194,18 @@ def test_phi_hand_checked():
     assert dict(zip(FEATURES, phi("xxxx", "xy")))["K"] == 1
 
 
-def test_recommended_is_the_formula_the_docs_publish():
-    """HEURISTICS.md and the 60-row results quote these five weights. Pin them.
+def test_module_ships_no_tuned_weight_vector():
+    """BASELINE_CONFIG is the control and the only config this module defines.
 
-    The published numbers were measured with this exact vector; a silent edit here would leave the
-    doc describing an ordering nothing runs, and the benchmark CSV attributing its rows to it.
+    The guard is against a tuned vector quietly reappearing as a module-level default: a name
+    importable from ``heuristics`` becomes the thing every call site passes, and its provenance —
+    which rows it was tuned on, which it was validated on — does not travel with the import.
     """
-    assert RECOMMENDED == {"segments": [{"upto": None, "w": {
-        "L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
+    import experiments.search.heuristics as h
+    exported = {n for n in vars(h)
+                if n.isupper() and isinstance(getattr(h, n), dict) and "segments" in getattr(h, n)}
+    assert exported == {"BASELINE_CONFIG"}, f"unexpected shipped config(s): {exported}"
+    assert h.BASELINE_CONFIG == {"segments": [{"upto": None, "w": {"L": 1.0}}]}
 
 
 def test_bench_ids_are_the_shipped_subset_20():
@@ -285,15 +275,17 @@ def test_untested_arm_rows_say_none_and_never_false(n):
 def test_arms_csv_and_json_are_the_same_table(n):
     """Each arms table ships twice. Two shipped representations that disagree is a real defect.
 
-    The JSON also records the weight vector its `heur_*` columns were measured with, so it pins
-    `RECOMMENDED` from the data side: a weight edit that left the doc alone would still be caught.
+    The JSON also records the weight vector its `heur_*` columns were measured with. That vector is
+    no longer defined anywhere in the code — it was withdrawn as overfit — so the JSON field is now
+    the *only* record of what produced those columns, and it has to keep saying so: a `heur_*` block
+    whose provenance went missing would read as the output of whatever ordering ships today.
     """
     stem = os.path.join(_ROOT, "benchmark", "subsets", f"benchmark_subset_{n}_arms")
     with open(stem + ".csv") as f:
         from_csv = list(csv.DictReader(f))
     with open(stem + ".json") as f:
         doc = json.load(f)
-    assert doc["heuristic_weights"] == RECOMMENDED["segments"][0]["w"]
+    assert doc["heuristic_weights"], "heur_* columns must keep the weights that produced them"
     assert len(from_csv) == len(doc["rows"]) == n
     for c, j in zip(from_csv, doc["rows"]):
         # The CSV is the JSON stringified, so compare on that footing rather than re-typing it.
@@ -311,8 +303,8 @@ def test_priority_keys_stay_comparable_across_segments():
     """The leading segment index is load-bearing twice over.
 
     It makes every state below the boundary outrank every state above it, and it keeps two
-    segments' scores, which are on unrelated scales, from ever being compared. RECOMMENDED is one
-    segment, but the schema allows more, so the shape is pinned here rather than left to a caller.
+    segments' scores, which are on unrelated scales, from ever being compared. Nothing in the repo
+    currently uses a multi-segment config, so the shape is pinned here rather than left to a caller.
     """
     p = make_priority({"segments": [{"upto": 16, "w": {"L": 1.0}},
                                     {"upto": None, "w": {"L": 1.0, "K": 4.0}}]})
