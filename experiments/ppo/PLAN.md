@@ -75,6 +75,7 @@ The action mask is semantic, not just padding: `(i,j)` is legal iff `r1[i] == -r
 | `beam.py` | beam decode + resumable jsonl (`repair_jsonl` before any append) | `tests/ppo/test_beam.py` |
 | `run_ppo.py` | the four stages `convert` / `parity` / `train` / `beam_eval` | `tests/ppo/test_notebook.py` |
 | `results_table.py` | the replication table, from beam jsonls over `1190MS` and nothing else | `tests/ppo/test_results_table.py` |
+| `verify_beam.py` | certificate check: replays every solved row through `acs_spec` alone | `tests/ppo/test_verify_beam.py` — tampered certificates must fail |
 | `../notebooks/ppo/ppo_baseline.ipynb` | the A100 Colab driver, CONFIG / SETUP / RUN / TABLE | executed cell by cell in `test_notebook.py` |
 
 Answers to what this section used to ask for: the GPU is an **A100**; `torch` is installed locally, and `jax`/`flax`/`orbax` are not — the cross-framework parity gate runs on Colab, where they ship with the image. W&B goes to project `acsolver`, entity `avigyapaudel045-aisc`.
@@ -105,9 +106,12 @@ This costs nothing, because a search at budget `B` is exactly the first `B` expa
 The notebook's `STAGES` list is the order, cheapest gate first. Nothing below has been run yet.
 
 1. **`parity`** — minutes. Closes the one gate that cannot close locally: same weights, same batch, JAX vs torch, TF32 off. Everything it can check without JAX already passes in `tests/ppo`.
-2. **`beam_upstream`** — hours. Beam-decode the shipped `610model` over `1190MS` at 1024 × 150. Expect ~605–610. **This is the gate on training**: if it lands there, env + net + weights + decode are all correct and the only remaining variable is optimisation.
+2. **`beam_upstream`** — well under an hour on an A100. Beam-decode the shipped `610model` over `1190MS` at 1024 × 150. Expect ~605–610. **This is the gate on training**: if it lands there, env + net + weights + decode are all correct and the only remaining variable is optimisation.
 3. **`train`** — the long pole. `MAX_UPDATES = 1000` (where upstream's own artefact stopped) per (arm, seed), resumable across sessions via the checkpoint + Drive mirror. Run one seed first and read `sps` from the heartbeat before committing to five. 4376 updates × 5 seeds × 2 arms is not one Colab session and is not claimed to be.
 4. **`beam_trained`** — one beam per trained checkpoint, same 1024 × 150 over `1190MS`.
-5. **The table** — `results_table.py` prints it from the beam jsonls, with the paper's published rows alongside as a clearly-labelled reference. Training-time `num_solved` is refused: on the AC-19 arm it counts over 156,762 rows, not 1190.
+5. **`verify_beam`** — `python3 -m experiments.ppo.verify_beam results/ppo/beam-*.jsonl` on any machine, no GPU, no torch. Every solved row is replayed through `acs_spec` alone and must reach a trivial presentation at exactly its recorded `path_length`. Run it before quoting any count: the beam gathers its path through 150 steps of dedup and no-op kills, and a mis-gathered path still looks like a path.
+6. **The table** — `results_table.py` prints it from the beam jsonls, with the paper's published rows alongside as a clearly-labelled reference. Training-time `num_solved` is refused: on the AC-19 arm it counts over 156,762 rows, not 1190.
+
+**Runtime, measured where it could be.** One beam step is one forward of `beam_width` states; locally that is 240 ms at batch 1024 on CPU (137,765 params, 2 blocks), so the whole `beam_upstream` worst case — 1190 × 150 forwards with nothing solving early — is ~12 h on this laptop and, on an A100 where a model this small is launch-bound rather than FLOP-bound, minutes to tens of minutes. Training is heavier: 228,480 states collected per update plus 3 epochs of forward+backward over the same, so roughly 2.3M forward-equivalents per update, which puts a 1000-update arm in the low hours. Both are estimates from a CPU measurement, not from a GPU: the beam heartbeat prints pres/min inside the first minute and the training heartbeat prints `sps`, and those are the real numbers. `ALLOW_TF32 = False` is deliberate — upstream pins `jax_default_matmul_precision=float32`, and TF32's ~1e-3 relative error can flip a top-k tie at the margin — so it costs throughput on purpose until the replication number lands.
 
 The greedy block of the table (`GS-SUB` at 10k / 100k / 1M nodes) is not produced here — that is `experiments/notebooks/greedy_baseline.ipynb` over the same 1190 denominator, and `GS-SUB (1M) = 640` is already reproduced as `data/ms640_solved.txt`.
