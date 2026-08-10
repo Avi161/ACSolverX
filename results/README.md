@@ -48,7 +48,7 @@ solve-rate curve. `greedy_1000000_640_…` is the one `difficulty_bins.py` treat
 > **Certificates:** every `solved: true` row in `stable_ac/` is a claim whose proof is its move
 > path. `.venv/bin/python3 -m experiments.stable_ac.verify_results` replays all of them through the
 > pure-Python spec (independent of every solver) and checks budget invariance across files.
-> Standing count: **ALL 9,836 SOLVED-ROW CERTIFICATES VERIFY** (41,793 rows, 12 files, 2026-07-24), plus budget-invariance across 6,608 jobs seen at more than one budget, 0 violations.
+> Standing count: **ALL 13,649 SOLVED-ROW CERTIFICATES VERIFY** (45,633 rows, 14 files, 2026-08-10), plus budget-invariance across 6,608 jobs seen at more than one budget, 0 violations.
 > Rows carry `git_commit` — the code that produced them. Run the verifier before believing any run.
 
 ## `stable_ac/nocov/`
