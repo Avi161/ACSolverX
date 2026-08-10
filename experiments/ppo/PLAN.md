@@ -26,7 +26,7 @@ The Two-Hump **baseline**, unchanged: same env, same network, same hyperparamete
 
 Wrappers, in order: `LogWrapper` → `NormalizeVecReward(gamma)` → `LogPathsProbsS(NUM_ENVS)`. `NormalizeVecReward` (`wrappers.py:319`) divides reward by the running std of the discounted return accumulator — a Welford update over the batch, **not** a reward-mean subtraction. Getting this wrong changes the value scale and nothing will match.
 
-Env reset is not uniform: `ppo_ac_s.py:93-98` pins envs `0..633` to fixed `init_states[idx]` (`sample=False`) and lets the remaining 1,746 sample. That 634 is a magic number in the source with no comment — **needs confirming before the port copies it**.
+Env reset is not uniform: `ppo_ac_s.py:93-98` pins envs `0..633` to fixed `init_states[idx]` (`sample=False`) and lets the remaining 1,746 sample. **The 634 is not arbitrary** — `data/AC19_extended.txt`'s first 634 lines are exactly the first 634 lines of `data/1190MS.txt` (verified: prefix match to line 634, first divergence at 635), and those 634 are precisely the MS presentations that appear anywhere in the extended file at all (`634 / 1190`, indices `0..633`, contiguous). So the pin means **one env permanently dedicated to each Miller–Schupp target present in the training set**, while the other 1,746 sample the full pool. The port must copy this, and must derive 634 from the data rather than hardcoding it.
 
 ### Network — `network.py` (`RelativeDualRingActorCritic`)
 
@@ -51,13 +51,22 @@ The action mask is semantic, not just padding: `(i,j)` is legal iff `r1[i] == -r
 | value loss | PPO2 clipped: `0.5 * max((v-t)^2, (clip(v)-t)^2)` |
 | `SEED` | 14 |
 
+## The `610model` checkpoint — provenance, read off disk
+
+`ppo_checkpoints/610model/{900,950,1000}` turns out to be readable without orbax: the `config` item is saved with `ocp.args.JsonSave`, so `1000/config/metadata` is plain JSON, and `*/array_metadatas/process_0` carries every array's shape. What that says:
+
+- **It is this exact baseline.** The saved config is `ppo_ac_s.py`'s config dict verbatim — `LR 0.0025`, `NUM_ENVS 2380`, `NUM_STEPS 96`, `UPDATE_EPOCHS 3`, `NUM_MINIBATCHES 8`, `MINIBATCH_SIZE 28560`, `GAMMA 0.999`, `GAE_LAMBDA 0.95`, `CLIP_EPS 0.2`, `ENT_COEF 0.01`, `VF_COEF 0.5`, `MAX_GRAD_NORM 0.5`, gelu, `ANNEAL_LR false`, `CYCLE_PENALTY 0.0`, `NOOP_PENALTY 0.0`, `NUM_UPDATES 4376`. Only the seed differs from the script default: **`SEED 142`**, not 14.
+- **It is upstream, not ours.** `ENTITY "Math-AI-Caltech"`, `PROJECT "Some_Experiments_PPO"` — a Caltech run, not one of our W&B runs.
+- **It is the DRT arm.** The `params` shapes are `RelativeDualRingActorCritic` exactly: critic `Dense_0 [64,256] → Dense_1 [256,256] → Dense_2 [256,1]`, actor `Dense_3 [64,128] → Dense_4 [128,4]`, plus `RelativeDualRingBlock_*`. So `610model` is `PPO-SUB-DRT`, and the name matching the `605–610` range of the `+ AC-19` row is consistent but not proof.
+- **Step 1000 is where it stopped, not the end.** `NUM_UPDATES` is 4376 and `max_to_keep=3` at `save_every=50` explains why only 900/950/1000 survive. So this is ~23% of the paper's budget (≈229M of 1e9 timesteps) — useful as a parity fixture, not as a reproduction of the table row.
+- **One residual mismatch.** `solve_data` is length **157,217**, but today's `data/AC19_extended.txt` is 156,762 lines. The training file was 455 rows larger than the one in the repo. Params parity is unaffected (weights don't depend on `init_states`), but a byte-exact *retrain* of this checkpoint is not possible from the repo as it stands.
+
 ## What I need from you
 
 1. **Colab spec** — which GPU tier you get (T4 / L4 / A100) and how long a run you're willing to leave up. 1e9 timesteps at 2,380 envs is the paper's budget; I need the tier to say whether that is one overnight run or a week, and to size a shortened first run that still means something. **Local stays capped at a 1,000-node budget** (user directive, and the standing rule in [`CLAUDE.md`](../../CLAUDE.md)) — see below for what that does and does not allow.
-2. **The `610model` provenance.** `ppo_checkpoints/610model/{900,950,1000}` is an Orbax checkpoint of this exact flax network — which arm is it (`PPO-SUB-DRT`? `+ AC-19`?), roughly what did it score, and is 1000 the final update or where it was stopped? Its saved `config` blob answers most of this but reading it needs orbax installed.
-3. **Permission to install** `torch` locally, plus `jax`/`flax`/`orbax`/`distrax` **once** (none are in `.venv` today; `requirements.txt` pins the JAX stack but it was never installed). JAX is needed only to read the checkpoint and to run the parity check — not for training. Alternative: do both on Colab and keep the local venv clean.
-4. **W&B target** — reuse `acsolver` under entity `avigyapaudel045-aisc`, or a separate `acsolverx-ppo` project.
-5. **A decision on the comparison axis** (see the caveat below).
+2. **Permission to install** `torch` locally, plus `jax`/`flax`/`orbax` **once** (none are in `.venv` today; `requirements.txt` pins the JAX stack but it was never installed). JAX is needed only to load `610model`'s weights for the parity check — not for training. Alternative: do the parity check on Colab too and keep the local venv clean.
+
+Defaults I'm taking unless you say otherwise: W&B goes to project `acsolver`, entity `avigyapaudel045-aisc` (the repo's pinned pair); the table is exactly the format you pasted, with the budget caveat below stated alongside it rather than resolved away.
 
 ## Two caveats on the table you pasted
 
@@ -70,6 +79,10 @@ The action mask is semantic, not just padding: `(i,j)` is legal iff `r1[i] == -r
 Everything local is a **correctness** check, never a result. Concretely: env parity is random rollouts (no search at all), policy parity is one forward pass on a fixed batch (no search at all), and the PPO loop is proved on a handful of updates against a hand-computed GAE — none of these need a budget. The only local step that spends nodes is decoding, and there the cap binds: **beam width × depth ≤ 1,000 expansions**, ~10 presentations. Any solve count from a local run is a smoke test and is reported as such; every number that goes in the table comes from Colab.
 
 This costs nothing, because a search at budget `B` is exactly the first `B` expansions of any longer search — a bigger local budget would buy a slower repro, not a different behaviour.
+
+## The branch is local-only
+
+`experiments/ppo` exists in this worktree and nowhere else — it has never been pushed. Colab clones from `origin`, so nothing here can run there until it is pushed, and a push on this repo requires the log ritual in [`CLAUDE.md`](../../CLAUDE.md) (a `## HH:MM:SS UTC · \`<shortsha>\`` section in `logs/DD-MM-YYYY.md`, then a follow-up commit filling in the SHA). Say the word and I'll do the logged push; I'm not pushing unasked.
 
 ## Build order once the above is answered
 
