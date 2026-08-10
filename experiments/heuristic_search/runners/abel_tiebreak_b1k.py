@@ -1,4 +1,4 @@
-"""Which tie-break does the abelianized-magnitude key want second — length, or the shorter relator?
+"""Which tie-break does the abelianized-magnitude key want second — length, or ``S``?
 
 **Zero search nodes.** Every number here is a re-ranking of the frozen
 ``covsweep_1000_66_*.jsonl`` (and, as a free robustness check, its 10,000-node twin) through
@@ -10,33 +10,45 @@ nothing here can exceed the local budget cap.
 
 ``abel`` alone is a filter, not a ranking: it leaves a median of 6 candidates tied at its
 minimum on subset-60 and collapses to a unique pick on only 7 of 60. Something has to break
-that tie, and two orderings are on the table:
+that tie, and the ordering the tuned heuristic already trusts most is ``S`` — the
+**smallest mean block**, ``hlab.FEATURES[7]``, the mean run length of the thinner generator
+read cyclically over both relators. It carries the largest weight in
+``hsolve.RECOMMENDED`` (8.458, against ``L``'s 1.0), which is the reason to try it here.
 
 | arm | key |
 |---|---|
-| ``abel_min_len`` | ``(abel, min(|r1|,|r2|), |r1|+|r2|)`` — shorter relator first |
-| ``abel_len_min`` | ``(abel, |r1|+|r2|, min(|r1|,|r2|))`` — total length first |
+| ``abel_S_len`` | ``(abel, S, |r1|+|r2|)`` — smallest mean block first |
+| ``abel_len_S`` | ``(abel, |r1|+|r2|, S)`` — total length first |
 
-Both then fall through to ``_ident`` (the CoV's own name) for determinism, which is the only
-key left: with two relators ``max = total - min``, so once ``abel``, ``min`` and ``total``
-are fixed there is no further length information to spend.
+Both then fall through to ``_ident`` (the CoV's own name) for determinism.
 
-## "Mean relator length" is total length
+## Three keys that are not ``S``, kept because they were asked for first
 
-The proposal as first worded was ``(abel, mean relator length, total)`` against
-``(abel, total, mean relator length)``. Every candidate here is a **two**-relator pair, so
-``mean = total / 2`` — a strictly monotone function of total length, hence the identical
-ordering. Those two arms are one arm, and ``assert_mean_is_length`` proves it on all 60
-presentations rather than arguing it. The substantive contrast is the one above, on
-``min(|r1|, |r2|)``, which is not a function of the total.
+- **Mean relator length is total length.** Every candidate here is a **two**-relator pair, so
+  ``mean = total / 2`` — a strictly monotone function of the total, hence the identical
+  ordering. ``assert_mean_is_length`` proves it on all 60 rather than arguing it.
+- **``Lmin``** = ``min(|r1|, |r2|)``, ``hlab.FEATURES[1]`` — the shorter *relator*, which is
+  what "min of min relator length" reads as if ``S`` is not meant. It is genuinely not a
+  function of the total, so it is measured, and it comes out a dead heat with the total.
+- **``max = total - Lmin``**, so once ``abel``, ``Lmin`` and the total are fixed there is no
+  further *length* information to spend. That is why the sweep below leaves length behind and
+  ranges over the whole 17-feature vocabulary.
 
-## min-relator here is a start feature, not the search's progress signal
+## These are start features, not the search's progress signals
 
-``min_relator_length`` earned its reputation as a *progress* signal read off a running
-search. This key reads ``min(len(r1), len(r2))`` off the **start** pair, before a node is
-popped — the anti-leak gate in ``abel_topk_cov_b1k.load`` exists precisely so no key can
-reach the search-derived ``min_relator``/``min_relator_length`` columns. Same word, a
-different object; a win here would not be evidence for the other one.
+``S`` and ``Lmin`` earn their weights inside ``hsolve``/``hfast`` as **climb** features,
+re-evaluated at every node of a running search, where they measure progress. Here they are
+read off the **start** pair, before a node is popped — the anti-leak gate in
+``abel_topk_cov_b1k.load`` exists precisely so no key can reach the search-derived
+``min_relator``/``min_relator_length`` columns. Same features, a different object: a result
+here is evidence about *start ranking*, and neither confirms nor refutes the heap ordering.
+
+## The second-key sweep
+
+Since a key costs nothing to evaluate, ``second_key_sweep`` scores **every** one of the 17
+features in both positions — ``(abel, f, total)`` and ``(abel, total, f)`` — plus ``reco``,
+the full ``RECOMMENDED`` linear score used as a single key. That is the empirical answer to
+"if it is a tie, use something else": the something else is enumerated, not argued.
 
 ## What is measured
 
@@ -76,6 +88,8 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(_HERE, "..", "..", "..")))
 
 from experiments.heuristic_search.runners import abel_topk_cov_b1k as R  # noqa: E402
+from experiments.heuristic_search.core.hlab import FEATURES, phi  # noqa: E402
+from experiments.heuristic_search.core.hsolve import RECOMMENDED  # noqa: E402
 
 ROOT = R.ROOT
 K = 3
@@ -88,8 +102,44 @@ OUT_MD = "results/comparison/ABEL_TIEBREAK_B1K.md"
 
 # --------------------------------------------------------------------------- keys
 
+_FIDX = {f: i for i, f in enumerate(FEATURES)}
+_RECO_W = RECOMMENDED["segments"][0]["w"]
+
+
+def _feat(name):
+    """A ranking key that reads one ``hlab`` feature off the START pair. ``phi`` caches."""
+    i = _FIDX[name]
+    return lambda d: phi(d["r1"], d["r2"])[i]
+
+
+def _reco(d):
+    """``hsolve.RECOMMENDED``'s own linear score, as a single ranking key."""
+    v = phi(d["r1"], d["r2"])
+    return sum(w * v[_FIDX[k]] for k, w in _RECO_W.items())
+
+
+_S = _feat("S")          # smallest mean block — the heuristic's heaviest weight
+_LMIN = _feat("Lmin")    # length of the shorter relator
+_MK = _feat("MK")        # max knots over the two relators
+
+
+def _s20mk2(d):
+    """``L + 20*S + 2*MK`` — the ``s20_mk2`` heap ordering, used here as a START key.
+
+    The arm that ran the ac19 hard-100k A/B (``results/heuristic_search/hsearch_ac19_hard100k``)
+    and the one the ``S`` grid in ``results/comparison/S_B1K.md`` peaks near. Scored here
+    because it is the composite that was actually named, not a feature of it.
+    """
+    v = phi(d["r1"], d["r2"])
+    return v[_FIDX["L"]] + 20.0 * v[_FIDX["S"]] + 2.0 * v[_FIDX["MK"]]
+
+
 def _minrel(d):
-    """The shorter of the two START relators. Never the row's search-derived min_relator."""
+    """The shorter of the two START relators. Never the row's search-derived min_relator.
+
+    Identical to ``_LMIN`` by construction; kept as its own definition because the arms named
+    ``*_min*`` predate the sweep and ``assert_lmin_is_minrel`` pins the two against each other.
+    """
     return min(len(d["r1"]), len(d["r2"]))
 
 
@@ -115,9 +165,18 @@ ARMS = {
     "abel_len_min":  lambda d: (_abel(d), R._start_len(d), _minrel(d)),
     # min alone, to see what it does with no length behind it
     "abel_min":      lambda d: (_abel(d), _minrel(d)),
+    # the heuristic's own heaviest feature, in both positions and alone
+    "abel_S_len":    lambda d: (_abel(d), _S(d), R._start_len(d)),
+    "abel_len_S":    lambda d: (_abel(d), R._start_len(d), _S(d)),
+    "abel_S":        lambda d: (_abel(d), _S(d)),
+    "S_only":        lambda d: (_S(d),),
+    # the composite the S weight actually ships inside: L + 20*S + 2*MK
+    "abel_s20mk2":   lambda d: (_abel(d), _s20mk2(d)),
+    "abel_len_s20mk2": lambda d: (_abel(d), R._start_len(d), _s20mk2(d)),
+    "s20mk2_only":   lambda d: (_s20mk2(d),),
 }
 
-HEADLINE = ("abel_min_len", "abel_len_min")
+HEADLINE = ("abel_S_len", "abel_len_S")
 
 # the key chains, for the discrimination table: how much of the tie each one actually breaks
 CHAINS = {
@@ -126,6 +185,10 @@ CHAINS = {
     "abel + total":       lambda d: (_abel(d), R._start_len(d)),
     "abel + min + total": lambda d: (_abel(d), _minrel(d), R._start_len(d)),
     "abel + total + longest": lambda d: (_abel(d), R._start_len(d), R._longest(d)),
+    "abel + S": lambda d: (_abel(d), _S(d)),
+    "abel + S + total": lambda d: (_abel(d), _S(d), R._start_len(d)),
+    "abel + reco": lambda d: (_abel(d), _reco(d)),
+    "abel + s20mk2": lambda d: (_abel(d), _s20mk2(d)),
 }
 
 
@@ -183,6 +246,19 @@ def assert_mean_is_length(cov):
     same_as_lex = sum(1 for p in cov
                       if [_id(d) for d in a[p][:K]] == [_id(d) for d in c[p][:K]])
     return len(cov), same_as_lex
+
+
+def assert_lmin_is_minrel(cov):
+    """Gate — the ``*_min*`` arms rank on exactly ``hlab``'s ``Lmin``, not a lookalike.
+
+    Two definitions of "the shorter relator" are in play (this file's ``_minrel`` and the
+    feature table's index 1); if they ever diverge, the sweep row labelled ``Lmin`` and the
+    arms labelled ``min`` would silently be measuring different keys.
+    """
+    bad = [(p, d["r1"], d["r2"]) for p, v in cov.items() for d in v
+           if float(_minrel(d)) != _LMIN(d)]
+    assert not bad, f"_minrel != FEATURES['Lmin'] on {len(bad)} rows, e.g. {bad[0]}"
+    return True
 
 
 # ------------------------------------------------------------------------ scoring
@@ -247,6 +323,27 @@ def discrimination(cov):
     return out
 
 
+def second_key_sweep(cov):
+    """Every feature as the second key, in both positions. Zero search nodes, so exhaustive.
+
+    ``before`` is ``(abel, f, total)`` — f overrides length. ``after`` is ``(abel, total, f)``
+    — f only breaks what length left tied. ``uniq`` is how often ``(abel, f)`` alone reaches a
+    single candidate, i.e. how much of the abel tie f can break on its own.
+    """
+    out = []
+    for name in list(FEATURES) + ["reco", "s20_mk2"]:
+        f = {"reco": _reco, "s20_mk2": _s20mk2}.get(name) or _feat(name)
+        before = score(cov, lambda d, f=f: (_abel(d), f(d), R._start_len(d)))
+        after = score(cov, lambda d, f=f: (_abel(d), R._start_len(d), f(d)))
+        uniq = 0
+        for v in cov.values():
+            ks = [(_abel(d), f(d)) for d in v]
+            m = min(ks)
+            uniq += sum(1 for k in ks if k == m) == 1
+        out.append((name, before, after, uniq))
+    return out
+
+
 # -------------------------------------------------------------------------- load
 
 def load_sweep(path, keep=None):
@@ -273,6 +370,7 @@ def main():
     oracle = R.oracle_set(cov)
     greedy_hits = {p for p, c in control.items() if c["solved"]}
     n_pres, mean_eq_lex = assert_mean_is_length(cov)
+    assert_lmin_is_minrel(cov)
 
     S = {name: score(cov, key) for name, key in ARMS.items()}
     A, B = HEADLINE
@@ -281,6 +379,7 @@ def main():
     vs_inc = {n: paired(S[n], S["abel_len_lex"]) for n in ARMS}
     vs_abel = {n: paired(S[n], S["abel"]) for n in ARMS}
     disc = discrimination(cov)
+    sweep = second_key_sweep(cov)
 
     # free robustness check: the same arms on the 10,000-node twin of this sweep
     cov10, ctl10 = load_sweep(R.SWEEP_10K, set(ids60))
@@ -327,24 +426,79 @@ def main():
         for n in ARMS)
 
     dead_heat = (pr["win"] + pr["loss"] <= 1 and len(only_a) == len(only_b) == 0)
-    verdict = ("**a dead heat**" if dead_heat else
-               f"**`{A if pr['a_mean'] < pr['b_mean'] else B}`**")
+    winner = A if pr["a_mean"] < pr["b_mean"] else B
+    verdict = "**a dead heat**" if dead_heat else f"a win for **`{winner}`**"
+    sweep_tbl = "\n".join(
+        f"| `{n}` | {b['at_k'][1]} | {_stat(b)[1]:,.1f} | {b['deployed_total']:,} | "
+        f"{a['at_k'][1]} | {_stat(a)[1]:,.1f} | {a['deployed_total']:,} | {u}/{n_pres} |"
+        for n, b, a, u in sweep)
+    ref_k1 = S["abel_mean_len"]["at_k"][1]      # (abel, total) — what a second key must beat
+    ref_dep = S["abel_mean_len"]["deployed_total"]
+    hurt = [n for n, b, _, _ in sweep if b["at_k"][1] < ref_k1]
+    wreck = [n for n, b, _, _ in sweep if b["at_k"][1] <= ref_k1 - 10]
+    # after length: split by whether the arm still matches (abel, total) on the rank-1 count
+    aft_same = [n for n, _, a, _ in sweep if a["at_k"][1] == ref_k1]
+    aft_worse = [n for n, _, a, _ in sweep if a["at_k"][1] < ref_k1]
+    aft_same_span = max(abs(a["deployed_total"] - ref_dep)
+                        for n, _, a, _ in sweep if a["at_k"][1] == ref_k1)
+    aft_worse_cost = (min(a["deployed_total"] for n, _, a, _ in sweep
+                          if a["at_k"][1] < ref_k1) - ref_dep) if aft_worse else 0
+    after_span = (min(a["deployed_total"] for _, _, a, _ in sweep),
+                  max(a["deployed_total"] for _, _, a, _ in sweep))
 
-    md = f"""# The abel tie-break at budget 1,000: shorter relator, or shorter total?
+    md = f"""# The abel tie-break at budget 1,000: total length, or `S`?
 
 **Zero search nodes.** A re-ranking of the frozen `{R.SWEEP}` through `abel_topk_cov_b1k`'s gated loader ({n_rows:,} rows checked by its truncation gate), subset-60, top {K}, budget 1,000 — plus the same arms on the 10,000-node twin of that sweep, which costs nothing because gate 1 already opens it.
 
 ## Verdict
 
-**Neither ordering outperforms.** `{A}` and `{B}` solve the same {S[A]['at_k'][3]}/60 at top {K}, the same {S[A]['at_k'][1]}/60 at rank 1, and differ on **{pr['win'] + pr['loss']} of the {pr['n']} presentations both solve, by {abs(pr['a_total'] - pr['b_total'])} nodes out of {pr['a_total']:,}** ({abs(pr['a_total'] - pr['b_total']) / pr['a_total'] * 100:.2f}%). Exact paired p on discordant solves = {p_mc:.3f}. At budget 10,000 the same two arms differ on {pr10['win'] + pr10['loss']} of {pr10['n']} rows and {abs(pr10['a_total'] - pr10['b_total'])} nodes. The head-to-head is {verdict}.
+**Total length first.** `{B}` solves **{S[B]['at_k'][1]}/60 at rank 1** against `{A}`'s {S[A]['at_k'][1]}, at a mean of **{pr['b_mean']:,.1f} nodes against {pr['a_mean']:,.1f}** paired over the {pr['n']} presentations both solve — {pr['loss']} rows dearer for `{A}`, {pr['win']} cheaper, {pr['tie']} tied. The head-to-head is {verdict}. Putting `S` *ahead* of length costs {abs(pr['a_total'] - pr['b_total']):,} nodes out of {pr['b_total']:,} ({abs(pr['a_total'] - pr['b_total']) / pr['b_total'] * 100:.0f}% more), and two of the five losses are a rank-1 pick that burns the entire budget.
 
-What the run *does* separate is whether `min(|r1|,|r2|)` carries signal the total length does not — and at fixed `abel`, **it does not**. As a sole second key it discriminates strictly less than the total (a unique pick on {disc['abel + min'][2]}/60 against {disc['abel + total'][2]}/60), and adding min anywhere in the chain — before the total or after it — moves the whole bill by at most {max(abs(S['abel_min_len']['deployed_total'] - S['abel_mean_len']['deployed_total']), abs(S['abel_len_min']['deployed_total'] - S['abel_mean_len']['deployed_total']))} nodes in {S['abel_mean_len']['deployed_total']:,}. The recommendation stays `(abel, total length)`; min does not earn a slot.
+`S` **behind** length is free and inert: `{B}` and the plain `(abel, total)` differ by {abs(S['abel_len_S']['deployed_total'] - S['abel_mean_len']['deployed_total'])} nodes in {S['abel_mean_len']['deployed_total']:,} on the whole bill. By the time length has been applied, `S` has almost nothing left to break — which is the finding, not a caveat.
 
-## The proposal as worded is one arm, not two
+`S` is the right feature to have suspected: it carries the heaviest weight in `hsolve.RECOMMENDED` ({_RECO_W['S']} against `L`'s {_RECO_W['L']}) and it is the `S` in `L + 20·S + 2·MK`, the ordering that ran the ac19 hard-100k A/B. But it has never been used the way a lexicographic tie-break uses it — **`s20_mk2` and `RECOMMENDED` both keep `L` inside the same expression, where it can outvote `S`**; a lexicographic first key cannot be outvoted by anything. Score the composite itself and it holds up: `(abel, L + 20·S + 2·MK)` is the joint-cheapest arm in this file at {S['abel_s20mk2']['deployed_total']:,} nodes, {S['abel_s20mk2']['at_k'][1]}/60 at rank 1, against `(abel, total)`'s {S['abel_mean_len']['deployed_total']:,} and {S['abel_mean_len']['at_k'][1]}/60 — a {abs(S['abel_s20mk2']['deployed_total'] - S['abel_mean_len']['deployed_total'])}-node difference, i.e. no difference. So the honest reading is not "`S` fails" but **"`S` adds nothing to a start ranking that already has `abel` and length, and actively hurts if given priority over length"**. Whether it earns its weight as a *climb* feature is a separate question this file cannot touch.
 
-Every candidate in this sweep is a **two**-relator pair, so mean relator length = total / 2 — a strictly monotone function of total length and therefore the identical ordering. `(abel, mean, total)` and `(abel, total, mean)` produce **the same top {K} on all {n_pres} presentations** (checked, not argued: `assert_mean_is_length`), and both coincide with the incumbent `(abel, total, longest)` on {mean_eq_lex}/{n_pres}. So the substantive contrast is `min(|r1|, |r2|)`, which is not a function of the total.
+## Every feature as the second key, both positions
 
-That intuition was earned by `min_relator_length` as a **search progress** signal. The key here reads `min(len(r1), len(r2))` off the **start** pair, before a node is popped; the anti-leak gate exists so no key can reach the search-derived column. Same word, different object.
+Since a key costs nothing to evaluate, every one of the 17 `hlab` features was scored in both positions, plus two composites used as one key each: `reco`, the full `RECOMMENDED` score (`{", ".join(f"{k}={v}" for k, v in _RECO_W.items())}`), and `s20_mk2` = `L + 20·S + 2·MK`, the ordering that ran the ac19 hard-100k A/B. `uniq` is how often `(abel, f)` alone reaches a single candidate.
+
+| f | (abel, **f**, total): k=1 | mean | deployed | (abel, total, **f**): k=1 | mean | deployed | uniq |
+|---|---:|---:|---:|---:|---:|---:|---:|
+{sweep_tbl}
+
+Read the two halves separately, because they say different things.
+
+**Placed before length, not one feature beats it.** {len(hurt)} of the {len(sweep)} lose rank-1 solves against `(abel, total)`'s {ref_k1}/60 — `{"`, `".join(hurt)}` — and {len(wreck)} of those are a collapse rather than a slip: `{"`, `".join(wreck)}` fall to {min(b['at_k'][1] for _, b, _, _ in sweep)}/60 and take the bill from {ref_dep:,} to {max(b['deployed_total'] for _, b, _, _ in sweep):,} nodes. Those four are exactly the features with the *highest* `uniq` (55–58 of 60 decided outright). A key that discriminates more is not a better key; it is a key that overrides length more often, and length is the one that pays. The remaining {len(sweep) - len(hurt)} keep the full {ref_k1}/60 — and the best of them beats `(abel, total)` by {ref_dep - min(b['deployed_total'] for _, b, _, _ in sweep):,} nodes in {ref_dep:,}, which is not a result. Note *which* ones they are: the two composites (`reco`, `s20_mk2`) and the pure counts (`K`, `MK`, `mK`, `nb`, `B1`, `Bmin`). Both composites contain `L`, so putting them "ahead of length" does not actually demote length — see the section above. The counts are integers on a coarse scale that rarely separates two candidates length would have ordered differently.
+
+**Placed after length, no feature helps and most do nothing at all.** {len(aft_same)} of {len(sweep)} keep the full {ref_k1}/60 at rank 1 and land within {aft_same_span} nodes of `(abel, total)`'s {ref_dep:,} — a spread smaller than one search on one presentation. The other {len(aft_worse)} (`{"`, `".join(aft_worse)}`) give a rank-1 solve back and cost about {aft_worse_cost:,} nodes, which is the same single presentation the incumbent's `longest` third key loses. Nothing in this vocabulary, the tuned linear score included, improves on `(abel, total length)` by a measurable amount.
+
+One apparent exception is worth pricing, because the 10,000-node table below makes it look like a win: `abel_len_S` posts the lowest bill of any arm there ({S10['abel_len_S']['deployed_total']:,} against `(abel, total)`'s {S10['abel_mean_len']['deployed_total']:,}) and is the only length-keyed arm to reach {S10['abel_len_S']['at_k'][1]}/60 at rank 1. Paired, that is **win/tie/loss {paired(S10['abel_len_S'], S10['abel_mean_len'])['win']}/{paired(S10['abel_len_S'], S10['abel_mean_len'])['tie']}/{paired(S10['abel_len_S'], S10['abel_mean_len'])['loss']}** — one presentation (634) where `S` happens to break the tie toward a rank 1 that solves, worth the whole 10,000-node budget, against one it loses by 6 nodes. At budget 1,000 the same pair is {paired(S['abel_len_S'], S['abel_mean_len'])['win']}/{paired(S['abel_len_S'], S['abel_mean_len'])['tie']}/{paired(S['abel_len_S'], S['abel_mean_len'])['loss']}, the other way. A margin carried by one row on a 60-row set is the repo's own [gap-metric](../../experiments/lessons/gap-metric-saturates-when-the-treatment-wins.md) shape, not a reason to add a key.
+
+## Lexicographic is not weighted — which is why `s20_mk2` survives and bare `S` does not
+
+`S` never ships on its own. It ships inside `L + 20·S + 2·MK` (`s20_mk2`, the arm that ran the ac19 hard-100k A/B) and inside `RECOMMENDED`'s weighted sum — **always with `L` in the same expression, always able to be outvoted by it**. A lexicographic key is the opposite: whatever comes first has absolute priority, and every later key only sees the ties it left.
+
+Scored three ways on the same 60 presentations, at budget 1,000:
+
+| how `S` is used | rank-1 solves | deployed |
+|---|---:|---:|
+| lexicographic, **ahead** of length — `(abel, S, total)` | {S['abel_S_len']['at_k'][1]}/60 | {S['abel_S_len']['deployed_total']:,} |
+| lexicographic, alone after `abel` — `(abel, S)` | {S['abel_S']['at_k'][1]}/60 | {S['abel_S']['deployed_total']:,} |
+| lexicographic, **behind** length — `(abel, total, S)` | {S['abel_len_S']['at_k'][1]}/60 | {S['abel_len_S']['deployed_total']:,} |
+| **weighted, with `L` in the sum** — `(abel, L + 20·S + 2·MK)` | {S['abel_s20mk2']['at_k'][1]}/60 | {S['abel_s20mk2']['deployed_total']:,} |
+| reference — `(abel, total)` | {S['abel_mean_len']['at_k'][1]}/60 | {S['abel_mean_len']['deployed_total']:,} |
+
+The composite is the joint-best arm in the whole file ({S['abel_s20mk2']['deployed_total']:,} nodes, {paired(S['abel_s20mk2'], S['abel_mean_len'])['win']}/{paired(S['abel_s20mk2'], S['abel_mean_len'])['tie']}/{paired(S['abel_s20mk2'], S['abel_mean_len'])['loss']} against `(abel, total)`), and the *same feature* used lexicographically ahead of length is one of the worst. That is the finding this file is actually good for: **the "before length" column below is not evidence that these features are bad, it is evidence that lexicographic priority is the wrong way to spend them.** No arm in `hsearch`/`hsolve` has ever used one that way.
+
+The magnitudes say why. Over all {sum(len(v) for v in cov.values()):,} candidates, `L` runs {min(phi(d['r1'], d['r2'])[_FIDX['L']] for v in cov.values() for d in v):.0f}–{max(phi(d['r1'], d['r2'])[_FIDX['L']] for v in cov.values() for d in v):.0f} while the `20·S + 2·MK` term stays in a band of standard deviation {statistics.pstdev([20 * phi(d['r1'], d['r2'])[_FIDX['S']] + 2 * phi(d['r1'], d['r2'])[_FIDX['MK']] for v in cov.values() for d in v]):.1f} — big enough to reorder candidates of similar length, never big enough to put a long pair ahead of a short one. Lexicographic `S` does exactly that, on every tie.
+
+Two honest limits on the composite. Its own 10,000-node edge over `(abel, total)` is **{paired(S10['abel_len_s20mk2'], S10['abel_mean_len'])['win']}/{paired(S10['abel_len_s20mk2'], S10['abel_mean_len'])['tie']}/{paired(S10['abel_len_s20mk2'], S10['abel_mean_len'])['loss']}** and comes from the same single presentation (634) that carries `abel_len_S`'s — one row, not a distribution. And with `abel` dropped entirely, `s20_mk2` alone ranks *worse* than length alone ({S['s20mk2_only']['at_k'][3]}/60 against {S['len_only']['at_k'][3]} at 1,000, {S10['s20mk2_only']['at_k'][3]}/60 against {S10['len_only']['at_k'][3]} at 10,000), so nothing here promotes it above the abelian filter.
+
+## `Lmin` and "mean relator length", the two keys asked for first
+
+Mean relator length is **not a distinct key**: every candidate is a *two*-relator pair, so mean = total / 2, a strictly monotone function of the total and therefore the identical ordering. `(abel, mean, total)` and `(abel, total, mean)` produce the same top {K} on all {n_pres} presentations — checked by `assert_mean_is_length`, not argued — and both coincide with the incumbent `(abel, total, longest)` on {mean_eq_lex}/{n_pres}.
+
+`Lmin` = `min(|r1|, |r2|)` (`hlab.FEATURES[1]`, pinned equal to this file's `_minrel` by `assert_lmin_is_minrel`) genuinely is not a function of the total, and against it the total is **a dead heat**: `abel_min_len` and `abel_len_min` both solve {S['abel_min_len']['at_k'][3]}/60 at top {K} and {S['abel_min_len']['at_k'][1]}/60 at rank 1, differing on {paired(S['abel_min_len'], S['abel_len_min'])['win'] + paired(S['abel_min_len'], S['abel_len_min'])['loss']} of {paired(S['abel_min_len'], S['abel_len_min'])['n']} both-solved rows by {abs(paired(S['abel_min_len'], S['abel_len_min'])['a_total'] - paired(S['abel_min_len'], S['abel_len_min'])['b_total'])} nodes. `Lmin` also discriminates strictly less on its own than the total ({disc['abel + min'][2]}/60 unique against {disc['abel + total'][2]}/60). With two relators `max = total − Lmin`, so once `abel`, `Lmin` and the total are fixed there is no further *length* information anywhere — which is why the sweep above ranges over shape features instead.
 
 ## Every arm at top {K}, budget 1,000
 
@@ -352,7 +506,7 @@ That intuition was earned by `min_relator_length` as a **search progress** signa
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 {arms1k}
 
-Median/mean/max are `first_solve_nodes` over that arm's own solved set, so in general they are not comparable across arms; here they happen to be, because every `abel`-first arm turns out to solve the **same** {S['abel']['at_k'][3]} presentations at k={K}. That is a measured coincidence, not a guarantee — the arms disagree on the top-{K} *set* on up to {sum(1 for p in cov if {_id(d) for d in S['abel_min_len']['ranked'][p][:K]} != {_id(d) for d in S['abel_len_lex']['ranked'][p][:K]})} of 60 presentations, and a different set could have reached a different presentation. The paired sections below are the comparison that does not rely on it. `deployed total` is the whole bill over all 60 (a presentation no rank solves costs the full {K} × 1,000). The last two columns count presentations where the ordered keys run out and `_ident` picks.
+Median/mean/max are `first_solve_nodes` over that arm's own solved set, so they are **not** comparable across arms in general — and the last two rows are exactly where that bites: `len_only` and `S_only` drop `abel` entirely and solve {S['len_only']['at_k'][3]} and {S['S_only']['at_k'][3]} of 60, so their means are over smaller, easier sets. Among the `abel`-first arms the means happen to be comparable, because every one of them solves the **same** {S['abel']['at_k'][3]} presentations at k={K}. That is a measured coincidence, not a guarantee — the arms disagree on the top-{K} *set* on up to {sum(1 for p in cov if {_id(d) for d in S['abel_min_len']['ranked'][p][:K]} != {_id(d) for d in S['abel_len_lex']['ranked'][p][:K]})} of 60 presentations, and a different set could have reached a different presentation. The paired sections below are the comparison that does not rely on it. `deployed total` is the whole bill over all 60 (a presentation no rank solves costs the full {K} × 1,000). The last two columns count presentations where the ordered keys run out and `_ident` picks.
 
 Reference points at this budget: the best-CoV **oracle is {len(oracle)}/60**, plain greedy on the untransformed pair is **{len(greedy_hits)}/60**, and the incumbent `abel_len_lex` is {S['abel_len_lex']['at_k'][3]}/60. The solve column has {len(oracle) - S['abel']['at_k'][3]} rows of headroom above bare `abel` and none above the oracle, so it is saturated by construction — read the cost columns.
 
@@ -378,7 +532,8 @@ Each arm against the incumbent `abel_len_lex`, same paired rule:
         f"| `{n}` | {vs_inc[n]['n']} | {vs_inc[n]['a_mean']:,.1f} | {vs_inc[n]['b_mean']:,.1f} | "
         f"{vs_inc[n]['a_total']:,} | {vs_inc[n]['b_total']:,} | "
         f"{vs_inc[n]['win']} / {vs_inc[n]['tie']} / {vs_inc[n]['loss']} |"
-        for n in ("abel", "abel_mean_len", "abel_min_len", "abel_len_min", "abel_min")) + f"""
+        for n in ("abel", "abel_mean_len", "abel_min_len", "abel_len_min", "abel_min",
+                  "abel_S_len", "abel_len_S", "abel_S")) + f"""
 
 The {abs(vs_inc['abel_mean_len']['a_total'] - vs_inc['abel_mean_len']['b_total']):,}-node gap over the incumbent is **one presentation**, not a distribution: the win/tie/loss column is {vs_inc['abel_mean_len']['win']}/{vs_inc['abel_mean_len']['tie']}/{vs_inc['abel_mean_len']['loss']}. `longest` as the third key sends one rank-1 pick into a search that burns the whole budget; `total` and `min` both avoid it.
 
@@ -388,7 +543,9 @@ The {abs(vs_inc['abel_mean_len']['a_total'] - vs_inc['abel_mean_len']['b_total']
 |---|---:|---:|---:|---:|
 {disc_tbl}
 
-`abel` alone decides a unique pick on {disc['abel'][2]}/{n_pres}. Total length is the stronger second key ({disc['abel + total'][2]}/{n_pres} unique against min's {disc['abel + min'][2]}/{n_pres}), and the two together reach {disc['abel + min + total'][2]}/{n_pres} — so **{n_pres - disc['abel + min + total'][2]} of 60 presentations still need a further key after all three**, and with two relators `max = total − min` means no length feature is left. That residue is what `_ident` decides today, and the ms640 census already says what it should be spent on instead: a **Booth-canonical dedup of the candidate list before the top {K} is taken**, not a fourth sort key — canonically identical candidates carry equal keys, sort adjacent, and both enter the top {K} either way. No dedup is applied here, deliberately, so these numbers stay comparable to the incumbent {S['abel_len_lex']['at_k'][3]}/60.
+**This column is not a scoreboard — read it against the one above.** `abel` alone decides a unique pick on {disc['abel'][2]}/{n_pres}; total length as the second key takes it to {disc['abel + total'][2]}/{n_pres}, `Lmin` to only {disc['abel + min'][2]}/{n_pres}, and `S` to {disc['abel + S'][2]}/{n_pres}. But `abel + S + total` decides **{disc['abel + S + total'][2]}/{n_pres}** — the most of any chain here, more than `abel + total + Lmin`'s {disc['abel + min + total'][2]} — and it is the arm that *loses* {S['abel_mean_len']['at_k'][1] - S['abel_S_len']['at_k'][1]} rank-1 solves and {S['abel_S_len']['deployed_total'] - S['abel_mean_len']['deployed_total']:,} nodes. `abel + reco` decides {disc['abel + reco'][2]}/{n_pres} and buys nothing. Breaking more ties is not the objective; breaking them *toward the shorter pair* is.
+
+After `abel` and the total, **{n_pres - disc['abel + total'][2]} of 60 presentations still need a further key**, and — since `max = total − Lmin` — no length feature remains to supply one. That residue is what `_ident` decides today. Nothing in the sweep above is a better answer to it, and the ms640 census already names one that is not a sort key at all: a **Booth-canonical dedup of the candidate list before the top {K} is taken**. Canonically identical candidates carry equal keys, sort adjacent, and both enter the top {K} under every arm in this file — one of the three slots spent re-searching the same start. No dedup is applied here, deliberately, so these numbers stay comparable to the incumbent {S['abel_len_lex']['at_k'][3]}/60.
 
 ## Rank 1 alone, and why the 1,000-node margin does not survive a budget change
 
@@ -396,7 +553,7 @@ The {abs(vs_inc['abel_mean_len']['a_total'] - vs_inc['abel_mean_len']['b_total']
 |---|---:|---:|---:|---:|
 {k1_tbl}
 
-Each mean is over that arm's **own** k=1 solved set, so an arm that solves more rows can carry a higher mean by picking up expensive ones — bare `abel`'s {statistics.mean(S['abel']['k1_first_solve'].values()):,.1f} at 1,000 is over {S['abel']['at_k'][1]} rows against the length-keyed arms' {S['abel_mean_len']['at_k'][1]}. At budget 1,000 any length-bearing second key is worth **+{S['abel_mean_len']['at_k'][1] - S['abel']['at_k'][1]} presentations at rank 1** over bare `abel` ({S['abel']['at_k'][1]} → {S['abel_mean_len']['at_k'][1]}) and cuts the top-3 mean from {_stat(S['abel'])[1]:,.1f} to {_stat(S['abel_mean_len'])[1]:,.1f} nodes. At budget 10,000 it goes the other way: bare `abel` reaches {S10['abel']['at_k'][1]}/60 at rank 1 and every length-keyed arm reaches {S10['abel_mean_len']['at_k'][1]}, with a *higher* top-3 mean ({_stat(S10['abel_mean_len'])[1]:,.1f} against {_stat(S10['abel'])[1]:,.1f}).
+Each mean is over that arm's **own** k=1 solved set, so an arm that solves more rows can carry a higher mean by picking up expensive ones — bare `abel`'s {statistics.mean(S['abel']['k1_first_solve'].values()):,.1f} at 1,000 is over {S['abel']['at_k'][1]} rows against the length-keyed arms' {S['abel_mean_len']['at_k'][1]}. At budget 1,000 any length-bearing second key is worth **+{S['abel_mean_len']['at_k'][1] - S['abel']['at_k'][1]} presentations at rank 1** over bare `abel` ({S['abel']['at_k'][1]} → {S['abel_mean_len']['at_k'][1]}) and cuts the top-3 mean from {_stat(S['abel'])[1]:,.1f} to {_stat(S['abel_mean_len'])[1]:,.1f} nodes. At budget 10,000 it goes the other way: bare `abel` reaches {S10['abel']['at_k'][1]}/60 at rank 1 while `(abel, total)` reaches {S10['abel_mean_len']['at_k'][1]}, with a *higher* top-3 mean ({_stat(S10['abel_mean_len'])[1]:,.1f} against {_stat(S10['abel'])[1]:,.1f}). The one length-keyed arm that still reaches {S10['abel_len_S']['at_k'][1]} there is `abel_len_S`, on the single presentation priced two sections above.
 
 | arm | k=1 | k=2 | **k=3** | median | mean | max | deployed total | rank-1 ties | top-3 ties |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
