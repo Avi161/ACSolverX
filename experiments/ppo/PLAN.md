@@ -53,7 +53,7 @@ The action mask is semantic, not just padding: `(i,j)` is legal iff `r1[i] == -r
 
 ## What I need from you
 
-1. **Colab spec** — which GPU tier you get (T4 / L4 / A100) and how long a run you're willing to leave up. 1e9 timesteps at 2,380 envs is the paper's budget; I need the tier to say whether that is one overnight run or a week, and to size a shortened first run that still means something.
+1. **Colab spec** — which GPU tier you get (T4 / L4 / A100) and how long a run you're willing to leave up. 1e9 timesteps at 2,380 envs is the paper's budget; I need the tier to say whether that is one overnight run or a week, and to size a shortened first run that still means something. **Local stays capped at a 1,000-node budget** (user directive, and the standing rule in [`CLAUDE.md`](../../CLAUDE.md)) — see below for what that does and does not allow.
 2. **The `610model` provenance.** `ppo_checkpoints/610model/{900,950,1000}` is an Orbax checkpoint of this exact flax network — which arm is it (`PPO-SUB-DRT`? `+ AC-19`?), roughly what did it score, and is 1000 the final update or where it was stopped? Its saved `config` blob answers most of this but reading it needs orbax installed.
 3. **Permission to install** `torch` locally, plus `jax`/`flax`/`orbax`/`distrax` **once** (none are in `.venv` today; `requirements.txt` pins the JAX stack but it was never installed). JAX is needed only to read the checkpoint and to run the parity check — not for training. Alternative: do both on Colab and keep the local venv clean.
 4. **W&B target** — reuse `acsolver` under entity `avigyapaudel045-aisc`, or a separate `acsolverx-ppo` project.
@@ -64,6 +64,12 @@ The action mask is semantic, not just padding: `(i,j)` is legal iff `r1[i] == -r
 **The denominators are not the same.** Those PPO numbers (457 … 607) and greedy numbers (533 … 640) are counts out of the **1190 Miller–Schupp presentations** — `GS-SUB (1M) NODES = 640` is exactly our `data/ms640_solved.txt`, so that row is already reproduced and is the anchor. `benchmark/subsets/benchmark_subset_10` is 10 rows sampled from our own 66-row benchmark, one per difficulty bin. It is the right **smoke test** — greedy gets 8/10 at 50k nodes and 10/10 at 1M, so there is real dynamic range — but a table in the paper's format needs the full 1190. Plan: subset_10 first to prove the pipeline, then `data/1190MS.txt` for the table.
 
 **"Same budget" needs defining.** Greedy's budget is nodes expanded *per presentation*; PPO's is training timesteps spent *once, across all presentations*, after which inference is nearly free. They are not commensurable, which is why the paper reports them as two separate blocks rather than one ratio. The honest comparison is the one the paper makes — solve count per method, with greedy's node budget stated — and separately, a nodes-equivalent column for the beam-search decode (`beam/beam_search.py` already scores `cum_log_prob + log_softmax + alpha*value` against these checkpoints, so the PPO arm's per-presentation search cost is measurable there).
+
+## The local 1,000-node cap
+
+Everything local is a **correctness** check, never a result. Concretely: env parity is random rollouts (no search at all), policy parity is one forward pass on a fixed batch (no search at all), and the PPO loop is proved on a handful of updates against a hand-computed GAE — none of these need a budget. The only local step that spends nodes is decoding, and there the cap binds: **beam width × depth ≤ 1,000 expansions**, ~10 presentations. Any solve count from a local run is a smoke test and is reported as such; every number that goes in the table comes from Colab.
+
+This costs nothing, because a search at budget `B` is exactly the first `B` expansions of any longer search — a bigger local budget would buy a slower repro, not a different behaviour.
 
 ## Build order once the above is answered
 
