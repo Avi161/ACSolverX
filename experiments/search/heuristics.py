@@ -6,15 +6,21 @@ reduction, the canonicalisation, the per-relator cap, the visited set and the ``
 key)`` tie-break are the baseline's, reached by subclassing rather than by copying. So a difference
 between two runs is attributable to the ordering and to nothing else.
 
-    from experiments.search.heuristics import greedy_search_h, RECOMMENDED
+    from experiments.search.heuristics import greedy_search_h
 
     stats = greedy_search_h(r1, r2, node_budget=10**5, max_relator_length=24,
-                            config=RECOMMENDED)      # config=None => the baseline, exactly
+                            config=my_config)        # config=None => the baseline, exactly
 
 ``greedy_search_h`` returns **exactly** the dict ``greedy_baseline.greedy_search`` returns — same
 keys, same order, same types — so a caller switches ordering by passing one argument and touches
 nothing downstream. ``phi`` exposes the feature vector and ``make_priority`` compiles a config into
 the callable the heap pushes with. ``HEURISTICS.md``, beside this file, documents every feature.
+
+**No tuned weight vector ships here.** The module is the mechanism — features, config schema,
+control gate — and ``BASELINE_CONFIG`` is the only config it defines. An earlier ``RECOMMENDED``
+vector was withdrawn as overfit: it was selected on a slice that contained fourteen of the twenty
+rows it was then validated against, so its reported margin measured the tuning set. Pass your own
+config, tuned and validated on disjoint row lists.
 
 Two invariants, both pinned in ``tests/test_greedy_heuristic.py``:
 
@@ -167,17 +173,15 @@ def phi(r1, r2):
 
 BASELINE_CONFIG = {"segments": [{"upto": None, "w": {"L": 1.0}}]}
 
-# The shipped ordering. One segment, no boundary, five of the seventeen features:
+# BASELINE_CONFIG is the ONLY config this module defines, and it is the control, not a
+# recommendation. There is deliberately no shipped weight vector: the previous ``RECOMMENDED``
+# (L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb) was withdrawn because its tuning slice overlapped
+# fourteen of the twenty rows it was validated on, which makes its reported margin a statement about
+# the tuning set. The numbers it produced survive as the ``heur_*`` columns of the benchmark arms
+# tables, labelled there as the output of a withdrawn vector; ``benchmark_subset_*_arms.json``
+# carries the weights themselves as provenance for those columns.
 #
-#     priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb
-#
-# i.e. total length, plus penalties for knot sum, worst-relator knots, smaller mean block and
-# generator imbalance. Lower pops first, so every term above pushes a state DOWN the queue: a state
-# is preferred for being short, for being less tangled, and for using its two generators evenly.
-# The weights were tuned jointly, not one at a time — S is the weakest single ordering of the five
-# and carries the largest weight here, so a one-at-a-time search would have discarded it.
-RECOMMENDED = {"segments": [
-    {"upto": None, "w": {"L": 1.0, "K": 2.53, "MK": 6.418, "S": 8.458, "xyimb": 3.292}}]}
+# Tune your own, and validate it on rows disjoint from the ones you tuned on.
 
 
 def make_priority(config=None):

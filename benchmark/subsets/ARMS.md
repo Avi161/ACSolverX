@@ -19,9 +19,11 @@ A not-tested row carries `tested = False`, `-1` in every numeric arm column and 
 
 The `greedy_*` columns are populated on **every** row of every subset — they come from the baseline's own 10⁶-node run, where all 640 presentations solve.
 
-## The heuristic
+## The heuristic — a WITHDRAWN vector
 
-The recommended heap ordering — the baseline greedy with **only** the priority expression replaced, so any difference is attributable to the ordering and nothing else:
+> ⚠ **The `heur_*` columns were produced by a weight vector that has since been withdrawn as overfit, and no longer exists in the code.** It was selected on a slice of rows that contained fourteen of the twenty it was validated against, so its reported margin is largely a measurement of its own tuning set. The columns are kept because they are real run output — but read them as "what this particular vector did on these rows", never as the performance of a shipped ordering. `experiments/search/heuristics.py` now defines `BASELINE_CONFIG` and nothing else.
+
+The vector, recorded here and in each `benchmark_subset_*_arms.json` `heuristic_weights` field so the columns keep their provenance — the baseline greedy with **only** the priority expression replaced, so any difference is attributable to the ordering and nothing else:
 
 ```
 priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb   (one segment, no length threshold)
@@ -35,9 +37,9 @@ priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb   (one segment,
 | `S` | 8.458 | smaller mean block -- the mean run length of the thinner generator |
 | `xyimb` | 3.292 | generator imbalance \|#x - #y\| / L, scale-free |
 
-Lower is popped first. Every term is a pure function of the state and rotation-invariant — a priority reading `depth` or the parent would make pop order depend on discovery order and stop being reproducible. It is a **single segment with no length threshold**: the earlier phased form is unnecessary here, because `S` and `MK` both fall as a pair approaches the trivial state, so the climb self-regulates.
+Lower is popped first. Every term is a pure function of the state and rotation-invariant — a priority reading `depth` or the parent would make pop order depend on discovery order and stop being reproducible. It is a **single segment with no length threshold**.
 
-Shipped as `RECOMMENDED` in [`experiments/search/heuristics.py`](../../experiments/search/heuristics.py), documented in [`HEURISTICS.md`](../../experiments/search/HEURISTICS.md), and pinned by `test_recommended_is_the_formula_the_docs_publish` in [`tests/test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py) — the weights above and the code cannot drift apart.
+The mechanism it ran on — the feature set, the config schema and the control gate — is still in [`experiments/search/heuristics.py`](../../experiments/search/heuristics.py) and documented in [`HEURISTICS.md`](../../experiments/search/HEURISTICS.md), which also records why the vector was withdrawn. To reproduce these columns, pass the weights above as a config explicitly.
 
 ## Columns
 
@@ -47,7 +49,7 @@ Shipped as `RECOMMENDED` in [`experiments/search/heuristics.py`](../../experimen
 |---|---|---|---|---|
 | `greedy_*` | baseline greedy, best known | 1,000,000 | 24 | `benchmark_subset_60.json`, columns `nodes_1M` / `path_1M` |
 | `bestcov_*` | best change of variables over the whole subword family | 20,000 | 24 | CoV sweep, research branch |
-| `heur_*` | recommended heap ordering (formula above) | 100,000 | 48 | EXP-28 scale run, `arm=recommended`, research branch |
+| `heur_*` | withdrawn heap ordering (formula above) | 100,000 | 48 | EXP-28 scale run, `arm=recommended`, research branch |
 
 > ⚠ **The three ran at different budgets and different relator caps.** Never read a ratio across them — a CoV row compared against a control at a different `max_relator_length` is not a comparison. Use the matched block for that.
 
@@ -69,4 +71,10 @@ Both transformed arms cost **less** than the untransformed greedy on the same ro
 
 At the matched budget of 10,000 and cap 24, the solve counts are greedy **40/60**, best CoV **52/60**, heuristic **47/60**. That is the controlled comparison; the table above is best-known cost, where each arm ran at a different budget.
 
-> The best-CoV column is an **oracle**: 2,383 median nodes is what the winning `z` costs *once you know which `z` wins*, and finding it cost ~2.2M nodes per presentation of sweeping. It is a lower bound on a transformed route, not a runnable procedure. The heuristic column has no such caveat — it is one search, with one fixed ordering.
+Each transformed column carries its own caveat, and they are different ones:
+
+> The best-CoV column is an **oracle**: 2,383 median nodes is what the winning `z` costs *once you know which `z` wins*, and finding it cost ~2.2M nodes per presentation of sweeping. It is a lower bound on a transformed route, not a runnable procedure.
+
+> The `heur_*` column is one search with one fixed ordering — no oracle — but that ordering was **tuned on rows overlapping the ones it is scored on here**, and has since been withdrawn. Subset-60 was the heuristic campaign's own row list. Treat 47/60 and 10,244 as in-sample.
+
+Neither column is a clean claim on its own. A runnable, out-of-sample transformed arm is what is still missing.
