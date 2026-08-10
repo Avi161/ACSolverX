@@ -252,3 +252,36 @@ def test_no_budget_means_no_early_stop(model, presentations, tmp_path):
                    max_steps=30, progress=lambda *_: None)
     assert got["attempted"] == 5 and got["remaining"] == 0
     assert got["stopped_early"] is False
+
+
+def test_the_drive_mirror_runs_during_the_beam_and_not_only_after(
+        model, presentations, tmp_path):
+    """A disconnect at hour two of the full eval must not cost every row.
+
+    `stage_beam` used to mirror once, after `run_beam` returned. Local disk dies
+    with the Colab VM, so an interrupted run left Drive holding nothing at all
+    and the next session re-decoded from zero. The callback fires on the
+    heartbeat, so the mirror is at most one beat behind the file.
+    """
+    out = tmp_path / "mirrored.jsonl"
+    seen = []
+
+    def checkpoint(path):
+        # what a real mirror sees: the rows already flushed and fsynced
+        seen.append(sum(1 for line in open(path) if line.strip()))
+
+    got = run_beam(model, presentations, str(out), start=0, end=4, beam_width=8,
+                   max_steps=30, heartbeat_s=0.0, progress=lambda *_: None,
+                   checkpoint=checkpoint)
+    assert got["attempted"] == 4
+    assert seen, "the mirror never ran during the beam"
+    assert seen == sorted(seen), "row count must only grow"
+    assert seen[-1] == 4, "the last mirror must see every row the run wrote"
+
+
+def test_a_beam_without_a_mirror_still_runs(model, presentations, tmp_path):
+    """`checkpoint=None` is the local path; it must not become required."""
+    out = tmp_path / "nomirror.jsonl"
+    got = run_beam(model, presentations, str(out), start=0, end=3, beam_width=8,
+                   max_steps=30, heartbeat_s=0.0, progress=lambda *_: None)
+    assert got["attempted"] == 3

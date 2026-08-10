@@ -216,18 +216,86 @@ def _env_selfcheck(cfg, device, log, steps=32, n_envs=64):
             "env_solved_after_selfcheck": int(env.solved_idx.sum())}
 
 
-def _jax_parity(cfg, model, obs, device, log):
-    """The real gate: same weights, same batch, two frameworks."""
+def _ensure_distrax(log):
+    """`network.py` imports distrax for exactly one thing: wrapping the logits.
+
+    distrax pulls in tensorflow-probability, which is the dependency on this
+    tree most likely to fail to install or to fight the jax already on a Colab
+    image. Rather than let that take the gate down, stand in a shim for the one
+    class used -- with the semantics *measured* off distrax 0.1.9 rather than
+    assumed: `Categorical(logits=l).logits` returns `log_softmax(l)`, not `l`.
+    """
     try:
-        import jax
-        import jax.numpy as jnp
+        import distrax                                                  # noqa: F401
+        return "installed"
     except ImportError:
-        log("jax not importable -- skipping the cross-framework gate "
-            "(run this stage on Colab to close it)")
-        return {"jax_available": False}
+        pass
+
+    import types
+    import jax.nn as jnn
+
+    class Categorical:
+        def __init__(self, logits=None, probs=None):
+            if logits is None:
+                raise TypeError("the distrax shim only supports logits=")
+            self._logits = logits
+
+        @property
+        def logits(self):
+            return jnn.log_softmax(self._logits, axis=-1)
+
+    mod = types.ModuleType("distrax")
+    mod.Categorical = Categorical
+    sys.modules["distrax"] = mod
+    log("distrax is not installed -- standing in a Categorical shim (log_softmax "
+        "semantics, matching distrax 0.1.9) so the gate can still run")
+    return "shim"
+
+
+def _jax_parity(cfg, model, obs, device, log):
+    """The real gate: same weights, same batch, two frameworks.
+
+    **Diagnostic, never load-bearing.** Nothing downstream imports JAX -- the
+    beam and the trainer are pure torch -- so every failure in here is reported
+    and stepped over. A missing optional dependency must not cost a GPU session
+    that was going to spend its time on `beam_upstream`.
+    """
+    try:
+        return _jax_parity_inner(cfg, model, obs, log)
+    except Exception as exc:                        # noqa: BLE001 - see docstring
+        log(f"cross-framework gate NOT closed -- {type(exc).__name__}: {exc}")
+        log("  the torch stack is unaffected; beam and training import no JAX. "
+            "Continuing.")
+        return {"jax_available": False, "jax_error": f"{type(exc).__name__}: {exc}"}
+
+
+def _jax_parity_inner(cfg, model, obs, log):
+    """Compared as log-probabilities over *legal* actions. Both parts matter.
+
+    `distrax.Categorical(logits=l).logits` is `log_softmax(l)`, so comparing it
+    against raw torch logits differs by the per-row logsumexp -- 5.98 on the
+    shipped checkpoint, which reads as a broken port and is not one. The
+    signature of that mistake is a large maximum with near-zero spread *within*
+    each row (2.6e-06 here), and log-probs are what the beam ranks on anyway.
+
+    The masked entries are excluded because they are a -1e9 sentinel, not a
+    prediction: log_softmax leaves them around -1e9, where a float32 ulp is 64,
+    so their difference measures rounding on a constant. The two masks are
+    compared directly instead, which is the stronger check -- if they disagreed
+    the beam would be exploring different actions in the two frameworks.
+
+    Expected magnitude: **~4e-05** on the shipped checkpoint, measured identical
+    on CPU and MPS, so it is float32 accumulation through the flax net and not
+    an accelerator artefact. The 1e-4 threshold is a sanity bound with ~2.5x
+    headroom; the checks that actually decide anything -- the two masks and the
+    argmax -- are exact, and `parity_ok` requires them too.
+    """
+    import jax
+    import jax.numpy as jnp
 
     sys.path.insert(0, ROOT)
     jax.config.update("jax_default_matmul_precision", "float32")
+    distrax_source = _ensure_distrax(log)
     from network import RelativeDualRingActorCritic as FlaxNet          # noqa: E402
     from experiments.ppo.transplant import read_orbax_params            # noqa: E402
 
@@ -239,13 +307,47 @@ def _jax_parity(cfg, model, obs, device, log):
     with torch.no_grad():
         t_logits, t_value = model(obs)
 
-    j_logits = np.asarray(pi.logits)
-    d_logits = float(np.abs(j_logits - t_logits.cpu().numpy()).max())
-    d_value = float(np.abs(np.asarray(value) - t_value.cpu().numpy()).max())
-    log(f"JAX vs torch on step {step}: max|dlogits|={d_logits:.3e} max|dvalue|={d_value:.3e}")
-    return {"jax_available": True, "jax_step": step,
-            "max_abs_logit_diff": d_logits, "max_abs_value_diff": d_value,
-            "parity_ok": d_logits < 1e-4 and d_value < 1e-4}
+    j_logprob = np.asarray(pi.logits, dtype=np.float64)
+    # Normalised in numpy/float64, not `torch.log_softmax(...).double()`: MPS has
+    # no float64 at all, and doing it on-device would make the gate's own
+    # arithmetic vary by accelerator. The beam ranks raw logits, so this
+    # log_softmax exists only to cancel distrax's.
+    t_raw = t_logits.cpu().numpy().astype(np.float64)
+    _m = t_raw.max(axis=-1, keepdims=True)
+    t_logprob = t_raw - _m - np.log(np.exp(t_raw - _m).sum(axis=-1, keepdims=True))
+
+    legal = RelativeDualRingActorCritic.action_mask(
+        obs, cfg["MAX_RELATOR_LENGTH"]).cpu().numpy()
+    j_legal = j_logprob > -1e6                     # the -1e9 sentinel, post-softmax
+    masks_agree = bool((legal == j_legal).all())
+
+    d_logprob = float(np.abs(j_logprob - t_logprob)[legal].max()) if legal.any() else 0.0
+    d_value = float(np.abs(np.asarray(value, dtype=np.float64)
+                           - t_value.cpu().numpy().astype(np.float64)).max())
+
+    # What actually reaches the beam: the ranking, not the numbers.
+    t_rank = np.where(legal, t_logprob, -np.inf)
+    j_rank = np.where(legal, j_logprob, -np.inf)
+    argmax_agree = int((t_rank.argmax(-1) == j_rank.argmax(-1)).sum())
+    k = int(min(16, legal.sum(-1).min()))
+    topk_agree = None
+    if k > 0:
+        t_top = np.argsort(-t_rank, axis=-1)[:, :k]
+        j_top = np.argsort(-j_rank, axis=-1)[:, :k]
+        topk_agree = int(sum(set(a) == set(b) for a, b in zip(t_top, j_top)))
+
+    n = len(t_logprob)
+    log(f"JAX vs torch on step {step} ({distrax_source} distrax): "
+        f"max|dlogprob|={d_logprob:.3e} max|dvalue|={d_value:.3e} "
+        f"masks_agree={masks_agree} argmax {argmax_agree}/{n}"
+        + (f" top{k} {topk_agree}/{n}" if topk_agree is not None else ""))
+    return {"jax_available": True, "jax_step": step, "distrax": distrax_source,
+            "max_abs_logprob_diff_legal": d_logprob, "max_abs_value_diff": d_value,
+            "action_masks_agree": masks_agree,
+            "argmax_agreement": f"{argmax_agree}/{n}",
+            "topk_agreement": None if topk_agree is None else f"{topk_agree}/{n} (k={k})",
+            "parity_ok": bool(d_logprob < 1e-4 and d_value < 1e-4
+                              and masks_agree and argmax_agree == n)}
 
 
 def _unflatten(flat):
@@ -459,7 +561,10 @@ def stage_beam(cfg, log=print):
         temperature=float(cfg.get("BEAM_TEMPERATURE", 0.0)),
         temp_end=float(cfg.get("BEAM_TEMP_END", 0.0)), max_length=L,
         seed=int(cfg.get("SEED", 0)), heartbeat_s=cfg.get("HEARTBEAT_EVERY_S", 60.0),
-        time_budget_s=cfg.get("BEAM_TIME_BUDGET_S"), progress=log)
+        time_budget_s=cfg.get("BEAM_TIME_BUDGET_S"), progress=log,
+        # Mirror on the heartbeat, not only at the end: the full eval runs for
+        # hours and the VM's local disk does not survive a disconnect.
+        checkpoint=(lambda p: _mirror(p, mirror)) if mirror else None)
     _mirror(out_path, mirror)
     result.update(summarise(out_path))
     log(json.dumps(result, indent=2))

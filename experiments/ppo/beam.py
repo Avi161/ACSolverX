@@ -195,7 +195,7 @@ def _done_indices(path):
 def run_beam(model, presentations, out_path, *, start=0, end=None, device="cpu",
              beam_width=1024, max_steps=150, alpha=0.0, temperature=0.0, temp_end=0.0,
              max_length=24, n_gen=2, seed=0, chunk=4096, heartbeat_s=60.0,
-             time_budget_s=None, resume=True, progress=print):
+             time_budget_s=None, resume=True, progress=print, checkpoint=None):
     """Decode `presentations[start:end]`, appending one jsonl row each.
 
     `presentations` is `(S, 2 * max_length)`; rows are indexed by their position
@@ -207,6 +207,11 @@ def run_beam(model, presentations, out_path, *, start=0, end=None, device="cpu",
     first presentation missing from the file. That is what makes a fixed-length
     smoke run meaningful -- it measures the real per-presentation cost at
     production settings instead of a shrunken proxy, and its rows are kept.
+
+    `checkpoint(out_path)` is called on the heartbeat cadence and once at the
+    end. It exists so the Drive mirror happens *during* a run and not only
+    after it: the full eval is hours long, local disk dies with the VM, and a
+    disconnect at hour two must not cost every row since the start.
     """
     device = torch.device(device)
     end = len(presentations) if end is None else end
@@ -257,6 +262,8 @@ def run_beam(model, presentations, out_path, *, start=0, end=None, device="cpu",
                 progress(f"  [{n}/{len(todo)}] solved={n_solved} "
                          f"{rate * 60:.1f} pres/min  ETA {eta / 60:.1f} min")
                 last_beat = now
+                if checkpoint is not None:
+                    checkpoint(out_path)
 
             if time_budget_s and now - t0 >= float(time_budget_s):
                 stopped_early = n < len(todo)

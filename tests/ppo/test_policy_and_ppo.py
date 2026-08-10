@@ -10,6 +10,7 @@ gradient-accumulation split are the arithmetic they claim to be.
 
 import json
 import os
+import sys
 
 import numpy as np
 import pytest
@@ -240,3 +241,74 @@ def test_the_shipped_checkpoint_transplants_into_a_working_policy():
     assert torch.isfinite(value).all()
     # a trained value head is not centred on zero the way an initialised one is
     assert abs(float(value.mean())) > 0.5
+
+
+def test_the_distrax_shim_matches_the_real_packages_semantics():
+    """`Categorical(logits=l).logits` is `log_softmax(l)`, NOT `l`.
+
+    Measured off distrax 0.1.9, not assumed -- and the distinction is the whole
+    reason the parity gate compares log-probabilities. A shim that returned the
+    raw array would silently make the gate compare two different quantities and
+    report a per-row logsumexp offset as a broken port.
+    """
+    jax = pytest.importorskip("jax")
+    import jax.numpy as jnp
+    from experiments.ppo.run_ppo import _ensure_distrax
+
+    saved = sys.modules.pop("distrax", None)
+    blocker = _DistraxBlocker()
+    sys.meta_path.insert(0, blocker)
+    try:
+        assert _ensure_distrax(lambda *_: None) == "shim"
+        import distrax
+        raw = jnp.asarray([[1.0, 2.0, -3.0, 0.5]])
+        got = np.asarray(distrax.Categorical(logits=raw).logits)
+        expect = np.asarray(jax.nn.log_softmax(raw, axis=-1))
+        assert np.allclose(got, expect, atol=1e-6)
+        assert not np.allclose(got, np.asarray(raw)), "the shim must normalise"
+        # the property is what `network.py` reads; probs= is not supported
+        with pytest.raises(TypeError):
+            distrax.Categorical(probs=raw)
+    finally:
+        sys.meta_path.remove(blocker)
+        sys.modules.pop("distrax", None)
+        if saved is not None:
+            sys.modules["distrax"] = saved
+
+
+class _DistraxBlocker:
+    """Make `import distrax` fail the way a Colab without it would."""
+
+    def find_spec(self, name, path, target=None):
+        if name == "distrax" or name.startswith("distrax."):
+            raise ImportError("blocked by the test")
+        return None
+
+
+def test_the_parity_gate_is_diagnostic_and_cannot_stop_the_ladder():
+    """Whatever goes wrong under JAX, `beam_upstream` must still get to run.
+
+    A real A100 session was lost to `ModuleNotFoundError: No module named
+    'distrax'` raised out of `network.py` -- an optional dependency of a stage
+    that only *reports*, killing the stage that produces the number. Nothing
+    downstream imports JAX, so the gate reports and steps aside.
+    """
+    from experiments.ppo import run_ppo
+
+    for boom in (ImportError("no distrax"), RuntimeError("jax died"),
+                 ValueError("sharding")):
+        def explode(*a, **k):
+            raise boom
+
+        saved = run_ppo._jax_parity_inner
+        run_ppo._jax_parity_inner = explode
+        try:
+            lines = []
+            got = run_ppo._jax_parity({}, None, None, "cpu", lines.append)
+        finally:
+            run_ppo._jax_parity_inner = saved
+
+        assert got["jax_available"] is False
+        assert type(boom).__name__ in got["jax_error"]
+        assert "parity_ok" not in got, "a gate that did not run is not a pass"
+        assert any("NOT closed" in ln for ln in lines), "the failure must be loud"
