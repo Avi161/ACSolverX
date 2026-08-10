@@ -35,12 +35,13 @@ Higher density = denser knots = worse. `K` / `MK` are kept for contrast.
 
 ## Verdict
 
-On **raw** strings, `K_den` is higher (worse) on **16/60** and lower on **43/60** (mean Δ -0.0112). Raw `K` mean Δ was +1.033 — density removes most of that length inflation.
+**Raw strings (all 60):** density **flips** the knot story. Raw `K` / `MK` still rise after best CoV (`K` ↑20/=32/↓8, mean Δ +1.033; `MK` ↑18/=36/↓6, mean Δ +0.833), but `K_den` / `MK_den` more often **fall** (`K_den` ↑16/=1/↓43, mean Δ -0.0112; `MK_den` ↑19/=8/↓33, mean Δ -0.0255). So after removing length bias (and ignoring `xyimb`), best CoV does **not** look worse on knots — it looks slightly *sparser*.
 
-On **Aut-min moved** rows, `K_den` is higher on **9/17** and lower on **7/17** (mean Δ +0.0077).
+**Aut-min moved (n=17):** density **neutralizes** rather than flips. `K_den` is higher on **9/17** and lower on **7/17** (mean Δ +0.0077); `MK_den` ↑3/=8/↓6 (mean Δ -0.0270). Relabel inflation is gone; the remaining knot-density signal is weak / mixed.
 
 ## Source
 
 - Input: [`cov_heur_b1k_subset60.csv`](cov_heur_b1k_subset60.csv)
 - Table: [`cov_knot_density_delta_subset60.csv`](cov_knot_density_delta_subset60.csv)
+- Figure: [`figures/cov_knot_density_simple.png`](figures/cov_knot_density_simple.png)
 - Runner: `experiments/heuristic_search/runners/cov_knot_density_delta.py`

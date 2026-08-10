@@ -1,0 +1,77 @@
+warming kernels...
+host cores=4 MemAvailable≈14.2 GB
+jobs=40 (= 8 rows × 5 arms) budget=1000 engine=hcompact dataset=unsolved124
+--- SERIAL N_WORKERS=1 ---
+  5 arms x 8 presentations, budget 1,000, cap 48  [engine: hcompact]
+  0 rows resumed; 40 to run
+  -> /tmp/hsearch_mini_1mjkzilr/ser/mini_serial_unsolved124_b1000_mrl48.jsonl
+    [hcompact] reservation exceeded at 109,187 states; growing to 237,508 (this copies)
+    40/40 searches  0 solved  0.3 min elapsed  ETA 0.0 min
+
+# A/B — unsolved124, budget 1,000, cap 48
+
+8 presentations. Each curve is read off ONE run per (arm, presentation): a search at budget B is the first B pops of any longer search, so the node count at the solve gives every checkpoint below it.
+
+| arm | 1,000 |
+|---|---|
+| baseline | 0/8 |
+| s12 | 0/8 |
+| s28 | 0/8 |
+| s20_mk2 | 0/8 |
+| s24_k1_mk2 | 0/8 |
+
+## The gap over the baseline — the thing worth watching
+
+| arm | 1,000 | verdict |
+|---|---|---|
+| s12 | +0 | flat |
+| s28 | +0 | flat |
+| s20_mk2 | +0 | flat |
+| s24_k1_mk2 | +0 | flat |
+
+The local study (≤1,000 nodes) predicted **still widening** for `recommended`. If this run shows it turning over, the extrapolation to large budgets does not hold and the ordering is buying earliness rather than reach — which is worth knowing and worth reporting either way.
+
+
+  wrote /tmp/hsearch_mini_1mjkzilr/ser/mini_serial_unsolved124_b1000_mrl48.md
+SERIAL:  wall=17.22s  rows=40  workers=1
+--- PARALLEL N_WORKERS=auto ---
+  5 arms x 8 presentations, budget 1,000, cap 48  [engine: hcompact]  [4 workers, ~0.6 GB/search]
+  0 rows resumed; 40 to run
+  -> /tmp/hsearch_mini_1mjkzilr/par/mini_parallel_unsolved124_b1000_mrl48.jsonl
+    [hcompact] reservation exceeded at 109,187 states; growing to 237,508 (this copies)
+    40/40 searches  0 solved  0 errors  0.1 min elapsed  ETA 0.0 min  [4 workers]
+
+# A/B — unsolved124, budget 1,000, cap 48
+
+8 presentations. Each curve is read off ONE run per (arm, presentation): a search at budget B is the first B pops of any longer search, so the node count at the solve gives every checkpoint below it.
+
+| arm | 1,000 |
+|---|---|
+| baseline | 0/8 |
+| s12 | 0/8 |
+| s28 | 0/8 |
+| s20_mk2 | 0/8 |
+| s24_k1_mk2 | 0/8 |
+
+## The gap over the baseline — the thing worth watching
+
+| arm | 1,000 | verdict |
+|---|---|---|
+| s12 | +0 | flat |
+| s28 | +0 | flat |
+| s20_mk2 | +0 | flat |
+| s24_k1_mk2 | +0 | flat |
+
+The local study (≤1,000 nodes) predicted **still widening** for `recommended`. If this run shows it turning over, the extrapolation to large budgets does not hold and the ordering is buying earliness rather than reach — which is worth knowing and worth reporting either way.
+
+
+  wrote /tmp/hsearch_mini_1mjkzilr/par/mini_parallel_unsolved124_b1000_mrl48.md
+PARALLEL: wall=6.06s  rows=40  workers=4  est=0.61GB/search
+
+=== SPEEDUP 2.84x  (serial_wall / parallel_wall) ===
+per-job: serial=0.430s  parallel=0.151s
+result-neutral mismatches: 0/40
+  N_WORKERS 8 -> 6: memory-capped (7.6 GB/search est., 50 GB available)
+
+Colab @1M / 8 cores / 50GB / hcompact: workers=6 (7.6 GB/search)
+Ideal bound ~6x; measured here with 4 workers = 2.84x (efficiency 71% of 4x)

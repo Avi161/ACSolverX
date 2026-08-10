@@ -35,7 +35,14 @@ Same rule in [`AGENTS.md`](AGENTS.md). Example day file: [`logs/28-07-2026.md`](
   `B` is exactly the first `B` pops of any longer search, so a bigger budget buys a slower
   repro, never a different behaviour. Prove the pipeline is budget-agnostic instead of
   brute-forcing one budget. [[TRAP]](experiments/lessons/local-run-budget-cap.md)
-- **ac-advisor plan gate.** When the user explicitly asks to call `ac-advisor`, you MUST have the plan (yours or the user's) verified BEFORE any implementation or review work on that task: launch the agent defined at [`.claude/agents/ac-advisor.md`](.claude/agents/ac-advisor.md) — as subagent type `ac-advisor` if registered, otherwise as a general-purpose agent with `model: opus` whose prompt is "Read ACSolverX/.claude/agents/ac-advisor.md in full and adopt it as your operating instructions, then review this plan: <the plan>". Reconcile its verdict — address every REVISE item, or surface any disagreement to the user — before writing code. Never pass `model: fable` to it.
+- **Scout small, then scale only the winner.** Do **not** start heuristic / ordering
+  experiments as long wall-clock runs or huge node budgets. Compare arms in **short
+  scouts** (small budget, small subset, short wall); pick the best; **only then** raise
+  budget / write a Colab notebook for that winner so the user can run multi-CPU and hand
+  results back. A marathon at one huge `B` wastes time on losers and does not buy a
+  different ranking than the scout prefix. Same rule in [`AGENTS.md`](AGENTS.md).
+  [[WORKS]](experiments/lessons/scout-then-scale-budgets.md)
+- **ac-advisor plan gate.** When the user explicitly asks to call `ac-advisor`, you MUST have the plan (yours or the user's) verified BEFORE any implementation or review work on that task: launch the agent defined at [`.claude/agents/ac-advisor.md`](.claude/agents/ac-advisor.md) — as subagent type `ac-advisor` if registered, with **`model: gpt-5.6-sol-xhigh`**, otherwise as a general-purpose agent with `model: gpt-5.6-sol-xhigh` whose prompt is "Read ACSolverX/.claude/agents/ac-advisor.md in full and adopt it as your operating instructions, then review this plan: <the plan>". Reconcile its verdict — address every REVISE item, or surface any disagreement to the user — before writing code. Never pass `model: fable` to it.
 
 ## Repo context
 
@@ -111,6 +118,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - The mirror trap: a gap-vs-budget metric reads "turned over" exactly when the TREATMENT saturates — EXP-28's tuned arm finished the benchmark at 62.5k nodes (60/60), so the pre-registered gap verdict inverted a 6/6-vs-0/6 bin-9 win; truncate any Δ metric where either arm runs out of headroom and go row-level beyond it. [[TRAP]](experiments/lessons/gap-metric-saturates-when-the-treatment-wins.md)
 
 ### Heuristic search (heap orderings for the greedy)
+- **Scout small, then scale only the winner** — short ≤1k scouts to rank arms; raise budget / Colab only for the winner; never open with a huge-budget marathon. [[WORKS]](experiments/lessons/scout-then-scale-budgets.md)
 - **A data-derived denominator (a "decidable subset") belongs to the run that computed it — never score one run's arm against another run's denominator.** EXP-10 printed the prior best's count over its own 11-row set against this run's 24-row set and read as a breakthrough; on the same rows it was a dead tie. Gate any "we beat it" on the *measured* best-of-N optimism (1.23 presentations over 7 distinct half-split winners here), in code. [[TRAP]](experiments/lessons/compare-on-the-same-denominator.md)
 - **A good ordering feature is not automatically a good progress proxy — validate the proxy against real solves before ranking anything on it.** Knots-first (`L+8K`) is genuine ordering signal (17/40→23/40, phased 25/40), but knot-count *reached* does NOT predict a solve at the boundary (P(solve|knot drop)=0.10 vs 0.14 without; length-progress fails the same way). Report the never-solving second hump on real solves only. And headline every report on the *decidable* subset — 17/40→23/40 hides 16 saturated easy rows; the honest number is 1/24→7/24. [[TRAP]](experiments/lessons/knot-progress-is-not-a-solve-predictor.md)
 
@@ -164,6 +172,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - Promptless auth *requires* a Colab Secret; sanitize and format-validate a pasted key before hitting the server. [[TRAP]](experiments/lessons/wandb-auto-auth-colab-secret.md)
 
 ### Testing
+- **Never push Colab/runner files until the related tests are green — re-run after the last edit, then push, and report the pass count.** [[WORKS]](experiments/lessons/tests-green-before-push.md)
 - Test the search against a general-`n` spec **and** against an invariant it never computes (`abs(det)` of the exponent-sum matrix); never build an oracle that must reproduce `nodes_explored` — it becomes a near-copy of the implementation and would reject a correct stable-AC solver. [[WORKS]](experiments/lessons/greedy-test-suite-three-layers.md)
 - Node budgets are capped at 1,000: a search at budget `B` is the first `B` pops of any longer search, so a bigger budget buys slower tests, not different behaviour. Want a deeper anchor? Find a presentation that solves in *fewer* nodes. [[WORKS]](experiments/lessons/test-budget-ceiling.md)
 - A green default tier proves nothing about what it skipped — check the skip count, never push behind one, and when a new test fails on an already-documented bug the *test* is wrong, not the bug. [[WORKS]](experiments/lessons/slow-tier-caught-broken-path-test.md)
@@ -180,6 +189,7 @@ by a bare `pytest` now. It is also the safety net any refactor of that package l
 - The Drive mount root `/content/drive/` is not writable — every output path goes under `/content/drive/MyDrive/...`. [[TRAP]](experiments/lessons/colab-drive-mount-root-not-writable.md)
 - Anchor to an absolute base before cloning, or each re-run nests the repo one level deeper. [[TRAP]](experiments/lessons/colab-setup-nested-clone.md)
 - Pushing notebook changes does NOT update the user's running Colab cells; they must re-open it from GitHub. Put logic in `.py` modules. [[TRAP]](experiments/lessons/notebook-push-does-not-reach-colab.md)
+- **Live Colab hotfix contract (user directive):** while sessions are running, never edit the `.ipynb` for heartbeat / pops/s / ETA / mirror / resume bugs — fix only `.py` on the notebook's `BRANCH`; user Restart → Run All picks it up via `UPDATE_REPO` + module purge. [[WORKS]](experiments/lessons/colab-live-hotfix-py-only.md)
 - The notebook's `BRANCH` must match the actual git branch — check `git rev-parse --abbrev-ref HEAD` before writing clone config. [[TRAP]](experiments/lessons/notebook-branch-must-match-git.md)
 
 - **Never `git add -A` — anywhere, for any reason. Stage named paths.** Twice now. From a worktree it committed the `.venv` *symlink*, and merging that branch checked the link out over the real virtualenv and destroyed it (`too many levels of symbolic links`); `git rm --cached` does not undo it, and removing it only from the merge target leaves the source branch armed — audit with `git diff --cached --raw | awk '$1 ~ /120000/'`. [[TRAP]](experiments/lessons/never-git-add-all-from-a-worktree.md) In the main checkout during a reorg it swept six runtime `.log`/`.pid` files into a commit whose message described 81 files and whose `--stat` said 101 — so compare that count against the message before committing, and note that a later `.gitignore` rule does **not** untrack them (delete first, then ignore; and `git ls-files` the pattern first, since `results/**/*.log` would have shadowed real evidence logs). [[TRAP]](experiments/lessons/git-add-all-swept-runtime-files.md)

@@ -1,0 +1,1985 @@
+[freeze] L-stratified=80 fresh_hard=60
+[scale10k] wall_end=2026-07-29T16:12:20.673566+00:00 remain=10.00h
+
+=== round 1 phase=cost remain=10.00h ===
+  [cost] length/L1296/b1000 pops_s=6821.9 solved=True
+  [cost] length/L1296/b5000 pops_s=3194.6 solved=True
+  [cost] length/L1296/b10000 pops_s=8212.6 solved=True
+  [cost] s20/L1296/b1000 pops_s=5336.9 solved=True
+  [cost] s20/L1296/b5000 pops_s=2966.0 solved=True
+  [cost] s20/L1296/b10000 pops_s=5119.8 solved=True
+  [cost] recommended/L1296/b1000 pops_s=8625.5 solved=True
+  [cost] recommended/L1296/b5000 pops_s=7248.3 solved=True
+  [cost] recommended/L1296/b10000 pops_s=5852.5 solved=True
+  [cost] length/L152166/b1000 pops_s=7123.6 solved=True
+  [cost] length/L152166/b5000 pops_s=6131.7 solved=True
+  [cost] length/L152166/b10000 pops_s=4451.8 solved=True
+  [cost] s20/L152166/b1000 pops_s=5630.7 solved=True
+  [cost] s20/L152166/b5000 pops_s=4885.6 solved=True
+  [cost] s20/L152166/b10000 pops_s=4756.9 solved=True
+  [cost] recommended/L152166/b1000 pops_s=5926.3 solved=True
+  [cost] recommended/L152166/b5000 pops_s=5217.8 solved=True
+  [cost] recommended/L152166/b10000 pops_s=5158.7 solved=True
+  [cost] length/H220504/b1000 pops_s=5627.5 solved=False
+  [cost] length/H220504/b5000 pops_s=5460.2 solved=True
+  [cost] length/H220504/b10000 pops_s=5443.2 solved=True
+  [cost] s20/H220504/b1000 pops_s=6070.1 solved=True
+  [cost] s20/H220504/b5000 pops_s=5636.9 solved=True
+  [cost] s20/H220504/b10000 pops_s=5217.0 solved=True
+  [cost] recommended/H220504/b1000 pops_s=4846.4 solved=True
+  [cost] recommended/H220504/b5000 pops_s=4435.7 solved=True
+  [cost] recommended/H220504/b10000 pops_s=4165.6 solved=True
+  [cost] length/H220551/b1000 pops_s=4578.0 solved=False
+  [cost] length/H220551/b5000 pops_s=3979.1 solved=False
+  [cost] length/H220551/b10000 pops_s=3831.0 solved=False
+  [cost] s20/H220551/b1000 pops_s=4187.1 solved=False
+  [cost] s20/H220551/b5000 pops_s=3810.9 solved=True
+  [cost] s20/H220551/b10000 pops_s=3805.8 solved=True
+  [cost] recommended/H220551/b1000 pops_s=3487.0 solved=False
+  [cost] recommended/H220551/b5000 pops_s=2997.3 solved=False
+  [cost] recommended/H220551/b10000 pops_s=2945.2 solved=True
+  phase cost new=36
+
+=== round 1 phase=anytime_L remain=9.99h ===
+  [any] l_stratified/length/idx=1296 solved=True nodes=20 pops_s=5858.3
+  [any] l_stratified/s12/idx=1296 solved=True nodes=18 pops_s=7716.7
+  [any] l_stratified/s20/idx=1296 solved=True nodes=20 pops_s=7287.9
+  [any] l_stratified/recommended/idx=1296 solved=True nodes=50 pops_s=7696.4
+  [any] l_stratified/length/idx=152166 solved=True nodes=93 pops_s=5696.3
+  [any] l_stratified/s12/idx=152166 solved=True nodes=30 pops_s=5378.3
+  [any] l_stratified/s20/idx=152166 solved=True nodes=40 pops_s=4980.7
+  [any] l_stratified/recommended/idx=152166 solved=True nodes=19 pops_s=5291.7
+  [any] l_stratified/length/idx=327241 solved=True nodes=261 pops_s=4553.7
+  [any] l_stratified/s12/idx=327241 solved=True nodes=95 pops_s=4003.5
+  [any] l_stratified/s20/idx=327241 solved=True nodes=80 pops_s=3795.3
+  [any] l_stratified/recommended/idx=327241 solved=True nodes=819 pops_s=2870.2
+  [any] l_stratified/length/idx=486618 solved=True nodes=211 pops_s=6234.3
+  [any] l_stratified/s12/idx=486618 solved=True nodes=360 pops_s=5593.8
+  [any] l_stratified/s20/idx=486618 solved=True nodes=463 pops_s=5363.1
+  [any] l_stratified/recommended/idx=486618 solved=True nodes=347 pops_s=4608.3
+  [any] l_stratified/length/idx=654878 solved=True nodes=3220 pops_s=4633.5
+  [any] l_stratified/s12/idx=654878 solved=True nodes=1999 pops_s=4395.9
+  [any] l_stratified/s20/idx=654878 solved=True nodes=3582 pops_s=3995.9
+  [any] l_stratified/recommended/idx=654878 solved=True nodes=3429 pops_s=3594.8
+  [any] l_stratified/length/idx=811435 solved=True nodes=12 pops_s=5658.5
+  [any] l_stratified/s12/idx=811435 solved=True nodes=12 pops_s=6568.8
+  [any] l_stratified/s20/idx=811435 solved=True nodes=12 pops_s=5330.0
+  [any] l_stratified/recommended/idx=811435 solved=True nodes=12 pops_s=8551.1
+  [any] l_stratified/length/idx=966112 solved=True nodes=6 pops_s=9582.2
+  [any] l_stratified/s12/idx=966112 solved=True nodes=6 pops_s=9976.2
+  [any] l_stratified/s20/idx=966112 solved=True nodes=6 pops_s=9794.7
+  [any] l_stratified/recommended/idx=966112 solved=True nodes=6 pops_s=9801.2
+  [any] l_stratified/length/idx=1136111 solved=True nodes=1083 pops_s=5399.0
+  [any] l_stratified/s12/idx=1136111 solved=True nodes=619 pops_s=5171.0
+  [any] l_stratified/s20/idx=1136111 solved=True nodes=646 pops_s=5201.0
+  [any] l_stratified/recommended/idx=1136111 solved=True nodes=439 pops_s=4548.7
+  [any] l_stratified/length/idx=544 solved=True nodes=1751 pops_s=4128.4
+  [any] l_stratified/s12/idx=544 solved=True nodes=506 pops_s=4084.3
+  [any] l_stratified/s20/idx=544 solved=True nodes=507 pops_s=4087.6
+  [any] l_stratified/recommended/idx=544 solved=True nodes=409 pops_s=2887.1
+  [any] l_stratified/length/idx=158699 solved=True nodes=11 pops_s=3835.0
+  [any] l_stratified/s12/idx=158699 solved=True nodes=9 pops_s=4915.8
+  [any] l_stratified/s20/idx=158699 solved=True nodes=9 pops_s=4905.8
+  [any] l_stratified/recommended/idx=158699 solved=True nodes=10 pops_s=4430.6
+  [any] l_stratified/length/idx=318781 solved=True nodes=28 pops_s=7649.3
+  [any] l_stratified/s12/idx=318781 solved=True nodes=21 pops_s=6955.4
+  [any] l_stratified/s20/idx=318781 solved=True nodes=29 pops_s=6545.9
+  [any] l_stratified/recommended/idx=318781 solved=True nodes=18 pops_s=7579.9
+  [any] l_stratified/length/idx=478487 solved=True nodes=9 pops_s=8214.6
+  [any] l_stratified/s12/idx=478487 solved=True nodes=9 pops_s=8434.9
+  [any] l_stratified/s20/idx=478487 solved=True nodes=9 pops_s=8563.2
+  [any] l_stratified/recommended/idx=478487 solved=True nodes=9 pops_s=8505.8
+  [any] l_stratified/length/idx=636360 solved=True nodes=5369 pops_s=3331.6
+  [any] l_stratified/s12/idx=636360 solved=True nodes=1809 pops_s=3479.8
+  [any] l_stratified/s20/idx=636360 solved=True nodes=899 pops_s=3313.8
+  [any] l_stratified/recommended/idx=636360 solved=True nodes=3309 pops_s=2243.8
+  [any] l_stratified/length/idx=785914 solved=True nodes=1187 pops_s=5389.1
+  [any] l_stratified/s12/idx=785914 solved=True nodes=1393 pops_s=4819.2
+  [any] l_stratified/s20/idx=785914 solved=True nodes=997 pops_s=4726.4
+  [any] l_stratified/recommended/idx=785914 solved=True nodes=1055 pops_s=3966.3
+  [any] l_stratified/length/idx=957793 solved=True nodes=5 pops_s=5374.4
+  [any] l_stratified/s12/idx=957793 solved=True nodes=5 pops_s=6956.2
+  [any] l_stratified/s20/idx=957793 solved=True nodes=5 pops_s=7011.8
+  [any] l_stratified/recommended/idx=957793 solved=True nodes=5 pops_s=6916.6
+  [any] l_stratified/length/idx=1135829 solved=True nodes=7 pops_s=6688.0
+  [any] l_stratified/s12/idx=1135829 solved=True nodes=7 pops_s=6862.2
+  [any] l_stratified/s20/idx=1135829 solved=True nodes=7 pops_s=6844.8
+  [any] l_stratified/recommended/idx=1135829 solved=True nodes=7 pops_s=6771.4
+  [any] l_stratified/length/idx=168 solved=True nodes=8 pops_s=5852.8
+  [any] l_stratified/s12/idx=168 solved=True nodes=8 pops_s=6198.8
+  [any] l_stratified/s20/idx=168 solved=True nodes=8 pops_s=6104.5
+  [any] l_stratified/recommended/idx=168 solved=True nodes=8 pops_s=6189.1
+  [any] l_stratified/length/idx=153341 solved=True nodes=5 pops_s=5848.3
+  [any] l_stratified/s12/idx=153341 solved=True nodes=5 pops_s=6395.0
+  [any] l_stratified/s20/idx=153341 solved=True nodes=5 pops_s=6131.0
+  [any] l_stratified/recommended/idx=153341 solved=True nodes=5 pops_s=6310.2
+  [any] l_stratified/length/idx=305903 solved=True nodes=14 pops_s=4728.7
+  [any] l_stratified/s12/idx=305903 solved=True nodes=32 pops_s=4014.3
+  [any] l_stratified/s20/idx=305903 solved=True nodes=65 pops_s=2928.7
+  [any] l_stratified/recommended/idx=305903 solved=True nodes=25 pops_s=2834.7
+  [any] l_stratified/length/idx=476231 solved=True nodes=1968 pops_s=5520.0
+  [any] l_stratified/s12/idx=476231 solved=True nodes=931 pops_s=4794.0
+  [any] l_stratified/s20/idx=476231 solved=True nodes=973 pops_s=4673.9
+  [any] l_stratified/recommended/idx=476231 solved=True nodes=239 pops_s=4493.9
+  [any] l_stratified/length/idx=625268 solved=True nodes=8 pops_s=7251.4
+  [any] l_stratified/s12/idx=625268 solved=True nodes=8 pops_s=7701.2
+  [any] l_stratified/s20/idx=625268 solved=True nodes=8 pops_s=7635.6
+  [any] l_stratified/recommended/idx=625268 solved=True nodes=8 pops_s=7585.2
+  [any] l_stratified/length/idx=799027 solved=True nodes=11 pops_s=5012.7
+  [any] l_stratified/s12/idx=799027 solved=True nodes=11 pops_s=5848.7
+  [any] l_stratified/s20/idx=799027 solved=True nodes=11 pops_s=6118.5
+  [any] l_stratified/recommended/idx=799027 solved=True nodes=11 pops_s=6916.8
+  [any] l_stratified/length/idx=972880 solved=True nodes=6 pops_s=5605.9
+  [any] l_stratified/s12/idx=972880 solved=True nodes=6 pops_s=5790.2
+  [any] l_stratified/s20/idx=972880 solved=True nodes=6 pops_s=5917.5
+  [any] l_stratified/recommended/idx=972880 solved=True nodes=6 pops_s=5868.6
+  [any] l_stratified/length/idx=1135735 solved=True nodes=12 pops_s=6247.1
+  [any] l_stratified/s12/idx=1135735 solved=True nodes=12 pops_s=6465.6
+  [any] l_stratified/s20/idx=1135735 solved=True nodes=12 pops_s=6358.0
+  [any] l_stratified/recommended/idx=1135735 solved=True nodes=12 pops_s=6526.4
+  [any] l_stratified/length/idx=262 solved=True nodes=7 pops_s=5164.3
+  [any] l_stratified/s12/idx=262 solved=True nodes=10 pops_s=6453.2
+  [any] l_stratified/s20/idx=262 solved=True nodes=10 pops_s=6358.6
+  [any] l_stratified/recommended/idx=262 solved=True nodes=7 pops_s=5373.7
+  [any] l_stratified/length/idx=171201 solved=True nodes=8 pops_s=6949.8
+  [any] l_stratified/s12/idx=171201 solved=True nodes=8 pops_s=7326.3
+  [any] l_stratified/s20/idx=171201 solved=True nodes=8 pops_s=7253.1
+  [any] l_stratified/recommended/idx=171201 solved=True nodes=18 pops_s=5848.5
+  [any] l_stratified/length/idx=330061 solved=True nodes=48 pops_s=6775.2
+  [any] l_stratified/s12/idx=330061 solved=True nodes=23 pops_s=6498.0
+  [any] l_stratified/s20/idx=330061 solved=True nodes=46 pops_s=6153.7
+  [any] l_stratified/recommended/idx=330061 solved=True nodes=131 pops_s=4636.8
+  [any] l_stratified/length/idx=487323 solved=True nodes=10 pops_s=5964.4
+  [any] l_stratified/s12/idx=487323 solved=True nodes=10 pops_s=6488.2
+  [any] l_stratified/s20/idx=487323 solved=True nodes=10 pops_s=6306.4
+  [any] l_stratified/recommended/idx=487323 solved=True nodes=10 pops_s=6103.7
+  [any] l_stratified/length/idx=652904 solved=True nodes=8267 pops_s=3043.3
+  [any] l_stratified/s12/idx=652904 solved=True nodes=4123 pops_s=2968.9
+  [any] l_stratified/s20/idx=652904 solved=True nodes=4675 pops_s=2726.9
+  [any] l_stratified/recommended/idx=652904 solved=True nodes=6768 pops_s=2216.0
+  [any] l_stratified/length/idx=816652 solved=True nodes=4216 pops_s=5385.5
+  [any] l_stratified/s12/idx=816652 solved=True nodes=342 pops_s=5096.0
+  [any] l_stratified/s20/idx=816652 solved=True nodes=225 pops_s=5010.8
+  [any] l_stratified/recommended/idx=816652 solved=True nodes=231 pops_s=3964.4
+  [any] l_stratified/length/idx=985993 solved=True nodes=1955 pops_s=4151.3
+  [any] l_stratified/s12/idx=985993 solved=True nodes=942 pops_s=3814.2
+  [any] l_stratified/s20/idx=985993 solved=True nodes=2498 pops_s=3155.1
+  [any] l_stratified/length/idx=1136064 solved=True nodes=6 pops_s=5219.5
+  [any] l_stratified/s12/idx=1136064 solved=True nodes=6 pops_s=6059.6
+  [any] l_stratified/s20/idx=1136064 solved=True nodes=6 pops_s=6399.3
+  [any] l_stratified/recommended/idx=1136064 solved=True nodes=6 pops_s=6506.4
+  [any] l_stratified/length/idx=497 solved=True nodes=95 pops_s=5975.2
+  [any] l_stratified/s12/idx=497 solved=True nodes=50 pops_s=5731.3
+  [any] l_stratified/s20/idx=497 solved=True nodes=22 pops_s=5522.0
+  [any] l_stratified/recommended/idx=497 solved=True nodes=13 pops_s=6156.5
+  [any] l_stratified/length/idx=175948 solved=True nodes=8 pops_s=4767.9
+  [any] l_stratified/s12/idx=175948 solved=True nodes=8 pops_s=4847.2
+  [any] l_stratified/s20/idx=175948 solved=True nodes=8 pops_s=4884.9
+  [any] l_stratified/recommended/idx=175948 solved=True nodes=8 pops_s=4934.6
+  [any] l_stratified/length/idx=359812 solved=True nodes=8 pops_s=6256.7
+  [any] l_stratified/s12/idx=359812 solved=True nodes=8 pops_s=6497.0
+  [any] l_stratified/s20/idx=359812 solved=True nodes=8 pops_s=6414.6
+  [any] l_stratified/recommended/idx=359812 solved=True nodes=8 pops_s=6454.3
+  [any] l_stratified/length/idx=520928 solved=True nodes=37 pops_s=4632.0
+  [any] l_stratified/s12/idx=520928 solved=True nodes=337 pops_s=4944.3
+  [any] l_stratified/s20/idx=520928 solved=True nodes=14 pops_s=2741.3
+  [any] l_stratified/recommended/idx=520928 solved=True nodes=42 pops_s=3960.5
+  [any] l_stratified/length/idx=664654 solved=True nodes=6 pops_s=5176.9
+  [any] l_stratified/s12/idx=664654 solved=True nodes=6 pops_s=5344.1
+  [any] l_stratified/s20/idx=664654 solved=True nodes=6 pops_s=5344.0
+  [any] l_stratified/recommended/idx=664654 solved=True nodes=6 pops_s=5274.0
+  [any] l_stratified/s12/idx=818814 solved=False nodes=10000 pops_s=1427.7
+  [any] l_stratified/length/idx=970201 solved=True nodes=108 pops_s=6300.0
+  [any] l_stratified/s12/idx=970201 solved=True nodes=113 pops_s=5711.9
+  [any] l_stratified/s20/idx=970201 solved=True nodes=107 pops_s=5819.2
+  [any] l_stratified/recommended/idx=970201 solved=True nodes=171 pops_s=5168.9
+  [any] l_stratified/length/idx=1135641 solved=True nodes=2871 pops_s=3842.2
+  [any] l_stratified/s12/idx=1135641 solved=True nodes=214 pops_s=3594.6
+  [any] l_stratified/s20/idx=1135641 solved=True nodes=170 pops_s=3263.0
+  [any] l_stratified/recommended/idx=1135641 solved=True nodes=4475 pops_s=2712.3
+  [any] l_stratified/length/idx=121 solved=True nodes=1528 pops_s=4123.5
+  [any] l_stratified/s12/idx=121 solved=True nodes=1389 pops_s=3853.0
+  [any] l_stratified/s20/idx=121 solved=True nodes=2114 pops_s=3775.8
+  [any] l_stratified/recommended/idx=121 solved=True nodes=1816 pops_s=2874.5
+  [any] l_stratified/length/idx=158323 solved=True nodes=10 pops_s=3889.3
+  [any] l_stratified/s12/idx=158323 solved=True nodes=10 pops_s=4567.1
+  [any] l_stratified/s20/idx=158323 solved=True nodes=10 pops_s=4496.7
+  [any] l_stratified/recommended/idx=158323 solved=True nodes=10 pops_s=4589.7
+  [any] l_stratified/length/idx=304211 solved=True nodes=23 pops_s=2772.7
+  [any] l_stratified/s12/idx=304211 solved=True nodes=26 pops_s=2594.3
+  [any] l_stratified/s20/idx=304211 solved=True nodes=13 pops_s=3257.1
+  [any] l_stratified/recommended/idx=304211 solved=True nodes=11 pops_s=3145.8
+  [any] l_stratified/length/idx=476419 solved=True nodes=11 pops_s=4217.6
+  [any] l_stratified/s12/idx=476419 solved=True nodes=14 pops_s=3945.8
+  [any] l_stratified/s20/idx=476419 solved=True nodes=22 pops_s=3198.9
+  [any] l_stratified/recommended/idx=476419 solved=True nodes=11 pops_s=4601.6
+  [any] l_stratified/length/idx=637441 solved=True nodes=1957 pops_s=2756.5
+  [any] l_stratified/s12/idx=637441 solved=True nodes=1788 pops_s=3368.0
+  [any] l_stratified/s20/idx=637441 solved=True nodes=869 pops_s=3143.3
+  [any] l_stratified/recommended/idx=637441 solved=False nodes=10000 pops_s=1641.1
+  [any] l_stratified/length/idx=789486 solved=True nodes=7 pops_s=4716.9
+  [any] l_stratified/s12/idx=789486 solved=True nodes=7 pops_s=5353.8
+  [any] l_stratified/s20/idx=789486 solved=True nodes=7 pops_s=5514.9
+  [any] l_stratified/recommended/idx=789486 solved=True nodes=7 pops_s=5480.2
+  [any] l_stratified/length/idx=958968 solved=True nodes=51 pops_s=6652.5
+  [any] l_stratified/s12/idx=958968 solved=True nodes=43 pops_s=5649.5
+  [any] l_stratified/s20/idx=958968 solved=True nodes=77 pops_s=4909.8
+  [any] l_stratified/recommended/idx=958968 solved=True nodes=133 pops_s=4683.7
+  [any] l_stratified/length/idx=1135171 solved=True nodes=6 pops_s=5970.4
+  [any] l_stratified/s12/idx=1135171 solved=True nodes=6 pops_s=6279.1
+  [any] l_stratified/s20/idx=1135171 solved=True nodes=6 pops_s=6335.6
+  [any] l_stratified/recommended/idx=1135171 solved=True nodes=6 pops_s=6504.5
+  [any] l_stratified/length/idx=450 solved=True nodes=8 pops_s=4602.6
+  [any] l_stratified/s12/idx=450 solved=True nodes=9 pops_s=5341.3
+  [any] l_stratified/s20/idx=450 solved=True nodes=9 pops_s=5005.7
+  [any] l_stratified/recommended/idx=450 solved=True nodes=8 pops_s=5107.1
+  [any] l_stratified/length/idx=170637 solved=True nodes=49 pops_s=6336.6
+  [any] l_stratified/s12/idx=170637 solved=True nodes=45 pops_s=5423.7
+  [any] l_stratified/s20/idx=170637 solved=True nodes=76 pops_s=4791.2
+  [any] l_stratified/recommended/idx=170637 solved=True nodes=138 pops_s=4729.5
+  [any] l_stratified/length/idx=327147 solved=True nodes=20 pops_s=6557.8
+  [any] l_stratified/s12/idx=327147 solved=True nodes=14 pops_s=6567.9
+  [any] l_stratified/s20/idx=327147 solved=True nodes=14 pops_s=6688.3
+  [any] l_stratified/recommended/idx=327147 solved=True nodes=83 pops_s=5103.0
+  [any] l_stratified/length/idx=503162 solved=True nodes=387 pops_s=2413.8
+  [any] l_stratified/s12/idx=503162 solved=True nodes=308 pops_s=2386.7
+  [any] l_stratified/s20/idx=503162 solved=True nodes=432 pops_s=3050.7
+  [any] l_stratified/recommended/idx=503162 solved=True nodes=453 pops_s=2083.4
+  [any] l_stratified/length/idx=669166 solved=True nodes=7 pops_s=4312.3
+  [any] l_stratified/s12/idx=669166 solved=True nodes=7 pops_s=4871.9
+  [any] l_stratified/s20/idx=669166 solved=True nodes=7 pops_s=4681.5
+  [any] l_stratified/recommended/idx=669166 solved=True nodes=8 pops_s=5350.0
+  [any] l_stratified/length/idx=844429 solved=True nodes=13 pops_s=5055.1
+  [any] l_stratified/s12/idx=844429 solved=True nodes=17 pops_s=4458.4
+  [any] l_stratified/s20/idx=844429 solved=True nodes=12 pops_s=4525.2
+  [any] l_stratified/recommended/idx=844429 solved=True nodes=15 pops_s=4915.1
+  [any] l_stratified/length/idx=982045 solved=True nodes=7 pops_s=5126.2
+  [any] l_stratified/s12/idx=982045 solved=True nodes=7 pops_s=5388.5
+  [any] l_stratified/s20/idx=982045 solved=True nodes=7 pops_s=5313.0
+  [any] l_stratified/recommended/idx=982045 solved=True nodes=7 pops_s=5370.4
+  [any] l_stratified/length/idx=403 solved=True nodes=6 pops_s=3861.0
+  [any] l_stratified/s12/idx=403 solved=True nodes=6 pops_s=4371.6
+  [any] l_stratified/s20/idx=403 solved=True nodes=6 pops_s=4459.8
+  [any] l_stratified/recommended/idx=403 solved=True nodes=6 pops_s=4294.6
+  [any] l_stratified/length/idx=151555 solved=True nodes=5 pops_s=3986.2
+  [any] l_stratified/s12/idx=151555 solved=True nodes=5 pops_s=4013.9
+  [any] l_stratified/s20/idx=151555 solved=True nodes=5 pops_s=4221.8
+  [any] l_stratified/recommended/idx=151555 solved=True nodes=5 pops_s=4102.1
+  [any] l_stratified/length/idx=335372 solved=True nodes=9 pops_s=4797.5
+  [any] l_stratified/s12/idx=335372 solved=True nodes=9 pops_s=4909.6
+  [any] l_stratified/s20/idx=335372 solved=True nodes=9 pops_s=4977.2
+  [any] l_stratified/recommended/idx=335372 solved=True nodes=9 pops_s=4879.1
+  [any] l_stratified/length/idx=492070 solved=True nodes=48 pops_s=6840.4
+  [any] l_stratified/s12/idx=492070 solved=True nodes=25 pops_s=6061.1
+  [any] l_stratified/s20/idx=492070 solved=True nodes=31 pops_s=5961.7
+  [any] l_stratified/recommended/idx=492070 solved=True nodes=82 pops_s=5089.1
+  [any] l_stratified/length/idx=839259 solved=True nodes=17 pops_s=3883.4
+  [any] l_stratified/s12/idx=839259 solved=True nodes=15 pops_s=4817.2
+  [any] l_stratified/s20/idx=839259 solved=True nodes=15 pops_s=5273.9
+  [any] l_stratified/recommended/idx=839259 solved=True nodes=20 pops_s=4897.3
+  [any] l_stratified/length/idx=987121 solved=True nodes=14 pops_s=5802.0
+  [any] l_stratified/s12/idx=987121 solved=True nodes=12 pops_s=5892.5
+  [any] l_stratified/s20/idx=987121 solved=True nodes=12 pops_s=5922.1
+  [any] l_stratified/recommended/idx=987121 solved=True nodes=16 pops_s=5645.6
+  [any] l_stratified/length/idx=1135218 solved=True nodes=9 pops_s=4438.0
+  [any] l_stratified/s12/idx=1135218 solved=True nodes=9 pops_s=4530.4
+  [any] l_stratified/s20/idx=1135218 solved=True nodes=9 pops_s=4586.9
+  [any] l_stratified/recommended/idx=1135218 solved=True nodes=12 pops_s=4288.9
+  [any] l_stratified/length/idx=356 solved=True nodes=90 pops_s=6069.2
+  [any] l_stratified/s12/idx=356 solved=True nodes=31 pops_s=5039.3
+  [any] l_stratified/s20/idx=356 solved=True nodes=36 pops_s=4595.6
+  [any] l_stratified/recommended/idx=356 solved=True nodes=50 pops_s=5143.1
+  [any] l_stratified/length/idx=177311 solved=True nodes=4614 pops_s=5224.1
+  [any] l_stratified/s12/idx=177311 solved=True nodes=363 pops_s=4977.1
+  [any] l_stratified/s20/idx=177311 solved=True nodes=246 pops_s=4808.1
+  [any] l_stratified/recommended/idx=177311 solved=True nodes=119 pops_s=4553.8
+  [any] l_stratified/length/idx=336124 solved=True nodes=81 pops_s=6512.3
+  [any] l_stratified/s12/idx=336124 solved=True nodes=22 pops_s=5656.2
+  [any] l_stratified/s20/idx=336124 solved=True nodes=22 pops_s=5587.6
+  [any] l_stratified/recommended/idx=336124 solved=True nodes=9 pops_s=3845.5
+  [any] l_stratified/length/idx=507721 solved=True nodes=51 pops_s=6205.0
+  [any] l_stratified/s12/idx=507721 solved=True nodes=28 pops_s=5297.0
+  [any] l_stratified/s20/idx=507721 solved=True nodes=34 pops_s=5238.6
+  [any] l_stratified/recommended/idx=507721 solved=True nodes=90 pops_s=6304.9
+  [any] l_stratified/length/idx=669542 solved=True nodes=16 pops_s=6256.0
+  [any] l_stratified/s12/idx=669542 solved=True nodes=14 pops_s=5242.9
+  [any] l_stratified/s20/idx=669542 solved=True nodes=14 pops_s=4860.8
+  [any] l_stratified/recommended/idx=669542 solved=True nodes=14 pops_s=5456.2
+  [any] l_stratified/s20/idx=823702 solved=True nodes=8791 pops_s=3028.9
+  [any] l_stratified/recommended/idx=823702 solved=True nodes=1172 pops_s=3048.6
+  [any] l_stratified/length/idx=998307 solved=True nodes=13 pops_s=3606.9
+  [any] l_stratified/s12/idx=998307 solved=True nodes=11 pops_s=3540.9
+  [any] l_stratified/s20/idx=998307 solved=True nodes=11 pops_s=3681.3
+  [any] l_stratified/recommended/idx=998307 solved=True nodes=12 pops_s=3919.2
+  [any] l_stratified/length/idx=1133338 solved=True nodes=8 pops_s=4624.3
+  [any] l_stratified/s12/idx=1133338 solved=True nodes=8 pops_s=4359.1
+  [any] l_stratified/s20/idx=1133338 solved=True nodes=8 pops_s=4506.4
+  [any] l_stratified/recommended/idx=1133338 solved=True nodes=8 pops_s=4629.1
+  [any] l_stratified/length/idx=1155 solved=True nodes=132 pops_s=5774.0
+  [any] l_stratified/s12/idx=1155 solved=True nodes=122 pops_s=5203.7
+  [any] l_stratified/s20/idx=1155 solved=True nodes=222 pops_s=5069.8
+  [any] l_stratified/recommended/idx=1155 solved=True nodes=216 pops_s=5157.9
+  [any] l_stratified/length/idx=157289 solved=True nodes=85 pops_s=6074.2
+  [any] l_stratified/s12/idx=157289 solved=True nodes=68 pops_s=5169.2
+  [any] l_stratified/s20/idx=157289 solved=True nodes=70 pops_s=5152.6
+  [any] l_stratified/recommended/idx=157289 solved=True nodes=178 pops_s=4750.5
+  [any] l_stratified/length/idx=318640 solved=True nodes=106 pops_s=5860.0
+  [any] l_stratified/s12/idx=318640 solved=True nodes=44 pops_s=5022.2
+  [any] l_stratified/s20/idx=318640 solved=True nodes=50 pops_s=4983.7
+  [any] l_stratified/recommended/idx=318640 solved=True nodes=226 pops_s=4825.6
+  [any] l_stratified/length/idx=480414 solved=True nodes=7 pops_s=4644.9
+  [any] l_stratified/s12/idx=480414 solved=True nodes=7 pops_s=5161.1
+  [any] l_stratified/s20/idx=480414 solved=True nodes=7 pops_s=5105.6
+  [any] l_stratified/recommended/idx=480414 solved=True nodes=7 pops_s=4931.5
+  [any] l_stratified/length/idx=631425 solved=True nodes=10 pops_s=5553.1
+  [any] l_stratified/s12/idx=631425 solved=True nodes=9 pops_s=5455.0
+  [any] l_stratified/s20/idx=631425 solved=True nodes=9 pops_s=5511.0
+  [any] l_stratified/recommended/idx=631425 solved=True nodes=10 pops_s=5741.8
+  [any] l_stratified/length/idx=802317 solved=True nodes=109 pops_s=6669.0
+  [any] l_stratified/s12/idx=802317 solved=True nodes=75 pops_s=6032.6
+  [any] l_stratified/s20/idx=802317 solved=True nodes=104 pops_s=5740.4
+  [any] l_stratified/recommended/idx=802317 solved=True nodes=174 pops_s=5248.7
+  [any] l_stratified/s12/idx=966958 solved=True nodes=9451 pops_s=1914.9
+  [any] l_stratified/s20/idx=966958 solved=False nodes=10000 pops_s=1756.7
+  [any] l_stratified/length/idx=1135594 solved=True nodes=10 pops_s=2873.5
+  [any] l_stratified/s12/idx=1135594 solved=True nodes=10 pops_s=3052.5
+  [any] l_stratified/s20/idx=1135594 solved=True nodes=10 pops_s=3170.6
+  [any] l_stratified/recommended/idx=1135594 solved=True nodes=13 pops_s=2788.5
+  phase anytime_L new=320
+
+=== round 1 phase=anytime_hard remain=9.94h ===
+  [any] fresh_hard/length/idx=220504 solved=True nodes=4229 pops_s=5299.9
+  [any] fresh_hard/s20/idx=220504 solved=True nodes=214 pops_s=5078.3
+  [any] fresh_hard/recommended/idx=220504 solved=True nodes=186 pops_s=4072.4
+  [any] fresh_hard/s12/idx=220504 solved=True nodes=330 pops_s=5245.0
+  [any] fresh_hard/length/idx=220551 solved=False nodes=10000 pops_s=3778.8
+  [any] fresh_hard/s20/idx=220551 solved=True nodes=4796 pops_s=3715.6
+  [any] fresh_hard/recommended/idx=220551 solved=True nodes=9505 pops_s=2809.9
+  [any] fresh_hard/s12/idx=220551 solved=True nodes=8967 pops_s=3738.3
+  [any] fresh_hard/length/idx=221397 solved=True nodes=5146 pops_s=5136.1
+  [any] fresh_hard/s20/idx=221397 solved=True nodes=451 pops_s=4294.2
+  [any] fresh_hard/recommended/idx=221397 solved=True nodes=3132 pops_s=2617.5
+  [any] fresh_hard/s12/idx=221397 solved=True nodes=512 pops_s=4578.3
+    [hcompact] reservation exceeded at 1,800,104 states; growing to 3,619,208 (this copies)
+  [any] fresh_hard/recommended/idx=221538 solved=False nodes=10000 pops_s=605.6
+  [any] fresh_hard/length/idx=221867 solved=True nodes=3882 pops_s=5559.9
+  [any] fresh_hard/s20/idx=221867 solved=True nodes=427 pops_s=5075.5
+  [any] fresh_hard/s12/idx=221867 solved=True nodes=425 pops_s=5588.2
+  [any] fresh_hard/length/idx=222807 solved=True nodes=7158 pops_s=3362.4
+  [any] fresh_hard/s20/idx=222807 solved=True nodes=8028 pops_s=2983.1
+  [any] fresh_hard/s12/idx=222807 solved=True nodes=8293 pops_s=3149.1
+  [any] fresh_hard/length/idx=223230 solved=True nodes=1104 pops_s=5537.1
+  [any] fresh_hard/s20/idx=223230 solved=True nodes=523 pops_s=5646.7
+  [any] fresh_hard/recommended/idx=223230 solved=True nodes=437 pops_s=4788.4
+  [any] fresh_hard/s12/idx=223230 solved=True nodes=419 pops_s=6023.5
+  [any] fresh_hard/length/idx=223418 solved=True nodes=1063 pops_s=1995.5
+  [any] fresh_hard/s20/idx=223418 solved=True nodes=885 pops_s=1958.5
+  [any] fresh_hard/recommended/idx=223418 solved=True nodes=5144 pops_s=1210.5
+  [any] fresh_hard/s12/idx=223418 solved=True nodes=887 pops_s=1956.3
+  [any] fresh_hard/length/idx=223512 solved=True nodes=1962 pops_s=4154.7
+  [any] fresh_hard/s20/idx=223512 solved=True nodes=6576 pops_s=2945.3
+  [any] fresh_hard/recommended/idx=223512 solved=True nodes=1351 pops_s=3497.2
+  [any] fresh_hard/s12/idx=223512 solved=True nodes=1979 pops_s=3626.7
+  [any] fresh_hard/s12/idx=223606 solved=False nodes=10000 pops_s=2743.6
+  [any] fresh_hard/length/idx=223841 solved=True nodes=2192 pops_s=3823.1
+  [any] fresh_hard/s20/idx=223841 solved=True nodes=722 pops_s=3772.4
+  [any] fresh_hard/s12/idx=223841 solved=True nodes=700 pops_s=3979.2
+  [any] fresh_hard/length/idx=224076 solved=True nodes=4020 pops_s=5585.8
+  [any] fresh_hard/s20/idx=224076 solved=True nodes=188 pops_s=6000.9
+  [any] fresh_hard/s12/idx=224076 solved=True nodes=316 pops_s=5090.8
+  [any] fresh_hard/length/idx=224546 solved=True nodes=1258 pops_s=3294.7
+  [any] fresh_hard/s20/idx=224546 solved=True nodes=308 pops_s=3859.1
+  [any] fresh_hard/recommended/idx=224546 solved=True nodes=3650 pops_s=2478.1
+  [any] fresh_hard/s12/idx=224546 solved=True nodes=336 pops_s=4260.3
+  [any] fresh_hard/length/idx=224593 solved=True nodes=2922 pops_s=3749.5
+  [any] fresh_hard/s20/idx=224593 solved=True nodes=428 pops_s=3812.5
+  [any] fresh_hard/recommended/idx=224593 solved=False nodes=10000 pops_s=2283.3
+  [any] fresh_hard/s12/idx=224593 solved=True nodes=669 pops_s=3961.9
+  [any] fresh_hard/s12/idx=224922 solved=False nodes=10000 pops_s=1711.5
+  [any] fresh_hard/s12/idx=225580 solved=True nodes=7464 pops_s=2424.8
+  [any] fresh_hard/length/idx=225862 solved=False nodes=10000 pops_s=2798.6
+  [any] fresh_hard/s20/idx=225862 solved=True nodes=3174 pops_s=2904.4
+  [any] fresh_hard/recommended/idx=225862 solved=True nodes=5642 pops_s=1924.9
+  [any] fresh_hard/s12/idx=225862 solved=True nodes=4671 pops_s=2884.5
+  [any] fresh_hard/s20/idx=226191 solved=True nodes=4405 pops_s=3014.9
+  [any] fresh_hard/recommended/idx=226191 solved=True nodes=2400 pops_s=3026.6
+  [any] fresh_hard/s12/idx=226191 solved=True nodes=5842 pops_s=3121.7
+  [any] fresh_hard/s20/idx=226285 solved=True nodes=3758 pops_s=3853.4
+  [any] fresh_hard/recommended/idx=226285 solved=True nodes=9515 pops_s=2913.4
+  [any] fresh_hard/s12/idx=226285 solved=True nodes=8201 pops_s=3788.5
+  [any] fresh_hard/length/idx=226473 solved=True nodes=1195 pops_s=4376.3
+  [any] fresh_hard/s20/idx=226473 solved=True nodes=747 pops_s=4161.3
+  [any] fresh_hard/s12/idx=226473 solved=True nodes=854 pops_s=3994.4
+  [any] fresh_hard/length/idx=226802 solved=True nodes=1170 pops_s=4319.1
+  [any] fresh_hard/s20/idx=226802 solved=True nodes=1103 pops_s=3789.7
+  [any] fresh_hard/recommended/idx=226802 solved=True nodes=919 pops_s=3083.7
+  [any] fresh_hard/s12/idx=226802 solved=True nodes=839 pops_s=4037.7
+  [any] fresh_hard/length/idx=227037 solved=False nodes=10000 pops_s=2067.5
+  [any] fresh_hard/s20/idx=227601 solved=False nodes=10000 pops_s=3467.6
+  [any] fresh_hard/recommended/idx=227601 solved=True nodes=271 pops_s=3684.0
+  [any] fresh_hard/s20/idx=227695 solved=True nodes=9440 pops_s=1708.0
+  [any] fresh_hard/recommended/idx=227695 solved=False nodes=10000 pops_s=886.0
+  [any] fresh_hard/length/idx=227836 solved=True nodes=1886 pops_s=3629.8
+  [any] fresh_hard/s20/idx=227836 solved=True nodes=759 pops_s=3990.4
+  [any] fresh_hard/recommended/idx=227836 solved=True nodes=1638 pops_s=2719.4
+  [any] fresh_hard/s12/idx=227836 solved=True nodes=994 pops_s=3941.8
+  [any] fresh_hard/length/idx=228541 solved=True nodes=4225 pops_s=5420.8
+  [any] fresh_hard/s20/idx=228541 solved=True nodes=182 pops_s=6507.5
+  [any] fresh_hard/s12/idx=228541 solved=True nodes=306 pops_s=6345.6
+  [any] fresh_hard/length/idx=228776 solved=False nodes=10000 pops_s=2404.9
+  [any] fresh_hard/s20/idx=229011 solved=False nodes=10000 pops_s=3512.7
+  [any] fresh_hard/recommended/idx=229011 solved=True nodes=67 pops_s=4336.8
+  [any] fresh_hard/recommended/idx=229058 solved=False nodes=10000 pops_s=2577.5
+  [any] fresh_hard/recommended/idx=229246 solved=True nodes=400 pops_s=1676.7
+  [any] fresh_hard/s12/idx=229246 solved=False nodes=10000 pops_s=2981.8
+  [any] fresh_hard/length/idx=229857 solved=True nodes=1079 pops_s=5610.2
+  [any] fresh_hard/s20/idx=229857 solved=True nodes=1986 pops_s=4180.1
+  [any] fresh_hard/recommended/idx=229857 solved=True nodes=837 pops_s=4196.1
+  [any] fresh_hard/s12/idx=229857 solved=True nodes=933 pops_s=5001.9
+  [any] fresh_hard/length/idx=230327 solved=True nodes=4507 pops_s=2723.6
+  [any] fresh_hard/s20/idx=230327 solved=True nodes=5801 pops_s=2509.3
+  [any] fresh_hard/s12/idx=230327 solved=True nodes=3672 pops_s=2673.2
+  [any] fresh_hard/length/idx=230703 solved=True nodes=8286 pops_s=2621.9
+  [any] fresh_hard/s20/idx=230703 solved=True nodes=1773 pops_s=2812.4
+  [any] fresh_hard/recommended/idx=230703 solved=False nodes=10000 pops_s=1492.0
+  [any] fresh_hard/s12/idx=230703 solved=True nodes=2294 pops_s=2972.1
+  [any] fresh_hard/s12/idx=231079 solved=False nodes=10000 pops_s=1896.6
+  [any] fresh_hard/length/idx=231314 solved=True nodes=1895 pops_s=4259.5
+  [any] fresh_hard/s20/idx=231314 solved=True nodes=6537 pops_s=2970.6
+  [any] fresh_hard/recommended/idx=231314 solved=True nodes=1515 pops_s=3063.8
+  [any] fresh_hard/s12/idx=231314 solved=True nodes=1991 pops_s=3614.0
+  [any] fresh_hard/length/idx=231502 solved=False nodes=10000 pops_s=2126.3
+  [any] fresh_hard/length/idx=231831 solved=True nodes=1978 pops_s=4216.5
+  [any] fresh_hard/s20/idx=231831 solved=True nodes=2547 pops_s=3224.0
+  [any] fresh_hard/s12/idx=231831 solved=True nodes=924 pops_s=3956.0
+  [any] fresh_hard/length/idx=232066 solved=True nodes=2409 pops_s=3977.9
+  [any] fresh_hard/s20/idx=232066 solved=True nodes=383 pops_s=3848.6
+  [any] fresh_hard/recommended/idx=232066 solved=True nodes=573 pops_s=4734.0
+  [any] fresh_hard/s12/idx=232066 solved=True nodes=894 pops_s=3990.4
+  [any] fresh_hard/length/idx=232160 solved=True nodes=3656 pops_s=5644.8
+  [any] fresh_hard/s20/idx=232160 solved=True nodes=134 pops_s=6543.6
+  [any] fresh_hard/recommended/idx=232160 solved=True nodes=67 pops_s=7769.3
+  [any] fresh_hard/s12/idx=232160 solved=True nodes=247 pops_s=6609.7
+  [any] fresh_hard/length/idx=233100 solved=True nodes=2964 pops_s=3758.0
+  [any] fresh_hard/s20/idx=233100 solved=True nodes=443 pops_s=3763.6
+  [any] fresh_hard/s12/idx=233100 solved=True nodes=681 pops_s=3938.3
+  [any] fresh_hard/length/idx=233617 solved=True nodes=5375 pops_s=3748.1
+  [any] fresh_hard/s20/idx=233617 solved=True nodes=2000 pops_s=3619.5
+  [any] fresh_hard/recommended/idx=233617 solved=True nodes=3806 pops_s=1893.3
+  [any] fresh_hard/s12/idx=233617 solved=True nodes=1964 pops_s=3769.3
+  [any] fresh_hard/length/idx=233664 solved=True nodes=4640 pops_s=5181.8
+  [any] fresh_hard/s20/idx=233664 solved=True nodes=491 pops_s=4159.9
+  [any] fresh_hard/recommended/idx=233664 solved=True nodes=705 pops_s=1675.6
+  [any] fresh_hard/s12/idx=233664 solved=True nodes=559 pops_s=4624.5
+  [any] fresh_hard/length/idx=233993 solved=True nodes=2367 pops_s=3989.8
+  [any] fresh_hard/s20/idx=233993 solved=True nodes=230 pops_s=3927.8
+  [any] fresh_hard/recommended/idx=233993 solved=True nodes=1960 pops_s=3119.5
+  [any] fresh_hard/s12/idx=233993 solved=True nodes=298 pops_s=4205.8
+  [any] fresh_hard/length/idx=234228 solved=True nodes=1377 pops_s=3332.9
+  [any] fresh_hard/s20/idx=234228 solved=True nodes=8626 pops_s=2465.3
+  [any] fresh_hard/recommended/idx=234228 solved=True nodes=294 pops_s=4537.2
+  [any] fresh_hard/s12/idx=234228 solved=True nodes=8611 pops_s=2558.6
+  [any] fresh_hard/length/idx=234510 solved=True nodes=5001 pops_s=5215.0
+  [any] fresh_hard/s20/idx=234510 solved=True nodes=457 pops_s=4916.7
+  [any] fresh_hard/recommended/idx=234510 solved=True nodes=1139 pops_s=4561.6
+  [any] fresh_hard/s12/idx=234510 solved=True nodes=536 pops_s=5675.0
+  [any] fresh_hard/length/idx=234651 solved=True nodes=1689 pops_s=3200.7
+  [any] fresh_hard/s20/idx=234651 solved=True nodes=2614 pops_s=2907.0
+  [any] fresh_hard/recommended/idx=234651 solved=True nodes=7298 pops_s=2058.7
+  [any] fresh_hard/s12/idx=234651 solved=True nodes=1825 pops_s=2932.7
+    [hcompact] reservation exceeded at 1,800,072 states; growing to 3,619,208 (this copies)
+  [any] fresh_hard/s12/idx=234792 solved=False nodes=10000 pops_s=912.6
+  [any] fresh_hard/length/idx=235450 solved=True nodes=1958 pops_s=4156.1
+  [any] fresh_hard/s20/idx=235450 solved=True nodes=6577 pops_s=2905.2
+  [any] fresh_hard/recommended/idx=235450 solved=True nodes=1340 pops_s=3455.9
+  [any] fresh_hard/s12/idx=235450 solved=True nodes=1988 pops_s=3588.7
+  [any] fresh_hard/length/idx=235732 solved=True nodes=3782 pops_s=5458.8
+  [any] fresh_hard/s20/idx=235732 solved=True nodes=160 pops_s=6657.8
+  [any] fresh_hard/s12/idx=235732 solved=True nodes=268 pops_s=6458.5
+  [any] fresh_hard/s20/idx=236061 solved=True nodes=2359 pops_s=3300.2
+  [any] fresh_hard/recommended/idx=236061 solved=True nodes=2376 pops_s=3058.7
+  [any] fresh_hard/s12/idx=236061 solved=True nodes=4339 pops_s=3367.3
+  [any] fresh_hard/length/idx=236578 solved=True nodes=3841 pops_s=1777.3
+  [any] fresh_hard/s20/idx=236578 solved=True nodes=1890 pops_s=1719.8
+  [any] fresh_hard/recommended/idx=236578 solved=False nodes=10000 pops_s=780.1
+  [any] fresh_hard/s12/idx=236578 solved=True nodes=2116 pops_s=1773.5
+  [any] fresh_hard/length/idx=237283 solved=True nodes=1177 pops_s=4406.6
+  [any] fresh_hard/s20/idx=237283 solved=True nodes=760 pops_s=4115.2
+  [any] fresh_hard/s12/idx=237283 solved=True nodes=857 pops_s=3922.6
+  [any] fresh_hard/length/idx=237377 solved=True nodes=7926 pops_s=2569.0
+  [any] fresh_hard/s20/idx=237377 solved=True nodes=3858 pops_s=2535.3
+  [any] fresh_hard/recommended/idx=237377 solved=True nodes=4563 pops_s=1834.5
+  [any] fresh_hard/s12/idx=237377 solved=True nodes=4674 pops_s=2532.9
+  [any] fresh_hard/length/idx=237424 solved=True nodes=1181 pops_s=3222.4
+  [any] fresh_hard/s20/idx=237424 solved=True nodes=341 pops_s=3387.3
+  [any] fresh_hard/recommended/idx=237424 solved=True nodes=685 pops_s=4038.7
+  [any] fresh_hard/s12/idx=237424 solved=True nodes=410 pops_s=3458.9
+  [any] fresh_hard/s20/idx=237471 solved=False nodes=10000 pops_s=1900.7
+  [any] fresh_hard/s20/idx=237753 solved=True nodes=3222 pops_s=3062.2
+  [any] fresh_hard/recommended/idx=237753 solved=True nodes=2398 pops_s=3059.5
+  [any] fresh_hard/s12/idx=237753 solved=True nodes=4773 pops_s=3283.4
+  [any] fresh_hard/length/idx=238129 solved=True nodes=3177 pops_s=3259.5
+  [any] fresh_hard/s20/idx=238129 solved=True nodes=4079 pops_s=2734.3
+  [any] fresh_hard/recommended/idx=238129 solved=True nodes=6762 pops_s=2174.6
+  [any] fresh_hard/s12/idx=238129 solved=True nodes=3342 pops_s=2956.0
+  phase anytime_hard new=240
+
+=== round 1 phase=unsolved124 remain=9.72h ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 583, in <module>
+    main()
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 544, in main
+    n = fn()
+        ^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 529, in <lambda>
+    ("unsolved124", lambda: phase_unsolved124(state)),
+                            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 326, in phase_unsolved124
+    done = _load_done(MAIN_JSONL, ("slice", "arm", "name"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 99, in _load_done
+    seen.add(tuple(r[k] for k in keys))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.worktrees/heur-12h/experiments/heuristic_search/runners/research_scale10k.py", line 99, in <genexpr>
+    seen.add(tuple(r[k] for k in keys))
+                   ~^^^
+KeyError: 'name'
+[scale10k] wall_end=2026-07-29T16:12:20.673566+00:00 remain=9.12h
+
+=== round 1 phase=cost remain=9.12h ===
+  phase cost new=0
+
+=== round 1 phase=anytime_L remain=9.12h ===
+  phase anytime_L new=0
+
+=== round 1 phase=anytime_hard remain=9.12h ===
+  phase anytime_hard new=0
+
+=== round 1 phase=unsolved124 remain=9.12h ===
+  [u124] +10 last=s20/aca_2 solved=False pops_s=2075.6
+  [u124] +20 last=s12/aca_4 solved=False pops_s=2084.4
+  [u124] +30 last=s20/aca_7 solved=False pops_s=1759.1
+  [u124] +40 last=s12/aca_9 solved=False pops_s=2855.5
+  [u124] +50 last=s20/aca_12 solved=False pops_s=2754.7
+  [u124] +60 last=s12/aca_14 solved=False pops_s=2525.4
+  [u124] +70 last=s20/aca_17 solved=False pops_s=1628.8
+  [u124] +80 last=s12/aca_19 solved=False pops_s=1709.5
+  [u124] +90 last=s20/aca_22 solved=False pops_s=1624.0
+  [u124] +100 last=s12/aca_24 solved=False pops_s=1900.8
+  [u124] +110 last=s20/aca_27 solved=False pops_s=1653.9
+  [u124] +120 last=s12/aca_29 solved=False pops_s=2420.7
+  [u124] +130 last=s20/aca_32 solved=False pops_s=1847.8
+  [u124] +140 last=s12/aca_34 solved=False pops_s=1479.1
+  [u124] +150 last=s20/aca_37 solved=False pops_s=1080.3
+  [u124] +160 last=s12/aca_39 solved=False pops_s=1230.6
+  [u124] +170 last=s20/aca_42 solved=False pops_s=1126.2
+  [u124] +180 last=s12/aca_44 solved=False pops_s=1459.6
+  [u124] +190 last=s20/aca_47 solved=False pops_s=1211.7
+  [u124] +200 last=s12/aca_49 solved=False pops_s=1502.2
+  [u124] +210 last=s20/aca_52 solved=False pops_s=1193.9
+  [u124] +220 last=s12/aca_54 solved=False pops_s=1733.4
+  [u124] +230 last=s20/aca_57 solved=False pops_s=1451.4
+  [u124] +240 last=s12/aca_59 solved=False pops_s=1549.5
+  [u124] +250 last=s20/aca_62 solved=False pops_s=904.8
+  [u124] +260 last=s12/aca_64 solved=False pops_s=1046.7
+  [u124] +270 last=s20/aca_67 solved=False pops_s=894.4
+  [u124] +280 last=s12/aca_69 solved=False pops_s=1435.5
+  [u124] +290 last=s20/aca_72 solved=False pops_s=1300.3
+  [u124] +300 last=s12/aca_74 solved=False pops_s=1136.0
+  [u124] +310 last=s20/aca_77 solved=False pops_s=996.5
+  [u124] +320 last=s12/aca_79 solved=False pops_s=1291.2
+  [u124] +330 last=s20/aca_82 solved=False pops_s=997.7
+  [u124] +340 last=s12/aca_84 solved=False pops_s=1058.1
+  [u124] +350 last=s20/aca_87 solved=False pops_s=876.1
+  [u124] +360 last=s12/aca_89 solved=False pops_s=1326.1
+    [hcompact] reservation exceeded at 1,800,027 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,191 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,047 states; growing to 3,633,800 (this copies)
+  [u124] +370 last=s20/aca_92 solved=False pops_s=786.2
+    [hcompact] reservation exceeded at 1,800,105 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,005 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,143 states; growing to 3,633,800 (this copies)
+  [u124] +380 last=s12/aca_94 solved=False pops_s=1096.7
+    [hcompact] reservation exceeded at 1,800,125 states; growing to 3,633,800 (this copies)
+  [u124] +390 last=s20/aca_97 solved=False pops_s=902.7
+    [hcompact] reservation exceeded at 1,800,087 states; growing to 3,633,800 (this copies)
+  [u124] +400 last=s12/aca_99 solved=False pops_s=1339.2
+    [hcompact] reservation exceeded at 1,800,083 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,087 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,099 states; growing to 3,633,800 (this copies)
+  [u124] +410 last=s20/aca_102 solved=False pops_s=803.9
+    [hcompact] reservation exceeded at 1,800,071 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,164 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,124 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,111 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,019 states; growing to 3,633,800 (this copies)
+  [u124] +420 last=s12/aca_104 solved=False pops_s=967.4
+    [hcompact] reservation exceeded at 1,800,217 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,055 states; growing to 3,633,800 (this copies)
+  [u124] +430 last=s20/aca_107 solved=False pops_s=940.5
+    [hcompact] reservation exceeded at 1,800,129 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,104 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,127 states; growing to 3,633,800 (this copies)
+  [u124] +440 last=s12/aca_109 solved=False pops_s=1264.2
+    [hcompact] reservation exceeded at 1,800,041 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,096 states; growing to 3,633,800 (this copies)
+  [u124] +450 last=s20/aca_112 solved=False pops_s=958.6
+    [hcompact] reservation exceeded at 1,800,081 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,103 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,173 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,041 states; growing to 3,633,800 (this copies)
+    [hcompact] reservation exceeded at 1,800,114 states; growing to 3,633,800 (this copies)
+  [u124] +460 last=s12/aca_114 solved=False pops_s=1101.9
+  [u124] +470 last=s20/aca_117 solved=False pops_s=3305.4
+  [u124] +480 last=s12/aca_119 solved=False pops_s=2998.9
+  [u124] +490 last=s20/aca_122 solved=False pops_s=1500.6
+  phase unsolved124 new=496
+
+=== round 1 phase=portfolio remain=8.03h ===
+  [port] idx=220504 single={('portfolio3', 220504), ('single_s20', 220504)} port_solved=True
+  [port] idx=220551 single={('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 220551), ('single_s20', 220551)} port_solved=False
+  [port] idx=221397 single={('single_s20', 221397), ('single_s20', 220551), ('portfolio3', 220551), ('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 221397)} port_solved=True
+  [port] idx=221538 single={('single_s20', 221397), ('single_s20', 221538), ('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 220551), ('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 221397)} port_solved=False
+  [port] idx=221867 single={('single_s20', 221397), ('single_s20', 221538), ('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 220551), ('single_s20', 221867), ('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 221867), ('portfolio3', 221397)} port_solved=True
+  [port] idx=222807 single={('single_s20', 221397), ('single_s20', 221538), ('single_s20', 220551), ('single_s20', 222807), ('portfolio3', 221538), ('portfolio3', 220551), ('portfolio3', 222807), ('single_s20', 221867), ('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 221867), ('portfolio3', 221397)} port_solved=False
+  [port] idx=223230 single={('single_s20', 221397), ('single_s20', 221538), ('single_s20', 220551), ('single_s20', 222807), ('portfolio3', 221538), ('portfolio3', 220551), ('portfolio3', 222807), ('single_s20', 221867), ('portfolio3', 223230), ('single_s20', 223230), ('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 221867), ('portfolio3', 221397)} port_solved=True
+  [port] idx=223418 single={('single_s20', 221397), ('single_s20', 221538), ('single_s20', 223418), ('single_s20', 220551), ('single_s20', 222807), ('portfolio3', 221538), ('portfolio3', 223418), ('portfolio3', 220551), ('portfolio3', 222807), ('single_s20', 221867), ('portfolio3', 223230), ('single_s20', 223230), ('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 221867), ('portfolio3', 221397)} port_solved=True
+  [port] idx=223512 single={('single_s20', 221397), ('single_s20', 221538), ('single_s20', 223512), ('single_s20', 223418), ('single_s20', 220551), ('single_s20', 222807), ('portfolio3', 221538), ('portfolio3', 223418), ('portfolio3', 220551), ('portfolio3', 222807), ('portfolio3', 223512), ('single_s20', 221867), ('portfolio3', 223230), ('single_s20', 223230), ('portfolio3', 220504), ('single_s20', 220504), ('portfolio3', 221867), ('portfolio3', 221397)} port_solved=True
+  [port] idx=223606 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('portfolio3', 220551), ('single_s20', 221867), ('single_s20', 223606), ('single_s20', 221397), ('portfolio3', 223418), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=223841 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 223841), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('portfolio3', 220551), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('single_s20', 221397), ('portfolio3', 223418), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=224076 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224076), ('portfolio3', 223841), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('single_s20', 221397), ('portfolio3', 223418), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=224546 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 224076), ('portfolio3', 223841), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('single_s20', 221397), ('portfolio3', 223418), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=224593 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('single_s20', 221397), ('portfolio3', 223418), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=224922 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=225580 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 225580), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=225862 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 225580), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=226191 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 225580), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=226285 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('portfolio3', 223230), ('single_s20', 220504), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 225580), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=226473 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 225580), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=226802 single={('single_s20', 220551), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('single_s20', 225580), ('portfolio3', 226802), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=227037 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=227601 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=227695 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('single_s20', 227695), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('portfolio3', 227695), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=227836 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 227836), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('single_s20', 227695), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 227836), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('portfolio3', 227695), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=228541 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('single_s20', 228541), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 227836), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('single_s20', 227695), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('portfolio3', 228541), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 227836), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('portfolio3', 227695), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=True
+  [port] idx=228776 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('single_s20', 228776), ('single_s20', 228541), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 227836), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('single_s20', 227695), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('portfolio3', 228541), ('portfolio3', 228776), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 227836), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('portfolio3', 227695), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=229011 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('single_s20', 228776), ('single_s20', 228541), ('single_s20', 229011), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 227836), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('single_s20', 227695), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('portfolio3', 228541), ('portfolio3', 228776), ('portfolio3', 229011), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 227836), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('portfolio3', 227695), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=229058 single={('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('single_s20', 228776), ('single_s20', 228541), ('single_s20', 229011), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 227836), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 229058), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('single_s20', 227695), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('portfolio3', 228541), ('portfolio3', 228776), ('portfolio3', 229011), ('single_s20', 229058), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 227836), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('portfolio3', 227695), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  [port] idx=229246 single={('single_s20', 229246), ('single_s20', 220551), ('single_s20', 227037), ('portfolio3', 221538), ('single_s20', 228776), ('single_s20', 228541), ('single_s20', 229011), ('portfolio3', 222807), ('portfolio3', 224546), ('portfolio3', 226285), ('single_s20', 226802), ('portfolio3', 224076), ('single_s20', 224593), ('portfolio3', 223841), ('portfolio3', 225580), ('single_s20', 227836), ('single_s20', 225862), ('single_s20', 227601), ('portfolio3', 229058), ('portfolio3', 221867), ('portfolio3', 223606), ('portfolio3', 221397), ('single_s20', 223418), ('single_s20', 224922), ('single_s20', 226191), ('single_s20', 227695), ('portfolio3', 223230), ('single_s20', 220504), ('portfolio3', 226473), ('single_s20', 223512), ('single_s20', 221538), ('portfolio3', 229246), ('single_s20', 222807), ('single_s20', 224546), ('single_s20', 226285), ('portfolio3', 220551), ('single_s20', 224076), ('portfolio3', 227037), ('single_s20', 225580), ('portfolio3', 226802), ('portfolio3', 228541), ('portfolio3', 228776), ('portfolio3', 229011), ('single_s20', 229058), ('single_s20', 223841), ('single_s20', 221867), ('single_s20', 223606), ('portfolio3', 224593), ('portfolio3', 227836), ('portfolio3', 225862), ('portfolio3', 227601), ('single_s20', 221397), ('portfolio3', 223418), ('portfolio3', 224922), ('portfolio3', 226191), ('single_s20', 226473), ('portfolio3', 227695), ('single_s20', 223230), ('portfolio3', 220504), ('portfolio3', 223512)} port_solved=False
+  phase portfolio new=60
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 2 phase=cost remain=7.90h ===
+  phase cost new=0
+
+=== round 2 phase=anytime_L remain=7.90h ===
+  phase anytime_L new=0
+
+=== round 2 phase=anytime_hard remain=7.90h ===
+  phase anytime_hard new=0
+
+=== round 2 phase=unsolved124 remain=7.90h ===
+  phase unsolved124 new=0
+
+=== round 2 phase=portfolio remain=7.90h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 3 phase=cost remain=7.81h ===
+  phase cost new=0
+
+=== round 3 phase=anytime_L remain=7.81h ===
+  phase anytime_L new=0
+
+=== round 3 phase=anytime_hard remain=7.81h ===
+  phase anytime_hard new=0
+
+=== round 3 phase=unsolved124 remain=7.81h ===
+  phase unsolved124 new=0
+
+=== round 3 phase=portfolio remain=7.81h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 4 phase=cost remain=7.73h ===
+  phase cost new=0
+
+=== round 4 phase=anytime_L remain=7.73h ===
+  phase anytime_L new=0
+
+=== round 4 phase=anytime_hard remain=7.73h ===
+  phase anytime_hard new=0
+
+=== round 4 phase=unsolved124 remain=7.73h ===
+  phase unsolved124 new=0
+
+=== round 4 phase=portfolio remain=7.73h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 5 phase=cost remain=7.65h ===
+  phase cost new=0
+
+=== round 5 phase=anytime_L remain=7.65h ===
+  phase anytime_L new=0
+
+=== round 5 phase=anytime_hard remain=7.65h ===
+  phase anytime_hard new=0
+
+=== round 5 phase=unsolved124 remain=7.65h ===
+  phase unsolved124 new=0
+
+=== round 5 phase=portfolio remain=7.65h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 6 phase=cost remain=7.56h ===
+  phase cost new=0
+
+=== round 6 phase=anytime_L remain=7.56h ===
+  phase anytime_L new=0
+
+=== round 6 phase=anytime_hard remain=7.56h ===
+  phase anytime_hard new=0
+
+=== round 6 phase=unsolved124 remain=7.56h ===
+  phase unsolved124 new=0
+
+=== round 6 phase=portfolio remain=7.56h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 7 phase=cost remain=7.48h ===
+  phase cost new=0
+
+=== round 7 phase=anytime_L remain=7.48h ===
+  phase anytime_L new=0
+
+=== round 7 phase=anytime_hard remain=7.48h ===
+  phase anytime_hard new=0
+
+=== round 7 phase=unsolved124 remain=7.48h ===
+  phase unsolved124 new=0
+
+=== round 7 phase=portfolio remain=7.48h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 8 phase=cost remain=7.40h ===
+  phase cost new=0
+
+=== round 8 phase=anytime_L remain=7.40h ===
+  phase anytime_L new=0
+
+=== round 8 phase=anytime_hard remain=7.40h ===
+  phase anytime_hard new=0
+
+=== round 8 phase=unsolved124 remain=7.40h ===
+  phase unsolved124 new=0
+
+=== round 8 phase=portfolio remain=7.40h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 9 phase=cost remain=7.31h ===
+  phase cost new=0
+
+=== round 9 phase=anytime_L remain=7.31h ===
+  phase anytime_L new=0
+
+=== round 9 phase=anytime_hard remain=7.31h ===
+  phase anytime_hard new=0
+
+=== round 9 phase=unsolved124 remain=7.31h ===
+  phase unsolved124 new=0
+
+=== round 9 phase=portfolio remain=7.31h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 10 phase=cost remain=7.23h ===
+  phase cost new=0
+
+=== round 10 phase=anytime_L remain=7.23h ===
+  phase anytime_L new=0
+
+=== round 10 phase=anytime_hard remain=7.23h ===
+  phase anytime_hard new=0
+
+=== round 10 phase=unsolved124 remain=7.23h ===
+  phase unsolved124 new=0
+
+=== round 10 phase=portfolio remain=7.23h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 11 phase=cost remain=7.15h ===
+  phase cost new=0
+
+=== round 11 phase=anytime_L remain=7.15h ===
+  phase anytime_L new=0
+
+=== round 11 phase=anytime_hard remain=7.15h ===
+  phase anytime_hard new=0
+
+=== round 11 phase=unsolved124 remain=7.15h ===
+  phase unsolved124 new=0
+
+=== round 11 phase=portfolio remain=7.15h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 12 phase=cost remain=7.06h ===
+  phase cost new=0
+
+=== round 12 phase=anytime_L remain=7.06h ===
+  phase anytime_L new=0
+
+=== round 12 phase=anytime_hard remain=7.06h ===
+  phase anytime_hard new=0
+
+=== round 12 phase=unsolved124 remain=7.06h ===
+  phase unsolved124 new=0
+
+=== round 12 phase=portfolio remain=7.06h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 13 phase=cost remain=6.98h ===
+  phase cost new=0
+
+=== round 13 phase=anytime_L remain=6.98h ===
+  phase anytime_L new=0
+
+=== round 13 phase=anytime_hard remain=6.98h ===
+  phase anytime_hard new=0
+
+=== round 13 phase=unsolved124 remain=6.98h ===
+  phase unsolved124 new=0
+
+=== round 13 phase=portfolio remain=6.98h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 14 phase=cost remain=6.90h ===
+  phase cost new=0
+
+=== round 14 phase=anytime_L remain=6.90h ===
+  phase anytime_L new=0
+
+=== round 14 phase=anytime_hard remain=6.90h ===
+  phase anytime_hard new=0
+
+=== round 14 phase=unsolved124 remain=6.90h ===
+  phase unsolved124 new=0
+
+=== round 14 phase=portfolio remain=6.90h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 15 phase=cost remain=6.81h ===
+  phase cost new=0
+
+=== round 15 phase=anytime_L remain=6.81h ===
+  phase anytime_L new=0
+
+=== round 15 phase=anytime_hard remain=6.81h ===
+  phase anytime_hard new=0
+
+=== round 15 phase=unsolved124 remain=6.81h ===
+  phase unsolved124 new=0
+
+=== round 15 phase=portfolio remain=6.81h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 16 phase=cost remain=6.73h ===
+  phase cost new=0
+
+=== round 16 phase=anytime_L remain=6.73h ===
+  phase anytime_L new=0
+
+=== round 16 phase=anytime_hard remain=6.73h ===
+  phase anytime_hard new=0
+
+=== round 16 phase=unsolved124 remain=6.73h ===
+  phase unsolved124 new=0
+
+=== round 16 phase=portfolio remain=6.73h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 17 phase=cost remain=6.65h ===
+  phase cost new=0
+
+=== round 17 phase=anytime_L remain=6.65h ===
+  phase anytime_L new=0
+
+=== round 17 phase=anytime_hard remain=6.65h ===
+  phase anytime_hard new=0
+
+=== round 17 phase=unsolved124 remain=6.65h ===
+  phase unsolved124 new=0
+
+=== round 17 phase=portfolio remain=6.65h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 18 phase=cost remain=6.56h ===
+  phase cost new=0
+
+=== round 18 phase=anytime_L remain=6.56h ===
+  phase anytime_L new=0
+
+=== round 18 phase=anytime_hard remain=6.56h ===
+  phase anytime_hard new=0
+
+=== round 18 phase=unsolved124 remain=6.56h ===
+  phase unsolved124 new=0
+
+=== round 18 phase=portfolio remain=6.56h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 19 phase=cost remain=6.48h ===
+  phase cost new=0
+
+=== round 19 phase=anytime_L remain=6.48h ===
+  phase anytime_L new=0
+
+=== round 19 phase=anytime_hard remain=6.48h ===
+  phase anytime_hard new=0
+
+=== round 19 phase=unsolved124 remain=6.48h ===
+  phase unsolved124 new=0
+
+=== round 19 phase=portfolio remain=6.48h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 20 phase=cost remain=6.40h ===
+  phase cost new=0
+
+=== round 20 phase=anytime_L remain=6.40h ===
+  phase anytime_L new=0
+
+=== round 20 phase=anytime_hard remain=6.40h ===
+  phase anytime_hard new=0
+
+=== round 20 phase=unsolved124 remain=6.40h ===
+  phase unsolved124 new=0
+
+=== round 20 phase=portfolio remain=6.40h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 21 phase=cost remain=6.31h ===
+  phase cost new=0
+
+=== round 21 phase=anytime_L remain=6.31h ===
+  phase anytime_L new=0
+
+=== round 21 phase=anytime_hard remain=6.31h ===
+  phase anytime_hard new=0
+
+=== round 21 phase=unsolved124 remain=6.31h ===
+  phase unsolved124 new=0
+
+=== round 21 phase=portfolio remain=6.31h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 22 phase=cost remain=6.23h ===
+  phase cost new=0
+
+=== round 22 phase=anytime_L remain=6.23h ===
+  phase anytime_L new=0
+
+=== round 22 phase=anytime_hard remain=6.23h ===
+  phase anytime_hard new=0
+
+=== round 22 phase=unsolved124 remain=6.23h ===
+  phase unsolved124 new=0
+
+=== round 22 phase=portfolio remain=6.23h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 23 phase=cost remain=6.15h ===
+  phase cost new=0
+
+=== round 23 phase=anytime_L remain=6.15h ===
+  phase anytime_L new=0
+
+=== round 23 phase=anytime_hard remain=6.15h ===
+  phase anytime_hard new=0
+
+=== round 23 phase=unsolved124 remain=6.15h ===
+  phase unsolved124 new=0
+
+=== round 23 phase=portfolio remain=6.15h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 24 phase=cost remain=6.06h ===
+  phase cost new=0
+
+=== round 24 phase=anytime_L remain=6.06h ===
+  phase anytime_L new=0
+
+=== round 24 phase=anytime_hard remain=6.06h ===
+  phase anytime_hard new=0
+
+=== round 24 phase=unsolved124 remain=6.06h ===
+  phase unsolved124 new=0
+
+=== round 24 phase=portfolio remain=6.06h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 25 phase=cost remain=5.98h ===
+  phase cost new=0
+
+=== round 25 phase=anytime_L remain=5.98h ===
+  phase anytime_L new=0
+
+=== round 25 phase=anytime_hard remain=5.98h ===
+  phase anytime_hard new=0
+
+=== round 25 phase=unsolved124 remain=5.98h ===
+  phase unsolved124 new=0
+
+=== round 25 phase=portfolio remain=5.98h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 26 phase=cost remain=5.90h ===
+  phase cost new=0
+
+=== round 26 phase=anytime_L remain=5.90h ===
+  phase anytime_L new=0
+
+=== round 26 phase=anytime_hard remain=5.90h ===
+  phase anytime_hard new=0
+
+=== round 26 phase=unsolved124 remain=5.90h ===
+  phase unsolved124 new=0
+
+=== round 26 phase=portfolio remain=5.90h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 27 phase=cost remain=5.81h ===
+  phase cost new=0
+
+=== round 27 phase=anytime_L remain=5.81h ===
+  phase anytime_L new=0
+
+=== round 27 phase=anytime_hard remain=5.81h ===
+  phase anytime_hard new=0
+
+=== round 27 phase=unsolved124 remain=5.81h ===
+  phase unsolved124 new=0
+
+=== round 27 phase=portfolio remain=5.81h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 28 phase=cost remain=5.73h ===
+  phase cost new=0
+
+=== round 28 phase=anytime_L remain=5.73h ===
+  phase anytime_L new=0
+
+=== round 28 phase=anytime_hard remain=5.73h ===
+  phase anytime_hard new=0
+
+=== round 28 phase=unsolved124 remain=5.73h ===
+  phase unsolved124 new=0
+
+=== round 28 phase=portfolio remain=5.73h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 29 phase=cost remain=5.65h ===
+  phase cost new=0
+
+=== round 29 phase=anytime_L remain=5.65h ===
+  phase anytime_L new=0
+
+=== round 29 phase=anytime_hard remain=5.65h ===
+  phase anytime_hard new=0
+
+=== round 29 phase=unsolved124 remain=5.65h ===
+  phase unsolved124 new=0
+
+=== round 29 phase=portfolio remain=5.65h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 30 phase=cost remain=5.56h ===
+  phase cost new=0
+
+=== round 30 phase=anytime_L remain=5.56h ===
+  phase anytime_L new=0
+
+=== round 30 phase=anytime_hard remain=5.56h ===
+  phase anytime_hard new=0
+
+=== round 30 phase=unsolved124 remain=5.56h ===
+  phase unsolved124 new=0
+
+=== round 30 phase=portfolio remain=5.56h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 31 phase=cost remain=5.48h ===
+  phase cost new=0
+
+=== round 31 phase=anytime_L remain=5.48h ===
+  phase anytime_L new=0
+
+=== round 31 phase=anytime_hard remain=5.48h ===
+  phase anytime_hard new=0
+
+=== round 31 phase=unsolved124 remain=5.48h ===
+  phase unsolved124 new=0
+
+=== round 31 phase=portfolio remain=5.48h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 32 phase=cost remain=5.40h ===
+  phase cost new=0
+
+=== round 32 phase=anytime_L remain=5.40h ===
+  phase anytime_L new=0
+
+=== round 32 phase=anytime_hard remain=5.40h ===
+  phase anytime_hard new=0
+
+=== round 32 phase=unsolved124 remain=5.40h ===
+  phase unsolved124 new=0
+
+=== round 32 phase=portfolio remain=5.40h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 33 phase=cost remain=5.31h ===
+  phase cost new=0
+
+=== round 33 phase=anytime_L remain=5.31h ===
+  phase anytime_L new=0
+
+=== round 33 phase=anytime_hard remain=5.31h ===
+  phase anytime_hard new=0
+
+=== round 33 phase=unsolved124 remain=5.31h ===
+  phase unsolved124 new=0
+
+=== round 33 phase=portfolio remain=5.31h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 34 phase=cost remain=5.23h ===
+  phase cost new=0
+
+=== round 34 phase=anytime_L remain=5.23h ===
+  phase anytime_L new=0
+
+=== round 34 phase=anytime_hard remain=5.23h ===
+  phase anytime_hard new=0
+
+=== round 34 phase=unsolved124 remain=5.23h ===
+  phase unsolved124 new=0
+
+=== round 34 phase=portfolio remain=5.23h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 35 phase=cost remain=5.15h ===
+  phase cost new=0
+
+=== round 35 phase=anytime_L remain=5.15h ===
+  phase anytime_L new=0
+
+=== round 35 phase=anytime_hard remain=5.15h ===
+  phase anytime_hard new=0
+
+=== round 35 phase=unsolved124 remain=5.15h ===
+  phase unsolved124 new=0
+
+=== round 35 phase=portfolio remain=5.15h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 36 phase=cost remain=5.06h ===
+  phase cost new=0
+
+=== round 36 phase=anytime_L remain=5.06h ===
+  phase anytime_L new=0
+
+=== round 36 phase=anytime_hard remain=5.06h ===
+  phase anytime_hard new=0
+
+=== round 36 phase=unsolved124 remain=5.06h ===
+  phase unsolved124 new=0
+
+=== round 36 phase=portfolio remain=5.06h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 37 phase=cost remain=4.98h ===
+  phase cost new=0
+
+=== round 37 phase=anytime_L remain=4.98h ===
+  phase anytime_L new=0
+
+=== round 37 phase=anytime_hard remain=4.98h ===
+  phase anytime_hard new=0
+
+=== round 37 phase=unsolved124 remain=4.98h ===
+  phase unsolved124 new=0
+
+=== round 37 phase=portfolio remain=4.98h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 38 phase=cost remain=4.90h ===
+  phase cost new=0
+
+=== round 38 phase=anytime_L remain=4.90h ===
+  phase anytime_L new=0
+
+=== round 38 phase=anytime_hard remain=4.90h ===
+  phase anytime_hard new=0
+
+=== round 38 phase=unsolved124 remain=4.90h ===
+  phase unsolved124 new=0
+
+=== round 38 phase=portfolio remain=4.90h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 39 phase=cost remain=4.81h ===
+  phase cost new=0
+
+=== round 39 phase=anytime_L remain=4.81h ===
+  phase anytime_L new=0
+
+=== round 39 phase=anytime_hard remain=4.81h ===
+  phase anytime_hard new=0
+
+=== round 39 phase=unsolved124 remain=4.81h ===
+  phase unsolved124 new=0
+
+=== round 39 phase=portfolio remain=4.81h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 40 phase=cost remain=4.73h ===
+  phase cost new=0
+
+=== round 40 phase=anytime_L remain=4.73h ===
+  phase anytime_L new=0
+
+=== round 40 phase=anytime_hard remain=4.73h ===
+  phase anytime_hard new=0
+
+=== round 40 phase=unsolved124 remain=4.73h ===
+  phase unsolved124 new=0
+
+=== round 40 phase=portfolio remain=4.73h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 41 phase=cost remain=4.65h ===
+  phase cost new=0
+
+=== round 41 phase=anytime_L remain=4.65h ===
+  phase anytime_L new=0
+
+=== round 41 phase=anytime_hard remain=4.65h ===
+  phase anytime_hard new=0
+
+=== round 41 phase=unsolved124 remain=4.65h ===
+  phase unsolved124 new=0
+
+=== round 41 phase=portfolio remain=4.65h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 42 phase=cost remain=4.56h ===
+  phase cost new=0
+
+=== round 42 phase=anytime_L remain=4.56h ===
+  phase anytime_L new=0
+
+=== round 42 phase=anytime_hard remain=4.56h ===
+  phase anytime_hard new=0
+
+=== round 42 phase=unsolved124 remain=4.56h ===
+  phase unsolved124 new=0
+
+=== round 42 phase=portfolio remain=4.56h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 43 phase=cost remain=4.48h ===
+  phase cost new=0
+
+=== round 43 phase=anytime_L remain=4.48h ===
+  phase anytime_L new=0
+
+=== round 43 phase=anytime_hard remain=4.48h ===
+  phase anytime_hard new=0
+
+=== round 43 phase=unsolved124 remain=4.48h ===
+  phase unsolved124 new=0
+
+=== round 43 phase=portfolio remain=4.48h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 44 phase=cost remain=4.40h ===
+  phase cost new=0
+
+=== round 44 phase=anytime_L remain=4.40h ===
+  phase anytime_L new=0
+
+=== round 44 phase=anytime_hard remain=4.40h ===
+  phase anytime_hard new=0
+
+=== round 44 phase=unsolved124 remain=4.40h ===
+  phase unsolved124 new=0
+
+=== round 44 phase=portfolio remain=4.40h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 45 phase=cost remain=4.31h ===
+  phase cost new=0
+
+=== round 45 phase=anytime_L remain=4.31h ===
+  phase anytime_L new=0
+
+=== round 45 phase=anytime_hard remain=4.31h ===
+  phase anytime_hard new=0
+
+=== round 45 phase=unsolved124 remain=4.31h ===
+  phase unsolved124 new=0
+
+=== round 45 phase=portfolio remain=4.31h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 46 phase=cost remain=4.23h ===
+  phase cost new=0
+
+=== round 46 phase=anytime_L remain=4.23h ===
+  phase anytime_L new=0
+
+=== round 46 phase=anytime_hard remain=4.23h ===
+  phase anytime_hard new=0
+
+=== round 46 phase=unsolved124 remain=4.23h ===
+  phase unsolved124 new=0
+
+=== round 46 phase=portfolio remain=4.23h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 47 phase=cost remain=4.15h ===
+  phase cost new=0
+
+=== round 47 phase=anytime_L remain=4.15h ===
+  phase anytime_L new=0
+
+=== round 47 phase=anytime_hard remain=4.15h ===
+  phase anytime_hard new=0
+
+=== round 47 phase=unsolved124 remain=4.15h ===
+  phase unsolved124 new=0
+
+=== round 47 phase=portfolio remain=4.15h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 48 phase=cost remain=4.06h ===
+  phase cost new=0
+
+=== round 48 phase=anytime_L remain=4.06h ===
+  phase anytime_L new=0
+
+=== round 48 phase=anytime_hard remain=4.06h ===
+  phase anytime_hard new=0
+
+=== round 48 phase=unsolved124 remain=4.06h ===
+  phase unsolved124 new=0
+
+=== round 48 phase=portfolio remain=4.06h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 49 phase=cost remain=3.98h ===
+  phase cost new=0
+
+=== round 49 phase=anytime_L remain=3.98h ===
+  phase anytime_L new=0
+
+=== round 49 phase=anytime_hard remain=3.98h ===
+  phase anytime_hard new=0
+
+=== round 49 phase=unsolved124 remain=3.98h ===
+  phase unsolved124 new=0
+
+=== round 49 phase=portfolio remain=3.98h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 50 phase=cost remain=3.89h ===
+  phase cost new=0
+
+=== round 50 phase=anytime_L remain=3.89h ===
+  phase anytime_L new=0
+
+=== round 50 phase=anytime_hard remain=3.89h ===
+  phase anytime_hard new=0
+
+=== round 50 phase=unsolved124 remain=3.89h ===
+  phase unsolved124 new=0
+
+=== round 50 phase=portfolio remain=3.89h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 51 phase=cost remain=3.81h ===
+  phase cost new=0
+
+=== round 51 phase=anytime_L remain=3.81h ===
+  phase anytime_L new=0
+
+=== round 51 phase=anytime_hard remain=3.81h ===
+  phase anytime_hard new=0
+
+=== round 51 phase=unsolved124 remain=3.81h ===
+  phase unsolved124 new=0
+
+=== round 51 phase=portfolio remain=3.81h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 52 phase=cost remain=3.73h ===
+  phase cost new=0
+
+=== round 52 phase=anytime_L remain=3.73h ===
+  phase anytime_L new=0
+
+=== round 52 phase=anytime_hard remain=3.73h ===
+  phase anytime_hard new=0
+
+=== round 52 phase=unsolved124 remain=3.73h ===
+  phase unsolved124 new=0
+
+=== round 52 phase=portfolio remain=3.73h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 53 phase=cost remain=3.64h ===
+  phase cost new=0
+
+=== round 53 phase=anytime_L remain=3.64h ===
+  phase anytime_L new=0
+
+=== round 53 phase=anytime_hard remain=3.64h ===
+  phase anytime_hard new=0
+
+=== round 53 phase=unsolved124 remain=3.64h ===
+  phase unsolved124 new=0
+
+=== round 53 phase=portfolio remain=3.64h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 54 phase=cost remain=3.56h ===
+  phase cost new=0
+
+=== round 54 phase=anytime_L remain=3.56h ===
+  phase anytime_L new=0
+
+=== round 54 phase=anytime_hard remain=3.56h ===
+  phase anytime_hard new=0
+
+=== round 54 phase=unsolved124 remain=3.56h ===
+  phase unsolved124 new=0
+
+=== round 54 phase=portfolio remain=3.56h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 55 phase=cost remain=3.48h ===
+  phase cost new=0
+
+=== round 55 phase=anytime_L remain=3.48h ===
+  phase anytime_L new=0
+
+=== round 55 phase=anytime_hard remain=3.48h ===
+  phase anytime_hard new=0
+
+=== round 55 phase=unsolved124 remain=3.48h ===
+  phase unsolved124 new=0
+
+=== round 55 phase=portfolio remain=3.48h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 56 phase=cost remain=3.39h ===
+  phase cost new=0
+
+=== round 56 phase=anytime_L remain=3.39h ===
+  phase anytime_L new=0
+
+=== round 56 phase=anytime_hard remain=3.39h ===
+  phase anytime_hard new=0
+
+=== round 56 phase=unsolved124 remain=3.39h ===
+  phase unsolved124 new=0
+
+=== round 56 phase=portfolio remain=3.39h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 57 phase=cost remain=3.31h ===
+  phase cost new=0
+
+=== round 57 phase=anytime_L remain=3.31h ===
+  phase anytime_L new=0
+
+=== round 57 phase=anytime_hard remain=3.31h ===
+  phase anytime_hard new=0
+
+=== round 57 phase=unsolved124 remain=3.31h ===
+  phase unsolved124 new=0
+
+=== round 57 phase=portfolio remain=3.31h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 58 phase=cost remain=3.23h ===
+  phase cost new=0
+
+=== round 58 phase=anytime_L remain=3.23h ===
+  phase anytime_L new=0
+
+=== round 58 phase=anytime_hard remain=3.23h ===
+  phase anytime_hard new=0
+
+=== round 58 phase=unsolved124 remain=3.23h ===
+  phase unsolved124 new=0
+
+=== round 58 phase=portfolio remain=3.23h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 59 phase=cost remain=3.14h ===
+  phase cost new=0
+
+=== round 59 phase=anytime_L remain=3.14h ===
+  phase anytime_L new=0
+
+=== round 59 phase=anytime_hard remain=3.14h ===
+  phase anytime_hard new=0
+
+=== round 59 phase=unsolved124 remain=3.14h ===
+  phase unsolved124 new=0
+
+=== round 59 phase=portfolio remain=3.14h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 60 phase=cost remain=3.06h ===
+  phase cost new=0
+
+=== round 60 phase=anytime_L remain=3.06h ===
+  phase anytime_L new=0
+
+=== round 60 phase=anytime_hard remain=3.06h ===
+  phase anytime_hard new=0
+
+=== round 60 phase=unsolved124 remain=3.06h ===
+  phase unsolved124 new=0
+
+=== round 60 phase=portfolio remain=3.06h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 61 phase=cost remain=2.98h ===
+  phase cost new=0
+
+=== round 61 phase=anytime_L remain=2.98h ===
+  phase anytime_L new=0
+
+=== round 61 phase=anytime_hard remain=2.98h ===
+  phase anytime_hard new=0
+
+=== round 61 phase=unsolved124 remain=2.98h ===
+  phase unsolved124 new=0
+
+=== round 61 phase=portfolio remain=2.98h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 62 phase=cost remain=2.89h ===
+  phase cost new=0
+
+=== round 62 phase=anytime_L remain=2.89h ===
+  phase anytime_L new=0
+
+=== round 62 phase=anytime_hard remain=2.89h ===
+  phase anytime_hard new=0
+
+=== round 62 phase=unsolved124 remain=2.89h ===
+  phase unsolved124 new=0
+
+=== round 62 phase=portfolio remain=2.89h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 63 phase=cost remain=2.81h ===
+  phase cost new=0
+
+=== round 63 phase=anytime_L remain=2.81h ===
+  phase anytime_L new=0
+
+=== round 63 phase=anytime_hard remain=2.81h ===
+  phase anytime_hard new=0
+
+=== round 63 phase=unsolved124 remain=2.81h ===
+  phase unsolved124 new=0
+
+=== round 63 phase=portfolio remain=2.81h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 64 phase=cost remain=2.73h ===
+  phase cost new=0
+
+=== round 64 phase=anytime_L remain=2.73h ===
+  phase anytime_L new=0
+
+=== round 64 phase=anytime_hard remain=2.73h ===
+  phase anytime_hard new=0
+
+=== round 64 phase=unsolved124 remain=2.73h ===
+  phase unsolved124 new=0
+
+=== round 64 phase=portfolio remain=2.73h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 65 phase=cost remain=2.64h ===
+  phase cost new=0
+
+=== round 65 phase=anytime_L remain=2.64h ===
+  phase anytime_L new=0
+
+=== round 65 phase=anytime_hard remain=2.64h ===
+  phase anytime_hard new=0
+
+=== round 65 phase=unsolved124 remain=2.64h ===
+  phase unsolved124 new=0
+
+=== round 65 phase=portfolio remain=2.64h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 66 phase=cost remain=2.56h ===
+  phase cost new=0
+
+=== round 66 phase=anytime_L remain=2.56h ===
+  phase anytime_L new=0
+
+=== round 66 phase=anytime_hard remain=2.56h ===
+  phase anytime_hard new=0
+
+=== round 66 phase=unsolved124 remain=2.56h ===
+  phase unsolved124 new=0
+
+=== round 66 phase=portfolio remain=2.56h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 67 phase=cost remain=2.48h ===
+  phase cost new=0
+
+=== round 67 phase=anytime_L remain=2.48h ===
+  phase anytime_L new=0
+
+=== round 67 phase=anytime_hard remain=2.48h ===
+  phase anytime_hard new=0
+
+=== round 67 phase=unsolved124 remain=2.48h ===
+  phase unsolved124 new=0
+
+=== round 67 phase=portfolio remain=2.48h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 68 phase=cost remain=2.39h ===
+  phase cost new=0
+
+=== round 68 phase=anytime_L remain=2.39h ===
+  phase anytime_L new=0
+
+=== round 68 phase=anytime_hard remain=2.39h ===
+  phase anytime_hard new=0
+
+=== round 68 phase=unsolved124 remain=2.39h ===
+  phase unsolved124 new=0
+
+=== round 68 phase=portfolio remain=2.39h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 69 phase=cost remain=2.31h ===
+  phase cost new=0
+
+=== round 69 phase=anytime_L remain=2.31h ===
+  phase anytime_L new=0
+
+=== round 69 phase=anytime_hard remain=2.31h ===
+  phase anytime_hard new=0
+
+=== round 69 phase=unsolved124 remain=2.31h ===
+  phase unsolved124 new=0
+
+=== round 69 phase=portfolio remain=2.31h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 70 phase=cost remain=2.23h ===
+  phase cost new=0
+
+=== round 70 phase=anytime_L remain=2.23h ===
+  phase anytime_L new=0
+
+=== round 70 phase=anytime_hard remain=2.23h ===
+  phase anytime_hard new=0
+
+=== round 70 phase=unsolved124 remain=2.23h ===
+  phase unsolved124 new=0
+
+=== round 70 phase=portfolio remain=2.23h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 71 phase=cost remain=2.14h ===
+  phase cost new=0
+
+=== round 71 phase=anytime_L remain=2.14h ===
+  phase anytime_L new=0
+
+=== round 71 phase=anytime_hard remain=2.14h ===
+  phase anytime_hard new=0
+
+=== round 71 phase=unsolved124 remain=2.14h ===
+  phase unsolved124 new=0
+
+=== round 71 phase=portfolio remain=2.14h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 72 phase=cost remain=2.06h ===
+  phase cost new=0
+
+=== round 72 phase=anytime_L remain=2.06h ===
+  phase anytime_L new=0
+
+=== round 72 phase=anytime_hard remain=2.06h ===
+  phase anytime_hard new=0
+
+=== round 72 phase=unsolved124 remain=2.06h ===
+  phase unsolved124 new=0
+
+=== round 72 phase=portfolio remain=2.06h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 73 phase=cost remain=1.98h ===
+  phase cost new=0
+
+=== round 73 phase=anytime_L remain=1.98h ===
+  phase anytime_L new=0
+
+=== round 73 phase=anytime_hard remain=1.98h ===
+  phase anytime_hard new=0
+
+=== round 73 phase=unsolved124 remain=1.98h ===
+  phase unsolved124 new=0
+
+=== round 73 phase=portfolio remain=1.98h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 74 phase=cost remain=1.89h ===
+  phase cost new=0
+
+=== round 74 phase=anytime_L remain=1.89h ===
+  phase anytime_L new=0
+
+=== round 74 phase=anytime_hard remain=1.89h ===
+  phase anytime_hard new=0
+
+=== round 74 phase=unsolved124 remain=1.89h ===
+  phase unsolved124 new=0
+
+=== round 74 phase=portfolio remain=1.89h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 75 phase=cost remain=1.81h ===
+  phase cost new=0
+
+=== round 75 phase=anytime_L remain=1.81h ===
+  phase anytime_L new=0
+
+=== round 75 phase=anytime_hard remain=1.81h ===
+  phase anytime_hard new=0
+
+=== round 75 phase=unsolved124 remain=1.81h ===
+  phase unsolved124 new=0
+
+=== round 75 phase=portfolio remain=1.81h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 76 phase=cost remain=1.73h ===
+  phase cost new=0
+
+=== round 76 phase=anytime_L remain=1.73h ===
+  phase anytime_L new=0
+
+=== round 76 phase=anytime_hard remain=1.73h ===
+  phase anytime_hard new=0
+
+=== round 76 phase=unsolved124 remain=1.73h ===
+  phase unsolved124 new=0
+
+=== round 76 phase=portfolio remain=1.73h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 77 phase=cost remain=1.64h ===
+  phase cost new=0
+
+=== round 77 phase=anytime_L remain=1.64h ===
+  phase anytime_L new=0
+
+=== round 77 phase=anytime_hard remain=1.64h ===
+  phase anytime_hard new=0
+
+=== round 77 phase=unsolved124 remain=1.64h ===
+  phase unsolved124 new=0
+
+=== round 77 phase=portfolio remain=1.64h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 78 phase=cost remain=0.91h ===
+  phase cost new=0
+
+=== round 78 phase=anytime_L remain=0.91h ===
+  phase anytime_L new=0
+
+=== round 78 phase=anytime_hard remain=0.91h ===
+  phase anytime_hard new=0
+
+=== round 78 phase=unsolved124 remain=0.91h ===
+  phase unsolved124 new=0
+
+=== round 78 phase=portfolio remain=0.91h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 79 phase=cost remain=0.83h ===
+  phase cost new=0
+
+=== round 79 phase=anytime_L remain=0.83h ===
+  phase anytime_L new=0
+
+=== round 79 phase=anytime_hard remain=0.83h ===
+  phase anytime_hard new=0
+
+=== round 79 phase=unsolved124 remain=0.83h ===
+  phase unsolved124 new=0
+
+=== round 79 phase=portfolio remain=0.83h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 80 phase=cost remain=0.75h ===
+  phase cost new=0
+
+=== round 80 phase=anytime_L remain=0.75h ===
+  phase anytime_L new=0
+
+=== round 80 phase=anytime_hard remain=0.75h ===
+  phase anytime_hard new=0
+
+=== round 80 phase=unsolved124 remain=0.75h ===
+  phase unsolved124 new=0
+
+=== round 80 phase=portfolio remain=0.75h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 81 phase=cost remain=0.29h ===
+  phase cost new=0
+
+=== round 81 phase=anytime_L remain=0.29h ===
+  phase anytime_L new=0
+
+=== round 81 phase=anytime_hard remain=0.29h ===
+  phase anytime_hard new=0
+
+=== round 81 phase=unsolved124 remain=0.29h ===
+  phase unsolved124 new=0
+
+=== round 81 phase=portfolio remain=0.29h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 82 phase=cost remain=0.21h ===
+  phase cost new=0
+
+=== round 82 phase=anytime_L remain=0.21h ===
+  phase anytime_L new=0
+
+=== round 82 phase=anytime_hard remain=0.21h ===
+  phase anytime_hard new=0
+
+=== round 82 phase=unsolved124 remain=0.21h ===
+  phase unsolved124 new=0
+
+=== round 82 phase=portfolio remain=0.21h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+
+=== round 83 phase=cost remain=0.12h ===
+  phase cost new=0
+
+=== round 83 phase=anytime_L remain=0.12h ===
+  phase anytime_L new=0
+
+=== round 83 phase=anytime_hard remain=0.12h ===
+  phase anytime_hard new=0
+
+=== round 83 phase=unsolved124 remain=0.12h ===
+  phase unsolved124 new=0
+
+=== round 83 phase=portfolio remain=0.12h ===
+  phase portfolio new=0
+[scale10k] matrix complete; holding wall for analysis
+[scale10k] WALL DONE — write COLAB_RECOMMENDATION next

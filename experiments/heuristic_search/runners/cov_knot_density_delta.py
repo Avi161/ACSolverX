@@ -363,26 +363,40 @@ def write_md(rows):
         )
 
     # Verdict hints
+    raw_k = _counts(rows, "d_K")
+    raw_mk = _counts(rows, "d_MK")
     raw_kden = _counts(rows, "d_K_den")
+    raw_mkden = _counts(rows, "d_MK_den")
     am_kden = _counts(moved, "d_K_den_autmin")
+    am_mkden = _counts(moved, "d_MK_den_autmin")
     lines.extend([
         "",
         "## Verdict",
         "",
-        f"On **raw** strings, `K_den` is higher (worse) on "
-        f"**{raw_kden[0]}/60** and lower on **{raw_kden[2]}/60** "
-        f"(mean Δ {raw_kden[3]:+.4f}). "
-        f"Raw `K` mean Δ was "
-        f"{_counts(rows, 'd_K')[3]:+.3f} — density removes most of that length inflation.",
+        "**Raw strings (all 60):** density **flips** the knot story. Raw `K` / "
+        f"`MK` still rise after best CoV "
+        f"(`K` ↑{raw_k[0]}/={raw_k[1]}/↓{raw_k[2]}, mean Δ {raw_k[3]:+.3f}; "
+        f"`MK` ↑{raw_mk[0]}/={raw_mk[1]}/↓{raw_mk[2]}, mean Δ {raw_mk[3]:+.3f}), "
+        "but `K_den` / `MK_den` more often **fall** "
+        f"(`K_den` ↑{raw_kden[0]}/={raw_kden[1]}/↓{raw_kden[2]}, "
+        f"mean Δ {raw_kden[3]:+.4f}; "
+        f"`MK_den` ↑{raw_mkden[0]}/={raw_mkden[1]}/↓{raw_mkden[2]}, "
+        f"mean Δ {raw_mkden[3]:+.4f}). So after removing length bias (and "
+        "ignoring `xyimb`), best CoV does **not** look worse on knots — it "
+        "looks slightly *sparser*.",
         "",
-        f"On **Aut-min moved** rows, `K_den` is higher on "
+        f"**Aut-min moved (n={n_moved}):** density **neutralizes** rather than "
+        "flips. `K_den` is higher on "
         f"**{am_kden[0]}/{n_moved}** and lower on **{am_kden[2]}/{n_moved}** "
-        f"(mean Δ {am_kden[3]:+.4f}).",
+        f"(mean Δ {am_kden[3]:+.4f}); `MK_den` ↑{am_mkden[0]}/={am_mkden[1]}/"
+        f"↓{am_mkden[2]} (mean Δ {am_mkden[3]:+.4f}). Relabel inflation is "
+        "gone; the remaining knot-density signal is weak / mixed.",
         "",
         "## Source",
         "",
         "- Input: [`cov_heur_b1k_subset60.csv`](cov_heur_b1k_subset60.csv)",
         "- Table: [`cov_knot_density_delta_subset60.csv`](cov_knot_density_delta_subset60.csv)",
+        "- Figure: [`figures/cov_knot_density_simple.png`](figures/cov_knot_density_simple.png)",
         "- Runner: `experiments/heuristic_search/runners/cov_knot_density_delta.py`",
         "",
     ])

@@ -1,0 +1,1184 @@
+name,r1,r2,n_members,members,failed_arms,n_failed_arms,in_complete_10k,missing_arms_10k,baseline_solved,baseline_nodes,baseline_minL,s20_mk2_solved,s20_mk2_nodes,s20_mk2_minL,s20_mk2_mK2_solved,s20_mk2_mK2_nodes,s20_mk2_mK2_minL,s20_f4_solved,s20_f4_nodes,s20_f4_minL
+ac19_1007,YYXXXyX,YXYxyXXX,21,1565 4370 9506 9997 21216 27617 44872 44979 44992 47437 51259 73326 77466 81725 87174 93048 112825 116414 131870 132881 143110,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,15,false,10000,15,false,10000,15,false,10000,15
+ac19_1011,YYXXyx,YXyXyxxyx,22,1569 8631 10660 11096 12663 19047 22636 24108 31039 32328 34445 36872 41488 46660 53509 58705 95939 101510 112801 115554 136874 155227,s20_f4,1,true,,true,8425,2,true,1712,2,true,4047,2,false,10000,14
+ac19_10118,YYXXXYX,YYYXyXyx,4,12392 56883 118423 154501,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4097,2,false,10000,15,true,2983,2
+ac19_10129,YXyXXXyx,YYXXyXyxyXX,1,12410,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_102,YYXXyx,YXXXXXXyxxxxx,25,561 563 567 568 570 571 577 578 583 587 11472 11834 14204 21343 24188 35475 49465 50731 73750 75659 86012 100133 106665 138840 147941,s20_f4,1,true,,true,7786,2,true,1641,2,true,3906,2,false,10000,14
+ac19_103,YYXXXXyX,YXXXXXXyxxxxx,9,573 584 27118 45332 45525 82259 113134 138359 151580,baseline,1,true,,false,10000,15,true,1746,2,true,3851,2,true,2780,2
+ac19_10327,YYYXXXXyyx,YYYYxxyyyXyyx,2,12676 62519,s20_f4,1,true,,true,3456,2,true,1656,2,true,3920,2,false,10000,14
+ac19_10379,YXXyx,YYYYYXyyyxyxxx,2,12758 126301,s20_mk2,1,true,,true,2850,2,false,10000,15,true,7747,2,true,743,2
+ac19_10430,YXYxyx,YYxYYxxYYxx,8,12825 13458 19753 31660 94480 99130 130004 130221,"s20_mk2,s20_f4",2,false,s20_mk2_mK2,true,3513,2,false,10000,17,missing,,,false,10000,17
+ac19_10460,YXXXXyXYx,YXXyxxxxyx,3,12864 43091 138780,baseline,1,true,,false,10000,15,true,1745,2,true,3841,2,true,2779,2
+ac19_10469,YXyXYxx,YYYYYYXyxx,1,12873,baseline,1,true,,false,10000,16,true,3207,2,true,869,2,true,3061,2
+ac19_10499,YXXXyXYx,YYXXXXXYXXXyx,2,12909 32271,"baseline,s20_f4",2,true,,false,10000,15,true,2291,2,true,6541,2,false,10000,15
+ac19_10584,YXXYxxyxx,YXXyXXXyxxYXXyxx,1,13014,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_10617,YXXXyXXYx,YXyxxYXXXX,2,13054 33768,s20_f4,1,true,,true,8471,2,true,1740,2,true,4033,2,false,10000,14
+ac19_1062,YXXYx,YYXYYXyxYYxyyX,1,1622,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,2948,2,false,10000,18,false,10000,18
+ac19_10673,YXXXyxYx,YYXXXYXyXYx,1,13119,s20_f4,1,true,,true,49,2,true,456,2,true,236,2,false,10000,17
+ac19_10775,YYXXXyx,YXYXyXXYx,2,13251 134139,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_10811,YXXYxxyx,YYYxxxxyXXXYx,1,13293,"baseline,s20_f4",2,true,,false,10000,14,true,4395,2,true,8566,2,false,10000,17
+ac19_10820,YYXXXXYX,YYxyXyxxxyX,1,13304,s20_f4,1,true,,true,1965,2,true,1577,2,true,1878,2,false,10000,14
+ac19_10826,YYXXyxx,YYYYYXYxyx,3,13314 16600 141876,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,6094,2,false,10000,15,false,10000,15
+ac19_109,YXXyx,YYYYYYYYXyyyyyyyx,10,616 617 618 619 620 621 622 623 624 625,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,20,false,10000,18,false,10000,18,true,2856,2
+ac19_10919,YXXyXyx,YYYxxxYxyyx,1,13435,"s20_mk2_mK2,s20_f4",2,true,,true,9069,2,true,4109,2,false,10000,18,false,10000,18
+ac19_11000,YXYxyx,YYYXyXXyyyxYx,2,13544 128969,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3503,2,false,10000,17,false,10000,17,false,10000,17
+ac19_11074,YYXXXXyx,YYXXXYXyX,4,13643 28966 41829 141624,baseline,1,true,,false,10000,15,true,1744,2,true,2908,2,true,4946,2
+ac19_11120,YXXYxxyX,YYXXyXYxx,2,13702 91804,s20_f4,1,true,,true,1956,2,true,1570,2,true,2040,2,false,10000,14
+ac19_11261,YXXXYxxxyx,YYxxxyXYxyX,16,13900 26053 29687 29958 31142 35951 38230 68446 68988 71089 82658 87205 110097 114112 118190 153943,baseline,1,true,,false,10000,15,true,1402,2,true,2583,2,true,2689,2
+ac19_11288,YXYxyx,YYYXyXyxxxYYxYx,1,13933,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_11612,YXXYXXyx,YYYXyxxyXXX,2,14362 23070,baseline,1,true,,false,10000,17,true,959,2,true,2035,2,true,4235,2
+ac19_11628,YXXyXYx,YYxyXXXX,7,14382 15683 51319 88868 104908 130894 149689,baseline,1,true,,false,10000,15,true,1741,2,true,2903,2,true,4946,2
+ac19_11753,YYXXYxYXX,YYXXyXYYx,1,14560,s20_f4,1,true,,true,7364,2,true,5931,2,true,7398,2,false,10000,18
+ac19_11809,YXXYx,YYYXYxyXYXyyyx,1,14636,"baseline,s20_f4",2,true,,false,10000,18,true,610,2,true,4579,2,false,10000,18
+ac19_11843,YXYXXXX,YYYXyXyX,5,14685 31920 117437 135996 136123,s20_mk2_mK2,1,true,,true,4331,2,true,508,2,false,10000,15,true,63,2
+ac19_11931,YYXXXyx,YYYXYXyyX,4,14808 63010 84520 130466,s20_f4,1,true,,true,1973,2,true,1584,2,true,1932,2,false,10000,14
+ac19_11953,YXXXyXyX,YYxxYxxyxyX,1,14840,"baseline,s20_f4",2,true,,false,10000,19,true,2370,2,true,5156,2,false,10000,19
+ac19_12070,YYXXyx,YYYYxyXXyxyXX,1,14996,s20_f4,1,true,,true,6791,2,true,1657,2,true,3909,2,false,10000,14
+ac19_12086,YXXyxYx,YYYXYxxxYYX,1,15023,baseline,1,true,,false,10000,16,true,4711,2,true,6338,2,true,4593,2
+ac19_12112,YYXXXXyx,YXYxxyXXX,3,15060 58409 110734,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,3137,2,false,10000,17,false,10000,15
+ac19_12148,YYXXYxyxYxyxx,YYXyXYXyxYxyxx,1,15115,"baseline,s20_f4",2,true,,false,10000,15,true,1742,2,true,2906,2,false,10000,15
+ac19_12445,YYXXYx,YYYxyyxyXyX,1,15526,"baseline,s20_mk2,s20_f4",3,false,s20_mk2_mK2,false,10000,17,false,10000,17,missing,,,false,10000,17
+ac19_12520,YYXXXYX,YYXYxyXXyx,3,15626 60967 88358,baseline,1,true,,false,10000,17,true,986,2,true,8909,2,true,853,2
+ac19_12559,YYXXYYx,YYYXYXXYxx,3,15680 90495 103886,"baseline,s20_f4",2,true,,false,10000,16,true,1788,2,true,3673,2,false,10000,14
+ac19_12570,YXXyXyx,YYYxxxyxyX,1,15697,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_12586,YYXXyx,YYXXXYxYXXX,4,15717 18821 79878 130255,s20_f4,1,true,,true,8279,2,true,1711,2,true,4008,2,false,10000,14
+ac19_12596,YXXyXyx,YYxxxyxYX,4,15729 119535 125502 149027,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_12647,YXXyXyx,YYxxyxyXYXXyX,1,15801,s20_f4,1,true,,true,675,2,true,1577,2,true,1413,2,false,10000,14
+ac19_12660,YXXyXyx,YYXXyxxYXyxx,1,15826,s20_f4,1,true,,true,1966,2,true,1584,2,true,2033,2,false,10000,14
+ac19_12702,YXyXXXyx,YYXYxxxyXXyyx,1,15885,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_12831,YXXyXyX,YYXyxyXXyX,6,16075 40945 73953 75977 118510 149135,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_12878,YXXYXXyX,YXXXXXyXXYx,1,16138,"baseline,s20_f4",2,true,,false,10000,14,true,3355,2,true,6713,2,false,10000,14
+ac19_12944,YYXXyx,YYXYXyXyxxx,6,16222 25905 63254 77851 95779 124268,s20_f4,1,true,,true,8122,2,true,1738,2,true,4012,2,false,10000,14
+ac19_12979,YYXXXYx,YYXYYxYXyyXyx,1,16269,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3185,2,false,10000,14,true,5939,2
+ac19_13024,YXXYXXyX,YYYXyyxyX,1,16327,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5769,2,false,10000,15,true,4943,2
+ac19_13142,YYXXXYx,YYxyXYX,10,16484 18047 32037 36007 39996 54035 57407 60760 72659 138390,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3185,2,false,10000,14,true,5931,2
+ac19_1318,YXXyXyx,YYYXyxYxxyyX,1,1894,s20_f4,1,true,,true,665,2,true,1501,2,true,1346,2,false,10000,14
+ac19_13202,YYXXXYxx,YYXYxxyXX,4,16568 78496 104218 115591,s20_mk2_mK2,1,false,baseline,missing,,,true,2141,2,false,10000,17,true,1630,2
+ac19_13214,YYXXyxYXXyxx,YXYxxyXXYXXyx,2,16586 44597,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,5634,2,false,10000,17,true,9151,2
+ac19_13290,YYXXyxx,YYxYxxyXYX,1,16686,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_134,YYXXYXyyx,YYYXXXYXyyX,4,656 46796 68445 138605,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2142,2,false,10000,17,true,1624,2
+ac19_1345,YXyXXXyx,YYXyXYXyXYxxyxxyX,1,1924,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_13642,YXXyXyx,YYYxxyXyxx,3,17155 53972 139969,s20_f4,1,false,baseline,missing,,,true,2774,2,true,5543,2,false,10000,14
+ac19_13813,YXXYXXyX,YYXyXYXXyyxYX,1,17396,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5606,2,false,10000,15,true,4944,2
+ac19_13840,YYXXyXyyx,YYxxyxxYx,2,17431 113448,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7703,2,false,10000,16,false,10000,16
+ac19_13890,YXXXYxx,YYXXYYxyX,2,17514 120720,"baseline,s20_f4",2,true,,false,10000,16,true,5889,2,true,8058,2,false,10000,16
+ac19_1394,YXXXyxYx,YYXYXYxyX,1,1974,s20_mk2_mK2,1,false,s20_f4,true,7175,2,true,9469,2,false,10000,17,missing,,
+ac19_14000,YXYXXYx,YYYXXyyx,6,17677 29901 73023 73274 102181 139868,s20_f4,1,true,,true,1954,2,true,1570,2,true,1863,2,false,10000,14
+ac19_14043,YYXXXyX,YYXYxxyyXyx,1,17744,"baseline,s20_f4",2,true,,false,10000,17,true,515,2,true,649,2,false,10000,17
+ac19_14060,YXXXyXyx,YYxyxxYXyxx,2,17769 63585,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_14184,YYXXyxx,YYXXYxyXYx,17,17935 34381 52415 56436 61444 69980 89560 106615 111860 123298 128332 130876 131187 135436 136962 145131 148077,"baseline,s20_f4",2,true,,false,10000,14,true,2804,2,true,5548,2,false,10000,14
+ac19_14215,YXyXXyx,YYXXYxxxyyxx,1,17981,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,17,false,10000,16,true,7532,2
+ac19_1430,YXXyXyx,YYYxxxxyx,4,2012 2391 39841 48478,"baseline,s20_f4",2,true,,false,10000,14,true,2775,2,true,5551,2,false,10000,14
+ac19_14333,YXyXXXyx,YYXYxxxxyyx,1,18159,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_14385,YYXXXyxyx,YYXXXyXyyX,3,18239 91805 119050,"baseline,s20_f4",2,true,,false,10000,16,true,1797,2,true,3660,2,false,10000,14
+ac19_14391,YXYXXXX,YYYXXyyXyxYX,1,18248,s20_mk2_mK2,1,true,,true,3617,2,true,514,2,false,10000,15,true,48,2
+ac19_14392,YYXXXXYX,YYXyXXyxxYX,1,18249,s20_f4,1,true,,true,1965,2,true,1575,2,true,1969,2,false,10000,14
+ac19_14419,YXXXYxx,YYYXXXyxxYYXYX,3,18291 46437 134084,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2215,2,false,10000,17,true,6793,2
+ac19_14513,YYXXXyX,YXyxxxYXXyX,7,18432 24267 26822 48566 69184 130300 138752,"baseline,s20_f4",2,true,,false,10000,15,true,2871,2,true,3944,2,false,10000,15
+ac19_14532,YXyXXXyx,YYYxyyXXXyXYxyXyX,1,18457,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_14550,YYXXYxxyXyx,YYxYXYYxYXYx,1,18482,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,6024,2,false,10000,17,false,10000,17
+ac19_14569,YYXXyxx,YYXXXYYxyx,2,18511 64389,"baseline,s20_f4",2,true,,false,10000,14,true,2807,2,true,5575,2,false,10000,14
+ac19_14690,YXXXyxx,YYXyXYxyXYxyX,6,18686 42350 91270 105757 107011 138475,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_14786,YYXXXYX,YYxYXXyXX,2,18834 87141,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_14807,YXXYxxyx,YYxxyXXYxyX,2,18864 63121,baseline,1,true,,false,10000,15,true,1385,2,true,2578,2,true,2936,2
+ac19_1484,YXYxyXXyx,YYYXyXyxYXyx,3,2069 11876 114785,baseline,1,true,,false,10000,15,true,746,2,true,2575,2,true,2687,2
+ac19_14888,YXXYx,YYYYXXyxYYXyyyXYx,1,18982,"baseline,s20_f4",2,true,,false,10000,18,true,602,2,true,4531,2,false,10000,18
+ac19_14905,YXXyXyxx,YYxYxyxxxYX,2,19008 141763,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_14939,YYXXXYxx,YYYXXyyxx,2,19055 31319,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2142,2,false,10000,17,true,1631,2
+ac19_15138,YXyXXXyx,YYXyxxyXXYxyX,1,19352,baseline,1,true,,false,10000,16,true,3179,2,true,869,2,true,3020,2
+ac19_15145,YXYXYx,YYYxYXyyXYYxyXXyx,1,19360,"baseline,s20_f4",2,true,,false,10000,19,true,2034,2,true,6634,2,false,10000,19
+ac19_15183,YYXXyxx,YYYxxYYxxyXXX,1,19412,s20_f4,1,true,,true,433,2,true,7563,2,true,4587,2,false,10000,19
+ac19_1519,YYXXX,YXyXyxYxYXX,13,2105 14807 35304 40712 46512 60688 79139 89905 91958 100637 107539 146897 151818,s20_mk2_mK2,1,true,,true,9050,2,true,318,2,false,10000,15,true,209,2
+ac19_15242,YYXXXXyx,YYXyXYxyX,3,19501 41161 94851,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_1533,YXyXXXyx,YYXyxYxxyyxYx,1,2120,baseline,1,true,,false,10000,17,true,8696,2,true,6258,2,true,8679,2
+ac19_15490,YYXyXyxyXYxyX,YXyxYXyxYXyxx,1,19875,s20_f4,1,true,,true,1968,2,true,1579,2,true,2043,2,false,10000,14
+ac19_15507,YYXXyxx,YYYYYYXYxYYYYX,1,19903,"baseline,s20_f4",2,true,,false,10000,16,true,4944,2,true,8085,2,false,10000,16
+ac19_15540,YXXYXXyx,YXXXXXXXXyxYxxx,2,19948 123018,baseline,1,true,,false,10000,15,true,1737,2,true,4044,2,true,8796,2
+ac19_15562,YXXXYxxxyx,YYYxxxyXYYx,1,19980,s20_f4,1,true,,true,7487,2,true,5542,2,true,8128,2,false,10000,16
+ac19_15582,YXXXXyXyx,YYxxxxxyXX,2,20011 133586,"baseline,s20_f4",2,true,,false,10000,16,true,2272,2,true,2257,2,false,10000,16
+ac19_15591,YXXyXyX,YYYxyxYxxyyx,6,20022 95942 117881 123674 136157 155242,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_15616,YYXXXyxx,YYXyXXYXYYx,1,20059,"baseline,s20_f4",2,false,s20_mk2_mK2,false,10000,17,true,6132,2,missing,,,false,10000,19
+ac19_15727,YXXyXyx,YYXYxxxYxyxx,1,20216,s20_f4,1,true,,true,1966,2,true,1584,2,true,2033,2,false,10000,14
+ac19_15863,YXXyx,YYXYYXyyxyyxxxYx,1,20425,s20_mk2,1,true,,true,3340,2,false,10000,15,true,7605,2,true,940,2
+ac19_15866,YXXXyXYx,YXyxxxyxx,1,20430,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_15872,YXXyx,YYYYYXyxyyyXyXyX,2,20441 73390,s20_mk2,1,true,,true,3236,2,false,10000,15,true,7647,2,true,939,2
+ac19_1595,YYXyxxxxyyX,YYXyXXYYXyxxyX,2,2187 25291,"baseline,s20_f4",2,true,,false,10000,14,true,2802,2,true,5586,2,false,10000,14
+ac19_16000,YXXXyxYx,YYYXyXXYXyx,1,20623,s20_f4,1,true,,true,50,2,true,456,2,true,236,2,false,10000,17
+ac19_16078,YYXXyx,YYYYxyyXXyX,4,20738 57544 124546 144748,s20_f4,1,true,,true,7998,2,true,1686,2,true,3976,2,false,10000,14
+ac19_16098,YXXyXXXXyx,YYXXyxxxxyX,2,20766 131446,baseline,1,true,,false,10000,17,true,1758,2,true,4043,2,true,7092,2
+ac19_16158,YYXXYYXXX,YYXyxYxYXyyX,1,20865,s20_f4,1,true,,true,51,2,true,461,2,true,240,2,false,10000,17
+ac19_16166,YXXyXyx,YYxxxxxyXX,3,20875 54439 129716,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_16178,YYXXXYX,YYXYxYXyyXX,2,20895 153371,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_16221,YXYXYx,YYXyXYxYYxyXXyx,1,20957,baseline,1,true,,false,10000,17,true,1169,2,true,1083,2,true,2960,2
+ac19_16286,YYXXXXyx,YYXXXYXXyXX,4,21044 46185 51554 140735,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_16358,YXyXXyx,YYYxyxYxxyxyXYX,1,21163,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,17,false,10000,17,false,10000,16,true,7532,2
+ac19_16371,YXXXYxx,YYYXYYXXyxxYX,3,21184 21540 54546,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2197,2,false,10000,17,true,6792,2
+ac19_16430,YXXXyxYx,YXYXyXXYxxYXX,2,21269 115976,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,5814,2,false,10000,19,false,10000,19
+ac19_16513,YXXYx,YYYXYYXyyyxxYX,2,21398 135294,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3009,2,false,10000,18,false,10000,18
+ac19_1660,YXyXXXyx,YYYxxxyXyxx,1,2253,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_16631,YYXXXYX,YYYXXyxYXyX,2,21550 84630,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,3879,2,false,10000,15,true,2985,2
+ac19_16660,YXXXyXYx,YYXXyXYxxxyXX,1,21605,baseline,1,true,,false,10000,15,true,1839,2,true,3910,2,true,2779,2
+ac19_1670,YYXXyxx,YYxYxyX,26,2263 22554 24328 28457 39429 42855 50372 62180 64140 67298 75687 78196 80979 83179 92412 92982 94496 107962 111977 124099 125591 137290 139252 142594 149866 153323,s20_f4,1,false,baseline,missing,,,true,2813,2,true,5595,2,false,10000,14
+ac19_16808,YYXXXXyXX,YXXXXXyxxxxxx,9,21830 22514 28325 46608 86985 107632 109670 118474 125468,"baseline,s20_f4",2,true,,false,10000,16,true,1779,2,true,4234,2,false,10000,15
+ac19_16877,YXYXXXX,YYXyXyyXYXYx,1,21936,s20_mk2_mK2,1,true,,true,4349,2,true,509,2,false,10000,15,true,24,2
+ac19_16980,YYXXYxYXXYx,YYYXXYxYXyyxxyX,4,22106 25497 52928 96446,s20_f4,1,true,,true,8581,2,true,1769,2,true,4207,2,false,10000,14
+ac19_17027,YYXXYx,YYXYxxxyXXX,4,22172 37046 75613 121036,baseline,1,true,,false,10000,15,true,729,2,true,2570,2,true,2688,2
+ac19_17065,YYXXyxx,YYYYYYXYXYx,7,22225 35163 39350 59011 96161 116117 143725,s20_f4,1,true,,true,5132,2,true,416,2,true,358,2,false,10000,14
+ac19_17131,YYXXXyX,YYYXyyXX,5,22329 33833 68779 76688 117662,"baseline,s20_f4",2,true,,false,10000,15,true,2872,2,true,3944,2,false,10000,15
+ac19_1715,YXXXYxx,YYYXYXXyxyyxx,3,2310 35889 112355,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2215,2,false,10000,17,true,6792,2
+ac19_17156,YYYXXYXyX,YYXXYYXXX,6,22368 47315 61085 99700 122212 139109,s20_f4,1,false,baseline,missing,,,true,404,2,true,161,2,false,10000,17
+ac19_17204,YXXXyxYx,YXYxyXXYxyX,2,22437 121118,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_1725,YYXXXXYxyxx,YYXXXXyxxxx,9,2320 3640 20298 52094 78630 114361 124037 147300 155737,s20_f4,1,true,,true,5688,2,true,1692,2,true,4162,2,false,10000,14
+ac19_17343,YYYXXXXyyx,YYYYXXyyyyx,12,22638 28500 37735 83534 91474 96896 102218 105969 120168 127529 135190 141875,s20_f4,1,true,,true,3825,2,true,1664,2,true,3943,2,false,10000,14
+ac19_17420,YYXXX,YYXYxyXyXyxYX,2,22752 92237,s20_mk2_mK2,1,true,,true,9731,2,true,331,2,false,10000,15,true,212,2
+ac19_17455,YXXYxYxx,YYxyxxyXyXX,1,22796,s20_f4,1,true,,true,671,2,true,1510,2,true,1363,2,false,10000,14
+ac19_17484,YXyXXXyx,YYYxxYxxyxYxyyX,1,22839,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_17550,YYXyxxxyyx,YYXXXYXXyyx,2,22940 123448,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,1330,2,false,10000,17,true,360,2
+ac19_17581,YXXYx,YYYXyyxYXyxyyx,2,22983 84358,"baseline,s20_f4",2,true,,false,10000,18,true,605,2,true,4542,2,false,10000,18
+ac19_177,YXXXXyXYx,YXXyxYXXXX,10,700 32509 34787 60573 73698 99467 105028 107113 122978 155252,"baseline,s20_f4",2,true,,false,10000,14,true,2695,2,true,5364,2,false,10000,14
+ac19_17727,YXYXXYx,YYXYXXyyxx,2,23208 52670,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_17954,YYXXX,YYYxYXXyXyXyx,1,23557,s20_mk2_mK2,1,true,,true,9733,2,true,333,2,false,10000,15,true,214,2
+ac19_17957,YYXXXXyx,YXyxYXXXyxx,3,23562 77328 149490,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_18125,YYXXYXYYXXX,YYYxyyxYXXyX,1,23812,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_18168,YXYXXYx,YYxyXyxxxyXX,1,23887,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_18221,YYXXXYX,YYXYYxyXXyX,1,23967,"baseline,s20_mk2_mK2",2,true,,false,10000,16,true,7792,2,false,10000,16,true,7294,2
+ac19_18255,YXXyXyx,YYXXyXYxxxyx,1,24014,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_18323,YYXXyxx,YYXXYYxYXYx,7,24116 48132 51797 67812 103242 117354 132948,s20_f4,1,true,,true,5132,2,true,636,2,true,473,2,false,10000,14
+ac19_18329,YXyXXXyx,YYXyXYXyxyXyX,1,24127,baseline,1,true,,false,10000,17,true,8696,2,true,6258,2,true,8679,2
+ac19_18333,YXXYx,YYYXXyyxyyxyyx,2,24131 52645,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3876,2,false,10000,18
+ac19_1837,YXXyXyx,YYxyXyxxYX,3,2442 66562 75332,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_18375,YXXYxxyX,YYXXyxxYXyX,3,24199 103820 127577,s20_f4,1,true,,true,1971,2,true,1584,2,true,1904,2,false,10000,14
+ac19_18400,YXyXXXyx,YYXyXYxYxyxYxxyyX,1,24235,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_18413,YXYxxYXyxYXyx,YYXYxxYYxxYXyx,1,24252,s20_mk2_mK2,1,true,,true,1840,2,true,2497,2,false,10000,18,true,1488,2
+ac19_185,YYXXXyx,YXXXXXYxx,20,709 10265 21266 34872 35848 40921 42396 47221 49437 73185 82256 98631 119693 123085 123726 129302 132448 136886 147088 150025,s20_f4,1,true,,true,1972,2,true,1584,2,true,1921,2,false,10000,14
+ac19_18516,YYXXyxx,YYXYXXYYxyx,1,24430,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,6077,2,false,10000,15,true,5127,2
+ac19_18524,YXXXYxxxyx,YYxYxxxyXXX,1,24442,s20_f4,1,true,,true,8296,2,true,5542,2,true,8128,2,false,10000,16
+ac19_18581,YXXYx,YYYYXYXyxYXyyx,1,24537,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7004,2,false,10000,18,false,10000,18
+ac19_18644,YYXXyxx,YYXXYxYxyX,1,24637,baseline,1,true,,false,10000,16,true,6526,2,true,7540,2,true,2939,2
+ac19_18718,YYXXXXYX,YYXYxxyyXXX,1,24753,s20_f4,1,true,,true,1965,2,true,1576,2,true,1989,2,false,10000,14
+ac19_1880,YXXXXyXXyXX,YYXyyXXXXyXX,1,2486,"baseline,s20_f4",2,false,s20_mk2_mK2,false,10000,16,true,1782,2,missing,,,false,10000,15
+ac19_18844,YYXXXyX,YXyXXYxxxyx,10,24941 33610 58105 71157 77784 93780 114096 119109 146446 149540,"baseline,s20_f4",2,true,,false,10000,15,true,2872,2,true,3944,2,false,10000,15
+ac19_18936,YYXXXXXyX,YXXXXXXyxxxxx,4,25082 69042 71173 123807,baseline,1,true,,false,10000,16,true,3194,2,true,869,2,true,3059,2
+ac19_18993,YYXXyXyyx,YYxxYxxyx,1,25181,s20_f4,1,true,,true,5139,2,true,3318,2,true,3218,2,false,10000,17
+ac19_19026,YYXXXyx,YXyxxxYXXyx,3,25239 25829 75964,"baseline,s20_f4",2,true,,false,10000,15,true,2277,2,true,6538,2,false,10000,15
+ac19_19132,YXYxyXXyx,YYYXyyxYXyx,3,25395 69117 103775,baseline,1,false,s20_f4,false,10000,15,true,1392,2,true,2585,2,missing,,
+ac19_19144,YYXXYXXyX,YYxxyXXXX,5,25409 55668 68517 107161 128546,"baseline,s20_f4",2,true,,false,10000,17,true,4758,2,true,2855,2,false,10000,18
+ac19_19163,YYXXyxx,YYYxYXYX,8,25438 41144 82116 142137 144506 145739 148855 149021,s20_f4,1,true,,true,5132,2,true,644,2,true,475,2,false,10000,14
+ac19_19168,YYXXXYxx,YYYYYXYYX,1,25450,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,1335,2,false,10000,17,true,1633,2
+ac19_19190,YYYXXXyxx,YYYXXYxxyXX,1,25481,s20_f4,1,true,,true,492,2,true,739,2,true,677,2,false,10000,19
+ac19_1926,YXyXXXyX,YYXXXyXyxyXXX,1,2535,baseline,1,true,,false,10000,19,true,691,2,true,1426,2,true,8216,2
+ac19_19313,YYXXyxx,YYXXYxYxyx,3,25678 59920 156525,"baseline,s20_f4",2,true,,false,10000,14,true,2810,2,true,5568,2,false,10000,14
+ac19_19388,YXXyXyxx,YYxxyXYYxxx,2,25797 120675,s20_mk2_mK2,1,true,,true,5701,2,true,2011,2,false,10000,17,true,1635,2
+ac19_19439,YXyXYxx,YYYYXyxYXyxx,1,25880,baseline,1,true,,false,10000,12,true,1038,2,true,2162,2,true,1239,2
+ac19_19493,YYXXXyx,YYxxYXXyyX,1,25965,s20_f4,1,true,,true,1972,2,true,1585,2,true,1921,2,false,10000,14
+ac19_19503,YXXYx,YYYXyxYXyyxyyx,2,25981 136910,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7183,2,false,10000,18,false,10000,18
+ac19_19552,YYXXyxxyX,YXXyxYxxxx,1,26051,baseline,1,true,,false,10000,15,true,1725,2,true,3876,2,true,4452,2
+ac19_19674,YXXyXyxx,YYxyXYxyx,3,26250 39986 68546,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2852,2,false,10000,14,true,6126,2
+ac19_19700,YXYxxyXyx,YYXXyXyyxx,1,26288,baseline,1,true,,false,10000,15,true,1725,2,true,3876,2,true,2864,2
+ac19_19775,YYXXXyX,YXXyXYxxxyXYxxxyX,1,26408,baseline,1,true,,false,10000,17,true,1882,2,true,4083,2,true,3223,2
+ac19_19782,YXyXXYXyXXyX,YYYXyXYXyXXyyyX,1,26418,s20_f4,1,true,,true,1425,2,true,585,2,true,644,2,false,10000,18
+ac19_1997,YXXyXyx,YYYxxYxxyx,3,2607 65132 83341,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3205,2,false,10000,14,false,10000,14
+ac19_19996,YXXyXyX,YYYXXXyxyxyxx,1,26735,"baseline,s20_mk2,s20_f4",3,true,,false,10000,16,false,10000,14,true,6381,2,false,10000,16
+ac19_20011,YYXXXYxxYxx,YYXXXXyxxxx,2,26759 93970,s20_f4,1,true,,true,609,2,true,1429,2,true,1282,2,false,10000,14
+ac19_20023,YXYXXYx,YYXyyxxyXyx,4,26777 73203 88398 113950,s20_f4,1,true,,true,1954,2,true,1570,2,true,1861,2,false,10000,14
+ac19_20037,YXYXXYx,YYYxYXyyX,3,26797 116782 118780,s20_f4,1,true,,true,1954,2,true,1570,2,true,1863,2,false,10000,14
+ac19_20050,YYXXXYx,YYXYYXYXXyx,2,26818 42278,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,15,false,10000,16,false,10000,16
+ac19_20055,YYXXXXXXXXyx,YXXXXXXyxxxxx,6,26828 76912 110341 125064 127603 134070,baseline,1,true,,false,10000,16,true,1763,2,true,4074,2,true,9003,2
+ac19_20118,YXyXXXyx,YYxyxyXXYxxyXXX,1,26930,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_20125,YXyXXXyx,YYXXyXXYxxyXyyx,1,26943,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_20172,YYXXXyX,YXYXyXXX,12,27019 42592 55413 73900 78355 95588 103262 106318 120119 124500 137066 138911,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,7353,2,false,10000,15,false,10000,15
+ac19_20270,YYXXXYxx,YYYXXXyxyyxyx,1,27180,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_20375,YYXXXXXXyX,YYYXXXXyXyX,3,27333 28368 148711,"baseline,s20_f4",2,true,,false,10000,15,true,413,2,true,345,2,false,10000,14
+ac19_20454,YYXXXYX,YYXyxxYxyXXX,1,27461,baseline,1,true,,false,10000,17,true,970,2,true,8208,2,true,854,2
+ac19_20613,YYXXyxx,YYYxxYxxYXXX,2,27709 108098,s20_f4,1,true,,true,425,2,true,7564,2,true,4576,2,false,10000,19
+ac19_20653,YXXyXyx,YYXyxYYxxyx,1,27765,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3177,2,false,10000,14,false,10000,14
+ac19_20684,YXYXXXX,YYXyyXXYx,3,27814 66814 142711,s20_mk2_mK2,1,true,,true,3660,2,true,553,2,false,10000,15,true,46,2
+ac19_20708,YYXXXyX,YYXXyXyxx,5,27858 37391 72364 112945 125993,"baseline,s20_f4",2,true,,false,10000,15,true,2872,2,true,3944,2,false,10000,15
+ac19_20724,YXyXXXyX,YYXXXyxyxYXyxYxyX,1,27886,baseline,1,true,,false,10000,19,true,619,2,true,1425,2,true,8227,2
+ac19_20744,YYXXXyx,YXyxxYXyxxYXXyx,2,27917 75468,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_20771,YXyXXyx,YYXYXyxyxxxYXXyyx,1,27964,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_20832,YXXYx,YYYXYYXXyxyyyx,1,28062,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6949,2,false,10000,18,false,10000,18
+ac19_20957,YXYXXXX,YYYXyyxyyxx,1,28254,s20_mk2_mK2,1,true,,true,4398,2,true,556,2,false,10000,15,true,36,2
+ac19_21067,YXXyXyx,YYXYxxYxyyx,1,28428,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3239,2,false,10000,14,false,10000,14
+ac19_21092,YYXXX,YYXYXyXyXYxYX,3,28469 44456 63689,s20_mk2_mK2,1,true,,true,9737,2,true,331,2,false,10000,15,true,212,2
+ac19_21102,YXXyXyx,YYYYxxyXyxyX,1,28486,s20_f4,1,true,,true,665,2,true,1501,2,true,1346,2,false,10000,14
+ac19_21315,YYXXXyx,YYXXyyxyxx,1,28848,s20_f4,1,true,,true,1972,2,true,1585,2,true,1914,2,false,10000,14
+ac19_21522,YXXXXXyXYx,YXXXyxYXXXX,4,29169 99394 110816 128656,"baseline,s20_f4",2,true,,false,10000,16,true,1802,2,true,3605,2,false,10000,14
+ac19_21595,YXYxyx,YYXXyxYxxYxYYxx,1,29302,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_21703,YXYXXYxyX,YYYXyxYXyXyx,1,29480,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_21705,YXyXXyx,YYXyxxyXyxxYX,1,29482,baseline,1,true,,false,10000,16,true,9499,2,true,9200,2,true,6871,2
+ac19_21761,YXXYx,YYXYxyyXYYxyyX,6,29571 56012 71550 78607 118636 126645,"baseline,s20_f4",2,true,,false,10000,18,true,597,2,true,4527,2,false,10000,18
+ac19_21855,YXXXyxYx,YXYXyXYxYXX,16,29711 29942 30835 35909 36894 40522 40870 47589 99951 103327 116149 119581 122074 124806 153791 155987,baseline,1,false,s20_f4,false,10000,15,true,1039,2,true,2820,2,missing,,
+ac19_21856,YXXyXyx,YYYxyXyxxyX,2,29712 36972,s20_f4,1,true,,true,1966,2,true,1584,2,true,2033,2,false,10000,14
+ac19_21907,YXXyXyx,YYXyxYXyxx,3,29800 118104 122709,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3169,2,false,10000,14,false,10000,14
+ac19_21915,YXyXXyx,YYxYxxxYXYXyxyxyx,1,29819,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,17,false,10000,16,false,10000,16
+ac19_21979,YXYXXXX,YYYXYXXyXyyx,1,29923,s20_mk2_mK2,1,true,,true,3662,2,true,554,2,false,10000,15,true,48,2
+ac19_22010,YXYXXXX,YYYXyXXXXyxx,2,29969 113266,s20_mk2_mK2,1,true,,true,4396,2,true,555,2,false,10000,15,true,49,2
+ac19_2205,YYXXXXXXyX,YXXXXyxxxxx,26,2830 10377 11915 14562 18181 34361 34653 35187 36417 57771 59143 67005 72938 81008 81600 89355 89885 90373 118030 120084 133521 133603 136263 142228 150323 153727,s20_f4,1,false,s20_mk2,true,4361,2,missing,,,true,344,2,false,10000,14
+ac19_22052,YXyXYxx,YYXXyyxyxYx,1,30030,baseline,1,true,,false,10000,12,true,1036,2,true,2120,2,true,1239,2
+ac19_22112,YXXYxxyX,YXyxYxYXXyx,2,30126 57507,s20_f4,1,true,,true,1956,2,true,1570,2,true,2040,2,false,10000,14
+ac19_22144,YXyXXXyx,YYXyyxxYxyxYx,1,30190,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_22349,YXyXXyx,YYYXyxxyxYxxx,1,30515,baseline,1,true,,false,10000,16,true,9499,2,true,9200,2,true,6888,2
+ac19_22389,YXXXyXYx,YYXXyXYXX,3,30580 80753 98244,"baseline,s20_f4",2,true,,false,10000,15,true,2274,2,true,6412,2,false,10000,15
+ac19_22400,YXXXyXyx,YYYxxxxyx,1,30596,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2684,2,false,10000,17,true,2840,2
+ac19_22476,YXyXXXyX,YYYxyXXXyyx,1,30720,"s20_mk2_mK2,s20_f4",2,false,baseline,missing,,,true,2912,2,false,10000,17,false,10000,17
+ac19_22520,YXYxxyXyx,YYXyxxYXyx,1,30790,baseline,1,true,,false,10000,15,true,1725,2,true,3967,2,true,4453,2
+ac19_22557,YXXyXyxx,YYYxxxYYxxx,3,30853 46843 147938,s20_f4,1,true,,true,230,2,true,2728,2,true,2672,2,false,10000,19
+ac19_22598,YXYxxYXyx,YYYxxYXYxyXYx,1,30911,"s20_mk2_mK2,s20_f4",2,true,,true,4699,2,true,4075,2,false,10000,18,false,10000,18
+ac19_22628,YYXXXXyxxx,YYXXXXXYYxxYX,1,30965,"baseline,s20_f4",2,true,,false,10000,15,true,8028,2,true,1438,2,false,10000,15
+ac19_22677,YXXYXXyx,YYxxyXYXyXX,3,31052 98412 107719,baseline,1,true,,false,10000,17,true,933,2,true,1964,2,true,4235,2
+ac19_22704,YYXXYx,YYXYxyXyxYXyx,1,31095,baseline,1,true,,false,10000,15,true,730,2,true,2546,2,true,2687,2
+ac19_22752,YXYXXYx,YYXyXyXYxx,1,31173,baseline,1,true,,false,10000,15,true,1409,2,true,2579,2,true,2688,2
+ac19_22957,YYXXXYX,YYxYXyyX,10,31518 46939 47982 90489 91965 95400 108238 110137 120372 156398,"baseline,s20_f4",2,true,,false,10000,15,true,903,2,true,2579,2,false,10000,15
+ac19_230,YYXXyxx,YYYXYXYYx,3,757 9687 50211,baseline,1,true,,false,10000,16,true,880,2,true,1418,2,true,8800,2
+ac19_23020,YXyXXyx,YYXXyXXYxxyxyxx,1,31614,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,14,true,7532,2
+ac19_23023,YYXXYx,YYYXyxYXyyx,1,31619,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,3727,2,false,10000,15,true,6462,2
+ac19_23030,YYXXXyX,YYYXXyXyXX,1,31636,"baseline,s20_f4",2,true,,false,10000,14,true,440,2,true,392,2,false,10000,14
+ac19_23074,YYXXyxx,YYYYYYXXYxxxxYX,1,31718,s20_f4,1,true,,true,1042,2,true,56,2,true,56,2,false,10000,19
+ac19_23080,YYXXYxxyx,YYYYYxxYYx,1,31724,s20_f4,1,true,,true,701,2,true,1636,2,true,1438,2,false,10000,14
+ac19_23093,YXyXYxx,YYYYYXXyxxx,1,31744,baseline,1,true,,false,10000,16,true,3208,2,true,870,2,true,3060,2
+ac19_23123,YXXXyxx,YYXyxYxyXYxyX,4,31796 35873 56205 99686,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_23150,YXXyXYx,YYXYXXyXyxxyx,1,31840,s20_f4,1,true,,true,1965,2,true,1575,2,true,1995,2,false,10000,14
+ac19_23156,YYXXyxx,YYYxYXYYX,1,31848,"baseline,s20_f4",2,true,,false,10000,16,true,6112,2,true,9857,2,false,10000,16
+ac19_23190,YXYXyx,YYXXXXyXXyxYxxYxxyx,1,31911,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,15,false,10000,15,false,10000,15,true,8156,2
+ac19_23233,YYXXYXyyx,YYxyXXXYX,1,31996,baseline,1,true,,false,10000,15,true,1780,2,true,4188,2,true,9342,2
+ac19_23285,YYXXXYX,YYYxyyXyyx,1,32086,s20_f4,1,true,,true,8257,2,true,1600,2,true,3879,2,false,10000,16
+ac19_23430,YXYXXYx,YYYXXXyxx,2,32321 111582,s20_f4,1,true,,true,1956,2,true,1570,2,true,1856,2,false,10000,14
+ac19_23458,YXXYXXyx,YYXYxxyXyXX,1,32374,baseline,1,true,,false,10000,17,true,959,2,true,2035,2,true,4235,2
+ac19_23535,YXyXXyx,YYxYxxyxYxyxyXYXX,1,32506,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,17,false,10000,16,false,10000,16
+ac19_23557,YXXYx,YYYXXyyyxyxyyx,2,32545 81127,"baseline,s20_f4",2,true,,false,10000,18,true,744,2,true,4722,2,false,10000,18
+ac19_23763,YYXXXyx,YYYxyxxyyXyx,1,32917,"baseline,s20_f4",2,true,,false,10000,15,true,2228,2,true,6393,2,false,10000,15
+ac19_23804,YXXyx,YYYYYXyxyyXyXXX,2,32989 156395,s20_mk2,1,true,,true,2832,2,false,10000,15,true,7741,2,true,919,2
+ac19_23815,YXyXXXyx,YYXXyXYxxxYXyyxyX,1,33010,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_23821,YYXXXYxyx,YYxyXYXyx,4,33020 86493 92238 140961,baseline,1,true,,false,10000,15,true,729,2,true,2547,2,true,2687,2
+ac19_23824,YYXXXYxx,YYYXXyxxYYX,4,33024 39094 100067 124204,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,1570,2,false,10000,17,true,1631,2
+ac19_24058,YXXyXyxx,YYYYxxxYx,3,33429 109062 117119,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,15,false,10000,17,false,10000,14
+ac19_2406,YXyXXXyx,YYxYXyxyxYxyx,1,3049,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_24088,YXXXXyXYxx,YYXXXXyxxyx,4,33487 143418 147859 150291,baseline,1,true,,false,10000,14,true,1727,2,true,3828,2,true,2777,2
+ac19_24171,YXXXXXyXYx,YXXyxYXXXXX,3,33634 53971 133457,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,6052,2,false,10000,15,true,5123,2
+ac19_2425,YXXXyXYx,YYXyXXYXX,1,3068,baseline,1,true,,false,10000,17,true,496,2,true,656,2,true,8160,2
+ac19_24278,YXYXYx,YYXyXYxxYXyyx,1,33803,baseline,1,true,,false,10000,17,true,1165,2,true,1040,2,true,3707,2
+ac19_24328,YYXXyxx,YYYYXyxYYX,10,33893 78242 79004 87122 87317 87632 119266 132723 143730 156488,"baseline,s20_f4",2,true,,false,10000,14,true,2762,2,true,5381,2,false,10000,14
+ac19_24374,YXYXXYx,YYxyXyXyxx,2,33982 85359,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_24379,YYXXYXXyx,YYXyyxxyxxyyx,2,33990 136668,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,3192,2,false,10000,17,false,10000,15
+ac19_24419,YXXyxYx,YYYXXYxxYX,1,34064,baseline,1,true,,false,10000,16,true,453,2,true,670,2,true,1493,2
+ac19_24446,YXXYx,YYYXYxyXYYxyyX,4,34112 76103 100465 126401,"baseline,s20_f4",2,true,,false,10000,18,true,605,2,true,4538,2,false,10000,18
+ac19_24454,YYXXXYX,YYYYXyXYXXX,2,34127 58408,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,3918,2,false,10000,15,true,2984,2
+ac19_24481,YYYXXXyxx,YYYXyxxYXX,1,34178,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2169,2,false,10000,17,true,6704,2
+ac19_24541,YYXXYx,YYYXYxxyyyX,2,34283 142149,baseline,1,true,,false,10000,15,true,729,2,true,2541,2,true,2688,2
+ac19_24565,YXXyXyx,YYXXXXyxxyx,1,34320,s20_f4,1,true,,true,1966,2,true,1584,2,true,2023,2,false,10000,14
+ac19_24622,YYXXXyX,YYXYxyXyxyX,2,34411 47812,"baseline,s20_f4",2,true,,false,10000,15,true,2872,2,true,3944,2,false,10000,15
+ac19_24627,YXYxyx,YYYXyXyxxxYYx,2,34420 151071,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3515,2,false,10000,17,false,10000,17,false,10000,17
+ac19_24642,YXXYx,YYYYxyXYXYXyyx,1,34447,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6917,2,false,10000,18,false,10000,18
+ac19_24711,YXXYXXXYx,YXXXXyxxYx,2,34563 124846,s20_f4,1,true,,true,1871,2,true,1584,2,true,1953,2,false,10000,14
+ac19_24749,YXyXXXXyx,YYxYxyxxyX,1,34634,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_24758,YXXYXXyX,YYXyxYxyXyX,1,34651,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5719,2,false,10000,15,true,4944,2
+ac19_24805,YXXYx,YYYXYYYXXyxYYX,2,34733 80574,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,2974,2,false,10000,18,false,10000,18
+ac19_24836,YYXXXyX,YYXYXyxyyxx,1,34777,"baseline,s20_f4",2,true,,false,10000,17,true,515,2,true,649,2,false,10000,17
+ac19_24884,YXXYx,YYYYXYxyXYXyyx,2,34861 144733,"baseline,s20_f4",2,false,s20_mk2_mK2,false,10000,18,true,614,2,missing,,,false,10000,18
+ac19_24981,YXXYx,YYYYxYXyyyXYYXXyx,1,35032,"baseline,s20_f4",2,true,,false,10000,18,true,611,2,true,4557,2,false,10000,18
+ac19_25075,YXXyXyx,YYxYXXyyxx,2,35216 37276,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3192,2,false,10000,14,false,10000,14
+ac19_2513,YYXXXYX,YYYXyXXyxx,1,3160,baseline,1,true,,false,10000,15,true,1407,2,true,2579,2,true,719,2
+ac19_25143,YYXXXyx,YXXXYxxYXXXyX,1,35324,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,14,false,10000,16,false,10000,16
+ac19_252,YYXXyx,YYXXYxxxxyXXX,3,779 67776 97185,s20_f4,1,false,s20_mk2,true,8169,2,missing,,,true,3945,2,false,10000,14
+ac19_25244,YYXXyxx,YYxYxYXXX,1,35486,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_25325,YXYxYXXYXyx,YYxYXXXYxYXX,1,35629,s20_mk2_mK2,1,true,,true,1839,2,true,3080,2,false,10000,18,true,2411,2
+ac19_25580,YXYXXYx,YYXyxYXXyx,4,36116 39496 48193 112669,s20_f4,1,true,,true,1954,2,true,1570,2,true,1862,2,false,10000,14
+ac19_25757,YYXXXXXXX,YYYXXXyxyXX,5,36405 36475 54505 60416 126836,s20_f4,1,true,,true,8435,2,true,1746,2,true,4013,2,false,10000,14
+ac19_25795,YYXXYx,YYXyxYYxYXX,2,36468 48610,baseline,1,true,,false,10000,15,true,729,2,true,2546,2,true,2687,2
+ac19_25941,YYXXXyX,YXyXXYxxxyX,6,36714 63277 82474 123505 133947 151006,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,7353,2,false,10000,15,false,10000,15
+ac19_25942,YXyXXXyX,YYXXyxYXyyx,1,36728,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,2872,2,false,10000,17,false,10000,17
+ac19_25945,YYXXYxYXXXYx,YXXYxxxyXXXYx,1,36732,s20_mk2_mK2,1,true,,true,1839,2,true,3333,2,false,10000,18,true,2434,2
+ac19_25960,YXXXYxx,YYYXYYXXyyxx,3,36759 91740 115881,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2216,2,false,10000,17,true,6793,2
+ac19_25975,YXXyXYx,YYXXyyxxyx,1,36788,s20_f4,1,true,,true,1965,2,true,1575,2,true,1995,2,false,10000,14
+ac19_26044,YYXXXXyx,YYXYXXXyX,2,36911 42821,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_26065,YXXyx,YYYYXyXyXyXyXXYX,2,36946 38607,s20_mk2,1,true,,true,3166,2,false,10000,15,true,7748,2,true,753,2
+ac19_26211,YXXXyXyx,YYxyxYXXyxx,1,37189,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_2622,YXXXXXXyxYx,YYXXXXXyyxYx,3,3277 102968 155072,baseline,1,false,s20_mk2_mK2,false,10000,16,true,3194,2,missing,,,true,3059,2
+ac19_2623,YYXYXyX,YYxyXXX,21,3278 10111 14922 21509 23642 29415 37487 40104 43347 52458 61223 70528 75932 80632 95009 96791 99977 101109 108636 134705 136594,s20_f4,1,true,,true,1964,2,true,1575,2,true,1878,2,false,10000,14
+ac19_26260,YYXXyx,YYXXYYXXYxYXX,3,37289 46168 148076,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5256,2,false,10000,15,true,8309,2
+ac19_26421,YXXYxxyX,YYxxyXXyXYx,1,37592,s20_f4,1,true,,true,1959,2,true,1584,2,true,1901,2,false,10000,14
+ac19_26498,YYXXYYx,YYYXyXyxx,3,37717 128788 136084,"baseline,s20_f4",2,true,,false,10000,16,true,1788,2,true,3673,2,false,10000,14
+ac19_26550,YYXXyxx,YYYYXYxyX,3,37813 132187 132632,baseline,1,true,,false,10000,16,true,6523,2,true,7532,2,true,2939,2
+ac19_26598,YYXXXyxyxYx,YYXXXXyxyxyx,1,37891,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_26634,YXXyXyX,YYxyxYXyxx,3,37955 41732 122657,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_26644,YXyXXXyx,YYYxxxYXyxxYxxyyX,1,37973,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_26670,YYXXYx,YYxyxYXXX,14,38019 41455 51943 62136 71574 83127 90140 115289 132227 134479 135116 145263 148929 151342,baseline,1,true,,false,10000,15,true,729,2,true,2552,2,true,2687,2
+ac19_26706,YXYXXXX,YYXyyXXXYXyxYx,1,38088,s20_mk2_mK2,1,false,s20_mk2,true,4613,2,missing,,,false,10000,15,true,51,2
+ac19_2671,YXXYxYxx,YYXXXXyxxxx,1,3330,s20_f4,1,true,,true,618,2,true,1460,2,true,1293,2,false,10000,14
+ac19_26716,YXyXXXyx,YYXXyXXYxyxYxyxyX,1,38106,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_26808,YXYXXXX,YYXyXyXXYx,3,38276 73110 123384,s20_mk2_mK2,1,true,,true,4613,2,true,576,2,false,10000,15,true,42,2
+ac19_26841,YXYXXYx,YYYXXXyxyx,1,38331,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_26870,YXyXXXyx,YYYxxxxxxyx,1,38386,baseline,1,true,,false,10000,15,true,8371,2,true,7720,2,true,5572,2
+ac19_26896,YXXYxxyX,YYxYXXyyxyx,1,38439,s20_f4,1,true,,true,1956,2,true,1570,2,true,2040,2,false,10000,14
+ac19_26912,YXXyXyx,YYYXyyxyX,1,38466,s20_f4,1,true,,true,665,2,true,1501,2,true,1346,2,false,10000,14
+ac19_26942,YXXyXyX,YYYxyXXyxyX,1,38508,"baseline,s20_mk2,s20_f4",3,true,,false,10000,16,false,10000,14,true,6378,2,false,10000,16
+ac19_26945,YXYxyx,YYXyXXyyXXyXyyx,1,38513,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_2696,YYXXYxYXXXYx,YYXXXyxxYXXYx,1,3360,s20_mk2_mK2,1,true,,true,1839,2,true,3316,2,false,10000,18,true,2425,2
+ac19_26979,YXXyXyx,YYxyxxYXyX,4,38569 111933 123167 134471,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_27082,YXXYx,YYXYYXyyxYYXyx,2,38753 83303,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3876,2,false,10000,18
+ac19_27102,YYXXXyx,YYYXXYXyxyyX,1,38786,"baseline,s20_f4",2,true,,false,10000,15,true,2228,2,true,6362,2,false,10000,15
+ac19_2711,YXXyXyxx,YYXyxyxxYYx,1,3375,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,6608,2,false,10000,17,true,3807,2
+ac19_27114,YYXXXyx,YYYxyyxyXXyx,1,38809,s20_f4,1,true,,true,1972,2,true,1585,2,true,1915,2,false,10000,14
+ac19_27161,YXyXXXyx,YYxxxxYxyxxyXYX,1,38888,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_27177,YXXXyxYx,YYXXXyXYxYX,2,38913 92335,"baseline,s20_f4",2,true,,false,10000,15,true,1040,2,true,2821,2,false,10000,15
+ac19_27178,YXXYxxyx,YYXXyyxYxyx,1,38917,baseline,1,true,,false,10000,15,true,1385,2,true,2578,2,true,2937,2
+ac19_27187,YYXXXXyXX,YYXXyxxxxxxyXXX,2,38929 151459,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_27254,YXXXyXYx,YXXyxxxxyxx,1,39050,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_27300,YXXYXXyx,YYXyXXYxyXX,1,39151,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,5903,2,false,10000,19,false,10000,19
+ac19_27361,YYYXXXYYXXX,YYXXyxxxyXyx,1,39284,"baseline,s20_f4",2,true,,false,10000,14,true,4399,2,true,5621,2,false,10000,17
+ac19_27374,YYXXyx,YYXYXXXXYxx,2,39313 143123,s20_f4,1,true,,true,8329,2,true,1695,2,true,4018,2,false,10000,14
+ac19_27503,YYXXYXXyXYx,YYXXYXyxYxxyyX,1,39544,baseline,1,true,,false,10000,15,true,1752,2,true,2925,2,true,4954,2
+ac19_27551,YXXYxxyxx,YYxxYxxxxx,1,39609,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_27623,YXyXYxx,YYYYXyXyxxx,2,39740 85806,baseline,1,true,,false,10000,12,true,1038,2,true,2142,2,true,1241,2
+ac19_27683,YXYxyx,YYXXyXyxxxYxx,2,39837 78449,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_27704,YYXXYYXXX,YYXXyxYxyX,3,39873 83675 152756,s20_f4,1,true,,true,37,2,true,426,2,true,234,2,false,10000,17
+ac19_27740,YXyXXXyX,YYxYxyxyxxx,1,39935,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,2927,2,false,10000,17,false,10000,17
+ac19_27787,YYYXyxyyX,YYXyXXXXX,4,40035 88843 125897 127017,baseline,1,true,,false,10000,16,true,3199,2,true,871,2,true,3064,2
+ac19_27848,YXyXXXXyx,YYxxYxyxyx,2,40136 88522,baseline,1,true,,false,10000,16,true,4585,2,true,2156,2,true,5612,2
+ac19_27867,YXXXXyXXYx,YXyxxxxxyxx,4,40170 85943 98267 98344,baseline,1,true,,false,10000,17,true,1753,2,true,4231,2,true,9001,2
+ac19_27953,YYXXYx,YYxyxyXyX,5,40330 71616 76253 77186 88808,baseline,1,true,,false,10000,15,true,729,2,true,2552,2,true,2687,2
+ac19_28048,YYXXyx,YYXXXYYxYXX,1,40495,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5256,2,false,10000,15,true,8309,2
+ac19_28109,YXXYXXyX,YYxYxyxyXyX,1,40614,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5719,2,false,10000,15,true,4944,2
+ac19_28131,YYXXXXyx,YXXyXXXYx,4,40647 62350 130941 137795,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_28201,YYXXXXyX,YYxxyXXXXXX,1,40768,baseline,1,true,,false,10000,15,true,1746,2,true,3854,2,true,2781,2
+ac19_28227,YXyXYxx,YYYXyXXyxyxxx,2,40808 140290,baseline,1,true,,false,10000,12,true,999,2,true,2059,2,true,1240,2
+ac19_28253,YYXXXXyxxx,YYxxYXXXXYX,1,40850,"baseline,s20_f4",2,true,,false,10000,15,true,8028,2,true,1438,2,false,10000,15
+ac19_28265,YYXXYYXXX,YYYXXYYXXYXXXyx,1,40866,s20_f4,1,false,s20_mk2_mK2,true,51,2,true,457,2,missing,,,false,10000,17
+ac19_28281,YXYxxyXyx,YYXXyxYXyxx,1,40889,baseline,1,false,s20_mk2_mK2,false,10000,15,true,1725,2,missing,,,true,4453,2
+ac19_28446,YYXXyxx,YYYxYxyxyXX,1,41182,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,6094,2,false,10000,15,false,10000,15
+ac19_28510,YYXXyxx,YYYYYYXYXYYx,1,41313,"baseline,s20_f4",2,true,,false,10000,16,true,5306,2,true,8477,2,false,10000,16
+ac19_28515,YYXXyx,YXyXYXXXYxx,2,41320 126905,s20_f4,1,true,,true,8248,2,true,1686,2,true,3976,2,false,10000,14
+ac19_28516,YXXYx,YYYXYYXyyxYXyx,2,41321 62329,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3008,2,false,10000,18,false,10000,18
+ac19_28521,YXXYxxyX,YXYxYXXyXyx,1,41333,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_28561,YYXXXXYX,YXXXXyxYx,2,41412 76557,s20_f4,1,false,s20_mk2_mK2,true,1965,2,true,1575,2,missing,,,false,10000,14
+ac19_28570,YXXYxxyX,YYXXYYxYXXX,1,41429,s20_f4,1,true,,true,1956,2,true,1570,2,true,2040,2,false,10000,14
+ac19_28671,YXYxyXXyxYXyx,YYXXyxYXyxYXyx,2,41626 88499,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_28674,YYXXXXyx,YXXXXXXXXXYxx,2,41633 146550,baseline,1,true,,false,10000,17,true,5604,2,true,6462,2,true,7440,2
+ac19_28696,YXXXyxx,YYXXyxYXyxYXyx,6,41677 99211 102712 135962 139334 143487,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_28816,YYXXYXXyyx,YYxyXXYXXyX,1,41876,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,5630,2,false,10000,17,true,9309,2
+ac19_28860,YXyXXXyX,YYXXyyxYXyx,1,41955,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,2835,2,false,10000,17,false,10000,17
+ac19_28873,YXyXYxx,YYYYYXXYx,5,41979 103842 138127 141364 148121,baseline,1,true,,false,10000,16,true,3200,2,true,872,2,true,3062,2
+ac19_28889,YXYxxYxyx,YYxyxYYxyxYx,4,42011 118930 131382 138530,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,9022,2,false,10000,17,true,8244,2
+ac19_2889,YXYXXXX,YYXyXXyyXYYx,1,3573,s20_mk2_mK2,1,true,,true,3968,2,true,586,2,false,10000,15,true,51,2
+ac19_28930,YXYxyx,YYXXyxxxYxxYx,2,42081 88422,"baseline,s20_mk2,s20_f4",3,false,s20_mk2_mK2,false,10000,17,false,10000,17,missing,,,false,10000,17
+ac19_28994,YXXYXXXXX,YYYXyXXXyx,1,42191,s20_mk2_mK2,1,true,,true,8587,2,true,1325,2,false,10000,17,true,382,2
+ac19_29052,YXXyXyx,YYYxxxxyXXyX,1,42317,s20_f4,1,true,,true,675,2,true,1663,2,true,1482,2,false,10000,14
+ac19_29061,YYXXXyxYX,YYXXXXXYx,1,42332,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_29182,YXYXXXX,YYXXyXXXyxYx,1,42550,s20_mk2_mK2,1,true,,true,3634,2,true,580,2,false,10000,15,true,46,2
+ac19_29209,YYYXXXYYX,YYXXXXYYx,3,42598 97800 139452,s20_f4,1,true,,true,1595,2,true,794,2,true,1325,2,false,10000,17
+ac19_29224,YYXXyXyxyx,YYYXyXyxyyX,2,42621 131549,s20_mk2_mK2,1,true,,true,7956,2,true,2981,2,false,10000,17,true,2287,2
+ac19_29344,YXyXXXXyx,YYXyyxxYxxYxyx,1,42846,"baseline,s20_mk2,s20_f4",3,false,s20_mk2_mK2,false,10000,18,false,10000,18,missing,,,false,10000,18
+ac19_29392,YYXXYYXXX,YYXyXYXYxYXyX,1,42949,s20_f4,1,true,,true,1178,2,true,2563,2,true,6470,2,false,10000,14
+ac19_294,YXXYxYxx,YYYxxYXYx,2,822 73048,s20_f4,1,false,s20_mk2,true,694,2,missing,,,true,1387,2,false,10000,14
+ac19_29477,YYXXyx,YXYxyXyxxYXyx,1,43082,s20_f4,1,true,,true,8422,2,true,1741,2,true,4012,2,false,10000,14
+ac19_2962,YXYXXYxyX,YYYXyXYxyxYXXyyx,1,3664,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_29624,YXXyXyx,YYXXYxyXyyx,2,43336 126256,s20_f4,1,true,,true,1966,2,true,1584,2,true,1996,2,false,10000,14
+ac19_29674,YYXXyx,YYXYXyXyyxx,1,43429,s20_f4,1,true,,true,8518,2,true,1747,2,true,4054,2,false,10000,14
+ac19_29679,YYXXXYXX,YYYYXyXyX,1,43436,s20_mk2_mK2,1,true,,true,5276,2,true,591,2,false,10000,17,true,279,2
+ac19_2980,YXYXXYx,YYXXyxYXXyxx,1,3686,s20_f4,1,true,,true,1954,2,true,1570,2,true,1863,2,false,10000,14
+ac19_29844,YYXXXXXXyx,YYYXXXXXyyx,1,43736,baseline,1,true,,false,10000,16,true,3199,2,true,871,2,true,3671,2
+ac19_29918,YYXXyXyyx,YYYxYxxxYxyxx,1,43869,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,16,true,7626,2,false,10000,18,false,10000,16
+ac19_29936,YYXXyxx,YXYXXyXyxxx,2,43896 73072,"baseline,s20_f4",2,true,,false,10000,14,true,2813,2,true,5595,2,false,10000,14
+ac19_30096,YYXXYx,YYxyxYXyX,1,44177,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,4434,2,false,10000,15,false,10000,15
+ac19_30108,YXXyXyx,YYXyxxYXyx,1,44211,"baseline,s20_f4",2,true,,false,10000,16,true,5936,2,true,8058,2,false,10000,16
+ac19_30155,YXXYx,YYXYxyXYxyXYxyyX,1,44296,"baseline,s20_f4",2,true,,false,10000,18,true,501,2,true,3945,2,false,10000,18
+ac19_30235,YYXXXyxyx,YYXXXXXyX,3,44454 63866 136117,"baseline,s20_f4",2,true,,false,10000,17,true,1722,2,true,3173,2,false,10000,14
+ac19_30250,YXYxyXXyx,YYXyXyxYXyyx,3,44475 64837 90451,baseline,1,true,,false,10000,15,true,1392,2,true,2581,2,true,2688,2
+ac19_30382,YXXyXyXX,YYxxxxxyx,3,44716 63099 111662,"baseline,s20_f4",2,true,,false,10000,17,true,1715,2,true,3202,2,false,10000,17
+ac19_30535,YXXyXyx,YYYxyxxYxyX,2,45005 143178,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_30814,YXXYxxyX,YYXyXXYXXYx,2,45530 144883,s20_f4,1,true,,true,1971,2,true,1584,2,true,1904,2,false,10000,14
+ac19_30818,YXyXXyx,YYXYXyxyyxx,1,45538,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,17,false,10000,16,true,7532,2
+ac19_30831,YXXyXyxx,YYXYxyyxx,1,45559,s20_mk2_mK2,1,true,,true,5908,2,true,2064,2,false,10000,17,true,1635,2
+ac19_30890,YXYxxYXyx,YYXyxYXyxYYx,3,45675 51228 98789,baseline,1,true,,false,10000,18,true,1983,2,true,2143,2,true,3687,2
+ac19_30896,YXXyx,YYYYYXyXyxyXyXXX,2,45686 90095,s20_mk2,1,true,,true,2788,2,false,10000,15,true,7762,2,true,919,2
+ac19_30937,YXYXXYx,YXyXXyxxxx,3,45762 50992 148703,baseline,1,true,,false,10000,15,true,1409,2,true,2579,2,true,2688,2
+ac19_30981,YXXYx,YYYXYYXYYYXXyx,2,45838 49761,"baseline,s20_f4",2,true,,false,10000,18,true,514,2,true,3916,2,false,10000,18
+ac19_31002,YXXyx,YYYYXyyyyxxxYx,2,45874 152805,s20_mk2,1,true,,true,3138,2,false,10000,15,true,7758,2,true,933,2
+ac19_31130,YXyXXyx,YYXyXYYxxyxyxx,1,46143,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,14,true,7532,2
+ac19_31218,YXYXXYx,YXyXXYxYXyxx,1,46290,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_31277,YYXXyXyxx,YYxxyxxYXXyxx,1,46397,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,7454,2,false,10000,19,false,10000,19
+ac19_3129,YYXXXyxx,YYxyxxYXXXX,2,3855 34446,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,3104,2,false,10000,17,false,10000,15
+ac19_31298,YYXXYx,YYYXYYxYXyX,1,46444,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_31354,YXXYXXXYx,YXyXYxyXYx,3,46557 65249 132523,s20_f4,1,true,,true,1871,2,true,1584,2,true,1857,2,false,10000,14
+ac19_31359,YXyXXyx,YYYXyxyxxYxxx,1,46568,baseline,1,true,,false,10000,16,true,9813,2,true,9511,2,true,7166,2
+ac19_31424,YYXXX,YXYXXXXyXYxYx,2,46683 133689,s20_mk2_mK2,1,true,,true,9707,2,true,331,2,false,10000,15,true,212,2
+ac19_31432,YXXyXYxxx,YYYYYYxxyX,3,46697 121811 132818,baseline,1,true,,false,10000,16,true,3225,2,true,866,2,true,3019,2
+ac19_31511,YXXXyxYx,YXYXXXXYxyXYx,2,46842 151609,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_31609,YXXyXyx,YYXyxxYXyyx,1,47036,"s20_mk2_mK2,s20_f4",2,true,,true,9037,2,true,4253,2,false,10000,18,false,10000,18
+ac19_31653,YXXYx,YYYXYxyyXYXyyx,1,47123,"baseline,s20_f4",2,true,,false,10000,18,true,610,2,true,4626,2,false,10000,18
+ac19_31687,YXXYx,YYYYXXyxYYXYYX,1,47182,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6852,2,false,10000,18,false,10000,18
+ac19_31704,YYXXyxx,YYYYXXYYxxxxYX,1,47216,"s20_mk2,s20_f4",2,true,,true,1070,2,false,10000,19,true,8488,2,false,10000,19
+ac19_31763,YYXXXYxYx,YYXYxYxYXX,1,47334,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_31782,YXYXyx,YYYYYYXXXXXXX,1,47363,s20_f4,1,true,,true,5519,2,true,8989,2,true,6454,2,false,10000,15
+ac19_31936,YYXXyx,YYYXXXYYxyX,1,47657,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5250,2,false,10000,15,true,8309,2
+ac19_31971,YYXXYYxxyX,YYxYXyyxYXX,1,47724,baseline,1,true,,false,10000,19,true,2587,2,true,3914,2,true,5044,2
+ac19_31991,YYXXXyx,YXyxxYXXyxYXXyx,2,47758 51448,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_32014,YXXyXXXyx,YYXXyxyxYXXyx,7,47797 56189 79585 96634 106000 111988 119721,baseline,1,true,,false,10000,15,true,742,2,true,2527,2,true,718,2
+ac19_32031,YXXXyxx,YYXyxYXXyxYxyX,4,47835 71946 72728 85132,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_32034,YYXXXXYX,YYYYXXXXXXX,1,47844,s20_f4,1,true,,true,1965,2,true,1576,2,true,1903,2,false,10000,14
+ac19_32128,YYXXXYx,YXYXXyxYx,4,48034 123493 143019 154176,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3036,2,false,10000,14,true,5931,2
+ac19_32132,YXyXXyx,YYxYxyxxyxxYX,1,48046,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,14,true,7532,2
+ac19_32169,YYYXXXXyX,YYXXYXXXXXX,1,48113,baseline,1,true,,false,10000,19,true,2599,2,true,3791,2,true,5046,2
+ac19_32176,YXyXXXyx,YYxYXyxxxyx,1,48137,baseline,1,true,,false,10000,15,true,8371,2,true,7720,2,true,5574,2
+ac19_32192,YXYXXXX,YYYXyyXXyXYx,1,48167,s20_mk2_mK2,1,true,,true,4398,2,true,559,2,false,10000,15,true,58,2
+ac19_32241,YXXYx,YYYXYYYXYYXXyx,1,48253,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,2988,2,false,10000,18,false,10000,18
+ac19_32248,YYXXXYX,YYYXyXXXYYX,1,48263,"baseline,s20_f4",2,true,,false,10000,15,true,1243,2,true,2580,2,false,10000,15
+ac19_32315,YYXXYxYXXYx,YYXyxxyXyyxxyX,4,48399 70633 104750 137432,"baseline,s20_f4",2,true,,false,10000,14,true,2832,2,true,5587,2,false,10000,14
+ac19_32340,YYXXYxxyyX,YYYXXXYYXXX,1,48455,baseline,1,false,s20_f4,false,10000,14,true,2801,2,true,5562,2,missing,,
+ac19_3252,YXXYxxyX,YYXyxYXXyyx,1,3992,s20_f4,1,true,,true,1959,2,true,1584,2,true,1901,2,false,10000,14
+ac19_32555,YXYXXXX,YYXyXyXyxxxxx,1,48895,s20_mk2_mK2,1,true,,true,4613,2,true,576,2,false,10000,15,true,43,2
+ac19_32559,YXYxyx,YYXyXXyXyyXXyxx,1,48907,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_32596,YYXXyxYXXyxYXyX,YXyxYXXyxxYXXyx,1,48982,"baseline,s20_f4",2,true,,false,10000,17,true,1468,2,true,7069,2,false,10000,17
+ac19_32603,YYXXyxx,YYYYxxxYXXXX,1,49002,s20_mk2,1,true,,true,1309,2,false,10000,19,true,8482,2,true,8875,2
+ac19_32632,YXYXXXX,YYXYYXXyXyyx,1,49055,s20_mk2_mK2,1,true,,true,3926,2,true,581,2,false,10000,15,true,46,2
+ac19_32643,YXXYx,YYYXYXyyXYYxyx,1,49084,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3946,2,false,10000,18
+ac19_32669,YXyXXXyx,YYxYXyyxxxx,1,49147,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_32687,YXXyXyxx,YYYxxYYxxxx,1,49182,s20_f4,1,true,,true,2007,2,true,1112,2,true,3728,2,false,10000,19
+ac19_32717,YXXYx,YYYXYYXYxxyyyX,1,49246,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6798,2,false,10000,18,false,10000,18
+ac19_32733,YXXyXYx,YYXYXyXYXyx,2,49274 49977,s20_f4,1,true,,true,1965,2,true,1575,2,true,1995,2,false,10000,14
+ac19_3275,YXyXXXyx,YYxyxxyXYXyXX,1,4023,baseline,1,true,,false,10000,17,true,8371,2,true,7720,2,true,5589,2
+ac19_32811,YYXXX,YXyXyXYxxxxyx,2,49421 101375,s20_mk2_mK2,1,true,,true,9731,2,true,331,2,false,10000,15,true,212,2
+ac19_32846,YYXXYYXXX,YYYxyXXXyx,1,49484,s20_f4,1,false,s20_mk2,true,66,2,missing,,,true,241,2,false,10000,17
+ac19_32949,YYYXXXXyX,YYXXyyxYXX,1,49688,baseline,1,true,,false,10000,19,true,2599,2,true,3856,2,true,5048,2
+ac19_3303,YXXyxYx,YYYYYXYxyX,2,4054 99453,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_33072,YXXXyxYx,YYYXXYXyX,2,49945 119013,s20_f4,1,true,,true,48,2,true,448,2,true,235,2,false,10000,17
+ac19_33075,YYXXYx,YYXyxYxyXyxYX,1,49949,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,4188,2,false,10000,15,false,10000,15
+ac19_33080,YXYxxYXyxYXyx,YYxYXYxxYXyxyX,1,49960,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_33093,YXXYx,YYYXyyxYYXyyyXYx,1,49993,"baseline,s20_f4",2,true,,false,10000,18,true,597,2,true,4527,2,false,10000,18
+ac19_33242,YXXXyXYx,YYxxxyXYXXyXX,1,50245,baseline,1,true,,false,10000,15,true,1842,2,true,3910,2,true,2779,2
+ac19_33282,YXXyXXYx,YYXyXYxyX,3,50309 132051 141746,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,3932,2,false,10000,17,true,5372,2
+ac19_33371,YXyXXXXyx,YYXyXYxxyyX,2,50508 111182,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,16,true,7318,2
+ac19_33390,YXyXXXXyx,YYXyXYxyxyx,2,50552 150387,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,16,true,7315,2
+ac19_33400,YXXyx,YYYYYXyyyxxxyxx,2,50569 152290,s20_mk2,1,true,,true,2867,2,false,10000,15,true,7719,2,true,669,2
+ac19_33405,YXXXyXyxx,YYxyxYXyxx,1,50581,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2635,2,false,10000,17,true,1263,2
+ac19_33415,YYXXXYX,YYXXXXyxYxyx,1,50604,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4035,2,false,10000,15,true,2984,2
+ac19_33428,YXXyXYx,YYXyXYXXX,4,50625 53202 83812 84258,baseline,1,true,,false,10000,15,true,1741,2,true,2903,2,true,4952,2
+ac19_33435,YXXyXyx,YYxxYXyxyx,1,50640,"baseline,s20_mk2_mK2,s20_f4",3,false,s20_mk2,false,10000,17,missing,,,false,10000,17,false,10000,17
+ac19_33460,YXXyXYx,YYXYxyXXyx,1,50697,s20_f4,1,true,,true,1965,2,true,1575,2,true,1995,2,false,10000,14
+ac19_33514,YXyXXXyx,YYxyxyXYXyXyXXX,1,50807,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_33803,YXyXXXyx,YYYxxxxxyxx,1,51413,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_3382,YXXYxxyx,YXXYxYxxYxxyX,6,4144 23766 58114 80661 125580 149418,baseline,1,true,,false,10000,15,true,886,2,true,2578,2,true,2936,2
+ac19_33905,YXyXXXXyx,YYXXyXXyyX,2,51660 139189,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,16,true,7326,2
+ac19_33987,YXYXXYx,YYYYXyXyx,2,51817 107473,s20_f4,1,true,,true,1956,2,true,1570,2,true,1856,2,false,10000,14
+ac19_34089,YYXXYx,YYYxyyXYxyX,3,52006 54721 67720,baseline,1,true,,false,10000,15,true,729,2,true,2541,2,true,2687,2
+ac19_34117,YXyXXyx,YYxxyxyxxYXYx,1,52058,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,14,true,7532,2
+ac19_3432,YXXyXYx,YYXXXXyxxx,8,4207 86554 117943 121287 128131 138522 153391 156549,baseline,1,true,,false,10000,15,true,1734,2,true,2895,2,true,4934,2
+ac19_34569,YXYXXXX,YYXXXXyyxYx,2,52954 124968,s20_mk2_mK2,1,true,,true,4349,2,true,508,2,false,10000,15,true,64,2
+ac19_34580,YYXXXYX,YXYxxxYXyXyX,1,52975,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4097,2,false,10000,15,true,2983,2
+ac19_34742,YYXXXyX,YYXXYXyXyx,2,53299 148162,s20_f4,1,true,,true,9943,2,true,439,2,true,395,2,false,10000,14
+ac19_35070,YXyXXXXyx,YYXyyxxYXXyxx,1,53955,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_3508,YYYXXyyXX,YXXYXXXXX,2,4294 122359,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,1335,2,false,10000,17,true,369,2
+ac19_35172,YYXXXyX,YYXXyxyxx,4,54158 97465 113728 137098,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,7353,2,false,10000,15,false,10000,15
+ac19_3518,YYXXyx,YYYYXyxyyXX,12,4304 7047 10668 16962 41840 45454 58889 99331 121176 134136 136239 144770,s20_f4,1,true,,true,8000,2,true,1653,2,true,3910,2,false,10000,14
+ac19_35195,YXXYx,YYYYXXyxYYYXYX,1,54204,"baseline,s20_f4",2,true,,false,10000,18,true,733,2,true,4693,2,false,10000,18
+ac19_35223,YXXXyXYx,YXyXYxyxxyx,1,54258,"baseline,s20_f4",2,true,,false,10000,15,true,2274,2,true,6412,2,false,10000,15
+ac19_35247,YYYXyxyyX,YYxxxxxyx,1,54304,baseline,1,true,,false,10000,16,true,3210,2,true,867,2,true,3023,2
+ac19_35248,YXXyXyxx,YYXXXyyxyxx,1,54305,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,6873,2,false,10000,17,false,10000,17
+ac19_35292,YYXXXXyx,YYXYXXyxyyx,2,54393 152096,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,4440,2,false,10000,17,false,10000,15
+ac19_353,YXYxyx,YYXXXyyXyXyxYxx,3,883 32987 48765,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_35373,YXXXyxxYx,YXYxYXXYxyxx,2,54552 81657,s20_mk2_mK2,1,true,,true,7838,2,true,2919,2,false,10000,17,true,2285,2
+ac19_35464,YXyXXyx,YYxYXyxYxxxyxyXYX,1,54735,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,16,false,10000,17
+ac19_35481,YXXyXyx,YYxyxyXYxyX,2,54770 125271,s20_f4,1,true,,true,1966,2,true,1584,2,true,2033,2,false,10000,14
+ac19_3549,YXXYx,YYYXYxyXYYXyyx,3,4338 41292 77914,"baseline,s20_f4",2,true,,false,10000,18,true,742,2,true,4706,2,false,10000,18
+ac19_35617,YXXXXyXyx,YYYxyxxxyX,1,55064,s20_f4,1,false,baseline,missing,,,true,2272,2,true,2257,2,false,10000,16
+ac19_3566,YYXXXYxx,YYYxxyXXX,3,4358 37572 85230,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2155,2,false,10000,17,true,1633,2
+ac19_35874,YXXyXyX,YYYXyyyxx,2,55644 103813,"baseline,s20_mk2,s20_f4",3,true,,false,10000,16,false,10000,14,true,6374,2,false,10000,16
+ac19_35969,YXXYxxyx,YYYxxyXYxyX,2,55827 149063,baseline,1,true,,false,10000,15,true,1385,2,true,2578,2,true,2937,2
+ac19_35983,YXyXXyx,YYxxyxYxxyxxYXX,1,55849,baseline,1,true,,false,10000,16,true,9888,2,true,9584,2,true,7526,2
+ac19_36109,YXYxxYXyx,YYxxyXXyxYX,1,56103,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4179,2,false,10000,17,true,2141,2
+ac19_36119,YXXyx,YYYXYXyyxyyXyXXX,1,56124,s20_mk2,1,true,,true,3340,2,false,10000,15,true,7625,2,true,937,2
+ac19_36141,YYXXYYXXX,YYYXXyxxyX,3,56191 84443 141998,s20_f4,1,true,,true,1587,2,true,1583,2,true,1805,2,false,10000,14
+ac19_36146,YXXYXXyx,YYxyxyXyx,1,56199,baseline,1,true,,false,10000,17,true,5600,2,true,6475,2,true,7463,2
+ac19_36201,YXXYxxyX,YYXXXXYYxyX,2,56306 68652,s20_f4,1,true,,true,1813,2,true,1581,2,true,1800,2,false,10000,14
+ac19_36218,YXyXXXXyx,YYXyXXYxyyx,2,56358 151507,baseline,1,true,,false,10000,15,true,2393,2,true,1538,2,true,3927,2
+ac19_36231,YYXXXYxYX,YXXXXYxYx,1,56380,s20_f4,1,true,,true,8260,2,true,1705,2,true,4194,2,false,10000,14
+ac19_36259,YYXXXyyxx,YYXyxxxyyx,2,56438 67577,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,1331,2,false,10000,17,true,365,2
+ac19_36279,YYXXXyx,YYxyXXyxyx,1,56469,s20_f4,1,true,,true,1972,2,true,1584,2,true,1921,2,false,10000,14
+ac19_36350,YYXXXYxx,YYYYXXXyxyxYYYX,1,56611,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_36358,YYXXXXYX,YYYXyyXYX,2,56625 75879,s20_f4,1,true,,true,1965,2,true,1576,2,true,1902,2,false,10000,14
+ac19_36372,YXXYx,YYYYXXyyxyxyyx,1,56656,"baseline,s20_f4",2,true,,false,10000,18,true,609,2,true,4554,2,false,10000,18
+ac19_36375,YYXXXYX,YYXyXyXYxx,2,56660 120591,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_36429,YXXyXYx,YYxyxYxyXYXyXX,1,56768,baseline,1,true,,false,10000,15,true,1742,2,true,2904,2,true,4950,2
+ac19_3648,YYXXYx,YYYXXyxYxYX,1,4454,baseline,1,true,,false,10000,15,true,729,2,true,2546,2,true,2687,2
+ac19_3654,YYXXXYX,YYYXyxxyXX,2,4462 138200,s20_f4,1,true,,true,1641,2,true,2229,2,true,6341,2,false,10000,14
+ac19_36591,YYXXXYX,YYXXyXyxYx,1,57101,"baseline,s20_mk2_mK2",2,true,,false,10000,16,true,7792,2,false,10000,16,true,7283,2
+ac19_3666,YXXXYxx,YYYXXXyxyxyyxx,3,4474 29556 79973,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2215,2,false,10000,17,true,6792,2
+ac19_3667,YYXXXyxxx,YYYYXXYXYxx,2,4475 126009,"baseline,s20_mk2,s20_f4",3,true,,false,10000,16,false,10000,14,true,6325,2,false,10000,16
+ac19_36685,YYXXXYX,YYYXyXXYYXX,2,57272 109505,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4097,2,false,10000,15,true,2984,2
+ac19_36689,YYXXyxx,YYxYXYYxxyX,1,57276,baseline,1,true,,false,10000,16,true,870,2,true,1417,2,true,3404,2
+ac19_36702,YXyXXXyx,YYxYXyxxyxx,1,57306,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_368,YYXXyx,YYYYXyyyyxx,8,898 17442 26942 76387 101688 112820 118395 151156,s20_f4,1,true,,true,6791,2,true,1656,2,true,3909,2,false,10000,14
+ac19_36913,YXyXXyx,YYxYxxyxxxyXYXX,1,57784,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,17,false,10000,16,true,7532,2
+ac19_3696,YYXXyx,YYYXyXXYX,4,4507 4842 49057 118230,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5200,2,false,10000,15,true,8310,2
+ac19_37106,YXYxyXXyx,YYXyXXyxyX,3,58181 82804 112663,baseline,1,true,,false,10000,15,true,1392,2,true,2585,2,true,2688,2
+ac19_3713,YXyXXXyx,YYXyyXyXX,4,4525 31214 116309 130558,baseline,1,true,,false,10000,15,true,3224,2,true,916,2,true,3005,2
+ac19_37314,YYXXYXXyXYx,YYXXyXYXyXYxx,1,58642,baseline,1,true,,false,10000,15,true,1751,2,true,2924,2,true,4953,2
+ac19_37433,YYXXYXyXXyX,YYXyXYYXyXyX,1,58898,"baseline,s20_f4",2,true,,false,10000,16,true,882,2,true,648,2,false,10000,14
+ac19_37598,YXYXyXXYXyX,YYxYxyXYXyXXyXXYXyXX,1,59257,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,6085,2,false,10000,19,false,10000,19
+ac19_37610,YYXXXyxyx,YXXXyXXXXyx,3,59286 105090 123379,"baseline,s20_f4",2,true,,false,10000,16,true,1797,2,true,3643,2,false,10000,14
+ac19_37634,YXYxyXXyx,YYYXyxYXyyx,3,59351 133133 156759,baseline,1,true,,false,10000,15,true,745,2,true,2573,2,true,2687,2
+ac19_37661,YXXYxxyX,YYxyxYXXXyx,1,59429,s20_f4,1,false,s20_mk2_mK2,true,1956,2,true,1570,2,missing,,,false,10000,14
+ac19_37815,YYXXXXyX,YXYxxyXyx,1,59761,baseline,1,true,,false,10000,15,true,1746,2,true,3850,2,true,2779,2
+ac19_3782,YYXXXXYX,YYXYxyyXX,3,4601 69866 96745,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,3129,2,false,10000,17,true,1400,2
+ac19_37847,YXyXXyx,YYxyXyxxyXXYX,1,59814,baseline,1,true,,false,10000,16,true,9560,2,true,9259,2,true,7113,2
+ac19_3785,YXyXYxx,YYYYYXYxyX,6,4605 21383 51995 74968 118882 146459,baseline,1,true,,false,10000,16,true,3200,2,true,872,2,true,3058,2
+ac19_37958,YYXXXyx,YYYYXXXXXXX,1,60029,s20_f4,1,true,,true,1973,2,true,1585,2,true,1933,2,false,10000,14
+ac19_3797,YYXXYx,YYYxyXYxyyX,10,4619 17325 27179 30179 60867 85935 119587 127449 129711 144968,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,3979,2,false,10000,15,false,10000,15
+ac19_37979,YXXXYXXXyX,YYXXyXYXXXyXX,1,60078,s20_f4,1,true,,true,8867,2,true,469,2,true,469,2,false,10000,14
+ac19_37985,YYXXyxx,YYxyXXXYxxyX,1,60089,"baseline,s20_f4",2,true,,false,10000,14,true,2807,2,true,5575,2,false,10000,14
+ac19_38100,YXYXyxxyXYx,YXXYxYXXYxYx,1,60309,"baseline,s20_f4",2,true,,false,10000,16,true,877,2,true,642,2,false,10000,14
+ac19_3820,YXXXyxx,YYXyXYxyxYXXyx,4,4643 43409 94866 103456,"s20_mk2,s20_mk2_mK2,s20_f4",3,false,baseline,missing,,,false,10000,20,false,10000,20,false,10000,20
+ac19_38222,YYXXYxYXX,YYXXYxyXyyxxYX,1,60595,s20_f4,1,true,,true,6790,2,true,5813,2,true,7347,2,false,10000,18
+ac19_38455,YXyXXyx,YYxxxYXYXyxyxxx,1,61051,baseline,1,true,,false,10000,16,true,9876,2,true,9572,2,true,7213,2
+ac19_38457,YYXXXYx,YYXYYxYXXX,2,61054 95636,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3185,2,false,10000,14,true,5934,2
+ac19_38490,YXyXXXyx,YYxyxxyXXYx,1,61142,baseline,1,true,,false,10000,17,true,8371,2,true,7720,2,true,5589,2
+ac19_38497,YXXXyxYx,YXXYxxyXX,2,61159 145275,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,14,false,10000,16,false,10000,17
+ac19_3866,YXXYXXyX,YYxYXyXYXyXyX,1,4693,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5719,2,false,10000,15,true,4944,2
+ac19_38668,YXYXYx,YYXyyXyxxyyXYYx,1,61511,"baseline,s20_f4",2,true,,false,10000,19,true,855,2,true,933,2,false,10000,19
+ac19_38695,YXXyXyx,YYYxyXXyxyX,1,61563,"baseline,s20_f4",2,true,,false,10000,14,true,2775,2,true,5549,2,false,10000,14
+ac19_38740,YXXyx,YYYYYXyyyxxxxxyx,2,61652 114038,s20_mk2,1,true,,true,2919,2,false,10000,15,true,7693,2,true,948,2
+ac19_38830,YXXyxYx,YYYYYxxYX,3,61825 63568 77392,baseline,1,true,,false,10000,16,true,4711,2,true,6332,2,true,4593,2
+ac19_38904,YXXXYxx,YYXyXyxyx,1,61988,s20_f4,1,false,baseline,missing,,,true,5776,2,true,8040,2,false,10000,16
+ac19_38944,YYXXXyx,YYYYYXyyXyX,1,62079,s20_f4,1,true,,true,1973,2,true,1590,2,true,1935,2,false,10000,14
+ac19_38948,YXXyXYx,YYXXyxYXXXyxxyx,1,62091,"baseline,s20_f4",2,true,,false,10000,20,true,746,2,true,1325,2,false,10000,20
+ac19_39040,YYXXXXXyX,YYXXXXyXyxYX,2,62292 83139,baseline,1,true,,false,10000,16,true,3193,2,true,870,2,true,3063,2
+ac19_39128,YXyXXXyx,YYYxyyXYxyXXXyXyX,1,62499,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_39192,YYXXXyX,YYXYxyXXyXXX,1,62628,"baseline,s20_f4",2,true,,false,10000,17,true,510,2,true,649,2,false,10000,17
+ac19_39209,YXXYxYxx,YYXYxxYYx,1,62655,s20_f4,1,true,,true,5084,2,true,3324,2,true,3227,2,false,10000,17
+ac19_39266,YXXXyxYx,YYXXYYXXX,4,62791 104871 119410 136332,s20_f4,1,true,,true,49,2,true,456,2,true,236,2,false,10000,17
+ac19_39288,YYXXXYx,YYxyxyXyXyx,1,62834,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_39344,YXXyXYx,YYXXXyxyxxx,1,62956,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,2358,2,false,10000,18,false,10000,18
+ac19_39368,YXXYxYxxx,YYXXyXyyxx,2,63003 152387,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,8663,2,false,10000,17,true,5332,2
+ac19_39561,YYYXXXXX,YYXXXXyxxYX,1,63391,baseline,1,true,,false,10000,15,true,1753,2,true,4189,2,true,8796,2
+ac19_39583,YYXYxxYXyyx,YYYXyyxYYXyyx,4,63437 93274 135470 154932,s20_f4,1,true,,true,1943,2,true,1574,2,true,1887,2,false,10000,14
+ac19_39709,YXYXXXX,YYxYXyXXXXyxx,1,63688,s20_mk2_mK2,1,true,,true,3929,2,true,580,2,false,10000,15,true,48,2
+ac19_39777,YYXXXXXXyx,YYXyXYxyxyx,3,63837 89609 91676,baseline,1,true,,false,10000,16,true,3199,2,true,871,2,true,3670,2
+ac19_39793,YYXXXXXyX,YXYXXXXyXX,2,63881 73629,baseline,1,true,,false,10000,16,true,4719,2,true,6333,2,true,2079,2
+ac19_3983,YYXyxxxyX,YYXXyXXYxyX,1,4829,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5613,2,false,10000,15,true,4933,2
+ac19_39855,YXXXyXXYx,YXyxYXXXXX,4,64006 80782 98138 152225,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,16,false,10000,16,false,10000,16
+ac19_39948,YXXyx,YYYYXyyyyxYxxxxx,2,64223 110168,s20_mk2,1,true,,true,3069,2,false,10000,15,true,7759,2,true,798,2
+ac19_3995,YXXyXyx,YYYxxxxx,10,4843 23081 36025 62491 62949 66247 66371 91811 121747 128476,baseline,1,true,,false,10000,15,true,1757,2,true,3996,2,true,6862,2
+ac19_40127,YXXXyXYx,YYXXyXXYX,2,64632 153192,baseline,1,true,,false,10000,15,true,1842,2,true,3910,2,true,2779,2
+ac19_40203,YYXXXyx,YYYxyXyyx,1,64782,"baseline,s20_f4",2,true,,false,10000,15,true,2278,2,true,6538,2,false,10000,15
+ac19_40249,YXXyXyx,YYXyXyyxxYX,2,64878 90603,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_40312,YXXXXyXyx,YXXYxxxyxx,1,65053,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_4039,YXyXXXyx,YYXyXYXyXYxyXyxyx,1,4891,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_40398,YXXyXyx,YYxxyxYXYxxx,1,65261,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_40625,YXXyXyx,YYXyxxYxyx,1,65751,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_40684,YXXyxYxYxxxyX,YYxYxxyxYYxxyx,1,65887,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7511,2,false,10000,16,false,10000,16
+ac19_40708,YXYXXXX,YYXyXXXXyxxYx,1,65933,s20_mk2_mK2,1,true,,true,3926,2,true,535,2,false,10000,15,true,45,2
+ac19_4076,YYYXXXXyyx,YYYYXXyyxyX,6,4934 22360 55215 61817 74330 143432,s20_f4,1,true,,true,4714,2,true,1664,2,true,3943,2,false,10000,14
+ac19_40826,YYXXyXYXXyX,YYXyXYYXyXyX,1,66196,"baseline,s20_f4",2,true,,false,10000,16,true,886,2,true,658,2,false,10000,14
+ac19_40945,YXXyXyxx,YYYxxyXYxxx,1,66458,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_40963,YXXYx,YYYxyyXYXyxyyx,1,66493,"baseline,s20_f4",2,true,,false,10000,18,true,745,2,true,4741,2,false,10000,18
+ac19_41092,YYXXyxx,YYYYXYxxxyyX,1,66804,"baseline,s20_f4",2,false,s20_mk2_mK2,false,10000,14,true,2770,2,missing,,,false,10000,14
+ac19_41136,YYXXyxx,YYYYXYxYX,1,66917,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_41186,YYYXXXyxx,YYYXXXYxxYX,1,67028,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2158,2,false,10000,17,true,1635,2
+ac19_41300,YYXYxxyyX,YXyxxyXyx,1,67306,baseline,1,true,,false,10000,18,true,1982,2,true,2135,2,true,3693,2
+ac19_41336,YXXYxxyxx,YYxYxYxxyx,1,67389,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,18,false,10000,18,false,10000,18,true,5178,2
+ac19_41359,YXXyXyxx,YYYxYXyxyxx,1,67436,s20_f4,1,true,,true,631,2,true,3009,2,true,4021,2,false,10000,15
+ac19_41610,YXXXYxx,YYxyXXYXyx,1,68018,"baseline,s20_f4",2,true,,false,10000,16,true,5682,2,true,7787,2,false,10000,16
+ac19_41622,YXyXYxx,YYYYxYXXyxx,1,68055,baseline,1,true,,false,10000,12,true,1038,2,true,2166,2,true,1240,2
+ac19_41677,YXXYxxyx,YYxxyXYXYxx,3,68198 74404 79896,baseline,1,true,,false,10000,15,true,886,2,true,2578,2,true,2936,2
+ac19_41838,YYXXXYX,YYYXXYYXyXX,1,68558,s20_f4,1,true,,true,1678,2,true,2230,2,true,6363,2,false,10000,14
+ac19_4185,YXXYxxyx,YYYYxxxyX,2,5060 151196,baseline,1,true,,false,10000,15,true,887,2,true,2578,2,true,2937,2
+ac19_41890,YYXXyXyyx,YYxYxxyxYYxxyx,1,68690,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7684,2,false,10000,16,false,10000,16
+ac19_41895,YXXYXXXYx,YXyXYxYxyX,2,68722 71237,s20_f4,1,true,,true,1871,2,true,1584,2,true,1969,2,false,10000,14
+ac19_41997,YXYXXYx,YYXyxxyXXyxx,1,68936,s20_f4,1,true,,true,1956,2,true,1570,2,true,1856,2,false,10000,14
+ac19_420,YYXXXyX,YYXyyxxyxx,1,950,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,15,false,10000,15,false,10000,15,false,10000,15
+ac19_42013,YXXyXyX,YYxyxxyxYXXyX,1,68974,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_42125,YYXXXYX,YYXyxxxYXyXX,1,69213,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4097,2,false,10000,15,true,2984,2
+ac19_42149,YXXYx,YYXYYXyxYYXyyx,1,69263,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,2973,2,false,10000,18,false,10000,18
+ac19_42162,YXXXyXYx,YXXYxxyXX,1,69283,"baseline,s20_mk2,s20_mk2_mK2",3,false,s20_f4,false,10000,17,false,10000,17,false,10000,17,missing,,
+ac19_42200,YYXXYYxYXyyx,YYXyyxYXyxYXyyx,1,69368,"baseline,s20_f4",2,true,,false,10000,17,true,1460,2,true,7130,2,false,10000,17
+ac19_42207,YYXXYxxyx,YYxYXXYxyx,2,69385 70790,baseline,1,true,,false,10000,15,true,1408,2,true,2584,2,true,2689,2
+ac19_42333,YYXXyxx,YYXXXyXyyxxx,1,69670,"baseline,s20_f4",2,true,,false,10000,14,true,2813,2,true,5595,2,false,10000,14
+ac19_42427,YYXXyxxyX,YYxxyXXXXXX,1,69893,baseline,1,true,,false,10000,15,true,1748,2,true,3855,2,true,3250,2
+ac19_42512,YYXYXyXYx,YXYxYXXyx,1,70084,s20_mk2_mK2,1,false,s20_f4,true,9675,2,true,4119,2,false,10000,17,missing,,
+ac19_42516,YXXYx,YYYYXXyxyyxyyx,3,70089 83378 126421,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7183,2,false,10000,18,false,10000,18
+ac19_42570,YXXyXyx,YYYXyXyxxx,2,70206 128695,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3169,2,false,10000,14,false,10000,14
+ac19_42635,YYXXYXyyxx,YYYXXXYYXXX,1,70352,"baseline,s20_f4",2,true,,false,10000,14,true,2925,2,true,5610,2,false,10000,17
+ac19_42659,YXYXXYx,YYXyxxyXyyx,4,70398 98427 103767 106158,s20_f4,1,true,,true,1954,2,true,1570,2,true,1863,2,false,10000,14
+ac19_42691,YXXYx,YYYXYYxyXYxyyX,3,70474 115337 151707,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6833,2,false,10000,18,false,10000,18
+ac19_42715,YXXXYxxxyX,YYxxxYXXXXX,1,70524,"baseline,s20_f4",2,true,,false,10000,14,true,2807,2,true,5575,2,false,10000,14
+ac19_42768,YXXYxxyxx,YYXXyXyxxYxx,1,70647,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_42792,YYXyxxxxyyX,YYXyxxYXXXXXX,2,70700 112890,"baseline,s20_f4",2,true,,false,10000,14,true,2801,2,true,5585,2,false,10000,14
+ac19_43010,YXyXXXyx,YYXyXYXXyXyxYxyyX,1,71254,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_43077,YXXyXyx,YYYxxxYXyyx,1,71415,s20_f4,1,true,,true,1332,2,true,4867,2,true,1878,2,false,10000,18
+ac19_43115,YXyXXXyx,YYXyXYXyXXXXyyxyx,1,71484,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_43144,YYXXYx,YYXYXyyXYxx,1,71561,baseline,1,true,,false,10000,15,true,729,2,true,2546,2,true,2687,2
+ac19_43148,YXXYx,YYXYYxyyXYXyyx,1,71568,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,4081,2,false,10000,18
+ac19_43158,YXXyXyx,YYxyxxYXXyxx,1,71592,s20_f4,1,true,,true,675,2,true,1576,2,true,1412,2,false,10000,14
+ac19_43187,YXXyx,YYYXYXyxyyyxxxYx,2,71652 79285,s20_mk2,1,true,,true,3267,2,false,10000,15,true,7644,2,true,935,2
+ac19_43200,YXyXXXyx,YYYxyyXyX,1,71694,baseline,1,true,,false,10000,17,true,8371,2,true,7720,2,true,5588,2
+ac19_43298,YYXXXYXX,YYYYXyyyX,1,71952,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2765,2,false,10000,17,true,1473,2
+ac19_43367,YYXXXyxx,YXXyxxYXXyxxx,4,72109 76631 106594 147456,s20_f4,1,true,,true,1962,2,true,1575,2,true,1875,2,false,10000,14
+ac19_43412,YYXYYXXYYXX,YYXXXYYxYXX,1,72214,s20_f4,1,true,,true,31,2,true,194,2,true,193,2,false,10000,19
+ac19_43481,YYXXXYxYX,YYXXYxyXyx,1,72360,s20_f4,1,false,baseline,missing,,,true,419,2,true,234,2,false,10000,17
+ac19_43611,YYXXXYx,YYxYxYXYXXXX,1,72661,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_43615,YXXYxxyx,YYxyXYxyxYxyX,1,72671,baseline,1,true,,false,10000,15,true,1386,2,true,2579,2,true,2937,2
+ac19_43651,YYXXyxx,YYYYXYYYXYx,1,72756,baseline,1,true,,false,10000,16,true,866,2,true,1404,2,true,8800,2
+ac19_4366,YXXYXXyX,YYXYXyyXX,2,5275 108362,s20_mk2_mK2,1,true,,true,9619,2,true,1395,2,false,10000,17,true,626,2
+ac19_43752,YXXyXYx,YYXXXyxxyxx,2,72973 137582,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,2885,2,false,10000,18,false,10000,18
+ac19_43768,YXyXXXXyx,YYXyyxYXyxx,2,73017 117530,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,16,true,7305,2
+ac19_43792,YXXXyxYxx,YYXYxxxYXXX,1,73066,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_43793,YXyXXXyx,YYXXyXYXyxxYxxyyx,1,73071,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_43888,YXyXXXyx,YYYxxyXXXyyxx,1,73291,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_4395,YYXXXYX,YYYxyXXXX,17,5311 28048 72117 76722 76755 79269 83660 87541 110760 112223 112246 116556 117375 120151 121153 125494 154229,"baseline,s20_f4",2,true,,false,10000,15,true,1397,2,true,2579,2,false,10000,15
+ac19_43995,YYYYXXXXX,YYYXyyxyyx,1,73538,s20_f4,1,true,,true,31,2,true,317,2,true,264,2,false,10000,19
+ac19_44079,YXXXXyXXYx,YXYxxyXyxxyxx,2,73729 147313,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,7451,2,false,10000,19,false,10000,19
+ac19_44158,YYXXXyX,YXyxxxxYXXXyx,1,73915,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_44162,YYXXXyxx,YYXYXXXXYYx,1,73922,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,6124,2,false,10000,17,false,10000,19
+ac19_4433,YXXyXyx,YYYxyXYxxyyX,1,5352,"baseline,s20_f4",2,true,,false,10000,14,true,2775,2,true,5553,2,false,10000,14
+ac19_44381,YXXYXXyxx,YXyXyxxxxx,1,74462,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_44391,YYXXyyXyx,YYxxxYxyx,2,74476 116603,s20_f4,1,true,,true,661,2,true,1509,2,true,1362,2,false,10000,14
+ac19_44414,YXXYx,YYYYxyyXYXyyx,1,74538,"baseline,s20_f4",2,true,,false,10000,18,true,621,2,true,4609,2,false,10000,18
+ac19_44456,YXXYxxyX,YYYYXXYXXXX,3,74640 93883 122030,s20_f4,1,true,,true,1585,2,true,1585,2,true,1878,2,false,10000,14
+ac19_44661,YXyXXyX,YYXXXyxxyxYXXyx,1,75153,"baseline,s20_f4",2,true,,false,10000,20,true,812,2,true,2829,2,false,10000,20
+ac19_44780,YYXXYXYYx,YYXyXYXYxx,1,75413,s20_mk2_mK2,1,true,,true,6678,2,true,2160,2,false,10000,17,true,2288,2
+ac19_44796,YXXyXyxx,YYYxxYXYxxx,2,75445 119080,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,15,false,10000,17,false,10000,14
+ac19_44891,YXXYXXyx,YYYXXXyXX,3,75656 146991 147806,baseline,1,true,,false,10000,17,true,959,2,true,2035,2,true,4235,2
+ac19_44913,YXXyXyx,YYXyxYxyxyX,2,75717 93923,s20_f4,1,true,,true,1966,2,true,1584,2,true,2026,2,false,10000,14
+ac19_44938,YXyXXXyx,YYxyxxyXXYXyX,1,75773,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_44946,YXYXXXX,YYXYYXXyyXyx,1,75800,s20_mk2_mK2,1,true,,true,3929,2,true,536,2,false,10000,15,true,52,2
+ac19_45019,YXXYXXyxx,YYXyXyxxxyxx,1,75963,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_45056,YXYXyXXYXyX,YYYXyXXYXYXyXyyx,1,76081,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,6082,2,false,10000,19,false,10000,19
+ac19_45098,YYXXyxx,YYYXYYYxYX,1,76191,s20_f4,1,true,,true,9679,2,true,460,2,true,489,2,false,10000,14
+ac19_45226,YXXXXyXYx,YXyxYXXXXX,3,76471 155280 156357,"baseline,s20_f4",2,true,,false,10000,16,true,2283,2,true,2258,2,false,10000,16
+ac19_45235,YXYXYx,YYXyxxyyXyyXYYx,1,76488,"baseline,s20_f4",2,true,,false,10000,19,true,855,2,true,933,2,false,10000,19
+ac19_45272,YXXYx,YYYYxYXyyyXYXyyx,1,76566,"baseline,s20_f4",2,true,,false,10000,18,true,610,2,true,4591,2,false,10000,18
+ac19_4533,YXYXXYx,YYxyXXyXYx,1,5466,baseline,1,true,,false,10000,15,true,1409,2,true,2579,2,true,2688,2
+ac19_45337,YYXXYx,YYXyyxxxYXX,2,76716 124043,baseline,1,true,,false,10000,15,true,730,2,true,2552,2,true,2688,2
+ac19_45389,YXXYx,YYYXyyyXYxyxyx,1,76858,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7001,2,false,10000,18,false,10000,18
+ac19_45407,YXXXyXYx,YXYXyxYxyXX,1,76907,baseline,1,true,,false,10000,15,true,1842,2,true,3910,2,true,2779,2
+ac19_45464,YYXXXYX,YYxxyXYXyX,3,77060 110031 126681,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_45473,YXYXYx,YYYXyyyXyxYXXYYxYYx,1,77081,"baseline,s20_f4",2,true,,false,10000,19,true,2165,2,true,6740,2,false,10000,19
+ac19_45519,YYYXXYXYX,YYYXXXXYx,1,77199,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_45520,YYYXXXyxx,YXXyXyxxxx,1,77202,s20_f4,1,true,,true,492,2,true,751,2,true,683,2,false,10000,19
+ac19_45684,YYXXYXYYXXX,YYXYYXyXYYXXXyx,1,77594,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_45692,YXXyx,YYYXYXyxxyyyXyyXYX,1,77611,s20_mk2,1,true,,true,3324,2,false,10000,15,true,7622,2,true,868,2
+ac19_45731,YXyXXXyx,YYYXyxyyx,1,77700,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_45824,YYXXXYX,YXXXXyxYxx,1,77924,"baseline,s20_mk2_mK2",2,true,,false,10000,16,true,7792,2,false,10000,16,true,7283,2
+ac19_45851,YYXXYx,YYYXyxyXyyx,1,77981,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,3082,2,false,10000,14,true,3628,2
+ac19_45920,YYXXXyx,YYXYxyyXYXX,2,78167 143700,s20_f4,1,true,,true,1973,2,true,1585,2,true,1932,2,false,10000,14
+ac19_45978,YXXYxxyxx,YYXXyxxYxxxxx,1,78292,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_460,YXyXXXyX,YYxyXYXXXyxyx,1,990,baseline,1,true,,false,10000,19,true,617,2,true,1392,2,true,8227,2
+ac19_46053,YXXyXYx,YYXyXXyxYX,1,78480,baseline,1,true,,false,10000,15,true,1741,2,true,2903,2,true,4950,2
+ac19_46195,YXyXXXyx,YYxyxyXYxyXXX,1,78806,baseline,1,true,,false,10000,17,true,8371,2,true,7720,2,true,5589,2
+ac19_46233,YXXyxxYXXXyxx,YYXXXyxxYXXXyX,1,78915,baseline,1,true,,false,10000,20,true,624,2,true,1405,2,true,4381,2
+ac19_46302,YXXYXXyx,YYXYxyXXXyx,1,79076,"baseline,s20_f4",2,true,,false,10000,17,true,5600,2,true,6488,2,false,10000,17
+ac19_46356,YXYXXYx,YYXYYXyXXYx,2,79212 147707,s20_f4,1,true,,true,1954,2,true,1570,2,true,1861,2,false,10000,14
+ac19_46363,YXXXyXyxxx,YYYXYxYxxxx,1,79238,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_46365,YXXyXyxx,YYYxxxYxyXX,1,79244,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4147,2,false,10000,17,true,2142,2
+ac19_46402,YXYXXYx,YYYXYxYXXX,2,79331 106189,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_46461,YYXXYxxyx,YYxyXYXyx,2,79493 149643,baseline,1,true,,false,10000,15,true,1408,2,true,2584,2,true,2689,2
+ac19_46513,YXYXXXX,YYYXXXXyXyxx,1,79640,s20_mk2_mK2,1,true,,true,3696,2,true,553,2,false,10000,15,true,49,2
+ac19_46550,YYXXyxx,YYYXYxxyXYX,1,79742,s20_f4,1,true,,true,5132,2,true,648,2,true,476,2,false,10000,14
+ac19_46572,YXXyxYx,YYYYYxxyyX,1,79818,"baseline,s20_f4",2,true,,false,10000,16,true,2279,2,true,2268,2,false,10000,16
+ac19_46590,YXyXXyx,YYxxYXXXyxyxyXX,1,79874,baseline,1,true,,false,10000,16,true,9499,2,true,9200,2,true,6867,2
+ac19_46598,YXXXXyXXYx,YYXXyXXYxxyXX,1,79899,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,7451,2,false,10000,19,false,10000,19
+ac19_46628,YYXXX,YYXYxYxyXyXyX,1,79974,s20_mk2_mK2,1,true,,true,9705,2,true,331,2,false,10000,15,true,212,2
+ac19_46640,YXXYxxyX,YYXXYxYXXyX,3,80007 103932 155178,s20_f4,1,true,,true,1585,2,true,1584,2,true,1877,2,false,10000,14
+ac19_46649,YYXXXyX,YYYYXyyxyyx,1,80030,"baseline,s20_f4",2,true,,false,10000,15,true,2872,2,true,3944,2,false,10000,15
+ac19_4673,YXXYx,YYYXyxYXYYXyyx,2,5622 45011,"baseline,s20_f4",2,true,,false,10000,18,true,602,2,true,4536,2,false,10000,18
+ac19_46774,YYXXXXyxxYX,YXXXXyXXYxxxx,1,80308,baseline,1,true,,false,10000,15,true,1754,2,true,4199,2,true,8795,2
+ac19_46895,YYXXXXYX,YYxxyXXyXYX,1,80630,s20_f4,1,true,,true,1965,2,true,1575,2,true,1969,2,false,10000,14
+ac19_46939,YYXXXXX,YXYxYXyXXyx,2,80749 113470,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2713,2,false,10000,17,true,593,2
+ac19_46944,YXyXXXyX,YYXXyXYxyxyxx,1,80774,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,2842,2,false,10000,17,false,10000,17
+ac19_47020,YXXXyxYxx,YYYxxYYXXX,1,80972,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_47021,YXyXXyx,YYxxyXyxxyxYXYXyX,1,80974,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,17,false,10000,16,false,10000,16
+ac19_4709,YYYXXXXyx,YXXXyXYxxx,14,5664 10610 21767 40111 50422 52557 63408 93378 105941 121690 122125 126848 128768 142073,"baseline,s20_f4",2,true,,false,10000,15,true,1401,2,true,2580,2,false,10000,15
+ac19_47154,YXXyXyx,YYxyXYxxxyXX,2,81280 107258,s20_f4,1,true,,true,675,2,true,1535,2,true,1373,2,false,10000,14
+ac19_47160,YYXXyXyxx,YYxxyXXyxyxx,2,81297 83561,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,6670,2,false,10000,18,false,10000,17
+ac19_47184,YYXYxYXXYx,YYXXYYxYXYx,1,81349,baseline,1,true,,false,10000,17,true,5588,2,true,6062,2,true,7448,2
+ac19_47208,YYXXXYXX,YYYXXyXYxyX,1,81409,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,863,2,false,10000,17,true,990,2
+ac19_47251,YYXXXXyx,YXyxxYXXXyx,3,81503 139675 150472,baseline,1,true,,false,10000,15,true,1744,2,true,2908,2,true,4931,2
+ac19_47363,YXyXXXyx,YYXyXyyXXYxyXYxyX,1,81775,baseline,1,true,,false,10000,15,true,8664,2,true,6224,2,true,8680,2
+ac19_47367,YYXXXYX,YYxyXXyyxx,1,81781,"baseline,s20_mk2_mK2",2,true,,false,10000,16,true,7792,2,false,10000,16,true,7291,2
+ac19_47444,YXXYxxyxx,YYXXyxyxYx,1,81950,baseline,1,true,,false,10000,15,true,4008,2,true,3576,2,true,5169,2
+ac19_47452,YYXXXXYX,YYXyXXXYx,1,81971,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,3129,2,false,10000,17,true,1563,2
+ac19_47465,YYXyxYXXyx,YXXyxxYXXyxxx,4,81991 100394 134698 151888,s20_f4,1,true,,true,1963,2,true,1577,2,true,1877,2,false,10000,14
+ac19_4756,YXyXXXyx,YYYXyxYxyXXyxyX,1,5719,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_47717,YYXXXYx,YYXYYXyXyxyx,1,82619,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,15,false,10000,16,false,10000,16
+ac19_47793,YXYxxYXyx,YYxyXYYxyXYx,3,82845 128614 151626,"s20_mk2_mK2,s20_f4",2,true,,true,6540,2,true,4075,2,false,10000,18,false,10000,18
+ac19_47828,YXXYxYxx,YYXyyxxyX,1,82921,s20_f4,1,true,,true,694,2,true,1531,2,true,1369,2,false,10000,14
+ac19_48114,YXXYxYxx,YXyxxxyXX,4,83672 101054 126213 142507,s20_f4,1,true,,true,684,2,true,1502,2,true,1354,2,false,10000,14
+ac19_48146,YYXXYxyXyx,YYXXXYxyXYx,1,83771,s20_f4,1,true,,true,1989,2,true,2996,2,true,4855,2,false,10000,14
+ac19_48174,YYXXXyx,YYYXyXYxxyyX,1,83844,s20_f4,1,true,,true,1972,2,true,1585,2,true,1915,2,false,10000,14
+ac19_48216,YXXXyXyx,YYXyxYxyx,2,83987 97436,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2677,2,false,10000,17,true,2840,2
+ac19_48281,YYXXXyX,YYxyXXXyx,4,84183 140513 147893 154709,"baseline,s20_f4",2,true,,false,10000,15,true,2872,2,true,3944,2,false,10000,15
+ac19_48401,YYXXXyx,YYXXYXyXXYxyX,2,84493 105137,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_48537,YXXXyXYx,YYxxyxxyXyX,4,84859 85646 100158 133464,s20_f4,1,false,baseline,missing,,,true,2849,2,true,3958,2,false,10000,15
+ac19_48645,YYXXyxxyX,YYYXXyxyxx,1,85141,s20_f4,1,true,,true,663,2,true,1548,2,true,1387,2,false,10000,14
+ac19_48709,YXyXXyx,YYXXyXYXyyxyxx,1,85282,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,14,true,7532,2
+ac19_48893,YXXyXyx,YYXXYxxxyXyx,1,85735,s20_f4,1,true,,true,1966,2,true,1584,2,true,1996,2,false,10000,14
+ac19_4894,YXXyXyx,YYXyxxyXX,4,5887 48578 67603 142133,s20_f4,1,true,,true,675,2,true,1535,2,true,1373,2,false,10000,14
+ac19_48956,YXXYxxyX,YYXyXYYXXyx,1,85865,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_48990,YXyXXXyX,YYYXXXyxyyx,1,85945,baseline,1,true,,false,10000,19,true,692,2,true,1430,2,true,8233,2
+ac19_49042,YXyXXyx,YYxyxYxyxyXXYXXyX,1,86068,baseline,1,true,,false,10000,16,true,9889,2,true,9585,2,true,7530,2
+ac19_49095,YYXXXYx,YYXyxYXYXyx,1,86209,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_49255,YYXXYxYxyX,YXyxYXyxYXXYx,1,86603,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_49265,YXXyXyX,YYXXXyyxyX,2,86615 137569,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,2952,2,false,10000,15,true,1234,2
+ac19_49402,YYXXXYX,YYxyxyXXyx,2,86978 122867,s20_mk2_mK2,1,true,,true,7585,2,true,460,2,false,10000,17,true,53,2
+ac19_49502,YXXXyXYx,YYXXXXyXYXX,1,87200,"baseline,s20_f4",2,true,,false,10000,15,true,2871,2,true,3963,2,false,10000,15
+ac19_49526,YYXXXYX,YYXYxxyXyX,2,87280 129460,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_49604,YXXyXyxx,YYxxxYXYxyx,1,87473,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,6872,2,false,10000,17,false,10000,17
+ac19_49730,YXYXXyxYXyxx,YYxyXYxyXYxyX,1,87793,s20_f4,1,true,,true,1962,2,true,1589,2,true,2010,2,false,10000,14
+ac19_4974,YYXXYYxyX,YYXXYYXXYx,2,5978 104629,"baseline,s20_f4",2,true,,false,10000,16,true,5910,2,true,8070,2,false,10000,16
+ac19_49785,YYXXXYX,YXXyXyxxxx,1,87942,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_50043,YYXXXyxx,YYXYXXYYXXXYx,1,88666,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,6125,2,false,10000,17,false,10000,19
+ac19_50052,YXyXXXyx,YYXyXYxYxyxYxyxyX,1,88689,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_50080,YXXyXyxx,YYYXXyxxyxx,1,88767,s20_f4,1,true,,true,636,2,true,3000,2,true,4022,2,false,10000,15
+ac19_50096,YXXXyXYx,YXyXYXXYXyx,1,88806,"baseline,s20_f4",2,true,,false,10000,15,true,2871,2,true,3963,2,false,10000,15
+ac19_50137,YYXXYYx,YYXXyxyxxyX,1,88899,"baseline,s20_f4",2,true,,false,10000,16,true,1812,2,true,3694,2,false,10000,14
+ac19_50154,YXXYx,YYYXYYXyxYXyyx,1,88946,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3224,2,false,10000,18,false,10000,18
+ac19_5016,YXXXYxx,YYXYXYYXXyyxx,3,6026 70622 102578,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2215,2,false,10000,17,true,6793,2
+ac19_50192,YYXXXyX,YXXyxxYXXyxxx,1,89043,baseline,1,true,,false,10000,20,true,72,2,true,125,2,true,155,2
+ac19_50305,YXXyx,YYXYYxYYXyxyXyyXyX,1,89284,s20_mk2,1,true,,true,3375,2,false,10000,15,true,7572,2,true,785,2
+ac19_50439,YYXXyXYXyx,YXYXyxYXXyx,1,89569,baseline,1,true,,false,10000,15,true,1746,2,true,3842,2,true,2779,2
+ac19_50453,YYXyxYXXyx,YYXXyxYXyxx,1,89611,baseline,1,true,,false,10000,15,true,1735,2,true,3837,2,true,2830,2
+ac19_50471,YXYxyx,YYYXyyxYxxYYx,2,89674 153248,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3515,2,false,10000,17,false,10000,17,false,10000,17
+ac19_50480,YXXyXyx,YYYYxxxxyyX,1,89689,s20_f4,1,true,,true,665,2,true,1668,2,true,1487,2,false,10000,14
+ac19_50491,YXXYxxyx,YXyXYxxyXyX,1,89716,baseline,1,true,,false,10000,15,true,1385,2,true,2578,2,true,2936,2
+ac19_50497,YYXXXYX,YYYXyXXYxyX,1,89733,baseline,1,true,,false,10000,17,true,950,2,true,8101,2,true,855,2
+ac19_50610,YXYxxYXyxYXyx,YYxyXYxxYXyxYX,1,90026,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_50826,YYXXyxx,YYYXYXYxxYYX,1,90551,baseline,1,true,,false,10000,16,true,877,2,true,1415,2,true,8800,2
+ac19_50841,YXXyXyxx,YYYxxxYYx,2,90583 139445,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_50867,YYXXXXXyX,YXyXYxyxx,1,90652,baseline,1,true,,false,10000,16,true,4719,2,true,6344,2,true,2079,2
+ac19_50870,YYXXXXyyXYX,YYXXXXYXXyyX,1,90661,"baseline,s20_f4",2,true,,false,10000,16,true,1776,2,true,4078,2,false,10000,15
+ac19_50892,YYXXXXyXX,YXXyXXYxxxxxxyX,1,90721,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_50910,YXXYx,YYYYXYYXYYXXyx,1,90757,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6813,2,false,10000,18,false,10000,18
+ac19_50926,YYYXXYYXXyX,YYYXXXYYXXX,1,90802,"baseline,s20_f4",2,true,,false,10000,14,true,2800,2,true,5554,2,false,10000,14
+ac19_51017,YYXXyx,YYYXXYxYXXX,2,91055 137312,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5256,2,false,10000,15,true,8309,2
+ac19_51034,YYXXXXYX,YYYXYXyyX,1,91095,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_51316,YXyXXXyX,YYXXXyyxx,1,91875,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,2953,2,false,10000,17,false,10000,17
+ac19_51356,YYXXXYX,YYXyXXyxYx,2,91988 111297,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,3833,2,false,10000,15,true,2981,2
+ac19_51418,YXXYx,YYYxyXYXYYXyyx,1,92143,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3882,2,false,10000,18
+ac19_51462,YXXXyxx,YYXyXYxyXYxyx,4,92258 99362 99795 133609,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_5152,YYXXXXXyxx,YXXXXXXXXYx,7,6189 53650 88139 118900 128344 132423 139631,baseline,1,false,s20_mk2_mK2,false,10000,15,true,737,2,missing,,,true,2688,2
+ac19_5159,YYXXXXX,YXyXXYxyXYx,2,6200 125605,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2695,2,false,10000,17,true,1386,2
+ac19_51600,YXYXXXX,YYYXyyXXyxxxyxx,1,92649,s20_mk2_mK2,1,true,,true,4398,2,true,560,2,false,10000,15,true,59,2
+ac19_51613,YYXXyxx,YYXYYxxyXYX,1,92688,baseline,1,true,,false,10000,16,true,880,2,true,1418,2,true,8800,2
+ac19_51678,YXyXXXyx,YYYxyyXXyXYXyyX,1,92831,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_51705,YXyXXyx,YYYxxxYxxxyxyXYX,1,92906,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,17,false,10000,17,false,10000,16,true,8597,2
+ac19_5174,YXXyXYx,YYXXXYXXyxx,9,6219 24601 48048 59775 60898 74665 98782 116201 154679,baseline,1,true,,false,10000,15,true,1708,2,true,2875,2,true,4924,2
+ac19_51878,YYXXYx,YYYYYXXyxyyyx,1,93329,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,4422,2,false,10000,15,false,10000,15
+ac19_51920,YXyXYxx,YYYXXyyxxx,2,93456 122400,baseline,1,true,,false,10000,12,true,1027,2,true,2078,2,true,1240,2
+ac19_51964,YXXYxxyx,YYYxxYYxxyXYx,1,93579,"baseline,s20_f4",2,true,,false,10000,14,true,4395,2,true,8566,2,false,10000,17
+ac19_52037,YXyXXXyx,YYXYxyXXXyxYxxyyx,1,93791,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_52290,YYXYxYXXYx,YYxyXyxxYXX,1,94465,baseline,1,true,,false,10000,17,true,5598,2,true,6081,2,true,7451,2
+ac19_5230,YXXyXyx,YYxxYYxxyx,2,6286 107895,"baseline,s20_f4",2,true,,false,10000,16,true,5990,2,true,8068,2,false,10000,16
+ac19_52306,YXyXXyx,YYxxxYxxyxyXXYX,1,94505,baseline,1,true,,false,10000,16,true,9615,2,true,9314,2,true,7140,2
+ac19_52322,YXyXXXyx,YYXXXyxyXyX,1,94538,baseline,1,true,,false,10000,17,true,8371,2,true,7720,2,true,5588,2
+ac19_52346,YYXXyxx,YYxYXXYxYX,1,94612,baseline,1,true,,false,10000,16,true,880,2,true,1418,2,true,8800,2
+ac19_5250,YXXyXyx,YYxyXYxyxx,2,6307 41705,"baseline,s20_f4",2,true,,false,10000,14,true,2772,2,true,5532,2,false,10000,14
+ac19_52553,YXXYx,YYYXYYXYYXXyyx,1,95213,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6988,2,false,10000,18,false,10000,18
+ac19_52557,YXyXXXyx,YYXyXXYXyyxyx,1,95219,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_52564,YXyXXXyx,YYYxyyXyXYxYxxxyX,1,95233,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_5262,YXXYx,YYYxyxyyXYXyyx,1,6322,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3898,2,false,10000,18
+ac19_52757,YYXXYxyxx,YXXYxxxYx,1,95769,s20_f4,1,true,,true,1957,2,true,1580,2,true,2013,2,false,10000,14
+ac19_52773,YXXyx,YYYYXyyyyxxYxxx,2,95805 107966,s20_mk2,1,true,,true,3090,2,false,10000,15,true,7693,2,true,945,2
+ac19_52838,YXyXXXyx,YYXXyXYXyxYxxyxyX,1,95973,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_52893,YXXYxxyX,YYXXXXXYx,3,96127 112000 112650,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_52915,YXXXyxYx,YYxYXYXXXYX,1,96180,s20_mk2_mK2,1,true,,true,7175,2,true,9469,2,false,10000,17,true,6978,2
+ac19_52998,YXXXyxYx,YYXXYXXXXYx,1,96423,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,14,false,10000,16,false,10000,17
+ac19_53010,YYXXYx,YYYYxyyxyXX,2,96443 144315,baseline,1,true,,false,10000,15,true,729,2,true,2541,2,true,2690,2
+ac19_53283,YYXXXYx,YYYXXXyxyx,1,97161,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3185,2,false,10000,14,true,5933,2
+ac19_5339,YXXYx,YYYXYYXXyyxyyx,1,6415,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3092,2,false,10000,18,false,10000,18
+ac19_53424,YXXyx,YYYXYXyxxyyyXyXXX,1,97606,s20_mk2,1,true,,true,3323,2,false,10000,15,true,7645,2,true,942,2
+ac19_53494,YXyXXyx,YYxyXyxxxyXYXYXyX,1,97798,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,17,false,10000,16,true,7532,2
+ac19_53527,YYXXXXXyX,YXXyXYxxxxxyX,2,97890 142398,"baseline,s20_f4",2,true,,false,10000,17,true,1711,2,true,3160,2,false,10000,14
+ac19_53533,YYXXYYXXX,YYXYxyXXYYXyX,1,97898,s20_f4,1,true,,true,1561,2,true,1633,2,true,1799,2,false,10000,14
+ac19_53802,YXXXXyXXXyX,YYxxyxYxxxyx,2,98674 109831,baseline,1,true,,false,10000,16,true,895,2,true,1598,2,true,3324,2
+ac19_53850,YXYxxYXyx,YYYYxxYYYxx,2,98827 126557,s20_f4,1,true,,true,1111,2,true,4844,2,true,1833,2,false,10000,18
+ac19_53992,YXXXXyXXYx,YXXXXYXXXXyxxxx,1,99192,baseline,1,true,,false,10000,17,true,1753,2,true,4231,2,true,9001,2
+ac19_54072,YXYXXXX,YYYXYxyXyXyX,1,99380,s20_mk2_mK2,1,true,,true,4613,2,true,578,2,false,10000,15,true,44,2
+ac19_54075,YXXYXXyxx,YYxyxYXyXX,1,99390,baseline,1,true,,false,10000,15,true,1451,2,true,945,2,true,2688,2
+ac19_54134,YXYXXXX,YYXYYXyXyyx,1,99558,s20_mk2_mK2,1,true,,true,3968,2,true,581,2,false,10000,15,true,46,2
+ac19_54212,YYXXYYx,YYXXyxYxYX,1,99815,"baseline,s20_f4",2,true,,false,10000,16,true,1812,2,true,3694,2,false,10000,14
+ac19_54243,YXXyXyxx,YYXXYxxxyxx,1,99879,s20_f4,1,true,,true,636,2,true,3000,2,true,4022,2,false,10000,15
+ac19_54273,YXXyXyX,YYYxxxxyxxx,1,99966,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2689,2
+ac19_54299,YYXYXXXyX,YYXyXYxyX,2,100053 120783,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_54349,YYXXyxxyX,YYxxyxYxyX,1,100219,baseline,1,true,,false,10000,15,true,1728,2,true,3876,2,true,4452,2
+ac19_54514,YXYXyXXYXyX,YYYXyXXyxYxyxyx,1,100635,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,6077,2,false,10000,19,false,10000,19
+ac19_54528,YYXXYYXXX,YYxxyXyXyx,1,100680,s20_f4,1,true,,true,55,2,true,474,2,true,242,2,false,10000,17
+ac19_54616,YYXYYXXXyX,YYXYXXXYYXXXX,1,100913,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_5468,YYXXYxYXyyx,YYYXyyxYYXyyx,4,6561 34183 75263 84477,s20_f4,1,true,,true,1956,2,true,1587,2,true,1813,2,false,10000,14
+ac19_54765,YYXXXYx,YYYYXXYXYYYXX,1,101379,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_54766,YXYxyx,YYXyXyxxxYxYXyx,2,101383 151938,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3515,2,false,10000,17,false,10000,17,false,10000,17
+ac19_5478,YYYXXXyxx,YYYXYXXXYxx,2,6571 55749,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2158,2,false,10000,17,true,1635,2
+ac19_54835,YYXXYx,YYYXYxxyXyX,1,101578,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_54906,YXXyXyx,YYxyxxyXX,2,101785 142512,baseline,1,true,,false,10000,15,true,1757,2,true,3996,2,true,6862,2
+ac19_5492,YYXXXyx,YYYXYxxyyXyX,2,6586 56167,s20_f4,1,true,,true,1973,2,true,1586,2,true,1935,2,false,10000,14
+ac19_55016,YXXyx,YYYYXyxyyyXyXXX,1,102085,s20_mk2,1,true,,true,3236,2,false,10000,15,true,7657,2,true,934,2
+ac19_55019,YXXXXyxYx,YXXYXXyXYxYXXX,2,102092 143359,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_55036,YYXYXXyXyx,YYXYXYXyXyX,1,102144,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,21,false,10000,17
+ac19_55069,YXYXXYx,YYYxxyyXYXX,2,102212 129883,s20_f4,1,true,,true,1954,2,true,1571,2,true,1863,2,false,10000,14
+ac19_55081,YXyXXXyx,YYxYXyyxxYxyx,1,102243,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_55092,YYXXyxYXXyxx,YYXXyxxYXXYXXyx,2,102270 150426,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,5638,2,false,10000,17,true,9155,2
+ac19_55133,YXyXXXyx,YYxYxyxyxYXXyxx,1,102390,baseline,1,true,,false,10000,17,true,8651,2,true,6211,2,true,8679,2
+ac19_55200,YXXyXyx,YYYxyXYxyxyX,1,102560,s20_f4,1,true,,true,665,2,true,1501,2,true,1346,2,false,10000,14
+ac19_55212,YXXyXyx,YYYxxyxyXX,2,102589 137533,s20_f4,1,true,,true,675,2,true,1535,2,true,1373,2,false,10000,14
+ac19_55217,YXXXyXXYx,YXyxxxxxyx,2,102611 145613,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,16,false,10000,16,false,10000,16
+ac19_55260,YYXXXYX,YYXyxxYXXXyx,1,102740,s20_f4,1,true,,true,1677,2,true,2229,2,true,6342,2,false,10000,14
+ac19_5542,YYXXXYx,YXYxYxYXXXX,4,6647 59366 76816 140184,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3115,2,false,10000,14,true,5931,2
+ac19_55422,YYXXYYXXX,YYXXYYxyXyXYX,1,103218,s20_f4,1,true,,true,51,2,true,458,2,true,238,2,false,10000,17
+ac19_55487,YYXXYYXXX,YYXYYXXYXyXyx,1,103401,s20_f4,1,true,,true,54,2,true,478,2,true,244,2,false,10000,17
+ac19_555,YYXXXyX,YXyxYXXXyxx,16,1091 5089 8923 26851 36479 44034 54710 56750 59686 70467 74772 81095 90460 108712 130332 144781,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,15,false,10000,15,false,10000,15,false,10000,15
+ac19_55526,YXXXYxxxyX,YYXXYYxYXXX,1,103507,"baseline,s20_f4",2,true,,false,10000,14,true,2807,2,true,5575,2,false,10000,14
+ac19_55540,YYXXYx,YYYYXYxxyXX,1,103559,baseline,1,true,,false,10000,15,true,731,2,true,2541,2,true,2688,2
+ac19_5593,YXXyXyx,YYXyxyXXyX,1,6706,"baseline,s20_f4",2,true,,false,10000,14,true,2775,2,true,5553,2,false,10000,14
+ac19_55950,YYXXXXXXX,YYYxyyxyyx,1,104720,s20_f4,1,true,,true,10,2,true,78,2,true,10,2,false,10000,19
+ac19_55963,YXYXyx,YYYYYYXYxyXXXXX,1,104753,s20_f4,1,true,,true,5437,2,true,5056,2,true,6382,2,false,10000,13
+ac19_55987,YYXXYx,YYYXYxxyXXYYX,1,104819,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,7167,2,false,10000,17,false,10000,17
+ac19_56067,YYXXXYx,YYXYYXXYXyx,1,105052,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3185,2,false,10000,14,true,5932,2
+ac19_56369,YXXXyxxYx,YYxYYxxyXX,1,105913,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,5630,2,false,10000,17,false,10000,17
+ac19_56371,YXYXXXX,YYYXyyXXXYXyxx,1,105917,s20_mk2_mK2,1,true,,true,4398,2,true,557,2,false,10000,15,true,53,2
+ac19_5652,YYXXyxx,YYYYXYxyx,13,6774 9007 54541 72955 75269 88713 97845 105559 106513 114577 127485 145935 148401,"baseline,s20_f4",2,true,,false,10000,14,true,2769,2,true,5486,2,false,10000,14
+ac19_56522,YXYXyXXYXyX,YYXXyXyXYXYXyX,1,106352,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,5630,2,false,10000,17,true,7463,2
+ac19_56581,YXYXXYx,YYXyyXYxxYX,1,106510,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_56782,YYXXyxx,YYYXXYxyXYx,1,107092,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,6077,2,false,10000,15,true,5126,2
+ac19_56843,YYXyXYYXXyX,YYXyxxxxyyX,2,107260 133249,"baseline,s20_f4",2,true,,false,10000,14,true,2822,2,true,5585,2,false,10000,14
+ac19_56897,YYXXXyxxx,YYXXXYxYXYxx,1,107417,"baseline,s20_mk2,s20_f4",3,true,,false,10000,16,false,10000,14,true,6329,2,false,10000,16
+ac19_56960,YYXXyx,YXXyxxxxxyXyX,1,107582,s20_f4,1,true,,true,8310,2,true,1665,2,true,3948,2,false,10000,14
+ac19_56970,YYXXyxx,YYYYXXYxYYxYx,1,107601,"baseline,s20_f4",2,true,,false,10000,16,true,5883,2,true,9409,2,false,10000,16
+ac19_56971,YXYXyx,YYXYxYXXyxyyXyyXYxYYx,1,107603,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,15,false,10000,15,false,10000,15,true,8151,2
+ac19_56972,YXYxyx,YYXyXXyyXyxYXyx,1,107607,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3503,2,false,10000,17,false,10000,17,false,10000,17
+ac19_57023,YYXXyxx,YYYXXXYxxxYx,1,107737,baseline,1,true,,false,10000,16,true,870,2,true,1417,2,true,3405,2
+ac19_5705,YXyXXXyx,YYXyXYXXyxxYxxyyX,1,6836,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_57064,YXXyXyx,YYYXyxxyyXYx,1,107843,s20_f4,1,true,,true,675,2,true,1535,2,true,1373,2,false,10000,14
+ac19_57068,YYXXYYx,YYYXyyxyXYx,2,107850 146965,"baseline,s20_f4",2,true,,false,10000,16,true,1788,2,true,3675,2,false,10000,14
+ac19_57141,YXYXXXX,YYXyyXyxxxxx,1,108039,s20_mk2_mK2,1,true,,true,3700,2,true,553,2,false,10000,15,true,47,2
+ac19_57294,YYYXXyxxyyX,YYXXyxxxxxx,1,108470,baseline,1,true,,false,10000,15,true,1730,2,true,3890,2,true,4456,2
+ac19_57417,YXXyXYx,YYYxyxxyXyX,1,108838,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,9887,2,false,10000,15,false,10000,15
+ac19_57517,YXYXXYx,YYxyXXYXyx,1,109152,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_57551,YYXXXXXyX,YYxyXXXXXX,3,109239 126490 155675,baseline,1,true,,false,10000,16,true,3195,2,true,869,2,true,3670,2
+ac19_57622,YYXXXXYX,YYYYXXyyX,1,109413,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,8692,2,false,10000,17,false,10000,17
+ac19_57669,YXXYxxyx,YYxxyXYxxyXyXYX,1,109566,"baseline,s20_f4",2,true,,false,10000,14,true,4419,2,true,8594,2,false,10000,17
+ac19_57760,YYXXXyX,YYYxyyxxxyyX,1,109811,"baseline,s20_f4",2,true,,false,10000,14,true,441,2,true,400,2,false,10000,14
+ac19_57774,YXYXXXX,YYXXXXyXyxYx,1,109844,s20_mk2_mK2,1,true,,true,3948,2,true,535,2,false,10000,15,true,47,2
+ac19_57862,YYXXXYX,YYYXXYXXyyx,1,110128,s20_f4,1,true,,true,8267,2,true,1595,2,true,3879,2,false,10000,13
+ac19_57892,YYXYXYxYX,YXXyXYxYx,1,110216,"baseline,s20_mk2_mK2",2,true,,false,10000,16,true,7849,2,false,10000,16,true,7284,2
+ac19_57900,YXYXXXX,YYXXXXXyyxYx,1,110249,s20_mk2_mK2,1,true,,true,3940,2,true,580,2,false,10000,15,true,44,2
+ac19_57915,YXXYxxyX,YYXXyyXYxYX,1,110290,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_57917,YXXYxxyx,YYYxxYxxyXXYx,1,110296,"baseline,s20_f4",2,true,,false,10000,14,true,4395,2,true,8566,2,false,10000,17
+ac19_57992,YYXXXYxx,YYYXYYXXyyxyx,1,110483,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_58079,YYYXXXyyxx,YYYYXYxyyyXXYYX,1,110730,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,6876,2,false,10000,17,true,4069,2
+ac19_58098,YYXXXYXyX,YYXyXYxyXX,1,110781,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2640,2,false,10000,17,true,517,2
+ac19_58123,YXXYXXyx,YYxxyXYXXXXyX,1,110851,"baseline,s20_f4",2,true,,false,10000,17,true,5600,2,true,6488,2,false,10000,17
+ac19_58131,YXyXXyx,YYYXyxyxxxYXyx,1,110874,baseline,1,true,,false,10000,16,true,9832,2,true,9530,2,true,7193,2
+ac19_58148,YXXyXyx,YYxxyxYYxxxx,1,110945,"s20_mk2_mK2,s20_f4",2,true,,true,8992,2,true,4042,2,false,10000,18,false,10000,18
+ac19_58149,YXyXXXyx,YYxyXyxyXYX,1,110951,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_58252,YXYXXYx,YYXyXYxyXYx,1,111239,baseline,1,true,,false,10000,15,true,1409,2,true,2579,2,true,2688,2
+ac19_58348,YXXyXyX,YYYxxyXyxx,1,111475,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_58350,YYXXyxx,YYXYxxxYxyXX,1,111481,baseline,1,false,s20_mk2,false,10000,16,missing,,,true,1417,2,true,3404,2
+ac19_58411,YYXXyx,YYXXXXYxxxYXX,1,111648,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5266,2,false,10000,15,true,8308,2
+ac19_58416,YXXyXyx,YYXyyXXyxyX,1,111661,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3205,2,false,10000,14,false,10000,14
+ac19_58509,YXXXyxYx,YYxxyXXYX,1,111915,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,8565,2,false,10000,17,true,3549,2
+ac19_58570,YYXXYxYxyX,YXYxyXYxxyX,1,112095,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_58660,YXXYXXyx,YXyXYxyXXYx,2,112334 153097,baseline,1,true,,false,10000,17,true,906,2,true,1884,2,true,4236,2
+ac19_58661,YXyXXXyx,YYxyxxyXXXX,1,112335,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_58707,YYXXXYx,YYXYXXyyxx,1,112463,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,15,false,10000,16,false,10000,16
+ac19_58740,YXyXXXyx,YYXyyxYxyxxYx,1,112571,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_58757,YXYXXYx,YYXyyxxYXyxYXX,1,112615,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_58768,YYXXyxxxxyX,YYXXXXYXXyyX,1,112658,"baseline,s20_f4",2,true,,false,10000,16,true,1774,2,true,4076,2,false,10000,15
+ac19_5879,YXYXYx,YYYXyyyXyxYYXXYxYYx,1,7052,"baseline,s20_f4",2,false,s20_mk2_mK2,false,10000,19,true,2152,2,missing,,,false,10000,19
+ac19_58964,YXXYx,YYXYYXyyxYXyyx,1,113245,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3433,2,false,10000,18,false,10000,18
+ac19_59046,YYXXYYXXX,YYXXyxxxYXyX,1,113474,s20_f4,1,true,,true,1559,2,true,1612,2,true,1796,2,false,10000,14
+ac19_5912,YXXyXYx,YYXXyxYXXXyxyxx,1,7090,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3502,2,false,10000,18,false,10000,18
+ac19_59145,YYXXXXyXX,YXyxxyXXYxx,2,113748 146847,"baseline,s20_f4",2,true,,false,10000,16,true,1779,2,true,4234,2,false,10000,15
+ac19_59162,YYXXyx,YYYYxyyXXYX,2,113799 135598,s20_f4,1,true,,true,8432,2,true,1712,2,true,4047,2,false,10000,14
+ac19_59170,YXyXXXyx,YYXyyxxYXyxYxyxYx,1,113830,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_59205,YXXyXyx,YYXXXXyyXyxx,1,113928,s20_f4,1,true,,true,1966,2,true,1584,2,true,2023,2,false,10000,14
+ac19_59227,YXXyx,YYXYYxyyXyxyXyXXX,1,113989,s20_mk2,1,true,,true,3340,2,false,10000,15,true,7605,2,true,940,2
+ac19_59290,YXYXXYx,YYYxxYXYXXXX,1,114155,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_59363,YXXYx,YYYXYXYYxxyyyX,1,114337,"baseline,s20_f4",2,true,,false,10000,18,true,733,2,true,4693,2,false,10000,18
+ac19_59404,YYXXyx,YYXXXYXXXXYYx,1,114480,s20_f4,1,true,,true,8248,2,true,1713,2,true,4008,2,false,10000,14
+ac19_59474,YYXXyx,YYXYYxxyXXX,1,114688,s20_f4,1,true,,true,8306,2,true,1696,2,true,4018,2,false,10000,14
+ac19_59555,YXXYx,YYYYXYXYYYXXyx,1,114920,"baseline,s20_f4",2,true,,false,10000,18,true,733,2,true,4693,2,false,10000,18
+ac19_59556,YYXyXYxxx,YYXyXyxyx,1,114922,baseline,1,true,,false,10000,15,true,746,2,true,2551,2,true,717,2
+ac19_59576,YYXXXXyx,YXyxxxYXXyx,1,115001,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_59701,YXXYXXyX,YYYXyyyxx,1,115343,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,16,true,3237,2,false,10000,15,false,10000,15
+ac19_59714,YYXXyyXYx,YXYXXyXYx,1,115375,s20_f4,1,true,,true,1811,2,true,1584,2,true,1877,2,false,10000,14
+ac19_59776,YXyXXXyx,YYXXyXYXyxYxxxyyX,1,115557,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_5981,YXXYxxyX,YYYXXyxyx,3,7175 109187 150481,s20_f4,1,true,,true,1956,2,true,1570,2,true,2040,2,false,10000,14
+ac19_59930,YXXYx,YYYXXyyxyyxYYX,1,116073,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3344,2,false,10000,18,false,10000,18
+ac19_59983,YXXYx,YYYXYYYXXyxyyx,1,116261,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3224,2,false,10000,18,false,10000,18
+ac19_60044,YYXXyx,YYYXXXXYxYXyx,1,116467,s20_f4,1,true,,true,8310,2,true,1696,2,true,4018,2,false,10000,14
+ac19_60142,YXXYx,YYYxyXYYXYXyyx,1,116795,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,3107,2,false,10000,18,false,10000,18
+ac19_60154,YXXYxxyX,YYxxyXyXXyx,1,116840,s20_f4,1,true,,true,1956,2,true,1570,2,true,2040,2,false,10000,14
+ac19_60157,YXXXYxxxyx,YYxxxxyXXXX,1,116844,s20_f4,1,true,,true,9114,2,true,5577,2,true,8128,2,false,10000,16
+ac19_60368,YXyXXyx,YYXYXyxyxxYxxYXyyx,1,117426,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_60439,YXXXyXXyx,YYxxyxYXXyxx,1,117615,"baseline,s20_f4",2,true,,false,10000,17,true,1466,2,true,7066,2,false,10000,17
+ac19_60620,YXyXXXyX,YYXXXyxyxxYxyXX,1,118193,baseline,1,true,,false,10000,19,true,668,2,true,1429,2,true,8227,2
+ac19_60734,YYXXyxx,YYYXYxYYXXYx,2,118594 121775,baseline,1,true,,false,10000,16,true,877,2,true,1415,2,true,8800,2
+ac19_60770,YXyXXXyx,YYXXXXyyxyX,1,118705,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_60781,YYXXyxx,YYXYXYxYxYX,1,118741,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6231,2,false,10000,18,false,10000,18
+ac19_60861,YXXYxxyx,YXyxYxYXXyxxx,1,118952,"baseline,s20_f4",2,true,,false,10000,14,true,4370,2,true,8511,2,false,10000,17
+ac19_60885,YXXYxYxxx,YYXyxxyXyX,1,119018,s20_f4,1,true,,true,1957,2,true,1580,2,true,1904,2,false,10000,14
+ac19_61003,YYXXXYX,YYXyXyxxxYXX,1,119372,s20_f4,1,true,,true,1678,2,true,2229,2,true,6350,2,false,10000,14
+ac19_61045,YYXXXYxyX,YYXyxxYXyX,2,119494 129307,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6718,2,false,10000,18,false,10000,18
+ac19_61070,YYXXX,YYYXXYXyXyXYx,1,119566,s20_mk2_mK2,1,true,,true,9705,2,true,331,2,false,10000,15,true,212,2
+ac19_61238,YXXyXyx,YYxyXXXyyX,1,120033,"baseline,s20_f4",2,true,,false,10000,16,true,5566,2,true,7192,2,false,10000,16
+ac19_61242,YYXXYx,YYYYXYYxYXX,3,120040 141023 142791,baseline,1,true,,false,10000,15,true,729,2,true,2541,2,true,2688,2
+ac19_61253,YYXXyxx,YYYYYYXYXYxxYYX,1,120061,"baseline,s20_f4",2,true,,false,10000,16,true,4949,2,true,8111,2,false,10000,16
+ac19_61397,YXXyXyx,YYYYXyyxxxyX,1,120488,s20_f4,1,true,,true,665,2,true,1501,2,true,1346,2,false,10000,14
+ac19_61403,YXXXyXyx,YYYxyXyxx,1,120512,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2684,2,false,10000,17,true,2840,2
+ac19_61538,YYXXYxxxxYx,YYXXyxxxYYx,1,120879,"baseline,s20_f4",2,true,,false,10000,15,true,8033,2,true,1442,2,false,10000,14
+ac19_61653,YYXXXXyx,YXYxxyXyX,1,121251,baseline,1,true,,false,10000,17,true,5604,2,true,6317,2,true,7440,2
+ac19_61678,YXyXXXXyx,YYXyXXyxyX,2,121314 137748,baseline,1,true,,false,10000,15,true,2393,2,true,1538,2,true,3934,2
+ac19_61807,YXXYx,YYXYXyyXYXYxxyyx,1,121737,"baseline,s20_f4",2,true,,false,10000,18,true,323,2,true,3440,2,false,10000,18
+ac19_61852,YXXyXyX,YYXyyxYxxx,2,121866 135850,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_61871,YYXXXXyxxx,YYXXYYXXXXYxxYX,1,121913,"baseline,s20_f4",2,true,,false,10000,15,true,8028,2,true,1438,2,false,10000,15
+ac19_61881,YXYxYXXYx,YYXYYXYxyXyx,1,121943,s20_mk2_mK2,1,true,,true,7876,2,true,3146,2,false,10000,17,true,1227,2
+ac19_61970,YYXXXYx,YYxyXyxYXYX,1,122257,s20_f4,1,true,,true,1429,2,true,276,2,true,803,2,false,10000,14
+ac19_62156,YXXYxxyx,YYYxxyxyXYXyX,1,122875,baseline,1,true,,false,10000,15,true,1386,2,true,2579,2,true,2938,2
+ac19_62237,YXyXXyx,YYxYYxyxYxyxyXX,1,123142,baseline,1,true,,false,10000,14,true,4145,2,true,4005,2,true,3030,2
+ac19_62288,YXyXXyx,YYXXXyXXXyyxyxx,1,123282,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,16,false,10000,14,true,7533,2
+ac19_62315,YYXXXyX,YYYxyXyyX,1,123378,"baseline,s20_f4",2,true,,false,10000,15,true,2872,2,true,3944,2,false,10000,15
+ac19_62338,YXXXyxxYx,YYXYxYYxYXYx,1,123443,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,5630,2,false,10000,17,false,10000,17
+ac19_62373,YXyXXyx,YYXXYxxyXXyxyxx,1,123542,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,16,false,10000,17,false,10000,16,true,7532,2
+ac19_62437,YXyXXXyx,YYXYxyXyxyX,1,123733,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_62507,YXXYxxyX,YYYYXYXXyXX,1,123934,s20_f4,1,true,,true,1585,2,true,1586,2,true,1879,2,false,10000,14
+ac19_62582,YYXXXYx,YYXXYXyyxx,1,124142,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3185,2,false,10000,14,true,5932,2
+ac19_62584,YYXXyxx,YYxYxyXXX,1,124145,baseline,1,true,,false,10000,16,true,6526,2,true,7540,2,true,2939,2
+ac19_62603,YYXXyxx,YYXXYxYxYX,1,124194,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16
+ac19_62675,YYXXyxx,YXYXXXYxYxx,1,124402,baseline,1,true,,false,10000,16,true,880,2,true,1418,2,true,8800,2
+ac19_62676,YYXXXXXyX,YYYXXXXXXyyX,2,124406 148477,baseline,1,true,,false,10000,16,true,3196,2,true,870,2,true,3063,2
+ac19_62816,YXYXyXXYXyX,YYYXyXXXYXyXyx,1,124848,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,6079,2,false,10000,19,false,10000,19
+ac19_63028,YXyXXXyx,YYXyXYxxyxyXX,1,125476,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_63042,YXXYx,YYYXYXyxYYXyyx,1,125503,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3880,2,false,10000,18
+ac19_63210,YXyXXyx,YYXYXyxyxxYxYxxyx,1,125985,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,16,false,10000,17
+ac19_63266,YXXyXYx,YYXXXYYXXXX,1,126155,s20_f4,1,true,,true,1067,2,true,4786,2,true,1807,2,false,10000,18
+ac19_63358,YYXXXYx,YYXYxYxyyXX,1,126469,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,15,false,10000,16,false,10000,16
+ac19_6342,YXXyXyX,YYxxxyXYxxyX,1,7623,s20_mk2_mK2,1,true,,true,8440,2,true,2942,2,false,10000,15,true,1234,2
+ac19_63532,YXXyXyxx,YYxYXyyxx,1,126976,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,6872,2,false,10000,17,false,10000,17
+ac19_63548,YYXXXYX,YYXyXXYxyx,2,127033 151898,s20_f4,1,true,,true,1672,2,true,2229,2,true,6353,2,false,10000,14
+ac19_63556,YYXXyxxyx,YYxxyXYxyx,1,127046,s20_f4,1,true,,true,1213,2,true,1760,2,true,1555,2,false,10000,14
+ac19_63589,YYXXX,YYYXXyXyXyxYx,1,127153,s20_mk2_mK2,1,true,,true,9677,2,true,331,2,false,10000,15,true,212,2
+ac19_63590,YXXYXXyX,YYYXXXyXYXXyyxx,1,127159,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,16,true,3226,2,false,10000,15,false,10000,15
+ac19_63678,YYYXXXyxx,YXXyxxxxyXX,1,127440,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2168,2,false,10000,17,true,6702,2
+ac19_63681,YXYXXXX,YYXXyyXXYx,1,127454,s20_mk2_mK2,1,true,,true,3610,2,true,512,2,false,10000,15,true,46,2
+ac19_63744,YYXXXYYxYXX,YYXYxyXyyxxYXX,1,127661,baseline,1,true,,false,10000,15,true,1741,2,true,2922,2,true,4953,2
+ac19_63762,YXYxYXXyx,YYxyxyXXyx,1,127709,s20_mk2_mK2,1,true,,true,9737,2,true,4119,2,false,10000,17,true,5370,2
+ac19_63772,YYXXXyx,YYXyXXyyxYx,1,127735,s20_f4,1,true,,true,1972,2,true,1585,2,true,1921,2,false,10000,14
+ac19_6385,YYXXyxx,YYXYYXXYxyx,12,7674 17673 31725 33066 38915 60432 62577 65376 94772 106865 123286 127507,"baseline,s20_f4",2,true,,false,10000,14,true,2793,2,true,5471,2,false,10000,14
+ac19_63978,YXXyXYx,YYXXyxxYXXyxxyx,1,128389,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,8394,2,false,10000,17,false,10000,17
+ac19_63993,YYXXXYX,YXyxxxyXyXYx,1,128426,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,4034,2,false,10000,15,true,2981,2
+ac19_63999,YXXyXyXyX,YYYXyxxxyx,1,128450,"baseline,s20_f4",2,true,,false,10000,17,true,5606,2,true,6490,2,false,10000,17
+ac19_64188,YYXXyxx,YYYYxxxxyXXX,1,129052,s20_f4,1,true,,true,435,2,true,7563,2,true,4587,2,false,10000,19
+ac19_64230,YXXYxxyX,YYXXyyXYx,2,129182 150558,s20_f4,1,true,,true,1811,2,true,1584,2,true,1877,2,false,10000,14
+ac19_64300,YYXXXyx,YXXyXYxxxxxyX,2,129377 136727,s20_f4,1,true,,true,1959,2,true,1584,2,true,1902,2,false,10000,14
+ac19_64447,YXXYXXyx,YYXXYXyXyxx,1,129818,"baseline,s20_f4",2,true,,false,10000,17,true,5600,2,true,6488,2,false,10000,17
+ac19_64565,YXXYx,YYYXYXYYYXXyyx,1,130168,"baseline,s20_f4",2,true,,false,10000,18,true,610,2,true,4556,2,false,10000,18
+ac19_64573,YYXXyxx,YYxYXYXYxYX,1,130194,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,5632,2,false,10000,17,true,7463,2
+ac19_64619,YXXXXXyXyX,YYxxxxxxyxx,1,130331,baseline,1,true,,false,10000,16,true,3219,2,true,866,2,true,3058,2
+ac19_64639,YXyXXyX,YYxyXXYXXyxyx,1,130399,"baseline,s20_f4",2,true,,false,10000,18,true,3282,2,true,3245,2,false,10000,18
+ac19_64649,YYXyxYXXyx,YYXyyXYxyxx,1,130441,baseline,1,true,,false,10000,14,true,1729,2,true,3830,2,true,2778,2
+ac19_64737,YYXXyxx,YYxYxyxYXX,1,130693,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,6094,2,false,10000,15,false,10000,15
+ac19_6482,YXXyxYx,YYYYxyXXYxx,1,7790,baseline,1,true,,false,10000,16,true,4691,2,true,6343,2,true,4593,2
+ac19_64974,YXXXyXyX,YYxYxxyxyxx,1,131463,"baseline,s20_f4",2,true,,false,10000,17,true,2378,2,true,1812,2,false,10000,17
+ac19_64979,YYYXXXYYXXX,YYXXXYXXYYxyX,1,131488,"baseline,s20_f4",2,true,,false,10000,14,true,4401,2,true,5606,2,false,10000,17
+ac19_64982,YYXXX,YXyXYXXXXYxYx,1,131495,s20_mk2_mK2,1,true,,true,9046,2,true,319,2,false,10000,15,true,210,2
+ac19_6501,YXXyx,YYYYXyyyyXyyxYxx,1,7813,s20_mk2,1,true,,true,3166,2,false,10000,15,true,7645,2,true,760,2
+ac19_65012,YXyXXXyx,YYYXyxYxyxYxyyX,1,131595,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_65037,YXyXXXyx,YYXyXyyXYxyXX,1,131694,baseline,1,true,,false,10000,15,true,8663,2,true,6223,2,true,8679,2
+ac19_65047,YXYXyXXYXyX,YYXYXyXYXXyXyX,1,131721,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,5630,2,false,10000,17,true,7463,2
+ac19_65049,YXXXyXyx,YYxyXXXyxyX,1,131727,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2677,2,false,10000,17,true,2840,2
+ac19_65140,YXXyXYx,YYYxyyXX,1,132013,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,9916,2,false,10000,15,false,10000,15
+ac19_65206,YYXXXYxx,YYXYYxxyXYX,1,132233,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_65219,YXYXXXYXXXyxYx,YYxxxyxxxyXyXyX,1,132284,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,21,false,10000,17
+ac19_6525,YXXYx,YYYXyyxYYXyyx,4,7845 21153 134837 139657,"baseline,s20_f4",2,true,,false,10000,18,true,597,2,true,4527,2,false,10000,18
+ac19_65325,YXXYxxyx,YYYxxxxyXyXYX,1,132627,"baseline,s20_f4",2,true,,false,10000,14,true,4395,2,true,8566,2,false,10000,17
+ac19_65392,YYXXyxx,YYYXXYYxxxxYX,1,132835,s20_f4,1,true,,true,389,2,true,7674,2,true,4531,2,false,10000,19
+ac19_6540,YXYXXYx,YYYXYxxyXyX,2,7864 100268,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_65502,YYXXXYXX,YYYXXYXXyyx,1,133144,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,1732,2,false,10000,17,true,1473,2
+ac19_65522,YXXyXyX,YYYxyyxYxxyX,1,133204,"baseline,s20_mk2,s20_f4",3,true,,false,10000,16,false,10000,14,true,6376,2,false,10000,16
+ac19_6554,YYXyxYXXyx,YXyxYXyxxyXyx,1,7883,s20_mk2_mK2,1,true,,true,1839,2,true,2464,2,false,10000,18,true,2411,2
+ac19_65694,YXXXyXYx,YYxxyXyXYXX,1,133719,baseline,1,true,,false,10000,17,true,496,2,true,665,2,true,8160,2
+ac19_65700,YYXXyx,YXYxyXyxxyXyx,1,133727,s20_f4,1,true,,true,8425,2,true,1713,2,true,4047,2,false,10000,14
+ac19_65706,YYXXXyx,YYYYXXyyXYXX,1,133737,s20_f4,1,true,,true,1973,2,true,1586,2,true,1933,2,false,10000,14
+ac19_65737,YXXYxYxx,YYxyxyXyX,1,133848,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_65753,YXXYxYxxx,YYYYXyXyxxx,1,133893,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_65754,YXXXYxxxyx,YYxYYxxxyXX,1,133895,s20_f4,1,true,,true,7837,2,true,5542,2,true,8128,2,false,10000,16
+ac19_65898,YYYXXXYYXXX,YYXXYYXXXYXyx,1,134371,"baseline,s20_f4",2,true,,false,10000,14,true,4389,2,true,8565,2,false,10000,17
+ac19_65967,YXYXyXXYXyX,YYXyXyyxYYxyx,1,134586,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,6082,2,false,10000,19,false,10000,19
+ac19_65990,YXYXYx,YYxyXXyyXYxyx,1,134648,"baseline,s20_f4",2,true,,false,10000,17,true,1871,2,true,4645,2,false,10000,17
+ac19_66001,YXXYXXyX,YYXXXYXyXyX,1,134693,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5719,2,false,10000,15,true,4944,2
+ac19_66015,YXYxyx,YYXyXXyyXXyyx,1,134737,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3503,2,false,10000,17,false,10000,17,false,10000,17
+ac19_6606,YYXXXYX,YYXyXYXXyxxx,1,7941,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,3809,2,false,10000,15,true,2982,2
+ac19_66134,YXYxxYXyx,YYXyxyXXyxx,1,135048,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2867,2,false,10000,14,true,6122,2
+ac19_6618,YXXXYxx,YYYXYYYXYX,2,7955 144936,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2209,2,false,10000,17,true,5187,2
+ac19_66184,YXXYXXyX,YYXXXyXYxyX,1,135209,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5693,2,false,10000,15,true,4944,2
+ac19_66187,YXyXXXyx,YYYXyXXyXyxyX,1,135212,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_66196,YYXXYYx,YYXYxYXXyx,1,135235,"baseline,s20_f4",2,true,,false,10000,16,true,1812,2,true,3696,2,false,10000,14
+ac19_66208,YYXXXXXyX,YXyXXYxyx,1,135261,baseline,1,true,,false,10000,16,true,3192,2,true,869,2,true,3140,2
+ac19_66234,YXXyXyx,YYxxxxxxyXXX,1,135349,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,14,true,3246,2,false,10000,14,false,10000,14
+ac19_66250,YYXXXyX,YYYXXyxxyyX,1,135398,"baseline,s20_f4",2,true,,false,10000,14,true,441,2,true,398,2,false,10000,14
+ac19_66343,YXYXyx,YYYYYXYYYXXyXXX,1,135679,s20_f4,1,true,,true,5018,2,true,5054,2,true,6352,2,false,10000,13
+ac19_66471,YXXyx,YYXYYxyXyxyyxxxYx,1,136059,s20_mk2,1,true,,true,3340,2,false,10000,15,true,7612,2,true,938,2
+ac19_6648,YYXXyxx,YYYXXYxYxyx,1,7986,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,6094,2,false,10000,15,false,10000,15
+ac19_66482,YXyXXXyx,YYYxyyXYxxyXXyX,1,136097,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_66533,YYXXXXYX,YYxyXXXYxyX,1,136278,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,3129,2,false,10000,17,true,1625,2
+ac19_66543,YXYXyXXYXyX,YYxYxyXYXyXyxyX,1,136318,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,6082,2,false,10000,19,false,10000,19
+ac19_66560,YXXYx,YYYXyyyXYYxyx,1,136353,"baseline,s20_f4",2,true,,false,10000,18,true,610,2,true,4591,2,false,10000,18
+ac19_66662,YXXXYxx,YYXyxYXXyx,1,136667,"baseline,s20_f4",2,true,,false,10000,16,true,5839,2,true,8053,2,false,10000,16
+ac19_66724,YXXyXyxx,YYYxxxxYYxx,1,136825,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_66744,YXYXXYx,YYYxyXyxyXyx,1,136898,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_6678,YYXXyXyxx,YXYxxyXXYxyXX,2,8025 115893,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,6670,2,false,10000,18,false,10000,17
+ac19_66802,YXyXXyx,YYXYXyxyxYxxxYxyx,1,137107,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,16,false,10000,17
+ac19_66839,YYXXYYx,YYXyxxyXXyx,1,137209,"baseline,s20_f4",2,true,,false,10000,16,true,1812,2,true,3696,2,false,10000,14
+ac19_66853,YXyXXYXyXXyX,YYYXyxYxyxyyX,1,137237,s20_f4,1,true,,true,1425,2,true,586,2,true,648,2,false,10000,18
+ac19_66930,YXXYx,YYYxyyXYYXyyx,1,137486,"baseline,s20_f4",2,true,,false,10000,18,true,745,2,true,4717,2,false,10000,18
+ac19_66937,YXXYXXyx,YYYXXXXXXyX,1,137496,"baseline,s20_f4",2,true,,false,10000,17,true,5600,2,true,6488,2,false,10000,17
+ac19_66939,YXyXXXyx,YYYxyyXXXyXXXXyyX,1,137503,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_67055,YYXXXyx,YXyxxxxxyXyxx,2,137936 144949,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_67077,YYXXXXYX,YYXyxYXXXyx,1,138015,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,3129,2,false,10000,17,true,1632,2
+ac19_6718,YYXXXYX,YXyXXXYxxx,5,8071 15520 51426 108669 144213,"baseline,s20_f4",2,true,,false,10000,15,true,1403,2,true,2579,2,false,10000,15
+ac19_67256,YYXXyxx,YYYxxYYxYXXXX,1,138597,s20_mk2,1,true,,true,1176,2,false,10000,19,true,8481,2,true,8877,2
+ac19_67288,YYXXYxyXyx,YXXYxYXXXYx,2,138688 142799,s20_f4,1,true,,true,1988,2,true,1570,2,true,2056,2,false,10000,14
+ac19_67404,YYXXYx,YYYXXyXYxyx,1,139054,baseline,1,true,,false,10000,15,true,729,2,true,2546,2,true,2687,2
+ac19_67450,YYXXYYx,YYXyXyXYxxx,1,139211,"baseline,s20_f4",2,true,,false,10000,16,true,1812,2,true,3694,2,false,10000,14
+ac19_67594,YXXyxYx,YYXYxxxxYXX,1,139685,"baseline,s20_f4",2,true,,false,10000,16,true,2279,2,true,2268,2,false,10000,16
+ac19_67659,YXYXXYx,YYxyXyXyxyx,1,139896,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_67669,YXyXXyx,YYYXyxyxyxYx,1,139933,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,17,false,10000,16,false,10000,16
+ac19_67716,YXXyxYx,YYYxYxxYXX,1,140092,"baseline,s20_f4",2,true,,false,10000,16,true,2279,2,true,2268,2,false,10000,16
+ac19_67821,YXYxyx,YYXyxYYxxYxYYxx,1,140485,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_67865,YXYXXXX,YYXXyyXyxxxxx,1,140621,s20_mk2_mK2,1,true,,true,3617,2,true,513,2,false,10000,15,true,47,2
+ac19_67868,YXXyx,YYYYYYXyxyyXyXyX,2,140635 144639,s20_mk2,1,true,,true,2832,2,false,10000,15,true,7748,2,true,835,2
+ac19_67934,YXyXXXyx,YYXyXYXyXyyxx,1,140882,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_67987,YYXXyxx,YYXXYYxYYxYx,1,141054,"baseline,s20_f4",2,true,,false,10000,16,true,6073,2,true,9777,2,false,10000,16
+ac19_68059,YXYXyx,YYYYYXYxYXyXXXX,1,141322,s20_f4,1,true,,true,5257,2,true,5055,2,true,6381,2,false,10000,13
+ac19_68196,YXXYx,YYYXXyyxYYXYYX,1,141769,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7237,2,false,10000,18,false,10000,18
+ac19_68420,YXYXXYxyX,YYYxyXyxxyyX,1,142457,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_6847,YYXXXXYX,YYXXYXyyx,4,8241 60999 84336 133816,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,8713,2,false,10000,17,false,10000,17
+ac19_68470,YYXXXyx,YYYXXXYXyX,1,142590,s20_f4,1,true,,true,1972,2,true,1585,2,true,1914,2,false,10000,14
+ac19_68563,YYXXYYx,YXYXyxxyXyx,1,142891,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,3036,2,false,10000,15,false,10000,17
+ac19_68656,YXyXXXyx,YYYxyXXXyyXyX,1,143187,baseline,1,true,,false,10000,17,true,8696,2,true,6258,2,true,8680,2
+ac19_68714,YXXyXyx,YYxxyxyXXXYx,1,143392,"baseline,s20_f4",2,true,,false,10000,16,true,5545,2,true,6178,2,false,10000,16
+ac19_68854,YXXXyXXyx,YYxyxxYXyx,1,143855,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_69027,YYXXyx,YYYXyXXYxYX,1,144413,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,15
+ac19_69046,YXXyxYx,YYYXYxxxyX,1,144472,"baseline,s20_f4",2,true,,false,10000,16,true,2279,2,true,2268,2,false,10000,16
+ac19_69074,YYXXXyX,YYXyxYXXXyxyx,1,144576,baseline,1,true,,false,10000,17,true,1884,2,true,4083,2,true,3223,2
+ac19_69081,YXXYx,YYYxyyXYXYXyyx,1,144602,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,4061,2,false,10000,18
+ac19_69099,YXYXXYx,YYxyXXXyxxyx,1,144659,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_69144,YYXXXYx,YYXYxxxyXXX,1,144793,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3115,2,false,10000,14,true,5931,2
+ac19_69166,YXYXXXX,YYXyyXXyxxxyxYx,1,144896,s20_mk2_mK2,1,true,,true,4613,2,true,538,2,false,10000,15,true,52,2
+ac19_6917,YXYxyx,YYYXyXXyyXXyxyxYx,1,8325,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_69237,YXYXXXX,YYxYXXyXXXyx,1,145113,s20_mk2_mK2,1,true,,true,3723,2,true,535,2,false,10000,15,true,51,2
+ac19_69242,YXXYXXyx,YXyXYXXyXYx,1,145132,"baseline,s20_f4",2,true,,false,10000,17,true,5600,2,true,6488,2,false,10000,17
+ac19_69251,YYXXXYX,YYxyXyXXYx,1,145161,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_69316,YXXyXyx,YYXyxyXXyyX,1,145358,baseline,1,true,,false,10000,15,true,1757,2,true,3996,2,true,6862,2
+ac19_69374,YXyXXyx,YYxxxYXYXyxxyxx,1,145539,baseline,1,true,,false,10000,16,true,9512,2,true,9213,2,true,6901,2
+ac19_69378,YXXyXyxx,YYxyxYXYx,1,145546,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_6939,YYXXXYX,YYYYXXyxyXX,1,8351,s20_f4,1,true,,true,8267,2,true,1584,2,true,3879,2,false,10000,13
+ac19_69456,YXXYxxyx,YYXyxxxYxYx,1,145807,"baseline,s20_mk2,s20_mk2_mK2",3,true,,false,10000,17,false,10000,17,false,10000,17,true,4070,2
+ac19_69484,YXyXXyx,YYYXyxxyxxYXyx,1,145891,baseline,1,true,,false,10000,16,true,9511,2,true,9212,2,true,6901,2
+ac19_69555,YYXXYx,YYYYXYYxyXX,1,146097,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,4422,2,false,10000,15,false,10000,15
+ac19_69562,YXXYxxyX,YYXXXXyxxxx,1,146120,s20_f4,1,true,,true,1956,2,true,1570,2,true,2040,2,false,10000,14
+ac19_69618,YXXXXyXyx,YYXXXyXyyX,1,146291,"baseline,s20_f4",2,true,,false,10000,16,true,2272,2,true,2257,2,false,10000,16
+ac19_6964,YXyXXXyx,YYxyxxyXYXyXYxyXX,1,8377,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_69661,YXYXXXXYx,YYXXXYxxyXyx,1,146392,s20_f4,1,true,,true,8298,2,true,1697,2,true,4031,2,false,10000,14
+ac19_69707,YYXXXYx,YYxxyXXYX,1,146518,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,15,false,10000,16,false,10000,16
+ac19_69757,YXXyXyx,YYYxyyXYxxyX,1,146702,"baseline,s20_f4",2,true,,false,10000,14,true,2774,2,true,5543,2,false,10000,14
+ac19_69810,YXYxyx,YYYXyyxYxYYxx,1,146857,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3503,2,false,10000,17,false,10000,17,false,10000,17
+ac19_69883,YYXXXYX,YXyXYxyXYx,1,147099,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2216,2,false,10000,17,true,1142,2
+ac19_69899,YYXXyxx,YYXXYxxxyXYx,1,147161,baseline,1,true,,false,10000,16,true,6536,2,true,7552,2,true,4817,2
+ac19_69914,YXyXXXXyx,YYXyXYxyyxx,1,147190,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_69972,YXXyXyx,YYXYxYxyyxyX,1,147406,s20_f4,1,true,,true,665,2,true,1501,2,true,1346,2,false,10000,14
+ac19_70028,YXXYxxyxx,YYXXyXXXyxxxx,1,147594,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_70297,YXXXyxYx,YYXyXXYxxyX,1,148446,s20_f4,1,true,,true,50,2,true,456,2,true,236,2,false,10000,17
+ac19_70321,YXXyXyX,YYXyxYxyxyX,1,148513,s20_mk2_mK2,1,true,,true,7905,2,true,2952,2,false,10000,15,true,1234,2
+ac19_70328,YXyXXXXyx,YYxxYXyxYxyxyX,1,148537,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_7037,YYXXXyX,YYXXXXyxyxx,1,8462,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,15,false,10000,15,false,10000,15,false,10000,15
+ac19_70475,YYXXXXXYXX,YYXyXYYXyXX,1,149047,"baseline,s20_f4",2,true,,false,10000,14,true,2804,2,true,5563,2,false,10000,14
+ac19_70482,YXyXXXyx,YYXyXYXXyXyxxyX,1,149067,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,17,false,10000,17,false,10000,17
+ac19_70485,YYXXyxx,YYxxYXYxyX,1,149077,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,6094,2,false,10000,15,false,10000,15
+ac19_70497,YXYxyx,YYYXyXXyyXXyXyxyx,1,149106,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_70552,YYXXXYXX,YYXXYYxyXyX,1,149274,"baseline,s20_f4",2,true,,false,10000,15,true,1403,2,true,2583,2,false,10000,15
+ac19_70568,YXXYx,YYYXYYxyXYXyyx,1,149335,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3880,2,false,10000,18
+ac19_70576,YXyXXyx,YYxyXXyyxxyxYXYXyX,1,149352,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,17,false,10000,16,false,10000,16
+ac19_70634,YXXYx,YYYYxYXyyyxyyXyyyx,1,149532,"baseline,s20_f4",2,true,,false,10000,18,true,610,2,true,4591,2,false,10000,18
+ac19_70696,YXXXyXyx,YYXXyyxyX,1,149741,s20_f4,1,true,,true,1757,2,true,1750,2,true,1541,2,false,10000,14
+ac19_70698,YXYXXXXYx,YXyxxxyXyXYx,1,149752,s20_f4,1,true,,true,8298,2,true,1697,2,true,4031,2,false,10000,14
+ac19_70716,YXyXYxx,YYYYXXyxxYX,1,149819,baseline,1,true,,false,10000,16,true,3193,2,true,864,2,true,3059,2
+ac19_70723,YXXyXyx,YYYxxxYxyx,1,149842,"baseline,s20_f4",2,true,,false,10000,16,true,5990,2,true,8068,2,false,10000,16
+ac19_70758,YYXXXYX,YYxyXYxyXX,1,149968,"baseline,s20_mk2_mK2",2,true,,false,10000,16,true,7792,2,false,10000,16,true,7283,2
+ac19_70762,YXYxyx,YYXXyyXXyyXyxxx,1,149975,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_70767,YXXYx,YYXYYxyXYYXyyx,1,149984,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,6817,2,false,10000,18,false,10000,18
+ac19_70826,YYXXXyxxx,YYYYXXYxxYYX,1,150207,"baseline,s20_f4",2,true,,false,10000,16,true,1772,2,true,4057,2,false,10000,15
+ac19_70845,YYXYXyXXyX,YXYXyXYXXyX,1,150262,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,19,true,6085,2,false,10000,19,false,10000,19
+ac19_70877,YXyxYXyxYXXyx,YYXXyyXXXyxYXyx,1,150337,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,16,true,5180,2,false,10000,16,false,10000,16
+ac19_70931,YYYXXYXyX,YYYXXXXYX,1,150500,s20_f4,1,true,,true,8264,2,true,1684,2,true,3997,2,false,10000,14
+ac19_71301,YXyXXXyx,YYYXyyXXyyx,1,151705,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_71329,YYXYXXXyX,YXyXYXyXYx,1,151821,s20_mk2_mK2,1,true,,true,7189,2,true,2549,2,false,10000,17,true,2287,2
+ac19_71343,YYXXXYx,YYXXyxYXyx,1,151877,"baseline,s20_mk2_mK2",2,true,,false,10000,14,true,3185,2,false,10000,14,true,5931,2
+ac19_71351,YYXXyxx,YYYYYXXYxxxxYX,1,151909,s20_f4,1,true,,true,366,2,true,46,2,true,46,2,false,10000,18
+ac19_71428,YYXXYYx,YYYXyxYxyyX,1,152151,baseline,1,true,,false,10000,17,true,713,2,true,732,2,true,1578,2
+ac19_7151,YXyXXXyx,YYXyXYXyyXXXyyX,1,8606,baseline,1,true,,false,10000,17,true,8696,2,true,6258,2,true,8680,2
+ac19_71581,YXXyXyxx,YYxYxxxyxYX,1,152670,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,9022,2,false,10000,17,true,8244,2
+ac19_71593,YXXyXyXyX,YYxxyxyxYX,1,152723,s20_mk2_mK2,1,true,,true,6904,2,true,2546,2,false,10000,17,true,1228,2
+ac19_71810,YXXXYxx,YYxyXXXyxyx,1,153437,"baseline,s20_f4",2,true,,false,10000,16,true,5703,2,true,7817,2,false,10000,16
+ac19_71819,YXXYXXXYx,YXYxYXyXyx,1,153467,s20_f4,1,true,,true,1811,2,true,1584,2,true,1877,2,false,10000,14
+ac19_71828,YYXXXXX,YXyXXYxYXyx,1,153492,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2746,2,false,10000,17,true,1415,2
+ac19_71847,YXyXXXXyx,YYxyxyXYXyXYxyX,1,153547,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,18,false,10000,18,false,10000,18,false,10000,18
+ac19_71849,YYXXXyX,YYYXyyyxx,1,153551,"baseline,s20_f4",2,true,,false,10000,14,true,451,2,true,394,2,false,10000,14
+ac19_71854,YXXyXyx,YYXyxYxxyx,2,153566 154942,"baseline,s20_f4",2,true,,false,10000,14,true,2775,2,true,5549,2,false,10000,14
+ac19_71901,YYYXXXXYX,YYYxxyyXXX,1,153708,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,6810,2,false,10000,17,true,4080,2
+ac19_71947,YXXYXXyx,YYXYXyXyx,1,153873,"baseline,s20_f4",2,true,,false,10000,16,true,1969,2,true,3880,2,false,10000,14
+ac19_71984,YYXXXYX,YYYXXyXyxYX,1,153993,s20_f4,1,true,,true,8267,2,true,1583,2,true,3879,2,false,10000,13
+ac19_72113,YXXYXXyxx,YYYXyXyxyxx,1,154435,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_72174,YYXXXXYX,YYXXXyXYx,1,154673,s20_f4,1,true,,true,1965,2,true,1575,2,true,1988,2,false,10000,14
+ac19_72241,YXXyXyxx,YYYxxxyxxYX,1,154881,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,6996,2,false,10000,17,true,3807,2
+ac19_72274,YYXXXyx,YYYXXyxYXyyx,1,154976,"baseline,s20_f4",2,true,,false,10000,15,true,2278,2,true,6547,2,false,10000,15
+ac19_72328,YYXXyxx,YYYYYXYxyX,1,155161,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_72387,YXXyXyxx,YYxxYYxxxYX,1,155366,"baseline,s20_mk2_mK2",2,true,,false,10000,19,true,3356,2,false,10000,18,true,8855,2
+ac19_72393,YXXyXyX,YYYXyxYxxyxyxx,1,155383,"baseline,s20_mk2,s20_f4",3,true,,false,10000,16,false,10000,14,true,6374,2,false,10000,16
+ac19_72417,YYXXXXXXyxx,YYYXXXXXyyxx,1,155497,baseline,1,true,,false,10000,15,true,1740,2,true,3892,2,true,2957,2
+ac19_7248,YYXXXXX,YXYxYXXyXyx,1,8728,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2727,2,false,10000,17,true,593,2
+ac19_72485,YXXYxxyX,YYYxxyXyXyx,1,155693,s20_f4,1,true,,true,1811,2,true,1584,2,true,1877,2,false,10000,14
+ac19_72656,YXXyXyxx,YYYXYxxyyxx,1,156341,s20_f4,1,true,,true,636,2,true,3000,2,true,4022,2,false,10000,15
+ac19_72694,YYXXYYXXX,YYYXXXyxYXX,1,156484,s20_f4,1,true,,true,1587,2,true,1604,2,true,1835,2,false,10000,14
+ac19_72700,YXYxyx,YYXyXXyyXyxxx,1,156516,"s20_mk2,s20_mk2_mK2,s20_f4",3,true,,true,3502,2,false,10000,17,false,10000,17,false,10000,17
+ac19_72735,YYYXXXXX,YYXXYXyyx,1,156607,baseline,1,true,,false,10000,15,true,1783,2,true,4189,2,true,9343,2
+ac19_7284,YYXXXyXX,YXyxYXXXyxx,3,8769 16286 101025,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_7302,YXXXXyXyx,YYYxxyxxyX,1,8790,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,5635,2,false,10000,17,false,10000,17
+ac19_733,YYXXyxx,YYYxxyXYxyX,1,1272,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,6094,2,false,10000,15,false,10000,15
+ac19_7435,YXXyXyX,YYYXyxyyx,17,8957 11033 16997 23859 34938 48999 56045 70585 75037 77997 86756 87652 101973 132721 135907 150151 151954,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_7436,YXyXXyx,YYxYxxYXyxxyxyXYX,1,8958,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,16,false,10000,17
+ac19_7440,YYXXXXXXX,YXXXyXXYx,3,8963 29069 74071,s20_f4,1,false,"baseline,s20_mk2_mK2",missing,,,true,1740,2,missing,,,false,10000,14
+ac19_7460,YXYXYx,YYXyyXYxxYXyx,1,8989,baseline,1,true,,false,10000,17,true,1043,2,true,1044,2,true,2971,2
+ac19_7496,YYXXXXXXyxx,YXXXXXyxxxxxx,6,9038 20712 53634 83503 141360 142104,baseline,1,false,s20_mk2_mK2,false,10000,15,true,1739,2,missing,,,true,2956,2
+ac19_7579,YXyXXXyX,YYxYxxyxyxx,1,9140,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,2843,2,false,10000,17,false,10000,17
+ac19_7774,YXXXyxYx,YYXyXYxYX,3,9375 100997 123831,baseline,1,false,s20_mk2_mK2,false,10000,15,true,4121,2,missing,,,true,2981,2
+ac19_8099,YXXXXyXYxx,YYXXYXXXXyxyx,2,9765 81324,baseline,1,true,,false,10000,14,true,1728,2,true,3828,2,true,2777,2
+ac19_8222,YYXXXyx,YXYXXXyXXYx,2,9918 68170,"baseline,s20_f4",2,true,,false,10000,15,true,2226,2,true,6289,2,false,10000,15
+ac19_8310,YYXXXyxx,YYXYYXXyxxYXX,2,10026 71727,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,3130,2,false,10000,17,false,10000,15
+ac19_8461,YYXXXYX,YYxyXYxxyXXX,1,10215,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,3813,2,false,10000,15,true,2982,2
+ac19_8496,YYXXYx,YYXYxYxYXXX,6,10257 10771 26448 47192 125647 156353,baseline,1,true,,false,10000,15,true,729,2,true,2558,2,true,2687,2
+ac19_8618,YYXXyx,YXyXXYXXYxx,2,10420 150187,"baseline,s20_mk2_mK2",2,true,,false,10000,15,true,5200,2,false,10000,15,true,8310,2
+ac19_8670,YXYXXXX,YYXyXXXXyxYx,2,10486 128138,s20_mk2_mK2,1,true,,true,4613,2,true,535,2,false,10000,15,true,48,2
+ac19_8690,YYXXyx,YYXYxYXXX,16,10510 16028 31036 33946 35741 46165 59183 60479 101831 112949 115628 128900 130066 136933 137428 139632,s20_f4,1,true,,true,8331,2,true,1695,2,true,4018,2,false,10000,14
+ac19_8709,YXXYx,YYYYXYYXXyxyyx,2,10533 26155,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,18,true,7004,2,false,10000,18,false,10000,18
+ac19_8721,YXXYXXyx,YXXXyXXYx,2,10547 66395,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,15,true,5734,2,false,10000,17,false,10000,15
+ac19_8765,YYXXyxx,YYYYXXYxYXYx,7,10603 42962 90655 104597 138303 141369 151823,s20_f4,1,true,,true,5132,2,true,417,2,true,359,2,false,10000,14
+ac19_8784,YXXyXyX,YYYxyxxyxx,2,10625 57011,baseline,1,true,,false,10000,15,true,1392,2,true,2580,2,true,2688,2
+ac19_8792,YXXyXyxx,YYXYxxyxYxx,2,10633 12571,s20_f4,1,true,,true,636,2,true,3000,2,true,4022,2,false,10000,15
+ac19_8849,YYXXXXYX,YYYXXXyyx,2,10714 75568,s20_f4,1,true,,true,1965,2,true,1576,2,true,1880,2,false,10000,14
+ac19_8907,YXYxyx,YYXyXXyyXyxxxYx,1,10789,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,19,false,10000,19,false,10000,19,false,10000,19
+ac19_8958,YXyXXXyx,YYXYxxyXXXyXyyx,1,10851,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,17,false,10000,17,false,10000,17,false,10000,17
+ac19_8984,YYYXXXyxx,YYYxxyyXX,3,10882 64277 144237,"baseline,s20_mk2_mK2",2,true,,false,10000,17,true,2158,2,false,10000,17,true,1635,2
+ac19_9028,YXXyXYx,YYxxyxxyXXX,7,10949 19404 41058 57606 67516 97231 106228,s20_f4,1,true,,true,1965,2,true,1575,2,true,1995,2,false,10000,14
+ac19_9041,YYXYXXXyx,YYYYXyyXyx,1,10965,baseline,1,true,,false,10000,15,true,1766,2,true,4024,2,true,9343,2
+ac19_9271,YXXXyxx,YYXyXYxyxYxyX,4,11275 53831 55559 119422,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,20,false,10000,20,false,10000,20,false,10000,20
+ac19_943,YXYXXYx,YYXyxxxxyXyX,1,1500,s20_f4,1,true,,true,1954,2,true,1570,2,true,1856,2,false,10000,14
+ac19_9490,YXyXXyx,YYXYxyyxyXX,1,11547,baseline,1,true,,false,10000,16,true,9759,2,true,9458,2,true,7161,2
+ac19_9592,YXYXXXX,YYXyXyXYx,3,11685 49067 154570,s20_mk2_mK2,1,true,,true,3922,2,true,535,2,false,10000,15,true,46,2
+ac19_969,YYXXYXyyx,YYYXXYXXXXX,4,1526 19973 72707 117116,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,8713,2,false,10000,17,false,10000,17
+ac19_9750,YXXYx,YYXYXyyxYYXyyx,1,11898,"baseline,s20_f4",2,true,,false,10000,18,true,500,2,true,3927,2,false,10000,18
+ac19_978,YYXXYx,YYxyXYXyx,17,1535 3471 4172 43206 46429 47297 53678 57410 77928 88940 90303 95470 104987 105695 133093 138719 142501,baseline,1,true,,false,10000,15,true,729,2,true,2546,2,true,2687,2
+ac19_9822,YYXXXXYX,YYYXXyxyX,1,11989,"baseline,s20_mk2_mK2,s20_f4",3,true,,false,10000,17,true,8721,2,false,10000,17,false,10000,17
+ac19_986,YYXXXyx,YYXXYXyXX,18,1543 6065 19210 32022 39942 46887 53788 57500 64493 65774 67734 92420 94088 117704 118084 126980 130001 139364,"baseline,s20_f4",2,true,,false,10000,15,true,2228,2,true,6360,2,false,10000,15
+ac19_99,YYXXyxx,YXXXXXXXXyxxxxxxx,6,527 529 628 629 630 633,s20_f4,1,true,,true,436,2,true,7537,2,true,4625,2,false,10000,19
+ac19_9954,YXXYXXyxx,YYxyXXYxyX,1,12180,"baseline,s20_mk2,s20_mk2_mK2,s20_f4",4,true,,false,10000,16,false,10000,16,false,10000,16,false,10000,16

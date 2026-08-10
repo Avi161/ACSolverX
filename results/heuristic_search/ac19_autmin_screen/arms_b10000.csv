@@ -1,0 +1,5 @@
+arm,solved,n,rate,median_nodes_own,mean_nodes_own,median_path_own,mean_path_own,median_nodes_joint,median_path_joint
+baseline,68412,69224,0.988270,14,316,10,23,14,10
+s20_mk2,68971,69224,0.996345,14,220,11,26,14,11
+s20_mk2_mK2,68725,69224,0.992792,13,256,11,25,13,10
+s20_f4,68498,69224,0.989512,19,223,12,26,19,12

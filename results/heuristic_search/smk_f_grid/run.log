@@ -1,0 +1,221 @@
+[smk-f] train=120 arms=240 todo=28272 workers=4
+  +200/28272 11.92/s ETA 39.3 min last=F16 sol=False
+  +400/28272 11.19/s ETA 41.5 min last=S24_MK10_F4 sol=True
+  +600/28272 13.32/s ETA 34.6 min last=S20_MK8 sol=True
+  +800/28272 11.52/s ETA 39.7 min last=S16_MK2_F4 sol=False
+  +1000/28272 9.98/s ETA 45.5 min last=S8_MK10_F4 sol=False
+  +1200/28272 9.52/s ETA 47.4 min last=S4_MK6_418_F4 sol=False
+  +1400/28272 9.12/s ETA 49.1 min last=MK2_F4 sol=False
+  +1600/28272 8.91/s ETA 49.9 min last=S24_MK10_F4 sol=False
+  +1800/28272 9.24/s ETA 47.8 min last=S20_MK8 sol=True
+  +2000/28272 8.38/s ETA 52.3 min last=S16_MK2_F4 sol=False
+  +2200/28272 7.67/s ETA 56.6 min last=S8_MK10_F4 sol=False
+  +2400/28272 7.75/s ETA 55.6 min last=S4_MK6_418_F16 sol=True
+  +2600/28272 8.35/s ETA 51.2 min last=F16 sol=False
+  +2800/28272 8.69/s ETA 48.8 min last=S24_MK10_F8 sol=True
+  +3000/28272 8.67/s ETA 48.6 min last=S20_MK6_418_F4 sol=False
+  +3200/28272 8.60/s ETA 48.6 min last=S16_MK2_F4 sol=False
+  +3400/28272 8.52/s ETA 48.6 min last=S8_MK10_F4 sol=True
+  +3600/28272 8.22/s ETA 50.0 min last=S4_MK6_418_F4 sol=False
+  +3800/28272 7.42/s ETA 55.0 min last=MK2_F4 sol=False
+  +4000/28272 7.15/s ETA 56.5 min last=S24_MK10_F4 sol=False
+  +4200/28272 7.01/s ETA 57.2 min last=S20_MK6_418_F4 sol=False
+  +4400/28272 6.96/s ETA 57.2 min last=S16_MK2_F8 sol=False
+  +4600/28272 6.97/s ETA 56.6 min last=S8_MK10_F8 sol=False
+  +4800/28272 7.01/s ETA 55.8 min last=S4_MK6_418_F8 sol=True
+  +5000/28272 7.21/s ETA 53.8 min last=MK2_F4 sol=False
+  +5200/28272 7.32/s ETA 52.5 min last=S24_MK10_F4 sol=False
+  +5400/28272 7.50/s ETA 50.8 min last=S20_MK6_418_F4 sol=True
+  +5600/28272 7.52/s ETA 50.2 min last=S16_MK2_F4 sol=False
+  +5800/28272 7.52/s ETA 49.8 min last=S8_MK10_F4 sol=True
+  +6000/28272 7.67/s ETA 48.4 min last=S4_MK6_418_F4 sol=True
+  +6200/28272 7.76/s ETA 47.4 min last=MK2_F4 sol=False
+  +6400/28272 7.71/s ETA 47.3 min last=S24_MK10_F4 sol=False
+  +6600/28272 7.70/s ETA 46.9 min last=S20_MK6_418_F4 sol=False
+  +6800/28272 7.68/s ETA 46.6 min last=S16_MK2_F4 sol=False
+  +7000/28272 7.73/s ETA 45.9 min last=S8_MK10 sol=True
+  +7200/28272 7.77/s ETA 45.2 min last=S4_MK6_418_F4 sol=False
+  +7400/28272 7.48/s ETA 46.5 min last=S28_MK10_F8 sol=False
+  +7600/28272 7.63/s ETA 45.2 min last=S28 sol=True
+  +7800/28272 7.65/s ETA 44.6 min last=S20_MK4_F16 sol=False
+  +8000/28272 7.59/s ETA 44.5 min last=S16_MK2_F4 sol=False
+  +8200/28272 7.54/s ETA 44.4 min last=S8_MK8_F16 sol=False
+  +8400/28272 7.53/s ETA 44.0 min last=S4_MK6_418_F4 sol=False
+  +8600/28272 7.45/s ETA 44.0 min last=MK2_F2 sol=False
+  +8800/28272 7.59/s ETA 42.8 min last=S28 sol=True
+  +9000/28272 7.50/s ETA 42.8 min last=S20_MK6_418_F4 sol=False
+  +9200/28272 7.51/s ETA 42.3 min last=S16_MK2_F4 sol=False
+  +9400/28272 7.52/s ETA 41.8 min last=S8_MK10_F4 sol=False
+  +9600/28272 7.53/s ETA 41.3 min last=S4_MK6_418_F4 sol=False
+  +9800/28272 7.54/s ETA 40.9 min last=MK2_F4 sol=False
+  +10000/28272 7.54/s ETA 40.4 min last=S24_MK10_F4 sol=False
+  +10200/28272 7.65/s ETA 39.4 min last=S20_MK6_418_F8 sol=True
+  +10400/28272 7.70/s ETA 38.7 min last=S16_MK2_F4 sol=False
+  +10600/28272 7.74/s ETA 38.1 min last=S8_MK6_418_F16 sol=False
+  +10800/28272 7.83/s ETA 37.2 min last=S4_MK6_418_F8 sol=True
+  +11000/28272 7.92/s ETA 36.3 min last=MK2_F2 sol=False
+  +11200/28272 7.90/s ETA 36.0 min last=S24_MK10_F4 sol=False
+  +11400/28272 7.98/s ETA 35.2 min last=S20_MK4_F16 sol=False
+  +11600/28272 8.00/s ETA 34.7 min last=S16_MK2_F4 sol=False
+  +11800/28272 7.92/s ETA 34.7 min last=S8_MK10_F4 sol=False
+  +12000/28272 7.82/s ETA 34.7 min last=S4_MK6_418_F4 sol=False
+  +12200/28272 7.81/s ETA 34.3 min last=MK2_F2 sol=False
+  +12400/28272 7.80/s ETA 33.9 min last=S24_MK10_F4 sol=False
+  +12600/28272 7.82/s ETA 33.4 min last=S20_MK6_418_F4 sol=False
+  +12800/28272 7.87/s ETA 32.8 min last=S16_F16 sol=False
+  +13000/28272 7.91/s ETA 32.2 min last=S8_MK10_F4 sol=False
+  +13200/28272 7.90/s ETA 31.8 min last=S4_MK6_418_F4 sol=False
+  +13400/28272 7.84/s ETA 31.6 min last=MK2_F4 sol=False
+  +13600/28272 7.83/s ETA 31.2 min last=S24_MK10_F4 sol=False
+  +13800/28272 7.87/s ETA 30.6 min last=S20_MK6_418_F4 sol=True
+  +14000/28272 7.94/s ETA 30.0 min last=S16_MK2_F8 sol=True
+  +14200/28272 7.99/s ETA 29.3 min last=S8_MK10 sol=True
+  +14400/28272 8.04/s ETA 28.8 min last=S4_MK6_418_F4 sol=False
+  +14600/28272 8.02/s ETA 28.4 min last=F16 sol=False
+  +14800/28272 8.02/s ETA 28.0 min last=S28 sol=True
+  +15000/28272 8.02/s ETA 27.6 min last=S20_MK6_418_F4 sol=False
+  +15200/28272 8.02/s ETA 27.2 min last=S16_MK2_F4 sol=False
+  +15400/28272 8.01/s ETA 26.8 min last=S8_MK10_F4 sol=False
+  +15600/28272 8.00/s ETA 26.4 min last=S4_MK6_418_F4 sol=False
+  +15800/28272 7.89/s ETA 26.3 min last=MK2_F2 sol=False
+  +16000/28272 7.92/s ETA 25.8 min last=S24_MK10_F8 sol=True
+  +16200/28272 7.91/s ETA 25.4 min last=S20_MK6_418_F4 sol=False
+  +16400/28272 7.93/s ETA 24.9 min last=S16_MK2_F4 sol=True
+  +16600/28272 7.93/s ETA 24.5 min last=S8_MK10_F4 sol=False
+  +16800/28272 7.91/s ETA 24.2 min last=S4_MK6_418_F4 sol=False
+  +17000/28272 7.90/s ETA 23.8 min last=MK2_F16 sol=True
+  +17200/28272 7.90/s ETA 23.3 min last=S28 sol=True
+  +17400/28272 7.89/s ETA 23.0 min last=S20_MK6_418_F4 sol=False
+  +17600/28272 7.87/s ETA 22.6 min last=S16_MK2_F4 sol=False
+  +17800/28272 7.89/s ETA 22.1 min last=S8_MK10_F16 sol=True
+  +18000/28272 7.94/s ETA 21.6 min last=S4_MK6_418_F4 sol=False
+  +18200/28272 7.96/s ETA 21.1 min last=MK2_F4 sol=False
+  +18400/28272 7.96/s ETA 20.7 min last=S24_MK10_F4 sol=False
+  +18600/28272 8.00/s ETA 20.2 min last=S20_F16 sol=True
+  +18800/28272 8.00/s ETA 19.7 min last=S16_MK2_F2 sol=False
+  +19000/28272 7.97/s ETA 19.4 min last=S8_MK10_F8 sol=True
+  +19200/28272 7.98/s ETA 18.9 min last=S4_MK6_418_F4 sol=False
+  +19400/28272 7.97/s ETA 18.6 min last=MK2_F4 sol=False
+  +19600/28272 7.91/s ETA 18.3 min last=S24_MK10_F4 sol=False
+  +19800/28272 7.93/s ETA 17.8 min last=S20_MK6_418_F4 sol=True
+  +20000/28272 7.95/s ETA 17.3 min last=S16_MK2_F8 sol=True
+  +20200/28272 7.96/s ETA 16.9 min last=S8_MK10_F16 sol=True
+  +20400/28272 8.01/s ETA 16.4 min last=S4_MK6_418_F4 sol=False
+  +20600/28272 8.02/s ETA 15.9 min last=MK2_F4 sol=False
+  +20800/28272 7.91/s ETA 15.7 min last=S24_MK10_F4 sol=False
+  +21000/28272 7.90/s ETA 15.3 min last=S20_MK4_F16 sol=False
+  +21200/28272 7.90/s ETA 14.9 min last=S16_MK2_F4 sol=False
+  +21400/28272 7.91/s ETA 14.5 min last=S8_MK10_F4 sol=True
+  +21600/28272 7.95/s ETA 14.0 min last=S4_MK6_418_F4 sol=False
+  +21800/28272 7.95/s ETA 13.6 min last=MK2_F4 sol=False
+  +22000/28272 7.97/s ETA 13.1 min last=S24_MK10_F4 sol=True
+  +22200/28272 7.88/s ETA 12.8 min last=S20_MK6_418_F4 sol=False
+  +22400/28272 7.84/s ETA 12.5 min last=S16_MK2_F4 sol=False
+  +22600/28272 7.83/s ETA 12.1 min last=S8_MK10_F4 sol=False
+  +22800/28272 7.84/s ETA 11.6 min last=S4_MK6_418_F4 sol=True
+  +23000/28272 7.88/s ETA 11.1 min last=MK2_F4 sol=False
+  +23200/28272 7.88/s ETA 10.7 min last=S24_MK10_F4 sol=False
+  +23400/28272 7.89/s ETA 10.3 min last=S20_MK6_418_F4 sol=False
+  +23600/28272 7.89/s ETA 9.9 min last=S16_MK2_F4 sol=False
+  +23800/28272 7.89/s ETA 9.4 min last=S8_MK10_F4 sol=False
+  +24000/28272 7.92/s ETA 9.0 min last=S4_MK6_418_F4 sol=True
+  +24200/28272 7.95/s ETA 8.5 min last=MK2_F4 sol=False
+  +24400/28272 7.96/s ETA 8.1 min last=S24_MK10_F4 sol=False
+  +24600/28272 7.94/s ETA 7.7 min last=S20_MK6_418_F4 sol=False
+  +24800/28272 7.94/s ETA 7.3 min last=S16_MK2_F4 sol=False
+  +25000/28272 7.95/s ETA 6.9 min last=S8_MK10_F4 sol=True
+  +25200/28272 7.98/s ETA 6.4 min last=S4_MK6_418_F4 sol=False
+  +25400/28272 7.96/s ETA 6.0 min last=MK2_F8 sol=True
+  +25600/28272 7.99/s ETA 5.6 min last=S24_MK8_F16 sol=True
+  +25800/28272 8.02/s ETA 5.1 min last=S20_MK6_418_F8 sol=True
+  +26000/28272 8.01/s ETA 4.7 min last=S16_F16 sol=False
+  +26200/28272 8.03/s ETA 4.3 min last=S8_MK10_F4 sol=True
+  +26400/28272 8.07/s ETA 3.9 min last=S4_MK6_418_F4 sol=False
+  +26600/28272 8.06/s ETA 3.5 min last=MK2_F4 sol=False
+  +26800/28272 8.07/s ETA 3.0 min last=S24_MK10_F4 sol=False
+  +27000/28272 8.07/s ETA 2.6 min last=S20_MK6_418_F4 sol=False
+  +27200/28272 8.10/s ETA 2.2 min last=S16_MK2_F8 sol=True
+  +27400/28272 8.10/s ETA 1.8 min last=S8_MK8_F16 sol=False
+  +27600/28272 8.05/s ETA 1.4 min last=S4_MK6_418_F4 sol=False
+  +27800/28272 8.06/s ETA 1.0 min last=MK2_F4 sol=False
+  +28000/28272 8.06/s ETA 0.6 min last=S28 sol=True
+  +28200/28272 8.05/s ETA 0.1 min last=S20_MK6_418_F4 sol=False
+  +28272/28272 8.04/s ETA 0.0 min last=S28_MK10_F16 sol=False
+[smk-f] new=28272
+# S × MK × Fsign grid — AC1M-hard Aut train 120 @ budget 1,000
+
+Updated `2026-07-30T03:17:44.910580+00:00`
+
+Grid: |S|=8 × |MK|=6 × |F|=5 = 240 arms. No K.
+Fsign = mean_|A_sign[d]| for d=3..5 (FFT-equivalent sign-channel lags).
+
+**selected_on / evaluated_on** = ac1m_hard_aut train 120 (this run is the selection sweep; holdout not read).
+
+## Winner: `S28_MK2_F8`
+
+S=28, MK=2, F=8 → **57/120** (mean nodes 479)
+
+Length control: **0/120**
+
+### Best by family
+
+- **length:** `length` → 0/120 (S=0, MK=0, F=0)
+- **pure S:** `S20` → 49/120 (S=20, MK=0, F=0, mean nodes 432)
+- **pure MK:** `MK6_418` → 16/120 (S=0, MK=6.418, F=0, mean nodes 470)
+- **pure F:** `F4` → 30/120 (S=0, MK=0, F=4, mean nodes 513)
+- **S+MK:** `S20_MK2` → 54/120 (S=20, MK=2, F=0, mean nodes 454)
+- **S+F:** `S16_F4` → 48/120 (S=16, MK=0, F=4, mean nodes 495)
+- **MK+F:** `MK6_418_F8` → 31/120 (S=0, MK=6.418, F=8, mean nodes 471)
+- **S+MK+F:** `S28_MK2_F8` → 57/120 (S=28, MK=2, F=8, mean nodes 479)
+
+### Top 40
+
+| rank | arm | S | MK | F | solved | Δ vs length | mean nodes |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 1 | `S28_MK2_F8` | 28 | 2 | 8 | **57/120** | +57 | 479 |
+| 2 | `S20_MK2_F4` | 20 | 2 | 4 | **55/120** | +55 | 437 |
+| 3 | `S28_MK2_F4` | 28 | 2 | 4 | **55/120** | +55 | 461 |
+| 4 | `S20_MK2_F2` | 20 | 2 | 2 | **54/120** | +54 | 398 |
+| 5 | `S24_MK2_F2` | 24 | 2 | 2 | **54/120** | +54 | 402 |
+| 6 | `S20_MK2` | 20 | 2 | 0 | **54/120** | +54 | 454 |
+| 7 | `S24_MK2_F8` | 24 | 2 | 8 | **54/120** | +54 | 456 |
+| 8 | `S24_MK2` | 24 | 2 | 0 | **53/120** | +53 | 397 |
+| 9 | `S16_MK2_F4` | 16 | 2 | 4 | **53/120** | +53 | 421 |
+| 10 | `S24_MK2_F4` | 24 | 2 | 4 | **53/120** | +53 | 428 |
+| 11 | `S28_MK4` | 28 | 4 | 0 | **52/120** | +52 | 402 |
+| 12 | `S28_MK2_F2` | 28 | 2 | 2 | **52/120** | +52 | 433 |
+| 13 | `S28_MK2` | 28 | 2 | 0 | **51/120** | +51 | 356 |
+| 14 | `S24_MK4` | 24 | 4 | 0 | **51/120** | +51 | 436 |
+| 15 | `S28_MK4_F4` | 28 | 4 | 4 | **50/120** | +50 | 386 |
+| 16 | `S28_MK4_F2` | 28 | 4 | 2 | **50/120** | +50 | 413 |
+| 17 | `S24_MK4_F4` | 24 | 4 | 4 | **50/120** | +50 | 422 |
+| 18 | `S20_MK2_F8` | 20 | 2 | 8 | **50/120** | +50 | 422 |
+| 19 | `S28_MK4_F8` | 28 | 4 | 8 | **50/120** | +50 | 448 |
+| 20 | `S20` | 20 | 0 | 0 | **49/120** | +49 | 432 |
+| 21 | `S12_MK2_F4` | 12 | 2 | 4 | **49/120** | +49 | 452 |
+| 22 | `S12` | 12 | 0 | 0 | **49/120** | +49 | 510 |
+| 23 | `S28_MK2_F16` | 28 | 2 | 16 | **49/120** | +49 | 519 |
+| 24 | `S12_MK2_F2` | 12 | 2 | 2 | **48/120** | +48 | 487 |
+| 25 | `S16_F4` | 16 | 0 | 4 | **48/120** | +48 | 495 |
+| 26 | `S16` | 16 | 0 | 0 | **48/120** | +48 | 514 |
+| 27 | `S16_MK8_F4` | 16 | 8 | 4 | **47/120** | +47 | 343 |
+| 28 | `S20_MK8_F2` | 20 | 8 | 2 | **47/120** | +47 | 357 |
+| 29 | `S16_MK8_F2` | 16 | 8 | 2 | **47/120** | +47 | 378 |
+| 30 | `S16_MK6_418_F2` | 16 | 6.418 | 2 | **47/120** | +47 | 382 |
+| 31 | `S20_MK10_F8` | 20 | 10 | 8 | **47/120** | +47 | 387 |
+| 32 | `S24_MK4_F2` | 24 | 4 | 2 | **47/120** | +47 | 388 |
+| 33 | `S24_F2` | 24 | 0 | 2 | **47/120** | +47 | 399 |
+| 34 | `S28_F4` | 28 | 0 | 4 | **47/120** | +47 | 402 |
+| 35 | `S20_F2` | 20 | 0 | 2 | **47/120** | +47 | 420 |
+| 36 | `S20_MK6_418` | 20 | 6.418 | 0 | **47/120** | +47 | 431 |
+| 37 | `S20_F4` | 20 | 0 | 4 | **47/120** | +47 | 442 |
+| 38 | `S16_MK2_F8` | 16 | 2 | 8 | **47/120** | +47 | 445 |
+| 39 | `S20_MK4` | 20 | 4 | 0 | **47/120** | +47 | 452 |
+| 40 | `S16_MK2` | 16 | 2 | 0 | **47/120** | +47 | 477 |
+
+## Notes
+
+- Headline Δ is vs length on the same 120 (length is 0 here).
+- Do not promote from train alone — need a virgin holdout read next.
+- Unsolved = unsolved within budget 1000.
+

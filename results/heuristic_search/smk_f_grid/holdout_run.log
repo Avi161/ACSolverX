@@ -1,0 +1,48 @@
+[smk-f-ho] arms=5 spent=60 fresh=60 todo=600 workers=4
+  +50/600 9.04/s ETA 1.0 min last=S28_MK2_F8 holdout sol=False
+  +100/600 9.77/s ETA 0.9 min last=S28_MK2_F8 holdout sol=False
+  +150/600 9.00/s ETA 0.8 min last=S28_MK2_F8 holdout sol=False
+  +200/600 9.22/s ETA 0.7 min last=length holdout sol=False
+  +250/600 9.40/s ETA 0.6 min last=S20 holdout sol=True
+  +300/600 9.38/s ETA 0.5 min last=S28_MK2_F8 holdout sol=True
+  +350/600 9.36/s ETA 0.4 min last=length fresh sol=False
+  +400/600 9.53/s ETA 0.3 min last=S20_MK2 fresh sol=True
+  +450/600 9.42/s ETA 0.3 min last=S20_MK2 fresh sol=True
+  +500/600 9.27/s ETA 0.2 min last=length fresh sol=False
+  +550/600 9.07/s ETA 0.1 min last=S28_MK2_F8 fresh sol=True
+  +600/600 9.10/s ETA 0.0 min last=S28_MK2_F8 fresh sol=False
+[smk-f-ho] new=600
+# S×MK×F holdout read — budget 1,000
+
+Updated `2026-07-30T03:29:30.103661+00:00`
+
+**selected_on** = ac1m_hard_aut train 120 (grid winner `S28_MK2_F8`)
+**evaluated_on (primary)** = ac1m_hard_aut holdout 60 (spent — used in prior S/K/MK tune)
+**evaluated_on (virgin)** = fft fresh holdout 60
+
+## Spent Aut holdout 60
+
+| arm | S | MK | F | solved | mean nodes |
+|---|---:|---:|---:|---:|---:|
+| `length` | 0 | 0 | 0 | **0/60** | — |
+| `S20` | 20 | 0 | 0 | **30/60** | 449 |
+| `S20_MK2` | 20 | 2 | 0 | **33/60** | 453 |
+| `S20_MK2_F4` | 20 | 2 | 4 | **27/60** | 361 |
+| `S28_MK2_F8` | 28 | 2 | 8 | **28/60** | 429 |
+
+## Fresh holdout 60
+
+| arm | S | MK | F | solved | mean nodes |
+|---|---:|---:|---:|---:|---:|
+| `length` | 0 | 0 | 0 | **0/60** | — |
+| `S20` | 20 | 0 | 0 | **27/60** | 496 |
+| `S20_MK2` | 20 | 2 | 0 | **27/60** | 449 |
+| `S20_MK2_F4` | 20 | 2 | 4 | **29/60** | 480 |
+| `S28_MK2_F8` | 28 | 2 | 8 | **22/60** | 422 |
+
+## Notes
+
+- Fixed arms from train selection — no re-tuning on holdout.
+- Spent holdout was already used for earlier S+K+MK selection; treat as confirmatory.
+- Fresh holdout is Aut-disjoint from train + spent (see split note).
+
