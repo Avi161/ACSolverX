@@ -15,7 +15,9 @@ from experiments.ppo import acs_data, acs_spec                       # noqa: E40
 from experiments.ppo.beam import (                                   # noqa: E402
     beam_search_one, decode_path, make_hash_vec, repair_jsonl, run_beam, summarise)
 from experiments.ppo.policy import RelativeDualRingActorCritic       # noqa: E402
-from experiments.ppo.run_ppo import LOCAL_EXPANSION_CAP              # noqa: E402
+from experiments.ppo import run_ppo                                  # noqa: E402
+from experiments.ppo.run_ppo import (                                # noqa: E402
+    LOCAL_EXPANSION_CAP, beam_tag, checkpoint_tag)
 
 L = 24
 
@@ -149,6 +151,64 @@ def test_repair_truncates_only_an_unterminated_tail(tmp_path):
     assert only.read_text() == ""
 
     assert repair_jsonl(str(tmp_path / "absent.jsonl"), progress=lambda *_: None) == 0
+
+
+def _cfg(**over):
+    base = {"EVAL_DATASET": "1190MS", "BEAM_WIDTH": 1024, "BEAM_MAX_STEPS": 150,
+            "MAX_RELATOR_LENGTH": L}
+    base.update(over)
+    return base
+
+
+def test_the_beam_filename_separates_every_policy_it_could_decode():
+    """Same name = resume skips everything = seed 2 silently reports seed 1's count."""
+    cfg = _cfg()
+    names = {
+        beam_tag(cfg, checkpoint_tag(cfg, "r/ppo-drt-1190MS-s142.pt", 1000)),
+        beam_tag(cfg, checkpoint_tag(cfg, "r/ppo-drt-1190MS-s7.pt", 1000)),      # other seed
+        beam_tag(cfg, checkpoint_tag(cfg, "r/ppo-drt-AC19_extended-s142.pt", 1000)),  # other arm
+        beam_tag(cfg, checkpoint_tag(cfg, "r/ppo-drt-1190MS-s142.pt", 500)),     # earlier update
+        beam_tag(_cfg(EVAL_DATASET="AC19_extended"), "610model_params"),         # other eval set
+        beam_tag(_cfg(BEAM_WIDTH=8), "610model_params"),
+        beam_tag(_cfg(BEAM_MAX_STEPS=30), "610model_params"),
+        beam_tag(_cfg(MAX_RELATOR_LENGTH=32), "610model_params"),
+        beam_tag(_cfg(BEAM_ALPHA=0.5), "610model_params"),
+        beam_tag(_cfg(BEAM_TEMPERATURE=0.3), "610model_params"),
+        beam_tag(_cfg(BEAM_TEMPERATURE=0.3, SEED=1), "610model_params"),
+        beam_tag(cfg, "610model_params"),
+    }
+    assert len(names) == 12
+
+
+def test_result_neutral_knobs_stay_out_of_the_beam_filename():
+    """A slice, a heartbeat or a mirror must not fork the resume file."""
+    plain = beam_tag(_cfg(), "610model_params")
+    for k, v in [("EVAL_START", 100), ("EVAL_END", 200), ("HEARTBEAT_EVERY_S", 5.0),
+                 ("MIRROR_DIR", "/content/drive/MyDrive/x"), ("SEED", 9),
+                 ("BEAM_ALPHA", 0.0), ("USE_WANDB", True), ("DEVICE", "cuda")]:
+        assert beam_tag(_cfg(**{k: v}), "610model_params") == plain, k
+
+
+def test_stage_beam_uses_that_name_and_not_a_checkpoint_blind_one(tmp_path, monkeypatch):
+    """The default must come from the stage, not from notebook discipline."""
+    torch.manual_seed(0)
+    net = RelativeDualRingActorCritic(max_len=L)
+    seen = []
+
+    def fake_run_beam(model, pres, out_path, **kw):
+        seen.append(out_path)
+        with open(out_path, "w") as fh:
+            fh.write(json.dumps({"presentation_idx": 0, "solved": True, "path_length": 3}) + "\n")
+        return {"attempted": 1, "solved": 1, "out": out_path}
+
+    monkeypatch.setattr(run_ppo, "run_beam", fake_run_beam)
+    for seed, update in [(142, 1000), (7, 1000), (142, 500)]:
+        ckpt = tmp_path / f"ppo-drt-1190MS-s{seed}.pt"
+        torch.save({"model": net.state_dict(), "update": update}, ckpt)
+        run_ppo.stage_beam(_cfg(BEAM_WIDTH=8, BEAM_MAX_STEPS=30, ACTIVATION="gelu",
+                                DEVICE="cpu", OUT_DIR=str(tmp_path / "out"),
+                                BEAM_CHECKPOINT=str(ckpt)), log=lambda *_: None)
+    assert len(set(seen)) == 3, f"beam runs collided on one jsonl: {seen}"
 
 
 def test_summarise_reports_mean_path_length_over_solves_only(tmp_path):

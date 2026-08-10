@@ -152,6 +152,22 @@ def test_gradient_accumulation_equals_one_big_minibatch():
         assert torch.allclose(a, b, atol=2e-5, rtol=2e-4)
 
 
+def test_a_pin_wider_than_the_env_count_is_clamped_and_said_out_loud(tmp_path):
+    """Shrinking NUM_ENVS for a smoke run must not silently pin more than exist."""
+    from experiments.ppo.run_ppo import stage_train
+
+    lines = []
+    out = stage_train({"DEVICE": "cpu", "DATASET": "1190MS", "NUM_ENVS": 8,
+                       "NUM_STEPS": 4, "MICRO_BATCH": 32, "MAX_UPDATES": 1,
+                       "OUT_DIR": str(tmp_path), "SAVE_EVERY": 1, "USE_WANDB": False,
+                       "MAX_RELATOR_LENGTH": L},
+                      log=lines.append)
+    assert out["updates"] == 1
+    joined = "\n".join(str(l) for l in lines)
+    assert "not a paper arm" in joined
+    assert "8 envs pinned deterministically, 0 sampling" in joined
+
+
 def test_one_update_runs_and_is_resumable(tmp_path):
     tr = _tiny_trainer()
     m = tr.step_update()

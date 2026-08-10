@@ -248,6 +248,16 @@ def _unflatten(flat):
     return tree
 
 
+def train_tag(stem, seed):
+    """Checkpoint / jsonl / W&B identity of one training arm.
+
+    The update count is deliberately absent: this names a *continuing* run, and
+    the update it has reached lives inside the checkpoint. Anything that reads
+    the weights and reports a number (`beam_tag`) must add it back.
+    """
+    return f"ppo-drt-{stem}-s{int(seed)}"
+
+
 def stage_train(cfg, log=print):
     device = pick_device(cfg.get("DEVICE", "auto"))
     set_matmul_precision(cfg.get("ALLOW_TF32", False))
@@ -257,6 +267,13 @@ def stage_train(cfg, log=print):
     stem = config["DATASET"]
     pres = acs_data.load_presentations(stem, L)
     n_pinned = acs_data.ms_prefix_length(stem)
+    if n_pinned > config["NUM_ENVS"]:
+        # Only reachable by shrinking NUM_ENVS for a smoke run. Clamping keeps it
+        # runnable; saying so keeps its solve count from being read as an arm.
+        log(f"NOTE: {stem} pins {n_pinned} presentations but NUM_ENVS is "
+            f"{config['NUM_ENVS']} -- clamping the pin. Every env is pinned and none "
+            f"resample, so this is a smoke configuration, not a paper arm.")
+        n_pinned = config["NUM_ENVS"]
     log(f"{stem}: {len(pres)} presentations, MS prefix {n_pinned} "
         f"-> {n_pinned} envs pinned deterministically, {config['NUM_ENVS'] - n_pinned} sampling")
 
@@ -268,7 +285,7 @@ def stage_train(cfg, log=print):
 
     out_dir = cfg["OUT_DIR"]
     os.makedirs(out_dir, exist_ok=True)
-    tag = cfg.get("RUN_TAG") or f"ppo-drt-{stem}-s{config['SEED']}"
+    tag = cfg.get("RUN_TAG") or train_tag(stem, config["SEED"])
     ckpt_path = os.path.join(out_dir, f"{tag}.pt")
     jsonl_path = os.path.join(out_dir, f"{tag}.jsonl")
     mirror = cfg.get("MIRROR_DIR")
@@ -350,6 +367,42 @@ def _wandb_init(cfg, config, tag, log):
     )
 
 
+def checkpoint_tag(cfg, src, update=None):
+    """Filename-safe identity of the *weights* a beam run decoded.
+
+    A `.pt` from `stage_train` is a moving target -- the same path holds update
+    500 in the morning and update 1000 at night -- so the update count is part
+    of the identity, not metadata. For the upstream artefact the step is only
+    known when `CKPT_STEP` pins it; the `.npz` stem names the export otherwise.
+    """
+    stem = os.path.splitext(os.path.basename(str(src).rstrip("/")))[0]
+    if update is None:
+        update = cfg.get("CKPT_STEP")
+    return f"{stem}-u{update}" if update is not None else stem
+
+
+def beam_tag(cfg, ckpt_tag):
+    """The beam jsonl is a resume key, so its name must carry every knob.
+
+    `run_beam` skips presentations already in the file. Two seeds, two training
+    arms, or one arm at two update counts sharing a name means the second eval
+    writes nothing and reports the first one's solve count as its own -- a
+    silent wrong number, not an error. Result-neutral knobs (`EVAL_START/END`,
+    heartbeat, mirror) stay out: a slice is a subset of the same run's rows and
+    merges into the same file correctly.
+    """
+    tag = (f"beam-{ckpt_tag}-{cfg['EVAL_DATASET']}"
+           f"-w{int(cfg['BEAM_WIDTH'])}-t{int(cfg['BEAM_MAX_STEPS'])}"
+           f"-L{cfg['MAX_RELATOR_LENGTH']}")
+    alpha = float(cfg.get("BEAM_ALPHA", 0.0))
+    if alpha:
+        tag += f"-a{alpha:g}"
+    t0, t1 = float(cfg.get("BEAM_TEMPERATURE", 0.0)), float(cfg.get("BEAM_TEMP_END", 0.0))
+    if t0 or t1:                                  # sampling: the seed now matters
+        tag += f"-T{t0:g}_{t1:g}-s{int(cfg.get('SEED', 0))}"
+    return tag
+
+
 def stage_beam(cfg, log=print):
     from experiments.ppo.transplant import load_into
 
@@ -369,18 +422,20 @@ def stage_beam(cfg, log=print):
         blob = torch.load(src, map_location=device, weights_only=False)
         model.load_state_dict(blob["model"])
         log(f"loaded torch checkpoint {src} (update {blob.get('update')})")
+        ckpt_tag = checkpoint_tag(cfg, src, blob.get("update"))
     else:
         src = os.path.join(ROOT, cfg["PARAMS_NPZ"])
         if not os.path.exists(src):
             src = os.path.join(ROOT, cfg["CKPT_DIR"])
         load_into(model, src, cfg.get("CKPT_STEP"))
         log(f"loaded upstream checkpoint {src}")
+        ckpt_tag = checkpoint_tag(cfg, src)
 
     stem = cfg["EVAL_DATASET"]
     pres = acs_data.load_presentations(stem, L)
     out_dir = cfg["OUT_DIR"]
     os.makedirs(out_dir, exist_ok=True)
-    tag = cfg.get("BEAM_TAG") or f"beam-{stem}-w{width}-t{steps}"
+    tag = cfg.get("BEAM_TAG") or beam_tag(cfg, ckpt_tag)
     out_path = os.path.join(out_dir, f"{tag}.jsonl")
     mirror = cfg.get("MIRROR_DIR")
     _seed_from_mirror(out_path, mirror)

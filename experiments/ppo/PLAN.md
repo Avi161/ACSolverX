@@ -1,6 +1,6 @@
 # PPO from scratch (PyTorch) — reproduction plan
 
-Branch `experiments/ppo`. **Nothing is implemented yet.** This file pins the exact spec the PyTorch port must match and lists what is still needed before writing code.
+Branch `experiments/ppo`. **The port is written, tested and pushed; no replication number exists yet.** This file pins the exact spec the PyTorch port matches, records what building it turned up, and says what is left to run.
 
 Repo-scoped [`CLAUDE.md`](../../CLAUDE.md) says this branch's work is CPU + numba only, no JAX/GPU/PPO, and that `ppo_ac_s.py` / `network.py` are "a spec to port from, never import". The user has explicitly asked for PPO here, so **this branch is a deliberate exception to that rule** — the no-PPO line applies to the greedy/heuristic branches, not to `experiments/ppo/`. The "spec to port from, never import" half still holds: the JAX files stay read-only references.
 
@@ -61,16 +61,36 @@ The action mask is semantic, not just padding: `(i,j)` is legal iff `r1[i] == -r
 - **Step 1000 is where it stopped, not the end.** `NUM_UPDATES` is 4376 and `max_to_keep=3` at `save_every=50` explains why only 900/950/1000 survive. So this is ~23% of the paper's budget (≈229M of 1e9 timesteps) — useful as a parity fixture, not as a reproduction of the table row.
 - **One residual mismatch.** `solve_data` is length **157,217**, but today's `data/AC19_extended.txt` is 156,762 lines. The training file was 455 rows larger than the one in the repo. Params parity is unaffected (weights don't depend on `init_states`), but a byte-exact *retrain* of this checkpoint is not possible from the repo as it stands.
 
-## What I need from you
+## What is built
 
-1. **Colab spec** — which GPU tier you get (T4 / L4 / A100) and how long a run you're willing to leave up. 1e9 timesteps at 2,380 envs is the paper's budget; I need the tier to say whether that is one overnight run or a week, and to size a shortened first run that still means something. **Local stays capped at a 1,000-node budget** (user directive, and the standing rule in [`CLAUDE.md`](../../CLAUDE.md)) — see below for what that does and does not allow.
-2. **Permission to install** `torch` locally, plus `jax`/`flax`/`orbax` **once** (none are in `.venv` today; `requirements.txt` pins the JAX stack but it was never installed). JAX is needed only to load `610model`'s weights for the parity check — not for training. Alternative: do the parity check on Colab too and keep the local venv clean.
+| file | what it is | gate |
+|---|---|---|
+| `acs_data.py` | presentation loading, re-padding, and `ms_prefix_length` (the 634 pin, derived) | `tests/ppo/test_env.py` |
+| `acs_moves.py` | batched S-move: reverse, cyclic reduce, rotate, concatenate, Booth lex-min | trace-equal to `acs_spec.py` over 12,288 transitions |
+| `acs_spec.py` | scalar transliteration of `envs/ac_s.py` + `ac_moves.py`, test support only | it *is* the oracle |
+| `acs_env.py` | `VecACS` — the env plus all three wrappers fused | `tests/ppo/test_env.py` |
+| `policy.py` | torch `RelativeDualRingActorCritic` + the semantic action mask | `tests/ppo/test_policy_and_ppo.py` |
+| `transplant.py` | orbax/flax params → torch `state_dict`, 95/95 arrays, no silent skips | `test_transplant_covers_every_checkpoint_array` |
+| `ppo.py` | GAE, clipped surrogate, PPO2 value loss, per-minibatch advantage norm | GAE checked against the hand-written recursion |
+| `beam.py` | beam decode + resumable jsonl (`repair_jsonl` before any append) | `tests/ppo/test_beam.py` |
+| `run_ppo.py` | the four stages `convert` / `parity` / `train` / `beam_eval` | `tests/ppo/test_notebook.py` |
+| `results_table.py` | the replication table, from beam jsonls over `1190MS` and nothing else | `tests/ppo/test_results_table.py` |
+| `../notebooks/ppo/ppo_baseline.ipynb` | the A100 Colab driver, CONFIG / SETUP / RUN / TABLE | executed cell by cell in `test_notebook.py` |
 
-Defaults I'm taking unless you say otherwise: W&B goes to project `acsolver`, entity `avigyapaudel045-aisc` (the repo's pinned pair); the table is exactly the format you pasted, with the budget caveat below stated alongside it rather than resolved away.
+Answers to what this section used to ask for: the GPU is an **A100**; `torch` is installed locally, and `jax`/`flax`/`orbax` are not — the cross-framework parity gate runs on Colab, where they ship with the image. W&B goes to project `acsolver`, entity `avigyapaudel045-aisc`.
+
+## What building it turned up
+
+- **Upstream's Booth rotation is not lex-min.** `ac_moves.py`'s "Booth" step returns a rotation the textbook algorithm does not, on words the search actually reaches. The port reproduces upstream's function, deliberately — a correct lex-min would be a *different environment*, and every checkpoint and paper number was produced under upstream's. `test_upstream_booth_is_not_lex_min` pins the divergence so nobody "fixes" it.
+- **The paper's "+ AC-19" arm is `data/AC19_extended.txt`, not `data/AC19.txt`.** The extended file opens with the first 634 lines of `1190MS` verbatim, which is exactly `parallel_sample[:634] = False`. Raw `AC19.txt` shares **no** prefix with `1190MS` (`ms_prefix_length` = 0) and contains only 171 of the 1190 MS rows anywhere in it — a run on it pins nothing, so it is not a row of the table. It is available in the notebook as a clearly-labelled extra.
+- **`NUM_ENVS = 2380` for the `1190MS` arm is a reconstruction.** Only the AC-19 arm's config shipped with `610model`. `1190 * 2` is upstream's own expression and gives one pinned env per MS presentation plus one sampler, but nothing on disk confirms the 1190MS arm ran at that width.
+- **`SEED` is 142, not the script's 14** — the shipped checkpoint's saved config says so, and `DEFAULT_CONFIG` follows the checkpoint.
+- **The shipped `610model` is a free replication.** It is step 1000 of 4376 and named for ~610 solves, so beam-decoding it over `1190MS` should land near the paper's 607.2 **with no training at all**. That is the notebook's third rung and the gate on everything after it: a few off is consistent with the two documented beam deviations, tens off means the env, the net or the decode is wrong.
+- **The beam jsonl name is the resume key, so it carries the policy.** `run_beam` skips presentations already in the file, so a name that omitted the checkpoint would make seed 2 write nothing and report seed 1's count. `beam_tag` folds in the checkpoint stem *and its update count*, since a `.pt` is a moving target.
 
 ## Two caveats on the table you pasted
 
-**The denominators are not the same.** Those PPO numbers (457 … 607) and greedy numbers (533 … 640) are counts out of the **1190 Miller–Schupp presentations** — `GS-SUB (1M) NODES = 640` is exactly our `data/ms640_solved.txt`, so that row is already reproduced and is the anchor. `benchmark/subsets/benchmark_subset_10` is 10 rows sampled from our own 66-row benchmark, one per difficulty bin. It is the right **smoke test** — greedy gets 8/10 at 50k nodes and 10/10 at 1M, so there is real dynamic range — but a table in the paper's format needs the full 1190. Plan: subset_10 first to prove the pipeline, then `data/1190MS.txt` for the table.
+**The denominators are not the same.** Those PPO numbers (457 … 607) and greedy numbers (533 … 640) are counts out of the **1190 Miller–Schupp presentations** — `GS-SUB (1M) NODES = 640` is exactly our `data/ms640_solved.txt`, so that row is already reproduced and is the anchor. `benchmark/subsets/benchmark_subset_10` is 10 rows sampled from our own 66-row benchmark, one per difficulty bin; it is a fine smoke test but its count is not comparable to anything in the table. So every number here is a beam decode over the full `data/1190MS.txt`, and `results_table.py` refuses to read a run over any other file. The pipeline is proved by the tests and by the shipped-checkpoint rung, not by a smaller denominator.
 
 **"Same budget" needs defining.** Greedy's budget is nodes expanded *per presentation*; PPO's is training timesteps spent *once, across all presentations*, after which inference is nearly free. They are not commensurable, which is why the paper reports them as two separate blocks rather than one ratio. The honest comparison is the one the paper makes — solve count per method, with greedy's node budget stated — and separately, a nodes-equivalent column for the beam-search decode (`beam/beam_search.py` already scores `cum_log_prob + log_softmax + alpha*value` against these checkpoints, so the PPO arm's per-presentation search cost is measurable there).
 
@@ -80,15 +100,14 @@ Everything local is a **correctness** check, never a result. Concretely: env par
 
 This costs nothing, because a search at budget `B` is exactly the first `B` expansions of any longer search — a bigger local budget would buy a slower repro, not a different behaviour.
 
-## The branch is local-only
+## What is left to run
 
-`experiments/ppo` exists in this worktree and nowhere else — it has never been pushed. Colab clones from `origin`, so nothing here can run there until it is pushed, and a push on this repo requires the log ritual in [`CLAUDE.md`](../../CLAUDE.md) (a `## HH:MM:SS UTC · \`<shortsha>\`` section in `logs/DD-MM-YYYY.md`, then a follow-up commit filling in the SHA). Say the word and I'll do the logged push; I'm not pushing unasked.
+The notebook's `STAGES` list is the order, cheapest gate first. Nothing below has been run yet.
 
-## Build order once the above is answered
+1. **`parity`** — minutes. Closes the one gate that cannot close locally: same weights, same batch, JAX vs torch, TF32 off. Everything it can check without JAX already passes in `tests/ppo`.
+2. **`beam_upstream`** — hours. Beam-decode the shipped `610model` over `1190MS` at 1024 × 150. Expect ~605–610. **This is the gate on training**: if it lands there, env + net + weights + decode are all correct and the only remaining variable is optimisation.
+3. **`train`** — the long pole. `MAX_UPDATES = 1000` (where upstream's own artefact stopped) per (arm, seed), resumable across sessions via the checkpoint + Drive mirror. Run one seed first and read `sps` from the heartbeat before committing to five. 4376 updates × 5 seeds × 2 arms is not one Colab session and is not claimed to be.
+4. **`beam_trained`** — one beam per trained checkpoint, same 1024 × 150 over `1190MS`.
+5. **The table** — `results_table.py` prints it from the beam jsonls, with the paper's published rows alongside as a clearly-labelled reference. Training-time `num_solved` is refused: on the AC-19 arm it counts over 156,762 rows, not 1190.
 
-1. `experiments/ppo/env.py` — numba/numpy vectorized ACS: S-move step, dense reward, semantic action mask. Gate: identical `(obs, reward, done)` to the JAX env over random rollouts.
-2. `experiments/ppo/policy.py` — torch `RelativeDualRingActorCritic`. Gate: **transplant the `610model` flax params into the torch module and require logits/value to match JAX to ~1e-5 on the same batch.** This is the strongest correctness test available and it costs no training.
-3. `experiments/ppo/ppo.py` — GAE + clipped surrogate + clipped value loss + per-minibatch advantage norm, hyperparameters exactly as tabled.
-4. `experiments/ppo/eval.py` — greedy-decode and beam-decode a checkpoint over a presentation list; emit jsonl in the `run_baseline.py` schema so the existing analysis reads it.
-5. `experiments/ppo/run_ppo.py` + `experiments/notebooks/ppo/` — the standard CONFIG / SETUP / RUN Colab pattern, 60 s heartbeat, restart contract, jsonl + W&B.
-6. Table: PPO-SUB-DRT (and `+ AC-19` if the budget allows) against GS-SUB at 10k / 100k / 1M nodes, mean over 5 seeds with the range, on 1190MS.
+The greedy block of the table (`GS-SUB` at 10k / 100k / 1M nodes) is not produced here — that is `experiments/notebooks/greedy_baseline.ipynb` over the same 1190 denominator, and `GS-SUB (1M) = 640` is already reproduced as `data/ms640_solved.txt`.
