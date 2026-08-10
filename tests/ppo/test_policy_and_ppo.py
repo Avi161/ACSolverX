@@ -187,3 +187,56 @@ def test_one_update_runs_and_is_resumable(tmp_path):
     assert torch.allclose(tr2.env.probs, tr.env.probs)
     for a, b in zip(tr.model.parameters(), tr2.model.parameters()):
         assert torch.equal(a, b)
+
+
+def test_the_metadata_tree_is_found_however_orbax_wraps_it():
+    """`610model` was trained on ROCm, so a plain restore dies off-ROCm.
+
+    The fix restores every leaf as numpy, which needs the parameter pytree out of
+    `metadata()` -- and orbax has moved that twice. Getting the unwrap wrong does
+    not raise here, it raises deep inside orbax with a pytree structure error, so
+    pin the unwrap itself.
+    """
+    from experiments.ppo.transplant import _map_leaves, _metadata_tree
+
+    tree = {"params": {"Dense_0": {"kernel": object()}}}
+
+    class TreeMeta:
+        def __init__(self, t):
+            self.tree = t
+
+    class StepMeta:                       # current orbax
+        def __init__(self, t):
+            self.item_metadata = TreeMeta(t)
+
+    class OlderMeta:                      # item_metadata is the tree itself
+        def __init__(self, t):
+            self.item_metadata = t
+
+    for md in (StepMeta(tree), OlderMeta(tree), tree):
+        assert _metadata_tree(md) is tree
+
+    with pytest.raises(TypeError):
+        _metadata_tree(object())
+
+    marked = _map_leaves(tree, lambda _: "LEAF")
+    assert marked == {"params": {"Dense_0": {"kernel": "LEAF"}}}
+
+
+@pytest.mark.skipif(not os.path.exists(CKPT_META), reason="610model not present")
+def test_the_shipped_checkpoint_transplants_into_a_working_policy():
+    """End to end on the real weights: 95 arrays in, finite masked logits out."""
+    npz = os.path.join(acs_data.ROOT, "ppo_checkpoints", "610model_params.npz")
+    if not os.path.exists(npz):
+        pytest.skip("run `--stage convert` first (needs orbax)")
+    from experiments.ppo.transplant import load_into
+
+    model = RelativeDualRingActorCritic(max_len=L).eval()
+    load_into(model, npz)
+    obs = torch.as_tensor(acs_data.load_presentations("1190MS", L)[:64], dtype=torch.int64)
+    with torch.no_grad():
+        logits, value = model(obs)
+    assert torch.equal(RelativeDualRingActorCritic.action_mask(obs, L), logits > -1e8)
+    assert torch.isfinite(value).all()
+    # a trained value head is not centred on zero the way an initialised one is
+    assert abs(float(value.mean())) > 0.5

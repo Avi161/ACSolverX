@@ -34,8 +34,47 @@ def _flatten(tree, prefix=""):
     return out
 
 
+def _map_leaves(tree, fn):
+    """Rebuild a nested dict with `fn` applied to every non-dict leaf."""
+    if isinstance(tree, dict):
+        return {k: _map_leaves(v, fn) for k, v in tree.items()}
+    return fn(tree)
+
+
+def _metadata_tree(md):
+    """The parameter pytree out of whatever `metadata()` returned.
+
+    orbax has moved this twice: older versions hand back the tree itself, newer
+    ones a `StepMetadata` whose `.item_metadata` is a `TreeMetadata` with the
+    tree under `.tree`. Unwrapping by duck-typing keeps one code path working
+    across the Colab image's version and whatever is installed next.
+    """
+    for probe in (lambda m: m.item_metadata.tree, lambda m: m.item_metadata, lambda m: m):
+        try:
+            tree = probe(md)
+        except AttributeError:
+            continue
+        if isinstance(tree, dict):
+            return tree
+    raise TypeError(f"cannot find the parameter tree in {type(md).__name__}")
+
+
 def read_orbax_params(ckpt_dir, step=None):
-    """Flat `{"Dense_0.kernel": array, ...}` from an orbax params item."""
+    """Flat `{"Dense_0.kernel": array, ...}` from an orbax params item.
+
+    **Restored as plain numpy, deliberately.** `610model` was trained on AMD
+    ROCm GPUs, so its `_sharding` file names `rocm:0`. Anywhere else -- Colab's
+    CUDA image, a laptop -- that device is absent from `jax.local_devices()`,
+    orbax logs `Device rocm:0 was not found` once per array, falls back to
+    `sharding=None`, and deserialization dies with "sharding passed to
+    deserialization should be specified, concrete and an instance of
+    `jax.sharding.Sharding`. Got None".
+
+    Asking for `restore_type=np.ndarray` on every leaf is not a workaround for
+    that error, it is the correct request: this function exists to hand numpy to
+    `flat_to_state_dict`, and a numpy restore never consults device sharding at
+    all. Nothing downstream wants a sharded `jax.Array`.
+    """
     import orbax.checkpoint as ocp
 
     ckpt_dir = os.path.abspath(ckpt_dir)
@@ -45,7 +84,14 @@ def read_orbax_params(ckpt_dir, step=None):
             raise SystemExit(f"no checkpoint steps under {ckpt_dir}")
         step = steps[-1]
     path = os.path.join(ckpt_dir, str(step), "params")
-    tree = ocp.PyTreeCheckpointer().restore(path)
+
+    ckptr = ocp.PyTreeCheckpointer()
+    try:
+        args = _map_leaves(_metadata_tree(ckptr.metadata(path)),
+                           lambda _: ocp.RestoreArgs(restore_type=np.ndarray))
+        tree = ckptr.restore(path, restore_args=args)
+    except TypeError:            # an orbax without the restore_args kwarg
+        tree = ckptr.restore(path)
     if isinstance(tree, dict) and set(tree) == {"params"}:
         tree = tree["params"]
     return _flatten(tree), step
