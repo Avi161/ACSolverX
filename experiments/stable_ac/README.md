@@ -61,6 +61,7 @@ that feeds the **existing** 2-gen numba greedy unchanged.
 | `run/config_cov.yaml` | the reviewable config. |
 | [`../notebooks/stable_ac/cov_baseline.ipynb`](../notebooks/stable_ac/cov_baseline.ipynb) | the 3-cell Colab notebook. |
 | [`tests/stable_ac/test_cov.py`](../../tests/stable_ac/test_cov.py) | the paper's §4 worked example pinned exactly, family fallbacks, runner schema/resume. |
+| `run/abel_top3_manifest.py` + `run/abel_top3_run.py` | the abelian-mass **top-3** rule over all 640 ms640 presentations: Stage A ranks each CoV family and freezes the top 3 (zero search), Stage B searches them in rank order at budget 100,000 and stops at the first solve (≤ 300,000 nodes per presentation), sharded across sessions. Method, gates and why the solve count saturates on this dataset: [`ABEL_TOP3_MS640.md`](cov/run/ABEL_TOP3_MS640.md); tests in [`tests/stable_ac/test_abel_top3.py`](../../tests/stable_ac/test_abel_top3.py). |
 
 ```bash
 .venv/bin/python3 -m experiments.stable_ac.cov.run.run_cov --config experiments/stable_ac/cov/run/config_cov.yaml
